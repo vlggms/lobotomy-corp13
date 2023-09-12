@@ -37,7 +37,8 @@
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user)
 	..()
 	GiveTarget(user)
-	addtimer(CALLBACK(src, .proc/kill_dummy), 30 SECONDS)
+	if(!client)
+		addtimer(CALLBACK(src, .proc/kill_dummy), 30 SECONDS)
 	if(icon_state == "Bungal")
 		icon = 'ModularTegustation/Teguicons/64x96.dmi'
 		icon_state = "Bungal_breach"
