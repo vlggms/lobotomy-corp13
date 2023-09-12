@@ -22,5 +22,5 @@
 /datum/keybinding/client/communication
 	hotkey_keys = list("P")
 	name = "LOOC"
-	full_name = "Local Out Of Character Say (LOOC)"
+	full_name = "Local Out Of Character Say"
 	keybind_signal = COMSIG_KB_CLIENT_LOOC_DOWN
