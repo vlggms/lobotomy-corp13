@@ -478,7 +478,7 @@
 	maxHealth = 4000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
 	move_to_delay = phase2speed
-	speed = phase2speed
+	UpdateSpeed()
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -497,7 +497,7 @@
 	maxHealth = 3000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
 	move_to_delay = phase3speed
-	speed = phase3speed
+	UpdateSpeed()
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15
