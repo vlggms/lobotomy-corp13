@@ -1,46 +1,5 @@
 GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 
-//GCORP
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-//LOVETOWN
-/mob/living/simple_animal/hostile/lovetown/suicidal/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/lovetown/slasher/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/lovetown/stabber/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/lovetown/slammer/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/lovetown/shambler/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/lovetown/slumberer/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
-
-/mob/living/simple_animal/hostile/lovetown/abomination/patrol
-	can_patrol = TRUE
-	patrol_cooldown_time = 10 SECONDS
 
 /obj/effect/landmark/wavespawn
 	name = "wave spawner"
