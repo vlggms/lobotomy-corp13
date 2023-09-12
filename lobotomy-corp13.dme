@@ -2721,6 +2721,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\laetitia.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\missed_reaper.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\nameless_fetus.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\norinori.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\pinocchio.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\pisc_mermaid.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\porccubus.dm"

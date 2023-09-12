@@ -422,3 +422,14 @@
 		"Agents who witnessed the movements of Wayward Passenger reported unusually high levels of mental corruption.",
 		"When Wayward Passenger breached containment, it created spacial anomalies, dubbed T-01-170-1.",
 		"Agent Alex who entered T-01-170-1 found that it aided the suppression process.")
+
+//Norinori
+/obj/item/paper/fluff/info/he/norinori
+	abno_type = /mob/living/simple_animal/hostile/abnormality/norinori
+	abno_code = "O-02-25"
+	abno_info = list(
+		"After an employee died within the facility, the Qliphoth Counter decreased.",
+		"When communicating with the abnormality as a part of Attachment Work, the employee was viciously attacked and killed by the abnormality.",
+		"When the employee initiated close physical interaction, such as petting, the Qliphoth counter was reduced by 1.",
+		"If the employee's Temperance Level was below 3, the employee was killed instead.",
+		"When the work result was Bad, the Qliphoth Counter lowered.")
