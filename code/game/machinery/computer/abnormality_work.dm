@@ -240,16 +240,16 @@
 	if(!work_type)
 		work_type = pick(datum_reference.available_work)
 	if(datum_reference.max_boxes != 0) // All these messages should be visible (on the console) and audible (announced by machine)
-		visible_message("<span class='notice'>[work_type] work finished. [pe]/[datum_reference.max_boxes] PE acquired.</span>",\
+		audible_message("<span class='notice'>[work_type] work finished. [pe]/[datum_reference.max_boxes] PE acquired.</span>",\
 				"<span class='notice'>[work_type] work finished. [pe]/[datum_reference.max_boxes] PE acquired.</span>")
 		if(pe >= datum_reference.success_boxes)
-			visible_message("<span class='notice'>Work Result: Good</span>",\
+			audible_message("<span class='notice'>Work Result: Good</span>",\
 				"<span class='notice'>Work Result: Good</span>")
 		else if(pe >= datum_reference.neutral_boxes)
-			visible_message("<span class='notice'>Work Result: Normal</span>",\
+			audible_message("<span class='notice'>Work Result: Normal</span>",\
 				"<span class='notice'>Work Result: Normal</span>")
 		else
-			visible_message("<span class='notice'>Work Result: Bad</span>",\
+			audible_message("<span class='notice'>Work Result: Bad</span>",\
 				"<span class='notice'>Work Result: Bad</span>")
 	if(istype(user))
 		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
