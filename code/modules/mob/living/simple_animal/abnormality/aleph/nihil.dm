@@ -37,6 +37,7 @@
 	ranged = TRUE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/nihil,
 		/datum/ego_datum/armor/nihil
 		)
 	gift_type = /datum/ego_gifts/nihil
