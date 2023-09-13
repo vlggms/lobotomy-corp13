@@ -488,5 +488,6 @@
 	abno_code = "Placeholder"//No idea how to get this, I know there is a schtick to it but gonna need assistance.
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered."
-		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the qaulity of their work."
-		"It was noted when Agents of prudence level 2 or lower worked on the abnormaility the Qilphoth Counter lowered.")
+		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the quality of their work."
+		"It was noted when Agents of prudence level 2 or lower worked on the abnormaility the Qilphoth Counter lowered."
+		"When Agents did repression work on the abnormality they were noted to have an incredibly low quality of work, and the abnormality would breach shortly thereafter in an agitated state.")

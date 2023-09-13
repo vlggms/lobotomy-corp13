@@ -14,31 +14,29 @@
 	maxHealth = 1000
 	health = 1000
 	rapid_melee = 3 // Speed and health may also need adjustment, confer with others before commiting.
-	move_to_delay = 2.5
+	move_to_delay = 2
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
-	melee_damage_lower = 15
-	melee_damage_upper = 20
+	melee_damage_lower = 10
+	melee_damage_upper = 35 // Idea taken from the old PR, have a large damage range so it feels like the fox "crit" sometimes.
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = "sound/abnormalities/drifting_fox/placeholderthwack.ogg" // Need to make a sound file for this as well.
 	attack_verb_simple = "thwack"
 	attack_verb_continuous = "thwacks"
-	speak_chance = 2
-	emote_see = list("*pained whine*")
 	can_breach = TRUE
 	threat_level = HE_LEVEL
-	start_qliphoth = 3
+	start_qliphoth = 2
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 40,
-		ABNORMALITY_WORK_INSIGHT = 45,
-		ABNORMALITY_WORK_ATTACHMENT = list(60,65,70,75,85),
-		ABNORMALITY_WORK_REPRESSION	= 0,
+		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_ATTACHMENT = list(25,30,35,40,45),
+		ABNORMALITY_WORK_REPRESSION	= 25,
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
-
+	// Need to add a system to increase work chance when a person pets (Likely by about 30-35%) , otherwise have it default to low chances given above.
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower
 		/datum/ego_datum/armor/sunshower
