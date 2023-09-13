@@ -4626,10 +4626,6 @@
 /obj/machinery/computer/arcade/battle,
 /turf/open/floor/eighties,
 /area/city/fixers)
-"Oe" = (
-/obj/item/kirbyplants,
-/turf/open/floor/facility/dark,
-/area/city/backstreets_room)
 "Og" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 32
@@ -27902,7 +27898,7 @@ Oq
 Oq
 XQ
 IA
-Oe
+vY
 XQ
 iE
 XQ
