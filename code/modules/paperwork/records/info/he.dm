@@ -485,7 +485,7 @@
 //Drifting Fox
 /obj/item/paper/fluff/info/he/drifting_fox
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
-	abno_code = "Placeholder"//No idea how to get this, I know there is a schtick to it but gonna need assistance.
+	abno_code = "O-02-173"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered."
 		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the quality of their work."
