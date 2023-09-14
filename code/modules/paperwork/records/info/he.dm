@@ -429,6 +429,5 @@
 	abno_code = "O-02-173"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered."
-		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the quality of their work."
-		"It was noted when Agents of prudence level 2 or lower worked on the abnormaility the Qilphoth Counter lowered."
-		"When Agents did repression work on the abnormality they were noted to have an incredibly low quality of work, and the abnormality would breach shortly thereafter in an agitated state.")
+		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the quality of their attachment work."
+		"It was noted when Agents of prudence level 2 or lower worked on the abnormaility the Qilphoth Counter lowered.")

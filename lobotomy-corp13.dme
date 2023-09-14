@@ -2724,6 +2724,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\pinocchio.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\pisc_mermaid.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\porccubus.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\drifting_fox.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\puss_in_boots.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\red_buddy.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\red_queen.dm"
