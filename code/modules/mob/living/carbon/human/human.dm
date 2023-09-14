@@ -84,7 +84,7 @@
 	for(var/atrname in attributes) //raw stats (health, sanity etc)
 		var/datum/attribute/atr = attributes[atrname]
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [round(atr.get_level()) + atr.initial_stat_value] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			dat += "[stat] : [atr.get_printed_level_bonus()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
