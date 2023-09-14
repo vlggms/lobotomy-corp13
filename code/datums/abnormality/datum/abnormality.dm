@@ -44,6 +44,8 @@
 	/// Simulated Observation Bonuses
 	var/understanding = 0
 	var/max_understanding = 0
+	/// The limit for maximum attribute level you can achieve working on this abnormality
+	var/maximum_attribute_level = 0
 	/// A list of performed works on it
 	var/list/work_logs = list()
 	/*
@@ -96,6 +98,7 @@
 	threat_level = current.threat_level
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
+	maximum_attribute_level = THREAT_TO_ATTRIBUTE_LIMIT[threat_level]
 	if(!current.max_boxes)
 		max_boxes = threat_level * 6
 	else
@@ -145,18 +148,6 @@
 		return
 	if(pe > 0) // Work did not fail
 		var/attribute_type = current.work_attribute_types[work_type]
-		var/maximum_attribute_level = 0
-		switch(threat_level)
-			if(ZAYIN_LEVEL)
-				maximum_attribute_level = 40
-			if(TETH_LEVEL)
-				maximum_attribute_level = 60
-			if(HE_LEVEL)
-				maximum_attribute_level = 80
-			if(WAW_LEVEL)
-				maximum_attribute_level = 100
-			if(ALEPH_LEVEL)
-				maximum_attribute_level = 130
 		var/datum/attribute/user_attribute = user.attributes[attribute_type]
 		if(user_attribute) //To avoid runtime if it's a custom work type like "Release".
 			var/user_attribute_level = max(1, user_attribute.level)
@@ -232,7 +223,7 @@
 		if(ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
 	acquired_chance *= user.physiology.work_success_mod
-	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) * TEMPERANCE_MOD
+	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) * TEMPERANCE_SUCCESS_MOD
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	acquired_chance += overload_chance
 	return clamp(acquired_chance, 0, 100)
