@@ -907,7 +907,6 @@
 	id = "galaxygift"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 30 SECONDS
-	tick_interval = 1 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/galaxy_gift
 	var/base_heal_amt = 0.5
 	var/base_dmg_amt = 45

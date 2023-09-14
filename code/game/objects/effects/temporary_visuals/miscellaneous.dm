@@ -972,3 +972,18 @@
 
 /obj/effect/temp_visual/smash_effect/red
 	color = COLOR_RED
+
+/obj/effect/temp_visual/house
+	name = "home"
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon_state = "House"
+	duration = 4 SECONDS
+	pixel_x = -34
+	pixel_z = 128
+
+/obj/effect/temp_visual/house/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/FadeOut), 2 SECONDS)
+
+/obj/effect/temp_visual/house/proc/FadeOut()
+	animate(src, alpha = 0, time = 1 SECONDS)
