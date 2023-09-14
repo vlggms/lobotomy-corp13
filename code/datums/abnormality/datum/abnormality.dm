@@ -117,10 +117,10 @@
 		if(HE_LEVEL)
 			max_understanding = 8
 		if(WAW_LEVEL)
-			overload_chance_amount = -2
+			overload_chance_amount = -3
 			max_understanding = 6
 		if(ALEPH_LEVEL)
-			overload_chance_amount = -4
+			overload_chance_amount = -6
 			max_understanding = 6
 	if (understanding == max_understanding && max_understanding > 0)
 		current.gift_chance *= 1.5
