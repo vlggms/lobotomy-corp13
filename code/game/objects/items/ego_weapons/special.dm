@@ -1,4 +1,60 @@
 //Abnormality rewards
+//Bottle of Tears
+/obj/item/ego_weapon/eyeball
+	name = "eyeball scooper"
+	desc = "Mind if I take them?"
+	special = "This weapon grows more powerful as you do, but its potential is limited if you possess any other EGO weapons."
+	icon_state = "eyeball1"
+	force = 20
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
+							)
+
+/obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
+	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
+	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
+	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
+	var/list/search_area = user.contents.Copy()
+	for(var/obj/item/storage/spare_space in search_area)
+		search_area |= spare_space.contents
+	for(var/obj/item/gun/ego_gun/disloyal_gun in search_area)
+		extra_mod = 0
+		break
+	for(var/obj/item/ego_weapon/disloyal_weapon in search_area)
+		if(disloyal_weapon == src)
+			continue
+		extra_mod = 0
+		break
+	force = 20 + fortitude_mod + extra_mod
+	if(extra_mod > 0)
+		var/resistance = target.run_armor_check(null, damtype)
+		icon_state = "eyeball2"				// Cool sprite
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype] <= 0)
+				resistance = 100
+		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
+			force *= 0.1
+			armortype = MELEE //Armor-piercing
+	else
+		icon_state = "eyeball1"				//Cool sprite gone
+	if(ishuman(target))
+		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
+	..()
+	force = initial(force)
+	armortype = initial(armortype)
+
+	/*Here's how it works. It scales with Fortitude. This is more balanced than it sounds. Think of it as if Fortitude adjusted base force.
+	Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
+	This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
+	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
+	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
+
+//Puss in Boots
 /obj/item/ego_weapon/lance/famiglia
 	name = "famiglia"
 	desc = "Do not be cast down, for I will provide for your well-being as well as mine."

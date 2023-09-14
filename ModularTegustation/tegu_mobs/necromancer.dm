@@ -375,7 +375,7 @@
 	ADD_TRAIT(src, TRAIT_MOVE_PHASING, "ability")
 	add_movespeed_modifier(/datum/movespeed_modifier/necromancer_flight, update = TRUE)
 	move_to_delay -= 1
-	speed -= 1
+	UpdateSpeed()
 	handle_automated_action()
 	density = FALSE
 	icon = 'ModularTegustation/Teguicons/96x32.dmi'
@@ -405,7 +405,7 @@
 	flying = FALSE
 	remove_movespeed_modifier(/datum/movespeed_modifier/necromancer_flight, update = TRUE)
 	move_to_delay += 1
-	speed += 1
+	UpdateSpeed()
 	handle_automated_action()
 	icon = 'ModularTegustation/Teguicons/megafauna.dmi'
 	pixel_x = 0

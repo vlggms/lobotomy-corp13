@@ -20,6 +20,7 @@ GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
 GLOBAL_LIST_EMPTY(ordeal_list)				//all ordeal mobs. Allows for searching of a smaller list and thus less overall lag when doing so.
 GLOBAL_LIST_EMPTY(abnormality_mob_list)		//all abnormality mobs
+GLOBAL_LIST_EMPTY(distortion_mob_list)		//all distortion mobs
 GLOBAL_LIST_EMPTY(mob_directory)			//mob_id -> mob
 GLOBAL_LIST_EMPTY(alive_mob_list)			//all alive mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(suicided_mob_list)		//contains a list of all mobs that suicided, including their associated ghosts.

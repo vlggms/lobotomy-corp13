@@ -33,6 +33,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	melee_damage_type = RED_DAMAGE
+	melee_reach = 2
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	speak_emote = list("states")
 	vision_range = 14
@@ -302,19 +303,13 @@
 	attack_verb_continuous = "pummels"
 	attack_verb_simple = "pummel"
 	move_to_delay = 3
+	UpdateSpeed()
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
 	revive(full_heal = TRUE, admin_revive = FALSE)
 	is_maggot = TRUE
 
-//2-tile attack range to take advantage of its AOE
-/mob/living/simple_animal/hostile/abnormality/golden_apple/CheckAndAttack()//taken from porccubus
-	if(!target)
-		return
-	if(targets_from && isturf(targets_from.loc) && get_dist(target, src) <= 2 && !incapacitated())//Only extends the range for the Smash() proc
-		AttackingTarget()
-		return
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/AttackingTarget()
 	if(!can_act)
@@ -351,6 +346,7 @@
 	med_hud_set_status()
 	update_health_hud()
 	move_to_delay = 2.5//same as awakened blue smock
+	UpdateSpeed()
 	revive(full_heal = TRUE, admin_revive = FALSE)
 	if(H)
 		desc = "The apple ruptured and a swarm of maggots crawled inside.. wait a minute, that's [H.real_name]'s face."

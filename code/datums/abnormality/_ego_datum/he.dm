@@ -328,10 +328,12 @@
 	cost = 35
 
 /datum/ego_datum/weapon/warp
+	item_category = "Weapon (Knife)"
 	item_path = /obj/item/ego_weapon/warp
 	cost = 35
 
 /datum/ego_datum/weapon/warp/spear
+	item_category = "Weapon (Spear)"
 	item_path = /obj/item/ego_weapon/warp/spear
 	cost = 35
 
@@ -374,4 +376,28 @@
 
 /datum/ego_datum/weapon/split
 	item_path = /obj/item/ego_weapon/lance/split
+	cost = 35
+
+//Basilisoup - Lifetime Stew
+/datum/ego_datum/armor/lifestew
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/lifestew
+	cost = 35
+
+/datum/ego_datum/weapon/lifestew_lance
+	item_category = "Weapon (Lance)"
+	item_path = /obj/item/ego_weapon/lance/lifestew_lance
+	cost = 35
+
+/datum/ego_datum/weapon/lifestew
+	item_category = "Weapon (Mace)"
+	item_path = /obj/item/ego_weapon/lifestew
+	cost = 35
+
+//Faelantern - Midwinter Nightmare
+/datum/ego_datum/armor/faelantern
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/faelantern
+	cost = 35
+
+/datum/ego_datum/weapon/faelantern
+	item_path = /obj/item/ego_weapon/faelantern
 	cost = 35

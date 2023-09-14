@@ -324,8 +324,10 @@
 		GainPatience()
 
 /mob/living/simple_animal/hostile/proc/CheckAndAttack()
+	if(!target)
+		return FALSE
 	var/in_range = melee_reach > 1 ? target.Adjacent(targets_from) || (get_dist(src, target) <= melee_reach && (target in view(src, melee_reach))) : target.Adjacent(targets_from)
-	if(target && targets_from && isturf(targets_from.loc) && in_range && !incapacitated())
+	if(targets_from && isturf(targets_from.loc) && in_range && !incapacitated())
 		AttackingTarget()
 		return TRUE
 	return FALSE
@@ -735,8 +737,8 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/patrol_select()
-	//Mobs should stay unpatroled on combat maps.
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
+	//Mobs should stay unpatroled on maps where they're intended to be possessed.
+	if(SSmaptype.maptype in SSmaptype.autopossess)
 		return
 	if(!LAZYLEN(GLOB.department_centers))
 		return
