@@ -1,4 +1,5 @@
 // Code for the drifting fox abnormality
+// By yours truely, MoriBox! (I have no fucking clue what im doing.)
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with yellow eyes and torn umbrellas lodged in its back."
@@ -13,7 +14,7 @@
 	base_pixel_x = 0 // Need to figure out what base pixel and pixel X do.
 	maxHealth = 1000
 	health = 1000
-	rapid_melee = 3 // Speed and health may also need adjustment, confer with others before commiting.
+	rapid_melee = 3
 	move_to_delay = 2
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
 	melee_damage_lower = 10
@@ -28,15 +29,26 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = 30,
 		ABNORMALITY_WORK_ATTACHMENT = list(25,30,35,40,45),
-		ABNORMALITY_WORK_REPRESSION	= 25,
+		ABNORMALITY_WORK_REPRESSION	= 30,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
-	// Need to add a system to increase work chance when a person pets (Likely by about 30-35%) , otherwise have it default to low chances given above.
+	// If I understood this correctly, this SHOULD check if you have pet the fox.
+		var/list/pet = list()
+		/mob/living/simple_animal/hostile/abnormality/drifting_fox/WorkChance(mob/living/carbon/human/user, chance, work_type)
+		if(user in pet)
+			if(work_type == ABNORMALITY_WORK_ATTACHMENT)
+				chance+=30
+			return chance
+
+	/mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+		if(user in pet)
+			pet-=user
+
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower
 		/datum/ego_datum/armor/sunshower
@@ -45,8 +57,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
-	// "borrowed" from forsaken murderers code to give a punishment for failing to do well.
-/mob/living/simple_animal/hostile/abnormality/scarecrow/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) =< 60)
 		datum_reference.qliphoth_change(-1)
 	return
