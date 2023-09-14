@@ -62,8 +62,8 @@
 /obj/structure/itemselling/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Hit with a storage item to dump all items in it into the machine.</span>"
-	. += "<a href='?src=[REF(src)];tier_3=1'>List Tier 3 Prices</a>"
-	. += "<a href='?src=[REF(src)];tier_2=1'>List Tier 2 Prices</a>"
+	. += "<a href='?src=[REF(src)];tier_3=1'>List Tier 2 Prices</a>"
+	//. += "<a href='?src=[REF(src)];tier_2=1'>List Tier 2 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_1=1'>List Tier 1 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_0=1'>List Tier 0 Prices</a>"
 	/**
@@ -180,4 +180,3 @@
 		return
 
 	to_chat(user, "<span class='notice'>No human potential identified.</span>")
-
