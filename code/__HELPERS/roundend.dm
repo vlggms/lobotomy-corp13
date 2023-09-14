@@ -572,7 +572,9 @@
 	if(SSlobotomy_corp.goal_reached)
 		. += "PE Quota was reached!<br>"
 	else
-		if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
+		if(SSlobotomy_corp.box_goal == 0)
+			. += "The day hasn't even started yet and you're leaving?<br>"
+		else if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
 			. += "Enough PE to meet PE Quota was made, but you spent it all!? You'll be hearing from our lawyers.<br>"
 		else
 			. += "PE Quota was not reached! Don't expect to have a job tomorrow...<br>"
