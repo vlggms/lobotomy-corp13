@@ -8,7 +8,7 @@
 	icon_living = "fox"
 	icon_dead = "fox_dead"
 	deathmessage = "collapses into a puddle of water"
-	deathsound = "sound/abnormalities/drifting_fox/placeholdersplash.ogg" // Need to make a sound file for this.
+	deathsound = "sound/abnormalities/drifting_fox/foxdeath.ogg" // Need to make a sound file for this.
 	del_on_death = FALSE
 	pixel_x = 0
 	base_pixel_x = 0 // Need to figure out what base pixel and pixel X do.
@@ -22,7 +22,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	attack_sound = "sound/abnormalities/drifting_fox/placeholderthwack.ogg" // Need to make a sound file for this as well.
+	attack_sound = "sound/abnormalities/drifting_fox/foxhit.ogg" // Need to make a sound file for this as well.
 	attack_verb_simple = "thwack"
 	attack_verb_continuous = "thwacks"
 	can_breach = TRUE
