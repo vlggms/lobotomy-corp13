@@ -455,3 +455,12 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
+/obj/item/clothing/suit/armor/ego_gear/he/sunshower
+	name = "Sunshower"
+	desc = "Luck follows those who are truly kind."
+	icon_state = "sunshower"
+	flags_inv = NONE
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 10, BLACK_DAMAGE = 50, PALE_DAMAGE = -20) // 70 Total, if I understand correctly.
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
