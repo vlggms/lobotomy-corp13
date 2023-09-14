@@ -3,10 +3,10 @@
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with yellow eyes and torn umbrellas lodged in its back."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "fox"
-	icon_living = "fox"
-	icon_dead = "fox_dead"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "smallfox"
+	icon_living = "smallfox"
+	icon_dead = "smallfox_dead"
 	deathmessage = "collapses into a puddle of water"
 	deathsound = "sound/abnormalities/drifting_fox/foxdeath.ogg" // Need to make a sound file for this.
 	del_on_death = FALSE
@@ -57,7 +57,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower
 		/datum/ego_datum/armor/sunshower
-	)
+		)
 	gift_type = /datum/ego_gifts/sunshower // NEED TO ACTAULLY MAKE THE GIFT / EGOS
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -92,7 +92,7 @@ if(status_flags & GODMODE)
 	else if(stat == DEAD)
 		icon_state = icon_dead
 	else
-		icon_living = "fox_breached"
+		icon_living = "smallfox_breached"
 		icon_state = icon_living
 
 
