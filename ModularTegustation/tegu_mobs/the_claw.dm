@@ -271,6 +271,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetEviscerate(mob/living/L, obj/effect/eff)
 	if(!istype(L))
+		charging = FALSE
 		return FALSE
 	new /obj/effect/temp_visual/emp/pulse(src.loc)
 	icon_state = icon_living
@@ -283,6 +284,9 @@
 	L.Stun(12, TRUE, TRUE)
 	SLEEP_CHECK_DEATH(6)
 	qdel(eff)
+	if(!istype(L))
+		charging = FALSE
+		return FALSE
 	L.visible_message(
 		"<span class='warning'>[src] disappears, taking [L] with them!</span>",
 		"<span class='userdanger'>[src] teleports with you through the entire facility!</span>"
@@ -294,6 +298,9 @@
 		teleport_turfs += T
 	for(var/i = 1 to 5)
 		if(!LAZYLEN(teleport_turfs))
+			break
+		if(!istype(L))
+			charging = FALSE
 			break
 		var/turf/target_turf = pick(teleport_turfs)
 		playsound(tp_loc, 'ModularTegustation/Tegusounds/claw/eviscerate2.ogg', 100, 1)
@@ -322,9 +329,10 @@
 		L.forceMove(tp_loc)
 		if(i < 5)
 			SLEEP_CHECK_DEATH(4)
-	to_chat(L, "<span class='userdanger'>\The [src] slashes you, finally releasing you from his grasp!</span>")
-	L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-	GiveTarget(L)
+	if(istype(L))
+		to_chat(L, "<span class='userdanger'>\The [src] slashes you, finally releasing you from his grasp!</span>")
+		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		GiveTarget(L)
 	charging = FALSE
 
 // I hate how it's just a copy-paste of serum W, but oh well
@@ -402,6 +410,8 @@
 /mob/living/simple_animal/hostile/megafauna/claw/proc/SwiftDash(target, distance, wait_time)
 	if(dash_cooldown > world.time)
 		return
+	if(!target)
+		return
 	dash_cooldown = world.time + (dash_cooldown_time * distance)
 	charging = TRUE
 	var/turf/end_turf = get_ranged_target_turf_direct(src, target, distance, 0)
@@ -451,6 +461,8 @@
 	SLEEP_CHECK_DEATH(5)
 	icon_state = "claw_dash"
 	for(var/i = 1 to 8)
+		if(!isliving(target))
+			break
 		INVOKE_ASYNC(src, .proc/blink, LT)
 		SLEEP_CHECK_DEATH(2)
 	icon_state = icon_living
