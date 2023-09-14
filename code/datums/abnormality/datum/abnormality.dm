@@ -222,17 +222,17 @@
 		acquired_chance = acquired_chance[work_level]
 	if(current)
 		acquired_chance = current.WorkChance(user, acquired_chance, workType)
-	switch (workType)
-		if (ABNORMALITY_WORK_INSTINCT)
+	switch(workType)
+		if(ABNORMALITY_WORK_INSTINCT)
 			acquired_chance += user.physiology.instinct_success_mod
-		if (ABNORMALITY_WORK_INSIGHT)
+		if(ABNORMALITY_WORK_INSIGHT)
 			acquired_chance += user.physiology.insight_success_mod
-		if (ABNORMALITY_WORK_ATTACHMENT)
+		if(ABNORMALITY_WORK_ATTACHMENT)
 			acquired_chance += user.physiology.attachment_success_mod
-		if (ABNORMALITY_WORK_REPRESSION)
+		if(ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
 	acquired_chance *= user.physiology.work_success_mod
-	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
+	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) * TEMPERANCE_MOD
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	acquired_chance += overload_chance
 	return clamp(acquired_chance, 0, 100)
