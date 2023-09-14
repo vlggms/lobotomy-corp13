@@ -714,7 +714,7 @@ GLOBAL_LIST_EMPTY(species_list)
 					H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE)
 				. += H
 			. += C
-	if(hurt_structure) // Hits structures
+	if(hurt_structure && damage_type != WHITE_DAMAGE) // Hits structures
 		for(var/obj/structure/S in target)
 			if(S in .)
 				continue
