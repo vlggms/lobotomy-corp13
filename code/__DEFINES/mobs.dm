@@ -70,9 +70,9 @@
 // Health/damage defines
 #define MAX_LIVING_HEALTH 100
 /// Maximum health of a human mob, without fortitude
-#define DEFAULT_HUMAN_MAX_HEALTH 50
+#define DEFAULT_HUMAN_MAX_HEALTH 70
 /// Maximum sanity of a human mob, without prudence
-#define DEFAULT_HUMAN_MAX_SANITY 50
+#define DEFAULT_HUMAN_MAX_SANITY 70
 
 #define HUMAN_MAX_OXYLOSS 3
 #define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
