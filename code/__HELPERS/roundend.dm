@@ -335,7 +335,7 @@
 	//Economy & Money
 	parts += market_report()
 	//PE Quota
-	if(!(SSmaptype.maptype in list("city","rcorp", "wcorp")))
+	if(SSmaptype.maptype == "standard")
 		parts += pe_report()
 
 	listclearnulls(parts)
