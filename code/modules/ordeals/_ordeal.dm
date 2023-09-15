@@ -53,6 +53,12 @@
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				M.playsound_local(get_turf(M), end_sound, 35, 0)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat == DEAD)
+			continue
+		if(!H.client)
+			continue
+		SSpersistence.agent_rep_change[H.ckey] += level
 	/// If it was a midnight and we got to it before time limit after previously completing a core suppression
 	if(level == 4 && SSlobotomy_corp.core_suppression_state == 2 && \
 	start_time <= CONFIG_GET(number/suppression_time_limit))

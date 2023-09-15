@@ -1,5 +1,7 @@
 #define FILE_ANTAG_REP "data/AntagReputation.json"
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
+#define FILE_AGENT_REP "data/AgentReputation.json"
+#define FILE_PE_QUOTA "data/PEQuota.json"
 
 #define KEEP_ROUNDS_MAP 3
 
@@ -16,6 +18,9 @@ SUBSYSTEM_DEF(persistence)
 	var/list/saved_trophies = list()
 	var/list/antag_rep = list()
 	var/list/antag_rep_change = list()
+	var/list/agent_rep = list()
+	var/list/agent_rep_change = list()
+	var/list/pe_status = list()
 	var/list/picture_logging_information = list()
 	var/list/obj/structure/sign/picture_frame/photo_frames
 	var/list/obj/item/storage/photo_album/photo_albums
@@ -31,6 +36,9 @@ SUBSYSTEM_DEF(persistence)
 	LoadPhotoPersistence()
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
+	LoadAgentReputation()
+	if(!(SSmaptype.maptype in list("city","rcorp", "wcorp")))
+		LoadPEStatus()
 	LoadRandomizedRecipes()
 	LoadPaintings()
 	load_custom_outfits()
@@ -148,6 +156,26 @@ SUBSYSTEM_DEF(persistence)
 		return
 	antag_rep = json_decode(json)
 
+/datum/controller/subsystem/persistence/proc/LoadAgentReputation()
+	var/json = file2text(FILE_AGENT_REP)
+	if(!json)
+		var/json_file = file(FILE_AGENT_REP)
+		if(!fexists(json_file))
+			WARNING("Failed to load agent reputation. File likely corrupt.")
+			return
+		return
+	agent_rep = json_decode(json)
+
+/datum/controller/subsystem/persistence/proc/LoadPEStatus()
+	var/json = file2text(FILE_PE_QUOTA)
+	if(!json)
+		var/json_file = file(FILE_PE_QUOTA)
+		if(!fexists(json_file))
+			WARNING("Failed to load previous PE Quota. File likely corrupt.")
+			return
+		return
+	pe_status = json_decode(json)
+
 /datum/controller/subsystem/persistence/proc/SetUpTrophies(list/trophy_items)
 	for(var/A in GLOB.trophy_cases)
 		var/obj/structure/displaycase/trophy/T = A
@@ -182,6 +210,9 @@ SUBSYSTEM_DEF(persistence)
 	SavePhotoPersistence()						//THIS IS PERSISTENCE, NOT THE LOGGING PORTION.
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
+	if(!(SSmaptype.maptype in list("city","rcorp", "wcorp")))
+		SavePEStatus()
+	CollectAgentReputation()
 	SaveRandomizedRecipes()
 	SavePaintings()
 	SaveScars()
@@ -337,6 +368,29 @@ SUBSYSTEM_DEF(persistence)
 	fdel(FILE_ANTAG_REP)
 	text2file(json_encode(antag_rep), FILE_ANTAG_REP)
 
+
+/datum/controller/subsystem/persistence/proc/CollectAgentReputation()
+	var/AGENT_REP_MAXIMUM = CONFIG_GET(number/agent_rep_maximum)
+
+	if(pe_status[PE_GOAL_REACHED]) // Everyone alive at round end gains triple points if Quota was reached.
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			if(H.stat == DEAD)
+				continue
+			if(!H.client)
+				continue
+			SSpersistence.agent_rep_change[H.ckey] *= 3
+
+	for(var/p_ckey in agent_rep_change)
+		agent_rep[p_ckey] = max(0, min(agent_rep[p_ckey]+agent_rep_change[p_ckey], AGENT_REP_MAXIMUM))
+
+	agent_rep_change = list()
+
+	fdel(FILE_AGENT_REP)
+	text2file(json_encode(agent_rep), FILE_AGENT_REP)
+
+/datum/controller/subsystem/persistence/proc/SavePEStatus()
+	fdel(FILE_PE_QUOTA)
+	text2file(json_encode(pe_status), FILE_PE_QUOTA)
 
 /datum/controller/subsystem/persistence/proc/LoadRandomizedRecipes()
 	var/json_file = file("data/RandomizedChemRecipes.json")
