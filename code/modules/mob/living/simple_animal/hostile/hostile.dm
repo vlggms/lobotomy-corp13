@@ -78,8 +78,11 @@
 
 	if(!targets_from)
 		targets_from = src
+	/*Update Speed overrides set speed and sets it
+		to the equivilent of move_to_delay. Basically
+		move_to_delay - 2 = speed. */
+	UpdateSpeed()
 	wanted_objects = typecacheof(wanted_objects)
-
 
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null

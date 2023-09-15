@@ -788,8 +788,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	var/counter_threshold = 500 //300 at stage 2
 	var/counter_ready = FALSE //are we ready to counter?
 
-	var/counter_speed = -2 //subtracted from the movedelay when dashing
-	var/original_speed = 6 //used to reset speed after dashing
+	var/counter_speed = 2 //subtracted from the movedelay when dashing
 
 	var/lovewhip_damage = 100
 	var/damage_taken
@@ -799,9 +798,8 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	if(!countering && can_act)
 		icon_state = icon_living
 	current_stage = 2
-	move_to_delay = 4
-	counter_speed = -1
-	original_speed = 4
+	//Speed changed from 6 to 4
+	SpeedChange(-counter_speed)
 	attack_delay = 1 SECONDS
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)
@@ -838,13 +836,13 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 			icon_state = "lovetown_abomination_dash2"
 	countering = TRUE
 	counter_ready = FALSE
-	move_to_delay += counter_speed
+	//Speed becomes 4 or 2 and returns to 6 or 4 after 4 seconds.
+	TemporarySpeedChange(-counter_speed, 4 SECONDS)
 	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
 	addtimer(CALLBACK(src, .proc/DisableCounter), 4 SECONDS) //disables the counter after 4 seconds
 
-/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter() //resets the speed
+/mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter() //resets the counter
 	if(countering)
-		move_to_delay = original_speed
 		countering = FALSE
 		playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_counter_end.ogg', 75, 0, 3)
 		SLEEP_CHECK_DEATH(10)
