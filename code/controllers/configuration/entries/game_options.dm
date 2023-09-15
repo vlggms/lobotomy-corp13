@@ -139,11 +139,6 @@
 	min_val = 0
 	max_val = 1
 
-/datum/config_entry/number/agent_rep_maximum
-	config_entry_value = 500
-	integer = FALSE
-	min_val = 0
-
 /datum/config_entry/number/shuttle_refuel_delay
 	config_entry_value = 12000
 	integer = FALSE

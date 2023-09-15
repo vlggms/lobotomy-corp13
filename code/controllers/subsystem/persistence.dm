@@ -370,8 +370,6 @@ SUBSYSTEM_DEF(persistence)
 
 
 /datum/controller/subsystem/persistence/proc/CollectAgentReputation()
-	var/AGENT_REP_MAXIMUM = CONFIG_GET(number/agent_rep_maximum)
-
 	if(pe_status[PE_GOAL_REACHED]) // Everyone alive at round end gains triple points if Quota was reached.
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(H.stat == DEAD)
@@ -381,7 +379,7 @@ SUBSYSTEM_DEF(persistence)
 			SSpersistence.agent_rep_change[H.ckey] *= 3
 
 	for(var/p_ckey in agent_rep_change)
-		agent_rep[p_ckey] = max(0, min(agent_rep[p_ckey]+agent_rep_change[p_ckey], AGENT_REP_MAXIMUM))
+		agent_rep[p_ckey] = max(0, agent_rep[p_ckey]+agent_rep_change[p_ckey])
 
 	agent_rep_change = list()
 
