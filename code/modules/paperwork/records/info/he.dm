@@ -428,6 +428,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	abno_code = "O-02-173"
 	abno_info = list(
-		"When the work result was Bad, the Qliphoth Counter lowered."
-		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the quality of their attachment work."
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"It was noted that Agents who pet the Abnormality before work had a noticable increase in the quality of their attachment work.",
 		"It was noted when Agents of prudence level 2 or lower worked on the abnormaility the Qilphoth Counter lowered.")
+
