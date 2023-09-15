@@ -47,3 +47,8 @@
 #define ABNORMALITY_ORIGIN_WONDERLAB "Wonderlab"
 #define ABNORMALITY_ORIGIN_RUINA "Library of Ruina"
 #define ABNORMALITY_ORIGIN_LIMBUS "Limbus Company"
+
+// Persistent PE things
+#define PE_GOAL_REACHED	"goal_reached"
+#define PE_GOAL_SPENT	"goal_spent"
+#define PE_LEFTOVER		"leftover_pe"

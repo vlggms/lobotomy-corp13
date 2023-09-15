@@ -193,6 +193,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(goal_reached || box_goal == 0)
 		return
 	if(available_box + goal_boxes >= box_goal)
+		available_box -= box_goal - goal_boxes // Leftover is drained
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
 		var/pizzatype_list = subtypesof(/obj/item/food/pizza)
@@ -206,6 +207,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			pod.explosionSize = list(0,0,0,0)
 			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
 			new /obj/effect/pod_landingzone(get_turf(person), pod)
+		for(var/mob/M in GLOB.player_list)
+			if(!M.ckey || !M.client)
+				continue
+			SSpersistence.agent_rep_change[M.ckey] += 3
 	return
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
