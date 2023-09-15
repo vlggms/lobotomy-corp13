@@ -35,8 +35,8 @@
 	var/list/current_ego = list()
 	/// How many PE boxes we have available for use on EGO purchase
 	var/stored_boxes = 0
-	/// Current overload chance reduction applied to general work chance. Displayed on abnormality console and is reset on meltdown
-	var/overload_chance = 0
+	/// Associative list of ckey = overload chance; It is reset each meltdown.
+	var/list/overload_chance = list()
 	/// Amount of reduction applied on each work session
 	var/overload_chance_amount = 0
 	/// Limit on overload_chance; By default equal to amount * 10
@@ -120,12 +120,12 @@
 		if(HE_LEVEL)
 			max_understanding = 8
 		if(WAW_LEVEL)
-			overload_chance_amount = -3
+			overload_chance_amount = -4
 			max_understanding = 6
 		if(ALEPH_LEVEL)
 			overload_chance_amount = -6
 			max_understanding = 6
-	if (understanding == max_understanding && max_understanding > 0)
+	if(understanding == max_understanding && max_understanding > 0)
 		current.gift_chance *= 1.5
 	overload_chance_limit = overload_chance_amount * 10
 	if(abno_radio)
@@ -178,8 +178,7 @@
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
 	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
-	if(overload_chance > overload_chance_limit)
-		overload_chance += overload_chance_amount
+	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter
@@ -225,5 +224,6 @@
 	acquired_chance *= user.physiology.work_success_mod
 	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) * TEMPERANCE_SUCCESS_MOD
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
-	acquired_chance += overload_chance
+	if(overload_chance[user.ckey])
+		acquired_chance += overload_chance[user.ckey]
 	return clamp(acquired_chance, 0, 100)
