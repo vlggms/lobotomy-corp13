@@ -56,7 +56,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
-		if(!H.client)
+		if(!H.client || !H.ckey)
 			continue
 		SSpersistence.agent_rep_change[H.ckey] += level
 	/// If it was a midnight and we got to it before time limit after previously completing a core suppression
