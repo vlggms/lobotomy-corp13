@@ -38,33 +38,34 @@
 	work_damage_type = BLACK_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	// If I understood this correctly, this SHOULD check if you have pet the fox.
-		/var/list/pet = list()
+	/var/list/pet = list()
 
 	pet_bonus = "yips"
-	/mob/living/simple_animal/hostile/abnormality/drifting_fox/funpet(mob/petter)
-		pet+=petter
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/funpet(mob/petter)
+	pet+=petter
 
-		/mob/living/simple_animal/hostile/abnormality/drifting_fox/WorkChance(mob/living/carbon/human/user, chance, work_type)
-		if(user in pet)
-			if(work_type == ABNORMALITY_WORK_ATTACHMENT)
-				chance+=30
-			return chance
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	if(user in pet)
+		if(work_type == ABNORMALITY_WORK_ATTACHMENT)
+			chance+=30
+		return chance
 
-	/mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-		if(user in pet)
-			pet-=user
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(user in pet)
+		pet-=user
 
 	ego_list = list(
-		/datum/ego_datum/weapon/sunshower
+		/datum/ego_datum/weapon/sunshower,
 		/datum/ego_datum/armor/sunshower
 		)
+
 	gift_type = /datum/ego_gifts/sunshower // NEED TO ACTAULLY MAKE THE GIFT / EGOS
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) =< 60)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 60)
 		datum_reference.qliphoth_change(-1)
 	return
 
@@ -74,18 +75,8 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/abnormality/drifting_fox/CanAttack(atom/the_target)
-	if(finishing)
-		return FALSE
-	return ..()
-
-/mob/living/simple_animal/abnormality/drifting_fox/Move()
-	if(finishing)
-		return FALSE
-	return ..()
-
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/update_icon_state()
-if(status_flags & GODMODE)
+	if(status_flags & GODMODE)
 	// Not breaching
 		icon_living = initial(icon)
 		icon_state = icon_living
@@ -94,5 +85,3 @@ if(status_flags & GODMODE)
 	else
 		icon_living = "smallfox_breached"
 		icon_state = icon_living
-
-

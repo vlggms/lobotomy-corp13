@@ -1325,6 +1325,13 @@
 	prudence_bonus = 5
 	slot = HAND_1
 
+/datum/ego_gifts/sunshower
+	name = "Tattered Umbrella"
+	icon_state = "umbrella"
+	temperance_bonus = 15
+	justice_bonus = -10
+	slot = LEFTBACK
+
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"
