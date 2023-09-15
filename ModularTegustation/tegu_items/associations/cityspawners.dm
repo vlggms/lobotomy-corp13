@@ -29,3 +29,7 @@
 /obj/effect/landmark/syndicatebase
 	name = "syndicate base landmark"
 	icon_state = "x"
+
+/obj/effect/landmark/distortion
+	name = "distortion landmark"
+	icon_state = "x"
