@@ -2,7 +2,7 @@
 	name = "Sweeper Suit"
 	desc = "A suit created by the carnival out of sweepers, You feel a weird emotion as you gaze at this armor. Grow, Sustain and Persist."
 	icon_state = "indigo_armor"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 20, PALE_DAMAGE = 10)
 
 /obj/item/clothing/suit/armor/ego_gear/city/green_armor
 	name = "Doubting Suit"
