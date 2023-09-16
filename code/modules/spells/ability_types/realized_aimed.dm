@@ -320,16 +320,16 @@
 
 /obj/effect/proc_holder/ability/aimed/cocoon_spawn
 	name = "Cocoon summon"
-	desc = "An ability that allows its user to summon a cocoon to take hits and slow and damage enemies near it."
+	desc = "An ability that allows its user to chuck a cocoon to take hits and slow and damage enemies near it."
 	action_icon_state = "cocoon0"
 	base_icon_state = "cocoon"
-	cooldown_time = 15 SECONDS
+	cooldown_time = 5 SECONDS
 
 /obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
 	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
-	var/turf/target_turf = get_turf(target)
-	new /mob/living/simple_animal/cocoonability(target_turf)
+	var/mob/living/simple_animal/coooon = new /mob/living/simple_animal/cocoonability(get_turf(user))
+	coooon.throw_at(target, get_dist(user, target), 1)
 	return ..()
 
 
@@ -340,8 +340,8 @@
 	icon_state = "cocoon_large2"
 	icon_living = "cocoon_large2"
 	faction = list("neutral")
-	health = 250	//They're here to help
-	maxHealth = 250
+	health = 300	//They're here to help
+	maxHealth = 300
 	speed = 0
 	turns_per_move = 10000000000000
 	generic_canpass = FALSE
@@ -353,8 +353,8 @@
 /mob/living/simple_animal/cocoonability/Initialize()
 	. = ..()
 	QDEL_IN(src, (30 SECONDS))
-	for(var/i = 1 to 10)
-		addtimer(CALLBACK(src, .proc/SplashEffect), i * 3 SECONDS)
+	for(var/i = 1 to 15)
+		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
 
 /mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
@@ -367,7 +367,7 @@
 		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(damage_slowdown, 3 SECONDS) // Slow down
+			H.TemporarySpeedChange(damage_slowdown, 4 SECONDS) // Slow down
 
 
 /obj/effect/proc_holder/ability/aimed/blackhole
