@@ -48,5 +48,4 @@
 	backpack_contents = list(
 		/obj/item/silkknife = 1,
 		/obj/item/pda/roboticist = 1,
-		/obj/item/clothing/suit/armor/ego_gear/city/carnival_robes = 1,
 		/obj/item/book/granter/crafting_recipe/weaving_armor = 1)
