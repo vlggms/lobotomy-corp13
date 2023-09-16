@@ -831,6 +831,7 @@
 				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
 					L.apply_status_effect(/datum/status_effect/duality_yang)
 			all_turfs -= T
+	return ..()
 
 /datum/status_effect/duality_yang
 	id = "EGO_YANG"
@@ -1062,3 +1063,185 @@
 		var/mob/living/L = target
 		if(L.health < 0 || L.stat == DEAD)
 			L.gib() //Punch them so hard they explode
+/* Flesh Idol - Repentance */
+/obj/effect/proc_holder/ability/prayer
+	name = "Prayer"
+	desc = "An ability that does causes you to start praying reducing damage taken by 50% but removing your ability to move and lowers justice by 80. \
+	When you finish praying everyone in a big area gets a 25% damage boost and gets healed."
+	action_icon_state = "flesh0"
+	base_icon_state = "flesh"
+	cooldown_time = 30 SECONDS
+
+	var/damage_amount = 300 // Amount of explosion damage
+	var/explosion_range = 15
+
+/obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	user.apply_status_effect(/datum/status_effect/flesh1)
+	cooldown = world.time + (15 SECONDS)
+	to_chat(user, "<span class='userdanger'>You start praying...</span>")
+	if(!do_after(user, 15 SECONDS))
+		REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
+		return
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(!user.faction_check_mob(H, FALSE))
+			continue
+		if(H.stat == DEAD)
+			continue
+		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
+		to_chat(H, "<span class='nicegreen'>[user]'s prayer was heard!</span>")
+		H.adjustBruteLoss(-100)
+		H.adjustSanityLoss(-100)
+		H.apply_status_effect(/datum/status_effect/flesh2)
+		new /obj/effect/temp_visual/healing(get_turf(H))
+	return ..()
+
+/datum/status_effect/flesh1
+	id = "FLESH1"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/flesh1
+	duration = 15 SECONDS
+
+/atom/movable/screen/alert/status_effect/flesh1
+	name = "A prayer to god"
+	desc = "Decreases damage taken by 50%. \
+	Decreases justice by 80."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "flesh"
+
+/datum/status_effect/flesh1/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod *= 0.5
+	H.physiology.white_mod *= 0.5
+	H.physiology.black_mod *= 0.5
+	H.physiology.pale_mod *= 0.5
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -80)
+
+/datum/status_effect/flesh1/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod /= 0.5
+	H.physiology.white_mod /= 0.5
+	H.physiology.black_mod /= 0.5
+	H.physiology.pale_mod /= 0.5
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 80)
+
+/datum/status_effect/flesh2
+	id = "FLESH2"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/flesh2
+	duration = 50 SECONDS
+
+/atom/movable/screen/alert/status_effect/flesh2
+	name = "An answer from god"
+	desc = "Increases justice by 20."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "flesh"
+
+/datum/status_effect/flesh2/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
+
+/datum/status_effect/flesh2/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
+
+/obj/effect/proc_holder/ability/nest
+	name = "Worm spam"
+	desc = "Spawns 9 worms that will seak out abormalities to infest in making them weaker to red damage."
+	action_icon_state = "shrimp0"
+	base_icon_state = "shrimp"
+	cooldown_time = 10 SECONDS
+
+
+
+/obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
+	for(var/i = 1 to 9)
+		new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
+	return ..()
+
+/datum/status_effect/stacking/infestation
+	id = "EGO_NEST"
+	status_type = STATUS_EFFECT_UNIQUE
+	stacks = 0
+	tick_interval = 10
+	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	var/next_tick = 0
+
+/atom/movable/screen/alert/status_effect/infestation
+	name = "Infestation"
+	desc = "Your weakness to red damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "JAB"
+
+/datum/status_effect/stacking/infestation/process()
+	if(!owner)
+		qdel(src)
+		return
+	if(next_tick < world.time)
+		tick()
+		next_tick = world.time + tick_interval
+	if(duration != -1 && duration < world.time)
+		qdel(src)
+
+/datum/status_effect/stacking/infestation/add_stacks(stacks_added)
+	if(stacks <= 0 && stacks_added < 0)
+		qdel(src)
+	if(ishuman(owner))
+		return
+	if(stacks <= 0 && stacks_added < 0)
+		qdel(src)
+	var/mob/living/simple_animal/M = owner
+	if(M.damage_coeff[RED_DAMAGE] <= 0)
+		qdel(src)
+		return
+	M.damage_coeff[RED_DAMAGE] *= 1+(stacks_added)
+	stacks += stacks_added
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
+	tick_interval = max(10 - (stacks/10), 0.1)
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend
+	name = "naked serpent"
+	desc = "A sickly looking green-colored worm."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "nakednest_serpent"
+	icon_living = "nakednest_serpent"
+	a_intent = "harm"
+	melee_damage_lower = 1
+	melee_damage_upper = 1
+	maxHealth = 500
+	health = 500 //STOMP THEM STOMP THEM NOW.
+	move_to_delay = 3
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	stat_attack = HARD_CRIT
+	density = FALSE //they are worms.
+	robust_searching = 1
+	obj_damage = 0
+	environment_smash = ENVIRONMENT_SMASH_NONE
+	mob_size = MOB_SIZE_SMALL
+	pass_flags = PASSTABLE | PASSMOB
+	layer = ABOVE_NORMAL_TURF_LAYER
+	mouse_opacity = MOUSE_OPACITY_OPAQUE //Clicking anywhere on the turf is good enough
+	del_on_death = 1
+	vision_range = 18 //two screens away
+	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/Initialize()
+	.=..()
+	QDEL_IN(src, (15 SECONDS))
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/AttackingTarget()
+	var/mob/living/L = target
+	var/datum/status_effect/stacking/infestation/INF = L.has_status_effect(/datum/status_effect/stacking/infestation)
+	if(!INF)
+		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)
+		if(!INF)
+			return
+		INF.add_stacks(0.4)
+	qdel(src)
+	. = ..()
+

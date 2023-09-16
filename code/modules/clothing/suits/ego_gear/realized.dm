@@ -332,6 +332,19 @@
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
 	realized_ability = /obj/effect/proc_holder/ability/aimed/yin_laser
 
+/obj/item/clothing/suit/armor/ego_gear/realization/repentance
+	name = "repentance"
+	desc = "If you pray hard enough, perhaps god will answer it?"
+	icon_state = "repentance"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 90)
+	realized_ability = /obj/effect/proc_holder/ability/prayer
+
+/obj/item/clothing/suit/armor/ego_gear/realization/nest
+	name = "nest"
+	desc = "?"
+	icon_state = "nest"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/nest
 
 /* ALEPH Realizations */
 
