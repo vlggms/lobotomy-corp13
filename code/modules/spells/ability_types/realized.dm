@@ -864,3 +864,83 @@
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+
+/* Wayward Passenger - Dimension Ripper */
+/obj/effect/proc_holder/ability/rip_space
+	name = "Rip Space"
+	desc = "Travel at light speed between portals to attack your enemies."
+	action_icon_state = "ripper0"
+	base_icon_state = "ripper"
+	cooldown_time = 1 MINUTES
+
+/obj/effect/proc_holder/ability/rip_space/Perform(target, mob/living/user)
+	var/list/targets = list()
+	for(var/mob/living/L in view(8, user))
+		if(L.stat == DEAD)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		targets += L
+	if(!(LAZYLEN(targets)))
+		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
+		return
+	
+	cooldown = world.time + (7 SECONDS)
+	var/turf/origin = get_turf(user)
+	var/dash_count = min(targets.len*3, 30) //Max 10 targets (7 Seconds)
+	user.density = FALSE
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	var/obj/effect/portal/warp/P = new(origin)
+	playsound(user, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 100, 0)
+	sleep(1 SECONDS)
+	qdel(P)
+
+	for(var/i = 1 to dash_count)
+		var/mob/living/L = pick(targets)
+		dash_attack(L, user)
+		if(L.stat == DEAD)
+			targets -= L
+		if(!LAZYLEN(targets) || user.stat == DEAD)
+			break
+	
+	new /obj/effect/temp_visual/rip_space(origin)
+	user.forceMove(origin)
+	user.density = TRUE
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	playsound(user, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 100, 0)
+	return ..()
+
+/obj/effect/proc_holder/ability/rip_space/proc/dash_attack(mob/living/target, mob/living/user)
+	var/list/potential_TP = list()
+	for(var/turf/T in range(3, target))
+		if(T in range(2, target))
+			continue
+		potential_TP += T
+	var/turf/start_point = pick(potential_TP)
+	var/turf/end_point = get_step(get_turf(target), get_dir(start_point, target))
+	end_point = get_step(end_point, get_dir(start_point, target))
+	new /obj/effect/temp_visual/rip_space(start_point)
+	new /obj/effect/temp_visual/rip_space(end_point)
+
+	user.forceMove(start_point)
+	user.dir = get_dir(user, end_point)
+	var/list/line_turfs = list(start_point)
+	for(var/turf/T in getline(start_point, end_point))
+		line_turfs += T
+	for(var/i = 1 to line_turfs.len)
+		var/turf/T = line_turfs[i]
+		if(!istype(T) || T == start_point || T == end_point)
+			continue
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, user)
+		D.alpha = min(150 + i*15, 255)
+		animate(D, alpha = 0, time = 2)
+	user.forceMove(end_point)
+	user.alpha = 0
+
+	target.apply_damage(80, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
+	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
+	playsound(user, 'sound/abnormalities/wayward_passenger/attack1.ogg', 75, 0)
+	sleep(2)
+	user.alpha = 255
