@@ -1,64 +1,136 @@
-#define RARITY_COMMON "Common"
-#define RARITY_UNCOMMON "Uncommon"
+#define RARITY_SIMPLE "Simple"
+#define RARITY_ADVANCED "Advanced"
+#define RARITY_ELEGANT "Elegant"
+#define RARITY_MASTERPIECE "Masterpiece"
 
 /obj/item/stack/sheet/silk
 	name = "silk"
 	var/datum/armor/added_armor = null
-	var/rarity = ""
-	var/list/rarities = list(RARITY_COMMON = 5,
-							RARITY_UNCOMMON = 10)
+	/*var/rarity = ""
+	var/list/rarities = list(RARITY_SIMPLE = 5,
+							RARITY_ADVANCED = 10,
+							RARITY_ELEGANT = 15,
+							RARITY_MASTERPIECE = 20)*/
 
-/obj/item/stack/sheet/silk/New(var/aRarity)
+/*/obj/item/stack/sheet/silk/New(var/aRarity)
 	..()
 	rarity = aRarity
 	name = aRarity + " " + name
-	added_armor = added_armor.modifyAllRatings(rarities[aRarity])
+	added_armor = added_armor.modifyAllRatings(rarities[aRarity])*/
 
-/obj/item/stack/sheet/silk/indigo
-	name = "Indigo"
-	added_armor = new(red = 50)
+/obj/item/stack/sheet/silk/indigo_simple
+	name = "Simple Indigo Silk"
+	desc = "Silk woven from a unknown scout... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	added_armor = new(black = 5, white = -5)
+	merge_type = /obj/item/stack/sheet/silk/indigo_simple
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "simple_indigo_silk"
 
-/*/obj/item/stack/sheet/silk/indigo
-	name = "Indigo"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+/obj/item/stack/sheet/silk/indigo_advanced
+	name = "Advanced Indigo Silk"
+	desc = "Silk woven from a sweeper... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk."
+	added_armor = new(black = 10, white = -10)
+	merge_type = /obj/item/stack/sheet/silk/indigo_advanced
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "advanced_indigo_silk"
 
-/obj/item/stack/sheet/silk/indigo
-	name = "Indigo"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+/obj/item/stack/sheet/silk/green_simple
+	name = "Simple Green Silk"
+	desc = "Silk woven from a spear bot... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	added_armor = new(red = 5, black = -5)
+	merge_type = /obj/item/stack/sheet/silk/green_simple
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "simple_green_silk"
 
-/obj/item/stack/sheet/silk/indigo
-	name = "Indigo"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
-*/
+/obj/item/stack/sheet/silk/green_advanced
+	name = "Advanced Green Silk"
+	desc = "Silk woven from a gun bot... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk."
+	added_armor = new(red = 10, black = -10)
+	merge_type = /obj/item/stack/sheet/silk/green_advanced
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "advanced_green_silk"
+
+/obj/item/stack/sheet/silk/steel_simple
+	name = "Simple Steel Silk"
+	desc = "Silk woven from a gene corp remnant... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	added_armor = new(red = 5, white = -5)
+	merge_type = /obj/item/stack/sheet/silk/steel_simple
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "simple_steel_silk"
+
+/obj/item/stack/sheet/silk/amber_simple
+	name = "Simple Amber Silk"
+	desc = "Silk woven from a carnivores worm... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	added_armor = new(red = -5, black = 5)
+	merge_type = /obj/item/stack/sheet/silk/amber_simple
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "simple_amber_silk"
+
+/obj/item/stack/sheet/silk/human_simple
+	name = "Simple Human Silk"
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	added_armor = new(pale = 5, white = -2.5, red = -2.5)
+	merge_type = /obj/item/stack/sheet/silk/human_simple
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "simple_human_silk"
+
+/obj/item/stack/sheet/silk/human_advanced
+	name = "Advanced Human Silk"
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk."
+	added_armor = new(pale = 10, white = -5, red = -5)
+	merge_type = /obj/item/stack/sheet/silk/human_advanced
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "advanced_human_silk"
+
+/obj/item/stack/sheet/silk/human_elegant
+	name = "Elegant Human Silk"
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the elegant variety of silk."
+	added_armor = new(pale = 15, white = -7.5, red = -7.5)
+	merge_type = /obj/item/stack/sheet/silk/human_elegant
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "elegant_human_silk"
+
+/obj/item/stack/sheet/silk/human_masterpiece
+	name = "Masterpiece Human Silk"
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the masterpiece variety of silk. The best of the best."
+	added_armor = new(pale = 20, white = -10, red = -10)
+	merge_type = /obj/item/stack/sheet/silk/human_masterpiece
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "masterpiece_human_silk"
 
 /datum/component/butchering/silkbutchering
 
 
 /datum/component/butchering/silkbutchering/ButcherEffects(mob/living/meat)
 	var/turf/T = meat.drop_location()
+	if(ishuman(meat))
+		var/mob/living/carbon/human/H = meat
+		var/total = get_attribute_level(H, FORTITUDE_ATTRIBUTE) + get_attribute_level(H, PRUDENCE_ATTRIBUTE) + get_attribute_level(H, TEMPERANCE_ATTRIBUTE) + get_attribute_level(H, JUSTICE_ATTRIBUTE)
+		if (total < 160)
+			new /obj/item/stack/sheet/silk/human_simple (T)
+		else if (total < 240)
+			new /obj/item/stack/sheet/silk/human_advanced (T)
+		else if (total < 320)
+			new /obj/item/stack/sheet/silk/human_elegant (T)
+		else
+			new /obj/item/stack/sheet/silk/human_masterpiece (T)
 	for(var/S in meat.silk_results)
 		var/obj/item/stack/sheet/silk/a_silk = S
 		var/amount = meat.silk_results[a_silk]
 		for(var/_i in 1 to amount)
-			a_silk = new("Common")
+			a_silk = new a_silk
 			a_silk.loc = T
 
 
 /obj/item/silkknife
-	name = "silkknife"
-	desc = "Makes silk"
-	icon_state = "claymore"
-	inhand_icon_state = "claymore"
+	name = "Silkweaver"
+	desc = "Makes silk by butchering foes"
+	icon_state = "silkweaver"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	color = "#444444" // Because I can and it's temporary
-	hitsound = 'sound/weapons/fixer/durandal1.ogg'
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	sharpness = TRUE
 	force = 0
-
-
-
 
 /obj/item/silkknife/ComponentInitialize()
 	AddComponent(/datum/component/butchering/silkbutchering, 80 * toolspeed)

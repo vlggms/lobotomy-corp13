@@ -444,3 +444,16 @@
 /obj/item/book/granter/crafting_recipe/pipegun_prime/recoil(mob/living/carbon/user)
 	to_chat(user, "<span class='warning'>The book turns to dust in your hands.</span>")
 	qdel(src)
+
+/obj/item/book/granter/crafting_recipe/weaving_armor
+	name = "Weaving Armor: Basic Edition"
+	desc = "A weaving tutorial book that teaches you how to weave new armors. Carnival approved, and a best seller in District 13!"
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/indigo_armor,
+		/datum/crafting_recipe/green_armor,
+		/datum/crafting_recipe/amber_armor,
+		/datum/crafting_recipe/steel_armor,
+		/datum/crafting_recipe/carnival_robes
+	)
+	icon_state = "book"
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")

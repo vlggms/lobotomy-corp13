@@ -22,6 +22,8 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
+	dawn = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
 	. = ..()
@@ -69,6 +71,8 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	silk_results = list(/obj/item/stack/sheet/silk/indigo_advanced = 1,
+						/obj/item/stack/sheet/silk/indigo_simple = 2)
 	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()

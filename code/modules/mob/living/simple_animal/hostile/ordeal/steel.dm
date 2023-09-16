@@ -25,6 +25,8 @@
 	//similar to a human
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 1)
+	dawn = TRUE
 	var/leader
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()

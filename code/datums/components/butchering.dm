@@ -33,7 +33,7 @@
 
 	if(user.a_intent != INTENT_HARM)
 		return
-	if(M.stat == DEAD && (M.butcher_results || M.guaranteed_butcher_results)) //can we butcher it?
+	if(M.stat == DEAD && (M.butcher_results || M.guaranteed_butcher_results || istype(source, /obj/item/silkknife))) //can we butcher it?
 		if(butchering_enabled && (can_be_blunt || source.get_sharpness()))
 			INVOKE_ASYNC(src, .proc/startButcher, source, M, user)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
