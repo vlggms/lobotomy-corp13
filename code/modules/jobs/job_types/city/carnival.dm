@@ -5,8 +5,8 @@
 	spawn_positions = 3
 	supervisors = "your self."
 	selection_color = "#555555"
-	access = list(ACCESS_GENETICS)
-	minimal_access = list(ACCESS_GENETICS)
+	access = list(ACCESS_CARGO)
+	minimal_access = list(ACCESS_CARGO)
 	outfit = /datum/outfit/job/carnival
 	display_order = JOB_DISPLAY_ORDER_ANTAG
 	exp_requirements = 300
