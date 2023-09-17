@@ -345,19 +345,25 @@
 	icon_state = "nest"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)
 	realized_ability = /obj/effect/proc_holder/ability/nest
-
+	var/CanSpawn = FALSE
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
+		CanSpawn = TRUE
 		addtimer(CALLBACK(src, .proc/Spawn,user), 10 SECONDS)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/dropped(mob/user)
+	CanSpawn = FALSE
 	return ..()
 
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/proc/Reset(mob/user)
+	if(!CanSpawn)
+		return
 	src.Spawn(user)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/proc/Spawn(mob/user)
+	if(!CanSpawn)
+		return
 	addtimer(CALLBACK(src, .proc/Reset,user), 10 SECONDS)
 	new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
 

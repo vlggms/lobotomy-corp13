@@ -1070,10 +1070,7 @@
 	When you finish praying everyone in a big area gets a 25% damage boost and gets healed."
 	action_icon_state = "flesh0"
 	base_icon_state = "flesh"
-	cooldown_time = 30 SECONDS
-
-	var/damage_amount = 300 // Amount of explosion damage
-	var/explosion_range = 15
+	cooldown_time = 180 SECONDS
 
 /obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
 	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
@@ -1105,7 +1102,7 @@
 
 /atom/movable/screen/alert/status_effect/flesh1
 	name = "A prayer to god"
-	desc = "Decreases damage taken by 50%. \
+	desc = "Decreases damage taken by 25%. \
 	Decreases justice by 80."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "flesh"
@@ -1113,19 +1110,19 @@
 /datum/status_effect/flesh1/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod *= 0.5
-	H.physiology.white_mod *= 0.5
-	H.physiology.black_mod *= 0.5
-	H.physiology.pale_mod *= 0.5
+	H.physiology.red_mod *= 0.75
+	H.physiology.white_mod *= 0.75
+	H.physiology.black_mod *= 0.75
+	H.physiology.pale_mod *= 0.75
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -80)
 
 /datum/status_effect/flesh1/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod /= 0.5
-	H.physiology.white_mod /= 0.5
-	H.physiology.black_mod /= 0.5
-	H.physiology.pale_mod /= 0.5
+	H.physiology.red_mod /= 0.75
+	H.physiology.white_mod /= 0.75
+	H.physiology.black_mod /= 0.75
+	H.physiology.pale_mod /= 0.75
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 80)
 
 /datum/status_effect/flesh2
@@ -1170,6 +1167,7 @@
 	stacks = 0
 	tick_interval = 30
 	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	consumed_on_threshold = FALSE
 	var/next_tick = 0
 	var/red = 0
 
@@ -1200,18 +1198,14 @@
 		qdel(src)
 
 /datum/status_effect/stacking/infestation/add_stacks(stacks_added)
-	if(stacks <= 0 && stacks_added < 0)
-		qdel(src)
+	. = ..()
 	if(ishuman(owner))
 		return
-	if(stacks <= 0 && stacks_added < 0)
-		qdel(src)
 	var/mob/living/simple_animal/M = owner
 	if(M.damage_coeff[RED_DAMAGE] <= 0)
 		qdel(src)
 		return
-	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks_added/10))
-	stacks += stacks_added
+	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks/10))
 	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
 	tick_interval = max(30 - (stacks/10), 0.1)
 
@@ -1252,7 +1246,7 @@
 		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)
 		if(!INF)
 			return
-	INF.add_stacks(7)
+	INF.add_stacks(3)
 	qdel(src)
 	. = ..()
 
