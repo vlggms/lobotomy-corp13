@@ -1151,10 +1151,10 @@
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
 
 /obj/effect/proc_holder/ability/nest
-	name = "Worm spam"
+	name = "Worm spawn"
 	desc = "Spawns 9 worms that will seak out abormalities to infest in making them weaker to red damage."
-	action_icon_state = "shrimp0"
-	base_icon_state = "shrimp"
+	action_icon_state = "worm0"
+	base_icon_state = "worm"
 	cooldown_time = 30 SECONDS
 
 
@@ -1177,7 +1177,7 @@
 	name = "Infestation"
 	desc = "Your weakness to red damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "JAB"
+	icon_state = "infest"
 
 /datum/status_effect/stacking/infestation/on_apply()
 	. = ..()
