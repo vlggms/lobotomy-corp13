@@ -67,14 +67,13 @@
 		var/mob/living/L = thing
 		if(L.movement_type & FLYING)
 			return
-		//100 brute damage to living mobs. If they are human add 50 oxygen damage to them.
-		L.adjustBruteLoss(100)
+		//20 brute damage to living mobs. Adds up pretty quick if you're not warped away.
+		L.adjustBruteLoss(30)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.Paralyze(30)
-			H.adjustOxyLoss(50)
-			visible_message("<span class='boldwarning'>[H] sinks into the deep!</span>")
-			to_chat(H, pick("<span class='userdanger'>Something in the [src] grabs you and pulls you into the darkness. Your eyes burn as the light becomes fainter and the deep darkness begins circle around you.</span>", "<span class='userdanger'>The fluid around you starts crawling into your mouth.</span>", "<span class='userdanger'>You feel a sudden sting, then everything goes numb.</span>"))
+			H.Knockdown(10)
+			visible_message("<span class='boldwarning'>[H] struggles to remain afloat!</span>")
+			to_chat(H, pick("<span class='boldwarning'>You struggle to remain afloat, your lungs burning from holding your breath!.</span>", "<span class='boldwarning'>The water around you is too turbulent to swim in, you're drowning!</span>", "<span class='boldwarning'>You flail around as water enters your lungs!</span>"))
 		//Things that become lost in the deep. Objects like fish can be thrown into the deep. However some objects result in pollution.
 	else if(isitem(thing) || istype(thing, /obj/effect/decal/cleanable))
 		if(istype(thing, /obj/item/food/fish/emulsijack) && !istype(src, /turf/open/water/deep/polluted))
