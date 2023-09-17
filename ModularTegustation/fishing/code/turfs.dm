@@ -67,8 +67,8 @@
 		var/mob/living/L = thing
 		if(L.movement_type & FLYING)
 			return
-		//20 brute damage to living mobs. Adds up pretty quick if you're not warped away.
-		L.adjustBruteLoss(30)
+		//10 brute damage to living mobs. Adds up pretty quick if you're not warped away.
+		L.adjustBruteLoss(10)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.Knockdown(10)
