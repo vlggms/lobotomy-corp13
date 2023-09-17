@@ -930,3 +930,8 @@
 	name = "whip"
 	icon_state = "lovetown_whip"
 	duration = 4
+
+/obj/effect/temp_visual/galaxy_aura
+	name = "galaxy_aura"
+	icon_state = "galaxy_aura"
+	duration = 6
