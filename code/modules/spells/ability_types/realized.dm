@@ -1155,28 +1155,39 @@
 	desc = "Spawns 9 worms that will seak out abormalities to infest in making them weaker to red damage."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
-	cooldown_time = 10 SECONDS
+	cooldown_time = 30 SECONDS
 
 
 
 /obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
-	for(var/i = 1 to 9)
-		new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
+	for(var/turf/T in view(1, user))
+		new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(T)
 	return ..()
 
 /datum/status_effect/stacking/infestation
 	id = "EGO_NEST"
 	status_type = STATUS_EFFECT_UNIQUE
 	stacks = 0
-	tick_interval = 10
+	tick_interval = 30
 	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
 	var/next_tick = 0
+	var/red = 0
 
 /atom/movable/screen/alert/status_effect/infestation
 	name = "Infestation"
 	desc = "Your weakness to red damage is increased by "
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "JAB"
+
+/datum/status_effect/stacking/infestation/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	red = 	M.damage_coeff[RED_DAMAGE]
+
+/datum/status_effect/stacking/infestation/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.damage_coeff[RED_DAMAGE] = red
 
 /datum/status_effect/stacking/infestation/process()
 	if(!owner)
@@ -1199,10 +1210,10 @@
 	if(M.damage_coeff[RED_DAMAGE] <= 0)
 		qdel(src)
 		return
-	M.damage_coeff[RED_DAMAGE] *= 1+(stacks_added)
+	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks_added/10))
 	stacks += stacks_added
 	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
-	tick_interval = max(10 - (stacks/10), 0.1)
+	tick_interval = max(30 - (stacks/10), 0.1)
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend
 	name = "naked serpent"
@@ -1241,7 +1252,7 @@
 		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)
 		if(!INF)
 			return
-		INF.add_stacks(0.4)
+	INF.add_stacks(7)
 	qdel(src)
 	. = ..()
 
