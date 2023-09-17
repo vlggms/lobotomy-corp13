@@ -75,7 +75,7 @@
 	name = "w-corp axe"
 	desc = "A glowing blue axe used by senior W corp staff."
 	icon_state = "wcorp_axe"
-	inhand_icon_state = "wcorp_fist"
+	inhand_icon_state = "wcorp_axe"
 	force = 70
 	attack_speed = 2
 	attack_verb_continuous = list("cleaves", "cuts")
@@ -176,6 +176,10 @@
 	special = "This weapon fits in an EGO belt."
 	icon_state = "wcorp_hatchet"
 	inhand_icon_state = "wcorp_hatchet"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 34	//Slowing is massive.
 	attack_speed = 1
 	charge_cost = 5
@@ -288,6 +292,10 @@
 	desc = "A glowing blue W-Corp glaive used to project barriers."
 	icon_state = "wcorp_glaive"
 	inhand_icon_state = "wcorp_glaive"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	reach = 2
 	attack_speed = 1.2
 
@@ -297,6 +305,10 @@
 	desc = "A glowing blue W-Corp club used to project barriers."
 	icon_state = "wcorp_club"
 	inhand_icon_state = "wcorp_club"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	attack_speed = 1.5
 
 /obj/item/ego_weapon/city/wcorp/shield/club/attack(mob/living/target, mob/living/user)
