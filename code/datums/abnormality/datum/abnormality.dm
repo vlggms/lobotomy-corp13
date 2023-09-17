@@ -144,7 +144,7 @@
 	if(!console?.recorded && !console?.tutorial) //only training rabbit should not train stats
 		return
 	if(pe > 0) // Work did not fail
-		var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
+		var/attribute_type = current.work_attribute_types[work_type]
 		var/maximum_attribute_level = 0
 		switch(threat_level)
 			if(ZAYIN_LEVEL)
