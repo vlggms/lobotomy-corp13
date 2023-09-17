@@ -161,6 +161,28 @@
 			TEMPERANCE_ATTRIBUTE,
 			JUSTICE_ATTRIBUTE)
 
+//Very dumb way to implement "empty hand AND full hand." 
+//These two code blocks are the same except for their triggers - if you've got a better idea, please use it.
+/obj/structure/potential/attackby(obj/item/I, mob/living/user, params)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		var/stattotal
+		var/grade
+		for(var/attribute in stats)
+			stattotal+=get_attribute_level(H, attribute)
+		stattotal /= 4	//Potential is an average of stats
+		grade = round((stattotal)/20)	//Get the average level-20, divide by 20
+		//Under grade 9 doesn't register
+		if(10-grade>=10)
+			to_chat(user, "<span class='notice'>Potential too low to give grade. Not recommended to issue fixer license.</span>")
+			return
+
+		to_chat(user, "<span class='notice'>Recommended Grade - [10-grade].</span>")
+		to_chat(user, "<span class='notice'>This grade may be adjusted by your local Hana representative.</span>")
+		return
+
+	to_chat(user, "<span class='notice'>No human potential identified.</span>")
+
 /obj/structure/potential/attack_hand(mob/living/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
