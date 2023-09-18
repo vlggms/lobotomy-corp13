@@ -50,6 +50,7 @@
 	abno_info = list(
 		"The first employee who completes their work with a Good result will receive The Knight of Despair’s blessing. (From then on, the employee will be referred to as O-01-73-1).",
 		"Thanks to the blessing, RED, WHITE, and BLACK damage dealt to O-01-73-1 was halved. However, PALE damage was doubled.",
+		"The blessing caused O-01-73-1 to lose most of their competence when it comes to working on abnormalities.",
 		"The Knight of Despair’s blessing dissipated when O-01-73-1 died or panicked. After the blessing was gone, a new employee could receive it.",
 		"When O-01-73-1 died or panicked, The Knight of Despair escaped from its Containment Unit.")
 	abno_can_breach = TRUE
