@@ -75,7 +75,7 @@
 	icon_deny = null
 	products = list(
 			/obj/item/flashlight/seclite = 100,
-			/obj/item/attribute_increase_small = 1500,
+			/obj/item/attribute_increase/fixer = 1500,
 			/obj/item/radio/headset = 200,
 			/obj/item/crowbar = 100,
 			/obj/item/clothing/suit/armor/ego_gear/city/misc/lone = 100,
