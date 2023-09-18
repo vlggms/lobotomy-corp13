@@ -178,6 +178,10 @@
 	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
 
 /obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
+	var/area/turf_area = get_area(get_turf(user))
+	if(istype(turf_area, /area/fishboat))
+		to_chat(user, "<span class='warning'>[src] will not work here!.</span>")
+		return
 	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
 		user.adjustBruteLoss(user.maxHealth*0.3)
