@@ -317,5 +317,13 @@
 	icon_state = "fishboat"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
-	sound_environment = SOUND_AREA_TUNNEL_ENCLOSED
+	sound_environment = SOUND_ENVIRONMENT_CITY
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+/area/snowqueen
+	name = "Snow Queen's Arena"
+	icon_state = "snowqueen"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_ENVIRONMENT_CAVE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
