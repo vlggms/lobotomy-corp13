@@ -76,7 +76,6 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 
 	Q.UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
 	SSabnormality_queue.AnnounceLock()
-	SSabnormality_queue.ClearChoices()
 
 	//Literally being griefed.
 	SSlobotomy_corp.available_box += 500

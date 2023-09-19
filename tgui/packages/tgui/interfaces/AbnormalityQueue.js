@@ -8,6 +8,8 @@ export const AbnormalityQueue = (props, context) => {
     current,
     threatcurrent,
     enablehardcore,
+    display_abnos,
+    pe_dif,
   } = data;
 
   const items = data.choices || [];
@@ -15,49 +17,68 @@ export const AbnormalityQueue = (props, context) => {
   return (
     <Window
       title="Abnormality Queue Console"
-      width={360}
-      height={400}>
+      width={420}
+      height={480}>
       <Window.Content>
         <Flex direction="column" mb={1}>
           <Section
             title="Currently queued abnormality"
             bold
-          ><Box as="span" color={data.colorcurrent}>[{threatcurrent}]</Box> {current}
+          ><Box as="span" color={data.colorcurrent}>[{threatcurrent}]</Box> {current}<br></br>
+          <Box as="span" color={data.colorcurrent}>{"PE Difference: "}</Box> {pe_dif}
           </Section>
         </Flex>
-        <Section
-          title="Available extraction options"
-          scrollable>
-          <Flex direction="column" mr={7}>
-            <Flex
-              mb={1}
-              grow={1}
-              direction="column"
-              height="100%"
-              justify="space-between">
-              {items.map(item => (
-                <Flex.Item key={item.name} grow={1} mb={0.3}>
-                  <Button
-                    icon="plus"
-                    fluid
-                    bold
-                    content={"[" + data["threat" + item] + "] " + item}
-                    color={data["color" + item]}
-                    onClick={() => act("change_current", { change_current: data[item] })} />
-                </Flex.Item>
-              ))}
-            </Flex>
+        <Section title="Available extraction options">
+          <Flex direction="column" mr={7} scrollable>
+            {!data.display_abnos && (
+              <Flex
+                mb={1}
+                grow={1}
+                direction="column"
+                height="100%"
+                justify="space-between">
+                {items.map(item => (
+                  <Flex.Item key={item.name} grow={1} mb={0.3}>
+                    <Button
+                      icon="plus"
+                      fluid
+                      bold
+                      content={item + " (" + data["cost" + item] + " PE)"}
+                      color={data["color" + item]}
+                      onClick={() => act("get_abno_list", { get_abno_list: data[item] })} />
+                  </Flex.Item>
+                ))}
+              </Flex>
+            )}
+            {!!data.display_abnos && (
+              <Flex
+                mb={1}
+                grow={1}
+                direction="column"
+                height="100%"
+                justify="space-between">
+                {items.map(item => (
+                  <Flex.Item key={item.name} grow={1} mb={0.3}>
+                    <Button
+                      icon="plus"
+                      fluid
+                      bold
+                      content={"[" + data["threat" + item] + "] " + item}
+                      color={data["color" + item]}
+                      onClick={() => act("change_current", { change_current: data[item] })} />
+                  </Flex.Item>
+                ))}
+              </Flex>
+            )}
           </Flex>
         </Section>
-        <Section
-          title="Dangerous Buttons"
-          scrollable>
+        <Section title="Dangerous Buttons">
           <Flex direction="column" mr={7}>
             <Flex.Item grow={1} mb={0.3}>
               <Box
                 bold>
                 Lobotomy Corporation is not responsible for any lynching or
-                Manager death as a result of using of the below buttons.
+                Manager death as a result of using the below buttons.
               </Box>
             </Flex.Item>
             <Flex.Item grow={1} mb={0.3}>
