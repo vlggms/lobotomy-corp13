@@ -189,10 +189,6 @@
 
 /obj/item/powered_gadget/teleporter/attack_self(mob/user)
 	..()
-	var/area/turf_area = get_area(get_turf(user))
-	if(istype(turf_area, /area/fishboat))
-		to_chat(user, "<span class='warning'>The machine won't work, it's too damp!.</span>")
-		return
 	if(cell && cell.charge >= batterycost)
 		cell.charge = cell.charge - batterycost
 		icon_state = default_icon

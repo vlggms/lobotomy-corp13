@@ -2742,7 +2742,6 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\silent_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\singing_machine.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\siren.dm"
-#include "code\modules\mob\living\simple_animal\abnormality\he\snow_queen.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\watchman.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\wayward_passenger.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\white_lake.dm"

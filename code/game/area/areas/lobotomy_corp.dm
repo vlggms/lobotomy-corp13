@@ -311,19 +311,3 @@
 	var/list/potential_locs = shuffle(GLOB.department_centers)
 	var/turf/T = pick(potential_locs)
 	M.forceMove(T)
-
-/area/fishboat
-	name = "Fishing Boat"
-	icon_state = "fishboat"
-	requires_power = FALSE
-	has_gravity = STANDARD_GRAVITY
-	sound_environment = SOUND_ENVIRONMENT_CITY
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
-
-/area/snowqueen
-	name = "Snow Queen's Arena"
-	icon_state = "snowqueen"
-	requires_power = FALSE
-	has_gravity = STANDARD_GRAVITY
-	sound_environment = SOUND_ENVIRONMENT_CAVE
-	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
