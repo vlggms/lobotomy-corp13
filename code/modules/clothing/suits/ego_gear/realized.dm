@@ -137,7 +137,8 @@
 	name = "our galaxy"
 	desc = "Walk this night sky with me. The galaxy dotted with numerous hopes. We'll count the stars and never be alone."
 	icon_state = "ourgalaxy"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 90, PALE_DAMAGE = 60)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
+	realized_ability = /obj/effect/proc_holder/ability/galaxy_gift
 
 /obj/item/clothing/suit/armor/ego_gear/realization/forever
 	name = "together forever"

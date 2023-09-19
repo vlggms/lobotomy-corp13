@@ -865,82 +865,86 @@
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 
-/* Wayward Passenger - Dimension Ripper */
-/obj/effect/proc_holder/ability/rip_space
-	name = "Rip Space"
-	desc = "Travel at light speed between portals to attack your enemies."
-	action_icon_state = "ripper0"
-	base_icon_state = "ripper"
-	cooldown_time = 1 MINUTES
+/*Child of the Galaxy - Our Galaxy*/
+/obj/effect/proc_holder/ability/galaxy_gift
+	name = "An Eternal Farewell"
+	desc = "Gives people around you a tiny pebble which will heal SP and HP for a short time."
+	action_icon_state = "galaxy0"
+	base_icon_state = "galaxy"
+	cooldown_time = 60 SECONDS
+	var/range = 6
 
-/obj/effect/proc_holder/ability/rip_space/Perform(target, mob/living/user)
-	var/list/targets = list()
-	for(var/mob/living/L in view(8, user))
-		if(L.stat == DEAD)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(user.faction_check_mob(L, FALSE))
-			continue
-		targets += L
-	if(!(LAZYLEN(targets)))
-		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
+/obj/effect/proc_holder/ability/galaxy_gift/Perform(target, mob/living/carbon/human/user)
+	if(!istype(user))
 		return
-	
-	cooldown = world.time + (7 SECONDS)
-	var/turf/origin = get_turf(user)
-	var/dash_count = min(targets.len*3, 30) //Max 10 targets (7 Seconds)
-	user.density = FALSE
-	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
-	var/obj/effect/portal/warp/P = new(origin)
-	playsound(user, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 100, 0)
-	sleep(1 SECONDS)
-	qdel(P)
-
-	for(var/i = 1 to dash_count)
-		var/mob/living/L = pick(targets)
-		dash_attack(L, user)
-		if(L.stat == DEAD)
-			targets -= L
-		if(!LAZYLEN(targets) || user.stat == DEAD)
-			break
-	
-	new /obj/effect/temp_visual/rip_space(origin)
-	user.forceMove(origin)
-	user.density = TRUE
-	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
-	playsound(user, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 100, 0)
+	var/list/existing_gifted = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.has_status_effect(/datum/status_effect/galaxy_gift))
+			existing_gifted += H
+	playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2) //placeholder, uses KoD blessing noise at the moment
+	for(var/turf/T in view(range, user))
+		new /obj/effect/temp_visual/galaxy_aura(T)
+		for(var/mob/living/carbon/human/H in T)
+			if(!user.faction_check_mob(H, FALSE))
+				continue
+			if(H.stat == DEAD)
+				continue
+			if(H.is_working)
+				continue
+			var/datum/status_effect/galaxy_gift/new_gift = H.apply_status_effect(/datum/status_effect/galaxy_gift)
+			if(H == user)
+				new_gift.watch_death = TRUE
+			existing_gifted |= H
+	for(var/mob/living/carbon/human/H in existing_gifted)
+		var/datum/status_effect/galaxy_gift/gift = H.has_status_effect(/datum/status_effect/galaxy_gift)
+		if(!gift)
+			continue
+		gift.gifted = existing_gifted
 	return ..()
 
-/obj/effect/proc_holder/ability/rip_space/proc/dash_attack(mob/living/target, mob/living/user)
-	var/list/potential_TP = list()
-	for(var/turf/T in range(3, target))
-		if(T in range(2, target))
-			continue
-		potential_TP += T
-	var/turf/start_point = pick(potential_TP)
-	var/turf/end_point = get_step(get_turf(target), get_dir(start_point, target))
-	end_point = get_step(end_point, get_dir(start_point, target))
-	new /obj/effect/temp_visual/rip_space(start_point)
-	new /obj/effect/temp_visual/rip_space(end_point)
+/datum/status_effect/galaxy_gift
+	id = "galaxygift"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 30 SECONDS
+	tick_interval = 1 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/galaxy_gift
+	var/base_heal_amt = 0.5
+	var/base_dmg_amt = 45
+	var/watch_death = FALSE
+	var/list/gifted
 
-	user.forceMove(start_point)
-	user.dir = get_dir(user, end_point)
-	var/list/line_turfs = list(start_point)
-	for(var/turf/T in getline(start_point, end_point))
-		line_turfs += T
-	for(var/i = 1 to line_turfs.len)
-		var/turf/T = line_turfs[i]
-		if(!istype(T) || T == start_point || T == end_point)
-			continue
-		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, user)
-		D.alpha = min(150 + i*15, 255)
-		animate(D, alpha = 0, time = 2)
-	user.forceMove(end_point)
-	user.alpha = 0
+/atom/movable/screen/alert/status_effect/galaxy_gift
+	name = "Parting Gift"
+	desc = "You recover SP and HP over time temporarliy."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "friendship"
 
-	target.apply_damage(80, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
-	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
-	playsound(user, 'sound/abnormalities/wayward_passenger/attack1.ogg', 75, 0)
-	sleep(2)
-	user.alpha = 255
+/datum/status_effect/galaxy_gift/tick()
+	if(!ishuman(owner))
+		qdel(src)
+		return
+	var/mob/living/carbon/human/Y = owner
+	listclearnulls(gifted)
+	for(var/mob/living/carbon/human/H in gifted)
+		if(H == Y)
+			continue
+		if(H.stat == DEAD || QDELETED(H))
+			gifted -= H
+			if(H) // If there's even anything left to remove
+				H.remove_status_effect(/datum/status_effect/galaxy_gift)
+	if(Y.stat == DEAD || QDELETED(Y))
+		return watch_death ? Pop() : FALSE
+	var/heal_mult = LAZYLEN(gifted)
+	heal_mult = max(3, heal_mult)
+	Y.adjustBruteLoss(-(base_heal_amt*heal_mult))
+	Y.adjustSanityLoss(-(base_heal_amt*heal_mult))
+
+/datum/status_effect/galaxy_gift/proc/Pop()
+	var/damage_mult = LAZYLEN(gifted)
+	for(var/mob/living/carbon/human/H in gifted)
+		H.apply_damage(base_dmg_amt*damage_mult, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.remove_status_effect(/datum/status_effect/galaxy_gift)
+		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
+		playsound(get_turf(H), "shatter", 50, TRUE)
+		to_chat(H, "<span class='userdanger'>Your pebble violently shatters!</span>")
+	return

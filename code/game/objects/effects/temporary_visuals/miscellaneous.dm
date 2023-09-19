@@ -931,17 +931,7 @@
 	icon_state = "lovetown_whip"
 	duration = 4
 
-/obj/effect/temp_visual/rip_space
-	name = "dimensional rift"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "rift"
-	duration = 2
-
-/obj/effect/temp_visual/rip_space_slash
-	name = "ripped space"
-	icon_state = "rift"
-	duration = 4
-
-/obj/effect/temp_visual/rip_space_slash/Initialize()
-	. = ..()
-	animate(src, alpha = 0, transform = transform*2, time = 4)
+/obj/effect/temp_visual/galaxy_aura
+	name = "galaxy_aura"
+	icon_state = "galaxy_aura"
+	duration = 6
