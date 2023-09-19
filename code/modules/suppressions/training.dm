@@ -19,7 +19,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
-		H.adjust_all_attribute_buffs(attribute_debuff_count)
+		H.adjust_all_attribute_bonuses(attribute_debuff_count)
 		to_chat(H, "<span class='danger'>You feel weaker...</span>")
 		affected_mobs[H] = attribute_debuff_count
 		RegisterSignal(H, COMSIG_PARENT_QDELETING, .proc/RemoveFromAffectedMobs)
@@ -28,7 +28,7 @@
 /datum/suppression/training/End()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
 	for(var/mob/living/carbon/human/H in affected_mobs)
-		H.adjust_all_attribute_buffs(-affected_mobs[H] + 5)
+		H.adjust_all_attribute_bonuses(-affected_mobs[H] + 5)
 		H.adjust_all_attribute_levels(20) // A tiny reward
 		to_chat(H, "<span class='notice'>You feel much better than ever before!</span>")
 		UnregisterSignal(H, COMSIG_PARENT_QDELETING)
@@ -42,7 +42,7 @@
 	if(!ishuman(L))
 		return FALSE
 	var/mob/living/carbon/human/H = L
-	H.adjust_all_attribute_buffs(current_debuff_amount) // Suffer
+	H.adjust_all_attribute_bonuses(current_debuff_amount) // Suffer
 	to_chat(H, "<span class='danger'>You feel weaker...</span>")
 	affected_mobs[H] = current_debuff_amount
 	RegisterSignal(H, COMSIG_PARENT_QDELETING, .proc/RemoveFromAffectedMobs)
@@ -61,7 +61,7 @@
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
-		H.adjust_all_attribute_buffs(attribute_debuff_count)
+		H.adjust_all_attribute_bonuses(attribute_debuff_count)
 		affected_mobs[H] += attribute_debuff_count
 		to_chat(H, "<span class='danger'>You feel weaker...</span>")
 	current_debuff_amount += attribute_debuff_count
