@@ -346,6 +346,7 @@
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)
 	realized_ability = /obj/effect/proc_holder/ability/nest
 	var/CanSpawn = FALSE
+
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
@@ -359,7 +360,7 @@
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/proc/Reset(mob/user)
 	if(!CanSpawn)
 		return
-	src.Spawn(user)
+	Spawn(user)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/proc/Spawn(mob/user)
 	if(!CanSpawn)

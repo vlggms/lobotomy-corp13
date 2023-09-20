@@ -1066,21 +1066,19 @@
 /* Flesh Idol - Repentance */
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
-	desc = "An ability that does causes you to start praying reducing damage taken by 50% but removing your ability to move and lowers justice by 80. \
-	When you finish praying everyone in a big area gets a 25% damage boost and gets healed."
+	desc = "An ability that does causes you to start praying reducing damage taken by 25% but removing your ability to move and lowers justice by 80. \
+	When you finish praying everyone in a big area gets a 20% damage boost and gets healed."
 	action_icon_state = "flesh0"
 	base_icon_state = "flesh"
 	cooldown_time = 180 SECONDS
 
 /obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
-	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
 	user.apply_status_effect(/datum/status_effect/flesh1)
 	cooldown = world.time + (15 SECONDS)
 	to_chat(user, "<span class='userdanger'>You start praying...</span>")
 	if(!do_after(user, 15 SECONDS))
-		REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
+		user.remove_status_effect(/datum/status_effect/flesh1)
 		return
-	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(!user.faction_check_mob(H, FALSE))
 			continue
@@ -1114,6 +1112,7 @@
 	H.physiology.white_mod *= 0.75
 	H.physiology.black_mod *= 0.75
 	H.physiology.pale_mod *= 0.75
+	ADD_TRAIT(H, TRAIT_IMMOBILIZED, type)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -80)
 
 /datum/status_effect/flesh1/on_remove()
@@ -1123,6 +1122,7 @@
 	H.physiology.white_mod /= 0.75
 	H.physiology.black_mod /= 0.75
 	H.physiology.pale_mod /= 0.75
+	REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 80)
 
 /datum/status_effect/flesh2
@@ -1180,7 +1180,7 @@
 /datum/status_effect/stacking/infestation/on_apply()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	red = 	M.damage_coeff[RED_DAMAGE]
+	red = M.damage_coeff[RED_DAMAGE]
 
 /datum/status_effect/stacking/infestation/on_remove()
 	. = ..()
@@ -1199,14 +1199,14 @@
 
 /datum/status_effect/stacking/infestation/add_stacks(stacks_added)
 	. = ..()
-	if(ishuman(owner))
+	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
 	if(M.damage_coeff[RED_DAMAGE] <= 0)
 		qdel(src)
 		return
 	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks/10))
-	linked_alert.desc = initial(linked_alert.desc)+"[stacks]!"
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
 	tick_interval = max(30 - (stacks/10), 0.1)
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend
