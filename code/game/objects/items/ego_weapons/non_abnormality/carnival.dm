@@ -25,6 +25,7 @@
 		)
 		
 /obj/item/ego_weapon/city/carnival_spear/Initialize()
+	. = ..()
 	empowered_targets = typecacheof(empowered_targets)
 	
 /obj/item/ego_weapon/city/carnival_spear/attack(mob/living/target, mob/living/user)
