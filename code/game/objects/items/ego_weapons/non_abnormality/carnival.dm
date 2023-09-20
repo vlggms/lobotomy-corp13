@@ -17,13 +17,16 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-	var/list/empowered_targets = typecacheof(list(
+	var/list/empowered_targets = list(
 		/mob/living/simple_animal/hostile/ordeal/amber_bug,
 		/mob/living/simple_animal/hostile/ordeal/green_bot,
 		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn
-		))
-
+		)
+		
+/obj/item/ego_weapon/city/carnival_spear/Initialize()
+	empowered_targets = typecacheof(empowered_targets)
+	
 /obj/item/ego_weapon/city/carnival_spear/attack(mob/living/target, mob/living/user)
 	if(target.stat == DEAD)
 		return
