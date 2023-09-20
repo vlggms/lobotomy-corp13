@@ -39,7 +39,7 @@
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
 	adjustBruteLoss(-(maxHealth/2))
-	L.gib()
+	L.gib(FALSE, TRUE, TRUE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon
@@ -99,7 +99,7 @@
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
 	adjustBruteLoss(-(maxHealth/2))
-	L.gib()
+	L.gib(FALSE, TRUE, TRUE)
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/PickTarget(list/Targets)
@@ -264,7 +264,7 @@
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
 	adjustBruteLoss(-(maxHealth/2))
-	L.gib()
+	L.gib(FALSE, TRUE, TRUE)
 	return TRUE
 
 
@@ -425,7 +425,7 @@
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
 	adjustBruteLoss(-(maxHealth*0.3))
-	L.gib()
+	L.gib(FALSE, TRUE, TRUE)
 	//Increase the Vore counter by 1
 	belly += 1
 	pulse_damage += 2
