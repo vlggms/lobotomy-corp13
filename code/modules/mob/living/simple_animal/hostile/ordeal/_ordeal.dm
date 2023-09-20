@@ -8,7 +8,6 @@
 	aggro_vision_range = 20
 	var/datum/ordeal/ordeal_reference
 	var/ordeal_remove_ondeath = TRUE
-	var/dawn = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/add_to_mob_list()
 	. = ..()

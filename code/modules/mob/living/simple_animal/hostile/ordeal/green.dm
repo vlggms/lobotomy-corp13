@@ -23,7 +23,6 @@
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/green_simple = 1)
-	dawn = TRUE
 
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE

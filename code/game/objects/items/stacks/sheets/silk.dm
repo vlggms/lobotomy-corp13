@@ -100,6 +100,8 @@
 
 /datum/component/butchering/silkbutchering
 
+/datum/component/butchering/silkbutchering/checkButchering(obj/item/source, mob/living/M, mob/living/user)
+	return istype(source, /obj/item/silkknife) && M.silk_results
 
 /datum/component/butchering/silkbutchering/ButcherEffects(mob/living/meat)
 	var/turf/T = meat.drop_location()
@@ -131,6 +133,8 @@
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	sharpness = TRUE
 	force = 0
+
+
 
 /obj/item/silkknife/ComponentInitialize()
 	AddComponent(/datum/component/butchering/silkbutchering, 80 * toolspeed)

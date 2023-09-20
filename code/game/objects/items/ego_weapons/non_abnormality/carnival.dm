@@ -22,9 +22,7 @@
 	if(target.stat == DEAD)
 		return
 	var/initial_force = force
-	if(istype(target, /mob/living/simple_animal/hostile/ordeal))
-		var/mob/living/simple_animal/hostile/ordeal/O = target
-		if (O.dawn)
-			force *= 3
+	if(istype(target, /mob/living/simple_animal/hostile/ordeal/amber_bug) || istype(target, /mob/living/simple_animal/hostile/ordeal/green_bot) || istype(target, /mob/living/simple_animal/hostile/ordeal/indigo_dawn) || istype(target, /mob/living/simple_animal/hostile/ordeal/steel_dawn))
+		force *= 3
 	..()
 	force = initial_force
