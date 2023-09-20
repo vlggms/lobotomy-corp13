@@ -1,4 +1,3 @@
-
 /obj/item/ego_weapon/city/carnival_spear
 	name = "Carnival Spear"
 	desc = "A spear that the Carnival uses to hunt down their prey."
@@ -18,11 +17,18 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
+var/static/empowered_targets = typecacheof(list(
+	/mob/living/simple_animal/hostile/ordeal/amber_bug,
+	/mob/living/simple_animal/hostile/ordeal/green_bot,
+	/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+	/mob/living/simple_animal/hostile/ordeal/steel_dawn
+	))
+
 /obj/item/ego_weapon/city/carnival_spear/attack(mob/living/target, mob/living/user)
 	if(target.stat == DEAD)
 		return
 	var/initial_force = force
-	if(istype(target, /mob/living/simple_animal/hostile/ordeal/amber_bug) || istype(target, /mob/living/simple_animal/hostile/ordeal/green_bot) || istype(target, /mob/living/simple_animal/hostile/ordeal/indigo_dawn) || istype(target, /mob/living/simple_animal/hostile/ordeal/steel_dawn))
+	if(is_type_in_typecache(target, empowered_targets))
 		force *= 3
 	..()
 	force = initial_force

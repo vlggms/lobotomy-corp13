@@ -13,7 +13,7 @@
 		return
 	silks += S
 	S.use(1)
-	to_chat(user, "<span class='notice'>You have successfully upgraded the armor to [S.added_armor.tag].</span>")
+	to_chat(user, "<span class='notice'>You have successfully upgraded the armor.</span>")
 	// Here, you can modify the armor stats based on the upgrade_item
 
 	var/obj/O = parent
