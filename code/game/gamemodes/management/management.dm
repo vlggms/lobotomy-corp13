@@ -25,8 +25,8 @@
 		if(initial(abno.can_spawn) && (initial(abno.abnormality_origin) in abno_types))
 			gamemode_abnos[initial(abno.threat_level)] += abno
 
-	SSabnormality_queue.possible_abnormalities = list()
-	SSabnormality_queue.possible_abnormalities = gamemode_abnos
+	SSabnormality_queue.automatic_possible_abnormalities = list()
+	SSabnormality_queue.automatic_possible_abnormalities = gamemode_abnos
 	if(LAZYLEN(gamemode_abnos))
 		SSabnormality_queue.pick_abno()
 	return ..()

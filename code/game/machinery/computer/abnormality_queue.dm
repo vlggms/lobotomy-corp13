@@ -40,6 +40,8 @@
 		data["display_abnos"] = display_threat > 0
 		if(!display_threat)
 			for(var/threat in SSabnormality_queue.manual_available_levels)
+				if(!LAZYLEN(SSabnormality_queue.manual_possible_abnormalities[threat]))
+					continue
 				var/threat_name = THREAT_TO_NAME[threat]
 				choices.Add("[threat_name]")
 				data["[threat_name]"] = threat
@@ -47,7 +49,7 @@
 				var/cost = GetCost(threat)
 				data["cost[threat_name]"] = SSabnormality_queue.spawned_abnos == 0 ? "0" : cost > 0 ? "+[cost]" : "[cost]"
 		else
-			for(var/type in SSabnormality_queue.possible_abnormalities[display_threat])
+			for(var/type in SSabnormality_queue.manual_possible_abnormalities[display_threat])
 				var/mob/living/simple_animal/hostile/abnormality/abno = type
 				choices.Add("[initial(abno.name)]")
 				data["[initial(abno.name)]"] = type
@@ -77,7 +79,7 @@
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 
-			if(!(target_type in SSabnormality_queue.possible_abnormalities[display_threat]))
+			if(!(target_type in SSabnormality_queue.automatic_possible_abnormalities[display_threat]))
 				to_chat(usr, "<span class='warning'>Your Extraction request has timed out. Retry.</span>")
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				updateUsrDialog() // Forcibly update it, in case someone doesn't understand why it won't work
@@ -94,6 +96,7 @@
 			UpdateAnomaly(target_type, "changed", FALSE)
 			updateUsrDialog()
 			display_threat = FALSE
+			SSabnormality_queue.chose_abnormality = TRUE
 
 		if("get_abno_list")
 			var/param = params["get_abno_list"]
@@ -102,14 +105,15 @@
 			updateUsrDialog()
 
 		if("lets_roll")
+			SSabnormality_queue.chose_abnormality = TRUE
 			var/threat = initial(SSabnormality_queue.queued_abnormality.threat_level)
 			SSabnormality_queue.owed_pe = GetCost(threat)
-			UpdateAnomaly(pick(SSabnormality_queue.possible_abnormalities[threat]), "lets rolled", FALSE)
+			UpdateAnomaly(pick(SSabnormality_queue.manual_possible_abnormalities[threat]), "lets rolled", FALSE)
 		if("fuck_it_lets_roll")
 			UpdateAnomaly(SSabnormality_queue.GetRandomPossibleAbnormality(), "fucked it lets rolled", TRUE)
 		if("hardcore_fuck_it_lets_roll")
 			if (SSabnormality_queue.hardcore_roll_enabled)
-				UpdateAnomaly(pick(pick(SSabnormality_queue.possible_abnormalities)), "hardcore fucked it and rolled", TRUE)
+				UpdateAnomaly(pick(pick(SSabnormality_queue.automatic_possible_abnormalities)), "hardcore fucked it and rolled", TRUE)
 			else
 				message_admins("[usr] has managed to send a TGUI signal to hardcore fuck it and roll despite the option being disabled. This is indicative of hacking.")
 
@@ -121,10 +125,11 @@
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 	log_game("[usr] has [logstring] the anomaly to [initial(target_type.name)].")
 	if(lock_after)
+		SSabnormality_queue.chose_abnormality = FALSE
 		message_admins("[usr] has [logstring] the anomaly to [initial(target_type.name)].")
 		locked = TRUE
 		// PE awarded for yellow roll - just as kirie had wanted.
-		SSabnormality_queue.owed_pe = max(round(SSlobotomy_corp.box_goal * 0.02, 1), 120)*2
+		SSabnormality_queue.owed_pe = max(round(SSlobotomy_corp.box_goal * 0.02, 10), 120)*2
 		to_chat(usr, "<span class='boldnotice'>A random Abnormality has been selected. L Corp HQ has reimbursed you for the costs of extracting a specific Abnormality.</span>")
 		SSabnormality_queue.AnnounceLock()
 		SStgui.close_uis(src) // Hacky solution but I don't care
@@ -159,5 +164,5 @@
 
 		. = . < 0 ? . - 1 : . + 1
 		// Anything weaker than the highest current automated abnormality selection costs PE, while the others grant it.
-		. *= max(round(SSlobotomy_corp.box_goal * 0.02, 1), 120) // 2% of quota per level difference.
+		. *= max(round(SSlobotomy_corp.box_goal * 0.02, 10), 120) // 2% of quota per level difference.
 	return

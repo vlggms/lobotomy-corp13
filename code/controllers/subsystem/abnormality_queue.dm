@@ -13,7 +13,9 @@ SUBSYSTEM_DEF(abnormality_queue)
 	/// The manager can pick abnormalities of these threat levels, for a cost.
 	var/list/manual_available_levels = list(ZAYIN_LEVEL)
 	/// An associative list of potential abnormalities.
-	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
+	var/list/automatic_possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
+	/// An associative list of all manually choosable abnormalities
+	var/list/manual_possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
 	/// Amount of abnormality room spawners at the round-start.
 	var/rooms_start = 0
 	/// Amount of times postspawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
@@ -29,14 +31,17 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/hardcore_roll_enabled = FALSE
 	/// How much PE to take/add on abnormality spawn.
 	var/owed_pe = 0
+	/// Did we select the last abnormality manually?
+	var/chose_abnormality = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
 	for(var/i in all_abnos)
 		var/mob/living/simple_animal/hostile/abnormality/abno = i
 		if(initial(abno.can_spawn))
-			possible_abnormalities[initial(abno.threat_level)] += abno
-	if(LAZYLEN(possible_abnormalities))
+			automatic_possible_abnormalities[initial(abno.threat_level)] += abno
+			manual_possible_abnormalities[initial(abno.threat_level)] += abno
+	if(LAZYLEN(automatic_possible_abnormalities))
 		pick_abno()
 	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
@@ -68,12 +73,12 @@ SUBSYSTEM_DEF(abnormality_queue)
 		automated_available_levels |= ALEPH_LEVEL
 	// WAW disabled; Pick an ALEPH, weakling
 	if(spawned_abnos > rooms_start * 0.9)
-		if(LAZYLEN(possible_abnormalities[ALEPH_LEVEL]) && (WAW_LEVEL in automated_available_levels))
+		if(LAZYLEN(automatic_possible_abnormalities[ALEPH_LEVEL]) && (WAW_LEVEL in automated_available_levels))
 			automated_available_levels -= WAW_LEVEL
 		else // If we ran out of ALEPHs, somehow
 			automated_available_levels |= WAW_LEVEL
 
-	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
+	if(!ispath(queued_abnormality) && LAZYLEN(automatic_possible_abnormalities))
 		pick_abno()
 
 	if(!LAZYLEN(GLOB.abnormality_room_spawners))
@@ -81,6 +86,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
 
+	SSpersistence.manually_selected_abnos[queued_abnormality] = chose_abnormality ? 2 : 0
 
 	if(istype(choice) && ispath(queued_abnormality))
 		SSlobotomy_corp.AdjustAvailableBoxes(owed_pe)
@@ -93,7 +99,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/postspawn()
 	if(queued_abnormality)
-		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
+		automatic_possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
+		manual_possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
 		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
 			Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
 			if(owed_pe)
@@ -117,9 +124,9 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/list/picking_abno = list()
 	var/list/picking_abnormalities = list()
 	for(var/lev in automated_available_levels)
-		if(!LAZYLEN(possible_abnormalities[lev]))
+		if(!LAZYLEN(automatic_possible_abnormalities[lev]))
 			continue
-		picking_abno |= possible_abnormalities[lev]
+		picking_abno |= automatic_possible_abnormalities[lev]
 	for(var/i = 1 to 3)
 		if(!LAZYLEN(picking_abno))
 			break
@@ -129,7 +136,9 @@ SUBSYSTEM_DEF(abnormality_queue)
 	if(!LAZYLEN(picking_abnormalities))
 		return
 	queued_abnormality = pick(picking_abnormalities)
-	owed_pe = max(round(SSlobotomy_corp.box_goal * 0.02, 1), 120)*3 // Taking the hand dealt to you grants you PE.
+	chose_abnormality = FALSE
+	if(spawned_abnos != 0)
+		owed_pe = max(round(SSlobotomy_corp.box_goal * 0.02, 10), 120)*3 // Taking the hand dealt to you grants you PE.
 
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
 	var/player_count = GLOB.clients.len
@@ -152,8 +161,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/list/picking_abno = list()
 
 	for(var/level in automated_available_levels)
-		if(!LAZYLEN(possible_abnormalities[level]))
+		if(!LAZYLEN(automatic_possible_abnormalities[level]))
 			continue
-		picking_abno |= possible_abnormalities[level]
+		picking_abno |= automatic_possible_abnormalities[level]
 
 	return pick(picking_abno)

@@ -52,3 +52,4 @@
 #define PE_GOAL_REACHED	"goal_reached"
 #define PE_GOAL_SPENT	"goal_spent"
 #define PE_LEFTOVER		"leftover_pe"
+#define USED_ABNOS		"used_abnos"

@@ -21,6 +21,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/agent_rep = list()
 	var/list/agent_rep_change = list()
 	var/list/pe_status = list()
+	var/list/manually_selected_abnos = list()
 	var/list/picture_logging_information = list()
 	var/list/obj/structure/sign/picture_frame/photo_frames
 	var/list/obj/item/storage/photo_album/photo_albums
@@ -175,6 +176,28 @@ SUBSYSTEM_DEF(persistence)
 			return
 		return
 	pe_status = json_decode(json)
+
+	addtimer(CALLBACK(src, .proc/LateLoadManualAbno), 5 SECONDS)
+
+	manually_selected_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality) // The list that gets updated later
+	for(var/i in manually_selected_abnos)
+		manually_selected_abnos[i] = 0
+
+/datum/controller/subsystem/persistence/proc/LateLoadManualAbno()
+	if(!SSabnormality_queue.initialized)
+		addtimer(CALLBACK(src, .proc/LateLoadManualAbno), 5 SECONDS)
+		return
+	var/list/removal_list = list()
+	for(var/i in pe_status[USED_ABNOS])
+		if(pe_status[USED_ABNOS][i] > 0) // Is the abno on manual-pick cooldown?
+			removal_list.Add(text2path(i))
+			pe_status[USED_ABNOS][i] -= 1
+			if(pe_status[USED_ABNOS][i] <= 0)
+				pe_status[USED_ABNOS] -= i
+
+	// The list people can pick and choose from
+	for(var/list/TH in SSabnormality_queue.manual_possible_abnormalities)
+		TH.Remove(removal_list)
 
 /datum/controller/subsystem/persistence/proc/SetUpTrophies(list/trophy_items)
 	for(var/A in GLOB.trophy_cases)
@@ -397,6 +420,9 @@ SUBSYSTEM_DEF(persistence)
 	text2file(json_encode(agent_rep), FILE_AGENT_REP)
 
 /datum/controller/subsystem/persistence/proc/SavePEStatus()
+	for(var/i in manually_selected_abnos) // Copy over and data that changed
+		if(manually_selected_abnos[i] > 0)
+			LAZYSET(pe_status[USED_ABNOS], i, manually_selected_abnos[i])
 	fdel(FILE_PE_QUOTA)
 	text2file(json_encode(pe_status), FILE_PE_QUOTA)
 
