@@ -865,7 +865,7 @@
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 
-/*Child of the Galaxy - Our Galaxy*/
+/*Child of the Galaxy - Our Galaxy */
 /obj/effect/proc_holder/ability/galaxy_gift
 	name = "An Eternal Farewell"
 	desc = "Gives people around you a tiny pebble which will heal SP and HP for a short time."
@@ -948,3 +948,117 @@
 		playsound(get_turf(H), "shatter", 50, TRUE)
 		to_chat(H, "<span class='userdanger'>Your pebble violently shatters!</span>")
 	return
+
+/* Sleeping Beauty - Comatose */
+/obj/effect/proc_holder/ability/comatose
+	name = "Comatose"
+	desc = "Fall asleep to gain 99% resistance to all normal damage."
+	action_icon_state = "comatose0"
+	base_icon_state = "comatose"
+	cooldown_time = 30 SECONDS
+
+/obj/effect/proc_holder/ability/comatose/Perform(target, mob/living/carbon/human/user)
+	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/comatose))
+		user.Stun(15 SECONDS)
+		user.Knockdown(1)
+		user.playsound_local(get_turf(user), "sound/abnormalities/happyteddy/teddy_lullaby.ogg", 25, 0)
+		user.apply_status_effect(/datum/status_effect/dreaming)
+		return ..()
+
+/datum/status_effect/dreaming
+	id = "EGO_SLEEPING"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/dreaming
+	duration = 15 SECONDS
+
+/atom/movable/screen/alert/status_effect/dreaming
+	name = "Dreams of comfort"
+	desc = "Decreases damage taken from conventional damage types by 99%"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "comatose"
+
+/datum/status_effect/dreaming/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod /= 100
+	H.physiology.white_mod /= 100
+	H.physiology.black_mod /= 100
+	H.physiology.pale_mod /= 100
+
+/datum/status_effect/dreaming/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod *= 100
+	H.physiology.white_mod *= 100
+	H.physiology.black_mod *= 100
+	H.physiology.pale_mod *= 100
+
+/* Wishing Well - Broken Crown */
+/obj/effect/proc_holder/ability/brokencrown
+	name = "Broken Crown"
+	desc = "Extract a random empowered E.G.O. weapon."
+	action_icon_state = "brokencrown0"
+	base_icon_state = "brokencrown"
+	cooldown_time = 30 MINUTES
+	var/obj/structure/toolabnormality/wishwell/linked_structure
+	var/list/ego_list = list()
+	var/obj/item/ego_weapon/chosenEGO
+
+/obj/effect/proc_holder/ability/brokencrown/Perform(target, mob/living/carbon/human/user) //very bad code, does not work. Let me finish it!
+	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/brokencrown))
+		user.playsound_local(get_turf(user), "sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg", 25, 0)
+		if(!linked_structure)
+			linked_structure = locate(/obj/structure/toolabnormality/wishwell) in world.contents
+			if(!linked_structure) //Somehow you got this ego on a non-facility map
+				ego_list += /obj/item/ego_weapon/mimicry
+				ego_list += /obj/item/ego_weapon/smile
+				ego_list += /obj/item/ego_weapon/da_capo
+				linked_structure = TRUE
+		if(!LAZYLEN(ego_list))
+			for(var/egoitem in linked_structure.alephitem)
+				if(ispath(egoitem, /obj/item/ego_weapon))
+					ego_list += egoitem
+					continue
+		chosenEGO = pick(ego_list)
+		var/obj/item/ego_weapon/ego = new chosenEGO(get_turf(user))
+		ego.name = "shimmering [ego.name]"
+		ego.force = round(initial(chosenEGO.force) * 1.2, 1)
+		ego.set_light(3, 6, "#D4FAF37")
+		ego.color = "#FFD700"
+		return ..()
+
+/* Opened Can of Wellcheers - Wellcheers */
+/obj/effect/proc_holder/ability/wellcheers
+	name = "Wellcheers Crew"
+	desc = "Call up 2 of your finest crewmates for a period of time."
+	action_icon_state = "shrimp0"
+	base_icon_state = "shrimp"
+	cooldown_time = 90 SECONDS
+
+/obj/effect/proc_holder/ability/wellcheers/Perform(target, mob/user)
+	for(var/i = 1 to 2)
+		new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
+	return ..()
+
+/mob/living/simple_animal/hostile/shrimp/friendly //HUGE buff shrimp
+	name = "wellcheers boat fisherman"
+	health = 700
+	maxHealth = 700
+	desc = "Are those fists?"
+	melee_damage_lower = 35
+	melee_damage_upper = 45
+	icon_state = "wellcheers_ripped"
+	icon_living = "wellcheers_ripped"
+	faction = list("neutral", "shrimp")
+
+/mob/living/simple_animal/hostile/shrimp/friendly/Initialize()
+	.=..()
+	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
+	QDEL_IN(src, (90 SECONDS))
+
+/mob/living/simple_animal/hostile/shrimp/friendly/AttackingTarget()
+	. = ..()
+	if(.)
+		var/mob/living/L = target
+		if(L.health < 0 || L.stat == DEAD)
+			L.gib() //Punch them so hard they explode
