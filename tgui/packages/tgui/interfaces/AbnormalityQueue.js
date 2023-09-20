@@ -23,7 +23,7 @@ export const AbnormalityQueue = (props, context) => {
         <Flex direction="column" mb={1}>
           <Section title="Currently queued abnormality" bold>
             <Box as="span" color={data.colorcurrent}>[{threatcurrent}]</Box> {current}
-            <br/>
+            <br />
             <Box as="span" color={data.colorcurrent}>{"PE Difference: "}</Box> {pe_dif}
           </Section>
         </Flex>
