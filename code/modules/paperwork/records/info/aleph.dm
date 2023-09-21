@@ -203,3 +203,16 @@
 	"When the work result was Bad, the Qliphoth Counter decreased.",
 	"When an Abnormality was suppressed, the Qliphoth Counter raised.")
 
+// Distorted Form
+/obj/item/paper/fluff/info/aleph/distortedform
+	abno_type = /mob/living/simple_animal/hostile/abnormality/distortedform
+	abno_code = "O-06-38"
+	abno_info = list(
+		"WARNING: O-06-38 will periodically take on the appearance of another abnormality. The abnormality will reveal its true form when work is attempted.",
+		"When an employee with Justice 4 or lower finished their work, or work result was a failure, O-06-38 let out a horrifying screech.",
+		"Other abnormalities became agitated by the screech. The situation needed to be handled as a Qliphoth Meltdown.",
+		"If agitated abnormalities were not worked on, multiple abnormalities breached simultaneously.",
+		"When the work result was Good, the Qliphoth Counter increased by 1.",
+		"When a Qliphoth Meltdown was ignored, the Qliphoth Counter decreased by 1.")
+	abno_work_damage_type = "All"
+	abno_breach_damage_type = "Random"

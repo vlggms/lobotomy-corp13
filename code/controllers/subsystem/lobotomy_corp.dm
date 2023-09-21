@@ -3,6 +3,7 @@
 #define MELTDOWN_GOLD 3
 #define MELTDOWN_PURPLE 4
 #define MELTDOWN_CYAN 5
+#define MELTDOWN_BLACK 6
 
 // TODO: Do something about it, idk
 SUBSYSTEM_DEF(lobotomy_corp)

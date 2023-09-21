@@ -72,8 +72,9 @@
 	pixel_z = 16
 	animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 4 SECONDS)
 	pixel_z = 0
-	for(var/obj/machinery/computer/abnormality/AC in range(5, src)) //reset console from last breach
-		AC.updateUsrDialog()
+	if(!datum_reference?.console)
+		return
+	datum_reference.console.updateUsrDialog()
 
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/pinocchio/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -87,8 +88,7 @@
 			lying = FALSE
 			datum_reference.qliphoth_change(1)
 			PostWorkEffect()
-			for(var/obj/machinery/computer/abnormality/AC in range(5, src))
-				AC.updateUsrDialog()
+			datum_reference.console.updateUsrDialog()
 			return
 		else
 			datum_reference.qliphoth_change(-1)
