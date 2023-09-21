@@ -141,9 +141,10 @@
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/OpenFire()
+	if(charging)
+		return
+
 	if(client)
-		if(charging)
-			return
 		switch(chosen_attack)
 			if(1)
 				INVOKE_ASYNC(src, .proc/SerumW, target)
