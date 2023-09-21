@@ -321,6 +321,10 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
+"cq" = (
+/obj/machinery/vending/weaving,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
 "cr" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 5
@@ -1082,7 +1086,9 @@
 /turf/open/floor/wood,
 /area/city/fixers)
 "iE" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "ACCESS_CARGO"
+	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "iF" = (
@@ -1749,7 +1755,9 @@
 /turf/open/floor/mineral/silver,
 /area/city/shop)
 "qq" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "ACCESS_CARGO"
+	},
 /obj/effect/turf_decal/trimline/red/filled/shrink_cw{
 	dir = 8
 	},
@@ -3747,6 +3755,12 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
+/obj/item/clothing/suit/armor/ego_gear/city/carnival_robes,
+/obj/item/clothing/suit/armor/ego_gear/city/carnival_robes,
+/obj/item/clothing/suit/armor/ego_gear/city/carnival_robes,
+/obj/item/clothing/mask/carnival_mask,
+/obj/item/clothing/mask/carnival_mask,
+/obj/item/clothing/mask/carnival_mask,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "Gh" = (
@@ -4500,7 +4514,10 @@
 /turf/open/indestructible/hoteltile,
 /area/city/house)
 "Ms" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "ACCESS_CARGO";
+	name = "Staff Only"
+	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
@@ -5052,12 +5069,10 @@
 	dir = 8
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/box/papersack{
-	pixel_x = -6
-	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
+/obj/item/ego_weapon/city/carnival_spear,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "TS" = (
@@ -5421,6 +5436,9 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
+/obj/item/ego_weapon/city/carnival_spear{
+	pixel_y = 17
+	},
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "Xt" = (
@@ -5500,7 +5518,9 @@
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
 "Yl" = (
-/obj/machinery/door/airlock/hatch,
+/obj/machinery/door/airlock/hatch{
+	name = "Carnival"
+	},
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
 	},
@@ -27901,7 +27921,7 @@ IA
 vY
 XQ
 iE
-XQ
+cq
 vY
 iA
 Yx
