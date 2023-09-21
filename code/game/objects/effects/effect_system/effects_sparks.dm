@@ -22,7 +22,6 @@
 
 /obj/effect/particle_effect/sparks/Initialize(mapload)
 	..()
-	autoDelete()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/particle_effect/sparks/LateInitialize()
