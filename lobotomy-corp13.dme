@@ -3971,6 +3971,7 @@
 #include "ModularTegustation\tegu_drinks\twistedtea.dm"
 #include "ModularTegustation\tegu_items\debug_items.dm"
 #include "ModularTegustation\tegu_items\injectors.dm"
+#include "ModularTegustation\tegu_items\lc13boss_summon.dm"
 #include "ModularTegustation\tegu_items\lc13unique_items.dm"
 #include "ModularTegustation\tegu_items\associations\association_beacon.dm"
 #include "ModularTegustation\tegu_items\associations\cityspawners.dm"
