@@ -27,6 +27,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/city)
+"ay" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "aB" = (
 /obj/structure/fluff/beach_umbrella/syndi,
 /turf/open/floor/plating/beach/sand,
@@ -312,6 +318,16 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
+"cq" = (
+/obj/machinery/vending/weaving,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"cr" = (
+/obj/effect/turf_decal/weather/dirt{
+	dir = 5
+	},
+/turf/open/floor/plating/ashplanet/rocky,
+/area/city/backstreets_checkpoint)
 "cw" = (
 /obj/machinery/vending/hana,
 /turf/open/floor/facility/white,
@@ -327,6 +343,29 @@
 /obj/item/choice_beacon/association,
 /turf/open/floor/carpet/black,
 /area/city/fixers)
+"cG" = (
+/obj/structure/closet/crate,
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/item/storage/box/papersack{
+	pixel_x = -6
+	},
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "cJ" = (
 /obj/structure/fluff/bus/passable,
 /turf/open/floor/carpet/black,
@@ -667,6 +706,13 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"fK" = (
+/obj/effect/turf_decal/loading_area/red{
+	dir = 1
+	},
+/obj/structure/chair,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "fP" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1014,6 +1060,14 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"iA" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 12;
+	pixel_y = 12
+	},
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "iB" = (
 /obj/effect/spawner/room/backstreets/pointofinterest,
 /turf/closed/indestructible/reinforced,
@@ -1025,6 +1079,12 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
+"iE" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "ACCESS_CARGO"
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "iF" = (
 /obj/machinery/door/poddoor/shutters/indestructible{
 	name = "Malfunctioning Backstreets Shutters"
@@ -1434,6 +1494,10 @@
 /obj/item/storage/toolbox/emergency,
 /turf/open/floor/wood,
 /area/city/shop)
+"nt" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "nu" = (
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -1461,6 +1525,15 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/city/house)
+"nK" = (
+/obj/structure/table/reinforced,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/item/paper_bin,
+/obj/item/pen,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "nQ" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
@@ -1582,6 +1655,13 @@
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/facility,
 /area/city/shop)
+"pe" = (
+/obj/machinery/light,
+/obj/effect/turf_decal/box/red/corners{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "pg" = (
 /obj/structure/closet/cabinet,
 /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled{
@@ -1622,6 +1702,14 @@
 "pO" = (
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"pQ" = (
+/obj/structure/table/reinforced,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "pS" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -1659,6 +1747,15 @@
 /obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/mineral/silver,
 /area/city/shop)
+"qq" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "ACCESS_CARGO"
+	},
+/obj/effect/turf_decal/trimline/red/filled/shrink_cw{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "qu" = (
 /obj/machinery/light{
 	dir = 1
@@ -3494,6 +3591,13 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/city/fixers)
+"EE" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "EF" = (
 /obj/structure/chair/sofa/corner{
 	dir = 4
@@ -3670,6 +3774,22 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/city/shop)
+"Gf" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/item/clothing/suit/armor/ego_gear/city/carnival_robes,
+/obj/item/clothing/suit/armor/ego_gear/city/carnival_robes,
+/obj/item/clothing/suit/armor/ego_gear/city/carnival_robes,
+/obj/item/clothing/mask/carnival_mask,
+/obj/item/clothing/mask/carnival_mask,
+/obj/item/clothing/mask/carnival_mask,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Gh" = (
 /obj/structure/table,
 /turf/open/floor/wood,
@@ -3996,6 +4116,12 @@
 /obj/structure/fireplace,
 /turf/open/floor/wood,
 /area/city/fixers)
+"IA" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "IB" = (
 /obj/item/bodypart/chest/robot,
 /obj/item/bodypart/head/robot,
@@ -4231,6 +4357,13 @@
 /obj/structure/bed/pod,
 /turf/open/floor/wood,
 /area/city/shop)
+"KG" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "KK" = (
 /obj/machinery/vending/city_clothing,
 /obj/machinery/light,
@@ -4384,6 +4517,16 @@
 /obj/item/food/meat/slab,
 /turf/open/indestructible/hoteltile,
 /area/city/house)
+"Ms" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "ACCESS_CARGO";
+	name = "Staff Only"
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "My" = (
 /obj/structure/potential,
 /turf/open/floor/facility/white,
@@ -4551,6 +4694,13 @@
 "Ot" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_checkpoint)
+"Ov" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Ox" = (
 /obj/structure/barricade/wooden,
 /obj/effect/decal/cleanable/dirt,
@@ -4930,6 +5080,17 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"TQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/table/reinforced,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/item/ego_weapon/city/carnival_spear,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "TS" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/mental,
@@ -5037,6 +5198,12 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_checkpoint)
+"UZ" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Vb" = (
 /turf/open/indestructible/hoteltile,
 /area/city/house)
@@ -5154,6 +5321,15 @@
 	},
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_alley)
+"VS" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "VV" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/wood,
@@ -5262,6 +5438,25 @@
 "Xr" = (
 /turf/open/floor/plating/beach/sand,
 /area/city)
+"Xs" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/table/reinforced,
+/obj/item/storage/box/bodybags{
+	pixel_y = -4;
+	pixel_x = -5
+	},
+/obj/item/storage/firstaid{
+	pixel_x = 9;
+	pixel_y = -7
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/item/ego_weapon/city/carnival_spear{
+	pixel_y = 17
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Xt" = (
 /obj/structure/toilet,
 /obj/machinery/light{
@@ -5310,6 +5505,10 @@
 "XK" = (
 /turf/open/space/basic,
 /area/space)
+"XP" = (
+/obj/effect/turf_decal/box/red/corners,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "XQ" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
@@ -5348,6 +5547,15 @@
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
+"Yl" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Carnival"
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Ym" = (
 /mob/living/simple_animal/hostile/ordeal/green_bot{
 	name = "spear bot"
@@ -5358,6 +5566,14 @@
 /obj/effect/spawner/lootdrop/garbage_spawner,
 /turf/open/floor/plating/beach/sand,
 /area/city)
+"Yp" = (
+/obj/structure/closet/crate,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Yq" = (
 /obj/structure/table/wood,
 /obj/item/storage/backpack/duffelbag/med/surgery,
@@ -5386,6 +5602,10 @@
 /obj/item/ego_weapon/city/yun/fist,
 /turf/open/floor/wood,
 /area/city)
+"Yx" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Yy" = (
 /turf/open/water/deep/polluted,
 /area/city)
@@ -27246,7 +27466,7 @@ XQ
 XQ
 XQ
 XQ
-dD
+XQ
 Oq
 Oq
 Oq
@@ -27495,14 +27715,14 @@ Oq
 Oq
 Oq
 XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
+VS
+EE
+Ms
+Ov
+ay
+ay
+TQ
+Xs
 XQ
 Oq
 Oq
@@ -27752,14 +27972,14 @@ Oq
 Oq
 Oq
 XQ
+IA
+vY
 XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
+iE
+cq
+vY
+iA
+Yx
 XQ
 Oq
 Oq
@@ -28009,14 +28229,14 @@ zr
 zr
 zr
 XQ
+IA
+fK
+nK
+pe
 XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
+nt
+vY
+cG
 XQ
 Oq
 Oq
@@ -28266,14 +28486,14 @@ zr
 Ua
 RZ
 XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
-XQ
+KG
+fK
+pQ
+XP
+qq
+UZ
+Gf
+Yp
 XQ
 Oq
 Oq
@@ -28523,7 +28743,7 @@ kG
 RZ
 RZ
 XQ
-XQ
+Yl
 XQ
 XQ
 XQ
