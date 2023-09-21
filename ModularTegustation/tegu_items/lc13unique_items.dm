@@ -62,3 +62,54 @@
 	new /obj/machinery/quantumpad/warp(get_turf(user))
 	to_chat(user, "<span class='notice'>You open the box and a strange pad falls out onto the floor.</span>")
 	amount--
+
+//LC13 Boss Books
+/obj/item/lor_boss_book
+	name = "book of gibberish"
+	desc = "A collection of pages bound by some sort of leather or metal. This object has a mystical aura to it."
+	icon_state = "lor"
+	var/active = FALSE
+	var/mob/living/simple_animal/monster
+	var/mob/living/simple_animal/escapee
+	var/static/list/abnos = list()
+
+/obj/item/lor_boss_book/Initialize()
+	. = ..()
+	FillBook()
+
+/obj/item/lor_boss_book/attack_self(mob/user)
+	if(active || !monster || escapee)
+		to_chat(user, "<span class='notice'>The pages of the book are empty.</span>")
+		return
+	active = TRUE
+	if(!iscarbon(user))
+		to_chat(user, "<span class='notice'>The book refuses to open.</span>")
+		return
+	visible_message("<span class='warning'>[src] opens up and begins to turn its pages rapidly!</span>")
+	sleep(5 SECONDS)
+	if(QDELETED(src))
+		return
+	visible_message("<span class='warning'>Something crawls out of [src]!</span>")
+	escapee = new monster(get_turf(src))
+	RegisterSignal(escapee, COMSIG_LIVING_DEATH, .proc/Reward)
+
+
+/obj/item/lor_boss_book/proc/FillBook()
+	if(!abnos)
+		abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
+	var/list/thing_inside = list()
+	for(var/i in abnos)
+		var/mob/living/simple_animal/hostile/abnormality/abno = i
+		if(initial(abno.can_spawn) && initial(abno.threat_level) <= HE_LEVEL && initial(abno.can_breach))
+			thing_inside += abno
+	monster = pick(thing_inside)
+	name = "sealed [initial(monster.name)]"
+
+/obj/item/lor_boss_book/proc/Reward()
+	SIGNAL_HANDLER
+
+	if(escapee)
+		qdel(escapee)
+	var/obj/item/I = new /obj/item/rawpe(get_turf(src))
+	I.name = "[initial(monster.name)] Enkaphlin Box"
+	qdel(src)
