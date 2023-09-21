@@ -477,7 +477,7 @@
 // Pale Fixer
 /mob/living/simple_animal/hostile/ordeal/pale_fixer
 	name = "Pale Fixer"
-	desc = "A humanoid creature in a business atire and a fedora. They have a sleek pistol in one hand \
+	desc = "A humanoid creature in a business attire and a fedora. They have a sleek pistol in one hand \
 			and a suitcase in the other."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fixer_p"

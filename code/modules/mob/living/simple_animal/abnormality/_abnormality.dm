@@ -47,6 +47,8 @@
 							ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 70),
 							ABNORMALITY_WORK_REPRESSION = list(50, 55, 60, 65, 70)
 							)
+	/// Work Types and corresponding their attributes
+	var/list/work_attribute_types = WORK_TO_ATTRIBUTE
 	/// How much damage is dealt to user on each work failure
 	var/work_damage_amount = 2
 	/// What damage type is used for work failures

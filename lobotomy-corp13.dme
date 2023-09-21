@@ -2807,6 +2807,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\waw\parasite_tree.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\pygmalion.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\queen_bee.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\screenwriter.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\shrimp.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\silence.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\snow_whites_apple.dm"

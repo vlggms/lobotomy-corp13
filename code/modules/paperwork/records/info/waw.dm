@@ -469,3 +469,24 @@
 		"When the employee had a good result while preforming instinct work F-02-58 vomited all of the previously consumed employees.",
 		"When F-02-58 is below 50% health their howl will weaken the containment of nearby abnormalities."
 		)
+
+//Poor Screenwriter's Note
+/obj/item/paper/fluff/info/waw/screenwriter
+	abno_type = /mob/living/simple_animal/hostile/abnormality/screenwriter
+	abno_code = "O-05-29" //originally O-05-31 in lobotomy corp, but it's taken by TSO.
+	abno_info = list(
+		"Poor Screenwriter's Note prefers that everything goes according to its own scenario. Work will also not be an exception. If you are unsure of what to do, turn the page.",
+		"When the work result was bad, the Qlipthoth Counter lowered.",
+		"When the Qliphoth counter reached 0, several employees were selected to play roles in a \"play\"",
+		"The employee playing the \"Coward\" suffered from lowered power, the \"Broken\" lowered health, and the \"Failed\" lowered sanity.",
+		"The employees chosen to play the \"Victim\" suffered perhaps the most of all, losing in all virtues and being targetted by the actor \"A\".",
+		"When the \"Victim\" died or was not present, another role was picked to play the \"Victim\".",
+		"When the actor \"A\" was defeated, the abnormality was suppressed.")
+	abno_work_rates = list(
+		"Nutrition" = "Low",
+		"Cleanliness" = "Low",
+		"Consensus" = "Low",
+		"Amusement" = "Low",
+		"Violence" = "Low")
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "High"

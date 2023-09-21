@@ -179,6 +179,13 @@
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 70)
 	flags_inv = HIDEGLOVES|HIDESHOES
 
+/obj/item/clothing/suit/armor/ego_gear/realization/dimension_ripper
+	name = "dimension ripper"
+	desc = "Lost and abandoned, tossed out like trash, having no place left in the City."
+	icon_state = "dimension_ripper"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)
+	realized_ability = /obj/effect/proc_holder/ability/rip_space
+
 /* WAW Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience
