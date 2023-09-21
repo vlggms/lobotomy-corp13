@@ -5,13 +5,9 @@
 // will always spawn at the items location.
 /////////////////////////////////////////////
 
-/proc/do_sparks(n, c, source)
-	// n - number of sparks
-	// c - cardinals, bool, do the sparks only move in cardinal directions?
-	// source - source of the sparks.
-
+/proc/do_sparks(number, cardinal_only, datum/source)
 	var/datum/effect_system/spark_spread/sparks = new
-	sparks.set_up(n, c, source)
+	sparks.set_up(number, cardinal_only, source)
 	sparks.autocleanup = TRUE
 	sparks.start()
 
@@ -20,13 +16,13 @@
 	name = "sparks"
 	icon_state = "sparks"
 	anchored = TRUE
-	light_system = MOVABLE_LIGHT
 	light_range = 2
 	light_power = 0.5
 	light_color = LIGHT_COLOR_FIRE
 
-/obj/effect/particle_effect/sparks/Initialize()
+/obj/effect/particle_effect/sparks/Initialize(mapload)
 	..()
+	autoDelete()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/effect/particle_effect/sparks/LateInitialize()
@@ -35,19 +31,17 @@
 	var/turf/T = loc
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
-	QDEL_IN(src, 20)
-
-/obj/effect/particle_effect/sparks/Destroy()
-	var/turf/T = loc
-	if(isturf(T))
-		T.hotspot_expose(1000,100)
-	return ..()
+	QDEL_IN(src, 2 SECONDS)
 
 /obj/effect/particle_effect/sparks/Move()
 	..()
 	var/turf/T = loc
 	if(isturf(T))
 		T.hotspot_expose(1000,100)
+
+/// I feel shame that this noodle code is my solution -IP
+/obj/effect/particle_effect/sparks/proc/autoDelete()
+	QDEL_IN(src, 2 SECONDS)
 
 /datum/effect_system/spark_spread
 	effect_type = /obj/effect/particle_effect/sparks

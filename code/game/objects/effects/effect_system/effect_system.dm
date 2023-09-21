@@ -20,12 +20,13 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	GLOB.cameranet.updateVisibility(src)
 	return ..()
 
-/obj/effect/particle_effect/newtonian_move() // Prevents effects from getting registered for SSspacedrift
+// Prevents effects from getting registered for SSspacedrift
+/obj/effect/particle_effect/newtonian_move(direction, instant = FALSE, start_delay = 0)
 	return TRUE
 
 /datum/effect_system
 	var/number = 3
-	var/cardinals = FALSE
+	var/cardinals_only = FALSE
 	var/turf/location
 	var/atom/holder
 	var/effect_type
@@ -37,15 +38,10 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	location = null
 	return ..()
 
-/datum/effect_system/proc/set_up(n = 3, c = FALSE, loca)
-	if(n > 10)
-		n = 10
-	number = n
-	cardinals = c
-	if(isturf(loca))
-		location = loca
-	else
-		location = get_turf(loca)
+/datum/effect_system/proc/set_up(number = 3, cardinals_only = FALSE, location)
+	src.number = min(number, 10)
+	src.cardinals_only = cardinals_only
+	src.location = get_turf(location)
 
 /datum/effect_system/proc/attach(atom/atom)
 	holder = atom
@@ -64,7 +60,7 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	var/obj/effect/E = new effect_type(location)
 	total_effects++
 	var/direction
-	if(cardinals)
+	if(cardinals_only)
 		direction = pick(GLOB.cardinals)
 	else
 		direction = pick(GLOB.alldirs)
@@ -75,7 +71,8 @@ would spawn and follow the beaker, even if it is carried or thrown.
 	if(!QDELETED(src))
 		addtimer(CALLBACK(src, .proc/decrement_total_effect), 20)
 
-/datum/effect_system/proc/decrement_total_effect()
+/datum/effect_system/proc/decrement_total_effect(datum/source)
 	total_effects--
-	if(autocleanup && total_effects <= 0)
-		qdel(src)
+	if(!autocleanup || total_effects > 0)
+		return
+	QDEL_IN(src, 2 SECONDS)
