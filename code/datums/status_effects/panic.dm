@@ -109,12 +109,10 @@
 /datum/status_effect/panicked_type/on_apply()
 	. = ..()
 	owner.add_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
-	ADD_TRAIT(owner, TRAIT_GRAB_IMMUNE, TRAUMA_TRAIT)
 
 /datum/status_effect/panicked_type/on_remove()
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))
-	REMOVE_TRAIT(owner, TRAIT_GRAB_IMMUNE, TRAUMA_TRAIT)
 
 /datum/status_effect/panicked_type/be_replaced()
 	owner.cut_overlay(mutable_appearance('icons/effects/effects.dmi', icon, -ABOVE_MOB_LAYER))

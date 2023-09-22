@@ -1,3 +1,5 @@
+/datum/ai_behavior/resist
+	required_distance = 0
 
 /datum/ai_behavior/resist/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
