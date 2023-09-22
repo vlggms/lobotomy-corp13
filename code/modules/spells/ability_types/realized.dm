@@ -1250,3 +1250,86 @@
 	qdel(src)
 	. = ..()
 
+/* Wayward Passenger - Dimension Ripper */
+/obj/effect/proc_holder/ability/rip_space
+	name = "Rip Space"
+	desc = "Travel at light speed between portals to attack your enemies."
+	action_icon_state = "ripper0"
+	base_icon_state = "ripper"
+	cooldown_time = 1 MINUTES
+
+/obj/effect/proc_holder/ability/rip_space/Perform(target, mob/living/user)
+	var/list/targets = list()
+	for(var/mob/living/L in view(8, user))
+		if(L.stat == DEAD)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		targets += L
+	if(!(LAZYLEN(targets)))
+		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
+		return
+	
+	cooldown = world.time + (7 SECONDS)
+	var/turf/origin = get_turf(user)
+	var/dash_count = min(targets.len*3, 30) //Max 10 targets (7 Seconds)
+	user.density = FALSE
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	var/obj/effect/portal/warp/P = new(origin)
+	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_begin.ogg', 100, 0)
+	sleep(1 SECONDS)
+	qdel(P)
+	user.alpha = 0
+
+	for(var/i = 1 to dash_count)
+		var/mob/living/L = pick(targets)
+		dash_attack(L, user)
+		if(L.stat == DEAD)
+			targets -= L
+		if(!LAZYLEN(targets) || user.stat == DEAD)
+			break
+	
+	user.alpha = 255
+	new /obj/effect/temp_visual/rip_space(origin)
+	user.forceMove(origin)
+	user.density = TRUE
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_end.ogg', 100, 0)
+	return ..()
+
+/obj/effect/proc_holder/ability/rip_space/proc/dash_attack(mob/living/target, mob/living/user)
+	var/list/potential_TP = list()
+	for(var/turf/T in range(3, target))
+		if(T in range(2, target))
+			continue
+		potential_TP += T
+	var/turf/start_point = pick(potential_TP)
+	var/turf/end_point = get_step(get_turf(target), get_dir(start_point, target))
+	end_point = get_step(end_point, get_dir(start_point, target))
+	var/obj/effect/temp_visual/rip_space/X = new(start_point)
+	var/obj/effect/temp_visual/rip_space/Y = new(end_point)
+
+	var/obj/projectile/ripper_dash_effect/DE = new(start_point)
+	DE.preparePixelProjectile(Y, X)
+	DE.name = user.name
+	DE.fire()
+	user.orbit(DE, 0, 0, 0, 0, 0)
+
+	sleep(1)
+	target.apply_damage(80, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
+	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
+	new /obj/effect/temp_visual/ripped_space(get_turf(target))
+	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_hit.ogg', 75, 0)
+	sleep(1)
+	qdel(DE)
+
+/obj/projectile/ripper_dash_effect
+	speed = 0.32
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "ripper_dash"
+	projectile_piercing = ALL
+
+/obj/projectile/ripper_dash_effect/on_hit(atom/target, blocked = FALSE)
+	return
