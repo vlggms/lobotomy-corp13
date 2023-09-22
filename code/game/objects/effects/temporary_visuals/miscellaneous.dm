@@ -935,3 +935,8 @@
 	name = "galaxy_aura"
 	icon_state = "galaxy_aura"
 	duration = 6
+
+/obj/effect/temp_visual/human_horizontal_bisect
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "Hbisected-h"
+	duration = 15

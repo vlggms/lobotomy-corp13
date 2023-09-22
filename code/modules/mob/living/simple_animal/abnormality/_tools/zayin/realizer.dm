@@ -9,6 +9,9 @@
 		/obj/item/clothing/suit/armor/ego_gear/zayin/penitence 		= /obj/item/clothing/suit/armor/ego_gear/realization/confessional,
 		/obj/item/storage/book/bible 								= /obj/item/clothing/suit/armor/ego_gear/realization/prophet, // TEMPORARY
 		/obj/item/clothing/suit/armor/ego_gear/zayin/little_alice 	= /obj/item/clothing/suit/armor/ego_gear/realization/maiden,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/soda			= /obj/item/clothing/suit/armor/ego_gear/realization/wellcheers,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/doze			= /obj/item/clothing/suit/armor/ego_gear/realization/comatose,
+		/obj/item/clothing/suit/armor/ego_gear/tools/bucket			= /obj/item/clothing/suit/armor/ego_gear/realization/brokencrown,
 		// TETH
 		/obj/item/clothing/suit/armor/ego_gear/teth/beak 			= /obj/item/clothing/suit/armor/ego_gear/realization/mouth,
 		/obj/item/clothing/suit/armor/ego_gear/teth/fragment 		= /obj/item/clothing/suit/armor/ego_gear/realization/universe,

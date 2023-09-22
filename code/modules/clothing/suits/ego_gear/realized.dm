@@ -48,6 +48,40 @@
 	icon_state = "maiden"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)
 
+/obj/item/clothing/suit/armor/ego_gear/realization/wellcheers
+	name = "wellcheers"
+	desc = " I’ve found true happiness in cracking open a cold one after a hard day’s work, covered in sea water and sweat. \
+	I’m at the port now but we gotta take off soon to catch some more shrimp. Never know what your future holds, bros."
+	icon_state = "wellcheers"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/wellcheers
+	hat = /obj/item/clothing/head/ego_hat/wellcheers_hat
+
+/obj/item/clothing/head/ego_hat/wellcheers_hat
+	name = "wellcheers"
+	desc = "You’re really missing out on life if you’ve never tried shrimp."
+	icon_state = "wellcheers"
+
+/obj/item/clothing/suit/armor/ego_gear/realization/comatose
+	name = "comatose"
+	desc = "...ZZZ..."
+	icon_state = "comatose"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 90, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/comatose
+
+/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown
+	name = "broken crown"
+	desc = "Shall we get to work? All we need to do is what we’ve always done."
+	icon_state = "brokencrown"
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 90, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)
+	realized_ability = /obj/effect/proc_holder/ability/brokencrown
+	hat = /obj/item/clothing/head/ego_hat/brokencrown
+
+/obj/item/clothing/head/ego_hat/brokencrown
+	name = "broken crown"
+	desc = "One fell down and the rest came tumbling after."
+	icon_state = "brokencrown"
+
 /* TETH Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/mouth
