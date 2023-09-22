@@ -1,3 +1,5 @@
+//stuff commented out in /* */ was once used for selling EGO weapons and armor.
+//Feel free to uncomment if these changes don't result in RP via players selling 'em to each other.
 /obj/structure/itemselling
 	name = "item selling machine"
 	desc = "A machine used to sell items to the greater city"
@@ -15,10 +17,11 @@
 		/obj/item/food/meat/slab/worm,
 		/obj/item/food/meat/slab/robot
 		)
+		/*
 	var/list/level_2 = list(
 		/obj/item/clothing/suit/armor/ego_gear/city,
 		/obj/item/ego_weapon/city,
-	)
+	)*/
 	var/list/level_3 = list(
 		/obj/item/raw_anomaly_core,
 		/obj/item/documents,
@@ -26,10 +29,12 @@
 		/obj/item/folder/documents,
 	)
 
-	/// Types that aren't listed with within examine.
+	/// Itemtype descriptions that are replaced during examine.
 	var/list/exclude_listing = list(
+		/*
 		/obj/item/clothing/suit/armor/ego_gear/city = "All Non-'Fixer Suit' Armor",
 		/obj/item/ego_weapon/city = "All Non-'Workshop' Weapons",
+		*/
 		/obj/item/food/fish = "All Fish",
 	)
 
@@ -47,11 +52,13 @@
 		temp.Add(typecacheof(T))
 	level_1 = temp.Copy()
 	temp.Cut()
+	/*
 	for(var/T in level_2)
 		temp.Add(typecacheof(T))
 	level_2 = temp.Copy()
 	level_2.Remove(typecacheof(/obj/item/clothing/suit/armor/ego_gear/city/misc))
 	temp.Cut()
+	*/
 	for(var/T in level_3)
 		temp.Add(typecacheof(T))
 	level_3 = temp.Copy()
@@ -62,8 +69,11 @@
 /obj/structure/itemselling/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>Hit with a storage item to dump all items in it into the machine.</span>"
+	/*
 	. += "<a href='?src=[REF(src)];tier_3=1'>List Tier 3 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_2=1'>List Tier 2 Prices</a>"
+	*/
+	. += "<a href='?src=[REF(src)];tier_3=1'>List Tier 2 Prices</a>" //remove upon reverting
 	. += "<a href='?src=[REF(src)];tier_1=1'>List Tier 1 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_0=1'>List Tier 0 Prices</a>"
 	/**
@@ -86,9 +96,11 @@
 	if(href_list["tier_3"])
 		display_text = "<span class='notice'><b>The following items are worth 1000 Ahn:</b></span>"
 		items.Add(level_3)
+		/*
 	if(href_list["tier_2"])
 		display_text = "<span class='notice'><b>The following items are worth 200 Ahn:</b></span>"
 		items.Add(level_2)
+		*/
 	if(href_list["tier_1"])
 		display_text = "<span class='notice'><b>The following items are worth 50 Ahn:</b></span>"
 		items.Add(level_1)
@@ -131,8 +143,10 @@
 	var/spawntype
 	if(is_type_in_typecache(I, level_3))
 		spawntype = /obj/item/stack/spacecash/c1000
+		/*
 	else if(is_type_in_typecache(I, level_2))
 		spawntype = /obj/item/stack/spacecash/c200
+		*/
 	else if(is_type_in_typecache(I, level_1))
 		spawntype = /obj/item/stack/spacecash/c50
 	else if (is_type_in_typecache(I, level_0))
