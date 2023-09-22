@@ -101,7 +101,7 @@
 /datum/component/butchering/silkbutchering
 
 /datum/component/butchering/silkbutchering/checkButchering(obj/item/source, mob/living/M, mob/living/user)
-	return M.silk_results
+	return M.silk_results || ishuman(M)
 
 /datum/component/butchering/silkbutchering/ButcherEffects(mob/living/meat)
 	var/turf/T = meat.drop_location()
