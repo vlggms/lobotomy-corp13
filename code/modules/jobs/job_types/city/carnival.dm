@@ -30,7 +30,8 @@
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	job_important = "If there is an L-Corp facility nearby, do not enter it. Fixers are not inherently hostile to you, but they can find a reason to put you down. \
-			Your primary goal is to kill monsters in the backstreets and/or humans to weave silk so you can then sell it to the humans."
+			Your primary goal is to kill monsters in the backstreets and/or humans to weave silk so you can then sell it to the humans. \
+			You have a base on the left side of the nest."
 	..()
 
 /datum/outfit/job/carnival

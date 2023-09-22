@@ -462,7 +462,9 @@
 	name = "Weaving Armor: Kurokumo Edition"
 	desc = "A weaving book that teaches you how to weave kurokumo armor. Carnival approved!"
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/kurokumo
+		/datum/crafting_recipe/kurokumo,
+		/datum/crafting_recipe/kurokumo_jacket,
+		/datum/crafting_recipe/kurokumo_captain
 	)
 	icon_state = "kurokumo_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -472,7 +474,10 @@
 	desc = "A weaving book that teaches you how to weave seven armor. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/seven,
-		/datum/crafting_recipe/seven_recon
+		/datum/crafting_recipe/seven_recon,
+		/datum/crafting_recipe/seven_vet,
+		/datum/crafting_recipe/seven_vet_intel,
+		/datum/crafting_recipe/seven_dir
 	)
 	icon_state = "seven_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -482,6 +487,8 @@
 	desc = "A weaving book that teaches you how to weave n-corp armor. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/ncorp,
+		/datum/crafting_recipe/ncorp_vet,
+		/datum/crafting_recipe/ncorp_grosshammmer,
 		/datum/crafting_recipe/ncorp_white_mark,
 		/datum/crafting_recipe/ncorp_black_mark,
 		/datum/crafting_recipe/ncorp_pale_mark
@@ -493,7 +500,13 @@
 	name = "Weaving Armor: Liu Edition"
 	desc = "A weaving book that teaches you how to weave liu armor. Carnival approved!"
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/liu
+		/datum/crafting_recipe/liu_suit,
+		/datum/crafting_recipe/liu_jacket,
+		/datum/crafting_recipe/liu_coat,
+		/datum/crafting_recipe/liu_combat_coat,
+		/datum/crafting_recipe/liu_combat_jacket,
+		/datum/crafting_recipe/liu_heavy_coat,
+		/datum/crafting_recipe/liu_officer_coat
 	)
 	icon_state = "liu_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -502,7 +515,9 @@
 	name = "Weaving Armor: Index Edition"
 	desc = "A weaving book that teaches you how to weave index armor. Carnival approved!"
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/index_proselyte
+		/datum/crafting_recipe/index_proselyte,
+		/datum/crafting_recipe/index_proxy,
+		/datum/crafting_recipe/index_mess
 	)
 	icon_state = "index_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -513,7 +528,9 @@
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/zwei,
 		/datum/crafting_recipe/zwei_junior,
-		/datum/crafting_recipe/zwei_riot
+		/datum/crafting_recipe/zwei_riot,
+		/datum/crafting_recipe/zwei_vet,
+		/datum/crafting_recipe/zwei_dir
 	)
 	icon_state = "zwei_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -523,7 +540,11 @@
 	desc = "A weaving book that teaches you how to weave shi armor. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/shi_2,
-		/datum/crafting_recipe/shi_5
+		/datum/crafting_recipe/shi_5,
+		/datum/crafting_recipe/shi_2_vet,
+		/datum/crafting_recipe/shi_5_vet,
+		/datum/crafting_recipe/shi_2_dir,
+		/datum/crafting_recipe/shi_5_dir
 	)
 	icon_state = "shi_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
@@ -532,7 +553,9 @@
 	name = "Weaving Armor: Blade Lineage Edition"
 	desc = "A weaving book that teaches you how to weave blade lineage armor. Carnival approved!"
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/blade_lineage_salsu
+		/datum/crafting_recipe/blade_lineage_salsu,
+		/datum/crafting_recipe/blade_lineage_cutthroat,
+		/datum/crafting_recipe/blade_lineage_admin
 	)
 	icon_state = "blade_lineage_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")

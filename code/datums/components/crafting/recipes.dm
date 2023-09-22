@@ -1215,6 +1215,7 @@
 				)
 	category = CAT_MISC
 
+//Carnival Recipes
 /datum/crafting_recipe/indigo_armor
 	name = "Sweeper Suit"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/indigo_armor
@@ -1262,6 +1263,7 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+//Blade Lineage Recipes
 /datum/crafting_recipe/blade_lineage_salsu
 	name = "Blade Lineage Salsu Robe"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu
@@ -1273,6 +1275,29 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/blade_lineage_cutthroat
+	name = "Blade Lineage Cutthroat"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat
+	reqs = list(/obj/item/stack/sheet/silk/steel_simple = 4,
+				/obj/item/stack/sheet/silk/indigo_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/blade_lineage_admin
+	name = "Blade Lineage Admin"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin
+	reqs = list(/obj/item/stack/sheet/silk/steel_simple = 4,
+				/obj/item/stack/sheet/silk/indigo_advanced = 5,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+//Index Recipes
 /datum/crafting_recipe/index_proselyte
 	name = "Index Proselyte Armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/index
@@ -1285,6 +1310,31 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/index_proxy
+	name = "Index Proxy Armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/index_proxy
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/steel_simple = 2,
+				/obj/item/stack/sheet/silk/indigo_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/index_mess
+	name = "Index Messenger Armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/index_mess
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/steel_simple = 2,
+				/obj/item/stack/sheet/silk/indigo_advanced = 5,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+//Kurokumo Recipes
 /datum/crafting_recipe/kurokumo
 	name = "Kurokumo Wakashu Dress Jacket"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/kurokumo
@@ -1296,7 +1346,30 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
-/datum/crafting_recipe/liu
+/datum/crafting_recipe/kurokumo_jacket
+	name = "Kurokumo Enforcer Dress Shirt"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/kurokumo/jacket
+	reqs = list(/obj/item/stack/sheet/silk/steel_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/kurokumo_captain
+	name = "Kurokumo Captain Kimono"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/kurokumo/captain
+	reqs = list(/obj/item/stack/sheet/silk/steel_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 5,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+//Liu Recipes
+/datum/crafting_recipe/liu_suit
 	name = "Liu Association combat suit"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/liu
 	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
@@ -1307,12 +1380,101 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/liu_jacket
+	name = "Liu Association combat jacket"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/liu/section5
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 3,
+				/obj/item/stack/sheet/silk/human_simple = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/liu_coat
+	name = "Liu Association combat coat"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/liuvet
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/liu_combat_coat
+	name = "Liu Association section 2 combat coat"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/liu_combat_jacket
+	name = "Liu Association veteran combat jacket"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/liu_heavy_coat
+	name = "Liu Association heavy combat coat"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/liuleader
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 5,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/liu_officer_coat
+	name = "Liu Association officer coat"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 5,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+//N-Corp Crafting Recipes
 /datum/crafting_recipe/ncorp
 	name = "Nagel und Hammer armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/ncorp
 	reqs = list(/obj/item/stack/sheet/silk/green_simple = 5,
 				/obj/item/stack/sheet/silk/green_advanced = 1,
 				/obj/item/stack/sheet/silk/human_simple = 2)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/ncorp_vet
+	name = "Decorated Nagel und Hammer armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 5,
+				/obj/item/stack/sheet/silk/green_advanced = 2,
+				/obj/item/stack/sheet/silk/human_advanced = 2)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/ncorp_grosshammmer
+	name = "Nagel und Hammer Grosshammer armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/grosshammmer
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 5,
+				/obj/item/stack/sheet/silk/green_advanced = 4,
+				/obj/item/stack/sheet/silk/human_elegant = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
 	always_available = FALSE
@@ -1345,6 +1507,7 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+//Seven Recipes
 /datum/crafting_recipe/seven
 	name = "Seven Association armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/seven
@@ -1368,10 +1531,46 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/seven_vet
+	name = "Seven Association veteran armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/sevenvet
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/green_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/seven_vet_intel
+	name = "Seven Association recon armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 2,
+				/obj/item/stack/sheet/silk/green_advanced = 2,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/seven_dir
+	name = "Seven Association recon armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/sevendirector
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/indigo_advanced = 2,
+				/obj/item/stack/sheet/silk/green_advanced = 3,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+//Shi Recipes
 /datum/crafting_recipe/shi_2
 	name = "Shi association jacket section 2"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shi
-	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
+	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 2,
 				/obj/item/stack/sheet/silk/green_simple = 2,
 				/obj/item/stack/sheet/silk/indigo_advanced = 3,
 				/obj/item/stack/sheet/silk/human_simple = 1)
@@ -1384,7 +1583,7 @@
 	name = "Shi association jacket section 5"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shilimbus
 	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 2,
-				/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/green_simple = 2,
 				/obj/item/stack/sheet/silk/green_advanced = 3,
 				/obj/item/stack/sheet/silk/human_simple = 1)
 	tools = list(/obj/item/silkknife = 1)
@@ -1392,6 +1591,55 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/shi_2_vet
+	name = "Shi association veteran jacket"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/shi/vet
+	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
+				/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/indigo_advanced = 3,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/shi_5_vet
+	name = "Shi association veteran combat suit"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet
+	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
+				/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/green_advanced = 3,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/shi_2_dir
+	name = "Shi association director jacket"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/shi/director
+	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
+				/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/indigo_advanced = 4,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/shi_5_dir
+	name = "Shi association director combat suit"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director
+	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
+				/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/green_advanced = 4,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+//Zwei Recipes
 /datum/crafting_recipe/zwei
 	name = "Zwei Association armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/zwei
@@ -1422,5 +1670,29 @@
 				/obj/item/stack/sheet/silk/human_simple = 1)
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/zwei_vet
+	name = "Zwei Association veteran armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/zweivet
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 5,
+				/obj/item/stack/sheet/silk/green_advanced = 2,
+				/obj/item/stack/sheet/silk/indigo_advanced = 2,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/zwei_dir
+	name = "Zwei Association director armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/zweileader
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 5,
+				/obj/item/stack/sheet/silk/green_advanced = 2,
+				/obj/item/stack/sheet/silk/indigo_advanced = 3,
+				/obj/item/stack/sheet/silk/human_elegant = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
 	always_available = FALSE
 	category = CAT_CLOTHING
