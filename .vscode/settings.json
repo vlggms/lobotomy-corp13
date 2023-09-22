@@ -12,8 +12,5 @@
 	},
 	"files.eol": "\n",
 	"gitlens.advanced.blame.customArguments": ["-w"],
-	"tgstationTestExplorer.project.resultsType": "json",
-	"githubPullRequests.ignoredPullRequestBranches": [
-		"master"
-	]
+	"tgstationTestExplorer.project.resultsType": "json"
 }
