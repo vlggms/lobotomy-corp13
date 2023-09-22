@@ -274,9 +274,12 @@
 
 // handle machine interaction
 
+//prevents carbons from accessing the disposals UI while inside the bin.
+//disabled, since not knowing the "trigger while climbing in" trick ruins the CHUTES map
+/*
 /obj/machinery/disposal/bin/ui_state(mob/user)
 	return GLOB.notcontained_state
-
+*/
 /obj/machinery/disposal/bin/ui_interact(mob/user, datum/tgui/ui)
 	if(machine_stat & BROKEN)
 		return
