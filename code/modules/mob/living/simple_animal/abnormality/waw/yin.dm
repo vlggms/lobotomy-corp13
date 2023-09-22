@@ -26,8 +26,7 @@
 						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
 						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 55),
 						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
-						"Release" = 0
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
 						)
 	max_boxes = 20
 	success_boxes = 16
