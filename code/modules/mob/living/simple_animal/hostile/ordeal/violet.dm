@@ -199,7 +199,7 @@
 	deathsound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
 
 	var/ability_cooldown
-	var/ability_cooldown_time = 18 SECONDS
+	var/ability_cooldown_time = 14 SECONDS
 	var/retaliation_health = 10 // Initialized later
 	/// List of datums and objects that will be deleted on death/destruction
 	var/list/created_objects = list()
@@ -285,8 +285,11 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 
-	var/attack_damage = 150 // Dealt once if hit
+	var/attack_damage = 220 // Dealt once if hit
 	var/list/been_hit = list()
+
+/mob/living/simple_animal/hostile/ordeal/violet_midnight/red/Retaliation()
+	PerformAbility(src)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/StartAbility()
 	var/mob/living/carbon/human/attack_target = null
@@ -364,8 +367,11 @@
 	icon_dead = "violet_midnightw_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.2)
 
-	var/attack_damage = 100
+	var/attack_damage = 150
 	var/list/been_hit = list()
+
+/mob/living/simple_animal/hostile/ordeal/violet_midnight/white/Retaliation()
+	PerformAbility(src)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white/StartAbility()
 	var/mob/living/carbon/human/attack_target = null
@@ -451,8 +457,11 @@
 	icon_dead = "violet_midnightb_dead"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.7)
 
-	var/attack_damage = 150
+	var/attack_damage = 220
 	var/list/been_hit = list()
+
+/mob/living/simple_animal/hostile/ordeal/violet_midnight/black/Retaliation()
+	PerformAbility(src)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black/StartAbility()
 	var/mob/living/carbon/human/attack_target = null
@@ -540,7 +549,12 @@
 
 	var/obj/effect/pale_eye/eye = null
 	var/pulsating = FALSE
-	var/pulse_damage = 30 // Dealt each second
+	/// Amount of PALE damage dealt across a range on cooldown defined in variables below
+	var/pulse_damage = 40
+	/// The range of eye's attack
+	var/pulse_range = 5
+	/// How often it deals damage at the eye's location
+	var/pulse_delay = 1 SECONDS
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/pale/Initialize()
 	. = ..()
@@ -548,6 +562,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/pale/Destroy()
 	QDEL_NULL(eye)
+	eye = null
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/pale/death()
@@ -584,8 +599,10 @@
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(T, 'sound/effects/ordeals/violet/midnight_pale_move.ogg', 75, TRUE, 8)
 	eye.forceMove(T)
-	animate(eye, alpha = 200, time = (0.5 SECONDS))
-	SLEEP_CHECK_DEATH(1 SECONDS)
+	animate(eye, alpha = 200, time = (1 SECONDS))
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	if(pulsating) // Uh oh! It already started doing the thing, abort it!
+		return
 	pulsating = TRUE
 	Pulsate()
 
@@ -602,9 +619,9 @@
 		pulsating = FALSE
 		return
 	var/has_targets = FALSE
-	for(var/turf/T in range(5, eye))
+	for(var/turf/T in range(pulse_range, eye))
 		new /obj/effect/temp_visual/pale_eye_attack(T)
-	for(var/mob/living/carbon/human/H in range(5, eye))
+	for(var/mob/living/carbon/human/H in range(pulse_range, eye))
 		if(H.stat == DEAD)
 			continue
 		if(H.status_flags & GODMODE)
@@ -615,7 +632,7 @@
 	animate(D, alpha = 0, transform = matrix()*1.25, time = 4)
 	if(has_targets)
 		playsound(get_turf(eye), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 75, TRUE, 8)
-	addtimer(CALLBACK(src, .proc/Pulsate), (1 SECONDS))
+	addtimer(CALLBACK(src, .proc/Pulsate), pulse_delay)
 
 /obj/effect/pale_eye
 	name = "pale eye"

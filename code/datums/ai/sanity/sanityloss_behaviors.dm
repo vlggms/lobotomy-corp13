@@ -34,7 +34,7 @@
 	var/mob/living/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	var/mob/living/living_pawn = controller.pawn
 
-	if(!target || target.stat == DEAD || target.status_flags & GODMODE)
+	if(!target || target?.stat == DEAD || target?.status_flags & GODMODE)
 		finish_action(controller, TRUE) //Target == owned
 
 	if(isturf(target.loc) && !IS_DEAD_OR_INCAP(living_pawn))
@@ -53,7 +53,6 @@
 		else
 			living_pawn.a_intent = INTENT_HARM
 		attack(controller, target, delta_time)
-		addtimer(CALLBACK(src, .proc/attack, controller, target, delta_time), CLICK_CD_MELEE * 0.75)
 
 
 /datum/ai_behavior/insanity_attack_mob/finish_action(datum/ai_controller/controller, succeeded)
@@ -65,14 +64,14 @@
 /// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
 /datum/ai_behavior/insanity_attack_mob/proc/attack(datum/ai_controller/insane/murder/controller, mob/living/target, delta_time)
 	var/mob/living/living_pawn = controller.pawn
+	if(!living_pawn)
+		return
 
 	if(!living_pawn.Adjacent(target))
 		return
 
 	if(living_pawn.next_move > world.time)
 		return
-
-	living_pawn.changeNext_move(CLICK_CD_MELEE * 0.75) //We play half-fair
 
 	var/obj/item/weapon = null
 	var/highest_force = 5
@@ -96,9 +95,15 @@
 
 	// attack with weapon if we have one
 	if(weapon)
+		if(istype(weapon, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/EGO = weapon
+			living_pawn.changeNext_move(CLICK_CD_MELEE * EGO.attack_speed)
+		else
+			living_pawn.changeNext_move(CLICK_CD_MELEE)
 		weapon.melee_attack_chain(living_pawn, target)
 	else
 		living_pawn.UnarmedAttack(target)
+		living_pawn.changeNext_move(CLICK_CD_MELEE)
 
 /datum/ai_behavior/insane_equip
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
@@ -207,6 +212,11 @@
 
 /datum/ai_behavior/insanity_wander_center/proc/MoveInPath(datum/ai_controller/insane/wander/controller)
 	var/mob/living/living_pawn = controller.pawn
+	if(!living_pawn)
+		controller.pathing_attempts = 0
+		controller.current_path = list() // Reset the path and stop
+		finish_action(controller, TRUE)
+		return
 	// Insanity lines
 	if(world.time > controller.last_message + 4 SECONDS)
 		controller.last_message = world.time

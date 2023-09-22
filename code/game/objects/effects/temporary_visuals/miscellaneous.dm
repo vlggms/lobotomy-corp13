@@ -935,3 +935,33 @@
 	name = "galaxy_aura"
 	icon_state = "galaxy_aura"
 	duration = 6
+
+/obj/effect/temp_visual/human_horizontal_bisect
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "Hbisected-h"
+	duration = 15
+
+/obj/effect/temp_visual/rip_space
+	name = "dimensional rift"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "rift"
+	duration = 2
+
+/obj/effect/temp_visual/ripped_space
+	name = "ripped space"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "ripped_space"
+	duration = 3
+
+/obj/effect/temp_visual/rip_space_slash
+	name = "ripped space"
+	icon_state = "rift"
+	duration = 2
+
+/obj/effect/temp_visual/rip_space_slash/Initialize()
+	. = ..()
+	var/matrix/M = matrix()
+	transform = M.Turn(45)
+	transform = M.Scale(5, 0.5)
+	transform = M.Turn(rand(0, 360))
+	animate(src, alpha = 0, transform = transform*2, time = 2)

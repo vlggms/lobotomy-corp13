@@ -1074,7 +1074,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	var/release_message = "You release your charge, opening a rift!"
-	var/charge_effect = "create a temporary two-way portal on a living target."
+	var/charge_effect = "teleport and create a temporary two-way portal."
 	var/current_holder
 	var/charge_cost = 10
 	var/charge
@@ -1128,7 +1128,9 @@
 		return
 	if(!activated)
 		return
-	if(!isliving(target))
+	if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 20)))
+		to_chat(user, "<span class='notice'>Invalid target.</span>")
+		activated = FALSE
 		return
 	if(!proximity_flag)
 		charge -= charge_cost

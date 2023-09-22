@@ -144,7 +144,7 @@
 	if(!console?.recorded && !console?.tutorial) //only training rabbit should not train stats
 		return
 	if(pe > 0) // Work did not fail
-		var/attribute_type = WORK_TO_ATTRIBUTE[work_type]
+		var/attribute_type = current.work_attribute_types[work_type]
 		var/maximum_attribute_level = 0
 		switch(threat_level)
 			if(ZAYIN_LEVEL)
@@ -158,18 +158,17 @@
 			if(ALEPH_LEVEL)
 				maximum_attribute_level = 130
 		var/datum/attribute/user_attribute = user.attributes[attribute_type]
-		if(!user_attribute) //To avoid runtime if it's a custom work type like "Release".
-			return
-		var/user_attribute_level = max(1, user_attribute.level)
-		var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
-		if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
-			attribute_given = max(0, maximum_attribute_level - user_attribute_level)
-		if(attribute_given == 0)
-			if(was_melting)
-				attribute_given = threat_level //pity stats on meltdowns
-			else
-				to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
-		user.adjust_attribute_level(attribute_type, attribute_given)
+		if(user_attribute) //To avoid runtime if it's a custom work type like "Release".
+			var/user_attribute_level = max(1, user_attribute.level)
+			var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
+			if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
+				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
+			if(attribute_given == 0)
+				if(was_melting)
+					attribute_given = threat_level //pity stats on meltdowns
+				else
+					to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
+			user.adjust_attribute_level(attribute_type, attribute_given)
 	if(console?.tutorial) //don't run logging-related code if tutorial console
 		return
 	var/user_job_title = "Unidentified Employee"

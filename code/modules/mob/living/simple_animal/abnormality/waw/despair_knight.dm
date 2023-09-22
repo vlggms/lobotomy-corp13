@@ -92,6 +92,7 @@
 	blessed_human.physiology.white_mod /= 0.5
 	blessed_human.physiology.black_mod /= 0.5
 	blessed_human.physiology.pale_mod /= 2
+	blessed_human.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 100)
 	blessed_human = null
 	BreachEffect()
 	return TRUE
@@ -140,6 +141,7 @@
 		user.physiology.pale_mod *= 2
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
 		playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
+		user.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -100)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/BreachEffect(mob/living/carbon/human/user)

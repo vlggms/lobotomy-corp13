@@ -341,26 +341,61 @@
 	//Default to normal targeting if already phase 3 or only have 1 target
 	if(phase >= 3 || Targets.len <= 1)
 		return ..()
+
+	/* If we have a target and their value is
+		above 80 or "adjacent living creature" then
+		just keep killing them. */
+	if(target)
+		// Focus on finishing them off.
+		if(ValueTarget(target) > 86)
+			return target
+
+	/* Form a list of our targets, value how much we hate
+		them, and then pick the target who has the MOST hate. */
 	for(var/i in Targets)
 		Targets[i] = ValueTarget(i)
 	return ReturnHighestValue(Targets)
 
 //Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/ValueTarget(atom/target_thing, hate_value = 0)
+	/* This is in order to treat Mechas as living by
+		instead considering their pilot for the hate value. */
+	if(ismecha(target_thing))
+		var/obj/vehicle/sealed/mecha/M = target_thing
+		for(var/occupant in M.occupants)
+			if(CanAttack(occupant))
+				target_thing = occupant
+
 	if(isliving(target_thing))
 		var/mob/living/L = target_thing
+
+		//Minimum starting hate for anything living is 80.
+		hate_value += 80
+		//Hate for corpses since we eats them.
 		if(L.stat == DEAD)
-			return 100
-		hate_value += 1
-		if(iscarbon(L))
 			hate_value += 10
-		if(L.health <= (L.maxHealth * 0.6))
-			hate_value += (10 * ( L.health / L.maxHealth ))
+		//Highest possible addition is + 9.9
+		if(iscarbon(L))
+			if(L.stat != DEAD && L.health <= (L.maxHealth * 0.6))
+				var/upper = L.maxHealth - HEALTH_THRESHOLD_DEAD
+				var/lower = L.health - HEALTH_THRESHOLD_DEAD
+				hate_value += min( 2 * ( 1 / ( max( lower, 1 ) / upper ) ), 20)
+		//If your not next to us your hate is down by 50
+		if(!L.Adjacent(targets_from))
+			hate_value -= 50
+
 	return hate_value
+	/*
+	Priority from greatest to least:
+	dead close: 90
+	close: 80
+	dead far: 40
+	far: 30
+	*/
 
 //Stolen MOSB patrol code
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/CanStartPatrol()
-	return !(status_flags & GODMODE)
+	return !(status_flags & GODMODE) && !target
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/patrol_reset()
 	. = ..()
