@@ -262,6 +262,9 @@
 		var/mob/M = the_target
 		if(M.status_flags & GODMODE)
 			return FALSE
+		if(M.ckey)
+			if(M.client?.is_afk()) // AFK protection
+				return FALSE
 
 	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
 		return FALSE
