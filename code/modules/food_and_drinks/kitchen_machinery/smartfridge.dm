@@ -534,3 +534,64 @@
 		return TRUE
 	else
 		return FALSE
+
+// ----------------------
+// LC13 EGO ARMORY ROOT | Remove this later on if theres a better system. -IP
+// ----------------------
+/obj/machinery/smartfridge/extraction_storage
+	name = "extraction storage root"
+	desc = "A broken prototype of a storage unit."
+	pass_flags = PASSTABLE
+	visible_contents = TRUE
+	base_build_path = null
+	flags_1 = NODECONSTRUCT_1
+	max_n_of_items = 100
+
+/obj/machinery/smartfridge/extraction_storage/update_icon_state()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	if(!machine_stat)
+		SSvis_overlays.add_vis_overlay(src, icon, "extraction-light-mask", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
+		if (visible_contents)
+			switch(contents.len)
+				if(0)
+					icon_state = "[initial(icon_state)]"
+				if(1 to 25)
+					icon_state = "[initial(icon_state)]1"
+				if(26 to 75)
+					icon_state = "[initial(icon_state)]2"
+				if(76 to INFINITY)
+					icon_state = "[initial(icon_state)]3"
+		else
+			icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-off"
+
+// ----------------------------
+// LC13 STABILIZED EGO ARMORY
+// ----------------------------
+/obj/machinery/smartfridge/extraction_storage/ego_weapon
+	name = "weapon fridge"
+	desc = "A machine capable of storing a variety of weapons and EGO."
+	icon_state = "egoweapon"
+	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_weapon
+
+/obj/machinery/smartfridge/extraction_storage/ego_weapon/accept_check(obj/item/O)
+	if(istype(O, istype(O, /obj/item/ego_weapon) || istype(O, /obj/item/gun/ego_gun)))
+		return TRUE
+	else
+		return FALSE
+
+// ---------------------------------
+// LC13 STABILIZED EGO ARMOR CLOSET
+// ---------------------------------
+/obj/machinery/smartfridge/extraction_storage/ego_armor
+	name = "armor fridge"
+	desc = "A machine capable of storing a variety of armor and EGO."
+	icon_state = "egoarmor"
+	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_armor
+
+/obj/machinery/smartfridge/extraction_storage/ego_armor/accept_check(obj/item/O)
+	if(istype(O, /obj/item/clothing/suit/armor/ego_gear))
+		return TRUE
+	else
+		return FALSE
