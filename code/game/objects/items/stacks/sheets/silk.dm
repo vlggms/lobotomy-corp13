@@ -20,7 +20,7 @@
 
 /obj/item/stack/sheet/silk/indigo_simple
 	name = "Simple Indigo Silk"
-	desc = "Silk woven from a unknown scout... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	desc = "Silk woven from a unknown scout... Can be used to upgrade your armor. Looks like it is from the simple variety of silk. Increases BLACK resistance by 5, Decreases WHITE by 5 when attached to armor."
 	added_armor = new(black = 5, white = -5)
 	merge_type = /obj/item/stack/sheet/silk/indigo_simple
 	icon = 'icons/obj/stack_objects.dmi'
@@ -28,7 +28,7 @@
 
 /obj/item/stack/sheet/silk/indigo_advanced
 	name = "Advanced Indigo Silk"
-	desc = "Silk woven from a sweeper... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk."
+	desc = "Silk woven from a sweeper... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk. Increases BLACK resistance by 10, Decreases WHITE by 10 when attached to armor."
 	added_armor = new(black = 10, white = -10)
 	merge_type = /obj/item/stack/sheet/silk/indigo_advanced
 	icon = 'icons/obj/stack_objects.dmi'
@@ -36,7 +36,7 @@
 
 /obj/item/stack/sheet/silk/green_simple
 	name = "Simple Green Silk"
-	desc = "Silk woven from a spear bot... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	desc = "Silk woven from a spear bot... Can be used to upgrade your armor. Looks like it is from the simple variety of silk Increases RED resistance by 5, Decreases BLACK by 5 when attached to armor."
 	added_armor = new(red = 5, black = -5)
 	merge_type = /obj/item/stack/sheet/silk/green_simple
 	icon = 'icons/obj/stack_objects.dmi'
@@ -44,7 +44,7 @@
 
 /obj/item/stack/sheet/silk/green_advanced
 	name = "Advanced Green Silk"
-	desc = "Silk woven from a gun bot... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk."
+	desc = "Silk woven from a gun bot... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk Increases RED resistance by 10, Decreases BLACK by 10 when attached to armor."
 	added_armor = new(red = 10, black = -10)
 	merge_type = /obj/item/stack/sheet/silk/green_advanced
 	icon = 'icons/obj/stack_objects.dmi'
@@ -52,7 +52,7 @@
 
 /obj/item/stack/sheet/silk/steel_simple
 	name = "Simple Steel Silk"
-	desc = "Silk woven from a gene corp remnant... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	desc = "Silk woven from a gene corp remnant... Can be used to upgrade your armor. Looks like it is from the simple variety of silk. Increases RED resistance by 5, Decreases white by 5 when attached to armor."
 	added_armor = new(red = 5, white = -5)
 	merge_type = /obj/item/stack/sheet/silk/steel_simple
 	icon = 'icons/obj/stack_objects.dmi'
@@ -60,7 +60,7 @@
 
 /obj/item/stack/sheet/silk/amber_simple
 	name = "Simple Amber Silk"
-	desc = "Silk woven from a carnivores worm... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	desc = "Silk woven from a carnivores worm... Can be used to upgrade your armor. Looks like it is from the simple variety of silk Decrease RED resistance by 5, Increases BLACK by 5 when attached to armor."
 	added_armor = new(red = -5, black = 5)
 	merge_type = /obj/item/stack/sheet/silk/amber_simple
 	icon = 'icons/obj/stack_objects.dmi'
@@ -68,7 +68,7 @@
 
 /obj/item/stack/sheet/silk/human_simple
 	name = "Simple Human Silk"
-	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the simple variety of silk."
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the simple variety of silkIncreases PALE resistance by 5, Decreases RED and WHITE by 2.5 when attached to armor."
 	added_armor = new(pale = 5, white = -2.5, red = -2.5)
 	merge_type = /obj/item/stack/sheet/silk/human_simple
 	icon = 'icons/obj/stack_objects.dmi'
@@ -76,7 +76,7 @@
 
 /obj/item/stack/sheet/silk/human_advanced
 	name = "Advanced Human Silk"
-	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk."
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk Increases PALE resistance by 10, Decreases RED and WHITE by 5 when attached to armor."
 	added_armor = new(pale = 10, white = -5, red = -5)
 	merge_type = /obj/item/stack/sheet/silk/human_advanced
 	icon = 'icons/obj/stack_objects.dmi'
@@ -84,7 +84,7 @@
 
 /obj/item/stack/sheet/silk/human_elegant
 	name = "Elegant Human Silk"
-	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the elegant variety of silk."
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the elegant variety of silk Increases PALE resistance by 15, Decreases RED and WHITE by 7.5 when attached to armor."
 	added_armor = new(pale = 15, white = -7.5, red = -7.5)
 	merge_type = /obj/item/stack/sheet/silk/human_elegant
 	icon = 'icons/obj/stack_objects.dmi'
@@ -92,7 +92,7 @@
 
 /obj/item/stack/sheet/silk/human_masterpiece
 	name = "Masterpiece Human Silk"
-	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the masterpiece variety of silk. The best of the best."
+	desc = "Silk woven from a... Human? How horrific... Can be used to upgrade your armor. Looks like it is from the masterpiece variety of silk. The best of the best Increases PALE resistance by 20, Decreases RED and WHITE by 10 when attached to armor."
 	added_armor = new(pale = 20, white = -10, red = -10)
 	merge_type = /obj/item/stack/sheet/silk/human_masterpiece
 	icon = 'icons/obj/stack_objects.dmi'

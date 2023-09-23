@@ -489,6 +489,7 @@
 		/datum/crafting_recipe/ncorp,
 		/datum/crafting_recipe/ncorp_vet,
 		/datum/crafting_recipe/ncorp_grosshammmer,
+		/datum/crafting_recipe/ncorpcommander,
 		/datum/crafting_recipe/ncorp_white_mark,
 		/datum/crafting_recipe/ncorp_black_mark,
 		/datum/crafting_recipe/ncorp_pale_mark

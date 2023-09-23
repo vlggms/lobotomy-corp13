@@ -1480,6 +1480,17 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/ncorpcommander
+	name = "Rüstung der auserwählten Frau Gottes"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 5,
+				/obj/item/stack/sheet/silk/green_advanced = 5,
+				/obj/item/stack/sheet/silk/human_masterpiece = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/ncorp_white_mark
 	name = "Ncorp White mark"
 	result = /obj/item/ego_weapon/city/ncorp_mark/white
