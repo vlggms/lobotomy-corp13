@@ -75,13 +75,7 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/update_icon_state()
-	if(status_flags & GODMODE)
-	// Not breaching
-		icon_living = initial(icon)
-		icon_state = icon_living
-	else if(stat == DEAD)
-		icon_state = icon_dead
-	else
-		icon_living = "smallfox_breached"
-		icon_state = icon_living
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user)
+	..()
+	icon_state = "smallfox_breached"
+
