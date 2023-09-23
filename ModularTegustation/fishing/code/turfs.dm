@@ -61,6 +61,8 @@
 
 /turf/open/water/deep/Entered(atom/movable/thing, atom/oldLoc) //Sinking Code
 	. = ..()
+	if(SSmaptype.maptype == "city")
+		return
 	if(!target_turf || is_type_in_typecache(thing, forbidden_types) || (thing.throwing && !istype(thing, /obj/item/food/fish || /obj/item/aquarium_prop )) || (thing.movement_type & (FLOATING|FLYING))) //replace this with a varient of chasm component sometime.
 		return
 	if(isliving(thing))
