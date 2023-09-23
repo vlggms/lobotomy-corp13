@@ -18,4 +18,5 @@
 	if(!CanUseEgo(user))
 		return
 	charge -= charge_cost
+	charge = round(max(charge, 0), 1)
 	to_chat(user, "<span class='notice'>[release_message].</span>")
