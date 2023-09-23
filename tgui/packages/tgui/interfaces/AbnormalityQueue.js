@@ -68,12 +68,12 @@ export const AbnormalityQueue = (props, context) => {
                   </Flex.Item>
                 ))}
                 <Button
-                      icon="minus"
-                      fluid
-                      bold
-                      content={"Back"}
-                      color={"red"}
-                      onClick={() => act("back")} />
+                  icon="minus"
+                  fluid
+                  bold
+                  content={"Back"}
+                  color={"red"}
+                  onClick={() => act("back")} />
               </Flex>
             )}
           </Flex>
