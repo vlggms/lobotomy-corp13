@@ -863,25 +863,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_checkpoint)
-"hB" = (
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/item/modular_computer/laptop/preset/fixer,
-/turf/open/floor/mineral/silver,
-/area/city/shop)
 "hC" = (
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
@@ -49087,7 +49068,7 @@ HA
 HA
 kJ
 OQ
-hB
+nl
 PL
 Gz
 OT
