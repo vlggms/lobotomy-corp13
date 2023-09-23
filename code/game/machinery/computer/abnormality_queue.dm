@@ -104,6 +104,11 @@
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 
+		if("back")
+			display_threat = FALSE
+			updateUsrDialog()
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+
 		if("lets_roll")
 			SSabnormality_queue.chose_abnormality = TRUE
 			var/threat = initial(SSabnormality_queue.queued_abnormality.threat_level)
