@@ -863,6 +863,25 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_checkpoint)
+"hB" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/item/modular_computer/laptop/preset/fixer,
+/turf/open/floor/mineral/silver,
+/area/city/shop)
 "hC" = (
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_alley)
@@ -1347,7 +1366,7 @@
 /area/facility_hallway/north)
 "mh" = (
 /obj/structure/table/wood,
-/obj/item/modular_computer/laptop/preset,
+/obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/plasteel/checker,
 /area/city/house)
 "mi" = (
@@ -1850,6 +1869,11 @@
 /obj/machinery/telecomms/receiver/preset_left,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"so" = (
+/obj/structure/table/reinforced,
+/obj/item/modular_computer/laptop/preset/fixer,
+/turf/open/indestructible/hoteltile,
+/area/city/house)
 "sp" = (
 /obj/effect/turf_decal/weather/dirt{
 	dir = 10
@@ -3009,10 +3033,7 @@
 /area/city/house)
 "Bh" = (
 /obj/structure/table/wood,
-/obj/item/modular_computer/laptop{
-	desc = "Appears to be a fixers laptop.";
-	name = "Fixer Laptop"
-	},
+/obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/plasteel/grimy,
 /area/city/house)
 "Bl" = (
@@ -3597,9 +3618,7 @@
 	pixel_x = -9;
 	pixel_y = 3
 	},
-/obj/item/modular_computer/laptop/preset/civilian{
-	pixel_x = 7
-	},
+/obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/carpet/black,
 /area/city/house)
 "FC" = (
@@ -4263,6 +4282,7 @@
 /area/city)
 "Lk" = (
 /obj/structure/table/wood,
+/obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/vault,
 /area/city/house)
 "Ln" = (
@@ -4719,6 +4739,7 @@
 /area/city)
 "QY" = (
 /obj/structure/table/reinforced,
+/obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/oldshuttle,
 /area/city/house)
 "QZ" = (
@@ -4856,10 +4877,7 @@
 /area/city)
 "SZ" = (
 /obj/structure/table/wood,
-/obj/item/modular_computer/laptop{
-	desc = "Appears to be a fixers laptop.";
-	name = "Fixer Laptop"
-	},
+/obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/wood,
 /area/city/house)
 "Ta" = (
@@ -36717,7 +36735,7 @@ sT
 wK
 Ad
 EM
-SZ
+VM
 EK
 Hm
 Hm
@@ -44190,7 +44208,7 @@ Hm
 Hm
 Hm
 Dq
-Ab
+so
 Ff
 Vb
 Vb
@@ -47793,7 +47811,7 @@ Dq
 TX
 Dq
 EM
-ll
+SZ
 mc
 YN
 YN
@@ -49069,7 +49087,7 @@ HA
 HA
 kJ
 OQ
-nl
+hB
 PL
 Gz
 OT
