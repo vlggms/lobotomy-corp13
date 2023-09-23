@@ -3033,7 +3033,7 @@
 /area/city/house)
 "Bh" = (
 /obj/structure/table/wood,
-/obj/item/modular_computer/laptop/preset/civilian,
+/obj/item/modular_computer/laptop/preset/fixer,
 /turf/open/floor/plasteel/grimy,
 /area/city/house)
 "Bl" = (
