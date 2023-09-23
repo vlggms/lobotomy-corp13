@@ -396,14 +396,6 @@ SUBSYSTEM_DEF(persistence)
 	if(SSlobotomy_corp.box_goal == 0) // If we didn't even start, why bother recording..?
 		return FALSE
 
-	if(pe_status[PE_GOAL_REACHED]) // Everyone alive at round end gains triple points if Quota was reached.
-		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			if(H.stat == DEAD)
-				continue
-			if(!H.client || !H.ckey)
-				continue
-			SSpersistence.agent_rep_change[H.ckey] *= 3
-
 	for(var/p_ckey in agent_rep_change)
 		if(SSmaptype.maptype == "standard")
 			if(pe_status[PE_GOAL_SPENT]) // You **SPENT** all of the PE!?
