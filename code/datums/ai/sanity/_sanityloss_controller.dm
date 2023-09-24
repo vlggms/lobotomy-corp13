@@ -363,7 +363,7 @@
 
 /datum/ai_controller/insane/release/SelectBehaviors(delta_time)
 	..()
-	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null || GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_smash_console) in current_behaviors)
+	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null || (GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_smash_console) in current_behaviors))
 		return
 
 	if(DT_PROB(5, delta_time))
