@@ -25,6 +25,10 @@
 	desc = "A green spear used by K corp Code 3 employees."
 	icon_state = "kspear"
 	inhand_icon_state = "kspear"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 44
 	reach = 2
 	attack_speed = 1.2
@@ -44,6 +48,10 @@
 	desc = "A double bladed spear used by K corp Code 3 employees."
 	icon_state = "kdualspear"
 	inhand_icon_state = "kdualspear"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 22
 	reach = 2
 	attack_speed = 0.6
@@ -65,9 +73,8 @@
 	special = "Slows down the user significantly."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "kshield"
-	inhand_icon_state = "flashshield"
-	lefthand_file = 'icons/mob/inhands/equipment/shields_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/equipment/shields_righthand.dmi'
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	force = 15
 	slowdown = 0.7
 	damtype = RED_DAMAGE

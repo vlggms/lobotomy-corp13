@@ -43,14 +43,17 @@
 		/obj/item/ego_weapon/city/kcorp,
 		/obj/item/ego_weapon/shield/kcorp,
 		/obj/item/ego_weapon/city/kcorp/axe,
-		/obj/item/gun/ego_gun/pistol/kcorp,)
+		/obj/item/gun/ego_gun/pistol/kcorp,
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1,
+		)
 
-	veryrareloot =	list(/obj/item/clothing/under/rank/k_corporation/intern,
+	veryrareloot =	list(
+		/obj/item/clothing/under/rank/k_corporation/intern,
 		/obj/item/ego_weapon/city/kcorp/spear,
 		/obj/item/ego_weapon/city/kcorp/dspear,
 		/obj/item/gun/ego_gun/pistol/kcorp/smg,
 		/obj/item/gun/ego_gun/pistol/kcorp/nade,
-		/obj/item/clothing/suit/armor/ego_gear/city/kcorp,
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3,
 		/obj/item/toy/plush/bongy,
 		)
 
