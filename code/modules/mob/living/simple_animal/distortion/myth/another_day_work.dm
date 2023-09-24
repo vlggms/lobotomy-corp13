@@ -39,7 +39,7 @@
 	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
 	egoist_outfit = /datum/outfit/job/civilian
 	//The Egoist's starting stats, all across the board. MUST BE AT LEAST THE MINIMUM TO EQUIP THE EGO_GEAR IF ANY
-	egoist_attributes = 50
+	egoist_attributes = 0
 	//Loot on death; distortions should be valuable targets in general.
 	loot = list(/obj/item/documents/ncorporation)
 
