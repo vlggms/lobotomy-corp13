@@ -45,6 +45,12 @@
 	var/can_act = TRUE
 	var/transformed = FALSE
 
+//Set random stats for the egoist
+/mob/living/simple_animal/hostile/distortion/bunnyman/Initialize()
+    . = ..()
+    egoist_attributes = min(rand(80, 130), rand(80, 130))
+    return
+
 //Proc that can be used for additional effects on unmanifest
 /mob/living/simple_animal/hostile/distortion/bunnyman/PostUnmanifest(mob/living/carbon/human/egoist)
 	playsound(src, 'sound/effects/blobattack.ogg', 150, FALSE, 4)

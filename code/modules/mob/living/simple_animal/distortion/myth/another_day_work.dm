@@ -43,6 +43,12 @@
 	//Loot on death; distortions should be valuable targets in general.
 	loot = list(/obj/item/documents/ncorporation)
 
+//Set random stats for the egoist
+/mob/living/simple_animal/hostile/distortion/another_day_work/Initialize()
+    . = ..()
+    egoist_attributes = min(rand(0, 130), rand(0, 130))
+    return
+
 	var/can_act = TRUE
 
 //Proc that can be used for additional effects on unmanifest
