@@ -259,8 +259,7 @@
 	if(!istype(disguise))
 		return
 	next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
-	move_to_delay = initial(move_to_delay)
-	UpdateSpeed()
+	SpeedChange(1.5)
 	appearance = saved_appearance
 	disguise.forceMove(get_turf(src))
 	disguise.gib()
@@ -292,7 +291,7 @@
 			can_act = TRUE
 			melee_damage_lower = 65
 			melee_damage_upper = 75
-			move_to_delay = 4.5
+			SpeedChange(1.5)
 			heartbeat.stop()
 			breachloop.start()
 	UpdateSpeed()
@@ -391,7 +390,7 @@
 		return
 	// Teleport us somewhere where nobody will see us at first
 	fear_level = 0 // So it doesn't inflict fear to those around them
-	move_to_delay = 1.2 // This will make them move at a speed similar to normal players
+	SpeedChange(-1.5) // This will make them move at a speed similar to normal players
 	UpdateSpeed()
 	var/list/priority_list = list()
 	for(var/turf/T in GLOB.xeno_spawn)

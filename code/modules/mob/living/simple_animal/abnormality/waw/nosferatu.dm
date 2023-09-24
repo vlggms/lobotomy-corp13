@@ -154,8 +154,7 @@
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 10)
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 35, 8)
 	bloodlust_cooldown = clamp(bloodlust_cooldown - 2, 0, 4)
-	move_to_delay -= 1
-	UpdateSpeed()
+	SpeedChange(-1)
 	berzerk = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/add_splatter_floor(turf/T, small_drip) //no spilling blood, it just works.

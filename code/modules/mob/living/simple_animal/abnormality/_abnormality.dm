@@ -82,7 +82,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
-	UpdateSpeed()
 	if(!(type in GLOB.cached_abno_work_rates))
 		GLOB.cached_abno_work_rates[type] = work_chances.Copy()
 	if(!(type in GLOB.cached_abno_resistances))

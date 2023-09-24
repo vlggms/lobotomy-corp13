@@ -238,8 +238,7 @@
 		slash_damage = 50
 		melee_damage_lower = 30
 		melee_damage_upper = 40
-		move_to_delay = 2.5
-		UpdateSpeed()
+		SpeedChange(-0.5)
 		maxHealth = maxHealth * 4 //5000 health, will get hurt by buddy's howl to make up for the high health
 		set_health(health * 4)
 		med_hud_set_health()
