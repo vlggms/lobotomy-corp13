@@ -210,7 +210,7 @@
 	abno_code = "D-02-107"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"When the work took less than 18 seconds to complete, the Qliphoth Counter lowered with a high probability.",
+		"When the work took less than 18 seconds to complete while the employee's temperance was level 3 or higher, the Qliphoth Counter lowered with a high probability.",
 		"The facility’s systems and the employees will be unable to detect the Abnormality when it escapes. Thus the manager will need to manually pinpoint it and order suppression directly.")
 
 //Lady facing the Wall

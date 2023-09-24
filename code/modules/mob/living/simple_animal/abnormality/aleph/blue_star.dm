@@ -111,7 +111,9 @@
 		datum_reference.qliphoth_change(-1)
 	if(user.sanity_lost)
 		datum_reference.qliphoth_change(-1)
-	if(work_time > 40 SECONDS)
+
+	//Safety, just in case for some reason you can't hit the timer as it's inconsistent and hard to judge
+	if(work_time > 40 SECONDS && get_attribute_level(user, TEMPERANCE_ATTRIBUTE) > 100)
 		datum_reference.qliphoth_change(-1)
 		playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 25, FALSE, 28)
 		user.death()

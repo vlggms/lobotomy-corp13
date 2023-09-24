@@ -22,7 +22,7 @@
 	abno_info = list(
 		"Agents with Temperance Level 3 or lower immediately threw themselves into Blue Star upon working with the Abnormality.",
 		"When an Agent with Prudence Level 4 or lower completed their work, the Qliphoth Counter lowered.",
-		"When more than 40 seconds of work time had taken place, the Qliphoth Counter lowered by 1, and the Agent who was working with Blue Star threw themself in.",
+		"When more than 40 seconds of work time had taken place while the employee's temperance was level 4 or lower, the Qliphoth Counter lowered by 1, and the Agent who was working with Blue Star threw themself in.",
 		"While Blue Star is outside of its containment, all sounds will be reduced to silence, with a low pitched tone emerging. The pitch will accompany a visually disruptive effect.",
 		"While Blue Star is outside of its containment, all panicking employees in the facility will be sucked into the center of the Abnormality and vanish.")
 	abno_breach_damage_type = "White"
@@ -181,7 +181,7 @@
 // The Crying Children
 /obj/item/paper/fluff/info/aleph/crying_children
 	abno_type = /mob/living/simple_animal/hostile/abnormality/crying_children
-	abno_code = "O-01-430" // Philip's Birthday April 30th 
+	abno_code = "O-01-430" // Philip's Birthday April 30th
 	abno_info = list(
 		"When 2 employees died, the Qliphoth Counter decreased.",
 		"When Attachment work was completed, the Qliphoth Counter increased.",
