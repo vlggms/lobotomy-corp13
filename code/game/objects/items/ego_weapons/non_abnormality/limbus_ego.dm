@@ -60,9 +60,9 @@
 	attack_verb_continuous = list("stabs", "slices", "rips", "shanks")
 	attack_verb_simple = list("stab", "slice", "rip", "shank")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60
-							PRUDENCE_ATTRIBUTE = 80
-							TEMPERANCE_ATTRIBUTE = 60
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
 	var/dash_cooldown
