@@ -154,20 +154,14 @@
 	data["beakerMaxVolume"] = beaker ? beaker.volume : null
 	data["beakerTransferAmounts"] = beaker ? beaker.possible_transfer_amounts : null
 	var/chemicals[0]
-	var/is_hallucinating = user.hallucinating()
-	if(user.hallucinating())
-		is_hallucinating = TRUE
 	for(var/re in dispensable_reagents)
 		var/value = dispensable_reagents[re]
-		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
-		if(temp)
-			var/chemname = temp.name
+		var/datum/reagent/R = GLOB.chemical_reagents_list[re]
+		if(R)
 			var/total_volume = 0
 			for (var/datum/reagents/rs in value["reagents"])
 				total_volume += rs.total_volume
-			if(is_hallucinating && prob(5))
-				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name), "volume" = total_volume )))
+			chemicals.Add(list(list("title" = R.name, "id" = ckey(R.name), "volume" = total_volume )))
 	data["chemicals"] = chemicals
 	var/beakerContents[0]
 	if(beaker)
