@@ -22,7 +22,9 @@ GLOBAL_LIST_INIT(unspawned_tools, list(
 	/obj/structure/toolabnormality/skin,
 	/obj/structure/toolabnormality/snake_oil,
 	/obj/structure/toolabnormality/theresia,
-	/obj/structure/toolabnormality/mirror
+	/obj/structure/toolabnormality/mirror,
+	/obj/structure/toolabnormality/researcher,
+	/obj/structure/toolabnormality/you_happy
 ))
 
 /obj/effect/landmark/toolspawn
