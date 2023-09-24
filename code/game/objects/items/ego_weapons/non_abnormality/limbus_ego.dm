@@ -43,3 +43,46 @@
 				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
 		..()
+
+/obj/item/ego_weapon/mini/crow
+	name = "Crow's Eye View"
+	desc = "Now, break this birdcage... and fly free."
+	special = "This weapon attacks very fast. Use this weapon in hand to rush towards where you click."
+	icon_state = "crow"
+	icon = 'icons/obj/limbus_weapons.dmi'
+	inhand_icon_state = 'shiv'
+	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	force = 30
+	attack_speed = 0.5 //this shit goes FAST
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("stabs", "slices", "rips", "shanks")
+	attack_verb_simple = list("stab", "slice", "rip", "shank")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+	var/dash_cooldown
+	var/dash_cooldown_time = 3 //3 second cooldown.
+	var/dash_range = 7 //7 tile dash range.
+
+/obj/item/ego_weapon/mini/crow/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!isliving(A))
+		return
+	if(dash_cooldown > world.time)
+		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	dash_cooldown = world.time + dash_cooldown_time
+	for(var/i in 2 to get_dist(user, A))
+		step_towards(user,A)
+	if((get_dist(user, A) < 2))
+		A.attackby(src,user)
+	playsound(get_turf(src), 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+	to_chat(user, "<span class='warning'>You dash to [A]!")
