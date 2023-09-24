@@ -143,10 +143,9 @@
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/MeltdownEffect(mob/living/carbon/human/user)
 	var/list/potentialmarked = list()
 	var/list/marked = list()
-	var/mob/living/Y
 	sound_to_playing_players_on_level('sound/abnormalities/crumbling/globalwarning.ogg', 25, zlevel = z)
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(faction_check_mob(Y, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
+		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
 			continue
 		potentialmarked += L
 		to_chat(L, "<span class='userdanger'>You feel an overwhelming sense of dread.</span>")
@@ -154,6 +153,7 @@
 	numbermarked = 1 + round(LAZYLEN(potentialmarked) / 5, 1) //1 + 1 in 5 potential players, to the nearest whole number
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	sound_to_playing_players_on_level('sound/abnormalities/crumbling/warning.ogg', 50, zlevel = z)
+	var/mob/living/Y
 	for(var/i = numbermarked, i>=1, i--)
 		if(potentialmarked.len <= 0)
 			break
