@@ -22,6 +22,8 @@
 	var/list/initial_contents
 	/// If the machine shows an approximate number of its contents on its sprite
 	var/visible_contents = TRUE
+	/// Unique icon name for light mask.
+	var/light_icon_state = "smartfridge-light-mask"
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -68,7 +70,7 @@
 /obj/machinery/smartfridge/update_overlays()
 	. = ..()
 	if(!machine_stat)
-		SSvis_overlays.add_vis_overlay(src, icon, "smartfridge-light-mask", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
+		SSvis_overlays.add_vis_overlay(src, icon, light_icon_state, EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
 
 /*******************
 *   Item Adding
@@ -528,6 +530,7 @@
 	pass_flags = PASSTABLE
 	visible_contents = FALSE
 	base_build_path = /obj/machinery/smartfridge/disks
+	light_icon_state = "disktoaster-light-mask"
 
 /obj/machinery/smartfridge/disks/accept_check(obj/item/O)
 	if(istype(O, /obj/item/disk/))
@@ -542,29 +545,12 @@
 	name = "extraction storage root"
 	desc = "A broken prototype of a storage unit."
 	pass_flags = PASSTABLE
+	resistance_flags = INDESTRUCTIBLE
 	visible_contents = TRUE
 	base_build_path = null
 	flags_1 = NODECONSTRUCT_1
 	max_n_of_items = 100
-
-/obj/machinery/smartfridge/extraction_storage/update_icon_state()
-	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
-	if(!machine_stat)
-		SSvis_overlays.add_vis_overlay(src, icon, "extraction-light-mask", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
-		if (visible_contents)
-			switch(contents.len)
-				if(0)
-					icon_state = "[initial(icon_state)]"
-				if(1 to 25)
-					icon_state = "[initial(icon_state)]1"
-				if(26 to 75)
-					icon_state = "[initial(icon_state)]2"
-				if(76 to INFINITY)
-					icon_state = "[initial(icon_state)]3"
-		else
-			icon_state = "[initial(icon_state)]"
-	else
-		icon_state = "[initial(icon_state)]-off"
+	light_icon_state = "extraction-light-mask"
 
 // ----------------------------
 // LC13 STABILIZED EGO ARMORY
@@ -576,7 +562,7 @@
 	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_weapon
 
 /obj/machinery/smartfridge/extraction_storage/ego_weapon/accept_check(obj/item/O)
-	if(istype(O, istype(O, /obj/item/ego_weapon) || istype(O, /obj/item/gun/ego_gun)))
+	if(istype(O, /obj/item/ego_weapon) || istype(O, /obj/item/gun/ego_gun))
 		return TRUE
 	else
 		return FALSE
