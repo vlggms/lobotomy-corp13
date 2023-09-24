@@ -66,7 +66,8 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 	var/dash_cooldown
-	var/dash_cooldown_time = 5
+	var/dash_cooldown_time = 3 //3 second cooldown.
+	var/dash_range = 7 //7 tile dash range.
 
 /obj/item/ego_weapon/mini/crow/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
