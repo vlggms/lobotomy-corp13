@@ -11,6 +11,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"ar" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "au" = (
 /obj/machinery/regenerator,
 /obj/effect/turf_decal/siding/purple{
@@ -65,6 +72,10 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"bn" = (
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced,
+/area/department_main/extraction)
 "bo" = (
 /obj/structure/bodycontainer/crematorium{
 	id = "incinerator1"
@@ -646,6 +657,10 @@
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"jO" = (
+/obj/machinery/vending/custom/unbreakable,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "jZ" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
@@ -1498,6 +1513,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/discipline)
+"xl" = (
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/closed/indestructible/reinforced,
+/area/department_main/extraction)
 "xm" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/sign/departments/welfare{
@@ -2974,6 +2993,13 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
+"SJ" = (
+/obj/structure/closet/crate,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "SL" = (
 /obj/structure/table/glass,
 /obj/item/clothing/accessory/armband/lobotomy/info,
@@ -53255,7 +53281,7 @@ My
 My
 My
 My
-Oc
+ar
 XE
 GD
 pw
@@ -53512,7 +53538,7 @@ My
 My
 My
 My
-Oc
+jO
 XE
 XE
 XE
@@ -53769,7 +53795,7 @@ My
 My
 My
 My
-Oc
+SJ
 mh
 BY
 BY
@@ -54278,10 +54304,10 @@ QD
 QD
 XE
 KP
-KP
+xl
 Hz
 Hz
-KP
+bn
 TU
 KP
 mh
