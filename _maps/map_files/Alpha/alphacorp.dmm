@@ -144,11 +144,8 @@
 /turf/closed/indestructible/rock,
 /area/space)
 "be" = (
-/obj/effect/turf_decal/siding/red{
-	dir = 8
-	},
-/obj/machinery/vending/custom/unbreakable,
-/turf/open/floor/carpet/royalblack,
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "bj" = (
 /obj/effect/turf_decal/siding/yellow,
@@ -848,8 +845,7 @@
 /obj/machinery/camera/autoname{
 	dir = 1
 	},
-/obj/structure/rack,
-/obj/item/storage/belt/ego,
+/obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "gR" = (
@@ -1622,6 +1618,7 @@
 /obj/machinery/light,
 /obj/structure/rack,
 /obj/item/storage/belt/ego,
+/obj/item/clothing/suit/armor/vest/alt,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "mC" = (
@@ -3731,11 +3728,16 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "Cn" = (
-/obj/machinery/camera/autoname{
-	dir = 1
+/obj/structure/filingcabinet{
+	pixel_x = -10
 	},
-/obj/structure/rack,
-/obj/item/clothing/suit/armor/vest/alt,
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/obj/structure/sign/departments/extraction{
+	pixel_x = 32
+	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Cp" = (
@@ -4353,6 +4355,9 @@
 /obj/machinery/newscaster{
 	pixel_x = 32
 	},
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Ib" = (
@@ -4633,6 +4638,7 @@
 /obj/machinery/light,
 /obj/structure/rack,
 /obj/item/clothing/suit/armor/vest/alt,
+/obj/item/storage/belt/ego,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "JP" = (
@@ -5403,10 +5409,8 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Qe" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/carpet/red,
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/closed/indestructible/reinforced,
 /area/department_main/control)
 "Qg" = (
 /obj/machinery/light{
@@ -5930,9 +5934,6 @@
 /area/facility_hallway/central)
 "TO" = (
 /obj/machinery/computer/ego_purchase,
-/obj/machinery/newscaster{
-	pixel_y = 32
-	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "TX" = (
@@ -6518,10 +6519,11 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Yg" = (
-/obj/structure/sign/departments/extraction{
-	pixel_x = 32
+/obj/effect/turf_decal/siding/red{
+	dir = 8
 	},
-/turf/open/floor/carpet/red,
+/obj/structure/table/reinforced,
+/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "Yj" = (
 /obj/structure/curtain,
@@ -38808,7 +38810,7 @@ Ol
 Ol
 TB
 Mi
-Cn
+gP
 rg
 vs
 yc
@@ -40854,12 +40856,12 @@ ZL
 ZL
 ZL
 rg
-ta
+Cn
 FV
 FV
 FV
-Yg
-Qe
+FV
+FV
 Ia
 FV
 xu
@@ -41115,8 +41117,8 @@ rg
 be
 tT
 tT
-rg
-rg
+Yg
+Qe
 rg
 FZ
 fo

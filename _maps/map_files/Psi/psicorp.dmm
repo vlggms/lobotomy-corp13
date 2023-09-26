@@ -1578,13 +1578,8 @@
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/discipline)
 "je" = (
-/obj/machinery/vending/custom/unbreakable{
-	pixel_x = -3
-	},
-/obj/structure/window/reinforced/spawner/east{
-	max_integrity = 25
-	},
-/turf/open/floor/facility/dark,
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "jf" = (
 /obj/effect/turf_decal/tile/blue{
@@ -5473,6 +5468,9 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
+/obj/machinery/vending/custom/unbreakable{
+	pixel_x = -3
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Dn" = (
@@ -6825,6 +6823,9 @@
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
+/obj/machinery/vending/custom/unbreakable{
+	pixel_x = -3
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Kx" = (
@@ -7049,13 +7050,8 @@
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Ma" = (
-/obj/machinery/vending/custom/unbreakable{
-	pixel_x = 3
-	},
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25
-	},
-/turf/open/floor/facility/dark,
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
 "Mc" = (
 /obj/effect/turf_decal/plaque{

@@ -632,6 +632,9 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
+/obj/item/storage/belt/ego,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "ep" = (
@@ -2130,10 +2133,10 @@
 /turf/open/floor/carpet/black,
 /area/department_main/command)
 "ns" = (
+/obj/structure/railing/corner,
 /obj/structure/table/reinforced{
 	max_integrity = 25
 	},
-/obj/structure/railing/corner,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "nu" = (
@@ -4103,18 +4106,11 @@
 /turf/open/floor/carpet,
 /area/department_main/control)
 "zA" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 1
 	},
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
-/obj/item/storage/belt/ego,
-/obj/item/price_tagger,
+/obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "zD" = (
@@ -4291,8 +4287,6 @@
 /obj/structure/table/wood,
 /obj/item/fish_feed,
 /obj/item/fish_feed,
-/obj/item/simple_fishing_rod,
-/obj/item/simple_fishing_rod,
 /obj/item/storage/fish_case,
 /obj/item/storage/fish_case,
 /turf/open/floor/carpet/stellar,
@@ -4379,6 +4373,7 @@
 	max_integrity = 25
 	},
 /obj/structure/railing,
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "AT" = (
@@ -6204,6 +6199,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/autoname,
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "Mc" = (
@@ -7303,6 +7299,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/machinery/vending/custom/unbreakable,
+/obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/wood,
 /area/department_main/command)
 "Sl" = (
@@ -7469,10 +7467,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
-"TH" = (
-/obj/machinery/vending/custom/unbreakable,
-/turf/open/floor/facility/dark,
-/area/department_main/command)
 "TJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
@@ -8177,6 +8171,7 @@
 	max_integrity = 25
 	},
 /obj/structure/railing,
+/obj/item/price_tagger,
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "XO" = (
@@ -39457,7 +39452,7 @@ zA
 kB
 SO
 Jt
-TH
+NL
 xN
 Dj
 Ot
@@ -39714,7 +39709,7 @@ sX
 aY
 rY
 vv
-TH
+NL
 xN
 Dj
 Ot
