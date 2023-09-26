@@ -1697,3 +1697,78 @@
 
 /obj/item/ego_weapon/charge/warring/get_clamped_volume()
 	return 40
+
+/obj/item/ego_weapon/hyde
+	name = "hyde"
+	desc = "The most racking pangs succeeded: a grinding in the bones, deadly nausea, and a horror of the spirit that cannot be exceeded at the hour of birth or death."
+	special = "Activate this weapon in hand to take a syringe, empowering it at the cost of taking damage."
+	icon_state = "hyde"
+	force = 25
+	attack_speed = 0.8
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("punches", "slaps", "scratches")
+	attack_verb_simple = list("punch", "slap", "scratch")
+	hitsound = 'sound/effects/hit_kick.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60
+							)
+	var/list/attack_styles = list("red", "white", "black")
+	var/chosen_style
+	var/transformed = FALSE
+
+/obj/item/ego_weapon/hyde/Initialize()
+	..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/ego_weapon/hyde/attack_self(mob/living/carbon/human/user)
+	if(transformed)
+		return
+	if(!CanUseEgo(user))
+		return
+	chosen_style = input(user, "Which syringe will you use?") as null|anything in attack_styles
+	if(!chosen_style)
+		return
+	if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
+		user.emote("scream")
+		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)//YEOWCH!
+		icon_state = ("hyde_" + chosen_style)
+		force = 42
+		switch(chosen_style)
+			if("red")
+				user.apply_damage(50, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				damtype = RED_DAMAGE
+				to_chat(user, "<span class='notice'>Your bones are painfully sculpted to fit a muscular claw.</span>")
+				hitsound = 'sound/weapons/bladeslice.ogg'
+			if("white")
+				user.apply_damage(50, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				damtype = WHITE_DAMAGE
+				to_chat(user, "<span class='notice'>Your angst is plastered onto your arm.</span>")
+			if("black")
+				user.apply_damage(50, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				damtype = BLACK_DAMAGE
+				to_chat(user, "<span class='notice'>Bristles are painfully ejected from your arm, filled with hate.</span>")
+				hitsound = 'sound/weapons/ego/spear1.ogg'
+		ADD_TRAIT(src, TRAIT_NODROP, null)
+		user.update_inv_hands()
+		transformed = TRUE
+		addtimer(CALLBACK(src, .proc/Reset_Timer), 600)
+	return
+
+/obj/item/ego_weapon/hyde/proc/Reset_Timer(mob/living/carbon/human/user)
+	if(!transformed)
+		return
+	icon_state = "hyde"
+	force = initial(force)
+	hitsound = initial(hitsound)
+	damtype = initial(damtype)
+	transformed = FALSE
+	REMOVE_TRAIT(src, TRAIT_NODROP, null)
+	if(user)
+		user.update_inv_hands()
+		to_chat(user, "<span class='notice'>Your arm returns to normal.</span>")
+
+/obj/item/ego_weapon/hyde/on_thrown(mob/living/carbon/user, atom/target)//you can't throw it. bleh
+	if(transformed)
+		return
+	return ..()
