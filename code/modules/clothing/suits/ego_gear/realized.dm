@@ -146,6 +146,7 @@
 	desc = "Spring is coming."
 	worn_icon = 'icons/mob/clothing/big_hat.dmi'
 	icon_state = "sakura"
+
 /* HE Realizations */
 
 /obj/item/clothing/suit/armor/ego_gear/realization/grinder
