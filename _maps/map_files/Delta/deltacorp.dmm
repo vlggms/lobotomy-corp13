@@ -2207,6 +2207,16 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"gu" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/machinery/light/cold/no_nightlight{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "gv" = (
 /obj/structure/chair/stool/bar,
 /turf/open/floor/carpet/orange,
@@ -2676,6 +2686,10 @@
 /area/facility_hallway/information)
 "ie" = (
 /obj/machinery/computer/extraction_cargo{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
@@ -3343,6 +3357,10 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"ko" = (
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced,
+/area/department_main/extraction)
 "kp" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3599,6 +3617,9 @@
 	dir = 1
 	},
 /obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "extraction"
+	},
 /turf/open/floor/facility/halls,
 /area/department_main/extraction)
 "kV" = (
@@ -4160,7 +4181,14 @@
 /area/facility_hallway/discipline)
 "mw" = (
 /obj/structure/table/reinforced,
-/obj/item/toy/crayon/spraycan/infinite,
+/obj/item/encryptionkey/headset_architecture,
+/obj/item/clothing/accessory/armband/lobotomy/extraction,
+/obj/item/clothing/accessory/armband/lobotomy/extraction,
+/obj/item/clothing/accessory/armband/lobotomy/extraction,
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "mx" = (
@@ -5032,6 +5060,16 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
+"oK" = (
+/obj/structure/table/reinforced,
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "windowblock"
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "oL" = (
 /obj/structure/disposalpipe/segment,
 /obj/effect/turf_decal/plaque{
@@ -12245,6 +12283,9 @@
 /obj/structure/railing{
 	dir = 1
 	},
+/obj/machinery/door/poddoor/shutters/window/preopen{
+	id = "extraction"
+	},
 /turf/open/floor/facility/halls,
 /area/department_main/extraction)
 "Ky" = (
@@ -12599,14 +12640,16 @@
 	dir = 8
 	},
 /obj/item/toy/plush/binah,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 9
+	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Lz" = (
-/obj/machinery/button/door/indestructible{
-	id = "extraction";
-	name = "Extraction Access Shutters";
-	pixel_y = 32;
-	req_one_access_txt = "19"
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
@@ -12954,17 +12997,17 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "My" = (
-/obj/structure/table/reinforced,
-/obj/item/clothing/accessory/armband/lobotomy/extraction,
-/obj/item/clothing/accessory/armband/lobotomy/extraction,
-/obj/item/clothing/accessory/armband/lobotomy/extraction,
-/obj/item/encryptionkey/headset_architecture,
+/obj/structure/railing,
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Mz" = (
 /obj/structure/closet/crate,
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -13237,6 +13280,22 @@
 /area/department_main/extraction)
 "Nl" = (
 /obj/structure/rack,
+/obj/machinery/button/door/indestructible{
+	id = "extraction";
+	name = "Extraction Access Shutters";
+	pixel_y = -23;
+	req_one_access_txt = "19"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 4;
+	pixel_x = -27;
+	layer = 2.1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Nm" = (
@@ -13340,6 +13399,21 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"Nw" = (
+/obj/structure/rack,
+/obj/item/toy/crayon/spraycan/infinite,
+/obj/machinery/button/door/indestructible{
+	id = "windowblock";
+	name = "Extraction Window Shutters";
+	pixel_y = -23;
+	req_one_access_txt = "19"
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "Nx" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -13454,6 +13528,10 @@
 /obj/structure/rack,
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -16142,6 +16220,10 @@
 /obj/item/flashlight/pen,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
+"UL" = (
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/closed/indestructible/reinforced,
+/area/department_main/extraction)
 "UM" = (
 /obj/effect/turf_decal/stripes/full,
 /obj/machinery/door/poddoor{
@@ -16364,6 +16446,10 @@
 /obj/item/rawpe,
 /obj/item/rawpe,
 /obj/item/rawpe,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Vt" = (
@@ -64538,7 +64624,7 @@ Gj
 Gj
 Gj
 IO
-Kn
+gu
 Kn
 Kn
 Kn
@@ -64796,9 +64882,9 @@ Gj
 Gj
 oh
 Cu
-IK
-IK
-IK
+oK
+oK
+UL
 Ni
 IK
 IK
@@ -65054,10 +65140,10 @@ Gj
 IQ
 Kx
 Lx
+Mw
 My
-MO
 Nk
-Nl
+MO
 hz
 Cu
 JB
@@ -65311,10 +65397,10 @@ Gj
 IV
 kU
 Ly
-Gj
-Gj
-Gj
-Gj
+YD
+YD
+YD
+YD
 Nl
 Cu
 JB
@@ -65566,13 +65652,13 @@ Gj
 Gj
 Gj
 IX
-Kx
+ko
+Lz
 Gj
 Gj
 Gj
 Gj
-Gj
-Nl
+Nw
 Cu
 JB
 JB

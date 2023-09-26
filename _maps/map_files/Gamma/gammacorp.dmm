@@ -1521,9 +1521,6 @@
 	dir = 8
 	},
 /obj/machinery/light,
-/obj/structure/sink/kitchen{
-	dir = 1
-	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "lG" = (
@@ -1762,6 +1759,7 @@
 "mU" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/spawner/west,
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
 /turf/open/floor/facility/halls,
 /area/department_main/extraction)
 "mV" = (
@@ -2105,13 +2103,13 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "oU" = (
-/obj/machinery/microwave{
-	pixel_y = 7
-	},
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
 	},
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "oW" = (
@@ -3165,7 +3163,6 @@
 /area/department_main/information)
 "vO" = (
 /obj/structure/table/reinforced,
-/obj/item/toy/plush/pierre,
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
 	},
@@ -3174,6 +3171,14 @@
 	pixel_x = 32;
 	pixel_y = -32
 	},
+/obj/structure/sink/kitchen{
+	dir = 8;
+	pixel_x = -15;
+	pixel_y = 3
+	},
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
+/obj/item/storage/box/papersack,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "vQ" = (
@@ -4631,6 +4636,10 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/welfare)
+"FY" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/facility/white,
+/area/department_main/training)
 "Ga" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced,
@@ -5269,19 +5278,10 @@
 /area/department_main/information)
 "Kn" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/toy/plush/pierre,
 /turf/open/floor/facility/white,
 /area/department_main/training)
 "Ko" = (
@@ -5651,7 +5651,6 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
 	},
-/obj/machinery/vending/custom/unbreakable,
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_x = 32
 	},
@@ -5862,6 +5861,7 @@
 "NM" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced/spawner/east,
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
 /turf/open/floor/facility/halls,
 /area/department_main/extraction)
 "NN" = (
@@ -6063,7 +6063,7 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/welfare)
 "Pm" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "Pp" = (
@@ -34084,7 +34084,7 @@ dG
 dG
 ae
 dz
-pQ
+FY
 pQ
 TL
 SB

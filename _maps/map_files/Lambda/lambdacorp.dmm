@@ -1469,14 +1469,8 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "eT" = (
-/obj/structure/table/wood,
 /obj/machinery/light/floor,
-/obj/machinery/recharger{
-	pixel_x = 6
-	},
-/obj/machinery/recharger{
-	pixel_x = -6
-	},
+/obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "eU" = (
@@ -5479,10 +5473,11 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "ua" = (
-/obj/structure/railing{
-	dir = 4
+/obj/structure/window/reinforced/spawner/north,
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/closed/indestructible/iron{
+	opacity = 1
 	},
-/turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "uc" = (
 /obj/effect/turf_decal/siding/purple{
@@ -9983,17 +9978,11 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/central)
 "KE" = (
-/obj/machinery/vending/custom/unbreakable,
 /obj/structure/window/reinforced/spawner/north,
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 4
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/iron{
+	opacity = 1
 	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 8
-	},
-/turf/open/floor/carpet/royalblack,
 /area/department_main/information)
 "KF" = (
 /obj/effect/turf_decal/siding/brown{
@@ -48404,13 +48393,13 @@ aX
 cs
 Eb
 ox
-fw
+ox
 Df
 fw
 fw
 fw
 bJ
-ua
+tb
 dJ
 nT
 ny
@@ -48661,7 +48650,7 @@ jZ
 sG
 nT
 yH
-KE
+ua
 Ix
 qs
 qs

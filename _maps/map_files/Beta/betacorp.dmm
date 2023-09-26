@@ -173,8 +173,10 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
 "aJ" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/carpet/red,
+/obj/machinery/computer/extraction_cargo{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
 /area/department_main/discipline)
 "aK" = (
 /obj/structure/disposalpipe/segment{
@@ -1236,16 +1238,11 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/structure/table/reinforced,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
-/obj/item/encryptionkey/headset_discipline,
 /obj/effect/turf_decal/siding{
 	color = "#440000";
 	dir = 8
 	},
+/obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "gA" = (
@@ -4497,6 +4494,11 @@
 	color = "#440000";
 	dir = 8
 	},
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
+/obj/item/encryptionkey/headset_discipline,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "vt" = (
@@ -4826,10 +4828,6 @@
 	id = "extraction"
 	},
 /turf/open/floor/plating,
-/area/department_main/discipline)
-"xC" = (
-/obj/machinery/vending/snack,
-/turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "xE" = (
 /obj/machinery/camera/autoname,
@@ -5199,8 +5197,8 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "zB" = (
-/obj/machinery/vending/custom/unbreakable,
 /obj/structure/railing,
+/obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "zC" = (
@@ -5439,9 +5437,8 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "Ba" = (
-/obj/structure/table/reinforced,
-/obj/item/clipboard,
-/turf/open/floor/carpet/royalblack,
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "Bb" = (
 /obj/structure/disposalpipe/segment{
@@ -5848,17 +5845,6 @@
 /obj/item/storage/belt/ego,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
-"Dt" = (
-/obj/structure/table/reinforced,
-/obj/item/soap{
-	pixel_y = -10
-	},
-/obj/item/reagent_containers/spray/cleaner{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/discipline)
 "Du" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -6667,13 +6653,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"Hy" = (
-/obj/structure/sign/departments/extraction{
-	pixel_x = 32;
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/red,
-/area/department_main/discipline)
 "Hz" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -7916,8 +7895,8 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "NR" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced,
 /area/department_main/discipline)
 "NS" = (
 /obj/structure/railing{
@@ -9679,6 +9658,13 @@
 /obj/machinery/newscaster{
 	pixel_x = -32
 	},
+/obj/item/soap{
+	pixel_y = -10
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = 5
+	},
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "WI" = (
@@ -10178,12 +10164,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
-"YH" = (
-/obj/machinery/computer/extraction_cargo{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "YN" = (
 /obj/effect/turf_decal/siding{
 	color = "#440000";
@@ -10260,8 +10240,8 @@
 /turf/open/floor/plasteel,
 /area/department_main/welfare)
 "YX" = (
-/obj/structure/chair/office,
 /obj/structure/disposalpipe/segment,
+/obj/structure/chair/comfy/black,
 /obj/item/toy/plush/binah,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/discipline)
@@ -36261,7 +36241,7 @@ JB
 rS
 pG
 nX
-YH
+PG
 oC
 WH
 pQ
@@ -37034,9 +37014,9 @@ XB
 zl
 ZB
 zl
-uk
-NR
-aJ
+vF
+Ba
+Px
 Ly
 xl
 xl
@@ -37291,7 +37271,7 @@ Ue
 zl
 uk
 zl
-vF
+zl
 zB
 Px
 Px
@@ -37805,7 +37785,7 @@ Bi
 zl
 uk
 zl
-Ba
+zl
 YS
 Px
 Px
@@ -38062,10 +38042,10 @@ XB
 zl
 uk
 zl
-uk
+aJ
 NR
-xC
-Hy
+Px
+Px
 xl
 xl
 Px
@@ -38579,7 +38559,7 @@ PG
 PG
 PG
 lb
-Px
+Ly
 Px
 Px
 Px
@@ -38831,7 +38811,7 @@ JB
 rS
 pG
 cx
-Dt
+KE
 jw
 Nj
 SE

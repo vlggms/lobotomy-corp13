@@ -3613,12 +3613,13 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "iu" = (
-/obj/machinery/vending/custom/unbreakable{
-	pixel_x = 3
-	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25
 	},
+/obj/structure/table/reinforced{
+	max_integrity = 25
+	},
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "iw" = (
@@ -8336,15 +8337,12 @@
 /turf/open/floor/carpet,
 /area/department_main/control)
 "tc" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 10
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/carpet/royalblack,
+/obj/machinery/vending/custom/unbreakable,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "td" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -8690,17 +8688,14 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
 "tG" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 9
-	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
 	},
-/turf/open/floor/carpet/royalblack,
+/obj/machinery/vending/custom/unbreakable,
+/turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "tH" = (
 /obj/effect/turf_decal/tile/brown{
@@ -10578,12 +10573,13 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
 "xZ" = (
-/obj/machinery/vending/custom/unbreakable{
-	pixel_x = -3
-	},
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
 	},
+/obj/structure/table/reinforced{
+	max_integrity = 25
+	},
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "ya" = (
@@ -14294,6 +14290,13 @@
 	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
 	},
 /area/facility_hallway/central)
+"FR" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "FS" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office"
@@ -14822,6 +14825,13 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
+"GU" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "GV" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -66623,7 +66633,7 @@ zk
 Kh
 hV
 tG
-Gb
+yV
 Gb
 pC
 bF
@@ -66633,7 +66643,7 @@ Qq
 yV
 tA
 Gb
-Gb
+bF
 tc
 hV
 QG
@@ -66879,8 +66889,8 @@ zk
 zk
 zk
 hV
-uO
-PX
+yV
+FR
 PX
 PX
 dq
@@ -66890,8 +66900,8 @@ Qq
 uO
 PX
 PX
-PX
-dq
+GU
+bF
 hV
 Jr
 zk
