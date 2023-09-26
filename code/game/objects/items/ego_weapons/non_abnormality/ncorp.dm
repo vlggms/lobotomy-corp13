@@ -213,6 +213,8 @@
 	..()
 	if(!istype(I, /obj/item/ego_weapon/city/ncorp_hammer))
 		return
+	if(I.force!=I.initial(force))
+		to_chat(user, "<span class='warning'>This hammer is already charged.</span>")
 	I.force += I.force* nails *0.1
 	nails = 0
 	to_chat(user, "<span class='notice'>You transfer [nails] nails to your hammer, increasing it's damage.</span>")
