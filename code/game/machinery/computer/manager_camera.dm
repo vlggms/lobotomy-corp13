@@ -15,12 +15,17 @@
 	var/datum/action/innate/firemanagerbullet/fire
 	var/datum/action/innate/cyclecommand/cyclecommand
 	var/datum/action/innate/managercommand/command
+	var/datum/action/innate/manager_track/follow
 	var/ammo = 6
 	var/maxAmmo = 5
 	var/bullettype = 1
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
+	var/mob/living/tracking_subject
+	var/tracking = FALSE
+	///Variable stolen from AI. Essential for tracking feature.
+	var/static/datum/trackable/track = new
 	var/static/list/commandtypes = typecacheof(list(
 		/obj/effect/temp_visual/commandMove,
 		/obj/effect/temp_visual/commandWarn,
@@ -46,6 +51,7 @@
 	fire = new
 	cyclecommand = new
 	command = new
+	follow = new
 
 	command_cooldown = world.time
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/recharge_meltdown)
@@ -77,6 +83,11 @@
 		command.target = src
 		command.Grant(user)
 		actions += command
+
+	if(follow)
+		follow.target = src
+		follow.Grant(user)
+		actions += follow
 
 	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
@@ -233,6 +244,88 @@
 	maxAmmo += 0.25
 	ammo = maxAmmo
 
+//Employee Tracking Code: Butchered AI Tracking
+/obj/machinery/computer/camera_advanced/manager/proc/TrackableCreatures()
+	track.initialized = TRUE
+	track.names.Cut()
+	track.namecounts.Cut()
+	track.humans.Cut()
+	track.others.Cut()
+
+	if(current_user.stat == DEAD)
+		return list()
+
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(!L.can_track(current_user))
+			continue
+
+		var/name = L.name
+		if(name in track.names)
+			continue
+
+		if(ishuman(L))
+			track.humans[name] = L
+		else
+			track.others[name] = L
+
+	var/list/targets = sortList(track.humans) + sortList(track.others)
+
+	return targets
+
+/obj/machinery/computer/camera_advanced/manager/proc/ActualTrack(mob/living/target)
+	if(!istype(target))
+		to_chat(current_user, "<span class='warning'>Invalid Tracking Error.</span>")
+		return
+
+	tracking_subject = target
+	tracking = TRUE
+
+	if(!target || !target.can_track(current_user))
+		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		tracking_subject = null
+		return
+
+	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+
+	INVOKE_ASYNC(src, .proc/LoopingTrack, target)
+
+/obj/machinery/computer/camera_advanced/manager/proc/LoopingTrack(mob/living/target)
+	var/cameraticks = 0
+
+	while(tracking_subject == target)
+		if(tracking_subject == null || !current_user)
+			return
+
+		if(!target.can_track(current_user))
+			tracking = TRUE
+			if(!cameraticks)
+				to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
+			cameraticks++
+			if(cameraticks > 9)
+				tracking_subject = null
+				to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
+				tracking = FALSE
+				return
+			else
+				sleep(10)
+				continue
+
+		else
+			cameraticks = 0
+			tracking = FALSE
+
+		if(eyeobj)
+			eyeobj.setLoc(get_turf(target))
+
+		else
+			eyeobj.setLoc(get_turf(src))
+			tracking_subject = null
+			return
+
+		sleep(5)
+
+//Actions
 /datum/action/innate/cyclemanagerbullet
 	name = "HP-N bullet"
 	desc = "These bullets speed up the recovery of an employee."
@@ -438,6 +531,37 @@
 #undef PALE_BULLET
 #undef YELLOW_BULLET
 
+/datum/action/innate/manager_track
+	name = "Follow Creature"
+	desc = "Track a creature."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "meson"
+
+/datum/action/innate/manager_track/Activate()
+	if(!target || !isliving(owner))
+		return
+	var/mob/living/C = owner
+	var/mob/camera/ai_eye/remote/xenobio/E = C.remote_control
+	var/obj/machinery/computer/camera_advanced/manager/X = E.origin
+	if(X.tracking_subject)
+		X.tracking_subject = null
+		to_chat(owner, "<span class='notice'>Tracking canceled.</span>")
+		return
+
+	var/target_name = input(C, "Choose who you want to track", "Tracking") as null|anything in X.TrackableCreatures()
+	///Complicated stuff
+	var/list/trackeable = list()
+	trackeable += X.track.humans + X.track.others
+	var/list/targets = list()
+	for(var/I in trackeable)
+		var/mob/M = trackeable[I]
+		if(M.name == target_name)
+			targets += M
+	if(name == target_name)
+		targets += src
+	if(targets.len)
+		X.ActualTrack(pick(targets))
+
 //TODO:
 // Due to the sephirah console being a weaker form of manager console
 // it would of been smarter to make manager a subtype of manager that had only the command
@@ -474,6 +598,11 @@
 		command.target = src
 		command.Grant(user)
 		actions += command
+
+	if(follow)
+		follow.target = src
+		follow.Grant(user)
+		actions += follow
 
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
