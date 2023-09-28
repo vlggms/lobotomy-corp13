@@ -53,7 +53,7 @@
 	ears = null
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp
-	belt = /obj/item/ego_weapon/city/wcorp
+	belt = /obj/item/ego_weapon/city/charge/wcorp
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)

@@ -37,6 +37,6 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 60,	//Hehe she's got bad temperance, get it? Because temperance is another word for not drinking alcohol?
+							TEMPERANCE_ATTRIBUTE = 60,	//She's got bad temperance, get it? Because temperance is another word for not drinking alcohol?
 							JUSTICE_ATTRIBUTE = 80
 							)

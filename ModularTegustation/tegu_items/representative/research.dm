@@ -312,12 +312,12 @@
 	corp = W_CORP_REP
 
 /datum/data/lc13research/w_corp_typea/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "W Corp Type A Fist ",	/obj/item/ego_weapon/city/wcorp/fist, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Axe ",		/obj/item/ego_weapon/city/wcorp/axe, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Spear ",	/obj/item/ego_weapon/city/wcorp/spear, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Dagger ",	/obj/item/ego_weapon/city/wcorp/dagger, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Hammer ",	/obj/item/ego_weapon/city/wcorp/hammer, 1000)
-	ItemUnlock(caller.order_list, "W Corp Type A Hatchet ",	/obj/item/ego_weapon/city/wcorp/hatchet, 1000)
+	ItemUnlock(caller.order_list, "W Corp Type A Fist ",	/obj/item/ego_weapon/city/charge/wcorp/fist, 1000)
+	ItemUnlock(caller.order_list, "W Corp Type A Axe ",		/obj/item/ego_weapon/city/charge/wcorp/axe, 1000)
+	ItemUnlock(caller.order_list, "W Corp Type A Spear ",	/obj/item/ego_weapon/city/charge/wcorp/spear, 1000)
+	ItemUnlock(caller.order_list, "W Corp Type A Dagger ",	/obj/item/ego_weapon/city/charge/wcorp/dagger, 1000)
+	ItemUnlock(caller.order_list, "W Corp Type A Hammer ",	/obj/item/ego_weapon/city/charge/wcorp/hammer, 1000)
+	ItemUnlock(caller.order_list, "W Corp Type A Hatchet ",	/obj/item/ego_weapon/city/charge/wcorp/hatchet, 1000)
 	..()
 
 /datum/data/lc13research/mobspawner/wcorp

@@ -41,12 +41,6 @@ Multiple damage type weapons; Also R corp stuff
 W Corp
 Build charge for burst damage.
 
-Limbus Sinner
-Grade 7 weapons that are based off the base ID weapons from Limbus Company
-
-Limbus EGO
-Grade 5 weapons all based off the starter EGO from Limbus Company
-
 
 			Associations have two abilities. Except Hana
 Hana Association
@@ -60,6 +54,9 @@ Shi Association
 Dashtype - Expend HP to dash to a target and attack
 Assassin type - Spend HP and lock self in place to deal big pale damage.
 
+Cinq Association
+Rapier - Backstep and then get a 2 range dash attack
+
 Liu Association
 Section 1/2 - Courage - More people around you the stronger it is. Use in hand for an AOE DOT that scales with number of people that are around you, and does not hurt them
 Section 5/6 - Combo string system, I > II > III. At each part of the string you can choose between one of two attacks
@@ -69,6 +66,8 @@ Seven Association
 Regular weapons - Get full accurate readout on abnos if you hit them with the weapon 7 times, with the cane it's 3.
 Fencing weapons - Get a smaller damage boost if you hit something repeatedly
 
+Dieci Association
+Fists - Combo weapons like Liu, but instead of different types of attacks you just hit them 5-20 times
 
 
 			Medium Offices usually have 3-4 armor sets, and 3-5 weapons
@@ -132,6 +131,13 @@ Shitty packfiller. Slower
 
 Sweeper
 Attack a corpse for heal (10%)
+
+Limbus Sinner
+Grade 7 weapons that are based off the base ID weapons from Limbus Company
+
+Limbus EGO
+Grade 5 weapons all based off the starter EGO from Limbus Company
+
 
 ********************************************************************
 Upcoming Themes, if you work on these, move the line. Feel free to change them, none of these are set in stone.

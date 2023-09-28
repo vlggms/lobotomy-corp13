@@ -18,10 +18,10 @@
 		)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/city/cane/cane,
-		/obj/item/ego_weapon/city/cane/claw,
-		/obj/item/ego_weapon/city/cane/briefcase,
-		/obj/item/ego_weapon/city/cane/fist,
+		/obj/item/ego_weapon/city/charge/cane/cane,
+		/obj/item/ego_weapon/city/charge/cane/claw,
+		/obj/item/ego_weapon/city/charge/cane/briefcase,
+		/obj/item/ego_weapon/city/charge/cane/fist,
 		/obj/item/ego_weapon/city/leaflet/square,
 		)
 
@@ -109,9 +109,9 @@
 	)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/city/rosespanner/hammer,
-		/obj/item/ego_weapon/city/rosespanner/spear,
-		/obj/item/ego_weapon/city/rosespanner/minihammer,
+		/obj/item/ego_weapon/city/charge/rosespanner/hammer,
+		/obj/item/ego_weapon/city/charge/rosespanner/spear,
+		/obj/item/ego_weapon/city/charge/rosespanner/minihammer,
 		/obj/item/clothing/suit/armor/ego_gear/city/rosespannerrep,
 		/obj/item/clothing/suit/armor/ego_gear/city/rosespanner,
 		/obj/item/rosespanner_gear/pale

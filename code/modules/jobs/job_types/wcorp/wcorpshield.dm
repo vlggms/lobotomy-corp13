@@ -68,8 +68,8 @@ GLOBAL_LIST_INIT(l2bsquads, list("Axe", "Buckler", "Cleaver"))
 /datum/outfit/job/wcorpl2support/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	..()
 	var/belt = pick(
-		/obj/item/ego_weapon/city/wcorp/shield,
-		/obj/item/ego_weapon/city/wcorp/shield/spear,
-		/obj/item/ego_weapon/city/wcorp/shield/club,
-		/obj/item/ego_weapon/city/wcorp/shield/axe)
+		/obj/item/ego_weapon/city/charge/wcorp/shield,
+		/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
+		/obj/item/ego_weapon/city/charge/wcorp/shield/club,
+		/obj/item/ego_weapon/city/charge/wcorp/shield/axe)
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
