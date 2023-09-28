@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	exp_type = EXP_TYPE_CREW
 	maptype = "wcorp"
 
-	outfit = /datum/outfit/job/wcorpl2
+	outfit = /datum/outfit/job/wcorpl2recon
 	display_order = 3
 
 
