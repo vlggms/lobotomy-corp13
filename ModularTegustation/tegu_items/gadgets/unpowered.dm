@@ -390,3 +390,55 @@
 	stored_enkephalin -= enkephalin_cost
 	to_chat(usr, "<span class='notice'>E.G.O extracted successfully!</span>")
 	return
+
+//Lobotomizer
+/obj/item/lobotomizer
+	name = "Lobotomizer"
+	desc = "An experimental tool designed to automatically excise damaged parts of one's brain. Due to its █████, the tool gained sentience and is only interested in brains with tumor."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "lobotomizer"
+	var/datum/looping_sound/lobotomizer/soundloop
+
+/obj/item/lobotomizer/attack_self(mob/living/carbon/human/user)
+	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)))
+		to_chat(user, "<span class='warning'>The lobotomizer completely ignores you.</span>")
+		return
+	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
+	ADD_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	soundloop = new(list(src), FALSE)
+	soundloop.start()
+	for(var/i = 1 to 20) //2 minutes to clear severe traumas
+		if(user.is_working) // No, you can't just cheese this process
+			to_chat(user, "<span class='warning'>The lobotomizer seems to be more interested in the abnormality.</span>")
+			EndLoop(user)
+			return
+		if(do_after(user, 6 SECONDS, src))
+			user.visible_message("<span class='warning'>The lobotomizer viciously probes [user]'s brain!</span>")
+			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -10)
+			user.adjustSanityLoss(5)
+			user.adjustBruteLoss(5)
+			user.emote("scream")
+			user.Jitter(5)
+		else
+			to_chat(user, "<span class='warning'>The process was stopped midway, you can feel dissapointment emanating from the lobotomizer.</span>")
+			EndLoop(user)
+			return
+		if(i == 10) //Cures mild traumas in 1 minute
+			user.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
+	user.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
+	EndLoop(user)
+
+/obj/item/lobotomizer/proc/EndLoop(mob/living/user)
+	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
+	REMOVE_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	QDEL_NULL(soundloop)
+
+/datum/looping_sound/lobotomizer
+	mid_sounds = list(
+		'sound/effects/wounds/blood3.ogg',
+		'sound/weapons/circsawhit.ogg',
+		'sound/weapons/bladeslice.ogg',
+		'sound/weapons/bite.ogg'
+	)
+	mid_length = 2 SECONDS
+	volume = 20
