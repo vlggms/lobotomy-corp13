@@ -38,7 +38,7 @@
 	work_damage_type = BLACK_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	// If I understood this correctly, this SHOULD check if you have pet the fox.
-	/var/list/pet = list()
+	var/list/pet = list()
 
 	pet_bonus = "yips"
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/funpet(mob/petter)
