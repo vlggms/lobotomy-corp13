@@ -101,6 +101,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	for(var/mob/living/simple_animal/hostile/apostle/A in apostles)
 		A.death()
 		QDEL_IN(A, 1.5 SECONDS)
+	apostles = null
+	QDEL_NULL(particles)
+	particles = null
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_humans(range_override = null, faction_check = "apostle")
@@ -207,6 +210,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
 	SpawnApostles()
+	particles = new /particles/white_night()
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
 
