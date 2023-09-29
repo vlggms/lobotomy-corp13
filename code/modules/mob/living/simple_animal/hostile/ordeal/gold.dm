@@ -457,6 +457,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "sinwheel"
 	icon_living = "sinwheel"
+	icon_dead = "sin_dead"
 	faction = list("gold_ordeal")
 	maxHealth = 400
 	health = 400

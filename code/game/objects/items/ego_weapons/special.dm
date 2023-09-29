@@ -54,6 +54,29 @@
 	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
 
+//Pile of Mail
+/obj/item/ego_weapon/mail_satchel
+	name = "envelope"
+	desc = "Heavy satchel filled to the brim with letters."
+	icon_state = "mailsatchel"
+	force = 12
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("slams", "bashes", "strikes")
+	attack_verb_simple = list("slams", "bashes", "strikes")
+	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
+
+/obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
+	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
+	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
+	force = 12 + temperance_mod
+	..()
+	force = initial(force)
+	damtype = initial(damtype)
+	if(prob(30))
+		new /obj/effect/temp_visual/maildecal(get_turf(A))
+
 //Puss in Boots
 /obj/item/ego_weapon/lance/famiglia
 	name = "famiglia"
@@ -96,6 +119,81 @@
 /obj/item/ego_weapon/lance/famiglia/RaiseLance(mob/user)
 	hitsound = 'sound/weapons/ego/mace1.ogg'
 	..()
+
+//We Can Change Anything
+/obj/item/ego_weapon/iron_maiden
+	name = "iron maiden"
+	desc = "Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
+	special = "This weapon builds up the amount of times it hits as you attack, at maximum speed it will damage you per hit, increasing more and more, use it in hands."
+	icon_state = "iron_maiden"
+	force = 25 //DPS of 25, 50, 75, 100 at each ramping level
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("clamps")
+	attack_verb_simple = list("clamp")
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/ramping_speed = 0 //maximum of 20
+	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
+
+/obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
+	sleep(1)
+	for(var/i = 1 to attack_amount)
+		switch(attack_amount)
+			if(1)
+				sleep(5)
+			if(2)
+				sleep(3)
+			if(3)
+				sleep(2)
+		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		user.do_attack_animation(target)
+		playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if (isliving(target))
+		if (ramping_speed < 20)
+			ramping_speed += 1
+		else
+			ramping_damage += 0.02
+			user.adjustBruteLoss(user.maxHealth*ramping_damage)
+
+/obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
+	if(!..())
+		return
+	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	switch(ramping_speed)
+		if(5 to 10)
+			Multihit(target, user, 1)
+		if(10 to 15)
+			Multihit(target, user, 2)
+		if(15 to 20)
+			if(icon_state != "iron_maiden_open")
+				playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+				icon_state = "iron_maiden_open"
+			Multihit(target, user, 3)
+	return
+
+/obj/item/ego_weapon/iron_maiden/attack_self(mob/user)
+	if(ramping_speed == 0)
+		to_chat(user,"<span class='notice'>It is already revved down!</span>")
+		return
+	to_chat(user,"<span class='notice'>You being to cool down [src].</span>")
+	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+	if(do_after(user, 2.5 SECONDS, src))
+		icon_state = "iron_maiden"
+		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
+		ramping_speed = 0
+		ramping_damage = 0
+		to_chat(user,"<span class='notice'>The mechanism on [src] dies down!</span>")
 
 //Event rewards
 /obj/item/ego_weapon/goldrush/nihil
