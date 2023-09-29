@@ -106,7 +106,10 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				TryTeleport()//TODO: add (get_turf(target)) as an argument with some sanity checks. With OOB fixed it should be pretty fun
+				if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 30)))
+					to_chat(src, "<span class='notice'>Invalid target.</span>")
+					return
+				TryTeleport(target)
 			if(2)
 				Dash(target)
 		return
@@ -143,12 +146,12 @@
 	..()
 
 //*** Teleport code ***//
-/mob/living/simple_animal/hostile/abnormality/wayward/proc/TryTeleport(turf/teleport_target)//argument is for the playable version, currently unused
+/mob/living/simple_animal/hostile/abnormality/wayward/proc/TryTeleport(turf/teleport_target)//argument is used when the proc is called with a client
 	if(teleport_cooldown > world.time || !can_act)
 		return FALSE
 	teleport_cooldown = world.time + teleport_cooldown_time//so it doesn't get called twice by life()
 	if(!teleport_target)
-		var/list/teleport_potential = list()//TODO: skip this process entirely for the playable version
+		var/list/teleport_potential = list()
 		for(var/mob/living/L in GLOB.mob_living_list)
 			if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE || faction_check_mob(L))
 				continue
