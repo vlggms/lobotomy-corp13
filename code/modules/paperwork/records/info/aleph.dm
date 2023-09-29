@@ -181,7 +181,7 @@
 // The Crying Children
 /obj/item/paper/fluff/info/aleph/crying_children
 	abno_type = /mob/living/simple_animal/hostile/abnormality/crying_children
-	abno_code = "O-01-430" // Philip's Birthday April 30th 
+	abno_code = "O-01-430" // Philip's Birthday April 30th
 	abno_info = list(
 		"When 2 employees died, the Qliphoth Counter decreased.",
 		"When Attachment work was completed, the Qliphoth Counter increased.",
@@ -191,3 +191,15 @@
 		"When the abnormality breached, it sets the whole facility ablaze over time. Reducing it's health seems to delay the process.",
 		"When the abnormality split up into 3 children, all employees were cursed. Killing the children seems to lift said curse.",
 		"When all of the children died, they unite again and become stronger.")
+
+//Army in Black
+/obj/item/paper/fluff/info/aleph/army
+	abno_type = /mob/living/simple_animal/hostile/abnormality/army
+	abno_code = "D-01-106"
+	abno_info = list(
+	"Army in Black can be ordered to protect an employee. However, it should be noted that the Qliphoth Counter lowered when the order was given.",
+	"When Repression work was performed, the Qliphoth Counter lowered.",
+	"The Qliphoth Counter lowered after every 2 employee deaths.",
+	"When the work result was Bad, the Qliphoth Counter decreased.",
+	"When an Abnormality was suppressed, the Qliphoth Counter raised.")
+

@@ -103,7 +103,13 @@
 	flag = damage_type
 
 /obj/projectile/ego_bullet/pink
-	name = "pink"
-	damage = 150
+	name = "heart-piercing bullet"
+	damage = 130
 	damage_type = WHITE_DAMAGE
 	flag = WHITE_DAMAGE
+	hitscan = TRUE
+	damage_falloff_tile = 5//the damage ramps up; 5 extra damage per tile. Maximum range is about 32 tiles, dealing 290 damage
+
+/obj/projectile/ego_bullet/pink/on_hit(atom/target, blocked = FALSE, pierce_hit)
+	..()
+	new /obj/effect/temp_visual/friend_hearts(get_turf(target))//looks better than impact_effect_type and works

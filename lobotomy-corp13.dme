@@ -2701,6 +2701,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\zayin\touch.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\zayin\wishwell.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_tools\zayin\you_happy.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\aleph\army_in_black.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\blue_star.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\censored.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\crying_children.dm"
