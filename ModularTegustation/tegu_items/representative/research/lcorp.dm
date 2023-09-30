@@ -48,7 +48,7 @@
 	corp = L_CORP_REP
 
 /datum/data/lc13research/pe_quota1/ResearchEffect(obj/structure/representative_console/caller)
-	SSlobotomy_corp.AdjustGoalBoxes(-1000)
+	SSlobotomy_corp.box_goal -= 1000
 	minor_announce("HQ has reduced your PE quota by 1000.", "HQ Alert:", TRUE)
 	..()
 
@@ -60,7 +60,7 @@
 	required_research = /datum/data/lc13research/pe_quota1
 
 /datum/data/lc13research/pe_quota2/ResearchEffect(obj/structure/representative_console/caller)
-	SSlobotomy_corp.AdjustGoalBoxes(-1000)
+	SSlobotomy_corp.box_goal -= 1000
 	minor_announce("HQ has reduced your PE quota by 1000.", "HQ Alert:", TRUE)
 	..()
 
@@ -72,7 +72,7 @@
 	required_research = /datum/data/lc13research/pe_quota2
 
 /datum/data/lc13research/pe_quota3/ResearchEffect(obj/structure/representative_console/caller)
-	SSlobotomy_corp.AdjustGoalBoxes(-1000)
+	SSlobotomy_corp.box_goal -= 1000
 	minor_announce("HQ has reduced your PE quota by 1000.", "HQ Alert:", TRUE)
 	..()
 
