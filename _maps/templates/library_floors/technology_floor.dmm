@@ -1,0 +1,619 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/riveted/boss,
+/area/lor/arena)
+"b" = (
+/turf/open/floor/mineral/titanium/purple{
+	density = 1;
+	desc = "purple skies";
+	name = "purple skies"
+	},
+/area/lor/arena)
+"c" = (
+/turf/open/floor/bronze{
+	density = 1;
+	desc = "towering metal structures looming over the floor";
+	name = "metal tower"
+	},
+/area/lor/arena)
+"d" = (
+/turf/open/floor/mineral/plasma,
+/area/lor/arena)
+"e" = (
+/obj/item/rosespanner_gear,
+/turf/open/floor/mineral/titanium/purple{
+	density = 1;
+	desc = "purple skies";
+	name = "purple skies"
+	},
+/area/lor/arena)
+"f" = (
+/obj/item/rosespanner_gear/pale,
+/turf/open/floor/mineral/titanium/purple{
+	density = 1;
+	desc = "purple skies";
+	name = "purple skies"
+	},
+/area/lor/arena)
+"g" = (
+/turf/open/floor/mineral/plasma{
+	density = 1;
+	desc = "a purple tower looming over the distance";
+	name = "purple tower"
+	},
+/area/lor/arena)
+"h" = (
+/turf/open/indestructible/hierophant{
+	density = 1;
+	desc = "a futuristic looking city, built of turning gears";
+	name = "futuristic city"
+	},
+/area/lor/arena)
+"i" = (
+/obj/item/rosespanner_gear/white,
+/turf/open/indestructible/hierophant{
+	density = 1;
+	desc = "a futuristic looking city, built of turning gears";
+	name = "futuristic city"
+	},
+/area/lor/arena)
+"j" = (
+/obj/item/rosespanner_gear/black,
+/turf/open/indestructible/hierophant{
+	density = 1;
+	desc = "a futuristic looking city, built of turning gears";
+	name = "futuristic city"
+	},
+/area/lor/arena)
+"k" = (
+/turf/open/floor/shelter,
+/area/lor/arena)
+"l" = (
+/obj/effect/landmark/library_reception_humans,
+/turf/open/floor/shelter,
+/area/lor/arena)
+"m" = (
+/obj/effect/landmark/library_reception_abno,
+/turf/open/floor/shelter,
+/area/lor/arena)
+"n" = (
+/turf/open/floor/carpet/lone,
+/area/lor/arena)
+"o" = (
+/obj/effect/landmark/library_reception_humans,
+/turf/open/floor/carpet/lone,
+/area/lor/arena)
+"p" = (
+/obj/effect/landmark/library_reception_abno,
+/turf/open/floor/carpet/lone,
+/area/lor/arena)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+h
+h
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+c
+h
+c
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+h
+c
+c
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+c
+h
+a
+"}
+(4,1,1) = {"
+a
+c
+c
+c
+c
+c
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+c
+h
+c
+a
+"}
+(5,1,1) = {"
+a
+c
+c
+c
+c
+c
+k
+k
+k
+l
+k
+n
+k
+l
+k
+k
+k
+h
+c
+h
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+h
+c
+c
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+c
+h
+h
+a
+"}
+(7,1,1) = {"
+a
+b
+f
+h
+h
+h
+k
+k
+k
+k
+k
+o
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(8,1,1) = {"
+a
+b
+f
+h
+h
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+h
+i
+h
+k
+k
+k
+l
+k
+n
+k
+l
+k
+k
+k
+h
+h
+h
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+h
+i
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(11,1,1) = {"
+a
+b
+b
+h
+h
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(12,1,1) = {"
+a
+d
+g
+h
+h
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(13,1,1) = {"
+a
+b
+b
+h
+h
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(14,1,1) = {"
+a
+b
+b
+h
+j
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(15,1,1) = {"
+a
+b
+b
+h
+j
+h
+k
+k
+k
+m
+k
+n
+k
+m
+k
+k
+k
+h
+h
+h
+a
+"}
+(16,1,1) = {"
+a
+b
+b
+h
+h
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(17,1,1) = {"
+a
+b
+e
+h
+h
+h
+k
+k
+k
+k
+k
+p
+k
+k
+k
+k
+k
+h
+h
+h
+a
+"}
+(18,1,1) = {"
+a
+e
+e
+h
+c
+c
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+c
+h
+h
+a
+"}
+(19,1,1) = {"
+a
+c
+c
+c
+c
+c
+k
+k
+k
+m
+k
+n
+k
+m
+k
+k
+k
+h
+c
+h
+a
+"}
+(20,1,1) = {"
+a
+c
+c
+c
+c
+c
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+c
+h
+c
+a
+"}
+(21,1,1) = {"
+a
+b
+b
+h
+c
+c
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+h
+c
+h
+a
+"}
+(22,1,1) = {"
+a
+b
+b
+h
+h
+h
+k
+k
+k
+k
+k
+n
+k
+k
+k
+k
+k
+c
+h
+c
+a
+"}
+(23,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

@@ -64,6 +64,7 @@
 	info = "Ayin did nothing wrong"
 	var/list/lootbox = list()
 	icon_state = "lor"
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 
 /obj/item/paper/fluff/lor_book/AltClick(mob/living/user, obj/item/I)
 	return

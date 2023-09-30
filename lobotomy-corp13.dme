@@ -3897,6 +3897,8 @@
 #include "ModularTegustation\tegu_items\gadgets\manager_bullets.dm"
 #include "ModularTegustation\tegu_items\gadgets\powered.dm"
 #include "ModularTegustation\tegu_items\gadgets\unpowered.dm"
+#include "ModularTegustation\tegu_items\library\landmarks.dm"
+#include "ModularTegustation\tegu_items\library\library.dm"
 #include "ModularTegustation\tegu_items\rcorp\itemspawner.dm"
 #include "ModularTegustation\tegu_items\rcorp\landmarks.dm"
 #include "ModularTegustation\tegu_items\rcorp\random_caves.dm"
