@@ -1063,6 +1063,7 @@
 		var/mob/living/L = target
 		if(L.health < 0 || L.stat == DEAD)
 			L.gib() //Punch them so hard they explode
+
 /* Flesh Idol - Repentance */
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
@@ -1271,7 +1272,7 @@
 	if(!(LAZYLEN(targets)))
 		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
 		return
-	
+
 	cooldown = world.time + (7 SECONDS)
 	var/turf/origin = get_turf(user)
 	var/dash_count = min(targets.len*3, 30) //Max 10 targets (7 Seconds)
@@ -1290,7 +1291,7 @@
 			targets -= L
 		if(!LAZYLEN(targets) || user.stat == DEAD)
 			break
-	
+
 	user.alpha = 255
 	new /obj/effect/temp_visual/rip_space(origin)
 	user.forceMove(origin)

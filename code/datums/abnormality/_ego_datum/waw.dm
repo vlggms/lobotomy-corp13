@@ -9,7 +9,13 @@
 
 // Queen bee - Hornet
 /datum/ego_datum/weapon/hornet
+	item_category = "Weapon (Rifle)"
 	item_path = /obj/item/gun/ego_gun/hornet
+	cost = 50
+
+/datum/ego_datum/weapon/tattered_kingdom
+	item_category = "Weapon (Lance)"
+	item_path = /obj/item/ego_weapon/lance/tattered_kingdom
 	cost = 50
 
 /datum/ego_datum/armor/hornet
