@@ -12,7 +12,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "hornet armor"
 	desc = "A dark coat with yellow details. You feel as if you can hear faint buzzing coming out of it."
 	icon_state = "hornet"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 20) // 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
