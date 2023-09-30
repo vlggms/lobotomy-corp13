@@ -242,10 +242,13 @@
 	hardcore_value = 8
 	/// Location of the bottle of pills on spawn
 	var/where
+	var/where_lob
+	var/safety_warning = TRUE
 
 /datum/quirk/brainproblems/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
 	var/pills = new /obj/item/storage/pill_bottle/mannitol/braintumor()
+	var/lob = new /obj/item/lobotomizer()
 	var/list/slots = list(
 		LOCATION_LPOCKET = ITEM_SLOT_LPOCKET,
 		LOCATION_RPOCKET = ITEM_SLOT_RPOCKET,
@@ -253,18 +256,27 @@
 		LOCATION_HANDS = ITEM_SLOT_HANDS
 	)
 	where = H.equip_in_one_of_slots(pills, slots, FALSE) || "at your feet"
+	where_lob = H.equip_in_one_of_slots(lob, slots, FALSE) || "at your feet"
 
 /datum/quirk/brainproblems/post_add()
-	if(where == LOCATION_BACKPACK)
+	if(where == LOCATION_BACKPACK || where_lob == LOCATION_BACKPACK)
 		var/mob/living/carbon/human/H = quirk_holder
 		SEND_SIGNAL(H.back, COMSIG_TRY_STORAGE_SHOW, H)
 
 	to_chat(quirk_holder, "<span class='boldnotice'>There is a bottle of mannitol pills [where] to keep you alive until you can secure a supply of medication. Don't rely on it too much!</span>")
+	to_chat(quirk_holder, "<span class='boldnotice'>There is also an experimental lobotomizer [where_lob] to forcefully excise the damaged parts from your brain.</span>")
 
 /datum/quirk/brainproblems/on_process(delta_time)
 	if(HAS_TRAIT(quirk_holder, TRAIT_TUMOR_SUPPRESSED))
 		return
 	quirk_holder.adjustOrganLoss(ORGAN_SLOT_BRAIN, 0.2 * delta_time)
+
+	var/brain_loss = quirk_holder.getOrganLoss(ORGAN_SLOT_BRAIN)
+	if(brain_loss >= 175 && safety_warning)
+		to_chat(quirk_holder, "<span class='userdanger'>It's starting to get hard to form any thoughts, all your senses are failing as well. You feel like your brain is reaching its limit!</span>")
+		safety_warning = FALSE
+	if(brain_loss < 175 && !(safety_warning))
+		safety_warning = TRUE
 
 /datum/quirk/deafness
 	name = "Deaf"
