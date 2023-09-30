@@ -55,6 +55,10 @@
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/PickTarget(list/Targets)
 	return
 
+//Cannot be automatically followed by manager camera follow command.
+/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/can_track(mob/living/user)
+	return FALSE
+
 /* Qliphoth/Breach effects */
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/BreachEffect(mob/living/carbon/human/user)
 	..()

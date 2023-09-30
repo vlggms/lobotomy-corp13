@@ -173,6 +173,11 @@
 	HarvestChem(my_container, user)
 	return
 
+/mob/living/simple_animal/hostile/abnormality/can_track(mob/living/user)
+	if((status_flags & GODMODE))
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
 	visible_message(HarvestMessageProcess(harvest_phrase_third, user, C), HarvestMessageProcess(harvest_phrase, user, C))
 	if(chem_type)

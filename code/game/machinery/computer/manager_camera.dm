@@ -15,12 +15,15 @@
 	var/datum/action/innate/firemanagerbullet/fire
 	var/datum/action/innate/cyclecommand/cyclecommand
 	var/datum/action/innate/managercommand/command
+	var/datum/action/innate/manager_track/follow
 	var/ammo = 6
 	var/maxAmmo = 5
 	var/bullettype = 1
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
+	///Variable stolen from AI. Essential for tracking feature.
+	var/static/datum/trackable/track = new
 	var/static/list/commandtypes = typecacheof(list(
 		/obj/effect/temp_visual/commandMove,
 		/obj/effect/temp_visual/commandWarn,
@@ -46,6 +49,7 @@
 	fire = new
 	cyclecommand = new
 	command = new
+	follow = new
 
 	command_cooldown = world.time
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/recharge_meltdown)
@@ -58,6 +62,7 @@
 /obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user) //sephirah console breaks off from this branch so any edits you want on both must be done manually.
 	..()
 
+	//List abilities here:
 	if(cycle)
 		cycle.target = src
 		cycle.Grant(user)
@@ -77,6 +82,11 @@
 		command.target = src
 		command.Grant(user)
 		actions += command
+
+	if(follow)
+		follow.target = src
+		follow.Grant(user)
+		actions += follow
 
 	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
@@ -233,6 +243,57 @@
 	maxAmmo += 0.25
 	ammo = maxAmmo
 
+//Employee Tracking Code: Butchered AI Tracking
+
+//Shows a list of creatures that can be tracked.
+/obj/machinery/computer/camera_advanced/manager/proc/TrackableCreatures()
+	track.initialized = TRUE
+	track.names.Cut()
+	track.namecounts.Cut()
+	track.humans.Cut()
+	track.others.Cut()
+
+	if(current_user.stat == DEAD)
+		return list()
+
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(!L.can_track(current_user))
+			continue
+
+		var/name = L.name
+		if(name in track.names)
+			continue
+
+		if(ishuman(L))
+			track.humans[name] = L
+		else
+			track.others[name] = L
+
+	var/list/targets = sortList(track.humans) + sortList(track.others)
+
+	return targets
+
+//Proc for following a target.
+/obj/machinery/computer/camera_advanced/manager/proc/MobTracking(mob/living/target)
+	if(!istype(target))
+		to_chat(current_user, "<span class='warning'>ERROR: Invalid Tracking Target.</span>")
+		return
+
+	if(!target || !target.can_track(current_user))
+		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		return
+
+	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	if(eyeobj)
+		//Orbit proc is essentially follow.
+		eyeobj.orbit(target)
+	else
+		to_chat(current_user, "<span class='notice'>ERROR: Camera Eye Unresponsive.</span>")
+
+	/*----------\
+	|Action Code|
+	\----------*/
 /datum/action/innate/cyclemanagerbullet
 	name = "HP-N bullet"
 	desc = "These bullets speed up the recovery of an employee."
@@ -438,6 +499,34 @@
 #undef PALE_BULLET
 #undef YELLOW_BULLET
 
+//Manager Camera Tracking Code
+/datum/action/innate/manager_track
+	name = "Follow Creature"
+	desc = "Track a creature."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "meson"
+
+/datum/action/innate/manager_track/Activate()
+	if(!target || !isliving(owner))
+		return
+	var/mob/living/C = owner
+	var/mob/camera/ai_eye/remote/xenobio/E = C.remote_control
+	var/obj/machinery/computer/camera_advanced/manager/X = E.origin
+
+	var/target_name = input(C, "Choose who you want to track", "Tracking") as null|anything in X.TrackableCreatures()
+	///Complicated stuff
+	var/list/trackeable = list()
+	trackeable += X.track.humans + X.track.others
+	var/list/targets = list()
+	for(var/I in trackeable)
+		var/mob/M = trackeable[I]
+		if(M.name == target_name)
+			targets += M
+	if(name == target_name)
+		targets += src
+	if(targets.len)
+		X.MobTracking(pick(targets))
+
 //TODO:
 // Due to the sephirah console being a weaker form of manager console
 // it would of been smarter to make manager a subtype of manager that had only the command
@@ -474,6 +563,11 @@
 		command.target = src
 		command.Grant(user)
 		actions += command
+
+	if(follow)
+		follow.target = src
+		follow.Grant(user)
+		actions += follow
 
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
