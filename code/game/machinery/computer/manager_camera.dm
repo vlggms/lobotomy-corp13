@@ -22,8 +22,6 @@
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
-	var/mob/living/tracking_subject
-	var/tracking = FALSE
 	///Variable stolen from AI. Essential for tracking feature.
 	var/static/datum/trackable/track = new
 	var/static/list/commandtypes = typecacheof(list(
@@ -64,6 +62,7 @@
 /obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user) //sephirah console breaks off from this branch so any edits you want on both must be done manually.
 	..()
 
+	//List abilities here:
 	if(cycle)
 		cycle.target = src
 		cycle.Grant(user)
@@ -245,6 +244,8 @@
 	ammo = maxAmmo
 
 //Employee Tracking Code: Butchered AI Tracking
+
+//Shows a list of creatures that can be tracked.
 /obj/machinery/computer/camera_advanced/manager/proc/TrackableCreatures()
 	track.initialized = TRUE
 	track.names.Cut()
@@ -273,59 +274,26 @@
 
 	return targets
 
-/obj/machinery/computer/camera_advanced/manager/proc/ActualTrack(mob/living/target)
+//Proc for following a target.
+/obj/machinery/computer/camera_advanced/manager/proc/MobTracking(mob/living/target)
 	if(!istype(target))
-		to_chat(current_user, "<span class='warning'>Invalid Tracking Error.</span>")
+		to_chat(current_user, "<span class='warning'>ERROR: Invalid Tracking Target.</span>")
 		return
-
-	tracking_subject = target
-	tracking = TRUE
 
 	if(!target || !target.can_track(current_user))
 		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
-		tracking_subject = null
 		return
 
 	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	if(eyeobj)
+		//Orbit proc is essentially follow.
+		eyeobj.orbit(target)
+	else
+		to_chat(current_user, "<span class='notice'>ERROR: Camera Eye Unresponsive.</span>")
 
-	INVOKE_ASYNC(src, .proc/LoopingTrack, target)
-
-/obj/machinery/computer/camera_advanced/manager/proc/LoopingTrack(mob/living/target)
-	var/cameraticks = 0
-
-	while(tracking_subject == target)
-		if(tracking_subject == null || !current_user)
-			return
-
-		if(!target.can_track(current_user))
-			tracking = TRUE
-			if(!cameraticks)
-				to_chat(current_user, "<span class='warning'>Target is not near any active cameras. Attempting to reacquire...</span>")
-			cameraticks++
-			if(cameraticks > 9)
-				tracking_subject = null
-				to_chat(current_user, "<span class='warning'>Unable to reacquire, cancelling track...</span>")
-				tracking = FALSE
-				return
-			else
-				sleep(10)
-				continue
-
-		else
-			cameraticks = 0
-			tracking = FALSE
-
-		if(eyeobj)
-			eyeobj.setLoc(get_turf(target))
-
-		else
-			eyeobj.setLoc(get_turf(src))
-			tracking_subject = null
-			return
-
-		sleep(5)
-
-//Actions
+	/*----------\
+	|Action Code|
+	\----------*/
 /datum/action/innate/cyclemanagerbullet
 	name = "HP-N bullet"
 	desc = "These bullets speed up the recovery of an employee."
@@ -531,6 +499,7 @@
 #undef PALE_BULLET
 #undef YELLOW_BULLET
 
+//Manager Camera Tracking Code
 /datum/action/innate/manager_track
 	name = "Follow Creature"
 	desc = "Track a creature."
@@ -543,10 +512,6 @@
 	var/mob/living/C = owner
 	var/mob/camera/ai_eye/remote/xenobio/E = C.remote_control
 	var/obj/machinery/computer/camera_advanced/manager/X = E.origin
-	if(X.tracking_subject)
-		X.tracking_subject = null
-		to_chat(owner, "<span class='notice'>Tracking canceled.</span>")
-		return
 
 	var/target_name = input(C, "Choose who you want to track", "Tracking") as null|anything in X.TrackableCreatures()
 	///Complicated stuff
@@ -560,7 +525,7 @@
 	if(name == target_name)
 		targets += src
 	if(targets.len)
-		X.ActualTrack(pick(targets))
+		X.MobTracking(pick(targets))
 
 //TODO:
 // Due to the sephirah console being a weaker form of manager console
