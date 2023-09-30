@@ -327,3 +327,16 @@
 	has_gravity = STANDARD_GRAVITY
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+//Library areas
+
+/area/lor
+	name = "Library of Ruina"
+	icon_state = "away"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_ENVIRONMENT_ROOM
+	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED //No, it's an arena, get out with your silly light shenanigans
+
+/area/lor/arena
+	name = "Reception Floor"
