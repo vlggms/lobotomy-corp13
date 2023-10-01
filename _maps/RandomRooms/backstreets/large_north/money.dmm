@@ -108,7 +108,9 @@
 	normal_integrity = 100000;
 	req_access_txt = "19"
 	},
-/turf/open/space/basic,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
 /area/city/backstreets_room)
 "s" = (
 /obj/item/instrument/violin/golden,
