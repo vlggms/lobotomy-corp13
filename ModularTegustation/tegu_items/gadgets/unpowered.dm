@@ -397,16 +397,19 @@
 	desc = "An experimental tool designed to automatically excise damaged parts of one's brain. Due to its █████, the tool gained sentience and is only interested in brains with tumor."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "lobotomizer"
+	var/lobotomizing = FALSE
 	var/datum/looping_sound/lobotomizer/soundloop
 
 /obj/item/lobotomizer/attack_self(mob/living/carbon/human/user)
-	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)))
+	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)) || lobotomizing)
 		to_chat(user, "<span class='warning'>The lobotomizer completely ignores you.</span>")
 		return
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
 	ADD_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 	soundloop = new(list(src), FALSE)
 	soundloop.start()
+	lobotomizing = TRUE
 	for(var/i = 1 to 20) //2 minutes to clear severe traumas
 		if(user.is_working) // No, you can't just cheese this process
 			to_chat(user, "<span class='warning'>The lobotomizer seems to be more interested in the abnormality.</span>")
@@ -431,6 +434,8 @@
 /obj/item/lobotomizer/proc/EndLoop(mob/living/user)
 	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
 	REMOVE_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
+	lobotomizing = FALSE
 	QDEL_NULL(soundloop)
 
 /datum/looping_sound/lobotomizer
