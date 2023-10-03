@@ -107,6 +107,7 @@
 		if(mode == MODE_ADD)
 			S = target.apply_status_effect(STATUS_EFFECT_VIBRATION, mode)
 			S.seers |= user
+			S.UpdateStatus()
 	if(!S)
 		to_chat(user, "<span class='notice'>Your blade emits a dull hum as your target ceases to vibrate.</span>", MESSAGE_TYPE_INFO)
 	return
