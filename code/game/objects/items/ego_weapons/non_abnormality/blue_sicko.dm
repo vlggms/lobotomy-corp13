@@ -311,11 +311,11 @@
 	for(var/mob/M in seers)
 		M.client?.images |= I
 
-/datum/status_effect/stacking/vibration/proc/AddVisual(var/mob/M)
+/datum/status_effect/stacking/vibration/proc/AddVisual(mob/M)
 	M.client?.images |= I
 	seers |= M
 
-/datum/status_effect/stacking/vibration/proc/RemoveVisual(var/mob/M)
+/datum/status_effect/stacking/vibration/proc/RemoveVisual(mob/M)
 	M.client?.images -= I
 	seers -= M
 
