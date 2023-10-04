@@ -89,6 +89,8 @@
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/L in livinginrange(15, target_c))
+		if(faction_check_mob(L))
+			continue
 		L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
 		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
