@@ -12,6 +12,9 @@
 	var/attack_speed
 	var/special
 
+	/// Is CleanUp proc running?
+	var/cleaning = FALSE
+
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
@@ -91,6 +94,17 @@
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force] [damtype] damage.</span>"
+
+/*
+* Used to clean up any remaining variables or timers in an ego weapon.
+*/
+/obj/item/ego_weapon/proc/CleanUp()
+	cleaning = TRUE
+	return
+
+/obj/item/ego_weapon/Destroy()
+	CleanUp()
+	return ..()
 
 //Examine text for mini weapons.
 /obj/item/ego_weapon/mini/examine(mob/user)
