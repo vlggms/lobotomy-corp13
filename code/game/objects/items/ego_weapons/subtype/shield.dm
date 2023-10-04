@@ -86,7 +86,11 @@
 				return FALSE
 		block = TRUE
 		block_success = FALSE
-		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1) //bomb defense must be over 0
+		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(bomb = 1) //bomb defense must be over 0
+		shield_user.physiology.red_mod *= (1 - ((reductions[1]) / 100))
+		shield_user.physiology.white_mod *= (1 - ((reductions[2]) / 100))
+		shield_user.physiology.black_mod *= (1 - ((reductions[3]) / 100))
+		shield_user.physiology.pale_mod *= (1 - ((reductions[4]) / 100))
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
 		parry_timer = addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration, TIMER_STOPPABLE)
 		to_chat(user,"<span class='userdanger'>[block_message]</span>")
@@ -94,7 +98,12 @@
 
 //Ends the block, causes you to take more damage for as long as debuff_duration if you did not block any damage
 /obj/item/ego_weapon/shield/proc/DisableBlock(mob/living/carbon/human/user)
-	user.physiology.armor = user.physiology.armor.modifyRating(red = -reductions[1], white = -reductions[2], black = -reductions[3], pale = -reductions[4], bomb = -1)
+	user.physiology.armor = user.physiology.armor.modifyRating(bomb = -1)
+	user.physiology.red_mod /= (1 - ((reductions[1]) / 100))
+	user.physiology.white_mod /= (1 - ((reductions[2]) / 100))
+	user.physiology.black_mod /= (1 - ((reductions[3]) / 100))
+	user.physiology.pale_mod /= (1 - ((reductions[4]) / 100))
+
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	deltimer(parry_timer)
 	parry_timer = addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_cooldown, TIMER_STOPPABLE)
