@@ -229,7 +229,7 @@
 	if(world.time > ability_cooldown)
 		INVOKE_ASYNC(src, .proc/StartAbility)
 
-/mob/living/simple_animal/hostile/ordeal/violet_midnight/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/ordeal/violet_midnight/AttackingTarget(atom/attacked_target)
 	return FALSE
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Move()
