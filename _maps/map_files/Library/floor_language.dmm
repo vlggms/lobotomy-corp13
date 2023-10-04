@@ -1,0 +1,2032 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ad" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/lava,
+/area/city/backstreets_room)
+"ao" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"aY" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/ash,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"cw" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"ei" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"eI" = (
+/obj/item/target,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"gU" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"hL" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"hT" = (
+/obj/structure/railing{
+	dir = 4;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"hY" = (
+/obj/item/target,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ib" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"it" = (
+/obj/structure/chair/comfy,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ja" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"jN" = (
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"jZ" = (
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"kV" = (
+/obj/structure/weightmachine/weightlifter,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"my" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/shi_assassin,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"nv" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ou" = (
+/obj/item/toy/plush/mosb,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"pz" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"qz" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"rn" = (
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"rr" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"rv" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/seven,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"ry" = (
+/obj/structure/table/wood,
+/obj/item/lighter,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"rW" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ss" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"sO" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 5
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"tK" = (
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"uL" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"vb" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/index,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"vX" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"we" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"wu" = (
+/obj/machinery/computer/security/wooden_tv,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ww" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"wP" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes/cigpack_robust,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"xb" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xB" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes/cigpack_robustgold,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"yd" = (
+/turf/open/floor/holofloor/basalt,
+/area/city/backstreets_room)
+"yq" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"zF" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"AF" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/dawn/zwei,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"AW" = (
+/turf/open/lava{
+	density = 1
+	},
+/area/city/backstreets_room)
+"Br" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/line,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Di" = (
+/obj/item/toy/plush/melt,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Dt" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 9
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"DP" = (
+/obj/effect/turf_decal/trimline/red/filled/warning{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"El" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/turf/open/lava,
+/area/city/backstreets_room)
+"EB" = (
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"ED" = (
+/obj/effect/decal/cleanable/ash,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"EU" = (
+/obj/item/chair/wood/wings,
+/obj/item/clothing/mask/cigarette,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Fo" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/closed/indestructible/syndicate,
+/area/city/backstreets_room)
+"FC" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Gb" = (
+/obj/structure/lattice/catwalk,
+/turf/open/lava,
+/area/city/backstreets_room)
+"Gd" = (
+/obj/structure/table/wood,
+/obj/item/clothing/mask/cigarette,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"GM" = (
+/obj/item/toy/plush/gebura,
+/obj/item/ego_weapon/mimicry/kali{
+	pixel_y = 5;
+	pixel_x = 20
+	},
+/obj/item/clothing/mask/cigarette{
+	pixel_x = -14;
+	pixel_y = 1
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"GT" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"HC" = (
+/obj/structure/weightmachine/weightlifter,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"HK" = (
+/obj/structure/chair/comfy,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"HM" = (
+/obj/structure/railing{
+	dir = 5;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"IM" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Jq" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"JF" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/bladelineage,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"LT" = (
+/obj/structure/table/reinforced,
+/obj/item/gun/ego_gun/city/thumb,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Mp" = (
+/obj/structure/bookcase/random,
+/turf/closed/indestructible/syndicate,
+/area/city/backstreets_room)
+"MR" = (
+/turf/closed/indestructible/syndicate,
+/area/city/backstreets_room)
+"Ov" = (
+/obj/structure/railing{
+	dir = 10;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Ox" = (
+/obj/structure/railing{
+	dir = 8;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"ON" = (
+/obj/structure/railing{
+	dir = 9;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"PV" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Qd" = (
+/obj/structure/weightmachine/stacklifter,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Rm" = (
+/obj/item/chair/wood/wings{
+	dir = 4
+	},
+/obj/item/clothing/mask/cigarette,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Sf" = (
+/obj/item/chair/wood,
+/obj/effect/decal/cleanable/ash,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Sw" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/kurokumo,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"SJ" = (
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"TW" = (
+/obj/item/clothing/mask/cigarette,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ur" = (
+/obj/effect/decal/cleanable/ash,
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"UV" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"VQ" = (
+/obj/structure/railing{
+	dir = 6;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Xg" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"XD" = (
+/obj/structure/table/wood,
+/obj/item/lighter{
+	pixel_y = 5;
+	pixel_x = -8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"XL" = (
+/turf/open/space/basic,
+/area/space)
+"Yz" = (
+/obj/structure/table/reinforced,
+/obj/item/ego_weapon/city/liu/fist,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"YX" = (
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"ZO" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"ZQ" = (
+/obj/item/toy/plush/binah,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = -6;
+	pixel_x = 7
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+MR
+Fo
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+Fo
+MR
+XL
+XL
+XL
+XL
+XL
+"}
+(2,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+MR
+vX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+MR
+XL
+XL
+XL
+XL
+XL
+"}
+(3,1,1) = {"
+XL
+XL
+XL
+XL
+MR
+MR
+Fo
+MR
+YX
+Dt
+UV
+UV
+UV
+UV
+UV
+UV
+aY
+YX
+MR
+Fo
+MR
+MR
+XL
+XL
+"}
+(4,1,1) = {"
+XL
+XL
+XL
+XL
+MR
+Sw
+ao
+ZO
+YX
+wu
+jZ
+PV
+rn
+rn
+HK
+wP
+Br
+YX
+ZO
+ao
+rv
+MR
+XL
+XL
+"}
+(5,1,1) = {"
+XL
+XL
+XL
+XL
+MR
+JF
+jN
+ZO
+YX
+hL
+rn
+rn
+ww
+ww
+rn
+ry
+zF
+YX
+ZO
+jN
+AF
+MR
+XL
+XL
+"}
+(6,1,1) = {"
+XL
+XL
+XL
+XL
+MR
+vb
+jN
+ZO
+YX
+eI
+rn
+rn
+ww
+ww
+rn
+tK
+Br
+YX
+ZO
+jN
+Yz
+MR
+XL
+XL
+"}
+(7,1,1) = {"
+XL
+XL
+XL
+XL
+MR
+LT
+ao
+ZO
+YX
+hL
+ED
+rn
+rn
+rn
+it
+xB
+zF
+YX
+ZO
+ao
+my
+MR
+XL
+XL
+"}
+(8,1,1) = {"
+XL
+XL
+XL
+XL
+MR
+MR
+Fo
+MR
+YX
+hY
+nv
+qz
+qz
+qz
+nv
+qz
+ib
+YX
+MR
+Fo
+MR
+MR
+XL
+XL
+"}
+(9,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+MR
+rr
+DP
+YX
+DP
+YX
+YX
+DP
+YX
+DP
+YX
+MR
+XL
+XL
+XL
+XL
+XL
+"}
+(10,1,1) = {"
+XL
+XL
+XL
+MR
+MR
+MR
+MR
+MR
+MR
+xb
+MR
+xb
+MR
+MR
+xb
+MR
+xb
+MR
+MR
+MR
+MR
+MR
+MR
+XL
+"}
+(11,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(12,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(13,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(14,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(15,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+yd
+AW
+MR
+XL
+"}
+(16,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(17,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(18,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(19,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(20,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+yd
+AW
+MR
+XL
+"}
+(21,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+yd
+yd
+AW
+MR
+XL
+"}
+(22,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(23,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(24,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+yd
+yd
+AW
+MR
+XL
+"}
+(25,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+yd
+yd
+AW
+MR
+XL
+"}
+(26,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+yd
+AW
+MR
+XL
+"}
+(27,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(28,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(29,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(30,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(31,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(32,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+yd
+AW
+AW
+MR
+XL
+"}
+(33,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+yd
+yd
+AW
+MR
+XL
+"}
+(34,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+yd
+yd
+AW
+MR
+XL
+"}
+(35,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(36,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(37,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(38,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(39,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(40,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(41,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+yd
+yd
+AW
+MR
+XL
+"}
+(42,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+yd
+AW
+AW
+MR
+XL
+"}
+(43,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+yd
+yd
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(44,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(45,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(46,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(47,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+SJ
+Gb
+Gb
+FC
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(48,1,1) = {"
+XL
+XL
+XL
+MR
+AW
+AW
+AW
+AW
+El
+we
+YX
+gU
+Gb
+Gb
+we
+YX
+gU
+ad
+AW
+AW
+AW
+AW
+MR
+XL
+"}
+(49,1,1) = {"
+XL
+XL
+XL
+MR
+MR
+MR
+MR
+MR
+MR
+xb
+MR
+xb
+MR
+MR
+xb
+MR
+xb
+MR
+MR
+MR
+MR
+MR
+MR
+XL
+"}
+(50,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+Mp
+YX
+ei
+YX
+ei
+YX
+YX
+ei
+YX
+ei
+YX
+Mp
+XL
+XL
+XL
+XL
+XL
+"}
+(51,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+Mp
+YX
+Dt
+UV
+UV
+UV
+Ur
+UV
+UV
+Xg
+YX
+Mp
+XL
+XL
+XL
+XL
+XL
+"}
+(52,1,1) = {"
+XL
+XL
+XL
+MR
+MR
+MR
+MR
+MR
+YX
+hL
+ON
+Ox
+EB
+EB
+Ox
+Ov
+zF
+YX
+MR
+MR
+MR
+MR
+MR
+XL
+"}
+(53,1,1) = {"
+XL
+XL
+XL
+MR
+GT
+ZQ
+rW
+uL
+YX
+hL
+cw
+HC
+EB
+ja
+Qd
+pz
+zF
+YX
+ED
+EU
+ED
+Rm
+MR
+XL
+"}
+(54,1,1) = {"
+XL
+XL
+XL
+MR
+Di
+Jq
+ou
+uL
+YX
+hL
+yq
+EB
+EB
+EB
+EB
+EB
+zF
+YX
+rn
+xB
+wP
+XD
+MR
+XL
+"}
+(55,1,1) = {"
+XL
+XL
+XL
+MR
+YX
+GM
+ss
+uL
+YX
+hL
+EB
+EB
+EB
+EB
+EB
+EB
+zF
+YX
+jZ
+wP
+Gd
+xB
+MR
+XL
+"}
+(56,1,1) = {"
+XL
+XL
+XL
+MR
+ss
+YX
+IM
+uL
+YX
+hL
+cw
+kV
+EB
+ja
+Qd
+pz
+zF
+YX
+rn
+TW
+rn
+Sf
+MR
+XL
+"}
+(57,1,1) = {"
+XL
+XL
+XL
+MR
+MR
+MR
+MR
+MR
+YX
+hL
+HM
+hT
+EB
+EB
+hT
+VQ
+zF
+YX
+MR
+MR
+MR
+MR
+MR
+XL
+"}
+(58,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+Mp
+YX
+sO
+qz
+qz
+qz
+qz
+qz
+qz
+ib
+YX
+Mp
+XL
+XL
+XL
+XL
+XL
+"}
+(59,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+Mp
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+YX
+Mp
+XL
+XL
+XL
+XL
+XL
+"}
+(60,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+MR
+XL
+XL
+XL
+XL
+XL
+"}
