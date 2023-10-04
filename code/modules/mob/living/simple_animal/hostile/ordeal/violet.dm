@@ -88,8 +88,10 @@
 	for(var/turf/open/T in turf_list)
 		if(prob(25))
 			new /obj/effect/temp_visual/revenant(T)
-	for(var/mob/living/carbon/human/H in livinginrange(15, target_c))
-		H.apply_damage(33, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+	for(var/mob/living/L in livinginrange(15, target_c))
+		if(faction_check_mob(L))
+			continue
+		L.apply_damage(33, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	for(var/obj/machinery/computer/abnormality/A in urange(15, target_c))
 		if(A.can_meltdown && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
 			A.datum_reference.qliphoth_change(pick(-999))
@@ -191,12 +193,13 @@
 	icon_dead = "violet_midnightr_dead"
 	base_pixel_x = -16
 	pixel_x = -16
-	faction = list("violet_ordeal")
+	faction = list("violet_ordeal", "hostile")
 	maxHealth = 15000
 	health = 15000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	deathmessage = "falls apart."
 	deathsound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
+	stat_attack = HARD_CRIT
 
 	var/ability_cooldown
 	var/ability_cooldown_time = 14 SECONDS
@@ -226,7 +229,7 @@
 	if(world.time > ability_cooldown)
 		INVOKE_ASYNC(src, .proc/StartAbility)
 
-/mob/living/simple_animal/hostile/ordeal/violet_midnight/CanAttack(atom/the_target)
+/mob/living/simple_animal/hostile/ordeal/violet_midnight/AttackingTarget(atom/attacked_target)
 	return FALSE
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Move()
@@ -294,16 +297,12 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/StartAbility()
 	var/mob/living/carbon/human/attack_target = null
 	var/list/potential_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.stat == DEAD)
+	for(var/mob/living/L in GLOB.mob_living_list)
+		if(!CanAttack(L))
 			continue
-		if(H.status_flags & GODMODE)
+		if(L.z != z)
 			continue
-		if(!H.client)
-			continue
-		if(H.z != z)
-			continue
-		potential_targets += H
+		potential_targets += L
 	if(!LAZYLEN(potential_targets))
 		return FALSE
 	attack_target = pick(potential_targets)
@@ -350,15 +349,13 @@
 	for(var/turf/T in line)
 		for(var/turf/TT in range(3, T))
 			new /obj/effect/temp_visual/sparkles/red(TT)
-		for(var/mob/living/carbon/human/H in range(3, T))
-			if(H in been_hit)
+		for(var/mob/living/L in range(3, T))
+			if(L in been_hit)
 				continue
-			if(H.stat == DEAD)
+			if(!CanAttack(L))
 				continue
-			if(H.status_flags & GODMODE)
-				continue
-			been_hit += H
-			H.apply_damage(attack_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE))
+			been_hit += L
+			L.apply_damage(attack_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		SLEEP_CHECK_DEATH(0.1)
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white
@@ -376,16 +373,12 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white/StartAbility()
 	var/mob/living/carbon/human/attack_target = null
 	var/list/potential_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.stat == DEAD)
+	for(var/mob/living/L in GLOB.mob_living_list)
+		if(!CanAttack(L))
 			continue
-		if(H.status_flags & GODMODE)
+		if(L.z != z)
 			continue
-		if(!H.client)
-			continue
-		if(H.z != z)
-			continue
-		potential_targets += H
+		potential_targets += L
 	if(!LAZYLEN(potential_targets))
 		return FALSE
 	attack_target = pick(potential_targets)
@@ -441,15 +434,13 @@
 				continue
 			new /obj/effect/temp_visual/sparkles(TT)
 			new /obj/effect/temp_visual/small_smoke/second(TT)
-		for(var/mob/living/carbon/human/H in range(2, T))
-			if(H in been_hit)
+		for(var/mob/living/L in range(2, T))
+			if(L in been_hit)
 				continue
-			if(H.stat == DEAD)
+			if(!CanAttack(L))
 				continue
-			if(H.status_flags & GODMODE)
-				continue
-			been_hit += H
-			H.apply_damage(attack_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+			been_hit += L
+			L.apply_damage(attack_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black
 	icon_state = "violet_midnightb"
@@ -466,16 +457,12 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black/StartAbility()
 	var/mob/living/carbon/human/attack_target = null
 	var/list/potential_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.stat == DEAD)
+	for(var/mob/living/L in GLOB.mob_living_list)
+		if(!CanAttack(L))
 			continue
-		if(H.status_flags & GODMODE)
+		if(L.z != z)
 			continue
-		if(!H.client)
-			continue
-		if(H.z != z)
-			continue
-		potential_targets += H
+		potential_targets += L
 	if(!LAZYLEN(potential_targets))
 		return FALSE
 	attack_target = pick(potential_targets)
@@ -521,15 +508,13 @@
 	for(var/turf/T in line)
 		for(var/turf/TT in range(2, T))
 			new /obj/effect/temp_visual/sparkles/purple(TT)
-		for(var/mob/living/carbon/human/H in range(2, T))
-			if(H in been_hit)
+		for(var/mob/living/L in range(2, T))
+			if(L in been_hit)
 				continue
-			if(H.stat == DEAD)
+			if(!CanAttack(L))
 				continue
-			if(H.status_flags & GODMODE)
-				continue
-			been_hit += H
-			H.apply_damage(attack_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+			been_hit += L
+			L.apply_damage(attack_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		SLEEP_CHECK_DEATH(0.05)
 
 /obj/effect/black_portal
@@ -572,16 +557,12 @@
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/pale/StartAbility()
 	var/mob/living/carbon/human/eye_target = null
 	var/list/potential_targets = list()
-	for(var/mob/living/carbon/human/H in GLOB.human_list)
-		if(H.stat == DEAD)
+	for(var/mob/living/L in GLOB.mob_living_list)
+		if(!CanAttack(L))
 			continue
-		if(H.status_flags & GODMODE)
+		if(L.z != z)
 			continue
-		if(!H.client)
-			continue
-		if(H.z != z)
-			continue
-		potential_targets += H
+		potential_targets += L
 	if(!LAZYLEN(potential_targets))
 		return FALSE
 	eye_target = pick(potential_targets)
@@ -621,12 +602,10 @@
 	var/has_targets = FALSE
 	for(var/turf/T in range(pulse_range, eye))
 		new /obj/effect/temp_visual/pale_eye_attack(T)
-	for(var/mob/living/carbon/human/H in range(pulse_range, eye))
-		if(H.stat == DEAD)
+	for(var/mob/living/L in range(pulse_range, eye))
+		if(!CanAttack(L))
 			continue
-		if(H.status_flags & GODMODE)
-			continue
-		H.apply_damage(pulse_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE))
+		L.apply_damage(pulse_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 		has_targets = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(eye), eye)
 	animate(D, alpha = 0, transform = matrix()*1.25, time = 4)
