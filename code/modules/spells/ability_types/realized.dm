@@ -864,7 +864,7 @@
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
 /*Child of the Galaxy - Our Galaxy */
 /obj/effect/proc_holder/ability/galaxy_gift
@@ -1063,7 +1063,6 @@
 		var/mob/living/L = target
 		if(L.health < 0 || L.stat == DEAD)
 			L.gib() //Punch them so hard they explode
-
 /* Flesh Idol - Repentance */
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
