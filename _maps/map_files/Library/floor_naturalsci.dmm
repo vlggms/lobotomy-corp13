@@ -1,0 +1,1987 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/turf/open/floor/white{
+	density = 1
+	},
+/area/city/backstreets_room)
+"as" = (
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"cg" = (
+/obj/structure/table/wood,
+/obj/item/book/random,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"cJ" = (
+/obj/structure/railing{
+	dir = 5;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"dl" = (
+/obj/structure/railing{
+	dir = 9;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"eb" = (
+/obj/structure/ladder/unbreakable{
+	pixel_y = 8
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"ec" = (
+/turf/open/floor/white{
+	density = 1
+	},
+/area/space)
+"ei" = (
+/obj/structure/lattice,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"fe" = (
+/obj/item/toy/plush/kod,
+/obj/item/ego_weapon/despair{
+	pixel_x = 23;
+	pixel_y = 4
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"fw" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"gn" = (
+/obj/structure/flora/icestalactite/small{
+	pixel_y = -13
+	},
+/turf/open/chasm,
+/area/city/backstreets_room)
+"gL" = (
+/obj/item/flashlight/spotlight,
+/obj/structure/railing{
+	dir = 10;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"hD" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"id" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"iE" = (
+/obj/structure/railing/corner,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"iK" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"lf" = (
+/obj/item/toy/plush/nihil,
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"lp" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"lG" = (
+/obj/structure/table/wood,
+/obj/structure/table/wood,
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"nt" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"nP" = (
+/obj/structure/railing/corner{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"oe" = (
+/obj/structure/flora/icestalactite{
+	pixel_y = -16
+	},
+/turf/open/chasm,
+/area/city/backstreets_room)
+"px" = (
+/turf/open/chasm,
+/area/city/backstreets_room)
+"pL" = (
+/obj/item/flashlight/spotlight,
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"qj" = (
+/obj/item/toy/plush/kog,
+/obj/item/ego_weapon/goldrush{
+	pixel_y = -15;
+	pixel_x = 13
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"qk" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"qt" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"qC" = (
+/obj/item/flashlight/spotlight,
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"un" = (
+/obj/item/toy/plush/sow,
+/obj/item/ego_weapon/blind_rage{
+	pixel_x = 7;
+	pixel_y = -7
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"uH" = (
+/turf/open/space/basic,
+/area/space)
+"vA" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"wa" = (
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"wn" = (
+/obj/structure/railing{
+	dir = 10;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"wp" = (
+/obj/item/flashlight/spotlight,
+/turf/open/chasm,
+/area/city/backstreets_room)
+"wz" = (
+/obj/structure/railing,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"wD" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/white{
+	density = 1
+	},
+/area/space)
+"wN" = (
+/obj/structure/window/bronze/fulltile,
+/obj/structure/lattice,
+/turf/open/floor/white{
+	density = 1
+	},
+/area/city/backstreets_room)
+"wO" = (
+/obj/item/candle/infinite,
+/turf/closed/wall/mineral/gold,
+/area/city/backstreets_room)
+"xx" = (
+/obj/structure/railing{
+	dir = 6;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"yJ" = (
+/obj/structure/chair/wood/wings{
+	pixel_y = 0;
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"zj" = (
+/obj/structure/displaycase/trophy,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"zq" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"zP" = (
+/obj/structure/table/wood/fancy,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"Aq" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plating/ice{
+	density = 1
+	},
+/area/city/backstreets_room)
+"BB" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"BX" = (
+/turf/open/floor/plating/ice{
+	density = 1
+	},
+/area/city/backstreets_room)
+"Ch" = (
+/obj/item/toy/plush/qoh,
+/obj/item/gun/ego_gun/hatred{
+	pixel_x = 9;
+	pixel_y = 5
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"CA" = (
+/obj/item/toy/plush/lisa,
+/obj/structure/railing,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"EG" = (
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Gp" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"Jv" = (
+/obj/structure/displaycase,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Jz" = (
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
+"JX" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"KI" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/floor/white{
+	density = 1
+	},
+/area/city/backstreets_room)
+"KV" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ms" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/floor/white{
+	density = 1
+	},
+/area/space)
+"Od" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"Pq" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"PZ" = (
+/obj/structure/railing{
+	dir = 8;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"Qe" = (
+/turf/open/lava{
+	density = 1
+	},
+/area/city/backstreets_room)
+"Qo" = (
+/obj/item/flashlight/spotlight,
+/obj/structure/railing{
+	dir = 6;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"QB" = (
+/turf/closed/wall/mineral/gold,
+/area/city/backstreets_room)
+"QK" = (
+/obj/structure/table/wood,
+/obj/item/book/random,
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"Sq" = (
+/obj/structure/railing/corner,
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"SI" = (
+/obj/structure/altar_of_gods,
+/obj/structure/flora/iceslab/alt{
+	pixel_y = 14
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"Tc" = (
+/obj/structure/altar_of_gods,
+/obj/structure/flora/tree/dead,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"TL" = (
+/obj/structure/table/wood/fancy,
+/obj/item/candle/infinite{
+	pixel_y = 5;
+	pixel_x = 16
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"UJ" = (
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"WW" = (
+/obj/structure/railing{
+	dir = 4;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"Xk" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/carpet/lone,
+/area/city/backstreets_room)
+"Yy" = (
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Zb" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"Zm" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Zw" = (
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"ZA" = (
+/obj/structure/table/wood,
+/obj/item/book/random,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+uH
+uH
+uH
+uH
+uH
+"}
+(2,1,1) = {"
+uH
+uH
+uH
+uH
+ec
+ec
+ec
+QB
+KV
+UJ
+EG
+wa
+qt
+wa
+wa
+EG
+as
+lp
+QB
+uH
+uH
+uH
+uH
+uH
+"}
+(3,1,1) = {"
+uH
+uH
+uH
+ec
+ec
+KI
+ac
+QB
+cg
+UJ
+EG
+wa
+wa
+wa
+wa
+EG
+UJ
+lp
+QB
+QB
+QB
+QB
+QB
+uH
+"}
+(4,1,1) = {"
+uH
+Ms
+ec
+ec
+ec
+QB
+QB
+QB
+EG
+EG
+zj
+wa
+wa
+wa
+wa
+EG
+UJ
+lp
+QB
+un
+Jz
+Ch
+QB
+uH
+"}
+(5,1,1) = {"
+uH
+ec
+ec
+ec
+ec
+wN
+Yy
+yJ
+wa
+wa
+wa
+wa
+wa
+wa
+wa
+EG
+UJ
+UJ
+ei
+Jz
+fe
+Jz
+QB
+uH
+"}
+(6,1,1) = {"
+uH
+ec
+ec
+ec
+Ms
+wN
+Yy
+UJ
+qt
+wa
+wa
+wa
+qt
+wa
+wa
+EG
+as
+UJ
+ei
+Jz
+qj
+Jz
+QB
+uH
+"}
+(7,1,1) = {"
+uH
+ec
+ec
+ec
+ec
+QB
+QB
+QB
+EG
+EG
+Jv
+wa
+wa
+wa
+wa
+EG
+UJ
+lp
+QB
+Jz
+lf
+Jz
+QB
+uH
+"}
+(8,1,1) = {"
+uH
+uH
+uH
+ec
+ec
+ec
+ec
+QB
+Yy
+UJ
+EG
+wa
+wa
+wa
+wa
+EG
+UJ
+lp
+QB
+QB
+QB
+QB
+QB
+uH
+"}
+(9,1,1) = {"
+uH
+uH
+uH
+uH
+ec
+Ms
+ec
+QB
+ZA
+UJ
+EG
+wa
+qt
+wa
+wa
+EG
+as
+lp
+QB
+uH
+uH
+uH
+uH
+uH
+"}
+(10,1,1) = {"
+uH
+uH
+uH
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+Zm
+Zm
+Zm
+Zm
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+uH
+"}
+(11,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+BX
+BX
+px
+px
+wp
+QB
+uH
+"}
+(12,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+wO
+ac
+KI
+ac
+BB
+hD
+wa
+wa
+wa
+qt
+EG
+Od
+Aq
+BX
+oe
+px
+px
+QB
+uH
+"}
+(13,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+ac
+wO
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+BX
+BX
+px
+px
+px
+QB
+uH
+"}
+(14,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+BX
+BX
+gn
+px
+wp
+QB
+uH
+"}
+(15,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+BX
+BX
+px
+px
+px
+QB
+uH
+"}
+(16,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+ac
+ac
+wO
+ac
+BB
+hD
+EG
+EG
+EG
+hD
+EG
+Od
+Aq
+BX
+oe
+px
+px
+QB
+uH
+"}
+(17,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+KI
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+BX
+BX
+px
+px
+px
+QB
+uH
+"}
+(18,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+BX
+BX
+px
+px
+wp
+QB
+uH
+"}
+(19,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+ac
+wO
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+BX
+BX
+gn
+px
+px
+QB
+uH
+"}
+(20,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+wO
+ac
+ac
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+BX
+BX
+px
+px
+px
+QB
+uH
+"}
+(21,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+KI
+ac
+BB
+hD
+wa
+wa
+wa
+qt
+EG
+Od
+Aq
+BX
+px
+px
+px
+QB
+uH
+"}
+(22,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+ac
+wO
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+BX
+BX
+BX
+oe
+wp
+QB
+uH
+"}
+(23,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+nP
+wn
+BX
+BX
+BX
+px
+QB
+uH
+"}
+(24,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+KI
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Zw
+Zw
+wn
+BX
+BX
+BX
+QB
+uH
+"}
+(25,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+ac
+ac
+wO
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Zw
+Zw
+Od
+BX
+BX
+BX
+QB
+uH
+"}
+(26,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+dl
+PZ
+Zb
+hD
+EG
+EG
+EG
+hD
+EG
+Zw
+nt
+nP
+wn
+BX
+BX
+QB
+uH
+"}
+(27,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+dl
+fw
+Zw
+Zw
+EG
+EG
+EG
+EG
+EG
+EG
+Zw
+wa
+Zw
+nP
+gL
+BX
+QB
+uH
+"}
+(28,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+Xk
+Pq
+SI
+Zw
+EG
+wa
+wa
+wa
+wa
+EG
+Zw
+wa
+wa
+Zw
+Od
+BX
+QB
+uH
+"}
+(29,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+wO
+Xk
+TL
+Zw
+Zw
+EG
+wa
+wa
+wa
+wa
+EG
+Zw
+wa
+wa
+Zw
+Od
+BX
+QB
+uH
+"}
+(30,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+Xk
+zP
+Zw
+Zw
+EG
+wa
+wa
+wa
+wa
+EG
+Zw
+wa
+wa
+Zw
+Od
+Qe
+QB
+uH
+"}
+(31,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+Xk
+Pq
+Tc
+Zw
+hD
+wa
+wa
+wa
+qt
+EG
+Zw
+qt
+wa
+Zw
+qC
+Qe
+QB
+uH
+"}
+(32,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+cJ
+qk
+Zw
+Zw
+EG
+EG
+EG
+EG
+EG
+EG
+Zw
+wa
+Zw
+iE
+xx
+Qe
+QB
+uH
+"}
+(33,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+wO
+ac
+cJ
+WW
+zq
+EG
+EG
+EG
+EG
+EG
+EG
+Zw
+Zw
+iE
+xx
+Qe
+Qe
+QB
+uH
+"}
+(34,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+ac
+wO
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Zw
+Zw
+Od
+Qe
+Qe
+Qe
+QB
+uH
+"}
+(35,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+KI
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Zw
+iE
+xx
+Qe
+Qe
+px
+QB
+uH
+"}
+(36,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+hD
+wa
+wa
+wa
+qt
+EG
+iE
+Qo
+Qe
+Qe
+Qe
+wp
+QB
+uH
+"}
+(37,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+ac
+ac
+wO
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+Qe
+Qe
+Qe
+px
+px
+QB
+uH
+"}
+(38,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+Qe
+Qe
+px
+px
+px
+QB
+uH
+"}
+(39,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+KI
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+Qe
+Qe
+Qe
+px
+px
+QB
+uH
+"}
+(40,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+ac
+wO
+ac
+BB
+hD
+EG
+EG
+EG
+hD
+EG
+Od
+Qe
+Qe
+Qe
+px
+px
+QB
+uH
+"}
+(41,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+Qe
+Qe
+px
+px
+wp
+QB
+uH
+"}
+(42,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+wO
+ac
+KI
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+Qe
+Qe
+px
+px
+px
+QB
+uH
+"}
+(43,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+ac
+ac
+wO
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+Qe
+Qe
+Qe
+Qe
+px
+QB
+uH
+"}
+(44,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+Qe
+Qe
+px
+px
+px
+QB
+uH
+"}
+(45,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+hD
+wa
+wa
+wa
+qt
+EG
+Od
+Qe
+Qe
+px
+px
+px
+QB
+uH
+"}
+(46,1,1) = {"
+uH
+uH
+uH
+QB
+KI
+ac
+ac
+wO
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+Qe
+Qe
+Qe
+px
+px
+QB
+uH
+"}
+(47,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+KI
+ac
+BB
+EG
+wa
+wa
+wa
+wa
+EG
+Od
+Qe
+Qe
+px
+px
+wp
+QB
+uH
+"}
+(48,1,1) = {"
+uH
+uH
+uH
+QB
+ac
+wO
+ac
+ac
+ac
+BB
+EG
+EG
+EG
+EG
+EG
+EG
+Od
+Qe
+Qe
+px
+px
+px
+QB
+uH
+"}
+(49,1,1) = {"
+uH
+uH
+uH
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+Zm
+Zm
+Zm
+Zm
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+uH
+"}
+(50,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+Sq
+eb
+EG
+EG
+EG
+EG
+EG
+wa
+wa
+QB
+wD
+ec
+ec
+ec
+wD
+"}
+(51,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+hD
+wa
+wa
+qt
+wa
+wa
+qt
+iK
+QB
+ec
+ec
+ec
+ec
+ec
+"}
+(52,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+wa
+wa
+wa
+JX
+wa
+zj
+EG
+EG
+QB
+QB
+QB
+QB
+ec
+ec
+"}
+(53,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+CA
+wa
+wa
+Gp
+Gp
+Gp
+wa
+wa
+wa
+wa
+Gp
+QK
+wN
+ec
+ec
+"}
+(54,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+qt
+wa
+wa
+qt
+id
+wa
+qt
+wa
+wa
+wa
+id
+wN
+ec
+ec
+"}
+(55,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+wa
+wa
+JX
+wa
+wa
+wa
+wa
+wa
+wa
+JX
+wa
+wN
+ec
+ec
+"}
+(56,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+wa
+wa
+Gp
+lG
+Gp
+wa
+wa
+wa
+wa
+QK
+Gp
+wN
+ec
+wD
+"}
+(57,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+qt
+wa
+wa
+pL
+wa
+zj
+hD
+EG
+QB
+QB
+QB
+QB
+ec
+ec
+"}
+(58,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+EG
+wa
+wa
+wa
+wa
+wa
+wa
+iK
+QB
+wD
+ec
+ec
+ec
+ec
+"}
+(59,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+vA
+wz
+EG
+EG
+EG
+EG
+EG
+EG
+wa
+wa
+QB
+ec
+ec
+ec
+ec
+ec
+"}
+(60,1,1) = {"
+uH
+uH
+uH
+uH
+uH
+uH
+uH
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+QB
+ec
+ec
+wD
+ec
+ec
+"}
