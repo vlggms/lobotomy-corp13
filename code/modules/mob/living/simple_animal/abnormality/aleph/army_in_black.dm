@@ -269,7 +269,7 @@ GLOBAL_LIST_EMPTY(army)
 			continue
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
 			continue
-		H.adjustSanityLoss(H.maxSanity*(-0.3))
+		H.adjustSanityLoss(H.maxSanity*0.3)
 		fear_affected += H
 		if(H.sanity_lost)
 			continue
