@@ -8,6 +8,7 @@
 	w_class = WEIGHT_CLASS_BULKY			//No more stupid 10 egos in bag
 	slot_flags = ITEM_SLOT_BELT
 	drag_slowdown = 1
+	swingstyle = WEAPONSWING_SMALLSWEEP
 	var/list/attribute_requirements = list()
 	var/attack_speed = 1
 	var/special
@@ -24,6 +25,12 @@
 
 	//How long do you stun on hit?
 	var/stuntime = 0
+
+/obj/item/ego_weapon/Initialize()
+	. = ..()
+	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
+		swingstyle = WEAPONSWING_LARGETHRUST
+	RegisterSignal(src, COMSIG_OBJ_PAINTED, PROC_REF(GetSwingColor))
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -114,6 +121,19 @@
 		if(2 to INFINITY)
 			. += span_notice("This weapon attacks extremely slow.")
 
+	switch(swingstyle)
+		if(WEAPONSWING_SMALLSWEEP)
+			. += span_notice("This weapon can be swung at a single tile instead of a specific target.")
+
+		if(WEAPONSWING_SMALLTHRUST)
+			. += span_notice("This weapon can be thrust at a single tile instead of a specific target.")
+
+		if(WEAPONSWING_LARGESWEEP)
+			. += span_notice("This weapon can be swung in an arc instead of at a specific target.")
+
+		if(WEAPONSWING_LARGETHRUST)
+			. += span_notice("This weapon can be thrust at tiles up to [reach] tiles away instead of a specific target.")
+
 	switch(stuntime)
 		if(1 to 2)
 			. += span_notice("This weapon stuns you for a very short duration on hit.")
@@ -189,6 +209,26 @@
 /obj/item/ego_weapon/proc/CleanUp()
 	cleaning = TRUE
 
+/obj/item/ego_weapon/GetTarget(mob/user, list/potential_targets = list())
+	if(damtype != WHITE_DAMAGE)
+		return ..()
+
+	. = null
+
+	for(var/mob/living/carbon/human/H in potential_targets)
+		if(.)
+			break
+		if(!H.sanity_lost)
+			continue
+		if(H.stat == DEAD)
+			continue
+		. = H
+
+	if(.)
+		return
+
+	return ..()
+
 /obj/item/ego_weapon/Destroy()
 	CleanUp()
 	return ..()
@@ -203,3 +243,15 @@
 	. = ..()
 	if(. || !CanUseEgo(user))
 		return TRUE
+
+/obj/item/ego_weapon/update_icon()
+	. = ..()
+	GetSwingColor()
+
+/obj/item/ego_weapon/update_icon_state()
+	. = ..()
+	GetSwingColor()
+
+/obj/item/ego_weapon/wash(clean_types)
+	. = ..()
+	GetSwingColor()
