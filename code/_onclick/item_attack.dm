@@ -12,7 +12,7 @@
 		return TRUE
 	if(pre_attack(target, user, params))
 		return TRUE
-	if(target.attackby(src,user, params))
+	if(Sweep(target, user, params))
 		return TRUE
 	if(QDELETED(src) || QDELETED(target))
 		attack_qdeleted(target, user, TRUE, params)
@@ -63,6 +63,170 @@
 		return TRUE
 	user.changeNext_move(CLICK_CD_MELEE)
 	return I.attack(src, user)
+
+/obj/item/proc/Sweep(atom/target, mob/living/carbon/human/user, params)
+	if(!istype(user) || user.a_intent != INTENT_HARM || (!sweeps && (reach <= 1)) || get_turf(target) == get_turf(user))
+		return target.attackby(src, user, params)
+
+	if(!isturf(target) && !ismob(target))
+		return target.attackby(src, user, params)
+
+	user.changeNext_move(CLICK_CD_MELEE * 0.75) // Room for those who miss
+
+	var/list/hit_turfs = list()
+
+	if(reach > 1)
+		hit_turfs = get_thrust_turfs(target, user)
+	else
+		hit_turfs = get_sweep_turfs(target, user)
+
+	var/list/potential_targets = list()
+
+	for(var/turf/T in hit_turfs)
+		for(var/mob/M in T)
+			potential_targets |= M
+
+	potential_targets -= user
+
+	var/mob/to_smack = ismob(target) ? target : GetTarget(user, potential_targets)
+
+	var/old_animation = run_item_attack_animation
+	run_item_attack_animation = FALSE
+
+	if(!to_smack)
+		user.visible_message("<span class='danger'>[user] [reach > 1 ? "thrusts" : "swings"] at [target]!</span>",\
+			"<span class='danger'>You [reach > 1 ? "thrust" : "swing"] at [target]!</span>", null, COMBAT_MESSAGE_RANGE, user)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 60, TRUE)
+		user.do_attack_animation(target, used_item = src, no_effect = !run_item_attack_animation)
+		run_item_attack_animation = old_animation
+		return TRUE
+
+	. = to_smack.attackby(src, user, params)
+	run_item_attack_animation = old_animation
+
+	log_combat(user, target, "swung at", src.name, " and hit [to_smack]")
+	add_fingerprint(user)
+	return
+
+/obj/effect/temp_visual/swipe
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	duration = 4
+	randomdir = FALSE
+
+/obj/effect/temp_visual/swipe/New(loc, ...)
+	. = ..()
+	setDir(args[2])
+	if(args[3])
+		color = args[3]
+
+/obj/effect/temp_visual/swipe/r
+
+/obj/effect/temp_visual/swipe/r/New(loc, ...)
+	. = ..()
+	flick("swipe_d_r", src) // if this isn't used, it synchronizes all swipe animations.
+
+/obj/effect/temp_visual/swipe/l
+
+/obj/effect/temp_visual/swipe/l/New(loc, ...)
+	. = ..()
+	flick("swipe_d_l", src) // if this isn't used, it synchronizes all swipe animations.
+
+/obj/effect/temp_visual/thrust
+	icon = 'ModularTegustation/Teguicons/64x32.dmi'
+	duration = 4
+	randomdir = FALSE
+	pixel_x = -16
+
+/obj/effect/temp_visual/thrust/New(loc, ...)
+	. = ..()
+	if(args[2])
+		color = args[2]
+	flick("thrust", src)
+
+/obj/item/proc/GetTarget(mob/user, list/potential_targets = list())
+	. = null
+
+	for(var/mob/living/simple_animal/hostile/H in potential_targets) // Hostile List
+		if(.)
+			break
+		if(H.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(H))
+			continue
+		if(H.stat == DEAD)
+			continue
+		. = H
+		break
+
+	for(var/mob/living/L in potential_targets) // Standing List
+		if(.)
+			break
+		if(L.resting)
+			continue
+		if(L.stat == DEAD)
+			continue
+		. = L
+		break
+
+	for(var/mob/living/L in potential_targets) // Laying Down List
+		if(.)
+			break
+		. = L
+		break
+
+	return
+
+/obj/item/proc/get_sweep_turfs(atom/target, mob/user)
+	var/target_turf = get_step_towards(user, target)
+	var/start = WEST
+	var/end = EAST
+
+	switch(get_dir(user, target))
+		if(NORTH)
+			start = EAST
+			end = WEST
+		if(SOUTH)
+			start = WEST
+			end = EAST
+		if(EAST)
+			start = SOUTH
+			end = NORTH
+		if(WEST)
+			start = NORTH
+			end = SOUTH
+		if(NORTHEAST)
+			start = SOUTH
+			end = WEST
+		if(NORTHWEST)
+			start = EAST
+			end = SOUTH
+		if(SOUTHEAST)
+			start = WEST
+			end = NORTH
+		if(SOUTHWEST)
+			start = NORTH
+			end = EAST
+
+	if((user.get_held_index_of_item(src) % 2) - 1) // What hand we're in determines the check order of our swing
+		var/temp = start
+		start = end
+		end = temp
+
+	if(user.active_hand_index % 2 == 0)
+		new /obj/effect/temp_visual/swipe/r(get_step(user, SOUTHWEST), get_dir(user, target), color ? color : COLOR_GRAY)
+	else
+		new /obj/effect/temp_visual/swipe/l(get_step(user, SOUTHWEST), get_dir(user, target), color ? color : COLOR_GRAY)
+
+	return list(get_step(target_turf, start), target_turf, get_step(target_turf, end))
+
+/obj/item/proc/get_thrust_turfs(atom/target, mob/user)
+	. = getline(get_step_towards(user, target), target)
+	for(var/turf/T in .)
+		var/obj/effect/temp_visual/thrust/TT = new(T, color ? color : COLOR_GRAY)
+		var/matrix/M = matrix(TT.transform)
+		M.Turn(Get_Angle(user, target)-90)
+		TT.transform = M
+	return
 
 /**
  * Called from [/mob/living/proc/attackby]
