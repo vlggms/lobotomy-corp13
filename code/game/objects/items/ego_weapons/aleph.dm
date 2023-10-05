@@ -539,7 +539,7 @@
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
 	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
 	icon_state = "space"
-	force = 35	//Half white, half black.
+	force = 70
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -582,8 +582,22 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
-
+	if(isanimal(target))
+		var/mob/living/simple_animal/M = target
+		if(M.damage_coeff[WHITE_DAMAGE] > M.damage_coeff[BLACK_DAMAGE])
+			damtype = WHITE_DAMAGE
+			armortype = WHITE_DAMAGE
+		if(M.damage_coeff[BLACK_DAMAGE] > M.damage_coeff[WHITE_DAMAGE])
+			damtype = BLACK_DAMAGE
+			armortype = BLACK_DAMAGE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		if(H.physiology.white_mod> H.physiology.black_mod)
+			damtype = WHITE_DAMAGE
+			armortype = WHITE_DAMAGE
+		if(H.physiology.black_mod> H.physiology.white_mod)
+			damtype = BLACK_DAMAGE
+			armortype = BLACK_DAMAGE
 	if(!canaoe)
 		return
 	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
@@ -604,7 +618,7 @@
 	canaoe = FALSE
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
-	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
+	return "<span class='notice'>It deals [force] of either white or black damage depending on which would deal more damage.</span>"
 
 /obj/item/ego_weapon/seasons
 	name = "Seasons Greetings"
