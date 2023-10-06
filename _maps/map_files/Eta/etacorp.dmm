@@ -300,7 +300,7 @@
 /obj/machinery/door/airlock/vault{
 	name = "Shelter From The 27th Of March containment zone"
 	},
-/turf/closed/indestructible/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
 "bj" = (
 /obj/effect/turf_decal/siding{
