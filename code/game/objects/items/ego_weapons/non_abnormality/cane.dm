@@ -21,11 +21,12 @@
 /obj/item/ego_weapon/city/charge/cane/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
-		release_charge(user)
+		var/target //Didn't even need new var, could literally put anything for first arg, but for consistency sake and less confusion
+		release_charge(target, user)
 	else
 		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
 
-/obj/item/ego_weapon/city/charge/cane/release_charge(mob/living/user)
+/obj/item/ego_weapon/city/charge/cane/release_charge(target, mob/living/user)
 	..()
 	sleep(2)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
@@ -46,7 +47,7 @@
 	charge_effect = "heal yourself."
 	charge_cost = 8
 
-/obj/item/ego_weapon/city/charge/cane/cane/release_charge(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/charge/cane/cane/release_charge(target, mob/living/carbon/human/user)
 	..()
 	user.adjustBruteLoss(-user.maxHealth*0.07)
 	user.adjustSanityLoss(-user.maxSanity*0.07)
@@ -76,7 +77,7 @@
 	charge_cost = 3
 	var/dodgelanding
 
-/obj/item/ego_weapon/city/charge/cane/claw/release_charge(mob/living/user)
+/obj/item/ego_weapon/city/charge/cane/claw/release_charge(target, mob/living/user)
 	..()
 	if(user.dir == NORTH)
 		dodgelanding = locate(user.x, user.y + 5, user.z)
@@ -101,7 +102,7 @@
 	charge_effect = "boost this weapon's attack."
 	charge_cost = 8
 
-/obj/item/ego_weapon/city/charge/cane/fist/release_charge(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/charge/cane/fist/release_charge(target, mob/living/carbon/human/user)
 	..()
 	force = force*2
 	addtimer(CALLBACK(src, .proc/Return, user), 2 SECONDS)
@@ -121,7 +122,7 @@
 	charge_effect = "knock others backwards!"
 	charge_cost = 4
 
-/obj/item/ego_weapon/city/charge/cane/briefcase/release_charge(mob/living/user)
+/obj/item/ego_weapon/city/charge/cane/briefcase/release_charge(target, mob/living/user)
 	..()
 	goonchem_vortex(get_turf(src), 1, 4)
 
