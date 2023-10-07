@@ -243,9 +243,9 @@
 /turf/open/indestructible/hotelwood,
 /area/city/backstreets_room)
 "pV" = (
-/obj/structure/displaycase/trophy,
 /obj/item/ego_weapon/mimicry/kali,
 /obj/item/flashlight/spotlight,
+/obj/structure/displaycase/noalert,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "qv" = (
@@ -629,9 +629,7 @@
 /turf/open/indestructible/hotelwood,
 /area/city/backstreets_room)
 "JT" = (
-/obj/machinery/chem_dispenser/drinks/fullupgrade{
-	pixel_y = -3
-	},
+/obj/machinery/chem_dispenser/drinks,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "KT" = (
@@ -699,10 +697,10 @@
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "Mz" = (
-/obj/structure/displaycase/trophy,
 /obj/item/reagent_containers/food/drinks/mug/tea{
 	pixel_y = -7
 	},
+/obj/structure/displaycase/noalert,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "Ne" = (
@@ -781,9 +779,9 @@
 /turf/open/indestructible/hotelwood,
 /area/city/backstreets_room)
 "SF" = (
-/obj/structure/displaycase/trophy,
 /obj/item/bodypart/l_arm,
 /obj/item/flashlight/spotlight,
+/obj/structure/displaycase/noalert,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "SV" = (
@@ -819,8 +817,8 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "Uv" = (
-/obj/structure/displaycase/trophy,
 /obj/item/reagent_containers/honeycomb,
+/obj/structure/displaycase/noalert,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "UC" = (
