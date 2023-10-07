@@ -630,7 +630,7 @@
 			new /obj/effect/temp_visual/smash_effect(T)
 
 		for(var/mob/living/L in livinginrange(1, user))
-			var/aoe = force
+			var/aoe = force/2
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
