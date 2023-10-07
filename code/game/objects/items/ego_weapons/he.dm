@@ -716,28 +716,13 @@
 							)
 
 /obj/item/ego_weapon/shield/legerdemain/attack_self(mob/user)//FIXME: Find a better way to use this override!
-	if (!ishuman(user))
-		return FALSE
-	if (block == 0)
-		var/mob/living/carbon/human/shield_user = user
-		if(!CanUseEgo(shield_user))
+	if(block == 0) //Extra check because shields returns nothing on 1
+		if(..())
+			RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, .proc/NoParry, override = TRUE)//creates runtimes without overrides, double check if something's fucked
+			RegisterSignal(user, COMSIG_PARENT_ATTACKBY, .proc/NoParry, override = TRUE)//728 and 729 must be able to unregister the signal of 730
+			return TRUE
+		else
 			return FALSE
-		if(shield_user.physiology.armor.bomb)
-			to_chat(shield_user,"<span class='warning'>You're still off-balance!</span>")
-			return FALSE
-		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
-			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
-				return FALSE
-		block = TRUE
-		block_success = FALSE
-		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1)
-		RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, .proc/NoParry, override = TRUE)//creates runtimes without overrides, double check if something's fucked
-		RegisterSignal(user, COMSIG_PARENT_ATTACKBY, .proc/NoParry, override = TRUE)//728 and 729 must be able to unregister the signal of 730
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration)
-		to_chat(user,"<span class='userdanger'>[block_message]</span>")
-		return TRUE
 
 /obj/item/ego_weapon/shield/legerdemain/proc/NoParry(mob/living/carbon/human/user, obj/item/L)//Disables AnnounceBlock when attacked by an item or a human
 	SIGNAL_HANDLER
