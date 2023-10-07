@@ -539,7 +539,7 @@
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
 	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
 	icon_state = "space"
-	force = 70
+	force = 60//less dps for being able to do 2 damage types
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -599,9 +599,6 @@
 	user.density = TRUE
 
 /obj/item/ego_weapon/space/attack(mob/living/target, mob/living/user)
-	..()
-	if(!CanUseEgo(user))
-		return
 	if(isanimal(target))
 		var/mob/living/simple_animal/M = target
 		if(M.damage_coeff[WHITE_DAMAGE] >= M.damage_coeff[BLACK_DAMAGE])
@@ -610,6 +607,7 @@
 		else
 			damtype = BLACK_DAMAGE
 			armortype = BLACK_DAMAGE
+
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		if(H.run_armor_check(null, WHITE_DAMAGE) <= H.run_armor_check(null, BLACK_DAMAGE))
@@ -618,15 +616,21 @@
 		else
 			damtype = BLACK_DAMAGE
 			armortype = BLACK_DAMAGE
+
+	. = ..()
+	if(!CanUseEgo(user))
+		return
+
 	if(!canaoe)
 		return
+
 	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
 		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
 		for(var/turf/T in orange(1, user))
 			new /obj/effect/temp_visual/smash_effect(T)
 
 		for(var/mob/living/L in livinginrange(1, user))
-			var/aoe = force/2
+			var/aoe = force
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
