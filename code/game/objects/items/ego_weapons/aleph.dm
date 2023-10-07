@@ -552,6 +552,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/canaoe
+	var/damagemode = 0
 
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
 	if(!CanUseEgo(user))
@@ -573,7 +574,27 @@
 	icon_state = "space_aoe"
 	user.density = FALSE
 	user.adjustStaminaLoss(15, TRUE, TRUE)
-	user.throw_at(dodgelanding, 3, 2, spin = FALSE) // This still collides with people, by the way.
+	var/turf/target_turf = get_turf(user)
+	var/list/line_turfs = list(target_turf)
+	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, dodgelanding, 5)))
+		if(T.density)
+			break
+		for(var/mob/living/L in view(0, T))
+			if(L.density)
+				break
+		target_turf = T
+		line_turfs += T
+	user.forceMove(target_turf)
+	for(var/i = 1 to line_turfs.len)
+		var/turf/T = line_turfs[i]
+		if(!istype(T))
+			continue
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, user)
+		D.alpha = min(100 + i*15, 255)
+		animate(D, alpha = 0, time = 2 + i*2)
+		for(var/obj/machinery/door/MD in T.contents)
+			if(MD.density)
+				addtimer(CALLBACK (MD, .obj/machinery/door/proc/open))
 	canaoe = TRUE
 	sleep(3)
 	user.density = TRUE
@@ -584,41 +605,51 @@
 		return
 	if(isanimal(target))
 		var/mob/living/simple_animal/M = target
-		if(M.damage_coeff[WHITE_DAMAGE] > M.damage_coeff[BLACK_DAMAGE])
+		if(M.damage_coeff[WHITE_DAMAGE] >= M.damage_coeff[BLACK_DAMAGE])
 			damtype = WHITE_DAMAGE
 			armortype = WHITE_DAMAGE
-		if(M.damage_coeff[BLACK_DAMAGE] > M.damage_coeff[WHITE_DAMAGE])
+		else
 			damtype = BLACK_DAMAGE
 			armortype = BLACK_DAMAGE
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
-		if(H.physiology.white_mod> H.physiology.black_mod)
+		if(H.run_armor_check(null, WHITE_DAMAGE) <= H.run_armor_check(null, BLACK_DAMAGE))
 			damtype = WHITE_DAMAGE
 			armortype = WHITE_DAMAGE
-		if(H.physiology.black_mod> H.physiology.white_mod)
+		else
 			damtype = BLACK_DAMAGE
 			armortype = BLACK_DAMAGE
 	if(!canaoe)
 		return
+	if(damagemode == 0)
+		damtype = WHITE_DAMAGE
+		armortype = WHITE_DAMAGE
+	if(damagemode == 1)
+		damtype = BLACK_DAMAGE
+		armortype = BLACK_DAMAGE
 	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
 		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
 		for(var/turf/T in orange(1, user))
 			new /obj/effect/temp_visual/smash_effect(T)
 
 		for(var/mob/living/L in livinginrange(1, user))
-			var/aoe = force
+			var/aoe = force/2
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			if(isanimal(L))
+				var/mob/living/simple_animal/M = L
+				if(M.damage_coeff[WHITE_DAMAGE] >= M.damage_coeff[BLACK_DAMAGE])
+					L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				else
+					L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 	icon_state = "space"
 	canaoe = FALSE
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
-	return "<span class='notice'>It deals [force] of either white or black damage depending on which would deal more damage.</span>"
+	return "<span class='notice'>It deals [force] of either white or black damage depending on which would be more effective.</span>"
 
 /obj/item/ego_weapon/seasons
 	name = "Seasons Greetings"
