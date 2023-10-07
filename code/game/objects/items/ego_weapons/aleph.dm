@@ -552,7 +552,6 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 	var/canaoe
-	var/damagemode = 0
 
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
 	if(!CanUseEgo(user))
@@ -621,12 +620,6 @@
 			armortype = BLACK_DAMAGE
 	if(!canaoe)
 		return
-	if(damagemode == 0)
-		damtype = WHITE_DAMAGE
-		armortype = WHITE_DAMAGE
-	if(damagemode == 1)
-		damtype = BLACK_DAMAGE
-		armortype = BLACK_DAMAGE
 	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
 		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
 		for(var/turf/T in orange(1, user))
