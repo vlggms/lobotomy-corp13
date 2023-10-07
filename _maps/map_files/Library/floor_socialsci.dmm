@@ -116,9 +116,7 @@
 /turf/open/indestructible/hotelwood,
 /area/city/backstreets_room)
 "je" = (
-/obj/machinery/chem_dispenser/drinks/fullupgrade{
-	pixel_y = -3
-	},
+/obj/machinery/chem_dispenser/drinks,
 /turf/closed/indestructible/wood,
 /area/city/backstreets_room)
 "jI" = (
@@ -416,10 +414,9 @@
 /turf/open/floor/carpet/royalblue,
 /area/city/backstreets_room)
 "JW" = (
-/obj/structure/stairs{
-	dir = 8
+/turf/open/floor/plasteel/stairs{
+	dir = 4
 	},
-/turf/open/indestructible/hotelwood,
 /area/city/backstreets_room)
 "JX" = (
 /obj/structure/railing{
@@ -465,10 +462,7 @@
 /turf/open/water/deep/saltwater,
 /area/city/backstreets_room)
 "Op" = (
-/obj/structure/stairs{
-	dir = 1
-	},
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/plasteel/stairs,
 /area/city/backstreets_room)
 "ON" = (
 /obj/effect/decal/fakelattice,
@@ -525,8 +519,9 @@
 /turf/open/indestructible/hotelwood,
 /area/city/backstreets_room)
 "Ru" = (
-/obj/structure/stairs,
-/turf/open/indestructible/hotelwood,
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
 /area/city/backstreets_room)
 "Sp" = (
 /obj/structure/table/wood/fancy/blue,

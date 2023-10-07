@@ -226,7 +226,7 @@
 /turf/open/indestructible/hotelwood,
 /area/city/backstreets_room)
 "zj" = (
-/obj/structure/displaycase/trophy,
+/obj/structure/displaycase/noalert,
 /turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "zq" = (
@@ -277,10 +277,6 @@
 "Gp" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
-"Jv" = (
-/obj/structure/displaycase,
-/turf/open/floor/carpet/red,
 /area/city/backstreets_room)
 "Jz" = (
 /turf/open/floor/facility/dark,
@@ -592,7 +588,7 @@ QB
 QB
 EG
 EG
-Jv
+zj
 wa
 wa
 wa
