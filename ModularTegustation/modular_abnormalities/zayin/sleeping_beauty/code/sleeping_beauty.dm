@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/sleeping
 	name = "Sleeping Beauty"
 	desc = "A cushion with a tag that says \"F-04-36\"."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/sleeping_beauty/icons/32x32.dmi'
 	density = FALSE
 	icon_state = "sleeping_idle"
 	icon_living = "sleeping_idle"

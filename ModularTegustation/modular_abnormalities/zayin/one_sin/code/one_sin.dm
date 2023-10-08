@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/onesin
 	name = "One Sin and Hundreds of Good Deeds"
 	desc = "A giant skull that is attached to a cross, it wears a crown of thorns."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/one_sin/icons/32x32.dmi'
 	icon_state = "onesin"
 	icon_living = "onesin"
 	maxHealth = 777
@@ -46,7 +46,7 @@
 				A.betrayed = TRUE // So no spam happens
 				for(var/mob/M in GLOB.player_list)
 					if(M.client)
-						M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_start.ogg', 25, 0)
+						M.playsound_local(get_turf(M), 'ModularTegustation/modular_abnormalities/zayin/one_sin/sound/confession_start.ogg', 25, 0)
 				return TRUE
 		return FALSE
 	return TRUE
@@ -68,7 +68,7 @@
 		sleep(5 SECONDS)
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
-				M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_end.ogg', 50, 0)
+				M.playsound_local(get_turf(M), 'ModularTegustation/modular_abnormalities/zayin/one_sin/sound/confession_end.ogg', 50, 0)
 		return
 	return ..()
 

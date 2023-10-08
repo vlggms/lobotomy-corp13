@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything
 	name = "We Can Change Anything"
 	desc = "A human sized container with spikes inside it. You shouldn't enter it"
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/icons/32x32.dmi'
 	icon_state = "wecanchange"
 	maxHealth = 1000
 	health = 1000
@@ -40,7 +40,7 @@
 /mob/living/simple_animal/hostile/abnormality/we_can_change_anything/proc/StoreWorker(mob/living/L) //Stores the worker inside
 	if(!L)
 		return FALSE
-	playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
+	playsound(src, 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_start.ogg', 50, FALSE)
 	ADD_TRAIT(L, TRAIT_NOBREATH, type)
 	ADD_TRAIT(L, TRAIT_IMMOBILIZED, type)
 	ADD_TRAIT(L, TRAIT_HANDS_BLOCKED, type)
@@ -76,7 +76,7 @@
 		user.apply_damage(5, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE)) // say goodbye to your kneecaps chucklenuts!
 	else
 		do_shaky_animation(1)
-		playsound(get_turf(src), 'sound/abnormalities/we_can_change_anything/change_generate.ogg', 50, FALSE)
+		playsound(get_turf(src), 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_generate.ogg', 50, FALSE)
 		switch(ramping_speed)
 			if(1 to 8)
 				ramping_speed -= 0.2
@@ -94,7 +94,7 @@
 	if(work_type != "Enter machine")
 		user.apply_status_effect(STATUS_EFFECT_CHANGE)
 	else
-		playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+		playsound(src, 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_gas.ogg', 50, TRUE)
 		sacrifice = FALSE
 		var/energy_generated = round(10 ** ( (total_damage/100) * 0.375) ) //exponential formula, caps out at 800 damage, generating 1000 PE.
 

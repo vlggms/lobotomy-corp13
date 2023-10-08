@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/bottle
 	name = "Bottle of Tears"
 	desc = "A bottle filled with water with a cake on top"
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/bottle_of_tears/icons/32x32.dmi'
 	icon_state = "bottle1"
 	icon_living = "bottle1"
 	maxHealth = 400
@@ -65,7 +65,7 @@
 			//Drowns you like Wellcheers does, so I mean the code checks out
 			for(var/turf/open/T in view(7, src))
 				new /obj/effect/temp_visual/water_waves(T)
-			playsound(get_turf(user), 'sound/abnormalities/bottle/bottledrown.ogg', 80, 0)
+			playsound(get_turf(user), 'ModularTegustation/modular_abnormalities/zayin/bottle_of_tears/sound/bottledrown.ogg', 80, 0)
 			icon_state = "bottle3" //cake all gone
 
 			/* "I get it now. There's no reason to have any emotions or a heart."

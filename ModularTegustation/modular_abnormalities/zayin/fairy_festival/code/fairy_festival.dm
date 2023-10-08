@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/fairy_festival
 	name = "Fairy Festival"
 	desc = "The abnormality is similar to a fairy, having two pairs of wings and a small body. The small fairies around it act as a cluster."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/fairy_festival/icons/32x32.dmi'
 	icon_state = "fairy"
 	icon_living = "fairy"
 	maxHealth = 83
@@ -51,7 +51,7 @@
 		protected_people += user
 		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/FairyGib)
 		to_chat(user, "<span class='nicegreen'>You feel at peace under the fairies' care.</span>")
-		playsound(get_turf(user), 'sound/abnormalities/fairyfestival/fairylaugh.ogg', 50, 0, 2)
+		playsound(get_turf(user), 'ModularTegustation/modular_abnormalities/zayin/fairy_festival/sound/fairylaugh.ogg', 50, 0, 2)
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_heal", -MUTATIONS_LAYER))
 		addtimer(CALLBACK(src, .proc/FairyEnd, user), heal_duration)
 	return

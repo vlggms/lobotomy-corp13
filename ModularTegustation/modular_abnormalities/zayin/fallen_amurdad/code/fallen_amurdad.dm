@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/fallen_amurdad
 	name = "Fallen Amurdad"
 	desc = "This person is unresponsive, bleeding, and covered in plants."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/fallen_amurdad/icons/32x32.dmi'
 	icon_state = "amurdad"
 	icon_living = "amurdad"
 	threat_level = ZAYIN_LEVEL

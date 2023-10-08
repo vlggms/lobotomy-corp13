@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad
 	name = "Blubbering Toad"
 	desc = "A giant toad, wailing with tears in its eyes. The tears are thick, like a blue resin."
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/blubbering_toad/icons/64x64.dmi'
 	icon_state = "blubbering"
 	icon_living = "blubbering"
 	icon_dead = "blubbering_egg"
@@ -24,7 +24,7 @@
 	melee_damage_upper = 45
 	max_boxes = 10
 	ranged = TRUE
-	attack_sound = 'sound/abnormalities/blubbering_toad/attack.ogg'
+	attack_sound = 'ModularTegustation/modular_abnormalities/zayin/blubbering_toad/sound/attack.ogg'
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
 
@@ -68,7 +68,7 @@
 	if(health < 1)
 		return
 	var/num = pick(1,2,3,4)
-	playsound(get_turf(src), "sound/abnormalities/blubbering_toad/blurble[num].ogg", 100, FALSE)
+	playsound(get_turf(src), "ModularTegustation/modular_abnormalities/zayin/blubbering_toad/sound/blurble[num].ogg", 100, FALSE)
 	addtimer(CALLBACK(src, .proc/BlubberLoop), rand(3,10) SECONDS)
 	if(IsContained()) //isn't breached
 		HealPulse()
@@ -140,7 +140,7 @@
 		var/turf/target_turf = get_turf(target)
 		var/list/turfs_to_hit = getline(src, target_turf)
 		var/turf/MT = get_turf(src)
-		playsound(get_turf(src), "sound/abnormalities/blubbering_toad/tongue.ogg", 100, FALSE)
+		playsound(get_turf(src), "ModularTegustation/modular_abnormalities/zayin/blubbering_toad/sound/tongue.ogg", 100, FALSE)
 		MT.Beam(target_turf, "tongue", time=5)
 		icon_state = icon_tongue
 		for(var/turf/T in turfs_to_hit)
@@ -167,11 +167,11 @@
 		can_act = FALSE
 		animate(src, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		src.pixel_z = 16
-		playsound(src, 'sound/abnormalities/blubbering_toad/windup.ogg', 50, FALSE, 4)
+		playsound(src, 'ModularTegustation/modular_abnormalities/zayin/blubbering_toad/sound/windup.ogg', 50, FALSE, 4)
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		forceMove(get_turf(target)) //look out, someone is rushing you!
 		SLEEP_CHECK_DEATH(0.3)
-		playsound(src, 'sound/abnormalities/blubbering_toad/attack.ogg', 50, FALSE, 4)
+		playsound(src, 'ModularTegustation/modular_abnormalities/zayin/blubbering_toad/sound/attack.ogg', 50, FALSE, 4)
 		jump_cooldown = world.time + jump_cooldown_time
 		animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		src.pixel_z = 0

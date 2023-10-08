@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/mailpile
 	name = "Letters on Standby"
 	desc = "A pile of stamped letters, none reaching their intended receiver."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/letters_on_standby/icons/32x48.dmi'
 	icon_state = "mailbox"
 	maxHealth = 100
 	health = 100
@@ -72,7 +72,7 @@
 
 	cooldown = world.time + cooldown_time
 
-	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
+	playsound(get_turf(src), 'ModularTegustation/modular_abnormalities/zayin/letters_on_standby/sound/gotmail.ogg', 50, 1)
 
 	if(prob(25))
 		var/obj/item/parcelself/PARCEL = new(get_turf(src),user)
@@ -86,7 +86,7 @@
 	if(prob(60))
 		to_chat(user,"<span class='notice'>It seems the pile did not find a message for you.</span>")
 		return
-	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
+	playsound(get_turf(src), 'ModularTegustation/modular_abnormalities/zayin/letters_on_standby/sound/gotmail.ogg', 50, 1)
 
 	to_chat(user,"<span class='notice'>One of the letters from the pile slowly waves in the air.</span>")
 	var/obj/item/mailpaper/MAIL

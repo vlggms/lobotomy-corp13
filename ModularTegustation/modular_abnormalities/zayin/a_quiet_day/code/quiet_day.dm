@@ -5,7 +5,7 @@
 /mob/living/simple_animal/hostile/abnormality/quiet_day
 	name = "A Quiet Day"
 	desc = "An old weather damaged bench, it feels oddly nostalgic to you. Like a spring day at the side of a lake."
-	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/a_quiet_day/icons/48x48.dmi'
 	icon_state = "quiet_day"
 	maxHealth = 400
 	health = 400

@@ -245,7 +245,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
-	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'
+	hitsound = 'ModularTegustation/modular_abnormalities/zayin/blubbering_toad/sound/attack.ogg'
 
 /obj/item/ego_weapon/melty_eyeball/attack(mob/living/M, mob/living/user)
 	if(!ishuman(M) || M == user || !user.faction_check_mob(M) || (user.a_intent != INTENT_HELP))
@@ -259,7 +259,7 @@
 	if(HT.is_working)
 		to_chat(user,"<span class='notice'>You cannot defend others from responsibility!</span>")
 		return
-	playsound(get_turf(user), 'sound/abnormalities/blubbering_toad/blurble3.ogg', 25, 0, -9) //change to blubber sfx when toad is merged
+	playsound(get_turf(user), 'ModularTegustation/modular_abnormalities/zayin/blubbering_toad/sound/blurble3.ogg', 25, 0, -9) //change to blubber sfx when toad is merged
 	HT.visible_message("<span class='nicegreen'>[HT] is healed by the resin on [src] by [user]!</span>")
 	HT.adjustSanityLoss(-5)
 	HT.adjustBruteLoss(-5)

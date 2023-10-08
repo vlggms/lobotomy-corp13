@@ -1084,7 +1084,7 @@
 			continue
 		if(H.stat == DEAD)
 			continue
-		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
+		playsound(H, 'ModularTegustation/modular_abnormalities/zayin/one_sin/sound/bless.ogg', 100, FALSE, 12)
 		to_chat(H, "<span class='nicegreen'>[user]'s prayer was heard!</span>")
 		H.adjustBruteLoss(-100)
 		H.adjustSanityLoss(-100)

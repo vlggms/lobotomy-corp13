@@ -154,7 +154,7 @@
 		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 		user.do_attack_animation(target)
 		playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		playsound(loc, 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
@@ -169,7 +169,7 @@
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	playsound(loc, 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	switch(ramping_speed)
 		if(5 to 10)
 			Multihit(target, user, 1)
@@ -177,7 +177,7 @@
 			Multihit(target, user, 2)
 		if(15 to 20)
 			if(icon_state != "iron_maiden_open")
-				playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+				playsound(src, 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_gas.ogg', 50, TRUE)
 				icon_state = "iron_maiden_open"
 			Multihit(target, user, 3)
 	return
@@ -187,10 +187,10 @@
 		to_chat(user,"<span class='notice'>It is already revved down!</span>")
 		return
 	to_chat(user,"<span class='notice'>You being to cool down [src].</span>")
-	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+	playsound(src, 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_gas.ogg', 50, TRUE)
 	if(do_after(user, 2.5 SECONDS, src))
 		icon_state = "iron_maiden"
-		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
+		playsound(src, 'ModularTegustation/modular_abnormalities/zayin/we_can_change_anything/sound/change_start.ogg', 50, FALSE)
 		ramping_speed = 0
 		ramping_damage = 0
 		to_chat(user,"<span class='notice'>The mechanism on [src] dies down!</span>")

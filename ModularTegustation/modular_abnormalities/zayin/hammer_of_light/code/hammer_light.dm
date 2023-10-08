@@ -3,7 +3,7 @@
 /mob/living/simple_animal/hostile/abnormality/hammer_light
 	name = "Hammer of Light"
 	desc = "A white hammer engraved with yellow runic writing."
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/hammer_of_light/icons/64x64.dmi'
 	icon_state = "hammer_pedestal"
 	icon_living = "hammer_pedestal"
 	pixel_x = -16
@@ -43,10 +43,10 @@
 	var/usable_cooldown_time = 5 MINUTES
 
 	var/list/lock_sounds = list(
-	'sound/abnormalities/lighthammer/hammer_filterOut1.ogg','sound/abnormalities/lighthammer/hammer_filterOut2.ogg'
+	'ModularTegustation/modular_abnormalities/zayin/hammer_of_light/sound/hammer_filterOut1.ogg','ModularTegustation/modular_abnormalities/zayin/hammer_of_light/sound/hammer_filterOut2.ogg'
 	)
 	var/list/pickup_sounds = list(
-	'sound/abnormalities/lighthammer/hammer_usable1.ogg','sound/abnormalities/lighthammer/hammer_usable2.ogg'
+	'ModularTegustation/modular_abnormalities/zayin/hammer_of_light/sound/hammer_usable1.ogg','ModularTegustation/modular_abnormalities/zayin/hammer_of_light/sound/hammer_usable2.ogg'
 	)
 
 //Lock/Unlocking system
@@ -90,7 +90,7 @@
 
 	if(points >= points_threshold) //If we have enough points, we unseal
 		if(sealed)
-			playsound(get_turf(src), 'sound/abnormalities/lighthammer/chain.ogg', 75, 0, -9)
+			playsound(get_turf(src), 'ModularTegustation/modular_abnormalities/zayin/hammer_of_light/sound/chain.ogg', 75, 0, -9)
 		sealed = FALSE
 	else
 		if(!sealed) //If we don't have enough points, we seal
@@ -208,7 +208,7 @@
 	armortype = MELEE //Ignores armor for our intents and purposes.
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
-	hitsound = 'sound/abnormalities/lighthammer/hammer_filter.ogg'
+	hitsound = 'ModularTegustation/modular_abnormalities/zayin/hammer_of_light/sound/hammer_filter.ogg'
 	var/list/spawned_mobs = list()
 	var/spawned_mob_max = 4
 	var/spawn_cooldown = 0
@@ -371,7 +371,7 @@
 	gender = NEUTER
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
-	attack_sound = 'sound/abnormalities/lighthammer/hammer_filter.ogg'
+	attack_sound = 'ModularTegustation/modular_abnormalities/zayin/hammer_of_light/sound/hammer_filter.ogg'
 	health = 1000
 	maxHealth = 1000
 	faction = list("neutral") //Should always be overridden

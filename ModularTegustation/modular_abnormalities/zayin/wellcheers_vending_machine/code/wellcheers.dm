@@ -2,7 +2,7 @@
 /mob/living/simple_animal/hostile/abnormality/wellcheers
 	name = "Wellcheers Vending Machine"
 	desc = "A vending machine selling cans of \"Wellcheers\"."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/wellcheers_vending_machine/icons/32x32.dmi'
 	icon_state = "wellcheers_vendor"
 	icon_living = "wellcheers_vendor"
 	layer = BELOW_OBJ_LAYER
@@ -49,7 +49,7 @@
 /mob/living/simple_animal/hostile/abnormality/wellcheers/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	for(var/turf/open/T in view(7, src))
 		new /obj/effect/temp_visual/water_waves(T)
-	playsound(get_turf(src), 'sound/abnormalities/wellcheers/ability.ogg', 75, 0)
+	playsound(get_turf(src), 'ModularTegustation/modular_abnormalities/zayin/wellcheers_vending_machine/sound/ability.ogg', 75, 0)
 	to_chat(user, "<span class='userdanger'>You feel sleepy...</span>")
 	user.AdjustSleeping(10 SECONDS)
 	var/shrimpspot = locate(/obj/effect/landmark/shrimpship) in world.contents

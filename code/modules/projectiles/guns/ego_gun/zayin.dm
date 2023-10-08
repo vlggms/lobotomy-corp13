@@ -102,7 +102,7 @@
 		while(shrimpcount < 2)
 			new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
 			shrimpcount += 1
-	user.playsound_local(get_turf(user), 'sound/abnormalities/wellcheers/shrimptaps.ogg', 50, 0)
+	user.playsound_local(get_turf(user), 'ModularTegustation/modular_abnormalities/zayin/wellcheers_vending_machine/sound/shrimptaps.ogg', 50, 0)
 
 //friendly spawned shrimp
 /mob/living/simple_animal/hostile/shrimp/friendly

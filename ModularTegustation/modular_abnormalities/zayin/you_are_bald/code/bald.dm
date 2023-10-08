@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/bald
 	name = "You’re Bald..."
 	desc = "A helpful sphere, you think."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon = 'ModularTegustation/modular_abnormalities/zayin/you_are_bald/icons/32x32.dmi'
 	icon_state = "bald1"
 	icon_living = "bald1"
 	maxHealth = 50
