@@ -149,6 +149,9 @@
 	melee_damage_upper = 17
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/indigo_elegant = 1,
+						/obj/item/stack/sheet/silk/indigo_advanced = 2,
+						/obj/item/stack/sheet/silk/indigo_simple = 4)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'

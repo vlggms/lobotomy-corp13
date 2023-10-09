@@ -322,12 +322,6 @@
 /obj/machinery/vending/weaving,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"cr" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 5
-	},
-/turf/open/floor/plating/ashplanet/rocky,
-/area/city/backstreets_checkpoint)
 "cw" = (
 /obj/machinery/vending/hana,
 /turf/open/floor/facility/white,
@@ -1079,12 +1073,6 @@
 	},
 /turf/open/floor/wood,
 /area/city/fixers)
-"iE" = (
-/obj/machinery/door/airlock/hatch{
-	req_access_txt = "ACCESS_CARGO"
-	},
-/turf/open/floor/facility/dark,
-/area/city/backstreets_room)
 "iF" = (
 /obj/machinery/door/poddoor/shutters/indestructible{
 	name = "Malfunctioning Backstreets Shutters"
@@ -1271,6 +1259,12 @@
 /obj/item/stack/spacecash/c100,
 /turf/open/floor/facility/dark,
 /area/city)
+"kH" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "31"
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "kJ" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -1747,15 +1741,6 @@
 /obj/structure/window/reinforced/survival_pod,
 /turf/open/floor/mineral/silver,
 /area/city/shop)
-"qq" = (
-/obj/machinery/door/airlock/hatch{
-	req_access_txt = "ACCESS_CARGO"
-	},
-/obj/effect/turf_decal/trimline/red/filled/shrink_cw{
-	dir = 8
-	},
-/turf/open/floor/facility/dark,
-/area/city/backstreets_room)
 "qu" = (
 /obj/machinery/light{
 	dir = 1
@@ -1776,6 +1761,16 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/checker,
 /area/city/house)
+"qF" = (
+/obj/machinery/door/airlock/hatch{
+	name = "Staff Only";
+	req_access_txt = "31"
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "qG" = (
 /obj/machinery/door/window{
 	dir = 4
@@ -1827,9 +1822,9 @@
 /obj/machinery/door/airlock/medical{
 	hackProof = 1;
 	integrity_failure = 0.1;
-	max_integrity = 999999999;
+	max_integrity = 1e+009;
 	name = "Secure medical room";
-	normal_integrity = 999999999;
+	normal_integrity = 1e+009;
 	req_access_txt = "5"
 	},
 /turf/open/floor/plasteel/showroomfloor,
@@ -4240,9 +4235,9 @@
 /obj/machinery/door/airlock/medical{
 	hackProof = 1;
 	integrity_failure = 0.1;
-	max_integrity = 999999999;
+	max_integrity = 1e+009;
 	name = "Secure medical room";
-	normal_integrity = 999999999;
+	normal_integrity = 1e+009;
 	req_access_txt = "5"
 	},
 /turf/open/indestructible/white,
@@ -4517,16 +4512,6 @@
 /obj/item/food/meat/slab,
 /turf/open/indestructible/hoteltile,
 /area/city/house)
-"Ms" = (
-/obj/machinery/door/airlock/hatch{
-	req_access_txt = "ACCESS_CARGO";
-	name = "Staff Only"
-	},
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 8
-	},
-/turf/open/floor/facility/dark,
-/area/city/backstreets_room)
 "My" = (
 /obj/structure/potential,
 /turf/open/floor/facility/white,
@@ -5167,6 +5152,15 @@
 "Ut" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
+"Uy" = (
+/obj/machinery/door/airlock/hatch{
+	req_access_txt = "31"
+	},
+/obj/effect/turf_decal/trimline/red/filled/shrink_cw{
+	dir = 8
+	},
+/turf/open/floor/facility/dark,
+/area/city/backstreets_room)
 "Uz" = (
 /obj/structure/rack,
 /turf/open/indestructible/white,
@@ -5442,8 +5436,8 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/table/reinforced,
 /obj/item/storage/box/bodybags{
-	pixel_y = -4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -4
 	},
 /obj/item/storage/firstaid{
 	pixel_x = 9;
@@ -27717,7 +27711,7 @@ Oq
 XQ
 VS
 EE
-Ms
+qF
 Ov
 ay
 ay
@@ -27975,7 +27969,7 @@ XQ
 IA
 vY
 XQ
-iE
+kH
 cq
 vY
 iA
@@ -28490,7 +28484,7 @@ KG
 fK
 pQ
 XP
-qq
+Uy
 UZ
 Gf
 Yp

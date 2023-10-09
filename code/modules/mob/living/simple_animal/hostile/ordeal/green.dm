@@ -220,6 +220,9 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
+	silk_results = list(/obj/item/stack/sheet/silk/green_elegant = 1,
+						/obj/item/stack/sheet/silk/green_advanced = 2,
+						/obj/item/stack/sheet/silk/green_simple = 4)
 	deathsound = 'sound/effects/ordeals/green/dusk_dead.ogg'
 	var/spawn_progress = 18 //spawn ready to produce robots
 	var/list/spawned_mobs = list()

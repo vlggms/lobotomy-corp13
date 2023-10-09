@@ -34,6 +34,14 @@
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "advanced_indigo_silk"
 
+/obj/item/stack/sheet/silk/indigo_elegant
+	name = "Elegant Indigo Silk"
+	desc = "Silk woven from a sweeper commander... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk. Increases BLACK resistance by 15, Decreases WHITE by 15 when attached to armor."
+	added_armor = new(black = 15, white = -15)
+	merge_type = /obj/item/stack/sheet/silk/indigo_elegant
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "elegant_indigo_silk"
+
 /obj/item/stack/sheet/silk/green_simple
 	name = "Simple Green Silk"
 	desc = "Silk woven from a spear bot... Can be used to upgrade your armor. Looks like it is from the simple variety of silk Increases RED resistance by 5, Decreases BLACK by 5 when attached to armor."
@@ -50,6 +58,14 @@
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "advanced_green_silk"
 
+/obj/item/stack/sheet/silk/green_elegant
+	name = "Elegant Green Silk"
+	desc = "Silk woven from a factory... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk Increases RED resistance by 15, Decreases BLACK by 15 when attached to armor."
+	added_armor = new(red = 15, black = -15)
+	merge_type = /obj/item/stack/sheet/silk/green_elegant
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "elegant_green_silk"
+
 /obj/item/stack/sheet/silk/steel_simple
 	name = "Simple Steel Silk"
 	desc = "Silk woven from a gene corp remnant... Can be used to upgrade your armor. Looks like it is from the simple variety of silk. Increases RED resistance by 5, Decreases white by 5 when attached to armor."
@@ -58,6 +74,14 @@
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "simple_steel_silk"
 
+/obj/item/stack/sheet/silk/steel_advanced
+	name = "Advanced Steel Silk"
+	desc = "Silk woven from a gene corp corporal... Can be used to upgrade your armor. Looks like it is from the simple variety of silk Increases RED resistance by 10, Decrease WHITE by 10 when attached to armor."
+	added_armor = new(red = 10, white = -10)
+	merge_type = /obj/item/stack/sheet/silk/steel_advanced
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "advanced_steel_silk"
+
 /obj/item/stack/sheet/silk/amber_simple
 	name = "Simple Amber Silk"
 	desc = "Silk woven from a carnivores worm... Can be used to upgrade your armor. Looks like it is from the simple variety of silk Decrease RED resistance by 5, Increases BLACK by 5 when attached to armor."
@@ -65,6 +89,14 @@
 	merge_type = /obj/item/stack/sheet/silk/amber_simple
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "simple_amber_silk"
+
+/obj/item/stack/sheet/silk/amber_advanced
+	name = "Advanced Amber Silk"
+	desc = "Silk woven from a, Wait... How did they get it? Can be used to upgrade your armor. Looks like it is from the simple variety of silk Decrease RED resistance by 10, Increases BLACK by 10 when attached to armor."
+	added_armor = new(red = -10, black = 10)
+	merge_type = /obj/item/stack/sheet/silk/amber_advanced
+	icon = 'icons/obj/stack_objects.dmi'
+	icon_state = "advanced_amber_silk"
 
 /obj/item/stack/sheet/silk/human_simple
 	name = "Simple Human Silk"
@@ -108,21 +140,47 @@
 	if(ishuman(meat))
 		var/mob/living/carbon/human/H = meat
 		var/total = get_attribute_level(H, FORTITUDE_ATTRIBUTE) + get_attribute_level(H, PRUDENCE_ATTRIBUTE) + get_attribute_level(H, TEMPERANCE_ATTRIBUTE) + get_attribute_level(H, JUSTICE_ATTRIBUTE)
-		if (total < 160)
-			new /obj/item/stack/sheet/silk/human_simple (T)
-		else if (total < 240)
-			new /obj/item/stack/sheet/silk/human_advanced (T)
+
+		// Simple Human, 1 Simple.
+		// Advanced Human, 1 Advanced, 2 Simple
+		// Elegant Human, 1 Elegant, 2 advanced, 4 Simple
+		// Masterpiece Human, 1 Masterpiece, 2 Elegant, 4 Advanced, 8 Simple
+		var/simple_silk = 0
+		var/adv_silk = 0
+		var/elegant_silk = 0
+		var/master_silk = 0
+
+		if (total < 240)
+			simple_silk = 1
 		else if (total < 320)
-			new /obj/item/stack/sheet/silk/human_elegant (T)
+			simple_silk = 2
+			adv_silk = 1
+		else if (total < 400)
+			simple_silk = 4
+			adv_silk = 2
+			elegant_silk = 1
 		else
-			new /obj/item/stack/sheet/silk/human_masterpiece (T)
+			simple_silk = 8
+			adv_silk = 4
+			elegant_silk = 2
+			master_silk = 1
+
+		CreateSilk(simple_silk, /obj/item/stack/sheet/silk/human_simple, T)
+		CreateSilk(adv_silk, /obj/item/stack/sheet/silk/human_advanced, T)
+		CreateSilk(elegant_silk, /obj/item/stack/sheet/silk/human_elegant, T)
+		CreateSilk(master_silk, /obj/item/stack/sheet/silk/human_masterpiece, T)
+
 	for(var/S in meat.silk_results)
 		var/obj/item/stack/sheet/silk/a_silk = S
-		var/amount = meat.silk_results[a_silk]
-		for(var/_i in 1 to amount)
-			a_silk = new a_silk
-			a_silk.loc = T
+		a_silk = new a_silk
+		a_silk.loc = T
+		a_silk.amount = meat.silk_results[S]
 
+/datum/component/butchering/silkbutchering/proc/CreateSilk(amount, silk_type, T)
+	if (amount > 0)
+		var/obj/item/stack/sheet/silk/a_silk = new silk_type ()
+		a_silk.loc = T
+		a_silk.amount = amount
 
 /obj/item/silkknife
 	name = "Silkweaver"

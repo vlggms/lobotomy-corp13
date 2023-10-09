@@ -13,7 +13,7 @@
 
 	allow_bureaucratic_error = FALSE
 	maptype = "city"
-	paycheck = 200
+	paycheck = 100
 
 	allow_bureaucratic_error = FALSE
 	maptype = list("wonderlabs", "city")
