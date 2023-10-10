@@ -35,15 +35,17 @@
 //Limit increaser
 /obj/item/limit_increase
 	name = "ncorp limit breaker"
-	desc = "A fluid used to increase the user's maximum potential. Use in hand to activate."
+	desc = "A fluid used to increase an agent's maximum potential. Use in hand to activate."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "ncorp_syringe5"
 	var/amount = 140
 
 /obj/item/limit_increase/attack_self(mob/living/carbon/human/user)
-	if(user?.mind?.assigned_role != "Agent")
-		to_chat(user, "<span class='notice'>This is not for you.</span>")
+	if(user?.mind?.assigned_role in GLOB.security_positions)
+		to_chat(user, "<span class='nicegreen'>You feel like you can become even more powerful.</span>")
+		user.set_attribute_limit(amount)
+		qdel(src)
 		return
-	to_chat(user, "<span class='nicegreen'>You feel like you can become even more powerful.</span>")
-	user.set_attribute_limit(amount)
-	qdel(src)
+	to_chat(user, "<span class='notice'>This is not for you.</span>")
+	return
+

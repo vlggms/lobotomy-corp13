@@ -12,17 +12,6 @@
 	ItemUnlock(caller.order_list, "K Corp Ampule ",	/obj/item/ksyringe, 300)
 	..()
 
-/datum/data/lc13research/medbeam
-	research_name = "K Corp Experimental Beamgun "
-	research_desc = "L Corp Branch Representative. <br>I have a new breakthrough in our technology regarding the nanomachines. <br>This item will fire a stream of continuous Kcorp syringe fluid at a distance.  <br>Use it wisely.  <br>- Jill, from research."
-	cost = AVERAGE_RESEARCH_PRICE+10
-	corp = K_CORP_REP
-	required_research = /datum/data/lc13research/syringe
-
-/datum/data/lc13research/medbeam/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/gun/medbeam(get_turf(caller))
-	..()
-
 /datum/data/lc13research/krevival
 	research_name = "K Corp Experimental Ampule "
 	research_desc = "Hey, listen buddy, it's Joe from research. <br>The supply team went home for the night, and I'm tired, but I need this tested. <br>It'll revive one guy, once. It's a major breakthrough, give it a shot."
