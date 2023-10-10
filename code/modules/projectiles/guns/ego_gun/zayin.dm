@@ -29,7 +29,7 @@
 		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
 		return
 	to_chat(H, "<span class='warning'>You use the [src] to create a field of baldness!</span>")
-	H.playsound_local(get_turf(H), 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 25, 0)
+	H.playsound_local(get_turf(H), 'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/hermit_magic.ogg', 25, 0)
 	BaldBlast(user)
 	pulse_cooldown = world.time + pulse_cooldown_time
 
@@ -102,7 +102,7 @@
 		while(shrimpcount < 2)
 			new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
 			shrimpcount += 1
-	user.playsound_local(get_turf(user), 'ModularTegustation/modular_abnormalities/zayin/wellcheers_vending_machine/sound/shrimptaps.ogg', 50, 0)
+	user.playsound_local(get_turf(user), 'sound/abnormalities/wellcheers/shrimptaps.ogg', 50, 0)
 
 //friendly spawned shrimp
 /mob/living/simple_animal/hostile/shrimp/friendly

@@ -973,7 +973,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("grabs", "pinches", "snips", "attacks")
 	attack_verb_simple = list("grab", "pinch", "snip", "attack")
-	hitsound = 'sound/abnormalities/kqe/hitsound2.ogg'
+	hitsound = 'ModularTegustation/modular_abnormalities/he/KQE/sound/hitsound2.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
@@ -1020,7 +1020,7 @@
 			return
 		var/obj/projectile/ego_bullet/replica/G = new /obj/projectile/ego_bullet/replica(proj_turf)
 		G.fired_from = src //for signal check
-		playsound(user, 'sound/abnormalities/kqe/load3.ogg', 100, TRUE)
+		playsound(user, 'ModularTegustation/modular_abnormalities/he/KQE/sound/load3.ogg', 100, TRUE)
 		G.firer = user
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()

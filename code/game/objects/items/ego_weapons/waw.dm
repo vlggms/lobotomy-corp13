@@ -876,8 +876,8 @@
 	damage = 30
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
-	hitsound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
-	hitsound_wall = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
+	hitsound = 'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/small_smash1.ogg'
+	hitsound_wall = 'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/small_smash1.ogg'
 
 /obj/item/ego_weapon/moonlight
 	name = "moonlight"
@@ -1036,7 +1036,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("smashes", "crushes", "flattens")
 	attack_verb_simple = list("smash", "crush", "flatten")
-	hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+	hitsound = 'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/big_smash1.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
@@ -1067,11 +1067,11 @@
 	attacks %= 3
 	switch(attacks)
 		if(0)
-			hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+			hitsound = 'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/big_smash1.ogg'
 		if(1)
-			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+			hitsound = 'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/big_smash2.ogg'
 		if(2)
-			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
+			hitsound = 'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/big_smash3.ogg'
 	if(!toggled)
 		if(prob(10))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(M))
@@ -1557,7 +1557,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("claws")
 	attack_verb_simple = list("claw")
-	hitsound = 'sound/abnormalities/big_wolf/Wolf_Hori.ogg'
+	hitsound = 'ModularTegustation/modular_abnormalities/waw/big_and_will_be_bad_wolf/sound/Wolf_Hori.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60

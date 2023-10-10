@@ -440,9 +440,9 @@
 	var/charges = 3
 	var/list/spawned_effects = list()
 	var/list/SFX = list(
-		'sound/abnormalities/wrath_servant/big_smash3.ogg',
-		'sound/abnormalities/wrath_servant/big_smash2.ogg',
-		'sound/abnormalities/wrath_servant/big_smash1.ogg'
+		'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/big_smash3.ogg',
+		'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/big_smash2.ogg',
+		'ModularTegustation/modular_abnormalities/waw/servant_of_wrath/sound/big_smash1.ogg'
 		)
 	var/damage = 30
 	var/list/targets_hit = list()
@@ -1084,7 +1084,7 @@
 			continue
 		if(H.stat == DEAD)
 			continue
-		playsound(H, 'ModularTegustation/modular_abnormalities/zayin/one_sin/sound/bless.ogg', 100, FALSE, 12)
+		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
 		to_chat(H, "<span class='nicegreen'>[user]'s prayer was heard!</span>")
 		H.adjustBruteLoss(-100)
 		H.adjustSanityLoss(-100)
