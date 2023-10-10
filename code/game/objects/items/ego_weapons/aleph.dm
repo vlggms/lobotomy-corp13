@@ -539,7 +539,7 @@
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
 	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
 	icon_state = "space"
-	force = 35	//Half white, half black.
+	force = 50	//Half white, half black.
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -588,10 +588,10 @@
 		return
 	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
 		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
-		for(var/turf/T in orange(1, user))
+		for(var/turf/T in orange(3, user))
 			new /obj/effect/temp_visual/smash_effect(T)
 
-		for(var/mob/living/L in livinginrange(1, user))
+		for(var/mob/living/L in range(3, user))
 			var/aoe = force
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
