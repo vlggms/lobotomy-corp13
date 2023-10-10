@@ -537,9 +537,9 @@
 /obj/item/ego_weapon/space
 	name = "out of space"
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
-	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
+	special = "Use this weapon in hand to dash. Attack after a dash for an strong AOE. Does a weaker AOE every third attack"
 	icon_state = "space"
-	force = 50	//Half white, half black.
+	force = 40///Half white, half black.
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -551,7 +551,9 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/canaoesmall
 	var/canaoe
+	var/hitcount = 0
 
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
 	if(!CanUseEgo(user))
@@ -573,16 +575,61 @@
 	icon_state = "space_aoe"
 	user.density = FALSE
 	user.adjustStaminaLoss(15, TRUE, TRUE)
-	user.throw_at(dodgelanding, 3, 2, spin = FALSE) // This still collides with people, by the way.
+	var/turf/target_turf = get_turf(user)
+	var/list/line_turfs = list(target_turf)
+	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, dodgelanding, 5)))
+		if(T.density)
+			break
+		for(var/mob/living/L in view(0, T))
+			if(L.density)
+				break
+		target_turf = T
+		line_turfs += T
+	user.forceMove(target_turf)
+	for(var/i = 1 to line_turfs.len)
+		var/turf/T = line_turfs[i]
+		if(!istype(T))
+			continue
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, user)
+		D.alpha = min(100 + i*15, 255)
+		animate(D, alpha = 0, time = 2 + i*2)
+		for(var/obj/machinery/door/MD in T.contents)
+			if(MD.density)
+				addtimer(CALLBACK (MD, .obj/machinery/door/proc/open))
 	canaoe = TRUE
 	sleep(3)
 	user.density = TRUE
 
 /obj/item/ego_weapon/space/attack(mob/living/target, mob/living/user)
 	..()
+	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+	hitcount++
+	if(hitcount == 3)
+		canaoesmall = TRUE
+		icon_state = "space_aoe"
 	if(!CanUseEgo(user))
 		return
-	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+	if(canaoesmall)
+		if(canaoe)
+			return
+		if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
+			playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
+			for(var/turf/T in orange(1, user))
+				new /obj/effect/temp_visual/smash_effect(T)
+
+			for(var/mob/living/L in livinginrange(1, user))
+				var/aoe = force * 0.5//20
+				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+				var/justicemod = 1 + userjust/100
+				aoe*=justicemod
+				if(L == user || ishuman(L))
+					continue
+				if(isanimal(L))
+					L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			hitcount = 0
+			icon_state = "space"
+			canaoesmall = FALSE
 
 	if(!canaoe)
 		return
@@ -591,20 +638,22 @@
 		for(var/turf/T in orange(3, user))
 			new /obj/effect/temp_visual/smash_effect(T)
 
-		for(var/mob/living/L in range(3, user))
-			var/aoe = force
+		for(var/mob/living/L in livinginrange(3, user))
+			var/aoe = force * 1.25//50
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
 			if(L == user || ishuman(L))
 				continue
-			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			if(isanimal(L))
+				L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 	icon_state = "space"
 	canaoe = FALSE
+	hitcount = 0
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
-	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
+		return "<span class='notice'>It deals [force] of both white and black damage.</span>"
 
 /obj/item/ego_weapon/seasons
 	name = "Seasons Greetings"
