@@ -207,11 +207,11 @@
 	can_buckle = TRUE
 
 /obj/structure/jbird_noose/attack_hand(mob/user)
-	if(has_buckled_mobs())
-		for(var/mob/living/L in buckled_mobs)
-			user_unbuckle_mob(L, user)
-	else
-		..()
+	if(!has_buckled_mobs())
+		return ..()
+	for(var/mob/living/L in buckled_mobs)
+		user_unbuckle_mob(L, user)
+	return
 
 /obj/structure/jbird_noose/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if(M.buckled)
@@ -230,7 +230,7 @@
 	M.pixel_x = M.base_pixel_x - 20
 //	animate(M, pixel_z = 16, time = 30)
 	addtimer(CALLBACK(src, .proc/BuckleAnimation, M), 10)
-	return..()
+	return ..()
 
 /obj/structure/jbird_noose/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
 	if(buckled_mob)
