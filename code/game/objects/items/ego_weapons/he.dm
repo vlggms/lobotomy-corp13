@@ -596,7 +596,7 @@
 	icon_state = "homing_instinct"
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
-	force = 60
+	force = 50
 	attack_speed = 4//Really really slow.
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
