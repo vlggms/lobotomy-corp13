@@ -50,11 +50,11 @@
 			heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
 		// Common folk
 		if("Agent")
-			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf)
+			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf, /obj/item/toy/plush/pinocchio)
 		if("Agent Intern")
 			heirloom_type = pick(/obj/item/toy/plush/scorched)
 		if("Clerk")
-			heirloom_type = pick(/obj/item/toy/plush/moth)
+			heirloom_type = pick(/obj/item/toy/plush/moth, /obj/item/toy/plush/pinocchio)
 		// Ruins test
 		if("Rabbit Team Leader")
 			heirloom_type = pick(/obj/item/toy/plush/myo)
