@@ -30,7 +30,8 @@
 		/obj/item/ego_weapon/city/donghwan,
 		/obj/item/ego_weapon/city/mirae,
 		/obj/item/ego_weapon/city/mirae/page,
-		/obj/item/clothing/suit/armor/ego_gear/city/udjat,)
+		/obj/item/clothing/suit/armor/ego_gear/city/udjat,
+		)
 
 //Includes Molar, Hook Office, Misc fixers, Gaze Office and Jeong's Office, as well as color fixers
 /obj/structure/lootcrate/workshopallas
@@ -60,8 +61,9 @@
 		/obj/item/ego_weapon/black_silence_gloves,
 		/obj/item/ego_weapon/city/vermillion,
 		/obj/item/ego_weapon/mimicry/kali,
-		/obj/item/ego_weapon/city/reverberation)
-
+		/obj/item/ego_weapon/city/reverberation,
+		/obj/item/ego_weapon/city/pt/slash,
+		)
 
 //Zelkova Workshop is the last one, Includes Dawn office, Wedge Office and Fullstop.
 //Basically this is the low-level Fixers on Ecorp
@@ -95,7 +97,8 @@
 		/obj/item/gun/ego_gun/city/fullstop/deagle,
 		/obj/item/clothing/suit/armor/ego_gear/city/dawnleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/wedgeleader,
-		/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader,)
+		/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader,
+		)
 
 //Rosespanner Workshop. Mostly cheap to actually take advantage of the Gearsystem
 /obj/structure/lootcrate/workshoprosespanner
@@ -106,7 +109,7 @@
 		/obj/item/rosespanner_gear,
 		/obj/item/rosespanner_gear/white,
 		/obj/item/rosespanner_gear/black,
-	)
+		)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/charge/rosespanner/hammer,
