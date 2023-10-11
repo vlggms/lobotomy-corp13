@@ -648,7 +648,6 @@
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(H.move_to_delay*slow_down , 3 SECONDS)
 
-
 /obj/item/ego_weapon/shield/maneater
 	name = "man eater"
 	desc = "If friends were flowers, I'd pick you!"
