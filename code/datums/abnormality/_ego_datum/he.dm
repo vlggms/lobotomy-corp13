@@ -189,7 +189,11 @@
 	cost = 35
 
 /datum/ego_datum/weapon/homing_instinct
-	item_path = /obj/item/ego_weapon/lance/homing_instinct
+	item_path = /obj/item/ego_weapon/homing_instinct
+	cost = 35
+
+/datum/ego_datum/weapon/yellow_brick
+	item_path = /obj/item/ego_weapon/lance/yellow_brick
 	cost = 35
 
 /datum/ego_datum/armor/homing_instinct_old
