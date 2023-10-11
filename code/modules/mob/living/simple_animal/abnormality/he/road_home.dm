@@ -28,7 +28,7 @@
 	can_patrol = FALSE
 	deathsound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
 	ego_list = list(
-		/datum/ego_datum/weapon/yellow_brick.
+		/datum/ego_datum/weapon/brick_road,
 		/datum/ego_datum/weapon/homing_instinct,
 		/datum/ego_datum/armor/homing_instinct
 		)
