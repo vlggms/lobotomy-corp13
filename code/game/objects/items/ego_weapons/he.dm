@@ -545,49 +545,65 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-//gains 0.25 force for every step you take, up to 100 damage. However it deals 0 damage by default, making it more useful as a sidearm rather than a main weapon.
-/obj/item/ego_weapon/homing_instinct
+/obj/item/ego_weapon/lance/homing_instinct
 	name = "homing instinct"
 	desc = "It's about the journey AND the destination!"
-	special = "This weapon's damage scale with the number of steps you've taken before striking."
+	special = "This weapon leaves slowing yellow bricks from charging"
 	icon_state = "homing_instinct"
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
-	force = 22 //Damage is crushed down
-	attack_speed = 3
+	force = 40
+	attack_speed = 2.5//Really really slow due to hitting them with a mini house.
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
 	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
-	var/mob/current_holder
+	reach = 1//its short
+	force_cap = 100 //Old max damage when it was damage = amount you walked.
+	force_per_tile = 5 //if I can read, this means you need to cross 20 tiles for max damage
+	pierce_force_cost = 20
+	charge_speed_cap = 2//more of a jog then a ram
+	couch_cooldown_time = 5 SECONDS //Makes it more risky
 
-/obj/item/ego_weapon/homing_instinct/equipped(mob/living/carbon/human/user, slot)
-	. = ..()
-	if(!user)
-		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
-	current_holder = user
-
-/obj/item/ego_weapon/homing_instinct/Destroy(mob/user)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	current_holder = null
-	return ..()
-
-/obj/item/ego_weapon/homing_instinct/dropped(mob/user)
-	. = ..()
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	current_holder = null
-
-/obj/item/ego_weapon/homing_instinct/attack(mob/living/M, mob/living/carbon/human/user)
+/obj/item/ego_weapon/lance/homing_instinct/UserMoved(mob/user)
 	..()
-	force = round(force/2) //It doesn't lose all its force in one go after each hit.
+	if(!raised)
+		playsound(src, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 100, FALSE, 8)
+		new /obj/effect/golden_road2(get_turf(user))
 
-/obj/item/ego_weapon/homing_instinct/proc/UserMoved()
-	SIGNAL_HANDLER
-	if(force < 100)
-		force += 0.25 //It charges pretty slowly, but people walk pretty fast thanks to justice.
+//Not an actual floor, but an effect you put on top of it.
+/obj/effect/golden_road2
+	name = "Golden Road"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "gold" //note : find a proper brick road sprite later
+	alpha = 0
+	anchored = TRUE
+	var/slow_down = 0.75//25% slow
+	var/list/faction = list("neutral")
+
+/obj/effect/golden_road2/Initialize()
+	. = ..()
+	QDEL_IN(src, 30 SECONDS)
+	animate(src, alpha = 255,transform= transform, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/FadeOut), 29.5 SECONDS)
+	for(var/i = 1 to 30)
+		addtimer(CALLBACK(src, .proc/Slow), i * 1 SECONDS)
+
+/obj/effect/golden_road2/proc/FadeOut()
+	animate(src, alpha = 0, time = 0.5 SECONDS)
+
+/obj/effect/golden_road2/proc/Slow()
+	for(var/turf/T in range(0, src))
+		if(T.z != z)
+			continue
+		for(var/mob/living/L in T)
+			if(faction_check(L.faction, src.faction))
+				continue
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(H.move_to_delay*slow_down , 3 SECONDS)
+	return ..()
 
 /obj/item/ego_weapon/shield/maneater
 	name = "man eater"
