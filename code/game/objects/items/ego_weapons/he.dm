@@ -593,14 +593,18 @@
 	name = "brick road"
 	desc = "To the wizard we go!"
 	special = "This weapon leaves slowing yellow bricks from charging"
-	icon_state = "homing_instinct"
+	icon_state = "brick_road"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	force = 50
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
 	attack_speed = 4//Really really slow.
-	attack_verb_continuous = list("pierces", "stabs")
-	attack_verb_simple = list("pierce", "stab")
-	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
+	attack_verb_continuous = list("stabs", "impales")
+	attack_verb_simple = list("stab", "impale")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
