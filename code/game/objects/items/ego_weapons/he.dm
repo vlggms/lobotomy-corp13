@@ -1724,11 +1724,7 @@
 	animate(src, alpha = 0, time = 0.5 SECONDS)
 
 /obj/effect/golden_road2/proc/Slow()
-	for(var/turf/T in range(0, src))
-		if(T.z != z)
+	for(var/mob/living/simple_animal/hostile/H in get_turf(src))
+		if(faction_check(H.faction, faction))
 			continue
-		for(var/mob/living/L in T)
-			if(faction_check(L.faction, src.faction))
-				continue
-			var/mob/living/simple_animal/hostile/H = L
-			H.apply_status_effect(/datum/status_effect/brown_bricks)
+		H.apply_status_effect(/datum/status_effect/brown_bricks)
