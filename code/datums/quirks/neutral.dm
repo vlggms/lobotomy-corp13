@@ -54,7 +54,7 @@
 		if("Agent Intern")
 			heirloom_type = pick(/obj/item/toy/plush/scorched)
 		if("Clerk")
-			heirloom_type = pick(/obj/item/toy/plush/moth, /obj/item/toy/plush/pinocchio)
+			heirloom_type = pick(/obj/item/toy/plush/moth)
 		// Ruins test
 		if("Rabbit Team Leader")
 			heirloom_type = pick(/obj/item/toy/plush/myo)
