@@ -180,3 +180,11 @@
 	crate = /obj/structure/lootcrate/backstreets
 	power_timer = 180 	//Takes a bit
 	crate_timer = 180	//And it's super cheap
+
+/obj/structure/pe_sales/jcorp
+	name = "J-corp Syndicate Power Input"
+	desc = "A machine used to send PE to J-corp's syndicates"
+	icon_state = "machinejcorp"
+	crate = /obj/structure/lootcrate/jcorp
+	power_timer = 180 	//Takes a bit
+	crate_timer = 180	//And it's super cheap
