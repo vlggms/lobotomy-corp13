@@ -46,6 +46,10 @@
 	med_hud_set_health() //show medhud while in containment
 	med_hud_set_status()
 
+//Cameras cant auto track it now.
+/mob/living/simple_animal/hostile/abnormality/meat_lantern/can_track(mob/living/user)
+	return FALSE
+
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PickTarget(list/Targets)
 	return FALSE
 

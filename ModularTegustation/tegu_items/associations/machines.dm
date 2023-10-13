@@ -144,8 +144,6 @@
 	if(spawntype)
 		new spawntype (get_turf(src))
 		qdel(I)
-		if(prob(5))
-			new /obj/structure/lootcrate/tres (get_turf(src))
 	return TRUE
 
 /obj/structure/potential

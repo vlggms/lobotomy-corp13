@@ -320,8 +320,7 @@
 	var/pissed_threshold = 16
 
 	//phase speedchange
-	var/phase2speed = 2.4
-	var/phase3speed = 1.8
+	var/phasespeedchange = -0.6
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/Move()
@@ -512,8 +511,7 @@
 
 	maxHealth = 4000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
-	move_to_delay = phase2speed
-	UpdateSpeed()
+	SpeedChange(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -531,8 +529,7 @@
 
 	maxHealth = 3000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
-	move_to_delay = phase3speed
-	UpdateSpeed()
+	SpeedChange(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15

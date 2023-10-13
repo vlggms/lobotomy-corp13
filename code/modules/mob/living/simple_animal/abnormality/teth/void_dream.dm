@@ -69,8 +69,7 @@
 		return
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	punched = TRUE
-	move_to_delay = 4
-	UpdateSpeed()
+	SpeedChange(-2)
 	ability_cooldown_time = 8 SECONDS
 	ability_cooldown = 0
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)

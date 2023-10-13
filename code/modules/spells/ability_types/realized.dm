@@ -864,7 +864,7 @@
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
 /*Child of the Galaxy - Our Galaxy */
 /obj/effect/proc_holder/ability/galaxy_gift
@@ -1271,7 +1271,7 @@
 	if(!(LAZYLEN(targets)))
 		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
 		return
-	
+
 	cooldown = world.time + (7 SECONDS)
 	var/turf/origin = get_turf(user)
 	var/dash_count = min(targets.len*3, 30) //Max 10 targets (7 Seconds)
@@ -1290,7 +1290,7 @@
 			targets -= L
 		if(!LAZYLEN(targets) || user.stat == DEAD)
 			break
-	
+
 	user.alpha = 255
 	new /obj/effect/temp_visual/rip_space(origin)
 	user.forceMove(origin)

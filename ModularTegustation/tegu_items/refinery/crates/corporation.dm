@@ -43,14 +43,17 @@
 		/obj/item/ego_weapon/city/kcorp,
 		/obj/item/ego_weapon/shield/kcorp,
 		/obj/item/ego_weapon/city/kcorp/axe,
-		/obj/item/gun/ego_gun/pistol/kcorp,)
+		/obj/item/gun/ego_gun/pistol/kcorp,
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1,
+		)
 
-	veryrareloot =	list(/obj/item/clothing/under/rank/k_corporation/intern,
+	veryrareloot =	list(
+		/obj/item/clothing/under/rank/k_corporation/intern,
 		/obj/item/ego_weapon/city/kcorp/spear,
 		/obj/item/ego_weapon/city/kcorp/dspear,
 		/obj/item/gun/ego_gun/pistol/kcorp/smg,
 		/obj/item/gun/ego_gun/pistol/kcorp/nade,
-		/obj/item/clothing/suit/armor/ego_gear/city/kcorp,
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3,
 		/obj/item/toy/plush/bongy,
 		)
 
@@ -144,21 +147,21 @@
 	desc = "A crate recieved from W-Corp. Open with a Crowbar."
 	icon_state = "crate_wcorp"
 	lootlist =	list(
-		/obj/item/ego_weapon/city/wcorp,
+		/obj/item/ego_weapon/city/charge/wcorp,
 		/obj/item/clothing/head/wcorp,
 		/obj/item/clothing/under/suit/lobotomy/wcorp,
 		/obj/item/clothing/suit/armor/ego_gear/wcorp,
 		/obj/item/powered_gadget/teleporter)
 
-	rareloot =	list(/obj/item/ego_weapon/city/wcorp/fist,
-		/obj/item/ego_weapon/city/wcorp/axe,
-		/obj/item/ego_weapon/city/wcorp/spear,
-		/obj/item/ego_weapon/city/wcorp/dagger,
-		/obj/item/ego_weapon/city/wcorp/hammer,
-		/obj/item/ego_weapon/city/wcorp/hatchet,
-		/obj/item/ego_weapon/city/wcorp/shield,
-		/obj/item/ego_weapon/city/wcorp/shield/spear,
-		/obj/item/ego_weapon/city/wcorp/shield/club,
-		/obj/item/ego_weapon/city/wcorp/shield/axe,
+	rareloot =	list(/obj/item/ego_weapon/city/charge/wcorp/fist,
+		/obj/item/ego_weapon/city/charge/wcorp/axe,
+		/obj/item/ego_weapon/city/charge/wcorp/spear,
+		/obj/item/ego_weapon/city/charge/wcorp/dagger,
+		/obj/item/ego_weapon/city/charge/wcorp/hammer,
+		/obj/item/ego_weapon/city/charge/wcorp/hatchet,
+		/obj/item/ego_weapon/city/charge/wcorp/shield,
+		/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
+		/obj/item/ego_weapon/city/charge/wcorp/shield/club,
+		/obj/item/ego_weapon/city/charge/wcorp/shield/axe,
 		)
 

@@ -82,7 +82,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	. = ..()
-	UpdateSpeed()
 	if(!(type in GLOB.cached_abno_work_rates))
 		GLOB.cached_abno_work_rates[type] = work_chances.Copy()
 	if(!(type in GLOB.cached_abno_resistances))
@@ -173,6 +172,11 @@
 	var/obj/item/reagent_containers/my_container = O
 	HarvestChem(my_container, user)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/can_track(mob/living/user)
+	if((status_flags & GODMODE))
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
 	visible_message(HarvestMessageProcess(harvest_phrase_third, user, C), HarvestMessageProcess(harvest_phrase, user, C))

@@ -716,28 +716,13 @@
 							)
 
 /obj/item/ego_weapon/shield/legerdemain/attack_self(mob/user)//FIXME: Find a better way to use this override!
-	if (!ishuman(user))
-		return FALSE
-	if (block == 0)
-		var/mob/living/carbon/human/shield_user = user
-		if(!CanUseEgo(shield_user))
+	if(block == 0) //Extra check because shields returns nothing on 1
+		if(..())
+			RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, .proc/NoParry, override = TRUE)//creates runtimes without overrides, double check if something's fucked
+			RegisterSignal(user, COMSIG_PARENT_ATTACKBY, .proc/NoParry, override = TRUE)//728 and 729 must be able to unregister the signal of 730
+			return TRUE
+		else
 			return FALSE
-		if(shield_user.physiology.armor.bomb)
-			to_chat(shield_user,"<span class='warning'>You're still off-balance!</span>")
-			return FALSE
-		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
-			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
-				return FALSE
-		block = TRUE
-		block_success = FALSE
-		shield_user.physiology.armor = shield_user.physiology.armor.modifyRating(red = reductions[1], white = reductions[2], black = reductions[3], pale = reductions[4], bomb = 1)
-		RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, .proc/NoParry, override = TRUE)//creates runtimes without overrides, double check if something's fucked
-		RegisterSignal(user, COMSIG_PARENT_ATTACKBY, .proc/NoParry, override = TRUE)//728 and 729 must be able to unregister the signal of 730
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration)
-		to_chat(user,"<span class='userdanger'>[block_message]</span>")
-		return TRUE
 
 /obj/item/ego_weapon/shield/legerdemain/proc/NoParry(mob/living/carbon/human/user, obj/item/L)//Disables AnnounceBlock when attacked by an item or a human
 	SIGNAL_HANDLER
@@ -1667,3 +1652,79 @@
 	new /obj/effect/temp_visual/beakbite(get_turf(owner))
 
 #undef STATUS_EFFECT_FAIRYBITE
+
+/obj/item/ego_weapon/lance/brick_road
+	name = "brick road"
+	desc = "To the wizard we go!"
+	special = "This weapon leaves slowing yellow bricks from charging"
+	icon_state = "brick_road"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	force = 50
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	attack_speed = 4//Really really slow.
+	attack_verb_continuous = list("stabs", "impales")
+	attack_verb_simple = list("stab", "impale")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+	reach = 2
+	force_cap = 100 //Old max damage when it was damage = amount you walked.
+	force_per_tile = 5 //if I can read, this means you need to cross 20 tiles for max damage
+	pierce_force_cost = 20
+	charge_speed_cap = 2//more of a jog then a ram
+	couch_cooldown_time = 5 SECONDS
+
+/obj/item/ego_weapon/lance/brick_road/UserMoved(mob/user)
+	..()
+	if(!raised)
+		playsound(src, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 100, FALSE, 8)
+		new /obj/effect/golden_road2(get_turf(user))
+
+/datum/status_effect/brown_bricks
+	id = "brown_bricks"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 3 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/brown_bricks
+
+/datum/status_effect/brown_bricks/on_apply()
+	. = ..()
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/hostile/M = owner
+	M.TemporarySpeedChange(M.move_to_delay*0.25 , 3 SECONDS)
+
+/atom/movable/screen/alert/status_effect/brown_bricks
+	name = "Yello Bricks"
+	desc = "These DAMN bricks are slowing you down by 25%!"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "gold" //note : find a proper brick road sprite later
+
+//Not an actual floor, but an effect you put on top of it.
+/obj/effect/golden_road2
+	name = "Golden Road"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "gold" //note : find a proper brick road sprite later
+	alpha = 0
+	anchored = TRUE
+	var/list/faction = list("neutral")
+
+/obj/effect/golden_road2/Initialize()
+	. = ..()
+	QDEL_IN(src, 30 SECONDS)
+	animate(src, alpha = 255,transform= transform, time = 0.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/FadeOut), 29.5 SECONDS)
+	addtimer(CALLBACK(src, .proc/Slow),1 SECONDS, TIMER_LOOP)
+
+/obj/effect/golden_road2/proc/FadeOut()
+	animate(src, alpha = 0, time = 0.5 SECONDS)
+
+/obj/effect/golden_road2/proc/Slow()
+	for(var/mob/living/simple_animal/hostile/H in get_turf(src))
+		if(faction_check(H.faction, faction))
+			continue
+		H.apply_status_effect(/datum/status_effect/brown_bricks)

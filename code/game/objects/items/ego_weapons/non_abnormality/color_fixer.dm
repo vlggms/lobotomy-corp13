@@ -56,8 +56,6 @@
 	ready = TRUE
 	to_chat(user, "<span class='notice'>I AM NOT SATED.</span>")
 
-
-
 /obj/item/ego_weapon/mimicry/kali
 	name = "True Mimicry"
 	desc = "What is the meaning of 'Human'? Does it matter?"

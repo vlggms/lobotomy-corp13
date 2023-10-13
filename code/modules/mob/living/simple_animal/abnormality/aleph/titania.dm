@@ -62,6 +62,7 @@
 		H.gib()
 		for(var/i=fairy_spawn_number*2, i>=1, i--)	//This counts down.
 			var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(target))
+			V.faction = faction
 			spawned_mobs+=V
 		return
 
@@ -79,8 +80,7 @@
 	. = ..()
 
 	if(H.stat == DEAD && target == nemesis)		//Does she slay Oberon personally? If so, get buffed.
-		move_to_delay = 3
-		UpdateSpeed()
+		SpeedChange(-1)
 		melee_damage_lower = 110
 		melee_damage_upper = 140
 		adjustBruteLoss(-maxHealth) // Round 2, baby
@@ -107,6 +107,7 @@
 	//Actually spawning them
 	for(var/i=fairy_spawn_number, i>=1, i--)	//This counts down.
 		var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(src))
+		V.faction = faction
 		spawned_mobs+=V
 	addtimer(CALLBACK(src, .proc/FairyLoop), fairy_spawn_time)
 
@@ -204,6 +205,7 @@
 
 	if(currentlaw == "ranged fairy")
 		var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(src))
+		V.faction = faction
 		spawned_mobs+=V
 
 //Melee stuff

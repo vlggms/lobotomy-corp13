@@ -51,6 +51,7 @@
 /obj/item/ego_weapon/support/penitence
 	name = "penitence"
 	desc = "A mace meant to purify the evil thoughts."
+	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
 	icon_state = "penitence"
 	force = 14
 	damtype = WHITE_DAMAGE
@@ -75,6 +76,7 @@
 /obj/item/ego_weapon/support/little_alice
 	name = "little alice"
 	desc = "You, now in wonderland!"
+	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
 	icon_state = "little_alice"
 	force = 14
 	damtype = BLACK_DAMAGE
@@ -103,6 +105,7 @@
 	name = "wingbeat"
 	desc = "If NAME can show that they are competent, then they may be able to draw Fairy Festival’s attention.."
 	icon_state = "wingbeat"
+	special = "Use this weapon in your hand when wearing matching armor to heal the HP of others nearby."
 	force = 14
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
@@ -126,7 +129,7 @@
 /obj/item/ego_weapon/change
 	name = "change"
 	desc = "A hammer made with the desire to change anything"
-	special = "Attack a friendly human while wearing matching armor to activate this weapon's special ability."
+	special = "Attack a friendly human while wearing matching armor to heal their HP slightly."
 	icon_state = "change"
 	force = 14
 	damtype = RED_DAMAGE
@@ -154,6 +157,7 @@
 /obj/item/ego_weapon/support/doze
 	name = "dozing"
 	desc = "Knock the daylights out of 'em!"
+	special = "Use this weapon in your hand when wearing matching armor to heal the HP and SP of others nearby. Using this ability will briefly put you to sleep."
 	icon_state = "doze"
 	force = 14
 	damtype = WHITE_DAMAGE
@@ -188,6 +192,7 @@
 /obj/item/ego_weapon/support/evening
 	name = "evening twilight"
 	desc = "I accepted the offer and paid the price."
+	special = "Use this weapon in your hand when wearing matching armor to generate weak pale shields for others nearby."
 	icon_state = "evening"
 	force = 12
 	damtype = PALE_DAMAGE
@@ -233,7 +238,7 @@
 /obj/item/ego_weapon/melty_eyeball
 	name = "melty eyeball"
 	desc = "I felt like I was being dragged deeper into the swamp of gloom as the fight went on."
-	special = "Attack a friendly human while wearing matching armor to activate this weapon's special ability."
+	special = "Attack a friendly human while wearing matching armor to heal their HP and SP by a small amount."
 	icon_state = "melty_eyeball"
 	force = 14
 	damtype = BLACK_DAMAGE
@@ -263,6 +268,7 @@
 /obj/item/ego_weapon/support/letter_opener
 	name = "letter opener"
 	desc = "Trusty aid of a mailman."
+	special = "Use this weapon in your hand when wearing matching armor to send a secret letter to a person of your choice."
 	icon_state = "letteropener"
 	force = 14
 	damtype = RED_DAMAGE
@@ -306,28 +312,3 @@
 		. += H
 	sortList(.)
 	return
-
-//special ego for pile of mail from parcels
-/obj/item/ego_weapon/mail_satchel
-	name = "envelope"
-	desc = "Heavy satchel filled to the brim with letters."
-	icon_state = "mailsatchel"
-	force = 12
-	attack_speed = 1.2
-	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
-	attack_verb_continuous = list("slams", "bashes", "strikes")
-	attack_verb_simple = list("slams", "bashes", "strikes")
-	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
-
-/obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
-	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
-	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
-	force = 12 + temperance_mod
-	..()
-	force = initial(force)
-	damtype = initial(damtype)
-	if(prob(30))
-		new /obj/effect/temp_visual/maildecal(get_turf(A))
-
-

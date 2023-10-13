@@ -1,5 +1,5 @@
 //Like this so we can add a charge mechanic to one of them and have it carry down.
-/obj/item/ego_weapon/city/wcorp
+/obj/item/ego_weapon/city/charge/wcorp
 	name = "W corp baton"
 	desc = "A glowing blue baton used by W corp employees."
 	icon_state = "wbatong"
@@ -9,13 +9,11 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
-	var/release_message = "You release your charge, damaging your opponent!"
-	var/charge_effect = "deal an extra attack in damage."
-	var/charge_cost = 2
-	var/charge
-	var/activated
+	release_message = "You release your charge, damaging your opponent!"
+	charge_effect = "deal an extra attack in damage."
+	charge_cost = 2
 
-/obj/item/ego_weapon/city/wcorp/attack_self(mob/user)
+/obj/item/ego_weapon/city/charge/wcorp/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
 		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
@@ -23,21 +21,14 @@
 	else
 		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
 
-/obj/item/ego_weapon/city/wcorp/examine(mob/user)
-	. = ..()
-	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
-
-/obj/item/ego_weapon/city/wcorp/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/charge/wcorp/attack(mob/living/target, mob/living/user)
 	..()
-	if(charge<20 && target.stat != DEAD)
-		charge+=1
 	if(activated)
-		charge -= charge_cost
 		release_charge(target, user)
 		activated = FALSE
 
-/obj/item/ego_weapon/city/wcorp/proc/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+/obj/item/ego_weapon/city/charge/wcorp/release_charge(mob/living/target, mob/living/user)
+	..()
 	sleep(2)
 	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
@@ -45,7 +36,7 @@
 	new /obj/effect/temp_visual/justitia_effect(T)
 
 //Non-baton Wcorp is Grade 5
-/obj/item/ego_weapon/city/wcorp/fist
+/obj/item/ego_weapon/city/charge/wcorp/fist
 	name = "w-corp gauntlet"
 	desc = "A glowing blue fist used by senior W corp staff."
 	icon_state = "wcorp_fist"
@@ -63,7 +54,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/city/wcorp/fist/release_charge(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/charge/wcorp/fist/release_charge(mob/living/target, mob/living/user)
 	..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
@@ -71,7 +62,7 @@
 		target.throw_at(throw_target, rand(2, 5), whack_speed, user)
 
 
-/obj/item/ego_weapon/city/wcorp/axe
+/obj/item/ego_weapon/city/charge/wcorp/axe
 	name = "w-corp axe"
 	desc = "A glowing blue axe used by senior W corp staff."
 	icon_state = "wcorp_axe"
@@ -90,8 +81,8 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/city/wcorp/axe/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+/obj/item/ego_weapon/city/charge/wcorp/axe/release_charge(mob/living/target, mob/living/user)
+	..()
 	sleep(5)
 	target.apply_damage(force*3, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
@@ -99,7 +90,7 @@
 	new /obj/effect/temp_visual/justitia_effect(T)
 	user.changeNext_move(CLICK_CD_MELEE * 6)
 
-/obj/item/ego_weapon/city/wcorp/spear
+/obj/item/ego_weapon/city/charge/wcorp/spear
 	name = "w-corp spear"
 	desc = "A glowing blue spear used by senior W corp staff."
 	icon_state = "wcorp_spear"
@@ -119,8 +110,8 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/city/wcorp/spear/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+/obj/item/ego_weapon/city/charge/wcorp/spear/release_charge(mob/living/target, mob/living/user)
+	..()
 	sleep(2)
 	for(var/mob/living/L in range(1, src))
 		var/aoe = 25
@@ -136,7 +127,7 @@
 	user.changeNext_move(CLICK_CD_MELEE * 3)
 
 
-/obj/item/ego_weapon/city/wcorp/dagger
+/obj/item/ego_weapon/city/charge/wcorp/dagger
 	name = "w-corp dagger"
 	desc = "A glowing blue dagger used by senior W corp staff."
 	icon_state = "wcorp_dagger"
@@ -152,10 +143,12 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 60
 							)
+	release_message = "You release your charge, and a flurry of strikes!"
+	charge_effect = "rip the space itself!"
 
 
-/obj/item/ego_weapon/city/wcorp/dagger/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+/obj/item/ego_weapon/city/charge/wcorp/dagger/release_charge(mob/living/target, mob/living/user)
+	..()
 	sleep(2)
 	for(var/i = 1 to 3)
 		sleep(2)
@@ -170,7 +163,7 @@
 //Alongside the burst damage, they usually include a minor side-effect. Custom-made by ValerieSteel!
 
 //Kirie Note: don't really want to you know, add a very rare part to the Wcorp banner, so I'm gonna keep these at Grade 5.
-/obj/item/ego_weapon/city/wcorp/hatchet
+/obj/item/ego_weapon/city/charge/wcorp/hatchet
 	name = "w-corp hatchet"
 	desc = "A glowing blue W-Corp handaxe once used by senior W-Corp staff. This one's seen some after-market modifications."
 	special = "This weapon fits in an EGO belt."
@@ -194,8 +187,8 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/city/wcorp/hatchet/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+/obj/item/ego_weapon/city/charge/wcorp/hatchet/release_charge(mob/living/target, mob/living/user)
+	..()
 	sleep(2)
 	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 	target.apply_status_effect(/datum/status_effect/qliphothoverload)
@@ -204,7 +197,7 @@
 	new /obj/effect/temp_visual/justitia_effect(T)
 
 
-/obj/item/ego_weapon/city/wcorp/hammer
+/obj/item/ego_weapon/city/charge/wcorp/hammer
 	name = "w-corp warhammer"
 	desc = "A glowing blue W-Corp warhammer once used by senior W-Corp staff. This one's seen some after-market modifications."
 	icon_state = "wcorp_hammer"
@@ -224,8 +217,8 @@
 							)
 
 
-/obj/item/ego_weapon/city/wcorp/hammer/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+/obj/item/ego_weapon/city/charge/wcorp/hammer/release_charge(mob/living/target, mob/living/user)
+	..()
 	sleep(5)
 	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 	target.apply_status_effect(/datum/status_effect/rendBlackArmor)
@@ -257,7 +250,7 @@
 /datum/status_effect/interventionshield/wcorp
 	statuseffectvisual = icon('ModularTegustation/Teguicons/tegu_effects.dmi', "pale_shield")
 
-/obj/item/ego_weapon/city/wcorp/shield
+/obj/item/ego_weapon/city/charge/wcorp/shield
 	name = "w-corp type-C shieldblade"
 	desc = "A glowing blue W-Corp blade used to project barriers. The glowing end is dangerous, and can slice through about anything"
 	icon_state = "wcorp_sword"
@@ -275,8 +268,8 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/ego_weapon/city/wcorp/shield/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+/obj/item/ego_weapon/city/charge/wcorp/shield/release_charge(mob/living/target, mob/living/user)
+	..()
 	sleep(2)
 	for(var/mob/living/carbon/human/L in range(7, user))
 		if(!ishuman(L))
@@ -287,7 +280,7 @@
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 
 //Type C Spear
-/obj/item/ego_weapon/city/wcorp/shield/spear
+/obj/item/ego_weapon/city/charge/wcorp/shield/spear
 	name = "w-corp type-C shieldglaive"
 	desc = "A glowing blue W-Corp glaive used to project barriers."
 	icon_state = "wcorp_glaive"
@@ -300,7 +293,7 @@
 	attack_speed = 1.2
 
 //Type C club
-/obj/item/ego_weapon/city/wcorp/shield/club
+/obj/item/ego_weapon/city/charge/wcorp/shield/club
 	name = "w-corp type-C shieldclub"
 	desc = "A glowing blue W-Corp club used to project barriers."
 	icon_state = "wcorp_club"
@@ -311,7 +304,7 @@
 	inhand_y_dimension = 64
 	attack_speed = 1.5
 
-/obj/item/ego_weapon/city/wcorp/shield/club/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/charge/wcorp/shield/club/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	. = ..()
@@ -321,7 +314,7 @@
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 //Type C axe
-/obj/item/ego_weapon/city/wcorp/shield/axe
+/obj/item/ego_weapon/city/charge/wcorp/shield/axe
 	name = "w-corp type-C shieldaxe"
 	desc = "A glowing blue W-Corp battleaxe used to project barriers."
 	icon_state = "wcorp_battleaxe"

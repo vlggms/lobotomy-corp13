@@ -965,3 +965,7 @@
 	transform = M.Scale(5, 0.5)
 	transform = M.Turn(rand(0, 360))
 	animate(src, alpha = 0, transform = transform*2, time = 2)
+
+/obj/effect/temp_visual/mustardgas
+	icon_state = "mustard"
+	duration = 5

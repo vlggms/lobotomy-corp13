@@ -62,8 +62,7 @@
 
 			// it gets faster.
 			if(move_to_delay>1)
-				move_to_delay -= move_to_delay*0.25
-				UpdateSpeed()
+				SpeedChange(-move_to_delay*0.25)
 				if(melee_damage_lower > 30)
 					melee_damage_lower -=5
 

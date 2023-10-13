@@ -22,6 +22,8 @@
 	var/list/initial_contents
 	/// If the machine shows an approximate number of its contents on its sprite
 	var/visible_contents = TRUE
+	/// Unique icon name for light mask.
+	var/light_icon_state = "smartfridge-light-mask"
 
 /obj/machinery/smartfridge/Initialize()
 	. = ..()
@@ -68,7 +70,7 @@
 /obj/machinery/smartfridge/update_overlays()
 	. = ..()
 	if(!machine_stat)
-		SSvis_overlays.add_vis_overlay(src, icon, "smartfridge-light-mask", EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
+		SSvis_overlays.add_vis_overlay(src, icon, light_icon_state, EMISSIVE_LAYER, EMISSIVE_PLANE, dir, alpha)
 
 /*******************
 *   Item Adding
@@ -528,9 +530,54 @@
 	pass_flags = PASSTABLE
 	visible_contents = FALSE
 	base_build_path = /obj/machinery/smartfridge/disks
+	light_icon_state = "disktoaster-light-mask"
 
 /obj/machinery/smartfridge/disks/accept_check(obj/item/O)
 	if(istype(O, /obj/item/disk/))
+		return TRUE
+	else
+		return FALSE
+
+// ----------------------
+// LC13 EGO ARMORY ROOT | Remove this later on if theres a better system. -IP
+// ----------------------
+/obj/machinery/smartfridge/extraction_storage
+	name = "extraction storage root"
+	desc = "A broken prototype of a storage unit."
+	pass_flags = PASSTABLE
+	resistance_flags = INDESTRUCTIBLE
+	visible_contents = TRUE
+	base_build_path = null
+	flags_1 = NODECONSTRUCT_1
+	max_n_of_items = 100
+	light_icon_state = "extraction-light-mask"
+
+// ----------------------------
+// LC13 STABILIZED EGO ARMORY
+// ----------------------------
+/obj/machinery/smartfridge/extraction_storage/ego_weapon
+	name = "weapon fridge"
+	desc = "A machine capable of storing a variety of weapons and EGO."
+	icon_state = "egoweapon"
+	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_weapon
+
+/obj/machinery/smartfridge/extraction_storage/ego_weapon/accept_check(obj/item/O)
+	if(istype(O, /obj/item/ego_weapon) || istype(O, /obj/item/gun/ego_gun))
+		return TRUE
+	else
+		return FALSE
+
+// ---------------------------------
+// LC13 STABILIZED EGO ARMOR CLOSET
+// ---------------------------------
+/obj/machinery/smartfridge/extraction_storage/ego_armor
+	name = "armor fridge"
+	desc = "A machine capable of storing a variety of armor and EGO."
+	icon_state = "egoarmor"
+	base_build_path = /obj/machinery/smartfridge/extraction_storage/ego_armor
+
+/obj/machinery/smartfridge/extraction_storage/ego_armor/accept_check(obj/item/O)
+	if(istype(O, /obj/item/clothing/suit/armor/ego_gear))
 		return TRUE
 	else
 		return FALSE
