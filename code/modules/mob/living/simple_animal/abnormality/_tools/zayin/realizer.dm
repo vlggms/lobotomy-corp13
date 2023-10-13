@@ -9,6 +9,9 @@
 		/obj/item/clothing/suit/armor/ego_gear/zayin/penitence 		= /obj/item/clothing/suit/armor/ego_gear/realization/confessional,
 		/obj/item/storage/book/bible 								= /obj/item/clothing/suit/armor/ego_gear/realization/prophet, // TEMPORARY
 		/obj/item/clothing/suit/armor/ego_gear/zayin/little_alice 	= /obj/item/clothing/suit/armor/ego_gear/realization/maiden,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/soda			= /obj/item/clothing/suit/armor/ego_gear/realization/wellcheers,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/doze			= /obj/item/clothing/suit/armor/ego_gear/realization/comatose,
+		/obj/item/clothing/suit/armor/ego_gear/tools/bucket			= /obj/item/clothing/suit/armor/ego_gear/realization/brokencrown,
 		// TETH
 		/obj/item/clothing/suit/armor/ego_gear/teth/beak 			= /obj/item/clothing/suit/armor/ego_gear/realization/mouth,
 		/obj/item/clothing/suit/armor/ego_gear/teth/fragment 		= /obj/item/clothing/suit/armor/ego_gear/realization/universe,
@@ -27,6 +30,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/he/logging		    = /obj/item/clothing/suit/armor/ego_gear/realization/empathy,
 		/obj/item/clothing/suit/armor/ego_gear/he/courage           = /obj/item/clothing/suit/armor/ego_gear/realization/valor,
 		/obj/item/clothing/suit/armor/ego_gear/he/homing_instinct   = /obj/item/clothing/suit/armor/ego_gear/realization/home,
+		/obj/item/clothing/suit/armor/ego_gear/he/warp   			= /obj/item/clothing/suit/armor/ego_gear/realization/dimension_ripper,
 		// WAW
 		/obj/item/clothing/suit/armor/ego_gear/waw/goldrush 		= /obj/item/clothing/suit/armor/ego_gear/realization/goldexperience,
 		/obj/item/clothing/suit/armor/ego_gear/waw/despair 			= /obj/item/clothing/suit/armor/ego_gear/realization/quenchedblood,
@@ -40,6 +44,8 @@
 		/obj/item/clothing/suit/armor/ego_gear/waw/thirteen			= /obj/item/clothing/suit/armor/ego_gear/realization/bell_tolls,
 		/obj/item/clothing/suit/armor/ego_gear/waw/assonance		= /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang,
 		/obj/item/clothing/suit/armor/ego_gear/waw/discord			= /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin,
+		/obj/item/clothing/suit/armor/ego_gear/waw/heart			= /obj/item/clothing/suit/armor/ego_gear/realization/repentance,
+		/obj/item/clothing/suit/armor/ego_gear/waw/exuviae			= /obj/item/clothing/suit/armor/ego_gear/realization/nest,
 		// ALEPH
 		/obj/item/clothing/suit/armor/ego_gear/aleph/da_capo 		= /obj/item/clothing/suit/armor/ego_gear/realization/alcoda,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/justitia 		= /obj/item/clothing/suit/armor/ego_gear/realization/head,

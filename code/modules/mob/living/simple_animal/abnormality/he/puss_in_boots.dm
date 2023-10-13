@@ -253,7 +253,9 @@
 	if(target.health > 0)
 		return
 	var/mob/living/carbon/human/H = target
-	H.gib() //maybe we can get a special gib effect for cutting someone in half someday.
+	new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(H))
+	H.set_lying_angle(360) //gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
+	H.gib()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/OpenFire()
 	if(!can_act)

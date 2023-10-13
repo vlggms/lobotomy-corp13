@@ -141,9 +141,10 @@
 	..()
 
 /mob/living/simple_animal/hostile/megafauna/claw/OpenFire()
+	if(charging)
+		return
+
 	if(client)
-		if(charging)
-			return
 		switch(chosen_attack)
 			if(1)
 				INVOKE_ASYNC(src, .proc/SerumW, target)
@@ -211,20 +212,23 @@
 			continue
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
-	var/mob/living/carbon/human/H = null
 	if(!LAZYLEN(death_candidates)) // If there is 0 candidates - stop the spell.
 		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
 		return
 	if(length(death_candidates) == 1) // Exactly one? Do targeted thing for lulz
-		return TargetSerumW(pick(death_candidates))
+		return TargetSerumW(death_candidates[1])
 	for(var/i in 1 to 5)
-		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
+		if(!LAZYLEN(death_candidates)) // No more candidates left? Let's stop picking through the list.
 			break
-		H = pick(death_candidates)
-		addtimer(CALLBACK(src, .proc/eviscerate, H), i*4)
+		var/mob/living/carbon/human/H = pick(death_candidates)
 		death_candidates.Remove(H)
+		if(!istype(H) || QDELETED(H)) // Shouldn't be possible, but here we are
+			continue
+		addtimer(CALLBACK(src, .proc/eviscerate, H), i*4)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate(mob/living/carbon/human/target)
+	if(!istype(target) || QDELETED(target))
+		return
 	var/obj/effect/temp_visual/target_field/uhoh = new /obj/effect/temp_visual/target_field(target.loc)
 	uhoh.orbit(target, 0)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
@@ -233,7 +237,10 @@
 	addtimer(CALLBACK(src, .proc/eviscerate2, target, uhoh), 30)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
-	if(prob(2) || target.z != z || !target.loc.AllowClick() || !target) // Be happy, mortal. Did you just hide in a locker?
+	if(!istype(target) || QDELETED(target) || !target.loc)
+		qdel(eff)
+		return
+	if(prob(2) || target.z != z || !target.loc.AllowClick()) // Be happy, mortal. Did you just hide in a locker?
 		to_chat(src, "<span class='notice'>Your teleportation device malfunctions!</span>")
 		to_chat(target, "<span class='notice'>It seems you are safe. For now...</span>")
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
@@ -258,7 +265,7 @@
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetSerumW(mob/living/L)
-	if(!istype(L))
+	if(!istype(L) || QDELETED(L))
 		return FALSE
 	charging = TRUE
 	var/obj/effect/temp_visual/target_field/uhoh = new /obj/effect/temp_visual/target_field(L.loc)
@@ -267,10 +274,10 @@
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 1, 1)
 	icon_state = "claw_prepare"
 	to_chat(L, "<span class='danger'>The [src] is going to hunt you down!</span>")
-	addtimer(CALLBACK(src, .proc/TargetEviscerate, target, uhoh), 15)
+	addtimer(CALLBACK(src, .proc/TargetEviscerate, L, uhoh), 15)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetEviscerate(mob/living/L, obj/effect/eff)
-	if(!istype(L))
+	if(!istype(L) || QDELETED(L))
 		charging = FALSE
 		return FALSE
 	new /obj/effect/temp_visual/emp/pulse(src.loc)
@@ -284,7 +291,7 @@
 	L.Stun(12, TRUE, TRUE)
 	SLEEP_CHECK_DEATH(6)
 	qdel(eff)
-	if(!istype(L))
+	if(!istype(L) || QDELETED(L))
 		charging = FALSE
 		return FALSE
 	L.visible_message(
@@ -293,13 +300,13 @@
 		)
 	var/list/teleport_turfs = list()
 	for(var/turf/T in shuffle(GLOB.department_centers))
-		if(T in range(18, src))
+		if(T in range(12, src))
 			continue
 		teleport_turfs += T
 	for(var/i = 1 to 5)
 		if(!LAZYLEN(teleport_turfs))
 			break
-		if(!istype(L))
+		if(!istype(L) || QDELETED(L))
 			charging = FALSE
 			break
 		var/turf/target_turf = pick(teleport_turfs)
@@ -329,7 +336,7 @@
 		L.forceMove(tp_loc)
 		if(i < 5)
 			SLEEP_CHECK_DEATH(4)
-	if(istype(L))
+	if(istype(L) && !QDELETED(L))
 		to_chat(L, "<span class='userdanger'>\The [src] slashes you, finally releasing you from his grasp!</span>")
 		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		GiveTarget(L)
@@ -346,18 +353,21 @@
 			continue
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
-	var/mob/living/carbon/human/H = null
 	if(!death_candidates.len) // If there is 0 candidates - stop the spell.
 		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
 		return
 	for(var/i in 1 to 5)
 		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
 			break
-		H = pick(death_candidates)
-		addtimer(CALLBACK(src, .proc/triserum_eviscerate, H), i*5)
+		var/mob/living/carbon/human/H = pick(death_candidates)
 		death_candidates.Remove(H)
+		if(!istype(H) || QDELETED(H)) // Shouldn't be possible, but here we are
+			continue
+		addtimer(CALLBACK(src, .proc/triserum_eviscerate, H), i*5)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate(mob/living/carbon/human/target)
+	if(!istype(target) || QDELETED(target))
+		return
 	var/obj/effect/temp_visual/target_field/blue/uhoh = new /obj/effect/temp_visual/target_field/blue(target.loc)
 	uhoh.orbit(target, 0)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
@@ -366,7 +376,9 @@
 	addtimer(CALLBACK(src, .proc/triserum_eviscerate2, target, uhoh), 40)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
-	if(target.z != z || !target.loc.AllowClick() || !target) // Be happy, mortal. Did you just hide in a locker?
+	if(!istype(target) || QDELETED(target))
+		return
+	if(target.z != z || !target.loc.AllowClick()) // Be happy, mortal. Did you just hide in a locker?
 		to_chat(src, "<span class='notice'>Your teleportation device malfunctions!</span>")
 		to_chat(target, "<span class='notice'>It seems you are safe. For now...</span>")
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
@@ -407,10 +419,10 @@
 			playsound(L, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/SwiftDash(target, distance, wait_time)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/SwiftDash(atom/target, distance, wait_time)
 	if(dash_cooldown > world.time)
 		return
-	if(!target)
+	if(!istype(target) || QDELETED(target))
 		return
 	dash_cooldown = world.time + (dash_cooldown_time * distance)
 	charging = TRUE
@@ -424,7 +436,7 @@
 	SLEEP_CHECK_DEATH(wait_time)
 	icon_state = "claw_dash"
 	for(var/turf/T in turf_list)
-		if(!T)
+		if(!istype(T))
 			charging = FALSE
 			icon_state = icon_living
 			break
@@ -446,10 +458,10 @@
 
 // The idea behind this attack is that it entirely misses the "target", instead turning large area around it into
 // uninhabitable zone of death
-/mob/living/simple_animal/hostile/megafauna/claw/proc/SerumA(target)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/SerumA(mob/living/target)
 	if(serumA_cooldown > world.time)
 		return
-	if(!isliving(target))
+	if(!isliving(target) || QDELETED(target))
 		return
 	var/mob/living/LT = target
 	serumA_cooldown = world.time + serumA_cooldown_time
@@ -457,11 +469,11 @@
 	icon_state = "claw_prepare"
 	charging = TRUE
 	new /obj/effect/temp_visual/dir_setting/cult/phase(get_turf(LT))
-	face_atom(target)
+	face_atom(LT)
 	SLEEP_CHECK_DEATH(5)
 	icon_state = "claw_dash"
 	for(var/i = 1 to 8)
-		if(!isliving(target))
+		if(!isliving(LT) || QDELETED(LT))
 			break
 		INVOKE_ASYNC(src, .proc/blink, LT)
 		SLEEP_CHECK_DEATH(2)
@@ -469,7 +481,7 @@
 	charging = FALSE
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/blink(mob/living/LT)
-	if(!LT)
+	if(!istype(LT) || QDELETED(LT))
 		var/list/potential_people = list()
 		for(var/mob/living/L in view(9, src))
 			if(faction_check_mob(L))
@@ -490,6 +502,8 @@
 		new /obj/effect/temp_visual/cult/sparks(T) // Telegraph the attack
 	face_atom(target_turf)
 	SLEEP_CHECK_DEATH(1)
+	if(!istype(LT) || QDELETED(LT))
+		return
 	forceMove(target_turf)
 	playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
 	for(var/turf/B in getline(start_turf, target_turf))
@@ -505,7 +519,9 @@
 				new /obj/effect/temp_visual/cleave(victim.loc)
 				playsound(victim, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 
-/mob/living/simple_animal/hostile/megafauna/claw/proc/WideSlash(target)
+/mob/living/simple_animal/hostile/megafauna/claw/proc/WideSlash(atom/target)
+	if(!istype(target) || QDELETED(target))
+		return
 	if(wide_slash_cooldown > world.time)
 		return
 	wide_slash_cooldown = world.time + wide_slash_cooldown_time

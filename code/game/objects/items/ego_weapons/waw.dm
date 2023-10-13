@@ -1552,7 +1552,7 @@
 	special = "Preform an additional attack of 50% damage when at half health."
 	icon_state = "cobalt"
 	force = 20
-	attack_speed = 1.0
+	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("claws")

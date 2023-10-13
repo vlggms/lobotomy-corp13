@@ -6124,7 +6124,7 @@
 /obj/machinery/door/airlock/vault{
 	name = "Shelter From The 27th Of March containment zone"
 	},
-/turf/closed/indestructible/reinforced,
+/turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "PR" = (
 /obj/machinery/light{
@@ -7635,7 +7635,7 @@
 /obj/machinery/door/airlock/vault{
 	name = "Wishing Well containment zone"
 	},
-/turf/open/floor/carpet/royalblack,
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/extraction)
 "ZI" = (
 /obj/effect/turf_decal/siding/brown/corner,
