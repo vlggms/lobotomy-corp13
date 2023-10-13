@@ -1870,12 +1870,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
-"nn" = (
-/obj/structure/sign/departments/training{
-	pixel_y = -32
-	},
-/turf/closed/indestructible/reinforced,
-/area/department_main/training)
 "no" = (
 /obj/structure/filingcabinet/wawinfo{
 	pixel_x = -11
@@ -1916,6 +1910,9 @@
 	},
 /obj/machinery/door/poddoor/shutters/window/preopen{
 	id = "extraction"
+	},
+/obj/structure/sign/ordealmonitor{
+	pixel_x = -32
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
@@ -2985,6 +2982,9 @@
 "tI" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
+	},
+/obj/structure/sign/departments/training{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/control)
@@ -5421,6 +5421,9 @@
 /obj/item/melee/classic_baton,
 /obj/item/toy/plush/hod,
 /obj/item/clothing/suit/armor/vest/alt,
+/obj/structure/sign/ordealmonitor{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
 "JT" = (
@@ -7366,12 +7369,6 @@
 /obj/structure/rack,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
-"Wd" = (
-/obj/structure/sign/departments/training{
-	pixel_y = -32
-	},
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/control)
 "We" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -7469,6 +7466,9 @@
 /obj/machinery/vending/hydroseeds,
 /obj/machinery/light{
 	dir = 8
+	},
+/obj/structure/sign/ordealmonitor{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel,
 /area/department_main/training)
@@ -7833,6 +7833,9 @@
 	dir = 6
 	},
 /obj/machinery/vending/cola,
+/obj/structure/sign/departments/training{
+	pixel_y = -32
+	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/control)
 "ZK" = (
@@ -32718,7 +32721,7 @@ iz
 ZQ
 ZQ
 ZQ
-nn
+ZQ
 ZQ
 xJ
 ND
@@ -32976,7 +32979,7 @@ Bc
 KZ
 KZ
 tI
-ZQ
+MO
 Ny
 sp
 sp
@@ -33746,7 +33749,7 @@ gC
 gC
 gC
 gC
-Wd
+gC
 ZQ
 PR
 Aw
