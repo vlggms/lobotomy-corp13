@@ -399,7 +399,7 @@
 	icon_state = "sorrow"
 	fortitude_bonus = 1
 	prudence_bonus = 3
-	slot = HAT
+	slot = HELMET
 
 /datum/ego_gifts/sorority
 	name = "Sorority"
@@ -448,9 +448,9 @@
 /datum/ego_gifts/fourleaf_clover
 	name = "Four-Leaf Clover"
 	icon_state = "fourleaf_clover"
-	fortitude_bonus = -2
-	prudence_bonus = 4
-	slot = HAT
+	fortitude_bonus = 3
+	prudence_bonus = 1
+	slot = HELMET
 
 /datum/ego_gifts/patriot
 	name = "Patriot"
@@ -474,6 +474,12 @@
 	fortitude_bonus = -1
 	prudence_bonus = 4
 	slot = HAND_1
+
+/datum/ego_gifts/red_sheet
+	name = "Talisman Bundle"
+	icon_state = "red_sheet"
+	justice_bonus = 3
+	slot = HELMET
 
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
