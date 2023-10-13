@@ -35,6 +35,17 @@
 
 			for(var/datum/mutation/human/HM in dna.mutations) // Handle active genes
 				HM.on_life()
+			
+			//Allows drunkenness to slowly heal Sanity damage. God I wish I knew a better way to do this.
+			//Does not account for DeltaTime.
+			if(drunkenness)
+				switch(drunkenness)
+					if (6 to 40)
+						adjustSanityLoss(-0.1, FALSE)
+					if (41 to 60)
+						adjustSanityLoss(-0.4, FALSE)
+					if (61 to INFINITY)
+						adjustSanityLoss(-0.8, FALSE)
 
 		if(stat != DEAD)
 			//heart attack stuff
