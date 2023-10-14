@@ -578,7 +578,9 @@
 		/datum/crafting_recipe/converted_amber_silk_advanced,
 		/datum/crafting_recipe/converted_steel_silk_advanced,
 		/datum/crafting_recipe/green_silk_to_steel_silk,
-		/datum/crafting_recipe/indigo_silk_to_amber_silk
+		/datum/crafting_recipe/indigo_silk_to_amber_silk,
+		/datum/crafting_recipe/converted_human_silk_advanced,
+		/datum/crafting_recipe/converted_human_silk_elegant
 	)
 	icon_state = "advanced_silkweaving_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")

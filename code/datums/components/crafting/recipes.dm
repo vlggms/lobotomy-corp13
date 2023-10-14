@@ -1372,6 +1372,24 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/converted_human_silk_advanced
+	name = "Converted Advanced Human Silk"
+	result = /obj/item/stack/sheet/silk/human_advanced
+	reqs = list(/obj/item/stack/sheet/silk/steel_simple = 4)
+	tools = list(/obj/item/silkknife = 1)
+	time = 10
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/converted_human_silk_elegant
+	name = "Converted Elegant Human Silk"
+	result = /obj/item/stack/sheet/silk/human_elegant
+	reqs = list(/obj/item/stack/sheet/silk/human_advanced = 4)
+	tools = list(/obj/item/silkknife = 1)
+	time = 10
+	always_available = FALSE
+	category = CAT_CLOTHING
+
 //Silk into different Silk
 /datum/crafting_recipe/green_silk_to_steel_silk
 	name = "Green Silk to Steel Silk"

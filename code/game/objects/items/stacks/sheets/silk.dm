@@ -20,24 +20,24 @@
 
 /obj/item/stack/sheet/silk/indigo_simple
 	name = "Simple Indigo Silk"
-	desc = "Silk woven from a unknown scout... Can be used to upgrade your armor. Looks like it is from the simple variety of silk. Increases BLACK resistance by 5, Decreases WHITE by 5 when attached to armor."
-	added_armor = new(black = 5, white = -5)
+	desc = "Silk woven from a unknown scout... Can be used to upgrade your armor. Looks like it is from the simple variety of silk. Increases BLACK resistance by 5, Decreases RED by 5 when attached to armor."
+	added_armor = new(black = 5, red = -5)
 	merge_type = /obj/item/stack/sheet/silk/indigo_simple
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "simple_indigo_silk"
 
 /obj/item/stack/sheet/silk/indigo_advanced
 	name = "Advanced Indigo Silk"
-	desc = "Silk woven from a sweeper... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk. Increases BLACK resistance by 10, Decreases WHITE by 10 when attached to armor."
-	added_armor = new(black = 10, white = -10)
+	desc = "Silk woven from a sweeper... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk. Increases BLACK resistance by 10, Decreases RED by 10 when attached to armor."
+	added_armor = new(black = 10, red = -10)
 	merge_type = /obj/item/stack/sheet/silk/indigo_advanced
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "advanced_indigo_silk"
 
 /obj/item/stack/sheet/silk/indigo_elegant
 	name = "Elegant Indigo Silk"
-	desc = "Silk woven from a sweeper commander... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk. Increases BLACK resistance by 15, Decreases WHITE by 15 when attached to armor."
-	added_armor = new(black = 15, white = -15)
+	desc = "Silk woven from a sweeper commander... Can be used to upgrade your armor. Looks like it is from the advanced variety of silk. Increases BLACK resistance by 15, Decreases RED by 15 when attached to armor."
+	added_armor = new(black = 15, red = -15)
 	merge_type = /obj/item/stack/sheet/silk/indigo_elegant
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "elegant_indigo_silk"
@@ -68,7 +68,7 @@
 
 /obj/item/stack/sheet/silk/steel_simple
 	name = "Simple Steel Silk"
-	desc = "Silk woven from a gene corp remnant... Can be used to upgrade your armor. Looks like it is from the simple variety of silk. Increases RED resistance by 5, Decreases white by 5 when attached to armor."
+	desc = "Silk woven from a gene corp remnant... Can be used to upgrade your armor. Looks like it is from the simple variety of silk. Increases RED resistance by 5, Decreases WHITE by 5 when attached to armor."
 	added_armor = new(red = 5, white = -5)
 	merge_type = /obj/item/stack/sheet/silk/steel_simple
 	icon = 'icons/obj/stack_objects.dmi'
@@ -84,16 +84,16 @@
 
 /obj/item/stack/sheet/silk/amber_simple
 	name = "Simple Amber Silk"
-	desc = "Silk woven from a carnivores worm... Can be used to upgrade your armor. Looks like it is from the simple variety of silk Decrease RED resistance by 5, Increases BLACK by 5 when attached to armor."
-	added_armor = new(red = -5, black = 5)
+	desc = "Silk woven from a carnivores worm... Can be used to upgrade your armor. Looks like it is from the simple variety of silk Decrease WHITE resistance by 5, Increases BLACK by 5 when attached to armor."
+	added_armor = new(white = -5, black = 5)
 	merge_type = /obj/item/stack/sheet/silk/amber_simple
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "simple_amber_silk"
 
 /obj/item/stack/sheet/silk/amber_advanced
 	name = "Advanced Amber Silk"
-	desc = "Silk woven from a, Wait... How did they get it? Can be used to upgrade your armor. Looks like it is from the simple variety of silk Decrease RED resistance by 10, Increases BLACK by 10 when attached to armor."
-	added_armor = new(red = -10, black = 10)
+	desc = "Silk woven from a, Wait... How did they get it? Can be used to upgrade your armor. Looks like it is from the simple variety of silk Decrease WHITE resistance by 10, Increases BLACK by 10 when attached to armor."
+	added_armor = new(white = -10, black = 10)
 	merge_type = /obj/item/stack/sheet/silk/amber_advanced
 	icon = 'icons/obj/stack_objects.dmi'
 	icon_state = "advanced_amber_silk"
@@ -186,8 +186,7 @@
 	name = "Silkweaver"
 	desc = "Makes silk by butchering foes"
 	icon_state = "silkweaver"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+	inhand_icon_state = "carnival_silkweaver"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_BACK
 	sharpness = TRUE
 	force = 0

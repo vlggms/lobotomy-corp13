@@ -49,4 +49,9 @@
 	backpack_contents = list(
 		/obj/item/silkknife = 1,
 		/obj/item/pda/roboticist = 1,
-		/obj/item/book/granter/crafting_recipe/weaving_armor = 1)
+		/obj/item/book/granter/crafting_recipe/weaving_armor = 1,
+		/obj/item/stack/sheet/silk/indigo_simple = 4,
+		/obj/item/stack/sheet/silk/green_simple = 4,
+		/obj/item/stack/sheet/silk/amber_simple = 4,
+		/obj/item/stack/sheet/silk/steel_simple = 4,
+		/obj/item/stack/sheet/silk/human_simple = 1)
