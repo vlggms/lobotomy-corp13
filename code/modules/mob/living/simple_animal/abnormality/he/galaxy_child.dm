@@ -76,7 +76,7 @@
 		chance = 100
 		chance_modifier = 1
 		depressed = FALSE
-	. = ..(user, pe, chance)
+	return ..(user, pe, chance)
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/TurfTransform(turf/turf_type)
 	for(var/turf/T in range(1,src))

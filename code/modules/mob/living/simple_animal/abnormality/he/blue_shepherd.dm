@@ -252,7 +252,7 @@
 		return FALSE
 	if(awakened_buddy)
 		awakened_buddy.LoseTarget()
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it

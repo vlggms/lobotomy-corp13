@@ -176,11 +176,11 @@
 ///we're doing a bunch of checks for diagonal movement because it acts real weird with forced dragging
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
 	if(!awakened_master || (moving_diagonally && !target))
-		return . = ..()
+		return ..()
 
 	if(!awakened_master.Adjacent(newloc) && !awakened_master.moving_diagonally)
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
 	..()
