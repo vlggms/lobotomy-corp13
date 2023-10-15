@@ -1,3 +1,5 @@
+#define SWEEPER_TYPES /mob/living/simple_animal/hostile/ordeal/indigo_dawn || /mob/living/simple_animal/hostile/ordeal/indigo_noon || /mob/living/simple_animal/hostile/ordeal/indigo_dusk || /mob/living/simple_animal/hostile/ordeal/indigo_midnight
+
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn
 	name = "unknown scout"
 	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
@@ -38,7 +40,11 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		//Would have made it based on biotypes but that has its own issues.
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -98,7 +104,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -263,7 +272,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -458,7 +470,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth*0.3))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth*0.3))
 	L.gib()
 	//Increase the Vore counter by 1
 	belly += 1
@@ -565,6 +580,8 @@
 			all_turfs -= T
 		sleep(delay)
 	slamming = FALSE
+
+#undef SWEEPER_TYPES
 
 /obj/effect/sweeperspawn
 	name = "bloodpool"
