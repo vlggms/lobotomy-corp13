@@ -46,7 +46,7 @@
 //Set random stats for the egoist
 /mob/living/simple_animal/hostile/distortion/another_day_work/Initialize()
     . = ..()
-    egoist_attributes = min(rand(0, 130), rand(0, 130))
+    egoist_attributes = min(rand(egoist_attributes, 130), rand(egoist_attributes, 130))
     return
 
 	var/can_act = TRUE

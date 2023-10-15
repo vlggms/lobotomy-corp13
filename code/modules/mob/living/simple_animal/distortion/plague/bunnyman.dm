@@ -48,7 +48,7 @@
 //Set random stats for the egoist
 /mob/living/simple_animal/hostile/distortion/bunnyman/Initialize()
     . = ..()
-    egoist_attributes = min(rand(80, 130), rand(80, 130))
+    egoist_attributes = min(rand(egoist_attributes, 130), rand(egoist_attributes, 130))
     return
 
 //Proc that can be used for additional effects on unmanifest
