@@ -91,6 +91,14 @@
 	..()
 	force = initial(force)
 
+/obj/item/ego_weapon/city/mariachi/attack_self(mob/user)
+	var/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/Y = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		to_chat(user,"<span class='notice'>You shake the maracas. Your performance is beautiful.</span>")
+		playsound(src, 'sound/weapons/fixer/generic/maracas_shake.ogg', 50, TRUE)
+	else
+		to_chat(user,"<span class='warning'>Someone as uninspiring as you? You are not worthy to shake the maracas.</span>")
+
 //Sp healing for jobbers
 /obj/item/ego_weapon/city/mariachi_blades
 	name = "dual machetes"
@@ -134,7 +142,7 @@
 //Pre-nerf Aida, the real prize of J-corp. Grade 5
 /obj/item/ego_weapon/city/mariachi/dual/boss
 	name = "glowing maracas"
-	desc = "A pair of glowing maracas used by the leader of Los Mariachis. Only seen by the now dead."
+	desc = "A pair of glowing maracas used by the leader of Los Mariachis. Only seen by the no longer living."
 	icon_state = "dualmaracas_boss"
 	inhand_icon_state = "dualmaracas_boss"
 	force = 25

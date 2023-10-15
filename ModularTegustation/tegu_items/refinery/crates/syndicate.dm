@@ -93,6 +93,6 @@
 		)
 
 	veryrareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida_boss,
+		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/boss,
 		/obj/item/ego_weapon/city/mariachi/dual/boss,
 		)
