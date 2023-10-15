@@ -110,7 +110,7 @@
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
-	realized_ability = /obj/effect/proc_holder/ability/aimed/cocoon_spawn
+	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fear
 	name = "passion of the fearless one"

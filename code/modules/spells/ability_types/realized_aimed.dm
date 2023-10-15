@@ -318,20 +318,54 @@
 	return ..()
 
 
-/obj/effect/proc_holder/ability/aimed/cocoon_spawn
-	name = "Cocoon summon"
-	desc = "An ability that allows its user to summon a cocoon to take hits and slow and damage enemies near it."
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes
+	name = "Gleaming Eyes"
+	desc = "An ability that allows its user to do a jump attack that causes a slowing aoe when landing."
 	action_icon_state = "cocoon0"
 	base_icon_state = "cocoon"
-	cooldown_time = 15 SECONDS
+	cooldown_time = 20 SECONDS
+	var/damage_amount = 80 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_range = 2
+	var/damage_slowdown = 0.5
 
-/obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes/Perform(target, mob/user)
 	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
+	playsound(user, 'sound/abnormalities/spider_bud/jump.ogg', 50, FALSE, -1)
 	var/turf/target_turf = get_turf(target)
-	new /mob/living/simple_animal/cocoonability(target_turf)
+	//new /mob/living/simple_animal/cocoonability(target_turf) FUCK YOU NO COCOON!!!!!!!!!!!
+	animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+	user.pixel_z = 16
+	sleep(0.5 SECONDS)
+	for(var/i in 2 to get_dist(user, target_turf))
+		step_towards(user,target_turf)
+	animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+	user.pixel_z = 0
+	sleep(0.1 SECONDS)
+	JumpAttack(target_turf,user)
 	return ..()
 
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes/proc/JumpAttack(target, mob/user)
+	playsound(user, 'sound/abnormalities/spider_bud/land.ogg', 50, FALSE, -1)
+	for(var/mob/living/L in view(1, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		var/obj/item/held = user.get_active_held_item()
+		if(held)
+			held.attack(L, user)
+	for(var/turf/T in view(damage_range, user))
+		new /obj/effect/temp_visual/smash_effect/red(T)
+	for(var/mob/living/L in view(damage_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(H.move_to_delay * damage_slowdown, 10 SECONDS) // Slow down
 
 /mob/living/simple_animal/cocoonability
 	name = "Cocoon"
