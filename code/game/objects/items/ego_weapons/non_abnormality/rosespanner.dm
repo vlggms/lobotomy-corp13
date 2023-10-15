@@ -38,7 +38,9 @@
 	qdel(I)
 
 /obj/item/ego_weapon/city/charge/rosespanner/attack(mob/living/target, mob/living/user)
-	..()
+	. = ..()
+	if(!.)
+		return FALSE
 	if(charge == 20)
 		overcharged = TRUE
 		activated = TRUE

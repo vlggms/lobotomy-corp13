@@ -22,7 +22,9 @@
 		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
 
 /obj/item/ego_weapon/city/charge/wcorp/attack(mob/living/target, mob/living/user)
-	..()
+	. = ..()
+	if(!.)
+		return FALSE
 	if(activated)
 		release_charge(target, user)
 		activated = FALSE
@@ -305,9 +307,9 @@
 	attack_speed = 1.5
 
 /obj/item/ego_weapon/city/charge/wcorp/shield/club/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)

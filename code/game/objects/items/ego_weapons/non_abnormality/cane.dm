@@ -20,6 +20,8 @@
 
 /obj/item/ego_weapon/city/charge/cane/attack_self(mob/user)
 	..()
+	if(!CanUseEgo(user))
+		return FALSE
 	if(charge>=charge_cost)
 		var/target //Didn't even need new var, could literally put anything for first arg, but for consistency sake and less confusion
 		release_charge(target, user)
