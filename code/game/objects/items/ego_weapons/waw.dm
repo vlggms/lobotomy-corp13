@@ -1114,7 +1114,7 @@
 		return
 	..()
 	if(M==user)
-		for(var/mob/living/carbon/human/L in livinginrange(10, src))
+		for(var/mob/living/carbon/human/L in range(10, user))
 			if(L==user)
 				continue
 			L.adjustBruteLoss(-15)
