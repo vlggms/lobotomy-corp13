@@ -321,7 +321,8 @@
 		"Should the Qliphoth level reach 0, instead of breaching, the machine will produce a loud whirling sound and produce 3 humanoid creatures dubbed T-09-140-1.",
 		"T-09-140-1 are, despite their poor resilience, very durable and must be handled multiple times.",
 		"T-09-140-1's performance also improved as their 'gear' shifted higher, however doing so damaged them heavily.",
-		"T-09-140-1's stats are listed in the 'Breach Information' section of this document.")
+		"T-09-140-1's stats are listed in the 'Breach Information' section of this document."
+	)
 	abno_breach_damage_type = "RED"
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
@@ -414,7 +415,7 @@
 //Wayward Passenger
 /obj/item/paper/fluff/info/he/wayward
 	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
-	abno_code = "T-01-170"//LCB ID TBA in line 2
+	abno_code = "T-02-170"//T-02-21-07 in LCB
 	abno_info = list(
 		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
@@ -433,14 +434,16 @@
 		"If the employee's Temperance Level was below 3, the employee was killed instead.",
 		"When the work result was Bad, the Qliphoth Counter lowered.")
 
-//Pink Shoes
-/obj/item/paper/fluff/info/he/pink_shoes
-	abno_type = /mob/living/simple_animal/hostile/abnormality/pink_shoes
-	abno_code = "F-04-147"//F-04-10-13 in LCB
+//Red Shoes
+/obj/item/paper/fluff/info/he/red_shoes
+	abno_type = /mob/living/simple_animal/hostile/abnormality/red_shoes
+	abno_code = "O-04-08"
 	abno_info = list(
-		"Employees with temperance level 2 or lower immediately panicked after working on Pink Shoes.",
-		"Employees who panic while working on Pink Shoes will decide to wear them.",
-		"When the qliphoth counter became 0, Pink Shoes escaped and wove ribbons in the surrounding area.",
-		"Fallen employees can be manipulated by the ribbons, as well as other hostile threats.")
-	abno_breach_damage_type = "White"
-	abno_breach_damage_count = "Moderate"
+		"Employees with Temperance level 2 or lower should not work with Red Shoes. The shoes remember their previous owner.",
+		"When the work result was normal, qliphoth counter reduced with a normal probability.",
+		"When the work result was bad, qliphoth counter reduced with a high probability.",
+		"When the qliphoth counter became zero, employees were allured by the abnormality and recieved WHITE damage.",
+		"Allured employees had their prudence attribute reduced by 50 for two minutes.",
+		"Allured employees recovered quickly after their mental corruption was resolved.",
+		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
+	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach

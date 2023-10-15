@@ -952,7 +952,7 @@
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("hacks", "slashes", "attacks")
 	attack_verb_simple = list("hack", "slash", "attack")
-//	hitsound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
+	hitsound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
