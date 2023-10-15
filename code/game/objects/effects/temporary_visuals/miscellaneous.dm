@@ -969,3 +969,6 @@
 /obj/effect/temp_visual/mustardgas
 	icon_state = "mustard"
 	duration = 5
+
+/obj/effect/temp_visual/smash_effect/red
+	color = COLOR_RED
