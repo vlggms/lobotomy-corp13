@@ -241,7 +241,8 @@
 	abno_info = list(
 		"The inital work with F.A.N. is guaranteed to produce the maximum number of PE-boxes, but the chances decrease with each good work result.",
 		"Employees who worked on F.A.N. were observed to sit increasingly closer to F.A.N during subsequent work processes.",
-		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds.")
+		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds. Luckily, this does not happen during a Qliphoth meltdown.",
+		"When the Qliphoth counter became zero, the abnormality turned off and the facility began to heat up. Eventually, employees began taking mild RED damage due to overheating. Things turned back to normal when an employee hit the \"ON\" button.")
 
 //680 KHz
 /obj/item/paper/fluff/info/he/khz
