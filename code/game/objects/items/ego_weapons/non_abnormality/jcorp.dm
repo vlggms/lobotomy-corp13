@@ -69,7 +69,7 @@
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
-	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
+	hitsound = 'sound/weapons/fixer/generic/maracas1.ogg'
 	var/poise = 0
 
 /obj/item/ego_weapon/city/mariachi/examine(mob/user)
