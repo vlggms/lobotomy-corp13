@@ -62,7 +62,7 @@ SUBSYSTEM_DEF(cityevents)
 	//Set available distortion
 	var/list/processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
 	for(var/mob/living/simple_animal/hostile/distortion/A in processing)
-		if(can_spawn == 0)
+		if(A.can_spawn == 0)
 			return
 		distortions_available += A
 
