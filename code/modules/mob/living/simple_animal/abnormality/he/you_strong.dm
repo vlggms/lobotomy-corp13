@@ -248,10 +248,6 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/grown_strong/Initialize()
-	return ..() // replace with . = ..() once the icon state code gets un-commented
-	//icon_state = pick("1", "2", "3")
-
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
 	melee_damage_lower = 3*gear
