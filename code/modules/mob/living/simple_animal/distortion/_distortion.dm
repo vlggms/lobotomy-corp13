@@ -22,6 +22,8 @@
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+	/// Can this thing spawn?
+	var/can_spawn = 1
 	/// Copy-pasted from megafauna.dm: This allows player controlled mobs to use abilities
 	var/chosen_attack = 1
 	/// Attack actions, sets chosen_attack to the number in the action
