@@ -175,7 +175,37 @@
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)
 		Goto(P.starting, move_to_delay, 3)
-	return ..()
+
+	. = ..()
+	DamageEffect(P.damage, P.damage_type)
+
+/*-------------------\
+|Damage Visual Effect|
+\-------------------*/
+
+/mob/living/simple_animal/hostile/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE, actuallydamage = TRUE)
+	//This used to also check actually damage but turns out melee weapons in item_attack.dm dont call actually damage.
+	if(stat != DEAD && (damagetype in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
+		//To simplify things, if you bash a abnormality with a wrench it wont show any effect.
+		DamageEffect(damage, damagetype)
+	..()
+
+/mob/living/simple_animal/hostile/proc/DamageEffect(amount, damtype)
+	//Code stolen from attack_threshold_check() in animal_defense.dm
+	var/temp_damage = amount
+	if(!damage_coeff[damtype])
+		temp_damage = 0
+	else
+		temp_damage *= damage_coeff[damtype]
+
+	if(temp_damage > 0)
+		return FALSE
+	if(temp_damage == 0)
+		//Visual Effect for immunity.
+		return new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
+	if(temp_damage < 0)
+		//Visual Effect for healing.
+		return new /obj/effect/temp_visual/healing(get_turf(src))
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.

@@ -860,7 +860,16 @@
 
 /obj/effect/temp_visual/healing
 	icon_state = "healing"
-	duration = 10
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 8
+
+/obj/effect/temp_visual/healing/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-12, 12)
+	pixel_y = rand(-9, 0)
+
+/obj/effect/temp_visual/healing/no_dam
+	icon_state = "no_dam"
 
 /obj/effect/temp_visual/pale_eye_attack
 	name = "pale particles"
