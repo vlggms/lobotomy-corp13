@@ -34,6 +34,7 @@
 	desc = "A very sharp blade used by the Kurokumo clan. Get it bloody."
 	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
 	icon_state = "kurokumo_sheathed"
+	inhand_icon_state = "kurokumo_sheathed"
 	force = 52
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
@@ -59,6 +60,7 @@
 	poise+=1
 	if(poise>=10)
 		icon_state = "kurokumo"
+		inhand_icon_state = "kurokumo"
 	else if(poise>= 20)
 		poise = 20
 
@@ -68,6 +70,7 @@
 		to_chat(user, "<span class='userdanger'>Critical!</span>")
 		poise = 0
 		icon_state = "kurokumo_sheathed"
+		inhand_icon_state = "kurokumo_sheathed"
 	..()
 	force = initial(force)
 
@@ -77,6 +80,7 @@
 	desc = "A blade that is standard among blade lineage."
 	special = "Use this weapon in hand to immobilize yourself for 3 seconds and deal 5x damage on the next attack within 5 seconds."
 	icon_state = "blade_lineage"
+	inhand_icon_state = "blade_lineage"
 	force = 46
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
