@@ -123,6 +123,7 @@
 		visible_message("<span class='danger'>\The [src] bites [H]'s head off!</span>")
 		new /obj/effect/gibspawner/generic/silent(get_turf(H))
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
+		flick("big_bird_chomp", src)
 		bite_cooldown = world.time + bite_cooldown_time
 		return
 	return ..()
