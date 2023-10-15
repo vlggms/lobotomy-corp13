@@ -55,9 +55,9 @@
 	desc = "A sombrero worn by the Los Mariachis leader. It makes you want to dance."
 	icon_state = "aida"
 
-/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida_boss
+/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/boss
 	name = "los mariachis armor"
-	desc = "The outfit of the Los Mariachis leader. No one has seen this form and live."
+	desc = "The outfit of the Los Mariachis leader. No one has seen this and lived."
 	icon_state = "aida_boss"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 30)
 	hat = /obj/item/clothing/head/ego_hat/aida_hat_boss
