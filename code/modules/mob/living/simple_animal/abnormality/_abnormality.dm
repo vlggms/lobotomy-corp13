@@ -362,13 +362,13 @@
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
 	if(istype(datum_reference)) // Reset chance debuff
-		datum_reference.overload_chance = 0
+		datum_reference.overload_chance = list()
 	return
 
 // When qliphoth meltdown begins
 /mob/living/simple_animal/hostile/abnormality/proc/MeltdownStart()
 	if(istype(datum_reference))
-		datum_reference.overload_chance = 0
+		datum_reference.overload_chance = list()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0, pre_qlip = start_qliphoth)
