@@ -20,7 +20,7 @@ GLOBAL_LIST_INIT(attribute_types, list(
 	var/level_bonus = 0
 	/// What it affects
 	var/list/affected_stats = list()
-	/// The initial value of the affected stat. 100 in the case of health/sanity
+	/// The initial value of the affected stat. DEFAULT_HUMAN_MAX_HEALTH and DEFAULT_HUMAN_MAX_SANITY for health/sanity
 	var/initial_stat_value = 0
 
 // Procs
@@ -39,6 +39,12 @@ GLOBAL_LIST_INIT(attribute_types, list(
 
 /datum/attribute/proc/get_level_bonus() // Returns current level of bonus
 	return level_bonus
+
+// Used in show_attributes() human proc
+// Returns current level + initial_stat_value adjusted with information such as modifiers
+// Mainly used by fortitude & prudence
+/datum/attribute/proc/get_printed_level_bonus()
+	return round(level) + initial_stat_value
 
 /datum/attribute/proc/on_update(mob/living/carbon/user)
 	return

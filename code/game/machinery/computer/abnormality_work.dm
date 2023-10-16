@@ -45,8 +45,8 @@
 	. += "<span class='info'>Risk Level:</span> [threat_level]<span class='info'>.</span>" // Professionals have standards
 	if(datum_reference.qliphoth_meter_max > 0)
 		. += "<span class='info'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
-	if(datum_reference.overload_chance != 0)
-		. += "<span class='warning'>Current Qliphoth Overload: [datum_reference.overload_chance]%.</span>"
+	if(datum_reference.overload_chance[user.ckey])
+		. += "<span class='warning'>Current Personal Qliphoth Overload: [datum_reference.overload_chance[user.ckey]]%.</span>"
 	if(meltdown)
 		var/melt_text = ""
 		switch(meltdown)
@@ -69,8 +69,10 @@
 		return
 	var/dat
 	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
-	if(datum_reference.overload_chance != 0)
-		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Success Rates are modified by [datum_reference.overload_chance]%.</span><br>"
+	if(datum_reference.overload_chance[user.ckey])
+		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Personal Work Success Rates are modified by [datum_reference.overload_chance[user.ckey]]%.</span><br>"
+		if(datum_reference.overload_chance_limit < 0 && datum_reference.overload_chance[user.ckey] <= datum_reference.overload_chance_limit) // How the fuck did you hit the limit..?
+			dat += "<span style='color: [COLOR_MOSTLY_PURE_RED]'>Work on other abnormalities, I beg you...</span><br>"
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"

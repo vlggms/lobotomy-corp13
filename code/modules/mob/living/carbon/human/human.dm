@@ -84,7 +84,7 @@
 	for(var/atrname in attributes) //raw stats (health, sanity etc)
 		var/datum/attribute/atr = attributes[atrname]
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [round(atr.get_level()) + atr.initial_stat_value] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			dat += "[stat] : [atr.get_printed_level_bonus()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
@@ -1238,8 +1238,8 @@
 
 /mob/living/carbon/human/updatehealth()
 	if(LAZYLEN(attributes))
-		maxHealth = 100 + round(get_modified_attribute_level(src, FORTITUDE_ATTRIBUTE))
-		maxSanity = 100 + round(get_modified_attribute_level(src, PRUDENCE_ATTRIBUTE))
+		maxHealth = DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_level_bonus(src, FORTITUDE_ATTRIBUTE))
+		maxSanity = DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_level_bonus(src, PRUDENCE_ATTRIBUTE))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss
@@ -1249,10 +1249,11 @@
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 		return
-	var/health_deficiency = max((maxHealth - health), staminaloss)
-	if(health_deficiency >= 40)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_deficiency / 200)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_deficiency / 100)
+	// Gets a percent of lost health and applies the slowdown
+	var/health_missing_percent = (maxHealth - health) / maxHealth
+	if(health_missing_percent > 0.5)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_missing_percent * 0.5)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_missing_percent * 0.25)
 	else
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
