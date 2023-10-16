@@ -1162,8 +1162,8 @@
 	for(var/i = 1 to 9)
 		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
 		var/landing
-		pick(landing = locate(user.x, user.y + 2, user.z),landing = locate(user.x, user.y - 2, user.z),landing = locate(user.x + 2, user.y, user.z),landing = locate(user.x - 2, user.y, user.z),landing = locate(user.x + 1, user.y + 1, user.z),landing = locate(user.x + 1, user.y - 1, user.z),landing = locate(user.x - 1, user.y + 1, user.z),landing = locate(user.x - 1, user.y - 1, user.z))
-		var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
+		landing = locate(user.x + pick(-2,-1,0,1,2), user.y + pick(-2,-1,0,1,2), user.z)
+		var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new(get_turf(user))
 		W.origin_nest = user
 		W.throw_at(landing, 0.5, 2, spin = FALSE)
 	return ..()
