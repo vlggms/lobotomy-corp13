@@ -133,7 +133,7 @@
 	crate_timer = 60
 
 /obj/structure/pe_sales/hana
-	name = "Syndicate Workshop Power Input"
+	name = "Hana Assocation Power Input"
 	desc = "A machine used to send PE to the hana association"
 	icon_state = "machinehana"
 	crate = /obj/structure/lootcrate/hana
