@@ -289,7 +289,7 @@
 				connected_abno.datum_reference.qliphoth_change(1)
 		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
-	. = ..()
+	return ..()
 
 /datum/status_effect/display/parasite_tree_blessing/proc/facadeFalls()
 	owner.apply_status_effect(THE_TREE_CURSE)
@@ -335,7 +335,7 @@
 		nested_items(N, host.get_item_by_slot(ITEM_SLOT_BACK))
 		nested_items(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		QDEL_IN(owner, 5) //rabbit sanity implant explodes at 5
-	. = ..()
+	return ..()
 
 /datum/status_effect/display/parasite_tree_curse/TweakDisplayIcon()
 	..()

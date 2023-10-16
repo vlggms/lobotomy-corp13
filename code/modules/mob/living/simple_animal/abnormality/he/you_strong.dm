@@ -241,18 +241,12 @@
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/AttackingTarget(atom/attacked_target)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
-
-/mob/living/simple_animal/hostile/grown_strong/Initialize()
-	. = ..()
-	//icon_state = pick("1", "2", "3")
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")

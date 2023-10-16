@@ -57,7 +57,7 @@
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/Move()
 	if(judging)
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/AttackingTarget(atom/attacked_target)
 	return OpenFire()

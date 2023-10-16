@@ -93,7 +93,7 @@
 
 /datum/status_effect/pranked/on_creation(mob/living/new_owner, ...)
 	duration = rand(1800,2400)
-	. = ..()
+	return ..()
 
 /datum/status_effect/pranked/on_apply()
 	if(get_attribute_level(owner, PRUDENCE_ATTRIBUTE) >= 80)

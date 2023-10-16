@@ -187,7 +187,7 @@
 	if(istype(target, /mob/living/simple_animal/hostile/abnormality/naked_nest))
 		var/mob/living/simple_animal/hostile/abnormality/naked_nest/nest = target
 		nest.RecoverSerpent(src)
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/naked_nest_serpent/CanAttack(atom/the_target)
 	if(panic_timer > world.time)

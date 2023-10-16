@@ -297,7 +297,7 @@
 
 /obj/effect/mermaid_water/unbuckle_mob(mob/living/carbon/human/buckled_mob, force)
 	if(buckled_mob.stat == DEAD || buckled_mob.losebreath <= 0) //you can only unbuckle yourself if you somehow survive the oxyloss long enough, or you're dead
-		. = ..()
+		return ..()
 
 ///the loved's movespeed is nerfed by a LOT while she's out, meaning if you're in the process of being chased by big bird, I have bad news for you.
 /datum/movespeed_modifier/unrequited_slowdown

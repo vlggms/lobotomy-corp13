@@ -133,7 +133,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/Life()
-	. =..()
+	. = ..()
 	if(status_flags & GODMODE)
 		return
 	if(teleport_cooldown < world.time) //if porccubus hasn't taken damage for 5 minutes we make him move so he doesn't stay stuck in whatever cell he got thrown in.
