@@ -81,6 +81,7 @@
 	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!(type in GLOB.cached_abno_work_rates))
 		GLOB.cached_abno_work_rates[type] = work_chances.Copy()
@@ -114,6 +115,7 @@
 		gift_message += "\nYou are granted a gift by [src]!"
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
@@ -142,6 +144,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/Life()
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -274,6 +277,7 @@
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	SHOULD_CALL_PARENT(TRUE)
 	if(pe >= datum_reference.success_boxes)
 		SuccessEffect(user, work_type, pe, work_time, canceled)
 	else if(pe >= datum_reference.neutral_boxes)
@@ -302,6 +306,7 @@
 
 // Giving an EGO gift to the user after work is complete
 /mob/living/simple_animal/hostile/abnormality/proc/GiftUser(mob/living/carbon/human/user, pe, chance = gift_chance)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(user) || isnull(gift_type))
 		return FALSE
 	if(istype(user.ego_gift_list[initial(gift_type.slot)], gift_type)) // If we already have same gift - don't run the checks
