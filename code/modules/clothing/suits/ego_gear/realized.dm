@@ -374,7 +374,9 @@
 	if(!CanSpawn)
 		return
 	addtimer(CALLBACK(src, .proc/Reset,user), 10 SECONDS)
-	new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
+	playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
+	var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
+	W.origin_nest = user
 
 /* ALEPH Realizations */
 

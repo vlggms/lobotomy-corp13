@@ -599,11 +599,13 @@
 /datum/status_effect/pbird/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
+	owner.color = COLOR_RED
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 
 /datum/status_effect/pbird/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
+	owner.color = null
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
 /obj/effect/proc_holder/ability/petal_blizzard
@@ -1067,7 +1069,7 @@
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
 	desc = "An ability that does causes you to start praying reducing damage taken by 25% but removing your ability to move and lowers justice by 80. \
-	When you finish praying everyone in a big area gets a 20% damage boost and gets healed."
+	When you finish praying everyone gets a 20 justice increase and gets healed."
 	action_icon_state = "flesh0"
 	base_icon_state = "flesh"
 	cooldown_time = 180 SECONDS
@@ -1129,7 +1131,7 @@
 	id = "FLESH2"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/flesh2
-	duration = 50 SECONDS
+	duration = 60 SECONDS
 
 /atom/movable/screen/alert/status_effect/flesh2
 	name = "An answer from god"
@@ -1157,18 +1159,24 @@
 
 
 /obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
-	for(var/turf/T in view(1, user))
-		new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(T)
+	for(var/i = 1 to 9)
+		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
+		var/landing
+		pick(landing = locate(user.x, user.y + 2, user.z),landing = locate(user.x, user.y - 2, user.z),landing = locate(user.x + 2, user.y, user.z),landing = locate(user.x - 2, user.y, user.z),landing = locate(user.x + 1, user.y + 1, user.z),landing = locate(user.x + 1, user.y - 1, user.z),landing = locate(user.x - 1, user.y + 1, user.z),landing = locate(user.x - 1, user.y - 1, user.z))
+		var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
+		W.origin_nest = user
+		W.throw_at(landing, 0.5, 2, spin = FALSE)
 	return ..()
 
 /datum/status_effect/stacking/infestation
 	id = "EGO_NEST"
 	status_type = STATUS_EFFECT_UNIQUE
-	stacks = 0
-	tick_interval = 30
+	stacks = 1
+	stack_decay = 0 //Without this the stacks were decaying after 1 sec
+	duration = 15 SECONDS //Lasts for 4 minutes
 	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	max_stacks = 20
 	consumed_on_threshold = FALSE
-	var/next_tick = 0
 	var/red = 0
 
 /atom/movable/screen/alert/status_effect/infestation
@@ -1187,16 +1195,6 @@
 	var/mob/living/simple_animal/M = owner
 	M.damage_coeff[RED_DAMAGE] = red
 
-/datum/status_effect/stacking/infestation/process()
-	if(!owner)
-		qdel(src)
-		return
-	if(next_tick < world.time)
-		tick()
-		next_tick = world.time + tick_interval
-	if(duration != -1 && duration < world.time)
-		qdel(src)
-
 /datum/status_effect/stacking/infestation/add_stacks(stacks_added)
 	. = ..()
 	if(!isanimal(owner))
@@ -1205,13 +1203,12 @@
 	if(M.damage_coeff[RED_DAMAGE] <= 0)
 		qdel(src)
 		return
-	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks/10))
-	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
-	tick_interval = max(30 - (stacks/10), 0.1)
+	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks/20))
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*5]%!"
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend
-	name = "naked serpent"
-	desc = "A sickly looking green-colored worm."
+	name = "friendly naked serpent"
+	desc = "A sickly looking green-colored worm but looks friendly."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_serpent"
 	icon_living = "nakednest_serpent"
@@ -1234,10 +1231,12 @@
 	del_on_death = 1
 	vision_range = 18 //two screens away
 	faction = list("neutral")
+	var/mob/living/carbon/human/origin_nest
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend/Initialize()
 	.=..()
-	QDEL_IN(src, (15 SECONDS))
+	AddComponent(/datum/component/swarming)
+	QDEL_IN(src, (20 SECONDS))
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend/AttackingTarget()
 	var/mob/living/L = target
@@ -1246,9 +1245,24 @@
 		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)
 		if(!INF)
 			return
-	INF.add_stacks(3)
+	INF.add_stacks(1)
 	qdel(src)
 	. = ..()
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/LoseAggro() //its best to return home
+	..()
+	if(origin_nest)
+		for(var/mob/living/carbon/human/H in oview(vision_range, src))
+			if(origin_nest == H.tag)
+				Goto(H, 5, 0)
+				return
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/Life()
+	..()
+	if(origin_nest)
+		for(var/mob/living/carbon/human/H in oview(vision_range, src))
+			if(origin_nest == H.tag)
+				Goto(H, 5, 0)
+				return
 
 /* Wayward Passenger - Dimension Ripper */
 /obj/effect/proc_holder/ability/rip_space
