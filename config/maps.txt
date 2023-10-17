@@ -90,9 +90,7 @@ endmap
 map facilitytest
 endmap
 
-map tramstation
-	minplayers 35
-	votable
+map tram_test
 endmap
 
 map runtimestation

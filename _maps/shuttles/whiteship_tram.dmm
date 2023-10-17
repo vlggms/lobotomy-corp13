@@ -404,7 +404,6 @@
 /turf/open/floor/mineral/titanium,
 /area/shuttle/abandoned/cargo)
 "bh" = (
-/obj/item/stack/sheet/iron,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/mineral/titanium/blue,
 /area/shuttle/abandoned/cargo)
@@ -872,7 +871,6 @@
 /obj/structure/closet/crate/engineering,
 /obj/item/storage/toolbox/mechanical,
 /obj/item/storage/toolbox/mechanical,
-/obj/item/stack/sheet/iron/fifty,
 /obj/item/stack/rods/fifty,
 /obj/item/stack/sheet/glass/fifty,
 /turf/open/floor/plating,
@@ -925,7 +923,7 @@
 /obj/machinery/door/airlock{
 	name = "Restroom"
 	},
-/turf/open/floor/iron/freezer,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "cu" = (
 /obj/effect/turf_decal/stripes/corner{
@@ -954,18 +952,18 @@
 /obj/structure/mirror{
 	pixel_x = -28
 	},
-/turf/open/floor/iron/freezer,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "cx" = (
 /obj/effect/decal/cleanable/dirt,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "cy" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/toilet{
 	pixel_y = 16
 	},
-/turf/open/floor/iron/freezer,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "cz" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1007,7 +1005,7 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
 /obj/machinery/light/small/red,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "cE" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1015,13 +1013,13 @@
 /obj/machinery/shower{
 	dir = 1
 	},
-/turf/open/floor/iron/freezer,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "cF" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/structure/table,
 /obj/item/soap,
-/turf/open/floor/iron/freezer,
+/turf/open/floor/plasteel,
 /area/shuttle/abandoned/cargo)
 "cG" = (
 /obj/effect/decal/cleanable/dirt,
@@ -1397,6 +1395,9 @@
 /area/shuttle/abandoned/engine)
 "dA" = (
 /turf/closed/wall/mineral/titanium/interior,
+/area/shuttle/abandoned/cargo)
+"FP" = (
+/turf/open/floor/mineral/titanium/tiled,
 /area/shuttle/abandoned/cargo)
 
 (1,1,1) = {"
@@ -1858,7 +1859,7 @@ bx
 co
 be
 bx
-bR
+FP
 aS
 cG
 cK
