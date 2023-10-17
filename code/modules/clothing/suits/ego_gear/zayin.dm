@@ -102,7 +102,6 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	icon_state = "eclipse"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
-//TEMPORARY!!!
 /obj/item/clothing/suit/armor/ego_gear/zayin/oceanic
 	name = "taste of the sea"
 	desc = "A suit that's old but made of thick plastic."
