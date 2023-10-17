@@ -19,16 +19,21 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 	var/force_update = 44
+	var/static/suicide_used = list()
 
 /obj/item/ego_weapon/city/shi_knife/attack(mob/living/target, mob/living/carbon/human/user)
 	force = force_update
-	if(!CanUseEgo(user))
-		return
 	if(target == user)
+		if(user.ckey in suicide_used)
+			to_chat(user, "<span class='warning'>To suicide once more would bring dishonor to your name.</span>")
+			return
 		user.death()
 		for(var/mob/M in GLOB.player_list)
 			to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] has gone out with honor. 灰から灰へ</span>")
 		new /obj/effect/temp_visual/BoD(get_turf(target))
+		suicide_used |= user.ckey
+	if(!CanUseEgo(user))
+		return
 	..()
 
 //Boundary of death users
