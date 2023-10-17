@@ -454,8 +454,9 @@
 	abno_code = "C-01-184"
 	abno_info = list(
 		"Every death reduced the Qliphoth counter of C-01-184 by 1.",
+		"On a Bad result, the Qliphoth counter lowered by 3.",
 		"After Attachment work, there is a small chance of Eris and the Employee -REDACTED-.",
-		"On a Bad result, the Qliphoth counter lowered by 3.")
+		"Attacking C-01-184 while breached resulted in the employee taking white damage.")
 
 //Will You Play
 /obj/item/paper/fluff/info/he/willyouplay
