@@ -516,3 +516,27 @@
 	damage = 20
 	damage_type = BLACK_DAMAGE
 	flag = BLACK_DAMAGE
+
+
+/obj/item/ego_weapon/sanitizer
+	name = "sanitizer"
+	desc = "It's very shocking."
+	special = "Knocks certain enemies backwards."
+	icon_state = "sanitizer"
+	force = 35					//Still less DPS, replaces baseball bat
+	attack_speed = 1.6
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("beats", "smacks")
+	attack_verb_simple = list("beat", "smack")
+	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
+
+/obj/item/ego_weapon/sanitizer/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	. = ..()
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+

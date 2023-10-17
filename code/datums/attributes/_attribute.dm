@@ -177,6 +177,14 @@ GLOBAL_LIST_INIT(attribute_types, list(
 		atr.level_limit = attribute_set
 	return TRUE
 
+/mob/living/carbon/human/proc/adjust_attribute_limit(attribute_set)
+	for(var/atr_type in attributes)
+		var/datum/attribute/atr = attributes[atr_type]
+		if(!istype(atr))
+			continue
+		atr.level_limit += attribute_set
+	return TRUE
+
 // Returns a combination of attributes, giving a "level" from 1 to 5
 /proc/get_user_level(mob/living/carbon/human/user)
 	if(!istype(user))
