@@ -40,6 +40,7 @@
 	egoist_attributes = 100
 	loot = list(/obj/item/gun/ego_gun/shrimp/minigun)
 	unmanifest_effect = /obj/effect/temp_visual/water_waves
+	can_spawn = 0
 
 	var/unmanifesting
 

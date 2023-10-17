@@ -10,6 +10,7 @@ SUBSYSTEM_DEF(cityevents)
 	var/daystatus = TRUE	//True to darken lights, false to lighten them
 	var/globalillumination = 1
 	var/list/total_events = list()
+	var/list/distortions_available = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
 	var/harmful_events = list("drones", "beaks", "shrimp")
 	var/ordeal_events = list("sweepers", "scouts", "bots")
@@ -57,6 +58,13 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
+
+	//Set available distortion
+	var/list/processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
+	for(var/mob/living/simple_animal/hostile/distortion/A in processing)
+		if(A.can_spawn == 0)
+			return
+		distortions_available += A
 
 //Events
 /datum/controller/subsystem/cityevents/proc/Event()
@@ -132,7 +140,7 @@ SUBSYSTEM_DEF(cityevents)
 	var/T = pick(distortion)
 	new /obj/effect/bloodpool(get_turf(T))
 	sleep(10)
-	var/spawning = pick(subtypesof(/mob/living/simple_animal/hostile/distortion))
+	var/spawning = pick(distortions_available)
 	new spawning (get_turf(T))
 	addtimer(CALLBACK(src, .proc/Distort), 20 MINUTES)
 
