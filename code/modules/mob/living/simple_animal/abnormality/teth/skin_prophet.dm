@@ -26,7 +26,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/WorkChance(mob/living/carbon/human/user, chance)
 	//work damage starts at 7, + candles stuffed
-	work_damage_amount = initial(work_damage_amount) += candles
+	work_damage_amount = initial(work_damage_amount) + candles
 
 	//If you're doing rep or temeprance then your work chance is your total buffs combined, and damage is increased too
 	if(chance == 0)
