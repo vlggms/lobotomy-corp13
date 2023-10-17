@@ -29,7 +29,7 @@
 	work_damage_amount = initial(work_damage_amount) += candles
 
 	//If you're doing rep or temeprance then your work chance is your total buffs combined, and damage is increased too
-	if(chance ==0)
+	if(chance == 0)
 		var/totalbuff = get_level_buff(user, FORTITUDE_ATTRIBUTE) + get_level_buff(user, PRUDENCE_ATTRIBUTE) + get_level_buff(user, TEMPERANCE_ATTRIBUTE) + get_level_buff(user, JUSTICE_ATTRIBUTE)
 		chance = totalbuff
 		work_damage_amount += totalbuff/10
