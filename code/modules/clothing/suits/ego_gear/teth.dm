@@ -225,8 +225,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "The maid takes advantage of the princess's vulnerability. \
 	She threatens to kill the princess if she doesn't swear never to say a word about this reversal of roles to any living being. Sadly, the princess takes the oath."
 	icon_state = "zauberhorn"
-	
 	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 20
+	
 /obj/item/clothing/suit/armor/ego_gear/teth/visions
 	name = "visions of future past"
 	desc = "It's looking right at you."
