@@ -159,7 +159,7 @@
 			continue
 		//Shamelessly fucking stolen from risk of rain's teddy bear.
 		var/healamount = 20 * ((0.15*girlboss_level)/(0.15*girlboss_level + 1))
-		H.adjustBruteLoss(-healamount)	//Sanity healing for those around, but heals less than the healbeam
+		H.adjustBruteLoss(-healamount)	//Healing for those around.
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
 
 //Okay but here's the defensive options
