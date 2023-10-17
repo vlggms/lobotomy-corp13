@@ -377,6 +377,8 @@
 /atom/movable/screen/alert/status_effect/stay_home
 	name = "stay home"
 	desc = "Everyone must go home eventually, you are no different."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "home"
 
 /datum/status_effect/stay_home/on_apply()
 	. = ..()
