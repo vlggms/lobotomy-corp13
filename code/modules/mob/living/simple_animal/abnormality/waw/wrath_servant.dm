@@ -390,12 +390,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Dash()
 	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+	var/duration = 1 SECONDS
 	if(client)
-		var/original_speed = speed
-		set_varspeed(-0.5)
-		addtimer(CALLBACK(src, .proc/set_varspeed, original_speed), 1.5 SECONDS) //bigger duration since delay makes things wacky for the player
-		return
-	TemporarySpeedChange(-4, 1 SECONDS)
+		duration = 1.5 SECONDS
+	TemporarySpeedChange(-4, duration)
 	COOLDOWN_START(src, dash, dash_cooldown)
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Smash()

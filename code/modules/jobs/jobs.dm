@@ -25,6 +25,11 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Reindeer Squad Captain",
 	"Rhino Squad Captain",
 	"Raven Squad Captain",
+
+
+	//Wcorp stuff
+	"W-Corp Representative",
+	"W-Corp L3 Squad Captain",
 	))
 
 
@@ -89,6 +94,14 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"R-Corp Support Raven",
 
 
+	//W-Corp agents
+	"W-Corp L2 Type A Lieutenant",
+	"W-Corp L2 Type B Support Agent",
+	"W-Corp L2 Type C Weapon Specialist",
+	"W-Corp L2 Type D Spear Agent",
+	"W-Corp L1 Cleanup Agent",
+
+
 	//Syndicates
 	"Index Messenger",
 	"Index Proxy",
@@ -96,6 +109,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 
 	"Blade Lineage Cutthroat",
 	"Blade Lineage Salsu",
+	"Blade Lineage Ronin",
 
 	"Grand Inquisitor",
 	"N Corp Grosshammer",
@@ -109,7 +123,6 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Kurokumo Kashira",
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
-
 	))
 
 

@@ -51,7 +51,9 @@
 	abno_code = "T-09-85"
 	abno_info = list(
 		"The employee working on We Can Change Anything took continuous RED damage during work.",
-		"Upon successful work completion, the employee received a slight temporary resistance to RED damage.")
+		"Upon successful work completion, the employee received a slight temporary resistance to RED damage.",
+		"Placing an employee inside the machine will produce energy over time, and the RED damage was increased.",
+		"The amount of energy produced this way will increase as time goes by.")
 
 //Sleeping Beauty
 /obj/item/paper/fluff/info/zayin/sleeping

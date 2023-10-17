@@ -49,9 +49,9 @@
 			/obj/item/workshop_mod/curing/black = 5,
 
 			//Combat
-			/obj/item/workshop_mod/aoelarge/red = 5,
-			/obj/item/workshop_mod/aoelarge/white = 5,
-			/obj/item/workshop_mod/aoelarge/black = 5,
+			/obj/item/workshop_mod/aoe/large/red = 5,
+			/obj/item/workshop_mod/aoe/large/white = 5,
+			/obj/item/workshop_mod/aoe/large/black = 5,
 			/obj/item/workshop_mod/sharp/red = 5,
 			/obj/item/workshop_mod/sharp/white = 5,
 			/obj/item/workshop_mod/sharp/black = 5,

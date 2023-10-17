@@ -754,10 +754,16 @@
 			var/list/rgb = hex2rgb(paint_color)
 			var/list/hsl = rgb2hsl(rgb[1], rgb[2], rgb[3])
 			var/color_is_dark = hsl[3] < DARK_COLOR_LIGHTNESS_THRESHOLD
+			
+			if(SSmaptype.maptype == "city")
+				to_chat(user, "<span class='warning'>Vandalizing the head's property is punishable by death...</span>")
+				return FALSE
 
+			/*
 			if (color_is_dark && !(target.flags_1 & ALLOW_DARK_PAINTS_1))
 				to_chat(user, "<span class='warning'>A color that dark on an object like this? Surely not...</span>")
 				return FALSE
+			*/
 
 			target.add_atom_colour(paint_color, WASHABLE_COLOUR_PRIORITY)
 			SEND_SIGNAL(target, COMSIG_OBJ_PAINTED, color_is_dark)

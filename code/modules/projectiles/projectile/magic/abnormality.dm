@@ -207,3 +207,50 @@
 	eyeblur = 10
 	slur = 5
 	speed = 2.4
+
+/obj/projectile/actor
+	name = "bullet"
+	icon_state = "bullet"
+	desc = "causes a lot of pain"
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	damage = 10
+
+/obj/projectile/actor/on_hit(target)
+	. = ..()
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
+	if(!H.sanity_lost)
+		return
+	damage = 0
+	QDEL_NULL(H.ai_controller)
+	H.ai_controller = /datum/ai_controller/insane/suicide/scene
+	H.InitializeAIController()
+	H.apply_status_effect(/datum/status_effect/panicked_type/scene)
+
+/obj/projectile/thunder_tomahawk
+	name = "tomahawk"
+	desc = "Look out!"
+	icon_state = "thunder_tomahawk"
+	damage_type = BLACK_DAMAGE
+	flag = BLACK_DAMAGE
+	damage = 45
+
+/obj/projectile/thunder_tomahawk/Initialize()
+	. = ..()
+	SpinAnimation()
+
+/obj/projectile/beam/water_jet //it's just a reskin for gold ordeals
+	name = "water jet"
+	icon_state = "snapshot"
+	hitsound = null
+	damage = 10
+	damage_type = WHITE_DAMAGE
+	flag = WHITE_DAMAGE
+	hitscan = TRUE
+	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
+	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
+	impact_type = /obj/effect/projectile/impact/laser/snapshot
+	wound_bonus = -100
+	bare_wound_bonus = -100

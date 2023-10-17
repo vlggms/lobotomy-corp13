@@ -186,7 +186,7 @@ Katana - Use in hand to dash
 		return
 	. = ..()
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
+	if(target && !target?.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 

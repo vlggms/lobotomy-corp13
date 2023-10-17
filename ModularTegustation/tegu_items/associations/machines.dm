@@ -144,8 +144,6 @@
 	if(spawntype)
 		new spawntype (get_turf(src))
 		qdel(I)
-		if(prob(5))
-			new /obj/structure/lootcrate/tres (get_turf(src))
 	return TRUE
 
 /obj/structure/potential
@@ -161,17 +159,19 @@
 			TEMPERANCE_ATTRIBUTE,
 			JUSTICE_ATTRIBUTE)
 
-/obj/structure/potential/attackby(obj/item/I, mob/living/user, params)
-	if(ishuman(user))
+//Very dumb way to implement "empty hand AND full hand." 
+//These two code blocks are the same except for their triggers - if you've got a better idea, please use it.
+/obj/structure/potential/proc/calculate_grade(mob/living/user)
+	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		var/stattotal
 		var/grade
 		for(var/attribute in stats)
-			stattotal+=get_attribute_level(H, attribute)
-		stattotal /= 4	//Potential is an average of stats
-		grade = round((stattotal)/20)	//Get the average level-20, divide by 20
-		//Under grade 9 doesn't register
-		if(10-grade>=10)
+			stattotal += get_attribute_level(H, attribute)
+		stattotal /= 4	// Potential is an average of stats
+		grade = round((stattotal) / 20)	// Get the average level-20, divide by 20
+		// Under grade 9 doesn't register
+		if (10 - grade >= 10)
 			to_chat(user, "<span class='notice'>Potential too low to give grade. Not recommended to issue fixer license.</span>")
 			return
 
@@ -181,3 +181,8 @@
 
 	to_chat(user, "<span class='notice'>No human potential identified.</span>")
 
+/obj/structure/potential/attackby(obj/item/I, mob/living/user, params)
+	calculate_grade(user)
+
+/obj/structure/potential/attack_hand(mob/living/user)
+	calculate_grade(user)

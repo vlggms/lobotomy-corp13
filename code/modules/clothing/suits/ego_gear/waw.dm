@@ -12,7 +12,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "hornet armor"
 	desc = "A dark coat with yellow details. You feel as if you can hear faint buzzing coming out of it."
 	icon_state = "hornet"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 20) // 140
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -450,3 +450,11 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 60) // 140
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/scene
+	name = "as written in the scenario"
+	desc = "Title: Peccatum Proprium. Today, we perform for the king. Characters : A, The failed, The Abandoned, The Broken, The Coward, and......."
+	icon_state = "scenario"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 10) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80)

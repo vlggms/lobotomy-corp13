@@ -539,7 +539,7 @@
 	desc = "It hails from realms whose mere existence stuns the brain and numbs us with the black extra-cosmic gulfs it throws open before our frenzied eyes."
 	special = "Use this weapon in hand to dash. Attack after a dash for an AOE."
 	icon_state = "space"
-	force = 35	//Half white, half black.
+	force = 50	//Half white, half black.
 	damtype = WHITE_DAMAGE
 	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
@@ -588,10 +588,10 @@
 		return
 	if(do_after(user, 5, src, IGNORE_USER_LOC_CHANGE))
 		playsound(src, 'sound/weapons/rapierhit.ogg', 100, FALSE, 4)
-		for(var/turf/T in orange(1, user))
+		for(var/turf/T in orange(3, user))
 			new /obj/effect/temp_visual/smash_effect(T)
 
-		for(var/mob/living/L in livinginrange(1, user))
+		for(var/mob/living/L in range(3, user))
 			var/aoe = force
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
@@ -1000,7 +1000,7 @@
 /obj/item/ego_weapon/shield/combust/proc/Check_Ego(mob/living/user)
 	var/mob/living/carbon/human/H = user
 	var/obj/item/clothing/suit/armor/ego_gear/aleph/combust/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)	
+	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(C) || istype(D))
 		reductions = list(30, 50, 40, 30) // 150 with combust/desperation
 		projectile_block_message = "The heat from your wing melted the projectile!"
@@ -1080,7 +1080,7 @@
 
 	special_attack = FALSE
 	special_cooldown = world.time + special_cooldown_time
-	
+
 	Check_Burn(user)
 	var/extra_damage = 10 // Extra damage each 10 stacks, maxed at 320
 	for(var/i = 0, i < round(burn_stack/10), i++)
@@ -1101,7 +1101,7 @@
 	user.dir = get_dir(user, A)
 	user.forceMove(target_turf)
 	playsound(target_turf, 'sound/abnormalities/firebird/Firebird_Hit.ogg', 50, TRUE)
-	
+
 	// Damage
 	for(var/turf/T in line_turfs)
 		for(var/turf/TF in view(1, T))
@@ -1114,8 +1114,9 @@
 				user.visible_message("<span class='boldwarning'>[user] blazes through [L]!</span>")
 				L.apply_damage((special_damage + extra_damage), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 				been_hit += L
-	
+
 	// Remove burn if it's safety is on
 	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	if(B.safety)
 		user.remove_status_effect(STATUS_EFFECT_LCBURN)
+

@@ -142,23 +142,69 @@
 			Can guns really bring peace and love?"
 	icon_state = "pink"
 	inhand_icon_state = "pink"
-	special = "This weapon fires faster when the corresponding suit is worn."
+	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away."
 	ammo_type = /obj/item/ammo_casing/caseless/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
 	fire_delay = 18
-
+	zoomable = TRUE
+	zoom_amt = 10
+	zoom_out_amt = 13
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	var/mob/current_holder
 
-/obj/item/gun/ego_gun/pink/before_firing(atom/target, mob/user)
-	fire_delay = initial(fire_delay)
-	var/mob/living/carbon/human/H = user
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/pink/Y = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if(istype(Y))
-		fire_delay = 12//FIXME: change it to 15% damage. Or keep it this way, whatever people like
+/obj/item/gun/ego_gun/pink/attack_self(mob/user)
+	zoom(user, user.dir)
 	..()
+
+/obj/item/gun/ego_gun/pink/zoom(mob/living/user, direc, forced_zoom)
+	if(!CanUseEgo(user))
+		return
+	if(!user || !user.client)
+		return
+	if(isnull(forced_zoom))
+		zoomed = !zoomed
+	else
+		zoomed = forced_zoom
+	if(src != user.get_active_held_item())
+		if(!zoomed)
+			UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+			UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+			user.client.view_size.zoomIn()
+		return
+	if(!zoomed)
+		UnregisterSignal(user, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
+		user.client.view_size.zoomIn()
+	else
+		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
+	return zoomed
+
+/obj/item/gun/ego_gun/pink/proc/UserMoved(mob/living/user, direc)
+	SIGNAL_HANDLER
+	attack_self(user)//disengage
+
+/obj/item/gun/ego_gun/pink/Destroy(mob/user)//FIXME: causes component runtimes
+	if(!user)
+		return ..()
+	if(zoomed)
+		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
+		current_holder = null
+		return ..()
+
+/obj/item/gun/ego_gun/pink/dropped(mob/user)
+	. = ..()
+	if(!user)
+		return
+	if(zoomed)
+		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+		UnregisterSignal(current_holder, COMSIG_ATOM_DIR_CHANGE)
+		current_holder = null

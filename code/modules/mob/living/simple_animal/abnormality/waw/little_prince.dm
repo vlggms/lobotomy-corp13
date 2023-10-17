@@ -50,7 +50,7 @@
 	if (!(user.sanity_lost))
 		to_chat(user, "<span class='userdanger'>You see mushrooms growing all over your body!</span>")
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
-		user.adjustSanityLoss(-500)
+		user.adjustSanityLoss(500)
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
 	QDEL_NULL(user.ai_controller)
 	user.ai_controller = /datum/ai_controller/insane/hypno

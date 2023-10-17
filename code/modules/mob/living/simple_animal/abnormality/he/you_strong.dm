@@ -235,28 +235,29 @@
 	var/gear = 2
 	COOLDOWN_DECLARE(gear_shift)
 	var/gear_cooldown = 1 MINUTES
+	//tracks speed change even if altered by other speed modifiers.
+	var/gear_speed = 0
 
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/AttackingTarget(atom/attacked_target)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
-
-/mob/living/simple_animal/hostile/grown_strong/Initialize()
-	. = ..()
-	//icon_state = pick("1", "2", "3")
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
 	melee_damage_lower = 3*gear
 	melee_damage_upper = 5*gear
-	move_to_delay = 5 - FLOOR(gear / 3, 1)
+	//Reset the speed. First proc changes this only with 0.
+	SpeedChange(gear_speed)
+	//Calculate speed change.
+	gear_speed = FLOOR(gear / 3, 1)
+	//CRANK UP THE SPEED.
+	SpeedChange(-gear_speed)
 	rapid_melee = gear > 7 ? 2 : 1
 
 /mob/living/simple_animal/hostile/grown_strong/Life()
@@ -265,7 +266,7 @@
 		return
 	gear = clamp(gear + rand(-1, 3), 1, 10)
 	UpdateGear()
-	src.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
+	src.apply_damage(150, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)

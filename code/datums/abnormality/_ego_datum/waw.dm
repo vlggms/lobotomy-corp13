@@ -9,7 +9,13 @@
 
 // Queen bee - Hornet
 /datum/ego_datum/weapon/hornet
+	item_category = "Weapon (Rifle)"
 	item_path = /obj/item/gun/ego_gun/hornet
+	cost = 50
+
+/datum/ego_datum/weapon/tattered_kingdom
+	item_category = "Weapon (Lance)"
+	item_path = /obj/item/ego_weapon/lance/tattered_kingdom
 	cost = 50
 
 /datum/ego_datum/armor/hornet
@@ -433,4 +439,13 @@
 
 /datum/ego_datum/weapon/cobalt
 	item_path = /obj/item/ego_weapon/cobalt
+	cost = 50
+
+//Poor Screenwriter's Note - Scenario
+/datum/ego_datum/armor/scene
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/scene
+	cost = 50
+
+/datum/ego_datum/weapon/scene
+	item_path = /obj/item/ego_weapon/scene
 	cost = 50

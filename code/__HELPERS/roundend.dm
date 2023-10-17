@@ -335,7 +335,8 @@
 	//Economy & Money
 	parts += market_report()
 	//PE Quota
-	parts += pe_report()
+	if(SSmaptype.maptype == "standard")
+		parts += pe_report()
 
 	listclearnulls(parts)
 
@@ -562,6 +563,7 @@
 
 /datum/controller/subsystem/ticker/proc/pe_report()
 	. = list()
+	SSpersistence.pe_status[PE_GOAL_SPENT] = FALSE
 	. += "<span class='header'>PE Quota</span>"
 	. += "<div class='panel stationborder'>"
 	. += "[SSlobotomy_corp.total_generated] total PE was generated.<br>"
@@ -571,9 +573,16 @@
 		. += "[SSlobotomy_corp.total_spent] PE was spent on various things.<br>"
 	if(SSlobotomy_corp.goal_reached)
 		. += "PE Quota was reached!<br>"
+		SSpersistence.pe_status[PE_GOAL_REACHED] = TRUE
+		if(SSlobotomy_corp.available_box)
+			SSpersistence.pe_status[PE_LEFTOVER] = SSlobotomy_corp.available_box
 	else
-		if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
+		SSpersistence.pe_status[PE_GOAL_REACHED] = FALSE
+		if(SSlobotomy_corp.box_goal == 0)
+			. += "The day hasn't even started yet and you're leaving?<br>"
+		else if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
 			. += "Enough PE to meet PE Quota was made, but you spent it all!? You'll be hearing from our lawyers.<br>"
+			SSpersistence.pe_status[PE_GOAL_SPENT] = TRUE
 		else
 			. += "PE Quota was not reached! Don't expect to have a job tomorrow...<br>"
 	. += "</div>"

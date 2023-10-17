@@ -81,60 +81,6 @@
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
-/obj/item/ego_weapon/eyeball
-	name = "eyeball scooper"
-	desc = "Mind if I take them?"
-	special = "This weapon grows more powerful as you do, but its potential is limited if you possess any other EGO weapons."
-	icon_state = "eyeball1"
-	force = 20
-	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	attack_verb_continuous = list("cuts", "smacks", "bashes")
-	attack_verb_simple = list("cuts", "smacks", "bashes")
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
-
-/obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
-	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
-	var/fortitude_mod = clamp((userfort - 40) / 2 + 2, 0, 50) // 2 at 40 fortitude, 12 at 60 fortitude, 22 at 80 fortitude, 32 at 100 fortitude
-	var/extra_mod = clamp((userfort - 80) * 1.3 + 2, 0, 28) // 2 at 80 fortitude, 28 at 100 fortitude
-	var/list/search_area = user.contents.Copy()
-	for(var/obj/item/storage/spare_space in search_area)
-		search_area |= spare_space.contents
-	for(var/obj/item/gun/ego_gun/disloyal_gun in search_area)
-		extra_mod = 0
-		break
-	for(var/obj/item/ego_weapon/disloyal_weapon in search_area)
-		if(disloyal_weapon == src)
-			continue
-		extra_mod = 0
-		break
-	force = 20 + fortitude_mod + extra_mod
-	if(extra_mod > 0)
-		var/resistance = target.run_armor_check(null, damtype)
-		icon_state = "eyeball2"				// Cool sprite
-		if(isanimal(target))
-			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] <= 0)
-				resistance = 100
-		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
-			force *= 0.1
-			damtype = BRUTE
-	else
-		icon_state = "eyeball1"				//Cool sprite gone
-	if(ishuman(target))
-		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
-	..()
-	force = initial(force)
-	damtype = initial(damtype)
-
-	/*Here's how it works. It scales with Fortitude. This is more balanced than it sounds. Think of it as if Fortitude adjusted base force.
-	Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
-	This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
-	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
-	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
-
 /obj/item/ego_weapon/mini/wrist
 	name = "wrist cutter"
 	desc = "The flesh cleanly cut by a sharp tool creates a grotesque pattern with the bloodstains on the suit."
@@ -232,6 +178,10 @@
 	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
 
 /obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
+	var/area/turf_area = get_area(get_turf(user))
+	if(istype(turf_area, /area/fishboat))
+		to_chat(user, "<span class='warning'>[src] will not work here!.</span>")
+		return
 	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
 		user.adjustBruteLoss(user.maxHealth*0.3)
@@ -533,8 +483,6 @@
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
 
 	var/gun_cooldown
-	var/blademark_cooldown
-	var/gunmark_cooldown
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/zauberhorn/Initialize()

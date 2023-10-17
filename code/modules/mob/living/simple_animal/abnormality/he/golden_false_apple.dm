@@ -33,6 +33,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	melee_damage_type = RED_DAMAGE
+	melee_reach = 2
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	speak_emote = list("states")
 	vision_range = 14
@@ -255,7 +256,6 @@
 	..()
 	var/datum/status_effect/stacking/golden_sheen/G = user.has_status_effect(/datum/status_effect/stacking/golden_sheen)
 	if (G.stacks >= 3)//Kills the employee if you already have 2 stacks of golden sheen and instantly breaches in phase 2
-		user.gib()
 		datum_reference.qliphoth_change(-2)
 		DigestPerson(user)//becomes its "berserk" form; the user is assimilated into it
 
@@ -274,6 +274,8 @@
 		addtimer(CALLBACK(src, .proc/EatEmployees), 15 SECONDS)
 		return ..()
 	density = FALSE
+	for(var/atom/movable/AM in src) //morph code
+		AM.forceMove(loc)
 	playsound(src, 'sound/abnormalities/goldenapple/False_Dead.ogg', 100, 1)
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -284,6 +286,8 @@
 		return
 	if(is_maggot)//prevents the proc from being spammed
 		return
+	//I dont know why but for some reason revive resets move_to_delay -IP
+	revive(full_heal = TRUE, admin_revive = FALSE)
 	playsound(src, 'sound/abnormalities/goldenapple/Gold_Falsify.ogg', 50, 1)//it's very loud
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "false_apple"
@@ -301,20 +305,11 @@
 	melee_damage_upper = 45
 	attack_verb_continuous = "pummels"
 	attack_verb_simple = "pummel"
-	move_to_delay = 3
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
-	revive(full_heal = TRUE, admin_revive = FALSE)
 	is_maggot = TRUE
-
-//2-tile attack range to take advantage of its AOE
-/mob/living/simple_animal/hostile/abnormality/golden_apple/CheckAndAttack()//taken from porccubus
-	if(!target)
-		return
-	if(targets_from && isturf(targets_from.loc) && get_dist(target, src) <= 2 && !incapacitated())//Only extends the range for the Smash() proc
-		AttackingTarget()
-		return
+	SpeedChange(-1)
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/AttackingTarget()
 	if(!can_act)
@@ -333,31 +328,43 @@
 	playsound(get_turf(src), 'sound/abnormalities/goldenapple/False_Attack2.ogg', 100, 0, 5)
 	for(var/turf/T in view(1, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), 200, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-			if(L.health < 0)
-				L.gib()
+		for(var/mob/living/carbon/L in HurtInTurf(T, list(), 200, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+			if(L.stat >= SOFT_CRIT)
 				if(!last_target)//only the last person killed counts
-					addtimer(CALLBACK(src, .proc/DigestPerson, L), 5 SECONDS)
+					L.forceMove(src)
 					last_target = TRUE
 					target_hit = TRUE
+					addtimer(CALLBACK(src, .proc/DigestPerson, L), 5 SECONDS)
+				else
+					L.gib(TRUE, TRUE, TRUE)
 		if (!target_hit)
 			addtimer(CALLBACK(src, .proc/BecomeRotten), 5 SECONDS)//if nobody got killed
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/proc/DigestPerson(mob/living/carbon/human/H)//berserk mode
-	BecomeRotten()
+	victim_name = "Yuri"
 	maxHealth = 1500
+	BecomeRotten()
+	SpeedChange(-0.5)
+	if(H)
+		victim_name = H.real_name
+		NestedItems(src, H.get_item_by_slot(ITEM_SLOT_SUITSTORE))
+		NestedItems(src, H.get_item_by_slot(ITEM_SLOT_BELT))
+		NestedItems(src, H.get_item_by_slot(ITEM_SLOT_BACK))
+		NestedItems(src, H.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		var/obj/item/bodypart/head/myhead = H.get_bodypart(BODY_ZONE_HEAD)
+		if(myhead)
+			myhead.dismember()
+			NestedItems(src, myhead)
+		QDEL_IN(H, 1)
+	desc = "The apple ruptured and a swarm of maggots crawled inside.. wait a minute, that's [victim_name]'s face."
 	med_hud_set_health()//took a page from smock to update medhuds
 	med_hud_set_status()
 	update_health_hud()
-	move_to_delay = 2.5//same as awakened blue smock
-	revive(full_heal = TRUE, admin_revive = FALSE)
-	if(H)
-		desc = "The apple ruptured and a swarm of maggots crawled inside.. wait a minute, that's [H.real_name]'s face."
-		victim_name = H.real_name
-		return
-	desc = "The apple ruptured and a swarm of maggots crawled inside.. wait a minute, that's Yuri's face."
-	victim_name = "Yuri"
+
+/mob/living/simple_animal/hostile/abnormality/golden_apple/proc/NestedItems(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
+	if(nested_item)
+		nested_item.forceMove(nest)
 
 //AoE attack taken from woodsman, applies maggots DOT
 /mob/living/simple_animal/hostile/abnormality/golden_apple/proc/Smash(target)

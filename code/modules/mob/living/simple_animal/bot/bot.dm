@@ -871,13 +871,20 @@ Pass a positive integer as an argument to override a bot's default speed.
 	calc_summon_path()
 	tries = 0
 
-/mob/living/simple_animal/bot/Bump(atom/A) //Leave no door unopened!
-	. = ..()
+/mob/living/simple_animal/bot/Bump(atom/A)
+	var/turf/destination = get_turf(A)
 	if((istype(A, /obj/machinery/door/airlock) ||  istype(A, /obj/machinery/door/window)) && (!isnull(access_card)))
 		var/obj/machinery/door/D = A
-		if(D.check_access(access_card))
-			D.open()
+		if(D.check_access(access_card) && !D.locked)
+			forceMove(destination)
 			frustration = 0
+			return
+	if(istype(A, /obj/structure/closet))
+		var/obj/structure/closet/C = A
+		if(!C.anchored)
+			forceMove(destination)
+			return
+	. = ..()
 
 /mob/living/simple_animal/bot/proc/show_controls(mob/M)
 	users |= M

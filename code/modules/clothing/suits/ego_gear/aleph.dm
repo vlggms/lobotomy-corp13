@@ -115,7 +115,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Just looking at this, you feel quite tacky."
 	icon_state = "blooming"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 0, PALE_DAMAGE = 80) // 230
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 0, PALE_DAMAGE = 80) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -128,7 +128,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "Ah, magicians are actually in greater need of mercy."
 	icon_state = "air"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 20, PALE_DAMAGE = 90) // 270
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 80, BLACK_DAMAGE = 30, PALE_DAMAGE = 90) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -388,7 +388,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Pink"
 	desc = "A pink military uniform. Its pockets allow the wearer to carry various types of ammunition. It soothes the wearer; they say pink provides psychological comfort to many people."
 	icon_state = "pink"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)//230
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)//240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,

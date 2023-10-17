@@ -224,18 +224,16 @@
 				if(CheckCombat())
 					phase = 2
 					return
-
 				icon_living = "mosb_breach2"
-				speed = 1
-				move_to_delay = 5
+				SpeedChange(1)
 				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
-				speed = 0.5
-				move_to_delay = 4
+				SpeedChange(2)
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
 			update_simplemob_varspeed()
+		UpdateSpeed()
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
@@ -249,17 +247,16 @@
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		pixel_x = -16
 		base_pixel_x = -16
-		speed = -0.5
-		move_to_delay = 2
+		SpeedChange(-2)
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
-		speed = 0.5
-		move_to_delay = 4
+		SpeedChange(-1)
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
+	UpdateSpeed()
 	update_simplemob_varspeed()
 	return TRUE
 

@@ -20,3 +20,7 @@
 	icon = 'icons/obj/clothing/ego_gear/head.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
 
+
+/obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
+	attribute_requirements = list()
+	equip_slowdown = 0

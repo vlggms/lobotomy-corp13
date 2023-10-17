@@ -1114,7 +1114,7 @@
 		return
 	..()
 	if(M==user)
-		for(var/mob/living/carbon/human/L in livinginrange(10, src))
+		for(var/mob/living/carbon/human/L in range(10, user))
 			if(L==user)
 				continue
 			L.adjustBruteLoss(-15)
@@ -1552,15 +1552,15 @@
 	special = "Preform an additional attack of 50% damage when at half health."
 	icon_state = "cobalt"
 	force = 20
-	attack_speed = 1.0
+	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 	attack_verb_continuous = list("claws")
 	attack_verb_simple = list("claw")
 	hitsound = 'sound/abnormalities/big_wolf/Wolf_Hori.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80
+							FORTITUDE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60
 							)
 
 /obj/item/ego_weapon/cobalt/attack(mob/living/target, mob/living/user)
@@ -1594,3 +1594,82 @@
 	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
 	return TRUE
+
+/obj/item/ego_weapon/scene
+	name = "as written in the scenario"
+	desc = "The scenario is about a man who was raised in a normal family. \
+	One day, he picks up a mask from the street and goes on to impulsively murder all the people that he knows."
+	special = "This weapon can store damage dealt for later healing."
+	icon_state = "scenario"
+	force = 38
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("disrespects", "sullies")
+	attack_verb_simple = list("disrespect", "sully")
+	hitsound = 'sound/effects/fish_splash.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
+							)
+	var/amount_filled
+	var/amount_max = 30
+
+/obj/item/ego_weapon/scene/update_icon_state()
+	. = ..()
+	if(amount_filled)
+		icon_state = "scenario_filled"
+	else
+		icon_state = "scenario"
+
+/obj/item/ego_weapon/scene/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = force*0.05
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff[damtype] > 0)
+				heal_amt *= S.damage_coeff[damtype]
+			else
+				heal_amt = 0
+		amount_filled = clamp(amount_filled + heal_amt, 0, amount_max)
+		if(amount_filled >= amount_max)
+			to_chat(user, "<span class='warning'>[src] is full!")
+	update_icon()
+	..()
+
+/obj/item/ego_weapon/scene/attack_self(mob/living/carbon/human/user)
+	..()
+	if(!amount_filled)
+		to_chat(user, "<span class='warning'>[src] is empty!")
+		return
+	if(do_after(user, 12, src))
+		to_chat(user, "<span class='warning'>You take a sip from [src]!")
+		playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
+		user.adjustBruteLoss(-amount_filled)
+		user.adjustSanityLoss(-amount_filled)
+		amount_filled = 0
+	update_icon()
+
+/obj/item/ego_weapon/lance/tattered_kingdom
+	name = "tattered kingdom"
+	desc = "No one remembers those who gave their effort to raise the kingdom. It’s a truth that repeats on and on."
+	icon_state = "tattered_kingdom"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 35
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.2 //same speed as Spore
+	damtype = RED_DAMAGE
+	armortype = RED_DAMAGE
+	attack_verb_continuous = list("pierces", "jabs")
+	default_attack_verbs = list("pierce", "jab")
+	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+	couch_cooldown_time = 4 SECONDS
+	force_cap = 70 //double base damage
+	force_per_tile = 5 //if I can read, this means you need to cross 14 tiles for max damage
+	pierce_force_cost = 20

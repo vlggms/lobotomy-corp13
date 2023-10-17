@@ -240,7 +240,7 @@
 			continue
 		affected_turfs += TT
 		new /obj/effect/temp_visual/small_smoke/fixer_w(TT) // Lasts for 5 seconds
-		been_hit = HurtInTurf(TT, been_hit, beam_direct_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+		been_hit = HurtInTurf(TT, been_hit, beam_direct_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 
 	for(var/turf/TT in affected_turfs) // Remaining damage effect
 		BeamTurfEffect(TT, beam_overtime_damage)
@@ -248,7 +248,7 @@
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/BeamTurfEffect(turf/T, damage = 10)
 	set waitfor = FALSE
 	for(var/i = 1 to 5)
-		HurtInTurf(T, list(), damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
+		HurtInTurf(T, list(), damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		sleep(5)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/CircleBeam()
@@ -477,7 +477,7 @@
 // Pale Fixer
 /mob/living/simple_animal/hostile/ordeal/pale_fixer
 	name = "Pale Fixer"
-	desc = "A humanoid creature in a business atire and a fedora. They have a sleek pistol in one hand \
+	desc = "A humanoid creature in a business attire and a fedora. They have a sleek pistol in one hand \
 			and a suitcase in the other."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fixer_p"

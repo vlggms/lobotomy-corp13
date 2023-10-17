@@ -47,6 +47,8 @@
 							ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 70),
 							ABNORMALITY_WORK_REPRESSION = list(50, 55, 60, 65, 70)
 							)
+	/// Work Types and corresponding their attributes
+	var/list/work_attribute_types = WORK_TO_ATTRIBUTE
 	/// How much damage is dealt to user on each work failure
 	var/work_damage_amount = 2
 	/// What damage type is used for work failures
@@ -79,8 +81,8 @@
 	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
-	UpdateSpeed()
 	if(!(type in GLOB.cached_abno_work_rates))
 		GLOB.cached_abno_work_rates[type] = work_chances.Copy()
 	if(!(type in GLOB.cached_abno_resistances))
@@ -113,6 +115,7 @@
 		gift_message += "\nYou are granted a gift by [src]!"
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
@@ -141,6 +144,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/Life()
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -171,6 +175,11 @@
 	var/obj/item/reagent_containers/my_container = O
 	HarvestChem(my_container, user)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/can_track(mob/living/user)
+	if((status_flags & GODMODE))
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
 	visible_message(HarvestMessageProcess(harvest_phrase_third, user, C), HarvestMessageProcess(harvest_phrase, user, C))
@@ -268,6 +277,7 @@
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	SHOULD_CALL_PARENT(TRUE)
 	if(pe >= datum_reference.success_boxes)
 		SuccessEffect(user, work_type, pe, work_time, canceled)
 	else if(pe >= datum_reference.neutral_boxes)
@@ -296,6 +306,7 @@
 
 // Giving an EGO gift to the user after work is complete
 /mob/living/simple_animal/hostile/abnormality/proc/GiftUser(mob/living/carbon/human/user, pe, chance = gift_chance)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(user) || isnull(gift_type))
 		return FALSE
 	if(istype(user.ego_gift_list[initial(gift_type.slot)], gift_type)) // If we already have same gift - don't run the checks
@@ -351,13 +362,13 @@
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
 	if(istype(datum_reference)) // Reset chance debuff
-		datum_reference.overload_chance = 0
+		datum_reference.overload_chance = list()
 	return
 
 // When qliphoth meltdown begins
 /mob/living/simple_animal/hostile/abnormality/proc/MeltdownStart()
 	if(istype(datum_reference))
-		datum_reference.overload_chance = 0
+		datum_reference.overload_chance = list()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0, pre_qlip = start_qliphoth)

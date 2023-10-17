@@ -78,8 +78,11 @@
 
 	if(!targets_from)
 		targets_from = src
+	/*Update Speed overrides set speed and sets it
+		to the equivilent of move_to_delay. Basically
+		move_to_delay - 2 = speed. */
+	UpdateSpeed()
 	wanted_objects = typecacheof(wanted_objects)
-
 
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null
@@ -259,6 +262,9 @@
 		var/mob/M = the_target
 		if(M.status_flags & GODMODE)
 			return FALSE
+		if(M.ckey)
+			if(M.client?.is_afk()) // AFK protection
+				return FALSE
 
 	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
 		return FALSE
@@ -324,8 +330,10 @@
 		GainPatience()
 
 /mob/living/simple_animal/hostile/proc/CheckAndAttack()
+	if(!target)
+		return FALSE
 	var/in_range = melee_reach > 1 ? target.Adjacent(targets_from) || (get_dist(src, target) <= melee_reach && (target in view(src, melee_reach))) : target.Adjacent(targets_from)
-	if(target && targets_from && isturf(targets_from.loc) && in_range && !incapacitated())
+	if(targets_from && isturf(targets_from.loc) && in_range && !incapacitated())
 		AttackingTarget()
 		return TRUE
 	return FALSE
@@ -505,6 +513,25 @@
 		return dodge(newloc,dir)
 	else
 		return ..()
+
+/mob/living/simple_animal/hostile/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if(target == mover) // "I'm KILLING YOU, I'm KILLING YOU" - Jerma985
+		return FALSE
+	if(ishostile(mover))
+		var/mob/living/simple_animal/hostile/H = mover
+		if(H.target)
+			return
+		if(LAZYLEN(H.patrol_path)) // Don't block patrolling guys
+			return TRUE
+		return
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
+		if(H.sanity_lost) // Don't block crazy people
+			return TRUE
+	return
 
 /mob/living/simple_animal/hostile/proc/dodge(moving_to,move_direction)
 	//Assuming we move towards the target we want to swerve toward them to get closer
@@ -735,8 +762,8 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/proc/patrol_select()
-	//Mobs should stay unpatroled on combat maps.
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
+	//Mobs should stay unpatroled on maps where they're intended to be possessed.
+	if(SSmaptype.maptype in SSmaptype.autopossess)
 		return
 	if(!LAZYLEN(GLOB.department_centers))
 		return

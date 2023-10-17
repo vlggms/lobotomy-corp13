@@ -1,0 +1,2267 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ba" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"bf" = (
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"cg" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ci" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"cq" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 2
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"cw" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"cJ" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"db" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"du" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ej" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ga" = (
+/obj/structure/bookcase/random/fiction,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"gz" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"gO" = (
+/obj/effect/turf_decal/siding/brown/corner,
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"hq" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"hW" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"iD" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"jS" = (
+/obj/machinery/door/airlock/cult/unruned/friendly,
+/obj/machinery/door/airlock/cult/unruned/friendly,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"kL" = (
+/obj/machinery/light,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"lr" = (
+/obj/structure/sign/warning/biohazard,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"lC" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"lR" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"nt" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 9
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"nW" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 5
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"oq" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"oy" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"oZ" = (
+/turf/open/floor/white{
+	density = 1
+	},
+/area/city/backstreets_room)
+"ru" = (
+/obj/structure/chair/wood,
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"rN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ss" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"tu" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"tA" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"tP" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ua" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 9
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"uH" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown/corner,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"uO" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/brown,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"vA" = (
+/turf/open/floor/white,
+/area/city/backstreets_room)
+"vH" = (
+/turf/open/space/basic,
+/area/space)
+"wG" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"xm" = (
+/obj/effect/decal/cleanable/blood/gibs/bubblegum,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"xw" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"yd" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"zq" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/structure/kitchenspike,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"zt" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"zW" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 9
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ak" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"An" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Aw" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"AD" = (
+/obj/structure/displaycase,
+/obj/item/book/random,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"AI" = (
+/obj/machinery/door/airlock/cult/unruned/friendly,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"BM" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Ce" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Ch" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/item/book/random,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"CI" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/item/book/random,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"En" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"EW" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"FE" = (
+/obj/structure/sign/warning,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"FU" = (
+/obj/structure/bookcase/random/fiction,
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"Gt" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/end{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Gy" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Hx" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/toy/plush/hod,
+/obj/item/kitchen/knife{
+	pixel_y = 8;
+	pixel_x = -7
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"HK" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ic" = (
+/obj/structure/chair/wood,
+/obj/effect/turf_decal/siding/brown/corner,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"IC" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"IF" = (
+/obj/structure/stairs{
+	dir = 2
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"IH" = (
+/obj/structure/table/wood,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Jc" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"JV" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ku" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/trimline/red/filled/warning,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Kx" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"KY" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Lq" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/structure/kitchenspike,
+/obj/effect/mob_spawn/human/corpse/assistant,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"Lu" = (
+/obj/effect/turf_decal/siding/brown/end{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"LD" = (
+/obj/structure/table/wood,
+/obj/item/book/random,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Mf" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"MI" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Nc" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 2
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ng" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Oh" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/end{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Oi" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/item/reagent_containers/blood/a_minus,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Pw" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/floor/white,
+/area/city/backstreets_room)
+"PJ" = (
+/obj/effect/turf_decal/siding/brown,
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Qv" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"ST" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Tk" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Tm" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/floor/white{
+	density = 1
+	},
+/area/city/backstreets_room)
+"Ty" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 5
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"TK" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ug" = (
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"UB" = (
+/obj/effect/turf_decal/siding/brown/corner,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"VJ" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"VT" = (
+/obj/effect/turf_decal/siding/brown/corner,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"WR" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"WW" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 5
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Xa" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"XF" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/obj/effect/decal/cleanable/blood,
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"XM" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/brown/corner{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Ze" = (
+/obj/effect/turf_decal/siding/brown,
+/turf/open/indestructible/hotelwood,
+/area/city/backstreets_room)
+"Zj" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(2,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+ga
+Oh
+ga
+Oh
+ga
+ga
+Oh
+ga
+Oh
+ga
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(3,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+ga
+An
+ga
+An
+ga
+ga
+An
+ga
+An
+ga
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(4,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+Zj
+Zj
+Zj
+ua
+ci
+tu
+cq
+HK
+HK
+cw
+tu
+Aw
+oy
+Zj
+Zj
+Zj
+vH
+vH
+vH
+"}
+(5,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+Zj
+AD
+ss
+yd
+bf
+TK
+Ze
+ga
+ga
+yd
+TK
+bf
+Ze
+ss
+AD
+Zj
+vH
+vH
+vH
+"}
+(6,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+Zj
+AD
+ss
+yd
+LD
+IH
+Ze
+ga
+ga
+yd
+LD
+IH
+Ze
+ss
+AD
+Zj
+vH
+vH
+vH
+"}
+(7,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+Zj
+Zj
+Zj
+Ty
+MI
+bf
+Nc
+xw
+xw
+lR
+bf
+uH
+ej
+Zj
+Zj
+Zj
+vH
+vH
+vH
+"}
+(8,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+ga
+yd
+bf
+Ze
+ga
+ga
+yd
+bf
+Ze
+ga
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(9,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+ga
+Ty
+du
+ej
+ga
+ga
+Ty
+du
+ej
+ga
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(10,1,1) = {"
+vH
+vH
+vH
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Ng
+Zj
+Zj
+Zj
+Zj
+Ng
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+vH
+"}
+(11,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+nt
+Ak
+tu
+tu
+tu
+Ak
+tu
+tu
+tu
+Ak
+hW
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(12,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(13,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+nW
+Gy
+Gy
+Gy
+Gy
+tA
+Gy
+Gy
+Gy
+Gy
+ST
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(14,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+Zj
+Xa
+Xa
+Xa
+Xa
+Zj
+Xa
+Xa
+Xa
+Xa
+Zj
+IF
+ba
+bf
+Zj
+Zj
+vH
+"}
+(15,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+nt
+tu
+tu
+tu
+tu
+tu
+tu
+tu
+tu
+tu
+zt
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(16,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(17,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(18,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+nW
+Gy
+Gy
+Gy
+Gy
+tA
+Gy
+Gy
+Gy
+Gy
+ST
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(19,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+Zj
+Xa
+Xa
+Xa
+Xa
+Zj
+Xa
+Xa
+Xa
+Xa
+Zj
+IF
+ba
+bf
+Zj
+Zj
+vH
+"}
+(20,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+nt
+tu
+tu
+tu
+tu
+tu
+tu
+tu
+tu
+tu
+zt
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(21,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(22,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(23,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+KY
+Zj
+oq
+bf
+FU
+bf
+FU
+bf
+kL
+Zj
+uO
+oZ
+Tm
+oZ
+oZ
+Zj
+vH
+"}
+(24,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(25,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(26,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(27,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+KY
+FU
+oq
+bf
+Zj
+bf
+Zj
+bf
+kL
+FU
+uO
+oZ
+Tm
+oZ
+oZ
+Zj
+vH
+"}
+(28,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+rN
+bf
+rN
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(29,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(30,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(31,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+VJ
+bf
+VJ
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(32,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+KY
+FU
+oq
+bf
+Zj
+bf
+Zj
+bf
+kL
+FU
+uO
+oZ
+Tm
+oZ
+oZ
+Zj
+vH
+"}
+(33,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(34,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(35,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(36,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+Zj
+oq
+bf
+FU
+bf
+FU
+bf
+kL
+Zj
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(37,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+Tm
+oZ
+oZ
+Zj
+vH
+"}
+(38,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(39,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+WW
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+gO
+IC
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(40,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+Zj
+Mf
+Mf
+Mf
+Mf
+Zj
+Mf
+Mf
+Mf
+Mf
+Zj
+IF
+bf
+bf
+Zj
+Zj
+vH
+"}
+(41,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+zW
+tu
+tu
+tu
+tu
+Qv
+tu
+tu
+tu
+tu
+WR
+oZ
+Tm
+oZ
+oZ
+Zj
+vH
+"}
+(42,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(43,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(44,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+WW
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+Gy
+gO
+IC
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(45,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+Pw
+vA
+Zj
+Mf
+Mf
+Mf
+Mf
+Zj
+Mf
+Mf
+Mf
+Mf
+Zj
+IF
+ba
+bf
+Zj
+Zj
+vH
+"}
+(46,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+zW
+tu
+tu
+tu
+tu
+Qv
+tu
+tu
+tu
+gz
+WR
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(47,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+KY
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+bf
+uO
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(48,1,1) = {"
+vH
+vH
+vH
+Zj
+vA
+vA
+vA
+WW
+du
+Gy
+Gy
+Gy
+du
+Gy
+Gy
+Gy
+du
+IC
+oZ
+oZ
+oZ
+oZ
+Zj
+vH
+"}
+(49,1,1) = {"
+vH
+vH
+vH
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Ng
+Zj
+Zj
+Zj
+Zj
+Ng
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+vH
+"}
+(50,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+ua
+tu
+Ak
+tu
+tu
+tu
+tu
+Ak
+tu
+oy
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(51,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+VT
+Gy
+iD
+UB
+Gy
+Gy
+iD
+UB
+Gy
+PJ
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(52,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+An
+ga
+yd
+Ze
+ga
+ga
+yd
+Ze
+ga
+tP
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(53,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+An
+ga
+yd
+ru
+CI
+Oi
+JV
+Ze
+ga
+tP
+Zj
+vH
+vH
+vH
+vH
+vH
+"}
+(54,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+An
+ga
+yd
+Ic
+Tk
+Ch
+XM
+Ze
+ga
+tP
+Zj
+Zj
+Zj
+Zj
+Zj
+vH
+"}
+(55,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+An
+ga
+yd
+Ze
+ga
+ga
+yd
+Ze
+ga
+tP
+lr
+BM
+Jc
+zq
+Zj
+vH
+"}
+(56,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+Ug
+tu
+lC
+cg
+tu
+tu
+hq
+cJ
+tu
+Ku
+jS
+Ce
+Hx
+xm
+Zj
+vH
+"}
+(57,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+VT
+Gy
+iD
+UB
+Gy
+Gy
+iD
+UB
+Gy
+wG
+AI
+EW
+Kx
+XF
+Zj
+vH
+"}
+(58,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+An
+ga
+yd
+Ze
+ga
+ga
+yd
+Ze
+ga
+tP
+FE
+db
+En
+Lq
+Zj
+vH
+"}
+(59,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+Lu
+ga
+Ty
+ej
+ga
+ga
+Ty
+ej
+ga
+Gt
+Zj
+Zj
+Zj
+Zj
+Zj
+vH
+"}
+(60,1,1) = {"
+vH
+vH
+vH
+vH
+vH
+vH
+vH
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+Zj
+vH
+vH
+vH
+vH
+vH
+"}

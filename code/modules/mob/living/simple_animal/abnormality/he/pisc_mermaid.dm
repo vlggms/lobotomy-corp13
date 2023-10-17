@@ -234,8 +234,8 @@
 		if(12)
 			FluffSpeak("I swear I'll be nice, you can just stay with me, even if I'm a monster...")
 		if(15)
-			response_help_continuous = "hold hands"
-			response_help_simple = "hold hands"
+			response_help_continuous = "hold hands with"
+			response_help_simple = "hold hands with"
 		if(17)
 			FluffSpeak("Are you sure you want to stay? I love you so much, I can't- I don't want to see you go.")
 		if(20)
@@ -288,6 +288,19 @@
 	if(loved)
 		loved.physiology.work_success_mod /= success_mod
 	return ..()
+
+//Mermaid bath water
+/obj/effect/mermaid_water
+	name = "Lovely water"
+	desc = "This water is as desperate for love as the one that resides in it"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "mermaid_water"
+	layer = BELOW_OBJ_LAYER
+	anchored = TRUE
+
+/obj/effect/mermaid_water/unbuckle_mob(mob/living/carbon/human/buckled_mob, force)
+	if(buckled_mob.stat == DEAD || buckled_mob.losebreath <= 0) //you can only unbuckle yourself if you somehow survive the oxyloss long enough, or you're dead
+		return ..()
 
 ///the loved's movespeed is nerfed by a LOT while she's out, meaning if you're in the process of being chased by big bird, I have bad news for you.
 /datum/movespeed_modifier/unrequited_slowdown

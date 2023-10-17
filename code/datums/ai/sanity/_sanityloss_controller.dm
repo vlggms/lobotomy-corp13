@@ -5,7 +5,7 @@
 	BB_INSANE_PICKUPTARGET = null,\
 	BB_INSANE_CURRENT_ATTACK_TARGET = null)
 	max_target_distance = 20
-	var/resist_chance = 90
+	var/resist_chance = 60
 	var/datum/ai_behavior/say_line/insanity_lines/lines_type = /datum/ai_behavior/say_line/insanity_lines
 
 /datum/ai_controller/insane/TryPossessPawn(atom/new_pawn)
@@ -20,6 +20,18 @@
 	RegisterSignal(new_pawn, COMSIG_LIVING_START_PULL, .proc/on_startpulling)
 	return ..() //Run parent at end
 
+/datum/ai_controller/insane/UnpossessPawn(destroy)
+	UnregisterSignal(pawn, list(
+		COMSIG_PARENT_ATTACKBY,
+		COMSIG_ATOM_ATTACK_ANIMAL,
+		COMSIG_ATOM_ATTACK_HAND,
+		COMSIG_ATOM_BULLET_ACT,
+		COMSIG_ATOM_HITBY,
+		COMSIG_MOVABLE_CROSSED,
+		COMSIG_LIVING_START_PULL
+		))
+	return ..()
+
 /datum/ai_controller/insane/able_to_run()
 	var/mob/living/carbon/human/human_pawn = pawn
 
@@ -29,11 +41,8 @@
 
 /datum/ai_controller/insane/SelectBehaviors(delta_time)
 	current_behaviors = list()
-	var/mob/living/living_pawn = pawn
-
-	if(SHOULD_RESIST(living_pawn) && DT_PROB(resist_chance, delta_time))
-		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/resist)
-		return
+	if(ResistCheck() && DT_PROB(resist_chance, delta_time))
+		current_behaviors |= GET_AI_BEHAVIOR(/datum/ai_behavior/resist)
 	return
 
 /datum/ai_controller/insane/proc/retaliate(mob/living/L)
@@ -72,16 +81,20 @@
 
 /datum/ai_controller/insane/proc/on_startpulling(datum/source, atom/movable/puller, state, force)
 	SIGNAL_HANDLER
+	return
+
+/datum/ai_controller/insane/proc/ResistCheck()
 	var/mob/living/living_pawn = pawn
-	if(!living_pawn.stat)
-		INVOKE_ASYNC(living_pawn, .mob/living/verb/resist)
+	if(living_pawn.pulledby || SHOULD_RESIST(living_pawn))
 		return TRUE
 	return FALSE
 
 /datum/ai_controller/insane/murder
 	lines_type = /datum/ai_behavior/say_line/insanity_lines
+	resist_chance = 80 // Anger powered break out attempts
 	var/list/currently_scared = list()
 	var/timerid = null
+	var/interest = 3
 
 /datum/ai_controller/insane/murder/PerformMovement(delta_time)
 	if(!isnull(timerid))
@@ -93,12 +106,22 @@
 	if(!able_to_run() || !current_movement_target || QDELETED(current_movement_target) || current_movement_target.z != living_pawn.z || get_dist(living_pawn, current_movement_target) > max_target_distance)
 		timerid = null
 		return FALSE
-	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), (living_pawn.cached_multiplicative_slowdown + 0.2))
+	var/mob/living/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), (living_pawn.cached_multiplicative_slowdown*1.2)) // SLIGHTLY slower than what they should be *BUT* takes corners better.
 
 	var/turf/our_turf = get_turf(living_pawn)
 	var/turf/target_turf = get_step_towards(living_pawn, current_movement_target)
 	if(!is_type_in_typecache(target_turf, GLOB.dangerous_turfs))
 		living_pawn.Move(target_turf, get_dir(our_turf, target_turf))
+	if(!(selected_enemy in viewers(7, living_pawn))) // If you can't see the target enough
+		interest--
+	else
+		interest = 3
+	if(interest <= 0) // Give up
+		interest = 3
+		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+		CancelActions()
+		return
 	if(get_dist(living_pawn, current_movement_target) > max_target_distance)
 		CancelActions()
 		pathing_attempts = 0
@@ -117,10 +140,8 @@
 	if(selected_enemy)
 		if(selected_enemy.status_flags & GODMODE)
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
-		if(!(selected_enemy in livinginrange(10, living_pawn)))
-			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
-		if(selected_enemy.status_flags & GODMODE)
+		if(!(selected_enemy in livinginrange(10, living_pawn)))
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
 		if(selected_enemy.stat != DEAD)
@@ -132,19 +153,34 @@
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 		return
 
-	for(var/mob/living/L in view(9, living_pawn))
+	if(TryFindWeapon()) // Find a weapon before a new enemy.
+		return
+
+	var/list/potential_enemies = viewers(9, living_pawn)
+
+	if(!LAZYLEN(potential_enemies)) // We aint see shit!
+		return
+
+	var/attempt_count = 0
+	for(var/mob/living/L in potential_enemies) // Oh the CHOICES!
 		if(L == living_pawn)
 			continue
 		if(L.status_flags & GODMODE)
 			continue
 		if(L.stat == DEAD)
 			continue
-		if(prob(33))
+		attempt_count++
+		if(DT_PROB(33, attempt_count) || potential_enemies.len == 1) // Target spotted (bold)
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = L
 			return
 
-	if(TryFindWeapon())
-		return
+/datum/ai_controller/insane/murder/ResistCheck()
+	var/mob/living/living_pawn = pawn
+	if(living_pawn.pulledby && living_pawn.pulledby?.grab_state < GRAB_AGGRESSIVE)
+		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = living_pawn.pulledby
+	else
+		return SHOULD_RESIST(living_pawn)
+	return FALSE
 
 /datum/ai_controller/insane/murder/proc/TryFindWeapon()
 	var/mob/living/living_pawn = pawn
@@ -327,7 +363,7 @@
 
 /datum/ai_controller/insane/release/SelectBehaviors(delta_time)
 	..()
-	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
+	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null || (GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_smash_console) in current_behaviors))
 		return
 
 	if(DT_PROB(5, delta_time))
