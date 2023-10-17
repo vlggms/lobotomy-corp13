@@ -523,6 +523,8 @@
 	playsound(src, 'sound/effects/ordeals/gold/pridespin.ogg', 125, FALSE)
 
 /mob/living/simple_animal/hostile/ordeal/sin_pride/proc/Charge(move_dir, times_ran)
+	if(health <= 0)
+		return
 	var/stop_charge = FALSE
 	if(times_ran >= dash_num)
 		stop_charge = TRUE
@@ -577,8 +579,8 @@
 	icon_living = "thunder_warrior"
 	icon_dead = "thunder_warrior_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 2200
-	health = 2200
+	maxHealth = 900
+	health = 900
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	melee_damage_lower = 26
@@ -590,7 +592,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
-	speed = 3
 	move_to_delay = 3
 	ranged = TRUE
 	projectiletype = /obj/projectile/thunder_tomahawk
@@ -655,8 +656,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
-	speed = 3
-	move_to_delay = 3
+	move_to_delay = 4
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
 
