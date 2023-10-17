@@ -27,7 +27,7 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-//		/datum/ego_datum/weapon/uturn,
+		/datum/ego_datum/weapon/uturn,
 		/datum/ego_datum/armor/uturn
 		)
 //	gift_type =  /datum/ego_gifts/uturn

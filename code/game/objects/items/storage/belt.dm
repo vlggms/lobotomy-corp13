@@ -767,6 +767,7 @@
 	STR.set_holdable(list(
 		/obj/item/gun/ego_gun/pistol,
 		/obj/item/ego_weapon/mini,
+		/obj/item/ego_weapon/lance/visions,
 		/obj/item/ego_weapon/city/ncorp_mark,
 		/obj/item/ego_weapon/city/ncorp_nail,
 		/obj/item/ego_weapon/city/ncorp_brassnail,

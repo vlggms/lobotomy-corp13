@@ -405,7 +405,7 @@
 /datum/ego_datum/weapon/faelantern
 	item_path = /obj/item/ego_weapon/faelantern
 	cost = 35
-	
+
 //Will You Play - Voodoo doll
 /datum/ego_datum/armor/voodoo
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/voodoo
@@ -429,9 +429,8 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/uturn
 	cost = 35
 
-/*
 /datum/ego_datum/weapon/uturn
 	item_path = /obj/item/ego_weapon/uturn
-	cost = 35*/
+	cost = 35
 
 

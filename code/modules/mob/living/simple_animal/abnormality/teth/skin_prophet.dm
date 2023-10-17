@@ -16,7 +16,7 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		//datum/ego_datum/weapon/fragment,
+		/datum/ego_datum/weapon/visions,
 		/datum/ego_datum/armor/visions
 		)
 //	gift_type = /datum/ego_gifts/visions

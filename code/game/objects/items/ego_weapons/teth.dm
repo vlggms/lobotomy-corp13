@@ -538,3 +538,26 @@
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
+
+/obj/item/ego_weapon/lance/visions
+	name = "visions of future past"
+	desc = "A polearm that collapses, and extends while charging."
+	special = "This weapon fits in an EGO belt."
+	icon_state = "prophet"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	force = 18
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	attack_speed = 2
+	attack_verb_continuous = list("stabs", "impales")
+	attack_verb_simple = list("stab", "impale")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	reach = 1
+	force_cap = 50
+	force_per_tile = 5
+	pierce_force_cost = 20
+	charge_speed_cap = 3
+	couch_cooldown_time = 3 SECONDS
