@@ -8,7 +8,7 @@
 	icon_living = "smallfox"
 	icon_dead = "smallfox_dead"
 	deathmessage = "collapses into a puddle of water"
-	deathsound = "sound/abnormalities/drifting_fox/foxdeath.ogg" // Need to make a sound file for this.
+	deathsound = "sound/abnormalities/drifting_fox/foxdeath.ogg"
 	del_on_death = FALSE
 	pixel_x = 0
 	base_pixel_x = 0 // Need to figure out what base pixel and pixel X do.
@@ -22,7 +22,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	attack_sound = "sound/abnormalities/drifting_fox/foxhit.ogg" // Need to make a sound file for this as well.
+	attack_sound = "sound/abnormalities/drifting_fox/foxhit.ogg"
 	attack_verb_simple = "thwack"
 	attack_verb_continuous = "thwacks"
 	can_breach = TRUE
@@ -60,6 +60,7 @@
 		)
 
 	gift_type = /datum/ego_gifts/sunshower // NEED TO ACTAULLY MAKE THE GIFT / EGOS
+	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs in thanks?"
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
@@ -77,5 +78,5 @@
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user)
 	..()
-	icon_state = "smallfox_breached"
+	icon_state = "fox_breached"
 
