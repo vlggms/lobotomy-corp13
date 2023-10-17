@@ -101,40 +101,15 @@
 			modified = TRUE
 			switch(cooler_I.mode)
 				if(1)
-					to_chat(user, "<span class='notice'>You modify the [src] to restore more HP but less SP.</span>")
-					hp_bonus = 3
-					sp_bonus = -1
-					reset_timer = long_duration + world.time
-					ProduceIcon("#B90E0A", "regenspores") //Crimson
+					HpFocus(user)
 				if(2)
-					to_chat(user, "<span class='notice'>You modify the [src] to restore more SP but less HP.</span>")
-					hp_bonus = -1
-					sp_bonus = 3
-					reset_timer = long_duration + world.time
-					ProduceIcon("#4ADED", "regenpuffs_heavy") //Teal
+					SpFocus(user)
 				if(3)
-					to_chat(user, "<span class='notice'>You modify the [src] to restore more SP and HP.</span>")
-					hp_bonus = 1
-					sp_bonus = 1
-					reset_timer = short_duration + world.time
-					add_overlay("blueregenlight")
-					add_overlay(mutable_appearance('icons/effects/atmospherics.dmi', "miasma_old"))
-					ProduceIcon("#AF69EE", "regenpuffs") //Orchid
-					ProduceIcon("#B90E0A", "regenspores") //Crimson
+					EqualFocus(user)
 				if(4)
-					to_chat(user, "<span class='notice'>You modify the [src] to heal those in Critical Conditions.</span>")
-					critical_heal = TRUE
-					hp_bonus = -1
-					sp_bonus = -1
-					reset_timer = short_duration + world.time
-					add_overlay("redregenlight")
-					ProduceIcon("#E30B5D", "regenspores") //Raspberry
+					CriticalFocus(user)
 				if(5)
-					to_chat(user, "<span class='warning'>You set the [src] to overload and heal those in the area for a large amount!</span>")
-					burst = TRUE
-					ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
-					ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
-					// No Timer as it's an "instant" effect. Also handles turning off over there
+					OverloadHeal(user)
 			return TRUE
 		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
 		return FALSE
@@ -144,6 +119,54 @@
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
 	colored_overlay.color = Icon_Color
 	add_overlay(colored_overlay)
+
+/*----------------\
+|Regenerator Modes|
+\----------------*/
+/obj/machinery/regenerator/proc/HpFocus(mob/living/user)
+	if(user)
+		to_chat(user, "<span class='notice'>You modify the [src] to restore more HP but less SP.</span>")
+	hp_bonus = 3
+	sp_bonus = -1
+	reset_timer = long_duration + world.time
+	ProduceIcon("#B90E0A", "regenspores") //Crimson
+
+/obj/machinery/regenerator/proc/SpFocus(mob/living/user)
+	if(user)
+		to_chat(user, "<span class='notice'>You modify the [src] to restore more SP but less HP.</span>")
+	hp_bonus = -1
+	sp_bonus = 3
+	reset_timer = long_duration + world.time
+	ProduceIcon("#4ADED", "regenpuffs_heavy") //Teal
+
+/obj/machinery/regenerator/proc/EqualFocus(mob/living/user)
+	if(user)
+		to_chat(user, "<span class='notice'>You modify the [src] to restore more SP and HP.</span>")
+	hp_bonus = 1
+	sp_bonus = 1
+	reset_timer = short_duration + world.time
+	add_overlay("blueregenlight")
+	add_overlay(mutable_appearance('icons/effects/atmospherics.dmi', "miasma_old"))
+	ProduceIcon("#AF69EE", "regenpuffs") //Orchid
+	ProduceIcon("#B90E0A", "regenspores") //Crimson
+
+/obj/machinery/regenerator/proc/CriticalFocus(mob/living/user)
+	if(user)
+		to_chat(user, "<span class='notice'>You modify the [src] to heal those in Critical Conditions.</span>")
+	critical_heal = TRUE
+	hp_bonus = -1
+	sp_bonus = -1
+	reset_timer = short_duration + world.time
+	add_overlay("redregenlight")
+	ProduceIcon("#E30B5D", "regenspores") //Raspberry
+
+/obj/machinery/regenerator/proc/OverloadHeal(mob/living/user)
+	if(user)
+		to_chat(user, "<span class='warning'>You set the [src] to overload and heal those in the area for a large amount!</span>")
+	burst = TRUE
+	ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
+	ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
+	// No Timer as it's an "instant" effect. Also handles turning off over there
 
 //Safety Plant Regenerator
 /obj/machinery/regenerator/safety
