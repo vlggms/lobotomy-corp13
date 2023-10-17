@@ -357,6 +357,7 @@ GLOBAL_LIST_EMPTY(zombies)
 		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
+		C.faction = src.faction
 		H.gib()
 	can_act = TRUE
 
