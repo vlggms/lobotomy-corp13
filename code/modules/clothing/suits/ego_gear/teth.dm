@@ -226,3 +226,15 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	She threatens to kill the princess if she doesn't swear never to say a word about this reversal of roles to any living being. Sadly, the princess takes the oath."
 	icon_state = "zauberhorn"
 	armor = list(RED_DAMAGE = -30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 30, PALE_DAMAGE = 0) // 20
+	
+/obj/item/clothing/suit/armor/ego_gear/teth/visions
+	name = "visions of future past"
+	desc = "It's looking right at you."
+	icon_state = "visions"
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 40, BLACK_DAMAGE = -30, PALE_DAMAGE = 0) // 0
+
+/obj/item/clothing/suit/armor/ego_gear/teth/sanitizer
+	name = "sanitizer"
+	desc = "It's very clean, freshly washed."
+	icon_state = "sanitizer"	//Just like a bobot
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 0, BLACK_DAMAGE = -40, PALE_DAMAGE = 0) // 0

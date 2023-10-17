@@ -106,3 +106,20 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	cost = 12
 
+// Sunset Traveller - Eclipse of Scarlet Moths
+/datum/ego_datum/weapon/eclipse
+	item_path = /obj/item/ego_weapon/eclipse
+	cost = 12
+
+/datum/ego_datum/armor/eclipse
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/eclipse
+	cost = 12
+
+// Vending Machine and Oceanic Breeze - A Taste of the Ocean
+/datum/ego_datum/weapon/oceanic
+	item_path = /obj/item/gun/ego_gun/pistol/oceanic
+	cost = 12
+
+/datum/ego_datum/armor/oceanic
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/oceanic
+	cost = 12

@@ -107,3 +107,21 @@
 		"When a level 1 employee tried to pick up the hammer, they were reduced to ashes by its power.",
 		"When agent YumYum picked up the unsealed hammer, they were granted the immense power required to resolve the emergency situation.",
 		"However, once the situation began to settle down, YumYum disappeared.")
+		
+//Vending Machine and Oceanic Waves
+/obj/item/paper/fluff/info/zayin/oceanic_waves
+	abno_type = /mob/living/simple_animal/hostile/abnormality/oceanicwaves
+	abno_code = "O-05-181"
+	abno_info = list(
+		"After work was completed, O-04-181 dispensed 3 soda cans.",
+		"After testing, it showed that the soda cans were spiked with various medicines, both beneficial and not.",
+		"The chances of recieving a beneficial soda increased the better the work result.")
+
+//Sunset Traveller
+/obj/item/paper/fluff/info/zayin/sunset_traveller
+	abno_type = /mob/living/simple_animal/hostile/abnormality/sunset_traveller
+	abno_code = "O-02-183"
+	abno_info = list(
+		"After work was completed, the fireflies glowed brighter.",
+		"The fireflies increased healing of HP and SP as long as the employee stayed in the room.",
+		"While the fireflies were glowing, no other work could be completed on O-02-183.")

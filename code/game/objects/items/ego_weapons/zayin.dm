@@ -312,3 +312,15 @@
 		. += H
 	sortList(.)
 	return
+
+/obj/item/ego_weapon/eclipse
+	name = "eclipse of scarlet moths"
+	desc = "It's beautiful."
+	icon_state = "eclipse"
+	force = 14
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("smacks", "strikes", "beats")
+	attack_verb_simple = list("smack", "strike", "beat")
+
+

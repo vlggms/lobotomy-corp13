@@ -32,3 +32,8 @@
 	name = "bucket casing"
 	desc = "bucket casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_bucket
+
+/obj/item/ammo_casing/caseless/ego_oceanic
+	name = "oceanic casing"
+	desc = "A oceanica casing."
+	projectile_type = /obj/projectile/ego_bullet/ego_oceanic
