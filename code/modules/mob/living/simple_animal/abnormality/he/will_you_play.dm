@@ -80,7 +80,7 @@
 //Player wins RPS, loses an arm tho
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Win(mob/living/carbon/human/user, work_type)
 	say("You lose.")
-	user.apply_damage(40, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	user.apply_damage(80, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 	//Less than 80 fort and you lose an arm
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 60)

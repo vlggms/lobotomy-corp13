@@ -330,6 +330,7 @@
 	abno_code = "T-03-189"
 	abno_info = list(
 		"On work failure, a candle was snuffed, and work damage was increased.",
+		"When Attachment or Repression was completed, if the employee had no buffs in the respective stat, they were turned to ash.",
 		"When Attachment or Repression work was done, the work rates were equal to the total stat buffs of the employee.",
 		"When Attachment or Repression work was completed with a good work result, the employee's respective buff was reduced to 0, and their stat maximum was increased by the same amount.",)
 

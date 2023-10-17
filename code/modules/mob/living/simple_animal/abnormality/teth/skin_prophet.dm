@@ -16,7 +16,7 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/fragment,
+		//datum/ego_datum/weapon/fragment,
 		/datum/ego_datum/armor/visions
 		)
 //	gift_type = /datum/ego_gifts/visions
@@ -45,11 +45,21 @@
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 		say(pick(speak_list))
+
+		//Don't try it without any buffs.
+		if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) <=0)
+			user.dust()
+			return
 		user.adjust_attribute_limit(get_level_buff(user, TEMPERANCE_ATTRIBUTE))
 		user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -get_level_buff(user, TEMPERANCE_ATTRIBUTE))
 
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		say(pick(speak_list))
+
+		if(get_level_buff(user, JUSTICE_ATTRIBUTE) <=0)
+			user.dust()
+			return
+
 		user.adjust_attribute_limit(get_level_buff(user, JUSTICE_ATTRIBUTE))
 		user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -get_level_buff(user, JUSTICE_ATTRIBUTE))
 	return
