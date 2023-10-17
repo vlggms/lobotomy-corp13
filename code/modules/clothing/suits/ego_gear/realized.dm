@@ -213,6 +213,7 @@
 	icon_state = "home"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 70)
 	flags_inv = HIDEGLOVES|HIDESHOES
+	realized_ability = /obj/effect/proc_holder/ability/aimed/house_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/dimension_ripper
 	name = "dimension ripper"
