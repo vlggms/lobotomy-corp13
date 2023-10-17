@@ -34,7 +34,6 @@
 	light_power = 7
 
 
-
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
 		return
@@ -44,12 +43,13 @@
 	SLEEP_CHECK_DEATH(15)
 	say("Why don't you stop for a moment and take a breather here?")
 	while (PlayerCheck(user))
-		//Heal 5% for every 3 seconds you're here
-		user.adjustBruteLoss(-(maxHealth*0.05))
-		user.adjustSanityLoss(-(maxHealth*0.05))
-		if(prob(5))
-			say(pick(saylines))
-		SLEEP_CHECK_DEATH(30)
+		for(var/mob/living/carbon/human/H in view(3, src))
+			//Heal 5% for every 3 seconds you're here
+			user.adjustBruteLoss(-(maxHealth*0.05))
+			user.adjustSanityLoss(-(maxHealth*0.05))
+			if(prob(5))
+				say(pick(saylines))
+			SLEEP_CHECK_DEATH(30)
 
 
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/PlayerCheck(mob/living/carbon/human/user)
