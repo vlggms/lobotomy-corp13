@@ -456,6 +456,7 @@
 		"Every death reduced the Qliphoth counter of C-01-184 by 1.",
 		"On a Bad result, the Qliphoth counter lowered by 3.",
 		"After Attachment work, there is a small chance of Eris and the Employee -REDACTED-.",
+		"While breached, C-01-184 healed all entities nearby, and would seek out and consume humans that are dead or near death.",
 		"Attacking C-01-184 while breached resulted in the employee taking white damage.")
 
 //Will You Play
