@@ -89,13 +89,12 @@
 
 //Okay, but here's the attacking stuff
 /mob/living/simple_animal/hostile/abnormality/eris/CanAttack(atom/the_target)
-	..()
 	if(!ishuman(the_target))
 		return FALSE
 	var/mob/living/H = the_target
 	if(H.stat >= SOFT_CRIT)
 		return TRUE
-	return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/eris/AttackingTarget(atom/attacked_target)
 	if(ishuman(target))
