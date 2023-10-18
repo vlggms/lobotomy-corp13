@@ -544,3 +544,19 @@
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
+/obj/item/ego_weapon/lance/curfew
+	name = "curfew"
+	desc = "The thing itself had never forgotten its glory days."
+	icon_state = "curfew"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 22
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.8// really slow
+	damtype = WHITE_DAMAGE
+	armortype = WHITE_DAMAGE
+	attack_verb_continuous = list("bludgeons", "whacks")
+	attack_verb_simple = list("bludgeon", "whack")
+	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'

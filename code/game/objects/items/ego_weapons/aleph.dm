@@ -1131,3 +1131,113 @@
 	if(B.safety)
 		user.remove_status_effect(STATUS_EFFECT_LCBURN)
 
+/obj/item/ego_weapon/mockery
+	name = "mockery"
+	desc = "...If I earned a name, will I get to receive love and hate from you? \
+	Will you remember me as that name, as someone whom you cared for?"
+	special = "Use this weapon in hand to swap between forms. The whip has higher reach, the hammer deals damage in an area, and the bat knocks back enemies."
+	icon_state = "mockery_whip"
+	force = 35
+	attack_speed = 0.5
+	reach = 3
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("lacerates", "disciplines")
+	attack_verb_simple = list("lacerate", "discipline")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/mob/current_holder
+	var/form = "whip"
+	var/list/weapon_list = list(
+		"whip" = list(35, 0.5, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg'),
+		"sword" = list(80, 1, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg'),
+		"hammer" = list(40, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg'),
+		"bat" = list(120, 1.4, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg')
+		)
+
+/obj/item/ego_weapon/mockery/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/ego_weapon/mockery/attack_self(mob/user)
+	. = ..()
+	if(!CanUseEgo(user))
+		return
+	SwitchForm(user)
+
+/obj/item/ego_weapon/mockery/equipped(mob/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/mockery/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/mockery/attack(mob/living/target, mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	switch(form)
+		if("bat")
+			var/atom/throw_target = get_edge_target_turf(target, user.dir)
+			if(!target.anchored)
+				var/whack_speed = (prob(60) ? 1 : 4)
+				target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+		if("hammer")
+			for(var/mob/living/L in view(2, target))
+				var/aoe = force
+				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+				var/justicemod = 1 + userjust/100
+				aoe*=justicemod
+				if(user.faction_check_mob(L))
+					continue
+				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+
+/obj/item/ego_weapon/mockery/get_clamped_volume()
+	return 40
+
+// Radial menu
+/obj/item/ego_weapon/mockery/proc/SwitchForm(mob/user)
+	var/list/armament_icons = list(
+		"whip" = image(icon = src.icon, icon_state = "mockery_whip"),
+		"sword"  = image(icon = src.icon, icon_state = "mockery_sword"),
+		"hammer"  = image(icon = src.icon, icon_state = "mockery_hammer"),
+		"bat"  = image(icon = src.icon, icon_state = "mockery_bat")
+	)
+	armament_icons = sortList(armament_icons)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/CheckMenu, user), radius = 42, require_near = TRUE)
+	if(!choice || !CheckMenu(user))
+		return
+	form = choice
+	Transform()
+
+/obj/item/ego_weapon/mockery/proc/CheckMenu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
+
+/obj/item/ego_weapon/mockery/proc/Transform()
+	icon_state = "mockery_[form]"
+	update_icon_state()
+	if(current_holder)
+		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		current_holder.update_inv_hands()
+		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
+	force = weapon_list[form][1]
+	attack_speed = weapon_list[form][2]
+	reach = weapon_list[form][3]
+	attack_verb_continuous = weapon_list[form][4]
+	attack_verb_simple = weapon_list[form][5]
+	hitsound = weapon_list[form][6]
