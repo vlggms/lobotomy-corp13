@@ -47,9 +47,9 @@
 			//Heal 5% for every 3 seconds you're here
 			user.adjustBruteLoss(-(maxHealth*0.05))
 			user.adjustSanityLoss(-(maxHealth*0.05))
-			if(prob(5))
-				say(pick(saylines))
-			SLEEP_CHECK_DEATH(30)
+		if(prob(5))
+			say(pick(saylines))
+		SLEEP_CHECK_DEATH(30)
 
 
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/PlayerCheck(mob/living/carbon/human/user)
