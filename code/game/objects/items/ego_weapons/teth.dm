@@ -228,6 +228,10 @@
 	desc = "Home sweet home. Warmth and safety aplenty."
 	special = "This weapon has a ranged attack."
 	icon_state = "hearth"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	var/icon_on = "hearth_glow"
 	var/icon_off = "hearth"
 	force = 18

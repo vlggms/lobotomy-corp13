@@ -3,10 +3,7 @@
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
 	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
 	icon_state = "bald"
-	inhand_icon_state = "gun"
-	worn_icon_state = "gun"
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_icon_state = "bald"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
 	fire_delay = 10

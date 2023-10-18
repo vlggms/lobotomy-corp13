@@ -462,6 +462,7 @@
 /obj/item/ego_weapon/soulmate/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
 	..()
+	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/soulmate/attack(mob/living/target, mob/living/user)
 	..()
@@ -470,6 +471,7 @@
 			gunmark_targets = list()
 			bladebuff = TRUE
 			icon_state = "soulmate_blade"
+			update_icon_state()
 			update_icon()
 			attack_speed = 0.4
 			gunmark_cooldown = world.time + mark_cooldown_time
@@ -506,6 +508,7 @@
 			blademark_targets = list()
 			gunbuff = TRUE
 			icon_state = "soulmate_gun"
+			update_icon_state()
 			update_icon()
 			blademark_cooldown = world.time + mark_cooldown_time
 			addtimer(CALLBACK(src, .proc/GunRevert), 80)
@@ -517,6 +520,7 @@
 /obj/item/ego_weapon/soulmate/proc/BladeRevert()
 	if(bladebuff)
 		icon_state = "soulmate"
+		update_icon_state()
 		update_icon()
 		attack_speed = 0.8
 		bladebuff = FALSE
@@ -524,6 +528,7 @@
 /obj/item/ego_weapon/soulmate/proc/GunRevert()
 	if(gunbuff)
 		icon_state = "soulmate"
+		update_icon_state()
 		update_icon()
 		gunbuff = FALSE
 
@@ -553,6 +558,10 @@
 							)
 	var/canaoe
 
+/obj/item/ego_weapon/space/Initialize()
+	..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
 	if(!CanUseEgo(user))
 		return
@@ -571,6 +580,7 @@
 		return
 
 	icon_state = "space_aoe"
+	update_icon_state()
 	user.density = FALSE
 	user.adjustStaminaLoss(15, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = FALSE) // This still collides with people, by the way.
@@ -601,6 +611,7 @@
 			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 	icon_state = "space"
+	update_icon_state()
 	canaoe = FALSE
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)

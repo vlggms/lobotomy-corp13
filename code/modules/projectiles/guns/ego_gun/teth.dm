@@ -30,7 +30,7 @@
 	name = "beak mk2"
 	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
-	inhand_icon_state = "beak"
+	inhand_icon_state = "beakmagnum"
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
 	fire_delay = 20

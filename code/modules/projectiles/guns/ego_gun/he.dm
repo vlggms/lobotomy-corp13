@@ -18,7 +18,7 @@
 	name = "gaze"
 	desc = "A magnum pistol featuring excellent burst firing potential."
 	icon_state = "gaze"
-	inhand_icon_state = "executive"
+	inhand_icon_state = "gaze"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
 	fire_delay = 20
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
@@ -137,6 +137,7 @@
 	name = "harmony"
 	desc = "A massive blocky launcher with some suspicious stains on it."
 	icon_state = "harmony"
+	inhand_icon_state = "harmony"
 	special = "This weapon fires bouncing, piercing shots."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_harmony
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
