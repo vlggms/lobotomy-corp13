@@ -141,6 +141,10 @@
 	var/ramping_speed = 0 //maximum of 20
 	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
 
+/obj/item/ego_weapon/iron_maiden/Initialize()
+	..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
 	sleep(1)
 	for(var/i = 1 to attack_amount)
@@ -179,6 +183,7 @@
 			if(icon_state != "iron_maiden_open")
 				playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 				icon_state = "iron_maiden_open"
+				update_icon_state()
 			Multihit(target, user, 3)
 	return
 
@@ -190,6 +195,7 @@
 	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 	if(do_after(user, 2.5 SECONDS, src))
 		icon_state = "iron_maiden"
+		update_icon_state()
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
 		ramping_speed = 0
 		ramping_damage = 0
