@@ -240,9 +240,9 @@
 							)
 
 /obj/item/ego_weapon/christmas/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
@@ -1728,7 +1728,7 @@
 		if(faction_check(H.faction, faction))
 			continue
 		H.apply_status_effect(/datum/status_effect/brown_bricks)
-		
+
 /obj/item/ego_weapon/coiling
 	name = "coiling"
 	desc = "The snake leather used in this whip is hardened by the sun"

@@ -709,9 +709,9 @@
 	desc = season_list[current_season][10]
 
 /obj/item/ego_weapon/seasons/attack(mob/living/target, mob/living/user) //other forms could probably use something. Probably.
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	if(current_season == "summer")
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
 		if(!target.anchored)
@@ -748,9 +748,9 @@
 	attacking = TRUE //ALWAYS blocking ranged attacks
 
 /obj/item/ego_weapon/shield/distortion/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 4 : 8)
@@ -964,9 +964,9 @@
 
 
 /obj/item/ego_weapon/willing/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)

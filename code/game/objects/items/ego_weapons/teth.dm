@@ -73,9 +73,9 @@
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 
 /obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
@@ -405,9 +405,9 @@
 	var/hit_count = 0
 
 /obj/item/ego_weapon/red_sheet/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	if(isliving(target))
 		++hit_count
 		if(hit_count >= 4)
@@ -536,9 +536,9 @@
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 
 /obj/item/ego_weapon/sanitizer/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
