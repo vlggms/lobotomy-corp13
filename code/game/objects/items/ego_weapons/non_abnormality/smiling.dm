@@ -14,7 +14,7 @@
 	var/hit_count = 0
 
 //Ok so basically if you hit someome with this they'll get covered in smoke
-/obj/item/ego_weapon/city/smiling_sword/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/smiling_pipe/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	. = ..()
