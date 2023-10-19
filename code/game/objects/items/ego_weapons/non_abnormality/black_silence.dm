@@ -412,9 +412,9 @@
 	attack(target, user)
 
 /obj/item/ego_weapon/black_silence_gloves/allas/attack(mob/living/M, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	exchange_cooldown -= 20
 	force = 70
 	hitsound = 'sound/weapons/ego/spear1.ogg'

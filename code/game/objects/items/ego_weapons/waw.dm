@@ -18,9 +18,9 @@
 							)
 
 /obj/item/ego_weapon/lamp/attack(mob/living/M, mob/living/user)
-	if(!CanUseEgo(user))
-		return FALSE
 	. = ..()
+	if(!.)
+		return FALSE
 	for(var/mob/living/L in view(1, M))
 		var/aoe = 25
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
@@ -953,9 +953,9 @@
 							)
 
 /obj/item/ego_weapon/spore/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	if(isliving(target))
 		var/mob/living/simple_animal/M = target
 		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
