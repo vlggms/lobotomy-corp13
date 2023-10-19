@@ -137,9 +137,9 @@
 	attack_verb_simple = list("beat", "smack")
 
 /obj/item/ego_weapon/revenge/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
