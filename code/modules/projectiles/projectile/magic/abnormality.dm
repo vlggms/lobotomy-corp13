@@ -227,7 +227,8 @@
 /obj/projectile/thunder_tomahawk
 	name = "tomahawk"
 	desc = "Look out!"
-	icon_state = "thunder_tomahawk"
+	icon = 'icons/obj/ego_weapons.dmi'
+	icon_state = "warring2_firey"
 	damage_type = BLACK_DAMAGE
 
 	damage = 45
