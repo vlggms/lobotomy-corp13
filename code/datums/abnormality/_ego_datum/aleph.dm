@@ -174,3 +174,12 @@
 /datum/ego_datum/weapon/iron_maiden
 	item_path = /obj/item/ego_weapon/iron_maiden
 	cost = 1000
+
+//Nobody Is - Mockery
+/datum/ego_datum/armor/mockery
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/mockery
+	cost = 100
+
+/datum/ego_datum/weapon/mockery
+	item_path = /obj/item/ego_weapon/mockery
+	cost = 100
