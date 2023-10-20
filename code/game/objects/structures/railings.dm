@@ -137,19 +137,39 @@
 	. = ..()
 	if(climbable)
 		AddElement(/datum/element/climbable)
+	init_connect_loc_element()
+
+/obj/structure/riser/proc/init_connect_loc_element()
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_exit,
+	)
+
+/obj/structure/riser/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+
+	if(!(get_dir(leaving.loc, new_location) & dir))
+		return
+
+	if (!density)
+		return
+
+	if (leaving.throwing)
+		return
+
+	if (leaving.movement_type & (PHASING | FLYING | FLOATING))
+		return
+
+	if (leaving.move_force >= MOVE_FORCE_EXTREMELY_STRONG)
+		return
+
+	leaving.Bump(src)
+	return COMPONENT_ATOM_BLOCK_EXIT
 
 /obj/structure/riser/CanPass(atom/movable/mover, turf/target)
 	. = ..()
 	if(get_dir(loc, target) & dir)
 		var/checking = FLYING | FLOATING
 		return . || mover.throwing || mover.movement_type & checking
-	return TRUE
-
-/obj/structure/riser/CheckExit(atom/movable/mover, turf/target)
-	..()
-	if(get_dir(loc, target) & dir)
-		var/checking = PHASING | FLYING | FLOATING
-		return !density || mover.throwing || mover.movement_type & checking || mover.move_force >= MOVE_FORCE_EXTREMELY_STRONG
 	return TRUE
 
 /obj/structure/riser/white
