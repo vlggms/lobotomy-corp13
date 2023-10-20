@@ -42,7 +42,7 @@
 	gift_type =  /datum/ego_gifts/bride
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
-	var/missing_prudence
+	var/missing_prudence = 0
 	var/mob/living/carbon/human/sculptor = null
 	var/protect_cooldown_time = 30 SECONDS
 	var/protect_cooldown
@@ -140,18 +140,23 @@
 		restorePrudence()
 	faction = list()
 	sculptor = null
+	if(client)
+		to_chat(src, "<span class='userdanger'>The sculptor has fallen. It is now your duty to avenge this tragedy!</span>")
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/Life()
 	. = ..()
 	if (IsContained() && sculptor && (sculptor.health/sculptor.maxHealth < 0.5 || sculptor.sanityhealth/sculptor.maxSanity < 0.5) )
 		BreachEffect()
+		if(client)
+			to_chat(src, "<span class='userdanger'>The sculptor is in danger. It is now your duty to protect them!</span>")
+
 		threat_level = TETH_LEVEL
 		var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
 		var/user_attribute_level = max(1, user_attribute.level)
 		if (user_attribute_level > PRUDENCE_CAP)
 			missing_prudence = user_attribute_level - PRUDENCE_CAP
-			src.sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, (user_attribute_level - PRUDENCE_CAP) * -1)
+			src.sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, (missing_prudence) * -1)
 			to_chat(sculptor, "<span class='red'> You feel like your mind grows weaker as it has come out to protect you... </span>")
 
 	if (!IsContained() && protect_cooldown < world.time)
@@ -166,10 +171,7 @@
 		restorePrudence()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/restorePrudence()
-	var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
-	var/user_attribute_level = max(1, user_attribute.level)
-	if (user_attribute_level < missing_prudence + PRUDENCE_CAP)
-		sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, missing_prudence + PRUDENCE_CAP - user_attribute_level)
+	sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, missing_prudence)
 	missing_prudence = null
 	to_chat(sculptor, "<span class='nicegreen'> As soon as Pygmalion has fallen, You feel like your mind is back on track. </span>")
 
