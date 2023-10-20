@@ -94,10 +94,9 @@
 	desc = "A lime green pistol used by Kcorp."
 	icon_state = "kpistol"
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
-	inhand_icon_state = "gun"
-	worn_icon_state = "gun"
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_icon_state = "kpistol"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/ego_kcorp
 	fire_delay = 5
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
@@ -109,6 +108,7 @@
 	name = "Kcorp Machinepistole"
 	desc = "A lime green machinepistol used by Kcorp."
 	icon_state = "ksmg"
+	inhand_icon_state = "ksmg"
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.08 SECONDS
 	fire_delay = 1
@@ -124,6 +124,7 @@
 	name = "Kcorp grenade launcher"
 	desc = "A short grenade launcher used by Kcorp."
 	icon_state = "kgrenade"
+	inhand_icon_state = "kgrenade"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_knade
 	fire_delay = 15
 	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'

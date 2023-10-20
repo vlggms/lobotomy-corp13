@@ -33,6 +33,7 @@
 	name = "galaxy"
 	desc = "A shimmering wand."
 	icon_state = "galaxy"
+	inhand_icon_state = "galaxy"
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy

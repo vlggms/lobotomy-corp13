@@ -75,7 +75,7 @@
 	name = "rosespanner mini hammer"
 	desc = "A hammer from the rosespanner workshop. Fits in your EGO belt."
 	icon_state = "rosespanner_minihammer"
-	inhand_icon_state = "rosespanner_hammer"
+	inhand_icon_state = "rosespanner_minihammer"
 	force = 44
 	attack_speed = 1
 	charge_cost = 7	//Takes fucking forever, you can charge it a little faster
@@ -125,6 +125,8 @@
 	desc = "A gear used by Rosespanner workshop. Use them on a rosespanner weapon to augment the weapon."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "redgear"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	damtype = RED_DAMAGE
 	armortype = RED_DAMAGE
 

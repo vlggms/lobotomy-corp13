@@ -39,6 +39,7 @@
 	name = "streetlight office baton"
 	desc = "A  baton compatible with Zwei techniques. It carries a sense of regret..."
 	icon_state = "streetlight_founder"
+	inhand_icon_state = "streetlight_founder"
 	force = 32
 	damtype = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
