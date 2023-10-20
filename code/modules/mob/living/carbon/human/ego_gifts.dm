@@ -468,6 +468,13 @@
 	justice_bonus = 1
 	slot = HAND_1
 
+/datum/ego_gifts/curfew
+	name = "Curfew"
+	icon_state = "curfew"
+	fortitude_bonus = -1
+	prudence_bonus = 4
+	slot = HAND_1
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
@@ -1230,6 +1237,13 @@
 	temperance_bonus = 2
 	justice_bonus = 2
 	slot = BROOCH
+
+/datum/ego_gifts/mockery
+	name = "Mockery"
+	icon_state = "mockery"
+	fortitude_bonus = 5
+	prudence_bonus = 5
+	slot = HAND_1
 
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
