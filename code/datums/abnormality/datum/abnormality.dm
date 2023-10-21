@@ -48,6 +48,8 @@
 	var/maximum_attribute_level = 0
 	/// A list of performed works on it
 	var/list/work_logs = list()
+	/// A list of agents that have ever worked on it
+	var/list/work_stats = list()
 	/*
 	* Moved this variable from work Console for a two reasons
 	* First, this allows both the console AND the abnormality to check on the current working status. Useful overall.
@@ -146,12 +148,14 @@
 	current.WorkComplete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
 	if(!console?.recorded && !console?.tutorial) //only training rabbit should not train stats
 		return
+	var/attribute_type = "N/A"
+	var/attribute_given = 0
 	if(pe > 0) // Work did not fail
-		var/attribute_type = current.work_attribute_types[work_type]
+		attribute_type = current.work_attribute_types[work_type]
 		var/datum/attribute/user_attribute = user.attributes[attribute_type]
 		if(user_attribute) //To avoid runtime if it's a custom work type like "Release".
 			var/user_attribute_level = max(1, user_attribute.level)
-			var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
+			attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 			if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 			if(attribute_given == 0)
@@ -167,6 +171,7 @@
 	if(istype(W))
 		user_job_title = W.assignment
 	work_logs += "\[[worldtime2text()]\] [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
+	AddWorkStats(user, pe, attribute_type, attribute_given)
 	SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
 	if (understanding != max_understanding) // This should render "full_understood" not required.
 		if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
@@ -227,3 +232,23 @@
 	if(overload_chance[user.ckey])
 		acquired_chance += overload_chance[user.ckey]
 	return clamp(acquired_chance, 0, 100)
+
+/datum/abnormality/proc/AddWorkStats(mob/living/carbon/human/user, pe = 0, attribute_type = "N/A", attribute_given = 0)
+	var/user_name = "[user.real_name] ([user.ckey])"
+	if(!(user_name in work_stats))
+		work_stats[user_name] = list("name" = user.real_name,"works" = 0, "pe" = 0, "gain" = list())
+	work_stats[user_name]["works"] += 1
+	if(pe)
+		work_stats[user_name]["pe"] += pe
+	if(attribute_type != "N/A" && attribute_given)
+		work_stats[user_name]["gain"][attribute_type] += attribute_given
+
+	// Global agent stats
+	if(!(user_name in SSlobotomy_corp.work_stats))
+		SSlobotomy_corp.work_stats[user_name] = list("works" = 0, "pe" = 0, "gain" = list())
+	SSlobotomy_corp.work_stats[user_name] = list("name" = user.real_name,"works" = 0, "pe" = 0, "gain" = list())
+	SSlobotomy_corp.work_stats[user_name]["works"] += 1
+	if(pe)
+		SSlobotomy_corp.work_stats[user_name]["pe"] += pe
+	if(attribute_type != "N/A" && attribute_given)
+		SSlobotomy_corp.work_stats[user_name]["gain"][attribute_type] += attribute_given
