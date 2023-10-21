@@ -6,39 +6,10 @@
 		. = new /datum/dam_coeff(red, white, black, pale, brute, burn, tox, clone, stamina, oxy)
 
 /proc/makeDamCoeff(list/dc = list())
-	var/brute = 1
-	var/burn = 1
-	var/tox = 1
-	var/clone = 1
-	var/stamina = 1
-	var/oxy = 1
-	var/red = 1
-	var/white = 1
-	var/black = 1
-	var/pale = 1
+	var/list/coeffs = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1, BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 1, OXY = 1)
 	for(var/I in dc)
-		switch(I)
-			if(BRUTE)
-				brute = dc[I]
-			if(BURN)
-				burn = dc[I]
-			if(TOX)
-				tox = dc[I]
-			if(CLONE)
-				clone = dc[I]
-			if(STAMINA)
-				stamina = dc[I]
-			if(OXY)
-				oxy = dc[I]
-			if(RED_DAMAGE)
-				red = dc[I]
-			if(WHITE_DAMAGE)
-				white = dc[I]
-			if(BLACK_DAMAGE)
-				black = dc[I]
-			if(PALE_DAMAGE)
-				pale = dc[I]
-	return getDamCoeff(red, white, black, pale, brute, burn, tox, clone, stamina, oxy)
+		coeffs[I] = dc[I]
+	return getDamCoeff(coeffs[RED_DAMAGE], coeffs[WHITE_DAMAGE], coeffs[BLACK_DAMAGE], coeffs[PALE_DAMAGE], coeffs[BRUTE], coeffs[BURN], coeffs[TOX], coeffs[CLONE], coeffs[STAMINA], coeffs[OXY])
 
 /datum/dam_coeff
 	datum_flags = DF_USE_TAG
