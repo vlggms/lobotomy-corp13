@@ -19,7 +19,6 @@
 /obj/item/paper_bin/Initialize(mapload)
 	. = ..()
 	interaction_flags_item &= ~INTERACT_ITEM_ATTACK_HAND_PICKUP
-	AddElement(/datum/element/drag_pickup)
 	if(!mapload)
 		return
 	var/obj/item/pen/P = locate(/obj/item/pen) in src.loc
@@ -56,8 +55,8 @@
 
 	add_fingerprint(M)
 
-/obj/item/paper_bin/attack_paw(mob/user, list/modifiers)
-	return attack_hand(user, modifiers)
+/obj/item/paper_bin/attack_paw(mob/user)
+	return attack_hand(user)
 
 //ATTACK HAND IGNORING PARENT RETURN VALUE
 /obj/item/paper_bin/attack_hand(mob/user)
