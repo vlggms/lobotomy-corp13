@@ -11,16 +11,15 @@
 	icon = 'icons/mob/alien.dmi'
 	max_integrity = 100
 
-/obj/structure/alien/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
-	if(damage_flag == MELEE)
-		switch(damage_type)
-			if(BRUTE)
-				damage_amount *= 0.25
-			if(BURN)
-				damage_amount *= 2
+/obj/structure/alien/run_obj_armor(damage_amount, damage_type, attack_dir)
+	switch(damage_type)
+		if(BRUTE)
+			damage_amount *= 0.25
+		if(BURN)
+			damage_amount *= 2
 	. = ..()
 
-/obj/structure/alien/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/alien/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)

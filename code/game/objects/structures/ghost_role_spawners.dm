@@ -43,7 +43,7 @@
 	max_integrity = 80
 	var/obj/effect/mob_spawn/human/ash_walker/egg
 
-/obj/structure/ash_walker_eggshell/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0) //lifted from xeno eggs
+/obj/structure/ash_walker_eggshell/play_attack_sound(damage_amount, damage_type = BRUTE) //lifted from xeno eggs
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)

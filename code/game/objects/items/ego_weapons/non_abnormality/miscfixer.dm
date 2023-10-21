@@ -7,7 +7,7 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -24,7 +24,7 @@
 	icon_state = "fixer_blade"
 	force = 22
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -36,7 +36,7 @@
 	force = 38
 	attack_speed = 2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/weapons/genhit3.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -48,7 +48,7 @@
 	force = 32
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'

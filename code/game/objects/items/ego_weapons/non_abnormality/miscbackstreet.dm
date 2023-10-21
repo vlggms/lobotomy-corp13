@@ -7,7 +7,7 @@
 	force = 32
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/ego/axe2.ogg'

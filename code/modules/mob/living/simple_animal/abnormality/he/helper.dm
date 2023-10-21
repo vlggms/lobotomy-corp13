@@ -158,7 +158,7 @@
 				var/mob/living/carbon/human/H = L
 				// Ugly code
 				var/affecting = get_bodypart(ran_zone(pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
-				var/armor = H.run_armor_check(affecting, armortype, armour_penetration = src.armour_penetration)
+				var/armor = H.run_armor_check(affecting, melee_damage_type, armour_penetration = src.armour_penetration)
 				H.apply_damage(60, src.melee_damage_type, affecting, armor, wound_bonus = src.wound_bonus, bare_wound_bonus = src.bare_wound_bonus, sharpness = src.sharpness)
 			else
 				L.adjustRedLoss(120)

@@ -6,7 +6,7 @@
 	icon_state = "sweeper_hook"
 	force = 27
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	hitsound = 'sound/effects/ordeals/indigo/stab_1.ogg'

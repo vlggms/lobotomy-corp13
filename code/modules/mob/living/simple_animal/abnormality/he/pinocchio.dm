@@ -161,7 +161,7 @@
 	name = "liar's lyre"
 	desc = "A wooden axe, somehow wickedly sharp. Looks fragile."
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	item_flags = ABSTRACT
 	var/delete_timer
 

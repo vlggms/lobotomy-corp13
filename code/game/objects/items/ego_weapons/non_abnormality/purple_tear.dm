@@ -5,7 +5,7 @@
 	desc = "You really shouldn't be seeing this."
 	icon_state = "Jeong"
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 120,
@@ -145,7 +145,7 @@
 	force = 45
 	attack_speed = 0.5
 	damtype = RED_DAMAGE //Iori's quite physical with this stance
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("slashes", "rends")
 	attack_verb_simple = list("slash", "rend")
 	hitsound = 'sound/weapons/purple_tear/slash1.ogg'
@@ -181,7 +181,7 @@
 	force = 90
 	attack_speed = 1
 	damtype = WHITE_DAMAGE //tbh white does not fit but also i don't think Iori should use pale, thats Blue Sicko's job
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
 	hitsound = 'sound/weapons/purple_tear/stab1.ogg'
@@ -271,7 +271,7 @@
 	force = 135
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE //Blunt stance deals both high damage and stagger damage
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "smacks")
 	attack_verb_simple = list("bludgeon", "smack")
 	hitsound = 'sound/weapons/purple_tear/blunt1.ogg'
@@ -344,7 +344,7 @@
 	var/buff_check = FALSE
 	var/list/reductions = list(90, 90, 90, 90) //wild
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("smashes", "bashes")
 	attack_verb_simple = list("smash", "bash")
 	hitsound = 'sound/weapons/purple_tear/blunt2.ogg'
@@ -409,12 +409,10 @@
 	if(parry_buff)
 		force = force*1.5
 		damtype = BRUTE
-		armortype = MELEE
 	..()
 	if(parry_buff)
 		force = force/1.5
 		damtype = RED_DAMAGE
-		armortype = RED_DAMAGE
 		parry_buff = FALSE
 
 // Mirage Storm, fittingly stolen from blue sicko and black silence
@@ -453,7 +451,7 @@
 	inhand_y_dimension = 32
 	force = 45
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("slashes", "rends")
 	attack_verb_simple = list("slash", "rend")
 	hitsound = 'sound/weapons/purple_tear/slash2.ogg'
@@ -471,7 +469,7 @@
 	inhand_y_dimension = 64
 	force = 135
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "smacks")
 	attack_verb_simple = list("bludgeon", "smack")
 	hitsound = 'sound/weapons/purple_tear/blunt2.ogg'
@@ -489,7 +487,7 @@
 	inhand_y_dimension = 32
 	force = 90
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
 	hitsound = 'sound/weapons/purple_tear/stab2.ogg'

@@ -204,8 +204,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 40
-	damtype = BRUTE
-	armortype = MELEE //Ignores armor for our intents and purposes.
+	damtype = BRUTE //Ignores armor for our intents and purposes.
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/lighthammer/hammer_filter.ogg'

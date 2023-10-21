@@ -12,7 +12,7 @@
 	reach = 2 //Has 2 Square Reach.
 	attack_speed = 3 // really slow
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/fixer/generic/spear3.ogg'

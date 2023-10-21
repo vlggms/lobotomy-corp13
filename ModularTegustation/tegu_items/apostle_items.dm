@@ -152,7 +152,6 @@
 	name = "guardian scythe"
 	desc = "The divine light will grant you protection."
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	force = 25
 	throwforce = 6
 	spin_force = 75
@@ -217,7 +216,6 @@
 /obj/projectile/magic/arcane_barrage/apostle
 	damage = 20
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/magic/arcane_barrage/apostle/on_hit(target)
 	if(ismob(target))
@@ -241,7 +239,6 @@
 	force = 30 // Weaker in melee, but kills everyone with its active ability.
 	throwforce = 35
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	throw_speed = 4
 	throw_range = 11
 	embedding = list("impact_pain_mult" = 2, "remove_pain_mult" = 4, "jostle_chance" = 2.5)

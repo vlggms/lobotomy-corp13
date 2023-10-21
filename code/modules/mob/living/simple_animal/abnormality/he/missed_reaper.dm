@@ -9,7 +9,6 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 45
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = "pierces"
 	attack_verb_simple = "pierce"
 	faction = list("hostile")

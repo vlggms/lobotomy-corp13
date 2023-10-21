@@ -6,7 +6,7 @@
 	inhand_icon_state = "wbatong"
 	force = 18
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	release_message = "You release your charge, damaging your opponent!"

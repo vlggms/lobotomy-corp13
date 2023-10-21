@@ -1328,8 +1328,8 @@
 		log_combat(user, src, message)
 		add_hiddenprint(user)
 
-/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
-	if((damage_amount >= obj_integrity) && (damage_flag == BOMB))
+/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
+	if((damage_amount >= obj_integrity) && (damage_type == BOMB))
 		flags_1 |= NODECONSTRUCT_1  //If an explosive took us out, don't drop the assembly
 	. = ..()
 	if(obj_integrity < (0.75 * max_integrity))

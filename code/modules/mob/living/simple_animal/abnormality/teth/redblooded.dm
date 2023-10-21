@@ -130,5 +130,5 @@
 	name = "american pellet"
 	desc = "100% real, surplus military ammo."
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 	damage = 5

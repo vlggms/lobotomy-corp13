@@ -13,7 +13,7 @@
 //Philip's Sword
 /obj/item/ego_weapon/city/dawn/sword/white
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -24,7 +24,7 @@
 //Yuna's Cello Case
 /obj/item/ego_weapon/city/dawn/cello/white
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -35,7 +35,7 @@
 //Salvador's Zweihander
 /obj/item/ego_weapon/city/dawn/zwei/white
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,

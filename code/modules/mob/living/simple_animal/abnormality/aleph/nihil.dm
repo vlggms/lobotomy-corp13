@@ -23,7 +23,6 @@
 	melee_damage_lower = 55
 	melee_damage_upper = 65
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE

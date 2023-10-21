@@ -13,7 +13,6 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 50
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	health = 2500
 	maxHealth = 2500
@@ -178,7 +177,6 @@
 	health = 300
 	maxHealth = 300
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 27

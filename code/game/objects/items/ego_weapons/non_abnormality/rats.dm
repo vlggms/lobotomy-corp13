@@ -5,7 +5,7 @@
 	icon_state = "rathammer"
 	force = 18
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("smacks", "hammers", "beats")
 	attack_verb_simple = list("smack", "hammer", "beat")
 
@@ -53,7 +53,7 @@
 	force = 55
 	attack_speed = 3
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pipes", "smashes", "shatters", "nails over the head")
 	attack_verb_simple = list("pipe", "smash", "shatter", "nail in the head")
 	hitsound = 'sound/weapons/ego/pipesuffering.ogg'

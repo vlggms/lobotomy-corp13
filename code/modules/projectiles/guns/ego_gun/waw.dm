@@ -25,8 +25,6 @@
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	fire_delay = 5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
-
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -315,7 +313,6 @@
 	special = "This weapon deals 35 white in melee."
 	force = 35
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	fire_delay = 25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -331,7 +328,6 @@
 	weapon_weight = WEAPON_HEAVY
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	fire_delay = 30 //5 less than the Rend Armor status effect
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(

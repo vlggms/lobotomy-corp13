@@ -76,7 +76,7 @@
 	M.layer = initial(M.layer)
 	cut_overlay(nest_overlay)
 
-/obj/structure/bed/nest/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/bed/nest/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			playsound(loc, 'sound/effects/attackblob.ogg', 100, TRUE)

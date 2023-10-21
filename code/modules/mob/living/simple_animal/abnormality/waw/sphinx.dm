@@ -24,7 +24,6 @@
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 35, 40),

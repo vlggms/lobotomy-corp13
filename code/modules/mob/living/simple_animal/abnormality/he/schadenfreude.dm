@@ -14,7 +14,6 @@
 	melee_damage_lower = 40		//Yeah it's super slow, and you're not gonna get hit by it too often
 	melee_damage_upper = 48
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/scarecrow/attack.ogg'
 	attack_verb_continuous = "bashes"

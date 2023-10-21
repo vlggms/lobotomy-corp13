@@ -17,7 +17,6 @@
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_queue_distance = 1
 	retreat_distance = 0
 	minimum_distance = 0

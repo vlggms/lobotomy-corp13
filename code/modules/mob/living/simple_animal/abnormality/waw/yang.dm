@@ -192,7 +192,6 @@
 	hitscan = TRUE
 	damage = 70
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/white
 	tracer_type = /obj/effect/projectile/tracer/laser/white
 	impact_type = /obj/effect/projectile/impact/laser/white

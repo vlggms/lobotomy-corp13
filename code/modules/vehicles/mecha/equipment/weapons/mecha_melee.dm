@@ -9,7 +9,7 @@
 	range = MECHA_MELEE
 	mech_flags = EXOSUIT_MODULE_COMBAT
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 
 /obj/item/mecha_parts/mecha_equipment/hammer/rhinoblade
 	name = "Rhino Hammer (Black)"
@@ -22,7 +22,7 @@
 	range = MECHA_MELEE
 	mech_flags = EXOSUIT_MODULE_COMBAT
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 
 /obj/item/mecha_parts/mecha_equipment/hammer/action(mob/source, atom/target, params)
 	// Check if we can even use the equipment to begin with.
@@ -31,7 +31,7 @@
 
 	if(isliving(target))
 		var/mob/living/L = target
-		L.apply_damage(force, damtype, null, L.run_armor_check(null, armortype), spread_damage = TRUE)
+		L.apply_damage(force, damtype, null, L.run_armor_check(null, damtype), spread_damage = TRUE)
 		playsound(src,'sound/weapons/fixer/generic/club2.ogg',40,TRUE)
 
 	new /obj/effect/temp_visual/smash_effect(get_turf(target))

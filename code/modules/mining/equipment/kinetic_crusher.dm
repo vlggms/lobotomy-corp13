@@ -172,7 +172,6 @@
 	nodamage = TRUE
 	damage = 0 //We're just here to mark people. This is still a melee weapon.
 	damage_type = BRUTE
-	flag = BOMB
 	range = 6
 	log_override = TRUE
 	var/obj/item/kinetic_crusher/hammer_synced

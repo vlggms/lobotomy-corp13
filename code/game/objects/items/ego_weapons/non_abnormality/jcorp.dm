@@ -9,7 +9,7 @@
 	force = 27
 	attack_speed = 1
 	damtype = WHITE_DAMAGE //Almost everyone and their mother in this god forsaken district does something with sanity.
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("slices", "gashes", "stabs")
 	attack_verb_simple = list("slice", "gash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
@@ -66,7 +66,7 @@
 	inhand_icon_state = "maracas"
 	force = 22
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/maracas1.ogg'
@@ -108,7 +108,7 @@
 	inhand_icon_state = "mariachi_blades"
 	force = 22
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("slashes", "slices")
 	attack_verb_simple = list("slash", "slice")
 	hitsound = 'sound/weapons/fixer/generic/blade1.ogg'

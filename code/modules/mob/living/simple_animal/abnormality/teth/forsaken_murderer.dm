@@ -28,8 +28,6 @@
 		Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe. Most HE level abnormalities do 20+ damange.*/
 	melee_damage_upper = 18
 	melee_damage_type = RED_DAMAGE
-	//Is the second half of melee damage type. This the armor type checked when attacking someone.
-	armortype = RED_DAMAGE
 	//Used chrome to listen to the sound effects. In the chrome link was the file name i could copy paste in.
 	attack_sound = 'sound/effects/hit_kick.ogg'
 	attack_verb_continuous = "smashes"

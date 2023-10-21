@@ -79,7 +79,7 @@
 		deconstruct(TRUE)
 	return TRUE
 
-/obj/machinery/power/solar/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/power/solar/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			if(machine_stat & BROKEN)
@@ -437,7 +437,7 @@
 	else
 		return ..()
 
-/obj/machinery/power/solar_control/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/power/solar_control/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			if(machine_stat & BROKEN)

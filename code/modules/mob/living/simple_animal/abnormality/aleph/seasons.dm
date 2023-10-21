@@ -24,7 +24,6 @@
 	maxHealth = 4000
 	obj_damage = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.1)
-	armortype = WHITE_DAMAGE
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
@@ -209,7 +208,6 @@
 	datum_reference.available_work = work_chances
 	damage_coeff = new_damage_coeff.Copy()
 	work_damage_type = season_stats[current_season][2]
-	armortype = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season
 	name = season_stats[current_season][4]

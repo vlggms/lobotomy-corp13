@@ -186,7 +186,7 @@
 	operating = FALSE
 	return 1
 
-/obj/machinery/door/window/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/door/window/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src, 'sound/effects/glasshit.ogg', 90, TRUE)

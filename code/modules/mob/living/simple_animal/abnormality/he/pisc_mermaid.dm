@@ -34,7 +34,6 @@
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/unrequited,

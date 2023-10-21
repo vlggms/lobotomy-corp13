@@ -10,7 +10,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/black_silence_righthand.dmi'
 	force = 1
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("taps", "pats")
 	attack_verb_simple = list("tap", "pat")
 	hitsound = 'sound/effects/hit_punch.ogg'
@@ -627,7 +627,7 @@
 	speed = 0.3
 	icon_state = "logic"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 
 /obj/projectile/ego_bullet/atelier_logic/iff
 	nodamage = TRUE

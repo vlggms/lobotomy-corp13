@@ -6,7 +6,7 @@
 	icon_state = "miraecane"
 	force = 50
 	damtype = WHITE_DAMAGE	//Also does a small bit of pale, because lawyers hurt your mind and soul.
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(
@@ -44,6 +44,6 @@
 	icon_state = "insurance"
 	force = 45
 	damtype = WHITE_DAMAGE	//Also does a small bit of pale, because lawyers eat your soul.
-	armortype = WHITE_DAMAGE
+
 	ahn_amount = 700
 	boxchance = 30

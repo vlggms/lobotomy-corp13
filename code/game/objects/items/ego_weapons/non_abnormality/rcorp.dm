@@ -30,7 +30,6 @@
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
 			force = 35
-	armortype = damtype // TODO: In future, armortype should be gone entirely
 	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
@@ -60,7 +59,6 @@
 			damtype = PALE_DAMAGE
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-	armortype = damtype // TODO: In future, armortype should be gone entirely
 	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
@@ -75,7 +73,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/staves_righthand.dmi'
 	force = 40
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -256,7 +254,7 @@
 	force = 20
 	throwforce = 24
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("stabs", "slices")
 	attack_verb_simple = list("stab", "slice")

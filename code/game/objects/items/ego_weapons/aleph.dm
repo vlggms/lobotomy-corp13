@@ -7,7 +7,6 @@
 	worn_icon_state = "paradise"
 	force = 70
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("purges", "purifies")
 	attack_verb_simple = list("purge", "purify")
 	hitsound = 'sound/weapons/ego/paradise.ogg'
@@ -57,7 +56,6 @@
 	icon_state = "justitia"
 	force = 25
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	hitsound = 'sound/weapons/ego/justitia1.ogg'
@@ -114,7 +112,6 @@
 	force = 40 // It attacks very fast
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/weapons/ego/da_capo1.ogg'
@@ -168,7 +165,6 @@
 	inhand_y_dimension = 64
 	force = 70
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/abnormalities/nothingthere/attack.ogg'
@@ -205,7 +201,6 @@
 	worn_icon_state = "twilight"
 	force = 35
 	damtype = RED_DAMAGE // It's all damage types, actually
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/weapons/ego/twilight.ogg'
@@ -222,10 +217,8 @@
 	..()
 	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 		damtype = damage_type
-		armortype = damage_type
 		M.attacked_by(src, user)
 	damtype = initial(damtype)
-	armortype = initial(armortype)
 
 /obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
 	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
@@ -245,7 +238,6 @@
 	var/goldrush_damage = 140
 	var/finisher_on = TRUE //this is for a subtype, it should NEVER be false on this item.
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 
 //Replaces the normal attack with the gigafuck punch
 /obj/item/ego_weapon/goldrush/attack(mob/living/target, mob/living/user)
@@ -297,7 +289,6 @@
 	force = 110 //Slightly less damage, has an ability
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/weapons/ego/hammer.ogg'
@@ -326,7 +317,6 @@
 	icon_state = "rosered"
 	force = 80 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
 	hitsound = 'sound/weapons/ego/rapier2.ogg'
@@ -351,7 +341,6 @@
 			damtype = RED_DAMAGE
 			force = 80
 			icon_state = "rosered"
-	armortype = damtype
 	to_chat(user, "<span class='notice'>\[src] will now deal [force] [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
@@ -364,7 +353,6 @@
 	worn_icon_state = "censored"
 	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("attacks")
 	attack_verb_simple = list("attack")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
@@ -437,7 +425,6 @@
 	icon_state = "soulmate"
 	force = 40
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_speed = 0.8
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
@@ -536,7 +523,6 @@
 	name = "energy bullet"
 	damage = 40
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	icon_state = "ice_1"
 
 /obj/item/ego_weapon/space
@@ -546,7 +532,6 @@
 	icon_state = "space"
 	force = 50	//Half white, half black.
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'
@@ -624,7 +609,6 @@
 	icon_state = "spring"
 	force = 80
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs")
 	attack_verb_simple = list("poke", "jab")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -705,7 +689,6 @@
 	hitsound = season_list[current_season][6]
 	name = season_list[current_season][7]
 	damtype = season_list[current_season][8]
-	armortype = season_list[current_season][9]
 	desc = season_list[current_season][10]
 
 /obj/item/ego_weapon/seasons/attack(mob/living/target, mob/living/user) //other forms could probably use something. Probably.
@@ -729,7 +712,6 @@
 	force = 180 //Just make sure you don't hit anyone!
 	attack_speed = 3
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
 	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
 	hitsound = 'sound/abnormalities/distortedform/slam.ogg'
@@ -792,7 +774,6 @@
 	force = 84
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts", "reaps")
 	attack_verb_simple = list("slash", "slice", "rip", "cut", "reap")
 	hitsound = 'sound/weapons/ego/farmwatch.ogg'
@@ -852,7 +833,6 @@
 	reach = 2
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "pokes", "cuts", "stabs")
 	attack_verb_simple = list("slash", "slice", "poke", "cut", "stab")
 	hitsound = 'sound/weapons/ego/spicebush.ogg'
@@ -951,7 +931,6 @@
 	force = 105	//Still lower DPS
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
@@ -983,7 +962,6 @@
 	force = 80 // Quite high with passive buffs, but deals pure damage to yourself
 	attack_speed = 0.8
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slash", "stab", "scorch")
 	attack_verb_simple = list("slashes", "stabs", "scorches")
 	hitsound = 'sound/weapons/ego/burn_sword.ogg'
@@ -1141,7 +1119,6 @@
 	attack_speed = 0.5
 	reach = 3
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("lacerates", "disciplines")
 	attack_verb_simple = list("lacerate", "discipline")
 	hitsound = 'sound/weapons/whip.ogg'

@@ -25,7 +25,7 @@
 	update_cable_icons_on_turf(get_turf(src))
 	return ..()
 
-/obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/grille/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
 	update_icon()
 
@@ -204,7 +204,7 @@
 	else if(istype(W, /obj/item/shard) || !shock(user, 70))
 		return ..()
 
-/obj/structure/grille/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/grille/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 			if(damage_amount)

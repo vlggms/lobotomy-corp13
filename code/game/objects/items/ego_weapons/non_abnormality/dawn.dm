@@ -6,7 +6,7 @@
 	icon_state = "philip"
 	inhand_icon_state = "philip"
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	var/aoe_range
