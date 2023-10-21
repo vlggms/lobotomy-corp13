@@ -339,7 +339,7 @@
 /datum/status_effect/evening_twilight
 	id = "evening_twilight"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000
+	duration = 3000 // max duration
 	alert_type = null
 	var/attribute_bonus = 0
 
@@ -353,7 +353,7 @@
 	user.physiology.white_mod *= 0.3
 	user.physiology.black_mod *= 0.3
 	user.physiology.pale_mod *= 0.3
-	duration = get_user_level(user) * 300 //30 seconds per level, so a max of about 3.5 minutes at 130/all.
+	duration = min(get_user_level(user) * 300, initial(duration)) //30 seconds per level, so a max of about 3.5 minutes at 130/all.
 	return ..()
 
 /datum/status_effect/evening_twilight/on_remove()
