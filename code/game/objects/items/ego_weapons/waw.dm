@@ -1050,7 +1050,7 @@
 /obj/item/ego_weapon/blind_rage/get_clamped_volume()
 	return 30
 
-/obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/carbon/human/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1067,10 +1067,12 @@
 	var/damage = aoe_damage * (1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
 	if(attacks == 0)
 		damage *= 3
+	if(user.sanity_lost)
+		damage *= 1.2
 	for(var/turf/open/T in range(aoe_range, M))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
-		user.HurtInTurf(T, list(), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+		user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
