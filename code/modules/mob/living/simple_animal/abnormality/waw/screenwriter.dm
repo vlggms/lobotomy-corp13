@@ -239,7 +239,6 @@ Defeating the murderer also surpresses the abnormality.
 	maxHealth = 1400
 	health = 1400
 	melee_damage_type = WHITE_DAMAGE
-
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 	rapid_melee = 3

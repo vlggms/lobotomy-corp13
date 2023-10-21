@@ -13,7 +13,6 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
-
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/weapons/ego/axe2.ogg'
 	attack_verb_continuous = "bashes"

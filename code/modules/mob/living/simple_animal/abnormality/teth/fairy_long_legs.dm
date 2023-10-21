@@ -16,7 +16,6 @@
 	melee_damage_lower = 12
 	melee_damage_upper = 16
 	melee_damage_type = RED_DAMAGE
-
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/fairy_longlegs/attack.ogg'
 	attack_verb_continuous = "stabs"

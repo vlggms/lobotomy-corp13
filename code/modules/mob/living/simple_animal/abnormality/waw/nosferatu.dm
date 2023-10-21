@@ -24,7 +24,6 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 45 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
-
 	stat_attack = HARD_CRIT
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE

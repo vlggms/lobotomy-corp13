@@ -33,7 +33,6 @@
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
 
-
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 30
 	melee_damage_upper = 45
@@ -576,7 +575,6 @@
 	melee_damage_upper = 30
 	rapid_melee = 2
 	melee_damage_type = WHITE_DAMAGE
-
 	attack_sound = 'sound/abnormalities/wrath_servant/hermit_attack.ogg'
 
 	COOLDOWN_DECLARE(conjure)
@@ -756,7 +754,6 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 20
 	melee_damage_type = RED_DAMAGE
-
 	rapid_melee = 2
 	stat_attack = HARD_CRIT
 

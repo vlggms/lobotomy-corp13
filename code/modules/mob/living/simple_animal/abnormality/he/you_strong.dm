@@ -221,7 +221,6 @@
 	melee_damage_upper = 5
 	melee_damage_type = RED_DAMAGE
 
-
 	attack_sound = "swing_hit"
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"

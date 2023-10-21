@@ -10,7 +10,6 @@
 	maxHealth = 400
 	health = 400
 	melee_damage_type = BLACK_DAMAGE
-
 	melee_damage_lower = 14
 	melee_damage_upper = 14
 	pixel_x = -8
@@ -41,7 +40,6 @@
 	maxHealth = 100
 	health = 100
 	melee_damage_type = RED_DAMAGE
-
 	melee_damage_lower = 14
 	melee_damage_upper = 24
 	attack_verb_continuous = "bashes"
@@ -204,7 +202,6 @@
 	maxHealth = 250
 	health = 250
 	melee_damage_type = RED_DAMAGE
-
 	rapid_melee = 3
 	melee_damage_lower = 4
 	melee_damage_upper = 6
@@ -259,7 +256,6 @@
 	maxHealth = 3000 //it's a boss, more or less
 	health = 3000
 	melee_damage_type = PALE_DAMAGE
-
 	melee_damage_lower = 14
 	melee_damage_upper = 18
 	pixel_x = -8
@@ -462,7 +458,6 @@
 	maxHealth = 400
 	health = 400
 	melee_damage_type = RED_DAMAGE
-
 	rapid_melee = 2
 	melee_damage_lower = 14
 	melee_damage_upper = 14
@@ -582,7 +577,6 @@
 	maxHealth = 900
 	health = 900
 	melee_damage_type = BLACK_DAMAGE
-
 	melee_damage_lower = 26
 	melee_damage_upper = 36
 	attack_verb_continuous = "chops"
@@ -646,7 +640,6 @@
 	maxHealth = 1500
 	health = 1500
 	melee_damage_type = BLACK_DAMAGE
-
 	melee_damage_lower = 10 //they're support, so they deal low damage
 	melee_damage_upper = 15
 	attack_verb_continuous = "shocks"
@@ -708,7 +701,6 @@
 	maxHealth = 800
 	health = 800
 	melee_damage_type = RED_DAMAGE
-
 	rapid_melee = 3
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -785,7 +777,6 @@
 	maxHealth = 1000
 	health = 1000
 	melee_damage_type = BLACK_DAMAGE
-
 	melee_damage_lower = 15
 	melee_damage_upper = 30
 	attack_verb_continuous = "bashes"

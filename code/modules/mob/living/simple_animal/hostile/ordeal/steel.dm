@@ -12,7 +12,6 @@
 	maxHealth = 220
 	health = 220
 	melee_damage_type = RED_DAMAGE
-
 	vision_range = 8
 	move_to_delay = 2.2
 	melee_damage_lower = 10

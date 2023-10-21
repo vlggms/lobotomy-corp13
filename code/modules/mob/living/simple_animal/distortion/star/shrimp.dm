@@ -14,7 +14,6 @@
 	melee_damage_lower = 45
 	melee_damage_upper = 80
 	melee_damage_type = RED_DAMAGE
-
 	stat_attack = HARD_CRIT
 	rapid_melee = 2
 	retreat_distance = 2

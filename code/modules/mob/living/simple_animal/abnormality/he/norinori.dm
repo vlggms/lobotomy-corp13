@@ -12,7 +12,6 @@
 	health = 1200
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	melee_damage_type = RED_DAMAGE
-
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	rapid_melee = 1 //we change this later
