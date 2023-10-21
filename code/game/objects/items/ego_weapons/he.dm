@@ -731,7 +731,6 @@
 	attack_speed = 1
 	reach = 2
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("pokes", "jabs")
 	attack_verb_simple = list("poke", "jab")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -808,7 +807,6 @@
 	attack_speed = 2
 	hitsound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg'
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	attribute_requirements = list(
@@ -852,7 +850,6 @@
 	force = 55
 	attack_speed = 2
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/abnormalities/ichthys/hammer1.ogg'
@@ -931,7 +928,6 @@
 	force = 40//about 1.5x the average dps
 	attack_speed = 1
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("hacks", "slashes", "attacks")
 	attack_verb_simple = list("hack", "slash", "attack")
 	hitsound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
@@ -952,7 +948,6 @@
 	icon_state = "replica"
 	force = 25
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("grabs", "pinches", "snips", "attacks")
 	attack_verb_simple = list("grab", "pinch", "snip", "attack")
 	hitsound = 'sound/abnormalities/kqe/hitsound2.ogg'
@@ -1033,7 +1028,6 @@
 	force = 24
 	attack_speed = 0.8
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
 	hitsound = 'sound/abnormalities/wayward_passenger/attack2.ogg'
@@ -1147,7 +1141,6 @@
 	force = 40
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
 	hitsound = 'sound/abnormalities/pinocchio/attack.ogg'
@@ -1162,7 +1155,6 @@
 	force = 40//it has no special effect. Just damage
 	attack_speed = 2
 	damtype = PALE_DAMAGE
-
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -1177,7 +1169,6 @@
 	force = 25
 	attack_speed = 2
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("punches", "slaps", "scratches")
 	attack_verb_simple = list("punch", "slap", "scratch")
 	hitsound = 'sound/effects/hit_kick.ogg'
@@ -1236,7 +1227,6 @@
 	icon_state = "destiny"
 	force = 30
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
 	hitsound = 'sound/abnormalities/fateloom/garrote_bloody.ogg'//it's a bit loud
@@ -1263,7 +1253,6 @@
 	icon_state = "rhythm"
 	force = 25
 	damtype = WHITE_DAMAGE
-
 	attack_verb_continuous = list("slices", "saws", "rips")
 	attack_verb_simple = list("slice", "saw", "rip")
 	hitsound = 'sound/abnormalities/singingmachine/crunch.ogg'
@@ -1290,7 +1279,6 @@
 	force = 54
 	attack_speed = 3
 	damtype = WHITE_DAMAGE
-
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/bite.ogg'
@@ -1312,7 +1300,6 @@
 	force = 35
 	attack_speed = 0.8//about 44 dps
 	damtype = WHITE_DAMAGE
-
 	attack_verb_continuous = list("whips", "slaps", "flicks")
 	attack_verb_simple = list("whip", "slap", "flick")
 	hitsound = 'sound/weapons/whip.ogg'
@@ -1339,7 +1326,6 @@
 	inhand_y_dimension = 64
 	force = 25
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(
@@ -1383,7 +1369,6 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("stabs", "impales")
 	attack_verb_simple = list("stab", "impale")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -1414,7 +1399,6 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 2.0 // really slow
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("burns", "boils")
 	attack_verb_simple = list("burn", "boil")
 	hitsound = 'sound/weapons/fixer/generic/fire1.ogg'
@@ -1456,7 +1440,6 @@
 	force = 45	//Low dps. You'll see why later
 	attack_speed = 2
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("burns", "boils")
 	attack_verb_simple = list("burn", "boil")
 	hitsound = 'sound/weapons/fixer/generic/fire2.ogg'
@@ -1538,7 +1521,6 @@
 	force = 40	//Very low dps. You'll see why later
 	attack_speed = 2
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("pokes", "slashes")
 	attack_verb_simple = list("poke", "slash")
 	hitsound = 'sound/weapons/fixer/generic/sword1.ogg'
@@ -1643,7 +1625,6 @@
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	damtype = WHITE_DAMAGE
-
 	force = 50
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
@@ -1719,7 +1700,6 @@
 	reach = 4		//Has 4 Square Reach.
 	attack_speed = 1.8
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("whips", "lashes", "tears")
 	attack_verb_simple = list("whip", "lash", "tear")
 	hitsound = 'sound/weapons/whip.ogg'
@@ -1734,7 +1714,6 @@
 	special = "This weapon deals both red and white damage."
 	force = 20
 	damtype = WHITE_DAMAGE
-
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
 	hitsound = 'sound/weapons/bladeslice.ogg'

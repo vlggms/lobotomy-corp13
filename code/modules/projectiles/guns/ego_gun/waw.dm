@@ -25,7 +25,6 @@
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	fire_delay = 5
 	damtype = RED_DAMAGE
-
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)

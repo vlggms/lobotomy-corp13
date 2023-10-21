@@ -284,7 +284,6 @@
 	force = 8 //less than the baton, don't hit things with it
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-
 	var/mode = LANTERN_MODE_REMOTE
 	var/traplimit = 6
 	var/list/traps = list()
@@ -373,7 +372,6 @@
 	force = 38
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
-
 	hitsound = 'sound/abnormalities/fairygentleman/ego_sloshing.ogg'
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
@@ -385,7 +383,6 @@
 	icon_state = "red_sheet"
 	force = 22
 	damtype = BLACK_DAMAGE
-
 	hitsound = 'sound/abnormalities/nocry/ego_redsheet.ogg'
 	var/hit_count = 0
 
@@ -413,7 +410,6 @@
 	force = 22
 	attack_speed = 1
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -433,7 +429,6 @@
 	force = 12
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
-
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
@@ -465,7 +460,6 @@
 	icon_state = "zauberhorn"
 	force = 10
 	damtype = BLACK_DAMAGE
-
 	attack_speed = 0.5
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
@@ -515,7 +509,6 @@
 	force = 35					//Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
-
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
@@ -541,7 +534,6 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.8// really slow
 	damtype = WHITE_DAMAGE
-
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
