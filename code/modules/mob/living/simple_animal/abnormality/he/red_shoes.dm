@@ -192,7 +192,7 @@
 		desc = "The Red Shoes’s bloody enameled leather glistens in the light."
 		icon_state = "redshoes_breach"
 		icon_living = "redshoes_breach"
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
+		ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5))
 		sleep(10)
 		new /mob/living/simple_animal/hostile/red_shoe(get_turf(src))
 	datum_reference.qliphoth_change(-2)

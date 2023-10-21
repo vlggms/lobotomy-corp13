@@ -146,7 +146,7 @@
 	patrol_reset()
 	density = FALSE
 	AIStatus = AI_OFF
-	damage_coeff = list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // Prevent death jank
+	ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // Prevent death jank
 	forceMove(egoist) //Hide the distortion inside of the spawned human in case of shinanigains
 	if(unmanifest_effect)
 		new unmanifest_effect(get_turf(src))
