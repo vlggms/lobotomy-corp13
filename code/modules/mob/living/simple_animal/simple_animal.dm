@@ -207,6 +207,8 @@
 	if(!unsuitable_heat_damage)
 		unsuitable_heat_damage = unsuitable_atmos_damage
 
+	damage_coeff = damage_coeff.Copy()
+
 /mob/living/simple_animal/Life()
 	. = ..()
 	if(staminaloss > 0)
