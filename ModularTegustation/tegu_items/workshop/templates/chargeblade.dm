@@ -4,8 +4,6 @@
 	desc = "A glowing weapon made using Wcorp charge technology."
 	icon_state = "chargetemplate"
 	force = 18
-	damtype = RED_DAMAGE
-
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")

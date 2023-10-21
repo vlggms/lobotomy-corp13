@@ -4,8 +4,6 @@
 	special = "This weapon deals it's damage after a short windup."
 	icon_state = "gauntlettemplate"
 	force = 40
-	damtype = RED_DAMAGE
-
 	finishedicon = list("finishedgauntlet")
 	finishedname = list("fist", "gauntlet", "glove")
 	finisheddesc = "A finished gauntlet, ready for use."
