@@ -18,7 +18,7 @@
 	inhand_icon_state = "index"
 	force = 20
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 	attack_verb_continuous = list("smacks", "hammers", "beats")
 	attack_verb_simple = list("smack", "hammer", "beat")
 	attribute_requirements = list(

@@ -7,7 +7,7 @@
 	icon_state = "eyeball1"
 	force = 20
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	attribute_requirements = list(
@@ -39,14 +39,14 @@
 				resistance = 100
 		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
 			force *= 0.1
-			armortype = MELEE //Armor-piercing
+			damtype = BRUTE //Armor-piercing
 	else
 		icon_state = "eyeball1"				//Cool sprite gone
 	if(ishuman(target))
 		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
 	..()
 	force = initial(force)
-	armortype = initial(armortype)
+	damtype = initial(damtype)
 
 	/*Here's how it works. It scales with Fortitude. This is more balanced than it sounds. Think of it as if Fortitude adjusted base force.
 	Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
@@ -62,7 +62,7 @@
 	force = 12
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("slams", "bashes", "strikes")
 	attack_verb_simple = list("slams", "bashes", "strikes")
 	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
@@ -90,7 +90,7 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/ego/mace1.ogg'
@@ -128,7 +128,7 @@
 	icon_state = "iron_maiden"
 	force = 25 //DPS of 25, 50, 75, 100 at each ramping level
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("clamps")
 	attack_verb_simple = list("clamp")
 	hitsound = 'sound/abnormalities/helper/attack.ogg'
@@ -284,7 +284,7 @@
 	force = 40
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'

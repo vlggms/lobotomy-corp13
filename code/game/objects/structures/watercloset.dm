@@ -692,7 +692,7 @@
 	new /obj/item/stack/rods (loc, 1)
 	qdel(src)
 
-/obj/structure/curtain/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/curtain/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)

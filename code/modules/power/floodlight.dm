@@ -139,5 +139,5 @@
 	new /obj/item/light/tube/broken(loc)
 	qdel(src)
 
-/obj/machinery/power/floodlight/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/power/floodlight/play_attack_sound(damage_amount, damage_type = BRUTE)
 	playsound(src, 'sound/effects/glasshit.ogg', 75, TRUE)

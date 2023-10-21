@@ -15,7 +15,7 @@
 	del_on_death = FALSE
 	attack_sound = 'sound/weapons/ego/rapier1.ogg'
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	melee_damage_lower = 5
 	melee_damage_upper = 15
 	attack_verb_continuous = "slashes"

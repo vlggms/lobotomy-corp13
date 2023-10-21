@@ -320,7 +320,7 @@
 			target.visible_message("<span class='danger'>[name] shoves [target.name], knocking [target.p_them()] down!</span>",
 							"<span class='userdanger'>You're knocked down from a shove by [name]!</span>", "<span class='hear'>You hear aggressive shuffling followed by a loud thud!</span>", COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, "<span class='danger'>You shove [target.name], knocking [target.p_them()] down!</span>")
-			
+
 		else if(target_table)
 			target.Knockdown(SHOVE_KNOCKDOWN_TABLE)
 			target.visible_message("<span class='danger'>[name] shoves [target.name] onto \the [target_table]!</span>",
@@ -603,7 +603,7 @@
 		return effect_amount //how soundbanged we are
 
 
-/mob/living/carbon/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
+/mob/living/carbon/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)
 		return
 	damage_amount *= 0.5 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed
@@ -616,7 +616,7 @@
 		if(head)
 			hit_clothes = head
 		if(hit_clothes)
-			hit_clothes.take_damage(damage_amount, damage_type, damage_flag, 0)
+			hit_clothes.take_damage(damage_amount, damage_type, 0)
 
 /mob/living/carbon/can_hear()
 	. = FALSE

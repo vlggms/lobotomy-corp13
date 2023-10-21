@@ -19,7 +19,7 @@
 	rapid_melee = 1
 	melee_queue_distance = 2
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	speak_emote = list("rasps", "growls", "gurgles")
 	can_breach = TRUE

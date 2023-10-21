@@ -234,7 +234,7 @@
 	if (myseed.endurance < 1) // Plant is gone
 		qdel(src)
 
-/obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE)
 	if(damage_type == BURN && damage_amount)
 		playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 

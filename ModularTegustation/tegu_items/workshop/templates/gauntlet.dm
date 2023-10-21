@@ -5,7 +5,7 @@
 	icon_state = "gauntlettemplate"
 	force = 40
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	finishedicon = list("finishedgauntlet")
 	finishedname = list("fist", "gauntlet", "glove")
 	finisheddesc = "A finished gauntlet, ready for use."
@@ -32,7 +32,7 @@
 		if(ishuman(target))
 			punch_damage = 50
 
-		target.apply_damage(punch_damage, damtype, null, target.run_armor_check(null, armortype), spread_damage = TRUE)		//MASSIVE fuckoff punch
+		target.apply_damage(punch_damage, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
 		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)

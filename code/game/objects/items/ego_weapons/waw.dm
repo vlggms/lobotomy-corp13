@@ -858,7 +858,7 @@
 	icon_state = "neurotoxin"
 	damage = 30
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 	hitsound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 	hitsound_wall = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 

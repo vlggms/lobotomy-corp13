@@ -238,7 +238,7 @@
 		base_pixel_y = 0
 		animate(src, alpha = 0, time = 10 SECONDS)
 		charge = 0
-		can_charge = FALSE 
+		can_charge = FALSE
 		QDEL_IN(src, 10 SECONDS)
 		return ..()
 
@@ -267,10 +267,10 @@
 			return Combusting_Courage()
 		if(sorrow_cooldown <= world.time && prob(25))
 			return Wounds_Of_Sorrow(target)
-	
+
 	if(prob(35))
 		return Bygone_Illusion(target)
-	
+
 	// Distorted Illusion
 	can_act = FALSE
 	icon_state = "[icon_phase]_salvador"
@@ -524,7 +524,7 @@
 		H.update_blindness()
 		H.update_sight()
 		blinded += H
-	
+
 /mob/living/simple_animal/hostile/child/unseeing/death(gibbed)
 	for(var/mob/living/carbon/human/H in blinded)
 		REMOVE_TRAIT(H, TRAIT_BLIND, GENETIC_MUTATION)
@@ -584,7 +584,7 @@
 	icon_state = "heavylaser"
 	damage = 100
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 	hitscan = TRUE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))

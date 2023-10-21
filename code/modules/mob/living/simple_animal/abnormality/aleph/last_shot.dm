@@ -109,7 +109,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	health = 500
 	maxHealth = 500
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 20

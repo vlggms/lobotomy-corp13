@@ -51,7 +51,6 @@
 #include "heretic_knowledge.dm"
 #include "holidays.dm"
 #include "initialize_sanity.dm"
-#include "item_damage.dm"
 #include "keybinding_init.dm"
 #include "machine_disassembly.dm"
 #include "medical_wounds.dm"

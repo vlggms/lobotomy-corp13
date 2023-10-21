@@ -12,7 +12,7 @@ Katana - Use in hand to dash
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -28,7 +28,7 @@ Katana - Use in hand to dash
 	icon_state = "swordtemplate"
 	force = 22
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -45,7 +45,7 @@ Katana - Use in hand to dash
 	force = 20
 	attack_speed = 0.7
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -62,7 +62,7 @@ Katana - Use in hand to dash
 	force = 30
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "cleaves", "slices", "cuts")
 	attack_verb_simple = list("attack", "slash", "cleave", "slice", "cut")
@@ -80,7 +80,7 @@ Katana - Use in hand to dash
 	attack_speed = 1.8
 	aoe_range = 1
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attack_verb_continuous = list("bashes", "beats")
 	attack_verb_simple = list("bash", "beat")
@@ -99,7 +99,7 @@ Katana - Use in hand to dash
 	attack_speed = 1.7	//not really for melee and is therefore really slow.
 	throwforce = 50
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -117,7 +117,7 @@ Katana - Use in hand to dash
 	attack_speed = 0.8	//melee is shit lol
 	throwforce = 38
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bonks", "bashes")
 	attack_verb_simple = list("bonk", "bash")
 
@@ -141,7 +141,7 @@ Katana - Use in hand to dash
 	force = 38
 	attack_speed =  2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "cleaves", "slices", "cuts")
 	attack_verb_simple = list("attack", "slash", "cleave", "slice", "cut")
@@ -157,7 +157,7 @@ Katana - Use in hand to dash
 	force = 12
 	attack_speed = 0.4
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("rends", "tears", "lacerates", "rips", "cuts")
 	attack_verb_simple = list("rend", "tear", "lacerate", "rip", "cut")
 
@@ -173,7 +173,7 @@ Katana - Use in hand to dash
 	force = 20
 	attack_speed =  1.6
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pounds", "crushes", "smashes", "whacks", "smacks")
 	attack_verb_simple = list("pound", "crush", "smash", "whack", "smack")
 

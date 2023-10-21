@@ -40,7 +40,7 @@
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	melee_damage_lower = 20
 	melee_damage_upper = 40
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'

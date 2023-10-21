@@ -430,7 +430,7 @@
 	speed = 0
 	damage = 30
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 	projectile_piercing = PASSMOB
 	hit_nondense_targets = TRUE
 	var/damage_amount = 200 // Amount of black damage dealt to enemies in the epicenter.

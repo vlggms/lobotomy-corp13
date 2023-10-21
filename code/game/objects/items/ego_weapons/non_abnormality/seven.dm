@@ -15,7 +15,7 @@
 	inhand_icon_state = "sevenassociation"
 	force = 38
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	var/stored_target
 	var/stored_target_hp
 	var/hit_number
@@ -134,7 +134,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	force = 38
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	var/fencing_target
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,

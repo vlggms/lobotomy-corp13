@@ -298,7 +298,7 @@
 	icon_state = "pulse0"
 	damage = 120
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_blind_rage
 	name = "blind rage"
@@ -326,7 +326,7 @@
 	icon_state = "energy"
 	damage = 7 //Can dual wield, full auto
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_hypocrisy
 	name = "hypocrisy"
@@ -334,11 +334,11 @@
 	color = "#AAFF00"
 	damage = 90 //50 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_bride
 	name = "bride"
 	icon_state = "bride"
 	damage = 25
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+

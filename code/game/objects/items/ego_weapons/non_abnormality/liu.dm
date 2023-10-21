@@ -2,7 +2,7 @@
 /obj/item/ego_weapon/city/liu
 	name = "Liu template"
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 
 /obj/item/ego_weapon/city/liu/examine(mob/user)
 	. = ..()

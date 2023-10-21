@@ -191,7 +191,7 @@
 	icon_state = "evening"
 	force = 12
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 
@@ -237,7 +237,7 @@
 	icon_state = "melty_eyeball"
 	force = 14
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'
@@ -267,7 +267,7 @@
 	icon_state = "letteropener"
 	force = 14
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
@@ -314,7 +314,7 @@
 	icon_state = "eclipse"
 	force = 14
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
 

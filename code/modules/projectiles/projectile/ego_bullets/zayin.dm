@@ -52,10 +52,10 @@
 	icon_state = "wishing_rock"
 	damage = 20
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_oceanic
 	name = "oceanic"
 	damage = 11		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+

@@ -154,7 +154,7 @@
 	maxHealth = 100
 	melee_damage_lower = 5
 	melee_damage_upper = 8
-	armortype = PALE_DAMAGE
+
 	melee_damage_type = PALE_DAMAGE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE

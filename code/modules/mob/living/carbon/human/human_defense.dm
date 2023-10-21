@@ -859,7 +859,7 @@
 
 	to_chat(src, combined_msg.Join("\n"))
 
-/mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
+/mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)
 		return
 	damage_amount *= 0.5 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed
@@ -916,4 +916,4 @@
 			torn_items |= leg_clothes
 
 	for(var/obj/item/I in torn_items)
-		I.take_damage(damage_amount, damage_type, damage_flag, 0)
+		I.take_damage(damage_amount, damage_type, 0)

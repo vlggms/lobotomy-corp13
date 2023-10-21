@@ -16,7 +16,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 14
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/censored/attack.ogg'
 	attack_verb_continuous = "whips"
@@ -91,7 +91,7 @@
 	name = "stretchy tie"
 	damage = 15
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/tracer/laser/tie
 	tracer_type = /obj/effect/projectile/tracer/laser/tie
@@ -136,7 +136,7 @@
 	force = 32
 	reach = 2		//Has 2 Square Reach.
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_speed = 1.6
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")

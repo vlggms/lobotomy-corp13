@@ -89,7 +89,7 @@
 						"<span class='userdanger'>You're hit by [thrown_item]!</span>")
 		if(!thrown_item.throwforce)
 			return
-		var/armor = run_armor_check(zone, thrown_item.armortype, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
+		var/armor = run_armor_check(zone, thrown_item.damtype, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
 		var/justice_mod = 1
 		if(ishuman(thrown_item.thrownby))
 			var/mob/living/carbon/human/H = thrown_item.thrownby
@@ -416,7 +416,7 @@
 	return FALSE
 
 //to damage the clothes worn by a mob
-/mob/living/proc/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
+/mob/living/proc/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
 	return
 
 

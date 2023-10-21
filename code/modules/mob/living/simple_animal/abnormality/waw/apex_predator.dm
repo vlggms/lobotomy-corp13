@@ -18,7 +18,7 @@
 	move_to_delay = 3
 
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	stat_attack = HARD_CRIT
 
 	fear_level = 0	//You should never notice it

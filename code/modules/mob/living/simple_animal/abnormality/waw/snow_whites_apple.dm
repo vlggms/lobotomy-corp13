@@ -221,7 +221,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 	if(isliving(AM))
 		vine_effect(AM)
 
-/obj/structure/spreading/apple_vine/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/spreading/apple_vine/play_attack_sound(damage_amount, damage_type = BRUTE)
 	playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
 
 /obj/structure/spreading/apple_vine/proc/vine_effect(mob/living/L)

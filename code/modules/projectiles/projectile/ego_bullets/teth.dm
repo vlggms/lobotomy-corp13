@@ -42,13 +42,13 @@
 	damage = 6
 	speed = 1.5
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_page
 	name = "page"
 	damage = 20
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 
 //Snapshot, hitscan laser
 /obj/projectile/beam/snapshot
@@ -57,7 +57,7 @@
 	hitsound = null
 	damage = 18
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
 	tracer_type = /obj/effect/projectile/tracer/laser/snapshot
@@ -82,7 +82,7 @@
 	icon_state = "wishing_rock"
 	damage = 5
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_wishing/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -95,14 +95,14 @@
 	icon_state = "wishing_kunai"
 	damage = 10
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_aspiration
 	name = "aspiration"
 	icon_state = "lava"
 	damage = 25
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 	hitscan = TRUE
 	tracer_type = /obj/effect/projectile/tracer/laser/aspiration
 
@@ -124,4 +124,4 @@
 	name = "patriot"
 	damage = 15
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
