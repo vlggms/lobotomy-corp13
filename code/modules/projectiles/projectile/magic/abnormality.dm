@@ -3,7 +3,6 @@
 	desc = "A magic rapier, enchanted by the sheer despair and suffering the knight has been through."
 	icon_state = "despair"
 	damage_type = PALE_DAMAGE
-	flag = PALE_DAMAGE
 	damage = 40
 	alpha = 0
 	spread = 20
@@ -27,7 +26,6 @@
 	name = "light"
 	icon_state = "apocalypse"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 30
 	alpha = 0
 	spread = 45
@@ -41,7 +39,6 @@
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 25
 	spread = 15
 
@@ -51,7 +48,7 @@
 	icon_state = "slime"
 	hitsound = 'sound/abnormalities/meltinglove/ranged_hit.ogg'
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 	damage = 30 // Mainly a disabling tool, to pursue escaping opponents
 	spread = 5
 	slur = 5
@@ -92,7 +89,6 @@
 	desc = "Gross, disgusting spit."
 	icon_state = "mountain"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 15 // Launches 16(48) of those, for a whooping 240(720) black damage
 	spread = 60
 	slur = 3
@@ -114,7 +110,6 @@
 	desc = "A blade thrown maliciously"
 	icon_state = "clown"
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	damage = 5
 
 /obj/projectile/clown_throw/Initialize()
@@ -138,7 +133,7 @@
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
 	icon_state = "bride_bolt"
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 	damage = 25
 	spread = 10
 
@@ -147,7 +142,7 @@
 	desc = "A magic white bolt, enchanted to protect or to avenge the sculptor."
 	icon_state = "bride_bolt_enraged"
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 	damage = 50
 	spread = 5
 
@@ -156,7 +151,7 @@
 	desc = "Report this to a dev"
 	icon_state = "mountain"
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 	damage = 45
 
 /obj/projectile/season_projectile/Moved(atom/OldLoc, Dir)
@@ -172,28 +167,28 @@
 	desc = "A spiky burr"
 	icon_state = "toxin"
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 
 /obj/projectile/season_projectile/summer
 	name = "fireball"
 	desc = "A ball of heated plasma"
 	icon_state = "fireball"
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 
 /obj/projectile/season_projectile/fall
 	name = "wisp"
 	desc = "A glowing ember"
 	icon_state = "pulse1"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 
 /obj/projectile/season_projectile/winter
 	name = "ice spear"
 	desc = "A sharp-looking icicle"
 	icon_state = "ice_2"
 	damage_type = PALE_DAMAGE
-	flag = PALE_DAMAGE
+
 	damage = 35
 
 //slow, dodgable, and make it hard to see and talk
@@ -201,7 +196,7 @@
 	name = "blood blob"
 	icon_state = "mini_leaper"
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 	damage = 30
 	spread = 15
 	eyeblur = 10
@@ -213,7 +208,7 @@
 	icon_state = "bullet"
 	desc = "causes a lot of pain"
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 	damage = 10
 
 /obj/projectile/actor/on_hit(target)
@@ -234,7 +229,7 @@
 	desc = "Look out!"
 	icon_state = "thunder_tomahawk"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 	damage = 45
 
 /obj/projectile/thunder_tomahawk/Initialize()
@@ -247,7 +242,7 @@
 	hitsound = null
 	damage = 10
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/snapshot
 	tracer_type = /obj/effect/projectile/tracer/laser/snapshot

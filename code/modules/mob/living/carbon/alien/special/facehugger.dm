@@ -50,7 +50,7 @@
 	worn_icon_state = "facehugger_dead"
 	stat = DEAD
 
-/obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/item/clothing/mask/facehugger/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	..()
 	if(obj_integrity < 90)
 		Die()

@@ -16,7 +16,6 @@
 	health = 1400
 	can_breach = TRUE
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = DEAD
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 2)
 	move_to_delay = 3
@@ -223,7 +222,6 @@
 			icon_tongue = "blubbering_egg_tongue"
 			icon_state = icon_living
 			melee_damage_type = WHITE_DAMAGE
-			armortype = WHITE_DAMAGE
 			broken = TRUE
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
 		return
@@ -234,7 +232,6 @@
 			melee_damage_upper = 35
 		else
 			melee_damage_type = RED_DAMAGE
-			armortype = RED_DAMAGE
 		transformed = TRUE
 		icon_living = "blubbering_[state]"
 		icon_tongue = "blubbering_tongue_[state]"

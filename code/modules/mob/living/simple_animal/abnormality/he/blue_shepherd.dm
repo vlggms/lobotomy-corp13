@@ -30,7 +30,6 @@
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE

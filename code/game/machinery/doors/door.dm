@@ -232,13 +232,13 @@
 		return TRUE
 	return ..()
 
-/obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/door/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
 		if(damage_amount >= 10 && prob(30))
 			spark_system.start()
 
-/obj/machinery/door/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/door/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			if(glass)

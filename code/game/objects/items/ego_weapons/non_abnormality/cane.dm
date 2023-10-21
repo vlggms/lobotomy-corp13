@@ -5,7 +5,7 @@
 	desc = "This is a template and should not be seen."
 	force = 18
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	release_message = "You release your charge, damaging your opponent!"

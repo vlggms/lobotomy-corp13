@@ -5,7 +5,7 @@
 	force = 0
 	attack_speed = 1
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -46,7 +46,6 @@
 
 	if(!type_overriden)
 		damtype = mod.damagetype
-		armortype = mod.damagetype
 	if(!color)
 		// Material color overwrites
 		color = mod.weaponcolor

@@ -139,7 +139,6 @@
 	creation.attack_speed *= attack_mult
 	if(type_override)
 		creation.damtype = type_override
-		creation.armortype = type_override
 		creation.type_overriden = TRUE
 	if(hitsound_override)
 		creation.hitsound = hitsound_override

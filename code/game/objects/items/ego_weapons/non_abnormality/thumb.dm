@@ -94,7 +94,7 @@
 	icon_state = "thumb_duster"
 	force = 44
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("beats")
 	attack_verb_simple = list("beat")
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
@@ -105,7 +105,7 @@
 	icon_state = "thumb_cane"
 	force = 65
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("beats")
 	attack_verb_simple = list("beat")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'

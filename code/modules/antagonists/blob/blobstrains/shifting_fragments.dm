@@ -14,8 +14,8 @@
 		newB.forceMove(get_turf(B))
 		B.forceMove(T)
 
-/datum/blobstrain/reagent/shifting_fragments/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
-	if((damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER) && damage > 0 && B.obj_integrity - damage > 0 && prob(60-damage))
+/datum/blobstrain/reagent/shifting_fragments/damage_reaction(obj/structure/blob/B, damage, damage_type)
+	if((damage_type in list(MELEE, BULLET, LASER)) && damage > 0 && B.obj_integrity - damage > 0 && prob(60-damage))
 		var/list/blobstopick = list()
 		for(var/obj/structure/blob/OB in orange(1, B))
 			if((istype(OB, /obj/structure/blob/normal) || (istype(OB, /obj/structure/blob/shield) && prob(25))) && OB.overmind && OB.overmind.blobstrain.type == B.overmind.blobstrain.type)

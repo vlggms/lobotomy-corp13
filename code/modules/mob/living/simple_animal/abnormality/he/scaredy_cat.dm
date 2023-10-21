@@ -14,7 +14,6 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	vision_range = 7 //nerfed vision range so he doesn't go 2 continents away from his friend
 	stat_attack = CONSCIOUS
 	attack_sound = 'sound/abnormalities/scaredycat/catattack.ogg'

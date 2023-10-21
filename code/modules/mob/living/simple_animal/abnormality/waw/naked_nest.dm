@@ -259,7 +259,6 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	maxHealth = 300
 	health = 300
 	stat_attack = CONSCIOUS //When you are put into crit the nested will continue to transform into a nest. I thought about having the nested infest you if your in crit but that seemed a bit too cruel.

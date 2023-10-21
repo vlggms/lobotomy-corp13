@@ -25,7 +25,7 @@
 	///The creature currently caught in the net
 	var/mob/living/affecting
 
-/obj/structure/energy_net/play_attack_sound(damage, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/energy_net/play_attack_sound(damage, damage_type = BRUTE)
 	if(damage_type == BRUTE || damage_type == BURN)
 		playsound(src, 'sound/weapons/slash.ogg', 80, TRUE)
 

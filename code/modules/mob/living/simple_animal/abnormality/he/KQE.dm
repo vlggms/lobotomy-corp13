@@ -12,7 +12,6 @@
 	icon_dead = "kqe_egg"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 20
 	melee_damage_upper = 25

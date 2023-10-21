@@ -42,7 +42,6 @@
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
-	flag = ENERGY
 	temperature = -50 // Cools you down! per hit!
 
 /obj/projectile/temp/basilisk/heated

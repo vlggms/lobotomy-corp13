@@ -13,7 +13,6 @@
 	melee_damage_upper = 1 //Irrelevant, she does not attack of her own volition
 	generic_canpass = FALSE
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 2

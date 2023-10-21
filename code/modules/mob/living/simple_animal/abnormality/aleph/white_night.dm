@@ -233,7 +233,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	friendly_verb_simple = "stare down"
 	speak_emote = list("says")
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
 	obj_damage = 400
@@ -333,7 +332,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	maxHealth = 3000
 	move_to_delay = 7
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	vision_range = 12
 	aggro_vision_range = 12
@@ -392,7 +390,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon_state = "apostle_spear"
 	icon_living = "apostle_spear"
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
 	var/spear_cooldown
 	var/spear_cooldown_time = 10 SECONDS
@@ -474,7 +471,6 @@ GLOBAL_LIST_EMPTY(apostles)
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	melee_damage_type = BLACK_DAMAGE // Okay, look, they aren't really meant to melee anyway
-	armortype = BLACK_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	var/staff_cooldown
 	var/staff_cooldown_time = 20 SECONDS

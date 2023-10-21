@@ -47,7 +47,6 @@
 			damtype = BLACK_DAMAGE
 		if(BLACK_DAMAGE)
 			damtype = RED_DAMAGE
-	armortype = damtype
 	to_chat(user, "<span class='notice'>[src] will now deal [force] [damtype] damage.</span>")
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 

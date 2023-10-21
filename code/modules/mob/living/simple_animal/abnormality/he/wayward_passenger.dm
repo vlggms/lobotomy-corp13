@@ -17,7 +17,6 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/wayward_passenger/attack2.ogg'
 	can_breach = TRUE
 	can_buckle = FALSE

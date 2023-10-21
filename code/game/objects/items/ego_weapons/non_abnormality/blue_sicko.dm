@@ -10,7 +10,7 @@
 	inhand_icon_state = "reverberation"
 	force = 60 // 85 DPS w/o Vibration, 128 with.
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_speed = 0.7
 	hitsound = 'sound/weapons/fixer/reverb_normal.ogg'
 	attack_verb_continuous = list("slashes", "cuts",)
@@ -73,7 +73,7 @@
 	if(S)
 		if(S.stacks == vibration)
 			damtype = PALE_DAMAGE
-			armortype = PALE_DAMAGE
+
 			force = 90
 			hitsound = "sound/weapons/fixer/reverb_strong[rand(1, 2)].ogg"
 			VFX = new /obj/effect/temp_visual/reverb_slash/vertical(get_turf(user))
@@ -88,7 +88,7 @@
 		VFX.layer = user.layer - 0.1 // Below them, but sometimes above the target.
 	. = ..()
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	force = 60
 	hitsound = temp_sound
 	if(!. || target.stat == DEAD)

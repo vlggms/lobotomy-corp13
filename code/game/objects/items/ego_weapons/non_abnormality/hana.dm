@@ -6,7 +6,7 @@
 	icon_state = "hana_sword"
 	force = 50
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
 	hitsound = 'sound/weapons/fixer/hana_slash.ogg'

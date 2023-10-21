@@ -8,7 +8,7 @@
 	force = 30
 	attack_speed = 2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("cleavess", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/weapons/guillotine.ogg'

@@ -10,7 +10,6 @@
 	maxHealth = 3000
 	health = 3000
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	rapid_melee = 2
 	melee_damage_lower = 30
 	melee_damage_upper = 40
@@ -130,7 +129,6 @@
 	hitsound = 'sound/effects/ordeals/white/black_kunai.ogg'
 	damage = 30
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 
 // White Fixer
 /mob/living/simple_animal/hostile/ordeal/white_fixer
@@ -349,7 +347,6 @@
 	maxHealth = 3000
 	health = 3000
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 2
 	melee_damage_lower = 35
 	melee_damage_upper = 45
@@ -486,7 +483,6 @@
 	maxHealth = 4000
 	health = 4000
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
 	rapid_melee = 2
@@ -712,4 +708,3 @@
 	icon_state = "palebullet"
 	damage = 16
 	damage_type = PALE_DAMAGE
-	flag = PALE_DAMAGE

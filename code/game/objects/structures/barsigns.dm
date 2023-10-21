@@ -51,7 +51,7 @@
 	new /obj/item/stack/cable_coil(drop_location(), 2)
 	qdel(src)
 
-/obj/structure/sign/barsign/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/sign/barsign/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)

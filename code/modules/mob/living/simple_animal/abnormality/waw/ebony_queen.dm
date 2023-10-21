@@ -12,12 +12,10 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
 	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.0, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.7)
 	ranged = TRUE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/ebonyqueen/attack.ogg'
 	attack_verb_continuous = "claws"

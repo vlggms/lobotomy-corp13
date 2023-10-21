@@ -17,7 +17,6 @@
 	melee_damage_lower = 4
 	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE
-
 	work_damage_amount = 4
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
