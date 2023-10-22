@@ -1009,7 +1009,7 @@
 	icon_state = "blind_rage"
 	force = 40
 	attack_speed = 1.2
-	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful! \nUse in hand to hold back the AoE!"
+	special = "This weapon possesses a devastating Red AND Black damage AoE. Be careful!"
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("smashes", "crushes", "flattens")
 	attack_verb_simple = list("smash", "crush", "flatten")
@@ -1023,19 +1023,11 @@
 	var/aoe_damage_type = BLACK_DAMAGE
 	var/aoe_range = 2
 	var/attacks = 0
-	var/toggled = FALSE
 
 /obj/item/ego_weapon/blind_rage/get_clamped_volume()
 	return 30
 
-/obj/item/ego_weapon/blind_rage/attack_self(mob/user)
-	toggled = !toggled
-	if(toggled)
-		to_chat(user, "<span class='warning'>You release the full power of [src].</span>")
-	else
-		to_chat(user, "<span class='notice'>You begin to hold back [src].</span>")
-
-/obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/carbon/human/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1049,17 +1041,15 @@
 			hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
 		if(2)
 			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
-	if(!toggled)
-		if(prob(10))
-			new /obj/effect/gibspawner/generic/silent/wrath_acid(get_turf(M))
-		return
 	var/damage = aoe_damage * (1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
 	if(attacks == 0)
 		damage *= 3
+	if(user.sanity_lost)
+		damage *= 1.2
 	for(var/turf/open/T in range(aoe_range, M))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
-		user.HurtInTurf(T, list(), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+		user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
