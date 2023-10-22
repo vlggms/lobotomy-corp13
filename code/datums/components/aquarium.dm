@@ -95,6 +95,7 @@
 	aquarium_vc_color = fish.aquarium_vc_color
 
 	if(fish.dedicated_in_aquarium_icon_state)
+		icon = 'icons/obj/aquarium.dmi'
 		icon_state = fish.dedicated_in_aquarium_icon_state
 		base_transform = matrix()
 	else
