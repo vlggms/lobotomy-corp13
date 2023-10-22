@@ -621,6 +621,7 @@
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
 		C.faction = src.faction
+		C.master = src
 		spawned_mobs += C
 		H.gib()
 

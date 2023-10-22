@@ -67,7 +67,7 @@
 	name = "Teleport"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	chosen_message = "<span class='colossus'>You will now teleport to a random target.</span>"
+	chosen_message = "<span class='colossus'>You will now teleport to your target.</span>"
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/wayward_dash
@@ -108,7 +108,7 @@
 				if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 30)))
 					to_chat(src, "<span class='notice'>Invalid target.</span>")
 					return
-				TryTeleport(target)
+				TryTeleport(get_turf(target))
 			if(2)
 				Dash(target)
 		return
