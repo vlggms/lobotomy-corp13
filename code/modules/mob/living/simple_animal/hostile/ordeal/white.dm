@@ -661,7 +661,7 @@
 		return FALSE
 	if(isanimal(target))
 		var/mob/living/simple_animal/SA = target
-		if((SA.damage_coeff[PALE_DAMAGE] <= 0.3) && (SA.health >= SA.maxHealth*0.2))
+		if((SA.damage_coeff_datum.getCoeff(PALE_DAMAGE) <= 0.3) && (SA.health >= SA.maxHealth*0.2))
 			return TRUE
 		return FALSE
 	return FALSE

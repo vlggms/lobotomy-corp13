@@ -53,7 +53,29 @@
 					(isnull(oxy) ? src.oxy : oxy))
 
 /datum/dam_coeff/proc/getCoeff(coeff)
-	return vars[coeff]
+	. = 0
+	switch(coeff)
+		if(BRUTE)
+			. = brute
+		if(BURN)
+			. = burn
+		if(TOX)
+			. = tox
+		if(CLONE)
+			. = clone
+		if(STAMINA)
+			. = stamina
+		if(OXY)
+			. = oxy
+		if(RED_DAMAGE)
+			. = red
+		if(WHITE_DAMAGE)
+			. = white
+		if(BLACK_DAMAGE)
+			. = black
+		if(PALE_DAMAGE)
+			. = pale
+	return
 
 /datum/dam_coeff/proc/getList()
 	return list(RED_DAMAGE = red, WHITE_DAMAGE = white, BLACK_DAMAGE = black, PALE_DAMAGE = pale, BRUTE = brute, BURN = burn, TOX = tox, CLONE = clone, STAMINA = stamina, OXY = oxy)

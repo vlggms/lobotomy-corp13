@@ -228,16 +228,9 @@
 		L.physiology.pale_mod *= 2
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] *= 2
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] *= 2
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] *= 2
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] *= 2
+	M.AddModifier(/datum/dc_change/lacerated)
 
-/datum/status_effect/pt_lacerate/on_apply()
+/datum/status_effect/pt_lacerate/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
@@ -248,14 +241,7 @@
 		L.physiology.pale_mod /= 2
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] /= 2
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] /= 2
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] /= 2
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] /= 2
+	M.RemoveModifier(/datum/dc_change/lacerated)
 
 // Slow black damage with a buff attack
 /obj/item/ego_weapon/city/pt/blunt
@@ -314,7 +300,7 @@
 		L.physiology.pale_mod /= 2
 		return
 
-/datum/status_effect/pt_lacerate/on_apply()
+/datum/status_effect/pt_defense/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner

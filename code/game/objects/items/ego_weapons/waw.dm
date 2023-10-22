@@ -964,8 +964,8 @@
 		var/heal_amt = force*0.10
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] > 0)
-				heal_amt *= S.damage_coeff[damtype]
+			if(S.damage_coeff_datum.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff_datum.getCoeff(damtype)
 			else
 				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
@@ -1592,8 +1592,8 @@
 		var/heal_amt = force*0.05
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] > 0)
-				heal_amt *= S.damage_coeff[damtype]
+			if(S.damage_coeff_datum.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff_datum.getCoeff(damtype)
 			else
 				heal_amt = 0
 		amount_filled = clamp(amount_filled + heal_amt, 0, amount_max)

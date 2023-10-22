@@ -41,3 +41,12 @@
 	additive = TRUE
 	potency = 0.1
 	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// Universal x2 modifer, inflicted by PT
+/datum/dc_change/lacerated
+	potency = 2
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// x1.05 - x2 Red Modifier, inflicted by Naked Nest Realization
+/datum/dc_change/infested
+	potency = 1.05

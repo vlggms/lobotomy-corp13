@@ -156,10 +156,10 @@
 	if(ishuman(H) && (H.sanity_lost))
 		var/obj/item/clothing/suit/armor/ego_gear/EQ = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)//copies all resistances from worn E.G.O
 		if(EQ)
-			for(var/damtype in damage_coeff)
-				if(damtype == BRUTE)
-					continue
-				damage_coeff[damtype] -= (EQ.armor[damtype] / 100)
+			var/list/temp = list()
+			for(var/damtype in EQ.armor)
+				temp[damtype] = 1 - (EQ.armor[damtype] / 100)
+			ChangeResistances(temp)
 		user.forceMove(src)
 		playsound(src, 'sound/abnormalities/redshoes/RedShoes_Activate.ogg', 50, 1)
 		name = user.name

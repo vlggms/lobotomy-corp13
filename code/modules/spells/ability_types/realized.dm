@@ -1167,22 +1167,21 @@
 /datum/status_effect/stacking/infestation/on_apply()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	red = M.damage_coeff[RED_DAMAGE]
+	M.AddModifier(/datum/dc_change/infested)
 
 /datum/status_effect/stacking/infestation/on_remove()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[RED_DAMAGE] = red
+	M.RemoveModifier(/datum/dc_change/infested)
 
 /datum/status_effect/stacking/infestation/add_stacks(stacks_added)
 	. = ..()
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks/20))
+	var/datum/dc_change/infested/mod = M.HasDamageMod(/datum/dc_change/infested)
+	mod.potency = 1+(stacks/20)
+	M.UpdateResistances()
 	linked_alert.desc = initial(linked_alert.desc)+"[stacks*5]%!"
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend
