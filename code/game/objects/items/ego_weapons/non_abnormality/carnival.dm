@@ -8,7 +8,6 @@
 	reach = 2
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("whacks", "slashes")
 	attack_verb_simple = list("whack", "slash")
 	attribute_requirements = list(
