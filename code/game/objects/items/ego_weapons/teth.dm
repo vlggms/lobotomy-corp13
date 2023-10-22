@@ -278,8 +278,8 @@
 	special = "This weapon attacks all non-humans in an AOE. \
 		This weapon deals double damage on direct attack."
 	icon_state = "lantern"
-	force = 14
-	attack_speed = 1.6
+	force = 12
+	attack_speed = 1.3
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 
@@ -288,7 +288,7 @@
 	if(!.)
 		return FALSE
 	for(var/mob/living/L in view(1, M))
-		var/aoe = 14
+		var/aoe = 12
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
