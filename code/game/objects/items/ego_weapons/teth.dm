@@ -281,8 +281,8 @@
 	special = "Attack nearby turfs to create traps. Remote mode can trigger traps from a distance. \
 	Automatic mode places traps that trigger when enemies walk over them. Use in hand to switch between modes."
 	icon_state = "lantern"
-	force = 28
-	attack_speed = 2
+	force = 33
+	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 	var/mode = LANTERN_MODE_REMOTE
