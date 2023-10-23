@@ -13,6 +13,8 @@
 		This is a variable because some people may want water to work as
 		a portal to somewhere.*/
 	var/turf/target_turf
+	//If the turf is safe (wont make you sink when you enter it)
+	var/safe = FALSE
 	//If the target_turf is randomized.
 	var/static_target = FALSE
 	//Sound delay so we dont get splash spam.
@@ -61,6 +63,8 @@
 
 /turf/open/water/deep/Entered(atom/movable/thing, atom/oldLoc) //Sinking Code
 	. = ..()
+	if(safe) // if this turf is in fact safe (currently only used for piscine mermaid)
+		return
 	if(!target_turf || is_type_in_typecache(thing, forbidden_types) || (thing.throwing && !istype(thing, /obj/item/food/fish || /obj/item/aquarium_prop )) || (thing.movement_type & (FLOATING|FLYING))) //replace this with a varient of chasm component sometime.
 		return
 	if(isliving(thing))
@@ -128,7 +132,7 @@
 		/obj/item/food/canned/peaches = 300,
 		/obj/item/food/breadslice/moldy = 300,
 		/obj/item/stack/sheet/sinew/wolf = 300,
-		/obj/item/clothing/head/beret/tegu/fishing_hat = 200,
+		/obj/item/clothing/head/beret/fishing_hat = 200,
 		/obj/item/food/grown/harebell = 200,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200,
 		/obj/item/fishing_component/hook/bone = 100,
@@ -155,7 +159,7 @@
 		/obj/item/stack/fish_points = 600,
 		/obj/item/food/canned/beans = 600,
 		/obj/item/food/canned/peaches = 600,
-		/obj/item/clothing/head/beret/tegu/fishing_hat = 200,
+		/obj/item/clothing/head/beret/fishing_hat = 200,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100,
 		/mob/living/simple_animal/crab = 50
 		)
@@ -190,3 +194,11 @@
 		/obj/item/ego_weapon/city/rats/brick = 100,
 		/mob/living/simple_animal/hostile/shrimp = 100
 		)
+
+/**
+ * Safe turfs, they wont sink you when you enter them
+ */
+
+/turf/open/water/deep/saltwater/safe
+	safe = TRUE
+
