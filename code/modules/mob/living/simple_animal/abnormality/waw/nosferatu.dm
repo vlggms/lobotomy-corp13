@@ -120,6 +120,10 @@
 	update_icon()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 50, 8) //big loud warning
 	addtimer(CALLBACK(src, PROC_REF(BatSpawn)), 5 SECONDS)
+	var/list/units_to_add = list(
+		/mob/living/simple_animal/hostile/nosferatu_mob = 8
+		)
+	AddComponent(/datum/component/ai_leadership, units_to_add, 2, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/update_icon_state()
 	if(status_flags & GODMODE) // Not breaching
