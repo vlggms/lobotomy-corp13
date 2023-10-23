@@ -569,7 +569,9 @@
 		if(!current_lowest)
 			current_lowest = i
 			continue
-		if(L[i] <= L[current_lowest])
+		if(L[i] < L[current_lowest])
+			current_lowest = i
+		else if(L[i] == L[current_lowest] && prob(50))
 			current_lowest = i
 	if(!current_lowest)
 		return null
@@ -583,7 +585,9 @@
 		if(!current_highest)
 			current_highest = i
 			continue
-		if(L[i] >= L[current_highest])
+		if(L[i] > L[current_highest])
+			current_highest = i
+		else if(L[i] == L[current_highest] && prob(50))
 			current_highest = i
 	if(!current_highest)
 		return null
