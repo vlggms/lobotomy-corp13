@@ -2875,6 +2875,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\scarecrow.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\scaredy_cat.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\schadenfreude.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\he\shock_centipede.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\silent_girl.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\singing_machine.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\siren.dm"
