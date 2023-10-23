@@ -143,7 +143,7 @@
 /obj/item/deepscanner/examine(mob/living/M)
 	. = ..()
 	if(deep_scan_log)
-		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log].</span>")
+		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log]</span>")
 
 /obj/item/deepscanner/attack(mob/living/M, mob/user)
 	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
@@ -165,17 +165,22 @@
 			check1d = 1 - (H.getarmor(null, PALE_DAMAGE) / 100)
 		if(H.job)
 			check1e = H.job
-		to_chat(user, "<span class='notice'>[check1e] [H] [H.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 	else
 		var/mob/living/simple_animal/hostile/mon = M
 		if((mon.status_flags & GODMODE))
 			return
-		check1a = mon.damage_coeff[RED_DAMAGE]
-		check1b = mon.damage_coeff[WHITE_DAMAGE]
-		check1c = mon.damage_coeff[BLACK_DAMAGE]
-		check1d = mon.damage_coeff[PALE_DAMAGE]
-		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
-		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
+		check1a = mon.damage_coeff_datum.getCoeff(RED_DAMAGE)
+		check1b = mon.damage_coeff_datum.getCoeff(WHITE_DAMAGE)
+		check1c = mon.damage_coeff_datum.getCoeff(BLACK_DAMAGE)
+		check1d = mon.damage_coeff_datum.getCoeff(PALE_DAMAGE)
+		if(isabnormalitymob(mon))
+			var/mob/living/simple_animal/hostile/abnormality/abno = mon
+			check1e = THREAT_TO_NAME(abno.threat_level)
+		else
+			check1e = FALSE
+	var/output = "----------\n[check1e ? check1e+" " : ""][M]\nHP [M.health]/[M.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n----------"
+	to_chat(user, "<span class='notice'>[output]</span>")
+	deep_scan_log = output
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
 
