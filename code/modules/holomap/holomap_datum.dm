@@ -19,11 +19,13 @@
 	QDEL_NULL(facility_map)
 	QDEL_NULL(cursor)
 	QDEL_LIST(legend)
-	QDEL_LIST(levels)
 	QDEL_LIST(lbuttons)
-	QDEL_LIST(maptexts)
-	QDEL_LIST(z_levels)
-	return ..()
+	QDEL_LIST_ASSOC_VAL(maptexts)
+	QDEL_LIST_ASSOC_VAL(levels)
+	LAZYCLEARLIST(maptexts)
+	LAZYCLEARLIST(levels)
+	LAZYCLEARLIST(z_levels)
+	. = ..()
 
 /datum/facility_holomap/proc/initialize_holomap(turf/T, isAI = null, mob/user = null, reinit = FALSE, is_forced = FALSE)
 	bogus = FALSE
@@ -41,7 +43,7 @@
 		cursor.layer = HUD_ABOVE_ITEM_LAYER
 	if(!LAZYLEN(legend) || reinit)
 		if(LAZYLEN(legend))
-			QDEL_LIST(legend)
+			QDEL_LIST_ASSOC_VAL(legend)
 		LAZYINITLIST(legend)
 		LAZYADD(legend, new /atom/movable/screen/legend(null ,HOLOMAP_AREACOLOR_CONTROL, "■ Control"))
 		LAZYADD(legend, new /atom/movable/screen/legend(null ,HOLOMAP_AREACOLOR_INFORMATION, "■ Information"))
@@ -57,10 +59,11 @@
 		LAZYADD(legend, new /atom/movable/screen/legend(null ,HOLOMAP_AREACOLOR_HALLWAYS, "■ Hallways"))
 		LAZYADD(legend, new /atom/movable/screen/legend/cursor(null ,HOLOMAP_AREACOLOR_BASE, "You are here"))
 	if(reinit)
-		QDEL_LIST(maptexts)
-		QDEL_LIST(levels)
-		QDEL_LIST(z_levels)
 		QDEL_LIST(lbuttons)
+		QDEL_LIST_ASSOC_VAL(maptexts)
+		LAZYCLEARLIST(maptexts)
+		LAZYCLEARLIST(levels)
+		LAZYCLEARLIST(z_levels)
 
 	z_levels = SSmapping.levels_by_trait(ZTRAIT_STATION)
 	if(z_levels.len > 1)
@@ -125,8 +128,8 @@
 	if(!forced && z == z_levels[displayed_level])
 		facility_map.add_overlay(cursor)
 
-	facility_map.add_overlay(levels["[z_levels[displayed_level]]"])
-	facility_map.vis_contents += maptexts["[z_levels[displayed_level]]"]
+	facility_map.overlays += LAZYACCESS(levels, "[z_levels[displayed_level]]")
+	facility_map.vis_contents += LAZYACCESS(maptexts, "[z_levels[displayed_level]]")
 
 	//Fix legend position
 	var/pixel_y = HOLOMAP_LEGEND_Y
