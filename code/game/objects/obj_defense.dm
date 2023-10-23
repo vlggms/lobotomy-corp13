@@ -33,7 +33,7 @@
 		else
 			return 0
 	var/armor_protection = 0
-	if(damage_type)
+	if(damage_type != BRUTE)
 		armor_protection = armor.getRating(damage_type)
 	if(armor_protection)		//Only apply weak-against-armor/hollowpoint effects if there actually IS armor.
 		armor_protection = clamp(armor_protection - armour_penetration, min(armor_protection, 0), 100)
@@ -52,7 +52,11 @@
 
 /obj/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	..()
-	take_damage(AM.throwforce, BRUTE, MELEE, 1, get_dir(src, AM))
+	var/DT = RED_DAMAGE
+	if(isitem(AM))
+		var/obj/item/I = AM
+		DT = I.damtype
+	take_damage(AM.throwforce, DT, 1, get_dir(src, AM))
 
 /obj/ex_act(severity, target)
 	if(resistance_flags & INDESTRUCTIBLE)
