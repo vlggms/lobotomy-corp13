@@ -402,7 +402,7 @@
 
 	parts += "<br>[FOURSPACES]Facility records:<br>"
 	if(!highest_works && !highest_earner && !highest_gains) // How
-		parts += "...Everyone was miserable and did nothing.."
+		parts += "[FOURSPACES][FOURSPACES]...Everyone was miserable and did nothing.."
 		return parts.Join("<br>")
 	if(highest_works)
 		parts += "[FOURSPACES][FOURSPACES][highest_works] worked the most, for a total of <b>[highest_work_count]</b> sessions!"
@@ -441,7 +441,7 @@
 				var/total_attr_points = 0
 				for(var/attr in highest_abno.work_stats[highest_worker]["gain"])
 					total_attr_points += highest_abno.work_stats[highest_worker]["gain"][attr] // Nice lists we got there, huh?
-				parts += "[highest_worker] worked on it the most, for a total of [highest_abno.work_stats[highest_worker]["works"]] sessions, earning [highest_abno.work_stats[highest_worker]["pe"]] PE in the process, while gaining a total of [total_attr_points] attribute points.<br>"
+				parts += "[FOURSPACES][highest_worker] worked on it the most, for a total of [highest_abno.work_stats[highest_worker]["works"]] sessions, earning [highest_abno.work_stats[highest_worker]["pe"]] PE in the process, while gaining a total of [total_attr_points] attribute points.<br>"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()

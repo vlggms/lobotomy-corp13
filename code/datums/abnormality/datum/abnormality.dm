@@ -245,8 +245,7 @@
 
 	// Global agent stats
 	if(!(user_name in SSlobotomy_corp.work_stats))
-		SSlobotomy_corp.work_stats[user_name] = list("works" = 0, "pe" = 0, "gain" = list())
-	SSlobotomy_corp.work_stats[user_name] = list("name" = user.real_name,"works" = 0, "pe" = 0, "gain" = list())
+		SSlobotomy_corp.work_stats[user_name] = list("name" = user.real_name, "works" = 0, "pe" = 0, "gain" = list())
 	SSlobotomy_corp.work_stats[user_name]["works"] += 1
 	if(pe)
 		SSlobotomy_corp.work_stats[user_name]["pe"] += pe
