@@ -9,7 +9,7 @@
 	has_gravity = STANDARD_GRAVITY
 	always_unpowered = FALSE
 	// Loading the same shuttle map at a different time will produce distinct area instances.
-	area_flags = NO_ALERTS
+	area_flags = NO_ALERTS | HIDE_FROM_HOLOMAP
 	icon_state = "shuttle"
 	flags_1 = CAN_BE_DIRTY_1
 	area_limited_icon_smoothing = /area/shuttle
@@ -98,46 +98,46 @@
 
 /area/shuttle/arrival
 	name = "Arrival Shuttle"
-	area_flags = UNIQUE_AREA// SSjob refers to this area for latejoiners
+	area_flags = UNIQUE_AREA | HIDE_FROM_HOLOMAP// SSjob refers to this area for latejoiners
 
 /area/shuttle/pod_1
 	name = "Escape Pod One"
-	area_flags = BLOBS_ALLOWED
+	area_flags = BLOBS_ALLOWED | HIDE_FROM_HOLOMAP
 
 /area/shuttle/pod_2
 	name = "Escape Pod Two"
-	area_flags = BLOBS_ALLOWED
+	area_flags = BLOBS_ALLOWED | HIDE_FROM_HOLOMAP
 
 /area/shuttle/pod_3
 	name = "Escape Pod Three"
-	area_flags = BLOBS_ALLOWED
+	area_flags = BLOBS_ALLOWED | HIDE_FROM_HOLOMAP
 
 /area/shuttle/pod_4
 	name = "Escape Pod Four"
-	area_flags = BLOBS_ALLOWED
+	area_flags = BLOBS_ALLOWED | HIDE_FROM_HOLOMAP
 
 /area/shuttle/mining
 	name = "Mining Shuttle"
-	area_flags = NONE //Set this so it doesn't inherit NO_ALERTS
+	area_flags = NONE | HIDE_FROM_HOLOMAP//Set this so it doesn't inherit NO_ALERTS
 
 /area/shuttle/mining/large
 	name = "Mining Shuttle"
-	requires_power = TRUE
+	requires_power = TRUE | HIDE_FROM_HOLOMAP
 
 /area/shuttle/labor
 	name = "Labor Camp Shuttle"
-	area_flags = NONE //Set this so it doesn't inherit NO_ALERTS
+	area_flags = NONE | HIDE_FROM_HOLOMAP//Set this so it doesn't inherit NO_ALERTS
 
 /area/shuttle/supply
 	name = "Supply Shuttle"
-	area_flags = NOTELEPORT
+	area_flags = NOTELEPORT | HIDE_FROM_HOLOMAP
 
 /area/shuttle/escape
 	name = "Emergency Shuttle"
 	area_flags = BLOBS_ALLOWED
 	area_limited_icon_smoothing = /area/shuttle/escape
 	flags_1 = CAN_BE_DIRTY_1
-	area_flags = NO_ALERTS | CULT_PERMITTED
+	area_flags = NO_ALERTS | CULT_PERMITTED | HIDE_FROM_HOLOMAP
 
 /area/shuttle/escape/backup
 	name = "Backup Emergency Shuttle"
@@ -148,17 +148,17 @@
 
 /area/shuttle/escape/luxury
 	name = "Luxurious Emergency Shuttle"
-	area_flags = NOTELEPORT
+	area_flags = NOTELEPORT | HIDE_FROM_HOLOMAP
 
 /area/shuttle/escape/simulation
 	name = "Medieval Reality Simulation Dome"
 	icon_state = "shuttlectf"
-	area_flags = NOTELEPORT
+	area_flags = NOTELEPORT | HIDE_FROM_HOLOMAP
 	dynamic_lighting = DYNAMIC_LIGHTING_DISABLED
 
 /area/shuttle/escape/arena
 	name = "The Arena"
-	area_flags = NOTELEPORT
+	area_flags = NOTELEPORT | HIDE_FROM_HOLOMAP
 
 /area/shuttle/escape/meteor
 	name = "\proper a meteor with engines strapped to it"

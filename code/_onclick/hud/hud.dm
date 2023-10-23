@@ -67,6 +67,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	// subtypes can override this to force a specific UI style
 	var/ui_style
 
+	var/atom/movable/screen/holomap
+
 /datum/hud/New(mob/owner)
 	mymob = owner
 
@@ -208,6 +210,15 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 				screenmob.client.screen -= infodisplay
 			if(team_finder_arrows.len)
 				screenmob.client.screen -= team_finder_arrows
+
+	holomap = new /atom/movable/screen/holomap()
+	holomap.name = "holomap"
+	holomap.icon = null
+	holomap.icon_state = ""
+	holomap.screen_loc = UI_HOLOMAP
+	holomap.mouse_opacity = 0
+	holomap.alpha = 255
+	mymob.client.screen += src.holomap
 
 	hud_version = display_hud_version
 	persistent_inventory_update(screenmob)
