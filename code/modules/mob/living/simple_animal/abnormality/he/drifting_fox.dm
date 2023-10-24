@@ -4,9 +4,9 @@
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with yellow eyes and torn umbrellas lodged in its back."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "smallfox"
-	icon_living = "smallfox"
-	icon_dead = "smallfox_dead"
+	icon_state = "fox_sleeping"
+	icon_living = "fox_sleeping"
+	icon_dead = "fox_dead"
 	deathmessage = "collapses into a puddle of water"
 	deathsound = "sound/abnormalities/drifting_fox/foxdeath.ogg"
 	del_on_death = FALSE
