@@ -171,18 +171,20 @@
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/AttackingTarget(atom/attacked_target)
 	if(can_act)
-		if(client)
-			OpenFire()
-			return
+		return
+		
+	if(client)
+		OpenFire()
+		return
 
-		if(attacked_target && !isliving(attacked_target))
-			return ..()
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(burst_cooldown <= world.time && prob(50))
-				thornBurst()
-			else
-				OpenFire()
+	if(attacked_target && !isliving(target)) // You'd think this should be "attacked_target" but no this shit still uses target I hate it.
+		return ..()
+	var/mob/living/L = target
+	if(L.stat != DEAD)
+		if(burst_cooldown <= world.time && prob(50))
+			thornBurst()
+		else
+			OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/OpenFire()
 	if(!can_act)
