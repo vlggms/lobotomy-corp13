@@ -323,6 +323,7 @@
 		"T-09-140-1's performance also improved as their 'gear' shifted higher, however doing so damaged them heavily.",
 		"T-09-140-1's stats are listed in the 'Breach Information' section of this document."
 	)
+	abno_can_breach = TRUE
 	abno_breach_damage_type = "RED"
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
@@ -447,7 +448,7 @@
 		"Allured employees recovered quickly after their mental corruption was resolved.",
 		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach
-	
+
 //Eris
 /obj/item/paper/fluff/info/he/eris
 	abno_type = /mob/living/simple_animal/hostile/abnormality/eris
