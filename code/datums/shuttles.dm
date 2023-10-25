@@ -178,6 +178,14 @@
 	port_id = "epsilon"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/west
+	port_id = "west"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/east
+	port_id = "east"
+	can_be_bought = FALSE
+
 /datum/map_template/shuttle/secondary
 	port_id = "secondary"
 	can_be_bought = FALSE
@@ -219,6 +227,14 @@
 /datum/map_template/shuttle/epsilon/elevator
 	suffix = "elevator"
 	name = "epsilon elevator"
+
+/datum/map_template/shuttle/west/elevator
+	suffix = "elevator"
+	name = "west elevator"
+
+/datum/map_template/shuttle/east/elevator
+	suffix = "elevator"
+	name = "east elevator"
 
 /datum/map_template/shuttle/secondary/epsilon
 	suffix = "epsilon"
