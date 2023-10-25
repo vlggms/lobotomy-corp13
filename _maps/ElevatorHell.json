@@ -3,7 +3,7 @@
 	"map_name": "Facility E2-098 Elevator Hell",
 	"map_path": "map_files/ElevatorHell",
 	"map_file": [
-		"ElevatorHell.dmm"
+		"elevator_hell.dmm"
 	],
 	"traits": [
 		{
