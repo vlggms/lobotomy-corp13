@@ -7,6 +7,16 @@
 /obj/structure/rack,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
+"ae" = (
+/obj/docking_port/stationary{
+	dwidth = 3;
+	height = 5;
+	id = "east_control";
+	name = 2F-Records/CentralControl/Extraction;
+	width = 6
+	},
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/command)
 "af" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/red,
@@ -6766,7 +6776,7 @@
 	dwidth = 3;
 	height = 5;
 	id = "east_control";
-	name = 2F-Records/CentralControl/Extraction;
+	name = "2F - Records/Central Control/Extraction";
 	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
@@ -29543,7 +29553,7 @@ jl
 jl
 jl
 jl
-cz
+ae
 SJ
 EZ
 IJ
