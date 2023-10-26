@@ -9,7 +9,6 @@
 		#include "map_files\debug\multiz.dmm"
 		#include "map_files\Alpha\alphacorp.dmm"
 		#include "map_files\Beta\betacorp.dmm"
-		#include "map_files\ElevatorHell\elevator_hell.dmm"
 
 		#ifdef CIBUILDING
 			#include "templates.dm"
