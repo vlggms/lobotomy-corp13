@@ -1,34 +1,43 @@
 /datum/wiki_template/ego_weapons/proc/generate_output(datum/ego_datum/weapon/item)
+
 	var/datum/ego_datum/weapon/output = new item
 
+/**
+ * var's set to later use in the template
+ */
+
 	var/weapon_name = capitalize(initial(output.item_path.name))
-
 	var/weapon_description = initial(output.item_path.desc)
-
-/*
-	var/weapon_icon = null // to be implemented
-*/
-
 	var/weapon_force = initial(output.item_path.force)
-
-	var/weapon_damage = initial(output.item_path.damtype)
-
+	var/damage_type = initial(output.item_path.damtype)
+	var/throw_damage = initial(output.item_path.throwforce)
+//	var/special_ability = initial(output.item_path.special)
+//	var/attack_speed = initial(output.item_path.attack_speed)
+	var/weapon_reach = initial(output.item_path.reach)
 	var/extraction_cost = initial(output.cost)
+//	var/attributes = initial(output.item_path.attribute_requirements)
 
+/**
+ * The template that gets shown on the wiki
+ */
 
-
-
-
-
-	var/created_template = "## [weapon_name] \n"
-	created_template += "| --- | --- | --- | \n"
-	created_template += "Weapon description: [weapon_description] \n"
-/*
-	created_template += "Weapon icon: [weapon_icon] \n"
-*/
-	created_template += "Weapon force: [weapon_force] \n"
-	created_template += "weapon damage type: [weapon_damage] \n"
-	created_template += "this weapon costs [extraction_cost] PE to extract\n"
+	var/created_template = "{| class=\"wikitable\" style=\"margin:auto\" \n"
+	created_template += "|+ [weapon_name] \n"															// Ayin's favorite knife
+	created_template += "| colspan=\"3\" |[weapon_description] \n"										// This is Ayin's favorite knife, spooky
+	created_template += "|- \n"
+//	created_template += "| colspan=\"3\" |[special_ability] \n"											// you can slit your wrists by pressing z
+	created_template += "| colspan=\"3\" |Placeholder, this is where the special ability of a weapon will be \n"
+//	created_template += "|-"
+	created_template += "| This weapon deals [weapon_force] [damage_type] damage. \n"					// This weapon deals [24] [white] damage
+	created_template += "| This weapon deals [throw_damage] damage when thrown. \n"						// This weapon deals [24] damage when thrown
+//	created_template += "| This weapon has [attack_speed] attack speed \n"								// This weapon has [average] attack speed
+	created_template += "| Placeholder, this is where the weapons attack speed will be \n"
+	created_template += "|- \n"
+	created_template += "| This weapon can reach up to [weapon_reach] tiles away \n"					// This weapon can reach up to [1] tiles away
+	created_template += "| This weapon costs [extraction_cost] PE to extract \n"						// This weapon costs [20] PE to extract
+//	created_template += "| This weapon requires [attributes] to be wielded properly \n"					// This weapon requires [20 prudence] to be wielded properly
+	created_template += "| placeholder, this is where the weapons attribute requirements will be \n"
+	created_template += "|}"
 
 	return created_template
 

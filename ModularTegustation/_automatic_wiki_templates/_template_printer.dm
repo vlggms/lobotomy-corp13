@@ -1,6 +1,6 @@
 /obj/structure/template_printer
-	name = "Holographic training beacon"
-	desc = "A nanotrasen approved beacon, you can insert megafauna tokens into it to practise fighting megafauna. Some rumors say you can insert gems into it too..."
+	name = "Wiki template printer"
+	desc = "A printer that creates code to be inserted into the wiki, go look at something else why dont ya?"
 	icon = 'icons/obj/cardboard_cutout.dmi'
 	icon_state = "cutout_basic"
 	layer = ABOVE_ALL_MOB_LAYER
@@ -34,26 +34,25 @@
 		if(initial(thing.name) == choice)
 			choice = thing
 
-	switch(choice)
+	visible_message("<span class='notice'>[src] starts generating a test wiki template...</span>")
+	switch(choice) // and then use those datums to select an action we will wanna do
 		if(/datum/action/generate_test_EGO)
 			generate_test_EGO()
 		if(/datum/action/generate_EGO)
 			generate_all_EGO()
 
 /obj/structure/template_printer/proc/generate_test_EGO()
-	visible_message("<span class='notice'>[src] starts generating a test wiki template...</span>")
-	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 	var/wiki = test_generate_ego_weapons()
 	visible_message("<span class='notice'>[src] finished generation!</span>")
 	if(wiki == null)
 		CRASH("oh god, wiki returned null. THIS IS VERY BAD")
 	visible_message("<span class='notice'>[wiki]</span>")
+	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 
 /obj/structure/template_printer/proc/generate_all_EGO()
-	visible_message("<span class='notice'>[src] starts generating literally every single EGO weapon wiki in existance...</span>")
-	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 	var/wiki = generate_ego_weapons()
 	visible_message("<span class='notice'>[src] finished generation!</span>")
 	if(wiki == null)
 		CRASH("oh god, wiki returned null. THIS IS VERY BAD")
 	visible_message("<span class='notice'>[wiki]</span>")
+	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
