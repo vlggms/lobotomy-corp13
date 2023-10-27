@@ -485,6 +485,7 @@
 		G.firer = user
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
+		G.damage*=force_multiplier
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 

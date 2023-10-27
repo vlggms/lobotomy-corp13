@@ -21,7 +21,7 @@
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	force*=justicemod
-	user.HurtInTurf(T, list(target), force, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
+	user.HurtInTurf(T, list(target), (force*force_multiplier), RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 	force = 30
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
@@ -70,6 +70,7 @@
 			var/aoe = 30
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
+			aoe*=force_multiplier
 			aoe*=justicemod
 			if(L == user || ishuman(L))
 				continue
@@ -356,6 +357,7 @@
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
 			var/smash_damage = (i > 2 ? 40 : 10)*(1+(get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100))
+			smash_damage*=force_multiplier
 			been_hit = user.HurtInTurf(T, been_hit, smash_damage, RED_DAMAGE)
 		if (i > 2)
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 75, 0, 5) // BAM
@@ -834,6 +836,7 @@
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
+			aoe*=force_multiplier
 			if(L == user || ishuman(L))
 				continue
 			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -910,6 +913,7 @@
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
+		aoe*=force_multiplier
 		if(L == user || ishuman(L))
 			continue
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -1494,6 +1498,7 @@
 		G.preparePixelProjectile(target, user, clickparams)
 		G.color = "#622F22"
 		G.fire()
+		G.damage*=force_multiplier
 		firing_cooldown = firing_cooldown_time + world.time
 		stored_projectiles -= 1
 		update_icon_state(user)
@@ -1560,6 +1565,7 @@
 		G.firer = user
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
+		G.damage*=force_multiplier
 		firing_cooldown = firing_cooldown_time + world.time
 		update_icon_state(user)
 		addtimer(CALLBACK(src, .proc/Reload, user), firing_cooldown_time + 3)

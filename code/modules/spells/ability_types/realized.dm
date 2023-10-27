@@ -1018,15 +1018,24 @@
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
 			for(var/egoitem in linked_structure.alephitem)
-				if(ispath(egoitem, /obj/item/ego_weapon))
+				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
 					ego_list += egoitem
 					continue
 		chosenEGO = pick(ego_list)
-		var/obj/item/ego_weapon/ego = new chosenEGO(get_turf(user))
-		ego.name = "shimmering [ego.name]"
-		ego.force = round(initial(chosenEGO.force) * 1.2, 1)
-		ego.set_light(3, 6, "#D4FAF37")
-		ego.color = "#FFD700"
+		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
+		if(ispath(ego, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
+			egoweapon.force_multiplier = 1.2
+			egoweapon.name = "shimmering [egoweapon.name]"
+			egoweapon.set_light(3, 6, "#D4FAF37")
+			egoweapon.color = "#FFD700"
+
+		else if(ispath(ego, /obj/item/gun/ego_gun))
+			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
+			egogun.projectile_damage_multiplier = 1.2
+			egogun.name = "shimmering [egogun.name]"
+			egogun.set_light(3, 6, "#D4FAF37")
+			egogun.color = "#FFD700"
 		return ..()
 
 /* Opened Can of Wellcheers - Wellcheers */
