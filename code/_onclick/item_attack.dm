@@ -136,7 +136,11 @@
 	send_item_attack_message(I, user)
 	if(I.force)
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
-		apply_damage((I.force * justice_mod), I.damtype, white_healable = TRUE)
+		var/damage = I.force * justice_mod
+		if(istype(I, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/theweapon = I
+			damage *= theweapon.force_multiplier
+		apply_damage(damage, I.damtype, white_healable = TRUE)
 		if(I.damtype in list(RED_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			if(prob(33))
 				I.add_mob_blood(src)

@@ -25,6 +25,7 @@
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
+		aoe*=force_multiplier
 		if(L == user || ishuman(L))
 			continue
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -292,6 +293,7 @@
 	playsound(user, 'sound/abnormalities/redhood/throw.ogg', 75, TRUE, 3)
 	user.visible_message("<span class='warning'>[user] throws [src] towards [A]!</span>")
 	var/dealing_damage = special_damage // Damage reduces a little with each mob hit
+	dealing_damage*=force_multiplier
 	for(var/i = 1 to turfs_to_hit.len) // Basically, I copied my code from helper's realized ability. Yep.
 		var/turf/open/T = turfs_to_hit[i]
 		if(!istype(T))
@@ -396,6 +398,7 @@
 				break
 			for(var/mob/living/C in oview(3, get_turf(src)))
 				var/vine_damage = 10
+				vine_damage *=force_multiplier
 				if(user.sanityhealth <= (user.maxSanity * 0.3))
 					vine_damage *= 1.5
 				else if(user.faction_check_mob(C))
@@ -444,10 +447,11 @@
 	..()
 	ranged_cooldown = world.time + ranged_cooldown_time
 	if(do_after(user, 5))
+		var/damage_dealt = (ranged_damage * force_multiplier)
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
 		for(var/turf/open/T in range(target_turf, 1))
 			new /obj/effect/temp_visual/thornspike(T)
-			user.HurtInTurf(T, list(), ranged_damage, BLACK_DAMAGE, hurt_mechs = TRUE)
+			user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE)
 
 /obj/item/ego_weapon/wings // Is this overcomplicated? Yes. But I'm finally happy with what I want to make of this weapon.
 	name = "torn off wings"
@@ -547,6 +551,7 @@
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	aoe*=justicemod
+	aoe*=force_multiplier
 	for(var/mob/living/L in range(1, user))
 		if(L == user) // Might remove FF immunity sometime
 			continue
@@ -575,6 +580,7 @@
 				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 				var/justicemod = 1 + userjust/100
 				aoe*=justicemod
+				aoe*=force_multiplier
 				if(L == user)
 					continue
 				if(ishuman(L))
@@ -843,6 +849,7 @@
 	S.firer = user
 	S.preparePixelProjectile(target, user)
 	S.fire()
+	S.damage *= force_multiplier
 	return
 
 /obj/item/ego_weapon/shield/swan/Initialize()
@@ -1042,6 +1049,7 @@
 		if(2)
 			hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
 	var/damage = aoe_damage * (1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
+	damage *= force_multiplier
 	if(attacks == 0)
 		damage *= 3
 	if(user.sanity_lost)
@@ -1134,6 +1142,7 @@
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		mark_damage *= justicemod
+		mark_damage *= force_multiplier
 
 		var/obj/effect/infinity/P = new get_turf(target)
 		if(mark_type == RED_DAMAGE)
@@ -1218,6 +1227,7 @@
 		addtimer(CALLBACK(src, .proc/spin_reset), 13)
 		playsound(src, 'sound/abnormalities/clouded_monk/monk_bite.ogg', 75, FALSE, 4)
 		aoe*=justicemod
+		aoe*=force_multiplier
 
 		for(var/turf/T in orange(2, user))
 			new /obj/effect/temp_visual/smash_effect(T)
@@ -1395,6 +1405,7 @@
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
+		aoe*=force_multiplier
 		if(L == user || ishuman(L))
 			continue
 		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
