@@ -1,0 +1,1 @@
+/datum/wiki_template
