@@ -13,13 +13,14 @@
 		/datum/action/generate_EGO,
 	)
 
+// specify the datums and names here, they are purelly here so we can give them a proper name in the TGUI menu.
 /datum/action/generate_test_EGO
 	name = "Generate a wiki entry for the training bunny EGO to test out generation"
 
 /datum/action/generate_EGO
 	name = "Generate a wiki entry for every single EGO weapon"
 
-/obj/structure/template_printer/attack_hand(mob/user)
+/obj/structure/template_printer/attack_hand(mob/user) // touch it with your gentle hand, and get 40000 lines of text in return
 	. = ..()
 	var/names = list()
 	for(var/datum/action/thing as anything in selectable_modes) // lets show their names instead of raw datums

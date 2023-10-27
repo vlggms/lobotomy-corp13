@@ -2,7 +2,7 @@
 
 	var/datum/ego_datum/weapon/output = new item
 
-	if(ispath(output.item_path, /obj/item/gun/ego_gun))
+	if(ispath(output.item_path, /obj/item/gun/ego_gun)) // they break everything at the moment, so its a no-go
 		return
 
 /**
@@ -45,14 +45,14 @@
 
 
 
-/proc/test_generate_ego_weapons()
+/proc/test_generate_ego_weapons() // if you want to test out how the tables work without spamming up your chat
 	var/datum/wiki_template/ego_weapons/new_template = new
 	return new_template.generate_output(/datum/ego_datum/weapon/training)
 
 
 
 GLOBAL_VAR_INIT(ego_weapon_wiki, "")
-/proc/generate_ego_weapons()
+/proc/generate_ego_weapons() // calling this using the advanced_proc_call and copy-pasting it is basically how you are meant to update the wiki for now, until we figure out a way to do it automatically
 	var/mega_string = ""
 	var/datum/wiki_template/ego_weapons/new_template = new
 	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
