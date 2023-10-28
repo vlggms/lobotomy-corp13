@@ -169,10 +169,10 @@
 		var/mob/living/simple_animal/hostile/mon = M
 		if((mon.status_flags & GODMODE))
 			return
-		check1a = mon.damage_coeff_datum.getCoeff(RED_DAMAGE)
-		check1b = mon.damage_coeff_datum.getCoeff(WHITE_DAMAGE)
-		check1c = mon.damage_coeff_datum.getCoeff(BLACK_DAMAGE)
-		check1d = mon.damage_coeff_datum.getCoeff(PALE_DAMAGE)
+		check1a = mon.damage_coeff.getCoeff(RED_DAMAGE)
+		check1b = mon.damage_coeff.getCoeff(WHITE_DAMAGE)
+		check1c = mon.damage_coeff.getCoeff(BLACK_DAMAGE)
+		check1d = mon.damage_coeff.getCoeff(PALE_DAMAGE)
 		if(isabnormalitymob(mon))
 			var/mob/living/simple_animal/hostile/abnormality/abno = mon
 			check1e = THREAT_TO_NAME[abno.threat_level]

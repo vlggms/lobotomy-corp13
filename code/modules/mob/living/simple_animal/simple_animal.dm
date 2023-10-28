@@ -82,10 +82,8 @@
 	var/armour_penetration = 0
 	///Damage type of a simple mob's melee attack, should it do damage.
 	var/melee_damage_type = RED_DAMAGE
-	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source., Modifying this variable post-Initialize is pointless.
-	var/list/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	/// The datum that stores the damage_coeff post Initialize()
-	var/datum/dam_coeff/damage_coeff_datum
+	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source., Starts as a list and becomes a datum post Initialize()
+	var/datum/dam_coeff/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	/// The unmodified values for the dam_coeff datum
 	var/datum/dam_coeff/unmodified_damage_coeff_datum
 	/// The list of all modifiers to the current DC datum
@@ -204,13 +202,14 @@
 		emote_see = string_list(emote_hear)
 	if(atmos_requirements)
 		atmos_requirements = string_assoc_list(atmos_requirements)
-	if(LAZYLEN(damage_coeff))
-		damage_coeff = string_assoc_list(damage_coeff)
-		damage_coeff_datum = makeDamCoeff(damage_coeff)
+	if (islist(damage_coeff))
+		damage_coeff = makeDamCoeff(damage_coeff)
 		unmodified_damage_coeff_datum = makeDamCoeff(damage_coeff)
-	else
-		damage_coeff_datum = getDamCoeff()
-		unmodified_damage_coeff_datum = getDamCoeff()
+	else if (!damage_coeff)
+		damage_coeff = makeDamCoeff()
+		unmodified_damage_coeff_datum = makeDamCoeff()
+	else if (!istype(damage_coeff, /datum/dam_coeff))
+		stack_trace("Invalid type [damage_coeff.type] found in .damage_coeff during /simple_animal Initialize()")
 	if(footstep_type)
 		AddComponent(/datum/component/footstep, footstep_type)
 	if(!unsuitable_cold_damage)

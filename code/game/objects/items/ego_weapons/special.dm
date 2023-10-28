@@ -35,7 +35,7 @@
 		icon_state = "eyeball2"				// Cool sprite
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff_datum.getCoeff(damtype) <= 0)
+			if(S.damage_coeff.getCoeff(damtype) <= 0)
 				resistance = 100
 		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
 			force *= 0.1

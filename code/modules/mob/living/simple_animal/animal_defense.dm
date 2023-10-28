@@ -127,10 +127,10 @@
 
 /mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, actuallydamage = TRUE)
 	var/temp_damage = damage
-	if(!damage_coeff_datum.getList()[damagetype])
+	if(!damage_coeff.getList()[damagetype])
 		temp_damage = 0
 	else
-		temp_damage *= damage_coeff_datum.getList()[damagetype]
+		temp_damage *= damage_coeff.getList()[damagetype]
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
 		visible_message("<span class='warning'>[src] looks unharmed!</span>")

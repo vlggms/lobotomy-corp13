@@ -9,8 +9,8 @@
 		var/heal_amt = T.force*0.04
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff_datum.getCoeff(damtype) > 0)
-				heal_amt *= S.damage_coeff_datum.getCoeff(damtype)
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
 			else
 				heal_amt = 0
 		user.adjustSanityLoss(-heal_amt)

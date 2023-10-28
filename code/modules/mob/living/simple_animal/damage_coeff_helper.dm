@@ -146,7 +146,7 @@
 	for(var/I in cached_resistances)
 		cached_resistances[I] = round(cached_resistances[I], 0.1) // Minimizes damage_coeff datums created due to rampant decimals.
 
-	damage_coeff_datum = damage_coeff_datum.setCoeff(
+	damage_coeff = damage_coeff.setCoeff(
 		cached_resistances[RED_DAMAGE],\
 		cached_resistances[WHITE_DAMAGE],\
 		cached_resistances[BLACK_DAMAGE],\

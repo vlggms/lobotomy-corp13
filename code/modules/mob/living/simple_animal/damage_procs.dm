@@ -23,59 +23,59 @@
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.brute * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.brute * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.burn * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.burn * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.oxy * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.oxy * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustToxLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.tox * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.tox * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustCloneLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.clone * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.clone * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustStaminaLoss(amount, updating_health = FALSE, forced = FALSE)
 	if(forced)
 		staminaloss = max(0, min(max_staminaloss, staminaloss + amount))
 	else
-		staminaloss = max(0, min(max_staminaloss, staminaloss + (amount * damage_coeff_datum.stamina)))
+		staminaloss = max(0, min(max_staminaloss, staminaloss + (amount * damage_coeff.stamina)))
 	update_stamina()
 
 /mob/living/simple_animal/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.red * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.red * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.white * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.white * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.black * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.black * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff_datum.pale * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.pale * CONFIG_GET(number/damage_multiplier), updating_health, forced)
