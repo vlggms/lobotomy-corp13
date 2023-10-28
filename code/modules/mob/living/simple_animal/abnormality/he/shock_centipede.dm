@@ -77,7 +77,7 @@
 	var/const/TAILATTACK_WINDUP_DECISEC = 15
 	var/const/TAILATTACK_CHARGE_PER_TARGET = 3
 
-	var/const/TAILATTACK_RANGE
+	var/const/TAILATTACK_RANGE = 5
 
 
 /* Work effects */
@@ -91,18 +91,24 @@
 		work_damage_type = BLACK_DAMAGE
 	return ..()
 
-/* Post Work Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
+
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CheckQliphoth(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(datum_reference?.qliphoth_meter == 3 && work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(-1)
-	if(datum_reference?.qliphoth_meter == 1 && work_type != ABNORMALITY_WORK_REPRESSION)
-		datum_reference.qliphoth_change(-1)
-
+		return FALSE
+	else
+		if(datum_reference?.qliphoth_meter == 1 && work_type != ABNORMALITY_WORK_REPRESSION)
+			datum_reference.qliphoth_change(-1)
+			return FALSE
+	return TRUE
 
 /* Success Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	if (!CheckQliphoth(user, work_type, pe))
+		return
 	if(datum_reference?.qliphoth_meter == 2)
 		datum_reference.qliphoth_change(1)
 	if(datum_reference?.qliphoth_meter == 1 && work_type == ABNORMALITY_WORK_REPRESSION)
@@ -112,6 +118,8 @@
 
 /* Neutral Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	if (!CheckQliphoth(user, work_type, pe))
+		return
 	if(datum_reference?.qliphoth_meter == 2)
 		if(prob(50))
 			datum_reference.qliphoth_change(-1)
@@ -123,63 +131,79 @@
 
 /* Failure Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	if (!CheckQliphoth(user, work_type, pe))
+		return
 	datum_reference.qliphoth_change(-1)
 
-
+/* Breach effects */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/attackby(obj/item/W, mob/user, params)
+	say("Damage taken. Current health: " + health)
 	var/old_health = health
 	. = ..()
 	var/health_loss = old_health - health
+	say("Damage taken " + health_loss + ", current shield " + shield)
 	if (shield > 0)
 		if (shield <= health_loss)
-			adjustHealth(shield)
+			adjustHealth(shield * -1)
 			shield = 0
 			if (currentShieldTimerID  != 0) //stop coil timer
 				deltimer(currentShieldTimerID)
 				currentShieldTimerID = 0
+			say("Shield Broken")
 			// stun
 			// icon_state
 			stunned = TRUE
+			say("Stunned")
 			addtimer(CALLBACK(src, .proc/StunEnd), COIL_SHIELD_BROKEN_SELFSTUN_DURATION_DECISEC)
 			self_charge_counter -= COIL_SHIELD_BROKEN_CHARGE_LOSS
 		else
-			adjustHealth(health_loss)
+			adjustHealth(health_loss * -1)
 			shield -= health_loss
+			say("Shield reduced by " + health_loss)
 	else
+		say("Damage taken " + health_loss)
 		self_charge_health += health_loss
 		self_charge_counter -= self_charge_health / SELF_CHARGE_THRESHOLD
+		if(self_charge_health / SELF_CHARGE_THRESHOLD > 0)
+			say("Charge reduced by " + (self_charge_health / SELF_CHARGE_THRESHOLD))
 		if (self_charge_counter < 0)
 			self_charge_counter = 0
 		self_charge_health %= SELF_CHARGE_THRESHOLD
 	if (immortal)
 		if (self_charge_counter == 0)
-			adjustHealth(health * -1)
+			adjustHealth(health)
 		else
-			adjustHealth(health_loss)
+			adjustHealth(health_loss * -1)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/AttackingTarget()
 	if (shield > 0 || stunned)  // dont attack if coiled or stunned
 		return FALSE
 	if(!client)
-		TailAttack()
 		CheckCharge()
-		return
+		if(tail_attack_cooldown < world.time)
+			TailAttack()
+			return FALSE
 	. = ..()
 	if (!immortal)
 		self_charge_counter += 1
+		say("Gained 1 Charge")
 	if (self_charge_counter > MAX_CHARGE)
 		self_charge_counter = MAX_CHARGE
+		say("Reached Max Charge")
 	CheckCharge()
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CheckCharge()
 	if (self_charge_counter >= COIL_START_CHARGE && world.time > coil_cooldown && !immortal)
+		coil_cooldown = world.time + COIL_COOLDOWN_DECISEC + COIL_TIMER_DECISEC
 		shield = COIL_MAX_SHIELD
 		// icon_state end chage
 		currentShieldTimerID = addtimer(CALLBACK(src, .proc/CoilEnd), COIL_COOLDOWN_DECISEC)
+		say("Started Coiling.")
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CoilEnd()
 	currentShieldTimerID = 0
 	if (shield > 0)
+		say("Charging done...")
 		//start AoE
 		CoilDischargeAoe()
 		coil_cooldown = world.time + COIL_COOLDOWN_DECISEC
@@ -199,6 +223,7 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CoilDischargeAoe()
 	if(stat == DEAD)
 		return
+	say("Discharging")
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/army_hearts(get_turf(T))
 	var/count = 0
@@ -209,6 +234,7 @@
 		L.Stun(COIL_DISCHARGE_AOE_STUN_DURATION_DECISEC)
 		count ++
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 100, 0, 8)
+	shield = 0
 	if (count == 0)
 		self_charge_counter -= COIL_DISCHARGE_AOE_MISSED_CHARGE_LOSS
 
@@ -220,11 +246,12 @@
 	if(health > 0)
 		return
 	if (!immortal)
+		say("Starting Immortality")
 		immortal = TRUE
 		melee_damage_type = IMMORTAL_DAMAGETYPE
 		melee_damage_upper = IMMORTAL_MELEE_DAMAGE_UPPER
 		melee_damage_lower = IMMORTAL_MELEE_DAMAGE_LOWER
-		adjustHealth(maxHealth)
+		adjustHealth(maxHealth * -1)
 		SpeedChange(-1)
 		// i don't know what this does. copied from mountain
 		UpdateSpeed()
@@ -233,6 +260,7 @@
 		addtimer(CALLBACK(src, .proc/ChargeCountDown), IMMORTAL_COUNTDOWN_DURATION_DECISEC)
 		return FALSE
 	else
+		say("Reached Death")
 		animate(src, alpha = 0, time = 10 SECONDS)
 		QDEL_IN(src, 10 SECONDS)
 		return ..()
@@ -241,12 +269,12 @@
 	if (self_charge_counter > 1)
 		self_charge_counter--
 		addtimer(CALLBACK(src, .proc/ChargeCountDown), IMMORTAL_COUNTDOWN_DURATION_DECISEC)
+		say("Lost 1 Charge")
 	else
-		adjustHealth(health * -1)
+		adjustHealth(health)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack()
-	if(tail_attack_cooldown > world.time)
-		return
+	say("Perfroming Tail Attack")
 	tail_attack_cooldown = world.time + TAILATTACK_COOLDOWN_DECISEC
 	stunned = TRUE
 	face_atom(target)
