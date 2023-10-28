@@ -170,10 +170,10 @@
 
 	if(currentlaw == "fairies")
 		for(var/mob/living/simple_animal/L in spawned_mobs)
-			L.damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1)
+			L.ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1))
 	else
 		for(var/mob/living/simple_animal/L in spawned_mobs)
-			L.damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+			L.ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1))
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/Punishment(mob/living/sinner)

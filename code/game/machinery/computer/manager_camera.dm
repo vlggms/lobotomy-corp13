@@ -195,7 +195,7 @@
 		to_chat(user, "<span class='notice'>[clicked_atom]'s resistances are : </span>")
 		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 		for(var/i in damage_types)
-			var/resistance = SimpleResistanceToText(monster.damage_coeff[i])
+			var/resistance = SimpleResistanceToText(monster.damage_coeff.getCoeff(i))
 			if(isnull(resistance))
 				continue
 			to_chat(user, "<span class='notice'>[i]: [resistance].</span>")

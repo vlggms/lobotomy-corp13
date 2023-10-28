@@ -333,7 +333,7 @@
 				continue
 			if(faction_check(H.faction, list("neutral"), FALSE))
 				continue
-			if(H.damage_coeff[RED_DAMAGE] <= 0) // Can't be hurt (Feasibly)
+			if(H.unmodified_damage_coeff_datum.getCoeff(RED_DAMAGE) <= 0) // Can't be hurt (Feasibly)
 				continue
 			if(H.health < highest_params[1])
 				continue

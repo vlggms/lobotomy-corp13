@@ -91,7 +91,7 @@
 	pixel_y = -16
 	base_pixel_y = -16
 	if(!isnull(crown?.loved))
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3) //others can still help but it's going to take a lot of damage
+		ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)) //others can still help but it's going to take a lot of damage
 		love_target = crown.loved
 		qdel(crown)
 		love_target.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/unrequited_slowdown)
@@ -136,7 +136,7 @@
 
 	if(love_target.stat == DEAD)
 		say("[love_target.name]? Are you okay? I'm sorry, is it my fault? Will you come back if I love you enough? Will you love me back in death at least?")
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //back to being a pushover
+		ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)) //back to being a pushover
 		love_target = null
 		return
 	//Not having a cooldown on the oxyloss sounds bad, but people's breathing is dictated by Life(), so it's actually the perfect pace of oxyloss

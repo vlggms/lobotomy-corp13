@@ -31,7 +31,7 @@
 	desc = "The elite agent of the head; Despite being a mere imitation, it is nonetheless an intimidating foe."
 	health = 10000
 	maxHealth = 10000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	damage_coeff = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
 	icon_state = "arbiter"
 	icon_living = "arbiter"
 	icon_dead = "arbiter"
@@ -159,7 +159,7 @@
 		return FALSE // Death
 	life_stage += 1
 	adjustHealth(-maxHealth)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1))
 	fairy_cooldown_time = max(4 SECONDS, fairy_cooldown_time - 2 SECONDS)
 	key_cooldown_time = max(10 SECONDS, fairy_cooldown_time - 4 SECONDS)
 	playsound(get_turf(src), 'sound/magic/arbiter/repulse.ogg', 50, TRUE, 24)
@@ -169,7 +169,7 @@
 		if(2)
 			possible_meltdown_types |= MELTDOWN_PURPLE
 		if(3)
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+			ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	return TRUE
 
 /* Combat */
@@ -291,7 +291,7 @@
 		return
 	charging = TRUE
 	icon_state = "arbiter_ability"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1))
 
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	playsound(get_turf(src), 'sound/magic/arbiter/repulse.ogg', 50, TRUE, 7)
@@ -372,7 +372,7 @@
 	switch(current_meltdown_type)
 		if(MELTDOWN_GRAY)
 			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "I am fading.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+			ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
 			SLEEP_CHECK_DEATH(10 SECONDS)
 		if(MELTDOWN_GOLD)
 			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "The sandman calls me.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
@@ -383,7 +383,7 @@
 				SLEEP_CHECK_DEATH(1 SECONDS)
 				check_count += 1
 			charging = TRUE
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+			ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8))
 			SLEEP_CHECK_DEATH(10 SECONDS)
 			charging = FALSE
 		if(MELTDOWN_PURPLE)
@@ -393,13 +393,13 @@
 			INVOKE_ASYNC(src, .proc/StopPillarStorm)
 
 	if(last_stage == life_stage)
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+		ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8))
 
 // Pillar Storm
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/StartPillarStorm()
 	charging = TRUE
 	icon_state = "arbiter_ability"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
@@ -459,7 +459,7 @@
 	pillar_storm_cooldown = world.time + pillar_storm_cooldown_time
 	charging = FALSE
 	icon_state = icon_living
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1))
 
 // Arbiter either died(somehow) or meltdown of pillars was cleared
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/StopPillarStorm()

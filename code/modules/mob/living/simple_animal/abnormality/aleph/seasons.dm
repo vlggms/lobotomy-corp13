@@ -203,10 +203,9 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Transform()
 	current_season = SSlobotomy_events.current_season
 	var/list/new_work_chances = modular_work_chance[current_season]
-	var/list/new_damage_coeff = modular_damage_coeff[current_season]
 	work_chances = new_work_chances.Copy()
 	datum_reference.available_work = work_chances
-	damage_coeff = new_damage_coeff.Copy()
+	ChangeResistances(modular_damage_coeff[current_season])
 	work_damage_type = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season

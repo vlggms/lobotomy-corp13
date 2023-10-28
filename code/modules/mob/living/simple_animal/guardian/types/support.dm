@@ -48,7 +48,7 @@
 		if(toggle)
 			a_intent = INTENT_HARM
 			speed = 0
-			damage_coeff = list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7)
+			ChangeResistances(list(BRUTE = 0.7, BURN = 0.7, TOX = 0.7, CLONE = 0.7, STAMINA = 0, OXY = 0.7))
 			melee_damage_lower = 15
 			melee_damage_upper = 15
 			to_chat(src, "<span class='danger'><B>You switch to combat mode.</span></B>")
@@ -56,7 +56,7 @@
 		else
 			a_intent = INTENT_HELP
 			speed = 1
-			damage_coeff = list(BRUTE = 1, BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1)
+			ChangeResistances(list(BURN = 1, TOX = 1, CLONE = 1, STAMINA = 0, OXY = 1))
 			melee_damage_lower = 0
 			melee_damage_upper = 0
 			to_chat(src, "<span class='danger'><B>You switch to healing mode.</span></B>")

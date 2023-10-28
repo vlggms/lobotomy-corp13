@@ -133,7 +133,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 				A.density = FALSE // They ignore you and walk past you.
 				A.AIStatus = AI_OFF
 				A.can_patrol = FALSE
-				A.damage_coeff = list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // You can kill the portal but not them.
+				A.ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // You can kill the portal but not them.
 			AB_types = list() // So the event can't run again.
 			return
 		if(YINYANG)

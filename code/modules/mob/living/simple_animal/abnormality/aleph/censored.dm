@@ -92,7 +92,7 @@
 		return
 	can_act = FALSE
 	forceMove(get_turf(H))
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	playsound(src, 'sound/abnormalities/censored/convert.ogg', 45, FALSE, 5)
 	SLEEP_CHECK_DEATH(3)
 	new /obj/effect/temp_visual/censored(get_turf(src))
@@ -103,7 +103,7 @@
 	if(!QDELETED(H))
 		C.desc = "What the hell is this? It shouldn't exist... On the second thought, it reminds you of [H.real_name]..."
 		H.gib()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
+	ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1))
 	adjustBruteLoss(-(maxHealth*0.1))
 	can_act = TRUE
 

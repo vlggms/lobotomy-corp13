@@ -53,7 +53,7 @@
 			solo_punish = TRUE
 	if(living_players == 1)
 		seen = TRUE
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5)
+		ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5))
 		return
 	solo_punish = FALSE //Reset to normal if the amount of living players on your z-level is something other than 1, to allow normal behavior.
 
@@ -69,10 +69,10 @@
 		datum_reference.qliphoth_change(-1)
 	if(people_watching == 1)
 		seen = FALSE
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
+		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7))
 	else	//any amount of people that's not 1.
 		seen = TRUE
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5)
+		ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 1.5))
 
 //Stuff that needs sight check
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Move()

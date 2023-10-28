@@ -305,7 +305,7 @@
 	melee_damage_upper = 45
 	attack_verb_continuous = "pummels"
 	attack_verb_simple = "pummel"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5))
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
 	is_maggot = TRUE
