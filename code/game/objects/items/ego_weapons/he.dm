@@ -582,7 +582,7 @@
 
 /obj/item/ego_weapon/homing_instinct/attack(mob/living/M, mob/living/carbon/human/user)
 	..()
-	force = min(initial(force), round(force/2)) //It doesn't lose all its force in one go after each hit.
+	force = max(initial(force), round(force/2)) //It doesn't lose all its force in one go after each hit.
 
 
 /obj/item/ego_weapon/homing_instinct/proc/UserMoved()
