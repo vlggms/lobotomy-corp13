@@ -117,6 +117,7 @@
 
 /obj/projectile/ego_bullet/ego_swindle
 	name = "swindle"
+	icon_state = "d6"
 	damage = 1
 	damage_type = RED_DAMAGE
 

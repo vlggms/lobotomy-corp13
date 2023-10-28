@@ -930,7 +930,7 @@
 			\nThe weapon is stronger when used by an employee with strong conviction."
 	special = "This weapon deals increased damage at a cost of sanity loss for every hit."
 	icon_state = "sanguine"
-	force = 40//about 1.5x the average dps
+	force = 40//about 1.3x the average dps
 	attack_speed = 1
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("hacks", "slashes", "attacks")
@@ -1156,8 +1156,9 @@
 /obj/item/ego_weapon/divinity
 	name = "divinity"
 	desc = "The gods are always right, as they are just. Your sacrifice will please them."
+	special = "This weapon is enhanced by the effects of the corresponding abnormality, O-09-144."
 	icon_state = "divinity"
-	force = 40//it has no special effect. Just damage
+	force = 25//has an AOE for the amount of theonite stacks
 	attack_speed = 2
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1167,70 +1168,27 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/hyde
-	name = "hyde"
-	desc = "The most racking pangs succeeded: a grinding in the bones, deadly nausea, and a horror of the spirit that cannot be exceeded at the hour of birth or death."
-	icon_state = "hyde"
-	force = 25
-	attack_speed = 2
-	damtype = RED_DAMAGE
-	attack_verb_continuous = list("punches", "slaps", "scratches")
-	attack_verb_simple = list("punch", "slap", "scratch")
-	hitsound = 'sound/effects/hit_kick.ogg'
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
-							)
-	var/list/attack_styles = list("red", "white", "black")
-	var/chosen_style
-	var/init_force = 25
-	var/transformed = FALSE
-
-/obj/item/ego_weapon/hyde/attack_self(mob/living/carbon/human/user)
-	if(transformed)
+/obj/item/ego_weapon/divinity/attack(mob/living/target, mob/living/carbon/human/user)
+	. = ..()
+	var/datum/status_effect/stacking/slab/S = user.has_status_effect(/datum/status_effect/stacking/slab)
+	if(!S)
 		return
-	if(!CanUseEgo(user))
-		return
-	chosen_style = input(user, "Which syringe will you use?") as null|anything in attack_styles
-	if(!chosen_style)
-		return
-	if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
-		user.emote("scream")
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)//YEOWCH!
-		icon_state = ("hyde_" + chosen_style)
-		force = 60
-		switch(chosen_style)
-			if("red")
-				user.apply_damage(50, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				damtype = RED_DAMAGE
-				to_chat(user, "<span class='notice'>Your bones are painfully sculpted to fit a muscular claw.</span>")
-			if("white")
-				user.apply_damage(50, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				damtype = WHITE_DAMAGE
-				to_chat(user, "<span class='notice'>Your angst is plastered onto your arm.</span>")
-			if("black")
-				user.apply_damage(50, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-				damtype = BLACK_DAMAGE
-				to_chat(user, "<span class='notice'>Bristles are painfully ejected from your arm, filled with hate.</span>")
-		transformed = TRUE
-		addtimer(CALLBACK(src, .proc/Reset_Timer), 600)
-	return
-
-/obj/item/ego_weapon/hyde/proc/Reset_Timer(mob/living/carbon/human/user)
-	if(!transformed)
-		return
-	icon_state = "hyde"
-	force = init_force
-	damtype = RED_DAMAGE
-	transformed = FALSE
-	if(user)
-		to_chat(user, "<span class='notice'>Your arm returns to normal.</span>")
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/punishment_damage = (force * justicemod)
+	var/punishment_size = round(S.stacks / 3)//this is the same size as the AOE from theonite slab. Good luck lol
+	for(var/turf/T in view(punishment_size, target))
+		new /obj/effect/temp_visual/smash_effect(T)
+		user.HurtInTurf(T, list(), punishment_damage, PALE_DAMAGE, check_faction = TRUE)
+	playsound(user, 'sound/weapons/fixer/generic/blade3.ogg', 55, TRUE, 3)
 
 /obj/item/ego_weapon/destiny
 	name = "destiny"
 	desc = "The elderly man showed a red thread connecting the young boy with his future lover. Disgusted at the sight, he ordered her to be executed."
-	special = "This weapon deals 20% additional damage when attacking the same target repeatedly."
+	special = "This weapon deals significantly more damage when attacking the same target repeatedly."
 	icon_state = "destiny"
-	force = 30
+	force = 12
+	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
@@ -1239,17 +1197,24 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 	var/stored_target = FALSE
+	var/target_hits
+	var/target_max = 5
 
 /obj/item/ego_weapon/destiny/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
-	if(target == stored_target)
-		force*=1.2//36 damage
+	if(target == stored_target && target_hits < target_max)
+		force += 1
+		target_hits += 1
 	..()
-	force = initial(force)
 	if(target != stored_target)
 		stored_target = target
 		to_chat(user, "<span class='notice'>You pursue a new target.</span>")
+		force = initial(force)
+		target_hits = 0
+
+/obj/item/ego_weapon/destiny/get_clamped_volume()
+	return 50
 
 /obj/item/ego_weapon/rhythm
 	name = "rhythm"

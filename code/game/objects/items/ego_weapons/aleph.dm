@@ -860,7 +860,7 @@
 	if(ability_cooldown > world.time)
 		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
 		return FALSE
-	if(do_after(user, 20))
+	if(do_after(user, 20, src))
 		playsound(src, 'sound/weapons/ego/spicebush_special.ogg', 50, FALSE)
 		to_chat(user, "You plant some flower buds.")
 		spawn_plant(user, EAST, NORTH)//spawns one spicebush plant 2 tiles away in each corner

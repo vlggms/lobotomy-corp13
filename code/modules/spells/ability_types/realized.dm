@@ -728,12 +728,11 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/L in livinginview(8, src))
-		if(faction_check_mob(L))
+	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)
-		var/mob/living/carbon/human/H = L
-		H.adjustSanityLoss(-2)
+		L.adjustSanityLoss(-2)
 
 /obj/effect/proc_holder/ability/overheat
 	name = "Overheat"

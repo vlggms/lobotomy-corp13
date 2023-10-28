@@ -50,7 +50,7 @@
 
 /datum/ego_datum/weapon/hyde
 	item_path = /obj/item/ego_weapon/hyde
-	cost = 35
+	cost = 50
 
 //Third Fate's Loom - Destiny
 /datum/ego_datum/armor/destiny

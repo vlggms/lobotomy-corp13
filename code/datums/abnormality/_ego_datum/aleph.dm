@@ -140,7 +140,7 @@
 	cost = 100//appears in wishing well
 
 /datum/ego_datum/weapon/spicebush/fan
-	item_path = /obj/item/ego_weapon/spicebush
+	item_path = /obj/item/ego_weapon/spicebush/fan
 	cost = 100//appears in wishing well
 
 //Til the Last Shot - Flesh Is Willing
