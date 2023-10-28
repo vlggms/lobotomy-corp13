@@ -1012,28 +1012,33 @@
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
 
-/datum/status_effect/sunder_red
-	id = "sunder red armor"
+//update_stamina() is move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
+// 100 stamina damage equals 6 additional move_to_delay. So 167*0.06 = 10.02
+
+/datum/status_effect/rend_red
+	id = "rend red armor"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 60 //3 seconds
+	duration = 60 //6 seconds
 	alert_type = null
 
-/datum/status_effect/sunder_red/on_apply()
+/datum/status_effect/rend_red/on_apply()
 	. = ..()
-	if(isanimal(owner))
-		var/mob/living/simple_animal/M = owner
-		M.damage_coeff[RED_DAMAGE] *= 1.2
+	if(!isanimal(owner))
+		qdel(src)
+		return
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/rend/red)
 //20% damage increase. Hitting any abnormality that has a negative value will cause this
 //to be a buff to their healing.
 
-/datum/status_effect/sunder_red/on_remove()
+/datum/status_effect/rend_red/on_remove()
 	. = ..()
 	if(isanimal(owner))
 		var/mob/living/simple_animal/M = owner
-		M.damage_coeff[RED_DAMAGE] /= 1.2
+		M.RemoveModifier(/datum/dc_change/rend/red)
 
-	//White Damage Debuff
 
+//White Damage Debuff
 /datum/status_effect/rend_white
 	id = "rend white armor"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -1042,13 +1047,17 @@
 
 /datum/status_effect/rend_white/on_apply()
 	. = ..()
+	if(!isanimal(owner))
+		qdel(src)
+		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[WHITE_DAMAGE] *= 1.2
+	M.AddModifier(/datum/dc_change/rend/white)
 
 /datum/status_effect/rend_white/on_remove()
 	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[WHITE_DAMAGE] /= 1.2
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.RemoveModifier(/datum/dc_change/rend/white)
 
 //Black Damage Debuff
 
@@ -1060,13 +1069,17 @@
 
 /datum/status_effect/rend_black/on_apply()
 	. = ..()
+	if(!isanimal(owner))
+		qdel(src)
+		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] *= 1.2
+	M.AddModifier(/datum/dc_change/rend/black)
 
 /datum/status_effect/rend_black/on_remove()
 	. = ..()
-	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] /= 1.2
+	if(isanimal(owner))
+		var/mob/living/simple_animal/M = owner
+		M.RemoveModifier(/datum/dc_change/rend/black)
 
 #undef CARBON_HALFSPEED
 

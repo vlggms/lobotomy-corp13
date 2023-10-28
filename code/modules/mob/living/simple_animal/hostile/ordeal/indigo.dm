@@ -517,7 +517,7 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 4000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
+	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
 	SpeedChange(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
@@ -535,7 +535,7 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 3000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
 	SpeedChange(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15

@@ -134,14 +134,14 @@
 	icon_state = icon_dead
 	playsound(src, 'sound/effects/magic.ogg', 60)
 	SSlobotomy_events.yin_downed = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, PALE_DAMAGE = 0))
 	for(var/i = 1 to 12)
 		SLEEP_CHECK_DEATH(5 SECONDS)
 		if(SSlobotomy_events.yang_downed)
 			death()
 			return
 	adjustBruteLoss(-maxHealth)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, PALE_DAMAGE = 1))
 	SSlobotomy_events.yin_downed = FALSE
 	icon_state = icon_breach
 
