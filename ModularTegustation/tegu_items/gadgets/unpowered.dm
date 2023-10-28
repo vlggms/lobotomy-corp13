@@ -175,7 +175,7 @@
 		check1d = mon.damage_coeff_datum.getCoeff(PALE_DAMAGE)
 		if(isabnormalitymob(mon))
 			var/mob/living/simple_animal/hostile/abnormality/abno = mon
-			check1e = THREAT_TO_NAME(abno.threat_level)
+			check1e = THREAT_TO_NAME[abno.threat_level]
 		else
 			check1e = FALSE
 	var/output = "----------\n[check1e ? check1e+" " : ""][M]\nHP [M.health]/[M.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n----------"
