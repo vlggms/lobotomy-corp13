@@ -429,14 +429,18 @@
 			continue
 		parts += "[FOURSPACES][FOURSPACES]<span style='color: [THREAT_TO_COLOR[i]]'>[abno_count[i]] [THREAT_TO_NAME[i]]s.</span>"
 	if(istype(highest_abno))
-		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_abno.work_logs.len] sessions.<br>"
+		var/work_count = 0
+		for(var/worker in highest_abno.work_stats)
+			work_count += highest_abno.work_stats[worker]["works"]
+		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [work_count] sessions.<br>"
 		if(LAZYLEN(highest_abno.work_stats))
 			var/highest_worker = null
 			var/highest_work_num = -1
 			for(var/worker_name in highest_abno.work_stats)
-				var/curr_work_num = highest_abno.work_stats["works"]
+				var/curr_work_num = highest_abno.work_stats[worker_name]["works"]
 				if(curr_work_num > highest_work_num)
 					highest_worker = worker_name
+					highest_work_num = curr_work_num
 			if(highest_worker)
 				var/total_attr_points = 0
 				for(var/attr in highest_abno.work_stats[highest_worker]["gain"])
