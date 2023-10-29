@@ -23,10 +23,13 @@
 		/obj/item/clothing/under/limbus/shirt,
 		/obj/item/clothing/accessory/limbusvest,
 		/obj/item/clothing/under/limbus/prison,
-		/obj/item/clothing/neck/limbus_tie)
+		/obj/item/clothing/neck/limbus_tie,
+		)
 
-	rareloot =	list(/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
+	rareloot =	list(
+		/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
 		/obj/item/ego_weapon/lance/sangre,
 		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,
 		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/cast,
-		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/branch)
+		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/branch,
+		)
