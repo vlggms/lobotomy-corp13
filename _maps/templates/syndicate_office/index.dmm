@@ -196,7 +196,7 @@
 /area/city/backstreets_room)
 "Q" = (
 /obj/structure/closet/crate,
-/obj/item/clothing/suit/armor/ego_gear/city/index_proxy,
+/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
 /obj/effect/spawner/lootdrop/proxy,
 /turf/open/floor/facility/white,
 /area/city/backstreets_room)
