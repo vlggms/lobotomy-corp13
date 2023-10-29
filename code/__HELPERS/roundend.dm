@@ -416,10 +416,14 @@
 /datum/controller/subsystem/ticker/proc/abnormality_report()
 	var/list/parts = list()
 	var/datum/abnormality/highest_abno = null
+	var/highest_work_count = 0
 	var/full_abno_count = 0
 	var/list/abno_count = list(0, 0, 0, 0, 0)
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-		if(!highest_abno || A.work_logs.len > highest_abno.work_logs.len)
+		var/work_count = 0
+		for(var/worker in A.work_stats)
+			work_count += A.work_stats[worker]["works"]
+		if(work_count > highest_work_count)
 			highest_abno = A
 		abno_count[A.threat_level] += 1
 		full_abno_count += 1
@@ -429,10 +433,7 @@
 			continue
 		parts += "[FOURSPACES][FOURSPACES]<span style='color: [THREAT_TO_COLOR[i]]'>[abno_count[i]] [THREAT_TO_NAME[i]]s.</span>"
 	if(istype(highest_abno))
-		var/work_count = 0
-		for(var/worker in highest_abno.work_stats)
-			work_count += highest_abno.work_stats[worker]["works"]
-		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [work_count] sessions.<br>"
+		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_work_count] sessions.<br>"
 		if(LAZYLEN(highest_abno.work_stats))
 			var/highest_worker = null
 			var/highest_work_num = -1
