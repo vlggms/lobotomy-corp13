@@ -125,22 +125,16 @@
 	var/status_buff_type
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
-			status_buff_type = STATUS_EFFECT_WAR_STORY
+			L.apply_status_effect(STATUS_EFFECT_WAR_STORY)
 
 		if(ABNORMALITY_WORK_INSIGHT)
-			status_buff_type = STATUS_EFFECT_PARABLE
+			apply_status_effect(STATUS_EFFECT_PARABLE)
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
-			status_buff_type = STATUS_EFFECT_WIFE_STORY
+			apply_status_effect(STATUS_EFFECT_WIFE_STORY)
 
 		else
-			status_buff_type = STATUS_EFFECT_DEMENTIA_RAMBLINGS
-
-	for (var/mob/living/L in view(3, src)) //Gives the buff to everybody in the cell
-		if (!ishuman(L))
-			continue
-
-		L.apply_status_effect(status_buff_type)
+			apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
 	flick("quiet_fadeout", src)
