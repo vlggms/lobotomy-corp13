@@ -100,6 +100,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/onesin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type != "Confess")
+		new /obj/effect/temp_visual/onesin_blessing(get_turf(user))
 		user.adjustSanityLoss(-user.maxSanity * 0.5) // It's healing
 	if(pe >= datum_reference.max_boxes)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
