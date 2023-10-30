@@ -58,8 +58,6 @@
 				for(var/mob/M in GLOB.player_list)
 					if(M.client)
 						M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_start.ogg', 25, 0) //need to make this non spammable
-		else
-			playsound(get_turf(user), 'sound/abnormalities/onesin/confession_start.ogg', 25, 0)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/onesin/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
