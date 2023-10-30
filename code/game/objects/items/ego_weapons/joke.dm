@@ -81,3 +81,115 @@
 			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 	activated = FALSE
+
+// Curse of Violet Noon be upon thee
+/obj/item/ego_weapon/violet_curse //Ignore the name dream maker doesn't handle the font well.
+	name = "ᓵ⚍∷ᓭᒷ 𝙹⎓ ⍊╎𝙹ꖎᒷℸ ̣  リ𝙹𝙹リ"
+	desc = "We tried to understand what would refuse to listen. \
+	We reached for a shred of comprehension that they could give. \
+	We stared into the dark unending abyss wishing for love and compassion. \
+	In the end we recived nothing but madness, there was no hope for understanding."
+	special = "This weapon can be used to perform an indiscriminate heavy red damage jump attack with enough charge."
+	icon_state = "violet_curse"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 400 //By the nine
+	attack_speed = 5 //This is THE slowest weapon we own (i think)
+	damtype = BLACK_DAMAGE
+	hitsound = 'sound/abnormalities/apocalypse/slam.ogg'
+	attack_verb_continuous = list("crushes", "devastates")
+	attack_verb_simple = list("crush", "devastate")
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/charge = 0
+	var/charge_cost = 20
+	var/dash_range = 8
+	var/activated
+
+/obj/item/ego_weapon/violet_curse/Initialize()
+	..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/ego_weapon/violet_curse/examine(mob/user)
+	. = ..()
+	. += "Current Charge: [charge]/[charge_cost]."
+
+/obj/item/ego_weapon/violet_curse/attack_self(mob/user)
+	..()
+	if(!CanUseEgo(user))
+		return
+	if(charge>=charge_cost)
+		to_chat(user, "<span class='notice'>You prepare to jump.</span>")
+		activated = TRUE
+	else
+		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+
+/obj/item/ego_weapon/violet_curse/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	charge+=1
+	if(charge>=20)
+		icon_state = "violet_curse_c"
+		inhand_icon_state = "violet_curse_c"
+		update_icon_state()
+	else if(charge >= charge_cost)
+		charge = charge_cost
+	..()
+	if(target.stat == DEAD && !(GODMODE in target.status_flags))
+		target.gib()
+
+/obj/item/ego_weapon/violet_curse/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user))
+		return
+	if(!activated)
+		return
+	if(!isliving(A))
+		return
+	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+		return
+	..()
+	if(do_after(user, 5, src))
+		charge -= charge_cost
+		activated = FALSE
+		playsound(src, 'sound/effects/ordeals/violet/midnight_portal_off.ogg', 50, FALSE, -1)
+		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+		user.pixel_z = 16
+		sleep(0.5 SECONDS)
+		for(var/i in 2 to get_dist(user, A))
+			step_towards(user, A)
+		if(get_dist(user, A) < 2)
+			JumpAttack(A,user)
+		to_chat(user, "<span class='warning'>You jump towards [A]!</span>")
+		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+		user.pixel_z = 0
+		sleep(0.1 SECONDS) //Makes sure its on time
+		icon_state = "violet_curse"
+		inhand_icon_state = "violet_curse"
+		update_icon_state()
+
+/obj/item/ego_weapon/violet_curse/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
+	playsound(src, 'sound/effects/ordeals/violet/monolith_down.ogg', 65, 1)
+	var/obj/effect/temp_visual/v_noon/V = new(get_turf(A))
+	animate(V, alpha = 0, transform = matrix()*2, time = 10)
+	for(var/turf/open/T in view(2, A))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+	for(var/mob/living/L in livinginrange(2, A))
+		if(L.z != user.z)
+			continue
+		var/aoe = 400
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=justicemod
+		aoe*=force_multiplier
+		if(L == user) //This WILL friendly fire there is no escape
+			continue
+		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		to_chat(L, "<span class='userdanger'>You are crushed by a monolith!</span>")
+		if(L.health < 0)
+			L.gib()

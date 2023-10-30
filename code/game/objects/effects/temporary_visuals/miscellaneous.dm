@@ -996,3 +996,9 @@
 
 /obj/effect/temp_visual/house/proc/FadeOut()
 	animate(src, alpha = 0, time = 1 SECONDS)
+
+/obj/effect/temp_visual/v_noon
+	name = "violet noon"
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon_state = "violet_noon_ability"
+	pixel_x = -8
