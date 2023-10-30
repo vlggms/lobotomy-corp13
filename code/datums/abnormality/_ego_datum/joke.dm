@@ -11,3 +11,8 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 /datum/ego_datum/armor/chaosdunk
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/chaosdunk
 	cost = 100
+
+// Grant Us Love - Curse of Violet Noon
+/datum/ego_datum/weapon/violet_curse
+	item_path = /obj/item/ego_weapon/violet_curse
+	cost = 100
