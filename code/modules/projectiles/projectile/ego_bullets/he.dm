@@ -2,19 +2,16 @@
 	name = "prank"
 	damage = 30
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_transmission
 	name = "transmission"
 	damage = 30
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_gaze
 	name = "gaze"
 	damage = 70 //Slow as balls
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 //Homing weapon with no homing
 /obj/projectile/ego_bullet/ego_galaxy
@@ -22,7 +19,6 @@
 	icon_state = "magicm"
 	damage = 45
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	speed = 1.5
 
 //Homing weapon (Galaxy)
@@ -55,7 +51,6 @@
 	name = "unrequited"
 	damage = 11
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_harmony
 	name = "harmony"
@@ -63,7 +58,6 @@
 	nondirectional_sprite = TRUE
 	damage = 16
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	speed = 1.3
 	projectile_piercing = PASSMOB
 	ricochets_max = 3
@@ -85,25 +79,21 @@
 	name = "song"
 	damage = 6
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_songmini
 	name = "song"
 	damage = 2 //4 pellets
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_wedge
 	name = "screaming"
 	damage = 30
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/replica
 	name = "sinewy claw"
 	damage = 30
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/tracer/laser/replica
 	tracer_type = /obj/effect/projectile/tracer/laser/replica
@@ -127,9 +117,9 @@
 
 /obj/projectile/ego_bullet/ego_swindle
 	name = "swindle"
+	icon_state = "d6"
 	damage = 1
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_swindle/Initialize()
 	. = ..()
@@ -140,13 +130,11 @@
 	icon_state = "energy2"
 	damage = 7
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_syrinx
 	name = "syrinx"
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	color = COLOR_GREEN
 	damage = 7
 	speed = 1.3

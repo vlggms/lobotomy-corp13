@@ -110,7 +110,7 @@
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 40, BLACK_DAMAGE = 90, PALE_DAMAGE = 40)
-	realized_ability = /obj/effect/proc_holder/ability/aimed/cocoon_spawn
+	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fear
 	name = "passion of the fearless one"
@@ -213,6 +213,7 @@
 	icon_state = "home"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 90, PALE_DAMAGE = 70)
 	flags_inv = HIDEGLOVES|HIDESHOES
+	realized_ability = /obj/effect/proc_holder/ability/aimed/house_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/dimension_ripper
 	name = "dimension ripper"
@@ -330,7 +331,7 @@
 	name = "duality of harmony"
 	desc = "When good and evil meet discord and assonance will be quelled."
 	icon_state = "duality_yang"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 80)
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 90, BLACK_DAMAGE = 40, PALE_DAMAGE = 90)
 	realized_ability = /obj/effect/proc_holder/ability/tranquility
 
 /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin
@@ -374,7 +375,9 @@
 	if(!CanSpawn)
 		return
 	addtimer(CALLBACK(src, .proc/Reset,user), 10 SECONDS)
-	new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(get_turf(user))
+	playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
+	var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new(get_turf(user))
+	W.origin_nest = user
 
 /* ALEPH Realizations */
 

@@ -164,7 +164,7 @@ no power level overlay is currently in the overlays list.
 		return ..()
 
 /obj/machinery/field/generator/bullet_act(obj/projectile/Proj)
-	if(Proj.flag != BULLET)
+	if(Proj.damage_type != BULLET)
 		power = min(power + Proj.damage, field_generator_max_power)
 		check_power_level()
 	. = ..()

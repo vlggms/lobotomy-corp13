@@ -17,7 +17,6 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/weapons/ego/axe2.ogg'
 	attack_verb_continuous = "chops"
@@ -95,10 +94,7 @@
 	playsound(src, 'sound/effects/blobattack.ogg', 150, FALSE, 4)
 	playsound(src, 'sound/weapons/chainsawhit.ogg', 250, FALSE, 4)
 	attack_sound = 'sound/abnormalities/helper/attack.ogg'
-	for(var/damtype in src.damage_coeff)
-		if(damtype == BRUTE)
-			continue
-		damage_coeff[damtype] += 0.5
+	ChangeResistances(list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2))
 	melee_damage_lower = 30
 	melee_damage_upper = 45
 	rapid_melee = 3

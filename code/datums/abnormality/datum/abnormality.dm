@@ -35,8 +35,8 @@
 	var/list/current_ego = list()
 	/// How many PE boxes we have available for use on EGO purchase
 	var/stored_boxes = 0
-	/// Current overload chance reduction applied to general work chance. Displayed on abnormality console and is reset on meltdown
-	var/overload_chance = 0
+	/// Associative list of ckey = overload chance; It is reset each meltdown.
+	var/list/overload_chance = list()
 	/// Amount of reduction applied on each work session
 	var/overload_chance_amount = 0
 	/// Limit on overload_chance; By default equal to amount * 10
@@ -44,8 +44,12 @@
 	/// Simulated Observation Bonuses
 	var/understanding = 0
 	var/max_understanding = 0
+	/// The limit for maximum attribute level you can achieve working on this abnormality
+	var/maximum_attribute_level = 0
 	/// A list of performed works on it
 	var/list/work_logs = list()
+	/// A list of agents that have ever worked on it
+	var/list/work_stats = list()
 	/*
 	* Moved this variable from work Console for a two reasons
 	* First, this allows both the console AND the abnormality to check on the current working status. Useful overall.
@@ -96,6 +100,7 @@
 	threat_level = current.threat_level
 	qliphoth_meter_max = current.start_qliphoth
 	qliphoth_meter = qliphoth_meter_max
+	maximum_attribute_level = THREAT_TO_ATTRIBUTE_LIMIT[threat_level]
 	if(!current.max_boxes)
 		max_boxes = threat_level * 6
 	else
@@ -117,12 +122,12 @@
 		if(HE_LEVEL)
 			max_understanding = 8
 		if(WAW_LEVEL)
-			overload_chance_amount = -2
-			max_understanding = 6
-		if(ALEPH_LEVEL)
 			overload_chance_amount = -4
 			max_understanding = 6
-	if (understanding == max_understanding && max_understanding > 0)
+		if(ALEPH_LEVEL)
+			overload_chance_amount = -6
+			max_understanding = 6
+	if(understanding == max_understanding && max_understanding > 0)
 		current.gift_chance *= 1.5
 	overload_chance_limit = overload_chance_amount * 10
 	if(abno_radio)
@@ -143,24 +148,14 @@
 	current.WorkComplete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
 	if(!console?.recorded && !console?.tutorial) //only training rabbit should not train stats
 		return
+	var/attribute_type = "N/A"
+	var/attribute_given = 0
 	if(pe > 0) // Work did not fail
-		var/attribute_type = current.work_attribute_types[work_type]
-		var/maximum_attribute_level = 0
-		switch(threat_level)
-			if(ZAYIN_LEVEL)
-				maximum_attribute_level = 40
-			if(TETH_LEVEL)
-				maximum_attribute_level = 60
-			if(HE_LEVEL)
-				maximum_attribute_level = 80
-			if(WAW_LEVEL)
-				maximum_attribute_level = 100
-			if(ALEPH_LEVEL)
-				maximum_attribute_level = 130
+		attribute_type = current.work_attribute_types[work_type]
 		var/datum/attribute/user_attribute = user.attributes[attribute_type]
 		if(user_attribute) //To avoid runtime if it's a custom work type like "Release".
 			var/user_attribute_level = max(1, user_attribute.level)
-			var/attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
+			attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 			if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 			if(attribute_given == 0)
@@ -176,6 +171,7 @@
 	if(istype(W))
 		user_job_title = W.assignment
 	work_logs += "\[[worldtime2text()]\] [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
+	AddWorkStats(user, pe, attribute_type, attribute_given)
 	SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
 	if (understanding != max_understanding) // This should render "full_understood" not required.
 		if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
@@ -187,8 +183,7 @@
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
 	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
-	if(overload_chance > overload_chance_limit)
-		overload_chance += overload_chance_amount
+	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter
@@ -222,17 +217,37 @@
 		acquired_chance = acquired_chance[work_level]
 	if(current)
 		acquired_chance = current.WorkChance(user, acquired_chance, workType)
-	switch (workType)
-		if (ABNORMALITY_WORK_INSTINCT)
+	switch(workType)
+		if(ABNORMALITY_WORK_INSTINCT)
 			acquired_chance += user.physiology.instinct_success_mod
-		if (ABNORMALITY_WORK_INSIGHT)
+		if(ABNORMALITY_WORK_INSIGHT)
 			acquired_chance += user.physiology.insight_success_mod
-		if (ABNORMALITY_WORK_ATTACHMENT)
+		if(ABNORMALITY_WORK_ATTACHMENT)
 			acquired_chance += user.physiology.attachment_success_mod
-		if (ABNORMALITY_WORK_REPRESSION)
+		if(ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
 	acquired_chance *= user.physiology.work_success_mod
-	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) / 5 // For a maximum of 26 at 130 temperance
+	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) * TEMPERANCE_SUCCESS_MOD
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
-	acquired_chance += overload_chance
+	if(overload_chance[user.ckey])
+		acquired_chance += overload_chance[user.ckey]
 	return clamp(acquired_chance, 0, 100)
+
+/datum/abnormality/proc/AddWorkStats(mob/living/carbon/human/user, pe = 0, attribute_type = "N/A", attribute_given = 0)
+	var/user_name = "[user.real_name] ([user.ckey])"
+	if(!(user_name in work_stats))
+		work_stats[user_name] = list("name" = user.real_name,"works" = 0, "pe" = 0, "gain" = list())
+	work_stats[user_name]["works"] += 1
+	if(pe)
+		work_stats[user_name]["pe"] += pe
+	if(attribute_type != "N/A" && attribute_given)
+		work_stats[user_name]["gain"][attribute_type] += attribute_given
+
+	// Global agent stats
+	if(!(user_name in SSlobotomy_corp.work_stats))
+		SSlobotomy_corp.work_stats[user_name] = list("name" = user.real_name, "works" = 0, "pe" = 0, "gain" = list())
+	SSlobotomy_corp.work_stats[user_name]["works"] += 1
+	if(pe)
+		SSlobotomy_corp.work_stats[user_name]["pe"] += pe
+	if(attribute_type != "N/A" && attribute_given)
+		SSlobotomy_corp.work_stats[user_name]["gain"][attribute_type] += attribute_given

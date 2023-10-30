@@ -6,7 +6,7 @@
 	inhand_icon_state = "wbatong"
 	force = 18
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	release_message = "You release your charge, damaging your opponent!"
@@ -22,7 +22,9 @@
 		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
 
 /obj/item/ego_weapon/city/charge/wcorp/attack(mob/living/target, mob/living/user)
-	..()
+	. = ..()
+	if(!.)
+		return FALSE
 	if(activated)
 		release_charge(target, user)
 		activated = FALSE
@@ -221,29 +223,13 @@
 	..()
 	sleep(5)
 	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-	target.apply_status_effect(/datum/status_effect/rendBlackArmor)
+	target.apply_status_effect(/datum/status_effect/rend_black/w_corp)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(target)
 	new /obj/effect/temp_visual/justitia_effect(T)
 
-/datum/status_effect/rendBlackArmor
-	id = "rend Black armor"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 50 //5 seconds since it's melee-ish
-	alert_type = null
-
-/datum/status_effect/rendBlackArmor/on_apply()
-	. = ..()
-	if(isanimal(owner))
-		var/mob/living/simple_animal/M = owner
-		M.damage_coeff[BLACK_DAMAGE] *= 1.2
-
-/datum/status_effect/rendBlackArmor/on_remove()
-	. = ..()
-	if(isanimal(owner))
-		var/mob/living/simple_animal/M = owner
-		M.damage_coeff[BLACK_DAMAGE] /= 1.2
-
+/datum/status_effect/rend_black/w_corp // Duplicate of "rend_black", giving it a unique id so it can stack.
+	id = "w-corp rend black armor"
 
 //Type C weapons
 
@@ -305,9 +291,9 @@
 	attack_speed = 1.5
 
 /obj/item/ego_weapon/city/charge/wcorp/shield/club/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)

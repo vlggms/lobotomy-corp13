@@ -24,7 +24,6 @@
 
 	melee_damage_lower = 92
 	melee_damage_upper = 99		//Will never one shot you.
-	armortype = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
@@ -67,16 +66,13 @@
 		return
 
 	if(target == nemesis)	//Deals pale damage to Oberon, fuck you.
-		armortype = PALE_DAMAGE
 		melee_damage_type = PALE_DAMAGE
 		melee_damage_lower = 61
 		melee_damage_upper = 72
 	else if(nemesis)		//If there's still a nemesis, you need to reset the damage
-		armortype = initial(armortype)
 		melee_damage_type = initial(melee_damage_type)
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper)
-
 	. = ..()
 
 	if(H.stat == DEAD && target == nemesis)		//Does she slay Oberon personally? If so, get buffed.
@@ -174,10 +170,10 @@
 
 	if(currentlaw == "fairies")
 		for(var/mob/living/simple_animal/L in spawned_mobs)
-			L.damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1)
+			L.ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1))
 	else
 		for(var/mob/living/simple_animal/L in spawned_mobs)
-			L.damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+			L.ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1))
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/Punishment(mob/living/sinner)
@@ -262,7 +258,6 @@
 	maxHealth = 80
 	melee_damage_lower = 12
 	melee_damage_upper = 15
-	armortype = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE

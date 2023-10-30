@@ -5,7 +5,7 @@
 	inhand_icon_state = "kbatong"
 	force = 22
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 
@@ -33,7 +33,7 @@
 	reach = 2
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("whacks", "slashes")
 	attack_verb_simple = list("whack", "slash")
 	attribute_requirements = list(
@@ -56,7 +56,7 @@
 	reach = 2
 	attack_speed = 0.6
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("whacks", "slashes")
 	attack_verb_simple = list("whack", "slash")
 	attribute_requirements = list(
@@ -78,7 +78,7 @@
 	force = 15
 	slowdown = 0.7
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
@@ -94,10 +94,9 @@
 	desc = "A lime green pistol used by Kcorp."
 	icon_state = "kpistol"
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
-	inhand_icon_state = "gun"
-	worn_icon_state = "gun"
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_icon_state = "kpistol"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/ego_kcorp
 	fire_delay = 5
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
@@ -109,6 +108,7 @@
 	name = "Kcorp Machinepistole"
 	desc = "A lime green machinepistol used by Kcorp."
 	icon_state = "ksmg"
+	inhand_icon_state = "ksmg"
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.08 SECONDS
 	fire_delay = 1
@@ -124,6 +124,7 @@
 	name = "Kcorp grenade launcher"
 	desc = "A short grenade launcher used by Kcorp."
 	icon_state = "kgrenade"
+	inhand_icon_state = "kgrenade"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_knade
 	fire_delay = 15
 	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'

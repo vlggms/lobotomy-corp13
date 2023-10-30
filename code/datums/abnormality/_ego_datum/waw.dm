@@ -220,6 +220,10 @@
 	item_path = /obj/item/gun/ego_gun/warring
 	cost = 50
 
+/datum/ego_datum/weapon/warring2
+	item_path = /obj/item/ego_weapon/charge/warring
+	cost = 50
+
 // Clown Smiling at Me - Dark Carnival
 /datum/ego_datum/armor/darkcarnival
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/darkcarnival

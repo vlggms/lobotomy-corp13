@@ -26,7 +26,6 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 70 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 0 //his work damage now is entirely related to suffering
 	work_damage_type = RED_DAMAGE
@@ -176,11 +175,11 @@
 ///we're doing a bunch of checks for diagonal movement because it acts real weird with forced dragging
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
 	if(!awakened_master || (moving_diagonally && !target))
-		return . = ..()
+		return ..()
 
 	if(!awakened_master.Adjacent(newloc) && !awakened_master.moving_diagonally)
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
 	..()

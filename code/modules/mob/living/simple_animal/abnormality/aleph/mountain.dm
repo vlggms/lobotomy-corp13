@@ -13,7 +13,6 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 2
 	stat_attack = DEAD
 	ranged = TRUE

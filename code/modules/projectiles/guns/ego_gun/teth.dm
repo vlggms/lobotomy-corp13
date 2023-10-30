@@ -30,7 +30,7 @@
 	name = "beak mk2"
 	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
-	inhand_icon_state = "beak"
+	inhand_icon_state = "beakmagnum"
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
 	fire_delay = 20
@@ -91,7 +91,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
 /obj/item/gun/ego_gun/snapshot
@@ -116,7 +115,6 @@
 	fire_delay = 3
 	burst_size = 2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 	var/ammo2 = /obj/item/ammo_casing/caseless/ego_wishing2
 

@@ -55,10 +55,8 @@
 	icon_state = "penitence"
 	force = 14
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
-
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/penitence
 	pulse_enable_toggle = TRUE
 	use_message = "You use penitence to emit sanity healing pulses!"
@@ -80,11 +78,9 @@
 	icon_state = "little_alice"
 	force = 14
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/little_alice
 	use_message = "You use little alice to share snacks!"
 	use_sound = "sound/items/eatfood.ogg"
@@ -108,10 +104,8 @@
 	special = "Use this weapon in your hand when wearing matching armor to heal the HP of others nearby."
 	force = 14
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
-
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/wingbeat
 	pulse_enable_toggle = TRUE
 	use_message = "You use wingbeat to emit healing pulses!"
@@ -133,7 +127,6 @@
 	icon_state = "change"
 	force = 14
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 
@@ -161,11 +154,9 @@
 	icon_state = "doze"
 	force = 14
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/happyteddy/teddy_guard.ogg'
-
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/doze
 	use_message = "You use the doze to emit healing pulses! It knocks you right out!"
 	use_sound = "sound/abnormalities/happyteddy/teddy_lullaby.ogg"
@@ -196,10 +187,8 @@
 	icon_state = "evening"
 	force = 12
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
-
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/evening
 	use_message = "You use evening to generate pale shields!"
 	use_sound = "sound/abnormalities/lighthammer/chain.ogg"
@@ -242,7 +231,6 @@
 	icon_state = "melty_eyeball"
 	force = 14
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'
@@ -272,11 +260,9 @@
 	icon_state = "letteropener"
 	force = 14
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slices", "slashes", "stabs")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-
 	ability_cooldown_time = 30 SECONDS
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener
 	use_message = "You use letter opener to send a message!"
@@ -312,3 +298,14 @@
 		. += H
 	sortList(.)
 	return
+
+/obj/item/ego_weapon/eclipse
+	name = "eclipse of scarlet moths"
+	desc = "It's beautiful."
+	icon_state = "eclipse"
+	force = 14
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("smacks", "strikes", "beats")
+	attack_verb_simple = list("smack", "strike", "beat")
+
+

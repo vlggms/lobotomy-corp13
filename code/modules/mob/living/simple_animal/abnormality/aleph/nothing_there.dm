@@ -13,7 +13,6 @@
 	icon_living = "nothing"
 	icon_dead = "nothing_dead"
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 55
 	melee_damage_upper = 65
@@ -273,7 +272,7 @@
 	switch(current_stage)
 		if(1)
 			icon_state = "nothing_egg"
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
+			ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1))
 			can_act = FALSE
 			next_transform = world.time + rand(10 SECONDS, 25 SECONDS)
 			heartbeat.start()
@@ -287,7 +286,7 @@
 			icon_state = icon_living
 			pixel_x = -16
 			base_pixel_x = -16
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+			ChangeResistances(list(WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 			can_act = TRUE
 			melee_damage_lower = 65
 			melee_damage_upper = 75

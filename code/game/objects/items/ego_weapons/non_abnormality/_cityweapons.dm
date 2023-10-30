@@ -114,6 +114,8 @@ White version of Kurokumo.
 Blade Lineage
 Lock in place, giving yourself a big damage boost.
 
+Ting Tang
+Rolls damage every hit between 10% and max damage like dice weapons. Has slightly more max damage than its tier. Chances scale off of current sanity.
 
 			Everything else.
 

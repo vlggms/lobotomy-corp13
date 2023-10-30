@@ -32,7 +32,6 @@
 	name = "cardinalfish"
 	desc = "Cardinalfish are often found near sea urchins, where the fish hide when threatened."
 	icon_state = "cardinalfish"
-	dedicated_in_aquarium_icon_state = "fish_greyscale"
 	average_size = 30
 	average_weight = 500
 	stable_population = 4
@@ -41,8 +40,6 @@
 	name = "green chromis"
 	desc = "The Chromis can vary in color from blue to green depending on the lighting and distance from the lights."
 	icon_state = "greenchromis"
-	dedicated_in_aquarium_icon_state = "fish_greyscale"
-	aquarium_vc_color = "#00ff00"
 	average_size = 30
 	average_weight = 500
 	stable_population = 5

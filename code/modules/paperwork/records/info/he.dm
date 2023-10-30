@@ -241,7 +241,8 @@
 	abno_info = list(
 		"The inital work with F.A.N. is guaranteed to produce the maximum number of PE-boxes, but the chances decrease with each good work result.",
 		"Employees who worked on F.A.N. were observed to sit increasingly closer to F.A.N during subsequent work processes.",
-		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds.")
+		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds. Luckily, this does not happen during a Qliphoth meltdown.",
+		"When the Qliphoth counter became zero, the abnormality turned off and the facility began to heat up. Eventually, employees began taking mild RED damage due to overheating. Things turned back to normal when an employee hit the \"ON\" button.")
 
 //680 KHz
 /obj/item/paper/fluff/info/he/khz
@@ -323,6 +324,7 @@
 		"T-09-140-1's performance also improved as their 'gear' shifted higher, however doing so damaged them heavily.",
 		"T-09-140-1's stats are listed in the 'Breach Information' section of this document."
 	)
+	abno_can_breach = TRUE
 	abno_breach_damage_type = "RED"
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
@@ -415,7 +417,7 @@
 //Wayward Passenger
 /obj/item/paper/fluff/info/he/wayward
 	abno_type = /mob/living/simple_animal/hostile/abnormality/wayward
-	abno_code = "T-01-170"//LCB ID TBA in line 2
+	abno_code = "T-02-170"//T-02-21-07 in LCB
 	abno_info = list(
 		"When the work result was Neutral, the Qliphoth Counter lowered at a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered at a high probability.",
@@ -433,3 +435,49 @@
 		"When the employee initiated close physical interaction, such as petting, the Qliphoth counter was reduced by 1.",
 		"If the employee's Temperance Level was below 3, the employee was killed instead.",
 		"When the work result was Bad, the Qliphoth Counter lowered.")
+
+//Red Shoes
+/obj/item/paper/fluff/info/he/red_shoes
+	abno_type = /mob/living/simple_animal/hostile/abnormality/red_shoes
+	abno_code = "O-04-08"
+	abno_info = list(
+		"Employees with Temperance level 2 or lower should not work with Red Shoes. The shoes remember their previous owner.",
+		"When the work result was normal, qliphoth counter reduced with a normal probability.",
+		"When the work result was bad, qliphoth counter reduced with a high probability.",
+		"When the qliphoth counter became zero, employees were allured by the abnormality and recieved WHITE damage.",
+		"Allured employees had their prudence attribute reduced by 50 for two minutes.",
+		"Allured employees recovered quickly after their mental corruption was resolved.",
+		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
+	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach
+
+//Eris
+/obj/item/paper/fluff/info/he/eris
+	abno_type = /mob/living/simple_animal/hostile/abnormality/eris
+	abno_code = "C-01-184"
+	abno_info = list(
+		"Every death reduced the Qliphoth counter of C-01-184 by 1.",
+		"On a Bad result, the Qliphoth counter lowered by 3.",
+		"After Attachment work, there is a small chance of Eris and the Employee -REDACTED-.",
+		"While breached, C-01-184 healed all entities nearby, and would seek out and consume humans that are dead or near death.",
+		"Attacking C-01-184 while breached resulted in the employee taking white damage.")
+
+//Will You Play
+/obj/item/paper/fluff/info/he/willyouplay
+	abno_type = /mob/living/simple_animal/hostile/abnormality/willyouplay
+	abno_code = "T-01-187"
+	abno_info = list(
+		"T-01-187 refused standard work, insisting that the employee play a game of rock paper scissors.",
+		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm.",
+		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats.")
+
+
+//Highway Devotee
+/obj/item/paper/fluff/info/he/highway
+	abno_type = /mob/living/simple_animal/hostile/abnormality/highway_devotee
+	abno_code = "T-01-189"
+	abno_info = list(
+		"When the work result was neutral, the Qliphoth counter lowered.",
+		"When the work result was bad, the Qliphoth counter lowered by 2.")
+
+
+

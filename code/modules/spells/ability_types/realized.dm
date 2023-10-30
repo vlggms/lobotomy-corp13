@@ -92,28 +92,14 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] *= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] *= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] *= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] *= 1.1
+	M.AddModifier(/datum/dc_change/salvation)
 
 /datum/status_effect/salvation/on_remove()
 	. = ..()
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] /= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] /= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] /= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] /= 1.1
+	M.RemoveModifier(/datum/dc_change/salvation)
 
 /atom/movable/screen/alert/status_effect/salvation
 	name = "Salvation"
@@ -194,10 +180,7 @@
 		H.physiology.black_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[BLACK_DAMAGE] *= 1.5
+	M.AddModifier(/datum/dc_change/mosb_black)
 
 /datum/status_effect/mosb_black_debuff/on_remove()
 	. = ..()
@@ -206,7 +189,7 @@
 		H.physiology.black_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] /= 1.5
+	M.RemoveModifier(/datum/dc_change/mosb_black)
 
 /atom/movable/screen/alert/status_effect/mosb_black_debuff
 	name = "Dread"
@@ -257,10 +240,7 @@
 		H.physiology.pale_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[PALE_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[PALE_DAMAGE] += 0.5
+	M.AddModifier(/datum/dc_change/godhead)
 
 /datum/status_effect/judgement_pale_debuff/on_remove()
 	. = ..()
@@ -269,7 +249,7 @@
 		H.physiology.pale_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[PALE_DAMAGE] -= 0.5
+	M.RemoveModifier(/datum/dc_change/godhead)
 
 /atom/movable/screen/alert/status_effect/judgement_pale_debuff
 	name = "Soul Drain"
@@ -599,11 +579,13 @@
 /datum/status_effect/pbird/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
+	owner.color = COLOR_RED
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 
 /datum/status_effect/pbird/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
+	owner.color = null
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
 /obj/effect/proc_holder/ability/petal_blizzard
@@ -746,12 +728,11 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/L in livinginview(8, src))
-		if(faction_check_mob(L))
+	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)
-		var/mob/living/carbon/human/H = L
-		H.adjustSanityLoss(-2)
+		L.adjustSanityLoss(-2)
 
 /obj/effect/proc_holder/ability/overheat
 	name = "Overheat"
@@ -864,7 +845,7 @@
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
 /*Child of the Galaxy - Our Galaxy */
 /obj/effect/proc_holder/ability/galaxy_gift
@@ -907,7 +888,6 @@
 	id = "galaxygift"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 30 SECONDS
-	tick_interval = 1 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/galaxy_gift
 	var/base_heal_amt = 0.5
 	var/base_dmg_amt = 45
@@ -1017,15 +997,24 @@
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
 			for(var/egoitem in linked_structure.alephitem)
-				if(ispath(egoitem, /obj/item/ego_weapon))
+				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
 					ego_list += egoitem
 					continue
 		chosenEGO = pick(ego_list)
-		var/obj/item/ego_weapon/ego = new chosenEGO(get_turf(user))
-		ego.name = "shimmering [ego.name]"
-		ego.force = round(initial(chosenEGO.force) * 1.2, 1)
-		ego.set_light(3, 6, "#D4FAF37")
-		ego.color = "#FFD700"
+		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
+		if(ispath(ego, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
+			egoweapon.force_multiplier = 1.2
+			egoweapon.name = "shimmering [egoweapon.name]"
+			egoweapon.set_light(3, 6, "#D4FAF37")
+			egoweapon.color = "#FFD700"
+
+		else if(ispath(ego, /obj/item/gun/ego_gun))
+			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
+			egogun.projectile_damage_multiplier = 1.2
+			egogun.name = "shimmering [egogun.name]"
+			egogun.set_light(3, 6, "#D4FAF37")
+			egogun.color = "#FFD700"
 		return ..()
 
 /* Opened Can of Wellcheers - Wellcheers */
@@ -1063,12 +1052,11 @@
 		var/mob/living/L = target
 		if(L.health < 0 || L.stat == DEAD)
 			L.gib() //Punch them so hard they explode
-
 /* Flesh Idol - Repentance */
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
 	desc = "An ability that does causes you to start praying reducing damage taken by 25% but removing your ability to move and lowers justice by 80. \
-	When you finish praying everyone in a big area gets a 20% damage boost and gets healed."
+	When you finish praying everyone gets a 20 justice increase and gets healed."
 	action_icon_state = "flesh0"
 	base_icon_state = "flesh"
 	cooldown_time = 180 SECONDS
@@ -1130,7 +1118,7 @@
 	id = "FLESH2"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/flesh2
-	duration = 50 SECONDS
+	duration = 60 SECONDS
 
 /atom/movable/screen/alert/status_effect/flesh2
 	name = "An answer from god"
@@ -1158,18 +1146,24 @@
 
 
 /obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
-	for(var/turf/T in view(1, user))
-		new/mob/living/simple_animal/hostile/naked_nest_serpent_friend(T)
+	for(var/i = 1 to 9)
+		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
+		var/landing
+		landing = locate(user.x + pick(-2,-1,0,1,2), user.y + pick(-2,-1,0,1,2), user.z)
+		var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new(get_turf(user))
+		W.origin_nest = user
+		W.throw_at(landing, 0.5, 2, spin = FALSE)
 	return ..()
 
 /datum/status_effect/stacking/infestation
 	id = "EGO_NEST"
 	status_type = STATUS_EFFECT_UNIQUE
-	stacks = 0
-	tick_interval = 30
+	stacks = 1
+	stack_decay = 0 //Without this the stacks were decaying after 1 sec
+	duration = 15 SECONDS //Lasts for 4 minutes
 	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	max_stacks = 20
 	consumed_on_threshold = FALSE
-	var/next_tick = 0
 	var/red = 0
 
 /atom/movable/screen/alert/status_effect/infestation
@@ -1181,38 +1175,26 @@
 /datum/status_effect/stacking/infestation/on_apply()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	red = M.damage_coeff[RED_DAMAGE]
+	M.AddModifier(/datum/dc_change/infested)
 
 /datum/status_effect/stacking/infestation/on_remove()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[RED_DAMAGE] = red
-
-/datum/status_effect/stacking/infestation/process()
-	if(!owner)
-		qdel(src)
-		return
-	if(next_tick < world.time)
-		tick()
-		next_tick = world.time + tick_interval
-	if(duration != -1 && duration < world.time)
-		qdel(src)
+	M.RemoveModifier(/datum/dc_change/infested)
 
 /datum/status_effect/stacking/infestation/add_stacks(stacks_added)
 	. = ..()
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks/10))
-	linked_alert.desc = initial(linked_alert.desc)+"[stacks*10]%!"
-	tick_interval = max(30 - (stacks/10), 0.1)
+	var/datum/dc_change/infested/mod = M.HasDamageMod(/datum/dc_change/infested)
+	mod.potency = 1+(stacks/20)
+	M.UpdateResistances()
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*5]%!"
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend
-	name = "naked serpent"
-	desc = "A sickly looking green-colored worm."
+	name = "friendly naked serpent"
+	desc = "A sickly looking green-colored worm but looks friendly."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "nakednest_serpent"
 	icon_living = "nakednest_serpent"
@@ -1235,10 +1217,12 @@
 	del_on_death = 1
 	vision_range = 18 //two screens away
 	faction = list("neutral")
+	var/mob/living/carbon/human/origin_nest
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend/Initialize()
 	.=..()
-	QDEL_IN(src, (15 SECONDS))
+	AddComponent(/datum/component/swarming)
+	QDEL_IN(src, (20 SECONDS))
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend/AttackingTarget()
 	var/mob/living/L = target
@@ -1247,9 +1231,24 @@
 		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)
 		if(!INF)
 			return
-	INF.add_stacks(3)
+	INF.add_stacks(1)
 	qdel(src)
 	. = ..()
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/LoseAggro() //its best to return home
+	..()
+	if(origin_nest)
+		for(var/mob/living/carbon/human/H in oview(vision_range, src))
+			if(origin_nest == H.tag)
+				Goto(H, 5, 0)
+				return
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/Life()
+	..()
+	if(origin_nest)
+		for(var/mob/living/carbon/human/H in oview(vision_range, src))
+			if(origin_nest == H.tag)
+				Goto(H, 5, 0)
+				return
 
 /* Wayward Passenger - Dimension Ripper */
 /obj/effect/proc_holder/ability/rip_space

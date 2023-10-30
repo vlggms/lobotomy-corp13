@@ -10,7 +10,6 @@
 	maxHealth = 400
 	health = 400
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 14
 	melee_damage_upper = 14
 	pixel_x = -8
@@ -41,7 +40,6 @@
 	maxHealth = 100
 	health = 100
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_damage_lower = 14
 	melee_damage_upper = 24
 	attack_verb_continuous = "bashes"
@@ -204,7 +202,6 @@
 	maxHealth = 250
 	health = 250
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 3
 	melee_damage_lower = 4
 	melee_damage_upper = 6
@@ -259,7 +256,6 @@
 	maxHealth = 3000 //it's a boss, more or less
 	health = 3000
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	melee_damage_lower = 14
 	melee_damage_upper = 18
 	pixel_x = -8
@@ -415,7 +411,7 @@
 	maxHealth = 300
 	health = 300
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	rapid_melee = 2
 	melee_damage_lower = 14
 	melee_damage_upper = 14
@@ -462,7 +458,6 @@
 	maxHealth = 400
 	health = 400
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 2
 	melee_damage_lower = 14
 	melee_damage_upper = 14
@@ -523,6 +518,8 @@
 	playsound(src, 'sound/effects/ordeals/gold/pridespin.ogg', 125, FALSE)
 
 /mob/living/simple_animal/hostile/ordeal/sin_pride/proc/Charge(move_dir, times_ran)
+	if(health <= 0)
+		return
 	var/stop_charge = FALSE
 	if(times_ran >= dash_num)
 		stop_charge = TRUE
@@ -577,10 +574,9 @@
 	icon_living = "thunder_warrior"
 	icon_dead = "thunder_warrior_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 2200
-	health = 2200
+	maxHealth = 900
+	health = 900
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 26
 	melee_damage_upper = 36
 	attack_verb_continuous = "chops"
@@ -590,7 +586,6 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
-	speed = 3
 	move_to_delay = 3
 	ranged = TRUE
 	projectiletype = /obj/projectile/thunder_tomahawk
@@ -626,6 +621,7 @@
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
 		C.faction = src.faction
+		C.master = src
 		spawned_mobs += C
 		H.gib()
 
@@ -645,7 +641,6 @@
 	maxHealth = 1500
 	health = 1500
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 10 //they're support, so they deal low damage
 	melee_damage_upper = 15
 	attack_verb_continuous = "shocks"
@@ -655,8 +650,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
-	speed = 3
-	move_to_delay = 3
+	move_to_delay = 4
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
 
@@ -708,7 +702,6 @@
 	maxHealth = 800
 	health = 800
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 3
 	melee_damage_lower = 15
 	melee_damage_upper = 20
@@ -785,7 +778,6 @@
 	maxHealth = 1000
 	health = 1000
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 15
 	melee_damage_upper = 30
 	attack_verb_continuous = "bashes"

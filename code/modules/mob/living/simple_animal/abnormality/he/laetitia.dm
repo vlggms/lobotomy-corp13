@@ -63,7 +63,6 @@
 	pixel_x = -16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20
 	melee_damage_upper = 30
@@ -93,7 +92,7 @@
 
 /datum/status_effect/pranked/on_creation(mob/living/new_owner, ...)
 	duration = rand(1800,2400)
-	. = ..()
+	return ..()
 
 /datum/status_effect/pranked/on_apply()
 	if(get_attribute_level(owner, PRUDENCE_ATTRIBUTE) >= 80)

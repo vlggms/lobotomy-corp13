@@ -8,7 +8,7 @@
 	force = 30
 	attack_speed = 0.7
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("slices", "stabs")
 	attack_verb_simple = list("slice", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'

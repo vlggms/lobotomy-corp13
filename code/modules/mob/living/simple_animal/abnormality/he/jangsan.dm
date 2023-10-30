@@ -31,7 +31,6 @@
 //Only done to non-humans, objects, and strong(er) agents
 	attack_sound = 'sound/abnormalities/jangsan/tigerbite.ogg'
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_damage_lower = 40
 	melee_damage_upper = 60
 

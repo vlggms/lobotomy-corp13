@@ -143,7 +143,7 @@
 /obj/item/deepscanner/examine(mob/living/M)
 	. = ..()
 	if(deep_scan_log)
-		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log].</span>")
+		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log]</span>")
 
 /obj/item/deepscanner/attack(mob/living/M, mob/user)
 	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
@@ -165,17 +165,22 @@
 			check1d = 1 - (H.getarmor(null, PALE_DAMAGE) / 100)
 		if(H.job)
 			check1e = H.job
-		to_chat(user, "<span class='notice'>[check1e] [H] [H.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 	else
 		var/mob/living/simple_animal/hostile/mon = M
 		if((mon.status_flags & GODMODE))
 			return
-		check1a = mon.damage_coeff[RED_DAMAGE]
-		check1b = mon.damage_coeff[WHITE_DAMAGE]
-		check1c = mon.damage_coeff[BLACK_DAMAGE]
-		check1d = mon.damage_coeff[PALE_DAMAGE]
-		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
-		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
+		check1a = mon.damage_coeff.getCoeff(RED_DAMAGE)
+		check1b = mon.damage_coeff.getCoeff(WHITE_DAMAGE)
+		check1c = mon.damage_coeff.getCoeff(BLACK_DAMAGE)
+		check1d = mon.damage_coeff.getCoeff(PALE_DAMAGE)
+		if(isabnormalitymob(mon))
+			var/mob/living/simple_animal/hostile/abnormality/abno = mon
+			check1e = THREAT_TO_NAME[abno.threat_level]
+		else
+			check1e = FALSE
+	var/output = "----------\n[check1e ? check1e+" " : ""][M]\nHP [M.health]/[M.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n----------"
+	to_chat(user, "<span class='notice'>[output]</span>")
+	deep_scan_log = output
 	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
 
@@ -366,16 +371,19 @@
 	desc = "An experimental tool designed to automatically excise damaged parts of one's brain. Due to its █████, the tool gained sentience and is only interested in brains with tumor."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "lobotomizer"
+	var/lobotomizing = FALSE
 	var/datum/looping_sound/lobotomizer/soundloop
 
 /obj/item/lobotomizer/attack_self(mob/living/carbon/human/user)
-	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)))
+	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)) || lobotomizing)
 		to_chat(user, "<span class='warning'>The lobotomizer completely ignores you.</span>")
 		return
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
 	ADD_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 	soundloop = new(list(src), FALSE)
 	soundloop.start()
+	lobotomizing = TRUE
 	for(var/i = 1 to 20) //2 minutes to clear severe traumas
 		if(user.is_working) // No, you can't just cheese this process
 			to_chat(user, "<span class='warning'>The lobotomizer seems to be more interested in the abnormality.</span>")
@@ -400,6 +408,8 @@
 /obj/item/lobotomizer/proc/EndLoop(mob/living/user)
 	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
 	REMOVE_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
+	lobotomizing = FALSE
 	QDEL_NULL(soundloop)
 
 /datum/looping_sound/lobotomizer

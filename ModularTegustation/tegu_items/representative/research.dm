@@ -111,5 +111,3 @@
 /datum/data/lc13research/mobspawner/association/ResearchEffect(obj/structure/representative_console/caller)
 	mobspawner_type = pick(associationspawners)
 	..()	*/
-
-

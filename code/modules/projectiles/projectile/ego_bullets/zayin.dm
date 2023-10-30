@@ -2,7 +2,6 @@
 	name = "9mm tough bullet"
 	damage = 12 // Being bald is the optimal gameplay choice!
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_soda
 	name = "9mm soda bullet"
@@ -53,4 +52,10 @@
 	icon_state = "wishing_rock"
 	damage = 20
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
+
+/obj/projectile/ego_bullet/ego_oceanic
+	name = "oceanic"
+	damage = 11		//Worse than tough lol
+	damage_type = WHITE_DAMAGE
+

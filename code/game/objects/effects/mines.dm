@@ -62,7 +62,7 @@
 
 	triggermine(AM)
 
-/obj/effect/mine/take_damage(damage_amount, damage_type, damage_flag, sound_effect, attack_dir)
+/obj/effect/mine/take_damage(damage_amount, damage_type, sound_effect, attack_dir)
 	//Stops us for exploding more then once
 	if(safety_check())
 		return

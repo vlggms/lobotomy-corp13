@@ -12,7 +12,6 @@
 	health = 1200
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	rapid_melee = 1 //we change this later
@@ -166,10 +165,7 @@
 	playsound(src, 'sound/effects/blobattack.ogg', 150, FALSE, 4)
 	playsound(src, 'sound/weapons/chainsawhit.ogg', 250, FALSE, 4)
 	attack_sound = 'sound/abnormalities/helper/attack.ogg'
-	for(var/damtype in src.damage_coeff)
-		if(damtype == BRUTE)
-			continue
-		damage_coeff[damtype] -= 0.4
+	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 1.1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.6))
 	can_act = TRUE
 	rapid_melee = 3
 	melee_reach = 3
@@ -183,10 +179,7 @@
 	icon_state = icon_aggro
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	SLEEP_CHECK_DEATH(10)
-	for(var/damtype in src.damage_coeff)
-		if(damtype == BRUTE)
-			continue
-		damage_coeff[damtype] += 0.4
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2))
 	can_act = TRUE
 	rapid_melee = 1
 	melee_reach = 1

@@ -1,3 +1,5 @@
+#define SWEEPER_TYPES /mob/living/simple_animal/hostile/ordeal/indigo_dawn || /mob/living/simple_animal/hostile/ordeal/indigo_noon || /mob/living/simple_animal/hostile/ordeal/indigo_dusk || /mob/living/simple_animal/hostile/ordeal/indigo_midnight
+
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn
 	name = "unknown scout"
 	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
@@ -11,7 +13,6 @@
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 10
 	melee_damage_upper = 12
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
@@ -38,7 +39,11 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		//Would have made it based on biotypes but that has its own issues.
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -55,7 +60,6 @@
 	move_to_delay = 4
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
@@ -98,7 +102,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -134,7 +141,6 @@
 	health = 1500
 	stat_attack = DEAD
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 1
 	melee_damage_lower = 13
 	melee_damage_upper = 17
@@ -156,7 +162,6 @@
 	icon_state = "adelheide"
 	icon_living = "adelheide"
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
@@ -174,7 +179,6 @@
 	icon_state = "maria"
 	icon_living = "maria"
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
@@ -186,7 +190,6 @@
 	icon_living = "jacques"
 	rapid_melee = 4
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
@@ -196,7 +199,6 @@
 	icon_living = "silvina"
 	rapid_melee = 2
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
 
@@ -263,7 +265,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -282,7 +287,6 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	move_to_delay = 3
 	speed = 3
 	rapid_melee = 2
@@ -458,7 +462,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth*0.3))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth*0.3))
 	L.gib()
 	//Increase the Vore counter by 1
 	belly += 1
@@ -510,7 +517,7 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 4000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
+	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
 	SpeedChange(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
@@ -528,7 +535,7 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 3000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
 	SpeedChange(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
@@ -566,6 +573,8 @@
 		sleep(delay)
 	slamming = FALSE
 
+#undef SWEEPER_TYPES
+
 /obj/effect/sweeperspawn
 	name = "bloodpool"
 	desc = "A target warning you of incoming pain"
@@ -598,7 +607,6 @@
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = HARD_CRIT
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 21
 	melee_damage_upper = 24
 	attack_verb_continuous = "stabs"

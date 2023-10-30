@@ -220,7 +220,6 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 
 	attack_sound = "swing_hit"
 	attack_verb_continuous = "bashes"
@@ -241,18 +240,12 @@
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/AttackingTarget(atom/attacked_target)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
-
-/mob/living/simple_animal/hostile/grown_strong/Initialize()
-	. = ..()
-	//icon_state = pick("1", "2", "3")
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
@@ -272,7 +265,7 @@
 		return
 	gear = clamp(gear + rand(-1, 3), 1, 10)
 	UpdateGear()
-	src.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
+	src.apply_damage(150, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)

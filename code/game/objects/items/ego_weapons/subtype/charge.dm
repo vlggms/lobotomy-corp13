@@ -10,9 +10,11 @@
 	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
 
 /obj/item/ego_weapon/charge/attack(mob/living/target, mob/living/user)
-	..()
+	. = ..()
+	if(!.)
+		return FALSE
 	if((target.stat == DEAD) || (GODMODE in target.status_flags))//if the target is dead or godmode
-		return
+		return FALSE
 	if(charge<20)
 		charge+=1
 
@@ -38,7 +40,9 @@
 		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
 
 /obj/item/ego_weapon/charge/onattack/attack(mob/living/target, mob/living/user)
-	..()
+	. = ..()
+	if(!.)
+		return FALSE
 	if(activated)
 		charge -= charge_cost
 		to_chat(user, "<span class='notice'>[release_message].</span>")
@@ -48,7 +52,9 @@
 
 //On use Subtype
 /obj/item/ego_weapon/charge/onuse/attack_self(mob/user)
-	..()
+	. = ..()
+	if(!.)
+		return FALSE
 	if(charge>=charge_cost)
 		charge -= charge_cost
 		to_chat(user, "<span class='notice'>[release_message].</span>")

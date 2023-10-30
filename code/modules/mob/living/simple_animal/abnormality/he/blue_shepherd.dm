@@ -30,7 +30,6 @@
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
@@ -252,7 +251,7 @@
 		return FALSE
 	if(awakened_buddy)
 		awakened_buddy.LoseTarget()
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it

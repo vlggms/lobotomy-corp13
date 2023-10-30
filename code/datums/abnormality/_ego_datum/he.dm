@@ -192,6 +192,10 @@
 	item_path = /obj/item/ego_weapon/homing_instinct
 	cost = 35
 
+/datum/ego_datum/weapon/brick_road
+	item_path = /obj/item/ego_weapon/lance/brick_road
+	cost = 35
+
 /datum/ego_datum/armor/homing_instinct_old
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/brick
 	cost = 35  // Unused, available from the well.
@@ -401,3 +405,33 @@
 /datum/ego_datum/weapon/faelantern
 	item_path = /obj/item/ego_weapon/faelantern
 	cost = 35
+	
+//Will You Play - Voodoo doll
+/datum/ego_datum/armor/voodoo
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/voodoo
+	cost = 35
+
+/datum/ego_datum/weapon/voodoo
+	item_path = /obj/item/ego_weapon/voodoo
+	cost = 35
+
+//Eris - Coiling
+/datum/ego_datum/armor/coiling
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/coiling
+	cost = 35
+
+/datum/ego_datum/weapon/coiling
+	item_path = /obj/item/ego_weapon/coiling
+	cost = 35
+
+//Highway Devotee - Uturn
+/datum/ego_datum/armor/uturn
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/uturn
+	cost = 35
+
+/*
+/datum/ego_datum/weapon/uturn
+	item_path = /obj/item/ego_weapon/uturn
+	cost = 35*/
+
+

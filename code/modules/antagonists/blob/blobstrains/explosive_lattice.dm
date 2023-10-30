@@ -11,10 +11,10 @@
 	message = "The blob blasts you"
 	reagent = /datum/reagent/blob/explosive_lattice
 
-/datum/blobstrain/reagent/explosive_lattice/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
-	if(damage_flag == BOMB)
+/datum/blobstrain/reagent/explosive_lattice/damage_reaction(obj/structure/blob/B, damage, damage_type)
+	if(damage_type == BOMB)
 		return 0
-	else if(damage_flag != MELEE && damage_flag != BULLET && damage_flag != LASER)
+	else if(!(damage_type in list(MELEE, BULLET, LASER)))
 		return damage * 1.5
 	return ..()
 

@@ -11,6 +11,10 @@
 	var/list/attribute_requirements = list()
 	var/attack_speed
 	var/special
+	var/force_multiplier = 1
+
+	/// Is CleanUp proc running?
+	var/cleaning = FALSE
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -36,6 +40,7 @@
 
 	if(!attack_speed)
 		return
+
 	//Can't switch for less than for some reason
 	if(attack_speed<0.4)
 		. += "<span class='notice'>This weapon has a very fast attack speed.</span>"
@@ -90,7 +95,20 @@
 	return
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return "<span class='notice'>It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)</span>"
 	return "<span class='notice'>It deals [force] [damtype] damage.</span>"
+
+/*
+* Used to clean up any remaining variables or timers in an ego weapon.
+*/
+/obj/item/ego_weapon/proc/CleanUp()
+	cleaning = TRUE
+	return
+
+/obj/item/ego_weapon/Destroy()
+	CleanUp()
+	return ..()
 
 //Examine text for mini weapons.
 /obj/item/ego_weapon/mini/examine(mob/user)

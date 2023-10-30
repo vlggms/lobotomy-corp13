@@ -7,7 +7,7 @@
 	icon_state = "mark"
 	force = 40
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("marks")
 	attack_verb_simple = list("mark")
 
@@ -19,19 +19,19 @@
 	name = "n-corp white seal"
 	icon_state = "wmark"
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 
 /obj/item/ego_weapon/city/ncorp_mark/black
 	name = "n-corp black seal"
 	icon_state = "bmark"
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 
 /obj/item/ego_weapon/city/ncorp_mark/pale
 	name = "n-corp pale seal"
 	icon_state = "pmark"
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 
 //Nails - These mark enemies to enable the hammer
 /obj/item/ego_weapon/city/ncorp_nail
@@ -42,7 +42,7 @@
 	icon_state = "kleinnagel"
 	force = 18
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("jabs", "stabs")
 	attack_verb_simple = list("jab", "stab")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
@@ -94,7 +94,7 @@
 	icon_state = "gripnagel"
 	force = 50
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -113,7 +113,7 @@
 	force = 30
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("marks")
 	attack_verb_simple = list("mark")
 	hitsound = 'sound/weapons/fixer/generic/club2.ogg'
@@ -126,7 +126,6 @@
 		charges-=1
 	if(charges <= 0 && charged)
 		damtype = initial(damtype)
-		armortype = initial(damtype)
 		to_chat(user, "<span class='notice'>Your hammer has run out of charges.</span>")
 		charged = FALSE
 	force = initial(force)
@@ -137,7 +136,6 @@
 		return
 	to_chat(user, "<span class='notice'>You apply a mark to your hammer, changing its damage type.</span>")
 	damtype = I.damtype
-	armortype = I.damtype
 	charges = 10
 	charged = TRUE
 	qdel(I)
@@ -178,7 +176,7 @@
 	force = 60
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	hitsound = 'sound/weapons/fixer/generic/fist2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -197,7 +195,7 @@
 	icon_state = "messingnagel"
 	force = 18
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("jabs", "stabs")
 	attack_verb_simple = list("jab", "stab")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
@@ -254,5 +252,5 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 

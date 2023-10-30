@@ -3,10 +3,7 @@
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
 	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
 	icon_state = "bald"
-	inhand_icon_state = "gun"
-	worn_icon_state = "gun"
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_icon_state = "bald"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
 	fire_delay = 10
@@ -311,3 +308,16 @@
 		new gift(get_turf(L))
 	var/gift = pick(lootoptions)//you get one too!
 	new gift(get_turf(user))
+
+/obj/item/gun/ego_gun/pistol/oceanic
+	name = "a taste of the ocean"
+	desc = "A pistol painted in a refreshing orange. Whenever this EGO is used, a faint scent of orange wafts through the air."
+	icon_state = "oceanic"
+	inhand_icon_state = "oceanic"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_oceanic
+	burst_size = 1
+	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
+

@@ -860,7 +860,16 @@
 
 /obj/effect/temp_visual/healing
 	icon_state = "healing"
-	duration = 10
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 8
+
+/obj/effect/temp_visual/healing/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-12, 12)
+	pixel_y = rand(-9, 0)
+
+/obj/effect/temp_visual/healing/no_dam
+	icon_state = "no_dam"
 
 /obj/effect/temp_visual/pale_eye_attack
 	name = "pale particles"
@@ -969,3 +978,27 @@
 /obj/effect/temp_visual/mustardgas
 	icon_state = "mustard"
 	duration = 5
+
+/obj/effect/temp_visual/smash_effect/red
+	color = COLOR_RED
+
+/obj/effect/temp_visual/house
+	name = "home"
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon_state = "House"
+	duration = 4 SECONDS
+	pixel_x = -34
+	pixel_z = 128
+
+/obj/effect/temp_visual/house/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/FadeOut), 2 SECONDS)
+
+/obj/effect/temp_visual/house/proc/FadeOut()
+	animate(src, alpha = 0, time = 1 SECONDS)
+
+/obj/effect/temp_visual/v_noon
+	name = "violet noon"
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon_state = "violet_noon_ability"
+	pixel_x = -8

@@ -5,16 +5,17 @@ SUBSYSTEM_DEF(cityevents)
 	flags = SS_NO_TICK_CHECK | SS_NO_FIRE
 	var/list/spawners = list()
 	var/list/itemdrops = list()
+	var/list/distortion = list()
 	var/list/lights = list()
 	var/daystatus = TRUE	//True to darken lights, false to lighten them
 	var/globalillumination = 1
 	var/list/total_events = list()
+	var/list/distortions_available = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
 	var/harmful_events = list("drones", "beaks", "shrimp")
 	var/ordeal_events = list("sweepers", "scouts", "bots")
 	var/neutral_events = list("swag")
 	var/list/generated = list()	//Which ckeys have generated stats
-	var/failrate = 70 	//On hybrid maps, fail 70% of the time, Fires roughtly every 15 minutes, This just adds some RNG.
 	var/wavetime 		//How many waves have spawned? each wave increases the # of enemies by about 5%. One wave is every 5 minutes
 
 /datum/controller/subsystem/cityevents/Initialize(timeofday)
@@ -25,6 +26,7 @@ SUBSYSTEM_DEF(cityevents)
 	if(!can_fire)
 		return
 	addtimer(CALLBACK(src, .proc/Event), 15 MINUTES)	//Start doing events in 15 minutes
+	addtimer(CALLBACK(src, .proc/Distort), 20 MINUTES)		//Distortions start in 20
 	addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)
 
 ///Ran on initialize, slap these puppies in a new list.
@@ -36,6 +38,9 @@ SUBSYSTEM_DEF(cityevents)
 
 	for(var/obj/effect/landmark/cityloot/landmark in GLOB.landmarks_list)
 		itemdrops+= landmark
+
+	for(var/obj/effect/landmark/distortion/landmark in GLOB.landmarks_list)
+		distortion+= landmark
 
 ///Ran on initialize, Initialize the cuustom event systems.
 //Pretty Much we want a small amount of Good, bad and neutral events.
@@ -53,14 +58,17 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
-	if(SSmaptype.maptype == "city")
-		failrate = 30
+
+	//Set available distortion
+	var/list/processing = subtypesof(/mob/living/simple_animal/hostile/distortion)
+	for(var/mob/living/simple_animal/hostile/distortion/A in processing)
+		if(A.can_spawn == 0)
+			return
+		distortions_available += A
 
 //Events
 /datum/controller/subsystem/cityevents/proc/Event()
 	addtimer(CALLBACK(src, .proc/Event), 5 MINUTES)
-	if(prob(failrate))
-		return
 	var/chosen_event = pick(total_events)
 	if(wavetime == 10 && wavetime !=0)	//after 50 minutes
 		Boss()
@@ -125,6 +133,16 @@ SUBSYSTEM_DEF(cityevents)
 	new /obj/effect/bloodpool(get_turf(T))
 	sleep(10)
 	new /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red (get_turf(T))
+
+//Distortions
+/datum/controller/subsystem/cityevents/proc/Distort()
+	minor_announce("DANGER: Distortion located in the backstreets. Hana has issued a suppression order.", "Local Activity Alert:", TRUE)
+	var/T = pick(distortion)
+	new /obj/effect/bloodpool(get_turf(T))
+	sleep(10)
+	var/spawning = pick(distortions_available)
+	new spawning (get_turf(T))
+	addtimer(CALLBACK(src, .proc/Distort), 20 MINUTES)
 
 //Daynight stuff
 /datum/controller/subsystem/cityevents/proc/Daynight()

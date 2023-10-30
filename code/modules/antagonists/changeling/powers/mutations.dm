@@ -299,7 +299,6 @@
 	pass_flags = PASSTABLE
 	damage = 0
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	range = 8
 	hitsound = 'sound/weapons/thudswoosh.ogg'
 	var/chain

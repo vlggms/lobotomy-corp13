@@ -178,7 +178,6 @@
 	maxHealth = 1500
 	move_to_delay = 3
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 40
 	melee_damage_upper = 50		//slow melee and has nothing else.

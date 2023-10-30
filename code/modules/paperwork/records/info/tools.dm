@@ -195,3 +195,13 @@
 	- When the machine is used before a previously applied effect expires, the user perishes.	<br>
 	- Those who answered \"Yes\" to the question \"Do you love your city?\" gained a small, temporary boost in all attributes. Those who answered \"No\" instead lost some attributes in the same manner.	<br>
 	- The longer the machine is in use, the more profound the change becomes. Furthermore, the longer it is used, the faster the question will change. "}
+
+//Old Faith and Promise
+/obj/item/paper/fluff/info/tool/promise
+	name = "T-09-97"
+	info = {"<h1><center>T-09-94</center></h1>	<br>
+	Name : Old Faith and Promise<br>
+	Risk Class : ZAYIN	<br>
+	- Utilize the Abnormality to fortify an E.G.O Weapon. The fortified weapon will have higher Attack Power.	<br>
+	- However, there is a possibility of losing the E.G.O during the fortification process.	<br>
+	- The likelihood of losing the E.G.O. during the fortification process increased dramatically as the E.G.O. was empowered further."}

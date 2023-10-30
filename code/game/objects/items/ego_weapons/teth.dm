@@ -4,7 +4,6 @@
 	icon_state = "training"
 	force = 22
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("smacks", "hammers", "beats")
 	attack_verb_simple = list("smack", "hammer", "beat")
 
@@ -17,7 +16,6 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -31,7 +29,6 @@
 	throw_speed = 5
 	throw_range = 7
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -43,7 +40,6 @@
 	force = 22
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -67,15 +63,14 @@
 	force = 35					//Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 
 /obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
@@ -89,7 +84,6 @@
 	force = 7
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
 	var/dodgelanding
 
@@ -111,7 +105,6 @@
 	icon_state = "regret"
 	force = 38				//Lots of damage, way less DPS
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_speed = 2 // Really Slow. This is the slowest teth we have, +0.4 to Eyes 1.6
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
@@ -127,7 +120,6 @@
 	throw_speed = 1
 	throw_range = 7
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 
 /obj/item/ego_weapon/mini/blossom/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -147,7 +139,6 @@
 	force = 13
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	hitsound = 'sound/weapons/slashmiss.ogg'
 
 /obj/item/ego_weapon/mini/trick
@@ -159,7 +150,6 @@
 	throw_speed = 5
 	throw_range = 7
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("jabs")
 	attack_verb_simple = list("jabs")
 	hitsound = 'sound/weapons/slashmiss.ogg'
@@ -172,7 +162,6 @@
 	force = 32					//Bad DPS, can teleport
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleave", "cut")
 	hitsound = 'sound/weapons/fixer/generic/blade4.ogg'
@@ -199,7 +188,6 @@
 	icon_state = "sorority"
 	force = 17					//Also a support weapon
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	attack_verb_continuous = list("zaps", "prods")
 	attack_verb_simple = list("zap", "prod")
 	hitsound = 'sound/weapons/fixer/generic/baton4.ogg'
@@ -218,7 +206,6 @@
 	icon_state = "bean"
 	force = 20
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
@@ -228,12 +215,15 @@
 	desc = "Home sweet home. Warmth and safety aplenty."
 	special = "This weapon has a ranged attack."
 	icon_state = "hearth"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	var/icon_on = "hearth_glow"
 	var/icon_off = "hearth"
 	force = 18
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("swipes", "slashes")
 	attack_verb_simple = list("swipe", "slash")
 	hitsound = 'sound/weapons/fixer/generic/sword3.ogg'
@@ -293,9 +283,7 @@
 	icon_state = "lantern"
 	force = 8 //less than the baton, don't hit things with it
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-
 	var/mode = LANTERN_MODE_REMOTE
 	var/traplimit = 6
 	var/list/traps = list()
@@ -384,7 +372,6 @@
 	force = 38
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	hitsound = 'sound/abnormalities/fairygentleman/ego_sloshing.ogg'
 	attack_verb_continuous = list("smacks", "strikes", "beats")
 	attack_verb_simple = list("smack", "strike", "beat")
@@ -396,14 +383,13 @@
 	icon_state = "red_sheet"
 	force = 22
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	hitsound = 'sound/abnormalities/nocry/ego_redsheet.ogg'
 	var/hit_count = 0
 
 /obj/item/ego_weapon/red_sheet/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	if(isliving(target))
 		++hit_count
 		if(hit_count >= 4)
@@ -424,7 +410,6 @@
 	force = 22
 	attack_speed = 1
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -444,7 +429,6 @@
 	force = 12
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/fixer/generic/knife2.ogg'
@@ -476,7 +460,6 @@
 	icon_state = "zauberhorn"
 	force = 10
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_speed = 0.5
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
@@ -502,6 +485,7 @@
 		G.firer = user
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
+		G.damage*=force_multiplier
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 
@@ -515,4 +499,42 @@
 	hitsound = 'sound/weapons/fixer/generic/club3.ogg'
 	damage = 20
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
+
+
+/obj/item/ego_weapon/sanitizer
+	name = "sanitizer"
+	desc = "It's very shocking."
+	special = "Knocks certain enemies backwards."
+	icon_state = "sanitizer"
+	force = 35					//Still less DPS, replaces baseball bat
+	attack_speed = 1.6
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("beats", "smacks")
+	attack_verb_simple = list("beat", "smack")
+	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
+
+/obj/item/ego_weapon/sanitizer/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+/obj/item/ego_weapon/lance/curfew
+	name = "curfew"
+	desc = "The thing itself had never forgotten its glory days."
+	icon_state = "curfew"
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 22
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.8// really slow
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("bludgeons", "whacks")
+	attack_verb_simple = list("bludgeon", "whack")
+	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'

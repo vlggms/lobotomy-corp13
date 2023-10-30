@@ -12,7 +12,6 @@
 	maxHealth = 220
 	health = 220
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	vision_range = 8
 	move_to_delay = 2.2
 	melee_damage_lower = 10
@@ -315,7 +314,7 @@
 			if(prob(20))
 				say(pick("Lads we got a hostile!", "Shit, wake up troops hell just found us!", "I warn you, we dont die easy.", "Keep your cool and we can all get out of this alive!"))
 			for(var/mob/living/simple_animal/hostile/ordeal/G in oview(9, src))
-				if(istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn) && G.stat != DEAD && !has_status_effect(/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff))
+				if(istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn) && G.stat != DEAD && (!has_status_effect(/datum/status_effect/all_armor_buff) || !has_status_effect(/datum/status_effect/minor_damage_buff)))
 					G.GiveTarget(target)
 					G.TemporarySpeedChange(-1, 1 SECONDS)
 			last_command = 1

@@ -209,6 +209,10 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/curfew
 	cost = 20
 
+/datum/ego_datum/weapon/curfew
+	item_path = /obj/item/ego_weapon/lance/curfew
+	cost = 20
+
 //Lady facing the Wall - Wedge
 /datum/ego_datum/armor/wedge
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/wedge
@@ -303,3 +307,22 @@
 /datum/ego_datum/weapon/zauberhorn
 	item_path = /obj/item/ego_weapon/zauberhorn
 	cost = 20
+
+//Skin Prophecy - Visions of Future Past
+/datum/ego_datum/armor/visions
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/visions
+	cost = 20
+
+/*/datum/ego_datum/weapon/visions
+	item_path = /obj/item/ego_weapon/mini/visions
+	cost = 20*/
+
+//All-Around Cleaner - Sanitizer
+/datum/ego_datum/armor/sanitizer
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/sanitizer
+	cost = 20
+
+/datum/ego_datum/weapon/sanitizer
+	item_path = /obj/item/ego_weapon/sanitizer
+	cost = 20
+

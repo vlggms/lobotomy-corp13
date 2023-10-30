@@ -24,7 +24,6 @@
 	maxHealth = 4000
 	obj_damage = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.1)
-	armortype = WHITE_DAMAGE
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
@@ -66,30 +65,30 @@
 		)
 
 	var/list/modular_work_chance = list( //You can work anything on it! Just not all at once.
-		"spring" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+		"spring" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 35, 40),
 						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
 						ABNORMALITY_WORK_ATTACHMENT = 0,
 						ABNORMALITY_WORK_REPRESSION = 0),
 
 		"summer" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
 						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 35, 40),
 						ABNORMALITY_WORK_REPRESSION = 0),
 
 		"fall" = list(ABNORMALITY_WORK_INSTINCT = 0,
 						ABNORMALITY_WORK_INSIGHT = 0,
 						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55)),
+						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 35, 40)),
 
 		"winter" = list(ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 35, 40),
 						ABNORMALITY_WORK_ATTACHMENT = 0,
 						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55))
 		)
 
 	var/list/modular_damage_coeff = list(
 		"spring" = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5),
-		"summer" = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5),
+		"summer" = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1), //Summer is tanky
 		"fall" = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1.5),
 		"winter" = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
 		)
@@ -204,12 +203,10 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Transform()
 	current_season = SSlobotomy_events.current_season
 	var/list/new_work_chances = modular_work_chance[current_season]
-	var/list/new_damage_coeff = modular_damage_coeff[current_season]
 	work_chances = new_work_chances.Copy()
 	datum_reference.available_work = work_chances
-	damage_coeff = new_damage_coeff.Copy()
+	ChangeResistances(modular_damage_coeff[current_season])
 	work_damage_type = season_stats[current_season][2]
-	armortype = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season
 	name = season_stats[current_season][4]
@@ -515,6 +512,8 @@
 		var/turf/open/OT = get_turf(L)
 		if(isopenturf(OT))
 			OT.MakeSlippery(TURF_WET_WATER, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
+	if(prob(1))
+		new /obj/effect/thunderbolt/seasons(get_turf(L)) //Thunder!
 
 /datum/weather/heatwave //Summer weather, sets you on fire rarely.
 	name = "heatwaves"
@@ -537,10 +536,23 @@
 /datum/weather/heatwave/weather_act(mob/living/carbon/human/L)
 	if(!ishuman(L))
 		return
-	if(prob(1))
+	if(prob(3))
 		L.adjust_fire_stacks(rand(0.1, 1))
 		L.IgniteMob()
 		to_chat(L, "<span class='warning'>You are burning alive!</span>")
+	if(prob(1))
+		SpawnFire(L)
+
+/datum/weather/heatwave/proc/SpawnFire(mob/living/carbon/human/L) //Randomly spawn burning tiles near players
+	set waitfor = FALSE
+	for(var/turf/open/T in view(3, L))
+		if(prob(10))
+			if(prob(66))
+				sleep(rand(1,5))
+			new /obj/effect/hotspot(T)
+			for(var/mob/living/M in T.contents)
+				M.adjust_fire_stacks(3)
+				M.IgniteMob()
 
 /datum/weather/fog //Fall weather, causes nearsightedness.
 	name = "fog"
@@ -564,7 +576,12 @@
 	if(!ishuman(L))
 		return
 	if(prob(1))
-		L.emote("cough")
+		for(var/turf/open/T in view(3, L))
+			if(prob(25))
+				var/datum/effect_system/smoke_spread/S = new
+				S.set_up(3, T)
+				S.start()
+				return
 	if(L.has_status_effect(STATUS_EFFECT_FOGBOUND))
 		return
 	L.apply_status_effect(STATUS_EFFECT_FOGBOUND)
@@ -848,5 +865,10 @@
 /obj/effect/season_effect/breath/spring/Initialize()
 	. = ..()
 	icon_state = pick("Light1", "Light1", "Light3")
+
+/obj/effect/thunderbolt/seasons
+
+/obj/effect/thunderbolt/seasons/Convert(mob/living/carbon/human/H) //haha, it doesn't actually convert.
+	return
 
 #undef SEASONS_SLAM_COOLDOWN

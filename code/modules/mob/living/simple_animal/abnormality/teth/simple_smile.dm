@@ -15,7 +15,6 @@
 	melee_damage_upper = 5
 	is_flying_animal = TRUE
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_verb_continuous = "bumps"
 	attack_verb_simple = "bumps"

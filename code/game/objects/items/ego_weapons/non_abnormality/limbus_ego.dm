@@ -12,7 +12,7 @@
 	reach = 2 //Has 2 Square Reach.
 	attack_speed = 3 // really slow
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/fixer/generic/spear3.ogg'
@@ -37,8 +37,8 @@
 		var/heal_amt = force*0.10
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] > 0)
-				heal_amt *= S.damage_coeff[damtype]
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
 			else
 				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)

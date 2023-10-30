@@ -1489,7 +1489,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	hit_area = affecting.name
 	var/def_zone = affecting.body_zone
 
-	var/armor_block = H.run_armor_check(affecting, I.armortype, "<span class='notice'>Your armor has protected your [hit_area]!</span>", "<span class='warning'>Your armor has softened a hit to your [hit_area]!</span>",I.armour_penetration)
+	var/armor_block
+	switch(I.damtype)
+		if(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE, MELEE, BULLET, LASER, ENERGY, BOMB, BIO, RAD, FIRE, ACID)
+			armor_block = H.run_armor_check(affecting, I.damtype, "<span class='notice'>Your armor has protected your [hit_area]!</span>", "<span class='warning'>Your armor has softened a hit to your [hit_area]!</span>",I.armour_penetration)
+		else
+			armor_block = 0
 	var/Iwound_bonus = I.wound_bonus
 
 	// this way, you can't wound with a surgical tool on help intent if they have a surgery active and are lying down, so a misclick with a circular saw on the wrong limb doesn't bleed them dry (they still get hit tho)
@@ -1501,8 +1506,11 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	H.send_item_attack_message(I, user, hit_area, affecting)
 
 	var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
-
-	apply_damage((I.force * weakness) * justice_mod, I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
+	var/damage = I.force * justice_mod
+	if(istype(I, /obj/item/ego_weapon))
+		var/obj/item/ego_weapon/theweapon = I
+		damage *= theweapon.force_multiplier
+	apply_damage((damage * weakness), I.damtype, def_zone, armor_block, H, wound_bonus = Iwound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
 
 	if(!I.force)
 		return FALSE //item force is zero
@@ -1584,9 +1592,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			BP = H.get_bodypart(check_zone(def_zone))
 			if(!BP)
 				BP = H.bodyparts[1]
-
 	switch(damagetype)
-		if(BRUTE)
+		if(BRUTE, MELEE, BULLET, BOMB, ACID)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod
 			if(BP)
@@ -1594,7 +1601,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.update_damage_overlays()
 			else//no bodypart, we deal damage with a more general method.
 				H.adjustBruteLoss(damage_amount)
-		if(BURN)
+		if(BURN, FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
 			if(BP)
@@ -1602,7 +1609,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					H.update_damage_overlays()
 			else
 				H.adjustFireLoss(damage_amount)
-		if(TOX)
+		if(TOX, BIO)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.tox_mod
 			H.adjustToxLoss(damage_amount)
 		if(OXY)
