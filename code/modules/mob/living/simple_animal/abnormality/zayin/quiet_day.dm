@@ -122,7 +122,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkEnd(mob/living/carbon/human/user)
 	ResetIcon()
-	var/status_buff_type
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
 			user.apply_status_effect(STATUS_EFFECT_WAR_STORY)
