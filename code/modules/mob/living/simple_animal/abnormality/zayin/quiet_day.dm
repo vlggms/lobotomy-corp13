@@ -125,16 +125,16 @@
 	var/status_buff_type
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
-			L.apply_status_effect(STATUS_EFFECT_WAR_STORY)
+			user.apply_status_effect(STATUS_EFFECT_WAR_STORY)
 
 		if(ABNORMALITY_WORK_INSIGHT)
-			apply_status_effect(STATUS_EFFECT_PARABLE)
+			user.apply_status_effect(STATUS_EFFECT_PARABLE)
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
-			apply_status_effect(STATUS_EFFECT_WIFE_STORY)
+			user.apply_status_effect(STATUS_EFFECT_WIFE_STORY)
 
 		else
-			apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
+			user.apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
 	flick("quiet_fadeout", src)
