@@ -86,7 +86,6 @@
 		if(!ishuman(L))
 			continue
 		var/mob/living/carbon/human/H = L
-		new /obj/effect/temp_visual/impact_effect/ion(get_turf(L))
 		H.adjustSanityLoss(-pulse_healing)
 
 //Attack or approach it directly and it attacks you!
