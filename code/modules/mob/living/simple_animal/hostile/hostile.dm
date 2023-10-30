@@ -188,7 +188,7 @@
 	if(stat != DEAD && (damagetype in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
 		//To simplify things, if you bash a abnormality with a wrench it wont show any effect.
 		DamageEffect(damage, damagetype)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/proc/DamageEffect(amount, damtype)
 	//Code stolen from attack_threshold_check() in animal_defense.dm
