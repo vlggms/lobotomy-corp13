@@ -82,10 +82,7 @@
 		HealPulse()
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/HealPulse()
-	for(var/mob/living/L in livinginview(3, get_turf(src)))
-		if(!ishuman(L))
-			continue
-		var/mob/living/carbon/human/H = L
+	for(var/mob/living/carbon/human/H in livinginview(3, get_turf(src)))
 		H.adjustSanityLoss(-pulse_healing)
 
 //Attack or approach it directly and it attacks you!
