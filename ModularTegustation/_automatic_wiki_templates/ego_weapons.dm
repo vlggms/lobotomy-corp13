@@ -39,7 +39,7 @@
 		weapon_reach_template = "This weapon can reach up to [weapon_reach] tiles away"
 		weapon_properties += " Extended range,"
 
-	if(weapon_properties = "") // if we dont have properties, state it
+	if(weapon_properties == "") // if we dont have properties, state it
 		weapon_properties = " None"
 
 	if(!weapon_name || weapon_name == item) // safety check
