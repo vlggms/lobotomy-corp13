@@ -241,7 +241,8 @@
 	abno_info = list(
 		"The inital work with F.A.N. is guaranteed to produce the maximum number of PE-boxes, but the chances decrease with each good work result.",
 		"Employees who worked on F.A.N. were observed to sit increasingly closer to F.A.N during subsequent work processes.",
-		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds.")
+		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds. Luckily, this does not happen during a Qliphoth meltdown.",
+		"When the Qliphoth counter became zero, the abnormality turned off and the facility began to heat up. Eventually, employees began taking mild RED damage due to overheating. Things turned back to normal when an employee hit the \"ON\" button.")
 
 //680 KHz
 /obj/item/paper/fluff/info/he/khz
@@ -323,6 +324,7 @@
 		"T-09-140-1's performance also improved as their 'gear' shifted higher, however doing so damaged them heavily.",
 		"T-09-140-1's stats are listed in the 'Breach Information' section of this document."
 	)
+	abno_can_breach = TRUE
 	abno_breach_damage_type = "RED"
 	abno_breach_damage_count = "Moderate"
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Weak", PALE_DAMAGE = "Immune")
@@ -447,7 +449,7 @@
 		"Allured employees recovered quickly after their mental corruption was resolved.",
 		"Allured employees who panicked were coerced into wearing the shoes, no matter how far away they were.")
 	abno_resistances = list(RED_DAMAGE = "Endured", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Normal", PALE_DAMAGE = "Weak")//Solo breach
-	
+
 //Eris
 /obj/item/paper/fluff/info/he/eris
 	abno_type = /mob/living/simple_animal/hostile/abnormality/eris

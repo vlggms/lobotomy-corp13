@@ -11,10 +11,12 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/city/index_proxy
+/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy //Choose your Drip babey
 	name = "index proxy armor"
 	desc = "Armor worn by index proxies."
 	icon_state = "index_proxy_open"
+	icon = 'icons/obj/clothing/ego_gear/lc13_armor.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/lc13_armor.dmi'
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 40)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -22,6 +24,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+	alternative_styles = list("index_proxy_open", "index_proxy_closed")
 
 /obj/item/clothing/suit/armor/ego_gear/city/index_mess
 	name = "index messenger armor"

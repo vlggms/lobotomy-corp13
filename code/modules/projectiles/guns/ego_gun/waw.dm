@@ -81,8 +81,11 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
+	var/cached_multiplier
 
 /obj/item/gun/ego_gun/magicbullet/before_firing(atom/target, mob/user)
+	if(cached_multiplier)
+		projectile_damage_multiplier = cached_multiplier
 	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
@@ -90,9 +93,8 @@
 	if(istype(Y))
 		fire_delay = 15
 	if(istype(Z))
-		projectile_damage_multiplier = 2.5
-	else
-		projectile_damage_multiplier = 1
+		cached_multiplier = projectile_damage_multiplier
+		projectile_damage_multiplier *= 2.5
 	..()
 
 

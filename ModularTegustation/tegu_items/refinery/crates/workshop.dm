@@ -1,4 +1,3 @@
-
 //First set of city stuff. Cane, Streetlight, Yun office, Leaflet, The Udjat and Mirae Life Insurance, as well as generic Grade 1 fixers.
 /obj/structure/lootcrate/workshopleaf
 	name = "leaflet workshop crate"
@@ -14,7 +13,7 @@
 		/obj/item/ego_weapon/city/streetlight_bat,
 		/obj/item/ego_weapon/city/streetlight_greatsword,
 		/obj/item/ego_weapon/city/leaflet/round,
-		/obj/item/ego_weapon/city/leaflet/wide
+		/obj/item/ego_weapon/city/leaflet/wide,
 		)
 
 	rareloot =	list(
@@ -117,5 +116,5 @@
 		/obj/item/ego_weapon/city/charge/rosespanner/minihammer,
 		/obj/item/clothing/suit/armor/ego_gear/city/rosespannerrep,
 		/obj/item/clothing/suit/armor/ego_gear/city/rosespanner,
-		/obj/item/rosespanner_gear/pale
+		/obj/item/rosespanner_gear/pale,
 		)

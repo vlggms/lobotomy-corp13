@@ -35,11 +35,12 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	playsound(target_turf, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
 	var/damage_dealt = 0
+	var/modified_damage = (ranged_damage*force_multiplier)
 	for(var/turf/open/T in range(target_turf, 1))
 		new /obj/effect/temp_visual/paradise_attack(T)
-		for(var/mob/living/L in user.HurtInTurf(T, list(), ranged_damage, PALE_DAMAGE, hurt_mechs = TRUE))
+		for(var/mob/living/L in user.HurtInTurf(T, list(), modified_damage, PALE_DAMAGE, hurt_mechs = TRUE))
 			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-				damage_dealt += ranged_damage
+				damage_dealt += modified_damage
 	if(damage_dealt > 0)
 		H.adjustStaminaLoss(-damage_dealt*0.2)
 		H.adjustBruteLoss(-damage_dealt*0.1)
@@ -182,8 +183,8 @@
 		var/heal_amt = force*0.15
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] > 0)
-				heal_amt *= S.damage_coeff[damtype]
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
 			else
 				heal_amt = 0
 		user.adjustBruteLoss(-heal_amt)
@@ -221,6 +222,8 @@
 	damtype = initial(damtype)
 
 /obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return "<span class='notice'>It deals [round((force * 4) * force_multiplier)] red, white, black and pale damage combined. (+ [(force_multiplier - 1) * 100]%)</span>"
 	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
 
 /obj/item/ego_weapon/goldrush
@@ -256,6 +259,7 @@
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		goldrush_damage *= justicemod
+		goldrush_damage *= force_multiplier
 
 		if(ishuman(target))
 			goldrush_damage = 50
@@ -401,6 +405,7 @@
 	playsound(user, 'sound/weapons/ego/censored3.ogg', 75)
 	var/turf/MT = get_turf(user)
 	MT.Beam(target_turf, "censored", time=5)
+	var/modified_damage = (special_damage * force_multiplier)
 	for(var/turf/T in turfs_to_hit)
 		if(T.density)
 			break
@@ -412,7 +417,7 @@
 						continue
 				else
 					continue
-			L.apply_damage(special_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(modified_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/censored/get_clamped_volume()
@@ -485,6 +490,7 @@
 		G.firer = user
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
+		G.damage *= force_multiplier
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 
@@ -591,6 +597,7 @@
 			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
+			aoe*=force_multiplier
 			if(L == user || ishuman(L))
 				continue
 			L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -600,6 +607,8 @@
 	canaoe = FALSE
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return "<span class='notice'>It deals [round(force * force_multiplier)] of both white and black damage. (+ [(force_multiplier - 1) * 100]%)</span>"
 	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
 
 /obj/item/ego_weapon/seasons
@@ -851,7 +860,7 @@
 	if(ability_cooldown > world.time)
 		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
 		return FALSE
-	if(do_after(user, 20))
+	if(do_after(user, 20, src))
 		playsound(src, 'sound/weapons/ego/spicebush_special.ogg', 50, FALSE)
 		to_chat(user, "You plant some flower buds.")
 		spawn_plant(user, EAST, NORTH)//spawns one spicebush plant 2 tiles away in each corner
@@ -908,13 +917,14 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	playsound(target_turf, 'sound/weapons/ego/spicebush_fan.ogg', 50, TRUE)
 	var/damage_dealt = 0
+	var/modified_damage = (ranged_damage * force_multiplier)
 	if(do_after(user, 5))
 		for(var/turf/open/T in range(target_turf, 1))
 			new /obj/effect/temp_visual/spicebloom(T)
 			for(var/mob/living/L in T.contents)
-				L.apply_damage(ranged_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(modified_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-					damage_dealt += ranged_damage
+					damage_dealt += modified_damage
 
 /obj/effect/temp_visual/spicebloom
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'

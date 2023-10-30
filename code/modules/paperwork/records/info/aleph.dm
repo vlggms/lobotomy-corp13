@@ -154,10 +154,10 @@
 		"When the Qlipthoth counter reached 0, the faciltiy experienced unusual weather that persisted indoors.",
 		"When the work result was bad, the Qliphoth counter decreased by one.")
 	abno_work_rates = list(
-			ABNORMALITY_WORK_INSTINCT = "High during \"Spring\" and \"Summer\"",
-			ABNORMALITY_WORK_INSIGHT = "High during \"Spring\" and \"Winter\"",
-			ABNORMALITY_WORK_ATTACHMENT = "High during \"Summer\" and \"Autumn\"",
-			ABNORMALITY_WORK_REPRESSION = "High during \"Autumn\" and \"Winter\"")
+			ABNORMALITY_WORK_INSTINCT = "High during \"Summer\" and Common during \"Spring\"",
+			ABNORMALITY_WORK_INSIGHT = "High during \"Spring\" and Common during \"Winter\"",
+			ABNORMALITY_WORK_ATTACHMENT = "High during \"Autumn\" and Common during \"Summer\"",
+			ABNORMALITY_WORK_REPRESSION = "High during \"Winter\" and Common during \"Autumn\"")
 	abno_work_damage_type = "White/Red/Black/Pale"
 	abno_breach_damage_type = "White/Red/Black/Pale"
 	abno_resistances = list(

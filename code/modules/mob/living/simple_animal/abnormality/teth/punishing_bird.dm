@@ -93,7 +93,7 @@
 	obj_damage = 2500
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	stat_attack = DEAD
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
 	bird_angry = TRUE
 	update_icon()
 
@@ -114,7 +114,7 @@
 	environment_smash = initial(environment_smash)
 	stat_attack = initial(stat_attack)
 	adjustHealth(-maxHealth) // Full restoration
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
 	bird_angry = FALSE
 	update_icon()
 

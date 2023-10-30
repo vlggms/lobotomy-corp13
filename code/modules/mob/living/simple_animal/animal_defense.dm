@@ -127,18 +127,16 @@
 
 /mob/living/simple_animal/proc/attack_threshold_check(damage, damagetype = BRUTE, actuallydamage = TRUE)
 	var/temp_damage = damage
-	if(!damage_coeff[damagetype])
-		temp_damage = 0
-	else
-		temp_damage *= damage_coeff[damagetype]
+
+	temp_damage *= damage_coeff.getCoeff(damagetype)
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
 		visible_message("<span class='warning'>[src] looks unharmed!</span>")
 		return FALSE
-	else
-		if(actuallydamage)
-			apply_damage(damage, damagetype, null, getarmor(null, damagetype))
-		return TRUE
+
+	if(actuallydamage)
+		apply_damage(damage, damagetype, null, getarmor(null, damagetype))
+	return TRUE
 
 /mob/living/simple_animal/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	apply_damage(Proj.damage, Proj.damage_type)

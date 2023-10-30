@@ -295,30 +295,31 @@
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/N = new(get_turf(src))
 	for(var/atom/movable/AM in src) //morph code
 		AM.forceMove(N)
-	N.damage_coeff = damage_coeff
+	N.ChangeResistances(damage_coeff)
 	playsound(get_turf(src), 'sound/misc/moist_impact.ogg', 30, 1)
 	qdel(src)
 
 /mob/living/simple_animal/hostile/naked_nested/proc/UpdateArmor()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	var/list/damage_list = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	var/obj/item/clothing/suit/armor/host_armor = locate(/obj/item/clothing/suit/armor) in contents
 	if(host_armor)
 		if(host_armor.armor[RED_DAMAGE])
 			fortitude = 1 - (host_armor.armor[RED_DAMAGE] / 100) // 100 armor / 100 = 1
-			if(fortitude <= damage_coeff[RED_DAMAGE] && fortitude > 0) //if armor is less than current red armor and is more than 0 since anything 0 or below is healing or immune to damage
-				damage_coeff[RED_DAMAGE] = fortitude
+			if(fortitude <= damage_list[RED_DAMAGE] && fortitude > 0) //if armor is less than current red armor and is more than 0 since anything 0 or below is healing or immune to damage
+				damage_list[RED_DAMAGE] = fortitude
 		if(host_armor.armor[WHITE_DAMAGE])
 			prudence = 1 - (host_armor.armor[WHITE_DAMAGE] / 100)
-			if(prudence <= damage_coeff[WHITE_DAMAGE] && prudence > 0)
-				damage_coeff[WHITE_DAMAGE] = prudence
+			if(prudence <= damage_list[WHITE_DAMAGE] && prudence > 0)
+				damage_list[WHITE_DAMAGE] = prudence
 		if(host_armor.armor[BLACK_DAMAGE])
 			temperance = 1 - (host_armor.armor[BLACK_DAMAGE] / 100)
 			if(temperance > 0)
-				damage_coeff[BLACK_DAMAGE] = temperance
+				damage_list[BLACK_DAMAGE] = temperance
 		if(host_armor.armor[PALE_DAMAGE])
 			justice = 1 - (host_armor.armor[PALE_DAMAGE] / 100)
 			if(justice > 0)
-				damage_coeff[PALE_DAMAGE] = justice
+				damage_list[PALE_DAMAGE] = justice
+		ChangeResistances(damage_list)
 		return TRUE
 
 /mob/living/simple_animal/hostile/naked_nested/hour_nesting //for dungeon gamemodes

@@ -59,6 +59,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/core_suppression_state = 0
 	// Work logs from all abnormalities
 	var/list/work_logs = list()
+	// Work logs, but from agent perspective. Used mainly for round-end report
+	var/list/work_stats = list()
 
 	// PE available to be spent
 	var/available_box = 0

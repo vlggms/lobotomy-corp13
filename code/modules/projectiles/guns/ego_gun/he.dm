@@ -212,7 +212,7 @@
 	inhand_icon_state = "deagleg"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	special = "This weapon fires tiny dice that deal varying amounts of damage."
+	special = "This weapon fires dice that deal varying amounts of damage."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10

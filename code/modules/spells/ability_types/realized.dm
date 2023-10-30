@@ -92,28 +92,14 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] *= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] *= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] *= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] *= 1.1
+	M.AddModifier(/datum/dc_change/salvation)
 
 /datum/status_effect/salvation/on_remove()
 	. = ..()
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] /= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] /= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] /= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] /= 1.1
+	M.RemoveModifier(/datum/dc_change/salvation)
 
 /atom/movable/screen/alert/status_effect/salvation
 	name = "Salvation"
@@ -194,10 +180,7 @@
 		H.physiology.black_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[BLACK_DAMAGE] *= 1.5
+	M.AddModifier(/datum/dc_change/mosb_black)
 
 /datum/status_effect/mosb_black_debuff/on_remove()
 	. = ..()
@@ -206,7 +189,7 @@
 		H.physiology.black_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] /= 1.5
+	M.RemoveModifier(/datum/dc_change/mosb_black)
 
 /atom/movable/screen/alert/status_effect/mosb_black_debuff
 	name = "Dread"
@@ -257,10 +240,7 @@
 		H.physiology.pale_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[PALE_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[PALE_DAMAGE] += 0.5
+	M.AddModifier(/datum/dc_change/godhead)
 
 /datum/status_effect/judgement_pale_debuff/on_remove()
 	. = ..()
@@ -269,7 +249,7 @@
 		H.physiology.pale_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[PALE_DAMAGE] -= 0.5
+	M.RemoveModifier(/datum/dc_change/godhead)
 
 /atom/movable/screen/alert/status_effect/judgement_pale_debuff
 	name = "Soul Drain"
@@ -748,12 +728,11 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/L in livinginview(8, src))
-		if(faction_check_mob(L))
+	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)
-		var/mob/living/carbon/human/H = L
-		H.adjustSanityLoss(-2)
+		L.adjustSanityLoss(-2)
 
 /obj/effect/proc_holder/ability/overheat
 	name = "Overheat"
@@ -1018,15 +997,24 @@
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
 			for(var/egoitem in linked_structure.alephitem)
-				if(ispath(egoitem, /obj/item/ego_weapon))
+				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
 					ego_list += egoitem
 					continue
 		chosenEGO = pick(ego_list)
-		var/obj/item/ego_weapon/ego = new chosenEGO(get_turf(user))
-		ego.name = "shimmering [ego.name]"
-		ego.force = round(initial(chosenEGO.force) * 1.2, 1)
-		ego.set_light(3, 6, "#D4FAF37")
-		ego.color = "#FFD700"
+		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
+		if(ispath(ego, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
+			egoweapon.force_multiplier = 1.2
+			egoweapon.name = "shimmering [egoweapon.name]"
+			egoweapon.set_light(3, 6, "#D4FAF37")
+			egoweapon.color = "#FFD700"
+
+		else if(ispath(ego, /obj/item/gun/ego_gun))
+			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
+			egogun.projectile_damage_multiplier = 1.2
+			egogun.name = "shimmering [egogun.name]"
+			egogun.set_light(3, 6, "#D4FAF37")
+			egogun.color = "#FFD700"
 		return ..()
 
 /* Opened Can of Wellcheers - Wellcheers */
@@ -1187,22 +1175,21 @@
 /datum/status_effect/stacking/infestation/on_apply()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	red = M.damage_coeff[RED_DAMAGE]
+	M.AddModifier(/datum/dc_change/infested)
 
 /datum/status_effect/stacking/infestation/on_remove()
 	. = ..()
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[RED_DAMAGE] = red
+	M.RemoveModifier(/datum/dc_change/infested)
 
 /datum/status_effect/stacking/infestation/add_stacks(stacks_added)
 	. = ..()
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[RED_DAMAGE] = red * (1+(stacks/20))
+	var/datum/dc_change/infested/mod = M.HasDamageMod(/datum/dc_change/infested)
+	mod.potency = 1+(stacks/20)
+	M.UpdateResistances()
 	linked_alert.desc = initial(linked_alert.desc)+"[stacks*5]%!"
 
 /mob/living/simple_animal/hostile/naked_nest_serpent_friend
