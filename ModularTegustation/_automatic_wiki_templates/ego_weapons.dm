@@ -16,7 +16,7 @@
 	var/throw_damage = initial(output.item_path.throwforce)
 	var/weapon_reach = initial(output.item_path.reach)
 	var/extraction_cost = initial(output.cost)
-	var/weapon_properties = "None"
+	var/weapon_properties = "" // set in if() checks
 
 /**
  * Here we add some text to the vars, we could do it in the template but that would make it harder to read/edit
@@ -33,11 +33,14 @@
 
 	if(throw_damage > weapon_force) // are we are a boomerang?
 		throw_damage_template = "This weapon deals [throw_damage] damage when thrown."
-		weapon_properties += "Throwable   "
+		weapon_properties += " Throwable,"
 
 	if(weapon_reach > 1) // should probably check if we are a spear or not
 		weapon_reach_template = "This weapon can reach up to [weapon_reach] tiles away"
-		weapon_properties += "Extended range   "
+		weapon_properties += " Extended range,"
+
+	if(weapon_properties = "") // if we dont have properties, state it
+		weapon_properties = " None"
 
 	if(!weapon_name || weapon_name == item) // safety check
 		return
@@ -47,7 +50,6 @@
  */
 
 	var/created_template = " \n"
-	created_template += "Weapon properties: [weapon_properties] \n"
 	created_template += "{| class=\"wikitable\" \n"
 	created_template += "|+ [weapon_name] \n"									//			Ayin's favorite knife
 	created_template += "| colspan=\"2\" |[weapon_description] \n"				//	This is Ayin's favorite knife, spooky
@@ -57,6 +59,8 @@
 	created_template += "|- \n"
 	created_template += "| [weapon_reach_template] \n"							//	This weapon can reach up to [1] tiles away
 	created_template += "| [extraction_cost_template] \n"						//	This weapon costs [20] PE to extract
+	created_template += "|- \n"
+	created_template += "| colspan=\"2\" |Weapon properties:[weapon_properties] \n"
 	created_template += "|}"
 
 	return created_template
