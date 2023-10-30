@@ -79,6 +79,7 @@
 	TalkStart(user)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkStart(mob/living/carbon/human/user)
+	flick("quiet_fadein", src)
 	icon_state = "quiet_ghost"
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
@@ -121,20 +122,28 @@
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkEnd(mob/living/carbon/human/user)
 	ResetIcon()
+	var/status_buff_type
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
-			user.apply_status_effect(STATUS_EFFECT_WAR_STORY)
+			status_buff_type = STATUS_EFFECT_WAR_STORY
 
 		if(ABNORMALITY_WORK_INSIGHT)
-			user.apply_status_effect(STATUS_EFFECT_PARABLE)
+			status_buff_type = STATUS_EFFECT_PARABLE
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
-			user.apply_status_effect(STATUS_EFFECT_WIFE_STORY)
+			status_buff_type = STATUS_EFFECT_WIFE_STORY
 
 		else
-			user.apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
+			status_buff_type = STATUS_EFFECT_DEMENTIA_RAMBLINGS
+
+	for (var/mob/living/L in view(3, src)) //Gives the buff to everybody in the cell
+		if (!ishuman(L))
+			continue
+
+		L.apply_status_effect(status_buff_type)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
+	flick("quiet_fadeout", src)
 	icon_state = "quiet_day"
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerCheck(mob/living/carbon/human/user)
@@ -148,7 +157,7 @@
 	name = "A Quiet Day"
 	desc = "You listened to the old man's story."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "rest"	//Guh I suck at status sprites but I'm also broke
+	icon_state = "quiet"
 
 //A Quiet day
 //A simple 5 minute stat buff

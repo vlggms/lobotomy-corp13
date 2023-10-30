@@ -1005,3 +1005,18 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "violet_noon_ability"
 	pixel_x = -8
+
+/obj/effect/temp_visual/blubbering_smash
+	name = "blubbering smash"
+	icon_state = "blubbering_smash"
+	duration = 5
+
+/obj/effect/temp_visual/onesin_punishment
+	name = "heavenly punishment"
+	icon_state = "onesin_punishment"
+	duration = 6
+
+/obj/effect/temp_visual/onesin_blessing
+	name = "heavenly blessing"
+	icon_state = "onesin_blessing"
+	duration = 12
