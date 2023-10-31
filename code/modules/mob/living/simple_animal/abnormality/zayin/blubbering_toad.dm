@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_BLUERESIN /datum/status_effect/blue_resin
 //Coded by Coxswain
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad
 	name = "Blubbering Toad"
@@ -37,7 +38,8 @@
 	work_damage_type = BLACK_DAMAGE
 
 	//work
-	var/pulse_healing = 2
+	var/pulse_healing = 15
+	var/healing_pulse_amount = 0
 	//breach
 	var/tongue_cooldown
 	var/tongue_cooldown_time = 2 SECONDS
@@ -63,20 +65,24 @@
 	..()
 	BlubberLoop() //crying sfx
 
+/mob/living/simple_animal/hostile/abnormality/blubbering_toad/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(pe == 0)
+		return
+	user.apply_status_effect(STATUS_EFFECT_BLUERESIN)
+	healing_pulse_amount = pick (rand(6,8))
+
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/BlubberLoop()
 	if(health < 1)
 		return
 	var/num = pick(1,2,3,4)
 	playsound(get_turf(src), "sound/abnormalities/blubbering_toad/blurble[num].ogg", 100, FALSE)
 	addtimer(CALLBACK(src, .proc/BlubberLoop), rand(3,10) SECONDS)
-	if(IsContained()) //isn't breached
+	if(IsContained() && (healing_pulse_amount > 0)) //isn't breached and has charges left
+		healing_pulse_amount --
 		HealPulse()
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/HealPulse()
-	for(var/mob/living/L in livinginview(3, get_turf(src)))
-		if(!ishuman(L))
-			continue
-		var/mob/living/carbon/human/H = L
+	for(var/mob/living/carbon/human/H in livinginview(3, get_turf(src)))
 		H.adjustSanityLoss(-pulse_healing)
 
 //Attack or approach it directly and it attacks you!
@@ -170,6 +176,8 @@
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		forceMove(get_turf(target)) //look out, someone is rushing you!
 		SLEEP_CHECK_DEATH(0.3)
+		for(var/turf/T in view(1, src))
+			new /obj/effect/temp_visual/blubbering_smash(T)
 		playsound(src, 'sound/abnormalities/blubbering_toad/attack.ogg', 50, FALSE, 4)
 		jump_cooldown = world.time + jump_cooldown_time
 		animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
@@ -237,3 +245,29 @@
 		icon_tongue = "blubbering_tongue_[state]"
 		icon_state = icon_living
 		playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
+
+/datum/status_effect/blue_resin
+	id = "blue resin"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 3000 //Lasts 5 mins
+	alert_type = /atom/movable/screen/alert/status_effect/blue_resin
+
+/atom/movable/screen/alert/status_effect/blue_resin
+	name = "Blue Resin"
+	desc = "The gushing gloom has made you more resilient to BLACK damage."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "blueresin"
+
+/datum/status_effect/blue_resin/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.physiology.black_mod *= 0.9
+
+/datum/status_effect/blue_resin/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.physiology.black_mod /= 0.9
+
+#undef STATUS_EFFECT_BLUERESIN
