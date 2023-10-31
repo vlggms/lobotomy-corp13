@@ -769,3 +769,7 @@
 
 /atom/movable/screen/mood/attack_tk()
 	return
+
+/atom/movable/screen/holomap
+	icon = 'icons/480x480.dmi'
+	icon_state = "blank"
