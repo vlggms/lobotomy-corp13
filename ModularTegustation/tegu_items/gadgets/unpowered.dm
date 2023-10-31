@@ -158,7 +158,7 @@
 /obj/item/deepscanner/proc/Scan(mob/living/target, mob/user)
 	if(!isanimal(target) && !ishuman(target))
 		return
-	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [target].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [target].</span>")
+	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [target].</span>", "<span class='notice'>You begin scanning [target].</span>")
 	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, target, 7)))
 		return
