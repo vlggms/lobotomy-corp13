@@ -382,8 +382,11 @@
 		return TRUE
 	return FALSE
 
-
-
+#undef RAK_HP_MODE
+#undef RAK_SP_MODE
+#undef RAK_DUAL_MODE
+#undef RAK_CRIT_MODE
+#undef RAK_BURST_MODE
 
 //Tool E.G.O extractor
 /obj/item/tool_extractor
