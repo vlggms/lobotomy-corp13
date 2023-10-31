@@ -330,7 +330,7 @@
 
 /obj/item/powered_gadget/vitals_projector/attack_self(mob/user)
 	var/mod1_ask = alert("modify tool?", "Choose a target type.", "Human", "Ordeal", "Abnormality", "cancel")
-	if(do_after(user, 3 SECONDS, target = user, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE))
+	if(do_after(user, 3 SECONDS, user, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE))
 		switch(mod1_ask)
 			if("cancel")
 				return
