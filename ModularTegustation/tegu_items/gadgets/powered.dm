@@ -445,11 +445,17 @@
 	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
 		to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
 		return
+	if(T.status_flags & GODMODE)
+		to_chat(user, "<span class='notice'>[T] simply ignores you.</span>")
+		return
 	if(cell.charge >= batterycost && ishostile(T) && T.stat != DEAD && !(T.status_flags & GODMODE) && !T.client)
 		var/mob/living/simple_animal/hostile/H = T
 		if(H.target != user)
 			hit_message = "<span class='warning'>[user] injected some enkephalin into [T].</span>"
 			H.GiveTarget(user)
+			if(isabnormalitymob(H)) // RISK. REWARD.
+				var/mob/living/simple_animal/hostile/abnormality/abno = H
+				abno.GiftUser(user, 1, 100)
 			user.visible_message(hit_message)
 			cell.charge -= batterycost
 			update_icon()
