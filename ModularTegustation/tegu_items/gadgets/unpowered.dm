@@ -128,7 +128,8 @@
 //Deepscanner
 /obj/item/deepscanner //intended for ordeals
 	name = "deep scan kit"
-	desc = "A collection of tools used for scanning the physical form of an entity."
+	desc = "A collection of tools used for scanning the physical form of an entity.\n\
+			Scanning an active hostile entity will make it 10% weaker to all damage."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "maint_kit"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
@@ -143,21 +144,32 @@
 /obj/item/deepscanner/examine(mob/living/M)
 	. = ..()
 	if(deep_scan_log)
-		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log]</span>")
+		to_chat(M, "<span class='notice'>Previous Scan:\n[deep_scan_log]</span>")
 
 /obj/item/deepscanner/attack(mob/living/M, mob/user)
-	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
-	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-	if(!do_after(user, 2 SECONDS, target = user))
+	return
+
+/obj/item/deepscanner/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!istype(target))
 		return
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+	Scan(target, user)
+
+/obj/item/deepscanner/proc/Scan(mob/living/target, mob/user)
+	if(!isanimal(target) && !ishuman(target))
+		return
+	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [target].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [target].</span>")
+	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, target, 7)))
+		return
+	check1e = FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
 		var/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		check1a = H.physiology.red_mod
 		check1b = H.physiology.white_mod
 		check1c = H.physiology.black_mod
 		check1d = H.physiology.pale_mod
-		check1e = "Unknown"
 		if(suit)
 			check1a = 1 - (H.getarmor(null, RED_DAMAGE) / 100)
 			check1b = 1 - (H.getarmor(null, WHITE_DAMAGE) / 100)
@@ -166,9 +178,11 @@
 		if(H.job)
 			check1e = H.job
 	else
-		var/mob/living/simple_animal/hostile/mon = M
-		if((mon.status_flags & GODMODE))
-			return
+		var/mob/living/simple_animal/mon = target
+		if(!(mon.status_flags & GODMODE))
+			if(!mon.HasDamageMod(/datum/dc_change/scanned))
+				mon.AddModifier(/datum/dc_change/scanned)
+				to_chat(user, "<span class='nicegreen'>[mon]'s weakness was analyzed!</span>")
 		check1a = mon.damage_coeff.getCoeff(RED_DAMAGE)
 		check1b = mon.damage_coeff.getCoeff(WHITE_DAMAGE)
 		check1c = mon.damage_coeff.getCoeff(BLACK_DAMAGE)
@@ -176,13 +190,11 @@
 		if(isabnormalitymob(mon))
 			var/mob/living/simple_animal/hostile/abnormality/abno = mon
 			check1e = THREAT_TO_NAME[abno.threat_level]
-		else
-			check1e = FALSE
-	var/output = "----------\n[check1e ? check1e+" " : ""][M]\nHP [M.health]/[M.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n----------"
+
+	var/output = "--------------------\n[check1e ? check1e+" [target]" : "[target]"]\nHP [target.health]/[target.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n--------------------"
 	to_chat(user, "<span class='notice'>[output]</span>")
 	deep_scan_log = output
-	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-
+	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
 //Kcorp Syringes
 /obj/item/ksyringe
