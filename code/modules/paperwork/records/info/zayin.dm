@@ -71,7 +71,7 @@
 	abno_code = "D-01-145"
 	abno_info = list(
 		"When work with T-01-145 was completed, it started to speak.",
-		"All agents present on the room while T-01-145 told it's entire story recieved a buff for the corresponding attribute, lasting 5 minutes.")
+		"If the agent working with T-01-145 listened to it's entire story, they received a buff for the corresponding attribute, lasting 5 minutes.")
 
 //Letters on Standby
 /obj/item/paper/fluff/info/zayin/mail
