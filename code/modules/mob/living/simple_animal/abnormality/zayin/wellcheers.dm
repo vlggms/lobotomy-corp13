@@ -36,7 +36,7 @@
 			continue
 		if(!TF.is_blocked_turf(TRUE))
 			if(locate(/obj/structure/wellcheers_side_shrimp) in TF)
-				return
+				continue
 			new /obj/structure/wellcheers_side_shrimp(TF)
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
