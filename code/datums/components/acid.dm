@@ -106,7 +106,7 @@
 /datum/component/acid/proc/process_obj(obj/target, delta_time)
 	if(target.resistance_flags & ACID_PROOF)
 		return
-	target.take_damage(min(1 + round(sqrt(acid_power * acid_volume)*0.3), OBJ_ACID_DAMAGE_MAX) * delta_time, BURN, ACID, 0)
+	target.take_damage(min(1 + round(sqrt(acid_power * acid_volume)*0.3), OBJ_ACID_DAMAGE_MAX) * delta_time, ACID, 0)
 
 /// Handles processing on a [/mob/living].
 /datum/component/acid/proc/process_mob(mob/living/target, delta_time)

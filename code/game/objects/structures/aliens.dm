@@ -202,7 +202,7 @@
 	return exposed_temperature > 300
 
 /obj/structure/alien/weeds/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0, 0)
+	take_damage(5, BURN, 0)
 
 //Weed nodes
 /obj/structure/alien/weeds/node
@@ -358,7 +358,7 @@
 	return exposed_temperature > 500
 
 /obj/structure/alien/egg/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0, 0)
+	take_damage(5, BURN, 0)
 
 /obj/structure/alien/egg/obj_break(damage_flag)
 	if(!(flags_1 & NODECONSTRUCT_1))
