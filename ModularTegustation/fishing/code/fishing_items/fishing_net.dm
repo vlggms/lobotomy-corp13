@@ -11,6 +11,7 @@
 	desc = "A wall of twine and wires that traps fish. Alt click to harvest."
 	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
 	icon_state = "trawling_net_empty"
+	anchored = TRUE
 	max_integrity = 5
 	break_message = "<span class='notice'>The net falls apart!</span>"
 	break_sound = 'sound/items/wirecutter.ogg'
