@@ -28,6 +28,17 @@
 	harvest_phrase = span_notice("The machine dispenses some clear-ish soda into %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."
 
+/mob/living/simple_animal/hostile/abnormality/wellcheers/PostSpawn()
+	..()
+	for(var/d in list(EAST, WEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			if(locate(/obj/structure/wellcheers_side_shrimp) in TF)
+				return
+			new /obj/structure/wellcheers_side_shrimp(TF)
+
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
 	switch(work_type)
@@ -39,7 +50,7 @@
 			dropped_can = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple
 	if(!dropped_can)
 		return
-	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
+	var/turf/dispense_turf = get_step(src, pick(NORTH, SOUTH, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 	dropped_can = new dropped_can(dispense_turf)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE)
 	visible_message(span_notice("[src] dispenses [dropped_can]."))
@@ -47,8 +58,14 @@
 
 // Death!
 /mob/living/simple_animal/hostile/abnormality/wellcheers/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	// Visual effects
+	for(var/d in list(EAST, WEST))
+		for(var/obj/structure/wellcheers_side_shrimp/shrimp in get_step(src, d))
+			shrimp.KidnapDance()
 	for(var/turf/open/T in view(7, src))
 		new /obj/effect/temp_visual/water_waves(T)
+
+	// Actual effects
 	playsound(get_turf(src), 'sound/abnormalities/wellcheers/ability.ogg', 75, 0)
 	to_chat(user, span_userdanger("You feel sleepy..."))
 	user.AdjustSleeping(10 SECONDS)
@@ -58,7 +75,6 @@
 	user.forceMove(get_turf(shrimpspot)) // Happy fishing!
 	animate(user, alpha = 255, time = 0 SECONDS)
 	return
-
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red
@@ -129,3 +145,18 @@
 /obj/effect/landmark/shrimpship
 	name = "shrimp ship"
 	icon_state = "carp_spawn"
+
+// Wellcheers Side Shrimps
+/obj/structure/wellcheers_side_shrimp
+	name = "wellcheers shrimp"
+	desc = "A peppy shrimp accompanying the soda machine, it seems friendly."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "wellcheers_sideshrimp"
+	anchored = TRUE
+	density = TRUE
+	layer = ABOVE_MOB_LAYER
+	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/structure/wellcheers_side_shrimp/proc/KidnapDance()
+	flick("wellcheers_kidnap",src)
