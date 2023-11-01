@@ -12,8 +12,8 @@ SUBSYSTEM_DEF(cityevents)
 	var/list/total_events = list()
 	var/list/distortions_available = list()
 	var/helpful_events = list("chickens", "money", "tresmetal", "hppens", "sppens")
-	var/harmful_events = list("drones", "beaks", "shrimps", "lovetowneasy", "lovetownhard", "gbugs", "gcorporals")
-	var/ordeal_events = list("sweepers", "scouts", "bots")
+	var/harmful_events = list("drones", "beaks", "shrimps", "lovetowneasy", "lovetownhard")
+	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs", "gcorporals")
 	var/neutral_events = list("swag")
 	var/boss_events = list("sweeper", "lovetown", "factory")
 	var/list/generated = list()	//Which ckeys have generated stats
@@ -26,7 +26,7 @@ SUBSYSTEM_DEF(cityevents)
 	InitializeEvents()
 	if(!can_fire)
 		return
-	addtimer(CALLBACK(src, .proc/Event), 1 MINUTES)	//Start doing events in 15 minutes, at 1 for testing
+	addtimer(CALLBACK(src, .proc/Event), 15 MINUTES)	//Start doing events in 15 minutes
 	addtimer(CALLBACK(src, .proc/Distort), 20 MINUTES)		//Distortions start in 20
 	addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)
 
@@ -69,9 +69,9 @@ SUBSYSTEM_DEF(cityevents)
 
 //Events
 /datum/controller/subsystem/cityevents/proc/Event()
-	addtimer(CALLBACK(src, .proc/Event), 30 SECONDS) //at 30 for testing
+	addtimer(CALLBACK(src, .proc/Event), 5 MINUTES)
 	var/chosen_event
-	if(wavetime == 5 && wavetime !=0)	//after 50 minutes
+	if(wavetime == 10 && wavetime !=0)	//after 50 minutes
 		chosen_event = Boss()
 	else
 		chosen_event = pick(total_events)
