@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(cityevents)
 	var/harmful_events = list("drones", "beaks", "shrimps", "lovetowneasy", "lovetownhard")
 	var/ordeal_events = list("sweepers", "scouts", "bots", "gbugs", "gcorporals")
 	var/neutral_events = list("swag")
-	var/boss_events = list("sweeper", "lovetown", "factory")
+	var/boss_events = list("sweeper", "lovetown", "factory", "gcorp")
 	var/list/generated = list()	//Which ckeys have generated stats
 	var/wavetime 		//How many waves have spawned? each wave increases the # of enemies by about 5%. One wave is every 5 minutes
 
@@ -155,6 +155,9 @@ SUBSYSTEM_DEF(cityevents)
 		if ("factory")
 			new /mob/living/simple_animal/hostile/ordeal/green_dusk (get_turf(T))
 			chosen_event = "bots"
+		if ("gcorp")
+			new /mob/living/simple_animal/hostile/ordeal/steel_dusk (get_turf(T))
+			chosen_event = "gbugs"
 	return chosen_event
 
 //Distortions
