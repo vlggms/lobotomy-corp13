@@ -22,14 +22,23 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	//Breach all
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_list)
 		INVOKE_ASYNC(A, /mob/living/simple_animal/hostile/abnormality.proc/BreachEffect)
+
+	//Non-abnos too need to see in the dark
+	for(var/mob/living/simple_animal/hostile/A in GLOB.mob_list)
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		A.AddSpell(bloodspell)
 		A.faction += "hostile"
+
 	if(SSmaptype.maptype in SSmaptype.autoend)
 		switch(SSmaptype.maptype)
+
+			//R-Corp stuff.
 			if("rcorp")
-				addtimer(CALLBACK(src, .proc/loseround), 30 MINUTES)
-				to_chat(world, "<span class='userdanger'>Round will end in 30 minutes.</span>")
+				addtimer(CALLBACK(src, .proc/drawround), 40 MINUTES)
+				to_chat(world, "<span class='userdanger'>Round will end in a draw after 40 minutes.</span>")
+				addtimer(CALLBACK(src, .proc/rcorp_announce), 3 MINUTES)
+
+			//W-Corp stuff
 			if("wcorp")
 				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
 				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
@@ -41,6 +50,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 					if(2)
 						GLOB.wcorp_enemy_faction = "gcorp"
 
+//Win cons
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
 	to_chat(world, "<span class='userdanger'>Players have taken too long! Round automatically ending.</span>")
@@ -49,6 +59,22 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	SSticker.force_ending = 1
 	to_chat(world, "<span class='userdanger'>Players have survived! Round automatically ending.</span>")
 
+/datum/game_mode/combat/proc/drawround()
+	SSticker.force_ending = 1
+	to_chat(world, "<span class='userdanger'>Players have taken too long! Round ending in a Draw.</span>")
+
+
+//Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()
 	addtimer(CALLBACK(src, .proc/counterincrease), 1 MINUTES)
 	GLOB.combat_counter+=1
+
+/datum/game_mode/combat/proc/rcorp_announce()
+	var/announcement_type = ""
+	switch (GLOB.rcorp_objective)
+		if("button", "arbiter")
+			announcement_type = "Intelligence has located a golden bough in the vicinity. You are to collect it and wipe all resistance."
+		if("vip")
+			announcement_type = "Intelligence has located a highly intelligent target in the vicinity. Destroy it at all costs."
+	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
+

@@ -141,5 +141,7 @@
 	petals_next = world.time + petals_next_time + 30
 	TeleportAway()
 	icon_state = "alriune_active"
+	if(CheckCombat())
+		pulse_damage = 70		//R-Corp cannot eat 180 white damage
 	return
 

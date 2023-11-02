@@ -220,9 +220,6 @@
 			pixel_x = -32
 			base_pixel_x = -32
 			if(phase == 3)
-				if(CheckCombat())
-					phase = 2
-					return
 				icon_living = "mosb_breach2"
 				SpeedChange(1)
 				patrol_cooldown_time = 30 SECONDS

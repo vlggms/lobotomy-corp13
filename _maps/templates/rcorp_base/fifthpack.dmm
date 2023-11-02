@@ -1,0 +1,2464 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aE" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/cryopod,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"bb" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/jungle,
+/area/city/outskirts)
+"bu" = (
+/obj/structure/closet/crate,
+/obj/item/gun/energy/e_gun/rabbitdash/small,
+/obj/item/ego_weapon/city/rabbit_blade/raven,
+/obj/item/clothing/suit/armor/ego_gear/rabbit/officer,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"by" = (
+/obj/structure/rcorpcomms,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"bV" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/bronze,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"bW" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"cH" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"cJ" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"dC" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "junior officer quarters"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"dJ" = (
+/obj/effect/landmark/observer_start,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"ec" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/server/presets/service,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"eK" = (
+/obj/structure/chair/bronze,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"eS" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"fm" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/fakepit,
+/area/city/outskirts)
+"gf" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"gw" = (
+/obj/structure/table/wood,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/obj/item/food/fries,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"gC" = (
+/obj/machinery/telecomms/message_server/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"gG" = (
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"gL" = (
+/obj/machinery/fat_sucker,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"hg" = (
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"hQ" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/fakepit,
+/area/city/outskirts)
+"iF" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"je" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "assault commander's bunk";
+	req_access_txt = "20"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"ji" = (
+/obj/structure/table/abductor,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"jH" = (
+/obj/machinery/telecomms/broadcaster/preset_left,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"kh" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"kp" = (
+/obj/structure/table/wood,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/obj/item/food/burger/cheese,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"lf" = (
+/obj/machinery/computer/communications,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"lg" = (
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"lk" = (
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"lN" = (
+/obj/structure/table/wood,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/obj/item/food/bbqribs,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"mu" = (
+/obj/structure/table/wood,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/food/cake/carrot,
+/obj/item/kitchen/knife,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"mz" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"mP" = (
+/obj/effect/turf_decal/sand,
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"ns" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"pj" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_left,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"pl" = (
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"ql" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"qp" = (
+/obj/machinery/cryopod,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"qt" = (
+/obj/structure/table/abductor,
+/obj/item/storage/lockbox/medal/lcdr,
+/obj/item/gun/ballistic/automatic/pistol/terragov/beretta,
+/obj/item/ammo_box/magazine/m9mm,
+/obj/item/ammo_box/magazine/m9mm,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"qQ" = (
+/turf/open/water/jungle,
+/area/city/outskirts)
+"qS" = (
+/obj/structure/rack,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"qU" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/rabbitdash/pale,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"ri" = (
+/obj/structure/table/abductor,
+/obj/item/storage/firstaid/revival,
+/obj/item/gps,
+/obj/item/survivalcapsule/rcorpcommand,
+/obj/item/survivalcapsule/rcorpsmallcommand,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"rK" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cdr";
+	name = "Assault Commander's Weaponry";
+	req_access_txt = "20"
+	},
+/obj/item/gun/ballistic/automatic/pistol/deagle,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ammo_box/magazine/m50,
+/obj/item/ego_weapon/city/rabbit_blade/command,
+/obj/item/storage/lockbox/medal/cdr,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"sp" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"uh" = (
+/obj/item/storage/firstaid/revival,
+/obj/structure/rack,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"un" = (
+/turf/open/floor/pod,
+/area/city/outskirts)
+"vo" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/hub/preset,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"vW" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
+"wp" = (
+/obj/structure/chair/comfy/black{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"wZ" = (
+/turf/closed/indestructible/syndicate,
+/area/city/outskirts)
+"yr" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/server/presets/supply,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"yO" = (
+/obj/machinery/telecomms/server/presets/command,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"zB" = (
+/obj/effect/turf_decal/sand/plating,
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"zL" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"AF" = (
+/obj/structure/lattice/catwalk,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/fakepit,
+/area/city/outskirts)
+"BU" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/rabbit/minigun,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"BY" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"CN" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "base commander's bunk";
+	req_access_txt = "7;5"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"CZ" = (
+/obj/effect/turf_decal/sand,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"Dv" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/city/outskirts)
+"EH" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/receiver/preset_right,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Fk" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Fv" = (
+/obj/effect/turf_decal/sand,
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"FF" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/item/commandprojector,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"FH" = (
+/obj/machinery/telecomms/broadcaster/preset_right,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Gd" = (
+/obj/structure/table/reinforced,
+/obj/machinery/recharger,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"GA" = (
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/light,
+/area/city/outskirts)
+"He" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "defensive equipment room";
+	req_access_txt = "7;5"
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Hy" = (
+/obj/effect/turf_decal/sand,
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"HL" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "lcdr";
+	name = "Lieutenant Commander's Wardrobe";
+	req_access_txt = "19"
+	},
+/obj/item/clothing/suit/jacket,
+/obj/item/clothing/under/suit/lobotomy/rabbit,
+/obj/item/clothing/suit/jacket/miljacket,
+/obj/item/binoculars,
+/obj/item/clothing/head/beret/tegu/captain{
+	armor = list()
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"HP" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "tcomms room";
+	req_access_txt = "7;5"
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"HT" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "requisitions";
+	req_access_txt = "19"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"HX" = (
+/obj/machinery/telecomms/server/presets/security,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Ik" = (
+/obj/structure/rack,
+/obj/item/gun/energy/e_gun/rabbitdash/heavy,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Iq" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/processor/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"It" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/relay/preset/telecomms,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"ID" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/bus/preset_one,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"IN" = (
+/obj/machinery/telecomms/server/presets/science,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Jm" = (
+/obj/machinery/telecomms/server/presets/medical,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"JJ" = (
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Ka" = (
+/obj/machinery/telecomms/server/presets/common,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Km" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/bus/preset_three,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Kw" = (
+/obj/effect/turf_decal/sand/plating,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"KM" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_four,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Lw" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"LH" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Mk" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/black,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Mq" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/server/presets/engineering,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"Mw" = (
+/obj/structure/table/abductor,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"MV" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/ntnet_relay,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+"NG" = (
+/turf/closed/indestructible/rock,
+/area/city/outskirts)
+"OA" = (
+/obj/structure/table/abductor,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"OH" = (
+/obj/machinery/door/airlock/survival_pod{
+	name = "Officer's meet";
+	req_access_txt = "19"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"QI" = (
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"RZ" = (
+/obj/structure/rack,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/powered_gadget/detector_gadget/abnormality,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Sq" = (
+/obj/structure/closet/secure_closet{
+	icon_state = "cdr";
+	name = "Assault Commander's Military Standard Wardrobe";
+	req_access_txt = "20"
+	},
+/obj/item/clothing/suit/jacket/miljacket,
+/obj/item/clothing/suit/jacket,
+/obj/item/clothing/under/mercenary/camo,
+/obj/item/clothing/suit/armor/ego_gear/rcorp_officer/cdr,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Ti" = (
+/obj/structure/table/abductor,
+/obj/machinery/button/door{
+	id = "outside";
+	name = "operation start button";
+	req_access_txt = "19"
+	},
+/turf/open/floor/pod,
+/area/city/outskirts)
+"TJ" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/sandbags/fifty,
+/obj/item/storage/box/barrier,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"TM" = (
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/pod,
+/area/city/outskirts)
+"Vv" = (
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
+"VA" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Wh" = (
+/obj/machinery/manned_turret/rcorp,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Wr" = (
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"WI" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Xm" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/item/megaphone,
+/obj/item/stack/sheet/mineral/sandbags{
+	amount = 30
+	},
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Yt" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/item/megaphone,
+/turf/open/floor/pod/dark,
+/area/city/outskirts)
+"ZU" = (
+/obj/effect/turf_decal/bot,
+/obj/machinery/telecomms/processor/preset_two,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/city/outskirts)
+
+(1,1,1) = {"
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(2,1,1) = {"
+qQ
+qQ
+Vv
+Vv
+Vv
+Vv
+NG
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(3,1,1) = {"
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+qt
+un
+HL
+Dv
+Mk
+rK
+Sq
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(4,1,1) = {"
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+ri
+un
+ql
+Dv
+un
+ql
+un
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(5,1,1) = {"
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+sp
+wp
+Mk
+Dv
+un
+un
+un
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(6,1,1) = {"
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+Dv
+Dv
+CN
+Dv
+Dv
+Dv
+je
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(7,1,1) = {"
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+Lw
+BY
+gG
+gG
+gG
+gG
+gG
+Ti
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(8,1,1) = {"
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+ji
+gG
+ql
+JJ
+JJ
+JJ
+un
+Mw
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(9,1,1) = {"
+qQ
+Vv
+Vv
+Dv
+Dv
+Dv
+Dv
+Lw
+BY
+un
+Mw
+Mw
+Mw
+un
+gG
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+gG
+gG
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(10,1,1) = {"
+qQ
+Vv
+Vv
+Dv
+bu
+un
+Dv
+ji
+gG
+un
+un
+OA
+OA
+gf
+gG
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(11,1,1) = {"
+qQ
+Vv
+Vv
+Dv
+bu
+un
+Dv
+lf
+BY
+un
+eK
+Mw
+Mw
+gf
+gG
+OH
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+NG
+NG
+NG
+NG
+NG
+"}
+(12,1,1) = {"
+qQ
+Vv
+Vv
+Dv
+bu
+un
+Dv
+gG
+gG
+un
+un
+OA
+OA
+gf
+gG
+Dv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+NG
+NG
+NG
+NG
+NG
+"}
+(13,1,1) = {"
+qQ
+Vv
+Vv
+Dv
+Mk
+ql
+dC
+gG
+gG
+un
+Mw
+OA
+Mw
+un
+gG
+TM
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+TM
+Dv
+Dv
+Dv
+Dv
+NG
+NG
+"}
+(14,1,1) = {"
+qQ
+Vv
+Vv
+Dv
+Mk
+un
+Dv
+gG
+gG
+un
+QI
+QI
+QI
+un
+gG
+TM
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Kw
+zL
+Wr
+qp
+Dv
+NG
+NG
+"}
+(15,1,1) = {"
+qQ
+qQ
+Vv
+Dv
+Mk
+un
+Dv
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+gG
+TM
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+cJ
+CZ
+GA
+qp
+Dv
+NG
+NG
+"}
+(16,1,1) = {"
+qQ
+qQ
+Vv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+OH
+Dv
+TM
+TM
+TM
+Dv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+cJ
+Fv
+qp
+Dv
+NG
+NG
+"}
+(17,1,1) = {"
+AF
+AF
+Vv
+Vv
+Vv
+Vv
+vW
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+vW
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+cJ
+Fv
+qp
+Dv
+NG
+NG
+"}
+(18,1,1) = {"
+hQ
+hQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+cJ
+Fv
+qp
+Dv
+NG
+NG
+"}
+(19,1,1) = {"
+hQ
+hQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+gw
+kp
+lN
+mu
+Dv
+Vv
+Vv
+Vv
+Vv
+Vv
+kh
+aE
+Dv
+NG
+NG
+"}
+(20,1,1) = {"
+fm
+fm
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+gG
+un
+lk
+lk
+lk
+Kw
+Vv
+Vv
+Vv
+Vv
+Vv
+zB
+aE
+Dv
+NG
+NG
+"}
+(21,1,1) = {"
+qQ
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+gG
+bW
+lk
+lk
+CZ
+Kw
+Vv
+Vv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+NG
+NG
+"}
+(22,1,1) = {"
+qQ
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+gG
+un
+lk
+lk
+lk
+Kw
+Vv
+Vv
+Dv
+BU
+BU
+BU
+Dv
+NG
+NG
+NG
+"}
+(23,1,1) = {"
+qQ
+qQ
+Vv
+Dv
+zL
+zL
+Kw
+Kw
+Kw
+Dv
+Dv
+VA
+VA
+VA
+Gd
+Dv
+Dv
+Vv
+Vv
+gG
+bW
+un
+bW
+un
+zL
+Vv
+Vv
+He
+gG
+LH
+RZ
+Dv
+NG
+NG
+NG
+"}
+(24,1,1) = {"
+qQ
+qQ
+Vv
+gG
+un
+bW
+eS
+eS
+eS
+mz
+Dv
+gG
+gG
+gG
+gG
+qS
+Dv
+Vv
+Vv
+Dv
+gL
+lg
+lg
+mP
+Dv
+Vv
+Vv
+Dv
+TJ
+gG
+uh
+Dv
+NG
+NG
+NG
+"}
+(25,1,1) = {"
+qQ
+qQ
+Vv
+gG
+un
+lk
+hg
+hg
+eS
+mz
+Dv
+gG
+lk
+lk
+lk
+gG
+HT
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+Dv
+HP
+Dv
+Dv
+NG
+NG
+NG
+"}
+(26,1,1) = {"
+qQ
+qQ
+Vv
+gG
+bV
+dJ
+hg
+ns
+eS
+mz
+Dv
+Wh
+lk
+lk
+lk
+Ik
+Dv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+NG
+Dv
+gG
+LH
+gG
+Dv
+NG
+NG
+NG
+"}
+(27,1,1) = {"
+qQ
+qQ
+Vv
+gG
+un
+lk
+hg
+hg
+eS
+mz
+Dv
+Wh
+gG
+gG
+gG
+qU
+Dv
+NG
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+NG
+Dv
+gG
+gG
+gG
+Dv
+NG
+NG
+NG
+"}
+(28,1,1) = {"
+qQ
+qQ
+Vv
+gG
+bW
+un
+eS
+pl
+pl
+Hy
+Dv
+Dv
+Dv
+HT
+Dv
+Dv
+Dv
+NG
+NG
+NG
+Vv
+Vv
+Vv
+Vv
+Vv
+NG
+NG
+Dv
+gG
+by
+gG
+Dv
+NG
+NG
+NG
+"}
+(29,1,1) = {"
+qQ
+qQ
+qQ
+Dv
+gG
+gG
+gG
+zL
+gG
+Dv
+Dv
+Xm
+gG
+gG
+gG
+WI
+Dv
+NG
+NG
+NG
+Vv
+Vv
+Vv
+NG
+NG
+NG
+NG
+Dv
+Dv
+Dv
+Dv
+Dv
+NG
+NG
+NG
+"}
+(30,1,1) = {"
+qQ
+qQ
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+WI
+lk
+ql
+lk
+Yt
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(31,1,1) = {"
+qQ
+qQ
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+FF
+lk
+lk
+lk
+FF
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(32,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+WI
+WI
+WI
+WI
+WI
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(33,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+Vv
+Vv
+Vv
+Vv
+Vv
+Vv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+Dv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(34,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+Vv
+Vv
+Vv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(35,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+Vv
+Vv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+wZ
+wZ
+wZ
+wZ
+NG
+NG
+NG
+NG
+NG
+"}
+(36,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+Vv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+IN
+gC
+Jm
+wZ
+NG
+NG
+NG
+NG
+NG
+"}
+(37,1,1) = {"
+qQ
+qQ
+bb
+qQ
+qQ
+qQ
+qQ
+Vv
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+ZU
+iF
+EH
+wZ
+NG
+NG
+NG
+NG
+NG
+"}
+(38,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+cH
+ID
+pj
+yr
+NG
+NG
+NG
+NG
+NG
+"}
+(39,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+KM
+Km
+FH
+Mq
+NG
+NG
+NG
+NG
+NG
+"}
+(40,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+Iq
+Fk
+jH
+ec
+NG
+NG
+NG
+NG
+NG
+"}
+(41,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+It
+MV
+vo
+wZ
+NG
+NG
+NG
+NG
+NG
+"}
+(42,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+Ka
+yO
+HX
+wZ
+NG
+NG
+NG
+NG
+NG
+"}
+(43,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+qQ
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+wZ
+wZ
+wZ
+wZ
+wZ
+NG
+NG
+NG
+NG
+NG
+"}
+(44,1,1) = {"
+qQ
+qQ
+qQ
+qQ
+qQ
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(45,1,1) = {"
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(46,1,1) = {"
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(47,1,1) = {"
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(48,1,1) = {"
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}
+(49,1,1) = {"
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+NG
+"}

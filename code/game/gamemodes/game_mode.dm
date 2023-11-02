@@ -73,10 +73,7 @@
 	antag_candidates = get_players_for_role(antag_flag)
 	if(!GLOB.Debug2)
 		if(antag_candidates.len < required_enemies)
-			return FALSE
-		return TRUE
-	else
-		message_admins("<span class='notice'>DEBUG: GAME STARTING WITHOUT PLAYER NUMBER CHECKS, THIS WILL PROBABLY BREAK SHIT.</span>")
+			message_admins("<span class='notice'>DEBUG: GAME STARTING WHILE FAILING PLAYER NUMBER CHECKS, THIS WILL PROBABLY BREAK SHIT.</span>")
 		return TRUE
 
 

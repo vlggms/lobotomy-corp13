@@ -87,6 +87,8 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// Misc Lobotomy Corp roles; 150 - 159
 		"Arbiter" = 150,
 
+
+
 		// Tegustation Syndicate roles; 160 - 199
 		"Syndicate Overlord" = 160,
 		"Syndicate Mastermind" = 161,
@@ -110,7 +112,28 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		"Emergency Response Team Commander" = 220,
 		"Security Response Officer" = 221,
 		"Engineer Response Officer" = 222,
-		"Medical Response Officer" = 223
+		"Medical Response Officer" = 223,
+
+		// 350-410 : R-Corp
+		"Ground Commander" = 350,
+		"Lieutenant Commander" = 360,
+		"Operations Officer" = 361,
+		//Ravens
+		"Raven Team Captain" = 370,
+		"R-Corp Scout Raven" = 371,
+		"R-Corp Support Raven" = 372,
+		//Reindeer
+		"Reindeer Team Captain" = 380,
+		"R-Corp Berserker Reindeer" = 381,
+		"R-Corp Medical Reindeer" = 382,
+		//Rabbits
+		"Rhino Team Captain" = 390,
+		"R-Corp Gunner Rhino" = 391,
+		"R-Corp Hammer Rhino" = 392,
+		//Rabbits
+		"Rabbit Team Captain" = 400,
+		"R-Corp Suppressive Rabbit" = 401,
+		"R-Corp Assault Rabbit" = 402
 	)
 
 /datum/crewmonitor/ui_interact(mob/user, datum/tgui/ui)

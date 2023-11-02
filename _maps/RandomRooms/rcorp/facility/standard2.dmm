@@ -2566,8 +2566,8 @@
 /turf/open/floor/carpet/purple,
 /area/city/outskirts)
 "Wb" = (
-/obj/structure/toolabnormality/touch,
 /obj/effect/turf_decal/box/white,
+/obj/effect/landmark/objectivespawn,
 /turf/open/floor/facility/dark,
 /area/city/outskirts)
 "Wg" = (
