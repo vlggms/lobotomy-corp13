@@ -100,7 +100,7 @@
 	corp = L_CORP_REP
 
 /datum/data/lc13research/officerlimitbreaker/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/officerlimit_increase(get_turf(caller))
+	new /obj/item/limit_increase/officer(get_turf(caller))
 	..()
 
 
