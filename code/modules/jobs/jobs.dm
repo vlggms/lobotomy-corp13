@@ -67,6 +67,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"HHPP Chef",
 	"Civilian",
 	"Backstreets Butcher",
+	"Carnival",
 	"Workshop Attendant",
 	"Main Office Representative",
 	"Fishhook Office Fixer",

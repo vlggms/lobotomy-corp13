@@ -22,6 +22,7 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/amber_simple = 1)
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
 	. = ..()
