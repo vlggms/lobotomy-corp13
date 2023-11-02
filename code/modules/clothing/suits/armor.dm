@@ -16,6 +16,15 @@
 	if(!allowed)
 		allowed = GLOB.security_vest_allowed
 
+/obj/item/clothing/suit/armor/attackby(obj/item/W, mob/user, params)
+	if(istype(W, /obj/item/stack/sheet/silk))
+		var/datum/component/silkweave/silkweave = GetComponent(/datum/component/silkweave)
+		if(!silkweave)
+			silkweave = AddComponent(/datum/component/silkweave)
+		silkweave.apply_silk(W, user)
+	else
+		. = ..()
+
 /obj/item/clothing/suit/armor/vest
 	name = "armor vest"
 	desc = "A slim Type I armored vest that provides decent protection against most types of damage."
