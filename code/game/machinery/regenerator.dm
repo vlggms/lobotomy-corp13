@@ -84,37 +84,6 @@
 	. += "<span class='notice'>The [src] restores [regeneration_amount+hp_bonus]% HP and [regeneration_amount+sp_bonus]% SP once in 2 seconds.</span>"
 
 
-/obj/machinery/regenerator/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/safety_kit))
-		var/obj/item/safety_kit/cooler_I = I
-		if(user?.mind?.assigned_role != "Clerk")
-			to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
-			return FALSE
-		if (modified)
-			to_chat(user, "<span class='notice'>The [src] is already modified.</span>")
-			return FALSE
-		to_chat(user, "<span class='notice'>You begin tinkering with the [src].</span>")
-		if(do_after(user, 2.5 SECONDS, src))
-			if (modified)
-				to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
-				return FALSE
-			modified = TRUE
-			switch(cooler_I.mode)
-				if(1)
-					HpFocus(user)
-				if(2)
-					SpFocus(user)
-				if(3)
-					EqualFocus(user)
-				if(4)
-					CriticalFocus(user)
-				if(5)
-					OverloadHeal(user)
-			return TRUE
-		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
-		return FALSE
-	return ..()
-
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
 	colored_overlay.color = Icon_Color
