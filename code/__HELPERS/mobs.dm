@@ -264,9 +264,6 @@ GLOBAL_LIST_EMPTY(species_list)
 /proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1)
 	if(!user)
 		return FALSE
-	var/atom/target_loc = null
-	if(target && !isturf(target))
-		target_loc = target.loc
 
 	if(!interaction_key && target)
 		interaction_key = target //Use the direct ref to the target
@@ -277,6 +274,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
 	var/atom/user_loc = user.loc
+	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
@@ -303,23 +301,18 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = FALSE
 			user_loc = user.loc
 
-		if(
-			QDELETED(user) \
+		if(QDELETED(user) \
 			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
 			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding) \
 			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
-			|| (extra_checks && !extra_checks.Invoke()) \
-		)
+			|| (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
-		if(
-			!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) \
-			&& !drifting \
-			&& !QDELETED(target_loc) \
-			&& (QDELETED(target) || target_loc != target.loc) \
-			&& ((user_loc != target_loc || target_loc != user)) \
-			)
+		if(target && (user != target) \
+			&& (QDELETED(target) \
+			|| (!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc))
+		)
 			. = FALSE
 			break
 
