@@ -161,15 +161,19 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/penitentgirl
 	abno_code = "T-01-115"
 	abno_info = list(
-		"When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.",
-		"When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
+		"When an Agent, who had Temperance and Prudence Level 1, completed the work process, the employee began to panic, and started dancing frantically. When left alone for too long. the employee cut off their own feet.",
+		"When an Agent, who had Prudence Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
 
 //Drowned Sisters
 /obj/item/paper/fluff/info/teth/drowned
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drownedsisters
 	abno_code = "T-01-133"
 	abno_info = list(
-		"The work damage done to the employee working on The Drowned Sisters increased inversely to their Prudence.",
+		"When the Employee perfomed Instinct work, the Qliphoth counter lowered.",
+		"When the Qliphoth counter reached zero, the employee mysteriously died on the spot. An autopsy revealed scratch marks from an incredibly large feline.",
+		"When the Employee performed Attachment work, the Qliphoth counter increased.",
+		"If the Qliphoth counter increased while already at its maximum, the cell was flooded with water. Any employees inside eventually awoke somewhere else in the facility.",
+		"The work damage done to the employee working on The Drowned Sisters increased immensely when Prudence was low, especially below level 2.",
 		"After work was completed, the employee was unable to recall their conversation with The Drowned Sisters. It was found that the employee’s sanity was slightly restored.")
 
 //Void Dream
