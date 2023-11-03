@@ -19,9 +19,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/red_queen
 	abno_code = "F-01-112"
 	abno_info = list(
-		"Due to Red Queen’s fickle nature, it prefers a different work type every shift.",
-		"Red Queen does not seem to provide feedback on what work it likes or dislikes.",
-		"Employees who failed to satisfy the Red Queen by completing inefficient work were likely to be beheaded.")
+		"Due to Red Queen’s fickle nature, it prefers a different work type every shift but the desired work does not change during the shift.",
+		"Red Queen does not seem to provide feedback on what work it likes and will only communicate its dislikes by attempting to behead those who aggravate it.",
+		"Upon completion of a non-preferred work, there was a 1 in 5 chance she would attempt to behead the employee, dealing massive RED damage.")
 
 //Scarecrow
 /obj/item/paper/fluff/info/he/scarecrow
