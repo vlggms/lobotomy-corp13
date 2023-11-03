@@ -197,7 +197,7 @@
 /mob/living/simple_animal/hostile/abnormality/black_swan/bullet_act(obj/projectile/P) //umbrella shield code
 	if(umbrella_open)
 		if(is_A_facing_B(src,P.firer))
-			if(P.reflectable != NONE && prob(20))
+			if(P.reflectable != NONE)
 				visible_message("<span class='userdanger'>[src] deflects [P] with their umbrella!</span>")
 				ReflectProjectile(P)
 				return BULLET_ACT_FORCE_PIERCE
