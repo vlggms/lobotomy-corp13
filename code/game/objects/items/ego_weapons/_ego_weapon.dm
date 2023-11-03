@@ -15,6 +15,7 @@
 
 	/// Is CleanUp proc running?
 	var/cleaning = FALSE
+	sweeps = TRUE
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -105,6 +106,26 @@
 /obj/item/ego_weapon/proc/CleanUp()
 	cleaning = TRUE
 	return
+
+/obj/item/ego_weapon/GetTarget(mob/user, list/potential_targets = list())
+	if(damtype != WHITE_DAMAGE)
+		return ..()
+
+	. = null
+
+	for(var/mob/living/carbon/human/H in potential_targets)
+		if(.)
+			break
+		if(!H.sanity_lost)
+			continue
+		if(H.stat == DEAD)
+			continue
+		. = H
+
+	if(.)
+		return
+
+	return ..()
 
 /obj/item/ego_weapon/Destroy()
 	CleanUp()

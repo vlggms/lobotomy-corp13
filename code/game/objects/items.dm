@@ -195,6 +195,9 @@ GLOBAL_VAR_INIT(embedpocalypse, FALSE) // if true, all items will be able to emb
 	///No item attack animation, only person tilt.
 	var/run_item_attack_animation = TRUE
 
+	/// Whether it sweeps in an arc or not.
+	var/sweeps = FALSE
+
 /obj/item/Initialize()
 
 	if(attack_verb_continuous)
