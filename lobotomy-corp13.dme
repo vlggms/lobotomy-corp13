@@ -3821,6 +3821,7 @@
 #include "interface\skin.dmf"
 #include "ModularTegustation\engineering_bounties.dm"
 #include "ModularTegustation\languagebooks.dm"
+#include "ModularTegustation\lc13_adventuredatum.dm"
 #include "ModularTegustation\lc13_effects.dm"
 #include "ModularTegustation\lc13_machinery.dm"
 #include "ModularTegustation\lc13_spawners.dm"
