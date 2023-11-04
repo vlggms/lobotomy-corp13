@@ -34,12 +34,12 @@
 
 //Limit increaser
 /obj/item/limit_increase
-    name = "ncorp limit breaker"
-    desc = "A fluid used to increase an agent's maximum potential. Use in hand to activate."
-    icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-    icon_state = "ncorp_syringe5"
-    var/amount = 140
-    var/list/allowed_roles = list()
+	name = "ncorp limit breaker"
+	desc = "A fluid used to increase an agent's maximum potential. Use in hand to activate."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "ncorp_syringe5"
+	var/amount = 140
+	var/list/allowed_roles = list()
 
 /obj/item/limit_increase/Initialize()
 	..()
