@@ -612,7 +612,7 @@
 	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
 	attack_verb_simple = list("blorble", "slime", "absorb")
 	squeak_override = list('sound/effects/blobattack.ogg' = 1)
-	unique_pet = "You pet the melting love plushie... simp"
+	unique_pet = "You pet the melting love plushie... you swear it smiles and looks at you, yet when you blink the plushie returns to normal"
 
 /obj/item/toy/plush/scorched
 	name = "scorched girl plushie"
