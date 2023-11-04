@@ -43,23 +43,23 @@
 
 /obj/item/limit_increase/Initialize()
 	..()
-    if(!LAZYLEN(allowed_roles))
-        allowed_roles = GLOB.security_positions // defaults to agents.
+	if(!LAZYLEN(allowed_roles))
+		allowed_roles = GLOB.security_positions // defaults to agents.
 
 /obj/item/limit_increase/attack_self(mob/living/carbon/human/user)
-    if(user?.mind?.assigned_role in allowed_roles)
-        to_chat(user, "<span class='nicegreen'>You feel like you can become even more powerful.</span>")
-        user.set_attribute_limit(amount)
-        qdel(src)
-        return
-    to_chat(user, "<span class='notice'>This is not for you.</span>")
-    return
+	if(user?.mind?.assigned_role in allowed_roles)
+		to_chat(user, "<span class='nicegreen'>You feel like you can become even more powerful.</span>")
+		user.set_attribute_limit(amount)
+		qdel(src)
+		return
+	to_chat(user, "<span class='notice'>This is not for you.</span>")
+	return
 
 //Officer limit increase.
 /obj/item/limit_increase/officer
-    name = "officer limit breaker"
-    desc = "A fluid used to increase the limit of L-Corp officer's potential. Use in hand to activate."
-    icon_state = "oddity7_gween"
-    amount = 80
-    allowed_roles = list("Records Officer", "Extraction Officer")
+	name = "officer limit breaker"
+	desc = "A fluid used to increase the limit of L-Corp officer's potential. Use in hand to activate."
+	icon_state = "oddity7_gween"
+	amount = 80
+	allowed_roles = list("Records Officer", "Extraction Officer")
 
