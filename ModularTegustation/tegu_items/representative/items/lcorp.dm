@@ -19,4 +19,4 @@
 	if(!do_after(user, 30 SECONDS, src))
 		return
 
-	A.datum_reference.UpdateUnderstanding(10)
+	A.datum_reference?.UpdateUnderstanding(10)
