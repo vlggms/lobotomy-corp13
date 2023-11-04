@@ -42,6 +42,11 @@
 	. = ..()
 	holomap_datum = new()
 	SSholomap.facility_holomaps += src
+	var/static/list/loc_connections = list(
+		COMSIG_ATOM_EXIT = .proc/on_exit,
+	)
+
+	AddElement(/datum/element/connect_loc, loc_connections)
 
 	//Set pixel offsets based on dir (the side of the holomap facing the person)
 	if(dir == NORTH)
@@ -108,11 +113,12 @@
 // In order to actually get Bumped() we need to block movement.  We're (visually) on a wall, so people
 // couldn't really walk into us anyway.  But in reality we are on the turf in front of the wall, so bumping
 // against where we seem is actually trying to *exit* our real loc
-/obj/machinery/facility_holomap/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-	if(get_dir(target, loc) == dir) // Opposite of "normal" since we are visually in the next turf over
+/obj/machinery/facility_holomap/proc/on_exit(datum/source, atom/movable/leaving, atom/new_location)
+	SIGNAL_HANDLER
+
+	if(get_dir(new_location, leaving.loc) == dir)
 		return FALSE
-	else
-		return TRUE
+	return TRUE
 
 /obj/machinery/facility_holomap/proc/startWatching(mob/user)
 	if(isliving(user) && anchored && !(machine_stat & (NOPOWER|BROKEN)))
