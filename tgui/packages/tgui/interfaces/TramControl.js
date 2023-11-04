@@ -62,7 +62,7 @@ const MovingTramDimmer = () => {
           />
         </Stack.Item>
         <Stack.Item mt={5} fontSize="14px" color="green">
-          The tram is travelling to {current_loc[0].name}!
+          The tram is travelling to NAME TEMPORARILY EXPUNGED!
         </Stack.Item>
       </Stack>
     </Dimmer>
@@ -96,7 +96,7 @@ export const TramControl = (props, context) => {
             />
           </Stack.Item>
           <Stack.Item mt={5} fontSize="14px" color="green">
-            The tram is travelling to {current_loc[0].name}!
+            The tram is travelling to NAME TEMPORARILY EXPUNGED!
           </Stack.Item>
         </Stack>
       </Dimmer>
