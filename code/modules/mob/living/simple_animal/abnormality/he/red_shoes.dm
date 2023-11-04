@@ -116,7 +116,7 @@
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		Apply_Desire(user)
 		user.adjustSanityLoss(500)
-		user.visible_message("<span class='userdanger'>[user] ignores [p_their()] orders and continually glances at The Red Shoes. Now [p_theyre()] reaching out their hand to take the shoes.</span>", "<span class='userdanger'>What lovely shoes...</span>")
+		user.visible_message(span_userdanger("[user] ignores [p_their()] orders and continually glances at The Red Shoes. Now [p_theyre()] reaching out their hand to take the shoes."), span_userdanger("What lovely shoes..."))
 
 //***Breach Mechanics***//
 /mob/living/simple_animal/hostile/abnormality/red_shoes/ZeroQliphoth(mob/living/carbon/human/user)//silent girl with extra steps

@@ -139,7 +139,7 @@
 /mob/living/simple_animal/hostile/abnormality/pale_horse/proc/ToAshes(target)
 	var/mob/living/carbon/human/T = target
 	playsound(get_turf(src), 'sound/abnormalities/palehorse/kill.ogg', 50, 0, 8)
-	visible_message("<span class='danger'>[T] collapses into a heap of ashes!</span>")
+	visible_message(span_danger("[T] collapses into a heap of ashes!"))
 	new /obj/effect/particle_effect/smoke(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))
@@ -275,14 +275,14 @@
 /datum/status_effect/mortis/on_apply()
 	. = ..()
 	if(ishuman(owner))
-		to_chat(owner,"<span class='warning'>You feel weak...</span>")
+		to_chat(owner, span_warning("You feel weak..."))
 		var/mob/living/carbon/human/M = owner
 		M.physiology.pale_mod *= 2
 
 /datum/status_effect/mortis/on_remove()
 	. = ..()
 	if(ishuman(owner))
-		to_chat(owner,"<span class='warning'>You regain your vigor.</span>")
+		to_chat(owner, span_warning("You regain your vigor."))
 		var/mob/living/carbon/human/M = owner
 		M.physiology.pale_mod /= 2
 

@@ -140,10 +140,10 @@
 	name = "Toggle Breath"
 	button_icon_state = "generic_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't use your breath anymore.</span>"
+	chosen_message = span_colossus("You won't use your breath anymore.")
 	button_icon_toggle_activated = "generic_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now breath a cone of elemental energy.</span>"
+	toggle_message = span_colossus("You will now breath a cone of elemental energy.")
 	button_icon_toggle_deactivated = "generic_toggle0"
 
 
@@ -170,7 +170,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/seasons/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(CheckWeather())
-		to_chat(user, "<span class='warning'>The abnormality seems to be ignoring you!</span>")
+		to_chat(user, span_warning("The abnormality seems to be ignoring you!"))
 		return FALSE
 	return ..()
 
@@ -182,16 +182,16 @@
 
 /mob/living/simple_animal/hostile/abnormality/seasons/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!safe)
-		to_chat(user, "<span class='nicegreen'>The abnormality seems to be satisfied, at least for now...</span>")
+		to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
 		safe = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/seasons/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(!safe)
 		if(prob(25))
-			to_chat(user, "<span class='nicegreen'>The abnormality seems to be satisfied, at least for now...</span>")
+			to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
 			safe = TRUE
 			return
-		to_chat(user, "<span class='warning'>The abnormality seems to be indifferent to this attempt at work, perhaps you should try again?</span>")
+		to_chat(user, span_warning("The abnormality seems to be indifferent to this attempt at work, perhaps you should try again?"))
 
 /mob/living/simple_animal/hostile/abnormality/seasons/WorkChance(mob/living/carbon/human/user, chance) //suspect this does not work
 	if(downgraded)
@@ -406,7 +406,7 @@
 				continue
 			hit_list += L
 			L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
-			to_chat(L, "<span class='userdanger'>You have been hit by [src]'s breath attack!</span>")
+			to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
 			if(ishuman(L))
 				Finisher(L)
 		SLEEP_CHECK_DEATH(1)
@@ -491,16 +491,16 @@
 	name = "thunderstorm"
 	immunity_type = "rain"
 	desc = "Extreme thunderstorms "
-	telegraph_message = "<span class='warning'>It has begun to rain.</span>"
+	telegraph_message = span_warning("It has begun to rain.")
 	telegraph_duration = 300
 	telegraph_overlay = "light_rain"
-	weather_message = "<span class='userdanger'><i>The rain starts coming down hard!</i></span>"
+	weather_message = span_userdanger("<i>The rain starts coming down hard!</i>")
 	weather_overlay = "rain_storm"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = "<span class='boldannounce'>The rain starts to let up.</span>"
+	end_message = span_boldannounce("The rain starts to let up.")
 	end_overlay = "light_rain"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -519,16 +519,16 @@
 	name = "heatwaves"
 	immunity_type = "heatwave"
 	desc = "Extreme heatwaves caused by an abnormality."
-	telegraph_message = "<span class='warning'>The temperature suddenly skyrockets!</span>"
+	telegraph_message = span_warning("The temperature suddenly skyrockets!")
 	telegraph_duration = 300
 	telegraph_overlay = "light_ash"
-	weather_message = "<span class='userdanger'><i>It's too hot!</i></span>"
+	weather_message = span_userdanger("<i>It's too hot!</i>")
 	weather_overlay = "heavy_ash"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = "<span class='boldannounce'>The temperature starts to return to normal.</span>"
+	end_message = span_boldannounce("The temperature starts to return to normal.")
 	end_overlay = "light_ash"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -539,7 +539,7 @@
 	if(prob(3))
 		L.adjust_fire_stacks(rand(0.1, 1))
 		L.IgniteMob()
-		to_chat(L, "<span class='warning'>You are burning alive!</span>")
+		to_chat(L, span_warning("You are burning alive!"))
 	if(prob(1))
 		SpawnFire(L)
 
@@ -558,16 +558,16 @@
 	name = "fog"
 	immunity_type = "fog"
 	desc = "An extreme surplus of humidity caused by an abnormality."
-	telegraph_message = "<span class='warning'>The air is becoming damp.</span>"
+	telegraph_message = span_warning("The air is becoming damp.")
 	telegraph_duration = 300
 	telegraph_overlay = "light_fog"
-	weather_message = "<span class='userdanger'><i>You can't see anything with all this fog in the way!</i></span>"
+	weather_message = span_userdanger("<i>You can't see anything with all this fog in the way!</i>")
 	weather_overlay = "heavy_fog"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = "<span class='boldannounce'>The fog seems to be going away.</span>"
+	end_message = span_boldannounce("The fog seems to be going away.")
 	end_overlay = "light_pollen"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -595,16 +595,16 @@
 	name = "freezing wind"
 	immunity_type = "freezing"
 	desc = "An extreme snowstorm caused by an abnormality."
-	telegraph_message = "<span class='warning'>The temperature suddenly drops!</span>"
+	telegraph_message = span_warning("The temperature suddenly drops!")
 	telegraph_duration = 300
 	telegraph_overlay = "snowfall_calm"
-	weather_message = "<span class='userdanger'><i>It's so cold!</i></span>"
+	weather_message = span_userdanger("<i>It's so cold!</i>")
 	weather_overlay = "snowfall_blizzard"
 	weather_duration_lower = 1500
 	weather_duration_upper = 3000
 	perpetual = TRUE //should make it last forever
 	end_duration = 100
-	end_message = "<span class='boldannounce'>The snow starts to let up.</span>"
+	end_message = span_boldannounce("The snow starts to let up.")
 	end_overlay = "snowfall_calm"
 	area_type = /area
 	target_trait = ZTRAIT_STATION
@@ -617,7 +617,7 @@
 	var/randomslowdown = rand(0.5,1)
 	L.apply_status_effect(STATUS_EFFECT_FREEZING)
 	L.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/freezing, multiplicative_slowdown = randomslowdown)
-	to_chat(L, "<span class='warning'>The freezing wind chills your bones!</span>")
+	to_chat(L, span_warning("The freezing wind chills your bones!"))
 
 /datum/weather/freezing_wind/end()
 	..()
@@ -724,16 +724,16 @@
 	switch(current_season)
 		if("spring")
 			if(prob(5))
-				to_chat(H, "<span class='warning'>Your legs are cut by brambles in the grass!</span>")
+				to_chat(H, span_warning("Your legs are cut by brambles in the grass!"))
 				H.apply_damage(5, BLACK_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
 		if("summer")
 			if(icon_state == "lava")
-				to_chat(H, "<span class='warning'>You stumbled into a pool of lava!</span>")
+				to_chat(H, span_warning("You stumbled into a pool of lava!"))
 				H.adjust_fire_stacks(rand(0.1, 1))
 				H.IgniteMob()
 		if("fall")
 			if(prob(5))
-				to_chat(H, "<span class='warning'>You sink into the marsh!</span>")
+				to_chat(H, span_warning("You sink into the marsh!"))
 				animate(H, alpha = 255,pixel_x = 0, pixel_z = -3, time = 0.5 SECONDS)
 				H.pixel_z = -3
 				H.Immobilize(0.5 SECONDS)
@@ -742,7 +742,7 @@
 		if("winter")
 			if(icon_state == "ice")
 				if(prob(25))
-					to_chat(H, "<span class='warning'>You slip on the ice!</span>")
+					to_chat(H, span_warning("You slip on the ice!"))
 					H.slip(0, null, SLIDE_ICE, 0, FALSE) //might need to replace this as stuns are pretty annoying...
 					H.Immobilize(0.5 SECONDS)
 

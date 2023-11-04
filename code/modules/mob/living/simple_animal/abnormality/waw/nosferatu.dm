@@ -179,7 +179,7 @@
 		bloodlust = bloodlust_cooldown
 		H.apply_damage(45, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
 		playsound(get_turf(src), 'sound/abnormalities/nosferatu/bat_attack.ogg', 50, 1)
-		to_chat(target,"<span class='danger'>The [src] attacks you savagely!</span>")
+		to_chat(target, span_danger("The [src] attacks you savagely!"))
 		AdjustThirst(40)
 	else
 		bloodlust -= 1

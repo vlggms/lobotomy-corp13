@@ -49,23 +49,23 @@
 	safe = TRUE
 	if (chosen == null)
 		chosen = user
-		user.visible_message("<span class='warning'>You are now Staining Rose's Chosen.</span>")
+		user.visible_message(span_warning("You are now Staining Rose's Chosen."))
 		icon_state = "rose_activated"
 
 	if (user != chosen)		//Your body starts to wilt.
-		user.visible_message("<span class='warning'>Staining Rose already has a Chosen named [chosen]!</span>")
+		user.visible_message(span_warning("Staining Rose already has a Chosen named [chosen]!"))
 		user.apply_status_effect(STATUS_EFFECT_SCHISMATIC)
 		if(!(user in heretics))
 			heretics += user
 		pissed()
 	else
-		user.visible_message("<span class='warning'>Staining Rose is content.</span>")
+		user.visible_message(span_warning("Staining Rose is content."))
 
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 100)
 		user.apply_status_effect(STATUS_EFFECT_SACRIFICE)
 		if(!(user in sacrificed))
 			sacrificed += user
-			user.visible_message("<span class='warning'>Staining Rose drains your strength, and it is born anew.</span>")
+			user.visible_message(span_warning("Staining Rose drains your strength, and it is born anew."))
 			meltdown_cooldown = world.time + meltdown_cooldown_time	//There we go!
 		pissed()
 
@@ -75,7 +75,7 @@
 		meltdown_cooldown = world.time + meltdown_cooldown_time
 		sound_to_playing_players('sound/abnormalities/rose/meltdown.ogg')	//Church bells ringing, whether it happens or not.
 		if(chosen)
-			to_chat(chosen, "<span class='boldwarning'>Staining Rose requires you to resonate with it again!</span>")
+			to_chat(chosen, span_boldwarning("Staining Rose requires you to resonate with it again!"))
 		if(!safe)
 			datum_reference.qliphoth_change(-1)
 		safe = FALSE
@@ -112,15 +112,15 @@
 	name = "petal storm"
 	immunity_type = "petal"
 	desc = "Petals shed by the Staining Rose."
-	telegraph_message = "<span class='warning'>The petals are falling. They're so beautiful...</span>"
+	telegraph_message = span_warning("The petals are falling. They're so beautiful...")
 	telegraph_duration = 300
 	telegraph_overlay = "petal"
-	weather_message = "<span class='userdanger'><i>You can feel yourself wilting away like a delicate rose.</i></span>"
+	weather_message = span_userdanger("<i>You can feel yourself wilting away like a delicate rose.</i>")
 	weather_overlay = "petal_harsh"
 	weather_duration_lower = 1500		//2.5-5 minutes.
 	weather_duration_upper = 3000
 	end_duration = 100
-	end_message = "<span class='boldannounce'>The last of the petals are falling. You'll never forget it.</span>"
+	end_message = span_boldannounce("The last of the petals are falling. You'll never forget it.")
 	area_type = /area
 	target_trait = ZTRAIT_STATION
 

@@ -96,10 +96,10 @@
 	name = "Toggle Hello"
 	button_icon_state = "nt_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't shoot anymore.</span>"
+	chosen_message = span_colossus("You won't shoot anymore.")
 	button_icon_toggle_activated = "nt_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now shoot a welcoming sonic wave.</span>"
+	toggle_message = span_colossus("You will now shoot a welcoming sonic wave.")
 	button_icon_toggle_deactivated = "nt_toggle0"
 
 
@@ -243,7 +243,7 @@
 	soundloop.stop()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/disguise.ogg', 75, 0, 5)
 	new /obj/effect/gibspawner/generic(get_turf(M))
-	to_chat(M, "<span class='userdanger'>Oh no...</span>")
+	to_chat(M, span_userdanger("Oh no..."))
 	disguise = M
 	// The following code makes it so that even if a disguised mob is resting, Nothing There's shell will still be standing up.
 	M.set_lying_angle(0)

@@ -165,7 +165,7 @@
 /mob/living/simple_animal/hostile/abnormality/clown/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announcedead.ogg', 75, 1)
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))

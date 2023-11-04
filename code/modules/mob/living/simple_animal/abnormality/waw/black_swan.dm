@@ -198,7 +198,7 @@
 	if(umbrella_open)
 		if(is_A_facing_B(src,P.firer))
 			if(P.reflectable != NONE)
-				visible_message("<span class='userdanger'>[src] deflects [P] with their umbrella!</span>")
+				visible_message(span_userdanger("[src] deflects [P] with their umbrella!"))
 				ReflectProjectile(P)
 				return BULLET_ACT_FORCE_PIERCE
 			return BULLET_ACT_BLOCK
@@ -218,7 +218,7 @@
 	umbrella_open = TRUE
 	umbrella_cooldown = world.time + SWAN_UMBRELLA_COOLDOWN
 	update_icon_state()
-	visible_message("<span class='userdanger'>[src] opens up their umbrella!</span>", "<span class='notice'>You open up your umbrella</span>")
+	visible_message(span_userdanger("[src] opens up their umbrella!"), span_notice("You open up your umbrella"))
 	addtimer(CALLBACK(src, .proc/CloseUmbrella), SWAN_UMBRELLA_DURATION)
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/proc/CloseUmbrella()

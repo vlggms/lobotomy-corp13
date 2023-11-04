@@ -13,14 +13,14 @@
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_BRACELET)
 		if(user.health != user.maxHealth)
-			to_chat(user, "<span class='userdanger'>You put the bracelet back, and feel your heart explode!</span>")
+			to_chat(user, span_userdanger("You put the bracelet back, and feel your heart explode!"))
 			user.gib()
 		else
-			to_chat(user, "<span class='userdanger'>You put the bracelet back, and take a sigh of relief.</span>")
+			to_chat(user, span_userdanger("You put the bracelet back, and take a sigh of relief."))
 	else
 		active_users += user
 		user.apply_status_effect(STATUS_EFFECT_BRACELET)
-		to_chat(user, "<span class='userdanger'>You pick up the bracelet, and feel your wounds mending.</span>")
+		to_chat(user, span_userdanger("You pick up the bracelet, and feel your wounds mending."))
 
 // Status Effect
 /datum/status_effect/display/bracelet
@@ -46,7 +46,7 @@
 	//Count to 10 if you are at full HP
 	if(H.getBruteLoss() == 0)
 		if(healthtracker == 0)
-			to_chat(H, "<span class='danger'>Your HP is too high! Decrease it or perish!.</span>")
+			to_chat(H, span_danger("Your HP is too high! Decrease it or perish!."))
 
 		healthtracker+=1
 	else if (healthtracker!=0)
@@ -55,7 +55,7 @@
 	//If you are at half HP you get a different warning.
 	if(H.health <= H.maxHealth/2)
 		if(warningtracker == 0)
-			to_chat(H, "<span class='danger'>Your HP is too low! Increase it or perish.</span>")
+			to_chat(H, span_danger("Your HP is too low! Increase it or perish."))
 
 		warningtracker+=1
 	else if (warningtracker!=0)

@@ -23,11 +23,11 @@
 
 /obj/structure/toolabnormality/shelter/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
+		to_chat(usr, span_warning("It doesn't look like I can't quite fit in."))
 		return FALSE // Can only extract from humans.
 
 	if(M != user)
-		to_chat(user, "<span class='warning'>It's hard enough to get into the shelter on your own!</span>")
+		to_chat(user, span_warning("It's hard enough to get into the shelter on your own!"))
 		return FALSE
 	travel_check(M)
 	return
@@ -35,10 +35,10 @@
 /obj/structure/toolabnormality/shelter/proc/travel_check(mob/living/carbon/human/user)
 	icon_state = "shelter_in_opening"
 	if(!do_after(user, 30 SECONDS, user))
-		to_chat(user, "<span class='notice'>You decide not to enter [src].</span>")
+		to_chat(user, span_notice("You decide not to enter [src]."))
 		icon_state = "shelter_in"
 		return
-	to_chat(user, "<span class='warning'>You open the hatch and climb inside.</span>")
+	to_chat(user, span_warning("You open the hatch and climb inside."))
 	travel(user)
 	icon_state = "shelter_in"
 
@@ -58,9 +58,9 @@
 
 /obj/structure/toolabnormality/shelter/exit/travel_check(mob/living/carbon/human/user)
 	if(!do_after(user, 3 SECONDS, user))
-		to_chat(user, "<span class='notice'>You decide it's safer in the shelter.</span>")
+		to_chat(user, span_notice("You decide it's safer in the shelter."))
 		return
-	to_chat(user, "<span class='warning'>You open the hatch and climb out.</span>")
+	to_chat(user, span_warning("You open the hatch and climb out."))
 	for(var/obj/item/storage/box/pcorp/foodbox in user.GetAllContents())
 		user.dropItemToGround(foodbox, TRUE)
 	for(var/obj/item/food/canned/pcorp/foodcan in user.GetAllContents())
@@ -72,7 +72,7 @@
 		linked_structure = locate(/obj/structure/toolabnormality/shelter/entrance) in world.contents
 	..()
 	user.Stun(15 SECONDS)
-	to_chat(user, "<span class='userdanger'>You are suddenly overcome with fear and hesitation! What horrors could be lurking out here?</span>")
+	to_chat(user, span_userdanger("You are suddenly overcome with fear and hesitation! What horrors could be lurking out here?"))
 
 // Shelter contents
 // Crate

@@ -27,14 +27,14 @@
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
 		if(wordcount)
 			if(Approach(user))
-				visible_message("<span class='warning'>[user] starts ripping pages out of [src]!</span>")
+				visible_message(span_warning("[user] starts ripping pages out of [src]!"))
 				playsound(get_turf(src), 'sound/items/poster_ripped.ogg', 50, 1, FALSE)
 				wordcount = 0
 				icon_state = "book_[wordcount]"
 	else
 		if(wordcount < 3)
 			if(Approach(user))
-				visible_message("<span class='warning'>[user] begins writing in [src]!</span>")
+				visible_message(span_warning("[user] begins writing in [src]!"))
 				playsound(get_turf(src), 'sound/abnormalities/book/scribble.ogg', 90, 1, FALSE)
 				SLEEP_CHECK_DEATH(3 SECONDS)
 				if(wordcount < 3)

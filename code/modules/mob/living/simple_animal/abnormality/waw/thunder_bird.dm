@@ -197,8 +197,8 @@
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
-			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
-			to_chat(L, "<span class='userdanger'>[src] rushes past you, arcing electricity throughout the way!</span>")
+			visible_message(span_boldwarning("[src] runs through [L]!"))
+			to_chat(L, span_userdanger("[src] rushes past you, arcing electricity throughout the way!"))
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
@@ -384,7 +384,7 @@
 	if(QDELETED(src))
 		return
 	revive(full_heal = TRUE, admin_revive = FALSE)
-	visible_message("<span class='boldwarning'>[src] staggers back on their feet!</span>")
+	visible_message(span_boldwarning("[src] staggers back on their feet!"))
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
 
 //Zombie conversion from other zombies

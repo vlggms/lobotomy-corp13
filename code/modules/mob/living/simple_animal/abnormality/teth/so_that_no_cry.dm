@@ -54,9 +54,9 @@
 		if(!G)//applying the buff for the first time (it lasts for four minutes)
 			new /obj/effect/temp_visual/talisman(get_turf(user))
 			user.apply_status_effect(STATUS_EFFECT_TALISMAN)
-			to_chat(user, "<span class='nicegreen'>A talisman quietly dettaches from the abnormality and sticks to you.</span>")
+			to_chat(user, span_nicegreen("A talisman quietly dettaches from the abnormality and sticks to you."))
 		else//if the employee already has the buff, add a stack and refresh
-			to_chat(user, "<span class='nicegreen'>Another talisman sticks to you.</span>")
+			to_chat(user, span_nicegreen("Another talisman sticks to you."))
 			if (G.stacks == 5)
 				playsound(src, 'sound/abnormalities/so_that_no_cry/curse_talisman.ogg', 100, 1)
 			else
@@ -70,13 +70,13 @@
 	if(G)//remove the buff
 		G.safe_removal = TRUE
 		user.remove_status_effect(STATUS_EFFECT_TALISMAN)
-		to_chat(user, "<span class='nicegreen'>You place all of your talismans back onto the abnormality.</span>")
+		to_chat(user, span_nicegreen("You place all of your talismans back onto the abnormality."))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	var/datum/status_effect/stacking/curse_talisman/G = user.has_status_effect(/datum/status_effect/stacking/curse_talisman)
 	if(G)
-		to_chat(user, "<span class='userdanger'>The abnormality gets up and starts moving - and you can't move a muscle!</span>")
+		to_chat(user, span_userdanger("The abnormality gets up and starts moving - and you can't move a muscle!"))
 		user.Stun(50)
 		datum_reference.qliphoth_change(-1)
 		return
@@ -98,7 +98,7 @@
 		jump_turf = get_turf(attacker)
 	forceMove(jump_turf)
 	playsound(src, 'sound/abnormalities/so_that_no_cry/counter.ogg', min(15 + damage, 100), TRUE, 4)
-	attacker.visible_message("<span class='danger'>[src] hits [attacker] with a barrage of punches!</span>", "<span class='userdanger'>[src] counters your attack!</span>")
+	attacker.visible_message(span_danger("[src] hits [attacker] with a barrage of punches!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
 	attacker.apply_damage(damage, attack_type, null, attacker.getarmor(null, attack_type))
 	new /obj/effect/temp_visual/revenant(get_turf(attacker))
@@ -168,7 +168,7 @@
 	damage_reflection = TRUE
 	damage_taken = 0
 	playsound(src, 'sound/abnormalities/so_that_no_cry/prepare.ogg', 50, TRUE, 7)
-	visible_message("<span class='warning>[src] assumes a stance!</span>")
+	visible_message(span_warning("[src] assumes a stance!"))
 	icon_state = "so_that_no_cry_guard"
 	ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	SLEEP_CHECK_DEATH(10 SECONDS)
@@ -199,7 +199,7 @@
 	AttachTalisman()
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/AttachTalisman(mob/living/attacker)
-	visible_message("<span class='notice'>A talisman is attached to [src]!</span>")
+	visible_message(span_notice("A talisman is attached to [src]!"))
 	talismans += 1
 	if(talismans > 10)
 		TalismanStun()
@@ -216,7 +216,7 @@
 	new /obj/effect/temp_visual/talisman/curse(get_turf(src))
 	var/stun_duration = talismans * 5
 	icon_state = "so_that_no_cry_stunned"
-	visible_message("<span class='notice'>[src] freezes entirely as a talisman is attached to its body!</span>")
+	visible_message(span_notice("[src] freezes entirely as a talisman is attached to its body!"))
 	SLEEP_CHECK_DEATH(stun_duration)
 	icon_state = "so_that_no_cry"
 	can_act = TRUE

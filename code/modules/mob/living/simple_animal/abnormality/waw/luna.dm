@@ -70,7 +70,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Performance")
-		to_chat(user, "<span class='nicegreen'>Please wait until the performance is completed.</span>")
+		to_chat(user, span_nicegreen("Please wait until the performance is completed."))
 		addtimer(CALLBACK(src, .proc/PerformanceEnd, user), performance_length)
 		for(var/mob/living/carbon/human/L in GLOB.player_list)
 			L.apply_status_effect(STATUS_EFFECT_LUNAR)
@@ -96,7 +96,7 @@
 
 	killspawn = FALSE
 	performance = FALSE
-	to_chat(user, "<span class='nicegreen'>The performance is completed.</span>")
+	to_chat(user, span_nicegreen("The performance is completed."))
 
 
 /* Monster Half */

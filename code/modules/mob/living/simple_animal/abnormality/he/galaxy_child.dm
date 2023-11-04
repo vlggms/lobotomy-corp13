@@ -39,7 +39,7 @@
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/examine(mob/user)
 	. = ..()
 	if(depressed)
-		. += "<span class='info'>He is sobbing inconsolably and has a forlorn demeanor.</span>"
+		. += span_info("He is sobbing inconsolably and has a forlorn demeanor.")
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/PostSpawn()
 	datum_reference.qliphoth_meter = 1
@@ -94,7 +94,7 @@
 			L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
 			new /obj/effect/temp_visual/pebblecrack(get_turf(L))
 			playsound(get_turf(L), "shatter", 50, TRUE)
-			to_chat(L, "<span class='userdanger'>Your pebble violently shatters as Child of the Galaxy begins to weep!</span>")
+			to_chat(L, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
 			L.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "galaxy", -MUTATIONS_LAYER))
 	//reset everything
 	heal_amount = 0

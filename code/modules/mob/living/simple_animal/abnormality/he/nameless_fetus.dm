@@ -39,7 +39,7 @@
 		calling = null
 
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			to_chat(H, "<span class='userdanger'>The fetus is satisfied.</span>")
+			to_chat(H, span_userdanger("The fetus is satisfied."))
 
 		notify_ghosts("The fetus is satisfied.", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 		datum_reference.qliphoth_change(1)
@@ -62,7 +62,7 @@
 
 		//and make a global announce
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			to_chat(H, "<span class='userdanger'>The fetus calls out for [calling.real_name].</span>")
+			to_chat(H, span_userdanger("The fetus calls out for [calling.real_name]."))
 
 		notify_ghosts("The fetus calls out for [calling.real_name].", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 
@@ -86,7 +86,7 @@
 			continue
 		if(L.stat == DEAD)
 			continue
-		to_chat(L, "<span class='warning'>The crying hurts your head...</span>")
+		to_chat(L, span_warning("The crying hurts your head..."))
 		L.apply_damage(20, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 	addtimer(CALLBACK(src, .proc/check_players), 30 SECONDS)

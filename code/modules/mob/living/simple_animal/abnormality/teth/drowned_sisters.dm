@@ -56,7 +56,7 @@
 	datum_reference.qliphoth_change(3)
 	if(!user)
 		return
-	to_chat(user, "<span class='userdanger'>You are attacked by an invisible assailant!</span>")
+	to_chat(user, span_userdanger("You are attacked by an invisible assailant!"))
 	playsound(get_turf(src), 'sound/abnormalities/jangsan/tigerbite.ogg', 75, 0)
 	user.apply_damage(200, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE))
 	if(user.health < 0 || user.stat == DEAD)
@@ -86,7 +86,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/drownedsisters/proc/TeleportPerson(mob/living/carbon/human/H, turf/teleport_target)
 	set waitfor = FALSE
-	to_chat(H, "<span class='userdanger'>You can't breathe!</span>")
+	to_chat(H, span_userdanger("You can't breathe!"))
 	H.AdjustSleeping(10 SECONDS)
 	animate(H, alpha = 0, time = 2 SECONDS)
 	sleep(2 SECONDS)

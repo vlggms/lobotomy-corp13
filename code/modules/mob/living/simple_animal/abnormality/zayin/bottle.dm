@@ -30,7 +30,7 @@
 	max_boxes = 10
 	var/cake = 5 //How many cake charges are there (4)
 	chem_type = /datum/reagent/abnormality/bottle
-	harvest_phrase = "<span class='notice'>You sweep up some crumbs from around %ABNO into %VESSEL.</span>"
+	harvest_phrase = span_notice("You sweep up some crumbs from around %ABNO into %VESSEL.")
 	harvest_phrase_third = "%PERSON sweeps up crumbs from around %ABNO into %VESSEL."
 
 /mob/living/simple_animal/hostile/abnormality/bottle/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -41,10 +41,10 @@
 	if(work_type == "Drink")
 		//it's just work speed
 		var/consume_speed = 2 SECONDS / (1 + ((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) + datum_reference.understanding) / 100))
-		to_chat(user, "<span class='warning'>You begin to drink the water...</span>")
+		to_chat(user, span_warning("You begin to drink the water..."))
 		datum_reference.working = TRUE
 		if(!do_after(user, consume_speed * max_boxes, target = user))
-			to_chat(user, "<span class='warning'>You decide to not drink the water.</span>")
+			to_chat(user, span_warning("You decide to not drink the water."))
 			datum_reference.working = FALSE
 			return null
 		playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 25, FALSE, -4)
@@ -59,7 +59,7 @@
 		cake -= 1 //Eat some cake
 		if(cake > 0)
 			user.adjustBruteLoss(-500) // It heals you to full if you eat it
-			to_chat(user, "<span class='nicegreen'>You consume the cake. Delicious!</span>")
+			to_chat(user, span_nicegreen("You consume the cake. Delicious!"))
 			icon_state = "bottle2" //cake looks eaten
 		else
 			//Drowns you like Wellcheers does, so I mean the code checks out
@@ -82,7 +82,7 @@
 			var/justice = get_attribute_level(user, JUSTICE_ATTRIBUTE)
 			var/goal_damage = 0
 			if(temperance >= (fortitude + prudence + justice) / 1.5) // If your temperance is at least twice your average stat, you aren't hurt, but lose temperance.
-				to_chat(user, "<span class='userdanger'>The room is filling with water... but you feel oddly unconcerned.</span>")
+				to_chat(user, span_userdanger("The room is filling with water... but you feel oddly unconcerned."))
 				user.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, 20 - temperance)
 				// This is a PERMANENT stat change, VERY significant. But it can happen only once per round. You're The Protagonist, after all.
 				var/stat_change = 0
@@ -90,7 +90,7 @@
 				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
 				addtimer(CALLBACK(src, .proc/DecayProtagonistBuff, user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
 			else
-				to_chat(user, "<span class='userdanger'>The room is filling with water! Are you going to drown?!</span>")
+				to_chat(user, span_userdanger("The room is filling with water! Are you going to drown?!"))
 				goal_damage = 99999 // DIE.
 				if(fortitude >= (prudence + justice)) // Like the temperance calculation, but high temperance doesn't actively hurt your odds.
 					goal_damage = 120 + fortitude // Hurt bad, but never lethally.
@@ -131,7 +131,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(owner, "<span class='danger'>Something once important to you is gone now. You feel like crying.</span>")
+		to_chat(owner, span_danger("Something once important to you is gone now. You feel like crying."))
 		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -20)
 		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -20)
 		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -20)
@@ -141,7 +141,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(owner, "<span class='nicegreen'>You feel your strength return to you.</span>")
+		to_chat(owner, span_nicegreen("You feel your strength return to you."))
 		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 20)
 		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 20)
 		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 20)

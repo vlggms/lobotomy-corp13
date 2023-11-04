@@ -75,10 +75,10 @@
 	name = "Toggle Jump"
 	button_icon_state = "generic_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't jump anymore.</span>"
+	chosen_message = span_colossus("You won't jump anymore.")
 	button_icon_toggle_activated = "generic_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now jump with your next attack when possible.</span>"
+	toggle_message = span_colossus("You will now jump with your next attack when possible.")
 	button_icon_toggle_deactivated = "generic_toggle0"
 
 //Work mechanics
@@ -86,14 +86,14 @@
 	if(pe >= 11) // Almost perfect work
 		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 		new/obj/item/reagent_containers/food/drinks/fairywine(dispense_turf)
-		visible_message("<span class='notice'>[src] gives out some fairy wine.</span>")
+		visible_message(span_notice("[src] gives out some fairy wine."))
 		say(pick(give_drink))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		user.reagents.add_reagent(/datum/reagent/consumable/ethanol/fairywine, 10)
-		visible_message("<span class='notice'>You take a drink with the fairy gentleman. </span>")
+		visible_message(span_notice("You take a drink with the fairy gentleman."))
 		say("Ha! Easy on the good stuff, hot shot!")
 	return
 
@@ -123,7 +123,7 @@
 		return ..()
 	var/mob/living/carbon/human/H = target
 	H.drunkenness += 5
-	to_chat(H, "<span class='warning'>Yuck, some of it got in your mouth!</span>")
+	to_chat(H, span_warning("Yuck, some of it got in your mouth!"))
 	if(H.sanity_lost)
 		melee_damage_type = RED_DAMAGE
 	return ..()
@@ -192,6 +192,6 @@
 		var/wait_time = 0.5 SECONDS
 		if(target_drunk)
 			wait_time += 3.5 SECONDS
-			visible_message("<span class='boldwarning'>[src] staggers around, exposing a weak point!</span>", "<span class='nicegreen'>You feel dizzy!</span>")
+			visible_message(span_boldwarning("[src] staggers around, exposing a weak point!"), span_nicegreen("You feel dizzy!"))
 		SLEEP_CHECK_DEATH(wait_time)
 		can_act = TRUE

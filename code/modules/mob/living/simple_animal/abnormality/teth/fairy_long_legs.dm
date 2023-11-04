@@ -75,17 +75,17 @@
 	sleep(1 SECONDS)
 	say("Care to join me under my umbrella?")
 	raining = TRUE
-	to_chat(user, "<span class='notice'>You feel the rain seep into your clothes, perhaps it would be best to find shelter....</span>")
+	to_chat(user, span_notice("You feel the rain seep into your clothes, perhaps it would be best to find shelter...."))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/AttemptWork(mob/living/carbon/human/user, work_type)
 	if((work_type != "Take cover")&& !raining)
 		return TRUE
 	if((work_type == "Take cover") && !raining) //dumbass
-		to_chat(user, "<span class='notice'>There's no reason, the skies are clear.</span>")
+		to_chat(user, span_notice("There's no reason, the skies are clear."))
 		return FALSE
 	if((work_type == "Take cover") && raining) //Uh oh, you goofed up
-		to_chat(user, "<span class='danger'>You decide to take cover under the fairy's clover.</span>")
+		to_chat(user, span_danger("You decide to take cover under the fairy's clover."))
 		work_count = 0
 		Execute(user)
 		return FALSE
@@ -116,7 +116,7 @@
 	sleep(0.5 SECONDS)
 	step_towards(user, src)
 	sleep(1.5 SECONDS)
-	user.visible_message("<span class='warning'>You feel a stinging pain in your chest, is that...blood?!</span>")
+	user.visible_message(span_warning("You feel a stinging pain in your chest, is that...blood?!"))
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 50, 1)
 	user.apply_damage(100, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	for(var/obj/effect/rainy_effect/rain in range(3, src))
@@ -156,6 +156,6 @@
 /obj/effect/rainy_effect/proc/End(healing)
 	if(healing)
 		for(var/mob/living/carbon/human/H in get_turf(src))
-			to_chat(H, "<span class='nicegreen'>The rain is oddly reinvigorating.</span>")
+			to_chat(H, span_nicegreen("The rain is oddly reinvigorating."))
 			H.adjustBruteLoss(-80)
 	QDEL_IN(src, 50)

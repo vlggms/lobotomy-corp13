@@ -17,11 +17,11 @@
 	if(user in active_users)
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_ASPIRATION)
-		to_chat(user, "<span class='userdanger'>You feel your heart slow again.</span>")
+		to_chat(user, span_userdanger("You feel your heart slow again."))
 	else
 		active_users += user
 		user.apply_status_effect(STATUS_EFFECT_ASPIRATION)
-		to_chat(user, "<span class='userdanger'>You feel your blood pumping faster.</span>")
+		to_chat(user, span_userdanger("You feel your blood pumping faster."))
 
 // Status Effect
 /datum/status_effect/display/aspiration

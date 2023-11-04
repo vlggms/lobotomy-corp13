@@ -94,7 +94,7 @@ GLOBAL_LIST_EMPTY(apostles)
 			continue
 		heretic.Apply_Gift(new /datum/ego_gifts/blessing)
 		heretic.playsound_local(get_turf(heretic), 'sound/abnormalities/whitenight/apostle_bell.ogg', 50)
-		to_chat(heretic, "<span class='userdanger'>[heretic], your Heresy will not be forgotten!</span>")
+		to_chat(heretic, span_userdanger("[heretic], your Heresy will not be forgotten!"))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Destroy()
@@ -138,12 +138,12 @@ GLOBAL_LIST_EMPTY(apostles)
 		L.apply_damage(dealt_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
-		to_chat(L, "<span class='userdanger'>The holy light... IT BURNS!!</span>")
+		to_chat(L, span_userdanger("The holy light... IT BURNS!!"))
 	else
 		if(istype(L, /mob/living/simple_animal/hostile/apostle) && L.stat == DEAD)
 			L.revive(full_heal = TRUE, admin_revive = FALSE)
 			L.grab_ghost(force = TRUE)
-			to_chat(L, "<span class='notice'>The holy light compels you to live!</span>")
+			to_chat(L, span_notice("The holy light compels you to live!"))
 		else if(L.stat != DEAD)
 			L.adjustBruteLoss(-(holy_revival_damage * 0.75) * (L.maxHealth/100))
 			if(ishuman(L))
@@ -151,7 +151,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				H.adjustSanityLoss(-(holy_revival_damage * 0.75) * (H.maxSanity/100))
 			L.regenerate_limbs()
 			L.regenerate_organs()
-			to_chat(L, "<span class='notice'>The holy light heals you!</span>")
+			to_chat(L, span_notice("The holy light heals you!"))
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/SpawnApostles()
 	for(var/i = 1 to 11)
@@ -455,7 +455,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		var/list/new_hits = HurtInTurf(T, been_hit, spear_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>", "<span class='nicegreen'>You impaled heretic [L]!</span>")
+			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
 

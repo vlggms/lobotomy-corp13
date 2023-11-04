@@ -187,10 +187,10 @@
 	if(istype(I, /obj/item/holochip))
 		output = "MONEY"
 		playsound(src, 'sound/items/coinflip.ogg', 80, TRUE, -3)
-		to_chat(user, "<span class='notice'>You hear a plop as the holochip comes in contact with the water...</span>")
+		to_chat(user, span_notice("You hear a plop as the holochip comes in contact with the water..."))
 	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
 		playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
-		to_chat(user, "<span class='notice'>You hear the ego dissolve as it comes in contact with the water...</span>")
+		to_chat(user, span_notice("You hear the ego dissolve as it comes in contact with the water..."))
 		if(locate(I) in tethitem) //TODO: use a different proc? We want an exact match in item paths.
 			output = "TETH"
 		else if(locate(I) in heitem)
@@ -202,14 +202,14 @@
 		else
 			output = "ZAYIN" //If an EGO is not in the lists for whatever reason it will default to zayin
 	else
-		to_chat(user, "<span class='userdanger'>The well rejects your item!</span>")
+		to_chat(user, span_userdanger("The well rejects your item!"))
 
 	// Now for outputs
 	if(!output)
 		return
 
 	if(!do_after(user, 7 SECONDS))
-		to_chat(user, "<span class='userdanger'>The well goes silent as it detects your impatience.</span>")
+		to_chat(user, span_userdanger("The well goes silent as it detects your impatience."))
 		return
 
 	var/gift = null
@@ -217,7 +217,7 @@
 	var/gacha = rand(1,100)
 	if(gacha > 50)
 		playsound(src, 'sound/abnormalities//dreamingcurrent/dead.ogg', 80, TRUE, -3)
-		to_chat(user, "<span class='notice'>Nothing happens...</span>")
+		to_chat(user, span_notice("Nothing happens..."))
 		return
 
 	switch(output)
@@ -278,30 +278,30 @@
 	if(gift)
 		playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
 		new gift(get_turf(src))
-		visible_message("<span class='notice'>Something comes out of the well!</span>")
+		visible_message(span_notice("Something comes out of the well!"))
 
 //Throw yourself into the well : The Code
 /obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
+		to_chat(usr, span_warning("It doesn't look like I can't quite fit in."))
 		return FALSE // Can only extract from humans.
 
 	if(M != user)
-		to_chat(user, "<span class='warning'>You start pulling [M] into the well.</span>")
+		to_chat(user, span_warning("You start pulling [M] into the well."))
 		if(do_after(user, 7 SECONDS)) //If you're going to throw someone else, they have to be dead first.
 			if(M.stat == DEAD)
-				to_chat(user, "<span class='notice'>You throw [M] in the well!</span>")
+				to_chat(user, span_notice("You throw [M] in the well!"))
 				buckle_mob(M, check_loc = check_loc)
 			else
-				to_chat(user, "<span class='warning'>How could you be so cruel? [M] is still alive!</span>")
+				to_chat(user, span_warning("How could you be so cruel? [M] is still alive!"))
 		return
 
-	to_chat(user, "<span class='warning'>You start climbing into the well.</span>")
+	to_chat(user, span_warning("You start climbing into the well."))
 	if(!do_after(user, 7 SECONDS))
-		to_chat(user, "<span class='notice'>You decide that might be a bad idea.</span>")
+		to_chat(user, span_notice("You decide that might be a bad idea."))
 		return FALSE
 
-	to_chat(user, "<span class='userdanger'>You fall into the well!</span>")
+	to_chat(user, span_userdanger("You fall into the well!"))
 	return ..(M, user, check_loc = FALSE) //it just works
 
 
@@ -336,5 +336,5 @@
 	sleep(10)
 	new deathgift(get_turf(src))
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
-	visible_message("<span class='notice'>Something comes out of the well!</span>")
+	visible_message(span_notice("Something comes out of the well!"))
 	..()

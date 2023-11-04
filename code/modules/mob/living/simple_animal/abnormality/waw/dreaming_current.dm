@@ -179,7 +179,7 @@
 		var/list/new_hits = HurtInTurf(TF, been_hit, dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			visible_message("<span class='boldwarning'>[src] bites [L]!</span>")
+			visible_message(span_boldwarning("[src] bites [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
 			if(L.health < 0)

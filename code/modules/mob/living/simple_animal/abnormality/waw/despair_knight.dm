@@ -134,7 +134,7 @@
 		blessed_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
 		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
-		to_chat(user, "<span class='nicegreen'>You feel protected.</span>")
+		to_chat(user, span_nicegreen("You feel protected."))
 		user.physiology.red_mod *= 0.5
 		user.physiology.white_mod *= 0.5
 		user.physiology.black_mod *= 0.5

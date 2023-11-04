@@ -7,10 +7,10 @@
 /obj/structure/toolabnormality/promise/attackby(obj/item/I, mob/living/carbon/human/user)
 	. = ..()
 	if(!do_after(user, 0.5 SECONDS))
-		to_chat(user, "<span class='notice'>You decide you want to keep [I].</span>")
+		to_chat(user, span_notice("You decide you want to keep [I]."))
 		return
 	if(processing)
-		to_chat(user, "<span class='notice'>[src] is busy!</span>")
+		to_chat(user, span_notice("[src] is busy!"))
 		return
 
 	if(istype(I, /obj/item/ego_weapon))
@@ -20,7 +20,7 @@
 		else if(theweapon.force_multiplier <= 1.2)
 			DoTheThing(I, 25)
 		else
-			to_chat(user, "<span class='notice'>You can no longer improve [I]!</span>")
+			to_chat(user, span_notice("You can no longer improve [I]!"))
 			return
 
 	if(istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
@@ -30,7 +30,7 @@
 		else if(thegun.projectile_damage_multiplier <= 1.2)
 			DoTheOtherThing(I, 25)
 		else
-			to_chat(user, "<span class='notice'>You can no longer improve [I]!</span>")
+			to_chat(user, span_notice("You can no longer improve [I]!"))
 			return
 
 /obj/structure/toolabnormality/promise/proc/DoTheThing(obj/item/ego_weapon/I, successrate)

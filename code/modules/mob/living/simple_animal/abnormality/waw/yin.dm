@@ -327,7 +327,7 @@
 			H.adjustSanityLoss(-H.maxSanity)
 			H.adjustSanityLoss(damage)
 		hit_people += L
-		to_chat(L, "<span class='userdanger'>All that is shall become all that isn't.</span>")
+		to_chat(L, span_userdanger("All that is shall become all that isn't."))
 
 /mob/living/simple_animal/hostile/abnormality/yin/proc/YangCheck()
 	for(var/datum/abnormality/AD in SSlobotomy_corp.all_abnormality_datums)

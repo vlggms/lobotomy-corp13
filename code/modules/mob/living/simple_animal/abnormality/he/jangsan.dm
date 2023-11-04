@@ -216,7 +216,7 @@
 		head.dismember()
 		QDEL_NULL(head)
 		H.regenerate_icons()
-		visible_message("<span class='danger'>\The [src] bites [H]'s head off!</span>")
+		visible_message(span_danger("\The [src] bites [H]'s head off!"))
 		new /obj/effect/gibspawner/generic/silent(get_turf(H))
 		new /obj/effect/halo(get_turf(H))
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
@@ -226,7 +226,7 @@
 	H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 	H.adjustSanityLoss(-50)
 	H.Stun(5 SECONDS)
-	to_chat(target, "<span class='warning'>Is that what it really looks like? It's over... I can’t even move my legs...</span>")
+	to_chat(target, span_warning("Is that what it really looks like? It's over... I can’t even move my legs..."))
 	return
 
 //targetting
@@ -266,7 +266,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/bullet_act(obj/projectile/P)
 	if(P.damage <= 40)
-		visible_message("<span class='userdanger'>[P] is caught in [src]'s thick fur!</span>")
+		visible_message(span_userdanger("[P] is caught in [src]'s thick fur!"))
 		P.Destroy()
 		return
 	..()

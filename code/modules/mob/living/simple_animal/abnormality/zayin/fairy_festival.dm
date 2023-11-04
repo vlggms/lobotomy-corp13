@@ -32,7 +32,7 @@
 	var/list/mob/living/carbon/human/protected_people = list()
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	chem_type = /datum/reagent/abnormality/fairy_festival
-	harvest_phrase = "<span class='notice'>A fairy presents you a small flower, then pours its contents into %VESSEL.</span>"
+	harvest_phrase = span_notice("A fairy presents you a small flower, then pours its contents into %VESSEL.")
 	harvest_phrase_third = "A fairy presents %PERSON with a small flower, then pours it into %VESSEL."
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
@@ -51,7 +51,7 @@
 		protected_people += user
 		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/FairyPause)
 		RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/FairyRestart)
-		to_chat(user, "<span class='nicegreen'>You feel at peace under the fairies' care.</span>")
+		to_chat(user, span_nicegreen("You feel at peace under the fairies' care."))
 		playsound(get_turf(user), 'sound/abnormalities/fairyfestival/fairylaugh.ogg', 50, 0, 2)
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_heal", -MUTATIONS_LAYER))
 		addtimer(CALLBACK(src, .proc/FairyEnd, user), heal_duration)
@@ -69,7 +69,7 @@
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyEnd(mob/living/carbon/human/user)
 	protected_people.Remove(user)
 	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_heal", -MUTATIONS_LAYER))
-	to_chat(user, "<span class='notice'>The fairies giggle before returning to their queen.</span>")
+	to_chat(user, span_notice("The fairies giggle before returning to their queen."))
 	UnregisterSignal(user, COMSIG_WORK_STARTED)
 	UnregisterSignal(user, COMSIG_WORK_COMPLETED)
 	return
@@ -78,12 +78,12 @@
 	SIGNAL_HANDLER
 	if (datum_sent != datum_reference)
 		return
-	to_chat(user, "<span class='notice'>The fairies suddenly go eerily quiet.</span>")
+	to_chat(user, span_notice("The fairies suddenly go eerily quiet."))
 	protected_people.Remove(user)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyRestart(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
-	to_chat(user, "<span class='nicegreen'>The fairies start giggling and playing once more.</span>")
+	to_chat(user, span_nicegreen("The fairies start giggling and playing once more."))
 	protected_people += user
 	playsound(get_turf(user), 'sound/abnormalities/fairyfestival/fairylaugh.ogg', 50, 0, 2)
 
@@ -91,7 +91,7 @@
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyGib(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(((user in protected_people) && datum_sent != datum_reference) && !(GODMODE in user.status_flags))
-		to_chat(user, "<span class='userdanger'>With a beat of their wings, the fairies pounce on you and ravenously consume your body!</span>")
+		to_chat(user, span_userdanger("With a beat of their wings, the fairies pounce on you and ravenously consume your body!"))
 		playsound(get_turf(user), 'sound/magic/demon_consume.ogg', 75, 0)
 		UnregisterSignal(user, COMSIG_WORK_STARTED)
 		UnregisterSignal(user, COMSIG_WORK_COMPLETED)
