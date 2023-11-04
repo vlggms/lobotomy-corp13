@@ -196,37 +196,6 @@
 	deep_scan_log = output
 	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
-//Kcorp Syringes
-/obj/item/ksyringe
-	name = "k-corp nanomachine ampule"
-	desc = "A syringe of kcorp healing nanobots."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe"
-	slot_flags = ITEM_SLOT_POCKETS
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/ksyringe/attack_self(mob/living/user)
-	..()
-	to_chat(user, "<span class='notice'>You inject the syringe and instantly feel better.</span>")
-	user.adjustBruteLoss(-40)
-	qdel(src)
-
-/obj/item/krevive
-	name = "k-corp nanomachine ampule"
-	desc = "A syringe of kcorp healing nanobots."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe"
-	slot_flags = ITEM_SLOT_POCKETS
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/krevive/attack(mob/living/M, mob/user)
-	to_chat(user, "<span class='notice'>You inject the syringe.</span>")
-	if(M.revive(full_heal = TRUE, admin_revive = TRUE))
-		M.revive(full_heal = TRUE, admin_revive = TRUE)
-		M.grab_ghost(force = TRUE) // even suicides
-		to_chat(M, "<span class='notice'>You rise with a start, you're alive!!!</span>")
-	qdel(src)
-
 
 //General Invitation
 /obj/item/invitation //intended for ordeals
