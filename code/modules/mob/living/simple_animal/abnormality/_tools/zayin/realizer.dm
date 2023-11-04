@@ -76,15 +76,15 @@
 		return
 
 	if(!(I.type in output))
-		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized.</span>")
+		to_chat(user, span_warning("The true potential of [I] cannot be realized."))
 		return
 
 	if((istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/discord) || istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/assonance)) && !YinYangCheck())
-		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized without the other half.</span>")
+		to_chat(user, span_warning("The true potential of [I] cannot be realized without the other half."))
 		return
 
 	if(user.ckey in realized_users)
-		to_chat(user, "<span class='warning'>You have realized your full potential already.</span>")
+		to_chat(user, span_warning("You have realized your full potential already."))
 		return
 
 	var/stat_total = 0
@@ -92,11 +92,11 @@
 		stat_total += get_raw_level(user, attribute)
 
 	if(stat_total <= 500) // ~125 in all stats required
-		to_chat(user, "<span class='warning'>You are too weak to use this machine.</span>")
+		to_chat(user, span_warning("You are too weak to use this machine."))
 		return
 
 	var/atom/item_out = output[I.type]
-	to_chat(user, "<span class='notice'>The machine is slowly turning [I] into [initial(item_out.name)]...</span>")
+	to_chat(user, span_notice("The machine is slowly turning [I] into [initial(item_out.name)]..."))
 	if(!do_after(user, 5 SECONDS))
 		return
 
@@ -105,5 +105,5 @@
 	user.adjust_all_attribute_levels(-10)
 	var/atom/new_item = new item_out(get_turf(user))
 	user.put_in_hands(new_item)
-	to_chat(user, "<span class='nicegreen'>You retrieve [new_item] from the [src]!</span>")
+	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
 	playsound(get_turf(src), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)

@@ -15,7 +15,7 @@
 	if(!do_after(user, 6, user))
 		return
 	if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) >= 50)
-		to_chat(user, "<span class='notice'>It's silent.</span>")
+		to_chat(user, span_notice("It's silent."))
 		return //You don't need any more.
 
 	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 5)
@@ -30,7 +30,7 @@
 			R.add_stacks(1)
 
 	user.apply_status_effect(STATUS_EFFECT_ROLECALL)
-	to_chat(user, "<span class='userdanger'>You pick up the phone and hear nothing, but you feel as if someone is behind you.</span>")
+	to_chat(user, span_userdanger("You pick up the phone and hear nothing, but you feel as if someone is behind you."))
 
 // Status Effect
 /datum/status_effect/stacking/rolecall
@@ -60,10 +60,10 @@
 	var/mob/living/carbon/human/H = owner
 	if(!istype(H))
 		return
-	to_chat(H, "<span class='userdanger'>What if I'm attacked? I can't focus!</span>")
+	to_chat(H, span_userdanger("What if I'm attacked? I can't focus!"))
 	if(prob(5))
 		playsound(H, 'sound/abnormalities/vivavoce/doorknock.ogg', 100, FALSE, -5)
-		to_chat(H, "<span class='userdanger'>What was that?</span>")
+		to_chat(H, span_userdanger("What was that?"))
 	H.physiology.red_mod *= damage_mod
 	H.physiology.white_mod *= damage_mod
 	H.physiology.black_mod *= damage_mod
