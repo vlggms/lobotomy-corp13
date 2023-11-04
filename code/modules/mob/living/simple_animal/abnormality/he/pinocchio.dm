@@ -78,7 +78,7 @@
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/pinocchio/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(realboy)
-		to_chat(user, "<span class='warning'>The abnormality isn't in here!</span>")
+		to_chat(user, span_warning("The abnormality isn't in here!"))
 		return FALSE
 	if(work_type == "Lying is Bad!")
 		if(lying)
@@ -188,7 +188,7 @@
 	if(delete_timer)
 		deltimer(delete_timer)
 	if(user.dna.species.id != "puppet")
-		to_chat(user, "<span class='warning'>The [src] collapses into splinters in your hands!</span>")
+		to_chat(user, span_warning("The [src] collapses into splinters in your hands!"))
 		qdel(src)
 		return
 

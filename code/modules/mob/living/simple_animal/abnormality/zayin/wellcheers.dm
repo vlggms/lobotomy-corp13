@@ -25,7 +25,7 @@
 	gift_message = "You feel like you've been doing this your whole life."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	chem_type = /datum/reagent/abnormality/wellcheers_zero
-	harvest_phrase = "<span class='notice'>The machine dispenses some clear-ish soda into %VESSEL.</span>"
+	harvest_phrase = span_notice("The machine dispenses some clear-ish soda into %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -42,7 +42,7 @@
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	dropped_can = new dropped_can(dispense_turf)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE)
-	visible_message("<span class='notice'>[src] dispenses [dropped_can].</span>")
+	visible_message(span_notice("[src] dispenses [dropped_can]."))
 	return
 
 // Death!
@@ -50,7 +50,7 @@
 	for(var/turf/open/T in view(7, src))
 		new /obj/effect/temp_visual/water_waves(T)
 	playsound(get_turf(src), 'sound/abnormalities/wellcheers/ability.ogg', 75, 0)
-	to_chat(user, "<span class='userdanger'>You feel sleepy...</span>")
+	to_chat(user, span_userdanger("You feel sleepy..."))
 	user.AdjustSleeping(10 SECONDS)
 	var/shrimpspot = locate(/obj/effect/landmark/shrimpship) in world.contents
 	animate(user, alpha = 0, time = 2 SECONDS)
@@ -119,7 +119,7 @@
 
 /turf/open/water/deep/saltwater/extradeep/proc/Drown(mob/living/carbon/human/H)
 	H.Stun(30 SECONDS)
-	H.visible_message("<span class='userdanger'>[H] falls in the water and starts to squirm frantically! It looks like they're going to drown!</span>", "<span class='userdanger'>The sea is far too dangerous! You slip into the depths...</span>")
+	H.visible_message(span_userdanger("[H] falls in the water and starts to squirm frantically! It looks like they're going to drown!"), span_userdanger("The sea is far too dangerous! You slip into the depths..."))
 	playsound(src, 'sound/voice/human/wilhelm_scream.ogg', 50, TRUE, -3)
 	animate(H, alpha = 0,pixel_x = 0, pixel_z = 0, time = 3 SECONDS)
 	QDEL_IN(H, 3.5 SECONDS)

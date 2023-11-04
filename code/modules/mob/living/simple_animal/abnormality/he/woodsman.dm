@@ -55,10 +55,10 @@
 	name = "Toggle Deforestation"
 	button_icon_state = "woodsman_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't fell hearts anymore.</span>"
+	chosen_message = span_colossus("You won't fell hearts anymore.")
 	button_icon_toggle_activated = "woodsman_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>"
+	toggle_message = span_colossus("You will now attempt to fell all hearts in your path.")
 	button_icon_toggle_deactivated = "woodsman_toggle0"
 
 
@@ -98,9 +98,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/Heal(mob/living/carbon/human/body)
-	src.visible_message("<span class='warning'>[src] plunges their hand into [body]'s chest and rips out their heart!</span>", \
-		"<span class='notice'>You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough.</span>", \
-		"<span class='hear'>You hear a metal clange and squishing.</span>")
+	src.visible_message(span_warning("[src] plunges their hand into [body]'s chest and rips out their heart!"), \
+		span_notice("You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough."), \
+		span_hear("You hear a metal clange and squishing."))
 	src.adjustBruteLoss(-666) // Actually just the conversion of health he heals scaled to equivalent health that Helper has.
 	for(var/obj/item/organ/O in body.getorganszone(BODY_ZONE_CHEST, TRUE))
 		if(istype(O,/obj/item/organ/heart))
@@ -257,7 +257,7 @@
 	if (GODMODE in user.status_flags)
 		return
 	if(datum_reference.qliphoth_meter == 1)
-		to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down!</span>")
+		to_chat(user, span_userdanger("The Woodsman swings his axe down!"))
 		datum_reference.qliphoth_change(-1)
 		user.gib()
 
@@ -265,7 +265,7 @@
 	if(!IsContained() || user == src || !ishuman(M) || (GODMODE in M.status_flags))
 		return FALSE
 	. = ..()
-	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down and...!</span>")
+	to_chat(user, span_userdanger("The Woodsman swings his axe down and...!"))
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	var/obj/item/organ/heart/O = M.getorgan(/obj/item/organ/heart)
 	if(istype(O))
@@ -273,11 +273,11 @@
 		QDEL_NULL(O)
 	M.gib()
 	if(datum_reference.qliphoth_meter == 1)
-		to_chat(user, "<span class='nicegreen'>Rests it on the ground.</span>")
+		to_chat(user, span_nicegreen("Rests it on the ground."))
 		datum_reference.qliphoth_change(1)
 		icon_state = "woodsman"
 	else
-		to_chat(user, "<span class='userdanger'>Stands up!</span>")
+		to_chat(user, span_userdanger("Stands up!"))
 		datum_reference.qliphoth_change(-2)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user)

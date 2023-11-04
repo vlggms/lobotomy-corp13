@@ -95,7 +95,7 @@
 			continue
 		targets_to_hit += V
 	if(targets_to_hit.len <= 0)
-		to_chat(TCC, "<span class='warning'>There are no enemies nearby!</span>")
+		to_chat(TCC, span_warning("There are no enemies nearby!"))
 		return FALSE
 	StartCooldown()
 	TCC.Wounds_Of_Sorrow(pick(targets_to_hit))
@@ -118,7 +118,7 @@
 	if(!(TCC.can_act))
 		return FALSE
 	if(!(TCC.desperate))
-		to_chat(TCC, "<span class='warning'>You're still not ready to use this!</span>")
+		to_chat(TCC, span_warning("You're still not ready to use this!"))
 		return FALSE
 	StartCooldown()
 	TCC.Combusting_Courage()
@@ -170,7 +170,7 @@
 			for(var/mob/living/L in GLOB.mob_living_list)
 				if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
 					continue
-				to_chat(L, "<span class='userdanger'>Everything seems hazy, even metal is starting to melt. You can barely withstand the heat!</span>")
+				to_chat(L, span_userdanger("Everything seems hazy, even metal is starting to melt. You can barely withstand the heat!"))
 				flash_color(L, flash_color = COLOR_SOFT_RED, flash_time = 150)
 				SEND_SOUND(L, sound('sound/ambience/acidrain_mid.ogg'))
 
@@ -182,7 +182,7 @@
 	for(var/mob/living/L in GLOB.mob_living_list)
 		if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
 			continue
-		to_chat(L, "<span class='userdanger'>You're boiling alive from the heat of a miniature sun!</span>")
+		to_chat(L, span_userdanger("You're boiling alive from the heat of a miniature sun!"))
 		playsound(L, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, TRUE)
 		L.apply_damage(300, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		L.apply_lc_burn(50)
@@ -308,7 +308,7 @@
 		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			to_chat(L, "<span class='userdanger'>[src] stabs you!</span>")
+			to_chat(L, span_userdanger("[src] stabs you!"))
 			L.apply_lc_burn(4*burn_mod)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), dir_to_target)
 	SLEEP_CHECK_DEATH(10)
@@ -366,7 +366,7 @@
 		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			to_chat(L, "<span class='userdanger'>You were scorched by [src]'s flames!</span>")
+			to_chat(L, span_userdanger("You were scorched by [src]'s flames!"))
 			L.apply_lc_burn(20)
 	SLEEP_CHECK_DEATH(10)
 	can_act = TRUE
@@ -408,7 +408,7 @@
 		ADD_TRAIT(user, type, GENETIC_MUTATION)
 		user.update_blindness()
 		user.update_sight()
-		to_chat(user, "<span class='warning'>You were cursed by [src]!</span>")
+		to_chat(user, span_warning("You were cursed by [src]!"))
 		addtimer(CALLBACK(src, .proc/RemoveCurse, user, type), 3 MINUTES)
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/RemoveCurse(mob/living/carbon/human/user, type)

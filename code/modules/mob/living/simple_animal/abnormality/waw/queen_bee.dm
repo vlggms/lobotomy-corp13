@@ -112,7 +112,7 @@
 	var/mob/living/carbon/human/H = target
 	if(H.health <= 0)
 		var/turf/T = get_turf(H)
-		visible_message("<span class='danger'>[src] bites hard on \the [H] as another bee appears!</span>")
+		visible_message(span_danger("[src] bites hard on \the [H] as another bee appears!"))
 		H.emote("scream")
 		H.gib()
 		new /mob/living/simple_animal/hostile/worker_bee(T)

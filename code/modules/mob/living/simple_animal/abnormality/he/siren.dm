@@ -81,7 +81,7 @@
 	if(!datum_reference.qliphoth_meter)
 		musictime.stop()
 		for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
-			to_chat(H, "<span class='warning'>The music begins to trail off.</span>") // This is specifically to let players know that abnormalities are no longer breaching
+			to_chat(H, span_warning("The music begins to trail off.")) // This is specifically to let players know that abnormalities are no longer breaching
 	playstatus = 0
 	icon_state = "siren"
 
@@ -97,7 +97,7 @@
 	var/currentage = H.age
 	var/message
 	if(datum_reference.qliphoth_meter >= 5) //If we're at max qliphoth, die!
-		to_chat(user, "<span class='danger'>The last thing you remember is your heart stopping.</span>")
+		to_chat(user, span_danger("The last thing you remember is your heart stopping."))
 		playsound(loc, 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE, channel = CHANNEL_SIREN)
 		user.dust()
 		return
@@ -111,7 +111,7 @@
 	else
 		message += "Doesn't seem like it did anything this time."
 
-	to_chat(H, "<span class='warning'>[message]</span>")
+	to_chat(H, span_warning("[message]"))
 
 	if(!playstatus && datum_reference.qliphoth_meter <= 1) //Qlihphoth is at or below 1 and insight work was performed? play the healing song!
 		playsound(loc, 'sound/abnormalities/siren/backtherebenjamin.ogg', 50, FALSE,40, falloff_distance = 20, channel = CHANNEL_SIREN)
@@ -139,15 +139,15 @@
 /mob/living/simple_animal/hostile/abnormality/siren/proc/warning() //A bunch of messages for various occasions
 	if(datum_reference.qliphoth_meter > 0)
 		for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
-			to_chat(H, "<span class='warning'>The abnormalities seem restless...</span>")
+			to_chat(H, span_warning("The abnormalities seem restless..."))
 		return
 
 	for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
-		to_chat(H, "<span class='warning'>The abnormalities stir as the music plays...</span>")
+		to_chat(H, span_warning("The abnormalities stir as the music plays..."))
 	icon_state = "siren_breach"
 
 /mob/living/simple_animal/hostile/abnormality/siren/proc/blessing()
 	for(var/mob/living/carbon/human/H in livinginrange(playrange, src))
-		to_chat(H, "<span class='nicegreen'>The music calms your nerves.</span>")
+		to_chat(H, span_nicegreen("The music calms your nerves."))
 		H.adjustSanityLoss(-3) // It's healing
 	return

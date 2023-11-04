@@ -12,7 +12,7 @@
 		stat_total += get_raw_level(user, attribute)
 
 	if(stat_total <= 80) // Don't go under 80, I want to keep this clean and keep it from
-		to_chat(user, "<span class='userdanger'>You are not strong enough to use the mirror!</span>")
+		to_chat(user, span_userdanger("You are not strong enough to use the mirror!"))
 		return
 
 	var/total_addition // Just for the message upon using it
@@ -24,4 +24,4 @@
 		total_addition += addition
 
 	gazers |= user
-	to_chat(user, "<span class='userdanger'>You gaze into the mirror and feel [total_addition > 0 ? "stronger!" : "weaker..."]</span>")
+	to_chat(user, span_userdanger("You gaze into the mirror and feel [total_addition > 0 ? "stronger!" : "weaker..."]"))

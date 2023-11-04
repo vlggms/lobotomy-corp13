@@ -51,12 +51,12 @@
 //papercut due to failed work
 /mob/living/simple_animal/hostile/abnormality/mailpile/WorktickFailure(mob/living/carbon/human/user)
 	if(prob(10))
-		to_chat(user,"<span class='warning'>Ouch! I got a paper cut!</span>")
+		to_chat(user, span_warning("Ouch! I got a paper cut!"))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/DeliveryRepress(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(cooldown < world.time)
-		to_chat(user,"<span class='warning'>You realized you have made a grave mistake as envelopes start flying out of the mailbox towards you.</span>")
+		to_chat(user, span_warning("You realized you have made a grave mistake as envelopes start flying out of the mailbox towards you."))
 		user.Stun(10 SECONDS)
 		var/letterssave = list()
 		for(var/i = 1 to 4)
@@ -84,11 +84,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/Delivery(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(prob(60))
-		to_chat(user,"<span class='notice'>It seems the pile did not find a message for you.</span>")
+		to_chat(user, span_notice("It seems the pile did not find a message for you."))
 		return
 	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
 
-	to_chat(user,"<span class='notice'>One of the letters from the pile slowly waves in the air.</span>")
+	to_chat(user, span_notice("One of the letters from the pile slowly waves in the air."))
 	var/obj/item/mailpaper/MAIL
 	if(prob(20))
 		if(prob(10))
@@ -194,14 +194,14 @@
 //this is using the parcel. you either go insane or get special ego
 /obj/item/parcelself/attack_self(mob/living/carbon/human/user)
 	if(receiver != user)
-		to_chat(user,"<span class='notice'>It feels wrong to try to open someone else's package.</span>")
+		to_chat(user, span_notice("It feels wrong to try to open someone else's package."))
 		return
 	if(prob(50))
 		new /obj/item/ego_weapon/mail_satchel(get_turf(user))
-		to_chat(user,"<span class='nicegood'>As you unravel the parcel a satchel falls out.</span>")
+		to_chat(user, span_nicegreen("As you unravel the parcel a satchel falls out."))
 	else
 		new /obj/item/clothing/suit/armor/ego_gear/zayin/letter_opener(get_turf(user))
-		to_chat(user,"<span class='nicegood'>As you unravel the parcel an outfit falls out.</span>")
+		to_chat(user, span_nicegreen("As you unravel the parcel an outfit falls out."))
 	qdel(src)
 	return
 
@@ -227,7 +227,7 @@
 	desc = "letter addressed to a scratched out name, by... Neco-Arc?"
 
 /obj/item/mailpaper/pipebomb/attack_self(mob/living/carbon/human/user)
-	to_chat(user,"<span class='warning'>What is this... Is this a pipebomb!?</span>")
+	to_chat(user, span_warning("What is this... Is this a pipebomb!?"))
 	sleep(10)
 	//add glitterbomb sfx, maybe a toot horn or something funny
 	for(var/direction in GLOB.alldirs)
@@ -245,7 +245,7 @@
 	desc = temp[2]
 
 /obj/item/mailpaper/junk/attack_self(mob/living/carbon/human/user)
-	to_chat(user,"<span class='notice'>This was a waste of time....</span>")
+	to_chat(user, span_notice("This was a waste of time..."))
 	user.adjustSanityLoss(5)
 	qdel(src)
 
@@ -254,7 +254,7 @@
 	desc = "IHATEYOUIHATEYOUIHATEYOUIHATEYOUIHATEYOU."
 
 /obj/item/mailpaper/hatred/attack_self(mob/living/carbon/human/user)
-	to_chat(user,"<span class='warning'>The pages are filled with scribbles and threats...</span>")
+	to_chat(user, span_warning("The pages are filled with scribbles and threats..."))
 	user.adjustSanityLoss(5)
 	qdel(src)
 
@@ -265,7 +265,7 @@
 	desc = "A past letter from a friend addressed to \a [user]. The thought of such conduct makes you feel happy, albeit bittersweet."
 
 /obj/item/mailpaper/instinct/attack_self(mob/living/carbon/human/user)
-	to_chat(user,"<span class='nicegood'>Reading the friendly letter helps you find peace in the passing of time.</span>")
+	to_chat(user, span_nicegreen("Reading the friendly letter helps you find peace in the passing of time."))
 	user.adjustSanityLoss(-5)
 	qdel(src)
 
@@ -276,7 +276,7 @@
 	desc = "letter from coworkers addressed to \a [user]. It feels quite nostalgic."
 
 /obj/item/mailpaper/insight/attack_self(mob/living/carbon/human/user)
-	to_chat(user,"<span class='nicegood'>Reading the letter from your coworkers steel your resolve.</span>")
+	to_chat(user, span_nicegreen("Reading the letter from your coworkers steel your resolve."))
 	if(!HAS_TRAIT(user,TRAIT_WORKFEAR_IMMUNE) && !HAS_TRAIT(user,TRAIT_COMBATFEAR_IMMUNE))
 		user.apply_status_effect(/datum/status_effect/nofear_buff)
 	qdel(src)
@@ -288,7 +288,7 @@
 	desc = "A promotion letter addressed to \a [user]. The new manager of the corp!?!? Oh wait, that's from the future."
 
 /obj/item/mailpaper/attachment/attack_self(mob/living/carbon/human/user)
-	to_chat(user,"<span class='nicegood'>Reading the promotion letter fills you with determination to work harder!</span>")
+	to_chat(user, span_nicegreen("Reading the promotion letter fills you with determination to work harder!"))
 	var/datum/status_effect/workspeed_buff/TMPEFF = user.has_status_effect(/datum/status_effect/workspeed_buff)
 	if (!TMPEFF)
 		user.apply_status_effect(/datum/status_effect/workspeed_buff)

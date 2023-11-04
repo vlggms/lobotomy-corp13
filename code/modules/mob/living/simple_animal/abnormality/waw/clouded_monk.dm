@@ -94,7 +94,7 @@
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
 		user.adjustSanityLoss(-30) // It's healing
-		to_chat(user, "<span class='nicegreen'>[src] restores your SP with calming words.</span>")
+		to_chat(user, span_nicegreen("[src] restores your SP with calming words."))
 	return
 
 //breach code
@@ -201,8 +201,8 @@
 			continue
 		if(L.z != z)
 			continue
-		visible_message("<span class='boldwarning'>[src] bites [L]!</span>")
-		to_chat(L, "<span class='userdanger'>[src] takes a bite out of you!</span>")
+		visible_message(span_boldwarning("[src] bites [L]!"))
+		to_chat(L, span_userdanger("[src] takes a bite out of you!"))
 		var/turf/LT = get_turf(L)
 		new /obj/effect/temp_visual/kinetic_blast(LT)
 		L.apply_damage(350,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
