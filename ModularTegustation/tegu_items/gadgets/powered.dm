@@ -324,25 +324,27 @@
 	 //roundabout way of making update item easily changed. Used in updateicon proc.
 	default_icon = "gadgetmod"
 
-/obj/item/powered_gadget/vitals_projector/attackby(obj/item/W, mob/user)
-	if(W.tool_behaviour == TOOL_WRENCH)
-		var/mod1_ask = alert("modify tool?", "Choose a target type.", "Human", "Ordeal", "Abnormality", "cancel")
-		batterycost = initial(batterycost)
-		if(do_after(user, 5 SECONDS, target = user))
-			switch(mod1_ask)
-				if("cancel")
-					return
-				if("Human")
-					chosen_target_type = 1
-				if("Ordeal")
-					chosen_target_type = 2
-					batterycost += round(cell.maxcharge * 0.15)
-				if("Abnormality")
-					chosen_target_type = 3
-					batterycost += round(cell.maxcharge * 0.25)
-			update_icon()
-			return
-	return ..()
+/obj/item/powered_gadget/vitals_projector/Initialize()
+	. = ..()
+	batterycost = round(cell.maxcharge * 0.10)
+
+/obj/item/powered_gadget/vitals_projector/attack_self(mob/user)
+	var/mod1_ask = alert("modify tool?", "Choose a target type.", "Human", "Ordeal", "Abnormality", "cancel")
+	if(do_after(user, 3 SECONDS, user, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE))
+		switch(mod1_ask)
+			if("cancel")
+				return
+			if("Human")
+				chosen_target_type = 1
+				batterycost = round(cell.maxcharge * 0.10)
+			if("Ordeal")
+				chosen_target_type = 2
+				batterycost = round(cell.maxcharge * 0.15)
+			if("Abnormality")
+				chosen_target_type = 3
+				batterycost = round(cell.maxcharge * 0.20)
+		update_icon()
+	return
 
 /obj/item/powered_gadget/vitals_projector/update_overlays()
 	. = ..()
@@ -357,7 +359,7 @@
 /obj/item/powered_gadget/vitals_projector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(!chosen_target_type)
-		to_chat(user, "<span class='warning'>A wrench is needed to set the target type!</span>")
+		to_chat(user, "<span class='warning'>Use in-hand to set the target type!</span>")
 	if(cell && cell.charge >= batterycost && target_check(target))
 		cell.charge -= batterycost
 		var/mob/living/L = target
@@ -431,7 +433,9 @@
 //Injector
 /obj/item/powered_gadget/enkephalin_injector
 	name = "Prototype Enkephalin Injector"
-	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. However, the development was discontinued after the safety department abused it for... other purposes. This version only makes the entities even more hostile towards you. Only for clerks"
+	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. \
+			However, the development was discontinued after the safety department abused it for... other purposes. \
+			This version only makes the entities even more hostile towards you. Only for clerks"
 	icon_state = "e_injector"
 	default_icon = "e_injector"
 	batterycost = 5000
@@ -441,11 +445,17 @@
 	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
 		to_chat(user, "<span class='notice'>The Gadget's light flashes red. You aren't a clerk. Check the label before use.</span>")
 		return
+	if(T.status_flags & GODMODE)
+		to_chat(user, "<span class='notice'>[T] simply ignores you.</span>")
+		return
 	if(cell.charge >= batterycost && ishostile(T) && T.stat != DEAD && !(T.status_flags & GODMODE) && !T.client)
 		var/mob/living/simple_animal/hostile/H = T
 		if(H.target != user)
 			hit_message = "<span class='warning'>[user] injected some enkephalin into [T].</span>"
-			H.target = user
+			H.GiveTarget(user)
+			if(isabnormalitymob(H)) // RISK. REWARD.
+				var/mob/living/simple_animal/hostile/abnormality/abno = H
+				abno.GiftUser(user, 1, 100)
 			user.visible_message(hit_message)
 			cell.charge -= batterycost
 			update_icon()
