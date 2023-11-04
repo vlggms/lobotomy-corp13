@@ -51,7 +51,7 @@
 	name = "Judgement"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now damage all enemies around you.</span>"
+	chosen_message = span_colossus("You will now damage all enemies around you.")
 	chosen_attack_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/Move()
