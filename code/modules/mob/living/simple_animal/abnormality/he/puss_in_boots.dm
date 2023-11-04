@@ -110,13 +110,13 @@
 		return
 	if(abno == src)
 		if(client)
-			to_chat(src, "<span class='notice'>You start feeling a bit impatient.</span>")
+			to_chat(src, span_notice("You start feeling a bit impatient."))
 		else
 			manual_emote("perks up for a moment, then settles back down, looking annoyed.")
 		return
 	if(datum_reference.qliphoth_meter > 1)
 		if(client)
-			to_chat(src, "<span class='notice'>You hear something...</span>")
+			to_chat(src, span_notice("You hear something..."))
 		else
 			manual_emote("perks up slightly, as though it hears something.")
 	datum_reference.qliphoth_change(-1)
@@ -158,7 +158,7 @@
 		density = TRUE
 		fear_level = HE_LEVEL
 		FearEffect()
-		src.visible_message("<span class='warning'>[src] is looking around, eyes wild with rage!</span>")
+		src.visible_message(span_warning("[src] is looking around, eyes wild with rage!"))
 	icon_state = icon_aggro
 	update_icon()
 	faction = list("hostile") //he's gone feral!
@@ -184,9 +184,9 @@
 		playsound(src, 'sound/weapons/fwoosh.ogg', 250, FALSE, 4)
 		forceMove(T)
 		if(friendly)
-			src.visible_message("<span class='nicegreen'>[src] looks ready to help [blessed_human]!</span>")
+			src.visible_message(span_nicegreen("[src] looks ready to help [blessed_human]!"))
 		else
-			src.visible_message("<span class='warning'>[src] looks angrily at [blessed_human]!</span>")
+			src.visible_message(span_warning("[src] looks angrily at [blessed_human]!"))
 		LoseTarget()
 		for(var/mob/living/enemy in oview(src, vision_range))
 			if(enemy == blessed_human)
@@ -245,7 +245,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Finisher(mob/living/target)
 	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE)) //50% of your health in red damage
-	to_chat(target,"<span class='danger'>[src] is trying to cut you in half!</span>")
+	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
 		target.apply_damage(100, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //bit more than usual DPS in pale damage
 		return
@@ -294,7 +294,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/user = owner
-	to_chat(user, "<span class='nicegreen'>You feel protected.</span>")
+	to_chat(user, span_nicegreen("You feel protected."))
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "inheritance", -MUTATIONS_LAYER))
 	StatUpdate(user)
 	user.physiology.red_mod *= 0.8
