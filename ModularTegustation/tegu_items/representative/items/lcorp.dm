@@ -16,6 +16,6 @@
 		return
 	var/mob/living/simple_animal/hostile/abnormality/A = M
 	to_chat(user, "<span class='notice'>You begin the scan.</span>")
-	if(!do_after(user, 15 SECONDS, src))
+	if(!do_after(user, 30 SECONDS, src))
 		return
-	A.datum_reference.understanding = min(A.datum_reference.understanding + 10, 100)
+	A.datum_reference.understanding = min(A.datum_reference.understanding + 1, 10)
