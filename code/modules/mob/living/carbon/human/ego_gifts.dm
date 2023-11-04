@@ -1106,6 +1106,13 @@
 	justice_bonus = 4
 	slot = FACE
 
+/datum/ego_gifts/rosa
+	name = "Crown of Roses"
+	icon_state = "penitence"//TODO: make an actual sprite
+	prudence_bonus = 3
+	temperance_bonus = 3
+	slot = HAT
+
 //reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
 //so right now its 10 temp
 /datum/ego_gifts/swan
