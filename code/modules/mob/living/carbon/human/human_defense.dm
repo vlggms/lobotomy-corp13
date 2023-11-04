@@ -338,7 +338,7 @@
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 	if(!affecting)
 		affecting = get_bodypart(BODY_ZONE_CHEST)
-	var/armor = run_armor_check(affecting, M.armortype, armour_penetration = M.armour_penetration)
+	var/armor = run_armor_check(affecting, M.melee_damage_type, armour_penetration = M.armour_penetration)
 	apply_damage(damage, M.melee_damage_type, affecting, armor, wound_bonus = M.wound_bonus, bare_wound_bonus = M.bare_wound_bonus, sharpness = M.sharpness, forced = FALSE)
 
 
@@ -364,7 +364,7 @@
 	var/obj/item/bodypart/affecting = get_bodypart(ran_zone(dam_zone))
 	if(!affecting)
 		affecting = get_bodypart(BODY_ZONE_CHEST)
-	var/armor_block = run_armor_check(affecting, M.armortype)
+	var/armor_block = run_armor_check(affecting, M.melee_damage_type)
 	apply_damage(damage, BRUTE, affecting, armor_block, wound_bonus=wound_mod)
 
 
@@ -859,7 +859,7 @@
 
 	to_chat(src, combined_msg.Join("\n"))
 
-/mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
+/mob/living/carbon/human/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)
 		return
 	damage_amount *= 0.5 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed
@@ -916,4 +916,4 @@
 			torn_items |= leg_clothes
 
 	for(var/obj/item/I in torn_items)
-		I.take_damage(damage_amount, damage_type, damage_flag, 0)
+		I.take_damage(damage_amount, damage_type, 0)

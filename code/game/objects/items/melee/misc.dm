@@ -779,7 +779,6 @@
 	slot_flags = ITEM_SLOT_BELT
 	force = 14
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	w_class = WEIGHT_CLASS_BULKY
 	throwforce = 8
 	block_chance = 10

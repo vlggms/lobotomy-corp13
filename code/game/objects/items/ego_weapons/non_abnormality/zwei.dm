@@ -7,14 +7,10 @@
 	desc = "A zweihander used by the zwei association."
 	special = "Use in hand to buff your defense, and those of everyone around you."
 	icon_state = "zwei"
-	inhand_icon_state = "zwei"
 	force = 55
 	attack_speed = 2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
-	inhand_icon_state = "claymore"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -119,7 +115,7 @@
 	force = 30
 	attack_speed = 2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(

@@ -14,7 +14,6 @@
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	vision_range = 7 //nerfed vision range so he doesn't go 2 continents away from his friend
 	stat_attack = CONSCIOUS
 	attack_sound = 'sound/abnormalities/scaredycat/catattack.ogg'
@@ -170,7 +169,7 @@
 	if(courage)
 		melee_damage_lower = 15
 		melee_damage_upper = 20
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
+		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5))
 		icon = 'ModularTegustation/Teguicons/48x48.dmi'
 		icon_living = "cat_courage"
 		icon_dead = "dead_courage"
@@ -181,7 +180,7 @@
 		faction = list("neutral")
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper) //it shouldn't attack in that form in the first place but...
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
+		ChangeResistances(list(RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4))
 		playsound(src, 'sound/abnormalities/scaredycat/catchange.ogg', 75, FALSE, 4)
 		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		icon_living = "scaredy_cat"

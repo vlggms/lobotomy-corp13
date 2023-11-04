@@ -161,15 +161,19 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/penitentgirl
 	abno_code = "T-01-115"
 	abno_info = list(
-		"When an Agent, who had Temperance Level 1, completed the work process, they eventually cut off their own feet.",
-		"When an Agent, who had Temperance Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
+		"When an Agent, who had Temperance and Prudence Level 1, completed the work process, the employee began to panic, and started dancing frantically. When left alone for too long. the employee cut off their own feet.",
+		"When an Agent, who had Prudence Level 2 or higher, started the work process, Penitent Girl’s work damage type changed.")
 
 //Drowned Sisters
 /obj/item/paper/fluff/info/teth/drowned
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drownedsisters
 	abno_code = "T-01-133"
 	abno_info = list(
-		"The work damage done to the employee working on The Drowned Sisters increased inversely to their Prudence.",
+		"When the Employee perfomed Instinct work, the Qliphoth counter lowered.",
+		"When the Qliphoth counter reached zero, the employee mysteriously died on the spot. An autopsy revealed scratch marks from an incredibly large feline.",
+		"When the Employee performed Attachment work, the Qliphoth counter increased.",
+		"If the Qliphoth counter increased while already at its maximum, the cell was flooded with water. Any employees inside eventually awoke somewhere else in the facility.",
+		"The work damage done to the employee working on The Drowned Sisters increased immensely when Prudence was low, especially below level 2.",
 		"After work was completed, the employee was unable to recall their conversation with The Drowned Sisters. It was found that the employee’s sanity was slightly restored.")
 
 //Void Dream
@@ -263,9 +267,10 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/fairy_gentleman
 	abno_code = "F-01-161"
 	abno_info = list(
-		"After getting a good result with the Fairy Gentleman, He gives the employee a bottle of what he calls “Fairy Wine.”",
+		"After generating 11 or more PE boxes with the Fairy Gentleman, he gives the employee a bottle of what he calls “Fairy Wine.”",
 		"Drinking the “Fairy Wine” increase the prudence of the agent who drinks it and then heals their sanity. However, drinking this wine also will make the user become drunk incredibly quickly. Employees who drank too much fairy wine felt better after taking a special chemical using a sleeper.",
-		"Doing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"Performing instinct work with the Fairy Gentleman will also cause the agent to take a drink with the Gentleman.")
 
 //Fairy-Long-Legs
 /obj/item/paper/fluff/info/teth/fairy_longlegs
@@ -289,7 +294,8 @@
 		"Employee's reported to feel stronger when the yellow talismans attached to them, feeling a increase in their movement speed and attack power.",
 		"After a few minutes passed, the talisman's color changed from yellow to purple, taking another talisman seemed to prevent this from temporarily ocurring for the same window of time.",
 		"If too many yellow talismans attached to the employee, they also became purple talismans.",
-		"Purple talismans seem to sap the strength from whomever they are attached, reducing their movement speed and attack power. The talismans slowly vanished after several minutes.")
+		"Purple talismans seem to sap the strength from whomever they are attached, reducing their movement speed and attack power. The talismans slowly vanished after several minutes.",
+		"After completing work with purple talismans, the Qliphoth Counter lowered.")
 
 //Red Blooded American
 /obj/item/paper/fluff/info/teth/redblooded

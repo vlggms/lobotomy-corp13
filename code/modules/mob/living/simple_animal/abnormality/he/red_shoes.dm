@@ -116,7 +116,7 @@
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		Apply_Desire(user)
 		user.adjustSanityLoss(500)
-		user.visible_message("<span class='userdanger'>[user] ignores [p_their()] orders and continually glances at The Red Shoes. Now [p_theyre()] reaching out their hand to take the shoes.</span>", "<span class='userdanger'>What lovely shoes...</span>")
+		user.visible_message(span_userdanger("[user] ignores [p_their()] orders and continually glances at The Red Shoes. Now [p_theyre()] reaching out their hand to take the shoes."), span_userdanger("What lovely shoes..."))
 
 //***Breach Mechanics***//
 /mob/living/simple_animal/hostile/abnormality/red_shoes/ZeroQliphoth(mob/living/carbon/human/user)//silent girl with extra steps
@@ -156,10 +156,10 @@
 	if(ishuman(H) && (H.sanity_lost))
 		var/obj/item/clothing/suit/armor/ego_gear/EQ = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)//copies all resistances from worn E.G.O
 		if(EQ)
-			for(var/damtype in damage_coeff)
-				if(damtype == BRUTE)
-					continue
-				damage_coeff[damtype] -= (EQ.armor[damtype] / 100)
+			var/list/temp = EQ.armor.getList()
+			for(var/damtype in temp)
+				temp[damtype] = 1 - (temp[damtype] / 100)
+			ChangeResistances(temp)
 		user.forceMove(src)
 		playsound(src, 'sound/abnormalities/redshoes/RedShoes_Activate.ogg', 50, 1)
 		name = user.name
@@ -192,7 +192,7 @@
 		desc = "The Red Shoes’s bloody enameled leather glistens in the light."
 		icon_state = "redshoes_breach"
 		icon_living = "redshoes_breach"
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
+		ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5))
 		sleep(10)
 		new /mob/living/simple_animal/hostile/red_shoe(get_turf(src))
 	datum_reference.qliphoth_change(-2)

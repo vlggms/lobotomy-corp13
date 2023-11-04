@@ -8,7 +8,7 @@
 	force = 60
 	attack_speed = 0.8
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")

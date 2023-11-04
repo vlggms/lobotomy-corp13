@@ -19,7 +19,6 @@
 	rapid_melee = 1
 	melee_queue_distance = 2
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	speak_emote = list("rasps", "growls", "gurgles")
 	can_breach = TRUE
@@ -65,14 +64,14 @@
 	name = "Pressing Sac"
 	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	button_icon_state = "_HE"
-	chosen_message = "<span class='colossus'>You will now jump with your next attack.</span>"
+	chosen_message = span_colossus("You will now jump with your next attack.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/BloodCannon
 	name = "Blood Cannon"
 	icon_icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi'
 	button_icon_state = "heart"
-	chosen_message = "<span class='colossus'>You will now fire a blood cannon.</span>"
+	chosen_message = span_colossus("You will now fire a blood cannon.")
 	chosen_attack_num = 2
 
 // Attacks
@@ -212,7 +211,7 @@
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/proc/Enrage() //gains 25% more damage dealt and shorter cooldowns
 	if(enraged)
 		return
-	src.visible_message("<span class='userdanger'>[src] looks angry!</span>")
+	src.visible_message(span_userdanger("[src] looks angry!"))
 	enraged = TRUE
 	icon_state = "[icon_state]" + "_enraged"
 	melee_damage_lower = 25

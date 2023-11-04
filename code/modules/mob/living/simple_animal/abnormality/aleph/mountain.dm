@@ -13,7 +13,6 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 2
 	stat_attack = DEAD
 	ranged = TRUE
@@ -266,7 +265,7 @@
 	if(scream_cooldown > world.time)
 		return
 	scream_cooldown = world.time + scream_cooldown_time
-	visible_message("<span class='danger'>[src] screams wildly!</span>")
+	visible_message(span_danger("[src] screams wildly!"))
 	new /obj/effect/temp_visual/voidout(get_turf(src))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/scream.ogg', 75, 1, 5)
 	var/list/been_hit = list()
@@ -277,7 +276,7 @@
 	if(slam_cooldown > world.time)
 		return
 	slam_cooldown = world.time + slam_cooldown_time
-	visible_message("<span class='danger'>[src] slams on the ground!</span>")
+	visible_message(span_danger("[src] slams on the ground!"))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 1)
 	var/list/been_hit = list()
 	for(var/turf/open/T in view(2, src))
@@ -288,7 +287,7 @@
 	if(spit_cooldown > world.time)
 		return
 	finishing = TRUE
-	visible_message("<span class='danger'>[src] prepares to spit an acidic substance at [target]!</span>")
+	visible_message(span_danger("[src] prepares to spit an acidic substance at [target]!"))
 	SLEEP_CHECK_DEATH(4)
 	spit_cooldown = world.time + spit_cooldown_time
 	playsound(get_turf(src), 'sound/abnormalities/mountain/spit.ogg', 75, 1, 3)

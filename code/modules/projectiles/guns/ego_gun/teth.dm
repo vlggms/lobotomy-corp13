@@ -91,7 +91,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
 /obj/item/gun/ego_gun/snapshot
@@ -116,7 +115,6 @@
 	fire_delay = 3
 	burst_size = 2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 	var/ammo2 = /obj/item/ammo_casing/caseless/ego_wishing2
 

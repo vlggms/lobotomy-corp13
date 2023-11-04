@@ -51,7 +51,7 @@
 	name = "Judgement"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now damage all enemies around you.</span>"
+	chosen_message = span_colossus("You will now damage all enemies around you.")
 	chosen_attack_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/Move()
@@ -154,7 +154,6 @@
 	maxHealth = 100
 	melee_damage_lower = 5
 	melee_damage_upper = 8
-	armortype = PALE_DAMAGE
 	melee_damage_type = PALE_DAMAGE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE

@@ -45,8 +45,6 @@
 	name = "cory catfish"
 	desc = "A catfish has about 100,000 taste buds, and their bodies are covered with them to help detect chemicals present in the water and also to respond to touch."
 	icon_state = "catfish"
-	dedicated_in_aquarium_icon_state = "fish_greyscale"
-	aquarium_vc_color = "#907420"
 	average_size = 100
 	average_weight = 2000
 

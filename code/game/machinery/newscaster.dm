@@ -267,7 +267,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 		else
 			. += "crack3"
 
-/obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/machinery/newscaster/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
 	update_icon()
 
@@ -754,7 +754,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	else
 		return ..()
 
-/obj/machinery/newscaster/play_attack_sound(damage, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/newscaster/play_attack_sound(damage, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			if(machine_stat & BROKEN)

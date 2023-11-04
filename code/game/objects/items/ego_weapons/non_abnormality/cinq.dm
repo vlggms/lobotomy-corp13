@@ -6,7 +6,7 @@
 	icon_state = "cinq"
 	force = 28
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
@@ -69,11 +69,11 @@
 /obj/item/ego_weapon/city/cinq/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
-	to_chat(user, "<span class='notice'>À bout de souffle.</span>")
+	to_chat(user, "<span class='notice'>ï¿½ bout de souffle.</span>")
 
 /obj/item/ego_weapon/city/cinq/proc/Reset(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
 	ready = TRUE
-	to_chat(user, "<span class='notice'>Prêt à nouveau.</span>")
+	to_chat(user, "<span class='notice'>Prï¿½t ï¿½ nouveau.</span>")
 

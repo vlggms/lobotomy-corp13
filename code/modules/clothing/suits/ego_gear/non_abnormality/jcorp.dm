@@ -72,6 +72,7 @@
 	name = "los mariachis sombrero"
 	desc = "A sombrero worn by the Los Mariachis leader. This one has a glowing mask of a skull."
 	icon_state = "aida_boss"
-	flags_inv = HIDEMASK|HIDEFACE|HIDEFACIALHAIR|HIDEHAIR
+	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
 	dynamic_hair_suffix = ""
 	dynamic_fhair_suffix = ""

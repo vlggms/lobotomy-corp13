@@ -11,7 +11,8 @@ GLOBAL_LIST_INIT(easysupport, list(/mob/living/simple_animal/hostile/abnormality
 	/mob/living/simple_animal/hostile/abnormality/voiddream,
 	/mob/living/simple_animal/hostile/abnormality/pisc_mermaid,
 	/mob/living/simple_animal/hostile/abnormality/rudolta,
-	/mob/living/simple_animal/hostile/abnormality/redblooded))
+	/mob/living/simple_animal/hostile/abnormality/redblooded,
+	/mob/living/simple_animal/hostile/abnormality/wayward))
 
 GLOBAL_LIST_INIT(easytank, list(/mob/living/simple_animal/hostile/abnormality/jangsan,
 	/mob/living/simple_animal/hostile/abnormality/scarecrow,

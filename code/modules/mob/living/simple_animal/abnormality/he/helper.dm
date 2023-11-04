@@ -50,10 +50,10 @@
 	name = "Toggle Dash"
 	button_icon_state = "helper_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	chosen_message = span_colossus("You won't dash anymore.")
 	button_icon_toggle_activated = "helper_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now dash in that direction.</span>"
+	toggle_message = span_colossus("You will now dash in that direction.")
 	button_icon_toggle_deactivated = "helper_toggle0"
 
 
@@ -149,8 +149,8 @@
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
-			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
-			to_chat(L, "<span class='userdanger'>[src] pierces you with their spinning blades!</span>")
+			visible_message(span_boldwarning("[src] runs through [L]!"))
+			to_chat(L, span_userdanger("[src] pierces you with their spinning blades!"))
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
@@ -158,7 +158,7 @@
 				var/mob/living/carbon/human/H = L
 				// Ugly code
 				var/affecting = get_bodypart(ran_zone(pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
-				var/armor = H.run_armor_check(affecting, armortype, armour_penetration = src.armour_penetration)
+				var/armor = H.run_armor_check(affecting, melee_damage_type, armour_penetration = src.armour_penetration)
 				H.apply_damage(60, src.melee_damage_type, affecting, armor, wound_bonus = src.wound_bonus, bare_wound_bonus = src.bare_wound_bonus, sharpness = src.sharpness)
 			else
 				L.adjustRedLoss(120)

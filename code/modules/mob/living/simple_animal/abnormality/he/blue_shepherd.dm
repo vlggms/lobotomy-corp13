@@ -30,7 +30,6 @@
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
@@ -112,10 +111,10 @@
 	name = "Toggle Spinning Slash"
 	button_icon_state = "sheperd_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't spin anymore.</span>"
+	chosen_message = span_colossus("You won't spin anymore.")
 	button_icon_toggle_activated = "sheperd_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now execute a spinning slash when ready.</span>"
+	toggle_message = span_colossus("You will now execute a spinning slash when ready.")
 	button_icon_toggle_deactivated = "sheperd_toggle0"
 
 

@@ -541,7 +541,7 @@
 	if(isobserver(user))
 		. += "<span class='notice'>It has [carp_stored] carp available to spawn as.</span>"
 
-/obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE)
 	playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 
 /obj/structure/carp_rift/Destroy()

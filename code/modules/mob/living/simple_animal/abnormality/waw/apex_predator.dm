@@ -18,7 +18,6 @@
 	move_to_delay = 3
 
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 
 	fear_level = 0	//You should never notice it
@@ -106,7 +105,7 @@
 		var/mob/living/V = target
 		//Backstab
 		if(target in range(1,src))
-			visible_message("<span class='danger'>\The [src] rips out [target]'s guts!</span>")
+			visible_message(span_danger("\The [src] rips out [target]'s guts!"))
 			new /obj/effect/gibspawner/generic(get_turf(V))
 			V.apply_damage(backstab_damage, RED_DAMAGE, null, V.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			SLEEP_CHECK_DEATH(20)

@@ -61,7 +61,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	guaranteed_butcher_results = list(/obj/item/food/grown/apple/gold/abnormality = 1)
 	chem_type = /datum/reagent/abnormality/ambrosia
-	harvest_phrase = "<span class='notice'>You score %ABNO and it bleeds a golden syrup into %VESSEL.</span>"
+	harvest_phrase = span_notice("You score %ABNO and it bleeds a golden syrup into %VESSEL.")
 	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syrup into %VESSEL."
 	var/is_maggot = FALSE
 	var/smash_length = 2
@@ -93,12 +93,12 @@
 	if(L.has_status_effect(/datum/status_effect/stacking/golden_sheen))//this fixes a runtime
 		return
 	L.apply_status_effect(STATUS_EFFECT_GOLDENSHEEN)
-	to_chat(L, "<span class='nicegreen'>Your body glows warmly.</span>")
+	to_chat(L, span_nicegreen("Your body glows warmly."))
 
 /datum/reagent/abnormality/ambrosia/on_mob_life(mob/living/L)
 	var/datum/status_effect/stacking/golden_sheen/G = L.has_status_effect(/datum/status_effect/stacking/golden_sheen)
 	if(prob(10))
-		to_chat(L, "<span class='nicegreen'>Your glow shimmers!</span>")
+		to_chat(L, span_nicegreen("Your glow shimmers!"))
 		G.add_stacks(1)
 		G.refresh()
 	return ..()
@@ -198,7 +198,7 @@
 	icon_state = "maggots"
 
 /datum/status_effect/stacking/maggots/on_apply()
-	to_chat(owner, "<span class='warning'>You're covered in squirming maggots!</span>")
+	to_chat(owner, span_warning("You're covered in squirming maggots!"))
 	return ..()
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
@@ -224,16 +224,16 @@
 				DigestPerson()//becomes its "berserk" form; without an argument it defaults to "Yuri"
 				qdel(I)
 				return
-			to_chat(user, "<span class='notice'>You feel relieved, as if something weird and terrible was about to happen.</span>")
+			to_chat(user, span_notice("You feel relieved, as if something weird and terrible was about to happen."))
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/proc/Apply_Sheen(mob/living/carbon/human/user)
 	var/datum/status_effect/stacking/golden_sheen/G = user.has_status_effect(/datum/status_effect/stacking/golden_sheen)
 	playsound(src, 'sound/abnormalities/goldenapple/Gold_Sparkle.ogg', 100, 1)
 	if(!G)//applying the buff for the first time (it lasts for one minute)
 		user.apply_status_effect(STATUS_EFFECT_GOLDENSHEEN)
-		to_chat(user, "<span class='nicegreen'>Your body is engulfed with a warm glow, numbing your injuries.</span>")
+		to_chat(user, span_nicegreen("Your body is engulfed with a warm glow, numbing your injuries."))
 	else//if the employee already has the buff
-		to_chat(user, "<span class='nicegreen'>The glow surrounding your body brightens.</span>")
+		to_chat(user, span_nicegreen("The glow surrounding your body brightens."))
 		G.add_stacks(1)
 		G.refresh()
 	return
@@ -305,7 +305,7 @@
 	melee_damage_upper = 45
 	attack_verb_continuous = "pummels"
 	attack_verb_simple = "pummel"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5))
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
 	is_maggot = TRUE

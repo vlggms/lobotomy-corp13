@@ -23,7 +23,6 @@
 	melee_damage_lower = 55
 	melee_damage_upper = 65
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
@@ -98,7 +97,7 @@
 			V.add_stacks(1)
 			V.refresh()
 			playsound(L, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
-			to_chat(L, "<span class='warning'>[pick(quotes)]</span>")
+			to_chat(L, span_warning("[pick(quotes)]"))
 	if(attack_count == 3) //in the future this will be a magical girls check, going off if there are none.
 		SSlobotomy_corp.InitiateMeltdown((SSlobotomy_corp.all_abnormality_datums.len), TRUE)
 	SLEEP_CHECK_DEATH(4 SECONDS)
@@ -127,7 +126,7 @@
 
 /datum/status_effect/stacking/void/on_apply()
 	. = ..()
-	to_chat(owner, "<span class='warning'>The whole world feels dark and empty... You hear voices in your head.</span>")
+	to_chat(owner, span_warning("The whole world feels dark and empty... You hear voices in your head."))
 	if(owner.client)
 		owner.add_client_colour(/datum/client_colour/monochrome)
 
@@ -148,7 +147,7 @@
 		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
 		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
 		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
-		to_chat(owner, "<span class='nicegreen'>You feel normal again.</span>")
+		to_chat(owner, span_nicegreen("You feel normal again."))
 		if(owner.client)
 			owner.remove_client_colour(/datum/client_colour/monochrome)
 
@@ -161,7 +160,7 @@
 /obj/item/nihil/examine(mob/user)
 	. = ..()
 	if(special)
-		. += "<span class='notice'>[special]</span>"
+		. += span_notice("[special]")
 
 /obj/item/nihil/heart
 	name = "ace of hearts"

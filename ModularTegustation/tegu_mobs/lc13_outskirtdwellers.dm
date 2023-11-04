@@ -44,6 +44,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/amber_simple = 1)
 	wanted_objects = list(/obj/effect/decal/cleanable/blood/gibs/, /obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
 	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg)
 	var/current_size = RESIZE_DEFAULT_SIZE
@@ -491,7 +492,6 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	move_to_delay = 4
 	stat_attack = HARD_CRIT
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	butcher_results = list(/obj/item/food/meat/slab = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -683,7 +683,6 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	melee_damage_lower = 25
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_sound = 'sound/creatures/lc13/lovetown/slam.ogg'
 	attack_verb_continuous = "grapples"
 	attack_verb_simple = "grapple"

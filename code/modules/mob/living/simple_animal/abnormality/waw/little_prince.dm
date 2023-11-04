@@ -48,7 +48,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Hypno(mob/living/carbon/human/user)
 	if (!(user.sanity_lost))
-		to_chat(user, "<span class='userdanger'>You see mushrooms growing all over your body!</span>")
+		to_chat(user, span_userdanger("You see mushrooms growing all over your body!"))
 		playsound(get_turf(user), 'sound/abnormalities/littleprince/Prince_Active.ogg', 50, 0, 2)
 		user.adjustSanityLoss(500)
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
@@ -61,7 +61,7 @@
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Infect(mob/living/carbon/human/user)
 	for (var/i=0, i<5, i++)
 		user.apply_damage(rand(10, 20), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE))
-		to_chat(user, "<span class='warning'>You feel something growing from under your skin...</span>")
+		to_chat(user, span_warning("You feel something growing from under your skin..."))
 		if (user.sanity_lost)
 			Hypno(user)
 			return
@@ -83,7 +83,7 @@
 	hypnotized -= user
 	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects32x48.dmi', "spore_hypno", -HALO_LAYER))
 	var/turf/T = get_turf(user)
-	user.visible_message("<span class='danger'>Mushrooms rapidly grow all over [user]'s body, forming a giant mass!</span>")
+	user.visible_message(span_danger("Mushrooms rapidly grow all over [user]'s body, forming a giant mass!"))
 	user.emote("scream")
 	user.gib()
 	var /mob/living/simple_animal/hostile/little_prince_1/S = new(T)
@@ -178,7 +178,6 @@
 	maxHealth = 1500
 	move_to_delay = 3
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 40
 	melee_damage_upper = 50		//slow melee and has nothing else.

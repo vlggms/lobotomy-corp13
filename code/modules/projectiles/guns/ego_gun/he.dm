@@ -8,7 +8,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -33,6 +32,7 @@
 	name = "galaxy"
 	desc = "A shimmering wand."
 	icon_state = "galaxy"
+	inhand_icon_state = "galaxy"
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
@@ -212,7 +212,7 @@
 	inhand_icon_state = "deagleg"
 	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
-	special = "This weapon fires tiny dice that deal varying amounts of damage."
+	special = "This weapon fires dice that deal varying amounts of damage."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10

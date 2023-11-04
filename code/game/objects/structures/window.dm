@@ -170,7 +170,7 @@
 /obj/structure/window/attack_paw(mob/user)
 	return attack_hand(user)
 
-/obj/structure/window/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)	//used by attack_alien, attack_animal, and attack_slime
+/obj/structure/window/attack_generic(mob/user, damage_amount = 0, damage_type = BRUTE, sound_effect = 1)	//used by attack_alien, attack_animal, and attack_slime
 	if(!can_be_reached(user))
 		return
 	..()
@@ -244,12 +244,12 @@
 					return FALSE
 	return TRUE
 
-/obj/structure/window/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1)
+/obj/structure/window/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1)
 	. = ..()
 	if(.) //received damage
 		update_nearby_icons()
 
-/obj/structure/window/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/window/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 			if(damage_amount)

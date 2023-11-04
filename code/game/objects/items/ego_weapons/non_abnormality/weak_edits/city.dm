@@ -4,7 +4,7 @@
 	desc = "A riot club used by the local protection."
 	special = "Attack a human to stun them after a period of time."
 	icon_state = "protection_baton"
-	inhand_icon_state = "zwei_baton"
+	inhand_icon_state = "protection_baton"
 	force = 15
 	attribute_requirements = list()
 
@@ -18,7 +18,7 @@
 	inhand_icon_state = "index"
 	force = 20
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 	attack_verb_continuous = list("smacks", "hammers", "beats")
 	attack_verb_simple = list("smack", "hammer", "beat")
 	attribute_requirements = list(

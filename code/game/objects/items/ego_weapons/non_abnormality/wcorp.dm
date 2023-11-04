@@ -6,7 +6,7 @@
 	inhand_icon_state = "wbatong"
 	force = 18
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	release_message = "You release your charge, damaging your opponent!"
@@ -223,29 +223,13 @@
 	..()
 	sleep(5)
 	target.apply_damage(force*2, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-	target.apply_status_effect(/datum/status_effect/rendBlackArmor)
+	target.apply_status_effect(/datum/status_effect/rend_black/w_corp)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(target)
 	new /obj/effect/temp_visual/justitia_effect(T)
 
-/datum/status_effect/rendBlackArmor
-	id = "rend Black armor"
-	status_type = STATUS_EFFECT_UNIQUE
-	duration = 50 //5 seconds since it's melee-ish
-	alert_type = null
-
-/datum/status_effect/rendBlackArmor/on_apply()
-	. = ..()
-	if(isanimal(owner))
-		var/mob/living/simple_animal/M = owner
-		M.damage_coeff[BLACK_DAMAGE] *= 1.2
-
-/datum/status_effect/rendBlackArmor/on_remove()
-	. = ..()
-	if(isanimal(owner))
-		var/mob/living/simple_animal/M = owner
-		M.damage_coeff[BLACK_DAMAGE] /= 1.2
-
+/datum/status_effect/rend_black/w_corp // Duplicate of "rend_black", giving it a unique id so it can stack.
+	id = "w-corp rend black armor"
 
 //Type C weapons
 

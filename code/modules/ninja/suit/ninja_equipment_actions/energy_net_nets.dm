@@ -25,13 +25,13 @@
 	///The creature currently caught in the net
 	var/mob/living/affecting
 
-/obj/structure/energy_net/play_attack_sound(damage, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/energy_net/play_attack_sound(damage, damage_type = BRUTE)
 	if(damage_type == BRUTE || damage_type == BURN)
 		playsound(src, 'sound/weapons/slash.ogg', 80, TRUE)
 
 /obj/structure/energy_net/Destroy()
 	if(!QDELETED(affecting))
-		affecting.visible_message("<span class='notice'>[affecting.name] is recovered from the energy net!</span>", "<span class='notice'>You are recovered from the energy net!</span>", "<span class='hear'>You hear a grunt.</span>")
+		affecting.visible_message(span_notice("[affecting.name] is recovered from the energy net!"), span_notice("You are recovered from the energy net!"), span_hear("You hear a grunt."))
 	affecting = null
 	return ..()
 

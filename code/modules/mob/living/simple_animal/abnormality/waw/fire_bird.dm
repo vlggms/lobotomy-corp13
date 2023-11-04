@@ -86,7 +86,7 @@
 /mob/living/simple_animal/hostile/abnormality/fire_bird/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time)
 	. = ..()
 	if(datum_reference?.qliphoth_meter == 1 || user.health <= (user.maxHealth * 0.2))
-		to_chat(user, "<span class='nicegreen'>The Fire Bird heals your wounds!")
+		to_chat(user, span_nicegreen("The Fire Bird heals your wounds!"))
 		user.health = user.maxHealth
 		if(ishuman(user))
 			user.apply_status_effect(STATUS_EFFECT_BLAZING)
@@ -172,7 +172,7 @@
 		for(var/mob/living/carbon/human/L in TF)
 			if(L in been_hit)
 				continue
-			visible_message("<span class='boldwarning'>[src] blazes through [L]!</span>")
+			visible_message(span_boldwarning("[src] blazes through [L]!"))
 			L.apply_damage(dash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			if(L.sanity_lost) // TODO: TEMPORARY AS HELL
@@ -255,7 +255,7 @@
 		cantsee += L
 		cantsee[L] = get_attribute_level(L, TEMPERANCE_ATTRIBUTE)/2
 		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -cantsee[L])
-		to_chat(L, "<span class='userdanger'>The light of the bird burns your eyes!")
+		to_chat(L, span_userdanger("The light of the bird burns your eyes!"))
 		RegisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
 
 /datum/status_effect/blinded/on_remove()
@@ -264,7 +264,7 @@
 		var/mob/living/carbon/human/L = owner
 		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, cantsee[L])
 		cantsee -= L
-		to_chat(L, "<span class='nicegreen'>The blinding light fades...")
+		to_chat(L, span_nicegreen("The blinding light fades..."))
 		UnregisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
 
 /datum/status_effect/blinded/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)

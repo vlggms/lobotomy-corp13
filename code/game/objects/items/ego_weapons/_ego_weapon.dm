@@ -11,6 +11,7 @@
 	var/list/attribute_requirements = list()
 	var/attack_speed
 	var/special
+	var/force_multiplier = 1
 
 	/// Is CleanUp proc running?
 	var/cleaning = FALSE
@@ -39,6 +40,7 @@
 
 	if(!attack_speed)
 		return
+
 	//Can't switch for less than for some reason
 	if(attack_speed<0.4)
 		. += "<span class='notice'>This weapon has a very fast attack speed.</span>"
@@ -93,6 +95,8 @@
 	return
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
+	if(force_multiplier != 1)
+		return "<span class='notice'>It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)</span>"
 	return "<span class='notice'>It deals [force] [damtype] damage.</span>"
 
 /*

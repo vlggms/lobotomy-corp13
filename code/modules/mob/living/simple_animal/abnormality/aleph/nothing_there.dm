@@ -13,7 +13,6 @@
 	icon_living = "nothing"
 	icon_dead = "nothing_dead"
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 55
 	melee_damage_upper = 65
@@ -97,10 +96,10 @@
 	name = "Toggle Hello"
 	button_icon_state = "nt_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't shoot anymore.</span>"
+	chosen_message = span_colossus("You won't shoot anymore.")
 	button_icon_toggle_activated = "nt_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now shoot a welcoming sonic wave.</span>"
+	toggle_message = span_colossus("You will now shoot a welcoming sonic wave.")
 	button_icon_toggle_deactivated = "nt_toggle0"
 
 
@@ -244,7 +243,7 @@
 	soundloop.stop()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/disguise.ogg', 75, 0, 5)
 	new /obj/effect/gibspawner/generic(get_turf(M))
-	to_chat(M, "<span class='userdanger'>Oh no...</span>")
+	to_chat(M, span_userdanger("Oh no..."))
 	disguise = M
 	// The following code makes it so that even if a disguised mob is resting, Nothing There's shell will still be standing up.
 	M.set_lying_angle(0)
@@ -273,7 +272,7 @@
 	switch(current_stage)
 		if(1)
 			icon_state = "nothing_egg"
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
+			ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1))
 			can_act = FALSE
 			next_transform = world.time + rand(10 SECONDS, 25 SECONDS)
 			heartbeat.start()
@@ -287,7 +286,7 @@
 			icon_state = icon_living
 			pixel_x = -16
 			base_pixel_x = -16
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+			ChangeResistances(list(WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 			can_act = TRUE
 			melee_damage_lower = 65
 			melee_damage_upper = 75

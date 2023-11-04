@@ -17,7 +17,6 @@
 	maxHealth = 4000
 	obj_damage = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
-	armortype = BLACK_DAMAGE
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 75
 	melee_damage_upper = 80
@@ -93,7 +92,7 @@
 		return
 	can_act = FALSE
 	forceMove(get_turf(H))
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	playsound(src, 'sound/abnormalities/censored/convert.ogg', 45, FALSE, 5)
 	SLEEP_CHECK_DEATH(3)
 	new /obj/effect/temp_visual/censored(get_turf(src))
@@ -104,17 +103,17 @@
 	if(!QDELETED(H))
 		C.desc = "What the hell is this? It shouldn't exist... On the second thought, it reminds you of [H.real_name]..."
 		H.gib()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
+	ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1))
 	adjustBruteLoss(-(maxHealth*0.1))
 	can_act = TRUE
 
 /* Work */
 /mob/living/simple_animal/hostile/abnormality/censored/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Sacrifice")
-		to_chat(user, "<span class='warning'>You hesitate for a moment...</span>")
+		to_chat(user, span_warning("You hesitate for a moment..."))
 		datum_reference.working = TRUE
 		if(!do_after(user, 3 SECONDS, target = user))
-			to_chat(user, "<span class='warning'>You decide it's not worth it.</span>")
+			to_chat(user, span_warning("You decide it's not worth it."))
 			datum_reference.working = FALSE
 			return null
 		user.Stun(30 SECONDS)
@@ -214,5 +213,5 @@
 		H.adjustSanityLoss(20)
 		if(H.sanity_lost)
 			continue
-		to_chat(H, "<span class='warning'>Damn, it's scary.</span>")
+		to_chat(H, span_warning("Damn, it's scary."))
 	return

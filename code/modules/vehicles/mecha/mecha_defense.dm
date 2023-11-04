@@ -6,11 +6,11 @@
 			return facing_modifiers[MECHA_FRONT_ARMOUR]
 	return facing_modifiers[MECHA_SIDE_ARMOUR] //if its not a front hit or back hit then assume its from the side
 
-/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/vehicle/sealed/mecha/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
 		spark_system.start()
-		switch(damage_flag)
+		switch(damage_type)
 			if(FIRE)
 				check_for_internal_damage(list(MECHA_INT_FIRE,MECHA_INT_TEMP_CONTROL))
 			if(MELEE)
@@ -21,19 +21,19 @@
 			to_chat(occupants, "[icon2html(src, occupants)]<span class='userdanger'>Taking damage!</span>")
 		log_message("Took [damage_amount] points of damage. Damage type: [damage_type]", LOG_MECHA)
 
-/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/vehicle/sealed/mecha/run_obj_armor(damage_amount, damage_type, attack_dir)
 	. = ..()
 	if(!damage_amount)
 		return 0
 	var/booster_deflection_modifier = 1
 	var/booster_damage_modifier = 1
-	if(damage_flag == BULLET || damage_flag == LASER || damage_flag == ENERGY)
+	if(damage_type in list(BULLET, LASER, ENERGY))
 		for(var/obj/item/mecha_parts/mecha_equipment/antiproj_armor_booster/B in equipment)
 			if(B.projectile_react())
 				booster_deflection_modifier = B.deflect_coeff
 				booster_damage_modifier = B.damage_coeff
 				break
-	else if(damage_flag == MELEE)
+	else if(damage_type == MELEE)
 		for(var/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/B in equipment)
 			if(B.attack_react())
 				booster_deflection_modifier *= B.deflect_coeff
@@ -114,7 +114,7 @@
 			var/mob/living/hitmob = m
 			hitmob.bullet_act(Proj) //If the sides are open, the occupant can be hit
 		return BULLET_ACT_HIT
-	log_message("Hit by projectile. Type: [Proj.name]([Proj.flag]).", LOG_MECHA, color="red")
+	log_message("Hit by projectile. Type: [Proj.name]([Proj.damage_type]).", LOG_MECHA, color="red")
 	. = ..()
 
 /obj/vehicle/sealed/mecha/ex_act(severity, target)

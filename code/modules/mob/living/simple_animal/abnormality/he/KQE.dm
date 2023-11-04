@@ -12,7 +12,6 @@
 	icon_dead = "kqe_egg"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 20
 	melee_damage_upper = 25
@@ -59,10 +58,10 @@
 	name = "Toggle Claw Attack"
 	button_icon_state = "kqe_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't grab visitors anymore.</span>"
+	chosen_message = span_colossus("You won't grab visitors anymore.")
 	button_icon_toggle_activated = "kqe_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will attempt to grab visitors.</span>"
+	toggle_message = span_colossus("You will attempt to grab visitors.")
 	button_icon_toggle_deactivated = "kqe_toggle0"
 
 
@@ -88,6 +87,7 @@
 		if(!LAZYLEN(GLOB.department_centers))
 			heart = TRUE
 		else
+			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)//In regular gamemodes you are now esentially forced to suppress the heart
 			var/X = pick(GLOB.department_centers)
 			var/mob/living/simple_animal/hostile/kqe_heart/H = new(get_turf(X))
 			heart = H
@@ -114,7 +114,7 @@
 		work_penalty = FALSE
 		return
 	manual_emote("turns its terminal on.")
-	to_chat(user, "<span class='notice'>A terminal on the chest of the abnormality flashes to life! You should write something on it.</span>")
+	to_chat(user, span_notice("A terminal on the chest of the abnormality flashes to life! You should write something on it."))
 	question = TRUE
 	return
 
@@ -122,10 +122,10 @@
 	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && !question)
 		return TRUE
 	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE")) && !question)
-		to_chat(user, "<span class='notice'>The terminal is blank.</span>")
+		to_chat(user, span_notice("The terminal is blank."))
 		return FALSE
 	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && question)
-		to_chat(user, "<span class='notice'>Looks like you can write something.</span>")
+		to_chat(user, span_notice("Looks like you can write something."))
 		return FALSE
 	if(work_type == "Write HELLO")
 		if(!GiftUser(user, 18, 100))//always gives a gift
@@ -133,14 +133,14 @@
 			datum_reference.qliphoth_change(-2)
 			return FALSE
 		say("Have you enjoyed the town tour? We’d like you to have a souvenir. :-)")
-		to_chat(user, "<span class='notice'>A smile is displayed on the terminal, but the abnormality appears to be distressed.</span>")
+		to_chat(user, span_notice("A smile is displayed on the terminal, but the abnormality appears to be distressed."))
 		datum_reference.qliphoth_change(-1)
 		question = FALSE
 		work_count = 0
 	if(work_type == "Write GOODBYE")
 		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)//instant breach if below 3 justice
 			datum_reference.qliphoth_change(-2)//instant breach
-			to_chat(user, "<span class='notice'>The terminal’s light goes red, and warnings start to blare.</span>")
+			to_chat(user, span_notice("The terminal’s light goes red, and warnings start to blare."))
 			say("Farewell. Farewell, FarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewellFarewell.")
 			return FALSE
 		work_penalty = TRUE

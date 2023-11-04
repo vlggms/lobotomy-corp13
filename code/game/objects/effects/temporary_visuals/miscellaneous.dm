@@ -860,7 +860,16 @@
 
 /obj/effect/temp_visual/healing
 	icon_state = "healing"
-	duration = 10
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 8
+
+/obj/effect/temp_visual/healing/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-12, 12)
+	pixel_y = rand(-9, 0)
+
+/obj/effect/temp_visual/healing/no_dam
+	icon_state = "no_dam"
 
 /obj/effect/temp_visual/pale_eye_attack
 	name = "pale particles"
@@ -915,6 +924,9 @@
 /obj/effect/temp_visual/talisman/Initialize()
 	. = ..()
 	animate(src, alpha = 0, time = 10)
+
+/obj/effect/temp_visual/talisman/curse
+	icon_state = "curse_talisman"
 
 /obj/effect/temp_visual/turn_book
 	name = "scattered pages"
@@ -987,3 +999,24 @@
 
 /obj/effect/temp_visual/house/proc/FadeOut()
 	animate(src, alpha = 0, time = 1 SECONDS)
+
+/obj/effect/temp_visual/v_noon
+	name = "violet noon"
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon_state = "violet_noon_ability"
+	pixel_x = -8
+
+/obj/effect/temp_visual/blubbering_smash
+	name = "blubbering smash"
+	icon_state = "blubbering_smash"
+	duration = 5
+
+/obj/effect/temp_visual/onesin_punishment
+	name = "heavenly punishment"
+	icon_state = "onesin_punishment"
+	duration = 6
+
+/obj/effect/temp_visual/onesin_blessing
+	name = "heavenly blessing"
+	icon_state = "onesin_blessing"
+	duration = 12
