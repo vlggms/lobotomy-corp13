@@ -128,7 +128,7 @@
 				emote(pick("twitches", "mumbles"))
 			if(4 to 5)
 				//This text shows up in the textbox of the defined creature or player
-				to_chat(user, "<span class='notice'>You smell an unbearable odor of despair.</span>")
+				to_chat(user, span_notice("You smell an unbearable odor of despair."))
 			if(6)
 				//This text shows up for all entities who can see this creature.
 				visible_message("[src] suddenly screams and struggles against their restraints!")

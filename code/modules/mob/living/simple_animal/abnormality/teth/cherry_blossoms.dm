@@ -54,7 +54,7 @@
 		if(L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
 			continue
 		potentialmarked += L
-		to_chat(L, "<span class='danger'>It's cherry blossom season.</span>")
+		to_chat(L, span_danger("It's cherry blossom season."))
 
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	for(var/i=numbermarked, i>=1, i--)
@@ -65,7 +65,7 @@
 			continue
 		marked+=Y
 		new /obj/effect/temp_visual/markedfordeath(get_turf(Y))
-		to_chat(Y, "<span class='userdanger'>You feel like you're going to die!</span>")
+		to_chat(Y, span_userdanger("You feel like you're going to die!"))
 		Y.apply_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
 
 

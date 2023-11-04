@@ -51,7 +51,7 @@
 		L.break_light_tube()
 
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/proc/PanicUser(mob/living/carbon/human/user, workfailure) //its over bros...
-	to_chat(user, "<span class='userdanger'>He's going to get you! You've got to run!</span>")
+	to_chat(user, span_userdanger("He's going to get you! You've got to run!"))
 	playsound(get_turf(user), 'sound/abnormalities/someonesportrait/panic.ogg', 40, FALSE, -5)
 	user.adjustSanityLoss(user.maxSanity)
 	if(!workfailure)
