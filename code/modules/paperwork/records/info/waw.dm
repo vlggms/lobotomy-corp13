@@ -476,7 +476,7 @@
 	abno_code = "O-05-29" //originally O-05-31 in lobotomy corp, but it's taken by TSO.
 	abno_info = list(
 		"Poor Screenwriter's Note prefers that everything goes according to its own scenario. Work will also not be an exception. If you are unsure of what to do, turn the page.",
-		"When the work result was bad, the Qlipthoth Counter lowered.",
+		"When the work result was bad, the Qliphoth Counter lowered.",
 		"When the Qliphoth counter reached 0, several employees were selected to play roles in a \"play\"",
 		"The employee playing the \"Coward\" suffered from lowered power, the \"Broken\" lowered health, and the \"Failed\" lowered sanity.",
 		"The employees chosen to play the \"Victim\" suffered perhaps the most of all, losing in all virtues and being targetted by the actor \"A\".",
@@ -490,3 +490,19 @@
 		"Violence" = "Low")
 	abno_breach_damage_type = "White"
 	abno_breach_damage_count = "High"
+
+//Sign of Roses
+/obj/item/paper/fluff/info/waw/rose_sign
+	abno_type = /mob/living/simple_animal/hostile/abnormality/rose_sign
+	abno_code = "O-04-177" //O-04-21-22 in LCB
+	abno_info = list(
+		"When insight work was performed, a rose was planted in the containment cell of Sign of Roses.",
+		"When insight work was performed while four roses were present, the Qliphoth counter lowered.",
+		"When repression work was performed, a planted rose withered away.",
+		"When repression work was performed with no roses present, the Qliphoth Counter lowered.",
+		"The roses that grow in the containment cell, dubbed O-04-177-1 drastically raised the success rate and PE boxes generated from all works.",
+		"Agent Orga who worked while many O-04-177-1 were present sustained far greater damage from working.",
+		"When Sign of Roses breached, all agents were branded with a crown of thorns. O-04-177-1 would occasionally appear nearby and kill a branded agent after some time passed.",
+		"When O-04-177-1 was suppressed, Sign of Roses became more vulnerable to damage.")
+	abno_breach_damage_type = "Black"
+	abno_breach_damage_count = "Low"

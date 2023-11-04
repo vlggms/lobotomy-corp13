@@ -458,3 +458,13 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 10) // 140
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/rosa
+	name = "flore sicut rosa"
+	desc = "Our only wish is that our garden will bloom full of flowers."
+	icon_state = "rosa"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
