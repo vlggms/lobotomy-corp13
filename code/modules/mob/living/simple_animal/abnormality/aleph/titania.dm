@@ -81,7 +81,7 @@
 		melee_damage_upper = 140
 		adjustBruteLoss(-maxHealth) // Round 2, baby
 
-		to_chat(src, "<span class='userdanger'>[nemesis], my beloved devil, I finally get my revenge.</span>")
+		to_chat(src, span_userdanger("[nemesis], my beloved devil, I finally get my revenge."))
 		nemesis = null
 		if(!client)
 			say("Oberon. The abhorrent taker of my child. You are slain.")
@@ -159,14 +159,14 @@
 			lawmessage = "Mine fairies will come to my aid if you strike me with ranged attacks."
 
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		to_chat(H,"<span class='colossus'>[lawmessage]</span>")
+		to_chat(H, span_colossus("[lawmessage]"))
 	addtimer(CALLBACK(src, .proc/ActivateLaw), law_startup)	//Start Law 3 Seconds
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ActivateLaw()
 	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
 	currentlaw = nextlaw
-	to_chat(GLOB.clients,"<span class='danger'>The new law is now in effect.</span>")
+	to_chat(GLOB.clients, span_danger("The new law is now in effect."))
 
 	if(currentlaw == "fairies")
 		for(var/mob/living/simple_animal/L in spawned_mobs)
@@ -177,7 +177,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/Punishment(mob/living/sinner)
-	to_chat(sinner,"<span class='userdanger'>You are hurt due to breaking Fairy Law.</span>")
+	to_chat(sinner, span_userdanger("You are hurt due to breaking Fairy Law."))
 	sinner.apply_damage(law_damage, PALE_DAMAGE, null, sinner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(sinner), pick(GLOB.alldirs))
 
@@ -229,7 +229,7 @@
 	addtimer(CALLBACK(src, .proc/FairyLoop), 10 SECONDS)	//10 seconds from now you start spawning fairies
 	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
 	if(nemesis)
-		to_chat(src, "<span class='userdanger'>[nemesis], you are to die!</span>")
+		to_chat(src, span_userdanger("[nemesis], you are to die!"))
 	if(!client && nemesis)
 		say("[nemesis], you are a monster and I will slay you.")
 
