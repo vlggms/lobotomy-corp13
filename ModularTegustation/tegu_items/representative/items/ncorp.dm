@@ -42,6 +42,7 @@
     var/list/allowed_roles = list()
 
 /obj/item/limit_increase/Initialize()
+	..()
     if(!LAZYLEN(allowed_roles))
         allowed_roles = GLOB.security_positions // defaults to agents.
 
