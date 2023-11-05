@@ -254,7 +254,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 50)
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
 	if(H.sanity_lost)
 		QDEL_NULL(owner.ai_controller)
 		H.ai_controller = /datum/ai_controller/insane/red_possess
