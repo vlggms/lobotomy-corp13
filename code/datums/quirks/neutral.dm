@@ -97,6 +97,10 @@
 
 /datum/quirk/artist/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
+	var/list/banned = list("rcorp", "wcorp", "city")
+	if(SSmaptype.maptype in banned)
+		to_chat(H, "<span class='warning'>There was no time to grab your art supplies!</span>")
+		return
 	var/obj/item/storage/toolbox/artistic/art = new(get_turf(H))
 	H.put_in_hands(art)
 
