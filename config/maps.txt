@@ -90,5 +90,8 @@ endmap
 map facilitytest
 endmap
 
+map tram_test
+endmap
+
 map runtimestation
 endmap

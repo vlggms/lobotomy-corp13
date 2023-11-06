@@ -1,0 +1,20 @@
+{
+	"version": 1,
+	"map_name": "Delta corp but it has a literal tram",
+	"map_path": "map_files/debug",
+	"map_file": [
+		"tram_test.dmm"
+	],
+	"shuttles": {
+		"whiteship": "whiteship_tram"
+	},
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none",
+	"maptype": "standard"
+}
