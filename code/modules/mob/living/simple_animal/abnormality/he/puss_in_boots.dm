@@ -39,18 +39,21 @@
 	gift_type =  /datum/ego_gifts/inheritance
 	abnormality_origin = "Artbook"
 
-	var/mob/living/carbon/human/blessed_human = null
-	var/friendly
-	var/return_timer
-	var/finisher_cooldown = 0
-	var/finisher_cooldown_time = 60 SECONDS
-	var/can_act = TRUE
-	var/finishing = FALSE
+	//Work/misc Vars
 	var/list/stats = list(FORTITUDE_ATTRIBUTE,
 			PRUDENCE_ATTRIBUTE,
 			TEMPERANCE_ATTRIBUTE,
 			JUSTICE_ATTRIBUTE)
 	pet_bonus = "meows" //saves a few lines of code by allowing funpet() to be called by attack_hand()
+	var/mob/living/carbon/human/blessed_human = null
+	var/friendly
+	var/ignored = FALSE // If you ignore a meltdown it gets mad
+	//Breach Vars
+	var/return_timer
+	var/finisher_cooldown = 0
+	var/finisher_cooldown_time = 60 SECONDS
+	var/can_act = TRUE
+	var/finishing = FALSE
 
 //Init stuff
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/Initialize()
@@ -121,6 +124,18 @@
 			manual_emote("perks up slightly, as though it hears something.")
 	datum_reference.qliphoth_change(-1)
 
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/MeltdownStart()
+	. = ..()
+	ignored = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/ZeroQliphoth(mob/living/carbon/human/user)
+	if(ignored && blessed_human)
+		BlessedDeath(blessed_human)
+		return
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	ignored = FALSE
 
 //Breach
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/Life()
@@ -243,7 +258,7 @@
 		return
 	icon_state = icon_aggro
 
-/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Finisher(mob/living/target)
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Finisher(mob/living/target) //This is super easy to avoid
 	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE)) //50% of your health in red damage
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))

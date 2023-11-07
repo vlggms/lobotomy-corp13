@@ -48,11 +48,12 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/despair_knight
 	abno_code = "O-01-73"
 	abno_info = list(
-		"The first employee who completes their work with a Good result will receive The Knight of Despair’s blessing. (From then on, the employee will be referred to as O-01-73-1).",
+		"The first employee who completes their Attachment Work with a Good result will receive The Knight of Despair’s blessing. (From then on, the employee will be referred to as O-01-73-1).",
 		"Thanks to the blessing, RED, WHITE, and BLACK damage dealt to O-01-73-1 was halved. However, PALE damage was doubled.",
 		"The blessing caused O-01-73-1 to lose most of their competence when it comes to working on abnormalities.",
 		"The Knight of Despair’s blessing dissipated when O-01-73-1 died or panicked. After the blessing was gone, a new employee could receive it.",
-		"When O-01-73-1 died or panicked, The Knight of Despair escaped from its Containment Unit.")
+		"When the Qliphoth Counter reached 0, The Knight of Despair was impaled with a sword.",
+		"When O-01-73-1 died or panicked, or when a total of three swords impaled the abnormality, The Knight of Despair escaped from its Containment Unit.")
 	abno_can_breach = TRUE
 	abno_breach_damage_type = "Pale"
 	abno_breach_damage_count = "Very High"
