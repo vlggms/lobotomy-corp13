@@ -20,7 +20,7 @@
 
 /obj/structure/toolabnormality/theresia/attack_hand(mob/user) //defines activator as user.
 	if(activation_cooldown > world.time)
-		to_chat(user, "<span class='warning'>You cannot [activated ? "stop" : "start"] \the [src] just yet!</span>")
+		to_chat(user, span_warning("You cannot [activated ? "stop" : "start"] \the [src] just yet!"))
 		return
 
 	if(activated)
@@ -57,13 +57,13 @@
 			continue
 		L.adjustSanityLoss(-pulse_damage)
 		if(prob(10))
-			to_chat(L, "<span class='notice'>Despite the challenge, something reassures you that things will be okay.</span>")
+			to_chat(L, span_notice("Despite the challenge, something reassures you that things will be okay."))
 
 /obj/structure/toolabnormality/theresia/proc/Activate(mob/user)
 	activation_cooldown = world.time + 2 SECONDS // Just there to prevent spam
 	icon_state = icon_active
-	to_chat(user, "<span class='notice'>You begin to wind up [src].</span>")
-	visible_message("<span class='hear'>[src] starts to wind up.</span>")
+	to_chat(user, span_notice("You begin to wind up [src]."))
+	visible_message(span_hear("[src] starts to wind up."))
 	playsound(get_turf(src), 'sound/effects/ordeals/pink_start.ogg', 50, 0, 4)
 	current_winds = 0
 	activated = ACTIVE_NORMAL
@@ -72,8 +72,8 @@
 /obj/structure/toolabnormality/theresia/proc/Deactivate(mob/user)
 	activation_cooldown = world.time + activation_cooldown_time
 	icon_state = initial(icon_state)
-	to_chat(user, "<span class='notice'>You deactivate the [src].</span>")
-	visible_message("<span class='hear'>The [activated == ACTIVE_NORMAL ? "calming" : "disturbing"] music stops.</span>")
+	to_chat(user, span_notice("You deactivate the [src]."))
+	visible_message(span_hear("The [activated == ACTIVE_NORMAL ? "calming" : "disturbing"] music stops."))
 	playsound(get_turf(src), 'sound/effects/clock_tick.ogg', 50, 0, 4)
 	activated = FALSE
 	STOP_PROCESSING(SSobj,src)

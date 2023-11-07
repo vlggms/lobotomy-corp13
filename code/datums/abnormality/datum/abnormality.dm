@@ -173,17 +173,24 @@
 	work_logs += "\[[worldtime2text()]\] [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
 	AddWorkStats(user, pe, attribute_type, attribute_given)
 	SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
+	if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
+		UpdateUnderstanding(10)
+	else if (pe >= neutral_boxes) // Otherwise if they got a Neutral result, adds 5% understanding up to 100%
+		UpdateUnderstanding(5)
+	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
+	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
+
+/datum/abnormality/proc/UpdateUnderstanding(percent)
 	if (understanding != max_understanding) // This should render "full_understood" not required.
-		if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
-			understanding = clamp((understanding + (max_understanding/10)), 0, max_understanding)
-		else
-			if (pe >= neutral_boxes) // Otherwise if they got a Neutral result, adds 5% understanding up to 100%
-				understanding = clamp((understanding + (max_understanding/20)), 0, max_understanding)
+		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
-	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
-	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
+	else if(understanding == max_understanding && percent < 0) // If we're max and we reduce, undo the count.
+		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
+		if (understanding != max_understanding) // Checks for max understanding after the fact
+			current.gift_chance /= 1.5
+			SSlobotomy_corp.understood_abnos--
 
 /datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter

@@ -40,13 +40,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/silence/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	safe = TRUE
-	to_chat(user, "<span class='nicegreen'>The bells do not toll for thee. Not yet.</span>")
+	to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silence/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		safe = TRUE
-		to_chat(user, "<span class='nicegreen'>The bells do not toll for thee. Not yet.</span>")
+		to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silence/Life()

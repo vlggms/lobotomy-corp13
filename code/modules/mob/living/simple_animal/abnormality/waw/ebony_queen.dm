@@ -62,25 +62,25 @@
 /datum/action/innate/abnormality_attack/ebony_root
 	name = "Root Spike"
 	button_icon_state = "ebony_root"
-	chosen_message = "<span class='colossus'>You will now shoot a devastating line of roots.</span>"
+	chosen_message = span_colossus("You will now shoot a devastating line of roots.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/ebony_barrier
 	name = "Thorn Barrier"
 	button_icon_state = "ebony_barrier"
-	chosen_message = "<span class='colossus'>You will now create a barrier of thorns.</span>"
+	chosen_message = span_colossus("You will now create a barrier of thorns.")
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/ebony_barrage
 	name = "Root Barrage"
 	button_icon_state = "ebony_barrage"
-	chosen_message = "<span class='colossus'>You will now shoot your roots from the ground.</span>"
+	chosen_message = span_colossus("You will now shoot your roots from the ground.")
 	chosen_attack_num = 3
 
 /datum/action/innate/abnormality_attack/ebony_melee
 	name = "Normal attacks"
 	button_icon_state = "ebony_melee"
-	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
+	chosen_message = span_colossus("You will now use normal attacks.")
 	chosen_attack_num = 4
 
 

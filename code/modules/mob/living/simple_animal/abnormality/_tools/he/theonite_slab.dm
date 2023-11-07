@@ -15,7 +15,7 @@
 	if(!do_after(user, 6, user))
 		return
 	if(get_level_buff(user, JUSTICE_ATTRIBUTE) >= 50)
-		to_chat(user, "<span class='notice'>That's enough.</span>")
+		to_chat(user, span_notice("That's enough."))
 		return //You don't need any more.
 
 	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
@@ -28,7 +28,7 @@
 			S.add_stacks(1)
 
 	user.apply_status_effect(STATUS_EFFECT_SLAB)
-	to_chat(user, "<span class='userdanger'>You caress the spikes, and blood flows painlessly. The runes begin to glow.</span>")
+	to_chat(user, span_userdanger("You caress the spikes, and blood flows painlessly. The runes begin to glow."))
 
 // Status Effect
 /datum/status_effect/stacking/slab

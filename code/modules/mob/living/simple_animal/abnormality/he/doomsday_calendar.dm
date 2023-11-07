@@ -102,12 +102,12 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/funpet(mob/living/carbon/human/user)
 	if(status_flags & GODMODE)
 		if(do_after(user, gibtime, target = src))
-			to_chat(user,"<span class='warning'>The abnormality bites you! It seems to have been appeased.</span>")
+			to_chat(user, span_warning("The abnormality bites you! It seems to have been appeased."))
 			user.adjustBruteLoss(75 - (datum_reference.qliphoth_meter * 15))
 			datum_reference.qliphoth_change(4)
 			return
 		else
-			to_chat(user,"<span class='notice'>Maybe it's better to leave that thing alone.</span>")
+			to_chat(user, span_notice("Maybe it's better to leave that thing alone."))
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)//from punishing bird
 	SIGNAL_HANDLER
@@ -146,7 +146,7 @@
 		return..()
 	bonusRed = (5 - (datum_reference.qliphoth_meter))//It samples your blood if it's below the maximum counter, damage is RED instead of typeless
 	if(bonusRed)
-		to_chat(user,"<span class='warning'>A clay doll arrives with a bowl, demanding blood.</span>")
+		to_chat(user, span_warning("A clay doll arrives with a bowl, demanding blood."))
 		playsound(src, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 40, 0, 1)
 	return ..()
 
@@ -184,7 +184,7 @@
 	for(var/mob/living/carbon/human/H in livinginrange(20, src))//same range as universe aflame when fully charged
 		if(H.z != z)
 			return
-		to_chat(H, "<span class='warning'>You hear rumbling...</span>")
+		to_chat(H, span_warning("You hear rumbling..."))
 
 
 /obj/effect/temp_visual/doomsday
@@ -206,14 +206,14 @@
 			if(1)
 				next_phase_time = world.time + 30 SECONDS
 				for(var/mob/living/carbon/human/H in livinginview(10, src))
-					to_chat(H, "<span class='warning'>The abnormality appears upset. What should it be given?</span>")
+					to_chat(H, span_warning("The abnormality appears upset. What should it be given?"))
 				CheckFed()
 				SpawnAdds()
 				icon_state = "doomsday_angry"
 			if(2)
 				next_phase_time = world.time + 30 SECONDS
 				for(var/mob/living/carbon/human/H in livinginview(10, src))
-					to_chat(H, "<span class='warning'>The heat of the abnormality is unbearable. An offering must be made to it.</span>")
+					to_chat(H, span_warning("The heat of the abnormality is unbearable. An offering must be made to it."))
 				CheckFed()
 				SpawnAdds()
 				icon_state = "doomsday_firey"
@@ -221,7 +221,7 @@
 			if(3)
 				next_phase_time = world.time + 30 SECONDS
 				for(var/mob/living/carbon/human/H in livinginview(10, src))
-					to_chat(H, "<span class='warning'>The abnormality demands another offering.</span>")
+					to_chat(H, span_warning("The abnormality demands another offering."))
 				CheckFed()
 				SpawnAdds()
 				icon_state = "doomsday_charging"
@@ -238,7 +238,7 @@
 		if(current_phase_num >= 4)//UNIVERSE AFLAME!
 			for(var/turf/T in range(aflame_range, src))
 				for(var/mob/living/carbon/human/H in T)
-					to_chat(H, "<span class='userdanger'>The stars are twinkling. When they shine, they'll rob us all of our sight.</span>")
+					to_chat(H, span_userdanger("The stars are twinkling. When they shine, they'll rob us all of our sight."))
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Impending_Charge.ogg', 50, TRUE)
 			SLEEP_CHECK_DEATH(15 SECONDS)
 			playsound(src, 'sound/abnormalities/doomsdaycalendar/Doomsday_Universe.ogg', 50, TRUE)
@@ -295,11 +295,11 @@
 		return FALSE
 	if(do_after(user, 20, target = M))
 		if(!ishuman(M) && !istype(M, /mob/living/simple_animal/hostile/doomsday_doll))
-			to_chat(user, "<span class='userdanger'>The abnormality rejects your offering!</span>")
+			to_chat(user, span_userdanger("The abnormality rejects your offering!"))
 			return
 		if(istype(M ,/mob/living/simple_animal/hostile/doomsday_doll))
 			spawned_dolls -= M
-		to_chat(user, "<span class='userdanger'>The abnormality accepts your offering!</span>")
+		to_chat(user, span_userdanger("The abnormality accepts your offering!"))
 		M.gib()
 		is_fed = TRUE
 		adjustBruteLoss(100)

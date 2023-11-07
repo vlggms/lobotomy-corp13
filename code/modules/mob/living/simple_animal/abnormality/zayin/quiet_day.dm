@@ -26,7 +26,7 @@
 		/datum/ego_datum/armor/nostalgia
 	)
 	chem_type = /datum/reagent/abnormality/quiet_day
-	harvest_phrase = "<span class='notice'>%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.</span>"
+	harvest_phrase = span_notice("%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.")
 	harvest_phrase_third = "%ABNO glances at %PERSON. Suddenly, %VESSEL seems to be more full."
 
 	gift_type =  /datum/ego_gifts/nostalgia

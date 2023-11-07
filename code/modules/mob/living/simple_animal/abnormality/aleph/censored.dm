@@ -110,10 +110,10 @@
 /* Work */
 /mob/living/simple_animal/hostile/abnormality/censored/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Sacrifice")
-		to_chat(user, "<span class='warning'>You hesitate for a moment...</span>")
+		to_chat(user, span_warning("You hesitate for a moment..."))
 		datum_reference.working = TRUE
 		if(!do_after(user, 3 SECONDS, target = user))
-			to_chat(user, "<span class='warning'>You decide it's not worth it.</span>")
+			to_chat(user, span_warning("You decide it's not worth it."))
 			datum_reference.working = FALSE
 			return null
 		user.Stun(30 SECONDS)
@@ -213,5 +213,5 @@
 		H.adjustSanityLoss(20)
 		if(H.sanity_lost)
 			continue
-		to_chat(H, "<span class='warning'>Damn, it's scary.</span>")
+		to_chat(H, span_warning("Damn, it's scary."))
 	return

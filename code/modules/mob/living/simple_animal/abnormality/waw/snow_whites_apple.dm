@@ -238,22 +238,22 @@ GLOBAL_LIST_EMPTY(vine_list)
 			var/weeding = trimming.get_sharpness()
 			if(weeding == SHARP_EDGED && trimming.force >= 5)
 				if(prob(10))
-					to_chat(lonely, "<span class='warning'>You cut back the [name] as it reaches for you.</span>")
+					to_chat(lonely, span_warning("You cut back the [name] as it reaches for you."))
 				else if(prob(10) || (prob(30) && name == "bitter growth"))
-					to_chat(lonely, "<span class='warning'>The [name] stab your legs spitefully.</span>")
+					to_chat(lonely, span_warning("The [name] stab your legs spitefully."))
 					lonely.adjustBlackLoss(5)
 				lonely.adjustStaminaLoss(5)
 				qdel(src)
 				return
 			return
 	if(prob(10))
-		to_chat(L, "<span class='warning'>The [name] tighten around you.</span>")
+		to_chat(L, span_warning("The [name] tighten around you."))
 	L.adjustStaminaLoss(10, TRUE, TRUE)
 
 /obj/structure/spreading/apple_vine/proc/suiterReaction(mob/living/carbon/human/lonely)
 	var/lonelyhealth = (lonely.health / lonely.maxHealth) * 100
 	if(prob(10))
-		to_chat(lonely, "<span class='nicegreen'>The branches open a path.</span>") //it would be uncouth for the vines to hinder one gifted by the princess.
+		to_chat(lonely, span_nicegreen("The branches open a path.")) //it would be uncouth for the vines to hinder one gifted by the princess.
 	if(lonelyhealth <= 30 && lonely.stat != DEAD)
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))

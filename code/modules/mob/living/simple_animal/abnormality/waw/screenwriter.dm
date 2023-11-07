@@ -53,7 +53,7 @@ Defeating the murderer also surpresses the abnormality.
 //Work stuff
 /mob/living/simple_animal/hostile/abnormality/screenwriter/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(A)
-		to_chat(user, "<span class='warning'>The abnormality ignores you!</span>")
+		to_chat(user, span_warning("The abnormality ignores you!"))
 		return FALSE
 	if(work_type == preferred_work_type || !preferred_work_type)
 		happy = TRUE
@@ -84,15 +84,15 @@ Defeating the murderer also surpresses the abnormality.
 	SpawnIcon()
 	switch(preferred_work_type)
 		if("Nutrition")
-			to_chat(petter, "<span class='nicegreen'>On the page is a depiction of meat on a bone.</span>")
+			to_chat(petter, span_nicegreen("On the page is a depiction of meat on a bone."))
 		if("Cleanliness")
-			to_chat(petter, "<span class='nicegreen'>On the page is a depiction of a scrubber.</span>")
+			to_chat(petter, span_nicegreen("On the page is a depiction of a scrubber."))
 		if("Consensus")
-			to_chat(petter, "<span class='nicegreen'>On the page is a depiction of joined hands.</span>")
+			to_chat(petter, span_nicegreen("On the page is a depiction of joined hands."))
 		if("Amusement")
-			to_chat(petter, "<span class='nicegreen'>On the page is a depiction of a toy ball.</span>")
+			to_chat(petter, span_nicegreen("On the page is a depiction of a toy ball."))
 		if("Violence")
-			to_chat(petter, "<span class='nicegreen'>On the page is a depiction of a nasty-looking whip.</span>")
+			to_chat(petter, span_nicegreen("On the page is a depiction of a nasty-looking whip."))
 
 //Breach
 /mob/living/simple_animal/hostile/abnormality/screenwriter/ZeroQliphoth(mob/living/carbon/human/user)
@@ -128,7 +128,7 @@ Defeating the murderer also surpresses the abnormality.
 		return
 	var/list/role_list = list("coward", "broken", "failed")
 	for(Y in marked)
-		to_chat(Y, "<span class='warning'>The play is starting, do you remember your lines?</span>")
+		to_chat(Y, span_warning("The play is starting, do you remember your lines?"))
 		Y.apply_status_effect(STATUS_EFFECT_ACTOR)
 		var/datum/status_effect/actor/S = Y.has_status_effect(/datum/status_effect/actor)
 		if(LAZYLEN(role_list) > 2)
@@ -136,7 +136,7 @@ Defeating the murderer also surpresses the abnormality.
 
 		else
 			S.role = "victim"
-		to_chat(Y, "<span class='userdanger'>You will play the role of the [S.role]!</span>")
+		to_chat(Y, span_userdanger("You will play the role of the [S.role]!"))
 		S.AssignRole()
 
 /mob/living/simple_animal/hostile/abnormality/screenwriter/proc/EndScenario()
@@ -205,7 +205,7 @@ Defeating the murderer also surpresses the abnormality.
 	role = "victim"
 	owner.add_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	playsound(get_turf(owner), 'sound/abnormalities/someonesportrait/panic.ogg', 40, FALSE, -5)
-	to_chat(owner, "<span class='userdanger'>You will now play the role of the victim!</span>")
+	to_chat(owner, span_userdanger("You will now play the role of the victim!"))
 
 /datum/status_effect/actor/proc/AssignRole()
 	var/mob/living/carbon/human/H = owner
@@ -317,7 +317,7 @@ Defeating the murderer also surpresses the abnormality.
 /mob/living/simple_animal/hostile/actor/death(gibbed)
 	icon_state = icon_dead
 	playsound(get_turf(src), 'sound/effects/ordeals/white/pale_pistol.ogg', 100, FALSE, 4)
-	visible_message("<span class='nicegreen'>You hear gunfire from the distance, and [src] collapses to the ground!</span>")
+	visible_message(span_nicegreen("You hear gunfire from the distance, and [src] collapses to the ground!"))
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
@@ -349,7 +349,7 @@ Defeating the murderer also surpresses the abnormality.
 		human_pawn.do_jitter_animation(human_pawn.jitteriness)
 		suicide_timer += 1
 	if((suicide_timer >= suicide_target) && (human_pawn.mobility_flags & MOBILITY_MOVE))
-		human_pawn.visible_message("<span class='danger'>[human_pawn] produces a knife seemingly out of nowhere and stabs themselves!</span>")
+		human_pawn.visible_message(span_danger("[human_pawn] produces a knife seemingly out of nowhere and stabs themselves!"))
 		playsound(get_turf(human_pawn), 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
 		human_pawn.adjustBruteLoss(400)
 		human_pawn.jitteriness = 0

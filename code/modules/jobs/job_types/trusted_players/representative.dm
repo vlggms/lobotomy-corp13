@@ -42,7 +42,7 @@
 /// Alternate corps you cna pick
 /datum/job/representative
 	alt_titles = list("R Corp Representative", "W Corp Representative",
-			"K Corp Representative")
+			"K Corp Representative", "N Corp Representative", "P Corp Representative")
 
 /datum/outfit/job/representative/rcorprepresentative
 	name = "R Corp Representative"
@@ -55,3 +55,11 @@
 /datum/outfit/job/representative/kcorprepresentative
 	name = "K Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/kcorp
+
+/datum/outfit/job/representative/ncorprepresentative
+	name = "N Corp Representative"
+	uniform = /obj/item/clothing/under/suit/lobotomy/ncorp
+
+/datum/outfit/job/representative/pcorprepresentative
+	name = "P Corp Representative"
+	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp

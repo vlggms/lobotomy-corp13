@@ -15,7 +15,7 @@
 	if(!do_after(user, 6, user))
 		return
 	if(get_level_buff(user, FORTITUDE_ATTRIBUTE) >= 100)
-		to_chat(user, "<span class='notice'>You've had enough.</span>")
+		to_chat(user, span_notice("You've had enough."))
 		return //You don't need any more.
 
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
@@ -25,7 +25,7 @@
 		user.physiology.red_mod *= 1.15
 
 	user.apply_status_effect(STATUS_EFFECT_SNAKE_OIL)
-	to_chat(user, "<span class='userdanger'>You take a sip, ugh, it tastes nasty!</span>")
+	to_chat(user, span_userdanger("You take a sip, ugh, it tastes nasty!"))
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10,50), TRUE)
 
 // Status Effect
@@ -50,7 +50,7 @@
 /datum/status_effect/snake_oil/proc/HealthCheck()
 	var/mob/living/carbon/human/H = owner
 	if(H.stat >= HARD_CRIT || H.health < 0) //crit check
-		to_chat(H, "<span class='userdanger'>You feel like your body can't hold itself together!</span>")
+		to_chat(H, span_userdanger("You feel like your body can't hold itself together!"))
 		H.gib()
 
 #undef STATUS_EFFECT_SNAKE_OIL

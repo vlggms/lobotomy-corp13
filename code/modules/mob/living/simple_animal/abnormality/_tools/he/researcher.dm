@@ -11,14 +11,14 @@
 	var/datum/status_effect/display/researcher/R = user.has_status_effect(/datum/status_effect/display/researcher)
 	if(R)
 		if(R.worked == FALSE)
-			to_chat(user, "<span class='userdanger'>Uh Oh.</span>")
+			to_chat(user, span_userdanger("Uh Oh."))
 			R.Explode(user)
 			return
 		else
 			user.remove_status_effect(STATUS_EFFECT_RESEARCHER)
 	else
 		user.apply_status_effect(STATUS_EFFECT_RESEARCHER)
-		to_chat(user, "<span class='nicegreen'>It's time to work on the abnormalities.</span>")
+		to_chat(user, span_nicegreen("It's time to work on the abnormalities."))
 
 // Status Effect
 /datum/status_effect/display/researcher
@@ -47,11 +47,11 @@
 		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -20)
 		UnregisterSignal(H, COMSIG_MOB_APPLY_DAMGE)
 		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
-		to_chat(H, "<span class='nicegreen'>The research notes vanish.</span>")
+		to_chat(H, span_nicegreen("The research notes vanish."))
 
 /datum/status_effect/display/researcher/proc/OnWorkComplete(mob/living/carbon/human/user)
 	SIGNAL_HANDLER
-	to_chat(user, "<span class='nicegreen'>The research notes have been filled out, the yearn for knowledge has been satisfied.</span>")
+	to_chat(user, span_nicegreen("The research notes have been filled out, the yearn for knowledge has been satisfied."))
 	worked = TRUE
 
 /datum/status_effect/display/researcher/proc/TakeDamage(mob/living/carbon/human/user, damage, damagetype, def_zone)
@@ -60,7 +60,7 @@
 		return
 	damage_counter += damage //we store the raw damage taken by the player
 	if(damage_counter >= (damage_max * 0.6))
-		to_chat(owner, "<span class='userdanger'>You feel like you should avoid taking any more damage!</span>")
+		to_chat(owner, span_userdanger("You feel like you should avoid taking any more damage!"))
 	if(damage_counter >= damage_max) //if the stored damage exceeds the players maxhealth + maxsanity they explode
 		addtimer(CALLBACK(src, .proc/Explode, owner), 1) //Gives damage procs time to process
 

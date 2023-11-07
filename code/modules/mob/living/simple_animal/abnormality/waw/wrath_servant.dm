@@ -150,7 +150,7 @@
 			L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			var/obj/effect/temp_visual/eldritch_smoke/ES = new(get_turf(L))
 			ES.color = COLOR_GREEN
-			to_chat(L, "<span class='warning'>The Azure hermit's magic being channeled through [src] racks your mind!</span>")
+			to_chat(L, span_warning("The Azure hermit's magic being channeled through [src] racks your mind!"))
 		COOLDOWN_START(src, stun, stunned_cooldown)
 	if(stunned)
 		return
@@ -174,11 +174,11 @@
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/attack_hand(mob/living/carbon/human/M)
 	if(!stunned)
 		return ..()
-	to_chat(M, "<span class='warning'>You start pulling the staff from the [src]!</span>")
+	to_chat(M, span_warning("You start pulling the staff from the [src]!"))
 	if(!do_after(M, 2 SECONDS, src) || !stunned)
-		to_chat(M, "<span class='warning'>You let go before the staff is free!</span>")
+		to_chat(M, span_warning("You let go before the staff is free!"))
 		return
-	to_chat(M, "<span class='warning'>The staff rips free from the [src]!</span>")
+	to_chat(M, span_warning("The staff rips free from the [src]!"))
 	Unstun()
 	return
 
@@ -276,7 +276,7 @@
 		AdjustInstability(3) // Was 2
 	if(user in friend_ship)
 		say("It was good to see you again, [user.first_name()].")
-		to_chat(user, "<span class='nicegreen'>A light green light flows over you... You feel better!</span>")
+		to_chat(user, span_nicegreen("A light green light flows over you... You feel better!"))
 		user.adjustBruteLoss(-20)
 		user.adjustSanityLoss(-20)
 		AdjustInstability(3) // Was 1
@@ -388,7 +388,7 @@
 		break
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Dash()
-	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+	visible_message(span_warning("[src] sprints toward [target]!"), span_notice("You quickly dash!"), span_notice("You hear heavy footsteps speed up."))
 	var/duration = 1 SECONDS
 	if(client)
 		duration = 1.5 SECONDS
@@ -524,13 +524,13 @@
 		can_act = TRUE
 		return FALSE
 	say("GR-RRAHHH!!!")
-	visible_message("<span class='warning'>[src] falls down!</span>")
+	visible_message(span_warning("[src] falls down!"))
 	icon_state = "wrath_stun"
 	SLEEP_CHECK_DEATH(15 SECONDS)
 	status_flags &= ~GODMODE
 	icon_state = icon_living
 	adjustBruteLoss(-maxHealth)
-	visible_message("<span class='warning'>[src] gets back up!</span>")
+	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/servant_wrath/death(gibbed)
@@ -637,7 +637,7 @@
 				SLEEP_CHECK_DEATH(3)
 		else
 			playsound(SW, 'sound/abnormalities/wrath_servant/enrage.ogg', 100, FALSE, 40, falloff_distance = 20)
-			visible_message("<span class='userdanger'>[src] plunges their staff into [SW]'s chest!</span>")
+			visible_message(span_userdanger("[src] plunges their staff into [SW]'s chest!"))
 			SW.stunned = TRUE
 			addtimer(CALLBACK(SW, /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Unstun), 3 MINUTES)
 			SW.status_flags |= GODMODE
@@ -726,7 +726,7 @@
 	density = FALSE
 	status_flags |= GODMODE
 	for(var/mob/living/L in staves)
-		L.visible_message("<span class='notice'>[L] crumbles before you!</span>")
+		L.visible_message(span_notice("[L] crumbles before you!"))
 		qdel(L)
 	animate(src, alpha = 0, time = (15 SECONDS))
 	QDEL_IN(src, 15 SECONDS)
