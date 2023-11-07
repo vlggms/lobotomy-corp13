@@ -1,0 +1,255 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/wall_vent,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/cavein_door,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"d" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/molten_object,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/sign/poster/lobotomycorp/suckmyenegy,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"i" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/obj/machinery/light/cold{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/chair/wood,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/table/wood,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_y = 9;
+	pixel_x = 9
+	},
+/obj/item/keycard{
+	puzzle_id = 00012;
+	pixel_x = -2;
+	pixel_y = -6
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/showcase/machinery/tv,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/sign/poster/contraband/city_cola,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"r" = (
+/obj/effect/spawner/randomcolavend,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/sign/departments/l_corp,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/sign/poster/contraband/eat,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"A" = (
+/obj/structure/sign/poster/official/hang_in_there,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"C" = (
+/obj/machinery/door/keycard{
+	puzzle_id = 00012
+	},
+/obj/effect/step_trigger/sound_effect{
+	volume = 50;
+	happens_once = 1;
+	sound = 'sound/machines/closet_open.ogg';
+	extra_range = 4
+	},
+/obj/effect/step_trigger/place_atom{
+	atom_path = /mob/living/simple_animal/hostile/ordeal/bigBirdEye;
+	atom_rename = "featherbrained escapee";
+	spawn_dist_x = -2;
+	spawn_dist_y = -1;
+	spawn_flavor_text = "emerges from a vent."
+	},
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/step_trigger/sound_effect{
+	volume = 50;
+	happens_once = 1;
+	sound = 'sound/machines/ventcrawl.ogg';
+	extra_range = 4
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"E" = (
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"H" = (
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"I" = (
+/obj/machinery/light/small,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"J" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"L" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/table/wood,
+/obj/item/food/burger{
+	pixel_x = -7;
+	pixel_y = 6
+	},
+/obj/item/food/chips{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/sign/poster/contraband/bountyhunters,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/spawner/lootdrop/chaotic_random,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"V" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/tresmetal/amber,
+/obj/effect/decal/cleanable/molten_object/large,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/sign/poster/official/moth8,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/wrapping,
+/obj/item/feather,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"Z" = (
+/obj/structure/sign/poster/contraband/kudzu,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+t
+x
+x
+T
+f
+x
+"}
+(2,1,1) = {"
+b
+V
+X
+a
+Y
+n
+p
+Y
+K
+Z
+"}
+(3,1,1) = {"
+s
+U
+d
+A
+l
+O
+E
+E
+y
+q
+"}
+(4,1,1) = {"
+x
+L
+H
+C
+Y
+E
+E
+E
+I
+x
+"}
+(5,1,1) = {"
+x
+k
+H
+W
+Y
+J
+Y
+D
+r
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+i
+x
+x
+"}
