@@ -2724,6 +2724,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\blue_star.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\censored.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\crying_children.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\aleph\distortedform.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\last_shot.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\melting_love.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\aleph\mountain.dm"

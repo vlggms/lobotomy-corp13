@@ -176,6 +176,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = 10		//Lasts 1 second
 	alert_type = /atom/movable/screen/alert/status_effect/cowardice
+	var/punishment_damage = 25
 
 /atom/movable/screen/alert/status_effect/cowardice
 	name = "Cowardice"
@@ -200,7 +201,7 @@
 	if(!istype(head))
 		return FALSE
 	playsound(get_turf(H), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-	H.apply_damage(25, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	H.apply_damage(punishment_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	if(H.health < 0)
 		head.dismember()
 	new /obj/effect/temp_visual/slice(get_turf(H))

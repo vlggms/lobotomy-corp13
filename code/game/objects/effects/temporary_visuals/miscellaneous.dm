@@ -1020,3 +1020,8 @@
 	name = "heavenly blessing"
 	icon_state = "onesin_blessing"
 	duration = 12
+
+/obj/effect/temp_visual/distortedform_shift
+	name = "shift"
+	icon_state = "shift"
+	duration = 3

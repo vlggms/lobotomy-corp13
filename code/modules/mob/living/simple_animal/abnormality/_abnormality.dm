@@ -391,6 +391,12 @@
 		return TRUE
 	return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/proc/GetName()
+	return name
+
+/mob/living/simple_animal/hostile/abnormality/proc/GetRiskLevel()
+	return threat_level
+
 // Actions
 /datum/action/innate/abnormality_attack
 	name = "Abnormality Attack"

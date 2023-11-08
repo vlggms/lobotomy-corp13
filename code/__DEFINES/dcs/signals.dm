@@ -1055,6 +1055,7 @@
 #define COMSIG_WORK_COMPLETED "work_completed" // Work Complete
 #define COMSIG_GLOB_WORK_COMPLETED "!work_completed" // Ditto
 #define COMSIG_MELTDOWN_FINISHED "meltdown_finished"
+#define COMSIG_GLOB_MELTDOWN_FINISHED "!meltdown_finished"
 
 // General Abnormality Signals
 

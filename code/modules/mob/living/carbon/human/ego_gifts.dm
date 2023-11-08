@@ -1285,3 +1285,27 @@
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
 	.=..()
+
+/datum/ego_gifts/fervor
+	name = "Fervor"
+	desc = "Provides the user with 5% resistance to all damage types."
+	icon_state = "fervor"
+	fortitude_bonus = 4
+	prudence_bonus = 4
+	temperance_bonus = 4
+	justice_bonus = 4
+	slot = SPECIAL
+
+/datum/ego_gifts/fervor/Initialize(mob/living/carbon/human/user) // Lowered Stats but grants resistance
+	.=..()
+	user.physiology.red_mod *= 0.95
+	user.physiology.white_mod *= 0.95
+	user.physiology.black_mod *= 0.95
+	user.physiology.pale_mod *= 0.95
+
+/datum/ego_gifts/fervor/Remove(mob/living/carbon/human/user)
+	user.physiology.red_mod /= 0.95
+	user.physiology.white_mod /= 0.95
+	user.physiology.black_mod /= 0.95
+	user.physiology.pale_mod /= 0.95
+	.=..()
