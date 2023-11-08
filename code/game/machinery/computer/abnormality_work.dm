@@ -40,8 +40,8 @@
 	. = ..()
 	if(!datum_reference)
 		return
-	. += "<span class='info'>This console is connected to [datum_reference.name]'s containment unit.</span>"
-	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>[THREAT_TO_NAME[datum_reference.threat_level]]</span>"
+	. += "<span class='info'>This console is connected to [datum_reference.GetName()]'s containment unit.</span>"
+	var/threat_level = "<span style='color: [THREAT_TO_COLOR[datum_reference.GetRiskLevel()]]'>[THREAT_TO_NAME[datum_reference.GetRiskLevel()]]</span>"
 	. += "<span class='info'>Risk Level:</span> [threat_level]<span class='info'>.</span>" // Professionals have standards
 	if(datum_reference.qliphoth_meter_max > 0)
 		. += "<span class='info'>Current Qliphoth Counter: [datum_reference.qliphoth_meter].</span>"
@@ -58,6 +58,8 @@
 				melt_text = " of Waves. Upon clearing the meltdown the dark waves will disappear"
 			if(MELTDOWN_CYAN)
 				melt_text = " of Pillars. Success rates reduced by 20%. Failing to clear it will cause Arbiter to perform their deadly attack"
+			if(MELTDOWN_BLACK)
+				melt_text = " of Lunacy. Failure to clear the meltdown will cause another abnormality to breach"
 		. += "<span class='warning'>The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].</span>"
 
 /obj/machinery/computer/abnormality/ui_interact(mob/user)
@@ -68,7 +70,7 @@
 		to_chat(user, "<span class='boldannounce'>The console has no information stored!</span>")
 		return
 	var/dat
-	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.threat_level]]'>\[[THREAT_TO_NAME[datum_reference.threat_level]]\]</span> [datum_reference.name]</b><br>"
+	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.GetRiskLevel()]]'>\[[THREAT_TO_NAME[datum_reference.GetRiskLevel()]]\]</span> [datum_reference.GetName()]</b><br>"
 	if(datum_reference.overload_chance[user.ckey])
 		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Personal Work Success Rates are modified by [datum_reference.overload_chance[user.ckey]]%.</span><br>"
 		if(datum_reference.overload_chance_limit < 0 && datum_reference.overload_chance[user.ckey] <= datum_reference.overload_chance_limit) // How the fuck did you hit the limit..?
@@ -163,6 +165,7 @@
 	meltdown = FALSE // Reset meltdown
 	if(was_melting)
 		SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, TRUE)
+		SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_FINISHED, datum_reference, TRUE)
 	update_icon()
 	datum_reference.working = TRUE
 	var/work_chance = datum_reference.get_work_chance(work_type, user)
@@ -286,6 +289,7 @@
 	update_icon()
 	datum_reference.qliphoth_change(-999)
 	SEND_SIGNAL(src, COMSIG_MELTDOWN_FINISHED, datum_reference, FALSE)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_FINISHED, datum_reference, FALSE)
 	return TRUE
 
 // Scrambles work types for this specific console

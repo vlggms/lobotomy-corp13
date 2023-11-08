@@ -718,8 +718,8 @@
 	desc = "The fragile human mind is fated to twist and distort."
 	special = "This weapon requires two hands to use and always blocks ranged attacks."
 	icon_state = "distortion"
-	force = 180 //Just make sure you don't hit anyone!
-	attack_speed = 3
+	force = 35 //Twilight but lower in terms of damage
+	attack_speed = 1.8
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
 	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
@@ -731,21 +731,29 @@
 	block_sound = 'sound/weapons/ego/heavy_guard.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
 							)
 
 	attacking = TRUE //ALWAYS blocking ranged attacks
+
+
+/obj/item/ego_weapon/shield/distortion/EgoAttackInfo(mob/user)
+	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
 
 /obj/item/ego_weapon/shield/distortion/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(!.)
 		return FALSE
+	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		damtype = damage_type
+		target.attacked_by(src, user)
+	damtype = initial(damtype)
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 4 : 8)
-		target.throw_at(throw_target, rand(3, 4), whack_speed, user)
+		var/whack_speed = (prob(60) ? 3 : 6)
+		target.throw_at(throw_target, rand(2, 3), whack_speed, user)
 
 /obj/item/ego_weapon/shield/distortion/CanUseEgo(mob/living/user)
 	. = ..()

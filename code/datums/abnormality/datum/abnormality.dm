@@ -258,3 +258,13 @@
 		SSlobotomy_corp.work_stats[user_name]["pe"] += pe
 	if(attribute_type != "N/A" && attribute_given)
 		SSlobotomy_corp.work_stats[user_name]["gain"][attribute_type] += attribute_given
+
+/datum/abnormality/proc/GetName()
+	if(current)
+		return current.GetName()
+	return name
+
+/datum/abnormality/proc/GetRiskLevel()
+	if(current)
+		return current.GetRiskLevel()
+	return threat_level
