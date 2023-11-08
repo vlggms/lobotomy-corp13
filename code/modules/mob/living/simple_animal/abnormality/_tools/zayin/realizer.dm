@@ -107,3 +107,8 @@
 	user.put_in_hands(new_item)
 	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
 	playsound(get_turf(src), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)
+
+/obj/structure/toolabnormality/realization/Initialize()
+	..()
+	new /obj/effect/landmark/toolspawn (get_turf(src))
+	qdel(src)
