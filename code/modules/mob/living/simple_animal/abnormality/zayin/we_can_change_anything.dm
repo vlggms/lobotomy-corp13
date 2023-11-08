@@ -10,8 +10,8 @@
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),
-		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 60, 60),
-		ABNORMALITY_WORK_REPRESSION = list(55, 60, 65, 70, 75),
+		ABNORMALITY_WORK_ATTACHMENT = list(80, 85, 90, 95, 100),
+		ABNORMALITY_WORK_REPRESSION = list(80, 85, 90, 95, 100),
 		"Enter machine" = 100 //"Go inside the torture machine, it'll be fun they said"
 		)
 	work_damage_amount = 0
