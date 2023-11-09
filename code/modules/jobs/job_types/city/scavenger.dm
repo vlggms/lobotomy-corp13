@@ -4,8 +4,8 @@ Scavenger
 /datum/job/scavenger
 	title = "Rat"
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+//	total_positions = -1
+//	spawn_positions = -1
 	supervisors = "your stomach, riches and gold."
 	selection_color = "#555555"
 	access = list(ACCESS_LAWYER)
