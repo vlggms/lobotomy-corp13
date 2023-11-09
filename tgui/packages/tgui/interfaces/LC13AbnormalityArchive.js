@@ -1,25 +1,42 @@
-import { sortBy } from 'common/collections';
+import { filter, sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Section, Stack } from '../components';
+import { createSearch } from 'common/string';
+import { Box, Button, LabeledList, Section, Stack, Input } from '../components';
 import { Window } from '../layouts';
 import { capitalize } from 'common/string';
 
+/**
+ * Camera selector.
+ *
+ * Filters cameras, applies search terms and sorts the alphabetically.
+ */
+export const selectAbnos = (abnormalities, searchText = '') => {
+  const testSearch = createSearch(searchText, abnormality => abnormality.search);
+  return flow([
+    // Null camera filter
+    filter(abnormality => abnormality?.search),
+    // Optional search term
+    searchText && filter(testSearch),
+    // Slightly expensive, but way better than sorting in BYOND
+    sortBy(abnormality => abnormality.name),
+  ])(abnormalities);
+};
+
 export const LC13AbnormalityArchive = (props, context) => {
   const { act, data } = useBackend(context);
-
-  const {
-    abnormality_info,
-  } = data;
-
-  const abnormality_by_name = flow([
-    sortBy(abnormality_info => abnormality_info.name),
-  ])(data.abnormality_info || []);
 
   const [
     current_abnormality,
     setcurrent_abnormality,
   ] = useLocalState(context, 'current_abnormality', null);
+  const [
+    searchText,
+    setSearchText,
+  ] = useLocalState(context, 'searchText', '');
+
+  const abnormality_by_name = selectAbnos(data.abnormality_info, searchText);
+
   return (
     <Window
       width={800}
@@ -28,6 +45,12 @@ export const LC13AbnormalityArchive = (props, context) => {
         <Stack fill>
           <Stack.Item width="150px">
             <Section fill scrollable>
+              <Input
+                autoFocus
+                fluid
+                mt={1}
+                placeholder="Search for an abnormality"
+                onInput={(e, value) => setSearchText(value)} />
               {abnormality_by_name.map(f => (
                 <Button
                   key={f.name}
@@ -94,10 +117,10 @@ const Linesoftext = (props, context) => {
   }
   for (let index = 0; index <= subject.linecount; index++) {
     const Tower_element = ( // Produce Tower_element
-      <Towergear 
-        tower_subject={subject} 
-        line_place={index} 
-      /> // Tower_Gear is on the Next Island. 
+      <Towergear
+        tower_subject={subject}
+        line_place={index}
+      /> // Tower_Gear is on the Next Island.
       // It produces Tower_element based on the values put inside it.
     );
     the_tower.push(Tower_element); // Add Tower_element to the_tower
@@ -107,14 +130,14 @@ const Linesoftext = (props, context) => {
   );
 };
 
-// Towergear does not work unless it has capitalization. 
+// Towergear does not work unless it has capitalization.
 // Apparently all consts must be in pascaltext
-const Towergear = (props, context) => { 
+const Towergear = (props, context) => {
   const { tower_subject, line_place } = props;
-  let tower_gear_sound = "line" + [line_place]; 
-  // Coding this has the feeling of being lost 
+  let tower_gear_sound = "line" + [line_place];
+  // Coding this has the feeling of being lost
   // with only fickle candles to light the way.
-  if (!tower_subject[tower_gear_sound]) { 
+  if (!tower_subject[tower_gear_sound]) {
     // The value is empty even though the max size of the list counts it.
     return (
       <Box>
@@ -128,5 +151,5 @@ const Towergear = (props, context) => {
     </Box>
   );
 };
-// It turns out in the end tower_subject[tower_gear_sound] 
+// It turns out in the end tower_subject[tower_gear_sound]
 // is the same as tower_subject.tower_gear_sound.
