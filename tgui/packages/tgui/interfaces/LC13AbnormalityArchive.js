@@ -7,14 +7,14 @@ import { Window } from '../layouts';
 import { capitalize } from 'common/string';
 
 /**
- * Camera selector.
+ * Abnormality selector.
  *
- * Filters cameras, applies search terms and sorts the alphabetically.
+ * Filters abnormalities, applies search terms and sorts by abno code.
+ * Stole the shit out of this from CameraConsole.js
  */
 export const selectAbnos = (abnormalities, searchText = '') => {
   const testSearch = createSearch(searchText, abnormality => abnormality.search);
   return flow([
-    // Null camera filter
     filter(abnormality => abnormality?.search),
     // Optional search term
     searchText && filter(testSearch),
