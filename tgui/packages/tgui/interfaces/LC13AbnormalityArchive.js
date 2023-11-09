@@ -13,13 +13,13 @@ import { capitalize } from 'common/string';
  * Stole the shit out of this from CameraConsole.js
  */
 export const selectAbnos = (abnormalities, searchText = '') => {
-  const testSearch = createSearch(searchText, abnormality => abnormality.search);
+  const testSearch = createSearch(searchText, abno => abno.search);
   return flow([
-    filter(abnormality => abnormality?.search),
+    filter(abno => abno?.search),
     // Optional search term
     searchText && filter(testSearch),
     // Slightly expensive, but way better than sorting in BYOND
-    sortBy(abnormality => abnormality.name),
+    sortBy(abno => abno.name),
   ])(abnormalities);
 };
 
