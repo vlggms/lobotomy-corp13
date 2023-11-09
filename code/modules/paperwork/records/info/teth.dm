@@ -211,7 +211,7 @@
 //Meat Lantern
 /obj/item/paper/fluff/info/teth/meatlantern
 	abno_type = /mob/living/simple_animal/hostile/abnormality/meat_lantern
-	abno_code = "D-02-107"
+	abno_code = "O-04-84"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the work took less than 18 seconds to complete, the Qliphoth Counter lowered with a high probability.",
