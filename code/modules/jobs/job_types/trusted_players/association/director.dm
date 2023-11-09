@@ -40,7 +40,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 	Do not fight unless in self defense. You are not a combat role; you take an administrative role. \
 	Do not assist L Corporation without significant payment.</span>")
 	to_chat(M, "<span class='danger'>Avoid killing other players without a reason. </span>")
-	var/antagspawn = pick(antagroles)
+//	var/antagspawn = pick(antagroles)
 	H.set_attribute_limit(120)
 
 	//Don't spawn these goobers without a director.
@@ -51,8 +51,8 @@ GLOBAL_LIST_INIT(association_jobs, list(
 		if(istype(processing, /datum/job/veteran))
 			processing.total_positions = 1
 
-		if(istype(processing, antagspawn))
-			processing.total_positions = 1
+//		if(istype(processing, antagspawn))
+//			processing.total_positions = 1
 
 
 	. = ..()

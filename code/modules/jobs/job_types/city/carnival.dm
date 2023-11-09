@@ -1,8 +1,8 @@
 /datum/job/carnival
 	title = "Carnival"
 	faction = "Station"
-	total_positions = 3
-	spawn_positions = 3
+//	total_positions = 3
+//	spawn_positions = 3
 	supervisors = "your self."
 	selection_color = "#555555"
 	access = list(ACCESS_CARGO)
