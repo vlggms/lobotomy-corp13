@@ -89,28 +89,30 @@
 	We reached for a shred of comprehension that they could give. \
 	We stared into the dark unending abyss wishing for love and compassion. \
 	In the end we recived nothing but madness, there was no hope for understanding."
-	special = "This weapon can be used to perform an indiscriminate heavy red damage jump attack with enough charge."
+	special = "This weapon can be used to perform an indiscriminate heavy red damage jump attack with enough charge. \
+	This weapon will also gib on kill."
 	icon_state = "violet_curse"
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 400 //By the nine
-	attack_speed = 5 //This is THE slowest weapon we own (i think)
+	force = 180
+	attack_speed = 2.5
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/abnormalities/apocalypse/slam.ogg'
 	attack_verb_continuous = list("crushes", "devastates")
 	attack_verb_simple = list("crush", "devastate")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
+							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 80
+							JUSTICE_ATTRIBUTE = 100
 							)
 	var/charge = 0
 	var/charge_cost = 20
 	var/dash_range = 8
 	var/activated
+	var/aoe = 400
 
 /obj/item/ego_weapon/violet_curse/Initialize()
 	..()
@@ -138,7 +140,7 @@
 		icon_state = "violet_curse_c"
 		inhand_icon_state = "violet_curse_c"
 		update_icon_state()
-	else if(charge >= charge_cost)
+	if(charge >= charge_cost)
 		charge = charge_cost
 	..()
 	if(target.stat == DEAD && !(GODMODE in target.status_flags))
@@ -155,34 +157,35 @@
 		return
 	..()
 	if(do_after(user, 5, src))
+		var/turf/target = get_turf(A)
 		charge -= charge_cost
 		activated = FALSE
 		playsound(src, 'sound/effects/ordeals/violet/midnight_portal_off.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16
-		sleep(0.5 SECONDS)
-		for(var/i in 2 to get_dist(user, A))
-			step_towards(user, A)
-		if(get_dist(user, A) < 2)
-			JumpAttack(A,user)
-		to_chat(user, "<span class='warning'>You jump towards [A]!</span>")
+		ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
+		user.forceMove(target)
+		user.Stun(2 SECONDS, ignore_canstun = TRUE) //No Moving midair
+		var/obj/effect/temp_visual/warning3x3/W = new(target)
+		W.color = "#8700ff"
+		sleep(2 SECONDS)
+		REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
+		JumpAttack(target,user)
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
-		sleep(0.1 SECONDS) //Makes sure its on time
 		icon_state = "violet_curse"
 		inhand_icon_state = "violet_curse"
 		update_icon_state()
 
-/obj/item/ego_weapon/violet_curse/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/violet_curse/proc/JumpAttack(target, mob/living/user, proximity_flag, params)
 	playsound(src, 'sound/effects/ordeals/violet/monolith_down.ogg', 65, 1)
-	var/obj/effect/temp_visual/v_noon/V = new(get_turf(A))
+	var/obj/effect/temp_visual/v_noon/V = new(target)
 	animate(V, alpha = 0, transform = matrix()*2, time = 10)
-	for(var/turf/open/T in view(2, A))
+	for(var/turf/open/T in view(2, target))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-	for(var/mob/living/L in livinginrange(2, A))
+	for(var/mob/living/L in livinginrange(2, target))
 		if(L.z != user.z)
 			continue
-		var/aoe = 400
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod

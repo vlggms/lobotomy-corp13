@@ -1025,3 +1025,11 @@
 	name = "shift"
 	icon_state = "shift"
 	duration = 3
+
+/obj/effect/temp_visual/warning3x3
+	name = "warning3x3"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "warning_gray"
+	duration = 2 SECONDS
+	pixel_x = -32
+	pixel_z = -32
