@@ -68,7 +68,7 @@
 /datum/action/innate/abnormality_attack/ebony_root
 	name = "Root Spike"
 	button_icon_state = "ebony_root"
-	chosen_message = "<span class='colossus'>You will now shoot your roots from the ground.</span>"
+	chosen_message = span_colossus("You will now shoot your roots from the ground.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/ebony_barrier
@@ -80,7 +80,7 @@
 /datum/action/innate/abnormality_attack/ebony_barrage
 	name = "Root Barrage"
 	button_icon_state = "ebony_barrage"
-	chosen_message = "<span class='colossus'>You will now shoot a devastating line of roots.</span>"
+	chosen_message = span_colossus("You will now shoot a devastating line of roots.")
 	chosen_attack_num = 3
 
 /datum/action/cooldown/ebony_burst
@@ -157,7 +157,7 @@
 	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
 	animate(src, alpha = 0, time = 5, easing = EASE_OUT)
 	SLEEP_CHECK_DEATH(1)
-	visible_message("<span class='boldwarning'>[src] fades out!</span>")
+	visible_message(span_boldwarning("[src] fades out!"))
 	density = FALSE
 	SLEEP_CHECK_DEATH(4)
 	forceMove(teleport_target)
@@ -165,26 +165,35 @@
 	animate(src, alpha = 255, time = 5, easing = EASE_IN)
 	SLEEP_CHECK_DEATH(1)
 	density = TRUE
-	visible_message("<span class='boldwarning'>[src] fades in!</span>")
+	visible_message(span_boldwarning("[src] fades in!"))
 	SLEEP_CHECK_DEATH(4)
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/AttackingTarget(atom/attacked_target)
-	if(can_act)
+	if(!can_act)
 		return
-		
+
 	if(client)
 		OpenFire()
 		return
 
-	if(attacked_target && !isliving(target)) // You'd think this should be "attacked_target" but no this shit still uses target I hate it.
-		return ..()
-	var/mob/living/L = target
-	if(L.stat != DEAD)
-		if(burst_cooldown <= world.time && prob(50))
-			thornBurst()
+	if(target) // You'd think this should be "attacked_target" but no this shit still uses target I hate it.
+		if(ismecha(target))
+			if(burst_cooldown <= world.time && prob(50))
+				thornBurst()
+			else
+				OpenFire()
+		else if(isliving(target))
+			var/mob/living/L = target
+			if(L.stat != DEAD)
+				if(burst_cooldown <= world.time && prob(50))
+					thornBurst()
+				else
+					OpenFire()
 		else
-			OpenFire()
+			return ..()
+	else
+		return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/OpenFire()
 	if(!can_act)
@@ -238,26 +247,21 @@
 	var/turf/target_turf = get_turf(src)
 	if(!target_turf)
 		return
-	if(QDELETED(caster) || caster?.stat == DEAD)
+	if(QDELETED(caster) || caster?.stat == DEAD || !caster)
 		return
 	playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 40, 0, 8)
 	new /obj/effect/temp_visual/thornspike(target_turf)
-	for(var/mob/living/L in target_turf)
-		if(caster?.faction_check_mob(L) || L.stat == DEAD || L.throwing)
+	var/list/hit = caster.HurtInTurf(target_turf, list(), damage = root_damage, damage_type = BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, mech_damage = root_damage/2)
+	for(var/mob/living/L in hit)
+		if(L.stat == DEAD || L.throwing)
 			continue
-		to_chat(L, "<span class='userdanger'>[src] knocks you away!</span>")
-		L.apply_damage(root_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		if(L.health < 0) //limbus has no negative death
-			L.death() //death animation needed
+		L.visible_message(span_userdanger("[src] knocks [L] away!"), span_userdanger("[src] knocks you away!"))
 		var/turf/thrownat = get_ranged_target_turf(src, pick(GLOB.alldirs), 2)
 		L.throw_at(thrownat, 1, 1, spin = TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
-	for(var/obj/vehicle/sealed/mecha/M in target_turf) //also damage mechs.
+	for(var/obj/vehicle/sealed/mecha/M in hit) //also damage mechs.
 		for(var/O in M.occupants)
 			var/mob/living/occupant = O
-			if(caster?.faction_check_mob(occupant))
-				continue
-			to_chat(occupant, "<span class='userdanger'>Your [M.name] is struck by [src]!</span>")
-			M.take_damage(root_damage/2, BLACK_DAMAGE, MELEE) //mechs can't dodge very well
+			to_chat(occupant, span_userdanger("Your [M.name] is struck by [src]!"))
 	qdel(src)
 
 	//Special attacks; there are four of them
