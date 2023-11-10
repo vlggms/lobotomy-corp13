@@ -4123,6 +4123,7 @@
 #include "ModularTegustation\tegu_mobs\necromancer.dm"
 #include "ModularTegustation\tegu_mobs\necromancer_mobs.dm"
 #include "ModularTegustation\tegu_mobs\syndicatespaceman.dm"
+#include "ModularTegustation\tegu_mobs\tech_liberation_alliance.dm"
 #include "ModularTegustation\tegu_mobs\tegu.dm"
 #include "ModularTegustation\tegu_mobs\the_claw.dm"
 #include "ModularTegustation\tegu_ruins\lavaland_ruins.dm"
