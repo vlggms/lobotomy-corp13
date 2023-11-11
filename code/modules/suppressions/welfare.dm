@@ -163,9 +163,11 @@
 /datum/status_effect/welfare_reward/on_apply()
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamage)
 	to_chat(owner, "<span class='notice'>Welfare Department modification has been applied to you!</span>")
+	return ..()
 
-/datum/status_effect/welfare_reward/on_apply()
+/datum/status_effect/welfare_reward/on_remove()
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
+	return ..()
 
 // Called before damage applies, so we must check whereas situation WOULD kill the user
 // This comes with an issue, however, as damage will still be applied afterwards
