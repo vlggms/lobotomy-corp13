@@ -180,25 +180,33 @@
 	if(damage_taken <= 0)
 		return
 
+	var/block_damage = FALSE
 	switch(damagetype)
 		if(RED_DAMAGE)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
+				block_damage = TRUE
 		if(WHITE_DAMAGE)
 			if(H.sanityhealth - damage_taken <= 0)
 				ActivateSanity()
+				block_damage = TRUE
 		if(BLACK_DAMAGE)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
+				block_damage = TRUE
 			if(H.sanityhealth - damage_taken <= 0)
 				ActivateSanity()
+				block_damage = TRUE
 		if(PALE_DAMAGE)
 			damage_taken = H.maxHealth * (damage_taken / 100)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
+				block_damage = TRUE
 
 	// ALWAYS blocks damage so you don't die
-	return COMPONENT_MOB_DENY_DAMAGE
+	if(block_damage)
+		return COMPONENT_MOB_DENY_DAMAGE
+	return
 
 /datum/status_effect/welfare_reward/proc/ActivateHealth()
 	var/mob/living/carbon/human/H = owner
