@@ -793,8 +793,6 @@
 
 /mob/living/simple_animal/hostile/proc/patrol_select()
 	//Mobs should stay unpatroled on maps where they're intended to be possessed.
-	if(SSmaptype.maptype in SSmaptype.autopossess)
-		return
 	if(!LAZYLEN(GLOB.department_centers))
 		return
 

@@ -2078,8 +2078,6 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			return pick(GLOB.ai_names)
 		if("cyborg")
 			return DEFAULT_CYBORG_NAME
-		if("sephirah")
-			return pick(GLOB.sephirah_names)
 		if("mime")
 			return pick(GLOB.mime_names)
 		if("religion")

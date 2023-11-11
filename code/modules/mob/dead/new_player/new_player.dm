@@ -426,7 +426,7 @@
 	dat += "<table><tr><td valign='top'>"
 	var/column_counter = 0
 	// render each category's available jobs, look at the departments
-	var/list/departments = SSmaptype.departments
+	var/list/departments = list("Command", "Security", "Service")
 
 
 	for(var/category in departments)

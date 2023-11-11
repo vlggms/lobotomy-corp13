@@ -230,10 +230,6 @@
 	if(.)
 		return
 
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
-		usr.visible_message("<span class='notice'>Now is not the time to be building!</span>")
-		return
-
 	switch(action)
 		if("make")
 			if(get_amount() < 1 && !is_cyborg)
