@@ -15,7 +15,7 @@
 	var/num_shuttle_escapees = 0 //Above and on escape shuttle
 	var/list/area/shuttle_areas
 	if(SSshuttle?.emergency)
-		shuttle_areas = SSshuttle.emergency.shuttle_areas
+		shuttle_areas = SSshuttle.emergency.shuGttle_areas
 
 	for(var/mob/M in GLOB.mob_list)
 		var/list/mob_data = list()
@@ -335,8 +335,7 @@
 	//Economy & Money
 	parts += market_report()
 	//PE Quota
-	if(SSmaptype.maptype == "standard")
-		parts += pe_report()
+	parts += pe_report()
 
 	listclearnulls(parts)
 

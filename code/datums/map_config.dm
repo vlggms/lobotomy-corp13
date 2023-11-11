@@ -149,9 +149,6 @@
 			return
 		job_changes = json["job_changes"]
 
-	if("maptype" in json)
-		SSmaptype.maptype = json["maptype"]
-
 	defaulted = FALSE
 	return TRUE
 #undef CHECK_EXISTS
