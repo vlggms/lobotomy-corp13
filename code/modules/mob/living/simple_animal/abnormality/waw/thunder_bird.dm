@@ -369,7 +369,7 @@
 	pixel_y = base_pixel_y
 
 	//Side Gamemodes stuff, gives minions nightvision on Rcorp.
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
+	if(CheckCombat())
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		AddSpell(bloodspell)
 

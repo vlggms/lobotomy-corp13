@@ -740,3 +740,10 @@
 
 /mob/living/simple_animal/proc/stop_deadchat_plays()
 	stop_automated_movement = FALSE
+
+// -- LC13 THINGS --
+
+/mob/living/simple_animal/proc/CheckCombat() //Is it currently a combat gamemode? Used to check for a few interactions, like if somethings can teleport.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		return TRUE
+	return FALSE

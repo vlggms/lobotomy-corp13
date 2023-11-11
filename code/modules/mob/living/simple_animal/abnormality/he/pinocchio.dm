@@ -262,7 +262,7 @@
 /datum/species/puppet
 	name = "Puppet"
 	id = "puppet"
-	sexes = 0
+	sexes = FALSE
 	hair_color = "352014"
 	say_mod = "creaks, snaps"
 	attack_verb = "slash"
@@ -273,7 +273,6 @@
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
 	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS)
-	sexes = FALSE
 	punchdamagelow = 10
 	punchdamagehigh = 15
 	bodypart_overides = list(
