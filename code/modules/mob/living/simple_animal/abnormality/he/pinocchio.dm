@@ -259,6 +259,12 @@
 /mob/living/carbon/human/species/pinocchio/canBeHandcuffed()
 	return FALSE
 
+/mob/living/carbon/human/species/pinocchio/UnarmedAttack(atom/A, proximity)
+	if(istype(A, /obj/structure/toolabnormality/touch))
+		to_chat(src, span_userdanger("YOUR FOOLISHNESS IS IMPRESSIVE."))
+		return
+	. = ..()
+
 /datum/species/puppet
 	name = "Puppet"
 	id = "puppet"

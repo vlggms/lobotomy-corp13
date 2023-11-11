@@ -17,7 +17,7 @@
 		return
 
 	var/round_end = (user.a_intent != INTENT_HELP)
-	if((user.ckey in bastards) || (!round_end && (user.ckey in breaching_bastards)) || (istype(user,/mob/living/carbon/human/species/pinocchio))) //If possible this istype check should be moved inside pinnochios code.
+	if((user.ckey in bastards) || (!round_end && (user.ckey in breaching_bastards)))
 		to_chat(user, span_userdanger("THE BUTTON REJECTS YOU."))
 		return
 
