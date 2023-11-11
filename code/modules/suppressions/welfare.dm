@@ -59,8 +59,8 @@
 	SIGNAL_HANDLER
 	var/current_damage_mod = damage_mod
 	if(ordeal)
-		current_damage_mod = 1.5 // Don't kill everyone too hard during ordeals(Pale Fixer with x4 damage be like...)
-		damage_mod = min(4, damage_mod + 1) // With each ordeal passing, normal meltdowns will be more difficult
+		current_damage_mod = 1.5 // Don't kill everyone too hard during ordeals(Pale Fixer with x3 damage be like...)
+		damage_mod = min(4, damage_mod + 0.5) // With each ordeal passing, normal meltdowns will be more difficult
 		mod_count = min(3, mod_count + 1) // More damage types get rolled
 	var/list/temp_list = current_resist.Copy()
 	for(var/R in current_resist) // Reset values
@@ -194,6 +194,9 @@
 			damage_taken = H.maxHealth * (damage_taken / 100)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
+
+	// ALWAYS blocks damage so you don't die
+	return COMPONENT_MOB_DENY_DAMAGE
 
 /datum/status_effect/welfare_reward/proc/ActivateHealth()
 	var/mob/living/carbon/human/H = owner
