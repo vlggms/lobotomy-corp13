@@ -112,14 +112,11 @@
 		/obj/item/clothing/suit/space/hardsuit/rabbit/leader,
 		/obj/item/gun/energy/e_gun/rabbitdash,
 		/obj/item/ego_weapon/city/rabbit_rush,
-		/obj/item/clothing/under/suit/lobotomy/rcorp_command,
 		)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade,
 		/obj/item/ego_weapon/city/reindeer,
-		/obj/item/clothing/head/beret/tegu/rcorp,
-		/obj/item/clothing/neck/cloak/rcorp,
 		)
 
 	veryrareloot =	list(

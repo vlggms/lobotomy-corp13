@@ -57,8 +57,6 @@
 	playsound(loc, 'sound/effects/sanity_lost.ogg', 75, TRUE, -1)
 	var/warning_text = "[src] shakes for a moment..."
 	var/datum/status_effect/panicked_type/status_effect_type
-	if(SSmaptype.maptype == "city" && attribute == JUSTICE_ATTRIBUTE)
-		attribute = TEMPERANCE_ATTRIBUTE // Justice panics default to temerance panics on city, no containment cells.
 	switch(attribute)
 		if(FORTITUDE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/murder
@@ -70,7 +68,7 @@
 			status_effect_type = /datum/status_effect/panicked_type/suicide
 		if(TEMPERANCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/wander
-			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for [SSmaptype.maptype == "city" ? "a way out" : "an exit"]."
+			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for an exit."
 			status_effect_type = /datum/status_effect/panicked_type/wander
 		if(JUSTICE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/release

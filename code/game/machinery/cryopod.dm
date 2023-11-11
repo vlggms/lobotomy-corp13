@@ -253,8 +253,6 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	#warn Please replace the loop below this warning with an `as anything` loop.
 #endif
 	for(var/mob_content in mob_occupant)
-		if(SSmaptype.maptype in SSmaptype.citymaps)	//Don't let people constantly dupe things on citymaps
-			break
 		var/obj/item/item_content = mob_content
 		if(!istype(item_content))
 			continue

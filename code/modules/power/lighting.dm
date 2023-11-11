@@ -796,8 +796,6 @@
 	if(!skip_sound_and_sparks)
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
 			playsound(src.loc, 'sound/effects/glasshit.ogg', 75, TRUE)
-		if(on && SSmaptype.maptype != "city")// Just can't afford to
-			do_sparks(3, TRUE, src)
 	status = LIGHT_BROKEN
 	update()
 
