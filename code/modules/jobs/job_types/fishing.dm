@@ -1,6 +1,5 @@
 /datum/outfit/job/fishing
 	name = "Fishhook Office Fixer"
-	jobtype = /datum/job/fisher
 	uniform = /obj/item/clothing/under/suit/lobotomy/fishhook
 	l_hand = /obj/item/fishing_rod
 	r_pocket = /obj/item/storage/bag/fish

@@ -11,7 +11,6 @@
 /obj/effect/light_emitter/Initialize()
 	. = ..()
 	set_light(set_luminosity, set_cap)
-	SScityevents.lights += src
 
 /obj/effect/light_emitter/singularity_pull()
 	return
