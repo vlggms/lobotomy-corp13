@@ -146,7 +146,6 @@
 	realboy.update_icon()
 
 	//--Side Gamemodes stuff--
-
 	//For playable abnormalities, directly lets the playing currently controlling pinocchio get control of the spawned mob
 	if(client)
 		mind.transfer_to(realboy)
