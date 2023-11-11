@@ -368,11 +368,6 @@
 	base_pixel_y = rand(-6,6)
 	pixel_y = base_pixel_y
 
-	//Side Gamemodes stuff, gives minions nightvision on Rcorp.
-	if(CheckCombat())
-		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
-		AddSpell(bloodspell)
-
 /mob/living/simple_animal/hostile/thunder_zombie/Life()
 	. = ..()
 	if(!.) // Dead

@@ -54,11 +54,9 @@
 		addtimer(CALLBACK(src, .proc/BreachEnd, user), breach_length)
 
 	//--Side Gamemodes stuff--
-	//Timer will not run the timer on Rcorp and the spawned mob will get nightvision.
+	//Timer will not run the timer on Rcorp.
 	else
 		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(src))
-		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
-		spawningmonster.AddSpell(bloodspell)
 		breached_monster = spawningmonster
 		qdel(src) //Destroys the piano, as it is unecessary in Rcorp.
 
