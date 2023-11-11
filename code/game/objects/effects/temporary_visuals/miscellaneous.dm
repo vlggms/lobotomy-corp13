@@ -1033,3 +1033,8 @@
 	duration = 2 SECONDS
 	pixel_x = -32
 	pixel_z = -32
+
+/obj/effect/temp_visual/nobody_grab
+	name = "goodbye"
+	icon_state = "nobody_slash"
+	duration = 5
