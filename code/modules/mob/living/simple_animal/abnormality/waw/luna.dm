@@ -46,11 +46,25 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/ZeroQliphoth(mob/living/carbon/human/user)
 	icon_state = "dellaluna_breach"
-	var/turf/W = pick(GLOB.department_centers)
-	var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
-	breached_monster = spawningmonster
+	//Normal breach
+	if(!CheckCombat())
+		var/turf/W = pick(GLOB.department_centers)
+		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
+		breached_monster = spawningmonster
+		addtimer(CALLBACK(src, .proc/BreachEnd, user), breach_length)
+
+	//--Side Gamemodes stuff--
+	//Timer will not run the timer on Rcorp and the spawned mob will get nightvision.
+	else
+		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(src))
+		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
+		spawningmonster.AddSpell(bloodspell)
+		breached_monster = spawningmonster
+		qdel(src) //Destroys the piano, as it is unecessary in Rcorp.
+
 	breached = TRUE
-	addtimer(CALLBACK(src, .proc/BreachEnd, user), breach_length)
+	if(client)
+		mind.transfer_to(breached_monster) //For playable abnormalities, directly lets the playing currently controlling pianto get control of the spawned mob
 	return
 
 /mob/living/simple_animal/hostile/abnormality/luna/WorkComplete(mob/living/carbon/human/user, work_type, pe)
@@ -97,6 +111,11 @@
 	killspawn = FALSE
 	performance = FALSE
 	to_chat(user, span_nicegreen("The performance is completed."))
+
+
+//Side Gamemodes stuff, should only ever be called outside of the main gamemode
+/mob/living/simple_animal/hostile/abnormality/luna/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+	ZeroQliphoth()
 
 
 /* Monster Half */

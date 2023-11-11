@@ -127,9 +127,6 @@
 	RegisterSignal(realboy, COMSIG_LIVING_DEATH, .proc/PuppetDeath)
 	realboy.name = "Pinocchio the Liar"
 	realboy.real_name = "Pinocchio the Liar"
-	realboy.ai_controller = /datum/ai_controller/insane/murder/puppet
-	realboy.InitializeAIController()
-	realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
 	realboy.adjust_all_attribute_levels(100)
 	realboy.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 400) // 600 health
 	realboy.health = realboy.maxHealth
@@ -147,6 +144,21 @@
 	ADD_TRAIT(realboy, TRAIT_IGNOREDAMAGESLOWDOWN, "Abnormality")
 	ADD_TRAIT(realboy, TRAIT_NODROP, "Abnormality")
 	realboy.update_icon()
+
+	//--Side Gamemodes stuff--
+
+	//For playable abnormalities, directly lets the playing currently controlling pinocchio get control of the spawned mob
+	if(client)
+		mind.transfer_to(realboy)
+	//Prevents pinocchio from going insane on Rcorp.
+	if(!CheckCombat())
+		realboy.ai_controller = /datum/ai_controller/insane/murder/puppet
+		realboy.InitializeAIController()
+		realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
+	//Destroys the invisible pinocchio, as it is unecessary in Rcorp, also gives him a flashlight as NV spell does not work on him.
+	else
+		realboy.put_in_r_hand(new /obj/item/flashlight/seclite(realboy))
+		qdel(src)
 
 /mob/living/simple_animal/hostile/abnormality/pinocchio/proc/PuppetDeath(gibbed) //we die when the puppet mob dies
 	UnregisterSignal(realboy, COMSIG_LIVING_DEATH)
@@ -213,6 +225,7 @@
 //Special panic type for carbon mob
 /datum/ai_controller/insane/murder/puppet
 	lines_type = /datum/ai_behavior/say_line/insanity_murder/puppet
+	continue_processing_when_client = FALSE //Prevents playable pinocchio from going around murdering everyone.
 
 /datum/status_effect/panicked_type/puppet
 	icon = null

@@ -249,6 +249,14 @@
 	retreat_distance = 3
 	minimum_distance = 1
 
+/mob/living/simple_animal/hostile/nosferatu_mob/Initialize()
+	. = ..()
+
+	//Side Gamemodes stuff, gives minions nightvision on Rcorp.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
+		AddSpell(bloodspell)
+
 /mob/living/simple_animal/hostile/nosferatu_mob/AttackingTarget() //they spawn blood on hit
 	if(ishuman(target))
 		var/obj/effect/decal/cleanable/blood/B = locate() in get_turf(src)

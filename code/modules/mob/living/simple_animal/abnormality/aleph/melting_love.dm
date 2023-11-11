@@ -259,6 +259,11 @@
 	alpha = 25
 	animate(src, alpha = 255, transform = init_transform, time = 5)
 
+	//Side Gamemodes stuff, gives minions nightvision on Rcorp.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
+		AddSpell(bloodspell)
+
 /mob/living/simple_animal/hostile/slime/CanAttack(atom/the_target)
 	if(isliving(the_target) && !ishuman(the_target))
 		var/mob/living/L = the_target
