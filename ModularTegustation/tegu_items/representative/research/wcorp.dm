@@ -1,4 +1,3 @@
-
 //-----W_CORP-----
 //W-Corp has movement technology, and upgraded weapons.
 //They're very much a jack of all trades.
