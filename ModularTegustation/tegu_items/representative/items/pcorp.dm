@@ -58,7 +58,7 @@
 	desc = "You wear this on your back and put items into it. Holds 3 of any bulky item. Slows you down slightly."
 	icon_state = "duffel-drone"
 	inhand_icon_state = "duffel-drone"
-	slowdown = 0.5
+	slowdown = 0.1
 
 /obj/item/storage/backpack/pcorp/ComponentInitialize()
 	. = ..()
@@ -72,7 +72,7 @@
 	desc = "You wear this on your back and put items into it. Holds 5 of any bulky item. Slows you down."
 	icon_state = "holdingpack"
 	inhand_icon_state = "holdingpack"
-	slowdown = 1
+	slowdown = 0.2
 
 /obj/item/storage/backpack/pcorpheavy/ComponentInitialize()
 	. = ..()

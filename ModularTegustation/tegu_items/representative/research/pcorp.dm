@@ -51,6 +51,7 @@
 	..()
 
 
+//Funny Crate
 /datum/data/lc13research/crate
 	research_name = "P Corp Speed Crate (x2) "
 	research_desc = "Dear ambassador. We have new items for you! <br>A crate that speeds you up as you drag it! <br>We're 99% sure it won't explode but you know... <br> Can't make any better guarantees. "
