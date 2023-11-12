@@ -183,6 +183,7 @@
 				thornBurst()
 			else
 				OpenFire()
+			return
 		else if(isliving(target))
 			var/mob/living/L = target
 			if(L.stat != DEAD)
@@ -190,10 +191,8 @@
 					thornBurst()
 				else
 					OpenFire()
-		else
-			return ..()
-	else
-		return ..()
+			return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/OpenFire()
 	if(!can_act)
