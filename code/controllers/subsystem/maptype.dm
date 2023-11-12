@@ -25,6 +25,9 @@ SUBSYSTEM_DEF(maptype)
 	//This map is city stuff
 	var/list/citymaps = list("wonderlabs", "city")
 
+	//This is for maps that incorporate space, and crafting is enabled.
+	var/list/spacemaps = list("skeld")
+
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
 
