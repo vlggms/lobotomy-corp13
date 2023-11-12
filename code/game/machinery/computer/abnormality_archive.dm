@@ -41,6 +41,7 @@
 				record_data["name"] = remove_paper_commands(record_detail.abno_code) // Abnos
 			else
 				record_data["name"] = remove_paper_commands(record_detail.name) // Non-Abnos
+			record_data["search"] = remove_paper_commands(initial(record_detail.abno_type.name)) // For searching
 			for(var/i=0 to (linecount-1)) //loop until we reach the same length as the linecount
 				record_data["line[i]"] += remove_paper_commands(popleft(note_list))
 			abno_data += list(record_data)
