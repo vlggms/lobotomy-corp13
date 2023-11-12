@@ -1206,6 +1206,7 @@
 #include "code\game\objects\items\devices\radio\intercom.dm"
 #include "code\game\objects\items\devices\radio\radio.dm"
 #include "code\game\objects\items\ego_weapons\_ego_weapon.dm"
+#include "code\game\objects\items\ego_weapons\_lists.dm"
 #include "code\game\objects\items\ego_weapons\aleph.dm"
 #include "code\game\objects\items\ego_weapons\he.dm"
 #include "code\game\objects\items\ego_weapons\joke.dm"

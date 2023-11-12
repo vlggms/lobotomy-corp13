@@ -91,7 +91,7 @@
 	corp = W_CORP_REP
 
 /datum/data/lc13research/bluespace/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/stack/tile/bluespace/fifty(get_turf(caller))
+	new /obj/item/stack/tile/bluespace/thirty(get_turf(caller))
 
 /obj/item/stack/tile/bluespace/thirty
 	amount = 30
