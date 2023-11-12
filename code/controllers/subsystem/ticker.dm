@@ -249,8 +249,15 @@ SUBSYSTEM_DEF(ticker)
 	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		if(!(istype(mode, /datum/game_mode/combat)))
 			mode = new /datum/game_mode/combat
+
+//	Among Us.
+	else if(SSmaptype.maptype == "skeld")
+	//	mode = new /datum/game_mode/traitor
+		toggle_ooc(FALSE) // Turn it off
+		CONFIG_SET(flag/norespawn, 1)
+
 	else
-		if(istype(mode, /datum/game_mode/combat))
+		if(!istype(mode, /datum/game_mode/management))
 			mode = new /datum/game_mode/management/classic
 
 	CHECK_TICK
