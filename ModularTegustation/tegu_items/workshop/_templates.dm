@@ -70,3 +70,9 @@
 	//May have to change this later if the contents of the weapon can be accessed.
 	mod.forceMove(src)
 	return
+
+/obj/item/ego_weapon/template/proc/AlterSpecial(subject, add_to = FALSE)
+	if(add_to)
+		special_count += subject
+	else
+		special_count = subject
