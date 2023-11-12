@@ -126,15 +126,6 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/waw/wife
-	name = "my own wife"
-	desc = "And so, I have created you, my most beautiful wife"
-	icon_state = "wife"
-	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 80
-							)
-
 /obj/item/clothing/suit/armor/ego_gear/waw/cobalt
 	name = "cobalt scar"
 	desc = "The armor is torn up with countless traces that recount the history of the unending battle."
