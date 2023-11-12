@@ -37,6 +37,7 @@
 #define UNIT_TEST_FAILED 1
 #define UNIT_TEST_SKIPPED 2
 
+#include "abno_code.dm"
 #include "anchored_mobs.dm"
 #include "bespoke_id.dm"
 #include "binary_insert.dm"
