@@ -21,9 +21,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "n" = (
-/obj/structure/table/wood,
-/obj/item/food/meat/slab/human,
-/obj/item/food/meat/slab/human,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "p" = (
@@ -77,7 +75,6 @@
 /area/city/backstreets_room)
 "K" = (
 /obj/structure/table/wood,
-/obj/item/gun/magic/hook,
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "T" = (

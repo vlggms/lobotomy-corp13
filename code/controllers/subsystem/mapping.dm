@@ -409,6 +409,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 	preloadRandomRoomTemplates()
 
 /datum/controller/subsystem/mapping/proc/preloadRandomRoomTemplates()
+	//This is fucking disgusting, but I want to gen it twice.
 	for(var/item in subtypesof(/datum/map_template/random_room))
 		var/datum/map_template/random_room/room_type = item
 		if(!(initial(room_type.mappath)))
@@ -416,6 +417,7 @@ GLOBAL_LIST_EMPTY(the_station_areas)
 		var/datum/map_template/random_room/R = new room_type()
 		random_room_templates[R.room_id] = R
 		map_templates[R.room_id] = R
+
 
 /datum/controller/subsystem/mapping/proc/preloadRuinTemplates()
 	// Still supporting bans by filename

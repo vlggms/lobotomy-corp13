@@ -37,6 +37,8 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
+	if(SSmaptype.maptype == "city")
+		return FALSE
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
@@ -101,6 +103,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
+		return FALSE
+	if(SSmaptype.maptype == "city")
 		return FALSE
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",

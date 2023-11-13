@@ -13,7 +13,8 @@
 	var/list/level_1 = list(
 		/obj/item/food/meat/slab/sweeper,
 		/obj/item/food/meat/slab/worm,
-		/obj/item/food/meat/slab/robot
+		/obj/item/food/meat/slab/robot,
+		/obj/item/food/meat/slab/human/mutant/moth
 		)
 	var/list/level_2 = list(
 		/obj/item/clothing/suit/armor/ego_gear/city,

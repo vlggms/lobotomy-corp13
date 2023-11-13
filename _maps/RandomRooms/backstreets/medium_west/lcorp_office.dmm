@@ -40,13 +40,13 @@
 	dir = 8
 	},
 /obj/item/reagent_containers/food/drinks/coffee{
-	pixel_y = 9;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 9
 	},
 /obj/item/keycard{
-	puzzle_id = 00012;
 	pixel_x = -2;
-	pixel_y = -6
+	pixel_y = -6;
+	puzzle_id = 00012
 	},
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
@@ -88,10 +88,10 @@
 	puzzle_id = 00012
 	},
 /obj/effect/step_trigger/sound_effect{
-	volume = 50;
+	extra_range = 4;
 	happens_once = 1;
 	sound = 'sound/machines/closet_open.ogg';
-	extra_range = 4
+	volume = 50
 	},
 /obj/effect/step_trigger/place_atom{
 	atom_path = /mob/living/simple_animal/hostile/ordeal/bigBirdEye;
@@ -104,10 +104,10 @@
 /area/city/backstreets_room)
 "D" = (
 /obj/effect/step_trigger/sound_effect{
-	volume = 50;
+	extra_range = 4;
 	happens_once = 1;
 	sound = 'sound/machines/ventcrawl.ogg';
-	extra_range = 4
+	volume = 50
 	},
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
@@ -148,6 +148,10 @@
 	},
 /turf/open/floor/carpet,
 /area/city/backstreets_room)
+"P" = (
+/obj/structure/lootcrate/l_corp,
+/turf/open/floor/facility,
+/area/city/backstreets_room)
 "T" = (
 /obj/structure/sign/poster/contraband/bountyhunters,
 /turf/closed/indestructible/reinforced,
@@ -159,7 +163,6 @@
 /area/city/backstreets_room)
 "V" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/tresmetal/amber,
 /obj/effect/decal/cleanable/molten_object/large,
 /turf/open/floor/facility,
 /area/city/backstreets_room)
@@ -232,7 +235,7 @@ x
 (5,1,1) = {"
 x
 k
-H
+P
 W
 Y
 J
