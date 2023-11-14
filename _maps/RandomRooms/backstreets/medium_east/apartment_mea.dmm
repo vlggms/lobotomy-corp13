@@ -65,6 +65,7 @@
 /obj/effect/turf_decal/siding{
 	dir = 6
 	},
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/carpet/black,
 /area/city/backstreets_room)
 "M" = (
