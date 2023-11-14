@@ -56,12 +56,12 @@
 /obj/effect/decal/cleanable/cobweb/cobweb2{
 	layer = 5
 	},
-/obj/structure/lootcrate/syndicate,
+/obj/effect/landmark/cratespawn,
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "N" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/syndicate,
+/obj/effect/landmark/cratespawn,
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "Q" = (

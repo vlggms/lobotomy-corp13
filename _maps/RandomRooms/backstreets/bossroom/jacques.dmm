@@ -74,12 +74,6 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/folder/syndicate/red{
-	desc = "A folder belonging to one of the City's corporations.";
-	name = "Corporation Folder";
-	pixel_x = 5;
-	pixel_y = -2
-	},
 /turf/open/indestructible/cult{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
@@ -346,7 +340,7 @@
 /turf/open/indestructible/necropolis/air,
 /area/city/backstreets_room)
 "Kn" = (
-/obj/structure/lootcrate/workshopleaf,
+/obj/effect/landmark/cratespawn,
 /turf/open/indestructible/cult{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
 	},
@@ -370,7 +364,6 @@
 /area/city/backstreets_room)
 "LK" = (
 /obj/structure/table/wood,
-/obj/item/documents/ncorporation,
 /obj/item/book_of_babel,
 /turf/open/indestructible/cult{
 	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
@@ -444,6 +437,12 @@
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/glass/beaker/unholywater,
 /turf/open/floor/carpet/black,
+/area/city/backstreets_room)
+"PZ" = (
+/obj/structure/lootcrate/money,
+/turf/open/indestructible/cult{
+	initial_gas_mix = "o2=22;n2=82;TEMP=293.15"
+	},
 /area/city/backstreets_room)
 "Qj" = (
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn{
@@ -984,7 +983,7 @@ EP
 EP
 An
 mN
-EP
+PZ
 An
 "}
 (19,1,1) = {"
@@ -1006,7 +1005,7 @@ EP
 Or
 An
 mN
-EP
+PZ
 An
 "}
 (20,1,1) = {"

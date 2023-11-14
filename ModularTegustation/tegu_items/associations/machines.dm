@@ -13,7 +13,8 @@
 	var/list/level_1 = list(
 		/obj/item/food/meat/slab/sweeper,
 		/obj/item/food/meat/slab/worm,
-		/obj/item/food/meat/slab/robot
+		/obj/item/food/meat/slab/robot,
+		/obj/item/food/meat/slab/human/mutant/moth
 		)
 	var/list/level_2 = list(
 		/obj/item/clothing/suit/armor/ego_gear/city,
@@ -190,3 +191,17 @@
 
 /obj/structure/potential/attack_hand(mob/living/user)
 	calculate_grade(user)
+
+/obj/structure/timelock
+	name = "T-Corp locking mechanism"
+	desc = "A machine that is impossible to pass"
+	anchored = TRUE
+	density = TRUE
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/structure/timelock/Initialize()
+	..()
+	addtimer(CALLBACK(src, .proc/die), 15 MINUTES)
+
+/obj/structure/timelock/proc/die()
+	qdel(src)

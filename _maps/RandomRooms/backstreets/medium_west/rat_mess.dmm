@@ -10,6 +10,12 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"e" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/lootcrate/backstreets,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "f" = (
 /obj/structure/flora/rock/pile,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -24,6 +30,7 @@
 	pixel_y = -4
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/structure/lootcrate/money,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "i" = (
@@ -60,10 +67,6 @@
 "q" = (
 /obj/structure/table/rolling,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/documents{
-	desc = "What was once considered important documents, now stained with the words \"HELP ME\" on the front, among other gibberish.";
-	name = "useless documents"
-	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "r" = (
@@ -210,7 +213,7 @@ x
 "}
 (2,1,1) = {"
 x
-a
+e
 B
 f
 a
