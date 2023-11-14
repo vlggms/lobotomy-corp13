@@ -34,7 +34,7 @@
 		/datum/ego_datum/weapon/coiling,
 		/datum/ego_datum/armor/coiling
 		)
-//	gift_type =  /datum/ego_gifts/coiling
+	gift_type =  /datum/ego_gifts/coiling
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/girlboss_level = 0
 

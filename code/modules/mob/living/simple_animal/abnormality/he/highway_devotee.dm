@@ -30,7 +30,7 @@
 //		/datum/ego_datum/weapon/uturn,
 		/datum/ego_datum/armor/uturn
 		)
-//	gift_type =  /datum/ego_gifts/uturn
+	gift_type =  /datum/ego_gifts/uturn
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/talk = FALSE
 	var/list/structures = list()
