@@ -95,6 +95,7 @@
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
+		fire_delay = 15
 	..()
 
 
@@ -239,13 +240,28 @@
 	desc = "All the power of magic bullet, in a smaller package."
 	icon_state = "magic_pistol"
 	inhand_icon_state = "magic_pistol"
-	special = "This weapon pierces all targets."
+	special = "This weapon pierces all targets. This weapon fires faster with the matching armor"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
 	fire_delay = 12
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
+
+/obj/item/gun/ego_gun/pistol/magic_pistol/before_firing(atom/target, mob/user)
+	if(cached_multiplier)
+		projectile_damage_multiplier = cached_multiplier
+	fire_delay = initial(fire_delay)
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Y))
+		fire_delay = 8
+	if(istype(Z))
+		cached_multiplier = projectile_damage_multiplier
+		projectile_damage_multiplier *= 2.5
+		fire_delay = 8
+	..()
 
 /obj/item/gun/ego_gun/pistol/laststop
 	name = "last stop"
