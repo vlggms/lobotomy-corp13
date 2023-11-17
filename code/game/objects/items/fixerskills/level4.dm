@@ -5,9 +5,9 @@
 	level = 5
 
 /datum/action/cooldown/timestop
-	cooldown_time = 100
+	cooldown_time = 3000
 	var/timestop_range = 2
-	var/timestop_duration = 100
+	var/timestop_duration = 20
 
 /datum/action/cooldown/timestop/Trigger()
 	. = ..()
