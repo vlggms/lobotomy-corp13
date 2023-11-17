@@ -56,13 +56,29 @@
 				to_chat(usr, "<span class='warning'>Not enough PE boxes stored for this operation.</span>")
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
-			var/obj/item/I = new E.item_path(get_turf(src))
-			A.stored_boxes -= E.cost
-			A.current_ego += I
-			to_chat(usr, "<span class='notice'>[I] has been dispensed!</span>")
-			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
-			updateUsrDialog()
-			return TRUE
+
+			//Some roles get faster extraction
+			var/user_role = usr?.mind?.assigned_role
+			var/extraction_delay = 300
+			switch(user_role)
+				if("Clerk")
+					extraction_delay = 50
+				if("Records Officer")	//No clue what the fuck you're doing here but go off.
+					extraction_delay = 30
+				if("Extraction Officer")
+					extraction_delay = 1
+			if(do_after(usr, extraction_delay, target = src))
+				var/obj/item/I = new E.item_path(get_turf(src))
+				A.stored_boxes -= E.cost
+				A.current_ego += I
+				to_chat(usr, "<span class='notice'>[I] has been dispensed!</span>")
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+				updateUsrDialog()
+				return TRUE
+			else
+				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+				return FALSE
+
 		if(href_list["info"])
 			var/dat = html_decode(href_list["info"])
 			var/datum/browser/popup = new(usr, "ego_info", "EGO Purchase Console", 340, 400)
