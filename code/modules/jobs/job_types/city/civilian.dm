@@ -27,7 +27,7 @@ Civilian
 		paycheck = initial(paycheck)
 	..()
 	if (prob(50))
-		var/level = get_user_level(H)
+		var/level = get_civilian_level(H)
 		var/list/temp = list()
 		for (var/T in subtypesof(/obj/item/book/granter/action/skill))
 			var/obj/item/book/granter/action/skill/book = new T
@@ -36,6 +36,18 @@ Civilian
 		var/obj/item/book/granter/action/skill/random_book = pick(temp)
 		H.equip_to_slot_or_del(random_book,ITEM_SLOT_BACKPACK, TRUE)
 
+/proc/get_civilian_level(mob/living/carbon/human/user)
+	var/level = user.attributes[1]
+	if (level < 40)
+		return 0
+	else if (level >= 40 && level < 60 )
+		return 1
+	else if (level >= 60 && level < 100 )
+		return 2
+	else if (level >= 100 && level < 120 )
+		return 3
+	else
+		return 4
 
 /datum/job/civilian/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
