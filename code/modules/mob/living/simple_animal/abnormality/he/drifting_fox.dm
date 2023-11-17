@@ -10,8 +10,6 @@
 	deathmessage = "collapses into a puddle of water"
 	deathsound = "sound/abnormalities/drifting_fox/foxdeath.ogg"
 	del_on_death = FALSE
-	pixel_x = 0
-	base_pixel_x = 0 // Need to figure out what base pixel and pixel X do.
 	maxHealth = 1000
 	health = 1000
 	rapid_melee = 3
