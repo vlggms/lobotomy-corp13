@@ -6,25 +6,21 @@
 	icon_state = "despair"
 	icon_living = "despair"
 	icon_dead = "despair_dead"
-
 	pixel_x = -8
 	base_pixel_x = -8
-
 	ranged = TRUE
 	ranged_cooldown_time = 3 SECONDS
 	minimum_distance = 2
-
 	maxHealth = 2000
 	health = 2000
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
-
 	del_on_death = FALSE
 	deathsound = 'sound/abnormalities/despairknight/dead.ogg'
-
-	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	can_patrol = FALSE
+	start_qliphoth = 1
+	move_to_delay = 4
 
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 0,
@@ -44,6 +40,26 @@
 	var/mob/living/carbon/human/blessed_human = null
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS
+	var/swords = 0
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/ZeroQliphoth(mob/living/carbon/human/user)
+	switch(swords)
+		if(0)
+			add_overlay(mutable_appearance('ModularTegustation/Teguicons/48x48.dmi', "despair_sword1", -ABOVE_MOB_LAYER))
+			playsound(get_turf(src), 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
+			datum_reference.qliphoth_change(1)
+		if(1)
+			add_overlay(mutable_appearance('ModularTegustation/Teguicons/48x48.dmi', "despair_sword2", -ABOVE_MOB_LAYER))
+			playsound(get_turf(src), 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
+			datum_reference.qliphoth_change(1)
+		else
+			cut_overlays()
+			if(blessed_human)
+				BlessedDeath()
+			else
+				BreachEffect()
+			return
+	swords += 1
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/AttackingTarget(atom/attacked_target)
 	return OpenFire()
@@ -130,7 +146,7 @@
 	forceMove(teleport_target)
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
-	if(user.stat != DEAD && !blessed_human && istype(user))
+	if(user.stat != DEAD && !blessed_human && istype(user) && (work_type == ABNORMALITY_WORK_ATTACHMENT))
 		blessed_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
 		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)

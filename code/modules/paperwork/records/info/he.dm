@@ -241,7 +241,7 @@
 	abno_info = list(
 		"The inital work with F.A.N. is guaranteed to produce the maximum number of PE-boxes, but the chances decrease with each good work result.",
 		"Employees who worked on F.A.N. were observed to sit increasingly closer to F.A.N during subsequent work processes.",
-		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds. Luckily, this does not happen during a Qliphoth meltdown.",
+		"After working on F.A.N. for the fourth time, the employee fell into the fan and was ripped to shreds. Luckily, this does not happen during a Qliphoth Meltdown.",
 		"When the Qliphoth counter became zero, the abnormality turned off and the facility began to heat up. Eventually, employees began taking mild RED damage due to overheating. Things turned back to normal when an employee hit the \"ON\" button.")
 
 //680 KHz
@@ -381,7 +381,8 @@
 		"When a level one employee comes in close contact with this abnormality, they may recieve a blessing. (From then on, the employee will be referred to as F-02-24-1).",
 		"Thanks to the blessing, F-02-24-1 experienced an increase in attributes as well as a small increase in resistance to all damage types.",
 		"F-02-24-1 found themselves incapable of using certain items that provide an unfair advantage in battle.",
-		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. After the blessing was gone, a new employee could receive it.",
+		"The blessing dissipated when F-02-24-1 died, panicked, or performed work on another abnormality. This also occured when a Qliphoth Meltdown on F-02-24 was ignored.",
+		"After the blessing was gone, a new employee could receive it.",
 		"When the blessing was lost, Puss in boots escaped from its Containment Unit and went on a rampage.",
 		"Puss in boots may sporadically appear near F-02-24-1 to offer its assistance when an abnormality breaches.")
 

@@ -1,10 +1,6 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"co" = (
-/obj/structure/lootcrate/workshopleaf,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
 "ej" = (
-/obj/item/stack/spacecash/c1000,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "hy" = (
@@ -28,7 +24,7 @@
 /area/city/backstreets_room)
 "BL" = (
 /obj/structure/rack,
-/obj/item/folder/syndicate/blue,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Dt" = (
@@ -51,35 +47,15 @@
 /obj/item/workshop_mod/sharp/pale,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
-"Jr" = (
-/obj/structure/lootcrate/workshopzelkova,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
 "LC" = (
 /obj/item/workshop_mod/healing/pale,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"LK" = (
-/obj/structure/lootcrate/shi,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"NJ" = (
-/obj/structure/lootcrate/syndicate,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "NK" = (
 /turf/open/floor/plasteel/airless/dark,
 /area/city/backstreets_room)
-"NN" = (
-/obj/structure/lootcrate/workshoprosespanner,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"OJ" = (
-/obj/structure/lootcrate/n_corp,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
 "PU" = (
-/obj/item/workshop_mod/aoelarge/pale,
+/obj/item/workshop_mod/aoe/large/pale,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "SY" = (
@@ -87,7 +63,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Td" = (
-/obj/structure/lootcrate/workshopallas,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "ZT" = (
@@ -149,13 +125,13 @@ ZT
 ZT
 ZT
 An
-An
 ZT
-An
 ZT
-An
 ZT
-An
+ZT
+ZT
+ZT
+ZT
 ZT
 An
 An
@@ -171,13 +147,13 @@ ZT
 ZT
 ZT
 An
-An
 ZT
-An
 ZT
-An
-An
-An
+ZT
+ZT
+ZT
+ZT
+ZT
 ZT
 An
 An
@@ -193,11 +169,11 @@ ZT
 ZT
 ZT
 An
-An
 ZT
-An
 ZT
-An
+ZT
+ZT
+ZT
 ZT
 ZT
 ZT
@@ -215,14 +191,14 @@ ZT
 Gl
 ZT
 An
-An
 ZT
-An
 ZT
-An
 ZT
-An
-An
+ZT
+ZT
+ZT
+ZT
+ZT
 ZT
 An
 "}
@@ -241,10 +217,10 @@ An
 ZT
 ZT
 Gl
-An
 ZT
-An
-An
+ZT
+ZT
+ZT
 ZT
 An
 "}
@@ -261,12 +237,12 @@ ZT
 An
 An
 ZT
-An
-ZT
-An
 ZT
 ZT
-An
+ZT
+ZT
+ZT
+ZT
 ZT
 An
 "}
@@ -285,10 +261,10 @@ An
 An
 An
 ZT
-An
-An
 ZT
-An
+ZT
+ZT
+ZT
 ZT
 ZT
 "}
@@ -308,9 +284,9 @@ oq
 An
 NK
 NK
-An
 ZT
-An
+ZT
+ZT
 ZT
 An
 "}
@@ -332,7 +308,7 @@ An
 NK
 NK
 ZT
-An
+ZT
 ZT
 An
 "}
@@ -349,18 +325,18 @@ ZT
 An
 ZT
 An
-NJ
+Td
 An
 NK
 An
 ZT
-An
+ZT
 ZT
 ZT
 "}
 (13,1,1) = {"
 An
-co
+Td
 ZT
 ZT
 ZT
@@ -368,15 +344,15 @@ SY
 ZT
 ZT
 An
-An
 ZT
-An
+ZT
+ZT
 HN
 An
 An
 An
 ZT
-An
+ZT
 Gl
 An
 "}
@@ -390,9 +366,9 @@ ZT
 ZT
 ZT
 An
-An
 ZT
-An
+ZT
+ZT
 ZT
 An
 ej
@@ -409,12 +385,12 @@ ZT
 Gl
 ZT
 ZT
-NK
-An
-An
-An
 ZT
-An
+ZT
+ZT
+ZT
+ZT
+ZT
 ZT
 ZT
 Gl
@@ -431,13 +407,13 @@ ZT
 hy
 ZT
 ZT
-An
-An
 ZT
 ZT
 ZT
-An
-An
+ZT
+ZT
+ZT
+ZT
 ZT
 ZT
 ZT
@@ -449,7 +425,7 @@ An
 (17,1,1) = {"
 An
 ZT
-co
+Td
 ZT
 hy
 ZT
@@ -470,7 +446,7 @@ An
 "}
 (18,1,1) = {"
 An
-NN
+Td
 ZT
 ZT
 ZT
@@ -483,7 +459,7 @@ An
 ZT
 An
 ZT
-OJ
+Td
 An
 An
 An
@@ -493,16 +469,16 @@ An
 (19,1,1) = {"
 An
 hy
-NN
+Td
 ZT
 ZT
 An
-Jr
+Td
 ZT
 ZT
 An
 An
-LK
+Td
 An
 An
 An
