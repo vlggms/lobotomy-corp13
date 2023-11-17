@@ -1,4 +1,3 @@
-
 //-----P_CORP-----
 //P Corp sells different storage items
 ///Backpack Items Line
@@ -51,6 +50,32 @@
 	..()
 
 
+//Pockets line
+/datum/data/lc13research/pocketpouch
+	research_name = "Repurchasable: P Corp Pouch (x2) "
+	research_desc = "Dear ambassador. We have new items for you! <br>A pocket extender for the LCorp agents. <br>Ship only to their best. "
+	cost = LOW_RESEARCH_PRICE
+	corp = P_CORP_REP
+	required_research = /datum/data/lc13research/pcorpbackpack
+
+/datum/data/lc13research/pocketpouch/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/storage/pcorp_pocket(get_turf(caller))
+	new /obj/item/storage/pcorp_pocket(get_turf(caller))
+
+/datum/data/lc13research/pocketpistol
+	research_name = "Repurchasable: P Corp Weapon Pouch (x2) "
+	research_desc = "Dear ambassador. We have new items for you! <br>A pocket extender for the LCorp agents that holds one small weapon. <br>Ship only to their best. "
+	cost = LOW_RESEARCH_PRICE
+	corp = P_CORP_REP
+	required_research = /datum/data/lc13research/pcorpbackpack
+
+/datum/data/lc13research/pocketpistol/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/storage/pcorp_weapon(get_turf(caller))
+	new /obj/item/storage/pcorp_weapon(get_turf(caller))
+
+
+
+//Funny Crate
 /datum/data/lc13research/crate
 	research_name = "P Corp Speed Crate (x2) "
 	research_desc = "Dear ambassador. We have new items for you! <br>A crate that speeds you up as you drag it! <br>We're 99% sure it won't explode but you know... <br> Can't make any better guarantees. "

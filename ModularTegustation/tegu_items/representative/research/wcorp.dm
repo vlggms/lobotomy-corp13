@@ -1,6 +1,6 @@
-
 //-----W_CORP-----
 //W-Corp has movement technology, and upgraded weapons.
+//They're very much a jack of all trades.
 
 /datum/data/lc13research/w_corp_typea
 	research_name = "W Corp Type A Weapons"
@@ -68,3 +68,30 @@
 	research_desc = "We've decided to ship out more of those Quantum Pads. You can have this set for the same price."
 	required_research = /datum/data/lc13research/teleporter
 
+
+//Fast Tiles
+/datum/data/lc13research/fasttiles
+	research_name = "Repurchasable: W-Corp High-Traction Tiles (x100)"
+	research_desc = "These have been rotting in our warehouse the last couple years. <br>Running on these should make you slightly faster, but we have no use for them."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = W_CORP_REP
+
+/datum/data/lc13research/fasttiles/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/stack/tile/noslip/fifty(get_turf(caller))
+	new /obj/item/stack/tile/noslip/fifty(get_turf(caller))
+
+/obj/item/stack/tile/noslip/fifty
+	amount = 50
+
+
+/datum/data/lc13research/bluespace
+	research_name = "Repurchasable: W-Corp Quick Tiles (30x)"
+	research_desc = "These have been rotting in our warehouse the last couple years. <br>Running on these should make you faster, but we have no use for them."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = W_CORP_REP
+
+/datum/data/lc13research/bluespace/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/stack/tile/bluespace/thirty(get_turf(caller))
+
+/obj/item/stack/tile/bluespace/thirty
+	amount = 30
