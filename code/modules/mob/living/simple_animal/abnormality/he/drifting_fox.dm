@@ -2,7 +2,7 @@
 // By yours truely, MoriBox! (I have no fucking clue what im doing.)
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
-	desc = "A large shaggy fox with yellow eyes and torn umbrellas lodged in its back."
+	desc = "A large shaggy fox with gleaming yellow eyes; And torn umbrellas lodged into its back."
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "fox_sleeping"
 	icon_living = "fox_sleeping"
@@ -16,14 +16,14 @@
 	health = 1000
 	rapid_melee = 3
 	move_to_delay = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.9, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
 	melee_damage_lower = 5
 	melee_damage_upper = 35 // Idea taken from the old PR, have a large damage range so it feels like the fox "crit" sometimes.
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = "sound/abnormalities/drifting_fox/foxhit.ogg"
-	attack_verb_simple = "thwack"
+	attack_verb_simple = "thwacks"
 	attack_verb_continuous = "thwacks"
 	can_breach = TRUE
 	threat_level = HE_LEVEL
