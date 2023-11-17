@@ -69,7 +69,7 @@
 				if("Extraction Officer")
 					extraction_delay = 1
 			for(var/mob/living/carbon/human/L in GLOB.player_list)
-				living_players+1	//There's no fucking easier way to do this IIRC
+				living_players++	//There's no fucking easier way to do this IIRC
 			if(living_players<5)	//you should have A clerk by 5 living players
 				extraction_delay = 1
 
