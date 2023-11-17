@@ -247,6 +247,7 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
+	var/cached_multiplier
 
 /obj/item/gun/ego_gun/pistol/magic_pistol/before_firing(atom/target, mob/user)
 	if(cached_multiplier)
