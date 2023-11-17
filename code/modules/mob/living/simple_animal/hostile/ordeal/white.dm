@@ -358,6 +358,7 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	attack_sound = 'sound/effects/ordeals/white/red_attack.ogg'
 	del_on_death = TRUE
+	can_patrol = TRUE
 
 	var/busy = FALSE
 	var/multislash_cooldown
