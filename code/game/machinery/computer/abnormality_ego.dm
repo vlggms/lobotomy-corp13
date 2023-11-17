@@ -60,6 +60,7 @@
 			//Some roles get faster extraction
 			var/user_role = usr?.mind?.assigned_role
 			var/extraction_delay = 300
+			var/living_players
 			switch(user_role)
 				if("Clerk")
 					extraction_delay = 50
@@ -67,6 +68,11 @@
 					extraction_delay = 30
 				if("Extraction Officer")
 					extraction_delay = 1
+			for(var/mob/living/carbon/human/L in GLOB.player_list)
+				living_players+1	//There's no fucking easier way to do this IIRC
+			if(living_players<5)	//you should have A clerk by 5 living players
+				extraction_delay = 1
+
 			if(do_after(usr, extraction_delay, target = src))
 				var/obj/item/I = new E.item_path(get_turf(src))
 				A.stored_boxes -= E.cost
