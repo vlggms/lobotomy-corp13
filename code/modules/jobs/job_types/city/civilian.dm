@@ -26,6 +26,15 @@ Civilian
 	else
 		paycheck = initial(paycheck)
 	..()
+	if (prob(50))
+		var/level = get_user_level(H)
+		var/list/temp = list()
+		for (var/T in subtypesof(/obj/item/book/granter/action/skill))
+			var/obj/item/book/granter/action/skill/book = new T
+			if (book.level == level)
+				temp.Add(book)
+		var/obj/item/book/granter/action/skill/random_book = pick(temp)
+		H.equip_to_slot_or_del(random_book,ITEM_SLOT_BACKPACK, TRUE)
 
 
 /datum/job/civilian/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
