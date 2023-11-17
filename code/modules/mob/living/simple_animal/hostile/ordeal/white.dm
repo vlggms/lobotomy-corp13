@@ -21,6 +21,7 @@
 	projectiletype = /obj/projectile/black
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
 	del_on_death = TRUE
+	can_patrol = TRUE
 
 	var/busy = FALSE
 	var/pulse_cooldown
@@ -150,6 +151,7 @@
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	is_flying_animal = TRUE
 	del_on_death = TRUE
+	can_patrol = TRUE
 
 	var/can_act = TRUE
 	/// When this reaches 480 - begins reflecting damage
