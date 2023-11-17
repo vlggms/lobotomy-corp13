@@ -26,6 +26,10 @@ Civilian
 	else
 		paycheck = initial(paycheck)
 	..()
+	add_skill_book(H)
+
+
+/proc/add_skill_book(mob/living/carbon/human/H)
 	if (prob(50))
 		var/level = get_civilian_level(H)
 		var/list/temp = list()

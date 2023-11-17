@@ -88,3 +88,6 @@ Scavenger
 		/obj/item/ego_weapon/city/rats/pipe)
 	..()
 
+/datum/job/scavenger/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
+	..()
+	add_skill_book(H)
