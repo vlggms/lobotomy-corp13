@@ -105,7 +105,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		if(!LAZYLEN(possible_abnormalities[lev]))
 			continue
 		picking_abno |= possible_abnormalities[lev]
-	for(var/i = 1 to 3)
+	for(var/i = 1 to GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT))
 		if(!LAZYLEN(picking_abno))
 			break
 		var/chosen_abno = pickweight(picking_abno)

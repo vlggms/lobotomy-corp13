@@ -3,6 +3,7 @@
 	desc = "A computer used for remotely handling a facility."
 	icon_screen = "mechpad"
 	icon_keyboard = "generic_key"
+	resistance_flags = INDESTRUCTIBLE
 	var/datum/action/innate/cyclemanagerbullet/cycle
 	var/datum/action/innate/firemanagerbullet/fire
 	var/datum/action/innate/cyclecommand/cyclecommand
@@ -10,7 +11,7 @@
 	var/datum/action/innate/manager_track/follow
 	var/ammo = 6
 	var/max_ammo = 5
-	var/bullettype = 1
+	var/bullettype = 0
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
@@ -31,13 +32,13 @@
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	/// List of bullets available for use are defined in lobotomy_corp subsystem
 	var/list/bullet_types = list(
-		HP_BULLET = list("name" = "HP-N", "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
-		SP_BULLET = list("name" = "SP-E", "desc" = "Bullets that inject an employee with diluted Enkephalin.", "icon_state" = "blue"),
-		RED_BULLET = list("name" = "Physical Shield", "desc" = "Attach a RED DAMAGE forcefield onto a employee.", "icon_state" = "red"),
-		WHITE_BULLET = list("name" = "Trauma Shield", "desc" = "Attach a WHITE DAMAGE forcefield onto a employee.", "icon_state" = "white"),
-		BLACK_BULLET = list("name" = "Erosion Shield", "desc" = "Attach a BLACK DAMAGE forcefield onto a employee.", "icon_state" = "black"),
-		PALE_BULLET = list("name" = "Soul Shield", "desc" = "Attach a PALE DAMAGE forcefield onto a employee.", "icon_state" = "pale"),
-		YELLOW_BULLET = list("name" = "Qliphoth Intervention Field", "desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.", "icon_state" = "yellow"),
+		list("name" = HP_BULLET, "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
+		list("name" = SP_BULLET, "desc" = "Bullets that inject an employee with diluted Enkephalin.", "icon_state" = "blue"),
+		list("name" = RED_BULLET, "desc" = "Attach a RED DAMAGE forcefield onto a employee.", "icon_state" = "red"),
+		list("name" = WHITE_BULLET, "desc" = "Attach a WHITE DAMAGE forcefield onto a employee.", "icon_state" = "white"),
+		list("name" = BLACK_BULLET, "desc" = "Attach a BLACK DAMAGE forcefield onto a employee.", "icon_state" = "black"),
+		list("name" = PALE_BULLET, "desc" = "Attach a PALE DAMAGE forcefield onto a employee.", "icon_state" = "pale"),
+		list("name" = YELLOW_BULLET, "desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.", "icon_state" = "yellow"),
 		)
 
 	/* Locked actions */
@@ -341,7 +342,7 @@
 	var/obj/machinery/computer/camera_advanced/manager/console = target
 	for(var/i = 1 to console.bullet_types.len)
 		// Missing upgrade!
-		if(!GET_UPGRADE(console.bullet_types[i]))
+		if(!GetFacilityUpgradeValue(console.bullet_types[i]["name"]))
 			continue
 		bullets[console.bullet_types[i]["name"]] = i
 		var/image/bullet_image = image(icon = 'icons/obj/manager_bullets.dmi', icon_state = console.bullet_types[i]["icon_state"])
@@ -378,9 +379,9 @@
 				for(var/mob/living/carbon/human/H in range(0, T))
 					switch(X.bullettype)
 						if(HP_BULLET)
-							H.adjustBruteLoss(-GET_UPGRADE(UPGRADE_BULLET_HEAL)*H.maxHealth)
+							H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 						if(SP_BULLET)
-							H.adjustSanityLoss(-GET_UPGRADE(UPGRADE_BULLET_HEAL)*H.maxSanity)
+							H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
 						if(RED_BULLET)
 							H.apply_status_effect(/datum/status_effect/interventionshield) //shield status effects located in lc13unique items.
 						if(WHITE_BULLET)

@@ -195,6 +195,7 @@
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
+			SSlobotomy_corp.lob_points += MAX_ABNO_LOB_POINTS / SSabnormality_queue.rooms_start
 	else if(understanding == max_understanding && percent < 0) // If we're max and we reduce, undo the count.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding != max_understanding) // Checks for max understanding after the fact
