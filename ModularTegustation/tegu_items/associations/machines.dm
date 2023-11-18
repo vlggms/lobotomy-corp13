@@ -182,6 +182,9 @@
 		if (10 - grade >= 10)
 			to_chat(user, span_notice("Potential too low to give grade. Not recommended to issue fixer license."))
 			return
+		if (10 - grade <= 0)	//Once people saw Dong-Hwan, the -7 Grade fixer.
+			to_chat(user, "<span class='notice'>Recommended Grade - 1.</span>")
+			return
 
 		to_chat(user, span_notice("Recommended Grade - [10-grade]."))
 		to_chat(user, span_notice("This grade may be adjusted by your local Hana representative."))
@@ -195,6 +198,7 @@
 /obj/structure/potential/attack_hand(mob/living/user)
 	calculate_grade(user)
 
+//Timelocks
 /obj/structure/timelock
 	name = "T-Corp locking mechanism"
 	desc = "A machine that is impossible to pass"
@@ -208,3 +212,24 @@
 
 /obj/structure/timelock/proc/die()
 	qdel(src)
+
+/obj/structure/moneymachine
+	name = "Hana funds machine"
+	desc = "A machine used by hana to create money."
+	icon = 'ModularTegustation/Teguicons/refiner.dmi'
+	icon_state = "moneymachine"
+	anchored = TRUE
+	density = FALSE
+	resistance_flags = INDESTRUCTIBLE
+	var/list/hanaroles = list("Hana Representative", "Hana Administrator")
+	var/inflation
+
+/obj/structure/moneymachine/attack_hand(mob/living/user)
+	if(!(user?.mind?.assigned_role in hanaroles))
+		to_chat(user, "<span class='notice'>The Machine flashes red. You cannot extract money from this machine</span>")
+		return
+	new /obj/item/stack/spacecash/c1000(get_turf(src))
+	inflation ++
+	if(inflation%50 == 0)
+		message_admins("<span class='notice'>Investigate the high volume of Ahn being printed by Hana Association. They have currently printed [inflation*1000] Ahn. \
+			Hana is supposed to print as needed, not bank up large sums of ahn.</span>")

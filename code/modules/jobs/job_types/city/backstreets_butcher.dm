@@ -17,10 +17,10 @@ Backstreets Butcher
 	allow_bureaucratic_error = FALSE
 	maptype = list("wonderlabs", "city")
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 40,
-								PRUDENCE_ATTRIBUTE = 40,
-								TEMPERANCE_ATTRIBUTE = 40,
-								JUSTICE_ATTRIBUTE = 40
+								FORTITUDE_ATTRIBUTE = 60,
+								PRUDENCE_ATTRIBUTE = 60,
+								TEMPERANCE_ATTRIBUTE = 60,
+								JUSTICE_ATTRIBUTE = 60
 								)
 
 
