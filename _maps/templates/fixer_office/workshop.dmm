@@ -66,6 +66,7 @@
 /obj/item/forginghammer,
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c200,
+/obj/item/price_tagger,
 /turf/open/floor/facility/dark,
 /area/city/fixers)
 "N" = (

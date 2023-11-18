@@ -36,6 +36,15 @@
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/blue,
 /area/city/fixers)
+"j" = (
+/obj/machinery/grill,
+/turf/open/floor/carpet/blue,
+/area/city/fixers)
+"u" = (
+/obj/structure/table/reinforced,
+/obj/item/kitchen/knife/hunting,
+/turf/open/floor/carpet/blue,
+/area/city/fixers)
 "J" = (
 /obj/machinery/fish_market,
 /turf/open/floor/carpet/blue,
@@ -80,8 +89,8 @@ X
 Q
 "}
 (5,1,1) = {"
-Q
-Q
+u
+j
 W
 W
 Q
