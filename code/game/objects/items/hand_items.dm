@@ -149,7 +149,9 @@
 		return
 
 	// [user] gives [target] a [prefix_desc] noogie[affix_desc]!
+/* LOBOTOMYCORPORATION EDIT REMOVAL - PR #1070 - Removes mood
 	var/brutal_noogie = FALSE // was it an extra hard noogie?
+*/
 	var/prefix_desc = "rough"
 	var/affix_desc = ""
 	var/affix_desc_target = ""
@@ -158,10 +160,14 @@
 		prefix_desc = "violent"
 		affix_desc = "on [target.p_their()] sensitive antennae"
 		affix_desc_target = "on your highly sensitive antennae"
+/* LOBOTOMYCORPORATION EDIT REMOVAL - PR #1070 - Removes mood
 		brutal_noogie = TRUE
+*/
 	if(user.dna?.check_mutation(HULK))
 		prefix_desc = "sickeningly brutal"
+/* LOBOTOMYCORPORATION EDIT REMOVAL - PR #1070 - Removes mood
 		brutal_noogie = TRUE
+*/
 
 	var/message_others = "[prefix_desc] noogie[affix_desc]"
 	var/message_target = "[prefix_desc] noogie[affix_desc_target]"
@@ -174,10 +180,12 @@
 		to_chat(target, "<span class='danger'>[user] fails to give you a noogie!</span>")
 		return
 
+/* LOBOTOMYCORPORATION EDIT REMOVAL - PR #1070 - Removes mood
 	if(brutal_noogie)
 		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "noogie_harsh", /datum/mood_event/noogie_harsh)
 	else
 		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "noogie", /datum/mood_event/noogie)
+*/
 
 	noogie_loop(user, target, 0)
 
@@ -263,7 +271,9 @@
 	damage = 0
 	nodamage = TRUE // love can't actually hurt you
 	armour_penetration = 100 // but if it could, it would cut through even the thickest plate
+/* LOBOTOMYCORPORATION EDIT REMOVAL - ive looked at TG and i genuienly have no idea where our equivilant of flags are
 	flag = MAGIC // and most importantly, love is magic~
+*/
 
 /obj/projectile/kiss/fire(angle, atom/direct_target)
 	if(firer)
@@ -275,7 +285,9 @@
 	. = ..()
 	if(!ismob(target))
 		return
+/* LOBOTOMYCORPORATION EDIT REMOVAL - Removes mood
 	SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "kiss", /datum/mood_event/kiss, firer)
+*/
 	var/mob/living/target_living = target
 	if(!(HAS_TRAIT(target_living, TRAIT_ANXIOUS) && prob(30)))
 		return
