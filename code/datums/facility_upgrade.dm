@@ -99,7 +99,17 @@
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
 
-// Upgrades for HP & SP bullets
+// Bullet upgrades
+/datum/facility_upgrade/bullet_count
+	name = UPGRADE_BULLET_COUNT
+	value = 4
+	max_value = 40
+	requires_one_of = list(HP_BULLET, SP_BULLET, RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET, YELLOW_BULLET)
+
+/datum/facility_upgrade/bullet_count/Upgrade()
+	value = min(max_value, value + round(max_value * 0.1))
+	return ..()
+
 /datum/facility_upgrade/bullet_heal_increase
 	name = UPGRADE_BULLET_HEAL
 	category = "Bullet Upgrades"

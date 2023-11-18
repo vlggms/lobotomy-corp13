@@ -10,6 +10,7 @@
 #define PALE_BULLET "PALE Shield Bullet"
 #define YELLOW_BULLET "Qliphoth Intervention Bullet"
 // Bullet upgrades.
+#define UPGRADE_BULLET_COUNT "Maximum Bullet Count"
 #define UPGRADE_BULLET_HEAL "Bullet Healing Amount"
 #define UPGRADE_BULLET_SHIELD_HEALTH "Bullet Shield Health"
 // Agent upgrades

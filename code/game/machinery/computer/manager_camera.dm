@@ -9,8 +9,7 @@
 	var/datum/action/innate/cyclecommand/cyclecommand
 	var/datum/action/innate/managercommand/command
 	var/datum/action/innate/manager_track/follow
-	var/ammo = 6
-	var/max_ammo = 5
+	var/ammo = 4
 	var/bullettype = 0
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
@@ -108,7 +107,7 @@
 	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, .proc/OnCtrlShiftClick)
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/managerbullet) && ammo <= max_ammo)
+	if(istype(O, /obj/item/managerbullet) && ammo <= GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT))
 		ammo++
 		to_chat(user, "<span class='notice'>You load [O] in to the [src]. It now has [ammo] bullets stored.</span>")
 		playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
@@ -184,25 +183,57 @@
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 
-/obj/machinery/computer/camera_advanced/manager/proc/clickedAbno(mob/living/owner, mob/living/simple_animal/hostile/critter)
-	if(ammo >= 1)
-		var/mob/living/simple_animal/hostile/abnormality/ABNO = critter
-		if(bullettype == 7)
-			ABNO.apply_status_effect(/datum/status_effect/qliphothoverload)
-			ammo--
-			playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-			playsound(get_turf(ABNO), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-			to_chat(owner, "<span class='warning'>Loading [ammo] Bullets.</span>")
-			return
+	if(!istype(H))
+		to_chat(owner, "<span class='warning'>NO VALID TARGET.</span>")
+		return
+
+	switch(bullettype)
+		if(HP_BULLET)
+			H.adjustBruteLoss(-0.15*H.maxHealth)
+		if(SP_BULLET)
+			H.adjustSanityLoss(-0.15*H.maxSanity)
+		if(RED_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield)
+		if(WHITE_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/white)
+		if(BLACK_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/black)
+		if(PALE_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/pale)
+		if(YELLOW_BULLET)
+			if(!owner.faction_check_mob(H))
+				H.apply_status_effect(/datum/status_effect/qliphothoverload)
+			else
+				to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
+				return
 		else
 			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 			return
+	ammo--
+	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+	to_chat(owner, "<span class='warning'><b>[ammo]</b> bullets remaining.</span>")
+
+/obj/machinery/computer/camera_advanced/manager/proc/clickedabno(mob/living/owner, mob/living/simple_animal/hostile/H)
 	if(ammo <= 0)
 		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
 		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
-	else
-		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
 		return
+
+	if(!istype(H))
+		to_chat(owner, "<span class='warning'>NO VALID TARGET.</span>")
+		return
+
+	if(bullettype == 7)
+		H.apply_status_effect(/datum/status_effect/qliphothoverload)
+		ammo--
+		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+		to_chat(owner, "<span class='warning'><b>[ammo]</b> bullets remaining.</span>")
+		return
+
+	to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
+	return
 
 /obj/machinery/computer/camera_advanced/manager/proc/ManagerExaminate(mob/living/user, atom/clicked_atom)
 	user.examinate(clicked_atom) //maybe put more info on the agent/abno they examine if we want to be fancy later
@@ -275,8 +306,9 @@
 
 /obj/machinery/computer/camera_advanced/manager/proc/RechargeMeltdown()
 	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
-	max_ammo += 0.25
-	ammo = max_ammo
+	ammo = GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT)
+
+//Employee Tracking Code: Butchered AI Tracking
 
 /*--------------------------------------------\
 |Employee Tracking Code: Butchered AI Tracking|
@@ -370,46 +402,19 @@
 	if(!target || !isliving(owner))
 		return
 	var/mob/living/carbon/human/C = owner
-	var/mob/camera/ai_eye/remote/remote_eye = C.remote_control
-	var/turf/T = get_turf(remote_eye)
+	var/turf/T = get_turf(C.remote_control)
 	var/obj/machinery/computer/camera_advanced/manager/X = target
-	if(X.ammo >= 1)
-		switch(X.bullettype)
-			if(HP_BULLET to YELLOW_BULLET)
-				for(var/mob/living/carbon/human/H in range(0, T))
-					switch(X.bullettype)
-						if(HP_BULLET)
-							H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
-						if(SP_BULLET)
-							H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
-						if(RED_BULLET)
-							H.apply_status_effect(/datum/status_effect/interventionshield) //shield status effects located in lc13unique items.
-						if(WHITE_BULLET)
-							H.apply_status_effect(/datum/status_effect/interventionshield/white)
-						if(BLACK_BULLET)
-							H.apply_status_effect(/datum/status_effect/interventionshield/black)
-						if(YELLOW_BULLET)
-							H.apply_status_effect(/datum/status_effect/interventionshield/pale)
-						else
-							to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
-							return
-					X.ammo--
-					playsound(get_turf(C), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-					playsound(get_turf(T), 'ModularTegustation/Tegusounds/weapons/guns/manager_shock.ogg', 10, 0, 3)
-					to_chat(owner, "<span class='warning'>Loading [X.ammo] Bullets.</span>")
-					return
-			if(YELLOW_BULLET)
-				for(var/mob/living/simple_animal/hostile/abnormality/ABNO in T.contents)
-					ABNO.apply_status_effect(/datum/status_effect/qliphothoverload)
-					X.ammo--
-					to_chat(owner, "<span class='warning'>Loading [X.ammo] Bullets.</span>")
-					return
-	if(X.ammo < 1)
-		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
-		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-	else
-		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
-		return
+	var/list/valid_targets = list()
+	for(var/mob/living/L in T)
+		if(L.stat == DEAD)
+			continue
+		if(!ishuman(L) && !ishostile(L))
+			continue
+		valid_targets += L
+	if(!LAZYLEN(valid_targets))
+		to_chat(C, "<span class='warning'>No valid targets found!</span>")
+		return FALSE
+	return X.on_hotkey_click(C, pick(valid_targets))
 
 /datum/action/innate/cyclecommand
 	name = "Cycle Command"
@@ -587,7 +592,6 @@
 /obj/machinery/computer/camera_advanced/manager/sephirah //crude and lazy but i think it may work.
 	name = "sephirah camera console"
 	ammo = 0
-	max_ammo = 0
 
 /obj/machinery/computer/camera_advanced/manager/sephirah/Initialize(mapload)
 	. = ..()
