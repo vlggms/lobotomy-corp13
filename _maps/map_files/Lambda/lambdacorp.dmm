@@ -7957,11 +7957,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"CY" = (
-/obj/machinery/door/airlock/centcom,
-/obj/machinery/door/airlock/centcom,
-/turf/open/floor/facility/halls,
-/area/facility_hallway/central)
 "CZ" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -48160,7 +48155,7 @@ BS
 BS
 BS
 Xu
-CY
+ZC
 Cy
 Cy
 Cy

@@ -2003,6 +2003,15 @@
 /obj/structure/table,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"oS" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 6
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/facility_hallway/south)
 "oU" = (
 /obj/structure/chair{
 	dir = 1
@@ -3277,6 +3286,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"yZ" = (
+/obj/machinery/status_display/evac{
+	pixel_y = 32
+	},
+/obj/machinery/camera/autoname,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/south)
 "zc" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -3341,6 +3357,15 @@
 	},
 /turf/open/floor/facility,
 /area/facility_hallway/north)
+"zC" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 10
+	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
+/turf/open/floor/plasteel,
+/area/facility_hallway/south)
 "zJ" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -6819,6 +6844,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
+/obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ZW" = (
@@ -34979,7 +35005,7 @@ vg
 Kn
 Dw
 IH
-Tj
+zC
 Kn
 Kn
 Kn
@@ -39359,7 +39385,7 @@ zJ
 jK
 kY
 Kn
-Ty
+yZ
 oU
 Dk
 SY
@@ -44231,7 +44257,7 @@ vg
 Kn
 hB
 XO
-ai
+oS
 Kn
 Kn
 Kn
