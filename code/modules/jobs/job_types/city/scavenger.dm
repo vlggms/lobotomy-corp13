@@ -56,6 +56,7 @@ Scavenger
 									JUSTICE_ATTRIBUTE = 20
 									)
 	..()
+	add_skill_book(H)
 
 /datum/outfit/job/scavenger
 	name = "Rat"
@@ -87,7 +88,3 @@ Scavenger
 		/obj/item/gun/ego_gun/pistol/rats,
 		/obj/item/ego_weapon/city/rats/pipe)
 	..()
-
-/datum/job/scavenger/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
-	..()
-	add_skill_book(H)

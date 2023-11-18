@@ -2,9 +2,11 @@
 	granted_action = /datum/action/cooldown/timestop
 	actionname = "Timestop"
 	name = "Timestop"
-	level = 5
+	level = 4
 
 /datum/action/cooldown/timestop
+	icon_icon = 'icons/hud/screen_skills.dmi'
+	button_icon_state = "timestop"
 	cooldown_time = 3000
 	var/timestop_range = 2
 	var/timestop_duration = 20

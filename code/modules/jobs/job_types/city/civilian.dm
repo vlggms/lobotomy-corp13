@@ -26,7 +26,6 @@ Civilian
 	else
 		paycheck = initial(paycheck)
 	..()
-	add_skill_book(H)
 
 
 /proc/add_skill_book(mob/living/carbon/human/H)
@@ -41,7 +40,11 @@ Civilian
 		H.equip_to_slot_or_del(random_book,ITEM_SLOT_BACKPACK, TRUE)
 
 /proc/get_civilian_level(mob/living/carbon/human/user)
-	var/level = user.attributes[1]
+	var/collective_levels = 0
+	for(var/a in user.attributes)
+		var/datum/attribute/atr = user.attributes[a]
+		collective_levels += atr.level
+	var/level = collective_levels / 4
 	if (level < 40)
 		return 0
 	else if (level >= 40 && level < 60 )
@@ -83,6 +86,7 @@ Civilian
 									JUSTICE_ATTRIBUTE = 20
 									)
 	..()
+	add_skill_book(H)
 
 /datum/outfit/job/civilian
 	name = "Civilan"

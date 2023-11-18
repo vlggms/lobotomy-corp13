@@ -12,6 +12,10 @@
 			to_chat(user, "<span class='notice'>Your level is [user_level]. This book need level [level]!</span>")
 			return FALSE
 		..()
+		
+/obj/item/book/granter/action/skill/recoil(mob/user)
+	to_chat(user,"<span class='warning'>[src] suddenly vanishes!</span>")
+	qdel(src)
 
 /obj/item/book/granter/action/skill/dash
 	granted_action = /datum/action/cooldown/dash
@@ -21,12 +25,14 @@
 
 /obj/item/book/granter/action/skill/dashback
 	granted_action = /datum/action/cooldown/dash/back
-	actionname = "Dash back"
-	name = "Dash back"
+	actionname = "Backstep"
+	name = "Backstep"
 	level = 1
 
 /datum/action/cooldown/dash
-	name = "Dash back"
+	icon_icon = 'icons/hud/screen_skills.dmi'
+	button_icon_state = "dash"
+	name = "Dash"
 	cooldown_time = 30
 	var/direction = 1
 
@@ -52,4 +58,7 @@
 			return TRUE
 
 /datum/action/cooldown/dash/back
+	icon_icon = 'icons/hud/screen_skills.dmi'
+	button_icon_state = "backstep"
+	name = "Backstep"
 	direction = -1

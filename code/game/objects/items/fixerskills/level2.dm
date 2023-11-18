@@ -5,7 +5,9 @@
 	level = 2
 
 /datum/action/cooldown/shockwave
+	icon_icon = 'icons/hud/screen_skills.dmi'
 	name = "Shockwave"
+	button_icon_state = "shockwave"
 	cooldown_time = 150
 	var/range = 7
 	var/stun_amt = 40

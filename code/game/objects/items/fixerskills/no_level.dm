@@ -5,6 +5,9 @@
 
 /datum/action/cooldown/assault
 	cooldown_time = 30
+	icon_icon = 'icons/hud/screen_skills.dmi'
+	button_icon_state = "assault"
+
 
 /datum/action/cooldown/assault/Trigger()
 	. = ..()
