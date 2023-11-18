@@ -399,6 +399,8 @@
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_APPLY_DAMGE	"mob_apply_damage"
+/// Blocks the damage from being taken if this is returned in a signal handler
+#define COMPONENT_MOB_DENY_DAMAGE (1<<0)
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /mob/verb/examinate(): (atom/target)

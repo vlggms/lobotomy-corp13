@@ -86,7 +86,8 @@
 		if(scramble_list[wt] != null)
 			work_display += "?"
 		if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
-			work_display = Gibberish(work_display, TRUE, 60)
+			var/datum/suppression/information/I = SSlobotomy_corp.core_suppression
+			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
