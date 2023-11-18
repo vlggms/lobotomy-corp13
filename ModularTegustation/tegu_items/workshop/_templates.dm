@@ -50,7 +50,7 @@
 		// Material color overwrites
 		color = mod.weaponcolor
 	//throwforce is special
-	if(throwforce>force)
+	if(throwforce>10)
 		throwforce *= mod.throwforcemod
 	else if(mod.throwforcemod > 1)
 		throwforce = 30
