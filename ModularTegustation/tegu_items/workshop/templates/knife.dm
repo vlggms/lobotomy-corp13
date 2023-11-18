@@ -13,6 +13,7 @@
 	finishedicon = list("finishedknife","finishedstiletto")
 	finishedname = list("dagger", "knife", "mail breaker")
 	finisheddesc = "A finished knife, ready for use."
+	var/dodgelanding
 
 /obj/item/ego_weapon/template/knife/attack_self(mob/living/carbon/user)
 	if(!active)
