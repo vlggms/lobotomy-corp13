@@ -1,5 +1,6 @@
 /obj/item/book/granter/action/skill/assault
 	granted_action = /datum/action/cooldown/assault
+	name = "Office Skill: Assault"
 	actionname = "Assault"
 	level = -1
 

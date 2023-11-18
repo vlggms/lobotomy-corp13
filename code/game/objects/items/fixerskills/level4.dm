@@ -1,7 +1,7 @@
 /obj/item/book/granter/action/skill/timestop
 	granted_action = /datum/action/cooldown/timestop
 	actionname = "Timestop"
-	name = "Timestop"
+	name = "Level 4 Skill: Timestop"
 	level = 4
 
 /datum/action/cooldown/timestop

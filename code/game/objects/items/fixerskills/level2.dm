@@ -1,7 +1,7 @@
 /obj/item/book/granter/action/skill/shockwave
 	granted_action = /datum/action/cooldown/shockwave
 	actionname = "Shockwave"
-	name = "Shockwave"
+	name = "Level 2 Skill: Shockwave"
 	level = 2
 
 /datum/action/cooldown/shockwave

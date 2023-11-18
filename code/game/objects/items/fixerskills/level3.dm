@@ -38,7 +38,7 @@
 /obj/item/book/granter/action/skill/bulletproof
 	granted_action = /datum/action/innate/bulletproof
 	actionname = "Bulletproof"
-	name = "Bulletproof"
+	name = "Level 3 Skill: Bulletproof"
 	level = 3
 
 /datum/action/innate/bulletproof

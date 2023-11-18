@@ -12,7 +12,7 @@
 			to_chat(user, "<span class='notice'>Your level is [user_level]. This book need level [level]!</span>")
 			return FALSE
 		..()
-		
+
 /obj/item/book/granter/action/skill/recoil(mob/user)
 	to_chat(user,"<span class='warning'>[src] suddenly vanishes!</span>")
 	qdel(src)
@@ -20,13 +20,13 @@
 /obj/item/book/granter/action/skill/dash
 	granted_action = /datum/action/cooldown/dash
 	actionname = "Dash"
-	name = "Dash"
+	name = "Level 1 Skill: Dash"
 	level = 1
 
 /obj/item/book/granter/action/skill/dashback
 	granted_action = /datum/action/cooldown/dash/back
 	actionname = "Backstep"
-	name = "Backstep"
+	name = "Level 1 Skill: Backstep"
 	level = 1
 
 /datum/action/cooldown/dash
