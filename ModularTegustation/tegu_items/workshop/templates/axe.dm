@@ -22,7 +22,7 @@
 	if(!finishedforce)
 		finishedforce = force
 
-	if(do_after(user, attack_speed*10, target))
+	if(do_after(user, attack_speed*10))
 		charged = TRUE
 		force*=1.2
 		to_chat(user, "<span class='info'>You charge a cleave, and your next attack will deal bonus damage.</span>")
