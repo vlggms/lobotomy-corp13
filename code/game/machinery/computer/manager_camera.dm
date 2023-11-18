@@ -1,11 +1,3 @@
-#define HP_BULLET 1
-#define SP_BULLET 2
-#define RED_BULLET 3
-#define WHITE_BULLET 4
-#define BLACK_BULLET 5
-#define PALE_BULLET 6
-#define YELLOW_BULLET 7
-
 /obj/machinery/computer/camera_advanced/manager
 	name = "managerial camera console"
 	desc = "A computer used for remotely handling a facility."
@@ -37,6 +29,7 @@
 		/obj/effect/temp_visual/HoloCommand/commandFightB
 		)
 	/// Used for radial menu; Type = list(name, desc, icon_state)
+	/// List of bullets available for use are defined in lobotomy_corp subsystem
 	var/list/bullet_types = list(
 		HP_BULLET = list("name" = "HP-N", "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
 		SP_BULLET = list("name" = "SP-E", "desc" = "Bullets that inject an employee with diluted Enkephalin.", "icon_state" = "blue"),
@@ -347,6 +340,9 @@
 	var/list/display_bullets = list()
 	var/obj/machinery/computer/camera_advanced/manager/console = target
 	for(var/i = 1 to console.bullet_types.len)
+		// Missing upgrade!
+		if(!GET_UPGRADE(console.bullet_types[i]))
+			continue
 		bullets[console.bullet_types[i]["name"]] = i
 		var/image/bullet_image = image(icon = 'icons/obj/manager_bullets.dmi', icon_state = console.bullet_types[i]["icon_state"])
 		display_bullets += list(console.bullet_types[i]["name"] = bullet_image)
@@ -382,9 +378,9 @@
 				for(var/mob/living/carbon/human/H in range(0, T))
 					switch(X.bullettype)
 						if(HP_BULLET)
-							H.adjustBruteLoss(-0.15*H.maxHealth)
+							H.adjustBruteLoss(-GET_UPGRADE(UPGRADE_BULLET_HEAL)*H.maxHealth)
 						if(SP_BULLET)
-							H.adjustSanityLoss(-0.15*H.maxSanity)
+							H.adjustSanityLoss(-GET_UPGRADE(UPGRADE_BULLET_HEAL)*H.maxSanity)
 						if(RED_BULLET)
 							H.apply_status_effect(/datum/status_effect/interventionshield) //shield status effects located in lc13unique items.
 						if(WHITE_BULLET)
@@ -553,9 +549,7 @@
 #undef PALE_BULLET
 #undef YELLOW_BULLET
 
-	/*---------------------------\
-	|Manager Camera Tracking Code|
-	\---------------------------*/
+//Manager Camera Tracking Code
 /datum/action/innate/manager_track
 	name = "Follow Creature"
 	desc = "Track a creature."

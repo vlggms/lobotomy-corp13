@@ -1,9 +1,37 @@
+// Meltdown types
 #define MELTDOWN_NORMAL 1
 #define MELTDOWN_GRAY 2
 #define MELTDOWN_GOLD 3
 #define MELTDOWN_PURPLE 4
 #define MELTDOWN_CYAN 5
 #define MELTDOWN_BLACK 6
+
+/* Manager upgrades */
+// Bullets. These defines are also used in manager_camera.dm
+#define HP_BULLET "HP Bullet"
+#define SP_BULLET "SP Bullet"
+#define RED_BULLET "RED Shield Bullet"
+#define WHITE_BULLET "WHITE Shield Bullet"
+#define BLACK_BULLET "BLACK Shield Bullet"
+#define PALE_BULLET "PALE Shield Bullet"
+#define YELLOW_BULLET "Qliphoth Intervention Bullet"
+// Bullet upgrades.
+#define UPGRADE_BULLET_HEAL "Bullet Healing Amount"
+#define UPGRADE_BULLET_SHIELD_HEALTH "Shield Bullet Health"
+// List of all available upgrades to generate on subsystem's initialization. Contains initial values of each, too.
+#define ALL_INITIAL_UPGRADES list(\
+	HP_BULLET = 0,\
+	SP_BULLET = 0,\
+	RED_BULLET = 0,\
+	BLACK_BULLET = 0,\
+	PALE_BULLET = 0,\
+	YELLOW_BULLET = 0,\
+	UPGRADE_BULLET_HEAL = 0.15,\
+	UPGRADE_BULLET_SHIELD_HEALTH = 50,\
+	)
+
+/// Returns value of the upgrade. If not in the upgrade list - returns 0.
+#define GET_UPGRADE(up_type) ((up_type in SSlobotomy_corp.upgrades) ? SSlobotomy_corp.upgrades[up_type] : 0)
 
 // TODO: Do something about it, idk
 SUBSYSTEM_DEF(lobotomy_corp)
@@ -62,6 +90,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/list/work_logs = list()
 	// Work logs, but from agent perspective. Used mainly for round-end report
 	var/list/work_stats = list()
+	// Manager/Facility upgrades. Name = level.
+	var/list/upgrades = list()
 
 	// PE available to be spent
 	var/available_box = 0
@@ -93,6 +123,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
 	addtimer(CALLBACK(src, .proc/PickPotentialSuppressions), 60 SECONDS)
+	// Setting initial upgrade levels
+	upgrades = ALL_INITIAL_UPGRADES
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = GLOB.clients.len * 0.15
