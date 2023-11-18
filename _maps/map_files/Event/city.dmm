@@ -4,6 +4,15 @@
 /obj/item/food/meat/slab/sweeper,
 /turf/open/floor/facility/dark,
 /area/city)
+"as" = (
+/obj/structure/table/wood,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler_refill,
+/obj/item/hand_labeler,
+/turf/open/floor/facility/white,
+/area/city/fixers)
 "at" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/indestructible/white,
@@ -533,7 +542,7 @@
 /area/city)
 "ha" = (
 /obj/structure/lootcrate/s_corp,
-/turf/open/floor/facility/dark,
+/turf/open/floor/plasteel/vaporwave,
 /area/city)
 "hb" = (
 /obj/machinery/telecomms/server/presets/security,
@@ -588,7 +597,7 @@
 /turf/open/floor/wood,
 /area/city/backstreets_checkpoint)
 "hD" = (
-/obj/structure/table/wood,
+/obj/machinery/vending/coffee,
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "hI" = (
@@ -785,8 +794,8 @@
 /turf/open/floor/wood,
 /area/city/shop)
 "jA" = (
-/obj/machinery/vending/coffee,
 /obj/machinery/light,
+/obj/structure/table/wood,
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "jG" = (
@@ -966,12 +975,6 @@
 /obj/item/toy/plush/rabbit,
 /turf/open/floor/facility/dark,
 /area/city)
-"lv" = (
-/obj/machinery/modular_computer/console/preset/civilian{
-	dir = 8
-	},
-/turf/open/floor/facility/white,
-/area/city/fixers)
 "lD" = (
 /obj/effect/turf_decal/box/red,
 /obj/effect/landmark/syndicatebase,
@@ -2282,6 +2285,12 @@
 	},
 /turf/open/floor/wood,
 /area/city/shop)
+"yk" = (
+/obj/structure/moneymachine{
+	pixel_y = -32
+	},
+/turf/open/floor/facility/white,
+/area/city/fixers)
 "yl" = (
 /obj/machinery/shower{
 	pixel_y = 19
@@ -3075,6 +3084,7 @@
 "DT" = (
 /obj/structure/table,
 /obj/item/kitchen/knife,
+/obj/item/price_tagger,
 /turf/open/floor/plasteel,
 /area/city/shop)
 "DX" = (
@@ -4065,6 +4075,10 @@
 	},
 /turf/open/floor/vault,
 /area/city/house)
+"Mk" = (
+/obj/effect/landmark/cityloot,
+/turf/open/floor/plasteel/vaporwave,
+/area/city)
 "Ml" = (
 /obj/structure/closet/secure_closet/personal/cabinet,
 /obj/item/clothing/under/misc/pj/blue,
@@ -4382,10 +4396,6 @@
 /obj/item/folder,
 /obj/item/folder,
 /obj/structure/table/wood,
-/obj/item/hand_labeler_refill,
-/obj/item/hand_labeler_refill,
-/obj/item/hand_labeler_refill,
-/obj/item/hand_labeler,
 /turf/open/floor/facility/white,
 /area/city/fixers)
 "QL" = (
@@ -4429,7 +4439,7 @@
 /area/facility_hallway/north)
 "Rf" = (
 /mob/living/simple_animal/hostile/shrimp,
-/turf/open/floor/facility/dark,
+/turf/open/floor/plasteel/vaporwave,
 /area/city)
 "Rh" = (
 /turf/closed/wall/bathhouse,
@@ -4688,6 +4698,10 @@
 	},
 /turf/open/floor/facility/dark,
 /area/city/fixers)
+"Un" = (
+/obj/item/price_tagger,
+/turf/open/indestructible/white,
+/area/city/shop)
 "Ut" = (
 /obj/structure/timelock,
 /turf/open/floor/plating/ashplanet/rocky,
@@ -5069,6 +5083,9 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"Yg" = (
+/turf/open/floor/plasteel/vaporwave,
+/area/city)
 "Yl" = (
 /obj/machinery/door/airlock/hatch{
 	name = "Carnival"
@@ -29029,9 +29046,9 @@ eF
 Hm
 zr
 ha
-WX
-WX
-WX
+Yg
+Yg
+Yg
 ha
 zr
 zr
@@ -29285,11 +29302,11 @@ RZ
 zr
 Hm
 zr
-WX
-gx
-WX
+Yg
+Mk
+Yg
 Rf
-WX
+Yg
 zr
 xl
 xl
@@ -29544,7 +29561,7 @@ Hm
 zr
 zr
 zr
-WX
+Yg
 ha
 zr
 zr
@@ -38030,7 +38047,7 @@ JH
 Sr
 Sr
 Sr
-Sr
+as
 HA
 Hm
 Dq
@@ -38286,7 +38303,7 @@ Pi
 Sr
 Sr
 rG
-lv
+rG
 jA
 HA
 Hm
@@ -38541,7 +38558,7 @@ Sr
 Sr
 Pi
 LP
-Sr
+yk
 HA
 HA
 HA
@@ -40361,7 +40378,7 @@ Hm
 Zt
 Jo
 We
-We
+Un
 We
 Fk
 OT
