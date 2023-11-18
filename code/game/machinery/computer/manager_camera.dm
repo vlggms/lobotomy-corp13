@@ -1,3 +1,12 @@
+// Bullets number defines
+#define MANAGER_HP_BULLET 1
+#define MANAGER_SP_BULLET 2
+#define MANAGER_RED_BULLET 3
+#define MANAGER_WHITE_BULLET 4
+#define MANAGER_BLACK_BULLET 5
+#define MANAGER_PALE_BULLET 6
+#define MANAGER_YELLOW_BULLET 7
+
 /obj/machinery/computer/camera_advanced/manager
 	name = "managerial camera console"
 	desc = "A computer used for remotely handling a facility."
@@ -31,13 +40,13 @@
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	/// List of bullets available for use are defined in lobotomy_corp subsystem
 	var/list/bullet_types = list(
-		list("name" = HP_BULLET, "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
-		list("name" = SP_BULLET, "desc" = "Bullets that inject an employee with diluted Enkephalin.", "icon_state" = "blue"),
-		list("name" = RED_BULLET, "desc" = "Attach a RED DAMAGE forcefield onto a employee.", "icon_state" = "red"),
-		list("name" = WHITE_BULLET, "desc" = "Attach a WHITE DAMAGE forcefield onto a employee.", "icon_state" = "white"),
-		list("name" = BLACK_BULLET, "desc" = "Attach a BLACK DAMAGE forcefield onto a employee.", "icon_state" = "black"),
-		list("name" = PALE_BULLET, "desc" = "Attach a PALE DAMAGE forcefield onto a employee.", "icon_state" = "pale"),
-		list("name" = YELLOW_BULLET, "desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.", "icon_state" = "yellow"),
+		MANAGER_HP_BULLET = list("name" = HP_BULLET, "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
+		MANAGER_SP_BULLET = list("name" = SP_BULLET, "desc" = "Bullets that inject an employee with diluted Enkephalin.", "icon_state" = "blue"),
+		MANAGER_RED_BULLET = list("name" = RED_BULLET, "desc" = "Attach a RED DAMAGE forcefield onto a employee.", "icon_state" = "red"),
+		MANAGER_WHITE_BULLET = list("name" = WHITE_BULLET, "desc" = "Attach a WHITE DAMAGE forcefield onto a employee.", "icon_state" = "white"),
+		MANAGER_BLACK_BULLET = list("name" = BLACK_BULLET, "desc" = "Attach a BLACK DAMAGE forcefield onto a employee.", "icon_state" = "black"),
+		MANAGER_PALE_BULLET = list("name" = PALE_BULLET, "desc" = "Attach a PALE DAMAGE forcefield onto a employee.", "icon_state" = "pale"),
+		MANAGER_YELLOW_BULLET = list("name" = YELLOW_BULLET, "desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.", "icon_state" = "yellow"),
 		)
 
 	/* Locked actions */
@@ -188,19 +197,19 @@
 		return
 
 	switch(bullettype)
-		if(HP_BULLET)
+		if(MANAGER_HP_BULLET)
 			H.adjustBruteLoss(-0.15*H.maxHealth)
-		if(SP_BULLET)
+		if(MANAGER_SP_BULLET)
 			H.adjustSanityLoss(-0.15*H.maxSanity)
-		if(RED_BULLET)
+		if(MANAGER_RED_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield)
-		if(WHITE_BULLET)
+		if(MANAGER_WHITE_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield/white)
-		if(BLACK_BULLET)
+		if(MANAGER_BLACK_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield/black)
-		if(PALE_BULLET)
+		if(MANAGER_PALE_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield/pale)
-		if(YELLOW_BULLET)
+		if(MANAGER_YELLOW_BULLET)
 			if(!owner.faction_check_mob(H))
 				H.apply_status_effect(/datum/status_effect/qliphothoverload)
 			else
@@ -632,3 +641,11 @@
 
 /obj/machinery/computer/camera_advanced/manager/sephirah/RechargeMeltdown()
 	return
+
+#undef MANAGER_HP_BULLET
+#undef MANAGER_SP_BULLET
+#undef MANAGER_RED_BULLET
+#undef MANAGER_WHITE_BULLET
+#undef MANAGER_BLACK_BULLET
+#undef MANAGER_PALE_BULLET
+#undef MANAGER_YELLOW_BULLET
