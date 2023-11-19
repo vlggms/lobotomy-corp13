@@ -102,23 +102,28 @@
 // Bullet upgrades
 /datum/facility_upgrade/bullet_count
 	name = UPGRADE_BULLET_COUNT
+	category = "Bullet Upgrades"
 	value = 4
 	max_value = 40
 	requires_one_of = list(HP_BULLET, SP_BULLET, RED_BULLET, WHITE_BULLET, BLACK_BULLET, PALE_BULLET, YELLOW_BULLET)
+	/// The cost will not go further upwards from that point on
+	var/max_cost = 6
 
 /datum/facility_upgrade/bullet_count/Upgrade()
 	value = min(max_value, value + round(max_value * 0.1))
+	cost = min(max_cost, cost + 1)
 	return ..()
 
 /datum/facility_upgrade/bullet_heal_increase
 	name = UPGRADE_BULLET_HEAL
 	category = "Bullet Upgrades"
 	value = 0.15
-	max_value = 0.5
+	max_value = 0.6
 	requires_one_of = list(HP_BULLET, SP_BULLET)
 
 /datum/facility_upgrade/bullet_heal_increase/Upgrade()
 	value = min(max_value, value + 0.15)
+	cost += 1
 	return ..()
 
 /datum/facility_upgrade/bullet_heal_increase/DisplayValue()
@@ -139,6 +144,7 @@
 
 /datum/facility_upgrade/bullet_shield_increase/Upgrade()
 	value = min(max_value, value + (max_value * 0.125))
+	cost += 1
 	return ..()
 
 // Agent upgrades
@@ -146,7 +152,7 @@
 	name = UPGRADE_AGENT_STATS
 	category = "Agent"
 	value = 0
-	max_value = 20
+	max_value = 30
 
 /datum/facility_upgrade/agent_spawn_stats_bonus/Upgrade()
 	value = min(max_value, value + (max_value * 0.25))
@@ -157,8 +163,25 @@
 	name = UPGRADE_ABNO_QUEUE_COUNT
 	category = "Abnormalities"
 	value = 2
-	max_value = 5
+	max_value = 10 // Comedy
 
 /datum/facility_upgrade/picking_abno_amount/Upgrade()
 	value = min(max_value, value + 1)
+	if(value >= max_value * 0.5) // Going well above 5 will start increasing cost, you meme-lord
+		cost += 1
 	return ..()
+
+/datum/facility_upgrade/abno_melt_time
+	name = UPGRADE_ABNO_MELT_TIME
+	category = "Abnormalities"
+	value = 0
+	max_value = 60
+
+/datum/facility_upgrade/abno_melt_time/Upgrade()
+	value = min(max_value, value + 10)
+	if(value >= max_value * 0.5)
+		cost += 1
+	return ..()
+
+/datum/facility_upgrade/abno_melt_time/DisplayValue()
+	return "[value] seconds"

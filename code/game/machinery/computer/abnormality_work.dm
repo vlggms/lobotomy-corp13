@@ -278,7 +278,7 @@
 				qliphoth_meltdown_effect()
 
 /obj/machinery/computer/abnormality/proc/start_meltdown(melt_type = MELTDOWN_NORMAL, min_time = 60, max_time = 90)
-	meltdown_time = rand(min_time, max_time)
+	meltdown_time = rand(min_time, max_time) + GetFacilityUpgradeValue(UPGRADE_ABNO_MELT_TIME)
 	meltdown = melt_type
 	datum_reference.current.MeltdownStart()
 	update_icon()

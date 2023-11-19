@@ -207,6 +207,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(goal_reached || box_goal == 0)
 		return
 	if(available_box + goal_boxes >= box_goal)
+		lob_points += 4 // Quota reward!
 		available_box -= box_goal - goal_boxes // Leftover is drained
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
@@ -332,6 +333,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(ordeal_timelock[next_ordeal.level] > ROUNDTIME)
 		return FALSE // Time lock
 	next_ordeal.Run()
+	// Most likely a temporary solution.
+	lob_points += next_ordeal.level * 0.5
 	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now
