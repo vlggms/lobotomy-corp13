@@ -333,8 +333,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(ordeal_timelock[next_ordeal.level] > ROUNDTIME)
 		return FALSE // Time lock
 	next_ordeal.Run()
-	// Most likely a temporary solution.
-	lob_points += next_ordeal.level * 0.5
 	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now
