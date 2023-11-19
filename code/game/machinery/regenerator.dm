@@ -79,66 +79,9 @@
 /obj/machinery/regenerator/examine(mob/user)
 	. = ..()
 	if(burst_cooldown)
-		. += "<span class='warning'>[src] is currently offline!</span>"
+		. += span_warning("[src] is currently offline!")
 		return
-	. += "<span class='notice'>[src] restores [regeneration_amount+hp_bonus]% HP and [regeneration_amount+sp_bonus]% SP every 2 seconds.</span>"
-
-
-/obj/machinery/regenerator/attackby(obj/item/I, mob/living/user, params)
-	if(istype(I, /obj/item/safety_kit))
-		var/obj/item/safety_kit/cooler_I = I
-		if(user?.mind?.assigned_role != "Clerk")
-			to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
-			return FALSE
-		if (modified)
-			to_chat(user, "<span class='notice'>[src] is already modified.</span>")
-			return FALSE
-		to_chat(user, "<span class='notice'>You begin tinkering with [src].</span>")
-		if(do_after(user, 2.5 SECONDS, src))
-			if (modified)
-				to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
-				return FALSE
-			modified = TRUE
-			switch(cooler_I.mode)
-				if(1)
-					to_chat(user, "<span class='notice'>You modify [src] to restore more HP but less SP.</span>")
-					hp_bonus = 3
-					sp_bonus = -1
-					reset_timer = long_duration + world.time
-					ProduceIcon("#B90E0A", "regenspores") //Crimson
-				if(2)
-					to_chat(user, "<span class='notice'>You modify [src] to restore more SP but less HP.</span>")
-					hp_bonus = -1
-					sp_bonus = 3
-					reset_timer = long_duration + world.time
-					ProduceIcon("#4ADED", "regenpuffs_heavy") //Teal
-				if(3)
-					to_chat(user, "<span class='notice'>You modify [src] to restore more SP and HP.</span>")
-					hp_bonus = 1
-					sp_bonus = 1
-					reset_timer = short_duration + world.time
-					add_overlay("blueregenlight")
-					add_overlay(mutable_appearance('icons/effects/atmospherics.dmi', "miasma_old"))
-					ProduceIcon("#AF69EE", "regenpuffs") //Orchid
-					ProduceIcon("#B90E0A", "regenspores") //Crimson
-				if(4)
-					to_chat(user, "<span class='notice'>You modify [src] to heal those in Critical Conditions.</span>")
-					critical_heal = TRUE
-					hp_bonus = -1
-					sp_bonus = -1
-					reset_timer = short_duration + world.time
-					add_overlay("redregenlight")
-					ProduceIcon("#E30B5D", "regenspores") //Raspberry
-				if(5)
-					to_chat(user, "<span class='warning'>You set [src] to overload and heal everyone in the area for a large amount!</span>")
-					burst = TRUE
-					ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
-					ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson
-					// No Timer as it's an "instant" effect. Also handles turning off over there
-			return TRUE
-		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
-		return FALSE
-	return ..()
+	. += span_info("[src] restores [regeneration_amount+hp_bonus]% HP and [regeneration_amount+sp_bonus]% SP every 2 seconds.")
 
 /obj/machinery/regenerator/proc/ProduceIcon(Icon_Color, Type) //Used to be called ProduceGas but due to me using it for a button i had to change it. ProduceGas was a cooler name. -IP
 	var/mutable_appearance/colored_overlay = mutable_appearance(icon, Type)
@@ -150,7 +93,7 @@
 \----------------*/
 /obj/machinery/regenerator/proc/HpFocus(mob/living/user)
 	if(user)
-		to_chat(user, "<span class='notice'>You modify the [src] to restore more HP but less SP.</span>")
+		to_chat(user, span_notice("[src] is now calibrated to restore dramatically more HP but less SP."))
 	hp_bonus = 3
 	sp_bonus = -1
 	reset_timer = long_duration + world.time
@@ -158,7 +101,7 @@
 
 /obj/machinery/regenerator/proc/SpFocus(mob/living/user)
 	if(user)
-		to_chat(user, "<span class='notice'>You modify the [src] to restore more SP but less HP.</span>")
+		to_chat(user, span_notice("[src] is now calibrated to restore dramatically more SP but less HP."))
 	hp_bonus = -1
 	sp_bonus = 3
 	reset_timer = long_duration + world.time
@@ -166,7 +109,7 @@
 
 /obj/machinery/regenerator/proc/EqualFocus(mob/living/user)
 	if(user)
-		to_chat(user, "<span class='notice'>You modify the [src] to restore more SP and HP.</span>")
+		to_chat(user, span_notice("[src] is now calibrated to restore slightly more HP and SP."))
 	hp_bonus = 1
 	sp_bonus = 1
 	reset_timer = short_duration + world.time
@@ -177,7 +120,7 @@
 
 /obj/machinery/regenerator/proc/CriticalFocus(mob/living/user)
 	if(user)
-		to_chat(user, "<span class='notice'>You modify the [src] to heal those in Critical Conditions.</span>")
+		to_chat(user, span_notice("[src] is now calibrated to also heal people in critical conditions but at a lower rate."))
 	critical_heal = TRUE
 	hp_bonus = -1
 	sp_bonus = -1
@@ -187,7 +130,7 @@
 
 /obj/machinery/regenerator/proc/OverloadHeal(mob/living/user)
 	if(user)
-		to_chat(user, "<span class='warning'>You set the [src] to overload and heal those in the area for a large amount!</span>")
+		to_chat(user, span_warning("You overload [src]’s sensors, causing [src] to rapidly discharge its resources!"))
 	burst = TRUE
 	ProduceIcon("#800000", "regenpuffs_heavy") //Maroon
 	ProduceIcon("#B90E0A", "regenspores_heavy") //Crimson

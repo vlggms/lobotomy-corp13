@@ -239,10 +239,10 @@
 #define RAK_CRIT_MODE "Crit mode"
 #define RAK_BURST_MODE "Burst mode"
 /obj/item/safety_kit
-	name = "Safety Department Regenerator Augmentation Kit"
-	desc = "R.A.K. for short, it's utilized to enhance and modify regenerators for short periods of time."
+	name = "\improper Safety Department Regenerator Augmentation Kit"
+	desc = "This gadget is necessary for making temporary modifications on regenerators."
 	icon = 'icons/obj/tools.dmi'
-	icon_state = "sdrak"
+	icon_state = "HP mode_rak"
 	inhand_icon_state = "sdrak"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -282,8 +282,8 @@
 		to_chat(user, span_notice("The [R] is already modified."))
 		return
 	to_chat(user, span_notice("You begin tinkering with the [R]."))
-	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, PROC_REF(ModifiedCheck), R)))
-		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
+	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, .proc/ModifiedCheck, R)))
+		to_chat(user, span_warning("Your work has been interrupted!"))
 		return
 	R.modified = TRUE
 	switch(mode)
@@ -304,20 +304,15 @@
 
 /obj/item/safety_kit/proc/ChangeMode(mob/user)
 	var/list/choice_list = list()
-	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE))
+	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE, RAK_BURST_MODE))
 		choice_list[modes] = image(icon = icon, icon_state = modes+"_rak")
-	choice_list[RAK_BURST_MODE] = image(icon = icon, icon_state = "sdrak")
 
 	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 	if(!choice || !check_menu(user))
 		return
 
 	mode = choice
-
-	if(mode != RAK_BURST_MODE)
-		icon_state = mode+"_rak"
-	else
-		icon_state = "sdrak"
+	icon_state = mode+"_rak"
 
 	switch(mode)
 		if(RAK_HP_MODE)
@@ -346,13 +341,13 @@
 	. = ..()
 	switch(mode)
 		if(RAK_HP_MODE)
-			. += "Currently set to sacrifice SP Regeneration for HP Regeneration."
+			. += span_info("Currently set to sacrifice SP regen for more HP regen.")
 		if(RAK_SP_MODE)
-			. += "Currently set to sacrifice HP Regeneration for SP Regeneration."
+			. += span_info("Currently set to sacrifice HP regen for more SP regen.")
 		if(RAK_DUAL_MODE)
-			. += "Currently set to improve overall Regenerator functions."
+			. += span_info("Currently set to slightly increase both HP and SP regen.")
 		if(RAK_CRIT_MODE)
-			. += "Currently set to allow healing of those in Critical Condition."
+			. += span_info("Currently set to enable healing insane and crit people but reducing HP and SP regen.")
 		if(RAK_BURST_MODE)
 			. += "Currently set to cause the Regenerator to burst recovery."
 			. += span_warning("This will cause the Regenerator to go on a cooldown period afterwards.")
