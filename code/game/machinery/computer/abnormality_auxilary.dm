@@ -63,7 +63,7 @@
 					continue
 				dat += "<b>[cat]</b><br>"
 				for(var/datum/facility_upgrade/F in upgrades_per_category[cat])
-					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : ""]<b>[F.name]</b>: [F.DisplayValue()]<br>"
+					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : (F.value >= F.max_value ? "" : "\[[F.cost]\]")]<b>[F.name]</b>: [F.DisplayValue()]<br>"
 				if(i != length(upgrades_per_category))
 					dat += "<hr>"
 	var/datum/browser/popup = new(user, "abno_auxiliary", "Auxiliary Managerial Console", 400, 400)
