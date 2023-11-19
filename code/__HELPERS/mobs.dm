@@ -656,6 +656,7 @@ GLOBAL_LIST_EMPTY(species_list)
  * * check_faction (optional) Whether or not we care about the faction of the units in the area. If TRUE, we don't harm allies.
  * * exact_faction_match (optional) Pointless to set if check_faction isn't set. Do we care about the factions being an exact match?
  * * hurt_mechs (optional) If this damage effect hurts mechs.
+ * * mech_damage (optional) If you want a different amount of damage dealt to mechs
  * * hurt_hidden (optional) If this damage hits people hiding in lockers or boxes.
  * * hurt_structure (optional) If this damage applies to structures as well.
  * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
@@ -663,11 +664,11 @@ GLOBAL_LIST_EMPTY(species_list)
  * returns:
  * * hit_list - A list containing all things hit by this proc.
  */
-/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
+/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
 	var/list/exclude = typecacheof(/obj/structure/disposalpipe) // Types that should never be hit by HurtInTurf
 	. = list()
 	. += hit_list
-	target = target ? target : get_turf(src)
+	target = isturf(target) ? target : get_turf(src)
 	armor_type = armor_type ? armor_type : damage_type
 	for(var/mob/living/L in target) // Hit living targets
 		if(L == src)
@@ -683,13 +684,14 @@ GLOBAL_LIST_EMPTY(species_list)
 			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE)
 		. += L
 	if(hurt_mechs) // Hit Mechs
+		var/mechDamage = mech_damage ? mech_damage : damage
 		for(var/obj/vehicle/V in target)
 			if(V in .)
 				continue
 			if(is_type_in_typecache(V, exclude))
 				continue
 			if(damage)
-				V.take_damage(damage, damage_type, armor_type)
+				V.take_damage(mechDamage, damage_type, armor_type)
 			. += V
 	if(hurt_hidden) // Hit living in closets (includes crates)
 		for(var/obj/structure/closet/C in target)
