@@ -48,7 +48,7 @@
 					dat += "[initial(S.name)]: <A href='byond://?src=[REF(src)];choose_suppression=[core_type]'>Select</A><br>"
 
 		if(FACILITY_UPGRADES)
-			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points)]"
+			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points, 0.1)]"
 			dat += "<hr>"
 			var/list/upgrades_per_category = list("Bullets" = list(), "Bullet Upgrades" = list(), "Agent" = list(), "Abnormalities" = list(), "Unsorted" = list())
 			for(var/datum/facility_upgrade/F in SSlobotomy_corp.upgrades)
@@ -63,10 +63,10 @@
 					continue
 				dat += "<b>[cat]</b><br>"
 				for(var/datum/facility_upgrade/F in upgrades_per_category[cat])
-					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : (F.value >= F.max_value ? "" : "\[[F.cost]\]")]<b>[F.name]</b>: [F.DisplayValue()]<br>"
+					dat += "- [F.CanUpgrade() ? "<A href='byond://?src=[REF(src)];upgrade=[F.name]'>Upgrade \[[F.cost]\]</A> " : (F.value >= F.max_value ? "" : "\[[F.cost]\] ")]<b>[F.name]</b>: [F.DisplayValue()]<br>"
 				if(i != length(upgrades_per_category))
 					dat += "<hr>"
-	var/datum/browser/popup = new(user, "abno_auxiliary", "Auxiliary Managerial Console", 400, 400)
+	var/datum/browser/popup = new(user, "abno_auxiliary", "Auxiliary Managerial Console", 480, 640)
 	popup.set_content(dat)
 	popup.open()
 	return

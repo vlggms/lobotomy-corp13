@@ -207,7 +207,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(goal_reached || box_goal == 0)
 		return
 	if(available_box + goal_boxes >= box_goal)
-		lob_points += 4 // Quota reward!
+		AddLobPoints(4, "Quota Reward")
 		available_box -= box_goal - goal_boxes // Leftover is drained
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
@@ -338,3 +338,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now
+
+/// Adds LOB points and notifies players via aux consoles
+/datum/controller/subsystem/lobotomy_corp/proc/AddLobPoints(amount = 1, message = "UNKNOWN")
+	lob_points += amount
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+		A.audible_message("<span class='notice'>[round(amount, 0.1)] LOB point[amount > 1 ? "s" : ""] deposited! Reason: [message].</span>")
+		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
+		A.updateUsrDialog()
