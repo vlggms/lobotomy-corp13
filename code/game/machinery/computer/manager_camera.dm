@@ -198,9 +198,9 @@
 
 	switch(bullettype)
 		if(MANAGER_HP_BULLET)
-			H.adjustBruteLoss(-0.15*H.maxHealth)
+			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 		if(MANAGER_SP_BULLET)
-			H.adjustSanityLoss(-0.15*H.maxSanity)
+			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
 		if(MANAGER_RED_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield)
 		if(MANAGER_WHITE_BULLET)
