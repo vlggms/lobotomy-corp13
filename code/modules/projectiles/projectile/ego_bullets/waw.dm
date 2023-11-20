@@ -47,8 +47,8 @@
 /obj/projectile/ego_bullet/ego_magicbullet
 	name = "magic bullet"
 	icon_state = "magic_bullet"
-	damage = 80
-	speed = 0.1
+	damage = 5
+	speed = 1
 	damage_type = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 	range = 18 // Don't want people shooting it through the entire facility

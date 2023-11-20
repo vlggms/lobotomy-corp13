@@ -2996,6 +2996,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\gold.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\green.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\indigo.dm"
+#include "code\modules\mob\living\simple_animal\hostile\ordeal\jimbo.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\misc.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\steel.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\violet.dm"
