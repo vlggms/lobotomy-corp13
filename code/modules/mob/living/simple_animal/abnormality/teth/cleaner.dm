@@ -35,7 +35,7 @@
 		/datum/ego_datum/weapon/sanitizer,
 		/datum/ego_datum/armor/sanitizer
 		)
-//	gift_type =  /datum/ego_gifts/sanitizer
+	gift_type =  /datum/ego_gifts/sanitizer
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 

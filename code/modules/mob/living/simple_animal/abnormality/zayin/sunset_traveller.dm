@@ -25,7 +25,7 @@
 		/datum/ego_datum/armor/eclipse
 	)
 
-//	gift_type =  /datum/ego_gifts/nostalgia
+	gift_type =  /datum/ego_gifts/eclipse
 	var/list/saylines = list("Wasn't it tiring coming all the way here?",
 		"Really, check out those butterflies.",
 		"Just watching them will warm your heart.")
