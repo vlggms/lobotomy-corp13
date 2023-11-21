@@ -33,7 +33,7 @@
 		if(1)
 			qdel(src)
 		if(2)
-			take_damage(50, BRUTE, ENERGY, 0)
+			take_damage(50, ENERGY, 0)
 
 /obj/structure/emergency_shield/play_attack_sound(damage, damage_type = BRUTE)
 	switch(damage_type)

@@ -23,8 +23,6 @@
 		return FALSE
 	var/damage_amount =  forced ? damage : damage * hit_percent
 	switch(damagetype)
-		if(BRUTE)
-			adjustBruteLoss(damage_amount, forced = forced)
 		if(BURN)
 			adjustFireLoss(damage_amount, forced = forced)
 		if(TOX)
@@ -43,6 +41,8 @@
 			adjustBlackLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(PALE_DAMAGE)
 			adjustPaleLoss(damage_amount, forced = forced)
+		else
+			adjustBruteLoss(damage_amount, forced = forced)
 	return TRUE
 
 ///like [apply_damage][/mob/living/proc/apply_damage] except it always uses the damage procs
