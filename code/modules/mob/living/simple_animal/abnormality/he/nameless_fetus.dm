@@ -20,11 +20,11 @@
 	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
-//		/datum/ego_datum/weapon/syrinx,		Will update with the rest of the dump EGO
+		/datum/ego_datum/weapon/syrinx,
 		/datum/ego_datum/weapon/trachea,
 		/datum/ego_datum/armor/syrinx
 		)
-//	gift_type =  /datum/ego_gifts/syrinx
+	gift_type =  /datum/ego_gifts/syrinx
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/mob/living/carbon/human/calling = null
 
