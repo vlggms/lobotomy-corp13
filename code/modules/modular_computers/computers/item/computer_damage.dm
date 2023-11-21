@@ -28,6 +28,6 @@
 			uninstall_component(H)
 			H.forceMove(newloc)
 			if(prob(25))
-				H.take_damage(rand(10,30), BRUTE, 0, 0)
+				H.take_damage(rand(10,30), BRUTE, 0)
 	relay_qdel()
 	qdel(src)

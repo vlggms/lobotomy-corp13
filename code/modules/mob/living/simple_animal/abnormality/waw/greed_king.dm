@@ -190,7 +190,7 @@
 			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
 			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
 		for(var/obj/vehicle/V in new_hits)
-			V.take_damage(80, RED_DAMAGE, RED_DAMAGE, attack_sound)
+			V.take_damage(80, RED_DAMAGE, attack_sound)
 			V.visible_message(span_boldwarning("[src] crunches [V]!"))
 			playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
 			playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)

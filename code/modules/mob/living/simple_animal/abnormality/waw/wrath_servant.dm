@@ -428,7 +428,7 @@
 			else
 				hit_turfs = (view(i, src) - range(i-1, src)) // Respects walls for last 2
 			for(var/turf/T in hit_turfs)
-				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, null, TRUE, FALSE, TRUE, FALSE, TRUE)
+				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, TRUE, FALSE, TRUE, FALSE, TRUE)
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(3))
 					if(friendly)

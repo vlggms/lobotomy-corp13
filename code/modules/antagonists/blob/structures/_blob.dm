@@ -181,9 +181,9 @@
 /obj/structure/blob/zap_act(power, zap_flags)
 	if(overmind)
 		if(overmind.blobstrain.tesla_reaction(src, power))
-			take_damage(power * 0.0025, BURN, ENERGY)
+			take_damage(power * 0.0025, ENERGY)
 	else
-		take_damage(power * 0.0025, BURN, ENERGY)
+		take_damage(power * 0.0025, ENERGY)
 	power -= power * 0.0025 //You don't get to do it for free
 	return ..() //You don't get to do it for free
 

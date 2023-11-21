@@ -215,7 +215,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 /obj/structure/spreading/apple_vine/Crossed(atom/movable/AM)
 	. = ..()
 	if(is_type_in_typecache(AM, atom_remove_condition))
-		take_damage(15, BRUTE, "melee", 1)
+		take_damage(15, MELEE, 1)
 	if(is_type_in_typecache(AM, ignore_typecache))		// Don't want the traps triggered by sparks, ghosts or projectiles.
 		return
 	if(isliving(AM))
