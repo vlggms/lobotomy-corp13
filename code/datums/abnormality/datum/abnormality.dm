@@ -190,7 +190,12 @@
 	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 
 /datum/abnormality/proc/UpdateUnderstanding(percent)
-	if (understanding != max_understanding) // This should render "full_understood" not required.
+	// Lower agent pop gets a bonus
+	var/agent_count = AvailableAgentCount()
+	if(agent_count <= 5 && percent)
+		percent *= 1 + (3 / agent_count)
+
+	if(understanding != max_understanding) // This should render "full_understood" not required.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
