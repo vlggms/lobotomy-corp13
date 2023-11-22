@@ -127,7 +127,7 @@
 	cost += 1
 
 /datum/facility_upgrade/bullet_heal_increase/DisplayValue()
-	return "[value]%"
+	return "[value * 100]%"
 
 // Upgrades for shield bullets
 /datum/facility_upgrade/bullet_shield_increase
