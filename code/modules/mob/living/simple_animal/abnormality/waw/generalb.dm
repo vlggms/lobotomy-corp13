@@ -177,6 +177,9 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
+	exp = 1
+	max_level = 100
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 /* Artillery bees */
 /mob/living/simple_animal/hostile/artillery_bee
@@ -197,6 +200,9 @@
 	del_on_death = TRUE
 	deathsound = 'sound/abnormalities/bee/death.ogg'
 	speak_emote = list("buzzes")
+	exp = 3
+	max_level = 100
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 	var/fire_cooldown_time = 10 SECONDS
 	var/fire_cooldown

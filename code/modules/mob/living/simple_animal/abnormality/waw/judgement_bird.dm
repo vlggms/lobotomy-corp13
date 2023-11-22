@@ -173,6 +173,9 @@
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 1
+	max_level = 80
+	exp = 2 // On one hand, agony. On the other, 2 dollar fortnite gift card.
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/runawaybird/AttackingTarget()
 	. = ..()

@@ -188,6 +188,9 @@
 	attack_sound = 'sound/abnormalities/littleprince/Prince_Attack.ogg'
 	deathmessage = "shakes violently."
 	can_patrol = TRUE
+	max_level = 100
+	exp = 3
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/little_prince_1/Initialize()
 	. = ..()

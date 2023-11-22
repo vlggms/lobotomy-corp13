@@ -73,8 +73,21 @@
 	var/patrol_tries = 0 //max of 5
 	var/patrol_move_timer = null
 
+	// Suppression Rewards
+	/// Associative List of those who have attacked the mob, EXP is gained up to 100% of "exp" based on damage dealt, multiple people can gain 100% exp.
+	var/list/attackers = list()
+	/// Highest amount EXP from this mob can get someone to
+	var/max_level = 40
+	/// Maximum Attainable EXP from this mob per person, if TRUE/1: defaults to max_level/20
+	var/exp = TRUE
+	/// Attribute that gains EXP
+	var/exp_attribute = FORTITUDE_ATTRIBUTE
+
 /mob/living/simple_animal/hostile/Initialize()
 	. = ..()
+
+	if(exp == TRUE)
+		exp = round(max_level/20, 0.1)
 
 	if(!targets_from)
 		targets_from = src
@@ -166,16 +179,31 @@
 		face_atom(target) //Looks better if they keep looking at you when dodging
 
 /mob/living/simple_animal/hostile/attacked_by(obj/item/I, mob/living/user)
-	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client && user)
-		FindTarget(list(user), 1)
+	if(stat == CONSCIOUS && user)
+		if(!target && AIStatus != AI_OFF && !client)
+			FindTarget(list(user), 1)
+		if(ishuman(user) && exp)
+			var/dam = max(damage_coeff.getCoeff(I.damtype)*(1+(get_attribute_level(user, JUSTICE_ATTRIBUTE)/100))*I.force, 0)
+			dam = round(dam/(maxHealth*0.25), 0.01)
+			if(user in attackers)
+				attackers[user] = clamp(attackers[user] + dam, 0, 1)
+			else
+				attackers[user] = clamp(0.5 + dam, 0, 1)
 	return ..()
 
 /mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
-	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
-		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
-			FindTarget(list(P.firer), 1)
-		Goto(P.starting, move_to_delay, 3)
-
+	if(stat == CONSCIOUS)
+		if(!target && AIStatus != AI_OFF && !client)
+			if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
+				FindTarget(list(P.firer), 1)
+			Goto(P.starting, move_to_delay, 3)
+		if(ishuman(P.firer) && exp)
+			var/dam = max(damage_coeff.getCoeff(P.damtype)*P.damage, 0)
+			dam = round(dam/(maxHealth*0.25), 0.01)
+			if(P.firer in attackers)
+				attackers[P.firer] = clamp(attackers[P.firer] + dam, 0, 1)
+			else
+				attackers[P.firer] = clamp(0.25 + dam, 0, 1)
 	. = ..()
 	DamageEffect(P.damage, P.damage_type)
 
@@ -471,6 +499,13 @@
 
 /mob/living/simple_animal/hostile/death(gibbed)
 	LoseTarget()
+	for(var/mob/living/carbon/human/H in attackers)
+		if(!(H.job in GLOB.security_positions))
+			continue
+		var/exp_grant = attackers[H] * exp
+		if(exp_grant + get_raw_level(H, exp_attribute) > max_level)
+			exp_grant = max(max_level - get_raw_level(H, exp_attribute), 0)
+		H.adjust_attribute_level(exp_attribute, exp_grant)
 	..(gibbed)
 
 /mob/living/simple_animal/hostile/proc/summon_backup(distance, exact_faction_match)

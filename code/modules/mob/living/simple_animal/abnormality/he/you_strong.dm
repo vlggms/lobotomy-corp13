@@ -231,6 +231,10 @@
 
 	del_on_death = FALSE
 
+	max_level = 80
+	exp = 3
+	exp_attribute = FORTITUDE_ATTRIBUTE
+
 	var/gear = 2
 	COOLDOWN_DECLARE(gear_shift)
 	var/gear_cooldown = 1 MINUTES

@@ -345,6 +345,11 @@
 	del_on_death = FALSE
 	density = TRUE
 	guaranteed_butcher_results = list(/obj/item/food/badrecipe = 1)
+
+	exp = 2
+	max_level = 80
+	exp_attribute = FORTITUDE_ATTRIBUTE
+
 	var/list/breach_affected = list()
 	var/can_act = TRUE
 	var/mob/living/simple_animal/hostile/abnormality/thunder_bird/master

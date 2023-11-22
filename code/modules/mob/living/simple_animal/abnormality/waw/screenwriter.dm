@@ -256,6 +256,9 @@ Defeating the murderer also surpresses the abnormality.
 	attack_sound = 'sound/effects/ordeals/white/pale_knife.ogg'
 	del_on_death = FALSE
 	can_patrol = TRUE
+	exp = 4
+	exp_attribute = PRUDENCE_ATTRIBUTE
+	max_level = 100
 
 /mob/living/simple_animal/hostile/actor/Initialize()
 	. = ..()

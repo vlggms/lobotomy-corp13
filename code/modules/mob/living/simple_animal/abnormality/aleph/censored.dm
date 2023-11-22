@@ -249,6 +249,9 @@
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
 	density = FALSE
+	exp = 3
+	max_level = 130
+	exp_attribute = PRUDENCE_ATTRIBUTE
 	var/list/breach_affected = list()
 
 /mob/living/simple_animal/hostile/mini_censored/Initialize()

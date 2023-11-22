@@ -18,6 +18,9 @@
 	attack_verb_simple = "bashes"
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
+	max_level = 130
+	exp_attribute = JUSTICE_ATTRIBUTE
+
 	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
 				/mob/living/simple_animal/hostile/abnormality/distortedform,
 				/mob/living/simple_animal/hostile/abnormality/white_night,

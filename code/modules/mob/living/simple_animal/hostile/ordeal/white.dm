@@ -24,6 +24,9 @@
 	del_on_death = TRUE
 	can_patrol = TRUE
 
+	max_level = 200 // If you have an expanded cap and got this far, OH BOY.
+	exp_attribute = TEMPERANCE_ATTRIBUTE
+
 	var/busy = FALSE
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 20 SECONDS
@@ -153,6 +156,9 @@
 	is_flying_animal = TRUE
 	del_on_death = TRUE
 	can_patrol = TRUE
+
+	max_level = 200 // If you have an expanded cap and got this far, OH BOY.
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 	var/can_act = TRUE
 	/// When this reaches 480 - begins reflecting damage
@@ -363,6 +369,9 @@
 	del_on_death = TRUE
 	can_patrol = TRUE
 
+	max_level = 200 // If you have an expanded cap and got this far, OH BOY.
+	exp_attribute = FORTITUDE_ATTRIBUTE
+
 	var/busy = FALSE
 	var/multislash_cooldown
 	var/multislash_cooldown_time = 4 SECONDS
@@ -503,6 +512,9 @@
 	projectiletype = /obj/projectile/pale
 	attack_sound = 'sound/effects/ordeals/white/pale_knife.ogg'
 	del_on_death = TRUE
+
+	max_level = 200 // If you have an expanded cap and got this far, OH BOY.
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 	var/can_act = TRUE
 	var/multislash_cooldown

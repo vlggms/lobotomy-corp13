@@ -19,6 +19,8 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/list/enemies = list() //copying retaliate code cause i dont know how else to inherit it
 
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), rand(60 SECONDS, 65 SECONDS))
@@ -111,6 +113,9 @@
 	health = 1400
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 
+	max_level = 60
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 	var/next_pulse = INFINITY
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/Initialize()
@@ -201,6 +206,8 @@
 	deathsound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
 	stat_attack = HARD_CRIT
 
+	max_level = 130
+
 	var/ability_cooldown
 	var/ability_cooldown_time = 14 SECONDS
 	var/retaliation_health = 10 // Initialized later
@@ -287,6 +294,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	exp_attribute = FORTITUDE_ATTRIBUTE
 
 	var/attack_damage = 220 // Dealt once if hit
 	var/list/been_hit = list()
@@ -363,6 +371,7 @@
 	icon_living = "violet_midnightw"
 	icon_dead = "violet_midnightw_dead"
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.2)
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 	var/attack_damage = 150
 	var/list/been_hit = list()
@@ -447,6 +456,7 @@
 	icon_living = "violet_midnightb"
 	icon_dead = "violet_midnightb_dead"
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.7)
+	exp_attribute = TEMPERANCE_ATTRIBUTE
 
 	var/attack_damage = 220
 	var/list/been_hit = list()
@@ -531,6 +541,7 @@
 	icon_living = "violet_midnightp"
 	icon_dead = "violet_midnightp_dead"
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = -1)
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 	var/obj/effect/pale_eye/eye = null
 	var/pulsating = FALSE

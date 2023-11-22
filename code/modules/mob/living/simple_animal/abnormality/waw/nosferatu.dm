@@ -248,6 +248,9 @@
 	ranged = 1
 	retreat_distance = 3
 	minimum_distance = 1
+	exp = 1
+	max_level = 100
+	exp_attribute = FORTITUDE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/nosferatu_mob/AttackingTarget() //they spawn blood on hit
 	if(ishuman(target))

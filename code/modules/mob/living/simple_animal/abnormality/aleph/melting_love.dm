@@ -242,6 +242,9 @@
 	rapid_melee = 2
 	speed = 2
 	move_to_delay = 2.5
+	exp = 3
+	max_level = 80
+	exp_attribute = TEMPERANCE_ATTRIBUTE
 	/* Sounds */
 	deathsound = 'sound/abnormalities/meltinglove/pawn_death.ogg'
 	attack_sound = 'sound/abnormalities/meltinglove/pawn_attack.ogg'
@@ -297,3 +300,6 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 40
 	spawn_sound = 'sound/abnormalities/meltinglove/pawn_big_convert.ogg'
+	exp = 4
+	max_level = 100
+	exp_attribute = TEMPERANCE_ATTRIBUTE

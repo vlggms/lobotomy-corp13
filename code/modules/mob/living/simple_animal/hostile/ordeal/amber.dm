@@ -57,6 +57,7 @@
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned
 	butcher_results = list()
 	guaranteed_butcher_results = list()
+	exp = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/death(gibbed)
 	density = FALSE
@@ -93,6 +94,8 @@
 
 	alpha = 0 // It burrows in on spawn
 	density = FALSE
+
+	max_level = 100
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
@@ -190,6 +193,8 @@
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned
 	butcher_results = list()
 	guaranteed_butcher_results = list()
+	max_level = 80 // If you're somehow below level 4 at midnight... this is a pitty bonus.
+	exp = 2
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/death(gibbed)
 	animate(src, alpha = 0, time = 5 SECONDS)
@@ -222,6 +227,8 @@
 
 	blood_volume = BLOOD_VOLUME_NORMAL
 	deathsound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
+
+	max_level = 130
 
 	var/burrowing = FALSE
 	var/burrow_cooldown

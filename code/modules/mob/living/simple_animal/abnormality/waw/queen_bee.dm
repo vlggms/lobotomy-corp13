@@ -101,6 +101,9 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("buzzes")
+	exp = 1
+	max_level = 100
+	exp_attribute = FORTITUDE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/worker_bee/Initialize()
 	. = ..()

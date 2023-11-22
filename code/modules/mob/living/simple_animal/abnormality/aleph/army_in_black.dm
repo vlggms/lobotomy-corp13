@@ -202,6 +202,9 @@ GLOBAL_LIST_EMPTY(army)
 	del_on_death = FALSE
 	density = FALSE
 	is_flying_animal = TRUE
+	exp = 4
+	max_level = 130
+	exp_attribute = JUSTICE_ATTRIBUTE
 	var/list/fear_affected = list()
 	var/shot_cooldown
 	var/shot_cooldown_time = 5 SECONDS

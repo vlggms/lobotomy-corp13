@@ -370,6 +370,11 @@
 	melee_damage_type = RED_DAMAGE
 	speed = 1
 	move_to_delay = 3
+
+	max_level = 80
+	exp = 3
+	exp_attribute = FORTITUDE_ATTRIBUTE
+
 	var/steppy = 0
 
 /mob/living/simple_animal/hostile/red_shoe/AttackingTarget()

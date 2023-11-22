@@ -525,7 +525,7 @@
 		say("I've... failed. S-Sorry...")
 		SLEEP_CHECK_DEATH(1 SECONDS)
 		Teleport(src.datum_reference.landmark)
-		breach_affected = list()
+		breach_affected.Cut()
 		toggle_ai(AI_OFF)
 		adjustBruteLoss(-maxHealth)
 		can_act = TRUE

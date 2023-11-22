@@ -24,6 +24,8 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
 
+	exp_attribute = FORTITUDE_ATTRIBUTE
+
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
@@ -74,6 +76,10 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_advanced = 1,
 						/obj/item/stack/sheet/silk/indigo_simple = 2)
+
+	max_level = 60
+	exp_attribute = FORTITUDE_ATTRIBUTE
+
 	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
@@ -161,6 +167,7 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	blood_volume = BLOOD_VOLUME_NORMAL
 	can_patrol = TRUE
+	max_level = 100
 	var/order_cooldown = 0
 	var/list/troops = list()
 
@@ -175,6 +182,7 @@
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
 	if(ishuman(the_target))
@@ -192,6 +200,7 @@
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	exp_attribute = TEMPERANCE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red
 	name = "\proper Commander Jacques"
@@ -201,6 +210,7 @@
 	rapid_melee = 4
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
+	exp_attribute = FORTITUDE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
 	name = "\proper Commander Silvina"
@@ -210,6 +220,7 @@
 	rapid_melee = 2
 	melee_damage_type = PALE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Found(atom/A) //every time she finds a sweeper that sweeper is compelled to follow her as family
@@ -313,6 +324,9 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+
+	max_level = 130
+	exp_attribute = FORTITUDE_ATTRIBUTE
 
 	//How many people has she eaten
 	var/belly = 0

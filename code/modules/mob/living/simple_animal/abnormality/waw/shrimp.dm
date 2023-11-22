@@ -155,6 +155,9 @@
 	attack_verb_simple = "punches"
 	attack_sound = 'sound/weapons/bite.ogg'
 	speak_emote = list("burbles")
+	exp = 1
+	max_level = 100
+	exp_attribute = FORTITUDE_ATTRIBUTE
 
 //You can put these guys about to guard an area.
 /mob/living/simple_animal/hostile/shrimp_soldier
@@ -165,7 +168,7 @@
 	icon_living = "wellcheers_bad"
 	faction = list("shrimp")
 	health = 500	//They're here to help
-	maxHealth = 500
+	maxHealth = 500	// THEY ARE NOT
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 14
@@ -182,12 +185,16 @@
 	minimum_distance = 3
 	casingtype = /obj/item/ammo_casing/caseless/ego_shrimpsoldier
 	projectilesound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	exp = 2
+	max_level = 100
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/shrimp_soldier/friendly
 	name = "wellcheers corp assault officer"
 	icon_state = "wellcheers_soldier"
 	icon_living = "wellcheers_soldier"
 	faction = list("neutral", "shrimp")
+	exp = FALSE
 
 /obj/item/grenade/spawnergrenade/shrimp
 	name = "instant shrimp task force grenade"

@@ -16,6 +16,8 @@
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
+	exp_attribute = TEMPERANCE_ATTRIBUTE
+
 	/// When it hits console 12 times - reduce qliphoth and teleport
 	var/console_attack_counter = 0
 	var/teleporting = FALSE
@@ -117,6 +119,9 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	ordeal_remove_ondeath = FALSE
 
+	max_level = 60
+	exp_attribute = TEMPERANCE_ATTRIBUTE
+
 	/// How many mobs we spawn on death
 	var/mob_spawn_amount = 3
 
@@ -170,6 +175,9 @@
 	attack_sound = 'sound/effects/ordeals/crimson/dusk_attack.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	mob_spawn_amount = 2
+
+	max_level = 100
+	exp_attribute = TEMPERANCE_ATTRIBUTE
 
 	var/roll_num = 36
 	var/roll_cooldown
@@ -532,6 +540,7 @@
 	name = "a cacophony of smiles"
 	maxHealth = 50
 	health = 50
+	exp = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/Initialize() //this should effectively limit how many are active at a time
 	. = ..()
@@ -554,6 +563,7 @@
 	maxHealth = 650
 	health = 650
 	mob_spawn_amount = 1
+	exp = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/Initialize()
 	. = ..()
@@ -593,6 +603,8 @@
 	name = "summit of trepidation"
 	maxHealth = 500
 	health = 500
+	max_level = 80
+	exp = 2
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/Initialize()
 	. = ..()

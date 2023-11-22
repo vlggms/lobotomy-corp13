@@ -20,6 +20,7 @@
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+	exp = FALSE // Manually set later
 	/// Can this abnormality spawn normally during the round?
 	var/can_spawn = TRUE
 	/// Reference to the datum we use
@@ -112,6 +113,34 @@
 				gift_chance = 1
 			else
 				gift_chance = 0
+	switch(threat_level) // Gives EXP = (max_level/20)-1. Reduced to discourage abnormality breach farming. At this level it is inefficient.
+		if(TETH_LEVEL)
+			max_level = 60
+			exp = 2
+		if(HE_LEVEL)
+			max_level = 80
+			exp = 3
+		if(WAW_LEVEL)
+			max_level = 100
+			exp = 4
+		if(ALEPH_LEVEL)
+			max_level = 130
+			exp = 5
+		else
+			max_level = 40
+			exp = 1
+	var/highest_rate = 0
+	for(var/work_rate in work_chances)
+		if(!(work_rate in work_attribute_types))
+			continue
+		var/rate = 0
+		if(islist(work_chances[work_rate]))
+			rate = work_chances[work_rate][threat_level]
+		else
+			rate = work_chances[work_rate]
+		if((rate > highest_rate) || (rate == highest_rate && prob(50)))
+			highest_rate = rate
+			exp_attribute = work_attribute_types[work_rate]
 	if(isnull(gift_message))
 		gift_message = "You are granted a gift by [src]!"
 	else

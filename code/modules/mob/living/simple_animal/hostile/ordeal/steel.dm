@@ -26,6 +26,9 @@
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 1)
+
+	exp_attribute = JUSTICE_ATTRIBUTE
+
 	var/leader
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
@@ -70,6 +73,9 @@
 	attack_verb_simple = "slash"
 	deathsound = 'sound/voice/mook_death.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/food/meat/slab/human/mutant/moth = 2)
+
+	max_level = 60
+	exp_attribute = JUSTICE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
 	health+=10
@@ -216,6 +222,10 @@
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
 	deathsound = 'sound/voice/hiss5.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
+
+	max_level = 100
+	exp_attribute = JUSTICE_ATTRIBUTE
+
 	var/turf/fob
 	var/last_command = 0
 	var/chargecommand_cooldown = 0

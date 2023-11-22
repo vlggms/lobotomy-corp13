@@ -29,6 +29,9 @@
 	projectiletype = /obj/projectile/ego_bullet/ego_nightshade/healing //no friendly fire, baby!
 	projectilesound = 'sound/weapons/bowfire.ogg'
 
+	max_level = 60
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 /mob/living/simple_animal/hostile/ordeal/sin_sloth
 	name = "Peccatulum Acediae"
 	desc = "It resembles a rock."
@@ -50,6 +53,9 @@
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
 	ranged = TRUE
+
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 	var/list/movement_path = list()
 	var/list/been_hit = list()
 	var/charging = FALSE
@@ -214,6 +220,8 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
 	stat_attack = DEAD
 
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 /mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget()
 	. = ..()
 	if(. && isliving(target))
@@ -268,6 +276,9 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
 	speed = 3
 	move_to_delay = 3
+
+	max_level = 80
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 	var/can_act = TRUE
 	var/slash_width = 1
@@ -463,6 +474,9 @@
 	projectiletype = /obj/projectile/beam/water_jet
 	projectilesound = 'sound/effects/ordeals/gold/flea_attack.ogg'
 
+	max_level = 60
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 /mob/living/simple_animal/hostile/ordeal/sin_gloom/MeleeAction()
 	if(health <= maxHealth*0.5 && stat != DEAD)
 		walk_to(src, 0)
@@ -510,6 +524,9 @@
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 6 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
+
+	max_level = 80
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/ordeal/sin_pride/Move()
 	if(charging)
@@ -626,6 +643,10 @@
 	ranged = TRUE
 	projectiletype = /obj/projectile/thunder_tomahawk
 	projectilesound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
+
+	max_level = 80
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 	var/charged = FALSE
 	var/list/spawned_mobs = list()
 
@@ -687,6 +708,10 @@
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
 	move_to_delay = 4
+
+	max_level = 100
+	exp_attribute = PRUDENCE_ATTRIBUTE
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
 
@@ -748,6 +773,8 @@
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1)
 	guaranteed_butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1) //should make its own kind of meat when I get around to it
+	max_level = 100
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 /mob/living/simple_animal/hostile/ordeal/sin_wrath/AttackingTarget(atom/attacked_target)
 	. = ..()

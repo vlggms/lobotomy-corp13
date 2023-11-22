@@ -168,6 +168,9 @@
 	del_on_death = 1
 	vision_range = 18 //two screens away
 	minbodytemp = INHOSPITABLE_FOR_NESTING
+	exp = 0.5
+	max_level = 100
+	exp_attribute = FORTITUDE_ATTRIBUTE
 	var/panic_timer = 0
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/origin_nest
 

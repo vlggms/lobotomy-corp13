@@ -187,6 +187,8 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/abnormalities/babayaga/attack.ogg'
 	speak_emote = list("whispers")
+	max_level = 60
+	exp_attribute = PRUDENCE_ATTRIBUTE
 
 /obj/effect/temp_visual/giantwarning
 	name = "giant warning"
