@@ -344,17 +344,15 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/doomsday_calendar
 	abno_code = "M-04-146"//M-04-04-05 in LCB
 	abno_info = list(
-		"Performing any work on other abnormalities slowly reduced the Qliphoth Counter.",
-		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"This abnormality generates additional PE-boxes when the Qliphoth Counter is lower.",
-		"When an employee performed Instinct work, the Qliphoth Counter rose to the maximum.",
-		"When an employee performed Instinct work while the Qliphoth Counter was 4 or lower, Doomsday Calendar continuously dealt additional RED damage to them.",
-		"Instinct work was more successful at lower Qliphoth counters.",
+		"When an employee entered the Containment Unit of another Abnormality, Doomsday Calendar’s Qliphoth Counter eventually decreased.",
+		"The lower the Qliphoth Counter, the more PE-Boxes Doomsday Calender produced. Instinct Work also had a higher success rate.",
+		"When an employee performed Instinct Work, the Qliphoth Counter increased by 4.",
+		"While the Qliphoth Counter was below 5, Doomsday Calendar continuously dealt low RED damage to the employee during Instinct Work.",
+		"When the work result was Bad, the Qliphoth Counter lowered unless Instinct Work was performed.",
 		"When the Qliphoth Counter reached 0, Doomsday Calendar appeared at a department center with an entourage of clay dolls, dubbed M-04-145-A.",
-		"Offering human remains or the remains of M-04-145-A to Doomsday Calendar during suppression work aided in suppression.",
-		"If suppression work is performed too slowly, Doomsday Calendar will become progressively more dangerous.",
-		"Failure to complete suppression work led to the reduction of Qliphoth Counters near the location of Doomsday Calendar.")
-	abno_breach_damage_type = "Red"
+		"Offering the remains of M-04-145-A or employees to Doomsday Calendar aided in suppression. Failing to do so caused Doomsday Calendar to become progressively more dangerous.",
+		"If Doomsday Calender is not suppressed, it will deal BLACK damage to an entire department, and the Qliphoth Counter of all nearby Abnormalities will decrease.")
+	abno_breach_damage_type = "Red/Black"
 	abno_breach_damage_count = "High"
 	abno_resistances = list(RED_DAMAGE = "Normal", WHITE_DAMAGE = "Weak", BLACK_DAMAGE = "Endured", PALE_DAMAGE = "Weak")//for clay dolls
 
