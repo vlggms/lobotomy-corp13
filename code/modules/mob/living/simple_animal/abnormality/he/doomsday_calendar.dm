@@ -39,6 +39,7 @@
 		/datum/ego_datum/armor/impending_day
 		)
 	gift_type =  /datum/ego_gifts/impending_day
+	gift_message = "Let the blood flow, the fire ignite, and the star fall."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/player_count
@@ -220,7 +221,7 @@
 				EnableFire()
 			if(3)
 				for(var/mob/living/carbon/human/H in livinginview(10, src))
-					to_chat(H, span_boldwarning("[src] takes on an ominous appearance."))
+					to_chat(H, span_boldwarning("[src] takes on an ominous appearance and starts glowing."))
 				CheckFed()
 				SpawnAdds()
 				icon_state = "doomsday_charging"
