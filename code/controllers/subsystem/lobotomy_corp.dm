@@ -260,7 +260,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(ran_ordeal)
 		return
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
-	qliphoth_meltdown_amount = max(1, round(abno_amount * CONFIG_GET(number/qliphoth_meltdown_percent)))
+	// Less agents will decrease meltdown count, but more - increase it
+	var/agent_mod = 0.4 + (player_count * 0.1)
+	qliphoth_meltdown_amount = clamp(round(abno_amount * CONFIG_GET(number/qliphoth_meltdown_percent) * agent_mod), 1, abno_amount * 0.5)
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
 	// Honestly, I wish I could do it another way, but oh well
