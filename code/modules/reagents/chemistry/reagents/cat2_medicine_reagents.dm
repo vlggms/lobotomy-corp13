@@ -99,7 +99,7 @@
 	overdose_threshold = 25
 
 /datum/reagent/medicine/c2/probital/on_mob_life(mob/living/M)
-	M.adjustBruteLoss(-1.5*REM, FALSE)
+	M.adjustBruteLoss(-2.25*REM, FALSE)
 	var/ooo_youaregettingsleepy = 1.1
 	switch(round(M.getStaminaLoss()))
 		if(10 to 40)
