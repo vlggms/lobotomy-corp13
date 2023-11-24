@@ -209,7 +209,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Initialize()
 	. = ..()
-	ability_cooldown = world.time + rand(0, ability_cooldown_time)
+	ability_cooldown = world.time + rand(5 SECONDS, ability_cooldown_time)
 	retaliation_health = maxHealth * 0.7
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Destroy()
