@@ -3,7 +3,7 @@
 /obj/item/ego_weapon/city/ting_tang
 	name = "ting tang shank"
 	desc = "A twisted piece of metal. The shape makes very open wounds."
-	special = "This deals a random damage amount between 10% of max damage and max damage. Chances scale with sanity with a max of 50% instead of 10%."
+	special = "This deals a random damage amount between 50% and 100% of max damage. Untreated sanity damage will lower the minimum down to 10% depending on severity."
 	icon_state = "tingtang_shank"
 	inhand_icon_state = "tingtang_shank"
 	force = 27
