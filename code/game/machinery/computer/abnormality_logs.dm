@@ -12,10 +12,11 @@
 		dat += "<A href='byond://?src=[REF(src)];global_log_menu=1'>All logs</A><br><br>"
 	for(var/i = 1 to SSlobotomy_corp.all_abnormality_datums.len)
 		var/datum/abnormality/A = SSlobotomy_corp.all_abnormality_datums[i]
+		var/understanding = round((A.understanding / A.max_understanding) * 100)
 		if(!LAZYLEN(A.work_logs))
-			dat += "\[[THREAT_TO_NAME[A.threat_level]]\] [A.name]"
+			dat += "\[[THREAT_TO_NAME[A.threat_level]]\] [A.name] ([understanding]%)"
 		else
-			dat += "<A href='byond://?src=[REF(src)];log_menu=[i]'>\[[THREAT_TO_NAME[A.threat_level]]\] [A.name]</A>"
+			dat += "<A href='byond://?src=[REF(src)];log_menu=[i]'>\[[THREAT_TO_NAME[A.threat_level]]\] [A.name] ([understanding]%)</A>"
 		dat += "<br>"
 	var/datum/browser/popup = new(user, "abno_logs", "Abnormality Logging Console", 400, 700)
 	popup.set_content(dat)
