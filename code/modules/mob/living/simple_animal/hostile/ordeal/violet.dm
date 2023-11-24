@@ -209,7 +209,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Initialize()
 	. = ..()
-	ability_cooldown = world.time + rand(4 SECONDS, 8 SECONDS)
+	ability_cooldown = world.time + rand(5 SECONDS, ability_cooldown_time)
 	retaliation_health = maxHealth * 0.7
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/Destroy()
@@ -311,7 +311,7 @@
 // Behold, the ugliest piece of code
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red/proc/PerformAbility(atom/attack_target)
 	been_hit = list()
-	ability_cooldown = world.time + ability_cooldown_time + 6 SECONDS
+	ability_cooldown = world.time + ability_cooldown_time + rand(3 SECONDS, 9 SECONDS)
 	var/turf/T = get_turf(attack_target)
 	var/angle1 = rand(180, 360)
 	var/angle2 = angle1 - 180
@@ -386,7 +386,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/white/proc/PerformAbility(atom/attack_target)
 	been_hit = list()
-	ability_cooldown = world.time + ability_cooldown_time + 6 SECONDS
+	ability_cooldown = world.time + ability_cooldown_time + rand(3 SECONDS, 9 SECONDS)
 	var/turf/T = get_turf(attack_target)
 	var/angle1 = rand(180, 360)
 	var/angle2 = angle1 - rand(140, 220)
@@ -471,7 +471,7 @@
 // Behold, the ugliest piece of code
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/black/proc/PerformAbility(atom/attack_target)
 	been_hit = list()
-	ability_cooldown = world.time + ability_cooldown_time + 6 SECONDS
+	ability_cooldown = world.time + ability_cooldown_time + rand(3 SECONDS, 9 SECONDS)
 	var/turf/T = get_turf(attack_target)
 	var/angle1 = rand(180, 360)
 	var/angle2 = angle1 - 180
