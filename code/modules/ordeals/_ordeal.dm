@@ -60,9 +60,8 @@
 		if(!H.client || !H.ckey)
 			continue
 		SSpersistence.agent_rep_change[H.ckey] += level
-	/// If it was a midnight and we got to it before time limit after previously completing a core suppression
-	if(level == 4 && SSlobotomy_corp.core_suppression_state == 2 && \
-	start_time <= CONFIG_GET(number/suppression_time_limit))
+	/// If it was a midnight and we got to it before time limit
+	if(level == 4 && start_time <= CONFIG_GET(number/suppression_time_limit))
 		// Extra cores, and announced!
 		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions, TRUE, TRUE), 15 SECONDS)
 	/// If it was a dusk - we end running core suppression
