@@ -155,7 +155,12 @@
 	max_value = 30
 
 /datum/facility_upgrade/agent_spawn_stats_bonus/Upgrade()
-	value = min(max_value, value + (max_value * 0.25))
+	var/increase = max_value * 0.25
+	value = min(max_value, value + increase)
+	// Applies newly purchased bonus to all living agents
+	for(var/mob/living/carbon/human/H in AllLivingAgents())
+		H.adjust_all_attribute_levels(increase)
+		to_chat(H, span_notice("Facility upgrade increased your attributes by [increase] points!"))
 	return ..()
 	cost += 1
 
