@@ -161,7 +161,7 @@
 	for(var/mob/living/carbon/human/H in AllLivingAgents())
 		H.adjust_all_attribute_levels(increase)
 		to_chat(H, span_notice("Facility upgrade increased your attributes by [increase] points!"))
-	return ..()
+	. = ..()
 	cost += 1
 
 // Abnormality upgrades
