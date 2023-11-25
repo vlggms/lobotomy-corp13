@@ -176,8 +176,8 @@
 			order_list = list(
 				new /datum/data/extraction_cargo("L Corp Regeneration Augmentation Kit", /obj/item/safety_kit, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Slowing Trap Generator", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/clerkbot_gadget, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/vitals_projector, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/powered_gadget/clerkbot_gadget, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Taser", /obj/item/powered_gadget/handheld_taser, 700, L_CORP_REP) = 1,
 				)
 
