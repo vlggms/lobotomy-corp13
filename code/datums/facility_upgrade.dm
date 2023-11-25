@@ -157,6 +157,7 @@
 /datum/facility_upgrade/agent_spawn_stats_bonus/Upgrade()
 	value = min(max_value, value + (max_value * 0.25))
 	return ..()
+	cost += 1
 
 // Abnormality upgrades
 /datum/facility_upgrade/picking_abno_amount
