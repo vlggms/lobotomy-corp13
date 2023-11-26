@@ -14,10 +14,6 @@
 "cn" = (
 /turf/closed/wall/rust,
 /area/city/outskirts)
-"cC" = (
-/mob/living/simple_animal/hostile/ordeal/sin_wrath,
-/turf/open/floor/plating/rust,
-/area/city/outskirts)
 "dZ" = (
 /obj/docking_port/stationary{
 	dwidth = 6;
@@ -56,10 +52,6 @@
 /obj/item/ksyringe,
 /turf/open/floor/material,
 /area/city/outskirts)
-"hA" = (
-/obj/structure/fence,
-/turf/open/floor/stone,
-/area/city/outskirts)
 "hD" = (
 /obj/structure/rack,
 /obj/item/ksyringe,
@@ -97,14 +89,6 @@
 /obj/item/attribute_increase/medium,
 /obj/item/attribute_increase/medium,
 /turf/open/floor/material,
-/area/city/outskirts)
-"jy" = (
-/mob/living/simple_animal/hostile/ordeal/sin_lust,
-/turf/open/floor/plasteel/cult,
-/area/city/outskirts)
-"jH" = (
-/mob/living/simple_animal/hostile/ordeal/sin_gloom,
-/turf/open/floor/plating/rust,
 /area/city/outskirts)
 "jM" = (
 /obj/effect/landmark/abnospawn/hardsupport,
@@ -315,6 +299,10 @@
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/mineral/titanium/tiled,
 /area/city/outskirts)
+"DP" = (
+/mob/living/simple_animal/hostile/ordeal/sin_pride,
+/turf/open/floor/plasteel/cult,
+/area/city/outskirts)
 "Ec" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/decal/cleanable/blood/tracks,
@@ -395,10 +383,6 @@
 /obj/effect/landmark/latejoin,
 /turf/open/floor/grass,
 /area/city/outskirts)
-"Kt" = (
-/mob/living/simple_animal/hostile/ordeal/sin_sloth,
-/turf/open/floor/plating/rust,
-/area/city/outskirts)
 "KE" = (
 /obj/effect/landmark/abnospawn/easysupport,
 /turf/open/floor/material,
@@ -430,6 +414,10 @@
 "OY" = (
 /obj/item/stack/spacecash/c10,
 /turf/open/floor/plasteel/cult,
+/area/city/outskirts)
+"Pp" = (
+/mob/living/simple_animal/hostile/abnormality/last_shot,
+/turf/open/floor/grass/fakebasalt,
 /area/city/outskirts)
 "PT" = (
 /obj/structure/mineral_door/gold,
@@ -45088,10 +45076,10 @@ cn
 Fj
 Cw
 Cw
+DP
 Fj
 Fj
-Fj
-Kt
+Cw
 Cw
 Fj
 cn
@@ -45343,7 +45331,7 @@ Fj
 Fj
 cn
 Fj
-jH
+Cw
 Cw
 Fj
 Fj
@@ -45601,11 +45589,11 @@ Fj
 cn
 Fj
 Cw
-Cw
-jy
+TF
 Fj
 Fj
-Cw
+Fj
+TF
 Cw
 Fj
 cn
@@ -46117,7 +46105,7 @@ Fj
 Fj
 Fj
 Fj
-Fj
+DP
 Fj
 Fj
 Fj
@@ -46887,8 +46875,8 @@ cn
 AQ
 Cw
 Cw
-cC
 Cw
+TF
 Cw
 Cw
 Fj
@@ -48662,10 +48650,10 @@ qy
 Of
 Of
 Of
-hA
-hA
-hA
-hA
+qY
+qY
+qY
+qY
 qY
 qY
 qY
@@ -50994,7 +50982,7 @@ qy
 qy
 qy
 qy
-qy
+Pp
 qy
 qy
 qy
@@ -52798,7 +52786,7 @@ qy
 qy
 qy
 qy
-qy
+Pp
 qy
 qy
 qy
@@ -55106,7 +55094,7 @@ qy
 qy
 qy
 qy
-qy
+Pp
 qy
 qy
 qy
