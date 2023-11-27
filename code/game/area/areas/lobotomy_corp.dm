@@ -300,7 +300,7 @@
 	icon_state = "library"
 	requires_power = FALSE
 	has_gravity = STANDARD_GRAVITY
-	sound_enviroment = SOUND_AREA_STANDARD_STATION
+	sound_environment = SOUND_AREA_STANDARD_STATION
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
 //Areas for Library
