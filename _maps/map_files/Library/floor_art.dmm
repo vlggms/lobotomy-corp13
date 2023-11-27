@@ -1,21 +1,21 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "b" = (
 /turf/open/floor/fakepit{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "d" = (
 /obj/effect/decal/cleanable/greenglow,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "f" = (
 /obj/structure/alien/resin/wall/creature,
 /obj/item/wallframe/painting,
 /turf/closed/indestructible/rock,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "g" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/beer,
@@ -27,12 +27,12 @@
 	pixel_x = -9
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "h" = (
 /obj/item/broken_bottle,
 /obj/structure/table/wood,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "i" = (
 /obj/item/book/random{
 	pixel_y = -11;
@@ -54,71 +54,71 @@
 	},
 /obj/structure/table/wood,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "j" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
 	dir = 1
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "k" = (
 /obj/structure/fluff/arc/angela,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "l" = (
 /turf/open/space/basic,
 /area/space)
 "m" = (
 /obj/item/storage/crayons,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "n" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/fakepit{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "o" = (
 /obj/item/paint/red,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "p" = (
 /obj/structure/statue/plasma/scientist,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "q" = (
 /obj/structure/statue/sandstone/venus{
 	anchored = 1
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "r" = (
 /obj/structure/bookcase/random/fiction,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "s" = (
 /obj/item/paint/white,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "t" = (
 /obj/structure/firetree,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "u" = (
 /obj/structure/alien/resin/wall/creature,
 /obj/item/flashlight/spotlight,
 /turf/closed/indestructible/rock,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "v" = (
 /obj/item/paint,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "w" = (
 /obj/item/toy/crayon/blue,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "y" = (
 /obj/item/toy/plush/netzach,
 /obj/item/reagent_containers/food/drinks/beer{
@@ -131,16 +131,16 @@
 	},
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "z" = (
 /obj/item/grown/log/tree,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "D" = (
 /obj/structure/easel,
 /obj/item/canvas/nineteen_nineteen,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "G" = (
 /obj/structure/fluff/drake_statue{
 	pixel_x = 0;
@@ -148,29 +148,29 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "I" = (
 /turf/closed/indestructible/fakeglass,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "J" = (
 /obj/item/toy/crayon/rainbow,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "K" = (
 /obj/structure/bookcase/random/fiction,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "N" = (
 /obj/item/toy/crayon,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "P" = (
 /obj/structure/easel,
 /obj/item/canvas/nineteen_nineteen,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "R" = (
 /obj/item/book/random{
 	pixel_y = -11;
@@ -191,31 +191,31 @@
 	pixel_y = -8
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "S" = (
 /obj/item/broken_bottle,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "U" = (
 /obj/structure/statue/sandstone/venus{
 	anchored = 1;
 	dir = 8
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "W" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "X" = (
 /obj/structure/firetree,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 "Y" = (
 /obj/structure/alien/resin/wall/creature,
 /turf/closed/indestructible/rock,
-/area/city/backstreets_room)
+/area/library_floors/floor_art)
 
 (1,1,1) = {"
 l

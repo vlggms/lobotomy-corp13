@@ -6,18 +6,18 @@
 	resistance_flags = 64
 	},
 /turf/open/lava,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ao" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "aY" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
 /obj/effect/decal/cleanable/ash,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "cw" = (
 /obj/structure/railing{
 	dir = 1;
@@ -25,30 +25,30 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ei" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 8
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "eI" = (
 /obj/item/target,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "gU" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "hL" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "hT" = (
 /obj/structure/railing{
 	dir = 4;
@@ -56,194 +56,194 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "hY" = (
 /obj/item/target,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ib" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 6
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "it" = (
 /obj/structure/chair/comfy,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ja" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "jN" = (
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "jZ" = (
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "kV" = (
 /obj/structure/weightmachine/weightlifter,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "my" = (
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/shi_assassin,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "nv" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ou" = (
 /obj/item/toy/plush/mosb,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "pz" = (
 /obj/structure/railing{
 	name = "invincible railing";
 	resistance_flags = 64
 	},
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "qz" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "rn" = (
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "rr" = (
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "rv" = (
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/seven,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ry" = (
 /obj/structure/table/wood,
 /obj/item/lighter,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "rW" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ss" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "sO" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 5
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "tK" = (
 /obj/structure/table/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "uL" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/grille,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "vb" = (
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/index,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "vX" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "we" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "wu" = (
 /obj/machinery/computer/security/wooden_tv,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ww" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "wP" = (
 /obj/structure/table/wood,
 /obj/item/storage/fancy/cigarettes/cigpack_robust,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "xb" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "xB" = (
 /obj/structure/table/wood,
 /obj/item/storage/fancy/cigarettes/cigpack_robustgold,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "yd" = (
 /turf/open/floor/holofloor/basalt,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "yq" = (
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "zF" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "AF" = (
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/dawn/zwei,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "AW" = (
 /turf/open/lava{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Br" = (
 /obj/structure/chair/comfy{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Di" = (
 /obj/item/toy/plush/melt,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Dt" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 9
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "DP" = (
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 4
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "El" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
@@ -252,39 +252,39 @@
 	dir = 1
 	},
 /turf/open/lava,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "EB" = (
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ED" = (
 /obj/effect/decal/cleanable/ash,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "EU" = (
 /obj/item/chair/wood/wings,
 /obj/item/clothing/mask/cigarette,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Fo" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/closed/indestructible/syndicate,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "FC" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Gb" = (
 /obj/structure/lattice/catwalk,
 /turf/open/lava,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Gd" = (
 /obj/structure/table/wood,
 /obj/item/clothing/mask/cigarette,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "GM" = (
 /obj/item/toy/plush/gebura,
 /obj/item/ego_weapon/mimicry/kali{
@@ -296,21 +296,21 @@
 	pixel_y = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "GT" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/mob_spawn/human/corpse/assistant,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "HC" = (
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "HK" = (
 /obj/structure/chair/comfy,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "HM" = (
 /obj/structure/railing{
 	dir = 5;
@@ -319,33 +319,33 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "IM" = (
 /obj/effect/decal/cleanable/blood/gibs,
 /obj/effect/mob_spawn/human/corpse/assistant,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Jq" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "JF" = (
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/bladelineage,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "LT" = (
 /obj/structure/table/reinforced,
 /obj/item/gun/ego_gun/city/thumb,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Mp" = (
 /obj/structure/bookcase/random,
 /turf/closed/indestructible/syndicate,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "MR" = (
 /turf/closed/indestructible/syndicate,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Ov" = (
 /obj/structure/railing{
 	dir = 10;
@@ -354,7 +354,7 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Ox" = (
 /obj/structure/railing{
 	dir = 8;
@@ -362,7 +362,7 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ON" = (
 /obj/structure/railing{
 	dir = 9;
@@ -371,17 +371,17 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "PV" = (
 /obj/structure/chair/comfy{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Qd" = (
 /obj/structure/weightmachine/stacklifter,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Rm" = (
 /obj/item/chair/wood/wings{
 	dir = 4
@@ -389,39 +389,39 @@
 /obj/item/clothing/mask/cigarette,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Sf" = (
 /obj/item/chair/wood,
 /obj/effect/decal/cleanable/ash,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Sw" = (
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/kurokumo,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "SJ" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "TW" = (
 /obj/item/clothing/mask/cigarette,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Ur" = (
 /obj/effect/decal/cleanable/ash,
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "UV" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "VQ" = (
 /obj/structure/railing{
 	dir = 6;
@@ -430,13 +430,13 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "Xg" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "XD" = (
 /obj/structure/table/wood,
 /obj/item/lighter{
@@ -444,7 +444,7 @@
 	pixel_x = -8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "XL" = (
 /turf/open/space/basic,
 /area/space)
@@ -452,15 +452,15 @@
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/liu/fist,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "YX" = (
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ZO" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/grille,
 /turf/open/floor/mineral/plastitanium,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 "ZQ" = (
 /obj/item/toy/plush/binah,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -468,7 +468,7 @@
 	pixel_x = 7
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_language)
 
 (1,1,1) = {"
 XL
