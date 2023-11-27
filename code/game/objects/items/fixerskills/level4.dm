@@ -15,5 +15,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
+
+	if (owner.stat)
+		return FALSE
+
 	new /obj/effect/timestop(get_turf(owner), timestop_range, timestop_duration, list(owner))
 	StartCooldown()

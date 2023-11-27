@@ -40,6 +40,9 @@
 	if(!..())
 		return FALSE
 
+	if (owner.stat == DEAD)
+		return FALSE
+
 	var/dodgelanding
 	if(owner.dir == 1)
 		dodgelanding = locate(owner.x, owner.y + 5 * direction, owner.z)
