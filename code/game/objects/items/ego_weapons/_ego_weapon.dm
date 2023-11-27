@@ -25,6 +25,17 @@
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
+	var/obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength/A = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if (istype(A))
+		if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+			var/heal_amt = force*0.02
+			if(isanimal(target))
+				var/mob/living/simple_animal/S = target
+				if(S.damage_coeff.getCoeff(damtype) > 0)
+					heal_amt *= S.damage_coeff.getCoeff(damtype)
+				else
+					heal_amt = 0
+			user.adjustBruteLoss(-heal_amt)
 	. = ..()
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
