@@ -1,17 +1,17 @@
 /mob/living/simple_animal/hostile/ordeal/jimbo
 	name = "jimbo"
-	desc = "die."
+	desc = "''jimbo.''- Egor"
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
-	icon_state = "green_bot"
-	icon_living = "green_bot"
+	icon_state = "jimbo"
+	icon_living = "jimbo"
 	icon_dead = "green_bot_dead"
 	faction = list("green_ordeal")
 	pixel_x = -8
 	base_pixel_x = -8
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
-	maxHealth = 9000
-	health = 9000
+	maxHealth = 9001
+	health = 9001
 	speed = 0.5
 	rapid_melee = 12
 	move_to_delay = 4
@@ -28,7 +28,7 @@
 	projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.29, BLACK_DAMAGE = 2, PALE_DAMAGE = -2)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/green_advanced = 1,
@@ -143,12 +143,12 @@
 /mob/living/simple_animal/hostile/ordeal/jimbo/spawn_gibs()
 	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
 
-/mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_dust()
+/mob/living/simple_animal/hostile/ordeal/jimbo/spawn_dust()
 	return
 
 /mob/living/simple_animal/hostile/ordeal/jimbo/proc/StartReloading()
 	reloading = TRUE
-	icon_state = "green_bot_reload"
+	icon_state = "jimbo_reload"
 	playsound(get_turf(src), 'sound/effects/ordeals/green/cooldown.ogg', 50, FALSE)
 	for(var/i = 1 to 8)
 		new /obj/effect/temp_visual/green_noon_reload(get_turf(src))
