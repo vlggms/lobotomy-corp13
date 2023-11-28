@@ -41,6 +41,8 @@
 		return
 	var/list/potential_consoles = list()
 	for(var/obj/machinery/computer/abnormality/A in GLOB.abnormality_consoles)
+		if(A == console)
+			continue
 		if(!A.can_meltdown)
 			continue
 		if(!A.datum_reference || !A.datum_reference.current)
