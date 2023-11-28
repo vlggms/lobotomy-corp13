@@ -160,7 +160,7 @@
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 			if(attribute_given == 0)
 				if(was_melting)
-					attribute_given = threat_level //pity stats on meltdowns
+					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 				else
 					to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
 			user.adjust_attribute_level(attribute_type, attribute_given)
