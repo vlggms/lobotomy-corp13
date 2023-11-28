@@ -38,29 +38,20 @@
 
 	for(var/am in thrownatoms)
 		var/atom/movable/AM = am
-		if(AM == user || AM.anchored || !isliving(AM))
+		if(AM == user || AM.anchored || !isliving(AM) || ishuman(AM))
 			continue
 
 		throwtarget = get_edge_target_turf(user, get_dir(user, get_step_away(AM, user)))
 		distfromcaster = get_dist(user, AM)
 		if(distfromcaster == 0)
-			if(isliving(AM))
-				var/mob/living/M = AM
-				if (ishuman(M))
-					M.Paralyze(stun_amt * 0.5)
-					M.adjustRedLoss(15)
-				else
-					M.Stun(stun_amt, ignore_canstun = TRUE)
-					M.adjustRedLoss(50)
-				to_chat(M, "<span class='userdanger'>You're slammed into the floor by [user]!</span>")
+			var/mob/living/M = AM
+			M.Stun(stun_amt, ignore_canstun = TRUE)
+			M.adjustRedLoss(50)
+			to_chat(M, "<span class='userdanger'>You're slammed into the floor by [user]!</span>")
 		else
 			new /obj/effect/temp_visual/gravpush(get_turf(AM), get_dir(user, AM)) //created sparkles will disappear on their own
-			if(isliving(AM))
-				var/mob/living/M = AM
-				if (ishuman(M))
-					M.Paralyze(stun_amt * 0.25)
-				else
-					M.Stun(stun_amt * 0.5, ignore_canstun = TRUE)
-				to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
+			var/mob/living/M = AM
+			M.Stun(stun_amt * 0.5, ignore_canstun = TRUE)
+			to_chat(M, "<span class='userdanger'>You're thrown back by [user]!</span>")
 			AM.safe_throw_at(throwtarget, ((clamp((maxthrow - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, maxthrow))), 1,user, force = repulse_force)//So stuff gets tossed around at the same time.
 	StartCooldown()
