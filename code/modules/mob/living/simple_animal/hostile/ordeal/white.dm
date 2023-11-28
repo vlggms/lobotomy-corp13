@@ -684,7 +684,10 @@
 			continue
 		if(get_dist(src, H) < 8)
 			continue
-		potential_teleports += pick(get_adjacent_open_turfs(H))
+		var/list/adj_turfs = get_adjacent_open_turfs(H)
+		if(!LAZYLEN(adj_turfs))
+			continue
+		potential_teleports += pick(adj_turfs)
 	if(!LAZYLEN(potential_teleports))
 		return // Nowhere to run!
 	var/turf/target_turf = pick(potential_teleports)
