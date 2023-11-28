@@ -32,9 +32,10 @@
 		meltdown_count_increase += 1
 		meltdown_time_multiplier = max(0.1, meltdown_time_multiplier - 0.2)
 
-/datum/suppression/command/proc/OnAbnoMeltdown(obj/machinery/computer/abnormality/source, melt_removed = TRUE)
+/datum/suppression/command/proc/OnAbnoMeltdown(datum/abnormality/source, melt_removed = TRUE)
 	SIGNAL_HANDLER
-	if(!istype(source))
+	var/obj/machinery/computer/abnormality/console = source.console
+	if(!istype(console))
 		return
 	if(melt_removed)
 		return
@@ -53,7 +54,7 @@
 	if(!LAZYLEN(potential_consoles))
 		return
 	var/obj/machinery/computer/abnormality/A = pick(potential_consoles)
-	source.Beam(A, icon_state = "volt_ray", time = 5 SECONDS)
-	playsound(source, 'sound/weapons/zapbang.ogg', 50, TRUE)
+	console.Beam(A, icon_state = "volt_ray", time = 5 SECONDS)
+	playsound(console, 'sound/weapons/zapbang.ogg', 50, TRUE)
 	playsound(A, 'sound/weapons/zapbang.ogg', 50, TRUE)
 	A.start_meltdown(MELTDOWN_NORMAL, round(40 * meltdown_time_multiplier), round(60 * meltdown_time_multiplier))
