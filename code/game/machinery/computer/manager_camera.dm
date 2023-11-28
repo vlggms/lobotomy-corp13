@@ -153,19 +153,19 @@
 				success = TRUE
 		if(success)
 			ammo--
-			to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
+			to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 
 	// Non-AOE
 	if(ishuman(clicked_atom))
 		clickedEmployee(source, clicked_atom)
 		ammo--
-		to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
+		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 	if(ishostile(clicked_atom))
 		clickedAbno(source, clicked_atom)
 		ammo--
-		to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
+		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/human/H) //contains carbon copy code of fire action
