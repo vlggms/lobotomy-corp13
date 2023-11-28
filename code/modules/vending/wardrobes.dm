@@ -346,7 +346,7 @@
 					/obj/item/clothing/suit/aristocrat/brown = 1,
 					/obj/item/clothing/suit/aristocrat/blue = 1,
 					/obj/item/clothing/shoes/laceup = 2,
-					/obj/item/clothing/accessory/fixer_badge = 2)
+					/obj/item/clothing/accessory/lawyers_badge = 2)
 	refill_canister = /obj/item/vending_refill/wardrobe/law_wardrobe
 	payment_department = ACCOUNT_SRV
 /obj/item/vending_refill/wardrobe/law_wardrobe

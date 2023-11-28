@@ -252,30 +252,43 @@
 //OBJECTION!//
 //////////////
 
-/obj/item/clothing/accessory/fixer_badge
+/obj/item/clothing/accessory/lawyers_badge
+	name = "attorney's badge"
+	desc = "Fills you with the conviction of JUSTICE. Lawyers tend to want to show it to everyone they meet."
+	icon_state = "lawyerbadge"
+/obj/item/clothing/accessory/lawyers_badge/attack_self(mob/user)
+	if(prob(1))
+		user.say("The testimony contradicts the evidence!", forced = "attorney's badge")
+	user.visible_message("<span class='notice'>[user] shows [user.p_their()] attorney's badge.</span>", "<span class='notice'>You show your attorney's badge.</span>")
+
+/obj/item/clothing/accessory/lawyers_badge/on_uniform_equip(obj/item/clothing/under/U, mob/living/user)
+	RegisterSignal(user, COMSIG_LIVING_SLAM_TABLE, .proc/table_slam)
+	user.bubble_icon = "lawyer"
+
+/obj/item/clothing/accessory/lawyers_badge/on_uniform_dropped(obj/item/clothing/under/U, mob/living/user)
+	UnregisterSignal(user, COMSIG_LIVING_SLAM_TABLE)
+	user.bubble_icon = initial(user.bubble_icon)
+
+/obj/item/clothing/accessory/lawyers_badge/proc/table_slam(mob/living/source, obj/structure/table/the_table)
+	SIGNAL_HANDLER
+	INVOKE_ASYNC(src, .proc/handle_table_slam, source)
+
+/obj/item/clothing/accessory/lawyers_badge/proc/handle_table_slam(mob/living/user)
+	user.say("Objection!!", spans = list(SPAN_YELL), forced=TRUE)
+
+// LOBOTOMYCORPORATION EDIT ADDITION START - this badge originally replaced the lawyers one, its better to have it seperate for the sake of modularity, but im not fully modularizing this in a emote PR
+
+/obj/item/clothing/accessory/lawyers_badge/fixer
 	name = "fixer's badge"
 	desc = "Fixers tend to want to show it to everyone they meet. Fills you with the conviction of JUSTICE."
 	icon_state = "lawyerbadge"
 
-/obj/item/clothing/accessory/fixer_badge/attack_self(mob/user)
+/obj/item/clothing/accessory/lawyers_badge/fixer/attack_self(mob/user)
 	if(prob(1))
 		user.say("Nothing between me and a payday!", forced = "fixer's badge")
 	user.visible_message("<span class='notice'>[user] shows [user.p_their()] fixer's badge.</span>", "<span class='notice'>You show your fixer's badge.</span>")
 
-/obj/item/clothing/accessory/fixer_badge/on_uniform_equip(obj/item/clothing/under/U, mob/living/user)
-	RegisterSignal(user, COMSIG_LIVING_SLAM_TABLE, .proc/table_slam)
-	user.bubble_icon = "lawyer"
-
-/obj/item/clothing/accessory/fixer_badge/on_uniform_dropped(obj/item/clothing/under/U, mob/living/user)
-	UnregisterSignal(user, COMSIG_LIVING_SLAM_TABLE)
-	user.bubble_icon = initial(user.bubble_icon)
-
-/obj/item/clothing/accessory/fixer_badge/proc/table_slam(mob/living/source, obj/structure/table/the_table)
-	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/handle_table_slam, source)
-
-/obj/item/clothing/accessory/fixer_badge/proc/handle_table_slam(mob/living/user)
-	user.say("Objection!!", spans = list(SPAN_YELL), forced=TRUE)
+// LOBOTOMYCORPORATION EDIT ADDITION END
 
 ////////////////
 //HA HA! NERD!//
