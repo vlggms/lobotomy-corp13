@@ -133,9 +133,10 @@
 		return ..()
 
 	var/obj/structure/table/the_table = O
-	var/is_right_clicking = LAZYACCESS(params2list(params), RIGHT_CLICK)
+//	var/is_right_clicking = LAZYACCESS(params2list(params), RIGHT_CLICK) LOBOTOMYCORPORATION EDIT REMOVAL - we dont use combat mode
 
-	if(is_right_clicking && table_smacks_left == initial(table_smacks_left)) // so you can't do 2 weak slaps followed by a big slam
+//	if(is_right_clicking && table_smacks_left == initial(table_smacks_left)) // so you can't do 2 weak slaps followed by a big slam // LOBOTOMYCORPORATION EDIT CHANGE OLD - we dont use combat mode
+	if((user.a_intent == INTENT_HARM) && table_smacks_left == initial(table_smacks_left)) // LOBOTOMYCORPORATION EDIT CHANGE NEW - we dont use combat mode
 		transform = transform.Scale(5) // BIG slap
 		if(HAS_TRAIT(user, TRAIT_HULK))
 			transform = transform.Scale(2)
