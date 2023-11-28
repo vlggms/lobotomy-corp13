@@ -325,6 +325,10 @@
 	icon_dead = "ambermidnight_dead"
 	faction = list("amber_ordeal")
 
+	ego_list = list(
+		/datum/ego_datum/armor/eternal_feast
+		)
+
 	light_color = COLOR_YELLOW
 	light_range = 4
 	light_power = 1

@@ -201,6 +201,10 @@
 	death_sound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
 	stat_attack = HARD_CRIT
 
+	ego_list = list(
+		/datum/ego_datum/armor/god_delusion
+		)
+
 	var/ability_cooldown
 	var/ability_cooldown_time = 14 SECONDS
 	var/retaliation_health = 10 // Initialized later

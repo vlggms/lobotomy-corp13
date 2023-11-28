@@ -1,12 +1,12 @@
-// Ordeal armor for midnight. There's not really a stat total besides 240 unless you're doing some silly stuff. Atleast it would be semi free unlike realized.
+// Ordeal armor for midnight. There's not really a stat total besides 240 unless you're doing some silly stuff then it probably should be lower unless you want pre 19Kirie4 repentance situation.
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal
 	icon = 'icons/obj/clothing/ego_gear/ordeal.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/ordeal.dmi'
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/eternal_feast //well rounded and provides good resistances to red and black. No ability or passive since I had no ideas for it
-	name = "Endless Feast"
-	desc = ""
+	name = "Endless feast"
+	desc = "Hey you know with this stat spread it might not be that bad for the claw"
 	icon_state = "eternal_feast"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240
 	attribute_requirements = list(
@@ -17,10 +17,11 @@
 							)
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose //very high stats at the cost of slowing you down. Not as extreme as grosshammmer though.
-	name = "Painful Purpose"
+	name = "Painful purpose"
 	desc = "A heavy armor made as solace of the end of all.\nProvides excellent protection at the cost of speed."
 	slowdown = 0.75
 	icon_state = "painful_purpose"
+	hat = /obj/item/clothing/head/ego_hat/painful_purpose
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 80) // 300
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -29,9 +30,16 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
+/obj/item/clothing/head/ego_hat/painful_purpose
+	name = "Final helix"
+	desc = "Todo: put something funny here."
+	icon_state = "painful_purpose"
+	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
+
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march //provides a sanity healing aura simular to chuckles. also realized clown smiling at me armor stat wise being great red and white and poor black and pale.
-	name = "Meaningless March"
-	desc = "We live in a society.\nProvides a small sp healing aura"
+	name = "Meaningless march"
+	desc = "Want to know how I got these scares?\nCauses the wearer to make themself and others around them laugh healing their sp."
 	icon_state = "meaningless_march"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 40) // 220
 	attribute_requirements = list(
@@ -65,10 +73,10 @@
 	for(var/mob/living/carbon/human/L in view(3, user))
 		if(L.stat != DEAD)
 			L.emote("laugh")
-			L.adjustSanityLoss(-5)//0.33 sp per second if that is too much then Kirie what hell.
+			L.adjustSanityLoss(-5)//0.33 sp per second. probably could be buffed but knowing Kirie she's probaby going to want me to change this to a stat spread to waw tier.
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//200 total can shift between 4 armor modes with a minute cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor and has the ability to freely switch with its ability.
-	name = "Delusionist's End"
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//200 total can shift between 4 armor modes with a 30 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
+	name = "Delusionist's end"
 	desc = "This is a placeholder."
 	icon_state = "delusion_red"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 200
@@ -155,12 +163,11 @@
 		return FALSE
 	return TRUE
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength //haulers might be too strong with 220 though.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength //trades speed and total armor for having heath and mind haulers for all melee ego weapons. Also slows you down due to how sweepers are slow. This turns the user into more of a tank trading speed for survivability with both life steal and good red and black.
 	name = "Familial Strength"
-	desc = "Causes all melee weapons to heal you 2% of the weapons force in hp and sp.\nSlows you down a small bit."
-	icon_state = "familial_strength"
-	slowdown = 0.2
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 50) // 220
+	desc = "somether here. Causes all melee weapons to heal you 2% of the weapons force in hp and sp.\nSlows you down a small bit."//It's percent based to prevent fast attacking weapons from healing a shit ton while slower weapons not really healing at all.
+	slowdown = 0.25
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 20, BLACK_DAMAGE = 80, PALE_DAMAGE = 50) // 220
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
