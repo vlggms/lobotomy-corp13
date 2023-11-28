@@ -1,4 +1,3 @@
-
 /obj/item/book/granter/action/skill
 	granted_action = null
 	actionname = null
@@ -51,7 +50,6 @@
 	name = "Dash"
 	cooldown_time = 30
 	var/direction = 1
-	var/level = 1
 
 /datum/action/cooldown/dash/Trigger()
 	if(!..())
