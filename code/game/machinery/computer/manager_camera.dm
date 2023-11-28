@@ -145,11 +145,11 @@
 	if(SSlobotomy_corp.manager_bullet_area > -1)
 		var/success = FALSE
 		for(var/mob/living/L in range(SSlobotomy_corp.manager_bullet_area, clicked_atom))
-			if(ishuman(clicked_atom))
-				clickedEmployee(source, clicked_atom)
+			if(ishuman(L))
+				clickedemployee(source, L)
 				success = TRUE
-			if(ishostile(clicked_atom))
-				clickedAbno(source, clicked_atom)
+			if(ishostile(L))
+				clickedabno(source, L)
 				success = TRUE
 		if(success)
 			ammo--
