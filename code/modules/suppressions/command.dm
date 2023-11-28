@@ -30,7 +30,7 @@
 	SIGNAL_HANDLER
 	if(ordeal)
 		meltdown_count_increase += 1
-		meltdown_time_multiplier -= 0.2
+		meltdown_time_multiplier = max(0.1, meltdown_time_multiplier - 0.2)
 
 /datum/suppression/command/proc/OnAbnoMeltdown(obj/machinery/computer/abnormality/source, melt_removed = TRUE)
 	SIGNAL_HANDLER
