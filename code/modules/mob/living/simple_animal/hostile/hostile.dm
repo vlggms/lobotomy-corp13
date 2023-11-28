@@ -193,8 +193,8 @@
 /mob/living/simple_animal/hostile/proc/DamageEffect(amount, damtype)
 	//Code stolen from attack_threshold_check() in animal_defense.dm
 	var/temp_damage = amount
-	if(!damage_coeff.getCoeff(damtype))
-		temp_damage = 0
+	if(islist(damage_coeff))
+		temp_damage *= damage_coeff[damtype]
 	else
 		temp_damage *= damage_coeff.getCoeff(damtype)
 
