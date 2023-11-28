@@ -47,7 +47,7 @@
 			if(!ispath(core_type) || !(core_type in SSlobotomy_corp.available_core_suppressions))
 				return FALSE
 			selected_core_type = core_type
-			to_chat(usr, "<span class='notice'>[initial(selected_core_type.name)] has been selected!</span>")
+			to_chat(usr, span_notice("[initial(selected_core_type.name)] has been selected!"))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
@@ -55,12 +55,12 @@
 			if(!ispath(selected_core_type) || !(selected_core_type in SSlobotomy_corp.available_core_suppressions))
 				return FALSE
 			if(istype(SSlobotomy_corp.core_suppression))
-				to_chat(usr, "<span class='warning'>A core suppression is already in the progress!</span>")
+				to_chat(usr, span_warning("A core suppression is already in the progress!"))
 				selected_core_type = null
 				return FALSE
 			SSlobotomy_corp.core_suppression = new selected_core_type
 			SSlobotomy_corp.available_core_suppressions = list()
-			to_chat(usr, "<span class='userdanger'>Good luck, Manager.</span>")
+			to_chat(usr, span_userdanger("Good luck, Manager."))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/Run), 2 SECONDS)
