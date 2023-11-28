@@ -3613,6 +3613,7 @@
 #include "code\modules\station_goals\shield.dm"
 #include "code\modules\station_goals\station_goal.dm"
 #include "code\modules\suppressions\_core_suppression.dm"
+#include "code\modules\suppressions\command.dm"
 #include "code\modules\suppressions\control.dm"
 #include "code\modules\suppressions\extraction.dm"
 #include "code\modules\suppressions\information.dm"
