@@ -186,7 +186,7 @@
 /datum/facility_upgrade/abno_melt_time/Upgrade()
 	value = min(max_value, value + 10)
 	. = ..()
-	if(value >= max_value * 0.5)
+	if(value >= max_value * 0.25)
 		cost += 1
 
 /datum/facility_upgrade/abno_melt_time/DisplayValue()
