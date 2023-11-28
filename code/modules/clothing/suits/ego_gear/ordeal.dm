@@ -4,11 +4,11 @@
 	icon = 'icons/obj/clothing/ego_gear/ordeal.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/ordeal.dmi'
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/eternal_feast //well rounded and provides good resistances to red and black. No ability or passive since I had no ideas for it
+/obj/item/clothing/suit/armor/ego_gear/ordeal/eternal_feast //well rounded and provides good resistances to all but pale. No ability or passive since amber midnight was the first midnight to be added so it not having one feels fair(Also I had no ideas for it).
 	name = "Endless feast"
 	desc = "Made out of tough scales and flesh of a powerful ordeal. Wearing it makes you feel hungry as well."
 	icon_state = "eternal_feast"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 250
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 250
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -18,7 +18,8 @@
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose //very high stats at the cost of slowing you down. Not as extreme as grosshammmer though but has less black.
 	name = "Painful purpose"
-	desc = "A heavy armor made as solace of the end of all.\nProvides excellent protection at the cost of speed."
+	desc = "A heavy armor made as solace of the end of all.\n\
+		Provides excellent protection at the cost of speed."
 	slowdown = 0.75
 	icon_state = "painful_purpose"
 	hat = /obj/item/clothing/head/ego_hat/painful_purpose
@@ -37,9 +38,10 @@
 	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
 	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march //provides a sanity healing aura simular to chuckles. also realized clown smiling at me armor stat wise being great red and white and poor black and pale.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march //provides a sanity healing aura simular to chuckles. Also stat wise being great red and white and poor black and pale means that this is a realized version of Dark carnival technically.
 	name = "Meaningless march"
-	desc = "Want to know how I got these scares?\nCauses the wearer to make themself and others around them laugh healing their sp."
+	desc = "Want to know how I got these scares? \n\
+		Causes the wearer to make themself and others around them laugh healing their sp."
 	icon_state = "meaningless_march"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 220
 	attribute_requirements = list(
@@ -137,7 +139,7 @@
 // Radial menu
 /obj/effect/proc_holder/ability/god_delusion
 	name = "Color Shift"
-	desc = "Lets the user change the current form and damage resistances of the armor"
+	desc = "Lets the user change the current form and damage resistances of the armor."
 	action_icon_state = null
 	base_icon_state = null
 	cooldown_time = 30 SECONDS
@@ -170,6 +172,7 @@
 /obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength //Basic armor with a major weakness to white. Don't give this haulers or else Kirie will tell you that you burned down the kitchen.
 	name = "Familial Strength"
 	desc = "A heavy armor from the mother of all sweepers."
+	icon_state = "familial_strength"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 70) // 250
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -178,4 +181,14 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
-
+/obj/item/clothing/suit/armor/ego_gear/ordeal/wonderland //fuck pink midnight
+	name = "Wonderland"
+	desc = "Catt Wonderlab"
+	icon_state = "wonderland"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 80) // 250
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
