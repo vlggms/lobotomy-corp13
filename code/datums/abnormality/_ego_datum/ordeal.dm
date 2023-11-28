@@ -22,3 +22,8 @@
 /datum/ego_datum/armor/familial_strength
 	item_path = /obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength
 	cost = 100
+
+// Midnight of Pink - Wonderland
+/datum/ego_datum/armor/wonderland
+	item_path = /obj/item/clothing/suit/armor/ego_gear/ordeal/wonderland
+	cost = 100
