@@ -288,6 +288,9 @@
 		user.say("Nothing between me and a payday!", forced = "fixer's badge")
 	user.visible_message("<span class='notice'>[user] shows [user.p_their()] fixer's badge.</span>", "<span class='notice'>You show your fixer's badge.</span>")
 
+/obj/item/clothing/accessory/lawyers_badge/fixer/handle_table_slam(mob/living/user)
+	user.say("I WANT MY FUCKING AHN!!", spans = list(SPAN_YELL), forced=TRUE)
+
 // LOBOTOMYCORPORATION EDIT ADDITION END
 
 ////////////////
