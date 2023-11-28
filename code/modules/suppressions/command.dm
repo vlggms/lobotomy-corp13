@@ -12,7 +12,7 @@
 	/// Amount of additional abnormalities melting each qliphoth event
 	var/meltdown_count_increase = 2
 	/// Multiplier to the duration of abnormality meltdowns
-	var/meltdown_time_multiplier = 0.9
+	var/meltdown_time_multiplier = 0.8
 
 /datum/suppression/command/Run(run_white = FALSE)
 	. = ..()
