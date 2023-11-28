@@ -236,6 +236,8 @@
 		"When work was performed, the employee felt compelled to write in the book regardless of result.",
 		"Employees suffered from higher amounts of damage during work when the book was closer to completion.",
 		"Upon finishing repression work, employee Noah felt compelled to rip pages out of the abnormality.",
+		"When the abnormality was not full of words when pages were torn out, the torn pages twisted into hostile forms and attacked nearby employees.",
+		"When the abnormality was full of words when pages were torn out, the torn pages became friendly creatures instead.",
 		"Attempted repression work when the book was already empty nearly always ended in failure. In constrast, repression work performed when the book was full was usually successful.")
 
 //Someone's Portrait

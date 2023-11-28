@@ -5858,9 +5858,8 @@
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
 /obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/structure/closet/crate/pcorp,
 /obj/effect/shelter_forcefield,
+/obj/structure/closet/crate/pcorp/shelter,
 /turf/open/floor/shelter,
 /area/shelter)
 "wu" = (
@@ -11431,12 +11430,12 @@
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
 "Sf" = (
-/obj/structure/closet/crate/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/effect/shelter_forcefield,
+/obj/structure/closet/crate/pcorp/shelter,
 /turf/open/floor/shelter,
 /area/shelter)
 "Sg" = (
@@ -12493,12 +12492,12 @@
 /obj/machinery/light/small{
 	dir = 8
 	},
-/obj/structure/closet/crate/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/effect/shelter_forcefield,
+/obj/structure/closet/crate/pcorp/shelter,
 /turf/open/floor/shelter,
 /area/shelter)
 "WQ" = (
@@ -12950,7 +12949,6 @@
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
 "Yw" = (
-/obj/structure/closet/crate/pcorp,
 /obj/machinery/light/small{
 	dir = 4
 	},
@@ -12959,6 +12957,7 @@
 /obj/item/storage/box/pcorp,
 /obj/item/storage/box/pcorp,
 /obj/effect/shelter_forcefield,
+/obj/structure/closet/crate/pcorp/shelter,
 /turf/open/floor/shelter,
 /area/shelter)
 "YA" = (
