@@ -153,47 +153,24 @@
 				success = TRUE
 		if(success)
 			ammo--
+			to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 
 	// Non-AOE
 	if(ishuman(clicked_atom))
 		clickedEmployee(source, clicked_atom)
 		ammo--
+		to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 	if(ishostile(clicked_atom))
 		clickedAbno(source, clicked_atom)
 		ammo--
+		to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 
-/obj/machinery/computer/camera_advanced/manager/proc/clickedEmployee(mob/living/owner, mob/living/carbon/employee) //contains carbon copy code of fire action
-	var/mob/living/carbon/human/H = employee
-	switch(bullettype)
-		if(HP_BULLET)
-			H.adjustBruteLoss(-0.15*H.maxHealth)
-		if(SP_BULLET)
-			H.adjustSanityLoss(-0.15*H.maxSanity)
-		if(RED_BULLET)
-			H.apply_status_effect(/datum/status_effect/interventionshield)
-		if(WHITE_BULLET)
-			H.apply_status_effect(/datum/status_effect/interventionshield/white)
-		if(BLACK_BULLET)
-			H.apply_status_effect(/datum/status_effect/interventionshield/black)
-		if(PALE_BULLET)
-			H.apply_status_effect(/datum/status_effect/interventionshield/pale)
-		if(YELLOW_BULLET)
-			if(!owner.faction_check_mob(H))
-				H.apply_status_effect(/datum/status_effect/qliphothoverload)
-			else
-				to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
-				return
-		else
-			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
-			return
-	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-
+/obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/human/H) //contains carbon copy code of fire action
 	if(!istype(H))
-		to_chat(owner, "<span class='warning'>NO VALID TARGET.</span>")
+		to_chat(owner, span_warning("NO VALID TARGET."))
 		return
 
 	switch(bullettype)
@@ -218,10 +195,8 @@
 		else
 			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
 			return
-	ammo--
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-	to_chat(owner, "<span class='warning'><b>[ammo]</b> bullets remaining.</span>")
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedabno(mob/living/owner, mob/living/simple_animal/hostile/H)
 	if(ammo <= 0)
