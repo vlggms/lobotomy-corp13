@@ -19,7 +19,7 @@
 		//datum/ego_datum/weapon/fragment,
 		/datum/ego_datum/armor/visions
 		)
-//	gift_type = /datum/ego_gifts/visions
+	gift_type = /datum/ego_gifts/visions
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/list/speak_list = list("!@)(!@&)&*%(%@!@#*(#)*(%&!@#$", "@$*@)$?", "@#$!!@#*!", "@*()!%&$(^!!!!@&(@)")
 	var/candles = 0

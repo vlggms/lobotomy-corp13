@@ -46,20 +46,6 @@
 /datum/status_effect/interventionshield/on_apply()
 	. = ..()
 	owner.add_overlay(statuseffectvisual)
-	var/mob/living/carbon/human/L = owner
-	switch(respectivedamage)
-		if(RED_DAMAGE)
-			inherentarmorcheck = L.physiology.red_mod
-			L.physiology.red_mod *= 0.0001
-		if(WHITE_DAMAGE)
-			inherentarmorcheck = L.physiology.white_mod
-			L.physiology.white_mod *= 0.0001
-		if(BLACK_DAMAGE)
-			inherentarmorcheck = L.physiology.black_mod
-			L.physiology.black_mod *= 0.0001
-		if(PALE_DAMAGE)
-			inherentarmorcheck = L.physiology.pale_mod
-			L.physiology.pale_mod *= 0.0001
 	owner.visible_message("<span class='notice'>[owner]s shield activates!</span>")
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnApplyDamage) //stolen from caluan
 	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/Destroy)
@@ -68,60 +54,38 @@
 	SIGNAL_HANDLER
 	if(damagetype != respectivedamage)
 		return
+
 	var/mob/living/carbon/human/H = owner
 	var/suitarmor = H.getarmor(null, respectivedamage) / 100
-	var/suit = owner.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	damagetaken = amount * (1 - suitarmor)
 	if(damagetaken <= 0)
 		return
-	if(!suit)
-		damagetaken = amount
+
 	if(damagetaken <= shieldhealth)
 		shieldhealth = shieldhealth - damagetaken
 		amount = 0
 		var/shielddiagnostics = shieldhealth / 100
 		if(shielddiagnostics < 0.95 && faltering != 1)
 			faltering = 1
-		return
+		return COMPONENT_MOB_DENY_DAMAGE // This return value completely negates the apply_damage proc
 	if(damagetaken >= shieldhealth && faltering != 1) //When you prep a shield before a big attack.
 		amount = 0
 		owner.visible_message("<span class='warning'>The shield around [owner] focuses all its energy on absorbing the damage.</span>")
 		duration = 1 SECONDS
-	else
-		qdel(src)
+		return COMPONENT_MOB_DENY_DAMAGE
+	qdel(src)
 	return
 
 /datum/status_effect/interventionshield/be_replaced()
-	var/mob/living/carbon/human/L = owner
-	if(!istype(L))
-		return ..()
-	switch(respectivedamage)
-		if(RED_DAMAGE)
-			L.physiology.red_mod /= 0.0001
-		if(WHITE_DAMAGE)
-			L.physiology.white_mod /= 0.0001
-		if(BLACK_DAMAGE)
-			L.physiology.black_mod /= 0.0001
-		if(PALE_DAMAGE)
-			L.physiology.pale_mod /= 0.0001
 	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
 	return ..()
 
 /datum/status_effect/interventionshield/on_remove()
-	var/mob/living/carbon/human/L = owner
-	switch(respectivedamage)
-		if(RED_DAMAGE)
-			L.physiology.red_mod /= 0.0001
-		if(WHITE_DAMAGE)
-			L.physiology.white_mod /= 0.0001
-		if(BLACK_DAMAGE)
-			L.physiology.black_mod /= 0.0001
-		if(PALE_DAMAGE)
-			L.physiology.pale_mod /= 0.0001
 	owner.cut_overlay(statuseffectvisual)
 	owner.visible_message("<span class='warning'>The shield around [owner] shatters!</span>")
 	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
+	UnregisterSignal(owner, COMSIG_WORK_STARTED)
 	return ..()
 
 /datum/status_effect/interventionshield/white

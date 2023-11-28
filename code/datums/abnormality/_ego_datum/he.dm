@@ -405,7 +405,7 @@
 /datum/ego_datum/weapon/faelantern
 	item_path = /obj/item/ego_weapon/faelantern
 	cost = 35
-	
+
 //Will You Play - Voodoo doll
 /datum/ego_datum/armor/voodoo
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/voodoo
@@ -434,4 +434,11 @@
 	item_path = /obj/item/ego_weapon/uturn
 	cost = 35*/
 
+//Steam Transport Machine - Nixie Divergence (PH)
+/datum/ego_datum/armor/nixie
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/nixie
+	cost = 35
 
+/datum/ego_datum/weapon/nixie
+	item_path = /obj/item/ego_weapon/nixie
+	cost = 35

@@ -23,7 +23,7 @@
 		/datum/ego_datum/weapon/oceanic,
 		/datum/ego_datum/armor/oceanic
 		)
-//	gift_type = /datum/ego_gifts/oceanic
+	gift_type = /datum/ego_gifts/oceanic
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/list/goodsoders = list(

@@ -707,7 +707,7 @@ Difficulty: Hard
 				continue
 			to_chat(occupant, "<span class='userdanger'>Your [M.name] is struck by a [name]!</span>")
 			playsound(M,'sound/weapons/sear.ogg', 50, TRUE, -4)
-			M.take_damage(damage, BURN, 0, 0)
+			M.take_damage(damage, BURN, 0)
 
 /obj/effect/temp_visual/hierophant/blast/visual
 	icon_state = "hierophant_blast"
