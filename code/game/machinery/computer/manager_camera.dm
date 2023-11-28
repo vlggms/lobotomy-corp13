@@ -109,51 +109,67 @@
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_hotkey_click(datum/source, atom/clicked_atom) //system control for hotkeys
 	SIGNAL_HANDLER
+
+	// No target :(
 	if(!isliving(clicked_atom))
 		return
+
+	// No bullets :(
+	if(!ammo)
+		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+		to_chat(source, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
+		return
+
+	// AOE bullets
+	if(SSlobotomy_corp.manager_bullet_area > -1)
+		var/success = FALSE
+		for(var/mob/living/L in range(SSlobotomy_corp.manager_bullet_area, clicked_atom))
+			if(ishuman(clicked_atom))
+				clickedemployee(source, clicked_atom)
+				success = TRUE
+			if(ishostile(clicked_atom))
+				clickedabno(source, clicked_atom)
+				success = TRUE
+		if(success)
+			ammo--
+		return
+
+	// Non-AOE
 	if(ishuman(clicked_atom))
 		clickedemployee(source, clicked_atom)
+		ammo--
 		return
 	if(ishostile(clicked_atom))
 		clickedabno(source, clicked_atom)
+		ammo--
 		return
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/employee) //contains carbon copy code of fire action
-	if(ammo >= 1)
-		var/mob/living/carbon/human/H = employee
-		switch(bullettype)
-			if(HP_BULLET)
-				H.adjustBruteLoss(-0.15*H.maxHealth)
-			if(SP_BULLET)
-				H.adjustSanityLoss(-0.15*H.maxSanity)
-			if(RED_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield)
-			if(WHITE_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield/white)
-			if(BLACK_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield/black)
-			if(PALE_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield/pale)
-			if(YELLOW_BULLET)
-				if(!owner.faction_check_mob(H))
-					H.apply_status_effect(/datum/status_effect/qliphothoverload)
-				else
-					to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
-					return
+	var/mob/living/carbon/human/H = employee
+	switch(bullettype)
+		if(HP_BULLET)
+			H.adjustBruteLoss(-0.15*H.maxHealth)
+		if(SP_BULLET)
+			H.adjustSanityLoss(-0.15*H.maxSanity)
+		if(RED_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield)
+		if(WHITE_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/white)
+		if(BLACK_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/black)
+		if(PALE_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/pale)
+		if(YELLOW_BULLET)
+			if(!owner.faction_check_mob(H))
+				H.apply_status_effect(/datum/status_effect/qliphothoverload)
 			else
-				to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
+				to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
 				return
-		ammo--
-		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		to_chat(owner, "<span class='warning'>Loading [ammo] Bullets.</span>")
-		return
-	if(ammo <= 0)
-		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
-	else
-		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
-		return
+		else
+			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
+			return
+	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedabno(mob/living/owner, mob/living/simple_animal/hostile/critter)
 	if(ammo >= 1)
