@@ -121,6 +121,8 @@
 	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
 
 /datum/suppression/records/proc/TryToTeleportMob(mob/living/L)
+	if(QDELETED(L))
+		return
 	var/turf/open/T = null
 	var/list/turf_list = list()
 	var/mob/living/simple_animal/hostile/HA = L
