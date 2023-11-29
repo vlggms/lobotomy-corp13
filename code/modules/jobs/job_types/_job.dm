@@ -11,6 +11,9 @@
 	/// Innate skill levels unlocked at roundstart. Based on config.jobs_have_minimal_access config setting, for example with a full crew. Format is list(/datum/skill/foo = SKILL_EXP_NOVICE) with exp as an integer or as per code/_DEFINES/skills.dm
 	var/list/minimal_skills
 
+	/// The attribute limit for this job
+	var/job_attribute_limit = 130
+
 	/// Assoc list of round-start attributes
 	var/list/roundstart_attributes = list(
 									FORTITUDE_ATTRIBUTE = 0,
@@ -146,6 +149,7 @@
 
 	if(roundstart_attributes.len)
 		var/mob/living/carbon/human/HA = H
+		HA.set_attribute_limit(job_attribute_limit)
 		for(var/atrib in roundstart_attributes)
 			var/datum/attribute/atr = HA?.attributes[atrib]
 			if(istype(atr))

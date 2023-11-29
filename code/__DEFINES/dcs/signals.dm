@@ -35,6 +35,9 @@
 #define COMSIG_GLOB_ABNORMALITY_SPAWN "!abno_spawned"
 ///an abnormality has breached
 #define COMSIG_GLOB_ABNORMALITY_BREACH "!abno_breach"
+// An abnormality cell was swapped with another;
+// First argument is main abno of a swap, second argument is a target abno of a swap: (/datum/abnormality, /datum/abnormality)
+#define COMSIG_GLOB_ABNORMALITY_SWAP "!abno_swap"
 
 /// signals from globally accessible objects
 
@@ -388,6 +391,8 @@
 ///from base of mob/ShiftClickOn(): (atom/A)
 #define COMSIG_MOB_SHIFTCLICKON "mob_shiftclickon"
 	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
+///from base of mob/CrtlShiftClickOn(): (atom/A)
+#define COMSIG_MOB_CTRLSHIFTCLICKON "mob_ctrlshiftclickon"
 
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
 #define COMSIG_MOB_ALLOWED "mob_allowed"
