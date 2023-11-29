@@ -293,7 +293,7 @@
 		return FALSE
 	if(istype(target.current) && !target.current.IsContained())
 		return FALSE
-	if(working)
+	if(working || target.working)
 		return FALSE
 	// A very silly method to get the objects in the cell
 	var/list/objs_src = view(7, landmark)

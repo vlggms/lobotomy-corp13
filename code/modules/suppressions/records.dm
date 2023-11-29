@@ -11,7 +11,7 @@
 	/// How many of abnormality cells will swap places on meltdown, by percent of current count
 	var/abno_swap_percentage = 0.4
 	/// How often teleportations happen
-	var/teleport_interval = 30 SECONDS
+	var/teleport_interval = 35 SECONDS
 	/// Minimum teleport distance for mobs
 	var/teleport_min_distance = 3
 	/// How far can mobs teleport at maximum
@@ -71,9 +71,11 @@
 	// Upgrade the difficulty!
 	if(ordeal)
 		abno_swap_percentage = min(1, abno_swap_percentage + 0.2)
-		teleport_interval = max(5 SECONDS, teleport_interval - 12 SECONDS)
+		teleport_interval = max(5 SECONDS, teleport_interval - 10 SECONDS)
 		teleport_min_mob_count = max(0.8, teleport_min_mob_count + 0.15)
 		teleport_max_mob_count = max(1, teleport_max_mob_count + 0.2)
+		teleport_min_distance = min(10, teleport_min_distance + 1)
+		teleport_max_distance = min(15, teleport_max_distance + 2)
 
 // Show after-image of swapped abnos
 /datum/suppression/records/proc/OnAbnoSwap(datum/source, datum/abnormality/A1, datum/abnormality/A2)
@@ -115,6 +117,7 @@
 			break
 		var/mob/living/L = pick(valid_mobs)
 		TryToTeleportMob(L)
+		valid_mobs -= L
 	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
 
 /datum/suppression/records/proc/TryToTeleportMob(mob/living/L)
@@ -133,8 +136,9 @@
 		T = pick(turf_list)
 		turf_list -= T
 		// Found good target turf
-		if(LAZYLEN(get_path_to(L, T, /turf/proc/Distance_cardinal, 0, 20)))
+		if(LAZYLEN(get_path_to(L, T, /turf/proc/Distance_cardinal, 0, teleport_max_distance * 2)))
 			break
+		T = null
 	// Didn't find anything, very sad
 	if(!istype(T))
 		return FALSE
