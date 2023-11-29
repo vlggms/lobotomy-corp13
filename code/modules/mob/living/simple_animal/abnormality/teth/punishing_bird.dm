@@ -84,9 +84,10 @@
 
 // Deletes perch if we moved while not breaching; Generally caused by cell swaps
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Move()
-	if(IsContained())
-		var/obj/structure/pbird_perch/P = locate() in get_turf(src)
-		QDEL_NULL(P)
+	if(!IsContained())
+		return ..()
+	var/obj/structure/pbird_perch/P = locate() in get_turf(src)
+	QDEL_NULL(P)
 	. = ..()
 	PostSpawn()
 
