@@ -82,6 +82,15 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE)
 	return ..()
 
+// Deletes perch if we moved while not breaching; Generally caused by cell swaps
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/Move()
+	if(!IsContained())
+		return ..()
+	var/obj/structure/pbird_perch/P = locate() in get_turf(src)
+	QDEL_NULL(P)
+	. = ..()
+	PostSpawn()
+
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
 	visible_message(span_danger("\The [src] turns its insides out as a giant bloody beak appears!"))
 	icon_state = "pbird_red"
