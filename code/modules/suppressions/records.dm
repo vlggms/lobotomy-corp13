@@ -6,8 +6,8 @@
 	reward_text = "The manager console will be equipped with function to swap the positions of abnormalities. \
 			Attribute limits of all positions will be raised by 70."
 	run_text = "The core suppression of Records department has begun. \n\
-			Meltdown immunities are forfeit and qliphoth meltdowns will have lesser timer. \n\
-			Failed meltdowns will trigger a meltdown in another cell."
+			The abnormalities will switch positions every meltdown. \n\
+			All living creatures will teleport slightly at even intervals."
 	/// How many of abnormality cells will swap places on meltdown, by percent of current count
 	var/abno_swap_percentage = 0.4
 	/// How often teleportations happen
