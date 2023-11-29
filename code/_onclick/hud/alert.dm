@@ -319,8 +319,10 @@ or shoot a gun to move around via Newton's 3rd Law of Motion."
 
 /atom/movable/screen/alert/give/Click(location, control, params)
 	. = ..()
+/* LOBOTOMYCORPORATION REMOVAL - For some reason this breaks EVERYTHING, TG has it and it works properly but... it just dosent in our codebase for some reason???
 	if(!.)
 		return
+*/
 
 	if(!iscarbon(usr))
 		CRASH("User for [src] is of type \[[usr.type]\]. This should never happen.")
