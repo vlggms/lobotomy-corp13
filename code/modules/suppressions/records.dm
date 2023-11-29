@@ -1,7 +1,9 @@
 /datum/suppression/records
 	name = "Records Core Suppression"
-	desc = ""
-	reward_text = "The manager console will be equipped with function to swap the positions of abnormalities. \n\
+	desc = "Each meltdown, a random ever-increasing amount of abnormalities within your containment will swap places. \
+			At even intervals, a random amount of all living creatures in the facility will be teleported a short distance, \
+			with abnormalities and ordeals seemingly teleporting in the direction of their opponent."
+	reward_text = "The manager console will be equipped with function to swap the positions of abnormalities. \
 			Attribute limits of all positions will be raised by 70."
 	run_text = "The core suppression of Records department has begun. \n\
 			Meltdown immunities are forfeit and qliphoth meltdowns will have lesser timer. \n\
