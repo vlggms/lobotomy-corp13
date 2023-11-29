@@ -268,3 +268,64 @@
 	if(current)
 		return current.GetRiskLevel()
 	return threat_level
+
+/// Swaps the cells with target abnormality datum
+/datum/abnormality/proc/SwapPlaceWith(datum/abnormality/target = null)
+	if(!istype(target))
+		return FALSE
+	// We can't really swap places if our abno is running around
+	if(istype(current) && !current.IsContained())
+		return FALSE
+	if(istype(target.current) && !target.current.IsContained())
+		return FALSE
+	// A very silly method to get the objects in the cell
+	var/list/objs_src = view(7, landmark)
+	var/list/objs_target = view(7, target.landmark)
+	// Cursed code!
+	var/obj/machinery/containment_panel/P1 = locate() in objs_src
+	var/obj/machinery/containment_panel/P2 = locate() in objs_target
+	var/obj/machinery/door/airlock/vault/D1 = locate() in objs_src
+	var/obj/machinery/door/airlock/vault/D2 = locate() in objs_target
+	var/obj/machinery/camera/C1 = locate() in objs_src
+	var/obj/machinery/camera/C2 = locate() in objs_target
+	/* Swap everything and update panels & doors! */
+	// Landmark swap
+	var/obj/effect/landmark/abnormality_spawn/our_landmark = landmark
+	landmark = target.landmark
+	target.landmark = our_landmark
+	// Console swap
+	var/obj/machinery/computer/abnormality/our_computer = console
+	console = target.console
+	console.datum_reference = src
+	target.console = our_computer
+	target.console.datum_reference = target
+	// Door name swap
+	if(D1)
+		D1.name = "[target.name] containment zone"
+		D1.desc = "Containment zone of [target.name]. Threat level: [THREAT_TO_NAME[target.threat_level]]."
+	if(D2)
+		D2.name = "[name] containment zone"
+		D2.desc = "Containment zone of [name]. Threat level: [THREAT_TO_NAME[threat_level]]."
+	// Panel swap
+	if(P1)
+		P1.linked_console = target.console
+		target.console.LinkPanel(P1)
+		P1.console_status(target.console)
+		P1.name = "\proper [target.name]'s containment panel"
+	if(P2)
+		P2.linked_console = console
+		console.LinkPanel(P2)
+		P2.console_status(console)
+		P2.name = "\proper [name]'s containment panel"
+	// Camera tag swap
+	if(C1)
+		C1.c_tag = "Containment zone: [target.name]"
+	if(C2)
+		C2.c_tag = "Containment zone: [name]"
+	// And finally, move abnormalities around
+	if(current)
+		current.forceMove(get_turf(landmark))
+	if(target.current)
+		target.current.forceMove(get_turf(target.landmark))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_SWAP, src, target)
+	return TRUE
