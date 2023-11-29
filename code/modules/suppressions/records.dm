@@ -37,7 +37,7 @@
 		if(!H.ckey)
 			continue
 		H.adjust_attribute_limit(70)
-		to_chat(H, span_notice("You feel more powerful than ever before!"))
+		to_chat(H, span_notice("You feel new potential unlock within you!"))
 	for(var/obj/machinery/computer/camera_advanced/manager/C in GLOB.manager_consoles)
 		C.swap = new
 		C.visible_message(span_notice("[C] has received a new ability!"))
