@@ -144,7 +144,7 @@
 /* LOBOTOMYCORPORATION REMOVAL - PR #1070 - Removes mood
 		brutal_noogie = TRUE
 */
-	if(user.dna?.check_mutation(HULK))
+	if(user.dna?.check_mutation(/datum/mutation/human/hulk))
 		prefix_desc = "sickeningly brutal"
 /* LOBOTOMYCORPORATION REMOVAL - PR #1070 - Removes mood
 		brutal_noogie = TRUE
@@ -183,7 +183,7 @@
 	var/damage = rand(1, 5)
 	if(HAS_TRAIT(target, TRAIT_ANTENNAE))
 		damage += rand(3,7)
-	if(user.dna?.check_mutation(HULK))
+	if(user.dna?.check_mutation(/datum/mutation/human/hulk))
 		damage += rand(3,7)
 
 	if(damage >= 5)
