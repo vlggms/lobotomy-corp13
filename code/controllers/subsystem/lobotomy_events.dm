@@ -37,6 +37,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 /datum/controller/subsystem/lobotomy_events/Initialize(start_timeofday)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
 
 /datum/controller/subsystem/lobotomy_events/fire(resumed)
 	if(season_last_change < world.time)
@@ -187,3 +188,9 @@ SUBSYSTEM_DEF(lobotomy_events)
 	current_season = seasons[index]
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SEASON_CHANGE, current_season)
 	return
+
+/datum/controller/subsystem/lobotomy_events/proc/OnNewCrew(datum_source, mob/living/carbon/human/newbie)
+	SIGNAL_HANDLER
+	if(!istype(newbie))
+		return
+	ApplySecurityLevelEffect(newbie)
