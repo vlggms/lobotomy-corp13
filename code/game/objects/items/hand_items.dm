@@ -130,9 +130,8 @@
 		return
 
 	// [user] gives [target] a [prefix_desc] noogie[affix_desc]!
-/* LOBOTOMYCORPORATION REMOVAL - PR #1070 - Removes mood
 	var/brutal_noogie = FALSE // was it an extra hard noogie?
-*/
+
 	var/prefix_desc = "rough"
 	var/affix_desc = ""
 	var/affix_desc_target = ""
@@ -141,14 +140,12 @@
 		prefix_desc = "violent"
 		affix_desc = "on [target.p_their()] sensitive antennae"
 		affix_desc_target = "on your highly sensitive antennae"
-/* LOBOTOMYCORPORATION REMOVAL - PR #1070 - Removes mood
 		brutal_noogie = TRUE
-*/
+
 	if(user.dna?.check_mutation(/datum/mutation/human/hulk))
 		prefix_desc = "sickeningly brutal"
-/* LOBOTOMYCORPORATION REMOVAL - PR #1070 - Removes mood
 		brutal_noogie = TRUE
-*/
+
 
 	var/message_others = "[prefix_desc] noogie[affix_desc]"
 	var/message_target = "[prefix_desc] noogie[affix_desc_target]"
@@ -161,8 +158,9 @@
 		to_chat(target, span_danger("[user] fails to give you a noogie!"))
 		return
 
-/* LOBOTOMYCORPORATION REMOVAL - PR #1070 - Removes mood
 	if(brutal_noogie)
+		to_chat(user, span_warning("You are not supposed to see this!")) // LOBOTOMYCORPORATION ADDITION - i needed some code here so it wouldn't give warnings, enjoy dis
+/* LOBOTOMYCORPORATION REMOVAL - PR #1070 - Removes mood
 		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "noogie_harsh", /datum/mood_event/noogie_harsh)
 	else
 		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "noogie", /datum/mood_event/noogie)
