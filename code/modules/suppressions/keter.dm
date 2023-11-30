@@ -61,9 +61,9 @@
 	run_text = "Effects of Control, Information, Safety and Training core suppressions are now in effect. Ordeals of White have been introduced in the subroutines."
 	required_cores = list(
 		CONTROL_CORE_SUPPRESSION,
-		CONTROL_CORE_INFORMATION,
-		CONTROL_CORE_SAFETY,
-		CONTROL_CORE_TRAINING,
+		INFORMATION_CORE_SUPPRESSION,
+		SAFETY_CORE_SUPPRESSION,
+		TRAINING_CORE_SUPPRESSION,
 		)
 
 /datum/suppression/combination/keter_day47/Run(run_white = TRUE, silent = FALSE)
