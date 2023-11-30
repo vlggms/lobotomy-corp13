@@ -105,7 +105,6 @@
 	desc = "A machine used to send PE to N-Corp."
 	icon_state = "machinen"
 	crate = /obj/structure/lootcrate/n_corp
-	crate_timer = 60
 
 /obj/structure/pe_sales/leaflet
 	name = "Leaflet Workshop Power Input"
@@ -130,7 +129,6 @@
 	desc = "A machine used to send PE to the rosespanner workshop"
 	icon_state = "machinerosespanner"
 	crate = /obj/structure/lootcrate/workshoprosespanner
-	crate_timer = 60
 
 /obj/structure/pe_sales/hana
 	name = "Hana Assocation Power Input"
