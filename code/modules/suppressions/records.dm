@@ -9,7 +9,7 @@
 			The abnormalities will switch positions every meltdown. \n\
 			All living creatures will teleport slightly at even intervals."
 	/// How many of abnormality cells will swap places on meltdown, by percent of current count
-	var/abno_swap_percentage = 0.4
+	var/abno_swap_percentage = 1
 	/// How often teleportations happen
 	var/teleport_interval = 35 SECONDS
 	/// Minimum teleport distance for mobs
@@ -58,11 +58,17 @@
 		if(istype(A1.current) && !A1.current.IsContained())
 			i -= 1
 			continue
+		if(A1.working)
+			i -= 1
+			continue
 		if(!LAZYLEN(abnos))
 			break
 		var/datum/abnormality/A2 = pick(abnos)
 		abnos -= A2
 		if(istype(A2.current) && !A2.current.IsContained())
+			i -= 1
+			continue
+		if(A2.working)
 			i -= 1
 			continue
 		// SWAP!
