@@ -14,12 +14,12 @@
 	/// Multiplier to the duration of abnormality meltdowns
 	var/meltdown_time_multiplier = 0.8
 
-/datum/suppression/command/Run(run_white = FALSE)
+/datum/suppression/command/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnQlipMeltdown)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED, .proc/OnAbnoMeltdown)
 
-/datum/suppression/command/End()
+/datum/suppression/command/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED)
 	SSlobotomy_corp.melt_work_multiplier += 1

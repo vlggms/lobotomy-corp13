@@ -22,7 +22,7 @@
 		PALE_DAMAGE = 1,
 		)
 
-/datum/suppression/welfare/Run(run_white = FALSE)
+/datum/suppression/welfare/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
@@ -34,7 +34,7 @@
 		ApplyEffect(H)
 	OnMeltdown()
 
-/datum/suppression/welfare/End()
+/datum/suppression/welfare/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	for(var/datum/status_effect/welfare_damage_resist/S in affected_statuses)

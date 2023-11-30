@@ -21,13 +21,13 @@
 	/// Maximum percent of valid mobs to be teleported
 	var/teleport_max_mob_count = 0.2
 
-/datum/suppression/records/Run(run_white = FALSE)
+/datum/suppression/records/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnQlipMeltdown)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SWAP, .proc/OnAbnoSwap)
 	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
 
-/datum/suppression/records/End()
+/datum/suppression/records/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SWAP)
 	// EVERYONE GETS INCREASED STAT LIMIT, LET'S FUCKING GOOOOOO

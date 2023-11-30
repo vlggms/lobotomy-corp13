@@ -9,13 +9,13 @@
 	end_sound = 'sound/effects/combat_suppression_end.ogg'
 	after_midnight = TRUE
 
-/datum/suppression/extraction/Run(run_white = FALSE)
+/datum/suppression/extraction/Run(run_white = FALSE, silent = FALSE)
 	..()
 	var/turf/T = pick(GLOB.department_centers)
 	var/mob/living/simple_animal/hostile/megafauna/arbiter/A = new(T)
 	RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/OnArbiterDeath)
 
-/datum/suppression/extraction/End()
+/datum/suppression/extraction/End(silent = FALSE)
 	..()
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 3)
 	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_ARBITER_DEAD)

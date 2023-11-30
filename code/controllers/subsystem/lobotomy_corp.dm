@@ -130,14 +130,17 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// Remove cores that don't fit requirements
 	for(var/core_type in cores)
 		var/datum/suppression/C = core_type
-		if(!initial(C.available))
-			cores -= core_type
-			continue
 		if(!extra_core && initial(C.after_midnight))
 			cores -= core_type
 			continue
 		if(extra_core && !initial(C.after_midnight))
 			cores -= core_type
+			continue
+		// Create to see if it meets requirements and becomes available
+		C = new
+		if(!C.available)
+			cores -= core_type
+		qdel(C)
 	for(var/i = 1 to max_core_options)
 		if(!LAZYLEN(cores))
 			break
@@ -271,10 +274,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
 	// Honestly, I wish I could do it another way, but oh well
-	if(istype(core_suppression, /datum/suppression/command))
+	var/datum/suppression/command/C = GetCoreSuppression(/datum/suppression/information)
+	if(istype(C))
 		// All abno levels melt
 		forced = TRUE
-		var/datum/suppression/command/C = core_suppression
 		meltdown_amount += C.meltdown_count_increase
 		min_time = round(min_time * C.meltdown_time_multiplier)
 		max_time = round(max_time * C.meltdown_time_multiplier)

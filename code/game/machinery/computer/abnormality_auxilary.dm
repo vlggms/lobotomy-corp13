@@ -107,6 +107,7 @@
 				selected_core_type = null
 				return FALSE
 			SSlobotomy_corp.core_suppression = new selected_core_type
+			SSlobotomy_corp.core_suppression.legitimate = TRUE
 			SSlobotomy_corp.available_core_suppressions = list()
 			selected_core_type = null
 			to_chat(usr, span_userdanger("Good luck, Manager."))

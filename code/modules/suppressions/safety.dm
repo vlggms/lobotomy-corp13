@@ -6,7 +6,7 @@
 	reward_text = "All regenerators will receive a permanent +3 boost to healing power."
 	run_text = "The core suppression of Safety department has begun. The regenerators and sleepers will stop operating normally. All personnel will be automatically healed after each meltdown instead."
 
-/datum/suppression/safety/Run(run_white = FALSE)
+/datum/suppression/safety/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
 	for(var/obj/machinery/regenerator/R in GLOB.regenerators)
@@ -16,7 +16,7 @@
 	for(var/obj/machinery/sleeper/S in GLOB.sleepers)
 		S.set_machine_stat(S.machine_stat | BROKEN)
 
-/datum/suppression/safety/End()
+/datum/suppression/safety/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	for(var/obj/machinery/regenerator/R in GLOB.regenerators) // All regenerators gain permanent buff
 		R.reset_timer = 0

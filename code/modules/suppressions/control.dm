@@ -4,12 +4,12 @@
 	reward_text = "All employees, including those that may join later in the shift will receive a +30 justice attribute buff."
 	run_text = "The core suppression of Control department has begun. The work assignments will be scrambled each meltdown."
 
-/datum/suppression/control/Run(run_white = FALSE)
+/datum/suppression/control/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
 	OnMeltdown()
 
-/datum/suppression/control/End()
+/datum/suppression/control/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	for(var/obj/machinery/computer/abnormality/C in GLOB.abnormality_consoles)
 		C.scramble_list = list()

@@ -3,6 +3,7 @@
 #define FILE_AGENT_REP "data/AgentReputation.json"
 #define FILE_PE_QUOTA "data/PEQuota.json"
 #define FILE_ABNO_PICKS "data/AbnormalityRates.json"
+#define FILE_CORE_SUPPRESSIONS "data/ClearedCores.json"
 
 #define KEEP_ROUNDS_MAP 3
 
@@ -28,6 +29,8 @@ SUBSYSTEM_DEF(persistence)
 	var/list/obj/structure/sign/painting/painting_frames = list()
 	var/list/paintings = list()
 	var/list/abno_rates = list()
+	/// List of ckeys with list of core suppression names that they have cleared before
+	var/list/cleared_core_suppressions = list()
 
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
@@ -42,6 +45,7 @@ SUBSYSTEM_DEF(persistence)
 	if(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs"))
 		LoadPEStatus()
 		LoadAbnoPicks()
+	LoadClearedCores()
 	LoadRandomizedRecipes()
 	LoadPaintings()
 	load_custom_outfits()
@@ -418,6 +422,33 @@ SUBSYSTEM_DEF(persistence)
 		abno_rates[abno_ref.abno_path] = text2num(abno_rates[abno_ref.abno_path]) + 1
 	fdel(FILE_ABNO_PICKS)
 	text2file(json_encode(abno_rates), FILE_ABNO_PICKS)
+
+/datum/controller/subsystem/persistence/proc/LoadClearedCores()
+	var/json = file2text(FILE_CORE_SUPPRESSIONS)
+	if(!json)
+		var/json_file = file(FILE_CORE_SUPPRESSIONS)
+		if(!fexists(json_file))
+			WARNING("Failed to load cleared cores. File likely corrupt.")
+			return
+		return
+	cleared_core_suppressions = json_decode(json)
+
+/datum/controller/subsystem/persistence/proc/UpdateClearedCores(datum/suppression/S)
+	if(!istype(S))
+		return
+
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.stat == DEAD)
+			continue
+		if(!H.client || !H.ckey)
+			continue
+
+		if(!islist(cleared_core_suppressions[H.ckey]))
+			cleared_core_suppressions[H.ckey] = list()
+		cleared_core_suppressions[H.ckey] |= S.name
+
+	fdel(FILE_CORE_SUPPRESSIONS)
+	text2file(json_encode(cleared_core_suppressions), FILE_CORE_SUPPRESSIONS)
 
 /datum/controller/subsystem/persistence/proc/LoadRandomizedRecipes()
 	var/json_file = file("data/RandomizedChemRecipes.json")
