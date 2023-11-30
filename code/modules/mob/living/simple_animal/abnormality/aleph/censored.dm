@@ -116,7 +116,7 @@
 				RangedAbility(target)
 		return
 
-	if(ability_cooldown <= world.time && prob(25))
+	if(ability_cooldown <= world.time && prob(50))
 		RangedAbility(target)
 
 	return
@@ -150,7 +150,7 @@
 		return
 	can_act = FALSE
 	ability_cooldown = world.time + ability_cooldown_time
-	var/turf/T = get_ranged_target_turf_direct(src, get_turf(target), 10, rand(-30,30))
+	var/turf/T = get_ranged_target_turf_direct(src, get_turf(target), 10, rand(-10,10))
 	var/list/turf_list = list()
 	playsound(src, 'sound/abnormalities/censored/ability.ogg', 50, FALSE, 5)
 	for(var/turf/TT in getline(src, T))
@@ -158,17 +158,18 @@
 			break
 		new /obj/effect/temp_visual/cult/sparks(TT)
 		turf_list += TT
+		T = TT
 	if(!LAZYLEN(turf_list))
 		can_act = TRUE
 		return
 	for(var/i = 1 to 3)
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		D.alpha = 100
-		D.pixel_x = rand(-8, 8)
-		D.pixel_y = rand(-8, 8)
+		D.pixel_x = base_pixel_x + rand(-8, 8)
+		D.pixel_y = base_pixel_y + rand(-8, 8)
 		animate(D, alpha = 0, transform = matrix()*1.2, time = 8)
-		SLEEP_CHECK_DEATH(0.3 SECONDS)
-	SLEEP_CHECK_DEATH(0.5 SECONDS)
+		SLEEP_CHECK_DEATH(0.15 SECONDS)
+	SLEEP_CHECK_DEATH(0.3 SECONDS)
 	Beam(T, "censored", time = 10)
 	playsound(src, 'sound/weapons/ego/censored3.ogg', 75, FALSE, 5)
 	for(var/turf/TT in turf_list)
@@ -293,11 +294,11 @@
 	id = "overwhelming_fear"
 	status_type = STATUS_EFFECT_REFRESH
 	duration = 20 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/sacrifice
+	alert_type = /atom/movable/screen/alert/status_effect/overwhelming_fear
 	/// The damage will not be done below that percentage of max sanity
 	var/sanity_limit_percent = 0.3
 	/// How much percents of max sanity is dealt as pure sanity damage each tick
-	var/sanity_damage_percent = 0.025
+	var/sanity_damage_percent = 0.05
 
 /atom/movable/screen/alert/status_effect/overwhelming_fear
 	name = "Overwhelming Fear"
