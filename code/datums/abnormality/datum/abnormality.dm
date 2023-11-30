@@ -60,6 +60,9 @@
 	var/list/transferable_var
 	///if the abno spawns with a slime radio or not
 	var/abno_radio = FALSE
+	// Object = list(x tile offset, y tile offset)
+	/// List of connected structures; Used to teleport and delete them when abnormality is swapped or deleted
+	var/list/connected_structures = list()
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -78,11 +81,14 @@
 	SSlobotomy_corp.all_abnormality_datums -= src
 	for(var/datum/ego_datum/ED in ego_datums)
 		qdel(ED)
+	for(var/atom/A in connected_structures)
+		qdel(A)
 	QDEL_NULL(landmark)
 	QDEL_NULL(current)
 	ego_datums = null
 	landmark = null
 	current = null
+	connected_structures = null
 	..()
 
 /datum/abnormality/proc/RespawnAbno()
@@ -339,6 +345,15 @@
 		C1.c_tag = "Containment zone: [target.name]"
 	if(C2)
 		C2.c_tag = "Containment zone: [name]"
+	// Move structures
+	for(var/atom/movable/A in connected_structures)
+		A.forceMove(get_turf(landmark))
+		A.x += connected_structures[A][1]
+		A.y += connected_structures[A][2]
+	for(var/atom/movable/A in target.connected_structures)
+		A.forceMove(get_turf(target.landmark))
+		A.x += connected_structures[A][1]
+		A.y += connected_structures[A][2]
 	// And finally, move abnormalities around
 	if(current)
 		current.forceMove(get_turf(landmark))

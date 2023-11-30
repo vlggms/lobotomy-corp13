@@ -468,7 +468,7 @@
 // Records core reward
 /datum/action/innate/swap_cells
 	name = "Swap Abnormality Cells"
-	desc = "Hotkey = Alt + Shift + Click"
+	desc = "Hotkey = Ctrl + Shift + Click"
 	icon_icon = 'icons/mob/actions/actions_items.dmi'
 	button_icon_state = "vortex_ff_off"
 	/// Currently selected abnormality; Next activation will do the swap

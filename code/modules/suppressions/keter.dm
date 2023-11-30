@@ -1,6 +1,6 @@
-// This isn't a real suppression, it exists only to trigger white ordeals.
-/datum/suppression/white_ordeals
-	name = "Initial Keter Manifestation" // Give me better name, I'll wait
+// A day 46 wannabe - Only triggers white ordeals
+/datum/suppression/keter_day46
+	name = "<b>Proving Oneself</b>"
 	desc = "The facility will introduce White Ordeals with 1 meltdown in-between them. <br>\
 			After clearing Dawn, Noon and Dusk the agents will have to face off against The Claw."
 	goal_text = "Defeat the Midnight of White - The Claw."

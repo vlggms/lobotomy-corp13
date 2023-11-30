@@ -29,8 +29,7 @@
 	// If you do insight or have low prudence, fuck you and die for stepping on a spider
 	if((get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 40 || work_type == ABNORMALITY_WORK_INSIGHT) && !(GODMODE in user.status_flags))
 		icon_state = "spider_open"
-		var/obj/structure/spider/cocoon/casing = new(src.loc)
-		casing.Move(get_step(casing, pick(GLOB.alldirs)))
+		var/obj/structure/spider/cocoon/casing = SpawnConnectedStructure(/obj/structure/spider/cocoon, pick(-1,0,1), pick(-1,0,1))
 		user.death()
 		user.forceMove(casing)
 		casing.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")

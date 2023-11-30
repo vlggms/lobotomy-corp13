@@ -259,7 +259,34 @@
 
 // Called by datum_reference when the abnormality has been fully spawned
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
+	SHOULD_CALL_PARENT(TRUE)
+	HandleStructures()
 	return
+
+// Moves structures already in its datum; Overrides can spawn structures here.
+/mob/living/simple_animal/hostile/abnormality/proc/HandleStructures()
+	SHOULD_CALL_PARENT(TRUE)
+	if(!datum_reference)
+		return FALSE
+	// Ensures all structures are in their place after respawning
+	for(var/atom/movable/A in datum_reference.connected_structures)
+		A.forceMove(get_turf(datum_reference.landmark))
+		A.x += datum_reference.connected_structures[A][1]
+		A.y += datum_reference.connected_structures[A][2]
+	return TRUE
+
+// A little helper proc to spawn structures; Returns itself, so you can handle additional stuff later
+/mob/living/simple_animal/hostile/abnormality/proc/SpawnConnectedStructure(atom/movable/A = null, x_offset = 0, y_offset = 0)
+	if(!ispath(A))
+		return
+	if(!istype(datum_reference))
+		return
+	A = new(get_turf(src))
+	A.x += x_offset
+	A.y += y_offset
+	// We put it in datum ref for malicious purposes
+	datum_reference.connected_structures[A] = list(x_offset, y_offset)
+	return A
 
 // transfers a var to the datum to be used later
 /mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
@@ -272,7 +299,6 @@
 	if(isnull(datum_reference))
 		return
 	return LAZYACCESS(datum_reference.transferable_var, index)
-
 
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/proc/WorkChance(mob/living/carbon/human/user, chance, work_type)

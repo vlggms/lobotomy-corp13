@@ -47,11 +47,13 @@
 	var/list/been_hit = list()
 
 //Initialize
-/mob/living/simple_animal/hostile/abnormality/fire_bird/PostSpawn()
-	..()
-	if(locate(/obj/structure/firetree) in get_turf(src))
+/mob/living/simple_animal/hostile/abnormality/fire_bird/HandleStructures()
+	. = ..()
+	if(!.)
 		return
-	new /obj/structure/firetree(get_turf(src))
+	if(locate(/obj/structure/firetree) in datum_reference.connected_structures)
+		return
+	SpawnConnectedStructure(/obj/structure/firetree)
 
 //Work Procs
 /mob/living/simple_animal/hostile/abnormality/fire_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)

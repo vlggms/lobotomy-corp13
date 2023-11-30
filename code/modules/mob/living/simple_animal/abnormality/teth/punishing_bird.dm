@@ -28,7 +28,7 @@
 	attack_sound = 'sound/weapons/pbird_bite.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	is_flying_animal = FALSE
+	is_flying_animal = TRUE
 	speak_emote = list("chirps")
 	vision_range = 14
 	aggro_vision_range = 28
@@ -70,16 +70,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
-	if(locate(/obj/structure/pbird_perch) in get_turf(src))
-		icon_state = "pbird"
-		pixel_x = 15
-		pixel_y = 32
-		base_pixel_x = 15
-		base_pixel_y = 32
-		is_flying_animal = FALSE
-		update_icon()
-	else
-		is_flying_animal = TRUE
 	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
 
@@ -87,15 +77,6 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE)
 	return ..()
-
-// Deletes perch if we moved while not breaching; Generally caused by cell swaps
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/Move()
-	if(!IsContained())
-		return ..()
-	var/obj/structure/pbird_perch/P = locate() in get_turf(src)
-	QDEL_NULL(P)
-	. = ..()
-	PostSpawn()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
 	visible_message(span_danger("\The [src] turns its insides out as a giant bloody beak appears!"))
@@ -236,16 +217,20 @@
 	see &= targeting // Remove all entries that aren't in enemies
 	return see
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/PostSpawn()
-	..()
-	if(locate(/obj/structure/pbird_perch) in get_turf(src))
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/HandleStructures()
+	. = ..()
+	if(!.)
 		return
-	icon_state = "pbird"
-	pixel_x = 15
-	pixel_y = 32
-	base_pixel_x = 15
-	base_pixel_y = 32
-	new /obj/structure/pbird_perch(get_turf(src))
+	if(locate(/obj/structure/pbird_perch) in get_turf(src))
+		icon_state = "pbird"
+		pixel_x = 15
+		pixel_y = 32
+		base_pixel_x = 15
+		base_pixel_y = 32
+		is_flying_animal = FALSE
+		update_icon()
+		return
+	SpawnConnectedStructure(/obj/structure/pbird_perch)
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/Retaliate(atom/movable/A)
 	if((health < maxHealth * 0.9) && (obj_damage <= 0))
