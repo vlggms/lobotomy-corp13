@@ -1,5 +1,5 @@
 /datum/suppression/safety
-	name = "Safety Core Suppression"
+	name = SAFETY_CORE_SUPPRESSION
 	desc = "Regenerators will stop operating normally, all personnel will be healed after each meltdown instead.\n\
 			Sleepers and EMAIS will be non-functional.\n\
 			Medi-pens will have a chance to malfunction and require a delay on each activation."

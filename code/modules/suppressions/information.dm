@@ -1,6 +1,6 @@
 // Most of its effects are applied elsewhere
 /datum/suppression/information
-	name = "Information Core Suppression"
+	name = INFORMATION_CORE_SUPPRESSION
 	desc = "Assignments on the abnormality work consoles will be in random positions.\n\
 			Announcement systems and suit sensors will be negatively impacted."
 	reward_text = "Unique PE gained by working on abnormalities is increased by 25%."

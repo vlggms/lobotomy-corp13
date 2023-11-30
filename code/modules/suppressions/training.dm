@@ -1,6 +1,6 @@
 // Right now the only core suppression with a proper reward, which is higher spawning stats.
 /datum/suppression/training
-	name = "Training Core Suppression"
+	name = TRAINING_CORE_SUPPRESSION
 	desc = "All employees will be weakened by an amount equal to a -30 debuff on each attribute for the duration of suppression."
 	reward_text = "Employees that survived through the suppression will be awarded with 20 increase and +5 buff to all attributes.\n\
 			All Agents that will join post-suppression will start with higher attributes."

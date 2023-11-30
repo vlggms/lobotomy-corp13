@@ -3,7 +3,7 @@
 
 // Right now the only core suppression with a proper reward, which is higher spawning stats.
 /datum/suppression/welfare
-	name = "Welfare Core Suppression"
+	name = WELFARE_CORE_SUPPRESSION
 	desc = "All employees will suffer from decreased resistance to randomly chosen damage types, which change on each meltdown."
 	reward_text = "All personnel will be able to avoid death/insanity by instantly healing to certain percentage \
 		of either health or sanity each time they reach that point. \

@@ -1,5 +1,5 @@
 /datum/suppression/control
-	name = "Control Core Suppression"
+	name = CONTROL_CORE_SUPPRESSION
 	desc = "Assignments on the abnormality work consoles will be scrambled each meltdown/ordeal."
 	reward_text = "All employees, including those that may join later in the shift will receive a +30 justice attribute buff."
 	run_text = "The core suppression of Control department has begun. The work assignments will be scrambled each meltdown."

@@ -1,5 +1,5 @@
 /datum/suppression/records
-	name = "Records Core Suppression"
+	name = RECORDS_CORE_SUPPRESSION
 	desc = "Each meltdown, a random ever-increasing amount of abnormalities within your containment will swap places. \
 			At even intervals, a random amount of all living creatures in the facility will be teleported a short distance, \
 			with abnormalities and ordeals seemingly teleporting in the direction of their opponent."

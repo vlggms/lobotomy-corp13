@@ -1,5 +1,5 @@
 /datum/suppression/command
-	name = "Central Command Core Suppression"
+	name = COMMAND_CORE_SUPPRESSION
 	desc = "Meltdowns immunities of certain abnormality levels will be forfeit for the duration of the suppression \
 			and more meltdowns will occur with lower timer on each. Missed or failed meltdowns will trigger a \
 			meltdown on another abnormality within the facility."

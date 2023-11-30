@@ -55,6 +55,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/list/current_ordeals = list()
 	// Currently running core suppression
 	var/datum/suppression/core_suppression = null
+	// List of active core suppression effects
+	var/list/active_core_suppression_effects = list()
 	// List of available core suppressions for manager to choose
 	var/list/available_core_suppressions = list()
 	// State of the core suppression
@@ -128,6 +130,9 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	// Remove cores that don't fit requirements
 	for(var/core_type in cores)
 		var/datum/suppression/C = core_type
+		if(!initial(C.available))
+			cores -= core_type
+			continue
 		if(!extra_core && initial(C.after_midnight))
 			cores -= core_type
 			continue
