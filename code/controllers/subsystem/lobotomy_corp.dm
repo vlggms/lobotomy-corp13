@@ -89,7 +89,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	/// Amount of abnormalities that agents achieved full understanding on
 	var/understood_abnos = 0
 	/// The amount of core suppression options that will be available
-	var/max_core_options = 2
+	var/max_core_options = 3
 	/// Points used for facility upgrades
 	var/lob_points = 2
 
