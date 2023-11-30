@@ -1,3 +1,4 @@
+#define STATUS_EFFECT_OVERWHELMING_FEAR /datum/status_effect/overwhelming_fear
 /mob/living/simple_animal/hostile/abnormality/censored
 	name = "CENSORED"
 	desc = "What is this... It's too disgusting to even look at..."
@@ -18,9 +19,10 @@
 	obj_damage = 600
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 75
-	melee_damage_upper = 80
-	move_to_delay = 4
+	melee_damage_lower = 95
+	melee_damage_upper = 100
+	move_to_delay = 3
+	ranged = TRUE
 	/* Works */
 	start_qliphoth = 2
 	can_breach = TRUE
@@ -44,6 +46,21 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	var/can_act = TRUE
+	var/ability_damage = 150
+	var/ability_cooldown
+	var/ability_cooldown_time = 10 SECONDS
+
+/mob/living/simple_animal/hostile/abnormality/censored/Life()
+	. = ..()
+	if(!.)
+		return
+	// Apply and refresh status effect to all humans nearby
+	for(var/mob/living/carbon/human/H in view(7, src))
+		if(H.stat == DEAD)
+			continue
+		if(faction_check_mob(H))
+			continue
+		H.apply_status_effect(STATUS_EFFECT_OVERWHELMING_FEAR)
 
 /mob/living/simple_animal/hostile/abnormality/censored/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, 3, 5))
@@ -79,11 +96,30 @@
 	. = ..()
 	if(!can_act)
 		return
+
 	if(!ishuman(target))
 		return
+
 	var/mob/living/carbon/human/H = target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
-		Convert(H)
+		return Convert(H)
+
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/censored/OpenFire()
+	if(!can_act)
+		return
+
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				RangedAbility(target)
+		return
+
+	if(ability_cooldown <= world.time && prob(25))
+		RangedAbility(target)
+
+	return
 
 /mob/living/simple_animal/hostile/abnormality/censored/proc/Convert(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -105,6 +141,42 @@
 		H.gib()
 	ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1))
 	adjustBruteLoss(-(maxHealth*0.1))
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/censored/proc/RangedAbility(atom/target)
+	if(!can_act)
+		return
+	if(world.time < ability_cooldown)
+		return
+	can_act = FALSE
+	ability_cooldown = world.time + ability_cooldown_time
+	var/turf/T = get_ranged_target_turf_direct(src, get_turf(target), 10, rand(-30,30))
+	var/list/turf_list = list()
+	playsound(src, 'sound/abnormalities/censored/ability.ogg', 50, FALSE, 5)
+	for(var/turf/TT in getline(src, T))
+		if(TT.density)
+			break
+		new /obj/effect/temp_visual/cult/sparks(TT)
+		turf_list += TT
+	if(!LAZYLEN(turf_list))
+		can_act = TRUE
+		return
+	for(var/i = 1 to 3)
+		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
+		D.alpha = 100
+		D.pixel_x = rand(-8, 8)
+		D.pixel_y = rand(-8, 8)
+		animate(D, alpha = 0, transform = matrix()*1.2, time = 8)
+		SLEEP_CHECK_DEATH(0.3 SECONDS)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	Beam(T, "censored", time = 10)
+	playsound(src, 'sound/weapons/ego/censored3.ogg', 75, FALSE, 5)
+	for(var/turf/TT in turf_list)
+		for(var/mob/living/L in TT)
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(ability_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	can_act = TRUE
 
 /* Work */
@@ -168,10 +240,10 @@
 	obj_damage = 300
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 14
-	melee_damage_upper = 20
+	melee_damage_lower = 25
+	melee_damage_upper = 30
 	speed = 2
-	move_to_delay = 3
+	move_to_delay = 2
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
@@ -215,3 +287,32 @@
 			continue
 		to_chat(H, span_warning("Damn, it's scary."))
 	return
+
+// Status effect applied by CENSORED
+/datum/status_effect/overwhelming_fear
+	id = "overwhelming_fear"
+	status_type = STATUS_EFFECT_REFRESH
+	duration = 20 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/sacrifice
+	/// The damage will not be done below that percentage of max sanity
+	var/sanity_limit_percent = 0.3
+	/// How much percents of max sanity is dealt as pure sanity damage each tick
+	var/sanity_damage_percent = 0.025
+
+/atom/movable/screen/alert/status_effect/overwhelming_fear
+	name = "Overwhelming Fear"
+	desc = "You find it difficult to recollect yourself. Your sanity will be slowly lowering to 20%."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "overwhelming_fear"
+
+/datum/status_effect/overwhelming_fear/on_apply()
+	if(!ishuman(owner))
+		return FALSE
+	return ..()
+
+/datum/status_effect/overwhelming_fear/tick()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	if(H.getSanityLoss() >= H.getMaxSanity() * sanity_limit_percent)
+		return
+	H.adjustSanityLoss(H.getMaxSanity() * sanity_damage_percent)
