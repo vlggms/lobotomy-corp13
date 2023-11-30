@@ -15,6 +15,3 @@
 #define DAY48_CORE_SUPPRESSION "<b>Regret and Atonement</b>"
 #define DAY49_CORE_SUPPRESSION "<b>Freedom and Redemption</b>"
 #define DAY50_CORE_SUPPRESSION "<b><u>Tree of Light</u></b>"
-
-/* Little helpers */
-#define RUNNING_CORE_SUPPRESSION(X) (X in SSlobotomy_corp.active_core_suppression_effects)

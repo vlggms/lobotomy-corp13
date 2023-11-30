@@ -71,7 +71,7 @@
 	if(!clerk_check(user))
 		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
 		return
-	if(RUNNING_CORE_SUPPRESSION(SAFETY_CORE_SUPPRESSION))
+	if(GetCoreSuppression(/datum/suppression/safety))
 		to_chat(user,"<span class='warning'>[src] seems to be remotely disabled.</span>")
 		return
 	var/datum/reagents/R = reagent_list[mode]

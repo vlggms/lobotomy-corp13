@@ -85,8 +85,8 @@
 		var/work_display = "[wt] Work"
 		if(scramble_list[wt] != null)
 			work_display += "?"
-		if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
-			var/datum/suppression/information/I = SSlobotomy_corp.core_suppression
+		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
+		if(!tutorial && istype(I))
 			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
@@ -279,7 +279,7 @@
 
 /obj/machinery/computer/abnormality/proc/start_meltdown(melt_type = MELTDOWN_NORMAL, min_time = 60, max_time = 90)
 	meltdown_time = rand(min_time, max_time) + (GetFacilityUpgradeValue(UPGRADE_ABNO_MELT_TIME) * \
-					(RUNNING_CORE_SUPPRESSION(COMMAND_CORE_SUPPRESSION) ? 0.5 : 1))
+					(GetCoreSuppression(/datum/suppression/command) ? 0.5 : 1))
 	meltdown = melt_type
 	datum_reference.current.MeltdownStart()
 	update_icon()

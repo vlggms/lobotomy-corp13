@@ -55,8 +55,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/list/current_ordeals = list()
 	// Currently running core suppression
 	var/datum/suppression/core_suppression = null
-	// List of active core suppression effects
-	var/list/active_core_suppression_effects = list()
+	// List of active core suppressions; Different from above, as there can only be one "main" core
+	var/list/active_core_suppressions = list()
 	// List of available core suppressions for manager to choose
 	var/list/available_core_suppressions = list()
 	// State of the core suppression

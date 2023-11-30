@@ -31,7 +31,7 @@
 	if(!isliving(M))
 		return FALSE
 	// WOULDN'T IT BE FUNNY IF I TOOK AWAY YOUR HEALING?
-	if(RUNNING_CORE_SUPPRESSION(SAFETY_CORE_SUPPRESSION))
+	if(GetCoreSuppression(/datum/suppression/safety))
 		if(!do_after(user, 10, target = M))
 			return FALSE
 		if(prob(50))

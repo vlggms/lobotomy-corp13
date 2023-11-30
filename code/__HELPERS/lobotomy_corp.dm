@@ -19,3 +19,8 @@
 		if(!H.mind)
 			continue
 		. += 1
+
+/* Core Suppression helpers */
+/// Returns core suppression by path if its effects are active
+/proc/GetCoreSuppression(datum/suppression/CS = null)
+	return locate(CS) in SSlobotomy_corp.active_core_suppressions

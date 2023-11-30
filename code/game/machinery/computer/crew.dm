@@ -220,7 +220,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 		// ID and id-related data
 		var/obj/item/card/id/id_card = tracked_living_mob.get_idcard(hand_first = FALSE)
 		if (id_card)
-			if(!RUNNING_CORE_SUPPRESSION(INFORMATION_CORE_SUPPRESSION))
+			if(!GetCoreSuppression(/datum/suppression/information))
 				entry["name"] = id_card.registered_name
 				entry["assignment"] = id_card.assignment
 				entry["ijob"] = jobs[id_card.GetJobName()] // Tegu edit - Alt job titles

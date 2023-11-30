@@ -3,8 +3,8 @@
 		return
 
 	// All your text is gone. Enjoy.
-	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
-		var/datum/suppression/information/I = SSlobotomy_corp.core_suppression
+	var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
+	if(istype(I))
 		text = Gibberish(text, TRUE, I.gibberish_value)
 
 	var/announcement
