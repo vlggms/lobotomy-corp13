@@ -122,7 +122,7 @@
 		if(!LAZYLEN(valid_mobs))
 			break
 		var/mob/living/L = pick(valid_mobs)
-		TryToTeleportMob(L)
+		addtimer(CALLBACK(src, .proc/TryToTeleportMob, L), rand(0, 6))
 		valid_mobs -= L
 	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
 
@@ -137,6 +137,10 @@
 		turf_list = spiral_range_turfs(3, TT, 1)
 	else
 		turf_list = spiral_range_turfs(teleport_max_distance, get_turf(L), teleport_min_distance)
+
+	for(var/turf/TT in turf_list)
+		if(TT.density)
+			turf_list -= TT
 
 	for(var/i = 1 to 5)
 		if(!LAZYLEN(turf_list))
