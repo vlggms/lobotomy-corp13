@@ -32,8 +32,10 @@
 		meltdown_count_increase += 1
 		meltdown_time_multiplier = max(0.1, meltdown_time_multiplier - 0.2)
 
-/datum/suppression/command/proc/OnAbnoMeltdown(datum/abnormality/source, melt_removed = TRUE)
+/datum/suppression/command/proc/OnAbnoMeltdown(datum/dcs, datum/abnormality/source, melt_removed = TRUE)
 	SIGNAL_HANDLER
+	if(!istype(source))
+		return
 	var/obj/machinery/computer/abnormality/console = source.console
 	if(!istype(console))
 		return
