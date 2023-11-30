@@ -55,9 +55,10 @@
 // Day 47 - Control, Information, Safety and Training all combined, while also running white ordeals. HAVE FUN.
 /datum/suppression/combination/keter_day47
 	name = DAY47_CORE_SUPPRESSION
-	desc = "The facility will introduce White Ordeals with 1 meltdown in-between them. <br>\
-			After clearing Dawn, Noon and Dusk the agents will have to face off against The Claw."
-	run_text = "The Ordeals of White have been introduced into the facility's subroutines. There will be one meltdown in-between each ordeal."
+	desc = "Effects of core suppressions of Control, Information, Safety and Training departments \
+			will activate for the duration of this test. <br>\
+			To complete the challenge - you must defeat the Midnight of White - The Claw."
+	run_text = "Effects of Control, Information, Safety and Training core suppressions are now in effect. Ordeals of White have been introduced in the subroutines."
 	running_cores = list(
 		/datum/suppression/safety,
 		/datum/suppression/training,
