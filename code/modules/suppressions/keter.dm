@@ -59,9 +59,11 @@
 			will activate for the duration of this test. <br>\
 			To complete the challenge - you must defeat the Midnight of White - The Claw."
 	run_text = "Effects of Control, Information, Safety and Training core suppressions are now in effect. Ordeals of White have been introduced in the subroutines."
-	running_cores = list(
-		/datum/suppression/safety,
-		/datum/suppression/training,
+	required_cores = list(
+		CONTROL_CORE_SUPPRESSION,
+		CONTROL_CORE_INFORMATION,
+		CONTROL_CORE_SAFETY,
+		CONTROL_CORE_TRAINING,
 		)
 
 /datum/suppression/combination/keter_day47/Run(run_white = TRUE, silent = FALSE)
