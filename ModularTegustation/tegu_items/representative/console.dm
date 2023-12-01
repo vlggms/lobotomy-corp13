@@ -197,7 +197,7 @@
 			CustomizeOffice(/obj/structure/sign/departments/w_corp, /obj/structure/pe_sales/w_corp)
 			order_list = list(
 				new /datum/data/extraction_cargo("W Corp Cleanup Outfit", /obj/item/clothing/under/suit/lobotomy/wcorp, 100, W_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/wcorp, 100, W_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/ego_hat/wcorp, 100, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Cleanup Baton", /obj/item/ego_weapon/city/charge/wcorp, 500, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Armor Vest", /obj/item/clothing/suit/armor/ego_gear/wcorp, 700, W_CORP_REP) = 1,
 				)
