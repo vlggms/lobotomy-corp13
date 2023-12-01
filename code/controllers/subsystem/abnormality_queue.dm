@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	for(var/i = 1 to 3)
 		if(!LAZYLEN(picking_abno))
 			break
-		var/chosen_abno = pickweight(picking_abno)
+		var/chosen_abno = pickweightAllowZero(picking_abno)
 		picking_abnormalities += chosen_abno
 		picking_abno -= chosen_abno
 	if(!LAZYLEN(picking_abnormalities))
@@ -144,4 +144,4 @@ SUBSYSTEM_DEF(abnormality_queue)
 			continue
 		picking_abno |= possible_abnormalities[level]
 
-	return pickweight(picking_abno)
+	return pickweightAllowZero(picking_abno)
