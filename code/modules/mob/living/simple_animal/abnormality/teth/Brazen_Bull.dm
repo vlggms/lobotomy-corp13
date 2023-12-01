@@ -38,12 +38,12 @@
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
-	/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-		datum_reference.qliphoth_change(-1)
+/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
 
-	/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-		if(prob(60))
-			datum_reference.qliphoth_change(-1)
+/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	if(prob(60))
+		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/Brazen_Bull/AttackingTarget()
 	if(prob(15))
