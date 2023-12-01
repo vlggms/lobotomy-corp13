@@ -39,6 +39,15 @@
 		)
 	gift_type =  /datum/ego_gifts/loggging
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
+		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
 	var/flurry_count = 7

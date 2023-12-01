@@ -51,6 +51,13 @@
 	gift_type = /datum/ego_gifts/love_and_hate
 	gift_message = "In fact, \"peace\" is not what she desires."
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
+		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
+
 	var/chance_modifier = 1
 	var/death_counter = 0
 	/// Reduce qliphoth if not enough people have died for too long

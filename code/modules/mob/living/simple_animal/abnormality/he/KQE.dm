@@ -41,6 +41,12 @@
 	gift_type =  /datum/ego_gifts/replica
 	gift_message = "The abnormality hands you a pendant made from circuits and sinews."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/nothing_there = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5
+	)
+
 	var/can_act = TRUE
 	var/grab_cooldown
 	var/grab_cooldown_time = 15 SECONDS

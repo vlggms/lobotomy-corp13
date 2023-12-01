@@ -34,6 +34,14 @@
 	gift_type = /datum/ego_gifts/homing_instinct
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
+		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	///Stuff related to the house and its path
 	var/obj/road_house/house
 	var/list/house_path

@@ -45,6 +45,12 @@ GLOBAL_LIST_EMPTY(army)
 		)
 	gift_type =  /datum/ego_gifts/pink
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5
+	)
+
 	//Unique variables
 	var/death_counter = 0
 	var/protection_duration = 120 SECONDS

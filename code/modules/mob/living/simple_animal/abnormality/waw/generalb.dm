@@ -32,6 +32,10 @@
 	melee_damage_upper = 52
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/queen_bee = 5
+	)
 	//She has a Quad Artillery Cannon
 
 	var/fire_cooldown_time = 3 SECONDS	//She has 4 cannons, fires 4 times faster than the artillery bees

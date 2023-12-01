@@ -49,6 +49,11 @@ GLOBAL_LIST_EMPTY(vine_list)
 	gift_type =  /datum/ego_gifts/stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/golden_apple = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5
+	)
+
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)

@@ -38,6 +38,15 @@
 		)
 	gift_type =  /datum/ego_gifts/harvest
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
+		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
 
