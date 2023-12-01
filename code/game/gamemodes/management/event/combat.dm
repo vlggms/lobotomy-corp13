@@ -35,14 +35,14 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 			//R-Corp stuff.
 			if("rcorp")
 				addtimer(CALLBACK(src, .proc/drawround), 40 MINUTES)
-				to_chat(world, "<span class='userdanger'>Round will end in a draw after 40 minutes.</span>")
+				to_chat(world, span_userdanger("Round will end in a draw after 40 minutes.</span>"))
 				addtimer(CALLBACK(src, .proc/rcorp_announce), 3 MINUTES)
 
 			//W-Corp stuff
 			if("wcorp")
 				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
 				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
-				to_chat(world, "<span class='userdanger'>Players will be victorius 20 minutes.</span>")
+				to_chat(world, span_userdanger("Players will be victorius 20 minutes."))
 
 				switch(rand(1,2))
 					if(1)
@@ -53,15 +53,15 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 //Win cons
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
-	to_chat(world, "<span class='userdanger'>Players have taken too long! Round automatically ending.</span>")
+	to_chat(world, span_userdanger("Players have taken too long! Round automatically ending."))
 
 /datum/game_mode/combat/proc/winround()
 	SSticker.force_ending = 1
-	to_chat(world, "<span class='userdanger'>Players have survived! Round automatically ending.</span>")
+	to_chat(world, span_userdanger("Players have survived! Round automatically ending."))
 
 /datum/game_mode/combat/proc/drawround()
 	SSticker.force_ending = 1
-	to_chat(world, "<span class='userdanger'>Players have taken too long! Round ending in a Draw.</span>")
+	to_chat(world, span_userdanger("Players have taken too long! Round ending in a Draw."))
 
 
 //Gamemode stuff

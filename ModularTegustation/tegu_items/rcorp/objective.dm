@@ -43,7 +43,7 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 //Delay the fucker by 20 minutes. Someone waltzed into briefing one Rcorp round with this.
 /obj/effect/landmark/objectivespawn/proc/arbspawn()
 	new /obj/effect/mob_spawn/human/arbiter(get_turf(src))
-	minor_announce("DANGER - HIGHLY DANGEROUS HOSTILE ARBITER IN THE AREA. NEUTRALIZE IMMEDIATELY." , "R-Corp Intelligence Office")
+	minor_announce("DANGER - HOSTILE ARBITER IN THE AREA. NEUTRALIZE IMMEDIATELY." , "R-Corp Intelligence Office")
 	GLOB.rcorp_wincondition = 2
 
 
@@ -61,15 +61,15 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 
 /obj/structure/bough/attack_hand(mob/living/carbon/human/user)
 	if(cooldown > world.time)
-		to_chat(user, "<span class='notice'>You're having a hard time grabbing this.</span>")
+		to_chat(user, span_notice("You're having a hard time grabbing this."))
 		return
 	if(user.ckey in bastards)
-		to_chat(user, "<span class='userdanger'>You already tried to grab this.</span>")
+		to_chat(user, span_userdanger("You already tried to grab this."))
 		return
 
 	cooldown = world.time + 45 SECONDS // Spam prevention
 	for(var/mob/M in GLOB.player_list)
-		to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] is collecting the golden bough!</span>")
+		to_chat(M, span_userdanger("[uppertext(user.real_name)] is collecting the golden bough!"))
 
 	RoundEndEffect(user)
 
@@ -79,15 +79,15 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 		SSticker.SetRoundEndSound('sound/abnormalities/donttouch/end.ogg')
 		SSticker.force_ending = 1
 		for(var/mob/M in GLOB.player_list)
-			to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] has collected the bough!</span>")
+			to_chat(M, span_userdanger("[uppertext(user.real_name)] has collected the bough!"))
 
 			switch(GLOB.rcorp_wincondition)
 				if(0)
-					to_chat(M, "<span class='userdanger'>R-CORP MAJOR VICTORY.</span>")
+					to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
 				if(1)
-					to_chat(M, "<span class='userdanger'>R-CORP MINOR VICTORY.</span>")
+					to_chat(M, span_userdanger("R-CORP MINOR VICTORY."))
 				if(2)
-					to_chat(M, "<span class='userdanger'>R-CORP SUPREME VICTORY.</span>")
+					to_chat(M, span_userdanger("R-CORP SUPREME VICTORY."))
 
 
 	else
@@ -106,8 +106,8 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 
 /mob/living/simple_animal/hostile/shrimp_vip/death(gibbed)
 	for(var/mob/M in GLOB.player_list)
-		to_chat(M, "<span class='userdanger'>THE VIP HAS BEEN SLAIN.</span>")
-		to_chat(M, "<span class='userdanger'>R-CORP MAJOR VICTORY.</span>")
+		to_chat(M, span_userdanger("THE VIP HAS BEEN SLAIN."))
+		to_chat(M, span_userdanger("R-CORP MAJOR VICTORY."))
 	SSticker.force_ending = 1
 	..()
 
@@ -148,14 +148,14 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 
 /obj/structure/rcorpcomms/deconstruct(disassembled = TRUE)
 	for(var/mob/M in GLOB.player_list)
-		to_chat(M, "<span class='userdanger'>RCORP'S COMMUNICATIONS HAVE BEEN DESTROYED.</span>")
+		to_chat(M, span_userdanger("RCORP'S COMMUNICATIONS HAVE BEEN DESTROYED."))
 		switch(GLOB.rcorp_wincondition)
 			if(0)
-				to_chat(M, "<span class='userdanger'>ABNORMALITY MAJOR VICTORY.</span>")
+				to_chat(M, span_userdanger("ABNORMALITY MAJOR VICTORY."))
 			if(1)
-				to_chat(M, "<span class='userdanger'>ABNORMALITY SUPREME VICTORY.</span>")
+				to_chat(M, span_userdanger("ABNORMALITY SUPREME VICTORY."))
 			if(2)
-				to_chat(M, "<span class='userdanger'>ABNORMALITY MINOR VICTORY.</span>")
+				to_chat(M, span_userdanger("ABNORMALITY MINOR VICTORY."))
 	SSticker.force_ending = 1
 	..()
 
