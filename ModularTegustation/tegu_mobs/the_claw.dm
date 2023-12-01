@@ -536,7 +536,7 @@
 	var/turf/T = get_turf(src)
 	var/rotate_dir = pick(1, -1)
 	var/angle_to_target = Get_Angle(T, TT)
-	var/angle = angle_to_target + ((rotate_dir ? wide_slash_angle : -wide_slash_angle) * 0.5)
+	var/angle = angle_to_target + (wide_slash_angle * rotate_dir) * 0.5)
 	if(angle > 360)
 		angle -= 360
 	else if(angle < 0)
