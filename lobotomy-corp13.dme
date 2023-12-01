@@ -3898,6 +3898,7 @@
 #include "ModularTegustation\fishing\code\fishing_items\fish_box.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fish_points.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fishing_bag.dm"
+#include "ModularTegustation\fishing\code\fishing_items\fishing_boat.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fishing_cloak.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fishing_hat.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fishing_net.dm"
