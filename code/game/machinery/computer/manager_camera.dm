@@ -157,13 +157,11 @@
 		return
 
 	// Non-AOE
-	if(ishuman(clicked_atom))
-		clickedEmployee(source, clicked_atom)
+	if(ishuman(clicked_atom) && clickedemployee(source, clicked_atom))
 		ammo--
 		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
-	if(ishostile(clicked_atom))
-		clickedAbno(source, clicked_atom)
+	if(ishostile(clicked_atom) && clickedabno(source, clicked_atom))
 		ammo--
 		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
@@ -171,7 +169,7 @@
 /obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/human/H) //contains carbon copy code of fire action
 	if(!istype(H))
 		to_chat(owner, span_warning("NO VALID TARGET."))
-		return
+		return FALSE
 
 	switch(bullettype)
 		if(MANAGER_HP_BULLET)
@@ -191,33 +189,28 @@
 				H.apply_status_effect(/datum/status_effect/qliphothoverload)
 			else
 				to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
-				return
+				return FALSE
 		else
 			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
-			return
+			return FALSE
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+	return TRUE
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedabno(mob/living/owner, mob/living/simple_animal/hostile/H)
-	if(ammo <= 0)
-		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
-		return
-
 	if(!istype(H))
 		to_chat(owner, "<span class='warning'>NO VALID TARGET.</span>")
-		return
+		return FALSE
 
 	if(bullettype == 7)
 		H.apply_status_effect(/datum/status_effect/qliphothoverload)
-		ammo--
 		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		to_chat(owner, "<span class='warning'><b>[ammo]</b> bullets remaining.</span>")
-		return
+		return TRUE
 
 	to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
-	return
+	return FALSE
 
 /obj/machinery/computer/camera_advanced/manager/proc/ManagerExaminate(mob/living/user, atom/clicked_atom)
 	user.examinate(clicked_atom) //maybe put more info on the agent/abno they examine if we want to be fancy later
@@ -310,6 +303,8 @@
 
 	for(var/i in GLOB.mob_living_list)
 		var/mob/living/L = i
+		if(L.stat == DEAD)
+			continue
 		if(!L.can_track(current_user))
 			continue
 
