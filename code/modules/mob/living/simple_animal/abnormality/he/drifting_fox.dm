@@ -23,7 +23,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	attack_sound = "sound/abnormalities/drifting_fox/foxhit.ogg"
+	attack_sound = 'sound/abnormalities/drifting_fox/foxhit.ogg'
 	attack_verb_simple = "thwacks"
 	attack_verb_continuous = "thwacks"
 	can_breach = TRUE
