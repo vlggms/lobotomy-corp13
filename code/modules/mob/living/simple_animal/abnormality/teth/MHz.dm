@@ -31,8 +31,8 @@
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
 
 /mob/living/simple_animal/hostile/abnormality/mhz/WorkChance(mob/living/carbon/human/user, chance)
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 40)
-		return chance * 0.75
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)
+		return chance * 1.25
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/mhz/SuccessEffect(mob/living/carbon/human/user, work_type, pe)

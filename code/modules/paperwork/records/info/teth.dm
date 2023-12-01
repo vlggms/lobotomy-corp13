@@ -13,7 +13,9 @@
 	abno_code = "T-02-43"
 	abno_info = list(
 		"Employees with Prudence Level 1 squashed the spiderlings. Spider Bud turned those who harmed its children into cocoons.",
-		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.")
+		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.",
+		"For each person encased in a cocoon, Spider Bud's max PE available from work was increased by 2.",
+		"Employees were entirely unable to get a good work result from spider bud.",)
 
 //Scorched girl
 /obj/item/paper/fluff/info/teth/match
