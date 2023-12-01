@@ -446,7 +446,7 @@
 		return
 	busy = TRUE
 	var/turf/beam_start = get_step(src, get_dir(src, target))
-	var/turf/beam_end = get_ranged_target_turf_direct(beam_start, target, 48, rand(-5,5))
+	var/turf/beam_end = get_ranged_target_turf_direct(src, target, 48, rand(-5,5))
 	var/list/hitline = getline(beam_start, beam_end)
 	for(var/turf/T in hitline)
 		new /obj/effect/temp_visual/cult/sparks(T)
