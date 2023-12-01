@@ -45,6 +45,7 @@
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	mask = /obj/item/clothing/mask/carnival_mask
 	gloves = /obj/item/clothing/gloves/color/black
+	head = /obj/item/clothing/head/santa
 
 	backpack_contents = list(
 		/obj/item/silkknife = 1,

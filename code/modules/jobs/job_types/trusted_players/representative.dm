@@ -38,6 +38,7 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
+	head = /obj/item/clothing/head/santa
 
 /// Alternate corps you cna pick
 /datum/job/representative

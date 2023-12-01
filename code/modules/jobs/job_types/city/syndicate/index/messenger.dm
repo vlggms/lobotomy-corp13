@@ -51,3 +51,4 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	backpack_contents = list(/obj/item/structurecapsule/syndicate)
 	shoes = /obj/item/clothing/shoes/laceup
+	head = /obj/item/clothing/head/santa

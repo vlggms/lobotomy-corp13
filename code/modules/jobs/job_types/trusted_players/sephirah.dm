@@ -60,6 +60,7 @@
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
 	l_pocket = /obj/item/commandprojector
+	head = /obj/item/clothing/head/santa
 
 GLOBAL_LIST_INIT(sephirah_names, list(
 	"Job", "Lot", "Isaac", "Lazarus", "Gaius", "Abel", "Enoch", "Jescha",))

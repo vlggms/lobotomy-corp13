@@ -45,3 +45,4 @@ Backstreets Butcher
 		/obj/item/clothing/mask/muzzle = 1,
 		/obj/item/kitchen/knife/butcher/deadly = 1)
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
+	head = /obj/item/clothing/head/santa

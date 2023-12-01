@@ -94,3 +94,4 @@ Civilian
 	uniform = /obj/item/clothing/under/suit/charcoal
 	belt = null
 	ears = null
+	head = /obj/item/clothing/head/santa

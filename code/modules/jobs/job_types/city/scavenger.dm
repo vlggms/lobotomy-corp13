@@ -66,6 +66,7 @@ Scavenger
 	suit = null
 	ears = null
 	id = null			//All determined later
+	head = /obj/item/clothing/head/santa
 
 /datum/outfit/job/scavenger/pre_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	id = /obj/item/card/id

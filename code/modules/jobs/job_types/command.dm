@@ -52,6 +52,7 @@
 	jobtype = /datum/job/command
 	suit =  /obj/item/clothing/suit/armor/extraction
 	backpack_contents = list(/obj/item/price_tagger = 1)
+	head = /obj/item/clothing/head/santa
 
 //Records
 /datum/job/command/records
@@ -70,3 +71,4 @@
 	name = "Records Officer"
 	jobtype = /datum/job/command/records
 	suit =  /obj/item/clothing/suit/armor/records
+	head = /obj/item/clothing/head/santa

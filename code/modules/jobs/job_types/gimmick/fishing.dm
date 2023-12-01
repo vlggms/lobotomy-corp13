@@ -44,3 +44,4 @@
 		/obj/item/fish_feed = 1
 		)
 	implants = null
+	head = /obj/item/clothing/head/santa

@@ -51,3 +51,4 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	backpack_contents = list(/obj/item/structurecapsule/syndicate/ncorp)
 	shoes = /obj/item/clothing/shoes/laceup
+	head = /obj/item/clothing/head/santa

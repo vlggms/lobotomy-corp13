@@ -41,3 +41,4 @@ Assistant
 		/obj/item/healthanalyzer = 1,
 		/obj/item/gun/ego_gun/clerk = 1)
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
+	head = /obj/item/clothing/head/santa

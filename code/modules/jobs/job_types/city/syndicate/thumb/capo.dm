@@ -40,3 +40,4 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
+	head = /obj/item/clothing/head/santa

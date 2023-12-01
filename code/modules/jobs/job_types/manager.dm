@@ -48,6 +48,7 @@
 	name = "Manager"
 	jobtype = /datum/job/manager
 
+	head = /obj/item/clothing/head/santa
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy

@@ -37,3 +37,4 @@ Workshop employee
 	uniform = /obj/item/clothing/under/rank/cargo/miner
 	belt = /obj/item/melee/baton/loaded	//Really going to rob this guy?
 	ears = null
+	head = /obj/item/clothing/head/santa

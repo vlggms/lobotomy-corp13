@@ -118,7 +118,7 @@
 	name = "Agent"
 	jobtype = /datum/job/agent
 
-	head = /obj/item/clothing/head/beret/sec
+	head = /obj/item/clothing/head/santa
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -148,7 +148,6 @@
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
 	jobtype = /datum/job/agent/captain
-	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
 	suit = /obj/item/clothing/suit/armor/vest/alt
@@ -169,7 +168,7 @@
 /datum/outfit/job/agent/intern
 	name = "Agent Intern"
 	jobtype = /datum/job/agent/intern
-	head = null
+	head = /obj/item/clothing/head/santa
 	backpack_contents = list(/obj/item/melee/classic_baton=1,
 		/obj/item/paper/fluff/tutorial/levels=1 ,
 		/obj/item/paper/fluff/tutorial/risk=1,

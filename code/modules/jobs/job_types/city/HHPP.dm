@@ -37,3 +37,4 @@ HHPP Employee
 	belt = /obj/item/melee/baton/loaded	//hit the chefs and fucking die.
 	suit = /obj/item/clothing/suit/apron/chef
 	ears = null
+	head = /obj/item/clothing/head/santa

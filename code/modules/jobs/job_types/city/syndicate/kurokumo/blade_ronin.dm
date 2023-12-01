@@ -45,3 +45,4 @@
 	backpack_contents = list(/obj/item/structurecapsule/syndicate/bladelineage)
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin
+	head = /obj/item/clothing/head/santa
