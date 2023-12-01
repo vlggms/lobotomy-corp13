@@ -137,7 +137,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			cores -= core_type
 			continue
 		// Create to see if it meets requirements and becomes available
-		C = new
+		C = new core_type()
 		if(!C.available)
 			cores -= core_type
 		qdel(C)
