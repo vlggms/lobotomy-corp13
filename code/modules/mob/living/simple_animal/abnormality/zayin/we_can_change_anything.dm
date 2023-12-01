@@ -29,6 +29,11 @@
 	gift_message = "Your heart beats with new vigor."
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+	)
+
 	chem_type = /datum/reagent/abnormality/we_can_change_anything
 	harvest_phrase = span_notice("You scoop up some goo from the inner lip of %ABNO using %VESSEL.")
 	harvest_phrase_third = "%PERSON scoops up some goo from the inner lip of %ABNO with %VESSEL."

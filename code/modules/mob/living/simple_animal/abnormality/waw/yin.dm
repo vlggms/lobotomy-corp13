@@ -39,6 +39,10 @@
 	gift_type = /datum/ego_gifts/discord
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/yang = 5 // TAKE THE FISH. DO IT
+	)
+
 	faction = list("neutral", "hostile") // Not fought by anything, typically. But...
 	var/faction_override = list("hostile") // The effects hit non-hostiles.
 
