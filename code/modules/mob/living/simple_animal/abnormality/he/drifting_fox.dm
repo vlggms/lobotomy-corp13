@@ -52,6 +52,7 @@
 		return chance
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
+	if(user in pet)
 		pet-=user
 
 	ego_list = list(
