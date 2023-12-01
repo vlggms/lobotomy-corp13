@@ -13,6 +13,8 @@
 	var/meltdown_count_increase = 2
 	/// Multiplier to the duration of abnormality meltdowns
 	var/meltdown_time_multiplier = 0.8
+	/// By how much meltdown timer is reduced each ordeal
+	var/meltdown_time_reduction = 0.2
 
 /datum/suppression/command/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
@@ -30,7 +32,7 @@
 	SIGNAL_HANDLER
 	if(ordeal)
 		meltdown_count_increase += 1
-		meltdown_time_multiplier = max(0.1, meltdown_time_multiplier - 0.2)
+		meltdown_time_multiplier = max(0.1, meltdown_time_multiplier - meltdown_time_reduction)
 
 /datum/suppression/command/proc/OnAbnoMeltdown(datum/dcs, datum/abnormality/source, melt_removed = TRUE)
 	SIGNAL_HANDLER

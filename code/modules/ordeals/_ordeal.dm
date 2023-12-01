@@ -67,6 +67,7 @@
 	/// If it was a dusk - we end running core suppression
 	else if(level == 3 && istype(SSlobotomy_corp.core_suppression))
 		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ORDEAL_END, src)
 	qdel(src)
 	return
 

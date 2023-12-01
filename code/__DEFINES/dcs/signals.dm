@@ -1070,3 +1070,7 @@
 #define COMSIG_FEAR_EFFECT "fear_effect"
 ///Whenever the season is changed through god of the seasons or its E.G.O.
 #define COMSIG_GLOB_SEASON_CHANGE "!change_season"
+
+// Ordeal signals
+// When the ordeal ends; (/datum/ordeal)
+#define COMSIG_GLOB_ORDEAL_END "!ordeal_end"
