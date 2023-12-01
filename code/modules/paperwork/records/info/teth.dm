@@ -344,3 +344,11 @@
 		"When Attachment or Repression work was done, the work rates were equal to the total stat buffs of the employee.",
 		"When Attachment or Repression work was completed with a good work result, the employee's respective buff was reduced to 0, and their stat maximum was increased by the same amount.",)
 
+//Brazen Bull
+/obj/item/paper/fluff/info/teth/Brazen_Bull
+	abno_type = /mob/living/simple_animal/hostile/abnormality/Brazen_Bull
+	abno_code = "M-01-117"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was bad, the Qliphoth Counter lowered.",)
+

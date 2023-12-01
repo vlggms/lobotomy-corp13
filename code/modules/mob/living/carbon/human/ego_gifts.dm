@@ -505,6 +505,13 @@
 	justice_bonus = 2
 	slot = HAND_2
 
+/datum/ego_gifts/capote
+	name = "Capote"
+	icon_state = "capote"
+	fortitude_bonus = 5
+	prudence_bonus = -2
+	slot = BROOCH
+
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
 	name = "Logging"
