@@ -38,11 +38,12 @@
 	if(available)
 		return
 
+	var/list/all_agents = AllLivingAgents()
 	/// Amount of people online that have met the requirements
 	var/clear_count = 0
 	/// How many people must meet requirements to enable it
-	var/clear_requirement = length(GLOB.player_list) * 0.5
-	for(var/mob/M in GLOB.player_list)
+	var/clear_requirement = length(all_agents) * 0.5
+	for(var/mob/M in all_agents)
 		if(!(M.ckey in SSpersistence.cleared_core_suppressions))
 			continue
 		var/list/diffs = difflist(required_cores, SSpersistence.cleared_core_suppressions[M.ckey])
