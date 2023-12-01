@@ -11,8 +11,9 @@
 	health = 3000
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_lower = 50
+	melee_damage_upper = 60
+	move_to_delay = 2.6
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
@@ -32,8 +33,8 @@
 	/// The actual range of triggering meltdowns. Gets decreased with each attack during pulse attack
 	var/current_pulse_range = 24
 	var/hammer_cooldown
-	var/hammer_cooldown_time = 8 SECONDS
-	var/hammer_damage = 200
+	var/hammer_cooldown_time = 6 SECONDS
+	var/hammer_damage = 250
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/Initialize()
@@ -62,13 +63,13 @@
 	if(busy)
 		return
 	..()
-	if(prob(30) && hammer_cooldown < world.time)
+	if(hammer_cooldown < world.time)
 		HammerAttack(target)
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/OpenFire()
 	if(busy)
 		return
-	if(prob(25) && (get_dist(src, target) < 10) && (hammer_cooldown < world.time))
+	if(prob(50) && (get_dist(src, target) < 10) && (hammer_cooldown < world.time))
 		HammerAttack(target)
 		return
 	return ..()
@@ -349,10 +350,10 @@
 	maxHealth = 3000
 	health = 3000
 	melee_damage_type = RED_DAMAGE
-	rapid_melee = 2
+	rapid_melee = 6
 	melee_damage_lower = 35
 	melee_damage_upper = 45
-	move_to_delay = 2.4
+	move_to_delay = 2.2
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -364,13 +365,13 @@
 
 	var/busy = FALSE
 	var/multislash_cooldown
-	var/multislash_cooldown_time = 5 SECONDS
+	var/multislash_cooldown_time = 4 SECONDS
 	var/multislash_damage = 75
 	var/multislash_range = 6
 	var/beam_cooldown
-	var/beam_cooldown_time = 15 SECONDS
+	var/beam_cooldown_time = 10 SECONDS
 	/// Red damage dealt on direct hit by the beam
-	var/beam_damage = 300
+	var/beam_damage = 400
 
 /mob/living/simple_animal/hostile/ordeal/red_fixer/Initialize()
 	. = ..()
@@ -393,7 +394,7 @@
 	if(busy)
 		return
 	..()
-	if(prob(80) && multislash_cooldown < world.time)
+	if(multislash_cooldown < world.time)
 		MultiSlash(target)
 		return
 	if(prob(50) && beam_cooldown < world.time)
@@ -403,11 +404,11 @@
 /mob/living/simple_animal/hostile/ordeal/red_fixer/OpenFire()
 	if(busy)
 		return
-	if(prob(50) && (get_dist(src, target) < multislash_range) && (multislash_cooldown < world.time))
-		MultiSlash(target)
-		return
 	if(prob(80) && (beam_cooldown < world.time))
 		LaserBeam(target)
+		return
+	if(prob(50) && (get_dist(src, target) < multislash_range) && (multislash_cooldown < world.time))
+		MultiSlash(target)
 		return
 	return
 
@@ -469,7 +470,7 @@
 			been_hit |= L
 			new /obj/effect/temp_visual/cult/sparks(get_turf(L))
 	playsound(src, 'sound/effects/ordeals/white/red_beam_fire.ogg', 100, FALSE, 32)
-	SLEEP_CHECK_DEATH(2 SECONDS)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	beam_cooldown = world.time + beam_cooldown_time
 	busy = FALSE
 	icon_state = icon_living
@@ -486,8 +487,8 @@
 	maxHealth = 4000
 	health = 4000
 	melee_damage_type = PALE_DAMAGE
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	melee_damage_lower = 50
+	melee_damage_upper = 60
 	rapid_melee = 2
 	minimum_distance = 2
 	ranged = TRUE
