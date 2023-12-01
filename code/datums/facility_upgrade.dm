@@ -153,14 +153,14 @@
 	category = "Agent"
 	value = 0
 	max_value = 30
+	var/value_increase = 5
 
 /datum/facility_upgrade/agent_spawn_stats_bonus/Upgrade()
-	var/increase = max_value * 0.25
-	value = min(max_value, value + increase)
+	value = min(max_value, value + value_increase)
 	// Applies newly purchased bonus to all living agents
 	for(var/mob/living/carbon/human/H in AllLivingAgents())
-		H.adjust_all_attribute_levels(increase)
-		to_chat(H, span_notice("Facility upgrade increased your attributes by [increase] points!"))
+		H.adjust_all_attribute_levels(value_increase)
+		to_chat(H, span_notice("Facility upgrade increased your attributes by [value_increase] points!"))
 	. = ..()
 	cost += 1
 
@@ -169,13 +169,12 @@
 	name = UPGRADE_ABNO_QUEUE_COUNT
 	category = "Abnormalities"
 	value = 2
-	max_value = 10 // Comedy
+	max_value = 4
 
 /datum/facility_upgrade/picking_abno_amount/Upgrade()
 	value = min(max_value, value + 1)
 	. = ..()
-	if(value >= max_value * 0.5) // Going well above 5 will start increasing cost, you meme-lord
-		cost += 1
+	cost += 1
 
 /datum/facility_upgrade/abno_melt_time
 	name = UPGRADE_ABNO_MELT_TIME
