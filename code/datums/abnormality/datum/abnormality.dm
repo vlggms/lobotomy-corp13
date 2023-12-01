@@ -72,6 +72,7 @@
 	desc = initial(abno_path.desc)
 	RespawnAbno()
 	FillEgoList()
+	ModifyOdds()
 
 /datum/abnormality/Destroy()
 	SSlobotomy_corp.all_abnormality_datums -= src
@@ -143,6 +144,14 @@
 		GLOB.ego_datums["[ED.name][ED.item_category]"] = ED
 	return TRUE
 
+/datum/abnormality/proc/ModifyOdds()
+	var/turf/spawn_turf = locate(1, 1, 1)
+	var/mob/living/simple_animal/hostile/abnormality/abno = new abno_path(spawn_turf)
+	for(var/path in abno.grouped_abnos)
+		var/mob/living/simple_animal/hostile/abnormality/abno_friend = path
+		if(abno_friend in SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)])
+			SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)][abno_friend] = SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)][abno_friend] * abno.grouped_abnos[abno_friend]
+	QDEL_NULL(abno)
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled)
 	current.WorkComplete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
