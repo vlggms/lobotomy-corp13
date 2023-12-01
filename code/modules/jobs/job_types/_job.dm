@@ -99,6 +99,7 @@
 
 	//Mostly used for military stuff.
 	var/rank_title
+	var/trusted_rank
 
 /datum/job/New()
 	. = ..()

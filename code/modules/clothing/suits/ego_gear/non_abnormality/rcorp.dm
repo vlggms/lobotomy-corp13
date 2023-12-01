@@ -59,4 +59,61 @@
 	desc = "An armored combat suit worn by the R-Corporation support divison captain. The orange shoulderpad denotes the rank of 'Captain' "
 	icon_state = "reindeer_captain"
 
+//Officer stuff
+/obj/item/clothing/suit/armor/ego_gear/rabbit/officer
+	name = "\improper r corp officer vest"
+	desc = "A light armor vest worn by r corp officers."
+	icon_state = "rcorp_officer"
+	flags_inv = null
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/assaultofficer
+	name = "\improper lcdr's officer vest"
+	desc = "A light armor vest worn by r corp senior officers."
+	icon_state = "lcdr_armor"
+	flags_inv = null
+
+//non-armor
+/obj/item/clothing/suit/armor/ego_gear/rcorp_officer
+	name = "\improper r corp lcdr's dress outfit"
+	desc = "A jacket worn by senior r-corp officers."
+	icon_state = "rcorp_lcdrdress"
+	flags_inv = null
+
+/obj/item/clothing/suit/armor/ego_gear/rcorp_officer/cdr
+	name = "\improper r corp cdr's dress outfit"
+	desc = "A jacket worn by senior r-corp officers."
+	icon_state = "rcorp_cdrdress"
+
+
+//Fifth Pack
+/obj/item/clothing/suit/armor/ego_gear/rabbit/raccoon
+	name = "\improper raccoon suit"
+	desc = "An armored combat suit worn by R-Corporation forwards reconnaissance units."
+	icon_state = "raccoon_armor"
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/raccooncap
+	name = "\improper raccoon leader suit"
+	desc = "An armored combat suit worn by R-Corporation forwards reconnaissance units. The large cloak helps break up the human form among the dark environments."
+	icon_state = "raccoon_captain"
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/roadrunner
+	name = "\improper roadrunner suit"
+	desc = "An armored combat suit worn by R-Corporation skirmishers."
+	icon_state = "roadrunner"
+	slowdown = -0.25
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/roadrunnercap
+	name = "\improper roadrunner captain suit"
+	desc = "An armored combat suit worn by R-Corporation skirmishers."
+	icon_state = "roadrunner_captain"
+	slowdown = -0.25
+
+
+/obj/item/clothing/suit/armor/ego_gear/rabbit/rat
+	name = "\improper rat suit"
+	desc = "An armored combat suit worn by R-Corporation skirmishers."
+	icon_state = "rat"
+
+
+
 

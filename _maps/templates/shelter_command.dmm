@@ -1,0 +1,154 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/survivalpod)
+"c" = (
+/obj/machinery/sleeper/syndie,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"e" = (
+/obj/machinery/computer/crew,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"f" = (
+/obj/machinery/computer/communications,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"g" = (
+/obj/item/storage/box/pcorp,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/rack,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"i" = (
+/obj/item/gps/computer,
+/turf/closed/wall/mineral/titanium/survival/pod,
+/area/survivalpod)
+"j" = (
+/obj/effect/spawner/structure/window/survival_pod,
+/turf/open/floor/pod,
+/area/survivalpod)
+"k" = (
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"l" = (
+/turf/open/floor/pod,
+/area/survivalpod)
+"m" = (
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"p" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"s" = (
+/obj/structure/table/abductor,
+/obj/item/weldingtool/experimental,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/survivalpod)
+"t" = (
+/obj/structure/rack,
+/obj/item/stack/sheet/mineral/sandbags{
+	amount = 30
+	},
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"y" = (
+/obj/machinery/manned_turret/rcorp,
+/obj/machinery/light,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"z" = (
+/obj/machinery/manned_turret/rcorp,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"A" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"B" = (
+/obj/structure/rack,
+/obj/effect/landmark/rcorpitemspawn,
+/obj/machinery/light,
+/turf/open/floor/pod/dark,
+/area/survivalpod)
+"D" = (
+/obj/structure/fans/tiny,
+/obj/machinery/door/airlock/survival_pod/glass,
+/turf/open/floor/pod,
+/area/survivalpod)
+
+(1,1,1) = {"
+a
+j
+j
+a
+j
+j
+a
+"}
+(2,1,1) = {"
+j
+e
+k
+p
+t
+y
+a
+"}
+(3,1,1) = {"
+j
+f
+m
+l
+l
+z
+j
+"}
+(4,1,1) = {"
+a
+g
+l
+l
+l
+l
+D
+"}
+(5,1,1) = {"
+j
+c
+l
+l
+l
+A
+j
+"}
+(6,1,1) = {"
+i
+l
+l
+s
+A
+B
+a
+"}
+(7,1,1) = {"
+a
+j
+j
+a
+j
+j
+a
+"}
