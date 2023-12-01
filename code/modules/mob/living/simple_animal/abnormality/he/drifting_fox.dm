@@ -1,5 +1,6 @@
 // Code for the drifting fox abnormality
-// By yours truely, MoriBox! (I have no fucking clue what im doing.)
+// By yours truely, Mori! (I have no fucking clue what im doing.)
+// this was a mistake.
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with gleaming yellow eyes; And torn umbrellas lodged into its back."
@@ -9,6 +10,8 @@
 	icon_dead = "fox_egg"
 	deathmessage = "collapses into a puddle of water"
 	deathsound = "sound/abnormalities/drifting_fox/foxdeath.ogg"
+	pixel_x = -16
+	base_pixel_x = -16
 	del_on_death = FALSE
 	maxHealth = 1000
 	health = 1000
@@ -30,7 +33,7 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = 30,
 		ABNORMALITY_WORK_ATTACHMENT = list(25,30,35,40,45),
-		ABNORMALITY_WORK_REPRESSION	= 30,
+		ABNORMALITY_WORK_REPRESSION	= 0,
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
