@@ -82,3 +82,6 @@
 	// And then start them all
 	for(var/datum/suppression/S in running_cores)
 		S.Run(FALSE, TRUE)
+
+	// As running all previous ones would set them as main core, we need to reset it
+	SSlobotomy_corp.core_suppression = src

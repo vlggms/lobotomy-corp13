@@ -126,6 +126,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/PostSpawn()
+	. = ..()
 	var/list/old_heard = RememberVar(1)
 	if(islist(old_heard) && LAZYLEN(old_heard))
 		heard_words = old_heard

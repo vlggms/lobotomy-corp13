@@ -10,8 +10,8 @@
 #define RECORDS_CORE_SUPPRESSION "Records Core Suppression"
 #define EXTRACTION_CORE_SUPPRESSION "Extraction Core Suppression"
 // Keter
-#define DAY46_CORE_SUPPRESSION "<b>Proving Oneself</b>"
-#define DAY47_CORE_SUPPRESSION "<b>Fatigue and Waiting</b>"
-#define DAY48_CORE_SUPPRESSION "<b>Regret and Atonement</b>"
-#define DAY49_CORE_SUPPRESSION "<b>Freedom and Redemption</b>"
-#define DAY50_CORE_SUPPRESSION "<b><u>Tree of Light</u></b>"
+#define DAY46_CORE_SUPPRESSION "Proving Oneself"
+#define DAY47_CORE_SUPPRESSION "Fatigue and Waiting"
+#define DAY48_CORE_SUPPRESSION "Regret and Atonement"
+#define DAY49_CORE_SUPPRESSION "Freedom and Redemption"
+#define DAY50_CORE_SUPPRESSION "Tree of Light"

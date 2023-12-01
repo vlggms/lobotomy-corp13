@@ -43,6 +43,7 @@
 	var/chop_damage = 400
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PostSpawn()
+	. = ..()
 	med_hud_set_health() //show medhud while in containment
 	med_hud_set_status()
 

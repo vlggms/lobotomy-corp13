@@ -109,6 +109,7 @@
 
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/nobody_is/PostSpawn()
+	. = ..()
 	if(CheckCombat())
 		current_stage = 2
 		next_stage()

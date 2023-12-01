@@ -130,6 +130,7 @@
 
 // Silly multi icons, lets fix that! This is called each time it's spawned in containment, so it has normal sprite on adminbus spawn
 /mob/living/simple_animal/hostile/abnormality/crying_children/PostSpawn()
+	. = ..()
 	desc = "A wax statue of an ...angel? It creepily floats around the containment room. You feel like you shouldn't be here for too long"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "unspeaking_child"
