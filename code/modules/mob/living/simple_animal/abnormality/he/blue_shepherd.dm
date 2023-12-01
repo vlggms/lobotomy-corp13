@@ -47,6 +47,10 @@
 	gift_type = /datum/ego_gifts/oppression
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/red_buddy = 5
+	)
+
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
 	var/slash_cooldown = 4

@@ -41,6 +41,13 @@
 		)
 	gift_type = /datum/ego_gifts/nihil
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 5,
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 5,
+		/mob/living/simple_animal/hostile/abnormality/greed_king = 5,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 5
+	)
+
 	// Range ofthe debuff
 	var/debuff_range = 40
 	var/list/quotes = list("Everybody's agony becomes one.",

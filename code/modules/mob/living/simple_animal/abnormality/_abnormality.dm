@@ -79,6 +79,9 @@
 	var/harvest_phrase_third = "%PERSON harvests... something... into %VESSEL."
 	// Dummy chemicals - called if chem_type is null.
 	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
+	// Increased Abno appearance chance
+	/// Assoc list, you do [path] = [probability_multiplier] for each entry
+	var/list/grouped_abnos = list()
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)

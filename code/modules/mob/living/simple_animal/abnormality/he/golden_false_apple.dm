@@ -59,6 +59,11 @@
 	gift_message = "You feel a sense of kinship with the apple. Because you're both pests."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5
+	)
+
 	attack_action_types = list(
 		/datum/action/cooldown/gapple_pulse
 		)
