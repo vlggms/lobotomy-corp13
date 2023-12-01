@@ -86,14 +86,13 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
 
 /obj/projectile/beam/laser/heavylaser/black
-	damage = 40
 	damage_type = BLACK_DAMAGE
 	light_color = COLOR_PURPLE
 	icon_state = "purpleheavylaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/heavylaser/pale
-	damage = 20
+	damage = 35
 	damage_type = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY
 	icon_state = "blueheavylaser"
