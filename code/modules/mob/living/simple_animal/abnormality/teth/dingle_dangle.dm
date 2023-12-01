@@ -1,7 +1,7 @@
 #define STATUS_EFFECT_DANGLE /datum/status_effect/dangle
 /mob/living/simple_animal/hostile/abnormality/dingledangle
 	name = "Dingle-Dangle"
-	desc = "A code with bodies strung up in the ceiling."
+	desc = "A cone that goes up to the ceiling with a ribbon tied around it. Bodies are strung up around it, seeming to be tied to the ceiling."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "dangle"
 	maxHealth = 600
