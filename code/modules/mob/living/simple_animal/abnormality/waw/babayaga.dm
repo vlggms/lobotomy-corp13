@@ -13,7 +13,6 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 50
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	health = 2500
 	maxHealth = 2500
@@ -131,7 +130,7 @@
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
 	density = TRUE
-	visible_message("<span class='danger'>[src] drops down from the ceiling!</span>")
+	visible_message(span_danger("[src] drops down from the ceiling!"))
 	playsound(get_turf(src), 'sound/abnormalities/babayaga/land.ogg', 100, FALSE, 20)
 	var/obj/effect/temp_visual/decoy/D = new(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*2, time = 5)
@@ -178,7 +177,6 @@
 	health = 300
 	maxHealth = 300
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 27
@@ -244,7 +242,7 @@
 /obj/effect/temp_visual/ice_turf/proc/BumpEffect(mob/living/carbon/human/H)
 	if(icon_state == "ice")
 		if(prob(25))
-			to_chat(H, "<span class='warning'>You slip on the ice!</span>")
+			to_chat(H, span_warning("You slip on the ice!"))
 			H.slip(0, null, SLIDE_ICE, 0, FALSE)
 			H.Immobilize(0.5 SECONDS)
 

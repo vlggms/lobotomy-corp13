@@ -4,7 +4,7 @@
 	desc = "A riot club used by the local protection."
 	special = "Attack a human to stun them after a period of time."
 	icon_state = "protection_baton"
-	inhand_icon_state = "zwei_baton"
+	inhand_icon_state = "protection_baton"
 	force = 15
 	attribute_requirements = list()
 
@@ -18,7 +18,7 @@
 	inhand_icon_state = "index"
 	force = 20
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 	attack_verb_continuous = list("smacks", "hammers", "beats")
 	attack_verb_simple = list("smack", "hammer", "beat")
 	attribute_requirements = list(
@@ -61,6 +61,10 @@
 	desc = "A spear used by index proxies."
 	icon_state = "indexspear"
 	inhand_icon_state = "indexspear"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	attack_speed = 1.2
 	reach = 2
@@ -80,6 +84,10 @@
 	desc = "A greatsword sword used by a specific index messenger."
 	icon_state = "indexgreatsword"
 	inhand_icon_state = "indexgreatsword"
+	lefthand_file = 'ModularTegustation/Teguicons/lc13_left_64x64.dmi'
+	righthand_file = 'ModularTegustation/Teguicons/lc13_right_64x64.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	attack_verb_continuous = list("cleaves", "cuts")
 	attack_verb_simple = list("cleaves", "cuts")
 	hitsound = 'sound/weapons/fixer/generic/finisher1.ogg'

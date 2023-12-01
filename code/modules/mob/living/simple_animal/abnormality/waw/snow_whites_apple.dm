@@ -14,7 +14,6 @@ GLOBAL_LIST_EMPTY(vine_list)
 	ranged = TRUE
 	ranged_cooldown_time = 4 SECONDS
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	projectilesound = 'sound/creatures/venus_trap_hit.ogg'
 	ranged_message = null
@@ -216,13 +215,13 @@ GLOBAL_LIST_EMPTY(vine_list)
 /obj/structure/spreading/apple_vine/Crossed(atom/movable/AM)
 	. = ..()
 	if(is_type_in_typecache(AM, atom_remove_condition))
-		take_damage(15, BRUTE, "melee", 1)
+		take_damage(15, MELEE, 1)
 	if(is_type_in_typecache(AM, ignore_typecache))		// Don't want the traps triggered by sparks, ghosts or projectiles.
 		return
 	if(isliving(AM))
 		vine_effect(AM)
 
-/obj/structure/spreading/apple_vine/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/spreading/apple_vine/play_attack_sound(damage_amount, damage_type = BRUTE)
 	playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', 60, TRUE)
 
 /obj/structure/spreading/apple_vine/proc/vine_effect(mob/living/L)
@@ -239,22 +238,22 @@ GLOBAL_LIST_EMPTY(vine_list)
 			var/weeding = trimming.get_sharpness()
 			if(weeding == SHARP_EDGED && trimming.force >= 5)
 				if(prob(10))
-					to_chat(lonely, "<span class='warning'>You cut back the [name] as it reaches for you.</span>")
+					to_chat(lonely, span_warning("You cut back the [name] as it reaches for you."))
 				else if(prob(10) || (prob(30) && name == "bitter growth"))
-					to_chat(lonely, "<span class='warning'>The [name] stab your legs spitefully.</span>")
+					to_chat(lonely, span_warning("The [name] stab your legs spitefully."))
 					lonely.adjustBlackLoss(5)
 				lonely.adjustStaminaLoss(5)
 				qdel(src)
 				return
 			return
 	if(prob(10))
-		to_chat(L, "<span class='warning'>The [name] tighten around you.</span>")
+		to_chat(L, span_warning("The [name] tighten around you."))
 	L.adjustStaminaLoss(10, TRUE, TRUE)
 
 /obj/structure/spreading/apple_vine/proc/suiterReaction(mob/living/carbon/human/lonely)
 	var/lonelyhealth = (lonely.health / lonely.maxHealth) * 100
 	if(prob(10))
-		to_chat(lonely, "<span class='nicegreen'>The branches open a path.</span>") //it would be uncouth for the vines to hinder one gifted by the princess.
+		to_chat(lonely, span_nicegreen("The branches open a path.")) //it would be uncouth for the vines to hinder one gifted by the princess.
 	if(lonelyhealth <= 30 && lonely.stat != DEAD)
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))

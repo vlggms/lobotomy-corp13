@@ -29,7 +29,7 @@
 	var/datum/gas_mixture/turf/air
 
 	var/obj/effect/hotspot/active_hotspot
-	var/planetary_atmos = FALSE //air will revert to initial_gas_mix
+	var/planetary_atmos = TRUE //air will revert to initial_gas_mix
 
 	var/list/atmos_overlay_types //gas IDs of current active gas overlays
 	var/significant_share_ticker = 0
@@ -38,6 +38,9 @@
 	#endif
 
 /turf/open/Initialize()
+	//If we want actual space grameplay. What can go wrong?
+	if(SSmaptype.maptype in SSmaptype.spacemaps)
+		planetary_atmos = FALSE
 	if(!blocks_air)
 		air = new
 		air.copy_from_turf(src)

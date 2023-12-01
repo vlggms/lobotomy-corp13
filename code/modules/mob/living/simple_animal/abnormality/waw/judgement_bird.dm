@@ -51,13 +51,13 @@
 	name = "Judgement"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now damage all enemies around you.</span>"
+	chosen_message = span_colossus("You will now damage all enemies around you.")
 	chosen_attack_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/Move()
 	if(judging)
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/AttackingTarget(atom/attacked_target)
 	return OpenFire()
@@ -93,6 +93,14 @@
 
 		if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
 			if(!CheckCombat())
+				var/turf/T = get_turf(L)
+				if(locate(/obj/structure/jbird_noose) in T)
+					T = pick_n_take(T.reachableAdjacentTurfs())//if a noose is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
+					L.forceMove(T)
+				var/obj/structure/jbird_noose/N = new(get_turf(L))
+				N.buckle_mob(L)
+				playsound(get_turf(L), 'sound/abnormalities/judgementbird/kill.ogg', 75, 0, 7)
+				playsound(get_turf(L), 'sound/abnormalities/judgementbird/hang.ogg', 100, 0, 7)
 				var/mob/living/simple_animal/hostile/runawaybird/V = new(get_turf(L))
 				birdlist+=V
 				V = new(get_turf(L))
@@ -146,7 +154,6 @@
 	maxHealth = 100
 	melee_damage_lower = 5
 	melee_damage_upper = 8
-	armortype = PALE_DAMAGE
 	melee_damage_type = PALE_DAMAGE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -183,3 +190,64 @@
 		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
 		return
 	return ..()
+
+//On-kill visual effect
+/obj/structure/jbird_noose
+	name = "feathery noose"
+	desc = "A structure found in the black forest."
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon_state = "noose"
+	pixel_x = -8
+	base_pixel_x = -8
+	max_integrity = 60
+	buckle_lying = 0
+	density = FALSE
+	anchored = TRUE
+	can_buckle = TRUE
+
+/obj/structure/jbird_noose/attack_hand(mob/user)
+	if(!has_buckled_mobs())
+		return ..()
+	for(var/mob/living/L in buckled_mobs)
+		user_unbuckle_mob(L, user)
+	return
+
+/obj/structure/jbird_noose/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
+	if(M.buckled)
+		return
+	var/response = alert(user,"Will you really hang [M]?","This looks painful","Yes","No")
+	if(response == "Yes" && do_after(user, 10, M))
+		return ..(M, user, check_loc = FALSE) //it just works
+	to_chat(user, "You decide not to hang [M].")
+
+/obj/structure/jbird_noose/buckle_mob(mob/living/M, force, check_loc, buckle_mob_flags)
+	if(M.buckled)
+		return
+	M.adjustOxyLoss(75)
+	M.adjustBruteLoss(5)
+	M.setDir(2)
+	M.pixel_x = M.base_pixel_x - 20
+//	animate(M, pixel_z = 16, time = 30)
+	addtimer(CALLBACK(src, .proc/BuckleAnimation, M), 10)
+	return ..()
+
+/obj/structure/jbird_noose/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
+	if(buckled_mob)
+		release_mob(buckled_mob)
+
+/obj/structure/jbird_noose/proc/release_mob(mob/living/M)
+	M.pixel_x = M.base_pixel_x
+	unbuckle_mob(M,force=1)
+	M.pixel_z = 0
+	src.visible_message(text("<span class='danger'>[M] falls free of [src]!</span>"))
+	M.update_icon()
+
+/obj/structure/jbird_noose/Destroy()
+	if(has_buckled_mobs())
+		for(var/mob/living/L in buckled_mobs)
+			release_mob(L)
+	return ..()
+
+/obj/structure/jbird_noose/proc/BuckleAnimation(mob/living/M)
+	set waitfor = FALSE
+	animate(M, pixel_z = 16, time = 30)

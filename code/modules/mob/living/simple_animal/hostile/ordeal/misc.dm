@@ -11,7 +11,6 @@
 	maxHealth = 2000
 	health = 2000
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	rapid_melee = 2
 	melee_damage_lower = 14
 	melee_damage_upper = 14
@@ -20,6 +19,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
 	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
+				/mob/living/simple_animal/hostile/abnormality/distortedform,
 				/mob/living/simple_animal/hostile/abnormality/white_night,
 				/mob/living/simple_animal/hostile/abnormality/hatred_queen)
 

@@ -1,3 +1,5 @@
+#define SWEEPER_TYPES /mob/living/simple_animal/hostile/ordeal/indigo_dawn || /mob/living/simple_animal/hostile/ordeal/indigo_noon || /mob/living/simple_animal/hostile/ordeal/indigo_dusk || /mob/living/simple_animal/hostile/ordeal/indigo_midnight
+
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn
 	name = "unknown scout"
 	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
@@ -11,7 +13,6 @@
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 10
 	melee_damage_upper = 12
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
@@ -21,6 +22,7 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
 	. = ..()
@@ -35,10 +37,16 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
+	if(SSmaptype.maptype == "city")
+		return FALSE
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		//Would have made it based on biotypes but that has its own issues.
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -55,7 +63,6 @@
 	move_to_delay = 4
 	stat_attack = DEAD
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
@@ -65,6 +72,8 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	silk_results = list(/obj/item/stack/sheet/silk/indigo_advanced = 1,
+						/obj/item/stack/sheet/silk/indigo_simple = 2)
 	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
@@ -95,10 +104,15 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
+	if(SSmaptype.maptype == "city")
+		return FALSE
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -134,12 +148,14 @@
 	health = 1500
 	stat_attack = DEAD
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	rapid_melee = 1
 	melee_damage_lower = 13
 	melee_damage_upper = 17
 	butcher_results = list(/obj/item/food/meat/slab/sweeper = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/indigo_elegant = 1,
+						/obj/item/stack/sheet/silk/indigo_advanced = 2,
+						/obj/item/stack/sheet/silk/indigo_simple = 4)
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
@@ -156,7 +172,6 @@
 	icon_state = "adelheide"
 	icon_living = "adelheide"
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
@@ -174,7 +189,6 @@
 	icon_state = "maria"
 	icon_living = "maria"
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
@@ -186,7 +200,6 @@
 	icon_living = "jacques"
 	rapid_melee = 4
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
@@ -196,7 +209,6 @@
 	icon_living = "silvina"
 	rapid_melee = 2
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
 
@@ -263,7 +275,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth/2))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth/2))
 	L.gib()
 	return TRUE
 
@@ -282,7 +297,6 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	move_to_delay = 3
 	speed = 3
 	rapid_melee = 2
@@ -320,8 +334,7 @@
 	var/pissed_threshold = 16
 
 	//phase speedchange
-	var/phase2speed = 2.4
-	var/phase3speed = 1.8
+	var/phasespeedchange = -0.6
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/Move()
@@ -341,26 +354,61 @@
 	//Default to normal targeting if already phase 3 or only have 1 target
 	if(phase >= 3 || Targets.len <= 1)
 		return ..()
+
+	/* If we have a target and their value is
+		above 80 or "adjacent living creature" then
+		just keep killing them. */
+	if(target)
+		// Focus on finishing them off.
+		if(ValueTarget(target) > 86)
+			return target
+
+	/* Form a list of our targets, value how much we hate
+		them, and then pick the target who has the MOST hate. */
 	for(var/i in Targets)
 		Targets[i] = ValueTarget(i)
 	return ReturnHighestValue(Targets)
 
 //Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/ValueTarget(atom/target_thing, hate_value = 0)
+	/* This is in order to treat Mechas as living by
+		instead considering their pilot for the hate value. */
+	if(ismecha(target_thing))
+		var/obj/vehicle/sealed/mecha/M = target_thing
+		for(var/occupant in M.occupants)
+			if(CanAttack(occupant))
+				target_thing = occupant
+
 	if(isliving(target_thing))
 		var/mob/living/L = target_thing
+
+		//Minimum starting hate for anything living is 80.
+		hate_value += 80
+		//Hate for corpses since we eats them.
 		if(L.stat == DEAD)
-			return 100
-		hate_value += 1
-		if(iscarbon(L))
 			hate_value += 10
-		if(L.health <= (L.maxHealth * 0.6))
-			hate_value += (10 * ( L.health / L.maxHealth ))
+		//Highest possible addition is + 9.9
+		if(iscarbon(L))
+			if(L.stat != DEAD && L.health <= (L.maxHealth * 0.6))
+				var/upper = L.maxHealth - HEALTH_THRESHOLD_DEAD
+				var/lower = L.health - HEALTH_THRESHOLD_DEAD
+				hate_value += min( 2 * ( 1 / ( max( lower, 1 ) / upper ) ), 20)
+		//If your not next to us your hate is down by 50
+		if(!L.Adjacent(targets_from))
+			hate_value -= 50
+
 	return hate_value
+	/*
+	Priority from greatest to least:
+	dead close: 90
+	close: 80
+	dead far: 40
+	far: 30
+	*/
 
 //Stolen MOSB patrol code
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/CanStartPatrol()
-	return !(status_flags & GODMODE)
+	return !(status_flags & GODMODE) && !target
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/patrol_reset()
 	. = ..()
@@ -424,7 +472,10 @@
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
 		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
-	adjustBruteLoss(-(maxHealth*0.3))
+	if(istype(L, SWEEPER_TYPES))
+		adjustBruteLoss(-20)
+	else
+		adjustBruteLoss(-(maxHealth*0.3))
 	L.gib()
 	//Increase the Vore counter by 1
 	belly += 1
@@ -476,9 +527,8 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 4000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8)
-	move_to_delay = phase2speed
-	UpdateSpeed()
+	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
+	SpeedChange(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -495,9 +545,8 @@
 	SLEEP_CHECK_DEATH(5)
 
 	maxHealth = 3000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1)
-	move_to_delay = phase3speed
-	UpdateSpeed()
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
+	SpeedChange(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15
@@ -534,6 +583,8 @@
 		sleep(delay)
 	slamming = FALSE
 
+#undef SWEEPER_TYPES
+
 /obj/effect/sweeperspawn
 	name = "bloodpool"
 	desc = "A target warning you of incoming pain"
@@ -566,7 +617,6 @@
 	move_to_delay = 1.3	//Super fast, but squishy and weak.
 	stat_attack = HARD_CRIT
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 21
 	melee_damage_upper = 24
 	attack_verb_continuous = "stabs"

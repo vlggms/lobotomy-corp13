@@ -13,6 +13,8 @@
 	gender = NEUTER
 	var/divine = FALSE
 
+	var/unique_pet = FALSE // LOBOTOMYCORPORATION EDIT ADDITION - unique plushie messages
+
 /obj/item/toy/plush/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, squeak_override)
@@ -33,6 +35,9 @@
 
 /obj/item/toy/plush/attack_self(mob/user)
 	. = ..()
+	if(unique_pet) // LOBOTOMYCORPORATION EDIT ADDITION - unique plushie messages
+		to_chat(user, "<span class='notice'>[unique_pet]</span>")
+		return
 	if(stuffed || grenade)
 		to_chat(user, "<span class='notice'>You pet [src]. D'awww.</span>")
 		if(grenade && !grenade.active)
@@ -327,6 +332,7 @@
 	desc = "A plushie depicting a researcher that did <b>nothing wrong</b>." // Fight me
 	icon_state = "ayin"
 	gender = MALE
+	unique_pet = "You pet the ayin plushie, ayin did nothing wrong."
 
 /obj/item/toy/plush/benjamin
 	name = "benjamin plushie"
@@ -524,6 +530,7 @@
 	icon_state = "myo"
 	gender = FEMALE
 	squeak_override = list('sound/effects/yem.ogg'=1)
+	unique_pet = "You pet the myo plushie, yem."
 
 /obj/item/toy/plush/rabbit
 	name = "rabbit plushie"
@@ -564,6 +571,7 @@
 	desc = "A plushie depicting a magical girl whose desires got the best of her."
 	icon_state = "kog"
 	gender = FEMALE
+	unique_pet = "You pet the king of greed plushie, you swear it looks up to you hungirly."
 
 /obj/item/toy/plush/kod
 	name = "knight of despair plushie"
@@ -604,6 +612,7 @@
 	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
 	attack_verb_simple = list("blorble", "slime", "absorb")
 	squeak_override = list('sound/effects/blobattack.ogg' = 1)
+	unique_pet = "You pet the melting love plushie... you swear it smiles and looks at you, yet when you blink the plushie returns to normal"
 
 /obj/item/toy/plush/scorched
 	name = "scorched girl plushie"
@@ -612,11 +621,17 @@
 	gender = FEMALE
 	squeak_override = list('sound/abnormalities/scorchedgirl/pre_ability.ogg'=1)
 
+/obj/item/toy/plush/pinocchio
+	name = "pinocchio plushie"
+	desc = "A plushie depicting pinocchio."
+	icon_state = "pinocchio"
+
 // Others
 /obj/item/toy/plush/bongbong
 	name = "bongbong plushie"
 	desc = "A plushie depicting the Lobotomy Corporation"
 	icon_state = "bongbong"
+	unique_pet = "Bong"
 
 /obj/item/toy/plush/fumo
 	name = "cirno fumo"

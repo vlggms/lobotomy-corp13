@@ -49,17 +49,17 @@
 			var/mob/living/carbon/human/witness = locate(/mob/living/carbon/human) in livinginview(1, src) //included mostly for lore since you encourage people to use it.
 			if(witness && !witness.has_status_effect(THE_LIARS_BLESSING))
 				witness.apply_status_effect(THE_LIARS_BLESSING)
-				to_chat(witness, "<span class='notice'>The air around [src] makes you feel at peace.</span>")
+				to_chat(witness, span_notice("The air around [src] makes you feel at peace."))
 		else if(datum_reference.qliphoth_meter <= 0)
 			user.apply_status_effect(THE_TREE_CURSE)
 		else
 			user.apply_status_effect(THE_LIARS_BLESSING)
 			if(prob(5))
-				to_chat(user, "<span class='notice'>You hear a voice telling you to bring anyone who needs help here.</span>")
+				to_chat(user, span_notice("You hear a voice telling you to bring anyone who needs help here."))
 		return
 	if(datum_reference.qliphoth_meter <= 4)
 		if(canceled || pe < datum_reference.neutral_boxes)
-			to_chat(user, "<span class='notice'>You feel refreshed after being near [src].</span>")
+			to_chat(user, span_notice("You feel refreshed after being near [src]."))
 			if(datum_reference.qliphoth_meter >= 1)
 				user.apply_status_effect(THE_LIARS_BLESSING)
 			else
@@ -69,9 +69,9 @@
 			resetQliphoth()
 			for(var/datum/status_effect/display/parasite_tree_curse/curse in blessed)
 				qdel(curse)
-			to_chat(user, "<span class='nicegreen'>The scarlet red eye closes as you smash apart [src]'s flowers.</span>")
+			to_chat(user, span_nicegreen("The scarlet red eye closes as you smash apart [src]'s flowers."))
 			return ..()
-		to_chat(user, "<span class='notice'>[src] stands silently as you finish destroying the buds.</span>")
+		to_chat(user, span_notice("[src] stands silently as you finish destroying the buds."))
 		resetQliphoth()
 	return ..()
 
@@ -130,7 +130,7 @@
 					potentialFollowers[L] += (L.health - 1) + (L.sanityhealth - 1)
 		if(potentialFollowers.len)
 			var/mob/living/carbon/human/chosen_agent = pickweight(potentialFollowers)
-			to_chat(chosen_agent, "<span class='nicegreen'>A large leaf lands nearby.</span>")
+			to_chat(chosen_agent, span_nicegreen("A large leaf lands nearby."))
 			var/list/possibleleafturf = list()
 			for(var/turf/T in oview(3, chosen_agent))
 				if(!T.density && !locate(/obj/structure/window || /obj/machinery/door) in T.contents)
@@ -289,7 +289,7 @@
 				connected_abno.datum_reference.qliphoth_change(1)
 		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
-	. = ..()
+	return ..()
 
 /datum/status_effect/display/parasite_tree_blessing/proc/facadeFalls()
 	owner.apply_status_effect(THE_TREE_CURSE)
@@ -311,7 +311,7 @@
 	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/parasite_tree) in GLOB.abnormality_mob_list
 	if(connected_abno)
 		connected_abno.blessed += src
-	to_chat(owner, "<span class='warning'>You feel something sprouting under your skin! Its time to be reborn with the tree.</span>")
+	to_chat(owner, span_warning("You feel something sprouting under your skin! Its time to be reborn with the tree."))
 
 /datum/status_effect/display/parasite_tree_curse/tick()
 	. = ..()
@@ -335,7 +335,7 @@
 		nested_items(N, host.get_item_by_slot(ITEM_SLOT_BACK))
 		nested_items(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		QDEL_IN(owner, 5) //rabbit sanity implant explodes at 5
-	. = ..()
+	return ..()
 
 /datum/status_effect/display/parasite_tree_curse/TweakDisplayIcon()
 	..()
@@ -377,7 +377,7 @@
 			L.apply_status_effect(THE_LIARS_BLESSING)
 		L.adjustBruteLoss(heal_amount)
 		new /obj/effect/temp_visual/cloud_swirl(get_turf(L)) //placeholder
-		to_chat(L, "<span class='nicegreen'>Your wounds quickly close after touching the [src].</span>")
+		to_chat(L, span_nicegreen("Your wounds quickly close after touching the [src]."))
 		qdel(src)
 
 #undef THE_LIARS_BLESSING

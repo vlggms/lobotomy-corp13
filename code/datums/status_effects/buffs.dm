@@ -513,33 +513,31 @@
 
 //LC13 AI entity Buffs
 	//Buff Maroon Ordeal Soldiers, Feel free to cannibalize and rework to work for other creatures.
+
 /datum/status_effect/all_armor_buff //due to multiplication the effect works more on entities that are weak to the damage value.
 	id = "all armor armor"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 120 //6 seconds
+	duration = 120 //12 seconds
 	alert_type = null
 	var/visual
 
 /datum/status_effect/all_armor_buff/on_apply()
 	. = ..()
+	if(!isanimal(owner))
+		qdel(src)
+		return
 	visual = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "manager_shield")
-	if(isanimal(owner))
-		var/mob/living/simple_animal/M = owner
-		M.add_overlay(visual)
-		M.damage_coeff[RED_DAMAGE] *= 0.8 //20% damage decrease
-		M.damage_coeff[WHITE_DAMAGE] *= 0.8
-		M.damage_coeff[BLACK_DAMAGE] *= 0.8
-		M.damage_coeff[PALE_DAMAGE] *= 0.8
+	var/mob/living/simple_animal/M = owner
+	M.add_overlay(visual)
+	M.AddModifier(/datum/dc_change/maroon_buff)
 
 /datum/status_effect/all_armor_buff/on_remove()
 	. = ..()
 	if(isanimal(owner))
 		var/mob/living/simple_animal/M = owner
-		M.damage_coeff[RED_DAMAGE] /= 0.8
-		M.damage_coeff[WHITE_DAMAGE] /= 0.8
-		M.damage_coeff[BLACK_DAMAGE] /= 0.8
-		M.damage_coeff[PALE_DAMAGE] /= 0.8
-	owner.cut_overlay(visual)
+		M.RemoveModifier(/datum/dc_change/maroon_buff)
+	if(visual)
+		owner.cut_overlay(visual)
 
 
 /datum/status_effect/minor_damage_buff

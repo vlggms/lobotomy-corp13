@@ -1812,6 +1812,14 @@
 /obj/structure/fluff/broken_flooring,
 /turf/open/floor/plating,
 /area/facility_hallway/central)
+"mM" = (
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	pixel_y = 2
+	},
+/obj/machinery/smartfridge/extraction_storage/ego_weapon,
+/turf/closed/indestructible/reinforced,
+/area/department_main/information)
 "mN" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
@@ -4295,6 +4303,12 @@
 	color = "a1a1a1"
 	},
 /area/facility_hallway/information)
+"FP" = (
+/obj/machinery/vending/cigarette,
+/turf/open/floor/facility/white{
+	color = "a1a1a1"
+	},
+/area/facility_hallway/command)
 "FU" = (
 /turf/open/floor/mineral/titanium/white,
 /area/department_main/safety)
@@ -4612,8 +4626,15 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 6
 	},
-/obj/machinery/vending/cigarette,
+/obj/machinery/vending/custom/unbreakable,
 /turf/open/floor/carpet/purple,
+/area/department_main/information)
+"It" = (
+/obj/structure/window/reinforced/spawner/east{
+	max_integrity = 25
+	},
+/obj/machinery/smartfridge/extraction_storage/ego_armor,
+/turf/closed/indestructible/reinforced,
 /area/department_main/information)
 "Ix" = (
 /obj/structure/window/reinforced/spawner/north,
@@ -40473,7 +40494,7 @@ xx
 xx
 xx
 oa
-jP
+It
 rp
 II
 MO
@@ -40725,7 +40746,7 @@ il
 OL
 Du
 Du
-Du
+FP
 xx
 if
 if
@@ -41247,7 +41268,7 @@ oa
 MR
 aP
 lc
-pz
+mM
 hj
 hj
 hj

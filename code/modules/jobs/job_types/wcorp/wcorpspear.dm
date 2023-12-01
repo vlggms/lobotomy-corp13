@@ -56,11 +56,11 @@ GLOBAL_LIST_INIT(l2dsquads, list("Axe", "Buckler", "Cleaver"))
 	ears = /obj/item/radio/headset/headset_welfare
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp
-	belt = /obj/item/ego_weapon/city/wcorp/spear
+	belt = /obj/item/ego_weapon/city/charge/wcorp/spear
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	head = /obj/item/clothing/head/wcorp
+	head = /obj/item/clothing/head/ego_hat/wcorp
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	l_pocket = /obj/item/flashlight/seclite
 	backpack_contents = list(/obj/item/storage/box/pcorp)

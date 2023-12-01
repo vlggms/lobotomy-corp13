@@ -3,7 +3,6 @@
 	icon_state = "star"
 	damage = 28 // Multiplied by 1.5x when at high SP
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/melting_blob
 	name = "slime projectile"
@@ -12,7 +11,6 @@
 	damage = 40	//Fires 3
 	speed = 0.8
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	hitsound = "sound/effects/footstep/slime1.ogg"
 
 /obj/projectile/ego_bullet/melting_blob/dot
@@ -44,7 +42,7 @@
 	damage = 35	//Fires 4 +10 damage per upgrade, up to 75
 	speed = 0.7
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 	hitsound = 'sound/abnormalities/nihil/filter.ogg'
 	var/damage_list = list(WHITE_DAMAGE)
 	var/icon_list = list()
@@ -100,10 +98,15 @@
 	else
 		color = pick("#36454F", "#818589")
 	damage_type = pick(damage_list)
-	flag = damage_type
 
 /obj/projectile/ego_bullet/pink
-	name = "pink"
-	damage = 150
+	name = "heart-piercing bullet"
+	damage = 130
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
+	hitscan = TRUE
+	damage_falloff_tile = 5//the damage ramps up; 5 extra damage per tile. Maximum range is about 32 tiles, dealing 290 damage
+
+/obj/projectile/ego_bullet/pink/on_hit(atom/target, blocked = FALSE, pierce_hit)
+	..()
+	new /obj/effect/temp_visual/friend_hearts(get_turf(target))//looks better than impact_effect_type and works

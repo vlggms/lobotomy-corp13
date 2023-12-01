@@ -16,7 +16,7 @@
 /obj/effect/turf_decal{
 	dir = 8
 	},
-/obj/structure/lootcrate/n_corp,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "e" = (
@@ -47,7 +47,7 @@
 /obj/effect/turf_decal{
 	dir = 1
 	},
-/obj/structure/lootcrate/k_corp,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "j" = (
@@ -67,7 +67,7 @@
 /obj/effect/turf_decal{
 	dir = 3
 	},
-/obj/structure/lootcrate/limbus,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "l" = (
@@ -115,10 +115,6 @@
 /obj/machinery/light/dim,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
-"u" = (
-/obj/structure/lootcrate/limbus,
-/turf/open/floor/engine,
-/area/city/backstreets_room)
 "v" = (
 /obj/effect/turf_decal{
 	dir = 3
@@ -132,7 +128,7 @@
 /obj/effect/turf_decal{
 	dir = 10
 	},
-/obj/structure/lootcrate/n_corp,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "y" = (
@@ -172,7 +168,7 @@
 /obj/effect/turf_decal{
 	dir = 4
 	},
-/obj/structure/lootcrate/seven,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "G" = (
@@ -189,17 +185,14 @@
 /area/city/backstreets_room)
 "J" = (
 /obj/structure/table/greyscale,
-/obj/item/documents/syndicate/blue{
-	desc = "Appears to be documents and certifications signed by corporations to legalize something.";
-	name = "Warehouse Documents"
-	},
 /obj/machinery/light/dim{
 	dir = 1
 	},
+/obj/structure/lootcrate/money,
 /turf/open/floor/facility/dark,
 /area/city/backstreets_room)
 "K" = (
-/obj/structure/lootcrate/k_corp,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "L" = (
@@ -251,7 +244,7 @@
 /obj/effect/turf_decal{
 	dir = 5
 	},
-/obj/structure/lootcrate/seven,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "X" = (
@@ -381,7 +374,7 @@ g
 L
 b
 y
-u
+K
 A
 k
 b

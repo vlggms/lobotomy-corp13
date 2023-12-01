@@ -22,6 +22,8 @@
 	blood_volume = BLOOD_VOLUME_NORMAL // THERE WILL BE BLOOD. SHED.
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+	/// Can this thing spawn?
+	var/can_spawn = 1
 	/// Copy-pasted from megafauna.dm: This allows player controlled mobs to use abilities
 	var/chosen_attack = 1
 	/// Attack actions, sets chosen_attack to the number in the action
@@ -36,6 +38,8 @@
 	var/list/ego_list = list()
 	/// Variable holding the egoist, for use in PostManifest()
 	var/mob/living/carbon/human/egoist = null
+	/// Variable to determine starting stats of the egoist. You MUST have the minimum required to meet the E.G.O. stat requirement.
+	var/egoist_attributes = 0
 	/// Default visual effect for a successful unmanifest
 	var/unmanifest_effect = /obj/effect/temp_visual/beam_in
 	/// Specific names for distortions when unmanifested
@@ -68,12 +72,6 @@
 /mob/living/simple_animal/hostile/distortion/proc/AbnoRadio()
 	var/obj/item/implant/radio/slime/imp = new(src)
 	imp.implant(src, src) //acts as if the abno is both the implanter and the one being implanted, which is technically true I guess?
-
-// Is it currently a combat gamemode? Used to check if somethings can teleport.
-/mob/living/simple_animal/hostile/distortion/proc/CheckCombat()
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
-		return TRUE
-	return FALSE
 
 // Applies fear damage to everyone in range
 /mob/living/simple_animal/hostile/distortion/proc/FearEffect()
@@ -138,8 +136,12 @@
 	if(QDELETED(src))
 		return
 	egoist = new (get_turf(src))
-	forceMove(egoist) //Hide the distortion inside of the spawned human in case of shinanigains
 	can_patrol = FALSE
+	patrol_reset()
+	density = FALSE
+	AIStatus = AI_OFF
+	ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // Prevent death jank
+	forceMove(egoist) //Hide the distortion inside of the spawned human in case of shinanigains
 	if(unmanifest_effect)
 		new unmanifest_effect(get_turf(src))
 	var/newname
@@ -150,10 +152,15 @@
 	egoist.name = newname
 	egoist.real_name = newname
 	egoist.gender = gender
+	if(egoist_attributes)
+		egoist.adjust_all_attribute_levels(egoist_attributes)
 	if(egoist_outfit)
 		egoist.equipOutfit(egoist_outfit)
 	for(var/gear in ego_list)
 		if(ispath(gear, /obj/item/clothing/suit/armor/ego_gear))
+			var/suit_slot_item = egoist.get_item_by_slot(ITEM_SLOT_OCLOTHING)//Replace the old suit slot item with ego, if applicable
+			if(suit_slot_item)
+				qdel(suit_slot_item)
 			var/obj/item/clothing/suit/armor/ego_gear/equippable_gear = new gear(get_turf(src))
 			equippable_gear.equip_slowdown = 0
 			egoist.equip_to_slot(equippable_gear,ITEM_SLOT_OCLOTHING, TRUE)

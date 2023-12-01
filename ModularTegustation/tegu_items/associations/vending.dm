@@ -16,6 +16,12 @@
 			/obj/item/storage/box/miscarmor/four = 1,
 			/obj/item/storage/box/miscarmor/five = 1,
 			/obj/item/storage/box/miscarmor/six = 1,
+			/obj/item/book/granter/action/skill/dash = 15,
+			/obj/item/book/granter/action/skill/dashback = 15,
+			/obj/item/book/granter/action/skill/shockwave = 15,
+			/obj/item/book/granter/action/skill/bulletproof = 15,
+			/obj/item/book/granter/action/skill/timestop = 15,
+			/obj/item/book/granter/action/skill/assault = 15,
 
 					)
 
@@ -64,6 +70,35 @@
 	default_price = 50
 	input_display_header = "City Fashion"
 
+//cityvending
+/obj/machinery/vending/weaving
+	name = "\improper Weaving Books/Tools"
+	desc = "A machine used to purchase new weaving recipes!"
+	product_slogans = "Read up on all of the city gear!"
+	product_ads = "Can't go with out it!"
+	icon_state = "sec"
+	icon_deny = null
+	products = list(
+			/obj/item/book/granter/crafting_recipe/weaving_armor = 5,
+			/obj/item/clothing/mask/carnival_mask = 10,
+			/obj/item/silkknife = 5
+					)
+
+	premium = list(
+			/obj/item/book/granter/crafting_recipe/weaving_kurokumo = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_seven = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_ncorp = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_liu = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_index = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_zwei = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_shi = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_blade = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_advancedsilk = 1
+					)
+
+	default_price = 100
+	extra_price = 1000
+	input_display_header = "Weaving Books/Tools"
 
 //cityvending
 /obj/machinery/vending/fixer
@@ -75,7 +110,7 @@
 	icon_deny = null
 	products = list(
 			/obj/item/flashlight/seclite = 100,
-			/obj/item/attribute_increase_small = 1500,
+			/obj/item/attribute_increase/fixer = 1500,
 			/obj/item/radio/headset = 200,
 			/obj/item/crowbar = 100,
 			/obj/item/clothing/suit/armor/ego_gear/city/misc/lone = 100,

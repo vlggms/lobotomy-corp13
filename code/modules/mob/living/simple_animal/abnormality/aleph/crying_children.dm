@@ -1,4 +1,7 @@
 // Ping Chiemi for bugs, suffering
+#define TCC_SORROW_COOLDOWN (5 SECONDS)
+#define TCC_COMBUST_COOLDOWN (20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/crying_children
 	name = "\proper The Crying Children"
 	desc = "A towering angel statue, setting everything on it's path ablaze"
@@ -58,6 +61,69 @@
 	// Prevents spawning in normal game modes
 	can_spawn = FALSE
 
+	attack_action_types = list(
+		/datum/action/cooldown/tcc_sorrow,
+		/datum/action/cooldown/tcc_combust
+	)
+
+// Sorrow is too strong to be spammed, so you can only do it when mobs are nearby as a player
+/datum/action/cooldown/tcc_sorrow
+	name = "Wounds Of Sorrow"
+	icon_icon = 'icons/obj/projectiles_muzzle.dmi'
+	button_icon_state = "muzzle_beam_heavy"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = TCC_SORROW_COOLDOWN
+
+/datum/action/cooldown/tcc_sorrow/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/crying_children))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/crying_children/TCC = owner
+	if(!(TCC.can_act))
+		return FALSE
+	var/list/targets_to_hit = list()
+	for(var/mob/living/L in view(8, TCC))
+		if(TCC.faction_check_mob(L) || L.stat == DEAD)
+			continue
+		if(istype(L, /mob/living/simple_animal/bot))
+			continue
+		targets_to_hit += L
+	for(var/obj/vehicle/V in view(8, TCC))
+		if(V.occupants.len <= 0)
+			continue
+		targets_to_hit += V
+	if(targets_to_hit.len <= 0)
+		to_chat(TCC, span_warning("There are no enemies nearby!"))
+		return FALSE
+	StartCooldown()
+	TCC.Wounds_Of_Sorrow(pick(targets_to_hit))
+	return TRUE
+
+/datum/action/cooldown/tcc_combust
+	name = "Combusting Courage"
+	icon_icon = 'icons/mob/actions/actions_ability.dmi'
+	button_icon_state = "fire0"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = TCC_COMBUST_COOLDOWN
+
+/datum/action/cooldown/tcc_combust/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/crying_children))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/crying_children/TCC = owner
+	if(!(TCC.can_act))
+		return FALSE
+	if(!(TCC.desperate))
+		to_chat(TCC, span_warning("You're still not ready to use this!"))
+		return FALSE
+	StartCooldown()
+	TCC.Combusting_Courage()
+	return TRUE
+
 /mob/living/simple_animal/hostile/abnormality/crying_children/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
@@ -102,9 +168,9 @@
 			charge = 666
 			addtimer(CALLBACK(src, .proc/Scorching_Desperation), 10 SECONDS)
 			for(var/mob/living/L in GLOB.mob_living_list)
-				if(faction_check_mob(L, FALSE) || L.z != z)
+				if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
 					continue
-				to_chat(L, "<span class='userdanger'>Everything seems hazy, even metal is starting to melt. You can barely withstand the heat!</span>")
+				to_chat(L, span_userdanger("Everything seems hazy, even metal is starting to melt. You can barely withstand the heat!"))
 				flash_color(L, flash_color = COLOR_SOFT_RED, flash_time = 150)
 				SEND_SOUND(L, sound('sound/ambience/acidrain_mid.ogg'))
 
@@ -116,7 +182,7 @@
 	for(var/mob/living/L in GLOB.mob_living_list)
 		if(faction_check_mob(L, FALSE) || L.z != z || L.stat == DEAD)
 			continue
-		to_chat(L, "<span class='userdanger'>You're boiling alive from the heat of a miniature sun!</span>")
+		to_chat(L, span_userdanger("You're boiling alive from the heat of a miniature sun!"))
 		playsound(L, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, TRUE)
 		L.apply_damage(300, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		L.apply_lc_burn(50)
@@ -152,6 +218,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/death(gibbed)
 	if(!desperate && children_list.len <= 0)
+		if(client)
+			FinalPhase()
+			return
 		SpawnChildren()
 		can_act = FALSE
 		charge = 0
@@ -169,7 +238,7 @@
 		base_pixel_y = 0
 		animate(src, alpha = 0, time = 10 SECONDS)
 		charge = 0
-		can_charge = FALSE 
+		can_charge = FALSE
 		QDEL_IN(src, 10 SECONDS)
 		return ..()
 
@@ -182,7 +251,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/OpenFire()
-	if(!can_act)
+	if(!can_act || client)
 		return
 	if(sorrow_cooldown <= world.time && get_dist(src, target) > 2)
 		Wounds_Of_Sorrow(target)
@@ -193,14 +262,15 @@
 /mob/living/simple_animal/hostile/abnormality/crying_children/AttackingTarget()
 	if(!can_act)
 		return FALSE
-	
-	if(desperate && (courage_cooldown <= world.time) && prob(30))
-		return Combusting_Courage()
-	if(sorrow_cooldown <= world.time && prob(25))
-		return Wounds_Of_Sorrow(target)
-	if(prob(40))
+	if(!client)
+		if(desperate && (courage_cooldown <= world.time) && prob(30))
+			return Combusting_Courage()
+		if(sorrow_cooldown <= world.time && prob(25))
+			return Wounds_Of_Sorrow(target)
+
+	if(prob(35))
 		return Bygone_Illusion(target)
-	
+
 	// Distorted Illusion
 	can_act = FALSE
 	icon_state = "[icon_phase]_salvador"
@@ -235,10 +305,10 @@
 		S.pixel_x = rand(-8, 8)
 		S.pixel_y = rand(-8, 8)
 		animate(S, alpha = 0, time = 1.5)
-		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			to_chat(L, "<span class='userdanger'>[src] stabs you!</span>")
+			to_chat(L, span_userdanger("[src] stabs you!"))
 			L.apply_lc_burn(4*burn_mod)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), dir_to_target)
 	SLEEP_CHECK_DEATH(10)
@@ -254,7 +324,7 @@
 	var/list/targets_to_hit = list()
 	if(desperate)
 		for(var/mob/living/L in view(8, src))
-			if(faction_check_mob(L))
+			if(faction_check_mob(L) || L.stat == DEAD)
 				continue
 			if(istype(L, /mob/living/simple_animal/bot))
 				continue
@@ -293,10 +363,10 @@
 	playsound(src, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, FALSE)
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/fire/fast(T)
-		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			to_chat(L, "<span class='userdanger'>You were scorched by [src]'s flames!</span>")
+			to_chat(L, span_userdanger("You were scorched by [src]'s flames!"))
 			L.apply_lc_burn(20)
 	SLEEP_CHECK_DEATH(10)
 	can_act = TRUE
@@ -338,7 +408,7 @@
 		ADD_TRAIT(user, type, GENETIC_MUTATION)
 		user.update_blindness()
 		user.update_sight()
-		to_chat(user, "<span class='warning'>You were cursed by [src]!</span>")
+		to_chat(user, span_warning("You were cursed by [src]!"))
 		addtimer(CALLBACK(src, .proc/RemoveCurse, user, type), 3 MINUTES)
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/RemoveCurse(mob/living/carbon/human/user, type)
@@ -454,7 +524,7 @@
 		H.update_blindness()
 		H.update_sight()
 		blinded += H
-	
+
 /mob/living/simple_animal/hostile/child/unseeing/death(gibbed)
 	for(var/mob/living/carbon/human/H in blinded)
 		REMOVE_TRAIT(H, TRAIT_BLIND, GENETIC_MUTATION)
@@ -514,7 +584,7 @@
 	icon_state = "heavylaser"
 	damage = 100
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 	hitscan = TRUE
 	projectile_piercing = PASSMOB
 	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
@@ -539,3 +609,6 @@
 /obj/effect/projectile/impact/laser/sorrow
 	name = "wounds of sorrow"
 	icon_state = "impact_beam_heavy"
+
+#undef TCC_SORROW_COOLDOWN
+#undef TCC_COMBUST_COOLDOWN

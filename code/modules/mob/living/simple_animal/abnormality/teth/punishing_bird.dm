@@ -82,8 +82,17 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE)
 	return ..()
 
+// Deletes perch if we moved while not breaching; Generally caused by cell swaps
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/Move()
+	if(!IsContained())
+		return ..()
+	var/obj/structure/pbird_perch/P = locate() in get_turf(src)
+	QDEL_NULL(P)
+	. = ..()
+	PostSpawn()
+
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
-	visible_message("<span class='danger'>\The [src] turns its insides out as a giant bloody beak appears!</span>")
+	visible_message(span_danger("\The [src] turns its insides out as a giant bloody beak appears!"))
 	icon_state = "pbird_red"
 	icon_living = "pbird_red"
 	attack_verb_continuous = "eviscerates"
@@ -93,12 +102,12 @@
 	obj_damage = 2500
 	environment_smash = ENVIRONMENT_SMASH_STRUCTURES
 	stat_attack = DEAD
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
 	bird_angry = TRUE
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformBack()
-	visible_message("<span class='notice'>\The [src] turns back into a fuzzy looking bird!</span>")
+	visible_message(span_notice("\The [src] turns back into a fuzzy looking bird!"))
 	icon_state = initial(icon_state)
 	icon_living = initial(icon_living)
 	pixel_x = initial(pixel_x)
@@ -114,7 +123,7 @@
 	environment_smash = initial(environment_smash)
 	stat_attack = initial(stat_attack)
 	adjustHealth(-maxHealth) // Full restoration
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
 	bird_angry = FALSE
 	update_icon()
 
@@ -175,10 +184,10 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(!(L in enemies) && obj_damage > 0) // The target didn't attack us and we've transformed
-			to_chat(src, "<span class='warning'>You can't punish innocent people!</span>")
+			to_chat(src, span_warning("You can't punish innocent people!"))
 			return
 		if(client && obj_damage <= 0 && L.health <= maxHealth*0.45) // User controlled AND not transformed - can't kill things
-			to_chat(src, "<span class='warning'>You can't keep punishing them!</span>")
+			to_chat(src, span_warning("You can't keep punishing them!"))
 			return
 		..()
 		if(obj_damage <= 0) // Not transformed
@@ -195,7 +204,7 @@
 					already_punished |= L
 				target = null
 		else if(L.health <= 0)
-			visible_message("<span class='danger'>\The [src] devours [L]!</span>")
+			visible_message(span_danger("\The [src] devours [L]!"))
 			L.gib()
 			TransformBack()
 		return

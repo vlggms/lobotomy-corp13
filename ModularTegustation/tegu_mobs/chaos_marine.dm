@@ -394,12 +394,12 @@
 	playsound(src, 'sound/magic/clockwork/narsie_attack.ogg', 200, TRUE)
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/cmempower()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.25, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.25, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.1))
 	add_atom_colour(newcolor, TEMPORARY_COLOUR_PRIORITY)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 
 /mob/living/simple_animal/hostile/megafauna/chaos_marine/proc/cmdepower()
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2))
 	remove_atom_colour(TEMPORARY_COLOUR_PRIORITY, newcolor)
 	new /obj/effect/temp_visual/cult/sparks(get_turf(src))
 

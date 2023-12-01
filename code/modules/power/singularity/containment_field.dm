@@ -41,7 +41,7 @@
 	shock(user)
 	return TRUE
 
-/obj/machinery/field/containment/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/machinery/field/containment/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BURN)
 			playsound(loc, 'sound/effects/empulse.ogg', 75, TRUE)

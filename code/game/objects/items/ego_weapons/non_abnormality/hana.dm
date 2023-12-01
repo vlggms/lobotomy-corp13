@@ -6,10 +6,10 @@
 	icon_state = "hana_sword"
 	force = 50
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE
+
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
-	hitsound = 'sound/weapons/ego/rapier2.ogg'
+	hitsound = 'sound/weapons/fixer/hana_slash.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -25,6 +25,9 @@
 			mode = 2
 			icon_state = "hana_spear"
 			message = "This weapon is now in spear mode, and has extra reach"
+			hitsound = 'sound/weapons/fixer/hana_pierce.ogg'
+			attack_verb_continuous = list("stabs", "pierces")
+			attack_verb_simple = list("stab", "pierce")
 
 			reach = 2
 			attack_speed = 1.2
@@ -33,6 +36,9 @@
 			mode = 3
 			icon_state = "hana_fist"
 			message = "This weapon is now in gauntlet mode, and does more damage per hit, and lower attack speed."
+			hitsound = 'sound/weapons/fixer/hana_blunt.ogg'
+			attack_verb_continuous = list("smashes", "beats")
+			attack_verb_simple = list("smash", "beat")
 
 			reach = 1
 			force = 70
@@ -42,6 +48,9 @@
 			mode = 1
 			icon_state = "hana_sword"
 			message = "This weapon is now in sword mode, and does more damage per second."
+			hitsound = 'sound/weapons/fixer/hana_slash.ogg'
+			attack_verb_continuous = list("cuts", "slices")
+			attack_verb_simple = list("cuts", "slices")
 
 			force = 50
 			attack_speed = 1

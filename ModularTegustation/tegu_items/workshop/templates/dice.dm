@@ -5,8 +5,6 @@
 	icon_state = "dicetemplate"
 	force = 40
 	throwforce = 20
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	finishedicon = list("finisheddice")
 	finishedname = list("dice")
 	finisheddesc = "A finished dice, ready for use."

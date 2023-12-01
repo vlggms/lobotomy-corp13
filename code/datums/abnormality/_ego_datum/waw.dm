@@ -9,7 +9,13 @@
 
 // Queen bee - Hornet
 /datum/ego_datum/weapon/hornet
+	item_category = "Weapon (Rifle)"
 	item_path = /obj/item/gun/ego_gun/hornet
+	cost = 50
+
+/datum/ego_datum/weapon/tattered_kingdom
+	item_category = "Weapon (Lance)"
+	item_path = /obj/item/ego_weapon/lance/tattered_kingdom
 	cost = 50
 
 /datum/ego_datum/armor/hornet
@@ -211,7 +217,13 @@
 	cost = 50
 
 /datum/ego_datum/weapon/warring
+	item_category = "Weapon (Bow)"
 	item_path = /obj/item/gun/ego_gun/warring
+	cost = 50
+
+/datum/ego_datum/weapon/warring2
+	item_category = "Weapon (Axe)"
+	item_path = /obj/item/ego_weapon/charge/warring
 	cost = 50
 
 // Clown Smiling at Me - Dark Carnival
@@ -442,4 +454,13 @@
 
 /datum/ego_datum/weapon/scene
 	item_path = /obj/item/ego_weapon/scene
+	cost = 50
+
+//Sign of Roses - Flore sicut rosa
+/datum/ego_datum/armor/rosa
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rosa
+	cost = 50
+
+/datum/ego_datum/weapon/rosa
+	item_path = /obj/item/ego_weapon/rosa
 	cost = 50

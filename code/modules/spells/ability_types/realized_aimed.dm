@@ -89,6 +89,7 @@
 		L.apply_damage((damage_amount - distance_decrease), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 		new /obj/effect/temp_visual/revenant(get_turf(L))
 
+/* Knight of Despair - Quenched with Blood */
 /obj/effect/proc_holder/ability/aimed/despair_swords
 	name = "Blades Whetted with Tears"
 	desc = "An ability that summons 2 swords to attack and slow nearby enemies. \
@@ -137,6 +138,7 @@
 	..()
 	qdel(src)
 
+/* Queen of Hatred - Love and Justice */
 /obj/effect/proc_holder/ability/aimed/arcana_slave
 	name = "Arcana Slave"
 	desc = "An ability that allows you to fire off a large laser after channelling for a while. \
@@ -317,21 +319,55 @@
 		return
 	return ..()
 
-
-/obj/effect/proc_holder/ability/aimed/cocoon_spawn
-	name = "Cocoon summon"
-	desc = "An ability that allows its user to summon a cocoon to take hits and slow and damage enemies near it."
+/* Spider Bud - Death Stare */
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes
+	name = "Gleaming Eyes"
+	desc = "An ability that allows its user to do a jump attack that causes a slowing aoe when landing."
 	action_icon_state = "cocoon0"
 	base_icon_state = "cocoon"
-	cooldown_time = 15 SECONDS
+	cooldown_time = 20 SECONDS
+	var/damage_amount = 80 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_range = 2
+	var/damage_slowdown = 0.5
 
-/obj/effect/proc_holder/ability/aimed/cocoon_spawn/Perform(target, mob/user)
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes/Perform(target, mob/user)
 	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
+	playsound(user, 'sound/abnormalities/spider_bud/jump.ogg', 50, FALSE, -1)
 	var/turf/target_turf = get_turf(target)
-	new /mob/living/simple_animal/cocoonability(target_turf)
+	//new /mob/living/simple_animal/cocoonability(target_turf) FUCK YOU NO COCOON!!!!!!!!!!!
+	animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+	user.pixel_z = 16
+	sleep(0.5 SECONDS)
+	for(var/i in 2 to get_dist(user, target_turf))
+		step_towards(user,target_turf)
+	animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+	user.pixel_z = 0
+	sleep(0.1 SECONDS)
+	JumpAttack(target_turf,user)
 	return ..()
 
+/obj/effect/proc_holder/ability/aimed/gleaming_eyes/proc/JumpAttack(target, mob/user)
+	playsound(user, 'sound/abnormalities/spider_bud/land.ogg', 50, FALSE, -1)
+	for(var/mob/living/L in view(1, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		var/obj/item/held = user.get_active_held_item()
+		if(held)
+			held.attack(L, user)
+	for(var/turf/T in view(damage_range, user))
+		new /obj/effect/temp_visual/smash_effect/red(T)
+	for(var/mob/living/L in view(damage_range, user))
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if(ishostile(L))
+			var/mob/living/simple_animal/hostile/H = L
+			H.TemporarySpeedChange(H.move_to_delay * damage_slowdown, 10 SECONDS) // Slow down
 
 /mob/living/simple_animal/cocoonability
 	name = "Cocoon"
@@ -369,7 +405,7 @@
 			var/mob/living/simple_animal/hostile/H = L
 			H.TemporarySpeedChange(damage_slowdown, 3 SECONDS) // Slow down
 
-
+/* Lady out of Space - Fallen Colors */
 /obj/effect/proc_holder/ability/aimed/blackhole
 	name = "blackhole"
 	desc = "An ability that allows its user to summon a black hole to drag everone near it."
@@ -394,7 +430,7 @@
 	speed = 0
 	damage = 30
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 	projectile_piercing = PASSMOB
 	hit_nondense_targets = TRUE
 	var/damage_amount = 200 // Amount of black damage dealt to enemies in the epicenter.
@@ -416,6 +452,7 @@
 		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
 		L.throw_at(throw_target, 1, 2)
 
+/* Harmony of Duality - Anarchy */
 /obj/effect/proc_holder/ability/aimed/yin_laser
 	name = "Anarchy"
 	desc = "An ability that summons a devastating laser. \
@@ -524,3 +561,68 @@
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+
+/* The Road Home - Forever Home */
+/obj/effect/proc_holder/ability/aimed/house_spawn
+	name = "You... Wicked Wizard!"
+	desc = "Summon a home that WILL be reached on your enemies dealing BLACK damage and buffing your allies defenses."
+	action_icon_state = "home_spawn0"
+	base_icon_state = "home_spawn"
+	cooldown_time = 20 SECONDS
+	var/damage_amount = 300
+	var/damage_range = 10
+
+/obj/effect/proc_holder/ability/aimed/house_spawn/Perform(target, mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	if(get_dist(user, target) > 10)
+		return
+	var/turf/target_turf = get_turf(target)
+	var/obj/effect/temp_visual/house/F = new(target_turf)
+	animate(F, pixel_z = 0, alpha = 255, time = 1 SECONDS)
+	playsound(user, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 50, FALSE, 8)
+	addtimer(CALLBACK(src, .proc/HouseSlam, target_turf, user), 1 SECONDS)
+	return ..()
+
+/obj/effect/proc_holder/ability/aimed/house_spawn/proc/HouseSlam(turf/T, mob/user)
+	visible_message("<span class='warning'>A giant House falls down on the ground!</span>")
+	playsound(T, 'sound/abnormalities/roadhome/House_HouseBoom.ogg', 75, FALSE, 10, falloff_exponent = 0.75) //LOUD
+	for(var/turf/open/TF in view(damage_range, T))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
+	for(var/mob/living/L in view(damage_range, T))
+		if(user.faction_check_mob(L))
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.apply_status_effect(/datum/status_effect/home_buff)
+			continue
+		var/distance_decrease = get_dist(T, L) * 10
+		L.apply_damage((damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		new /obj/effect/temp_visual/revenant(get_turf(L))
+
+/datum/status_effect/home_buff
+	id = "homebuff"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 10 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/home_buff
+
+/atom/movable/screen/alert/status_effect/home_buff
+	name = "A Road Walked Together"
+	desc = "The sight of a home so familiar encourages you to hang on!"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "home"
+
+/datum/status_effect/home_buff/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod *= 0.75
+	H.physiology.white_mod *= 0.75
+	H.physiology.black_mod *= 0.75
+	H.physiology.pale_mod *= 0.75
+
+/datum/status_effect/home_buff/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod /= 0.75
+	H.physiology.white_mod /= 0.75
+	H.physiology.black_mod /= 0.75
+	H.physiology.pale_mod /= 0.75

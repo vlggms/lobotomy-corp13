@@ -295,6 +295,43 @@
 	name = "Backstreets Room"
 	icon_state = "hallA"
 
+/area/library_floors
+	name = "Library"
+	icon_state = "library"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_AREA_STANDARD_STATION
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+//Areas for Library
+
+/area/library_floors/floor_history
+	name = "Floor of History"
+
+/area/library_floors/floor_techsci
+	name = "Floor of Technological Science"
+
+/area/library_floors/floor_art
+	name = "Floor of Art"
+
+/area/library_floors/floor_literature
+	name = "Floor of Literature"
+
+/area/library_floors/floor_naturalsci
+	name = "Floor of Natural Science"
+
+/area/library_floors/floor_language
+	name = "Floor of Language"
+
+/area/library_floors/floor_socialsci
+	name = "Floor of Social Science"
+
+/area/library_floors/floor_religion
+	name = "Floor of Religion"
+
+/area/library_floors/floor_philosophy
+	name = "Floor of Philosophy"
+
 //Miscellaneous Areas
 /area/shelter
 	name = "Shelter"
@@ -311,3 +348,20 @@
 	var/list/potential_locs = shuffle(GLOB.department_centers)
 	var/turf/T = pick(potential_locs)
 	M.forceMove(T)
+
+/area/fishboat
+	name = "Fishing Boat"
+	icon_state = "fishboat"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_ENVIRONMENT_CITY
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+
+/area/snowqueen
+	name = "Snow Queen's Arena"
+	icon_state = "snowqueen"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_ENVIRONMENT_CAVE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
+

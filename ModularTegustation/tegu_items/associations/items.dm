@@ -51,13 +51,14 @@
 		new /obj/item/card/id/fixerdirector(src)
 
 //Fixer Leveller
-/obj/item/attribute_increase_small
-	name = "t corp training accelerator"
+/obj/item/attribute_increase/fixer
+	name = "n corp training accelerator"
 	desc = "A fluid used to increase the stats of a fixer. Use in hand to activate. Increases stats more the lower your potential."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "tcorp_syringe"
+	amount = 1
 
-/obj/item/attribute_increase_small/attack_self(mob/living/carbon/human/user)
+/obj/item/attribute_increase/fixer/attack_self(mob/living/carbon/human/user)
 	//max stats can't gain stats
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)>=130)
 		to_chat(user, "<span class='danger'>You feel like you won't gain anything.</span>")
@@ -65,15 +66,14 @@
 
 	to_chat(user, "<span class='nicegreen'>You suddenly feel different.</span>")
 	//Guarantee one
-	user.adjust_all_attribute_levels(1)
+	user.adjust_all_attribute_levels(amount)
 
 	//Adjust by an extra attribute under level 2
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=40)
-		user.adjust_all_attribute_levels(1)
+		user.adjust_all_attribute_levels(amount)
 
 	//And one more under level 3
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=60)
-		user.adjust_all_attribute_levels(1)
-
+		user.adjust_all_attribute_levels(amount)
 
 	qdel(src)

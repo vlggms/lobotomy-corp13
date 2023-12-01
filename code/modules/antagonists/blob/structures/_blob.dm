@@ -11,7 +11,7 @@
 	pass_flags_self = PASSBLOB
 	CanAtmosPass = ATMOS_PASS_PROC
 	/// How many points the blob gets back when it removes a blob of that type. If less than 0, blob cannot be removed.
-	var/point_return = 0 
+	var/point_return = 0
 	max_integrity = 30
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 80, ACID = 70)
 	/// how much health this blob regens when pulsed
@@ -22,12 +22,12 @@
 	COOLDOWN_DECLARE(heal_timestamp)
 	/// Multiplies brute damage by this
 	var/brute_resist = BLOB_BRUTE_RESIST
-	/// Multiplies burn damage by this 
-	var/fire_resist = BLOB_FIRE_RESIST 
+	/// Multiplies burn damage by this
+	var/fire_resist = BLOB_FIRE_RESIST
 	/// Only used by the synchronous mesh strain. If set to true, these blobs won't share or receive damage taken with others.
 	var/ignore_syncmesh_share = 0
 	/// If the blob blocks atmos and heat spread
-	var/atmosblock = FALSE 
+	var/atmosblock = FALSE
 	var/mob/camera/blob/overmind
 
 
@@ -181,9 +181,9 @@
 /obj/structure/blob/zap_act(power, zap_flags)
 	if(overmind)
 		if(overmind.blobstrain.tesla_reaction(src, power))
-			take_damage(power * 0.0025, BURN, ENERGY)
+			take_damage(power * 0.0025, ENERGY)
 	else
-		take_damage(power * 0.0025, BURN, ENERGY)
+		take_damage(power * 0.0025, ENERGY)
 	power -= power * 0.0025 //You don't get to do it for free
 	return ..() //You don't get to do it for free
 
@@ -201,7 +201,7 @@
 		to_chat(user, "<b>The analyzer beeps once, then reports:</b><br>")
 		SEND_SOUND(user, sound('sound/machines/ping.ogg'))
 		if(overmind)
-			to_chat(user, "<b>Progress to Critical Mass:</b> <span class='notice'>[overmind.blobs_legit.len]/[overmind.blobwincount].</span>")
+			to_chat(user, "<b>Progress to Critical Mass:</b> [span_notice("[overmind.blobs_legit.len]/[overmind.blobwincount].")]")
 			to_chat(user, chemeffectreport(user).Join("\n"))
 		else
 			to_chat(user, "<b>Blob core neutralized. Critical mass no longer attainable.</b>")
@@ -213,17 +213,17 @@
 	RETURN_TYPE(/list)
 	. = list()
 	if(overmind)
-		. += list("<b>Material: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font><span class='notice'>.</span></b>",
-		"<b>Material Effects:</b> <span class='notice'>[overmind.blobstrain.analyzerdescdamage]</span>",
-		"<b>Material Properties:</b> <span class='notice'>[overmind.blobstrain.analyzerdesceffect || "N/A"]</span>")
+		. += list("<b>Material: <font color=\"[overmind.blobstrain.color]\">[overmind.blobstrain.name]</font>[span_notice(".")]</b>",
+		"<b>Material Effects:</b> [span_notice("[overmind.blobstrain.analyzerdescdamage]")]",
+		"<b>Material Properties:</b> [span_notice("[overmind.blobstrain.analyzerdesceffect || "N/A"]")]")
 	else
 		. += "<b>No Material Detected!</b>"
 
 /obj/structure/blob/proc/typereport(mob/user)
 	RETURN_TYPE(/list)
-	return list("<b>Blob Type:</b> <span class='notice'>[uppertext(initial(name))]</span>",
-							"<b>Health:</b> <span class='notice'>[obj_integrity]/[max_integrity]</span>",
-							"<b>Effects:</b> <span class='notice'>[scannerreport()]</span>")
+	return list("<b>Blob Type:</b> [span_notice("[uppertext(initial(name))]")]",
+							"<b>Health:</b> [span_notice("[obj_integrity]/[max_integrity]")]",
+							"<b>Effects:</b> [span_notice("[scannerreport()]")]")
 
 
 /obj/structure/blob/attack_animal(mob/living/simple_animal/M)
@@ -231,7 +231,7 @@
 		return
 	..()
 
-/obj/structure/blob/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/blob/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)
@@ -241,7 +241,7 @@
 		if(BURN)
 			playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
-/obj/structure/blob/run_obj_armor(damage_amount, damage_type, damage_flag = 0, attack_dir)
+/obj/structure/blob/run_obj_armor(damage_amount, damage_type, attack_dir)
 	switch(damage_type)
 		if(BRUTE)
 			damage_amount *= brute_resist
@@ -251,14 +251,14 @@
 		else
 			return 0
 	var/armor_protection = 0
-	if(damage_flag)
-		armor_protection = armor.getRating(damage_flag)
+	if(damage_type)
+		armor_protection = armor.getRating(damage_type)
 	damage_amount = round(damage_amount * (100 - armor_protection)*0.01, 0.1)
-	if(overmind && damage_flag)
-		damage_amount = overmind.blobstrain.damage_reaction(src, damage_amount, damage_type, damage_flag)
+	if(overmind && damage_type)
+		damage_amount = overmind.blobstrain.damage_reaction(src, damage_amount, damage_type)
 	return damage_amount
 
-/obj/structure/blob/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/blob/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
 		update_icon()
@@ -344,14 +344,14 @@
 
 	// Spore production vars: for core, factories, and nodes (with strains)
 	var/mob/living/simple_animal/hostile/blob/blobbernaut/naut = null
-	var/max_spores = 0 
+	var/max_spores = 0
 	var/list/spores	= list()
 	COOLDOWN_DECLARE(spore_delay)
 	var/spore_cooldown = BLOBMOB_SPORE_SPAWN_COOLDOWN
 
 	// Area reinforcement vars: used by cores and nodes, for strains to modify
 	/// Range this blob free upgrades to strong blobs at: for the core, and for strains
-	var/strong_reinforce_range = 0 
+	var/strong_reinforce_range = 0
 	/// Range this blob free upgrades to reflector blobs at: for the core, and for strains
 	var/reflector_reinforce_range = 0
 

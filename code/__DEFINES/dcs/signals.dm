@@ -35,6 +35,9 @@
 #define COMSIG_GLOB_ABNORMALITY_SPAWN "!abno_spawned"
 ///an abnormality has breached
 #define COMSIG_GLOB_ABNORMALITY_BREACH "!abno_breach"
+// An abnormality cell was swapped with another;
+// First argument is main abno of a swap, second argument is a target abno of a swap: (/datum/abnormality, /datum/abnormality)
+#define COMSIG_GLOB_ABNORMALITY_SWAP "!abno_swap"
 
 /// signals from globally accessible objects
 
@@ -388,6 +391,8 @@
 ///from base of mob/ShiftClickOn(): (atom/A)
 #define COMSIG_MOB_SHIFTCLICKON "mob_shiftclickon"
 	#define COMSIG_MOB_CANCEL_CLICKON (1<<0)
+///from base of mob/CrtlShiftClickOn(): (atom/A)
+#define COMSIG_MOB_CTRLSHIFTCLICKON "mob_ctrlshiftclickon"
 
 ///from base of obj/allowed(mob/M): (/obj) returns bool, if TRUE the mob has id access to the obj
 #define COMSIG_MOB_ALLOWED "mob_allowed"
@@ -399,6 +404,8 @@
 
 ///from base of /mob/living/proc/apply_damage(): (damage, damagetype, def_zone)
 #define COMSIG_MOB_APPLY_DAMGE	"mob_apply_damage"
+/// Blocks the damage from being taken if this is returned in a signal handler
+#define COMPONENT_MOB_DENY_DAMAGE (1<<0)
 ///from base of /mob/throw_item(): (atom/target)
 #define COMSIG_MOB_THROW "mob_throw"
 ///from base of /mob/verb/examinate(): (atom/target)
@@ -566,7 +573,7 @@
 
 // /obj signals
 
-///from base of [/obj/proc/take_damage]: (damage_amount, damage_type, damage_flag, sound_effect, attack_dir, aurmor_penetration)
+///from base of [/obj/proc/take_damage]: (damage_amount, damage_type, sound_effect, attack_dir, aurmor_penetration)
 #define COMSIG_OBJ_TAKE_DAMAGE	"obj_take_damage"
 	/// Return bitflags for the above signal which prevents the object taking any damage.
 	#define COMPONENT_NO_TAKE_DAMAGE	(1<<0)
@@ -1055,6 +1062,7 @@
 #define COMSIG_WORK_COMPLETED "work_completed" // Work Complete
 #define COMSIG_GLOB_WORK_COMPLETED "!work_completed" // Ditto
 #define COMSIG_MELTDOWN_FINISHED "meltdown_finished"
+#define COMSIG_GLOB_MELTDOWN_FINISHED "!meltdown_finished"
 
 // General Abnormality Signals
 

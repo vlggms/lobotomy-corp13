@@ -105,7 +105,6 @@
 	desc = "A machine used to send PE to N-Corp."
 	icon_state = "machinen"
 	crate = /obj/structure/lootcrate/n_corp
-	crate_timer = 60
 
 /obj/structure/pe_sales/leaflet
 	name = "Leaflet Workshop Power Input"
@@ -130,10 +129,9 @@
 	desc = "A machine used to send PE to the rosespanner workshop"
 	icon_state = "machinerosespanner"
 	crate = /obj/structure/lootcrate/workshoprosespanner
-	crate_timer = 60
 
 /obj/structure/pe_sales/hana
-	name = "Syndicate Workshop Power Input"
+	name = "Hana Assocation Power Input"
 	desc = "A machine used to send PE to the hana association"
 	icon_state = "machinehana"
 	crate = /obj/structure/lootcrate/hana
@@ -178,5 +176,13 @@
 	desc = "A machine used to send PE to a backstreets workshop."
 	icon_state = "machinebackstreets"
 	crate = /obj/structure/lootcrate/backstreets
+	power_timer = 180 	//Takes a bit
+	crate_timer = 180	//And it's super cheap
+
+/obj/structure/pe_sales/jcorp
+	name = "J-corp Syndicate Power Input"
+	desc = "A machine used to send PE to J-corp's syndicates"
+	icon_state = "machinejcorp"
+	crate = /obj/structure/lootcrate/jcorp
 	power_timer = 180 	//Takes a bit
 	crate_timer = 180	//And it's super cheap

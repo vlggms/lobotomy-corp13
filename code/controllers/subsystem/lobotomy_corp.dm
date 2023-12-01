@@ -3,6 +3,7 @@
 #define MELTDOWN_GOLD 3
 #define MELTDOWN_PURPLE 4
 #define MELTDOWN_CYAN 5
+#define MELTDOWN_BLACK 6
 
 // TODO: Do something about it, idk
 SUBSYSTEM_DEF(lobotomy_corp)
@@ -59,6 +60,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/core_suppression_state = 0
 	// Work logs from all abnormalities
 	var/list/work_logs = list()
+	// Work logs, but from agent perspective. Used mainly for round-end report
+	var/list/work_stats = list()
 
 	// PE available to be spent
 	var/available_box = 0
@@ -74,6 +77,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/goal_reached = FALSE
 	/// Multiplier to PE earned from working on abnormalities
 	var/box_work_multiplier = 1
+	/// Multiplier towards attribute points earned for working on melting abnormalities
+	var/melt_work_multiplier = 1
+	/// The area of effect of manager's bullets; -1 is for direct target only
+	var/manager_bullet_area = -1
 	/// When TRUE - abnormalities can be possessed by ghosts
 	var/enable_possession = FALSE
 	/// Amount of abnormalities that agents achieved full understanding on
@@ -193,6 +200,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(goal_reached || box_goal == 0)
 		return
 	if(available_box + goal_boxes >= box_goal)
+		available_box -= box_goal - goal_boxes // Leftover is drained
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
 		var/pizzatype_list = subtypesof(/obj/item/food/pizza)
@@ -206,6 +214,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			pod.explosionSize = list(0,0,0,0)
 			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
 			new /obj/effect/pod_landingzone(get_turf(person), pod)
+		for(var/mob/M in GLOB.player_list)
+			if(!M.ckey || !M.client)
+				continue
+			SSpersistence.agent_rep_change[M.ckey] += 3
 	return
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
@@ -246,6 +258,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meltdown_amount = max(1, round(abno_amount * CONFIG_GET(number/qliphoth_meltdown_percent)))
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
+	// Honestly, I wish I could do it another way, but oh well
+	if(istype(core_suppression, /datum/suppression/command))
+		// All abno levels melt
+		forced = TRUE
+		var/datum/suppression/command/C = core_suppression
+		meltdown_amount += C.meltdown_count_increase
+		min_time = round(min_time * C.meltdown_time_multiplier)
+		max_time = round(max_time * C.meltdown_time_multiplier)
 	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
 	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))

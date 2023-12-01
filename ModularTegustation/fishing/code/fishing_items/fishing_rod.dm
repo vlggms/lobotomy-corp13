@@ -32,6 +32,9 @@
 	//Fishing Visuals
 	var/list/current_fishing_visuals = list()
 
+	//do we override the default fishing speed? (should be used if you want to debug something or make a rod with unique speed)
+	var/speed_override = FALSE
+
 /obj/item/fishing_rod/examine(mob/user)
 	. = ..()
 	. += "<span class='notice'>This rod has a effectiveness of [(FISH_RARITY_BASIC - FishCustomization(900))/10].</span>"
@@ -43,7 +46,7 @@
 	else if(SlotCheck(attacking_item,ROD_SLOT_HOOK))
 		UseSlot(ROD_SLOT_HOOK, user, attacking_item)
 		return TRUE
-	. = ..()
+	return ..()
 
 /obj/item/fishing_rod/afterattack(atom/target, mob/user, proximity_flag)
 	if(istype(target, /turf/open/water/deep) && isliving(user) && !isfishing && user.z == target.z)
@@ -57,7 +60,7 @@
 			return
 		StartFishing(user, target) //Maybe we can make it call something else with this proc.
 		return
-	. = ..()
+	return ..()
 
 /obj/item/fishing_rod/proc/StartFishing(mob/living/user, turf/open/water/deep/fishing_spot)
 	isfishing = TRUE
@@ -88,8 +91,12 @@
 
 		//~~~FISHING BEGINS~~~
 	for(var/i = 1 to 100)
+		var/fishing_time
 		//random extra time to the fishing for a unpredictable feel rather than making a chance to just not fish up anything.
-		var/fishing_time = ((10 SECONDS) * fishing_skill) + (rand(1,3) SECONDS)
+		if(!speed_override)
+			fishing_time = ((10 SECONDS) * fishing_skill) + (rand(1,3) SECONDS)
+		else
+			fishing_time = speed_override
 		if(!do_after(user, fishing_time, target = fishing_spot))
 			isfishing = FALSE
 			break

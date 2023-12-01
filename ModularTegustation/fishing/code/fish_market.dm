@@ -4,6 +4,7 @@
 	icon = 'icons/obj/money_machine.dmi'
 	icon_state = "bogdanoff"
 	density = TRUE
+	resistance_flags = INDESTRUCTIBLE
 	var/fish_points = 0
 
 	var/list/order_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.
@@ -18,7 +19,7 @@
 		new /datum/data/extraction_cargo("Dock Worker Lantern ",		/obj/item/flashlight/lantern,						400) = 1,
 		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_component/hook/weighted,			500) = 1,
 		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		500) = 1,
-		new /datum/data/extraction_cargo("Fishing Hat ",		 		/obj/item/clothing/head/beret/tegu/fishing_hat,		500) = 1,
+		new /datum/data/extraction_cargo("Fishing Hat ",		 		/obj/item/clothing/head/beret/fishing_hat,			500) = 1,
 		new /datum/data/extraction_cargo("Aquarium Branch Office ",		/obj/item/aquarium_prop/lcorp,						500) = 1,
 		//Yes we are scamming you.
 		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				1000) = 1,
@@ -84,16 +85,17 @@
 	if(istype(I, /obj/item/storage/bag/fish))
 		var/obj/item/storage/bag/fish/bag = I
 		var/fish_value = 0
-		for(var/bag_fish in bag.contents)
-			if(istype(bag_fish, /obj/item/fishing_component/hook/bone))
+		for(var/item in bag.contents)
+			if(istype(item, /obj/item/fishing_component/hook/bone))
 				fish_value += 5
+				to_chat(user, "<span class='notice'>Thank you for notifying us of this object. 5 point reward.</span>")
 
-			if(istype(bag_fish, /obj/item/food/fish))
-				fish_value += ValueFish(bag_fish)
+			if(istype(item, /obj/item/food/fish))
+				fish_value += ValueFish(item)
 
 			else
 				continue
-			qdel(bag_fish)
+			qdel(item)
 
 		AdjustPoints(fish_value)
 	return ..()

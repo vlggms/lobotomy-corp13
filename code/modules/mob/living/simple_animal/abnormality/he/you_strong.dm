@@ -76,13 +76,13 @@
 	if(src.datum_reference.qliphoth_meter == 0)
 		return FALSE
 	if(operating)
-		to_chat(user, "<span class='notice'>Please wait for current operations to cease.</span>")
+		to_chat(user, span_notice("Please wait for current operations to cease."))
 		return FALSE
 	if(!(work_type in list("YES", "NO")) && !question && ..())
 		icon_state = "you_strong_work"
 		return TRUE
 	if((work_type in list("YES", "NO")) && !question)
-		to_chat(user, "<span class='notice'>You have not been prompted.</span>")
+		to_chat(user, span_notice("You have not been prompted."))
 		return FALSE
 	if((work_type in list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION) && question))
 		say("Do you love the City you live in?")
@@ -126,18 +126,18 @@
 	if(!(I.type in taken_parts))
 		return ..()
 	if(I.type in rejected_parts)
-		to_chat(user, "<span class='notice'>[src] rejects [I].</span>")
+		to_chat(user, span_notice("[src] rejects [I]."))
 		return
 	if(src.datum_reference.qliphoth_meter == 0 || src.datum_reference.working || operating)
-		to_chat(user, "<span class='notice'>Please wait for current operations to cease.</span>")
+		to_chat(user, span_notice("Please wait for current operations to cease."))
 		return
-	visible_message("<span class='notice'>[user.first_name()] starts feeding [I] into [src].</span>")
+	visible_message(span_notice("[user.first_name()] starts feeding [I] into [src]."))
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	soundloop.start()
 	icon_state = "you_strong_work"
 	operating = TRUE
 	if(!do_after(user, 2 SECONDS, src))
-		to_chat(user, "<span class='notice'>But you changed your mind...</span>")
+		to_chat(user, span_notice("But you changed your mind..."))
 		soundloop.stop()
 		icon_state = "you_strong_pause"
 		operating = FALSE
@@ -146,7 +146,7 @@
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	qdel(I)
 	src.datum_reference.stored_boxes += 2
-	visible_message("<span class='nicegreen'>[src] produced 2 PE!</span>")
+	visible_message(span_nicegreen("[src] produced 2 PE!"))
 	manual_emote("begins to emit a whirling noise before quieting down.")
 	icon_state = "you_strong_pause"
 	operating = FALSE
@@ -157,19 +157,19 @@
 	if(!(selected_part in list(BODY_ZONE_L_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_ARM, BODY_ZONE_R_LEG)))
 		return ..()
 	if(src.datum_reference.working || src.datum_reference.qliphoth_meter == 0 || operating)
-		to_chat(M, "<span class='notice'>Please wait for current operations to cease.</span>")
+		to_chat(M, span_notice("Please wait for current operations to cease."))
 		return
 	var/obj/item/bodypart/old_part = M.get_bodypart(selected_part)
 	if(old_part.type in list(/obj/item/bodypart/r_leg/grown_strong, /obj/item/bodypart/l_leg/grown_strong, /obj/item/bodypart/r_arm/grown_strong, /obj/item/bodypart/l_arm/grown_strong))
-		to_chat(M, "<span class='notice'>Only original parts are accepted.</span>")
+		to_chat(M, span_notice("Only original parts are accepted."))
 		return
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 	soundloop.start()
-	visible_message("<span class='notice'>[M.first_name()] plunges their [old_part.name] into [src]...</span>")
+	visible_message(span_notice("[M.first_name()] plunges their [old_part.name] into [src]..."))
 	icon_state = "you_strong_work"
 	operating = TRUE
 	if(!do_after(M, 5 SECONDS, src))
-		visible_message("<span class='notice'>[M.first_name()] pulls out their [old_part.name] before [src] engages!</span>")
+		visible_message(span_notice("[M.first_name()] pulls out their [old_part.name] before [src] engages!"))
 		soundloop.stop()
 		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
 		icon_state = "you_strong_pause"
@@ -196,7 +196,7 @@
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
 	M.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE) // Bro your [X] just got chopped off, no armor's gonna resist that.
-	to_chat(M, "<span class='notice'>Your [old_part.name] has been replaced!</span>")
+	to_chat(M, span_notice("Your [old_part.name] has been replaced!"))
 	qdel(old_part)
 	M.regenerate_icons()
 	src.datum_reference.qliphoth_change(-1)
@@ -220,7 +220,6 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 
 	attack_sound = "swing_hit"
 	attack_verb_continuous = "bashes"
@@ -235,29 +234,29 @@
 	var/gear = 2
 	COOLDOWN_DECLARE(gear_shift)
 	var/gear_cooldown = 1 MINUTES
+	//tracks speed change even if altered by other speed modifiers.
+	var/gear_speed = 0
 
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/AttackingTarget(atom/attacked_target)
 	if(status_flags & GODMODE)
 		return FALSE
-	. = ..()
-	return
-
-/mob/living/simple_animal/hostile/grown_strong/Initialize()
-	. = ..()
-	//icon_state = pick("1", "2", "3")
+	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
 	manual_emote("shifts into [gear]\th gear!")
 	melee_damage_lower = 3*gear
 	melee_damage_upper = 5*gear
-	move_to_delay = 5 - FLOOR(gear / 3, 1)
-	UpdateSpeed()
+	//Reset the speed. First proc changes this only with 0.
+	SpeedChange(gear_speed)
+	//Calculate speed change.
+	gear_speed = FLOOR(gear / 3, 1)
+	//CRANK UP THE SPEED.
+	SpeedChange(-gear_speed)
 	rapid_melee = gear > 7 ? 2 : 1
 
 /mob/living/simple_animal/hostile/grown_strong/Life()
@@ -266,14 +265,14 @@
 		return
 	gear = clamp(gear + rand(-1, 3), 1, 10)
 	UpdateGear()
-	src.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
+	src.apply_damage(150, BRUTE, null, 0, spread_damage = TRUE)// OOF OUCH MY BONES
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)
 	if(maxHealth > 200)
 		INVOKE_ASYNC(src, .proc/Undie)
 		return FALSE
-	visible_message("<span class='notice'>[src] explodes into a mess of plastic and gore!</span>")
+	visible_message(span_notice("[src] explodes into a mess of plastic and gore!"))
 	. = ..()
 	gib(TRUE, TRUE, TRUE)
 	return

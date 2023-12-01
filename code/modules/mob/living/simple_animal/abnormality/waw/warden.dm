@@ -15,7 +15,6 @@
 	melee_damage_lower = 70
 	melee_damage_upper = 70
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	attack_verb_continuous = "claws"
@@ -62,8 +61,7 @@
 
 			// it gets faster.
 			if(move_to_delay>1)
-				move_to_delay -= move_to_delay*0.25
-				UpdateSpeed()
+				SpeedChange(-move_to_delay*0.25)
 				if(melee_damage_lower > 30)
 					melee_damage_lower -=5
 
@@ -103,5 +101,5 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
-	visible_message("<span class='userdanger'>[src] is unfazed by \the [P]!</span>")
+	visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
 	P.Destroy()

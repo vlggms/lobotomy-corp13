@@ -33,10 +33,9 @@
 
 	if(user.a_intent != INTENT_HARM)
 		return
-	if(M.stat == DEAD && (M.butcher_results || M.guaranteed_butcher_results)) //can we butcher it?
-		if(butchering_enabled && (can_be_blunt || source.get_sharpness()))
-			INVOKE_ASYNC(src, .proc/startButcher, source, M, user)
-			return COMPONENT_CANCEL_ATTACK_CHAIN
+	if(M.stat == DEAD && checkButchering(source, M, user)) //can we butcher it?
+		INVOKE_ASYNC(src, .proc/startButcher, source, M, user)
+		return COMPONENT_CANCEL_ATTACK_CHAIN
 
 	if(ishuman(M) && source.force && source.get_sharpness())
 		var/mob/living/carbon/human/H = M
@@ -47,6 +46,9 @@
 				return COMPONENT_CANCEL_ATTACK_CHAIN
 			INVOKE_ASYNC(src, .proc/startNeckSlice, source, H, user)
 			return COMPONENT_CANCEL_ATTACK_CHAIN
+
+/datum/component/butchering/proc/checkButchering(obj/item/source, mob/living/M, mob/living/user)
+	return (M.butcher_results || M.guaranteed_butcher_results) && butchering_enabled && (can_be_blunt || source.get_sharpness())
 
 /datum/component/butchering/proc/startButcher(obj/item/source, mob/living/M, mob/living/user)
 	to_chat(user, "<span class='notice'>You begin to butcher [M]...</span>")

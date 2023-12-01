@@ -4,8 +4,6 @@
 	special = "This weapon deals it's damage after a short windup."
 	icon_state = "gauntlettemplate"
 	force = 40
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	finishedicon = list("finishedgauntlet")
 	finishedname = list("fist", "gauntlet", "glove")
 	finisheddesc = "A finished gauntlet, ready for use."
@@ -16,7 +14,8 @@
 		to_chat(user, "<span class='notice'>This weapon is unfinished!</span>")
 		return
 
-	specialcheck()
+	if(specialmod)
+		specialmod.ActivateEffect(src, special_count, target, user)
 
 	if(do_after(user, attack_speed*5, target))
 
@@ -31,11 +30,11 @@
 		if(ishuman(target))
 			punch_damage = 50
 
-		target.apply_damage(punch_damage, damtype, null, target.run_armor_check(null, armortype), spread_damage = TRUE)		//MASSIVE fuckoff punch
+		target.apply_damage(punch_damage, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
 		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
-		if(!target.anchored)
+		if(target && !target?.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback.
 
 	else

@@ -1,8 +1,19 @@
 //These all heal sanity instead
 /obj/item/workshop_mod/sapping
 	icon_state = "sapcore"
-	specialmod = "sanity healing"
 	overlay = "sapping"
+
+//Heals mental damage.
+/obj/item/workshop_mod/sapping/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = T.force*0.10
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
+			else
+				heal_amt = 0
+		user.adjustSanityLoss(-heal_amt)
 
 /obj/item/workshop_mod/sapping/red
 	name = "sapping red damage mod"
@@ -20,7 +31,6 @@
 	weaponcolor = "#deddb6"
 	damagetype = WHITE_DAMAGE
 
-
 /obj/item/workshop_mod/sapping/black
 	name = "sapping black damage mod"
 	desc = "A workshop mod to turn a weapon into black damage"
@@ -28,7 +38,6 @@
 	modname = "enjoyable"
 	weaponcolor = "#442047"
 	damagetype = BLACK_DAMAGE
-
 
 /obj/item/workshop_mod/sapping/pale
 	name = "sapping pale damage mod"

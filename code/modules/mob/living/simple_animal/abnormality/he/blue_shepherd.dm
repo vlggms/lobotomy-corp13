@@ -30,7 +30,6 @@
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
@@ -112,10 +111,10 @@
 	name = "Toggle Spinning Slash"
 	button_icon_state = "sheperd_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't spin anymore.</span>"
+	chosen_message = span_colossus("You won't spin anymore.")
 	button_icon_toggle_activated = "sheperd_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now execute a spinning slash when ready.</span>"
+	toggle_message = span_colossus("You will now execute a spinning slash when ready.")
 	button_icon_toggle_deactivated = "sheperd_toggle0"
 
 
@@ -238,8 +237,7 @@
 		slash_damage = 50
 		melee_damage_lower = 30
 		melee_damage_upper = 40
-		move_to_delay = 2.5
-		UpdateSpeed()
+		SpeedChange(-0.5)
 		maxHealth = maxHealth * 4 //5000 health, will get hurt by buddy's howl to make up for the high health
 		set_health(health * 4)
 		med_hud_set_health()
@@ -253,7 +251,7 @@
 		return FALSE
 	if(awakened_buddy)
 		awakened_buddy.LoseTarget()
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it

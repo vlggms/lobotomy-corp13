@@ -67,7 +67,7 @@
 	showpiece = null
 	update_icon()
 
-/obj/structure/displaycase/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/displaycase/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE)
 			playsound(src, 'sound/effects/glasshit.ogg', 75, TRUE)

@@ -25,8 +25,28 @@
 	gift_message = "You feel like you've been doing this your whole life."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	chem_type = /datum/reagent/abnormality/wellcheers_zero
-	harvest_phrase = "<span class='notice'>The machine dispenses some clear-ish soda into %VESSEL.</span>"
+	harvest_phrase = span_notice("The machine dispenses some clear-ish soda into %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."
+
+	var/list/side_shrimps = list()
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/PostSpawn()
+	..()
+	for(var/d in list(EAST, WEST))
+		var/turf/TF = get_step(src, d)
+		if(!istype(TF))
+			continue
+		if(!TF.is_blocked_turf(TRUE))
+			if(locate(/obj/structure/wellcheers_side_shrimp) in TF)
+				continue
+			var/obj/structure/wellcheers_side_shrimp/shrimp = new(TF)
+			side_shrimps += shrimp
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/Destroy()
+	for(var/shrimp in side_shrimps)
+		qdel(shrimp)
+	side_shrimps = null
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
@@ -39,23 +59,30 @@
 			dropped_can = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple
 	if(!dropped_can)
 		return
-	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
+	var/turf/dispense_turf = get_step(src, pick(NORTH, SOUTH, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 	dropped_can = new dropped_can(dispense_turf)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE)
-	visible_message("<span class='notice'>[src] dispenses [dropped_can].</span>")
+	visible_message(span_notice("[src] dispenses [dropped_can]."))
 	return
 
 // Death!
 /mob/living/simple_animal/hostile/abnormality/wellcheers/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	// Visual effects
+	for(var/obj/structure/wellcheers_side_shrimp/shrimp in side_shrimps)
+		shrimp.ShrimpDance()
 	for(var/turf/open/T in view(7, src))
 		new /obj/effect/temp_visual/water_waves(T)
-	playsound(get_turf(src), 'sound/abnormalities/wellcheers/ability.ogg', 75, 0)
-	to_chat(user, "<span class='userdanger'>You feel sleepy...</span>")
-	user.AdjustSleeping(10 SECONDS)
-	animate(user, alpha = 0, time = 2 SECONDS)
-	QDEL_IN(user, 3.5 SECONDS) // Bye bye!
-	return
 
+	// Actual effects
+	playsound(get_turf(src), 'sound/abnormalities/wellcheers/ability.ogg', 75, 0)
+	to_chat(user, span_userdanger("You feel sleepy..."))
+	user.AdjustSleeping(10 SECONDS)
+	var/shrimpspot = locate(/obj/effect/landmark/shrimpship) in world.contents
+	animate(user, alpha = 0, time = 2 SECONDS)
+	sleep(2 SECONDS)
+	user.forceMove(get_turf(shrimpspot)) // Happy fishing!
+	animate(user, alpha = 255, time = 0 SECONDS)
+	return
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red
@@ -92,3 +119,52 @@
 	H.adjustBruteLoss(rand(-2, 3) * REAGENTS_EFFECT_MULTIPLIER)
 	H.adjustSanityLoss(rand(-2, 3) * REAGENTS_EFFECT_MULTIPLIER)
 	return ..()
+
+//Shrimple boat stuff
+/turf/open/water/deep/saltwater/extradeep
+
+/turf/open/water/deep/saltwater/extradeep/Entered(atom/movable/thing, atom/oldLoc) //Drowning code - you won't make it back to the station alive.
+	if(!target_turf || is_type_in_typecache(thing, forbidden_types) || (thing.throwing && !istype(thing, /obj/item/food/fish || /obj/item/aquarium_prop )) || (thing.movement_type & (FLOATING|FLYING))) //replace this with a varient of chasm component sometime.
+		return ..()
+	if(isliving(thing))
+		var/mob/living/L = thing
+		if(L.movement_type & FLYING)
+			return ..()
+		if(!ishuman(L))
+			qdel(L)
+			return
+		var/shrimpspot = locate(/obj/effect/landmark/shrimpship) in world.contents
+		var/mob/living/carbon/human/H = L
+		for(var/obj/item/fishing_net/fishnet in H.GetAllContents())
+			fishnet.forceMove(get_turf(shrimpspot))
+		for(var/obj/item/fishing_rod/fishrod in H.GetAllContents())
+			fishrod.forceMove(get_turf(shrimpspot))
+		INVOKE_ASYNC(src, .proc/Drown, H)
+
+/turf/open/water/deep/saltwater/extradeep/proc/Drown(mob/living/carbon/human/H)
+	H.Stun(30 SECONDS)
+	H.visible_message(span_userdanger("[H] falls in the water and starts to squirm frantically! It looks like they're going to drown!"), span_userdanger("The sea is far too dangerous! You slip into the depths..."))
+	playsound(src, 'sound/voice/human/wilhelm_scream.ogg', 50, TRUE, -3)
+	animate(H, alpha = 0,pixel_x = 0, pixel_z = 0, time = 3 SECONDS)
+	QDEL_IN(H, 3.5 SECONDS)
+	sleep(3 SECONDS)
+	playsound(src, 'sound/abnormalities/dreamingcurrent/dead.ogg', 80, TRUE, -3)
+
+/obj/effect/landmark/shrimpship
+	name = "shrimp ship"
+	icon_state = "carp_spawn"
+
+// Wellcheers Side Shrimps
+/obj/structure/wellcheers_side_shrimp
+	name = "wellcheers shrimp"
+	desc = "A peppy shrimp accompanying the soda machine, it seems friendly."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "wellcheers_sideshrimp"
+	anchored = TRUE
+	density = TRUE
+	layer = ABOVE_MOB_LAYER
+	plane = FLOOR_PLANE
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/structure/wellcheers_side_shrimp/proc/ShrimpDance()
+	flick("wellcheers_kidnap",src)

@@ -40,7 +40,6 @@
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 40
 	attack_sound = 'sound/abnormalities/big_wolf/Wolf_Scratch.ogg'
@@ -72,11 +71,11 @@
 	name = "Toggle Dash"
 	desc = "Prepare to dash at the enemy dealing 50 RED damage to all in your way."
 	button_icon_state = "wolf_toggle0"
-	chosen_message = "<span class='notice'>You won't dash anymore.</span>"
+	chosen_message = span_notice("You won't dash anymore.")
 	chosen_attack_num = 2
 	button_icon_toggle_activated = "wolf_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You prepare your dash.</span>"
+	toggle_message = span_colossus("You prepare your dash.")
 	button_icon_toggle_deactivated = "wolf_toggle0"
 
 /datum/action/cooldown/wolf_howl
@@ -187,7 +186,7 @@
 			if(1)
 				if(ranged_cooldown > world.time)
 					var/time_left =  (ranged_cooldown - world.time) / 10
-					to_chat(src, "<span class='userdanger'>You must wait [time_left] seconds to regain your strength...</span>")
+					to_chat(src, span_userdanger("You must wait [time_left] seconds to regain your strength..."))
 					return
 				ScratchDash(A)
 		return

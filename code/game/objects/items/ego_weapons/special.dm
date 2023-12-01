@@ -7,7 +7,7 @@
 	icon_state = "eyeball1"
 	force = 20
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	attribute_requirements = list(
@@ -35,24 +35,47 @@
 		icon_state = "eyeball2"				// Cool sprite
 		if(isanimal(target))
 			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] <= 0)
+			if(S.damage_coeff.getCoeff(damtype) <= 0)
 				resistance = 100
 		if(resistance >= 100) // If the eyeball wielder is going no-balls and using one fucking weapon, let's throw them a bone.
 			force *= 0.1
-			armortype = MELEE //Armor-piercing
+			damtype = BRUTE //Armor-piercing
 	else
 		icon_state = "eyeball1"				//Cool sprite gone
 	if(ishuman(target))
 		force*=1.3						//I've seen Catt one shot someone, This is also only a detriment lol
 	..()
 	force = initial(force)
-	armortype = initial(armortype)
+	damtype = initial(damtype)
 
 	/*Here's how it works. It scales with Fortitude. This is more balanced than it sounds. Think of it as if Fortitude adjusted base force.
 	Once you get yourself to 80, an additional scaling factor begins to kick in that will let you keep up through the endgame.
 	This scaling factor only applies if it's the only weapon in your inventory, however. Use it faithfully, and it can cut through even enemies immune to black.
 	Why? Because well Catt has been stated to work on WAWs, which means that she's at least level 3-4.
 	Why is she still using Eyeball Scooper from a Zayin? Maybe it scales with fortitude?*/
+
+//Pile of Mail
+/obj/item/ego_weapon/mail_satchel
+	name = "envelope"
+	desc = "Heavy satchel filled to the brim with letters."
+	icon_state = "mailsatchel"
+	force = 12
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+
+	attack_verb_continuous = list("slams", "bashes", "strikes")
+	attack_verb_simple = list("slams", "bashes", "strikes")
+	attribute_requirements = list(TEMPERANCE_ATTRIBUTE = 20) //pesky clerks!
+
+/obj/item/ego_weapon/mail_satchel/attack(atom/A, mob/living/user, proximity_flag, params)
+	var/usertemp = (get_attribute_level(user, TEMPERANCE_ATTRIBUTE))
+	var/temperance_mod = clamp((usertemp - 20) / 3 + 2, 0, 20)
+	force = 12 + temperance_mod
+	..()
+	force = initial(force)
+	damtype = initial(damtype)
+	if(prob(30))
+		new /obj/effect/temp_visual/maildecal(get_turf(A))
 
 //Puss in Boots
 /obj/item/ego_weapon/lance/famiglia
@@ -67,7 +90,7 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/ego/mace1.ogg'
@@ -96,6 +119,87 @@
 /obj/item/ego_weapon/lance/famiglia/RaiseLance(mob/user)
 	hitsound = 'sound/weapons/ego/mace1.ogg'
 	..()
+
+//We Can Change Anything
+/obj/item/ego_weapon/iron_maiden
+	name = "iron maiden"
+	desc = "Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
+	special = "This weapon builds up the amount of times it hits as you attack, at maximum speed it will damage you per hit, increasing more and more, use it in hands."
+	icon_state = "iron_maiden"
+	force = 25 //DPS of 25, 50, 75, 100 at each ramping level
+	damtype = RED_DAMAGE
+
+	attack_verb_continuous = list("clamps")
+	attack_verb_simple = list("clamp")
+	hitsound = 'sound/abnormalities/helper/attack.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/ramping_speed = 0 //maximum of 20
+	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
+
+/obj/item/ego_weapon/iron_maiden/Initialize()
+	..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
+	sleep(1)
+	for(var/i = 1 to attack_amount)
+		switch(attack_amount)
+			if(1)
+				sleep(5)
+			if(2)
+				sleep(3)
+			if(3)
+				sleep(2)
+		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+		user.do_attack_animation(target)
+		playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+
+/obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if (isliving(target))
+		if (ramping_speed < 20)
+			ramping_speed += 1
+		else
+			ramping_damage += 0.02
+			user.adjustBruteLoss(user.maxHealth*ramping_damage)
+
+/obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
+	if(!..())
+		return
+	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+	switch(ramping_speed)
+		if(5 to 10)
+			Multihit(target, user, 1)
+		if(10 to 15)
+			Multihit(target, user, 2)
+		if(15 to 20)
+			if(icon_state != "iron_maiden_open")
+				playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+				icon_state = "iron_maiden_open"
+				update_icon_state()
+			Multihit(target, user, 3)
+	return
+
+/obj/item/ego_weapon/iron_maiden/attack_self(mob/user)
+	if(ramping_speed == 0)
+		to_chat(user,"<span class='notice'>It is already revved down!</span>")
+		return
+	to_chat(user,"<span class='notice'>You being to cool down [src].</span>")
+	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
+	if(do_after(user, 2.5 SECONDS, src))
+		icon_state = "iron_maiden"
+		update_icon_state()
+		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
+		ramping_speed = 0
+		ramping_damage = 0
+		to_chat(user,"<span class='notice'>The mechanism on [src] dies down!</span>")
 
 //Event rewards
 /obj/item/ego_weapon/goldrush/nihil
@@ -180,7 +284,7 @@
 	force = 40
 	attack_speed = 1
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
@@ -248,7 +352,6 @@
 	icon_state = "rookie"
 	force = 7
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_verb_continuous = list("cuts", "stabs", "slashes")
 	attack_verb_simple = list("cuts", "stabs", "slashes")
 
@@ -256,16 +359,13 @@
 	name = "fledgling dagger"
 	icon_state = "fledgling"
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 
 /obj/item/ego_weapon/tutorial/black
 	name = "apprentice dagger"
 	icon_state = "apprentice"
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 
 /obj/item/ego_weapon/tutorial/pale
 	name = "freshman dagger"
 	icon_state = "freshman"
 	damtype = PALE_DAMAGE
-	armortype = PALE_DAMAGE

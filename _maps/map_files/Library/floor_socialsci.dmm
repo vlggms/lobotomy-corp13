@@ -1,0 +1,2234 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"by" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/library_floors/floor_socialsci)
+"bM" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/reagent_containers/food/condiment/sugar,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"dm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"dn" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"dT" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"ef" = (
+/obj/structure/bookcase/random/nonfiction,
+/obj/structure/bookcase/random/nonfiction,
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_socialsci)
+"en" = (
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	pixel_y = 6;
+	dir = 1
+	},
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_socialsci)
+"eB" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken2"
+	},
+/area/library_floors/floor_socialsci)
+"ft" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_socialsci)
+"fN" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"fV" = (
+/obj/structure/fermenting_barrel,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"gm" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"gJ" = (
+/obj/structure/railing{
+	dir = 10;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"hP" = (
+/obj/structure/closet/crate/wooden,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"hU" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"hW" = (
+/obj/structure/chair/stool/bar,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"ie" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/library_floors/floor_socialsci)
+"iJ" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"je" = (
+/obj/machinery/chem_dispenser/drinks,
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_socialsci)
+"jI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"ky" = (
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_socialsci)
+"kJ" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"lG" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/library_floors/floor_socialsci)
+"lK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"mA" = (
+/obj/effect/decal/fakelattice,
+/obj/item/flashlight/spotlight,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"mR" = (
+/obj/structure/chair/comfy{
+	dir = 1;
+	pixel_y = 11
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"nB" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/library_floors/floor_socialsci)
+"pa" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"pL" = (
+/obj/structure/fermenting_barrel,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/item/flashlight/lantern{
+	pixel_y = 18
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"qb" = (
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"qn" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"rj" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/library_floors/floor_socialsci)
+"rT" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"sf" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"sl" = (
+/obj/structure/closet/crate/wooden,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"sL" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"tw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"uI" = (
+/obj/structure/chair/comfy,
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"uN" = (
+/turf/open/water/deep/saltwater,
+/area/space)
+"wp" = (
+/obj/structure/railing{
+	dir = 6;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"wM" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"wW" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"xJ" = (
+/obj/structure/flora/rock/pile,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"xY" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"yc" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"yA" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"yN" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"zb" = (
+/obj/item/reagent_containers/food/drinks/coffee,
+/obj/structure/table/wood/fancy/blue,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"zv" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"BA" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/reagent_containers/food/condiment/saltshaker{
+	pixel_y = 11;
+	pixel_x = -6
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"BK" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"BM" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/water/deep/saltwater,
+/area/space)
+"Dd" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"Dg" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"DW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/library_floors/floor_socialsci)
+"Fa" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"FK" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken3"
+	},
+/area/library_floors/floor_socialsci)
+"Gh" = (
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"GG" = (
+/obj/item/flashlight/spotlight,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"Hg" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"Hx" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"HJ" = (
+/obj/machinery/vending/dinnerware,
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_socialsci)
+"IE" = (
+/obj/structure/fermenting_barrel,
+/obj/item/flashlight/lantern{
+	pixel_y = 18
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"IR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"JJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"JW" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/library_floors/floor_socialsci)
+"JX" = (
+/obj/structure/railing{
+	dir = 5;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"Ky" = (
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"KT" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"MI" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"Nj" = (
+/obj/structure/chair/comfy,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"NI" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/reagent_containers/food/drinks/mug,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"NM" = (
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"Op" = (
+/turf/open/floor/plasteel/stairs,
+/area/library_floors/floor_socialsci)
+"ON" = (
+/obj/effect/decal/fakelattice,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"OR" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/library_floors/floor_socialsci)
+"OX" = (
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"Py" = (
+/obj/structure/railing/corner,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"PP" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"Qn" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"Rq" = (
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"Rs" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"Ru" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 1
+	},
+/area/library_floors/floor_socialsci)
+"Sp" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"SC" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"SR" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/water/deep/saltwater,
+/area/space)
+"SS" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"SZ" = (
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"Tv" = (
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"TE" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/item/toy/plush/chesed,
+/obj/item/reagent_containers/food/drinks/coffee{
+	pixel_y = -3;
+	pixel_x = 12
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"Ue" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken5"
+	},
+/area/library_floors/floor_socialsci)
+"UB" = (
+/obj/structure/bookcase/random/nonfiction,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"Vc" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"VT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"WH" = (
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"WR" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"WS" = (
+/obj/structure/railing{
+	dir = 9;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"Xa" = (
+/obj/structure/chair/comfy{
+	dir = 1;
+	pixel_y = 9
+	},
+/obj/effect/turf_decal/siding/wood{
+	pixel_y = 0
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
+"Xx" = (
+/obj/structure/fermenting_barrel,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"XL" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"XV" = (
+/obj/structure/flora/rock,
+/turf/open/water/deep/saltwater,
+/area/library_floors/floor_socialsci)
+"XW" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+"YL" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/water/deep/saltwater,
+/area/space)
+"YX" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
+
+(1,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+ky
+ky
+HJ
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(2,1,1) = {"
+uN
+uN
+YL
+uN
+uN
+uN
+uN
+ft
+gm
+lG
+bM
+hU
+Ky
+Ky
+Ky
+Ky
+by
+iJ
+ft
+uN
+uN
+uN
+uN
+uN
+"}
+(3,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+BM
+uN
+je
+eB
+Ky
+pa
+OR
+IR
+Fa
+lK
+Fa
+sf
+Ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(4,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+BK
+Ky
+Ky
+NI
+hU
+Dd
+SZ
+Gh
+Hg
+Hx
+by
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(5,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+BK
+Ky
+BA
+zb
+gm
+Dd
+yA
+Gh
+yA
+Hx
+Ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(6,1,1) = {"
+uN
+uN
+uN
+uN
+YL
+uN
+uN
+BK
+rT
+hW
+SS
+XW
+Dd
+Vc
+Gh
+Vc
+Hx
+Ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(7,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+BK
+Ky
+Ky
+Ky
+Ky
+Dd
+SZ
+Gh
+SZ
+Hx
+Ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(8,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+ky
+by
+Ky
+aa
+Ky
+JJ
+qn
+tw
+KT
+jI
+by
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(9,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+ft
+gm
+Ky
+Ky
+Ky
+Ky
+Ue
+Ky
+Ky
+Ky
+iJ
+ft
+uN
+uN
+uN
+uN
+uN
+"}
+(10,1,1) = {"
+uN
+uN
+uN
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+JW
+ef
+ft
+JW
+ft
+ft
+JW
+ky
+ky
+ky
+ky
+ky
+ky
+uN
+"}
+(11,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+kJ
+NM
+NM
+NM
+NM
+ky
+uN
+"}
+(12,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+WS
+OX
+aa
+Ky
+gm
+Ky
+Ky
+zv
+Ky
+MI
+gJ
+NM
+NM
+NM
+ky
+uN
+"}
+(13,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+XV
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(14,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+dT
+NM
+ky
+uN
+"}
+(15,1,1) = {"
+uN
+uN
+uN
+ky
+dT
+NM
+NM
+NM
+dn
+rj
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(16,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+GG
+NM
+SC
+dm
+pL
+dm
+dm
+dm
+dm
+YX
+dm
+dm
+WH
+xJ
+GG
+NM
+ky
+uN
+"}
+(17,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+dT
+dn
+Ky
+hP
+Ky
+gm
+ie
+Ky
+gm
+IE
+Ue
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(18,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+WR
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+ky
+Ky
+gm
+hP
+Ky
+kJ
+NM
+NM
+xJ
+ky
+uN
+"}
+(19,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+ON
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+WR
+NM
+NM
+ky
+uN
+"}
+(20,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+XV
+NM
+Rs
+Dg
+mA
+Dg
+Dg
+Dg
+Dg
+yN
+Dg
+Dg
+xY
+NM
+NM
+NM
+ky
+uN
+"}
+(21,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(22,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+ky
+Ky
+gm
+ON
+Ky
+kJ
+NM
+NM
+dT
+ky
+uN
+"}
+(23,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+sL
+NM
+dn
+Ky
+eB
+Ky
+gm
+fN
+Ky
+ON
+ON
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(24,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+Rs
+Dg
+yN
+Dg
+Dg
+dm
+Dg
+yN
+Dg
+Dg
+xY
+NM
+NM
+NM
+ky
+uN
+"}
+(25,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+hP
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(26,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Xx
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+dT
+NM
+NM
+ky
+uN
+"}
+(27,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+IE
+Ky
+gm
+ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(28,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+GG
+NM
+dn
+Ky
+aa
+Ky
+VT
+ky
+PP
+zv
+rj
+Ky
+kJ
+NM
+xJ
+NM
+ky
+uN
+"}
+(29,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+GG
+NM
+ky
+uN
+"}
+(30,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+dT
+NM
+dn
+Ky
+Ky
+Ky
+gm
+ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(31,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+by
+VT
+ky
+PP
+gm
+Ky
+Ky
+kJ
+NM
+WR
+NM
+ky
+uN
+"}
+(32,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+WR
+NM
+NM
+dn
+Ky
+aa
+Ky
+gm
+ky
+Ky
+zv
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(33,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(34,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+XV
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+ON
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(35,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+Rs
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+ON
+ON
+Dg
+xY
+NM
+NM
+NM
+ky
+uN
+"}
+(36,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+aa
+Ky
+gm
+wM
+Ky
+zv
+Ky
+Ky
+kJ
+NM
+sL
+NM
+ky
+uN
+"}
+(37,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+rj
+gm
+ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(38,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+dT
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+sl
+IE
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(39,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+SC
+dm
+dm
+dm
+dm
+dm
+dm
+dm
+fV
+dm
+WH
+NM
+NM
+NM
+ky
+uN
+"}
+(40,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+xJ
+dn
+Ky
+aa
+ON
+gm
+Ky
+Ky
+zv
+Ky
+Ky
+kJ
+NM
+WR
+NM
+ky
+uN
+"}
+(41,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+hP
+ON
+gm
+ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(42,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+IE
+Ky
+gm
+fN
+Ky
+ON
+ON
+Ky
+kJ
+NM
+xJ
+NM
+ky
+uN
+"}
+(43,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+xJ
+NM
+dT
+Rs
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+Dg
+xY
+NM
+NM
+NM
+ky
+uN
+"}
+(44,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+GG
+NM
+FK
+Ky
+aa
+Ky
+gm
+Ky
+Ky
+zv
+Ky
+Ky
+nB
+NM
+GG
+dT
+ky
+uN
+"}
+(45,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+XV
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+NM
+NM
+NM
+ky
+uN
+"}
+(46,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+dn
+Ky
+Ky
+Ky
+gm
+Ky
+Ky
+gm
+Ky
+Ky
+kJ
+dT
+NM
+NM
+ky
+uN
+"}
+(47,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+WR
+JX
+qb
+Ky
+Ky
+gm
+Ky
+Ky
+DW
+Ky
+Py
+wp
+dT
+NM
+xJ
+ky
+uN
+"}
+(48,1,1) = {"
+uN
+uN
+uN
+ky
+NM
+NM
+NM
+NM
+NM
+dn
+aa
+Ky
+gm
+Ky
+Ky
+zv
+Ky
+kJ
+NM
+NM
+NM
+NM
+ky
+uN
+"}
+(49,1,1) = {"
+uN
+uN
+uN
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+JW
+ft
+ft
+JW
+ft
+ft
+JW
+ky
+ky
+ky
+ky
+ky
+ky
+uN
+"}
+(50,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+wW
+ky
+Ky
+Ky
+Ky
+Ky
+Ky
+Ky
+Ky
+Ky
+Ky
+Ky
+ky
+kJ
+uN
+uN
+uN
+uN
+"}
+(51,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+wW
+Op
+Ky
+IR
+lK
+lK
+lK
+lK
+lK
+lK
+sf
+Ky
+Ru
+kJ
+uN
+uN
+uN
+uN
+"}
+(52,1,1) = {"
+uN
+uN
+YL
+uN
+uN
+uN
+wW
+ky
+Ky
+Dd
+UB
+Rq
+Rq
+Rq
+Rq
+UB
+Hx
+Ky
+ky
+kJ
+uN
+uN
+uN
+uN
+"}
+(53,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+XL
+je
+Ky
+Dd
+Gh
+Gh
+Gh
+Gh
+Gh
+Gh
+Hx
+Ky
+en
+Qn
+uN
+uN
+uN
+YL
+"}
+(54,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+wW
+ky
+Ky
+Nj
+SZ
+mR
+Gh
+Gh
+uI
+SZ
+Xa
+Ky
+ky
+kJ
+uN
+uN
+uN
+uN
+"}
+(55,1,1) = {"
+uN
+uN
+uN
+SR
+uN
+uN
+wW
+ky
+by
+Dd
+Gh
+Gh
+Gh
+Gh
+Gh
+Gh
+Hx
+Ky
+ky
+kJ
+uN
+uN
+uN
+uN
+"}
+(56,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+JX
+ky
+Ky
+Dd
+UB
+Rq
+Rq
+Rq
+Rq
+UB
+Hx
+Ky
+ky
+wp
+uN
+uN
+SR
+uN
+"}
+(57,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+ky
+Ky
+Dd
+Gh
+Gh
+Gh
+Gh
+Gh
+Gh
+Hx
+Ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(58,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+ky
+Ky
+TE
+Sp
+tw
+tw
+tw
+tw
+Sp
+yc
+Ky
+ky
+uN
+YL
+uN
+uN
+uN
+"}
+(59,1,1) = {"
+uN
+uN
+uN
+uN
+YL
+uN
+uN
+ky
+Ky
+Tv
+Tv
+Ky
+Ky
+Ky
+rj
+Tv
+Tv
+Ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}
+(60,1,1) = {"
+uN
+uN
+uN
+uN
+uN
+uN
+uN
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+ky
+uN
+uN
+uN
+uN
+uN
+"}

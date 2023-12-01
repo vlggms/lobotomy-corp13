@@ -174,3 +174,34 @@
 	- When triggered, the abnormality deals heavy damage to every escaped abnormality and hostile entity in the facility, dealing more damage depending on the level of the employee.	<br>
 	- The employee who triggered the abnormality's ability crumbles into dust. In addition, the abnormality overheats, needing five minutes to cool down.	<br>
 	- Certain powerful beings are entirely immune to this abnormality's effect, and the mere presence of some creatures will prevent the abnormality from activating at all. If Don't Touch Me is pressed, the abnormality overheats."}
+
+//Notes from a Crazed Researcher
+/obj/item/paper/fluff/info/tool/researcher
+	name = "T-09-78"
+	info = {"<h1><center>T-09-78</center></h1>	<br>
+	Name : Notes from a Crazed Researcher<br>
+	Risk Class : HE	<br>
+	- One’s observational skill will improve just by holding this item.	<br>
+	- However, if it is returned without fulfilling the yearning for knowledge, the incompetent shall explode.	<br>
+	- When the yearning for knowledge is sated, the abnormality appears to return to containment.	<br>
+	- In addition, if the damage recieved while holding these notes exceeds the users maximum combined HP and SP, the user will explode. "}
+
+//You Must Be Happy
+/obj/item/paper/fluff/info/tool/you_happy
+	name = "T-09-94"
+	info = {"<h1><center>T-09-94</center></h1>	<br>
+	Name : You Must Be Happy<br>
+	Risk Class : ZAYIN	<br>
+	- When the machine is used before a previously applied effect expires, the user perishes.	<br>
+	- Those who answered \"Yes\" to the question \"Do you love your city?\" gained a small, temporary boost in all attributes. Those who answered \"No\" instead lost some attributes in the same manner.	<br>
+	- The longer the machine is in use, the more profound the change becomes. Furthermore, the longer it is used, the faster the question will change. "}
+
+//Old Faith and Promise
+/obj/item/paper/fluff/info/tool/promise
+	name = "T-09-97"
+	info = {"<h1><center>T-09-94</center></h1>	<br>
+	Name : Old Faith and Promise<br>
+	Risk Class : ZAYIN	<br>
+	- Utilize the Abnormality to fortify an E.G.O Weapon. The fortified weapon will have higher Attack Power.	<br>
+	- However, there is a possibility of losing the E.G.O during the fortification process.	<br>
+	- The likelihood of losing the E.G.O. during the fortification process increased dramatically as the E.G.O. was empowered further."}

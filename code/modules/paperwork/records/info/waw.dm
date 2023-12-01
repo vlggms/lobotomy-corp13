@@ -48,10 +48,12 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/despair_knight
 	abno_code = "O-01-73"
 	abno_info = list(
-		"The first employee who completes their work with a Good result will receive The Knight of Despair’s blessing. (From then on, the employee will be referred to as O-01-73-1).",
+		"The first employee who completes their Attachment Work with a Good result will receive The Knight of Despair’s blessing. (From then on, the employee will be referred to as O-01-73-1).",
 		"Thanks to the blessing, RED, WHITE, and BLACK damage dealt to O-01-73-1 was halved. However, PALE damage was doubled.",
+		"The blessing caused O-01-73-1 to lose most of their competence when it comes to working on abnormalities.",
 		"The Knight of Despair’s blessing dissipated when O-01-73-1 died or panicked. After the blessing was gone, a new employee could receive it.",
-		"When O-01-73-1 died or panicked, The Knight of Despair escaped from its Containment Unit.")
+		"When the Qliphoth Counter reached 0, The Knight of Despair was impaled with a sword.",
+		"When O-01-73-1 died or panicked, or when a total of three swords impaled the abnormality, The Knight of Despair escaped from its Containment Unit.")
 	abno_can_breach = TRUE
 	abno_breach_damage_type = "Pale"
 	abno_breach_damage_count = "Very High"
@@ -228,8 +230,7 @@
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered with a high probability.",
-		"When Ebony Queen's Apple escaped from its containment, it began attack with its roots with extremely violent intent.",
-		"F-04-141 primarily attacks through her roots and branches. It is suggested agents avoid extentions of the entity when in combat.")
+		"Ebony Queen’s Apple primarily attacks through her roots. Employees should avoid standing on extentions of the Abnormality during suppressions.")
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Very High"
 
@@ -468,3 +469,40 @@
 		"When the employee had a good result while preforming instinct work F-02-58 vomited all of the previously consumed employees.",
 		"When F-02-58 is below 50% health their howl will weaken the containment of nearby abnormalities."
 		)
+
+//Poor Screenwriter's Note
+/obj/item/paper/fluff/info/waw/screenwriter
+	abno_type = /mob/living/simple_animal/hostile/abnormality/screenwriter
+	abno_code = "O-05-29" //originally O-05-31 in lobotomy corp, but it's taken by TSO.
+	abno_info = list(
+		"Poor Screenwriter's Note prefers that everything goes according to its own scenario. Work will also not be an exception. If you are unsure of what to do, turn the page.",
+		"When the work result was bad, the Qliphoth Counter lowered.",
+		"When the Qliphoth counter reached 0, several employees were selected to play roles in a \"play\"",
+		"The employee playing the \"Coward\" suffered from lowered power, the \"Broken\" lowered health, and the \"Failed\" lowered sanity.",
+		"The employees chosen to play the \"Victim\" suffered perhaps the most of all, losing in all virtues and being targetted by the actor \"A\".",
+		"When the \"Victim\" died or was not present, another role was picked to play the \"Victim\".",
+		"When the actor \"A\" was defeated, the abnormality was suppressed.")
+	abno_work_rates = list(
+		"Nutrition" = "Low",
+		"Cleanliness" = "Low",
+		"Consensus" = "Low",
+		"Amusement" = "Low",
+		"Violence" = "Low")
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "High"
+
+//Sign of Roses
+/obj/item/paper/fluff/info/waw/rose_sign
+	abno_type = /mob/living/simple_animal/hostile/abnormality/rose_sign
+	abno_code = "O-04-177" //O-04-21-22 in LCB
+	abno_info = list(
+		"When insight work was performed, a rose was planted in the containment cell of Sign of Roses.",
+		"When insight work was performed while four roses were present, the Qliphoth counter lowered.",
+		"When repression work was performed, a planted rose withered away.",
+		"When repression work was performed with no roses present, the Qliphoth Counter lowered.",
+		"The roses that grow in the containment cell, dubbed O-04-177-1 drastically raised the success rate and PE boxes generated from all works.",
+		"Agent Orga who worked while many O-04-177-1 were present sustained far greater damage from working.",
+		"When Sign of Roses breached, all agents were branded with a crown of thorns. O-04-177-1 would occasionally appear nearby and kill a branded agent after some time passed.",
+		"When O-04-177-1 was suppressed, Sign of Roses became more vulnerable to damage.")
+	abno_breach_damage_type = "Black"
+	abno_breach_damage_count = "Low"

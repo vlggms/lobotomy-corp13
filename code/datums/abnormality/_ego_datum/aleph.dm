@@ -123,11 +123,11 @@
 // Distorted Form - Distortion
 /datum/ego_datum/armor/distortion
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/distortion
-	cost = 100
+	cost = 200
 
-/datum/ego_datum/weapon/distortion
+/datum/ego_datum/weapon/distortion // not able to be extracted
 	item_path = /obj/item/ego_weapon/shield/distortion
-	cost = 100
+	cost = 300
 
 // Dongrang Personal E.G.O - Farmwatch
 /datum/ego_datum/weapon/farmwatch
@@ -140,7 +140,7 @@
 	cost = 100//appears in wishing well
 
 /datum/ego_datum/weapon/spicebush/fan
-	item_path = /obj/item/ego_weapon/spicebush
+	item_path = /obj/item/ego_weapon/spicebush/fan
 	cost = 100//appears in wishing well
 
 //Til the Last Shot - Flesh Is Willing
@@ -174,3 +174,12 @@
 /datum/ego_datum/weapon/iron_maiden
 	item_path = /obj/item/ego_weapon/iron_maiden
 	cost = 1000
+
+//Nobody Is - Mockery
+/datum/ego_datum/armor/mockery
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/mockery
+	cost = 100
+
+/datum/ego_datum/weapon/mockery
+	item_path = /obj/item/ego_weapon/mockery
+	cost = 100

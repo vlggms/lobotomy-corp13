@@ -418,3 +418,40 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+
+/obj/item/clothing/suit/armor/ego_gear/he/coiling
+	name = "coiling"
+	desc = "It's beautiful snake leather."
+	icon_state = "coiling"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = -10, BLACK_DAMAGE = 50, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/voodoo
+	name = "voodoo doll"
+	desc = "You look like a little doll."
+	icon_state = "voodoo"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = -10, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/uturn
+	name = "u-turn"
+	desc = "It's simple black, just like all the roads out there."
+	icon_state = "uturn"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/nixie
+	name = "nixie divergence"
+	desc = "A purposeless machine is bound to lose the meaning of its existence, even if it is functional."
+	icon_state = "nixie"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 30) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)

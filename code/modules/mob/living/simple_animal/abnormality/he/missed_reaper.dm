@@ -9,7 +9,6 @@
 	melee_damage_lower = 35
 	melee_damage_upper = 45
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
 	attack_verb_continuous = "pierces"
 	attack_verb_simple = "pierce"
 	faction = list("hostile")
@@ -74,7 +73,7 @@
 	sleep(0.2 SECONDS)
 	user.attack_animal(src)
 	sleep(0.5 SECONDS)
-	to_chat(user, "<span class='userdanger'>[src] stabs you!</span>")
+	to_chat(user, span_userdanger("[src] stabs you!"))
 	user.apply_damage(3000, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	playsound(user, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
 	return
@@ -114,7 +113,7 @@
 		playsound(get_turf(Y), 'sound/abnormalities/missed_reaper/shadowcast.ogg', 50, FALSE, -1)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	for(Y in marked)
-		to_chat(Y, "<span class='userdanger'>A shadow appears beneath your feet!</span>")
+		to_chat(Y, span_userdanger("A shadow appears beneath your feet!"))
 		new /obj/effect/malicious_shadow(get_turf(Y))
 
 // Decorations

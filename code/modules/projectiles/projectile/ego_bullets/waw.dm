@@ -12,7 +12,6 @@
 	name = "magic beam"
 	icon_state = "qoh1"
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	damage = 50
 	spread = 10
 
@@ -44,7 +43,6 @@
 	. = ..()
 	icon_state = "qoh[pick(1,2,3)]"
 	damage_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	flag = damage_type
 
 /obj/projectile/ego_bullet/ego_magicbullet
 	name = "magic bullet"
@@ -52,7 +50,6 @@
 	damage = 80
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 	range = 18 // Don't want people shooting it through the entire facility
 	hit_nondense_targets = TRUE
@@ -78,7 +75,6 @@
 	damage = 4
 	speed = 0.2
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_loyalty/iff
 	name = "loyalty IFF"
@@ -110,7 +106,6 @@
 	name = "ecstasy"
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	damage = 7
 	speed = 1.3
 	range = 6
@@ -126,7 +121,6 @@
 	damage = 3
 	nodamage = TRUE	//Damage is calculated later
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	projectile_piercing = PASSMOB
 	homing = TRUE
 	homing_turn_speed = 30		//Angle per tick.
@@ -165,7 +159,6 @@
 	damage = 40
 	speed = 0.1
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 
 //tommygun
@@ -174,21 +167,18 @@
 	damage = 5
 	speed = 0.2
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 //laststop
 /obj/projectile/ego_bullet/ego_laststop
 	name = "laststop"
 	damage = 145
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_aroma
 	name = "aroma"
 	icon_state = "arrow_aroma"
 	damage = 140
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 
 //Assonance, our one hitscan laser
 /obj/projectile/beam/assonance
@@ -197,7 +187,6 @@
 	hitsound = null
 	damage = 50
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/white
 	tracer_type = /obj/effect/projectile/tracer/laser/white
@@ -231,7 +220,6 @@
 	icon_state = "lava"
 	damage = 40
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	homing = TRUE
 	speed = 1.5
 
@@ -243,16 +231,15 @@
 	desc = "A sterile naked nest serpent"
 	damage = 120
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	hitsound = "sound/effects/wounds/pierce1.ogg"
 
 /obj/projectile/ego_bullet/ego_exuviae/on_hit(target)
 	. = ..()
 	if(isliving(target))
 		var/mob/living/simple_animal/M = target
-		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/sunder_red))
+		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_red))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
-			M.apply_status_effect(/datum/status_effect/sunder_red)
+			M.apply_status_effect(/datum/status_effect/rend_red)
 
 //feather of valor
 /obj/projectile/ego_bullet/ego_warring
@@ -260,7 +247,6 @@
 	icon_state = "arrow"
 	damage = 75
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 
 /obj/projectile/ego_bullet/ego_warring/on_hit(atom/target, blocked = FALSE)
 	. = ..()
@@ -281,7 +267,6 @@
 	hitsound = null
 	damage = 125
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	hitscan = TRUE
 	muzzle_type = /obj/effect/projectile/muzzle/laser/warring
 	tracer_type = /obj/effect/projectile/tracer/warring
@@ -313,7 +298,7 @@
 	icon_state = "pulse0"
 	damage = 120
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_blind_rage
 	name = "blind rage"
@@ -341,7 +326,7 @@
 	icon_state = "energy"
 	damage = 7 //Can dual wield, full auto
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_hypocrisy
 	name = "hypocrisy"
@@ -349,11 +334,11 @@
 	color = "#AAFF00"
 	damage = 90 //50 damage is transfered to the spawnable trap
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 
 /obj/projectile/ego_bullet/ego_bride
 	name = "bride"
 	icon_state = "bride"
 	damage = 25
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
+

@@ -82,10 +82,12 @@
 	var/armour_penetration = 0
 	///Damage type of a simple mob's melee attack, should it do damage.
 	var/melee_damage_type = RED_DAMAGE
-	///Armor type that is checked when attacking someone
-	var/armortype = RED_DAMAGE
-	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source.
-	var/list/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	/// 1 for full damage , 0 for none , -1 for 1:1 heal from that source., Starts as a list and becomes a datum post Initialize()
+	var/datum/dam_coeff/damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	/// The unmodified values for the dam_coeff datum
+	var/datum/dam_coeff/unmodified_damage_coeff_datum
+	/// The list of all modifiers to the current DC datum
+	var/list/damage_mods = list()
 	///Attacking verb in present continuous tense.
 	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
@@ -200,14 +202,28 @@
 		emote_see = string_list(emote_hear)
 	if(atmos_requirements)
 		atmos_requirements = string_assoc_list(atmos_requirements)
-	if(damage_coeff)
-		damage_coeff = string_assoc_list(damage_coeff)
+	if (islist(damage_coeff))
+		unmodified_damage_coeff_datum = makeDamCoeff(damage_coeff)
+		damage_coeff = makeDamCoeff(damage_coeff)
+	else if (!damage_coeff)
+		damage_coeff = makeDamCoeff()
+		unmodified_damage_coeff_datum = makeDamCoeff()
+	else if (!istype(damage_coeff, /datum/dam_coeff))
+		stack_trace("Invalid type [damage_coeff.type] found in .damage_coeff during /simple_animal Initialize()")
 	if(footstep_type)
 		AddComponent(/datum/component/footstep, footstep_type)
 	if(!unsuitable_cold_damage)
 		unsuitable_cold_damage = unsuitable_atmos_damage
 	if(!unsuitable_heat_damage)
 		unsuitable_heat_damage = unsuitable_atmos_damage
+	//LC13 Check, it's here to give everything nightvision on Rcorp.
+	if(CheckCombat())
+		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
+		AddSpell(bloodspell)
+	//LC13 Check. If it's the citymap, they all gain a faction
+	if(SSmaptype.maptype == "city")
+		faction += "city"
+
 
 /mob/living/simple_animal/Life()
 	. = ..()
@@ -470,7 +486,7 @@
 	. += "Health: [round((health / maxHealth) * 100)]%"
 
 /mob/living/simple_animal/proc/drop_loot()
-	if(loot.len)
+	if(loot?.len)
 		for(var/i in loot)
 			new i(loc)
 
@@ -731,3 +747,10 @@
 
 /mob/living/simple_animal/proc/stop_deadchat_plays()
 	stop_automated_movement = FALSE
+
+// -- LC13 THINGS --
+
+/mob/living/simple_animal/proc/CheckCombat() //Is it currently a combat gamemode? Used to check for a few interactions, like if somethings can teleport.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		return TRUE
+	return FALSE

@@ -50,7 +50,7 @@
 			heirloom_type = pick(/obj/item/toy/plush/malkuth, /obj/item/toy/plush/netzach, /obj/item/toy/plush/hod, /obj/item/toy/plush/lisa, /obj/item/toy/plush/enoch, /obj/item/toy/plush/yesod, /obj/item/toy/plush/gebura)
 		// Common folk
 		if("Agent")
-			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf)
+			heirloom_type = pick(/obj/item/toy/plush/bigbird, /obj/item/toy/plush/big_bad_wolf, /obj/item/toy/plush/pinocchio)
 		if("Agent Intern")
 			heirloom_type = pick(/obj/item/toy/plush/scorched)
 		if("Clerk")
@@ -97,6 +97,10 @@
 
 /datum/quirk/artist/on_spawn()
 	var/mob/living/carbon/human/H = quirk_holder
+	var/list/banned = list("rcorp", "wcorp", "city")
+	if(SSmaptype.maptype in banned)
+		to_chat(H, "<span class='warning'>There was no time to grab your art supplies!</span>")
+		return
 	var/obj/item/storage/toolbox/artistic/art = new(get_turf(H))
 	H.put_in_hands(art)
 

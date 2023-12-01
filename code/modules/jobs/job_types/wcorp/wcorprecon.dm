@@ -12,7 +12,7 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	exp_type = EXP_TYPE_CREW
 	maptype = "wcorp"
 
-	outfit = /datum/outfit/job/wcorpl2
+	outfit = /datum/outfit/job/wcorpl2recon
 	display_order = 3
 
 
@@ -54,11 +54,11 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	ears = /obj/item/radio/headset/headset_welfare
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy/wsenior
-	belt = /obj/item/ego_weapon/city/wcorp
+	belt = /obj/item/ego_weapon/city/charge/wcorp
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	head = /obj/item/clothing/head/wcorp
+	head = /obj/item/clothing/head/ego_hat/wcorp
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/storage/packet

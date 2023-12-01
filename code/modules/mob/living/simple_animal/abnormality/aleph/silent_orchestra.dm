@@ -81,26 +81,26 @@
 				next_movement_time = world.time + 4 SECONDS
 			if(1)
 				next_movement_time = world.time + 22 SECONDS
-				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
+				ChangeResistances(list(PALE_DAMAGE = 1))
 				spawn_performer(1, WEST)
 			if(2)
 				next_movement_time = world.time + 14.5 SECONDS
-				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 0)
+				ChangeResistances(list(BLACK_DAMAGE = 1, PALE_DAMAGE = 0))
 				spawn_performer(2, WEST)
 			if(3)
 				next_movement_time = world.time + 11.5 SECONDS
-				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+				ChangeResistances(list(WHITE_DAMAGE = 1, BLACK_DAMAGE = 0))
 				symphony_damage = 18
 				movement_volume = 3 // No more tinnitus
 				spawn_performer(1, EAST)
 			if(4)
 				next_movement_time = world.time + 23 SECONDS
-				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+				ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0))
 				symphony_damage = 12
 				spawn_performer(2, EAST)
 			if(5)
 				next_movement_time = world.time + 999 SECONDS // Never
-				damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+				ChangeResistances(list(RED_DAMAGE = 0))
 				movement_volume = 65 // TA-DA!!!
 		if(current_movement_num < 6)
 			sound_to_playing_players_on_level("sound/abnormalities/silentorchestra/movement[current_movement_num].ogg", movement_volume, zlevel = z)
@@ -113,7 +113,7 @@
 						head.dismember()
 						QDEL_NULL(head)
 						H.regenerate_icons()
-						H.visible_message("<span class='danger'>[H]'s head explodes!</span>")
+						H.visible_message(span_danger("[H]'s head explodes!"))
 						new /obj/effect/gibspawner/generic/silent(get_turf(H))
 						playsound(get_turf(H), 'sound/abnormalities/silentorchestra/headbomb.ogg', 50, 1)
 				SLEEP_CHECK_DEATH(4 SECONDS)

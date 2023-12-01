@@ -26,8 +26,7 @@
 						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
 						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 55),
 						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
-						"Release" = 0
+						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
 						)
 	max_boxes = 20
 	success_boxes = 16
@@ -135,14 +134,14 @@
 	icon_state = icon_dead
 	playsound(src, 'sound/effects/magic.ogg', 60)
 	SSlobotomy_events.yin_downed = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, PALE_DAMAGE = 0))
 	for(var/i = 1 to 12)
 		SLEEP_CHECK_DEATH(5 SECONDS)
 		if(SSlobotomy_events.yang_downed)
 			death()
 			return
 	adjustBruteLoss(-maxHealth)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, PALE_DAMAGE = 1))
 	SSlobotomy_events.yin_downed = FALSE
 	icon_state = icon_breach
 
@@ -328,7 +327,7 @@
 			H.adjustSanityLoss(-H.maxSanity)
 			H.adjustSanityLoss(damage)
 		hit_people += L
-		to_chat(L, "<span class='userdanger'>All that is shall become all that isn't.</span>")
+		to_chat(L, span_userdanger("All that is shall become all that isn't."))
 
 /mob/living/simple_animal/hostile/abnormality/yin/proc/YangCheck()
 	for(var/datum/abnormality/AD in SSlobotomy_corp.all_abnormality_datums)

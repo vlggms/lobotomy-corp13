@@ -5,6 +5,8 @@
 #define L_CORP_REP "L corp"
 #define R_CORP_REP "R corp"
 #define W_CORP_REP "W corp"
+#define N_CORP_REP "N corp"
+#define P_CORP_REP "P corp"
 #define IS_MONIES istype(I, /obj/item/holochip)
 #define IS_REFINED_PE istype(I, /obj/item/refinedpe)
 #define IS_RAW_PE istype(I, /obj/item/rawpe)
@@ -161,7 +163,7 @@
 			CustomizeOffice(/obj/structure/sign/departments/k_corp, /obj/structure/pe_sales/k_corp)
 			//add preloaded items to this list.
 			order_list = list(
-				new /datum/data/extraction_cargo("K Corp Intern Outfit", /obj/item/clothing/under/suit/lobotomy/wcorp, 100, K_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("K Corp Intern Outfit", /obj/item/clothing/under/rank/k_corporation/intern, 100, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Baton", /obj/item/ego_weapon/city/kcorp, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Axe", /obj/item/ego_weapon/city/kcorp/axe, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Shield", /obj/item/ego_weapon/shield/kcorp, 400, K_CORP_REP) = 1,
@@ -174,8 +176,8 @@
 			order_list = list(
 				new /datum/data/extraction_cargo("L Corp Regeneration Augmentation Kit", /obj/item/safety_kit, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Slowing Trap Generator", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/clerkbot_gadget, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/vitals_projector, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/powered_gadget/clerkbot_gadget, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Taser", /obj/item/powered_gadget/handheld_taser, 700, L_CORP_REP) = 1,
 				)
 
@@ -195,10 +197,21 @@
 			CustomizeOffice(/obj/structure/sign/departments/w_corp, /obj/structure/pe_sales/w_corp)
 			order_list = list(
 				new /datum/data/extraction_cargo("W Corp Cleanup Outfit", /obj/item/clothing/under/suit/lobotomy/wcorp, 100, W_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/wcorp, 100, W_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("W Corp Cleanup Baton", /obj/item/ego_weapon/city/wcorp, 500, W_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/ego_hat/wcorp, 100, W_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("W Corp Cleanup Baton", /obj/item/ego_weapon/city/charge/wcorp, 500, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Armor Vest", /obj/item/clothing/suit/armor/ego_gear/wcorp, 700, W_CORP_REP) = 1,
 				)
+
+		if("N Corp Representative")
+			our_corporation = N_CORP_REP
+			CustomizeOffice(null, /obj/structure/pe_sales/n_corp)
+			order_list = list()
+
+		if("P Corp Representative")
+			our_corporation = P_CORP_REP
+			CustomizeOffice(null, null)
+			order_list = list(
+				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1)
 
 		else
 			to_chat(usr, "<span class='warning'>ASSIGNMENT ERROR.</span>")
@@ -211,11 +224,11 @@
 
 /obj/structure/representative_console/proc/CustomizeOffice(obj/poster, obj/crate)
 	var/poster_place = get_turf(locate(/obj/effect/landmark/custom_office/poster) in GLOB.landmarks_list)
-	if(isturf(poster_place))
+	if((isturf(poster_place)) && poster)
 		new poster(get_turf(poster_place))
 
 	var/crate_place = get_turf(locate(/obj/effect/landmark/custom_office/crate) in GLOB.landmarks_list)
-	if(!crate_place)
+	if((!crate_place) && crate)
 		crate_place = get_turf(src)
 	new crate(get_turf(crate_place))
 

@@ -39,7 +39,6 @@
 
 	// This stuff is only done to non-humans and objects
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 100
 	melee_damage_upper = 100
 
@@ -120,9 +119,10 @@
 		head.dismember()
 		QDEL_NULL(head)
 		H.regenerate_icons()
-		visible_message("<span class='danger'>\The [src] bites [H]'s head off!</span>")
+		visible_message(span_danger("\The [src] bites [H]'s head off!"))
 		new /obj/effect/gibspawner/generic/silent(get_turf(H))
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
+		flick("big_bird_chomp", src)
 		bite_cooldown = world.time + bite_cooldown_time
 		return
 	return ..()
@@ -138,10 +138,10 @@
 		if(!CanAttack(C))
 			continue
 		if(ismoth(C))
-			pick(C.emote("scream"), C.visible_message("<span class='boldwarning'>[C] lunges for the light!</span>"))
+			pick(C.emote("scream"), C.visible_message(span_boldwarning("[C] lunges for the light!")))
 			C.throw_at((src), 10, 2)
 		if(prob(66))
-			to_chat(C, "<span class='warning'>You feel tired...</span>")
+			to_chat(C, span_warning("You feel tired..."))
 			C.blur_eyes(5)
 			addtimer(CALLBACK (C, .mob/proc/blind_eyes, 2), 2 SECONDS)
 			addtimer(CALLBACK (C, .mob/living/proc/Stun, 2 SECONDS), 2 SECONDS)

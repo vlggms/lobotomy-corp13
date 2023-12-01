@@ -78,8 +78,11 @@
 
 	if(!targets_from)
 		targets_from = src
+	/*Update Speed overrides set speed and sets it
+		to the equivilent of move_to_delay. Basically
+		move_to_delay - 2 = speed. */
+	UpdateSpeed()
 	wanted_objects = typecacheof(wanted_objects)
-
 
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null
@@ -172,7 +175,37 @@
 		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
 			FindTarget(list(P.firer), 1)
 		Goto(P.starting, move_to_delay, 3)
+
+	. = ..()
+	DamageEffect(P.damage, P.damage_type)
+
+/*-------------------\
+|Damage Visual Effect|
+\-------------------*/
+
+/mob/living/simple_animal/hostile/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE, actuallydamage = TRUE)
+	//This used to also check actually damage but turns out melee weapons in item_attack.dm dont call actually damage.
+	if(stat != DEAD && (damagetype in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
+		//To simplify things, if you bash a abnormality with a wrench it wont show any effect.
+		DamageEffect(damage, damagetype)
 	return ..()
+
+/mob/living/simple_animal/hostile/proc/DamageEffect(amount, damtype)
+	//Code stolen from attack_threshold_check() in animal_defense.dm
+	var/temp_damage = amount
+	if(islist(damage_coeff))
+		temp_damage *= damage_coeff[damtype]
+	else
+		temp_damage *= damage_coeff.getCoeff(damtype)
+
+	if(temp_damage > 0)
+		return FALSE
+	if(temp_damage == 0)
+		//Visual Effect for immunity.
+		return new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
+	if(temp_damage < 0)
+		//Visual Effect for healing.
+		return new /obj/effect/temp_visual/healing(get_turf(src))
 
 /*Used in LC13 abnormality calculations.
 	Moved here so we can use it for all hostiles.
@@ -259,6 +292,9 @@
 		var/mob/M = the_target
 		if(M.status_flags & GODMODE)
 			return FALSE
+		if(M.ckey)
+			if(M.client?.is_afk()) // AFK protection
+				return FALSE
 
 	if(see_invisible < the_target.invisibility)//Target's invisible to us, forget it
 		return FALSE
@@ -460,7 +496,7 @@
 	if(CheckFriendlyFire(A))
 		return
 	if(!(simple_mob_flags & SILENCE_RANGED_MESSAGE))
-		visible_message("<span class='danger'><b>[src]</b> [ranged_message] at [A]!</span>")
+		visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
 
 
 	if(rapid > 1)
@@ -507,6 +543,25 @@
 		return dodge(newloc,dir)
 	else
 		return ..()
+
+/mob/living/simple_animal/hostile/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(.)
+		return
+	if(target == mover) // "I'm KILLING YOU, I'm KILLING YOU" - Jerma985
+		return FALSE
+	if(ishostile(mover))
+		var/mob/living/simple_animal/hostile/H = mover
+		if(H.target)
+			return
+		if(LAZYLEN(H.patrol_path)) // Don't block patrolling guys
+			return TRUE
+		return
+	if(ishuman(mover))
+		var/mob/living/carbon/human/H = mover
+		if(H.sanity_lost) // Don't block crazy people
+			return TRUE
+	return
 
 /mob/living/simple_animal/hostile/proc/dodge(moving_to,move_direction)
 	//Assuming we move towards the target we want to swerve toward them to get closer
@@ -709,13 +764,13 @@
 				if(H.check_shields(src, 0, "the [name]", attack_type = LEAP_ATTACK))
 					blocked = TRUE
 			if(!blocked)
-				L.visible_message("<span class='danger'>[src] charges on [L]!</span>", "<span class='userdanger'>[src] charges into you!</span>")
+				L.visible_message(span_danger("[src] charges on [L]!"), span_userdanger("[src] charges into you!"))
 				L.Knockdown(knockdown_time)
 			else
 				Stun((knockdown_time * 2), ignore_canstun = TRUE)
 			charge_end()
 		else if(hit_atom.density && !hit_atom.CanPass(src))
-			visible_message("<span class='danger'>[src] smashes into [hit_atom]!</span>")
+			visible_message(span_danger("[src] smashes into [hit_atom]!"))
 			Stun((knockdown_time * 2), ignore_canstun = TRUE)
 
 		if(charge_state)

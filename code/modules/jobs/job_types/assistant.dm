@@ -15,6 +15,7 @@ Assistant
 	antag_rep = 7 //persistant currency but currently unusable
 	display_order = JOB_DISPLAY_ORDER_CLERK
 
+	job_attribute_limit = 0
 
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 
@@ -25,7 +26,7 @@ Assistant
 
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	H.set_attribute_limit(0)
+	. = ..()
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)

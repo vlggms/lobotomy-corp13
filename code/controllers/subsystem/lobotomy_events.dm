@@ -37,6 +37,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 /datum/controller/subsystem/lobotomy_events/Initialize(start_timeofday)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
 
 /datum/controller/subsystem/lobotomy_events/fire(resumed)
 	if(season_last_change < world.time)
@@ -133,7 +134,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 				A.density = FALSE // They ignore you and walk past you.
 				A.AIStatus = AI_OFF
 				A.can_patrol = FALSE
-				A.damage_coeff = list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // You can kill the portal but not them.
+				A.ChangeResistances(list(BRUTE = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)) // You can kill the portal but not them.
 			AB_types = list() // So the event can't run again.
 			return
 		if(YINYANG)
@@ -187,3 +188,9 @@ SUBSYSTEM_DEF(lobotomy_events)
 	current_season = seasons[index]
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_SEASON_CHANGE, current_season)
 	return
+
+/datum/controller/subsystem/lobotomy_events/proc/OnNewCrew(datum_source, mob/living/carbon/human/newbie)
+	SIGNAL_HANDLER
+	if(!istype(newbie))
+		return
+	ApplySecurityLevelEffect(newbie)

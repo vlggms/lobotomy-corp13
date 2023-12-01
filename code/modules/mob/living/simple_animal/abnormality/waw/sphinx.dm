@@ -24,7 +24,6 @@
 	can_breach = TRUE
 	threat_level = WAW_LEVEL
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	start_qliphoth = 3
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 35, 40),
@@ -124,13 +123,13 @@
 				I = S.showpiece
 				S.dump()
 		if(I)
-			to_chat(user, "<span class='warning'>[src] seems to be looking at the [I]!</span>")
+			to_chat(user, span_warning("[src] seems to be looking at the [I]!"))
 		else if(user.get_active_held_item())
 			I = user.get_active_held_item()
 		else if(user.get_inactive_held_item())
 			I = user.get_inactive_held_item()
 		if(!I) //both hands are empty and there is no table
-			to_chat(user, "<span class='warning'>You have nothing to offer to [src]!</span>")
+			to_chat(user, span_warning("You have nothing to offer to [src]!"))
 			return FALSE
 		QuestHandler(I,user) //quest item must be either the active hand, or the other hand if active is empty. No guessing.
 	return FALSE
@@ -170,7 +169,7 @@
 		if(demand)
 			QuestPenalty(user)
 		else
-			to_chat(user, "<span class='warning'>[src] is not waiting for an offering at the moment.</span>")
+			to_chat(user, span_warning("[src] is not waiting for an offering at the moment."))
 		return
 
 	if(demand == /obj/item/reagent_containers/food/drinks)
@@ -204,16 +203,16 @@
 	var/chosenorgan = pick(eyes,ears,tongue)
 	while(!chosenorgan)
 		if(!eyes && !ears && !tongue)
-			to_chat(H, "<span class='warning'>With nothing left to lose, you lose your life.</span>")
+			to_chat(H, span_warning("With nothing left to lose, you lose your life."))
 			H.dust()
 			return
 		chosenorgan = pick(eyes,ears,tongue)
 	if(chosenorgan == eyes)
-		to_chat(user, "<span class='warning'>A brilliant flash of light is the last thing you see...</span>")
+		to_chat(user, span_warning("A brilliant flash of light is the last thing you see..."))
 	if(chosenorgan == ears)
-		to_chat(user, "<span class='warning'>Suddenly, everything goes quiet...</span>")
+		to_chat(user, span_warning("Suddenly, everything goes quiet..."))
 	if(chosenorgan == tongue)
-		to_chat(user, "<span class='warning'>Your mouth feels uncomfortably hollow...</span>")
+		to_chat(user, span_warning("Your mouth feels uncomfortably hollow..."))
 	H.internal_organs -= chosenorgan
 	qdel(chosenorgan)
 
@@ -299,7 +298,7 @@
 	if(!(H.has_movespeed_modifier(/datum/movespeed_modifier/petrify_partial)))
 		H.add_movespeed_modifier(/datum/movespeed_modifier/petrify_partial)
 		addtimer(CALLBACK(H, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/petrify_partial), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
-		to_chat(H, "<span class='warning'>Your whole body feels heavy...</span>")
+		to_chat(H, span_warning("Your whole body feels heavy..."))
 		playsound(get_turf(H), 'sound/abnormalities/sphinx/petrify.ogg', 50, 0, 5)
 	else
 		H.petrify()
@@ -329,7 +328,7 @@
 	. = ..()
 	if(istype(A,/obj/structure/statue/petrified))
 		playsound(A, 'sound/effects/break_stone.ogg', rand(10,50), TRUE)
-		A.visible_message("<span class='danger'>[A] returns to normal!</span>", "<span class='userdanger'>You break free of the stone!</span>")
+		A.visible_message(span_danger("[A] returns to normal!"), span_userdanger("You break free of the stone!"))
 		A.Destroy()
 		qdel(src)
 		return TRUE
@@ -338,8 +337,8 @@
 	var/mob/living/carbon/human/H = user
 	H.reagents.add_reagent(/datum/reagent/medicine/theonic_gold, 15)
 	playsound(H, 'sound/effects/ordeals/green/stab.ogg', rand(10,50), TRUE)
-	to_chat(H, "<span class='warning'>You jab the golden needles into your vein!</span>")
-	to_chat(user, "<span class='userdanger'>You feel unstoppable!</span>")
+	to_chat(H, span_warning("You jab the golden needles into your vein!"))
+	to_chat(user, span_userdanger("You feel unstoppable!"))
 	qdel(src)
 	return
 
@@ -360,9 +359,9 @@
 			H.regenerate_organs()
 		else
 			H.reagents.add_reagent(/datum/reagent/medicine/ichor, 15)
-			to_chat(user, "<span class='userdanger'>You feel your heart rate increase!</span>")
+			to_chat(user, span_userdanger("You feel your heart rate increase!"))
 		playsound(H, 'sound/items/eatfood.ogg', rand(25,50), TRUE)
-		to_chat(H, "<span class='warning'>You hold your nose and quaff the contents of the jar!</span>")
+		to_chat(H, span_warning("You hold your nose and quaff the contents of the jar!"))
 		qdel(src)
 		return
 
@@ -475,7 +474,7 @@
 
 /datum/reagent/medicine/theonic_gold/overdose_process(mob/living/carbon/M)
 	if(prob(3) && iscarbon(M))
-		M.visible_message("<span class='danger'>[M] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
+		M.visible_message(span_danger("[M] starts having a seizure!"), span_userdanger("You have a seizure!"))
 		M.Unconscious(100)
 		M.Jitter(350)
 
@@ -510,7 +509,7 @@
 /obj/structure/sacrifice_table/examine(mob/user)
 	. = ..()
 	if(showpiece)
-		. += "<span class='notice'>There's \a [showpiece] inside.</span>"
+		. += span_notice("There's \a [showpiece] inside.")
 
 /obj/structure/sacrifice_table/update_overlays()
 	. = ..()
@@ -523,7 +522,7 @@
 /obj/structure/sacrifice_table/proc/insert_showpiece(obj/item/wack, mob/user)
 	if(user.transferItemToLoc(wack, src))
 		showpiece = wack
-		to_chat(user, "<span class='notice'>You put [wack] on display.</span>")
+		to_chat(user, span_notice("You put [wack] on display."))
 		update_icon()
 
 /obj/structure/sacrifice_table/proc/dump()
@@ -538,7 +537,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	if (showpiece)
-		to_chat(user, "<span class='notice'>You remove [showpiece].</span>")
+		to_chat(user, span_notice("You remove [showpiece]."))
 		dump()
 		add_fingerprint(user)
 		return

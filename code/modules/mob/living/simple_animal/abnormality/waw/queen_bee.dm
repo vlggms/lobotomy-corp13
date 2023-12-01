@@ -23,6 +23,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hornet,
+		/datum/ego_datum/weapon/tattered_kingdom,
 		/datum/ego_datum/armor/hornet
 		)
 	gift_type =  /datum/ego_gifts/hornet
@@ -82,7 +83,6 @@
 	health = 450
 	maxHealth = 450
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 14
 	melee_damage_upper = 18
@@ -112,7 +112,7 @@
 	var/mob/living/carbon/human/H = target
 	if(H.health <= 0)
 		var/turf/T = get_turf(H)
-		visible_message("<span class='danger'>[src] bites hard on \the [H] as another bee appears!</span>")
+		visible_message(span_danger("[src] bites hard on \the [H] as another bee appears!"))
 		H.emote("scream")
 		H.gib()
 		new /mob/living/simple_animal/hostile/worker_bee(T)

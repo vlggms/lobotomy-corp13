@@ -256,6 +256,18 @@
 	justice_bonus = 2
 	slot = FACE
 
+/datum/ego_gifts/eclipse
+	name = "Eclipse of Scarlet Moths"
+	icon_state = "eclipse"
+	temperance_bonus = 2
+	slot = BROOCH
+
+/datum/ego_gifts/oceanic
+	name = "Taste of the Sea"
+	icon_state = "oceanic"
+	temperance_bonus = 2
+	slot = HAND_2
+
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
 	name = "Standard Training E.G.O."
@@ -399,7 +411,7 @@
 	icon_state = "sorrow"
 	fortitude_bonus = 1
 	prudence_bonus = 3
-	slot = HAT
+	slot = HELMET
 
 /datum/ego_gifts/sorority
 	name = "Sorority"
@@ -448,9 +460,9 @@
 /datum/ego_gifts/fourleaf_clover
 	name = "Four-Leaf Clover"
 	icon_state = "fourleaf_clover"
-	fortitude_bonus = -2
-	prudence_bonus = 4
-	slot = HAT
+	fortitude_bonus = 3
+	prudence_bonus = 1
+	slot = HELMET
 
 /datum/ego_gifts/patriot
 	name = "Patriot"
@@ -467,6 +479,31 @@
 	prudence_bonus = 1
 	justice_bonus = 1
 	slot = HAND_1
+
+/datum/ego_gifts/curfew
+	name = "Curfew"
+	icon_state = "curfew"
+	fortitude_bonus = -1
+	prudence_bonus = 4
+	slot = HAND_1
+
+/datum/ego_gifts/red_sheet
+	name = "Talisman Bundle"
+	icon_state = "red_sheet"
+	justice_bonus = 3
+	slot = HELMET
+
+/datum/ego_gifts/visions
+	name = "Fiery Down"
+	icon_state = "visions"
+	prudence_bonus = 3
+	slot = NECKWEAR
+
+/datum/ego_gifts/sanitizer
+	name = "Sanitizer"
+	icon_state = "sanitizer"
+	justice_bonus = 2
+	slot = HAND_2
 
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
@@ -763,6 +800,43 @@
 	fortitude_bonus = 1
 	temperance_bonus = 3
 	slot = HELMET
+
+/datum/ego_gifts/syrinx // Your reward for dealing with one of the worst abnormalities ever
+	name = "Syrinx"
+	icon_state = "syrinx"
+	desc = "Provides the user with 5% resistance to white damage."
+	slot = HELMET
+	fortitude_bonus = 1
+	prudence_bonus = 1
+
+/datum/ego_gifts/syrinx/Initialize(mob/living/carbon/human/user) // grants resistance
+	.=..()
+	user.physiology.white_mod *= 0.95
+
+/datum/ego_gifts/syrinx/Remove(mob/living/carbon/human/user)
+	user.physiology.white_mod /= 0.95
+	.=..()
+
+/datum/ego_gifts/nixie
+	name = "Nixie Divergence"
+	icon_state = "nixie"
+	slot = HAND_1
+	fortitude_bonus  = 2
+	justice_bonus = 2
+
+/datum/ego_gifts/uturn
+	name = "Milepost of Survival"
+	icon_state = "uturn"
+	slot = FACE
+	fortitude_bonus  = 2
+	justice_bonus = 2
+
+/datum/ego_gifts/voodoo
+	name = "Voodoo Doll"
+	icon_state = "voodo"
+	slot = MOUTH_1
+	fortitude_bonus  = 2
+	justice_bonus = 2
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
@@ -1093,6 +1167,13 @@
 	justice_bonus = 4
 	slot = FACE
 
+/datum/ego_gifts/rosa
+	name = "Crown of Roses"
+	icon_state = "penitence"//TODO: make an actual sprite
+	prudence_bonus = 3
+	temperance_bonus = 3
+	slot = HAT
+
 //reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
 //so right now its 10 temp
 /datum/ego_gifts/swan
@@ -1102,6 +1183,12 @@
 	prudence_bonus = -4
 	temperance_bonus = 10
 	slot = HAT
+
+/datum/ego_gifts/coiling
+	name = "Coiling"
+	icon_state = "coiling"
+	fortitude_bonus = 5
+	slot = MOUTH_2
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
@@ -1231,6 +1318,13 @@
 	justice_bonus = 2
 	slot = BROOCH
 
+/datum/ego_gifts/mockery
+	name = "Mockery"
+	icon_state = "mockery"
+	fortitude_bonus = 5
+	prudence_bonus = 5
+	slot = HAND_1
+
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
 	name = "Twilight"
@@ -1257,4 +1351,28 @@
 
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
+	.=..()
+
+/datum/ego_gifts/fervor
+	name = "Fervor"
+	desc = "Provides the user with 5% resistance to all damage types."
+	icon_state = "fervor"
+	fortitude_bonus = 4
+	prudence_bonus = 4
+	temperance_bonus = 4
+	justice_bonus = 4
+	slot = SPECIAL
+
+/datum/ego_gifts/fervor/Initialize(mob/living/carbon/human/user) // Lowered Stats but grants resistance
+	.=..()
+	user.physiology.red_mod *= 0.95
+	user.physiology.white_mod *= 0.95
+	user.physiology.black_mod *= 0.95
+	user.physiology.pale_mod *= 0.95
+
+/datum/ego_gifts/fervor/Remove(mob/living/carbon/human/user)
+	user.physiology.red_mod /= 0.95
+	user.physiology.white_mod /= 0.95
+	user.physiology.black_mod /= 0.95
+	user.physiology.pale_mod /= 0.95
 	.=..()

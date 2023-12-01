@@ -28,7 +28,6 @@
 	stat_attack = HARD_CRIT
 	work_damage_type = BLACK_DAMAGE
 	melee_damage_type = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	start_qliphoth = 2
 	can_breach = TRUE
 	deathsound = 'sound/abnormalities/porccubus/porccu_death.ogg'
@@ -57,10 +56,10 @@
 	name = "Toggle Dash"
 	button_icon_state = "porccubus_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	chosen_message = span_colossus("You won't dash anymore.")
 	button_icon_toggle_activated = "porccubus_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now dash to your target when possible..</span>"
+	toggle_message = span_colossus("You will now dash to your target when possible.")
 	button_icon_toggle_deactivated = "porccubus_toggle0"
 
 //Work Code
@@ -133,7 +132,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/Life()
-	. =..()
+	. = ..()
 	if(status_flags & GODMODE)
 		return
 	if(teleport_cooldown < world.time) //if porccubus hasn't taken damage for 5 minutes we make him move so he doesn't stay stuck in whatever cell he got thrown in.
@@ -151,7 +150,7 @@
 		damage_taken = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/bullet_act(obj/projectile/P)
-	visible_message("<span class='warning'>Porccubus playfully swat [P] projectile away!</span>")
+	visible_message(span_warning("Porccubus playfully swat [P] projectile away!"))
 	return FALSE //COME CLOSER AND GET DRUGGED COWARD
 
 //Breach Code Attacks
@@ -304,7 +303,7 @@
 	. = ..()
 	if(ishuman(owner))
 		if(previous_addict)
-			to_chat(addict, "<span class='userdanger'>Your body has a sudden allergic reaction to the substance!</span>")
+			to_chat(addict, span_userdanger("Your body has a sudden allergic reaction to the substance!"))
 			addict.vomit()
 			return
 		var/obj/item/bodypart/head/head = addict.get_bodypart("head")

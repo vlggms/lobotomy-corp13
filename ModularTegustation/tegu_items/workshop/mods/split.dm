@@ -1,8 +1,20 @@
 //These are rare, but they deal two damage types
 /obj/item/workshop_mod/split
 	icon_state = "splitcore"
-	specialmod = "split damage"
 	overlay = "split"
+
+//Split damage, currently only red and white
+/obj/item/workshop_mod/split/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/splitdamage = justicemod*force
+	var/splitdamagetype
+	switch(T.damtype)
+		if(RED_DAMAGE)
+			splitdamagetype = PALE_DAMAGE
+		if(WHITE_DAMAGE)
+			splitdamagetype = BLACK_DAMAGE
+	target.apply_damage(splitdamage, splitdamagetype, null, target.run_armor_check(null, splitdamagetype), spread_damage = TRUE)
 
 /obj/item/workshop_mod/split/redpale
 	name = "split damage mod A"

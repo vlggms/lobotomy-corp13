@@ -1,8 +1,20 @@
 //These are rare, but they all heal you
 /obj/item/workshop_mod/curing
 	icon_state = "curecore"
-	specialmod = "curing"
 	overlay = "curing"
+
+//Heals both physical and mental damage.
+/obj/item/workshop_mod/curing/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = T.force*0.04
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
+			else
+				heal_amt = 0
+		user.adjustSanityLoss(-heal_amt)
+		user.adjustBruteLoss(-heal_amt)
 
 /obj/item/workshop_mod/curing/red
 	name = "curing red damage mod"

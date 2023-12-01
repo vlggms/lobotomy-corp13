@@ -116,13 +116,13 @@
 		return
 	var/mob/living/carbon/human/H = petter
 	if(!hammer_present)
-		to_chat(H, "<span class='warning'>The hammer is not there!</span>")
+		to_chat(H, span_warning("The hammer is not there!"))
 		return
 	if(sealed)
-		to_chat(H, "<span class='warning'>The hammer is sealed!</span>")
+		to_chat(H, span_warning("The hammer is sealed!"))
 		return
 	if(get_user_level(H) <= 1)
-		to_chat(H, "<span class='warning'>Your body is reduced to atoms by the power of [src]!</span>")
+		to_chat(H, span_warning("Your body is reduced to atoms by the power of [src]!"))
 		H.dust()
 		return
 	PickUpHammer(H)
@@ -131,7 +131,7 @@
 //User-related Code
 /mob/living/simple_animal/hostile/abnormality/hammer_light/proc/PickUpHammer(mob/living/carbon/human/user)
 	if(user.ckey in banned)
-		to_chat(user, "<span class='warning'>[src] rejects you, not even reacting to your presence at all. You feel empty inside.</span>")
+		to_chat(user, span_warning("[src] rejects you, not even reacting to your presence at all. You feel empty inside."))
 		return
 	points_threshold += 150
 	usable_cooldown = world.time + usable_cooldown_time
@@ -150,12 +150,14 @@
 	user.hairstyle = "Bald"
 	user.update_hair()
 	update_icon()
+	addtimer(CALLBACK(src, .proc/HammerCheck), 3050) // max duration of buff + 5 seconds
 	new /obj/effect/temp_visual/beam_in(get_turf(user))
 
-/mob/living/simple_animal/hostile/abnormality/hammer_light/proc/UserDeath(mob/living/carbon/human/user)
-	UnregisterSignal(current_user, COMSIG_LIVING_DEATH)
-	if(!QDELETED(current_user)) //in case they died without being dusted
-		current_user.dust()
+/mob/living/simple_animal/hostile/abnormality/hammer_light/proc/HammerCheck()
+	if((isnull(chosen_arms) || QDELETED(chosen_arms)) && !hammer_present)
+		RecoverHammer()
+
+/mob/living/simple_animal/hostile/abnormality/hammer_light/proc/RecoverHammer()
 	qdel(chosen_arms)
 	chosen_arms = null
 	current_user = null
@@ -163,6 +165,12 @@
 	hammer_present = TRUE
 	playsound(get_turf(src), "[pick(lock_sounds)]", 75, 0, -9)
 	update_icon()
+
+/mob/living/simple_animal/hostile/abnormality/hammer_light/proc/UserDeath(mob/living/carbon/human/user)
+	UnregisterSignal(current_user, COMSIG_LIVING_DEATH)
+	if(!QDELETED(current_user)) //in case they died without being dusted
+		current_user.dust()
+	RecoverHammer()
 
 //Pink Midnight
 /mob/living/simple_animal/hostile/abnormality/hammer_light/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
@@ -204,8 +212,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 40
-	damtype = BRUTE
-	armortype = MELEE //Ignores armor for our intents and purposes.
+	damtype = BRUTE //Ignores armor for our intents and purposes.
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/lighthammer/hammer_filter.ogg'
@@ -226,16 +233,16 @@
 	. = ..()
 	var/datum/status_effect/evening_twilight/E = user.has_status_effect(/datum/status_effect/evening_twilight)
 	if(!E)
-		to_chat(user, "<span class='notice'>You cannot use [src], only the abnormality's chosen can!</span>")
+		to_chat(user, span_notice("You cannot use [src], only the abnormality's chosen can!"))
 		return FALSE
 
 /obj/item/ego_weapon/hammer_light/EgoAttackInfo(mob/user)
-	return "<span class='notice'>It deals damage that ignores armor, and inflicts massive damage on stronger foes.</span>"
+	return span_notice("It deals damage that ignores armor, and inflicts massive damage on stronger foes.")
 
 /obj/item/ego_weapon/hammer_light/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(!CanUseEgo(user))
-		to_chat(user, "<span class='warning'>The [src] burns in your hands!</span>")
+		to_chat(user, span_warning("The [src] burns in your hands!"))
 		user.dropItemToGround(src)
 		return
 	ADD_TRAIT(src, TRAIT_NODROP, CURSED_ITEM_TRAIT)
@@ -275,7 +282,7 @@
 	force += (damage_mod + damage_bonus)
 	if(faction_check(target))	 //Brute damage causes runtimes, and this thing does INSANE, unblockable damage. I dont want people getting unfairly killed
 		force = 5
-		to_chat(user, "<span class='warning'>The [src] rejects the attempted killing of [target] this way!</span>")
+		to_chat(user, span_warning("The [src] rejects the attempted killing of [target] this way!"))
 	..()
 	force = initial(force)
 	damtype = initial(damtype)
@@ -314,7 +321,7 @@
 		dist = t_dist
 		target = H
 	if(!target)
-		to_chat(user, "<span class='notice'>You can't find anything else nearby!</span>")
+		to_chat(user, span_notice("You can't find anything else nearby!"))
 		return ..()
 	playsound(user, 'sound/weapons/black_silence/unlock.ogg', 50, FALSE)
 	new /obj/effect/temp_visual/beam_in(get_turf(user))
@@ -331,7 +338,7 @@
 /datum/status_effect/evening_twilight
 	id = "evening_twilight"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000
+	duration = 3000 // max duration
 	alert_type = null
 	var/attribute_bonus = 0
 
@@ -339,13 +346,13 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/user = owner
-	to_chat(user, "<span class='nicegreen'>You feel powerful.</span>")
+	to_chat(user, span_nicegreen("You feel powerful."))
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "hammer_overlay", -ABOVE_MOB_LAYER))
 	user.physiology.red_mod *= 0.3
 	user.physiology.white_mod *= 0.3
 	user.physiology.black_mod *= 0.3
 	user.physiology.pale_mod *= 0.3
-	duration = get_user_level(user) * 300 //30 seconds per level, so a max of about 3.5 minutes at 130/all.
+	duration = min(get_user_level(user) * 300, initial(duration)) //30 seconds per level, so a max of about 3.5 minutes at 130/all.
 	return ..()
 
 /datum/status_effect/evening_twilight/on_remove()

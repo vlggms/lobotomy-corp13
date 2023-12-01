@@ -47,6 +47,8 @@
 							ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 70),
 							ABNORMALITY_WORK_REPRESSION = list(50, 55, 60, 65, 70)
 							)
+	/// Work Types and corresponding their attributes
+	var/list/work_attribute_types = WORK_TO_ATTRIBUTE
 	/// How much damage is dealt to user on each work failure
 	var/work_damage_amount = 2
 	/// What damage type is used for work failures
@@ -73,18 +75,18 @@
 	var/chem_cooldown = 5 SECONDS
 	var/chem_cooldown_timer = 0
 	// Harvest phrases.
-	var/harvest_phrase = "<span class='notice'>You harvest... something... into %VESSEL.</span>"
+	var/harvest_phrase = span_notice("You harvest... something... into %VESSEL.")
 	var/harvest_phrase_third = "%PERSON harvests... something... into %VESSEL."
 	// Dummy chemicals - called if chem_type is null.
 	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
-	UpdateSpeed()
 	if(!(type in GLOB.cached_abno_work_rates))
 		GLOB.cached_abno_work_rates[type] = work_chances.Copy()
 	if(!(type in GLOB.cached_abno_resistances))
-		GLOB.cached_abno_resistances[type] = damage_coeff.Copy()
+		GLOB.cached_abno_resistances[type] = damage_coeff.getList()
 	for(var/action_type in attack_action_types)
 		var/datum/action/innate/abnormality_attack/attack_action = new action_type()
 		attack_action.Grant(src)
@@ -113,6 +115,7 @@
 		gift_message += "\nYou are granted a gift by [src]!"
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
+	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
@@ -141,6 +144,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/Life()
+	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
 	if(!.) // Dead
 		return FALSE
@@ -155,22 +159,27 @@
 	if(!istype(O, /obj/item/reagent_containers))
 		return ..()
 	if(!(status_flags & GODMODE))
-		to_chat(user, "<span class='notice'>Now isn't the time!</span>")
+		to_chat(user, span_notice("Now isn't the time!"))
 		return
 	var/obj/item/chemical_extraction_attachment/attachment = locate() in datum_reference.console.contents
 	if(!attachment)
-		to_chat(user, "<span class='notice'>This abnormality's cell is not properly equipped for substance extraction.</span>")
+		to_chat(user, span_notice("This abnormality's cell is not properly equipped for substance extraction."))
 		return
 	if(world.time < chem_cooldown_timer)
-		to_chat(user, "<span class='notice'>You may need to wait a bit longer.</span>")
+		to_chat(user, span_notice("You may need to wait a bit longer."))
 		return
 	if(datum_reference.console.chem_charges < 1)
-		to_chat(user, "<span class='notice'>No chemicals are ready for harvest. More work must be completed.</span>")
+		to_chat(user, span_notice("No chemicals are ready for harvest. More work must be completed."))
 		return
 	datum_reference.console.chem_charges -= 1
 	var/obj/item/reagent_containers/my_container = O
 	HarvestChem(my_container, user)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/can_track(mob/living/user)
+	if((status_flags & GODMODE))
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/proc/HarvestChem(obj/item/reagent_containers/C, mob/user)
 	visible_message(HarvestMessageProcess(harvest_phrase_third, user, C), HarvestMessageProcess(harvest_phrase, user, C))
@@ -198,7 +207,7 @@
 			continue
 		breach_affected += H
 		if(HAS_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE))
-			to_chat(H, "<span class='notice'>This again...?")
+			to_chat(H, span_notice("This again...?"))
 			H.apply_status_effect(/datum/status_effect/panicked_lvl_0)
 			continue
 		var/sanity_result = clamp(fear_level - get_user_level(H), -1, 5)
@@ -207,24 +216,24 @@
 		switch(sanity_result)
 			if(-INFINITY to 0)
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_0)
-				to_chat(H, "<span class='notice'>[result_text]</span>")
+				to_chat(H, span_notice("[result_text]"))
 				continue
 			if(1)
 				sanity_damage = H.maxSanity*0.1
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_1)
-				to_chat(H, "<span class='warning'>[result_text]</span>")
+				to_chat(H, span_warning("[result_text]"))
 			if(2)
 				sanity_damage = H.maxSanity*0.3
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_2)
-				to_chat(H, "<span class='danger'>[result_text]</span>")
+				to_chat(H, span_danger("[result_text]"))
 			if(3)
 				sanity_damage = H.maxSanity*0.6
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_3)
-				to_chat(H, "<span class='userdanger'>[result_text]</span>")
+				to_chat(H, span_userdanger("[result_text]"))
 			if(4)
 				sanity_damage = H.maxSanity*0.95
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
-				to_chat(H, "<span class='userdanger'><b>[result_text]</b></span>")
+				to_chat(H, span_userdanger("<b>[result_text]</b>"))
 			if(5)
 				sanity_damage = H.maxSanity
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
@@ -268,6 +277,7 @@
 
 // Called by datum_reference when work is done
 /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	SHOULD_CALL_PARENT(TRUE)
 	if(pe >= datum_reference.success_boxes)
 		SuccessEffect(user, work_type, pe, work_time, canceled)
 	else if(pe >= datum_reference.neutral_boxes)
@@ -296,6 +306,7 @@
 
 // Giving an EGO gift to the user after work is complete
 /mob/living/simple_animal/hostile/abnormality/proc/GiftUser(mob/living/carbon/human/user, pe, chance = gift_chance)
+	SHOULD_CALL_PARENT(TRUE)
 	if(!istype(user) || isnull(gift_type))
 		return FALSE
 	if(istype(user.ego_gift_list[initial(gift_type.slot)], gift_type)) // If we already have same gift - don't run the checks
@@ -305,7 +316,7 @@
 	var/datum/ego_gifts/EG = new gift_type
 	EG.datum_reference = src.datum_reference
 	user.Apply_Gift(EG)
-	to_chat(user, "<span class='nicegreen'>[gift_message]</span>")
+	to_chat(user, span_nicegreen("[gift_message]"))
 	return TRUE
 
 // Additional effect on each work tick, whether successful or not
@@ -351,13 +362,13 @@
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
 	if(istype(datum_reference)) // Reset chance debuff
-		datum_reference.overload_chance = 0
+		datum_reference.overload_chance = list()
 	return
 
 // When qliphoth meltdown begins
 /mob/living/simple_animal/hostile/abnormality/proc/MeltdownStart()
 	if(istype(datum_reference))
-		datum_reference.overload_chance = 0
+		datum_reference.overload_chance = list()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothChange(mob/living/carbon/human/user, amount = 0, pre_qlip = start_qliphoth)
@@ -375,10 +386,11 @@
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/proc/CheckCombat() //Is it currently a combat gamemode? Used to check if somethings can teleport.
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
-		return TRUE
-	return FALSE
+/mob/living/simple_animal/hostile/abnormality/proc/GetName()
+	return name
+
+/mob/living/simple_animal/hostile/abnormality/proc/GetRiskLevel()
+	return threat_level
 
 // Actions
 /datum/action/innate/abnormality_attack

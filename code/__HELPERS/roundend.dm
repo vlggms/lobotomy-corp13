@@ -335,7 +335,8 @@
 	//Economy & Money
 	parts += market_report()
 	//PE Quota
-	parts += pe_report()
+	if(SSmaptype.maptype == "standard")
+		parts += pe_report()
 
 	listclearnulls(parts)
 
@@ -374,14 +375,57 @@
 			parts += "[FOURSPACES][FOURSPACES][rule.ruletype] - <b>[rule.name]</b>: -[rule.cost + rule.scaled_times * rule.scaling_cost] threat"
 	return parts.Join("<br>")
 
+/datum/controller/subsystem/ticker/proc/agent_report()
+	var/list/parts = list()
+	var/highest_works = null
+	var/highest_earner = null
+	var/highest_gains = null
+
+	var/highest_work_count = 0
+	var/highest_earn_count = 0
+	var/highest_gain_count = 0
+	for(var/agent_name in SSlobotomy_corp.work_stats)
+		var/curr_work_count = SSlobotomy_corp.work_stats[agent_name]["works"]
+		if(curr_work_count > highest_work_count)
+			highest_works = agent_name
+			highest_work_count = curr_work_count
+		var/curr_earn_count = SSlobotomy_corp.work_stats[agent_name]["pe"]
+		if(curr_earn_count > highest_earn_count)
+			highest_earner = agent_name
+			highest_earn_count = curr_earn_count
+		var/curr_gain_count = 0
+		for(var/attr in SSlobotomy_corp.work_stats[agent_name]["gain"])
+			curr_gain_count += SSlobotomy_corp.work_stats[agent_name]["gain"][attr]
+		if(curr_gain_count > highest_gain_count)
+			highest_gains = agent_name
+			highest_gain_count = curr_gain_count
+
+	parts += "<br>[FOURSPACES]Facility records:<br>"
+	if(!highest_works && !highest_earner && !highest_gains) // How
+		parts += "[FOURSPACES][FOURSPACES]...Everyone was miserable and did nothing.."
+		return parts.Join("<br>")
+	if(highest_works)
+		parts += "[FOURSPACES][FOURSPACES][highest_works] worked the most, for a total of <b>[highest_work_count]</b> sessions!"
+	if(highest_earner)
+		parts += "[FOURSPACES][FOURSPACES][highest_earner] earned the most PE while working, for a total of <b>[highest_earn_count]</b> boxes!"
+	if(highest_gains)
+		parts += "[FOURSPACES][FOURSPACES][highest_gains] gained the most attributes <u>while working</u>, for a total of <b>[highest_gain_count]</b> points!"
+
+	return parts.Join("<br>")
+
 /datum/controller/subsystem/ticker/proc/abnormality_report()
 	var/list/parts = list()
 	var/datum/abnormality/highest_abno = null
+	var/highest_work_count = 0
 	var/full_abno_count = 0
 	var/list/abno_count = list(0, 0, 0, 0, 0)
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-		if(!highest_abno || A.work_logs.len > highest_abno.work_logs.len)
+		var/work_count = 0
+		for(var/worker in A.work_stats)
+			work_count += A.work_stats[worker]["works"]
+		if(work_count > highest_work_count)
 			highest_abno = A
+			highest_work_count = work_count
 		abno_count[A.threat_level] += 1
 		full_abno_count += 1
 	parts += "[FOURSPACES]<b>The facility had [full_abno_count] abnormalities:</b>"
@@ -390,7 +434,20 @@
 			continue
 		parts += "[FOURSPACES][FOURSPACES]<span style='color: [THREAT_TO_COLOR[i]]'>[abno_count[i]] [THREAT_TO_NAME[i]]s.</span>"
 	if(istype(highest_abno))
-		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_abno.work_logs.len] sessions.<br>"
+		parts += "<br>[FOURSPACES][highest_abno.name] has been worked on the most, for a total of [highest_work_count] sessions.<br>"
+		if(LAZYLEN(highest_abno.work_stats))
+			var/highest_worker = null
+			var/highest_work_num = -1
+			for(var/worker_name in highest_abno.work_stats)
+				var/curr_work_num = highest_abno.work_stats[worker_name]["works"]
+				if(curr_work_num > highest_work_num)
+					highest_worker = worker_name
+					highest_work_num = curr_work_num
+			if(highest_worker)
+				var/total_attr_points = 0
+				for(var/attr in highest_abno.work_stats[highest_worker]["gain"])
+					total_attr_points += highest_abno.work_stats[highest_worker]["gain"][attr] // Nice lists we got there, huh?
+				parts += "[FOURSPACES][highest_worker] worked on it the most, for a total of [highest_abno.work_stats[highest_worker]["works"]] sessions, earning [highest_abno.work_stats[highest_worker]["pe"]] PE in the process, while gaining a total of [total_attr_points] attribute points.<br>"
 	return parts.Join("<br>")
 
 /client/proc/roundend_report_file()
@@ -410,6 +467,9 @@
 	var/list/parts = list()
 	parts += "<div class='panel stationborder'>"
 	parts += GLOB.survivor_report
+	parts += "</div>"
+	parts += "<div class='panel stationborder'>"
+	parts += GLOB.agent_report
 	parts += "</div>"
 	parts += "<div class='panel stationborder'>"
 	parts += GLOB.abnormality_report
@@ -472,6 +532,9 @@
 	parts += GLOB.survivor_report
 	parts += "</div>"
 	parts += "<div class='panel stationborder'>"
+	parts += GLOB.agent_report
+	parts += "</div>"
+	parts += "<div class='panel stationborder'>"
 	parts += GLOB.abnormality_report
 	parts += "</div>"
 
@@ -480,6 +543,7 @@
 /datum/controller/subsystem/ticker/proc/display_report(popcount)
 	GLOB.common_report = build_roundend_report()
 	GLOB.survivor_report = survivor_report(popcount)
+	GLOB.agent_report = agent_report()
 	GLOB.abnormality_report = abnormality_report()
 	log_roundend_report()
 	for(var/client/C in GLOB.clients)
@@ -562,6 +626,7 @@
 
 /datum/controller/subsystem/ticker/proc/pe_report()
 	. = list()
+	SSpersistence.pe_status[PE_GOAL_SPENT] = FALSE
 	. += "<span class='header'>PE Quota</span>"
 	. += "<div class='panel stationborder'>"
 	. += "[SSlobotomy_corp.total_generated] total PE was generated.<br>"
@@ -571,9 +636,16 @@
 		. += "[SSlobotomy_corp.total_spent] PE was spent on various things.<br>"
 	if(SSlobotomy_corp.goal_reached)
 		. += "PE Quota was reached!<br>"
+		SSpersistence.pe_status[PE_GOAL_REACHED] = TRUE
+		if(SSlobotomy_corp.available_box)
+			SSpersistence.pe_status[PE_LEFTOVER] = SSlobotomy_corp.available_box
 	else
-		if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
+		SSpersistence.pe_status[PE_GOAL_REACHED] = FALSE
+		if(SSlobotomy_corp.box_goal == 0)
+			. += "The day hasn't even started yet and you're leaving?<br>"
+		else if(SSlobotomy_corp.total_spent >= SSlobotomy_corp.box_goal)
 			. += "Enough PE to meet PE Quota was made, but you spent it all!? You'll be hearing from our lawyers.<br>"
+			SSpersistence.pe_status[PE_GOAL_SPENT] = TRUE
 		else
 			. += "PE Quota was not reached! Don't expect to have a job tomorrow...<br>"
 	. += "</div>"

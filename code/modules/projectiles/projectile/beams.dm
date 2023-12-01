@@ -6,7 +6,6 @@
 	damage_type = BLACK_DAMAGE
 	hitsound = 'sound/weapons/sear.ogg'
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
-	flag = BLACK_DAMAGE
 	eyeblur = 0
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/red_laser
 	light_system = MOVABLE_LIGHT
@@ -37,26 +36,22 @@
 
 /obj/projectile/beam/laser/red
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	light_color = COLOR_RED
 
 /obj/projectile/beam/laser/white
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	light_color = COLOR_WHITE
 	icon_state = "whitelaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
 
 /obj/projectile/beam/laser/black
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	light_color = COLOR_PURPLE
 	icon_state = "purplelaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/pale
 	damage_type = PALE_DAMAGE
-	flag = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY
 	icon_state = "omnilaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -82,28 +77,23 @@
 
 /obj/projectile/beam/laser/heavylaser/red
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
 	light_color = COLOR_RED
 
 /obj/projectile/beam/laser/heavylaser/white
 	damage_type = WHITE_DAMAGE
-	flag = WHITE_DAMAGE
 	light_color = COLOR_WHITE
 	icon_state = "whiteheavylaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
 
 /obj/projectile/beam/laser/heavylaser/black
-	damage = 40
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	light_color = COLOR_PURPLE
 	icon_state = "purpleheavylaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/heavylaser/pale
-	damage = 20
+	damage = 35
 	damage_type = PALE_DAMAGE
-	flag = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY
 	icon_state = "blueheavylaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -127,7 +117,6 @@
 /obj/projectile/beam/xray
 	name = "\improper X-ray beam"
 	icon_state = "xray"
-	flag = RAD
 	damage = 15
 	irradiate = 300
 	range = 15
@@ -144,7 +133,6 @@
 	icon_state = "omnilaser"
 	damage = 30
 	damage_type = WHITE_DAMAGE
-	flag = ENERGY
 	hitsound = 'sound/weapons/tap.ogg'
 	eyeblur = 0
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
@@ -220,7 +208,6 @@
 	hitsound = null
 	damage = 0
 	damage_type = STAMINA
-	flag = LASER
 	var/suit_types = list(/obj/item/clothing/suit/redtag, /obj/item/clothing/suit/bluetag)
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	light_color = LIGHT_COLOR_BLUE
@@ -277,7 +264,7 @@
 	. = ..()
 	if(iscarbon(target))
 		var/mob/living/carbon/M = target
-		M.visible_message("<span class='danger'>[M] explodes into a shower of gibs!</span>")
+		M.visible_message(span_danger("[M] explodes into a shower of gibs!"))
 		M.gib()
 
 //a shrink ray that shrinks stuff, which grows back after a short while.
@@ -287,7 +274,6 @@
 	hitsound = 'sound/weapons/shrink_hit.ogg'
 	damage = 0
 	damage_type = STAMINA
-	flag = ENERGY
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/shrink
 	light_color = LIGHT_COLOR_BLUE
 	var/shrink_time = 90
@@ -303,7 +289,6 @@
 	icon_state = "fairy"
 	damage = 50
 	damage_type = BLACK_DAMAGE
-	flag = BLACK_DAMAGE
 	hit_stunned_targets = TRUE
 	white_healing = FALSE
 	projectile_piercing = PASSMOB
@@ -321,3 +306,27 @@
 	impact_light_intensity = 4
 	impact_light_range = 3
 	impact_light_color_override = LIGHT_COLOR_YELLOW
+
+/obj/projectile/beam/nobody
+	name = "whip"
+	icon_state = "nobody"
+	damage = 30
+	hitsound = 'sound/weapons/slash.ogg'
+	hitsound_wall = 'sound/weapons/slash.ogg'
+	damage_type = BLACK_DAMAGE
+	hit_stunned_targets = TRUE
+	white_healing = FALSE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+	hitscan = TRUE
+	tracer_type = /obj/effect/projectile/tracer/laser/nobody
+	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
+	impact_type = /obj/effect/projectile/impact/laser/nobody
+
+/obj/effect/projectile/tracer/laser/nobody
+	name = "whip tracer"
+	icon_state = "nobody"
+
+/obj/effect/projectile/impact/laser/nobody
+	name = "whip impact"
+	icon_state = "nobody"

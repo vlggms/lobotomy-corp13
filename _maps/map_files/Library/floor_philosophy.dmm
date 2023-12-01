@@ -1,0 +1,2476 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ac" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"aA" = (
+/obj/structure/bookcase/random/reference,
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_philosophy)
+"aI" = (
+/obj/machinery/door/airlock/wood,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"aV" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"bk" = (
+/obj/structure/flora/grass/green,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"bs" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"cq" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"cs" = (
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	pixel_y = 17
+	},
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_philosophy)
+"cG" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"cX" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"dy" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"dz" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521"
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 9
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"dG" = (
+/obj/item/flashlight/spotlight,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"gd" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"gY" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"hi" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"hI" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"iA" = (
+/obj/structure/flora/junglebush,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"jm" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 19
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"ki" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"kG" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"kS" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 5
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"kZ" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"mj" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"mm" = (
+/obj/structure/flora/tree/dead,
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"ms" = (
+/obj/structure/table_frame/wood,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"mI" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"ne" = (
+/obj/item/flashlight/lantern,
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"nj" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"nP" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 5
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"nZ" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"ok" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 2;
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 9;
+	pixel_x = 9
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"ow" = (
+/turf/open/floor/facility/dark,
+/area/library_floors/floor_philosophy)
+"pC" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/machinery/light,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"pV" = (
+/obj/item/ego_weapon/mimicry/kali,
+/obj/item/flashlight/spotlight,
+/obj/structure/displaycase/noalert,
+/turf/open/floor/facility/dark,
+/area/library_floors/floor_philosophy)
+"qv" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"qw" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/barricade/wooden,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"rg" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"rm" = (
+/obj/structure/chair/wood/wings{
+	pixel_y = 0;
+	dir = 1
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"rB" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521"
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"rC" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"rE" = (
+/obj/item/chair/wood,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"rL" = (
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"rT" = (
+/obj/machinery/vending/dinnerware,
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_philosophy)
+"sb" = (
+/obj/machinery/light/floor,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"sl" = (
+/turf/open/space/basic,
+/area/space)
+"sr" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 2;
+	pixel_x = -7
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"sw" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"sC" = (
+/obj/structure/flora/tree/dead,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"tm" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"ur" = (
+/obj/structure/pbird_perch,
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"uH" = (
+/obj/item/toy/plush/chesed,
+/obj/item/clothing/accessory/maidapron{
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"uZ" = (
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"vK" = (
+/obj/machinery/light/floor,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"wa" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"wl" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"wo" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"xh" = (
+/obj/structure/flora/grass/brown,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"xq" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 0
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"xv" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"yI" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/book/random,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"At" = (
+/turf/open/floor/fakespace{
+	density = 1
+	},
+/area/library_floors/floor_philosophy)
+"Be" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Bj" = (
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Bk" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"BR" = (
+/obj/structure/flora/bush,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"Cq" = (
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Da" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/condiment/sugar,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"De" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"DJ" = (
+/obj/item/gavelhammer,
+/obj/item/gavelblock{
+	pixel_y = -12;
+	pixel_x = -9
+	},
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"DO" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"DZ" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Es" = (
+/obj/machinery/light/broken{
+	dir = 4
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"ED" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Fk" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/food/cake/bbird,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"FD" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"FW" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Gc" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Gp" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 9
+	},
+/obj/structure/railing{
+	dir = 1;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Gr" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Gu" = (
+/obj/structure/flora/rock/pile,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"GD" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug,
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"HQ" = (
+/obj/structure/grille/broken,
+/turf/open/floor/plating/rust,
+/area/library_floors/floor_philosophy)
+"Im" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"IK" = (
+/obj/structure/table/wood,
+/obj/item/food/cake/apple,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Jl" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"JA" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"JB" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 6
+	},
+/obj/structure/railing{
+	dir = 2;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"JD" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 5
+	},
+/obj/structure/railing{
+	dir = 1;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"JT" = (
+/obj/machinery/chem_dispenser/drinks,
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_philosophy)
+"KT" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"KU" = (
+/turf/open/floor/plating/rust,
+/area/library_floors/floor_philosophy)
+"Lm" = (
+/obj/structure/railing{
+	dir = 5;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/obj/machinery/light,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Lx" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Ly" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/book/random{
+	pixel_y = 2;
+	pixel_x = 7
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"LB" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 10
+	},
+/obj/structure/railing{
+	dir = 2;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"LP" = (
+/obj/structure/flora/grass/both,
+/turf/open/water,
+/area/library_floors/floor_philosophy)
+"LS" = (
+/obj/structure/chair/wood/wings{
+	pixel_y = 0;
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Me" = (
+/turf/closed/indestructible/fakeglass,
+/area/library_floors/floor_philosophy)
+"Ml" = (
+/turf/open/floor/plating,
+/area/library_floors/floor_philosophy)
+"Mz" = (
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = -7
+	},
+/obj/structure/displaycase/noalert,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Ne" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/barricade/wooden/crude,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"NJ" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 8
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"NU" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 9
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Oh" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"PW" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = -5;
+	pixel_x = -7
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Qp" = (
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_philosophy)
+"Rc" = (
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"Rg" = (
+/obj/structure/barricade/wooden/crude,
+/turf/closed/indestructible/fakeglass,
+/area/library_floors/floor_philosophy)
+"Ri" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 9;
+	pixel_x = -4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Rl" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Ru" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/grille,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"RS" = (
+/obj/structure/table/wood/fancy/black,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Sx" = (
+/obj/machinery/bookbinder,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"SF" = (
+/obj/item/bodypart/l_arm,
+/obj/item/flashlight/spotlight,
+/obj/structure/displaycase/noalert,
+/turf/open/floor/facility/dark,
+/area/library_floors/floor_philosophy)
+"SV" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f"
+	},
+/turf/open/floor/fakespace{
+	density = 1
+	},
+/area/library_floors/floor_philosophy)
+"TR" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 2;
+	pixel_x = -7
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"TZ" = (
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"Uf" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Uu" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 0
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"Uv" = (
+/obj/item/reagent_containers/honeycomb,
+/obj/structure/displaycase/noalert,
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"UC" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"UL" = (
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/obj/structure/chair/wood/wings{
+	pixel_y = 0;
+	dir = 1
+	},
+/obj/item/toy/plush/binah,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"UU" = (
+/obj/item/flashlight/lantern{
+	anchored = 1;
+	pixel_y = 16
+	},
+/turf/closed/indestructible/wood,
+/area/library_floors/floor_philosophy)
+"VE" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 10
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"WR" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 0;
+	pixel_x = 7
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"XC" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/reagent_containers/food/drinks/mug/tea{
+	pixel_y = 2;
+	pixel_x = -1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/library_floors/floor_philosophy)
+"XJ" = (
+/turf/closed/wall,
+/area/library_floors/floor_philosophy)
+"YE" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"YO" = (
+/obj/effect/turf_decal/siding/white/corner{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"Zn" = (
+/turf/closed/wall/rust,
+/area/library_floors/floor_philosophy)
+"Zv" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding{
+	color = "#7D6521"
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+
+(1,1,1) = {"
+sl
+sl
+sl
+sl
+sl
+sl
+sl
+Qp
+Qp
+aA
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+aA
+Qp
+Qp
+sl
+sl
+sl
+sl
+sl
+"}
+(2,1,1) = {"
+sl
+sl
+sl
+Qp
+Qp
+Qp
+Qp
+Qp
+cG
+Cq
+DZ
+Ri
+rm
+DZ
+RS
+LS
+Uf
+xv
+Qp
+aA
+Qp
+aA
+Qp
+sl
+"}
+(3,1,1) = {"
+sl
+sl
+sl
+Qp
+ow
+ow
+ow
+Qp
+ok
+dz
+FD
+FD
+FD
+FD
+FD
+FD
+VE
+WR
+Qp
+Bj
+yI
+Bj
+aA
+sl
+"}
+(4,1,1) = {"
+sl
+sl
+sl
+Qp
+ow
+SF
+ow
+Qp
+mj
+sw
+sC
+iA
+rL
+LP
+rL
+sC
+Zv
+mj
+aA
+Bj
+Bj
+Bj
+Qp
+sl
+"}
+(5,1,1) = {"
+sl
+sl
+sl
+Qp
+ow
+ow
+ow
+Ru
+Uf
+nj
+mI
+mI
+wa
+mI
+mI
+mI
+YO
+Cq
+Be
+gY
+Gr
+gY
+aA
+sl
+"}
+(6,1,1) = {"
+sl
+sl
+sl
+Qp
+ow
+ow
+ow
+Ru
+Cq
+rB
+nZ
+nZ
+nZ
+nZ
+nZ
+nZ
+Rl
+Cq
+wo
+Oh
+Oh
+Oh
+aA
+sl
+"}
+(7,1,1) = {"
+sl
+sl
+sl
+Qp
+ow
+pV
+ow
+Qp
+xv
+sw
+sC
+LP
+rL
+Gu
+rL
+sC
+Zv
+xv
+aA
+Bj
+Bj
+Bj
+Qp
+sl
+"}
+(8,1,1) = {"
+sl
+sl
+sl
+Qp
+ow
+ow
+ow
+Qp
+XC
+kS
+ki
+ki
+ki
+ki
+ki
+ki
+Jl
+TR
+Qp
+Sx
+Ly
+Bj
+aA
+sl
+"}
+(9,1,1) = {"
+sl
+sl
+sl
+Qp
+Qp
+Qp
+Qp
+Qp
+ED
+Cq
+Uv
+Cq
+Uf
+Cq
+Cq
+Mz
+Uf
+mj
+Qp
+aA
+Qp
+aA
+Qp
+sl
+"}
+(10,1,1) = {"
+sl
+sl
+sl
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+aA
+Qp
+Cq
+Cq
+Cq
+Cq
+Qp
+aA
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+sl
+"}
+(11,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+Gp
+cq
+cq
+cq
+cq
+cq
+cq
+cq
+cq
+LB
+SV
+UC
+aI
+Lx
+Qp
+sl
+"}
+(12,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+sb
+Bj
+ac
+At
+pC
+Qp
+De
+Qp
+sl
+"}
+(13,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+uZ
+Bj
+Bj
+Bj
+Bj
+Bj
+uZ
+Bj
+ac
+At
+UC
+Qp
+De
+Qp
+sl
+"}
+(14,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+SV
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+UL
+Qp
+dy
+Qp
+sl
+"}
+(15,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+sr
+Qp
+uH
+Qp
+sl
+"}
+(16,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+sb
+Bj
+Qp
+cs
+Bj
+Bj
+Bj
+ac
+SV
+Lm
+Qp
+Qp
+Qp
+sl
+"}
+(17,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+At
+At
+Qp
+sl
+"}
+(18,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+uZ
+Bj
+Bj
+Bj
+Bj
+Bj
+uZ
+Bj
+ac
+At
+Qp
+Qp
+Qp
+Qp
+sl
+"}
+(19,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+SV
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+Ne
+KT
+KU
+Qp
+sl
+"}
+(20,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+HQ
+Es
+Bj
+Qp
+sl
+"}
+(21,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+sb
+Bj
+ac
+SV
+Qp
+Qp
+Qp
+Qp
+sl
+"}
+(22,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+At
+At
+Qp
+sl
+"}
+(23,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+uZ
+Bj
+Bj
+Bj
+Bj
+Bj
+uZ
+Bj
+ac
+At
+XJ
+XJ
+Zn
+Qp
+sl
+"}
+(24,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+SV
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+Me
+KU
+Ml
+Qp
+sl
+"}
+(25,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+sb
+Bj
+ac
+At
+Zn
+XJ
+XJ
+Qp
+sl
+"}
+(26,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+SV
+At
+At
+At
+Qp
+sl
+"}
+(27,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+Qp
+Qp
+Qp
+Qp
+sl
+"}
+(28,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+uZ
+Bj
+Bj
+Bj
+Bj
+Bj
+uZ
+Bj
+ac
+At
+Ne
+aV
+gd
+Qp
+sl
+"}
+(29,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+SV
+At
+FW
+Bj
+sb
+Bj
+Qp
+UU
+Bj
+Bj
+Bj
+ac
+At
+qw
+ms
+KU
+Qp
+sl
+"}
+(30,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+hi
+rE
+Es
+Qp
+sl
+"}
+(31,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+Qp
+Qp
+Qp
+Qp
+sl
+"}
+(32,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+SV
+At
+At
+Qp
+sl
+"}
+(33,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+uZ
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+Zn
+XJ
+Qp
+sl
+"}
+(34,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+SV
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+vK
+Bj
+ac
+At
+At
+XJ
+Ml
+Qp
+sl
+"}
+(35,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+Zn
+Ml
+Qp
+sl
+"}
+(36,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+XJ
+Ml
+Qp
+sl
+"}
+(37,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+SV
+XJ
+Zn
+Qp
+sl
+"}
+(38,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+sb
+Bj
+ac
+At
+At
+At
+At
+Qp
+sl
+"}
+(39,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+SV
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+Zn
+XJ
+XJ
+Qp
+sl
+"}
+(40,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+uZ
+Bj
+Bj
+Bj
+Bj
+Bj
+uZ
+Bj
+ac
+At
+At
+Rg
+Ml
+Qp
+sl
+"}
+(41,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+Me
+KU
+Qp
+sl
+"}
+(42,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+sb
+Bj
+Qp
+cs
+Bj
+Bj
+Bj
+ac
+At
+SV
+XJ
+Ml
+Qp
+sl
+"}
+(43,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+XJ
+Ml
+Qp
+sl
+"}
+(44,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+SV
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+At
+Rg
+Ml
+Qp
+sl
+"}
+(45,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+uZ
+Bj
+Bj
+Bj
+Bj
+Bj
+uZ
+Bj
+ac
+At
+At
+Me
+KU
+Qp
+sl
+"}
+(46,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+ac
+At
+XJ
+Zn
+XJ
+Qp
+sl
+"}
+(47,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+FW
+Bj
+Bj
+Bj
+Bj
+Bj
+Bj
+sb
+Bj
+ac
+At
+SV
+At
+At
+Qp
+sl
+"}
+(48,1,1) = {"
+sl
+sl
+sl
+Qp
+At
+At
+At
+At
+JD
+kG
+kG
+kG
+kG
+kG
+kG
+kG
+kG
+JB
+At
+At
+At
+At
+Qp
+sl
+"}
+(49,1,1) = {"
+sl
+sl
+sl
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+JA
+Bj
+Bj
+tm
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+"}
+(50,1,1) = {"
+sl
+sl
+sl
+sl
+sl
+sl
+sl
+Qp
+xv
+Uf
+xv
+YE
+nZ
+wl
+rC
+xv
+Cq
+cG
+Qp
+Rc
+Rc
+Rc
+Rc
+Rc
+"}
+(51,1,1) = {"
+sl
+sl
+sl
+Qp
+Qp
+Qp
+Qp
+Qp
+RS
+RS
+Uu
+sw
+sC
+sC
+Zv
+RS
+Uu
+Fk
+Qp
+Rc
+mm
+Rc
+kZ
+Rc
+"}
+(52,1,1) = {"
+sl
+sl
+sl
+rT
+NU
+mI
+Gc
+Qp
+mj
+Cq
+mj
+sw
+Bk
+xh
+Zv
+mj
+Cq
+mj
+Qp
+Rc
+Rc
+Rc
+Rc
+Rc
+"}
+(53,1,1) = {"
+sl
+sl
+sl
+Qp
+JA
+Da
+NJ
+Gc
+Cq
+Cq
+Cq
+sw
+rL
+rL
+Zv
+Cq
+Cq
+Cq
+Ru
+Rc
+ur
+Rc
+Rc
+mm
+"}
+(54,1,1) = {"
+sl
+sl
+sl
+Qp
+jm
+GD
+Bj
+rg
+Cq
+Uf
+Cq
+sw
+LP
+dG
+Zv
+Cq
+Cq
+Uf
+Ru
+Rc
+hI
+TZ
+hI
+hI
+"}
+(55,1,1) = {"
+sl
+sl
+sl
+Qp
+JA
+PW
+Bj
+rg
+Cq
+Cq
+Cq
+sw
+rL
+Bk
+Zv
+Cq
+Cq
+Cq
+Ru
+Rc
+Rc
+DJ
+Rc
+Rc
+"}
+(56,1,1) = {"
+sl
+sl
+sl
+Qp
+JA
+IK
+DO
+xq
+Cq
+Cq
+Cq
+sw
+BR
+rL
+Zv
+Cq
+Cq
+Cq
+Ru
+ne
+Rc
+Rc
+mm
+Rc
+"}
+(57,1,1) = {"
+sl
+sl
+sl
+JT
+nP
+wl
+qv
+Qp
+xv
+Cq
+xv
+sw
+rL
+bk
+Zv
+xv
+Cq
+xv
+Qp
+Rc
+Rc
+Rc
+Rc
+Rc
+"}
+(58,1,1) = {"
+sl
+sl
+sl
+Qp
+Qp
+Qp
+Qp
+Qp
+Uu
+RS
+RS
+sw
+sC
+sC
+Zv
+RS
+Uu
+RS
+Qp
+Rc
+mm
+Rc
+mm
+Rc
+"}
+(59,1,1) = {"
+sl
+sl
+sl
+sl
+sl
+sl
+sl
+Qp
+mj
+Uf
+mj
+cX
+ki
+Im
+bs
+mj
+Cq
+ED
+Qp
+Rc
+Rc
+Rc
+Rc
+Rc
+"}
+(60,1,1) = {"
+sl
+sl
+sl
+sl
+sl
+sl
+sl
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Qp
+Rc
+Rc
+Rc
+Rc
+Rc
+"}

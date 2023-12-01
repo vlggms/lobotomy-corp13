@@ -94,7 +94,7 @@
 	// Consume a slime. Cannot work on the big one, so the check is not istype()
 	if(target.type == /mob/living/simple_animal/hostile/slime)
 		var/mob/living/simple_animal/hostile/slime/S = target
-		visible_message("<span class='warning'>[src] consumes \the [S], restoring its own health.</span>")
+		visible_message(span_warning("[src] consumes \the [S], restoring its own health."))
 		. = ..() // We do a normal attack without AOE and then consume the slime to restore HP
 		adjustBruteLoss(-maxHealth * 0.2)
 		S.adjustBruteLoss(S.maxHealth) // To make sure it dies
@@ -116,7 +116,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SlimeConvert(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
-	visible_message("<span class='danger'>[src] glomps on \the [H] as another slime pawn appears!</span>")
+	visible_message(span_danger("[src] glomps on \the [H] as another slime pawn appears!"))
 	new /mob/living/simple_animal/hostile/slime(get_turf(H))
 	H.gib()
 	return TRUE
@@ -146,7 +146,7 @@
 	base_pixel_x = -32
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	if(istype(gifted_human))
-		to_chat(gifted_human, "<span class='userdanger'>You feel like you are about to burst !</span>")
+		to_chat(gifted_human, span_userdanger("You feel like you are about to burst !"))
 		gifted_human.emote("scream")
 		gifted_human.gib()
 	else
@@ -162,13 +162,13 @@
 		gifted_human = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)
 		RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/GiftedAnger)
-		to_chat(user, "<span class='nicegreen'>You feel like you received a gift...</span>")
+		to_chat(user, span_nicegreen("You feel like you received a gift..."))
 		user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
 		user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
 		playsound(get_turf(user), 'sound/abnormalities/meltinglove/gift.ogg', 50, 0, 2)
 		return
 	if(istype(user) && user == gifted_human)
-		to_chat(gifted_human, "<span class='nicegreen'>Melting Love was happy to see you!</span>")
+		to_chat(gifted_human, span_nicegreen("Melting Love was happy to see you!"))
 		gifted_human.adjustSanityLoss(rand(-25,-35))
 		return
 
@@ -181,7 +181,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/GiftedAnger(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
-		to_chat(gifted_human, "<span class='userdanger'>[src] didn't like that!</span>")
+		to_chat(gifted_human, span_userdanger("[src] didn't like that!"))
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/sanityheal()
@@ -200,13 +200,13 @@
 	Empower()
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
-			to_chat(M, "<span class='userdanger'>You can hear a gooey cry !</span>")
+			to_chat(M, span_userdanger("You can hear a gooey cry!"))
 			SEND_SOUND(M, 'sound/abnormalities/meltinglove/empower.ogg')
 			flash_color(M, flash_color = "#FF0081", flash_time = 50)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/Empower()
-	move_to_delay -= 0.5
+	SpeedChange(-0.5)
 	melee_damage_lower = 80
 	melee_damage_upper = 85
 	projectiletype = /obj/projectile/melting_blob/enraged
@@ -277,7 +277,7 @@
 /mob/living/simple_animal/hostile/slime/proc/SlimeConvert(mob/living/carbon/human/H)
 	if(!istype(H))
 		return FALSE
-	visible_message("<span class='danger'>[src] glomps on \the [H] as another slime pawn appears!</span>")
+	visible_message(span_danger("[src] glomps on \the [H] as another slime pawn appears!"))
 	new /mob/living/simple_animal/hostile/slime(get_turf(H))
 	H.gib()
 	return TRUE

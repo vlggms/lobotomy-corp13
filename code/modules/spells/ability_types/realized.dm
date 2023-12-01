@@ -92,28 +92,14 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] *= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] *= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] *= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] *= 1.1
+	M.AddModifier(/datum/dc_change/salvation)
 
 /datum/status_effect/salvation/on_remove()
 	. = ..()
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[RED_DAMAGE] > 0)
-		M.damage_coeff[RED_DAMAGE] /= 1.1
-	if(M.damage_coeff[WHITE_DAMAGE] > 0)
-		M.damage_coeff[WHITE_DAMAGE] /= 1.1
-	if(M.damage_coeff[BLACK_DAMAGE] > 0)
-		M.damage_coeff[BLACK_DAMAGE] /= 1.1
-	if(M.damage_coeff[PALE_DAMAGE] > 0)
-		M.damage_coeff[PALE_DAMAGE] /= 1.1
+	M.RemoveModifier(/datum/dc_change/salvation)
 
 /atom/movable/screen/alert/status_effect/salvation
 	name = "Salvation"
@@ -194,10 +180,7 @@
 		H.physiology.black_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[BLACK_DAMAGE] *= 1.5
+	M.AddModifier(/datum/dc_change/mosb_black)
 
 /datum/status_effect/mosb_black_debuff/on_remove()
 	. = ..()
@@ -206,7 +189,7 @@
 		H.physiology.black_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] /= 1.5
+	M.RemoveModifier(/datum/dc_change/mosb_black)
 
 /atom/movable/screen/alert/status_effect/mosb_black_debuff
 	name = "Dread"
@@ -257,10 +240,7 @@
 		H.physiology.pale_mod /= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[PALE_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[PALE_DAMAGE] += 0.5
+	M.AddModifier(/datum/dc_change/godhead)
 
 /datum/status_effect/judgement_pale_debuff/on_remove()
 	. = ..()
@@ -269,7 +249,7 @@
 		H.physiology.pale_mod *= 1.5
 		return
 	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[PALE_DAMAGE] -= 0.5
+	M.RemoveModifier(/datum/dc_change/godhead)
 
 /atom/movable/screen/alert/status_effect/judgement_pale_debuff
 	name = "Soul Drain"
@@ -599,11 +579,13 @@
 /datum/status_effect/pbird/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
+	owner.color = COLOR_RED
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 
 /datum/status_effect/pbird/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
+	owner.color = null
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 
 /obj/effect/proc_holder/ability/petal_blizzard
@@ -746,12 +728,11 @@
 /mob/living/simple_animal/hostile/spicebush_plant/proc/HealPulse()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	//playsound(src, 'sound/abnormalities/rudolta/throw.ogg', 50, FALSE, 4)//TODO: proper SFX goes here
-	for(var/mob/living/L in livinginview(8, src))
-		if(faction_check_mob(L))
+	for(var/mob/living/carbon/human/L in livinginrange(8, src))//livinginview(8, src))
+		if(L.stat == DEAD || L.is_working)
 			continue
 		L.adjustBruteLoss(-2)
-		var/mob/living/carbon/human/H = L
-		H.adjustSanityLoss(-2)
+		L.adjustSanityLoss(-2)
 
 /obj/effect/proc_holder/ability/overheat
 	name = "Overheat"
@@ -831,6 +812,7 @@
 				if(istype(L.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin))
 					L.apply_status_effect(/datum/status_effect/duality_yang)
 			all_turfs -= T
+	return ..()
 
 /datum/status_effect/duality_yang
 	id = "EGO_YANG"
@@ -863,4 +845,491 @@
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+
+/*Child of the Galaxy - Our Galaxy */
+/obj/effect/proc_holder/ability/galaxy_gift
+	name = "An Eternal Farewell"
+	desc = "Gives people around you a tiny pebble which will heal SP and HP for a short time."
+	action_icon_state = "galaxy0"
+	base_icon_state = "galaxy"
+	cooldown_time = 60 SECONDS
+	var/range = 6
+
+/obj/effect/proc_holder/ability/galaxy_gift/Perform(target, mob/living/carbon/human/user)
+	if(!istype(user))
+		return
+	var/list/existing_gifted = list()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H.has_status_effect(/datum/status_effect/galaxy_gift))
+			existing_gifted += H
+	playsound(get_turf(user), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2) //placeholder, uses KoD blessing noise at the moment
+	for(var/turf/T in view(range, user))
+		new /obj/effect/temp_visual/galaxy_aura(T)
+		for(var/mob/living/carbon/human/H in T)
+			if(!user.faction_check_mob(H, FALSE))
+				continue
+			if(H.stat == DEAD)
+				continue
+			if(H.is_working)
+				continue
+			var/datum/status_effect/galaxy_gift/new_gift = H.apply_status_effect(/datum/status_effect/galaxy_gift)
+			if(H == user)
+				new_gift.watch_death = TRUE
+			existing_gifted |= H
+	for(var/mob/living/carbon/human/H in existing_gifted)
+		var/datum/status_effect/galaxy_gift/gift = H.has_status_effect(/datum/status_effect/galaxy_gift)
+		if(!gift)
+			continue
+		gift.gifted = existing_gifted
+	return ..()
+
+/datum/status_effect/galaxy_gift
+	id = "galaxygift"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 30 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/galaxy_gift
+	var/base_heal_amt = 0.5
+	var/base_dmg_amt = 45
+	var/watch_death = FALSE
+	var/list/gifted
+
+/atom/movable/screen/alert/status_effect/galaxy_gift
+	name = "Parting Gift"
+	desc = "You recover SP and HP over time temporarliy."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "friendship"
+
+/datum/status_effect/galaxy_gift/tick()
+	if(!ishuman(owner))
+		qdel(src)
+		return
+	var/mob/living/carbon/human/Y = owner
+	listclearnulls(gifted)
+	for(var/mob/living/carbon/human/H in gifted)
+		if(H == Y)
+			continue
+		if(H.stat == DEAD || QDELETED(H))
+			gifted -= H
+			if(H) // If there's even anything left to remove
+				H.remove_status_effect(/datum/status_effect/galaxy_gift)
+	if(Y.stat == DEAD || QDELETED(Y))
+		return watch_death ? Pop() : FALSE
+	var/heal_mult = LAZYLEN(gifted)
+	heal_mult = max(3, heal_mult)
+	Y.adjustBruteLoss(-(base_heal_amt*heal_mult))
+	Y.adjustSanityLoss(-(base_heal_amt*heal_mult))
+
+/datum/status_effect/galaxy_gift/proc/Pop()
+	var/damage_mult = LAZYLEN(gifted)
+	for(var/mob/living/carbon/human/H in gifted)
+		H.apply_damage(base_dmg_amt*damage_mult, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.remove_status_effect(/datum/status_effect/galaxy_gift)
+		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
+		playsound(get_turf(H), "shatter", 50, TRUE)
+		to_chat(H, "<span class='userdanger'>Your pebble violently shatters!</span>")
+	return
+
+/* Sleeping Beauty - Comatose */
+/obj/effect/proc_holder/ability/comatose
+	name = "Comatose"
+	desc = "Fall asleep to gain 99% resistance to all normal damage."
+	action_icon_state = "comatose0"
+	base_icon_state = "comatose"
+	cooldown_time = 30 SECONDS
+
+/obj/effect/proc_holder/ability/comatose/Perform(target, mob/living/carbon/human/user)
+	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/comatose))
+		user.Stun(15 SECONDS)
+		user.Knockdown(1)
+		user.playsound_local(get_turf(user), "sound/abnormalities/happyteddy/teddy_lullaby.ogg", 25, 0)
+		user.apply_status_effect(/datum/status_effect/dreaming)
+		return ..()
+
+/datum/status_effect/dreaming
+	id = "EGO_SLEEPING"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/dreaming
+	duration = 15 SECONDS
+
+/atom/movable/screen/alert/status_effect/dreaming
+	name = "Dreams of comfort"
+	desc = "Decreases damage taken from conventional damage types by 99%"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "comatose"
+
+/datum/status_effect/dreaming/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod /= 100
+	H.physiology.white_mod /= 100
+	H.physiology.black_mod /= 100
+	H.physiology.pale_mod /= 100
+
+/datum/status_effect/dreaming/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod *= 100
+	H.physiology.white_mod *= 100
+	H.physiology.black_mod *= 100
+	H.physiology.pale_mod *= 100
+
+/* Wishing Well - Broken Crown */
+/obj/effect/proc_holder/ability/brokencrown
+	name = "Broken Crown"
+	desc = "Extract a random empowered E.G.O. weapon."
+	action_icon_state = "brokencrown0"
+	base_icon_state = "brokencrown"
+	cooldown_time = 30 MINUTES
+	var/obj/structure/toolabnormality/wishwell/linked_structure
+	var/list/ego_list = list()
+	var/obj/item/ego_weapon/chosenEGO
+
+/obj/effect/proc_holder/ability/brokencrown/Perform(target, mob/living/carbon/human/user) //very bad code, does not work. Let me finish it!
+	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/brokencrown))
+		user.playsound_local(get_turf(user), "sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg", 25, 0)
+		if(!linked_structure)
+			linked_structure = locate(/obj/structure/toolabnormality/wishwell) in world.contents
+			if(!linked_structure) //Somehow you got this ego on a non-facility map
+				ego_list += /obj/item/ego_weapon/mimicry
+				ego_list += /obj/item/ego_weapon/smile
+				ego_list += /obj/item/ego_weapon/da_capo
+				linked_structure = TRUE
+		if(!LAZYLEN(ego_list))
+			for(var/egoitem in linked_structure.alephitem)
+				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
+					ego_list += egoitem
+					continue
+		chosenEGO = pick(ego_list)
+		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
+		if(ispath(ego, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
+			egoweapon.force_multiplier = 1.2
+			egoweapon.name = "shimmering [egoweapon.name]"
+			egoweapon.set_light(3, 6, "#D4FAF37")
+			egoweapon.color = "#FFD700"
+
+		else if(ispath(ego, /obj/item/gun/ego_gun))
+			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
+			egogun.projectile_damage_multiplier = 1.2
+			egogun.name = "shimmering [egogun.name]"
+			egogun.set_light(3, 6, "#D4FAF37")
+			egogun.color = "#FFD700"
+		return ..()
+
+/* Opened Can of Wellcheers - Wellcheers */
+/obj/effect/proc_holder/ability/wellcheers
+	name = "Wellcheers Crew"
+	desc = "Call up 2 of your finest crewmates for a period of time."
+	action_icon_state = "shrimp0"
+	base_icon_state = "shrimp"
+	cooldown_time = 90 SECONDS
+
+/obj/effect/proc_holder/ability/wellcheers/Perform(target, mob/user)
+	for(var/i = 1 to 2)
+		new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
+	return ..()
+
+/mob/living/simple_animal/hostile/shrimp/friendly //HUGE buff shrimp
+	name = "wellcheers boat fisherman"
+	health = 700
+	maxHealth = 700
+	desc = "Are those fists?"
+	melee_damage_lower = 35
+	melee_damage_upper = 45
+	icon_state = "wellcheers_ripped"
+	icon_living = "wellcheers_ripped"
+	faction = list("neutral", "shrimp")
+
+/mob/living/simple_animal/hostile/shrimp/friendly/Initialize()
+	.=..()
+	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
+	QDEL_IN(src, (90 SECONDS))
+
+/mob/living/simple_animal/hostile/shrimp/friendly/AttackingTarget()
+	. = ..()
+	if(.)
+		var/mob/living/L = target
+		if(L.health < 0 || L.stat == DEAD)
+			L.gib() //Punch them so hard they explode
+/* Flesh Idol - Repentance */
+/obj/effect/proc_holder/ability/prayer
+	name = "Prayer"
+	desc = "An ability that does causes you to start praying reducing damage taken by 25% but removing your ability to move and lowers justice by 80. \
+	When you finish praying everyone gets a 20 justice increase and gets healed."
+	action_icon_state = "flesh0"
+	base_icon_state = "flesh"
+	cooldown_time = 180 SECONDS
+
+/obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
+	user.apply_status_effect(/datum/status_effect/flesh1)
+	cooldown = world.time + (15 SECONDS)
+	to_chat(user, "<span class='userdanger'>You start praying...</span>")
+	if(!do_after(user, 15 SECONDS))
+		user.remove_status_effect(/datum/status_effect/flesh1)
+		return
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(!user.faction_check_mob(H, FALSE))
+			continue
+		if(H.stat == DEAD)
+			continue
+		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
+		to_chat(H, "<span class='nicegreen'>[user]'s prayer was heard!</span>")
+		H.adjustBruteLoss(-100)
+		H.adjustSanityLoss(-100)
+		H.apply_status_effect(/datum/status_effect/flesh2)
+		new /obj/effect/temp_visual/healing(get_turf(H))
+	return ..()
+
+/datum/status_effect/flesh1
+	id = "FLESH1"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/flesh1
+	duration = 15 SECONDS
+
+/atom/movable/screen/alert/status_effect/flesh1
+	name = "A prayer to god"
+	desc = "Decreases damage taken by 25%. \
+	Decreases justice by 80."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "flesh"
+
+/datum/status_effect/flesh1/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod *= 0.75
+	H.physiology.white_mod *= 0.75
+	H.physiology.black_mod *= 0.75
+	H.physiology.pale_mod *= 0.75
+	ADD_TRAIT(H, TRAIT_IMMOBILIZED, type)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -80)
+
+/datum/status_effect/flesh1/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.physiology.red_mod /= 0.75
+	H.physiology.white_mod /= 0.75
+	H.physiology.black_mod /= 0.75
+	H.physiology.pale_mod /= 0.75
+	REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 80)
+
+/datum/status_effect/flesh2
+	id = "FLESH2"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/flesh2
+	duration = 60 SECONDS
+
+/atom/movable/screen/alert/status_effect/flesh2
+	name = "An answer from god"
+	desc = "Increases justice by 20."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "flesh"
+
+/datum/status_effect/flesh2/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
+
+/datum/status_effect/flesh2/on_remove()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
+
+/obj/effect/proc_holder/ability/nest
+	name = "Worm spawn"
+	desc = "Spawns 9 worms that will seak out abormalities to infest in making them weaker to red damage."
+	action_icon_state = "worm0"
+	base_icon_state = "worm"
+	cooldown_time = 30 SECONDS
+
+
+
+/obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
+	for(var/i = 1 to 9)
+		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
+		var/landing
+		landing = locate(user.x + pick(-2,-1,0,1,2), user.y + pick(-2,-1,0,1,2), user.z)
+		var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new(get_turf(user))
+		W.origin_nest = user
+		W.throw_at(landing, 0.5, 2, spin = FALSE)
+	return ..()
+
+/datum/status_effect/stacking/infestation
+	id = "EGO_NEST"
+	status_type = STATUS_EFFECT_UNIQUE
+	stacks = 1
+	stack_decay = 0 //Without this the stacks were decaying after 1 sec
+	duration = 15 SECONDS //Lasts for 4 minutes
+	alert_type = /atom/movable/screen/alert/status_effect/justice_and_balance
+	max_stacks = 20
+	consumed_on_threshold = FALSE
+	var/red = 0
+
+/atom/movable/screen/alert/status_effect/infestation
+	name = "Infestation"
+	desc = "Your weakness to red damage is increased by "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "infest"
+
+/datum/status_effect/stacking/infestation/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/infested)
+
+/datum/status_effect/stacking/infestation/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/infested)
+
+/datum/status_effect/stacking/infestation/add_stacks(stacks_added)
+	. = ..()
+	if(!isanimal(owner))
+		return
+	var/mob/living/simple_animal/M = owner
+	var/datum/dc_change/infested/mod = M.HasDamageMod(/datum/dc_change/infested)
+	mod.potency = 1+(stacks/20)
+	M.UpdateResistances()
+	linked_alert.desc = initial(linked_alert.desc)+"[stacks*5]%!"
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend
+	name = "friendly naked serpent"
+	desc = "A sickly looking green-colored worm but looks friendly."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "nakednest_serpent"
+	icon_living = "nakednest_serpent"
+	a_intent = "harm"
+	melee_damage_lower = 1
+	melee_damage_upper = 1
+	maxHealth = 500
+	health = 500 //STOMP THEM STOMP THEM NOW.
+	move_to_delay = 3
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	stat_attack = HARD_CRIT
+	density = FALSE //they are worms.
+	robust_searching = 1
+	obj_damage = 0
+	environment_smash = ENVIRONMENT_SMASH_NONE
+	mob_size = MOB_SIZE_SMALL
+	pass_flags = PASSTABLE | PASSMOB
+	layer = ABOVE_NORMAL_TURF_LAYER
+	mouse_opacity = MOUSE_OPACITY_OPAQUE //Clicking anywhere on the turf is good enough
+	del_on_death = 1
+	vision_range = 18 //two screens away
+	faction = list("neutral")
+	var/mob/living/carbon/human/origin_nest
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/Initialize()
+	.=..()
+	AddComponent(/datum/component/swarming)
+	QDEL_IN(src, (20 SECONDS))
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/AttackingTarget()
+	var/mob/living/L = target
+	var/datum/status_effect/stacking/infestation/INF = L.has_status_effect(/datum/status_effect/stacking/infestation)
+	if(!INF)
+		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)
+		if(!INF)
+			return
+	INF.add_stacks(1)
+	qdel(src)
+	. = ..()
+
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/LoseAggro() //its best to return home
+	..()
+	if(origin_nest)
+		for(var/mob/living/carbon/human/H in oview(vision_range, src))
+			if(origin_nest == H.tag)
+				Goto(H, 5, 0)
+				return
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/Life()
+	..()
+	if(origin_nest)
+		for(var/mob/living/carbon/human/H in oview(vision_range, src))
+			if(origin_nest == H.tag)
+				Goto(H, 5, 0)
+				return
+
+/* Wayward Passenger - Dimension Ripper */
+/obj/effect/proc_holder/ability/rip_space
+	name = "Rip Space"
+	desc = "Travel at light speed between portals to attack your enemies."
+	action_icon_state = "ripper0"
+	base_icon_state = "ripper"
+	cooldown_time = 1 MINUTES
+
+/obj/effect/proc_holder/ability/rip_space/Perform(target, mob/living/user)
+	var/list/targets = list()
+	for(var/mob/living/L in view(8, user))
+		if(L.stat == DEAD)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(L, FALSE))
+			continue
+		targets += L
+	if(!(LAZYLEN(targets)))
+		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
+		return
+
+	cooldown = world.time + (7 SECONDS)
+	var/turf/origin = get_turf(user)
+	var/dash_count = min(targets.len*3, 30) //Max 10 targets (7 Seconds)
+	user.density = FALSE
+	ADD_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	var/obj/effect/portal/warp/P = new(origin)
+	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_begin.ogg', 100, 0)
+	sleep(1 SECONDS)
+	qdel(P)
+	user.alpha = 0
+
+	for(var/i = 1 to dash_count)
+		var/mob/living/L = pick(targets)
+		dash_attack(L, user)
+		if(L.stat == DEAD)
+			targets -= L
+		if(!LAZYLEN(targets) || user.stat == DEAD)
+			break
+
+	user.alpha = 255
+	new /obj/effect/temp_visual/rip_space(origin)
+	user.forceMove(origin)
+	user.density = TRUE
+	REMOVE_TRAIT(user, TRAIT_IMMOBILIZED, type)
+	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_end.ogg', 100, 0)
+	return ..()
+
+/obj/effect/proc_holder/ability/rip_space/proc/dash_attack(mob/living/target, mob/living/user)
+	var/list/potential_TP = list()
+	for(var/turf/T in range(3, target))
+		if(T in range(2, target))
+			continue
+		potential_TP += T
+	var/turf/start_point = pick(potential_TP)
+	var/turf/end_point = get_step(get_turf(target), get_dir(start_point, target))
+	end_point = get_step(end_point, get_dir(start_point, target))
+	var/obj/effect/temp_visual/rip_space/X = new(start_point)
+	var/obj/effect/temp_visual/rip_space/Y = new(end_point)
+
+	var/obj/projectile/ripper_dash_effect/DE = new(start_point)
+	DE.preparePixelProjectile(Y, X)
+	DE.name = user.name
+	DE.fire()
+	user.orbit(DE, 0, 0, 0, 0, 0)
+
+	sleep(1)
+	target.apply_damage(80, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
+	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
+	new /obj/effect/temp_visual/ripped_space(get_turf(target))
+	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_hit.ogg', 75, 0)
+	sleep(1)
+	qdel(DE)
+
+/obj/projectile/ripper_dash_effect
+	speed = 0.32
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "ripper_dash"
+	projectile_piercing = ALL
+
+/obj/projectile/ripper_dash_effect/on_hit(atom/target, blocked = FALSE)
+	return

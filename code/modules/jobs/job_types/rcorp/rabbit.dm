@@ -39,6 +39,7 @@
 	job_important = "You take the role of mobile ranged infantry."
 	job_notice = "You are a rabbit armed with a semi automatic, single phase rifle and blade with rush capabilities. You form the meat of the 4th pack."
 
+
 /datum/job/rcorp_captain/rabbit
 	title = "Rabbit Squad Captain"
 	faction = "Station"
@@ -85,14 +86,27 @@
 	head = /obj/item/clothing/head/rabbit_helmet/grunt
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
 	l_pocket = /obj/item/flashlight/seclite
+	r_pocket = /obj/item/pinpointer/nuke/rcorp
 
 /datum/outfit/job/rabbit/assault
 	name = "R-Corp Assault Rabbit"
 	jobtype = /datum/job/rabbit/assault
 
-	suit_store = /obj/item/gun/energy/e_gun/rabbitdash
+	suit_store = /obj/item/ego_weapon/city/rabbit_rush
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/assault
-	belt = /obj/item/ego_weapon/city/rabbit_rush
+	belt = null
+
+/datum/outfit/job/rabbit/assault/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	var/belt = pick(
+	/obj/item/gun/energy/e_gun/rabbitdash,
+	/obj/item/gun/energy/e_gun/rabbitdash/small,
+	/obj/item/gun/energy/e_gun/rabbitdash/sniper,
+	/obj/item/gun/energy/e_gun/rabbitdash/white,
+	/obj/item/gun/energy/e_gun/rabbitdash/black,
+	/obj/item/gun/energy/e_gun/rabbitdash/shotgun,
+	)
+	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
 
 
 

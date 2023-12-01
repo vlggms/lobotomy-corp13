@@ -1,0 +1,2182 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ay" = (
+/obj/structure/table/wood,
+/obj/item/clipboard,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"aR" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"cm" = (
+/turf/open/floor/plasteel/stairs{
+	dir = 4
+	},
+/area/library_floors/floor_religion)
+"cr" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/plasteel/chapel{
+	dir = 2
+	},
+/area/library_floors/floor_religion)
+"cS" = (
+/obj/structure/table/wood,
+/obj/item/pen,
+/obj/item/paper,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"dd" = (
+/turf/open/space/basic,
+/area/space)
+"dZ" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 8
+	},
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"fA" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/storage/book/bible{
+	pixel_y = 17
+	},
+/obj/item/candle/infinite,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/white,
+/area/library_floors/floor_religion)
+"fO" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 8;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"gu" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/thinplating/corner,
+/obj/structure/railing/corner,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"gU" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/structure/railing/corner,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"gW" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"hs" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 9
+	},
+/obj/structure/railing/corner,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"hO" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/white,
+/area/library_floors/floor_religion)
+"hP" = (
+/turf/open/floor/plasteel/dark/corner,
+/area/library_floors/floor_religion)
+"hW" = (
+/turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"kB" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 2;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"lm" = (
+/obj/machinery/bookbinder,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"mE" = (
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"nh" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/library_floors/floor_religion)
+"nk" = (
+/obj/structure/table/wood/fancy/black,
+/turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"nx" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/structure/railing{
+	name = "invincible railing";
+	resistance_flags = 64;
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"nz" = (
+/obj/item/toy/plush/ayin,
+/obj/item/flashlight/spotlight,
+/obj/structure/displaycase/noalert,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"oy" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 2
+	},
+/area/library_floors/floor_religion)
+"oV" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"pn" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"ps" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 8
+	},
+/obj/structure/railing/corner{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"pu" = (
+/turf/open/floor/white{
+	density = 1
+	},
+/area/library_floors/floor_religion)
+"pM" = (
+/obj/effect/decal/fakelattice,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/white{
+	density = 1
+	},
+/area/library_floors/floor_religion)
+"rk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"rs" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/structure/railing{
+	dir = 2;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"rA" = (
+/turf/open/floor/plasteel/dark/side,
+/area/library_floors/floor_religion)
+"rY" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 6
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"vn" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"vq" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/candle/infinite,
+/turf/open/floor/white,
+/area/library_floors/floor_religion)
+"wr" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"wy" = (
+/obj/structure/table/wood,
+/obj/item/storage/book/bible,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"wC" = (
+/turf/open/floor/white,
+/area/library_floors/floor_religion)
+"xv" = (
+/obj/item/flashlight/spotlight,
+/obj/structure/altar_of_gods,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"xy" = (
+/obj/structure/lattice/catwalk,
+/turf/open/floor/white{
+	density = 1
+	},
+/area/library_floors/floor_religion)
+"xE" = (
+/obj/structure/table/greyscale,
+/obj/item/shield/riot/buckler,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"ym" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/storage/fancy/candle_box,
+/turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"yE" = (
+/obj/structure/bookcase/random/religion,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"zi" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"zD" = (
+/obj/structure/table/wood,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"zJ" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"zV" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plasteel/stairs{
+	dir = 8
+	},
+/area/library_floors/floor_religion)
+"Ak" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Bi" = (
+/obj/structure/table/wood,
+/obj/item/pen,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Bo" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/library_floors/floor_religion)
+"Ca" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/library_floors/floor_religion)
+"Cg" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Cl" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Cn" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/white{
+	density = 1
+	},
+/area/library_floors/floor_religion)
+"DK" = (
+/turf/open/floor/plasteel/dark/corner{
+	dir = 4
+	},
+/area/library_floors/floor_religion)
+"GH" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 1;
+	name = "invincible railing";
+	resistance_flags = 64
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Hh" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8;
+	max_integrity = 1e+007;
+	name = "invincible railing"
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"HV" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Io" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 4;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Jj" = (
+/obj/structure/table/greyscale,
+/obj/item/shield/riot,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"JS" = (
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Kx" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Lt" = (
+/obj/structure/table/greyscale,
+/obj/structure/table/greyscale,
+/obj/item/shield/riot/roman,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Lv" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/library_floors/floor_religion)
+"LJ" = (
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/library_floors/floor_religion)
+"Ms" = (
+/obj/structure/bookcase/random/religion,
+/turf/open/floor/white{
+	density = 1
+	},
+/area/library_floors/floor_religion)
+"MF" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Nk" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white/end{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 2;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Nz" = (
+/obj/structure/table/wood/fancy/black,
+/obj/item/storage/book/bible,
+/turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"NA" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 1
+	},
+/area/library_floors/floor_religion)
+"Oo" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/obj/item/toy/plush/benjamin,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Oy" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Oz" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"OO" = (
+/obj/structure/altar_of_gods,
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/library_floors/floor_religion)
+"OR" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 4
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"QF" = (
+/obj/effect/decal/fakelattice,
+/turf/open/floor/white{
+	density = 1
+	},
+/area/library_floors/floor_religion)
+"Sd" = (
+/obj/structure/chair/comfy{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Si" = (
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/library_floors/floor_religion)
+"Ub" = (
+/turf/open/floor/plasteel/dark/corner{
+	dir = 1
+	},
+/area/library_floors/floor_religion)
+"Up" = (
+/obj/effect/turf_decal/siding/white/end{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 2;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"UD" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/thinplating/corner{
+	dir = 4
+	},
+/obj/structure/railing/corner{
+	dir = 4
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"UI" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/obj/structure/railing/corner{
+	dir = 8;
+	pixel_x = -1;
+	pixel_y = 2
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"VH" = (
+/turf/closed/indestructible/syndicate,
+/area/library_floors/floor_religion)
+"Wr" = (
+/obj/item/toy/plush/hokma,
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"WC" = (
+/obj/structure/table/greyscale,
+/obj/item/shield/mirror,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Xc" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"Yi" = (
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/white,
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"ZH" = (
+/obj/effect/turf_decal/siding/white,
+/obj/effect/turf_decal/siding/white{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 2;
+	name = "invincible railing";
+	max_integrity = 1e+007
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"ZU" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
+
+(1,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+dd
+dd
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(2,1,1) = {"
+dd
+dd
+dd
+VH
+VH
+VH
+VH
+VH
+Oz
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+Oz
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(3,1,1) = {"
+dd
+dd
+dd
+VH
+lm
+Xc
+cS
+VH
+zD
+wC
+Kx
+Kx
+wC
+wC
+Kx
+Kx
+wC
+zD
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(4,1,1) = {"
+dd
+dd
+dd
+VH
+JS
+JS
+vn
+VH
+ZU
+wC
+yE
+Kx
+wC
+wC
+Kx
+yE
+wC
+ZU
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(5,1,1) = {"
+dd
+dd
+dd
+VH
+JS
+JS
+JS
+JS
+JS
+wC
+Kx
+Kx
+wC
+wC
+Kx
+Kx
+wC
+JS
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(6,1,1) = {"
+dd
+dd
+dd
+VH
+JS
+JS
+JS
+JS
+JS
+wC
+Kx
+Kx
+wC
+wC
+Kx
+Kx
+wC
+JS
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(7,1,1) = {"
+dd
+dd
+dd
+VH
+JS
+JS
+zJ
+VH
+Oz
+wC
+yE
+Kx
+wC
+wC
+Kx
+yE
+wC
+Oz
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(8,1,1) = {"
+dd
+dd
+dd
+VH
+lm
+Xc
+Bi
+VH
+zD
+wC
+Kx
+Kx
+wC
+wC
+Kx
+Kx
+wC
+zD
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(9,1,1) = {"
+dd
+dd
+dd
+VH
+VH
+VH
+VH
+VH
+ZU
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+ZU
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(10,1,1) = {"
+dd
+dd
+dd
+VH
+VH
+VH
+VH
+VH
+VH
+zV
+VH
+VH
+VH
+VH
+VH
+VH
+zV
+VH
+VH
+VH
+VH
+VH
+VH
+dd
+"}
+(11,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+gW
+rk
+Up
+pu
+QF
+QF
+xy
+dZ
+rk
+Up
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(12,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+QF
+QF
+QF
+zi
+hW
+ZH
+pu
+pu
+QF
+pu
+nx
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(13,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+xy
+pu
+pu
+zi
+hW
+ps
+fO
+fO
+fO
+fO
+rY
+hW
+ZH
+QF
+xy
+pu
+pu
+VH
+dd
+"}
+(14,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pM
+pu
+pu
+zi
+pn
+hW
+hW
+hW
+hW
+hW
+hW
+pn
+ZH
+QF
+pu
+Cn
+pu
+VH
+dd
+"}
+(15,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+QF
+xy
+QF
+zi
+hW
+hs
+MF
+MF
+MF
+MF
+Cl
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(16,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+QF
+pu
+pu
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(17,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(18,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(19,1,1) = {"
+dd
+dd
+dd
+VH
+xy
+QF
+QF
+QF
+zi
+hW
+rs
+pu
+pu
+xy
+QF
+wr
+hW
+ZH
+QF
+xy
+pu
+pu
+VH
+dd
+"}
+(20,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+QF
+pu
+zi
+hW
+rs
+pu
+pu
+QF
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(21,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+xy
+QF
+pu
+zi
+hW
+rs
+pu
+QF
+QF
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(22,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+pn
+rs
+QF
+QF
+xy
+pu
+wr
+pn
+ZH
+pu
+pu
+Cn
+pu
+VH
+dd
+"}
+(23,1,1) = {"
+dd
+dd
+dd
+VH
+QF
+pM
+QF
+pu
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+pu
+xy
+QF
+pu
+VH
+dd
+"}
+(24,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+QF
+QF
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+QF
+QF
+pu
+pu
+VH
+dd
+"}
+(25,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+rs
+Ms
+Ms
+Ms
+Ms
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(26,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+QF
+QF
+zi
+hW
+UI
+hP
+Si
+Si
+DK
+Ak
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(27,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+QF
+xy
+pu
+zi
+hW
+Yi
+rA
+Bo
+OO
+NA
+Cg
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(28,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+Yi
+rA
+nh
+oy
+NA
+Cg
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(29,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+Yi
+rA
+ym
+Nz
+NA
+Cg
+hW
+ZH
+QF
+QF
+pu
+pu
+VH
+dd
+"}
+(30,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+Cn
+QF
+xy
+zi
+pn
+Yi
+rA
+nk
+nk
+NA
+Cg
+pn
+ZH
+pu
+xy
+pM
+pu
+VH
+dd
+"}
+(31,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+xy
+QF
+zi
+hW
+Yi
+rA
+Bo
+Ca
+NA
+Cg
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(32,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+Yi
+rA
+nh
+cr
+NA
+Cg
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(33,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+QF
+QF
+zi
+hW
+gU
+LJ
+Lv
+Lv
+Ub
+HV
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(34,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+rs
+Ms
+Ms
+Ms
+Ms
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(35,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+xy
+QF
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+xy
+QF
+pu
+pu
+VH
+dd
+"}
+(36,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+Cn
+QF
+QF
+zi
+pn
+rs
+pu
+pu
+pu
+pu
+wr
+pn
+ZH
+pu
+pu
+Cn
+pu
+VH
+dd
+"}
+(37,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(38,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+xy
+QF
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+QF
+pu
+pu
+pu
+VH
+dd
+"}
+(39,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+rs
+pu
+pu
+pu
+pu
+wr
+hW
+ZH
+QF
+xy
+pu
+pu
+VH
+dd
+"}
+(40,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+QF
+pu
+zi
+hW
+rs
+pu
+pu
+xy
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(41,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+QF
+QF
+zi
+hW
+rs
+pu
+QF
+xy
+pu
+wr
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(42,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+xy
+zi
+pn
+rs
+pu
+QF
+QF
+pu
+wr
+pn
+ZH
+pu
+pu
+Cn
+pu
+VH
+dd
+"}
+(43,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+Cn
+pu
+QF
+zi
+hW
+rs
+pu
+QF
+pu
+pu
+wr
+hW
+ZH
+QF
+xy
+pu
+QF
+VH
+dd
+"}
+(44,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+QF
+QF
+zi
+hW
+ps
+Hh
+Hh
+Hh
+Hh
+rY
+hW
+ZH
+pu
+QF
+xy
+QF
+VH
+dd
+"}
+(45,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+xy
+pu
+zi
+hW
+hW
+hW
+hW
+hW
+hW
+hW
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(46,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+gu
+Io
+Io
+Io
+Io
+UD
+hW
+ZH
+pu
+pu
+pu
+pu
+VH
+dd
+"}
+(47,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+pu
+pu
+pu
+zi
+hW
+ZH
+pu
+QF
+pu
+pu
+zi
+hW
+ZH
+QF
+xy
+pu
+pu
+VH
+dd
+"}
+(48,1,1) = {"
+dd
+dd
+dd
+VH
+pu
+Cn
+pu
+pu
+GH
+OR
+kB
+pu
+xy
+pu
+pu
+GH
+OR
+Nk
+pu
+pu
+Cn
+pu
+VH
+dd
+"}
+(49,1,1) = {"
+dd
+dd
+dd
+VH
+VH
+VH
+VH
+VH
+VH
+cm
+VH
+VH
+VH
+VH
+VH
+VH
+cm
+VH
+VH
+VH
+VH
+VH
+VH
+dd
+"}
+(50,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+dd
+dd
+VH
+JS
+wC
+zD
+mE
+Oy
+xv
+mE
+zD
+wC
+JS
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(51,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+dd
+dd
+VH
+JS
+wC
+JS
+JS
+JS
+JS
+JS
+JS
+wC
+JS
+VH
+VH
+VH
+VH
+VH
+dd
+"}
+(52,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+VH
+VH
+VH
+JS
+wC
+JS
+JS
+JS
+JS
+JS
+JS
+wC
+JS
+VH
+JS
+nz
+JS
+VH
+dd
+"}
+(53,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+VH
+xE
+VH
+JS
+wC
+zD
+Sd
+JS
+JS
+Sd
+zD
+wC
+JS
+VH
+JS
+wy
+Wr
+VH
+dd
+"}
+(54,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+VH
+Jj
+aR
+wC
+hO
+wC
+wC
+wC
+hO
+wC
+wC
+hO
+wC
+wC
+wC
+wC
+wC
+VH
+dd
+"}
+(55,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+VH
+Lt
+aR
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+wC
+VH
+dd
+"}
+(56,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+VH
+WC
+VH
+JS
+JS
+wC
+wC
+wC
+wC
+wC
+wC
+JS
+JS
+VH
+JS
+ay
+Oo
+VH
+dd
+"}
+(57,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+VH
+VH
+VH
+JS
+JS
+wC
+wC
+wC
+wC
+wC
+wC
+JS
+JS
+VH
+JS
+oV
+JS
+VH
+dd
+"}
+(58,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+dd
+dd
+VH
+JS
+JS
+JS
+wC
+wC
+wC
+wC
+JS
+JS
+JS
+VH
+VH
+VH
+VH
+VH
+dd
+"}
+(59,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+dd
+dd
+VH
+JS
+oV
+JS
+JS
+vq
+fA
+JS
+JS
+oV
+JS
+VH
+dd
+dd
+dd
+dd
+dd
+"}
+(60,1,1) = {"
+dd
+dd
+dd
+dd
+dd
+dd
+dd
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+VH
+dd
+dd
+dd
+dd
+dd
+"}

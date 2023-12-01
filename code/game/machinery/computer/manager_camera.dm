@@ -15,12 +15,15 @@
 	var/datum/action/innate/firemanagerbullet/fire
 	var/datum/action/innate/cyclecommand/cyclecommand
 	var/datum/action/innate/managercommand/command
+	var/datum/action/innate/manager_track/follow
 	var/ammo = 6
 	var/maxAmmo = 5
 	var/bullettype = 1
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
+	///Variable stolen from AI. Essential for tracking feature.
+	var/static/datum/trackable/track = new
 	var/static/list/commandtypes = typecacheof(list(
 		/obj/effect/temp_visual/commandMove,
 		/obj/effect/temp_visual/commandWarn,
@@ -40,15 +43,26 @@
 		YELLOW_BULLET = list("name" = "Qliphoth Intervention Field", "desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.", "icon_state" = "yellow"),
 		)
 
+	/* Locked actions */
+	// Unlocked by completing records core suppression
+	var/datum/action/innate/swap_cells/swap
+
 /obj/machinery/computer/camera_advanced/manager/Initialize(mapload)
 	. = ..()
+	GLOB.manager_consoles += src
+
 	cycle = new
 	fire = new
 	cyclecommand = new
 	command = new
+	follow = new
 
 	command_cooldown = world.time
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/recharge_meltdown)
+
+/obj/machinery/computer/camera_advanced/manager/Destroy()
+	GLOB.manager_consoles -= src
+	return ..()
 
 /obj/machinery/computer/camera_advanced/manager/examine(mob/user)
 	. = ..()
@@ -58,6 +72,7 @@
 /obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user) //sephirah console breaks off from this branch so any edits you want on both must be done manually.
 	..()
 
+	//List abilities here:
 	if(cycle)
 		cycle.target = src
 		cycle.Grant(user)
@@ -78,9 +93,21 @@
 		command.Grant(user)
 		actions += command
 
+	if(follow)
+		follow.target = src
+		follow.Grant(user)
+		actions += follow
+
+	if(swap)
+		swap.target = src
+		swap.Grant(user)
+		swap.selected_abno = null
+		actions += swap
+
 	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
+	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, .proc/OnCtrlShiftClick)
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/managerbullet) && ammo <= maxAmmo)
@@ -99,51 +126,67 @@
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_hotkey_click(datum/source, atom/clicked_atom) //system control for hotkeys
 	SIGNAL_HANDLER
+
+	// No target :(
 	if(!isliving(clicked_atom))
 		return
+
+	// No bullets :(
+	if(!ammo)
+		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
+		to_chat(source, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
+		return
+
+	// AOE bullets
+	if(SSlobotomy_corp.manager_bullet_area > -1)
+		var/success = FALSE
+		for(var/mob/living/L in range(SSlobotomy_corp.manager_bullet_area, clicked_atom))
+			if(ishuman(clicked_atom))
+				clickedemployee(source, clicked_atom)
+				success = TRUE
+			if(ishostile(clicked_atom))
+				clickedabno(source, clicked_atom)
+				success = TRUE
+		if(success)
+			ammo--
+		return
+
+	// Non-AOE
 	if(ishuman(clicked_atom))
 		clickedemployee(source, clicked_atom)
+		ammo--
 		return
 	if(ishostile(clicked_atom))
 		clickedabno(source, clicked_atom)
+		ammo--
 		return
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/employee) //contains carbon copy code of fire action
-	if(ammo >= 1)
-		var/mob/living/carbon/human/H = employee
-		switch(bullettype)
-			if(HP_BULLET)
-				H.adjustBruteLoss(-0.15*H.maxHealth)
-			if(SP_BULLET)
-				H.adjustSanityLoss(-0.15*H.maxSanity)
-			if(RED_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield)
-			if(WHITE_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield/white)
-			if(BLACK_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield/black)
-			if(PALE_BULLET)
-				H.apply_status_effect(/datum/status_effect/interventionshield/pale)
-			if(YELLOW_BULLET)
-				if(!owner.faction_check_mob(H))
-					H.apply_status_effect(/datum/status_effect/qliphothoverload)
-				else
-					to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
-					return
+	var/mob/living/carbon/human/H = employee
+	switch(bullettype)
+		if(HP_BULLET)
+			H.adjustBruteLoss(-0.15*H.maxHealth)
+		if(SP_BULLET)
+			H.adjustSanityLoss(-0.15*H.maxSanity)
+		if(RED_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield)
+		if(WHITE_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/white)
+		if(BLACK_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/black)
+		if(PALE_BULLET)
+			H.apply_status_effect(/datum/status_effect/interventionshield/pale)
+		if(YELLOW_BULLET)
+			if(!owner.faction_check_mob(H))
+				H.apply_status_effect(/datum/status_effect/qliphothoverload)
 			else
-				to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
+				to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
 				return
-		ammo--
-		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		to_chat(owner, "<span class='warning'>Loading [ammo] Bullets.</span>")
-		return
-	if(ammo <= 0)
-		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-		to_chat(owner, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
-	else
-		to_chat(owner, "<span class='warning'>NO TARGET.</span>")
-		return
+		else
+			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
+			return
+	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
+	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 
 /obj/machinery/computer/camera_advanced/manager/proc/clickedabno(mob/living/owner, mob/living/simple_animal/hostile/critter)
 	if(ammo >= 1)
@@ -179,16 +222,17 @@
 
 	if(istype(clicked_atom, /mob/living/simple_animal))
 		var/mob/living/simple_animal/monster = clicked_atom
-		if(!LAZYLEN(monster.damage_coeff))
-			return
 
-		to_chat(user, "<span class='notice'>[clicked_atom]'s resistances are : </span>")
+		var/message = "<span class='notice'>[clicked_atom]'s resistances are :"
+
 		var/list/damage_types = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 		for(var/i in damage_types)
-			var/resistance = SimpleResistanceToText(monster.damage_coeff[i])
-			if(isnull(resistance))
-				continue
-			to_chat(user, "<span class='notice'>[i]: [resistance].</span>")
+			var/resistance = SimpleResistanceToText(monster.damage_coeff.getCoeff(i))
+			message += "\n[capitalize(i)]: [resistance]"
+
+		message += "</span>"
+
+		to_chat(user, message)
 
 /obj/machinery/computer/camera_advanced/manager/proc/on_alt_click(mob/living/user, turf/open/T)
 	var/mob/living/C = user
@@ -216,6 +260,11 @@
 				to_chat(C, "<span class='warning'>CALIBRATION ERROR.</span>")
 		commandtimer()
 
+/obj/machinery/computer/camera_advanced/manager/proc/OnCtrlShiftClick(mob/living/user, atom/target)
+	if(!istype(swap))
+		return
+	swap.Activate(target)
+
 /obj/machinery/computer/camera_advanced/manager/proc/commandtimer()
 	command_cooldown = world.time + command_delay
 	return
@@ -233,6 +282,57 @@
 	maxAmmo += 0.25
 	ammo = maxAmmo
 
+//Employee Tracking Code: Butchered AI Tracking
+
+//Shows a list of creatures that can be tracked.
+/obj/machinery/computer/camera_advanced/manager/proc/TrackableCreatures()
+	track.initialized = TRUE
+	track.names.Cut()
+	track.namecounts.Cut()
+	track.humans.Cut()
+	track.others.Cut()
+
+	if(current_user.stat == DEAD)
+		return list()
+
+	for(var/i in GLOB.mob_living_list)
+		var/mob/living/L = i
+		if(!L.can_track(current_user))
+			continue
+
+		var/name = L.name
+		if(name in track.names)
+			continue
+
+		if(ishuman(L))
+			track.humans[name] = L
+		else
+			track.others[name] = L
+
+	var/list/targets = sortList(track.humans) + sortList(track.others)
+
+	return targets
+
+//Proc for following a target.
+/obj/machinery/computer/camera_advanced/manager/proc/MobTracking(mob/living/target)
+	if(!istype(target))
+		to_chat(current_user, "<span class='warning'>ERROR: Invalid Tracking Target.</span>")
+		return
+
+	if(!target || !target.can_track(current_user))
+		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		return
+
+	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	if(eyeobj)
+		//Orbit proc is essentially follow.
+		eyeobj.orbit(target)
+	else
+		to_chat(current_user, "<span class='notice'>ERROR: Camera Eye Unresponsive.</span>")
+
+	/*----------\
+	|Action Code|
+	\----------*/
 /datum/action/innate/cyclemanagerbullet
 	name = "HP-N bullet"
 	desc = "These bullets speed up the recovery of an employee."
@@ -394,6 +494,40 @@
 				to_chat(owner, "<span class='warning'>CALIBRATION ERROR.</span>")
 		X.commandtimer()
 
+//////////////
+// Unlockables
+//////////////
+
+// Records core reward
+/datum/action/innate/swap_cells
+	name = "Swap Abnormality Cells"
+	desc = "Hotkey = Alt + Shift + Click"
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "vortex_ff_off"
+	/// Currently selected abnormality; Next activation will do the swap
+	var/datum/abnormality/selected_abno = null
+
+/datum/action/innate/swap_cells/Activate(mob/living/simple_animal/hostile/abnormality/A = null)
+	if(isnull(A))
+		A = locate() in get_turf(owner.remote_control)
+
+	if(!istype(A) || !istype(A.datum_reference) || !A.IsContained())
+		to_chat(owner, span_warning("The target must be an abnormality within your containment zone!"))
+		return
+
+	if(!selected_abno)
+		selected_abno = A.datum_reference
+		to_chat(owner, span_notice("[A.datum_reference.name] selected as first argument for a cell swap. Activate on a second abnormality to perform."))
+		return
+
+	if(!selected_abno.SwapPlaceWith(A.datum_reference))
+		to_chat(owner, span_danger("Cell swap failed! Both arguments have been reset."))
+		selected_abno = null
+		return
+	to_chat(owner, span_notice("Cell swap between <b>[selected_abno.name] and [A.datum_reference.name]</b> was successful! Arguments reset."))
+	selected_abno = null
+	playsound(get_turf(target), 'sound/machines/terminal_success.ogg', 10, TRUE)
+
 // Temp Effects
 
 /obj/effect/temp_visual/commandMove
@@ -438,6 +572,34 @@
 #undef PALE_BULLET
 #undef YELLOW_BULLET
 
+//Manager Camera Tracking Code
+/datum/action/innate/manager_track
+	name = "Follow Creature"
+	desc = "Track a creature."
+	icon_icon = 'icons/mob/actions/actions_items.dmi'
+	button_icon_state = "meson"
+
+/datum/action/innate/manager_track/Activate()
+	if(!target || !isliving(owner))
+		return
+	var/mob/living/C = owner
+	var/mob/camera/ai_eye/remote/xenobio/E = C.remote_control
+	var/obj/machinery/computer/camera_advanced/manager/X = E.origin
+
+	var/target_name = input(C, "Choose who you want to track", "Tracking") as null|anything in X.TrackableCreatures()
+	///Complicated stuff
+	var/list/trackeable = list()
+	trackeable += X.track.humans + X.track.others
+	var/list/targets = list()
+	for(var/I in trackeable)
+		var/mob/M = trackeable[I]
+		if(M.name == target_name)
+			targets += M
+	if(name == target_name)
+		targets += src
+	if(targets.len)
+		X.MobTracking(pick(targets))
+
 //TODO:
 // Due to the sephirah console being a weaker form of manager console
 // it would of been smarter to make manager a subtype of manager that had only the command
@@ -474,6 +636,11 @@
 		command.target = src
 		command.Grant(user)
 		actions += command
+
+	if(follow)
+		follow.target = src
+		follow.Grant(user)
+		actions += follow
 
 	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)

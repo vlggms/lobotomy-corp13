@@ -17,7 +17,6 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	attack_sound = 'sound/abnormalities/wayward_passenger/attack2.ogg'
 	can_breach = TRUE
 	can_buckle = FALSE
@@ -68,14 +67,14 @@
 	name = "Teleport"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	chosen_message = "<span class='colossus'>You will now teleport to a random target.</span>"
+	chosen_message = span_colossus("You will now teleport to your target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/wayward_dash
 	name = "Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "plasmasoul"
-	chosen_message = "<span class='colossus'>You will now charge towards your target.</span>"
+	chosen_message = span_colossus("You will now charge towards your target.")
 	chosen_attack_num = 2
 
 //*** Simple mob procs ***
@@ -91,7 +90,7 @@
 		return
 	if(IsContained())
 		return
-	if(client)
+	if(client || CheckCombat())
 		return
 	if((teleport_cooldown <= world.time) && can_act)
 		TryTeleport()
@@ -106,7 +105,10 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				TryTeleport()//TODO: add (get_turf(target)) as an argument with some sanity checks. With OOB fixed it should be pretty fun
+				if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 30)))
+					to_chat(src, span_notice("Invalid target."))
+					return
+				TryTeleport(get_turf(target))
 			if(2)
 				Dash(target)
 		return
@@ -143,12 +145,12 @@
 	..()
 
 //*** Teleport code ***//
-/mob/living/simple_animal/hostile/abnormality/wayward/proc/TryTeleport(turf/teleport_target)//argument is for the playable version, currently unused
+/mob/living/simple_animal/hostile/abnormality/wayward/proc/TryTeleport(turf/teleport_target)//argument is used when the proc is called with a client
 	if(teleport_cooldown > world.time || !can_act)
 		return FALSE
 	teleport_cooldown = world.time + teleport_cooldown_time//so it doesn't get called twice by life()
 	if(!teleport_target)
-		var/list/teleport_potential = list()//TODO: skip this process entirely for the playable version
+		var/list/teleport_potential = list()
 		for(var/mob/living/L in GLOB.mob_living_list)
 			if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE || faction_check_mob(L))
 				continue
@@ -244,7 +246,7 @@
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
-			L.visible_message("<span class='boldwarning'>[src] slices through [L]!</span>", "<span class='userdanger'>[src] rushes past you, searing you with its blades!</span>")
+			L.visible_message(span_boldwarning("[src] slices through [L]!"), span_userdanger("[src] rushes past you, searing you with its blades!"))
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)

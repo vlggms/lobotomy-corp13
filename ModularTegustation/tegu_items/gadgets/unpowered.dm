@@ -128,7 +128,8 @@
 //Deepscanner
 /obj/item/deepscanner //intended for ordeals
 	name = "deep scan kit"
-	desc = "A collection of tools used for scanning the physical form of an entity."
+	desc = "A collection of tools used for scanning the physical form of an entity.\n\
+			Scanning an active hostile entity will make it 10% weaker to all damage."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "maint_kit"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
@@ -143,21 +144,32 @@
 /obj/item/deepscanner/examine(mob/living/M)
 	. = ..()
 	if(deep_scan_log)
-		to_chat(M, "<span class='notice'>Previous Scan:[deep_scan_log].</span>")
+		to_chat(M, "<span class='notice'>Previous Scan:\n[deep_scan_log]</span>")
 
 /obj/item/deepscanner/attack(mob/living/M, mob/user)
-	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [M].</span>", "<span class='notice'>You set down the deep scanner and begin scanning [M].</span>")
-	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-	if(!do_after(user, 2 SECONDS, target = user))
+	return
+
+/obj/item/deepscanner/afterattack(mob/living/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!istype(target))
 		return
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+	Scan(target, user)
+
+/obj/item/deepscanner/proc/Scan(mob/living/target, mob/user)
+	if(!isanimal(target) && !ishuman(target))
+		return
+	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [target].</span>", "<span class='notice'>You begin scanning [target].</span>")
+	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, target, 7)))
+		return
+	check1e = FALSE
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
 		var/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		check1a = H.physiology.red_mod
 		check1b = H.physiology.white_mod
 		check1c = H.physiology.black_mod
 		check1d = H.physiology.pale_mod
-		check1e = "Unknown"
 		if(suit)
 			check1a = 1 - (H.getarmor(null, RED_DAMAGE) / 100)
 			check1b = 1 - (H.getarmor(null, WHITE_DAMAGE) / 100)
@@ -165,50 +177,24 @@
 			check1d = 1 - (H.getarmor(null, PALE_DAMAGE) / 100)
 		if(H.job)
 			check1e = H.job
-		to_chat(user, "<span class='notice'>[check1e] [H] [H.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
 	else
-		var/mob/living/simple_animal/hostile/mon = M
-		if((mon.status_flags & GODMODE))
-			return
-		check1a = mon.damage_coeff[RED_DAMAGE]
-		check1b = mon.damage_coeff[WHITE_DAMAGE]
-		check1c = mon.damage_coeff[BLACK_DAMAGE]
-		check1d = mon.damage_coeff[PALE_DAMAGE]
-		to_chat(user, "<span class='notice'>[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d].</span>")
-		deep_scan_log = "[mon] [mon.maxHealth] [check1a] [check1b] [check1c] [check1d]"
-	playsound(get_turf(M), 'sound/misc/box_deploy.ogg', 5, 0, 3)
+		var/mob/living/simple_animal/mon = target
+		if(!(mon.status_flags & GODMODE))
+			if(!mon.HasDamageMod(/datum/dc_change/scanned))
+				mon.AddModifier(/datum/dc_change/scanned)
+				to_chat(user, "<span class='nicegreen'>[mon]'s weakness was analyzed!</span>")
+		check1a = mon.damage_coeff.getCoeff(RED_DAMAGE)
+		check1b = mon.damage_coeff.getCoeff(WHITE_DAMAGE)
+		check1c = mon.damage_coeff.getCoeff(BLACK_DAMAGE)
+		check1d = mon.damage_coeff.getCoeff(PALE_DAMAGE)
+		if(isabnormalitymob(mon))
+			var/mob/living/simple_animal/hostile/abnormality/abno = mon
+			check1e = THREAT_TO_NAME[abno.threat_level]
 
-
-//Kcorp Syringes
-/obj/item/ksyringe
-	name = "k-corp nanomachine ampule"
-	desc = "A syringe of kcorp healing nanobots."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe"
-	slot_flags = ITEM_SLOT_POCKETS
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/ksyringe/attack_self(mob/living/user)
-	..()
-	to_chat(user, "<span class='notice'>You inject the syringe and instantly feel better.</span>")
-	user.adjustBruteLoss(-40)
-	qdel(src)
-
-/obj/item/krevive
-	name = "k-corp nanomachine ampule"
-	desc = "A syringe of kcorp healing nanobots."
-	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "kcorp_syringe"
-	slot_flags = ITEM_SLOT_POCKETS
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/krevive/attack(mob/living/M, mob/user)
-	to_chat(user, "<span class='notice'>You inject the syringe.</span>")
-	if(M.revive(full_heal = TRUE, admin_revive = TRUE))
-		M.revive(full_heal = TRUE, admin_revive = TRUE)
-		M.grab_ghost(force = TRUE) // even suicides
-		to_chat(M, "<span class='notice'>You rise with a start, you're alive!!!</span>")
-	qdel(src)
+	var/output = "--------------------\n[check1e ? check1e+" [target]" : "[target]"]\nHP [target.health]/[target.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n--------------------"
+	to_chat(user, "<span class='notice'>[output]</span>")
+	deep_scan_log = output
+	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
 
 //General Invitation
@@ -248,11 +234,17 @@
 
 
 //**RAK Regenerator Augmentation Kit.**
+#define RAK_HP_MODE "HP mode"
+#define RAK_SP_MODE "SP mode"
+#define RAK_DUAL_MODE "Dual mode"
+#define RAK_CRIT_MODE "Crit mode"
+#define RAK_BURST_MODE "Burst mode"
 /obj/item/safety_kit
 	name = "Safety Department Regenerator Augmentation Kit"
 	desc = "R.A.K. for short, it's utilized to enhance and modify regenerators for short periods of time."
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "sdrak"
+	inhand_icon_state = "sdrak"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
 	usesound = 'sound/items/crowbar.ogg'
@@ -268,43 +260,101 @@
 	attack_verb_simple = list("attack", "bash", "batter", "bludgeon", "whack")
 	toolspeed = 1
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 100)
-	var/mode = 1
+	var/mode = RAK_HP_MODE
 
 /obj/item/safety_kit/attack_self(mob/user)
 	if(!clerk_check(user))
 		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
 		return
+	ChangeMode(user)
+	return
+
+/obj/item/safety_kit/attack_obj(obj/O, mob/living/user)
+	if(!istype(O, /obj/machinery/regenerator))
+		return ..()
+	Augment(O, user)
+
+/obj/item/safety_kit/proc/Augment(obj/machinery/regenerator/R, mob/living/user)
+	. = FALSE
+	if(!clerk_check(user))
+		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
+		return
+	if(R.modified)
+		to_chat(user, "<span class='notice'>The [R] is already modified.</span>")
+		return
+	to_chat(user, "<span class='notice'>You begin tinkering with the [R].</span>")
+	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, .proc/ModifiedCheck, R)))
+		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
+		return
+	R.modified = TRUE
 	switch(mode)
-		if(1)
-			mode = 2
+		if(RAK_HP_MODE)
+			R.HpFocus(user)
+		if(RAK_SP_MODE)
+			R.SpFocus(user)
+		if(RAK_DUAL_MODE)
+			R.EqualFocus(user)
+		if(RAK_CRIT_MODE)
+			R.CriticalFocus(user)
+		if(RAK_BURST_MODE)
+			R.OverloadHeal(user)
+	return TRUE
+
+/obj/item/safety_kit/proc/ModifiedCheck(obj/machinery/regenerator/R)
+	return !R.modified
+
+/obj/item/safety_kit/proc/ChangeMode(mob/user)
+	var/list/choice_list = list()
+	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE))
+		choice_list[modes] = image(icon = icon, icon_state = modes+"_rak")
+	choice_list[RAK_BURST_MODE] = image(icon = icon, icon_state = "sdrak")
+
+	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 42, require_near = TRUE)
+	if(!choice || !check_menu(user))
+		return
+
+	mode = choice
+
+	if(mode != RAK_BURST_MODE)
+		icon_state = mode+"_rak"
+	else
+		icon_state = "sdrak"
+
+	switch(mode)
+		if(RAK_HP_MODE)
+			to_chat(user, "<span class='notice'>You will now improve the HP Regeneration of the Regenerator at the cost of the SP Regeneration.</span>")
+		if(RAK_SP_MODE)
 			to_chat(user, "<span class='notice'>You will now improve the SP Regeneration of the Regenerator at the cost of the HP Regeneration.</span>")
-		if(2)
-			mode = 3
+		if(RAK_DUAL_MODE)
 			to_chat(user, "<span class='notice'>You will now slightly improve the overall performance of the Regenerator.</span>")
-		if(3)
-			mode = 4
+		if(RAK_CRIT_MODE)
 			to_chat(user, "<span class='notice'>You will now enable the Regenerator to heal those in critical conditions at the cost of overall performance.</span>")
-		if(4)
-			mode = 5
+		if(RAK_BURST_MODE)
 			to_chat(user, "<span class='notice'>You will now cause the Regenerator to heal a large burst of HP and SP.</span>")
 			to_chat(user, "<span class='warning'>This will cause the Regenerator to go on a cooldown period afterwards.</span>")
-		if(5)
-			mode = 1
-			to_chat(user, "<span class='notice'>You will now improve the HP Regeneration of the Regenerator at the cost of the SP Regeneration.</span>")
-	return
+
+
+/obj/item/safety_kit/proc/check_menu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
 
 /obj/item/safety_kit/examine(mob/user)
 	. = ..()
 	switch(mode)
-		if(1)
+		if(RAK_HP_MODE)
 			. += "Currently set to sacrifice SP Regeneration for HP Regeneration."
-		if(2)
+		if(RAK_SP_MODE)
 			. += "Currently set to sacrifice HP Regeneration for SP Regeneration."
-		if(3)
+		if(RAK_DUAL_MODE)
 			. += "Currently set to improve overall Regenerator functions."
-		if(4)
+		if(RAK_CRIT_MODE)
 			. += "Currently set to allow healing of those in Critical Condition."
-		if(5)
+		if(RAK_BURST_MODE)
 			. += "Currently set to cause the Regenerator to burst recovery."
 			. += "<span class='warning'>This will cause the Regenerator to go on a cooldown period afterwards.</span>"
 
@@ -313,8 +363,11 @@
 		return TRUE
 	return FALSE
 
-
-
+#undef RAK_HP_MODE
+#undef RAK_SP_MODE
+#undef RAK_DUAL_MODE
+#undef RAK_CRIT_MODE
+#undef RAK_BURST_MODE
 
 //Tool E.G.O extractor
 /obj/item/tool_extractor
@@ -390,3 +443,60 @@
 	stored_enkephalin -= enkephalin_cost
 	to_chat(usr, "<span class='notice'>E.G.O extracted successfully!</span>")
 	return
+
+//Lobotomizer
+/obj/item/lobotomizer
+	name = "Lobotomizer"
+	desc = "An experimental tool designed to automatically excise damaged parts of one's brain. Due to its █████, the tool gained sentience and is only interested in brains with tumor."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "lobotomizer"
+	var/lobotomizing = FALSE
+	var/datum/looping_sound/lobotomizer/soundloop
+
+/obj/item/lobotomizer/attack_self(mob/living/carbon/human/user)
+	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)) || lobotomizing)
+		to_chat(user, "<span class='warning'>The lobotomizer completely ignores you.</span>")
+		return
+	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
+	ADD_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
+	soundloop = new(list(src), FALSE)
+	soundloop.start()
+	lobotomizing = TRUE
+	for(var/i = 1 to 20) //2 minutes to clear severe traumas
+		if(user.is_working) // No, you can't just cheese this process
+			to_chat(user, "<span class='warning'>The lobotomizer seems to be more interested in the abnormality.</span>")
+			EndLoop(user)
+			return
+		if(do_after(user, 6 SECONDS, src))
+			user.visible_message("<span class='warning'>The lobotomizer viciously probes [user]'s brain!</span>")
+			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -10)
+			user.adjustSanityLoss(5)
+			user.adjustBruteLoss(5)
+			user.emote("scream")
+			user.Jitter(5)
+		else
+			to_chat(user, "<span class='warning'>The process was stopped midway, you can feel dissapointment emanating from the lobotomizer.</span>")
+			EndLoop(user)
+			return
+		if(i == 10) //Cures mild traumas in 1 minute
+			user.cure_all_traumas(TRAUMA_RESILIENCE_BASIC)
+	user.cure_all_traumas(TRAUMA_RESILIENCE_LOBOTOMY)
+	EndLoop(user)
+
+/obj/item/lobotomizer/proc/EndLoop(mob/living/user)
+	user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
+	REMOVE_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
+	REMOVE_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
+	lobotomizing = FALSE
+	QDEL_NULL(soundloop)
+
+/datum/looping_sound/lobotomizer
+	mid_sounds = list(
+		'sound/effects/wounds/blood3.ogg',
+		'sound/weapons/circsawhit.ogg',
+		'sound/weapons/bladeslice.ogg',
+		'sound/weapons/bite.ogg'
+	)
+	mid_length = 2 SECONDS
+	volume = 20

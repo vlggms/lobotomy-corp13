@@ -63,7 +63,6 @@
 	pixel_x = -16
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20
 	melee_damage_upper = 30
@@ -93,11 +92,11 @@
 
 /datum/status_effect/pranked/on_creation(mob/living/new_owner, ...)
 	duration = rand(1800,2400)
-	. = ..()
+	return ..()
 
 /datum/status_effect/pranked/on_apply()
 	if(get_attribute_level(owner, PRUDENCE_ATTRIBUTE) >= 80)
-		to_chat(owner, "<span class='warning'>You feel something slipped into your pocket.</span>")
+		to_chat(owner, span_warning("You feel something slipped into your pocket."))
 	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/WorkCheck)
 	return ..()
 
@@ -115,7 +114,7 @@
 				prank_overlay.mouse_opacity = 0
 				prank_overlay.vis_flags = VIS_INHERIT_ID
 				prank_overlay.alpha = 0
-				to_chat(L, "<span class='danger'>Your heart-shaped present begins to crack...</span>")
+				to_chat(L, span_danger("Your heart-shaped present begins to crack..."))
 				animate(prank_overlay, alpha = 255, time = (duration - world.time))
 				L.vis_contents += prank_overlay
 
@@ -126,7 +125,7 @@
 	if(duration < world.time) //if prank removed due to it expiring
 		if(ishuman(owner))
 			var/mob/living/carbon/human/L = owner
-			to_chat(L, "<span class='userdanger'>You feel something deep in your body explode!</span>")
+			to_chat(L, span_userdanger("You feel something deep in your body explode!"))
 			L.vis_contents -= prank_overlay
 			var/location = get_turf(L)
 			new /mob/living/simple_animal/hostile/gift(location)
