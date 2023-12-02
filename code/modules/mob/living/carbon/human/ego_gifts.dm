@@ -1026,6 +1026,13 @@
 	slot = HELMET
 	var/ear_overlay
 
+/datum/ego_gifts/sunshower
+	name = "Sunshower"
+	icon_state = "sunshower"
+	temperance_bonus = 10
+	justice_bonus = -5
+	prudence_bonus = -5
+
 /datum/ego_gifts/hypocrisy/Initialize(mob/living/carbon/human/user) //have to make a new initialize since the previous one both adds stats and the normal overlay.
 	user.ego_gift_list[src.slot] = src
 	var/mutable_appearance/colored_overlay = mutable_appearance(src.icon, src.icon_state, src.layer)

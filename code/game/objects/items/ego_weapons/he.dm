@@ -1748,6 +1748,7 @@
 
 /obj/item/ego_weapon/nixie/get_clamped_volume()
 	return 50
+
 /obj/item/ego_weapon/sunshower
 	name = "Sunshower"
 	desc = "A tattered and worn umbrella, the tip is quite sharp."
@@ -1759,6 +1760,19 @@
 	attack_verb_continuous = list("Thwacks", "Stabs", "Bashes")
 	attack_verb_simple = list("Thwack", "Stab")
 	hitsound = 'placeholder'
+	return
+
+/obj/item/ego_weapon/sunshower //TD
+	name = "sunshower"
+	desc = "I cannot protect you from this rain, but I can gaurd you from false kindness."
+	icon_state = "sunshower"
+	force = 30
+	attack_speed = 0.5
+	damtype = BLACK_DAMAGE
+	armortype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'placeholder-AKA-REMEMBER TO ACTAULLY PUT A FILE IN, IM LOOKING AT YOU FUTURE ME.
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
