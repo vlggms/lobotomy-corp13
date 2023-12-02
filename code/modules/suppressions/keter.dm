@@ -162,7 +162,7 @@
 	SSlobotomy_corp.core_suppression = src
 
 /datum/suppression/combination/keter_day48/End(silent = FALSE)
-	var/blurb_text = "You willreach tomorrow. You can overcome this regret and atonement."
+	var/blurb_text = "You will reach tomorrow. You can overcome this regret and atonement."
 	INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2")
 	return ..()
 
