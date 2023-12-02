@@ -281,7 +281,7 @@
 		return
 	if(!istype(datum_reference))
 		return
-	A = new(get_turf(src))
+	A = new A(get_turf(src))
 	A.x += x_offset
 	A.y += y_offset
 	// We put it in datum ref for malicious purposes
