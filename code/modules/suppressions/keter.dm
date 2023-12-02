@@ -94,9 +94,10 @@
 	I.gibberish_value_increase = 10
 	running_cores += I
 	running_cores += new /datum/suppression/safety
-	// More stat reductions
+	// More stat reductions at the start, but gets reverted over time
 	var/datum/suppression/training/T = new
-	T.attribute_debuff_count_starting = -20
+	T.attribute_debuff_count_starting = -60
+	T.attribute_debuff_count = 10
 	running_cores += T
 	// And then start them all
 	for(var/datum/suppression/S in running_cores)
