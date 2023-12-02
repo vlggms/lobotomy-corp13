@@ -1764,7 +1764,7 @@
 
 /obj/item/ego_weapon/sunshower //TD
 	name = "sunshower"
-	desc = "I cannot protect you from this rain, but I can gaurd you from false kindness."
+	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
 	icon_state = "sunshower"
 	force = 30
 	attack_speed = 0.5
@@ -1772,7 +1772,7 @@
 	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
-	hitsound = 'placeholder-AKA-REMEMBER TO ACTAULLY PUT A FILE IN, IM LOOKING AT YOU FUTURE ME.
+	hitsound = 'sound/weapons/ego/spear1.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
