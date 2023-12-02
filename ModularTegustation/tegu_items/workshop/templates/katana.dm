@@ -23,17 +23,17 @@
 		return
 	ready = FALSE
 	user.Immobilize(attack_speed*attack_speed*10)
-	to_chat(user, "<span class='userdanger'>From moonlight.</span>")
+	to_chat(user, span_userdanger("From moonlight."))
 	force*=2
 	addtimer(CALLBACK(src, .proc/Return, user), attack_speed*attack_speed*30)
 
 /obj/item/ego_weapon/template/katana/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(force != initial(force))
-		to_chat(user, "<span class='userdanger'>Over the sea.</span>")
+		to_chat(user, span_userdanger("Over the sea."))
 		force = initial(force)
 
 /obj/item/ego_weapon/template/katana/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
-	to_chat(user, "<span class='notice'>Your blade is ready.</span>")
+	to_chat(user, span_notice("Your blade is ready."))

@@ -93,7 +93,7 @@
 //What happens when you push your limits.
 /obj/item/workshop_mod/vile/proc/Consequences(mob/living/user)
 	user.adjustRedLoss(50)
-	user.visible_message("<span class='warning'>Chunks of [user] dissolve into mist!</span>", "<span class='warning'>Chunks of your flesh dissolve into mist!</span>")
+	user.visible_message(span_warning("Chunks of [user] dissolve into mist!"), span_warning("Chunks of your flesh dissolve into mist!"))
 
 //For adjusting the numbers.
 /obj/item/workshop_mod/vile/proc/AdjustBalance(amount, mob/living/user)

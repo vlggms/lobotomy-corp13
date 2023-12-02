@@ -7,7 +7,7 @@
 	var/amount = 1
 
 /obj/item/attribute_increase/attack_self(mob/living/carbon/human/user)
-	to_chat(user, "<span class='nicegreen'>You suddenly feel different.</span>")
+	to_chat(user, span_nicegreen("You suddenly feel different."))
 	user.adjust_all_attribute_levels(amount)
 	qdel(src)
 
@@ -48,11 +48,11 @@
 
 /obj/item/limit_increase/attack_self(mob/living/carbon/human/user)
 	if(user?.mind?.assigned_role in allowed_roles)
-		to_chat(user, "<span class='nicegreen'>You feel like you can become even more powerful.</span>")
+		to_chat(user, span_nicegreen("You feel like you can become even more powerful."))
 		user.set_attribute_limit(amount)
 		qdel(src)
 		return
-	to_chat(user, "<span class='notice'>This is not for you.</span>")
+	to_chat(user, span_notice("This is not for you."))
 	return
 
 //Officer limit increase.

@@ -9,7 +9,7 @@
 	var/mode = 1
 
 /obj/item/pet_whistle/attack_self(mob/living/carbon/human/user)
-	to_chat(user, "<span class='nicegreen'>You blow the [src].</span>")
+	to_chat(user, span_nicegreen("You blow the [src]."))
 	playsound(get_turf(user), 'sound/effects/whistlereset.ogg', 10, 3, 3)
 	for(var/mob/living/simple_animal/SA in oview(get_turf(user), 7))
 		if(!SA.client && SA.stat != DEAD && !anchored)
@@ -44,7 +44,7 @@
 	icon_state = "gangtool-yellow"
 
 /obj/item/lc13_abnospawn/attack_self(mob/living/carbon/human/user)
-	to_chat(user, "<span class='nicegreen'>You feel that you now have more time.</span>")
+	to_chat(user, span_nicegreen("You feel that you now have more time."))
 	SSabnormality_queue.next_abno_spawn_time *= 1.5
 	qdel(src)
 
@@ -75,26 +75,26 @@
 	..()
 	switch(commandtype)
 		if(0) //if 0 change to 1
-			to_chat(user, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
+			to_chat(user, span_notice("MOVE IMAGE INITIALIZED."))
 			commandtype += 1
 		if(1)
-			to_chat(user, "<span class='notice'>WARN IMAGE INITIALIZED.</span>")
+			to_chat(user, span_notice("WARN IMAGE INITIALIZED."))
 			commandtype += 1
 		if(2)
-			to_chat(user, "<span class='notice'>GUARD IMAGE INITIALIZED.</span>")
+			to_chat(user, span_notice("GUARD IMAGE INITIALIZED."))
 			commandtype += 1
 		if(3)
-			to_chat(user, "<span class='notice'>HEAL IMAGE INITIALIZED.</span>")
+			to_chat(user, span_notice("HEAL IMAGE INITIALIZED."))
 			commandtype += 1
 		if(4)
-			to_chat(user, "<span class='notice'>FIGHT_LIGHT IMAGE INITIALIZED.</span>")
+			to_chat(user, span_notice("FIGHT_LIGHT IMAGE INITIALIZED."))
 			commandtype += 1
 		if(5)
-			to_chat(user, "<span class='notice'>FIGHT_HEAVY IMAGE INITIALIZED.</span>")
+			to_chat(user, span_notice("FIGHT_HEAVY IMAGE INITIALIZED."))
 			commandtype += 1
 		else
 			commandtype -= 5
-			to_chat(user, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
+			to_chat(user, span_notice("MOVE IMAGE INITIALIZED."))
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
 /obj/item/commandprojector/afterattack(atom/target, mob/user, proximity_flag)
@@ -118,7 +118,7 @@
 			if(6)
 				new /obj/effect/temp_visual/commandFightB(get_turf(target))
 			else
-				to_chat(user, "<span class='warning'>CALIBRATION ERROR.</span>")
+				to_chat(user, span_warning("CALIBRATION ERROR."))
 		cooldown = world.time + commanddelay
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
@@ -144,7 +144,7 @@
 /obj/item/deepscanner/examine(mob/living/M)
 	. = ..()
 	if(deep_scan_log)
-		to_chat(M, "<span class='notice'>Previous Scan:\n[deep_scan_log]</span>")
+		to_chat(M, span_notice("Previous Scan:\n[deep_scan_log]"))
 
 /obj/item/deepscanner/attack(mob/living/M, mob/user)
 	return
@@ -158,7 +158,7 @@
 /obj/item/deepscanner/proc/Scan(mob/living/target, mob/user)
 	if(!isanimal(target) && !ishuman(target))
 		return
-	user.visible_message("<span class='notice'>[user] takes a tool out of [src] and begins scanning [target].</span>", "<span class='notice'>You begin scanning [target].</span>")
+	user.visible_message(span_notice("[user] takes a tool out of [src] and begins scanning [target]."), span_notice("You begin scanning [target]."))
 	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, target, 7)))
 		return
@@ -182,7 +182,7 @@
 		if(!(mon.status_flags & GODMODE))
 			if(!mon.HasDamageMod(/datum/dc_change/scanned))
 				mon.AddModifier(/datum/dc_change/scanned)
-				to_chat(user, "<span class='nicegreen'>[mon]'s weakness was analyzed!</span>")
+				to_chat(user, span_nicegreen("[mon]'s weakness was analyzed!"))
 		check1a = mon.damage_coeff.getCoeff(RED_DAMAGE)
 		check1b = mon.damage_coeff.getCoeff(WHITE_DAMAGE)
 		check1c = mon.damage_coeff.getCoeff(BLACK_DAMAGE)
@@ -192,7 +192,7 @@
 			check1e = THREAT_TO_NAME[abno.threat_level]
 
 	var/output = "--------------------\n[check1e ? check1e+" [target]" : "[target]"]\nHP [target.health]/[target.maxHealth]\nR [check1a] W [check1b] B [check1c] P [check1d]\n--------------------"
-	to_chat(user, "<span class='notice'>[output]</span>")
+	to_chat(user, span_notice("[output]"))
 	deep_scan_log = output
 	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 
@@ -206,13 +206,13 @@
 
 /obj/item/invitation/attack(mob/living/M, mob/user)
 	if(isabnormalitymob(M) && !(M.status_flags & GODMODE) && !(M.has_status_effect(/datum/status_effect/invitation)))
-		to_chat(user, "<span class='nicegreen'>You blow the [src].</span>")
-		M.visible_message("<span class='notice'>[user] sticks a general invitation on [M]!</span>")
+		to_chat(user, span_nicegreen("You blow the [src]."))
+		M.visible_message(span_notice("[user] sticks a general invitation on [M]!"))
 		M.apply_status_effect(/datum/status_effect/invitation)
 		playsound(get_turf(M), 'sound/abnormalities/book/scribble.ogg', 50, TRUE)
 		qdel(src)
 	else
-		M.visible_message("<span class='warning'>[M] refuses to sign the general invitation!</span>")
+		M.visible_message(span_warning("[M] refuses to sign the general invitation!"))
 
 /datum/status_effect/invitation
 	id = "general invitation"
@@ -264,7 +264,7 @@
 
 /obj/item/safety_kit/attack_self(mob/user)
 	if(!clerk_check(user))
-		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
+		to_chat(user, span_warning("You don't know how to use this."))
 		return
 	ChangeMode(user)
 	return
@@ -277,12 +277,12 @@
 /obj/item/safety_kit/proc/Augment(obj/machinery/regenerator/R, mob/living/user)
 	. = FALSE
 	if(!clerk_check(user))
-		to_chat(user,"<span class='warning'>You don't know how to use this.</span>")
+		to_chat(user, span_warning("You don't know how to use this."))
 		return
 	if(R.modified)
-		to_chat(user, "<span class='notice'>The [R] is already modified.</span>")
+		to_chat(user, span_notice("The [R] is already modified."))
 		return
-	to_chat(user, "<span class='notice'>You begin tinkering with the [R].</span>")
+	to_chat(user, span_notice("You begin tinkering with the [R]."))
 	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, .proc/ModifiedCheck, R)))
 		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
 		return
@@ -322,16 +322,16 @@
 
 	switch(mode)
 		if(RAK_HP_MODE)
-			to_chat(user, "<span class='notice'>You will now improve the HP Regeneration of the Regenerator at the cost of the SP Regeneration.</span>")
+			to_chat(user, span_notice("You will now improve the HP Regeneration of the Regenerator at the cost of the SP Regeneration."))
 		if(RAK_SP_MODE)
-			to_chat(user, "<span class='notice'>You will now improve the SP Regeneration of the Regenerator at the cost of the HP Regeneration.</span>")
+			to_chat(user, span_notice("You will now improve the SP Regeneration of the Regenerator at the cost of the HP Regeneration."))
 		if(RAK_DUAL_MODE)
-			to_chat(user, "<span class='notice'>You will now slightly improve the overall performance of the Regenerator.</span>")
+			to_chat(user, span_notice("You will now slightly improve the overall performance of the Regenerator."))
 		if(RAK_CRIT_MODE)
-			to_chat(user, "<span class='notice'>You will now enable the Regenerator to heal those in critical conditions at the cost of overall performance.</span>")
+			to_chat(user, span_notice("You will now enable the Regenerator to heal those in critical conditions at the cost of overall performance."))
 		if(RAK_BURST_MODE)
-			to_chat(user, "<span class='notice'>You will now cause the Regenerator to heal a large burst of HP and SP.</span>")
-			to_chat(user, "<span class='warning'>This will cause the Regenerator to go on a cooldown period afterwards.</span>")
+			to_chat(user, span_notice("You will now cause the Regenerator to heal a large burst of HP and SP."))
+			to_chat(user, span_warning("This will cause the Regenerator to go on a cooldown period afterwards."))
 
 
 /obj/item/safety_kit/proc/check_menu(mob/user)
@@ -356,7 +356,7 @@
 			. += "Currently set to allow healing of those in Critical Condition."
 		if(RAK_BURST_MODE)
 			. += "Currently set to cause the Regenerator to burst recovery."
-			. += "<span class='warning'>This will cause the Regenerator to go on a cooldown period afterwards.</span>"
+			. += span_warning("This will cause the Regenerator to go on a cooldown period afterwards.")
 
 /obj/item/safety_kit/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
@@ -393,7 +393,7 @@
 	if(!drawn_selected)
 		return
 	drawn_amount = drawn_selected
-	to_chat(user, "<span class='notice'>[src]'s transfer rate is now [drawn_amount] enkephalin.</span>")
+	to_chat(user, span_notice("[src]'s transfer rate is now [drawn_amount] enkephalin."))
 	return
 
 
@@ -404,7 +404,7 @@
 		if(stored_enkephalin + drawn_amount > maximum_enkephalin)
 			var/drawn_total = (maximum_enkephalin - stored_enkephalin)//top off without going over the max
 			if(drawn_total == 0)//if the stored enkephalin is already at max
-				to_chat(usr, "<span class='warning'>[src] is at full capacity.</span>")
+				to_chat(usr, span_warning("[src] is at full capacity."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return
 			stored_enkephalin += drawn_total
@@ -413,7 +413,7 @@
 			to_chat(usr, "Transferred [drawn_total] enkephalin into [src].")
 			return
 		if(SSlobotomy_corp.available_box < drawn_amount)
-			to_chat(usr, "<span class='warning'>There is not enough enkephalin stored for this operation.</span>")
+			to_chat(usr, span_warning("There is not enough enkephalin stored for this operation."))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 			return
 		stored_enkephalin += drawn_amount
@@ -437,11 +437,11 @@
 			enkephalin_cost *= 2
 	if(enkephalin_cost > stored_enkephalin)
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
-		to_chat(usr, "<span class='warning'>There is not enough enkephalin in the device for this operation.</span>")
+		to_chat(usr, span_warning("There is not enough enkephalin in the device for this operation."))
 		return
 	new loot(get_turf(src))
 	stored_enkephalin -= enkephalin_cost
-	to_chat(usr, "<span class='notice'>E.G.O extracted successfully!</span>")
+	to_chat(usr, span_notice("E.G.O extracted successfully!"))
 	return
 
 //Lobotomizer
@@ -455,7 +455,7 @@
 
 /obj/item/lobotomizer/attack_self(mob/living/carbon/human/user)
 	if(!(user.has_quirk(/datum/quirk/brainproblems)) || !(istype(user)) || lobotomizing)
-		to_chat(user, "<span class='warning'>The lobotomizer completely ignores you.</span>")
+		to_chat(user, span_warning("The lobotomizer completely ignores you."))
 		return
 	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "lobotomizer", -HALO_LAYER))
 	ADD_TRAIT(user, TRAIT_TUMOR_SUPPRESSED, TRAIT_GENERIC)
@@ -465,18 +465,18 @@
 	lobotomizing = TRUE
 	for(var/i = 1 to 20) //2 minutes to clear severe traumas
 		if(user.is_working) // No, you can't just cheese this process
-			to_chat(user, "<span class='warning'>The lobotomizer seems to be more interested in the abnormality.</span>")
+			to_chat(user, span_warning("The lobotomizer seems to be more interested in the abnormality."))
 			EndLoop(user)
 			return
 		if(do_after(user, 6 SECONDS, src))
-			user.visible_message("<span class='warning'>The lobotomizer viciously probes [user]'s brain!</span>")
+			user.visible_message(span_warning("The lobotomizer viciously probes [user]'s brain!"))
 			user.adjustOrganLoss(ORGAN_SLOT_BRAIN, -10)
 			user.adjustSanityLoss(5)
 			user.adjustBruteLoss(5)
 			user.emote("scream")
 			user.Jitter(5)
 		else
-			to_chat(user, "<span class='warning'>The process was stopped midway, you can feel dissapointment emanating from the lobotomizer.</span>")
+			to_chat(user, span_warning("The process was stopped midway, you can feel dissapointment emanating from the lobotomizer."))
 			EndLoop(user)
 			return
 		if(i == 10) //Cures mild traumas in 1 minute
