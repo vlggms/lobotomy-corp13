@@ -17,21 +17,25 @@
 	var/datum/action/innate/managercommand/command
 	var/datum/action/innate/manager_track/follow
 	var/ammo = 6
-	var/maxAmmo = 5
+	var/max_ammo = 5
 	var/bullettype = 1
 	var/commandtype = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
+	//Used for limiting the amount of commands that can exist.
+	var/current_commands = 0
+	var/max_commands = 10
 	///Variable stolen from AI. Essential for tracking feature.
 	var/static/datum/trackable/track = new
-	var/static/list/commandtypes = typecacheof(list(
-		/obj/effect/temp_visual/commandMove,
-		/obj/effect/temp_visual/commandWarn,
-		/obj/effect/temp_visual/commandGaurd,
-		/obj/effect/temp_visual/commandHeal,
-		/obj/effect/temp_visual/commandFightA,
-		/obj/effect/temp_visual/commandFightB
-		))
+	//Command Types sorted in order.
+	var/list/commandtypes = list(
+		/obj/effect/temp_visual/HoloCommand/commandMove,
+		/obj/effect/temp_visual/HoloCommand/commandWarn,
+		/obj/effect/temp_visual/HoloCommand/commandGaurd,
+		/obj/effect/temp_visual/HoloCommand/commandHeal,
+		/obj/effect/temp_visual/HoloCommand/commandFightA,
+		/obj/effect/temp_visual/HoloCommand/commandFightB
+		)
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	var/list/bullet_types = list(
 		HP_BULLET = list("name" = "HP-N", "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
@@ -58,7 +62,7 @@
 	follow = new
 
 	command_cooldown = world.time
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/recharge_meltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/RechargeMeltdown)
 
 /obj/machinery/computer/camera_advanced/manager/Destroy()
 	GLOB.manager_consoles -= src
@@ -104,13 +108,13 @@
 		swap.selected_abno = null
 		actions += swap
 
-	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_hotkey_click) //wanted to use shift click but shift click only allowed applying the effects to my player.
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
+	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/HotkeyClick) //wanted to use shift click but shift click only allowed applying the effects to my player.
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/altClick)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
 	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, .proc/OnCtrlShiftClick)
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
-	if(istype(O, /obj/item/managerbullet) && ammo <= maxAmmo)
+	if(istype(O, /obj/item/managerbullet) && ammo <= max_ammo)
 		ammo++
 		to_chat(user, "<span class='notice'>You load [O] in to the [src]. It now has [ammo] bullets stored.</span>")
 		playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
@@ -119,12 +123,10 @@
 	..()
 
 /obj/machinery/computer/camera_advanced/manager/remove_eye_control(mob/living/user)
-	UnregisterSignal(user, COMSIG_MOB_CTRL_CLICKED)
-	UnregisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT)
-	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
+	UnregisterSignal(user, list(COMSIG_MOB_CTRL_CLICKED, COMSIG_XENO_TURF_CLICK_ALT, COMSIG_MOB_SHIFTCLICKON, COMSIG_MOB_CTRLSHIFTCLICKON))
 	..()
 
-/obj/machinery/computer/camera_advanced/manager/proc/on_hotkey_click(datum/source, atom/clicked_atom) //system control for hotkeys
+/obj/machinery/computer/camera_advanced/manager/proc/HotkeyClick(datum/source, atom/clicked_atom) //system control for hotkeys
 	SIGNAL_HANDLER
 
 	// No target :(
@@ -142,10 +144,10 @@
 		var/success = FALSE
 		for(var/mob/living/L in range(SSlobotomy_corp.manager_bullet_area, clicked_atom))
 			if(ishuman(clicked_atom))
-				clickedemployee(source, clicked_atom)
+				clickedEmployee(source, clicked_atom)
 				success = TRUE
 			if(ishostile(clicked_atom))
-				clickedabno(source, clicked_atom)
+				clickedAbno(source, clicked_atom)
 				success = TRUE
 		if(success)
 			ammo--
@@ -153,15 +155,15 @@
 
 	// Non-AOE
 	if(ishuman(clicked_atom))
-		clickedemployee(source, clicked_atom)
+		clickedEmployee(source, clicked_atom)
 		ammo--
 		return
 	if(ishostile(clicked_atom))
-		clickedabno(source, clicked_atom)
+		clickedAbno(source, clicked_atom)
 		ammo--
 		return
 
-/obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/employee) //contains carbon copy code of fire action
+/obj/machinery/computer/camera_advanced/manager/proc/clickedEmployee(mob/living/owner, mob/living/carbon/employee) //contains carbon copy code of fire action
 	var/mob/living/carbon/human/H = employee
 	switch(bullettype)
 		if(HP_BULLET)
@@ -188,7 +190,7 @@
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 
-/obj/machinery/computer/camera_advanced/manager/proc/clickedabno(mob/living/owner, mob/living/simple_animal/hostile/critter)
+/obj/machinery/computer/camera_advanced/manager/proc/clickedAbno(mob/living/owner, mob/living/simple_animal/hostile/critter)
 	if(ammo >= 1)
 		var/mob/living/simple_animal/hostile/abnormality/ABNO = critter
 		if(bullettype == 7)
@@ -234,30 +236,24 @@
 
 		to_chat(user, message)
 
-/obj/machinery/computer/camera_advanced/manager/proc/on_alt_click(mob/living/user, turf/open/T)
+/obj/machinery/computer/camera_advanced/manager/proc/altClick(mob/living/user, turf/open/T)
 	var/mob/living/C = user
 	if(command_cooldown <= world.time)
+		for(var/obj/effect/temp_visual/HoloCommand/V in T)
+			qdel(V)
+			return
+		if(current_commands >= max_commands)
+			to_chat(C, "<span class='warning'>COMMAND CAPACITY REACHED.</span>")
+			return
 		playsound(get_turf(src), 'sound/machines/terminal_success.ogg', 8, 3, 3)
 		playsound(get_turf(T), 'sound/machines/terminal_success.ogg', 8, 3, 3)
-		for(var/obj/effect/temp_visual/V in range(T, 0))
-			if(is_type_in_typecache(V, commandtypes))
-				qdel(V)
-				return
-		switch(commandtype)
-			if(1)
-				new /obj/effect/temp_visual/commandMove(get_turf(T))
-			if(2)
-				new /obj/effect/temp_visual/commandWarn(get_turf(T))
-			if(3)
-				new /obj/effect/temp_visual/commandGaurd(get_turf(T))
-			if(4)
-				new /obj/effect/temp_visual/commandHeal(get_turf(T))
-			if(5)
-				new /obj/effect/temp_visual/commandFightA(get_turf(T))
-			if(6)
-				new /obj/effect/temp_visual/commandFightB(get_turf(T))
-			else
-				to_chat(C, "<span class='warning'>CALIBRATION ERROR.</span>")
+		if(commandtype > 0 && commandtype <= 6)
+			var/thing_to_spawn = commandtypes[commandtype]
+			var/thing_spawned = new thing_to_spawn(get_turf(T))
+			current_commands++
+			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, .proc/ReduceCommandAmount)
+		else
+			to_chat(C, "<span class='warning'>ERROR: Calibration Faliure.</span>")
 		commandtimer()
 
 /obj/machinery/computer/camera_advanced/manager/proc/OnCtrlShiftClick(mob/living/user, atom/target)
@@ -265,6 +261,12 @@
 		return
 	swap.Activate(target)
 
+//Used in the tracking of existing commands.
+/obj/machinery/computer/camera_advanced/manager/proc/ReduceCommandAmount()
+	SIGNAL_HANDLER
+	current_commands--
+
+//Numerical Procs that alter variables
 /obj/machinery/computer/camera_advanced/manager/proc/commandtimer()
 	command_cooldown = world.time + command_delay
 	return
@@ -277,13 +279,14 @@
 	commandtype = commandtype + amount
 	return
 
-/obj/machinery/computer/camera_advanced/manager/proc/recharge_meltdown()
+/obj/machinery/computer/camera_advanced/manager/proc/RechargeMeltdown()
 	playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
-	maxAmmo += 0.25
-	ammo = maxAmmo
+	max_ammo += 0.25
+	ammo = max_ammo
 
-//Employee Tracking Code: Butchered AI Tracking
-
+/*--------------------------------------------\
+|Employee Tracking Code: Butchered AI Tracking|
+\--------------------------------------------*/
 //Shows a list of creatures that can be tracked.
 /obj/machinery/computer/camera_advanced/manager/proc/TrackableCreatures()
 	track.initialized = TRUE
@@ -454,6 +457,7 @@
 			X.altercommandtype(-5)
 			to_chat(owner, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon1
+	UpdateButtonIcon()
 
 /datum/action/innate/managercommand
 	name = "Deploy Command"
@@ -469,30 +473,7 @@
 	var/obj/machinery/computer/camera_advanced/manager/X = E.origin
 	var/cooldown = X.command_cooldown
 	if(cooldown <= world.time)
-		playsound(get_turf(C), 'sound/machines/terminal_success.ogg', 8, 3, 3)
-		playsound(get_turf(E), 'sound/machines/terminal_success.ogg', 8, 3, 3)
-		switch(X.commandtype)
-			if(1)
-				new /obj/effect/temp_visual/commandMove(get_turf(E))
-
-			if(2)
-				new /obj/effect/temp_visual/commandWarn(get_turf(E))
-
-			if(3)
-				new /obj/effect/temp_visual/commandGaurd(get_turf(E))
-
-			if(4)
-				new /obj/effect/temp_visual/commandHeal(get_turf(E))
-
-			if(5)
-				new /obj/effect/temp_visual/commandFightA(get_turf(E))
-
-			if(6)
-				new /obj/effect/temp_visual/commandFightB(get_turf(E))
-
-			else
-				to_chat(owner, "<span class='warning'>CALIBRATION ERROR.</span>")
-		X.commandtimer()
+		X.altClick(C, get_turf(E))
 
 //////////////
 // Unlockables
@@ -572,7 +553,9 @@
 #undef PALE_BULLET
 #undef YELLOW_BULLET
 
-//Manager Camera Tracking Code
+	/*---------------------------\
+	|Manager Camera Tracking Code|
+	\---------------------------*/
 /datum/action/innate/manager_track
 	name = "Follow Creature"
 	desc = "Track a creature."
@@ -609,7 +592,7 @@
 /obj/machinery/computer/camera_advanced/manager/sephirah //crude and lazy but i think it may work.
 	name = "sephirah camera console"
 	ammo = 0
-	maxAmmo = 0
+	max_ammo = 0
 
 /obj/machinery/computer/camera_advanced/manager/sephirah/Initialize(mapload)
 	. = ..()
@@ -642,11 +625,11 @@
 		follow.Grant(user)
 		actions += follow
 
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/on_alt_click)
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/altClick)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
 
-/obj/machinery/computer/camera_advanced/manager/sephirah/clickedemployee()
+/obj/machinery/computer/camera_advanced/manager/sephirah/clickedEmployee()
 	return
 
-/obj/machinery/computer/camera_advanced/manager/sephirah/recharge_meltdown()
+/obj/machinery/computer/camera_advanced/manager/sephirah/RechargeMeltdown()
 	return

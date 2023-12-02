@@ -62,14 +62,18 @@
 	var/commandtype = 1
 	var/commanddelay = 1.5 SECONDS
 	var/cooldown = 0
-	var/static/list/commandtypes = typecacheof(list(
-		/obj/effect/temp_visual/commandMove,
-		/obj/effect/temp_visual/commandWarn,
-		/obj/effect/temp_visual/commandGaurd,
-		/obj/effect/temp_visual/commandHeal,
-		/obj/effect/temp_visual/commandFightA,
-		/obj/effect/temp_visual/commandFightB
-		))
+	//Used for limiting the amount of commands that can exist.
+	var/current_commands = 0
+	var/max_commands = 5
+	//Command Types that can be deployed. Listed in order of commandtype.
+	var/list/commandtypes = list(
+		/obj/effect/temp_visual/HoloCommand/commandMove,
+		/obj/effect/temp_visual/HoloCommand/commandWarn,
+		/obj/effect/temp_visual/HoloCommand/commandGaurd,
+		/obj/effect/temp_visual/HoloCommand/commandHeal,
+		/obj/effect/temp_visual/HoloCommand/commandFightA,
+		/obj/effect/temp_visual/HoloCommand/commandFightB
+		)
 
 /obj/item/commandprojector/attack_self(mob/user)
 	..()
@@ -100,30 +104,25 @@
 /obj/item/commandprojector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(cooldown <= world.time)
-		for(var/obj/effect/temp_visual/V in range(get_turf(target), 0))
-			if(is_type_in_typecache(V, commandtypes))
-				qdel(V)
-				return
-		switch(commandtype)
-			if(1)
-				new /obj/effect/temp_visual/commandMove(get_turf(target))
-			if(2)
-				new /obj/effect/temp_visual/commandWarn(get_turf(target))
-			if(3)
-				new /obj/effect/temp_visual/commandGaurd(get_turf(target))
-			if(4)
-				new /obj/effect/temp_visual/commandHeal(get_turf(target))
-			if(5)
-				new /obj/effect/temp_visual/commandFightA(get_turf(target))
-			if(6)
-				new /obj/effect/temp_visual/commandFightB(get_turf(target))
-			else
-				to_chat(user, span_warning("CALIBRATION ERROR."))
+		for(var/obj/effect/temp_visual/HoloCommand/V in get_turf(target))
+			qdel(V)
+			return
+		if(current_commands >= max_commands)
+			to_chat(user, span_warning("COMMAND CAPACITY REACHED."))
+			return
+		if(commandtype > 0 && commandtype <= 6)
+			var/thing_to_spawn = commandtypes[commandtype]
+			var/thing_spawned = new thing_to_spawn(get_turf(target))
+			current_commands++
+			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, .proc/ReduceCommandAmount)
+		else
+			to_chat(user, span_warning("CALIBRATION ERROR."))
 		cooldown = world.time + commanddelay
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
-
-
+/obj/item/commandprojector/proc/ReduceCommandAmount()
+	SIGNAL_HANDLER
+	current_commands--
 
 //Deepscanner
 /obj/item/deepscanner //intended for ordeals
