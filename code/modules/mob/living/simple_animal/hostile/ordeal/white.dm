@@ -11,8 +11,8 @@
 	health = 3000
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 50
-	melee_damage_upper = 60
+	melee_damage_lower = 40
+	melee_damage_upper = 50
 	move_to_delay = 2.6
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
@@ -350,9 +350,9 @@
 	maxHealth = 3000
 	health = 3000
 	melee_damage_type = RED_DAMAGE
-	rapid_melee = 6
-	melee_damage_lower = 35
-	melee_damage_upper = 45
+	rapid_melee = 4
+	melee_damage_lower = 30
+	melee_damage_upper = 40
 	move_to_delay = 2.2
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
@@ -487,9 +487,9 @@
 	maxHealth = 4000
 	health = 4000
 	melee_damage_type = PALE_DAMAGE
-	melee_damage_lower = 50
-	melee_damage_upper = 60
-	rapid_melee = 2
+	melee_damage_lower = 30
+	melee_damage_upper = 40
+	rapid_melee = 3
 	minimum_distance = 2
 	ranged = TRUE
 	ranged_cooldown_time = 16
