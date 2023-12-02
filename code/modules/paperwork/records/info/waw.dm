@@ -506,3 +506,16 @@
 		"When O-04-177-1 was suppressed, Sign of Roses became more vulnerable to damage.")
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Low"
+
+//Dream-Devouring Slitcurrent
+/obj/item/paper/fluff/info/waw/slitcurrent
+	abno_type = /mob/living/simple_animal/hostile/abnormality/slitcurrent
+	abno_code = "T-02-71-1"
+	abno_info = list(
+		"When an employee with Fortitude Level 2 or lower finished their work, the Qliphoth Counter lowered.",
+		"Upon breaching the facility becomes flooded until Dream-Devouring Slitcurrent was recontained causing everyone there to take oxygen damage.",
+		"Upon breaching also Flotsams spawn throughtout the facility.",
+		"When Lucas damaged the Flotsams or Dream-Devouring Slitcurrent all or some of his oxygen was replenished.",
+		"When Dream-Devouring Slitcurrent tried to bash into a Frotsam it became briefly stunned and took extra damage.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Extreme"
