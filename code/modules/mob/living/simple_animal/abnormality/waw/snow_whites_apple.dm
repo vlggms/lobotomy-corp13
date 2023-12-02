@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 	var/icon_aggro = "snowwhitesapple_active"
 	maxHealth = 1600
 	health = 1600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 4 SECONDS
 	melee_damage_type = BLACK_DAMAGE

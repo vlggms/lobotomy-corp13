@@ -10,7 +10,7 @@
 	health = 9001
 	fear_level = ALEPH_LEVEL
 	move_to_delay = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	melee_damage_lower = 45
 	melee_damage_upper = 80
 	melee_damage_type = RED_DAMAGE

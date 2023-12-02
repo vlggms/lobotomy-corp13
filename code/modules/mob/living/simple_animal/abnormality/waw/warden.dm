@@ -9,7 +9,7 @@
 	health = 2100
 	pixel_x = -8
 	base_pixel_x = -8
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
 	move_to_delay = 4
 	melee_damage_lower = 70

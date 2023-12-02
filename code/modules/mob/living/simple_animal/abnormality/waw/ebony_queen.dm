@@ -18,7 +18,7 @@
 	ranged = TRUE
 	ranged_cooldown_time = 1 //fast!
 	rapid_melee = 8 // every 1/4 second
-	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.0, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 1.0, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.7)
 	ranged = TRUE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/ebonyqueen/attack.ogg'

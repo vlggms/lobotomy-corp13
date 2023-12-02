@@ -21,7 +21,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	work_damage_amount = 5		//Damage is low, could be doubled or quadrupled.
 	work_damage_type = RED_DAMAGE
 	max_boxes = 27
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	start_qliphoth = 2
 	can_breach = TRUE	//can't move so you know
 

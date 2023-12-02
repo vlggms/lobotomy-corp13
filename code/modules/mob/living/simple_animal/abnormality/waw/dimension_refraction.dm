@@ -13,7 +13,7 @@
 	maxHealth = 1200
 	health = 1200
 	density = FALSE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	threat_level = WAW_LEVEL

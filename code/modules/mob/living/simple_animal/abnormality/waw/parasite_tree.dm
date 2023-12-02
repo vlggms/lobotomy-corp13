@@ -149,7 +149,7 @@
 	health = 800
 	can_patrol = FALSE
 	wander = 0
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	ranged = TRUE
 	ranged_cooldown_time = 1 SECONDS
 	obj_damage = 0

@@ -14,7 +14,7 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	stat_attack = DEAD
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 	can_breach = TRUE
 	start_qliphoth = 4
 	is_flying_animal = TRUE

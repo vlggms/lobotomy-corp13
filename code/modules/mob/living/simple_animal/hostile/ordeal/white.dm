@@ -16,7 +16,7 @@
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.0, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.0, PALE_DAMAGE = 0.5)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	projectiletype = /obj/projectile/black
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
@@ -146,7 +146,7 @@
 	ranged_ignores_vision = TRUE
 	ranged = TRUE
 	minimum_distance = 4
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	is_flying_animal = TRUE
@@ -356,7 +356,7 @@
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	attack_sound = 'sound/effects/ordeals/white/red_attack.ogg'
 	del_on_death = TRUE
@@ -497,7 +497,7 @@
 	projectilesound = 'sound/effects/ordeals/white/pale_pistol.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.0)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.0)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	projectiletype = /obj/projectile/pale
 	attack_sound = 'sound/effects/ordeals/white/pale_knife.ogg'
