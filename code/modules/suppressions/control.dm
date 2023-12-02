@@ -11,7 +11,7 @@
 
 /datum/suppression/control/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
-	for(var/obj/machinery/computer/abnormality/C in GLOB.abnormality_consoles)
+	for(var/obj/machinery/computer/abnormality/C in GLOB.lobotomy_devices)
 		C.scramble_list = list()
 	// Reward!
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
@@ -31,7 +31,7 @@
 	for(var/work in normal_works)
 		application_scramble_list[work] = pick(choose_from - work)
 		choose_from -= application_scramble_list[work]
-	for(var/obj/machinery/computer/abnormality/C in GLOB.abnormality_consoles)
+	for(var/obj/machinery/computer/abnormality/C in GLOB.lobotomy_devices)
 		C.scramble_list = application_scramble_list
 
 // Created when control suppression ends; Used to track new spawns to apply the reward

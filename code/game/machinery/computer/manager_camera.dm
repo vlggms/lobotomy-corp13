@@ -55,7 +55,7 @@
 
 /obj/machinery/computer/camera_advanced/manager/Initialize(mapload)
 	. = ..()
-	GLOB.manager_consoles += src
+	GLOB.lobotomy_devices += src
 
 	cycle = new
 	fire = new
@@ -67,7 +67,7 @@
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/RechargeMeltdown)
 
 /obj/machinery/computer/camera_advanced/manager/Destroy()
-	GLOB.manager_consoles -= src
+	GLOB.lobotomy_devices -= src
 	return ..()
 
 /obj/machinery/computer/camera_advanced/manager/examine(mob/user)

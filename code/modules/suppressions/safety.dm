@@ -9,7 +9,7 @@
 /datum/suppression/safety/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
-	for(var/obj/machinery/regenerator/R in GLOB.regenerators)
+	for(var/obj/machinery/regenerator/R in GLOB.lobotomy_devices)
 		R.reset_timer = INFINITY
 		R.burst_cooldown = TRUE
 		R.modified = TRUE
@@ -18,7 +18,7 @@
 
 /datum/suppression/safety/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
-	for(var/obj/machinery/regenerator/R in GLOB.regenerators) // All regenerators gain permanent buff
+	for(var/obj/machinery/regenerator/R in GLOB.lobotomy_devices) // All regenerators gain permanent buff
 		R.reset_timer = 0
 		R.regeneration_amount += 3
 	for(var/obj/machinery/sleeper/S in GLOB.sleepers)

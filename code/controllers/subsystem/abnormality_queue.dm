@@ -79,7 +79,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		choice.SpawnRoom()
 
 	if(fucked_it_lets_rolled)
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 			Q.ChangeLock(FALSE)
 		fucked_it_lets_rolled = FALSE
 
@@ -88,7 +88,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
 			stack_trace("Queued abnormality had no weight!?")
 		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 			Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
 			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 			Q.updateUsrDialog()
@@ -122,13 +122,13 @@ SUBSYSTEM_DEF(abnormality_queue)
 		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 		SpawnAbno()
 	message_admins("[i] round-start abnormalities have been spawned.")
-	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.audible_message("<span class='announce'>All the initial Abnormalities have arrived. Have a nice day Manager.</span>")
 	return
 
 /datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()
 	fucked_it_lets_rolled = TRUE
-	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.ChangeLock(TRUE)
 	return
 

@@ -24,11 +24,11 @@
 
 /obj/machinery/computer/abnormality/Initialize()
 	. = ..()
-	GLOB.abnormality_consoles += src
+	GLOB.lobotomy_devices += src
 	flags_1 |= NODECONSTRUCT_1
 
 /obj/machinery/computer/abnormality/Destroy()
-	GLOB.abnormality_consoles -= src
+	GLOB.lobotomy_devices -= src
 	..()
 
 /obj/machinery/computer/abnormality/update_overlays()
@@ -320,7 +320,7 @@
 //Don't add tutorial consoles to global list, prevents them from being affected by Control suppression or other effects
 /obj/machinery/computer/abnormality/tutorial/Initialize()
 	. = ..()
-	GLOB.abnormality_consoles -= src
+	GLOB.lobotomy_devices -= src
 
 //don't scramble our poor interns
 /obj/machinery/computer/abnormality/tutorial/Scramble()

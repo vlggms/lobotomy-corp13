@@ -123,7 +123,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions(announce = FALSE, extra_core = FALSE)
 	if(istype(core_suppression))
 		return
-	if(!LAZYLEN(GLOB.abnormality_auxiliary_consoles)) // There's no consoles, for some reason
+	if(!LAZYLEN(GLOB.lobotomy_devices)) // There's no consoles, for some reason
 		message_admins("Tried to pick potential core suppressions, but there was no auxiliary consoles! Fix it!")
 		return
 	var/list/cores = subtypesof(/datum/suppression)
@@ -157,13 +157,13 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		var/announce_title = "[extra_core ? "Extra" : "Sephirah"] Core Suppression"
 		priority_announce(announce_text, \
 						announce_title, sound = 'sound/machines/dun_don_alert.ogg')
-	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='notice'>[extra_core ? "Extra " : ""]Core Suppressions are now available!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 		A.updateUsrDialog()
 
 /datum/controller/subsystem/lobotomy_corp/proc/WarnBeforeReset()
-	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='userdanger'>Core Suppression options will be disabled if you don't pick one in a minute!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
 	addtimer(CALLBACK(src, .proc/ResetPotentialSuppressions, TRUE), (1 MINUTES))
@@ -171,7 +171,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions(announce = FALSE)
 	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
 		return
-	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='userdanger'>Core Suppression options have been disabled for this shift!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
 		A.selected_core_type = null
@@ -263,7 +263,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(qliphoth_state >= next_ordeal_time)
 		if(OrdealEvent())
 			ran_ordeal = TRUE
-	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
+	for(var/obj/structure/sign/ordealmonitor/O in GLOB.lobotomy_devices)
 		O.update_icon()
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_MELTDOWN_START, ran_ordeal)
 	if(ran_ordeal)
@@ -284,7 +284,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		max_time = round(max_time * C.meltdown_time_multiplier)
 	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
-	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))
+	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.lobotomy_devices))
 		if(!cmp.can_meltdown)
 			continue
 		if(cmp.meltdown || cmp.datum_reference.working)
@@ -330,7 +330,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	all_ordeals[next_ordeal_level] -= next_ordeal
 	next_ordeal_time = qliphoth_state + next_ordeal.delay + (next_ordeal.random_delay ? rand(1, 2) : 0)
 	next_ordeal_level += 1 // Increase difficulty!
-	for(var/obj/structure/sign/ordealmonitor/O in GLOB.ordeal_monitors)
+	for(var/obj/structure/sign/ordealmonitor/O in GLOB.lobotomy_devices)
 		O.update_icon()
 	message_admins("Next ordeal to occur will be [next_ordeal.name].")
 	return TRUE
