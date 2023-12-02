@@ -506,23 +506,6 @@
 			targets -= L
 		sleep(4)
 
-/obj/item/ego_weapon/city/pt/proc/GetSafeDir(turf/target) //stole this one from blue sicko, doesnt protect me from glass tables tho :(
-	. = list()
-	for(var/dir in GLOB.alldirs)
-		var/turf/T = get_step(target, dir)
-		if(!T)
-			continue
-		if(T.density)
-			continue
-		var/obj/structure/window/W = locate() in T
-		if(W)
-			continue
-		var/obj/machinery/door/D = locate() in T
-		if(D)
-			continue
-		. += dir
-	return
-
 /datum/action/item_action/miragestorm
 	name = "Mirage Storm"
 	desc = "Unleash a flurry of blows upon any enemies around you utilizing the 3 offensive stances."
