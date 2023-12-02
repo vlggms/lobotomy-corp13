@@ -11,7 +11,7 @@
 //Similar to Gold Rush
 /obj/item/ego_weapon/template/gauntlet/attack(mob/living/target, mob/living/user)
 	if(!active)
-		to_chat(user, "<span class='notice'>This weapon is unfinished!</span>")
+		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
 
 	if(specialmod)
@@ -19,8 +19,8 @@
 
 	if(do_after(user, attack_speed*5, target))
 
-		to_chat(target, "<span class='userdanger'>[user] punches you with everything they got!!</span>")
-		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
+		to_chat(target, span_userdanger("[user] punches you with everything they got!!"))
+		to_chat(user, span_danger("You throw your entire body into this punch!"))
 		var/punch_damage = force
 		//I gotta regrab  justice here
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))

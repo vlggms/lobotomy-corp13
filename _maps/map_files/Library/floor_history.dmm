@@ -4,46 +4,46 @@
 /obj/item/ego_weapon/city/bladelineage,
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "av" = (
 /obj/structure/easel,
 /obj/item/canvas,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "aL" = (
 /obj/structure/bookcase/random/nonfiction,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "aN" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "bf" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "bK" = (
 /obj/structure/alien/resin/wall/creature,
 /turf/open/space/basic,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "cf" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "ct" = (
 /obj/item/canvas,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "cH" = (
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "cT" = (
 /obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood{
@@ -51,14 +51,14 @@
 	},
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "dG" = (
 /obj/structure/bookcase/random/fiction,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "dI" = (
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "eB" = (
 /obj/structure/sink{
 	dir = 8;
@@ -66,34 +66,34 @@
 	pixel_y = 2
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "eH" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "eV" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "fP" = (
 /obj/structure/chair/wood{
 	dir = 4
 	},
 /obj/item/toy/plush/hod,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "gc" = (
 /obj/structure/table/wood/fancy/orange,
 /obj/item/book/random,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "gg" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "hL" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -102,13 +102,13 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "iK" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "jc" = (
 /obj/structure/table/wood,
 /obj/item/book/random{
@@ -118,11 +118,11 @@
 	dir = 2
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "jq" = (
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "jI" = (
 /obj/item/book,
 /obj/item/book{
@@ -139,14 +139,14 @@
 	},
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "jS" = (
 /obj/machinery/computer/camera_advanced/abductor,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "ky" = (
 /obj/structure/table/wood,
 /obj/item/toy/plush/malkuth,
@@ -155,50 +155,50 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "kN" = (
 /obj/item/reagent_containers/food/drinks/beer{
 	pixel_x = 11;
 	pixel_y = -9
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "li" = (
 /obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "mv" = (
 /obj/structure/table/wood/fancy/orange,
 /obj/item/book/random{
 	pixel_x = 7
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "mP" = (
 /obj/structure/table/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "nt" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
 /obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "nu" = (
 /obj/structure/table/optable/abductor,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "nX" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "pJ" = (
 /obj/structure/table/wood,
 /obj/item/book/random{
@@ -206,21 +206,21 @@
 	pixel_x = 7
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "pL" = (
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "pT" = (
 /obj/item/book/random,
 /obj/structure/displaycase/noalert,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "re" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "so" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -230,7 +230,7 @@
 	},
 /obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "sN" = (
 /obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood{
@@ -240,19 +240,19 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "to" = (
 /obj/item/canvas,
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "tK" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "tO" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
@@ -261,7 +261,7 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "ui" = (
 /obj/item/reagent_containers/food/drinks/beer{
 	pixel_x = -10;
@@ -272,11 +272,11 @@
 	pixel_x = 23
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "uv" = (
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "uN" = (
 /obj/item/book/random,
 /obj/item/book/random{
@@ -295,7 +295,7 @@
 /obj/structure/table/wood,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "vm" = (
 /obj/structure/closet/abductor,
 /obj/item/slimepotion/speed,
@@ -303,7 +303,7 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "vT" = (
 /obj/structure/table/wood/fancy/orange,
 /obj/item/book/codex_gigas{
@@ -311,17 +311,17 @@
 	pixel_x = -4
 	},
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "wV" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "xg" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "xi" = (
 /turf/open/space/basic,
 /area/space)
@@ -331,7 +331,7 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "yk" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -340,7 +340,7 @@
 	dir = 2
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "yW" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -349,38 +349,38 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "zK" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "zT" = (
 /obj/machinery/abductor/pad,
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Ai" = (
 /obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "AA" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "AC" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Cn" = (
 /obj/structure/falsewall/plastitanium,
 /turf/open/space/basic,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Cs" = (
 /obj/structure/chair/wood{
 	dir = 4
@@ -389,19 +389,19 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Cx" = (
 /obj/item/canvas,
 /obj/item/reagent_containers/pill/maintenance,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "CM" = (
 /obj/structure/chair/wood{
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "EY" = (
 /obj/item/mop,
 /obj/structure/mopbucket,
@@ -409,20 +409,20 @@
 	dir = 2
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Fc" = (
 /obj/structure/chair/wood{
 	dir = 1
 	},
 /obj/item/toy/plush/bongbong,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "FS" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "FT" = (
 /obj/structure/closet/abductor,
 /obj/item/toy/plush/myo,
@@ -430,45 +430,45 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Ht" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Hx" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Il" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
 /obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "In" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "IM" = (
 /obj/structure/table/wood,
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "IW" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "IZ" = (
 /obj/item/toy/plush/yesod,
 /obj/item/gun/ego_gun/pistol/solemnlament{
@@ -483,68 +483,68 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Jz" = (
 /obj/structure/chair/wood{
 	dir = 8
 	},
 /obj/item/toy/plush/yuri,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "JZ" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "KL" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Lk" = (
 /obj/item/reagent_containers/pill/maintenance,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Lx" = (
 /obj/item/flashlight/spotlight,
 /obj/structure/displaycase,
 /obj/item/flashlight/lantern,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "LU" = (
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "NZ" = (
 /obj/structure/chair/wood{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Oy" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "OW" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "OZ" = (
 /obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Pf" = (
 /obj/structure/table/wood,
 /obj/item/book/random{
 	pixel_x = -3
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Qo" = (
 /obj/item/book/random,
 /obj/item/book/random{
@@ -563,20 +563,20 @@
 /obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Qs" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "RS" = (
 /obj/structure/table/wood,
 /obj/item/book/random,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Su" = (
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Sx" = (
 /obj/item/book/random,
 /obj/item/book/random{
@@ -594,7 +594,7 @@
 	},
 /obj/structure/table/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Sy" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -604,7 +604,7 @@
 	},
 /obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "SX" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -613,38 +613,38 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Tf" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "TX" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Uw" = (
 /obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Vp" = (
 /obj/structure/chair/wood{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "WC" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 2
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Xn" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "XO" = (
 /obj/structure/table/wood,
 /obj/item/toy/plush/scorched,
@@ -652,14 +652,14 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Yn" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "YI" = (
 /obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood/corner{
@@ -667,15 +667,15 @@
 	},
 /obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "Zg" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "ZB" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 "ZW" = (
 /obj/structure/table/wood,
 /obj/item/gun/ego_gun/city/thumb/weak,
@@ -688,7 +688,7 @@
 	pixel_y = -9
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/city/backstreets_room)
+/area/library_floors/floor_history)
 
 (1,1,1) = {"
 xi

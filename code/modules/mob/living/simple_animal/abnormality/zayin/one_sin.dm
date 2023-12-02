@@ -26,6 +26,11 @@
 	gift_type =  /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/white_night = 5
+	)
+
 	chem_type = /datum/reagent/abnormality/onesin
 	harvest_phrase = span_notice("As you hold it up before %ABNO, holy light fills %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL, letting it be filled with holy light."

@@ -13,7 +13,9 @@
 	abno_code = "T-02-43"
 	abno_info = list(
 		"Employees with Prudence Level 1 squashed the spiderlings. Spider Bud turned those who harmed its children into cocoons.",
-		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.")
+		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.",
+		"For each person encased in a cocoon, Spider Bud's max PE available from work was increased by 2.",
+		"Employees were entirely unable to get a good work result from spider bud.",)
 
 //Scorched girl
 /obj/item/paper/fluff/info/teth/match
@@ -49,7 +51,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
 	abno_code = "T-04-111"
 	abno_info = list(
-		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle.",
+		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle, unless their Fortitude was Level 4 or above.",
+		"When employees with Prudence Level 2 or lower completed work with Dingle-Dangle, the Qliphoth counter lowered.",
+		"When employees with Prudence Level 2 or lower completed work with Dingle-Dangle, they reported heightend combat abilities.",
 		"When the work result was Bad, the employee was consumed by Dingle-Dangle with a normal probability.")
 
 //Beauty and the Beast

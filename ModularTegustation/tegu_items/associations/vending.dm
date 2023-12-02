@@ -16,6 +16,12 @@
 			/obj/item/storage/box/miscarmor/four = 1,
 			/obj/item/storage/box/miscarmor/five = 1,
 			/obj/item/storage/box/miscarmor/six = 1,
+			/obj/item/book/granter/action/skill/dash = 15,
+			/obj/item/book/granter/action/skill/dashback = 15,
+			/obj/item/book/granter/action/skill/shockwave = 15,
+			/obj/item/book/granter/action/skill/bulletproof = 15,
+			/obj/item/book/granter/action/skill/timestop = 15,
+			/obj/item/book/granter/action/skill/assault = 15,
 
 					)
 

@@ -28,11 +28,17 @@
 	gift_type =  /datum/ego_gifts/noise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+	)
+
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
 
 /mob/living/simple_animal/hostile/abnormality/mhz/WorkChance(mob/living/carbon/human/user, chance)
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 40)
-		return chance * 0.75
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)
+		return chance * 1.25
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/mhz/SuccessEffect(mob/living/carbon/human/user, work_type, pe)

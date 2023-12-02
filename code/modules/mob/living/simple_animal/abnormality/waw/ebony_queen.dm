@@ -57,6 +57,11 @@
 	gift_type =  /datum/ego_gifts/ebony_stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/golden_apple = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5
+	)
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 	/datum/action/innate/abnormality_attack/ebony_root,

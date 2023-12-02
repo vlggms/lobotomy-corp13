@@ -6,7 +6,7 @@
 	icon_state = "oddity7"
 
 /obj/item/attribute_tester/attack_self(mob/living/carbon/human/user)
-	to_chat(user, "<span class='nicegreen'>You suddenly feel different.</span>")
+	to_chat(user, span_nicegreen("You suddenly feel different."))
 	user.adjust_all_attribute_levels(100)
 	qdel(src)
 
@@ -18,17 +18,17 @@
 
 /obj/item/easygift_tester/attack(mob/living/simple_animal/hostile/abnormality/M, mob/living/carbon/human/user)
 	if(!isabnormalitymob(M))
-		to_chat(user, "<span class='warning'>Error: Entity doesnt classify as an L Corp Abnormality.</span>")
+		to_chat(user, span_warning("Error: Entity doesnt classify as an L Corp Abnormality."))
 		playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 		return
 	if(!M.gift_type)
-		to_chat(user, "<span class='notice'>[src] has no gift type.</span>")
+		to_chat(user, span_notice("[src] has no gift type."))
 		playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 		return
 	var/datum/ego_gifts/EG = new M.gift_type
 	EG.datum_reference = M.datum_reference
 	user.Apply_Gift(EG)
-	to_chat(user, "<span class='nicegreen'>[M.gift_message]</span>")
+	to_chat(user, span_nicegreen("[M.gift_message]"))
 	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
-	to_chat(user, "<span class='nicegreen'>You bonk the abnormality with the [src].</span>")
+	to_chat(user, span_nicegreen("You bonk the abnormality with the [src]."))
 	qdel(src)

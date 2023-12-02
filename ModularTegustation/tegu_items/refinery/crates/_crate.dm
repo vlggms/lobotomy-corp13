@@ -51,6 +51,6 @@
 	else
 		loot = pick(lootlist)
 
-	to_chat(user, "<span class='notice'>You open the crate!</span>")
+	to_chat(user, span_notice("You open the crate!"))
 	new loot(get_turf(src))
 	qdel(src)

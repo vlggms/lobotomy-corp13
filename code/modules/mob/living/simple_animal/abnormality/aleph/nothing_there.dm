@@ -39,6 +39,12 @@
 		)
 	gift_type =  /datum/ego_gifts/mimicry
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/kqe = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5
+	)
+
 	var/mob/living/disguise = null
 	var/saved_appearance
 	var/can_act = TRUE
@@ -388,6 +394,7 @@
 		playsound(get_turf(src), 'sound/abnormalities/nothingthere/breach.ogg', 50, 0, 5)
 		return
 	// Teleport us somewhere where nobody will see us at first
+	disguiseloop.stop()
 	fear_level = 0 // So it doesn't inflict fear to those around them
 	SpeedChange(-1.5) // This will make them move at a speed similar to normal players
 	UpdateSpeed()

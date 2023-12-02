@@ -63,6 +63,10 @@
 	return
 
 /turf/closed/wall/proc/dismantle_wall(devastated=0, explode=0)
+	var/list/banned = list("rcorp", "wcorp")
+	if(SSmaptype.maptype in banned)
+		return
+
 	if(devastated)
 		devastate_wall()
 	else

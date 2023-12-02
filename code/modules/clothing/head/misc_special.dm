@@ -412,3 +412,15 @@
 /obj/item/clothing/head/rabbit_helmet/reindeer/grunt
 	name = "\improper reindeer team helmet"
 	icon_state = "reindeer_grunt"
+
+/obj/item/clothing/head/rabbit_helmet/raccoon
+	name = "\improper raccoon team helmet"
+	icon_state = "raccoon_helmet"
+
+/obj/item/clothing/head/rabbit_helmet/roadrunner
+	name = "\improper roadrunner team helmet"
+	icon_state = "roadrunner"
+
+/obj/item/clothing/head/rabbit_helmet/rat
+	name = "\improper roadrunner team helmet"
+	icon_state = "rat"

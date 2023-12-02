@@ -31,6 +31,13 @@
 	var/heal_cooldown_base = 2 SECONDS
 	var/list/mob/living/carbon/human/protected_people = list()
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/fairy_gentleman = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/fairy_longlegs = 1.5,
+		// Fae Lantern = 1.5
+	)
+
 	chem_type = /datum/reagent/abnormality/fairy_festival
 	harvest_phrase = span_notice("A fairy presents you a small flower, then pours its contents into %VESSEL.")
 	harvest_phrase_third = "A fairy presents %PERSON with a small flower, then pours it into %VESSEL."
