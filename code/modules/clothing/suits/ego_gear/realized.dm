@@ -475,3 +475,9 @@
 	icon_state = "desperation"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
 	realized_ability = /obj/effect/proc_holder/ability/overheat
+
+/obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon
+	name = "gasharpoon"
+	desc = "We must find the Pallid Whale! Look alive, men! Spring! Roar!"
+	icon_state = "gasharpoon"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 20, PALE_DAMAGE = 90)//230, required for the corresponding weapon abilities

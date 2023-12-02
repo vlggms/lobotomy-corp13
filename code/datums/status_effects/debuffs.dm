@@ -1168,3 +1168,27 @@
 		src.apply_status_effect(/datum/status_effect/stacking/lc_burn, stacks)
 	else
 		B.add_stacks(stacks)
+
+/datum/status_effect/stacking/pallid_noise
+	id = "pallidnoise"
+	status_type = STATUS_EFFECT_MULTIPLE
+	duration = 15 SECONDS	//Lasts for a minute
+	tick_interval = 10
+	max_stacks = 5
+	stacks = 1
+	on_remove_on_mob_delete = TRUE
+	alert_type = /atom/movable/screen/alert/status_effect/pallid_noise
+	consumed_on_threshold = FALSE
+
+/atom/movable/screen/alert/status_effect/pallid_noise
+	name = "Pallid Noise"
+	desc = "Hideous noises reverberate through your own head, all speaking a language you don't understand, yet do."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "pallid_noise"
+
+/datum/status_effect/stacking/pallid_noise/tick()//TODO:change this to golden apple's life tick for less lag
+	if(!ishuman(owner))
+		owner.adjustBruteLoss(stacks * -5)
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustSanityLoss(stacks * stacks)//sanity damage is the # of stacks squared
