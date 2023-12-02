@@ -38,6 +38,13 @@
 	gift_type = /datum/ego_gifts/sloshing
 	gift_message = "This wine tastes quite good..."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/fairy_festival = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/fairy_longlegs = 1.5,
+		// Fae Lantern = 1.5
+	)
+
 	var/can_act = TRUE
 	var/jump_cooldown = 0
 	var/jump_cooldown_time = 8 SECONDS

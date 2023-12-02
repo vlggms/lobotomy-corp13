@@ -966,7 +966,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		"<span class='warning'>You feel tired...</span>",
 		"<span class='danger'>Your heart-shaped present begins to crack...</span>"
 		)
-	if(prob(10))
+	if(prob(10) && GLOB.player_list.len)
 		message_pool.Add(
 			"<span class='userdanger'>[uppertext(pick(GLOB.player_list))] WILL PUSH DON'T TOUCH ME TO BREACH ABNORMALITIES.</span>",
 			"<span class='userdanger'>[uppertext(pick(GLOB.player_list))] WILL PUSH DON'T TOUCH ME.</span>"

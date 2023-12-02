@@ -91,6 +91,7 @@
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer/grunt
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeermed
 	l_pocket = /obj/item/flashlight/seclite
+	r_pocket = /obj/item/pinpointer/nuke/rcorp
 	l_hand = /obj/item/gun/medbeam
 	belt = null
 

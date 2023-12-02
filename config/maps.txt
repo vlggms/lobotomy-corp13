@@ -87,6 +87,9 @@ endmap
 map limbus
 endmap
 
+map skeld
+endmap
+
 map facilitytest
 endmap
 

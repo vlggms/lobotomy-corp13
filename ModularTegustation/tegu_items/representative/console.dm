@@ -104,10 +104,10 @@
 		if(href_list["research"])
 			var/datum/data/lc13research/research_datum = locate(href_list["research"]) in research_list
 			if(!research_datum || locate(research_datum) in researched_stuff)
-				to_chat(usr, "<span class='warning'>ERROR.</span>")
+				to_chat(usr, span_warning("ERROR."))
 				return FALSE
 			if(pe_points < research_datum.cost)
-				to_chat(usr, "<span class='warning'>[our_corporation]: [usr] your research request requires more energy.</span>")
+				to_chat(usr, span_warning("[our_corporation]: [usr] your research request requires more energy."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			AdjustPoints(-1 * research_datum.cost)
@@ -121,10 +121,10 @@
 			//The href_list returns the individual number code and only works if we have it in the first column. -IP
 			var/datum/data/extraction_cargo/product_datum = locate(href_list["purchase"]) in order_list
 			if(!product_datum)
-				to_chat(usr, "<span class='warning'>ERROR.</span>")
+				to_chat(usr, span_warning("ERROR."))
 				return FALSE
 			if(monies < product_datum.cost)
-				to_chat(usr, "<span class='warning'>INSUFFICENT FUNDS.</span>")
+				to_chat(usr, span_warning("INSUFFICENT FUNDS."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			new product_datum.equipment_path(get_turf(src))
@@ -176,8 +176,8 @@
 			order_list = list(
 				new /datum/data/extraction_cargo("L Corp Regeneration Augmentation Kit", /obj/item/safety_kit, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Slowing Trap Generator", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/clerkbot_gadget, 400, L_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/powered_gadget/slowingtrapmk1, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/vitals_projector, 400, L_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/powered_gadget/clerkbot_gadget, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Taser", /obj/item/powered_gadget/handheld_taser, 700, L_CORP_REP) = 1,
 				)
 
@@ -197,7 +197,7 @@
 			CustomizeOffice(/obj/structure/sign/departments/w_corp, /obj/structure/pe_sales/w_corp)
 			order_list = list(
 				new /datum/data/extraction_cargo("W Corp Cleanup Outfit", /obj/item/clothing/under/suit/lobotomy/wcorp, 100, W_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/wcorp, 100, W_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/ego_hat/wcorp, 100, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Cleanup Baton", /obj/item/ego_weapon/city/charge/wcorp, 500, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Armor Vest", /obj/item/clothing/suit/armor/ego_gear/wcorp, 700, W_CORP_REP) = 1,
 				)
@@ -214,7 +214,7 @@
 				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1)
 
 		else
-			to_chat(usr, "<span class='warning'>ASSIGNMENT ERROR.</span>")
+			to_chat(usr, span_warning("ASSIGNMENT ERROR."))
 			playsound(get_turf(src), 'sound/machines/uplinkerror.ogg', 20, 1)
 			return
 	CreateResearchList(our_corporation)

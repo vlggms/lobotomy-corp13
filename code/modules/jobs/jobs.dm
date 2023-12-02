@@ -17,7 +17,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Kurokumo Kashira",
 
 
-	//Rcorp stuff
+	//Rcorp Fourth Pack
 	"Ground Commander",
 	"Lieutenant Commander",
 	"Operations Officer",
@@ -25,6 +25,15 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Reindeer Squad Captain",
 	"Rhino Squad Captain",
 	"Raven Squad Captain",
+
+	//Rcorp Fifth Pack
+	"Assault Commander",
+	"Base Commander",
+	"Support Officer",
+	"Rat Squad Leader",
+	"Rooster Squad Leader",
+	"Raccoon Squad Leader",
+	"Roadrunner Squad Leader",
 
 
 	//Wcorp stuff
@@ -85,6 +94,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Agent",
 	"Agent Intern",
 
+	//R-Corp Fourth Pack
 	"R-Corp Suppressive Rabbit",
 	"R-Corp Assault Rabbit",
 	"R-Corp Medical Reindeer",
@@ -94,6 +104,11 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"R-Corp Scout Raven",
 	"R-Corp Support Raven",
 
+	//Fifth Pack
+	"R-Corp Rat",
+	"R-Corp Rooster",
+	"R-Corp Raccoon",
+	"R-Corp Roadrunner",
 
 	//W-Corp agents
 	"W-Corp L2 Type A Lieutenant",
@@ -124,6 +139,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Kurokumo Kashira",
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
+
 	))
 
 

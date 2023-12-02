@@ -135,6 +135,7 @@
 	pixel_y = -3
 	},
 /obj/structure/fluff/broken_flooring,
+/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/shuttle{
 	name = "floor"
 	},
@@ -191,9 +192,6 @@
 	pixel_x = -9;
 	pixel_y = -6
 	},
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
 /turf/open/floor/plasteel/shuttle{
 	name = "floor"
 	},
@@ -232,10 +230,7 @@
 	pixel_y = -5
 	},
 /obj/effect/decal/cleanable/cobweb/cobweb2,
-/obj/item/folder/syndicate/red{
-	desc = "A folder belonging to one of the City's corporations.";
-	name = "Corporation Folder"
-	},
+/obj/structure/lootcrate/money,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "N" = (

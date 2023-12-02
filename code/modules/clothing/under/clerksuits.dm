@@ -42,7 +42,6 @@
 	desc = "A black tracksuit with athletic white lines worn by clerks from the old discipline department."
 	icon_state = "disciplinary_alt"
 
-
 /obj/item/clothing/under/suit/lobotomy/welfare
 	name = "welfare department uniform"
 	desc = "An old fashioned gray sailor outfit with a blue necktie, worn by clerks from the welfare department."
@@ -56,6 +55,13 @@
 /obj/item/clothing/under/suit/lobotomy/extraction/arbiter
 	name = "arbiter's uniform"
 	desc = "A dark uniform worn by the Arbiters of the Head."
+
+/obj/item/clothing/under/suit/lobotomy/claw
+	name = "claw uniform"
+	desc = "A black suit and tie worn by the Claws of the Head."
+	icon = 'icons/obj/clothing/under/suits.dmi'
+	worn_icon = 'icons/mob/clothing/under/suits.dmi'
+	icon_state = "charcoal_suit"
 
 /obj/item/clothing/under/suit/lobotomy/records
 	name = "record department uniform"

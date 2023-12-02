@@ -52,9 +52,9 @@
 			popup.open()
 			return TRUE
 
-		///////////////////
-		// Agent work stats
-		///////////////////
+		/**
+		 *	Agent work stats
+		 */
 		if(href_list["work_stats_menu"])
 			var/abno_num = text2num(href_list["work_stats_menu"])
 			var/datum/abnormality/A = SSlobotomy_corp.all_abnormality_datums[abno_num]
@@ -79,9 +79,9 @@
 			popup.open()
 			return TRUE
 
-		//////////////////////////////////////////////////////////////////////
-		// The individual window of an agent's work stats for that abnormality
-		//////////////////////////////////////////////////////////////////////
+		/**
+		 *	The individual window of an agent's work stats for that abnormality
+		 */
 		if(href_list["agent_stats"])
 			var/worker = href_list["agent_stats"]
 			var/abno_num = text2num(href_list["abno_number"])
@@ -112,9 +112,9 @@
 			popup.open()
 			return TRUE
 
-		////////////////////
-		// Same, but GLOBAL!
-		////////////////////
+		/**
+		 *	Same, but GLOBAL!
+		 */
 		if(href_list["global_agent_stats"])
 			var/worker = href_list["global_agent_stats"]
 			var/dat

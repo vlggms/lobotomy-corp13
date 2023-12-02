@@ -47,6 +47,10 @@ GLOBAL_LIST_EMPTY(apostles)
 	gift_type =  /datum/ego_gifts/paradise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/onesin = 5
+	)
+
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
 	var/holy_revival_damage = 80 // Pale damage, scales with distance

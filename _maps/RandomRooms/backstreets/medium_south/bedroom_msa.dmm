@@ -4,6 +4,11 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/sepia,
 /area/city/backstreets_room)
+"b" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "c" = (
 /obj/effect/decal/cleanable/blood/gibs/body,
 /obj/effect/decal/cleanable/blood/gibs/bubblegum{
@@ -102,18 +107,9 @@
 /area/city/backstreets_room)
 "z" = (
 /obj/structure/bed,
-/obj/effect/spawner/lootdrop/mafia_outfit{
-	layer = 2
-	},
 /obj/effect/decal/cleanable/blood,
 /obj/structure/window/reinforced/spawner,
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/item/folder/syndicate/red{
-	desc = "A folder belonging to one of the City's corporations.";
-	name = "Corporation Folder";
-	pixel_x = -5;
-	pixel_y = -5
-	},
 /obj/item/bedsheet/purple,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
@@ -267,7 +263,7 @@ I
 L
 c
 t
-L
+b
 o
 "}
 (7,1,1) = {"

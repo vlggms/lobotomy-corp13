@@ -5,9 +5,9 @@
 	pixel_y = -5
 	},
 /obj/structure/fence/post{
+	density = 0;
 	layer = 2;
-	pixel_x = 15;
-	density = 0
+	pixel_x = 15
 	},
 /obj/structure/railing/corner,
 /obj/machinery/light/dim{
@@ -112,10 +112,10 @@
 	pixel_y = 6
 	},
 /obj/structure/fence/post{
+	density = 0;
 	layer = 3;
 	pixel_x = -13;
-	pixel_y = 24;
-	density = 0
+	pixel_y = 24
 	},
 /obj/item/bodypart/chest,
 /obj/effect/decal/cleanable/blood/old{
@@ -179,7 +179,7 @@
 	pixel_y = -6
 	},
 /obj/structure/flora/rock/jungle,
-/obj/structure/lootcrate/seven,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "ng" = (
@@ -195,10 +195,7 @@
 	desc = "A folder with a K-Corp labelled stamped on the front.";
 	name = "K-Corp Folder"
 	},
-/obj/structure/lootcrate/k_corp{
-	pixel_x = 5;
-	pixel_y = -7
-	},
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "qd" = (
@@ -351,10 +348,10 @@
 	},
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/fence/post{
+	density = 0;
 	layer = 3;
 	pixel_x = 11;
-	pixel_y = 2;
-	density = 0
+	pixel_y = 2
 	},
 /obj/item/bodypart/chest,
 /obj/effect/decal/cleanable/blood,
@@ -555,8 +552,8 @@
 	pixel_y = 2
 	},
 /obj/structure/fence/post{
-	pixel_x = -12;
-	density = 0
+	density = 0;
+	pixel_x = -12
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
@@ -590,13 +587,10 @@
 	pixel_x = 13;
 	pixel_y = -5
 	},
-/obj/structure/lootcrate{
-	layer = 2;
-	pixel_y = 2
-	},
 /obj/effect/decal/cleanable/blood/gibs/old{
 	pixel_x = 19
 	},
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "Kq" = (
@@ -608,7 +602,7 @@
 	pixel_x = 3
 	},
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate/seven,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "KU" = (
@@ -693,10 +687,10 @@
 	pixel_y = -5
 	},
 /obj/structure/fence/post{
+	density = 0;
 	layer = 2;
 	pixel_x = 15;
-	pixel_y = 2;
-	density = 0
+	pixel_y = 2
 	},
 /obj/structure/railing/corner,
 /mob/living/simple_animal/hostile/ordeal/green_bot{
@@ -738,10 +732,6 @@
 /obj/item/organ/heart/fly{
 	pixel_x = -7;
 	pixel_y = 8
-	},
-/obj/item/organ/heart/cursed{
-	pixel_x = 5;
-	pixel_y = -1
 	},
 /turf/open/floor/stone,
 /area/city/backstreets_room)
@@ -794,8 +784,8 @@
 	},
 /obj/structure/flora/rock/pile,
 /obj/structure/fence/post{
-	pixel_x = -11;
-	density = 0
+	density = 0;
+	pixel_x = -11
 	},
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
@@ -822,7 +812,7 @@
 	dir = 4;
 	pixel_y = -7
 	},
-/obj/structure/lootcrate/w_corp,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "Yj" = (

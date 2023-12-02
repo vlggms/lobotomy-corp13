@@ -10,14 +10,15 @@
 	/* Originally was 270. Fragment health is 800 with a original game health of 230 so techically forsaken
 		murderer has more health than fragment? Ill round the numbers to 600 since 270 can be rounded to 300 and doubled.
 		I was later told to make it 1100. We really dont have a Lobotomy Corp to LC13 health conversion calculator.*/
-	maxHealth = 1100
-	health = 1100
+	// Turns out that 1100 is not enough. - Kirie/Kitsunemitsu
+	maxHealth = 1300
+	health = 1300
 	//Attack speed modifier. 2 is twice the normal.
 	rapid_melee = 1
 	//If target is close enough start preparing to hit them if we have rapid_melee enabled. Originally was 4.
 	melee_queue_distance = 2
 	//How fast a creature is, lower is faster. Client controlled monsters instead use speed and are MUCH faster.
-	move_to_delay = 5
+	move_to_delay = 3
 	/* //Red damage is applied to health. White damage is applied to sanity with only a few abnormalities using
 		that to instantly kill the victem. Black damage is applied to both health and sanity "10 black damage
 		would do 10 health damage and 10 sanity damage. Pale damage is a % of health. Weird i know. */

@@ -428,11 +428,6 @@
 	var/ranged_cooldown_time = 1.2 SECONDS
 	var/ranged_damage = 60
 
-/obj/effect/temp_visual/thornspike
-	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	icon_state = "thornspike"
-	duration = 10
-
 /obj/item/ego_weapon/ebony_stem/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		to_chat(user, "<span class='warning'>Your ranged attack is still recharging!")
@@ -449,7 +444,7 @@
 	if(do_after(user, 5))
 		var/damage_dealt = (ranged_damage * force_multiplier)
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
-		for(var/turf/open/T in range(target_turf, 1))
+		for(var/turf/open/T in RANGE_TURFS(1, target_turf))
 			new /obj/effect/temp_visual/thornspike(T)
 			user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE)
 

@@ -174,6 +174,12 @@
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = L
 			return
 
+/datum/ai_controller/insane/murder/PerformIdleBehavior(delta_time)
+	var/mob/living/living_pawn = pawn
+	if((living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
+		var/move_dir = pick(GLOB.alldirs)
+		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
+
 /datum/ai_controller/insane/murder/ResistCheck()
 	var/mob/living/living_pawn = pawn
 	if(living_pawn.pulledby && living_pawn.pulledby?.grab_state < GRAB_AGGRESSIVE)

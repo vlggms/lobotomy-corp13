@@ -1514,3 +1514,33 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	animate(A, color = new_color, time = new_time)
 
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+// Returns a list of all safe directions based off of the turf given
+// Included in stuff like Blue Sicko's Tempestuous Danza or The Claw weapon's serum W
+/proc/GetSafeDir(turf/target)
+	var/turf/list = list()
+	for(var/dir in GLOB.alldirs)
+		var/turf/T = get_step(target, dir)
+		if(!IsSafeTurf(T))
+			continue
+		list += dir
+	return list
+
+// Checks if the current turf is "Safe"
+// Future notes: Convert to a list and check if T is in that list?
+/proc/IsSafeTurf(turf/T)
+	if(!T)
+		return FALSE
+	if(T.density)
+		return FALSE
+	if(T in typesof(/turf/open/water/deep)) // No water
+		return FALSE
+	if(T in typesof(/turf/open/space)) // No space
+		return FALSE
+	var/obj/structure/window/W = locate() in T // No windows
+	var/obj/machinery/door/D = locate() in T // No doors
+	var/obj/machinery/vending/V = locate() in T // No vending
+	var/obj/structure/table/glass/G = locate() in T // No glass tables
+	if(W || D || V || G)
+		return FALSE
+	return TRUE

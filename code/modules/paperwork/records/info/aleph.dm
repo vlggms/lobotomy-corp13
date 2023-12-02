@@ -216,3 +216,20 @@
 		"When a Qliphoth Meltdown was ignored, the Qliphoth Counter decreased by 1.")
 	abno_work_damage_type = "All"
 	abno_breach_damage_type = "Random"
+
+// Nobody Is
+/obj/item/paper/fluff/info/aleph/nobodyis
+	abno_type = /mob/living/simple_animal/hostile/abnormality/nobody_is
+	abno_code = "O-06-180"
+	abno_info = list(
+		"The lower the working employee’s Prudence, the lower the success rate was and the less stable the work was.",
+		"When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"An employee in the facility will be reflected upon the mirror on the face of Nobody Is.",
+		"When the selected employee completed work, they were assimilated into the abnormality.")
+	abno_breach_damage_count = "Extreme" // Once it transforms its over
+	abno_resistances = list(
+		RED_DAMAGE = "Endured/Endured/Resistant",
+		WHITE_DAMAGE = "Endured/Endured/Resistant",
+		BLACK_DAMAGE = "Resistant/Immune/Immune",
+		PALE_DAMAGE = "Weak/Normal/Endured")

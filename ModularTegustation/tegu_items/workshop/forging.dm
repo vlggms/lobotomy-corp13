@@ -35,17 +35,17 @@
 	if(istype(I, /obj/item/tresmetal))
 		if(!loaded)
 			loaded = TRUE
-			to_chat(user, "<span class='notice'>You load \a [I] into the machine.</span>")
+			to_chat(user, span_notice("You load \a [I] into the machine."))
 			qdel(I)
 			addtimer(CALLBACK(src, .proc/finish, I), heat_timer)
 
 			playsound(get_turf(src), 'sound/items/welder.ogg', 100, 0)
 		else
-			to_chat(user, "<span class='notice'>Something is already heating.</span>")
+			to_chat(user, span_notice("Something is already heating."))
 	..()
 
 /obj/structure/forge/proc/finish(obj/item/tresmetal/metal)
 	loaded = FALSE
 	var/obj/item/hot_tresmetal/hot = new metal.heated_type(get_turf(src))
 	hot.SetQuality(metal.quality)
-	visible_message("<span class='notice'>The tresmetal is done heating, and will start cooling...</span>")
+	visible_message(span_notice("The tresmetal is done heating, and will start cooling..."))

@@ -782,7 +782,7 @@ GLOBAL_LIST_EMPTY(allCasters)
 	if(user.a_intent != INTENT_HARM)
 		to_chat(user, "<span class='warning'>The newscaster controls are far too complicated for your tiny brain!</span>")
 	else
-		take_damage(5, BRUTE, MELEE)
+		take_damage(5, MELEE)
 
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user)
 	var/obj/item/photo/photo = user.is_holding_item_of_type(/obj/item/photo)

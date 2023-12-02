@@ -25,12 +25,6 @@
 	pixel_x = -5;
 	pixel_y = 10
 	},
-/obj/item/folder/syndicate/red{
-	desc = "A folder belonging to one of the City's corporations.";
-	name = "Corporation Folder";
-	pixel_x = 5;
-	pixel_y = -2
-	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "h" = (
@@ -55,7 +49,7 @@
 /area/city/backstreets_room)
 "H" = (
 /obj/machinery/door/airlock/wood/glass,
-/turf/open/floor/plasteel/sepia,
+/turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "N" = (
 /turf/open/floor/plasteel/dark,
@@ -79,6 +73,10 @@
 /obj/structure/filingcabinet{
 	pixel_x = 11
 	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Y" = (
@@ -109,7 +107,7 @@ x
 "}
 (2,1,1) = {"
 x
-a
+W
 N
 N
 N

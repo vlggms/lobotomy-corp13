@@ -36,7 +36,7 @@
 		return
 	for(var/obj/machinery/regenerator/R in GLOB.regenerators)
 		R.burst = TRUE
-	caller.visible_message("<span class='notice'>The [caller] rumbles for a moment soon after your message is delivered.</span>")
+	caller.visible_message(span_notice("The [caller] rumbles for a moment soon after your message is delivered."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
 

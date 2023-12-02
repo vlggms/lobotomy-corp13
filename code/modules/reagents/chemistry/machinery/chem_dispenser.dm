@@ -144,8 +144,8 @@
 		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
 
 	if(beaker)
-		beaker_overlay = display_beaker()
-		. += beaker_overlay
+		var/mutable_appearance/new_beaker_overlay = display_beaker()
+		. += new_beaker_overlay
 
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)

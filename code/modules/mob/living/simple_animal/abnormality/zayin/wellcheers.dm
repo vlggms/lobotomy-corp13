@@ -24,6 +24,11 @@
 	gift_type = /datum/ego_gifts/soda
 	gift_message = "You feel like you've been doing this your whole life."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/shrimp_exec = 1.5
+	)
+
 	chem_type = /datum/reagent/abnormality/wellcheers_zero
 	harvest_phrase = span_notice("The machine dispenses some clear-ish soda into %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."

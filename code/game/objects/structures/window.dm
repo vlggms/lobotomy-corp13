@@ -339,7 +339,7 @@
 	return exposed_temperature > T0C + heat_resistance
 
 /obj/structure/window/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(round(air.return_volume() / 100), BURN, 0, 0)
+	take_damage(round(air.return_volume() / 100), BURN, 0)
 
 /obj/structure/window/get_dumping_location(obj/item/storage/source,mob/user)
 	return null
@@ -779,7 +779,7 @@
 	if(.)
 		return
 	if(user.a_intent == INTENT_HARM)
-		take_damage(4,BRUTE,MELEE, 0)
+		take_damage(4,MELEE, 0)
 		if(!QDELETED(src))
 			update_icon()
 

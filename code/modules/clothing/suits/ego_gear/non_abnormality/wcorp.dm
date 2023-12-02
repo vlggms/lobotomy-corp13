@@ -13,13 +13,11 @@
 							JUSTICE_ATTRIBUTE = 55
 							)
 
-/obj/item/clothing/head/wcorp //No armor since the ego-gears do it's job.
+/obj/item/clothing/head/ego_hat/wcorp
 	name = "\improper w-corp cap"
 	desc = "A ball cap worn by w-corp."
 	icon_state = "what"
-	icon = 'icons/obj/clothing/ego_gear/head.dmi'
-	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
-
+	perma = TRUE
 
 /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	attribute_requirements = list()

@@ -20,7 +20,7 @@
 		/datum/ego_datum/weapon/voodoo,
 		/datum/ego_datum/armor/voodoo
 		)
-//	gift_type = /datum/ego_gifts/voodoo
+	gift_type = /datum/ego_gifts/voodoo
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/janken = 0			//0 for scissors, 1 for Rock, 2 for paper
 	var/player = 0			//0 for scissors, 1 for Rock, 2 for paper

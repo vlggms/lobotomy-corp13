@@ -12,6 +12,8 @@
 	paycheck = PAYCHECK_MEDIUM
 	paycheck_department = ACCOUNT_MED
 
+	job_attribute_limit = 0
+
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
 	exp_requirements = 600
 
@@ -23,7 +25,6 @@
 
 /datum/job/doctor/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	..()
-	H.set_attribute_limit(0)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	//Can't have assistants without a doctor.

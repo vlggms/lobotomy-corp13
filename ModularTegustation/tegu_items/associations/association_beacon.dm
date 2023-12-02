@@ -15,7 +15,7 @@
 
 /obj/item/choice_beacon/association/spawn_option(obj/choice,mob/living/M)
 	new choice(get_turf(M))
-	to_chat(M, "<span class='hear'>Make sure you put the equipment in the armory.</span>")
+	to_chat(M, span_hear("Make sure you put the equipment in the armory."))
 
 
 //Zwei Asso

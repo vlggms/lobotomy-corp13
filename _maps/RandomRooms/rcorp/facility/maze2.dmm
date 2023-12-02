@@ -70,7 +70,7 @@
 	},
 /area/city/outskirts)
 "k" = (
-/obj/structure/toolabnormality/touch,
+/obj/effect/landmark/objectivespawn,
 /turf/open/floor/stone,
 /area/city/outskirts)
 "m" = (

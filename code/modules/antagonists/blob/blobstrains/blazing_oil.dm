@@ -15,7 +15,7 @@
 	fire_based = TRUE
 
 /datum/blobstrain/reagent/blazing_oil/extinguish_reaction(obj/structure/blob/B)
-	B.take_damage(1.5, BURN, ENERGY)
+	B.take_damage(1.5, ENERGY)
 
 /datum/blobstrain/reagent/blazing_oil/damage_reaction(obj/structure/blob/B, damage, damage_type)
 	if(damage_type == BURN)

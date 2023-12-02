@@ -764,18 +764,5 @@
 	STR.max_items = 4
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 100
-	STR.set_holdable(list(
-		/obj/item/gun/ego_gun/pistol,
-		/obj/item/ego_weapon/mini,
-		/obj/item/ego_weapon/city/ncorp_mark,
-		/obj/item/ego_weapon/city/ncorp_nail,
-		/obj/item/ego_weapon/city/ncorp_brassnail,
-		/obj/item/ego_weapon/city/rats,
-		/obj/item/ego_weapon/city/charge/rosespanner/minihammer,
-		/obj/item/gun/ego_gun/city/fullstop/deagle,
-		/obj/item/ego_weapon/city/seven_fencing/dagger,
-		/obj/item/ego_weapon/city/jeong,
-		/obj/item/ego_weapon/city/awl,
-		/obj/item/ego_weapon/city/charge/wcorp/hatchet
-		))
+	STR.set_holdable(GLOB.small_ego)
 

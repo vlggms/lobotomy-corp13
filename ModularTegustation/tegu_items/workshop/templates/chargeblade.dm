@@ -20,10 +20,10 @@
 /obj/item/ego_weapon/template/chargeblade/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
-		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		to_chat(user, span_notice("You prepare to release your charge."))
 		activated = TRUE
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/template/chargeblade/examine(mob/user)
 	. = ..()
@@ -39,7 +39,7 @@
 		activated = FALSE
 
 /obj/item/ego_weapon/template/chargeblade/proc/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, "<span class='notice'>[release_message].</span>")
+	to_chat(user, span_notice("[release_message]."))
 	sleep(2)
 	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)

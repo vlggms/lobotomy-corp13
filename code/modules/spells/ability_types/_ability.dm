@@ -105,8 +105,8 @@
 	return TRUE
 
 /obj/effect/proc_holder/ability/hat_ability
-	name = "Manifest Hat"
-	desc = "Manifest or De-Manifest your EGO's hat."
+	name = "Toggle Hat"
+	desc = "Toggle your current armors hat."
 	action_icon_state = "hat0"
 	base_icon_state = "hat"
 	var/obj/item/clothing/head/ego_hat/hat = null
@@ -133,4 +133,35 @@
 		H.equip_to_slot(new hat, ITEM_SLOT_HEAD) // Equip the hat!
 		return
 	headgear.Destroy()
+	return
+
+/obj/effect/proc_holder/ability/neck_ability
+	name = "Toggle Neckwear"
+	desc = "Toggle your current armors neckwear."
+	action_icon_state = "neck0"
+	base_icon_state = "neck"
+	var/obj/item/clothing/neck/ego_neck/neck = null
+
+/obj/effect/proc_holder/ability/neck_ability/New(loc, obj/item/clothing/neck/ego_neck/ego_neck, ...)
+	. = ..()
+	neck = ego_neck
+
+/obj/effect/proc_holder/ability/neck_ability/Perform(target, user) // Works just like the hat ability from above
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(isnull(neck))
+		Destroy()
+		return
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/neck/neckwear = H.get_item_by_slot(ITEM_SLOT_NECK)
+	if(!istype(neckwear, neck))
+		if(!isnull(neckwear))
+			if(HAS_TRAIT(neckwear, TRAIT_NODROP))
+				to_chat(H, "<span class='warning'>[neckwear] cannot be dropped!</span>")
+				return
+			H.dropItemToGround(neckwear )
+		H.equip_to_slot(new neck, ITEM_SLOT_NECK)
+		return
+	neckwear.Destroy()
 	return

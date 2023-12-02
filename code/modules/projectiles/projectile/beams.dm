@@ -86,14 +86,13 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/white_laser
 
 /obj/projectile/beam/laser/heavylaser/black
-	damage = 40
 	damage_type = BLACK_DAMAGE
 	light_color = COLOR_PURPLE
 	icon_state = "purpleheavylaser"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/purple_laser
 
 /obj/projectile/beam/laser/heavylaser/pale
-	damage = 20
+	damage = 35
 	damage_type = PALE_DAMAGE
 	light_color = COLOR_PALE_BLUE_GRAY
 	icon_state = "blueheavylaser"
@@ -307,3 +306,27 @@
 	impact_light_intensity = 4
 	impact_light_range = 3
 	impact_light_color_override = LIGHT_COLOR_YELLOW
+
+/obj/projectile/beam/nobody
+	name = "whip"
+	icon_state = "nobody"
+	damage = 30
+	hitsound = 'sound/weapons/slash.ogg'
+	hitsound_wall = 'sound/weapons/slash.ogg'
+	damage_type = BLACK_DAMAGE
+	hit_stunned_targets = TRUE
+	white_healing = FALSE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+	hitscan = TRUE
+	tracer_type = /obj/effect/projectile/tracer/laser/nobody
+	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
+	impact_type = /obj/effect/projectile/impact/laser/nobody
+
+/obj/effect/projectile/tracer/laser/nobody
+	name = "whip tracer"
+	icon_state = "nobody"
+
+/obj/effect/projectile/impact/laser/nobody
+	name = "whip impact"
+	icon_state = "nobody"

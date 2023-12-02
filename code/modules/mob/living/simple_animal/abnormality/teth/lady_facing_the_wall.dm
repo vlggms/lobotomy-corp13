@@ -57,9 +57,7 @@
 		datum_reference.qliphoth_change(-1)
 
 	if((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40) && !(GODMODE in user.status_flags))
-		icon_state = "ladyfacingthewall_active"
+		flick("ladyfacingthewall_active", src)
 		user.adjustSanityLoss(user.maxSanity)
 		user.apply_status_effect(/datum/status_effect/panicked_lvl_4)
-		sleep(10)
-		icon_state = "ladyfacingthewall"
 	return

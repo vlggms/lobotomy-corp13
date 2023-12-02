@@ -13,6 +13,12 @@
 /obj/machinery/light,
 /turf/open/floor/eighties,
 /area/city/backstreets_room)
+"l" = (
+/obj/effect/spawner/randomarcade{
+	dir = 8
+	},
+/turf/open/floor/eighties,
+/area/city/backstreets_room)
 "p" = (
 /obj/effect/spawner/randomsnackvend,
 /obj/machinery/light{
@@ -22,6 +28,10 @@
 /area/city/backstreets_room)
 "u" = (
 /turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/eighties,
 /area/city/backstreets_room)
 "w" = (
 /obj/structure/table/greyscale,
@@ -50,7 +60,9 @@
 /turf/open/floor/eighties,
 /area/city/backstreets_room)
 "G" = (
-/obj/effect/spawner/randomarcade,
+/obj/effect/spawner/randomarcade{
+	dir = 4
+	},
 /turf/open/floor/eighties,
 /area/city/backstreets_room)
 "H" = (
@@ -151,10 +163,10 @@ x
 x
 a
 X
-G
-G
-G
-X
+l
+l
+l
+v
 A
 O
 x

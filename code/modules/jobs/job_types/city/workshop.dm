@@ -16,13 +16,15 @@ Workshop employee
 	exp_requirements = 60
 	paycheck = 700
 
+	job_attribute_limit = 0
+
 	allow_bureaucratic_error = FALSE
 	maptype = "wonderlabs"
 
 
 //My guy you work in a workshop
 /datum/job/workshop/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	H.set_attribute_limit(0)
+	. = ..()
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	job_important = "Make weapons for the fixers who come asking in exchange for money. You cannot give away weapons for free."
 	job_notice = "Your workshop is northwest, of the city."

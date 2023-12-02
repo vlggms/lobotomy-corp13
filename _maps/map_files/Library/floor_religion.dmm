@@ -3,28 +3,28 @@
 /obj/structure/table/wood,
 /obj/item/clipboard,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "aR" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "cm" = (
 /turf/open/floor/plasteel/stairs{
 	dir = 4
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "cr" = (
 /obj/structure/altar_of_gods,
 /turf/open/floor/plasteel/chapel{
 	dir = 2
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "cS" = (
 /obj/structure/table/wood,
 /obj/item/pen,
 /obj/item/paper,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "dd" = (
 /turf/open/space/basic,
 /area/space)
@@ -38,7 +38,7 @@
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "fA" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/storage/book/bible{
@@ -47,7 +47,7 @@
 /obj/item/candle/infinite,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/white,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "fO" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -61,7 +61,7 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "gu" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 9
@@ -69,7 +69,7 @@
 /obj/effect/turf_decal/siding/thinplating/corner,
 /obj/structure/railing/corner,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "gU" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -77,7 +77,7 @@
 /obj/effect/turf_decal/siding/white,
 /obj/structure/railing/corner,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "gW" = (
 /obj/effect/turf_decal/siding/white/end{
 	dir = 8
@@ -88,24 +88,24 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "hs" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 9
 	},
 /obj/structure/railing/corner,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "hO" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/white,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "hP" = (
 /turf/open/floor/plasteel/dark/corner,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "hW" = (
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "kB" = (
 /obj/effect/turf_decal/siding/white/end{
 	dir = 4
@@ -116,26 +116,26 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "lm" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "mE" = (
 /obj/structure/chair/comfy{
 	dir = 4
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "nh" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 4
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "nk" = (
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "nx" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -147,26 +147,26 @@
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "nz" = (
 /obj/item/toy/plush/ayin,
 /obj/item/flashlight/spotlight,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "oy" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 2
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "oV" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "pn" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "ps" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 5
@@ -180,25 +180,25 @@
 	pixel_y = 2
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "pu" = (
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "pM" = (
 /obj/effect/decal/fakelattice,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "rk" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "rs" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -210,10 +210,10 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "rA" = (
 /turf/open/floor/plasteel/dark/side,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "rY" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 6
@@ -225,19 +225,19 @@
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "vn" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "vq" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/candle/infinite,
 /turf/open/floor/white,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "wr" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
@@ -249,41 +249,41 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "wy" = (
 /obj/structure/table/wood,
 /obj/item/storage/book/bible,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "wC" = (
 /turf/open/floor/white,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "xv" = (
 /obj/item/flashlight/spotlight,
 /obj/structure/altar_of_gods,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "xy" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "xE" = (
 /obj/structure/table/greyscale,
 /obj/item/shield/riot/buckler,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "ym" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "yE" = (
 /obj/structure/bookcase/random/religion,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "zi" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -295,24 +295,24 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "zD" = (
 /obj/structure/table/wood,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "zJ" = (
 /obj/structure/chair/wood/wings{
 	dir = 4
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "zV" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plasteel/stairs{
 	dir = 8
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Ak" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
@@ -322,29 +322,29 @@
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Bi" = (
 /obj/structure/table/wood,
 /obj/item/pen,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Bo" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Ca" = (
 /turf/open/floor/plasteel/chapel{
 	dir = 8
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Cg" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Cl" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -353,18 +353,18 @@
 	dir = 4
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Cn" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "DK" = (
 /turf/open/floor/plasteel/dark/corner{
 	dir = 4
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "GH" = (
 /obj/effect/turf_decal/siding/white/end{
 	dir = 4
@@ -375,7 +375,7 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Hh" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -389,7 +389,7 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "HV" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
@@ -399,7 +399,7 @@
 	dir = 4
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Io" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
@@ -413,42 +413,42 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Jj" = (
 /obj/structure/table/greyscale,
 /obj/item/shield/riot,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "JS" = (
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Kx" = (
 /obj/structure/bookcase/random/religion,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Lt" = (
 /obj/structure/table/greyscale,
 /obj/structure/table/greyscale,
 /obj/item/shield/riot/roman,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Lv" = (
 /turf/open/floor/plasteel/dark/side{
 	dir = 8
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "LJ" = (
 /turf/open/floor/plasteel/dark/corner{
 	dir = 8
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Ms" = (
 /obj/structure/bookcase/random/religion,
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "MF" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -462,7 +462,7 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Nk" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -476,69 +476,69 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Nz" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/storage/book/bible,
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "NA" = (
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Oo" = (
 /obj/structure/chair/wood/wings{
 	dir = 1
 	},
 /obj/item/toy/plush/benjamin,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Oy" = (
 /obj/structure/altar_of_gods,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Oz" = (
 /obj/structure/chair/wood/wings{
 	dir = 4
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "OO" = (
 /obj/structure/altar_of_gods,
 /turf/open/floor/plasteel/chapel{
 	dir = 8
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "OR" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "QF" = (
 /obj/effect/decal/fakelattice,
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Sd" = (
 /obj/structure/chair/comfy{
 	dir = 8
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Si" = (
 /turf/open/floor/plasteel/dark/side{
 	dir = 4
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Ub" = (
 /turf/open/floor/plasteel/dark/corner{
 	dir = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Up" = (
 /obj/effect/turf_decal/siding/white/end{
 	dir = 8
@@ -549,7 +549,7 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "UD" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -561,7 +561,7 @@
 	dir = 4
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "UI" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -573,34 +573,34 @@
 	pixel_y = 2
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "VH" = (
 /turf/closed/indestructible/syndicate,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Wr" = (
 /obj/item/toy/plush/hokma,
 /obj/structure/chair/wood/wings{
 	dir = 1
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "WC" = (
 /obj/structure/table/greyscale,
 /obj/item/shield/mirror,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Xc" = (
 /obj/structure/table/wood,
 /obj/item/paper_bin,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "Yi" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "ZH" = (
 /obj/effect/turf_decal/siding/white,
 /obj/effect/turf_decal/siding/white{
@@ -612,13 +612,13 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 "ZU" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
 	},
 /turf/open/floor/stone,
-/area/city/backstreets_room)
+/area/library_floors/floor_religion)
 
 (1,1,1) = {"
 dd

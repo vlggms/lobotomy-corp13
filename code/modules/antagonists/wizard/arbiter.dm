@@ -1,6 +1,7 @@
 /datum/antagonist/wizard/arbiter
 	name = "Arbiter"
 	roundend_category = "arbiters"
+	antagpanel_category = "The Head"
 	give_objectives = FALSE
 	move_to_lair = FALSE
 	outfit_type = /datum/outfit/arbiter
@@ -19,7 +20,10 @@
 		)
 
 /datum/antagonist/wizard/arbiter/greet()
-	to_chat(owner, "<span class='boldannounce'>You are the Arbiter!</span>")
+	to_chat(owner, span_boldannounce("You are the Arbiter!"))
+
+/datum/antagonist/wizard/arbiter/farewell()
+	to_chat(owner, span_boldannounce("You have been fired from The Head. Your services are no longer needed."))
 
 /datum/antagonist/wizard/arbiter/apply_innate_effects(mob/living/mob_override)
 	var/mob/living/carbon/human/M = mob_override || owner.current

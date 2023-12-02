@@ -2,6 +2,7 @@
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
 #define FILE_AGENT_REP "data/AgentReputation.json"
 #define FILE_PE_QUOTA "data/PEQuota.json"
+#define FILE_ABNO_PICKS "data/AbnormalityRates.json"
 
 #define KEEP_ROUNDS_MAP 3
 
@@ -26,6 +27,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/obj/item/storage/photo_album/photo_albums
 	var/list/obj/structure/sign/painting/painting_frames = list()
 	var/list/paintings = list()
+	var/list/abno_rates = list()
 
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
@@ -37,8 +39,9 @@ SUBSYSTEM_DEF(persistence)
 	if(CONFIG_GET(flag/use_antag_rep))
 		LoadAntagReputation()
 	LoadAgentReputation()
-	if(SSmaptype.maptype == "standard")
+	if(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs"))
 		LoadPEStatus()
+		LoadAbnoPicks()
 	LoadRandomizedRecipes()
 	LoadPaintings()
 	load_custom_outfits()
@@ -176,6 +179,25 @@ SUBSYSTEM_DEF(persistence)
 		return
 	pe_status = json_decode(json)
 
+/datum/controller/subsystem/persistence/proc/LoadAbnoPicks()
+	abno_rates = typecacheof(/mob/living/simple_animal/hostile/abnormality, TRUE)
+	var/json = file2text(FILE_ABNO_PICKS)
+	if(!json)
+		var/json_file = file(FILE_ABNO_PICKS)
+		if(!fexists(json_file))
+			WARNING("Failed to load Abno pick rates. File likely corrupt.")
+	else
+		var/list/pick_rates = json_decode(json)
+		for(var/path in pick_rates)
+			abno_rates[text2path(path)] = pick_rates[path]
+	var/highest = max(abno_rates[ReturnHighestValue(abno_rates)] + 1, 2) // Ensures no 0 results
+	for(var/i in abno_rates)
+		var/mob/living/simple_animal/hostile/abnormality/abno = i
+		if(initial(abno.can_spawn))
+			SSabnormality_queue.possible_abnormalities[initial(abno.threat_level)] += abno
+			var/rate = (abno_rates[i] * -1) + highest
+			SSabnormality_queue.possible_abnormalities[initial(abno.threat_level)][abno] = rate
+
 /datum/controller/subsystem/persistence/proc/SetUpTrophies(list/trophy_items)
 	for(var/A in GLOB.trophy_cases)
 		var/obj/structure/displaycase/trophy/T = A
@@ -212,6 +234,7 @@ SUBSYSTEM_DEF(persistence)
 		CollectAntagReputation()
 	if(SSmaptype.maptype == "standard")
 		SavePEStatus()
+		SaveAbnoPicks()
 	CollectAgentReputation()
 	SaveRandomizedRecipes()
 	SavePaintings()
@@ -389,6 +412,12 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/SavePEStatus()
 	fdel(FILE_PE_QUOTA)
 	text2file(json_encode(pe_status), FILE_PE_QUOTA)
+
+/datum/controller/subsystem/persistence/proc/SaveAbnoPicks()
+	for(var/datum/abnormality/abno_ref in SSlobotomy_corp.all_abnormality_datums)
+		abno_rates[abno_ref.abno_path] = text2num(abno_rates[abno_ref.abno_path]) + 1
+	fdel(FILE_ABNO_PICKS)
+	text2file(json_encode(abno_rates), FILE_ABNO_PICKS)
 
 /datum/controller/subsystem/persistence/proc/LoadRandomizedRecipes()
 	var/json_file = file("data/RandomizedChemRecipes.json")

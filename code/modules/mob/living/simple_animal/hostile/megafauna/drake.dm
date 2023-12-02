@@ -227,7 +227,7 @@
 				var/mob/living/L = a
 				if(!QDELETED(L) && L.client)
 					return FALSE
-			return TRUE 
+			return TRUE
 		for(var/turf/T in turfs)
 			if(!(T in empty))
 				new /obj/effect/temp_visual/lava_warning(T)
@@ -295,7 +295,7 @@
 			if(M in hit_list)
 				continue
 			hit_list += M
-			M.take_damage(45, BRUTE, MELEE, 1)
+			M.take_damage(45, MELEE, 1)
 		sleep(1.5)
 
 /mob/living/simple_animal/hostile/megafauna/dragon/proc/swoop_attack(lava_arena = FALSE, atom/movable/manual_target, swoop_cooldown = 30)
@@ -379,7 +379,7 @@
 				L.throw_at(throwtarget, 3)
 				visible_message("<span class='warning'>[L] is thrown clear of [src]!</span>")
 	for(var/obj/vehicle/sealed/mecha/M in orange(1, src))
-		M.take_damage(75, BRUTE, MELEE, 1)
+		M.take_damage(75, MELEE, 1)
 
 	for(var/mob/M in range(7, src))
 		shake_camera(M, 15, 1)
@@ -448,7 +448,7 @@
 
 	// deals damage to mechs
 	for(var/obj/vehicle/sealed/mecha/M in T.contents)
-		M.take_damage(45, BRUTE, MELEE, 1)
+		M.take_damage(45, MELEE, 1)
 
 	// changes turf to lava temporarily
 	if(!istype(T, /turf/closed) && !istype(T, /turf/open/lava))

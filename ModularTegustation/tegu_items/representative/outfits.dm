@@ -10,7 +10,7 @@
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
-	head = /obj/item/clothing/head/wcorp
+	head = /obj/item/clothing/head/ego_hat/wcorp
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/ert
 	belt = /obj/item/ego_weapon/city/charge/wcorp
 

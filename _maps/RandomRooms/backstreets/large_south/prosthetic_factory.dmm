@@ -50,7 +50,7 @@
 /area/city/backstreets_room)
 "g" = (
 /obj/structure/lattice/catwalk,
-/obj/structure/closet/secure_closet/mechanicus/augs,
+/obj/structure/lootcrate/money,
 /turf/open/floor/holofloor/dark,
 /area/city/backstreets_room)
 "h" = (
@@ -142,13 +142,8 @@
 /obj/item/organ/heart/cybernetic/tier4,
 /turf/open/floor/holofloor/dark,
 /area/city/backstreets_room)
-"t" = (
-/obj/structure/lattice/catwalk,
-/obj/structure/closet/secure_closet/mechanicus/implants,
-/turf/open/floor/holofloor/dark,
-/area/city/backstreets_room)
 "u" = (
-/mob/living/simple_animal/hostile/ordeal/green_bot/price{
+/mob/living/simple_animal/hostile/ordeal/green_bot{
 	desc = "A slim robot that appears to have lost itself and its arm.";
 	name = "Corrupted Meister Emett"
 	},
@@ -455,7 +450,7 @@ w
 l
 d
 s
-t
+g
 L
 "}
 (11,1,1) = {"

@@ -1,4 +1,3 @@
-
 /datum/job/rcorp_captain/commander
 	title = "Ground Commander"
 	faction = "Station"
@@ -7,7 +6,7 @@
 	spawn_positions = 1
 	supervisors = "the interests of R Corp"
 	selection_color = "#a18438"
-	exp_requirements = 600
+	exp_requirements = 3000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	maptype = "rcorp"
@@ -25,17 +24,30 @@
 								TEMPERANCE_ATTRIBUTE = 0,
 								JUSTICE_ATTRIBUTE = 100
 								)
+	alt_titles = list("Commander")
 	rank_title = "CDR"
-	var/commander = TRUE //Just used for an announce
-	job_important = "Lead the Rcorp 4th Pack to victory using your command and organizational skills."
+	job_important = "Lead the Rcorp 4th Pack to victory using your command and organizational skills. You are among the highest ranked combatant in the R-Corp mercenary force."
 	job_notice = " Give a briefing and then open the doors to the outside via a button in the officer's room."
+
+/datum/job/rcorp_captain/commander/New()
+	..()
+	if(!trusted_only)
+		return
+	if(prob(10))
+		rank_title = "JCDR"
+		trusted_only = FALSE
 
 /datum/job/rcorp_captain/commander/announce(mob/living/carbon/human/H)
 	..()
-	if(commander)
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "All rise for commander [H.real_name]."))
-	else
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Lieutenant commander [H.real_name] has arrived."))
+	switch(rank_title)
+		if("CDR")
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "All rise for commander [H.real_name]."))
+		if("JCDR")
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Junior Commander [H.real_name] is in command of this operation."))
+		if("LCDR")
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Lieutenant commander [H.real_name] has arrived."))
+		if("CPT")
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Captain [H.real_name] has arrived."))
 
 /datum/outfit/job/commander
 	name = "Ground Commander"
@@ -50,7 +62,7 @@
 	ears = /obj/item/radio/headset/heads/manager/alt
 	head = /obj/item/clothing/head/beret/tegu/rcorp
 	l_pocket = /obj/item/commandprojector
-
+	r_hand = /obj/item/announcementmaker
 
 
 /datum/job/rcorp_captain/commander/lieutenant
@@ -65,9 +77,9 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80
 								)
-	commander = FALSE
 	access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
 	minimal_access = list(ACCESS_ARMORY, ACCESS_RND, ACCESS_COMMAND, ACCESS_MEDICAL)
+	alt_titles = list("Base Commander", "Senior Officer")
 	rank_title = "LCDR"
 	job_important = "You are the right hand man to the Commander. Assist them in any way you can. If there is no commander, you are next in line for Acting Commander."
 	job_notice = "Manage the Junior Officers at your disposal"
@@ -104,10 +116,11 @@ Rcorp Ranks in order:
 
 	Sr. Officer
 CDR - Commander
+JCDR - Jr Commander
 LCDR - Lt Commander
-CPT - Captain
 
 	Jr. Officer
+CPT - Captain
 LT - Lieutenant
 
 	Non-Officer

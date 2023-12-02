@@ -12,6 +12,10 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 	new/datum/stack_recipe("glass shard", /obj/item/shard, time = 0, on_floor = TRUE) \
 ))
 
+GLOBAL_LIST_INIT(skeld_glass_recipes, list ( \
+	new/datum/stack_recipe("directional window", /obj/structure/window/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("fulltile window", /obj/structure/window/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+))
 /obj/item/stack/sheet/glass
 	name = "glass"
 	desc = "HOLY SHEET! That is a lot of glass."
@@ -40,6 +44,9 @@ GLOBAL_LIST_INIT(glass_recipes, list ( \
 /obj/item/stack/sheet/glass/get_main_recipes()
 	. = ..()
 	. += GLOB.glass_recipes
+	if(SSmaptype.maptype in SSmaptype.spacemaps)
+		. += GLOB.skeld_glass_recipes
+
 
 /obj/item/stack/sheet/glass/attackby(obj/item/W, mob/user, params)
 	add_fingerprint(user)
@@ -122,6 +129,11 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 	new/datum/stack_recipe("glass shard", /obj/item/shard, time = 0, on_floor = TRUE) \
 ))
 
+GLOBAL_LIST_INIT(skeld_reinforced_glass_recipes, list ( \
+	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \
+	new/datum/stack_recipe("fulltile reinforced window", /obj/structure/window/reinforced/fulltile/unanchored, 2, time = 0, on_floor = TRUE, window_checks = TRUE), \
+))
+
 
 /obj/item/stack/sheet/rglass
 	name = "reinforced glass"
@@ -167,6 +179,8 @@ GLOBAL_LIST_INIT(reinforced_glass_recipes, list ( \
 /obj/item/stack/sheet/rglass/get_main_recipes()
 	. = ..()
 	. += GLOB.reinforced_glass_recipes
+	if(SSmaptype.maptype in SSmaptype.spacemaps)
+		. += GLOB.skeld_reinforced_glass_recipes
 
 GLOBAL_LIST_INIT(prglass_recipes, list ( \
 	new/datum/stack_recipe("directional reinforced window", /obj/structure/window/plasma/reinforced/unanchored, time = 0, on_floor = TRUE, window_checks = TRUE), \

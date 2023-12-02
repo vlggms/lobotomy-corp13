@@ -77,6 +77,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/goal_reached = FALSE
 	/// Multiplier to PE earned from working on abnormalities
 	var/box_work_multiplier = 1
+	/// Multiplier towards attribute points earned for working on melting abnormalities
+	var/melt_work_multiplier = 1
+	/// The area of effect of manager's bullets; -1 is for direct target only
+	var/manager_bullet_area = -1
 	/// When TRUE - abnormalities can be possessed by ghosts
 	var/enable_possession = FALSE
 	/// Amount of abnormalities that agents achieved full understanding on
@@ -254,6 +258,14 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meltdown_amount = max(1, round(abno_amount * CONFIG_GET(number/qliphoth_meltdown_percent)))
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
+	// Honestly, I wish I could do it another way, but oh well
+	if(istype(core_suppression, /datum/suppression/command))
+		// All abno levels melt
+		forced = TRUE
+		var/datum/suppression/command/C = core_suppression
+		meltdown_amount += C.meltdown_count_increase
+		min_time = round(min_time * C.meltdown_time_multiplier)
+		max_time = round(max_time * C.meltdown_time_multiplier)
 	var/list/computer_list = list()
 	var/list/meltdown_occured = list()
 	for(var/obj/machinery/computer/abnormality/cmp in shuffle(GLOB.abnormality_consoles))

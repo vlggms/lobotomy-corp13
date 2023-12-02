@@ -45,6 +45,13 @@
 	gift_type =  /datum/ego_gifts/goldrush
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 	/datum/action/innate/abnormality_attack/kog_dash,
@@ -190,7 +197,7 @@
 			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
 			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
 		for(var/obj/vehicle/V in new_hits)
-			V.take_damage(80, RED_DAMAGE, RED_DAMAGE, attack_sound)
+			V.take_damage(80, RED_DAMAGE, attack_sound)
 			V.visible_message(span_boldwarning("[src] crunches [V]!"))
 			playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
 			playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)

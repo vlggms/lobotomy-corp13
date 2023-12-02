@@ -46,9 +46,7 @@
 		/obj/item/ego_weapon/shield/kcorp,
 		/obj/item/ego_weapon/city/kcorp/axe,
 		/obj/item/gun/ego_gun/pistol/kcorp,
-		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1,
-		/obj/item/clothing/head/kcorp,
-		/obj/item/clothing/head/kcorp/visor,
+		/obj/item/storage/box/kcorp_armor,
 		)
 
 	veryrareloot =	list(
@@ -67,15 +65,15 @@
 	name = "N Corp Crate"
 	desc = "A crate recieved from N-Corp. Open with a Crowbar."
 	icon_state = "crate_ncorp"
+	rarechance = 65 // 30% seals, 70% everything else
 	veryrarechance = 5
 	lootlist =	list(
-		/obj/item/ego_weapon/city/ncorp_mark,
-		/obj/item/ego_weapon/city/ncorp_mark/white,
-		/obj/item/ego_weapon/city/ncorp_mark/black,
+		/obj/item/storage/box/ncorp_seals,
+		/obj/item/storage/box/ncorp_seals/white,
+		/obj/item/storage/box/ncorp_seals/black,
 		)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/city/ncorp_mark/pale,
 		/obj/item/ego_weapon/city/ncorp_nail,
 		/obj/item/ego_weapon/city/ncorp_nail/big,
 		/obj/item/ego_weapon/city/ncorp_brassnail,
@@ -87,6 +85,7 @@
 		)
 
 	veryrareloot =	list(
+		/obj/item/storage/box/ncorp_seals/pale,
 		/obj/item/ego_weapon/city/ncorp_hammer/hand,
 		/obj/item/ego_weapon/city/ncorp_hammer/grippy,
 		/obj/item/ego_weapon/city/ncorp_nail/huge,
@@ -156,7 +155,7 @@
 	icon_state = "crate_wcorp"
 	lootlist =	list(
 		/obj/item/ego_weapon/city/charge/wcorp,
-		/obj/item/clothing/head/wcorp,
+		/obj/item/clothing/head/ego_hat/wcorp,
 		/obj/item/clothing/under/suit/lobotomy/wcorp,
 		/obj/item/clothing/suit/armor/ego_gear/wcorp,
 		/obj/item/powered_gadget/teleporter,

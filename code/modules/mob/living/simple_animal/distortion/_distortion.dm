@@ -73,12 +73,6 @@
 	var/obj/item/implant/radio/slime/imp = new(src)
 	imp.implant(src, src) //acts as if the abno is both the implanter and the one being implanted, which is technically true I guess?
 
-// Is it currently a combat gamemode? Used to check if somethings can teleport.
-/mob/living/simple_animal/hostile/distortion/proc/CheckCombat()
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
-		return TRUE
-	return FALSE
-
 // Applies fear damage to everyone in range
 /mob/living/simple_animal/hostile/distortion/proc/FearEffect()
 	if(fear_level <= 0)

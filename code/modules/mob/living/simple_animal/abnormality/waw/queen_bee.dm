@@ -28,6 +28,11 @@
 		)
 	gift_type =  /datum/ego_gifts/hornet
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/general_b = 5
+	)
+
 	var/datum/looping_sound/queenbee/soundloop
 	var/breached_others = FALSE
 

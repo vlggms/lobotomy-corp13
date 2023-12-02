@@ -24,6 +24,12 @@
 	)
 	gift_type = /datum/ego_gifts/transmission
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+	)
+
 	var/input
 	var/bitposition = 4	//You write in bits. You need to successfully write a string of 5 to sucessfully work
 	var/bitcalculator = 0

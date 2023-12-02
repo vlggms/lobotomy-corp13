@@ -79,6 +79,9 @@
 	var/harvest_phrase_third = "%PERSON harvests... something... into %VESSEL."
 	// Dummy chemicals - called if chem_type is null.
 	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
+	// Increased Abno appearance chance
+	/// Assoc list, you do [path] = [probability_multiplier] for each entry
+	var/list/grouped_abnos = list()
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -383,11 +386,6 @@
 /mob/living/simple_animal/hostile/abnormality/proc/IsContained() //Are you in a cell and currently contained?? If so stop.
 //Contained checks for: If the abnorm is godmoded AND one of the following: It does not have a qliphoth meter OR has qliphoth remaining OR no qliphoth but can't breach
 	if((status_flags & GODMODE) && (!datum_reference.qliphoth_meter_max || datum_reference.qliphoth_meter || (!datum_reference.qliphoth_meter && !can_breach)))
-		return TRUE
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/proc/CheckCombat() //Is it currently a combat gamemode? Used to check if somethings can teleport.
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE
 

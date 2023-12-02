@@ -27,6 +27,9 @@
 
 	alt_titles = list("Staff Officer", "Field Officer",	"Command Officer",	"Junior Officer")
 
+/datum/job/juniorofficer/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/outfit/job/officer
 	name = "Operations Officer"
@@ -90,6 +93,7 @@
 	new /obj/item/clothing/glasses/night(src)
 	new /obj/item/binoculars(src)
 	new /obj/item/megaphone(src)
+	new /obj/item/survivalcapsule/rcorpsmallcommand(src)
 
 /obj/item/storage/box/officer/engineer
 	name = "Engineering Officer"
@@ -97,15 +101,12 @@
 
 /obj/item/storage/box/officer/engineer/PopulateContents()
 	new /obj/item/weldingtool/experimental(src)
-	new /obj/item/stack/sheet/mineral/sandbags(src)
-	new /obj/item/stack/sheet/mineral/sandbags(src)
-	new /obj/item/stack/sheet/mineral/sandbags(src)
+	new /obj/item/stack/sheet/mineral/sandbags/fifty(src)
 	new /obj/item/clothing/glasses/hud/diagnostic/sunglasses(src)
-	new /obj/item/clothing/head/welding(src)
 
 
 /obj/item/storage/box/officer/delivery
-	name = "Delivery Officer"
+	name = "Requisitions Officer"
 	desc = "Includes a set of wheelies and night vision for going to and from the front quickly."
 
 /obj/item/storage/box/officer/delivery/PopulateContents()

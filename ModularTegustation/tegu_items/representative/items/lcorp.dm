@@ -12,10 +12,10 @@
 
 /obj/item/understandingbooster/attack(mob/living/M, mob/user)
 	if(!(istype(M, /mob/living/simple_animal/hostile/abnormality)))
-		to_chat(user, "<span class='notice'>You cannot scan this.</span>")
+		to_chat(user, span_notice("You cannot scan this."))
 		return
 	var/mob/living/simple_animal/hostile/abnormality/A = M
-	to_chat(user, "<span class='notice'>You begin the scan.</span>")
+	to_chat(user, span_notice("You begin the scan."))
 	if(!do_after(user, 30 SECONDS, src))
 		return
 

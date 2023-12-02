@@ -85,6 +85,7 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 					playsound(D, 'sound/machines/boltsup.ogg', 50, TRUE)
 		SSblackbox.record_feedback("tally", "security_level_changes", 1, get_security_level())
 		SSnightshift.check_nightshift()
+		RefreshSecLevelEffects()
 	else
 		return
 
@@ -120,3 +121,74 @@ GLOBAL_VAR_INIT(security_level, SEC_LEVEL_GREEN)
 			return SEC_LEVEL_RED
 		if("third warning")
 			return SEC_LEVEL_DELTA
+
+/proc/RefreshSecLevelEffects()
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		ApplySecurityLevelEffect(H)
+
+/proc/ApplySecurityLevelEffect(mob/living/carbon/human/H)
+	H.remove_status_effect(/datum/status_effect/seclevel)
+	switch(GLOB.security_level)
+		if(SEC_LEVEL_BLUE)
+			H.apply_status_effect(/datum/status_effect/seclevel/level1)
+		if(SEC_LEVEL_RED)
+			H.apply_status_effect(/datum/status_effect/seclevel/level2)
+		if(SEC_LEVEL_DELTA)
+			H.apply_status_effect(/datum/status_effect/seclevel/level3)
+
+
+/datum/status_effect/seclevel
+	id = "security level buff"
+	tick_interval = -1
+	duration = -1
+	alert_type = /atom/movable/screen/alert/status_effect/seclevel
+	var/justice = 0
+	var/temperance = 0
+
+/atom/movable/screen/alert/status_effect/seclevel
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	name = "Security Alert"
+	desc = "Something's wrong; Justice is increased and Temperance is reduced."
+
+/datum/status_effect/seclevel/on_apply()
+	. = ..()
+	if(!ishuman(owner))
+		qdel(src)
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, temperance)
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, justice)
+
+/datum/status_effect/seclevel/on_remove()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -temperance)
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -justice)
+	. = ..()
+
+/datum/status_effect/seclevel/level1
+	justice = 5
+	temperance = -10
+	alert_type = /atom/movable/screen/alert/status_effect/seclevel/level1
+
+/atom/movable/screen/alert/status_effect/seclevel/level1
+	icon_state = "level1"
+	name = "First Warning"
+
+/datum/status_effect/seclevel/level2
+	justice = 10
+	temperance = -20
+	alert_type = /atom/movable/screen/alert/status_effect/seclevel/level2
+
+/atom/movable/screen/alert/status_effect/seclevel/level2
+	icon_state = "level2"
+	name = "Second Warning"
+
+/datum/status_effect/seclevel/level3
+	justice = 20
+	temperance = -40
+	alert_type = /atom/movable/screen/alert/status_effect/seclevel/level3
+
+/atom/movable/screen/alert/status_effect/seclevel/level3
+	icon_state = "level3"
+	name = "Third Warning"

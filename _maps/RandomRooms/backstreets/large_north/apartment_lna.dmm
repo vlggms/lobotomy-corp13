@@ -250,6 +250,10 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
+"Q" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
 "R" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -319,11 +323,7 @@
 /area/city/backstreets_room)
 "Y" = (
 /obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
-/obj/effect/spawner/lootdrop/space/cashmoney,
+/obj/structure/lootcrate/money,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "Z" = (
@@ -347,7 +347,7 @@ L
 L
 a
 g
-b
+Q
 Y
 l
 c
@@ -356,7 +356,7 @@ L
 (3,1,1) = {"
 L
 y
-b
+k
 b
 b
 b
@@ -367,8 +367,8 @@ n
 L
 i
 b
-b
-b
+k
+k
 F
 U
 n
@@ -377,7 +377,7 @@ n
 L
 m
 b
-b
+Q
 C
 O
 B

@@ -256,6 +256,18 @@
 	justice_bonus = 2
 	slot = FACE
 
+/datum/ego_gifts/eclipse
+	name = "Eclipse of Scarlet Moths"
+	icon_state = "eclipse"
+	temperance_bonus = 2
+	slot = BROOCH
+
+/datum/ego_gifts/oceanic
+	name = "Taste of the Sea"
+	icon_state = "oceanic"
+	temperance_bonus = 2
+	slot = HAND_2
+
 /// All TETH EGO Gifts
 /datum/ego_gifts/standard
 	name = "Standard Training E.G.O."
@@ -480,6 +492,18 @@
 	icon_state = "red_sheet"
 	justice_bonus = 3
 	slot = HELMET
+
+/datum/ego_gifts/visions
+	name = "Fiery Down"
+	icon_state = "visions"
+	prudence_bonus = 3
+	slot = NECKWEAR
+
+/datum/ego_gifts/sanitizer
+	name = "Sanitizer"
+	icon_state = "sanitizer"
+	justice_bonus = 2
+	slot = HAND_2
 
 /// All HE EGO Gifts
 /datum/ego_gifts/loggging
@@ -776,6 +800,43 @@
 	fortitude_bonus = 1
 	temperance_bonus = 3
 	slot = HELMET
+
+/datum/ego_gifts/syrinx // Your reward for dealing with one of the worst abnormalities ever
+	name = "Syrinx"
+	icon_state = "syrinx"
+	desc = "Provides the user with 5% resistance to white damage."
+	slot = HELMET
+	fortitude_bonus = 1
+	prudence_bonus = 1
+
+/datum/ego_gifts/syrinx/Initialize(mob/living/carbon/human/user) // grants resistance
+	.=..()
+	user.physiology.white_mod *= 0.95
+
+/datum/ego_gifts/syrinx/Remove(mob/living/carbon/human/user)
+	user.physiology.white_mod /= 0.95
+	.=..()
+
+/datum/ego_gifts/nixie
+	name = "Nixie Divergence"
+	icon_state = "nixie"
+	slot = HAND_1
+	fortitude_bonus  = 2
+	justice_bonus = 2
+
+/datum/ego_gifts/uturn
+	name = "Milepost of Survival"
+	icon_state = "uturn"
+	slot = FACE
+	fortitude_bonus  = 2
+	justice_bonus = 2
+
+/datum/ego_gifts/voodoo
+	name = "Voodoo Doll"
+	icon_state = "voodo"
+	slot = MOUTH_1
+	fortitude_bonus  = 2
+	justice_bonus = 2
 
 /// All WAW EGO Gifts
 /datum/ego_gifts/correctional
@@ -1122,6 +1183,12 @@
 	prudence_bonus = -4
 	temperance_bonus = 10
 	slot = HAT
+
+/datum/ego_gifts/coiling
+	name = "Coiling"
+	icon_state = "coiling"
+	fortitude_bonus = 5
+	slot = MOUTH_2
 
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise

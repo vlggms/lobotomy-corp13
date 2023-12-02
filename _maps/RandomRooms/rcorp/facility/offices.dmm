@@ -89,13 +89,6 @@
 	},
 /turf/open/floor/facility,
 /area/city/outskirts)
-"kN" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "inside"
-	},
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/facility,
-/area/city/outskirts)
 "kZ" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -187,7 +180,7 @@
 /turf/open/floor/facility,
 /area/city/outskirts)
 "qF" = (
-/obj/structure/toolabnormality/touch,
+/obj/effect/landmark/objectivespawn,
 /turf/open/floor/facility/dark,
 /area/city/outskirts)
 "qT" = (
@@ -226,13 +219,6 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel,
-/area/city/outskirts)
-"vn" = (
-/obj/structure/table/wood,
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
-/turf/open/floor/carpet/red,
 /area/city/outskirts)
 "vt" = (
 /obj/structure/table/wood,
@@ -6602,11 +6588,11 @@ aJ
 HD
 HD
 HD
-HD
 Qu
 HD
-Qu
 HD
+HD
+Qu
 HD
 HD
 HD
@@ -6758,25 +6744,25 @@ WS
 Fl
 Fl
 Fl
+Qq
 Fl
 Fl
 Fl
-Fl
-aJ
 aJ
 aJ
 aJ
 Fl
 Qq
+Qq
+Qq
 Fl
 aJ
 aJ
 aJ
-aJ
 Fl
 Fl
 Fl
-Fl
+Qq
 Fl
 Fl
 Fl
@@ -6920,8 +6906,8 @@ WS
 WS
 WS
 WS
-WS
-WS
+Fl
+HD
 Fl
 HD
 Zc
@@ -6939,8 +6925,8 @@ rg
 oh
 HD
 Fl
-WS
-WS
+HD
+Fl
 WS
 WS
 WS
@@ -7083,8 +7069,8 @@ WS
 WS
 WS
 WS
-WS
-WS
+Fl
+HD
 Fl
 HD
 GN
@@ -7102,8 +7088,8 @@ XP
 GN
 HD
 Fl
-WS
-WS
+HD
+Fl
 WS
 WS
 WS
@@ -7246,8 +7232,8 @@ WS
 WS
 WS
 WS
-WS
-WS
+Fl
+HD
 Fl
 HD
 Fl
@@ -7265,8 +7251,8 @@ Fl
 Fl
 HD
 Fl
-WS
-WS
+HD
+Fl
 WS
 WS
 WS
@@ -7409,8 +7395,8 @@ WS
 WS
 WS
 WS
-WS
-WS
+Fl
+HD
 Fl
 HD
 lW
@@ -7428,8 +7414,8 @@ HD
 lW
 HD
 Fl
-WS
-WS
+HD
+Fl
 WS
 WS
 WS
@@ -7572,8 +7558,8 @@ WS
 WS
 WS
 WS
-WS
-WS
+Fl
+HD
 Fl
 HD
 HD
@@ -7591,8 +7577,8 @@ HD
 HD
 HD
 Fl
-WS
-WS
+HD
+Fl
 WS
 WS
 WS
@@ -7735,8 +7721,8 @@ Fl
 WS
 WS
 WS
-WS
-WS
+Fl
+HD
 Fl
 HD
 wr
@@ -7754,8 +7740,8 @@ rg
 fa
 HD
 Fl
-WS
-WS
+HD
+Fl
 WS
 WS
 WS
@@ -7898,8 +7884,8 @@ Fl
 WS
 WS
 WS
-WS
-WS
+Fl
+HD
 Fl
 HD
 GN
@@ -7917,8 +7903,8 @@ XP
 GN
 HD
 Fl
-WS
-WS
+HD
+Fl
 WS
 WS
 WS
@@ -8062,16 +8048,8 @@ Fl
 Fl
 Fl
 Fl
+Qq
 Fl
-Fl
-HD
-Fl
-Fl
-Fl
-Fl
-Fl
-HD
-HD
 HD
 Fl
 Fl
@@ -8079,9 +8057,17 @@ Fl
 Fl
 Fl
 HD
+HD
+HD
 Fl
-WS
-WS
+Fl
+Fl
+Fl
+Fl
+HD
+Fl
+Qq
+Fl
 WS
 WS
 WS
@@ -8224,8 +8210,8 @@ aJ
 nD
 Of
 Of
-Of
 nD
+Of
 aJ
 HD
 lW
@@ -8242,9 +8228,9 @@ HD
 HD
 lW
 HD
+HD
+HD
 Fl
-WS
-WS
 WS
 WS
 WS
@@ -8405,9 +8391,9 @@ HD
 HD
 HD
 HD
+HD
+HD
 Fl
-WS
-WS
 WS
 WS
 WS
@@ -8542,7 +8528,7 @@ Fl
 bF
 Of
 Of
-vn
+vt
 Qx
 Of
 Of
@@ -8550,8 +8536,8 @@ aJ
 rS
 Of
 Of
-Of
 rS
+Of
 aJ
 HD
 wr
@@ -8569,8 +8555,8 @@ rg
 fa
 HD
 Fl
-WS
-WS
+Fl
+Fl
 WS
 WS
 WS
@@ -10189,9 +10175,9 @@ Fl
 Fl
 Fl
 Fl
-kN
-kN
-kN
+Qq
+Qq
+Qq
 Fl
 Fl
 Fl
@@ -10352,9 +10338,9 @@ WS
 WS
 WS
 Fl
+kK
 HD
-HD
-HD
+ep
 Fl
 WS
 WS
@@ -12307,7 +12293,7 @@ Fl
 Ke
 Ke
 Ke
-Fl
+Ke
 aM
 HD
 TX
@@ -12462,7 +12448,7 @@ Fl
 Ke
 Ke
 Ke
-Fl
+Ke
 aM
 HD
 TX
@@ -12625,7 +12611,7 @@ Fl
 Ke
 gG
 Ke
-Fl
+Ke
 aM
 HD
 qT
@@ -12792,7 +12778,7 @@ Fl
 aM
 HD
 TX
-Fl
+Ke
 Ke
 Ke
 Ke
@@ -12955,7 +12941,7 @@ Qq
 aM
 HD
 TX
-Fl
+Ke
 Ke
 Ke
 Ke
@@ -13112,8 +13098,8 @@ WS
 WS
 Fl
 Fl
-Fl
-Fl
+Ke
+Ke
 Fl
 oV
 HD
@@ -13277,11 +13263,11 @@ Fl
 Ke
 Ke
 Ke
-Fl
+Ke
 aM
 HD
 TX
-Fl
+Ke
 Ke
 Ke
 Ke
@@ -13440,11 +13426,11 @@ Fl
 Ke
 Ke
 Ke
-Fl
+Ke
 aM
 HD
 TX
-Fl
+Ke
 Ke
 Ke
 Ke
@@ -13766,7 +13752,7 @@ Fl
 Ke
 Ke
 Ke
-Fl
+Ke
 aM
 HD
 TX
@@ -13774,7 +13760,7 @@ Fl
 Ke
 Ke
 Ke
-Fl
+Ke
 oV
 JR
 TX

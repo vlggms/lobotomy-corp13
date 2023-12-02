@@ -145,8 +145,8 @@
 	name = "hat trick"
 	desc = "Imagination is the only weapon in the war with reality."
 	icon_state = "trick"
-	force = 17
-	throwforce = 25		//You can only hold 4 so go nuts.
+	force = 16
+	throwforce = 35		//You can only hold 4 so go nuts.
 	throw_speed = 5
 	throw_range = 7
 	damtype = BLACK_DAMAGE

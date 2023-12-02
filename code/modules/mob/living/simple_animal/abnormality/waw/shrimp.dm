@@ -24,6 +24,9 @@
 		)
 	gift_type =  /datum/ego_gifts/executive
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/wellcheers = 1.5 // I... if you ever get a zayin this far in, good luck.
+	)
 
 	var/liked
 	var/happy = TRUE

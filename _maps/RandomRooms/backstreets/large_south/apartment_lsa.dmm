@@ -207,7 +207,7 @@
 /area/city/backstreets_room)
 "Ak" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/obj/structure/lootcrate,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "Ar" = (
@@ -336,6 +336,7 @@
 	pixel_x = 30
 	},
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "QG" = (

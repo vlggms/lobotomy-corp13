@@ -446,3 +446,12 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/he/nixie
+	name = "nixie divergence"
+	desc = "A purposeless machine is bound to lose the meaning of its existence, even if it is functional."
+	icon_state = "nixie"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = -20, PALE_DAMAGE = 30) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)

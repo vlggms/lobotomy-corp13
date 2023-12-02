@@ -12,24 +12,24 @@
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "aH" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "bi" = (
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "bF" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "cU" = (
 /obj/effect/decal/cleanable/robot_debris/old,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "dI" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -38,30 +38,37 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
+"eJ" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/pod/dark,
+/area/library_floors/floor_techsci)
 "eN" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "fW" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
 	},
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "gG" = (
 /obj/structure/mecha_wreckage/durand,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "gN" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "iz" = (
 /obj/structure/chair/greyscale{
 	dir = 4
@@ -70,28 +77,35 @@
 	dir = 4
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
+"iE" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/item/flashlight/spotlight,
+/turf/open/floor/pod/dark,
+/area/library_floors/floor_techsci)
 "iM" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "js" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "kk" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "lg" = (
 /obj/effect/decal/cleanable/robot_debris/general_scrap,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "mH" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -101,7 +115,7 @@
 	dir = 10
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "mN" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -110,11 +124,11 @@
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "ng" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "nJ" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -124,26 +138,26 @@
 	dir = 6
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "or" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "qa" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "rK" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "rN" = (
 /obj/structure/falsewall/plastitanium,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "rY" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -151,37 +165,38 @@
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "sm" = (
 /obj/item/light/bulb/broken,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "sF" = (
 /obj/structure/table/reinforced,
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "tx" = (
 /obj/structure/table/reinforced,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "ty" = (
 /obj/structure/table/reinforced,
 /obj/item/book/random,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "vI" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "wj" = (
 /obj/structure/fluff/divine/nexus,
+/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "wX" = (
 /obj/machinery/shuttle_manipulator{
 	desc = "A holographic display of the cruise shuttle we're on right now.";
@@ -190,27 +205,28 @@
 	name = "shuttle holographic display"
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "xo" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "yr" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
 /obj/structure/bookcase/random/nonfiction,
+/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "yO" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "zb" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -221,51 +237,46 @@
 	pixel_y = 12
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Am" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
 	},
 /obj/structure/mecha_wreckage,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "AE" = (
 /obj/effect/decal/cleanable/glass,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "AN" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
-"Bp" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 9
-	},
-/turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "BF" = (
 /obj/structure/falsewall/plastitanium,
 /turf/open/space/basic,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "BN" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "BR" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 6
 	},
 /obj/structure/bookcase/random/nonfiction,
+/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Ck" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Cl" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -277,17 +288,17 @@
 	dir = 1
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Cq" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
 	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Cu" = (
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Db" = (
 /obj/structure/chair/greyscale{
 	dir = 8
@@ -296,27 +307,27 @@
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Ep" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "EZ" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Fg" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "FY" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -327,19 +338,19 @@
 	dir = 5
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Gu" = (
 /obj/structure/falsewall/plastitanium,
 /obj/item/wallframe/newscaster,
 /turf/open/space/basic,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Hg" = (
 /obj/item/toy/plush/myo,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Hk" = (
 /turf/open/space/basic,
 /area/space)
@@ -348,34 +359,35 @@
 	dir = 4
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Ix" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
 	},
 /obj/structure/bookcase/random/nonfiction,
+/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Iy" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
 	},
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "JL" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/effect/decal/cleanable/robot_debris/limb,
 /obj/effect/decal/cleanable/robot_debris/old,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Kd" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 5
 	},
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Ki" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -386,55 +398,55 @@
 	pixel_y = 11
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Kr" = (
 /obj/item/light/bulb/broken,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Kt" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "KG" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "KL" = (
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "KX" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/effect/decal/cleanable/shreds,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Lf" = (
 /obj/effect/turf_decal/trimline/purple/filled/end,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Me" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "MV" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Os" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /obj/structure/chair/greyscale,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "PB" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "PY" = (
 /obj/structure/chair/greyscale{
 	dir = 1
@@ -443,18 +455,19 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Qs" = (
 /obj/effect/decal/cleanable/robot_debris/limb,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Rk" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
 	},
+/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "RW" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -465,29 +478,36 @@
 	dir = 9
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "SW" = (
 /obj/structure/table/reinforced,
 /obj/item/book/random,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Uk" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Us" = (
 /obj/item/toy/plush/rabbit,
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Uz" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
+"UQ" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 4
+	},
+/obj/structure/bookcase/random/nonfiction,
+/turf/open/floor/pod/dark,
+/area/library_floors/floor_techsci)
 "VC" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -498,7 +518,17 @@
 	dir = 1
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
+"WM" = (
+/obj/structure/fluff/divine/nexus,
+/turf/open/floor/pod/dark,
+/area/library_floors/floor_techsci)
+"WS" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 10
+	},
+/turf/open/floor/pod/dark,
+/area/library_floors/floor_techsci)
 "WT" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -512,35 +542,35 @@
 	pixel_y = 12
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Xk" = (
 /obj/machinery/modular_computer/console{
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Xt" = (
 /turf/open/floor/fakepit{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Yz" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
 	pixel_y = 10
 	},
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "YE" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 10
 	},
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/pod/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "YF" = (
 /obj/structure/flora/rock,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Za" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -555,7 +585,7 @@
 	pixel_y = 12
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "Zz" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -570,12 +600,12 @@
 	pixel_y = 12
 	},
 /turf/open/floor/pod/light,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 "ZK" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
 /obj/structure/mecha_wreckage,
 /turf/open/floor/plating/ashplanet,
-/area/city/backstreets_room)
+/area/library_floors/floor_techsci)
 
 (1,1,1) = {"
 Hk
@@ -614,10 +644,10 @@ Hk
 BF
 EZ
 bF
-Ix
-bF
-Ix
-Ix
+eJ
+iE
+eJ
+eJ
 bF
 Ix
 bF
@@ -714,7 +744,7 @@ Hk
 Hk
 Hk
 BF
-wj
+WM
 aH
 Os
 Cu
@@ -1860,9 +1890,9 @@ Hk
 Hk
 Hk
 BF
-Bp
+Fg
 bF
-Rk
+WS
 SW
 eN
 eN
@@ -2025,7 +2055,7 @@ Cu
 Cu
 AN
 PB
-Rk
+WS
 aH
 gN
 aq
@@ -2098,8 +2128,8 @@ Kd
 Ep
 yr
 Ep
-yr
-yr
+UQ
+UQ
 Ep
 yr
 Ep

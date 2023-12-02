@@ -26,7 +26,7 @@
 		if(on == 0)
 			on = 1
 			if(!detectable_entity)
-				to_chat(user, "<span class='notice'>You press a button and the [src] starts whirring before falling apart.</span>")
+				to_chat(user, span_notice("You press a button and the [src] starts whirring before falling apart."))
 				return QDEL_IN(src, 1)
 			update_icon_state()
 			START_PROCESSING(SSobj, src)

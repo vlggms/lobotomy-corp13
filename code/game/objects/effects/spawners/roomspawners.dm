@@ -10,10 +10,10 @@
 	var/room_type = "maintenance" // Used so we can place landmarks in ruins and such.
 
 /obj/effect/spawner/room/Initialize()
-	..()
+	..()/*
 	return INITIALIZE_HINT_LATELOAD
 
-/obj/effect/spawner/room/LateInitialize()
+/obj/effect/spawner/room/LateInitialize()*/
 	var/list/possibletemplates = list()
 	var/datum/map_template/random_room/cantidate = null
 	shuffle_inplace(SSmapping.random_room_templates)

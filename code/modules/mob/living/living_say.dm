@@ -115,6 +115,7 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 	var/original_message = message
 	message = get_message_mods(message, message_mods)
 	var/datum/saymode/saymode = SSradio.saymodes[message_mods[RADIO_KEY]]
+	message = check_for_custom_say_emote(message, message_mods)
 
 	if(!message)
 		return
@@ -257,7 +258,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 		// Create map text prior to modifying message for goonchat, sign lang edition
 		if (client?.prefs.chat_on_map && !(stat == UNCONSCIOUS || stat == HARD_CRIT || is_blind(src)) && (client.prefs.see_chat_non_mob || ismob(speaker)))
-			create_chat_message(speaker, message_language, raw_message, spans)
+			if (message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
+				create_chat_message(speaker, null, message_mods[MODE_CUSTOM_SAY_EMOTE], spans, EMOTE_MESSAGE)
+			else
+				create_chat_message(speaker, message_language, raw_message, spans)
 
 		if(is_blind(src))
 			return FALSE
@@ -278,7 +282,10 @@ GLOBAL_LIST_INIT(message_modes_stat_limits, list(
 
 	// Create map text prior to modifying message for goonchat
 	if (client?.prefs.chat_on_map && !(stat == UNCONSCIOUS || stat == HARD_CRIT) && (client.prefs.see_chat_non_mob || ismob(speaker)) && can_hear())
-		create_chat_message(speaker, message_language, raw_message, spans)
+		if (message_mods[MODE_CUSTOM_SAY_ERASE_INPUT])
+			create_chat_message(speaker, null, message_mods[MODE_CUSTOM_SAY_EMOTE], spans, EMOTE_MESSAGE)
+		else
+			create_chat_message(speaker, message_language, raw_message, spans)
 
 	// Recompose message for AI hrefs, language incomprehension.
 	message = compose_message(speaker, message_language, raw_message, radio_freq, spans, message_mods)
