@@ -475,9 +475,9 @@
 	dir = 1
 	},
 /turf/open/floor/facility{
+	dir = 4;
 	icon = 'icons/turf/floors.dmi';
-	icon_state = "stairs-old";
-	dir = 4
+	icon_state = "stairs-old"
 	},
 /area/department_main/training)
 "dG" = (
@@ -2013,12 +2013,12 @@
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/teth/lore/spiderbud,
 /obj/item/folder/yellow{
-	pixel_y = -6;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -6
 	},
 /obj/item/paper/guides/jobs/zayin/lore/wellcheers{
-	pixel_y = -4;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -4
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
@@ -2195,8 +2195,8 @@
 /obj/structure/table/reinforced,
 /obj/machinery/reagentgrinder{
 	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 11;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 11
 	},
 /obj/item/reagent_containers/glass/beaker/large{
 	pixel_x = 7;
@@ -3571,8 +3571,8 @@
 "xB" = (
 /obj/structure/table/wood,
 /obj/item/folder/yellow{
-	pixel_y = 3;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 3
 	},
 /obj/item/paper/guides/jobs/waw,
 /obj/item/paper/guides/jobs/aleph{
@@ -4183,9 +4183,9 @@
 /obj/effect/turf_decal/siding/brown,
 /obj/machinery/light,
 /turf/open/floor/facility{
+	dir = 4;
 	icon = 'icons/turf/floors.dmi';
-	icon_state = "stairs-old";
-	dir = 4
+	icon_state = "stairs-old"
 	},
 /area/department_main/training)
 "Br" = (
@@ -4437,6 +4437,10 @@
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
+"Dt" = (
+/obj/effect/spawner/xmastree,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "Dw" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -6134,8 +6138,8 @@
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/glass/bowl,
 /obj/item/kitchen/rollingpin{
-	pixel_y = -3;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = -3
 	},
 /obj/item/kitchen/knife{
 	pixel_x = -3;
@@ -33245,7 +33249,7 @@ YP
 zz
 Zq
 Rs
-YP
+Dt
 pk
 YP
 YP

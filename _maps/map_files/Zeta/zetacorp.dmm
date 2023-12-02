@@ -111,6 +111,13 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
+"aW" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 9
+	},
+/obj/effect/spawner/xmastree,
+/turf/open/floor/carpet/stellar,
+/area/department_main/command)
 "aX" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
@@ -6414,8 +6421,8 @@
 "MX" = (
 /obj/structure/railing{
 	dir = 4;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /obj/structure/chair/plastic{
 	dir = 4
@@ -6484,8 +6491,8 @@
 "Nv" = (
 /obj/structure/railing{
 	dir = 4;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
@@ -8147,16 +8154,16 @@
 "XK" = (
 /obj/structure/railing{
 	dir = 4;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /obj/structure/chair/plastic{
 	dir = 4
 	},
 /obj/structure/railing{
 	dir = 6;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
@@ -41751,7 +41758,7 @@ ko
 tB
 lm
 NL
-NF
+aW
 Jb
 Xk
 DE
