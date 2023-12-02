@@ -935,7 +935,7 @@
 #include "code\game\machinery\camera\tracking.dm"
 #include "code\game\machinery\computer\_computer.dm"
 #include "code\game\machinery\computer\abnormality_archive.dm"
-#include "code\game\machinery\computer\abnormality_auxilary.dm"
+#include "code\game\machinery\computer\abnormality_auxiliary.dm"
 #include "code\game\machinery\computer\abnormality_ego.dm"
 #include "code\game\machinery\computer\abnormality_logs.dm"
 #include "code\game\machinery\computer\abnormality_queue.dm"

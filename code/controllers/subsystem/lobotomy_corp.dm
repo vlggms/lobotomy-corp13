@@ -174,6 +174,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
 		A.audible_message("<span class='userdanger'>Core Suppression options have been disabled for this shift!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
+		A.selected_core_type = null
 		A.updateUsrDialog()
 	available_core_suppressions = list()
 	if(announce)
