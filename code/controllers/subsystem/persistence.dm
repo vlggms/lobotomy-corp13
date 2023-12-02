@@ -180,18 +180,19 @@ SUBSYSTEM_DEF(persistence)
 	pe_status = json_decode(json)
 
 /datum/controller/subsystem/persistence/proc/LoadAbnoPicks()
+	abno_rates = typecacheof(/mob/living/simple_animal/hostile/abnormality, TRUE)
 	var/json = file2text(FILE_ABNO_PICKS)
 	if(!json)
 		var/json_file = file(FILE_ABNO_PICKS)
 		if(!fexists(json_file))
-			WARNING("Failed to load agent reputation. File likely corrupt.")
-		abno_rates = typecacheof(/mob/living/simple_animal/hostile/abnormality, TRUE)
+			WARNING("Failed to load Abno pick rates. File likely corrupt.")
 	else
-		abno_rates = json_decode(json)
-	//var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
+		var/list/pick_rates = json_decode(json)
+		for(var/path in pick_rates)
+			abno_rates[text2path(path)] = pick_rates[path]
 	var/highest = max(abno_rates[ReturnHighestValue(abno_rates)] + 1, 2) // Ensures no 0 results
 	for(var/i in abno_rates)
-		var/mob/living/simple_animal/hostile/abnormality/abno = text2path(i)
+		var/mob/living/simple_animal/hostile/abnormality/abno = i
 		if(initial(abno.can_spawn))
 			SSabnormality_queue.possible_abnormalities[initial(abno.threat_level)] += abno
 			var/rate = (abno_rates[i] * -1) + highest
@@ -414,7 +415,7 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/controller/subsystem/persistence/proc/SaveAbnoPicks()
 	for(var/datum/abnormality/abno_ref in SSlobotomy_corp.all_abnormality_datums)
-		abno_rates["[abno_ref.abno_path]"] = text2num(abno_rates[abno_ref.abno_path]) + 1
+		abno_rates[abno_ref.abno_path] = text2num(abno_rates[abno_ref.abno_path]) + 1
 	fdel(FILE_ABNO_PICKS)
 	text2file(json_encode(abno_rates), FILE_ABNO_PICKS)
 
