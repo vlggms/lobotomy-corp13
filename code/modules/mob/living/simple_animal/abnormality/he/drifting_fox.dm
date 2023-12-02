@@ -4,8 +4,8 @@
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with gleaming yellow eyes; And torn umbrellas lodged into its back."
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_state = "fox_sleeping"
-	icon_living = "fox_sleeping"
+	icon_state = "drifting_fox"
+	icon_living = "drifting_fox"
 	icon_dead = "fox_egg"
 	deathmessage = "collapses into a puddle of water"
 	deathsound = 'sound/abnormalities/drifting_fox/foxdeath.ogg'
@@ -36,7 +36,7 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUSs
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower,
@@ -72,7 +72,7 @@
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user)
 	..()
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4) // has placeholder
-	icon_living = "fox"
+	icon_living = "fox_breach"
 	icon_state = icon_living
 	var/turf/T = pick(GLOB.xeno_spawn)
 	forceMove(T)
@@ -83,7 +83,6 @@
 	if(spinattack_cooldown <= world.time)
 		spinAttack()
 	..()
-
 // This may work, Old PR was also unsure.
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
 	. = ..()
@@ -91,7 +90,6 @@
 		return
 	if(umbrella_cooldown <= world.time)
 		FoxUmbrella()
-
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/FoxUmbrella(mob/living/carbon/human/user)
 	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100) // Reminder to actaully link this to a sound,
@@ -161,7 +159,6 @@
 	name = "False Kindness"
 	desc = "Your half hearted attempts at kindness have weakened you to BLACK attacks."
 	icon = 'icons/mob/actions/actions_ability.dmi'
-	icon_state = "falsekindness"
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/spinAttack()
 	if (get_dist(src, target) > 3)
