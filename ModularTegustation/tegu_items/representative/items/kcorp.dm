@@ -9,7 +9,7 @@
 
 /obj/item/ksyringe/attack_self(mob/living/user)
 	..()
-	to_chat(user, "<span class='notice'>You inject the syringe and instantly feel better.</span>")
+	to_chat(user, span_notice("You inject the syringe and instantly feel better."))
 	user.adjustBruteLoss(-40)
 	qdel(src)
 
@@ -22,11 +22,11 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /obj/item/krevive/attack(mob/living/M, mob/user)
-	to_chat(user, "<span class='notice'>You inject the syringe.</span>")
+	to_chat(user, span_notice("You inject the syringe."))
 	if(M.revive(full_heal = TRUE, admin_revive = TRUE))
 		M.revive(full_heal = TRUE, admin_revive = TRUE)
 		M.grab_ghost(force = TRUE) // even suicides
-		to_chat(M, "<span class='notice'>You rise with a start, you're alive!!!</span>")
+		to_chat(M, span_notice("You rise with a start, you're alive!!!"))
 	qdel(src)
 
 /obj/item/kcrit
@@ -39,7 +39,7 @@
 
 /obj/item/kcrit/attack_self(mob/living/user)
 	..()
-	to_chat(user, "<span class='notice'>You inject the syringe and instantly feel better.</span>")
+	to_chat(user, span_notice("You inject the syringe and instantly feel better."))
 	user.hardcrit_threshold+=30
 	user.crit_threshold+=30
 	qdel(src)

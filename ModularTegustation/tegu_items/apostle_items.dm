@@ -15,25 +15,25 @@
 			if(uses > 0 && audio_cd < world.time)
 				var/mob/living/carbon/human/H = target
 				if("apostle" in H.faction)
-					to_chat(user, "<span class='info'>[H] is already empowered by dark light.</span>")
+					to_chat(user, span_info("[H] is already empowered by dark light."))
 					return
-				user.visible_message("<span class='info'>[user] puts hand on [H]'s shoulder, with [src] in the other hand and starts murmuring something.</span>", \
-				"<span class='warning'>You begin spelling the prayer to grant power to [H].</span>", \
-				"<span class='hear'>You can hear some sort of a prayer nearby.</span>")
+				user.visible_message(span_info("[user] puts hand on [H]'s shoulder, with [src] in the other hand and starts murmuring something"), \
+				span_warning("You begin spelling the prayer to grant power to [H]."), \
+				span_hear("You can hear some sort of a prayer nearby."))
 				audio_cd = (world.time + 15 SECONDS)
 				playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/whisper.ogg', 50, 1)
 				if(!do_after(user, 100))
 					return
 				uses -= 1
 				H.faction |= "apostle"
-				to_chat(user, "<span class='info'>You finish the prayer, and suddenly, [H] starts to glow witn an ominous light.</span>")
-				to_chat(H, "<span class='info'>As soon as [user] finishes reading the prayer, you start glowing with an ominous light.</span>")
+				to_chat(user, span_info("You finish the prayer, and suddenly, [H] starts to glow witn an ominous light."))
+				to_chat(H, span_info("As soon as [user] finishes reading the prayer, you start glowing with an ominous light."))
 				H.set_light_color(COLOR_RED_LIGHT)
 				H.set_light(2)
 			else
-				to_chat(user, "<span class='info'>Pages in [src] seem blank. Perhaps there will be a use for it later?</span>")
+				to_chat(user, span_info("Pages in [src] seem blank. Perhaps there will be a use for it later?"))
 		else
-			to_chat(user, "<span class='info'>You can't offer a prayer for yourself!</span>")
+			to_chat(user, span_info("You can't offer a prayer for yourself!"))
 
 /obj/item/clothing/suit/armor/apostle
 	name = "paradise lost"
@@ -105,12 +105,12 @@
 	if(!(faction_needed in user.faction))
 		user.Paralyze(50)
 		user.dropItemToGround(src, TRUE)
-		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [src]!</span>", \
-		"<span class='danger'>You shall not attempt to harm us</span>")
+		user.visible_message(span_warning("A powerful force shoves [user] away from [src]!"), \
+		span_danger("You shall not attempt to harm us"))
 
 /obj/item/nullrod/scythe/apostle/attack(mob/living/target, mob/living/carbon/human/user)
 	if(faction_needed in target.faction)
-		to_chat(user, "<span class='userdanger'>Careful with the holy weapon...</span>")
+		to_chat(user, span_userdanger("Careful with the holy weapon..."))
 		return
 	if(target.health <= HEALTH_THRESHOLD_DEAD || target.stat == DEAD)
 		user.changeNext_move(CLICK_CD_MELEE * 0.4) // Le funny destruction of corpses.
@@ -120,7 +120,7 @@
 /obj/item/nullrod/scythe/apostle/attack_self(mob/living/carbon/user)
 	var/list/target_turfs = list()
 	if(recharge_time > world.time)
-		to_chat(user, "<span class='warning'>You are not ready to purge heretics yet.</span>")
+		to_chat(user, span_warning("You are not ready to purge heretics yet."))
 		return
 	for(var/i in range(spell_radius, user))
 		if(isturf(i))
@@ -128,9 +128,9 @@
 			target_turfs += i
 			continue
 	recharge_time = (world.time + (recharge_base * 0.5))
-	user.visible_message("<span class='warning'>[user] takes a defensive stance and digs [src] into the ground!</span>", \
-	"<span class='warning'>We prepare to annihilate everything next to us.</span>", \
-	"<span class='hear'>You can hear a wild metal screech nearby.</span>")
+	user.visible_message(span_warning("[user] takes a defensive stance and digs [src] into the ground!"), \
+	span_warning("We prepare to annihilate everything next to us."), \
+	span_hear("You can hear a wild metal screech nearby."))
 	if(!do_after(user, 15))
 		return
 	var/init_force = force
@@ -138,7 +138,7 @@
 	user.emote("spin")
 	user.emote("flip")
 	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/scythe_spell.ogg', 150, 1)
-	visible_message("<span class='boldwarning'>[user] spins wildly with [src] in hands!</span>")
+	visible_message(span_boldwarning("[user] spins wildly with [src] in hands!"))
 	for(var/turf/open/K in target_turfs)
 		new /obj/effect/temp_visual/kinetic_blast(K)
 		for(var/mob/living/L in K.contents)
@@ -169,7 +169,7 @@
 /obj/item/nullrod/scythe/apostle/guardian/light/attack_hand(mob/living/user)
 	if(!bound && !(faction_needed in user.faction))
 		user.faction |= faction_needed
-		to_chat(user, "<span class='userdanger'>[user.real_name]. You deserve it.</span>")
+		to_chat(user, span_userdanger("[user.real_name]. You deserve it."))
 		SEND_SOUND(user, 'ModularTegustation/Tegusounds/apostle/mob/apostle_bell.ogg')
 		flash_color(user, flash_color = "#FF4400", flash_time = 100)
 		bound = TRUE
@@ -193,18 +193,18 @@
 	if(!("apostle" in user.faction))
 		user.Paralyze(50)
 		user.dropItemToGround(src, TRUE)
-		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [target]!</span>", \
-		"<span class='danger'>You shall not attempt to harm us</span>")
+		user.visible_message(span_warning("A powerful force shoves [user] away from [target]!"), \
+		span_danger("You shall not attempt to harm us"))
 		return
 	if(charge_cooldown > world.time)
-		to_chat(user, "<span class='warning'>You are not ready to charge the staff yet.</span>")
+		to_chat(user, span_warning("You are not ready to charge the staff yet."))
 		return
 	charge_cooldown = (world.time + 5 SECONDS)
 	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/staff_charge.ogg', 100, 1)
 	new /obj/effect/temp_visual/dir_setting/curse/grasp_portal/fading(target)
-	user.visible_message("<span class='warning'>[user] points [src] towards [target]!</span>", \
-	"<span class='warning'>We start channeling the power of [src].</span>", \
-	"<span class='hear'>You can hear an ominous buzzing.</span>")
+	user.visible_message(span_warning("[user] points [src] towards [target]!"), \
+	span_warning("We start channeling the power of [src]."), \
+	span_hear("You can hear an ominous buzzing."))
 	if(!do_after(user, 30))
 		return
 	charge_cooldown = (world.time + 5 SECONDS) // To keep it a proper cooldown
@@ -221,7 +221,7 @@
 	if(ismob(target))
 		var/mob/H = target
 		if("apostle" in H.faction)
-			H.visible_message("<span class='warning'>[src] vanishes on contact with [H]!</span>")
+			H.visible_message(span_warning("[src] vanishes on contact with [H]!"))
 			qdel(src)
 			return BULLET_ACT_BLOCK
 	. = ..()
@@ -254,7 +254,7 @@
 
 /obj/item/nullrod/spear/apostle/attack_self(mob/living/carbon/user)
 	if(recharge_time > world.time)
-		to_chat(user, "<span class='warning'>You are not ready to dash forward yet.</span>")
+		to_chat(user, span_warning("You are not ready to dash forward yet."))
 		return
 	var/turf/T = get_step(get_turf(src), user.dir)
 	var/turf/final_T // Where the user will actually teleport.
@@ -264,13 +264,13 @@
 		T = get_step(T, user.dir)
 		new /obj/effect/temp_visual/cult/sparks(T)
 		if(T.density)
-			to_chat(user, "<span class='warning'>There appears to be a wall in your path!</span>")
+			to_chat(user, span_warning("There appears to be a wall in your path!"))
 			return
 		target_turfs += T
 		if(i == dash_distance)
 			final_T = get_step(T, user.dir)
 	recharge_time = (world.time + (recharge_time_base * 0.5)) // This one here to avoid spam
-	to_chat(user, "<span class='warning'>You change your stance and prepare to dash forward.</span>")
+	to_chat(user, span_warning("You change your stance and prepare to dash forward."))
 	playsound(src, 'ModularTegustation/Tegusounds/apostle/antagonist/spear_charge.ogg', 100, 1)
 	if(!do_after(user, 25))
 		return
@@ -284,7 +284,7 @@
 		for(var/mob/living/L in K.contents)
 			if(!("apostle" in L.faction) && !(L.health <= -200)) // Don't attack super-dead people. Preventing le funny dilation spikes.
 				new /obj/effect/temp_visual/cleave(K)
-				visible_message("<span class='boldwarning'>[user] runs through [L]!</span>")
+				visible_message(span_boldwarning("[user] runs through [L]!"))
 				shake_camera(L, 4, 3)
 				melee_attack_chain(user, L)
 	force = actual_force // After dash is complete - change it all back.
@@ -294,12 +294,12 @@
 	if(!("apostle" in user.faction))
 		user.Paralyze(50)
 		user.dropItemToGround(src, TRUE)
-		user.visible_message("<span class='warning'>A powerful force shoves [user] away from [src]!</span>", \
-		"<span class='danger'>You shall not attempt to harm us</span>")
+		user.visible_message(span_warning("A powerful force shoves [user] away from [src]!"), \
+		span_danger("You shall not attempt to harm us"))
 
 /obj/item/nullrod/spear/apostle/attack(mob/living/target, mob/living/carbon/human/user)
 	if("apostle" in target.faction)
-		to_chat(user, "<span class='userdanger'>Careful with the holy weapon...</span>")
+		to_chat(user, span_userdanger("Careful with the holy weapon..."))
 		return
 	..()
 

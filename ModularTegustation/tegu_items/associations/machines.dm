@@ -66,7 +66,7 @@
 
 /obj/structure/itemselling/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>Hit with a storage item to dump all items in it into the machine.</span>"
+	. += span_notice("Hit with a storage item to dump all items in it into the machine.")
 	. += "<a href='?src=[REF(src)];tier_3=1'>List Tier 3 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_2=1'>List Tier 2 Prices</a>"
 	. += "<a href='?src=[REF(src)];tier_1=1'>List Tier 1 Prices</a>"
@@ -89,16 +89,16 @@
 	var/display_text = ""
 	var/list/items = list()
 	if(href_list["tier_3"])
-		display_text = "<span class='notice'><b>The following items are worth 1000 Ahn:</b></span>"
+		display_text = span_notice("<b>The following items are worth 1000 Ahn:</b>")
 		items.Add(level_3)
 	if(href_list["tier_2"])
-		display_text = "<span class='notice'><b>The following items are worth 200 Ahn:</b></span>"
+		display_text = span_notice("<b>The following items are worth 200 Ahn:</b>")
 		items.Add(level_2)
 	if(href_list["tier_1"])
-		display_text = "<span class='notice'><b>The following items are worth 50 Ahn:</b></span>"
+		display_text = span_notice("<b>The following items are worth 50 Ahn:</b>")
 		items.Add(level_1)
 	if(href_list["tier_0"])
-		display_text = "<span class='notice'><b>The following items are worth 10 Ahn:</b></span>"
+		display_text = span_notice("<b>The following items are worth 10 Ahn:</b>")
 		items.Add(level_0)
 	for(var/I in items)
 		item_name = ""
@@ -119,7 +119,7 @@
 		if(item_name in said_names)
 			continue
 		said_names += item_name
-		display_text += "\n <span class='notice'>[item_name]</span>"
+		display_text += span_notice("\n[item_name]")
 	to_chat(usr, display_text)
 
 /obj/structure/itemselling/attackby(obj/item/I, mob/living/user, params)
@@ -127,7 +127,7 @@
 		var/obj/item/storage/S = I
 		for(var/obj/item/IT in S)
 			ManageSales(IT, user)
-		to_chat(user, "<span class='notice'>\The [S] was dumped into [src].</span>")
+		to_chat(user, span_notice("\The [S] was dumped into [src]."))
 		playsound(I, "rustle", 50, TRUE, -5)
 		return TRUE
 	return ManageSales(I, user)
@@ -143,7 +143,7 @@
 	else if (is_type_in_typecache(I, level_0))
 		spawntype = /obj/item/stack/spacecash/c10
 	else
-		to_chat(user, "<span class='warning'>You cannot sell [I].</span>")
+		to_chat(user, span_warning("You cannot sell [I]."))
 		return FALSE
 
 	if(spawntype)
@@ -177,14 +177,14 @@
 		grade = round((stattotal) / 20)	// Get the average level-20, divide by 20
 		// Under grade 9 doesn't register
 		if (10 - grade >= 10)
-			to_chat(user, "<span class='notice'>Potential too low to give grade. Not recommended to issue fixer license.</span>")
+			to_chat(user, span_notice("Potential too low to give grade. Not recommended to issue fixer license."))
 			return
 
-		to_chat(user, "<span class='notice'>Recommended Grade - [10-grade].</span>")
-		to_chat(user, "<span class='notice'>This grade may be adjusted by your local Hana representative.</span>")
+		to_chat(user, span_notice("Recommended Grade - [10-grade]."))
+		to_chat(user, span_notice("This grade may be adjusted by your local Hana representative."))
 		return
 
-	to_chat(user, "<span class='notice'>No human potential identified.</span>")
+	to_chat(user, span_notice("No human potential identified."))
 
 /obj/structure/potential/attackby(obj/item/I, mob/living/user, params)
 	calculate_grade(user)

@@ -33,12 +33,12 @@
 				//The watch itself has the time increase, we grab it and add that (in seconds)
 				CA.meltdown_time += meltdowntimer_increase
 				//Give feedback and tell the user how much time left
-				to_chat(user,"<span class='warning'>You increase the time left untill a meltdown to: [CA.meltdown_time] on [CA.datum_reference.name]'s console.</span>")
+				to_chat(user, span_warning("You increase the time left untill a meltdown to: [CA.meltdown_time] on [CA.datum_reference.name]'s console."))
 				//This was a successful use of the watch, add it to the console counter
 				CA_count++
 			else
 				//The unit does not need its timer exstended, give again feedback of this.
-				to_chat(user,"<span class='warning'>This abnormality is not in a meltdown.</span>")
+				to_chat(user, span_warning("This abnormality is not in a meltdown."))
 
 	if(CA_count > 0 && records_cooldown_timer && usable)
 		//We have a cooldown, so first to not cheat the player out of time we first start the cooldown timer
@@ -48,7 +48,7 @@
 		usable = FALSE
 	else
 		//We dont have any consoles around us, give feedback to the player so they better know how to use the watch
-		to_chat(user,"<span class='warning'>Their is no vaild close by console for the watch to use its affects.</span>")
+		to_chat(user, span_warning("Their is no vaild close by console for the watch to use its affects."))
 
 
 	//We handle are cooldown in areself, no need to call parrent
