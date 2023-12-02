@@ -11,6 +11,7 @@
 	var/power_timer = 120 	//How long does the box last for? You get 1 point every second
 	var/crate_timer = 180	//How much time until a crate?
 	var/crates_per_box		//Just used to calculate examine text
+	var/our_corporation		// Whatever Representative we may be linked to
 
 	var/generating
 	var/icon_full = "machinelcb_full"
@@ -54,6 +55,15 @@
 		var/obj/item/holochip/C = new (get_turf(src))
 		C.credits = rand(ahn_amount/4,ahn_amount)
 		SSlobotomy_corp.AdjustGoalBoxes(100) // 50 PE for 100 PE, not including the cost of filters. This eventually gets us positive in spendable PE, once we reach goal...
+		var/found_rep = FALSE
+		if(our_corporation) // Don't bother trying to loop if we don't have one set.
+			for(var/obj/structure/representative_console/rep_console in GLOB.lobotomy_devices)
+				if(rep_console.our_corporation != our_corporation)
+					continue
+				rep_console.AdjustPoints(1)
+				found_rep = TRUE
+		if(!found_rep) // No rep? Bit of a refund, but not as valuable as the rep.
+			SSlobotomy_corp.AdjustAvailableBoxes(25)
 
 	//gacha time
 	if(crate_timer  <= 0)
@@ -70,6 +80,7 @@
 	crate = /obj/structure/lootcrate/l_corp
 	power_timer = 60 	//L Corp is where you drain your power
 	crate_timer = 60	//And it's super cheap
+	our_corporation = L_CORP_REP
 
 /obj/structure/pe_sales/limbus
 	name = "Limbus Company Power Input"
@@ -83,6 +94,7 @@
 	icon_state = "machinek"
 	crate = /obj/structure/lootcrate/k_corp
 	crate_timer = 60	//2 per, because you get one bullet per crate
+	our_corporation = K_CORP_REP
 
 /obj/structure/pe_sales/r_corp
 	name = "R-Corp Power Input"
