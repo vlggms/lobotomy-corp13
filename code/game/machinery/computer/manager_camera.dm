@@ -19,8 +19,8 @@
 	var/datum/action/innate/managercommand/command
 	var/datum/action/innate/manager_track/follow
 	var/ammo = 4
-	var/bullettype = 0
-	var/commandtype = 1
+	var/bullet_type = 0
+	var/command_type = 1
 	var/command_delay = 0.5 SECONDS
 	var/command_cooldown
 	//Used for limiting the amount of commands that can exist.
@@ -29,13 +29,13 @@
 	///Variable stolen from AI. Essential for tracking feature.
 	var/static/datum/trackable/track = new
 	//Command Types sorted in order.
-	var/list/commandtypes = list(
-		/obj/effect/temp_visual/HoloCommand/commandMove,
-		/obj/effect/temp_visual/HoloCommand/commandWarn,
-		/obj/effect/temp_visual/HoloCommand/commandGaurd,
-		/obj/effect/temp_visual/HoloCommand/commandHeal,
-		/obj/effect/temp_visual/HoloCommand/commandFightA,
-		/obj/effect/temp_visual/HoloCommand/commandFightB
+	var/list/command_types = list(
+		/obj/effect/temp_visual/holo_command/command_move,
+		/obj/effect/temp_visual/holo_command/command_warn,
+		/obj/effect/temp_visual/holo_command/command_guard,
+		/obj/effect/temp_visual/holo_command/command_heal,
+		/obj/effect/temp_visual/holo_command/command_fight_a,
+		/obj/effect/temp_visual/holo_command/command_fight_b
 		)
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	/// List of bullets available for use are defined in lobotomy_corp subsystem
@@ -110,8 +110,8 @@
 		swap.selected_abno = null
 		actions += swap
 
-	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/HotkeyClick) //wanted to use shift click but shift click only allowed applying the effects to my player.
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/altClick)
+	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/OnHotkeyClick) //wanted to use shift click but shift click only allowed applying the effects to my player.
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/OnAltClick)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
 	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, .proc/OnCtrlShiftClick)
 
@@ -128,7 +128,7 @@
 	UnregisterSignal(user, list(COMSIG_MOB_CTRL_CLICKED, COMSIG_XENO_TURF_CLICK_ALT, COMSIG_MOB_SHIFTCLICKON, COMSIG_MOB_CTRLSHIFTCLICKON))
 	..()
 
-/obj/machinery/computer/camera_advanced/manager/proc/HotkeyClick(datum/source, atom/clicked_atom) //system control for hotkeys
+/obj/machinery/computer/camera_advanced/manager/proc/OnHotkeyClick(datum/source, atom/clicked_atom) //system control for hotkeys
 	SIGNAL_HANDLER
 
 	// No target :(
@@ -146,10 +146,10 @@
 		var/success = FALSE
 		for(var/mob/living/L in range(SSlobotomy_corp.manager_bullet_area, clicked_atom))
 			if(ishuman(L))
-				clickedemployee(source, L)
+				ClickedEmployee(source, L)
 				success = TRUE
 			if(ishostile(L))
-				clickedabno(source, L)
+				ClickedAbno(source, L)
 				success = TRUE
 		if(success)
 			ammo--
@@ -157,21 +157,21 @@
 		return
 
 	// Non-AOE
-	if(ishuman(clicked_atom) && clickedemployee(source, clicked_atom))
+	if(ishuman(clicked_atom) && ClickedEmployee(source, clicked_atom))
 		ammo--
 		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
-	if(ishostile(clicked_atom) && clickedabno(source, clicked_atom))
+	if(ishostile(clicked_atom) && ClickedAbno(source, clicked_atom))
 		ammo--
 		to_chat(source, span_warning("<b>[ammo]</b> bullets remaining."))
 		return
 
-/obj/machinery/computer/camera_advanced/manager/proc/clickedemployee(mob/living/owner, mob/living/carbon/human/H) //contains carbon copy code of fire action
+/obj/machinery/computer/camera_advanced/manager/proc/ClickedEmployee(mob/living/owner, mob/living/carbon/human/H) //contains carbon copy code of fire action
 	if(!istype(H))
 		to_chat(owner, span_warning("NO VALID TARGET."))
 		return FALSE
 
-	switch(bullettype)
+	switch(bullet_type)
 		if(MANAGER_HP_BULLET)
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 		if(MANAGER_SP_BULLET)
@@ -197,12 +197,12 @@
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	return TRUE
 
-/obj/machinery/computer/camera_advanced/manager/proc/clickedabno(mob/living/owner, mob/living/simple_animal/hostile/H)
+/obj/machinery/computer/camera_advanced/manager/proc/ClickedAbno(mob/living/owner, mob/living/simple_animal/hostile/H)
 	if(!istype(H))
 		to_chat(owner, "<span class='warning'>NO VALID TARGET.</span>")
 		return FALSE
 
-	if(bullettype == 7)
+	if(bullet_type == 7)
 		H.apply_status_effect(/datum/status_effect/qliphothoverload)
 		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
@@ -238,10 +238,10 @@
 
 		to_chat(user, message)
 
-/obj/machinery/computer/camera_advanced/manager/proc/altClick(mob/living/user, turf/open/T)
+/obj/machinery/computer/camera_advanced/manager/proc/OnAltClick(mob/living/user, turf/open/T)
 	var/mob/living/C = user
 	if(command_cooldown <= world.time)
-		for(var/obj/effect/temp_visual/HoloCommand/V in T)
+		for(var/obj/effect/temp_visual/holo_command/V in T)
 			qdel(V)
 			return
 		if(current_commands >= max_commands)
@@ -249,14 +249,14 @@
 			return
 		playsound(get_turf(src), 'sound/machines/terminal_success.ogg', 8, 3, 3)
 		playsound(get_turf(T), 'sound/machines/terminal_success.ogg', 8, 3, 3)
-		if(commandtype > 0 && commandtype <= 6)
-			var/thing_to_spawn = commandtypes[commandtype]
+		if(command_type > 0 && command_type <= 6)
+			var/thing_to_spawn = command_types[command_type]
 			var/thing_spawned = new thing_to_spawn(get_turf(T))
 			current_commands++
 			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, .proc/ReduceCommandAmount)
 		else
 			to_chat(C, "<span class='warning'>ERROR: Calibration Faliure.</span>")
-		commandtimer()
+		CommandTimer()
 
 /obj/machinery/computer/camera_advanced/manager/proc/OnCtrlShiftClick(mob/living/user, atom/target)
 	if(!istype(swap))
@@ -269,16 +269,12 @@
 	current_commands--
 
 //Numerical Procs that alter variables
-/obj/machinery/computer/camera_advanced/manager/proc/commandtimer()
+/obj/machinery/computer/camera_advanced/manager/proc/CommandTimer()
 	command_cooldown = world.time + command_delay
 	return
 
-/obj/machinery/computer/camera_advanced/manager/proc/alterbullettype(amount)
-	bullettype = bullettype + amount
-	return
-
-/obj/machinery/computer/camera_advanced/manager/proc/altercommandtype(amount)
-	commandtype = commandtype + amount
+/obj/machinery/computer/camera_advanced/manager/proc/AlterCommandType(amount)
+	command_type = command_type + amount
 	return
 
 /obj/machinery/computer/camera_advanced/manager/proc/RechargeMeltdown()
@@ -367,7 +363,7 @@
 	name = "[console.bullet_types[chosen_bullet]["name"]] bullet"
 	desc = console.bullet_types[chosen_bullet]["desc"]
 	button_icon_state = console.bullet_types[chosen_bullet]["icon_state"]
-	console.bullettype = chosen_bullet
+	console.bullet_type = chosen_bullet
 	UpdateButtonIcon()
 	playsound(get_turf(target), 'sound/weapons/kenetic_reload.ogg', 15, TRUE)
 
@@ -393,7 +389,7 @@
 	if(!LAZYLEN(valid_targets))
 		to_chat(C, "<span class='warning'>No valid targets found!</span>")
 		return FALSE
-	return X.on_hotkey_click(C, pick(valid_targets))
+	return X.OnHotkeyClick(C, pick(valid_targets))
 
 /datum/action/innate/cyclecommand
 	name = "Cycle Command"
@@ -409,33 +405,33 @@
 
 /datum/action/innate/cyclecommand/Activate()
 	var/obj/machinery/computer/camera_advanced/manager/X = target
-	switch(X.commandtype)
+	switch(X.command_type)
 		if(0) //if 0 change to 1
 			to_chat(owner, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon1
-			X.altercommandtype(1)
+			X.AlterCommandType(1)
 		if(1)
 			to_chat(owner, "<span class='notice'>WARN IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon2
-			X.altercommandtype(1)
+			X.AlterCommandType(1)
 		if(2)
 			to_chat(owner, "<span class='notice'>GAURD IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon3
-			X.altercommandtype(1)
+			X.AlterCommandType(1)
 		if(3)
 			to_chat(owner, "<span class='notice'>HEAL IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon4
-			X.altercommandtype(1)
+			X.AlterCommandType(1)
 		if(4)
 			to_chat(owner, "<span class='notice'>FIGHT_LIGHT IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon5
-			X.altercommandtype(1)
+			X.AlterCommandType(1)
 		if(5)
 			to_chat(owner, "<span class='notice'>FIGHT_HEAVY IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon6
-			X.altercommandtype(1)
+			X.AlterCommandType(1)
 		else
-			X.altercommandtype(-5)
+			X.AlterCommandType(-5)
 			to_chat(owner, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
 			button_icon_state = button_icon1
 	UpdateButtonIcon()
@@ -454,7 +450,7 @@
 	var/obj/machinery/computer/camera_advanced/manager/X = E.origin
 	var/cooldown = X.command_cooldown
 	if(cooldown <= world.time)
-		X.altClick(C, get_turf(E))
+		X.OnAltClick(C, get_turf(E))
 
 //////////////
 // Unlockables
@@ -603,10 +599,10 @@
 		follow.Grant(user)
 		actions += follow
 
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/altClick)
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/OnAltClick)
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
 
-/obj/machinery/computer/camera_advanced/manager/sephirah/clickedEmployee()
+/obj/machinery/computer/camera_advanced/manager/sephirah/ClickedEmployee()
 	return
 
 /obj/machinery/computer/camera_advanced/manager/sephirah/RechargeMeltdown()
