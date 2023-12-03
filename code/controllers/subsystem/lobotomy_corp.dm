@@ -275,7 +275,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
 	// Honestly, I wish I could do it another way, but oh well
-	var/datum/suppression/command/C = GetCoreSuppression(/datum/suppression/information)
+	var/datum/suppression/command/C = GetCoreSuppression(/datum/suppression/command)
 	if(istype(C))
 		// All abno levels melt
 		forced = TRUE
