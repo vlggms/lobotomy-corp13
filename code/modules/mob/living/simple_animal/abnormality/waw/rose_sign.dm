@@ -25,7 +25,7 @@
 	work_damage_type = WHITE_DAMAGE
 	can_breach = TRUE
 	start_qliphoth = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
 	ranged = TRUE
 	ego_list = list(
 		/datum/ego_datum/weapon/rosa,
@@ -332,7 +332,7 @@
 	icon_state = "rose_red"
 	maxHealth = 500
 	health = 500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	del_on_death = FALSE
 	var/flower_damage_type
 	var/mob/living/simple_animal/hostile/abnormality/rose_sign/master

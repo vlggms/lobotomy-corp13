@@ -19,7 +19,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 35, 40),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 40)
 						)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
 	melee_damage_lower = 55
 	melee_damage_upper = 65
 	melee_damage_type = RED_DAMAGE

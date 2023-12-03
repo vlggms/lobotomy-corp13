@@ -14,7 +14,7 @@
 	stat_attack = DEAD
 	melee_damage_lower = 15
 	melee_damage_upper = 30
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	vision_range = 14
 	aggro_vision_range = 20
 	can_buckle = TRUE

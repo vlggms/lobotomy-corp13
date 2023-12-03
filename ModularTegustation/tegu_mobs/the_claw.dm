@@ -3,7 +3,7 @@
 	desc = "A strange humanoid creature with several gadgets attached to it."
 	health = 8000
 	maxHealth = 8000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	attack_sound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
