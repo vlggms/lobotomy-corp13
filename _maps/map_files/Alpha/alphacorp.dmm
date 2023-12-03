@@ -5494,6 +5494,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/central)
+"QI" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/spawner/xmastree,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "QJ" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -48066,7 +48073,7 @@ oj
 qO
 Kz
 qO
-Jm
+QI
 qO
 UI
 qO
