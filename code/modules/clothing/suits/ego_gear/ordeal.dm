@@ -1,4 +1,4 @@
-// Ordeal armor for midnight. There's not really a stat total besides 250 unless you're doing some silly stuff then it probably should be lower unless you want pre 19Kirie4 repentance situation. Just follow what Kirie did with realized armor.
+// Ordeal armor for midnight. There's not really a stat total besides 240 unless you're doing some silly stuff then it probably should be lower unless you want pre 19Kirie4 repentance situation. Just follow what Kirie did with realized armor.
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal
 	icon = 'icons/obj/clothing/ego_gear/ordeal.dmi'
@@ -8,7 +8,7 @@
 	name = "Endless feast"
 	desc = "Made out of tough scales and flesh of a powerful ordeal. Wearing it makes you feel hungry as well."
 	icon_state = "eternal_feast"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 250
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -20,10 +20,10 @@
 	name = "Painful purpose"
 	desc = "A heavy armor made as solace of the end of all.\n\
 		Provides excellent protection at the cost of speed."
-	slowdown = 0.75
+	slowdown = 0.5
 	icon_state = "painful_purpose"
 	hat = /obj/item/clothing/head/ego_hat/painful_purpose
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 80) // 300
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -43,7 +43,7 @@
 	desc = "Want to know how I got these scares? \n\
 		Causes the wearer to make themself and others around them laugh healing their sp."
 	icon_state = "meaningless_march"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 30) // 220
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 200
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -77,11 +77,11 @@
 			L.emote("laugh")
 			L.adjustSanityLoss(-5)//0.33 sp per second. probably could be buffed but knowing Kirie she's probaby going to want me to change this to 190 total even if the healing isn't that good even.
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//200 total can shift between 4 armor modes with a 120 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//180 total can shift between 4 armor modes with a 120 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
 	name = "Delusionist's end"
 	desc = "This is a placeholder."
 	icon_state = "delusion_red"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 200
+	armor = list(RED_DAMAGE = 45, WHITE_DAMAGE = 45, BLACK_DAMAGE = 45, PALE_DAMAGE = 45) // 180
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -120,20 +120,20 @@
 	update_icon_state()
 	if(current_holder)
 		current_holder.update_inv_wear_suit()
-		to_chat(current_holder, span_notice("[src] suddenly shifts color!"))
+		to_chat(current_holder,"<span class='notice'>[src] suddenly shifts color!</span>")
 	desc = damage_list[current_damage][1]
 	switch(current_damage)
 		if("red")
-			src.armor = new(red = 80, white = 60, black = 10, pale = 50)
+			src.armor = new(red = 80, white = 60, black = -10, pale = 50)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_red_attack.ogg', 50, FALSE, 32)
 		if("white")
-			src.armor = new(red = 50, white = 80, black = 60, pale = 10)
+			src.armor = new(red = 50, white = 80, black = 60, pale = -10)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 		if("black")
-			src.armor = new(red = 10, white = 50, black = 80, pale = 60)
+			src.armor = new(red = -10, white = 50, black = 80, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_black_attack1.ogg', 50, FALSE, 32)
 		if("pale")
-			src.armor = new(red = 60, white = 10, black = 50, pale = 80)
+			src.armor = new(red = 60, white = -10, black = 50, pale = 80)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 50, FALSE, 32)
 
 // Radial menu
@@ -173,7 +173,7 @@
 	name = "Familial Strength"
 	desc = "A heavy armor from the mother of all sweepers."
 	icon_state = "familial_strength"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 70) // 250
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -185,7 +185,7 @@
 	name = "Wonderland"
 	desc = "Catt Wonderlab"
 	icon_state = "wonderland"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 80) // 250
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 80) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
