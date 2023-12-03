@@ -281,7 +281,8 @@
 	special = "Attack nearby turfs to create traps. Remote mode can trigger traps from a distance. \
 	Automatic mode places traps that trigger when enemies walk over them. Use in hand to switch between modes."
 	icon_state = "lantern"
-	force = 8 //less than the baton, don't hit things with it
+	force = 33
+	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 	var/mode = LANTERN_MODE_REMOTE
@@ -307,7 +308,10 @@
 		R.burst()
 		return
 	if(proximity_flag && (LAZYLEN(traps) < traplimit))
-		new /obj/effect/temp_visual/lanterntrap(T, user, src, mode)
+		var /obj/effect/temp_visual/lanterntrap/trap = new(T, user, src, mode)
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		trap.damage_multiplier = 1 * justicemod
 		user.changeNext_move(CLICK_CD_MELEE)
 
 /obj/item/ego_weapon/lantern/afterattack(atom/target, mob/living/user, proximity_flag, params)
@@ -352,11 +356,11 @@
 	var/turf/T = get_turf(src)
 	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
-
-	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
-		if(creator)
-			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+	for(var/turf/open/T2 in range(1, src))
+		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+			to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+			if(creator)
+				creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
 	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
 		if(field != src && !field.rupturing)
 			field.burst()
