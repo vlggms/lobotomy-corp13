@@ -371,7 +371,7 @@
 	var/beam_cooldown
 	var/beam_cooldown_time = 10 SECONDS
 	/// Red damage dealt on direct hit by the beam
-	var/beam_damage = 400
+	var/beam_damage = 300
 
 /mob/living/simple_animal/hostile/ordeal/red_fixer/Initialize()
 	. = ..()
