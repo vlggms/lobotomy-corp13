@@ -347,7 +347,7 @@
 		if(getorgan(/obj/item/organ/brain))
 			if(ai_controller?.ai_status == AI_STATUS_ON)
 				if(istype(ai_controller, /datum/ai_controller/insane))
-					msg += span_danger("[t_He] [t_is] completely out of [t_his] mind!")
+					msg += span_danger("<b>[t_He] [t_is] completely out of [t_his] mind!</b>\n")
 				else
 					msg += "<span class='deadsay'>[t_He] do[t_es]n't appear to be [t_him]self.</span>\n"
 			if(!key)
