@@ -112,7 +112,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/adjustable
 	var/list/alternative_styles = list()
-	var/index = 0
+	var/index = 1
 
 /obj/item/clothing/suit/armor/ego_gear/adjustable/Initialize()
 	. = ..()
