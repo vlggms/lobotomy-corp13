@@ -15,7 +15,7 @@
 	ranged = TRUE
 	maxHealth = 1800
 	health = 1800
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 
 	move_to_delay = 6
 	is_flying_animal = TRUE
@@ -568,7 +568,7 @@
 
 	maxHealth = 1500
 	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG
@@ -754,7 +754,7 @@
 	can_patrol = TRUE // The dudes roam! That sucks!
 
 	faction = list("hostile", "azure")
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 
 	move_to_delay = 4
 

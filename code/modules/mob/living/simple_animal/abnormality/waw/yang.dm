@@ -45,7 +45,7 @@
 	)
 
 	//Melee
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2)
 	melee_damage_lower = 30
 	melee_damage_upper = 30
 	melee_damage_type = WHITE_DAMAGE

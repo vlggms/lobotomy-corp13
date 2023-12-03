@@ -16,7 +16,7 @@
 	)
 	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/snapshot,

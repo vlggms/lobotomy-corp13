@@ -20,7 +20,7 @@
 	ranged_cooldown_time = 4 SECONDS
 	casingtype = /obj/item/ammo_casing/caseless/true_patriot
 	projectilesound = 'sound/weapons/gun/shotgun/shot.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	faction = list("hostile")

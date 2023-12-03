@@ -16,7 +16,7 @@
 	melee_damage_upper = 14
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
 	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
 				/mob/living/simple_animal/hostile/abnormality/distortedform,

@@ -10,7 +10,7 @@
 	health = 1200
 	rapid_melee = 2
 	move_to_delay = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 6
 	melee_damage_upper = 12
 	melee_damage_type = BLACK_DAMAGE
@@ -170,10 +170,10 @@
 	playsound(src, 'sound/abnormalities/so_that_no_cry/prepare.ogg', 50, TRUE, 7)
 	visible_message(span_warning("[src] assumes a stance!"))
 	icon_state = "so_that_no_cry_guard"
-	ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	icon_state = icon_living
-	ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2))
+	ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2))
 	damage_reflection = FALSE
 	can_act = TRUE
 

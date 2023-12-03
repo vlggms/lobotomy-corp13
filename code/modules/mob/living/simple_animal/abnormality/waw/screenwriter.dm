@@ -250,7 +250,7 @@ Defeating the murderer also surpresses the abnormality.
 	projectilesound = 'sound/effects/ordeals/white/pale_pistol.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
-	damage_coeff = list(BRUTE = 1.0, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	projectiletype = /obj/projectile/actor
 	attack_sound = 'sound/effects/ordeals/white/pale_knife.ogg'

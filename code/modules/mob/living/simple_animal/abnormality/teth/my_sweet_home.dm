@@ -13,7 +13,7 @@
 	maxHealth = 600
 	health = 500
 	move_to_delay = 5
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
 	melee_damage_upper = 20
 	melee_damage_type = RED_DAMAGE
