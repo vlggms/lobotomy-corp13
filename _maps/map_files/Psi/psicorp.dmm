@@ -4490,6 +4490,14 @@
 	},
 /turf/open/floor/holofloor/white,
 /area/facility_hallway/east)
+"yK" = (
+/obj/structure/disposalpipe/segment{
+	color = "#0000ff";
+	dir = 4
+	},
+/obj/effect/spawner/xmastree,
+/turf/open/floor/carpet/orange,
+/area/department_main/control)
 "yS" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -44772,7 +44780,7 @@ DZ
 Sq
 Fv
 yf
-FD
+yK
 Kq
 Fv
 Br
