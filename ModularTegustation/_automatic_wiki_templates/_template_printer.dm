@@ -28,14 +28,14 @@
 
 	var/choice = tgui_input_list(user, message = "Select the mode",  title = "Automatic wiki printer", buttons = names) // make it into TGUI, because TGUI > UI
 	if(isnull(choice))
-		visible_message("<span class='notice'>ERROR: no choice selected!</span>")
+		visible_message(span_notice("ERROR: no choice selected!"))
 		return
 
 	for(var/datum/action/thing as anything in selectable_modes) // convert it back to datums from names, just because names are so long
 		if(initial(thing.name) == choice)
 			choice = thing
 
-	visible_message("<span class='notice'>[src] starts generating a test wiki template...</span>")
+	visible_message(span_notice("[src] starts generating a test wiki template..."))
 	switch(choice) // and then use those datums to select an action we will wanna do
 		if(/datum/action/generate_test_EGO)
 			generate_test_EGO()
@@ -44,16 +44,16 @@
 
 /obj/structure/template_printer/proc/generate_test_EGO()
 	var/wiki = test_generate_ego_weapons()
-	visible_message("<span class='notice'>[src] finished generation!</span>")
+	visible_message(span_notice("[src] finished generation!"))
 	if(wiki == null)
-		CRASH("oh god, wiki returned null. THIS IS VERY BAD")
-	visible_message("<span class='notice'>[wiki]</span>")
+		CRASH("oh god, wiki returned null. This in fact is not good")
+	visible_message(span_notice("[wiki]"))
 	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)
 
 /obj/structure/template_printer/proc/generate_all_EGO()
 	var/wiki = generate_ego_weapons()
-	visible_message("<span class='notice'>[src] finished generation!</span>")
+	visible_message(span_notice("[src] finished generation!"))
 	if(wiki == null)
-		CRASH("oh god, wiki returned null. THIS IS VERY BAD")
-	visible_message("<span class='notice'>[wiki]</span>")
+		CRASH("oh god, wiki returned null. This in fact is not good")
+	visible_message(span_notice("[wiki]"))
 	playsound(src, 'sound/machines/ping.ogg', 15, TRUE)

@@ -128,8 +128,19 @@ GLOBAL_VAR_INIT(ego_weapon_wiki, "")
 	return mega_string
 
 /proc/generate_sorted_ego_weapons()
-	var/mega_string = " \n"
+	var/mega_string = "\n"
 	var/datum/wiki_template/ego_weapons/new_template = new
+	var/Wiki_text = "\
+	{{AutoWiki}} \n\
+	\n\
+	This page contains all EGO weapons \n\
+	\n\
+	Only melee weapons are included due to complications with code \n\
+	\n\
+	If you wish to search for specific properties, highlight \" Extended range\", \" Throwable\" or \" small\" with your cursor and click ctrl+f. \n\
+	\n\
+	"
+	mega_string += Wiki_text
 	mega_string += "== ALEPH == \n" // i have no idea how to optimize the following spaghetti :3
 	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
 		mega_string += "[new_template.generate_output(listed_weapon, "Aleph+")]"
