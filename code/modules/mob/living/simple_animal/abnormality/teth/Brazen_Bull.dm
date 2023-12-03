@@ -7,7 +7,6 @@
 	icon_state = "Bull"
 	icon_living = "Bull"
 	maxHealth = 950
-	move_to_delay = 1.5
 	health = 950
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	melee_damage_lower = 2
@@ -46,14 +45,14 @@
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/Brazen_Bull/AttackingTarget()
-	if(prob(15))
+	if(ishuman(target))
 		var/mob/living/L = target
 		var/datum/status_effect/stacking/burn/G = L.has_status_effect(/datum/status_effect/stacking/burn)
 		if(!G)
 			L.apply_status_effect(STATUS_EFFECT_BURN)
 		else
 			G.add_stacks(1)
-
+	return..()
 
 /mob/living/simple_animal/hostile/abnormality/Brazen_Bull/BreachEffect(mob/living/carbon/human/user)
 		..()
