@@ -120,7 +120,7 @@
 	update_icon_state()
 	if(current_holder)
 		current_holder.update_inv_wear_suit()
-		to_chat(current_holder,"<span class='notice'>[src] suddenly shifts color!</span>")
+		to_chat(current_holder, span_notice("[src] suddenly shifts color!"))
 	desc = damage_list[current_damage][1]
 	switch(current_damage)
 		if("red")
