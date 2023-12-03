@@ -675,7 +675,7 @@
 
 //unobtainable depending on if Kirie thinks this is a bad idea or not(probably due to high total plus crimson's sp heal is but they're very expensive). Crimson uses humans due to the lack of clowns(or the playerbase being the true clowns maybe?), Violet isnt obtainable due to it not having its enemies in lor13 and it's ability to switch damage modes would probably be kind of stupid in lor13, fuck Pink.
 /obj/item/book/granter/crafting_recipe/weaving_ordeal
-	name = "Weaving Armor: Midnight Ordeeal Edition"
+	name = "Weaving Armor: Midnight Ordeal Edition"
 	desc = "A weaving book that teaches you how to weave midnight ordeal armor. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/eternal_feast,

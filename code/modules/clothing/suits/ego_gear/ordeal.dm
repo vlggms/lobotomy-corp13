@@ -23,7 +23,7 @@
 	slowdown = 0.5
 	icon_state = "painful_purpose"
 	hat = /obj/item/clothing/head/ego_hat/painful_purpose
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 280
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -64,8 +64,6 @@
 	return ..()
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/proc/Reset(mob/user)
-	if(!CanHeal)
-		return
 	Heal(user)
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/proc/Heal(mob/user)
@@ -120,7 +118,7 @@
 	update_icon_state()
 	if(current_holder)
 		current_holder.update_inv_wear_suit()
-		to_chat(current_holder,"<span class='notice'>[src] suddenly shifts color!</span>")
+		to_chat(current_holder, span_notice("[src] suddenly shifts color!"))
 	desc = damage_list[current_damage][1]
 	switch(current_damage)
 		if("red")
