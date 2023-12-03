@@ -221,16 +221,15 @@
 	. = ..()
 	if(!.)
 		return
-	if(locate(/obj/structure/pbird_perch) in get_turf(src))
-		icon_state = "pbird"
-		pixel_x = 15
-		pixel_y = 32
-		base_pixel_x = 15
-		base_pixel_y = 32
-		is_flying_animal = FALSE
-		update_icon()
-		return
-	SpawnConnectedStructure(/obj/structure/pbird_perch)
+	if(!locate(/obj/structure/pbird_perch) in datum_reference.connected_structures)
+		SpawnConnectedStructure(/obj/structure/pbird_perch)
+	icon_state = "pbird"
+	pixel_x = 15
+	pixel_y = 32
+	base_pixel_x = 15
+	base_pixel_y = 32
+	is_flying_animal = FALSE
+	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/Retaliate(atom/movable/A)
 	if((health < maxHealth * 0.9) && (obj_damage <= 0))
