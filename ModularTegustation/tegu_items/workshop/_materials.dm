@@ -17,7 +17,7 @@
 		return ..()
 	if(type == resource_type && quality == 0)
 		return ..()
-	to_chat(user, "<span class='notice'>You break [src] down into it's original parts.</span>")
+	to_chat(user, span_notice("You break [src] down into it's original parts."))
 	var/make_amount = quality > 0 ? quality * 10 : 1
 	if(make_amount > 1)
 		var/obj/item/storage/box/materials_disposable/MD = new(get_turf(src))
@@ -76,7 +76,7 @@
 /obj/item/hot_tresmetal/proc/cooling()
 	var/obj/item/tresmetal/cooled = new original_mat(get_turf(src))
 	cooled.SetQuality(quality)
-	visible_message("<span class='notice'>The [src] cooled down to it's original form.</span>")
+	visible_message(span_notice("The [src] cooled down to it's original form."))
 	qdel(src)
 
 /obj/item/hot_tresmetal/proc/SetQuality(value)
@@ -100,7 +100,7 @@
 	..()
 	if(istype(I, /obj/item/forginghammer))
 		if(!(locate(/obj/structure/table/anvil) in loc))
-			to_chat(user, "<span class='warning'>You need this to be on an anvil to work it.</span>")
+			to_chat(user, span_warning("You need this to be on an anvil to work it."))
 			return
 
 		if(!do_after(user, 10 SECONDS))
@@ -127,7 +127,7 @@
 /obj/item/hot_tresmetal/proc/spawn_option(obj/item/choice)
 	var/obj/item/creation = new choice(get_turf(src))
 	OnCreation(creation)
-	visible_message("<span class='notice'>The tresmetal is worked into a [creation.name].</span>")
+	visible_message(span_notice("The tresmetal is worked into a [creation.name]."))
 	deltimer(cool_timer)
 	qdel(src)
 

@@ -12,6 +12,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = list(40, 40, 45, 45, 45)
 		)
+	success_boxes = 99 //Should be impossible
 	pixel_x = -8
 	base_pixel_x = -8
 
@@ -36,4 +37,5 @@
 		casing.density = FALSE
 		SLEEP_CHECK_DEATH(50)
 		icon_state = "spider_closed"
+		datum_reference.max_boxes+=2
 	return

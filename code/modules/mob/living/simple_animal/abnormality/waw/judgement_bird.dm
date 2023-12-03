@@ -40,6 +40,12 @@
 		)
 	gift_type =  /datum/ego_gifts/justitia
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3
+	)
+
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
 	var/judgement_damage = 45
@@ -51,7 +57,7 @@
 	name = "Judgement"
 	icon_icon = 'icons/obj/wizard.dmi'
 	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now damage all enemies around you.</span>"
+	chosen_message = span_colossus("You will now damage all enemies around you.")
 	chosen_attack_num = 1
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/Move()

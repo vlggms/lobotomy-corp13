@@ -33,6 +33,7 @@
 	mapexclude = list("mini")
 	job_important = "You are the Extraction Officer. Your job is to manage the EGO console, Extraction purchase console, and power generation system. Your main goal is to make sure the agents are well-equipped."
 
+	job_attribute_limit = 60
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 20,
 								PRUDENCE_ATTRIBUTE = 20,
@@ -45,7 +46,6 @@
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	H.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong better but not speak it
-	H.set_attribute_limit(60)		//Level limit set to 60, they'll be able to get defend themselves but not use Aleph or a lot of WAW gear
 
 /datum/outfit/job/command/extraction
 	name = "Extraction Officer"

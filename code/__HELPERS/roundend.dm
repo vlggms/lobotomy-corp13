@@ -425,6 +425,7 @@
 			work_count += A.work_stats[worker]["works"]
 		if(work_count > highest_work_count)
 			highest_abno = A
+			highest_work_count = work_count
 		abno_count[A.threat_level] += 1
 		full_abno_count += 1
 	parts += "[FOURSPACES]<b>The facility had [full_abno_count] abnormalities:</b>"

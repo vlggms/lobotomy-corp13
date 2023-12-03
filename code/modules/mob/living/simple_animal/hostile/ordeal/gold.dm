@@ -253,13 +253,12 @@
 	icon_living = "lake_corrosion"
 	icon_dead = "sin_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 3000 //it's a boss, more or less
-	health = 3000
+	maxHealth = 2500 //it's a boss, more or less
+	health = 2500
 	melee_damage_type = PALE_DAMAGE
 	melee_damage_lower = 14
 	melee_damage_upper = 18
-	pixel_x = -8
-	base_pixel_x = -8
+	ranged = TRUE
 	attack_verb_continuous = "bisects"
 	attack_verb_simple = "bisects"
 	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
@@ -273,11 +272,26 @@
 	var/can_act = TRUE
 	var/slash_width = 1
 	var/slash_length = 3
+	var/sweep_cooldown
+	var/sweep_cooldown_time = 10 SECONDS
+	var/sweep_damage = 50
+
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/face_atom() //VERY important; prevents spinning while slashing
+	if(!can_act)
+		return
+	..()
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/Move()
 	if(!can_act)
 		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/OpenFire()
+	if(!can_act)
+		return
+	if((sweep_cooldown < world.time) && (get_dist(src, target) < 3))
+		AreaAttack()
+		return
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget()
 	if(!can_act)
@@ -400,6 +414,28 @@
 		return
 	return ..()
 
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/AreaAttack()
+	if(sweep_cooldown > world.time)
+		return
+	sweep_cooldown = world.time + sweep_cooldown_time
+	can_act = FALSE
+	playsound(get_turf(src), 'sound/weapons/fixer/generic/dodge2.ogg', 100, 0, 5)
+	for(var/turf/L in view(2, src))
+		new /obj/effect/temp_visual/cult/sparks(L)
+	SLEEP_CHECK_DEATH(12)
+	for(var/turf/T in view(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in HurtInTurf(T, list(), sweep_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+			if(L.health < 0)
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(H)) //The other way, someday.
+					H.set_lying_angle(360) //gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
+				L.gib()
+	playsound(get_turf(src), 'sound/weapons/fixer/generic/finisher1.ogg', 100, 0, 5)
+	SLEEP_CHECK_DEATH(3)
+	can_act = TRUE
+
 /mob/living/simple_animal/hostile/ordeal/sin_gloom
 	name = "Peccatulum Morositatis"
 	desc = "An insect-like entity with a transparant body."
@@ -411,7 +447,6 @@
 	maxHealth = 300
 	health = 300
 	melee_damage_type = WHITE_DAMAGE
-
 	rapid_melee = 2
 	melee_damage_lower = 14
 	melee_damage_upper = 14
@@ -440,6 +475,7 @@
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	playsound(loc, 'sound/effects/ordeals/gold/tentacle_explode.ogg', 60, TRUE)
+	new /obj/effect/temp_visual/explosion(get_turf(src))
 	for(var/mob/living/L in viewers(2, src))
 		L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	animate(src, transform = matrix(), time = 0)

@@ -35,3 +35,8 @@
 	name = "Sweeper Pen - Medium West"
 	room_id = "sweeper_pen"
 	mappath = "_maps/RandomRooms/backstreets/medium_west/sweeper_pen.dmm"
+
+/datum/map_template/random_room/backstreets/medium_west/lcorp_office
+	name = "LCorp Office - Medium West"
+	room_id = "lcorp_office_me"
+	mappath = "_maps/RandomRooms/backstreets/medium_west/lcorp_office.dmm"

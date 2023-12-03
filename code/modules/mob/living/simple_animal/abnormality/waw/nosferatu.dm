@@ -179,7 +179,7 @@
 		bloodlust = bloodlust_cooldown
 		H.apply_damage(45, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
 		playsound(get_turf(src), 'sound/abnormalities/nosferatu/bat_attack.ogg', 50, 1)
-		to_chat(target,"<span class='danger'>The [src] attacks you savagely!</span>")
+		to_chat(target, span_danger("The [src] attacks you savagely!"))
 		AdjustThirst(40)
 	else
 		bloodlust -= 1
@@ -214,7 +214,7 @@
 	for(var/turf/T in view(2, src))
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			if(H.health < 0)
 				H.Drain()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)

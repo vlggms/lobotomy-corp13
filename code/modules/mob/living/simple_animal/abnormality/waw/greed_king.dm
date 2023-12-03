@@ -45,6 +45,13 @@
 	gift_type =  /datum/ego_gifts/goldrush
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 	/datum/action/innate/abnormality_attack/kog_dash,
@@ -54,13 +61,13 @@
 /datum/action/innate/abnormality_attack/kog_dash
 	name = "Ravenous Charge"
 	button_icon_state = "kog_charge"
-	chosen_message = "<span class='colossus'>You will now dash in that direction.</span>"
+	chosen_message = span_colossus("You will now dash in that direction.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/kog_teleport
 	name = "Teleport"
 	button_icon_state = "kog_teleport"
-	chosen_message = "<span class='warning'>You will now teleport to a random area in the facility's halls.</span>"
+	chosen_message = span_warning("You will now teleport to a random area in the facility's halls.")
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/kog_teleport/Activate()
@@ -177,7 +184,7 @@
 		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			L.visible_message("<span class='boldwarning'>[src] crunches [L]!</span>","<span class='userdanger'>[src] rends you with its teeth!</span>")
+			L.visible_message(span_boldwarning("[src] crunches [L]!"), span_userdanger("[src] rends you with its teeth!"))
 			playsound(L, attack_sound, 75, 1)
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 			if(ishuman(L))
@@ -190,8 +197,8 @@
 			playsound(L, 'sound/abnormalities/kog/GreedHit1.ogg', 20, 1)
 			playsound(L, 'sound/abnormalities/kog/GreedHit2.ogg', 50, 1)
 		for(var/obj/vehicle/V in new_hits)
-			V.take_damage(80, RED_DAMAGE, RED_DAMAGE, attack_sound)
-			V.visible_message("<span class='boldwarning'>[src] crunches [V]!</span>")
+			V.take_damage(80, RED_DAMAGE, attack_sound)
+			V.visible_message(span_boldwarning("[src] crunches [V]!"))
 			playsound(V, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1)
 			playsound(V, 'sound/abnormalities/kog/GreedHit2.ogg', 30, 1)
 

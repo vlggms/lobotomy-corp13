@@ -23,7 +23,7 @@
 		/datum/ego_datum/weapon/oceanic,
 		/datum/ego_datum/armor/oceanic
 		)
-//	gift_type = /datum/ego_gifts/oceanic
+	gift_type = /datum/ego_gifts/oceanic
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/list/goodsoders = list(
@@ -95,7 +95,7 @@
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	new VendingSoda(dispense_turf)
 	playsound(src, 'sound/machines/machine_vend.ogg', 50, TRUE)
-	visible_message("<span class='notice'>[src] dispenses a can of soda.</span>")
+	visible_message(span_notice("[src] dispenses a can of soda."))
 	SLEEP_CHECK_DEATH(20)
 
 

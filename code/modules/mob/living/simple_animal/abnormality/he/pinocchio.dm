@@ -72,13 +72,14 @@
 	pixel_z = 16
 	animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 4 SECONDS)
 	pixel_z = 0
-	for(var/obj/machinery/computer/abnormality/AC in range(5, src)) //reset console from last breach
-		AC.updateUsrDialog()
+	if(!datum_reference?.console)
+		return
+	datum_reference.console.updateUsrDialog()
 
 //Work/Misc
 /mob/living/simple_animal/hostile/abnormality/pinocchio/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(realboy)
-		to_chat(user, "<span class='warning'>The abnormality isn't in here!</span>")
+		to_chat(user, span_warning("The abnormality isn't in here!"))
 		return FALSE
 	if(work_type == "Lying is Bad!")
 		if(lying)
@@ -87,8 +88,7 @@
 			lying = FALSE
 			datum_reference.qliphoth_change(1)
 			PostWorkEffect()
-			for(var/obj/machinery/computer/abnormality/AC in range(5, src))
-				AC.updateUsrDialog()
+			datum_reference.console.updateUsrDialog()
 			return
 		else
 			datum_reference.qliphoth_change(-1)
@@ -127,9 +127,6 @@
 	RegisterSignal(realboy, COMSIG_LIVING_DEATH, .proc/PuppetDeath)
 	realboy.name = "Pinocchio the Liar"
 	realboy.real_name = "Pinocchio the Liar"
-	realboy.ai_controller = /datum/ai_controller/insane/murder/puppet
-	realboy.InitializeAIController()
-	realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
 	realboy.adjust_all_attribute_levels(100)
 	realboy.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 400) // 600 health
 	realboy.health = realboy.maxHealth
@@ -147,6 +144,20 @@
 	ADD_TRAIT(realboy, TRAIT_IGNOREDAMAGESLOWDOWN, "Abnormality")
 	ADD_TRAIT(realboy, TRAIT_NODROP, "Abnormality")
 	realboy.update_icon()
+
+	//--Side Gamemodes stuff--
+	//For playable abnormalities, directly lets the playing currently controlling pinocchio get control of the spawned mob
+	if(client)
+		mind.transfer_to(realboy)
+	//Prevents pinocchio from going insane on Rcorp.
+	if(!CheckCombat())
+		realboy.ai_controller = /datum/ai_controller/insane/murder/puppet
+		realboy.InitializeAIController()
+		realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
+	//Destroys the invisible pinocchio, as it is unecessary in Rcorp, also gives him a flashlight as NV spell does not work on him.
+	else
+		realboy.put_in_r_hand(new /obj/item/flashlight/seclite(realboy))
+		qdel(src)
 
 /mob/living/simple_animal/hostile/abnormality/pinocchio/proc/PuppetDeath(gibbed) //we die when the puppet mob dies
 	UnregisterSignal(realboy, COMSIG_LIVING_DEATH)
@@ -188,7 +199,7 @@
 	if(delete_timer)
 		deltimer(delete_timer)
 	if(user.dna.species.id != "puppet")
-		to_chat(user, "<span class='warning'>The [src] collapses into splinters in your hands!</span>")
+		to_chat(user, span_warning("The [src] collapses into splinters in your hands!"))
 		qdel(src)
 		return
 
@@ -213,6 +224,7 @@
 //Special panic type for carbon mob
 /datum/ai_controller/insane/murder/puppet
 	lines_type = /datum/ai_behavior/say_line/insanity_murder/puppet
+	continue_processing_when_client = FALSE //Prevents playable pinocchio from going around murdering everyone.
 
 /datum/status_effect/panicked_type/puppet
 	icon = null
@@ -247,10 +259,16 @@
 /mob/living/carbon/human/species/pinocchio/canBeHandcuffed()
 	return FALSE
 
+/mob/living/carbon/human/species/pinocchio/UnarmedAttack(atom/A, proximity)
+	if(istype(A, /obj/structure/toolabnormality/touch))
+		to_chat(src, span_userdanger("YOUR FOOLISHNESS IS IMPRESSIVE."))
+		return
+	. = ..()
+
 /datum/species/puppet
 	name = "Puppet"
 	id = "puppet"
-	sexes = 0
+	sexes = FALSE
 	hair_color = "352014"
 	say_mod = "creaks, snaps"
 	attack_verb = "slash"
@@ -261,7 +279,6 @@
 	species_traits = list(NO_UNDERWEAR,NOBLOOD,NOEYESPRITES)
 	inherent_traits = list(TRAIT_ADVANCEDTOOLUSER,TRAIT_NOMETABOLISM,TRAIT_TOXIMMUNE,TRAIT_NOBREATH,TRAIT_RESISTCOLD,TRAIT_RESISTHIGHPRESSURE,TRAIT_RESISTLOWPRESSURE,TRAIT_RADIMMUNE,TRAIT_GENELESS,\
 	TRAIT_NOHUNGER,TRAIT_XENO_IMMUNE,TRAIT_NOCLONELOSS)
-	sexes = FALSE
 	punchdamagelow = 10
 	punchdamagehigh = 15
 	bodypart_overides = list(

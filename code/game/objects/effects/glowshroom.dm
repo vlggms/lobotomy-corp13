@@ -242,10 +242,10 @@
 	return exposed_temperature > 300
 
 /obj/structure/glowshroom/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0, 0)
+	take_damage(5, BURN, 0)
 
 /obj/structure/glowshroom/acid_act(acidpwr, acid_volume)
-	visible_message("<span class='danger'>[src] melts away!</span>")
+	visible_message(span_danger("[src] melts away!"))
 	var/obj/effect/decal/cleanable/molten_object/I = new (get_turf(src))
 	I.desc = "Looks like this was \an [src] some time ago."
 	qdel(src)

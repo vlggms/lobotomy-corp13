@@ -1,7 +1,7 @@
 #define STATUS_EFFECT_ACIDIC_GOO  /datum/status_effect/wrath_burning
 #define SERVANT_SMASH_COOLDOWN (30 SECONDS)
 #define SERVANT_DASH_COOLDOWN (15 SECONDS)
-/mob/living/simple_animal/hostile/abnormality/servant_wrath
+/mob/living/simple_animal/hostile/abnormality/wrath_servant
 	name = "\proper Servant of Wrath"
 	desc = "A small girl in a puffy green magical girl outfit. \
 		She seems lonely."
@@ -50,6 +50,13 @@
 	gift_type = /datum/ego_gifts/blind_rage
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
+		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
+
 	var/friendly = TRUE
 	var/list/friend_ship = list()
 	var/instability = 0
@@ -86,9 +93,9 @@
 /datum/action/cooldown/wrath_smash/Trigger()
 	if(!..())
 		return FALSE
-	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
 		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	var/mob/living/simple_animal/hostile/abnormality/wrath_servant/servant = owner
 	if(servant.IsContained()) // No more using cooldowns while contained
 		return FALSE
 	servant.Smash()
@@ -106,25 +113,25 @@
 /datum/action/cooldown/wrath_dash/Trigger()
 	if(!..())
 		return FALSE
-	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
 		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/servant = owner
+	var/mob/living/simple_animal/hostile/abnormality/wrath_servant/servant = owner
 	if(servant.IsContained()) // No more using cooldowns while contained
 		return FALSE
 	servant.Dash()
 	StartCooldown()
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/Initialize(mapload)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/Initialize(mapload)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/IsContained()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/IsContained()
 	if((status_flags & GODMODE) && !stunned)
 		return TRUE
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/OpenFire(atom/A)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/OpenFire(atom/A)
 	if(!can_act || stunned)
 		return
 	if(client)
@@ -137,7 +144,7 @@
 		Smash()
 		return
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/Life()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/Life()
 	. = ..()
 	if(IsContained() || !can_act)
 		return
@@ -150,7 +157,7 @@
 			L.apply_damage(30, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			var/obj/effect/temp_visual/eldritch_smoke/ES = new(get_turf(L))
 			ES.color = COLOR_GREEN
-			to_chat(L, "<span class='warning'>The Azure hermit's magic being channeled through [src] racks your mind!</span>")
+			to_chat(L, span_warning("The Azure hermit's magic being channeled through [src] racks your mind!"))
 		COOLDOWN_START(src, stun, stunned_cooldown)
 	if(stunned)
 		return
@@ -171,18 +178,18 @@
 			Teleport(T)
 			break
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/attack_hand(mob/living/carbon/human/M)
 	if(!stunned)
 		return ..()
-	to_chat(M, "<span class='warning'>You start pulling the staff from the [src]!</span>")
+	to_chat(M, span_warning("You start pulling the staff from the [src]!"))
 	if(!do_after(M, 2 SECONDS, src) || !stunned)
-		to_chat(M, "<span class='warning'>You let go before the staff is free!</span>")
+		to_chat(M, span_warning("You let go before the staff is free!"))
 		return
-	to_chat(M, "<span class='warning'>The staff rips free from the [src]!</span>")
+	to_chat(M, span_warning("The staff rips free from the [src]!"))
 	Unstun()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/AdjustInstability(amount = 0)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/AdjustInstability(amount = 0)
 	instability = clamp(instability + amount, (4*length(friend_ship)), 100)
 	if(!IsContained())
 		return TRUE
@@ -201,7 +208,7 @@
 			icon_state = "wrath_2"
 	return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Unstun()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Unstun()
 	if(!stunned)
 		return
 	status_flags &= ~GODMODE
@@ -211,24 +218,24 @@
 	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
 	manual_emote("begins to move once more!")
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/Move()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/Move()
 	if(!can_act || stunned)
 		return FALSE
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/Found(atom/A)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/Found(atom/A)
 	if(istype(A, /mob/living/simple_animal/hostile/azure_stave)) // 1st Priority
 		return TRUE
 	if(istype(A, /mob/living/simple_animal/hostile/azure_hermit)) // 2nd Priority
 		return TRUE
 	return FALSE // Everything Else
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/PickTarget(list/Targets)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/PickTarget(list/Targets)
 	if(!isnull(hunted_target))
 		return hunted_target
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/AttackingTarget(atom/attacked_target)
 	if(!can_act || stunned)
 		return
 	if(COOLDOWN_FINISHED(src, smash) && prob(30) && !client)
@@ -252,7 +259,7 @@
 		return
 	PerformEnding(AZ)
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()
 	if(prob(instability))
 		datum_reference.qliphoth_change(-1)
@@ -276,13 +283,13 @@
 		AdjustInstability(3) // Was 2
 	if(user in friend_ship)
 		say("It was good to see you again, [user.first_name()].")
-		to_chat(user, "<span class='nicegreen'>A light green light flows over you... You feel better!</span>")
+		to_chat(user, span_nicegreen("A light green light flows over you... You feel better!"))
 		user.adjustBruteLoss(-20)
 		user.adjustSanityLoss(-20)
 		AdjustInstability(3) // Was 1
 	return
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/AttemptWork(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type != "Request")
 		return ..()
 	if(datum_reference.console.meltdown)
@@ -307,12 +314,12 @@
 	BreachEffect(user)
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/ZeroQliphoth(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/ZeroQliphoth(mob/living/carbon/human/user)
 	friendly = FALSE
 	BreachEffect()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user)
 	if(!datum_reference)
 		friendly = FALSE
 	if(friendly)
@@ -387,15 +394,15 @@
 		playsound(dep, 'sound/abnormalities/wrath_servant/hermit_magic.ogg', 60, FALSE, 10)
 		break
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Dash()
-	visible_message("<span class='warning'>[src] sprints toward [target]!</span>", "<span class='notice'>You quickly dash!</span>", "<span class='notice'>You hear heavy footsteps speed up.</span>")
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Dash()
+	visible_message(span_warning("[src] sprints toward [target]!"), span_notice("You quickly dash!"), span_notice("You hear heavy footsteps speed up."))
 	var/duration = 1 SECONDS
 	if(client)
 		duration = 1.5 SECONDS
 	TemporarySpeedChange(-4, duration)
 	COOLDOWN_START(src, dash, dash_cooldown)
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Smash()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Smash()
 	if(!can_act || stunned)
 		return FALSE
 	can_act = FALSE
@@ -428,7 +435,7 @@
 			else
 				hit_turfs = (view(i, src) - range(i-1, src)) // Respects walls for last 2
 			for(var/turf/T in hit_turfs)
-				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, null, TRUE, FALSE, TRUE, FALSE, TRUE)
+				been_hit = HurtInTurf(T, been_hit, smash_damage, smash_damage_type, null, TRUE, FALSE, TRUE, FALSE, TRUE)
 				new /obj/effect/temp_visual/kinetic_blast(T)
 				if(prob(3))
 					if(friendly)
@@ -439,7 +446,7 @@
 	icon_state = icon_living
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Teleport(turf/location)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Teleport(turf/location)
 	can_act = FALSE
 	animate(src, alpha = 0, time = 5)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
@@ -449,12 +456,12 @@
 	new /obj/effect/temp_visual/guardian/phase/out(location)
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	if(died != hunted_target)
 		return
 	ReturnHome()
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/ReturnHome()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/ReturnHome()
 	can_act = FALSE
 	hunted_target = null
 	say("For our friendship...")
@@ -471,7 +478,7 @@
 	friendly = FALSE
 	AdjustInstability()
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/PerformEnding(mob/living/simple_animal/hostile/azure_hermit/target = null)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/PerformEnding(mob/living/simple_animal/hostile/azure_hermit/target = null)
 	ending = TRUE
 	can_act = FALSE
 	target.gib(TRUE)
@@ -511,7 +518,7 @@
 	dir = EAST
 	ending = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Downed()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Downed()
 	can_act = FALSE
 	status_flags |= GODMODE
 	if(friendly)
@@ -524,16 +531,16 @@
 		can_act = TRUE
 		return FALSE
 	say("GR-RRAHHH!!!")
-	visible_message("<span class='warning'>[src] falls down!</span>")
+	visible_message(span_warning("[src] falls down!"))
 	icon_state = "wrath_stun"
 	SLEEP_CHECK_DEATH(15 SECONDS)
 	status_flags &= ~GODMODE
 	icon_state = icon_living
 	adjustBruteLoss(-maxHealth)
-	visible_message("<span class='warning'>[src] gets back up!</span>")
+	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/death(gibbed)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/death(gibbed)
 	if(!datum_reference)
 		return ..()
 	if(ending)
@@ -541,7 +548,7 @@
 	INVOKE_ASYNC(src, .proc/Downed)
 	return FALSE
 
-/mob/living/simple_animal/hostile/abnormality/servant_wrath/gib()
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/gib()
 	if(ending)
 		return FALSE
 	death()
@@ -589,9 +596,9 @@
 	COOLDOWN_START(src, conjure, conjure_cooldown)
 
 /mob/living/simple_animal/hostile/azure_hermit/Found(atom/A)
-	if(!istype(A, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+	if(!istype(A, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
 		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/servant_wrath/SW = A
+	var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SW = A
 	if(SW.stunned) // OUR WORK HERE IS DONE.
 		return FALSE
 	return TRUE
@@ -614,8 +621,8 @@
 /mob/living/simple_animal/hostile/azure_hermit/AttackingTarget(atom/attacked_target)
 	if(!can_act || (status_flags & GODMODE))
 		return
-	if(istype(target, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
-		var/mob/living/simple_animal/hostile/abnormality/servant_wrath/SW = target
+	if(istype(target, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
+		var/mob/living/simple_animal/hostile/abnormality/wrath_servant/SW = target
 		if(SW.stunned)
 			return
 		if(SW.health > 400)
@@ -637,9 +644,9 @@
 				SLEEP_CHECK_DEATH(3)
 		else
 			playsound(SW, 'sound/abnormalities/wrath_servant/enrage.ogg', 100, FALSE, 40, falloff_distance = 20)
-			visible_message("<span class='userdanger'>[src] plunges their staff into [SW]'s chest!</span>")
+			visible_message(span_userdanger("[src] plunges their staff into [SW]'s chest!"))
 			SW.stunned = TRUE
-			addtimer(CALLBACK(SW, /mob/living/simple_animal/hostile/abnormality/servant_wrath/proc/Unstun), 3 MINUTES)
+			addtimer(CALLBACK(SW, /mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Unstun), 3 MINUTES)
 			SW.status_flags |= GODMODE
 			SW.icon_state = "wrath_staff_stun"
 			SW.desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid. A wooden staff is impaled in its chest, it can't seem to move!"
@@ -726,7 +733,7 @@
 	density = FALSE
 	status_flags |= GODMODE
 	for(var/mob/living/L in staves)
-		L.visible_message("<span class='notice'>[L] crumbles before you!</span>")
+		L.visible_message(span_notice("[L] crumbles before you!"))
 		qdel(L)
 	animate(src, alpha = 0, time = (15 SECONDS))
 	QDEL_IN(src, 15 SECONDS)
@@ -798,7 +805,7 @@
 		return FALSE
 	if(!isliving(AM))
 		return FALSE
-	if(istype(AM, /mob/living/simple_animal/hostile/abnormality/servant_wrath))
+	if(istype(AM, /mob/living/simple_animal/hostile/abnormality/wrath_servant))
 		return
 	var/mob/living/L = AM
 	L.apply_status_effect(STATUS_EFFECT_ACIDIC_GOO)

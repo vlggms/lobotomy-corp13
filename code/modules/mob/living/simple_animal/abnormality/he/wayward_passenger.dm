@@ -67,14 +67,14 @@
 	name = "Teleport"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	chosen_message = "<span class='colossus'>You will now teleport to your target.</span>"
+	chosen_message = span_colossus("You will now teleport to your target.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/wayward_dash
 	name = "Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "plasmasoul"
-	chosen_message = "<span class='colossus'>You will now charge towards your target.</span>"
+	chosen_message = span_colossus("You will now charge towards your target.")
 	chosen_attack_num = 2
 
 //*** Simple mob procs ***
@@ -90,7 +90,7 @@
 		return
 	if(IsContained())
 		return
-	if(client)
+	if(client || CheckCombat())
 		return
 	if((teleport_cooldown <= world.time) && can_act)
 		TryTeleport()
@@ -106,7 +106,7 @@
 		switch(chosen_attack)
 			if(1)
 				if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 30)))
-					to_chat(src, "<span class='notice'>Invalid target.</span>")
+					to_chat(src, span_notice("Invalid target."))
 					return
 				TryTeleport(get_turf(target))
 			if(2)
@@ -246,7 +246,7 @@
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
-			L.visible_message("<span class='boldwarning'>[src] slices through [L]!</span>", "<span class='userdanger'>[src] rushes past you, searing you with its blades!</span>")
+			L.visible_message(span_boldwarning("[src] slices through [L]!"), span_userdanger("[src] rushes past you, searing you with its blades!"))
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)

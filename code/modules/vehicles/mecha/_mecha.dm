@@ -246,7 +246,7 @@
 	return cell
 
 /obj/vehicle/sealed/mecha/rust_heretic_act()
-	take_damage(500,  BRUTE)
+	take_damage(500, BRUTE)
 
 /obj/vehicle/sealed/mecha/proc/restore_equipment()
 	equipment_disabled = FALSE
@@ -388,7 +388,7 @@
 			if(cabin_air && cabin_air.return_volume()>0)
 				cabin_air.temperature = min(6000+T0C, cabin_air.return_temperature()+rand(5,7.5)*delta_time)
 				if(cabin_air.return_temperature() > max_temperature/2)
-					take_damage(delta_time*2/round(max_temperature/cabin_air.return_temperature(),0.1), BURN, 0, 0)
+					take_damage(delta_time*2/round(max_temperature/cabin_air.return_temperature(),0.1), BURN, 0)
 
 		if(internal_damage & MECHA_INT_TEMP_CONTROL)
 			internal_temp_regulation = 0

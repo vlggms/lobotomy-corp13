@@ -47,6 +47,10 @@
 	gift_type = /datum/ego_gifts/oppression
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/red_buddy = 5
+	)
+
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
 	var/slash_cooldown = 4
@@ -111,10 +115,10 @@
 	name = "Toggle Spinning Slash"
 	button_icon_state = "sheperd_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't spin anymore.</span>"
+	chosen_message = span_colossus("You won't spin anymore.")
 	button_icon_toggle_activated = "sheperd_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now execute a spinning slash when ready.</span>"
+	toggle_message = span_colossus("You will now execute a spinning slash when ready.")
 	button_icon_toggle_deactivated = "sheperd_toggle0"
 
 

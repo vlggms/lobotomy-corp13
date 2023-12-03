@@ -264,9 +264,6 @@ GLOBAL_LIST_EMPTY(species_list)
 /proc/do_after(mob/user, delay, atom/target, timed_action_flags = NONE, progress = TRUE, datum/callback/extra_checks, interaction_key, max_interact_count = 1)
 	if(!user)
 		return FALSE
-	var/atom/target_loc = null
-	if(target && !isturf(target))
-		target_loc = target.loc
 
 	if(!interaction_key && target)
 		interaction_key = target //Use the direct ref to the target
@@ -277,6 +274,7 @@ GLOBAL_LIST_EMPTY(species_list)
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
 	var/atom/user_loc = user.loc
+	var/atom/target_loc = target?.loc
 
 	var/drifting = FALSE
 	if(!user.Process_Spacemove(0) && user.inertia_dir)
@@ -303,23 +301,18 @@ GLOBAL_LIST_EMPTY(species_list)
 			drifting = FALSE
 			user_loc = user.loc
 
-		if(
-			QDELETED(user) \
+		if(QDELETED(user) \
 			|| (!(timed_action_flags & IGNORE_USER_LOC_CHANGE) && !drifting && user.loc != user_loc) \
 			|| (!(timed_action_flags & IGNORE_HELD_ITEM) && user.get_active_held_item() != holding) \
 			|| (!(timed_action_flags & IGNORE_INCAPACITATED) && HAS_TRAIT(user, TRAIT_INCAPACITATED)) \
-			|| (extra_checks && !extra_checks.Invoke()) \
-		)
+			|| (extra_checks && !extra_checks.Invoke()))
 			. = FALSE
 			break
 
-		if(
-			!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) \
-			&& !drifting \
-			&& !QDELETED(target_loc) \
-			&& (QDELETED(target) || target_loc != target.loc) \
-			&& ((user_loc != target_loc || target_loc != user)) \
-			)
+		if(target && (user != target) \
+			&& (QDELETED(target) \
+			|| (!(timed_action_flags & IGNORE_TARGET_LOC_CHANGE) && target.loc != target_loc))
+		)
 			. = FALSE
 			break
 
@@ -354,7 +347,7 @@ GLOBAL_LIST_EMPTY(species_list)
 	if(interaction_key)
 		var/current_interaction_count = LAZYACCESS(user.do_afters, interaction_key) || 0
 		if(current_interaction_count >= max_interact_count) //We are at our peak
-			to_chat(user, "<span class='warning'>You can't do this at the moment!</span>")
+			to_chat(user, span_warning("You can't do this at the moment!"))
 			return
 		LAZYSET(user.do_afters, interaction_key, current_interaction_count + 1)
 
@@ -465,7 +458,7 @@ GLOBAL_LIST_EMPTY(species_list)
 // Displays a message in deadchat, sent by source. source is not linkified, message is, to avoid stuff like character names to be linkified.
 // Automatically gives the class deadsay to the whole message (message + source)
 /proc/deadchat_broadcast(message, source=null, mob/follow_target=null, turf/turf_target=null, speaker_key=null, message_type=DEADCHAT_REGULAR, admin_only=FALSE)
-	message = "<span class='deadsay'>[source]<span class='linkify'>[message]</span></span>"
+	message = span_deadsay("[source]<span class='linkify'>[message]</span>")
 
 	for(var/mob/M in GLOB.player_list)
 		var/chat_toggles = TOGGLES_DEFAULT_CHAT
@@ -480,7 +473,7 @@ GLOBAL_LIST_EMPTY(species_list)
 			if (!M.client.holder)
 				return
 			else
-				message += "<span class='deadsay'> (This is viewable to admins only).</span>"
+				message += span_deadsay(" (This is viewable to admins only).")
 		var/override = FALSE
 		if(M.client.holder && (chat_toggles & CHAT_DEAD))
 			override = TRUE
@@ -658,11 +651,11 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hit_list (optional) A list of things that have been hit. Will not be hit multiple times.
  * * damage (required) How much damage is being dealt.
  * * damage_type (required) What type of damage is being dealt. Defaults to RED_DAMAGE.
- * * armor_type (optional) What type of armor we're tested against. If left blank, defaults to the damage type.
  * * def_zone (optional) What body part we're hitting.
  * * check_faction (optional) Whether or not we care about the faction of the units in the area. If TRUE, we don't harm allies.
  * * exact_faction_match (optional) Pointless to set if check_faction isn't set. Do we care about the factions being an exact match?
  * * hurt_mechs (optional) If this damage effect hurts mechs.
+ * * mech_damage (optional) If you want a different amount of damage dealt to mechs
  * * hurt_hidden (optional) If this damage hits people hiding in lockers or boxes.
  * * hurt_structure (optional) If this damage applies to structures as well.
  * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
@@ -670,12 +663,11 @@ GLOBAL_LIST_EMPTY(species_list)
  * returns:
  * * hit_list - A list containing all things hit by this proc.
  */
-/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, armor_type, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
+/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
 	var/list/exclude = typecacheof(/obj/structure/disposalpipe) // Types that should never be hit by HurtInTurf
 	. = list()
 	. += hit_list
-	target = target ? target : get_turf(src)
-	armor_type = armor_type ? armor_type : damage_type
+	target = isturf(target) ? target : get_turf(src)
 	for(var/mob/living/L in target) // Hit living targets
 		if(L == src)
 			continue
@@ -687,16 +679,17 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(faction_check_mob(L, exact_faction_match))
 				continue
 		if(damage)
-			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
 		. += L
 	if(hurt_mechs) // Hit Mechs
+		var/mechDamage = mech_damage ? mech_damage : damage
 		for(var/obj/vehicle/V in target)
 			if(V in .)
 				continue
 			if(is_type_in_typecache(V, exclude))
 				continue
 			if(damage)
-				V.take_damage(damage, damage_type, armor_type)
+				V.take_damage(mechDamage, damage_type)
 			. += V
 	if(hurt_hidden) // Hit living in closets (includes crates)
 		for(var/obj/structure/closet/C in target)
@@ -711,7 +704,7 @@ GLOBAL_LIST_EMPTY(species_list)
 					if(faction_check_mob(H, exact_faction_match))
 						continue
 				if(damage)
-					H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, armor_type), FALSE, TRUE)
+					H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, damage_type), FALSE, TRUE)
 				. += H
 			. += C
 	if(hurt_structure && damage_type != WHITE_DAMAGE) // Hits structures
@@ -723,6 +716,6 @@ GLOBAL_LIST_EMPTY(species_list)
 			if(damage)
 				if(break_not_destroy && (S.obj_integrity - damage <= 0))
 					damage += (S.obj_integrity - damage) - 1
-				S.take_damage(damage, damage_type, armor_type)
+				S.take_damage(damage, damage_type)
 			. += S
 	return

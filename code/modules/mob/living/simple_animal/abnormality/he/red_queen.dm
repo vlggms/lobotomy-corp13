@@ -36,7 +36,7 @@
 	if(work_type != liked)
 		if(prob(20))
 			//The Red Queen is fickle, if you're unlucky, fuck you.
-			user.visible_message("<span class='warning'>An invisible blade slices through [user]'s neck!</span>")
+			user.visible_message(span_warning("An invisible blade slices through [user]'s neck!"))
 			user.apply_damage(200, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/slice(get_turf(user))
 

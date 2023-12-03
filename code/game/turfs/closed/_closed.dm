@@ -74,7 +74,11 @@
 			if(NAMEOF(src, icon))
 				SStitle.icon = icon
 
-
+/* This is very strange that indestructable isnt a
+	subtype of /turf/closed/wall. So instead of
+	overriding procs they just made a entire
+	type where it has no procs and is entirely
+	for show. -IP */
 /turf/closed/indestructible/reinforced
 	name = "reinforced wall"
 	desc = "A huge chunk of reinforced metal used to separate rooms. Effectively impervious to conventional methods of destruction."
@@ -84,6 +88,80 @@
 	smoothing_flags = SMOOTH_BITMASK
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS)
+
+
+//////This is absurd that i have to carry over wall code to a indestructable wall duplicate.
+
+/turf/closed/indestructible/reinforced/attackby(obj/item/W, mob/user, params)
+	//get the user's location
+	if(!isturf(user.loc))
+		return	//can't do this stuff whilst inside objects and such
+
+	var/turf/T = user.loc	//get user's location for delay checks
+
+	//the istype cascade has been spread among various procs for easy overriding
+	if(try_wallmount(W, user, T))
+		return
+
+	return ..()
+
+/turf/closed/indestructible/reinforced/proc/try_wallmount(obj/item/W, mob/user, turf/T)
+	//check for wall mounted frames
+	if(istype(W, /obj/item/wallframe))
+		var/obj/item/wallframe/F = W
+		if(F.try_build(src, user))
+			F.attach(src, user)
+		return TRUE
+	//Poster stuff
+	else if(istype(W, /obj/item/poster))
+		place_poster(W,user)
+		return TRUE
+
+	return FALSE
+
+/turf/closed/indestructible/reinforced/proc/place_poster(obj/item/poster/P, mob/user)
+	if(!P.poster_structure)
+		to_chat(user, "<span class='warning'>[P] has no poster... inside it? Inform a coder!</span>")
+		return
+
+	// Deny placing posters on currently-diagonal walls, although the wall may change in the future.
+	if (smoothing_flags & SMOOTH_DIAGONAL_CORNERS)
+		for (var/O in overlays)
+			var/image/I = O
+			if(copytext(I.icon_state, 1, 3) == "d-") //3 == length("d-") + 1
+				return
+
+	var/stuff_on_wall = 0
+	for(var/obj/O in contents) //Let's see if it already has a poster on it or too much stuff
+		if(istype(O, /obj/structure/sign/poster))
+			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			return
+		stuff_on_wall++
+		if(stuff_on_wall == 3)
+			to_chat(user, "<span class='warning'>The wall is far too cluttered to place a poster!</span>")
+			return
+
+	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>"	)
+
+	var/obj/structure/sign/poster/D = P.poster_structure
+
+	var/temp_loc = get_turf(user)
+	flick("poster_being_set",D)
+	D.forceMove(src)
+	qdel(P)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
+	playsound(D.loc, 'sound/items/poster_being_created.ogg', 100, TRUE)
+
+	if(do_after(user, 37, target=src))
+		if(!D || QDELETED(D))
+			return
+
+		if(iswallturf(src) && user && user.loc == temp_loc)	//Let's check if everything is still there
+			to_chat(user, "<span class='notice'>You place the poster!</span>")
+			return
+
+	to_chat(user, "<span class='notice'>The poster falls down!</span>")
+	D.roll_and_drop(get_turf(user))
+
 
 /turf/closed/indestructible/riveted
 	icon = 'icons/turf/walls/riveted.dmi'

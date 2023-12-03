@@ -44,6 +44,10 @@
 	gift_type = /datum/ego_gifts/totalitarianism
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/blue_shepherd = 5
+	)
+
 	///The blue smocked shepherd linked to red buddy
 	var/datum/abnormality/master
 	//the living shepherd it is currently fighting with

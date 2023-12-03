@@ -18,7 +18,7 @@
 
 /obj/item/modular_computer/proc/break_apart()
 	if(!(flags_1 & NODECONSTRUCT_1))
-		physical.visible_message("<span class='notice'>\The [src] breaks apart!</span>")
+		physical.visible_message(span_notice("\The [src] breaks apart!"))
 		var/turf/newloc = get_turf(src)
 		new /obj/item/stack/sheet/metal(newloc, round(steel_sheet_cost/2))
 		for(var/C in all_components)
@@ -28,6 +28,6 @@
 			uninstall_component(H)
 			H.forceMove(newloc)
 			if(prob(25))
-				H.take_damage(rand(10,30), BRUTE, 0, 0)
+				H.take_damage(rand(10,30), BRUTE, 0)
 	relay_qdel()
 	qdel(src)

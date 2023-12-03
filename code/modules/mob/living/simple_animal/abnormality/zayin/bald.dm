@@ -25,7 +25,7 @@
 	gift_chance = 10
 	gift_message = "Now we're feeling awesome!"
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-	harvest_phrase = "<span class='notice'>You squeeze %ABNO. Some juice drips into %VESSEL.</span>"
+	harvest_phrase = span_notice("You squeeze %ABNO. Some juice drips into %VESSEL.")
 	harvest_phrase_third = "%PERSON squeezes %ABNO. Some juice drips into %VESSEL."
 
 	var/bald_users = list()
@@ -62,7 +62,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bald/proc/do_bald(mob/living/carbon/human/victim)
 	if(!HAS_TRAIT(victim, TRAIT_BALD))
-		to_chat(victim, "<span class='notice'>You feel awesome!</span>")
+		to_chat(victim, span_notice("You feel awesome!"))
 		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
 		victim.hairstyle = "Bald"
 		victim.update_hair()

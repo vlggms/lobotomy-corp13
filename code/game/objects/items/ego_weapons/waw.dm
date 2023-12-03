@@ -428,11 +428,6 @@
 	var/ranged_cooldown_time = 1.2 SECONDS
 	var/ranged_damage = 60
 
-/obj/effect/temp_visual/thornspike
-	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	icon_state = "thornspike"
-	duration = 10
-
 /obj/item/ego_weapon/ebony_stem/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		to_chat(user, "<span class='warning'>Your ranged attack is still recharging!")
@@ -449,7 +444,7 @@
 	if(do_after(user, 5))
 		var/damage_dealt = (ranged_damage * force_multiplier)
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
-		for(var/turf/open/T in range(target_turf, 1))
+		for(var/turf/open/T in RANGE_TURFS(1, target_turf))
 			new /obj/effect/temp_visual/thornspike(T)
 			user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE)
 
@@ -1783,3 +1778,38 @@
 	if(transformed)
 		return
 	return ..()
+
+/obj/item/ego_weapon/rosa
+	name = "flore sicut rosa"
+	desc = "See? Wish, wish for it. Knowing that it is a sin. Only then can you bloom such colorful roses."
+	special = "Hit yourself to heal the sanity of others"
+	icon_state = "rosa"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 40
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("lashes", "punishes", "whips", "slaps", "lacerates")
+	attack_verb_simple = list("lash", "punish","whip", "slap", "lacerate")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
+							)
+
+/obj/item/ego_weapon/rosa/attack(mob/living/M, mob/living/user)
+	..()
+	if(M==user)
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		var/heal_amount = (force * justicemod * 0.75)
+		var/armormod = (user.run_armor_check(null, WHITE_DAMAGE))
+		if(armormod)//skips all the math if you're not wearing armor
+			heal_amount -= (heal_amount * (armormod / 100))//wearing da capo will reduce it to 0
+		heal_amount *= 0.5
+		for(var/mob/living/carbon/human/L in range(10, user))
+			if(L==user)
+				continue
+			L.adjustSanityLoss(-heal_amount)
+			new /obj/effect/temp_visual/healing(get_turf(L))

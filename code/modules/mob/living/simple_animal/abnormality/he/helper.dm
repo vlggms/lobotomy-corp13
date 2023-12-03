@@ -37,6 +37,12 @@
 	gift_type =  /datum/ego_gifts/grinder
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+	)
+
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
@@ -50,10 +56,10 @@
 	name = "Toggle Dash"
 	button_icon_state = "helper_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	chosen_message = span_colossus("You won't dash anymore.")
 	button_icon_toggle_activated = "helper_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now dash in that direction.</span>"
+	toggle_message = span_colossus("You will now dash in that direction.")
 	button_icon_toggle_deactivated = "helper_toggle0"
 
 
@@ -149,8 +155,8 @@
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
-			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
-			to_chat(L, "<span class='userdanger'>[src] pierces you with their spinning blades!</span>")
+			visible_message(span_boldwarning("[src] runs through [L]!"))
+			to_chat(L, span_userdanger("[src] pierces you with their spinning blades!"))
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)

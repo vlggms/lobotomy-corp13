@@ -220,9 +220,6 @@
 			pixel_x = -32
 			base_pixel_x = -32
 			if(phase == 3)
-				if(CheckCombat())
-					phase = 2
-					return
 				icon_living = "mosb_breach2"
 				SpeedChange(1)
 				patrol_cooldown_time = 30 SECONDS
@@ -265,29 +262,29 @@
 	if(scream_cooldown > world.time)
 		return
 	scream_cooldown = world.time + scream_cooldown_time
-	visible_message("<span class='danger'>[src] screams wildly!</span>")
+	visible_message(span_danger("[src] screams wildly!"))
 	new /obj/effect/temp_visual/voidout(get_turf(src))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/scream.ogg', 75, 1, 5)
 	var/list/been_hit = list()
 	for(var/turf/T in view(7, src))
-		HurtInTurf(T, been_hit, scream_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE)
+		HurtInTurf(T, been_hit, scream_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Slam(range)
 	if(slam_cooldown > world.time)
 		return
 	slam_cooldown = world.time + slam_cooldown_time
-	visible_message("<span class='danger'>[src] slams on the ground!</span>")
+	visible_message(span_danger("[src] slams on the ground!"))
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, 1)
 	var/list/been_hit = list()
 	for(var/turf/open/T in view(2, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		HurtInTurf(T, been_hit, slam_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE)
+		HurtInTurf(T, been_hit, slam_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/mountain/proc/Spit(atom/target)
 	if(spit_cooldown > world.time)
 		return
 	finishing = TRUE
-	visible_message("<span class='danger'>[src] prepares to spit an acidic substance at [target]!</span>")
+	visible_message(span_danger("[src] prepares to spit an acidic substance at [target]!"))
 	SLEEP_CHECK_DEATH(4)
 	spit_cooldown = world.time + spit_cooldown_time
 	playsound(get_turf(src), 'sound/abnormalities/mountain/spit.ogg', 75, 1, 3)

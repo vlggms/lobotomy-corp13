@@ -42,7 +42,6 @@
 	desc = "A black tracksuit with athletic white lines worn by clerks from the old discipline department."
 	icon_state = "disciplinary_alt"
 
-
 /obj/item/clothing/under/suit/lobotomy/welfare
 	name = "welfare department uniform"
 	desc = "An old fashioned gray sailor outfit with a blue necktie, worn by clerks from the welfare department."
@@ -56,6 +55,13 @@
 /obj/item/clothing/under/suit/lobotomy/extraction/arbiter
 	name = "arbiter's uniform"
 	desc = "A dark uniform worn by the Arbiters of the Head."
+
+/obj/item/clothing/under/suit/lobotomy/claw
+	name = "claw uniform"
+	desc = "A black suit and tie worn by the Claws of the Head."
+	icon = 'icons/obj/clothing/under/suits.dmi'
+	worn_icon = 'icons/mob/clothing/under/suits.dmi'
+	icon_state = "charcoal_suit"
 
 /obj/item/clothing/under/suit/lobotomy/records
 	name = "record department uniform"
@@ -98,6 +104,11 @@
 	desc = "A blue and black uniform worn by w-corp employees."
 	icon_state = "wuniform"
 
+/obj/item/clothing/under/suit/lobotomy/wsenior
+	name = "\improper w-corp jumpsuit"
+	desc = "A blue and black uniform worn by senior w-corp employees."
+	icon_state = "wsenior"
+
 //Rep Suits
 /obj/item/clothing/under/suit/lobotomy/wcorp_command
 	name = "\improper w-corp office uniform"
@@ -109,14 +120,28 @@
 	desc = "A black suit and orange tie worn by rcorp."
 	icon_state = "rcorp"
 
-/obj/item/clothing/under/suit/lobotomy/wsenior
-	name = "\improper w-corp jumpsuit"
-	desc = "A blue and black uniform worn by senior w-corp employees."
-	icon_state = "wsenior"
-
 /obj/item/clothing/under/suit/lobotomy/kcorp
 	name = "k-corp officer uniform"
 	desc = "A plain black suit with green tie. Used by K-corp non-combat staff."
 	icon_state = "kcorp"
 
+/obj/item/clothing/under/suit/lobotomy/pcorp
+	name = "p-corp officer uniform"
+	desc = "A plain black suit with a uranian blue tie. Used by P-corp staff."
+	icon_state = "pcorp"
+
+/obj/item/clothing/under/suit/lobotomy/ncorp
+	name = "n-corp officer uniform"
+	desc = "A plain black suit with a long blue overcoat. Used by N-corp staff."
+	icon_state = "ncorp"
+
+/obj/item/clothing/under/suit/lobotomy/mcorp
+	name = "n-corp officer uniform"
+	desc = "A plain black suit with a magenta tie. Used by M-corp staff."
+	icon_state = "mcorp"
+
+/obj/item/clothing/under/suit/lobotomy/tcorp
+	name = "t-corp officer uniform"
+	desc = "A sepiatone suit with white undershirt. Used by T-corp staff."
+	icon_state = "tcorp"
 

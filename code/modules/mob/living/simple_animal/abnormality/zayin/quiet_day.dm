@@ -25,8 +25,15 @@
 		/datum/ego_datum/weapon/nostalgia,
 		/datum/ego_datum/armor/nostalgia
 	)
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+	)
+
 	chem_type = /datum/reagent/abnormality/quiet_day
-	harvest_phrase = "<span class='notice'>%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.</span>"
+	harvest_phrase = span_notice("%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.")
 	harvest_phrase_third = "%ABNO glances at %PERSON. Suddenly, %VESSEL seems to be more full."
 
 	gift_type =  /datum/ego_gifts/nostalgia
@@ -79,6 +86,7 @@
 	TalkStart(user)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkStart(mob/living/carbon/human/user)
+	flick("quiet_fadein", src)
 	icon_state = "quiet_ghost"
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
@@ -135,6 +143,7 @@
 			user.apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
+	flick("quiet_fadeout", src)
 	icon_state = "quiet_day"
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerCheck(mob/living/carbon/human/user)
@@ -148,7 +157,7 @@
 	name = "A Quiet Day"
 	desc = "You listened to the old man's story."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "rest"	//Guh I suck at status sprites but I'm also broke
+	icon_state = "quiet"
 
 //A Quiet day
 //A simple 5 minute stat buff

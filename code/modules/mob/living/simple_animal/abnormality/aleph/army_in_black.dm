@@ -45,6 +45,12 @@ GLOBAL_LIST_EMPTY(army)
 		)
 	gift_type =  /datum/ego_gifts/pink
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5
+	)
+
 	//Unique variables
 	var/death_counter = 0
 	var/protection_duration = 120 SECONDS
@@ -95,7 +101,7 @@ GLOBAL_LIST_EMPTY(army)
 				return FALSE
 			protected_targets += user
 			user.apply_status_effect(STATUS_EFFECT_PROTECTION)
-			to_chat(user, "<span class='nicegreen'>You feel like you're in good company.</span>")
+			to_chat(user, span_nicegreen("You feel like you're in good company."))
 			playsound(get_turf(user), 'sound/abnormalities/armyinblack/pink_heal.ogg', 50, 0, 2)
 		return FALSE
 	return TRUE
@@ -273,7 +279,7 @@ GLOBAL_LIST_EMPTY(army)
 		fear_affected += H
 		if(H.sanity_lost)
 			continue
-		to_chat(H, "<span class='warning'>Oh dear.</span>")
+		to_chat(H, span_warning("Oh dear."))
 	return
 
 //explosion definition
@@ -281,7 +287,7 @@ GLOBAL_LIST_EMPTY(army)
 	if(QDELETED(src))
 		return
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_explosion.ogg', 125, 0, 8)
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/simple_animal/hostile/abnormality/P in range(20, src))
 		if(!P.datum_reference)//Prevents a runtime if the abno lacks datums, such as those spawned by contract
 			continue
@@ -365,7 +371,7 @@ GLOBAL_LIST_EMPTY(army)
 		H.physiology.pale_mod /= 0.8
 		H.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', "pink", -MUTATIONS_LAYER))
 		H.vis_contents -= army_bud
-		to_chat(H, "<span class='notice'>The pink soldier assigned to you returns to its containment cell.</span>")
+		to_chat(H, span_notice("The pink soldier assigned to you returns to its containment cell."))
 	if(!boom)
 		return
 	for(var/mob/living/carbon/human/H in view(7, owner))

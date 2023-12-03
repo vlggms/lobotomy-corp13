@@ -1697,3 +1697,53 @@
 	..()
 	target.apply_damage(force, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
+/obj/item/ego_weapon/nixie
+	name = "nixie divergence"
+	desc = "It looks like a hammer with a steam exhaust port."
+	special = "Use in hand to unlock its full power."
+	icon_state = "nixie"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 60
+	attack_speed = 3
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/weapons/fixer/generic/baton2.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+	var/charged = FALSE
+
+/obj/item/ego_weapon/nixie/attack(mob/living/M, mob/living/user)
+	if(charged)
+		playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
+		set_light(0)
+	..()
+	force = 60
+	charged = FALSE
+
+/obj/item/ego_weapon/nixie/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(charged)
+		return
+	if(do_after(user, 12, src))
+		charged = TRUE
+		force = 90	//FULL POWER
+		to_chat(user,"<span class='warning'>You put your strength behind this attack.</span>")
+		playsound(src.loc, 'sound/abnormalities/clock/clank.ogg', 75, TRUE)
+		set_light(3, 6, "#D4FAF37")
+		PlayChargeSound()
+
+/obj/item/ego_weapon/nixie/proc/PlayChargeSound()
+	set waitfor = FALSE
+	sleep(10)
+	if(!charged) //We don't play the sound if the player has already attacked by now
+		return
+	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)
+
+/obj/item/ego_weapon/totalitarianism/get_clamped_volume()
+	return 50

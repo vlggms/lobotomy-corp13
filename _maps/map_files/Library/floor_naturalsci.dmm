@@ -3,16 +3,16 @@
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "as" = (
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "cg" = (
 /obj/structure/table/wood,
 /obj/item/book/random,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "cJ" = (
 /obj/structure/railing{
 	dir = 5;
@@ -20,7 +20,7 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "dl" = (
 /obj/structure/railing{
 	dir = 9;
@@ -28,13 +28,13 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "eb" = (
 /obj/structure/ladder/unbreakable{
 	pixel_y = 8
 	},
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "ec" = (
 /turf/open/floor/white{
 	density = 1
@@ -44,7 +44,7 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "fe" = (
 /obj/item/toy/plush/kod,
 /obj/item/ego_weapon/despair{
@@ -52,19 +52,19 @@
 	pixel_y = 4
 	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "fw" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "gn" = (
 /obj/structure/flora/icestalactite/small{
 	pixel_y = -13
 	},
 /turf/open/chasm,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "gL" = (
 /obj/item/flashlight/spotlight,
 /obj/structure/railing{
@@ -73,42 +73,43 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "hD" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "id" = (
 /obj/structure/chair/wood{
 	dir = 8
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "iE" = (
 /obj/structure/railing/corner,
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "iK" = (
 /obj/structure/altar_of_gods,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "lf" = (
 /obj/item/toy/plush/nihil,
+/obj/item/flashlight/spotlight,
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "lp" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "lG" = (
 /obj/structure/table/wood,
 /obj/structure/table/wood,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "nt" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "nP" = (
 /obj/structure/railing/corner{
 	dir = 8;
@@ -116,23 +117,23 @@
 	pixel_y = 2
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "oe" = (
 /obj/structure/flora/icestalactite{
 	pixel_y = -16
 	},
 /turf/open/chasm,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "px" = (
 /turf/open/chasm,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "pL" = (
 /obj/item/flashlight/spotlight,
 /obj/structure/chair/wood{
 	dir = 8
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "qj" = (
 /obj/item/toy/plush/kog,
 /obj/item/ego_weapon/goldrush{
@@ -140,17 +141,17 @@
 	pixel_x = 13
 	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "qk" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "qt" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "qC" = (
 /obj/item/flashlight/spotlight,
 /obj/structure/railing{
@@ -158,7 +159,7 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "un" = (
 /obj/item/toy/plush/sow,
 /obj/item/ego_weapon/blind_rage{
@@ -166,17 +167,17 @@
 	pixel_y = -7
 	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "uH" = (
 /turf/open/space/basic,
 /area/space)
 "vA" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wa" = (
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wn" = (
 /obj/structure/railing{
 	dir = 10;
@@ -184,15 +185,15 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wp" = (
 /obj/item/flashlight/spotlight,
 /turf/open/chasm,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wz" = (
 /obj/structure/railing,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wD" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/white{
@@ -205,11 +206,11 @@
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wO" = (
 /obj/item/candle/infinite,
 /turf/closed/wall/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "xx" = (
 /obj/structure/railing{
 	dir = 6;
@@ -217,34 +218,34 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "yJ" = (
 /obj/structure/chair/wood/wings{
 	pixel_y = 0;
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "zj" = (
 /obj/structure/displaycase/noalert,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "zq" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "zP" = (
 /obj/structure/table/wood/fancy,
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Aq" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/ice{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "BB" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -252,12 +253,16 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "BX" = (
 /turf/open/floor/plating/ice{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
+"BY" = (
+/obj/item/flashlight/spotlight,
+/turf/open/floor/facility/dark,
+/area/library_floors/floor_naturalsci)
 "Ch" = (
 /obj/item/toy/plush/qoh,
 /obj/item/gun/ego_gun/hatred{
@@ -265,28 +270,33 @@
 	pixel_y = 5
 	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "CA" = (
 /obj/item/toy/plush/lisa,
 /obj/structure/railing,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "EG" = (
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Gp" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Jz" = (
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "JX" = (
 /obj/structure/chair/wood{
 	dir = 4
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
+"Kb" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/lone,
+/area/library_floors/floor_naturalsci)
 "KI" = (
 /obj/item/flashlight/spotlight{
 	light_color = "#d8b66f"
@@ -294,12 +304,12 @@
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "KV" = (
 /obj/structure/table/wood,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Ms" = (
 /obj/item/flashlight/spotlight{
 	light_color = "#d8b66f"
@@ -314,13 +324,13 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Pq" = (
 /obj/item/flashlight/spotlight{
 	light_color = "#d8b66f"
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "PZ" = (
 /obj/structure/railing{
 	dir = 8;
@@ -328,12 +338,12 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Qe" = (
 /turf/open/lava{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Qo" = (
 /obj/item/flashlight/spotlight,
 /obj/structure/railing{
@@ -342,34 +352,34 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "QB" = (
 /turf/closed/wall/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "QK" = (
 /obj/structure/table/wood,
 /obj/item/book/random,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Sq" = (
 /obj/structure/railing/corner,
 /obj/structure/railing/corner{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "SI" = (
 /obj/structure/altar_of_gods,
 /obj/structure/flora/iceslab/alt{
 	pixel_y = 14
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Tc" = (
 /obj/structure/altar_of_gods,
 /obj/structure/flora/tree/dead,
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "TL" = (
 /obj/structure/table/wood/fancy,
 /obj/item/candle/infinite{
@@ -377,10 +387,16 @@
 	pixel_x = 16
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "UJ" = (
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
+"Vj" = (
+/obj/structure/table/wood,
+/obj/item/book/random,
+/obj/item/flashlight/spotlight,
+/turf/open/floor/carpet/lone,
+/area/library_floors/floor_naturalsci)
 "WW" = (
 /obj/structure/railing{
 	dir = 4;
@@ -388,7 +404,7 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Xk" = (
 /obj/structure/railing{
 	dir = 1;
@@ -396,30 +412,30 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Yy" = (
 /obj/structure/table/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Zb" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Zm" = (
 /obj/machinery/door/airlock/wood/glass,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Zw" = (
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "ZA" = (
 /obj/structure/table/wood,
 /obj/item/book/random,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 
 (1,1,1) = {"
 uH
@@ -479,8 +495,8 @@ uH
 uH
 ec
 ec
-KI
-ac
+Ms
+ec
 QB
 cg
 UJ
@@ -520,7 +536,7 @@ UJ
 lp
 QB
 un
-Jz
+BY
 Ch
 QB
 uH
@@ -609,8 +625,8 @@ uH
 uH
 ec
 ec
-ec
-ec
+ac
+ac
 QB
 Yy
 UJ
@@ -1793,7 +1809,7 @@ wa
 wa
 wa
 wa
-Gp
+Kb
 QK
 wN
 ec
@@ -1871,7 +1887,7 @@ wa
 wa
 wa
 wa
-QK
+Vj
 Gp
 wN
 ec

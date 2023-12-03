@@ -34,6 +34,14 @@
 	gift_type = /datum/ego_gifts/homing_instinct
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
+		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	///Stuff related to the house and its path
 	var/obj/road_house/house
 	var/list/house_path
@@ -85,7 +93,7 @@
 	for(var/obj/effect/golden_road/GR in user_turf.contents)
 		retaliation = 3
 	attacker.apply_damage(retaliation, BLACK_DAMAGE, null, attacker.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	to_chat(attacker, "<span class='userdanger'>[src] counter attacks!</span>")
+	to_chat(attacker, span_userdanger("[src] counter attacks!"))
 	if(attacker.has_status_effect(/datum/status_effect/stay_home) || !ishuman(attacker) || stat == DEAD)
 		return
 	attacker.apply_status_effect(/datum/status_effect/stay_home)
@@ -294,7 +302,7 @@
 	if(fall_speed > 0.5 SECONDS) //it falls very slowly at first but it can get very fast if you let her reach home too many times.
 		fall_speed -= 0.5 SECONDS //home falls faster and faster
 
-	visible_message("<span class='danger'>[src] falls down on the ground!</span>")
+	visible_message(span_danger("[src] falls down on the ground!"))
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*2, time = 3)
 	var/turf/orgin = get_turf(src)

@@ -50,3 +50,8 @@
 /// x1.05 - x2 Red Modifier, inflicted by Naked Nest Realization
 /datum/dc_change/infested
 	potency = 1.05
+
+/// x1.1 universal modifier, inflicted by Deep Scanner
+/datum/dc_change/scanned
+	potency = 1.1
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

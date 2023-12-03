@@ -203,8 +203,8 @@
 	if(atmos_requirements)
 		atmos_requirements = string_assoc_list(atmos_requirements)
 	if (islist(damage_coeff))
-		damage_coeff = makeDamCoeff(damage_coeff)
 		unmodified_damage_coeff_datum = makeDamCoeff(damage_coeff)
+		damage_coeff = makeDamCoeff(damage_coeff)
 	else if (!damage_coeff)
 		damage_coeff = makeDamCoeff()
 		unmodified_damage_coeff_datum = makeDamCoeff()
@@ -216,6 +216,13 @@
 		unsuitable_cold_damage = unsuitable_atmos_damage
 	if(!unsuitable_heat_damage)
 		unsuitable_heat_damage = unsuitable_atmos_damage
+	//LC13 Check, it's here to give everything nightvision on Rcorp.
+	if(CheckCombat())
+		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
+		AddSpell(bloodspell)
+	//LC13 Check. If it's the citymap, they all gain a faction
+	if(SSmaptype.maptype == "city")
+		faction += "city"
 
 
 /mob/living/simple_animal/Life()
@@ -740,3 +747,10 @@
 
 /mob/living/simple_animal/proc/stop_deadchat_plays()
 	stop_automated_movement = FALSE
+
+// -- LC13 THINGS --
+
+/mob/living/simple_animal/proc/CheckCombat() //Is it currently a combat gamemode? Used to check for a few interactions, like if somethings can teleport.
+	if(SSmaptype.maptype in SSmaptype.combatmaps)
+		return TRUE
+	return FALSE

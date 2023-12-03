@@ -30,7 +30,7 @@
 
 /obj/item/reagent_containers/hypospray/emais/process(delta_time) //Every [recharge_time] seconds, recharge some reagents for the cyborg
 	regenerate_reagents()
-	return 1
+	return TRUE
 
 /obj/item/reagent_containers/hypospray/emais/proc/add_reagent(datum/reagent/reagent)
 	reagent_ids |= reagent
@@ -94,14 +94,41 @@
 
 
 /obj/item/reagent_containers/hypospray/emais/attack_self(mob/user)
-	var/chosen_reagent = modes[reagent_names[input(user, "What reagent do you want to dispense?") as null|anything in sortList(reagent_names)]]
-	if(!chosen_reagent)
-		return
-	mode = chosen_reagent
+	ChooseReagent(user)
+
+/obj/item/reagent_containers/hypospray/emais/proc/ChooseReagent(mob/user)
+	var/list/temp_reag = list()
+	/// These don't just use the name of the drug via a string in the case that we change their name at any point.
+	var/datum/reagent/medicine/M = /datum/reagent/medicine/epinephrine
+	temp_reag[initial(M.name)] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "health6")
+	M = /datum/reagent/medicine/sal_acid
+	temp_reag[initial(M.name)] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "health5")
+	M = /datum/reagent/medicine/mental_stabilizator
+	temp_reag[initial(M.name)] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "sanity5")
+
+	for(var/reag in reagent_names) // For any added via AddReagent proc
+		if(reag in temp_reag)
+			continue
+		temp_reag[reag] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "x3")
+
+	var/choice = show_radial_menu(user, src, temp_reag, radius = temp_reag.len * 14, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+	if(!choice || !check_menu(user))
+		return FALSE
+
+	mode = modes[reagent_names[choice]]
 	playsound(loc, 'sound/effects/pop.ogg', 50, FALSE)
 	var/datum/reagent/R = GLOB.chemical_reagents_list[reagent_ids[mode]]
 	to_chat(user, "<span class='notice'>[src] is now dispensing '[R.name]'.</span>")
-	return
+	return TRUE
+
+/obj/item/reagent_containers/hypospray/emais/proc/check_menu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
 
 /obj/item/reagent_containers/hypospray/emais/examine(mob/user)
 	. = ..()

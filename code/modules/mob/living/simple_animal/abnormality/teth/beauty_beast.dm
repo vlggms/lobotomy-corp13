@@ -39,8 +39,8 @@
 		if(O.ckey == cursed)
 			O.mind.transfer_to(src)
 			src.ckey = cursed
-			to_chat(src, "<span class='userdanger'>You begin to have hundreds of eyes burst from your mouth, while a pair of horns expel from your eye sockets, adorning themselves with flowers. Now the Beast, you forever search for someone to lift your curse.</span>")
-			to_chat(src, "<span class='notice'>(If you wish to leave this body you can simply ghost with the ooc tab > ghost, there is no consequence for doing so.)</span>")
+			to_chat(src, span_userdanger("You begin to have hundreds of eyes burst from your mouth, while a pair of horns expel from your eye sockets, adorning themselves with flowers. Now the Beast, you forever search for someone to lift your curse."))
+			to_chat(src, span_notice("(If you wish to leave this body you can simply ghost with the ooc tab > ghost, there is no consequence for doing so.)"))
 			TransferVar(1, null) //we reset the cursed just in case
 			return
 

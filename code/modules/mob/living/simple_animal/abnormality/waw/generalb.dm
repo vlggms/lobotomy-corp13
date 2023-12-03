@@ -1,7 +1,7 @@
 /mob/living/simple_animal/hostile/abnormality/general_b
 	name = "General Bee"
 	desc = "A bee humanoid creature."
-	icon = 'ModularTegustation/Teguicons/48x96.dmi'
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "generalbee"
 	icon_living = "generalbee"
 	speak_emote = list("buzzes")
@@ -32,12 +32,18 @@
 	melee_damage_upper = 52
 	melee_damage_type = RED_DAMAGE
 	stat_attack = HARD_CRIT
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/queen_bee = 5
+	)
 	//She has a Quad Artillery Cannon
 
 	var/fire_cooldown_time = 3 SECONDS	//She has 4 cannons, fires 4 times faster than the artillery bees
 	var/fire_cooldown
 	var/fireball_range = 30
 	var/volley_count
+	//If the general has her post breach icon.
+	var/static/true_breached = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/general_b/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
@@ -60,12 +66,46 @@
 	datum_reference.qliphoth_change(1)
 	return
 
+//Egor requested i make this an override of general bee rather than a alteration of the root. -IP
+/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+	..()
+	//Run icon change proc.
+	update_icon()
+
+/mob/living/simple_animal/hostile/abnormality/general_b/update_icon_state()
+	icon = initial(icon)
+	if(status_flags & GODMODE)
+		// Not breaching
+		//Normal bee or one eyed bee.
+		if(true_breached)
+			icon_living = "punished_bee"
+		else
+			icon_living = "generalbee"
+
+	else if(stat == DEAD)
+		icon_state = icon_dead
+		return
+	else
+		icon = 'ModularTegustation/Teguicons/48x96.dmi'
+		icon_living = "general_breach"
+	icon_state = icon_living
+
 /mob/living/simple_animal/hostile/abnormality/general_b/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
 	if((fire_cooldown < world.time))
 		fireshell()
+
+//Prevents special armor drop if not breached.
+/mob/living/simple_animal/hostile/abnormality/general_b/drop_loot()
+	if(status_flags & GODMODE)
+		return
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/general_b/PostSpawn()
+	..()
+	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
@@ -87,13 +127,14 @@
 		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
 
 /mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect()
-	icon_state = "generalbee_breach"
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
+	icon = 'ModularTegustation/Teguicons/48x96.dmi'
+	flick("generalbee_", src)
 	SLEEP_CHECK_DEATH(80)
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
-	icon_living = "general_breach"
-	icon_state = icon_living
+	update_icon()
+	true_breached = TRUE
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(2, orgin)
 	for(var/turf/Y in all_turfs)

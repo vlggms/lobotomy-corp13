@@ -119,6 +119,12 @@
 	volume = 15
 	extra_range = -4
 
+/datum/looping_sound/distortedform
+	mid_sounds = 'sound/abnormalities/distortedform/DF_soundloop.ogg'
+	mid_length = 15 SECONDS
+	volume = 75
+	extra_range = -4
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'

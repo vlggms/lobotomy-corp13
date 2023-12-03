@@ -37,7 +37,7 @@
 	. = ..()
 	if(THESWORD)
 		user.put_in_hands(THESWORD)
-		to_chat(user, "<span class='notice'>You pull out [THESWORD]!.</span>")
+		to_chat(user, span_notice("You pull out [THESWORD]!."))
 		src.add_fingerprint(user)
 		empty = TRUE
 		update_icon()

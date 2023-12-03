@@ -10,8 +10,8 @@
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),
-		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 60, 60),
-		ABNORMALITY_WORK_REPRESSION = list(55, 60, 65, 70, 75),
+		ABNORMALITY_WORK_ATTACHMENT = list(80, 85, 90, 95, 100),
+		ABNORMALITY_WORK_REPRESSION = list(80, 85, 90, 95, 100),
 		"Enter machine" = 100 //"Go inside the torture machine, it'll be fun they said"
 		)
 	work_damage_amount = 0
@@ -29,8 +29,13 @@
 	gift_message = "Your heart beats with new vigor."
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+	)
+
 	chem_type = /datum/reagent/abnormality/we_can_change_anything
-	harvest_phrase = "<span class='notice'>You scoop up some goo from the inner lip of %ABNO using %VESSEL.</span>"
+	harvest_phrase = span_notice("You scoop up some goo from the inner lip of %ABNO using %VESSEL.")
 	harvest_phrase_third = "%PERSON scoops up some goo from the inner lip of %ABNO with %VESSEL."
 	var/sacrifice = FALSE //are we doing "Enter machine" work?
 	var/ramping_speed = 20 //work speed for sacrifice work, gets subtracted from so we can have faster work ticks.

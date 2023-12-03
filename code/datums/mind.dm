@@ -228,10 +228,14 @@
 	msg += "</span>"
 	to_chat(user, msg)
 
-/datum/mind/proc/set_death_time()
+/datum/mind/proc/set_death_time(mob/living/L, gibbed)
 	SIGNAL_HANDLER
 
 	last_death = world.time
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(H.sanity_lost)
+			return
 	respawn_cooldown = world.time + CONFIG_GET(number/respawn_delay)
 
 /datum/mind/proc/store_memory(new_text)
