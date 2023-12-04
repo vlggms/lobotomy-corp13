@@ -127,7 +127,8 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
 						if(85 to 100)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
-
+						else
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
 
 				//i dont know what the fuck im doing
 				if(3 to 5)
@@ -136,19 +137,21 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
 						if(55 to 100)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
+						else
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
 
 
 				//25% Slasher / 25% Stabber / 20% Slammer / 15% Shambler / 15% Slumberer but for peccs I guess???
 				if(6 to 12)
 					switch(rand(1, 100))
-						if(15 to 40)
-							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
 						if(40 to 65)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
 						if(65 to 85)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
 						if(85 to 100)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride
+						else
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
 
 
 				//100% one Abomination, rest 20% Slashers / 20% Stabbers / 60% Suicidals
@@ -191,5 +194,5 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 		if(L.stat != DEAD)
 			return
 	SSticker.force_ending = 1
-	to_chat(world, span_userdanger("All W-Corp staff is dead! Round automatically ending."))
+	to_chat(world, "<span class='userdanger'>All W-Corp staff is dead! Round automatically ending.</span>")
 
