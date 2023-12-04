@@ -163,7 +163,7 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
 	visible_message(span_notice("[src] falls to the ground, umbrellas closing as he whines in his last breath!"))
