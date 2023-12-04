@@ -101,7 +101,6 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 15
 	melee_damage_type = BLACK_DAMAGE
-	L.apply_status_effect(/datum/status_effect/umbrella_black_debuff)
 	attack_sound = 'sound/abnormalities/driftingfox/fox_aoe_sound.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "cut"
