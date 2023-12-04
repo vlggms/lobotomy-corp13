@@ -1769,7 +1769,6 @@
 	force = 30
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
 	attack_verb_simple = list("slice", "cleave", "chop")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
