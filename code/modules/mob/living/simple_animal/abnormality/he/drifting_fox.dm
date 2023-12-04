@@ -166,7 +166,7 @@
 	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
-	visible_message("<span class='notice'>[src] falls to the ground, umbrellas closing as he whines in his last breath!</span>")
+	visible_message(span_notice("[src] falls to the ground, umbrellas closing as he whines in his last breath!"))
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
