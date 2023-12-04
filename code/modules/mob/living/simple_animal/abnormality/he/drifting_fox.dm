@@ -66,7 +66,7 @@
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 60)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 40)
 		datum_reference.qliphoth_change(-1)
 	return
 
@@ -96,8 +96,8 @@
 	name = "Umbrella"
 	desc = "A tattered and worn umbrella; The fox seems to have many to spare."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "foxbrella" // Gotta Sprite this.
-	icon_living = "foxbrella" // Gotta make Sprites.
+	icon_state = "foxbrella"
+	icon_living = "foxbrella"
 	faction = list("hostile")
 	maxHealth = 125
 	health = 125
@@ -149,11 +149,11 @@
 
 /atom/movable/screen/alert/status_effect/umbrella_black_debuff
 	name = "False Kindness"
-	desc = "Your half hearted attempts at kindness have weakened you to BLACK attacks."
+	desc = "Your half hearted attempts at kindness have weakened you to BLACK damage."
 	icon = 'icons/mob/actions/actions_ability.dmi'
 
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
-	visible_message(span_notice("[src] falls to the ground with the umbrella closing on itself!"))
+	visible_message(span_notice("[src] falls to the ground with as the umbrella closes in on itself!"))
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
