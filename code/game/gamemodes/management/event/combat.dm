@@ -68,6 +68,14 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 /datum/game_mode/combat/proc/counterincrease()
 	addtimer(CALLBACK(src, .proc/counterincrease), 1 MINUTES)
 	GLOB.combat_counter+=1
+	if(SSmaptype.maptype == "wcorp")
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			if(!H.ckey)
+				continue
+			H.adjustBruteLoss(-(maxHealth*0.10))
+			H.adjustSanityLoss(-(maxSanity*0.10))
 
 /datum/game_mode/combat/proc/rcorp_announce()
 	var/announcement_type = ""
@@ -77,4 +85,5 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("vip")
 			announcement_type = "Intelligence has located a highly intelligent target in the vicinity. Destroy it at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
+
 
