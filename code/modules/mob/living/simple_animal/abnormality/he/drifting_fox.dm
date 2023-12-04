@@ -39,14 +39,6 @@
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
-	var/spin_cooldown
-	var/spin_cooldown_time = 20 SECONDS
-	var/spin_damage = 25
-	for(var/turf in view(2, src))
-		new /obj/effect/temp_visual/smash()
-			for(var/mob/living in HurtInTurf( list(), spin_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
-				if(health < 0)
-				gib()
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower,
