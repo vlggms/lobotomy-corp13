@@ -123,8 +123,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 				//Mostly gluttony, with a lil sloth
 				if(1 to 2)
 					switch(rand(1,100))
-						if(50 to 85)
-							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+
 						if(85 to 100)
 							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
 						else
