@@ -74,8 +74,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				continue
 			if(!H.ckey)
 				continue
-			H.adjustBruteLoss(-(maxHealth*0.10))
-			H.adjustSanityLoss(-(maxSanity*0.10))
+			H.adjustBruteLoss(-(H.maxHealth*0.10))
+			H.adjustSanityLoss(-(H.maxSanity*0.10))
 
 /datum/game_mode/combat/proc/rcorp_announce()
 	var/announcement_type = ""
