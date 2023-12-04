@@ -462,7 +462,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	icon_state = "sunshower"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 40, PALE_DAMAGE = -20) // 70
 	attribute_requirements = list(
-							ATTACHMENT_ATTRIBUTE = 40
+							TEMPERANCE_ATTRIBUTE = 40
 							)
 /obj/item/clothing/suit/armor/ego_gear/sunshower
 	name = "sunshower"

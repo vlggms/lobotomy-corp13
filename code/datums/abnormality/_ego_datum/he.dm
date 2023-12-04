@@ -442,6 +442,7 @@
 /datum/ego_datum/weapon/nixie
 	item_path = /obj/item/ego_weapon/nixie
 
+	cost = 35
 // Drifting Fox - Sunshower
 /datum/ego_datum/weapon/split
 	item_path = /obj/item/ego_weapon/sunshower

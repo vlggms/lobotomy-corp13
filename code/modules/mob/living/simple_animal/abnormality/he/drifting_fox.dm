@@ -44,6 +44,8 @@
 		/datum/ego_datum/weapon/sunshower,
 		/datum/ego_datum/armor/sunshower
 		)
+	gift_type = /datum/ego_gifts/sunshower
+	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs in thanks?"
 
 	var/list/pet = list()
 	pet_bonus = "yips"
@@ -60,9 +62,6 @@
 	if(user in pet)
 		pet-=user
 
-	gift_type = /datum/ego_gifts/sunshower // NEED TO ACTAULLY MAKE THE GIFT / EGOS
-	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs in thanks?"
-
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 
@@ -73,10 +72,16 @@
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user)
 	..()
-	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4) // has placeholder
 	icon_living = "fox_breach"
 	icon_state = icon_living
 	pixel_y = -6
+
+/mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
+	visible_message(span_notice("[src] falls to the ground, umbrellas closing as he whines in his last breath!"))
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
+	..()
 
 //mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
 	//. = ..()
@@ -153,12 +158,5 @@
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
-	visible_message(span_notice("[src] falls to the ground, umbrellas closing as he whines in his last breath!"))
-	density = FALSE
-	animate(src, alpha = 0, time = 10 SECONDS)
-	QDEL_IN(src, 10 SECONDS)
-	..()
 
 #undef STATUS_EFFECT_UMBRELLADEBUFF
