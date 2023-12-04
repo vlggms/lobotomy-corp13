@@ -159,7 +159,7 @@
 	icon = 'icons/mob/actions/actions_ability.dmi'
 
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
-	visible_message("<span class='notice'>[src] falls to the ground with the umbrella closing on itself!</span>")
+	visible_message(span_notice("[src] falls to the ground with the umbrella closing on itself!"))
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
