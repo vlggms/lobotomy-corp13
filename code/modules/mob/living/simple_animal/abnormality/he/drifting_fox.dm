@@ -23,7 +23,6 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 35 // Idea taken from the old PR, have a large damage range to immitate its fucked rolls and crit chance.
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/driftingfox/fox_melee_sound.ogg'
 	attack_verb_simple = "thwacks"
@@ -43,11 +42,11 @@
 	var/spin_cooldown
 	var/spin_cooldown_time = 20 SECONDS
 	var/spin_damage = 25
-	for(var/turf/T in view(2, src))
-		new /obj/effect/temp_visual/smash(T)
-			for(var/mob/living/L in HurtInTurf(T, list(), spin_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
-				if(L.health < 0)
-				L.gib()
+	for(var/turf in view(2, src))
+		new /obj/effect/temp_visual/smash()
+			for(var/mob/living in HurtInTurf( list(), spin_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+				if(health < 0)
+				gib()
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower,
