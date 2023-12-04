@@ -1,5 +1,6 @@
 // this was a mistake.
 // By yours truely, Mori.
+#define STATUS_EFFECT_UMBRELLADEBUFF /datum/status_effect/display/falsekindness
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with gleaming yellow eyes; And torn umbrellas lodged into its back."
@@ -7,22 +8,24 @@
 	icon_state = "drifting_fox"
 	icon_living = "drifting_fox"
 	icon_dead = "fox_egg"
-	deathmessage = "collapses into a puddle of water"
-	deathsound = 'sound/abnormalities/drifting_fox/foxdeath.ogg'
-	pixel_x = -16
-	base_pixel_x = -16
+	deathmessage = "Collapses into a Glass Egg"
+	deathsound = 'sound/abnormalities/driftingfox/fox_death_sound.ogg'
+	pixel_x = -24
+	pixel_y = -26
+	base_pixel_x = -24
+	base_pixel_y = -26
 	del_on_death = FALSE
 	maxHealth = 1000
 	health = 1000
 	rapid_melee = 3
 	move_to_delay = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.9, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
+	damage_coeff = list( RED_DAMAGE = 0.9, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
 	melee_damage_lower = 5
 	melee_damage_upper = 35 // Idea taken from the old PR, have a large damage range to immitate its fucked rolls and crit chance.
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
-	attack_sound = 'sound/abnormalities/drifting_fox/foxhit.ogg'
+	attack_sound = 'sound/abnormalities/driftingfox/fox_melee_sound.ogg'
 	attack_verb_simple = "thwacks"
 	attack_verb_continuous = "thwacks"
 	can_breach = TRUE
@@ -36,7 +39,15 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
-	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUSs
+	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+	var/spin_cooldown
+	var/spin_cooldown_time = 20 SECONDS
+	var/spin_damage = 25
+	for(var/turf/T in view(2, src))
+        new /obj/effect/temp_visual/smash(T)
+        for(var/mob/living/L in HurtInTurf(T, list(), spin_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+            if(L.health < 0)
+                L.gib()
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower,
@@ -74,30 +85,16 @@
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4) // has placeholder
 	icon_living = "fox_breach"
 	icon_state = icon_living
-	var/turf/T = pick(GLOB.xeno_spawn)
-	forceMove(T)
-	umbrella_cooldown = world.time + umbrella_cooldown_time
-	spinattack_cooldown = world.time + spinattack_cooldown_time
-	// Taken from the Old PR, maybe might work.
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/AttackingTarget(atom/attacked_target)
-	if(spinattack_cooldown <= world.time)
-		spinAttack()
-	..()
-// This may work, Old PR was also unsure.
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
-	. = ..()
-	if(status_flags & GODMODE)
-		return
-	if(umbrella_cooldown <= world.time)
-		FoxUmbrella()
+	pixel_y = -6
 
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/FoxUmbrella(mob/living/carbon/human/user)
-	playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100) // Reminder to actaully link this to a sound,
-	manual_emote("whines in pain.")
-	SLEEP_CHECK_DEATH(2)
-	new /mob/living/simple_animal/hostile/umbrella(get_step(src, EAST))
-	new /mob/living/simple_animal/hostile/umbrella(get_step(src, WEST))
-	umbrella_cooldown = world.time + umbrella_cooldown_time
+//mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
+	//. = ..()
+	//if(!.) // Dead
+	//	return FALSE
+	//if(health >= 900)
+	//	var/X = pick(GLOB.department_centers)
+	//	var/turf/T = get_turf(X)
+	//	new /mob/living/simple_animal/hostile/umbrella(T)
 
 /mob/living/simple_animal/hostile/umbrella
 	name = "Umbrella"
@@ -115,13 +112,14 @@
 	melee_damage_type = BLACK_DAMAGE
 	armortype = BLACK_DAMAGE
 	L.apply_status_effect(/datum/status_effect/umbrella_black_debuff)
-	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg' // placeholder sound effect
+	attack_sound = 'sound/abnormalities/driftingfox/fox_aoe_sound.ogg'
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "cut"
 	robust_searching = TRUE
 	del_on_death = FALSE
 
-/mob/living/simple_animal/hostile/umbrella/AfterAttack(atom/the_target)
+/mob/living/simple_animal/hostile/umbrella/AttackingTarget(atom/attacked_target)
+	. = ..()
 	if(isliving(target) && !ishuman(target))
 		var/mob/living/L = target
 		if(L.stat == DEAD)
@@ -159,23 +157,6 @@
 	name = "False Kindness"
 	desc = "Your half hearted attempts at kindness have weakened you to BLACK attacks."
 	icon = 'icons/mob/actions/actions_ability.dmi'
-
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/spinAttack()
-	if (get_dist(src, target) > 3)
-		return
-	spinattack_cooldown = world.time + spinattack_cooldown_time
-	playsound(src, 'sound/abnormalities/redbuddy/redbuddy_howl.ogg', 100, FALSE, 8)
-	for(var/i = 1 to 4)
-		addtimer(CALLBACK(src, .proc/spinAttackDamage), 1 SECONDS * (i))
-
-/mob/living/simple_animal/hostile/abnormality/drifting_fox/proc/spinAttackDamage()
-	for(var/mob/living/L in view(spinRange, src))
-		new /obj/effect/temp_visual/smash_effect(L)
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		L.apply_damage(spinDamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
 	visible_message("<span class='notice'>[src] falls to the ground with the umbrella closing on itself!</span>")

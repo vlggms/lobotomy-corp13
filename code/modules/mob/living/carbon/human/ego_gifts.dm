@@ -1032,6 +1032,7 @@
 	temperance_bonus = 10
 	justice_bonus = -5
 	prudence_bonus = -5
+	slot = LEFTBACK
 
 /datum/ego_gifts/hypocrisy/Initialize(mob/living/carbon/human/user) //have to make a new initialize since the previous one both adds stats and the normal overlay.
 	user.ego_gift_list[src.slot] = src
