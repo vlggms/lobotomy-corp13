@@ -35,11 +35,13 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
 				to_chat(world, "<span class='userdanger'>Players will be victorius 20 minutes.</span>")
 
-				switch(rand(1,2))
+				switch(rand(1,3))
 					if(1)
 						GLOB.wcorp_enemy_faction = "lovetown"
 					if(2)
 						GLOB.wcorp_enemy_faction = "gcorp"
+					if(3)
+					    GLOB.wcorp_enemy_faction = "peccatulum"
 
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
