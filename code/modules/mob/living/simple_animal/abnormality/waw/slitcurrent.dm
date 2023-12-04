@@ -37,8 +37,8 @@
 	can_patrol = TRUE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/ecstasy,
-		/datum/ego_datum/armor/ecstasy
+		/datum/ego_datum/weapon/blind_obsession,
+		/datum/ego_datum/armor/blind_obsession
 		)
 	gift_type = /datum/ego_gifts/ecstasy
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
