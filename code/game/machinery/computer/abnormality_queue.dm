@@ -52,7 +52,7 @@
 	if(.)
 		return
 	if(locked)
-		to_chat(usr, "<span class='boldwarning'>The selected Abnormality cannot be changed.</span>")
+		to_chat(usr, span_boldwarning("The selected Abnormality cannot be changed."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return
 
@@ -62,12 +62,12 @@
 			var/mob/living/simple_animal/hostile/abnormality/target_type = text2path(param)
 
 			if(!ispath(target_type)) // Should never happen
-				to_chat(usr, "<span class='warning'>Extraction request has been denied.</span>")
+				to_chat(usr, span_warning("Extraction request has been denied."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 
 			if(!(target_type in SSabnormality_queue.picking_abnormalities))
-				to_chat(usr, "<span class='warning'>Your Extraction request has timed out. Retry.</span>")
+				to_chat(usr, span_warning("Your Extraction request has timed out. Retry."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				updateUsrDialog() // Forcibly update it, in case someone doesn't understand why it won't work
 				return FALSE
@@ -90,7 +90,7 @@
 
 /obj/machinery/computer/abnormality_queue/proc/UpdateAnomaly(mob/living/simple_animal/hostile/abnormality/target_type, logstring, lock_after)
 	SSabnormality_queue.queued_abnormality = target_type
-	to_chat(usr, "<span class='boldnotice'>[initial(target_type.name)] has been selected.</span>")
+	to_chat(usr, span_boldnotice("[initial(target_type.name)] has been selected."))
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 	log_game("[usr] has [logstring] the anomaly to [initial(target_type.name)].")
 	if(lock_after)
@@ -98,7 +98,7 @@
 		locked = TRUE
 		// PE awarded for yellow roll - just as kirie had wanted.
 		SSlobotomy_corp.available_box += 250
-		to_chat(usr, "<span class='boldnotice'>A random Abnormality has been selected. L Corp HQ has reimbursed you for the costs of extracting a specific Abnormality.</span>")
+		to_chat(usr, span_boldnotice("A random Abnormality has been selected. L Corp HQ has reimbursed you for the costs of extracting a specific Abnormality."))
 		SSabnormality_queue.AnnounceLock()
 		SSabnormality_queue.ClearChoices()
 		SStgui.close_uis(src) // Hacky solution but I don't care

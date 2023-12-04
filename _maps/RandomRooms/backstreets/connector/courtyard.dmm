@@ -191,6 +191,13 @@
 	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
+"FM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/tres,
+/turf/open/floor/plasteel/shuttle{
+	name = "floor"
+	},
+/area/city/backstreets_room)
 "GS" = (
 /obj/structure/rack,
 /obj/structure/window/reinforced{
@@ -216,7 +223,7 @@
 "HR" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/rack,
-/obj/item/tresmetal,
+/obj/structure/lootcrate/tres,
 /turf/open/floor/plasteel/shuttle{
 	name = "floor"
 	},
@@ -402,7 +409,7 @@ Hf
 zI
 zI
 cY
-ZO
+FM
 xx
 ZO
 AJ
@@ -422,7 +429,7 @@ cY
 ZO
 ZO
 ZO
-HR
+AJ
 ZV
 "}
 (5,1,1) = {"

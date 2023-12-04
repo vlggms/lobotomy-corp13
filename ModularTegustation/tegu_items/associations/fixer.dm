@@ -15,7 +15,7 @@
 
 /obj/item/choice_beacon/fixer/spawn_option(obj/choice,mob/living/M)
 	new choice(get_turf(M))
-	to_chat(M, "<span class='hear'>Make sure you put the equipment away.</span>")
+	to_chat(M, span_hear("Make sure you put the equipment away."))
 
 
 
@@ -103,7 +103,7 @@
 
 /obj/item/choice_beacon/fixerhard/spawn_option(obj/choice,mob/living/M)
 	new choice(get_turf(M))
-	to_chat(M, "<span class='hear'>Make sure you put the equipment away.</span>")
+	to_chat(M, span_hear("Make sure you put the equipment away."))
 
 
 

@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_REPRESSION = 30,
 		"Touch" = 100
 			) //for some reason all its work rates are uniform through attribute levels in LC
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_lower = 15

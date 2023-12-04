@@ -14,7 +14,7 @@
 	stat_attack = DEAD
 	melee_damage_lower = 15
 	melee_damage_upper = 30
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	vision_range = 14
 	aggro_vision_range = 20
 	can_buckle = TRUE
@@ -39,6 +39,15 @@
 		)
 	gift_type =  /datum/ego_gifts/loggging
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
+		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
 	var/flurry_count = 7

@@ -13,7 +13,7 @@
 	density = FALSE
 	maxHealth = 600
 	health = 600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	move_to_delay = 2
 	harm_intent_damage = 10
@@ -51,6 +51,12 @@
 		)
 	gift_type =  /datum/ego_gifts/beak
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3
+	)
+
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
@@ -81,6 +87,15 @@
 	UnregisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE)
 	return ..()
+
+// Deletes perch if we moved while not breaching; Generally caused by cell swaps
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/Move()
+	if(!IsContained())
+		return ..()
+	var/obj/structure/pbird_perch/P = locate() in get_turf(src)
+	QDEL_NULL(P)
+	. = ..()
+	PostSpawn()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
 	visible_message(span_danger("\The [src] turns its insides out as a giant bloody beak appears!"))

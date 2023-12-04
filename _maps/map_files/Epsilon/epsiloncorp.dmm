@@ -2430,6 +2430,10 @@
 /obj/machinery/telecomms/message_server/preset,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/department_main/information)
+"Lc" = (
+/obj/effect/spawner/xmastree,
+/turf/open/floor/plasteel/dark,
+/area/department_main/training)
 "Ld" = (
 /obj/structure/weightmachine/stacklifter,
 /obj/effect/turf_decal/siding/white/end{
@@ -28820,7 +28824,7 @@ Xb
 ih
 Xb
 Kv
-Xo
+Lc
 ZL
 QD
 QD

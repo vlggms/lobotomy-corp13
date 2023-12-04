@@ -7,7 +7,7 @@
 	layer = LARGE_MOB_LAYER
 	a_intent = INTENT_HARM
 	del_on_death = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	see_in_dark = 7
@@ -79,6 +79,9 @@
 	var/harvest_phrase_third = "%PERSON harvests... something... into %VESSEL."
 	// Dummy chemicals - called if chem_type is null.
 	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
+	// Increased Abno appearance chance
+	/// Assoc list, you do [path] = [probability_multiplier] for each entry
+	var/list/grouped_abnos = list()
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -383,11 +386,6 @@
 /mob/living/simple_animal/hostile/abnormality/proc/IsContained() //Are you in a cell and currently contained?? If so stop.
 //Contained checks for: If the abnorm is godmoded AND one of the following: It does not have a qliphoth meter OR has qliphoth remaining OR no qliphoth but can't breach
 	if((status_flags & GODMODE) && (!datum_reference.qliphoth_meter_max || datum_reference.qliphoth_meter || (!datum_reference.qliphoth_meter && !can_breach)))
-		return TRUE
-	return FALSE
-
-/mob/living/simple_animal/hostile/abnormality/proc/CheckCombat() //Is it currently a combat gamemode? Used to check if somethings can teleport.
-	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE
 

@@ -10,8 +10,10 @@
 	var/notehtml
 	var/note
 	var/linecount
-	var/paper = 1 //You get one paper
-	var/papermax = 10 //Recycle more paper
+	/// How much paper do we currently have inside us?
+	var/paper = 1
+	/// How much paper can we have at maximum capacity?
+	var/papermax = 10
 	var/list/note_list
 	var/list/abno_data = list()
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
@@ -41,6 +43,7 @@
 				record_data["name"] = remove_paper_commands(record_detail.abno_code) // Abnos
 			else
 				record_data["name"] = remove_paper_commands(record_detail.name) // Non-Abnos
+			record_data["search"] = remove_paper_commands(initial(record_detail.abno_type.name)) // For searching
 			for(var/i=0 to (linecount-1)) //loop until we reach the same length as the linecount
 				record_data["line[i]"] += remove_paper_commands(popleft(note_list))
 			abno_data += list(record_data)
@@ -55,6 +58,8 @@
 	switch(action)
 		if("print_file")
 			if(paper <= 0)
+				playsound(src, 'sound/machines/buzz-sigh.ogg', 75, TRUE)
+				say("Warning: paper reserves too low! Please insert paper in order to continue.")
 				return
 			printfile = params["ref"]
 			print_file(printfile)
@@ -67,7 +72,7 @@
 
 /obj/machinery/computer/abnormality_archive/proc/print_file(file)
 	paper = paper - 1
-	visible_message("<span class='notice'>[src] begins to print a file.</span>")
+	visible_message(span_notice("[src] begins to print a file."))
 	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 30, TRUE)
 	new file(get_turf(src))
 

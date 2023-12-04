@@ -12,7 +12,15 @@
 	var/atom/movable/AM
 	if(user.pulling)
 		AM = user.pulling
-		AM.forceMove(T)
+		if(ishuman(AM)) //We don't want players dragging the supplies in and out
+			var/mob/living/carbon/human/Person = AM
+			for(var/obj/item/storage/box/pcorp/foodbox in Person.GetAllContents())
+				Person.dropItemToGround(foodbox, TRUE)
+			for(var/obj/item/food/canned/pcorp/foodcan in Person.GetAllContents())
+				Person.dropItemToGround(foodcan, TRUE)
+			AM.forceMove(T)
+		else
+			user.stop_pulling()
 	user.forceMove(T)
 	if(AM)
 		user.start_pulling(AM)
@@ -76,11 +84,10 @@
 
 // Shelter contents
 // Crate
-/obj/structure/closet/crate/pcorp
-	name = "p-corp crate"
+/obj/structure/closet/crate/pcorp/shelter //Lots of storage but not normally accessible
+	name = "P-Corp crate"
 	desc = "A dark steel crate emblazoned with the symbol of P corp."
-	icon = 'icons/obj/crates.dmi'
-	icon_state = "pcorp_crate"
+	storage_capacity = 10
 
 // Food Box
 /obj/item/storage/box/pcorp

@@ -35,9 +35,16 @@
 		/datum/ego_datum/weapon/sanitizer,
 		/datum/ego_datum/armor/sanitizer
 		)
-//	gift_type =  /datum/ego_gifts/sanitizer
+	gift_type =  /datum/ego_gifts/sanitizer
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5
+	)
+
+	var/bumpdamage = 10
 
 /mob/living/simple_animal/hostile/abnormality/cleaner/Move()
 	..()
@@ -46,7 +53,7 @@
 		if(H.stat >= SOFT_CRIT)
 			continue
 		visible_message("[src] tosses [H] out of the way!")
-		H.apply_damage(30, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.apply_damage(bumpdamage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 		var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
 		var/atom/throw_target = get_edge_target_turf(H, rand_dir)

@@ -34,7 +34,7 @@
 		/datum/ego_datum/weapon/coiling,
 		/datum/ego_datum/armor/coiling
 		)
-//	gift_type =  /datum/ego_gifts/coiling
+	gift_type =  /datum/ego_gifts/coiling
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/girlboss_level = 0
 
@@ -94,7 +94,7 @@
 	var/mob/living/H = the_target
 	if(H.stat >= SOFT_CRIT)
 		return TRUE
-	return ..()
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/eris/AttackingTarget(atom/attacked_target)
 	if(ishuman(target))
@@ -156,7 +156,7 @@
 	for(var/mob/living/H in view(10, get_turf(src)))
 		if(H.stat >= SOFT_CRIT)
 			continue
-		//Shamelessly fucking stolen from risk of rain's teddy bear.
+		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 20.
 		var/healamount = 20 * ((0.15*girlboss_level)/(0.15*girlboss_level + 1))
 		H.adjustBruteLoss(-healamount)	//Healing for those around.
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
@@ -167,14 +167,14 @@
 	if(!ishuman(Proj.firer))
 		return
 	var/mob/living/carbon/human/H = Proj.firer
-	H.apply_damage(girlboss_level +3, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	H.apply_damage(40*(0.15*girlboss_level/(0.15*girlboss_level + 1)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 
 /mob/living/simple_animal/hostile/abnormality/eris/attacked_by(obj/item/I, mob/living/user)
 	..()
 	if(!user)
 		return
-	user.apply_damage(girlboss_level*3 +3, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	user.apply_damage(40*(0.15*girlboss_level/(0.15*girlboss_level + 1)), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 
 //Okay, but here's the work effects

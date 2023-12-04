@@ -761,10 +761,10 @@
 		intent_icon.pixel_x = 16 * (i - 1) - 8 * length(streak)
 		add_overlay(intent_icon)
 
-/atom/movable/screen/balance
-	name = "corruption_balance"
+/atom/movable/screen/vile_skull
+	name = "skull_mod"
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
-	icon_state = "balanced"
+	icon_state = "no_corruption"
 	screen_loc = ui_mood
 
 /atom/movable/screen/mood/attack_tk()

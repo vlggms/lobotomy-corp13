@@ -2,6 +2,11 @@
 	if(!text)
 		return
 
+	// All your text is gone. Enjoy.
+	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+		var/datum/suppression/information/I = SSlobotomy_corp.core_suppression
+		text = Gibberish(text, TRUE, I.gibberish_value)
+
 	var/announcement
 	if(!sound)
 		sound = SSstation.announcer.get_rand_alert_sound()

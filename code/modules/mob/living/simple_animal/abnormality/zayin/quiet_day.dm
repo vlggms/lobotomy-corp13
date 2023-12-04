@@ -25,6 +25,13 @@
 		/datum/ego_datum/weapon/nostalgia,
 		/datum/ego_datum/armor/nostalgia
 	)
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+	)
+
 	chem_type = /datum/reagent/abnormality/quiet_day
 	harvest_phrase = span_notice("%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.")
 	harvest_phrase_third = "%ABNO glances at %PERSON. Suddenly, %VESSEL seems to be more full."

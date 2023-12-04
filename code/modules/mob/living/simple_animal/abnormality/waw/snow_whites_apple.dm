@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 	var/icon_aggro = "snowwhitesapple_active"
 	maxHealth = 1600
 	health = 1600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 4 SECONDS
 	melee_damage_type = BLACK_DAMAGE
@@ -48,6 +48,11 @@ GLOBAL_LIST_EMPTY(vine_list)
 	)
 	gift_type =  /datum/ego_gifts/stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/golden_apple = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5
+	)
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(50))
@@ -215,7 +220,7 @@ GLOBAL_LIST_EMPTY(vine_list)
 /obj/structure/spreading/apple_vine/Crossed(atom/movable/AM)
 	. = ..()
 	if(is_type_in_typecache(AM, atom_remove_condition))
-		take_damage(15, BRUTE, "melee", 1)
+		take_damage(15, MELEE, 1)
 	if(is_type_in_typecache(AM, ignore_typecache))		// Don't want the traps triggered by sparks, ghosts or projectiles.
 		return
 	if(isliving(AM))

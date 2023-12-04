@@ -20,7 +20,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
 
@@ -36,6 +36,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
 	if(!L)
+		return FALSE
+	if(SSmaptype.maptype == "city")
 		return FALSE
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
@@ -68,7 +70,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_advanced = 1,
 						/obj/item/stack/sheet/silk/indigo_simple = 2)
@@ -101,6 +103,8 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
+		return FALSE
+	if(SSmaptype.maptype == "city")
 		return FALSE
 	visible_message(
 		"<span class='danger'>[src] devours [L]!</span>",
@@ -170,7 +174,7 @@
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.7)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white/CanAttack(atom/the_target)
 	if(ishuman(the_target))
@@ -187,7 +191,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 42
 	melee_damage_upper = 55
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/red
 	name = "\proper Commander Jacques"
@@ -196,7 +200,7 @@
 	icon_living = "jacques"
 	rapid_melee = 4
 	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.7)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
 	name = "\proper Commander Silvina"
@@ -205,7 +209,7 @@
 	icon_living = "silvina"
 	rapid_melee = 2
 	melee_damage_type = PALE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Found(atom/A) //every time she finds a sweeper that sweeper is compelled to follow her as family
@@ -304,7 +308,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
@@ -618,5 +622,5 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
 	blood_volume = BLOOD_VOLUME_NORMAL

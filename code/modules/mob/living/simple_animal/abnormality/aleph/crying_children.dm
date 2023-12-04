@@ -19,7 +19,7 @@
 	health = 2000
 	maxHealth = 2000
 	obj_damage = 600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1.5)
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 45
 	melee_damage_upper = 55
@@ -305,7 +305,7 @@
 		S.pixel_x = rand(-8, 8)
 		S.pixel_y = rand(-8, 8)
 		animate(S, alpha = 0, time = 1.5)
-		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, 60, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			to_chat(L, span_userdanger("[src] stabs you!"))
@@ -363,7 +363,7 @@
 	playsound(src, 'sound/abnormalities/crying_children/attack_aoe.ogg', 50, FALSE)
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/fire/fast(T)
-		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE) - been_hit
+		var/list/new_hits = HurtInTurf(T, been_hit, 250, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
 			to_chat(L, span_userdanger("You were scorched by [src]'s flames!"))
@@ -459,7 +459,7 @@
 	icon_state = "[icon_phase]_idle"
 	desperate = TRUE
 	maxHealth = 4000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
 	revive(full_heal = TRUE, admin_revive = FALSE)
 	move_to_delay = 4
 	burn_mod = 2
@@ -479,7 +479,7 @@
 	attack_sound = 'sound/abnormalities/crying_children/attack_child.ogg'
 	health = 1500
 	maxHealth = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 25
 	melee_damage_upper = 40
@@ -512,7 +512,7 @@
 	desc = "Turn a blind eye to all that tries to hurt me."
 	icon_state = "unseeing_child"
 	icon_living = "unseeing_child"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	var/list/blinded = list()
 
 /mob/living/simple_animal/hostile/child/unseeing/Initialize()
@@ -539,7 +539,7 @@
 	desc = "Turn a deaf ear to words that will lead me down the wrong path."
 	icon_state = "unhearing_child"
 	icon_living = "unhearing_child"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	var/list/deafened = list()
 
 /mob/living/simple_animal/hostile/child/unhearing/Initialize()
@@ -562,7 +562,7 @@
 	desc = "Turn a mute mouth to unnecessary evil."
 	icon_state = "unspeaking_child"
 	icon_living = "unspeaking_child"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	var/list/muted = list()
 
 /mob/living/simple_animal/hostile/child/unspeaking/Initialize()

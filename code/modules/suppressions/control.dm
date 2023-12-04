@@ -24,6 +24,7 @@
 
 // On lobotomy_corp meltdown event
 /datum/suppression/control/proc/OnMeltdown(datum/source, ordeal = FALSE)
+	SIGNAL_HANDLER
 	var/list/normal_works = shuffle(list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION))
 	var/list/application_scramble_list = list()
 	var/list/choose_from = normal_works.Copy()

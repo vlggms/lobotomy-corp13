@@ -1,16 +1,10 @@
-/* To Finish:
-
-Chargeblade - Weapon with Charge
-Katana - Use in hand to dash
-*/
-
 /obj/item/ego_weapon/template/spear
 	name = "spear template"
 	desc = "A blank spear workshop template."
 	icon_state = "speartemplate"
-	force = 22
+	force = 20
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.2
+	attack_speed = 1.4
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -32,36 +26,6 @@ Katana - Use in hand to dash
 	finishedicon = list("finishedrapier","finishedsword", "finishededge")
 	finishedname = list("sword", "blade", "edge")
 	finisheddesc = "A finished sword, ready for use."
-
-
-/obj/item/ego_weapon/template/knife
-	name = "knife template"
-	desc = "A blank knife workshop template."
-	icon_state = "knifetemplate"
-	force = 20
-	attack_speed = 0.7
-	hitsound = 'sound/weapons/bladeslice.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
-	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
-
-	finishedicon = list("finishedknife","finishedstiletto")
-	finishedname = list("dagger", "knife", "mail breaker")
-	finisheddesc = "A finished knife, ready for use."
-
-
-/obj/item/ego_weapon/template/axe
-	name = "axe template"
-	desc = "A blank axe workshop template."
-	icon_state = "axetemplate"
-	force = 30
-	attack_speed = 1.5
-	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
-	attack_verb_continuous = list("attacks", "slashes", "cleaves", "slices", "cuts")
-	attack_verb_simple = list("attack", "slash", "cleave", "slice", "cut")
-
-	finishedicon = list("finishedaxe")
-	finishedname = list("hand axe", "axe", "battleaxe")
-	finisheddesc = "A finished axe, ready for use."
 
 
 /obj/item/ego_weapon/template/hammer
@@ -103,7 +67,7 @@ Katana - Use in hand to dash
 	icon_state = "boomerangtemplate"
 	force = 16
 	attack_speed = 0.8	//melee is shit lol
-	throwforce = 38
+	throwforce = 14	//hits twice for some reason!?
 	attack_verb_continuous = list("bonks", "bashes")
 	attack_verb_simple = list("bonk", "bash")
 
@@ -138,8 +102,8 @@ Katana - Use in hand to dash
 	name = "claw template"
 	desc = "A blank claw workshop template."
 	icon_state = "clawtemplate"
-	force = 12
-	attack_speed = 0.4
+	force = 20
+	attack_speed = 0.7
 	attack_verb_continuous = list("rends", "tears", "lacerates", "rips", "cuts")
 	attack_verb_simple = list("rend", "tear", "lacerate", "rip", "cut")
 
@@ -152,7 +116,7 @@ Katana - Use in hand to dash
 	desc = "A blank club workshop template."
 	special = "This weapon has knockback."
 	icon_state = "clubtemplate"
-	force = 20
+	force = 26
 	attack_speed =  1.6
 	attack_verb_continuous = list("pounds", "crushes", "smashes", "whacks", "smacks")
 	attack_verb_simple = list("pound", "crush", "smash", "whack", "smack")

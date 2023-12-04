@@ -59,8 +59,8 @@
 	SIGNAL_HANDLER
 	var/current_damage_mod = damage_mod
 	if(ordeal)
-		current_damage_mod = 1.5 // Don't kill everyone too hard during ordeals(Pale Fixer with x4 damage be like...)
-		damage_mod = min(4, damage_mod + 1) // With each ordeal passing, normal meltdowns will be more difficult
+		current_damage_mod = 1.5 // Don't kill everyone too hard during ordeals(Pale Fixer with x3 damage be like...)
+		damage_mod = min(4, damage_mod + 0.5) // With each ordeal passing, normal meltdowns will be more difficult
 		mod_count = min(3, mod_count + 1) // More damage types get rolled
 	var/list/temp_list = current_resist.Copy()
 	for(var/R in current_resist) // Reset values
@@ -163,9 +163,11 @@
 /datum/status_effect/welfare_reward/on_apply()
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamage)
 	to_chat(owner, "<span class='notice'>Welfare Department modification has been applied to you!</span>")
+	return ..()
 
-/datum/status_effect/welfare_reward/on_apply()
+/datum/status_effect/welfare_reward/on_remove()
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
+	return ..()
 
 // Called before damage applies, so we must check whereas situation WOULD kill the user
 // This comes with an issue, however, as damage will still be applied afterwards
@@ -178,22 +180,33 @@
 	if(damage_taken <= 0)
 		return
 
+	var/block_damage = FALSE
 	switch(damagetype)
 		if(RED_DAMAGE)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
+				block_damage = TRUE
 		if(WHITE_DAMAGE)
 			if(H.sanityhealth - damage_taken <= 0)
 				ActivateSanity()
+				block_damage = TRUE
 		if(BLACK_DAMAGE)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
+				block_damage = TRUE
 			if(H.sanityhealth - damage_taken <= 0)
 				ActivateSanity()
+				block_damage = TRUE
 		if(PALE_DAMAGE)
 			damage_taken = H.maxHealth * (damage_taken / 100)
 			if(H.health - damage_taken <= 0)
 				ActivateHealth()
+				block_damage = TRUE
+
+	// ALWAYS blocks damage so you don't die
+	if(block_damage)
+		return COMPONENT_MOB_DENY_DAMAGE
+	return
 
 /datum/status_effect/welfare_reward/proc/ActivateHealth()
 	var/mob/living/carbon/human/H = owner

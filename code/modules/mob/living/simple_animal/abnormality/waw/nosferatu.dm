@@ -20,7 +20,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(30, 35, 35, 40, 45),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 20, 25, 30)
 						)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 35
 	melee_damage_upper = 45 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
@@ -214,7 +214,7 @@
 	for(var/turf/T in view(2, src))
 		var/obj/effect/temp_visual/smash_effect/bloodeffect =  new(T)
 		bloodeffect.color = "#b52e19"
-		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), banquet_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
 			if(H.health < 0)
 				H.Drain()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/attack_special.ogg', 50, 0, 5)
@@ -239,7 +239,7 @@
 	del_on_death = TRUE
 	health = 300
 	maxHealth = 300
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.8, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 2)
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 5
 	melee_damage_upper = 20

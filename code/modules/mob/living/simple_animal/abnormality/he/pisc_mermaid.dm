@@ -16,7 +16,7 @@
 	health = 1500
 	pixel_x = -12
 	base_pixel_x = -12
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover
 	rapid_melee = 2
 	melee_damage_lower = 15
 	melee_damage_upper = 20 //really subpar damage and speed but most of her damage is oxyloss anyway
