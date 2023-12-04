@@ -45,9 +45,9 @@
 	var/spin_damage = 25
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/smash(T)
-    	for(var/mob/living/L in HurtInTurf(T, list(), spin_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
-    		if(L.health < 0)
-			L.gib()
+			for(var/mob/living/L in HurtInTurf(T, list(), spin_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+				if(L.health < 0)
+				L.gib()
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower,
