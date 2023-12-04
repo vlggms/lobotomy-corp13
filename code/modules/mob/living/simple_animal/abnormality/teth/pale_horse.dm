@@ -40,7 +40,7 @@
 	var/teleport_cooldown_time = 30 SECONDS
 	//attack
 	var/mob/living/set_target
-	var/pulse_range = 7 //same range as scorched girl
+	var/pulse_range = 11 //fairly large area - enough to breach several abnormalities
 	var/fog_damage = 3
 	var/ash_damage = 20
 
@@ -113,13 +113,15 @@
 			H.apply_damage(fog_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 
 
-/mob/living/simple_animal/hostile/abnormality/pale_horse/Move() //more damaging fog when moving
+/mob/living/simple_animal/hostile/abnormality/pale_horse/Moved() //more damaging fog when moving
+	. = ..()
+	if(!.)
+		return
 	var/turf/target_turf = get_turf(src)
 	for(var/turf/T in view(1, target_turf))
 		new /obj/effect/temp_visual/palefog(T)
-	..()
 
-/mob/living/simple_animal/hostile/abnormality/pale_horse/AttackingTarget() //works but abnormality does not do it on its own todo: FIX!
+/mob/living/simple_animal/hostile/abnormality/pale_horse/AttackingTarget()
 	. = ..()
 	if(!ishuman(target))
 		return FALSE
@@ -258,19 +260,25 @@
 	duration = 5
 
 //status effects
-//MORTIS - Raises pale vulnurability briefly
+//MORTIS - Raises pale vulnurability briefly and deals pale damage over time
 /datum/status_effect/mortis
 	id = "mortis"
 	duration = 15 SECONDS
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/mortis
 	var/datum/abnormality/datum_reference = null
+	var/damage = 2
 
 /atom/movable/screen/alert/status_effect/mortis
 	name = "Fated to die"
 	desc = "The pale horse saw your end and wept."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "mortis"
+
+/datum/status_effect/mortis/tick()
+	owner.apply_damage(damage, PALE_DAMAGE, null, owner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	if(owner.health < 0 && ishuman(owner))
+		owner.dust()
 
 /datum/status_effect/mortis/on_apply()
 	. = ..()
