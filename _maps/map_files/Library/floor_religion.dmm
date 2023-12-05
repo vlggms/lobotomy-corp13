@@ -45,7 +45,6 @@
 	pixel_y = 17
 	},
 /obj/item/candle/infinite,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/white,
 /area/library_floors/floor_religion)
 "fO" = (
@@ -96,15 +95,22 @@
 /obj/structure/railing/corner,
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
-"hO" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/white,
-/area/library_floors/floor_religion)
 "hP" = (
 /turf/open/floor/plasteel/dark/corner,
 /area/library_floors/floor_religion)
 "hW" = (
 /turf/open/floor/plasteel/dark,
+/area/library_floors/floor_religion)
+"iL" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/white{
+	density = 1
+	},
 /area/library_floors/floor_religion)
 "kB" = (
 /obj/effect/turf_decal/siding/white/end{
@@ -150,22 +156,19 @@
 /area/library_floors/floor_religion)
 "nz" = (
 /obj/item/toy/plush/ayin,
-/obj/item/flashlight/spotlight,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
 "oy" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/plasteel/chapel{
 	dir = 2
 	},
-/area/library_floors/floor_religion)
-"oV" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/stone,
-/area/library_floors/floor_religion)
-"pn" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plasteel/dark,
 /area/library_floors/floor_religion)
 "ps" = (
 /obj/effect/turf_decal/siding/white{
@@ -182,13 +185,6 @@
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
 "pu" = (
-/turf/open/floor/white{
-	density = 1
-	},
-/area/library_floors/floor_religion)
-"pM" = (
-/obj/effect/decal/fakelattice,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/white{
 	density = 1
 	},
@@ -226,13 +222,6 @@
 	},
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
-"vn" = (
-/obj/structure/chair/wood/wings{
-	dir = 8
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/stone,
-/area/library_floors/floor_religion)
 "vq" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/candle/infinite,
@@ -258,11 +247,6 @@
 "wC" = (
 /turf/open/floor/white,
 /area/library_floors/floor_religion)
-"xv" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/altar_of_gods,
-/turf/open/floor/stone,
-/area/library_floors/floor_religion)
 "xy" = (
 /obj/structure/lattice/catwalk,
 /turf/open/floor/white{
@@ -279,11 +263,6 @@
 /obj/item/storage/fancy/candle_box,
 /turf/open/floor/plasteel/dark,
 /area/library_floors/floor_religion)
-"yE" = (
-/obj/structure/bookcase/random/religion,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/stone,
-/area/library_floors/floor_religion)
 "zi" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -296,19 +275,20 @@
 	},
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
+"zs" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/stone,
+/area/library_floors/floor_religion)
 "zD" = (
 /obj/structure/table/wood,
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
-"zJ" = (
-/obj/structure/chair/wood/wings{
-	dir = 4
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/stone,
-/area/library_floors/floor_religion)
 "zV" = (
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plasteel/stairs{
 	dir = 8
 	},
@@ -354,12 +334,6 @@
 	},
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
-"Cn" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/white{
-	density = 1
-	},
-/area/library_floors/floor_religion)
 "DK" = (
 /turf/open/floor/plasteel/dark/corner{
 	dir = 4
@@ -375,6 +349,15 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/stone,
+/area/library_floors/floor_religion)
+"GQ" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/white,
 /area/library_floors/floor_religion)
 "Hh" = (
 /obj/effect/turf_decal/siding/white{
@@ -417,7 +400,12 @@
 "Jj" = (
 /obj/structure/table/greyscale,
 /obj/item/shield/riot,
-/obj/item/flashlight/spotlight,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/stone,
 /area/library_floors/floor_religion)
 "JS" = (
@@ -514,7 +502,6 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plasteel/dark,
 /area/library_floors/floor_religion)
 "QF" = (
@@ -705,16 +692,16 @@ dd
 VH
 JS
 JS
-vn
+ZU
 VH
 ZU
 wC
-yE
+Kx
 Kx
 wC
 wC
 Kx
-yE
+Kx
 wC
 ZU
 VH
@@ -755,7 +742,7 @@ dd
 dd
 dd
 VH
-JS
+zs
 JS
 JS
 JS
@@ -764,11 +751,11 @@ wC
 Kx
 Kx
 wC
-wC
+GQ
 Kx
 Kx
 wC
-JS
+zs
 VH
 dd
 dd
@@ -783,16 +770,16 @@ dd
 VH
 JS
 JS
-zJ
+Oz
 VH
 Oz
 wC
-yE
+Kx
 Kx
 wC
 wC
 Kx
-yE
+Kx
 wC
 Oz
 VH
@@ -964,22 +951,22 @@ dd
 dd
 VH
 pu
-pM
+QF
 pu
 pu
 zi
-pn
 hW
 hW
 hW
 hW
 hW
 hW
-pn
+hW
+hW
 ZH
 QF
 pu
-Cn
+pu
 pu
 VH
 dd
@@ -1050,7 +1037,7 @@ hW
 rs
 pu
 pu
-pu
+iL
 pu
 wr
 hW
@@ -1176,18 +1163,18 @@ pu
 pu
 pu
 zi
-pn
+hW
 rs
 QF
 QF
 xy
 pu
 wr
-pn
+hW
 ZH
 pu
 pu
-Cn
+pu
 pu
 VH
 dd
@@ -1198,7 +1185,7 @@ dd
 dd
 VH
 QF
-pM
+QF
 QF
 pu
 zi
@@ -1380,22 +1367,22 @@ dd
 dd
 VH
 pu
-Cn
+pu
 QF
 xy
 zi
-pn
+hW
 Yi
 rA
 nk
 nk
 NA
 Cg
-pn
+hW
 ZH
 pu
 xy
-pM
+QF
 pu
 VH
 dd
@@ -1536,22 +1523,22 @@ dd
 dd
 VH
 pu
-Cn
+pu
 QF
 QF
 zi
-pn
+hW
 rs
 pu
 pu
 pu
 pu
 wr
-pn
+hW
 ZH
 pu
 pu
-Cn
+pu
 pu
 VH
 dd
@@ -1596,7 +1583,7 @@ hW
 rs
 pu
 pu
-pu
+iL
 pu
 wr
 hW
@@ -1696,18 +1683,18 @@ pu
 pu
 xy
 zi
-pn
+hW
 rs
 pu
 QF
 QF
 pu
 wr
-pn
+hW
 ZH
 pu
 pu
-Cn
+pu
 pu
 VH
 dd
@@ -1718,7 +1705,7 @@ dd
 dd
 VH
 pu
-Cn
+pu
 pu
 QF
 zi
@@ -1848,7 +1835,7 @@ dd
 dd
 VH
 pu
-Cn
+pu
 pu
 pu
 GH
@@ -1863,7 +1850,7 @@ OR
 Nk
 pu
 pu
-Cn
+pu
 pu
 VH
 dd
@@ -1908,7 +1895,7 @@ wC
 zD
 mE
 Oy
-xv
+Oy
 mE
 zD
 wC
@@ -2008,19 +1995,19 @@ VH
 Jj
 aR
 wC
-hO
-wC
-wC
-wC
-hO
-wC
-wC
-hO
 wC
 wC
 wC
 wC
+GQ
 wC
+wC
+wC
+wC
+wC
+wC
+wC
+GQ
 VH
 dd
 "}
@@ -2097,7 +2084,7 @@ JS
 JS
 VH
 JS
-oV
+JS
 JS
 VH
 dd
@@ -2138,14 +2125,14 @@ dd
 dd
 VH
 JS
-oV
+JS
 JS
 JS
 vq
 fA
 JS
 JS
-oV
+JS
 JS
 VH
 dd
