@@ -52,6 +52,68 @@
 		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
 	)
 
+
+	var/desire
+	var/list/desireChoices = list(
+		weapon,armor,money,food)
+
+// Desire and Request Code ("Borrowed" Sphinx and SoW code parts to use as templates)
+
+/mob/living/simple_animal/hostile/abnormality/greed_king/AttemptWork(mob/living/carbon/human/user, work_type)
+	if((work_type != "Desires") && work_type != "Request")
+		return ..()
+		if(work_type == "Desires")
+		if(!(user in worked))
+			worked += user
+		NewDesire() //repeat quest lines or offer new quest
+		return FALSE
+	else
+		var/I = null
+		if(user.get_active_held_item())
+			I = user.get_active_held_item()
+		else if(user.get_inactive_held_item())
+			I = user.get_inactive_held_item()
+		if(!I) //both hands are empty
+			datum_reference.qliphoth_change(-1)
+			return FALSE
+		GreedHandler(I,user) //Item must be either the active hand, or the other hand if active is empty
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/greed_king/proc/NewDesire()
+	if(!demand)
+		demandCategory = pick(desireChoices)
+		desireNumber = rand(1,100)
+		switch(demandCategory)
+			if(weapon)
+				switch(desireNumber)
+					if(>90)
+						demand = /obj/item/ego_weapon/aleph
+					if(<=30)
+						demand = /obj/item/ego_weapon/he
+					else
+						demand = /obj/item/ego_weapon/waw
+			if(armor)
+				switch(desireNumber)
+					if(>90)
+						demand = /obj/item/clothing/suit/armor/ego_gear/aleph
+					if(<=30)
+						demand = /obj/item/clothing/suit/armor/ego_gear/he
+					else
+						demand = /obj/item/clothing/suit/armor/ego_gear/waw
+			if(money)
+				if(desireNumber>60)
+					demand = moneyLarge // 1000+ ahn
+				else
+					demand = moneySmall // 200+ ahn
+			if(food)
+				demand = pick(/obj/item/food/burgers,/obj/item/food/cake,/obj/item/food/pie,/obj/item/food/pizza,/obj/item/food/soup,/obj/item/food/spaghetti)
+	switch(demand)
+		if(moneyLarge)
+			to_chat(user,"You hear a voice in your head: It says 'Give me a lot of ahn.'"
+		if(MoneySmall)
+			to_chat(user,"You hear a voice in your head: It says 'Give me a some ahn.'"
+
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 	/datum/action/innate/abnormality_attack/kog_dash,
