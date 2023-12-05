@@ -366,3 +366,4 @@
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When breached M-01-194 will charge around the facility. We recormend employees don't get hit by M-01-194")
 
+
