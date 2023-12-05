@@ -33,25 +33,14 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/squad = pick_n_take(GLOB.l2asquads)
 	.=..()
-	var/ears = null
+
 	to_chat(M, "<span class='userdanger'>You have been assigned to the [squad] squad. </span>")
-	switch(squad)
-		if("Axe")
-			ears = /obj/item/radio/headset/wcorp/safety
-		if("Buckler")
-			ears = /obj/item/radio/headset/wcorp/discipline
-		if("Cleaver")
-			ears = /obj/item/radio/headset/wcorp/welfare
-	if(ears)
-		if(H.ears)
-			qdel(H.ears)
-		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
 
 /datum/outfit/job/wcorpl2recon
 	name = "W-Corp L2 Type A Lieutenant"
 	jobtype = /datum/job/wcorpl2support
 
-	ears = /obj/item/radio/headset/headset_welfare
+	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy/wsenior
 	belt = /obj/item/ego_weapon/city/charge/wcorp
