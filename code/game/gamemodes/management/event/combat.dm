@@ -50,7 +50,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 					if(2)
 						GLOB.wcorp_enemy_faction = "gcorp"
 					if(3)
-					    GLOB.wcorp_enemy_faction = "peccatulum"
+						GLOB.wcorp_enemy_faction = "peccatulum"
 
 //Win cons
 /datum/game_mode/combat/proc/loseround()
