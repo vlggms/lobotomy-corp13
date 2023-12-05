@@ -14,7 +14,7 @@
 	//Crit itself.
 	if(prob(special_count*2))
 		T.force*=3
-		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		to_chat(user, span_userdanger("Critical!"))
 		special_count = 0
 
 /obj/item/workshop_mod/sharp/red

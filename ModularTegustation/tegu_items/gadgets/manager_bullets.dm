@@ -8,13 +8,13 @@
 	var/bullettype = 1
 
 /obj/item/managerbullet/attack(mob/living/M, mob/user)
-	M.visible_message("<span class='notice'>[user] smashes [src] against [M].</span>")
+	M.visible_message(span_notice("[user] smashes [src] against [M]."))
 	playsound(get_turf(M), 'sound/effects/pop_expl.ogg', 5, 0, 3)
 	bulletshatter(M)
 	qdel(src)
 
 /obj/item/managerbullet/attack_self(mob/living/carbon/user) //shields from basegame are Physical Intervention Shield, Trauma Shield, Erosion Shield, Pale Shield
-	user.visible_message("<span class='notice'>[user] smashes [src] against their chest.</span>")
+	user.visible_message(span_notice("[user] smashes [src] against their chest."))
 	playsound(get_turf(user), 'sound/effects/pop_expl.ogg', 5, 0, 3)
 	bulletshatter(user)
 	qdel(src)
@@ -46,7 +46,7 @@
 /datum/status_effect/interventionshield/on_apply()
 	. = ..()
 	owner.add_overlay(statuseffectvisual)
-	owner.visible_message("<span class='notice'>[owner]s shield activates!</span>")
+	owner.visible_message(span_notice("[owner]s shield activates!"))
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnApplyDamage) //stolen from caluan
 	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/Destroy)
 
@@ -70,7 +70,7 @@
 		return COMPONENT_MOB_DENY_DAMAGE // This return value completely negates the apply_damage proc
 	if(damagetaken >= shieldhealth && faltering != 1) //When you prep a shield before a big attack.
 		amount = 0
-		owner.visible_message("<span class='warning'>The shield around [owner] focuses all its energy on absorbing the damage.</span>")
+		owner.visible_message(span_warning("The shield around [owner] focuses all its energy on absorbing the damage."))
 		duration = 1 SECONDS
 		return COMPONENT_MOB_DENY_DAMAGE
 	qdel(src)
@@ -82,7 +82,7 @@
 
 /datum/status_effect/interventionshield/on_remove()
 	owner.cut_overlay(statuseffectvisual)
-	owner.visible_message("<span class='warning'>The shield around [owner] shatters!</span>")
+	owner.visible_message(span_warning("The shield around [owner] shatters!"))
 	playsound(get_turf(owner), 'sound/effects/glassbr1.ogg', 50, 0, 10)
 	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
 	UnregisterSignal(owner, COMSIG_WORK_STARTED)

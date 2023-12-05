@@ -72,19 +72,19 @@
 /area/department_main/information)
 "ai" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = -32
@@ -106,8 +106,8 @@
 	dir = 4
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -126,9 +126,9 @@
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "aq" = (
@@ -148,16 +148,16 @@
 /area/facility_hallway/training)
 "as" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -167,8 +167,8 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /obj/structure/sign/ordealmonitor{
 	pixel_y = 32
@@ -177,8 +177,8 @@
 /area/department_main/training)
 "at" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -283,8 +283,8 @@
 /area/facility_hallway/welfare)
 "aJ" = (
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
@@ -303,8 +303,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
@@ -320,8 +320,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -474,8 +474,8 @@
 	icon_state = "LC10"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -485,26 +485,26 @@
 /area/facility_hallway/south)
 "aY" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/extraction)
 "aZ" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/camera/autoname{
 	dir = 10
@@ -526,9 +526,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "be" = (
@@ -626,16 +626,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction{
 	dir = 4
@@ -666,8 +666,8 @@
 /area/department_main/welfare)
 "bx" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/facility_hallway/extraction)
@@ -729,9 +729,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "bH" = (
@@ -787,8 +787,8 @@
 	dir = 9
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/information)
@@ -816,8 +816,8 @@
 "bO" = (
 /obj/structure/sign/departments/records,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/department_main/records)
@@ -826,8 +826,8 @@
 	max_integrity = 25
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -872,8 +872,8 @@
 	pixel_y = 16
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
@@ -980,8 +980,8 @@
 	max_integrity = 25
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
@@ -1087,8 +1087,8 @@
 	},
 /obj/effect/turf_decal/tile/purple,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -1129,9 +1129,9 @@
 "cz" = (
 /obj/effect/turf_decal/siding/white,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "cD" = (
@@ -1202,8 +1202,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -1268,16 +1268,16 @@
 /area/facility_hallway/extraction)
 "cR" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -1306,16 +1306,16 @@
 /area/facility_hallway/command)
 "cT" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -1338,9 +1338,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "cX" = (
@@ -1377,23 +1377,23 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "dc" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -1459,8 +1459,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
@@ -1621,8 +1621,8 @@
 	},
 /obj/structure/railing{
 	dir = 4;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1660,8 +1660,8 @@
 	dir = 5
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -1712,9 +1712,9 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/purple/corner,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "dR" = (
@@ -1740,8 +1740,8 @@
 "dU" = (
 /obj/machinery/fat_sucker,
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -1778,19 +1778,19 @@
 /area/facility_hallway/north)
 "dZ" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -1841,8 +1841,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -1924,8 +1924,8 @@
 /area/facility_hallway/north)
 "ez" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -1971,8 +1971,8 @@
 	icon_state = "LC13"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -1987,8 +1987,8 @@
 /area/facility_hallway/south)
 "eI" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/safety)
@@ -2029,9 +2029,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "eN" = (
@@ -2076,19 +2076,19 @@
 /area/facility_hallway/west)
 "eU" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plasteel/white,
@@ -2099,9 +2099,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "eX" = (
@@ -2147,8 +2147,8 @@
 	pixel_x = 10
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -2193,8 +2193,8 @@
 	icon_state = "LC11"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -2225,8 +2225,8 @@
 /obj/structure/window/reinforced/spawner/north,
 /obj/effect/turf_decal/siding/white,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -2245,12 +2245,12 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
@@ -2341,8 +2341,8 @@
 /area/department_main/safety)
 "fz" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/camera/autoname{
 	dir = 6
@@ -2360,9 +2360,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "fD" = (
@@ -2426,19 +2426,19 @@
 /area/facility_hallway/training)
 "fI" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/spawner/randomsnackvend,
 /obj/machinery/light/cold/no_nightlight{
@@ -2458,8 +2458,8 @@
 	max_integrity = 250
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
@@ -2501,8 +2501,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -2533,16 +2533,16 @@
 /area/facility_hallway/south)
 "fZ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -2566,8 +2566,8 @@
 "gc" = (
 /obj/effect/turf_decal/siding/white,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
@@ -2577,17 +2577,17 @@
 	color = "#440000"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "gf" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "gg" = (
@@ -2621,9 +2621,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "gl" = (
@@ -2705,15 +2705,15 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "gv" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -2775,8 +2775,8 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
@@ -2893,9 +2893,9 @@
 "gR" = (
 /obj/machinery/light/small,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "gS" = (
@@ -2962,8 +2962,8 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
@@ -2985,8 +2985,8 @@
 /area/facility_hallway/discipline)
 "gZ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/neutral{
@@ -3030,8 +3030,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -3183,16 +3183,16 @@
 /area/facility_hallway/command)
 "hr" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -3379,19 +3379,19 @@
 /area/department_main/safety)
 "hP" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -3423,13 +3423,13 @@
 /area/department_main/extraction)
 "hW" = (
 /obj/docking_port/stationary{
+	dir = 4;
 	dwidth = 3;
 	height = 5;
 	id = "elevator_home";
 	name = "facility floor";
 	roundstart_template = /datum/map_template/shuttle/manager/elevator;
-	width = 6;
-	dir = 4
+	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/manager)
@@ -3439,23 +3439,23 @@
 /area/facility_hallway/records)
 "hY" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
@@ -3472,8 +3472,8 @@
 /area/department_main/training)
 "ic" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -3488,23 +3488,23 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "if" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -3547,8 +3547,8 @@
 	icon_state = "LC22"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -3592,8 +3592,8 @@
 	color = "#d80000"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -3603,12 +3603,12 @@
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -3624,8 +3624,8 @@
 /area/department_main/extraction)
 "iw" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -3686,8 +3686,8 @@
 	max_integrity = 25
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -3700,16 +3700,16 @@
 	name = "Safety Department"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/safety)
 "iG" = (
 /obj/vehicle/ridden/wheelchair,
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -3721,16 +3721,16 @@
 /obj/machinery/iv_drip,
 /obj/item/reagent_containers/blood,
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "iK" = (
 /obj/structure/sign/departments/command,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
@@ -3749,9 +3749,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "iN" = (
@@ -3779,8 +3779,8 @@
 	},
 /obj/machinery/door/window/westright,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -3789,9 +3789,9 @@
 	color = "#440000"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "iR" = (
@@ -3831,9 +3831,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "jd" = (
@@ -3845,8 +3845,8 @@
 	color = "#7D6521"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#00a86b"
@@ -3858,12 +3858,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
@@ -3898,9 +3898,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "ji" = (
@@ -3993,8 +3993,8 @@
 /area/facility_hallway/records)
 "jr" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -4035,8 +4035,8 @@
 	max_integrity = 25
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 9;
-	color = "#006400"
+	color = "#006400";
+	dir = 9
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -4061,9 +4061,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "jw" = (
@@ -4097,8 +4097,8 @@
 	resistance_flags = 64
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
@@ -4130,8 +4130,8 @@
 /area/department_main/information)
 "jB" = (
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
@@ -4140,9 +4140,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "jD" = (
@@ -4188,8 +4188,8 @@
 /obj/structure/bed/roller,
 /obj/item/reagent_containers/blood,
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -4255,8 +4255,8 @@
 	dir = 9
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -4359,8 +4359,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -4375,8 +4375,8 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
@@ -4389,16 +4389,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -4419,8 +4419,8 @@
 /area/department_main/records)
 "kf" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
@@ -4483,13 +4483,13 @@
 /area/facility_hallway/command)
 "kk" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "km" = (
@@ -4501,8 +4501,8 @@
 "kp" = (
 /obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -4577,9 +4577,9 @@
 "kv" = (
 /obj/effect/turf_decal/siding/red,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "kx" = (
@@ -4597,8 +4597,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
@@ -4611,9 +4611,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "kA" = (
@@ -4655,8 +4655,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -4687,8 +4687,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
@@ -4740,16 +4740,16 @@
 /area/facility_hallway/extraction)
 "kK" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -4773,9 +4773,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "kO" = (
@@ -4916,8 +4916,8 @@
 "kZ" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#ffa500"
@@ -4941,8 +4941,8 @@
 /obj/structure/table/wood/fancy/blue,
 /obj/item/modular_computer/laptop,
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -5035,19 +5035,19 @@
 /area/department_main/extraction)
 "ln" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/white,
@@ -5074,16 +5074,16 @@
 /area/facility_hallway/command)
 "lp" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -5110,16 +5110,16 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "lt" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/door/poddoor{
-	name = "Central Blast Door";
 	id = "centralY";
+	name = "Central Blast Door";
 	resistance_flags = 64
 	},
 /obj/machinery/light/floor{
@@ -5168,8 +5168,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -5239,9 +5239,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "lJ" = (
@@ -5262,8 +5262,8 @@
 /area/facility_hallway/training)
 "lK" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -5289,9 +5289,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "lR" = (
@@ -5299,9 +5299,9 @@
 	color = "#7D6521"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "lS" = (
@@ -5325,16 +5325,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
@@ -5509,9 +5509,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "ml" = (
@@ -5523,20 +5523,20 @@
 "mm" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -5630,8 +5630,8 @@
 "my" = (
 /obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -5754,8 +5754,8 @@
 	dir = 4
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 4
@@ -5814,19 +5814,19 @@
 /area/facility_hallway/discipline)
 "mX" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/records)
@@ -5844,8 +5844,8 @@
 /obj/structure/table/wood/fancy/blue,
 /obj/item/modular_computer/laptop,
 /obj/effect/turf_decal/siding/green{
-	dir = 5;
-	color = "#006400"
+	color = "#006400";
+	dir = 5
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -5884,19 +5884,19 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -5947,9 +5947,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "nq" = (
@@ -5987,15 +5987,15 @@
 /area/facility_hallway/discipline)
 "nu" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
 "nw" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/safety)
@@ -6128,9 +6128,9 @@
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "nS" = (
@@ -6151,26 +6151,26 @@
 	},
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "nV" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/structure/chair/sofa/corp/right{
 	dir = 4
@@ -6239,16 +6239,16 @@
 /area/department_main/welfare)
 "nZ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -6264,8 +6264,8 @@
 "oa" = (
 /obj/machinery/sleeper/syndie,
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -6344,8 +6344,8 @@
 /area/department_main/command)
 "or" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
@@ -6357,8 +6357,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -6470,13 +6470,13 @@
 /area/facility_hallway/control)
 "oG" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "oH" = (
@@ -6484,9 +6484,9 @@
 	color = "#3234B9"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "oI" = (
@@ -6592,9 +6592,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "oZ" = (
@@ -6620,8 +6620,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -6634,9 +6634,9 @@
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "pb" = (
@@ -6672,8 +6672,8 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -6732,8 +6732,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -6743,8 +6743,8 @@
 	icon_state = "LC12"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -6760,8 +6760,8 @@
 "pl" = (
 /obj/structure/sign/departments/records,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
@@ -6783,8 +6783,8 @@
 /obj/structure/bed/roller,
 /obj/item/reagent_containers/blood,
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/camera/autoname{
 	dir = 10
@@ -6806,16 +6806,16 @@
 /area/facility_hallway/command)
 "pq" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -6827,9 +6827,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "pt" = (
@@ -6844,9 +6844,9 @@
 	color = "#006400"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "pv" = (
@@ -6857,13 +6857,13 @@
 "px" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/door/poddoor{
-	name = "Central Blast Door";
 	id = "centralY";
+	name = "Central Blast Door";
 	resistance_flags = 64
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
@@ -6875,8 +6875,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -6952,9 +6952,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "pJ" = (
@@ -6962,9 +6962,9 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/north{
+	dir = 2;
 	max_integrity = 25;
-	pixel_y = 2;
-	dir = 2
+	pixel_y = 2
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -7034,9 +7034,9 @@
 	color = "#440000"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "pU" = (
@@ -7068,8 +7068,8 @@
 	max_integrity = 250
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
@@ -7118,8 +7118,8 @@
 /area/facility_hallway/records)
 "qg" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7154,8 +7154,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -7248,8 +7248,8 @@
 /area/department_main/discipline)
 "qx" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
@@ -7261,22 +7261,22 @@
 /area/department_main/information)
 "qz" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -7295,8 +7295,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -7305,16 +7305,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -7358,8 +7358,8 @@
 /area/facility_hallway/information)
 "qK" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
@@ -7412,8 +7412,8 @@
 "qS" = (
 /obj/structure/sign/departments/command,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
@@ -7477,8 +7477,8 @@
 	},
 /obj/structure/railing{
 	dir = 6;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -7499,8 +7499,8 @@
 	},
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
@@ -7533,15 +7533,15 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
 "rh" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
@@ -7559,8 +7559,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -7572,16 +7572,16 @@
 /area/facility_hallway/discipline)
 "rn" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -7598,8 +7598,8 @@
 "ro" = (
 /obj/structure/sign/departments/extraction,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
@@ -7618,8 +7618,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/information)
@@ -7638,8 +7638,8 @@
 	dir = 6
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -7698,30 +7698,30 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
 "rD" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -7746,8 +7746,8 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
@@ -7858,9 +7858,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "rR" = (
@@ -8120,8 +8120,8 @@
 	pixel_y = -32
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
@@ -8162,8 +8162,8 @@
 /area/department_main/extraction)
 "sO" = (
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /obj/structure/table/reinforced{
 	max_integrity = 25
@@ -8205,8 +8205,8 @@
 	},
 /obj/machinery/light/floor,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -8257,8 +8257,8 @@
 	dir = 5
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -8276,32 +8276,32 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
 "sX" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -8378,19 +8378,19 @@
 /area/facility_hallway/command)
 "tf" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/plasteel/white,
@@ -8407,10 +8407,10 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/machinery/chem_dispenser/fullupgrade{
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
-	name = "Industrial Foodstuff Dispenser";
 	desc = "Creates and dispenses a variety of kitchen ingredients.";
-	emagged_reagents = null
+	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
+	emagged_reagents = null;
+	name = "Industrial Foodstuff Dispenser"
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -8523,8 +8523,8 @@
 /area/facility_hallway/south)
 "tr" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
@@ -8556,19 +8556,19 @@
 /area/facility_hallway/training)
 "tw" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -8592,16 +8592,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/records)
@@ -8642,16 +8642,16 @@
 /area/facility_hallway/welfare)
 "tC" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -8749,8 +8749,8 @@
 	},
 /obj/item/kirbyplants/random,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
@@ -8809,8 +8809,8 @@
 	pixel_y = 11
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /obj/item/reagent_containers/food/drinks/shaker{
 	pixel_x = -7
@@ -8893,8 +8893,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -8903,8 +8903,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
@@ -8927,8 +8927,8 @@
 /area/department_main/welfare)
 "uj" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8970,17 +8970,17 @@
 	pixel_y = 10
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/machinery/light/small{
 	dir = 4
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "ut" = (
@@ -9045,8 +9045,8 @@
 /area/facility_hallway/discipline)
 "uw" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/information)
@@ -9072,8 +9072,8 @@
 /area/department_main/welfare)
 "uA" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -9168,8 +9168,8 @@
 /area/department_main/control)
 "uS" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -9195,9 +9195,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "uW" = (
@@ -9225,16 +9225,16 @@
 /area/facility_hallway/extraction)
 "uZ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -9280,19 +9280,19 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/sepia,
@@ -9315,9 +9315,9 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/white/corner,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "vg" = (
@@ -9325,8 +9325,8 @@
 	dir = 9
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -9335,9 +9335,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "vi" = (
@@ -9401,12 +9401,12 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
@@ -9471,8 +9471,8 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
@@ -9642,8 +9642,8 @@
 /area/department_main/training)
 "vU" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -9687,8 +9687,8 @@
 /area/facility_hallway/control)
 "wb" = (
 /obj/structure/bodycontainer/crematorium{
-	id = "gcorpincinerator2";
-	dir = 8
+	dir = 8;
+	id = "gcorpincinerator2"
 	},
 /obj/machinery/button/crematorium/indestructible{
 	id = "gcorpincinerator2";
@@ -9724,9 +9724,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "wg" = (
@@ -9755,23 +9755,23 @@
 /area/facility_hallway/west)
 "wl" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
@@ -9845,9 +9845,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "wv" = (
@@ -9896,12 +9896,12 @@
 /area/facility_hallway/extraction)
 "wy" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -9988,16 +9988,16 @@
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
 "wM" = (
 /obj/structure/sign/departments/extraction,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
@@ -10047,9 +10047,9 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "wS" = (
@@ -10126,8 +10126,8 @@
 	pixel_y = -8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -10227,16 +10227,16 @@
 /area/facility_hallway/manager)
 "xl" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -10262,8 +10262,8 @@
 	color = "#3234B9"
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
@@ -10334,8 +10334,8 @@
 	dir = 1
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -10526,8 +10526,8 @@
 "xU" = (
 /obj/effect/turf_decal/siding/white,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
@@ -10618,8 +10618,8 @@
 /area/facility_hallway/extraction)
 "ye" = (
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -10641,8 +10641,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -10679,8 +10679,8 @@
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -10848,8 +10848,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -11074,9 +11074,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "zg" = (
@@ -11085,9 +11085,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "zi" = (
@@ -11113,18 +11113,18 @@
 /area/department_main/control)
 "zk" = (
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "zn" = (
 /obj/structure/railing,
 /obj/effect/turf_decal/siding/yellow/corner,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "zo" = (
@@ -11271,8 +11271,8 @@
 	name = "Training Department"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/training)
@@ -11374,16 +11374,16 @@
 /area/facility_hallway/west)
 "zP" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -11406,8 +11406,8 @@
 	max_integrity = 25
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -11454,8 +11454,8 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/window/reinforced/spawner/east{
 	max_integrity = 25
@@ -11485,17 +11485,17 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "zV" = (
 /obj/structure/bed,
 /obj/item/bedsheet/captain,
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -11517,19 +11517,19 @@
 /area/department_main/welfare)
 "Aa" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/structure/sign/poster/lobotomycorp/random{
 	pixel_y = -32
@@ -11564,8 +11564,8 @@
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
@@ -11643,9 +11643,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "At" = (
@@ -11722,9 +11722,9 @@
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "AA" = (
@@ -11873,12 +11873,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -11887,23 +11887,23 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/records)
@@ -11962,8 +11962,8 @@
 "AT" = (
 /obj/structure/sign/departments/extraction,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
@@ -12055,16 +12055,16 @@
 /area/department_main/training)
 "Bd" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -12247,16 +12247,16 @@
 /area/department_main/welfare)
 "BB" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -12306,9 +12306,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "BI" = (
@@ -12336,15 +12336,15 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "BK" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/extraction)
@@ -12555,9 +12555,9 @@
 	color = "#3234B9"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Ch" = (
@@ -12632,9 +12632,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Co" = (
@@ -12671,8 +12671,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -12681,19 +12681,19 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -12765,8 +12765,8 @@
 /area/facility_hallway/west)
 "CB" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 10;
-	color = "#006400"
+	color = "#006400";
+	dir = 10
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -12812,19 +12812,19 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
@@ -12833,8 +12833,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -12853,8 +12853,8 @@
 /area/department_main/training)
 "CN" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
@@ -12883,16 +12883,16 @@
 /area/facility_hallway/south)
 "CQ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -13103,16 +13103,16 @@
 /area/facility_hallway/records)
 "Dn" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -13222,8 +13222,8 @@
 "Dw" = (
 /obj/structure/sign/departments/extraction,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/department_main/extraction)
@@ -13252,8 +13252,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
@@ -13291,19 +13291,19 @@
 /area/facility_hallway/north)
 "DG" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
@@ -13315,23 +13315,23 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/dark,
@@ -13395,8 +13395,8 @@
 	},
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -13419,8 +13419,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -13484,8 +13484,8 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/tile/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
@@ -13538,13 +13538,13 @@
 /area/facility_hallway/command)
 "Ef" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Eg" = (
@@ -13608,16 +13608,16 @@
 /area/department_main/records)
 "Er" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -13633,9 +13633,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Ev" = (
@@ -13690,16 +13690,16 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -13712,9 +13712,9 @@
 	pixel_y = 10
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "EA" = (
@@ -13746,8 +13746,8 @@
 	},
 /obj/effect/spawner/randomcolavend,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
@@ -13759,23 +13759,23 @@
 /area/department_main/training)
 "EH" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/facility_hallway/information)
 "EI" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -13869,16 +13869,16 @@
 /area/facility_hallway/command)
 "ES" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -13938,8 +13938,8 @@
 "EZ" = (
 /obj/structure/sign/ordealmonitor,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
@@ -13954,16 +13954,16 @@
 /area/facility_hallway/training)
 "Fb" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -13995,16 +13995,16 @@
 /area/facility_hallway/training)
 "Fd" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -14070,8 +14070,8 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -14158,8 +14158,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -14271,8 +14271,8 @@
 	max_integrity = 250
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#00a86b"
@@ -14285,9 +14285,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "FR" = (
@@ -14334,16 +14334,16 @@
 /area/department_main/control)
 "FW" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
@@ -14386,8 +14386,8 @@
 "Gc" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
@@ -14407,8 +14407,8 @@
 /obj/structure/table/wood/fancy/blue,
 /obj/item/modular_computer/laptop,
 /obj/effect/turf_decal/siding/green{
-	dir = 6;
-	color = "#006400"
+	color = "#006400";
+	dir = 6
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -14430,8 +14430,8 @@
 /area/facility_hallway/control)
 "Gg" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
@@ -14449,8 +14449,8 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -14610,12 +14610,12 @@
 	dir = 1
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -14659,9 +14659,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "GB" = (
@@ -14686,8 +14686,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
@@ -14884,16 +14884,16 @@
 /area/facility_hallway/information)
 "He" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -14913,22 +14913,22 @@
 /area/department_main/extraction)
 "Hg" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Hh" = (
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Hi" = (
@@ -14960,12 +14960,12 @@
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
@@ -15008,26 +15008,26 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "Ht" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -15045,8 +15045,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -15080,23 +15080,23 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -15105,16 +15105,16 @@
 /area/facility_hallway/safety)
 "HC" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -15151,8 +15151,8 @@
 /area/facility_hallway/command)
 "HG" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/extraction)
@@ -15168,8 +15168,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -15191,8 +15191,8 @@
 	icon_state = "LC23"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -15248,9 +15248,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "HQ" = (
@@ -15302,26 +15302,26 @@
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "HX" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
@@ -15470,8 +15470,8 @@
 /area/facility_hallway/command)
 "Il" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 6;
-	color = "#006400"
+	color = "#006400";
+	dir = 6
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -15490,8 +15490,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
@@ -15508,8 +15508,8 @@
 /obj/effect/turf_decal/tile/purple,
 /obj/machinery/door/window/southright,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -15519,8 +15519,8 @@
 	},
 /obj/effect/turf_decal/siding/white,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
@@ -15605,8 +15605,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -15852,8 +15852,8 @@
 	color = "#006400"
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
@@ -15906,23 +15906,23 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/records)
@@ -15944,16 +15944,16 @@
 /area/facility_hallway/information)
 "Je" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -16004,13 +16004,13 @@
 "Jk" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/door/poddoor{
-	name = "Central Blast Door";
 	id = "centralY";
+	name = "Central Blast Door";
 	resistance_flags = 64
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/white,
 /area/department_main/command)
@@ -16049,9 +16049,9 @@
 "Jr" = (
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Jt" = (
@@ -16117,23 +16117,23 @@
 	max_integrity = 25
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 10;
-	color = "#006400"
+	color = "#006400";
+	dir = 10
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "JD" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -16157,8 +16157,8 @@
 	dir = 8
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
@@ -16177,19 +16177,19 @@
 /area/facility_hallway/information)
 "JH" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -16201,8 +16201,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
@@ -16297,8 +16297,8 @@
 	color = "#7D6521"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
@@ -16313,8 +16313,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -16339,22 +16339,22 @@
 /area/facility_hallway/training)
 "JS" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
@@ -16367,9 +16367,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "JU" = (
@@ -16380,8 +16380,8 @@
 	resistance_flags = 64
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
@@ -16396,8 +16396,8 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -16407,9 +16407,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Ka" = (
@@ -16449,8 +16449,8 @@
 /area/facility_hallway/training)
 "Kd" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 8
@@ -16468,8 +16468,8 @@
 /area/facility_hallway/command)
 "Ke" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -16504,9 +16504,9 @@
 	pixel_y = 10
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Ki" = (
@@ -16648,8 +16648,8 @@
 /area/space)
 "KA" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -16703,16 +16703,16 @@
 /area/facility_hallway/command)
 "KE" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -16724,8 +16724,8 @@
 /area/facility_hallway/safety)
 "KJ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/facility_hallway/information)
@@ -16768,16 +16768,16 @@
 /area/facility_hallway/control)
 "KN" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -16845,9 +16845,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "KW" = (
@@ -16871,19 +16871,19 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight,
 /obj/machinery/camera/autoname{
@@ -16908,16 +16908,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -16930,12 +16930,12 @@
 /area/department_main/discipline)
 "Lc" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -16966,23 +16966,23 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Lh" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/camera/autoname{
 	dir = 10
@@ -17050,13 +17050,13 @@
 /area/department_main/discipline)
 "Lo" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Lp" = (
@@ -17071,8 +17071,8 @@
 /area/department_main/discipline)
 "Lq" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#cd00cd"
@@ -17184,16 +17184,16 @@
 /area/department_main/welfare)
 "LJ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -17218,19 +17218,19 @@
 /area/facility_hallway/safety)
 "LK" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/structure/chair/sofa/corp/left{
 	dir = 8
@@ -17239,16 +17239,16 @@
 /area/facility_hallway/records)
 "LL" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/machinery/light/floor{
@@ -17374,8 +17374,8 @@
 /area/department_main/information)
 "LW" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -17391,8 +17391,8 @@
 /area/department_main/safety)
 "LX" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -17467,9 +17467,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Mi" = (
@@ -17477,9 +17477,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Mj" = (
@@ -17561,8 +17561,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -17630,8 +17630,8 @@
 	dir = 4
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 1
@@ -17724,15 +17724,15 @@
 /area/facility_hallway/north)
 "ME" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17846,8 +17846,8 @@
 	pixel_y = -8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -17856,23 +17856,23 @@
 	max_integrity = 25
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
 "MQ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -17945,19 +17945,19 @@
 /area/facility_hallway/training)
 "Na" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/white,
@@ -18007,9 +18007,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Nh" = (
@@ -18052,24 +18052,24 @@
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	pixel_x = -5;
 	pixel_y = 5
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -18101,8 +18101,8 @@
 /area/department_main/training)
 "Nm" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plating,
 /area/facility_hallway/information)
@@ -18173,9 +18173,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Nt" = (
@@ -18303,8 +18303,8 @@
 /area/department_main/records)
 "ND" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -18373,16 +18373,16 @@
 /area/facility_hallway/discipline)
 "NO" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -18392,8 +18392,8 @@
 	dir = 1
 	},
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -18405,8 +18405,8 @@
 /area/department_main/information)
 "NQ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/facility_hallway/extraction)
@@ -18424,8 +18424,8 @@
 	color = "#ffa500"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
@@ -18473,8 +18473,8 @@
 	},
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -18487,9 +18487,9 @@
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Ob" = (
@@ -18533,12 +18533,12 @@
 /area/department_main/discipline)
 "Oe" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -18638,9 +18638,9 @@
 "On" = (
 /obj/structure/railing,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Oo" = (
@@ -18666,8 +18666,8 @@
 /area/facility_hallway/welfare)
 "Op" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -18696,8 +18696,8 @@
 /area/department_main/records)
 "Ou" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -18710,8 +18710,8 @@
 "OA" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/door/poddoor{
-	name = "Central Blast Door";
 	id = "centralY";
+	name = "Central Blast Door";
 	resistance_flags = 64
 	},
 /turf/open/floor/facility/white,
@@ -18722,8 +18722,8 @@
 	},
 /obj/structure/railing{
 	dir = 4;
-	name = "invincible railing";
-	max_integrity = 1e+007
+	max_integrity = 1e+007;
+	name = "invincible railing"
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -18764,8 +18764,8 @@
 /area/department_main/information)
 "OE" = (
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -18774,19 +18774,19 @@
 /area/department_main/command)
 "OF" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/item/kirbyplants/random,
 /turf/open/floor/plasteel/white,
@@ -18800,16 +18800,16 @@
 /area/department_main/discipline)
 "OI" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -18861,8 +18861,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -18876,9 +18876,9 @@
 "OR" = (
 /obj/effect/turf_decal/siding/red/corner,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "OS" = (
@@ -18890,19 +18890,19 @@
 /area/department_main/discipline)
 "OT" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/vending/cigarette,
 /obj/machinery/light/cold/no_nightlight{
@@ -19006,8 +19006,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#00a86b"
@@ -19047,9 +19047,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Pm" = (
@@ -19100,8 +19100,8 @@
 /area/facility_hallway/discipline)
 "Pq" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -19116,8 +19116,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
@@ -19130,9 +19130,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Ps" = (
@@ -19150,8 +19150,8 @@
 	pixel_x = -1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -19190,20 +19190,20 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Py" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Pz" = (
@@ -19238,8 +19238,8 @@
 /area/department_main/safety)
 "PE" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 5;
-	color = "#006400"
+	color = "#006400";
+	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -19254,19 +19254,19 @@
 /area/facility_hallway/welfare)
 "PG" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
+	color = "#006400";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
@@ -19296,9 +19296,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "PM" = (
@@ -19307,8 +19307,8 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -19365,9 +19365,9 @@
 	},
 /obj/machinery/light/small,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "PS" = (
@@ -19436,12 +19436,12 @@
 /area/department_main/extraction)
 "PZ" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -19453,8 +19453,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -19466,8 +19466,8 @@
 	dir = 8
 	},
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 9
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -19577,8 +19577,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -19722,8 +19722,8 @@
 "QB" = (
 /obj/effect/turf_decal/siding/white,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -19747,34 +19747,34 @@
 	},
 /obj/structure/riser/dark,
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "QH" = (
 /obj/structure/railing,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
 "QJ" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/item/kirbyplants/random,
 /obj/machinery/light/cold/no_nightlight{
@@ -19784,23 +19784,23 @@
 /area/facility_hallway/records)
 "QL" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 4
@@ -19855,8 +19855,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -19866,9 +19866,9 @@
 	color = "#006400"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "QR" = (
@@ -19917,16 +19917,16 @@
 /area/facility_hallway/information)
 "QV" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -20082,9 +20082,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Rm" = (
@@ -20112,16 +20112,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/landmark/department_center,
 /obj/structure/disposalpipe/junction/yjunction{
@@ -20135,9 +20135,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Rq" = (
@@ -20230,19 +20230,19 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "RB" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -20314,19 +20314,19 @@
 /obj/item/wirecutters,
 /obj/item/wrench,
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
+	color = "#006400";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/green{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	color = "#006400"
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/north)
@@ -20360,19 +20360,19 @@
 /area/department_main/safety)
 "RQ" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/spawner/randomcolavend,
 /obj/machinery/light/cold/no_nightlight{
@@ -20468,9 +20468,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Se" = (
@@ -20482,6 +20482,7 @@
 /area/department_main/welfare)
 "Sg" = (
 /obj/effect/turf_decal/siding/yellow,
+/obj/effect/spawner/xmastree,
 /turf/open/floor/carpet/stellar,
 /area/department_main/training)
 "Sh" = (
@@ -20504,9 +20505,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Sk" = (
@@ -20514,12 +20515,12 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/camera/autoname{
 	dir = 10
@@ -20643,8 +20644,8 @@
 /area/facility_hallway/discipline)
 "SE" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 10;
-	color = "#006400"
+	color = "#006400";
+	dir = 10
 	},
 /obj/machinery/regenerator/safety,
 /turf/open/floor/carpet/green,
@@ -20658,9 +20659,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "SH" = (
@@ -20668,16 +20669,16 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "SI" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -20769,8 +20770,8 @@
 	icon_state = "LC19"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -20934,8 +20935,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/command)
@@ -20974,8 +20975,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -21015,8 +21016,8 @@
 /area/department_main/records)
 "Tu" = (
 /obj/machinery/light/floor{
-	pixel_y = 9;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/siding/yellow{
 	dir = 5
@@ -21043,19 +21044,19 @@
 /area/space)
 "Tz" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/structure/chair/sofa/corp/right{
 	dir = 8
@@ -21077,12 +21078,12 @@
 /area/facility_hallway/control)
 "TB" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -21117,8 +21118,8 @@
 "TE" = (
 /obj/structure/sign/departments/records,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/command)
@@ -21140,8 +21141,8 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -21188,15 +21189,15 @@
 	icon_state = "LC21"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "TK" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -21221,16 +21222,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
@@ -21263,8 +21264,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -21273,8 +21274,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/discipline)
@@ -21291,8 +21292,8 @@
 /area/department_main/discipline)
 "TS" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -21437,16 +21438,16 @@
 /area/department_main/welfare)
 "Um" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -21494,16 +21495,16 @@
 /area/department_main/discipline)
 "Us" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -21598,8 +21599,8 @@
 /area/department_main/records)
 "UO" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/safety)
@@ -21713,8 +21714,8 @@
 /area/facility_hallway/command)
 "UZ" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 9;
-	color = "#006400"
+	color = "#006400";
+	dir = 9
 	},
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -21724,16 +21725,16 @@
 /area/department_main/safety)
 "Vb" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -21801,8 +21802,8 @@
 /area/facility_hallway/command)
 "Vj" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/facility_hallway/extraction)
@@ -21817,8 +21818,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -21830,16 +21831,16 @@
 /area/department_main/safety)
 "Vq" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/structure/disposalpipe/junction{
 	dir = 1
@@ -21855,8 +21856,8 @@
 /area/facility_hallway/information)
 "Vt" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 5;
-	color = "#006400"
+	color = "#006400";
+	dir = 5
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -21911,8 +21912,8 @@
 /area/facility_hallway/records)
 "VD" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -21943,8 +21944,8 @@
 /area/department_main/discipline)
 "VK" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/facility/white,
 /area/department_main/safety)
@@ -22062,9 +22063,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Wb" = (
@@ -22154,16 +22155,16 @@
 /area/department_main/records)
 "Wl" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -22235,8 +22236,8 @@
 "Ws" = (
 /obj/structure/closet/secure_closet/record,
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
 	max_integrity = 25;
+	pixel_x = 3;
 	pixel_y = 2
 	},
 /obj/item/toy/crayon/spraycan/infinite{
@@ -22351,9 +22352,9 @@
 	pixel_x = 10
 	},
 /obj/structure/window/reinforced/spawner/north{
+	dir = 2;
 	max_integrity = 25;
-	pixel_y = 2;
-	dir = 2
+	pixel_y = 2
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
@@ -22391,19 +22392,19 @@
 /area/department_main/welfare)
 "WG" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -22434,23 +22435,23 @@
 "WM" = (
 /obj/effect/spawner/abnormality_room,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/discipline)
 "WO" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -22462,8 +22463,8 @@
 	dir = 9
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
@@ -22497,8 +22498,8 @@
 "WR" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/door/poddoor{
-	name = "Central Blast Door";
 	id = "centralY";
+	name = "Central Blast Door";
 	resistance_flags = 64
 	},
 /obj/machinery/light/floor{
@@ -22527,19 +22528,19 @@
 /area/facility_hallway/control)
 "WU" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 8
@@ -22633,16 +22634,16 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
 "Xc" = (
 /obj/structure/sign/departments/records,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/reinforced,
 /area/department_main/records)
@@ -22692,16 +22693,16 @@
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -22716,9 +22717,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Xk" = (
@@ -22817,9 +22818,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Xv" = (
@@ -22827,9 +22828,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Xx" = (
@@ -22867,19 +22868,19 @@
 /area/facility_hallway/south)
 "XC" = (
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/machinery/disposal/bin,
 /obj/structure/disposalpipe/trunk{
@@ -22895,16 +22896,16 @@
 /area/facility_hallway/west)
 "XF" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -22913,8 +22914,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight{
 	dir = 1
@@ -22937,8 +22938,8 @@
 /area/department_main/control)
 "XJ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/facility_hallway/safety)
@@ -22960,12 +22961,12 @@
 /area/department_main/extraction)
 "XO" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -22991,8 +22992,8 @@
 /area/facility_hallway/command)
 "XT" = (
 /obj/structure/bodycontainer/crematorium{
-	id = "gcorpincinerator1";
-	dir = 8
+	dir = 8;
+	id = "gcorpincinerator1"
 	},
 /obj/machinery/button/crematorium/indestructible{
 	id = "gcorpincinerator1";
@@ -23054,8 +23055,8 @@
 /area/department_main/records)
 "Yf" = (
 /obj/effect/turf_decal/siding/green{
-	dir = 9;
-	color = "#006400"
+	color = "#006400";
+	dir = 9
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -23093,8 +23094,8 @@
 	icon_state = "LC20"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -23104,8 +23105,8 @@
 	},
 /obj/effect/turf_decal/siding/white,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
@@ -23156,9 +23157,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Yq" = (
@@ -23167,9 +23168,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Yr" = (
@@ -23219,9 +23220,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Yy" = (
@@ -23334,9 +23335,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "YJ" = (
@@ -23375,8 +23376,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
@@ -23443,8 +23444,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -23453,8 +23454,8 @@
 /area/department_main/safety)
 "YX" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -23559,9 +23560,9 @@
 	dir = 4
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Zl" = (
@@ -23595,16 +23596,16 @@
 /area/department_main/information)
 "Zq" = (
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
@@ -23618,9 +23619,9 @@
 	dir = 8
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "Zt" = (
@@ -23681,8 +23682,8 @@
 	icon_state = "LC9"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
@@ -23744,8 +23745,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/extraction)
@@ -23788,8 +23789,8 @@
 	},
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
@@ -23799,12 +23800,12 @@
 	},
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/green{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/green{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/machinery/smartfridge/drying_rack,
 /turf/open/floor/plasteel/sepia,
@@ -23863,9 +23864,9 @@
 	dir = 1
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "ZP" = (
@@ -23909,8 +23910,8 @@
 "ZS" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1;
-	storage_capacity = 1000;
-	name = "Meat Storage Refrigerator"
+	name = "Meat Storage Refrigerator";
+	storage_capacity = 1000
 	},
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
@@ -24092,9 +24093,9 @@
 	color = "#006400"
 	},
 /turf/open/floor/fakepit{
-	name = "Void";
 	density = 1;
-	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into."
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
 	},
 /area/facility_hallway/central)
 "ZX" = (

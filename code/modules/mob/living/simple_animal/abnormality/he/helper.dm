@@ -14,7 +14,7 @@
 	stat_attack = HARD_CRIT
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speak_emote = list("states")
 	vision_range = 14
 	aggro_vision_range = 20
@@ -37,6 +37,12 @@
 	gift_type =  /datum/ego_gifts/grinder
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+	)
+
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0

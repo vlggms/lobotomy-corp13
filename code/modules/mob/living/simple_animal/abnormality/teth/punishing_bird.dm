@@ -13,7 +13,7 @@
 	density = FALSE
 	maxHealth = 600
 	health = 600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	move_to_delay = 2
 	harm_intent_damage = 10
@@ -51,6 +51,12 @@
 		)
 	gift_type =  /datum/ego_gifts/beak
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3
+	)
+
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()

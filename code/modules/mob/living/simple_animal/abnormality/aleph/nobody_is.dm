@@ -38,6 +38,11 @@
 	gift_type =  /datum/ego_gifts/mockery
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/nothing_there = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/kqe = 1.5
+	)
+
 	//Contained Variables
 	var/reflect_timer
 	var/mob/living/disguise = null

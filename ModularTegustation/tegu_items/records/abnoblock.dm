@@ -11,7 +11,7 @@
 
 /obj/item/records/abnodelay/watch_action(mob/user)
 	//We succesfully used are watch, give the player feedback and some fluff
-	to_chat(user, "<span class='notice'>You check your watch. It's not time for the next abnormality to arrive yet.</span>")
+	to_chat(user, span_notice("You check your watch. It's not time for the next abnormality to arrive yet."))
 	//We grab are SubSystem for abnormality spawning and go to the spawn timer, and add the offset time to it directly.
 	SSabnormality_queue.next_abno_spawn += next_abno_spawn_offset
 	//Next we move back to are parrent, so that we give are stopwatch cooldowns.

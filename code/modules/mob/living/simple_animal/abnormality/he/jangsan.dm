@@ -12,7 +12,7 @@
 	ranged = TRUE
 	maxHealth = 1200
 	health = 1200
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 	move_to_delay = 7

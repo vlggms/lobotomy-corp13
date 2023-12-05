@@ -25,7 +25,7 @@
 	melee_damage_lower = 92
 	melee_damage_upper = 99		//Will never one shot you.
 	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	stat_attack = HARD_CRIT
 
 	ego_list = list(

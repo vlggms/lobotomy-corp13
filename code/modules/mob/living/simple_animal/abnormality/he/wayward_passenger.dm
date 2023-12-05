@@ -10,7 +10,7 @@
 	health = 1200
 
 	move_to_delay = 4
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)//lovetown residents LOVE physical pain, so highly resistant to black and red
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)//lovetown residents LOVE physical pain, so highly resistant to black and red
 	stat_attack = HARD_CRIT
 
 	ranged = TRUE

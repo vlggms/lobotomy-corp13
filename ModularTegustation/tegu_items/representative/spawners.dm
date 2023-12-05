@@ -20,7 +20,7 @@
 /obj/effect/mob_spawn/human/supplypod/r_corp/allow_spawn(mob/user)
 	if(!(user.key in players_spawned))//one per person
 		return TRUE
-	to_chat(user, "<span class='warning'><b>Fourth Pack HQ: Sending in another team would cost more energy from our hatcheries than we are being paid.</b>.</span>")
+	to_chat(user, span_warning("<b>Fourth Pack HQ: Sending in another team would cost more energy from our hatcheries than we are being paid.</b>."))
 	return FALSE
 
 /obj/effect/mob_spawn/human/supplypod/r_corp/special(mob/living/carbon/human/new_spawn)

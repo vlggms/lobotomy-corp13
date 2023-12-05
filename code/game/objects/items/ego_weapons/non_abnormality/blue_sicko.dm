@@ -225,23 +225,6 @@
 	active = FALSE
 	vibration_timer = addtimer(CALLBACK(src, .proc/VibrationChange), 10 SECONDS, TIMER_STOPPABLE)
 
-/obj/item/ego_weapon/city/reverberation/proc/GetSafeDir(turf/target)
-	. = list()
-	for(var/dir in GLOB.alldirs)
-		var/turf/T = get_step(target, dir)
-		if(!T)
-			continue
-		if(T.density)
-			continue
-		var/obj/structure/window/W = locate() in T
-		if(W)
-			continue
-		var/obj/machinery/door/D = locate() in T
-		if(D)
-			continue
-		. += dir
-	return
-
 /obj/item/ego_weapon/city/reverberation/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	if(attack_type == PROJECTILE_ATTACK)

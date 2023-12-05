@@ -18,7 +18,7 @@
 
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	ranged_cooldown_time = 12
 	projectiletype = /obj/projectile/hatred
@@ -50,6 +50,13 @@
 		)
 	gift_type = /datum/ego_gifts/love_and_hate
 	gift_message = "In fact, \"peace\" is not what she desires."
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
+		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
 
 	var/chance_modifier = 1
 	var/death_counter = 0
