@@ -350,5 +350,6 @@
 	abno_code = "M-01-117"
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
-		"When the work result was bad, the Qliphoth Counter lowered.",)
+		"When the work result was bad, the Qliphoth Counter lowered.",
+		"While breached it has been seen charging at it's target.",)
 

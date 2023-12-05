@@ -1,20 +1,22 @@
-#define STATUS_EFFECT_BURN /datum/status_effect/stacking/burn
-
 /mob/living/simple_animal/hostile/abnormality/Brazen_Bull
 	name = "Brazen Bull"
 	desc = "A bull made of an copper and zinc alloy with someone trapped inside it"
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "Bull"
+	pixel_x = -15
+	base_pixel_x = -15
 	icon_living = "Bull"
-	maxHealth = 950
-	health = 950
+	maxHealth = 700
+	health = 700
+	vision_range = 11
+	aggro_vision_range = 17
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
 	melee_damage_lower = 2
-	melee_damage_upper = 4
+	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE
-	rapid_melee = 2.5
+	rapid_melee = 2
 	stat_attack = HARD_CRIT
-	attack_sound = 'sound/items/crowbar.ogg'
+	attack_sound = 'sound/weapons/slam.ogg'
 	attack_verb_continuous = "smacks"
 	attack_verb_simple = "smack"
 	faction = list("hostile")
@@ -25,10 +27,15 @@
 						ABNORMALITY_WORK_INSTINCT = list(20, 20, 20, 30, 30),
 						ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
 						ABNORMALITY_WORK_ATTACHMENT = list(20, 25, 30, 30, 35),
-						ABNORMALITY_WORK_REPRESSION = list(35, 35, 40, 40, 50)
+						ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
 						)
 	work_damage_amount = 3
 	work_damage_type = RED_DAMAGE
+	var/charge_check_time = 1 SECONDS
+	var/dash_num = 50
+	var/list/been_hit = list()
+	var/busy = FALSE
+
 	ego_list = list(
 		/datum/ego_datum/weapon/capote,
 		/datum/ego_datum/armor/capote
@@ -44,41 +51,87 @@
 	if(prob(60))
 		datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/AttackingTarget()
-	if(ishuman(target))
-		var/mob/living/L = target
-		var/datum/status_effect/stacking/burn/G = L.has_status_effect(/datum/status_effect/stacking/burn)
-		if(!G)
-			L.apply_status_effect(STATUS_EFFECT_BURN)
-		else
-			G.add_stacks(1)
-	return..()
+/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/Life()
+	. = ..()
+	if(!.)
+		return FALSE
+	if(!(status_flags & GODMODE))
+		if(!busy)
+			charge_check()
+
+/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/proc/charge_check()
+	var/mob/living/carbon/human/target
+	if(busy)
+		return
+	var/list/possible_targets = list()
+	for(var/mob/living/carbon/human/H in view(20, src))
+		possible_targets += H
+	if(LAZYLEN(possible_targets))
+		target = pick(possible_targets)
+		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
+		if(dir_to_target)
+			busy = TRUE
+			addtimer(CALLBACK(src, .proc/charge, dir_to_target, 0, target), 2 SECONDS)
+			return
+	return
+
+
+/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/proc/charge(move_dir, times_ran, target)
+	setDir(move_dir)
+	var/stop_charge = FALSE
+	if(times_ran >= dash_num)
+		stop_charge = TRUE
+	var/turf/T = get_step(get_turf(src), move_dir)
+	if(!T)
+		been_hit = list()
+		stop_charge = TRUE
+		return
+	if(T.density)
+		stop_charge = TRUE
+	for(var/obj/structure/window/W in T.contents)
+		W.obj_destruction()
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			stop_charge = TRUE
+	for(var/mob/living/simple_animal/hostile/abnormality/D in T.contents)
+		if(D.density)
+			stop_charge = TRUE
+	for(var/mob/living/carbon/human/D in T.contents)
+		if(D.density)
+			stop_charge = TRUE
+
+	if(stop_charge)
+		busy = TRUE
+		addtimer(CALLBACK(src, .proc/endCharge), 9 SECONDS)
+		been_hit = list()
+		return
+	forceMove(T)
+
+	for(var/turf/U in range(1, T))
+		var/list/new_hits = HurtInTurf(U, been_hit, 0, RED_DAMAGE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			L.visible_message(span_boldwarning("[src] rams [L]!"), span_userdanger("[src] impales you with its horns!"))
+			playsound(L, attack_sound, 75, 1)
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			else
+				L.adjustRedLoss(10)
+			if(L.stat >= HARD_CRIT)
+				L.gib()
+		for(var/obj/vehicle/V in new_hits)
+			V.take_damage(10, RED_DAMAGE, attack_sound)
+			V.visible_message(span_boldwarning("[src] rams [V]!"))
+
+	for(var/turf/open/R in range(1, src))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
+	addtimer(CALLBACK(src, .proc/charge, move_dir, (times_ran + 1)), 2)
+
+/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/proc/endCharge()
+	busy = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/Brazen_Bull/BreachEffect(mob/living/carbon/human/user)
 		..()
 		GiveTarget(user)
-
-
-
-/datum/status_effect/stacking/burn
-	id = "burn"
-	status_type = STATUS_EFFECT_MULTIPLE
-	duration = 60 SECONDS
-	stack_decay = 1
-	tick_interval = 3 SECONDS
-	max_stacks = 6
-	stacks = 1
-	alert_type = /atom/movable/screen/alert/status_effect/burn
-
-/datum/status_effect/stacking/burn/before_remove()
-	owner.apply_damage(1 * stacks , RED_DAMAGE, null, owner.run_armor_check(null, RED_DAMAGE))
-
-/atom/movable/screen/alert/status_effect/burn
-	name = "Burn"
-	desc = "You feel like you're being cooked alive"
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "lc_burn"
-
-
-#undef STATUS_EFFECT_BURN
-
