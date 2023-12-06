@@ -465,7 +465,7 @@
 	item_path = /obj/item/ego_weapon/rosa
 	cost = 50
 
-//Dream-Devouring Slitcurrent - Blind Obsession
+//Dream-Devouring Slitcurrent - Blind Obsession/Dream-Devouring
 /datum/ego_datum/armor/blind_obsession
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
 	cost = 50
@@ -473,3 +473,8 @@
 /datum/ego_datum/weapon/blind_obsession
 	item_path = /obj/item/ego_weapon/blind_obsession
 	cost = 50
+
+/datum/ego_datum/weapon/dream_devouring
+	item_path = /obj/item/ego_weapon/dream_devouring
+	cost = 50
+

@@ -1813,3 +1813,144 @@
 				continue
 			L.adjustSanityLoss(-heal_amount)
 			new /obj/effect/temp_visual/healing(get_turf(L))
+
+/obj/item/ego_weapon/blind_obsession//When I saw that Ishmael's version was an anchor I thought "hey would it be funny if it was a throwing weapon with aoe".
+	name = "blind obsession"
+	desc = "All hands, full speed toward where the lights flicker. The waves... will lay waste to everything in our way."
+	special = "When thrown, this weapon attacks EVERYONE but yourself in an AOE. \
+			This weapon deals 1.75 times damage on direct throws."//Throw it at the Eo I dare ya!
+	icon_state = "blind_obsession"
+	force = 80
+	attack_speed = 2.5
+	throwforce = 100 //has aoe
+	throw_speed = 5
+	throw_range = 7
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "smashes")
+	attack_verb_simple = list("bashes", "smashes")
+	hitsound = 'sound/weapons/ego/hammer.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/blind_obsession/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill others with this
+	if(!CanUseEgo(user))
+		return
+	return ..()
+
+/obj/item/ego_weapon/blind_obsession/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	playsound(src, 'sound/weapons/ego/hammer.ogg', 300, FALSE, 9)
+	for(var/turf/open/T in range(2, src))
+		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+		smonk.color = COLOR_TEAL
+	for(var/mob/living/L in view(2, src))
+		var/aoe = 75
+		var/userjust = (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=justicemod
+		aoe*=force_multiplier
+		if(L == thrownby)
+			continue
+
+		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	return ..()
+
+/obj/item/ego_weapon/dream_devouring
+	name = "dream-devouring"
+	desc = "I am the only one who moves in these waves. ... Shatter."
+	special = "This weapon has a combo system ending with a dive attack. To turn off this combo system, use in hand. \
+			This weapon has a fast attack speed"
+	icon_state = "dream_devouring"
+	force = 18
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("stabs", "attacks", "slashes")
+	attack_verb_simple = list("stab", "attack", "slash")
+	hitsound = 'sound/weapons/ego/rapier1.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/combo = 0
+	var/combo_time
+	var/combo_wait = 10
+	var/combo_on = TRUE
+	var/can_attack = TRUE
+
+/obj/item/ego_weapon/dream_devouring/attack_self(mob/user)
+	..()
+	if(combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will no longer perform a dive finisher.</span>")
+		combo_on = FALSE
+		return
+	if(!combo_on)
+		to_chat(user,"<span class='warning'>You swap your grip, and will now perform a dive finisher.</span>")
+		combo_on =TRUE
+		return
+
+/obj/item/ego_weapon/dream_devouring/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user)|| !can_attack)
+		return
+	if(!combo_on)
+		force = 40
+		user.changeNext_move(CLICK_CD_MELEE * 0.7)
+	if(combo_on)
+		if(world.time > combo_time)	//or you can turn if off I guess
+			combo = 0
+		combo_time = world.time + combo_wait
+		if(combo== 6)
+			combo = 0
+			user.changeNext_move(CLICK_CD_MELEE * 8)
+			force *= 3	// Should actually keep up with normal damage.
+			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
+		else
+			user.changeNext_move(CLICK_CD_MELEE * 0.4)
+	..()
+	combo += 1
+	if(combo_on)
+		force = initial(force)
+
+/obj/item/ego_weapon/dream_devouring/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(!CanUseEgo(user)|| !can_attack)
+		return
+	if(!isliving(A))
+		return
+	if(!combo_on)
+		return
+	..()
+	if(combo == 6)
+		can_attack = FALSE
+		addtimer(CALLBACK(src, .proc/DiveReset), 5)
+		if(do_after(user, 5, src))
+			playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
+			animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+			user.pixel_z = -16
+			sleep(0.5 SECONDS)
+			for(var/i in 2 to get_dist(user, A))
+				step_towards(user,A)
+			if((get_dist(user, A) < 2))
+				JumpAttack(A,user)
+			playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
+			to_chat(user, "<span class='warning'>You dive towards [A]!</span>")
+			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+			user.pixel_z = 0
+
+/obj/item/ego_weapon/dream_devouring/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
+	A.attackby(src,user)
+	can_attack = FALSE
+	addtimer(CALLBACK(src, .proc/DiveReset), 20)
+	for(var/turf/open/T in range(1, user))
+		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+		smonk.color = COLOR_TEAL
+	for(var/mob/living/L in livinginrange(1, user))
+		if(L.z != user.z) // Not on our level
+			continue
+		var/aoe = 60
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=justicemod
+		aoe*=force_multiplier
+		if(L == user || ishuman(L))
+			continue
+		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+
+/obj/item/ego_weapon/dream_devouring/proc/DiveReset()
+	can_attack = TRUE

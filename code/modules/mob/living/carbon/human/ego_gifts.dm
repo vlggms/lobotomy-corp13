@@ -1190,6 +1190,13 @@
 	fortitude_bonus = 5
 	slot = MOUTH_2
 
+/datum/ego_gifts/blind_obsession
+	name = "Blind Obsession"
+	icon_state = "slitcurrent"
+	temperance_bonus = -5
+	justice_bonus = 12
+	slot = HAT
+
 /// All ALEPH EGO Gifts
 /datum/ego_gifts/paradise
 	name = "Paradise Lost"
