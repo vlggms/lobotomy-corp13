@@ -44,17 +44,19 @@
 		/datum/ego_datum/weapon/blind_obsession,
 		/datum/ego_datum/armor/blind_obsession
 		)
-	gift_type = /datum/ego_gifts/ecstasy
+	gift_type = /datum/ego_gifts/blind_obsession
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	var/stunned = FALSE
-	//stuff relating to the dive attack
+	//Stuff relating to the dive attack
 	var/diving = FALSE
 	var/dive_cooldown
 	var/dive_cooldown_time = 15 SECONDS
 	var/dive_damage = 100
 	var/flotsam = FALSE
-	var/tube_spawn_amount = 6//The amount of flotsams that should spawn in the hallways when it breaches
+	//The amount of flotsams that should spawn in the hallways when it breaches
+	var/tube_spawn_amount = 6
+	//Stuff relating to the facility wide oxygen damage
 	var/oxy_cooldown
 	var/oxy_cooldown_time = 5 SECONDS
 
@@ -142,11 +144,12 @@
 		for(var/turf/T in view(2, src))
 			new /obj/effect/temp_visual/cleave(get_turf(T))
 			for(var/mob/living/simple_animal/hostile/flotsam/L in T)
-				//icon_state = icon_living
-				stunned = TRUE
-				src.adjustBruteLoss(1500)
-				L.adjustBruteLoss(1500)
-				visible_message(span_boldwarning("[src] mauls the Flotsam taking heavy damage!"))
+				if(!L.stat == DEAD)
+					//icon_state = icon_living
+					stunned = TRUE
+					src.adjustBruteLoss(1500)
+					L.adjustBruteLoss(1500)
+					visible_message(span_boldwarning("[src] mauls the Flotsam taking heavy damage!"))
 			for(var/mob/living/L in T)
 				if(faction_check_mob(L))
 					continue
@@ -154,7 +157,7 @@
 				to_chat(L, span_userdanger("[src] mauls you!"))
 				playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
 				L.apply_damage(dive_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				if(L.health < 0)
+				if(L.health < 0 || L.stat == DEAD)
 					L.gib()
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		diving = FALSE
@@ -211,9 +214,10 @@
 	health = 1500
 	maxHealth = 1500
 	obj_damage = 50
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.4)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	speed = 5
 	density = TRUE
+	faction = list("neutral")//pretty sure Slitcurrent attack them in Limbus,
 	var/mob/living/simple_animal/hostile/abnormality/slitcurrent/abno_spawner
 
 /mob/living/simple_animal/hostile/flotsam/Life()
@@ -228,12 +232,14 @@
 
 /mob/living/simple_animal/hostile/flotsam/attackby(obj/item/W, mob/user, params)
 	. = ..()
-	Refill(user)
+	if(!src.stat == DEAD)
+		Refill(user)
 
 
 /mob/living/simple_animal/hostile/flotsam/bullet_act(obj/projectile/P)
 	. = ..()
-	Refill(P.firer)
+	if(!src.stat == DEAD)
+		Refill(P.firer)
 
 
 /mob/living/simple_animal/hostile/flotsam/proc/Refill(mob/living/attacker)

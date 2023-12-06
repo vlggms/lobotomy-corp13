@@ -1187,7 +1187,7 @@
 /datum/ego_gifts/blind_obsession
 	name = "Blind Obsession"
 	icon_state = "slitcurrent"
-	temperance_bonus = -5
+	temperance_bonus = -5//People are going to hate this.
 	justice_bonus = 12
 	slot = HAT
 
