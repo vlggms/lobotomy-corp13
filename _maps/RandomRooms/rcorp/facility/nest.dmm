@@ -60,7 +60,7 @@
 /turf/open/floor/plating,
 /area/city/outskirts)
 "bA" = (
-/obj/structure/toolabnormality/touch,
+/obj/effect/landmark/objectivespawn,
 /turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
 "bF" = (
@@ -252,6 +252,11 @@
 "eL" = (
 /obj/structure/flora/tree/jungle/small,
 /turf/open/floor/plating/grass,
+/area/city/outskirts)
+"eO" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
 "eP" = (
 /obj/effect/turf_decal/siding/yellow{
@@ -1813,6 +1818,11 @@
 	},
 /turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
+"Jl" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
 "Jn" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -1974,6 +1984,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
+"MG" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
 "MV" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plating,
@@ -1996,6 +2011,12 @@
 	icon_state = "hoodtop"
 	},
 /turf/open/floor/plating/ashplanet,
+/area/city/outskirts)
+"Nf" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
 "Nj" = (
 /obj/machinery/smartfridge/chemistry,
@@ -2378,6 +2399,10 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/plating/grass,
 /area/city/outskirts)
+"TY" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
 "Uk" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate,
@@ -2633,6 +2658,11 @@
 /area/city/outskirts)
 "YL" = (
 /turf/open/floor/stone,
+/area/city/outskirts)
+"YN" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/mineral/plastitanium,
 /area/city/outskirts)
 "YS" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
@@ -3863,14 +3893,14 @@ rn
 XF
 eU
 Lo
-Lo
-Lo
+Nf
+Jl
 Lo
 cA
+ux
 Lo
 Lo
-Lo
-Lo
+eO
 eU
 XF
 rn
@@ -4191,7 +4221,7 @@ eU
 Lo
 Lo
 Lo
-ux
+Lo
 Lo
 Lo
 Lo
@@ -4516,10 +4546,10 @@ XF
 eU
 Lo
 Lo
-Lo
-Lo
-Lo
-Lo
+MG
+TY
+TY
+TY
 Lo
 Lo
 gE
@@ -4846,7 +4876,7 @@ Lo
 Lo
 cA
 Lo
-Lo
+YN
 Lo
 Lo
 eU
