@@ -510,9 +510,10 @@
 //Dream-Devouring Slitcurrent
 /obj/item/paper/fluff/info/waw/slitcurrent
 	abno_type = /mob/living/simple_animal/hostile/abnormality/slitcurrent
-	abno_code = "T-02-71-1"
+	abno_code = "T-02-178"
 	abno_info = list(
 		"When an employee with Fortitude Level 2 or lower finished their work, the Qliphoth Counter lowered.",
+		"While working, Jimbo noticed he was losing oxygen during the work.",
 		"Upon breaching the facility becomes flooded until Dream-Devouring Slitcurrent was recontained causing everyone there to take oxygen damage.",
 		"Upon breaching also Flotsams spawn throughtout the facility.",
 		"When Lucas damaged the Flotsams or Dream-Devouring Slitcurrent all or some of his oxygen was replenished.",
