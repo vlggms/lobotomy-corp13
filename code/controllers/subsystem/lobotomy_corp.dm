@@ -100,7 +100,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OrdealDeathCheck)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
 	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
 	addtimer(CALLBACK(src, .proc/PickPotentialSuppressions), 60 SECONDS)
@@ -371,11 +371,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER
 	if(!(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")))
-		return
+		return FALSE
 	if(!ishuman(died))
-		return
+		return FALSE
 	if(OrdealDeathCheck() && !auto_restart_in_progress)
 		OrdealDeathAutoRestart()
+	return TRUE
 
 /// Restarts the round when time reaches 0
 /datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathAutoRestart(time = 120 SECONDS)
@@ -383,11 +384,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(!OrdealDeathCheck())
 		// Yay
 		auto_restart_in_progress = FALSE
-		return
+		return FALSE
 	if(time <= 0)
 		message_admins("The round is over because all agents are dead while ordeals are unresolved!")
 		to_chat(world, span_danger("<b>The round is over because all agents are dead while ordeals are unresolved!</b>"))
 		SSticker.force_ending = TRUE
-		return
+		return TRUE
 	to_chat(world, span_danger("<b>All agents are dead! If ordeals are left unresolved or new agents don't join, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
 	addtimer(CALLBACK(src, .proc/OrdealDeathAutoRestart, max(0, time - 30 SECONDS)), 30 SECONDS)
+	return TRUE
