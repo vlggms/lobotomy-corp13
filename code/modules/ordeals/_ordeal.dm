@@ -6,7 +6,7 @@
 	/// Added meltdown delay. The higher it is - the longer it'll take for the ordeal to occur. If null - uses level.
 	var/delay = null
 	/// If TRUE - delay will always be adjusted by random number(1-2).
-	var/random_delay = TRUE
+	var/random_delay = FALSE
 	/// Announcement text. Self-explanatory
 	var/annonce_text = "Oh my god we're going to die!"
 	/// Sound to play on announcement, if any
@@ -27,7 +27,7 @@
 /datum/ordeal/New()
 	..()
 	if(delay == null)
-		delay = level * 2
+		delay = min(6, level * 2)
 
 // Runs the event itself
 /datum/ordeal/proc/Run()

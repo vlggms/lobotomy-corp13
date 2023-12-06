@@ -95,8 +95,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	/// Points used for facility upgrades
 	var/lob_points = 2
 
+	/// If TRUE - will not count deaths for auto restart
+	var/auto_restart_in_progress = FALSE
+
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OrdealDeathCheck)
 	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
 	addtimer(CALLBACK(src, .proc/PickPotentialSuppressions), 60 SECONDS)
@@ -353,3 +357,35 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		A.audible_message("<span class='notice'>[round(amount, 0.1)] LOB point[amount > 1 ? "s" : ""] deposited! Reason: [message].</span>")
 		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
 		A.updateUsrDialog()
+
+/// Checks if all agents are dead with ordeals running. Used for procs below.
+/datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathCheck()
+	SIGNAL_HANDLER
+	if(!LAZYLEN(current_ordeals))
+		return FALSE
+	var/agent_count = AvailableAgentCount()
+	if(agent_count > 0)
+		return FALSE
+	return TRUE
+
+/datum/controller/subsystem/lobotomy_corp/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
+	SIGNAL_HANDLER
+	if(!ishuman(died))
+		return
+	if(OrdealDeathCheck() && !auto_restart_in_progress)
+		OrdealDeathAutoRestart()
+
+/// Restarts the round when time reaches 0
+/datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathAutoRestart(time = 120 SECONDS)
+	auto_restart_in_progress = TRUE
+	if(!OrdealDeathCheck())
+		// Yay
+		auto_restart_in_progress = FALSE
+		return
+	if(time <= 0)
+		message_admins("The round is over because all agents are dead while ordeals are unresolved!")
+		to_chat(world, span_danger("<b>The round is over because all agents are dead while ordeals are unresolved!</b>"))
+		SSticker.force_ending = TRUE
+		return
+	to_chat(world, span_danger("<b>All agents are dead! If ordeals are left unresolved or new agents don't join, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
+	addtimer(CALLBACK(src, .proc/OrdealDeathAutoRestart, max(0, time - 30 SECONDS)), 30 SECONDS)

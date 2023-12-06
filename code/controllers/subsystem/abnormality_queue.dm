@@ -40,27 +40,24 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
 	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 4) * 6) SECONDS
-	// HE enabled, ZAYIN disabled
-	if(spawned_abnos > rooms_start * 0.2 && spawned_abnos <= rooms_start * 0.6)
-		if(ZAYIN_LEVEL in available_levels)
-			available_levels -= ZAYIN_LEVEL
-		available_levels |= HE_LEVEL
-	// WAW enabled, TETH disabled
-	if(spawned_abnos > rooms_start * 0.4 && spawned_abnos <= rooms_start * 0.9)
-		if(TETH_LEVEL in available_levels)
-			available_levels -= TETH_LEVEL
-		available_levels |= WAW_LEVEL
-	// ALEPH enabled, HE disabled
-	if(spawned_abnos > rooms_start * 0.6)
-		if(HE_LEVEL in available_levels)
-			available_levels -= HE_LEVEL
-		available_levels |= ALEPH_LEVEL
-	// WAW disabled; Pick an ALEPH, weakling
-	if(spawned_abnos > rooms_start * 0.9)
-		if(LAZYLEN(possible_abnormalities[ALEPH_LEVEL]) && (WAW_LEVEL in available_levels))
-			available_levels -= WAW_LEVEL
+	// ALEPH enabled, WAW disabled
+	if(spawned_abnos > rooms_start * 0.8)
+		if(LAZYLEN(possible_abnormalities[ALEPH_LEVEL]))
+			available_levels = list(ALEPH_LEVEL)
 		else // If we ran out of ALEPHs, somehow
-			available_levels |= WAW_LEVEL
+			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
+
+	// WAW enabled, HE disabled
+	else if(spawned_abnos > rooms_start * 0.5)
+		available_levels = list(WAW_LEVEL)
+
+	// HE enabled, TETH disabled
+	else if(spawned_abnos > rooms_start * 0.25)
+		available_levels = list(HE_LEVEL)
+
+	// TETH enabled, ZAYIN disabled
+	else if(spawned_abnos > rooms_start * 0.1)
+		available_levels = list(TETH_LEVEL)
 
 	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
 		pick_abno()
@@ -88,8 +85,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 			Q.updateUsrDialog()
 		queued_abnormality = null
-		if(spawned_abnos == 0)
-			available_levels = list(ZAYIN_LEVEL, TETH_LEVEL)
 		spawned_abnos++
 		pick_abno()
 
