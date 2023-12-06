@@ -1044,25 +1044,10 @@
 /datum/ego_gifts/discord
 	name = "Discord"
 	icon_state = "discord"
-	desc = "Provides the user with 4% resistance to all damage sources."//meant to be its 8% chance reflect to damage in base Lc but cut in half. since it doesnt give any stats but rather shuffles them think it give 4% damage reduction might be fine.
-	fortitude_bonus = -10
-	prudence_bonus = -10
+	fortitude_bonus = -7
+	prudence_bonus = -7
 	justice_bonus = 20
 	slot = HELMET
-
-/datum/ego_gifts/discord/Initialize(mob/living/carbon/human/user)
-	.=..()
-	user.physiology.red_mod *= 0.96
-	user.physiology.white_mod *= 0.96
-	user.physiology.black_mod *= 0.96
-	user.physiology.pale_mod *= 0.96
-
-/datum/ego_gifts/discord/Remove(mob/living/carbon/human/user)
-	user.physiology.red_mod /= 0.96
-	user.physiology.white_mod /= 0.96
-	user.physiology.black_mod /= 0.96
-	user.physiology.pale_mod /= 0.96
-	.=..()
 
 /datum/ego_gifts/diffraction
 	name = "Diffraction"
