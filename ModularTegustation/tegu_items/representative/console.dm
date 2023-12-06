@@ -186,9 +186,8 @@
 			CustomizeOffice(/obj/structure/sign/departments/r_corp, /obj/structure/pe_sales/r_corp)
 			order_list = list(
 				new /datum/data/extraction_cargo("R Corp Mercenary Outfit", /obj/item/clothing/under/suit/lobotomy/rabbit, 100, R_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("R Corp Ordeal Detector", /obj/item/powered_gadget/detector_gadget/ordeal, 500, R_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("R Corp Rush Dagger", /obj/item/ego_weapon/city/rabbit_rush, 700, R_CORP_REP) = 1,
-				new /datum/data/extraction_cargo("R Corp Lawnmower 2000", /obj/item/gun/energy/e_gun/rabbitdash, 700, R_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("R Corp Ordeal Detector", /obj/item/powered_gadget/detector_gadget/ordeal, 400, R_CORP_REP) = 1,
+				new /datum/data/extraction_cargo("R Corp Lawnmower 2000", /obj/item/gun/energy/e_gun/rabbitdash, 500, R_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("R Corp Officer Outfit", /obj/item/clothing/under/suit/lobotomy/rabbit, 100, R_CORP_REP) = 1,
 				)
 

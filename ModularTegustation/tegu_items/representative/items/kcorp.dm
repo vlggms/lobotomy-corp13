@@ -15,7 +15,7 @@
 
 /obj/item/krevive
 	name = "k-corp nanomachine ampule"
-	desc = "A syringe of kcorp healing nanobots."
+	desc = "A syringe of kcorp healing nanobots. This one revives any fallen bodies."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "kcorp_syringe2"
 	slot_flags = ITEM_SLOT_POCKETS
@@ -37,9 +37,32 @@
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 
+// This injector isnt in K-corp research anymore. Only used in R-corp
 /obj/item/kcrit/attack_self(mob/living/user)
 	..()
 	to_chat(user, span_notice("You inject the syringe and instantly feel better."))
 	user.hardcrit_threshold+=30
 	user.crit_threshold+=30
 	qdel(src)
+
+/obj/item/khpboost
+	name = "k-corp health booster"
+	desc = "A syringe of experimental kcorp nanobots. Increases your Max Health."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "kcorp_syringe3"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/khpboost/attack_self(mob/living/carbon/human/user)
+	..()
+	to_chat(user, span_notice("You inject the syringe and instantly feel stronger."))
+	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 20)
+	qdel(src)
+
+// For Asset Reclimation
+/obj/item/grenade/spawnergrenade/kcorpdrone
+	name = "K-Corp Drone Assmebly Grenade"
+	desc = "A quick and easy method of storing K-Corp drones for combat situations. It keeps its orignal programing, hopefully you're a part of K-Corp."
+	icon_state = "delivery"
+	spawner_type = /mob/living/simple_animal/hostile/kcorp/drone
+	deliveryamt = 3
