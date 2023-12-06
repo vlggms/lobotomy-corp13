@@ -543,8 +543,8 @@
 /datum/ego_gifts/magicbullet
 	name = "Magic Bullet"
 	icon_state = "magicbullet"
-	fortitude_bonus = -5
-	prudence_bonus = -5
+	fortitude_bonus = -3
+	prudence_bonus = -3
 	justice_bonus = 10
 	slot = MOUTH_2
 
@@ -1044,10 +1044,25 @@
 /datum/ego_gifts/discord
 	name = "Discord"
 	icon_state = "discord"
+	desc = "Provides the user with 4% resistance to all damage sources."//meant to be its 8% chance reflect to damage in base Lc but cut in half. since it doesnt give any stats but rather shuffles them think it give 4% damage reduction might be fine.
 	fortitude_bonus = -10
 	prudence_bonus = -10
 	justice_bonus = 20
 	slot = HELMET
+
+/datum/ego_gifts/discord/Initialize(mob/living/carbon/human/user)
+	.=..()
+	user.physiology.red_mod *= 0.96
+	user.physiology.white_mod *= 0.96
+	user.physiology.black_mod *= 0.96
+	user.physiology.pale_mod *= 0.96
+
+/datum/ego_gifts/discord/Remove(mob/living/carbon/human/user)
+	user.physiology.red_mod /= 0.96
+	user.physiology.white_mod /= 0.96
+	user.physiology.black_mod /= 0.96
+	user.physiology.pale_mod /= 0.96
+	.=..()
 
 /datum/ego_gifts/diffraction
 	name = "Diffraction"
@@ -1179,8 +1194,8 @@
 /datum/ego_gifts/swan
 	name = "Black Swan"
 	icon_state = "swan"
-	fortitude_bonus = -4
-	prudence_bonus = -4
+	fortitude_bonus = -2
+	prudence_bonus = -2
 	temperance_bonus = 10
 	slot = HAT
 
@@ -1202,7 +1217,7 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	temperance_bonus = 4
+	temperance_bonus = 10
 	slot = EYE
 
 /datum/ego_gifts/mimicry
@@ -1223,7 +1238,7 @@
 	icon_state = "amogus"
 	fortitude_bonus = -5
 	prudence_bonus = -5
-	justice_bonus = 15
+	justice_bonus = 20
 	slot = EYE
 
 /datum/ego_gifts/adoration
@@ -1312,10 +1327,10 @@
 /datum/ego_gifts/distortion
 	name = "Distortion"
 	icon_state = "distortion"
-	fortitude_bonus = 3
-	prudence_bonus = 3
-	temperance_bonus = 2
-	justice_bonus = 2
+	fortitude_bonus = 9
+	prudence_bonus = 9
+	temperance_bonus = 6
+	justice_bonus = 6
 	slot = BROOCH
 
 /datum/ego_gifts/mockery
