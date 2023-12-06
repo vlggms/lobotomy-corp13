@@ -52,11 +52,11 @@ SUBSYSTEM_DEF(abnormality_queue)
 		available_levels = list(WAW_LEVEL)
 
 	// HE enabled, TETH disabled
-	else if(spawned_abnos >= rooms_start * 0.25)
+	else if(spawned_abnos >= rooms_start * 0.22)
 		available_levels = list(HE_LEVEL)
 
 	// TETH enabled, ZAYIN disabled
-	else if(spawned_abnos >= rooms_start * 0.1)
+	else if(spawned_abnos >= rooms_start * 0.07) // 2 ZAYINs normally
 		available_levels = list(TETH_LEVEL)
 
 	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
