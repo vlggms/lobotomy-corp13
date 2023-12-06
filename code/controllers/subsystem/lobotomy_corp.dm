@@ -1,3 +1,4 @@
+// Meltdown types
 #define MELTDOWN_NORMAL 1
 #define MELTDOWN_GRAY 2
 #define MELTDOWN_GOLD 3
@@ -54,6 +55,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/list/current_ordeals = list()
 	// Currently running core suppression
 	var/datum/suppression/core_suppression = null
+	// List of active core suppressions; Different from above, as there can only be one "main" core
+	var/list/active_core_suppressions = list()
 	// List of available core suppressions for manager to choose
 	var/list/available_core_suppressions = list()
 	// State of the core suppression
@@ -62,6 +65,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	var/list/work_logs = list()
 	// Work logs, but from agent perspective. Used mainly for round-end report
 	var/list/work_stats = list()
+	// List of facility upgrade datums
+	var/list/upgrades = list()
 
 	// PE available to be spent
 	var/available_box = 0
@@ -86,13 +91,17 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	/// Amount of abnormalities that agents achieved full understanding on
 	var/understood_abnos = 0
 	/// The amount of core suppression options that will be available
-	var/max_core_options = 2
+	var/max_core_options = 3
+	/// Points used for facility upgrades
+	var/lob_points = 2
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
 	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
 	addtimer(CALLBACK(src, .proc/PickPotentialSuppressions), 60 SECONDS)
+	for(var/F in subtypesof(/datum/facility_upgrade))
+		upgrades += new F
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = GLOB.clients.len * 0.15
@@ -126,6 +135,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			continue
 		if(extra_core && !initial(C.after_midnight))
 			cores -= core_type
+			continue
+		// Create to see if it meets requirements and becomes available
+		C = new core_type()
+		if(!C.available)
+			cores -= core_type
+		qdel(C)
 	for(var/i = 1 to max_core_options)
 		if(!LAZYLEN(cores))
 			break
@@ -159,6 +174,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
 		A.audible_message("<span class='userdanger'>Core Suppression options have been disabled for this shift!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
+		A.selected_core_type = null
 		A.updateUsrDialog()
 	available_core_suppressions = list()
 	if(announce)
@@ -200,6 +216,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(goal_reached || box_goal == 0)
 		return
 	if(available_box + goal_boxes >= box_goal)
+		AddLobPoints(4, "Quota Reward")
 		available_box -= box_goal - goal_boxes // Leftover is drained
 		goal_reached = TRUE
 		priority_announce("The energy production goal has been reached.", "Energy Production", sound='sound/misc/notice2.ogg')
@@ -233,10 +250,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	var/player_count = 0
-	for(var/mob/player in GLOB.player_list)
-		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))
-			player_count += 1
+	var/player_count = AvailableAgentCount()
 	qliphoth_max = (player_count > 1 ? 4 : 3) + round(player_count * 0.8) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
@@ -255,14 +269,16 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	if(ran_ordeal)
 		return
 	InitiateMeltdown(qliphoth_meltdown_amount, FALSE)
-	qliphoth_meltdown_amount = max(1, round(abno_amount * CONFIG_GET(number/qliphoth_meltdown_percent)))
+	// Less agents will decrease meltdown count, but more - increase it
+	var/agent_mod = 0.4 + (player_count * 0.1)
+	qliphoth_meltdown_amount = clamp(round(abno_amount * CONFIG_GET(number/qliphoth_meltdown_percent) * agent_mod), 1, abno_amount * 0.5)
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitiateMeltdown(meltdown_amount = 1, forced = TRUE, type = MELTDOWN_NORMAL, min_time = 60, max_time = 90, alert_text = "Qliphoth meltdown occured in containment zones of the following abnormalities:", alert_sound = 'sound/effects/meltdownAlert.ogg')
 	// Honestly, I wish I could do it another way, but oh well
-	if(istype(core_suppression, /datum/suppression/command))
+	var/datum/suppression/command/C = GetCoreSuppression(/datum/suppression/command)
+	if(istype(C))
 		// All abno levels melt
 		forced = TRUE
-		var/datum/suppression/command/C = core_suppression
 		meltdown_amount += C.meltdown_count_increase
 		min_time = round(min_time * C.meltdown_time_multiplier)
 		max_time = round(max_time * C.meltdown_time_multiplier)
@@ -328,3 +344,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	next_ordeal = null
 	RollOrdeal()
 	return TRUE // Very sloppy, but will do for now
+
+/// Adds LOB points and notifies players via aux consoles
+/datum/controller/subsystem/lobotomy_corp/proc/AddLobPoints(amount = 1, message = "UNKNOWN")
+	lob_points += amount
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+		A.audible_message("<span class='notice'>[round(amount, 0.1)] LOB point[amount > 1 ? "s" : ""] deposited! Reason: [message].</span>")
+		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
+		A.updateUsrDialog()

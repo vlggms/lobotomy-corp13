@@ -45,6 +45,7 @@
 
 /datum/status_effect/interventionshield/on_apply()
 	. = ..()
+	shieldhealth = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH)
 	owner.add_overlay(statuseffectvisual)
 	owner.visible_message(span_notice("[owner]s shield activates!"))
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnApplyDamage) //stolen from caluan
