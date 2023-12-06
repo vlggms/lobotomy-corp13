@@ -67,12 +67,12 @@
 	var/max_commands = 5
 	//Command Types that can be deployed. Listed in order of commandtype.
 	var/list/commandtypes = list(
-		/obj/effect/temp_visual/HoloCommand/commandMove,
-		/obj/effect/temp_visual/HoloCommand/commandWarn,
-		/obj/effect/temp_visual/HoloCommand/commandGaurd,
-		/obj/effect/temp_visual/HoloCommand/commandHeal,
-		/obj/effect/temp_visual/HoloCommand/commandFightA,
-		/obj/effect/temp_visual/HoloCommand/commandFightB
+		/obj/effect/temp_visual/holo_command/command_move,
+		/obj/effect/temp_visual/holo_command/command_warn,
+		/obj/effect/temp_visual/holo_command/command_guard,
+		/obj/effect/temp_visual/holo_command/command_heal,
+		/obj/effect/temp_visual/holo_command/command_fight_a,
+		/obj/effect/temp_visual/holo_command/command_fight_b,
 		)
 
 /obj/item/commandprojector/attack_self(mob/user)
@@ -104,7 +104,7 @@
 /obj/item/commandprojector/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
 	if(cooldown <= world.time)
-		for(var/obj/effect/temp_visual/HoloCommand/V in get_turf(target))
+		for(var/obj/effect/temp_visual/holo_command/V in get_turf(target))
 			qdel(V)
 			return
 		if(current_commands >= max_commands)

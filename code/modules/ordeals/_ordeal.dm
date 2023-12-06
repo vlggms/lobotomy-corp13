@@ -49,6 +49,7 @@
 	priority_announce("The ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
+	SSlobotomy_corp.AddLobPoints(level * 0.5, "Ordeal Reward")
 	if(end_sound)
 		for(var/mob/M in GLOB.player_list)
 			if(M.client)
@@ -59,14 +60,14 @@
 		if(!H.client || !H.ckey)
 			continue
 		SSpersistence.agent_rep_change[H.ckey] += level
-	/// If it was a midnight and we got to it before time limit after previously completing a core suppression
-	if(level == 4 && SSlobotomy_corp.core_suppression_state == 2 && \
-	start_time <= CONFIG_GET(number/suppression_time_limit))
+	/// If it was a midnight and we got to it before time limit
+	if(level == 4 && start_time <= CONFIG_GET(number/suppression_time_limit))
 		// Extra cores, and announced!
 		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions, TRUE, TRUE), 15 SECONDS)
 	/// If it was a dusk - we end running core suppression
 	else if(level == 3 && istype(SSlobotomy_corp.core_suppression))
 		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ORDEAL_END, src)
 	qdel(src)
 	return
 

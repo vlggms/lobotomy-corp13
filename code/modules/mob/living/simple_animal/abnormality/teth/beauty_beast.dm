@@ -32,6 +32,7 @@
 
 //it needs to use PostSpawn or we can't get the datum of beauty
 /mob/living/simple_animal/hostile/abnormality/beauty/PostSpawn()
+	. = ..()
 	var/cursed = RememberVar(1)
 	if(!cursed)
 		return
