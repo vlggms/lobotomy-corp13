@@ -183,6 +183,65 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 
 
 
+
+		if("shrimp")
+			spawntype = mob/living/simple_animal/hostile/shrimp_rifleman
+			switch(GLOB.combat_counter)
+
+				//10% Remnant / 90% Corporal
+				if(1 to 3)
+					if(prob(10))
+						spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+				if(4 to 7)
+					switch(rand(1, 100))
+						if(50 to 55)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(55 to 100)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+				if(8 to 11)
+					switch(rand(1, 100))
+						if(45 to 65)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(65 to 100)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+
+				if(11 to 13)
+					switch(rand(1, 100))
+						if(45 to 55)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(55 to 75)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
+						if(75 to 100)
+							spawntype = mob/living/simple_animal/hostile/shrimp_rifleman
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+
+
+
+				if(14 to INFINITY)
+					switch(rand(1, 100))
+						if(35 to 55)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(55 to 90)
+							spawntype = mob/living/simple_animal/hostile/shrimp_rifleman
+						if(90 to 100)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
 	var/mob/living/simple_animal/hostile/H = new spawntype(get_turf(src))
 	H.can_patrol = TRUE
 	H.patrol_cooldown_time = 10 SECONDS

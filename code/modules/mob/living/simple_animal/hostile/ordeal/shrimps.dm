@@ -38,6 +38,7 @@ mob/living/simple_animal/hostile/shrimp_rifleman
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 20
+	move_to_delay = 4
 	melee_damage_upper = 24
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
