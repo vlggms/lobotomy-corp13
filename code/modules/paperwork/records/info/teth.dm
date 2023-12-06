@@ -346,7 +346,7 @@
 
 //Brazen Bull
 /obj/item/paper/fluff/info/teth/Brazen_Bull
-	abno_type = /mob/living/simple_animal/hostile/abnormality/Brazen_Bull
+	abno_type = /mob/living/simple_animal/hostile/abnormality/brazen_bull
 	abno_code = "M-01-117"
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",

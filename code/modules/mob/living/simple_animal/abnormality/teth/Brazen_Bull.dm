@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull
+/mob/living/simple_animal/hostile/abnormality/brazen_bull
 	name = "Brazen Bull"
 	desc = "A bull made of an copper and zinc alloy with someone trapped inside it"
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
@@ -6,13 +6,13 @@
 	pixel_x = -15
 	base_pixel_x = -15
 	icon_living = "Bull"
-	maxHealth = 700
-	health = 700
+	maxHealth = 800
+	health = 800
 	vision_range = 11
 	aggro_vision_range = 17
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
-	melee_damage_lower = 2
-	melee_damage_upper = 6
+	melee_damage_lower = 6
+	melee_damage_upper = 12
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 2
 	stat_attack = HARD_CRIT
@@ -44,14 +44,14 @@
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(60))
 		datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/Life()
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/Life()
 	. = ..()
 	if(!.)
 		return FALSE
@@ -59,7 +59,7 @@
 		if(!busy)
 			charge_check()
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/proc/charge_check()
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/proc/charge_check()
 	var/mob/living/carbon/human/target
 	if(busy)
 		return
@@ -76,7 +76,7 @@
 	return
 
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/proc/charge(move_dir, times_ran, target)
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/proc/charge(move_dir, times_ran, target)
 	setDir(move_dir)
 	var/stop_charge = FALSE
 	if(times_ran >= dash_num)
@@ -96,9 +96,6 @@
 	for(var/mob/living/simple_animal/hostile/abnormality/D in T.contents)
 		if(D.density)
 			stop_charge = TRUE
-	for(var/mob/living/carbon/human/D in T.contents)
-		if(D.density)
-			stop_charge = TRUE
 
 	if(stop_charge)
 		busy = TRUE
@@ -116,7 +113,7 @@
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
-				H.apply_damage(20, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				H.apply_damage(30, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			else
 				L.adjustRedLoss(10)
 			if(L.stat >= HARD_CRIT)
@@ -129,9 +126,9 @@
 		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
 	addtimer(CALLBACK(src, .proc/charge, move_dir, (times_ran + 1)), 2)
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/proc/endCharge()
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/proc/endCharge()
 	busy = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/Brazen_Bull/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/BreachEffect(mob/living/carbon/human/user)
 		..()
 		GiveTarget(user)
