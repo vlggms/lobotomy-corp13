@@ -27,7 +27,7 @@
 	maxHealth = 2000
 	health = 2000
 	move_to_delay = 4
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 
 	//work info
 	threat_level = WAW_LEVEL
@@ -334,7 +334,7 @@
 	health = 250//subject to change; they all die when thunderbird is suppressed
 	maxHealth = 250
 	obj_damage = 300
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 30

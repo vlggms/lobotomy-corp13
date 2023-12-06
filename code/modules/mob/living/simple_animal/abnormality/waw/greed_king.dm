@@ -12,7 +12,7 @@
 	ranged = TRUE
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "chomps"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	speak_emote = list("states")
 	vision_range = 14
 	aggro_vision_range = 20
@@ -44,6 +44,13 @@
 		)
 	gift_type =  /datum/ego_gifts/goldrush
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(

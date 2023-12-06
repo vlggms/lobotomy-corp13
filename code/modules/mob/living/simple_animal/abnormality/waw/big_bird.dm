@@ -49,6 +49,11 @@
 	gift_type =  /datum/ego_gifts/lamp
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3,
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3
+	)
+
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS
 	var/hypnosis_cooldown

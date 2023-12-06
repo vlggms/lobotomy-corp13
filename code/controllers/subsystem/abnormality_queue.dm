@@ -4,6 +4,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
+	init_order = INIT_ORDER_PERSISTENCE - 1 // Always after Persistence, as that's where we get our abno list from.
 	wait = 10 SECONDS
 
 	/// List of(preferably) 3 abnormalities available for manager to choose from.
@@ -29,13 +30,10 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/hardcore_roll_enabled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
-	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
-	for(var/i in all_abnos)
-		var/mob/living/simple_animal/hostile/abnormality/abno = i
-		if(initial(abno.can_spawn))
-			possible_abnormalities[initial(abno.threat_level)] += abno
 	if(LAZYLEN(possible_abnormalities))
 		pick_abno()
+	else
+		stack_trace("[src] initialized before Persistence subsystem!")
 	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
@@ -78,7 +76,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
 
 	if(istype(choice) && ispath(queued_abnormality))
-		addtimer(CALLBACK(choice, .obj/effect/spawner/abnormality_room/proc/SpawnRoom))
+		choice.SpawnRoom()
 
 	if(fucked_it_lets_rolled)
 		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
@@ -87,6 +85,8 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/postspawn()
 	if(queued_abnormality)
+		if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
+			stack_trace("Queued abnormality had no weight!?")
 		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
 		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
 			Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
@@ -108,7 +108,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	for(var/i = 1 to 3)
 		if(!LAZYLEN(picking_abno))
 			break
-		var/chosen_abno = pick(picking_abno)
+		var/chosen_abno = pickweight(picking_abno)
 		picking_abnormalities += chosen_abno
 		picking_abno -= chosen_abno
 	if(!LAZYLEN(picking_abnormalities))
@@ -144,4 +144,4 @@ SUBSYSTEM_DEF(abnormality_queue)
 			continue
 		picking_abno |= possible_abnormalities[level]
 
-	return pick(picking_abno)
+	return pickweight(picking_abno)

@@ -55,6 +55,7 @@
 /datum/outfit/job/representative/kcorprepresentative
 	name = "K Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/kcorp
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci
 
 /datum/outfit/job/representative/ncorprepresentative
 	name = "N Corp Representative"

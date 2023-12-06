@@ -18,7 +18,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	deathsound = 'sound/effects/ordeals/green/dawn_dead.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
@@ -121,7 +121,7 @@
 	projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
 	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/green_advanced = 1,
@@ -219,7 +219,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 3000
 	health = 3000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	silk_results = list(/obj/item/stack/sheet/silk/green_elegant = 1,
@@ -339,7 +339,7 @@
 	mob_biotypes = MOB_ROBOTIC
 	maxHealth = 50000
 	health = 50000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 22)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
 	deathsound = 'sound/effects/ordeals/green/midnight_dead.ogg'

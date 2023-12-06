@@ -10,7 +10,7 @@
 	health = 400
 	rapid_melee = 2
 	move_to_delay = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	melee_damage_lower = 5
 	melee_damage_upper = 5
 	is_flying_animal = TRUE

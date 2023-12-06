@@ -346,7 +346,7 @@
 
 //Servant of Wrath
 /obj/item/paper/fluff/info/waw/wrath
-	abno_type = /mob/living/simple_animal/hostile/abnormality/servant_wrath
+	abno_type = /mob/living/simple_animal/hostile/abnormality/wrath_servant
 	abno_code = "O-01-139"
 	abno_info = list(
 		"Whenever the work result was Good, the Servant of Wrath grew more unstable.",

@@ -25,16 +25,16 @@
 
 /obj/structure/pe_sales/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/rawpe) && !generating)
-		to_chat(user, "<span class='notice'>You need to refine this first!.</span>")
+		to_chat(user, span_notice("You need to refine this first!."))
 
 	else if(istype(I, /obj/item/refinedpe) && !generating)
 		generating = TRUE
-		to_chat(user, "<span class='notice'>You load PE into the machine.</span>")
+		to_chat(user, span_notice("You load PE into the machine."))
 		qdel(I)
 		counter()
 		add_overlay("full")
 	else if(generating)
-		to_chat(user, "<span class='notice'>This is already sending power!</span>")
+		to_chat(user, span_notice("This is already sending power!"))
 
 /obj/structure/pe_sales/proc/counter()
 	power_timer--
@@ -44,7 +44,7 @@
 	if(power_timer <= 0)
 		power_timer = initial(power_timer)
 		generating = FALSE
-		visible_message("<span class='notice'>Payment has arrived from [src]</span>")
+		visible_message(span_notice("Payment has arrived from [src]"))
 		cut_overlays()
 		var/obj/item/holochip/C = new (get_turf(src))
 		C.credits = rand(ahn_amount/4,ahn_amount)
@@ -105,7 +105,6 @@
 	desc = "A machine used to send PE to N-Corp."
 	icon_state = "machinen"
 	crate = /obj/structure/lootcrate/n_corp
-	crate_timer = 60
 
 /obj/structure/pe_sales/leaflet
 	name = "Leaflet Workshop Power Input"
@@ -130,7 +129,6 @@
 	desc = "A machine used to send PE to the rosespanner workshop"
 	icon_state = "machinerosespanner"
 	crate = /obj/structure/lootcrate/workshoprosespanner
-	crate_timer = 60
 
 /obj/structure/pe_sales/hana
 	name = "Hana Assocation Power Input"

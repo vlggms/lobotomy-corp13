@@ -35,6 +35,13 @@
 	deathmessage = "coalesces into a primordial egg."
 	deathsound = 'sound/abnormalities/fairy_longlegs/death.ogg'
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/fairy_gentleman = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/fairy_festival = 1.5,
+		// Fae Lantern = 1.5
+	)
+
 	var/finishing = FALSE //cant move/attack when it's TRUE
 	var/work_count = 0
 	var/raining = FALSE

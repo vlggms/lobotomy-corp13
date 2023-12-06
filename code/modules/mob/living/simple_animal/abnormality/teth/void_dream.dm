@@ -10,7 +10,7 @@
 	health = 600
 	rapid_melee = 2
 	move_to_delay = 6
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	patrol_cooldown_time = 5 SECONDS // Zooming around the place
 
 	attack_verb_continuous = "nuzzles"

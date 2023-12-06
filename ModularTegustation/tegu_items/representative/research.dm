@@ -71,8 +71,8 @@
 //-----GENERAL-----
 
 /datum/data/lc13research/ratknife
-	research_name = "Rat Equipment Stock "
-	research_desc = "Contribute some energy to request the clerks in charge of stocking <br>our equipment to buy a crate of knives."
+	research_name = "Rat Equipment Stock"
+	research_desc = "Contribute some energy to request the clerks in charge of stocking our equipment to buy a crate of knives."
 	cost = LOW_RESEARCH_PRICE
 	corp = ALL_REP_RESEARCH
 
