@@ -157,7 +157,7 @@
 		if(H.stat >= SOFT_CRIT)
 			continue
 		//Shamelessly fucking stolen from risk of rain's teddy bear. Maxes out at 20.
-		var/healamount = 20 * ((0.15*girlboss_level)/(0.15*girlboss_level + 1))
+		var/healamount = 20 * (TOUGHER_TIMES(girlboss_level))
 		H.adjustBruteLoss(-healamount)	//Healing for those around.
 		new /obj/effect/temp_visual/heal(get_turf(H), "#FF4444")
 
@@ -167,14 +167,14 @@
 	if(!ishuman(Proj.firer))
 		return
 	var/mob/living/carbon/human/H = Proj.firer
-	H.apply_damage(40*(0.15*girlboss_level/(0.15*girlboss_level + 1)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	H.apply_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 
 /mob/living/simple_animal/hostile/abnormality/eris/attacked_by(obj/item/I, mob/living/user)
 	..()
 	if(!user)
 		return
-	user.apply_damage(40*(0.15*girlboss_level/(0.15*girlboss_level + 1)), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	user.apply_damage(40*(TOUGHER_TIMES(girlboss_level)), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 
 //Okay, but here's the work effects
