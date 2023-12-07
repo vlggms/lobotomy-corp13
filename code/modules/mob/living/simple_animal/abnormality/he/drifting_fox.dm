@@ -8,7 +8,7 @@
 	icon_state = "drifting_fox"
 	icon_living = "drifting_fox"
 	icon_dead = "fox_egg"
-	deathmessage = "Collapses into a Glass Egg"
+	deathmessage = "Collapses into a glass egg"
 	deathsound = 'sound/abnormalities/driftingfox/fox_death_sound.ogg'
 	pixel_x = -24
 	pixel_y = -26
@@ -31,8 +31,8 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 30,
-		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_INSTINCT = 45,
+		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = list(25,30,35,40,45),
 		ABNORMALITY_WORK_REPRESSION	= 0,
 	)
@@ -45,17 +45,17 @@
 		/datum/ego_datum/armor/sunshower
 		)
 	gift_type = /datum/ego_gifts/sunshower
-	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs in thanks?"
+	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs as thanks?"
 
 	var/list/pet = list()
 	pet_bonus = "yips"
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/funpet(mob/petter)
-	pet+=petter
+	pet += petter
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	if(user in pet)
 		if(work_type == ABNORMALITY_WORK_ATTACHMENT)
-			chance+=30
+			chance += 30
 		return chance
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -119,7 +119,7 @@
 		if(L.stat == DEAD)
 			return FALSE
 	return ..()
-	//umbrella debuff stuff
+	//umbrella debuff stuff`
 /datum/status_effect/umbrella_black_debuff
 	id = "umbrella_black_debuff"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -128,24 +128,6 @@
 
 /datum/status_effect/umbrella_black_debuff/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod /= 1.3
-		return
-	var/mob/living/simple_animal/M = owner
-	if(M.damage_coeff[BLACK_DAMAGE] <= 0)
-		qdel(src)
-		return
-	M.damage_coeff[BLACK_DAMAGE] += 0.3
-
-/datum/status_effect/umbrella_black_debuff/on_remove()
-	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.black_mod *= 1.3
-		return
-	var/mob/living/simple_animal/M = owner
-	M.damage_coeff[BLACK_DAMAGE] -= 0.3
 
 /atom/movable/screen/alert/status_effect/umbrella_black_debuff
 	name = "False Kindness"
