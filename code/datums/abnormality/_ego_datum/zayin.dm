@@ -123,3 +123,11 @@
 /datum/ego_datum/armor/oceanic
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/oceanic
 	cost = 12
+//Bead Marker - Pinpoint
+/datum/ego_datum/weapon/pinpoint
+	item_path = /obj/item/gun/ego_gun/pistol/pinpoint
+	cost =12
+
+/datum/ego_datum/armor/pinpoint
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/pinpoint
+	cost = 12

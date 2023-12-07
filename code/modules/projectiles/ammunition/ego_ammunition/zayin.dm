@@ -37,3 +37,8 @@
 	name = "oceanic casing"
 	desc = "A oceanica casing."
 	projectile_type = /obj/projectile/ego_bullet/ego_oceanic
+
+/obj/item/ammo_casing/caseless/ego_pinpoint
+	name = "pinpoint casing"
+	desc = "No description. Fuck you."
+	projectile_type = /obj/projectile/beam/ego_pinpoint

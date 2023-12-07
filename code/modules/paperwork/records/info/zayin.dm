@@ -127,3 +127,9 @@
 		"After work was completed, the fireflies glowed brighter.",
 		"The fireflies increased healing of HP and SP as long as the employee stayed in the room.",
 		"While the fireflies were glowing, no other work could be completed on O-02-183.")
+//Bead Marker
+/obj/item/paper/fluff/info/zayin/bead_marker
+	abno_type = /mob/living/simple_animal/hostile/abnormality/bead_marker
+	abno_code = "D-04-451"
+	abno_info = list(
+		"When the work result was bad, the pointer fired a laser into the employee's eyes, temporarily hampering their vision.")

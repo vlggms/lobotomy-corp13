@@ -321,3 +321,14 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 
+/obj/item/gun/ego_gun/pistol/pinpoint
+	name = "pinpoint"
+	desc = "It always hits its mark."
+	special = "This weapon fires a hitscan beam. \nShooting an enemy marks them for death, raising their RED vulnerability."
+	icon_state = "pinpoint"
+	inhand_icon_state = "gun"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_pinpoint
+	fire_delay = 25
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70

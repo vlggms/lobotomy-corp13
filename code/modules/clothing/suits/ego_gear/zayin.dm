@@ -108,5 +108,12 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	icon_state = "oceanic"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/zayin/pinpoint
+	name = "pinpoint"
+	desc = "An uncomfortable metal 'suit' with a glowing red dot in the center."
+	icon_state = "pinpoint"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+
 
 

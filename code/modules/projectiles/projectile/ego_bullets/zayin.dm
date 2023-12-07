@@ -59,3 +59,25 @@
 	damage = 11		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
 
+/obj/projectile/beam/ego_pinpoint
+	name = "pinpoint"
+	icon_state = "omnilaser"
+	hitsound = null
+	damage = 5
+	damage_type = RED_DAMAGE
+	hitscan = TRUE
+	muzzle_type = /obj/effect/projectile/muzzle/laser/white
+	tracer_type = /obj/effect/projectile/tracer/laser/white
+	impact_type = /obj/effect/projectile/impact/laser/white
+	wound_bonus = -100
+	bare_wound_bonus = -100
+
+	//I couldn't get the laser to be red, so I settled for the white one Assonance uses instead. Feel free to fix this on the off-chance you care.
+
+/obj/projectile/beam/ego_pinpoint/on_hit(target)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/simple_animal/M = target
+		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_red))
+			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
+			M.apply_status_effect(/datum/status_effect/rend_red)

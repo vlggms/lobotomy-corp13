@@ -1376,3 +1376,9 @@
 	user.physiology.black_mod /= 0.95
 	user.physiology.pale_mod /= 0.95
 	.=..()
+
+/datum/ego_gifts/pinpoint
+	name = "Pinpoint"
+	icon_state = "pinpoint"
+	justice_bonus = 2
+	slot = FACE
