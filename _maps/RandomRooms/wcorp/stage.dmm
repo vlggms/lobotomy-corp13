@@ -1,0 +1,580 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"dV" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/item/chair/wood/wings{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/space)
+"eT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"fu" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood,
+/area/space)
+"fB" = (
+/obj/structure/stairs/east,
+/turf/open/floor/wood,
+/area/space)
+"fF" = (
+/obj/structure/stairs/east,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"fY" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/space)
+"gI" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/space)
+"hc" = (
+/obj/effect/mob_spawn/human/clown/corpse,
+/obj/effect/decal/cleanable/blood/splatter,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/wood,
+/area/space)
+"iC" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/space)
+"jl" = (
+/obj/structure/curtain/cloth/fancy,
+/turf/open/floor/wood,
+/area/space)
+"lW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"qE" = (
+/obj/structure/stairs/west,
+/turf/open/floor/wood,
+/area/space)
+"qK" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/space)
+"qP" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/chair/wood/wings{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/wood,
+/area/space)
+"sp" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/space)
+"sW" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"to" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"tC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/space)
+"tE" = (
+/obj/effect/mob_spawn/human/clown/corpse,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/food/pie_smudge,
+/turf/open/floor/wood,
+/area/space)
+"ud" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/space)
+"uy" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/space)
+"vu" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/space)
+"vF" = (
+/obj/effect/decal/cleanable/food/pie_smudge,
+/turf/open/floor/wood,
+/area/space)
+"xt" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/item/chair/wood/wings,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/space)
+"xP" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"zH" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/space)
+"Ay" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"Ci" = (
+/obj/structure/stairs/west,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"Cl" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/space)
+"Cv" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/space)
+"CT" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/space)
+"Dk" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/space)
+"EK" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/space)
+"EO" = (
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/space)
+"FN" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/open/floor/wood,
+/area/space)
+"Gj" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/wood,
+/area/space)
+"Gn" = (
+/obj/item/food/grown/tomato,
+/obj/effect/decal/cleanable/food/tomato_smudge,
+/turf/open/floor/wood,
+/area/space)
+"Gs" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/space)
+"HH" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"Is" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/space)
+"IA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/space)
+"Je" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/item/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/wood,
+/area/space)
+"Js" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/space)
+"Jy" = (
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"KP" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/wood,
+/area/space)
+"Lw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"Qa" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"Qe" = (
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/space)
+"QA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"SC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/space)
+"SJ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6
+	},
+/turf/open/floor/wood,
+/area/space)
+"WP" = (
+/turf/open/floor/wood,
+/area/space)
+"Xj" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner,
+/turf/open/floor/wood,
+/area/space)
+"Yg" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/space)
+"YL" = (
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/wood,
+/area/space)
+"YO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/space)
+"ZO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5
+	},
+/turf/open/floor/wood,
+/area/space)
+
+(1,1,1) = {"
+EK
+uy
+SC
+SC
+SC
+SC
+SC
+SC
+qK
+IA
+EK
+"}
+(2,1,1) = {"
+EK
+eT
+sp
+fY
+YL
+Js
+Cv
+EO
+WP
+vu
+EK
+"}
+(3,1,1) = {"
+EK
+fF
+Yg
+EK
+fu
+fB
+Qa
+tC
+SC
+Cl
+EK
+"}
+(4,1,1) = {"
+EK
+KP
+WP
+jl
+WP
+Gn
+Lw
+QA
+FN
+dV
+EK
+"}
+(5,1,1) = {"
+EK
+lW
+vF
+jl
+hc
+Gj
+Lw
+xt
+zH
+sW
+EK
+"}
+(6,1,1) = {"
+EK
+lW
+WP
+jl
+Gn
+Jy
+Lw
+lW
+Qe
+vu
+EK
+"}
+(7,1,1) = {"
+EK
+lW
+WP
+jl
+WP
+HH
+Lw
+QA
+WP
+Je
+EK
+"}
+(8,1,1) = {"
+EK
+lW
+WP
+jl
+WP
+Jy
+Lw
+lW
+WP
+Is
+EK
+"}
+(9,1,1) = {"
+EK
+lW
+WP
+jl
+Gn
+tE
+Lw
+qP
+WP
+sW
+EK
+"}
+(10,1,1) = {"
+EK
+lW
+WP
+jl
+vF
+WP
+Lw
+QA
+WP
+sW
+EK
+"}
+(11,1,1) = {"
+EK
+Ci
+Ay
+EK
+Dk
+qE
+xP
+ud
+YO
+Xj
+EK
+"}
+(12,1,1) = {"
+EK
+gI
+to
+WP
+iC
+SC
+to
+WP
+WP
+vu
+EK
+"}
+(13,1,1) = {"
+EK
+ZO
+YO
+YO
+YO
+CT
+Gs
+YO
+YO
+SJ
+EK
+"}
