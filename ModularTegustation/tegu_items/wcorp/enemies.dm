@@ -7,15 +7,16 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x3"
 	var/spawntype
+	var/single_use = FALSE
+	var/startround = 1
 
 /obj/effect/landmark/wavespawn/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/tryspawn), 3 MINUTES, TIMER_STOPPABLE)
+	GLOB.wcorp_structures += src
 
 //Wave increases.
 /obj/effect/landmark/wavespawn/proc/tryspawn()
-	addtimer(CALLBACK(src, .proc/tryspawn), 45 SECONDS, TIMER_STOPPABLE)
-	if(GLOB.combat_counter == 0)
+	if(GLOB.combat_counter <= startround)
 		return
 	switch(GLOB.wcorp_enemy_faction) //Each round has a specific faction, decided on code/game/gamemodes/management/event/combat
 
@@ -245,12 +246,20 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 	var/mob/living/simple_animal/hostile/H = new spawntype(get_turf(src))
 	H.can_patrol = TRUE
 	H.patrol_cooldown_time = 10 SECONDS
+
+	//Single use stuff
+	if(single_use)
+		qdel(src)
+		return
+
 	//If no one is alive, End round
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		if(L.z != z)
 			continue
-		if(L.stat != DEAD)
+		if((L.stat != DEAD) || GLOB.combat_counter >= 100)
 			return
 	SSticker.force_ending = 1
+	GLOB.combat_counter = 100
+	qdel(src)
 	to_chat(world, "<span class='userdanger'>All W-Corp staff is dead! Round automatically ending.</span>")
-
+	new /obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call/kill(get_turf(src))

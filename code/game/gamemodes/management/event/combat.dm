@@ -11,6 +11,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 	announce_span = "danger"
 	announce_text = "Abnormalities are automatically breached."
+	var/counter_timer = INFINITY	//Normally does not increase
 
 /datum/game_mode/combat/post_setup()
 	..()
@@ -40,6 +41,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 			//W-Corp stuff
 			if("wcorp")
+				counter_timer = 1 MINUTES
 				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
 				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
 				to_chat(world, span_userdanger("Players will be victorius 20 minutes."))
@@ -69,9 +71,19 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 //Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()
-	addtimer(CALLBACK(src, .proc/counterincrease), 1 MINUTES)
+	addtimer(CALLBACK(src, .proc/counterincrease), counter_timer)
 	GLOB.combat_counter+=1
+
+
 	if(SSmaptype.maptype == "wcorp")
+		for(var/obj/effect/blocker/B in GLOB.wcorp_structures)
+			if(B.timelock == GLOB.combat_counter)
+				B.Activate()
+
+		for(var/obj/effect/landmark/wavespawn/W in GLOB.wcorp_structures)
+			if(W.startround <= GLOB.combat_counter)
+				W.tryspawn()
+
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			if(H.stat == DEAD)
 				continue
@@ -79,6 +91,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				continue
 			H.adjustBruteLoss(-(H.maxHealth*0.10))
 			H.adjustSanityLoss(-(H.maxSanity*0.10))
+
 
 /datum/game_mode/combat/proc/rcorp_announce()
 	var/announcement_type = ""
