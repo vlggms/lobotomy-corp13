@@ -49,6 +49,11 @@
 	var/retaliation = 10
 	var/PRUDENCE_CAP = 60
 
+/mob/living/simple_animal/hostile/abnormality/pygmalion/CanAllowThrough(atom/movable/mover, turf/target)
+	if(sculptor && ishuman(mover))
+		return TRUE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/pygmalion/CanAttack(atom/target)
 	if(ishuman(target))
 		var/mob/living/carbon/human/human_target = target
