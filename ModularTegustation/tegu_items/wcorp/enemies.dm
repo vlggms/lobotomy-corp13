@@ -222,7 +222,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						if(55 to 75)
 							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
 						if(75 to 100)
-							spawntype = mob/living/simple_animal/hostile/shrimp_rifleman
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
 						else
 							spawntype = /mob/living/simple_animal/hostile/shrimp
 
@@ -235,7 +235,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						if(35 to 55)
 							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
 						if(55 to 90)
-							spawntype = mob/living/simple_animal/hostile/shrimp_rifleman
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
 						if(90 to 100)
 							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
 						else
