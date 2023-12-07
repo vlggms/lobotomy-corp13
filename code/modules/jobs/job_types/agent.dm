@@ -126,7 +126,7 @@
 	spawn_positions = 2
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	normal_attribute_level = 21 // :)
+	normal_attribute_level = 20 // Used to have 21, but it was just picked for the roundstart +1 stat to instantly mirror. - Kirie/Kitsunemitsu
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
 	exp_requirements = 6000
