@@ -4084,6 +4084,7 @@
 #include "ModularTegustation\tegu_items\representative\research\rcorp.dm"
 #include "ModularTegustation\tegu_items\representative\research\wcorp.dm"
 #include "ModularTegustation\tegu_items\wcorp\berets.dm"
+#include "ModularTegustation\tegu_items\wcorp\blockers.dm"
 #include "ModularTegustation\tegu_items\wcorp\enemies.dm"
 #include "ModularTegustation\tegu_items\wcorp\headsets.dm"
 #include "ModularTegustation\tegu_items\wcorp\mapping.dm"
