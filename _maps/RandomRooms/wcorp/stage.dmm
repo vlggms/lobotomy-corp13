@@ -6,6 +6,7 @@
 	},
 /obj/effect/decal/cleanable/blood/gibs/up,
 /obj/effect/decal/cleanable/blood/tracks,
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/city/outskirts)
 "eT" = (
@@ -46,6 +47,9 @@
 /obj/effect/decal/cleanable/blood/gibs/up,
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/decal/cleanable/blood,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/city/outskirts)
 "gI" = (
@@ -79,6 +83,12 @@
 "lW" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"pe" = (
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/city/outskirts)
@@ -330,6 +340,14 @@
 	},
 /turf/open/floor/wood,
 /area/city/outskirts)
+"OQ" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/city/outskirts)
 "Qa" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -352,6 +370,15 @@
 	dir = 1
 	},
 /obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"QU" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light{
 	dir = 1
 	},
 /turf/open/floor/wood,
@@ -463,7 +490,7 @@ EK
 "}
 (5,1,1) = {"
 EK
-lW
+QU
 vF
 jl
 hc
@@ -515,7 +542,7 @@ EK
 "}
 (9,1,1) = {"
 EK
-lW
+QU
 WP
 jl
 Gn
@@ -536,7 +563,7 @@ WP
 Lw
 QA
 WP
-sW
+OQ
 EK
 "}
 (11,1,1) = {"
@@ -556,7 +583,7 @@ EK
 EK
 gI
 to
-WP
+pe
 iC
 SC
 to
