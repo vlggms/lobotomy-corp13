@@ -85,7 +85,7 @@
 	icon = 'icons/turf/walls/facility.dmi'
 	icon_state = "facility-0"
 	base_icon_state = "facility"
-	smoothing_flags = SMOOTH_BITMASK
+	smoothing_flags = SMOOTH_CORNERS
 	smoothing_groups = list(SMOOTH_GROUP_CLOSED_TURFS, SMOOTH_GROUP_WALLS)
 	canSmoothWith = list(SMOOTH_GROUP_WALLS)
 
