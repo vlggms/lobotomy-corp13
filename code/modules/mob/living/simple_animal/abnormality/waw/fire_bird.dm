@@ -26,7 +26,7 @@
 	faction = list("hostile", "neutral")
 	can_breach = TRUE
 	start_qliphoth = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0

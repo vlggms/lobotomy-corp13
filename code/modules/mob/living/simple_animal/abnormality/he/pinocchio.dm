@@ -19,7 +19,7 @@
 		"Lying is Bad!" = 0
 	)
 
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 16

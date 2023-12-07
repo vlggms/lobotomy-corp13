@@ -214,7 +214,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	maxHealth = 500
 	health = 500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0)
 
 	move_to_delay = 5
 	melee_damage_lower = 3

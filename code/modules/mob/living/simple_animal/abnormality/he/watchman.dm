@@ -9,7 +9,7 @@
 	health = 1200
 	rapid_melee = 2
 	move_to_delay = 6
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	melee_damage_lower = 16
 	melee_damage_upper = 20			//He doesn't really attack but I guess if he does he would deal this kind of damage
 	melee_damage_type = BLACK_DAMAGE

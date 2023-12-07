@@ -15,7 +15,7 @@
 	move_to_delay = 5
 	butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/fruit = 1)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	var/list/enemies = list() //copying retaliate code cause i dont know how else to inherit it
 
@@ -109,7 +109,7 @@
 	faction = list("violet_ordeal")
 	maxHealth = 1400
 	health = 1400
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 
 	var/next_pulse = INFINITY
 
@@ -196,7 +196,7 @@
 	faction = list("violet_ordeal", "hostile")
 	maxHealth = 15000
 	health = 15000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	deathmessage = "falls apart."
 	deathsound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
 	stat_attack = HARD_CRIT
@@ -286,7 +286,7 @@
 	icon_state = "black_shield" // TEMPORARY
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/red
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 
 	var/attack_damage = 220 // Dealt once if hit
 	var/list/been_hit = list()
@@ -362,7 +362,7 @@
 	icon_state = "violet_midnightw"
 	icon_living = "violet_midnightw"
 	icon_dead = "violet_midnightw_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.2)
 
 	var/attack_damage = 150
 	var/list/been_hit = list()
@@ -446,7 +446,7 @@
 	icon_state = "violet_midnightb"
 	icon_living = "violet_midnightb"
 	icon_dead = "violet_midnightb_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.7)
 
 	var/attack_damage = 220
 	var/list/been_hit = list()
@@ -530,7 +530,7 @@
 	icon_state = "violet_midnightp"
 	icon_living = "violet_midnightp"
 	icon_dead = "violet_midnightp_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = -1)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = -1)
 
 	var/obj/effect/pale_eye/eye = null
 	var/pulsating = FALSE

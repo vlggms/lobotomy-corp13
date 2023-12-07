@@ -383,7 +383,7 @@
 	maxHealth = 1000
 	faction = list("neutral") //Should always be overridden
 	obj_damage = 300
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	melee_damage_type = PALE_DAMAGE
 	melee_damage_lower = 20
 	melee_damage_upper = 30
