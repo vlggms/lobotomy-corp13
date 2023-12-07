@@ -185,7 +185,7 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 
 
 		if("shrimp")
-			spawntype = mob/living/simple_animal/hostile/shrimp_rifleman
+			spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
 			switch(GLOB.combat_counter)
 
 				//10% Remnant / 90% Corporal
