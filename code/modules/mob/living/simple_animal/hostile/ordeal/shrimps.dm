@@ -1,4 +1,4 @@
-mob/living/simple_animal/hostile/shrimp_rifleman
+/mob/living/simple_animal/hostile/shrimp_rifleman
 	name = "wellcheers corp Rifleman"
 	desc = "Best shot this side of the fishing net."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
