@@ -42,7 +42,7 @@
 	melee_damage_upper = 24
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
-	deal_on_death = TRUE
+	del_on_death = TRUE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/meteorimpact.ogg'
