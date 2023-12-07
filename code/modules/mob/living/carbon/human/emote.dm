@@ -192,6 +192,10 @@
 
 //Ayy lmao
 
+/datum/emote/living/carbon/human/clear_throat
+	key = "clear"
+	key_third_person = "clears throat"
+	message = "clears their throat."
 
 ///Snowflake emotes only for le epic chimp
 /datum/emote/living/carbon/human/monkey
@@ -228,7 +232,7 @@
 	key = "tail"
 	message = "waves their tail."
 
-/datum/emote/living/carbon/human/monkeysign
+/datum/emote/living/carbon/human/monkey/sign
 	key = "sign"
 	key_third_person = "signs"
 	message_param = "signs the number %t."
