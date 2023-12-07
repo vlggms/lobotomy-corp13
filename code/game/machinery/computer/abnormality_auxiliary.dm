@@ -18,11 +18,11 @@
 
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
 	. = ..()
-	GLOB.abnormality_auxiliary_consoles += src
+	GLOB.lobotomy_devices += src
 	flags_1 |= NODECONSTRUCT_1
 
 /obj/machinery/computer/abnormality_auxiliary/Destroy()
-	GLOB.abnormality_auxiliary_consoles -= src
+	GLOB.lobotomy_devices -= src
 	..()
 
 /obj/machinery/computer/abnormality_auxiliary/ui_interact(mob/user)
