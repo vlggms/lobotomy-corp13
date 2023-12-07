@@ -35,15 +35,15 @@
 	for(var/level = ZAYIN_LEVEL to ALEPH_LEVEL)
 		dat += "<A href='byond://?src=[REF(src)];set_level=[level]'>[level == selected_level ? "<b><u>[THREAT_TO_NAME[level]]</u></b>" : "[THREAT_TO_NAME[level]]"]</A>"
 	dat += "<hr>"
-	for(var/datum/abnormality/Abnormality_datum in SSlobotomy_corp.all_abnormality_datums)
-		if(!LAZYLEN(Abnormality_datum.ego_datums))
+	for(var/datum/abnormality/abnormality_datum in SSlobotomy_corp.all_abnormality_datums)
+		if(!LAZYLEN(abnormality_datum.ego_datums))
 			continue
-		if(Abnormality_datum.threat_level != selected_level)
+		if(abnormality_datum.threat_level != selected_level)
 			continue
-		dat += "[Abnormality_datum.name] ([Abnormality_datum.stored_boxes] PE):<br>"
-		for(var/datum/ego_datum/Ego_datum in Abnormality_datum.ego_datums)
-			dat += " <A href='byond://?src=[REF(src)];purchase=[Ego_datum.name][Ego_datum.item_category]'>[Ego_datum.item_category] - [Ego_datum.name] ([Ego_datum.cost] PE)</A>"
-			var/info = html_encode(Ego_datum.PrintOutInfo())
+		dat += "[abnormality_datum.name] ([abnormality_datum.stored_boxes] PE):<br>"
+		for(var/datum/ego_datum/ego_datum in abnormality_datum.ego_datums)
+			dat += " <A href='byond://?src=[REF(src)];purchase=[ego_datum.name][ego_datum.item_category]'>[ego_datum.item_category] - [ego_datum.name] ([ego_datum.cost] PE)</A>"
+			var/info = html_encode(ego_datum.PrintOutInfo())
 			if(info)
 				dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A>"
 			dat += "<br>"
@@ -71,11 +71,11 @@
 		return FALSE
 	if(href_list["purchase"])
 		var/target_datum = href_list["purchase"]
-		var/datum/ego_datum/Ego_datum = GLOB.ego_datums[target_datum]
-		var/datum/abnormality/Abnormality_datum = Ego_datum.linked_abno
-		if(!Ego_datum || !Abnormality_datum)
+		var/datum/ego_datum/ego_datum = GLOB.ego_datums[target_datum]
+		var/datum/abnormality/abnormality_datum = ego_datum.linked_abno
+		if(!ego_datum || !abnormality_datum)
 			return FALSE
-		if(Abnormality_datum.stored_boxes < Ego_datum.cost)
+		if(abnormality_datum.stored_boxes < ego_datum.cost)
 			to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 			return FALSE
@@ -102,10 +102,10 @@
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 			return FALSE
 
-		var/obj/item/Dispensed_item = new Ego_datum.item_path(get_turf(src))
-		Abnormality_datum.stored_boxes -= Ego_datum.cost
-		Abnormality_datum.current_ego += Dispensed_item
-		to_chat(usr, span_notice("[Dispensed_item] has been dispensed!"))
+		var/obj/item/dispensed_item = new ego_datum.item_path(get_turf(src))
+		abnormality_datum.stored_boxes -= ego_datum.cost
+		abnormality_datum.current_ego += dispensed_item
+		to_chat(usr, span_notice("[dispensed_item] has been dispensed!"))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		updateUsrDialog()
 		return TRUE
