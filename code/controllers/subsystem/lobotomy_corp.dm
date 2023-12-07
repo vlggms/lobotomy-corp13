@@ -123,7 +123,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions(announce = FALSE, extra_core = FALSE)
 	if(istype(core_suppression))
 		return
-	if(!LAZYLEN(GLOB.lobotomy_devices)) // There's no consoles, for some reason
+	var/obj/machinery/computer/abnormality_auxiliary/aux_cons = locate() in GLOB.lobotomy_devices
+	if(!aux_cons) // There's no consoles, for some reason
 		message_admins("Tried to pick potential core suppressions, but there was no auxiliary consoles! Fix it!")
 		return
 	var/list/cores = subtypesof(/datum/suppression)
@@ -348,7 +349,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 /// Adds LOB points and notifies players via aux consoles
 /datum/controller/subsystem/lobotomy_corp/proc/AddLobPoints(amount = 1, message = "UNKNOWN")
 	lob_points += amount
-	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.abnormality_auxiliary_consoles)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='notice'>[round(amount, 0.1)] LOB point[amount > 1 ? "s" : ""] deposited! Reason: [message].</span>")
 		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
 		A.updateUsrDialog()
