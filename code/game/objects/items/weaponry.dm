@@ -756,9 +756,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 	else
 		qdel(target)
 
-
-
-
 /obj/item/circlegame
 	name = "circled hand"
 	desc = "If somebody looks at this while it's below your waist, you get to bop them."
