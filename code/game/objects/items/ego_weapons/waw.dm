@@ -1818,7 +1818,7 @@
 	name = "blind obsession"
 	desc = "All hands, full speed toward where the lights flicker. The waves... will lay waste to everything in our way."
 	special = "When thrown, this weapon attacks EVERYONE but yourself in an AOE. \
-			This weapon deals 1.75 times damage on direct throws."//Throw it at the Eo I dare ya!
+			This weapon deals 75% times damage on direct throws."//Throw it at the Eo I dare ya!
 	icon_state = "blind_obsession"
 	force = 80
 	attack_speed = 2.5
@@ -1840,19 +1840,16 @@
 
 /obj/item/ego_weapon/blind_obsession/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	playsound(src, 'sound/weapons/ego/hammer.ogg', 300, FALSE, 9)
+	var/damage = 75
+	if(ishuman(thrownby))
+		damage *= 1 + (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))/100
+	damage *= force_multiplier
 	for(var/turf/open/T in range(2, src))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_TEAL
-	for(var/mob/living/L in view(2, src))
-		var/aoe = 75
-		var/userjust = (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		aoe*=justicemod
-		aoe*=force_multiplier
-		if(L == thrownby)
+		if(!ismob(thrownby))
 			continue
-
-		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
 	return ..()
 
 /obj/item/ego_weapon/dream_devouring

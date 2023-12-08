@@ -56,9 +56,6 @@
 	var/flotsam = FALSE
 	//The amount of flotsams that should spawn in the hallways when it breaches
 	var/tube_spawn_amount = 6
-	//Stuff relating to the facility wide oxygen damage
-	var/oxy_cooldown
-	var/oxy_cooldown_time = 5 SECONDS
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/Initialize()
 	. = ..()
@@ -68,22 +65,15 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(oxy_cooldown_time <= world.time)
-		OxygenLoss()
-	if(stunned)
-		ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5))//You did it nows your chance to beat the shit out of it!
-		SLEEP_CHECK_DEATH(12 SECONDS)
-		stunned = FALSE
-		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
 
-/mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/OxygenLoss()//While its alive all humans on its z level will lose oxygen
-	oxy_cooldown = world.time + oxy_cooldown_time
-	for(var/mob/living/L in GLOB.player_list)
-		if(L.z != z || L.stat >= HARD_CRIT)//Prevent slit from sniping manager with water in their lungs and dead people as well
-			continue
-		playsound(L, "sound/effects/bubbles.ogg", 50, TRUE, 7)
-		new /obj/effect/temp_visual/mermaid_drowning(get_turf(L))
-		L.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/Stun()
+	set waitfor = FALSE
+	stunned = TRUE
+	ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5))//You did it nows your chance to beat the shit out of it!
+	SLEEP_CHECK_DEATH(12 SECONDS)
+	stunned = FALSE
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
 
 //Checks if it's stunned or doing the dive attack to prevent it from attacking or moving while in those 2 states since it would be silly.
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/Move()
@@ -142,23 +132,24 @@
 		src.pixel_z = 0
 		SLEEP_CHECK_DEATH(0.1 SECONDS)
 		for(var/turf/T in view(2, src))
-			new /obj/effect/temp_visual/cleave(get_turf(T))
-			for(var/mob/living/simple_animal/hostile/flotsam/L in T)
-				if(!L.stat == DEAD)
-					//icon_state = icon_living
-					stunned = TRUE
-					src.adjustBruteLoss(1500)
-					L.adjustBruteLoss(1500)
-					visible_message(span_boldwarning("[src] mauls the Flotsam taking heavy damage!"))
-			for(var/mob/living/L in T)
-				if(faction_check_mob(L))
-					continue
-				visible_message(span_boldwarning("[src] mauls through [L]!"))
-				to_chat(L, span_userdanger("[src] mauls you!"))
+			var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+			smonk.color = COLOR_TEAL
+			if(!ismob(src))
+				continue
+			for(var/mob/living/L in HurtInTurf(T, list(), dive_damage, RED_DAMAGE))
 				playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
-				L.apply_damage(dive_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				if(L.health < 0 || L.stat == DEAD)
-					L.gib()
+				if(istype(L, /mob/living/simple_animal/hostile/flotsam))
+					if(L.stat != DEAD)
+						//icon_state = icon_living
+						Stun()
+						src.adjustBruteLoss(1500)
+						L.adjustBruteLoss(1500)
+						visible_message(span_boldwarning("[src] mauls the Flotsam taking heavy damage!"))
+				if (ishuman(L))
+					visible_message(span_boldwarning("[src] mauls through [L]!"))
+					to_chat(L, span_userdanger("[src] mauls you!"))
+					if(L.health < 0 || L.stat == DEAD)
+						L.gib()
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		diving = FALSE
 
@@ -174,7 +165,7 @@
 	datum_reference.qliphoth_change(-1)
 	if(user.oxyloss >= 50)//POWER GRINDER SPOTTED! MUST MAUL THE FUCK!
 		datum_reference.qliphoth_change(-1)
-		target = user
+		GiveTarget(user)
 		SlitDive(user)
 	return
 
@@ -183,6 +174,7 @@
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
 	icon_living = "current_breach"
 	//icon_state = icon_living
+	addtimer(CALLBACK(src, .proc/OxygenLoss), 5 SECONDS, TIMER_LOOP)
 	for(var/mob/living/L in GLOB.player_list)//Spawns Flotsams in the halls and notifies people that they'll be taking oygen damage.
 		if(L.z != z || L.stat >= HARD_CRIT)
 			continue
@@ -201,6 +193,14 @@
 		flotsam = F
 		F.abno_spawner = src
 
+/mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/OxygenLoss()//While its alive all humans on its z level will lose oxygen
+	for(var/mob/living/L in GLOB.player_list)
+		if(L.z != z || L.stat >= HARD_CRIT)//Prevent slit from sniping manager with water in their lungs and dead people as well
+			continue
+		playsound(L, "sound/effects/bubbles.ogg", 50, TRUE, 7)
+		new /obj/effect/temp_visual/mermaid_drowning(get_turf(L))
+		L.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
+
 /mob/living/simple_animal/hostile/flotsam
 	name = "Flotsam"
 	desc = "A pile of teal light tubes embedded into the floor."
@@ -213,15 +213,13 @@
 	/*Stats*/
 	health = 1500
 	maxHealth = 1500
-	obj_damage = 50
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
-	speed = 5
 	density = TRUE
 	faction = list("neutral")//pretty sure Slitcurrent attack them in Limbus,
 	var/mob/living/simple_animal/hostile/abnormality/slitcurrent/abno_spawner
 
 /mob/living/simple_animal/hostile/flotsam/Life()
-	if(!abno_spawner)
+	if(abno_spawner.stat == DEAD)
 		qdel(src)
 
 /mob/living/simple_animal/hostile/flotsam/Move()
@@ -232,13 +230,13 @@
 
 /mob/living/simple_animal/hostile/flotsam/attackby(obj/item/W, mob/user, params)
 	. = ..()
-	if(!src.stat == DEAD)
+	if(!stat == DEAD)
 		Refill(user)
 
 
 /mob/living/simple_animal/hostile/flotsam/bullet_act(obj/projectile/P)
 	. = ..()
-	if(!src.stat == DEAD)
+	if(!stat == DEAD)
 		Refill(P.firer)
 
 
