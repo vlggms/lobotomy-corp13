@@ -44,7 +44,7 @@
 	if(melt_removed)
 		return
 	var/list/potential_consoles = list()
-	for(var/obj/machinery/computer/abnormality/A in GLOB.abnormality_consoles)
+	for(var/obj/machinery/computer/abnormality/A in GLOB.lobotomy_devices)
 		if(A == console)
 			continue
 		if(!A.can_meltdown)

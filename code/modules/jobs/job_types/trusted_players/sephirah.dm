@@ -68,7 +68,7 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 /client/proc/randomabno()
 	set name = "Randomize Current Abnormality"
 	set category = "OOC"
-	var/obj/machinery/computer/abnormality_queue/Q = pick(GLOB.abnormality_queue_consoles)
+	var/obj/machinery/computer/abnormality_queue/Q = pick(GLOB.lobotomy_devices)
 	var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
 	if(Q.locked)
 		to_chat(src, "<span class='danger'>The abnormality was already randomized. </span>")
