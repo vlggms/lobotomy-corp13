@@ -49,6 +49,7 @@
 
 	var/list/pet = list()
 	pet_bonus = "yips"
+
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/funpet(mob/petter)
 	pet += petter
 
@@ -112,33 +113,41 @@
 	robust_searching = TRUE
 	del_on_death = FALSE
 
-/mob/living/simple_animal/hostile/umbrella/AttackingTarget(atom/attacked_target)
-	. = ..()
-	if(isliving(target) && !ishuman(target))
-		var/mob/living/L = target
-		if(L.stat == DEAD)
-			return FALSE
-	return ..()
-	//umbrella debuff stuff`
-/datum/status_effect/umbrella_black_debuff
-	id = "umbrella_black_debuff"
+/datum/status_effect/false_kindness // MAYBE the black sunder shti works this time.
+	id = "false_kindness"
+	duration = 2 SECONDS //lasts 2 seconds becuase this is for an AI that attacks fast as shit, its not meant to fuck you up with other things.
+	alert_type = /atom/movable/screen/alert/status_effect/false_kidness
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 15 SECONDS
-	alert_type = /atom/movable/screen/alert/status_effect/umbrella_black_debuff
 
-/datum/status_effect/umbrella_black_debuff/on_apply()
+/atom/movable/screen/alert/status_effect/false_kindness
+	name = "Unkind"
+	desc = "You feel the foxes gaze upon you."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "falsekindness" //Bit of a placeholder sprite, it works-ish so
+
+/datum/status_effect/false_kindness/on_apply() //" Borrowed " from Ptear blade, courtesy of gong.
 	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner //Stolen from Ptear Blade, MAYBE works on people?
+		L.physiology.black_mod *= 1.3
+		return
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/unkind)
 
-/atom/movable/screen/alert/status_effect/umbrella_black_debuff
-	name = "False Kindness"
-	desc = "Your half hearted attempts at kindness have weakened you to BLACK damage."
-	icon = 'icons/mob/actions/actions_ability.dmi'
+/datum/status_effect/false_kindness/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		to_chat(L, "<span class='userdanger'>You feel as though its gaze has lifted.</span>") //stolen from PT wep, but I asked so this 100% ok.
+		L.physiology.black_mod /= 1.3
+		return
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/l)
 
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
-	visible_message(span_notice("[src] falls to the ground with as the umbrella closes in on itself!"))
+	visible_message(span_notice("[src] falls to the ground as the umbrella closes in on itself!"))
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	return ..()
 
-#undef STATUS_EFFECT_UMBRELLADEBUFF

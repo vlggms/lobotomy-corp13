@@ -492,7 +492,7 @@
 		"At 1 hour and 15 minutes the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
 //Drifting Fox
 /obj/item/paper/fluff/info/he/drifting_fox
-	abno_type = /mob/living/simple_animal/hostile/abnormality/highway_devotee
+	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	abno_code = "T-02-11-03"
 	abno_info = list(
 		"It was noted that working on T-02-11-03 with a temperance level of less than 2 lowered the Qliphoth counter",

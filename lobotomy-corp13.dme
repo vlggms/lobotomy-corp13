@@ -2762,7 +2762,6 @@
 #include "code\modules\mob\living\simple_animal\abnormality\he\der_freischutz.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\doomsday_calendar.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\eris.dm"
-#include "code\modules\mob\living\simple_animal\abnormality\he\drifting_fox.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\fan.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\funeral.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\he\galaxy_child.dm"

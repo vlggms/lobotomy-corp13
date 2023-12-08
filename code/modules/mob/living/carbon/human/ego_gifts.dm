@@ -1029,9 +1029,9 @@
 /datum/ego_gifts/sunshower
 	name = "Sunshower"
 	icon_state = "sunshower"
-	temperance_bonus = 10
-	justice_bonus = -5
-	prudence_bonus = -5
+	temperance_bonus = 5
+	justice_bonus = -2
+	prudence_bonus = -2
 	slot = LEFTBACK
 
 /datum/ego_gifts/hypocrisy/Initialize(mob/living/carbon/human/user) //have to make a new initialize since the previous one both adds stats and the normal overlay.
