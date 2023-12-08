@@ -7,7 +7,7 @@
 
 /obj/item/trait_injector/repshrimp_injector
 	name = "Shrimp Injector MK2"
-	desc = "The injector contains a pink substance, is this really worth it? Usable by only clerks. Use in hand to activate. A small note on the injector states that this one has no chance of backfiring."
+	desc = "The injector contains a pink substance, is this really worth it? Use in hand to activate. A small note on the injector states that this one has no chance of backfiring."
 	icon_state = "oddity7_pink"
 	error_message = "You aren't a clerk."
 	success_message = "You feel pink? A catchy song about shrimp comes to mind."
