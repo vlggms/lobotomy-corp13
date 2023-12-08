@@ -28,11 +28,11 @@
 
 /obj/machinery/regenerator/Initialize()
 	. = ..()
-	GLOB.regenerators += src
+	GLOB.lobotomy_devices += src
 	flags_1 |= NODECONSTRUCT_1
 
 /obj/machinery/regenerator/Destroy()
-	GLOB.regenerators -= src
+	GLOB.lobotomy_devices -= src
 	..()
 
 /obj/machinery/regenerator/process()
@@ -150,4 +150,4 @@
 
 /obj/machinery/regenerator/tutorial/Initialize()
 	. = ..()
-	GLOB.regenerators -= src
+	GLOB.lobotomy_devices -= src
