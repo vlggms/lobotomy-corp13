@@ -1765,7 +1765,7 @@
 /obj/item/ego_weapon/sunshower //TD
 	name = "sunshower"
 	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
-	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0.
+	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
 	icon_state = "sunshower"
 	force = 17
 	attack_speed = 0.5
