@@ -130,6 +130,12 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/city/outskirts)
+"ih" = (
+/obj/effect/landmark/wavespawn{
+	startround = 10
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "iP" = (
 /turf/closed/wall/r_wall/syndicate,
 /area/city/outskirts)
@@ -142,21 +148,6 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/space)
-"je" = (
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 7
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 7
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 7
-	},
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
 "jo" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
@@ -297,6 +288,13 @@
 "vv" = (
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/outskirts)
+"vM" = (
+/obj/effect/landmark/wavespawn{
+	single_use = 1;
+	startround = 3
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "vS" = (
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
 /turf/open/floor/plasteel/bluespace,
@@ -366,21 +364,6 @@
 /obj/effect/decal/cleanable/blood/gibs/old,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
-"Bf" = (
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 3
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 3
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 3
-	},
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
 "Bk" = (
 /obj/effect/decal/cleanable/glass,
 /turf/open/floor/plasteel/bluespace,
@@ -405,12 +388,26 @@
 /obj/effect/decal/cleanable/blood/gibs/bubblegum,
 /turf/closed/wall/r_wall/syndicate,
 /area/city/outskirts)
+"Eq" = (
+/obj/effect/landmark/wavespawn{
+	single_use = 1;
+	startround = 7
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "Es" = (
 /obj/structure/chair/comfy/shuttle{
 	dir = 8
 	},
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
+"Fb" = (
+/obj/effect/landmark/wavespawn{
+	single_use = 1;
+	startround = 8
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "Fe" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -541,21 +538,6 @@
 /obj/effect/landmark/latejoin,
 /turf/open/indestructible/hotelwood,
 /area/city/outskirts)
-"Nv" = (
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 9
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 9
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 9
-	},
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
 "NR" = (
 /turf/open/space/basic,
 /turf/open/floor/plasteel/bluespace,
@@ -587,21 +569,13 @@
 /obj/structure/table/reinforced,
 /turf/open/indestructible/hotelwood,
 /area/city/outskirts)
-"Pz" = (
+"PC" = (
 /obj/effect/landmark/wavespawn{
 	single_use = 1;
-	startround = 5
+	startround = 9
 	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 5
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 5
-	},
-/turf/open/floor/plasteel/bluespace,
-/area/city/outskirts)
+/turf/closed/indestructible/rock,
+/area/space)
 "PO" = (
 /obj/structure/table/reinforced,
 /obj/structure/window/reinforced{
@@ -638,25 +612,8 @@
 /turf/closed/wall/mineral/plastitanium,
 /area/city/outskirts)
 "RG" = (
-/obj/effect/landmark/wavespawn{
-	startround = 10
-	},
+/obj/effect/landmark/wavespawn,
 /turf/open/indestructible/hotelwood,
-/area/city/outskirts)
-"RN" = (
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 8
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 8
-	},
-/obj/effect/landmark/wavespawn{
-	single_use = 1;
-	startround = 8
-	},
-/turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
 "Sq" = (
 /obj/effect/decal/cleanable/blood/gibs/up,
@@ -675,6 +632,13 @@
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plasteel/bluespace,
 /area/city/outskirts)
+"VA" = (
+/obj/effect/landmark/wavespawn{
+	single_use = 1;
+	startround = 5
+	},
+/turf/closed/indestructible/rock,
+/area/space)
 "VN" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/old,
@@ -35644,11 +35608,11 @@ pt
 rh
 tb
 tb
-Bf
+vW
 tb
 tb
 tb
-Bf
+vW
 tb
 tb
 rh
@@ -35934,7 +35898,7 @@ pt
 pt
 pt
 pt
-pt
+vM
 pt
 pt
 pt
@@ -36236,7 +36200,7 @@ pt
 pt
 pt
 pt
-pt
+VA
 pt
 pt
 pt
@@ -36538,7 +36502,7 @@ pt
 pt
 pt
 pt
-pt
+Eq
 pt
 pt
 pt
@@ -36840,7 +36804,7 @@ pt
 pt
 pt
 pt
-pt
+Fb
 pt
 pt
 pt
@@ -37142,7 +37106,7 @@ pt
 pt
 pt
 pt
-pt
+PC
 pt
 pt
 pt
@@ -37444,7 +37408,7 @@ pt
 pt
 pt
 pt
-pt
+ih
 pt
 pt
 pt
@@ -38060,11 +38024,11 @@ pt
 rh
 tb
 tb
-Bf
+vW
 tb
 tb
 tb
-Bf
+vW
 tb
 tb
 rh
@@ -39872,11 +39836,11 @@ pt
 rh
 tb
 tb
-Pz
+vW
 tb
 tb
 tb
-Pz
+vW
 tb
 tb
 rh
@@ -42288,11 +42252,11 @@ pt
 rh
 tb
 tb
-Pz
+vW
 tb
 tb
 tb
-Pz
+vW
 tb
 NR
 rh
@@ -44100,11 +44064,11 @@ pt
 rh
 tb
 tb
-je
+vW
 tb
 tb
 tb
-je
+vW
 tb
 tb
 rh
@@ -46516,11 +46480,11 @@ pt
 rh
 tb
 tb
-je
+vW
 tb
 tb
 tb
-je
+vW
 tb
 tb
 rh
@@ -48328,11 +48292,11 @@ pt
 rh
 tb
 tb
-RN
+vW
 tb
 tb
 tb
-RN
+vW
 tb
 tb
 rh
@@ -50744,11 +50708,11 @@ pt
 rh
 tb
 tb
-RN
+vW
 tb
 tb
 tb
-RN
+vW
 tb
 tb
 rh
@@ -52556,11 +52520,11 @@ pt
 rh
 tb
 tb
-Nv
+vW
 tb
 tb
 tb
-Nv
+vW
 tb
 tb
 rh
@@ -54972,11 +54936,11 @@ pt
 rh
 tb
 tb
-Nv
+vW
 tb
 tb
 tb
-Nv
+vW
 tb
 tb
 rh
