@@ -1775,6 +1775,8 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
+	var/poise = 0
+
 /obj/item/ego_weapon/sunshower/examine(mob/user)
 	. = ..()
 	. += "Current Poise: [poise]/20."
