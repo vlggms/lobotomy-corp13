@@ -65,15 +65,6 @@
 	if(!.) // Dead
 		return FALSE
 
-
-/mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/Stun()
-	set waitfor = FALSE
-	stunned = TRUE
-	ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5))//You did it nows your chance to beat the shit out of it!
-	SLEEP_CHECK_DEATH(12 SECONDS)
-	stunned = FALSE
-	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
-
 //Checks if it's stunned or doing the dive attack to prevent it from attacking or moving while in those 2 states since it would be silly.
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/Move()
 	if(diving || stunned)
