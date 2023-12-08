@@ -210,7 +210,7 @@
 	list_reagents = list(/datum/reagent/mutationtoxin/shadow = 5)
 
 /obj/item/reagent_containers/pill/shrimptoxin
-	name = "colar pill"
+	name = "coral pill"
 	desc = "I wouldn't eat this if I were you."
 	icon_state = "pill5"
 	list_reagents = list(/datum/reagent/mutationtoxin/shrimp = 5)
