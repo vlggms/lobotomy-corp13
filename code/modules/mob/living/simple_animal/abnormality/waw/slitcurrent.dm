@@ -128,7 +128,7 @@
 				if(istype(L, /mob/living/simple_animal/hostile/flotsam))
 					if(L.stat != DEAD)
 						//icon_state = icon_living
-						Stun()
+						Stunned()
 						src.adjustBruteLoss(1500)
 						L.adjustBruteLoss(1500)
 						visible_message(span_boldwarning("[src] mauls the Flotsam taking heavy damage!"))
@@ -139,6 +139,14 @@
 						L.gib()
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		diving = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/Stunned()
+	set waitfor = FALSE
+	stunned = TRUE
+	ChangeResistances(list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5))//You did it nows your chance to beat the shit out of it!
+	SLEEP_CHECK_DEATH(12 SECONDS)
+	stunned = FALSE
+	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5))
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)
