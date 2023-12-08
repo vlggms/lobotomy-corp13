@@ -57,4 +57,20 @@
 	mappath = "_maps/RandomRooms/wcorp/open2.dmm"
 	weight = 5
 
+/datum/map_template/random_room/wcorp/lounge
+	name = "Wcorp - Lounge"
+	room_id = "wcorp_lounge"
+	mappath = "_maps/RandomRooms/wcorp/lounge.dmm"
+	weight = 5
 
+/datum/map_template/random_room/wcorp/library
+	name = "Wcorp - Library"
+	room_id = "wcorp_library"
+	mappath = "_maps/RandomRooms/wcorp/library.dmm"
+	weight = 5
+
+/datum/map_template/random_room/wcorp/kitchen
+	name = "Wcorp - Kitchen"
+	room_id = "wcorp_kitchen"
+	mappath = "_maps/RandomRooms/wcorp/kitchen.dmm"
+	weight = 5

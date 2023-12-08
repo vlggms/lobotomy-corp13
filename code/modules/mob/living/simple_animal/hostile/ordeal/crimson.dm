@@ -63,7 +63,7 @@
 		return
 	teleporting = TRUE
 	var/list/potential_computers = list()
-	for(var/obj/machinery/computer/abnormality/CA in GLOB.abnormality_consoles)
+	for(var/obj/machinery/computer/abnormality/CA in GLOB.lobotomy_devices)
 		if(!CanTeleportTo(CA))
 			continue
 		potential_computers += CA

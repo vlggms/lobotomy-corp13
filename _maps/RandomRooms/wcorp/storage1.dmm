@@ -1,0 +1,483 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ag" = (
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"aY" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1";
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/city/outskirts)
+"bH" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "splatter1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"cu" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 4
+	},
+/turf/open/floor/carpet/stellar,
+/area/city/outskirts)
+"cZ" = (
+/turf/open/floor/carpet/green,
+/area/city/outskirts)
+"eX" = (
+/turf/open/floor/carpet/stellar,
+/area/city/outskirts)
+"fU" = (
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"jZ" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "xfloor1"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
+"ok" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 6
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"pd" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/stellar,
+/area/city/outskirts)
+"qO" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1"
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"si" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1";
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1";
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1";
+	dir = 9
+	},
+/turf/open/floor/carpet,
+/area/city/outskirts)
+"so" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "gibmid3"
+	},
+/turf/open/floor/carpet/orange,
+/area/city/outskirts)
+"sp" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "gibdown1"
+	},
+/turf/open/floor/carpet/orange,
+/area/city/outskirts)
+"ta" = (
+/obj/structure/bookcase{
+	icon_state = "book-1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"tg" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "coatblood"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"tX" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"ua" = (
+/obj/item/chair/wood{
+	dir = 4;
+	icon_state = "wooden_chair"
+	},
+/turf/open/floor/carpet/stellar,
+/area/city/outskirts)
+"vG" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "gibbl4"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"xR" = (
+/obj/structure/bookcase{
+	icon_state = "book-3"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "maskblood"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"zC" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "xfloor3"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ab" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "itemblood"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
+"Ai" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "xgiblarva2"
+	},
+/turf/open/floor/carpet,
+/area/city/outskirts)
+"DG" = (
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1";
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/city/outskirts)
+"Gl" = (
+/obj/item/chair/wood{
+	dir = 4;
+	icon_state = "wooden_chair"
+	},
+/turf/open/floor/carpet/green,
+/area/city/outskirts)
+"Hh" = (
+/obj/structure/bookcase{
+	icon_state = "book-3"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ja" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "vomit_2"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"LN" = (
+/obj/item/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/city/outskirts)
+"LO" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "splatter3"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Na" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Nl" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "gibbearcore"
+	},
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 4
+	},
+/turf/open/floor/carpet/stellar,
+/area/city/outskirts)
+"Py" = (
+/turf/open/floor/carpet/red,
+/area/city/outskirts)
+"PD" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "ltrails_1";
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "splatter1"
+	},
+/obj/effect/decal/cleanable/blood/xtracks{
+	icon_state = "xltrails_1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ro" = (
+/obj/structure/bookcase{
+	icon_state = "book-4"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"SP" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "vomit_3"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"SY" = (
+/turf/open/floor/carpet,
+/area/city/outskirts)
+"Td" = (
+/obj/structure/bookcase{
+	icon_state = "book-2"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"TM" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "vomit_1"
+	},
+/obj/item/chair/wood{
+	dir = 8;
+	icon_state = "wooden_chair"
+	},
+/turf/open/floor/carpet/stellar,
+/area/city/outskirts)
+"UR" = (
+/obj/structure/bookcase{
+	icon_state = "book-0"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"VB" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "splatter6"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Wd" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "handblood"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "maskblood"
+	},
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
+"Xj" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "shoeblood"
+	},
+/obj/item/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet,
+/area/city/outskirts)
+"Xn" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
+"Yn" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/green,
+/area/city/outskirts)
+"Yr" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	icon_state = "gibmid1"
+	},
+/turf/open/floor/carpet/orange,
+/area/city/outskirts)
+"Zf" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "gib3";
+	dir = 8
+	},
+/turf/open/floor/carpet,
+/area/city/outskirts)
+
+(1,1,1) = {"
+Xn
+Xn
+Ab
+fU
+fU
+fU
+fU
+fU
+Xn
+Xn
+Xn
+"}
+(2,1,1) = {"
+Xn
+Wd
+tg
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+Xn
+"}
+(3,1,1) = {"
+Xn
+UR
+Zf
+xR
+Na
+UR
+ag
+Ro
+eX
+ua
+Xn
+"}
+(4,1,1) = {"
+Xn
+Ro
+Xj
+Ro
+Na
+Hh
+ag
+ta
+Nl
+pd
+Xn
+"}
+(5,1,1) = {"
+Xn
+Hh
+SY
+UR
+Na
+Ro
+ag
+UR
+cu
+TM
+Xn
+"}
+(6,1,1) = {"
+Xn
+UR
+SY
+fU
+fU
+fU
+fU
+fU
+Ja
+fU
+Xn
+"}
+(7,1,1) = {"
+Xn
+Ro
+si
+qO
+PD
+tX
+tX
+tX
+ok
+SP
+Xn
+"}
+(8,1,1) = {"
+Xn
+UR
+aY
+fU
+fU
+VB
+vG
+LO
+fU
+fU
+Xn
+"}
+(9,1,1) = {"
+Xn
+ta
+DG
+Ro
+Py
+ta
+Yr
+Hh
+cZ
+Gl
+Xn
+"}
+(10,1,1) = {"
+Xn
+Ro
+DG
+Td
+Py
+Hh
+sp
+Ro
+cZ
+Yn
+Xn
+"}
+(11,1,1) = {"
+Xn
+ta
+Ai
+Ro
+Py
+UR
+so
+Ro
+cZ
+LN
+Xn
+"}
+(12,1,1) = {"
+Xn
+jZ
+zC
+fU
+fU
+fU
+bH
+fU
+fU
+Xn
+Xn
+"}
+(13,1,1) = {"
+Xn
+Xn
+jZ
+fU
+fU
+fU
+fU
+fU
+Xn
+Xn
+Xn
+"}

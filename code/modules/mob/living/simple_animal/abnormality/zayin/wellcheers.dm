@@ -33,25 +33,14 @@
 	harvest_phrase = span_notice("The machine dispenses some clear-ish soda into %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."
 
-	var/list/side_shrimps = list()
-
-/mob/living/simple_animal/hostile/abnormality/wellcheers/PostSpawn()
-	..()
-	for(var/d in list(EAST, WEST))
-		var/turf/TF = get_step(src, d)
-		if(!istype(TF))
-			continue
-		if(!TF.is_blocked_turf(TRUE))
-			if(locate(/obj/structure/wellcheers_side_shrimp) in TF)
-				continue
-			var/obj/structure/wellcheers_side_shrimp/shrimp = new(TF)
-			side_shrimps += shrimp
-
-/mob/living/simple_animal/hostile/abnormality/wellcheers/Destroy()
-	for(var/shrimp in side_shrimps)
-		qdel(shrimp)
-	side_shrimps = null
-	..()
+/mob/living/simple_animal/hostile/abnormality/wellcheers/HandleStructures()
+	. = ..()
+	if(!.)
+		return
+	if(locate(/obj/structure/wellcheers_side_shrimp) in datum_reference.connected_structures)
+		return
+	SpawnConnectedStructure(/obj/structure/wellcheers_side_shrimp, 1)
+	SpawnConnectedStructure(/obj/structure/wellcheers_side_shrimp, -1)
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
@@ -73,7 +62,7 @@
 // Death!
 /mob/living/simple_animal/hostile/abnormality/wellcheers/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	// Visual effects
-	for(var/obj/structure/wellcheers_side_shrimp/shrimp in side_shrimps)
+	for(var/obj/structure/wellcheers_side_shrimp/shrimp in datum_reference.connected_structures)
 		shrimp.ShrimpDance()
 	for(var/turf/open/T in view(7, src))
 		new /obj/effect/temp_visual/water_waves(T)

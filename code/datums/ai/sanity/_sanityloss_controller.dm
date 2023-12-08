@@ -376,7 +376,7 @@
 		current_behaviors += GET_AI_BEHAVIOR(lines_type)
 
 	var/list/potential_computers = list()
-	for(var/obj/machinery/computer/abnormality/AC in GLOB.abnormality_consoles)
+	for(var/obj/machinery/computer/abnormality/AC in GLOB.lobotomy_devices)
 		if(!AC.can_meltdown)
 			continue
 		if(!AC.datum_reference)

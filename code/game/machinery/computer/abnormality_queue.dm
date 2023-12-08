@@ -6,11 +6,11 @@
 
 /obj/machinery/computer/abnormality_queue/Initialize()
 	. = ..()
-	GLOB.abnormality_queue_consoles += src
+	GLOB.lobotomy_devices += src
 	flags_1 |= NODECONSTRUCT_1
 
 /obj/machinery/computer/abnormality_queue/Destroy()
-	GLOB.abnormality_queue_consoles -= src
+	GLOB.lobotomy_devices -= src
 	..()
 
 /obj/machinery/computer/abnormality_queue/ui_interact(mob/user, datum/tgui/ui)
