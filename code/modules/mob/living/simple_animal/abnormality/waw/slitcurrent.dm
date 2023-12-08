@@ -20,7 +20,7 @@
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
 	deathsound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
-
+	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "chomps"
 
