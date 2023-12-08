@@ -14,7 +14,6 @@
 
 /obj/item/trait_injector/shrimp_injector/Initialize()
 	. = ..()
-	roles = GLOB.service_positions
 
 /obj/item/trait_injector/shrimp_injector/InjectTrait(mob/living/carbon/human/user)
 	if(!faction_check(user.faction, list("shrimp")))
