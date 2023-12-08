@@ -84,7 +84,7 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormaility/attack(mob/living/target, mob/living/user) // whole thing " borrowed " from red sheet so heres fucking hoping.
+/mob/living/simple_animal/hostile/abnormaility/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -140,8 +140,6 @@
 		var/mob/living/carbon/human/L = owner //Stolen from Ptear Blade, MAYBE works on people?
 		L.physiology.black_mod *= 1.3
 		return
-	var/mob/living/simple_animal/M = owner
-	M.AddModifier(/datum/dc_change/unkind)
 
 /datum/status_effect/false_kindness/on_remove()
 	. = ..()
@@ -150,8 +148,6 @@
 		to_chat(L, "<span class='userdanger'>You feel as though its gaze has lifted.</span>") //stolen from PT wep, but I asked so this 100% ok.
 		L.physiology.black_mod /= 1.3
 		return
-	var/mob/living/simple_animal/M = owner
-	M.RemoveModifier(/datum/dc_change/l)
 
 /mob/living/simple_animal/hostile/umbrella/death(gibbed)
 	visible_message(span_notice("[src] falls to the ground as the umbrella closes in on itself!"))
