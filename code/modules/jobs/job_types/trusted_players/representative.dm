@@ -69,3 +69,4 @@
 	name = "S Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp
 	l_hand = /obj/item/reagent_containers/pill/shrimptoxin
+	r_hand = /obj/item/trait_injector/repshrimp_injector
