@@ -11,7 +11,7 @@
 	use_skintones = FALSE
 	limbs_id = "shrimp"
 	no_equip = list(ITEM_SLOT_EYES, ITEM_SLOT_MASK)
-	changesource_flags = MIRROR_BADMIN | WABBAJACK
+	changesource_flags = MIRROR_BADMIN | WABBAJACK | ERT_SPAWN
 	var/special_names = list("Cajun", "Leech", "Krill", "Prawn", "Oyster", "Gill", "Shrimp", "Shrimple", "Old Bay", "Lobster", "Crabby", "Finn", "Craw", "Crawdad", "Chowder", "Crusty", "Krillin", "Barney",\
 	"Saeu", "Mantis", "Pistol", "Carieda", "Crangon", "Pop", "Shelldon", "Shelly", "Krabs", "Jumbo", "Caspian", "Little Buoy", "Brook", "River", "Bubbles")
 	var/human_name_chance = 5
