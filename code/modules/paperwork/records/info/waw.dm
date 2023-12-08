@@ -517,8 +517,10 @@
 		"When an employee fainted due to a lack of oxygen, the Qliphoth Counter lowered.",
 		"While working, Jimbo noticed he was losing oxygen during the work.",
 		"Upon breaching, the facility became flooded until Dream-Devouring Slitcurrent was recontained.",
+		"While the facility was flooded, all employees took constant oxygen damage.",
 		"Upon breaching, Flotsams appeared throughout the facility.",
 		"When Lucas damaged the Flotsams or Dream-Devouring Slitcurrent some of his oxygen was replenished.",
-		"When Dream-Devouring Slitcurrent tried to dive into a Frotsam it became briefly stunned and was heavily damaged.")
+		"When Dream-Devouring Slitcurrent tried to dive into a Frotsam it became briefly stunned and was heavily damaged.",
+		"While stunned, Dream-Devouring Slitcurrent took extra damage.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Extreme"
