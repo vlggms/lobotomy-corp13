@@ -145,3 +145,7 @@
 	desc = "A sepiatone suit with white undershirt. Used by T-corp staff."
 	icon_state = "tcorp"
 
+/obj/item/clothing/under/suit/lobotomy/scorp
+	name = "s-corp officer uniform"
+	desc = "A plain black suit with a coral tie. Used by S-corp staff.
+	icon_state = "scorp"

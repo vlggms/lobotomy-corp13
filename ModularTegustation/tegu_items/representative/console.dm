@@ -7,6 +7,7 @@
 #define W_CORP_REP "W corp"
 #define N_CORP_REP "N corp"
 #define P_CORP_REP "P corp"
+#define S_CORP_REP "S corp"
 #define IS_MONIES istype(I, /obj/item/holochip)
 #define IS_REFINED_PE istype(I, /obj/item/refinedpe)
 #define IS_RAW_PE istype(I, /obj/item/rawpe)
@@ -211,6 +212,14 @@
 			CustomizeOffice(null, null)
 			order_list = list(
 				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1)
+
+		if("S Corp Representative")
+			our_corporation = S_CORP_REP
+			CustomizeOffice(null, /obj/structure/pe_sales/s_corp)
+			order_list = list(
+				new /datum/data/extraction_cargo("S Corp Zero Soda", /datum/reagent/abnormality/wellcheers_zero, 25, S_CORP_REP) = 1,
+				new/datum/data/extraction_cargo("S Corp Standard Soda", /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white, 50, S_CORP_REP) = 1,
+				new/datum/data/extraction_cargo("S Corp Cherry Soda", /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red, 50, S_CORP_REP) = 1)
 
 		else
 			to_chat(usr, span_warning("ASSIGNMENT ERROR."))

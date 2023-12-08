@@ -91,3 +91,67 @@
 	W.assignment = "Asset Protection Staff"
 	W.registered_name = H.real_name
 	W.update_label()
+
+//S Corp Stuff
+/obj/item/clothing/suit/armor/ego_gear/zayin/soda/ert
+	equip_slowdown = 0
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 20)
+
+/datum/outfit/scorp
+	name = "Liquidation Team Intern"
+	ears = /obj/item/radio/headset/headset_cent
+	uniform = /obj/item/clothing/under/suit/lobotomy/plain
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/combat
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	suit = /obj/item/clothing/suit/armor/ego_gear/zayin/soda
+	l_pocket = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red
+	r_pocket = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
+	id = /obj/item/card/id
+
+/datum/outfit/scorp/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+	H.set_species(/datum/species/shrimp)
+	var/belt = pick(/obj/item/gun/ego_gun/sodashotty,
+		/obj/item/gun/ego_gun/sodarifle,
+		/obj/item/gun/ego_gun/sodasmg,
+		/obj/item/gun/ego_gun/shrimp/assault)
+
+	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "Liquidation Intern"
+	W.registered_name = H.real_name
+	W.update_label()
+
+/datum/outfit/scorp/heavyweapons
+	name = "Liquidation Team Gunner"
+	suit = /obj/item/clothing/suit/armor/ego_gear/zayin/soda/ert
+	l_pocket = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple
+	r_pocket = /obj/item/grenade/spawnergrenade/shrimp
+	belt = /obj/item/gun/ego_gun/shrimp/minigun
+
+/datum/outfit/scorp/heavyweapons/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+	H.set_species(/datum/species/shrimp)
+
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "Liquidation Gunner"
+	W.registered_name = H.real_name
+	W.update_label()
+
+/datum/outfit/scorp/heavyweapons/termination
+	name = "Liquidation Team Exterminator"
+	suit = /obj/item/clothing/suit/armor/ego_gear/realization/wellcheers
+	r_pocket = /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple
+	back = /obj/item/storage/backpack/ert/security
+	backpack_contents = list(/obj/item/melee/classic_baton/telescopic=1,
+		/obj/item/grenade/spawnergrenade/shrimp/hostile=2,
+		/obj/item/storage/box/survival/engineer=1)
+
+/datum/outfit/scorp/heavyweapons/termination/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+	H.set_species(/datum/species/shrimp)

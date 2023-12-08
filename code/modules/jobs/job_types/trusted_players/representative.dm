@@ -42,7 +42,7 @@
 /// Alternate corps you cna pick
 /datum/job/representative
 	alt_titles = list("R Corp Representative", "W Corp Representative",
-			"K Corp Representative", "N Corp Representative", "P Corp Representative")
+			"K Corp Representative", "N Corp Representative", "P Corp Representative", "S Corp Representative")
 
 /datum/outfit/job/representative/rcorprepresentative
 	name = "R Corp Representative"
@@ -64,3 +64,12 @@
 /datum/outfit/job/representative/pcorprepresentative
 	name = "P Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp
+
+/datum/outfit/job/representative/scorprepresentative
+	name = "S Corp Representative"
+	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp
+
+/datum/outfit/scorprepresentative/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+	H.set_species(/datum/species/shrimp)

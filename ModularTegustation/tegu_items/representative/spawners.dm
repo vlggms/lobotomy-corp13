@@ -151,3 +151,32 @@
 	assignedrole = "Asset Protection Staff"
 	spawn_level = 100 // Goodluck, idiot.
 	uses = 20	// Evil Excision staff
+
+//Scorp
+/obj/effect/mob_spawn/human/supplypod/r_corp/scorp_call
+	name = "Liquidation Intern teleport zone"
+	desc = "A authorized zone for teleporting in scorp staff."
+	short_desc = "You are a member of S Corp's liquidation team, exterminate any threats to your contractors and bring glory to S Corp."
+	outfit = /datum/outfit/scorp
+	flavour_text = "To finish your internship you have been ordered to protect a L Corp branch for a short while, make sure no harm comes to it you are disposable do not forget that."
+	mob_name = "S Corp Liquidator"
+	assignedrole = "Liquidation Intern"
+	spawn_level = 40
+	uses = 10
+	faction = list("neutral", "rabbit", "shrimp")
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/scorp_call/heavyweapons
+	name = "Liquidation Gunner teleport zone"
+	outfit = /datum/outfit/scorp/heavyweapons
+	flavour_text = "You were sent in as a special service to L Corp, protect their assets and ours but remember to prioritize their safety we got paid a hefty sum, do not disappoint us."
+	assignedrole = "Liquidation Gunner"
+	spawn_level = 80
+	uses = 4
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/scorp_call/terminationteam
+	name = "Liquidation Exterminator teleport zone"
+	outfit = /datum/outfit/scorp/heavyweapons/termination
+	flavour_text = "Due to a breach of contract you have been called upon to liquidate L-Corp assets, remember you do not have IFF, extract the representative and any remaining shrimps, leave no one else alive"
+	assignedrole = "Liquidation Exterminator"
+	spawn_level = 130
+	uses = 20
