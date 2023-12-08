@@ -23,7 +23,9 @@
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "chomps"
-
+	light_color = COLOR_TEAL
+	light_range = 4
+	light_power = 5
 	threat_level = WAW_LEVEL
 
 	work_chances = list(
@@ -55,10 +57,7 @@
 	var/dive_damage = 100
 	//The amount of flotsams that should spawn in the hallways when it breaches
 	var/tube_spawn_amount = 6
-
-/mob/living/simple_animal/hostile/abnormality/slitcurrent/Initialize()
-	. = ..()
-	color = COLOR_TEAL
+	var/list/spawned_flotsams = list()
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/Life()
 	. = ..()
@@ -80,7 +79,6 @@
 	if(diving || stunned)
 		return FALSE
 	return ..()
-	SlitDive(target)
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/OpenFire()
 	SlitDive(target)
@@ -165,7 +163,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/BreachEffect(mob/living/carbon/human/user)
-	..()
+	. = ..()
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
 	icon_living = "current_breach"
 	//icon_state = icon_living
@@ -185,7 +183,7 @@
 		if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
 			deploy_spot = pick_n_take(deployment_area)
 		var/mob/living/simple_animal/hostile/flotsam/F = new get_turf(deploy_spot)
-		F.abno_spawner = src
+		spawned_flotsams += F
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/OxygenLoss()//While its alive all humans on its z level will lose oxygen
 	for(var/mob/living/L in GLOB.player_list)
@@ -193,7 +191,12 @@
 			continue
 		playsound(L, "sound/effects/bubbles.ogg", 50, TRUE, 7)
 		new /obj/effect/temp_visual/mermaid_drowning(get_turf(L))
-		L.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
+		L.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/slitcurrent/death()
+	for(var/mob/living/simple_animal/hostile/flotsam/F in spawned_flotsams)
+		QDEL_IN(F, rand(5) SECONDS)
+		spawned_flotsams -= F
 
 /mob/living/simple_animal/hostile/flotsam
 	name = "Flotsam"
@@ -207,14 +210,12 @@
 	/*Stats*/
 	health = 1500
 	maxHealth = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	density = TRUE
 	faction = list("neutral")//pretty sure Slitcurrent attack them in Limbus,
-	var/mob/living/simple_animal/hostile/abnormality/slitcurrent/abno_spawner
-
-/mob/living/simple_animal/hostile/flotsam/Life()
-	if(abno_spawner.stat == DEAD)
-		qdel(src)
+	light_color = COLOR_TEAL
+	light_range = 4
+	light_power = 5
 
 /mob/living/simple_animal/hostile/flotsam/Move()
 	return FALSE
