@@ -61,6 +61,7 @@
 				if(rep_console.our_corporation != our_corporation)
 					continue
 				rep_console.AdjustPoints(1)
+				playsound(rep_console, 'sound/machines/terminal_success.ogg', 20, 1)
 				found_rep = TRUE
 		if(!found_rep) // No rep? Bit of a refund, but not as valuable as the rep.
 			SSlobotomy_corp.AdjustAvailableBoxes(25)
