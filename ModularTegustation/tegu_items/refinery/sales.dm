@@ -102,6 +102,7 @@
 	icon_state = "machiner"
 	crate = /obj/structure/lootcrate/r_corp
 	crate_timer = 360	//The most expensive because it's R corp stuff
+	our_corporation = R_CORP_REP
 
 /obj/structure/pe_sales/s_corp
 	name = "S-Corp Power Input"
@@ -116,6 +117,7 @@
 	crate = /obj/structure/lootcrate/w_corp
 	power_timer = 60 	//W Corp uses a lot of power
 	crate_timer = 120
+	our_corporation = W_CORP_REP
 
 /obj/structure/pe_sales/n_corp
 	name = "N-Corp Power Input"
