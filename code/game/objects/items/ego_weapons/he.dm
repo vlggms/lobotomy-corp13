@@ -1766,7 +1766,7 @@
 	name = "sunshower"
 	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
 	icon_state = "sunshower"
-	force = 30
+	force = 17
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
@@ -1775,3 +1775,21 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
 							)
+/obj/item/ego_weapon/sunshower/examine(mob/user)
+	. = ..()
+	. += "Current Poise: [poise]/20."
+
+/obj/item/ego_weapon/sunshower/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	poise+=1
+	if(poise>= 20)
+		poise = 20
+
+	//Crit stuff, taken from fourleaf, so thanks to whomever coded that!
+	if(prob(poise*2))
+		force*=3
+		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		poise = 0
+	..()
+	force = initial(force)

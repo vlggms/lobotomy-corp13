@@ -61,7 +61,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user in pet)
-		pet-=user
+		pet -= user
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
@@ -83,6 +83,15 @@
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
+
+/mob/living/simple_animal/hostile/abnormaility/attack(mob/living/target, mob/living/user) // whole thing " borrowed " from red sheet so heres fucking hoping.
+	. = ..()
+	if(!.)
+		return FALSE
+	if(isliving(target))
+		var/mob/living/simple_animal/M = target
+		if(!M.has_status_effect(/datum/status_effect/false_kindness))
+			M.apply_status_effect(/datum/status_effect/false_kindness)
 
 //mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
 	//. = ..()
@@ -116,14 +125,14 @@
 /datum/status_effect/false_kindness // MAYBE the black sunder shti works this time.
 	id = "false_kindness"
 	duration = 2 SECONDS //lasts 2 seconds becuase this is for an AI that attacks fast as shit, its not meant to fuck you up with other things.
-	alert_type = /atom/movable/screen/alert/status_effect/false_kidness
+	alert_type = /atom/movable/screen/alert/status_effect/false_kindness
 	status_type = STATUS_EFFECT_UNIQUE
 
 /atom/movable/screen/alert/status_effect/false_kindness
 	name = "Unkind"
 	desc = "You feel the foxes gaze upon you."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "falsekindness" //Bit of a placeholder sprite, it works-ish so
+	icon_state = "false_kindness" //Bit of a placeholder sprite, it works-ish so
 
 /datum/status_effect/false_kindness/on_apply() //" Borrowed " from Ptear blade, courtesy of gong.
 	. = ..()
