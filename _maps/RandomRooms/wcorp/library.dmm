@@ -1,0 +1,177 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"fU" = (
+/turf/open/space/basic,
+/area/city/outskirts)
+"Xn" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
+
+(1,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(2,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(3,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(4,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(5,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(6,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(7,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(8,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(9,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(10,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(11,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+"}
+(12,1,1) = {"
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+Xn
+"}
+(13,1,1) = {"
+Xn
+Xn
+Xn
+fU
+fU
+fU
+fU
+fU
+fU
+Xn
+Xn
+"}

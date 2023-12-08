@@ -1,0 +1,837 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"at" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"aJ" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "floor1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"aS" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "tracks";
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "splatter5"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"bC" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1;
+	icon_state = "corp_sofamiddle"
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "gibmid3"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"bL" = (
+/obj/structure/table/reinforced,
+/obj/machinery/microwave,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"cg" = (
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"cG" = (
+/obj/structure/chair{
+	icon_state = "bar_toppled"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"df" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 2;
+	icon_state = "corp_sofamiddle"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"dv" = (
+/obj/machinery/griddle,
+/obj/item/food/meat/slab/human,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"dV" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2"
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4;
+	icon_state = "siding_thinplating_line"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"er" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"go" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"gu" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"gC" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 5
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 5
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 5
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"hH" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"iC" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "bubblegumfoot"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"iU" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"jq" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"jG" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"pd" = (
+/obj/machinery/deepfryer,
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "coatblood"
+	},
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "bubblegumfoot"
+	},
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "floor1"
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"qc" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"qR" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "drip1"
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"sd" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "gib5";
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"sk" = (
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"sm" = (
+/obj/structure/chair/sofa/corp/corner{
+	icon_state = "corp_sofaend_right"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"te" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"tA" = (
+/obj/structure/closet,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"tM" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "gib3-old";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "tracks";
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"uc" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor3"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"ug" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor2"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"uY" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8;
+	icon_state = "corp_sofaend_right"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"vh" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "floor2"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"vk" = (
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"vL" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "gibbl2"
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "floor5"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"wN" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1;
+	icon_state = "corp_sofaend_right"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"xZ" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "drip1"
+	},
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "gibarm"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"yk" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1;
+	icon_state = "corp_sofamiddle"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"zU" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 10
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 10
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4;
+	icon_state = "siding_thinplating_line"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ac" = (
+/obj/structure/chair{
+	icon_state = "bar_toppled"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "armorblood"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "armorblood"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "gib2"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"As" = (
+/obj/machinery/smartfridge/food,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"Av" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1;
+	icon_state = "corp_sofamiddle"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"DI" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "tracks";
+	dir = 10
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"DJ" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Ew" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "floor1"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"EX" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Hg" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1;
+	icon_state = "corp_sofamiddle"
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "gibmid3"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Hn" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 4;
+	icon_state = "corp_sofamiddle"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Ij" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Iv" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 9
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 9
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"IJ" = (
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "gibbearcore"
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"IS" = (
+/obj/structure/table_frame,
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"IX" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Jh" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "tracks";
+	dir = 5
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "tracks";
+	dir = 5
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"JE" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip1"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "drip1"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ki" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Kt" = (
+/obj/structure/chair{
+	icon_state = "bar"
+	},
+/obj/structure/chair{
+	icon_state = "bar"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ms" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "gibbl5"
+	},
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "gibbl1"
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 6
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 6
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"MA" = (
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "gibup1"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"MG" = (
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "splatter6"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Og" = (
+/obj/structure/table/glass,
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "splatter6"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"OC" = (
+/obj/structure/chair{
+	icon_state = "bar"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"OE" = (
+/obj/structure/table_frame,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/body,
+/obj/effect/decal/cleanable/blood/tracks{
+	icon_state = "floor4"
+	},
+/obj/effect/decal/cleanable/vomit,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"OH" = (
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "gib3";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/body{
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"Qi" = (
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "drip5"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "drip3"
+	},
+/obj/effect/decal/cleanable/blood/gibs/up{
+	icon_state = "drip2"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"QH" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"QR" = (
+/obj/structure/closet/crate/bin,
+/obj/structure/closet/crate/bin,
+/obj/structure/closet/crate/bin,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4;
+	icon_state = "siding_thinplating_line"
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"QV" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8;
+	icon_state = "corp_sofamiddle"
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Rf" = (
+/obj/machinery/vending/dinnerware,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/outskirts)
+"Rt" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "trails_2";
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"RQ" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 8;
+	icon_state = "corp_sofamiddle"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"TW" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "u_dangerous_l"
+	},
+/obj/effect/turf_decal/siding/thinplating/dark,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ud" = (
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "gib3";
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/gibs/torso{
+	icon_state = "tracks";
+	dir = 4
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"Ut" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Uy" = (
+/obj/structure/chair/sofa/corp/corner{
+	icon_state = "corp_sofaend_left"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"UK" = (
+/obj/structure/chair/sofa/corp/corner,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"VY" = (
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"YX" = (
+/obj/structure/table/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+"ZP" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 2;
+	icon_state = "corp_sofamiddle"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/outskirts)
+
+(1,1,1) = {"
+iU
+iU
+sk
+hH
+VY
+Iv
+dV
+zU
+QR
+iU
+iU
+"}
+(2,1,1) = {"
+iU
+bL
+sk
+hH
+Kt
+TW
+DJ
+Ud
+Ij
+wN
+iU
+"}
+(3,1,1) = {"
+iU
+pd
+vk
+hH
+OC
+EX
+sm
+iC
+IS
+Av
+iU
+"}
+(4,1,1) = {"
+iU
+dv
+cg
+hH
+Kt
+jq
+df
+Ew
+uc
+Av
+iU
+"}
+(5,1,1) = {"
+iU
+As
+OH
+hH
+cG
+jq
+df
+ug
+YX
+Av
+iU
+"}
+(6,1,1) = {"
+iU
+Rf
+IJ
+hH
+VY
+qc
+ZP
+YX
+IX
+yk
+iU
+"}
+(7,1,1) = {"
+iU
+hH
+hH
+hH
+VY
+JE
+UK
+RQ
+QV
+Ki
+iU
+"}
+(8,1,1) = {"
+iU
+tA
+aS
+OC
+VY
+er
+gu
+Hn
+Hn
+QH
+iU
+"}
+(9,1,1) = {"
+iU
+tA
+Jh
+DI
+VY
+Rt
+Uy
+YX
+YX
+Av
+iU
+"}
+(10,1,1) = {"
+iU
+tA
+VY
+tM
+VY
+jq
+DJ
+Og
+OE
+bC
+iU
+"}
+(11,1,1) = {"
+iU
+tA
+MG
+Ac
+xZ
+gC
+at
+vL
+Ms
+Hg
+iU
+"}
+(12,1,1) = {"
+iU
+tA
+Qi
+MA
+aJ
+qR
+ab
+sd
+uY
+go
+iU
+"}
+(13,1,1) = {"
+iU
+iU
+vh
+VY
+VY
+jG
+Ut
+Ut
+te
+iU
+iU
+"}
