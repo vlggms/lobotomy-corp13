@@ -129,7 +129,7 @@
 	status_type = STATUS_EFFECT_UNIQUE
 
 /atom/movable/screen/alert/status_effect/false_kindness
-	name = "Unkind"
+	name = "False Kindness"
 	desc = "You feel the foxes gaze upon you."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "false_kindness" //Bit of a placeholder sprite, it works-ish so
