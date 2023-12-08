@@ -68,8 +68,4 @@
 /datum/outfit/job/representative/scorprepresentative
 	name = "S Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp
-
-/datum/outfit/scorprepresentative/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	if(visualsOnly)
-		return
-	H.set_species(/datum/species/shrimp)
+	l_hand = /obj/item/reagent_containers/pill/shrimptoxin
