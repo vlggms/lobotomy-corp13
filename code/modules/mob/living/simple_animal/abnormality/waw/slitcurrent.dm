@@ -53,7 +53,6 @@
 	var/dive_cooldown
 	var/dive_cooldown_time = 15 SECONDS
 	var/dive_damage = 100
-	var/flotsam = FALSE
 	//The amount of flotsams that should spawn in the hallways when it breaches
 	var/tube_spawn_amount = 6
 
@@ -115,8 +114,7 @@
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/SlitDive(mob/living/target)
 	if(!istype(target) || diving || stunned)
 		return
-	var/dist = get_dist(target, src)
-	if(dist > 1 && dive_cooldown < world.time)
+	if(get_dist(target, src) > 1 && dive_cooldown < world.time)
 		dive_cooldown = world.time + dive_cooldown_time
 		diving = TRUE
 		//icon_state = "current_prepare"
@@ -134,8 +132,6 @@
 		for(var/turf/T in view(2, src))
 			var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 			smonk.color = COLOR_TEAL
-			if(!ismob(src))
-				continue
 			for(var/mob/living/L in HurtInTurf(T, list(), dive_damage, RED_DAMAGE))
 				playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
 				if(istype(L, /mob/living/simple_animal/hostile/flotsam))
@@ -190,7 +186,6 @@
 		if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
 			deploy_spot = pick_n_take(deployment_area)
 		var/mob/living/simple_animal/hostile/flotsam/F = new get_turf(deploy_spot)
-		flotsam = F
 		F.abno_spawner = src
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/proc/OxygenLoss()//While its alive all humans on its z level will lose oxygen

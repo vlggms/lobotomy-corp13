@@ -1818,7 +1818,7 @@
 	name = "blind obsession"
 	desc = "All hands, full speed toward where the lights flicker. The waves... will lay waste to everything in our way."
 	special = "When thrown, this weapon attacks EVERYONE but yourself in an AOE. \
-			This weapon deals 75% times damage on direct throws."//Throw it at the Eo I dare ya!
+			This weapon deals 75% more damage on direct throws."//Throw it at the Eo I dare ya!
 	icon_state = "blind_obsession"
 	force = 80
 	attack_speed = 2.5

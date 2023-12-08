@@ -513,10 +513,12 @@
 	abno_code = "T-02-178"
 	abno_info = list(
 		"When an employee with Fortitude Level 2 or lower finished their work, the Qliphoth Counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When an employee fainted due to a lack of oxygen, the Qliphoth Counter lowered.",
 		"While working, Jimbo noticed he was losing oxygen during the work.",
 		"Upon breaching, the facility became flooded until Dream-Devouring Slitcurrent was recontained.",
 		"Upon breaching, Flotsams appeared throughout the facility.",
 		"When Lucas damaged the Flotsams or Dream-Devouring Slitcurrent some of his oxygen was replenished.",
-		"When Dream-Devouring Slitcurrent tried to bash into a Frotsam it became briefly stunned and was heavily damaged.")
+		"When Dream-Devouring Slitcurrent tried to dive into a Frotsam it became briefly stunned and was heavily damaged.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Extreme"
