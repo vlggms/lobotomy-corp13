@@ -81,14 +81,14 @@
 	crate = /obj/structure/lootcrate/l_corp
 	power_timer = 60 	//L Corp is where you drain your power
 	crate_timer = 60	//And it's super cheap
-	our_corporation = L_CORP_REP
+	our_corporation = "L corp"
 
 /obj/structure/pe_sales/limbus
 	name = "Limbus Company Power Input"
 	desc = "A machine used to send PE to limbus company."
 	icon_state = "machinelcb"
 	crate = /obj/structure/lootcrate/limbus
-	our_corporation = P_CORP_REP // Extremely questionable P-Corp~
+	our_corporation = "P corp" // Extremely questionable P-Corp~
 
 /obj/structure/pe_sales/k_corp
 	name = "K-Corp Power Input"
@@ -96,7 +96,7 @@
 	icon_state = "machinek"
 	crate = /obj/structure/lootcrate/k_corp
 	crate_timer = 60	//2 per, because you get one bullet per crate
-	our_corporation = K_CORP_REP
+	our_corporation = "K corp"
 
 /obj/structure/pe_sales/r_corp
 	name = "R-Corp Power Input"
@@ -104,7 +104,7 @@
 	icon_state = "machiner"
 	crate = /obj/structure/lootcrate/r_corp
 	crate_timer = 360	//The most expensive because it's R corp stuff
-	our_corporation = R_CORP_REP
+	our_corporation = "R corp"
 
 /obj/structure/pe_sales/s_corp
 	name = "S-Corp Power Input"
@@ -119,14 +119,14 @@
 	crate = /obj/structure/lootcrate/w_corp
 	power_timer = 60 	//W Corp uses a lot of power
 	crate_timer = 120
-	our_corporation = W_CORP_REP
+	our_corporation = "W corp"
 
 /obj/structure/pe_sales/n_corp
 	name = "N-Corp Power Input"
 	desc = "A machine used to send PE to N-Corp."
 	icon_state = "machinen"
 	crate = /obj/structure/lootcrate/n_corp
-	our_corporation = N_CORP_REP
+	our_corporation = "N corp"
 
 /obj/structure/pe_sales/leaflet
 	name = "Leaflet Workshop Power Input"
@@ -192,7 +192,7 @@
 	icon_state = "machinesyndicate"
 	crate = /obj/structure/lootcrate/syndicate
 	crate_timer = 360	//The most expensive sales, takes about 3.5 boxes. The worst you'll get is still extremely good
-	our_corporation = P_CORP_REP // Extremely questionable P-Corp~
+	our_corporation = "P corp" // Extremely questionable P-Corp~
 
 /obj/structure/pe_sales/backstreet
 	name = "Backstreets Workshop Power Input"
@@ -201,7 +201,7 @@
 	crate = /obj/structure/lootcrate/backstreets
 	power_timer = 180 	//Takes a bit
 	crate_timer = 180	//And it's super cheap
-	our_corporation = P_CORP_REP // Extremely questionable P-Corp~
+	our_corporation = "P corp" // Extremely questionable P-Corp~
 
 /obj/structure/pe_sales/jcorp
 	name = "J-corp Syndicate Power Input"
