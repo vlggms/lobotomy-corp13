@@ -212,7 +212,6 @@
 	maxHealth = 1500
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	density = TRUE
-	faction = list("neutral")//pretty sure Slitcurrent attack them in Limbus,
 	light_color = COLOR_TEAL
 	light_range = 4
 	light_power = 5
