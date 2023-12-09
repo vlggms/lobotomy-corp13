@@ -6,11 +6,11 @@
 	pixel_x = -15
 	base_pixel_x = -15
 	icon_living = "Bull"
-	maxHealth = 800
-	health = 800
+	maxHealth = 850
+	health = 850
 	vision_range = 11
 	aggro_vision_range = 17
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 2)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 6
 	melee_damage_upper = 12
 	melee_damage_type = RED_DAMAGE
@@ -29,12 +29,13 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(20, 25, 30, 30, 35),
 						ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
 						)
-	work_damage_amount = 3
+	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 	var/charge_check_time = 1 SECONDS
 	var/dash_num = 50
 	var/list/been_hit = list()
 	var/busy = FALSE
+	var/can_move = TRUE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/capote,
@@ -50,6 +51,11 @@
 /mob/living/simple_animal/hostile/abnormality/brazen_bull/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(60))
 		datum_reference.qliphoth_change(-1)
+
+/mob/living/simple_animal/hostile/abnormality/brazen_bull/Move()
+	if(!can_move)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/brazen_bull/Life()
 	. = ..()
@@ -70,6 +76,7 @@
 		target = pick(possible_targets)
 		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 		if(dir_to_target)
+			can_move = FALSE
 			busy = TRUE
 			addtimer(CALLBACK(src, .proc/charge, dir_to_target, 0, target), 2 SECONDS)
 			return
@@ -98,6 +105,7 @@
 			stop_charge = TRUE
 
 	if(stop_charge)
+		can_move = TRUE
 		busy = TRUE
 		addtimer(CALLBACK(src, .proc/endCharge), 9 SECONDS)
 		been_hit = list()
