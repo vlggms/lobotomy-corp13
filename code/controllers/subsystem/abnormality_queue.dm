@@ -57,7 +57,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 		return
 
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
-
 	if(istype(choice) && ispath(queued_abnormality))
 		choice.SpawnRoom()
 
@@ -104,7 +103,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 			Q.updateUsrDialog()
 		queued_abnormality = null
 		spawned_abnos++
-		pick_abno()
 
 /datum/controller/subsystem/abnormality_queue/proc/pick_abno()
 	var/list/picking_abno = list()
