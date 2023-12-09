@@ -480,5 +480,13 @@
 		"When the work result was neutral, the Qliphoth counter lowered.",
 		"When the work result was bad, the Qliphoth counter lowered by 2.")
 
-
-
+//Steam Transport Machine
+/obj/item/paper/fluff/info/he/steam
+	abno_type = /mob/living/simple_animal/hostile/abnormality/steam
+	abno_code = "O-05-197"
+	abno_info = list(
+		"When the work result was Neutral, the Qliphoth counter lowered at a moderate probability.",
+		"When the work result was Bad, the Qliphoth counter lowered.",
+		"When a certain amount of time passed, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
+		"When activated, the abnormality's maximum Qliphoth counter lowered, all work types became less effective, work damage increased, and the abnormality generally became more aggressive.",
+		"At 1 hour and 15 minutes the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
