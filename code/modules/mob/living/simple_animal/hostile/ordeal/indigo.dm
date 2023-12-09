@@ -350,54 +350,26 @@
 			return TRUE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/indigo_midnight/PickTarget(list/Targets)
-	//Default to normal targeting if already phase 3 or only have 1 target
-	if(phase >= 3 || Targets.len <= 1)
+//Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/ValueTarget(atom/target_thing)
+	//Higher brain functions have been turned off.
+	if(phase >= 3)
 		return ..()
 
-	/* If we have a target and their value is
-		above 80 or "adjacent living creature" then
-		just keep killing them. */
-	if(target)
-		// Focus on finishing them off.
-		if(ValueTarget(target) > 86)
-			return target
-
-	/* Form a list of our targets, value how much we hate
-		them, and then pick the target who has the MOST hate. */
-	for(var/i in Targets)
-		Targets[i] = ValueTarget(i)
-	return ReturnHighestValue(Targets)
-
-//Remind me to return to this and make complex targeting a option for all creatures. I may make it a TRUE FALSE var.
-/mob/living/simple_animal/hostile/ordeal/indigo_midnight/proc/ValueTarget(atom/target_thing, hate_value = 0)
-	/* This is in order to treat Mechas as living by
-		instead considering their pilot for the hate value. */
-	if(ismecha(target_thing))
-		var/obj/vehicle/sealed/mecha/M = target_thing
-		for(var/occupant in M.occupants)
-			if(CanAttack(occupant))
-				target_thing = occupant
+	. = ..()
 
 	if(isliving(target_thing))
 		var/mob/living/L = target_thing
-
-		//Minimum starting hate for anything living is 80.
-		hate_value += 80
 		//Hate for corpses since we eats them.
 		if(L.stat == DEAD)
-			hate_value += 10
+			. += 10
 		//Highest possible addition is + 9.9
 		if(iscarbon(L))
 			if(L.stat != DEAD && L.health <= (L.maxHealth * 0.6))
 				var/upper = L.maxHealth - HEALTH_THRESHOLD_DEAD
 				var/lower = L.health - HEALTH_THRESHOLD_DEAD
-				hate_value += min( 2 * ( 1 / ( max( lower, 1 ) / upper ) ), 20)
-		//If your not next to us your hate is down by 50
-		if(!L.Adjacent(targets_from))
-			hate_value -= 50
+				. += min( 2 * ( 1 / ( max( lower, 1 ) / upper ) ), 20)
 
-	return hate_value
 	/*
 	Priority from greatest to least:
 	dead close: 90
@@ -445,10 +417,10 @@
 
 	if(istype(target_turf))
 		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
-		return
+		return TRUE
 	//unsure if this patrol reset will cause the patrol cooldown even if there is not patrol path.
 	patrol_reset()
-	return
+	return FALSE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget()
 	. = ..()
