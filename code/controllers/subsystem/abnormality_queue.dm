@@ -165,7 +165,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	// Already in there, oops
 	if(level_threat in available_levels)
 		return
-	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.audible_message("<span class='announce'>Due to [O.name] finishing early, additional abnormalities will be extracted soon.</span>")
 	INVOKE_ASYNC(src, .proc/SpawnOrdealAbnos, level_threat)
 
