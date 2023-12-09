@@ -58,7 +58,7 @@
 	else
 		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(src))
 		breached_monster = spawningmonster
-		qdel(src) //Destroys the piano, as it is unecessary in Rcorp.
+		QDEL_IN(src, 1 SECONDS) //Destroys the piano, as it is unecessary in Rcorp.
 
 	breached = TRUE
 	if(client)
