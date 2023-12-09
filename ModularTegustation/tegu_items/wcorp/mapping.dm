@@ -66,8 +66,8 @@
 /datum/map_template/random_room/wcorp/library
 	name = "Wcorp - Library"
 	room_id = "wcorp_library"
-	mappath = "_maps/RandomRooms/wcorp/library.dmm"
-	weight = 5
+	mappath = "_maps/RandomRooms/wcorp/kitchen.dmm"
+	weight = 0	//Currently bugged
 
 /datum/map_template/random_room/wcorp/kitchen
 	name = "Wcorp - Kitchen"
