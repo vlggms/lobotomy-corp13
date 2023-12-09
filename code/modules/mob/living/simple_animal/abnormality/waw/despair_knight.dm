@@ -122,7 +122,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/proc/TryTeleport()
-	if(CheckCombat())
+	if(IsCombatMap())
 		return FALSE
 	if(teleport_cooldown > world.time)
 		return FALSE

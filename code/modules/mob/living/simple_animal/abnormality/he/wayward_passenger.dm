@@ -90,7 +90,7 @@
 		return
 	if(IsContained())
 		return
-	if(client || CheckCombat())
+	if(client || IsCombatMap())
 		return
 	if((teleport_cooldown <= world.time) && can_act)
 		TryTeleport()
