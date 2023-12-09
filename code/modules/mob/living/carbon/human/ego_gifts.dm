@@ -1179,8 +1179,8 @@
 /datum/ego_gifts/swan
 	name = "Black Swan"
 	icon_state = "swan"
-	fortitude_bonus = -2
-	prudence_bonus = -2
+	fortitude_bonus = -3
+	prudence_bonus = -3
 	temperance_bonus = 10
 	slot = HAT
 
