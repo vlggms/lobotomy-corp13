@@ -191,7 +191,7 @@
 			continue
 		playsound(L, "sound/effects/bubbles.ogg", 50, TRUE, 7)
 		new /obj/effect/temp_visual/mermaid_drowning(get_turf(L))
-		L.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
+		L.adjustOxyLoss(8, updating_health=TRUE, forced=TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/death()
 	for(var/mob/living/simple_animal/hostile/flotsam/F in spawned_flotsams)
