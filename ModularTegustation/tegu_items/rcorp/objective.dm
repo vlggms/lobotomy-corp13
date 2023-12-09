@@ -46,18 +46,64 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	minor_announce("DANGER - HOSTILE ARBITER IN THE AREA. NEUTRALIZE IMMEDIATELY." , "R-Corp Intelligence Office")
 	GLOB.rcorp_wincondition = 2
 
-
 //Golden Bough Objective
 /obj/structure/bough
 	name = "Golden Bough"
 	desc = "You need this."
-	icon_state = "realization"
-	icon = 'ModularTegustation/Teguicons/toolabnormalities.dmi'
+	icon_state = "bough_pedestal"
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
+
+	light_color = COLOR_YELLOW
+	light_range = 2
+	light_power = 2
+	light_on = TRUE
+
+	//Collecting vars
 	var/cooldown
-	var/list/bastards = list()
+	var/list/bastards = list() //ckeys that have already tried to grab the bough
+
+	//Visual vars
+	var/obj/effect/golden_bough/bough //The bough effect that is spawned above the pedestal
+	var/f1 //Filter 1, Ripple filter
+	var/f2 //Filter 2, Rays filter
+
+/obj/structure/bough/Initialize()
+	..()
+	bough = new/obj/effect/golden_bough(src)
+
+	//Filter 1 gets applied to the bough
+	bough.filters += filter(type="ripple", x = 0, y = 11, size = 20, repeat = 6, radius = 0, falloff = 1)
+	f1 = bough.filters[bough.filters.len]
+
+	//Filter 2 gets applied to the pedestal
+	filters += filter(type="rays", x = 0, y = 11, size = 20, color = COLOR_VERY_SOFT_YELLOW, offset = 0.2, density = 10, factor = 0.4, threshold = 0.5)
+	f2 = filters[filters.len]
+	vis_contents += bough
+
+	FilterLoop(1) //Starts the filter's loop
+
+/obj/structure/bough/Destroy()
+	qdel(bough)
+	..()
+
+/obj/structure/bough/proc/FilterLoop(loop_stage) //Takes a numeric argument for advancing the loop's stage in a cycle (1 > 2 > 3 > 1 > ...)
+	if(filters[filters.len]) // Stops the loop if we have no filters to animate
+		switch(loop_stage)
+			if(1)
+				animate(f1, radius = 60, falloff = 0.2, time = 60, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
+				animate(f2, size = 30, offset = pick(4,5,6), threshold = 0.4, time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_PARALLEL)
+				addtimer(CALLBACK(src, .proc/FilterLoop, 2), 6 SECONDS)
+			if(2)
+				animate(f1, size = 25, radius = 80, falloff = 0.8, time = 20, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
+				animate(f2, size = 20, offset = pick(0.2,0.4), threshold = 0.5, time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_END_NOW | ANIMATION_PARALLEL)
+				addtimer(CALLBACK(src, .proc/FilterLoop, 3), 2 SECONDS)
+			if(3)
+				animate(f1, size = 20, radius = 0, falloff = 1, time = 0, flags = CIRCULAR_EASING | EASE_IN | EASE_OUT | ANIMATION_PARALLEL)
+				addtimer(CALLBACK(src, .proc/FilterLoop, 1), 4 SECONDS)
+		update_icon()
 
 /obj/structure/bough/attack_hand(mob/living/carbon/human/user)
 	if(cooldown > world.time)
@@ -76,6 +122,15 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 /obj/structure/bough/proc/RoundEndEffect(mob/living/carbon/human/user)
 	bastards += user.ckey
 	if(do_after(user, 45 SECONDS))
+		//Visual Stuff
+		clear_filters()
+		bough.clear_filters()
+		vis_contents.Cut()
+		qdel(bough)
+		light_on = FALSE
+		update_light()
+
+		//Round End Effects
 		SSticker.SetRoundEndSound('sound/abnormalities/donttouch/end.ogg')
 		SSticker.force_ending = 1
 		for(var/mob/M in GLOB.player_list)
@@ -88,7 +143,6 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 					to_chat(M, span_userdanger("R-CORP MINOR VICTORY."))
 				if(2)
 					to_chat(M, span_userdanger("R-CORP SUPREME VICTORY."))
-
 
 	else
 		user.gib() //lol, idiot.
