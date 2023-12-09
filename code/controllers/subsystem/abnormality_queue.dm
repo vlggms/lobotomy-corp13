@@ -1,5 +1,16 @@
 #define ABNORMALITY_DELAY 180 SECONDS
 
+/*
+* The system was coded as a proof of concept long ago, and might need a good rework.
+* Ideally, you should have a certain amount of abnormalities per their threat level.
+* For example, an "ideal" composition would be close to this:
+* ZAYIN: 2
+* TETH: 4
+* HE: 6
+* WAW: 8
+* ALEPH: 4
+*/
+
 SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
@@ -29,6 +40,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/hardcore_roll_enabled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, .proc/OnOrdealEnd)
 	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
@@ -40,27 +52,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
 	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 6) SECONDS
-	// ALEPH enabled, WAW disabled
-	if(spawned_abnos >= rooms_start * 0.74)
-		if(LAZYLEN(possible_abnormalities[ALEPH_LEVEL]))
-			available_levels = list(ALEPH_LEVEL)
-		else // If we ran out of ALEPHs, somehow
-			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
-
-	// WAW enabled, HE disabled
-	else if(spawned_abnos >= rooms_start * 0.48)
-		available_levels = list(WAW_LEVEL)
-
-	// HE enabled, TETH disabled
-	else if(spawned_abnos >= rooms_start * 0.21)
-		available_levels = list(HE_LEVEL)
-
-	// TETH enabled, ZAYIN disabled
-	else if(spawned_abnos >= rooms_start * 0.04) // 2 ZAYINs normally
-		available_levels = list(TETH_LEVEL)
-
-	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
-		pick_abno()
 
 	if(!LAZYLEN(GLOB.abnormality_room_spawners))
 		return
@@ -74,6 +65,33 @@ SUBSYSTEM_DEF(abnormality_queue)
 		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 			Q.ChangeLock(FALSE)
 		fucked_it_lets_rolled = FALSE
+
+	SelectAvailableLevels()
+
+// Abno level selection
+/datum/controller/subsystem/abnormality_queue/proc/SelectAvailableLevels()
+	// ALEPH enabled, WAW disabled
+	if(spawned_abnos >= rooms_start * 0.83)
+		if(LAZYLEN(possible_abnormalities[ALEPH_LEVEL]))  // 8 WAWs (20 abnos) + 4 ALEPHs (24 abnos)
+			available_levels = list(ALEPH_LEVEL)
+		else // If we ran out of ALEPHs, somehow
+			available_levels = list(WAW_LEVEL)
+
+	// WAW enabled, HE disabled
+	else if(spawned_abnos >= rooms_start * 0.5) // 6 HEs (12 abnos)
+		available_levels = list(WAW_LEVEL)
+
+	// HE enabled, TETH disabled
+	else if(spawned_abnos >= rooms_start * 0.25) // 4 TETHs (6 abnos)
+		available_levels = list(HE_LEVEL)
+
+	// TETH enabled, ZAYIN disabled
+	else if(spawned_abnos >= rooms_start * 0.08) // 2 ZAYINs
+		available_levels = list(TETH_LEVEL)
+
+	// Roll the abnos from available levels
+	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
+		pick_abno()
 
 /datum/controller/subsystem/abnormality_queue/proc/postspawn()
 	if(queued_abnormality)
@@ -135,3 +153,26 @@ SUBSYSTEM_DEF(abnormality_queue)
 		picking_abno |= possible_abnormalities[level]
 
 	return pickweight(picking_abno)
+
+// Spawns abnos faster if you lack abnos of that level
+/datum/controller/subsystem/abnormality_queue/proc/OnOrdealEnd(datum/source, datum/ordeal/O = null)
+	SIGNAL_HANDLER
+	if(!istype(O))
+		return
+	if(O.level > 3 || O.level < 1)
+		return
+	var/level_threat = O.level + 2 // Dusk will equal to ALEPH here
+	// Already in there, oops
+	if(level_threat in available_levels)
+		return
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		Q.audible_message("<span class='announce'>Due to [O.name] finishing early, additional abnormalities will be extracted soon.</span>")
+	INVOKE_ASYNC(src, .proc/SpawnOrdealAbnos, level_threat)
+
+/datum/controller/subsystem/abnormality_queue/proc/SpawnOrdealAbnos(level_threat = 1)
+	// Spawn stuff until we reach the desired threat level, or spawn too many things
+	for(var/i = 1 to 4)
+		SpawnAbno()
+		sleep(30 SECONDS)
+		if(level_threat in available_levels)
+			break
