@@ -132,7 +132,7 @@
 	for(var/obj/structure/spreading/apple_vine/W in range(15, get_turf(src)))
 		if(W.last_expand <= world.time)
 			W.expand()
-	if(teleport_cooldown <= world.time && !togglemovement && !client && !CheckCombat())
+	if(teleport_cooldown <= world.time && !togglemovement && !client && !IsCombatMap())
 		TryTeleport()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/AttackingTarget(atom/attacked_target)

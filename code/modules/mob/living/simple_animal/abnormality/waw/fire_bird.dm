@@ -105,7 +105,7 @@
 	light_range = 20
 	light_power = 20
 	update_light()
-	if(CheckCombat())
+	if(IsCombatMap())
 		loot = list()
 		return
 	addtimer(CALLBACK(src, .proc/KillOtherBird), 90 SECONDS)

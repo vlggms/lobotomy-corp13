@@ -5,7 +5,8 @@ GLOBAL_LIST_INIT(easycombat, list(
 	/mob/living/simple_animal/hostile/abnormality/helper,
 	/mob/living/simple_animal/hostile/abnormality/apex_predator,
 	/mob/living/simple_animal/hostile/abnormality/cleaner,
-	/mob/living/simple_animal/hostile/abnormality/smile))
+	/mob/living/simple_animal/hostile/abnormality/smile,
+	/mob/living/simple_animal/hostile/abnormality/pinocchio))
 
 GLOBAL_LIST_INIT(easysupport, list(/mob/living/simple_animal/hostile/abnormality/fragment,
 	/mob/living/simple_animal/hostile/abnormality/funeral,
@@ -28,7 +29,7 @@ GLOBAL_LIST_INIT(hardcombat, list(
 	/mob/living/simple_animal/hostile/abnormality/big_wolf,
 	/mob/living/simple_animal/hostile/abnormality/warden,
 	/mob/living/simple_animal/hostile/abnormality/fire_bird,
-	))
+	/mob/living/simple_animal/hostile/abnormality/luna))
 
 GLOBAL_LIST_INIT(hardsupport, list(/mob/living/simple_animal/hostile/abnormality/sphinx,
 	/mob/living/simple_animal/hostile/abnormality/judgement_bird,

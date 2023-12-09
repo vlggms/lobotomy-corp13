@@ -98,7 +98,7 @@
 		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 
 		if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
-			if(!CheckCombat())
+			if(!IsCombatMap())
 				var/turf/T = get_turf(L)
 				if(locate(/obj/structure/jbird_noose) in T)
 					T = pick_n_take(T.reachableAdjacentTurfs())//if a noose is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
@@ -128,7 +128,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user)
 	..()
-	if(CheckCombat())
+	if(IsCombatMap())
 		judgement_damage = 65
 		return
 
