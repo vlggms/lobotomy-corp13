@@ -102,7 +102,7 @@
 	startTeleport()	//Let's Spaghettioodle out of here
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport()
-	if(CheckCombat())
+	if(IsCombatMap())
 		return
 	if(busy || teleport_cooldown > world.time || (status_flags & GODMODE))
 		return

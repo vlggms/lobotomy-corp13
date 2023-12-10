@@ -89,7 +89,7 @@
 
 //Spawning Fairies
 /mob/living/simple_animal/hostile/abnormality/titania/proc/FairyLoop()
-	if(CheckCombat())
+	if(IsCombatMap())
 		return
 	//Blurb about how many we have spawned
 	listclearnulls(spawned_mobs)
@@ -109,7 +109,7 @@
 
 //Setting the nemesis
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ChooseNemesis()
-	if(CheckCombat())
+	if(IsCombatMap())
 		return
 
 	var/list/potentialmarked = list()
@@ -134,7 +134,7 @@
 //------------------------------------------------------------------------------
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/SetLaw()
-	if(CheckCombat())
+	if(IsCombatMap())
 		return
 
 

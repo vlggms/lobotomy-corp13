@@ -92,7 +92,7 @@
 	playsound(src, 'sound/effects/ordeals/white/black_ability_end.ogg', 100, FALSE, 30)
 	for(var/obj/machinery/computer/abnormality/A in urange(current_pulse_range, src))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
-			A.datum_reference.qliphoth_change(pick(-1, -2))
+			INVOKE_ASYNC(A.datum_reference, /datum/abnormality/proc/qliphoth_change, pick(-1, -2))
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(5)
 	pulse_cooldown = world.time + pulse_cooldown_time
@@ -684,7 +684,10 @@
 			continue
 		if(get_dist(src, H) < 8)
 			continue
-		potential_teleports += pick(get_adjacent_open_turfs(H))
+		var/list/adj_turfs = get_adjacent_open_turfs(H)
+		if(!LAZYLEN(adj_turfs))
+			continue
+		potential_teleports += pick(adj_turfs)
 	if(!LAZYLEN(potential_teleports))
 		return // Nowhere to run!
 	var/turf/target_turf = pick(potential_teleports)

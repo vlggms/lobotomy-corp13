@@ -116,7 +116,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/golden_apple/apple = owner
 	if(apple.IsContained()) // No more using cooldowns while contained
 		return FALSE
-	if(apple.is_maggot == TRUE || !apple.CheckCombat())//False apple shouldn't have this ability, and it should not be usable outside RCA
+	if(apple.is_maggot == TRUE || !apple.IsCombatMap())//False apple shouldn't have this ability, and it should not be usable outside RCA
 		return FALSE
 	if(apple.pulse_count == 0)
 		to_chat(owner, span_warning("You cannot activate this due to a lack of charges. Attack a hostile target to gain more charges."))
@@ -129,7 +129,7 @@
 
 //***Simple Mob Procs***
 /mob/living/simple_animal/hostile/abnormality/golden_apple/Initialize()
-	if(CheckCombat())//Is it R corp assault? Hit 'em with the nerf bat!
+	if(IsCombatMap())//Is it R corp assault? Hit 'em with the nerf bat!
 		pulse_cooldown_time = 130 SECONDS//The duraction of the buff is 60 seconds; you can't build stacks at this rate.
 	maggot_attack = new /datum/action/innate/abnormality_attack/maggot_spread
 	maggot_attack2 = new /datum/action/innate/abnormality_attack/maggot_spread2

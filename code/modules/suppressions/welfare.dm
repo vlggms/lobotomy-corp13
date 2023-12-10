@@ -3,7 +3,7 @@
 
 // Right now the only core suppression with a proper reward, which is higher spawning stats.
 /datum/suppression/welfare
-	name = "Welfare Core Suppression"
+	name = WELFARE_CORE_SUPPRESSION
 	desc = "All employees will suffer from decreased resistance to randomly chosen damage types, which change on each meltdown."
 	reward_text = "All personnel will be able to avoid death/insanity by instantly healing to certain percentage \
 		of either health or sanity each time they reach that point. \
@@ -22,7 +22,7 @@
 		PALE_DAMAGE = 1,
 		)
 
-/datum/suppression/welfare/Run(run_white = FALSE)
+/datum/suppression/welfare/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
@@ -34,7 +34,7 @@
 		ApplyEffect(H)
 	OnMeltdown()
 
-/datum/suppression/welfare/End()
+/datum/suppression/welfare/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	for(var/datum/status_effect/welfare_damage_resist/S in affected_statuses)

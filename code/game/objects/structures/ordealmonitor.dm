@@ -8,10 +8,10 @@
 
 /obj/structure/sign/ordealmonitor/Initialize()
 	. = ..()
-	GLOB.ordeal_monitors += src
+	GLOB.lobotomy_devices += src
 
 /obj/structure/sign/ordealmonitor/Destroy()
-	GLOB.ordeal_monitors -= src
+	GLOB.lobotomy_devices -= src
 	return ..()
 
 /obj/structure/sign/ordealmonitor/examine(mob/user)

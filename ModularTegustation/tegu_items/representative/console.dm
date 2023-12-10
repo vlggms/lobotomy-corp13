@@ -29,6 +29,14 @@
 	//For things we already researched.
 	var/list/researched_stuff = list()
 
+/obj/structure/representative_console/Initialize()
+	. = ..()
+	GLOB.lobotomy_devices += src
+
+/obj/structure/representative_console/Destroy()
+	GLOB.lobotomy_devices -= src
+	return ..()
+
 //Landmarks for placing office stuff
 /obj/effect/landmark/custom_office/poster
 	name = "custom office landmark"
@@ -77,7 +85,7 @@
 	dat += " ----------------------------<br>"
 	for(var/datum/data/extraction_cargo/A in order_list)
 		if((A.catagory == our_corporation || A.catagory == ALL_REP_RESEARCH))
-			dat += " <A href='byond://?src=[REF(src)];purchase=[REF(A)]'>[A.equipment_name]([A.cost] AHN)</A><br>"
+			dat += " <A href='byond://?src=[REF(src)];purchase=[REF(A)]'>[A.equipment_name] ([A.cost] AHN)</A><br>"
 
 	dat += " ----------------------------<br>"
 	dat += " :[our_corporation] RESEARCH:<br>"
@@ -85,7 +93,7 @@
 	dat += " ----------------------------<br>"
 	for(var/datum/data/lc13research/R in research_list)
 		if(!LAZYFIND(researched_stuff, R) && R.CanResearch(src))
-			dat += " <A href='byond://?src=[REF(src)];research=[REF(R)]'>[R.research_name]([R.cost] PE)</A><br>"
+			dat += " <A href='byond://?src=[REF(src)];research=[REF(R)]'>[R.research_name] ([R.cost] PE)</A><br>"
 			dat += "	:[R.research_desc] <br>"
 			dat += " -----<br>"
 	var/datum/browser/popup = new(user, "RepVendor", "RepVendor", 440, 640)

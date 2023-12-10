@@ -136,7 +136,7 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user)
 	..()
 	ability_cooldown = world.time + 4 SECONDS
-	if(CheckCombat())
+	if(IsCombatMap())
 		return
 	addtimer(CALLBACK(src, .proc/DelPassive), rand((3 MINUTES), (5 MINUTES)))
 

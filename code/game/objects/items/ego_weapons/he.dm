@@ -1745,5 +1745,5 @@
 		return
 	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)
 
-/obj/item/ego_weapon/totalitarianism/get_clamped_volume()
+/obj/item/ego_weapon/nixie/get_clamped_volume()
 	return 50

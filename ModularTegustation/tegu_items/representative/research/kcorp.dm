@@ -100,3 +100,37 @@
 /datum/data/lc13research/mobspawner/kteamkill/ResearchEffect(obj/structure/representative_console/caller)
 	minor_announce("Attention all L-Corp branch employees. We have discovered unauthorized usage of our equipment. An Asset Protection Team is enroute to your location.", "K Corp HQ Update:", TRUE)
 	..()
+
+//Weapons
+//This one does nothing, however It's a bar to entry to actually grab the weapons.
+/datum/data/lc13research/kweapons
+	research_name = "K-Corp Weapon Permit"
+	research_desc = "This is just an agreement that we're here to make weapons business. <br>We usually refuse to give up our weapons due to them being manufactured in low amounts, <br>We require some up front."
+	cost = LOW_RESEARCH_PRICE
+	corp = K_CORP_REP
+
+
+/datum/data/lc13research/kspears
+	research_name = "K-Corp Spears Shipment"
+	research_desc = "Wow, you actually bought it? <br>This is Jill from supply. Our weapons are known for being low quality, and so we're not too willing to give them out. <br>However, it seems like you really do need weapons. Must be desperate, huh? I'll put in a spear order for you. <br>Don't tell L-Corp or the execs about the low quality bit, Let's keep it under wraps."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/kweapons
+
+/datum/data/lc13research/kspears/ResearchEffect(obj/structure/representative_console/caller)
+	ItemUnlock(caller.order_list, "K Corp Spear",	/obj/item/ego_weapon/city/kcorp/spear, 600)
+	ItemUnlock(caller.order_list, "K Corp DoubleSpear",	/obj/item/ego_weapon/city/kcorp/dspear, 600)
+	..()
+
+
+/datum/data/lc13research/kguns
+	research_name = "K-Corp Firearms Shipment"
+	research_desc = "Hey, this is Jill from supply. <br>We've been keeping a handful of gun projects under wraps to replace our batons. <br>It sounds expensive, but these are actually air rifles. They fire using compressed air.<br> Smart right? Ammo is cheap, almost free. We're currently looking to arm some Class 2s with them over in district 7. <br>I can order another shipment for you if you'd like."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/kweapons
+
+/datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
+	ItemUnlock(caller.order_list, "K Corp Machinepistole",	/obj/item/gun/ego_gun/pistol/kcorp/smg, 600)
+	ItemUnlock(caller.order_list, "K Corp Light Grenade Launcher",	/obj/item/gun/ego_gun/pistol/kcorp/nade, 600)
+	..()

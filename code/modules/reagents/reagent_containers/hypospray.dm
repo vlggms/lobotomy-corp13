@@ -31,7 +31,7 @@
 	if(!isliving(M))
 		return FALSE
 	// WOULDN'T IT BE FUNNY IF I TOOK AWAY YOUR HEALING?
-	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/safety))
+	if(GetCoreSuppression(/datum/suppression/safety))
 		if(!do_after(user, 10, target = M))
 			return FALSE
 		if(prob(50))

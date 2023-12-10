@@ -42,6 +42,7 @@
 		. += span_info("He is sobbing inconsolably and has a forlorn demeanor.")
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/PostSpawn()
+	. = ..()
 	datum_reference.qliphoth_meter = 1
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/Life()

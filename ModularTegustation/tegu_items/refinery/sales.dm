@@ -18,6 +18,11 @@
 /obj/structure/pe_sales/Initialize()
 	. = ..()
 	crates_per_box = crate_timer/power_timer
+	GLOB.lobotomy_devices += src
+
+/obj/structure/pe_sales/Destroy()
+	GLOB.lobotomy_devices -= src
+	return ..()
 
 /obj/structure/pe_sales/examine(mob/user)
 	. = ..()
