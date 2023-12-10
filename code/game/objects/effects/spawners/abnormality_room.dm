@@ -40,7 +40,7 @@
 		AR.desc = "Containment zone of [abno_datum.name]. Threat level: [THREAT_TO_NAME[abno_datum.threat_level]]."
 	for(var/obj/machinery/camera/ACM in allObjects)
 		ACM.c_tag = "Containment zone: [abno_datum.name]"
-	SSabnormality_queue.postspawn()
+	SSabnormality_queue.PostSpawn()
 	SSlobotomy_corp.NewAbnormality(abno_datum)
 
 GLOBAL_LIST_EMPTY(abnormality_room_spawners)

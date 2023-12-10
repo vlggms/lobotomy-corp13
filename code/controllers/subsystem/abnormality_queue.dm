@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/list/possible_abnormalities = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
 	/// Amount of abnormality room spawners at the round-start.
 	var/rooms_start = 0
-	/// Amount of times postspawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
+	/// Amount of times PostSpawn() proc has been called. Kept separate from times_fired because admins love to call fire() manually
 	var/spawned_abnos = 0
 	// I am using this all because default subsystem waiting and next_fire is done in a very... interesting way.
 	/// World time at which new abnormality will be spawned
@@ -98,9 +98,9 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 	// Roll the abnos from available levels
 	if(!ispath(queued_abnormality) && LAZYLEN(possible_abnormalities))
-		pick_abno()
+		PickAbno()
 
-/datum/controller/subsystem/abnormality_queue/proc/postspawn()
+/datum/controller/subsystem/abnormality_queue/proc/PostSpawn()
 	if(queued_abnormality)
 		if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
 			stack_trace("Queued abnormality had no weight!?")
@@ -112,7 +112,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		queued_abnormality = null
 		spawned_abnos++
 
-/datum/controller/subsystem/abnormality_queue/proc/pick_abno()
+/datum/controller/subsystem/abnormality_queue/proc/PickAbno()
 	if(!LAZYLEN(available_levels))
 		return FALSE
 	/// List of threat levels that we will pick
