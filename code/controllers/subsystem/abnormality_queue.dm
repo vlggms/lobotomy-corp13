@@ -69,23 +69,31 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 // Abno level selection
 /datum/controller/subsystem/abnormality_queue/proc/SelectAvailableLevels()
-	// ALEPH enabled, WAW disabled
-	if(spawned_abnos >= rooms_start * 0.83)
-		if(LAZYLEN(possible_abnormalities[ALEPH_LEVEL]))  // 8 WAWs (20 abnos) + 4 ALEPHs (24 abnos)
+	// ALEPH and WAW
+	if(spawned_abnos >= rooms_start * 0.75)
+		if(spawned_abnos >= rooms_start - 2) // Last two picks will always be ALEPHs
 			available_levels = list(ALEPH_LEVEL)
-		else // If we ran out of ALEPHs, somehow
-			available_levels = list(WAW_LEVEL)
+		else
+			available_levels = list(WAW_LEVEL, ALEPH_LEVEL)
 
-	// WAW enabled, HE disabled
-	else if(spawned_abnos >= rooms_start * 0.5) // 6 HEs (12 abnos)
+	// WAW only
+	else if(spawned_abnos >= rooms_start * 0.63)
 		available_levels = list(WAW_LEVEL)
 
-	// HE enabled, TETH disabled
-	else if(spawned_abnos >= rooms_start * 0.25) // 4 TETHs (6 abnos)
+	// WAW and HE
+	else if(spawned_abnos >= rooms_start * 0.5)
+		available_levels = list(WAW_LEVEL, HE_LEVEL)
+
+	// HE only
+	else if(spawned_abnos >= rooms_start * 0.4)
 		available_levels = list(HE_LEVEL)
 
-	// TETH enabled, ZAYIN disabled
-	else if(spawned_abnos >= rooms_start * 0.08) // 2 ZAYINs
+	// HE and TETH
+	else if(spawned_abnos >= rooms_start * 0.25)
+		available_levels = list(HE_LEVEL, TETH_LEVEL)
+
+	// TETH only
+	else if(spawned_abnos >= 2) // Always exactly two ZAYINs
 		available_levels = list(TETH_LEVEL)
 
 	// Roll the abnos from available levels
@@ -105,21 +113,39 @@ SUBSYSTEM_DEF(abnormality_queue)
 		spawned_abnos++
 
 /datum/controller/subsystem/abnormality_queue/proc/pick_abno()
-	var/list/picking_abno = list()
+	if(!LAZYLEN(available_levels))
+		return FALSE
+	/// List of threat levels that we will pick
+	var/list/picking_levels = list()
+	for(var/threat in available_levels)
+		if(!LAZYLEN(possible_abnormalities[threat]))
+			continue
+		picking_levels |= threat
+	if(!LAZYLEN(picking_levels))
+		return FALSE
+
+	// There we select the abnormalities
 	picking_abnormalities = list()
-	for(var/lev in available_levels)
+	var/pick_count = GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT)
+	for(var/i = 1 to pick_count)
+		if(!LAZYLEN(possible_abnormalities))
+			break
+		var/lev = pick(picking_levels)
+		// If we have more options to fill and we have multiple available levels - force them in.
+		// This prevents situations where you have WAW and HE available, but only get HE abnos.
+		if(i > 1 && length(picking_levels) > 1 && prob(((i + 1) / pick_count) * 100))
+			picking_levels -= lev
+			// And pick again
+			lev = pick(picking_levels)
 		if(!LAZYLEN(possible_abnormalities[lev]))
 			continue
-		picking_abno |= possible_abnormalities[lev]
-	for(var/i = 1 to GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT))
-		if(!LAZYLEN(picking_abno))
-			break
-		var/chosen_abno = pickweight(picking_abno)
+		var/chosen_abno = pickweight(possible_abnormalities[lev])
 		picking_abnormalities += chosen_abno
-		picking_abno -= chosen_abno
+		possible_abnormalities[lev] -= chosen_abno
 	if(!LAZYLEN(picking_abnormalities))
-		return
+		return FALSE
 	queued_abnormality = pick(picking_abnormalities)
+	return TRUE
 
 /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities()
 	var/player_count = GLOB.clients.len
