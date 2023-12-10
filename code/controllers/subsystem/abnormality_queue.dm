@@ -85,7 +85,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		available_levels = list(WAW_LEVEL, HE_LEVEL)
 
 	// HE only
-	else if(spawned_abnos >= rooms_start * 0.4)
+	else if(spawned_abnos >= rooms_start * 0.37)
 		available_levels = list(HE_LEVEL)
 
 	// HE and TETH
@@ -127,16 +127,18 @@ SUBSYSTEM_DEF(abnormality_queue)
 	// There we select the abnormalities
 	picking_abnormalities = list()
 	var/pick_count = GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT)
+	var/list/picked_levs = list()
 	for(var/i = 1 to pick_count)
 		if(!LAZYLEN(possible_abnormalities))
 			break
 		var/lev = pick(picking_levels)
 		// If we have more options to fill and we have multiple available levels - force them in.
 		// This prevents situations where you have WAW and HE available, but only get HE abnos.
-		if(i > 1 && length(picking_levels) > 1 && prob(((i + 1) / pick_count) * 100))
+		if((lev in picked_levs) && length(picking_levels) > 1 && prob(((i + 1) / pick_count) * 100))
 			picking_levels -= lev
 			// And pick again
 			lev = pick(picking_levels)
+		picked_levs |= lev
 		if(!LAZYLEN(possible_abnormalities[lev]))
 			continue
 		var/chosen_abno = pickweight(possible_abnormalities[lev])
