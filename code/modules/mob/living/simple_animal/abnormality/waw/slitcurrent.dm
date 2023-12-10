@@ -197,6 +197,7 @@
 	for(var/mob/living/simple_animal/hostile/flotsam/F in spawned_flotsams)
 		QDEL_IN(F, rand(5) SECONDS)
 		spawned_flotsams -= F
+	..()
 
 /mob/living/simple_animal/hostile/flotsam
 	name = "Flotsam"
