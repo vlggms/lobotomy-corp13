@@ -1931,7 +1931,7 @@
 /obj/item/ego_weapon/dream_devouring/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
 	A.attackby(src,user)
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/DiveReset), 20)
+	addtimer(CALLBACK(src, .proc/DiveReset), 10)
 	for(var/turf/open/T in range(1, user))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_TEAL
