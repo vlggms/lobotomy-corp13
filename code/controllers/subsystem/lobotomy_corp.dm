@@ -333,7 +333,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	next_ordeal = pick(available_ordeals)
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time = qliphoth_state + next_ordeal.delay + (next_ordeal.random_delay ? rand(-1, 1) : 0)
+	next_ordeal_time = min(3, qliphoth_state + next_ordeal.delay + (next_ordeal.random_delay ? rand(-1, 1) : 0))
 	next_ordeal_level += 1 // Increase difficulty!
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.lobotomy_devices)
 		O.update_icon()

@@ -27,7 +27,7 @@
 /datum/ordeal/New()
 	..()
 	if(delay == null)
-		delay = min(7, level * 2)
+		delay = min(6, level * 2) + 1
 
 // Runs the event itself
 /datum/ordeal/proc/Run()
