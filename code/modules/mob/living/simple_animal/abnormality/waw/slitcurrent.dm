@@ -2,7 +2,7 @@
 //When out you're on a timer due to everyone on the floor it's on taking oxygen damage.
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent
-	name = "\proper Dream-Devouring Slitcurrent"
+	name = "\proper Dream-Devouring Siltcurrent"
 	desc = "An abnormality resembling a giant black and teal shark or fish. \
 	There's teal light tubes embedded in its body,"
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
