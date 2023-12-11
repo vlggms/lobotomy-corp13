@@ -1888,10 +1888,10 @@
 		if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
 			combo = 0
 		combo_time = world.time + combo_wait
-		if(combo == 8)
+		if(combo == 4)
 			combo = 0
 			user.changeNext_move(CLICK_CD_MELEE * 2)
-			force *= 3.5	// Should actually keep up with normal damage.
+			force *= 2	// Should actually keep up with normal damage.
 			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
 		else
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
@@ -1907,7 +1907,7 @@
 	if(!combo_on)
 		return
 	..()
-	if(combo == 8)
+	if(combo == 4)
 		can_attack = FALSE
 		if(do_after(user, 5, src))
 			playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
@@ -1934,7 +1934,7 @@
 	for(var/mob/living/L in livinginrange(1, user))
 		if(L.z != user.z) // Not on our level
 			continue
-		var/aoe = 75
+		var/aoe = 40
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod

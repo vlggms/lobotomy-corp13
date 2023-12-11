@@ -15,8 +15,9 @@
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	melee_damage_type = RED_DAMAGE
-	maxHealth = 3000
-	health = 3000
+	is_flying_animal = TRUE
+	maxHealth = 2000
+	health = 2000
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
 	deathsound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
@@ -127,8 +128,8 @@
 					if(L.stat != DEAD)
 						//icon_state = icon_living
 						Stunned()
-						src.adjustBruteLoss(1500)
-						L.adjustBruteLoss(1500)
+						src.adjustBruteLoss(1000)
+						L.adjustBruteLoss(750)
 						visible_message(span_boldwarning("[src] mauls the Flotsam taking heavy damage!"))
 				if (ishuman(L))
 					visible_message(span_boldwarning("[src] mauls through [L]!"))
@@ -164,7 +165,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/BreachEffect(mob/living/carbon/human/user)
 	. = ..()
-	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
 	icon_living = "current_breach"
 	//icon_state = icon_living
 	addtimer(CALLBACK(src, .proc/OxygenLoss), 5 SECONDS, TIMER_LOOP)
@@ -191,7 +191,7 @@
 			continue
 		playsound(L, "sound/effects/bubbles.ogg", 50, TRUE, 7)
 		new /obj/effect/temp_visual/mermaid_drowning(get_turf(L))
-		L.adjustOxyLoss(8, updating_health=TRUE, forced=TRUE)
+		L.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/slitcurrent/death()
 	for(var/mob/living/simple_animal/hostile/flotsam/F in spawned_flotsams)
@@ -209,9 +209,9 @@
 	icon_living = "flotsam"
 	icon_dead = "flotsam_dead"
 	/*Stats*/
-	health = 1500
-	maxHealth = 1500
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	health = 750
+	maxHealth = 750
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	density = TRUE
 	light_color = COLOR_TEAL
 	light_range = 4
@@ -225,15 +225,16 @@
 
 /mob/living/simple_animal/hostile/flotsam/attackby(obj/item/W, mob/user, params)
 	. = ..()
-	if(!stat == DEAD)
-		Refill(user)
+	Refill(user)
 
 
 /mob/living/simple_animal/hostile/flotsam/bullet_act(obj/projectile/P)
 	. = ..()
-	if(!stat == DEAD)
-		Refill(P.firer)
+	Refill(P.firer)
 
 
 /mob/living/simple_animal/hostile/flotsam/proc/Refill(mob/living/attacker)
 	attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
+
+/mob/living/simple_animal/hostile/flotsam/gib()
+	return FALSE
