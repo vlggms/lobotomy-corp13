@@ -1850,13 +1850,13 @@
 		thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
 	return ..()
 
-/obj/item/ego_weapon/dream_devouring
+/obj/item/ego_weapon/dream_devouring //An ungodly love child of sword sharpened with tears and fluid sac
 	name = "dream-devouring"
 	desc = "I am the only one who moves in these waves. ... Shatter."
 	special = "This weapon has a combo system ending with a dive attack. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
 	icon_state = "dream_devouring"
-	force = 18
+	force = 20
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
@@ -1884,24 +1884,20 @@
 /obj/item/ego_weapon/dream_devouring/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user)|| !can_attack)
 		return
-	if(!combo_on)
-		force = 40
-		user.changeNext_move(CLICK_CD_MELEE * 0.7)
 	if(combo_on)
-		if(world.time > combo_time)	//or you can turn if off I guess
+		if(world.time > combo_time || !combo_on)	//or you can turn if off I guess
 			combo = 0
 		combo_time = world.time + combo_wait
-		if(combo== 6)
+		if(combo == 8)
 			combo = 0
-			user.changeNext_move(CLICK_CD_MELEE * 8)
-			force *= 3	// Should actually keep up with normal damage.
+			user.changeNext_move(CLICK_CD_MELEE * 2)
+			force *= 3.5	// Should actually keep up with normal damage.
 			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
 		else
 			user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	..()
 	combo += 1
-	if(combo_on)
-		force = initial(force)
+	force = initial(force)
 
 /obj/item/ego_weapon/dream_devouring/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user)|| !can_attack)
@@ -1911,34 +1907,34 @@
 	if(!combo_on)
 		return
 	..()
-	if(combo == 6)
+	if(combo == 8)
 		can_attack = FALSE
-		addtimer(CALLBACK(src, .proc/DiveReset), 5)
 		if(do_after(user, 5, src))
 			playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
 			animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 			user.pixel_z = -16
 			sleep(0.5 SECONDS)
+			can_attack = TRUE
 			for(var/i in 2 to get_dist(user, A))
 				step_towards(user,A)
 			if((get_dist(user, A) < 2))
-				JumpAttack(A,user)
+				DiveAttack(A,user)
 			playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
 			to_chat(user, "<span class='warning'>You dive towards [A]!</span>")
 			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 			user.pixel_z = 0
 
-/obj/item/ego_weapon/dream_devouring/proc/JumpAttack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/dream_devouring/proc/DiveAttack(atom/A, mob/living/user, proximity_flag, params)
 	A.attackby(src,user)
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/DiveReset), 10)
+	addtimer(CALLBACK(src, .proc/DiveReset), 5)
 	for(var/turf/open/T in range(1, user))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_TEAL
 	for(var/mob/living/L in livinginrange(1, user))
 		if(L.z != user.z) // Not on our level
 			continue
-		var/aoe = 60
+		var/aoe = 75
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
