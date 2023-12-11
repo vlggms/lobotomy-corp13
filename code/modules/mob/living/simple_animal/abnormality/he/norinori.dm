@@ -188,6 +188,7 @@
 	if(transformed) //guns are ineffective on the split form
 		visible_message(span_userdanger("[src] swiftly dodges [P]!"))
 		P.Destroy()
+		PingArmor()
 		return
 	..()
 
