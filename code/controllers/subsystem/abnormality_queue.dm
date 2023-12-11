@@ -4,7 +4,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 	name = "Abnormality Queue"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
 	runlevels = RUNLEVEL_GAME
-	init_order = INIT_ORDER_PERSISTENCE - 1 // Always after Persistence, as that's where we get our abno list from.
 	wait = 10 SECONDS
 
 	/// List of(preferably) 3 abnormalities available for manager to choose from.
@@ -30,10 +29,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/hardcore_roll_enabled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
-	if(LAZYLEN(possible_abnormalities))
-		pick_abno()
-	else
-		stack_trace("[src] initialized before Persistence subsystem!")
 	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
