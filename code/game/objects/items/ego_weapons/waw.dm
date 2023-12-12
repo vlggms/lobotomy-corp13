@@ -1850,12 +1850,12 @@
 		thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
 	return ..()
 
-/obj/item/ego_weapon/dream_devouring //An ungodly love child of sword sharpened with tears and fluid sac
-	name = "dream-devouring"
+/obj/item/ego_weapon/abyssal_route //An ungodly love child of sword sharpened with tears and fluid sac
+	name = "abyssal route"//old korean name I think
 	desc = "I am the only one who moves in these waves. ... Shatter."
 	special = "This weapon has a combo system ending with a dive attack. To turn off this combo system, use in hand. \
 			This weapon has a fast attack speed"
-	icon_state = "dream_devouring"
+	icon_state = "abyssal_route"
 	force = 20
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
@@ -1870,7 +1870,7 @@
 	var/combo_on = TRUE
 	var/can_attack = TRUE
 
-/obj/item/ego_weapon/dream_devouring/attack_self(mob/user)
+/obj/item/ego_weapon/abyssal_route/attack_self(mob/user)
 	..()
 	if(combo_on)
 		to_chat(user,"<span class='warning'>You swap your grip, and will no longer perform a dive finisher.</span>")
@@ -1881,7 +1881,7 @@
 		combo_on =TRUE
 		return
 
-/obj/item/ego_weapon/dream_devouring/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/abyssal_route/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user)|| !can_attack)
 		return
 	if(combo_on)
@@ -1899,7 +1899,7 @@
 	combo += 1
 	force = initial(force)
 
-/obj/item/ego_weapon/dream_devouring/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/abyssal_route/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user)|| !can_attack)
 		return
 	if(!isliving(A))
@@ -1924,7 +1924,7 @@
 			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 			user.pixel_z = 0
 
-/obj/item/ego_weapon/dream_devouring/proc/DiveAttack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/abyssal_route/proc/DiveAttack(atom/A, mob/living/user, proximity_flag, params)
 	A.attackby(src,user)
 	can_attack = FALSE
 	addtimer(CALLBACK(src, .proc/DiveReset), 5)
@@ -1943,5 +1943,5 @@
 			continue
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
-/obj/item/ego_weapon/dream_devouring/proc/DiveReset()
+/obj/item/ego_weapon/abyssal_route/proc/DiveReset()
 	can_attack = TRUE
