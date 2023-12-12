@@ -2,7 +2,7 @@
 #define FILE_RECENT_MAPS "data/RecentMaps.json"
 #define FILE_AGENT_REP "data/AgentReputation.json"
 #define FILE_PE_QUOTA "data/PEQuota.json"
-#define FILE_ABNO_PICKS "data/AbnormalityRates.json"
+#define FILE_ABNO_PICKS "data/abno_rates/[mode].json"
 #define FILE_CORE_SUPPRESSIONS "data/ClearedCores.json"
 
 #define KEEP_ROUNDS_MAP 3
@@ -44,7 +44,6 @@ SUBSYSTEM_DEF(persistence)
 	LoadAgentReputation()
 	if(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs"))
 		LoadPEStatus()
-		LoadAbnoPicks()
 	LoadClearedCores()
 	LoadRandomizedRecipes()
 	LoadPaintings()
@@ -185,6 +184,10 @@ SUBSYSTEM_DEF(persistence)
 
 /datum/controller/subsystem/persistence/proc/LoadAbnoPicks()
 	abno_rates = typecacheof(/mob/living/simple_animal/hostile/abnormality, TRUE)
+	var/mode = "AbnormalityRates"
+	if(SSticker.mode)
+		var/datum/game_mode/gm = SSticker.mode
+		mode = gm.config_tag
 	var/json = file2text(FILE_ABNO_PICKS)
 	if(!json)
 		var/json_file = file(FILE_ABNO_PICKS)
@@ -194,13 +197,6 @@ SUBSYSTEM_DEF(persistence)
 		var/list/pick_rates = json_decode(json)
 		for(var/path in pick_rates)
 			abno_rates[text2path(path)] = pick_rates[path]
-	var/highest = max(abno_rates[ReturnHighestValue(abno_rates)] + 1, 2) // Ensures no 0 results
-	for(var/i in abno_rates)
-		var/mob/living/simple_animal/hostile/abnormality/abno = i
-		if(initial(abno.can_spawn))
-			SSabnormality_queue.possible_abnormalities[initial(abno.threat_level)] += abno
-			var/rate = (abno_rates[i] * -1) + highest
-			SSabnormality_queue.possible_abnormalities[initial(abno.threat_level)][abno] = rate
 
 /datum/controller/subsystem/persistence/proc/SetUpTrophies(list/trophy_items)
 	for(var/A in GLOB.trophy_cases)
@@ -236,7 +232,7 @@ SUBSYSTEM_DEF(persistence)
 	SavePhotoPersistence()						//THIS IS PERSISTENCE, NOT THE LOGGING PORTION.
 	if(CONFIG_GET(flag/use_antag_rep))
 		CollectAntagReputation()
-	if(SSmaptype.maptype == "standard")
+	if(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs"))
 		SavePEStatus()
 		SaveAbnoPicks()
 	CollectAgentReputation()
@@ -420,6 +416,10 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/proc/SaveAbnoPicks()
 	for(var/datum/abnormality/abno_ref in SSlobotomy_corp.all_abnormality_datums)
 		abno_rates[abno_ref.abno_path] = text2num(abno_rates[abno_ref.abno_path]) + 1
+	var/mode = ""
+	if(SSticker.mode)
+		var/datum/game_mode/gm = SSticker.mode
+		mode = gm.config_tag
 	fdel(FILE_ABNO_PICKS)
 	text2file(json_encode(abno_rates), FILE_ABNO_PICKS)
 
@@ -557,3 +557,5 @@ SUBSYSTEM_DEF(persistence)
 		data += list(outfit.get_json_data())
 
 	WRITE_FILE(file, json_encode(data))
+
+#undef FILE_ABNO_PICKS
