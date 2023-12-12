@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = AvailableAgentCount()
-	qliphoth_max = (player_count > 1 ? 4 : 3) + round(player_count * 0.8) // Some extra help on non solo rounds
+	qliphoth_max = (player_count > 1 ? 4 : 3) + player_count // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
