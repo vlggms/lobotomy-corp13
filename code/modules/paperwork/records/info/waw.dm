@@ -507,9 +507,9 @@
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Low"
 
-//Dream-Devouring Slitcurrent
-/obj/item/paper/fluff/info/waw/slitcurrent
-	abno_type = /mob/living/simple_animal/hostile/abnormality/slitcurrent
+//Dream-Devouring Siltcurrent
+/obj/item/paper/fluff/info/waw/siltcurrent
+	abno_type = /mob/living/simple_animal/hostile/abnormality/siltcurrent
 	abno_code = "T-02-178"
 	abno_info = list(
 		"When an employee with Fortitude Level 2 or lower finished their work, the Qliphoth Counter lowered.",
@@ -517,10 +517,10 @@
 		"When an employee fainted due to a lack of oxygen, the Qliphoth Counter lowered.",
 		"While working, Jimbo noticed he was losing oxygen during the work.",
 		"Upon breaching, the facility became flooded until Dream-Devouring Siltcurrent was recontained.",
-		"While the facility was flooded, all employees took constant oxygen damage.",
+		"While the facility was flooded, all employees took constant oxygen damage when near Dream-Devouring Siltcurrent.",
 		"Upon breaching, Flotsams appeared throughout the facility.",
 		"When Lucas damaged the Flotsams or Dream-Devouring Siltcurrent some of his oxygen was replenished.",
-		"When Dream-Devouring Siltcurrent tried to dive into a Frotsam it became briefly stunned and was heavily damaged.",
-		"While stunned, Dream-Devouring Slitcurrent took extra damage.")
+		"When Dream-Devouring Siltcurrent tried to dive into a broken down Frotsam it became briefly stunned and was heavily damaged.",
+		"While stunned, Dream-Devouring Siltcurrent took extra damage.")
 	abno_breach_damage_type = "Red"
 	abno_breach_damage_count = "Extreme"
