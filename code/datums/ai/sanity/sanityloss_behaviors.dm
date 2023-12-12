@@ -185,15 +185,16 @@
 	. = ..()
 	equip_item(controller)
 
-/datum/ai_behavior/insanity_wander_center
+/datum/ai_behavior/insanity_wander
+	var/movement_mod = 0.002
 	/*
 	* Unique data can NOT be stored here.
 	* These behaviors are non-individual and are shared between all people with this behavior.
-	* Meaning if two people have "insanity_wander_center" and it stores its path in it, then they will both attempt to walk that same path.
+	* Meaning if two people have "insanity_wander" and it stores its path in it, then they will both attempt to walk that same path.
 	* Appropriate data to store here are stuff such as behavior tags, like `behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT`
 	*/
 
-/datum/ai_behavior/insanity_wander_center/perform(delta_time, datum/ai_controller/insane/wander/controller)
+/datum/ai_behavior/insanity_wander/perform(delta_time, datum/ai_controller/insane/controller)
 	. = ..()
 
 	var/mob/living/living_pawn = controller.pawn
@@ -210,27 +211,15 @@
 		controller.current_path.Remove(controller.current_path[1])
 		MoveInPath(controller)
 
-/datum/ai_behavior/insanity_wander_center/proc/MoveInPath(datum/ai_controller/insane/wander/controller)
+/datum/ai_behavior/insanity_wander/proc/MoveInPath(datum/ai_controller/insane/controller)
 	var/mob/living/living_pawn = controller.pawn
 	if(!living_pawn)
 		controller.pathing_attempts = 0
 		controller.current_path = list() // Reset the path and stop
 		finish_action(controller, TRUE)
 		return
-	// Insanity lines
-	if(world.time > controller.last_message + 4 SECONDS)
-		controller.last_message = world.time
-		controller.current_behaviors += GET_AI_BEHAVIOR(controller.lines_type)
-	// Suicide replacement
-	if(world.time > controller.suicide_enter)
-		if(prob(10))
-			living_pawn.visible_message("<span class='danger'>[living_pawn] freezes with an expression of despair on their face!</span>")
-			QDEL_NULL(living_pawn.ai_controller)
-			living_pawn.ai_controller = /datum/ai_controller/insane/suicide
-			living_pawn.InitializeAIController()
-			return TRUE
-		else
-			controller.suicide_enter = world.time + 30 SECONDS
+	if(!PreMoveCheck(controller, living_pawn))
+		return
 	// Movement
 	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
 		var/target_turf = controller.current_path[1]
@@ -248,7 +237,7 @@
 					controller.pathing_attempts = 0
 				else
 					controller.pathing_attempts++
-			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.004))
+			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * movement_mod))
 			addtimer(CALLBACK(src, .proc/MoveInPath, controller), move_delay)
 			return TRUE
 	controller.pathing_attempts = 0
@@ -256,20 +245,66 @@
 	finish_action(controller, TRUE)
 	return FALSE
 
-/datum/ai_behavior/insanity_wander_center/finish_action(datum/ai_controller/controller, succeeded)
+/datum/ai_behavior/insanity_wander/proc/PreMoveCheck(datum/ai_controller/insane/controller, mob/living/living_pawn)
+	if(!controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET])
+		return FALSE
+	return TRUE
+
+/datum/ai_behavior/insanity_wander/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
 	controller.blackboard[BB_INSANE_BLACKLISTITEMS][BB_INSANE_CURRENT_ATTACK_TARGET] = world.time + 10 SECONDS
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+
+/datum/ai_behavior/insanity_wander/suicide_wander
+	movement_mod = 0.004
+	// Same as the above insanity, however it assumers wander controller and that the user will eventually attempt to off themselves
+
+/datum/ai_behavior/insanity_wander/suicide_wander/PreMoveCheck(datum/ai_controller/insane/wander/controller, mob/living/living_pawn)
+	. = ..()
+	if(!.)
+		return
+	// Insanity lines
+	if(world.time > controller.last_message + 4 SECONDS)
+		controller.last_message = world.time
+		controller.current_behaviors += GET_AI_BEHAVIOR(controller.lines_type)
+	// Suicide replacement
+	if(world.time > controller.suicide_enter)
+		if(prob(10))
+			living_pawn.visible_message("<span class='danger'>[living_pawn] freezes with an expression of despair on their face!</span>")
+			QDEL_NULL(living_pawn.ai_controller)
+			living_pawn.ai_controller = /datum/ai_controller/insane/suicide
+			living_pawn.InitializeAIController()
+			return FALSE
+		controller.suicide_enter = world.time + 30 SECONDS
+
+/datum/ai_behavior/insanity_wander/murder_wander
+	movement_mod = 0.001
+	// Same as the above insanity, but they look for a target between moves.
+
+/datum/ai_behavior/insanity_wander/murder_wander/PreMoveCheck(datum/ai_controller/insane/murder/controller, mob/living/living_pawn)
+	for(var/mob/living/L in viewers(9, living_pawn))
+		if(L == living_pawn)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(L.stat == DEAD)
+			continue
+		controller.pathing_attempts = 0
+		controller.current_path = list() // Reset the path and stop
+		finish_action(controller, TRUE)
+		controller.FindEnemies()
+		return FALSE
+	return ..()
 
 /datum/ai_behavior/insanity_smash_console
 	/*
 	* Unique data can NOT be stored here.
 	* These behaviors are non-individual and are shared between all people with this behavior.
-	* Meaning if two people have "insanity_wander_center" and it stores it's path in it, then they will both attempt to walk that same path.
+	* Meaning if two people have "insanity_wander" and it stores it's path in it, then they will both attempt to walk that same path.
 	* Appropriate data to store here are stuff such as behavior tags, like `behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT`
 	*/
 
-/datum/ai_behavior/insanity_smash_console/perform(delta_time, datum/ai_controller/insane/release/controller)
+/datum/ai_behavior/insanity_smash_console/perform(delta_time, datum/ai_controller/insane/controller)
 	. = ..()
 
 	var/mob/living/living_pawn = controller.pawn
@@ -302,7 +337,7 @@
 			return
 		target.datum_reference.qliphoth_change(-1)
 
-/datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/insane/release/controller, succeeded)
+/datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/insane/controller, succeeded)
 	. = ..()
 	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	controller.blackboard[BB_INSANE_BLACKLISTITEMS][target] = world.time + 60 SECONDS

@@ -8,6 +8,12 @@
 	var/resist_chance = 60
 	var/datum/ai_behavior/say_line/insanity_lines/lines_type = /datum/ai_behavior/say_line/insanity_lines
 
+	// De-elevated from Wander so that ANY insanity can roam and smash consoles, if given the behaviour.
+	var/list/locations_visited = list()
+	var/list/total_locations = list() // Primarily here so admins/maintainers can see where they can actually go.
+	var/list/current_path = list()
+	var/next_smash = 0
+
 /datum/ai_controller/insane/TryPossessPawn(atom/new_pawn)
 	if(!ishuman(new_pawn))
 		return AI_CONTROLLER_INCOMPATIBLE
@@ -96,6 +102,14 @@
 	var/timerid = null
 	var/interest = 3
 
+
+/datum/ai_controller/insane/murder/PossessPawn(atom/new_pawn)
+	. = ..()
+	if(SSmaptype.maptype == "city")
+		total_locations |= SScityevents.spawners
+		return
+	total_locations |= GLOB.xeno_spawn // Avoids Department centers, unlike Wander Panic
+
 /datum/ai_controller/insane/murder/PerformMovement(delta_time)
 	if(!isnull(timerid))
 		return FALSE
@@ -137,7 +151,8 @@
 	var/mob/living/living_pawn = pawn
 	var/mob/living/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 
-	if(selected_enemy)
+	// Ah ha! We'll fight our current enemy.
+	if(selected_enemy && istype(selected_enemy))
 		if(selected_enemy.status_flags & GODMODE)
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 			return
@@ -153,32 +168,35 @@
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 		return
 
+	// No current enemy? We'll arm ourselves!
 	if(TryFindWeapon()) // Find a weapon before a new enemy.
 		return
 
-	var/list/potential_enemies = viewers(9, living_pawn)
-
-	if(!LAZYLEN(potential_enemies)) // We aint see shit!
+	// Armed enough..? Well we'll find a new person to fight!
+	if(FindEnemies())
 		return
 
-	var/attempt_count = 0
-	for(var/mob/living/L in potential_enemies) // Oh the CHOICES!
-		if(L == living_pawn)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(L.stat == DEAD)
-			continue
-		attempt_count++
-		if(DT_PROB(33, attempt_count) || potential_enemies.len == 1) // Target spotted (bold)
-			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = L
-			return
 
 /datum/ai_controller/insane/murder/PerformIdleBehavior(delta_time)
-	var/mob/living/living_pawn = pawn
-	if((living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
-		var/move_dir = pick(GLOB.alldirs)
-		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
+	// No one to fight!? Well we'll go find someone to fight!
+	var/list/possible_locs = list()
+	for(var/turf/T in total_locations)
+		if(get_dist(pawn, T) < 5)
+			continue
+		if(blackboard[BB_INSANE_BLACKLISTITEMS][T] > world.time)
+			continue
+		if(T in locations_visited)
+			continue
+		possible_locs += T
+	var/turf/open/T = pick(possible_locs)
+	if(T)
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_wander/murder_wander)
+		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = T
+		locations_visited |= T
+		if(locations_visited.len > (total_locations.len*0.75)) // Should encourage diversity
+			locations_visited.Cut(1, 2)
+	else
+		locations_visited.Cut(1, 2) // Maybe we're too limited somehow...
 
 /datum/ai_controller/insane/murder/ResistCheck()
 	var/mob/living/living_pawn = pawn
@@ -218,6 +236,27 @@
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
 		return TRUE
 	return FALSE
+
+/datum/ai_controller/insane/murder/proc/FindEnemies()
+	. = FALSE
+	var/mob/living/living_pawn = pawn
+	var/list/potential_enemies = viewers(9, living_pawn)
+
+	if(!LAZYLEN(potential_enemies)) // We aint see shit!
+		return
+
+	var/attempt_count = 0
+	for(var/mob/living/L in potential_enemies) // Oh the CHOICES!
+		if(L == living_pawn)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(L.stat == DEAD)
+			continue
+		attempt_count++
+		if(DT_PROB(33, attempt_count) || potential_enemies.len == 1) // Target spotted (bold)
+			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = L
+			return TRUE
 
 // We stop trying to pick up a weapon if we're suddenly attacked
 /datum/ai_controller/insane/murder/retaliate(mob/living/L)
@@ -304,9 +343,6 @@
 	lines_type = /datum/ai_behavior/say_line/insanity_lines/insanity_wander
 	var/last_message = 0
 	var/suicide_enter = 0
-	var/list/locations_visited = list()
-	var/list/total_locations = list() // Primarily here so admins/maintainers can see where they can actually go.
-	var/list/current_path = list()
 
 /datum/ai_controller/insane/wander/PossessPawn(atom/new_pawn)
 	. = ..()
@@ -333,7 +369,7 @@
 		possible_locs += T
 	var/turf/open/T = pick(possible_locs)
 	if(T)
-		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_wander_center)
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_wander/suicide_wander)
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = T
 		locations_visited |= T
 		if(locations_visited.len > (total_locations.len*0.75)) // Should encourage diversity
@@ -360,8 +396,6 @@
 
 /datum/ai_controller/insane/release
 	lines_type = /datum/ai_behavior/say_line/insanity_lines/insanity_release
-	var/next_smash = 0
-	var/list/current_path = list()
 
 /datum/ai_controller/insane/release/PossessPawn(atom/new_pawn)
 	. = ..()
