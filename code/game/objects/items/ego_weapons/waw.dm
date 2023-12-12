@@ -1873,11 +1873,11 @@
 /obj/item/ego_weapon/abyssal_route/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will no longer perform a dive finisher.</span>")
+		to_chat(user, span_warning("You swap your grip, and will now perform a dive finisher."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will now perform a dive finisher.</span>")
+		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
 		combo_on =TRUE
 		return
 
@@ -1920,7 +1920,7 @@
 			if((get_dist(user, A) < 2))
 				DiveAttack(A,user)
 			playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
-			to_chat(user, "<span class='warning'>You dive towards [A]!</span>")
+			to_chat(user, span_warning("You dive towards [A]!"))
 			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 			user.pixel_z = 0
 
