@@ -290,6 +290,6 @@
 	desc = "A strange black and teal water"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "obsessing_water"
-	layer = 1.9//Doesn't spawn above bitter flora
+	layer = 1//Doesn't spawn above bitter flora
 	anchored = TRUE
 	alpha = 100
