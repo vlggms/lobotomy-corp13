@@ -91,9 +91,10 @@
 			continue
 		if(locate(/obj/effect/obsessing_water_effect) in T)
 			continue
-		if(!locate(/turf/open/water/deep) in T)//prevents silly situations where it spawns water on water which makes no sense.
-			var/obj/effect/obsessing_water_effect/W = new(T)
-				water += W
+		if(locate(/turf/open/water/deep) in T)//prevents silly situations where it spawns water on water which makes no sense.
+			continue
+		var/obj/effect/obsessing_water_effect/W = new(T)
+			water += W
 	if(diving || stunned)
 		return FALSE
 	return ..()
