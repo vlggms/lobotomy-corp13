@@ -1815,12 +1815,15 @@
 /obj/item/ego_weapon/blind_obsession//When I saw that Ishmael's version was an anchor I thought "hey would it be funny if it was a throwing weapon with aoe".
 	name = "blind obsession"
 	desc = "All hands, full speed toward where the lights flicker. The waves... will lay waste to everything in our way."
-	special = "When thrown, this weapon attacks EVERYONE but yourself in an AOE. \
-			This weapon deals 75% more damage on direct throws."//Throw it at the Eo I dare ya!
+	special = "This weapon requires two hands to use. \
+			Use in hand to unlock its full power for a short period of time. \
+			Knocks certain enemies backwards when at full power. \
+			When at full power and thrown, this weapon attacks EVERYONE but yourself in an AOE dealing. \
+			This weapon deals 75% more damage on full powered direct throws."
 	icon_state = "blind_obsession"
 	force = 80
-	attack_speed = 2.5
-	throwforce = 100 //has aoe
+	attack_speed = 3
+	throwforce = 80//same as weapon
 	throw_speed = 5
 	throw_range = 7
 	damtype = RED_DAMAGE
@@ -1830,24 +1833,69 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
+	var/charged
+/obj/item/ego_weapon/blind_obsession/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>This weapon deals [throwforce] [damtype] damage when thrown.</span>"//This only shows up if throw force is greater than force so I have to force it somehow.
+
+/obj/item/ego_weapon/blind_obsession/CanUseEgo(mob/living/user)
+	. = ..()
+	if(user.get_inactive_held_item())
+		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
+		return FALSE
+
+/obj/item/ego_weapon/blind_obsession/attack(mob/living/M, mob/living/user)
+	..()
+	if(charged)
+		var/atom/throw_target = get_edge_target_turf(M, user.dir)
+		if(!M.anchored)
+			var/whack_speed = (prob(60) ? 2 : 6)
+			M.throw_at(throw_target, rand(3, 5), whack_speed, user)
+	force = 80
+	throwforce = 80
+	charged = FALSE
+
+/obj/item/ego_weapon/blind_obsession/attack_self(mob/user)
+	if(user.get_inactive_held_item())
+		to_chat(user, span_notice("You cannot impower [src] with only one hand!"))
+		return
+	if(do_after(user, 12, src))
+		charged = TRUE
+		force = 100	//FULL POWER
+		throwforce = 100 //has aoe
+		to_chat(user,span_warning("You put your strength behind this attack."))
+		addtimer(CALLBACK(src, .proc/PowerReset), 18,user)//prevents storing 3 powered up anchors and unloading all of them at once
+
+/obj/item/ego_weapon/blind_obsession/proc/PowerReset(mob/user)
+	to_chat(user, span_warning("You lose your strength behind this attack."))
+	charged = TRUE
+	force = 80
+	throwforce = 80
 
 /obj/item/ego_weapon/blind_obsession/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill others with this
 	if(!CanUseEgo(user))
+		return
+	if(user.get_inactive_held_item())
+		to_chat(user, span_notice("You cannot throw [src] with only one hand!"))
 		return
 	return ..()
 
 /obj/item/ego_weapon/blind_obsession/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	playsound(src, 'sound/weapons/ego/hammer.ogg', 300, FALSE, 9)
-	var/damage = 75
-	if(ishuman(thrownby))
-		damage *= 1 + (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))/100
-	damage *= force_multiplier
-	for(var/turf/open/T in range(2, src))
-		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
-		smonk.color = COLOR_TEAL
-		if(!ismob(thrownby))
-			continue
-		thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
+	if(charged)
+		var/damage = 75
+		if(ishuman(thrownby))
+			damage *= 1 + (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))/100
+		damage *= force_multiplier
+		for(var/turf/open/T in range(1, src))
+			var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+			smonk.color = COLOR_TEAL
+			if(!ismob(thrownby))
+				continue
+			thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
+		force = 80
+		throwforce = 80
+		charged = FALSE
 	return ..()
 
 /obj/item/ego_weapon/abyssal_route //An ungodly love child of sword sharpened with tears and fluid sac
@@ -1878,7 +1926,7 @@
 		return
 	if(!combo_on)
 		to_chat(user, span_warning("You swap your grip, and will no longer perform a dive finisher."))
-		combo_on =TRUE
+		combo_on = TRUE
 		return
 
 /obj/item/ego_weapon/abyssal_route/attack(mob/living/M, mob/living/user)
