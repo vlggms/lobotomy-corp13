@@ -273,11 +273,9 @@
 	. = ..()
 	Refill(user)
 
-
 /mob/living/simple_animal/hostile/flotsam/bullet_act(obj/projectile/P)
 	. = ..()
 	Refill(P.firer)
-
 
 /mob/living/simple_animal/hostile/flotsam/proc/Refill(mob/living/attacker)
 	attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
