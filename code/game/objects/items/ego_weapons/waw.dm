@@ -1816,10 +1816,10 @@
 	name = "blind obsession"
 	desc = "All hands, full speed toward where the lights flicker. The waves... will lay waste to everything in our way."
 	special = "This weapon requires two hands to use. \
-			Use in hand to unlock its full power for a short period of time. \
+			Use in hand to unlock its full power for a short period of time at the cost of speed. \
 			Knocks certain enemies backwards when at full power. \
-			When at full power and thrown, this weapon attacks EVERYONE but yourself in an AOE dealing. \
-			This weapon deals 75% more damage on full powered direct throws."
+			When at thrown at full power, this weapon damages everyone but yourself in an AOE. Be careful! \
+			This weapon deals 75% more damage on fully powered direct throws."
 	icon_state = "blind_obsession"
 	force = 80
 	attack_speed = 3
@@ -1861,14 +1861,16 @@
 		return
 	if(do_after(user, 12, src))
 		charged = TRUE
-		force = 100	//FULL POWER
+		slowdown = 0.25
+		force = 120	//FULL POWER
 		throwforce = 100 //has aoe
 		to_chat(user,span_warning("You put your strength behind this attack."))
 		addtimer(CALLBACK(src, .proc/PowerReset), 18,user)//prevents storing 3 powered up anchors and unloading all of them at once
 
 /obj/item/ego_weapon/blind_obsession/proc/PowerReset(mob/user)
 	to_chat(user, span_warning("You lose your strength behind this attack."))
-	charged = TRUE
+	charged = FALSE
+	slowdown = 0
 	force = 80
 	throwforce = 80
 
@@ -1893,6 +1895,7 @@
 			if(!ismob(thrownby))
 				continue
 			thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
+		slowdown = 0
 		force = 80
 		throwforce = 80
 		charged = FALSE
