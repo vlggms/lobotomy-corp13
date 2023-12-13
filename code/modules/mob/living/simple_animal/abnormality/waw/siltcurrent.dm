@@ -3,7 +3,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent
 	name = "\proper Dream-Devouring Siltcurrent"
-	desc = "An abnormality resembling a giant black and teal shark or fish. \
+	desc = "An abnormality resembling a giant black and teal fish. \
 	There's teal light tubes embedded in its body,"
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "siltcurrent"
@@ -35,7 +35,7 @@
 						ABNORMALITY_WORK_ATTACHMENT = -100,//you thought it would work like current eh?
 						ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 55, 50)//Incase you reach waw with justice 1
 						)
-	work_damage_amount = 6//does constant oxygen damage during work
+	work_damage_amount = 7//does constant oxygen damage during work
 	work_damage_type = RED_DAMAGE
 	ranged = 1
 	can_breach = TRUE
@@ -62,6 +62,8 @@
 	//If it hits a damaged flotsam or not
 	var/hitflotsam
 
+	var/list/water = list()
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/SiltcurrentDive)
 
@@ -84,6 +86,15 @@
 
 //Checks if it's stunned or doing the dive attack to prevent it from attacking or moving while in those 2 states since it would be silly.
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/Move()
+	for(var/turf/open/T in oview(src, 10))
+		if(!isturf(T) || isspaceturf(T))
+			continue
+		if(locate(/obj/effect/obsessing_water_effect) in T)
+			continue
+		if(locate(/turf/open/water/deep) in T)//prevents silly situations where it spawns water on water which makes no sense.
+			continue
+		var/obj/effect/obsessing_water_effect/W = new(T)
+			water += W
 	if(diving || stunned)
 		return FALSE
 	return ..()
@@ -161,7 +172,7 @@
 					playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
 					visible_message(span_boldwarning("[src] mauls through [L]!"))
 					to_chat(L, span_userdanger("[src] mauls you!"))
-					L.apply_damage(dive_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+					HurtInTurf(T, list(), dive_damage, RED_DAMAGE)
 					if(L.health < 0 || L.stat == DEAD)
 						L.gib()
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
@@ -214,16 +225,25 @@
 		spawned_flotsams += F
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/OxygenLoss()//While its alive all humans around it will lose oxygen.
-	for(var/mob/living/carbon/human/H in range(src, 20))//Used to be global but this should prevent it from being asinine when other abormalities are out
-		playsound(H, "sound/effects/bubbles.ogg", 50, TRUE, 7)
-		new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
-		H.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
+	for(var/turf/open/T in oview(src, 20))//Used to be global but this should prevent it from being asinine when other abormalities are out
+		for(var/mob/living/carbon/human/H in T)
+			playsound(H, "sound/effects/bubbles.ogg", 50, TRUE, 7)
+			new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
+			H.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/death()
 	for(var/mob/living/simple_animal/hostile/flotsam/F in spawned_flotsams)
 		QDEL_IN(F, rand(5) SECONDS)
 		spawned_flotsams -= F
+	for(var/obj/effect/obsessing_water_effect/W in water)
+		QDEL_IN(W, rand(5) SECONDS)
+		water -= W
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/siltcurrent/PostSpawn()
+	..()
+	for(var/turf/open/T in range(1, src)) // fill its cell with water
+		T.TerraformTurf(/turf/open/water/deep/obsessing_water, flags = CHANGETURF_INHERIT_AIR)
 
 /mob/living/simple_animal/hostile/flotsam
 	name = "Flotsam"
@@ -264,3 +284,12 @@
 
 /mob/living/simple_animal/hostile/flotsam/gib()
 	return FALSE
+
+/obj/effect/obsessing_water_effect
+	name = "Obsessing water"
+	desc = "A strange black and teal water"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "obsessing_water"
+	layer = 1.9//Doesn't spawn above bitter flora
+	anchored = TRUE
+	alpha = 100

@@ -202,3 +202,17 @@
 /turf/open/water/deep/saltwater/safe
 	safe = TRUE
 
+/turf/open/water/deep/obsessing_water
+	safe = TRUE
+	name = "Obsessing water"
+	desc = "A strange black and teal water"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "obsessing_water"
+	environment = list(
+		/obj/item/food/fish/siltcurrent = FISH_RARITY_RARE,
+		//random things
+		/obj/item/stack/spacecash/c1 = 700,
+		/obj/item/stack/fish_points = 600,
+		/obj/item/clothing/head/beret/fishing_hat = 200,
+		/obj/item/fishing_component/hook/bone = 100,
+		)

@@ -27,3 +27,13 @@
 		adjust_health((health + 3) * seconds_per_tick)
 		last_feeding = world.time //emulsijack feeds on the emulsion!
 	..()
+
+/obj/item/food/fish/siltcurrent
+	name = "dream-biting siltcurrent"
+	desc = "A unique breed of fish that is themed around Dream-Devouring Siltcurrent. Flotsams not included."
+	icon_state = "siltcurrent"
+	random_case_rarity = FISH_RARITY_RARE
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 60
+	average_weight = 7003
