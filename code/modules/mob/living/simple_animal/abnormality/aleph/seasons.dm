@@ -23,7 +23,7 @@
 	health = 4000
 	maxHealth = 4000
 	obj_damage = 600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.1)
+	damage_coeff = list(RED_DAMAGE = 1.1, WHITE_DAMAGE = -1, BLACK_DAMAGE = 1.1, PALE_DAMAGE = 1.1)
 	melee_damage_type = WHITE_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
@@ -87,10 +87,10 @@
 		)
 
 	var/list/modular_damage_coeff = list(
-		"spring" = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5),
-		"summer" = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1), //Summer is tanky
-		"fall" = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1.5),
-		"winter" = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
+		"spring" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5),
+		"summer" = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1), //Summer is tanky
+		"fall" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1.5),
+		"winter" = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
 		)
 
 	//Work Vars

@@ -260,7 +260,7 @@
 	},
 /area/city/outskirts)
 "KZ" = (
-/obj/structure/toolabnormality/touch,
+/obj/effect/landmark/objectivespawn,
 /turf/open/floor/stone,
 /area/city/outskirts)
 "MD" = (

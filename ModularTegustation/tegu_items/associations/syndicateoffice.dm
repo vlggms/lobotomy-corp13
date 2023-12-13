@@ -11,7 +11,7 @@
 			ready = TRUE
 			break
 	if(!ready)
-		src.loc.visible_message("<span class='warning'>\The [src] will not function in this area. Please move to a designated syndicate hideout space.</span>")
+		src.loc.visible_message(span_warning("\The [src] will not function in this area. Please move to a designated syndicate hideout space."))
 		return
 	..()
 

@@ -31,7 +31,7 @@
 		var/obj/item/computer_hardware/battery/battery_module = computer.all_components[MC_CELL]
 		var/obj/item/computer_hardware/recharger/recharger = computer.all_components[MC_CHARGE]
 		qdel(hard_drive)
-		computer.take_damage(25, BRUTE, 0, 0)
+		computer.take_damage(25, BRUTE, 0)
 		if(battery_module && prob(25))
 			qdel(battery_module)
 			computer.visible_message(span_notice("\The [computer]'s battery explodes in rain of sparks."))

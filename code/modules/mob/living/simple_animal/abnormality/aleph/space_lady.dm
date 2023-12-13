@@ -7,7 +7,7 @@
 	del_on_death = TRUE
 	maxHealth = 3200
 	health = 3200
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
 	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL

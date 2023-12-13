@@ -49,7 +49,7 @@
 /* Combat */
 
 /mob/living/simple_animal/hostile/abnormality/alriune/Move()
-	if(CheckCombat())
+	if(IsCombatMap())
 		return ..()
 	return FALSE
 
@@ -98,7 +98,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/alriune/proc/TeleportAway()
-	if(CheckCombat())
+	if(IsCombatMap())
 		return
 	var/list/potential_turfs = list()
 	for(var/turf/T in GLOB.xeno_spawn)
@@ -141,5 +141,7 @@
 	petals_next = world.time + petals_next_time + 30
 	TeleportAway()
 	icon_state = "alriune_active"
+	if(IsCombatMap())
+		pulse_damage = 70		//R-Corp cannot eat 180 white damage
 	return
 

@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(army)
 	//*--Suppression info--*
 	maxHealth = 450
 	health = 450
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 0.8)//the same as hostile mobs, ez records
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 0.8)//the same as hostile mobs, ez records
 	speed = 1//unused
 	generic_canpass = FALSE
 	del_on_death = TRUE
@@ -44,6 +44,12 @@ GLOBAL_LIST_EMPTY(army)
 		/datum/ego_datum/armor/pink
 		)
 	gift_type =  /datum/ego_gifts/pink
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5
+	)
 
 	//Unique variables
 	var/death_counter = 0
@@ -187,7 +193,7 @@ GLOBAL_LIST_EMPTY(army)
 	health = 900
 	maxHealth = 900
 	obj_damage = 50
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 0.8)
 	ranged = TRUE
 	minimum_distance = 2
 	speed = 2

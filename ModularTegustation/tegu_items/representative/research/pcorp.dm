@@ -2,7 +2,7 @@
 //P Corp sells different storage items
 ///Backpack Items Line
 /datum/data/lc13research/pcorpbackpack
-	research_name = "P Corp Large Backpack (x2) "
+	research_name = "P Corp Large Backpack (x2)"
 	research_desc = "Dear ambassador. We have new items for you! <br>Brand new backpacks that hold massive items. "
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = P_CORP_REP
@@ -13,7 +13,7 @@
 	..()
 
 /datum/data/lc13research/bigpcorpbackpack
-	research_name = "P Corp XL Backpack (x2) "
+	research_name = "P Corp XL Backpack (x2)"
 	research_desc = "Dear ambassador. We have new items for you! <br>Brand new backpacks that hold massive items. <br>This one holds 5, but slows you down a little more."
 	cost = AVERAGE_RESEARCH_PRICE+5
 	corp = P_CORP_REP
@@ -26,7 +26,7 @@
 
 //Belt lines
 /datum/data/lc13research/egobelt
-	research_name = "P Corp Twin EGO Belt (x2) "
+	research_name = "P Corp Twin EGO Belt (x2)"
 	research_desc = "Dear ambassador. We have new items for you! <br>A belt that holds twin EGO for the LCorp agents. <br>Ship only to their best. "
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = P_CORP_REP
@@ -38,7 +38,7 @@
 	..()
 
 /datum/data/lc13research/armorbelt
-	research_name = "P Corp EGO Armor Belt (x2) "
+	research_name = "P Corp EGO Armor Belt (x2)"
 	research_desc = "Dear ambassador. We have new items for you! <br>A belt that holds three EGO armor for the LCorp agents. <br>Ship only to their best. "
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = P_CORP_REP
@@ -52,7 +52,7 @@
 
 //Pockets line
 /datum/data/lc13research/pocketpouch
-	research_name = "Repurchasable: P Corp Pouch (x2) "
+	research_name = "Repurchasable: P Corp Pouch (x2)"
 	research_desc = "Dear ambassador. We have new items for you! <br>A pocket extender for the LCorp agents. <br>Ship only to their best. "
 	cost = LOW_RESEARCH_PRICE
 	corp = P_CORP_REP
@@ -63,7 +63,7 @@
 	new /obj/item/storage/pcorp_pocket(get_turf(caller))
 
 /datum/data/lc13research/pocketpistol
-	research_name = "Repurchasable: P Corp Weapon Pouch (x2) "
+	research_name = "Repurchasable: P Corp Weapon Pouch (x2)"
 	research_desc = "Dear ambassador. We have new items for you! <br>A pocket extender for the LCorp agents that holds one small weapon. <br>Ship only to their best. "
 	cost = LOW_RESEARCH_PRICE
 	corp = P_CORP_REP
@@ -77,7 +77,7 @@
 
 //Funny Crate
 /datum/data/lc13research/crate
-	research_name = "P Corp Speed Crate (x2) "
+	research_name = "P Corp Speed Crate (x2)"
 	research_desc = "Dear ambassador. We have new items for you! <br>A crate that speeds you up as you drag it! <br>We're 99% sure it won't explode but you know... <br> Can't make any better guarantees. "
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = P_CORP_REP

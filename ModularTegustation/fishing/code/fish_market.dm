@@ -4,6 +4,7 @@
 	icon = 'icons/obj/money_machine.dmi'
 	icon_state = "bogdanoff"
 	density = TRUE
+	resistance_flags = INDESTRUCTIBLE
 	var/fish_points = 0
 
 	var/list/order_list = list( //if you add something to this, please, for the love of god, sort it by price/type. use tabs and not spaces.

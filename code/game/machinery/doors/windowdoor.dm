@@ -209,7 +209,7 @@
 	return (exposed_temperature > T0C + (reinf ? 1600 : 800))
 
 /obj/machinery/door/window/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(round(exposed_temperature / 200), BURN, 0, 0)
+	take_damage(round(exposed_temperature / 200), BURN, 0)
 
 
 /obj/machinery/door/window/emag_act(mob/user)

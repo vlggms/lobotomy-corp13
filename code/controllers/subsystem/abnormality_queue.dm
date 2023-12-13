@@ -29,13 +29,6 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/hardcore_roll_enabled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
-	var/list/all_abnos = subtypesof(/mob/living/simple_animal/hostile/abnormality)
-	for(var/i in all_abnos)
-		var/mob/living/simple_animal/hostile/abnormality/abno = i
-		if(initial(abno.can_spawn))
-			possible_abnormalities[initial(abno.threat_level)] += abno
-	if(LAZYLEN(possible_abnormalities))
-		pick_abno()
 	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
@@ -78,17 +71,19 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/obj/effect/spawner/abnormality_room/choice = pick(GLOB.abnormality_room_spawners)
 
 	if(istype(choice) && ispath(queued_abnormality))
-		addtimer(CALLBACK(choice, .obj/effect/spawner/abnormality_room/proc/SpawnRoom))
+		choice.SpawnRoom()
 
 	if(fucked_it_lets_rolled)
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 			Q.ChangeLock(FALSE)
 		fucked_it_lets_rolled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/proc/postspawn()
 	if(queued_abnormality)
+		if(possible_abnormalities[initial(queued_abnormality.threat_level)][queued_abnormality] <= 0)
+			stack_trace("Queued abnormality had no weight!?")
 		possible_abnormalities[initial(queued_abnormality.threat_level)] -= queued_abnormality
-		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+		for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 			Q.audible_message("<span class='announce'>[initial(queued_abnormality.name)] has arrived at the facility!</span>")
 			playsound(get_turf(Q), 'sound/machines/dun_don_alert.ogg', 50, TRUE)
 			Q.updateUsrDialog()
@@ -105,10 +100,10 @@ SUBSYSTEM_DEF(abnormality_queue)
 		if(!LAZYLEN(possible_abnormalities[lev]))
 			continue
 		picking_abno |= possible_abnormalities[lev]
-	for(var/i = 1 to 3)
+	for(var/i = 1 to GetFacilityUpgradeValue(UPGRADE_ABNO_QUEUE_COUNT))
 		if(!LAZYLEN(picking_abno))
 			break
-		var/chosen_abno = pick(picking_abno)
+		var/chosen_abno = pickweight(picking_abno)
 		picking_abnormalities += chosen_abno
 		picking_abno -= chosen_abno
 	if(!LAZYLEN(picking_abnormalities))
@@ -122,13 +117,13 @@ SUBSYSTEM_DEF(abnormality_queue)
 		sleep(15 SECONDS) // Allows manager to select abnormalities if he is fast enough.
 		SpawnAbno()
 	message_admins("[i] round-start abnormalities have been spawned.")
-	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.audible_message("<span class='announce'>All the initial Abnormalities have arrived. Have a nice day Manager.</span>")
 	return
 
 /datum/controller/subsystem/abnormality_queue/proc/AnnounceLock()
 	fucked_it_lets_rolled = TRUE
-	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.abnormality_queue_consoles)
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.ChangeLock(TRUE)
 	return
 
@@ -144,4 +139,4 @@ SUBSYSTEM_DEF(abnormality_queue)
 			continue
 		picking_abno |= possible_abnormalities[level]
 
-	return pick(picking_abno)
+	return pickweight(picking_abno)

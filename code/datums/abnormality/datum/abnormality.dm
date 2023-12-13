@@ -60,6 +60,9 @@
 	var/list/transferable_var
 	///if the abno spawns with a slime radio or not
 	var/abno_radio = FALSE
+	// Object = list(x tile offset, y tile offset)
+	/// List of connected structures; Used to teleport and delete them when abnormality is swapped or deleted
+	var/list/connected_structures = list()
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -72,16 +75,20 @@
 	desc = initial(abno_path.desc)
 	RespawnAbno()
 	FillEgoList()
+	ModifyOdds()
 
 /datum/abnormality/Destroy()
 	SSlobotomy_corp.all_abnormality_datums -= src
 	for(var/datum/ego_datum/ED in ego_datums)
 		qdel(ED)
+	for(var/atom/A in connected_structures)
+		qdel(A)
 	QDEL_NULL(landmark)
 	QDEL_NULL(current)
 	ego_datums = null
 	landmark = null
 	current = null
+	connected_structures = null
 	..()
 
 /datum/abnormality/proc/RespawnAbno()
@@ -143,6 +150,14 @@
 		GLOB.ego_datums["[ED.name][ED.item_category]"] = ED
 	return TRUE
 
+/datum/abnormality/proc/ModifyOdds()
+	var/turf/spawn_turf = locate(1, 1, 1)
+	var/mob/living/simple_animal/hostile/abnormality/abno = new abno_path(spawn_turf)
+	for(var/path in abno.grouped_abnos)
+		var/mob/living/simple_animal/hostile/abnormality/abno_friend = path
+		if(abno_friend in SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)])
+			SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)][abno_friend] = SSabnormality_queue.possible_abnormalities[initial(abno_friend.threat_level)][abno_friend] * abno.grouped_abnos[abno_friend]
+	QDEL_NULL(abno)
 
 /datum/abnormality/proc/work_complete(mob/living/carbon/human/user, work_type, pe, work_time, was_melting, canceled)
 	current.WorkComplete(user, work_type, pe, work_time, canceled) // Cross-referencing gone wrong
@@ -160,7 +175,7 @@
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
 			if(attribute_given == 0)
 				if(was_melting)
-					attribute_given = threat_level //pity stats on meltdowns
+					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 				else
 					to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
 			user.adjust_attribute_level(attribute_type, attribute_given)
@@ -181,11 +196,17 @@
 	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 
 /datum/abnormality/proc/UpdateUnderstanding(percent)
-	if (understanding != max_understanding) // This should render "full_understood" not required.
+	// Lower agent pop gets a bonus
+	var/agent_count = AvailableAgentCount()
+	if(agent_count <= 5 && percent)
+		percent *= 1 + (3 / agent_count)
+
+	if(understanding != max_understanding) // This should render "full_understood" not required.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
+			SSlobotomy_corp.AddLobPoints(MAX_ABNO_LOB_POINTS / SSabnormality_queue.rooms_start, "Abnormality Understanding")
 	else if(understanding == max_understanding && percent < 0) // If we're max and we reduce, undo the count.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding != max_understanding) // Checks for max understanding after the fact
@@ -234,7 +255,10 @@
 		if(ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
 	acquired_chance *= user.physiology.work_success_mod
-	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) * TEMPERANCE_SUCCESS_MOD
+
+	//Calculating workchance. This is meant to be somewhat log
+	var/player_temperance = get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE)
+	acquired_chance += TEMPERANCE_SUCCESS_MOD *((0.07*player_temperance-1.4)/(0.07*player_temperance+4))
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	if(overload_chance[user.ckey])
 		acquired_chance += overload_chance[user.ckey]
@@ -268,3 +292,75 @@
 	if(current)
 		return current.GetRiskLevel()
 	return threat_level
+
+/// Swaps the cells with target abnormality datum
+/datum/abnormality/proc/SwapPlaceWith(datum/abnormality/target = null)
+	if(!istype(target))
+		return FALSE
+	// We can't really swap places if our abno is running around
+	if(istype(current) && !current.IsContained())
+		return FALSE
+	if(istype(target.current) && !target.current.IsContained())
+		return FALSE
+	if(working || target.working)
+		return FALSE
+	// A very silly method to get the objects in the cell
+	var/list/objs_src = view(7, landmark)
+	var/list/objs_target = view(7, target.landmark)
+	// Cursed code!
+	var/obj/machinery/containment_panel/P1 = locate() in objs_src
+	var/obj/machinery/containment_panel/P2 = locate() in objs_target
+	var/obj/machinery/door/airlock/vault/D1 = locate() in objs_src
+	var/obj/machinery/door/airlock/vault/D2 = locate() in objs_target
+	var/obj/machinery/camera/C1 = locate() in objs_src
+	var/obj/machinery/camera/C2 = locate() in objs_target
+	/* Swap everything and update panels & doors! */
+	// Landmark swap
+	var/obj/effect/landmark/abnormality_spawn/our_landmark = landmark
+	landmark = target.landmark
+	target.landmark = our_landmark
+	// Console swap
+	var/obj/machinery/computer/abnormality/our_computer = console
+	console = target.console
+	console.datum_reference = src
+	target.console = our_computer
+	target.console.datum_reference = target
+	// Door name swap
+	if(D1)
+		D1.name = "[target.name] containment zone"
+		D1.desc = "Containment zone of [target.name]. Threat level: [THREAT_TO_NAME[target.threat_level]]."
+	if(D2)
+		D2.name = "[name] containment zone"
+		D2.desc = "Containment zone of [name]. Threat level: [THREAT_TO_NAME[threat_level]]."
+	// Panel swap
+	if(P1)
+		P1.linked_console = target.console
+		target.console.LinkPanel(P1)
+		P1.console_status(target.console)
+		P1.name = "\proper [target.name]'s containment panel"
+	if(P2)
+		P2.linked_console = console
+		console.LinkPanel(P2)
+		P2.console_status(console)
+		P2.name = "\proper [name]'s containment panel"
+	// Camera tag swap
+	if(C1)
+		C1.c_tag = "Containment zone: [target.name]"
+	if(C2)
+		C2.c_tag = "Containment zone: [name]"
+	// Move structures
+	for(var/atom/movable/A in connected_structures)
+		A.forceMove(get_turf(landmark))
+		A.x += connected_structures[A][1]
+		A.y += connected_structures[A][2]
+	for(var/atom/movable/A in target.connected_structures)
+		A.forceMove(get_turf(target.landmark))
+		A.x += connected_structures[A][1]
+		A.y += connected_structures[A][2]
+	// And finally, move abnormalities around
+	if(current)
+		current.forceMove(get_turf(landmark))
+	if(target.current)
+		target.current.forceMove(get_turf(target.landmark))
+	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_SWAP, src, target)
+	return TRUE

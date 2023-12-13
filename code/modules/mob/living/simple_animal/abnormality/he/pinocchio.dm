@@ -19,7 +19,7 @@
 		"Lying is Bad!" = 0
 	)
 
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 16
@@ -150,7 +150,7 @@
 	if(client)
 		mind.transfer_to(realboy)
 	//Prevents pinocchio from going insane on Rcorp.
-	if(!CheckCombat())
+	if(!IsCombatMap())
 		realboy.ai_controller = /datum/ai_controller/insane/murder/puppet
 		realboy.InitializeAIController()
 		realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
@@ -260,7 +260,7 @@
 	return FALSE
 
 /mob/living/carbon/human/species/pinocchio/UnarmedAttack(atom/A, proximity)
-	if(istype(A, /obj/structure/toolabnormality/touch))
+	if((istype(A, /obj/structure/toolabnormality/touch)) || (istype(A, /obj/structure/bough)))
 		to_chat(src, span_userdanger("YOUR FOOLISHNESS IS IMPRESSIVE."))
 		return
 	. = ..()

@@ -16,7 +16,7 @@
 
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 0.8, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	vision_range = 7
@@ -48,6 +48,11 @@
 	var/protect_cooldown
 	var/retaliation = 10
 	var/PRUDENCE_CAP = 60
+
+/mob/living/simple_animal/hostile/abnormality/pygmalion/CanAllowThrough(atom/movable/mover, turf/target)
+	if(sculptor && ishuman(mover))
+		return TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/CanAttack(atom/target)
 	if(ishuman(target))

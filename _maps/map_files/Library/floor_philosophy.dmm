@@ -9,24 +9,24 @@
 	resistance_flags = 64
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "aA" = (
 /obj/structure/bookcase/random/reference,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "aI" = (
 /obj/machinery/door/airlock/wood,
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "aV" = (
 /obj/effect/decal/cleanable/cobweb,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "bk" = (
 /obj/structure/flora/grass/green,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "bs" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -37,7 +37,7 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "cq" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
@@ -47,21 +47,21 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "cs" = (
 /obj/item/flashlight/lantern{
 	anchored = 1;
 	pixel_y = 17
 	},
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "cG" = (
 /obj/structure/chair/wood/wings{
 	dir = 4
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "cX" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -72,14 +72,14 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "dy" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "dz" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521"
@@ -89,39 +89,39 @@
 	dir = 9
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "dG" = (
 /obj/item/flashlight/spotlight,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "gd" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "gY" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "hi" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/barricade/wooden,
 /obj/structure/barricade/wooden/crude,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "hI" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "iA" = (
 /obj/structure/flora/junglebush,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "jm" = (
 /obj/structure/sink/kitchen{
 	pixel_y = 19
@@ -131,7 +131,7 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "ki" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -142,7 +142,7 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "kG" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 4
@@ -152,7 +152,7 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "kS" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
@@ -163,36 +163,36 @@
 	dir = 5
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "kZ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "mj" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "mm" = (
 /obj/structure/flora/tree/dead,
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "ms" = (
 /obj/structure/table_frame/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "mI" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "ne" = (
 /obj/item/flashlight/lantern,
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "nj" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
@@ -203,21 +203,21 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "nP" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 5
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "nZ" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "ok" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -229,10 +229,10 @@
 	pixel_x = 9
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "ow" = (
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "pC" = (
 /obj/structure/railing{
 	dir = 1;
@@ -241,32 +241,32 @@
 	},
 /obj/machinery/light,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "pV" = (
 /obj/item/ego_weapon/mimicry/kali,
 /obj/item/flashlight/spotlight,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "qv" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 6
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "qw" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/barricade/wooden,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "rg" = (
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "rm" = (
 /obj/structure/chair/wood/wings{
 	pixel_y = 0;
@@ -274,7 +274,7 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "rB" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521"
@@ -284,7 +284,7 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "rC" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -294,24 +294,24 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "rE" = (
 /obj/item/chair/wood,
 /obj/effect/decal/cleanable/cobweb/cobweb2,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "rL" = (
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "rT" = (
 /obj/machinery/vending/dinnerware,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "sb" = (
 /obj/machinery/light/floor,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "sl" = (
 /turf/open/space/basic,
 /area/space)
@@ -327,7 +327,7 @@
 	pixel_x = -7
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "sw" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -337,21 +337,21 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "sC" = (
 /obj/structure/flora/tree/dead,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "tm" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "ur" = (
 /obj/structure/pbird_perch,
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "uH" = (
 /obj/item/toy/plush/chesed,
 /obj/item/clothing/accessory/maidapron{
@@ -362,16 +362,16 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "uZ" = (
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "vK" = (
 /obj/machinery/light/floor,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "wa" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -379,7 +379,7 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "wl" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -387,17 +387,17 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "wo" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521"
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "xh" = (
 /obj/structure/flora/grass/brown,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "xq" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -408,55 +408,55 @@
 	dir = 6
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "xv" = (
 /obj/structure/chair/wood/wings{
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "yI" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/book/random,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "At" = (
 /turf/open/floor/fakespace{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Be" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Bj" = (
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Bk" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "BR" = (
 /obj/structure/flora/bush,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Cq" = (
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Da" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/condiment/sugar,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "De" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "DJ" = (
 /obj/item/gavelhammer,
 /obj/item/gavelblock{
@@ -464,35 +464,35 @@
 	pixel_x = -9
 	},
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "DO" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "DZ" = (
 /obj/structure/chair/wood/wings,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Es" = (
 /obj/machinery/light/broken{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "ED" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Fk" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/food/cake/bbird,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "FD" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -503,7 +503,7 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "FW" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 1
@@ -518,14 +518,14 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Gc" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 10
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Gp" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
@@ -540,7 +540,7 @@
 	name = "invincible railing"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Gr" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -548,21 +548,21 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Gu" = (
 /obj/structure/flora/rock/pile,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "GD" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/mug,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "HQ" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating/rust,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Im" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -574,12 +574,12 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "IK" = (
 /obj/structure/table/wood,
 /obj/item/food/cake/apple,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Jl" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
@@ -590,14 +590,14 @@
 	dir = 6
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "JA" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "JB" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 6
@@ -612,7 +612,7 @@
 	max_integrity = 1e+007
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "JD" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 5
@@ -627,20 +627,20 @@
 	name = "invincible railing"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "JT" = (
 /obj/machinery/chem_dispenser/drinks,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "KT" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "KU" = (
 /turf/open/floor/plating/rust,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Lm" = (
 /obj/structure/railing{
 	dir = 5;
@@ -649,13 +649,13 @@
 	},
 /obj/machinery/light,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Lx" = (
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 10
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Ly" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/book/random{
@@ -663,7 +663,7 @@
 	pixel_x = 7
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "LB" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 10
@@ -678,57 +678,57 @@
 	name = "invincible railing"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "LP" = (
 /obj/structure/flora/grass/both,
 /turf/open/water,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "LS" = (
 /obj/structure/chair/wood/wings{
 	pixel_y = 0;
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Me" = (
 /turf/closed/indestructible/fakeglass,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Ml" = (
 /turf/open/floor/plating,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Mz" = (
 /obj/item/reagent_containers/food/drinks/mug/tea{
 	pixel_y = -7
 	},
 /obj/structure/displaycase/noalert,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Ne" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/barricade/wooden/crude,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "NJ" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "NU" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 9
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Oh" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "PW" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -736,17 +736,17 @@
 	pixel_x = -7
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Qp" = (
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Rc" = (
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Rg" = (
 /obj/structure/barricade/wooden/crude,
 /turf/closed/indestructible/fakeglass,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Ri" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -754,7 +754,7 @@
 	pixel_x = -4
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Rl" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
@@ -764,26 +764,26 @@
 	color = "#7D6521"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Ru" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/grille,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "RS" = (
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Sx" = (
 /obj/machinery/bookbinder,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "SF" = (
 /obj/item/bodypart/l_arm,
 /obj/item/flashlight/spotlight,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "SV" = (
 /obj/item/flashlight/spotlight{
 	light_color = "#d8b66f"
@@ -791,7 +791,7 @@
 /turf/open/floor/fakespace{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "TR" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -799,28 +799,28 @@
 	pixel_x = -7
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "TZ" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Uf" = (
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Uu" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/mug/tea{
 	pixel_y = 0
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Uv" = (
 /obj/item/reagent_containers/honeycomb,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "UC" = (
 /obj/structure/railing{
 	dir = 1;
@@ -828,7 +828,7 @@
 	resistance_flags = 64
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "UL" = (
 /obj/structure/railing{
 	dir = 1;
@@ -841,14 +841,14 @@
 	},
 /obj/item/toy/plush/binah,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "UU" = (
 /obj/item/flashlight/lantern{
 	anchored = 1;
 	pixel_y = 16
 	},
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "VE" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
@@ -859,7 +859,7 @@
 	dir = 10
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "WR" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -867,7 +867,7 @@
 	pixel_x = 7
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "XC" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/reagent_containers/food/drinks/mug/tea{
@@ -875,10 +875,10 @@
 	pixel_x = -1
 	},
 /turf/open/floor/carpet/royalblack,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "XJ" = (
 /turf/closed/wall,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "YE" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -888,7 +888,7 @@
 	color = "#7D6521"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "YO" = (
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
@@ -899,10 +899,10 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Zn" = (
 /turf/closed/wall/rust,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 "Zv" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -912,7 +912,7 @@
 	color = "#7D6521"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_philosophy)
 
 (1,1,1) = {"
 sl

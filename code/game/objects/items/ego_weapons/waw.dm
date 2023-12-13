@@ -356,7 +356,9 @@
 	name = "green stem"
 	desc = "All personnel involved in the equipment's production wore heavy protection to prevent them from being influenced by the entity."
 	special = "Wielding this weapon grants an immunity to the slowing effects of the princess's vines. \
-				Use in hand to channel a vine burst."
+				When used in hand 30 sanity will be consumed before channeling a 7 second vine burst that \
+				will hit all hostiles in a 3 tile range around the user. If vine burst is used at 30% sanity the damage is \
+				increased by 50% but will hit allies due to the intense hatred of F-04-42 influencing the user."
 	icon_state = "green_stem"
 	force = 32 //original 8-16
 	reach = 2		//Has 2 Square Reach.
@@ -384,10 +386,6 @@
 		user.visible_message("<span class='notice'>[user] stabs [src] into the ground.</span>", "<span class='nicegreen'>You stab your [src] into the ground.</span>")
 		var/mob/living/carbon/human/L = user
 		L.adjustSanityLoss(30)
-		if(!locate(/obj/structure/spreading/apple_vine) in get_turf(user))
-			L.visible_message("<span class='notice'>Wilted stems grow from [src].</span>")
-			new /obj/structure/spreading/apple_vine(get_turf(user))
-			return
 
 		var/affected_mobs = 0
 		for(var/i = 1 to 6)
@@ -428,11 +426,6 @@
 	var/ranged_cooldown_time = 1.2 SECONDS
 	var/ranged_damage = 60
 
-/obj/effect/temp_visual/thornspike
-	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
-	icon_state = "thornspike"
-	duration = 10
-
 /obj/item/ego_weapon/ebony_stem/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
 		to_chat(user, "<span class='warning'>Your ranged attack is still recharging!")
@@ -449,7 +442,7 @@
 	if(do_after(user, 5))
 		var/damage_dealt = (ranged_damage * force_multiplier)
 		playsound(target_turf, 'sound/abnormalities/ebonyqueen/attack.ogg', 50, TRUE)
-		for(var/turf/open/T in range(target_turf, 1))
+		for(var/turf/open/T in RANGE_TURFS(1, target_turf))
 			new /obj/effect/temp_visual/thornspike(T)
 			user.HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, hurt_mechs = TRUE)
 

@@ -2,17 +2,17 @@
 "aa" = (
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "by" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "bM" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/reagent_containers/food/condiment/sugar,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "dm" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
@@ -21,7 +21,7 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "dn" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -29,38 +29,38 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "dT" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "ef" = (
 /obj/structure/bookcase/random/nonfiction,
 /obj/structure/bookcase/random/nonfiction,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "en" = (
 /obj/machinery/chem_dispenser/drinks/fullupgrade{
 	pixel_y = 6;
 	dir = 1
 	},
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "eB" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken2"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "ft" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "fN" = (
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "fV" = (
 /obj/structure/fermenting_barrel,
 /obj/effect/turf_decal/siding/wood{
@@ -70,13 +70,13 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "gm" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "gJ" = (
 /obj/structure/railing{
 	dir = 10;
@@ -84,25 +84,25 @@
 	name = "invincible railing"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "hP" = (
 /obj/structure/closet/crate/wooden,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "hU" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "hW" = (
 /obj/structure/chair/stool/bar,
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "ie" = (
 /obj/machinery/light{
 	dir = 4
@@ -110,54 +110,54 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "iJ" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "je" = (
 /obj/machinery/chem_dispenser/drinks,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "jI" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "ky" = (
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "kJ" = (
 /obj/structure/railing{
 	name = "invincible railing";
 	resistance_flags = 64
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "lG" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "lK" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "mA" = (
 /obj/effect/decal/fakelattice,
 /obj/item/flashlight/spotlight,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "mR" = (
 /obj/structure/chair/comfy{
 	dir = 1;
 	pixel_y = 11
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "nB" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -166,12 +166,12 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "pa" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/reagent_containers/food/drinks/coffee,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "pL" = (
 /obj/structure/fermenting_barrel,
 /obj/effect/turf_decal/siding/wood{
@@ -185,13 +185,13 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "qb" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "qn" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
@@ -200,45 +200,45 @@
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "rj" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "rT" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "sf" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "sl" = (
 /obj/structure/closet/crate/wooden,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "sL" = (
 /obj/structure/flora/rock/pile/largejungle,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "tw" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "uI" = (
 /obj/structure/chair/comfy,
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "uN" = (
 /turf/open/water/deep/saltwater,
 /area/space)
@@ -249,13 +249,13 @@
 	max_integrity = 1e+007
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "wM" = (
 /obj/machinery/light{
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "wW" = (
 /obj/structure/railing{
 	dir = 1;
@@ -263,11 +263,11 @@
 	resistance_flags = 64
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "xJ" = (
 /obj/structure/flora/rock/pile,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "xY" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -280,20 +280,20 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "yc" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "yA" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "yN" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -303,19 +303,19 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "zb" = (
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/structure/table/wood/fancy/blue,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "zv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "BA" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/reagent_containers/food/condiment/saltshaker{
@@ -323,11 +323,11 @@
 	pixel_x = -6
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "BK" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "BM" = (
 /obj/structure/flora/rock/jungle,
 /turf/open/water/deep/saltwater,
@@ -337,7 +337,7 @@
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Dg" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -346,7 +346,7 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "DW" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -354,7 +354,7 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken7"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Fa" = (
 /obj/structure/chair/wood/wings{
 	dir = 4
@@ -363,7 +363,7 @@
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "FK" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -373,51 +373,51 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken3"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Gh" = (
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "GG" = (
 /obj/item/flashlight/spotlight,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Hg" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Hx" = (
 /obj/effect/turf_decal/siding/wood,
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "HJ" = (
 /obj/machinery/vending/dinnerware,
 /turf/closed/indestructible/wood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "IE" = (
 /obj/structure/fermenting_barrel,
 /obj/item/flashlight/lantern{
 	pixel_y = 18
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "IR" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "JJ" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 5
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "JW" = (
 /turf/open/floor/plasteel/stairs{
 	dir = 4
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "JX" = (
 /obj/structure/railing{
 	dir = 5;
@@ -425,10 +425,10 @@
 	name = "invincible railing"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Ky" = (
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "KT" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
@@ -438,36 +438,36 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "MI" = (
 /obj/structure/railing/corner{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Nj" = (
 /obj/structure/chair/comfy,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "NI" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/reagent_containers/food/drinks/mug,
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "NM" = (
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Op" = (
 /turf/open/floor/plasteel/stairs,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "ON" = (
 /obj/effect/decal/fakelattice,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "OR" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -475,23 +475,23 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "OX" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Py" = (
 /obj/structure/railing/corner,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "PP" = (
 /obj/machinery/light{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Qn" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -499,11 +499,11 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Rq" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Rs" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -517,19 +517,19 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Ru" = (
 /turf/open/floor/plasteel/stairs{
 	dir = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Sp" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "SC" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -543,7 +543,7 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "SR" = (
 /obj/structure/flora/rock/pile/largejungle,
 /turf/open/water/deep/saltwater,
@@ -553,17 +553,17 @@
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "SZ" = (
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Tv" = (
 /obj/structure/chair/comfy{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "TE" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/effect/turf_decal/siding/wood{
@@ -575,30 +575,30 @@
 	pixel_x = 12
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Ue" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "UB" = (
 /obj/structure/bookcase/random/nonfiction,
 /obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Vc" = (
 /obj/structure/chair/wood/wings{
 	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "VT" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
 /obj/machinery/light,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "WH" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -611,11 +611,11 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "WR" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "WS" = (
 /obj/structure/railing{
 	dir = 9;
@@ -623,7 +623,7 @@
 	name = "invincible railing"
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Xa" = (
 /obj/structure/chair/comfy{
 	dir = 1;
@@ -633,11 +633,11 @@
 	pixel_y = 0
 	},
 /turf/open/floor/carpet/royalblue,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "Xx" = (
 /obj/structure/fermenting_barrel,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "XL" = (
 /obj/structure/railing{
 	dir = 1;
@@ -646,17 +646,17 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "XV" = (
 /obj/structure/flora/rock,
 /turf/open/water/deep/saltwater,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "XW" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 "YL" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/water/deep/saltwater,
@@ -670,7 +670,7 @@
 	},
 /obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_socialsci)
 
 (1,1,1) = {"
 uN

@@ -102,10 +102,12 @@
 	name = "rosespanner workshop crate"
 	desc = "A crate recieved from the rosespanner workshop. Open with a Crowbar."
 	icon_state = "crate_rosespanner"
+	rarechance = 65	// 30% for gears, 70% everything else
+	veryrarechance = 5
 	lootlist =	list(
-		/obj/item/rosespanner_gear,
-		/obj/item/rosespanner_gear/white,
-		/obj/item/rosespanner_gear/black,
+		/obj/item/storage/box/rosespanner,
+		/obj/item/storage/box/rosespanner/white,
+		/obj/item/storage/box/rosespanner/black,
 		)
 
 	rareloot =	list(
@@ -114,5 +116,8 @@
 		/obj/item/ego_weapon/city/charge/rosespanner/minihammer,
 		/obj/item/clothing/suit/armor/ego_gear/city/rosespannerrep,
 		/obj/item/clothing/suit/armor/ego_gear/city/rosespanner,
-		/obj/item/rosespanner_gear/pale,
 		)
+
+	veryrareloot =	list(
+		/obj/item/storage/box/rosespanner/pale,
+	)

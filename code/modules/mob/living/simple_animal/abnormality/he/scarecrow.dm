@@ -10,7 +10,7 @@
 	health = 1000
 	rapid_melee = 2
 	move_to_delay = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 20
 	melee_damage_upper = 24
 	melee_damage_type = BLACK_DAMAGE
@@ -38,6 +38,15 @@
 		)
 	gift_type =  /datum/ego_gifts/harvest
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
+		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
 

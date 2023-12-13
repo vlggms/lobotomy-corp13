@@ -116,6 +116,132 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 						else
 							spawntype = /mob/living/simple_animal/hostile/lovetown/slumberer
 
+		if("peccatulum")
+			spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+			switch(GLOB.combat_counter)
+
+				//Mostly gluttony, with a lil sloth
+				if(1 to 2)
+					switch(rand(1,100))
+
+						if(85 to 100)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
+						else
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+
+				//i dont know what the fuck im doing
+				if(3 to 5)
+					switch(rand(1,100))
+						if(10 to 55)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
+						if(55 to 100)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
+						else
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+
+
+				//25% Slasher / 25% Stabber / 20% Slammer / 15% Shambler / 15% Slumberer but for peccs I guess???
+				if(6 to 12)
+					switch(rand(1, 100))
+						if(40 to 65)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_sloth
+						if(65 to 85)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
+						if(85 to 100)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride
+						else
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+
+
+				//100% one Abomination, rest 20% Slashers / 20% Stabbers / 60% Suicidals
+				if(13 to 14)
+					if(!GLOB.wcorp_boss_spawn)
+						GLOB.wcorp_boss_spawn = TRUE
+						spawntype = /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion
+					else
+						switch(rand(1,100))
+							if(60 to 80)
+								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride
+							if(80 to 100)
+								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
+							else
+								spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+
+				//20% Slasher / 20% Stabber / 20% Slammer / 20% Shambler / 20% Slumberer
+				if(15 to INFINITY)
+					switch(rand(1, 100))
+						if(20 to 30)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_lust
+						if(30 to 60)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gloom
+						if(60 to 80)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_wrath
+						if(80 to 100)
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_pride
+						else
+							spawntype = /mob/living/simple_animal/hostile/ordeal/sin_gluttony
+
+
+
+
+		if("shrimp")
+			spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
+			switch(GLOB.combat_counter)
+
+				//10% Remnant / 90% Corporal
+				if(1 to 3)
+					if(prob(10))
+						spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+				if(4 to 7)
+					switch(rand(1, 100))
+						if(50 to 55)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(55 to 100)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+				if(8 to 11)
+					switch(rand(1, 100))
+						if(45 to 65)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(65 to 100)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+
+				if(11 to 13)
+					switch(rand(1, 100))
+						if(45 to 55)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(55 to 75)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
+						if(75 to 100)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
+
+
+
+				if(14 to INFINITY)
+					switch(rand(1, 100))
+						if(35 to 55)
+							spawntype = /mob/living/simple_animal/hostile/senior_shrimp
+						if(55 to 90)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_rifleman
+						if(90 to 100)
+							spawntype = /mob/living/simple_animal/hostile/shrimp_soldier
+						else
+							spawntype = /mob/living/simple_animal/hostile/shrimp
+
+
 	var/mob/living/simple_animal/hostile/H = new spawntype(get_turf(src))
 	H.can_patrol = TRUE
 	H.patrol_cooldown_time = 10 SECONDS
