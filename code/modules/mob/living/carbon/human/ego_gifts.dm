@@ -543,8 +543,8 @@
 /datum/ego_gifts/magicbullet
 	name = "Magic Bullet"
 	icon_state = "magicbullet"
-	fortitude_bonus = -5
-	prudence_bonus = -5
+	fortitude_bonus = -3
+	prudence_bonus = -3
 	justice_bonus = 10
 	slot = MOUTH_2
 
@@ -1044,8 +1044,8 @@
 /datum/ego_gifts/discord
 	name = "Discord"
 	icon_state = "discord"
-	fortitude_bonus = -10
-	prudence_bonus = -10
+	fortitude_bonus = -7
+	prudence_bonus = -7
 	justice_bonus = 20
 	slot = HELMET
 
@@ -1179,8 +1179,8 @@
 /datum/ego_gifts/swan
 	name = "Black Swan"
 	icon_state = "swan"
-	fortitude_bonus = -4
-	prudence_bonus = -4
+	fortitude_bonus = -3
+	prudence_bonus = -3
 	temperance_bonus = 10
 	slot = HAT
 
@@ -1202,7 +1202,7 @@
 /datum/ego_gifts/dacapo
 	name = "Da Capo"
 	icon_state = "dacapo"
-	temperance_bonus = 4
+	temperance_bonus = 10
 	slot = EYE
 
 /datum/ego_gifts/mimicry
@@ -1223,7 +1223,7 @@
 	icon_state = "amogus"
 	fortitude_bonus = -5
 	prudence_bonus = -5
-	justice_bonus = 15
+	justice_bonus = 20
 	slot = EYE
 
 /datum/ego_gifts/adoration
@@ -1312,10 +1312,10 @@
 /datum/ego_gifts/distortion
 	name = "Distortion"
 	icon_state = "distortion"
-	fortitude_bonus = 3
-	prudence_bonus = 3
-	temperance_bonus = 2
-	justice_bonus = 2
+	fortitude_bonus = 9
+	prudence_bonus = 9
+	temperance_bonus = 6
+	justice_bonus = 6
 	slot = BROOCH
 
 /datum/ego_gifts/mockery
