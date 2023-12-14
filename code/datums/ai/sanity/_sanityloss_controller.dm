@@ -125,9 +125,9 @@
 	var/move_mod = living_pawn.cached_multiplicative_slowdown
 	var/obj/item/gun/ego_gun/banger = locate() in living_pawn.held_items
 	if(banger)
-		move_mod = 2
+		move_mod *= 1.4
 	else
-		move_mod = 1.2
+		move_mod *= 1.2
 
 
 	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), move_mod) // SLIGHTLY slower than what they should be *BUT* takes corners better.
