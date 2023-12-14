@@ -32,6 +32,9 @@
 	if(LAZYLEN(attribute_requirements))
 		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
 
+	if(type in GLOB.small_ego)
+		. += "<span class='notice'>This weapon fits in an EGO belt.</span>"
+
 	if(reach>1)
 		. += "<span class='notice'>This weapon has a reach of [reach].</span>"
 
@@ -109,8 +112,3 @@
 /obj/item/ego_weapon/Destroy()
 	CleanUp()
 	return ..()
-
-//Examine text for mini weapons.
-/obj/item/ego_weapon/mini/examine(mob/user)
-	. = ..()
-	. += "<span class='notice'>This weapon fits in an ego weapon belt.</span>"
