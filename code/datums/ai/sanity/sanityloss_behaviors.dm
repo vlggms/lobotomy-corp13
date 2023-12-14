@@ -37,8 +37,13 @@
 	if(!target || target?.stat == DEAD || target?.status_flags & GODMODE)
 		finish_action(controller, TRUE) //Target == owned
 
+
+
 	if(isturf(target.loc) && !IS_DEAD_OR_INCAP(living_pawn))
 		if(!living_pawn.Adjacent(target))
+			var/obj/item/gun/ego_gun/banger = locate() in living_pawn.held_items
+			if(banger)
+				ranged_attack(controller, target, delta_time)
 			return
 		// check if target has a weapon
 		var/obj/item/W
@@ -105,6 +110,46 @@
 		living_pawn.UnarmedAttack(target)
 		living_pawn.changeNext_move(CLICK_CD_MELEE)
 
+/// attack using this GUN we found.
+/datum/ai_behavior/insanity_attack_mob/proc/ranged_attack(datum/ai_controller/insane/murder/controller, mob/living/target, delta_time)
+	var/mob/living/living_pawn = controller.pawn
+	if(!living_pawn)
+		return
+
+	if(living_pawn.next_move > world.time)
+		return
+
+	var/obj/item/gun/ego_gun/banger = null
+	var/highest_force = 5
+	for(var/obj/item/gun/ego_gun/G in living_pawn.held_items)
+		var/full_hands = (G.weapon_weight == WEAPON_HEAVY) && living_pawn.held_items[1] && living_pawn.held_items[2]
+		if(!G.CanUseEgo(living_pawn) || full_hands || !G.can_shoot()) // I CAN'T USE THIS TO KILL!
+			living_pawn.dropItemToGround(G, force = TRUE) // YEET
+			var/list/item_blacklist = controller.blackboard[BB_INSANE_BLACKLISTITEMS]
+			item_blacklist[G] = TRUE
+			continue
+		var/obj/item/ammo_casing/casing = initial(G.ammo_type)
+		var/obj/projectile/boolet = initial(casing.projectile_type)
+		if(initial(boolet.damage_type) == WHITE_DAMAGE && ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.sanity_lost) // So we don't restore sanity of insane
+				continue
+		if(IsBetterWeapon(living_pawn, G, highest_force))
+			banger = G
+			highest_force = initial(boolet.damage) * G.burst_size * initial(G.ammo_type.pellets)
+			if(G.autofire)
+				highest_force *= G.autofire
+			else
+				highest_force /= (G.fire_delay ? G.fire_delay : 10)/10
+
+	if(!banger)
+		return
+
+	living_pawn.face_atom(target)
+
+	living_pawn.changeNext_move(banger.fire_delay ? banger.fire_delay : 2)
+	banger.afterattack(target, living_pawn, FALSE)
+
 /datum/ai_behavior/insane_equip
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
 
@@ -149,7 +194,8 @@
 		return
 
 	// Strong weapon
-	if(target.force > best_force)
+
+	if(IsBetterWeapon(living_pawn, target, best_force))
 		var/obj/item/left_item = living_pawn.get_item_for_held_index(LEFT_HANDS)
 		var/obj/item/right_item = living_pawn.get_item_for_held_index(RIGHT_HANDS)
 		if((left_item != null) && (right_item != null))
@@ -158,7 +204,17 @@
 			else
 				living_pawn.dropItemToGround(right_item, force = TRUE)
 		living_pawn.put_in_hands(target)
-		controller.blackboard[BB_INSANE_BEST_FORCE_FOUND] = target.force
+		var/weapon_power = target.force
+		if(istype(target, /obj/item/gun/ego_gun))
+			var/obj/item/gun/ego_gun/gun_target = target
+			var/obj/item/ammo_casing/casing = initial(gun_target.ammo_type)
+			var/obj/projectile/boolet = initial(casing.projectile_type)
+			weapon_power = initial(boolet.damage) * gun_target.burst_size * initial(casing.pellets)
+			if(gun_target.autofire)
+				weapon_power *= gun_target.autofire
+			else
+				weapon_power /= gun_target.fire_delay/10
+		controller.blackboard[BB_INSANE_BEST_FORCE_FOUND] = weapon_power
 		finish_action(controller, TRUE)
 		return
 

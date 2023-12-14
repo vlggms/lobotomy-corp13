@@ -101,7 +101,7 @@
 	var/list/currently_scared = list()
 	var/timerid = null
 	var/interest = 3
-
+	var/asshole = FALSE
 
 /datum/ai_controller/insane/murder/PossessPawn(atom/new_pawn)
 	. = ..()
@@ -121,21 +121,37 @@
 		timerid = null
 		return FALSE
 	var/mob/living/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), (living_pawn.cached_multiplicative_slowdown*1.2)) // SLIGHTLY slower than what they should be *BUT* takes corners better.
+
+	var/move_mod = living_pawn.cached_multiplicative_slowdown
+	var/obj/item/gun/ego_gun/banger = locate() in living_pawn.held_items
+	if(banger)
+		move_mod = 2
+	else
+		move_mod = 1.2
+
+
+	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), move_mod) // SLIGHTLY slower than what they should be *BUT* takes corners better.
 
 	var/turf/our_turf = get_turf(living_pawn)
-	var/turf/target_turf = get_step_towards(living_pawn, current_movement_target)
+	var/turf/target_turf
+	var/current_dist = get_dist(living_pawn, selected_enemy)
+	if((current_dist < 2) && banger && asshole)
+		target_turf = get_step_away(living_pawn, current_movement_target)
+	else if (current_dist == 2)
+		return
+	else
+		target_turf = get_step_towards(living_pawn, current_movement_target)
 	if(!is_type_in_typecache(target_turf, GLOB.dangerous_turfs))
 		living_pawn.Move(target_turf, get_dir(our_turf, target_turf))
 	if(!(selected_enemy in viewers(7, living_pawn))) // If you can't see the target enough
 		interest--
+		if(interest <= 0) // Give up
+			interest = 3
+			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+			CancelActions()
+			return
 	else
 		interest = 3
-	if(interest <= 0) // Give up
-		interest = 3
-		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
-		CancelActions()
-		return
 	if(get_dist(living_pawn, current_movement_target) > max_target_distance)
 		CancelActions()
 		pathing_attempts = 0
@@ -178,6 +194,12 @@
 
 
 /datum/ai_controller/insane/murder/PerformIdleBehavior(delta_time)
+	// No current enemy? We'll arm ourselves!
+	if(TryFindWeapon()) // Find a weapon before a new enemy.
+		return
+	// Armed enough..? Well we'll find a new person to fight!
+	if(FindEnemies())
+		return
 	// No one to fight!? Well we'll go find someone to fight!
 	var/list/possible_locs = list()
 	for(var/turf/T in total_locations)
@@ -216,7 +238,9 @@
 	for(var/obj/item/i in living_pawn.get_equipped_items())
 		if(!istype(i))
 			continue
-		if(blackboard[BB_INSANE_BLACKLISTITEMS][i] || i.force < blackboard[BB_INSANE_BEST_FORCE_FOUND])
+		if(blackboard[BB_INSANE_BLACKLISTITEMS][i])
+			continue
+		if(!IsBetterWeapon(living_pawn, i, blackboard[BB_INSANE_BEST_FORCE_FOUND]))
 			continue
 		blackboard[BB_INSANE_PICKUPTARGET] = i
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
@@ -225,7 +249,9 @@
 	for(var/obj/item/i in view(7, living_pawn))
 		if(!istype(i))
 			continue
-		if(blackboard[BB_INSANE_BLACKLISTITEMS][i] || i.force < blackboard[BB_INSANE_BEST_FORCE_FOUND])
+		if(blackboard[BB_INSANE_BLACKLISTITEMS][i])
+			continue
+		if(!IsBetterWeapon(living_pawn, i, blackboard[BB_INSANE_BEST_FORCE_FOUND]))
 			continue
 		W = i
 		break
@@ -236,6 +262,23 @@
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
 		return TRUE
 	return FALSE
+
+/proc/IsBetterWeapon(mob/living/L, obj/item/I, current_highest_force)
+	var/weapon_power = I.force
+	weapon_power *= 1 + (get_attribute_level(L, JUSTICE_ATTRIBUTE)/100)
+	if(istype(I, /obj/item/ego_weapon))
+		var/obj/item/ego_weapon/ego_i = I
+		weapon_power /= ego_i.attack_speed ? ego_i.attack_speed : 1
+	else if(istype(I, /obj/item/gun/ego_gun))
+		var/obj/item/gun/ego_gun/gun_i = I
+		var/obj/item/ammo_casing/casing = initial(gun_i.ammo_type)
+		var/obj/projectile/boolet = initial(casing.projectile_type)
+		weapon_power = initial(boolet.damage) * gun_i.burst_size * initial(casing.pellets)
+		if(gun_i.autofire)
+			weapon_power *= gun_i.autofire
+		else
+			weapon_power /= (gun_i.fire_delay ? gun_i.fire_delay : 10)/10
+	return weapon_power > current_highest_force
 
 /datum/ai_controller/insane/murder/proc/FindEnemies()
 	. = FALSE
