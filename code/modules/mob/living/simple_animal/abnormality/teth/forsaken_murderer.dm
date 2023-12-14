@@ -51,7 +51,7 @@
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	//shows in chat when the creature is defeated. Default is "stops moving".
-	deathmessage = "falls over."
+	death_message = "falls over."
 	//Phrases that the creature will emote randomly based on speak chance.
 	speak_chance = 2
 	emote_see = list("shakes while mumbling...")

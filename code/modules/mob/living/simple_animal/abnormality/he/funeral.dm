@@ -31,7 +31,7 @@
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 16
-	deathmessage = "gently descends into its own coffin."
+	death_message = "gently descends into its own coffin."
 	base_pixel_x = -16
 	pixel_x = -16
 

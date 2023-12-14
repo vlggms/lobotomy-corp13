@@ -61,14 +61,14 @@
 	icon_state = "gcorp5"
 	icon_living = "gcorp5"
 	icon_dead = "gcorp_corpse2"
-	deathmessage = "salutes weakly before falling."
+	death_message = "salutes weakly before falling."
 	maxHealth = 750
 	health = 750
 	rapid_melee = 2
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	deathsound = 'sound/voice/mook_death.ogg'
+	death_sound = 'sound/voice/mook_death.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 1, /obj/item/food/meat/slab/human/mutant/moth = 2)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
@@ -195,7 +195,7 @@
 	icon_living = "gcorp1"
 	icon_dead = "gcorp_corpse"
 	faction = list("Gene_Corp")
-	deathmessage = "mutters something under their breath before collapsing."
+	death_message = "mutters something under their breath before collapsing."
 	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID|MOB_BUG
 	ranged_cooldown_time = 15 SECONDS
 	a_intent = INTENT_HELP
@@ -214,7 +214,7 @@
 	patrol_cooldown_time = 1 MINUTES
 	footstep_type = FOOTSTEP_MOB_SHOE
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
-	deathsound = 'sound/voice/hiss5.ogg'
+	death_sound = 'sound/voice/hiss5.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
 	var/turf/fob
 	var/last_command = 0

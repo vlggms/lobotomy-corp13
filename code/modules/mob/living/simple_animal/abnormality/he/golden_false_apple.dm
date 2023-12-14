@@ -18,8 +18,8 @@
 	base_pixel_x = -8
 	pixel_y = 0
 	del_on_death = FALSE
-	deathmessage = "falls over."
-	deathsound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
+	death_message = "falls over."
+	death_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
 	maxHealth = 1200
 	health = 1200
 	light_color = "D4FAF37"
@@ -261,7 +261,7 @@
 	icon_state = "false_apple"
 	icon_living = "false_apple"
 	icon_dead = "false_egg"
-	deathmessage = "is reduced to a primordial egg."
+	death_message = "is reduced to a primordial egg."
 	name = "False Apple"
 	desc = "The apple ruptured and a swarm of maggots crawled inside, metamorphosing into a hideous face."
 	pixel_x = -32

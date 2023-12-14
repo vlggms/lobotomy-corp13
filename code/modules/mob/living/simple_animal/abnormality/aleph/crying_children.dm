@@ -36,8 +36,8 @@
 	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/crying_children/attack_salvador.ogg'
-	deathsound = 'sound/abnormalities/crying_children/death.ogg'
-	deathmessage = "crumbles into pieces."
+	death_sound = 'sound/abnormalities/crying_children/death.ogg'
+	death_message = "crumbles into pieces."
 	del_on_death = FALSE
 	ego_list = list(/datum/ego_datum/weapon/shield/combust, /datum/ego_datum/armor/combust)
 	gift_type =  /datum/ego_gifts/inconsolable

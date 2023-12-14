@@ -38,7 +38,7 @@
 						)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
-	deathmessage = "blows up like a balloon!"
+	death_message = "blows up like a balloon!"
 	speak_chance = 2
 	emote_see = list("honks.")
 	emote_hear = list("honks.")

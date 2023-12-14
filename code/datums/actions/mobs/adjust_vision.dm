@@ -1,4 +1,10 @@
 
+/**
+ * This file is fuck
+ * It was ported as a part of the emotening, but does not work in the slightest
+ * For now, its best to left un-ticked
+ */
+
 /datum/action/adjust_vision
 	name = "Adjust Vision"
 	desc = "See better in the dark. Or don't. Your advanced vision allows either."

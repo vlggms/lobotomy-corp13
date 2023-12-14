@@ -16,7 +16,7 @@
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
 	del_on_death = FALSE
-	deathsound = 'sound/abnormalities/despairknight/dead.ogg'
+	death_sound = 'sound/abnormalities/despairknight/dead.ogg'
 	threat_level = WAW_LEVEL
 	can_patrol = FALSE
 	start_qliphoth = 1

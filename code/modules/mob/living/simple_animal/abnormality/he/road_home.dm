@@ -25,7 +25,7 @@
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
-	deathsound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
+	death_sound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/brick_road,
 		/datum/ego_datum/weapon/homing_instinct,

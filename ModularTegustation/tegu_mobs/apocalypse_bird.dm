@@ -22,8 +22,8 @@
 	base_pixel_x = -96
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = TRUE
-	deathmessage = "finally stops moving, falling to the ground."
-	deathsound = 'sound/abnormalities/apocalypse/dead.ogg'
+	death_message = "finally stops moving, falling to the ground."
+	death_sound = 'sound/abnormalities/apocalypse/dead.ogg'
 
 	loot = list(
 		/obj/item/ego_weapon/twilight,
