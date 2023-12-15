@@ -1817,15 +1817,14 @@
 	desc = "All hands, full speed toward where the lights flicker. The waves... will lay waste to everything in our way."
 	special = "This weapon requires two hands to use. \
 			Use in hand to unlock its full power for a short period of time at the cost of speed. \
-			Knocks certain enemies backwards when at full power. \
 			When at thrown at full power, this weapon damages everyone but yourself in an AOE. Be careful! \
 			This weapon deals 75% more damage on fully powered direct throws."
 	icon_state = "blind_obsession"
 	force = 80
-	attack_speed = 3
-	throwforce = 80//same as weapon
-	throw_speed = 5
-	throw_range = 7
+	attack_speed = 2.5
+	throwforce = 80
+	throw_speed = 1
+	throw_range = 9
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "smashes")
 	attack_verb_simple = list("bashes", "smashes")
@@ -1834,9 +1833,39 @@
 							FORTITUDE_ATTRIBUTE = 80
 							)
 	var/charged
-/obj/item/ego_weapon/blind_obsession/examine(mob/user)
+	var/speed_slowdown = 0
+	var/mob/current_holder
+
+
+//Equipped setup
+/obj/item/ego_weapon/blind_obsession/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	. += "<span class='notice'>This weapon deals [throwforce] [damtype] damage when thrown.</span>"//This only shows up if throw force is greater than force so I have to force it somehow.
+	if(!user)
+		return
+	current_holder = user
+	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+
+//Destroy setup
+/obj/item/ego_weapon/blind_obsession/Destroy(mob/user)
+	if(!user)
+		return ..()
+	speed_slowdown = 0
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	current_holder = null
+	return ..()
+
+//Dropped setup
+/obj/item/ego_weapon/blind_obsession/dropped(mob/user)
+	. = ..()
+	if(!user)
+		return
+	speed_slowdown = 0
+	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	current_holder = null
+
+/obj/item/ego_weapon/blind_obsession/proc/UserMoved(mob/user)
+	SIGNAL_HANDLER
+	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = speed_slowdown)
 
 /obj/item/ego_weapon/blind_obsession/CanUseEgo(mob/living/user)
 	. = ..()
@@ -1844,34 +1873,21 @@
 		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
 		return FALSE
 
-/obj/item/ego_weapon/blind_obsession/attack(mob/living/M, mob/living/user)
-	..()
-	if(charged)
-		var/atom/throw_target = get_edge_target_turf(M, user.dir)
-		if(!M.anchored)
-			var/whack_speed = (prob(60) ? 2 : 6)
-			M.throw_at(throw_target, rand(3, 5), whack_speed, user)
-	force = 80
-	throwforce = 80
-	charged = FALSE
-
 /obj/item/ego_weapon/blind_obsession/attack_self(mob/user)
 	if(user.get_inactive_held_item())
 		to_chat(user, span_notice("You cannot impower [src] with only one hand!"))
 		return
 	if(do_after(user, 12, src))
 		charged = TRUE
-		slowdown = 0.25
-		force = 120	//FULL POWER
-		throwforce = 100 //has aoe
+		speed_slowdown = 2
+		throwforce = 100//TIME TO DIE!
 		to_chat(user,span_warning("You put your strength behind this attack."))
 		addtimer(CALLBACK(src, .proc/PowerReset), 18,user)//prevents storing 3 powered up anchors and unloading all of them at once
 
 /obj/item/ego_weapon/blind_obsession/proc/PowerReset(mob/user)
 	to_chat(user, span_warning("You lose your strength behind this attack."))
 	charged = FALSE
-	slowdown = 0
-	force = 80
+	speed_slowdown = 0
 	throwforce = 80
 
 /obj/item/ego_weapon/blind_obsession/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill others with this
@@ -1880,9 +1896,11 @@
 	if(user.get_inactive_held_item())
 		to_chat(user, span_notice("You cannot throw [src] with only one hand!"))
 		return
+	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 	return ..()
 
 /obj/item/ego_weapon/blind_obsession/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	. = ..()
 	playsound(src, 'sound/weapons/ego/hammer.ogg', 300, FALSE, 9)
 	if(charged)
 		var/damage = 75
@@ -1895,11 +1913,11 @@
 			if(!ismob(thrownby))
 				continue
 			thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
-		slowdown = 0
-		force = 80
-		throwforce = 80
-		charged = FALSE
-	return ..()
+		PowerReset(thrownby)
+
+/datum/movespeed_modifier/anchor
+	multiplicative_slowdown = 0
+	variable = TRUE
 
 /obj/item/ego_weapon/abyssal_route //An ungodly love child of sword sharpened with tears and fluid sac
 	name = "abyssal route"//old korean name I think
