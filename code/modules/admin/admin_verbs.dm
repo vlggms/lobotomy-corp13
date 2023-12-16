@@ -178,6 +178,7 @@ GLOBAL_PROTECT(admin_verbs_debug)
 	/client/proc/cmd_display_init_log,
 	/client/proc/cmd_display_overlay_log,
 	/client/proc/reload_configuration,
+	/client/proc/spawn_abnormality_boss,
 	/client/proc/atmos_control,
 	/client/proc/reload_cards,
 	/client/proc/validate_cards,
