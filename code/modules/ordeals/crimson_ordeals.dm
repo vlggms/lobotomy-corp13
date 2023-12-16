@@ -1,11 +1,12 @@
 // Dawn
 /datum/ordeal/crimson_dawn
-	name = "Dawn of Crimson"
-	annonce_text = "Let us light a flame yet more radiant in our lives; for life is a candlelight, \
+	name = "The Dawn of Crimson"
+	flavor_name = "Cheers for the Beginning"
+	announce_text = "Let us light a flame yet more radiant in our lives; for life is a candlelight, \
 	destined to snuff out one day."
 	level = 1
 	reward_percent = 0.1
-	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
+	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	color = "#DC143C"
 
@@ -23,9 +24,10 @@
 		sleep(7) // That's so the clowns don't instantly teleport to the same console
 
 /datum/ordeal/simplespawn/crimson_noon
-	name = "Noon of Crimson"
-	annonce_text = "We marched from time to time, and we would share our pleasure."
-	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
+	name = "The Noon of Crimson"
+	flavor_name = "The Harmony of Skin"
+	announce_text = "We marched from time to time, and we would share our pleasure."
+	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	level = 2
 	reward_percent = 0.15
@@ -37,9 +39,10 @@
 	color = "#DC143C"
 
 /datum/ordeal/simplespawn/crimson_dusk
-	name = "Dusk of Crimson"
-	annonce_text = "Throwing away our old bodies, we all become one, infinitely continuing the red march."
-	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
+	name = "The Dusk of Crimson"
+	flavor_name = "The Struggle at the Climax"
+	announce_text = "Throwing away our old bodies, we all become one, infinitely continuing the red march."
+	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	level = 3
 	reward_percent = 0.2
@@ -51,11 +54,12 @@
 	color = "#DC143C"
 
 /datum/ordeal/simplecommander/crimson_midnight
-	name = "Midnight of Crimson"
-	annonce_text = "Let us make a performance about what has already come true, and march further on from wence we came."
+	name = "The Midnight of Crimson"
+	flavor_name = "A Chorus of Saliva"
+	announce_text = "Let us make a performance about what has already come true, and march further on from whence we came."
 	level = 4
 	reward_percent = 0.25
-	annonce_sound = 'sound/effects/ordeals/crimson_start.ogg'
+	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	color = "#DC143C"
 	boss_type = list(/mob/living/simple_animal/hostile/ordeal/crimson_tent)
