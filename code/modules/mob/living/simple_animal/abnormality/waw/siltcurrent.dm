@@ -8,6 +8,9 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "siltcurrent"
 	icon_living = "siltcurrent"
+	icon_dead = "siltcurrent_egg"
+	deathmessage = "coalesces into a primordial egg."
+	del_on_death = FALSE
 	pixel_x = -32
 	base_pixel_x = -32
 	move_to_delay = 3
@@ -86,15 +89,16 @@
 
 //Checks if it's stunned or doing the dive attack to prevent it from attacking or moving while in those 2 states since it would be silly.
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/Move()
-	for(var/turf/open/T in oview(src, 10))
-		if(!isturf(T) || isspaceturf(T))
-			continue
-		if(locate(/obj/effect/obsessing_water_effect) in T)
-			continue
-		if(locate(/turf/open/water/deep) in T)//prevents silly situations where it spawns water on water which makes no sense.
-			continue
-		var/obj/effect/obsessing_water_effect/W = new(T)
-		water += W
+	if(!IsContained())
+		for(var/turf/open/T in oview(src, 10))
+			if(!isturf(T) || isspaceturf(T))
+				continue
+			if(locate(/obj/effect/obsessing_water_effect) in T)
+				continue
+			if(locate(/turf/open/water/deep) in T)//prevents silly situations where it spawns water on water which makes no sense.
+				continue
+			var/obj/effect/obsessing_water_effect/W = new(T)
+			water += W
 	if(diving || stunned)
 		return FALSE
 	return ..()
@@ -232,6 +236,9 @@
 			H.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/death()
+	density = FALSE
+	animate(src, alpha = 0, time = 10 SECONDS)
+	QDEL_IN(src, 10 SECONDS)
 	for(var/mob/living/simple_animal/hostile/flotsam/F in spawned_flotsams)
 		QDEL_IN(F, rand(5) SECONDS)
 		spawned_flotsams -= F
@@ -288,6 +295,6 @@
 	desc = "A strange black and teal water"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "obsessing_water"
-	layer = 1//Doesn't spawn above bitter flora
+	layer = 1.9//Prevents it from blocking bitter flora
 	anchored = TRUE
 	alpha = 100
