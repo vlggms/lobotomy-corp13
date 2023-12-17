@@ -10,7 +10,15 @@
 	pixel_x = 18
 	},
 /obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/item/flashlight/spotlight,
+/turf/open/floor/pod/dark,
+/area/library_floors/floor_techsci)
+"aB" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "aH" = (
@@ -56,6 +64,16 @@
 	},
 /turf/open/floor/plating/ashplanet,
 /area/library_floors/floor_techsci)
+"go" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/pod/dark,
+/area/library_floors/floor_techsci)
 "gG" = (
 /obj/structure/mecha_wreckage/durand,
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -76,13 +94,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
-"iE" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "iM" = (
@@ -124,10 +135,6 @@
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
-"ng" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/ashplanet,
 /area/library_floors/floor_techsci)
 "nJ" = (
 /obj/structure/railing{
@@ -175,26 +182,9 @@
 /obj/item/storage/fancy/donut_box,
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
-"tx" = (
-/obj/structure/table/reinforced,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
 "ty" = (
 /obj/structure/table/reinforced,
 /obj/item/book/random,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
-"vI" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 5
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
-"wj" = (
-/obj/structure/fluff/divine/nexus,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "wX" = (
@@ -211,14 +201,6 @@
 	dir = 1
 	},
 /obj/structure/bookcase/random/nonfiction,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
-"yr" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 4
-	},
-/obj/structure/bookcase/random/nonfiction,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "yO" = (
@@ -245,15 +227,6 @@
 /obj/structure/mecha_wreckage,
 /turf/open/floor/plating/ashplanet,
 /area/library_floors/floor_techsci)
-"AE" = (
-/obj/effect/decal/cleanable/glass,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/ashplanet,
-/area/library_floors/floor_techsci)
-"AN" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
 "BF" = (
 /obj/structure/falsewall/plastitanium,
 /turf/open/space/basic,
@@ -270,7 +243,6 @@
 	dir = 6
 	},
 /obj/structure/bookcase/random/nonfiction,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "Ck" = (
@@ -325,7 +297,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 9
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "FY" = (
@@ -360,14 +331,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
-"Ix" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 8
-	},
-/obj/structure/bookcase/random/nonfiction,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
 "Iy" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
@@ -399,10 +362,16 @@
 	},
 /turf/open/floor/pod/light,
 /area/library_floors/floor_techsci)
-"Kr" = (
-/obj/item/light/bulb/broken,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/ashplanet,
+"Ks" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/fakepit{
+	density = 1
+	},
 /area/library_floors/floor_techsci)
 "Kt" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line,
@@ -458,15 +427,7 @@
 /area/library_floors/floor_techsci)
 "Qs" = (
 /obj/effect/decal/cleanable/robot_debris/limb,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/ashplanet,
-/area/library_floors/floor_techsci)
-"Rk" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 10
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "RW" = (
 /obj/structure/railing{
@@ -479,12 +440,6 @@
 	},
 /turf/open/floor/pod/light,
 /area/library_floors/floor_techsci)
-"SW" = (
-/obj/structure/table/reinforced,
-/obj/item/book/random,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
 "Uk" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
 /turf/open/floor/pod/dark,
@@ -494,11 +449,6 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
 	},
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_techsci)
-"Uz" = (
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_techsci)
 "UQ" = (
@@ -518,6 +468,16 @@
 	dir = 1
 	},
 /turf/open/floor/pod/light,
+/area/library_floors/floor_techsci)
+"Wg" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/ashplanet,
 /area/library_floors/floor_techsci)
 "WM" = (
 /obj/structure/fluff/divine/nexus,
@@ -645,11 +605,11 @@ BF
 EZ
 bF
 eJ
-iE
+bF
 eJ
 eJ
 bF
-Ix
+eJ
 bF
 YE
 BF
@@ -723,11 +683,11 @@ BF
 Os
 Cu
 Cu
-AN
 Cu
 Cu
 Cu
-AN
+Cu
+Cu
 Cu
 Uk
 BF
@@ -751,13 +711,13 @@ Cu
 Cu
 Cu
 Cu
-Cu
+aB
 Cu
 Cu
 Cu
 Uk
 aH
-wj
+WM
 BF
 Hk
 Hk
@@ -827,11 +787,11 @@ BF
 js
 Ep
 kk
-SW
+ty
 eN
 eN
 iM
-vI
+js
 Ep
 kk
 BF
@@ -956,12 +916,12 @@ Xt
 Xt
 WT
 bi
-AE
+rK
 KL
 Kt
 fW
 bi
-ng
+bi
 bi
 Ki
 Xt
@@ -1062,7 +1022,7 @@ WT
 bi
 bi
 Yz
-Kt
+Wg
 fW
 bi
 rK
@@ -1091,7 +1051,7 @@ bi
 Kt
 fW
 Yz
-ng
+bi
 bi
 rY
 Xt
@@ -1216,12 +1176,12 @@ Xt
 Xt
 VC
 bi
-ng
+bi
 Yz
 Kt
 fW
 bi
-ng
+bi
 bi
 rY
 Xt
@@ -1288,7 +1248,7 @@ Hk
 Hk
 Hk
 BF
-Xt
+Ks
 Xt
 Xt
 Xt
@@ -1322,7 +1282,7 @@ VC
 bi
 bi
 bi
-Kt
+Wg
 fW
 bi
 bi
@@ -1331,7 +1291,7 @@ rY
 Xt
 Xt
 Xt
-Xt
+Ks
 BF
 Hk
 "}
@@ -1346,12 +1306,12 @@ Xt
 Xt
 VC
 bi
-Kr
+sm
 bi
 Kt
 fW
 bi
-AE
+rK
 bi
 rY
 Xt
@@ -1476,12 +1436,12 @@ Xt
 Xt
 Zz
 bi
-ng
+bi
 bi
 Kt
 fW
 bi
-ng
+bi
 Yz
 zb
 Xt
@@ -1606,12 +1566,12 @@ Xt
 Xt
 VC
 Yz
-ng
+bi
 bi
 ZK
 fW
 bi
-ng
+bi
 bi
 rY
 Xt
@@ -1712,7 +1672,7 @@ VC
 bi
 bi
 bi
-Kt
+Wg
 fW
 Yz
 bi
@@ -1762,12 +1722,12 @@ Xt
 Xt
 VC
 Yz
-ng
+bi
 bi
 Kt
 fW
 bi
-ng
+bi
 bi
 rY
 Xt
@@ -1893,7 +1853,7 @@ BF
 Fg
 bF
 WS
-SW
+ty
 eN
 eN
 ty
@@ -1951,7 +1911,7 @@ Cu
 Cu
 Cu
 PB
-Rk
+WS
 aH
 gG
 Hg
@@ -1980,7 +1940,7 @@ Cu
 Uk
 aH
 Us
-Uz
+Uk
 BF
 Hk
 Hk
@@ -1999,7 +1959,7 @@ eN
 wX
 eN
 PY
-Cu
+aB
 Cu
 Cu
 KG
@@ -2032,7 +1992,7 @@ Uk
 Xk
 BF
 gN
-Uk
+go
 BF
 Hk
 Hk
@@ -2048,12 +2008,12 @@ Hk
 BF
 qa
 ty
-tx
+eN
 iM
 gN
 Cu
 Cu
-AN
+Cu
 PB
 WS
 aH
@@ -2126,12 +2086,12 @@ Hk
 BF
 Kd
 Ep
-yr
+UQ
 Ep
 UQ
 UQ
 Ep
-yr
+UQ
 Ep
 BR
 BF
