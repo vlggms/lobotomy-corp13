@@ -217,7 +217,7 @@
 	if(!unsuitable_heat_damage)
 		unsuitable_heat_damage = unsuitable_atmos_damage
 	//LC13 Check, it's here to give everything nightvision on Rcorp.
-	if(CheckCombat())
+	if(IsCombatMap())
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		AddSpell(bloodspell)
 	//LC13 Check. If it's the citymap, they all gain a faction
@@ -750,7 +750,7 @@
 
 // -- LC13 THINGS --
 
-/mob/living/simple_animal/proc/CheckCombat() //Is it currently a combat gamemode? Used to check for a few interactions, like if somethings can teleport.
+/mob/living/simple_animal/proc/IsCombatMap() //Is it currently a combat gamemode? Used to check for a few interactions, like if somethings can teleport.
 	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE

@@ -365,6 +365,7 @@
 /// How far away you can be to make eye contact with someone while examining
 #define EYE_CONTACT_RANGE	5
 
+//simple_mob_flags
 #define SILENCE_RANGED_MESSAGE (1<<0)
 
 ///Swarmer flags

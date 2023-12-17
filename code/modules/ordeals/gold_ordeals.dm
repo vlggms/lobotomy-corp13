@@ -1,10 +1,11 @@
 // Dawn
 /datum/ordeal/gold_dawn
-	name = "Dawn of Gold"
-	annonce_text = "Our choice could be hope or despair as the sun comes."
+	name = "The Dawn of Gold"
+	flavor_name = "The First Trumpet" //Temporary as can be, but an interesting allusion to the original game
+	announce_text = "Our choice could be hope or despair as the sun comes."
 	level = 1
 	reward_percent = 0.1
-	annonce_sound = 'sound/effects/ordeals/gold_start.ogg'
+	announce_sound = 'sound/effects/ordeals/gold_start.ogg'
 	end_sound = 'sound/effects/ordeals/gold_end.ogg'
 	color = "#FFD700"
 
@@ -49,11 +50,12 @@
 
 //Noon
 /datum/ordeal/boss/gold_noon
-	name = "Noon of Gold"
-	annonce_text = "Our light blazed brightly in the sky, the stars that marked our starting fell away."
+	name = "The Noon of Gold"
+	flavor_name = "The Second Trumpet"
+	announce_text = "Our light blazed brightly in the sky, the stars that marked our starting fell away."
 	level = 2
 	reward_percent = 0.15
-	annonce_sound = 'sound/effects/ordeals/gold_start.ogg'
+	announce_sound = 'sound/effects/ordeals/gold_start.ogg'
 	end_sound = 'sound/effects/ordeals/gold_end.ogg'
 	color = "#FFD700"
 	bosstype = /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion
@@ -79,8 +81,9 @@
 
 //Dusk
 /datum/ordeal/gold_dawn/gold_dusk
-	name = "Dusk of Gold"
-	annonce_text = "Stay vigilant, stay resolved. Let our minds be strong when dusk falls."
+	name = "The Dusk of Gold"
+	flavor_name = "The Third Trumpet"
+	announce_text = "Stay vigilant, stay resolved. Let our minds be strong when dusk falls."
 	level = 3
 	reward_percent = 0.2
 	boss_type = list(/mob/living/simple_animal/hostile/ordeal/KHz_corrosion)
@@ -93,8 +96,9 @@
 //Midnight
 /*
 /datum/ordeal/simplecommander/gold_dawn/gold_midnight
-	name = "Midnight of Gold"
-	annonce_text = "The night has come. Our ignorance as its origin. No one shall be redeemed at its end."
+	name = "The Midnight of Gold"
+	flavor_name = "The Fourth Trumpet"
+	announce_text = "The night has come. Our ignorance as its origin. No one shall be redeemed at its end."
 	level = 4
 	reward_percent = 0.25
 

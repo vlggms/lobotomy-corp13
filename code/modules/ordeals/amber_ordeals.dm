@@ -1,10 +1,11 @@
 // Dawn
 /datum/ordeal/simplespawn/amber_dawn
-	name = "Dawn of Amber"
-	annonce_text = "A perfect meal, an excellent substitute."
+	name = "The Dawn of Amber"
+	flavor_name = "The Perfect Meal"
+	announce_text = "A perfect meal, an excellent substitute."
 	level = 1
 	reward_percent = 0.1
-	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
+	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
 	end_sound = 'sound/effects/ordeals/amber_end.ogg'
 	color = "#FFBF00"
 	spawn_places = 4
@@ -13,11 +14,12 @@
 
 // Dusk
 /datum/ordeal/simplespawn/amber_dusk
-	name = "Dusk of Amber"
-	annonce_text = "To accustom oneself to the taste was an inevitable process."
+	name = "The Dusk of Amber"
+	flavor_name = "Food Chain"
+	announce_text = "To accustom oneself to the taste was an inevitable process."
 	level = 3
 	reward_percent = 0.2
-	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
+	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
 	end_sound = 'sound/effects/ordeals/amber_end.ogg'
 	color = "#FFBF00"
 	spawn_places = 3
@@ -28,11 +30,12 @@
 
 // Midnight
 /datum/ordeal/amber_midnight
-	name = "Midnight of Amber"
-	annonce_text = "They fought amongst themselves to eat the others."
+	name = "The Midnight of Amber"
+	flavor_name = "Eternal Meal"
+	announce_text = "They fought amongst themselves to eat the others."
 	level = 4
 	reward_percent = 0.25
-	annonce_sound = 'sound/effects/ordeals/amber_start.ogg'
+	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
 	end_sound = 'sound/effects/ordeals/amber_end.ogg'
 	color = "#FFBF00"
 	/// How many mobs to spawn

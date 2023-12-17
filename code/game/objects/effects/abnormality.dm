@@ -204,3 +204,11 @@
 /obj/effect/greenmidnight_laser/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 5)
+
+/obj/effect/golden_bough
+	name = "Golden Bough"
+	desc = "A shining golden bough, the light it emits feels soothing."
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "bough_bough"
+	move_force = INFINITY
+	pull_force = INFINITY

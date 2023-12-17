@@ -333,12 +333,12 @@
 
 /datum/ego_datum/weapon/warp
 	item_category = "Weapon (Knife)"
-	item_path = /obj/item/ego_weapon/warp
+	item_path = /obj/item/ego_weapon/warp/knife
 	cost = 35
 
 /datum/ego_datum/weapon/warp/spear
 	item_category = "Weapon (Spear)"
-	item_path = /obj/item/ego_weapon/warp/spear
+	item_path = /obj/item/ego_weapon/warp
 	cost = 35
 
 //Missed Reaper - Grasp
