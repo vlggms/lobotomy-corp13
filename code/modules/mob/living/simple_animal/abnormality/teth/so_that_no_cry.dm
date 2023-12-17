@@ -48,7 +48,7 @@
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/Apply_Talisman(mob/living/carbon/human/user)
 	var/datum/status_effect/stacking/curse_talisman/C = user.has_status_effect(/datum/status_effect/stacking/curse_talisman)
-	var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)
+	var/datum/status_effect/stacking/talisman/G = user.has_status_effect(/datum/status_effect/stacking/talisman)a
 	playsound(src, 'sound/abnormalities/so_that_no_cry/talisman.ogg', 100, 1)
 	if (!C)//cant take talismans if cursed already
 		if(!G)//applying the buff for the first time (it lasts for four minutes)

@@ -1,6 +1,6 @@
 // this was a mistake.
 // By yours truely, Mori.
-#define STATUS_EFFECT_FALSEKIND /datum/status_effect/display/false_kindness
+#define STATUS_EFFECT_FALSEKIND /datum/status_effect/false_kindness
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with gleaming yellow eyes; And torn umbrellas lodged into its back."
@@ -83,14 +83,13 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormaility/AttackingTarget(atom/attacked_target)
+/mob/living/simple_animal/hostile/abnormality/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!.)
-		return FALSE
-	if(isliving(target))
-		var/mob/living/carbon/human/L = target
-		if(!L.has_status_effect(/datum/status_effect/false_kindness))
-			L.apply_status_effect(/datum/status_effect/false_kindness)
+	if(!ishuman(target))
+		return..()
+	var/mob/living/carbon/human/L = target
+	L.apply_status_effect(STATUS_EFFECT_FALSEKIND)
+	return ..()
 
 //mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
 	//. = ..()
