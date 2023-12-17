@@ -460,7 +460,6 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-//Note to self: this might become the most meta armor that ever metaed so its old stats of 7/2/3/2 might be more healthy for the game.
 /obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
 	name = "blind obsession"
 	desc = "Allow me to describe this grand and epic beast!"
