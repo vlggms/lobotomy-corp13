@@ -40,6 +40,7 @@
 	var/song_cooldown_time = 10 SECONDS
 	var/song_damage = 4 // Dealt 8 times
 	var/can_act = TRUE
+	var/obj/effect/fragment_legs/legs
 
 	//PLAYABLES ACTIONS
 	attack_action_types = list(/datum/action/cooldown/fragment_song)
@@ -64,6 +65,10 @@
 	fragment.song()
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/fragment/Destroy()
+	if(legs)
+		qdel(legs)
+	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
 	if(!can_act)
@@ -81,8 +86,17 @@
 	if(song_cooldown > world.time)
 		return
 	can_act = FALSE
+	icon_state = "fragment_song_head"
+	legs = new(get_turf(src))
 	playsound(get_turf(src), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
 	for(var/i = 1 to 8)
+		switch(i)
+			if(1 to 2)
+				animate(src, transform = turn(matrix(), -45*i), time = 3) //-45, -90
+			if(3 to 6)
+				animate(src, transform = turn(matrix(), -90 + (45*(i-2)) ), time = 3) //-45, 0, 45, 90
+			if(7 to 8)
+				animate(src, transform = turn(matrix(), 90 - (45*(i-6)) ), time = 3) //45, 0
 		new /obj/effect/temp_visual/fragment_song(get_turf(src))
 		for(var/mob/living/L in view(8, src))
 			if(faction_check_mob(L, FALSE))
@@ -91,6 +105,8 @@
 				continue
 			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		SLEEP_CHECK_DEATH(3)
+	icon_state = "fragment_breach"
+	qdel(legs)
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
 
@@ -120,5 +136,14 @@
 	else // Breaching
 		icon_state = "fragment_breach"
 	icon_living = icon_state
+
+/obj/effect/fragment_legs
+	name = "Fragment of the Universe"
+	desc = "An abnormality taking form of a black ball covered by 'hearts' of different colors."
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "fragment_song"
+	move_force = INFINITY
+	pull_force = INFINITY
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 #undef FRAGMENT_SONG_COOLDOWN
