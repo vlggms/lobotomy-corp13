@@ -1,6 +1,6 @@
 // this was a mistake.
 // By yours truely, Mori.
-#define STATUS_EFFECT_UMBRELLADEBUFF /datum/status_effect/display/falsekindness
+#define STATUS_EFFECT_FALSEKIND /datum/status_effect/display/false_kindness
 /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	name = "Drifting Fox"
 	desc = "A large shaggy fox with gleaming yellow eyes; And torn umbrellas lodged into its back."
@@ -78,7 +78,6 @@
 	pixel_y = -6
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
-	visible_message(span_notice("[src] falls to the ground, umbrellas closing as he whines in his last breath!"))
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
@@ -156,3 +155,4 @@
 	QDEL_IN(src, 10 SECONDS)
 	return ..()
 
+#undef STATUS_EFFECT_FALSEKIND
