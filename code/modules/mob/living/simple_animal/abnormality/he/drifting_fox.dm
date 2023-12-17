@@ -89,9 +89,9 @@
 	if(!.)
 		return FALSE
 	if(isliving(target))
-		var/mob/living/simple_animal/M = target
-		if(!M.has_status_effect(/datum/status_effect/false_kindness))
-			M.apply_status_effect(/datum/status_effect/false_kindness)
+		var/mob/living/carbon/human/L = target
+		if(!L.has_status_effect(/datum/status_effect/false_kindness))
+			L.apply_status_effect(/datum/status_effect/false_kindness)
 
 //mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
 	//. = ..()
