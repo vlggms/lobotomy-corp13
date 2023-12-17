@@ -1364,6 +1364,15 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/converted_amber_silk_elegant
+	name = "Converted Advanced Amber Silk"
+	result = /obj/item/stack/sheet/silk/amber_elegant
+	reqs = list(/obj/item/stack/sheet/silk/amber_advanced = 5)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/converted_steel_silk_advanced
 	name = "Converted Advanced Steel Silk"
 	result = /obj/item/stack/sheet/silk/steel_advanced
@@ -1854,3 +1863,49 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_CLOTHING
+
+//Ordeal armors. Might be unobtainable depending on if Kirie is fine with them being in lor13 or not. Crimson from human and Delusionist's end just shouldn't exist in lor13(also fuck pink midnight).
+/datum/crafting_recipe/eternal_feast
+	name = "Eternal Feast armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/ordeal/eternal_feast
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 25,
+				/obj/item/stack/sheet/silk/amber_advanced = 10,
+				/obj/item/stack/sheet/silk/amber_elegant = 5)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/painful_purpose
+	name = "Painful Purpose armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 25,
+				/obj/item/stack/sheet/silk/green_advanced = 10,
+				/obj/item/stack/sheet/silk/green_elegant = 5)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/familial_strength
+	name = "Familial Strength armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength
+	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 25,
+				/obj/item/stack/sheet/silk/indigo_advanced = 10,
+				/obj/item/stack/sheet/silk/indigo_elegant = 5)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/meaningless_march
+	name = "Meaningless March armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march
+	reqs = list(/obj/item/stack/sheet/silk/human_simple = 25,
+				/obj/item/stack/sheet/silk/human_advanced = 10,
+				/obj/item/stack/sheet/silk/human_elegant = 5)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+

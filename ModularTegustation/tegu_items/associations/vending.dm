@@ -93,7 +93,8 @@
 			/obj/item/book/granter/crafting_recipe/weaving_zwei = 1,
 			/obj/item/book/granter/crafting_recipe/weaving_shi = 1,
 			/obj/item/book/granter/crafting_recipe/weaving_blade = 1,
-			/obj/item/book/granter/crafting_recipe/weaving_advancedsilk = 1
+			/obj/item/book/granter/crafting_recipe/weaving_advancedsilk = 1,
+			/obj/item/book/granter/crafting_recipe/weaving_ordeal = 1
 					)
 
 	default_price = 100
