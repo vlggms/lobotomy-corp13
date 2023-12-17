@@ -234,11 +234,10 @@
 		spawned_flotsams += F
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/OxygenLoss()//While its alive all humans around it will lose oxygen.
-	for(var/turf/open/T in oview(src, 20))//Used to be global but this should prevent it from being asinine when other abormalities are out
-		for(var/mob/living/carbon/human/H in T)
-			playsound(H, "sound/effects/bubbles.ogg", 50, TRUE, 7)
-			new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
-			H.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
+	for(var/mob/living/carbon/human/H in oview(src, 20))//Used to be global but this should prevent it from being asinine when other abormalities are out
+		playsound(H, "sound/effects/bubbles.ogg", 50, TRUE, 7)
+		new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
+		H.adjustOxyLoss(4, updating_health=TRUE, forced=TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/death()
 	density = FALSE
