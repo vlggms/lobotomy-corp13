@@ -367,7 +367,7 @@
 	smashing = FALSE
 	return
 
-/obj/item/ego_weapon/courage
+/obj/item/ego_weapon/mini/courage
 	name = "courage"
 	desc = "Can I follow you forever? So I can tear them apart..."
 	special = "This weapon deals more damage the more allies you can see."
@@ -1022,16 +1022,16 @@
 	return TRUE
 
 /obj/item/ego_weapon/warp
-	name = "dimension shredder"
-	desc = "The path is intent on thwarting all attempts to memorize it."
-	special = "This weapon builds charge every 10 steps you've taken."
-	icon_state = "warp"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	force = 24
-	attack_speed = 0.8
+	name = "dimensional ripple"
+	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
+	icon_state = "warp2"
+	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	attack_speed = 1
+	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
+	reach = 2
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
@@ -1127,17 +1127,18 @@
 	QDEL_IN(src, 3 SECONDS)
 	..()
 
-/obj/item/ego_weapon/warp/spear//spear subtype of the above
-	name = "dimensional ripple"
-	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
-	icon_state = "warp2"
-	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
-	inhand_x_dimension = 32
-	inhand_y_dimension = 32
-	attack_speed = 1
-	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
-	reach = 2
+/obj/item/ego_weapon/warp/knife		//knife subtype of the above. knife has to be the subtype because it fits in a belt
+	name = "dimension shredder"
+	desc = "The path is intent on thwarting all attempts to memorize it."
+	special = "This weapon builds charge every 10 steps you've taken."
+	icon_state = "warp"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 24
+	attack_speed = 0.8
+	reach = 1
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"

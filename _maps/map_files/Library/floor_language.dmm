@@ -7,10 +7,6 @@
 	},
 /turf/open/lava,
 /area/library_floors/floor_language)
-"ao" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/mineral/plastitanium,
-/area/library_floors/floor_language)
 "aY" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 10
@@ -38,6 +34,15 @@
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
+/area/library_floors/floor_language)
+"fp" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/stone,
 /area/library_floors/floor_language)
 "gU" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
@@ -81,26 +86,24 @@
 "jN" = (
 /turf/open/floor/mineral/plastitanium,
 /area/library_floors/floor_language)
-"jZ" = (
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_language)
 "kV" = (
 /obj/structure/weightmachine/weightlifter,
 /obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/beach/sand,
+/area/library_floors/floor_language)
+"lP" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/plating/beach/sand,
 /area/library_floors/floor_language)
 "my" = (
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/shi_assassin,
 /turf/open/floor/mineral/plastitanium,
-/area/library_floors/floor_language)
-"nv" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 4
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_language)
 "ou" = (
 /obj/item/toy/plush/mosb,
@@ -221,6 +224,16 @@
 	density = 1
 	},
 /area/library_floors/floor_language)
+"Bl" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/lava,
+/area/library_floors/floor_language)
 "Br" = (
 /obj/structure/chair/comfy{
 	dir = 1
@@ -269,13 +282,6 @@
 /obj/structure/bookcase/random/nonfiction,
 /turf/closed/indestructible/syndicate,
 /area/library_floors/floor_language)
-"FC" = (
-/obj/effect/turf_decal/trimline/red/filled/line{
-	dir = 1
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/stone,
-/area/library_floors/floor_language)
 "Gb" = (
 /obj/structure/lattice/catwalk,
 /turf/open/lava,
@@ -306,18 +312,12 @@
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/plating/beach/sand,
 /area/library_floors/floor_language)
-"HK" = (
-/obj/structure/chair/comfy,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_language)
 "HM" = (
 /obj/structure/railing{
 	dir = 5;
 	max_integrity = 1e+007;
 	name = "invincible railing"
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
 /area/library_floors/floor_language)
 "IM" = (
@@ -352,7 +352,6 @@
 	max_integrity = 1e+007;
 	name = "invincible railing"
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
 /area/library_floors/floor_language)
 "Ox" = (
@@ -369,7 +368,6 @@
 	max_integrity = 1e+007;
 	name = "invincible railing"
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
 /area/library_floors/floor_language)
 "PV" = (
@@ -387,7 +385,6 @@
 	dir = 4
 	},
 /obj/item/clothing/mask/cigarette,
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_language)
 "Sf" = (
@@ -399,11 +396,6 @@
 /obj/structure/table/reinforced,
 /obj/item/ego_weapon/city/kurokumo,
 /turf/open/floor/mineral/plastitanium,
-/area/library_floors/floor_language)
-"SJ" = (
-/obj/effect/turf_decal/trimline/red/filled/line,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/stone,
 /area/library_floors/floor_language)
 "TW" = (
 /obj/item/clothing/mask/cigarette,
@@ -428,7 +420,6 @@
 	name = "invincible railing";
 	max_integrity = 1e+007
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/beach/sand,
 /area/library_floors/floor_language)
 "Xg" = (
@@ -510,7 +501,7 @@ YX
 YX
 YX
 YX
-YX
+fp
 YX
 YX
 YX
@@ -555,20 +546,20 @@ XL
 XL
 MR
 Sw
-ao
+jN
 ZO
 YX
 wu
-jZ
+rn
 PV
 rn
 rn
-HK
+it
 wP
 Br
 YX
 ZO
-ao
+jN
 rv
 MR
 XL
@@ -633,7 +624,7 @@ XL
 XL
 MR
 LT
-ao
+jN
 ZO
 YX
 hL
@@ -646,7 +637,7 @@ xB
 zF
 YX
 ZO
-ao
+jN
 my
 MR
 XL
@@ -663,11 +654,11 @@ Fo
 MR
 YX
 hY
-nv
 qz
 qz
 qz
-nv
+qz
+qz
 qz
 ib
 YX
@@ -692,7 +683,7 @@ DP
 YX
 DP
 YX
-YX
+fp
 DP
 YX
 DP
@@ -794,10 +785,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
 Gb
-FC
+we
 YX
 gU
 ad
@@ -874,7 +865,7 @@ we
 YX
 gU
 Gb
-Gb
+Bl
 we
 YX
 gU
@@ -898,10 +889,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
 Gb
-FC
+we
 YX
 gU
 ad
@@ -1028,10 +1019,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
 Gb
-FC
+we
 YX
 gU
 ad
@@ -1158,10 +1149,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
-Gb
-FC
+Bl
+we
 YX
 gU
 ad
@@ -1288,10 +1279,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
 Gb
-FC
+we
 YX
 gU
 ad
@@ -1418,10 +1409,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
 Gb
-FC
+we
 YX
 gU
 ad
@@ -1548,10 +1539,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
 Gb
-FC
+we
 YX
 gU
 ad
@@ -1576,7 +1567,7 @@ we
 YX
 gU
 Gb
-Gb
+Bl
 we
 YX
 gU
@@ -1678,10 +1669,10 @@ AW
 El
 we
 YX
-SJ
+gU
 Gb
 Gb
-FC
+we
 YX
 gU
 ad
@@ -1888,12 +1879,12 @@ hL
 EB
 EB
 EB
-EB
+lP
 EB
 EB
 zF
 YX
-jZ
+rn
 wP
 Gd
 xB

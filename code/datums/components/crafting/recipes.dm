@@ -656,7 +656,7 @@
 	parts = list(/obj/item/camera = 1)
 	category = CAT_MISC
 
-
+/*
 /datum/crafting_recipe/skateboard
 	name = "Skateboard"
 	result = /obj/vehicle/ridden/scooter/skateboard/improvised
@@ -672,6 +672,7 @@
 	reqs = list(/obj/item/stack/sheet/metal = 5,
 				/obj/item/stack/rods = 12)
 	category = CAT_MISC
+*/
 
 /datum/crafting_recipe/wheelchair
 	name = "Wheelchair"

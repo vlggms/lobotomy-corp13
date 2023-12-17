@@ -1,8 +1,9 @@
 // Dawn
 /datum/ordeal/simplespawn/indigo_dawn
-	name = "Dawn of Indigo"
-	annonce_text = "They come searching for what they so desperately need."
-	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
+	name = "The Dawn of Indigo"
+	flavor_name = "The Scouts"
+	announce_text = "They come searching for what they so desperately need."
+	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	reward_percent = 0.1
 	level = 1
@@ -15,9 +16,10 @@
 
 // Noon
 /datum/ordeal/simplespawn/indigo_noon
-	name = "Noon of Indigo"
-	annonce_text = "When night falls in the Backstreets, they will come."
-	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
+	name = "The Noon of Indigo"
+	flavor_name = "The Sweepers"
+	announce_text = "When night falls in the Backstreets, they will come."
+	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 2
 	reward_percent = 0.15
@@ -30,9 +32,10 @@
 
 // Dusk
 /datum/ordeal/specificcommanders/indigo_dusk
-	name = "Dusk of Indigo"
-	annonce_text = "They will not melt. They do not appear to be people."
-	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
+	name = "The Dusk of Indigo"
+	flavor_name = "Night in the Backstreets"
+	announce_text = "They will not melt. They do not appear to be people."
+	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 3
 	reward_percent = 0.20
@@ -47,9 +50,10 @@
 
 // Midnight
 /datum/ordeal/boss/indigo_midnight
-	name = "Midnight of Indigo"
-	annonce_text = "For the sake of our families in our village, we cannot stop."
-	annonce_sound = 'sound/effects/ordeals/indigo_start.ogg'
+	name = "The Midnight of Indigo"
+	flavor_name = "Mother"
+	announce_text = "For the sake of our families in our village, we cannot stop."
+	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 4
 	reward_percent = 0.25

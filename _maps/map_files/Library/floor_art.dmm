@@ -73,15 +73,8 @@
 /obj/item/storage/crayons,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
-"n" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/fakepit{
-	density = 1
-	},
-/area/library_floors/floor_art)
 "o" = (
 /obj/item/paint/red,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
 "p" = (
@@ -105,11 +98,6 @@
 "t" = (
 /obj/structure/firetree,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/library_floors/floor_art)
-"u" = (
-/obj/structure/alien/resin/wall/creature,
-/obj/item/flashlight/spotlight,
-/turf/closed/indestructible/rock,
 /area/library_floors/floor_art)
 "v" = (
 /obj/item/paint,
@@ -136,6 +124,15 @@
 /obj/item/grown/log/tree,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
+"B" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/dirt/jungle/wasteland,
+/area/library_floors/floor_art)
 "D" = (
 /obj/structure/easel,
 /obj/item/canvas/nineteen_nineteen,
@@ -146,7 +143,6 @@
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
 "I" = (
@@ -156,19 +152,8 @@
 /obj/item/toy/crayon/rainbow,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
-"K" = (
-/obj/structure/bookcase/random/fiction,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/library_floors/floor_art)
 "N" = (
 /obj/item/toy/crayon,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/library_floors/floor_art)
-"P" = (
-/obj/structure/easel,
-/obj/item/canvas/nineteen_nineteen,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
 "R" = (
@@ -203,13 +188,13 @@
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
-"W" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/dirt/jungle/wasteland,
-/area/library_floors/floor_art)
-"X" = (
-/obj/structure/firetree,
-/obj/item/flashlight/spotlight,
+"V" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_art)
 "Y" = (
@@ -333,11 +318,11 @@ Y
 S
 a
 a
-K
+r
 a
 a
 a
-W
+a
 a
 a
 Y
@@ -361,7 +346,7 @@ a
 a
 a
 a
-a
+V
 a
 a
 a
@@ -379,7 +364,7 @@ l
 l
 l
 f
-W
+a
 p
 I
 a
@@ -437,11 +422,11 @@ Y
 a
 a
 a
-P
+D
 a
 a
 a
-W
+a
 a
 a
 Y
@@ -482,7 +467,7 @@ l
 l
 l
 Y
-n
+b
 b
 b
 b
@@ -537,19 +522,19 @@ Y
 b
 b
 b
-n
+b
 a
 a
 d
-W
 a
 a
 a
-W
+a
+a
 a
 a
 b
-n
+b
 b
 b
 Y
@@ -594,7 +579,7 @@ a
 a
 a
 z
-a
+V
 q
 a
 d
@@ -664,22 +649,22 @@ l
 l
 l
 Y
-n
+b
 a
 a
-n
+b
 a
 a
 r
-W
 a
 a
 a
-W
+a
+a
 R
 a
 a
-X
+t
 a
 b
 Y
@@ -794,22 +779,22 @@ l
 l
 l
 Y
-n
+b
 b
 a
-n
+b
 a
 a
 a
-W
+a
 a
 S
 a
-W
+a
 a
 a
 b
-W
+a
 a
 b
 Y
@@ -924,22 +909,22 @@ l
 l
 l
 Y
-n
 b
 b
-n
+b
+b
 a
 a
 a
-W
+a
 a
 a
 r
-W
+a
 a
 a
 b
-n
+b
 b
 b
 Y
@@ -959,7 +944,7 @@ a
 a
 a
 k
-a
+V
 R
 a
 a
@@ -1054,22 +1039,22 @@ l
 l
 l
 Y
-n
 b
 b
-W
+b
 a
 a
 a
-W
 a
 a
 a
-W
+a
+a
+a
 a
 a
 b
-n
+b
 b
 b
 Y
@@ -1184,22 +1169,22 @@ l
 l
 l
 Y
-n
+b
 a
 a
-W
+a
 a
 S
 a
-W
 a
 a
 a
-W
+a
+a
+B
 a
 a
 a
-W
 r
 a
 Y
@@ -1314,22 +1299,22 @@ l
 l
 l
 Y
-n
+b
 b
 a
-W
+a
 a
 t
 a
-W
 a
 a
 a
-W
+a
+a
 a
 a
 b
-n
+b
 b
 b
 Y
@@ -1348,7 +1333,7 @@ a
 a
 r
 a
-a
+V
 U
 a
 a
@@ -1443,23 +1428,23 @@ l
 l
 l
 l
-u
+Y
 b
 b
 b
-n
+b
 a
 a
 a
-W
 a
 a
 a
-W
+a
+a
 a
 a
 b
-n
+b
 b
 b
 Y
@@ -1500,7 +1485,7 @@ l
 l
 l
 Y
-W
+a
 a
 a
 a
@@ -1555,11 +1540,11 @@ Y
 a
 a
 t
-W
 a
 a
 a
-W
+a
+a
 a
 a
 Y
@@ -1635,7 +1620,7 @@ a
 w
 a
 a
-a
+V
 a
 a
 a
@@ -1685,11 +1670,11 @@ Y
 a
 s
 a
-X
+t
 a
 a
 a
-W
+a
 g
 y
 Y

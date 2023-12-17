@@ -51,7 +51,6 @@
 	user.physiology.attachment_success_mod += src.attachment_mod
 	user.physiology.repression_success_mod += src.repression_mod
 	owner = user
-	return
 
 /datum/ego_gifts/proc/Remove(mob/living/carbon/human/user)
 	user.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
@@ -64,7 +63,6 @@
 	user.physiology.attachment_success_mod -= src.attachment_mod
 	user.physiology.repression_success_mod -= src.repression_mod
 	QDEL_NULL(src)
-	return
 
 /datum/ego_gifts/Topic(href, list/href_list)
 	switch(href_list["choice"])
@@ -76,37 +74,38 @@
 		if("dissolve")
 			if(tgui_alert(owner, "Are you sure you want to dissolve the [src]?", "Dissolve Gift", list("Yes", "No"), 0) == "Yes") // We only go if they hit "Yes" specifically.
 				if(locked)
-					to_chat(owner, "<span class='warning'>[src] is locked and cannot be dissolved! Phew!</span>")
+					to_chat(owner, span_warning("[src] is locked and cannot be dissolved! Phew!"))
 					return
-				var/datum/ego_gifts/empty/E = new
-				E.slot = src.slot
-				if(datum_reference)
-					var/PE = 0
-					PE += (datum_reference.threat_level * datum_reference.threat_level)
-					if(istype(src, /datum/ego_gifts/blossoming) || istype(src, /datum/ego_gifts/paradise)) // Why though
-						PE *= 2
-					if(ispath(datum_reference.abno_path, /mob/living/simple_animal/hostile/abnormality/crumbling_armor))
-						var/answer = tgui_alert(owner, "To think one would commit such a shameful act... what have ye, weaker body or mind?", "Cowardice", list("Body", "Mind"), 0)
-						if(QDELETED(src) || !ispath(src.datum_reference.abno_path, /mob/living/simple_animal/hostile/abnormality/crumbling_armor))
-							return
-						switch(answer)
-							if("Body")
-								owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
-								to_chat(owner, "<span class='notice'>Least ye have not hid from this.</span>")
-							if("Mind")
-								owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
-								to_chat(owner, "<span class='notice'>Least ye have not hid from this.</span>")
-							else
-								owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
-								owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
-								to_chat(owner, "<span class='userdanger'>Even now you try and run? Clearly you are lacking in both!</span>")
-						to_chat(owner, "<span class='warning'>The once cool flames now burn your flesh!</span>")
-						owner.adjustBruteLoss(100)
-					to_chat(owner, "<span class='notice'>The [src] has dissolved into [PE] PE for [datum_reference.name]!</span>")
-					datum_reference.stored_boxes += PE
-				else
-					to_chat(owner, "<span class='notice'>The [src] has dissolved into... light?</span>")
-				owner.Apply_Gift(E)
+				var/datum/ego_gifts/empty/dissolving = new
+				dissolving.slot = src.slot
+				if(!datum_reference)
+					to_chat(owner, span_notice("The [src] has dissolved into... light?"))
+					owner.Apply_Gift(dissolving)
+					return
+				var/PE_received = 0
+				PE_received += (datum_reference.threat_level * datum_reference.threat_level)
+				if(istype(src, /datum/ego_gifts/blossoming) || istype(src, /datum/ego_gifts/paradise)) // Why though
+					PE_received *= 2
+				if(ispath(datum_reference.abno_path, /mob/living/simple_animal/hostile/abnormality/crumbling_armor))
+					var/answer = tgui_alert(owner, "To think one would commit such a shameful act... what have ye, weaker body or mind?", "Cowardice", list("Body", "Mind"), 0)
+					if(QDELETED(src) || !ispath(src.datum_reference.abno_path, /mob/living/simple_animal/hostile/abnormality/crumbling_armor))
+						return
+					switch(answer)
+						if("Body")
+							owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
+							to_chat(owner, span_notice("Least ye have not hid from this."))
+						if("Mind")
+							owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
+							to_chat(owner, span_notice("Least ye have not hid from this."))
+						else
+							owner.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -5)
+							owner.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -5)
+							to_chat(owner, span_userdanger("Even now you try and run? Clearly you are lacking in both!"))
+					to_chat(owner, span_warning("The once cool flames now burn your flesh!"))
+					owner.adjustBruteLoss(100)
+				to_chat(owner, span_notice("The [src] has dissolved into [PE_received] PE for [datum_reference.name]!"))
+				datum_reference.stored_boxes += PE_received
+				owner.Apply_Gift(dissolving)
 		if("description")
 			var/dat = "<b>[name]</b>"
 			dat += "<hr><br>"
@@ -181,37 +180,15 @@
 	desc = "An empty slot for gifts."
 	icon_state = null
 
-/// All Zayin EGO Gifts
-/datum/ego_gifts/soda
-	name = "Soda"
-	icon_state = "soda"
-	fortitude_bonus = 2
-	slot = MOUTH_2
-
-/datum/ego_gifts/penitence
-	name = "Penitence"
-	desc = "Provides a 10% bonus to works with corresponding abnormality."
-	icon_state = "penitence"
-	prudence_bonus = 2
-	slot = HAT
-
-/datum/ego_gifts/wingbeat
-	name = "Wingbeat"
-	icon_state = "wingbeat"
-	temperance_bonus = 2
-	slot = HAND_2
+/**
+ * Zayin EGO Gifts
+ */
 
 /datum/ego_gifts/alice
 	name = "Little Alice"
 	icon_state = "alice"
 	temperance_bonus = 2
 	slot = NECKWEAR
-
-/datum/ego_gifts/tough
-	name = "Tough"
-	icon_state = "tough"
-	justice_bonus = 2
-	slot = EYE
 
 /datum/ego_gifts/change
 	name = "Change"
@@ -225,23 +202,17 @@
 	justice_bonus = 2
 	slot = EYE
 
-/datum/ego_gifts/nostalgia
-	name = "Nostalgia"
-	icon_state = "nostalgia"
+/datum/ego_gifts/eclipse
+	name = "Eclipse of Scarlet Moths"
+	icon_state = "eclipse"
 	temperance_bonus = 2
-	slot = MOUTH_2
+	slot = BROOCH
 
-/datum/ego_gifts/nightshade
-	name = "Nightshade"
-	icon_state = "nightshade"
-	prudence_bonus = 2
-	slot = HAND_1
-
-/datum/ego_gifts/melty_eyeball
-	name = "Melty Eyeball"
-	icon_state = "melty_eyeball"
-	prudence_bonus = 2
-	slot = EYE
+/datum/ego_gifts/evening
+	name = "Evening Twilight"
+	icon_state = "evening"
+	justice_bonus = 2
+	slot = FACE
 
 /datum/ego_gifts/mail
 	name = "Empty Envelope"
@@ -250,17 +221,23 @@
 	temperance_bonus = 1
 	slot = CHEEK
 
-/datum/ego_gifts/evening
-	name = "Evening Twilight"
-	icon_state = "evening"
-	justice_bonus = 2
-	slot = FACE
+/datum/ego_gifts/melty_eyeball
+	name = "Melty Eyeball"
+	icon_state = "melty_eyeball"
+	prudence_bonus = 2
+	slot = EYE
 
-/datum/ego_gifts/eclipse
-	name = "Eclipse of Scarlet Moths"
-	icon_state = "eclipse"
+/datum/ego_gifts/nightshade
+	name = "Nightshade"
+	icon_state = "nightshade"
+	prudence_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/nostalgia
+	name = "Nostalgia"
+	icon_state = "nostalgia"
 	temperance_bonus = 2
-	slot = BROOCH
+	slot = MOUTH_2
 
 /datum/ego_gifts/oceanic
 	name = "Taste of the Sea"
@@ -268,12 +245,53 @@
 	temperance_bonus = 2
 	slot = HAND_2
 
-/// All TETH EGO Gifts
-/datum/ego_gifts/standard
-	name = "Standard Training E.G.O."
-	icon_state = "standard"
-	fortitude_bonus = 2
+/datum/ego_gifts/penitence
+	name = "Penitence"
+	desc = "Provides a 10% bonus to works with corresponding abnormality."
+	icon_state = "penitence"
 	prudence_bonus = 2
+	slot = HAT
+
+/datum/ego_gifts/soda
+	name = "Soda"
+	icon_state = "soda"
+	fortitude_bonus = 2
+	slot = MOUTH_2
+
+/datum/ego_gifts/tough
+	name = "Tough"
+	icon_state = "tough"
+	justice_bonus = 2
+	slot = EYE
+
+/datum/ego_gifts/wingbeat
+	name = "Wingbeat"
+	icon_state = "wingbeat"
+	temperance_bonus = 2
+	slot = HAND_2
+
+/**
+ * TETH EGO Gifts
+ */
+
+/datum/ego_gifts/beak
+	name = "Beak"
+	icon_state = "beak"
+	justice_bonus = 2
+	slot = NECKWEAR
+
+/datum/ego_gifts/bean
+	name = "Magic Bean"
+	icon_state = "bean"
+	prudence_bonus = 2
+	temperance_bonus = 2
+	slot = HAT
+
+/datum/ego_gifts/blossom
+	name = "Cherry Blossom"
+	icon_state = "cherry"
+	fortitude_bonus = 2
+	justice_bonus = 2
 	slot = HAT
 
 /datum/ego_gifts/bunny
@@ -284,81 +302,12 @@
 	temperance_bonus = 6
 	slot = HAT
 
-/datum/ego_gifts/redeyes
-	name = "Red Eyes"
-	icon_state = "redeyes"
-	temperance_bonus = 3
-	slot = EYE
-
-/datum/ego_gifts/match
-	name = "Fourth Match Flame"
-	icon_state = "match"
-	fortitude_bonus = 4
-	slot = MOUTH_2
-
-/datum/ego_gifts/beak
-	name = "Beak"
-	icon_state = "beak"
-	justice_bonus = 2
-	slot = NECKWEAR
-
-/datum/ego_gifts/fragments
-	name = "Fragments From Somewhere"
-	icon_state = "fragments"
-	temperance_bonus = 2
-	slot = BROOCH
-
-/datum/ego_gifts/horn
-	name = "Horn"
-	icon_state = "horn"
-	fortitude_bonus = 2
-	prudence_bonus = 2
-	slot = HAT
-
-/datum/ego_gifts/wrist
-	name = "Wrist Cutter"
-	icon_state = "wrist"
-	temperance_bonus = 2
-	slot = HAND_2
-
-/datum/ego_gifts/blossom
-	name = "Cherry Blossom"
-	icon_state = "cherry"
-	fortitude_bonus = 2
-	justice_bonus = 2
-	slot = HAT
-
-/datum/ego_gifts/dream
-	name = "Engulfing Dream"
-	icon_state = "engulfing"
+/datum/ego_gifts/curfew
+	name = "Curfew"
+	icon_state = "curfew"
+	fortitude_bonus = -1
 	prudence_bonus = 4
-	slot = HAT
-
-/datum/ego_gifts/regret
-	name = "Regret"
-	icon_state = "regret"
-	fortitude_bonus = 2
-	prudence_bonus = 2
-	slot = MOUTH_1
-
-/datum/ego_gifts/noise
-	name = "Noise"
-	icon_state = "noise"
-	justice_bonus = 2
-	slot = BROOCH
-
-/datum/ego_gifts/lutemis
-	name = "Dear Lutemis"
-	icon_state = "lutemis"
-	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
-	slot = NECKWEAR
-
-/datum/ego_gifts/shy
-	name = "Today's Expression"
-	icon_state = "shy"
-	prudence_bonus = -2
-	temperance_bonus = 4
-	slot = EYE
+	slot = HAND_1
 
 /datum/ego_gifts/cute
 	name = "SO CUTE!!!"
@@ -367,12 +316,24 @@
 	temperance_bonus = -2
 	slot = HAT
 
-/datum/ego_gifts/bean
-	name = "Magic Bean"
-	icon_state = "bean"
-	prudence_bonus = 2
-	temperance_bonus = 2
+/datum/ego_gifts/dream
+	name = "Engulfing Dream"
+	icon_state = "engulfing"
+	prudence_bonus = 4
 	slot = HAT
+
+/datum/ego_gifts/fourleaf_clover
+	name = "Four-Leaf Clover"
+	icon_state = "fourleaf_clover"
+	fortitude_bonus = 3
+	prudence_bonus = 1
+	slot = HELMET
+
+/datum/ego_gifts/fragments
+	name = "Fragments From Somewhere"
+	icon_state = "fragments"
+	temperance_bonus = 2
+	slot = BROOCH
 
 /datum/ego_gifts/hearth
 	name = "Hearth"
@@ -381,11 +342,36 @@
 	temperance_bonus = 2
 	slot = NECKWEAR
 
+/datum/ego_gifts/horn
+	name = "Horn"
+	icon_state = "horn"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	slot = HAT
+
 /datum/ego_gifts/lantern
 	name = "Lantern"
 	icon_state = "lantern"
 	fortitude_bonus = 5
 	slot = MOUTH_2
+
+/datum/ego_gifts/lutemis
+	name = "Dear Lutemis"
+	icon_state = "lutemis"
+	prudence_bonus = 4 // Because fuck you, this can kill you if you have 56+ prudence and don't pay attention
+	slot = NECKWEAR
+
+/datum/ego_gifts/match
+	name = "Fourth Match Flame"
+	icon_state = "match"
+	fortitude_bonus = 4
+	slot = MOUTH_2
+
+/datum/ego_gifts/noise
+	name = "Noise"
+	icon_state = "noise"
+	justice_bonus = 2
+	slot = BROOCH
 
 /datum/ego_gifts/page
 	name = "Page"
@@ -394,39 +380,32 @@
 	justice_bonus = 2
 	slot = HAND_1
 
-/datum/ego_gifts/solitude
-	name = "Solitude"
-	icon_state = "solitude"
-	temperance_bonus = 3
-	slot = EYE
+/datum/ego_gifts/patriot
+	name = "Patriot"
+	icon_state = "patriot"
+	fortitude_bonus = 2
+	justice_bonus = 2
+	temperance_bonus = -1
+	slot = HAT
 
-/datum/ego_gifts/trick
-	name = "Hat Trick"
-	icon_state = "trick"
+/datum/ego_gifts/red_sheet
+	name = "Talisman Bundle"
+	icon_state = "red_sheet"
 	justice_bonus = 3
-	slot = MOUTH_1
-
-/datum/ego_gifts/sorrow
-	name = "Sorrow"
-	icon_state = "sorrow"
-	fortitude_bonus = 1
-	prudence_bonus = 3
 	slot = HELMET
 
-/datum/ego_gifts/sorority
-	name = "Sorority"
-	icon_state = "sorority"
+/datum/ego_gifts/redeyes
+	name = "Red Eyes"
+	icon_state = "redeyes"
+	temperance_bonus = 3
+	slot = EYE
+
+/datum/ego_gifts/regret
+	name = "Regret"
+	icon_state = "regret"
 	fortitude_bonus = 2
 	prudence_bonus = 2
-	temperance_bonus = -1
-	slot = CHEEK
-
-/datum/ego_gifts/wedge
-	name = "Screaming Wedge"
-	icon_state = "wedge"
-	temperance_bonus = -1
-	prudence_bonus = 4
-	slot = BROOCH
+	slot = MOUTH_1
 
 /datum/ego_gifts/revelation
 	name = "Revelation"
@@ -435,18 +414,17 @@
 	justice_bonus = 4
 	slot = EYE
 
-/datum/ego_gifts/snapshot
-	name = "Snapshot"
-	icon_state = "snapshot"
-	temperance_bonus = 3
-	prudence_bonus = -1
-	slot = NECKWEAR
+/datum/ego_gifts/sanitizer
+	name = "Sanitizer"
+	icon_state = "sanitizer"
+	justice_bonus = 2
+	slot = HAND_2
 
-/datum/ego_gifts/revelation
-	name = "Revelation"
-	icon_state = "revelation"
-	temperance_bonus = -2
-	justice_bonus = 4
+/datum/ego_gifts/shy
+	name = "Today's Expression"
+	icon_state = "shy"
+	prudence_bonus = -2
+	temperance_bonus = 4
 	slot = EYE
 
 /datum/ego_gifts/sloshing
@@ -457,20 +435,65 @@
 	justice_bonus = 1
 	slot = CHEEK
 
-/datum/ego_gifts/fourleaf_clover
-	name = "Four-Leaf Clover"
-	icon_state = "fourleaf_clover"
-	fortitude_bonus = 3
-	prudence_bonus = 1
+/datum/ego_gifts/snapshot
+	name = "Snapshot"
+	icon_state = "snapshot"
+	temperance_bonus = 3
+	prudence_bonus = -1
+	slot = NECKWEAR
+
+/datum/ego_gifts/solitude
+	name = "Solitude"
+	icon_state = "solitude"
+	temperance_bonus = 3
+	slot = EYE
+
+/datum/ego_gifts/sorority
+	name = "Sorority"
+	icon_state = "sorority"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -1
+	slot = CHEEK
+
+/datum/ego_gifts/sorrow
+	name = "Sorrow"
+	icon_state = "sorrow"
+	fortitude_bonus = 1
+	prudence_bonus = 3
 	slot = HELMET
 
-/datum/ego_gifts/patriot
-	name = "Patriot"
-	icon_state = "patriot"
+/datum/ego_gifts/standard
+	name = "Standard Training E.G.O."
+	icon_state = "standard"
 	fortitude_bonus = 2
-	justice_bonus = 2
-	temperance_bonus = -1
+	prudence_bonus = 2
 	slot = HAT
+
+/datum/ego_gifts/trick
+	name = "Hat Trick"
+	icon_state = "trick"
+	justice_bonus = 3
+	slot = MOUTH_1
+
+/datum/ego_gifts/visions
+	name = "Fiery Down"
+	icon_state = "visions"
+	prudence_bonus = 3
+	slot = NECKWEAR
+
+/datum/ego_gifts/wedge
+	name = "Screaming Wedge"
+	icon_state = "wedge"
+	temperance_bonus = -1
+	prudence_bonus = 4
+	slot = BROOCH
+
+/datum/ego_gifts/wrist
+	name = "Wrist Cutter"
+	icon_state = "wrist"
+	temperance_bonus = 2
+	slot = HAND_2
 
 /datum/ego_gifts/zauberhorn
 	name = "Zauberhorn"
@@ -480,58 +503,18 @@
 	justice_bonus = 1
 	slot = HAND_1
 
-/datum/ego_gifts/curfew
-	name = "Curfew"
-	icon_state = "curfew"
-	fortitude_bonus = -1
-	prudence_bonus = 4
-	slot = HAND_1
+/**
+ * HE EGO Gifts
+ */
 
-/datum/ego_gifts/red_sheet
-	name = "Talisman Bundle"
-	icon_state = "red_sheet"
-	justice_bonus = 3
-	slot = HELMET
-
-/datum/ego_gifts/visions
-	name = "Fiery Down"
-	icon_state = "visions"
-	prudence_bonus = 3
-	slot = NECKWEAR
-
-/datum/ego_gifts/sanitizer
-	name = "Sanitizer"
-	icon_state = "sanitizer"
+/datum/ego_gifts/alleyway
+	name = "Alleyway"
+	icon_state = "alleyway"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	temperance_bonus = -2
 	justice_bonus = 2
 	slot = HAND_2
-
-/// All HE EGO Gifts
-/datum/ego_gifts/loggging
-	name = "Logging"
-	icon_state = "loggging"
-	fortitude_bonus = 2
-	temperance_bonus = 2
-	slot = BROOCH
-
-/datum/ego_gifts/harvest
-	name = "Harvest"
-	icon_state = "harvest"
-	prudence_bonus = 4
-	slot = NECKWEAR
-
-/datum/ego_gifts/christmas
-	name = "Christmas"
-	icon_state = "christmas"
-	fortitude_bonus = -4
-	prudence_bonus = 8
-	slot = HAT
-
-/datum/ego_gifts/grinder
-	name = "Grinder Mk4"
-	icon_state = "grinder"
-	temperance_bonus = 4
-	insight_mod = 3
-	slot = EYE
 
 /datum/ego_gifts/bearpaw
 	name = "Bear Paws"
@@ -540,86 +523,12 @@
 	attachment_mod = 3
 	slot = HAT
 
-/datum/ego_gifts/magicbullet
-	name = "Magic Bullet"
-	icon_state = "magicbullet"
-	fortitude_bonus = -5
-	prudence_bonus = -5
-	justice_bonus = 10
-	slot = MOUTH_2
-
-/datum/ego_gifts/oppression
-	name = "Oppression"
-	icon_state = "oppression"
-	prudence_bonus = 2
-	justice_bonus = 2
-	slot = MOUTH_1
-
-/datum/ego_gifts/totalitarianism
-	name = "Totalitarianism"
-	icon_state = "totalitarianism"
-	fortitude_bonus = 2
-	temperance_bonus = 2
-	slot = CHEEK
-
-/datum/ego_gifts/prank
-	name = "Funny Prank"
-	icon_state = "prank"
-	prudence_bonus = 4
-	slot = HELMET
-
-/datum/ego_gifts/desire
-	name = "Sanguine Desire"
-	icon_state = "desire"
-	fortitude_bonus = 4
-	slot = MOUTH_2
-
-/datum/ego_gifts/frost
-	name = "Those who know the Cruelty of Winter and the Aroma of Roses"
-	icon_state = "frost"
-	fortitude_bonus = 6
-	prudence_bonus = 6
-	slot = CHEEK
-
-/datum/ego_gifts/harmony
-	name = "Harmony"
-	icon_state = "harmony"
-	fortitude_bonus = 8
-	prudence_bonus = -4
-	slot = CHEEK
-
-/datum/ego_gifts/waltz // Locked to Champions only, so Improved it
-	name = "Flower Waltz"
-	icon_state = "waltz"
-	fortitude_bonus = 2
-	prudence_bonus = 2
-	justice_bonus = 2
-	slot = HELMET
-
-/datum/ego_gifts/remorse // All it takes is a single crack in one's psyche...
-	name = "Remorse"
-	icon_state = "remorse"
-	prudence_bonus = 10
-	justice_bonus = -5
-	slot = BROOCH
-
-/datum/ego_gifts/fury
-	name = "Blind Fury"
-	icon_state = "fury"
-	fortitude_bonus = 10
-	prudence_bonus = -2
-	temperance_bonus = -2
-	justice_bonus = -2
-	slot = EYE
-
-/datum/ego_gifts/solemnlament
-	name = "Solemn Lament"
-	icon_state = "solemnlament"
-	fortitude_bonus = 1
-	prudence_bonus = 1
-	temperance_bonus = 1
-	justice_bonus = 1
-	slot = RIGHTBACK
+/datum/ego_gifts/christmas
+	name = "Christmas"
+	icon_state = "christmas"
+	fortitude_bonus = -4
+	prudence_bonus = 8
+	slot = HAT
 
 /datum/ego_gifts/courage_cat //crumbling armor also has an ego gift called courage so the name has to be slightly different
 	name = "Courage"
@@ -629,34 +538,34 @@
 	insight_mod = 6
 	slot = EYE
 
-/datum/ego_gifts/song
-	name = "Song of the Past"
-	icon_state = "song"
-	prudence_bonus = 2
-	justice_bonus = 2
-	slot = CHEEK
+/datum/ego_gifts/desire
+	name = "Sanguine Desire"
+	icon_state = "desire"
+	fortitude_bonus = 4
+	slot = MOUTH_2
 
-/datum/ego_gifts/maneater
-	name = "Man Eater"
-	icon_state = "maneater"
+/datum/ego_gifts/fluid_sac
+	name = "Fluid Sac"
+	icon_state = "fluid_sac"
 	fortitude_bonus = 2
 	temperance_bonus = 2
-	slot = NECKWEAR
+	slot = MOUTH_2
 
-/datum/ego_gifts/legerdemain
-	name = "Legerdemain"
-	icon_state = "legerdemain"
-	fortitude_bonus = 2
-	prudence_bonus = 2
-	slot = HAND_1
+/datum/ego_gifts/frost
+	name = "Those who know the Cruelty of Winter and the Aroma of Roses"
+	icon_state = "frost"
+	fortitude_bonus = 6
+	prudence_bonus = 6
+	slot = CHEEK
 
-/datum/ego_gifts/impending_day
-	name = "Impending Day"
-	icon_state = "doomsday"
-	fortitude_bonus = 4
+/datum/ego_gifts/fury
+	name = "Blind Fury"
+	icon_state = "fury"
+	fortitude_bonus = 10
 	prudence_bonus = -2
-	justice_bonus = 2
-	slot = HELMET
+	temperance_bonus = -2
+	justice_bonus = -2
+	slot = EYE
 
 /datum/ego_gifts/galaxy
 	name = "Galaxy"
@@ -672,47 +581,41 @@
 	fortitude_bonus = 4
 	slot = HAND_2
 
-/datum/ego_gifts/alleyway
-	name = "Alleyway"
-	icon_state = "alleyway"
-	fortitude_bonus = 2
-	prudence_bonus = 2
+/datum/ego_gifts/get_strong
+	name = "Screwloose"
+	icon_state = "get_strong"
+	fortitude_bonus = 4
+	prudence_bonus = -2
 	temperance_bonus = -2
-	justice_bonus = 2
-	slot = HAND_2
+	justice_bonus = 4
+	slot = HELMET
 
-/datum/ego_gifts/pleasure
-	name = "Pleasure"
-	icon_state = "pleasure"
-	prudence_bonus = 10
-	temperance_bonus = -6
+/datum/ego_gifts/grasp
+	name = "Grasp"
+	icon_state = "grasp"
+	temperance_bonus = 3
+	justice_bonus = 1
 	slot = NECKWEAR
 
-/datum/ego_gifts/unrequited_love
-	name = "Unrequited Love"
-	icon_state = "unrequited_love"
-	fortitude_bonus = -2
-	prudence_bonus = 5
-	temperance_bonus = 5
-	justice_bonus = -2
+/datum/ego_gifts/grinder
+	name = "Grinder Mk4"
+	icon_state = "grinder"
+	temperance_bonus = 4
+	insight_mod = 3
+	slot = EYE
+
+/datum/ego_gifts/harmony
+	name = "Harmony"
+	icon_state = "harmony"
+	fortitude_bonus = 8
+	prudence_bonus = -4
 	slot = CHEEK
 
-/datum/ego_gifts/transmission
-	name = "Transmission"
-	icon_state = "transmission"
-	fortitude_bonus = 4
-	prudence_bonus = 2
-	temperance_bonus = -1
-	slot = HAT
-
-/datum/ego_gifts/metal
-	name = "Bare Metal"
-	icon_state = "metal"
-	fortitude_bonus = 1
-	prudence_bonus = 1
-	temperance_bonus = 1
-	justice_bonus = 1
-	slot = HAND_1
+/datum/ego_gifts/harvest
+	name = "Harvest"
+	icon_state = "harvest"
+	prudence_bonus = 4
+	slot = NECKWEAR
 
 /datum/ego_gifts/homing_instinct
 	name = "Homing Instinct"
@@ -723,13 +626,12 @@
 	justice_bonus = 5
 	slot = HAND_2
 
-/datum/ego_gifts/get_strong
-	name = "Screwloose"
-	icon_state = "get_strong"
+/datum/ego_gifts/impending_day
+	name = "Impending Day"
+	icon_state = "doomsday"
 	fortitude_bonus = 4
 	prudence_bonus = -2
-	temperance_bonus = -2
-	justice_bonus = 4
+	justice_bonus = 2
 	slot = HELMET
 
 /datum/ego_gifts/inheritance
@@ -741,20 +643,40 @@
 	justice_bonus = 3
 	slot = RIGHTBACK
 
-/datum/ego_gifts/replica
-	name = "Pinpoint Logic Circuit"
-	icon_state = "replica"
-	fortitude_bonus = -3
-	prudence_bonus = 1
+/datum/ego_gifts/legerdemain
+	name = "Legerdemain"
+	icon_state = "legerdemain"
+	fortitude_bonus = 2
+	prudence_bonus = 2
+	slot = HAND_1
+
+/datum/ego_gifts/lifestew
+	name = "Lifetime Stew"
+	icon_state = "lifestew"
+	fortitude_bonus = 1
+	temperance_bonus = 3
+	slot = HELMET
+
+/datum/ego_gifts/loggging
+	name = "Logging"
+	icon_state = "loggging"
+	fortitude_bonus = 2
 	temperance_bonus = 2
-	justice_bonus = 4
 	slot = BROOCH
 
-/datum/ego_gifts/grasp
-	name = "Grasp"
-	icon_state = "grasp"
-	temperance_bonus = 3
-	justice_bonus = 1
+/datum/ego_gifts/magicbullet
+	name = "Magic Bullet"
+	icon_state = "magicbullet"
+	fortitude_bonus = -5
+	prudence_bonus = -5
+	justice_bonus = 10
+	slot = MOUTH_2
+
+/datum/ego_gifts/maneater
+	name = "Man Eater"
+	icon_state = "maneater"
+	fortitude_bonus = 2
+	temperance_bonus = 2
 	slot = NECKWEAR
 
 /datum/ego_gifts/marionette
@@ -765,6 +687,58 @@
 	justice_bonus = -2
 	slot = FACE
 
+/datum/ego_gifts/metal
+	name = "Bare Metal"
+	icon_state = "metal"
+	fortitude_bonus = 1
+	prudence_bonus = 1
+	temperance_bonus = 1
+	justice_bonus = 1
+	slot = HAND_1
+
+/datum/ego_gifts/nixie
+	name = "Nixie Divergence"
+	icon_state = "nixie"
+	slot = HAND_1
+	fortitude_bonus  = 2
+	justice_bonus = 2
+
+/datum/ego_gifts/oppression
+	name = "Oppression"
+	icon_state = "oppression"
+	prudence_bonus = 2
+	justice_bonus = 2
+	slot = MOUTH_1
+
+/datum/ego_gifts/pleasure
+	name = "Pleasure"
+	icon_state = "pleasure"
+	prudence_bonus = 10
+	temperance_bonus = -6
+	slot = NECKWEAR
+
+/datum/ego_gifts/prank
+	name = "Funny Prank"
+	icon_state = "prank"
+	prudence_bonus = 4
+	slot = HELMET
+
+/datum/ego_gifts/remorse // All it takes is a single crack in one's psyche...
+	name = "Remorse"
+	icon_state = "remorse"
+	prudence_bonus = 10
+	justice_bonus = -5
+	slot = BROOCH
+
+/datum/ego_gifts/replica
+	name = "Pinpoint Logic Circuit"
+	icon_state = "replica"
+	fortitude_bonus = -3
+	prudence_bonus = 1
+	temperance_bonus = 2
+	justice_bonus = 4
+	slot = BROOCH
+
 /datum/ego_gifts/roseate_desire
 	name = "Roseate Desire"
 	icon_state = "roseate_desire"
@@ -773,33 +747,28 @@
 	justice_bonus = 4
 	slot = EYE
 
+/datum/ego_gifts/solemnlament
+	name = "Solemn Lament"
+	icon_state = "solemnlament"
+	fortitude_bonus = 1
+	prudence_bonus = 1
+	temperance_bonus = 1
+	justice_bonus = 1
+	slot = RIGHTBACK
+
+/datum/ego_gifts/song
+	name = "Song of the Past"
+	icon_state = "song"
+	prudence_bonus = 2
+	justice_bonus = 2
+	slot = CHEEK
+
 /datum/ego_gifts/split
 	name = "Split"
 	icon_state = "split"
 	fortitude_bonus = 2
 	temperance_bonus = 2
 	slot = MOUTH_1
-
-/datum/ego_gifts/fluid_sac
-	name = "Fluid Sac"
-	icon_state = "fluid_sac"
-	fortitude_bonus = 2
-	temperance_bonus = 2
-	slot = MOUTH_2
-
-/datum/ego_gifts/warp
-	name = "Blue Zippo Lighter"
-	icon_state = "warp"
-	fortitude_bonus  = 4
-	justice_bonus = 2
-	slot = HAND_2
-
-/datum/ego_gifts/lifestew
-	name = "Lifetime Stew"
-	icon_state = "lifestew"
-	fortitude_bonus = 1
-	temperance_bonus = 3
-	slot = HELMET
 
 /datum/ego_gifts/syrinx // Your reward for dealing with one of the worst abnormalities ever
 	name = "Syrinx"
@@ -810,19 +779,36 @@
 	prudence_bonus = 1
 
 /datum/ego_gifts/syrinx/Initialize(mob/living/carbon/human/user) // grants resistance
-	.=..()
+	. = ..()
 	user.physiology.white_mod *= 0.95
 
 /datum/ego_gifts/syrinx/Remove(mob/living/carbon/human/user)
 	user.physiology.white_mod /= 0.95
-	.=..()
+	return ..()
 
-/datum/ego_gifts/nixie
-	name = "Nixie Divergence"
-	icon_state = "nixie"
-	slot = HAND_1
-	fortitude_bonus  = 2
-	justice_bonus = 2
+/datum/ego_gifts/totalitarianism
+	name = "Totalitarianism"
+	icon_state = "totalitarianism"
+	fortitude_bonus = 2
+	temperance_bonus = 2
+	slot = CHEEK
+
+/datum/ego_gifts/transmission
+	name = "Transmission"
+	icon_state = "transmission"
+	fortitude_bonus = 4
+	prudence_bonus = 2
+	temperance_bonus = -1
+	slot = HAT
+
+/datum/ego_gifts/unrequited_love
+	name = "Unrequited Love"
+	icon_state = "unrequited_love"
+	fortitude_bonus = -2
+	prudence_bonus = 5
+	temperance_bonus = 5
+	justice_bonus = -2
+	slot = CHEEK
 
 /datum/ego_gifts/uturn
 	name = "Milepost of Survival"
@@ -838,68 +824,30 @@
 	fortitude_bonus  = 2
 	justice_bonus = 2
 
-/// All WAW EGO Gifts
-/datum/ego_gifts/correctional
-	name = "Correctional"
-	icon_state = "correctional"
-	fortitude_bonus = 3
-	justice_bonus = 3
-	slot = FACE
-
-/datum/ego_gifts/hornet
-	name = "Hornet"
-	icon_state = "hornet"
+/datum/ego_gifts/waltz // Locked to Champions only, so Improved it
+	name = "Flower Waltz"
+	icon_state = "waltz"
 	fortitude_bonus = 2
-	prudence_bonus = 4
-	slot = HELMET
-
-/datum/ego_gifts/justitia
-	name = "Justitia"
-	icon_state = "justitia"
-	justice_bonus = 6
-	repression_mod = 6
-	slot = EYE
-
-/datum/ego_gifts/love_and_hate
-	name = "In the Name of Love and Hate"
-	icon_state = "lovehate"
-	temperance_bonus = 2
-	justice_bonus = 4
-	slot = HAT
-
-/datum/ego_gifts/tears
-	name = "Sword Sharpened With Tears"
-	icon_state = "tears"
 	prudence_bonus = 2
-	justice_bonus = 4
-	slot = CHEEK
-
-/datum/ego_gifts/lamp
-	name = "Lamp"
-	icon_state = "lamp"
-	prudence_bonus = 3
-	temperance_bonus = 3
+	justice_bonus = 2
 	slot = HELMET
 
-/datum/ego_gifts/crimson
-	name = "Crimson Scar"
-	icon_state = "crimson"
-	fortitude_bonus = 3
-	justice_bonus = 3
-	slot = MOUTH_1
-
-/datum/ego_gifts/cobalt
-	name = "Cobalt Scar"
-	icon_state = "cobalt"
-	fortitude_bonus = 4
+/datum/ego_gifts/warp
+	name = "Blue Zippo Lighter"
+	icon_state = "warp"
+	fortitude_bonus  = 4
 	justice_bonus = 2
-	slot = FACE
+	slot = HAND_2
 
-/datum/ego_gifts/goldrush
-	name = "Gold Rush"
-	icon_state = "goldrush"
-	fortitude_bonus = 6
-	instinct_mod = 6
+/**
+ * WAW EGO Gifts
+ */
+
+/datum/ego_gifts/amrita
+	name = "Amrita"
+	icon_state = "amrita"
+	fortitude_bonus = 10
+	prudence_bonus = -4
 	slot = HAND_1
 
 // Converts 10% of WHITE damage taken(before armor calculations!) as health
@@ -928,67 +876,12 @@
 		return
 	owner.adjustBruteLoss(-damage*0.1)
 
-/datum/ego_gifts/stem
-	name = "Green Stem"
-	icon_state = "green_stem"
-	prudence_bonus = 6 //originally a SP bonus
-	slot = BROOCH
-
-/datum/ego_gifts/exuviae
-	name = "Exuviae"
-	icon_state = "exuviae"
+/datum/ego_gifts/assonance
+	name = "Assonance"
+	icon_state = "assonance"
 	prudence_bonus = 2
-	fortitude_bonus = 5
-	slot = HAND_2
-
-/datum/ego_gifts/warring
-	name = "Feather of Valor"
-	icon_state = "warring"
-	fortitude_bonus = 2
-	justice_bonus = 4
-	slot = HAT
-
-/datum/ego_gifts/ebony_stem
-	name = "Ebony Stem"
-	icon_state = "ebony_stem"
-	prudence_bonus = 4
+	temperance_bonus = 2
 	justice_bonus = 2
-	slot = NECKWEAR
-
-/datum/ego_gifts/feather
-	name = "Feather of Honor"
-	icon_state = "feather"
-	prudence_bonus = 2
-	justice_bonus = 4
-	slot = HAT
-
-/datum/ego_gifts/darkcarnival
-	name = "Dark Carnival"
-	icon_state = "dark_carnival"
-	temperance_bonus = 4
-	prudence_bonus = 4
-	justice_bonus = -2
-	slot = FACE
-
-/datum/ego_gifts/spore
-	name = "Spore"
-	icon_state = "spore"
-	prudence_bonus = 5
-	temperance_bonus = 2
-	slot = HAND_2
-
-/datum/ego_gifts/dipsia
-	name = "Dipsia"
-	icon_state = "dipsia"
-	fortitude_bonus = 4
-	temperance_bonus = 2
-	slot = FACE
-
-/datum/ego_gifts/blind_rage
-	name = "Blind Rage"
-	icon_state = "blind_rage"
-	fortitude_bonus = 2
-	justice_bonus = 4
 	slot = HAT
 
 /datum/ego_gifts/blahaj
@@ -999,47 +892,74 @@
 	temperance_bonus = 5
 	slot = RIGHTBACK
 
-/datum/ego_gifts/pharaoh
-	name = "Pharaoh"
-	icon_state = "pharaoh"
-	prudence_bonus = 6
-	slot = MOUTH_1
+/datum/ego_gifts/blind_obsession
+	name = "Blind Obsession"
+	icon_state = "slitcurrent"
+	temperance_bonus = -5//People are going to hate this.
+	justice_bonus = 12
+	slot = HAT
 
-/datum/ego_gifts/ecstasy
-	name = "Ecstasy"
-	icon_state = "ecstasy"
-	prudence_bonus = 6
+/datum/ego_gifts/blind_rage
+	name = "Blind Rage"
+	icon_state = "blind_rage"
+	fortitude_bonus = 2
+	justice_bonus = 4
+	slot = HAT
+
+/datum/ego_gifts/bride
+	name = "Bride"
+	icon_state = "bride"
+	prudence_bonus = 2
+	temperance_bonus = 5
+	slot = HAT
+
+/datum/ego_gifts/cobalt
+	name = "Cobalt Scar"
+	icon_state = "cobalt"
+	fortitude_bonus = 4
+	justice_bonus = 2
+	slot = FACE
+
+/datum/ego_gifts/coiling
+	name = "Coiling"
+	icon_state = "coiling"
+	fortitude_bonus = 5
 	slot = MOUTH_2
 
-/datum/ego_gifts/loyalty
-	name = "Loyalty"
-	icon_state = "loyalty"
-	fortitude_bonus = 10
-	prudence_bonus = -4
-	slot = BROOCH
+/datum/ego_gifts/correctional
+	name = "Correctional"
+	icon_state = "correctional"
+	fortitude_bonus = 3
+	justice_bonus = 3
+	slot = FACE
 
-/datum/ego_gifts/executive
-	name = "Executive"
-	icon_state = "executive"
-	prudence_bonus = 8
+/datum/ego_gifts/crimson
+	name = "Crimson Scar"
+	icon_state = "crimson"
+	fortitude_bonus = 3
+	justice_bonus = 3
+	slot = MOUTH_1
+
+/datum/ego_gifts/darkcarnival
+	name = "Dark Carnival"
+	icon_state = "dark_carnival"
+	temperance_bonus = 4
+	prudence_bonus = 4
 	justice_bonus = -2
-	slot = HAND_2
+	slot = FACE
 
-/datum/ego_gifts/thirteen
-	name = "Thirteen"
-	icon_state = "thirteen"
-	fortitude_bonus = 4
-	prudence_bonus = -2
-	justice_bonus = 4
+/datum/ego_gifts/diffraction
+	name = "Diffraction"
+	icon_state = "diffraction"
+	prudence_bonus = 6
 	slot = HELMET
 
-/datum/ego_gifts/assonance
-	name = "Assonance"
-	icon_state = "assonance"
-	prudence_bonus = 2
+/datum/ego_gifts/dipsia
+	name = "Dipsia"
+	icon_state = "dipsia"
+	fortitude_bonus = 4
 	temperance_bonus = 2
-	justice_bonus = 2
-	slot = HAT
+	slot = FACE
 
 /datum/ego_gifts/discord
 	name = "Discord"
@@ -1049,22 +969,46 @@
 	justice_bonus = 20
 	slot = HELMET
 
-/datum/ego_gifts/diffraction
-	name = "Diffraction"
-	icon_state = "diffraction"
-	prudence_bonus = 6
-	slot = HELMET
+/datum/ego_gifts/ebony_stem
+	name = "Ebony Stem"
+	icon_state = "ebony_stem"
+	prudence_bonus = 4
+	justice_bonus = 2
+	slot = NECKWEAR
 
-/datum/ego_gifts/moonlight
-	name = "Moonlight"
-	icon_state = "moonlight"
-	fortitude_bonus = 1
-	instinct_mod = 1
-	prudence_bonus = 1
-	insight_mod = 1
-	temperance_bonus = 1
-	justice_bonus = 1
-	slot = BROOCH
+/datum/ego_gifts/ecstasy
+	name = "Ecstasy"
+	icon_state = "ecstasy"
+	prudence_bonus = 6
+	slot = MOUTH_2
+
+/datum/ego_gifts/executive
+	name = "Executive"
+	icon_state = "executive"
+	prudence_bonus = 8
+	justice_bonus = -2
+	slot = HAND_2
+
+/datum/ego_gifts/exuviae
+	name = "Exuviae"
+	icon_state = "exuviae"
+	prudence_bonus = 2
+	fortitude_bonus = 5
+	slot = HAND_2
+
+/datum/ego_gifts/feather
+	name = "Feather of Honor"
+	icon_state = "feather"
+	prudence_bonus = 2
+	justice_bonus = 4
+	slot = HAT
+
+/datum/ego_gifts/goldrush
+	name = "Gold Rush"
+	icon_state = "goldrush"
+	fortitude_bonus = 6
+	instinct_mod = 6
+	slot = HAND_1
 
 /datum/ego_gifts/heart
 	name = "Heart"
@@ -1073,12 +1017,12 @@
 	justice_bonus = 3
 	slot = HAND_1
 
-/datum/ego_gifts/infinity
-	name = "Infinity"
-	icon_state = "infinity"
-	temperance_bonus = 2
-	justice_bonus = 4
-	slot = EYE
+/datum/ego_gifts/hornet
+	name = "Hornet"
+	icon_state = "hornet"
+	fortitude_bonus = 2
+	prudence_bonus = 4
+	slot = HELMET
 
 /datum/ego_gifts/hypocrisy
 	name = "Hypocrisy"
@@ -1099,14 +1043,12 @@
 	user.add_overlay(ear_overlay)
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, src.fortitude_bonus)
 	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, src.prudence_bonus)
-	return
 
 /datum/ego_gifts/hypocrisy/Remove(mob/living/carbon/human/user)
 	user.cut_overlay(ear_overlay)
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, (src.fortitude_bonus * -1))
 	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, (src.prudence_bonus * -1))
 	QDEL_NULL(src)
-	return
 
 /datum/ego_gifts/hypocrisy/Refresh_Gift_Sprite(option) //hide and unhide to update skin color.
 	switch(option)
@@ -1122,12 +1064,12 @@
 			owner.cut_overlay(ear_overlay)
 			visible = FALSE
 
-/datum/ego_gifts/amrita
-	name = "Amrita"
-	icon_state = "amrita"
-	fortitude_bonus = 10
-	prudence_bonus = -4
-	slot = HAND_1
+/datum/ego_gifts/infinity
+	name = "Infinity"
+	icon_state = "infinity"
+	temperance_bonus = 2
+	justice_bonus = 4
+	slot = EYE
 
 /datum/ego_gifts/innocence
 	name = "Innocence"
@@ -1136,19 +1078,50 @@
 	temperance_bonus = 3
 	slot = MOUTH_2
 
-/datum/ego_gifts/rimeshank
-	name = "Rimeshank"
-	icon_state = "rimeshank"
-	fortitude_bonus = 4
-	temperance_bonus = 2
-	slot = NECKWEAR
+/datum/ego_gifts/justitia
+	name = "Justitia"
+	icon_state = "justitia"
+	justice_bonus = 6
+	repression_mod = 6
+	slot = EYE
 
-/datum/ego_gifts/bride
-	name = "Bride"
-	icon_state = "bride"
-	prudence_bonus = 2
-	temperance_bonus = 5
+/datum/ego_gifts/lamp
+	name = "Lamp"
+	icon_state = "lamp"
+	prudence_bonus = 3
+	temperance_bonus = 3
+	slot = HELMET
+
+/datum/ego_gifts/love_and_hate
+	name = "In the Name of Love and Hate"
+	icon_state = "lovehate"
+	temperance_bonus = 2
+	justice_bonus = 4
 	slot = HAT
+
+/datum/ego_gifts/loyalty
+	name = "Loyalty"
+	icon_state = "loyalty"
+	fortitude_bonus = 10
+	prudence_bonus = -4
+	slot = BROOCH
+
+/datum/ego_gifts/moonlight
+	name = "Moonlight"
+	icon_state = "moonlight"
+	fortitude_bonus = 1
+	instinct_mod = 1
+	prudence_bonus = 1
+	insight_mod = 1
+	temperance_bonus = 1
+	justice_bonus = 1
+	slot = BROOCH
+
+/datum/ego_gifts/pharaoh
+	name = "Pharaoh"
+	icon_state = "pharaoh"
+	prudence_bonus = 6
+	slot = MOUTH_1
 
 /datum/ego_gifts/psychic
 	name = "Psychic Dagger"
@@ -1159,6 +1132,20 @@
 	justice_bonus = -1
 	slot = CHEEK
 
+/datum/ego_gifts/rimeshank
+	name = "Rimeshank"
+	icon_state = "rimeshank"
+	fortitude_bonus = 4
+	temperance_bonus = 2
+	slot = NECKWEAR
+
+/datum/ego_gifts/rosa
+	name = "Crown of Roses"
+	icon_state = "penitence"//TODO: make an actual sprite
+	prudence_bonus = 3
+	temperance_bonus = 3
+	slot = HAT
+
 /datum/ego_gifts/scene
 	name = "As Written in the Scenario"
 	icon_state = "scene"
@@ -1167,12 +1154,18 @@
 	justice_bonus = 4
 	slot = FACE
 
-/datum/ego_gifts/rosa
-	name = "Crown of Roses"
-	icon_state = "penitence"//TODO: make an actual sprite
-	prudence_bonus = 3
-	temperance_bonus = 3
-	slot = HAT
+/datum/ego_gifts/spore
+	name = "Spore"
+	icon_state = "spore"
+	prudence_bonus = 5
+	temperance_bonus = 2
+	slot = HAND_2
+
+/datum/ego_gifts/stem
+	name = "Green Stem"
+	icon_state = "green_stem"
+	prudence_bonus = 6 //originally a SP bonus
+	slot = BROOCH
 
 //reduces sanity and fortitude for a 10% buff to work success. Unfortunately this translates to 200 temp
 //so right now its 10 temp
@@ -1184,54 +1177,31 @@
 	temperance_bonus = 10
 	slot = HAT
 
-/datum/ego_gifts/coiling
-	name = "Coiling"
-	icon_state = "coiling"
-	fortitude_bonus = 5
-	slot = MOUTH_2
-
-/datum/ego_gifts/blind_obsession
-	name = "Blind Obsession"
-	icon_state = "slitcurrent"
-	temperance_bonus = -5//People are going to hate this.
-	justice_bonus = 12
-	slot = HAT
-
-/// All ALEPH EGO Gifts
-/datum/ego_gifts/paradise
-	name = "Paradise Lost"
-	icon_state = "paradiselost"
-	fortitude_bonus = 10
-	prudence_bonus = 10
-	justice_bonus = 10
-	slot = LEFTBACK
-
-/datum/ego_gifts/dacapo
-	name = "Da Capo"
-	icon_state = "dacapo"
-	temperance_bonus = 4
-	slot = EYE
-
-/datum/ego_gifts/mimicry
-	name = "Mimicry"
-	icon_state = "mimicry"
-	fortitude_bonus = 10
+/datum/ego_gifts/tears
+	name = "Sword Sharpened With Tears"
+	icon_state = "tears"
+	prudence_bonus = 2
+	justice_bonus = 4
 	slot = CHEEK
 
-/datum/ego_gifts/smile
-	name = "Smile"
-	icon_state = "smile"
-	fortitude_bonus = 5
-	prudence_bonus = 5
-	slot = EYE
+/datum/ego_gifts/thirteen
+	name = "Thirteen"
+	icon_state = "thirteen"
+	fortitude_bonus = 4
+	prudence_bonus = -2
+	justice_bonus = 4
+	slot = HELMET
 
-/datum/ego_gifts/amogus
-	name = "Imposter"
-	icon_state = "amogus"
-	fortitude_bonus = -5
-	prudence_bonus = -5
-	justice_bonus = 15
-	slot = EYE
+/datum/ego_gifts/warring
+	name = "Feather of Valor"
+	icon_state = "warring"
+	fortitude_bonus = 2
+	justice_bonus = 4
+	slot = HAT
+
+/**
+ * ALEPH EGO Gifts
+ */
 
 /datum/ego_gifts/adoration
 	name = "Adoration"
@@ -1241,10 +1211,12 @@
 	temperance_bonus = -5
 	slot = HELMET
 
-/datum/ego_gifts/star
-	name = "Sound of a Star"
-	icon_state = "star"
-	justice_bonus = 10
+/datum/ego_gifts/amogus
+	name = "Imposter"
+	icon_state = "amogus"
+	fortitude_bonus = -5
+	prudence_bonus = -5
+	justice_bonus = 15
 	slot = EYE
 
 /datum/ego_gifts/blossoming
@@ -1255,7 +1227,7 @@
 	slot = SPECIAL
 
 /datum/ego_gifts/blossoming/Initialize(mob/living/carbon/human/user) // As a boost, undoes the debuff it applies to you
-	.=..()
+	. = ..()
 	user.physiology.red_mod *= 0.9
 	user.physiology.white_mod *= 0.9
 	user.physiology.black_mod *= 0.9
@@ -1266,7 +1238,7 @@
 	user.physiology.white_mod /= 0.9
 	user.physiology.black_mod /= 0.9
 	user.physiology.pale_mod /= 0.9
-	.=..()
+	return ..()
 
 /datum/ego_gifts/censored
 	name = "CENSORED"
@@ -1274,46 +1246,10 @@
 	prudence_bonus = 10
 	slot = EYE
 
-/datum/ego_gifts/space
-	name = "Space"
-	icon_state = "space"
-	fortitude_bonus = -5
-	prudence_bonus = 15
-	slot = FACE
-
-/datum/ego_gifts/soulmate
-	name = "Soulmate"
-	icon_state = "soulmate"
-	fortitude_bonus = 15
-	justice_bonus = -5
-	slot = HELMET
-
-/datum/ego_gifts/nihil //May be subject to change when the event is added proper
-	name = "Nihil"
-	icon_state = "nihil"
-	fortitude_bonus = 10
-	temperance_bonus = 10
-	justice_bonus = 10
-	slot = HAT
-
-/datum/ego_gifts/seasons
-	name = "Season's Greetings"
-	icon_state = "seasons"
-	prudence_bonus = 10
-	slot = HAND_2
-
-/datum/ego_gifts/pink
-	name = "Pink"
-	icon_state = "pink"
-	justice_bonus = 10
-	slot = HELMET
-
-/datum/ego_gifts/inconsolable
-	name = "Inconsolable Grief"
-	icon_state = "inconsolable"
-	fortitude_bonus = 10
-	prudence_bonus = -5
-	justice_bonus = 5
+/datum/ego_gifts/dacapo
+	name = "Da Capo"
+	icon_state = "dacapo"
+	temperance_bonus = 4
 	slot = EYE
 
 /datum/ego_gifts/distortion
@@ -1325,6 +1261,20 @@
 	justice_bonus = 2
 	slot = BROOCH
 
+/datum/ego_gifts/inconsolable
+	name = "Inconsolable Grief"
+	icon_state = "inconsolable"
+	fortitude_bonus = 10
+	prudence_bonus = -5
+	justice_bonus = 5
+	slot = EYE
+
+/datum/ego_gifts/mimicry
+	name = "Mimicry"
+	icon_state = "mimicry"
+	fortitude_bonus = 10
+	slot = CHEEK
+
 /datum/ego_gifts/mockery
 	name = "Mockery"
 	icon_state = "mockery"
@@ -1332,15 +1282,64 @@
 	prudence_bonus = 5
 	slot = HAND_1
 
-/// All Event EGO Gifts
-/datum/ego_gifts/twilight
-	name = "Twilight"
-	icon_state = "twilight"
-	fortitude_bonus = 7
-	prudence_bonus = 7
-	temperance_bonus = 7
-	justice_bonus = 7
-	slot = RIGHTBACK
+/datum/ego_gifts/nihil //May be subject to change when the event is added proper
+	name = "Nihil"
+	icon_state = "nihil"
+	fortitude_bonus = 10
+	temperance_bonus = 10
+	justice_bonus = 10
+	slot = HAT
+
+/datum/ego_gifts/paradise
+	name = "Paradise Lost"
+	icon_state = "paradiselost"
+	fortitude_bonus = 10
+	prudence_bonus = 10
+	justice_bonus = 10
+	slot = LEFTBACK
+
+/datum/ego_gifts/pink
+	name = "Pink"
+	icon_state = "pink"
+	justice_bonus = 10
+	slot = HELMET
+
+/datum/ego_gifts/seasons
+	name = "Season's Greetings"
+	icon_state = "seasons"
+	prudence_bonus = 10
+	slot = HAND_2
+
+/datum/ego_gifts/smile
+	name = "Smile"
+	icon_state = "smile"
+	fortitude_bonus = 5
+	prudence_bonus = 5
+	slot = EYE
+
+/datum/ego_gifts/soulmate
+	name = "Soulmate"
+	icon_state = "soulmate"
+	fortitude_bonus = 15
+	justice_bonus = -5
+	slot = HELMET
+
+/datum/ego_gifts/space
+	name = "Space"
+	icon_state = "space"
+	fortitude_bonus = -5
+	prudence_bonus = 15
+	slot = FACE
+
+/datum/ego_gifts/star
+	name = "Sound of a Star"
+	icon_state = "star"
+	justice_bonus = 10
+	slot = EYE
+
+/**
+ * Event EGO Gifts
+ */
 
 /datum/ego_gifts/blessing
 	name = "Blessing"
@@ -1353,12 +1352,12 @@
 	slot = SPECIAL
 
 /datum/ego_gifts/blessing/Initialize(mob/living/carbon/human/user) // Lowered Stats but Pale Resist
-	.=..()
+	. = ..()
 	user.physiology.pale_mod *= 0.8
 
 /datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
 	user.physiology.pale_mod /= 0.8
-	.=..()
+	return ..()
 
 /datum/ego_gifts/fervor
 	name = "Fervor"
@@ -1371,7 +1370,7 @@
 	slot = SPECIAL
 
 /datum/ego_gifts/fervor/Initialize(mob/living/carbon/human/user) // Lowered Stats but grants resistance
-	.=..()
+	. = ..()
 	user.physiology.red_mod *= 0.95
 	user.physiology.white_mod *= 0.95
 	user.physiology.black_mod *= 0.95
@@ -1382,4 +1381,13 @@
 	user.physiology.white_mod /= 0.95
 	user.physiology.black_mod /= 0.95
 	user.physiology.pale_mod /= 0.95
-	.=..()
+	return ..()
+
+/datum/ego_gifts/twilight
+	name = "Twilight"
+	icon_state = "twilight"
+	fortitude_bonus = 7
+	prudence_bonus = 7
+	temperance_bonus = 7
+	justice_bonus = 7
+	slot = RIGHTBACK
