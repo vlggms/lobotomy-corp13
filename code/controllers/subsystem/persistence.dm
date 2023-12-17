@@ -183,7 +183,7 @@ SUBSYSTEM_DEF(persistence)
 	pe_status = json_decode(json)
 
 /datum/controller/subsystem/persistence/proc/LoadAbnoPicks()
-	abno_rates = typecacheof(/mob/living/simple_animal/hostile/abnormality, TRUE)
+	abno_rates = typecacheof(/mob/living/simple_animal/hostile/abnormality, FALSE, TRUE)
 	var/mode = "AbnormalityRates"
 	if(SSticker.mode)
 		var/datum/game_mode/gm = SSticker.mode
@@ -196,6 +196,8 @@ SUBSYSTEM_DEF(persistence)
 	else
 		var/list/pick_rates = json_decode(json)
 		for(var/path in pick_rates)
+			if(text2path(path) == /mob/living/simple_animal/hostile/abnormality)
+				continue
 			abno_rates[text2path(path)] = pick_rates[path]
 
 /datum/controller/subsystem/persistence/proc/SetUpTrophies(list/trophy_items)
