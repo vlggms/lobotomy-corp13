@@ -35,7 +35,7 @@
 	if(reach>1)
 		. += "<span class='notice'>This weapon has a reach of [reach].</span>"
 
-	if(throwforce>0)
+	if(throwforce>force)
 		. += "<span class='notice'>This weapon deals [throwforce] [damtype] damage when thrown.</span>"
 
 	if(!attack_speed)

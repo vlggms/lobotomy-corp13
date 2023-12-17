@@ -1885,7 +1885,7 @@
 		addtimer(CALLBACK(src, .proc/PowerReset), 18,user)//prevents storing 3 powered up anchors and unloading all of them at once
 
 /obj/item/ego_weapon/blind_obsession/proc/PowerReset(mob/user)
-	to_chat(user, span_warning("You lose your strength behind this attack."))
+	to_chat(user, span_warning("You lose your balance while holding [src]."))
 	charged = FALSE
 	speed_slowdown = 0
 	throwforce = 80
