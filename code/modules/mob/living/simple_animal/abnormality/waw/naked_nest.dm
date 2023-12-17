@@ -50,12 +50,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(30 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
+	if(prob(30 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(60 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
+	if(prob(60 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
