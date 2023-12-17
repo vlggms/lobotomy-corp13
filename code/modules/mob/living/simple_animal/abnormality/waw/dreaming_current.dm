@@ -37,6 +37,10 @@
 	gift_type = /datum/ego_gifts/ecstasy
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/siltcurrent = 2
+	)
+
 	var/list/movement_path = list()
 	var/list/been_hit = list()
 	var/charging = FALSE

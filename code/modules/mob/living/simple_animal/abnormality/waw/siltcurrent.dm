@@ -1,6 +1,6 @@
 //Dream-Devouring Siltcurrent would be a breach that forces you to either try to kill it from it hitting the tubes or using the tubes to make you last longer.
 //When out you're on a timer due to everyone on the floor it's on taking oxygen damage.
-
+//Please don't make an Ikea shark alt skin for this-Crabby.
 /mob/living/simple_animal/hostile/abnormality/siltcurrent
 	name = "\proper Dream-Devouring Siltcurrent"
 	desc = "An abnormality resembling a giant black and teal fish. \
@@ -52,6 +52,11 @@
 		)
 	gift_type = /datum/ego_gifts/blind_obsession
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/dreaming_current = 2,//both are heavily related
+		/mob/living/simple_animal/hostile/abnormality/pisc_mermaid = 1.5//both are aquatic abormalities, do oxygen damage while breaching, have water turf in their chambers, and both of their themes are the inverse of the other.
+	)
 
 	var/stunned = FALSE
 	//Stuff relating to the dive attack
