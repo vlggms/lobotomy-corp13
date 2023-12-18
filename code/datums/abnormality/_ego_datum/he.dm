@@ -444,8 +444,8 @@
 
 	cost = 35
 // Drifting Fox - Sunshower
-/datum/ego_datum/weapon/split
-	item_path = /obj/item/ego_weapon/sunshower
+/datum/ego_datum/armor/sunshower
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/sunshower
 	cost = 35
 
 /datum/ego_datum/weapon/sunshower
