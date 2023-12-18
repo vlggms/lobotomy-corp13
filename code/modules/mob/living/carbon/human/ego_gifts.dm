@@ -1341,12 +1341,6 @@
 /**
  * Event EGO Gifts
  */
-/datum/ego_gifts/sunshower
-name = "Ruined Umbrella"
-icon_state = "sunshower"
-temperance_bonus = 10
-justice_bonus = -5
-slot = LEFTBACK
 
 /// All Event EGO Gifts
 /datum/ego_gifts/twilight
