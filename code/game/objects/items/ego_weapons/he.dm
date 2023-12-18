@@ -1748,3 +1748,38 @@
 
 /obj/item/ego_weapon/nixie/get_clamped_volume()
 	return 50
+
+/obj/item/ego_weapon/sunshower //TD
+	name = "sunshower"
+	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
+	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
+	icon_state = "sunshower"
+	force = 17
+	attack_speed = 0.5
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/poise = 0
+
+/obj/item/ego_weapon/sunshower/examine(mob/user)
+	. = ..()
+	. += "Current Poise: [poise]/20."
+
+/obj/item/ego_weapon/sunshower/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	poise+=1
+	if(poise>= 20)
+		poise = 20
+
+	//Crit stuff, taken from fourleaf, so thanks to whomever coded that!
+	if(prob(poise*2))
+		force*=3
+		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		poise = 0
+	..()
+	force = initial(force)

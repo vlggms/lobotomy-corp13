@@ -839,6 +839,14 @@
 	justice_bonus = 2
 	slot = HAND_2
 
+/datum/ego_gifts/sunshower
+	name = "Sunshower"
+	icon_state = "sunshower"
+	temperance_bonus = 5
+	justice_bonus = -2
+	prudence_bonus = -2
+	slot = LEFTBACK
+
 /**
  * WAW EGO Gifts
  */

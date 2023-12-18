@@ -490,3 +490,13 @@
 		"When a certain amount of time passed, the abnormality \"activated\". Each activation increased the severity of the activation effects.",
 		"When activated, the abnormality's maximum Qliphoth counter lowered, all work types became less effective, work damage increased, and the abnormality generally became more aggressive.",
 		"At 1 hour and 15 minutes the maximum Qliphoth counter reduced to 1 and the abnormality became extremely dangerous.")
+
+//Drifting Fox
+/obj/item/paper/fluff/info/he/drifting_fox
+	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
+	abno_code = "T-02-173"
+	abno_info = list(
+		"It was noted that working on T-02-11-03 with a temperance level of less than 2 lowered the Qliphoth counter",
+		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the abnormalilty",
+		"When the work result was bad, the Qliphoth counter lowered.")
+
