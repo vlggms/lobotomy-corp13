@@ -497,6 +497,6 @@
 	abno_code = "T-02-173"
 	abno_info = list(
 		"It was noted that working on T-02-11-03 with a temperance level of less than 2 lowered the Qliphoth counter.",
-		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the abnormalilty when completeing attachment work.",
+		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the Abnormality when completing Attachment work.",
 		"When the work result was bad, the Qliphoth counter lowered.")
 
