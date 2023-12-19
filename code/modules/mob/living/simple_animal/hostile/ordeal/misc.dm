@@ -23,7 +23,7 @@
 				/mob/living/simple_animal/hostile/abnormality/distortedform,
 				/mob/living/simple_animal/hostile/abnormality/white_night,
 				/mob/living/simple_animal/hostile/abnormality/hatred_queen,
-				/mob/living/simple_animal/hostile/abnormality/servant_wrath)
+				/mob/living/simple_animal/hostile/abnormality/wrath_servant)
 
 
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/Initialize()

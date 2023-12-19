@@ -430,7 +430,7 @@
 			return ..()
 		damage_mod = LV.toxLethality * 100
 	metabolization_rate = max(volume * REAGENTS_METABOLISM, REAGENTS_METABOLISM)
-	M.apply_damage(volume*REAGENTS_METABOLISM*damage_mod, RED_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	M.apply_damage(volume*REAGENTS_METABOLISM*damage_mod, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	if(ishuman(M))
 		if(DT_PROB(3, 6))
 			var/mob/living/carbon/human/H = M
