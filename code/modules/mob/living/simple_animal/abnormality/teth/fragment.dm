@@ -38,12 +38,12 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
-	var/song_damage = 4 // Dealt 8 times
+	var/song_damage = 5 // Dealt 8 times
 	var/can_act = TRUE
 
 	//Visual/Animation Vars
 	var/obj/effect/fragment_legs/legs
-	var/obj/particle_emitter/fragment_note/particle_notes
+	var/obj/particle_emitter/fragment_note/particle_note
 	var/obj/particle_emitter/fragment_song/particle_song
 
 	//PLAYABLES ACTIONS
@@ -71,9 +71,11 @@
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Destroy()
 	QDEL_NULL(legs)
-	QDEL_NULL(particle_notes)
-	QDEL_NULL(particle_song)
-	. = ..()
+	particle_note.enable(FALSE)
+	particle_song.enable(FALSE)
+	QDEL_IN(particle_note,6)
+	QDEL_IN(particle_song,12)
+	return = ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
 	if(!can_act)
@@ -91,18 +93,18 @@
 	if(song_cooldown > world.time)
 		return
 	can_act = FALSE
-	flick("fragment_song_start" , src)
+	flick("fragment_song_transition" , src)
 	SLEEP_CHECK_DEATH(5)
+
 	legs = new(get_turf(src))
 	icon_state = "fragment_song_head"
 	pixel_y = 5
-	particle_notes = new(get_turf(src))
-	particle_notes.pixel_y = 26
+	particle_note = new(get_turf(src))
+	particle_note.pixel_y = 26
 	particle_song = new(get_turf(src))
 	particle_song.pixel_y = 26
 	playsound(get_turf(src), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
 	for(var/i = 1 to 8)
-
 		//Animation for bobbing the head left to right
 		switch(i)
 			if(1)
@@ -113,6 +115,7 @@
 				animate(src, transform = turn(matrix(), 90), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
 			if(7)
 				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN )
+		//Animation -END-
 
 		for(var/mob/living/L in view(8, src))
 			if(faction_check_mob(L, FALSE))
@@ -121,12 +124,15 @@
 				continue
 			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		SLEEP_CHECK_DEATH(3)
+
 	animate(src, pixel_y = 0, time = 0)
 	icon_state = "fragment_breach"
 	pixel_y = 0
 	QDEL_NULL(legs)
-	QDEL_NULL(particle_notes)
-	QDEL_NULL(particle_song)
+	particle_note.enable(FALSE)
+	particle_song.enable(FALSE)
+	QDEL_IN(particle_note,6)
+	QDEL_IN(particle_song,12)
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
 
