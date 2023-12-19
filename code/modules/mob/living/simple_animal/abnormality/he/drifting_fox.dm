@@ -21,7 +21,7 @@
 	move_to_delay = 2
 	damage_coeff = list( RED_DAMAGE = 0.9, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5 )
 	melee_damage_lower = 5
-	melee_damage_upper = 35 // Idea taken from the old PR, have a large damage range to immitate its fucked rolls and crit chance.
+	melee_damage_upper = 15 // Idea taken from the old PR, have a large damage range to immitate its fucked rolls and crit chance.
 	melee_damage_type = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/drifting_fox/fox_melee_sound.ogg'
@@ -95,7 +95,7 @@
 	id = "false_kindness"
 	duration = 2 SECONDS //lasts 2 seconds becuase this is for an AI that attacks fast as shit, its not meant to fuck you up with other things.
 	alert_type = /atom/movable/screen/alert/status_effect/false_kindness
-	status_type = STATUS_EFFECT_UNIQUE
+	status_type = STATUS_EFFECT_REFRESH
 
 /atom/movable/screen/alert/status_effect/false_kindness
 	name = "False Kindness"
