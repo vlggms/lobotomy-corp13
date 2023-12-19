@@ -71,11 +71,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Destroy()
 	QDEL_NULL(legs)
-	particle_note.enable(FALSE)
-	particle_song.enable(FALSE)
-	QDEL_IN(particle_note,6)
-	QDEL_IN(particle_song,12)
-	return = ..()
+	particle_note.fadeout()
+	particle_song.fadeout()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
 	if(!can_act)
@@ -108,13 +106,13 @@
 		//Animation for bobbing the head left to right
 		switch(i)
 			if(1)
-				animate(src, transform = turn(matrix(), -90), time = 6, flags = SINE_EASING | EASE_OUT )
+				animate(src, transform = turn(matrix(), -70), time = 7, flags = SINE_EASING | EASE_OUT )
 			if(3)
-				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
+				animate(src, transform = turn(matrix(), 0), time = 5, flags = SINE_EASING | EASE_IN | EASE_OUT )
 			if(5)
-				animate(src, transform = turn(matrix(), 90), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
+				animate(src, transform = turn(matrix(), 70), time = 7, flags = SINE_EASING | EASE_IN | EASE_OUT )
 			if(7)
-				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN )
+				animate(src, transform = turn(matrix(), 0), time = 5, flags = SINE_EASING | EASE_IN )
 		//Animation -END-
 
 		for(var/mob/living/L in view(8, src))
@@ -126,13 +124,13 @@
 		SLEEP_CHECK_DEATH(3)
 
 	animate(src, pixel_y = 0, time = 0)
+	flick("fragment_song_transition" , src)
+	SLEEP_CHECK_DEATH(5)
 	icon_state = "fragment_breach"
 	pixel_y = 0
 	QDEL_NULL(legs)
-	particle_note.enable(FALSE)
-	particle_song.enable(FALSE)
-	QDEL_IN(particle_note,6)
-	QDEL_IN(particle_song,12)
+	particle_note.fadeout()
+	particle_song.fadeout()
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
 
