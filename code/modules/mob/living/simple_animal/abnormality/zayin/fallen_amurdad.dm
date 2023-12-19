@@ -73,13 +73,6 @@
 			break
 
 // Pink Midnight stuff
-/*
-	Will be implemented later, currently has the issue of spawning all projectiles below itself
-	This can allow for someone to be hit by all of the projectiles at once before it calls fire() on the projectile
-	This causes a runtime and makes it so the item does not trigger itself as if it had exploded.
-	It also makes it massively more effective than it should be.
-*/
-
 /mob/living/simple_animal/hostile/abnormality/fallen_amurdad/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		var/turf/DC = pick(GLOB.department_centers)
