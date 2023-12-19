@@ -325,6 +325,7 @@
 //***Breach Roses***//
 
 /mob/living/simple_animal/hostile/rose_summoned
+	mob_size = MOB_SIZE_HUGE
 	gender = NEUTER
 	name = "Blank rose"
 	desc = "You shouldn't see this"
