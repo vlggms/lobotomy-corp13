@@ -106,13 +106,13 @@
 		//Animation for bobbing the head left to right
 		switch(i)
 			if(1)
-				animate(src, transform = turn(matrix(), -70), time = 7, flags = SINE_EASING | EASE_OUT )
+				animate(src, transform = turn(matrix(), -70), time = 6, flags = SINE_EASING | EASE_OUT )
 			if(3)
-				animate(src, transform = turn(matrix(), 0), time = 5, flags = SINE_EASING | EASE_IN | EASE_OUT )
+				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
 			if(5)
-				animate(src, transform = turn(matrix(), 70), time = 7, flags = SINE_EASING | EASE_IN | EASE_OUT )
+				animate(src, transform = turn(matrix(), 70), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
 			if(7)
-				animate(src, transform = turn(matrix(), 0), time = 5, flags = SINE_EASING | EASE_IN )
+				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN )
 		//Animation -END-
 
 		for(var/mob/living/L in view(8, src))
