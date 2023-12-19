@@ -84,11 +84,9 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/AttackingTarget(atom/attacked_target)
-	. = ..()
-	if(!ishuman(target))
-		return..()
-	var/mob/living/carbon/human/L = target
-	L.apply_status_effect(STATUS_EFFECT_FALSEKIND)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.apply_status_effect(STATUS_EFFECT_FALSEKIND)
 	return ..()
 
 /datum/status_effect/false_kindness // MAYBE the black sunder shti works this time.
