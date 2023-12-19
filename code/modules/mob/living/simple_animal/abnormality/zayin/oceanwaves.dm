@@ -31,8 +31,8 @@
 	ranged = TRUE
 	ranged_message = "launches a can"
 	ranged_cooldown_time = 3 SECONDS
-	rapid = 5
-	rapid_fire_delay = 4
+	rapid = 4
+	rapid_fire_delay = 6
 	retreat_distance = 4
 	check_friendly_fire = TRUE
 	projectiletype = /obj/projectile/oceanic // it's like wellcheers, but crack
