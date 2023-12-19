@@ -10,9 +10,9 @@
 	var/icon_active = "sleeping_active"
 	can_buckle = TRUE
 	buckle_lying = 90
-	maxHealth = 300
-	health = 300
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	maxHealth = 450
+	health = 450
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	del_on_death = FALSE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(

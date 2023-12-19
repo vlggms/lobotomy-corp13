@@ -7,7 +7,7 @@
 	maxHealth = 1000
 	health = 1000
 	threat_level = ZAYIN_LEVEL
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),

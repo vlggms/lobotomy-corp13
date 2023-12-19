@@ -6,7 +6,7 @@
 	icon_living = "bald1"
 	maxHealth = 50
 	health = 50
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
