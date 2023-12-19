@@ -119,6 +119,13 @@
 	else
 		particles.spawning = 0
 
+/obj/particle_emitter/proc/fadeout()
+	enable(FALSE)
+	if(istype(particles))
+		QDEL_IN(src, initial(particles.lifespan))
+	else
+		QDEL_NULL(src)
+
 /obj/particle_emitter/sparks
 	particles = new/particles/drill_sparks
 	plane = ABOVE_LIGHTING_PLANE
