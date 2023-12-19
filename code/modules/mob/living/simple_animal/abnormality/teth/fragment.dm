@@ -40,7 +40,11 @@
 	var/song_cooldown_time = 10 SECONDS
 	var/song_damage = 4 // Dealt 8 times
 	var/can_act = TRUE
+
+	//Visual/Animation Vars
 	var/obj/effect/fragment_legs/legs
+	var/obj/particle_emitter/fragment_note/particle_notes
+	var/obj/particle_emitter/fragment_song/particle_song
 
 	//PLAYABLES ACTIONS
 	attack_action_types = list(/datum/action/cooldown/fragment_song)
@@ -66,8 +70,9 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Destroy()
-	if(legs)
-		qdel(legs)
+	QDEL_NULL(legs)
+	QDEL_NULL(particle_notes)
+	QDEL_NULL(particle_song)
 	. = ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
@@ -86,18 +91,29 @@
 	if(song_cooldown > world.time)
 		return
 	can_act = FALSE
-	icon_state = "fragment_song_head"
+	flick("fragment_song_start" , src)
+	SLEEP_CHECK_DEATH(5)
 	legs = new(get_turf(src))
+	icon_state = "fragment_song_head"
+	pixel_y = 5
+	particle_notes = new(get_turf(src))
+	particle_notes.pixel_y = 26
+	particle_song = new(get_turf(src))
+	particle_song.pixel_y = 26
 	playsound(get_turf(src), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
 	for(var/i = 1 to 8)
+
+		//Animation for bobbing the head left to right
 		switch(i)
-			if(1 to 2)
-				animate(src, transform = turn(matrix(), -45*i), time = 3) //-45, -90
-			if(3 to 6)
-				animate(src, transform = turn(matrix(), -90 + (45*(i-2)) ), time = 3) //-45, 0, 45, 90
-			if(7 to 8)
-				animate(src, transform = turn(matrix(), 90 - (45*(i-6)) ), time = 3) //45, 0
-		new /obj/effect/temp_visual/fragment_song(get_turf(src))
+			if(1)
+				animate(src, transform = turn(matrix(), -90), time = 6, flags = SINE_EASING | EASE_OUT )
+			if(3)
+				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
+			if(5)
+				animate(src, transform = turn(matrix(), 90), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
+			if(7)
+				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN )
+
 		for(var/mob/living/L in view(8, src))
 			if(faction_check_mob(L, FALSE))
 				continue
@@ -105,8 +121,12 @@
 				continue
 			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		SLEEP_CHECK_DEATH(3)
+	animate(src, pixel_y = 0, time = 0)
 	icon_state = "fragment_breach"
-	qdel(legs)
+	pixel_y = 0
+	QDEL_NULL(legs)
+	QDEL_NULL(particle_notes)
+	QDEL_NULL(particle_song)
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
 
@@ -137,11 +157,12 @@
 		icon_state = "fragment_breach"
 	icon_living = icon_state
 
+//Exists so the head can be animated separatedly from the legs when it sings
 /obj/effect/fragment_legs
 	name = "Fragment of the Universe"
 	desc = "An abnormality taking form of a black ball covered by 'hearts' of different colors."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "fragment_song"
+	icon_state = "fragment_song_legs"
 	move_force = INFINITY
 	pull_force = INFINITY
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
