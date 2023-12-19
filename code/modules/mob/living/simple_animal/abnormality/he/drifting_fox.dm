@@ -31,9 +31,9 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 45,
-		ABNORMALITY_WORK_INSIGHT = 45,
-		ABNORMALITY_WORK_ATTACHMENT = list(25,30,35,40,45),
+		ABNORMALITY_WORK_INSTINCT = 40,
+		ABNORMALITY_WORK_INSIGHT = 40,
+		ABNORMALITY_WORK_ATTACHMENT = list(15, 20, 25, 30, 35),
 		ABNORMALITY_WORK_REPRESSION	= 0,
 	)
 	work_damage_amount = 10
@@ -84,11 +84,9 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/AttackingTarget(atom/attacked_target)
-	. = ..()
-	if(!ishuman(target))
-		return..()
-	var/mob/living/carbon/human/L = target
-	L.apply_status_effect(STATUS_EFFECT_FALSEKIND)
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.apply_status_effect(STATUS_EFFECT_FALSEKIND)
 	return ..()
 
 /datum/status_effect/false_kindness // MAYBE the black sunder shti works this time.
@@ -137,7 +135,7 @@
 	faction = list("hostile")
 	maxHealth = 125
 	health = 125
-	damage_coeff = list (RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	move_to_delay = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 15
