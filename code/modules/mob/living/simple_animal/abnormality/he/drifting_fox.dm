@@ -135,7 +135,7 @@
 	faction = list("hostile")
 	maxHealth = 125
 	health = 125
-	damage_coeff = list (RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	move_to_delay = 5
 	melee_damage_lower = 5
 	melee_damage_upper = 15
