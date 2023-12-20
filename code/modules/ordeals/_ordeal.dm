@@ -5,7 +5,7 @@
 	var/level = 0
 	/// Added meltdown delay. The higher it is - the longer it'll take for the ordeal to occur. If null - uses level.
 	var/delay = null
-	/// If TRUE - delay will always be adjusted by random number(1-2).
+	/// If TRUE - delay will always be adjusted by random number(between -1 and 1).
 	var/random_delay = TRUE
 	/// Flavor text
 	var/flavor_name = "ERRORNAME"
@@ -29,7 +29,7 @@
 /datum/ordeal/New()
 	..()
 	if(delay == null)
-		delay = level * 2
+		delay = min(6, level * 2) + 1
 
 // Runs the event itself
 /datum/ordeal/proc/Run()
@@ -76,7 +76,7 @@
 	return
 
 /datum/ordeal/proc/OnMobDeath(mob/living/deadMob)
-	ordeal_mobs -= deadMob
+	ordeal_mobs.Remove(deadMob)
 	if(!ordeal_mobs.len)
 		End()
 	return

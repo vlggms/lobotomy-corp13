@@ -583,7 +583,10 @@
 	..()
 	if(!CanUseEgo(user))
 		return
-	target.apply_damage(force, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/damage = force * justicemod * force_multiplier
+	target.apply_damage(damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
 	if(!canaoe)
 		return
@@ -594,8 +597,6 @@
 
 		for(var/mob/living/L in range(3, user))
 			var/aoe = force
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
 			aoe*=justicemod
 			aoe*=force_multiplier
 			if(L == user || ishuman(L))

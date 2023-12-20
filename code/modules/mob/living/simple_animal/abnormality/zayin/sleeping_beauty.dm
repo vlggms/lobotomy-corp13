@@ -10,8 +10,9 @@
 	var/icon_active = "sleeping_active"
 	can_buckle = TRUE
 	buckle_lying = 90
-	maxHealth = 10
-	health = 10
+	maxHealth = 450
+	health = 450
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	del_on_death = FALSE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -30,6 +31,9 @@
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/doze
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+
+	move_to_delay = 2.5
+	max_buckled_mobs = 10
 
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
@@ -60,6 +64,11 @@
 	buckle_mob(user)
 	update_icon()
 	return
+
+/mob/living/simple_animal/hostile/abnormality/sleeping/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_PINK)
+		can_breach = TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/Life()
 	update_icon()
@@ -138,6 +147,10 @@
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 	..()
+
+/mob/living/simple_animal/hostile/abnormality/sleeping/ListTargets()
+	. = ..()
+	. -= buckled_mobs
 
 #undef STATUS_EFFECT_RESTED
 

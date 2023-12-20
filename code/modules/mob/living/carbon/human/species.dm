@@ -1631,14 +1631,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(BRAIN)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
-		if(RED_DAMAGE) // TODO
-			H.damageoverlaytemp = 20
+		if(RED_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * redmod * H.physiology.red_mod
-			if(BP)
-				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
-					H.update_damage_overlays()
-			else//no bodypart, we deal damage with a more general method.
-				H.adjustBruteLoss(damage_amount)
+			H.adjustRedLoss(damage_amount, forced = forced)
 		if(WHITE_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * whitemod * H.physiology.white_mod
 			H.adjustWhiteLoss(damage_amount, forced = forced, white_healable = white_healable)
