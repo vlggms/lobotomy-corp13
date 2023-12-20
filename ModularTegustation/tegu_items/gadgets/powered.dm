@@ -360,7 +360,10 @@
 	. = ..()
 	if(!chosen_target_type)
 		to_chat(user, span_warning("Use in-hand to set the target type!"))
-	if(cell && cell.charge >= batterycost && target_check(target))
+	if(cell && cell.charge >= batterycost)
+		if(isliving(target) && !target_check(target))
+			to_chat(user, span_warning("The projector fails to scan [target] with its current setting."))
+			return
 		cell.charge -= batterycost
 		var/mob/living/L = target
 		to_chat(user, span_notice("Projection of [target] Vitals Initializing."))
