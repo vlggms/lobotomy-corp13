@@ -105,6 +105,7 @@
 				MAIL = new /obj/item/mailpaper/attachment(get_turf(src),user)
 	MAIL.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
 	return
+
 //players get a parcel / letters for completing works
 /mob/living/simple_animal/hostile/abnormality/mailpile/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	. = ..()
@@ -121,6 +122,38 @@
 	. = ..()
 	Delivery(user,work_type,pe)
 	return
+
+// Pink Midnight
+/mob/living/simple_animal/hostile/abnormality/mailpile/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_PINK)
+		SendDeathThreat()
+		return TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/mailpile/proc/SendDeathThreat()
+	var/chance = 20
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		var/role = H.mind?.assigned_role
+		var/weaken = FALSE
+		if(isnull(role))
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(!prob(chance))
+			chance *= 2
+			continue
+		chance = 20
+		if(role in list("Manager", "Extraction Officer", "Records Officer", "Sephirah"))
+			weaken = TRUE
+		var/threat_type = pickweight(list(/obj/item/mailpaper/trapped/fairies = 10, /obj/item/mailpaper/trapped/acid = 10, /obj/item/mailpaper/trapped/urgent = 6, /obj/item/mailpaper/trapped/flashbang = 3, /obj/item/mailpaper/coupon = 1))
+		switch(threat_type)
+			if(/obj/item/mailpaper/trapped/fairies)
+				var/obj/item/mailpaper/trapped/fairies/MF = new threat_type(get_turf(H))
+				MF.weaken_fairy = weaken
+			else
+				new threat_type(get_turf(H))
+
+
 
 //what the fuck is this
 /obj/effect/letters_flow
@@ -266,7 +299,7 @@
 
 /obj/item/mailpaper/instinct/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("Reading the friendly letter helps you find peace in the passing of time."))
-	user.adjustSanityLoss(-5)
+	user.adjustSanityLoss(-10)
 	qdel(src)
 
 /obj/item/mailpaper/insight
@@ -292,4 +325,153 @@
 	var/datum/status_effect/workspeed_buff/TMPEFF = user.has_status_effect(/datum/status_effect/workspeed_buff)
 	if (!TMPEFF)
 		user.apply_status_effect(/datum/status_effect/workspeed_buff)
+	qdel(src)
+
+/obj/item/mailpaper/trapped
+	name = "From the Abnormalities"
+	desc = "Does something automatically or when opened."
+	var/datum/timedevent/effect_timer
+	var/effect_min_time = 6 SECONDS
+	var/effect_max_time = 12 SECONDS
+
+/obj/item/mailpaper/trapped/Initialize()
+	. = ..()
+	effect_timer = new(CALLBACK(src, .proc/Trap), rand(effect_min_time, effect_max_time))
+	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
+
+/obj/item/mailpaper/trapped/attack_self(mob/user)
+	to_chat(user, "<span class='warning'>What the-</span>")
+	Trap()
+
+/obj/item/mailpaper/trapped/proc/Trap()
+	set waitfor = FALSE
+	if(effect_timer)
+		deltimer(effect_timer)
+	qdel(src)
+	return
+
+/obj/item/mailpaper/trapped/fairies
+	desc = "Why does this paper smell faintly of Pixy Stix?"
+	var/fairy_count = 4
+	var/weaken_fairy = FALSE
+
+/obj/item/mailpaper/trapped/fairies/Trap()
+	var/turf/T = get_turf(src)
+	T.visible_message("<span class='warning'>[fairy_count > 1 ? "Ravenous fairies" : "A ravenous fairy"] burst from the mail!</span>")
+	for(var/i = 1 to fairy_count)
+		var/mob/living/simple_animal/hostile/mini_fairy/MF =  new(T)
+		MF.faction += "pink"
+		if(weaken_fairy)
+			MF.adjustBruteLoss(43)
+			break
+	return ..()
+
+/obj/item/mailpaper/trapped/acid
+	desc = "Why does this paper smell faintly of battery acid?"
+
+/obj/item/mailpaper/trapped/acid/Trap()
+	var/turf/T = get_turf(src)
+	T.visible_message("<span class='warning'>Acid sprays from the letter!</span>")
+	for(var/i = 1 to 8)
+		var/angle = rand(0, 360)
+		var/obj/effect/decal/cleanable/wrath_acid/bad/AB = new(get_turf(src))
+		MoveAcidAngle(AB, angle)
+	return ..()
+
+/obj/item/mailpaper/trapped/acid/proc/MoveAcidAngle(obj/effect/decal/cleanable/wrath_acid/bad/bad_acid, angle)
+	set waitfor = FALSE
+	var/turf/target_turf = get_turf_in_angle(angle, get_turf(src), pick(1, 2, 4))
+	while(step_towards(bad_acid, target_turf, 0))
+		stoplag(2)
+	return
+
+/obj/item/mailpaper/trapped/urgent
+	desc = "The paper has been stamped 'Urgent'."
+	effect_min_time = 10 SECONDS
+	effect_max_time = 10 SECONDS
+
+/obj/item/mailpaper/trapped/urgent/attack_self(mob/user)
+	to_chat(user, "<span class='notice'>If don't read this within 10 seconds we're going to kill you.</span>\n<span class='nicegreen'>Well, you read it fast enough so that's nice!</span>")
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.adjustSanityLoss(-20)
+	deltimer(effect_timer)
+	qdel(src)
+	return
+
+/obj/item/mailpaper/trapped/urgent/Trap()
+	audible_message("<span class='warning'>We are going to kill you.</span>")
+	for(var/mob/living/carbon/human/H in hearers(7, src))
+		H.apply_damage(50, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+	return ..()
+
+/obj/item/mailpaper/trapped/flashbang
+	desc = "This paper has a large cylindrical lump in the middle of it..."
+	effect_min_time = 10 SECONDS
+	effect_max_time = 20 SECONDS
+
+/obj/item/mailpaper/trapped/flashbang/Trap()
+	var/turf/T = get_turf(src)
+	var/obj/item/grenade/flashbang/F = new(T)
+	T.visible_message("<span class='notice'>A beeping flashbang drops out of the mail.</span>\n<span class='userdanger'>WAIT, WHAT!?</span>")
+	F.det_time = isnull(timeleft(effect_timer)) ? 0 : timeleft(effect_timer)
+	F.arm_grenade()
+	return ..()
+
+/obj/item/mailpaper/coupon
+	name = "From the Abnormalities"
+	desc = "'Contains one (1) coupon for a free item!' *Contents may vary, user discretion is advised"
+	var/obj/item/coupon_lc13/C
+
+/obj/item/mailpaper/coupon/Initialize()
+	. = ..()
+	C = new(src)
+	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
+
+/obj/item/mailpaper/coupon/attack_self(mob/user)
+	user.visible_message(
+		"<span class='notice'>[user] rips the coupon out of the mail.</span>",\
+		"<span class='notice'>You rip the coupon out of the mail.</span>",\
+		"<span class='notice'>You hear the sound of ripping paper.</span>"
+		)
+	playsound(user, 'sound/items/poster_ripped.ogg', 100)
+	C.forceMove(get_turf(user))
+	qdel(src)
+
+/obj/item/coupon_lc13
+	name = "coupon"
+	desc = "Hell yeah, a free item!"
+	icon_state = "data_1"
+	icon = 'icons/obj/card.dmi'
+	var/obj/item/item_type = null
+	var/list/potential_items = list()
+
+/obj/item/coupon_lc13/Initialize()
+	. = ..()
+	if(!isnull(item_type))
+		return
+	if(potential_items.len <= 0)
+		potential_items += subtypesof(/obj/item/food/pizza)
+		potential_items -= /obj/item/food/pizza/arnold
+		potential_items -= /obj/item/food/pizza/margherita/robo
+		potential_items += subtypesof(/obj/item/reagent_containers/food/drinks/soda_cans)
+		potential_items += subtypesof(/obj/item/toy)
+		potential_items -= /obj/item/toy/talking
+		potential_items -= /obj/item/toy/cards/cardhand
+		potential_items -= /obj/item/toy/cards/singlecard
+		potential_items -= /obj/item/toy/figure
+		potential_items -= /obj/item/toy/plush
+	item_type = pick(potential_items)
+
+/obj/item/coupon_lc13/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>Use in hand to have the [initial(item_type?.name)] sent right to you!</span>"
+
+/obj/item/coupon_lc13/attack_self(mob/user)
+	var/obj/structure/closet/supplypod/centcompod/pod = new()
+	pod.explosionSize = list(0,0,0,0)
+	for(var/i = 1 to (istype(item_type, /obj/item/reagent_containers/food/drinks/soda_cans) ? 6 : 1))
+		new item_type(pod)
+	new /obj/effect/pod_landingzone(get_turf(user), pod)
+	to_chat(user, "<span class='notice'>Your [initial(item_type?.name)] is on it's way!</span>")
 	qdel(src)

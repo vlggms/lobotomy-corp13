@@ -88,6 +88,8 @@
 	var/ricochet_auto_aim_angle = 30
 	/// the angle of impact must be within this many degrees of the struck surface, set to 0 to allow any angle
 	var/ricochet_incidence_leeway = 40
+	/// Whether or not it bounces, regardless of hit atom's tags.
+	var/ricochet_ignore_flag = FALSE
 
 	///If the object being hit can pass ths damage on to something else, it should not do it for this bullet
 	var/force_hit = FALSE
@@ -611,6 +613,9 @@
 	return FALSE
 
 /obj/projectile/proc/check_ricochet_flag(atom/A)
+	if(ricochet_ignore_flag)
+		return TRUE
+
 	if((damage_type in list(ENERGY, LASER)) && (A.flags_ricochet & RICOCHET_SHINY))
 		return TRUE
 

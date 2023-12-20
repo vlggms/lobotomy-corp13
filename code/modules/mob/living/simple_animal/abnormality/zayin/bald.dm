@@ -6,6 +6,7 @@
 	icon_living = "bald1"
 	maxHealth = 50
 	health = 50
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -16,6 +17,17 @@
 						)
 	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
+
+	melee_damage_lower = -1
+	melee_damage_upper = -1
+	melee_damage_type = WHITE_DAMAGE
+	attack_verb_continuous = "balds"
+	attack_verb_simple = "bald"
+
+	ranged = TRUE
+	ranged_message = "balds"
+	projectiletype = /obj/projectile/beam/yang/bald
+	projectilesound = 'sound/weapons/sear.ogg'
 
 	ego_list = list(
 		/datum/ego_datum/weapon/tough,
@@ -60,6 +72,11 @@
 				if(H.z == z)
 					do_bald(H)
 
+/mob/living/simple_animal/hostile/abnormality/bald/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_PINK)
+		can_breach = TRUE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/bald/proc/do_bald(mob/living/carbon/human/victim)
 	if(!HAS_TRAIT(victim, TRAIT_BALD))
 		to_chat(victim, span_notice("You feel awesome!"))
@@ -78,6 +95,24 @@
 		else
 			icon_state = "bald1"
 
+/mob/living/simple_animal/hostile/abnormality/bald/ListTargets()
+	. = ..()
+	for(var/mob/living/carbon/human/not_bald in .)
+		if(HAS_TRAIT(not_bald, TRAIT_BALD))
+			. -= not_bald
+
+/mob/living/simple_animal/hostile/abnormality/bald/AttackingTarget()
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		do_bald(H)
+
+/mob/living/simple_animal/hostile/abnormality/bald/Login()
+	. = ..()
+	if(!.)
+		return
+	to_chat(src, "<span class='userdanger'>You do not do damage, your sole mission is to spread the glory of baldness to all.</span>")
+
 /datum/reagent/abnormality/bald
 	name = "Essence of Baldness"
 	description = "Some weird-looking juice..."
@@ -92,3 +127,19 @@
 			balder.hairstyle = "Bald"
 			balder.update_hair()
 	return ..()
+
+/obj/projectile/beam/yang/bald
+	name = "bald beam"
+	damage = 0
+
+/obj/projectile/beam/yang/bald/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/victim = target
+	if(!HAS_TRAIT(victim, TRAIT_BALD))
+		to_chat(victim, "<span class='notice'>You feel awesome!</span>")
+		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
+		victim.hairstyle = "Bald"
+		victim.update_hair()
+	return

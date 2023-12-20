@@ -279,6 +279,23 @@
 	var/obj/item/paper/P = new(get_turf(M))
 	P.setText(msg)
 	P.icon_state = "mail"
+	var/mob/living/carbon/human/H = M
+	var/datum/attribute/highest_attribute = null
+	for(var/datum/attribute/A in H.attributes)
+		if(isnull(highest_attribute))
+			highest_attribute = A
+			continue
+		if(A.get_level() > highest_attribute.get_level())
+			highest_attribute = A
+	switch(highest_attribute)
+		if(/datum/attribute/fortitude)
+			new /obj/item/mailpaper/instinct(get_turf(H), H)
+		if(/datum/attribute/prudence)
+			new /obj/item/mailpaper/insight(get_turf(H), H)
+		if(/datum/attribute/temperance)
+			new /obj/item/mailpaper/coupon(get_turf(H))
+		if(/datum/attribute/justice) // "These two seem to be backwards?" Yes. Justice is the one stat that does basically nothing for grinding, this buffs those who want to be able to do damage AND work.
+			new /obj/item/mailpaper/attachment(get_turf(H), H)
 	QDEL_IN(P, 30 SECONDS)
 	to_chat(user, "<span class='boldnotice'>You transmit to [M]:</span> <span class='notice'>[msg]</span>")
 	for(var/ded in GLOB.dead_mob_list)
