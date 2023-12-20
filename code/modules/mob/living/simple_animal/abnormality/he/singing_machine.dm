@@ -3,6 +3,12 @@ Coded by nutterbutter, "senior" junior developer, during hell week 2022.
 Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a miracle. Praise be.
 */
 #define STATUS_EFFECT_MUSIC /datum/status_effect/display/singing_machine
+
+//playStatus defines
+#define SILENT 0
+#define GRINDING 1
+#define PLAYING 5
+
 /mob/living/simple_animal/hostile/abnormality/singing_machine
 	name = "Singing Machine"
 	desc = "A shiny metallic device with a large hinge. You feel a sense of dread about what might be inside..."
@@ -37,13 +43,14 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	buckle_lying = TRUE
 	max_boxes = 16
 	var/cleanliness = "clean"
-	var/statChecked = 0
+	var/statCheckPenalty = 0
 	var/bonusRed = 0
 	var/grindRed = 4
 	var/minceRed = 8
+	var/clampRed = 100
 	var/playTiming = 5 SECONDS
 	var/playLength = 60 SECONDS
-	var/playStatus = 0
+	var/playStatus = SILENT
 	var/playRange = 20
 	var/noiseFactor = 2
 	var/datum/looping_sound/singing_grinding/grindNoise
@@ -51,16 +58,27 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	var/list/musicalAddicts = list()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Life()
-	if(playStatus > 0) // If playstatus isn't 0, deal some damage in range.
+	if(!playStatus == SILENT) // If the machine isn't silent, apply the status to everyone that hears the music, and deal some damage to whoever has it.
+
+		//Separate into two parts: Application of Musical Addiction and damage to addicts
 		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			if(H in musicalAddicts)
-				H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				to_chat(H, span_warning("You can hear it again... it needs more..."))
+				continue
+			addAddict(H)
+
+		//Appliance of damage
+		for(var/mob/living/carbon/human/addict in musicalAddicts)
+			addict.apply_damage(rand(playStatus * noiseFactor *2, playStatus * noiseFactor * 4), WHITE_DAMAGE, null, addict.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			if(playStatus == GRINDING)
+				to_chat(addict, span_warning("That terrible grinding noise..."))
 			else
-				to_chat(H, span_warning("That terrible grinding noise..."))
+				to_chat(addict, span_warning("You can hear it again... it needs more..."))
+			if(!addict.sanity_lost)
+				continue
+			applySpecialInsanity(addict)
+
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -73,37 +91,34 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 			bonusRed = minceRed // Should be stronger, for when working it is EXTRA dangerous.
 			manual_emote("makes a horrible grinding noise!") // Oh boy, it's mad.
 			playsound(src, 'sound/abnormalities/singingmachine/chew.ogg', 60, 0, 3)
-	else if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80 || get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
-		statChecked = 1 // I see you've failed one of the stat checks, but have also chosen not to feed yourself to the machine.
+		return ..()
+
+	// I see you've failed the stat check, but have also chosen not to feed yourself to the machine.
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 40)
+		statCheckPenalty = 3
+	else if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // The fortitude check applies one third of the penalty
+		statCheckPenalty = 1
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/WorkChance(mob/living/carbon/human/user, chance)
-	chance -= statChecked * 15 // Perish.
+	chance -= statCheckPenalty * 5 // Perish. -5% for the Fortitude check, -15% for the Temperance check
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Worktick(mob/living/carbon/human/user)
 	if(bonusRed) // If you have bonus red damage to apply...
 		user.apply_damage(bonusRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		if(bonusRed < 6 && playStatus == 0)	// Should only happen when the machine isn't dealing damage.
-			for(var/mob/living/carbon/human/H in livinginrange(30, src))
-				if(faction_check_mob(H))
-					continue
-				H.adjustSanityLoss(rand(-1,-2))
+		if(bonusRed < 6 && playStatus == SILENT)	// Should only happen when the machine isn't dealing damage.
 			for(var/mob/living/carbon/human/H in musicalAddicts)
-				H.adjustSanityLoss(rand(-1,-2))
+				H.adjustSanityLoss(rand(-2,-4))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	bonusRed = 0 // Reset bonus red damage and the stat check.
-	statChecked = 0
+	statCheckPenalty = 0
 	if(user.sanity_lost || user.health < 0) // Did they die? Time to force a bad result.
 		pe = 0
 	if(work_type == ABNORMALITY_WORK_INSTINCT && datum_reference.qliphoth_meter > 0) // At the end of an instinct work that wasn't trying to raise its counter...
-		to_chat(user, span_nicegreen("There's something about that sound..."))
-		musicalAddicts |= user
-		user.apply_status_effect(STATUS_EFFECT_MUSIC) // Time to addict them.
-		SEND_SOUND(user, 'sound/abnormalities/singingmachine/addiction.ogg')
-		addtimer(CALLBACK(src, PROC_REF(removeAddict), user), 5 MINUTES)
+		addAddict(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -121,7 +136,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	if(datum_reference.qliphoth_meter > 0)
 		datum_reference.qliphoth_change(-(prob(40)))// If it's not already mad, it has a chance to get a little more mad.
 	else
-		eatBody(user) // If it is mad, you die.
+		user.apply_damage(clampRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) // If its mad, deals a chunk of RED.
+		if(user.health < 0)
+			eatBody(user) // If it is mad, you die.
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -137,8 +154,15 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	update_icon()
 	playsound(src, 'sound/abnormalities/singingmachine/open.ogg', 200, 0, playRange)
 	grindNoise = new(list(src), TRUE)
-	playStatus = 1
+	playStatus = GRINDING
 	return
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/addAddict(mob/living/carbon/human/target)
+	target.apply_status_effect(STATUS_EFFECT_MUSIC)
+	to_chat(target, span_nicegreen("There's something about that sound..."))
+	musicalAddicts |= target
+	SEND_SOUND(target, 'sound/abnormalities/singingmachine/addiction.ogg')
+	addtimer(CALLBACK(src, .proc/removeAddict, target), 5 MINUTES)
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/removeAddict(mob/living/carbon/human/addict)
 	if(addict)
@@ -149,7 +173,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		QDEL_NULL(grindNoise)
 	if(musicNoise)
 		QDEL_NULL(musicNoise)
-	playStatus = 0 // This exists solely because I needed to call it via a callback.
+	playStatus = SILENT // This exists solely because I needed to call it via a callback.
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/eatBody(mob/living/carbon/human/user)
 	user.gib()
@@ -160,21 +184,25 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	icon_living = icon_state
 	update_icon()
 	driveInsane(musicalAddicts)
-	playStatus = 2
+	playStatus = PLAYING
 	datum_reference.qliphoth_change(2)
 	grindNoise = new(list(src), TRUE)
 	musicNoise = new(list(src), TRUE)
 	addtimer(CALLBACK(src, PROC_REF(stopPlaying)), playLength) // This is the callback from earlier.
 
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/applySpecialInsanity(mob/living/carbon/human/addict)
+	QDEL_NULL(addict.ai_controller)
+	addict.ai_controller = /datum/ai_controller/insane/murder/singing_machine
+	addict.InitializeAIController()
+
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/driveInsane(list/addicts)
-	if(LAZYLEN(addicts))
-		for(var/mob/living/carbon/human/target in addicts)
-			if (!target.sanity_lost)
-				target.adjustSanityLoss(500)
-			QDEL_NULL(target.ai_controller)
-			target.ai_controller = /datum/ai_controller/insane/murder/singing_machine
-			target.InitializeAIController()
-			addicts -= target
+	if(!LAZYLEN(addicts))
+		return
+	for(var/mob/living/carbon/human/addict in addicts)
+		if (!addict.sanity_lost)
+			continue
+		applySpecialInsanity(addict)
+		addicts -= target
 
 /datum/ai_controller/insane/murder/singing_machine
 	lines_type = /datum/ai_behavior/say_line/insanity_singing_machine
@@ -209,25 +237,27 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	. = ..()
 	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -5)
-	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5)
-	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10)
-	status_holder.physiology.white_mod *= 1.1
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5)
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
+	H.physiology.white_mod *= 1.1
 
 /datum/status_effect/display/singing_machine/tick()
-	if(world.time % addictionTick == 0 && ishuman(owner)) // Give or take one, this will fire off as many times as if I set up a proper timer variable.
-		var/mob/living/carbon/human/H = owner
-		H.adjustSanityLoss(rand(addictionSanityMax, addictionSanityMin))
+	if(!(world.time % addictionTick == 0 && ishuman(owner))) // Give or take one, this will fire off as many times as if I set up a proper timer variable.
+		return
+	var/mob/living/carbon/human/H = owner
+	H.adjustSanityLoss(rand(addictionSanityMax, addictionSanityMin))
 
 /datum/status_effect/display/singing_machine/on_remove()
 	. = ..()
 	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5)
-	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
-	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10)
-	status_holder.physiology.white_mod /= 1.1
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)
+	H.physiology.white_mod /= 1.1
 
+#undef SILENT
+#undef GRINDING
+#undef PLAYING
 #undef STATUS_EFFECT_MUSIC
