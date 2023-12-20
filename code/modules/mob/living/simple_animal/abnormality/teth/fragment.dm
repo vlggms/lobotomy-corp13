@@ -71,6 +71,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Destroy()
 	QDEL_NULL(legs)
+	if(!particle_note)
+		return ..()
 	particle_note.fadeout()
 	particle_song.fadeout()
 	return ..()
@@ -124,15 +126,17 @@
 		SLEEP_CHECK_DEATH(3)
 
 	animate(src, pixel_y = 0, time = 0)
+	QDEL_NULL(legs)
 	flick("fragment_song_transition" , src)
 	SLEEP_CHECK_DEATH(5)
 	icon_state = "fragment_breach"
 	pixel_y = 0
-	QDEL_NULL(legs)
-	particle_note.fadeout()
-	particle_song.fadeout()
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
+	if(!particle_note)
+		return
+	particle_note.fadeout()
+	particle_song.fadeout()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
