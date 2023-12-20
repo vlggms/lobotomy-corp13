@@ -12,6 +12,7 @@
 	'icons/UI_Icons/abnormality_portraits/bald.png',
 	'icons/UI_Icons/abnormality_portraits/beanstalk.png',
 	'icons/UI_Icons/abnormality_portraits/beauty_beast.png',
+	'icons/UI_Icons/abnormality_portraits/better_memories.png',
 	'icons/UI_Icons/abnormality_portraits/bottle.png',
 	'icons/UI_Icons/abnormality_portraits/big_bird.png',
 	'icons/UI_Icons/abnormality_portraits/big_wolf.png',
