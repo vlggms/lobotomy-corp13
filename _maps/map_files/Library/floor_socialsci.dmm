@@ -1,8 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"aa" = (
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_socialsci)
 "by" = (
 /turf/open/floor/wood{
 	icon_state = "wood-broken"
@@ -146,11 +142,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/library_floors/floor_socialsci)
-"mA" = (
-/obj/effect/decal/fakelattice,
-/obj/item/flashlight/spotlight,
-/turf/open/water/deep/saltwater,
-/area/library_floors/floor_socialsci)
 "mR" = (
 /obj/structure/chair/comfy{
 	dir = 1;
@@ -183,7 +174,6 @@
 /obj/item/flashlight/lantern{
 	pixel_y = 18
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
 "qb" = (
@@ -294,26 +284,24 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/library_floors/floor_socialsci)
-"yN" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_socialsci)
 "zb" = (
 /obj/item/reagent_containers/food/drinks/coffee,
 /obj/structure/table/wood/fancy/blue,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
-"zv" = (
+"Bt" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 1
+	dir = 8
 	},
-/obj/item/flashlight/spotlight,
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
 "BA" = (
@@ -332,6 +320,15 @@
 /obj/structure/flora/rock/jungle,
 /turf/open/water/deep/saltwater,
 /area/space)
+"Da" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
 "Dd" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -364,6 +361,15 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/library_floors/floor_socialsci)
+"FH" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_socialsci)
 "FK" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -375,15 +381,6 @@
 	},
 /area/library_floors/floor_socialsci)
 "Gh" = (
-/turf/open/floor/carpet/royalblue,
-/area/library_floors/floor_socialsci)
-"GG" = (
-/obj/item/flashlight/spotlight,
-/turf/open/water/deep/saltwater,
-/area/library_floors/floor_socialsci)
-"Hg" = (
-/obj/structure/table/wood/fancy/blue,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblue,
 /area/library_floors/floor_socialsci)
 "Hx" = (
@@ -429,15 +426,20 @@
 "Ky" = (
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
-"KT" = (
-/obj/structure/chair/wood/wings{
-	dir = 8
-	},
+"KU" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
 	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/royalblue,
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
 "MI" = (
 /obj/structure/railing/corner{
@@ -455,7 +457,6 @@
 "NI" = (
 /obj/structure/table/wood/fancy/blue,
 /obj/item/reagent_containers/food/drinks/mug,
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
 "NM" = (
@@ -492,14 +493,15 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
-"Qn" = (
-/obj/structure/railing{
-	name = "invincible railing";
-	resistance_flags = 64
+"Qa" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_socialsci)
+/turf/open/water/deep/saltwater,
+/area/space)
 "Rq" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/carpet/royalblue,
@@ -558,6 +560,18 @@
 /obj/structure/table/wood/fancy/blue,
 /turf/open/floor/carpet/royalblue,
 /area/library_floors/floor_socialsci)
+"Tr" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/carpet/royalblue,
+/area/library_floors/floor_socialsci)
 "Tv" = (
 /obj/structure/chair/comfy{
 	dir = 8
@@ -580,11 +594,6 @@
 /turf/open/floor/wood{
 	icon_state = "wood-broken5"
 	},
-/area/library_floors/floor_socialsci)
-"UB" = (
-/obj/structure/bookcase/random/nonfiction,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/royalblue,
 /area/library_floors/floor_socialsci)
 "Vc" = (
 /obj/structure/chair/wood/wings{
@@ -638,15 +647,6 @@
 /obj/structure/fermenting_barrel,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_socialsci)
-"XL" = (
-/obj/structure/railing{
-	dir = 1;
-	name = "invincible railing";
-	resistance_flags = 64
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_socialsci)
 "XV" = (
 /obj/structure/flora/rock,
 /turf/open/water/deep/saltwater,
@@ -661,16 +661,6 @@
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/water/deep/saltwater,
 /area/space)
-"YX" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_socialsci)
 
 (1,1,1) = {"
 uN
@@ -766,7 +756,7 @@ hU
 Dd
 SZ
 Gh
-Hg
+SZ
 Hx
 by
 ky
@@ -790,7 +780,7 @@ BA
 zb
 gm
 Dd
-yA
+Tr
 Gh
 yA
 Hx
@@ -806,7 +796,7 @@ uN
 uN
 uN
 uN
-uN
+Qa
 YL
 uN
 uN
@@ -865,12 +855,12 @@ uN
 ky
 by
 Ky
-aa
+Ky
 Ky
 JJ
 qn
 tw
-KT
+qn
 jI
 by
 ky
@@ -969,12 +959,12 @@ NM
 NM
 WS
 OX
-aa
+Ky
 Ky
 gm
 Ky
 Ky
-zv
+gm
 Ky
 MI
 gJ
@@ -1024,7 +1014,7 @@ Ky
 Ky
 Ky
 gm
-Ky
+FH
 Ky
 gm
 Ky
@@ -1069,7 +1059,7 @@ uN
 ky
 NM
 NM
-GG
+NM
 NM
 SC
 dm
@@ -1078,12 +1068,12 @@ dm
 dm
 dm
 dm
-YX
+dm
 dm
 dm
 WH
 xJ
-GG
+NM
 NM
 ky
 uN
@@ -1177,12 +1167,12 @@ XV
 NM
 Rs
 Dg
-mA
+ON
 Dg
 Dg
 Dg
 Dg
-yN
+Dg
 Dg
 Dg
 xY
@@ -1281,12 +1271,12 @@ NM
 NM
 Rs
 Dg
-yN
 Dg
 Dg
-dm
 Dg
-yN
+Bt
+Dg
+Dg
 Dg
 Dg
 xY
@@ -1381,16 +1371,16 @@ uN
 ky
 NM
 NM
-GG
+NM
 NM
 dn
 Ky
-aa
+Ky
 Ky
 VT
 ky
 PP
-zv
+gm
 rj
 Ky
 kJ
@@ -1421,7 +1411,7 @@ Ky
 Ky
 kJ
 NM
-GG
+NM
 NM
 ky
 uN
@@ -1489,12 +1479,12 @@ NM
 NM
 dn
 Ky
-aa
+Ky
 Ky
 gm
 ky
 Ky
-zv
+gm
 Ky
 Ky
 kJ
@@ -1570,7 +1560,7 @@ Dg
 Dg
 Dg
 Dg
-Dg
+KU
 Dg
 ON
 ON
@@ -1593,12 +1583,12 @@ NM
 NM
 dn
 Ky
-aa
+Ky
 Ky
 gm
 wM
 Ky
-zv
+gm
 Ky
 Ky
 kJ
@@ -1697,12 +1687,12 @@ NM
 xJ
 dn
 Ky
-aa
+Ky
 ON
 gm
 Ky
 Ky
-zv
+gm
 Ky
 Ky
 kJ
@@ -1797,21 +1787,21 @@ uN
 ky
 NM
 NM
-GG
+NM
 NM
 FK
 Ky
-aa
+Ky
 Ky
 gm
 Ky
 Ky
-zv
+gm
 Ky
 Ky
 nB
 NM
-GG
+NM
 dT
 ky
 uN
@@ -1830,7 +1820,7 @@ Ky
 Ky
 Ky
 gm
-Ky
+FH
 Ky
 gm
 Ky
@@ -1905,12 +1895,12 @@ NM
 NM
 NM
 dn
-aa
+Ky
 Ky
 gm
 Ky
 Ky
-zv
+gm
 Ky
 kJ
 NM
@@ -2009,12 +1999,12 @@ wW
 ky
 Ky
 Dd
-UB
 Rq
 Rq
 Rq
 Rq
-UB
+Rq
+Rq
 Hx
 Ky
 ky
@@ -2031,7 +2021,7 @@ uN
 uN
 uN
 uN
-XL
+wW
 je
 Ky
 Dd
@@ -2044,7 +2034,7 @@ Gh
 Hx
 Ky
 en
-Qn
+kJ
 uN
 uN
 uN
@@ -2054,7 +2044,7 @@ YL
 uN
 uN
 uN
-uN
+Qa
 uN
 uN
 wW
@@ -2072,7 +2062,7 @@ Ky
 ky
 kJ
 uN
-uN
+Qa
 uN
 uN
 "}
@@ -2090,7 +2080,7 @@ Dd
 Gh
 Gh
 Gh
-Gh
+Da
 Gh
 Gh
 Hx
@@ -2113,12 +2103,12 @@ JX
 ky
 Ky
 Dd
-UB
 Rq
 Rq
 Rq
 Rq
-UB
+Rq
+Rq
 Hx
 Ky
 ky

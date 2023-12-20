@@ -4,10 +4,6 @@
 	density = 1
 	},
 /area/library_floors/floor_naturalsci)
-"as" = (
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_naturalsci)
 "cg" = (
 /obj/structure/table/wood,
 /obj/item/book/random,
@@ -51,6 +47,12 @@
 	pixel_x = 23;
 	pixel_y = 4
 	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/facility/dark,
 /area/library_floors/floor_naturalsci)
 "fw" = (
@@ -59,24 +61,14 @@
 	},
 /turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
-"gn" = (
-/obj/structure/flora/icestalactite/small{
-	pixel_y = -13
+"fI" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f";
+	light_range = 25
 	},
-/turf/open/chasm,
-/area/library_floors/floor_naturalsci)
-"gL" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/railing{
-	dir = 10;
-	max_integrity = 1e+007;
-	name = "invincible railing"
+/turf/open/floor/white{
+	density = 1
 	},
-/turf/open/floor/mineral/gold,
-/area/library_floors/floor_naturalsci)
-"hD" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/red,
 /area/library_floors/floor_naturalsci)
 "id" = (
 /obj/structure/chair/wood{
@@ -94,7 +86,6 @@
 /area/library_floors/floor_naturalsci)
 "lf" = (
 /obj/item/toy/plush/nihil,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/facility/dark,
 /area/library_floors/floor_naturalsci)
 "lp" = (
@@ -106,10 +97,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
-"nt" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/mineral/gold,
-/area/library_floors/floor_naturalsci)
 "nP" = (
 /obj/structure/railing/corner{
 	dir = 8;
@@ -118,21 +105,8 @@
 	},
 /turf/open/floor/mineral/gold,
 /area/library_floors/floor_naturalsci)
-"oe" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -16
-	},
-/turf/open/chasm,
-/area/library_floors/floor_naturalsci)
 "px" = (
 /turf/open/chasm,
-/area/library_floors/floor_naturalsci)
-"pL" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/chair/wood{
-	dir = 8
-	},
-/turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
 "qj" = (
 /obj/item/toy/plush/kog,
@@ -148,17 +122,14 @@
 	},
 /turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
-"qt" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/lone,
-/area/library_floors/floor_naturalsci)
-"qC" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/railing{
-	name = "invincible railing";
-	resistance_flags = 64
+"rJ" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/turf/open/floor/mineral/gold,
+/turf/open/floor/carpet/red,
 /area/library_floors/floor_naturalsci)
 "un" = (
 /obj/item/toy/plush/sow,
@@ -186,20 +157,10 @@
 	},
 /turf/open/floor/mineral/gold,
 /area/library_floors/floor_naturalsci)
-"wp" = (
-/obj/item/flashlight/spotlight,
-/turf/open/chasm,
-/area/library_floors/floor_naturalsci)
 "wz" = (
 /obj/structure/railing,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_naturalsci)
-"wD" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/white{
-	density = 1
-	},
-/area/space)
 "wN" = (
 /obj/structure/window/bronze/fulltile,
 /obj/structure/lattice,
@@ -210,6 +171,15 @@
 "wO" = (
 /obj/item/candle/infinite,
 /turf/closed/wall/mineral/gold,
+/area/library_floors/floor_naturalsci)
+"xd" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
 "xx" = (
 /obj/structure/railing{
@@ -240,12 +210,6 @@
 /obj/structure/table/wood/fancy,
 /turf/open/floor/mineral/gold,
 /area/library_floors/floor_naturalsci)
-"Aq" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/ice{
-	density = 1
-	},
-/area/library_floors/floor_naturalsci)
 "BB" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -258,10 +222,6 @@
 /turf/open/floor/plating/ice{
 	density = 1
 	},
-/area/library_floors/floor_naturalsci)
-"BY" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/facility/dark,
 /area/library_floors/floor_naturalsci)
 "Ch" = (
 /obj/item/toy/plush/qoh,
@@ -283,6 +243,14 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
+"Jm" = (
+/obj/structure/flora/icestalactite{
+	pixel_y = -47
+	},
+/turf/open/floor/plating/ice{
+	density = 1
+	},
+/area/library_floors/floor_naturalsci)
 "Jz" = (
 /turf/open/floor/facility/dark,
 /area/library_floors/floor_naturalsci)
@@ -292,42 +260,27 @@
 	},
 /turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
-"Kb" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/lone,
-/area/library_floors/floor_naturalsci)
-"KI" = (
+"Kd" = (
 /obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/turf/open/floor/white{
-	density = 1
-	},
-/area/library_floors/floor_naturalsci)
-"KV" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_naturalsci)
-"Ms" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
+	light_color = "#d8b66f";
+	light_range = 25
 	},
 /turf/open/floor/white{
 	density = 1
 	},
 /area/space)
+"NE" = (
+/obj/structure/flora/icestalactite{
+	pixel_y = -48
+	},
+/turf/open/floor/plating/ice{
+	density = 1
+	},
+/area/library_floors/floor_naturalsci)
 "Od" = (
 /obj/structure/railing{
 	name = "invincible railing";
 	resistance_flags = 64
-	},
-/turf/open/floor/mineral/gold,
-/area/library_floors/floor_naturalsci)
-"Pq" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
 	},
 /turf/open/floor/mineral/gold,
 /area/library_floors/floor_naturalsci)
@@ -344,15 +297,6 @@
 	density = 1
 	},
 /area/library_floors/floor_naturalsci)
-"Qo" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/railing{
-	dir = 6;
-	name = "invincible railing";
-	max_integrity = 1e+007
-	},
-/turf/open/floor/mineral/gold,
-/area/library_floors/floor_naturalsci)
 "QB" = (
 /turf/closed/wall/mineral/gold,
 /area/library_floors/floor_naturalsci)
@@ -360,6 +304,21 @@
 /obj/structure/table/wood,
 /obj/item/book/random,
 /turf/open/floor/carpet/lone,
+/area/library_floors/floor_naturalsci)
+"Rt" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f";
+	light_range = 25
+	},
+/turf/open/chasm,
+/area/library_floors/floor_naturalsci)
+"Rw" = (
+/obj/structure/flora/icestalactite/small{
+	pixel_y = -45
+	},
+/turf/open/floor/plating/ice{
+	density = 1
+	},
 /area/library_floors/floor_naturalsci)
 "Sq" = (
 /obj/structure/railing/corner,
@@ -390,12 +349,6 @@
 /area/library_floors/floor_naturalsci)
 "UJ" = (
 /turf/open/indestructible/hotelwood,
-/area/library_floors/floor_naturalsci)
-"Vj" = (
-/obj/structure/table/wood,
-/obj/item/book/random,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/lone,
 /area/library_floors/floor_naturalsci)
 "WW" = (
 /obj/structure/railing{
@@ -429,12 +382,6 @@
 /area/library_floors/floor_naturalsci)
 "Zw" = (
 /turf/open/floor/mineral/gold,
-/area/library_floors/floor_naturalsci)
-"ZA" = (
-/obj/structure/table/wood,
-/obj/item/book/random,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_naturalsci)
 
 (1,1,1) = {"
@@ -472,15 +419,15 @@ ec
 ec
 ec
 QB
-KV
+Yy
 UJ
 EG
 wa
-qt
+wa
 wa
 wa
 EG
-as
+UJ
 lp
 QB
 uH
@@ -495,7 +442,7 @@ uH
 uH
 ec
 ec
-Ms
+ec
 ec
 QB
 cg
@@ -517,7 +464,7 @@ uH
 "}
 (4,1,1) = {"
 uH
-Ms
+ec
 ec
 ec
 ec
@@ -536,7 +483,7 @@ UJ
 lp
 QB
 un
-BY
+Jz
 Ch
 QB
 uH
@@ -554,7 +501,7 @@ wa
 wa
 wa
 wa
-wa
+xd
 wa
 wa
 EG
@@ -571,20 +518,20 @@ uH
 uH
 ec
 ec
+Kd
 ec
-Ms
 wN
 Yy
 UJ
-qt
 wa
 wa
 wa
-qt
+wa
+wa
 wa
 wa
 EG
-as
+UJ
 UJ
 ei
 Jz
@@ -651,18 +598,18 @@ uH
 uH
 uH
 ec
-Ms
+ec
 ec
 QB
-ZA
+cg
 UJ
 EG
 wa
-qt
+wa
 wa
 wa
 EG
-as
+UJ
 lp
 QB
 uH
@@ -719,7 +666,7 @@ BX
 BX
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -728,22 +675,22 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
-KI
+ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Od
-Aq
 BX
-oe
+Jm
+px
 px
 px
 QB
@@ -755,7 +702,7 @@ uH
 uH
 QB
 ac
-ac
+fI
 ac
 wO
 ac
@@ -794,10 +741,10 @@ wa
 EG
 Od
 BX
-BX
-gn
+Rw
 px
-wp
+px
+px
 QB
 uH
 "}
@@ -832,24 +779,24 @@ uH
 uH
 uH
 QB
-KI
+ac
 ac
 ac
 wO
 ac
 BB
-hD
 EG
 EG
 EG
-hD
+EG
+EG
 EG
 Od
-Aq
 BX
-oe
+NE
 px
 px
+Rt
 QB
 uH
 "}
@@ -861,7 +808,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -893,7 +840,7 @@ BB
 EG
 EG
 EG
-EG
+rJ
 EG
 EG
 Od
@@ -901,7 +848,7 @@ BX
 BX
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -924,8 +871,8 @@ EG
 EG
 Od
 BX
-BX
-gn
+Rw
+px
 px
 px
 QB
@@ -936,7 +883,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
 ac
@@ -965,17 +912,17 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Od
-Aq
+BX
 BX
 px
 px
@@ -1003,9 +950,9 @@ EG
 Od
 BX
 BX
-BX
-oe
-wp
+NE
+px
+px
 QB
 uH
 "}
@@ -1043,7 +990,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1066,8 +1013,8 @@ uH
 uH
 uH
 QB
-KI
 ac
+fI
 ac
 wO
 ac
@@ -1098,14 +1045,14 @@ ac
 dl
 PZ
 Zb
-hD
 EG
 EG
 EG
-hD
+EG
+EG
 EG
 Zw
-nt
+Zw
 nP
 wn
 BX
@@ -1134,7 +1081,7 @@ Zw
 wa
 Zw
 nP
-gL
+wn
 BX
 QB
 uH
@@ -1147,7 +1094,7 @@ QB
 ac
 ac
 Xk
-Pq
+Zw
 SI
 Zw
 EG
@@ -1170,7 +1117,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 Xk
 TL
@@ -1205,7 +1152,7 @@ Zw
 EG
 wa
 wa
-wa
+xd
 wa
 EG
 Zw
@@ -1225,20 +1172,20 @@ QB
 ac
 ac
 Xk
-Pq
+Zw
 Tc
 Zw
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Zw
-qt
+wa
 wa
 Zw
-qC
+Od
 Qe
 QB
 uH
@@ -1274,7 +1221,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
 cJ
@@ -1301,7 +1248,7 @@ uH
 uH
 QB
 ac
-ac
+fI
 ac
 wO
 ac
@@ -1329,7 +1276,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1358,18 +1305,18 @@ ac
 ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 iE
-Qo
+xx
 Qe
 Qe
 Qe
-wp
+px
 QB
 uH
 "}
@@ -1378,7 +1325,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 ac
 ac
 wO
@@ -1433,7 +1380,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1462,11 +1409,11 @@ ac
 wO
 ac
 BB
-hD
 EG
 EG
 EG
-hD
+EG
+EG
 EG
 Od
 Qe
@@ -1499,7 +1446,7 @@ Qe
 Qe
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -1508,16 +1455,16 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
 EG
 EG
-EG
+rJ
 EG
 EG
 Od
@@ -1551,7 +1498,7 @@ Qe
 Qe
 Qe
 Qe
-px
+Rt
 QB
 uH
 "}
@@ -1592,11 +1539,11 @@ ac
 ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Od
 Qe
@@ -1612,8 +1559,8 @@ uH
 uH
 uH
 QB
-KI
 ac
+fI
 ac
 wO
 ac
@@ -1641,7 +1588,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1655,7 +1602,7 @@ Qe
 Qe
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -1731,11 +1678,11 @@ EG
 wa
 wa
 QB
-wD
 ec
 ec
 ec
-wD
+ec
+ec
 "}
 (51,1,1) = {"
 uH
@@ -1748,13 +1695,13 @@ uH
 QB
 vA
 wz
-hD
+EG
 wa
 wa
-qt
 wa
 wa
-qt
+wa
+wa
 iK
 QB
 ec
@@ -1809,7 +1756,7 @@ wa
 wa
 wa
 wa
-Kb
+Gp
 QK
 wN
 ec
@@ -1826,13 +1773,13 @@ uH
 QB
 vA
 wz
-qt
 wa
 wa
-qt
+wa
+wa
 id
 wa
-qt
+wa
 wa
 wa
 wa
@@ -1856,7 +1803,7 @@ wa
 wa
 JX
 wa
-wa
+xd
 wa
 wa
 wa
@@ -1865,7 +1812,7 @@ JX
 wa
 wN
 ec
-ec
+Kd
 "}
 (56,1,1) = {"
 uH
@@ -1887,11 +1834,11 @@ wa
 wa
 wa
 wa
-Vj
+QK
 Gp
 wN
 ec
-wD
+ec
 "}
 (57,1,1) = {"
 uH
@@ -1904,13 +1851,13 @@ uH
 QB
 vA
 wz
-qt
 wa
 wa
-pL
+wa
+id
 wa
 zj
-hD
+EG
 EG
 QB
 QB
@@ -1939,7 +1886,7 @@ wa
 wa
 iK
 QB
-wD
+ec
 ec
 ec
 ec
@@ -1993,7 +1940,7 @@ QB
 QB
 ec
 ec
-wD
+ec
 ec
 ec
 "}

@@ -10,11 +10,6 @@
 /obj/item/canvas,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_history)
-"aL" = (
-/obj/structure/bookcase/random/nonfiction,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
 "aN" = (
 /obj/effect/decal/cleanable/blood/tracks,
 /obj/effect/decal/cleanable/blood/gibs/old,
@@ -37,20 +32,7 @@
 /area/library_floors/floor_history)
 "ct" = (
 /obj/item/canvas,
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/library_floors/floor_history)
-"cH" = (
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
-"cT" = (
-/obj/item/flashlight/spotlight,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood,
-/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
 "dG" = (
 /obj/structure/bookcase/random/fiction,
@@ -72,7 +54,6 @@
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_history)
 "eV" = (
-/obj/item/flashlight/spotlight,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_history)
 "fP" = (
@@ -82,15 +63,42 @@
 /obj/item/toy/plush/hod,
 /turf/open/floor/wood,
 /area/library_floors/floor_history)
+"fQ" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 2
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_history)
 "gc" = (
 /obj/structure/table/wood/fancy/orange,
 /obj/item/book/random,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/wood,
 /area/library_floors/floor_history)
 "gg" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
@@ -138,6 +146,12 @@
 	pixel_x = 8
 	},
 /obj/effect/decal/cleanable/vomit,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_history)
 "jS" = (
@@ -153,7 +167,6 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
 "kN" = (
@@ -162,13 +175,6 @@
 	pixel_y = -9
 	},
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/library_floors/floor_history)
-"li" = (
-/obj/item/flashlight/spotlight,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
 "mv" = (
 /obj/structure/table/wood/fancy/orange,
@@ -232,7 +238,6 @@
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
 "sN" = (
-/obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
 	},
@@ -245,13 +250,6 @@
 /obj/item/canvas,
 /obj/effect/decal/cleanable/vomit,
 /turf/open/floor/plating/dirt/jungle/wasteland,
-/area/library_floors/floor_history)
-"tK" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 6
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
 /area/library_floors/floor_history)
 "tO" = (
 /obj/effect/turf_decal/siding/wood/corner{
@@ -277,25 +275,6 @@
 /obj/effect/decal/cleanable/blood/drip,
 /turf/open/floor/wood,
 /area/library_floors/floor_history)
-"uN" = (
-/obj/item/book/random,
-/obj/item/book/random{
-	pixel_y = 2
-	},
-/obj/item/book/random{
-	pixel_y = 2;
-	pixel_x = 7
-	},
-/obj/item/book/random{
-	pixel_x = -5
-	},
-/obj/item/book/random{
-	pixel_x = 7
-	},
-/obj/structure/table/wood,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
 "vm" = (
 /obj/structure/closet/abductor,
 /obj/item/slimepotion/speed,
@@ -318,6 +297,27 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
+"wW" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/space/basic,
+/area/space)
+"wY" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_history)
 "xg" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/indestructible/hotelwood,
@@ -325,13 +325,6 @@
 "xi" = (
 /turf/open/space/basic,
 /area/space)
-"xW" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
 "yk" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
@@ -347,6 +340,12 @@
 	},
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
@@ -497,24 +496,31 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
-"KL" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
 "Lk" = (
 /obj/item/reagent_containers/pill/maintenance,
 /turf/open/floor/plating/dirt/jungle/wasteland,
 /area/library_floors/floor_history)
 "Lx" = (
-/obj/item/flashlight/spotlight,
 /obj/structure/displaycase,
 /obj/item/flashlight/lantern,
 /turf/open/floor/wood,
 /area/library_floors/floor_history)
+"LE" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_history)
 "LU" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/pod/dark,
 /area/library_floors/floor_history)
 "NZ" = (
@@ -530,13 +536,6 @@
 "OW" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/closed/indestructible/wood,
-/area/library_floors/floor_history)
-"OZ" = (
-/obj/item/flashlight/spotlight,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
 "Pf" = (
 /obj/structure/table/wood,
@@ -560,13 +559,7 @@
 /obj/item/book/random{
 	pixel_x = 7
 	},
-/obj/item/flashlight/spotlight,
 /obj/effect/turf_decal/siding/wood,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
-"Qs" = (
-/obj/effect/turf_decal/siding/wood,
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
 "RS" = (
@@ -624,11 +617,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/open/floor/wood,
 /area/library_floors/floor_history)
-"Uw" = (
-/obj/item/flashlight/spotlight,
-/obj/effect/turf_decal/siding/wood,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
 "Vp" = (
 /obj/structure/chair/wood{
 	dir = 4
@@ -651,21 +639,6 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 8
 	},
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_history)
-"Yn" = (
-/obj/effect/turf_decal/trimline/purple/filled/line{
-	dir = 10
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/pod/dark,
-/area/library_floors/floor_history)
-"YI" = (
-/obj/item/flashlight/spotlight,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/obj/structure/fireplace,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_history)
 "Zg" = (
@@ -779,14 +752,14 @@ xi
 xi
 dI
 Sy
-wV
+wY
 WC
 Ht
 Ht
 yk
 Ht
 Ht
-yk
+fQ
 Ht
 dI
 xi
@@ -804,15 +777,15 @@ xi
 xi
 xi
 dI
-aL
+Zg
 In
 Xn
 Zg
-aL
+Zg
 IW
 Zg
 Zg
-cT
+Hx
 Zg
 dI
 xi
@@ -851,7 +824,7 @@ xi
 xi
 xi
 xi
-xi
+wW
 xi
 xi
 xi
@@ -911,11 +884,11 @@ dI
 Zg
 In
 Xn
-aL
+Zg
 Zg
 IW
 Zg
-aL
+Zg
 IW
 Zg
 dI
@@ -1008,22 +981,22 @@ Cn
 Cn
 Cn
 dI
-cH
-Xn
 Su
-cH
 Xn
 Su
 Su
-Qs
+Xn
+Su
+Su
+Xn
 Su
 pT
 Xn
-cH
+Su
 Su
 Xn
 Su
-cH
+Su
 Xn
 Su
 dI
@@ -1031,7 +1004,7 @@ dI
 (14,1,1) = {"
 Cn
 jS
-Yn
+iK
 Cn
 dI
 nt
@@ -1121,7 +1094,7 @@ Su
 Su
 Xn
 Su
-Su
+LE
 Xn
 Su
 Su
@@ -1135,25 +1108,25 @@ dI
 (18,1,1) = {"
 Cn
 nu
-tK
+Tf
 Cn
 dI
-YI
+Il
 Xn
 Su
-cH
+Su
 Xn
 Su
 pT
-Qs
+Xn
 Su
 Su
 Xn
-cH
+Su
 Su
 Xn
 Su
-cH
+Su
 Xn
 Su
 dI
@@ -1268,22 +1241,22 @@ xi
 xi
 xi
 dI
-cH
+Su
 Xn
 Su
-cH
+Su
 Xn
 Su
 pT
-Qs
+Xn
 Su
 Su
 Xn
-cH
+Su
 Su
 Xn
 Su
-cH
+Su
 Xn
 Su
 dI
@@ -1398,22 +1371,22 @@ fP
 aN
 TX
 xg
-li
-Xn
-Su
-cH
+In
 Xn
 Su
 Su
-Qs
+Xn
 Su
 Su
 Xn
-cH
+Su
 Su
 Xn
 Su
-cH
+Su
+Xn
+Su
+Su
 Xn
 Su
 dI
@@ -1433,7 +1406,7 @@ Su
 Su
 Xn
 Su
-Su
+LE
 Xn
 Su
 Su
@@ -1528,22 +1501,22 @@ dI
 dI
 dI
 dI
-OZ
+JZ
 Xn
 Su
-cH
+Su
 Xn
 Su
 pT
-Qs
+Xn
 Su
 Su
 Xn
-cH
+Su
 Su
 Xn
 Su
-cH
+Su
 Xn
 Su
 dI
@@ -1658,22 +1631,22 @@ xi
 xi
 xi
 dI
-cH
+Su
 Xn
-Su
-cH
-Xn
-Su
-Su
-Qs
 Su
 Su
 Xn
-cH
+Su
+Su
+Xn
+Su
+Su
+Xn
+Su
 pT
 Xn
 Su
-cH
+Su
 Xn
 Su
 dI
@@ -1771,7 +1744,7 @@ Su
 Su
 Xn
 Su
-Su
+LE
 Xn
 Su
 Su
@@ -1788,22 +1761,22 @@ IM
 jI
 kN
 Oy
-li
-Xn
-Su
-cH
+In
 Xn
 Su
 Su
-Qs
+Xn
 Su
 Su
 Xn
-cH
+Su
 Su
 Xn
 Su
-cH
+Su
+Xn
+Su
+Su
 Xn
 Su
 dI
@@ -1921,19 +1894,19 @@ OW
 sN
 Xn
 Su
-cH
-Xn
-Su
-Su
-Qs
-Su
-Su
-Xn
-cH
 Su
 Xn
 Su
-cH
+Su
+Xn
+Su
+Su
+Xn
+Su
+Su
+Xn
+Su
+Su
 Xn
 Xn
 OW
@@ -1974,7 +1947,7 @@ xi
 xi
 xi
 dI
-uN
+Sx
 Su
 Su
 Vp
@@ -2055,10 +2028,10 @@ OW
 In
 Su
 WC
-KL
 Ht
 Ht
-KL
+Ht
+Ht
 Ht
 wV
 Qo
@@ -2159,13 +2132,13 @@ OW
 In
 Su
 AC
-xW
 re
 re
-xW
+re
+re
 re
 JZ
-Uw
+Xn
 OW
 xi
 xi
