@@ -699,6 +699,13 @@
 		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
 
+	if(length(GLOB.clients) > 30 && LAZYLEN(SSlobotomy_corp.current_ordeals))
+		var/list/ordeal_names = list()
+		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
+			ordeal_names += O.name
+		to_chat(usr, span_boldnotice("You may not respawn while ordeal[length(ordeal_names) > 1 ? "s" : ""] [length(ordeal_names) > 1 ? "are" : "is"] in progress! Currently running ordeal[length(ordeal_names) > 1 ? "s" : ""]: [english_list(ordeal_names)]."))
+		return
+
 	if(mind)
 		if(mind.respawn_cooldown > world.time)
 			to_chat(usr, "<span class='boldnotice'>You must wait for [round((mind.respawn_cooldown - world.time)/10)] more seconds before respawning!</span>")

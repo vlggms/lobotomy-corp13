@@ -368,6 +368,9 @@
 	if(istype(user) && href_list["shoes"] && shoes && (user.mobility_flags & MOBILITY_USE)) // we need to be on the ground, so we'll be a bit looser
 		shoes.handle_tying(usr)
 
+	if(href_list["see_attributes"])
+		show_attributes(usr)
+
 ///////HUDs///////
 	if(href_list["hud"])
 		if(!ishuman(usr))

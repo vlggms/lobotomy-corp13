@@ -35,7 +35,7 @@
 	SSabnormality_queue.possible_abnormalities = list()
 	SSabnormality_queue.possible_abnormalities = gamemode_abnos
 	if(LAZYLEN(gamemode_abnos))
-		SSabnormality_queue.pick_abno()
+		SSabnormality_queue.PickAbno()
 	return ..()
 
 /datum/game_mode/management/classic

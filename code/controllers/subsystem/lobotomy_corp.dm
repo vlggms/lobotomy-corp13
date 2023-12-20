@@ -95,8 +95,12 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	/// Points used for facility upgrades
 	var/lob_points = 2
 
+	/// If TRUE - will not count deaths for auto restart
+	var/auto_restart_in_progress = FALSE
+
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
 	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
 	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
 	addtimer(CALLBACK(src, .proc/PickPotentialSuppressions), 60 SECONDS)
@@ -252,7 +256,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = AvailableAgentCount()
-	qliphoth_max = (player_count > 1 ? 4 : 3) + round(player_count * 0.8) // Some extra help on non solo rounds
+	qliphoth_max = (player_count > 1 ? 4 : 3) + player_count // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -329,7 +333,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	next_ordeal = pick(available_ordeals)
 	all_ordeals[next_ordeal_level] -= next_ordeal
-	next_ordeal_time = qliphoth_state + next_ordeal.delay + (next_ordeal.random_delay ? rand(1, 2) : 0)
+	next_ordeal_time = max(3, qliphoth_state + next_ordeal.delay + (next_ordeal.random_delay ? rand(-1, 1) : 0))
 	next_ordeal_level += 1 // Increase difficulty!
 	for(var/obj/structure/sign/ordealmonitor/O in GLOB.lobotomy_devices)
 		O.update_icon()
@@ -353,3 +357,41 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		A.audible_message("<span class='notice'>[round(amount, 0.1)] LOB point[amount > 1 ? "s" : ""] deposited! Reason: [message].</span>")
 		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
 		A.updateUsrDialog()
+
+/// Checks if all agents are dead with ordeals running. Used for procs below.
+/datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathCheck()
+	// Might be temporary: Only works on high pop
+	if(length(GLOB.clients) <= 30)
+		return FALSE
+	if(!LAZYLEN(current_ordeals))
+		return FALSE
+	var/agent_count = AvailableAgentCount()
+	if(agent_count > 0)
+		return FALSE
+	return TRUE
+
+/datum/controller/subsystem/lobotomy_corp/proc/OnMobDeath(datum/source, mob/living/died, gibbed)
+	SIGNAL_HANDLER
+	if(!(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs")))
+		return FALSE
+	if(!ishuman(died))
+		return FALSE
+	if(OrdealDeathCheck() && !auto_restart_in_progress)
+		OrdealDeathAutoRestart()
+	return TRUE
+
+/// Restarts the round when time reaches 0
+/datum/controller/subsystem/lobotomy_corp/proc/OrdealDeathAutoRestart(time = 120 SECONDS)
+	auto_restart_in_progress = TRUE
+	if(!OrdealDeathCheck())
+		// Yay
+		auto_restart_in_progress = FALSE
+		return FALSE
+	if(time <= 0)
+		message_admins("The round is over because all agents are dead while ordeals are unresolved!")
+		to_chat(world, span_danger("<b>The round is over because all agents are dead while ordeals are unresolved!</b>"))
+		SSticker.force_ending = TRUE
+		return TRUE
+	to_chat(world, span_danger("<b>All agents are dead! If ordeals are left unresolved or new agents don't join, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
+	addtimer(CALLBACK(src, .proc/OrdealDeathAutoRestart, max(0, time - 30 SECONDS)), 30 SECONDS)
+	return TRUE
