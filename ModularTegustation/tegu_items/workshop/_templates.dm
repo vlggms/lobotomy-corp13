@@ -22,7 +22,7 @@
 /obj/item/ego_weapon/template/attack(mob/living/target, mob/living/carbon/human/user)
 	forceholder = force
 	if(!active)
-		to_chat(user, "<span class='notice'>This weapon is unfinished!</span>")
+		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
 	if(specialmod)
 		specialmod.ActivateEffect(src, special_count, target, user)
@@ -50,7 +50,7 @@
 		// Material color overwrites
 		color = mod.weaponcolor
 	//throwforce is special
-	if(throwforce>force)
+	if(throwforce>10)
 		throwforce *= mod.throwforcemod
 	else if(mod.throwforcemod > 1)
 		throwforce = 30
@@ -70,3 +70,9 @@
 	//May have to change this later if the contents of the weapon can be accessed.
 	mod.forceMove(src)
 	return
+
+/obj/item/ego_weapon/template/proc/AlterSpecial(subject, add_to = FALSE)
+	if(add_to)
+		special_count += subject
+	else
+		special_count = subject

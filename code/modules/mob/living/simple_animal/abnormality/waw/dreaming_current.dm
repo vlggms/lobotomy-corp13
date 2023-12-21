@@ -11,7 +11,7 @@
 	ranged = TRUE
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
 	deathsound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
 
@@ -179,7 +179,7 @@
 		var/list/new_hits = HurtInTurf(TF, been_hit, dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			visible_message("<span class='boldwarning'>[src] bites [L]!</span>")
+			visible_message(span_boldwarning("[src] bites [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
 			if(L.health < 0)

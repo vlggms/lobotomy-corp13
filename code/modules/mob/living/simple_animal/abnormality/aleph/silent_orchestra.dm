@@ -6,7 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "silent"
 	icon_living = "silent"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
@@ -113,7 +113,7 @@
 						head.dismember()
 						QDEL_NULL(head)
 						H.regenerate_icons()
-						H.visible_message("<span class='danger'>[H]'s head explodes!</span>")
+						H.visible_message(span_danger("[H]'s head explodes!"))
 						new /obj/effect/gibspawner/generic/silent(get_turf(H))
 						playsound(get_turf(H), 'sound/abnormalities/silentorchestra/headbomb.ogg', 50, 1)
 				SLEEP_CHECK_DEATH(4 SECONDS)

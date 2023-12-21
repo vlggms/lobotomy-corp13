@@ -747,6 +747,12 @@ update_label()
 	name = "\proper a perfectly generic identification card"
 	desc = "A perfectly generic identification card. Looks like it could use some flavor."
 
+/obj/item/card/id/away/old/cap
+	name = "Charlie Station Captain's ID card"
+	desc = "A faded Charlie Station ID card. You can make out the rank \"Captain\"."
+	assignment = "Charlie Station Captain"
+	access = list(ACCESS_AWAY_GENERAL, ACCESS_AWAY_SEC)
+
 /obj/item/card/id/away/old/sec
 	name = "Charlie Station Security Officer's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Security Officer\"."
@@ -757,6 +763,18 @@ update_label()
 	name = "Charlie Station Scientist's ID card"
 	desc = "A faded Charlie Station ID card. You can make out the rank \"Scientist\"."
 	assignment = "Charlie Station Scientist"
+	access = list(ACCESS_AWAY_GENERAL)
+
+/obj/item/card/id/away/old/doc
+	name = "Charlie Station Doctor's ID card"
+	desc = "A faded Charlie Station ID card. You can make out the rank \"Doctor\"."
+	assignment = "Charlie Station Doctor"
+	access = list(ACCESS_AWAY_GENERAL)
+
+/obj/item/card/id/away/old/ass
+	name = "Charlie Station Assistant's ID card"
+	desc = "A faded Charlie Station ID card. You can make out the rank \"Assistant\"."
+	assignment = "Charlie Station Assisant"
 	access = list(ACCESS_AWAY_GENERAL)
 
 /obj/item/card/id/away/old/eng
@@ -806,4 +824,4 @@ update_label()
 	icon_state = "car_budget" //saving up for a new tesla
 
 /obj/item/card/id/departmental_budget/AltClick(mob/living/user)
-	registered_account.bank_card_talk("<span class='warning'>Withdrawing is not compatible with this card design.</span>", TRUE) //prevents the vault bank machine being useless and putting money from the budget to your card to go over personal crates
+	registered_account.bank_card_talk(span_warning("Withdrawing is not compatible with this card design."), TRUE) //prevents the vault bank machine being useless and putting money from the budget to your card to go over personal crates

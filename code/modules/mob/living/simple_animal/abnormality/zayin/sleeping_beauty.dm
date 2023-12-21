@@ -10,8 +10,9 @@
 	var/icon_active = "sleeping_active"
 	can_buckle = TRUE
 	buckle_lying = 90
-	maxHealth = 10
-	health = 10
+	maxHealth = 450
+	health = 450
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	del_on_death = FALSE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
@@ -31,10 +32,13 @@
 	gift_type =  /datum/ego_gifts/doze
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+	move_to_delay = 2.5
+	max_buckled_mobs = 10
+
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
 	chem_type = /datum/reagent/abnormality/sleeping
-	harvest_phrase = "<span class='notice'>You give %ABNO a small jostle, releasing some dreamy-looking clouds. You capture them in %VESSEL.</span>"
+	harvest_phrase = span_notice("You give %ABNO a small jostle, releasing some dreamy-looking clouds. You capture them in %VESSEL.")
 	harvest_phrase_third = "%PERSON jostles %ABNO, then captures the resulting clouds with %VESSEL."
 
 //work code
@@ -45,7 +49,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	user.apply_status_effect(STATUS_EFFECT_RESTED)
-	to_chat(user, "<span class='notice'>You feel refreshed!.</span>")
+	to_chat(user, span_notice("You feel refreshed!."))
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -56,10 +60,15 @@
 	sleep(0.5 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
-	to_chat(user, "<span class='userdanger'>That was tough work, time for a break.</span>")
+	to_chat(user, span_userdanger("That was tough work, time for a break."))
 	buckle_mob(user)
 	update_icon()
 	return
+
+/mob/living/simple_animal/hostile/abnormality/sleeping/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_PINK)
+		can_breach = TRUE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/Life()
 	update_icon()
@@ -76,25 +85,25 @@
 	if(buckled_mob)
 		var/mob/living/M = buckled_mob
 		if(M != user)
-			M.visible_message("<span class='notice'>[user] tries to pull [M] free of [src]!</span>",\
-				"<span class='notice'>[user] is trying to pull you off [src]!</span>",\
-				"<span class='hear'>You hear tossing and turning...</span>")
+			M.visible_message(span_notice("[user] tries to pull [M] free of [src]!"),\
+				span_notice("[user] is trying to pull you off [src]!"),\
+				span_hear("You hear tossing and turning..."))
 			if(!do_after(user, 30, target = src))
 				if(M?.buckled)
-					M.visible_message("<span class='notice'>[user] fails to free [M]!</span>",\
-					"<span class='notice'>[user] fails to pull you off of [src].</span>")
+					M.visible_message(span_notice("[user] fails to free [M]!"),\
+					span_notice("[user] fails to pull you off of [src]."))
 				return
 
 		else
-			M.visible_message("<span class='warning'>[M] looks like they might get up from [src]!</span>",\
-			"<span class='notice'>You try to get up from [src]!</span>",\
-			"<span class='hear'>You hear tossing and turning...</span>")
+			M.visible_message(span_warning("[M] looks like they might get up from [src]!"),\
+			span_notice("You try to get up from [src]!"),\
+			span_notice("You hear tossing and turning..."))
 			if(!do_after(M, 10, target = src))
-				to_chat(M, "<span class='warning'>There's no rush.</span>")
+				to_chat(M, span_warning("There's no rush."))
 				return
 			if(prob(95))
 				if(M?.buckled)
-					to_chat(M, "<span class='warning'>Maybe just a few more minutes.</span>")
+					to_chat(M, span_warning("Maybe just a few more minutes."))
 					return
 		if(!M.buckled)
 			return
@@ -139,6 +148,10 @@
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/sleeping/ListTargets()
+	. = ..()
+	. -= buckled_mobs
+
 #undef STATUS_EFFECT_RESTED
 
 /datum/reagent/abnormality/sleeping
@@ -152,7 +165,7 @@
 	if(!iscarbon(L))
 		return
 	var/mob/living/carbon/C = L
-	to_chat(C, "<span class='warning'>You feel tired...</span>")
+	to_chat(C, span_warning("You feel tired..."))
 	C.blur_eyes(5)
 	addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 20), 2 SECONDS)
 	return ..()

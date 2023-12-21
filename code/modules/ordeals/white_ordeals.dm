@@ -1,11 +1,11 @@
 /datum/ordeal/fixers
 	name = "Fixers"
-	annonce_text = "This isn't supposed to happen, but they have come for you. Might want to report this to central command."
+	announce_text = "This isn't supposed to happen, but they have come for you. Might want to report this to central command."
 	can_run = FALSE
 	delay = 1 // Goes back-to-back
 	random_delay = FALSE
 	reward_percent = 0.1
-	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
+	announce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
 	var/mobs_amount = 1
 	var/list/potential_types = list(
@@ -31,8 +31,9 @@
 
 // Dawn
 /datum/ordeal/fixers/white_dawn
-	name = "Dawn of White"
-	annonce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
+	name = "The Dawn of White"
+	flavor_name = "A Request"
+	announce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
 	so long as you pay them sufficiently."
 	can_run = TRUE
 	level = 6
@@ -49,17 +50,19 @@
 		N.potential_types -= dawn_type
 
 /datum/ordeal/fixers/white_noon
-	name = "Noon of White"
-	annonce_text = "They search constantly, be it for the Backers of the Wings, the Inventions of the Backstreets, \
-	the Reliques of the Outskirts, the Artefacts of the Ruins…"
+	name = "The Noon of White"
+	flavor_name = "Armaments"
+	announce_text = "They search constantly, be it for the Backers of the Wings, the Inventions of the Backstreets, \
+	the Reliques of the Outskirts, the Artefacts of the Ruins..."
 	can_run = TRUE
 	level = 7
 	reward_percent = 0.15
 	mobs_amount = 2
 
 /datum/ordeal/fixers/white_dusk
-	name = "Dusk of White"
-	annonce_text = "The colossal tower of light was titled The Library. It is only natural for the Fixers \
+	name = "The Dusk of White"
+	flavor_name = "The Fixers"
+	announce_text = "The colossal tower of light was titled The Library. It is only natural for the Fixers \
 	to be drawn to such a mystic place of life and death."
 	can_run = TRUE
 	level = 8
@@ -74,14 +77,15 @@
 
 // Midnight
 /datum/ordeal/white_midnight
-	name = "Midnight of White"
-	annonce_text = "To know and manipulate all the secrets of the world; that is the \
+	name = "The Midnight of White"
+	flavor_name = "The Claw"
+	announce_text = "To know and manipulate all the secrets of the world; that is the \
 	privilege of the Head, the Eye, and the Claws. It is their honor and absolute power."
 	level = 9
 	delay = 1
 	random_delay = FALSE
 	reward_percent = 0.25
-	annonce_sound = 'sound/effects/ordeals/white_start.ogg'
+	announce_sound = 'sound/effects/ordeals/white_start.ogg'
 	end_sound = 'sound/effects/ordeals/white_end.ogg'
 
 /datum/ordeal/white_midnight/Run()

@@ -27,8 +27,8 @@
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
@@ -245,8 +245,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
@@ -331,8 +331,8 @@
 /area/department_main/information)
 "aX" = (
 /obj/machinery/disposal/delivery_chute{
-	resistance_flags = 64;
-	color = "#00a86b"
+	color = "#00a86b";
+	resistance_flags = 64
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 4
@@ -495,8 +495,8 @@
 /area/facility_hallway/welfare)
 "bE" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -757,8 +757,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -890,6 +890,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/spawner/xmastree,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "dc" = (
@@ -1064,8 +1065,8 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
 	dir = 8;
-	pixel_y = 27;
-	pixel_x = 27
+	pixel_x = 27;
+	pixel_y = 27
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -1076,8 +1077,8 @@
 /area/facility_hallway/welfare)
 "dJ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -1096,10 +1097,10 @@
 	color = "#cd00cd"
 	},
 /obj/machinery/chem_dispenser/fullupgrade{
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
-	name = "Industrial Foodstuff Dispenser";
 	desc = "Creates and dispenses a variety of kitchen ingredients.";
+	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
 	emagged_reagents = null;
+	name = "Industrial Foodstuff Dispenser";
 	upgrade_reagents = list(/datum/reagent/ash)
 	},
 /turf/open/floor/plasteel/white,
@@ -1233,8 +1234,8 @@
 	},
 /obj/structure/window/reinforced/spawner,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#ffa500"
@@ -1254,8 +1255,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
@@ -1327,8 +1328,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
@@ -1349,8 +1350,8 @@
 "eB" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -1664,8 +1665,8 @@
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /turf/open/floor/facility/white,
 /area/department_main/training)
@@ -1786,8 +1787,8 @@
 /area/department_main/command)
 "gm" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -1817,8 +1818,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/sepia,
@@ -1971,8 +1972,8 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
 	dir = 8;
-	pixel_y = 27;
-	pixel_x = 27
+	pixel_x = 27;
+	pixel_y = 27
 	},
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
@@ -2073,8 +2074,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -2222,8 +2223,8 @@
 /area/department_main/command)
 "hC" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -2484,8 +2485,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
@@ -2595,8 +2596,8 @@
 /obj/item/storage/belt/ego,
 /obj/item/storage/belt/ego,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -3037,8 +3038,8 @@
 /area/facility_hallway/south)
 "kq" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -3243,8 +3244,8 @@
 "kW" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -3740,8 +3741,8 @@
 /area/department_main/training)
 "mR" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -4051,8 +4052,8 @@
 	},
 /obj/effect/turf_decal/tile/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -4206,8 +4207,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -4521,8 +4522,8 @@
 /area/department_main/command)
 "qo" = (
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
@@ -4604,8 +4605,8 @@
 /area/department_main/information)
 "qB" = (
 /obj/machinery/disposal/delivery_chute{
-	resistance_flags = 64;
-	color = "#0000ff"
+	color = "#0000ff";
+	resistance_flags = 64
 	},
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -4622,8 +4623,8 @@
 /area/department_main/information)
 "qE" = (
 /obj/machinery/disposal/delivery_chute{
-	resistance_flags = 64;
-	color = "#d80000"
+	color = "#d80000";
+	resistance_flags = 64
 	},
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -4746,8 +4747,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -4961,8 +4962,8 @@
 /area/facility_hallway/central)
 "rX" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -5066,8 +5067,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
@@ -5107,8 +5108,8 @@
 "sG" = (
 /obj/structure/sign/departments/safety,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -5156,8 +5157,8 @@
 /area/facility_hallway/central)
 "sO" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -5193,8 +5194,8 @@
 /area/department_main/safety)
 "sV" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -5252,8 +5253,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/machinery/light/cold/no_nightlight,
 /turf/open/floor/plasteel/sepia,
@@ -5339,8 +5340,8 @@
 	},
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -5589,8 +5590,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
@@ -5804,8 +5805,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -5866,8 +5867,8 @@
 	},
 /obj/structure/window/reinforced/spawner,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	color = "#d80000"
@@ -5962,8 +5963,8 @@
 "vI" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -6273,8 +6274,8 @@
 /area/facility_hallway/north)
 "wY" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -6468,8 +6469,8 @@
 /area/department_main/safety)
 "xQ" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -6534,8 +6535,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
@@ -6656,8 +6657,8 @@
 /area/facility_hallway/discipline)
 "yw" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#0000ff"
+	color = "#0000ff";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -6728,8 +6729,8 @@
 	dir = 5
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
@@ -6741,8 +6742,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -6960,8 +6961,8 @@
 	},
 /obj/machinery/light/cold/no_nightlight,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -7315,8 +7316,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -7339,8 +7340,8 @@
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
 	dir = 8;
-	pixel_y = 27;
-	pixel_x = 27
+	pixel_x = 27;
+	pixel_y = 27
 	},
 /obj/machinery/fat_sucker,
 /turf/open/floor/carpet/blue,
@@ -7452,8 +7453,8 @@
 	dir = 6
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/structure/sink/kitchen{
 	dir = 8;
@@ -7859,8 +7860,8 @@
 	},
 /obj/machinery/door/window/southleft,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
@@ -7957,11 +7958,6 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"CY" = (
-/obj/machinery/door/airlock/centcom,
-/obj/machinery/door/airlock/centcom,
-/turf/open/floor/facility/halls,
-/area/facility_hallway/central)
 "CZ" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -8032,8 +8028,8 @@
 /area/facility_hallway/south)
 "Dm" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
@@ -8087,8 +8083,8 @@
 /area/department_main/information)
 "Dv" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -8485,8 +8481,8 @@
 	},
 /obj/structure/window/reinforced/spawner/north,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/information)
@@ -8738,8 +8734,8 @@
 	dir = 6
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -8815,8 +8811,8 @@
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
@@ -8982,8 +8978,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#0000ff"
+	color = "#0000ff";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -8996,8 +8992,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#ffa500"
+	color = "#ffa500";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -9172,8 +9168,8 @@
 /area/facility_hallway/discipline)
 "HF" = (
 /obj/machinery/conveyor_switch/oneway{
-	name = "disposal conveyor switch";
-	id = "k corp disposal conveyor 1"
+	id = "k corp disposal conveyor 1";
+	name = "disposal conveyor switch"
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/central)
@@ -9598,8 +9594,8 @@
 	id = "extraction"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/information)
@@ -9816,8 +9812,8 @@
 	},
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
@@ -9933,20 +9929,20 @@
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	pixel_x = -5;
@@ -10027,8 +10023,8 @@
 	},
 /obj/structure/closet/secure_closet/record,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -10055,8 +10051,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -10235,8 +10231,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
@@ -10559,8 +10555,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
@@ -10583,8 +10579,8 @@
 	color = "#00a86b"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -10607,8 +10603,8 @@
 "Nl" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -10884,9 +10880,9 @@
 	pixel_x = 8
 	},
 /obj/structure/window/reinforced/spawner/north{
+	dir = 2;
 	max_integrity = 25;
-	pixel_y = 2;
-	dir = 2
+	pixel_y = 2
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -10912,8 +10908,8 @@
 /area/facility_hallway/south)
 "Oe" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -10933,8 +10929,8 @@
 "Og" = (
 /obj/structure/sign/departments/welfare,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -11023,8 +11019,8 @@
 /area/department_main/discipline)
 "OB" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#0000ff"
+	color = "#0000ff";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -11493,8 +11489,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
@@ -11597,8 +11593,8 @@
 /area/department_main/training)
 "QC" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#d80000"
+	color = "#d80000";
+	dir = 4
 	},
 /turf/closed/indestructible/iron{
 	opacity = 1
@@ -11767,8 +11763,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
@@ -11924,8 +11920,8 @@
 	},
 /obj/effect/turf_decal/tile/neutral,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#0000ff"
+	color = "#0000ff";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -12094,9 +12090,9 @@
 	},
 /obj/item/toy/plush/binah,
 /obj/structure/window/reinforced/spawner/north{
+	dir = 2;
 	max_integrity = 25;
-	pixel_y = 2;
-	dir = 2
+	pixel_y = 2
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -12268,8 +12264,8 @@
 /area/department_main/information)
 "SM" = (
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/closed/indestructible/rock,
 /area/space)
@@ -12308,8 +12304,8 @@
 /area/facility_hallway/safety)
 "SR" = (
 /obj/machinery/conveyor_switch/oneway{
-	name = "disposal conveyor switch";
-	id = "k corp disposal conveyor 2"
+	id = "k corp disposal conveyor 2";
+	name = "disposal conveyor switch"
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/central)
@@ -12447,8 +12443,8 @@
 /area/department_main/command)
 "Tw" = (
 /obj/machinery/disposal/delivery_chute{
-	resistance_flags = 64;
-	color = "#ffa500"
+	color = "#ffa500";
+	resistance_flags = 64
 	},
 /obj/structure/window/reinforced/spawner/north,
 /obj/effect/turf_decal/tile/yellow,
@@ -12543,8 +12539,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
@@ -12564,8 +12560,8 @@
 	},
 /obj/machinery/light/cold/no_nightlight,
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -12704,8 +12700,8 @@
 	color = "#0000ff"
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /obj/item/folder/blue,
 /obj/item/folder/blue,
@@ -12977,8 +12973,8 @@
 "VJ" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1;
-	storage_capacity = 1000;
-	name = "Meat Storage Refrigerator"
+	name = "Meat Storage Refrigerator";
+	storage_capacity = 1000
 	},
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
@@ -13179,8 +13175,8 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -13261,8 +13257,8 @@
 "We" = (
 /obj/machinery/hydroponics/constructable,
 /obj/structure/window/reinforced/spawner/east{
-	pixel_x = 3;
-	max_integrity = 25
+	max_integrity = 25;
+	pixel_x = 3
 	},
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -13308,8 +13304,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#00a86b"
+	color = "#00a86b";
+	dir = 4
 	},
 /obj/structure/window/reinforced/spawner/west,
 /turf/open/floor/carpet/royalblack,
@@ -13690,19 +13686,19 @@
 	pixel_x = -1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
+	color = "#000000";
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000"
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
+	color = "#000000";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/neutral{
-	dir = 8;
-	color = "#000000"
+	color = "#000000";
+	dir = 8
 	},
 /obj/item/toy/plush/bigbird,
 /obj/machinery/camera/autoname{
@@ -14046,8 +14042,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
@@ -14214,8 +14210,8 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#0000ff"
+	color = "#0000ff";
+	dir = 4
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/information)
@@ -14238,8 +14234,8 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
@@ -14323,8 +14319,8 @@
 	pixel_x = -27
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 4;
-	color = "#cd00cd"
+	color = "#cd00cd";
+	dir = 4
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
@@ -48160,7 +48156,7 @@ BS
 BS
 BS
 Xu
-CY
+ZC
 Cy
 Cy
 Cy

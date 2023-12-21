@@ -18,7 +18,7 @@
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/abnormalities/ebonyqueen/attack.ogg'
 	deathsound = 'sound/creatures/venus_trap_death.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
 	speed = 1 //slow as balls
@@ -46,7 +46,7 @@
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/gold/rock_attack.ogg'
 	deathsound = 'sound/effects/ordeals/gold/rock_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
 	ranged = TRUE
@@ -209,7 +209,7 @@
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/gold/flower_attack.ogg'
 	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
 	stat_attack = DEAD
@@ -253,18 +253,17 @@
 	icon_living = "lake_corrosion"
 	icon_dead = "sin_dead"
 	faction = list("gold_ordeal")
-	maxHealth = 3000 //it's a boss, more or less
-	health = 3000
+	maxHealth = 2500 //it's a boss, more or less
+	health = 2500
 	melee_damage_type = PALE_DAMAGE
 	melee_damage_lower = 14
 	melee_damage_upper = 18
-	pixel_x = -8
-	base_pixel_x = -8
+	ranged = TRUE
 	attack_verb_continuous = "bisects"
 	attack_verb_simple = "bisects"
 	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
 	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
 	speed = 3
@@ -273,11 +272,26 @@
 	var/can_act = TRUE
 	var/slash_width = 1
 	var/slash_length = 3
+	var/sweep_cooldown
+	var/sweep_cooldown_time = 10 SECONDS
+	var/sweep_damage = 50
+
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/face_atom() //VERY important; prevents spinning while slashing
+	if(!can_act)
+		return
+	..()
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/Move()
 	if(!can_act)
 		return FALSE
 	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/OpenFire()
+	if(!can_act)
+		return
+	if((sweep_cooldown < world.time) && (get_dist(src, target) < 3))
+		AreaAttack()
+		return
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget()
 	if(!can_act)
@@ -400,6 +414,28 @@
 		return
 	return ..()
 
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/AreaAttack()
+	if(sweep_cooldown > world.time)
+		return
+	sweep_cooldown = world.time + sweep_cooldown_time
+	can_act = FALSE
+	playsound(get_turf(src), 'sound/weapons/fixer/generic/dodge2.ogg', 100, 0, 5)
+	for(var/turf/L in view(2, src))
+		new /obj/effect/temp_visual/cult/sparks(L)
+	SLEEP_CHECK_DEATH(12)
+	for(var/turf/T in view(2, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in HurtInTurf(T, list(), sweep_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+			if(L.health < 0)
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(H)) //The other way, someday.
+					H.set_lying_angle(360) //gunk code I know, but it is the simplest way to override gib_animation() without touching other code. Also looks smoother.
+				L.gib()
+	playsound(get_turf(src), 'sound/weapons/fixer/generic/finisher1.ogg', 100, 0, 5)
+	SLEEP_CHECK_DEATH(3)
+	can_act = TRUE
+
 /mob/living/simple_animal/hostile/ordeal/sin_gloom
 	name = "Peccatulum Morositatis"
 	desc = "An insect-like entity with a transparant body."
@@ -411,7 +447,6 @@
 	maxHealth = 300
 	health = 300
 	melee_damage_type = WHITE_DAMAGE
-
 	rapid_melee = 2
 	melee_damage_lower = 14
 	melee_damage_upper = 14
@@ -419,7 +454,7 @@
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/gold/flea_attack.ogg'
 	deathsound = 'sound/effects/ordeals/gold/flea_dead.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/slime = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/slime = 1)
 	is_flying_animal = TRUE
@@ -440,6 +475,7 @@
 		return
 	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
 	playsound(loc, 'sound/effects/ordeals/gold/tentacle_explode.ogg', 60, TRUE)
+	new /obj/effect/temp_visual/explosion(get_turf(src))
 	for(var/mob/living/L in viewers(2, src))
 		L.apply_damage(40, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
 	animate(src, transform = matrix(), time = 0)
@@ -465,7 +501,7 @@
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/ego/sword1.ogg'
 	deathsound = 'sound/effects/ordeals/gold/dead_generic.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/rawcrab = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/rawcrab = 1)
 	ranged = TRUE
@@ -583,7 +619,7 @@
 	attack_verb_simple = "chop"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
 	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
 	move_to_delay = 3
@@ -647,7 +683,7 @@
 	attack_verb_simple = "shock"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
 	move_to_delay = 4
@@ -709,7 +745,7 @@
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/gold/tentacle_attack.ogg'
 	deathsound = 'sound/effects/ordeals/gold/dead_generic.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1)
 	guaranteed_butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1) //should make its own kind of meat when I get around to it
 
@@ -784,7 +820,7 @@
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/gold/cromer_slam.ogg'
 	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/lizard = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/lizard = 1)
 

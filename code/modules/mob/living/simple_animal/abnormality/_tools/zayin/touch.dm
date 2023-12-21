@@ -8,22 +8,22 @@
 
 /obj/structure/toolabnormality/touch/examine(mob/user)
 	. = ..()
-	. += "<span class='info'>Pressing it while on help intent will breach all abnormalities instead of ending the shift.</span>"
+	. += span_info("Pressing it while on help intent will breach all abnormalities instead of ending the shift.")
 
 //I had to.
 /obj/structure/toolabnormality/touch/attack_hand(mob/living/carbon/human/user)
 	if(cooldown > world.time)
-		to_chat(user, "<span class='notice'>THE BUTTON CANNOT BE PRESSED RIGHT NOW.</span>")
+		to_chat(user, span_notice("THE BUTTON CANNOT BE PRESSED RIGHT NOW."))
 		return
 
 	var/round_end = (user.a_intent != INTENT_HELP)
 	if((user.ckey in bastards) || (!round_end && (user.ckey in breaching_bastards)))
-		to_chat(user, "<span class='userdanger'>THE BUTTON REJECTS YOU.</span>")
+		to_chat(user, span_userdanger("THE BUTTON REJECTS YOU."))
 		return
 
 	cooldown = world.time + 45 SECONDS // Spam prevention
 	for(var/mob/M in GLOB.player_list)
-		to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"].</span>")
+		to_chat(M, span_userdanger("[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"]."))
 
 	if(round_end)
 		RoundEndEffect(user)

@@ -53,13 +53,13 @@
 			if(!E || !A)
 				return FALSE
 			if(A.stored_boxes < E.cost)
-				to_chat(usr, "<span class='warning'>Not enough PE boxes stored for this operation.</span>")
+				to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			var/obj/item/I = new E.item_path(get_turf(src))
 			A.stored_boxes -= E.cost
 			A.current_ego += I
-			to_chat(usr, "<span class='notice'>[I] has been dispensed!</span>")
+			to_chat(usr, span_notice("[I] has been dispensed!"))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE

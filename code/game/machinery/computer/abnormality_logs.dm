@@ -12,10 +12,11 @@
 		dat += "<A href='byond://?src=[REF(src)];global_log_menu=1'>All logs</A><br><br>"
 	for(var/i = 1 to SSlobotomy_corp.all_abnormality_datums.len)
 		var/datum/abnormality/A = SSlobotomy_corp.all_abnormality_datums[i]
+		var/understanding = round((A.understanding / A.max_understanding) * 100)
 		if(!LAZYLEN(A.work_logs))
-			dat += "\[[THREAT_TO_NAME[A.threat_level]]\] [A.name]"
+			dat += "\[[THREAT_TO_NAME[A.threat_level]]\] [A.name] ([understanding]%)"
 		else
-			dat += "<A href='byond://?src=[REF(src)];log_menu=[i]'>\[[THREAT_TO_NAME[A.threat_level]]\] [A.name]</A>"
+			dat += "<A href='byond://?src=[REF(src)];log_menu=[i]'>\[[THREAT_TO_NAME[A.threat_level]]\] [A.name] ([understanding]%)</A>"
 		dat += "<br>"
 	var/datum/browser/popup = new(user, "abno_logs", "Abnormality Logging Console", 400, 700)
 	popup.set_content(dat)
@@ -52,9 +53,9 @@
 			popup.open()
 			return TRUE
 
-		///////////////////
-		// Agent work stats
-		///////////////////
+		/**
+		 *	Agent work stats
+		 */
 		if(href_list["work_stats_menu"])
 			var/abno_num = text2num(href_list["work_stats_menu"])
 			var/datum/abnormality/A = SSlobotomy_corp.all_abnormality_datums[abno_num]
@@ -79,9 +80,9 @@
 			popup.open()
 			return TRUE
 
-		//////////////////////////////////////////////////////////////////////
-		// The individual window of an agent's work stats for that abnormality
-		//////////////////////////////////////////////////////////////////////
+		/**
+		 *	The individual window of an agent's work stats for that abnormality
+		 */
 		if(href_list["agent_stats"])
 			var/worker = href_list["agent_stats"]
 			var/abno_num = text2num(href_list["abno_number"])
@@ -112,9 +113,9 @@
 			popup.open()
 			return TRUE
 
-		////////////////////
-		// Same, but GLOBAL!
-		////////////////////
+		/**
+		 *	Same, but GLOBAL!
+		 */
 		if(href_list["global_agent_stats"])
 			var/worker = href_list["global_agent_stats"]
 			var/dat

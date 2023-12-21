@@ -1576,7 +1576,10 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	return TRUE
 
 /datum/species/proc/apply_damage(damage, damagetype = BRUTE, def_zone = null, blocked, mob/living/carbon/human/H, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
-	SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness) // make sure putting wound_bonus here doesn't screw up other signals or uses for this signal
+	var/signal_return = SEND_SIGNAL(H, COMSIG_MOB_APPLY_DAMGE, damage, damagetype, def_zone, wound_bonus, bare_wound_bonus, sharpness)
+	if(signal_return & COMPONENT_MOB_DENY_DAMAGE)
+		return FALSE
+
 	var/hit_percent = (100-(blocked+armor))/100
 	hit_percent = (hit_percent * (100-H.physiology.damage_resistance))/100
 	if(!damage || (!forced && hit_percent <= 0))
@@ -1628,14 +1631,9 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(BRAIN)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
-		if(RED_DAMAGE) // TODO
-			H.damageoverlaytemp = 20
+		if(RED_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * redmod * H.physiology.red_mod
-			if(BP)
-				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
-					H.update_damage_overlays()
-			else//no bodypart, we deal damage with a more general method.
-				H.adjustBruteLoss(damage_amount)
+			H.adjustRedLoss(damage_amount, forced = forced)
 		if(WHITE_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * whitemod * H.physiology.white_mod
 			H.adjustWhiteLoss(damage_amount, forced = forced, white_healable = white_healable)

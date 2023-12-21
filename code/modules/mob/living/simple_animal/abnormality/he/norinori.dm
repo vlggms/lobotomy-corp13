@@ -17,7 +17,7 @@
 	rapid_melee = 1 //we change this later
 	melee_reach = 1
 	ranged = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
 	move_to_delay = 7
@@ -128,7 +128,7 @@
 	SLEEP_CHECK_DEATH(0.2 SECONDS)
 	user.attack_animal(src)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	user.visible_message("<span class='warning'>[src] mutilates [user]!</span>", "<span class='userdanger'>[src] mutilates you!</span>")
+	user.visible_message(span_warning("[src] mutilates [user]!"), span_userdanger("[src] mutilates you!"))
 	user.apply_damage(3000, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	playsound(user, 'sound/abnormalities/helper/attack.ogg', 100, FALSE, 4)
 	attack_sound = initial(attack_sound)
@@ -186,7 +186,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/norinori/bullet_act(obj/projectile/P)
 	if(transformed) //guns are ineffective on the split form
-		visible_message("<span class='userdanger'>[src] swiftly dodges [P]!</span>")
+		visible_message(span_userdanger("[src] swiftly dodges [P]!"))
 		P.Destroy()
 		return
 	..()

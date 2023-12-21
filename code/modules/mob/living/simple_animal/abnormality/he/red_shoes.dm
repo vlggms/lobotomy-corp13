@@ -11,7 +11,7 @@
 	can_breach = TRUE
 	gender = NEUTER
 	threat_level = HE_LEVEL
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	start_qliphoth = 2
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(50, 50, 45, 50, 60),
@@ -116,7 +116,7 @@
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		Apply_Desire(user)
 		user.adjustSanityLoss(500)
-		user.visible_message("<span class='userdanger'>[user] ignores [p_their()] orders and continually glances at The Red Shoes. Now [p_theyre()] reaching out their hand to take the shoes.</span>", "<span class='userdanger'>What lovely shoes...</span>")
+		user.visible_message(span_userdanger("[user] ignores [p_their()] orders and continually glances at The Red Shoes. Now [p_theyre()] reaching out their hand to take the shoes."), span_userdanger("What lovely shoes..."))
 
 //***Breach Mechanics***//
 /mob/living/simple_animal/hostile/abnormality/red_shoes/ZeroQliphoth(mob/living/carbon/human/user)//silent girl with extra steps
@@ -192,7 +192,7 @@
 		desc = "The Red Shoes’s bloody enameled leather glistens in the light."
 		icon_state = "redshoes_breach"
 		icon_living = "redshoes_breach"
-		ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5))
+		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5))
 		sleep(10)
 		new /mob/living/simple_animal/hostile/red_shoe(get_turf(src))
 	datum_reference.qliphoth_change(-2)
@@ -254,7 +254,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 50)
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
 	if(H.sanity_lost)
 		QDEL_NULL(owner.ai_controller)
 		H.ai_controller = /datum/ai_controller/insane/red_possess
@@ -361,7 +361,7 @@
 	icon_living = "redshoes_breach2"
 	icon_dead = "redshoes_breach2"//dels on death
 	gender = NEUTER
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	del_on_death = TRUE
 	deathmessage = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'

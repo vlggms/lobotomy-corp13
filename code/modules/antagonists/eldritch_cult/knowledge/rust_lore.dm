@@ -171,7 +171,14 @@
 	var/list/edge_turfs = list()
 	var/list/turfs = list()
 	var/turf/centre
-	var/static/list/blacklisted_turfs = typecacheof(list(/turf/open/indestructible,/turf/closed/indestructible,/turf/open/space,/turf/open/lava,/turf/open/chasm))
+	/// Static blacklist of turfs we can't spread to.
+	var/static/list/blacklisted_turfs = typecacheof(list(
+		/turf/open/indestructible,
+		/turf/closed/indestructible,
+		/turf/open/space,
+		/turf/open/lava,
+		/turf/open/chasm,
+	))
 	var/spread_per_sec = 6
 
 

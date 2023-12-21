@@ -16,7 +16,7 @@
 		ABNORMALITY_WORK_REPRESSION = 30,
 		"Touch" = 100
 			) //for some reason all its work rates are uniform through attribute levels in LC
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
 	melee_damage_lower = 15
@@ -56,10 +56,10 @@
 	name = "Toggle Dash"
 	button_icon_state = "porccubus_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't dash anymore.</span>"
+	chosen_message = span_colossus("You won't dash anymore.")
 	button_icon_toggle_activated = "porccubus_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now dash to your target when possible..</span>"
+	toggle_message = span_colossus("You will now dash to your target when possible.")
 	button_icon_toggle_deactivated = "porccubus_toggle0"
 
 //Work Code
@@ -150,7 +150,7 @@
 		damage_taken = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/bullet_act(obj/projectile/P)
-	visible_message("<span class='warning'>Porccubus playfully swat [P] projectile away!</span>")
+	visible_message(span_warning("Porccubus playfully swat [P] projectile away!"))
 	return FALSE //COME CLOSER AND GET DRUGGED COWARD
 
 //Breach Code Attacks
@@ -303,7 +303,7 @@
 	. = ..()
 	if(ishuman(owner))
 		if(previous_addict)
-			to_chat(addict, "<span class='userdanger'>Your body has a sudden allergic reaction to the substance!</span>")
+			to_chat(addict, span_userdanger("Your body has a sudden allergic reaction to the substance!"))
 			addict.vomit()
 			return
 		var/obj/item/bodypart/head/head = addict.get_bodypart("head")

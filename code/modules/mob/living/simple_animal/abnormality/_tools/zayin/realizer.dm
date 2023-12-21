@@ -1,7 +1,8 @@
 /obj/structure/toolabnormality/realization
 	name = "realization engine"
 	desc = "An artifact used to find true potential within certains items."
-	icon_state = "realization"
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "bough_pedestal"
 	var/static/realized_users = list()
 	/// Assoc list 'input = output'
 	var/list/output = list(
@@ -62,6 +63,46 @@
 		/obj/item/toy/plush/angela = /obj/item/toy/plush/carmen,
 		)
 
+	//Visual vars
+	var/obj/effect/golden_bough/bough //The bough effect that is spawned above the pedestal
+	var/f1 //Filter 1, Ripple filter
+	var/f2 //Filter 2, Rays filter
+
+/obj/structure/toolabnormality/realization/Initialize()
+	..()
+	bough = new/obj/effect/golden_bough(src)
+
+	//Filter 1 gets applied to the bough
+	bough.filters += filter(type="ripple", x = 0, y = 11, size = 20, repeat = 6, radius = 0, falloff = 1)
+	f1 = bough.filters[bough.filters.len]
+
+	//Filter 2 gets applied to the pedestal
+	filters += filter(type="rays", x = 0, y = 11, size = 20, color = COLOR_VERY_SOFT_YELLOW, offset = 0.2, density = 10, factor = 0.4, threshold = 0.5)
+	f2 = filters[filters.len]
+	vis_contents += bough
+
+	FilterLoop(1) //Starts the filter's loop
+
+/obj/structure/toolabnormality/realization/Destroy()
+	qdel(bough)
+	..()
+
+/obj/structure/toolabnormality/realization/proc/FilterLoop(loop_stage) //Takes a numeric argument for advancing the loop's stage in a cycle (1 > 2 > 3 > 1 > ...)
+	if(filters[filters.len]) // Stops the loop if we have no filters to animate
+		switch(loop_stage)
+			if(1)
+				animate(f1, radius = 60, time = 60, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
+				animate(f2, size = 30, offset = pick(4,5,6), time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_PARALLEL)
+				addtimer(CALLBACK(src, .proc/FilterLoop, 2), 6 SECONDS)
+			if(2)
+				animate(f1, size = 25, radius = 80, time = 20, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
+				animate(f2, size = 20, offset = pick(0.2,0.4), time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_END_NOW | ANIMATION_PARALLEL)
+				addtimer(CALLBACK(src, .proc/FilterLoop, 3), 2 SECONDS)
+			if(3)
+				animate(f1, size = 20, radius = 0, time = 0, flags = CIRCULAR_EASING | EASE_IN | EASE_OUT | ANIMATION_PARALLEL)
+				addtimer(CALLBACK(src, .proc/FilterLoop, 1), 4 SECONDS)
+		update_icon()
+
 /obj/structure/toolabnormality/realization/proc/YinYangCheck()
 	for(var/datum/abnormality/AD in SSlobotomy_corp.all_abnormality_datums)
 		if(AD.abno_path == /mob/living/simple_animal/hostile/abnormality/yang)
@@ -76,15 +117,15 @@
 		return
 
 	if(!(I.type in output))
-		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized.</span>")
+		to_chat(user, span_warning("The true potential of [I] cannot be realized."))
 		return
 
 	if((istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/discord) || istype(I, /obj/item/clothing/suit/armor/ego_gear/waw/assonance)) && !YinYangCheck())
-		to_chat(user, "<span class='warning'>The true potential of [I] cannot be realized without the other half.</span>")
+		to_chat(user, span_warning("The true potential of [I] cannot be realized without the other half."))
 		return
 
 	if(user.ckey in realized_users)
-		to_chat(user, "<span class='warning'>You have realized your full potential already.</span>")
+		to_chat(user, span_warning("You have realized your full potential already."))
 		return
 
 	var/stat_total = 0
@@ -92,11 +133,11 @@
 		stat_total += get_raw_level(user, attribute)
 
 	if(stat_total <= 500) // ~125 in all stats required
-		to_chat(user, "<span class='warning'>You are too weak to use this machine.</span>")
+		to_chat(user, span_warning("You are too weak to use this machine."))
 		return
 
 	var/atom/item_out = output[I.type]
-	to_chat(user, "<span class='notice'>The machine is slowly turning [I] into [initial(item_out.name)]...</span>")
+	to_chat(user, span_notice("The machine is slowly turning [I] into [initial(item_out.name)]..."))
 	if(!do_after(user, 5 SECONDS))
 		return
 
@@ -105,5 +146,5 @@
 	user.adjust_all_attribute_levels(-10)
 	var/atom/new_item = new item_out(get_turf(user))
 	user.put_in_hands(new_item)
-	to_chat(user, "<span class='nicegreen'>You retrieve [new_item] from the [src]!</span>")
+	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
 	playsound(get_turf(src), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)

@@ -4283,6 +4283,7 @@
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
 	},
+/obj/effect/spawner/xmastree,
 /turf/open/floor/plasteel/white,
 /area/department_main/command)
 "mq" = (
@@ -12091,8 +12092,8 @@
 	dir = 9
 	},
 /obj/structure/sign/poster/lobotomycorp/egoinfo{
-	pixel_y = -32;
-	pixel_x = 32
+	pixel_x = 32;
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -13709,8 +13710,8 @@
 /obj/effect/turf_decal/siding/white/corner{
 	color = "#7D6521";
 	dir = 4;
-	pixel_x = -27;
-	layer = 2.1
+	layer = 2.1;
+	pixel_x = -27
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";

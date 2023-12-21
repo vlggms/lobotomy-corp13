@@ -16,7 +16,7 @@
 	health = 1500
 	pixel_x = -12
 	base_pixel_x = -12
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover
 	rapid_melee = 2
 	melee_damage_lower = 15
 	melee_damage_upper = 20 //really subpar damage and speed but most of her damage is oxyloss anyway
@@ -105,7 +105,7 @@
 			forceMove(T)
 			GiveTarget(love_target) //ANON YOU HAVEN'T REPLIED TO MY TEXTS IN THE PAST 15 MINUTES DON'T YOU LOVE ME ANYMORE?
 			playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 50, 1)
-		to_chat(love_target, "<span class='userdanger'>You can't breath!</span>")
+		to_chat(love_target, span_userdanger("You can't breath!"))
 	if(crown)
 		qdel(crown)
 
@@ -190,7 +190,7 @@
 		pet_count = 0
 		return
 	// here, we talk to them whilst they are dying, just a tiny bit
-	to_chat(petter, "<span class='userdanger'>Something is pulling you into the water!</span>")
+	to_chat(petter, span_userdanger("Something is pulling you into the water!"))
 	FluffSpeak("I'm really sorry, but it's fine, right? Isn't it wonderful to be loved?")
 	addtimer(CALLBACK(src, .proc/FluffSpeak, "I am merely in love, I am merely wanting salvation."), 5 SECONDS)
 	addtimer(CALLBACK(src, .proc/FluffSpeak, "You can breath underwater right?"), 30 SECONDS)
@@ -280,7 +280,7 @@
 	if((love_cooldown < world.time) && loved)
 		mermaid.datum_reference.qliphoth_change(-1)
 		new /obj/effect/temp_visual/heart(get_turf(loved))
-		to_chat(loved, "<span class='warning'>You feel as though you're forgetting someone...</span>")
+		to_chat(loved, span_warning("You feel as though you're forgetting someone..."))
 		love_cooldown = world.time + love_cooldown_time
 
 /obj/item/clothing/head/unrequited_crown/Destroy()

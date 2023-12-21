@@ -16,6 +16,12 @@
 			/obj/item/storage/box/miscarmor/four = 1,
 			/obj/item/storage/box/miscarmor/five = 1,
 			/obj/item/storage/box/miscarmor/six = 1,
+			/obj/item/book/granter/action/skill/dash = 15,
+			/obj/item/book/granter/action/skill/dashback = 15,
+			/obj/item/book/granter/action/skill/shockwave = 15,
+			/obj/item/book/granter/action/skill/bulletproof = 15,
+			/obj/item/book/granter/action/skill/timestop = 15,
+			/obj/item/book/granter/action/skill/assault = 15,
 
 					)
 
@@ -104,7 +110,7 @@
 	icon_deny = null
 	products = list(
 			/obj/item/flashlight/seclite = 100,
-			/obj/item/attribute_increase_small = 1500,
+			/obj/item/attribute_increase/fixer = 1500,
 			/obj/item/radio/headset = 200,
 			/obj/item/crowbar = 100,
 			/obj/item/clothing/suit/armor/ego_gear/city/misc/lone = 100,

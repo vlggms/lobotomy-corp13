@@ -109,7 +109,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		to_chat(H, "<span class='userdanger'>You feel a heavy weight upon your shoulders.</span>")
+		to_chat(H, span_userdanger("You feel a heavy weight upon your shoulders."))
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 		H.add_overlay(guilt_icon)
 		H.physiology.work_success_mod *= 0.70
@@ -119,7 +119,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		to_chat(H, "<span class='nicegreen'>You feel a weight lift from your shoulders.</span>")
+		to_chat(H, span_nicegreen("You feel a weight lift from your shoulders."))
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
 		H.cut_overlay(guilt_icon)
 		H.physiology.work_success_mod /= 0.70

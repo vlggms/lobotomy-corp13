@@ -13,7 +13,7 @@
 // Simple Spawn
 /datum/ordeal/simplespawn
 	name = "Basic Ordeal"
-	annonce_text = "A perfect meal, an excellent substitute."
+	announce_text = "You should not be reading this."
 	level = 0
 	reward_percent = 0
 	/// How many places are chosen for the spawn

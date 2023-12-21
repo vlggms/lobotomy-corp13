@@ -84,7 +84,7 @@
 	for(var/atrname in attributes) //raw stats (health, sanity etc)
 		var/datum/attribute/atr = attributes[atrname]
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [atr.get_printed_level_bonus()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
@@ -367,6 +367,9 @@
 	var/mob/living/user = usr
 	if(istype(user) && href_list["shoes"] && shoes && (user.mobility_flags & MOBILITY_USE)) // we need to be on the ground, so we'll be a bit looser
 		shoes.handle_tying(usr)
+
+	if(href_list["see_attributes"])
+		show_attributes(usr)
 
 ///////HUDs///////
 	if(href_list["hud"])

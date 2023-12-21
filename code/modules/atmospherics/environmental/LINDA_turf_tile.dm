@@ -38,6 +38,9 @@
 	#endif
 
 /turf/open/Initialize()
+	//If we want actual space grameplay. What can go wrong?
+	if(SSmaptype.maptype in SSmaptype.spacemaps)
+		planetary_atmos = FALSE
 	if(!blocks_air)
 		air = new
 		air.copy_from_turf(src)

@@ -57,9 +57,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 			H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			if(H in musicalAddicts)
 				H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				to_chat(H, "<span class='warning'>You can hear it again... it needs more...</span>")
+				to_chat(H, span_warning("You can hear it again... it needs more..."))
 			else
-				to_chat(H, "<span class='warning'>That terrible grinding noise...</span>")
+				to_chat(H, span_warning("That terrible grinding noise..."))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -98,7 +98,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	if(user.sanity_lost || user.health < 0) // Did they die? Time to force a bad result.
 		pe = 0
 	if(work_type == ABNORMALITY_WORK_INSTINCT && datum_reference.qliphoth_meter > 0) // At the end of an instinct work that wasn't trying to raise its counter...
-		to_chat(user, "<span class='nicegreen'>There's something about that sound...</span>")
+		to_chat(user, span_nicegreen("There's something about that sound..."))
 		musicalAddicts |= user
 		user.apply_status_effect(STATUS_EFFECT_MUSIC) // Time to addict them.
 		SEND_SOUND(user, 'sound/abnormalities/singingmachine/addiction.ogg')

@@ -17,8 +17,8 @@
 /// Same as above, but for sanity and prudence
 #define PRUDENCE_MOD 1
 
-/// How much temperance affects the success rate of the works; Higher = better.
-#define TEMPERANCE_SUCCESS_MOD 0.2
+/// What the temperance scaling modifier is. Roughly, this is the temperance at infinite temperance. Higher is better.
+#define TEMPERANCE_SUCCESS_MOD 40
 
 /// The justice attribute is divided by this number to decide the movement speed buff; The higher it is - the lower is maximum speed
 #define JUSTICE_MOVESPEED_DIVISER 230

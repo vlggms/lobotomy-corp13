@@ -127,7 +127,7 @@
 	if(!can_use(user))
 		return
 	if(current_user)
-		to_chat(user, "<span class='warning'>The console is already in use!</span>")
+		to_chat(user, span_warning("The console is already in use!"))
 		return
 	var/mob/living/L = user
 	if(!eyeobj)
@@ -194,7 +194,7 @@
 
 /mob/camera/ai_eye/remote/update_remote_sight(mob/living/user)
 	user.see_invisible = SEE_INVISIBLE_LIVING //can't see ghosts through cameras
-	if(istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+	if(GetCoreSuppression(/datum/suppression/information))
 		see_invisible = INVISIBILITY_LIGHTING // Can't see mobs
 	user.sight = SEE_TURFS | SEE_BLACKNESS
 	user.see_in_dark = 2
@@ -316,9 +316,9 @@
 	var/mob/living/user_mob = target
 	var/mob/camera/ai_eye/remote/remote_eye = user_mob.remote_control
 	if(remote_eye.zMove(UP, FALSE))
-		to_chat(user_mob, "<span class='notice'>You move upwards.</span>")
+		to_chat(user_mob, span_notice("You move upwards."))
 	else
-		to_chat(user_mob, "<span class='notice'>You couldn't move upwards!</span>")
+		to_chat(user_mob, span_notice("You couldn't move upwards!"))
 
 /datum/action/innate/camera_multiz_down
 	name = "Move down a floor"
@@ -331,6 +331,6 @@
 	var/mob/living/user_mob = target
 	var/mob/camera/ai_eye/remote/remote_eye = user_mob.remote_control
 	if(remote_eye.zMove(DOWN, FALSE))
-		to_chat(user_mob, "<span class='notice'>You move downwards.</span>")
+		to_chat(user_mob, span_notice("You move downwards."))
 	else
-		to_chat(user_mob, "<span class='notice'>You couldn't move downwards!</span>")
+		to_chat(user_mob, span_notice("You couldn't move downwards!"))

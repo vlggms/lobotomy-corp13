@@ -28,11 +28,17 @@
 	gift_type =  /datum/ego_gifts/noise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+	)
+
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
 
 /mob/living/simple_animal/hostile/abnormality/mhz/WorkChance(mob/living/carbon/human/user, chance)
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 40)
-		return chance * 0.75
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 40)
+		return chance * 1.25
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/mhz/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -82,14 +88,14 @@
 	name = "static"
 	immunity_type = "static"
 	desc = "Static created by 1.76 MHz."
-	telegraph_message = "<span class='warning'>You hear something in the distance.</span>"
+	telegraph_message = span_warning("You hear something in the distance.")
 	telegraph_duration = 300
-	weather_message = "<span class='userdanger'><i>Are.... those the sounds of humans wailing? Are they suffering?</i></span>"
+	weather_message = span_userdanger("<i>Are.... those the sounds of humans wailing? Are they suffering?</i>")
 	weather_overlay = "mhz"
 	weather_duration_lower = 1200		//2-3 minutes.
 	weather_duration_upper = 1800
 	end_duration = 100
-	end_message = "<span class='boldannounce'>It's all calm once more. You feel at peace.</span>"
+	end_message = span_boldannounce("It's all calm once more. You feel at peace.")
 	area_type = /area/facility_hallway
 	target_trait = ZTRAIT_STATION
 

@@ -123,11 +123,11 @@
 // Distorted Form - Distortion
 /datum/ego_datum/armor/distortion
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/distortion
-	cost = 100
+	cost = 200
 
-/datum/ego_datum/weapon/distortion
+/datum/ego_datum/weapon/distortion // not able to be extracted
 	item_path = /obj/item/ego_weapon/shield/distortion
-	cost = 100
+	cost = 300
 
 // Dongrang Personal E.G.O - Farmwatch
 /datum/ego_datum/weapon/farmwatch

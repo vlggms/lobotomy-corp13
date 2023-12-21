@@ -1020,3 +1020,54 @@
 	name = "heavenly blessing"
 	icon_state = "onesin_blessing"
 	duration = 12
+
+/obj/effect/temp_visual/distortedform_shift
+	name = "shift"
+	icon_state = "shift"
+	duration = 3
+
+/obj/effect/temp_visual/warning3x3
+	name = "warning3x3"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "warning_gray"
+	duration = 2 SECONDS
+	pixel_x = -32
+	pixel_z = -32
+
+/obj/effect/temp_visual/nobody_grab
+	name = "goodbye"
+	icon_state = "nobody_slash"
+	duration = 5
+
+/obj/effect/temp_visual/holo_command
+	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
+	light_range = 1.5
+	light_power = 0.2
+	light_system = MOVABLE_LIGHT
+	duration = 150 		//15 Seconds
+
+/obj/effect/temp_visual/holo_command/command_move
+	icon_state = "Move_here_wagie"
+	light_range = 1
+	light_power = 1
+	light_color = COLOR_VERY_LIGHT_GRAY
+
+/obj/effect/temp_visual/holo_command/command_warn
+	icon_state = "Watch_out_wagie"
+	light_color = COLOR_PALE_RED_GRAY
+
+/obj/effect/temp_visual/holo_command/command_guard
+	icon_state = "Guard_this_wagie"
+	light_color = COLOR_VERY_SOFT_YELLOW
+
+/obj/effect/temp_visual/holo_command/command_heal
+	icon_state = "Heal_this_wagie"
+	light_color = COLOR_VERY_PALE_LIME_GREEN
+
+/obj/effect/temp_visual/holo_command/command_fight_a
+	icon_state = "Fight_this_wagie1"
+	light_color = COLOR_PALE_BLUE_GRAY
+
+/obj/effect/temp_visual/holo_command/command_fight_b
+	icon_state = "Fight_this_wagie2"
+	light_color = COLOR_PALE_BLUE_GRAY

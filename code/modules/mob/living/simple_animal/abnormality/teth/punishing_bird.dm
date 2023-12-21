@@ -13,7 +13,7 @@
 	density = FALSE
 	maxHealth = 600
 	health = 600
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	move_to_delay = 2
 	harm_intent_damage = 10
@@ -28,7 +28,7 @@
 	attack_sound = 'sound/weapons/pbird_bite.ogg'
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	is_flying_animal = FALSE
+	is_flying_animal = TRUE
 	speak_emote = list("chirps")
 	vision_range = 14
 	aggro_vision_range = 28
@@ -51,6 +51,12 @@
 		)
 	gift_type =  /datum/ego_gifts/beak
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3
+	)
+
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()
@@ -64,16 +70,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
-	if(locate(/obj/structure/pbird_perch) in get_turf(src))
-		icon_state = "pbird"
-		pixel_x = 15
-		pixel_y = 32
-		base_pixel_x = 15
-		base_pixel_y = 32
-		is_flying_animal = FALSE
-		update_icon()
-	else
-		is_flying_animal = TRUE
 	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
 	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
 
@@ -83,7 +79,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformRed()
-	visible_message("<span class='danger'>\The [src] turns its insides out as a giant bloody beak appears!</span>")
+	visible_message(span_danger("\The [src] turns its insides out as a giant bloody beak appears!"))
 	icon_state = "pbird_red"
 	icon_living = "pbird_red"
 	attack_verb_continuous = "eviscerates"
@@ -98,7 +94,7 @@
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformBack()
-	visible_message("<span class='notice'>\The [src] turns back into a fuzzy looking bird!</span>")
+	visible_message(span_notice("\The [src] turns back into a fuzzy looking bird!"))
 	icon_state = initial(icon_state)
 	icon_living = initial(icon_living)
 	pixel_x = initial(pixel_x)
@@ -175,10 +171,10 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(!(L in enemies) && obj_damage > 0) // The target didn't attack us and we've transformed
-			to_chat(src, "<span class='warning'>You can't punish innocent people!</span>")
+			to_chat(src, span_warning("You can't punish innocent people!"))
 			return
 		if(client && obj_damage <= 0 && L.health <= maxHealth*0.45) // User controlled AND not transformed - can't kill things
-			to_chat(src, "<span class='warning'>You can't keep punishing them!</span>")
+			to_chat(src, span_warning("You can't keep punishing them!"))
 			return
 		..()
 		if(obj_damage <= 0) // Not transformed
@@ -195,7 +191,7 @@
 					already_punished |= L
 				target = null
 		else if(L.health <= 0)
-			visible_message("<span class='danger'>\The [src] devours [L]!</span>")
+			visible_message(span_danger("\The [src] devours [L]!"))
 			L.gib()
 			TransformBack()
 		return
@@ -221,16 +217,19 @@
 	see &= targeting // Remove all entries that aren't in enemies
 	return see
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/PostSpawn()
-	..()
-	if(locate(/obj/structure/pbird_perch) in get_turf(src))
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/HandleStructures()
+	. = ..()
+	if(!.)
 		return
+	if(!locate(/obj/structure/pbird_perch) in datum_reference.connected_structures)
+		SpawnConnectedStructure(/obj/structure/pbird_perch)
 	icon_state = "pbird"
 	pixel_x = 15
 	pixel_y = 32
 	base_pixel_x = 15
 	base_pixel_y = 32
-	new /obj/structure/pbird_perch(get_turf(src))
+	is_flying_animal = FALSE
+	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/Retaliate(atom/movable/A)
 	if((health < maxHealth * 0.9) && (obj_damage <= 0))

@@ -37,7 +37,7 @@
 /mob/living/simple_animal/hostile/abnormality/fan/examine(mob/user)
 	. = ..()
 	if(turned_off)
-		. += "<span class='notice'>It looks like it's turned off.</span>"
+		. += span_notice("It looks like it's turned off.")
 
 //Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/fan/WorkChance(mob/living/carbon/human/user, chance)
@@ -51,10 +51,10 @@
 /mob/living/simple_animal/hostile/abnormality/fan/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user in danger)
 		if(safework)
-			to_chat(user, "<span class='notice'>You don't feel quite as tempted this time.</span>")
+			to_chat(user, span_notice("You don't feel quite as tempted this time."))
 			safework = FALSE
 			return
-		to_chat(user, "<span class='danger'>Oh.</span>")
+		to_chat(user, span_danger("Oh."))
 		user.throw_at(src, 10, 10, user, spin = TRUE, gentle = FALSE, quickstart = TRUE)
 		SLEEP_CHECK_DEATH(3)
 		playsound(loc, 'sound/machines/juicer.ogg', 100, TRUE)
@@ -62,20 +62,20 @@
 
 	else if(user in warning)
 		danger+=user
-		to_chat(user, "<span class='nicegreen'>You feel elated.</span>")
+		to_chat(user, span_nicegreen("You feel elated."))
 
 	else if(user in safe)
 		warning+=user
-		to_chat(user, "<span class='nicegreen'>You feel refreshed.</span>")
+		to_chat(user, span_nicegreen("You feel refreshed."))
 
 	else
 		safe+=user
-		to_chat(user, "<span class='nicegreen'>You could use some more.</span>")
+		to_chat(user, span_nicegreen("You could use some more."))
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/fan/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(turned_off)
-		to_chat(user, "<span class='nicegreen'>You hit the on switch. Aaah, that feels nice.</span>")
+		to_chat(user, span_nicegreen("You hit the on switch. Aaah, that feels nice."))
 		TurnOn()
 		return FALSE
 	if(datum_reference.console.meltdown)
@@ -84,7 +84,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/fan/funpet(mob/petter)
 	if(turned_off)
-		to_chat(petter, "<span class='nicegreen'>You hit the on switch. Aaah, that feels nice.</span>")
+		to_chat(petter, span_nicegreen("You hit the on switch. Aaah, that feels nice."))
 		TurnOn()
 
 //Breach
@@ -150,7 +150,7 @@
 
 /datum/status_effect/stacking/fanhot/on_apply()
 	. = ..()
-	to_chat(owner, "<span class='warning'>You're starting to sweat.</span>")
+	to_chat(owner, span_warning("You're starting to sweat."))
 	if(owner.client)
 		owner.add_client_colour(/datum/client_colour/glass_colour/orange)
 
@@ -165,14 +165,14 @@
 /datum/status_effect/stacking/fanhot/on_remove()
 	. = ..()
 	if(ishuman(owner))
-		to_chat(owner, "<span class='nicegreen'>Someone turned on the AC! Rejoice!</span>")
+		to_chat(owner, span_nicegreen("Someone turned on the AC! Rejoice!"))
 		if(owner.client)
 			owner.remove_client_colour(/datum/client_colour/glass_colour/orange)
 
 /datum/status_effect/stacking/fanhot/threshold_cross_effect()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		to_chat(owner, "<span class='warning'>IT'S TOO HOT!</span>")
+		to_chat(owner, span_warning("IT'S TOO HOT!"))
 		H.adjust_fire_stacks(15)
 		H.IgniteMob()
 		stacks -= 5

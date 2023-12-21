@@ -18,7 +18,7 @@
 
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	ranged_cooldown_time = 12
 	projectiletype = /obj/projectile/hatred
@@ -50,6 +50,13 @@
 		)
 	gift_type = /datum/ego_gifts/love_and_hate
 	gift_message = "In fact, \"peace\" is not what she desires."
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
+		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
 
 	var/chance_modifier = 1
 	var/death_counter = 0
@@ -88,25 +95,25 @@
 /datum/action/innate/abnormality_attack/qoh_beam
 	name = "Arcana Slave"
 	button_icon_state = "qoh_beam"
-	chosen_message = "<span class='colossus'>You will now charge up a giant magic beam.</span>"
+	chosen_message = span_colossus("You will now charge up a giant magic beam.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/qoh_beats
 	name = "Arcana Beats"
 	button_icon_state = "qoh_beats"
-	chosen_message = "<span class='colossus'>You will now fire a wave of energy.</span>"
+	chosen_message = span_colossus("You will now fire a wave of energy.")
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/qoh_teleport
 	name = "Teleport"
 	button_icon_state = "qoh_teleport"
-	chosen_message = "<span class='colossus'>You will now teleport to a random enemy.</span>"
+	chosen_message = span_colossus("You will now teleport to a random enemy.")
 	chosen_attack_num = 3
 
 /datum/action/innate/abnormality_attack/qoh_normal
 	name = "Normal Attack"
 	button_icon_state = "qoh_normal"
-	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
+	chosen_message = span_colossus("You will now use normal attacks.")
 	chosen_attack_num = 5
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Initialize()
@@ -240,7 +247,7 @@
 	if(target)
 		face_atom(target)
 	icon_state = "hatredbeats"
-	visible_message("<span class='danger'>[src] prepares to mark the enemies of justice!</span>")
+	visible_message(span_danger("[src] prepares to mark the enemies of justice!"))
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, 5)
 	var/list/turfs_to_hit = getline(src, target_turf)
 	var/obj/effect/qoh_sygil/S = new(get_turf(src))
@@ -434,7 +441,7 @@
 				targets_in_range += 1
 				break
 		if(targets_in_range >= 1)
-			to_chat(src, "<span class='warning'>You cannot teleport while enemies are nearby!</span>")
+			to_chat(src, span_warning("You cannot teleport while enemies are nearby!"))
 			return FALSE
 	var/list/teleport_potential = list()
 	for(var/mob/living/L in GLOB.mob_living_list)
@@ -480,7 +487,7 @@
 	teleport_cooldown = world.time + teleport_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/TeleportExplode()
-	visible_message("<span class='bolddanger'>[src] explodes!</span>")
+	visible_message(span_bolddanger("[src] explodes!"))
 	var/obj/effect/temp_visual/VO = new /obj/effect/temp_visual/voidout(get_turf(src))
 	var/matrix/new_matrix = matrix()
 	new_matrix.Scale(1.75)
@@ -532,7 +539,7 @@
 	can_act = FALSE
 	breach_max_death = 0
 	icon_state = icon_crazy
-	visible_message("<span class='danger'>[src] falls to her knees, muttering something under her breath.</span>")
+	visible_message(span_danger("[src] falls to her knees, muttering something under her breath."))
 	addtimer(CALLBACK(src, .atom/movable/proc/say, "I wasn’t able to protect anyone like she did…"))
 	addtimer(CALLBACK(src, .proc/HostileTransform), 10 SECONDS)
 
@@ -552,7 +559,7 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/HostileTransform()
 	if(stat == DEAD)
 		return
-	visible_message("<span class='bolddanger'>[src] transforms!</span>") //Begin Hostile breach
+	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	adjustBruteLoss(-maxHealth)
 	friendly = FALSE

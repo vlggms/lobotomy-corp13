@@ -3,16 +3,12 @@
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
-"as" = (
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "cg" = (
 /obj/structure/table/wood,
 /obj/item/book/random,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "cJ" = (
 /obj/structure/railing{
 	dir = 5;
@@ -20,7 +16,7 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "dl" = (
 /obj/structure/railing{
 	dir = 9;
@@ -28,13 +24,13 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "eb" = (
 /obj/structure/ladder/unbreakable{
 	pixel_y = 8
 	},
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "ec" = (
 /turf/open/floor/white{
 	density = 1
@@ -44,71 +40,63 @@
 /obj/structure/lattice,
 /obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "fe" = (
 /obj/item/toy/plush/kod,
 /obj/item/ego_weapon/despair{
 	pixel_x = 23;
 	pixel_y = 4
 	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "fw" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
-"gn" = (
-/obj/structure/flora/icestalactite/small{
-	pixel_y = -13
+/area/library_floors/floor_naturalsci)
+"fI" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f";
+	light_range = 25
 	},
-/turf/open/chasm,
-/area/city/backstreets_room)
-"gL" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/railing{
-	dir = 10;
-	max_integrity = 1e+007;
-	name = "invincible railing"
+/turf/open/floor/white{
+	density = 1
 	},
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
-"hD" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "id" = (
 /obj/structure/chair/wood{
 	dir = 8
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "iE" = (
 /obj/structure/railing/corner,
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "iK" = (
 /obj/structure/altar_of_gods,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "lf" = (
 /obj/item/toy/plush/nihil,
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "lp" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "lG" = (
 /obj/structure/table/wood,
 /obj/structure/table/wood,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
-"nt" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "nP" = (
 /obj/structure/railing/corner{
 	dir = 8;
@@ -116,23 +104,10 @@
 	pixel_y = 2
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
-"oe" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -16
-	},
-/turf/open/chasm,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "px" = (
 /turf/open/chasm,
-/area/city/backstreets_room)
-"pL" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/chair/wood{
-	dir = 8
-	},
-/turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "qj" = (
 /obj/item/toy/plush/kog,
 /obj/item/ego_weapon/goldrush{
@@ -140,25 +115,22 @@
 	pixel_x = 13
 	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "qk" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
-"qt" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
-"qC" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/railing{
-	name = "invincible railing";
-	resistance_flags = 64
+/area/library_floors/floor_naturalsci)
+"rJ" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/turf/open/floor/carpet/red,
+/area/library_floors/floor_naturalsci)
 "un" = (
 /obj/item/toy/plush/sow,
 /obj/item/ego_weapon/blind_rage{
@@ -166,17 +138,17 @@
 	pixel_y = -7
 	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "uH" = (
 /turf/open/space/basic,
 /area/space)
 "vA" = (
 /obj/structure/bookcase/random/nonfiction,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wa" = (
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wn" = (
 /obj/structure/railing{
 	dir = 10;
@@ -184,32 +156,31 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
-"wp" = (
-/obj/item/flashlight/spotlight,
-/turf/open/chasm,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wz" = (
 /obj/structure/railing,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
-"wD" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/white{
-	density = 1
-	},
-/area/space)
+/area/library_floors/floor_naturalsci)
 "wN" = (
 /obj/structure/window/bronze/fulltile,
 /obj/structure/lattice,
 /turf/open/floor/white{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "wO" = (
 /obj/item/candle/infinite,
 /turf/closed/wall/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
+"xd" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/carpet/lone,
+/area/library_floors/floor_naturalsci)
 "xx" = (
 /obj/structure/railing{
 	dir = 6;
@@ -217,34 +188,28 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "yJ" = (
 /obj/structure/chair/wood/wings{
 	pixel_y = 0;
 	dir = 1
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "zj" = (
 /obj/structure/displaycase/noalert,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "zq" = (
 /obj/structure/railing/corner{
 	dir = 4
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "zP" = (
 /obj/structure/table/wood/fancy,
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
-"Aq" = (
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/ice{
-	density = 1
-	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "BB" = (
 /obj/structure/railing{
 	name = "invincible railing";
@@ -252,12 +217,12 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "BX" = (
 /turf/open/floor/plating/ice{
 	density = 1
 	},
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Ch" = (
 /obj/item/toy/plush/qoh,
 /obj/item/gun/ego_gun/hatred{
@@ -265,62 +230,60 @@
 	pixel_y = 5
 	},
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "CA" = (
 /obj/item/toy/plush/lisa,
 /obj/structure/railing,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "EG" = (
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Gp" = (
 /obj/structure/table/wood,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
+"Jm" = (
+/obj/structure/flora/icestalactite{
+	pixel_y = -47
+	},
+/turf/open/floor/plating/ice{
+	density = 1
+	},
+/area/library_floors/floor_naturalsci)
 "Jz" = (
 /turf/open/floor/facility/dark,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "JX" = (
 /obj/structure/chair/wood{
 	dir = 4
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
-"KI" = (
+/area/library_floors/floor_naturalsci)
+"Kd" = (
 /obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/turf/open/floor/white{
-	density = 1
-	},
-/area/city/backstreets_room)
-"KV" = (
-/obj/structure/table/wood,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
-"Ms" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
+	light_color = "#d8b66f";
+	light_range = 25
 	},
 /turf/open/floor/white{
 	density = 1
 	},
 /area/space)
+"NE" = (
+/obj/structure/flora/icestalactite{
+	pixel_y = -48
+	},
+/turf/open/floor/plating/ice{
+	density = 1
+	},
+/area/library_floors/floor_naturalsci)
 "Od" = (
 /obj/structure/railing{
 	name = "invincible railing";
 	resistance_flags = 64
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
-"Pq" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "PZ" = (
 /obj/structure/railing{
 	dir = 8;
@@ -328,48 +291,54 @@
 	name = "invincible railing"
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Qe" = (
 /turf/open/lava{
 	density = 1
 	},
-/area/city/backstreets_room)
-"Qo" = (
-/obj/item/flashlight/spotlight,
-/obj/structure/railing{
-	dir = 6;
-	name = "invincible railing";
-	max_integrity = 1e+007
-	},
-/turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "QB" = (
 /turf/closed/wall/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "QK" = (
 /obj/structure/table/wood,
 /obj/item/book/random,
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
+"Rt" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f";
+	light_range = 25
+	},
+/turf/open/chasm,
+/area/library_floors/floor_naturalsci)
+"Rw" = (
+/obj/structure/flora/icestalactite/small{
+	pixel_y = -45
+	},
+/turf/open/floor/plating/ice{
+	density = 1
+	},
+/area/library_floors/floor_naturalsci)
 "Sq" = (
 /obj/structure/railing/corner,
 /obj/structure/railing/corner{
 	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "SI" = (
 /obj/structure/altar_of_gods,
 /obj/structure/flora/iceslab/alt{
 	pixel_y = 14
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Tc" = (
 /obj/structure/altar_of_gods,
 /obj/structure/flora/tree/dead,
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "TL" = (
 /obj/structure/table/wood/fancy,
 /obj/item/candle/infinite{
@@ -377,10 +346,10 @@
 	pixel_x = 16
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "UJ" = (
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "WW" = (
 /obj/structure/railing{
 	dir = 4;
@@ -388,7 +357,7 @@
 	max_integrity = 1e+007
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Xk" = (
 /obj/structure/railing{
 	dir = 1;
@@ -396,30 +365,24 @@
 	resistance_flags = 64
 	},
 /turf/open/floor/carpet/lone,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Yy" = (
 /obj/structure/table/wood,
 /turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Zb" = (
 /obj/structure/railing/corner{
 	dir = 1
 	},
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Zm" = (
 /obj/machinery/door/airlock/wood/glass,
 /turf/open/floor/carpet/red,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 "Zw" = (
 /turf/open/floor/mineral/gold,
-/area/city/backstreets_room)
-"ZA" = (
-/obj/structure/table/wood,
-/obj/item/book/random,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/city/backstreets_room)
+/area/library_floors/floor_naturalsci)
 
 (1,1,1) = {"
 uH
@@ -456,15 +419,15 @@ ec
 ec
 ec
 QB
-KV
+Yy
 UJ
 EG
 wa
-qt
+wa
 wa
 wa
 EG
-as
+UJ
 lp
 QB
 uH
@@ -479,8 +442,8 @@ uH
 uH
 ec
 ec
-KI
-ac
+ec
+ec
 QB
 cg
 UJ
@@ -501,7 +464,7 @@ uH
 "}
 (4,1,1) = {"
 uH
-Ms
+ec
 ec
 ec
 ec
@@ -538,7 +501,7 @@ wa
 wa
 wa
 wa
-wa
+xd
 wa
 wa
 EG
@@ -555,20 +518,20 @@ uH
 uH
 ec
 ec
+Kd
 ec
-Ms
 wN
 Yy
 UJ
-qt
 wa
 wa
 wa
-qt
+wa
+wa
 wa
 wa
 EG
-as
+UJ
 UJ
 ei
 Jz
@@ -609,8 +572,8 @@ uH
 uH
 ec
 ec
-ec
-ec
+ac
+ac
 QB
 Yy
 UJ
@@ -635,18 +598,18 @@ uH
 uH
 uH
 ec
-Ms
+ec
 ec
 QB
-ZA
+cg
 UJ
 EG
 wa
-qt
+wa
 wa
 wa
 EG
-as
+UJ
 lp
 QB
 uH
@@ -703,7 +666,7 @@ BX
 BX
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -712,22 +675,22 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
-KI
+ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Od
-Aq
 BX
-oe
+Jm
+px
 px
 px
 QB
@@ -739,7 +702,7 @@ uH
 uH
 QB
 ac
-ac
+fI
 ac
 wO
 ac
@@ -778,10 +741,10 @@ wa
 EG
 Od
 BX
-BX
-gn
+Rw
 px
-wp
+px
+px
 QB
 uH
 "}
@@ -816,24 +779,24 @@ uH
 uH
 uH
 QB
-KI
+ac
 ac
 ac
 wO
 ac
 BB
-hD
 EG
 EG
 EG
-hD
+EG
+EG
 EG
 Od
-Aq
 BX
-oe
+NE
 px
 px
+Rt
 QB
 uH
 "}
@@ -845,7 +808,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -877,7 +840,7 @@ BB
 EG
 EG
 EG
-EG
+rJ
 EG
 EG
 Od
@@ -885,7 +848,7 @@ BX
 BX
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -908,8 +871,8 @@ EG
 EG
 Od
 BX
-BX
-gn
+Rw
+px
 px
 px
 QB
@@ -920,7 +883,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
 ac
@@ -949,17 +912,17 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Od
-Aq
+BX
 BX
 px
 px
@@ -987,9 +950,9 @@ EG
 Od
 BX
 BX
-BX
-oe
-wp
+NE
+px
+px
 QB
 uH
 "}
@@ -1027,7 +990,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1050,8 +1013,8 @@ uH
 uH
 uH
 QB
-KI
 ac
+fI
 ac
 wO
 ac
@@ -1082,14 +1045,14 @@ ac
 dl
 PZ
 Zb
-hD
 EG
 EG
 EG
-hD
+EG
+EG
 EG
 Zw
-nt
+Zw
 nP
 wn
 BX
@@ -1118,7 +1081,7 @@ Zw
 wa
 Zw
 nP
-gL
+wn
 BX
 QB
 uH
@@ -1131,7 +1094,7 @@ QB
 ac
 ac
 Xk
-Pq
+Zw
 SI
 Zw
 EG
@@ -1154,7 +1117,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 Xk
 TL
@@ -1189,7 +1152,7 @@ Zw
 EG
 wa
 wa
-wa
+xd
 wa
 EG
 Zw
@@ -1209,20 +1172,20 @@ QB
 ac
 ac
 Xk
-Pq
+Zw
 Tc
 Zw
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Zw
-qt
+wa
 wa
 Zw
-qC
+Od
 Qe
 QB
 uH
@@ -1258,7 +1221,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
 cJ
@@ -1285,7 +1248,7 @@ uH
 uH
 QB
 ac
-ac
+fI
 ac
 wO
 ac
@@ -1313,7 +1276,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1342,18 +1305,18 @@ ac
 ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 iE
-Qo
+xx
 Qe
 Qe
 Qe
-wp
+px
 QB
 uH
 "}
@@ -1362,7 +1325,7 @@ uH
 uH
 uH
 QB
-KI
+ac
 ac
 ac
 wO
@@ -1417,7 +1380,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1446,11 +1409,11 @@ ac
 wO
 ac
 BB
-hD
 EG
 EG
 EG
-hD
+EG
+EG
 EG
 Od
 Qe
@@ -1483,7 +1446,7 @@ Qe
 Qe
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -1492,16 +1455,16 @@ uH
 uH
 uH
 QB
-KI
+ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
 EG
 EG
-EG
+rJ
 EG
 EG
 Od
@@ -1535,7 +1498,7 @@ Qe
 Qe
 Qe
 Qe
-px
+Rt
 QB
 uH
 "}
@@ -1576,11 +1539,11 @@ ac
 ac
 ac
 BB
-hD
+EG
 wa
 wa
 wa
-qt
+wa
 EG
 Od
 Qe
@@ -1596,8 +1559,8 @@ uH
 uH
 uH
 QB
-KI
 ac
+fI
 ac
 wO
 ac
@@ -1625,7 +1588,7 @@ QB
 ac
 wO
 ac
-KI
+ac
 ac
 BB
 EG
@@ -1639,7 +1602,7 @@ Qe
 Qe
 px
 px
-wp
+px
 QB
 uH
 "}
@@ -1715,11 +1678,11 @@ EG
 wa
 wa
 QB
-wD
 ec
 ec
 ec
-wD
+ec
+ec
 "}
 (51,1,1) = {"
 uH
@@ -1732,13 +1695,13 @@ uH
 QB
 vA
 wz
-hD
+EG
 wa
 wa
-qt
 wa
 wa
-qt
+wa
+wa
 iK
 QB
 ec
@@ -1810,13 +1773,13 @@ uH
 QB
 vA
 wz
-qt
 wa
 wa
-qt
+wa
+wa
 id
 wa
-qt
+wa
 wa
 wa
 wa
@@ -1840,7 +1803,7 @@ wa
 wa
 JX
 wa
-wa
+xd
 wa
 wa
 wa
@@ -1849,7 +1812,7 @@ JX
 wa
 wN
 ec
-ec
+Kd
 "}
 (56,1,1) = {"
 uH
@@ -1875,7 +1838,7 @@ QK
 Gp
 wN
 ec
-wD
+ec
 "}
 (57,1,1) = {"
 uH
@@ -1888,13 +1851,13 @@ uH
 QB
 vA
 wz
-qt
 wa
 wa
-pL
+wa
+id
 wa
 zj
-hD
+EG
 EG
 QB
 QB
@@ -1923,7 +1886,7 @@ wa
 wa
 iK
 QB
-wD
+ec
 ec
 ec
 ec
@@ -1977,7 +1940,7 @@ QB
 QB
 ec
 ec
-wD
+ec
 ec
 ec
 "}

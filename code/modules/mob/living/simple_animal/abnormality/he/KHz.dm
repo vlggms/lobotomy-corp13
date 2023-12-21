@@ -24,6 +24,12 @@
 	)
 	gift_type = /datum/ego_gifts/transmission
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+	)
+
 	var/input
 	var/bitposition = 4	//You write in bits. You need to successfully write a string of 5 to sucessfully work
 	var/bitcalculator = 0
@@ -41,7 +47,7 @@
 		InputZero(user)
 		return FALSE
 	else if(work_type == "Input Zero" || work_type == "Input Zero" && !isopen)
-		to_chat(user, "<span class='notice'>You have not recieved an input.</span>")
+		to_chat(user, span_notice("You have not recieved an input."))
 		return FALSE
 	return TRUE
 
@@ -53,7 +59,7 @@
 	if(bitcalculator == input && isopen)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			H.adjustSanityLoss(-10)
-			to_chat(H, "<span class='notice'>You feel a pleasant sound.</span>")
+			to_chat(H, span_notice("You feel a pleasant sound."))
 
 	//If you fuck it up
 	else if(bitcalculator != input && bitcalculator != 0 && isopen)
@@ -62,7 +68,7 @@
 				continue
 			H.adjustSanityLoss(30)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
-			to_chat(H, "<span class='notice'>You feel a crackling noise in your head.</span>")
+			to_chat(H, span_notice("You feel a crackling noise in your head."))
 	bitcalculator = 0
 
 	//If you're new, grab a callsign paper. Also set new input
@@ -104,17 +110,17 @@
 	if (bitposition>=0)
 		bitcalculator += 1*2**bitposition
 		bitposition -=1
-		to_chat(user, "<span class='notice'>You input a one.</span>")
+		to_chat(user, span_notice("You input a one."))
 	else
-		to_chat(user, "<span class='notice'>You can only input 5 digits.</span>")
+		to_chat(user, span_notice("You can only input 5 digits."))
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/InputZero(mob/living/carbon/human/user)
 	if (bitposition>=0)
 		bitcalculator += 0*2**bitposition
 		bitposition -=1
-		to_chat(user, "<span class='notice'>You input a zero.</span>")
+		to_chat(user, span_notice("You input a zero."))
 	else
-		to_chat(user, "<span class='notice'>You can only input 5 digits.</span>")
+		to_chat(user, span_notice("You can only input 5 digits."))
 
 //What happens if the stars align
 /mob/living/simple_animal/hostile/abnormality/khz/WorkChance(mob/living/carbon/human/user, chance)

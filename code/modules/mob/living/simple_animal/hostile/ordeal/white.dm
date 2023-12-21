@@ -11,16 +11,18 @@
 	health = 3000
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_lower = 40
+	melee_damage_upper = 50
+	move_to_delay = 2.6
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.0, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.0, PALE_DAMAGE = 0.5)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	projectiletype = /obj/projectile/black
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
 	del_on_death = TRUE
+	can_patrol = TRUE
 
 	var/busy = FALSE
 	var/pulse_cooldown
@@ -31,8 +33,8 @@
 	/// The actual range of triggering meltdowns. Gets decreased with each attack during pulse attack
 	var/current_pulse_range = 24
 	var/hammer_cooldown
-	var/hammer_cooldown_time = 8 SECONDS
-	var/hammer_damage = 200
+	var/hammer_cooldown_time = 6 SECONDS
+	var/hammer_damage = 250
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/Initialize()
@@ -61,13 +63,13 @@
 	if(busy)
 		return
 	..()
-	if(prob(30) && hammer_cooldown < world.time)
+	if(hammer_cooldown < world.time)
 		HammerAttack(target)
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/OpenFire()
 	if(busy)
 		return
-	if(prob(25) && (get_dist(src, target) < 10) && (hammer_cooldown < world.time))
+	if(prob(50) && (get_dist(src, target) < 10) && (hammer_cooldown < world.time))
 		HammerAttack(target)
 		return
 	return ..()
@@ -90,7 +92,7 @@
 	playsound(src, 'sound/effects/ordeals/white/black_ability_end.ogg', 100, FALSE, 30)
 	for(var/obj/machinery/computer/abnormality/A in urange(current_pulse_range, src))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
-			A.datum_reference.qliphoth_change(pick(-1, -2))
+			INVOKE_ASYNC(A.datum_reference, /datum/abnormality/proc/qliphoth_change, pick(-1, -2))
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(5)
 	pulse_cooldown = world.time + pulse_cooldown_time
@@ -145,11 +147,12 @@
 	ranged_ignores_vision = TRUE
 	ranged = TRUE
 	minimum_distance = 4
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	is_flying_animal = TRUE
 	del_on_death = TRUE
+	can_patrol = TRUE
 
 	var/can_act = TRUE
 	/// When this reaches 480 - begins reflecting damage
@@ -347,25 +350,26 @@
 	maxHealth = 3000
 	health = 3000
 	melee_damage_type = RED_DAMAGE
-	rapid_melee = 2
-	melee_damage_lower = 35
-	melee_damage_upper = 45
-	move_to_delay = 2.4
+	rapid_melee = 4
+	melee_damage_lower = 30
+	melee_damage_upper = 40
+	move_to_delay = 2.2
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	attack_sound = 'sound/effects/ordeals/white/red_attack.ogg'
 	del_on_death = TRUE
+	can_patrol = TRUE
 
 	var/busy = FALSE
 	var/multislash_cooldown
-	var/multislash_cooldown_time = 5 SECONDS
+	var/multislash_cooldown_time = 4 SECONDS
 	var/multislash_damage = 75
 	var/multislash_range = 6
 	var/beam_cooldown
-	var/beam_cooldown_time = 15 SECONDS
+	var/beam_cooldown_time = 10 SECONDS
 	/// Red damage dealt on direct hit by the beam
 	var/beam_damage = 300
 
@@ -390,7 +394,7 @@
 	if(busy)
 		return
 	..()
-	if(prob(80) && multislash_cooldown < world.time)
+	if(multislash_cooldown < world.time)
 		MultiSlash(target)
 		return
 	if(prob(50) && beam_cooldown < world.time)
@@ -400,11 +404,11 @@
 /mob/living/simple_animal/hostile/ordeal/red_fixer/OpenFire()
 	if(busy)
 		return
-	if(prob(50) && (get_dist(src, target) < multislash_range) && (multislash_cooldown < world.time))
-		MultiSlash(target)
-		return
 	if(prob(80) && (beam_cooldown < world.time))
 		LaserBeam(target)
+		return
+	if(prob(50) && (get_dist(src, target) < multislash_range) && (multislash_cooldown < world.time))
+		MultiSlash(target)
 		return
 	return
 
@@ -442,7 +446,7 @@
 		return
 	busy = TRUE
 	var/turf/beam_start = get_step(src, get_dir(src, target))
-	var/turf/beam_end = get_ranged_target_turf_direct(beam_start, target, 48, rand(-5,5))
+	var/turf/beam_end = get_ranged_target_turf_direct(src, target, 48, rand(-5,5))
 	var/list/hitline = getline(beam_start, beam_end)
 	for(var/turf/T in hitline)
 		new /obj/effect/temp_visual/cult/sparks(T)
@@ -466,7 +470,7 @@
 			been_hit |= L
 			new /obj/effect/temp_visual/cult/sparks(get_turf(L))
 	playsound(src, 'sound/effects/ordeals/white/red_beam_fire.ogg', 100, FALSE, 32)
-	SLEEP_CHECK_DEATH(2 SECONDS)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	beam_cooldown = world.time + beam_cooldown_time
 	busy = FALSE
 	icon_state = icon_living
@@ -483,9 +487,9 @@
 	maxHealth = 4000
 	health = 4000
 	melee_damage_type = PALE_DAMAGE
-	melee_damage_lower = 35
-	melee_damage_upper = 45
-	rapid_melee = 2
+	melee_damage_lower = 30
+	melee_damage_upper = 40
+	rapid_melee = 3
 	minimum_distance = 2
 	ranged = TRUE
 	ranged_cooldown_time = 16
@@ -494,7 +498,7 @@
 	projectilesound = 'sound/effects/ordeals/white/pale_pistol.ogg'
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.0)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.0)
 	move_resist = MOVE_FORCE_OVERPOWERING
 	projectiletype = /obj/projectile/pale
 	attack_sound = 'sound/effects/ordeals/white/pale_knife.ogg'
@@ -680,7 +684,10 @@
 			continue
 		if(get_dist(src, H) < 8)
 			continue
-		potential_teleports += pick(get_adjacent_open_turfs(H))
+		var/list/adj_turfs = get_adjacent_open_turfs(H)
+		if(!LAZYLEN(adj_turfs))
+			continue
+		potential_teleports += pick(adj_turfs)
 	if(!LAZYLEN(potential_teleports))
 		return // Nowhere to run!
 	var/turf/target_turf = pick(potential_teleports)

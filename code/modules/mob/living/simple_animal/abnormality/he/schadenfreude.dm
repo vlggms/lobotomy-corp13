@@ -10,7 +10,7 @@
 	maxHealth = 1800		//It's fucking slow as hell, and you can beat it to death if you're alone for free
 	health = 1800
 	move_to_delay = 5
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
+	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
 	melee_damage_lower = 40		//Yeah it's super slow, and you're not gonna get hit by it too often
 	melee_damage_upper = 48
 	melee_damage_type = RED_DAMAGE
@@ -78,14 +78,14 @@
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Move()
 	if(!seen)
 		if(client)
-			to_chat(src, "<span class='warning'>You cannot move, there are not enough eyes on you!</span>")
+			to_chat(src, span_warning("You cannot move, there are not enough eyes on you!"))
 		return FALSE
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/AttackingTarget()
 	if(!seen)
 		if(client)
-			to_chat(src, "<span class='warning'>You cannot attack, there are not enough eyes on you!</span>")
+			to_chat(src, span_warning("You cannot attack, there are not enough eyes on you!"))
 		return FALSE
 	..()
 
@@ -93,7 +93,7 @@
 //Too many people looking? Reduce final work success rate to 0.
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
 	if(seen && !solo_punish) //If you're only considered "seen" because the other living player(s) are all on another Z level, disregard it during work specifically.
-		to_chat(user, "<span class='warning'>You are injured by [src]!</span>") // Keeping it clear that the bad work is from being seen and not just luck.
+		to_chat(user, span_warning("You are injured by [src]!")) // Keeping it clear that the bad work is from being seen and not just luck.
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 		return 0
 	return init_work_chance

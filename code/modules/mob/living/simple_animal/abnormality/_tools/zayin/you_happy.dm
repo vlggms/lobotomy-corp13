@@ -16,16 +16,16 @@
 
 /obj/structure/toolabnormality/you_happy/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
+		to_chat(usr, span_warning("It doesn't look like I can't quite fit in."))
 		return FALSE // Only usable on humans.
 
 	if(M != user)
-		to_chat(user, "<span class='warning'>You cannot force [M] to use [src]!</span>")
+		to_chat(user, span_warning("You cannot force [M] to use [src]!"))
 		return FALSE
 
-	to_chat(user, "<span class='warning'>You start climbing onto [src].</span>")
+	to_chat(user, span_warning("You start climbing onto [src]."))
 	if(!do_after(user, 7 SECONDS))
-		to_chat(user, "<span class='notice'>You decide that might be a bad idea.</span>")
+		to_chat(user, span_notice("You decide that might be a bad idea."))
 		return FALSE
 
 	return ..(M, user, check_loc = FALSE) //it just works
@@ -37,7 +37,7 @@
 	M.pixel_z = 10
 	var/datum/status_effect/display/YMBH/Y = M.has_status_effect(/datum/status_effect/display/YMBH)
 	if(Y)
-		to_chat(M, "<span class='userdanger'>Do you love your city?</span>")
+		to_chat(M, span_userdanger("Do you love your city?"))
 		M.gib()
 		return
 	icon_state = "YMBH_NO"

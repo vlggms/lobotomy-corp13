@@ -29,6 +29,13 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"v" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot/factory,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
 "x" = (
 /obj/structure/table/reinforced,
 /obj/structure/table/reinforced/ctf,
@@ -60,7 +67,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "T" = (
-/obj/structure/lootcrate/workshoprosespanner,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "U" = (
@@ -85,8 +92,8 @@ B
 Q
 "}
 (3,1,1) = {"
-a
-c
+Q
+v
 U
 B
 B

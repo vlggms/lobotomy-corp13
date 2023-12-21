@@ -13,7 +13,9 @@
 	abno_code = "T-02-43"
 	abno_info = list(
 		"Employees with Prudence Level 1 squashed the spiderlings. Spider Bud turned those who harmed its children into cocoons.",
-		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.")
+		"When cleaning the unit as a part of Insight Work, the employee was quickly turned into a cocoon by Spider Bud.",
+		"For each person encased in a cocoon, Spider Bud's max PE available from work was increased by 2.",
+		"Employees were entirely unable to get a good work result from spider bud.",)
 
 //Scorched girl
 /obj/item/paper/fluff/info/teth/match
@@ -49,7 +51,9 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
 	abno_code = "T-04-111"
 	abno_info = list(
-		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle.",
+		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle, unless their Fortitude was Level 4 or above.",
+		"When employees with Prudence Level 2 or lower completed work with Dingle-Dangle, the Qliphoth counter lowered.",
+		"When employees with Prudence Level 2 or lower completed work with Dingle-Dangle, they reported heightend combat abilities.",
 		"When the work result was Bad, the employee was consumed by Dingle-Dangle with a normal probability.")
 
 //Beauty and the Beast
@@ -211,7 +215,7 @@
 //Meat Lantern
 /obj/item/paper/fluff/info/teth/meatlantern
 	abno_type = /mob/living/simple_animal/hostile/abnormality/meat_lantern
-	abno_code = "D-02-107"
+	abno_code = "O-04-84"
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the work took less than 18 seconds to complete, the Qliphoth Counter lowered with a high probability.",
@@ -236,6 +240,8 @@
 		"When work was performed, the employee felt compelled to write in the book regardless of result.",
 		"Employees suffered from higher amounts of damage during work when the book was closer to completion.",
 		"Upon finishing repression work, employee Noah felt compelled to rip pages out of the abnormality.",
+		"When the abnormality was not full of words when pages were torn out, the torn pages twisted into hostile forms and attacked nearby employees.",
+		"When the abnormality was full of words when pages were torn out, the torn pages became friendly creatures instead.",
 		"Attempted repression work when the book was already empty nearly always ended in failure. In constrast, repression work performed when the book was full was usually successful.")
 
 //Someone's Portrait

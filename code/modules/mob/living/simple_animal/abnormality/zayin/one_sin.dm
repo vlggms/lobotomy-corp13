@@ -26,8 +26,13 @@
 	gift_type =  /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/white_night = 5
+	)
+
 	chem_type = /datum/reagent/abnormality/onesin
-	harvest_phrase = "<span class='notice'>As you hold it up before %ABNO, holy light fills %VESSEL.</span>"
+	harvest_phrase = span_notice("As you hold it up before %ABNO, holy light fills %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL, letting it be filled with holy light."
 
 	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
@@ -67,7 +72,7 @@
 				if(WN.status_flags & GODMODE)
 					return FALSE
 				WN.heretics = list()
-				to_chat(WN, "<span class='colossus'>The twelfth has betrayed us...</span>")
+				to_chat(WN, span_colossus("The twelfth has betrayed us..."))
 				WN.loot = list() // No loot for you!
 				var/curr_health = WN.health
 				for(var/i = 1 to 12)
@@ -113,6 +118,9 @@
 			if(H.sanity_lost)
 				heal_factor = 0.25
 			H.adjustSanityLoss(-H.maxSanity * heal_factor)
+
+/mob/living/simple_animal/hostile/abnormality/onesin/BreachEffect(mob/living/carbon/human/user, breach_type)
+	return FALSE // If someone wants him to breach for SOME REASON in the future, then exclude breach_type == BREACH_PINK
 
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"

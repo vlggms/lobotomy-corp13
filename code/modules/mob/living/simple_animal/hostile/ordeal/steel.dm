@@ -23,7 +23,7 @@
 	a_intent = INTENT_HELP
 	possible_a_intents = list(INTENT_HELP, INTENT_HARM)
 	//similar to a human
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 1)
 	var/leader
@@ -65,7 +65,7 @@
 	maxHealth = 750
 	health = 750
 	rapid_melee = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	deathsound = 'sound/voice/mook_death.ogg'
@@ -208,7 +208,7 @@
 	ranged = TRUE
 	retreat_distance = 2
 	minimum_distance = 2
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
 	can_patrol = TRUE
 	wander = FALSE
 	patrol_cooldown_time = 1 MINUTES
