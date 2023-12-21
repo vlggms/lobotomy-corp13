@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "amurdad"
 	icon_living = "amurdad"
+	portrait = "fallen_amurdad"
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),

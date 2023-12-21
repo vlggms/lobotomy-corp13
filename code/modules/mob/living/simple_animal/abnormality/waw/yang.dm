@@ -6,6 +6,7 @@
 	icon_living = "yang"
 	var/icon_breach = "yang_breach"
 	icon_dead = "yang_slain"
+	portrait = "yang"
 	is_flying_animal = TRUE
 	maxHealth = 800	//It is helpful and therefore weak.
 	health = 800

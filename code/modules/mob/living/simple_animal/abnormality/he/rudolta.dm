@@ -7,6 +7,7 @@
 	icon_state = "rudolta"
 	icon_living = "rudolta"
 	icon_dead = "rudolta_dead"
+	portrait = "rudolta"
 	maxHealth = 1200
 	health = 1200
 	pixel_x = -16

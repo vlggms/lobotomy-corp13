@@ -6,6 +6,7 @@
 	icon_state = "jangsan_idle"
 	icon_living = "jangsan_idle"
 	var/icon_aggro = "jangsan"
+	portrait = "jangsan"
 	speak_emote = list("growls")
 	pixel_x = -16
 	base_pixel_x = -16

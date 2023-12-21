@@ -3,6 +3,7 @@
 	desc = "A constantly dripping bath of blood"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "bloodbath"
+	portrait = "blood_bath"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL

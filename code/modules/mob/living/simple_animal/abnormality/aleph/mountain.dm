@@ -5,6 +5,7 @@
 	icon_state = "mosb"
 	icon_living = "mosb"
 	icon_dead = "mosb_dead"
+	portrait = "mountain"
 	maxHealth = 1500
 	health = 1500
 	pixel_x = -16

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "training_rabbit"
 	icon_living = "training_rabbit"
+	portrait = "training_rabbit"
 	maxHealth = 14 //hit with baton twice
 	health = 14
 	threat_level = TETH_LEVEL

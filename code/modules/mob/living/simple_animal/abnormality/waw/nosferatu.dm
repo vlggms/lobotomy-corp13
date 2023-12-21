@@ -7,6 +7,7 @@
 	icon_state = "nosferatu"
 	icon_living = "nosferatu"
 	var/icon_aggro = "nosferatu_breach"
+	portrait = "nosferatu"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 2000

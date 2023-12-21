@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "ppodae"
 	icon_living = "ppodae"
+	portrait = "ppodae"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 550 //fast but low hp abno

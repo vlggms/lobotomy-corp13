@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "shadow"
 	icon_living = "shadow"
+	portrait = "shadow"
 	maxHealth = 75
 	health = 75
 	threat_level = TETH_LEVEL

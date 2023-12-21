@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "cube"
 	icon_living = "cube"
+	portrait = "cube"
 	maxHealth = 50
 	health = 50
 	is_flying_animal = TRUE

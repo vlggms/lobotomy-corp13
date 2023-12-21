@@ -6,6 +6,7 @@
 	icon_state = "forsakenmurdererinert"
 	icon_living = "forsakenmurdererinert"
 	icon_dead = "forsakenmurdererdead"
+	portrait = "forsaken_murderer"
 	del_on_death = FALSE
 	/* Originally was 270. Fragment health is 800 with a original game health of 230 so techically forsaken
 		murderer has more health than fragment? Ill round the numbers to 600 since 270 can be rounded to 300 and doubled.

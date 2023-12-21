@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fairy"
 	icon_living = "fairy"
+	portrait = "fairy_festival"
 	maxHealth = 83
 	health = 83
 	is_flying_animal = TRUE

@@ -3,6 +3,7 @@
 	desc = "An old, dusty tome. There is a pen within the folded pages."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "book_0"
+	portrait = "book"
 	maxHealth = 600
 	health = 600
 	start_qliphoth = 2

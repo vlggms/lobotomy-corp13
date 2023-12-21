@@ -9,6 +9,7 @@
 	icon_state = "big_wolf"
 	icon_living = "big_wolf"
 	icon_dead = "big_wolf_slain"
+	portrait = "big_wolf"
 	faction = list("hostile")
 	speak_emote = list("growls")
 

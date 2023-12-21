@@ -78,6 +78,16 @@
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
 	dat += "<br>"
+
+	//Abnormality portraits
+	var/list/paths = get_portrait_path()
+	for(var/pahs in paths)
+		user << browse_rsc(pahs)
+	dat += {"<div style="float:right; width: 60%;">
+	<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
+	</div>"}
+	dat += "<br>"
+
 	var/list/work_list = datum_reference.available_work
 	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
 		work_list = shuffle(work_list) // A minor annoyance, at most
@@ -92,7 +102,8 @@
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
 		else
 			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
-	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 300)
+
+	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 350)
 	popup.set_content(dat)
 	popup.open()
 	return

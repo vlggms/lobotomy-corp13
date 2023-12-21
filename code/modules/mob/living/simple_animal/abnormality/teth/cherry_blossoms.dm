@@ -4,6 +4,7 @@
 	desc = "A beautiful cherry tree."
 	icon = 'ModularTegustation/Teguicons/128x128.dmi'
 	icon_state = "graveofcherryblossoms_3"
+	portrait = "cherry_blossoms"
 	pixel_x = -48
 	base_pixel_x = -48
 	pixel_y = -16

@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "someones_portrait"
 	icon_living = "someones_portrait"
+	portrait = "someonesportrait"
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,

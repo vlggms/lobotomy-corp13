@@ -3,6 +3,7 @@
 	desc = "An abnormality that resembles a massive spider. Tread carefully"
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "spider_closed"
+	portrait = "spider_bud"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
