@@ -1820,6 +1820,8 @@
 			When at thrown at full power, this weapon damages everyone but yourself in an AOE. Be careful! \
 			This weapon deals 75% more damage on fully powered direct throws."
 	icon_state = "blind_obsession"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	force = 80
 	attack_speed = 2.5
 	throwforce = 80
