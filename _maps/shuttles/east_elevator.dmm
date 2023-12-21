@@ -24,7 +24,7 @@
 /obj/docking_port/mobile{
 	dwidth = 2;
 	height = 4;
-	id = "epsilon2";
+	id = "east";
 	name = "facility elevator";
 	port_direction = 2;
 	width = 4
