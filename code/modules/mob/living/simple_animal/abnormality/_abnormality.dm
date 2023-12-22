@@ -7,7 +7,7 @@
 	layer = LARGE_MOB_LAYER
 	a_intent = INTENT_HARM
 	del_on_death = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	atmos_requirements = list("min_oxy" = 0, "max_oxy" = 0, "min_tox" = 0, "max_tox" = 0, "min_co2" = 0, "max_co2" = 0, "min_n2" = 0, "max_n2" = 0)
 	minbodytemp = 0
 	see_in_dark = 7
@@ -259,7 +259,34 @@
 
 // Called by datum_reference when the abnormality has been fully spawned
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
+	SHOULD_CALL_PARENT(TRUE)
+	HandleStructures()
 	return
+
+// Moves structures already in its datum; Overrides can spawn structures here.
+/mob/living/simple_animal/hostile/abnormality/proc/HandleStructures()
+	SHOULD_CALL_PARENT(TRUE)
+	if(!datum_reference)
+		return FALSE
+	// Ensures all structures are in their place after respawning
+	for(var/atom/movable/A in datum_reference.connected_structures)
+		A.forceMove(get_turf(datum_reference.landmark))
+		A.x += datum_reference.connected_structures[A][1]
+		A.y += datum_reference.connected_structures[A][2]
+	return TRUE
+
+// A little helper proc to spawn structures; Returns itself, so you can handle additional stuff later
+/mob/living/simple_animal/hostile/abnormality/proc/SpawnConnectedStructure(atom/movable/A = null, x_offset = 0, y_offset = 0)
+	if(!ispath(A))
+		return
+	if(!istype(datum_reference))
+		return
+	A = new A(get_turf(src))
+	A.x += x_offset
+	A.y += y_offset
+	// We put it in datum ref for malicious purposes
+	datum_reference.connected_structures[A] = list(x_offset, y_offset)
+	return A
 
 // transfers a var to the datum to be used later
 /mob/living/simple_animal/hostile/abnormality/proc/TransferVar(index, value)
@@ -272,7 +299,6 @@
 	if(isnull(datum_reference))
 		return
 	return LAZYACCESS(datum_reference.transferable_var, index)
-
 
 // Modifiers for work chance
 /mob/living/simple_animal/hostile/abnormality/proc/WorkChance(mob/living/carbon/human/user, chance, work_type)
@@ -357,10 +383,15 @@
 
 // Special breach effect for abnormalities with can_breach set to TRUE
 /mob/living/simple_animal/hostile/abnormality/proc/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+	if(breach_type != BREACH_NORMAL && !can_breach)
+		// If a custom breach is called and the mob has no way of handling it, just ignore it.
+		// Should follow normal behaviour with ..()
+		return FALSE
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	FearEffect()
+	return TRUE
 
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()

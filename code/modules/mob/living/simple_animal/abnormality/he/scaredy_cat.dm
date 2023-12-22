@@ -10,7 +10,7 @@
 	health = 800
 	rapid_melee = 1
 	move_to_delay = 1.7
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
+	damage_coeff = list(RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	melee_damage_type = RED_DAMAGE

@@ -12,7 +12,7 @@
 	icon_dead = "kqe_egg"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 	move_to_delay = 3
@@ -93,7 +93,7 @@
 		if(!LAZYLEN(GLOB.department_centers))
 			heart = TRUE
 		else
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)//In regular gamemodes you are now esentially forced to suppress the heart
+			damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)//In regular gamemodes you are now esentially forced to suppress the heart
 			var/X = pick(GLOB.department_centers)
 			var/mob/living/simple_animal/hostile/kqe_heart/H = new(get_turf(X))
 			heart = H
@@ -295,7 +295,7 @@
 	health = 1000
 	maxHealth = 1000
 	obj_damage = 50
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	speed = 5
 	density = TRUE
 	var/mob/living/simple_animal/hostile/abnormality/kqe/abno_host//This is KQE!

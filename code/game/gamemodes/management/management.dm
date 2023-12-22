@@ -19,11 +19,15 @@
 	var/list/gamemode_abnos = list(ZAYIN_LEVEL = list(), TETH_LEVEL = list(), HE_LEVEL = list(), WAW_LEVEL = list(), ALEPH_LEVEL = list())
 
 /datum/game_mode/management/post_setup()
+	SSpersistence.LoadAbnoPicks() // Persistence system WILL have loaded at this point. Functionally means 0 abnos are slotted/loaded before the game itself is ready.
 	var/list/all_abnos = SSpersistence.abno_rates
 	var/highest = max(all_abnos[ReturnHighestValue(all_abnos)] + 1, 2) // Ensures no 0 results
 	for(var/i in all_abnos)
 		var/mob/living/simple_animal/hostile/abnormality/abno = i
 		if(initial(abno.can_spawn) && (initial(abno.abnormality_origin) in abno_types))
+			if(abno in gamemode_abnos[initial(abno.threat_level)])
+				stack_trace("WARNING! Duplicate [abno] found in Persistent Abno Rates!")
+				continue
 			gamemode_abnos[initial(abno.threat_level)] += abno
 			var/rate = (all_abnos[i] * -1) + highest
 			gamemode_abnos[initial(abno.threat_level)][abno] = rate
@@ -31,7 +35,7 @@
 	SSabnormality_queue.possible_abnormalities = list()
 	SSabnormality_queue.possible_abnormalities = gamemode_abnos
 	if(LAZYLEN(gamemode_abnos))
-		SSabnormality_queue.pick_abno()
+		SSabnormality_queue.PickAbno()
 	return ..()
 
 /datum/game_mode/management/classic

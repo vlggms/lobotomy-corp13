@@ -26,7 +26,7 @@
 	faction = list("hostile", "neutral")
 	can_breach = TRUE
 	start_qliphoth = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
@@ -47,11 +47,13 @@
 	var/list/been_hit = list()
 
 //Initialize
-/mob/living/simple_animal/hostile/abnormality/fire_bird/PostSpawn()
-	..()
-	if(locate(/obj/structure/firetree) in get_turf(src))
+/mob/living/simple_animal/hostile/abnormality/fire_bird/HandleStructures()
+	. = ..()
+	if(!.)
 		return
-	new /obj/structure/firetree(get_turf(src))
+	if(locate(/obj/structure/firetree) in datum_reference.connected_structures)
+		return
+	SpawnConnectedStructure(/obj/structure/firetree)
 
 //Work Procs
 /mob/living/simple_animal/hostile/abnormality/fire_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -103,7 +105,7 @@
 	light_range = 20
 	light_power = 20
 	update_light()
-	if(CheckCombat())
+	if(IsCombatMap())
 		loot = list()
 		return
 	addtimer(CALLBACK(src, .proc/KillOtherBird), 90 SECONDS)

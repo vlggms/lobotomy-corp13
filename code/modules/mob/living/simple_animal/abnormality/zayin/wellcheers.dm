@@ -7,6 +7,9 @@
 	icon_living = "wellcheers_vendor"
 	layer = BELOW_OBJ_LAYER
 	threat_level = ZAYIN_LEVEL
+	maxHealth = 600
+	health = 600
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(70, 70, 60, 60, 60),
 						ABNORMALITY_WORK_INSIGHT = list(70, 70, 60, 60, 60),
@@ -16,6 +19,21 @@
 	work_damage_amount = 1
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
+
+	blood_volume = 0
+
+	ranged = TRUE
+	ranged_message = "launches a can"
+	ranged_cooldown_time = 3 SECONDS
+	retreat_distance = 4
+	check_friendly_fire = TRUE
+	projectiletype = /obj/projectile/wellcheers
+	var/projectile_list = list(/obj/projectile/wellcheers, /obj/projectile/wellcheers/white, /obj/projectile/wellcheers/purple)
+	projectilesound = 'sound/machines/machine_vend.ogg'
+
+	faction = list("shrimp")
+
+	stat_attack = HARD_CRIT
 
 	ego_list = list(
 		/datum/ego_datum/weapon/soda,
@@ -33,25 +51,14 @@
 	harvest_phrase = span_notice("The machine dispenses some clear-ish soda into %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."
 
-	var/list/side_shrimps = list()
-
-/mob/living/simple_animal/hostile/abnormality/wellcheers/PostSpawn()
-	..()
-	for(var/d in list(EAST, WEST))
-		var/turf/TF = get_step(src, d)
-		if(!istype(TF))
-			continue
-		if(!TF.is_blocked_turf(TRUE))
-			if(locate(/obj/structure/wellcheers_side_shrimp) in TF)
-				continue
-			var/obj/structure/wellcheers_side_shrimp/shrimp = new(TF)
-			side_shrimps += shrimp
-
-/mob/living/simple_animal/hostile/abnormality/wellcheers/Destroy()
-	for(var/shrimp in side_shrimps)
-		qdel(shrimp)
-	side_shrimps = null
-	..()
+/mob/living/simple_animal/hostile/abnormality/wellcheers/HandleStructures()
+	. = ..()
+	if(!.)
+		return
+	if(locate(/obj/structure/wellcheers_side_shrimp) in datum_reference.connected_structures)
+		return
+	SpawnConnectedStructure(/obj/structure/wellcheers_side_shrimp, 1)
+	SpawnConnectedStructure(/obj/structure/wellcheers_side_shrimp, -1)
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	var/obj/item/dropped_can
@@ -73,7 +80,7 @@
 // Death!
 /mob/living/simple_animal/hostile/abnormality/wellcheers/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	// Visual effects
-	for(var/obj/structure/wellcheers_side_shrimp/shrimp in side_shrimps)
+	for(var/obj/structure/wellcheers_side_shrimp/shrimp in datum_reference.connected_structures)
 		shrimp.ShrimpDance()
 	for(var/turf/open/T in view(7, src))
 		new /obj/effect/temp_visual/water_waves(T)
@@ -88,6 +95,27 @@
 	user.forceMove(get_turf(shrimpspot)) // Happy fishing!
 	animate(user, alpha = 255, time = 0 SECONDS)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/OpenFire(atom/A)
+	. = ..()
+	projectiletype = pick(projectile_list) // It's VENDING TIME.
+	switch(projectiletype)
+		if(/obj/projectile/wellcheers/white)
+			ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1))
+		if(/obj/projectile/wellcheers/purple)
+			ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1))
+		if(/obj/projectile/wellcheers)
+			ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1))
+		else
+			ChangeResistances(list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1))
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_PINK)
+		can_breach = TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/wellcheers/AttackingTarget()
+	return FALSE
 
 // Soda cans
 /obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red
@@ -124,6 +152,70 @@
 	H.adjustBruteLoss(rand(-2, 3) * REAGENTS_EFFECT_MULTIPLIER)
 	H.adjustSanityLoss(rand(-2, 3) * REAGENTS_EFFECT_MULTIPLIER)
 	return ..()
+
+/obj/projectile/wellcheers
+	name = "shaken can of cherry 'Wellcheers' soda"
+	desc = "A shaken can of cherry-flavored soda."
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "wellcheers_red"
+	nodamage = TRUE
+	var/datum/status_effect/effect_type = /datum/status_effect/wellcheers_bad/red
+
+/obj/projectile/wellcheers/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/cooler_target = target
+		cooler_target.apply_status_effect(effect_type)
+
+/obj/projectile/wellcheers/white
+	name = "shaken can of 'Wellcheers' soda"
+	desc = "A shaken can of soda."
+	icon_state = "wellcheers_white"
+	effect_type = /datum/status_effect/wellcheers_bad/white
+
+/obj/projectile/wellcheers/purple
+	name = "shaken can of grape 'Wellcheers' soda"
+	desc = "A shaken can of grape-flavored soda."
+	icon_state = "wellcheers_purple"
+	effect_type = /datum/status_effect/wellcheers_bad/purple
+
+/datum/status_effect/wellcheers_bad
+	id = "soda_bad"
+	status_type = STATUS_EFFECT_REPLACE
+	duration = 10 SECONDS
+	tick_interval = 1 SECONDS
+	var/damage_type = null
+	var/debuff_damage = 8
+
+/datum/status_effect/wellcheers_bad/tick()
+	. = ..()
+	if(isnull(damage_type))
+		return
+	owner.apply_damage(debuff_damage, damage_type, null, owner.run_armor_check(null, damage_type))
+
+/atom/movable/screen/alert/status_effect/wellcheers_bad
+	name = "Shrimp Soda"
+	desc = "Oh my god it smells like fish oil... You're constantly taking damage!"
+	icon = 'icons/obj/drinks.dmi'
+	icon_state = "wellcheers_red"
+
+/atom/movable/screen/alert/status_effect/wellcheers_bad/white
+	icon_state = "wellcheers_white"
+
+/atom/movable/screen/alert/status_effect/wellcheers_bad/purple
+	icon_state = "wellcheers_purple"
+
+/datum/status_effect/wellcheers_bad/red
+	damage_type = RED_DAMAGE
+	alert_type = /atom/movable/screen/alert/status_effect/wellcheers_bad
+
+/datum/status_effect/wellcheers_bad/white
+	damage_type = WHITE_DAMAGE
+	alert_type = /atom/movable/screen/alert/status_effect/wellcheers_bad/white
+
+/datum/status_effect/wellcheers_bad/purple
+	damage_type = BLACK_DAMAGE
+	alert_type = /atom/movable/screen/alert/status_effect/wellcheers_bad/purple
 
 //Shrimple boat stuff
 /turf/open/water/deep/saltwater/extradeep

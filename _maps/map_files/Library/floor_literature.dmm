@@ -1,10 +1,4 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
-"ba" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_literature)
 "bf" = (
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
@@ -47,32 +41,21 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
-"cJ" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 8
-	},
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_literature)
 "db" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/indestructible/cult,
 /area/library_floors/floor_literature)
-"du" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_literature)
 "ej" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 6
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_literature)
+"ev" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f";
+	light_range = 25
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
@@ -99,6 +82,18 @@
 "hq" = (
 /obj/effect/turf_decal/siding/brown/corner{
 	dir = 1
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_literature)
+"hr" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
@@ -137,15 +132,6 @@
 "lr" = (
 /obj/structure/sign/warning/biohazard,
 /turf/closed/indestructible/wood,
-/area/library_floors/floor_literature)
-"lC" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 1
-	},
-/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
 "lR" = (
 /obj/effect/turf_decal/siding/brown/corner{
@@ -264,6 +250,21 @@
 "vH" = (
 /turf/open/space/basic,
 /area/space)
+"vX" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_literature)
 "wG" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/turf_decal/siding/brown/corner{
@@ -319,15 +320,6 @@
 	},
 /obj/effect/turf_decal/siding/brown{
 	dir = 9
-	},
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_literature)
-"Ak" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
@@ -468,6 +460,15 @@
 /obj/effect/decal/cleanable/blood/gibs/body,
 /turf/open/indestructible/cult,
 /area/library_floors/floor_literature)
+"JC" = (
+/obj/item/flashlight/spotlight{
+	light_color = "#d8b66f";
+	light_range = 25
+	},
+/turf/open/floor/white{
+	density = 1
+	},
+/area/library_floors/floor_literature)
 "JV" = (
 /obj/structure/chair/wood{
 	dir = 1
@@ -487,7 +488,6 @@
 /area/library_floors/floor_literature)
 "Kx" = (
 /obj/effect/decal/cleanable/blood/footprints,
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/cult,
 /area/library_floors/floor_literature)
 "KY" = (
@@ -563,9 +563,10 @@
 /obj/item/reagent_containers/blood/a_minus,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
-"Pw" = (
+"Oq" = (
 /obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
+	light_color = "#d8b66f";
+	light_range = 25
 	},
 /turf/open/floor/white,
 /area/library_floors/floor_literature)
@@ -605,14 +606,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
-"Tm" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/turf/open/floor/white{
-	density = 1
-	},
-/area/library_floors/floor_literature)
 "Ty" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 5
@@ -622,9 +615,6 @@
 "TK" = (
 /obj/structure/chair/wood{
 	dir = 4
-	},
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
@@ -683,6 +673,21 @@
 	dir = 8
 	},
 /area/library_floors/floor_literature)
+"Xc" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/brown{
+	dir = 4
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_literature)
 "XF" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /obj/effect/decal/cleanable/blood,
@@ -697,12 +702,33 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
+"Yc" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_literature)
 "Ze" = (
 /obj/effect/turf_decal/siding/brown,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
 "Zj" = (
 /turf/closed/indestructible/wood,
+/area/library_floors/floor_literature)
+"Zx" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_literature)
 
 (1,1,1) = {"
@@ -797,7 +823,7 @@ ci
 tu
 cq
 HK
-HK
+Xc
 cw
 tu
 Aw
@@ -875,7 +901,7 @@ MI
 bf
 Nc
 xw
-xw
+vX
 lR
 bf
 uH
@@ -924,12 +950,12 @@ vH
 Zj
 ga
 Ty
-du
+Gy
 ej
 ga
 ga
 Ty
-du
+Gy
 ej
 ga
 Zj
@@ -974,15 +1000,15 @@ vA
 vA
 vA
 nt
-Ak
 tu
 tu
 tu
-Ak
 tu
 tu
 tu
-Ak
+tu
+tu
+tu
 hW
 oZ
 oZ
@@ -1048,8 +1074,8 @@ vH
 vH
 vH
 Zj
+Oq
 vA
-Pw
 vA
 Zj
 Xa
@@ -1063,8 +1089,8 @@ Xa
 Xa
 Zj
 IF
-ba
 bf
+ev
 Zj
 Zj
 vH
@@ -1082,7 +1108,7 @@ tu
 tu
 tu
 tu
-tu
+Zx
 tu
 tu
 tu
@@ -1179,7 +1205,7 @@ vH
 vH
 Zj
 vA
-Pw
+vA
 vA
 Zj
 Xa
@@ -1193,7 +1219,7 @@ Xa
 Xa
 Zj
 IF
-ba
+bf
 bf
 Zj
 Zj
@@ -1283,7 +1309,7 @@ vH
 vH
 Zj
 vA
-Pw
+vA
 vA
 KY
 Zj
@@ -1297,7 +1323,7 @@ kL
 Zj
 uO
 oZ
-Tm
+oZ
 oZ
 oZ
 Zj
@@ -1387,7 +1413,7 @@ vH
 vH
 Zj
 vA
-Pw
+vA
 vA
 KY
 FU
@@ -1401,7 +1427,7 @@ kL
 FU
 uO
 oZ
-Tm
+oZ
 oZ
 oZ
 Zj
@@ -1439,14 +1465,14 @@ vH
 vH
 Zj
 vA
-vA
+Oq
 vA
 KY
 bf
 bf
 bf
 bf
-bf
+Yc
 bf
 bf
 bf
@@ -1454,7 +1480,7 @@ bf
 uO
 oZ
 oZ
-oZ
+JC
 oZ
 Zj
 vH
@@ -1517,7 +1543,7 @@ vH
 vH
 Zj
 vA
-Pw
+vA
 vA
 KY
 FU
@@ -1531,7 +1557,7 @@ kL
 FU
 uO
 oZ
-Tm
+oZ
 oZ
 oZ
 Zj
@@ -1647,7 +1673,7 @@ vH
 vH
 Zj
 vA
-Pw
+vA
 vA
 KY
 bf
@@ -1661,7 +1687,7 @@ bf
 bf
 uO
 oZ
-Tm
+oZ
 oZ
 oZ
 Zj
@@ -1751,7 +1777,7 @@ vH
 vH
 Zj
 vA
-Pw
+vA
 vA
 zW
 tu
@@ -1765,7 +1791,7 @@ tu
 tu
 WR
 oZ
-Tm
+oZ
 oZ
 oZ
 Zj
@@ -1836,7 +1862,7 @@ Gy
 Gy
 Gy
 Gy
-Gy
+hr
 Gy
 Gy
 Gy
@@ -1854,8 +1880,8 @@ vH
 vH
 vH
 Zj
+Oq
 vA
-Pw
 vA
 Zj
 Mf
@@ -1869,8 +1895,8 @@ Mf
 Mf
 Zj
 IF
-ba
 bf
+ev
 Zj
 Zj
 vH
@@ -1936,15 +1962,15 @@ vA
 vA
 vA
 WW
-du
 Gy
 Gy
 Gy
-du
 Gy
 Gy
 Gy
-du
+Gy
+Gy
+Gy
 IC
 oZ
 oZ
@@ -1990,12 +2016,12 @@ vH
 Zj
 ua
 tu
-Ak
 tu
 tu
 tu
 tu
-Ak
+tu
+tu
 tu
 oy
 Zj
@@ -2019,7 +2045,7 @@ Gy
 iD
 UB
 Gy
-Gy
+hr
 iD
 UB
 Gy
@@ -2146,12 +2172,12 @@ vH
 Zj
 Ug
 tu
-lC
+hq
 cg
 tu
-tu
+Zx
 hq
-cJ
+cg
 tu
 Ku
 jS

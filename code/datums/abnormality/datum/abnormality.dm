@@ -60,6 +60,9 @@
 	var/list/transferable_var
 	///if the abno spawns with a slime radio or not
 	var/abno_radio = FALSE
+	// Object = list(x tile offset, y tile offset)
+	/// List of connected structures; Used to teleport and delete them when abnormality is swapped or deleted
+	var/list/connected_structures = list()
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -78,11 +81,14 @@
 	SSlobotomy_corp.all_abnormality_datums -= src
 	for(var/datum/ego_datum/ED in ego_datums)
 		qdel(ED)
+	for(var/atom/A in connected_structures)
+		qdel(A)
 	QDEL_NULL(landmark)
 	QDEL_NULL(current)
 	ego_datums = null
 	landmark = null
 	current = null
+	connected_structures = null
 	..()
 
 /datum/abnormality/proc/RespawnAbno()
@@ -190,11 +196,17 @@
 	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 
 /datum/abnormality/proc/UpdateUnderstanding(percent)
-	if (understanding != max_understanding) // This should render "full_understood" not required.
+	// Lower agent pop gets a bonus
+	var/agent_count = AvailableAgentCount()
+	if(agent_count <= 5 && percent)
+		percent *= 1 + (3 / agent_count)
+
+	if(understanding != max_understanding) // This should render "full_understood" not required.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding == max_understanding) // Checks for max understanding after the fact
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
+			SSlobotomy_corp.AddLobPoints(MAX_ABNO_LOB_POINTS / SSabnormality_queue.rooms_start, "Abnormality Understanding")
 	else if(understanding == max_understanding && percent < 0) // If we're max and we reduce, undo the count.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding != max_understanding) // Checks for max understanding after the fact
@@ -243,7 +255,10 @@
 		if(ABNORMALITY_WORK_REPRESSION)
 			acquired_chance += user.physiology.repression_success_mod
 	acquired_chance *= user.physiology.work_success_mod
-	acquired_chance += get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE) * TEMPERANCE_SUCCESS_MOD
+
+	//Calculating workchance. This is meant to be somewhat log
+	var/player_temperance = get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE)
+	acquired_chance += TEMPERANCE_SUCCESS_MOD *((0.07*player_temperance-1.4)/(0.07*player_temperance+4))
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
 	if(overload_chance[user.ckey])
 		acquired_chance += overload_chance[user.ckey]
@@ -286,6 +301,8 @@
 	if(istype(current) && !current.IsContained())
 		return FALSE
 	if(istype(target.current) && !target.current.IsContained())
+		return FALSE
+	if(working || target.working)
 		return FALSE
 	// A very silly method to get the objects in the cell
 	var/list/objs_src = view(7, landmark)
@@ -331,6 +348,15 @@
 		C1.c_tag = "Containment zone: [target.name]"
 	if(C2)
 		C2.c_tag = "Containment zone: [name]"
+	// Move structures
+	for(var/atom/movable/A in connected_structures)
+		A.forceMove(get_turf(landmark))
+		A.x += connected_structures[A][1]
+		A.y += connected_structures[A][2]
+	for(var/atom/movable/A in target.connected_structures)
+		A.forceMove(get_turf(target.landmark))
+		A.x += connected_structures[A][1]
+		A.y += connected_structures[A][2]
 	// And finally, move abnormalities around
 	if(current)
 		current.forceMove(get_turf(landmark))

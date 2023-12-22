@@ -33,7 +33,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	can_patrol = FALSE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5) //same stats as original armor
+	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5) //same stats as original armor
 	stat_attack = HARD_CRIT
 	ranged = TRUE
 	ranged_cooldown_time = 1
@@ -50,12 +50,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(30 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
+	if(prob(30 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	if(prob(60 + ((user.health / user.maxHealth)*100)) && !user.NAKED_NESTED)
+	if(prob(60 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
@@ -155,7 +155,7 @@
 	maxHealth = 5
 	health = 5 //STOMP THEM STOMP THEM NOW.
 	move_to_delay = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	density = FALSE //they are worms.
 	robust_searching = 1
@@ -262,7 +262,7 @@
 	maxHealth = 300
 	health = 300
 	stat_attack = CONSCIOUS //When you are put into crit the nested will continue to transform into a nest. I thought about having the nested infest you if your in crit but that seemed a bit too cruel.
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 	mob_size = MOB_SIZE_HUMAN
 	minbodytemp = INHOSPITABLE_FOR_NESTING
 	guaranteed_butcher_results = list(/obj/item/food/meatball/human = 1) //considered having it spawn a single worm on butcher but that seemed cruel.

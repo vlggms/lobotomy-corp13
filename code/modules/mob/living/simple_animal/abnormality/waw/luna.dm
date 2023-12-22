@@ -47,7 +47,7 @@
 /mob/living/simple_animal/hostile/abnormality/luna/ZeroQliphoth(mob/living/carbon/human/user)
 	icon_state = "dellaluna_breach"
 	//Normal breach
-	if(!CheckCombat())
+	if(!IsCombatMap())
 		var/turf/W = pick(GLOB.department_centers)
 		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
 		breached_monster = spawningmonster
@@ -58,7 +58,7 @@
 	else
 		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(src))
 		breached_monster = spawningmonster
-		qdel(src) //Destroys the piano, as it is unecessary in Rcorp.
+		QDEL_IN(src, 1 SECONDS) //Destroys the piano, as it is unecessary in Rcorp.
 
 	breached = TRUE
 	if(client)

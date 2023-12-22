@@ -11,11 +11,15 @@
 	var/mob/living/carbon/attached
 	var/mode = IV_INJECTING
 	var/dripfeed = FALSE
+	///Internal beaker
 	var/obj/item/reagent_containers/beaker
-	var/static/list/drip_containers = typecacheof(list(/obj/item/reagent_containers/blood,
-									/obj/item/reagent_containers/food,
-									/obj/item/reagent_containers/glass,
-									/obj/item/reagent_containers/chem_pack))
+	///Typecache of containers we accept
+	var/static/list/drip_containers = typecacheof(list(
+		/obj/item/reagent_containers/blood,
+		/obj/item/reagent_containers/food,
+		/obj/item/reagent_containers/glass,
+		/obj/item/reagent_containers/chem_pack,
+	))
 
 /obj/machinery/iv_drip/Initialize(mapload)
 	. = ..()

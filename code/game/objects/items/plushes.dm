@@ -553,6 +553,12 @@
 			return
 		to_chat(user, "<span class='notice'>You feel as if you prevented something weird and terrible from happening again.</span>")
 
+/obj/item/toy/plush/samjo
+	name = "samjo plushie"
+	desc = "A plushie depicting a K corp secretary, their devotion deserved recognition."
+	icon_state = "samjo"
+	gender = MALE
+
 /obj/item/toy/plush/blank
 	name = "plushie blank"
 	desc = "A humanoid plush that had been freshly made or stripped down to its cloth. Despite its lack of identity, the mere aknowelegement of this plushie makes it unique."

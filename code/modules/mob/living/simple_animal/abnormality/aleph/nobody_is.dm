@@ -109,7 +109,8 @@
 
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/nobody_is/PostSpawn()
-	if(CheckCombat())
+	. = ..()
+	if(IsCombatMap())
 		current_stage = 2
 		next_stage()
 		return
@@ -157,7 +158,7 @@
 		chosen.hairstyle = oldhair
 		chosen.facial_hairstyle = oldbeard
 	HD.update_limb()
-	headicon = new(get_turf(src))
+	headicon = SpawnConnectedStructure(headicon)
 	headicon.add_overlay(HD.get_limb_icon(TRUE,TRUE))
 	headicon.pixel_y -= 5
 	headicon.alpha = 150
@@ -167,6 +168,7 @@
 	if(headicon) //Grab their head. Literally, and grab the icons from it; discard our old icon if we have one.
 		qdel(headicon)
 		headicon = null
+		datum_reference.connected_structures = list()
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/WorkChance(mob/living/carbon/human/user, chance)
 	var/adjusted_chance = chance
@@ -282,6 +284,7 @@
 	if(headicon) //Gets rid of the reflection if they died in containtment for any reason
 		qdel(headicon)
 		headicon = null
+		datum_reference.connected_structures = list()
 	if(grab_victim)
 		ReleaseGrab()
 	return ..()

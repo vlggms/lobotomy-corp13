@@ -94,6 +94,9 @@
 	if(wear_id && !(wear_id.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [wear_id.get_examine_string(user)]. <A href='byond://?src=[REF(wear_id)];examine=[user.ckey]'>Examine</A>"
 
+	if(LAZYLEN(attributes) && (isobserver(user) || HAS_TRAIT(user, TRAIT_ATTRIBUTES_VISION)))
+		. += "<A href='byond://?src=[REF(src)];see_attributes=1'>Check Attributes</A>"
+
 	//Status effects
 	var/list/status_examines = status_effect_examines()
 	if (length(status_examines))
@@ -347,7 +350,7 @@
 		if(getorgan(/obj/item/organ/brain))
 			if(ai_controller?.ai_status == AI_STATUS_ON)
 				if(istype(ai_controller, /datum/ai_controller/insane))
-					msg += span_danger("[t_He] [t_is] completely out of [t_his] mind!")
+					msg += span_danger("<b>[t_He] [t_is] completely out of [t_his] mind!</b>\n")
 				else
 					msg += "<span class='deadsay'>[t_He] do[t_es]n't appear to be [t_him]self.</span>\n"
 			if(!key)

@@ -44,12 +44,15 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
 				to_chat(world, span_userdanger("Players will be victorius 20 minutes."))
 
-				switch(rand(1,2))
+				switch(rand(1,4))
 					if(1)
 						GLOB.wcorp_enemy_faction = "lovetown"
 					if(2)
 						GLOB.wcorp_enemy_faction = "gcorp"
-
+					if(3)
+						GLOB.wcorp_enemy_faction = "peccatulum"
+					if(4)
+						GLOB.wcorp_enemy_faction = "shrimp"
 //Win cons
 /datum/game_mode/combat/proc/loseround()
 	SSticker.force_ending = 1
@@ -68,6 +71,14 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 /datum/game_mode/combat/proc/counterincrease()
 	addtimer(CALLBACK(src, .proc/counterincrease), 1 MINUTES)
 	GLOB.combat_counter+=1
+	if(SSmaptype.maptype == "wcorp")
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.stat == DEAD)
+				continue
+			if(!H.ckey)
+				continue
+			H.adjustBruteLoss(-(H.maxHealth*0.10))
+			H.adjustSanityLoss(-(H.maxSanity*0.10))
 
 /datum/game_mode/combat/proc/rcorp_announce()
 	var/announcement_type = ""
@@ -77,4 +88,5 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("vip")
 			announcement_type = "Intelligence has located a highly intelligent target in the vicinity. Destroy it at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
+
 

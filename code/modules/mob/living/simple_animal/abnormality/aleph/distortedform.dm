@@ -18,7 +18,7 @@
 	icon_living = "distortedform"
 	icon_dead = "distortedform_dead"
 	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 55
 	melee_damage_upper = 65
 	move_to_delay = 3

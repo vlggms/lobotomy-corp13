@@ -1,17 +1,17 @@
 /datum/suppression/records
-	name = "Records Core Suppression"
+	name = RECORDS_CORE_SUPPRESSION
 	desc = "Each meltdown, a random ever-increasing amount of abnormalities within your containment will swap places. \
 			At even intervals, a random amount of all living creatures in the facility will be teleported a short distance, \
 			with abnormalities and ordeals seemingly teleporting in the direction of their opponent."
 	reward_text = "The manager console will be equipped with function to swap the positions of abnormalities. \
 			Attribute limits of all positions will be raised by 70."
 	run_text = "The core suppression of Records department has begun. \n\
-			Meltdown immunities are forfeit and qliphoth meltdowns will have lesser timer. \n\
-			Failed meltdowns will trigger a meltdown in another cell."
+			The abnormalities will switch positions every meltdown. \n\
+			All living creatures will teleport slightly at even intervals."
 	/// How many of abnormality cells will swap places on meltdown, by percent of current count
-	var/abno_swap_percentage = 0.4
+	var/abno_swap_percentage = 1
 	/// How often teleportations happen
-	var/teleport_interval = 30 SECONDS
+	var/teleport_interval = 35 SECONDS
 	/// Minimum teleport distance for mobs
 	var/teleport_min_distance = 3
 	/// How far can mobs teleport at maximum
@@ -21,13 +21,13 @@
 	/// Maximum percent of valid mobs to be teleported
 	var/teleport_max_mob_count = 0.2
 
-/datum/suppression/records/Run(run_white = FALSE)
+/datum/suppression/records/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnQlipMeltdown)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SWAP, .proc/OnAbnoSwap)
 	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
 
-/datum/suppression/records/End()
+/datum/suppression/records/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SWAP)
 	// EVERYONE GETS INCREASED STAT LIMIT, LET'S FUCKING GOOOOOO
@@ -38,7 +38,7 @@
 			continue
 		H.adjust_attribute_limit(70)
 		to_chat(H, span_notice("You feel new potential unlock within you!"))
-	for(var/obj/machinery/computer/camera_advanced/manager/C in GLOB.manager_consoles)
+	for(var/obj/machinery/computer/camera_advanced/manager/C in GLOB.lobotomy_devices)
 		C.swap = new
 		C.visible_message(span_notice("[C] has received a new ability!"))
 		playsound(get_turf(C), 'sound/machines/ping.ogg', 25, TRUE)
@@ -58,11 +58,17 @@
 		if(istype(A1.current) && !A1.current.IsContained())
 			i -= 1
 			continue
+		if(A1.working)
+			i -= 1
+			continue
 		if(!LAZYLEN(abnos))
 			break
 		var/datum/abnormality/A2 = pick(abnos)
 		abnos -= A2
 		if(istype(A2.current) && !A2.current.IsContained())
+			i -= 1
+			continue
+		if(A2.working)
 			i -= 1
 			continue
 		// SWAP!
@@ -71,9 +77,11 @@
 	// Upgrade the difficulty!
 	if(ordeal)
 		abno_swap_percentage = min(1, abno_swap_percentage + 0.2)
-		teleport_interval = max(5 SECONDS, teleport_interval - 12 SECONDS)
+		teleport_interval = max(5 SECONDS, teleport_interval - 10 SECONDS)
 		teleport_min_mob_count = max(0.8, teleport_min_mob_count + 0.15)
 		teleport_max_mob_count = max(1, teleport_max_mob_count + 0.2)
+		teleport_min_distance = min(10, teleport_min_distance + 1)
+		teleport_max_distance = min(15, teleport_max_distance + 2)
 
 // Show after-image of swapped abnos
 /datum/suppression/records/proc/OnAbnoSwap(datum/source, datum/abnormality/A1, datum/abnormality/A2)
@@ -114,10 +122,13 @@
 		if(!LAZYLEN(valid_mobs))
 			break
 		var/mob/living/L = pick(valid_mobs)
-		TryToTeleportMob(L)
+		addtimer(CALLBACK(src, .proc/TryToTeleportMob, L), rand(0, 6))
+		valid_mobs -= L
 	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
 
 /datum/suppression/records/proc/TryToTeleportMob(mob/living/L)
+	if(QDELETED(L))
+		return
 	var/turf/open/T = null
 	var/list/turf_list = list()
 	var/mob/living/simple_animal/hostile/HA = L
@@ -127,14 +138,19 @@
 	else
 		turf_list = spiral_range_turfs(teleport_max_distance, get_turf(L), teleport_min_distance)
 
+	for(var/turf/TT in turf_list)
+		if(TT.density)
+			turf_list -= TT
+
 	for(var/i = 1 to 5)
 		if(!LAZYLEN(turf_list))
 			break
 		T = pick(turf_list)
 		turf_list -= T
 		// Found good target turf
-		if(LAZYLEN(get_path_to(L, T, /turf/proc/Distance_cardinal, 0, 20)))
+		if(LAZYLEN(get_path_to(L, T, /turf/proc/Distance_cardinal, 0, teleport_max_distance * 2)))
 			break
+		T = null
 	// Didn't find anything, very sad
 	if(!istype(T))
 		return FALSE

@@ -26,3 +26,68 @@
 
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
 
+/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/ert
+	equip_slowdown = 0
+	attribute_requirements = list()
+
+/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3/ert
+	equip_slowdown = 0
+	attribute_requirements = list()
+
+// KCORP BABEYYYY
+/datum/outfit/kcorp
+	name = "K Corp Class 1"
+	ears = /obj/item/radio/headset/headset_cent
+	uniform = /obj/item/clothing/under/rank/k_corporation/officer/duty
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/color/black
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/ert
+	suit_store = /obj/item/ego_weapon/shield/kcorp
+	id = /obj/item/card/id
+
+/datum/outfit/kcorp/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/head = pick(/obj/item/clothing/head/ego_hat/helmet/kcorp,
+		/obj/item/clothing/head/ego_hat/helmet/kcorp/visor)
+	var/belt = pick(/obj/item/ego_weapon/city/kcorp,
+		/obj/item/ego_weapon/city/kcorp/axe)
+
+	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+	H.equip_to_slot_or_del(new head(H),ITEM_SLOT_HEAD, TRUE)
+
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "Class 1"
+	W.registered_name = H.real_name
+	W.update_label()
+
+/datum/outfit/kcorp/level3
+	name = "K Corp Class 3"
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3/ert
+
+/datum/outfit/kcorp/level3/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/belt = pick(/obj/item/ego_weapon/city/kcorp/spear,
+		/obj/item/ego_weapon/city/kcorp/dspear)
+
+	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "Class 3"
+	W.registered_name = H.real_name
+	W.update_label()
+
+/datum/outfit/kcorp/level3/kill
+	name = "K Corp Asset Protection Staff"
+	r_hand = /obj/item/grenade/spawnergrenade/kcorpdrone
+	l_pocket = /obj/item/ksyringe
+	r_pocket = /obj/item/krevive
+
+/datum/outfit/kcorp/level3/kill/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	var/belt = pick(/obj/item/ego_weapon/city/kcorp/spear,
+		/obj/item/ego_weapon/city/kcorp/dspear)
+
+	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+
+	var/obj/item/card/id/W = H.wear_id
+	W.assignment = "Asset Protection Staff"
+	W.registered_name = H.real_name
+	W.update_label()

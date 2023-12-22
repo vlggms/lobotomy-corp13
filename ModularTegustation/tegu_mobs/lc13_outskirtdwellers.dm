@@ -401,7 +401,7 @@
 	icon_state = "kcorp_drone_idle"
 	icon_living = "kcorp_drone_idle"
 	icon_dead = "kcorp_drone_idle"
-	faction = list("hostile") // should target humanoids only and annoy them to no end
+	faction = list("hostile", "kcorp") // should target humanoids only and annoy them to no end
 	response_disarm_continuous = "pushes aside"
 	response_disarm_simple = "push aside"
 	attack_verb_continuous = "flashes"

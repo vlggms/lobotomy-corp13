@@ -74,7 +74,12 @@
 	mappath = "_maps/RandomRooms/rcorp/facility/skeld.dmm"
 	weight = 5
 
-
+//Nest type maps
+/datum/map_template/random_room/rcorp/nest
+	name = "Rcorp - Nest"
+	room_id = "rcorp_inside_nest"
+	mappath = "_maps/RandomRooms/rcorp/facility/nest.dmm"
+	weight = 5
 
 //Special Types.
 /datum/map_template/random_room/rcorp/raidboss

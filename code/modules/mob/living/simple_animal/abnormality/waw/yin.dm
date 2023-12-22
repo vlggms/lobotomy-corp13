@@ -47,7 +47,7 @@
 	var/faction_override = list("hostile") // The effects hit non-hostiles.
 
 	//Melee
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
 	melee_damage_lower = 60 // Doesn't actually swing individually
 	melee_damage_upper = 60
 	melee_damage_type = BLACK_DAMAGE

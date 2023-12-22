@@ -13,7 +13,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
 	speak_emote = list("proclaims")
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
 	is_flying_animal = TRUE
 	pixel_x = -16
 	base_pixel_x = -16
@@ -241,7 +241,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	melee_damage_upper = 45
 	obj_damage = 400
 	ranged = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	move_to_delay = 5
 	pixel_x = -8
 	base_pixel_x = -8
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	maxHealth = 3000
 	move_to_delay = 7
 	melee_damage_type = PALE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	vision_range = 12
 	aggro_vision_range = 12
 	patrol_cooldown_time = 10 SECONDS
@@ -394,7 +394,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon_state = "apostle_spear"
 	icon_living = "apostle_spear"
 	melee_damage_type = BLACK_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
 	var/spear_cooldown
 	var/spear_cooldown_time = 10 SECONDS
 	var/spear_max = 50
@@ -475,7 +475,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	melee_damage_type = BLACK_DAMAGE // Okay, look, they aren't really meant to melee anyway
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	var/staff_cooldown
 	var/staff_cooldown_time = 20 SECONDS
 	var/staff_damage = 20
