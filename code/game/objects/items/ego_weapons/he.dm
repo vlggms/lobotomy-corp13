@@ -1025,6 +1025,7 @@
 	name = "dimensional ripple"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	icon_state = "warp2"
+	force = 24
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32

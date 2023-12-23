@@ -13,7 +13,9 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if(charge<20 && target.stat != DEAD)
+	if((target.stat == DEAD) || target.status_flags & GODMODE)
+		return FALSE
+	if(charge<20)
 		charge+=1
 
 /obj/item/ego_weapon/city/charge/proc/release_charge(mob/living/target, mob/living/user)

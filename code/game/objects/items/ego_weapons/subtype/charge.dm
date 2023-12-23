@@ -13,7 +13,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-	if((target.stat == DEAD) || (GODMODE in target.status_flags))//if the target is dead or godmode
+	if((target.stat == DEAD) || target.status_flags & GODMODE)//if the target is dead or godmode
 		return FALSE
 	if(charge<20)
 		charge+=1
