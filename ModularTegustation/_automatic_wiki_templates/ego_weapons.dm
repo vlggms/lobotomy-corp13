@@ -1,43 +1,9 @@
-/datum/wiki_template/ego_weapons/proc/generate_output(datum/ego_datum/weapon/item, risk_level)
+/datum/wiki_template/ego_weapons/proc/generate_output(datum/ego_datum/weapon/item)
 
 	var/datum/ego_datum/weapon/output = new item
 
 	if(ispath(output.item_path, /obj/item/gun/ego_gun)) // they break everything at the moment, so its a no-go
 		return
-
-	switch(risk_level) // We are making the mother of all switches jack, cant fret over every shitcode
-		if("Aleph+")
-			if(output.cost <= 100) // only accept EGO costing more than 100
-				return
-		if("Aleph")
-			if(output.cost <> 100) // gotta cost 100 on-point
-				return
-		if("Waw+")
-			if(output.cost >= 100 || output.cost <= 50) // gotta cost less than ALEPH, but more than WAW
-				return
-		if("Waw")
-			if(output.cost <> 50)
-				return
-		if("He+")
-			if(output.cost >= 50 || output.cost <= 35)
-				return
-		if("He")
-			if(output.cost <> 35)
-				return
-		if("Teth+")
-			if(output.cost >= 35 || output.cost <= 20)
-				return
-		if("Teth")
-			if(output.cost <> 20)
-				return
-		if("Zayin+") // if this ever exists, what the actual hell are developers thinking. Putting it here juuuuuuust in case
-			if(output.cost >= 20 || output.cost <= 12)
-				return
-		if("Zayin")
-			if(output.cost <> 12)
-				return
-		if("Meme")
-			return // There is no current way to see if a weapon is a meme/admin only or not, painfull aint it?
 
 /**
  * var's set to later use in the template
@@ -118,16 +84,25 @@
 
 
 GLOBAL_VAR_INIT(ego_weapon_wiki, "")
-/proc/generate_ego_weapons() // calling this using the advanced_proc_call and copy-pasting it is basically how you are meant to update the wiki for now, until we figure out a way to do it automatically
-	var/mega_string = ""
-	var/datum/wiki_template/ego_weapons/new_template = new
-	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
-		mega_string += "[new_template.generate_output(listed_weapon)]"
+/proc/generate_ego_weapons()
 
-	GLOB.ego_weapon_wiki = mega_string
-	return mega_string
+	var/list/ALEPH_PLUS = list()
+	var/list/ALEPH = list()
+	var/list/WAW_PLUS = list()
+	var/list/WAW = list()
+	var/list/HE_PLUS = list()
+	var/list/HE = list()
+	var/list/TETH_PLUS = list()
+	var/list/TETH = list()
+	var/list/ZAYIN_PLUS = list()
+	var/list/ZAYIN = list()
 
-/proc/generate_sorted_ego_weapons()
+#define ALEPH_PLUS_RANGE 200, 300, 400, 500, 600, 700, 800, 900, 1000 // cover most common 100+ cases
+#define WAW_PLUS_RANGE 55, 60, 65, 70, 75, 80, 85, 90, 95 // we dont need much precision for these, 51-99
+#define HE_PLUS_RANGE 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49 // 36-49
+#define TETH_PLUS_RANGE 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34 // 21-34
+#define ZAYIN_PLUS_RANGE 13, 14, 15, 16, 17, 18, 19 // 13-19
+
 	var/mega_string = "\n"
 	var/datum/wiki_template/ego_weapons/new_template = new
 	var/Wiki_text = "\
@@ -141,30 +116,71 @@ GLOBAL_VAR_INIT(ego_weapon_wiki, "")
 	\n\
 	"
 	mega_string += Wiki_text
+	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
+		var/extraction_cost = initial(listed_weapon.cost)
+		if(listed_weapon == /datum/ego_datum/weapon/seasons) // make this check for a list of objects instead later on
+			continue
+		switch(extraction_cost) // We are making the mother of all switches jack, cant fret over every shitcode
+			if(ALEPH_PLUS_RANGE)
+				ALEPH_PLUS += "[new_template.generate_output(listed_weapon)]"
+			if(100)
+				ALEPH += "[new_template.generate_output(listed_weapon)]"
+			if(WAW_PLUS_RANGE)
+				WAW_PLUS += "[new_template.generate_output(listed_weapon)]"
+			if(50)
+				WAW += "[new_template.generate_output(listed_weapon)]"
+			if(HE_PLUS_RANGE)
+				HE_PLUS += "[new_template.generate_output(listed_weapon)]"
+			if(35)
+				HE += "[new_template.generate_output(listed_weapon)]"
+			if(TETH_PLUS_RANGE)
+				TETH_PLUS += "[new_template.generate_output(listed_weapon)]"
+			if(20)
+				TETH += "[new_template.generate_output(listed_weapon)]"
+			if(ZAYIN_PLUS_RANGE) // if this ever exists, what the actual hell are developers thinking. Putting it here juuuuuuust in case
+				ZAYIN_PLUS += "[new_template.generate_output(listed_weapon)]"
+			if(12)
+				ZAYIN += "[new_template.generate_output(listed_weapon)]"
+
 	mega_string += "== ALEPH == \n" // i have no idea how to optimize the following spaghetti :3
-	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
-		mega_string += "[new_template.generate_output(listed_weapon, "Aleph+")]"
-		mega_string += "[new_template.generate_output(listed_weapon, "Aleph")]"
+	for(var/EGO in ALEPH_PLUS)
+		mega_string += EGO
+	for(var/EGO in ALEPH)
+		mega_string += EGO
 	mega_string += "\n"
+
 	mega_string += "== WAW == \n"
-	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
-		mega_string += "[new_template.generate_output(listed_weapon, "Waw+")]"
-		mega_string += "[new_template.generate_output(listed_weapon, "Waw")]"
+	for(var/EGO in WAW_PLUS)
+		mega_string += EGO
+	for(var/EGO in WAW)
+		mega_string += EGO
 	mega_string += "\n"
+
 	mega_string += "== HE == \n"
-	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
-		mega_string += "[new_template.generate_output(listed_weapon, "He+")]"
-		mega_string += "[new_template.generate_output(listed_weapon, "He")]"
+	for(var/EGO in HE_PLUS)
+		mega_string += EGO
+	for(var/EGO in HE)
+		mega_string += EGO
 	mega_string += "\n"
+
 	mega_string += "== TETH == \n"
-	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
-		mega_string += "[new_template.generate_output(listed_weapon, "Teth+")]"
-		mega_string += "[new_template.generate_output(listed_weapon, "Teth")]"
+	for(var/EGO in TETH_PLUS)
+		mega_string += EGO
+	for(var/EGO in TETH)
+		mega_string += EGO
 	mega_string += "\n"
+
 	mega_string += "== ZAYIN == \n"
-	for(var/datum/ego_datum/weapon/listed_weapon as anything in (subtypesof(/datum/ego_datum/weapon)))
-		mega_string += "[new_template.generate_output(listed_weapon, "Zayin+")]"
-		mega_string += "[new_template.generate_output(listed_weapon, "Zayin")]"
+	for(var/EGO in ZAYIN_PLUS)
+		mega_string += EGO
+	for(var/EGO in ZAYIN)
+		mega_string += EGO
 
 	GLOB.ego_weapon_wiki = mega_string
 	return mega_string
+
+#undef ALEPH_PLUS_RANGE
+#undef WAW_PLUS_RANGE
+#undef HE_PLUS_RANGE
+#undef TETH_PLUS_RANGE
+#undef ZAYIN_PLUS_RANGE
