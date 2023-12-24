@@ -1185,38 +1185,11 @@
 	temperance_bonus = 10
 	slot = HAT
 
-/datum/ego_gifts/coiling
-	name = "Coiling"
-	icon_state = "coiling"
-	fortitude_bonus = 5
-	slot = MOUTH_2
-
-/datum/ego_gifts/blind_obsession
-	name = "Blind Obsession"
-	icon_state = "slitcurrent"
-	temperance_bonus = -5//People are going to hate this.
-	justice_bonus = 12
-	slot = HAT
-
-/// All ALEPH EGO Gifts
-/datum/ego_gifts/paradise
-	name = "Paradise Lost"
-	icon_state = "paradiselost"
-	fortitude_bonus = 10
-	prudence_bonus = 10
-	justice_bonus = 10
-	slot = LEFTBACK
-
-/datum/ego_gifts/dacapo
-	name = "Da Capo"
-	icon_state = "dacapo"
-	temperance_bonus = 4
-	slot = EYE
-
-/datum/ego_gifts/mimicry
-	name = "Mimicry"
-	icon_state = "mimicry"
-	fortitude_bonus = 10
+/datum/ego_gifts/tears
+	name = "Sword Sharpened With Tears"
+	icon_state = "tears"
+	prudence_bonus = 2
+	justice_bonus = 4
 	slot = CHEEK
 
 /datum/ego_gifts/thirteen
