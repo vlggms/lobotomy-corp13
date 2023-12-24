@@ -1498,7 +1498,7 @@
 	attack_verb_simple = list("poke", "slash")
 	hitsound = 'sound/weapons/fixer/generic/sword1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40
+							PRUDENCE_ATTRIBUTE = 40
 							)
 	var/firing_cooldown = 0
 	var/hit_cooldown_time = 10 SECONDS
