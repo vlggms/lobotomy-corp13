@@ -97,12 +97,6 @@ GLOBAL_VAR_INIT(ego_weapon_wiki, "")
 	var/list/ZAYIN_PLUS = list()
 	var/list/ZAYIN = list()
 
-#define ALEPH_PLUS_RANGE 200, 300, 400, 500, 600, 700, 800, 900, 1000 // cover most common 100+ cases
-#define WAW_PLUS_RANGE 55, 60, 65, 70, 75, 80, 85, 90, 95 // we dont need much precision for these, 51-99
-#define HE_PLUS_RANGE 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49 // 36-49
-#define TETH_PLUS_RANGE 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34 // 21-34
-#define ZAYIN_PLUS_RANGE 13, 14, 15, 16, 17, 18, 19 // 13-19
-
 	var/mega_string = "\n"
 	var/datum/wiki_template/ego_weapons/new_template = new
 	var/Wiki_text = "\
@@ -121,23 +115,23 @@ GLOBAL_VAR_INIT(ego_weapon_wiki, "")
 		if(listed_weapon == /datum/ego_datum/weapon/seasons) // make this check for a list of objects instead later on
 			continue
 		switch(extraction_cost) // We are making the mother of all switches jack, cant fret over every shitcode
-			if(ALEPH_PLUS_RANGE)
+			if(101 to INFINITY)
 				ALEPH_PLUS += "[new_template.generate_output(listed_weapon)]"
 			if(100)
 				ALEPH += "[new_template.generate_output(listed_weapon)]"
-			if(WAW_PLUS_RANGE)
+			if(51 to 99)
 				WAW_PLUS += "[new_template.generate_output(listed_weapon)]"
 			if(50)
 				WAW += "[new_template.generate_output(listed_weapon)]"
-			if(HE_PLUS_RANGE)
+			if(36 to 49)
 				HE_PLUS += "[new_template.generate_output(listed_weapon)]"
 			if(35)
 				HE += "[new_template.generate_output(listed_weapon)]"
-			if(TETH_PLUS_RANGE)
+			if(21 to 34)
 				TETH_PLUS += "[new_template.generate_output(listed_weapon)]"
 			if(20)
 				TETH += "[new_template.generate_output(listed_weapon)]"
-			if(ZAYIN_PLUS_RANGE) // if this ever exists, what the actual hell are developers thinking. Putting it here juuuuuuust in case
+			if(13 to 19) // if this ever exists, what the actual hell are developers thinking. Putting it here juuuuuuust in case
 				ZAYIN_PLUS += "[new_template.generate_output(listed_weapon)]"
 			if(12)
 				ZAYIN += "[new_template.generate_output(listed_weapon)]"
@@ -178,9 +172,3 @@ GLOBAL_VAR_INIT(ego_weapon_wiki, "")
 
 	GLOB.ego_weapon_wiki = mega_string
 	return mega_string
-
-#undef ALEPH_PLUS_RANGE
-#undef WAW_PLUS_RANGE
-#undef HE_PLUS_RANGE
-#undef TETH_PLUS_RANGE
-#undef ZAYIN_PLUS_RANGE
