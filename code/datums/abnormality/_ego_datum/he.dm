@@ -398,10 +398,6 @@
 	cost = 35
 
 //Faelantern - Midwinter Nightmare
-/datum/ego_datum/armor/faelantern
-	item_path = /obj/item/clothing/suit/armor/ego_gear/he/faelantern
-	cost = 35
-
 /datum/ego_datum/weapon/faelantern
 	item_path = /obj/item/ego_weapon/faelantern
 	cost = 35
