@@ -1,3 +1,11 @@
+/**
+ * This proc gets called when a ghost drags themselfes onto an abnormality and passess several checks to make sure they can do that
+ * This proc allows a ghost to take over an abnormality, mainly used in the playables events
+ * Its called AFTER the admin proc to force ghosts into mobs, so admins will need to dead-min to access this like a player would
+ *
+ * Called by /mob/dead/observer/MouseDrop(atom/over)
+ */
+
 /datum/proc/try_take_abnormality(mob/dead/observer/possessing_player, mob/abnormality)
 	if(!SSlobotomy_corp.enable_possession) // uhhhh, how did you even access this proc?
 		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
@@ -9,7 +17,7 @@
 		return
 
 	if(abnormality.ckey)
-		to_chat(possessing_player, span_userdanger("This abnormality already has a ghost in control of it, you cant possess it!"))
+		to_chat(possessing_player, span_userdanger("This abnormality already has a ghost in control of it, you can't possess it!"))
 		return
 
 	var/title = "Do you wish to possess this abnormality?"
