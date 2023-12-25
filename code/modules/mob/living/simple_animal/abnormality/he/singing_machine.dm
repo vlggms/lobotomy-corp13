@@ -231,7 +231,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 	machine_hinge.bloodySelf()
 	icon_state = "singingmachine_bloody"
 	icon_living = icon_state
-	machine_hinge.moveHinge(0 ,3 SECONDS, 0, 0)
+	machine_hinge.moveHinge(0, 3 SECONDS, 0, 0)
 	addtimer(CALLBACK(src, .proc/startPlaying), 3 SECONDS)
 	datum_reference.qliphoth_change(2)
 
