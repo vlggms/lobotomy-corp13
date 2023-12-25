@@ -142,7 +142,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 	if(datum_reference.qliphoth_meter > 0)
 		datum_reference.qliphoth_change(-(prob(40)))// If it's not already mad, it has a chance to get a little more mad.
 	else
-		machine_hinge.moveHinge(0 ,0.3 SECONDS, 0, 0)
+		machine_hinge.moveHinge(0, 0.3 SECONDS, 0, 0)
 		playsound(src, 'sound/abnormalities/singingmachine/swallow.ogg', 80, 0, 3)
 		to_chat(user, span_danger("The machine clamps down on you!"))
 		user.apply_damage(clampRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) // If its mad, deals a chunk of RED.
