@@ -79,11 +79,11 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Life()
-	if(!playStatus == GRINDING) // If the machine isn't silent, deal damage to everyone in range.
+	if(playStatus == SILENT) // If the machine isn't silent, deal damage to everyone in range.
 		return ..()
 	noiseEffect()
 
-	if(!playStatus == PLAYING) // If the machine is playing music, deal damage to all addicts and try to make them go insane.
+	if(!playStatus == PLAYING) // If the machine is playing music, also deal damage to all addicts and try to make them go insane.
 		return ..()
 	damageAddicts()
 	return ..()
