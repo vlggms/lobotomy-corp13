@@ -71,7 +71,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Initialize()
 	..()
-	machine_hinge = new/obj/effect/singing_machine_hinge(src)
+	machine_hinge = new(src)
 	vis_contents += machine_hinge
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Destroy()
