@@ -695,7 +695,31 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if (usr.client.holder.cmd_ghost_drag(src,over))
 			return
 
-	return ..()
+	//LOBOTOMYCORPORATION ADDITION START
+	if(usr != src) // dont give chat feedback, dragging others onto an abnormality is probably just a silly mistake
+		return ..()
+
+	if(!isobserver(usr)) // safety check
+		to_chat(usr, span_userdanger("you are not an observer despite being an observer, silly. You cant possess abnormalities!"))
+		return ..()
+
+	if(!usr.client) // who are we talking to again...? whatever
+		to_chat(usr, span_userdanger("You dont exist, so you cant possess!"))
+		return ..()
+
+	if(!SSlobotomy_corp.enable_possession) // if admins dont want us to fuck around, lets not fuck around
+		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
+		return ..()
+
+	if(!isabnormalitymob(over)) // we want them to ONLY be able to possess abnormalities
+		to_chat(usr, span_userdanger("You can only possess abnormalities!"))
+		return ..()
+
+	try_take_abnormality(src, over)
+	return
+	//LOBOTOMYCORPORATION ADDITION END
+
+//	return ..() LOBOTOMYCORPORATION REMOVAL -- we dont need this anymore since we do safety checks instead
 
 /mob/dead/observer/Topic(href, href_list)
 	..()
