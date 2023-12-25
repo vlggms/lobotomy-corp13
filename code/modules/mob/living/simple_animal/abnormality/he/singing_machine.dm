@@ -101,7 +101,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 		return ..()
 
 	// I see you've failed the stat check, but have also chosen not to feed yourself to the machine.
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 40)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
 		statCheckPenalty = 3
 	else if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // The Fortitude check applies one third of the penalty
 		statCheckPenalty = 1
