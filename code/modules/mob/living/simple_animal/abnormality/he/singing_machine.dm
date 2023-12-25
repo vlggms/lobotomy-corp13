@@ -83,7 +83,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 		return ..()
 	noiseEffect()
 
-	if(!playStatus == PLAYING) // If the machine is playing music, also deal damage to all addicts and try to make them go insane.
+	if(playStatus != PLAYING) // If the machine is playing music, also deal damage to all addicts and try to make them go insane.
 		return ..()
 	damageAddicts()
 	return ..()
