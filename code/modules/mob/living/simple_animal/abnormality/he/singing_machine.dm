@@ -248,7 +248,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 		return
 	for(var/mob/living/carbon/human/addict in addicts)
 		addict.apply_damage(playWhite, WHITE_DAMAGE, null, addict.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		to_chat(addict, span_warning("That beautiful sound... i CRAVE it!"))
+		to_chat(addict, span_warning("That beautiful sound... I CRAVE it!"))
 		if (!addict.sanity_lost)
 			continue
 		applySpecialInsanity(addict)
