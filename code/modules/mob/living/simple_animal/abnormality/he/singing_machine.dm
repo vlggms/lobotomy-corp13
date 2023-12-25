@@ -201,6 +201,8 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 		musicalAddicts -= addict // Your five minutes are over, you're free.
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/startPlaying()
+	if(playStatus == PLAYING)
+		return FALSE
 	particle_note = new(get_turf(src))
 	particle_blood = new(get_turf(src))
 	grindNoise = new(list(src), TRUE)
