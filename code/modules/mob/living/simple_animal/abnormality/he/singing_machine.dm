@@ -135,7 +135,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 		manual_emote("rests silent once more...") // The machine is now dormant.
 		playsound(src, 'sound/abnormalities/singingmachine/creak.ogg', 50, 0, 1)
 		datum_reference.qliphoth_change(2)
-		machine_hinge.moveHinge(0 ,1.5 SECONDS, 0, 0)
+		machine_hinge.moveHinge(0, 1.5 SECONDS, 0, 0)
 		stopPlaying()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
