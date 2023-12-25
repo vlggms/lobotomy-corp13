@@ -83,7 +83,6 @@
 
 
 
-GLOBAL_VAR_INIT(ego_weapon_wiki, "")
 /proc/generate_ego_weapons()
 
 	var/list/ALEPH_PLUS = list()
@@ -170,5 +169,4 @@ GLOBAL_VAR_INIT(ego_weapon_wiki, "")
 	for(var/EGO in ZAYIN)
 		mega_string += EGO
 
-	GLOB.ego_weapon_wiki = mega_string
 	return mega_string
