@@ -122,8 +122,6 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 /mob/living/simple_animal/hostile/abnormality/singing_machine/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	bonusRed = 0 // Reset bonus red damage and the stat check.
 	statCheckPenalty = 0
-	if(user.sanity_lost || user.health < 0) // Did they die? Time to force a bad result.
-		pe = 0
 	if(work_type == ABNORMALITY_WORK_INSTINCT) // At the end of an instinct work...
 		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
 			if(H in musicalAddicts)
