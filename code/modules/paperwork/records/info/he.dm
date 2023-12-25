@@ -204,12 +204,13 @@
 	abno_info = list(
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"When the work result was Normal, the Qliphoth counter lowered with a moderate probability.",
-		"When an employee with Fortitude Level 4 or higher attempted work other than Instinct, Singing Machine’s behavior was more erratic. The same occurred when an employee had Temperance Level 2 or lower.",
+		"When an employee with Fortitude Level 4 or higher attempted work other than Instinct, Singing Machine’s behavior was slightly more erratic. Greater erraticness also occurred when an employee had Temperance Level 2 or lower.",
 		"When an employee performed Instinct work, Singing Machine continuously dealt low RED damage to them. Employees who heard its song reported greater mental stability.",
-		"When Instinct work was completed, the employee reported hearing Singing Machine more clearly than others. This phenomenon has been termed \"Musical Addiction\".",
+		"When Instinct work was completed, employees that could hear the machine reported hearing Singing Machine more clearly than others. This phenomenon has been termed \"Musical Addiction\".",
 		"When the Qliphoth Counter reached 0, Singing Machine activated and began to emit a grinding noise, dealing constant WHITE damage to those nearby.",
-		"While Singing Machine was in operation, performing Instinct work continuously dealt severe RED damage to the employee and did not confer any benefits.",
-		"When the work result was Normal or Bad while Singing Machine was in operation, the employee dove into Singing Machine, causing the noise to deal more WHITE damage and driving all afflicted by Musical Addiction into a frenzy. The Qliphoth Counter increased by 2 and Singing Machine deactivated shortly afterwards.",
+		"While Singing Machine was in operation, performing Instinct work continuously dealt severe RED damage.",
+		"When the work result was Bad while Singing Machine was in operation, the employee dove into Singing Machine, causing the noise to deal more WHITE damage and driving all afflicted by Musical Addiction into a frenzy. The Qliphoth Counter increased by 2 and Singing Machine deactivated shortly afterwards.",
+		"When the work result was Normal while Singing Machien was in operation, the machine clamped down and tried to swallow the employee, if it succeded, the situation above also ocurred",
 		"The above situation also occurred when an employee panicked or died during work. However, when the work result was Good, the Qliphoth Counter increased by 2 and Singing Machine deactivated.")
 
 //The Watchman

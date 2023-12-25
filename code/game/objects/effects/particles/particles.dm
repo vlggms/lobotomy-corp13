@@ -127,6 +127,60 @@
 	grow = list(0.2,0.2)
 	friction = 0.6
 
+/particles/singing_note
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = list("singing_note_1","singing_note_2","singing_note_3","singing_note_4")
+	width = 96
+	height = 96
+	count = 12
+	spawning = 0.6
+	lifespan = 8
+	fade = 4
+	position = list(18,23)
+	velocity = generator("box", list(-10, 18), list(10, 20))
+	rotation = generator("num", -30, 50, NORMAL_RAND)
+	friction = 0.5
+
+/particles/singing_note_broken
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = list("singing_note_1_broken","singing_note_2_broken","singing_note_3_broken","singing_note_4_broken")
+	width = 96
+	height = 96
+	count = 12
+	spawning = 0.5
+	lifespan = 8
+	fade = 4
+	position = list(8,12)
+	velocity = generator("box", list(-7, 15), list(7, 15))
+	rotation = generator("num", -50, 70)
+	friction = 0.5
+
+/particles/singing_grind
+	icon = 'ModularTegustation/Teguicons/lc13_effects.dmi'
+	icon_state = "singing_grind"
+	width = 48
+	height = 96
+	count = 2
+	position
+	spawning = 0.5
+	lifespan = 3
+	fade = 1
+	velocity = list(0,6)
+	friction = 0.3
+
+/particles/singing_blood
+	width = 128
+	height = 128
+	count = 200
+	spawning = 8
+	lifespan = 6
+	fade = 4
+	position = generator("vector", list(-2,7), list(23,7))
+	velocity = generator("circle", -5, 10)
+	color = COLOR_RED
+	gravity = list(0, -4)
+	friction = 0.5
+
 /* Particle emitter objects */
 
 /obj/particle_emitter
@@ -192,3 +246,19 @@
 /obj/particle_emitter/fragment_song
 	layer = MOB_LAYER+1
 	particles = new/particles/fragment_song
+
+/obj/particle_emitter/singing_note
+	layer = MOB_LAYER+1
+	particles = new/particles/singing_note
+
+/obj/particle_emitter/singing_note_broken
+	layer = MOB_LAYER+1
+	particles = new/particles/singing_note_broken
+
+/obj/particle_emitter/singing_grind
+	layer = MOB_LAYER+1
+	particles = new/particles/singing_grind
+
+/obj/particle_emitter/singing_blood
+	layer = MOB_LAYER+1
+	particles = new/particles/singing_blood
