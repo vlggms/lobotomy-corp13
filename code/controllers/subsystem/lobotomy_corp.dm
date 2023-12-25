@@ -329,7 +329,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return FALSE
 	var/list/available_ordeals = list()
 	for(var/datum/ordeal/O in all_ordeals[next_ordeal_level])
-		if(O.can_run)
+		if(O.AbleToRun())
 			available_ordeals += O
 	if(!LAZYLEN(available_ordeals))
 		return FALSE
