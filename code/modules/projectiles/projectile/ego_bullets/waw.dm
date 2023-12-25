@@ -251,12 +251,11 @@
 /obj/projectile/ego_bullet/ego_warring/on_hit(atom/target, blocked = FALSE)
 	. = ..()
 	var/obj/item/gun/ego_gun/warring/bow = fired_from
-	var/mob/living/user = firer
-	var/mob/living/carbon/human/H = target
+	var/mob/living/L = target
 	if(!isliving(target))
 		return
-	if(user.faction_check_mob(H))//player faction
-		return
+	if((L.stat == DEAD) || L.status_flags & GODMODE)//if the target is dead or godmode
+		return FALSE
 	bow.Build_Charge()
 	return
 

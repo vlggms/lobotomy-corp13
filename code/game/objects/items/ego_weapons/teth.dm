@@ -500,8 +500,6 @@
 	damage = 20
 	damage_type = BLACK_DAMAGE
 
-
-
 /obj/item/ego_weapon/sanitizer
 	name = "sanitizer"
 	desc = "It's very shocking."

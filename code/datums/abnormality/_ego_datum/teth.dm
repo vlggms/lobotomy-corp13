@@ -326,3 +326,7 @@
 	item_path = /obj/item/ego_weapon/sanitizer
 	cost = 20
 
+//Faelantern - Midwinter Nightmare
+/datum/ego_datum/armor/faelantern
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/faelantern
+	cost = 20
