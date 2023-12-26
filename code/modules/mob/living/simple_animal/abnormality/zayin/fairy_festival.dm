@@ -83,15 +83,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyPause(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
-	if (datum_sent != datum_reference)
-		return
 	to_chat(user, span_notice("The fairies suddenly go eerily quiet."))
 	protected_people.Remove(user)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyRestart(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	to_chat(user, span_nicegreen("The fairies start giggling and playing once more."))
-	protected_people += user
+	protected_people |= user
 	playsound(get_turf(user), 'sound/abnormalities/fairyfestival/fairylaugh.ogg', 50, 0, 2)
 
 //not called by anything anymore, left here if somebody wants to readd it later for any reason.
