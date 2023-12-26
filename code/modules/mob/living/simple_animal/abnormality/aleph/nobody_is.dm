@@ -71,6 +71,14 @@
 	//Visual effects
 	var/obj/effect/reflection/headicon
 
+	//Oberon shit
+	var/oberon_mode = FALSE
+	var/grab_damage_oberon = 100
+	var/strangle_damage_oberon = 25
+	var/melee_damage_oberon = 25
+	var/mob/living/simple_animal/hostile/abnormality/titania/abno_host
+	var/obj/effect/titania_aura/fairy_aura
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/nobody_attack,
@@ -268,7 +276,51 @@
 	if(current_stage == 2) // Egg
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.2, time = 7)
+	if(disguise)
+		var/mob/living/simple_animal/hostile/abnormality/titania/titania
+		for(var/mob/living/L in view(2, src))
+			if(istype(L, /mob/living/simple_animal/hostile/abnormality/titania))
+				titania = L
+		if(!titania)
+			return
+		if(titania.status_flags & GODMODE)
+			return
+		Oberon(titania)
 
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Oberon(mob/living/simple_animal/hostile/abnormality/titania/T)
+	if(!istype(T))
+		return
+	if(T.IsContained()) // prevents nobody is from just yoinking her while she's contained
+		return
+	if(!oberon_mode)
+		can_act = FALSE
+		oberon_mode = TRUE
+		T.fused = TRUE
+		T.say("Oberon?")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		say("Is that who I am?")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		if(!(stat == DEAD || T.stat == DEAD))
+			Oberon_Fusion(T)
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Oberon_Fusion(mob/living/simple_animal/hostile/abnormality/titania/T)
+		abno_host = T
+		T.pass_flags = PASSTABLE | PASSMOB
+		T.is_flying_animal = FALSE
+		T.density = FALSE
+		T.forceMove(src)
+		name = "Oberon"
+		can_act = TRUE
+		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
+		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
+		add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
+		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.5))
+		T.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+		maxHealth = 6000
+		melee_damage_lower = 50
+		melee_damage_upper = 65
+		grab_damage = 200
+		strangle_damage = 50
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Move()
 	if(!can_act)
@@ -278,7 +330,11 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Moved()
 	if(current_stage == 3)
 		playsound(get_turf(src), 'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3)
-	return ..()
+	. = ..()
+	if(fairy_aura)
+		var/turf/orgin = get_turf(src)
+		fairy_aura.forceMove(orgin)
+		fairy_aura.dir = dir
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/death(gibbed)
 	if(headicon) //Gets rid of the reflection if they died in containtment for any reason
@@ -311,17 +367,30 @@
 		new /obj/effect/temp_visual/cult/sparks(T)
 	var/whip_delay = (get_dist(src, target) <= 2) ? (0.75 SECONDS) : (0.5 SECONDS)
 	SLEEP_CHECK_DEATH(whip_delay)
-	for(var/i = 1 to whip_count)
-		var/obj/projectile/P = new /obj/projectile/beam/nobody(start_loc)
-		P.starting = start_loc
-		P.firer = src
-		P.fired_from = src
-		P.yo = target_loc.y - start_loc.y
-		P.xo = target_loc.x - start_loc.x
-		P.original = target
-		P.preparePixelProjectile(target_loc, src, spread = rand(0, 10))
-		P.damage = whip_damage
-		P.fire()
+	if(oberon_mode)
+		for(var/i = 1 to whip_count)
+			var/obj/projectile/P = new /obj/projectile/beam/oberon(start_loc)
+			P.starting = start_loc
+			P.firer = src
+			P.fired_from = src
+			P.yo = target_loc.y - start_loc.y
+			P.xo = target_loc.x - start_loc.x
+			P.original = target
+			P.preparePixelProjectile(target_loc, src, spread = rand(0, 10))
+			P.damage = whip_damage
+			P.fire()
+	else
+		for(var/i = 1 to whip_count)
+			var/obj/projectile/P = new /obj/projectile/beam/nobody(start_loc)
+			P.starting = start_loc
+			P.firer = src
+			P.fired_from = src
+			P.yo = target_loc.y - start_loc.y
+			P.xo = target_loc.x - start_loc.x
+			P.original = target
+			P.preparePixelProjectile(target_loc, src, spread = rand(0, 10))
+			P.damage = whip_damage
+			P.fire()
 	for(var/turf/T in turfs_to_hit)
 		if(T.density)
 			break
@@ -354,6 +423,8 @@
 	for(var/turf/T in view(3, src))
 		new /obj/effect/temp_visual/nobody_grab(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), grab_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+			if(oberon_mode)
+				HurtInTurf(T, list(), grab_damage_oberon, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
 			if(L.health < 0)
 				if(ishuman(L))
 					var/mob/living/carbon/H = L
@@ -406,6 +477,8 @@
 		ReleaseGrab()
 		return
 	grab_victim.apply_damage(strangle_damage, BLACK_DAMAGE, null, grab_victim.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	if(oberon_mode)
+		grab_victim.apply_damage(strangle_damage_oberon, RED_DAMAGE, null, grab_victim.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nobodyis/strangle.ogg', 100, 0, 7)
@@ -462,6 +535,10 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
+	if(oberon_mode)
+		if(isliving(attacked_target))
+			var/mob/living/L = attacked_target
+			L.apply_damage(melee_damage_oberon, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	if(!client)
 		if((current_stage == 3) && (grab_cooldown <= world.time) && prob(35))
 			return GrabAttack()
@@ -598,3 +675,14 @@
 //Objects
 /obj/effect/reflection // Hopefully temporary or at least removed someday
 	layer = ABOVE_ALL_MOB_LAYER
+
+//Allow for titana's laws to exist for nobody is I think
+/mob/living/simple_animal/hostile/abnormality/nobody_is/bullet_act(obj/projectile/Proj)
+	if(oberon_mode)
+		abno_host.bullet_act(Proj)
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/attacked_by(obj/item/I, mob/living/user)
+	if(oberon_mode)
+		abno_host.attacked_by(I, user)
+	..()

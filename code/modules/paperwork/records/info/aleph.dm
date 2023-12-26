@@ -112,7 +112,8 @@
 		"When breaching, Titania designated a Level 5 employee as her \"Nemesis\". Titania then continually summoned hostile fairy scouts until her demise.",
 		"When the Nemesis was attacked by Titania, Titania’s attacks had different properties.",
 		"After the Nemesis was killed by Titania, Titania’s strength dramatically increased.",
-		"When employees of Level 3 and lower were attacked by Titania, they were immediately obliterated.")
+		"When employees of Level 3 and lower were attacked by Titania, they were immediately obliterated.",
+		"WARNING:Under no circumstances let the assimilated form of O-06-180 reach F-01-130.")
 	abno_breach_damage_type = "Red/Pale"
 
 // Lady out of Space
@@ -226,7 +227,8 @@
 		"When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
 		"An employee in the facility will be reflected upon the mirror on the face of Nobody Is.",
-		"When the selected employee completed work, they were assimilated into the abnormality.")
+		"When the selected employee completed work, they were assimilated into the abnormality.",
+		"WARNING:Under no circumstances let the assimilated form of O-06-180 reach F-01-130.")
 	abno_breach_damage_count = "Extreme" // Once it transforms its over
 	abno_resistances = list(
 		RED_DAMAGE = "Endured/Endured/Resistant",
