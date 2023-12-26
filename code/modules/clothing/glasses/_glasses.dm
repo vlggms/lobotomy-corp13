@@ -525,18 +525,20 @@
 
 	double = TRUE
 
-
 /obj/item/clothing/glasses/debug
-	name = "Manager monocle MKII"
-	desc = "A monocle with built-in Medical, security and diagnostic hud."
-	icon_state = "thermoncle"
-	inhand_icon_state = "thermoncle"
+	name = "debug glasses"
+	desc = "Medical, security and diagnostic hud. Alt click to toggle xray."
+	icon_state = "nvgmeson"
+	inhand_icon_state = "nvgmeson"
 	flags_cover = GLASSESCOVERSEYES
 	darkness_view = 8
 	flash_protect = FLASH_PROTECTION_WELDER
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	glass_colour_type = FALSE
 	clothing_flags = SCAN_REAGENTS
+	vision_flags = SEE_TURFS
 	var/list/hudlist = list(DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC_ADVANCED, DATA_HUD_SECURITY_ADVANCED)
+	var/xray = FALSE
 
 /obj/item/clothing/glasses/debug/equipped(mob/user, slot)
 	. = ..()
@@ -558,3 +560,13 @@
 			var/datum/atom_hud/H = GLOB.huds[hud]
 			H.remove_hud_from(user)
 
+/obj/item/clothing/glasses/debug/AltClick(mob/user)
+	. = ..()
+	if(ishuman(user))
+		if(xray)
+			vision_flags -= SEE_MOBS|SEE_OBJS
+		else
+			vision_flags += SEE_MOBS|SEE_OBJS
+		xray = !xray
+		var/mob/living/carbon/human/H = user
+		H.update_sight()
