@@ -1391,6 +1391,25 @@
 	user.physiology.pale_mod /= 0.95
 	return ..()
 
+/datum/ego_gifts/oberon
+	name = "Oberon"
+	icon_state = "oberon"
+	desc = "Provides the user with 10% resistance to RED and BLACK damage."
+	fortitude_bonus = 6
+	temperance_bonus = 6
+	justice_bonus = 6
+	slot = LEFTBACK
+
+/datum/ego_gifts/fervor/Initialize(mob/living/carbon/human/user) // Lowered Stats but grants resistance
+	. = ..()
+	user.physiology.red_mod *= 0.9
+	user.physiology.black_mod *= 0.9
+
+/datum/ego_gifts/fervor/Remove(mob/living/carbon/human/user)
+	user.physiology.red_mod /= 0.9
+	user.physiology.black_mod /= 0.9
+	return ..()
+
 /datum/ego_gifts/twilight
 	name = "Twilight"
 	icon_state = "twilight"
