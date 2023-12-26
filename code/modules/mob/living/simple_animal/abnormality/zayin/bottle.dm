@@ -79,7 +79,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		if(faction_check_mob(L))
-			visible_message("<span class='nicegreen'>[src] feeds [L]... [L] seems heartier!</span>")
+			L.visible_message(span_danger("[src] feeds [L]... [L] seems heartier!"), span_nicegreen("[src] feeds you, you feel heartier!"))
 			L.adjustBruteLoss(-speak_damage/2)
 			return
 	return ..()
@@ -179,17 +179,17 @@
 	if(M.a_intent != "help" || (status_flags & GODMODE))
 		return ..()
 	if(eating)
-		to_chat(M, "<span class='notice'>Someone else is already drinking from [src], it'd be kinda weird to join them...</span>")
+		to_chat(M, span_notice("Someone else is already drinking from [src], it'd be kinda weird to join them..."))
 		return
 	eating = TRUE
-	to_chat(M, "<span class='notice'>You start drinking from the bottle.</span>")
+	to_chat(M, span_notice("You start drinking from the bottle.</span>"))
 	if(do_after(M, 2 SECONDS, src, IGNORE_HELD_ITEM, interaction_key = src, max_interact_count = 1))
 		M.adjustSanityLoss(speak_damage*4) // Heals the mind
 		speak_damage = initial(speak_damage)
-		to_chat(M, "<span class='nicegreen'>Isn't it wonderful? Your very own Wonderland!</span>")
+		to_chat(M, span_nicegreen("Isn't it wonderful? Your very own Wonderland!"))
 		M.apply_status_effect(STATUS_EFFECT_TEARS_LESS)
 	else
-		to_chat(M, "<span class='notice'>You decide against drinking from the bottle...</span>")
+		to_chat(M, span_notice("You decide against drinking from the bottle..."))
 		M.apply_damage(speak_damage, WHITE_DAMAGE, null, run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 	eating = FALSE
 

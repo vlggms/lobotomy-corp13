@@ -111,7 +111,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(src, "<span class='userdanger'>You do not do damage, your sole mission is to spread the glory of baldness to all.</span>")
+	to_chat(src, span_userdanger("You do not do damage, your sole mission is to spread the glory of baldness to all."))
 
 /datum/reagent/abnormality/bald
 	name = "Essence of Baldness"
@@ -138,7 +138,7 @@
 		return
 	var/mob/living/carbon/human/victim = target
 	if(!HAS_TRAIT(victim, TRAIT_BALD))
-		to_chat(victim, "<span class='notice'>You feel awesome!</span>")
+		to_chat(victim, span_notice("You feel awesome!"))
 		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
 		victim.hairstyle = "Bald"
 		victim.update_hair()
