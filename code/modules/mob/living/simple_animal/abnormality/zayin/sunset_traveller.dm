@@ -35,11 +35,17 @@
 	light_power = 7
 	var/healing = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/sunset_traveller/AttemptWork(mob/living/carbon/human/user, work_type)
+	if(healing)
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
 		return
-	if(!healing)
-		Heal(user)
+	if(healing)
+		return
+	Heal(user)
 
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/Heal(mob/living/carbon/human/user)
 	set waitfor = FALSE

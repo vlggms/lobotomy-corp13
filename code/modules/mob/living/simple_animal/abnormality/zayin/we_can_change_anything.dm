@@ -164,7 +164,7 @@
 		return
 	grinding = TRUE
 	var/list/AoE = list()
-	visible_message("<span class='userdanger'>[src] opens wide!</span>", "<span class='nicegreen'>Time to begin another productive day!</span>")
+	visible_message(span_warning("[src] opens wide!"), span_nicegreen("Time to begin another productive day!"))
 	for(var/turf/open/T in view(2, src))
 		AoE += T
 		new /obj/effect/temp_visual/cult/sparks(T)
