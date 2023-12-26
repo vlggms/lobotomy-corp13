@@ -212,3 +212,18 @@
 	icon_state = "bough_bough"
 	move_force = INFINITY
 	pull_force = INFINITY
+
+/obj/effect/titania_aura
+	name = "titania"
+	desc = "A gargantuan fairy."
+	icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	icon_state = "titania_oberon"
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = -16
+	base_pixel_y = -16
+	density = FALSE
+	anchored = TRUE
+	layer = BELOW_MOB_LAYER
+	alpha = 255
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT

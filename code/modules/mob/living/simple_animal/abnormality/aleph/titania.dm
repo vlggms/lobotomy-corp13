@@ -52,6 +52,18 @@
 	var/law_damage = 30		//Take damage, idiot
 	var/law_timer = 60 SECONDS
 	var/law_startup = 3 SECONDS
+	//Oberon stuff
+	var/fused = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/titania/Move()
+	if(fused)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/titania/CanAttack(atom/the_target)
+	if(fused)
+		return FALSE
+	return ..()
 
 //Attacking code
 /mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget()
@@ -141,7 +153,7 @@
 
 	var/lawmessage
 
-	if(!nemesis || nemesis.stat == DEAD)
+	if(!nemesis || nemesis.stat == DEAD || fused)
 		laws -= "nemesis"
 	nextlaw = pick(laws.Copy() - currentlaw)
 
