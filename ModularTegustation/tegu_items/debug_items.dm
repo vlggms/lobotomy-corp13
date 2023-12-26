@@ -1,5 +1,6 @@
 /**
  * This file is dedicated to items used in debugging things as an admin/developer
+ * Remember that they are not meant to be balanced, they are meant to assist in development
  * Give it to players at your own risk
  */
 
@@ -30,21 +31,29 @@
 	w_class = WEIGHT_CLASS_SMALL
 
 /**
- * A simple item that gives anyone whom uses it 20 attributes to increment them by 1 level
- * Then can repeat it to get to the last level if they so desire
+ * A simple item that gives anyone whom uses it injection_amount attributes
+ * You can set the amount of attributes injected by clicking on the item
+ * That way you can add or remove however many attributes you need for your testing
  */
 /obj/item/lc_debug/attribute_injector
 	name = "attribute injector"
-	desc = "A fluid used to drastically change an employee for tests. Use in hand to activate."
+	desc = "A fluid used to drastically change an employee for tests. Use onto humans to activate."
 	icon_state = "oddity7"
+	var/injection_amount = 130
 
 /obj/item/lc_debug/attribute_injector/examine(mob/user)
 	. = ..()
-	. += span_mind_control("When used it will increment you by 20 attributes of all types, for testing level specific tresholds")
+	. += span_mind_control("When used in hand it will let you choose the amount of attributes injected, currently injecting [injection_amount]")
+	. += span_mind_control("When used it will add [injection_amount] attributes of all types to whomever you hit it with, for testing level specific tresholds")
+	. += span_mind_control("The injector accepts both positive and negative values")
 
 /obj/item/lc_debug/attribute_injector/attack_self(mob/living/carbon/human/user)
-	to_chat(user, span_nicegreen("Attributes aquired"))
-	user.adjust_all_attribute_levels(20)
+	injection_amount = input(user, "Select the attribute injection amount", "Attribute injector", "[injection_amount]") as num|null
+
+/obj/item/lc_debug/attribute_injector/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	to_chat(user, span_nicegreen("Attributes injected"))
+	to_chat(target, span_danger("You feel a tiny prick"))
+	target.adjust_all_attribute_levels(injection_amount)
 
 /**
  * Very similar to /obj/item/trait_injector/agent_workchance_trait_injector
