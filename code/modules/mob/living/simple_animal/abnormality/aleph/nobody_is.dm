@@ -297,9 +297,9 @@
 		oberon_mode = TRUE
 		T.fused = TRUE
 		T.say("Oberon?")
-		SLEEP_CHECK_DEATH(1 SECONDS)
+		SLEEP_CHECK_DEATH(3 SECONDS)
 		say("Is that who I am?")
-		SLEEP_CHECK_DEATH(1 SECONDS)
+		SLEEP_CHECK_DEATH(3 SECONDS)
 		if(!(stat == DEAD || T.stat == DEAD))
 			Oberon_Fusion(T)
 
@@ -331,9 +331,13 @@
 	if(current_stage == 3)
 		playsound(get_turf(src), 'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3)
 	. = ..()
+	if(.)
+		MoveVFX()
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/MoveVFX()
+	set waitfor = FALSE
 	if(fairy_aura)
-		var/turf/orgin = get_turf(src)
-		fairy_aura.forceMove(orgin)
+		fairy_aura.forceMove(get_turf(src))
 		fairy_aura.dir = dir
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/death(gibbed)
@@ -341,6 +345,14 @@
 		qdel(headicon)
 		headicon = null
 		datum_reference.connected_structures = list()
+	if(oberon_mode)
+		for(var/mob/living/carbon/human/M in GLOB.player_list)
+			if(M.stat != DEAD && M.client)
+				M.Apply_Gift(new /datum/ego_gifts/oberon)
+		if(fairy_aura)
+			qdel(fairy_aura)
+		if(abno_host)
+			abno_host.death()
 	if(grab_victim)
 		ReleaseGrab()
 	return ..()
