@@ -1393,12 +1393,12 @@
 	justice_bonus = 6
 	slot = LEFTBACK
 
-/datum/ego_gifts/fervor/Initialize(mob/living/carbon/human/user) // Lowered Stats but grants resistance
+/datum/ego_gifts/oberon/Initialize(mob/living/carbon/human/user) // Lowered Stats but grants resistance
 	. = ..()
 	user.physiology.red_mod *= 0.9
 	user.physiology.black_mod *= 0.9
 
-/datum/ego_gifts/fervor/Remove(mob/living/carbon/human/user)
+/datum/ego_gifts/oberon/Remove(mob/living/carbon/human/user)
 	user.physiology.red_mod /= 0.9
 	user.physiology.black_mod /= 0.9
 	return ..()

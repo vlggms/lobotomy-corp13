@@ -295,8 +295,8 @@
 	if(stat == DEAD || T.stat == DEAD)
 		return
 	if(!oberon_mode)
-		T.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
-		ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+		T.ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))//fuck you no damaging while they erp
+		ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 		can_act = FALSE
 		oberon_mode = TRUE
 		T.fused = TRUE
@@ -337,8 +337,8 @@
 		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
 		add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
-		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.5))
-		maxHealth = 6000
+		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.5))
+		maxHealth = 5000
 		melee_damage_lower = 50
 		melee_damage_upper = 65
 		grab_damage = 200
@@ -401,30 +401,19 @@
 		new /obj/effect/temp_visual/cult/sparks(T)
 	var/whip_delay = (get_dist(src, target) <= 2) ? (0.75 SECONDS) : (0.5 SECONDS)
 	SLEEP_CHECK_DEATH(whip_delay)
-	if(oberon_mode)
-		for(var/i = 1 to whip_count)
-			var/obj/projectile/P = new /obj/projectile/beam/oberon(start_loc)
-			P.starting = start_loc
-			P.firer = src
-			P.fired_from = src
-			P.yo = target_loc.y - start_loc.y
-			P.xo = target_loc.x - start_loc.x
-			P.original = target
-			P.preparePixelProjectile(target_loc, src, spread = rand(0, 10))
-			P.damage = whip_damage
-			P.fire()
-	else
-		for(var/i = 1 to whip_count)
-			var/obj/projectile/P = new /obj/projectile/beam/nobody(start_loc)
-			P.starting = start_loc
-			P.firer = src
-			P.fired_from = src
-			P.yo = target_loc.y - start_loc.y
-			P.xo = target_loc.x - start_loc.x
-			P.original = target
-			P.preparePixelProjectile(target_loc, src, spread = rand(0, 10))
-			P.damage = whip_damage
-			P.fire()
+	for(var/i = 1 to whip_count)
+		var/obj/projectile/P = new /obj/projectile/beam/nobody(start_loc)
+		if(oberon_mode)
+			P = new /obj/projectile/beam/oberon(start_loc)
+		P.starting = start_loc
+		P.firer = src
+		P.fired_from = src
+		P.yo = target_loc.y - start_loc.y
+		P.xo = target_loc.x - start_loc.x
+		P.original = target
+		P.preparePixelProjectile(target_loc, src, spread = rand(0, 10))
+		P.damage = whip_damage
+		P.fire()
 	for(var/turf/T in turfs_to_hit)
 		if(T.density)
 			break
