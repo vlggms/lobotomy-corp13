@@ -297,15 +297,38 @@
 		return
 	if(T.IsContained()) // prevents nobody is from just yoinking her while she's contained
 		return
+	if(stat == DEAD || T.stat == DEAD)
+		return
 	if(!oberon_mode)
+		T.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+		ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 		can_act = FALSE
 		oberon_mode = TRUE
 		T.fused = TRUE
-		T.say("Oberon?")
-		SLEEP_CHECK_DEATH(3 SECONDS)
+		say("It's you,")
+		SLEEP_CHECK_DEATH(2 SECONDS)
+		T.say("My nemesis, my beloved devil,")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		T.say("The abhorrent name of the one who stole my child.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		T.say("Oberon,")
+		SLEEP_CHECK_DEATH(2 SECONDS)
 		say("Is that who I am?")
-		SLEEP_CHECK_DEATH(3 SECONDS)
-		if(!(stat == DEAD || T.stat == DEAD))
+		SLEEP_CHECK_DEATH(2 SECONDS)//theres more that I cut out but you know, people will be bored watching 2 alephs bonding before murder boning
+		say("I was born mere moments ago.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		say("Just now I was pondering what I should live as, and how I am to live.")
+		SLEEP_CHECK_DEATH(2 SECONDS)
+		T.say("Now answer me. Are you Oberon,")
+		SLEEP_CHECK_DEATH(2 SECONDS)
+		say("Regardless of my stuggles to live, those who remembered me and my memories of them would vaporize in the end...")
+		SLEEP_CHECK_DEATH(0.5 SECONDS)
+		say("Leaving no trace behind to each other.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		say("...If I earned a name, will I get to receive love and hate from you? Will you remember me as that name, as someone whom you emotionally cared for?")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		say("Then yes, I am the Oberon you seek.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
 			Oberon_Fusion(T)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Oberon_Fusion(mob/living/simple_animal/hostile/abnormality/titania/T)
@@ -320,7 +343,6 @@
 		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
 		add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
 		ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.5))
-		T.ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 		maxHealth = 6000
 		melee_damage_lower = 50
 		melee_damage_upper = 65
