@@ -11,7 +11,7 @@
 	custom_materials = list(/datum/material/iron = 500)
 	var/fire_sound = null						//What sound should play when this ammo is fired
 	var/caliber = null							//Which kind of guns it can be loaded into
-	var/projectile_type = null					//The bullet type to create when New() is called
+	var/obj/projectile/projectile_type = null					//The bullet type to create when New() is called
 	var/obj/projectile/BB = null 			//The loaded bullet
 	var/pellets = 1								//Pellets for spreadshot
 	var/variance = 0							//Variance for inaccuracy fundamental to the casing
