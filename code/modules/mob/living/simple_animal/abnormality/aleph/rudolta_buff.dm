@@ -41,6 +41,11 @@
 	gift_type = /datum/ego_gifts/christmas/buff
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
+	attack_action_types = list(
+		/datum/action/innate/abnormality_attack/rudolta_buff_onrush,
+		/datum/action/innate/abnormality_attack/rudolta_buff_slam
+	)
+
 	var/can_act = TRUE
 	// Onrush vars
 	var/onrush_cooldown
@@ -57,6 +62,18 @@
 	var/slam_cooldown
 	var/slam_cooldown_time = 20 SECONDS
 	var/slam_damage = 250
+
+/datum/action/innate/abnormality_attack/rudolta_buff_onrush
+	name = "Onrush"
+	button_icon_state = "generic_toggle0"
+	chosen_attack_num = 1
+	chosen_message = span_colossus("You will now perform onrush attack on living enemies.")
+
+/datum/action/innate/abnormality_attack/rudolta_buff_slam
+	name = "Sleigh Slam"
+	button_icon_state = "generic_slam"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You will now slam the sleigh against the target area.")
 
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/Move()
 	if(!can_act)
