@@ -52,6 +52,9 @@
 	var/onrush_cooldown_time = 10 SECONDS
 	var/onrush_damage = 150
 	var/onrush_max_iterations = 6
+	var/onrush_min_delay = 3
+	var/onrush_max_delay = 6
+	var/onrush_double_hit = FALSE
 	var/list/onrush_hit = list()
 	var/list/onrush_sounds = list(
 		'sound/abnormalities/rudolta_buff/onrush1.ogg',
@@ -155,7 +158,8 @@
 	// PUNCH!!!!
 	playsound(src, pick(onrush_sounds), rand(50, 100), TRUE, 7)
 	to_chat(target, span_userdanger("[src] punches you hard!"))
-	onrush_hit |= target
+	if(!onrush_double_hit)
+		onrush_hit |= target
 	var/turf/thrownat = get_ranged_target_turf_direct(src, target, 15, rand(-30, 30))
 	target.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = FALSE)
 	target.apply_damage(onrush_damage, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
@@ -174,7 +178,9 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		if(L in onrush_hit)
+		if((L in onrush_hit) && !onrush_double_hit)
+			continue
+		if(L == target)
 			continue
 		valid_targets += L
 
@@ -187,11 +193,11 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(L), L)
 	animate(D, alpha = 0, transform = matrix()*1.2, time = 3)
 	face_atom(L)
-	addtimer(CALLBACK(src, .proc/OnRush, L, iteration + 1), rand(3, 7))
+	addtimer(CALLBACK(src, .proc/OnRush, L, iteration + 1), rand(onrush_min_delay, onrush_max_delay))
 
 // Slams the area with the sleigh, doing heavy damage
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/proc/SleighSlam(atom/target)
-	if(!can_act && slam_cooldown > world.time)
+	if(!can_act || slam_cooldown > world.time)
 		return
 
 	can_act = FALSE
