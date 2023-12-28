@@ -151,7 +151,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "ay" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -289,7 +289,7 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "aU" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -375,7 +375,7 @@
 	dir = 4
 	},
 /turf/open/floor/noslip,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "bk" = (
 /obj/effect/turf_decal/siding/blue/corner{
 	color = "#3234B9";
@@ -425,7 +425,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "bt" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/wood,
@@ -544,7 +544,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "bS" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -794,7 +794,7 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "cF" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /obj/effect/turf_decal/siding/white{
@@ -1139,10 +1139,10 @@
 	color = "#d80000"
 	},
 /turf/open/floor/plasteel/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "dR" = (
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "dT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -1299,7 +1299,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "em" = (
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/tile/yellow,
@@ -1375,7 +1375,7 @@
 	name = "Manager's Office Lockdown Blast Door"
 	},
 /turf/open/floor/plasteel/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "ew" = (
 /obj/effect/landmark/toolspawn,
 /obj/effect/turf_decal/box/white,
@@ -1483,7 +1483,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "eG" = (
 /obj/structure/disposalpipe/segment{
 	color = "#0000ff";
@@ -1664,14 +1664,14 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "fe" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "fg" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -1905,7 +1905,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "fN" = (
 /obj/structure/chair/wood{
 	dir = 8
@@ -1989,7 +1989,7 @@
 	},
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "fZ" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -3177,7 +3177,7 @@
 /area/department_main/information)
 "jx" = (
 /turf/open/floor/facility/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "jA" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 1
@@ -3604,7 +3604,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "kN" = (
 /turf/open/floor/carpet,
 /area/department_main/control)
@@ -3759,7 +3759,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "lg" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9;
@@ -4143,7 +4143,7 @@
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "mm" = (
 /obj/machinery/disposal/bin,
 /obj/structure/sign/departments/custodian{
@@ -4227,7 +4227,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "mv" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -4438,7 +4438,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "mZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -4851,7 +4851,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "ot" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -4867,7 +4867,7 @@
 "ov" = (
 /obj/machinery/door/airlock/hatch,
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "ox" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -4957,7 +4957,7 @@
 	dir = 8
 	},
 /turf/open/floor/noslip,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "oS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -4991,7 +4991,7 @@
 /area/department_main/command)
 "oV" = (
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "oX" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_left,
@@ -5038,7 +5038,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "pg" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 8
@@ -5272,7 +5272,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "pK" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -5447,7 +5447,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "qf" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 10
@@ -5920,7 +5920,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "rK" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/structure/railing,
@@ -6167,7 +6167,7 @@
 	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "sJ" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 8
@@ -6736,7 +6736,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "ut" = (
 /obj/machinery/disposal/bin,
 /obj/structure/sign/departments/custodian{
@@ -7360,7 +7360,7 @@
 	dir = 4
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "wc" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -9262,7 +9262,7 @@
 	},
 /obj/machinery/facility_holomap,
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "BT" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9;
@@ -9469,7 +9469,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Cx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9;
@@ -9580,7 +9580,7 @@
 /area/facility_hallway/extraction)
 "CV" = (
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "CY" = (
 /obj/structure/curtain,
 /turf/open/floor/noslip,
@@ -9672,7 +9672,7 @@
 /obj/machinery/light/floor,
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/plasteel/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Dk" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -9713,7 +9713,7 @@
 	dir = 6
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Dr" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9;
@@ -10061,7 +10061,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "El" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8
@@ -10267,6 +10267,23 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"ES" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/siding/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/machinery/facility_holomap{
+	dir = 8
+	},
+/turf/open/floor/plasteel/white,
+/area/department_main/welfare)
 "EV" = (
 /obj/structure/disposalpipe/segment{
 	resistance_flags = 115
@@ -10821,7 +10838,7 @@
 "Gz" = (
 /obj/structure/toilet,
 /turf/open/floor/noslip,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "GC" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/processor/preset_four,
@@ -11227,10 +11244,10 @@
 	},
 /obj/structure/table/glass,
 /turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "HT" = (
 /turf/open/floor/plasteel/elevatorshaft,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "HV" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -11868,7 +11885,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "JR" = (
 /obj/effect/turf_decal/siding/white/corner,
 /obj/effect/turf_decal/siding/white/corner{
@@ -12333,7 +12350,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Ln" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 1
@@ -12404,7 +12421,7 @@
 "Lx" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Lz" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/structure/disposalpipe/segment{
@@ -12555,7 +12572,7 @@
 	pixel_x = -32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "LY" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC29"
@@ -12662,7 +12679,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Mu" = (
 /obj/machinery/conveyor_switch/oneway{
 	dir = 4;
@@ -12708,7 +12725,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "ME" = (
 /obj/structure/table/wood/fancy/green,
 /obj/item/flashlight/lamp/green{
@@ -12737,7 +12754,7 @@
 "MH" = (
 /obj/machinery/door/airlock/highsecurity,
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "MI" = (
 /obj/machinery/camera/autoname{
 	dir = 9
@@ -13046,7 +13063,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "NP" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 32
@@ -13058,7 +13075,7 @@
 	pixel_y = 32
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "NU" = (
 /obj/item/restraints/legcuffs/bola/tactical,
 /obj/item/restraints/legcuffs/bola/tactical,
@@ -13771,7 +13788,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Qv" = (
 /obj/effect/turf_decal/siding/wood,
 /obj/structure/chair/sofa/corp/right{
@@ -13985,7 +14002,7 @@
 	dir = 0
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Rg" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
@@ -14333,7 +14350,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "RW" = (
 /obj/effect/turf_decal/siding/brown,
 /obj/effect/turf_decal/siding/brown{
@@ -14360,7 +14377,7 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Sb" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 10
@@ -14519,7 +14536,7 @@
 	pixel_y = 15
 	},
 /turf/open/floor/noslip,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "SH" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
@@ -14794,7 +14811,7 @@
 "Tv" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Ty" = (
 /obj/effect/turf_decal/tile/yellow{
 	dir = 4
@@ -15127,6 +15144,7 @@
 /obj/effect/turf_decal/siding/red{
 	dir = 1
 	},
+/obj/machinery/facility_holomap,
 /turf/open/floor/plasteel/dark/side,
 /area/department_main/control)
 "UF" = (
@@ -15313,7 +15331,7 @@
 	resistance_flags = 115
 	},
 /turf/closed/indestructible/reinforced,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Vp" = (
 /obj/structure/disposalpipe/segment{
 	color = "#d80000";
@@ -15800,7 +15818,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "WH" = (
 /obj/structure/table/wood,
 /obj/machinery/dish_drive{
@@ -15841,7 +15859,7 @@
 	dir = 1
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "WQ" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 9
@@ -15927,7 +15945,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Xc" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 10
@@ -16438,7 +16456,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "YJ" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -16533,7 +16551,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Zd" = (
 /obj/effect/turf_decal/tile/purple,
 /obj/effect/turf_decal/tile/purple{
@@ -16631,7 +16649,7 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "Zt" = (
 /obj/structure/table/wood/poker,
 /turf/open/floor/carpet/royalblue,
@@ -16676,7 +16694,7 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/architecture)
+/area/facility_hallway/manager)
 "ZH" = (
 /turf/open/floor/facility/dark,
 /area/department_main/training)
@@ -20842,7 +20860,7 @@ tt
 aB
 qt
 xk
-xk
+ES
 UN
 qt
 dn
