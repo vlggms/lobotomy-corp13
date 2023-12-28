@@ -92,7 +92,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/courage
-	item_path = /obj/item/ego_weapon/courage
+	item_path = /obj/item/ego_weapon/mini/courage
 	cost = 35
 
 /datum/ego_datum/weapon/bravery
