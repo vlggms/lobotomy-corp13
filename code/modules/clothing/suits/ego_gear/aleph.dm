@@ -411,10 +411,10 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/ultimate_christmas
 	name = "ultimate christmas"
-	desc = "Christmas was never so metal before."
-	icon = 'icons/obj/clothing/ego_gear/abnormality/he.dmi'
-	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/he.dmi'
-	icon_state = "christmas"
+	desc = "Christmas is the jolliest time of the year, and Rudolta is always ready for it."
+	icon = 'icons/obj/clothing/ego_gear/abnormality/aleph.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/aleph.dmi'
+	icon_state = "ultimate_christmas"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 50) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,

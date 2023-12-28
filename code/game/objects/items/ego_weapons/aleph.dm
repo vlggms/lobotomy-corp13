@@ -1240,11 +1240,15 @@
 
 /obj/item/ego_weapon/ultimate_christmas
 	name = "ultimate christmas"
-	desc = "With my infinite hatred, I give you this gift."
+	desc = "The Santa's bag is very heavy, capable of carrying a gift for everyone in the world. This one is no exception."
 	special = "This weapon has absurd knockback."
-	icon_state = "christmas"
+	icon_state = "ultimate_christmas"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 160
-	attack_speed = 1.5
+	attack_speed = 1.6
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
@@ -1262,4 +1266,4 @@
 		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
-		target.throw_at(throw_target, 5, 7, user)
+		target.throw_at(throw_target, 7, 7, user)
