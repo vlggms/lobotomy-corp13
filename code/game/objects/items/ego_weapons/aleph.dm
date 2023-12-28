@@ -1237,3 +1237,29 @@
 	attack_verb_continuous = weapon_list[form][4]
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
+
+/obj/item/ego_weapon/ultimate_christmas
+	name = "ultimate christmas"
+	desc = "With my infinite hatred, I give you this gift."
+	special = "This weapon has absurd knockback."
+	icon_state = "christmas"
+	force = 250
+	attack_speed = 1.5
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/abnormalities/rudolta_buff/onrush1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/ultimate_christmas/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		target.throw_at(throw_target, 5, 7, user)
