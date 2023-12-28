@@ -223,4 +223,8 @@
 
 /obj/effect/sled/Initialize()
 	. = ..()
-	animate(src, alpha = 0, time = (5 SECONDS))
+	addtimer(CALLBACK(src, .proc/FadeOut), 5)
+
+/obj/effect/sled/proc/FadeOut()
+	animate(src, alpha = 0, time = 5)
+	QDEL_IN(src, 5)

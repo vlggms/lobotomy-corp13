@@ -8,12 +8,15 @@
 	icon_dead = "rudolta_buff_dead"
 	maxHealth = 4000
 	health = 4000
+	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.8)
 	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 95
-	melee_damage_upper = 105
+	melee_damage_lower = 75
+	melee_damage_upper = 85
+	rapid_melee = 2
+	ranged = TRUE
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
 	attack_sound = 'sound/abnormalities/rudolta_buff/melee.ogg'
@@ -41,8 +44,8 @@
 	var/can_act = TRUE
 	// Onrush vars
 	var/onrush_cooldown
-	var/onrush_cooldown_time = 15 SECONDS
-	var/onrush_damage = 100
+	var/onrush_cooldown_time = 10 SECONDS
+	var/onrush_damage = 150
 	var/onrush_max_iterations = 6
 	var/list/onrush_hit = list()
 	var/list/onrush_sounds = list(
@@ -53,7 +56,7 @@
 	// Sleigh slam vars
 	var/slam_cooldown
 	var/slam_cooldown_time = 20 SECONDS
-	var/slam_damage = 200
+	var/slam_damage = 250
 
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/Move()
 	if(!can_act)
@@ -63,6 +66,11 @@
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
+
+	if(onrush_cooldown <= world.time)
+		OnRush(target)
+		return
+
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/OpenFire()
@@ -81,15 +89,20 @@
 		OnRush(target)
 		return
 
-	if((slam_cooldown <= world.time) && (get_dist(src, target) < 3))
+	if((slam_cooldown <= world.time))
 		SleighSlam(target)
 		return
 
 	return
 
+/mob/living/simple_animal/hostile/abnormality/rudolta_buff/death()
+	animate(src, alpha = 0, time = (10 SECONDS))
+	QDEL_IN(src, (10 SECONDS))
+	return ..()
+
 // Turns Rudolta into red mist by punching everyone one-by-one until he runs out of targets in range
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/proc/OnRush(mob/living/target, iteration = 0)
-	if(!can_act)
+	if(!can_act && !iteration)
 		return
 
 	if(!iteration && onrush_cooldown > world.time)
@@ -176,7 +189,7 @@
 	var/datum/beam/B = src.Beam(S, "sled", time = 10)
 	animate(B.visuals, alpha = 0, time = 10)
 
-	SLEEP_CHECK_DEATH(3)
+	SLEEP_CHECK_DEATH(5)
 
 	var/list/been_hit = list()
 	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 75, TRUE, 7)
@@ -189,6 +202,11 @@
 		if(L.health < 0)
 			L.gib()
 
-	SLEEP_CHECK_DEATH(2)
+	SLEEP_CHECK_DEATH(3)
 
 	can_act = TRUE
+
+/* Work stuff */
+/mob/living/simple_animal/hostile/abnormality/rudolta_buff/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return

@@ -1243,7 +1243,7 @@
 	desc = "With my infinite hatred, I give you this gift."
 	special = "This weapon has absurd knockback."
 	icon_state = "christmas"
-	force = 250
+	force = 160
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
