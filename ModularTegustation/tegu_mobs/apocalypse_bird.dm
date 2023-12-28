@@ -643,7 +643,6 @@
 /datum/ai_controller/insane/enchanted
 	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
 	var/last_message = 0
-	var/list/current_path = list()
 
 /datum/ai_behavior/say_line/insanity_enchanted
 	lines = list(
