@@ -1,14 +1,21 @@
 /*
 Coded by nutterbutter, "senior" junior developer, during hell week 2022.
 Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a miracle. Praise be.
+Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 */
 #define STATUS_EFFECT_MUSIC /datum/status_effect/display/singing_machine
+
+//playStatus defines
+#define SILENT 0
+#define GRINDING 1
+#define PLAYING 2
+
 /mob/living/simple_animal/hostile/abnormality/singing_machine
 	name = "Singing Machine"
 	desc = "A shiny metallic device with a large hinge. You feel a sense of dread about what might be inside..."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
-	icon_state = "singingmachine_closed_clean"
-	icon_living = "singingmachine_closed_clean"
+	icon_state = "singingmachine_clean"
+	icon_living = "singingmachine_clean"
 	maxHealth = 200
 	health = 200
 	threat_level = HE_LEVEL
@@ -32,34 +39,53 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 	pixel_x = -8
 	base_pixel_x = -8
+	pixel_y = -6
+	base_pixel_y = -6
 	buckled_mobs = list()
 	buckle_lying = TRUE
 	max_boxes = 16
-	var/cleanliness = "clean"
-	var/statChecked = 0
+	var/statCheckPenalty = 0
 	var/bonusRed = 0
 	var/grindRed = 4
 	var/minceRed = 8
+	var/clampRed = 80
+	var/playWhite = 50
 	var/playTiming = 5 SECONDS
 	var/playLength = 60 SECONDS
-	var/playStatus = 0
-	var/playRange = 20
+	var/playStatus = SILENT
+	var/playRange = 15
 	var/noiseFactor = 2
-	var/datum/looping_sound/singing_grinding/grindNoise
-	var/datum/looping_sound/singing_music/musicNoise
 	var/list/musicalAddicts = list()
 
+	//Sound Vars
+	var/datum/looping_sound/singing_grinding/grindNoise
+	var/datum/looping_sound/singing_music/musicNoise
+
+	//Visual Vars
+	var/obj/effect/singing_machine_hinge/machine_hinge
+	var/obj/particle_emitter/singing_note/particle_note
+	var/obj/particle_emitter/singing_note_broken/particle_note_broken
+	var/obj/particle_emitter/singing_grind/particle_grind
+	var/obj/particle_emitter/singing_blood/particle_blood
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/Initialize()
+	..()
+	machine_hinge = new(src)
+	vis_contents += machine_hinge
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/Destroy()
+	QDEL_NULL(machine_hinge)
+	StopPlaying()
+	..()
+
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Life()
-	if(playStatus > 0) // If playstatus isn't 0, deal some damage in range.
-		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
-			if(faction_check_mob(H))
-				continue
-			H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-			if(H in musicalAddicts)
-				H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				to_chat(H, span_warning("You can hear it again... it needs more..."))
-			else
-				to_chat(H, span_warning("That terrible grinding noise..."))
+	if(playStatus == SILENT) // If the machine isn't silent, deal damage to everyone in range. If the machine is playing music, apply the status to everyone in range.
+		return ..()
+	NoiseEffect()
+
+	if(playStatus != PLAYING) // If the machine is playing music, also deal damage to all addicts and try to make them go insane.
+		return ..()
+	DamageAddicts()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -72,37 +98,35 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 			bonusRed = minceRed // Should be stronger, for when working it is EXTRA dangerous.
 			manual_emote("makes a horrible grinding noise!") // Oh boy, it's mad.
 			playsound(src, 'sound/abnormalities/singingmachine/chew.ogg', 60, 0, 3)
-	else if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80 || get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
-		statChecked = 1 // I see you've failed one of the stat checks, but have also chosen not to feed yourself to the machine.
+		return ..()
+
+	// I see you've failed the stat check, but have also chosen not to feed yourself to the machine.
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 60)
+		statCheckPenalty = 3
+	else if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // The Fortitude check applies one third of the penalty
+		statCheckPenalty = 1
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/WorkChance(mob/living/carbon/human/user, chance)
-	chance -= statChecked * 15 // Perish.
+	chance -= statCheckPenalty * 5 // Perish. -5% for the Fortitude check, -15% for the Temperance check
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Worktick(mob/living/carbon/human/user)
-	if(bonusRed) // If you have bonus red damage to apply...
-		user.apply_damage(bonusRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		if(bonusRed < 6 && playStatus == 0)	// Should only happen when the machine isn't dealing damage.
-			for(var/mob/living/carbon/human/H in livinginrange(30, src))
-				if(faction_check_mob(H))
-					continue
-				H.adjustSanityLoss(rand(-1,-2))
-			for(var/mob/living/carbon/human/H in musicalAddicts)
-				H.adjustSanityLoss(rand(-1,-2))
-	return ..()
+	if(!bonusRed) // If you have bonus red damage to apply...
+		return ..()
+	user.apply_damage(bonusRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	if(playStatus == SILENT)	// Should only happen when the machine isn't mad.
+		for(var/mob/living/carbon/human/H in musicalAddicts)
+			H.adjustSanityLoss(rand(-2,-4))
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	bonusRed = 0 // Reset bonus red damage and the stat check.
-	statChecked = 0
-	if(user.sanity_lost || user.health < 0) // Did they die? Time to force a bad result.
-		pe = 0
-	if(work_type == ABNORMALITY_WORK_INSTINCT && datum_reference.qliphoth_meter > 0) // At the end of an instinct work that wasn't trying to raise its counter...
-		to_chat(user, span_nicegreen("There's something about that sound..."))
-		musicalAddicts |= user
-		user.apply_status_effect(STATUS_EFFECT_MUSIC) // Time to addict them.
-		SEND_SOUND(user, 'sound/abnormalities/singingmachine/addiction.ogg')
-		addtimer(CALLBACK(src, .proc/removeAddict, user), 5 MINUTES)
+	statCheckPenalty = 0
+	if(work_type == ABNORMALITY_WORK_INSTINCT) // At the end of an instinct work...
+		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
+			if(H in musicalAddicts)
+				continue
+			AddAddict(H)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -110,69 +134,126 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		manual_emote("rests silent once more...") // The machine is now dormant.
 		playsound(src, 'sound/abnormalities/singingmachine/creak.ogg', 50, 0, 1)
 		datum_reference.qliphoth_change(2)
-		icon_state = "singingmachine_closed_[cleanliness]"
-		icon_living = icon_state
-		stopPlaying()
-		update_icon()
+		machine_hinge.MoveHinge(0, 1.5 SECONDS, 0, 0)
+		StopPlaying()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(datum_reference.qliphoth_meter > 0)
 		datum_reference.qliphoth_change(-(prob(40)))// If it's not already mad, it has a chance to get a little more mad.
 	else
-		eatBody(user) // If it is mad, you die.
+		machine_hinge.MoveHinge(0, 0.3 SECONDS, 0, 0)
+		playsound(src, 'sound/abnormalities/singingmachine/swallow.ogg', 80, 0, 3)
+		to_chat(user, span_danger("The machine clamps down on you!"))
+		user.apply_damage(clampRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) // If its mad, deals a chunk of RED.
+		if(user.health < 0)
+			EatBody(user) // If it is mad and you die to the clamping damage, you get eaten.
+			return ..()
+		manual_emote("rests silent once more...") // The machine is now dormant.
+		playsound(src, 'sound/abnormalities/singingmachine/creak.ogg', 50, 0, 1)
+		datum_reference.qliphoth_change(2) // You did it! You survived a work at 0 qliphoth!
+		StopPlaying()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	if(datum_reference.qliphoth_meter > 0)
 		datum_reference.qliphoth_change(-1) // If it's not already completely mad, it gets madder.
 	else
-		eatBody(user) // If it is, you die.
+		EatBody(user) // If it is, you die.
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/ZeroQliphoth(mob/living/carbon/human/user) // WARNING: Don't call this on its own. Several zero-qliphoth behaviors rely on its qliphoth actually being 0.
-	icon_state = "singingmachine_open_[cleanliness]" // Machine opens and starts making horrible empty grinding noises.
-	icon_living = icon_state
-	update_icon()
 	playsound(src, 'sound/abnormalities/singingmachine/open.ogg', 200, 0, playRange)
+	machine_hinge.MoveHinge(-90, 1.5 SECONDS, -2, 6)
+	particle_note_broken = new(get_turf(src))
+	particle_grind = new(get_turf(src))
 	grindNoise = new(list(src), TRUE)
-	playStatus = 1
+	playStatus = GRINDING
 	return
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/removeAddict(mob/living/carbon/human/addict)
-	if(addict)
-		musicalAddicts -= addict // Your five minutes are over, you're free.
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/NoiseEffect()
+	for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
+		if(faction_check_mob(H))
+			continue
+		if(playStatus == GRINDING) // If it's mad, damages everyone in it's radius.
+			H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			to_chat(H, span_warning("That terrible grinding noise..."))
+			continue
+		if(H in musicalAddicts) // If it's playing, it spreads the status effect to everyone.
+			continue
+		AddAddict(H)
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/stopPlaying()
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/DamageAddicts()
+	for(var/mob/living/carbon/human/addict in musicalAddicts)
+		addict.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, addict.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		to_chat(addict, span_warning("You can hear it again... it needs more..."))
+		if(!addict.sanity_lost)
+			continue
+		ApplySpecialInsanity(addict)
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/AddAddict(mob/living/carbon/human/target)
+	target.apply_status_effect(STATUS_EFFECT_MUSIC)
+	to_chat(target, span_nicegreen("There's something about that sound..."))
+	musicalAddicts |= target
+	SEND_SOUND(target, 'sound/abnormalities/singingmachine/addiction.ogg')
+	addtimer(CALLBACK(src, .proc/RemoveAddict, target), 5 MINUTES)
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/RemoveAddict(mob/living/carbon/human/addict)
+	if(addict)
+		musicalAddicts -= addict // Your two minutes are over, you're free.
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/StartPlaying()
+	if(playStatus == PLAYING)
+		return FALSE
+	particle_note = new(get_turf(src))
+	particle_blood = new(get_turf(src))
+	grindNoise = new(list(src), TRUE)
+	musicNoise = new(list(src), TRUE)
+	DriveInsane()
+	playStatus = PLAYING
+	addtimer(CALLBACK(src, .proc/StopPlaying), playLength) // This is the callback from earlier.
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/StopPlaying()
+	playStatus = SILENT // This exists solely because I needed to call it via a callback.
 	if(grindNoise)
 		QDEL_NULL(grindNoise)
 	if(musicNoise)
 		QDEL_NULL(musicNoise)
-	playStatus = 0 // This exists solely because I needed to call it via a callback.
+	if(particle_grind)
+		particle_grind.fadeout()
+	if(particle_note_broken)
+		particle_note_broken.fadeout()
+	if(particle_note)
+		particle_note.fadeout()
+	if(particle_blood)
+		particle_blood.fadeout()
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/eatBody(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/EatBody(mob/living/carbon/human/user)
 	user.gib()
-	stopPlaying()
+	StopPlaying()
 	playsound(src, 'sound/abnormalities/singingmachine/swallow.ogg', 80, 0, 3)
-	cleanliness = "bloody"
-	icon_state = "singingmachine_closed_[cleanliness]"
+	machine_hinge.BloodySelf()
+	icon_state = "singingmachine_bloody"
 	icon_living = icon_state
-	update_icon()
-	driveInsane(musicalAddicts)
-	playStatus = 2
+	machine_hinge.MoveHinge(0, 3 SECONDS, 0, 0)
+	addtimer(CALLBACK(src, .proc/StartPlaying), 3 SECONDS)
 	datum_reference.qliphoth_change(2)
-	grindNoise = new(list(src), TRUE)
-	musicNoise = new(list(src), TRUE)
-	addtimer(CALLBACK(src, .proc/stopPlaying), playLength) // This is the callback from earlier.
 
-/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/driveInsane(list/addicts)
-	if(LAZYLEN(addicts))
-		for(var/mob/living/carbon/human/target in addicts)
-			if (!target.sanity_lost)
-				target.adjustSanityLoss(500)
-			QDEL_NULL(target.ai_controller)
-			target.ai_controller = /datum/ai_controller/insane/murder/singing_machine
-			target.InitializeAIController()
-			addicts -= target
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/ApplySpecialInsanity(mob/living/carbon/human/addict)
+	QDEL_NULL(addict.ai_controller)
+	addict.ai_controller = /datum/ai_controller/insane/murder/singing_machine
+	addict.InitializeAIController()
+	addict.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "singing_smile", -MUTATIONS_LAYER))
+
+/mob/living/simple_animal/hostile/abnormality/singing_machine/proc/DriveInsane()
+	if(!LAZYLEN(musicalAddicts))
+		return
+	for(var/mob/living/carbon/human/addict in musicalAddicts)
+		addict.apply_damage(playWhite, WHITE_DAMAGE, null, addict.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		to_chat(addict, span_warning("That beautiful sound... I CRAVE it!"))
+		if (!addict.sanity_lost)
+			continue
+		ApplySpecialInsanity(addict)
+		musicalAddicts -= target
 
 /datum/ai_controller/insane/murder/singing_machine
 	lines_type = /datum/ai_behavior/say_line/insanity_singing_machine
@@ -189,7 +270,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 /datum/status_effect/display/singing_machine
 	id = "music"
 	status_type = STATUS_EFFECT_REFRESH
-	duration = 5 MINUTES // Just like WCCA
+	duration = 2 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/singing_machine
 	display_name = "musical_addiction"
 	var/addictionTick = 10 SECONDS
@@ -205,25 +286,47 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 /datum/status_effect/display/singing_machine/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -5)
-		H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5)
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10)
-		H.physiology.white_mod *= 1.1
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5)
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
+	H.physiology.white_mod *= 1.1
 
 /datum/status_effect/display/singing_machine/tick()
-	if(world.time % addictionTick == 0 && ishuman(owner)) // Give or take one, this will fire off as many times as if I set up a proper timer variable.
-		var/mob/living/carbon/human/H = owner
-		H.adjustSanityLoss(rand(addictionSanityMax, addictionSanityMin))
+	if(!(world.time % addictionTick == 0 && ishuman(owner))) // Give or take one, this will fire off as many times as if I set up a proper timer variable.
+		return
+	var/mob/living/carbon/human/H = owner
+	H.adjustSanityLoss(rand(addictionSanityMax, addictionSanityMin))
 
 /datum/status_effect/display/singing_machine/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5)
-		H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10)
-		H.physiology.white_mod /= 1.1
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/H = owner
+	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
+	H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)
+	H.physiology.white_mod /= 1.1
 
+/obj/effect/singing_machine_hinge
+	name = "Singing machine's hinge"
+	desc = "You don't want to see this move..."
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "singingmachine_hinge_clean"
+	layer = FLOAT_LAYER
+	move_force = INFINITY
+	pull_force = INFINITY
+
+/obj/effect/singing_machine_hinge/proc/MoveHinge(angle,animation_time,target_pixel_x,target_pixel_y)
+	animate(src, transform = turn(matrix(), angle), pixel_x = target_pixel_x, pixel_y = target_pixel_y, time = animation_time, flags = SINE_EASING | EASE_OUT)
+
+/obj/effect/singing_machine_hinge/proc/BloodySelf()
+	if(icon_state == "singingmachine_hinge_bloody")
+		return
+	icon_state = "singingmachine_hinge_bloody"
+	MoveHinge(-90, 0, -2, 6)
+
+#undef SILENT
+#undef GRINDING
+#undef PLAYING
 #undef STATUS_EFFECT_MUSIC
