@@ -7,7 +7,7 @@
 	lootlist =	list(
 		/obj/item/powered_gadget/detector_gadget/abnormality,
 		/obj/item/powered_gadget/slowingtrapmk1,
-		/obj/item/powered_gadget/clerkbot_gadget,
+		/obj/item/clerkbot_gadget,
 		/obj/item/powered_gadget/handheld_taser,
 		/obj/item/storage/box/minertracker,
 		/obj/item/forcefield_projector,

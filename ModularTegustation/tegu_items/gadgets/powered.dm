@@ -219,55 +219,6 @@
 	inuse = FALSE
 	update_icon()
 
-/obj/item/powered_gadget/clerkbot_gadget
-	name = "Instant Clerkbot Constructor"
-	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. Only for clerks."
-	icon_state = "clerkbot2_deactivated"
-	batterycost = 10000
-
-/obj/item/powered_gadget/clerkbot_gadget/attack_self(mob/user)
-	..()
-	if(cell && cell.charge >= batterycost)
-		cell.charge = cell.charge - batterycost
-		if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
-			to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
-			return
-		new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
-		to_chat(user, span_nicegreen("The Gadget turns warm and sparks."))
-
-/mob/living/simple_animal/hostile/clerkbot/Initialize()
-	..()
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "clerkbot2"
-	icon_living = "clerkbot2"
-	if(prob(50))
-		icon_state = "clerkbot1"
-		icon_living = "clerkbot1"
-
-/mob/living/simple_animal/hostile/clerkbot
-	name = "A Well Rounded Clerkbot"
-	desc = "Trusted and loyal best friend."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "clerkbot2"
-	icon_living = "clerkbot2"
-	faction = list("neutral")
-	health = 150
-	maxHealth = 150
-	melee_damage_type = RED_DAMAGE
-	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 12
-	melee_damage_upper = 14
-	robust_searching = TRUE
-	stat_attack = HARD_CRIT
-	del_on_death = TRUE
-	attack_verb_continuous = "buzzes"
-	attack_verb_simple = "buzz"
-	attack_sound = 'sound/weapons/bite.ogg'
-
-/mob/living/simple_animal/hostile/clerkbot/Initialize()
-	..()
-	QDEL_IN(src, (120 SECONDS))
-
 //The taser
 /obj/item/powered_gadget/handheld_taser
 	name = "Handheld Taser"
