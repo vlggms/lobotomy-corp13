@@ -26,8 +26,8 @@
 	start_qliphoth = 2
 	move_to_delay = 4
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 30, 20),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 30, 20),
+						ABNORMALITY_WORK_INSTINCT = list(100, 90, 80, 75, 50),
+						ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 40, 35),
 						ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 40, 30),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 30),
 						)
