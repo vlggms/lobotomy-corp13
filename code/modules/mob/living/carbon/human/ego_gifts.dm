@@ -544,6 +544,13 @@
 	fortitude_bonus = 4
 	slot = MOUTH_2
 
+/datum/ego_gifts/faelantern
+	name = "Midwinter Nightmare"
+	icon_state = "faelantern"
+	prudence_bonus = 3
+	temperance_bonus = 2
+	slot = LEFTBACK
+
 /datum/ego_gifts/fluid_sac
 	name = "Fluid Sac"
 	icon_state = "fluid_sac"
