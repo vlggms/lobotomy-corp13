@@ -499,3 +499,71 @@
 	)
 	mid_length = 2 SECONDS
 	volume = 20
+
+//Clerkbot Spawner
+/obj/item/clerkbot_gadget
+	name = "Instant Clerkbot Constructor"
+	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. In order to prevent \
+		abnormalities infesting the clerkbots, only those registered as a Lobotomy Corp clerk can activate them. Clerkbot \
+		will last for 2 minutes before it preforms auto shutdown."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "clerkbot2_deactivated"
+
+/obj/item/clerkbot_gadget/attack_self(mob/user)
+	..()
+	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
+		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
+		return
+	new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
+	to_chat(user, span_nicegreen("The Gadget turns warm and sparks."))
+	qdel(src)
+
+	//Clerkbot spawned by the Clerkbot Spawner
+/mob/living/simple_animal/hostile/clerkbot
+	name = "A Well Rounded Clerkbot"
+	desc = "Trusted and loyal best friend."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
+	gender = NEUTER
+	mob_biotypes = MOB_ROBOTIC
+	faction = list("neutral")
+	health = 150
+	maxHealth = 150
+	healable = FALSE
+	melee_damage_type = RED_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 12
+	melee_damage_upper = 14
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	attack_verb_continuous = "buzzes"
+	attack_verb_simple = "buzz"
+	attack_sound = 'sound/weapons/etherealhit.ogg'
+	verb_say = "states"
+	verb_ask = "queries"
+	verb_exclaim = "declares"
+	verb_yell = "alarms"
+	bubble_icon = "machine"
+	speech_span = SPAN_ROBOT
+
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
+	..()
+	QDEL_IN(src, (120 SECONDS))
+	if(prob(50))
+		icon_state = "clerkbot1"
+		icon_living = "clerkbot1"
+
+/mob/living/simple_animal/hostile/clerkbot/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<b>WARNING:THIS CREATURE IS TEMPORARY AND WILL DELETE ITSELF AFTER A GIVEN TIME!</b>")
+
+/mob/living/simple_animal/hostile/clerkbot/Destroy()
+	new /obj/item/clerkbot_gadget(get_turf(src))
+	return ..()
+
+/mob/living/simple_animal/hostile/clerkbot/spawn_gibs()
+	new /obj/effect/gibspawner/robot(drop_location(), src)

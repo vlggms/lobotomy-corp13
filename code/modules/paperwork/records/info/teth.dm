@@ -346,3 +346,13 @@
 		"When Attachment or Repression work was done, the work rates were equal to the total stat buffs of the employee.",
 		"When Attachment or Repression work was completed with a good work result, the employee's respective buff was reduced to 0, and their stat maximum was increased by the same amount.",)
 
+//Faelantern
+/obj/item/paper/fluff/info/teth/faelantern
+	abno_type = /mob/living/simple_animal/hostile/abnormality/faelantern
+	abno_code = "F-01-178"
+	abno_info = list(
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When an Agent with Temperance Level 2 or greater completed repression work, the Qliphoth Counter lowered",
+		"When an Agent with Level 1 Temperance completed any other work type, the Qliphoth Counter lowered",
+		"When approached during suppression work, F-01-178 attempted to lure agents with Temperance I.",
+		"During work, the final result of any modified attributes were recognized by Faelantern.")

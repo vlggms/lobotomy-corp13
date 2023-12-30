@@ -133,9 +133,9 @@
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/SetIdiot(mob/living/L)
 	idiot = L
 	if(idiot)
-		to_chat(src, "<span class='notice'>You current target is [idiot]!</span>")
+		to_chat(src, span_notice("You current target is [idiot]!"))
 	else
-		to_chat(src, "<span class='notice'>Your work here is done, you should now return to your cell.</span>")
+		to_chat(src, span_notice("Your work here is done, you should now return to your cell."))
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/death() //EGG! just kidding no egg....
 	density = FALSE

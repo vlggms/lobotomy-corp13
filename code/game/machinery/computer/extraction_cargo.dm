@@ -25,7 +25,7 @@
 		new /datum/data/extraction_cargo("Keen-Sense Rangefinder ",		/obj/item/powered_gadget/detector_gadget/ordeal,					200, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("EMAIS	Capacity Upgrade ",		/obj/item/hypo_upgrade/cap_increase,								200, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Prototype Enkephalin Injector ",/obj/item/powered_gadget/enkephalin_injector,						200, CAT_GADGET) = 1,
-		new /datum/data/extraction_cargo("Instant Clerkbot Constructor ",/obj/item/powered_gadget/clerkbot_gadget,							250, CAT_GADGET) = 1,
+		new /datum/data/extraction_cargo("Instant Clerkbot Constructor ",/obj/item/clerkbot_gadget,							250, CAT_GADGET) = 1,
 		//new /datum/data/extraction_cargo("C-Fear Protection Injector ",	/obj/item/trait_injector/clerk_fear_immunity_injector,			300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Handheld Taser",				/obj/item/powered_gadget/handheld_taser,							300, CAT_GADGET) = 1,
 		new /datum/data/extraction_cargo("Vitals Projector ",			/obj/item/powered_gadget/vitals_projector,							300, CAT_GADGET) = 1,
