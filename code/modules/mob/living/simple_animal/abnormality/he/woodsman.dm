@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "woodsman"
 	icon_living = "woodsman_breach"
+	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 1433
 	health = 1433

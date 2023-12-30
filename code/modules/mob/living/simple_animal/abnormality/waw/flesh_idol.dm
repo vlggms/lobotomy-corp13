@@ -3,6 +3,7 @@
 	desc = "A cross with flesh stapled in the middle."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "flesh_idol"
+	portrait = "flesh_idol"
 	maxHealth = 600
 	health = 600
 	threat_level = WAW_LEVEL

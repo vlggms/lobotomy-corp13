@@ -7,6 +7,7 @@ GLOBAL_LIST_EMPTY(army)
 	icon_state = "armyinpink"
 	icon_living = "armyinpink"
 	icon_dead = "armyinpink_heart"
+	portrait = "army_in_black"
 	pixel_x = -16
 	base_pixel_x = -16
 

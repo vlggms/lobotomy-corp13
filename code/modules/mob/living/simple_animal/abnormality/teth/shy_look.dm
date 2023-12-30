@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "todayshylook_neutral"
 	icon_living = "todayshylook_neutral"
+	portrait = "shy_look"
 
 	pixel_x = -16
 	base_pixel_x = -16

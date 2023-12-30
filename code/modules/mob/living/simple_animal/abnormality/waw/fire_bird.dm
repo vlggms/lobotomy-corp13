@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "burntbird"
 	icon_living = "firebird_active"
+	portrait = "fire_bird"
 	threat_level = WAW_LEVEL
 	maxHealth = 2000
 	health = 2000

@@ -4,6 +4,7 @@
 	desc = "A long flowerlike creature covered in thorns"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "porrcubus_inert"
+	portrait = "porccubus"
 	maxHealth = 1500
 	health = 1500
 	pixel_x = -10

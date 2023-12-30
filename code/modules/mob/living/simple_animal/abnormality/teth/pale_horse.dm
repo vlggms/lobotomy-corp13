@@ -7,6 +7,7 @@
 	icon_state = "palehorse"
 	icon_living = "palehorse"
 	icon_dead = "palehorse"
+	portrait = "pale_horse"
 	speak_emote = list("neighs")
 	threat_level = TETH_LEVEL
 	maxHealth = 800

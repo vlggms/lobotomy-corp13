@@ -5,6 +5,7 @@
 	icon_state = "scarecrow"
 	icon_living = "scarecrow"
 	icon_dead = "scarecrow_dead"
+	portrait = "scarecrow"
 	del_on_death = FALSE
 	maxHealth = 1000
 	health = 1000

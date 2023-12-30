@@ -8,6 +8,7 @@
 	icon_state = "redshoes"
 	icon_living = "redshoes"
 	icon_dead = "redshoes_breach"//dels on death if it's possessing someone. Egg goes here
+	portrait = "red_shoes"
 	can_breach = TRUE
 	gender = NEUTER
 	threat_level = HE_LEVEL

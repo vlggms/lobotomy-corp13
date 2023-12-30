@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "fairies"
 	icon_living = "fairies"
+	portrait = "fairies"
 	maxHealth = 50
 	health = 50
 	is_flying_animal = TRUE

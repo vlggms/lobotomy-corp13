@@ -8,6 +8,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "white_night"
 	icon_living = "white_night"
+	portrait = "white_night"
 	health_doll_icon = "white_night"
 	faction = list("hostile", "apostle")
 	friendly_verb_continuous = "stares down"

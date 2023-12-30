@@ -6,6 +6,7 @@
 	icon_living = "yin"
 	var/icon_breach = "yin_breach"
 	icon_dead = "yin_slain"
+	portrait = "yin"
 	is_flying_animal = TRUE
 	maxHealth = 1600
 	health = 1600

@@ -3,6 +3,7 @@
 	desc = "An abnormality that is a pale, naked woman with long, black hair that completely obscures her face"
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "ladyfacingthewall"
+	portrait = "lady_facing_the_wall"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL

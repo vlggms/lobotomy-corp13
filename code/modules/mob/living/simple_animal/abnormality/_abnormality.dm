@@ -82,6 +82,8 @@
 	// Increased Abno appearance chance
 	/// Assoc list, you do [path] = [probability_multiplier] for each entry
 	var/list/grouped_abnos = list()
+	//Abnormaltiy portrait, updated on spawn if they have one.
+	var/portrait = "UNKNOWN"
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -425,6 +427,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/proc/GetRiskLevel()
 	return threat_level
+
+/mob/living/simple_animal/hostile/abnormality/proc/GetPortrait()
+	return portrait
 
 // Actions
 /datum/action/innate/abnormality_attack

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "mhz"
 	icon_living = "mhz"
+	portrait = "MHz"
 	pixel_x = -32
 	base_pixel_x = -32
 	pixel_y = -32
