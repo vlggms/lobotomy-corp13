@@ -405,12 +405,15 @@
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/bullet_act(obj/projectile/P)
 	visible_message("<span class='userdanger'>[P] is easily deflected by [src]!</span>")
 	P.Destroy()
+	PingArmor()
 	return
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/attacked_by(obj/item/I, mob/living/user)
 	var/checkdir = check_target_facings(user, src)
 	if((get_dist(user, src) > 1) || checkdir == FACING_EACHOTHER)
 		user.visible_message("<span class='danger'>[user]'s attack is easily deflected by [src]!</span>", "<span class='userdanger'>Your attack is easily deflected by [src]!</span>")
+		PingArmor(newcolor = "#FF3333")
+		playsound(loc, 'sound/weapons/ego/heavy_guard.ogg', 50, FALSE)
 		return
 	return ..()
 
@@ -831,12 +834,15 @@
 /mob/living/simple_animal/hostile/ordeal/sin_lust/bullet_act(obj/projectile/P)
 	visible_message("<span class='userdanger'>[P] is blocked by [src]!</span>")
 	P.Destroy()
+	PingArmor()
 	return
 
 /mob/living/simple_animal/hostile/ordeal/sin_lust/attacked_by(obj/item/I, mob/living/user)
 	var/checkdir = check_target_facings(user, src)
 	if((get_dist(user, src) > 1) || checkdir == FACING_EACHOTHER)
 		user.visible_message("<span class='danger'>[user]'s attack is easily deflected by [src]!</span>", "<span class='userdanger'>Your attack is easily deflected by [src]!</span>")
+		PingArmor(newcolor = "#FF3333")
+		playsound(loc, 'sound/weapons/ego/heavy_guard.ogg', 50, FALSE)
 		return
 	return ..()
 

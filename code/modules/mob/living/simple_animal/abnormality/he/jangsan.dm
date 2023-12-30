@@ -268,6 +268,7 @@
 	if(P.damage <= 40)
 		visible_message(span_userdanger("[P] is caught in [src]'s thick fur!"))
 		P.Destroy()
+		PingArmor()
 		return
 	..()
 
