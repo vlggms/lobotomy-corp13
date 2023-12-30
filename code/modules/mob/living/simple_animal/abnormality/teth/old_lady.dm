@@ -3,6 +3,7 @@
 	desc = "An old, decrepit lady sitting in a worn-out rocking chair"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "old_lady"
+	portrait = "old_lady"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL

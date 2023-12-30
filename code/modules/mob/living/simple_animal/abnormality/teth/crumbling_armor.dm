@@ -4,6 +4,7 @@
 	desc = "A thoroughly aged suit of samurai style armor with a V shaped crest on the helmet. It appears desuetude."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "crumbling"
+	portrait = "crumbling_armor"
 	maxHealth = 600
 	health = 600
 	start_qliphoth = 3

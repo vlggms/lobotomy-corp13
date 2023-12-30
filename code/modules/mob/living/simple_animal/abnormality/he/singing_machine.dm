@@ -9,6 +9,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "singingmachine_closed_clean"
 	icon_living = "singingmachine_closed_clean"
+	portrait = "singing_machine"
 	maxHealth = 200
 	health = 200
 	threat_level = HE_LEVEL

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "queen_bee"
 	icon_living = "queen_bee"
+	portrait = "queen_bee"
 	faction = list("hostile")
 	speak_emote = list("buzzes")
 

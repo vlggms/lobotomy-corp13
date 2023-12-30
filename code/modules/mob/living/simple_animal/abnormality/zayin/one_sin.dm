@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "onesin_halo_normal"
 	icon_living = "onesin_halo_normal"
+	portrait = "one_sin"
 	maxHealth = 777
 	health = 777
 	is_flying_animal = TRUE

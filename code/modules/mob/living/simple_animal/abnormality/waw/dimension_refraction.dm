@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "dmr_abnormality"
 	icon_living = "dmr_abnormality"
+	portrait = "dimension_refraction"
 	del_on_death = TRUE
 	pixel_x = -16
 	base_pixel_x = -16

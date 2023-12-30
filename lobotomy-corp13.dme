@@ -938,6 +938,7 @@
 #include "code\game\machinery\computer\abnormality_auxiliary.dm"
 #include "code\game\machinery\computer\abnormality_ego.dm"
 #include "code\game\machinery\computer\abnormality_logs.dm"
+#include "code\game\machinery\computer\abnormality_portraits.dm"
 #include "code\game\machinery\computer\abnormality_queue.dm"
 #include "code\game\machinery\computer\abnormality_work.dm"
 #include "code\game\machinery\computer\aifixer.dm"

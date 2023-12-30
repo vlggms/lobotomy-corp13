@@ -6,6 +6,7 @@
 	icon_state = "norinori"
 	icon_living = "norinori"
 	var/icon_aggro = "norinori_breach"
+	portrait = "norinori"
 	speak_emote = list("meows")
 	ranged = TRUE
 	maxHealth = 1200

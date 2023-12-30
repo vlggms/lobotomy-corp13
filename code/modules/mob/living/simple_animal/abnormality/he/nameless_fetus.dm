@@ -3,6 +3,7 @@
 	desc = "A giant, pus-filled baby."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "fetus"
+	portrait = "nameless_fetus"
 	maxHealth = 400
 	health = 400
 	threat_level = HE_LEVEL

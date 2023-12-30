@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "void_dream"
 	icon_living = "void_dream"
+	portrait = "void_dream"
 	del_on_death = TRUE
 	is_flying_animal = TRUE
 	maxHealth = 600

@@ -5,6 +5,7 @@
 	desc = "A piano, with a woman sitting on the stool next to it"
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "dellaluna"
+	portrait = "luna"
 	maxHealth = 400
 	health = 400
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)

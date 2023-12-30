@@ -12,6 +12,7 @@
 	desc = "A purple haired girl in a sundress. You see a metalic glint from behind her back..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "silent_girl"
+	portrait = "silent_girl"
 	maxHealth = 650
 	health = 650
 	gender = FEMALE // Is this used basically anywhere? Not that I know of. But seeing "Gender: Male" on Silent Girl doesn't seem right.

@@ -7,6 +7,7 @@
 	icon_state = "snowwhitesapple_inert"
 	icon_living = "snowwhitesapple_inert"
 	icon_dead = "snowwhitesapple_dead"
+	portrait = "snow_whites_apple"
 	maxHealth = 1600
 	health = 1600
 	obj_damage = 0

@@ -4,6 +4,7 @@
 	desc = "A scythe with a clock attached, quietly ticking."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "silence"
+	portrait = "silence"
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 50, 50),

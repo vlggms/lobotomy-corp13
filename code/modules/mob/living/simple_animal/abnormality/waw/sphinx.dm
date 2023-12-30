@@ -8,6 +8,7 @@
 	icon_state = "sphinx"
 	icon_living = "sphinx"
 	var/icon_aggro = "sphinx_eye"
+	portrait = "sphinx"
 	speak_emote = list("intones")
 	pixel_x = -16
 	base_pixel_x = -16

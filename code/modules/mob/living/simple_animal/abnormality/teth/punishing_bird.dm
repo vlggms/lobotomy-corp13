@@ -5,6 +5,7 @@
 	icon_state = "pbird_breach"
 	icon_living = "pbird_breach"
 	icon_dead = "pbird_dead"
+	portrait = "punishing_bird"
 	turns_per_move = 2
 	response_help_continuous = "brushes aside"
 	response_help_simple = "brush aside"

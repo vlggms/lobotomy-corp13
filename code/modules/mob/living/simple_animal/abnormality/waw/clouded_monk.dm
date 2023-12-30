@@ -7,6 +7,7 @@
 	icon_living = "cloudedmonk"
 	var/icon_aggro = "pretamonk"
 	icon_dead = "pretamonk"
+	portrait = "clouded_monk"
 	maxHealth = 2500
 	health = 2500
 	rapid_melee = 2

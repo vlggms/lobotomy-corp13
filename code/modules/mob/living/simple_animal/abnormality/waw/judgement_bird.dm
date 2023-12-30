@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "judgement_bird"
 	icon_living = "judgement_bird"
+	portrait = "judgement_bird"
 	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")
 

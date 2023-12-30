@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "nakednest_inert"
 	icon_living = "nakednest_inert"
+	portrait = "naked_nest"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 800

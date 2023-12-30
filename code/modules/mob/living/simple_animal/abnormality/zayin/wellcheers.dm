@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wellcheers_vendor"
 	icon_living = "wellcheers_vendor"
+	portrait = "wellcheers"
 	layer = BELOW_OBJ_LAYER
 	threat_level = ZAYIN_LEVEL
 	maxHealth = 600
