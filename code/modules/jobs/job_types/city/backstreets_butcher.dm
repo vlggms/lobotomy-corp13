@@ -4,8 +4,8 @@ Backstreets Butcher
 /datum/job/butcher
 	title = "Backstreets Butcher"
 	faction = "Station"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "your stomach."
 	selection_color = "#555555"
 	access = list(ACCESS_GENETICS)
