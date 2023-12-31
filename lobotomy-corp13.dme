@@ -3856,6 +3856,7 @@
 #include "ModularTegustation\lc13_spawners.dm"
 #include "ModularTegustation\lc13_structures.dm"
 #include "ModularTegustation\looc.dm"
+#include "ModularTegustation\misc_procs.dm"
 #include "ModularTegustation\resindoor.dm"
 #include "ModularTegustation\t5_parts.dm"
 #include "ModularTegustation\tegu_boxes.dm"
