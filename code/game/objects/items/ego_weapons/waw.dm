@@ -1822,6 +1822,8 @@
 	icon_state = "blind_obsession"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
 	force = 80
 	attack_speed = 2.5
 	throwforce = 80
