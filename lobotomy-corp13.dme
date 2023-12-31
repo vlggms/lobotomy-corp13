@@ -3874,6 +3874,7 @@
 #include "ModularTegustation\tegufood.dm"
 #include "ModularTegustation\tegushuttles.dm"
 #include "ModularTegustation\trusted.dm"
+#include "ModularTegustation\_automatic_wiki_templates\_template.dm"
 #include "ModularTegustation\_automatic_wiki_templates\automatic_wiki_updater.dm"
 #include "ModularTegustation\_automatic_wiki_templates\ego_weapons.dm"
 #include "ModularTegustation\altjobtitles\altjobtitles.dm"
