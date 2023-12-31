@@ -79,6 +79,7 @@
 /obj/item/gun/ego_gun/pistol/rats/can_shoot()
 	..()
 	if(prob(33))
+		playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 30, TRUE)
 		visible_message("<span class='notice'>The gun jams.</span>")
 		return FALSE
 	else
