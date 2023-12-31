@@ -567,3 +567,50 @@
 
 /mob/living/simple_animal/hostile/clerkbot/spawn_gibs()
 	new /obj/effect/gibspawner/robot(drop_location(), src)
+
+
+/// Info Page Printer (Does not print info sheets)
+
+/obj/item/info_printer
+	name = "Abnormality Information Display System"
+	desc = "" // Done later
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "aids"
+	var/use_time = 150 // For future mods, maybe? :shrug:
+
+/obj/item/info_printer/examine(mob/user)
+	. = ..()
+	. += "Use on an Abnormality to display the information on screen after [use_time/10] seconds."
+
+/obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
+	if(Scan(A, user))
+		return TRUE
+	return ..()
+
+/obj/item/info_printer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(Scan(target, user))
+		return TRUE
+	return ..()
+
+/obj/item/info_printer/proc/Scan(atom/A, mob/living/user)
+	if(!isabnormalitymob(A))
+		return FALSE
+	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, A, 7)))
+		var/list/information = GenerateInfo(A)
+		if(information)
+			var/datum/browser/popup = new(user, "information", FALSE, 300, 350)
+			popup.set_content(information)
+			popup.open(FALSE)
+	return TRUE
+
+/obj/item/info_printer/proc/GenerateInfo(mob/living/simple_animal/hostile/abnormality/abno_mob)
+	for(var/path in subtypesof(/obj/item/paper/fluff/info))
+		var/obj/item/paper/fluff/info/info_paper = path
+		if(abno_mob.type == initial(info_paper.abno_type))
+			info_paper = new path(src)
+			stoplag(1)
+			. = info_paper.info
+			QDEL_NULL(info_paper)
+			return
+	return FALSE
+
