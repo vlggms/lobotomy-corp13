@@ -6,6 +6,7 @@
 	icon_state = "despair"
 	icon_living = "despair"
 	icon_dead = "despair_dead"
+	portrait = "despair_knight"
 	pixel_x = -8
 	base_pixel_x = -8
 	ranged = TRUE

@@ -313,9 +313,9 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/visions
 	cost = 20
 
-/*/datum/ego_datum/weapon/visions
-	item_path = /obj/item/ego_weapon/mini/visions
-	cost = 20*/
+/datum/ego_datum/weapon/visions
+	item_path = /obj/item/ego_weapon/lance/visions
+	cost = 20
 
 //All-Around Cleaner - Sanitizer
 /datum/ego_datum/armor/sanitizer
@@ -326,3 +326,7 @@
 	item_path = /obj/item/ego_weapon/sanitizer
 	cost = 20
 
+//Faelantern - Midwinter Nightmare
+/datum/ego_datum/armor/faelantern
+	item_path = /obj/item/clothing/suit/armor/ego_gear/teth/faelantern
+	cost = 20

@@ -8,6 +8,7 @@
 	var/icon_crazy = "hatred_psycho"
 	icon_dead = "hatred_dead"
 	var/icon_inverted
+	portrait = "hatred_queen"
 	faction = list("neutral")
 	is_flying_animal = TRUE
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY

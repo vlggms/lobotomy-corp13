@@ -1,7 +1,8 @@
 /datum/ordeal/simplespawn/steel_dawn
-	name = "Dawn of Steel"
-	annonce_text = "The augmentation... I don’t regret it. One downside, though, is that I won’t ever be able to return to civilian life."
-	annonce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg' //placeholder
+	name = "The Dawn of Steel"
+	flavor_name = "Metamorphosis"
+	announce_text = "The augmentation... I don’t regret it. One downside, though, is that I won’t ever be able to return to civilian life."
+	announce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg' //placeholder
 	end_sound = 'sound/effects/ordeals/steel/gcorp_hiss.ogg'
 	level = 1
 	reward_percent = 0.1
@@ -15,9 +16,10 @@
 	color = "#71797E"
 
 /datum/ordeal/simplecommander/steel_dusk
-	name = "Dusk of Steel"
-	annonce_text = "If we lose this war we would would be cast to the streets, seen as less than human by even the rats."
-	annonce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg'
+	name = "The Dusk of Steel"
+	flavor_name = "The Dogs of War"
+	announce_text = "If we lose this war we would would be cast to the streets, seen as less than human by even the rats."
+	announce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg'
 	end_sound = 'sound/effects/ordeals/steel/gcorp_hiss.ogg'
 	level = 3
 	reward_percent = 0.2

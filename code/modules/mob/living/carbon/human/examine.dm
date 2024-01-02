@@ -94,6 +94,9 @@
 	if(wear_id && !(wear_id.item_flags & EXAMINE_SKIP))
 		. += "[t_He] [t_is] wearing [wear_id.get_examine_string(user)]. <A href='byond://?src=[REF(wear_id)];examine=[user.ckey]'>Examine</A>"
 
+	if(LAZYLEN(attributes) && (isobserver(user) || HAS_TRAIT(user, TRAIT_ATTRIBUTES_VISION)))
+		. += "<A href='byond://?src=[REF(src)];see_attributes=1'>Check Attributes</A>"
+
 	//Status effects
 	var/list/status_examines = status_effect_examines()
 	if (length(status_examines))

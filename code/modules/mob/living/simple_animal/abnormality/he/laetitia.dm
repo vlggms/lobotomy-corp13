@@ -4,6 +4,7 @@
 	desc = "A wee witch."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "laetitia"
+	portrait = "laetitia"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL

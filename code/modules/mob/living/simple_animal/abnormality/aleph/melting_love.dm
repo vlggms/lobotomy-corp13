@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "melting_love"
 	icon_living = "melting_love"
+	portrait = "melting_love"
 	pixel_x = -16
 	base_pixel_x = -16
 	speak_emote = list("gurgle")

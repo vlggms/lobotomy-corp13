@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "onesin_halo_normal"
 	icon_living = "onesin_halo_normal"
+	portrait = "one_sin"
 	maxHealth = 777
 	health = 777
 	is_flying_animal = TRUE
@@ -118,6 +119,9 @@
 			if(H.sanity_lost)
 				heal_factor = 0.25
 			H.adjustSanityLoss(-H.maxSanity * heal_factor)
+
+/mob/living/simple_animal/hostile/abnormality/onesin/BreachEffect(mob/living/carbon/human/user, breach_type)
+	return FALSE // If someone wants him to breach for SOME REASON in the future, then exclude breach_type == BREACH_PINK
 
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"

@@ -55,13 +55,6 @@
 	},
 /turf/closed/indestructible/wood,
 /area/library_floors/floor_philosophy)
-"cG" = (
-/obj/structure/chair/wood/wings{
-	dir = 4
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/royalblack,
-/area/library_floors/floor_philosophy)
 "cX" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
@@ -90,10 +83,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
-"dG" = (
-/obj/item/flashlight/spotlight,
-/turf/open/water,
-/area/library_floors/floor_philosophy)
 "gd" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/light{
@@ -117,6 +106,19 @@
 "hI" = (
 /obj/effect/decal/cleanable/blood/footprints,
 /turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
+"hZ" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/carpet/royalblack,
 /area/library_floors/floor_philosophy)
 "iA" = (
 /obj/structure/flora/junglebush,
@@ -152,6 +154,16 @@
 	dir = 4
 	},
 /turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"kL" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water,
 /area/library_floors/floor_philosophy)
 "kS" = (
 /obj/effect/turf_decal/siding/white/corner{
@@ -244,7 +256,6 @@
 /area/library_floors/floor_philosophy)
 "pV" = (
 /obj/item/ego_weapon/mimicry/kali,
-/obj/item/flashlight/spotlight,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/facility/dark,
 /area/library_floors/floor_philosophy)
@@ -266,14 +277,6 @@
 	color = "#7D6521"
 	},
 /turf/open/indestructible/hotelwood,
-/area/library_floors/floor_philosophy)
-"rm" = (
-/obj/structure/chair/wood/wings{
-	pixel_y = 0;
-	dir = 1
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/royalblack,
 /area/library_floors/floor_philosophy)
 "rB" = (
 /obj/effect/turf_decal/siding/white/corner{
@@ -361,31 +364,12 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_philosophy)
-"uZ" = (
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_philosophy)
-"vK" = (
-/obj/machinery/light/floor,
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_philosophy)
-"wa" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 8
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
-/area/library_floors/floor_philosophy)
-"wl" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 4
-	},
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
 "wo" = (
@@ -415,9 +399,27 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/library_floors/floor_philosophy)
+"xJ" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/plating/dirt,
+/area/library_floors/floor_philosophy)
 "yI" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/book/random,
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
+"zg" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
 "At" = (
@@ -481,13 +483,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
-"ED" = (
-/obj/structure/chair/wood/wings{
-	dir = 8
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/royalblack,
-/area/library_floors/floor_philosophy)
 "Fk" = (
 /obj/structure/table/wood/fancy/black,
 /obj/item/food/cake/bbird,
@@ -541,14 +536,6 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
-"Gr" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 8
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/floor/carpet/royalblack,
-/area/library_floors/floor_philosophy)
 "Gu" = (
 /obj/structure/flora/rock/pile,
 /turf/open/water,
@@ -556,24 +543,11 @@
 "GD" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/mug,
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
 "HQ" = (
 /obj/structure/grille/broken,
 /turf/open/floor/plating/rust,
-/area/library_floors/floor_philosophy)
-"Im" = (
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 8
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 4
-	},
-/obj/item/flashlight/spotlight,
-/turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
 "IK" = (
 /obj/structure/table/wood,
@@ -690,6 +664,19 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/library_floors/floor_philosophy)
+"Mc" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 1
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
 "Me" = (
 /turf/closed/indestructible/fakeglass,
 /area/library_floors/floor_philosophy)
@@ -737,6 +724,19 @@
 	},
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
+"Qo" = (
+/obj/effect/turf_decal/siding{
+	color = "#7D6521";
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/indestructible/hotelwood,
+/area/library_floors/floor_philosophy)
 "Qp" = (
 /turf/closed/indestructible/wood,
 /area/library_floors/floor_philosophy)
@@ -770,6 +770,15 @@
 /obj/structure/grille,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
+"Rw" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 30;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/facility/dark,
+/area/library_floors/floor_philosophy)
 "RS" = (
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet/royalblack,
@@ -780,17 +789,8 @@
 /area/library_floors/floor_philosophy)
 "SF" = (
 /obj/item/bodypart/l_arm,
-/obj/item/flashlight/spotlight,
 /obj/structure/displaycase/noalert,
 /turf/open/floor/facility/dark,
-/area/library_floors/floor_philosophy)
-"SV" = (
-/obj/item/flashlight/spotlight{
-	light_color = "#d8b66f"
-	},
-/turf/open/floor/fakespace{
-	density = 1
-	},
 /area/library_floors/floor_philosophy)
 "TR" = (
 /obj/structure/table/wood/fancy/black,
@@ -798,15 +798,6 @@
 	pixel_y = 2;
 	pixel_x = -7
 	},
-/turf/open/floor/carpet/royalblack,
-/area/library_floors/floor_philosophy)
-"TZ" = (
-/obj/effect/decal/cleanable/blood/footprints,
-/obj/item/flashlight/spotlight,
-/turf/open/floor/plating/dirt,
-/area/library_floors/floor_philosophy)
-"Uf" = (
-/obj/item/flashlight/spotlight,
 /turf/open/floor/carpet/royalblack,
 /area/library_floors/floor_philosophy)
 "Uu" = (
@@ -897,7 +888,6 @@
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
 	},
-/obj/item/flashlight/spotlight,
 /turf/open/indestructible/hotelwood,
 /area/library_floors/floor_philosophy)
 "Zn" = (
@@ -949,15 +939,15 @@ Qp
 Qp
 Qp
 Qp
-cG
+xv
 Cq
 DZ
 Ri
-rm
+LS
 DZ
 RS
 LS
-Uf
+Cq
 xv
 Qp
 aA
@@ -1023,24 +1013,24 @@ sl
 sl
 sl
 Qp
-ow
+Rw
 ow
 ow
 Ru
-Uf
+Cq
 nj
 mI
 mI
-wa
 mI
+Qo
 mI
 mI
 YO
 Cq
 Be
 gY
-Gr
 gY
+hZ
 aA
 sl
 "}
@@ -1131,15 +1121,15 @@ Qp
 Qp
 Qp
 Qp
-ED
+mj
 Cq
 Uv
 Cq
-Uf
+Cq
 Cq
 Cq
 Mz
-Uf
+Cq
 mj
 Qp
 aA
@@ -1193,7 +1183,7 @@ cq
 cq
 cq
 LB
-SV
+At
 UC
 aI
 Lx
@@ -1236,13 +1226,13 @@ At
 At
 At
 FW
-uZ
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+Bj
+Bj
 Bj
 ac
 At
@@ -1259,7 +1249,7 @@ sl
 Qp
 At
 At
-SV
+At
 At
 FW
 Bj
@@ -1323,7 +1313,7 @@ Bj
 Bj
 Bj
 ac
-SV
+At
 Lm
 Qp
 Qp
@@ -1366,13 +1356,13 @@ At
 At
 At
 FW
-uZ
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+Bj
+Bj
 Bj
 ac
 At
@@ -1389,7 +1379,7 @@ sl
 Qp
 At
 At
-SV
+At
 At
 FW
 Bj
@@ -1453,7 +1443,7 @@ Bj
 sb
 Bj
 ac
-SV
+At
 Qp
 Qp
 Qp
@@ -1474,7 +1464,7 @@ Bj
 Bj
 Bj
 Bj
-Bj
+zg
 Bj
 Bj
 Bj
@@ -1496,13 +1486,13 @@ At
 At
 At
 FW
-uZ
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+Bj
+Bj
 Bj
 ac
 At
@@ -1519,7 +1509,7 @@ sl
 Qp
 At
 At
-SV
+At
 At
 FW
 Bj
@@ -1583,7 +1573,7 @@ Bj
 Bj
 Bj
 ac
-SV
+At
 At
 At
 At
@@ -1626,13 +1616,13 @@ At
 At
 At
 FW
-uZ
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+Bj
+Bj
 Bj
 ac
 At
@@ -1649,7 +1639,7 @@ sl
 Qp
 At
 At
-SV
+At
 At
 FW
 Bj
@@ -1740,7 +1730,7 @@ Bj
 Bj
 ac
 At
-SV
+At
 At
 At
 Qp
@@ -1756,7 +1746,7 @@ At
 At
 At
 FW
-uZ
+Bj
 Bj
 Bj
 Bj
@@ -1779,7 +1769,7 @@ sl
 Qp
 At
 At
-SV
+At
 At
 FW
 Bj
@@ -1788,7 +1778,7 @@ Bj
 Bj
 Bj
 Bj
-vK
+sb
 Bj
 ac
 At
@@ -1838,7 +1828,7 @@ Bj
 Bj
 Bj
 Bj
-Bj
+zg
 Bj
 Bj
 Bj
@@ -1870,7 +1860,7 @@ Bj
 Bj
 ac
 At
-SV
+At
 XJ
 Zn
 Qp
@@ -1909,7 +1899,7 @@ sl
 Qp
 At
 At
-SV
+At
 At
 FW
 Bj
@@ -1938,13 +1928,13 @@ At
 At
 At
 FW
-uZ
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+Bj
+Bj
 Bj
 ac
 At
@@ -2000,7 +1990,7 @@ Bj
 Bj
 ac
 At
-SV
+At
 XJ
 Ml
 Qp
@@ -2039,7 +2029,7 @@ sl
 Qp
 At
 At
-SV
+At
 At
 FW
 Bj
@@ -2068,13 +2058,13 @@ At
 At
 At
 FW
-uZ
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+Bj
+Bj
 Bj
 ac
 At
@@ -2130,7 +2120,7 @@ sb
 Bj
 ac
 At
-SV
+At
 At
 At
 Qp
@@ -2198,15 +2188,15 @@ sl
 sl
 Qp
 xv
-Uf
+Cq
 xv
 YE
 nZ
-wl
+nZ
 rC
 xv
 Cq
-cG
+xv
 Qp
 Rc
 Rc
@@ -2302,19 +2292,19 @@ GD
 Bj
 rg
 Cq
-Uf
+Cq
 Cq
 sw
 LP
-dG
+rL
 Zv
 Cq
 Cq
-Uf
+Cq
 Ru
 Rc
 hI
-TZ
+hI
 hI
 hI
 "}
@@ -2323,7 +2313,7 @@ sl
 sl
 sl
 Qp
-JA
+Mc
 PW
 Bj
 rg
@@ -2332,7 +2322,7 @@ Cq
 Cq
 sw
 rL
-Bk
+kL
 Zv
 Cq
 Cq
@@ -2341,7 +2331,7 @@ Ru
 Rc
 Rc
 DJ
-Rc
+xJ
 Rc
 "}
 (56,1,1) = {"
@@ -2376,7 +2366,7 @@ sl
 sl
 JT
 nP
-wl
+nZ
 qv
 Qp
 xv
@@ -2432,15 +2422,15 @@ sl
 sl
 Qp
 mj
-Uf
+Cq
 mj
 cX
 ki
-Im
+ki
 bs
 mj
 Cq
-ED
+mj
 Qp
 Rc
 Rc

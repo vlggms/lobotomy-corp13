@@ -5,6 +5,7 @@
 	add_verb(src, /mob/living/carbon/human/verb/show_attributes_to)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_self)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_other)
+	add_verb(src, /mob/living/carbon/human/verb/show_cores_info)
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
@@ -126,6 +127,37 @@
 			[get_user_level(src) > 3 && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=lock'>[alpha_gift.locked ? "Locked" : "Unlocked"]</A>" : ""] \
 			[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=hide'>[alpha_gift.visible ? "Hide" : "Show"]</A>" : ""]"
 	var/datum/browser/popup = new(viewer, "gifts", "<div align='center'>E.G.O. Gifts</div>", 600, 450)
+	popup.set_content(dat.Join("<br>"))
+	popup.open(FALSE)
+
+
+// Shows the list of specifically selected list of core suppressions and their status for this player
+/mob/living/carbon/human/verb/show_cores_info()
+	set category = "IC"
+	set name = "Display Cores Info"
+
+	var/list/dat = list()
+	// All the normal cores
+	for(var/core in GLOB.displayed_core_suppressions)
+		var/persistent_status = "N/A"
+		if(LAZYLEN(SSpersistence.cleared_core_suppressions))
+			if((ckey in SSpersistence.cleared_core_suppressions) && (core in SSpersistence.cleared_core_suppressions[ckey]))
+				persistent_status = "Yes"
+			else // N/A is used when persistence isn't loaded
+				persistent_status = "No"
+		dat += "<b>[core]</b>: [persistent_status]"
+	// Secret keter cores
+	for(var/core in GLOB.hidden_displayed_core_suppressions)
+		if(!LAZYLEN(SSpersistence.cleared_core_suppressions))
+			continue
+		if(!(ckey in SSpersistence.cleared_core_suppressions) || !(core in SSpersistence.cleared_core_suppressions[ckey]))
+			continue
+		var/secret_header = "<br><hr>"
+		if(!(secret_header in dat))
+			dat += secret_header
+		dat += "<b>[core]</b>: CLEARED!"
+
+	var/datum/browser/popup = new(src, "cores", "<div align='center'>Core Suppression Info</div>", 300, 500)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -367,6 +399,9 @@
 	var/mob/living/user = usr
 	if(istype(user) && href_list["shoes"] && shoes && (user.mobility_flags & MOBILITY_USE)) // we need to be on the ground, so we'll be a bit looser
 		shoes.handle_tying(usr)
+
+	if(href_list["see_attributes"])
+		show_attributes(usr)
 
 ///////HUDs///////
 	if(href_list["hud"])

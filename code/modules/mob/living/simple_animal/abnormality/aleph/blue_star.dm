@@ -11,6 +11,7 @@
 	icon_state = "blue_star"
 	icon_living = "blue_star"
 	icon_dead = "blue_star_dead"
+	portrait = "blue_star"
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	is_flying_animal = TRUE
 	del_on_death = FALSE

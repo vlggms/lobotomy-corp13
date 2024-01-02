@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "alriune"
 	icon_living = "alriune"
+	portrait = "alriune"
 
 	pixel_x = -8
 	base_pixel_x = -8

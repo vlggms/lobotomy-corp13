@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "current"
 	icon_living = "current"
+	portrait = "dreaming_current"
 	pixel_x = -16
 	base_pixel_x = -16
 

@@ -113,7 +113,8 @@
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(/obj/item/melee/classic_baton=1)
+	backpack_contents = list(/obj/item/melee/classic_baton=1,
+		/obj/item/info_printer=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -164,4 +165,5 @@
 		/obj/item/paper/fluff/tutorial/levels=1 ,
 		/obj/item/paper/fluff/tutorial/risk=1,
 		/obj/item/paper/fluff/tutorial/damage=1,
-		/obj/item/paper/fluff/tutorial/tips=1,)
+		/obj/item/paper/fluff/tutorial/tips=1,
+		/obj/item/info_printer=1)

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "orange_tree"
 	icon_living = "orange_tree"
+	portrait = "orange_tree"
 	faction = list("hostile")
 	speak_emote = list("hums")
 	is_flying_animal = TRUE

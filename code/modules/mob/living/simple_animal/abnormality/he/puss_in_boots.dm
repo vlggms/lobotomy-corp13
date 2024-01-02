@@ -8,6 +8,7 @@
 	var/icon_aggro = "cat_breached"
 	var/icon_friendly = "cat_breached_friendly"
 	icon_dead = "cat_breached"  //defeated icon? Maybe someday.
+	portrait = "puss_in_boots"
 	maxHealth = 1000
 	health = 1000
 	threat_level = HE_LEVEL

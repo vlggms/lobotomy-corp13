@@ -10,6 +10,7 @@
 	icon_living = "hiding"
 	icon_dead = "blackswan_dream"
 	var/icon_aggro = "blackswan_closed"
+	portrait = "black_swan"
 	del_on_death = FALSE
 	maxHealth = 3000
 	health = 3000

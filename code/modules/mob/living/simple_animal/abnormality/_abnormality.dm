@@ -82,6 +82,8 @@
 	// Increased Abno appearance chance
 	/// Assoc list, you do [path] = [probability_multiplier] for each entry
 	var/list/grouped_abnos = list()
+	//Abnormaltiy portrait, updated on spawn if they have one.
+	var/portrait = "UNKNOWN"
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -383,10 +385,15 @@
 
 // Special breach effect for abnormalities with can_breach set to TRUE
 /mob/living/simple_animal/hostile/abnormality/proc/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+	if(breach_type != BREACH_NORMAL && !can_breach)
+		// If a custom breach is called and the mob has no way of handling it, just ignore it.
+		// Should follow normal behaviour with ..()
+		return FALSE
 	toggle_ai(AI_ON) // Run.
 	status_flags &= ~GODMODE
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	FearEffect()
+	return TRUE
 
 // On lobotomy_corp subsystem qliphoth event
 /mob/living/simple_animal/hostile/abnormality/proc/OnQliphothEvent()
@@ -420,6 +427,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/proc/GetRiskLevel()
 	return threat_level
+
+/mob/living/simple_animal/hostile/abnormality/proc/GetPortrait()
+	return portrait
 
 // Actions
 /datum/action/innate/abnormality_attack

@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "hammer_pedestal"
 	icon_living = "hammer_pedestal"
+	portrait = "hammer_light"
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -8
@@ -175,31 +176,29 @@
 //Pink Midnight
 /mob/living/simple_animal/hostile/abnormality/hammer_light/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
 	if(!hammer_present)
-		return
+		return FALSE
 	if(breach_type != BREACH_PINK)
-		return
+		return FALSE
 	hammer_present = FALSE
 	sealed = FALSE
 	update_icon()
-	var/mob/living/simple_animal/hostile/ordeal/pink_midnight/mob_to_copy = null
-	var/turf/destination
-	for(var/mob/living/simple_animal/hostile/ordeal/pink_midnight/P in GLOB.ordeal_list)
-		destination = get_turf(P)
-		mob_to_copy = P
-	if(!mob_to_copy)
-		return
+	var/mob/living/simple_animal/hostile/ordeal/pink_midnight/P = locate() in GLOB.ordeal_list
+	if(!P)
+		return FALSE
+	var/turf/destination = get_turf(P)
 	var/turf/W = pick(GLOB.department_centers) //spawn hammers at a random department
 	for(var/turf/T in orange(1, W))
 		new /obj/effect/temp_visual/dir_setting/cult/phase
 		if(prob(50))
 			var/mob/living/simple_animal/hostile/lighthammer/V = new(T)
 			new /obj/effect/temp_visual/beam_in(T)
-			V.faction = mob_to_copy.faction.Copy()
+			V.faction = P.faction.Copy()
 			if(!destination)
 				continue
 			if(!V.patrol_to(destination)) //Move them to pink midnight
 				V.forceMove(destination)
 	addtimer(CALLBACK(src, .proc/UserDeath), usable_cooldown_time)
+	return TRUE
 
 //Item version
 /obj/item/ego_weapon/hammer_light

@@ -99,6 +99,34 @@
 	color_change = 1
 	drift = generator("vector", list(-0.1, -0.1), list(0.1, 0.1))
 
+/particles/fragment_note
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "fragment_note"
+	width = 96
+	height = 96
+	count = 30
+	spawning = 1
+	lifespan = 6
+	fade = 2
+	velocity = generator("circle", 10, 15)
+	friction = 0.25
+
+/particles/fragment_song
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = list("fragment_song_small","fragment_song_medium","fragment_song_large")
+	width = 128
+	height = 128
+	count = 30
+	spawning = 2
+	lifespan = 12
+	fadein = 6
+	fade = 6
+	velocity = generator("circle", -5, 5, NORMAL_RAND)
+	rotation = generator("num", -120, 120)
+	spin = generator("num", -20, 20)
+	grow = list(0.2,0.2)
+	friction = 0.6
+
 /* Particle emitter objects */
 
 /obj/particle_emitter
@@ -118,6 +146,13 @@
 		particles.spawning = initial(particles.spawning)
 	else
 		particles.spawning = 0
+
+/obj/particle_emitter/proc/fadeout()
+	enable(FALSE)
+	if(istype(particles))
+		QDEL_IN(src, initial(particles.lifespan))
+	else
+		QDEL_NULL(src)
 
 /obj/particle_emitter/sparks
 	particles = new/particles/drill_sparks
@@ -149,3 +184,11 @@
 /obj/particle_emitter/smoke/Initialize(mapload, time, _color)
 	. = ..()
 	filters = filter(type="blur", size=1.5)
+
+/obj/particle_emitter/fragment_note
+	layer = MOB_LAYER+1
+	particles = new/particles/fragment_note
+
+/obj/particle_emitter/fragment_song
+	layer = MOB_LAYER+1
+	particles = new/particles/fragment_song

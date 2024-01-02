@@ -1,6 +1,8 @@
 /*
 Assistant
 */
+GLOBAL_LIST_EMPTY(spawned_clerks)
+
 /datum/job/assistant
 	title = "Clerk"
 	faction = "Station"
@@ -36,8 +38,27 @@ Assistant
 	jobtype = /datum/job/assistant
 	uniform = /obj/item/clothing/under/suit/black
 	l_pocket = /obj/item/sensor_device
-	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/medical
 	backpack_contents = list(
 		/obj/item/healthanalyzer = 1,
 		/obj/item/gun/ego_gun/clerk = 1)
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical)
+
+/datum/outfit/job/assistant/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	..()
+	if(H.ckey in GLOB.spawned_clerks)
+		return
+	var/item = pick(
+	/obj/item/forcefield_projector,
+	/obj/item/deepscanner,
+	/obj/item/powered_gadget/slowingtrapmk1,
+	/obj/item/safety_kit,
+	/obj/item/powered_gadget/detector_gadget/abnormality,
+	/obj/item/powered_gadget/detector_gadget/ordeal,
+	/obj/item/powered_gadget/enkephalin_injector,
+	/obj/item/clerkbot_gadget,
+	/obj/item/powered_gadget/handheld_taser,
+	/obj/item/powered_gadget/vitals_projector,
+	/obj/item/reagent_containers/hypospray/emais,
+	)
+	GLOB.spawned_clerks += H.ckey
+	H.equip_to_slot_or_del(new item(H),ITEM_SLOT_HANDS, TRUE)

@@ -367,7 +367,7 @@
 	smashing = FALSE
 	return
 
-/obj/item/ego_weapon/courage
+/obj/item/ego_weapon/mini/courage
 	name = "courage"
 	desc = "Can I follow you forever? So I can tear them apart..."
 	special = "This weapon deals more damage the more allies you can see."
@@ -1022,16 +1022,17 @@
 	return TRUE
 
 /obj/item/ego_weapon/warp
-	name = "dimension shredder"
-	desc = "The path is intent on thwarting all attempts to memorize it."
-	special = "This weapon builds charge every 10 steps you've taken."
-	icon_state = "warp"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
+	name = "dimensional ripple"
+	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
+	icon_state = "warp2"
 	force = 24
-	attack_speed = 0.8
+	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
+	inhand_x_dimension = 32
+	inhand_y_dimension = 32
+	attack_speed = 1
+	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
+	reach = 2
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
@@ -1127,17 +1128,18 @@
 	QDEL_IN(src, 3 SECONDS)
 	..()
 
-/obj/item/ego_weapon/warp/spear//spear subtype of the above
-	name = "dimensional ripple"
-	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
-	icon_state = "warp2"
-	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
-	inhand_x_dimension = 32
-	inhand_y_dimension = 32
-	attack_speed = 1
-	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
-	reach = 2
+/obj/item/ego_weapon/warp/knife		//knife subtype of the above. knife has to be the subtype because it fits in a belt
+	name = "dimension shredder"
+	desc = "The path is intent on thwarting all attempts to memorize it."
+	special = "This weapon builds charge every 10 steps you've taken."
+	icon_state = "warp"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 24
+	attack_speed = 0.8
+	reach = 1
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"
@@ -1496,7 +1498,7 @@
 	attack_verb_simple = list("poke", "slash")
 	hitsound = 'sound/weapons/fixer/generic/sword1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40
+							PRUDENCE_ATTRIBUTE = 40
 							)
 	var/firing_cooldown = 0
 	var/hit_cooldown_time = 10 SECONDS
@@ -1747,3 +1749,85 @@
 
 /obj/item/ego_weapon/nixie/get_clamped_volume()
 	return 50
+
+/obj/item/ego_weapon/sunshower //TD
+	name = "sunshower"
+	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
+	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
+	icon_state = "sunshower"
+	force = 17
+	attack_speed = 0.5
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/poise = 0
+
+/obj/item/ego_weapon/sunshower/examine(mob/user)
+	. = ..()
+	. += "Current Poise: [poise]/20."
+
+/obj/item/ego_weapon/sunshower/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	poise+=1
+	if(poise>= 20)
+		poise = 20
+
+	//Crit stuff, taken from fourleaf, so thanks to whomever coded that!
+	if(prob(poise*2))
+		force*=3
+		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		poise = 0
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/uturn
+	name = "u-turn"
+	desc = "It's a large scythe, that probably hurts a lot."
+	icon_state = "uturn"
+	force = 30
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	var/can_spin = TRUE
+	var/spinning = FALSE
+
+/obj/item/ego_weapon/uturn/attack(mob/living/target, mob/living/user)
+	if(spinning)
+		return FALSE
+	..()
+	can_spin = FALSE
+	addtimer(CALLBACK(src, .proc/spin_reset), 12)
+
+/obj/item/ego_weapon/uturn/proc/spin_reset()
+	can_spin = TRUE
+
+/obj/item/ego_weapon/uturn/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!can_spin)
+		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+		return
+	if(do_after(user, 12, src))
+		can_spin = TRUE
+		addtimer(CALLBACK(src, .proc/spin_reset), 12)
+		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
+		for(var/turf/T in orange(1, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+
+		for(var/mob/living/L in range(1, user))
+			var/aoe = 30
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust/100
+			aoe*=justicemod
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)

@@ -10,6 +10,7 @@ Defeating the murderer also surpresses the abnormality.
 	desc = "A notebook containing a script used in a play. It is titled \"Peccatum Proprium\"."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "screenwriter"
+	portrait = "screenwriter"
 	faction = list("hostile")
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2

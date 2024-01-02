@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x32.dmi'
 	icon_state = "lantern"
 	icon_living = "lantern"
+	portrait = "meat_lantern"
 	maxHealth = 900
 	health = 900
 	base_pixel_x = -16

@@ -10,6 +10,7 @@
 	icon = 'ModularTegustation/Teguicons/128x128.dmi'
 	icon_state = "parasitetreeshine"
 	icon_living = "parasitetreeshine"
+	portrait = "parasite_tree"
 	pixel_x = -48
 	base_pixel_x = -48
 	pixel_y = -10

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "helper"
 	icon_living = "helper"
+	portrait = "helper"
 	maxHealth = 1000
 	health = 1000
 	rapid_melee = 4

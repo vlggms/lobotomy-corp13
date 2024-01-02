@@ -3,6 +3,7 @@
 	desc = "An old, dusty tome. There is a pen within the folded pages."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "book_0"
+	portrait = "book"
 	maxHealth = 600
 	health = 600
 	start_qliphoth = 2
@@ -117,7 +118,8 @@
 	spawnedmob.desc = "It looks like a [spawnedmob.name] but made of paper."
 	spawnedmob.name = "Paper [initial(spawnedmob.name)]"
 	spawnedmob.faction = list("hostile")
-	spawnedmob.health = (spawnedmob.maxHealth / 10)
+	spawnedmob.maxHealth = (spawnedmob.maxHealth / 10)
+	spawnedmob.health = spawnedmob.maxHealth
 	spawnedmob.death_message = "collapses into a bunch of writing material."
 	spawnedmob.filters += filter(type="drop_shadow", x=0, y=0, size=1, offset=0, color=rgb(0, 0, 0))
 	src.visible_message(span_warning("Pages of [src] fold into [spawnedmob]!"))

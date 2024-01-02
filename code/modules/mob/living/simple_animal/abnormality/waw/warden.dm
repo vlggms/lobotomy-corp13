@@ -5,6 +5,7 @@
 	icon_state = "warden"
 	icon_living = "warden"
 	icon_dead = "warden_dead"
+	portrait = "warden"
 	maxHealth = 2100
 	health = 2100
 	pixel_x = -8

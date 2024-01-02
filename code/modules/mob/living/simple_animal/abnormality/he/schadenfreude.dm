@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "schadenfreude"
 	icon_living = "schadenfreude"
+	portrait = "schadenfreude"
 	pixel_x = -16
 	base_pixel_x = -16
 	del_on_death = TRUE

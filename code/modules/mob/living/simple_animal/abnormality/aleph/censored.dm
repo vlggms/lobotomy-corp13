@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "censored"
 	icon_living = "censored"
+	portrait = "censored"
 	pixel_x = -16
 	base_pixel_x = -16
 	speak_emote = list("screeches")

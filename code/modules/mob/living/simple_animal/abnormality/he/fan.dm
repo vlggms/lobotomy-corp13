@@ -5,6 +5,7 @@
 	desc = "It appears to be an office fan."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fan"
+	portrait = "fan"
 	maxHealth = 400
 	health = 400
 	threat_level = HE_LEVEL

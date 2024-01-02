@@ -5,6 +5,7 @@
 	icon_state = "funeral"
 	icon_living = "funeral"
 	icon_dead = "funeral_dead"
+	portrait = "funeral"
 	del_on_death = FALSE
 	maxHealth = 1350 //I am a menace to society.
 	health = 1350

@@ -7,6 +7,7 @@
 	icon_living = "clown_smiling"
 	var/icon_aggro = "clown_breach"
 	icon_dead = "clown_breach"
+	portrait = "clown_smiling"
 	pixel_y = 64
 	base_pixel_y = 64
 	speak_emote = list("honks")
