@@ -7529,9 +7529,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/extraction)
-"FD" = (
-/turf/open/space/basic,
-/area/facility_hallway/safety)
 "FE" = (
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/purple{
@@ -56568,10 +56565,10 @@ Mh
 Mh
 Mh
 Mh
-FD
-FD
-FD
-FD
+Mh
+Mh
+Mh
+Mh
 ga
 ga
 ga
@@ -56829,10 +56826,10 @@ Mh
 Mh
 Mh
 Mh
-FD
-FD
-FD
-FD
+Mh
+Mh
+Mh
+Mh
 Dq
 sr
 sr
