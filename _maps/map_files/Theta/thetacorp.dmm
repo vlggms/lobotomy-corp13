@@ -4635,7 +4635,6 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/machinery/door/window,
 /obj/item/storage/backpack/duffelbag/med/surgery{
 	pixel_y = 4
 	},
@@ -5318,9 +5317,6 @@
 	dir = 8
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/machinery/door/window{
-	dir = 1
-	},
 /obj/item/storage/backpack/duffelbag/med/surgery{
 	pixel_y = 4
 	},
@@ -5353,9 +5349,6 @@
 	dir = 8
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/structure/window/reinforced/spawner{
-	resistance_flags = 115
-	},
 /obj/item/clothing/suit/apron/surgical,
 /obj/machinery/light{
 	dir = 1;
@@ -5589,11 +5582,6 @@
 /obj/machinery/computer/operating{
 	dir = 1
 	},
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_x = -4
-	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
 "tG" = (
@@ -5805,12 +5793,6 @@
 "uw" = (
 /obj/machinery/conveyor_switch/oneway{
 	id = "154"
-	},
-/obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115;
-	pixel_y = 32;
-	pixel_x = -33;
-	density = 0
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/training)
@@ -8488,10 +8470,6 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	resistance_flags = 115
-	},
 /obj/item/clothing/suit/apron/surgical,
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel/sepia,
@@ -11405,11 +11383,6 @@
 	dir = 8
 	},
 /obj/machinery/computer/operating,
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_x = -4
-	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
 "Ny" = (
@@ -12810,10 +12783,6 @@
 /obj/structure/table/wood/fancy/green,
 /obj/item/clothing/suit/apron/surgical,
 /obj/item/reagent_containers/spray/cleaner,
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	resistance_flags = 115
-	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
 "Sb" = (
@@ -13398,23 +13367,13 @@
 /turf/closed/indestructible/rock,
 /area/space)
 "Up" = (
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	pixel_y = 128;
+	density = 0
 	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/structure/table/wood/fancy/green,
-/obj/item/storage/backpack/duffelbag/med/surgery{
-	pixel_y = 4
-	},
-/obj/machinery/door/window,
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/safety)
+/turf/closed/indestructible/rock,
+/area/space)
 "Us" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 1
@@ -41171,7 +41130,7 @@ sU
 lG
 Ug
 Lb
-zs
+Up
 zs
 zs
 zs
@@ -56030,7 +55989,7 @@ zs
 zs
 zs
 za
-Up
+ql
 vX
 Ax
 sM
