@@ -5931,23 +5931,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/information)
-"Dq" = (
-/obj/effect/turf_decal/siding/purple{
-	color = "#511c4b";
-	dir = 1
-	},
-/obj/effect/turf_decal/trimline/purple/filled/line,
-/obj/machinery/computer/shuttle/pod{
-	pixel_y = 23;
-	possible_destinations = "iotamain_northwest;iotamain_northeast;iotamain_southwest;iotamain_southeast";
-	name = "outskirts alert console";
-	req_access = list(any);
-	shuttleId = "iotamain"
-	},
-/turf/open/floor/plasteel/bluespace{
-	name = "secure flooring"
-	},
-/area/facility_hallway/information)
 "Dw" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/effect/turf_decal/stripes/full,
@@ -45264,7 +45247,7 @@ SK
 Wp
 SK
 nO
-xi
+HS
 cC
 tZ
 nO
@@ -45521,7 +45504,7 @@ SK
 SK
 SK
 nO
-Dq
+xi
 Gr
 gl
 nO
