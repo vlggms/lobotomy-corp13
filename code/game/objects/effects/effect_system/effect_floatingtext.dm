@@ -54,30 +54,30 @@
 			target_floating_text_effect.icon = 'icons/effects/UnknownDamageTypeIcon.png'
 			style_text_color = "#ffffff"
 
-	// Spaces at the end of each lol
 	switch(damage_multiplier_percentage_number)
 		if(0 to 0)
-			defense_descriptor_string = "Immune "
+			defense_descriptor_string = "Immune"
 		if(100 to 100) // Normal display nothing
 			defense_descriptor_string = ""
 		if(-INFINITY to 0)
-			defense_descriptor_string = "Absorb "
+			defense_descriptor_string = "Absorb"
 			postcalc_damage_number_or_str = abs(postcalc_damage_number_or_str) // This comes in as a negative
 		if(0 to 50)
-			defense_descriptor_string = "Resist "
+			defense_descriptor_string = "Resist"
 		if(50 to 100)
-			defense_descriptor_string = "Endure "
+			defense_descriptor_string = "Endure"
 		if(100 to 150)
-			defense_descriptor_string = "Weak "
+			defense_descriptor_string = "Weak"
 		if(200 to INFINITY)
-			defense_descriptor_string = "Fatal "
+			defense_descriptor_string = "Fatal"
 		if(150 to 200)
-			defense_descriptor_string = "Vulnerable "
+			defense_descriptor_string = "Vulnerable"
 
 	//to_chat(world, "postcalc_damage_number_or_str: [postcalc_damage_number_or_str], damage_type_str: [damage_type_str], damage_percentage:[damage_multiplier_percentage_number]")
 
 	var/style = "font-family: 'Small Fonts'; font-size: 6px; -dm-text-outline: 1px black; color: [style_text_color];"
-	target_floating_text_effect.maptext = "<span style=\"[style]\">[defense_descriptor_string][postcalc_damage_number_or_str]</span>"
+	// There is in fact a space in that there text below us right here.
+	target_floating_text_effect.maptext = "<span style=\"[style]\">[defense_descriptor_string] [postcalc_damage_number_or_str]</span>"
 
 	animate(target_floating_text_effect, pixel_y = target_floating_text_effect.pixel_y + 20, alpha = 0, time = 10, easing = SINE_EASING)
 
