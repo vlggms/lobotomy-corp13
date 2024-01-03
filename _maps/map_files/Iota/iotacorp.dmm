@@ -14744,7 +14744,6 @@
 /area/facility_hallway/east)
 "WA" = (
 /obj/machinery/disposal/bin{
-	appearance_flags = s;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk,
