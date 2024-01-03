@@ -4233,24 +4233,28 @@
 	},
 /area/facility_hallway/discipline)
 "mR" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/obj/structure/window/reinforced/spawner/north{
+/obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
-	resistance_flags = 115
+	resistance_flags = 115;
+	pixel_y = -96
 	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_y = -128
 	},
-/area/department_main/discipline)
+/turf/open/floor/grass{
+	density = 1
+	},
+/area/space)
 "mV" = (
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 1
@@ -5904,23 +5908,21 @@
 	},
 /area/department_main/command)
 "sy" = (
-/obj/structure/lattice/lava{
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
 	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	pixel_y = -160
 	},
-/obj/structure/window/reinforced/spawner{
-	resistance_flags = 115
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_x = -32;
+	pixel_y = -160
 	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
+/turf/open/floor/grass{
+	density = 1
 	},
-/area/department_main/discipline)
+/area/space)
 "sA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -6626,9 +6628,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
 	},
-/obj/structure/window/reinforced/spawner{
-	resistance_flags = 115
-	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -7127,10 +7126,6 @@
 "wd" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -9216,24 +9211,22 @@
 	},
 /area/facility_hallway/west)
 "CW" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
-	},
-/obj/structure/window/reinforced/spawner/west{
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/brflowers,
+/obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	resistance_flags = 115
+	resistance_flags = 115;
+	pixel_x = 32;
+	pixel_y = -128
 	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	pixel_y = -96
 	},
-/area/department_main/discipline)
+/turf/open/floor/grass{
+	density = 1
+	},
+/area/space)
 "CX" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
@@ -9354,13 +9347,35 @@
 	},
 /area/facility_hallway/safety)
 "Dt" = (
-/obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_x = 32
 	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115;
+	pixel_y = 32
 	},
-/area/department_main/control)
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115;
+	pixel_y = 32;
+	pixel_x = -32
+	},
+/turf/open/lava{
+	density = 1;
+	color = "#006700";
+	name = "Unrefined Enkephalin";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0
+	},
+/area/department_main/discipline)
 "Du" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 9
@@ -10060,6 +10075,23 @@
 	set_luminosity = 24
 	},
 /obj/structure/toolabnormality/shelter/entrance,
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_y = 167;
+	pixel_x = -128
+	},
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	pixel_y = 160;
+	pixel_x = -160
+	},
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_y = 167;
+	pixel_x = -128
+	},
 /turf/open/floor/facility,
 /area/space)
 "Gk" = (
@@ -39961,10 +39993,10 @@ Mb
 IN
 QN
 kT
-WO
+CW
 Ou
 vB
-Dt
+Dk
 xr
 Uc
 Uc
@@ -39978,7 +40010,7 @@ IJ
 Bo
 Bo
 Hb
-Dt
+Dk
 vB
 FG
 FG
@@ -56671,7 +56703,7 @@ KB
 ab
 yc
 yc
-mR
+yo
 iW
 wa
 wX
@@ -56681,7 +56713,7 @@ Ge
 wX
 wa
 gS
-sy
+yo
 yc
 yc
 ab
@@ -56923,12 +56955,12 @@ ND
 uH
 Do
 PS
-kT
+sy
 nA
 ab
 yc
 yc
-mR
+yo
 RC
 KO
 wX
@@ -56938,8 +56970,8 @@ Ge
 wX
 KO
 xy
-sy
-yc
+yo
+Dt
 yc
 ab
 zr
@@ -57180,11 +57212,11 @@ Co
 uH
 Do
 kT
-gY
+mR
 aT
 ab
-CW
-CW
+yo
+yo
 ec
 iW
 KO
@@ -57196,8 +57228,8 @@ AW
 KO
 gS
 yo
-CW
-CW
+yo
+yo
 ab
 zr
 zr
