@@ -5297,7 +5297,6 @@
 /area/facility_hallway/safety)
 "CP" = (
 /obj/machinery/disposal/bin{
-	appearance_flags = s;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
