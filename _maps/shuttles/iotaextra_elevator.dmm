@@ -169,7 +169,6 @@
 	pixel_y = 23;
 	possible_destinations = "iotamain_northwest;iotamain_northeast;iotamain_southwest;iotamain_southeast";
 	name = "warp pod control computer";
-	req_access = list(any);
 	shuttleId = "iotamain"
 	},
 /turf/open/floor/pod/dark,
