@@ -15,6 +15,10 @@
 	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
+"ai" = (
+/obj/effect/landmark/latejoin,
+/turf/open/floor/pod/light,
+/area/facility_hallway/command)
 "al" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -259,6 +263,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 4
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod,
 /area/facility_hallway/information)
 "br" = (
@@ -530,6 +535,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 4
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod,
 /area/facility_hallway/control)
 "dx" = (
@@ -1486,10 +1492,12 @@
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 8
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
 "hW" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
 "hZ" = (
@@ -3994,6 +4002,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod,
 /area/facility_hallway/control)
 "vu" = (
@@ -6651,6 +6660,7 @@
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 8
 	},
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod,
 /area/facility_hallway/information)
 "JH" = (
@@ -9468,6 +9478,7 @@
 /area/facility_hallway/information)
 "Xh" = (
 /obj/effect/turf_decal/trimline/red/filled/corner,
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
 "Xs" = (
@@ -9620,6 +9631,7 @@
 /area/facility_hallway/training)
 "Yg" = (
 /obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
 "Yi" = (
@@ -40107,10 +40119,10 @@ sz
 et
 FL
 Yr
-MP
-MP
-MP
-MP
+ai
+ai
+ai
+ai
 MP
 PZ
 sR
@@ -45247,10 +45259,10 @@ uB
 ys
 Vz
 Yr
-MP
-MP
-MP
-MP
+ai
+ai
+ai
+ai
 MP
 PZ
 sR
