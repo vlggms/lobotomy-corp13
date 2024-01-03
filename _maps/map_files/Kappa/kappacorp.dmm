@@ -517,11 +517,6 @@
 	},
 /area/department_main/command)
 "cH" = (
-/obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115;
-	pixel_y = 32;
-	density = 0
-	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "cI" = (
@@ -2018,6 +2013,10 @@
 	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/door/window{
+	dir = 4;
+	resistance_flags = 115
+	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
 	},
@@ -2730,6 +2729,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/window{
+	dir = 4;
+	resistance_flags = 115
+	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
 	},
@@ -2776,6 +2779,10 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
@@ -2911,10 +2918,6 @@
 	dir = 8;
 	pixel_x = 8;
 	color = "green";
-	resistance_flags = 115
-	},
-/obj/machinery/door/window{
-	dir = 8;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -3181,10 +3184,6 @@
 	dir = 4;
 	pixel_x = -8;
 	color = "green";
-	resistance_flags = 115
-	},
-/obj/machinery/door/window{
-	dir = 4;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -3584,17 +3583,6 @@
 	},
 /area/facility_hallway/information)
 "rt" = (
-/obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115;
-	pixel_y = -32;
-	density = 0
-	},
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	pixel_y = -32;
-	density = 0;
-	resistance_flags = 115
-	},
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 25;
@@ -3695,6 +3683,10 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
@@ -4598,10 +4590,6 @@
 	color = "#A46106";
 	resistance_flags = 115
 	},
-/obj/machinery/door/window{
-	dir = 8;
-	resistance_flags = 115
-	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
@@ -4646,6 +4634,10 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 10
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
@@ -4979,6 +4971,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/machinery/door/window{
+	dir = 4;
+	resistance_flags = 115
+	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
 	},
@@ -5060,10 +5056,6 @@
 	dir = 4;
 	pixel_x = -8;
 	color = "#A46106";
-	resistance_flags = 115
-	},
-/obj/machinery/door/window{
-	dir = 4;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -5170,10 +5162,6 @@
 	dir = 4;
 	pixel_x = -8;
 	color = "purple";
-	resistance_flags = 115
-	},
-/obj/machinery/door/window{
-	dir = 4;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -5355,6 +5343,10 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 9
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
@@ -5601,10 +5593,6 @@
 	dir = 8;
 	pixel_x = 8;
 	color = "purple";
-	resistance_flags = 115
-	},
-/obj/machinery/door/window{
-	dir = 8;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -6161,10 +6149,6 @@
 	color = "red";
 	resistance_flags = 115
 	},
-/obj/machinery/door/window{
-	dir = 4;
-	resistance_flags = 115
-	},
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
@@ -6629,10 +6613,6 @@
 	dir = 8;
 	pixel_x = 8;
 	color = "red";
-	resistance_flags = 115
-	},
-/obj/machinery/door/window{
-	dir = 8;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -7570,6 +7550,10 @@
 /obj/structure/disposalpipe/segment{
 	dir = 6
 	},
+/obj/machinery/door/window{
+	dir = 4;
+	resistance_flags = 115
+	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
 	},
@@ -8460,14 +8444,19 @@
 	},
 /area/department_main/command)
 "PX" = (
+/obj/structure/disposalpipe/segment,
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
 	resistance_flags = 115;
-	pixel_y = 32;
-	density = 0
+	pixel_y = -128;
+	density = 0;
+	pixel_x = 96
 	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/extraction)
+/turf/open/floor/plating/ironsand{
+	density = 1;
+	name = "Outskirt"
+	},
+/area/facility_hallway/central)
 "PY" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
@@ -9189,10 +9178,6 @@
 	color = "#A46106";
 	resistance_flags = 115
 	},
-/obj/machinery/door/window{
-	dir = 4;
-	resistance_flags = 115
-	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
 	},
@@ -9455,6 +9440,19 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
+"UV" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	pixel_y = -160;
+	density = 0;
+	pixel_x = 159
+	},
+/turf/open/floor/plating/ironsand{
+	density = 1;
+	name = "Outskirt"
+	},
+/area/facility_hallway/central)
 "UW" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/disposalpipe/segment{
@@ -9650,10 +9648,6 @@
 	dir = 4;
 	pixel_x = -8;
 	color = "green";
-	resistance_flags = 115
-	},
-/obj/machinery/door/window{
-	dir = 4;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -36983,8 +36977,8 @@ dS
 dS
 dS
 dS
-dS
-dS
+UV
+PX
 dS
 lW
 VL
@@ -37760,7 +37754,7 @@ aL
 aL
 VL
 LG
-PX
+cH
 bY
 Dx
 Dx
