@@ -4233,23 +4233,16 @@
 	},
 /area/facility_hallway/discipline)
 "mR" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/obj/structure/flora/ausbushes/sparsegrass,
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/obj/structure/window/reinforced/spawner/west{
+/obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
 	resistance_flags = 115;
-	pixel_y = -96
+	pixel_y = -160
 	},
-/obj/structure/window/reinforced/spawner/west{
+/obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
 	resistance_flags = 115;
-	pixel_y = -128
+	pixel_x = -32;
+	pixel_y = -160
 	},
 /turf/open/floor/grass{
 	density = 1
@@ -5908,16 +5901,23 @@
 	},
 /area/department_main/command)
 "sy" = (
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_y = -160
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/obj/structure/window/reinforced/spawner/north{
+/obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
 	resistance_flags = 115;
-	pixel_x = -32;
-	pixel_y = -160
+	pixel_y = -96
+	},
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_y = -128
 	},
 /turf/open/floor/grass{
 	density = 1
@@ -56955,7 +56955,7 @@ ND
 uH
 Do
 PS
-sy
+mR
 nA
 ab
 yc
@@ -57212,7 +57212,7 @@ Co
 uH
 Do
 kT
-mR
+sy
 aT
 ab
 yo
