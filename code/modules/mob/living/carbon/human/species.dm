@@ -1599,6 +1599,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(BRUTE, MELEE, BULLET, BOMB, ACID)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * brutemod * H.physiology.brute_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, BRUTE, 100 * hit_percent * brutemod * H.physiology.brute_mod * CONFIG_GET(number/damage_multiplier))
 			if(BP)
 				if(BP.receive_damage(damage_amount, 0, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
@@ -1607,6 +1608,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		if(BURN, FIRE, LASER, ENERGY, RAD)
 			H.damageoverlaytemp = 20
 			var/damage_amount = forced ? damage : damage * hit_percent * burnmod * H.physiology.burn_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, BURN, 100 * hit_percent * burnmod * H.physiology.burn_mod * CONFIG_GET(number/damage_multiplier))
 			if(BP)
 				if(BP.receive_damage(0, damage_amount, wound_bonus = wound_bonus, bare_wound_bonus = bare_wound_bonus, sharpness = sharpness))
 					H.update_damage_overlays()
@@ -1614,15 +1616,19 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				H.adjustFireLoss(damage_amount)
 		if(TOX, BIO)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.tox_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, TOX, 100 * hit_percent * H.physiology.tox_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustToxLoss(damage_amount)
 		if(OXY)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.oxy_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, damagetype, 100 * hit_percent * H.physiology.oxy_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustOxyLoss(damage_amount)
 		if(CLONE)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.clone_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, damagetype, 100 * hit_percent * H.physiology.clone_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustCloneLoss(damage_amount)
 		if(STAMINA)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.stamina_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, damagetype, 100 * hit_percent * H.physiology.stamina_mod * CONFIG_GET(number/damage_multiplier))
 			if(BP)
 				if(BP.receive_damage(0, 0, damage_amount))
 					H.update_stamina()
@@ -1630,18 +1636,24 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				H.adjustStaminaLoss(damage_amount)
 		if(BRAIN)
 			var/damage_amount = forced ? damage : damage * hit_percent * H.physiology.brain_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, damagetype, 100 * hit_percent * H.physiology.brain_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustOrganLoss(ORGAN_SLOT_BRAIN, damage_amount)
 		if(RED_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * redmod * H.physiology.red_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, damagetype, 100 * hit_percent * redmod * H.physiology.red_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustRedLoss(damage_amount, forced = forced)
 		if(WHITE_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * whitemod * H.physiology.white_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, damagetype, 100 * hit_percent * whitemod * H.physiology.white_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustWhiteLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(BLACK_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * blackmod * H.physiology.black_mod
+			ez_dmg_numbers_text(H.loc, damage_amount, damagetype, 100 * hit_percent * blackmod * H.physiology.black_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustBlackLoss(damage_amount, forced = forced, white_healable = white_healable)
 		if(PALE_DAMAGE)
 			var/damage_amount = forced ? damage : damage * hit_percent * palemod * H.physiology.pale_mod
+			// This one gets converted into a percentage and then a percentage of max health is dealt as brute. (cut health = max_health * (dealt damage/100)
+			ez_dmg_numbers_text(H.loc, "[damage_amount]%", damagetype, 100 * hit_percent * palemod * H.physiology.pale_mod * CONFIG_GET(number/damage_multiplier))
 			H.adjustPaleLoss(damage_amount, forced = forced)
 	return 1
 

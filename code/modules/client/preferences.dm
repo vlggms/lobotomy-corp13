@@ -154,6 +154,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	///What does the player think of TerraGov.
 	var/terragov_relation = RELATION_NEUTRAL
 
+	///This just decides whether the optional extra visual effects planemaster has 255 alpha or 0 alpha for a client
+	var/optional_extra_visual_effects = FALSE
+
 /datum/preferences/New(client/C)
 	parent = C
 
@@ -672,6 +675,8 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if(SCALING_METHOD_BLUR)
 					button_name = "Bilinear"
 			dat += "<b>Scaling Method:</b> <a href='?_src_=prefs;preference=scaling_method'>[button_name]</a><br>"
+
+			dat += "<b>Optional Extra Visual Effects:</b> <a href='?_src_=prefs;preference=optional_extra_visual_effects'>[optional_extra_visual_effects ? "Enabled" : "Disabled"]</a><br>"
 
 			if (CONFIG_GET(flag/maprotation))
 				var/p_map = preferred_map
@@ -1951,6 +1956,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						if(SCALING_METHOD_BLUR)
 							scaling_method = SCALING_METHOD_NORMAL
 					user.client.view_size.setZoomMode()
+
+				if("optional_extra_visual_effects") // whoa....
+					optional_extra_visual_effects = !optional_extra_visual_effects
+					var/atom/movable/screen/plane_master/optional_extra_visual_effects/PM = locate(/atom/movable/screen/plane_master/optional_extra_visual_effects) in parent.screen
+					if(PM)
+						PM.backdrop(parent.mob)
 
 				if("save")
 					save_preferences()

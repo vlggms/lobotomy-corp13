@@ -147,3 +147,20 @@
 	filters = list()
 	if(istype(mymob) && mymob.client?.prefs?.ambientocclusion)
 		add_filter("AO", 1, drop_shadow_filter(x = 0, y = -2, size = 4, color = "#04080FAA"))
+
+// This plane comes out the gate hidden
+// It is the thing extra effects are rendered upon
+/atom/movable/screen/plane_master/optional_extra_visual_effects
+	name = "optional extra visual effects planemaster"
+	plane = OPTIONAL_EXTRA_VISUAL_EFFECTS_PLANE
+	appearance_flags = PLANE_MASTER
+	blend_mode = BLEND_OVERLAY
+	alpha = 0
+
+//this shits called for hud updates automatically, its called backdrop but its the only low effort proc for these i think there is.
+/atom/movable/screen/plane_master/optional_extra_visual_effects/backdrop(mob/M)
+	if(M.client)
+		if(M.client.prefs.optional_extra_visual_effects)
+			alpha = 255
+		else
+			alpha = 0 // remember 0 means we are fully transparent

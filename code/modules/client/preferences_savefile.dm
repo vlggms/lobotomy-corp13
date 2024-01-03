@@ -199,6 +199,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["tip_delay"], tip_delay)
 	READ_FILE(S["pda_style"], pda_style)
 	READ_FILE(S["pda_color"], pda_color)
+	//lc13 extras?
+	READ_FILE(S["optional_extra_visual_effects"], optional_extra_visual_effects)
 
 	// Custom hotkeys
 	READ_FILE(S["key_bindings"], key_bindings)
@@ -263,6 +265,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_keybindings(key_bindings)
 	favorite_outfits = SANITIZE_LIST(favorite_outfits)
+	//lc13 extras?
+	optional_extra_visual_effects = sanitize_integer(optional_extra_visual_effects, FALSE, TRUE, initial(optional_extra_visual_effects))
 
 	if(needs_update >= 0) //save the updated version
 		var/old_default_slot = default_slot
@@ -339,6 +343,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["key_bindings"], key_bindings)
 	WRITE_FILE(S["hearted_until"], (hearted_until > world.realtime ? hearted_until : null))
 	WRITE_FILE(S["favorite_outfits"], favorite_outfits)
+	//lc13 extras?
+	WRITE_FILE(S["optional_extra_visual_effects"], optional_extra_visual_effects)
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)
