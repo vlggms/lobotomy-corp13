@@ -1,8 +1,9 @@
-/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage
-	name = "blade lineage cutthroat robe"
-	desc = "A light robe worn by blade lineage cutthroats. Increases your running speed by 20%, allowing for quick strikes."
-	icon_state = "bladelineage_cuttthroat"
-	slowdown = -0.2
+
+/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu
+	name = "blade lineage salsu robe"
+	desc = "A light robe worn by blade lineage salsus. Increases your running speed by 25%, allowing for quick strikes."
+	icon_state = "bladelineagesalsu"
+	slowdown = -0.25
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 55,
 							PRUDENCE_ATTRIBUTE = 55,
@@ -10,11 +11,11 @@
 							JUSTICE_ATTRIBUTE = 55
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu
-	name = "blade lineage salsu robe"
-	desc = "A light robe worn by blade lineage salsus. Increases your running speed by 35%, allowing for quick strikes."
-	icon_state = "bladelineagesalsu"
-	slowdown = -0.35
+/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat
+	name = "blade lineage cutthroat robe"
+	desc = "A light robe worn by blade lineage cutthroats. Increases your running speed by 40%, allowing for quick strikes."
+	icon_state = "bladelineage_cuttthroat"
+	slowdown = -0.40
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 70,
 							PRUDENCE_ATTRIBUTE = 70,

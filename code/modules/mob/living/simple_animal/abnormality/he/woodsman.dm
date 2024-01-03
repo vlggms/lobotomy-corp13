@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "woodsman"
 	icon_living = "woodsman_breach"
+	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 1433
 	health = 1433
@@ -14,10 +15,9 @@
 	stat_attack = DEAD
 	melee_damage_lower = 15
 	melee_damage_upper = 30
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	vision_range = 14
 	aggro_vision_range = 20
-	attack_action_types = list(/datum/action/innate/abnormality_attack/woodsman_flurry)
 	can_buckle = TRUE
 	can_breach = TRUE
 	threat_level = HE_LEVEL
@@ -40,6 +40,15 @@
 		)
 	gift_type =  /datum/ego_gifts/loggging
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
+		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
 	var/flurry_count = 7
@@ -49,12 +58,19 @@
 	var/flurry_width = 2
 	var/can_act = TRUE
 
-/datum/action/innate/abnormality_attack/woodsman_flurry
-	name = "Deforestation"
-	icon_icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	button_icon_state = "training_rabbit"
-	chosen_message = "<span class='colossus'>You will now attempt to fell all hearts in your path.</span>"
-	chosen_attack_num = 1
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle
+	name = "Toggle Deforestation"
+	button_icon_state = "woodsman_toggle0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't fell hearts anymore.")
+	button_icon_toggle_activated = "woodsman_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now attempt to fell all hearts in your path.")
+	button_icon_toggle_deactivated = "woodsman_toggle0"
+
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Move()
 	if(!can_act)
@@ -92,9 +108,9 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/Heal(mob/living/carbon/human/body)
-	src.visible_message("<span class='warning'>[src] plunges their hand into [body]'s chest and rips out their heart!</span>", \
-		"<span class='notice'>You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough.</span>", \
-		"<span class='hear'>You hear a metal clange and squishing.</span>")
+	src.visible_message(span_warning("[src] plunges their hand into [body]'s chest and rips out their heart!"), \
+		span_notice("You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough."), \
+		span_hear("You hear a metal clange and squishing."))
 	src.adjustBruteLoss(-666) // Actually just the conversion of health he heals scaled to equivalent health that Helper has.
 	for(var/obj/item/organ/O in body.getorganszone(BODY_ZONE_CHEST, TRUE))
 		if(istype(O,/obj/item/organ/heart))
@@ -117,6 +133,8 @@
 		switch(chosen_attack)
 			if(1)
 				Woodsman_Flurry(target)
+			if(2)
+				return
 		return
 
 	if(flurry_cooldown <= world.time)
@@ -216,16 +234,7 @@
 		var/list/been_hit = list()
 		for(var/turf/T in area_of_effect)
 			new /obj/effect/temp_visual/smash_effect(T)
-			for(var/mob/living/L in T)
-				if(faction_check_mob(L) || (L in been_hit))
-					continue
-				if (L == src)
-					continue
-				been_hit += L
-				if (i > 6)
-					L.apply_damage(flurry_big, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				else
-					L.apply_damage(flurry_small, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			been_hit = HurtInTurf(T, been_hit, i > 6 ? flurry_big : flurry_small, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		if (i > 6)
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 100, 0, 8) // BAM
 		else
@@ -258,7 +267,7 @@
 	if (GODMODE in user.status_flags)
 		return
 	if(datum_reference.qliphoth_meter == 1)
-		to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down!</span>")
+		to_chat(user, span_userdanger("The Woodsman swings his axe down!"))
 		datum_reference.qliphoth_change(-1)
 		user.gib()
 
@@ -266,7 +275,7 @@
 	if(!IsContained() || user == src || !ishuman(M) || (GODMODE in M.status_flags))
 		return FALSE
 	. = ..()
-	to_chat(user, "<span class='userdanger'>The Woodsman swings his axe down and...!</span>")
+	to_chat(user, span_userdanger("The Woodsman swings his axe down and...!"))
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	var/obj/item/organ/heart/O = M.getorgan(/obj/item/organ/heart)
 	if(istype(O))
@@ -274,11 +283,11 @@
 		QDEL_NULL(O)
 	M.gib()
 	if(datum_reference.qliphoth_meter == 1)
-		to_chat(user, "<span class='nicegreen'>Rests it on the ground.</span>")
+		to_chat(user, span_nicegreen("Rests it on the ground."))
 		datum_reference.qliphoth_change(1)
 		icon_state = "woodsman"
 	else
-		to_chat(user, "<span class='userdanger'>Stands up!</span>")
+		to_chat(user, span_userdanger("Stands up!"))
 		datum_reference.qliphoth_change(-2)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user)

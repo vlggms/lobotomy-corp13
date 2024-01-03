@@ -3,6 +3,7 @@
 	desc = "A constantly dripping bath of blood"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "bloodbath"
+	portrait = "blood_bath"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
@@ -38,7 +39,7 @@
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		user.dust()
-		visible_message("<span class='warning'>[src] drags [user] into itself!</span>")
+		visible_message(span_warning("[src] drags [user] into itself!"))
 		playsound(get_turf(src),'sound/effects/wounds/blood2.ogg')
 		playsound(get_turf(src),'sound/effects/footstep/water1.ogg')
 		SLEEP_CHECK_DEATH(3 SECONDS)

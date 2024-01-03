@@ -6,13 +6,39 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Department Head",
 	"Agent Captain",
 
+	//City heads
+	"Doctor",
+	"Hana Administrator",
+	"Association Section Director",
+	"Index Messenger",
+	"Blade Lineage Cutthroat",
+	"Grand Inquisitor",
+	"Thumb Sottocapo",
+	"Kurokumo Kashira",
 
-	//Rcorp stuff
+
+	//Rcorp Fourth Pack
 	"Ground Commander",
+	"Lieutenant Commander",
+	"Operations Officer",
 	"Rabbit Squad Captain",
 	"Reindeer Squad Captain",
 	"Rhino Squad Captain",
 	"Raven Squad Captain",
+
+	//Rcorp Fifth Pack
+	"Assault Commander",
+	"Base Commander",
+	"Support Officer",
+	"Rat Squad Leader",
+	"Rooster Squad Leader",
+	"Raccoon Squad Leader",
+	"Roadrunner Squad Leader",
+
+
+	//Wcorp stuff
+	"W-Corp Representative",
+	"W-Corp L3 Squad Captain",
 	))
 
 
@@ -25,10 +51,16 @@ GLOBAL_LIST_INIT(medical_positions, list(
 
 
 GLOBAL_LIST_INIT(science_positions, list(
-//	"Fixer",
+	"Hana Administrator",
+	"Hana Representative",
+	"Hana Intern",
 	"Association Section Director",
 	"Association Veteran",
 	"Association Fixer",
+	"East Office Director",
+	"East Office Fixer",
+	"North Office Director",
+	"North Office Fixer",
 	))
 
 
@@ -37,12 +69,18 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 
 GLOBAL_LIST_INIT(service_positions, list(
+	"Doctor",
+	"Nurse",
+	"Paramedic",
 	"Clerk",
 	"HHPP Chef",
-	"Scavenger",
+	"Civilian",
 	"Backstreets Butcher",
-	"Doctor",
+	"Carnival",
+	"Workshop Attendant",
 	"Main Office Representative",
+	"Fishhook Office Fixer",
+	"Rat",
 	))
 
 
@@ -56,11 +94,51 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Agent",
 	"Agent Intern",
 
+	//R-Corp Fourth Pack
 	"R-Corp Suppressive Rabbit",
 	"R-Corp Assault Rabbit",
-	"R-Corp Reindeer",
-	"R-Corp Rhino",
-	"R-Corp Raven",
+	"R-Corp Medical Reindeer",
+	"R-Corp Berserker Reindeer",
+	"R-Corp Gunner Rhino",
+	"R-Corp Hammer Rhino",
+	"R-Corp Scout Raven",
+	"R-Corp Support Raven",
+
+	//Fifth Pack
+	"R-Corp Rat",
+	"R-Corp Rooster",
+	"R-Corp Raccoon",
+	"R-Corp Roadrunner",
+
+	//W-Corp agents
+	"W-Corp L2 Type A Lieutenant",
+	"W-Corp L2 Type B Support Agent",
+	"W-Corp L2 Type C Weapon Specialist",
+	"W-Corp L2 Type D Spear Agent",
+	"W-Corp L1 Cleanup Agent",
+
+
+	//Syndicates
+	"Index Messenger",
+	"Index Proxy",
+	"Index Proselyte",
+
+	"Blade Lineage Cutthroat",
+	"Blade Lineage Salsu",
+	"Blade Lineage Ronin",
+
+	"Grand Inquisitor",
+	"N Corp Grosshammer",
+	"N Corp Mittlehammer",
+	"N Corp Kleinhammer",
+
+	"Thumb Sottocapo",
+	"Thumb Capo",
+	"Thumb Soldato",
+
+	"Kurokumo Kashira",
+	"Kurokumo Hosa",
+	"Kurokumo Wakashu",
 
 	))
 

@@ -86,6 +86,7 @@
 	extra_range = 40
 	falloff_distance = 35 //minimal falloff due to being a long sound
 	end_sound = 'sound/abnormalities/siren/needle2.ogg'
+	channel = CHANNEL_SIREN
 
 /datum/looping_sound/clown_ambience
 	mid_sounds = 'sound/abnormalities/clownsmiling/clownloop.ogg'
@@ -110,6 +111,18 @@
 	mid_sounds = 'sound/abnormalities/quietday/quietloop.ogg'
 	mid_length = 15 SECONDS
 	volume = 60
+	extra_range = -4
+
+/datum/looping_sound/redshoes_ambience
+	mid_sounds = 'sound/abnormalities/redshoes/RedShoes_Idle.ogg'
+	mid_length = 10 SECONDS
+	volume = 15
+	extra_range = -4
+
+/datum/looping_sound/distortedform
+	mid_sounds = 'sound/abnormalities/distortedform/DF_soundloop.ogg'
+	mid_length = 15 SECONDS
+	volume = 75
 	extra_range = -4
 
 // Ordeals

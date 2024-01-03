@@ -43,6 +43,7 @@
 	var/syndie = FALSE  // If true, hears all well-known channels automatically, and can say/hear on the Syndicate channel.
 	var/list/channels = list()  // Map from name (see communications.dm) to on/off. First entry is current department (:h)
 	var/list/secure_radio_connections
+	var/list/radio_sounds = list('sound/effects/radio/radio1.ogg','sound/effects/radio/radio2.ogg','sound/effects/radio/radio3.ogg')
 
 /obj/item/radio/suicide_act(mob/living/user)
 	user.visible_message("<span class='suicide'>[user] starts bouncing [src] off [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide!</span>")
@@ -221,6 +222,16 @@
 		return
 	if(!M.IsVocal())
 		return
+	if(LAZYLEN(radio_sounds)) //Sephora - Radios make small static sounds now.
+		var/sound_channel = SSsounds.random_available_channel()
+		var/radio_sound = pick(radio_sounds)
+		var/sound/S = sound(get_sfx(radio_sound))
+		for(var/mob/living/L in range(1, M))
+			if(!L.client)
+				continue
+			if(L.client.prefs?.toggles & SOUND_RADIO_STATIC)
+				L.playsound_local(M, radio_sound, 50, TRUE, 0, SOUND_FALLOFF_EXPONENT, sound_channel, TRUE, S, 1, get_dist(L, M))
+
 
 	if(use_command)
 		spans |= SPAN_COMMAND
@@ -294,7 +305,10 @@
 	. = ..()
 	if(radio_freq || !broadcasting || get_dist(src, speaker) > canhear_range)
 		return
-
+	var/filtered_mods = list()
+	if (message_mods[MODE_CUSTOM_SAY_EMOTE])
+		filtered_mods[MODE_CUSTOM_SAY_EMOTE] = message_mods[MODE_CUSTOM_SAY_EMOTE]
+		filtered_mods[MODE_CUSTOM_SAY_ERASE_INPUT] = message_mods[MODE_CUSTOM_SAY_ERASE_INPUT]
 	if(message_mods[RADIO_EXTENSION] == MODE_L_HAND || message_mods[RADIO_EXTENSION] == MODE_R_HAND)
 		// try to avoid being heard double
 		if (loc == speaker && ismob(speaker))
@@ -304,7 +318,7 @@
 			if (idx && (idx % 2) == (message_mods[RADIO_EXTENSION] == MODE_L_HAND))
 				return
 
-	talk_into(speaker, raw_message, , spans, language=message_language)
+	talk_into(speaker, raw_message, , spans, language=message_language, message_mods=filtered_mods)
 
 // Checks if this radio can receive on the given frequency.
 /obj/item/radio/proc/can_receive(freq, level)

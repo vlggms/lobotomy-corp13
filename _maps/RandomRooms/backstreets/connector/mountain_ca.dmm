@@ -1,0 +1,829 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aB" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"aE" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 5
+	},
+/obj/effect/turf_decal/starfury/three{
+	dir = 4
+	},
+/obj/structure/flora/rock/pile/largejungle{
+	pixel_x = -27;
+	pixel_y = -28
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"bh" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 6
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"dA" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"ei" = (
+/obj/effect/decal/cleanable/blood/splatter{
+	pixel_x = 10;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"eM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"fu" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"fw" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 4
+	},
+/obj/structure/flora/rock/jungle{
+	pixel_x = 10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"fB" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/obj/effect/decal/cleanable/blood{
+	pixel_x = 11
+	},
+/obj/effect/decal/cleanable/blood/old{
+	pixel_y = -20
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"fH" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"gN" = (
+/obj/structure/flora/rock/jungle,
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 20;
+	pixel_y = -2
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"ht" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 9
+	},
+/obj/effect/turf_decal/starfury/ten,
+/obj/structure/flora/rock/jungle{
+	pixel_x = 6;
+	pixel_y = 1
+	},
+/obj/structure/flora/rock/pile{
+	pixel_x = -1;
+	pixel_y = -15
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"hV" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 20;
+	pixel_y = -2
+	},
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"ih" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"iB" = (
+/obj/effect/turf_decal/siding/wideplating/corner,
+/obj/structure/flora/rock/pile{
+	pixel_x = 6;
+	pixel_y = -13
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"iI" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 6
+	},
+/obj/effect/turf_decal/starfury/three,
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"jF" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 5
+	},
+/obj/effect/turf_decal/starfury/ten{
+	dir = 8
+	},
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"kv" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"kN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"lJ" = (
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 24;
+	pixel_y = 16
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"lW" = (
+/obj/effect/decal/cleanable/blood{
+	pixel_x = -5;
+	pixel_y = 17
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"mr" = (
+/obj/structure/flora/rock/jungle,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"mH" = (
+/obj/effect/turf_decal/siding/wideplating,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"mV" = (
+/obj/effect/decal/cleanable/blood/gibs{
+	pixel_x = 9;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/blood/splatter{
+	pixel_x = -2;
+	pixel_y = 3
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"nw" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8;
+	pixel_x = -9
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"on" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/item/bodypart/l_arm{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = -7
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 7;
+	pixel_y = -6
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -10;
+	pixel_y = 10
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"qO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/limb{
+	dir = 4;
+	pixel_x = 21;
+	pixel_y = 16
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"qV" = (
+/obj/effect/turf_decal/siding/wideplating,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"rO" = (
+/obj/effect/decal/cleanable/blood{
+	pixel_x = -3;
+	pixel_y = -8
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"rP" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"rV" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 10
+	},
+/obj/effect/turf_decal/starfury/seven,
+/obj/structure/flora/rock/pile/largejungle{
+	pixel_x = -2;
+	pixel_y = -10
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"sv" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 5;
+	pixel_y = 13
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/gibs/old{
+	pixel_x = -12
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"tk" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"tV" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wj" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wt" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 8
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"wA" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/splatter{
+	pixel_x = 10;
+	pixel_y = 18
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"xf" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"yf" = (
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"yo" = (
+/obj/structure/flora/rock/pile{
+	pixel_x = -7;
+	pixel_y = -8
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"zf" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/splatter{
+	pixel_x = 7;
+	pixel_y = 17
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = -4;
+	pixel_y = -4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Bo" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Cz" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	name = "sweeper scout"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"CN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood{
+	pixel_x = -3;
+	pixel_y = -8
+	},
+/mob/living/simple_animal/hostile/ordeal/indigo_dawn{
+	dir = 1;
+	name = "sweeper scout"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Dr" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 8
+	},
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"GT" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Hk" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 4
+	},
+/obj/structure/flora/rock/pile{
+	pixel_x = -2;
+	pixel_y = 14
+	},
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Ie" = (
+/obj/structure/flora/ausbushes/sparsegrass{
+	pixel_x = 10;
+	pixel_y = -7
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Kw" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8;
+	pixel_x = -20
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"LV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"MH" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cleanable/blood/gibs/core{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"MY" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"NH" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 8
+	},
+/obj/structure/flora/rock/jungle{
+	pixel_y = -24
+	},
+/obj/structure/flora/rock/pile{
+	pixel_x = -11
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"NU" = (
+/obj/effect/turf_decal/siding/wideplating/end{
+	dir = 8
+	},
+/obj/effect/turf_decal/starfury/ten,
+/obj/structure/flora/rock/pile{
+	pixel_x = 12;
+	pixel_y = -1
+	},
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"OE" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Pz" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"PR" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 8
+	},
+/obj/structure/flora/grass/jungle{
+	pixel_x = -8;
+	pixel_y = -10
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Qf" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/blood/drip{
+	pixel_x = 18;
+	pixel_y = -6
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Qq" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 4
+	},
+/obj/structure/flora/grass/jungle{
+	pixel_x = 7;
+	pixel_y = 6
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Qw" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"QK" = (
+/obj/effect/turf_decal/siding/wideplating/corner,
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Rd" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"RT" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 5
+	},
+/obj/effect/turf_decal/starfury/three{
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Sc" = (
+/obj/effect/turf_decal/siding/wideplating/corner,
+/obj/structure/flora/rock/pile{
+	pixel_x = 20;
+	pixel_y = -1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Tq" = (
+/obj/effect/turf_decal/siding/wideplating/corner{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Tt" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/blood/gibs/core{
+	pixel_x = -8;
+	pixel_y = 2
+	},
+/obj/effect/decal/cleanable/blood/gibs/body{
+	pixel_x = -7
+	},
+/obj/effect/decal/cleanable/blood/footprints{
+	dir = 8;
+	pixel_y = 19
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"TT" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 10
+	},
+/obj/effect/turf_decal/starfury/seven,
+/obj/structure/flora/rock/pile,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"VL" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/indigo_noon{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"VM" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 10
+	},
+/obj/effect/turf_decal/starfury/seven,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"VO" = (
+/mob/living/simple_animal/hostile/ordeal/indigo_noon,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"VR" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 10
+	},
+/obj/effect/turf_decal/starfury/ten{
+	dir = 4
+	},
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Wh" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 5
+	},
+/obj/effect/turf_decal/starfury/ten{
+	dir = 8
+	},
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"XA" = (
+/turf/closed/indestructible/rock,
+/area/city/backstreets_room)
+"XV" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"ZS" = (
+/obj/effect/turf_decal/siding/wideplating/end{
+	dir = 4
+	},
+/obj/effect/turf_decal/starfury/three,
+/obj/structure/flora/rock/jungle,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+XA
+XA
+dA
+dA
+dA
+dA
+XV
+XV
+VO
+dA
+dA
+dA
+XA
+XA
+XA
+"}
+(2,1,1) = {"
+XA
+dA
+fB
+zf
+rP
+XV
+XV
+fH
+hV
+yf
+dA
+dA
+XA
+XA
+XA
+"}
+(3,1,1) = {"
+dA
+Rd
+Rd
+Sc
+tV
+MY
+Tq
+on
+Rd
+XV
+Rd
+yo
+dA
+XA
+XA
+"}
+(4,1,1) = {"
+dA
+Rd
+iB
+iI
+XA
+XA
+Wh
+OE
+CN
+qO
+XV
+Rd
+gN
+dA
+XA
+"}
+(5,1,1) = {"
+dA
+Rd
+mH
+XA
+NU
+XA
+XA
+RT
+Qq
+GT
+XV
+Rd
+XV
+dA
+XA
+"}
+(6,1,1) = {"
+dA
+Rd
+Qw
+Dr
+Pz
+rV
+XA
+XA
+jF
+fw
+XV
+XV
+VL
+dA
+XA
+"}
+(7,1,1) = {"
+XA
+dA
+Qf
+XV
+XV
+qV
+XA
+XA
+XA
+aB
+Rd
+XV
+nw
+eM
+XA
+"}
+(8,1,1) = {"
+XA
+dA
+XV
+mV
+Rd
+NH
+VM
+XA
+XA
+aE
+QK
+Hk
+Kw
+Tt
+dA
+"}
+(9,1,1) = {"
+XA
+dA
+XV
+kv
+lW
+Rd
+Qw
+VR
+XA
+XA
+ZS
+XA
+aB
+ih
+eM
+"}
+(10,1,1) = {"
+XA
+dA
+yf
+sv
+ei
+Rd
+Rd
+PR
+TT
+XA
+XA
+ht
+xf
+LV
+dA
+"}
+(11,1,1) = {"
+XA
+XA
+dA
+Bo
+XV
+Cz
+lJ
+XV
+fu
+wj
+wt
+xf
+Ie
+mr
+dA
+"}
+(12,1,1) = {"
+XA
+XA
+XA
+dA
+XV
+mr
+XV
+kN
+tk
+wA
+Rd
+Rd
+MH
+dA
+XA
+"}
+(13,1,1) = {"
+XA
+XA
+XA
+dA
+dA
+eM
+rO
+bh
+rP
+dA
+dA
+dA
+dA
+XA
+XA
+"}

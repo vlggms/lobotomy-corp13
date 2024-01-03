@@ -3,7 +3,6 @@
 	name = "Eldritch Horror"
 	roundend_category = "Heretics"
 	antagpanel_category = "Heretic Beast"
-	antag_moodlet = /datum/mood_event/heretics
 	job_rank = ROLE_HERETIC
 	antag_hud_type = ANTAG_HUD_HERETIC
 	antag_hud_name = "heretic_beast"

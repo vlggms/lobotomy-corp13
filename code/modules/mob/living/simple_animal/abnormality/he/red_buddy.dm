@@ -10,7 +10,6 @@
 	base_pixel_x = -8
 	maxHealth = 2200 //Tanky but hurts itself every now and then to make up for it
 	health = 2200
-	speed = 4
 	move_to_delay = 5
 	stop_automated_movement_when_pulled = TRUE
 	rapid_melee = 1
@@ -23,11 +22,10 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(20, 55, 60, 60, 60),
 						ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60)
 						)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 35
 	melee_damage_upper = 70 //has a wide range, he can critically hit you
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 0 //his work damage now is entirely related to suffering
 	work_damage_type = RED_DAMAGE
@@ -45,6 +43,10 @@
 		)
 	gift_type = /datum/ego_gifts/totalitarianism
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/blue_shepherd = 5
+	)
 
 	///The blue smocked shepherd linked to red buddy
 	var/datum/abnormality/master
@@ -168,7 +170,8 @@
 		awoo_cooldown = 0 //resets the awoo cooldown too
 		melee_damage_lower = 60
 		melee_damage_upper = 80
-		move_to_delay = 4 //this doesn't matter as much as you'd think because he can't move before shepherd
+		SpeedChange(-1) //this doesn't matter as much as you'd think because he can't move before shepherd
+		UpdateSpeed()
 		vision_range = 3
 		aggro_vision_range = 3 //red buddy should only move for things it can actually reach, in this case somewhat within shepherd's reach
 		can_patrol = FALSE //just in case
@@ -176,11 +179,11 @@
 ///we're doing a bunch of checks for diagonal movement because it acts real weird with forced dragging
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Move(atom/newloc)
 	if(!awakened_master || (moving_diagonally && !target))
-		return . = ..()
+		return ..()
 
 	if(!awakened_master.Adjacent(newloc) && !awakened_master.moving_diagonally)
 		return FALSE
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
 	..()
@@ -236,7 +239,7 @@
 		awakened_master.melee_damage_lower = 10
 		awakened_master.melee_damage_upper = 15
 		awakened_master.slash_damage = 20
-		awakened_master.move_to_delay = 1.7 //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
+		awakened_master.SpeedChange(-0.8) //we severely nerf shepherd's damage but make him way faster on buddy's death, it's last one tango.
 		awakened_master.say("A wolf. A wolf. Why won't you believe me? it's right there. IT WAS RIGHT THERE!")
 	awakened_master = null
 	density = FALSE

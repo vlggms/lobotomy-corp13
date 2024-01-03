@@ -59,8 +59,8 @@ SUBSYSTEM_DEF(economy)
 		if(!istype(bank_account, /datum/bank_account/department))
 			station_total += bank_account.account_balance
 	station_target = max(round(temporary_total / max(bank_accounts_by_id.len * 2, 1)) + station_target_buffer, 1)
-	if(!market_crashing)
-		price_update()
+//	if(!market_crashing)
+//		price_update()		Fucks up Workshop, I'll figure out how to make it override soon:tm: - Kirie
 
 /**
  * Handy proc for obtaining a department's bank account, given the department ID, AKA the define assigned for what department they're under.

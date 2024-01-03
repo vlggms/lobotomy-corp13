@@ -5,6 +5,7 @@
 	desc = "A piano, with a woman sitting on the stool next to it"
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "dellaluna"
+	portrait = "luna"
 	maxHealth = 400
 	health = 400
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -46,11 +47,23 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/ZeroQliphoth(mob/living/carbon/human/user)
 	icon_state = "dellaluna_breach"
-	var/turf/W = pick(GLOB.department_centers)
-	var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
-	breached_monster = spawningmonster
+	//Normal breach
+	if(!IsCombatMap())
+		var/turf/W = pick(GLOB.department_centers)
+		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
+		breached_monster = spawningmonster
+		addtimer(CALLBACK(src, .proc/BreachEnd, user), breach_length)
+
+	//--Side Gamemodes stuff--
+	//Timer will not run the timer on Rcorp.
+	else
+		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(src))
+		breached_monster = spawningmonster
+		QDEL_IN(src, 1 SECONDS) //Destroys the piano, as it is unecessary in Rcorp.
+
 	breached = TRUE
-	addtimer(CALLBACK(src, .proc/BreachEnd, user), breach_length)
+	if(client)
+		mind.transfer_to(breached_monster) //For playable abnormalities, directly lets the playing currently controlling pianto get control of the spawned mob
 	return
 
 /mob/living/simple_animal/hostile/abnormality/luna/WorkComplete(mob/living/carbon/human/user, work_type, pe)
@@ -70,7 +83,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Performance")
-		to_chat(user, "<span class='nicegreen'>Please wait until the performance is completed.</span>")
+		to_chat(user, span_nicegreen("Please wait until the performance is completed."))
 		addtimer(CALLBACK(src, .proc/PerformanceEnd, user), performance_length)
 		for(var/mob/living/carbon/human/L in GLOB.player_list)
 			L.apply_status_effect(STATUS_EFFECT_LUNAR)
@@ -96,7 +109,12 @@
 
 	killspawn = FALSE
 	performance = FALSE
-	to_chat(user, "<span class='nicegreen'>The performance is completed.</span>")
+	to_chat(user, span_nicegreen("The performance is completed."))
+
+
+//Side Gamemodes stuff, should only ever be called outside of the main gamemode
+/mob/living/simple_animal/hostile/abnormality/luna/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+	ZeroQliphoth()
 
 
 /* Monster Half */
@@ -110,7 +128,6 @@
 	health = 2600
 	maxHealth = 2600
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 32
 	melee_damage_upper = 41
@@ -151,12 +168,7 @@
 /mob/living/simple_animal/hostile/luna/proc/AOE()
 	for(var/turf/T in view(aoerange, src))
 		new /obj/effect/temp_visual/revenant(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L, FALSE))
-				continue
-			if(L.stat == DEAD)
-				continue
-			L.apply_damage(aoedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, list(), aoedamage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	aoeactive = FALSE
 
 /mob/living/simple_animal/hostile/luna/proc/Reset()

@@ -1,32 +1,17 @@
-/datum/ai_behavior/say_line/insanity_murder
-	lines = list(
-				"I won't die alone...",
-				"You left me behind!",
-				"You are the problem, YOU!!",
-				"I'll destroy everything...",
-				"It will end quickly, so relax. I’ll free you from this prison we call flesh."
-				)
+/datum/ai_behavior/say_line/insanity_lines
+	var/line_type = "murder"
 
-/datum/ai_behavior/say_line/insanity_suicide
-	lines = list(
-				"It's all my fault. It’s my responsibility...",
-				"I can hear someone. It’s the sound of back home. I just can’t stop hearing it",
-				"There’s no hope left. My mind’s collapsing. Everything’s collapsing...",
-				"We will all sink and perish, devoured by madness...",
-				"There is no hope left...",
-				"It will all end, soon..."
-				)
+/datum/ai_behavior/say_line/insanity_lines/New()
+	. = ..()
+	lines = strings("insanity.json", line_type)
 
-/datum/ai_behavior/say_line/insanity_wander
-	lines = list(
-				"Manager?! Manager! Open the emergency door! PLEASE LET ME OUT!!",
-				"HELP ME!!",
-				"DON'T SEND ME IN THERE! DON’T KILL ME!!",
-				"AHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHAHA!!",
-				"I will never get out of here..."
-				)
+/datum/ai_behavior/say_line/insanity_lines/insanity_suicide
+	line_type = "suicide"
 
-/datum/ai_behavior/say_line/insanity_wander/perform(delta_time, datum/ai_controller/controller)
+/datum/ai_behavior/say_line/insanity_lines/insanity_wander
+	line_type = "wander"
+
+/datum/ai_behavior/say_line/insanity_lines/insanity_wander/perform(delta_time, datum/ai_controller/controller)
 	. = ..()
 	var/mob/living/living_pawn = controller.pawn
 	var/sanity_damage = get_user_level(living_pawn) * 10
@@ -37,14 +22,8 @@
 			continue
 		H.apply_damage(sanity_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
 
-/datum/ai_behavior/say_line/insanity_release
-	lines = list(
-				"Let us find peace from them.",
-				"I’m so sorry dear friends, I’ll let you out now.",
-				"We will find our redemption through the Abnormalities.",
-				"Let us reach the paradise beyond death, together with the Abnormalities.",
-				"Let me introduce you to my imaginary friends! They asked me to! They’re screaming to be let out!"
-				)
+/datum/ai_behavior/say_line/insanity_lines/insanity_release
+	line_type = "release"
 
 /datum/ai_behavior/insanity_attack_mob
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
@@ -55,11 +34,16 @@
 	var/mob/living/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	var/mob/living/living_pawn = controller.pawn
 
-	if(!target || target.stat == DEAD)
+	if(!target || target?.stat == DEAD || target?.status_flags & GODMODE)
 		finish_action(controller, TRUE) //Target == owned
+
+
 
 	if(isturf(target.loc) && !IS_DEAD_OR_INCAP(living_pawn))
 		if(!living_pawn.Adjacent(target))
+			var/obj/item/gun/ego_gun/banger = locate() in living_pawn.held_items
+			if(banger)
+				ranged_attack(controller, target, delta_time)
 			return
 		// check if target has a weapon
 		var/obj/item/W
@@ -74,7 +58,6 @@
 		else
 			living_pawn.a_intent = INTENT_HARM
 		attack(controller, target, delta_time)
-		addtimer(CALLBACK(src, .proc/attack, controller, target, delta_time), CLICK_CD_MELEE * 0.75)
 
 
 /datum/ai_behavior/insanity_attack_mob/finish_action(datum/ai_controller/controller, succeeded)
@@ -86,14 +69,14 @@
 /// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
 /datum/ai_behavior/insanity_attack_mob/proc/attack(datum/ai_controller/insane/murder/controller, mob/living/target, delta_time)
 	var/mob/living/living_pawn = controller.pawn
+	if(!living_pawn)
+		return
 
 	if(!living_pawn.Adjacent(target))
 		return
 
 	if(living_pawn.next_move > world.time)
 		return
-
-	living_pawn.changeNext_move(CLICK_CD_MELEE * 0.75) //We play half-fair
 
 	var/obj/item/weapon = null
 	var/highest_force = 5
@@ -117,9 +100,55 @@
 
 	// attack with weapon if we have one
 	if(weapon)
+		if(istype(weapon, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/EGO = weapon
+			living_pawn.changeNext_move(CLICK_CD_MELEE * EGO.attack_speed)
+		else
+			living_pawn.changeNext_move(CLICK_CD_MELEE)
 		weapon.melee_attack_chain(living_pawn, target)
 	else
 		living_pawn.UnarmedAttack(target)
+		living_pawn.changeNext_move(CLICK_CD_MELEE)
+
+/// attack using this GUN we found.
+/datum/ai_behavior/insanity_attack_mob/proc/ranged_attack(datum/ai_controller/insane/murder/controller, mob/living/target, delta_time)
+	var/mob/living/living_pawn = controller.pawn
+	if(!living_pawn)
+		return
+
+	if(living_pawn.next_move > world.time)
+		return
+
+	var/obj/item/gun/ego_gun/banger = null
+	var/highest_force = 5
+	for(var/obj/item/gun/ego_gun/G in living_pawn.held_items)
+		var/full_hands = (G.weapon_weight == WEAPON_HEAVY) && living_pawn.held_items[1] && living_pawn.held_items[2]
+		if(!G.CanUseEgo(living_pawn) || full_hands || !G.can_shoot()) // I CAN'T USE THIS TO KILL!
+			living_pawn.dropItemToGround(G, force = TRUE) // YEET
+			var/list/item_blacklist = controller.blackboard[BB_INSANE_BLACKLISTITEMS]
+			item_blacklist[G] = TRUE
+			continue
+		var/obj/item/ammo_casing/casing = initial(G.ammo_type)
+		var/obj/projectile/boolet = initial(casing.projectile_type)
+		if(initial(boolet.damage_type) == WHITE_DAMAGE && ishuman(target))
+			var/mob/living/carbon/human/H = target
+			if(H.sanity_lost) // So we don't restore sanity of insane
+				continue
+		if(IsBetterWeapon(living_pawn, G, highest_force))
+			banger = G
+			highest_force = initial(boolet.damage) * G.burst_size * initial(G.ammo_type.pellets)
+			if(G.autofire)
+				highest_force *= G.autofire
+			else
+				highest_force /= (G.fire_delay ? G.fire_delay : 10)/10
+
+	if(!banger)
+		return
+
+	living_pawn.face_atom(target)
+
+	living_pawn.changeNext_move(banger.fire_delay ? banger.fire_delay : 2)
+	banger.afterattack(target, living_pawn, FALSE)
 
 /datum/ai_behavior/insane_equip
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT
@@ -165,7 +194,8 @@
 		return
 
 	// Strong weapon
-	if(target.force > best_force)
+
+	if(IsBetterWeapon(living_pawn, target, best_force))
 		var/obj/item/left_item = living_pawn.get_item_for_held_index(LEFT_HANDS)
 		var/obj/item/right_item = living_pawn.get_item_for_held_index(RIGHT_HANDS)
 		if((left_item != null) && (right_item != null))
@@ -174,7 +204,17 @@
 			else
 				living_pawn.dropItemToGround(right_item, force = TRUE)
 		living_pawn.put_in_hands(target)
-		controller.blackboard[BB_INSANE_BEST_FORCE_FOUND] = target.force
+		var/weapon_power = target.force
+		if(istype(target, /obj/item/gun/ego_gun))
+			var/obj/item/gun/ego_gun/gun_target = target
+			var/obj/item/ammo_casing/casing = initial(gun_target.ammo_type)
+			var/obj/projectile/boolet = initial(casing.projectile_type)
+			weapon_power = initial(boolet.damage) * gun_target.burst_size * initial(casing.pellets)
+			if(gun_target.autofire)
+				weapon_power *= gun_target.autofire
+			else
+				weapon_power /= gun_target.fire_delay/10
+		controller.blackboard[BB_INSANE_BEST_FORCE_FOUND] = weapon_power
 		finish_action(controller, TRUE)
 		return
 
@@ -201,15 +241,16 @@
 	. = ..()
 	equip_item(controller)
 
-/datum/ai_behavior/insanity_wander_center
+/datum/ai_behavior/insanity_wander
+	var/movement_mod = 0.002
 	/*
 	* Unique data can NOT be stored here.
 	* These behaviors are non-individual and are shared between all people with this behavior.
-	* Meaning if two people have "insanity_wander_center" and it stores its path in it, then they will both attempt to walk that same path.
+	* Meaning if two people have "insanity_wander" and it stores its path in it, then they will both attempt to walk that same path.
 	* Appropriate data to store here are stuff such as behavior tags, like `behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT`
 	*/
 
-/datum/ai_behavior/insanity_wander_center/perform(delta_time, datum/ai_controller/insane/wander/controller)
+/datum/ai_behavior/insanity_wander/perform(delta_time, datum/ai_controller/insane/controller)
 	. = ..()
 
 	var/mob/living/living_pawn = controller.pawn
@@ -226,22 +267,15 @@
 		controller.current_path.Remove(controller.current_path[1])
 		MoveInPath(controller)
 
-/datum/ai_behavior/insanity_wander_center/proc/MoveInPath(datum/ai_controller/insane/wander/controller)
+/datum/ai_behavior/insanity_wander/proc/MoveInPath(datum/ai_controller/insane/controller)
 	var/mob/living/living_pawn = controller.pawn
-	// Insanity lines
-	if(world.time > controller.last_message + 4 SECONDS)
-		controller.last_message = world.time
-		controller.current_behaviors += GET_AI_BEHAVIOR(controller.lines_type)
-	// Suicide replacement
-	if(world.time > controller.suicide_enter)
-		if(prob(10))
-			living_pawn.visible_message("<span class='danger'>[living_pawn] freezes with an expression of despair on their face!</span>")
-			QDEL_NULL(living_pawn.ai_controller)
-			living_pawn.ai_controller = /datum/ai_controller/insane/suicide
-			living_pawn.InitializeAIController()
-			return TRUE
-		else
-			controller.suicide_enter = world.time + 30 SECONDS
+	if(!living_pawn)
+		controller.pathing_attempts = 0
+		controller.current_path = list() // Reset the path and stop
+		finish_action(controller, TRUE)
+		return
+	if(!PreMoveCheck(controller, living_pawn))
+		return
 	// Movement
 	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
 		var/target_turf = controller.current_path[1]
@@ -259,7 +293,7 @@
 					controller.pathing_attempts = 0
 				else
 					controller.pathing_attempts++
-			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.004))
+			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * movement_mod))
 			addtimer(CALLBACK(src, .proc/MoveInPath, controller), move_delay)
 			return TRUE
 	controller.pathing_attempts = 0
@@ -267,20 +301,66 @@
 	finish_action(controller, TRUE)
 	return FALSE
 
-/datum/ai_behavior/insanity_wander_center/finish_action(datum/ai_controller/controller, succeeded)
+/datum/ai_behavior/insanity_wander/proc/PreMoveCheck(datum/ai_controller/insane/controller, mob/living/living_pawn)
+	if(!controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET])
+		return FALSE
+	return TRUE
+
+/datum/ai_behavior/insanity_wander/finish_action(datum/ai_controller/controller, succeeded)
 	. = ..()
 	controller.blackboard[BB_INSANE_BLACKLISTITEMS][BB_INSANE_CURRENT_ATTACK_TARGET] = world.time + 10 SECONDS
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+
+/datum/ai_behavior/insanity_wander/suicide_wander
+	movement_mod = 0.004
+	// Same as the above insanity, however it assumers wander controller and that the user will eventually attempt to off themselves
+
+/datum/ai_behavior/insanity_wander/suicide_wander/PreMoveCheck(datum/ai_controller/insane/wander/controller, mob/living/living_pawn)
+	. = ..()
+	if(!.)
+		return
+	// Insanity lines
+	if(world.time > controller.last_message + 4 SECONDS)
+		controller.last_message = world.time
+		controller.current_behaviors += GET_AI_BEHAVIOR(controller.lines_type)
+	// Suicide replacement
+	if(world.time > controller.suicide_enter)
+		if(prob(10))
+			living_pawn.visible_message("<span class='danger'>[living_pawn] freezes with an expression of despair on their face!</span>")
+			QDEL_NULL(living_pawn.ai_controller)
+			living_pawn.ai_controller = /datum/ai_controller/insane/suicide
+			living_pawn.InitializeAIController()
+			return FALSE
+		controller.suicide_enter = world.time + 30 SECONDS
+
+/datum/ai_behavior/insanity_wander/murder_wander
+	movement_mod = 0.001
+	// Same as the above insanity, but they look for a target between moves.
+
+/datum/ai_behavior/insanity_wander/murder_wander/PreMoveCheck(datum/ai_controller/insane/murder/controller, mob/living/living_pawn)
+	for(var/mob/living/L in viewers(9, living_pawn))
+		if(L == living_pawn)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(L.stat == DEAD)
+			continue
+		controller.pathing_attempts = 0
+		controller.current_path = list() // Reset the path and stop
+		finish_action(controller, TRUE)
+		controller.FindEnemies()
+		return FALSE
+	return ..()
 
 /datum/ai_behavior/insanity_smash_console
 	/*
 	* Unique data can NOT be stored here.
 	* These behaviors are non-individual and are shared between all people with this behavior.
-	* Meaning if two people have "insanity_wander_center" and it stores it's path in it, then they will both attempt to walk that same path.
+	* Meaning if two people have "insanity_wander" and it stores it's path in it, then they will both attempt to walk that same path.
 	* Appropriate data to store here are stuff such as behavior tags, like `behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT`
 	*/
 
-/datum/ai_behavior/insanity_smash_console/perform(delta_time, datum/ai_controller/insane/release/controller)
+/datum/ai_behavior/insanity_smash_console/perform(delta_time, datum/ai_controller/insane/controller)
 	. = ..()
 
 	var/mob/living/living_pawn = controller.pawn
@@ -313,7 +393,7 @@
 			return
 		target.datum_reference.qliphoth_change(-1)
 
-/datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/insane/release/controller, succeeded)
+/datum/ai_behavior/insanity_smash_console/finish_action(datum/ai_controller/insane/controller, succeeded)
 	. = ..()
 	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	controller.blackboard[BB_INSANE_BLACKLISTITEMS][target] = world.time + 60 SECONDS
@@ -364,7 +444,7 @@
 					controller.pathing_attempts = 0
 				else
 					controller.pathing_attempts++
-			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.002))
+			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * 0.002))
 			addtimer(CALLBACK(src, .proc/MoveInPath, living_pawn), move_delay)
 			return TRUE
 	controller.pathing_attempts = 0

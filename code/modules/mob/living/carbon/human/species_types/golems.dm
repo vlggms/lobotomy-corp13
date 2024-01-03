@@ -383,7 +383,7 @@
 
 /datum/species/golem/sand/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H))
-		if(P.flag == BULLET || P.flag == BOMB)
+		if(P.damage_type in list(BULLET, BOMB))
 			playsound(H, 'sound/effects/shovel_dig.ogg', 70, TRUE)
 			H.visible_message("<span class='danger'>The [P.name] sinks harmlessly in [H]'s sandy body!</span>", \
 			"<span class='userdanger'>The [P.name] sinks harmlessly in [H]'s sandy body!</span>")
@@ -415,7 +415,7 @@
 
 /datum/species/golem/glass/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(P.original == H && P.firer == H)) //self-shots don't reflect
-		if(P.flag == LASER || P.flag == ENERGY)
+		if(P.damage_type in list(LASER, ENERGY))
 			H.visible_message("<span class='danger'>The [P.name] gets reflected by [H]'s glass skin!</span>", \
 			"<span class='userdanger'>The [P.name] gets reflected by [H]'s glass skin!</span>")
 			if(P.starting)
@@ -823,7 +823,7 @@
 /datum/species/golem/bronze/bullet_act(obj/projectile/P, mob/living/carbon/human/H)
 	if(!(world.time > last_gong_time + gong_cooldown))
 		return ..()
-	if(P.flag == BULLET || P.flag == BOMB)
+	if(P.damage_type in list(BULLET, BOMB))
 		gong(H)
 		return ..()
 
@@ -865,13 +865,11 @@
 				M.soundbang_act(1, 0, 30, 3)
 				M.add_confusion(10)
 				M.jitteriness += 4
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "gonged", /datum/mood_event/loud_gong)
 			if(2 to 3)
 				M.show_message("<span class='cult'>GONG!</span>", MSG_AUDIBLE)
 				M.playsound_local(H, 'sound/effects/gong.ogg', 75, TRUE)
 				M.soundbang_act(1, 0, 15, 2)
 				M.jitteriness += 3
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "gonged", /datum/mood_event/loud_gong)
 			else
 				M.show_message("<span class='warning'>GONG!</span>", MSG_AUDIBLE)
 				M.playsound_local(H, 'sound/effects/gong.ogg', 50, TRUE)
@@ -1042,7 +1040,6 @@
 
 		to_chat(L, "<span class='cultlarge'>A spine-chilling sound chills you to the bone!</span>")
 		L.apply_status_effect(/datum/status_effect/bonechill)
-		SEND_SIGNAL(L, COMSIG_ADD_MOOD_EVENT, "spooked", /datum/mood_event/spooked)
 
 /datum/species/golem/snow
 	name = "Snow Golem"

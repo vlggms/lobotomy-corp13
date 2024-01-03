@@ -5,6 +5,7 @@
 	icon_state = "funeral"
 	icon_living = "funeral"
 	icon_dead = "funeral_dead"
+	portrait = "funeral"
 	del_on_death = FALSE
 	maxHealth = 1350 //I am a menace to society.
 	health = 1350
@@ -16,8 +17,6 @@
 	move_to_delay = 4
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
-	attack_action_types = list(/datum/action/innate/abnormality_attack/SpiritGun, /datum/action/innate/abnormality_attack/ButterflySwarm)
-
 	can_breach = TRUE
 	can_buckle = FALSE
 	vision_range = 14
@@ -56,19 +55,21 @@
 	var/swarm_width = 3
 	var/list/swarm_killed = list()
 	var/can_act = TRUE
-/datum/action/innate/abnormality_attack/SpiritGun
-	name = "Bring to Rest"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicmd"
-	chosen_message = "<span class='colossus'>You will now fire butterflies.</span>"
-	chosen_attack_num = 1
 
-/datum/action/innate/abnormality_attack/ButterflySwarm
-	name = "Empty Casket"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "blankscroll"
-	chosen_message = "<span class='colossus'>You will now unleash a swarm of butterflies.</span>"
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/funeral_butterfly_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/funeral_butterfly_toggle
+	name = "Toggle Casket Swarm"
+	button_icon_state = "funeral_toggle0"
 	chosen_attack_num = 2
+	chosen_message = span_colossus("You will now unleash a swarm of butterflies.")
+	button_icon_toggle_activated = "funeral_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now fire butterflies from your hands.")
+	button_icon_toggle_deactivated = "funeral_toggle0"
+
+
 /mob/living/simple_animal/hostile/abnormality/funeral/AttackingTarget(atom/attacked_target)
 	return OpenFire()
 
@@ -104,7 +105,7 @@
 		return
 	can_act = FALSE
 	icon_state = "funeral_gun"
-	visible_message("<span class='danger'>[src] levels one of its arms at [cooler_target]!</span>")
+	visible_message(span_danger("[src] levels one of its arms at [cooler_target]!"))
 	cooler_target.apply_status_effect(/datum/status_effect/spirit_gun_target) // Re-used for visual indicator
 	dir = get_cardinal_dir(src, target)
 	SLEEP_CHECK_DEATH(1.5 SECONDS)
@@ -118,7 +119,7 @@
 		if(DensityCheck(T))
 			return
 	cooler_target.apply_damage(gun_damage, WHITE_DAMAGE, null, cooler_target.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-	visible_message("<span class='danger'>[cooler_target] is hit by butterflies!</span>")
+	visible_message(span_danger("[cooler_target] is hit by butterflies!"))
 	//No longer because fuck you.
 	if(ishuman(target))
 		var/mob/living/carbon/human/kickass_grade1_target = target
@@ -149,7 +150,7 @@
 		return
 	can_act = FALSE
 	dir = dir_to_target
-	visible_message("<span class='danger'>[src] prepares to open its coffin!</span>")
+	visible_message(span_danger("[src] prepares to open its coffin!"))
 	icon_state = "funeral_coffin_butterfly_less"
 	SLEEP_CHECK_DEATH(1.75 SECONDS)
 	icon_state = "funeral_coffin"
@@ -221,17 +222,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/SwarmTurfLinger(turf/T)
 	for(var/i = 1 to 40) //40 times
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L) || L.stat == DEAD)
+		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), swarm_damage, WHITE_DAMAGE, check_faction = TRUE))
+			if(H.stat == DEAD)
 				continue
-			if (L == src)
-				continue
-			L.apply_damage(swarm_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-			if(ishuman(L))
-				var/mob/living/carbon/human/cooler_L = L
-				if(cooler_L.sanity_lost)
-					cooler_L.death()
-					KillAnimation(cooler_L)
+			if(H.sanity_lost)
+				H.death()
+				KillAnimation(H)
 		SLEEP_CHECK_DEATH(0.25 SECONDS) //10 seconds
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/KillAnimation(mob/living/carbon/human/killed)

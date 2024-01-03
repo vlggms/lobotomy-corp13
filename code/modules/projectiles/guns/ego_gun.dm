@@ -62,8 +62,9 @@
 
 /obj/item/gun/ego_gun/proc/EgoAttackInfo(mob/user)
 	if(chambered && chambered.BB)
+		if(projectile_damage_multiplier != 1)
+			return "<span class='notice'>Its bullets deal [round((chambered.BB.damage * projectile_damage_multiplier), 0.1)] [chambered.BB.damage_type] damage. (+ [(projectile_damage_multiplier - 1) * 100]%)</span>"
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] [chambered.BB.damage_type] damage.</span>"
-	return
 
 /obj/item/gun/ego_gun/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(!CanUseEgo(user))

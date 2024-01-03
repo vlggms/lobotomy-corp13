@@ -1,3 +1,8 @@
+/*To finish
+RefineCore - Increases weapon class to WAW.
+Fullcore - Heals both HP and SP on hit, very slightly.
+Rendcore - reduces target defense slightly*/
+
 //Damage Color mods.
 /obj/item/workshop_mod/regular
 	icon_state = "blankcore"
@@ -18,12 +23,6 @@
 	color = "#deddb6"
 	weaponcolor = "#deddb6"
 	damagetype = WHITE_DAMAGE
-
-/*to finish
-RefineCore - Increases weapon class to WAW.
-Fullcore - Heals both HP and SP on hit, very slightly.
-Rendcore - reduces target defense slightly*/
-
 
 /obj/item/workshop_mod/regular/black
 	name = "basic black damage mod"

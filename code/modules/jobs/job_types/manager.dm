@@ -16,6 +16,7 @@
 	access = list(ACCESS_COMMAND, ACCESS_MANAGER) // LC13:To-Do
 	minimal_access = list(ACCESS_COMMAND, ACCESS_MANAGER)
 
+	job_attribute_limit = 60
 	roundstart_attributes = list(
 								FORTITUDE_ATTRIBUTE = 0,
 								PRUDENCE_ATTRIBUTE = 60,
@@ -26,14 +27,16 @@
 
 /datum/job/manager/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Manager [H.real_name] has arrived to the facility."))
+	var/displayed_rank = title // Handle alt titles
+	if(title in H?.client?.prefs?.alt_titles_preferences)
+		displayed_rank = H.client.prefs.alt_titles_preferences[title]
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[displayed_rank] [H.real_name] has arrived to the facility."))
 
 /datum/job/manager/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	H.grant_language(/datum/language/bong, TRUE, FALSE, LANGUAGE_MIND) //So they can understand the bong-bong better but not speak it
-	H.set_attribute_limit(60)
 
 	//Adding huds, blame some guy from at least 3 years ago.
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]

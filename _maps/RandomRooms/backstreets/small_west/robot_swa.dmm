@@ -1,0 +1,105 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/table/rolling,
+/obj/effect/spawner/lootdrop/minor/kittyears_or_rabbitears,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/bed/maint,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"x" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"z" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/kirbyplants/potty{
+	desc = "How a plant wearing a cakehat somehow got here is beyond me."
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"J" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"K" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/closet/crate/wooden/toy,
+/obj/machinery/light/dim{
+	dir = 1
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"N" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"Q" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	desc = "A slim robot trying to get by in the backstreets.";
+	name = "Giuseppe"
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+N
+J
+N
+z
+a
+"}
+(3,1,1) = {"
+a
+K
+Q
+N
+N
+N
+a
+"}
+(4,1,1) = {"
+a
+q
+J
+N
+x
+N
+a
+"}
+(5,1,1) = {"
+a
+X
+X
+X
+U
+a
+a
+"}

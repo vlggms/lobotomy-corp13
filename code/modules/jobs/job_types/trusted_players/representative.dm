@@ -23,11 +23,11 @@
 								)
 
 /datum/job/representative/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
 	H.set_attribute_limit(0)
 	to_chat(M, "<span class='userdanger'>This is a roleplay role. You are expected to roleplay as the representative for the corporation you chose. Feel free to ask any online admins to further any deals you make.</span>")
+	. = ..()
 
 /datum/outfit/job/representative
 	name = "Main Office Representative"
@@ -42,16 +42,25 @@
 /// Alternate corps you cna pick
 /datum/job/representative
 	alt_titles = list("R Corp Representative", "W Corp Representative",
-			"K Corp Representative")
+			"K Corp Representative", "N Corp Representative", "P Corp Representative")
 
 /datum/outfit/job/representative/rcorprepresentative
 	name = "R Corp Representative"
-	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	uniform = /obj/item/clothing/under/suit/lobotomy/rcorp
 
 /datum/outfit/job/representative/wcorprepresentative
 	name = "W Corp Representative"
-	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp
+	uniform = /obj/item/clothing/under/suit/lobotomy/wcorp_command
 
 /datum/outfit/job/representative/kcorprepresentative
 	name = "K Corp Representative"
-	uniform = /obj/item/clothing/under/rank/k_corporation/intern
+	uniform = /obj/item/clothing/under/suit/lobotomy/kcorp
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci
+
+/datum/outfit/job/representative/ncorprepresentative
+	name = "N Corp Representative"
+	uniform = /obj/item/clothing/under/suit/lobotomy/ncorp
+
+/datum/outfit/job/representative/pcorprepresentative
+	name = "P Corp Representative"
+	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp

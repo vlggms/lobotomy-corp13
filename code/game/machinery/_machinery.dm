@@ -427,7 +427,7 @@
 		user.changeNext_move(CLICK_CD_MELEE)
 		user.do_attack_animation(src, ATTACK_EFFECT_PUNCH)
 		user.visible_message("<span class='danger'>[user.name] smashes against \the [src.name] with its paws.</span>", null, null, COMBAT_MESSAGE_RANGE)
-		take_damage(4, BRUTE, MELEE, 1)
+		take_damage(4, MELEE, 1)
 
 /obj/machinery/attack_hulk(mob/living/carbon/user)
 	. = ..()
@@ -707,7 +707,7 @@
 	if(prob(85) && (zap_flags & ZAP_MACHINE_EXPLOSIVE) && !(resistance_flags & INDESTRUCTIBLE))
 		explosion(src, 1, 2, 4, flame_range = 2, adminlog = FALSE, smoke = FALSE)
 	else if(zap_flags & ZAP_OBJ_DAMAGE)
-		take_damage(power * 0.0005, BURN, ENERGY)
+		take_damage(power * 0.0005, ENERGY)
 		if(prob(40))
 			emp_act(EMP_LIGHT)
 		power -= power * 0.0005
@@ -730,7 +730,7 @@
 	AM.pixel_y = -8 + (round( . / 3)*8)
 
 /obj/machinery/rust_heretic_act()
-	take_damage(500, BRUTE, MELEE, 1)
+	take_damage(500, MELEE, 1)
 
 /obj/machinery/vv_edit_var(vname, vval)
 	if(vname == "occupant")

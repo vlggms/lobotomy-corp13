@@ -5,82 +5,74 @@
 	force = 0
 	attack_speed = 1
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	var/active
+	var/finisheddesc = "A finished weapon."
+	var/aoe_range = 0
+	var/type_overriden = FALSE
+	var/forceholder	//holds the force for later
+	var/special_count //Various vars use this for various things
+	var/obj/item/workshop_mod/specialmod
 	var/list/finishedname = list()
 	var/list/finishedicon = list()
-	var/finisheddesc = "A finished weapon."
-	var/specialmod
-	var/aoe_range
 
 /obj/item/ego_weapon/template/attack(mob/living/target, mob/living/carbon/human/user)
+	forceholder = force
 	if(!active)
-		to_chat(user, "<span class='notice'>This weapon is unfinished!</span>")
+		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
-	specialcheck(target, user)
+	if(specialmod)
+		specialmod.ActivateEffect(src, special_count, target, user)
 	..()
-
-/obj/item/ego_weapon/template/proc/specialcheck(mob/living/target, mob/living/carbon/human/user)
-	switch(pick(specialmod))
-		if("health healing")
-			HealHealth(target, user)
-		if("sanity healing")
-			HealSanity(target, user)
+	if(forceholder != force)
+		force = forceholder
 
 /obj/item/ego_weapon/template/attackby(obj/item/I, mob/living/user, params)
 	..()
-	if(!istype(I, /obj/item/workshop_mod) || active)
+	if(istype(I, /obj/item/workshop_mod) && !active)
+		InstallMod(I)
 		return
-	var/obj/item/workshop_mod/mod = I
+
+//Mod Installation Proc: Seperated from attackby so its easier to read and override.
+/obj/item/ego_weapon/template/proc/InstallMod(obj/item/workshop_mod/mod)
 	active = TRUE
+
+	//Modify these
 	force *= mod.forcemod
 	attack_speed *= mod.attackspeedmod
-	damtype = mod.damagetype
-	armortype = mod.damagetype
-	aoe_range += mod.aoemod
-	color = mod.weaponcolor
-	specialmod = mod.specialmod
+
+	if(!type_overriden)
+		damtype = mod.damagetype
+	if(!color)
+		// Material color overwrites
+		color = mod.weaponcolor
 	//throwforce is special
-	if(throwforce>force)
+	if(throwforce>10)
 		throwforce *= mod.throwforcemod
 	else if(mod.throwforcemod > 1)
 		throwforce = 30
+
+	/* Calls unique installation proc that the mod has.
+		Unsure if i should put all of the above in this proc.*/
+	mod.InstallationEffect(src)
+
+	//naming and icon stuff.
 	var/newname = pick(finishedname)
 	name = "[mod.modname] [newname]"
 	if(finishedicon)
 		icon_state = pick(finishedicon)
 	desc = finisheddesc
 	add_overlay("[mod.overlay]")
-	qdel(I)
+	specialmod = mod
+	//May have to change this later if the contents of the weapon can be accessed.
+	mod.forceMove(src)
 	return
 
-
-//Special Mod Procs
-
-//Healing
-/obj/item/ego_weapon/template/proc/HealHealth(mob/living/target,mob/living/carbon/human/user)
-	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.10
-		if(isanimal(target))
-			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] > 0)
-				heal_amt *= S.damage_coeff[damtype]
-			else
-				heal_amt = 0
-		user.adjustBruteLoss(-heal_amt)
-
-/obj/item/ego_weapon/template/proc/HealSanity(mob/living/target,mob/living/carbon/human/user)
-	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-		var/heal_amt = force*0.10
-		if(isanimal(target))
-			var/mob/living/simple_animal/S = target
-			if(S.damage_coeff[damtype] > 0)
-				heal_amt *= S.damage_coeff[damtype]
-			else
-				heal_amt = 0
-		user.adjustSanityLoss(-heal_amt)
-
-
+/obj/item/ego_weapon/template/proc/AlterSpecial(subject, add_to = FALSE)
+	if(add_to)
+		special_count += subject
+	else
+		special_count = subject

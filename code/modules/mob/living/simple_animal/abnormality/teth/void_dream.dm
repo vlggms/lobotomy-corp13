@@ -4,13 +4,14 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "void_dream"
 	icon_living = "void_dream"
+	portrait = "void_dream"
 	del_on_death = TRUE
 	is_flying_animal = TRUE
 	maxHealth = 600
 	health = 600
 	rapid_melee = 2
 	move_to_delay = 6
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	patrol_cooldown_time = 5 SECONDS // Zooming around the place
 
 	attack_verb_continuous = "nuzzles"
@@ -69,7 +70,7 @@
 		return
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	punched = TRUE
-	move_to_delay = 4
+	SpeedChange(-2)
 	ability_cooldown_time = 8 SECONDS
 	ability_cooldown = 0
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
@@ -136,6 +137,8 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user)
 	..()
 	ability_cooldown = world.time + 4 SECONDS
+	if(IsCombatMap())
+		return
 	addtimer(CALLBACK(src, .proc/DelPassive), rand((3 MINUTES), (5 MINUTES)))
 
 // Projectile code

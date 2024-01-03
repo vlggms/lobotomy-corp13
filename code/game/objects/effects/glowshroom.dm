@@ -26,8 +26,9 @@
 	var/max_failed_spreads = 5
 	/// Turfs where the glowshroom cannot spread to
 	var/static/list/blacklisted_glowshroom_turfs = typecacheof(list(
-	/turf/open/lava,
-	/turf/open/floor/plating/beach/water))
+		/turf/open/lava,
+		/turf/open/floor/plating/beach/water,
+	))
 
 /obj/structure/glowshroom/glowcap
 	name = "glowcap"
@@ -234,7 +235,7 @@
 	if (myseed.endurance < 1) // Plant is gone
 		qdel(src)
 
-/obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/glowshroom/play_attack_sound(damage_amount, damage_type = BRUTE)
 	if(damage_type == BURN && damage_amount)
 		playsound(src.loc, 'sound/items/welder.ogg', 100, TRUE)
 
@@ -242,10 +243,10 @@
 	return exposed_temperature > 300
 
 /obj/structure/glowshroom/atmos_expose(datum/gas_mixture/air, exposed_temperature)
-	take_damage(5, BURN, 0, 0)
+	take_damage(5, BURN, 0)
 
 /obj/structure/glowshroom/acid_act(acidpwr, acid_volume)
-	visible_message("<span class='danger'>[src] melts away!</span>")
+	visible_message(span_danger("[src] melts away!"))
 	var/obj/effect/decal/cleanable/molten_object/I = new (get_turf(src))
 	I.desc = "Looks like this was \an [src] some time ago."
 	qdel(src)

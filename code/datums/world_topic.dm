@@ -75,7 +75,7 @@
 		if(PRcounts[id] > PR_ANNOUNCEMENTS_PER_ROUND)
 			return
 
-	var/final_composed = "<span class='announce'>PR: [input[keyword]]</span>"
+	var/final_composed = span_announce("PR: [input[keyword]]")
 	for(var/client/C in GLOB.clients)
 		C.AnnouncePR(final_composed)
 
@@ -84,11 +84,16 @@
 	require_comms_key = TRUE
 
 /datum/world_topic/ahelp_relay/Run(list/input)
-	relay_msg_admins("<span class='adminnotice'><b><font color=red>HELP: </font> [input["source"]] [input["message_sender"]]: [input["message"]]</b></span>")
+	relay_msg_admins(span_adminnotice("<b><font color=red>HELP: </font> [input["source"]] [input["message_sender"]]: [input["message"]]</b>"))
 
 /datum/world_topic/comms_console
 	keyword = "Comms_Console"
 	require_comms_key = TRUE
+
+/datum/world_topic/comms_console/TryRun(list/input)
+	if(!GLOB.cross_comms_allowed)
+		return FALSE
+	return ..()
 
 /datum/world_topic/comms_console/Run(list/input)
 	// Reject comms messages from other servers that are not on our configured network,
@@ -98,12 +103,18 @@
 		return
 
 	minor_announce(input["message"], "Incoming message from [input["message_sender"]]")
+	message_admins("Comms_Console message received from [input["source"]]; Sender ckey: [input["message_sender_ckey"]].")
 	for(var/obj/machinery/computer/communications/CM in GLOB.machines)
 		CM.override_cooldown()
 
 /datum/world_topic/news_report
 	keyword = "News_Report"
 	require_comms_key = TRUE
+
+/datum/world_topic/news_report/TryRun(list/input)
+	if(!GLOB.cross_comms_allowed)
+		return FALSE
+	return ..()
 
 /datum/world_topic/news_report/Run(list/input)
 	minor_announce(input["message"], "Breaking Update From [input["message_sender"]]")

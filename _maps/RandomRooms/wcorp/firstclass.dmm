@@ -1,0 +1,435 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bV" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 9
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"cD" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"eU" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"iU" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"jO" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 1
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"kR" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"lO" = (
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"lW" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"mu" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"ns" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 5
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"of" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 10
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"rH" = (
+/obj/machinery/door/poddoor/shutters/window/preopen,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"sX" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"um" = (
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"wH" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"xk" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Bp" = (
+/obj/machinery/door/poddoor/shutters/window,
+/turf/open/floor/circuit,
+/area/city/outskirts)
+"Bu" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Cn" = (
+/obj/effect/decal/cleanable/blood,
+/obj/structure/barricade/security,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Du" = (
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Ew" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"EN" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Fc" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"FB" = (
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"FV" = (
+/obj/machinery/clonepod{
+	pixel_y = 0
+	},
+/turf/open/floor/plating,
+/area/city/outskirts)
+"Gi" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"GJ" = (
+/obj/machinery/clonepod,
+/turf/open/floor/plating,
+/area/city/outskirts)
+"Oa" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 6
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Pg" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"RJ" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/blood,
+/obj/structure/barricade/security,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Sx" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"SY" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/turf_decal/trimline/blue/filled/warning,
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Te" = (
+/obj/structure/window/shuttle/survival_pod,
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Tt" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 9
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Uw" = (
+/obj/effect/decal/cleanable/glass,
+/obj/machinery/light{
+	dir = 2
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"UG" = (
+/turf/open/floor/circuit,
+/area/city/outskirts)
+"UY" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/machinery/light/broken,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"VY" = (
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"WZ" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/blood/gibs,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Xz" = (
+/obj/machinery/light/broken,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"XK" = (
+/obj/effect/decal/cleanable/glass/plasma,
+/obj/effect/decal/cleanable/blood/innards,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Yc" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Ye" = (
+/obj/effect/turf_decal/trimline/blue/filled/warning{
+	dir = 6
+	},
+/obj/machinery/atmospherics/components/unary/thermomachine,
+/turf/open/floor/mineral/plastitanium,
+/area/city/outskirts)
+"Ym" = (
+/obj/effect/decal/cleanable/blood/gibs,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"Yz" = (
+/obj/structure/window/shuttle/survival_pod,
+/turf/open/floor/circuit,
+/area/city/outskirts)
+"YR" = (
+/obj/structure/window/shuttle/survival_pod,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/circuit,
+/area/city/outskirts)
+"Zm" = (
+/obj/effect/decal/cleanable/blood/gibs/torso,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+"ZX" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/glass/plasma,
+/turf/open/floor/circuit/red,
+/area/city/outskirts)
+
+(1,1,1) = {"
+iU
+bV
+VY
+kR
+UG
+UG
+UG
+VY
+VY
+of
+iU
+"}
+(2,1,1) = {"
+iU
+um
+iU
+UY
+iU
+Fc
+WZ
+eU
+iU
+Yz
+iU
+"}
+(3,1,1) = {"
+iU
+GJ
+rH
+Oa
+Ew
+lW
+RJ
+FB
+Bp
+FV
+iU
+"}
+(4,1,1) = {"
+iU
+um
+iU
+Xz
+iU
+um
+ZX
+eU
+iU
+Yz
+iU
+"}
+(5,1,1) = {"
+iU
+jO
+VY
+VY
+UG
+UG
+UG
+VY
+Bu
+Pg
+iU
+"}
+(6,1,1) = {"
+iU
+Yz
+iU
+Uw
+iU
+um
+wH
+FB
+iU
+Te
+iU
+"}
+(7,1,1) = {"
+iU
+GJ
+Bp
+FB
+EN
+Gi
+XK
+Tt
+rH
+GJ
+iU
+"}
+(8,1,1) = {"
+iU
+Yz
+iU
+FB
+xk
+um
+iU
+cD
+iU
+um
+iU
+"}
+(9,1,1) = {"
+iU
+jO
+VY
+Bu
+UG
+UG
+UG
+mu
+VY
+SY
+iU
+"}
+(10,1,1) = {"
+iU
+Yz
+iU
+sX
+wH
+um
+iU
+Yc
+iU
+YR
+iU
+"}
+(11,1,1) = {"
+iU
+GJ
+Bp
+FB
+Cn
+Zm
+Ym
+Oa
+Bp
+GJ
+iU
+"}
+(12,1,1) = {"
+iU
+Yz
+iU
+Du
+Zm
+Sx
+iU
+lO
+iU
+Yz
+iU
+"}
+(13,1,1) = {"
+iU
+ns
+VY
+VY
+UG
+UG
+UG
+VY
+VY
+Ye
+iU
+"}

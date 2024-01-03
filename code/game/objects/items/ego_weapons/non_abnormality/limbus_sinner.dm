@@ -10,7 +10,6 @@
 	force = 7
 	attack_speed = 0.3
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/dodgelanding
 
@@ -36,19 +35,19 @@
 	force = 35
 	attack_speed = 1.6
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	reductions = list(20, 10, 10, 0) //longer parry, lower values; not a proper shield
-	projectile_block_cooldown = 1 SECONDS
+	reductions = list(20, 30, 10, 0) // 60
+	projectile_block_duration = 1 SECONDS
 	block_duration = 1 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/ego/clash1.ogg'
 	projectile_block_message = "You swat the projectile out of the air!"
 	block_message = "You attempt to parry the attack!"
 	hit_message = "parries the attack!"
-	block_cooldown_message = "You rearm your E.G.O."
+	block_cooldown_message = "You rearm your blade."
 
 /obj/item/ego_weapon/lance/suenoimpossible
 	name = "sueno impossible"
@@ -63,7 +62,7 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bludgeons", "whacks")
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
@@ -79,11 +78,11 @@
 	force = 13
 	attack_speed = 0.5
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
-	reductions = list(20, 20, 20, 0)
-	projectile_block_cooldown = 0 SECONDS //No ranged parry
+	reductions = list(20, 20, 20, 0) // 60 - Diet Diet Daredevil
+	projectile_block_duration = 0 SECONDS //No ranged parry
 	block_duration = 0.5 SECONDS
 	block_cooldown = 3 SECONDS
 	block_sound = 'sound/weapons/parry.ogg'
@@ -104,7 +103,7 @@
 	force = 11
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 
 /obj/item/ego_weapon/taixuhuanjing
 	name = "tai xuhuan jing"
@@ -117,7 +116,7 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/sword1.ogg'
@@ -132,14 +131,14 @@
 	force = 35
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 
 /obj/item/ego_weapon/revenge/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
 	. = ..()
+	if(!.)
+		return FALSE
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
@@ -154,7 +153,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
 	force = 33				//Lots of damage, way less DPS
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_speed = 2 // Really Slow
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
@@ -167,17 +166,17 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
-	force = 15
-	attack_speed = 2
+	force = 40
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
+
 	attack_verb_continuous = list("shoves", "bashes")
 	attack_verb_simple = list("shove", "bash")
 	hitsound = 'sound/weapons/genhit2.ogg'
-	reductions = list(20, 20, 20, 0)
-	projectile_block_cooldown = 3 SECONDS
+	reductions = list(40, 20, 30, 0) // 90
+	projectile_block_duration = 3 SECONDS
 	block_duration = 3 SECONDS
 	block_cooldown = 3 SECONDS
+	block_sound_volume = 30
 
 /obj/item/ego_weapon/raskolot //horn but a boomerang
 	name = "raskolot"
@@ -191,7 +190,7 @@
 	throw_speed = 1
 	throw_range = 7
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	hitsound = 'sound/weapons/ego/axe2.ogg'
 
 /obj/item/ego_weapon/raskolot/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
@@ -214,7 +213,7 @@
 	reach = 2		//Has 2 Square Reach.
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
@@ -229,7 +228,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
 	force = 20
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_speed = 0.8
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
@@ -268,7 +267,7 @@
 	name = "gunblade bullet"
 	damage = 20
 	damage_type = RED_DAMAGE
-	flag = RED_DAMAGE
+
 
 /obj/item/ego_weapon/ungezifer
 	name = "ungezifer"
@@ -279,7 +278,7 @@
 	righthand_file = 'icons/mob/inhands/weapons/limbus_righthand.dmi'
 	force = 38				//Lots of damage, way less DPS
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
+
 	attack_speed = 2 // Really Slow
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")

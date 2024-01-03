@@ -24,21 +24,6 @@
 		return
 	holder.remove_reagent(type, metabolization_rate)
 
-/datum/reagent/consumable/expose_mob(mob/living/exposed_mob, methods=TOUCH, reac_volume)
-	. = ..()
-	if(!(methods & INGEST) || !quality || HAS_TRAIT(exposed_mob, TRAIT_AGEUSIA))
-		return
-	switch(quality)
-		if (DRINK_NICE)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_nice)
-		if (DRINK_GOOD)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_good)
-		if (DRINK_VERYGOOD)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_verygood)
-		if (DRINK_FANTASTIC)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_drink", /datum/mood_event/quality_fantastic)
-		if (FOOD_AMAZING)
-			SEND_SIGNAL(exposed_mob, COMSIG_ADD_MOOD_EVENT, "quality_food", /datum/mood_event/amazingtaste)
 
 /datum/reagent/consumable/nutriment
 	name = "Nutriment"
@@ -121,6 +106,20 @@
 	name = "Organ Tissue"
 	description = "Natural tissues that make up the bulk of organs, providing many vitamins and minerals."
 	taste_description = "rich earthy pungent"
+
+/datum/reagent/consumable/nutriment/vile_fluid
+	name = "vile fluid"
+	description = "This fluid contains a microbiome of pathogens that reproduce through the raw consumption of its host."
+	taste_description = "popping and wriggling"
+	metabolization_rate = 1
+	var/list/microbiome = list(/datum/disease/parasite)
+
+/datum/reagent/consumable/nutriment/vile_fluid/on_mob_life(mob/living/carbon/M)
+	. = ..()
+	if(prob(15 + (current_cycle * 5)))
+		var/datum/disease/D = pick(microbiome)
+		var/datum/disease/worms = new D()
+		M.ForceContractDisease(worms, FALSE, TRUE)
 
 /datum/reagent/consumable/cooking_oil
 	name = "Cooking Oil"
@@ -823,13 +822,6 @@
 	color = "#C8C8C8"
 	taste_mult = 6
 	taste_description = "smoke"
-	overdose_threshold = 15
-
-/datum/reagent/consumable/char/overdose_process(mob/living/M)
-	if(prob(25))
-		M.say(pick_list_replacements(BOOMER_FILE, "boomer"), forced = /datum/reagent/consumable/char)
-	..()
-	return
 
 /datum/reagent/consumable/bbqsauce
 	name = "BBQ Sauce"

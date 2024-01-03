@@ -73,10 +73,7 @@
 	antag_candidates = get_players_for_role(antag_flag)
 	if(!GLOB.Debug2)
 		if(antag_candidates.len < required_enemies)
-			return FALSE
-		return TRUE
-	else
-		message_admins("<span class='notice'>DEBUG: GAME STARTING WITHOUT PLAYER NUMBER CHECKS, THIS WILL PROBABLY BREAK SHIT.</span>")
+			message_admins(span_notice("DEBUG: GAME STARTING WHILE FAILING PLAYER NUMBER CHECKS, THIS WILL PROBABLY BREAK SHIT."))
 		return TRUE
 
 
@@ -619,11 +616,11 @@
 /datum/game_mode/proc/set_round_result()
 	SSticker.mode_result = "undefined"
 	if(station_was_nuked)
-		SSticker.news_report = STATION_DESTROYED_NUKE
+		SSticker.news_report = max(SSticker.news_report, STATION_DESTROYED_NUKE)
 	if(EMERGENCY_ESCAPED_OR_ENDGAMED)
-		SSticker.news_report = STATION_EVACUATED
+		SSticker.news_report = max(SSticker.news_report, STATION_EVACUATED)
 		if(SSshuttle.emergency.is_hijacked())
-			SSticker.news_report = SHUTTLE_HIJACK
+			SSticker.news_report = max(SSticker.news_report, SHUTTLE_HIJACK)
 
 /// Mode specific admin panel.
 /datum/game_mode/proc/admin_panel()

@@ -10,7 +10,6 @@
 	base_pixel_x = -16
 	maxHealth = 15000
 	health = 15000
-	speed = 3
 	move_to_delay = 4
 	rapid_melee = 1
 	threat_level = ALEPH_LEVEL
@@ -20,11 +19,10 @@
 						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 35, 40),
 						ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 40)
 						)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
 	melee_damage_lower = 55
 	melee_damage_upper = 65
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
@@ -38,9 +36,17 @@
 	ranged = TRUE
 
 	ego_list = list(
+		/datum/ego_datum/weapon/nihil,
 		/datum/ego_datum/armor/nihil
 		)
 	gift_type = /datum/ego_gifts/nihil
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 5,
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 5,
+		/mob/living/simple_animal/hostile/abnormality/greed_king = 5,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 5
+	)
 
 	// Range ofthe debuff
 	var/debuff_range = 40
@@ -98,7 +104,7 @@
 			V.add_stacks(1)
 			V.refresh()
 			playsound(L, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
-			to_chat(L, "<span class='warning'>[pick(quotes)]</span>")
+			to_chat(L, span_warning("[pick(quotes)]"))
 	if(attack_count == 3) //in the future this will be a magical girls check, going off if there are none.
 		SSlobotomy_corp.InitiateMeltdown((SSlobotomy_corp.all_abnormality_datums.len), TRUE)
 	SLEEP_CHECK_DEATH(4 SECONDS)
@@ -127,7 +133,7 @@
 
 /datum/status_effect/stacking/void/on_apply()
 	. = ..()
-	to_chat(owner, "<span class='warning'>The whole world feels dark and empty... You hear voices in your head.</span>")
+	to_chat(owner, span_warning("The whole world feels dark and empty... You hear voices in your head."))
 	if(owner.client)
 		owner.add_client_colour(/datum/client_colour/monochrome)
 
@@ -135,45 +141,52 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10 * stacks_added)
 
 /datum/status_effect/stacking/void/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10 * stacks)
-		to_chat(owner, "<span class='nicegreen'>You feel normal again.</span>")
+		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10 * stacks)
+		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
+		to_chat(owner, span_nicegreen("You feel normal again."))
 		if(owner.client)
 			owner.remove_client_colour(/datum/client_colour/monochrome)
 
 //items
 /obj/item/nihil
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	desc = "A playing card that seems to resonate with certain E.G.O."
+	var/special
+
+/obj/item/nihil/examine(mob/user)
+	. = ..()
+	if(special)
+		. += span_notice("[special]")
 
 /obj/item/nihil/heart
 	name = "ace of hearts"
-	desc = "She vowed to love everything in the world, but all that was left was a collapsing heart."
 	icon_state = "nihil_heart"
+	special = "Someone has to be the villain..."
 
 /obj/item/nihil/spade
 	name = "ace of spades"
-	desc = "As with sorrow, perhaps sharing the burden will blunt the edge."
 	icon_state = "nihil_spade"
+	special = "If I can't protect others, I may as well disappear..."
 
 /obj/item/nihil/diamond
 	name = "ace of diamonds"
-	desc = "Now, only visceral greed remains."
 	icon_state = "nihil_diamond"
+	special = "I feel empty inside... Hungry. I want more things!"
 
 /obj/item/nihil/club
 	name = "ace of clubs"
-	desc = "Now, she is dominated by the anger towards herself for what she had done."
 	icon_state = "nihil_club"
+	special = "Sinners of the otherworlds! Embodiments of evil!!!"
 
 #undef STATUS_EFFECT_VOID

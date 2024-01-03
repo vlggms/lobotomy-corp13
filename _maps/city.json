@@ -1,0 +1,17 @@
+{
+	"version": 1,
+	"map_name": "Library of Ruina 13",
+	"map_path": "map_files/Event",
+	"map_file": [
+		"city.dmm"
+	],
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
+	],
+	"space_ruin_levels": 0,
+	"space_empty_levels": 0,
+	"minetype": "none",
+	"maptype": "city"
+}

@@ -30,7 +30,6 @@
 	melee_damage_lower = 22
 	melee_damage_upper = 30
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
@@ -47,6 +46,10 @@
 		)
 	gift_type = /datum/ego_gifts/oppression
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/red_buddy = 5
+	)
 
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
 	var/slash_current = 4
@@ -104,6 +107,19 @@
 				"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
 				"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy."
 				)
+
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle
+	name = "Toggle Spinning Slash"
+	button_icon_state = "sheperd_toggle0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't spin anymore.")
+	button_icon_toggle_activated = "sheperd_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now execute a spinning slash when ready.")
+	button_icon_toggle_deactivated = "sheperd_toggle0"
 
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
@@ -174,6 +190,17 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
+	. = ..()
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				if(isliving(target))
+					slash_current-=1
+				return OpenFire()
+			if(2)
+				return
+		return
+
 	slash_current-=1
 	if(slash_current == 0)
 		slash_current = slash_cooldown
@@ -182,6 +209,13 @@
 		slash()
 	if(awakened_buddy)
 		awakened_buddy.GiveTarget(target)
+
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/OpenFire()
+	if(slash_current == 0)
+		slash_current = slash_cooldown
+		say(pick(combat_lines))
+		slashing = TRUE
+		slash()
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/death(gibbed)
@@ -207,7 +241,7 @@
 		slash_damage = 50
 		melee_damage_lower = 30
 		melee_damage_upper = 40
-		move_to_delay = 2.5
+		SpeedChange(-0.5)
 		maxHealth = maxHealth * 4 //5000 health, will get hurt by buddy's howl to make up for the high health
 		set_health(health * 4)
 		med_hud_set_health()
@@ -221,7 +255,7 @@
 		return FALSE
 	if(awakened_buddy)
 		awakened_buddy.LoseTarget()
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/stop_pulling()
 	if(pulling == awakened_buddy) //it's tempting to make player controlled shepherd pull you forever but I'll hold off on it
@@ -253,14 +287,11 @@
 	if(stat == DEAD)
 		return
 	new /obj/effect/temp_visual/smash_effect(T)
-	for(var/mob/living/L in T)
-		if(L == src)
-			continue
+	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
 		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
-		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		all_turfs -= T
+			break
 	if(slash_count >= range)
 		buddy_hit = FALSE
 		slashing = FALSE

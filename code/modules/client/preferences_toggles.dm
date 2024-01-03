@@ -291,6 +291,18 @@ TOGGLE_CHECKBOX(/datum/verbs/menu/settings, listen_bank_card)()
 	return C.prefs.chat_toggles & CHAT_BANKCARD
 
 
+TOGGLE_CHECKBOX(/datum/verbs/menu/settings/sound, toggle_radio_static)()
+	set name = "Hear/Silence Radio Static"
+	set category = "Preferences"
+	set desc = "Hear Radio Static"
+	usr.client.prefs.toggles ^= SOUND_RADIO_STATIC
+	usr.client.prefs.save_preferences()
+	to_chat(usr, "You will now [(usr.client.prefs.toggles & SOUND_RADIO_STATIC) ? "now" : "no longer"] hear radio static.")
+	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Radio Static", "[usr.client.prefs.toggles & SOUND_RADIO_STATIC ? "Enabled" : "Disabled"]"))
+/datum/verbs/menu/settings/sound/toggle_radio_static/Get_checked(client/C)
+	return C.prefs.toggles & SOUND_RADIO_STATIC
+
+
 GLOBAL_LIST_INIT(ghost_forms, sortList(list("ghost","ghostking","ghostian2","skeleghost","ghost_red","ghost_black", \
 							"ghost_blue","ghost_yellow","ghost_green","ghost_pink", \
 							"ghost_cyan","ghost_dblue","ghost_dred","ghost_dgreen", \
@@ -399,9 +411,9 @@ GLOBAL_LIST_INIT(ghost_orbits, list(GHOST_ORBIT_CIRCLE,GHOST_ORBIT_TRIANGLE,GHOS
 	prefs.inquisitive_ghost = !prefs.inquisitive_ghost
 	prefs.save_preferences()
 	if(prefs.inquisitive_ghost)
-		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
+		to_chat(src, span_notice("You will now examine everything you click on."))
 	else
-		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
+		to_chat(src, span_notice("You will no longer examine things you click on."))
 	SSblackbox.record_feedback("nested tally", "preferences_verb", 1, list("Toggle Ghost Inquisitiveness", "[prefs.inquisitive_ghost ? "Enabled" : "Disabled"]"))
 
 //Admin Preferences

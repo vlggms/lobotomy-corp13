@@ -68,6 +68,9 @@ endmap
 map iotacorp
 endmap
 
+map city
+endmap
+
 map kappacorp
 endmap
 
@@ -78,7 +81,13 @@ endmap
 map rcorp_test
 endmap
 
+map wcorp
+endmap
+
 map limbus
+endmap
+
+map skeld
 endmap
 
 map facilitytest

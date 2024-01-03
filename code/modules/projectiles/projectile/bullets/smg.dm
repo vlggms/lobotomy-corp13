@@ -43,3 +43,7 @@
 	damage = 10
 	spread = 12
 	embedding = null
+
+/obj/projectile/bullet/c9x19mm/greenbot
+	damage = 6
+	speed = 0.4

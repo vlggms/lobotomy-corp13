@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "orange_tree"
 	icon_living = "orange_tree"
+	portrait = "orange_tree"
 	faction = list("hostile")
 	speak_emote = list("hums")
 	is_flying_animal = TRUE
@@ -223,7 +224,7 @@
 		if(flamethrower)
 			user.put_in_hands(flamethrower)
 			flamethrower = null
-			to_chat(user, "<span class='notice'>You take the flamethrower from the [name].</span>")
+			to_chat(user, span_notice("You take the flamethrower from the [name]."))
 			src.add_fingerprint(user)
 			update_icon()
 			return
@@ -259,7 +260,7 @@
 			if(!user.transferItemToLoc(F, src))
 				return
 			flamethrower = F
-			to_chat(user, "<span class='notice'>You place the [F.name] back in the [name].</span>")
+			to_chat(user, span_notice("You place the [F.name] back in the [name]."))
 			update_icon()
 			return
 	else

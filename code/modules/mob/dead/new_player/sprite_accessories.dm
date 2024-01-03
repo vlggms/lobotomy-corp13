@@ -227,6 +227,14 @@
 	name = "Buzzcut"
 	icon_state = "hair_buzzcut"
 
+/datum/sprite_accessory/hair/choppy
+	name = "Choppy"
+	icon_state = "hair_choppy"
+
+/datum/sprite_accessory/hair/choppy_long
+	name = "Choppy Long"
+	icon_state = "hair_choppy_long"
+
 /datum/sprite_accessory/hair/comet
 	name = "Comet"
 	icon_state = "hair_comet"
@@ -523,6 +531,10 @@
 	name = "Pigtails 3"
 	icon_state = "hair_pigtails2"
 
+/datum/sprite_accessory/hair/pigtailbows
+	name = "Pigtails with Bows"
+	icon_state = "hair_twin_bows"
+
 /datum/sprite_accessory/hair/pixie
 	name = "Pixie Cut"
 	icon_state = "hair_pixie"
@@ -674,6 +686,10 @@
 /datum/sprite_accessory/hair/skinhead
 	name = "Skinhead"
 	icon_state = "hair_skinhead"
+
+/datum/sprite_accessory/hair/silky
+	name = "Silky"
+	icon_state = "hair_silky"
 
 /datum/sprite_accessory/hair/protagonist
 	name = "Slightly Long Hair"

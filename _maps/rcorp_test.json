@@ -1,9 +1,14 @@
 {
 	"version": 1,
-	"map_name": "R Corp Ruins Test",
+	"map_name": "R-Corp Assault",
 	"map_path": "map_files/Event",
 	"map_file": [
 		"rcorp.dmm"
+	],
+	"traits": [
+		{
+			"Baseturf": "/turf/open/floor/plating/asteroid"
+		}
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,

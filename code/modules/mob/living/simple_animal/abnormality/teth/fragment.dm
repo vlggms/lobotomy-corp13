@@ -1,9 +1,12 @@
+#define FRAGMENT_SONG_COOLDOWN (14 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/fragment
 	name = "Fragment of the Universe"
 	desc = "An abnormality taking form of a black ball covered by 'hearts' of different colors."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fragment"
 	icon_living = "fragment"
+	portrait = "fragment"
 	maxHealth = 800
 	health = 800
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -12,7 +15,6 @@
 	melee_damage_upper = 12
 	rapid_melee = 2
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/abnormalities/fragment/attack.ogg'
 	attack_verb_continuous = "stabs"
@@ -29,9 +31,6 @@
 						)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
-
-	attack_action_types = list(/datum/action/innate/abnormality_attack/fragment_song)
-
 	ego_list = list(
 		/datum/ego_datum/weapon/fragment,
 		/datum/ego_datum/armor/fragment
@@ -40,15 +39,44 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
-	var/song_damage = 4 // Dealt 8 times
+	var/song_damage = 5 // Dealt 8 times
 	var/can_act = TRUE
 
-/datum/action/innate/abnormality_attack/fragment_song
-	name = "An Echo From Beyond"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now deal white damage to all enemies around you.</span>"
-	chosen_attack_num = 1
+	//Visual/Animation Vars
+	var/obj/effect/fragment_legs/legs
+	var/obj/particle_emitter/fragment_note/particle_note
+	var/obj/particle_emitter/fragment_song/particle_song
+
+	//PLAYABLES ACTIONS
+	attack_action_types = list(/datum/action/cooldown/fragment_song)
+
+/datum/action/cooldown/fragment_song
+	name = "Sing"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "fragment"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = FRAGMENT_SONG_COOLDOWN //14 seconds
+
+/datum/action/cooldown/fragment_song/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/fragment))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/fragment/fragment = owner
+	if(fragment.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	fragment.song()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/fragment/Destroy()
+	QDEL_NULL(legs)
+	if(!particle_note)
+		return ..()
+	particle_note.fadeout()
+	particle_song.fadeout()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/Move()
 	if(!can_act)
@@ -56,13 +84,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/OpenFire()
-	if(!can_act)
-		return
-
-	if(client)
-		switch(chosen_attack)
-			if(1)
-				song()
+	if(!can_act || client)
 		return
 
 	if(song_cooldown <= world.time)
@@ -72,9 +94,30 @@
 	if(song_cooldown > world.time)
 		return
 	can_act = FALSE
+	flick("fragment_song_transition" , src)
+	SLEEP_CHECK_DEATH(5)
+
+	legs = new(get_turf(src))
+	icon_state = "fragment_song_head"
+	pixel_y = 5
+	particle_note = new(get_turf(src))
+	particle_note.pixel_y = 26
+	particle_song = new(get_turf(src))
+	particle_song.pixel_y = 26
 	playsound(get_turf(src), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
 	for(var/i = 1 to 8)
-		new /obj/effect/temp_visual/fragment_song(get_turf(src))
+		//Animation for bobbing the head left to right
+		switch(i)
+			if(1)
+				animate(src, transform = turn(matrix(), -30), time = 6, flags = SINE_EASING | EASE_OUT )
+			if(3)
+				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
+			if(5)
+				animate(src, transform = turn(matrix(), 30), time = 6, flags = SINE_EASING | EASE_IN | EASE_OUT )
+			if(7)
+				animate(src, transform = turn(matrix(), 0), time = 6, flags = SINE_EASING | EASE_IN )
+		//Animation -END-
+
 		for(var/mob/living/L in view(8, src))
 			if(faction_check_mob(L, FALSE))
 				continue
@@ -82,8 +125,19 @@
 				continue
 			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		SLEEP_CHECK_DEATH(3)
+
+	animate(src, pixel_y = 0, time = 0)
+	QDEL_NULL(legs)
+	flick("fragment_song_transition" , src)
+	SLEEP_CHECK_DEATH(5)
+	icon_state = "fragment_breach"
+	pixel_y = 0
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
+	if(!particle_note)
+		return
+	particle_note.fadeout()
+	particle_song.fadeout()
 
 /mob/living/simple_animal/hostile/abnormality/fragment/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	if(prob(40))
@@ -111,3 +165,15 @@
 	else // Breaching
 		icon_state = "fragment_breach"
 	icon_living = icon_state
+
+//Exists so the head can be animated separatedly from the legs when it sings
+/obj/effect/fragment_legs
+	name = "Fragment of the Universe"
+	desc = "An abnormality taking form of a black ball covered by 'hearts' of different colors."
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "fragment_song_legs"
+	move_force = INFINITY
+	pull_force = INFINITY
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+#undef FRAGMENT_SONG_COOLDOWN

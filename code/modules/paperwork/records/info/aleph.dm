@@ -141,3 +141,95 @@
 		"When the Qlipthoth counter reached 0, the faciltiy was cloaked in choking darkness.",
 		"The darkness seemed to rid employees of their attributes, and caused a massive qliphoth meltdown to occur.")
 	abno_work_damage_type = "All"
+
+// God of the Seasons
+/obj/item/paper/fluff/info/aleph/seasons
+	abno_type = /mob/living/simple_animal/hostile/abnormality/seasons
+	abno_code = "M-06-35"
+	abno_info = list(
+		"The abnormality shifts between four states over time. The states are hereby referred to as \"Spring\", \"Summer\", \"Autumn\", and \"Winter\".",
+		"When the abnormality first appeared in the facility, it appeared in a mostly harmless, diminutive state. At this stage, any work result causes a drop in Qliphoth counter.",
+		"When the Qliphoth counter reached 0 for the first time, or the abnormality is left alone for too long, the abnormality revealed its true form. The maximum Qliphoth also lowered to 1.",
+		"The employee took different types of damage from the abnormality depending on its state, both during work and during a breach.",
+		"When the Qlipthoth counter reached 0, the faciltiy experienced unusual weather that persisted indoors.",
+		"When the work result was bad, the Qliphoth counter decreased by one.")
+	abno_work_rates = list(
+			ABNORMALITY_WORK_INSTINCT = "High during \"Summer\" and Common during \"Spring\"",
+			ABNORMALITY_WORK_INSIGHT = "High during \"Spring\" and Common during \"Winter\"",
+			ABNORMALITY_WORK_ATTACHMENT = "High during \"Autumn\" and Common during \"Summer\"",
+			ABNORMALITY_WORK_REPRESSION = "High during \"Winter\" and Common during \"Autumn\"")
+	abno_work_damage_type = "White/Red/Black/Pale"
+	abno_breach_damage_type = "White/Red/Black/Pale"
+	abno_resistances = list(
+		RED_DAMAGE = "Endured/Resistant/Endured/Weak",
+		WHITE_DAMAGE = "Resistant/Normal/Normal/Normal",
+		BLACK_DAMAGE = "Normal/Endured/Resistant/Endured",
+		PALE_DAMAGE = "Weak/Weak/Weak/Resistant")
+
+//Last Shot
+/obj/item/paper/fluff/info/aleph/last_shot
+	abno_type = /mob/living/simple_animal/hostile/abnormality/last_shot
+	abno_code = "C-06-152"
+	abno_info = list(
+		"Employees with Temperance level 3 or below had their work chance increased dramatically.",
+		"Employees with Temperance level 5 or above had their work chance reduced dramatically.",
+		"Employees with Fortitude under level 5 received more work damage.",
+		"Employees with Justice under level 5 received more work damage.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When the Qliphtoh Counter reached 0, last shot bred flesh until it was destroyed in it's containment.")
+
+// The Crying Children
+/obj/item/paper/fluff/info/aleph/crying_children
+	abno_type = /mob/living/simple_animal/hostile/abnormality/crying_children
+	abno_code = "O-01-430" // Philip's Birthday April 30th
+	abno_info = list(
+		"When 2 employees died, the Qliphoth Counter decreased.",
+		"When Attachment work was completed, the Qliphoth Counter increased.",
+		"When the work result was Neutral, the employee has a chance to be cursed with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter decreased and the employee was cursed.",
+		"Employees who were cursed regained their lost senses after a while.",
+		"When the abnormality breached, it sets the whole facility ablaze over time. Reducing it's health seems to delay the process.",
+		"When the abnormality split up into 3 children, all employees were cursed. Killing the children seems to lift said curse.",
+		"When all of the children died, they unite again and become stronger.")
+
+//Army in Black
+/obj/item/paper/fluff/info/aleph/army
+	abno_type = /mob/living/simple_animal/hostile/abnormality/army
+	abno_code = "D-01-106"
+	abno_info = list(
+	"Army in Black can be ordered to protect an employee. However, it should be noted that the Qliphoth Counter lowered when the order was given.",
+	"When Repression work was performed, the Qliphoth Counter lowered.",
+	"The Qliphoth Counter lowered after every 2 employee deaths.",
+	"When the work result was Bad, the Qliphoth Counter decreased.",
+	"When an Abnormality was suppressed, the Qliphoth Counter raised.")
+
+// Distorted Form
+/obj/item/paper/fluff/info/aleph/distortedform
+	abno_type = /mob/living/simple_animal/hostile/abnormality/distortedform
+	abno_code = "O-06-38"
+	abno_info = list(
+		"WARNING: O-06-38 will periodically take on the appearance of another abnormality. The abnormality will reveal its true form when work is attempted.",
+		"When an employee with Justice 4 or lower finished their work, or work result was a failure, O-06-38 let out a horrifying screech.",
+		"Other abnormalities became agitated by the screech. The situation needed to be handled as a Qliphoth Meltdown.",
+		"If agitated abnormalities were not worked on, multiple abnormalities breached simultaneously.",
+		"When the work result was Good, the Qliphoth Counter increased by 1.",
+		"When a Qliphoth Meltdown was ignored, the Qliphoth Counter decreased by 1.")
+	abno_work_damage_type = "All"
+	abno_breach_damage_type = "Random"
+
+// Nobody Is
+/obj/item/paper/fluff/info/aleph/nobodyis
+	abno_type = /mob/living/simple_animal/hostile/abnormality/nobody_is
+	abno_code = "O-06-180"
+	abno_info = list(
+		"The lower the working employee’s Prudence, the lower the success rate was and the less stable the work was.",
+		"When an employee whose Justice was lower than Level 4 completed the work, the Qliphoth Counter decreased.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"An employee in the facility will be reflected upon the mirror on the face of Nobody Is.",
+		"When the selected employee completed work, they were assimilated into the abnormality.")
+	abno_breach_damage_count = "Extreme" // Once it transforms its over
+	abno_resistances = list(
+		RED_DAMAGE = "Endured/Endured/Resistant",
+		WHITE_DAMAGE = "Endured/Endured/Resistant",
+		BLACK_DAMAGE = "Resistant/Immune/Immune",
+		PALE_DAMAGE = "Weak/Normal/Endured")

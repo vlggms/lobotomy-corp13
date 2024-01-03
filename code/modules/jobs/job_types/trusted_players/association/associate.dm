@@ -8,11 +8,12 @@
 	selection_color = "#e09660"
 	total_positions = 0
 	spawn_positions = 0
-	display_order = JOB_DISPLAY_ORDER_VETERAN
+	display_order = JOB_DISPLAY_ORDER_ASSOCIATION
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
-	maptype = "wonderlabs"
+	paycheck = 700
+	maptype = list("wonderlabs", "city")
 
 
 	//They actually need this for their weapons
@@ -24,13 +25,13 @@
 								)
 
 /datum/job/associate/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
 	//Not fear immune you're basically some goober
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
-	H.set_attribute_limit(100)
 	to_chat(M, "<span class='userdanger'>This is a roleplay role. You are not affiliated with L Corporation. \
 	Do not enter the lower levels of the facility without the manager's permission. </span>")
 	to_chat(M, "<span class='danger'>Avoid killing other players without a reason. </span>")
+	H.set_attribute_limit(80)
+	. = ..()
 
 
 /datum/outfit/job/associate
@@ -43,3 +44,4 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
+	id = /obj/item/card/id/association

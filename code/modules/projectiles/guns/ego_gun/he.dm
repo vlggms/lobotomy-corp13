@@ -8,7 +8,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -18,7 +17,7 @@
 	name = "gaze"
 	desc = "A magnum pistol featuring excellent burst firing potential."
 	icon_state = "gaze"
-	inhand_icon_state = "executive"
+	inhand_icon_state = "gaze"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
 	fire_delay = 20
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
@@ -33,6 +32,7 @@
 	name = "galaxy"
 	desc = "A shimmering wand."
 	icon_state = "galaxy"
+	inhand_icon_state = "galaxy"
 	special = "Use in hand to turn on homing mode. This mode fires slower, but homes in on a random target within 15 metres.	\
 			WARNING: This feature is not accurate."
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
@@ -137,6 +137,7 @@
 	name = "harmony"
 	desc = "A massive blocky launcher with some suspicious stains on it."
 	icon_state = "harmony"
+	inhand_icon_state = "harmony"
 	special = "This weapon fires bouncing, piercing shots."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_harmony
 	fire_sound = 'sound/weapons/ego/harmony1.ogg'
@@ -202,3 +203,73 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
+
+/obj/item/gun/ego_gun/pistol/swindle
+	name = "swindle"
+	desc = "Good for man and beast, it gives immediate relief. Snake oil is good for everything a liniment ought to be for!"
+	icon = 'icons/obj/guns/projectile.dmi'//put some non-E.G.O sprites to use
+	icon_state = "goldrevolver"
+	inhand_icon_state = "deagleg"
+	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	special = "This weapon fires dice that deal varying amounts of damage."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/gun/ego_gun/ringing
+	name = "ringing"
+	desc = "Voices from your past emanate from this gun. Now they can be put into use."
+	icon_state = "ringing"
+	inhand_icon_state = "ringing"
+	special = "This weapon can be used as a megaphone."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_ringing
+	weapon_weight = WEAPON_HEAVY
+	autofire = 0.15 SECONDS
+	spread = 25
+	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/spamcheck = 0
+	var/list/voicespan = list(SPAN_COMMAND)
+
+/obj/item/gun/ego_gun/ringing/equipped(mob/M, slot)//megaphone code
+	. = ..()
+	if (slot == ITEM_SLOT_HANDS && !HAS_TRAIT(M, TRAIT_SIGN_LANG))
+		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+	else
+		UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/gun/ego_gun/ringing/dropped(mob/M)
+	. = ..()
+	UnregisterSignal(M, COMSIG_MOB_SAY)
+
+/obj/item/gun/ego_gun/ringing/proc/handle_speech(mob/living/carbon/user, list/speech_args)
+	if (user.get_active_held_item() == src)
+		if(spamcheck > world.time)
+			to_chat(user, "<span class='warning'>\The [src] needs to recharge!</span>")
+		else
+			playsound(loc, 'sound/items/megaphone.ogg', 100, FALSE, TRUE)
+			spamcheck = world.time + 50
+			speech_args[SPEECH_SPANS] |= voicespan
+
+/obj/item/gun/ego_gun/syrinx
+	name = "syrinx"
+	desc = "What cry could be more powerful than one spurred by primal instinct?"
+	icon_state = "syrinx"
+	inhand_icon_state = "syrinx"
+	special = "This weapon fires slow bullets with limited range."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
+	weapon_weight = WEAPON_HEAVY
+	spread = 40
+	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
+	autofire = 0.08 SECONDS
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 40
+	)
+

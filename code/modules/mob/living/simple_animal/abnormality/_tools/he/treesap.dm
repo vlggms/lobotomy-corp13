@@ -17,13 +17,13 @@
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
 		if(L.stat >= HARD_CRIT || L.sanity_lost || z != L.z) // Dead or in hard crit, insane, or on a different Z level.
 			continue
-		to_chat(L, "<span class='danger'>The Tree Sap is replenished.</span>")
+		to_chat(L, span_danger("The Tree Sap is replenished."))
 
 /obj/structure/toolabnormality/treesap/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 	if(!do_after(user, 6, src))
 		return
-	to_chat(user, "<span class='danger'>You sip of the sap.</span>")
+	to_chat(user, span_danger("You sip of the sap."))
 
 	if(user in used)
 		if(prob(20))
@@ -63,7 +63,7 @@
 	owner.gib()
 	for(var/mob/living/carbon/human/L in livinginrange(10, src))
 		L.apply_damage((60), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		to_chat(L, "<span class='danger'>Oh god, what the fuck was that!?</span>")
+		to_chat(L, span_danger("Oh god, what the fuck was that!?"))
 
 #undef STATUS_EFFECT_TREESAP
 #undef STATUS_EFFECT_BOOMSAP

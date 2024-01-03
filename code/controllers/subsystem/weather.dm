@@ -78,3 +78,10 @@ SUBSYSTEM_DEF(weather)
 			A = W
 			break
 	return A
+
+/datum/controller/subsystem/weather/proc/end_weather(datum/weather/weather_datum_type, z_levels)
+	for(var/V in processing)
+		var/datum/weather/W = V
+		if (istype(W, weather_datum_type))
+			W.wind_down()
+			break

@@ -25,8 +25,6 @@
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	fire_delay = 5
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
-
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 							)
@@ -54,6 +52,18 @@
 		return "<span class='notice'>Its bullets deal [chambered.BB.damage] randomly chosen damage.</span>"
 	return
 
+/obj/item/gun/ego_gun/hatred/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!istype(I, /obj/item/nihil/heart))
+		return
+	new /obj/item/gun/ego_gun/hatred_nihil(get_turf(src))
+	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
+	qdel(I)
+	qdel(src)
+
+// Magic Bullet armour increases attack speed from 30 to 15
+// Big Iron armour on the other hand increases damage by a factor of 2.5x80, which will give it 40 more damage than the magic bullet armour
 /obj/item/gun/ego_gun/magicbullet
 	name = "magic bullet"
 	desc = "Though the original's power couldn't be fully extracted, the magic this holds is still potent. \
@@ -62,7 +72,7 @@
 	inhand_icon_state = "magic_bullet"
 	special = "This weapon fires extremely slowly. \
 		This weapon pierces all targets. \
-		This weapon fires significantly faster wearing the matching armor"
+		This weapon gets a firespeed bonus when wearing the matching armor."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 30	//Put on the armor, jackass.
@@ -71,14 +81,22 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
+	var/cached_multiplier
 
 /obj/item/gun/ego_gun/magicbullet/before_firing(atom/target, mob/user)
+	if(cached_multiplier)
+		projectile_damage_multiplier = cached_multiplier
 	fire_delay = initial(fire_delay)
 	var/mob/living/carbon/human/myman = user
-	var/obj/item/clothing/suit/armor/ego_gear/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
 		fire_delay = 15
+	if(istype(Z))
+		cached_multiplier = projectile_damage_multiplier
+		projectile_damage_multiplier *= 2.5
 	..()
+
 
 //Funeral guns have two different names;
 //Solemn Lament is the white gun, Solemn Vow is the black gun.
@@ -294,11 +312,10 @@
 	inhand_icon_state = "featherofhonor"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_feather
 	weapon_weight = WEAPON_HEAVY
-	special = "This weapon deals 35 white in melee."
-	force = 35
+	special = "This weapon deals 42 white in melee."
+	force = 42
 	damtype = WHITE_DAMAGE
-	armortype = WHITE_DAMAGE
-	fire_delay = 25
+	fire_delay = 12
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							PRUDENCE_ATTRIBUTE = 60
@@ -313,7 +330,6 @@
 	weapon_weight = WEAPON_HEAVY
 	special = "Upon hit the targets RED vulnerability is increased by 0.2."
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	fire_delay = 30 //5 less than the Rend Armor status effect
 	fire_sound = 'sound/misc/moist_impact.ogg'
 	attribute_requirements = list(
@@ -430,6 +446,7 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
 /obj/item/gun/ego_gun/my_own_bride
 	name = "My own Bride"
 	desc = "Simply carrying it gives the illusion that you're standing in a forest in the middle of nowhere. \

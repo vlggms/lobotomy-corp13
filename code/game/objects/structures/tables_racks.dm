@@ -142,7 +142,6 @@
 	pushed_mob.visible_message("<span class='danger'>[user] slams [pushed_mob] onto \the [src]!</span>", \
 								"<span class='userdanger'>[user] slams you onto \the [src]!</span>")
 	log_combat(user, pushed_mob, "tabled", null, "onto [src]")
-	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table)
 
 /obj/structure/table/proc/tablelimbsmash(mob/living/user, mob/living/pushed_mob)
 	pushed_mob.Knockdown(30)
@@ -159,7 +158,6 @@
 	pushed_mob.visible_message("<span class='danger'>[user] smashes [pushed_mob]'s [banged_limb.name] against \the [src]!</span>",
 								"<span class='userdanger'>[user] smashes your [banged_limb.name] against \the [src]</span>")
 	log_combat(user, pushed_mob, "head slammed", null, "against [src]")
-	SEND_SIGNAL(pushed_mob, COMSIG_ADD_MOOD_EVENT, "table", /datum/mood_event/table_limbsmash, banged_limb)
 
 /obj/structure/table/attackby(obj/item/I, mob/user, params)
 	var/list/modifiers = params2list(params)
@@ -651,12 +649,14 @@
 		return
 	if(user.body_position == LYING_DOWN || user.usable_legs < 2)
 		return
+	if(user.a_intent != INTENT_HARM)
+		return
 	user.changeNext_move(CLICK_CD_MELEE)
 	user.do_attack_animation(src, ATTACK_EFFECT_KICK)
 	user.visible_message("<span class='danger'>[user] kicks [src].</span>", null, null, COMBAT_MESSAGE_RANGE)
-	take_damage(rand(4,8), BRUTE, MELEE, 1)
+	take_damage(rand(4,8), MELEE, 1)
 
-/obj/structure/rack/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/rack/play_attack_sound(damage_amount, damage_type = BRUTE)
 	switch(damage_type)
 		if(BRUTE, RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 			if(damage_amount)

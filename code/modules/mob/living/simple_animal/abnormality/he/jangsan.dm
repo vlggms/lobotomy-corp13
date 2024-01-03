@@ -6,16 +6,16 @@
 	icon_state = "jangsan_idle"
 	icon_living = "jangsan_idle"
 	var/icon_aggro = "jangsan"
+	portrait = "jangsan"
 	speak_emote = list("growls")
 	pixel_x = -16
 	base_pixel_x = -16
 	ranged = TRUE
 	maxHealth = 1200
 	health = 1200
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	see_in_dark = 10
 	stat_attack = HARD_CRIT
-	speed = 4
 	move_to_delay = 7
 	threat_level = HE_LEVEL
 	can_breach = TRUE
@@ -32,7 +32,6 @@
 //Only done to non-humans, objects, and strong(er) agents
 	attack_sound = 'sound/abnormalities/jangsan/tigerbite.ogg'
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_damage_lower = 40
 	melee_damage_upper = 60
 
@@ -96,10 +95,10 @@
 	return chance * chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/StatCheck(mob/living/carbon/human/user)
-	strong_counter = 0 //Counts how many stats are above 40
-	weak_counter = 0
+	strong_counter = 0 //Counts how many stats are at or above 60 AKA level 3 or higher
+	weak_counter = 0 //Counts how many stats are below 40 AKA level 1
 	for(var/attribute in stats)
-		if(get_attribute_level(user, attribute)<= 40)
+		if(get_attribute_level(user, attribute)< 40)
 			weak_counter += 1
 		if(get_attribute_level(user, attribute)>= 60)
 			strong_counter += 1
@@ -218,7 +217,7 @@
 		head.dismember()
 		QDEL_NULL(head)
 		H.regenerate_icons()
-		visible_message("<span class='danger'>\The [src] bites [H]'s head off!</span>")
+		visible_message(span_danger("\The [src] bites [H]'s head off!"))
 		new /obj/effect/gibspawner/generic/silent(get_turf(H))
 		new /obj/effect/halo(get_turf(H))
 		playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
@@ -228,7 +227,7 @@
 	H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
 	H.adjustSanityLoss(-50)
 	H.Stun(5 SECONDS)
-	to_chat(target, "<span class='warning'>Is that what it really looks like? It's over... I can’t even move my legs...</span>")
+	to_chat(target, span_warning("Is that what it really looks like? It's over... I can’t even move my legs..."))
 	return
 
 //targetting
@@ -267,8 +266,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/bullet_act(obj/projectile/P)
-	if(prob(90)) //guns are ineffective
-		visible_message("<span class='userdanger'>[P] is caught in [src]'s thick fur!</span>")
+	if(P.damage <= 40)
+		visible_message(span_userdanger("[P] is caught in [src]'s thick fur!"))
 		P.Destroy()
 		return
 	..()

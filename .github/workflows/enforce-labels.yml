@@ -1,0 +1,15 @@
+name: Enforce PR labels
+
+on:
+  pull_request:
+    types: [labeled, unlabeled, opened, edited, synchronize]
+jobs:
+  enforce-label:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: yogevbd/enforce-label-action@2.1.0
+      with:
+        REQUIRED_LABELS_ANY: "Abnormality,Balance,Code improvement,dependencies,Expansion,Feature,Fix,Github,Mapping,Removal,Side content,Sprites,Tweak,Writing"
+        REQUIRED_LABELS_ANY_DESCRIPTION: "This PR cannot be merged while having no labels attached!"
+        BANNED_LABELS: "Do Not Merge,Test Merge Candidate"
+        BANNED_LABELS_DESCRIPTION: "This PR cannot be merged while 'Do Not Merge' or 'Test Merge Candidate' labels are intact."

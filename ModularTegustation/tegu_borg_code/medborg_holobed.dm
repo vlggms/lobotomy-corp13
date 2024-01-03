@@ -107,7 +107,7 @@
 	visible_message("<span class='warning'>[src] suddenly flickers and vanishes!</span>")
 	return ..()
 
-/obj/structure/bed/holobed/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/bed/holobed/play_attack_sound(damage_amount, damage_type = BRUTE)
 	playsound(src, 'sound/effects/empulse.ogg', 50, TRUE)
 
 /obj/structure/bed/holobed/attackby(obj/item/W, mob/user, params)

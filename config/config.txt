@@ -558,3 +558,7 @@ VOTE_AUTOTRANSFER_ENABLED
 VOTE_AUTOTRANSFER_INITIAL 45000
 ## Time (in deciseconds) between subsequent transfer votes. Default: 30 minutes
 VOTE_AUTOTRANSFER_INTERVAL 12000
+
+## Time limit (in deciseconds) for core suppression availability
+## If midnight has started before it has been reached - they will be available
+SUPPRESSION_TIME_LIMIT 36000

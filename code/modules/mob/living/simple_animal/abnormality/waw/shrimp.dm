@@ -24,6 +24,9 @@
 		)
 	gift_type =  /datum/ego_gifts/executive
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/wellcheers = 1.5 // I... if you ever get a zayin this far in, good luck.
+	)
 
 	var/liked
 	var/happy = TRUE
@@ -58,7 +61,7 @@
 				/obj/item/gun/ego_gun/sodasmg,
 				/obj/item/gun/ego_gun/sodashotty,
 				/obj/item/gun/ego_gun/sodarifle,
-				/obj/item/clothing/suit/armor/ego_gear/soda,
+				/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
 				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
 				)
@@ -104,11 +107,15 @@
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/proc/pissed()
 	var/turf/W = pick(GLOB.department_centers)
 	for(var/turf/T in orange(1, W))
-		new /obj/effect/temp_visual/dir_setting/cult/phase
+		var/obj/structure/closet/supplypod/extractionpod/pod = new()
+		pod.explosionSize = list(0,0,0,0)
 		if(prob(70))
-			new /mob/living/simple_animal/hostile/shrimp(T)
+			new /mob/living/simple_animal/hostile/shrimp(pod)
 		else
-			new /mob/living/simple_animal/hostile/shrimp_soldier(T)
+			new /mob/living/simple_animal/hostile/shrimp_soldier(pod)
+
+		new /obj/effect/pod_landingzone(T, pod)
+		stoplag(2)
 
 //repeat lines
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/funpet()
@@ -138,7 +145,6 @@
 	health = 400
 	maxHealth = 400
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 24
 	melee_damage_upper = 27
@@ -161,7 +167,6 @@
 	health = 500	//They're here to help
 	maxHealth = 500
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 14
 	melee_damage_upper = 18

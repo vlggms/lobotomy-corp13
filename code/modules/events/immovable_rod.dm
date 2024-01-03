@@ -205,7 +205,7 @@ In my current plan for it, 'solid' will be defined as anything with density == 1
 
 	if(isobj(clong))
 		var/obj/clong_obj = clong
-		clong_obj.take_damage(INFINITY, BRUTE, NONE, TRUE, dir, INFINITY)
+		clong_obj.take_damage(INFINITY, BRUTE, TRUE, dir, INFINITY)
 		return ..()
 
 	// If we Bump into a living thing, living thing goes splat.

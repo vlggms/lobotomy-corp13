@@ -13,7 +13,7 @@
 /obj/item/clothing/suit/armor/ego_gear/city/sevenrecon
 	name = "Seven Association recon armor"
 	desc = "Armor worn by seven association fixers. Speeds up it's user, for a faster gathering of intelligence, but has lower defenses"
-	icon_state = "seven"
+	icon_state = "sevenscout"
 	slowdown = -0.5
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
 	attribute_requirements = list(

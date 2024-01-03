@@ -6,14 +6,19 @@
 	max_buckled_mobs = 1
 	var/list/bastards = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/bucket,
+		/datum/ego_datum/armor/bucket
+		)
+
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
 		/obj/item/ego_weapon/paradise,
-		/obj/item/clothing/suit/armor/ego_gear/twilight,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight,
 		/obj/item/ego_weapon/twilight
 		)
 	var/list/alephitem = list(//less junk items at higher risk levels
-		/obj/item/clothing/suit/armor/ego_gear/praetorian,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian,
 		/obj/item/toy/plush/mosb,
 		/obj/item/toy/plush/melt
 		)
@@ -34,7 +39,7 @@
 		/obj/item/gun/ego_gun/sodashotty,
 		/obj/item/gun/ego_gun/sodarifle,
 		/obj/item/gun/ego_gun/sodasmg,
-		/obj/item/clothing/suit/armor/ego_gear/lutemis,
+		/obj/item/clothing/suit/armor/ego_gear/he/lutemis,
 		/obj/item/grenade/spawnergrenade/shrimp,
 		/obj/item/clothing/neck/beads,
 		/obj/item/clothing/glasses/sunglasses/reagent,
@@ -42,7 +47,7 @@
 		/obj/item/clothing/neck/necklace/dope,
 		)
 	var/list/tethitem = list(
-		/obj/item/clothing/suit/armor/ego_gear/training,
+		/obj/item/clothing/suit/armor/ego_gear/teth/training,
 		/obj/item/ego_weapon/training,
 		/obj/item/clothing/suit/armor/ego_gear/rookie,
 		/obj/item/clothing/suit/armor/ego_gear/fledgling,
@@ -59,7 +64,8 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 		/obj/item/food/bread/bongbread,
 		/obj/item/clothing/neck/tie/horrible,
-		/obj/item/clothing/mask/cigarette/cigar/havana
+		/obj/item/clothing/mask/cigarette/cigar/havana,
+		/mob/living/carbon/human/species/shrimp
 		)
 	var/list/normalitem = list(
 		/obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -77,6 +83,7 @@
 		/obj/item/clothing/under/suit/lobotomy/training,
 		/obj/item/clothing/under/suit/lobotomy/command,
 		/obj/item/clothing/under/suit/lobotomy/discipline,
+		/obj/item/clothing/under/suit/lobotomy/discipline/alternative,
 		/obj/item/clothing/under/suit/lobotomy/welfare,
 		/obj/item/clothing/under/suit/lobotomy/extraction,
 		/obj/item/clothing/under/suit/lobotomy/records,
@@ -127,6 +134,7 @@
 	var/list/dawn = list(
 		/mob/living/simple_animal/hostile/ordeal/green_bot,
 		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+		/obj/item/clothing/mask/facehugger/bongy,
 		/mob/living/simple_animal/hostile/ordeal/violet_fruit
 		)
 	var/list/noon = list(
@@ -179,10 +187,10 @@
 	if(istype(I, /obj/item/holochip))
 		output = "MONEY"
 		playsound(src, 'sound/items/coinflip.ogg', 80, TRUE, -3)
-		to_chat(user, "<span class='notice'>You hear a plop as the holochip comes in contact with the water...</span>")
+		to_chat(user, span_notice("You hear a plop as the holochip comes in contact with the water..."))
 	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
 		playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
-		to_chat(user, "<span class='notice'>You hear the ego dissolve as it comes in contact with the water...</span>")
+		to_chat(user, span_notice("You hear the ego dissolve as it comes in contact with the water..."))
 		if(locate(I) in tethitem) //TODO: use a different proc? We want an exact match in item paths.
 			output = "TETH"
 		else if(locate(I) in heitem)
@@ -194,14 +202,14 @@
 		else
 			output = "ZAYIN" //If an EGO is not in the lists for whatever reason it will default to zayin
 	else
-		to_chat(user, "<span class='userdanger'>The well rejects your item!</span>")
+		to_chat(user, span_userdanger("The well rejects your item!"))
 
 	// Now for outputs
 	if(!output)
 		return
 
 	if(!do_after(user, 7 SECONDS))
-		to_chat(user, "<span class='userdanger'>The well goes silent as it detects your impatience.</span>")
+		to_chat(user, span_userdanger("The well goes silent as it detects your impatience."))
 		return
 
 	var/gift = null
@@ -209,7 +217,7 @@
 	var/gacha = rand(1,100)
 	if(gacha > 50)
 		playsound(src, 'sound/abnormalities//dreamingcurrent/dead.ogg', 80, TRUE, -3)
-		to_chat(user, "<span class='notice'>Nothing happens...</span>")
+		to_chat(user, span_notice("Nothing happens..."))
 		return
 
 	switch(output)
@@ -270,24 +278,32 @@
 	if(gift)
 		playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
 		new gift(get_turf(src))
-		visible_message("<span class='notice'>Something comes out of the well!</span>")
+		visible_message(span_notice("Something comes out of the well!"))
 
 //Throw yourself into the well : The Code
 /obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	if(M != user)
-		return FALSE
-
 	if (!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "<span class='warning'>It doesn't look like I can't quite fit in.</span>")
+		to_chat(usr, span_warning("It doesn't look like I can't quite fit in."))
 		return FALSE // Can only extract from humans.
 
-	to_chat(user, "<span class='warning'>You start climbing into the well.</span>")
+	if(M != user)
+		to_chat(user, span_warning("You start pulling [M] into the well."))
+		if(do_after(user, 7 SECONDS)) //If you're going to throw someone else, they have to be dead first.
+			if(M.stat == DEAD)
+				to_chat(user, span_notice("You throw [M] in the well!"))
+				buckle_mob(M, check_loc = check_loc)
+			else
+				to_chat(user, span_warning("How could you be so cruel? [M] is still alive!"))
+		return
+
+	to_chat(user, span_warning("You start climbing into the well."))
 	if(!do_after(user, 7 SECONDS))
-		to_chat(user, "<span class='notice'>You decide that might be a bad idea.</span>")
+		to_chat(user, span_notice("You decide that might be a bad idea."))
 		return FALSE
 
-	to_chat(user, "<span class='userdanger'>You fall into the well!</span>")
+	to_chat(user, span_userdanger("You fall into the well!"))
 	return ..(M, user, check_loc = FALSE) //it just works
+
 
 /obj/structure/toolabnormality/wishwell/post_buckle_mob(mob/living/carbon/human/M)
 	if(!ishuman(M))
@@ -320,5 +336,5 @@
 	sleep(10)
 	new deathgift(get_turf(src))
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
-	visible_message("<span class='notice'>Something comes out of the well!</span>")
+	visible_message(span_notice("Something comes out of the well!"))
 	..()

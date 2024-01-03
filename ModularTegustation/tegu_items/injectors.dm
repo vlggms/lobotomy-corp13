@@ -11,12 +11,12 @@
 
 /obj/item/trait_injector/attack_self(mob/living/carbon/human/user)
 	if(!istype(user) || !(user.mind?.assigned_role in roles))
-		to_chat(user, "<span class='notice'>The injector light flashes red. [error_message] Check the label before use.</span>")
+		to_chat(user, span_notice("The injector light flashes red. [error_message] Check the label before use."))
 		return
 	InjectTrait(user)
 
 /obj/item/trait_injector/proc/InjectTrait(mob/living/carbon/human/user)
-	to_chat(user, "<span class='nicegreen'>The injector blinks green before it disintegrates. [success_message]</span>")
+	to_chat(user, span_nicegreen("The injector blinks green before it disintegrates. [success_message]"))
 	if(trait)
 		ADD_TRAIT(user, trait, JOB_TRAIT)
 	qdel(src)
@@ -75,7 +75,7 @@
 		user.faction |= "shrimp"
 		..()
 		return
-	to_chat(user,"<span class='userdanger'>The injector burns red before switching to green and dissapearing. You feel uneasy.</span>")
+	to_chat(user, span_userdanger("The injector burns red before switching to green and dissapearing. You feel uneasy."))
 	qdel(src)
 	sleep(rand(20, 50)) // 2 to 5 seconds
 	if(prob(70))

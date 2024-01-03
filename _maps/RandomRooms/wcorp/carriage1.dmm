@@ -1,0 +1,347 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/city/outskirts)
+"c" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"e" = (
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"f" = (
+/turf/open/floor/wood,
+/area/city/outskirts)
+"i" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"j" = (
+/obj/structure/table/rolling,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"m" = (
+/obj/item/chair/wood,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"p" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"q" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"r" = (
+/obj/structure/table/wood,
+/obj/item/candle/infinite,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"s" = (
+/obj/structure/bookcase,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"u" = (
+/obj/effect/decal/cleanable/glass,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"v" = (
+/obj/machinery/vending/boozeomat,
+/turf/closed/indestructible/wood,
+/area/city/outskirts)
+"w" = (
+/obj/structure/table/wood,
+/obj/effect/decal/cleanable/ash,
+/obj/item/clothing/mask/cigarette/cigar,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"x" = (
+/obj/item/chair/wood,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"y" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"z" = (
+/obj/structure/table/rolling,
+/obj/item/flashlight/lamp,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"A" = (
+/obj/structure/table/rolling,
+/obj/item/reagent_containers/food/drinks/beer,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"B" = (
+/turf/closed/indestructible/wood,
+/area/city/outskirts)
+"C" = (
+/obj/item/chair/wood,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"D" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"E" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"F" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"H" = (
+/obj/structure/table/rolling,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"I" = (
+/obj/structure/table/rolling,
+/obj/structure/table/rolling,
+/obj/item/flashlight/lamp,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"J" = (
+/obj/item/chair/wood{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"L" = (
+/obj/item/chair/wood,
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"M" = (
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"N" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/wood,
+/area/city/outskirts)
+"P" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/outskirts)
+"R" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"S" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"T" = (
+/obj/item/chair/stool/bar,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"U" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"V" = (
+/obj/structure/displaycase,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"X" = (
+/obj/structure/chair/wood,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Y" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/clothing/mask/cigarette/cigar{
+	pixel_x = 9;
+	pixel_y = 7
+	},
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Z" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/city/outskirts)
+
+(1,1,1) = {"
+a
+c
+f
+f
+f
+f
+f
+f
+f
+s
+a
+"}
+(2,1,1) = {"
+a
+q
+f
+f
+E
+T
+T
+f
+Z
+y
+a
+"}
+(3,1,1) = {"
+a
+L
+f
+f
+j
+A
+I
+f
+f
+P
+a
+"}
+(4,1,1) = {"
+a
+p
+i
+M
+T
+E
+E
+M
+J
+r
+a
+"}
+(5,1,1) = {"
+a
+V
+M
+M
+S
+S
+R
+M
+M
+V
+a
+"}
+(6,1,1) = {"
+a
+r
+m
+M
+M
+M
+M
+M
+X
+U
+a
+"}
+(7,1,1) = {"
+a
+x
+N
+f
+v
+B
+v
+f
+N
+f
+a
+"}
+(8,1,1) = {"
+a
+U
+i
+M
+M
+M
+M
+M
+C
+Y
+a
+"}
+(9,1,1) = {"
+a
+V
+M
+M
+M
+F
+M
+S
+M
+V
+a
+"}
+(10,1,1) = {"
+a
+U
+M
+M
+E
+E
+E
+M
+m
+w
+a
+"}
+(11,1,1) = {"
+a
+D
+f
+f
+z
+H
+j
+f
+f
+D
+a
+"}
+(12,1,1) = {"
+a
+q
+u
+f
+T
+E
+E
+f
+Z
+y
+a
+"}
+(13,1,1) = {"
+a
+e
+f
+f
+f
+f
+f
+f
+f
+s
+a
+"}

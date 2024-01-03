@@ -69,6 +69,10 @@
 
 // Health/damage defines
 #define MAX_LIVING_HEALTH 100
+/// Maximum health of a human mob, without fortitude
+#define DEFAULT_HUMAN_MAX_HEALTH 100
+/// Maximum sanity of a human mob, without prudence
+#define DEFAULT_HUMAN_MAX_SANITY 100
 
 #define HUMAN_MAX_OXYLOSS 3
 #define HUMAN_CRIT_MAX_OXYLOSS (SSmobs.wait/30)
@@ -139,16 +143,6 @@
 #define BEAUTY_LEVEL_GOOD 66
 #define BEAUTY_LEVEL_GREAT 100
 
-//Moods levels for humans
-#define MOOD_LEVEL_HAPPY4 15
-#define MOOD_LEVEL_HAPPY3 10
-#define MOOD_LEVEL_HAPPY2 6
-#define MOOD_LEVEL_HAPPY1 2
-#define MOOD_LEVEL_NEUTRAL 0
-#define MOOD_LEVEL_SAD1 -3
-#define MOOD_LEVEL_SAD2 -7
-#define MOOD_LEVEL_SAD3 -15
-#define MOOD_LEVEL_SAD4 -20
 
 //Sanity levels for humans
 #define SANITY_MAXIMUM 150
@@ -371,6 +365,7 @@
 /// How far away you can be to make eye contact with someone while examining
 #define EYE_CONTACT_RANGE	5
 
+//simple_mob_flags
 #define SILENCE_RANGED_MESSAGE (1<<0)
 
 ///Swarmer flags

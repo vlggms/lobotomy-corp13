@@ -979,10 +979,10 @@ rough example of the "cone" made by the 3 dirs checked
 
 	var/list/mobs = list()
 	for(var/mob/living/L in GLOB.mob_living_list)
-		var/check_place = L
+		var/atom/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(get_dist(center, check_place) <= dist)
+		if(get_dist(center, check_place) <= dist && center.z == check_place.z)
 			mobs += L
 
 	return mobs
@@ -993,11 +993,12 @@ rough example of the "cone" made by the 3 dirs checked
 		return list()
 
 	var/list/mobs = list()
+	var/list/my_view = view(dist, center)
 	for(var/mob/living/L in GLOB.mob_living_list)
 		var/check_place = L
 		if(isatom(L.loc)) // Not a turf/area
 			check_place = L.loc
-		if(check_place in view(dist, center))
+		if(check_place in my_view)
 			mobs += L
 
 	return mobs
@@ -1508,4 +1509,38 @@ GLOBAL_DATUM_INIT(dview_mob, /mob/dview, new)
 	for(var/client/C in GLOB.clients)
 		show_blurb(C, duration, blurb_text, fade_time, text_color, outline_color, text_align, screen_location)
 
+// Animates atom's color over time
+/proc/SetColorOverTime(atom/A, new_color = "#FFFFFF", new_time = 2)
+	animate(A, color = new_color, time = new_time)
+
 #define TURF_FROM_COORDS_LIST(List) (locate(List[1], List[2], List[3]))
+
+// Returns a list of all safe directions based off of the turf given
+// Included in stuff like Blue Sicko's Tempestuous Danza or The Claw weapon's serum W
+/proc/GetSafeDir(turf/target)
+	var/turf/list = list()
+	for(var/dir in GLOB.alldirs)
+		var/turf/T = get_step(target, dir)
+		if(!IsSafeTurf(T))
+			continue
+		list += dir
+	return list
+
+// Checks if the current turf is "Safe"
+// Future notes: Convert to a list and check if T is in that list?
+/proc/IsSafeTurf(turf/T)
+	if(!T)
+		return FALSE
+	if(T.density)
+		return FALSE
+	if(T in typesof(/turf/open/water/deep)) // No water
+		return FALSE
+	if(T in typesof(/turf/open/space)) // No space
+		return FALSE
+	var/obj/structure/window/W = locate() in T // No windows
+	var/obj/machinery/door/D = locate() in T // No doors
+	var/obj/machinery/vending/V = locate() in T // No vending
+	var/obj/structure/table/glass/G = locate() in T // No glass tables
+	if(W || D || V || G)
+		return FALSE
+	return TRUE

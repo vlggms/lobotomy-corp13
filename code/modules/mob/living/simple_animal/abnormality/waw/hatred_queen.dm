@@ -8,6 +8,7 @@
 	var/icon_crazy = "hatred_psycho"
 	icon_dead = "hatred_dead"
 	var/icon_inverted
+	portrait = "hatred_queen"
 	faction = list("neutral")
 	is_flying_animal = TRUE
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -18,7 +19,7 @@
 
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	ranged_cooldown_time = 12
 	projectiletype = /obj/projectile/hatred
@@ -28,7 +29,6 @@
 	deathmessage = "slowly falls to the ground."
 	check_friendly_fire = TRUE
 
-	speed = 2
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 	can_patrol = FALSE
@@ -52,12 +52,12 @@
 	gift_type = /datum/ego_gifts/love_and_hate
 	gift_message = "In fact, \"peace\" is not what she desires."
 
-	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/qoh_beam,
-		/datum/action/innate/abnormality_attack/qoh_beats,
-		/datum/action/innate/abnormality_attack/qoh_teleport,
-		/datum/action/innate/abnormality_attack/qoh_normal
-		)
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
+		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+	)
 
 	var/chance_modifier = 1
 	var/death_counter = 0
@@ -85,32 +85,36 @@
 	var/explode_damage = 60 // Boosted from 35 due to Indication she's gonna be there. It's a legit skill issue now.
 	var/breach_max_death = 0
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+		/datum/action/innate/abnormality_attack/qoh_beam,
+		/datum/action/innate/abnormality_attack/qoh_beats,
+		/datum/action/innate/abnormality_attack/qoh_teleport,
+		/datum/action/innate/abnormality_attack/qoh_normal
+		)
+
 /datum/action/innate/abnormality_attack/qoh_beam
 	name = "Arcana Slave"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "magicm"
-	chosen_message = "<span class='colossus'>You will now charge up a giant magic beam.</span>"
+	button_icon_state = "qoh_beam"
+	chosen_message = span_colossus("You will now charge up a giant magic beam.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/qoh_beats
 	name = "Arcana Beats"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "arrow"
-	chosen_message = "<span class='colossus'>You will now fire a wave of energy.</span>"
+	button_icon_state = "qoh_beats"
+	chosen_message = span_colossus("You will now fire a wave of energy.")
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/qoh_teleport
 	name = "Teleport"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "scroll"
-	chosen_message = "<span class='colossus'>You will now teleport to a random enemy.</span>"
+	button_icon_state = "qoh_teleport"
+	chosen_message = span_colossus("You will now teleport to a random enemy.")
 	chosen_attack_num = 3
 
 /datum/action/innate/abnormality_attack/qoh_normal
 	name = "Normal Attack"
-	icon_icon = 'icons/obj/wizard.dmi'
-	button_icon_state = "lovestone"
-	chosen_message = "<span class='colossus'>You will now use normal attacks.</span>"
+	button_icon_state = "qoh_normal"
+	chosen_message = span_colossus("You will now use normal attacks.")
 	chosen_attack_num = 5
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Initialize()
@@ -161,7 +165,7 @@
 				BeamAttack(target)
 			if(2)
 				if(friendly)
-					ArcanaBeats(target)
+					ArcanaBeats(target)//only able to use beats if passive
 			if(3)
 				TryTeleport()
 			if(5)
@@ -244,7 +248,7 @@
 	if(target)
 		face_atom(target)
 	icon_state = "hatredbeats"
-	visible_message("<span class='danger'>[src] prepares to mark the enemies of justice!</span>")
+	visible_message(span_danger("[src] prepares to mark the enemies of justice!"))
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, 5)
 	var/list/turfs_to_hit = getline(src, target_turf)
 	var/obj/effect/qoh_sygil/S = new(get_turf(src))
@@ -294,13 +298,7 @@
 		affected_turfs += TT
 		var/obj/effect/temp_visual/TV = new /obj/effect/temp_visual/revenant(TT)
 		TV.color = COLOR_SOFT_RED
-		for(var/mob/living/L in TT) // Direct hit
-			if(L in beats_hit)
-				continue
-			if(faction_check_mob(L))
-				continue
-			beats_hit += L
-			L.apply_damage(beats_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+		beats_hit = HurtInTurf(TT, beats_hit, beats_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/BeamAttack(target)
 	if(beam_cooldown > world.time)
@@ -444,7 +442,7 @@
 				targets_in_range += 1
 				break
 		if(targets_in_range >= 1)
-			to_chat(src, "<span class='warning'>You cannot teleport while enemies are nearby!</span>")
+			to_chat(src, span_warning("You cannot teleport while enemies are nearby!"))
 			return FALSE
 	var/list/teleport_potential = list()
 	for(var/mob/living/L in GLOB.mob_living_list)
@@ -490,18 +488,13 @@
 	teleport_cooldown = world.time + teleport_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/TeleportExplode()
-	visible_message("<span class='bolddanger'>[src] explodes!</span>")
+	visible_message(span_bolddanger("[src] explodes!"))
 	var/obj/effect/temp_visual/VO = new /obj/effect/temp_visual/voidout(get_turf(src))
 	var/matrix/new_matrix = matrix()
 	new_matrix.Scale(1.75)
 	VO.transform = new_matrix
 	for(var/turf/open/T in view(2, src))
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			if(L.stat == DEAD)
-				continue
-			L.apply_damage(explode_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		HurtInTurf(T, list(), explode_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/WorkChance(mob/living/carbon/human/user, chance)
 	return chance * chance_modifier
@@ -547,7 +540,7 @@
 	can_act = FALSE
 	breach_max_death = 0
 	icon_state = icon_crazy
-	visible_message("<span class='danger'>[src] falls to her knees, muttering something under her breath.</span>")
+	visible_message(span_danger("[src] falls to her knees, muttering something under her breath."))
 	addtimer(CALLBACK(src, .atom/movable/proc/say, "I wasn’t able to protect anyone like she did…"))
 	addtimer(CALLBACK(src, .proc/HostileTransform), 10 SECONDS)
 
@@ -567,7 +560,7 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/HostileTransform()
 	if(stat == DEAD)
 		return
-	visible_message("<span class='bolddanger'>[src] transforms!</span>") //Begin Hostile breach
+	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	adjustBruteLoss(-maxHealth)
 	friendly = FALSE

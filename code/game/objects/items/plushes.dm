@@ -13,6 +13,8 @@
 	gender = NEUTER
 	var/divine = FALSE
 
+	var/unique_pet = FALSE // LOBOTOMYCORPORATION EDIT ADDITION - unique plushie messages
+
 /obj/item/toy/plush/Initialize()
 	. = ..()
 	AddComponent(/datum/component/squeak, squeak_override)
@@ -33,6 +35,9 @@
 
 /obj/item/toy/plush/attack_self(mob/user)
 	. = ..()
+	if(unique_pet) // LOBOTOMYCORPORATION EDIT ADDITION - unique plushie messages
+		to_chat(user, "<span class='notice'>[unique_pet]</span>")
+		return
 	if(stuffed || grenade)
 		to_chat(user, "<span class='notice'>You pet [src]. D'awww.</span>")
 		if(grenade && !grenade.active)
@@ -88,8 +93,8 @@
 	return ..()
 
 /obj/item/toy/plush/carpplushie
-	name = "space carp plushie"
-	desc = "An adorable stuffed toy that resembles a space carp."
+	name = "carp plushie"
+	desc = "An adorable stuffed toy that resembles a carp."
 	icon_state = "carpplush"
 	inhand_icon_state = "carp_plushie"
 	attack_verb_continuous = list("bites", "eats", "fin slaps")
@@ -231,7 +236,7 @@
 
 /obj/item/toy/plush/nukeplushie
 	name = "operative plushie"
-	desc = "A stuffed toy that resembles a syndicate nuclear operative. The tag claims operatives to be purely fictitious."
+	desc = "A stuffed toy that resembles a syndicate nuclear operative from a popular video game"
 	icon_state = "plushie_nuke"
 	inhand_icon_state = "plushie_nuke"
 	attack_verb_continuous = list("shoots", "nukes", "detonates")
@@ -327,6 +332,7 @@
 	desc = "A plushie depicting a researcher that did <b>nothing wrong</b>." // Fight me
 	icon_state = "ayin"
 	gender = MALE
+	unique_pet = "You pet the ayin plushie, ayin did nothing wrong."
 
 /obj/item/toy/plush/benjamin
 	name = "benjamin plushie"
@@ -524,6 +530,7 @@
 	icon_state = "myo"
 	gender = FEMALE
 	squeak_override = list('sound/effects/yem.ogg'=1)
+	unique_pet = "You pet the myo plushie, yem."
 
 /obj/item/toy/plush/rabbit
 	name = "rabbit plushie"
@@ -546,6 +553,12 @@
 			return
 		to_chat(user, "<span class='notice'>You feel as if you prevented something weird and terrible from happening again.</span>")
 
+/obj/item/toy/plush/samjo
+	name = "samjo plushie"
+	desc = "A plushie depicting a K corp secretary, their devotion deserved recognition."
+	icon_state = "samjo"
+	gender = MALE
+
 /obj/item/toy/plush/blank
 	name = "plushie blank"
 	desc = "A humanoid plush that had been freshly made or stripped down to its cloth. Despite its lack of identity, the mere aknowelegement of this plushie makes it unique."
@@ -564,6 +577,7 @@
 	desc = "A plushie depicting a magical girl whose desires got the best of her."
 	icon_state = "kog"
 	gender = FEMALE
+	unique_pet = "You pet the king of greed plushie, you swear it looks up to you hungirly."
 
 /obj/item/toy/plush/kod
 	name = "knight of despair plushie"
@@ -604,6 +618,7 @@
 	attack_verb_continuous = list("blorbles", "slimes", "absorbs")
 	attack_verb_simple = list("blorble", "slime", "absorb")
 	squeak_override = list('sound/effects/blobattack.ogg' = 1)
+	unique_pet = "You pet the melting love plushie... you swear it smiles and looks at you, yet when you blink the plushie returns to normal"
 
 /obj/item/toy/plush/scorched
 	name = "scorched girl plushie"
@@ -612,13 +627,27 @@
 	gender = FEMALE
 	squeak_override = list('sound/abnormalities/scorchedgirl/pre_ability.ogg'=1)
 
+/obj/item/toy/plush/pinocchio
+	name = "pinocchio plushie"
+	desc = "A plushie depicting pinocchio."
+	icon_state = "pinocchio"
+
 // Others
 /obj/item/toy/plush/bongbong
 	name = "bongbong plushie"
 	desc = "A plushie depicting the Lobotomy Corporation"
 	icon_state = "bongbong"
+	unique_pet = "Bong"
 
 /obj/item/toy/plush/fumo
 	name = "cirno fumo"
 	desc = "A plushie depicting an adorable ice fairy. It's cold to the touch."
 	icon_state = "fumo_cirno"
+
+// Special
+/obj/item/toy/plush/bongy
+	name = "bongy plushie"
+	desc = "It looks like a raw chicken. A cute raw chicken!"
+	icon = 'icons/obj/plushes.dmi'
+	icon_state = "bongy"
+	squeak_override = list('sound/creatures/lc13/bongy/kweh.ogg'=1)

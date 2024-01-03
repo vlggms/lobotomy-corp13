@@ -5,7 +5,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	//doohickeys for savefiles
 	var/path
 	var/default_slot = 1 //Holder so it doesn't default to slot 1, rather the last one used
-	var/max_save_slots = 5
+	var/max_save_slots = 7
 
 	//non-preference stuff
 	var/muted = 0
@@ -589,6 +589,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<b>[TeguTranslate("tgui Window Mode", src)]:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</a><br>"
 			dat += "<b>[TeguTranslate("tgui Window Placement", src)]:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary monitor" : "Free (default)"]</a><br>"
 			dat += "<b>Show Runechat Chat Bubbles:</b> <a href='?_src_=prefs;preference=chat_on_map'>[chat_on_map ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
+			dat += "<b>[TeguTranslate("Enable Radio Static", src)]:</b> <a href='?_src_=prefs;preference=radio_static'>[(toggles & SOUND_RADIO_STATIC) ? TeguTranslate("Enabled", src):TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<b>Runechat message char limit:</b> <a href='?_src_=prefs;preference=max_chat_length;task=input'>[max_chat_length]</a><br>"
 			dat += "<b>See Runechat for non-mobs:</b> <a href='?_src_=prefs;preference=see_chat_non_mob'>[see_chat_non_mob ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
 			dat += "<b>See Runechat emotes:</b> <a href='?_src_=prefs;preference=see_rc_emotes'>[see_rc_emotes ? TeguTranslate("Enabled", src) : TeguTranslate("Disabled", src)]</a><br>"
@@ -908,7 +909,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		var/datum/job/lastJob
 
 		for(var/datum/job/job in sortList(SSjob.occupations, /proc/cmp_job_display_asc))
-			if(job.total_positions == 0)	//Is the job admin only?
+			if(job.total_positions == 0 && job.spawn_positions == 0)	//Is the job unavailable
 				continue
 			index += 1
 			if((index >= limit) || (job.title in splitJobs))
@@ -1037,7 +1038,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		return
 
 	if (!isnum(desiredLvl))
-		to_chat(user, "<span class='danger'>UpdateJobPreference - desired level was not a number. Please notify coders!</span>")
+		to_chat(user, span_danger("UpdateJobPreference - desired level was not a number. Please notify coders!"))
 		ShowChoices(user)
 		return
 
@@ -1067,7 +1068,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 /datum/preferences/proc/SetQuirks(mob/user)
 	if(!SSquirks)
-		to_chat(user, "<span class='danger'>The quirk subsystem is still initializing! Try again in a minute.</span>")
+		to_chat(user, span_danger("The quirk subsystem is still initializing! Try again in a minute."))
 		return
 
 	var/list/dat = list()
@@ -1163,7 +1164,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			var/expires = "This is a permanent ban."
 			if(ban_details["expiration_time"])
 				expires = " The ban is for [DisplayTimeText(text2num(ban_details["duration"]) MINUTES)] and expires on [ban_details["expiration_time"]] (server time)."
-			to_chat(user, "<span class='danger'>You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]</span>")
+			to_chat(user, span_danger("You, or another user of this computer or connection ([ban_details["key"]]) is banned from playing [href_list["bancheck"]].<br>The ban reason is: [ban_details["reason"]]<br>This ban (BanID #[ban_details["id"]]) was applied by [ban_details["admin_key"]] on [ban_details["bantime"]] during round ID [ban_details["round_id"]].<br>[expires]"))
 			return
 	if(href_list["preference"] == "job")
 		switch(href_list["task"])
@@ -1229,22 +1230,22 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						continue
 					for(var/Q in all_quirks)
 						if((Q in L) && !(Q == quirk)) //two quirks have lined up in the list of the list of quirks that conflict with each other, so return (see quirks.dm for more details)
-							to_chat(user, "<span class='danger'>[quirk] is incompatible with [Q].</span>")
+							to_chat(user, span_danger("[quirk] is incompatible with [Q]."))
 							return
 				var/value = SSquirks.quirk_points[quirk]
 				var/balance = GetQuirkBalance()
 				if(quirk in all_quirks)
 					if(balance + value < 0)
-						to_chat(user, "<span class='warning'>Refunding this would cause you to go below your balance!</span>")
+						to_chat(user, span_warning("Refunding this would cause you to go below your balance!"))
 						return
 					all_quirks -= quirk
 				else
 					var/is_positive_quirk = SSquirks.quirk_points[quirk] > 0
 					if(is_positive_quirk && GetPositiveQuirkCount() >= MAX_QUIRKS)
-						to_chat(user, "<span class='warning'>You can't have more than [MAX_QUIRKS] positive quirks!</span>")
+						to_chat(user, span_warning("You can't have more than [MAX_QUIRKS] positive quirks!"))
 						return
 					if(balance - value < 0)
-						to_chat(user, "<span class='warning'>You don't have enough balance to gain this quirk!</span>")
+						to_chat(user, span_warning("You don't have enough balance to gain this quirk!"))
 						return
 					all_quirks += quirk
 				SetQuirks(user)
@@ -1472,7 +1473,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						else if((MUTCOLORS_PARTSONLY in pref_species.species_traits) || ReadHSV(temp_hsv)[3] >= ReadHSV("#7F7F7F")[3]) // mutantcolors must be bright, but only if they affect the skin
 							features["mcolor"] = sanitize_hexcolor(new_mutantcolor)
 						else
-							to_chat(user, "<span class='danger'>Invalid color. Your color is not bright enough.</span>")
+							to_chat(user, span_danger("Invalid color. Your color is not bright enough."))
 
 				if("color_ethereal")
 					var/new_etherealcolor = input(user, "Choose your ethereal color", "Character Preference") as null|anything in GLOB.color_list_ethereal
@@ -1851,7 +1852,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("clear_scars")
 					var/path = "data/player_saves/[user.ckey[1]]/[user.ckey]/scars.sav"
 					fdel(path)
-					to_chat(user, "<span class='notice'>All scar slots cleared.</span>")
+					to_chat(user, span_notice("All scar slots cleared."))
 
 				if("hear_midis")
 					toggles ^= SOUND_MIDI
@@ -1892,6 +1893,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 
 				if("income_pings")
 					chat_toggles ^= CHAT_BANKCARD
+
+				if("radio_static")
+					toggles ^= SOUND_RADIO_STATIC
 
 				if("pull_requests")
 					chat_toggles ^= CHAT_PULLR
@@ -1969,7 +1973,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				if("clear_heart")
 					hearted = FALSE
 					hearted_until = null
-					to_chat(user, "<span class='notice'>OOC Commendation Heart disabled</span>")
+					to_chat(user, span_notice("OOC Commendation Heart disabled"))
 					save_preferences()
 
 	ShowChoices(user)

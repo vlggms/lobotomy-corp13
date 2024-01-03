@@ -184,6 +184,21 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	icon_state = "com_headset"
 	keyslot = new /obj/item/encryptionkey/headset_command
 
+//LC13 syndicate headset
+/obj/item/radio/headset/syndicatecity
+	name = "radio headset"
+	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, but only a few."
+	icon_state = "headset"
+	inhand_icon_state = "headset"
+	frequency = FREQ_DISCIPLINE
+	freerange = TRUE
+	freqlock = TRUE
+
+//LC13 syndicate headset
+/obj/item/radio/headset/syndicatecity/heads
+	command = TRUE
+
+
 /obj/item/radio/headset/heads
 	command = TRUE
 	keyslot = new /obj/item/encryptionkey/headset_architecture
@@ -328,7 +343,6 @@ GLOBAL_LIST_INIT(channel_tokens, list(
 	desc = "This is used by the local association."
 	icon_state = "cent_headset"
 	keyslot = new /obj/item/encryptionkey/headset_cent
-
 
 
 /obj/item/radio/headset/attackby(obj/item/W, mob/user, params)

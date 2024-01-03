@@ -276,6 +276,14 @@
 	flick("summary_selfdes",screen) //???
 	special()
 
+/datum/cinematic/chaosdunk
+	id = CINEMATIC_CHAOS_DUNK
+	cleanup_time = 50
+
+/datum/cinematic/chaosdunk/content()
+	flick("chaos_dunk",screen)
+	cinematic_sound(sound('sound/misc/nest_announcement.ogg'))
+
 /* Intended usage.
 Nuke.Explosion()
 	-> Cinematic(NUKE_BOOM,world)

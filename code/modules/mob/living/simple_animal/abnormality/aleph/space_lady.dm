@@ -7,11 +7,14 @@
 	del_on_death = TRUE
 	maxHealth = 3200
 	health = 3200
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 1)
 	faction = list("hostile")
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
+	ranged = 1
+	retreat_distance = 3
+	minimum_distance = 3
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 0,
 						ABNORMALITY_WORK_INSIGHT = list(20, 30, 40, 50, 55),
@@ -42,9 +45,8 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/space_lady/AttackingTarget()
-	OpenFire()
-	return FALSE
+/mob/living/simple_animal/hostile/abnormality/space_lady/AttackingTarget(atom/attacked_target)
+	return OpenFire()
 
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/OpenFire()

@@ -1,0 +1,8 @@
+Maps that are "Generic" like generic apartments, medical centres, etc, should be named as following
+
+Genericname_(size),(direction),(letter)
+
+For instance
+apartment_mec
+
+Is a Medium map, on the EAST side of the hallway (Not opens eastwards, is on the east) and is the 3rd map with this generic name.

@@ -80,8 +80,12 @@
 	SEND_SIGNAL(I, COMSIG_ITEM_ATTACK_ZONE, src, user, affecting)
 	send_item_attack_message(I, user, affecting.name, affecting)
 	if(I.force)
-		var/justice_mod = 1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
-		apply_damage((I.force * justice_mod), I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
+		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+		var/damage = I.force * justice_mod
+		if(istype(I, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/theweapon = I
+			damage *= theweapon.force_multiplier
+		apply_damage(damage, I.damtype, affecting, wound_bonus = I.wound_bonus, bare_wound_bonus = I.bare_wound_bonus, sharpness = I.get_sharpness(), white_healable = TRUE)
 		if(I.damtype == BRUTE && affecting.status == BODYPART_ORGANIC)
 			if(prob(33))
 				I.add_mob_blood(src)
@@ -313,11 +317,14 @@
 						directional_blocked = TRUE
 						break
 		if((!target_table && !target_collateral_carbon && !target_disposal_bin) || directional_blocked)
+			log_combat(src, target, "shoved", "knocking them down")
+			if(SSmaptype.maptype == "city")
+				return
 			target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
 			target.visible_message("<span class='danger'>[name] shoves [target.name], knocking [target.p_them()] down!</span>",
 							"<span class='userdanger'>You're knocked down from a shove by [name]!</span>", "<span class='hear'>You hear aggressive shuffling followed by a loud thud!</span>", COMBAT_MESSAGE_RANGE, src)
 			to_chat(src, "<span class='danger'>You shove [target.name], knocking [target.p_them()] down!</span>")
-			log_combat(src, target, "shoved", "knocking them down")
+
 		else if(target_table)
 			target.Knockdown(SHOVE_KNOCKDOWN_TABLE)
 			target.visible_message("<span class='danger'>[name] shoves [target.name] onto \the [target_table]!</span>",
@@ -469,14 +476,6 @@
 		// Warm them up with hugs
 		share_bodytemperature(M)
 
-		// No moodlets for people who hate touches
-		if(!HAS_TRAIT(src, TRAIT_BADTOUCH))
-			if(bodytemperature > M.bodytemperature)
-				if(!HAS_TRAIT(M, TRAIT_BADTOUCH))
-					SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/warmhug, src) // Hugger got a warm hug (Unless they hate hugs)
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/hug) // Reciver always gets a mood for being hugged
-			else
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "hug", /datum/mood_event/warmhug, M) // You got a warm hug
 
 		// Let people know if they hugged someone really warm or really cold
 		if(M.bodytemperature > BODYTEMP_HEAT_DAMAGE_LIMIT)
@@ -489,16 +488,6 @@
 		else if(bodytemperature < BODYTEMP_COLD_DAMAGE_LIMIT)
 			to_chat(M, "<span class='warning'>It feels like [src] is freezing as you hug [p_them()].</span>")
 
-		if(HAS_TRAIT(M, TRAIT_FRIENDLY))
-			var/datum/component/mood/hugger_mood = M.GetComponent(/datum/component/mood)
-			if (hugger_mood.sanity >= SANITY_GREAT)
-				new /obj/effect/temp_visual/heart(loc)
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/besthug, M)
-			else if (hugger_mood.sanity >= SANITY_DISTURBED)
-				SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "friendly_hug", /datum/mood_event/betterhug, M)
-
-		if(HAS_TRAIT(src, TRAIT_BADTOUCH))
-			to_chat(M, "<span class='warning'>[src] looks visibly upset as you hug [p_them()].</span>")
 
 	AdjustStun(-60)
 	AdjustKnockdown(-60)
@@ -618,7 +607,7 @@
 		return effect_amount //how soundbanged we are
 
 
-/mob/living/carbon/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
+/mob/living/carbon/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
 	if(damage_type != BRUTE && damage_type != BURN)
 		return
 	damage_amount *= 0.5 //0.5 multiplier for balance reason, we don't want clothes to be too easily destroyed
@@ -631,7 +620,7 @@
 		if(head)
 			hit_clothes = head
 		if(hit_clothes)
-			hit_clothes.take_damage(damage_amount, damage_type, damage_flag, 0)
+			hit_clothes.take_damage(damage_amount, damage_type, 0)
 
 /mob/living/carbon/can_hear()
 	. = FALSE

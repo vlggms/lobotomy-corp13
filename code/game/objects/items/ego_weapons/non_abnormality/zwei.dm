@@ -1,21 +1,16 @@
 //This one will get messy.
 //Anything Zwei related goes here. That's Zwei, Streetlight and anything else under Zwei.
 //Base Zwei is Grade 6, Vet is Grade 5.
-//Fixer garbo is Grade 7.
 
 /obj/item/ego_weapon/city/zweihander
 	name = "zweihander"
 	desc = "A zweihander used by the zwei association."
 	special = "Use in hand to buff your defense, and those of everyone around you."
 	icon_state = "zwei"
-	inhand_icon_state = "zwei"
 	force = 55
 	attack_speed = 2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
-	inhand_icon_state = "claymore"
-	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
+
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
@@ -95,6 +90,14 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
+//Mini Zwei
+/obj/item/ego_weapon/city/zweihander/knife
+	name = "einhander"
+	desc = "A shortsword used by some zwei personnel."
+	icon_state = "zwei_mini"
+	force = 32
+	attack_speed = 1
+
 //Noreqs for the ERT
 /obj/item/ego_weapon/city/zweihander/noreq
 	attribute_requirements = list()
@@ -112,7 +115,7 @@
 	force = 30
 	attack_speed = 2
 	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
+
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(

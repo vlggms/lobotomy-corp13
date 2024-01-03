@@ -1,12 +1,9 @@
 /obj/item/gun/ego_gun/pistol/tough
 	name = "tough pistol"
 	desc = "A glock reminiscent of a certain detective who fought evil for 25 years, losing hair as time went by."
-	special = "Use this weapon in your hand when wearing matching armor to activate a special ability."
+	special = "Use this weapon in your hand when wearing matching armor to turn others nearby bald."
 	icon_state = "bald"
-	inhand_icon_state = "gun"
-	worn_icon_state = "gun"
-	lefthand_file = 'icons/mob/inhands/weapons/guns_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/weapons/guns_righthand.dmi'
+	inhand_icon_state = "bald"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
 	fire_delay = 10
@@ -24,7 +21,7 @@
 	if(pulse_cooldown > world.time)
 		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/tough/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/tough/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(T))
 		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
 		return
@@ -63,7 +60,7 @@
 /obj/item/gun/ego_gun/pistol/soda
 	name = "soda pistol"
 	desc = "A pistol painted in a refreshing purple. Whenever this EGO is used, a faint scent of grapes wafts through the air."
-	special = "This weapon has a special ability that activates when the user dies while wearing matching armor."
+	special = "Perish while wearing matching armor and Wellcheers shrimp will arrive to mourn you."
 	icon_state = "soda"
 	inhand_icon_state = "soda"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
@@ -83,16 +80,20 @@
 
 /obj/item/gun/ego_gun/pistol/soda/dropped(mob/user)
 	. = ..()
+	if(!user)
+		return
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
 
 /obj/item/gun/ego_gun/pistol/soda/Destroy(mob/user)
-	. = ..()
+	if(!user)
+		return ..()
 	UnregisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH)
 	shrimp_chosen = null
+	return ..()
 
 /obj/item/gun/ego_gun/pistol/soda/proc/ShrimpFuneral(mob/user)
-	var/obj/item/clothing/suit/armor/ego_gear/soda/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/soda/S = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(S))
 		var/shrimpcount
 		while(shrimpcount < 2)
@@ -169,7 +170,7 @@
 /obj/item/gun/ego_gun/pistol/nostalgia
 	name = "nostalgia"
 	desc = "An old-looking pistol made of wood"
-	special = "Use this weapon in your hand when wearing matching armor to activate a special ability."
+	special = "Use this weapon in your hand when wearing matching armor to heal the SP of others nearby."
 	icon_state = "nostalgia"
 	inhand_icon_state = "nostalgia"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_nostalgia
@@ -192,7 +193,7 @@
 		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
 		return
 	pulse_startup = world.time + pulse_startup_time
-	var/obj/item/clothing/suit/armor/ego_gear/nostalgia/N = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/nostalgia/N = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(N))
 		pulse_enabled = TRUE
 		to_chat(H, "<span class='warning'>You use the [src] to emit sanity healing pulses!</span>")
@@ -225,6 +226,7 @@
 /obj/item/gun/ego_gun/pistol/nightshade
 	name = "nightshade"
 	desc = "Strange that it was more than just a bleeding person in a vegetative state."
+	special = "If you are wearing the matching armor, fired shots will heal friendlies on hit."
 	icon_state = "nightshade"
 	inhand_icon_state = "nightshade"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
@@ -235,7 +237,7 @@
 	fire_sound_volume = 50
 
 /obj/item/gun/ego_gun/pistol/nightshade/process_fire(atom/target, mob/living/user)
-	var/obj/item/clothing/suit/armor/ego_gear/nightshade/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/nightshade/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(C))
 		if(ammo_type == /obj/item/ammo_casing/caseless/ego_nightshade/healing)
 			ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade
@@ -243,3 +245,79 @@
 		if(ammo_type == /obj/item/ammo_casing/caseless/ego_nightshade)
 			ammo_type = /obj/item/ammo_casing/caseless/ego_nightshade/healing
 	return ..()
+
+/obj/item/gun/ego_gun/bucket
+	name = "bucket"
+	desc = "A slingshot made from wooden staves that fires skipping stones. What will you wish for?"
+	special = "Use this weapon in your hand when wearing matching armor to create gifts for people nearby."
+	icon_state = "bucket"
+	inhand_icon_state = "bucket"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_bucket
+	fire_delay = 10
+	fire_sound = 'sound/weapons/bowfire.ogg'
+	vary_fire_sound = TRUE
+	weapon_weight = WEAPON_HEAVY
+	fire_sound_volume = 50
+	var/ability_cooldown_time = 60 SECONDS
+	var/ability_cooldown
+
+/obj/item/gun/ego_gun/bucket/attack_self(mob/user)
+	if(!ishuman(user))
+		return
+	var/mob/living/carbon/human/H = user
+	if(ability_cooldown > world.time)
+		to_chat(H, "<span class='warning'>You have used this ability too recently!</span>")
+		return
+	var/obj/item/clothing/suit/armor/ego_gear/tools/bucket/T = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(T))
+		to_chat(H, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
+		return
+	to_chat(H, "<span class='warning'>You use the [src] to draw something from wishing well!</span>")
+	H.playsound_local(get_turf(H), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 25, 0)
+	SpawnItem(user)
+	ability_cooldown = world.time + ability_cooldown_time
+
+/obj/item/gun/ego_gun/bucket/proc/SpawnItem(mob/user)
+	var/list/lootoptions = list(
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+		/obj/item/clothing/mask/facehugger/bongy,
+		/obj/item/clothing/neck/tie/black,
+		/obj/item/clothing/neck/tie/blue,
+		/obj/item/clothing/neck/tie/red,
+		/obj/item/clothing/neck/tie/horrible,
+		/obj/item/clothing/mask/cigarette/cigar/havana,
+		/obj/item/poster/random_contraband,
+		/obj/item/poster/random_official,
+		/obj/item/toy/plush/rabbit,
+		/obj/item/toy/plush/blank,
+		/obj/item/toy/plush/bongy,
+		/obj/item/trash/raisins,
+		/obj/item/trash/candy,
+		/obj/item/trash/cheesie,
+		/obj/item/trash/chips,
+		/obj/item/trash/popcorn,
+		/obj/item/trash/sosjerky,
+		/obj/item/trash/plate,
+		/obj/item/trash/pistachios)
+	for(var/mob/living/carbon/human/L in livinginview(5, user))
+		if((!ishuman(L)) || L.stat == DEAD || L == user)
+			continue
+		to_chat(L, "<span class='warning'>[user] gives you an item!</span>")
+		var/gift = pick(lootoptions)
+		new gift(get_turf(L))
+	var/gift = pick(lootoptions)//you get one too!
+	new gift(get_turf(user))
+
+/obj/item/gun/ego_gun/pistol/oceanic
+	name = "a taste of the ocean"
+	desc = "A pistol painted in a refreshing orange. Whenever this EGO is used, a faint scent of orange wafts through the air."
+	icon_state = "oceanic"
+	inhand_icon_state = "oceanic"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_oceanic
+	burst_size = 1
+	fire_delay = 10
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
+	vary_fire_sound = FALSE
+	fire_sound_volume = 70
+

@@ -50,7 +50,6 @@
 
 	target.do_alert_animation()
 	target.playsound_local(target.loc, 'sound/machines/chime.ogg', 50, TRUE)
-	SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "gunpoint", /datum/mood_event/gunpoint)
 
 	addtimer(CALLBACK(src, .proc/update_stage, 2), GUNPOINT_DELAY_STAGE_2)
 
@@ -122,7 +121,6 @@
 	var/mob/living/shooter = parent
 	shooter.remove_status_effect(STATUS_EFFECT_HOLDUP) // try doing these before the trigger gets pulled since the target (or shooter even) may not exist after pulling the trigger, dig?
 	target.remove_status_effect(STATUS_EFFECT_HELDUP)
-	SEND_SIGNAL(target, COMSIG_CLEAR_MOOD_EVENT, "gunpoint")
 
 	if(point_of_no_return)
 		return
@@ -161,7 +159,6 @@
 	shooter.visible_message("<span class='danger'>[shooter] breaks [shooter.p_their()] aim on [target]!</span>", \
 		"<span class='danger'>You are no longer aiming [weapon] at [target].</span>", ignored_mobs = target)
 	to_chat(target, "<span class='userdanger'>[shooter] breaks [shooter.p_their()] aim on you!</span>")
-	SEND_SIGNAL(target, COMSIG_CLEAR_MOOD_EVENT, "gunpoint")
 	qdel(src)
 
 ///If the shooter is hit by an attack, they have a 50% chance to flinch and fire. If it hit the arm holding the trigger, it's an 80% chance to fire instead

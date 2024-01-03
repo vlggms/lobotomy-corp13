@@ -4,8 +4,6 @@
 	special = "This weapon deals it's damage after a short windup."
 	icon_state = "gauntlettemplate"
 	force = 40
-	damtype = RED_DAMAGE
-	armortype = RED_DAMAGE
 	finishedicon = list("finishedgauntlet")
 	finishedname = list("fist", "gauntlet", "glove")
 	finisheddesc = "A finished gauntlet, ready for use."
@@ -13,30 +11,30 @@
 //Similar to Gold Rush
 /obj/item/ego_weapon/template/gauntlet/attack(mob/living/target, mob/living/user)
 	if(!active)
-		to_chat(user, "<span class='notice'>This weapon is unfinished!</span>")
+		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
 
-	specialcheck()
+	if(specialmod)
+		specialmod.ActivateEffect(src, special_count, target, user)
 
 	if(do_after(user, attack_speed*5, target))
 
-		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
-						"<span class='userdanger'>[user] punches you with everything they got!!</span>", COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
+		to_chat(target, span_userdanger("[user] punches you with everything they got!!"))
+		to_chat(user, span_danger("You throw your entire body into this punch!"))
 		var/punch_damage = force
 		//I gotta regrab  justice here
-		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		punch_damage *= justicemod
 
 		if(ishuman(target))
 			punch_damage = 50
 
-		target.apply_damage(punch_damage, damtype, null, target.run_armor_check(null, armortype), spread_damage = TRUE)		//MASSIVE fuckoff punch
+		target.apply_damage(punch_damage, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)		//MASSIVE fuckoff punch
 
 		playsound(src, 'sound/weapons/resonator_blast.ogg', 50, TRUE)
 		var/atom/throw_target = get_edge_target_turf(target, user.dir)
-		if(!target.anchored)
+		if(target && !target?.anchored)
 			target.throw_at(throw_target, 2, 4, user)		//Bigass knockback.
 
 	else

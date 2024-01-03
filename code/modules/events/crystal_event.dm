@@ -792,7 +792,6 @@ This section is for the crystal monsters variations
 	damage = 0
 	damage_type = BURN
 	nodamage = TRUE
-	flag = ENERGY
 	temperature = -75
 
 /mob/living/simple_animal/hostile/crystal_monster/killer/Bump(atom/clong)

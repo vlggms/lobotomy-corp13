@@ -10,13 +10,6 @@
 	speed = 1
 	icon_state = "kcorp_nade"
 
-/obj/projectile/ego_bullet/ego_knade/Initialize()
-	. = ..()
-	addtimer(CALLBACK(src, .proc/fireback), 5)
-
-/obj/projectile/ego_bullet/ego_knade/proc/fireback()
-	on_hit()
-
 /obj/projectile/ego_bullet/ego_knade/on_hit(atom/target, blocked = FALSE)
 	..()
 	for(var/turf/T in view(1, src))
@@ -45,5 +38,6 @@
 	H.IgniteMob()
 	return BULLET_ACT_HIT
 
-/obj/projectile/ego_bullet/fullstop
+/obj/projectile/ego_bullet/tendamage
+	name = "bullet"
 	damage = 10

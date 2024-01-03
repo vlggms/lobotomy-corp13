@@ -178,6 +178,7 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_COMBATFEAR_IMMUNE		"combat_fear_immune"
 #define TRAIT_WORK_KNOWLEDGE		"work_knowledge"
 #define TRAIT_WORK_FORBIDDEN		"work_forbidden"
+#define TRAIT_ATTRIBUTES_VISION		"attributes_vision"
 /// reduces the use time of syringes, pills, patches and medigels but only when using on someone
 #define TRAIT_FASTMED "fast_med_use"
 #define TRAIT_NOBREATH			"no_breath"
@@ -339,10 +340,11 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //positive quirks
 #define TRAIT_RESISTANT      	"resistant"
 #define TRAIT_SKILLED    	    "skilled"
-#define TRAIT_FLUFFY_TONGUE    	    "fluffy_tongue" // technically not positive, but it costs points
+#define TRAIT_FLUFFY_TONGUE     "fluffy_tongue" // technically not positive, but it costs points
 //neutral quirks
 #define TRAIT_NERD          	"nerd"
 #define TRAIT_BRAWLER    	    "brawler"
+#define TRAIT_ARTIST    	    "artist"
 //negative quirks
 #define TRAIT_MINOR_RED     	"minor_red"
 #define TRAIT_MAJOR_RED	        "major_red"
@@ -358,7 +360,8 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 #define TRAIT_FATAL_PALE      	"fatal_pale"
 #define TRAIT_GUNS          	"guns"       // used for the "no guns" challenge
 #define TRAIT_HEALING          	"healing"    // used for the "no medipens" challenge
-//special quirks end
+#define TRAIT_GRAB_IMMUNE 		"grab_immune"// used to prevent grabs
+//lobotomy quirk traits end
 #define TRAIT_ALCOHOL_TOLERANCE	"alcohol_tolerance"
 #define TRAIT_AGEUSIA			"ageusia"
 #define TRAIT_HEAVY_SLEEPER		"heavy_sleeper"

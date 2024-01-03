@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x32.dmi'
 	icon_state = "lantern"
 	icon_living = "lantern"
+	portrait = "meat_lantern"
 	maxHealth = 900
 	health = 900
 	base_pixel_x = -16
@@ -43,8 +44,13 @@
 	var/chop_damage = 400
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PostSpawn()
+	. = ..()
 	med_hud_set_health() //show medhud while in containment
 	med_hud_set_status()
+
+//Cameras cant auto track it now.
+/mob/living/simple_animal/hostile/abnormality/meat_lantern/can_track(mob/living/user)
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/PickTarget(list/Targets)
 	return FALSE

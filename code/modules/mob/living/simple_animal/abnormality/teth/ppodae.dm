@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "ppodae"
 	icon_living = "ppodae"
+	portrait = "ppodae"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 550 //fast but low hp abno
@@ -21,12 +22,14 @@
 						)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	can_breach = TRUE
 	start_qliphoth = 2
 	vision_range = 14
 	aggro_vision_range = 20
 	stat_attack = HARD_CRIT
+	var/smash_damage_low = 16
+	var/smash_damage_high = 28
 	var/smash_length = 2
 	var/smash_width = 1
 	var/can_act = TRUE
@@ -152,17 +155,12 @@
 		return
 	can_act = FALSE
 	dir = dir_to_target
-	var/smash_damage = rand(16, 28)
+	var/smash_damage = rand(smash_damage_low, smash_damage_high)
 	for(var/turf/T in area_of_effect)
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			if (L == src)
-				continue
-			L.apply_damage(smash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			playsound(get_turf(src), 'sound/abnormalities/ppodae/bark.wav', 100, 0, 5)
-			playsound(get_turf(src), 'sound/abnormalities/ppodae/attack.wav', 50, 0, 5)
+		HurtInTurf(T, list(), smash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+	playsound(get_turf(src), 'sound/abnormalities/ppodae/bark.wav', 100, 0, 5)
+	playsound(get_turf(src), 'sound/abnormalities/ppodae/attack.wav', 50, 0, 5)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	can_act = TRUE
 

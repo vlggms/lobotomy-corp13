@@ -21,10 +21,10 @@
 	if(can_be_tanked)
 		. += "<span class='notice'>Use a sheet of metal to convert this into a plumbing-compatible tank.</span>"
 
-/obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
+/obj/structure/reagent_dispensers/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
 	. = ..()
 	if(. && obj_integrity > 0)
-		if(tank_volume && (damage_flag == BULLET || damage_flag == LASER))
+		if(tank_volume && (damage_type in list(BULLET, LASER)))
 			boom()
 
 /obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user, params)

@@ -10,11 +10,10 @@
 	health = 800
 	rapid_melee = 1
 	move_to_delay = 1.7
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
+	damage_coeff = list(RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
 	melee_damage_lower = 1
 	melee_damage_upper = 1
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	vision_range = 7 //nerfed vision range so he doesn't go 2 continents away from his friend
 	stat_attack = CONSCIOUS
 	attack_sound = 'sound/abnormalities/scaredycat/catattack.ogg'
@@ -41,6 +40,15 @@
 		)
 	gift_type =  /datum/ego_gifts/courage_cat //the sprites for the EGO are shitty codersprites placeholders and are only here so that there's EGO to use
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/scarecrow = 2,
+		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
+		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
+		// Ozma = 2,
+		// Lies = 1.5
+	)
+
 	/// The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
 									/mob/living/simple_animal/hostile/abnormality/woodsman,
@@ -170,7 +178,7 @@
 	if(courage)
 		melee_damage_lower = 15
 		melee_damage_upper = 20
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
+		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5))
 		icon = 'ModularTegustation/Teguicons/48x48.dmi'
 		icon_living = "cat_courage"
 		icon_dead = "dead_courage"
@@ -181,7 +189,7 @@
 		faction = list("neutral")
 		melee_damage_lower = initial(melee_damage_lower)
 		melee_damage_upper = initial(melee_damage_upper) //it shouldn't attack in that form in the first place but...
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4)
+		ChangeResistances(list(RED_DAMAGE = 4, WHITE_DAMAGE = 4, BLACK_DAMAGE = 4, PALE_DAMAGE = 4))
 		playsound(src, 'sound/abnormalities/scaredycat/catchange.ogg', 75, FALSE, 4)
 		icon = 'ModularTegustation/Teguicons/32x32.dmi'
 		icon_living = "scaredy_cat"

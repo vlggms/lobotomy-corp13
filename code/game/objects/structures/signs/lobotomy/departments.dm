@@ -87,3 +87,45 @@
 	icon_state = "human"
 	is_editable = FALSE
 
+//Corporation Logos
+/obj/structure/sign/departments/k_corp
+	name = "\improper K Corp logo"
+	sign_change_name = "K Corp"
+	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
+	desc = "The logo of K corp. The wing that manufactures the healing fluid within hp bullets."
+	icon_state = "kcorp_logo"
+	is_editable = FALSE
+
+/obj/structure/sign/departments/l_corp
+	name = "\improper L Corp logo"
+	sign_change_name = "L Corp - Face the Fear, Make the Future."
+	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
+	desc = "The logo of L corp. A very recent wing that overtook its predecessor's position as a energy production company."
+	icon_state = "lobotomy"
+	is_editable = FALSE
+
+/obj/structure/sign/departments/r_corp
+	name = "\improper R Corp logo"
+	sign_change_name = "R Corp"
+	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
+	desc = "The logo of R corp. This wing specializes in the creation of assault teams and expeditions beyond the city."
+	icon_state = "rcorp_logo"
+	is_editable = FALSE
+
+/obj/structure/sign/departments/t_corp
+	name = "\improper T Corp logo"
+	sign_change_name = "T Corp"
+	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
+	desc = "The logo of T corp. This wing specializes in the collection and manipulation of time."
+	//icon by mannhandle
+	icon_state = "tcorp_logo"
+	is_editable = FALSE
+
+/obj/structure/sign/departments/w_corp
+	name = "\improper W Corp logo"
+	sign_change_name = "W Corp"
+	icon = 'ModularTegustation/Teguicons/lcsigns.dmi'
+	desc = "The logo of W corp. The wing that owns the warp trains that people use to traverse the city."
+	//icon by mannhandle
+	icon_state = "wcorp_logo"
+	is_editable = FALSE

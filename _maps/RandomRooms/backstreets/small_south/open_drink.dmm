@@ -1,0 +1,93 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/effect/spawner/randomcolavend,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"e" = (
+/obj/effect/spawner/randomsnackvend,
+/obj/machinery/light/dim{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/obj/machinery/light/dim{
+	dir = 8;
+	pixel_x = null;
+	pixel_y = null
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"r" = (
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"s" = (
+/obj/machinery/vending/cigarette/beach,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/closet/crate/bin,
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt/jungle/dark,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+P
+P
+f
+P
+U
+"}
+(3,1,1) = {"
+r
+r
+r
+r
+U
+"}
+(4,1,1) = {"
+r
+r
+r
+r
+U
+"}
+(5,1,1) = {"
+r
+r
+r
+r
+U
+"}
+(6,1,1) = {"
+w
+c
+e
+s
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

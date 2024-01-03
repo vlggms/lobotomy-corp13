@@ -645,3 +645,16 @@
 	reagents_from_genes()
 
 	return TRUE
+
+/* Neutered but cancerous code that i cant
+	remove due to it being involved in
+	several maps. -IP */
+/obj/item/seeds/random
+	name = "pack of strange seeds"
+	icon_state = "seed-x"
+	icon_grow = "xpod-grow"
+
+	icon_dead = "xpod-dead"
+
+	icon_harvest = "xpod-harvest"
+	growthstages = 4

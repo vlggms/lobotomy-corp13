@@ -30,7 +30,7 @@
 	name = "beak mk2"
 	desc = "A heavy revolver that fires at a surprisingly fast rate, and is deadly accurate."
 	icon_state = "beakmagnum"
-	inhand_icon_state = "beak"
+	inhand_icon_state = "beakmagnum"
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
 	fire_delay = 20
@@ -91,7 +91,6 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 10
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
 /obj/item/gun/ego_gun/snapshot
@@ -116,7 +115,6 @@
 	fire_delay = 3
 	burst_size = 2
 	damtype = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
 	var/ammo2 = /obj/item/ammo_casing/caseless/ego_wishing2
 
@@ -129,3 +127,36 @@
 	..()
 	chambered = new ammo_type
 	fire_sound = 'sound/abnormalities/pagoda/throw.ogg'
+
+/obj/item/gun/ego_gun/aspiration
+	name = "aspiration"
+	desc = "The desire to live was stronger than anything. That is when regret finally ran a shudder through my body."
+	icon_state = "aspiration"
+	inhand_icon_state = "aspiration"
+	special = "This weapon fires a hitscan beam at the cost of health. \n Upon hitting an ally, this weapon heals the target,"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_aspiration
+	weapon_weight = WEAPON_HEAVY
+	autofire = 0.5 SECONDS
+	fire_sound = 'sound/abnormalities/fragment/attack.ogg'
+
+/obj/item/gun/ego_gun/aspiration/before_firing(atom/target,mob/user)
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.adjustBruteLoss(3)
+	..()
+	return
+
+/obj/item/gun/ego_gun/patriot
+	name = "patriot"
+	desc = "Are you willing to do what it takes to protect your country?"
+	icon_state = "patriot"
+	inhand_icon_state = "patriot"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	special = "This weapon fires 4 pellets."
+	ammo_type = /obj/item/ammo_casing/caseless/ego_patriot
+	weapon_weight = WEAPON_HEAVY
+	fire_delay = 25
+	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'

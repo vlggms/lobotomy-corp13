@@ -16,14 +16,13 @@
 
 	maxHealth = 2000
 	health = 2000
-	damage_coeff = list(BRUTE = 0.8, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	vision_range = 7
 
 	del_on_death = FALSE
 
-	speed = 3
 	move_to_delay = 4
 	threat_level = WAW_LEVEL
 
@@ -43,12 +42,25 @@
 	gift_type =  /datum/ego_gifts/bride
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
-	var/missing_prudence
+	var/missing_prudence = 0
 	var/mob/living/carbon/human/sculptor = null
 	var/protect_cooldown_time = 30 SECONDS
 	var/protect_cooldown
 	var/retaliation = 10
 	var/PRUDENCE_CAP = 60
+
+/mob/living/simple_animal/hostile/abnormality/pygmalion/CanAllowThrough(atom/movable/mover, turf/target)
+	if(sculptor && ishuman(mover))
+		return TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/pygmalion/CanAttack(atom/target)
+	if(ishuman(target))
+		var/mob/living/carbon/human/human_target = target
+		if (human_target.sanity_lost)
+			return FALSE
+
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/AttackingTarget(atom/attacked_target)
 	return OpenFire()
@@ -119,7 +131,7 @@
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/SculptorDeathOrInsane)
 		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/SculptorDeathOrInsane)
 		user.apply_status_effect(STATUS_EFFECT_SCULPTOR)
-		to_chat(user, "<span class='nicegreen'>You feel attached to this abnormality. </span>")
+		to_chat(user, span_nicegreen("You feel attached to this abnormality."))
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/SculptorDeathOrInsane(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -127,21 +139,30 @@
 	UnregisterSignal(sculptor, COMSIG_HUMAN_INSANE)
 	remove_status_effect(STATUS_EFFECT_SCULPTOR)
 	threat_level = WAW_LEVEL
-	sculptor = null
+	if (sculptor)
+		sculptor.remove_status_effect(STATUS_EFFECT_SCULPTOR)
+	if (missing_prudence)
+		restorePrudence()
 	faction = list()
+	sculptor = null
+	if(client)
+		to_chat(src, span_userdanger("The sculptor has fallen. It is now your duty to avenge this tragedy!"))
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/Life()
 	. = ..()
 	if (IsContained() && sculptor && (sculptor.health/sculptor.maxHealth < 0.5 || sculptor.sanityhealth/sculptor.maxSanity < 0.5) )
 		BreachEffect()
+		if(client)
+			to_chat(src, span_userdanger("The sculptor is in danger. It is now your duty to protect them!"))
+
 		threat_level = TETH_LEVEL
 		var/datum/attribute/user_attribute = sculptor.attributes[PRUDENCE_ATTRIBUTE]
 		var/user_attribute_level = max(1, user_attribute.level)
 		if (user_attribute_level > PRUDENCE_CAP)
 			missing_prudence = user_attribute_level - PRUDENCE_CAP
-			src.sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, (user_attribute_level - PRUDENCE_CAP) * -1)
-			to_chat(sculptor, "<span class='red'> You feel like your mind grows weaker as it has come out to protect you... </span>")
+			src.sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, (missing_prudence) * -1)
+			to_chat(sculptor, span_red("You feel like your mind grows weaker as it has come out to protect you..."))
 
 	if (!IsContained() && protect_cooldown < world.time)
 		protect_cooldown = world.time + protect_cooldown_time
@@ -155,9 +176,9 @@
 		restorePrudence()
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/restorePrudence()
-	sculptor.adjust_attribute_level(PRUDENCE_ATTRIBUTE, missing_prudence)
+	sculptor.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, missing_prudence)
 	missing_prudence = null
-	to_chat(sculptor, "<span class='nicegreen'> As soon as Pygmalion has fallen, You feel like your mind is back on track. </span>")
+	to_chat(sculptor, span_nicegreen("As soon as Pygmalion has fallen, You feel like your mind is back on track."))
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/death(gibbed)
 	if (sculptor)
@@ -180,7 +201,7 @@
 /mob/living/simple_animal/hostile/abnormality/pygmalion/proc/CounterAttack(mob/living/attacker)
 	if (attacker == sculptor)
 		attacker.apply_damage(retaliation, PALE_DAMAGE, null, attacker.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-		to_chat(attacker, "<span class='userdanger'>You feel your heart break!</span>")
+		to_chat(attacker, span_userdanger("You feel your heart break!"))
 
 /datum/status_effect/sculptor
 	id = "Sculptor"

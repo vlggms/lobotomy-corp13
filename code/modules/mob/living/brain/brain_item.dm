@@ -34,6 +34,12 @@
 	/// Maximum skillchip slots available. Do not reference this var directly and instead call get_max_skillchip_slots()
 	var/max_skillchip_slots = 5
 
+	var/list/datum/brain_trauma/tumor_immune_traumas = list(
+		/datum/brain_trauma/mild/concussion,
+		/datum/brain_trauma/severe/paralysis/paraplegic,
+		/datum/brain_trauma/severe/narcolepsy
+		)
+
 /obj/item/organ/brain/Insert(mob/living/carbon/C, special = 0,no_id_transfer = FALSE)
 	..()
 
@@ -399,6 +405,9 @@
 
 	if(!LAZYLEN(possible_traumas))
 		return
+	
+	if(owner.has_quirk(/datum/quirk/brainproblems))
+		possible_traumas -= tumor_immune_traumas
 
 	var/trauma_type = pick(possible_traumas)
 	return gain_trauma(trauma_type, resilience)

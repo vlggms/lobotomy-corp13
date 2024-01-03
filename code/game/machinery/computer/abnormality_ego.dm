@@ -20,7 +20,11 @@
 			continue
 		dat += "[A.name] ([A.stored_boxes] PE):<br>"
 		for(var/datum/ego_datum/E in A.ego_datums)
-			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A><br>"
+			dat += " <A href='byond://?src=[REF(src)];purchase=[E.name][E.item_category]'>[E.item_category] - [E.name] ([E.cost] PE)</A>"
+			var/info = html_encode(E.PrintOutInfo())
+			if(info)
+				dat += " - <A href='byond://?src=[REF(src)];info=[info]'>Info</A>"
+			dat += "<br>"
 		dat += "<br>"
 	var/datum/browser/popup = new(user, "ego_purchase", "EGO Purchase Console", 440, 640)
 	popup.set_content(dat)
@@ -49,13 +53,19 @@
 			if(!E || !A)
 				return FALSE
 			if(A.stored_boxes < E.cost)
-				to_chat(usr, "<span class='warning'>Not enough PE boxes stored for this operation.</span>")
+				to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			var/obj/item/I = new E.item_path(get_turf(src))
 			A.stored_boxes -= E.cost
 			A.current_ego += I
-			to_chat(usr, "<span class='notice'>[I] has been dispensed!</span>")
+			to_chat(usr, span_notice("[I] has been dispensed!"))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
+		if(href_list["info"])
+			var/dat = html_decode(href_list["info"])
+			var/datum/browser/popup = new(usr, "ego_info", "EGO Purchase Console", 340, 400)
+			popup.set_content(dat)
+			popup.open()
+			return

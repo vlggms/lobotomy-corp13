@@ -35,11 +35,11 @@ PROCESSING_SUBSYSTEM_DEF(quirks)
 							list("Bad Touch", "Friendly"), \
 							list("Extrovert", "Introvert"), \
 							//special stuff starts here
-							list("Challenge: No guns", "Challenge: No attacking"), \
-							list("Minor red damage weakness", "Major red damage weakness", "Fatal red damage weakness"), \
-							list("Minor white damage weakness", "Major white damage weakness", "Fatal white damage weakness"), \
-							list("Minor black damage weakness", "Major black damage weakness", "Fatal black damage weakness"), \
-							list("Minor pale damage weakness", "Major pale damage weakness", "Fatal pale damage weakness"))
+							list("Challenge: No Guns", "Challenge: No Attacking"), \
+							list("Minor RED Damage Weakness", "Major RED Damage Weakness", "Fatal RED Damage Weakness"), \
+							list("Minor WHITE Damage Weakness", "Major WHITE Damage Weakness", "Fatal WHITE Damage Weakness"), \
+							list("Minor BLACK Damage Weakness", "Major BLACK Damage Weakness", "Fatal BLACK Damage Weakness"), \
+							list("Minor PALE Damage Weakness", "Major PALE Damage Weakness", "Fatal PALE Damage Weakness"))
 	return ..()
 
 /datum/controller/subsystem/processing/quirks/proc/SetupQuirks()

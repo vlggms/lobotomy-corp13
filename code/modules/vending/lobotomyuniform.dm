@@ -12,6 +12,7 @@
 					/obj/item/clothing/under/suit/lobotomy/safety = 20,
 					/obj/item/clothing/under/suit/lobotomy/welfare = 20,
 					/obj/item/clothing/under/suit/lobotomy/discipline = 20,
+					/obj/item/clothing/under/suit/lobotomy/discipline/alternative = 20,
 					/obj/item/clothing/under/suit/lobotomy/command = 20,
 					/obj/item/clothing/under/suit/lobotomy/extraction = 20,
 					/obj/item/clothing/under/suit/lobotomy/records = 20)

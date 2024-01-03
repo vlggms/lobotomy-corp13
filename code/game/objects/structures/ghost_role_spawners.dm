@@ -1,4 +1,5 @@
-//Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+/*Objects that spawn ghosts in as a certain role when they click on it, i.e. away mission bartenders.
+	Origin Procs are in code/module/awaymissions/corpse.dm */
 
 //Preserved terrarium/seed vault: Spawns in seed vault structures in lavaland. Ghosts become plantpeople and are advised to begin growing plants in the room near them.
 /obj/effect/mob_spawn/human/seed_vault
@@ -42,7 +43,7 @@
 	max_integrity = 80
 	var/obj/effect/mob_spawn/human/ash_walker/egg
 
-/obj/structure/ash_walker_eggshell/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0) //lifted from xeno eggs
+/obj/structure/ash_walker_eggshell/play_attack_sound(damage_amount, damage_type = BRUTE) //lifted from xeno eggs
 	switch(damage_type)
 		if(BRUTE)
 			if(damage_amount)
@@ -95,7 +96,7 @@
 /obj/effect/mob_spawn/human/ash_walker/allow_spawn(mob/user)
 	if(!(user.key in team.players_spawned))//one per person unless you get a bonus spawn
 		return TRUE
-	to_chat(user, "<span class='warning'><b>You have exhausted your usefulness to the Necropolis</b>.</span>")
+	to_chat(user, span_warning("<b>You have exhausted your usefulness to the Necropolis</b>."))
 	return FALSE
 
 /obj/effect/mob_spawn/human/ash_walker/special(mob/living/new_spawn)
@@ -237,7 +238,7 @@
 		if(QDELETED(src) || uses <= 0)
 			return
 		log_game("[key_name(H)] golem-swapped into [src]")
-		H.visible_message("<span class='notice'>A faint light leaves [H], moving to [src] and animating it!</span>","<span class='notice'>You leave your old body behind, and transfer into [src]!</span>")
+		H.visible_message(span_notice("A faint light leaves [H], moving to [src] and animating it!"),span_notice("You leave your old body behind, and transfer into [src]!"))
 		show_flavour = FALSE
 		var/mob/living/carbon/human/newgolem = create(newname = H.real_name)
 		H.transfer_trait_datums(newgolem)
@@ -550,6 +551,30 @@
 	glasses = /obj/item/clothing/glasses/hud/eyepatch/admiral
 
 //Ancient cryogenic sleepers. Players become NT crewmen from a hundred year old space station, now on the verge of collapse.
+/obj/effect/mob_spawn/human/oldcap
+	name = "old cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise a captain's uniform underneath the built up ice. The machine is attempting to wake up its occupant."
+	mob_name = "a captain"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	roundstart = FALSE
+	death = FALSE
+	random = TRUE
+	mob_species = /datum/species/human
+	short_desc = "You are a captain working for Nanotrasen, stationed onboard a state of the art research station."
+	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
+	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
+	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
+	important_info = "Work as a team with your fellow survivors and do not abandon them."
+	uniform = /obj/item/clothing/under/rank/captain/admiral
+	shoes = /obj/item/clothing/shoes/jackboots
+	id = /obj/item/card/id/away/old/cap
+	assignedrole = "Ancient Crew"
+
+/obj/effect/mob_spawn/human/oldcap/Destroy()
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	return ..()
+
 /obj/effect/mob_spawn/human/oldsec
 	name = "old cryogenics pod"
 	desc = "A humming cryo pod. You can barely recognise a security uniform underneath the built up ice. The machine is attempting to wake up its occupant."
@@ -558,7 +583,6 @@
 	icon_state = "sleeper"
 	roundstart = FALSE
 	death = FALSE
-	random = TRUE
 	mob_species = /datum/species/human
 	short_desc = "You are a security officer working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
@@ -584,7 +608,6 @@
 	icon_state = "sleeper"
 	roundstart = FALSE
 	death = FALSE
-	random = TRUE
 	mob_species = /datum/species/human
 	short_desc = "You are an engineer working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. The last thing \
@@ -610,7 +633,6 @@
 	icon_state = "sleeper"
 	roundstart = FALSE
 	death = FALSE
-	random = TRUE
 	mob_species = /datum/species/human
 	short_desc = "You are a scientist working for Nanotrasen, stationed onboard a state of the art research station."
 	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
@@ -624,6 +646,53 @@
 	assignedrole = "Ancient Crew"
 
 /obj/effect/mob_spawn/human/oldsci/Destroy()
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	return ..()
+
+/obj/effect/mob_spawn/human/oldmed
+	name = "old cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise a medical uniform underneath the built up ice. The machine is attempting to wake up its occupant."
+	mob_name = "a doctor"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	roundstart = FALSE
+	death = FALSE
+	mob_species = /datum/species/human
+	short_desc = "You are a doctor working for Nanotrasen, stationed onboard a state of the art research station."
+	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
+	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
+	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
+	important_info = "Work as a team with your fellow survivors and do not abandon them."
+	uniform = /obj/item/clothing/under/rank/medical/doctor
+	shoes = /obj/item/clothing/shoes/laceup
+	id = /obj/item/card/id/away/old/doc
+	l_pocket = /obj/item/stack/medical/bruise_pack
+	assignedrole = "Ancient Crew"
+
+/obj/effect/mob_spawn/human/oldmed/Destroy()
+	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
+	return ..()
+
+/obj/effect/mob_spawn/human/oldass
+	name = "old cryogenics pod"
+	desc = "A humming cryo pod. You can barely recognise a grey jumpsuit underneath the built up ice. The machine is attempting to wake up its occupant."
+	mob_name = "an assistant"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper"
+	roundstart = FALSE
+	death = FALSE
+	mob_species = /datum/species/human
+	short_desc = "You are an assistant working for Nanotrasen, stationed onboard a state of the art research station."
+	flavour_text = "You vaguely recall rushing into a cryogenics pod due to an oncoming radiation storm. \
+	The last thing you remember is the station's Artificial Program telling you that you would only be asleep for eight hours. As you open \
+	your eyes, everything seems rusted and broken, a dark feeling swells in your gut as you climb out of your pod."
+	important_info = "Work as a team with your fellow survivors and do not abandon them."
+	uniform = /obj/item/clothing/under/color/grey/ancient
+	shoes = /obj/item/clothing/shoes/laceup
+	id = /obj/item/card/id/away/old/ass
+	assignedrole = "Ancient Crew"
+
+/obj/effect/mob_spawn/human/oldass/Destroy()
 	new/obj/structure/showcase/machinery/oldpod/used(drop_location())
 	return ..()
 
@@ -689,7 +758,7 @@
 	new_spawn.mind.add_antag_datum(/datum/antagonist/cybersun)
 	var/policy = get_policy(assignedrole)
 	if(policy)
-		to_chat(new_spawn, "<span class='bold'>[policy]</span>")
+		to_chat(new_spawn, span_bold("[policy]"))
 
 /obj/effect/mob_spawn/human/syndicatespace/captain
 	name = "Syndicate Ship Captain"
@@ -795,7 +864,7 @@
 	var/obj/item/card/id/id_card = H.wear_id
 	if(H.age < AGE_MINOR)
 		id_card.registered_age = AGE_MINOR
-		to_chat(H, "<span class='notice'>You're not technically old enough to access or serve alcohol, but your ID has been discreetly modified to display your age as [AGE_MINOR]. Try to keep that a secret!</span>")
+		to_chat(H, span_notice("You're not technically old enough to access or serve alcohol, but your ID has been discreetly modified to display your age as [AGE_MINOR]. Try to keep that a secret!"))
 
 /obj/effect/mob_spawn/human/skeleton/alive
 	death = FALSE
@@ -841,7 +910,7 @@
 	var/despawn = alert("Return to cryosleep? (Warning, Your mob will be deleted!)", null, "Yes", "No")
 	if(despawn == "No" || !loc || !Adjacent(user))
 		return
-	user.visible_message("<span class='notice'>[user.name] climbs back into cryosleep...</span>")
+	user.visible_message(span_notice("[user.name] climbs back into cryosleep..."))
 	qdel(user)
 
 /datum/outfit/cryobartender
@@ -859,7 +928,7 @@
 	name = "sleeper"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
-	faction = "nanotrasenprivate"
+	faction = list("nanotrasenprivate")
 	short_desc = "You are a Nanotrasen Private Security Officer!"
 
 /obj/effect/mob_spawn/human/commander/alive
@@ -906,6 +975,8 @@
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 
+//LC13 Mobspawners~~~
+
 //Tutorial spawn
 /obj/effect/mob_spawn/human/tutorial
 	uses = -1
@@ -920,7 +991,7 @@
 	outfit = /datum/outfit/tutorial
 	short_desc = "Welcome to Lobotomy Corporation! In the onboarding process you will get to see exactly how our company works."
 	flavour_text = "Be sure to read the tutorial sheets, \
-	experiment, and have fun. When you are done, Cryo and respawn to join the game. \
+	experiment, and have fun. When you are done, Cryo and Respawn to join the game. \
 	Try out the mechanics, and maybe breach some abnormalities to get a feel for the combat."
 	assignedrole = "Lobotomy Corporation Intern"
 	important_info = "Use MHELP in the Mentor tab to ask any questions you have."
@@ -941,8 +1012,6 @@
 
 	back = /obj/item/storage/backpack
 
-
-
 //Library spawn
 /obj/effect/mob_spawn/human/library
 	uses = -1
@@ -950,13 +1019,13 @@
 	roundstart = FALSE
 	random = FALSE
 	name = "records librarian sleeper"
-	desc = "A humming sleeper with a silhouetted occupant inside. It's just a front, stored underground are many librarians."
+	desc = "A humming sleeper with a silhouetted occupant inside. It's connected to a vast underground network storing countless people."
 	mob_name = "Records Librarian"
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	outfit = /datum/outfit/librarian
-	short_desc = "A place for players to read up on lore and information while not affecting the actual round \
-	When you are done, Cryo and respawn to join the game."
+	short_desc = "A place for players to read up on lore and information while also observing the current round. \
+	When you are done, Cryo and Respawn to join the game."
 	assignedrole = "Lobotomy Corporation Records Librarian"
 
 //Tutorial agent
@@ -971,3 +1040,50 @@
 	shoes = /obj/item/clothing/shoes/laceup
 
 	back = /obj/item/storage/backpack/satchel
+
+//Supplypod Mobspawner
+/obj/effect/mob_spawn/human/supplypod
+	invisibility = 49
+	anchored = TRUE
+	roundstart = FALSE
+	death = FALSE
+	density = FALSE
+	var/list/acceptable_turf = list()
+		//Keeps track of players who have spawned using this point.
+	var/players_spawned = list()
+
+/obj/effect/mob_spawn/human/supplypod/Initialize(mapload, datum/team/ert/rabbit_team)
+	. = ..()
+	acceptable_turf = LandingZone(get_turf(src))
+
+/obj/effect/mob_spawn/human/supplypod/special(mob/living/new_spawn)
+	PrepareForHellDiving(new_spawn)
+
+		//Creates pod and prepares the user for being inside it.
+/obj/effect/mob_spawn/human/supplypod/proc/PrepareForHellDiving(mob/living/user)
+		//Step 1 pick a acceptable turf to land. No dense turf or tables.
+	var/turf/LZ = pick(acceptable_turf)
+		//Step 2 spawn the pod we land in.
+	var/obj/structure/closet/supplypod/centcompod/pod = new
+		//Step 3 learn that the landing zone is actually a effect that requires a defined landing turf and pod.
+	new /obj/effect/pod_landingzone(get_turf(LZ), pod)
+		//Step 4 INSERT INTO POD!
+	user.forceMove(pod)
+	players_spawned += (user.key)
+
+		//this is in order to randomize the landing turf and make sure it is a safe zone.
+/obj/effect/mob_spawn/human/supplypod/proc/LandingZone(turf/landin_zone)
+	var/list/good_turf = list()
+	for(var/turf/T in range(6, get_turf(landin_zone)))
+		if(locate(/obj/machinery) in T)
+			continue
+		if(locate(/obj/structure) in T)
+			continue
+		if(isclosedturf(T))
+			continue
+		if(!isfloorturf(T))
+			continue
+		good_turf += T
+	if(!good_turf.len)
+		return list(get_turf(src))
+	return good_turf

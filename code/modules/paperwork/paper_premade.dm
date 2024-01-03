@@ -239,6 +239,16 @@
 	<br>
 	- Yesod"}
 
+/obj/item/paper/guides/jobs/abnochem_effects_he
+	name = "Enkephalin-Derived Substance Documentation, He edition - Yesod"
+	info = {"The basic information of each He-originating EDS has been derived. <br>
+	<br>
+	- Golden Apple: Produces "ambrosia". Syrupy liquid sap. The user glows with a powerful golden sheen, restoring physical and mental health.<br>
+	<br>
+	Please learn these effects and encourage your manager to use them well.<br>
+	<br>
+	- Yesod"}
+
 /////Documents I have yet to delete...
 
 /obj/item/paper/guides/jobs/hydroponics

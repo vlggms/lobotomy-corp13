@@ -490,3 +490,14 @@
 	custom_materials = list(/datum/material/plastic = 2000)
 	break_chance = 25
 	origin_type = /obj/structure/chair/plastic
+
+/obj/item/chair/icequeen
+	name = "Ice Queen's Throne"
+	desc = "An icey throne."
+	icon = 'ModularTegustation/Teguicons/160x160.dmi'
+	icon_state = "snowqueen_throne"
+	density = 1
+	anchored = 1
+	bound_height = 160
+	bound_width = 160
+

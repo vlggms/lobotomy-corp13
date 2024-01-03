@@ -111,6 +111,7 @@
 	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
 	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
+	var/whitelist_door	//Whistlist stuff
 
 	flags_1 = RAD_PROTECT_CONTENTS_1 | RAD_NO_CONTAMINATE_1
 	rad_insulation = RAD_MEDIUM_INSULATION
@@ -330,11 +331,6 @@
 	if(!issilicon(usr))
 		if(isElectrified() && shock(user, 100))
 			return
-		else if(user.hallucinating() && iscarbon(user) && prob(1) && !operating)
-			var/mob/living/carbon/C = user
-			if(!C.wearing_shock_proof_gloves())
-				new /datum/hallucination/shock(C)
-				return
 	if (cyclelinkedairlock)
 		if (!shuttledocked && !emergency && !cyclelinkedairlock.shuttledocked && !cyclelinkedairlock.emergency && allowed(user))
 			if(cyclelinkedairlock.operating)
@@ -927,6 +923,10 @@
 		if(panel_open && detonated)
 			to_chat(user, "<span class='warning'>[src] has no maintenance panel!</span>")
 			return
+
+		if(whitelist_door)		//Whitelist doors kill you if you fucking open them. Crispy clerk.
+			return
+
 		panel_open = !panel_open
 		to_chat(user, "<span class='notice'>You [panel_open ? "open":"close"] the maintenance panel of the airlock.</span>")
 		C.play_tool_sound(src)
@@ -1088,7 +1088,7 @@
 						prying_so_hard = FALSE
 						return
 					open(2)
-					take_damage(25, BRUTE, 0, 0) // Enough to sometimes spark
+					take_damage(25, BRUTE, 0) // Enough to sometimes spark
 					if(density && !open(2))
 						to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 				prying_so_hard = FALSE
@@ -1328,8 +1328,8 @@
 		log_combat(user, src, message)
 		add_hiddenprint(user)
 
-/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, damage_flag = 0, sound_effect = 1, attack_dir)
-	if((damage_amount >= obj_integrity) && (damage_flag == BOMB))
+/obj/machinery/door/airlock/take_damage(damage_amount, damage_type = BRUTE, sound_effect = 1, attack_dir)
+	if((damage_amount >= obj_integrity) && (damage_type == BOMB))
 		flags_1 |= NODECONSTRUCT_1  //If an explosive took us out, don't drop the assembly
 	. = ..()
 	if(obj_integrity < (0.75 * max_integrity))

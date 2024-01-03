@@ -132,7 +132,6 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 
 /// Called when this reagent is removed while inside a mob
 /datum/reagent/proc/on_mob_delete(mob/living/L)
-	SEND_SIGNAL(L, COMSIG_CLEAR_MOOD_EVENT, "[type]_overdose")
 	return
 
 /// Called when this reagent first starts being metabolized by a liver
@@ -170,7 +169,6 @@ GLOBAL_LIST_INIT(name2reagent, build_name2reagent())
 /// Called when an overdose starts
 /datum/reagent/proc/overdose_start(mob/living/M)
 	to_chat(M, "<span class='userdanger'>You feel like you took too much of [name]!</span>")
-	SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "[type]_overdose", /datum/mood_event/overdose, name)
 	return
 
 /**

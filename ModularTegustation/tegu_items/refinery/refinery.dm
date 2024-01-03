@@ -21,6 +21,16 @@
 	//TRUE is for loaded
 	var/loaded = FALSE
 
+/obj/structure/refinery/Initialize()
+	. = ..()
+	GLOB.lobotomy_devices += src
+
+/obj/structure/refinery/Destroy()
+	GLOB.lobotomy_devices -= src
+	if(loaded)
+		new /obj/item/rawpe(get_turf(src))
+	return ..()
+
 /obj/structure/refinery/attackby(obj/item/I, mob/living/user, params)
 	if(istype(I, /obj/item/rawpe))
 		if(!loaded)
@@ -63,7 +73,7 @@
 		to_chat(user, "<span class='danger'>You filtered it too hard! The PE box was destroyed.</span>")
 		loaded = FALSE
 	else if(blackjack == 0)
-		timeleft -= 20
+		timeleft -= round(refine_timer/3)
 		to_chat(user, "<span class='notice'>You correctly filter the PE, speding up refining.</span>")
 
 /obj/structure/refinery/proc/counter()

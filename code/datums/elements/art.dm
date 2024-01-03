@@ -14,27 +14,6 @@
 	UnregisterSignal(target, COMSIG_PARENT_EXAMINE)
 	return ..()
 
-/datum/element/art/proc/apply_moodlet(atom/source, mob/user, impress)
-	SIGNAL_HANDLER
-
-	var/msg
-	switch(impress)
-		if(GREAT_ART to INFINITY)
-			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artgreat", /datum/mood_event/artgreat)
-			msg = "What \a [pick("masterpiece", "chef-d'oeuvre")] [source.p_theyre()]. So [pick("trascended", "awe-inspiring", "bewitching", "impeccable")]!"
-		if (GOOD_ART to GREAT_ART)
-			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artgood", /datum/mood_event/artgood)
-			msg = "[source.p_theyre(TRUE)] a [pick("respectable", "commendable", "laudable")] art piece, easy on the keen eye."
-		if (BAD_ART to GOOD_ART)
-			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artok", /datum/mood_event/artok)
-			msg = "[source.p_theyre(TRUE)] fair to middling, enough to be called an \"art object\"."
-		if (0 to BAD_ART)
-			SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artbad", /datum/mood_event/artbad)
-			msg = "Wow, [source.p_they()] sucks."
-
-	user.visible_message("<span class='notice'>[user] stops and looks intently at [source].</span>", \
-		"<span class='notice'>You appraise [source]... [msg]</span>")
-
 /datum/element/art/proc/on_examine(atom/source, mob/user, list/examine_texts)
 	SIGNAL_HANDLER
 
@@ -50,16 +29,32 @@
 		var/obj/art_piece = source
 		mult = art_piece.obj_integrity/art_piece.max_integrity
 
-	apply_moodlet(source, user, impressiveness * mult)
+	apply_moodlet(source, user, impressiveness * mult) // Is this name accurate? No. However it still servers it's purpose.
+
+/datum/element/art/proc/apply_moodlet(atom/source, mob/user, impress)
+	SIGNAL_HANDLER
+
+	var/msg
+	switch(impress)
+		if(GREAT_ART to INFINITY)
+			msg = "What \a [pick("masterpiece", "chef-d'oeuvre")] [source.p_theyre()]. So [pick("trascended", "awe-inspiring", "bewitching", "impeccable")]!"
+		if (GOOD_ART to GREAT_ART)
+			msg = "[source.p_theyre(TRUE)] a [pick("respectable", "commendable", "laudable")] art piece, easy on the keen eye."
+		if (BAD_ART to GOOD_ART)
+			msg = "[source.p_theyre(TRUE)] fair to middling, enough to be called an \"art object\"."
+		if (0 to BAD_ART)
+			msg = "Wow, [source.p_they()] sucks."
+
+	user.visible_message("<span class='notice'>[user] stops and looks intently at [source].</span>", \
+		"<span class='notice'>You appraise [source]... [msg]</span>")
 
 /datum/element/art/rev
 
 /datum/element/art/rev/apply_moodlet(atom/source, mob/user, impress)
 	var/msg
 	if(user.mind?.has_antag_datum(/datum/antagonist/rev))
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artgreat", /datum/mood_event/artgreat)
 		msg = "What \a [pick("masterpiece", "chef-d'oeuvre")] [source.p_theyre()]. So [pick("subversive", "revolutionary", "unitizing", "egalitarian")]!"
-		SEND_SIGNAL(user, COMSIG_ADD_MOOD_EVENT, "artbad", /datum/mood_event/artbad)
+	else
 		msg = "Wow, [source.p_they()] sucks."
 
 	user.visible_message("<span class='notice'>[user] stops to inspect [source].</span>", \

@@ -27,7 +27,7 @@
 
 	job_important = "You are an L-Corp agent. Your job is to work on, and suppress abnormalities. Use :h to talk on your departmental radio."
 
-	var/normal_attribute_level = 20 // Scales with round time
+	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
 
 /datum/job/agent/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	// Assign department security
@@ -62,7 +62,7 @@
 			ears = /obj/item/radio/headset/headset_records
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/records
 
-		else	//Pick a department or get training.
+		else //Pick a department or get training.
 			ears = /obj/item/radio/headset/headset_training
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
 
@@ -81,32 +81,22 @@
 
 	var/set_attribute = normal_attribute_level
 
-	if(world.time >= 75 MINUTES) // Full facility expected
+	// Variables from abno queue subsystem
+	var/spawned_abnos = SSabnormality_queue.spawned_abnos
+	var/rooms_start = SSabnormality_queue.rooms_start
+
+	if(spawned_abnos > rooms_start * 0.95) // Full facility!
 		set_attribute *= 4
-	else if(world.time >= 60 MINUTES) // More than one ALEPH
+	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs around here
 		set_attribute *= 3
-	else if(world.time >= 45 MINUTES) // Wowzer, an ALEPH?
+	else if(spawned_abnos > rooms_start * 0.5) // WAWs and others
 		set_attribute *= 2.5
-	else if(world.time >= 30 MINUTES) // Expecting WAW
+	else if(spawned_abnos > rooms_start * 0.35) // HEs
 		set_attribute *= 2
-	else if(world.time >= 15 MINUTES) // Usual time for HEs
+	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
 		set_attribute *= 1.5
 
-	//if(SSlobotomy_corp.understood_abnos.len && SSlobotomy_corp.understood_abnos.len > 0)
-	//	var/numberlol = SSlobotomy_corp.understood_abnos.len
-	//	var/totalcells = SSabnormality_queue.rooms_start
-	//	var/percentageofunderstanding = numberlol / totalcells
-	//	if(percentageofunderstanding == 0.5)
-	//		set_attribute *= 5
-	//	else if (percentageofunderstanding >= 0.4)
-	//		set_attribute *= 4
-	//	else if (percentageofunderstanding >= 0.3)
-	//		set_attribute *= 3
-	//	else if (percentageofunderstanding >= 0.2)
-	//		set_attribute *= 2
-	//	else if (percentageofunderstanding >= 0.1)
-	//		set_attribute *= 1.5
-
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
 
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
@@ -123,7 +113,8 @@
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(/obj/item/melee/classic_baton=1)
+	backpack_contents = list(/obj/item/melee/classic_baton=1,
+		/obj/item/info_printer=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -136,10 +127,10 @@
 	spawn_positions = 2
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	normal_attribute_level = 21 // :)
+	normal_attribute_level = 20 // Used to have 21, but it was just picked for the roundstart +1 stat to instantly mirror. - Kirie/Kitsunemitsu
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
-	exp_requirements = 240
+	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
 	mapexclude = list("wonderlabs", "mini")
@@ -174,4 +165,5 @@
 		/obj/item/paper/fluff/tutorial/levels=1 ,
 		/obj/item/paper/fluff/tutorial/risk=1,
 		/obj/item/paper/fluff/tutorial/damage=1,
-		/obj/item/paper/fluff/tutorial/tips=1,)
+		/obj/item/paper/fluff/tutorial/tips=1,
+		/obj/item/info_printer=1)

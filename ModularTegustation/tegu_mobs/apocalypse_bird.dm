@@ -4,7 +4,7 @@
 	that terrorizes the forest, without realizing that it is looking for itself."
 	health = 600000
 	maxHealth = 600000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	icon_state = "apocalypse"
 	icon_living = "apocalypse"
 	//icon_dead = "apocalypse_dead"
@@ -27,7 +27,7 @@
 
 	loot = list(
 		/obj/item/ego_weapon/twilight,
-		/obj/item/clothing/suit/armor/ego_gear/twilight
+		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight
 		)
 
 	var/list/eggs = list()
@@ -258,13 +258,9 @@
 	var/list/been_hit = list()
 	for(var/turf/TF in area_of_effect)
 		new /obj/effect/temp_visual/beakbite(TF)
-		for(var/mob/living/L in TF)
-			if(faction_check_mob(L) || (L in been_hit))
-				continue
-			if (L == src)
-				continue
-			been_hit += L
-			L.apply_damage(bite_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		var/list/new_hits = HurtInTurf(TF, been_hit, bite_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
 			if(L.health < 0)
 				L.gib()
 	SLEEP_CHECK_DEATH(2 SECONDS)
@@ -440,7 +436,7 @@
 	icon_living = "egg_beak"
 	icon_damaged = "egg_beak_damaged"
 	icon_dead = "egg_beak_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = -2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = -2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	blurb_text = "And Little Bird's mouth that devours everything has been shut."
 
 /mob/living/simple_animal/apocalypse_egg/beak/death(gibbed)
@@ -454,7 +450,7 @@
 	icon_living = "egg_arm"
 	icon_damaged = "egg_arm_damaged"
 	icon_dead = "egg_arm_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = -2)
 	blurb_text = "A head that looked up to the cosmos has been lowered."
 
 /mob/living/simple_animal/apocalypse_egg/arm/death(gibbed)
@@ -468,7 +464,7 @@
 	icon_living = "egg_eyes"
 	icon_damaged = "egg_eyes_damaged"
 	icon_dead = "egg_eyes_dead"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = -2, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = -2, PALE_DAMAGE = 0.5)
 	blurb_text = "Far-sighted eyes of Big Bird have been blinded."
 
 /mob/living/simple_animal/apocalypse_egg/eyes/death(gibbed)
@@ -494,7 +490,7 @@
 	faction = list("Apocalypse", "hostile")
 	maxHealth = 30000
 	health = 30000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
 	move_resist = MOVE_FORCE_STRONG
 	pull_force = MOVE_FORCE_STRONG
 	mob_size = MOB_SIZE_HUGE
@@ -647,7 +643,6 @@
 /datum/ai_controller/insane/enchanted
 	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
 	var/last_message = 0
-	var/list/current_path = list()
 
 /datum/ai_behavior/say_line/insanity_enchanted
 	lines = list(

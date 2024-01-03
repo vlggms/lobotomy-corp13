@@ -12,7 +12,8 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK)
 	minimal_access = list(ACCESS_NETWORK)
-	maptype = "wonderlabs"
+	paycheck = 400
+	maptype = list("wonderlabs", "city")
 
 
 	//They actually need this for their weapons
@@ -24,14 +25,14 @@
 								)
 
 /datum/job/veteran/after_spawn(mob/living/carbon/human/H, mob/M)
-	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
-	H.set_attribute_limit(100)
 	to_chat(M, "<span class='userdanger'>This is a roleplay role. You are not affiliated with L Corporation. \
 	Do not enter the lower levels of the facility without the manager's permission. You are the second in command of the local association, \
 	and can offer frontline command.</span>")
 	to_chat(M, "<span class='danger'>Avoid killing other players without a reason. </span>")
+	H.set_attribute_limit(100)
+	. = ..()
 
 
 /datum/outfit/job/veteran
@@ -44,3 +45,4 @@
 	glasses = /obj/item/clothing/glasses/sunglasses
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
+	id = /obj/item/card/id/association

@@ -7,8 +7,8 @@
 	desc = "An old weather damaged bench, it feels oddly nostalgic to you. Like a spring day at the side of a lake."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "quiet_day"
-	maxHealth = 400
-	health = 400
+	maxHealth = 451
+	health = 451
 	threat_level = ZAYIN_LEVEL
 
 	//Bad for stat gain, but the damage is negligable and there's a nice bonus at the end
@@ -25,8 +25,18 @@
 		/datum/ego_datum/weapon/nostalgia,
 		/datum/ego_datum/armor/nostalgia
 	)
+
+	faction = list("hostile", "neutral")
+
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+	)
+
 	chem_type = /datum/reagent/abnormality/quiet_day
-	harvest_phrase = "<span class='notice'>%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.</span>"
+	harvest_phrase = span_notice("%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.")
 	harvest_phrase_third = "%ABNO glances at %PERSON. Suddenly, %VESSEL seems to be more full."
 
 	gift_type =  /datum/ego_gifts/nostalgia
@@ -72,6 +82,23 @@
 	"Sometimes my mind feels like a jumbled mess. I wish I could straighten it all out."
 	)
 
+	var/list/catt = list("Once upon a time, there lived a small kitten and their pack of friends...",
+	"The small kitten looked up to their friends, and in turn their friends lead them down the straight path.",
+	"Then one day, the small kitten's friends got in trouble, and the small kitten, being small and only having followed their lead, could do nothing.",
+	"So the kitten's friends died and left the little kitten alone. Heartbroken, the kitten swore they'd never care for another so long as they lived.",
+	"Years passed, and the kitten, now grown, became a powerful lion. Powerful and uncaring, they tore down beast after beast, yet hardly feasted.",
+	"One day, the powerful lion found two kittens. The lion dismissed them as it had many others, believing them to weak and fragile, and left them to fend for themselves.",
+	"However, bit by bit, those kittens followed the lion, and the lion felt itself taking steps back so they could catch up.",
+	"As time passed, the lion felt itself beginning to care for the kittens, and in thise care it felt it felt fear.",
+	"The kittens assured the lion they'd never leave them, and for once in a long time, the lion believed in someone else.",
+	"However, that was the lion's greatest mistake. Soon after, one of the kittens grew sick. The kitten was dying, and nothing could be done.",
+	"So the lion, still a small kitten, ran. They ran to the ends of the earth trying to hide from the pain of losing a friend, the pain of being alone.",
+	"But there, standing at the end of the earth, was the other kitten; And for once, the lion, still a little kitten, saw them for what they truly were. A lion looking for a friend.",
+	"Yet in the end, the lion was still a small kitten and could not accept their friendship; So they ran."
+	)
+
+	var/pink_speaktimer = null
+
 /mob/living/simple_animal/hostile/abnormality/quiet_day/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
 		return
@@ -79,6 +106,7 @@
 	TalkStart(user)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkStart(mob/living/carbon/human/user)
+	flick("quiet_fadein", src)
 	icon_state = "quiet_ghost"
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
@@ -135,6 +163,7 @@
 			user.apply_status_effect(STATUS_EFFECT_DEMENTIA_RAMBLINGS)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
+	flick("quiet_fadeout", src)
 	icon_state = "quiet_day"
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerCheck(mob/living/carbon/human/user)
@@ -144,11 +173,47 @@
 	else
 		return FALSE
 
+/mob/living/simple_animal/hostile/abnormality/quiet_day/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type == BREACH_PINK)
+		AbnoRadio()
+		Ramble()
+		can_breach = TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/proc/Ramble(pink_story = TRUE)
+	var/story_time = 1
+	if(pink_story)
+		for(var/line in catt)
+			addtimer(CALLBACK(src, /atom/movable.proc/say, ";"+line), (2 SECONDS)*story_time)
+			story_time++
+		pink_speaktimer = addtimer(CALLBACK(src, .proc/Ramble, FALSE), (3 SECONDS)*(story_time + 1))
+		return
+	var/list/gibberish = list()
+	gibberish += dementia
+	gibberish += war_story
+	gibberish += parable
+	gibberish += wife
+	gibberish = shuffle(gibberish)
+	while(gibberish.len > 0 && story_time < 10)
+		var/line = pick(gibberish)
+		gibberish -= line
+		story_time++
+		addtimer(CALLBACK(src, /atom/movable.proc/say, ";"+line), (4 SECONDS)*story_time)
+	pink_speaktimer = addtimer(CALLBACK(src, .proc/Ramble, FALSE), (4 SECONDS)*story_time*2)
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
+	if(stat == DEAD)
+		return
+	. = ..()
+
 /atom/movable/screen/alert/status_effect/quiet
 	name = "A Quiet Day"
 	desc = "You listened to the old man's story."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "rest"	//Guh I suck at status sprites but I'm also broke
+	icon_state = "quiet"
 
 //A Quiet day
 //A simple 5 minute stat buff

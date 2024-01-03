@@ -5,7 +5,7 @@
 	desc = "A gun used by shrimp corp, apparently."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaminigun"
-	inhand_icon_state = "sodalong"
+	inhand_icon_state = "sodaminigun"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	drag_slowdown = 3
@@ -21,7 +21,7 @@
 	desc = "A gun used by shrimp corp, apparently."
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "sodaassault"
-	inhand_icon_state = "sodalong"
+	inhand_icon_state = "sodaassault"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	burst_size = 3

@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "someones_portrait"
 	icon_living = "someones_portrait"
+	portrait = "someonesportrait"
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,
@@ -16,7 +17,7 @@
 	)
 	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/snapshot,
@@ -51,7 +52,7 @@
 		L.break_light_tube()
 
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/proc/PanicUser(mob/living/carbon/human/user, workfailure) //its over bros...
-	to_chat(user, "<span class='userdanger'>He's going to get you! You've got to run!</span>")
+	to_chat(user, span_userdanger("He's going to get you! You've got to run!"))
 	playsound(get_turf(user), 'sound/abnormalities/someonesportrait/panic.ogg', 40, FALSE, -5)
 	user.adjustSanityLoss(user.maxSanity)
 	if(!workfailure)

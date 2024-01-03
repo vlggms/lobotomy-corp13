@@ -456,7 +456,6 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 
 			if (M.z == z)
 				to_chat(M, "<span class='boldannounce'>You feel reality distort for a moment...</span>")
-				SEND_SIGNAL(M, COMSIG_ADD_MOOD_EVENT, "delam", /datum/mood_event/delam)
 			else
 				to_chat(M, "<span class='boldannounce'>You hold onto \the [M.loc] as hard as you can, as reality distorts around you. You feel safe.</span>")
 
@@ -825,7 +824,7 @@ GLOBAL_DATUM(main_supermatter_engine, /obj/machinery/power/supermatter_crystal)
 		return FALSE
 	if(!istype(Proj.firer, /obj/machinery/power/emitter) && power_changes)
 		investigate_log("has been hit by [Proj] fired by [key_name(Proj.firer)]", INVESTIGATE_SUPERMATTER)
-	if(Proj.flag != BULLET)
+	if(Proj.damage_type != BULLET)
 		if(power_changes) //This needs to be here I swear
 			power += Proj.damage * bullet_energy
 			if(!has_been_powered)

@@ -48,7 +48,7 @@
 	return BULLET_ACT_HIT
 
 /mob/living/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
-	var/armor = run_armor_check(def_zone, P.flag, "","",P.armour_penetration)
+	var/armor = run_armor_check(def_zone, P.damage_type, "","",P.armour_penetration)
 	var/on_hit_state = P.on_hit(src, armor, piercing_hit)
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
 		apply_damage(P.damage, P.damage_type, def_zone, armor, wound_bonus=P.wound_bonus, bare_wound_bonus=P.bare_wound_bonus, sharpness = P.sharpness, white_healable = P.white_healing)
@@ -89,11 +89,11 @@
 						"<span class='userdanger'>You're hit by [thrown_item]!</span>")
 		if(!thrown_item.throwforce)
 			return
-		var/armor = run_armor_check(zone, MELEE, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
+		var/armor = run_armor_check(zone, thrown_item.damtype, "Your armor has protected your [parse_zone(zone)].", "Your armor has softened hit to your [parse_zone(zone)].", thrown_item.armour_penetration)
 		var/justice_mod = 1
 		if(ishuman(thrown_item.thrownby))
 			var/mob/living/carbon/human/H = thrown_item.thrownby
-			justice_mod += get_attribute_level(H, JUSTICE_ATTRIBUTE)/100
+			justice_mod += get_modified_attribute_level(H, JUSTICE_ATTRIBUTE)/100
 		apply_damage(thrown_item.throwforce * justice_mod, thrown_item.damtype, zone, armor, sharpness = thrown_item.get_sharpness(), wound_bonus = (nosell_hit * CANT_WOUND))
 		if(QDELETED(src)) //Damage can delete the mob.
 			return
@@ -124,6 +124,9 @@
 
 //proc to upgrade a simple pull into a more aggressive grab.
 /mob/living/proc/grippedby(mob/living/carbon/user, instant = FALSE)
+	if(HAS_TRAIT(src, TRAIT_GRAB_IMMUNE))
+		visible_message("<span class='warning'>[user] tries to grab [src], but [src] won't stop squirming around!</span>")
+		return
 	if(user.grab_state < GRAB_KILL)
 		user.changeNext_move(CLICK_CD_GRABBING)
 		var/sound_to_play = 'sound/weapons/thudswoosh.ogg'
@@ -413,7 +416,7 @@
 	return FALSE
 
 //to damage the clothes worn by a mob
-/mob/living/proc/damage_clothes(damage_amount, damage_type = BRUTE, damage_flag = 0, def_zone)
+/mob/living/proc/damage_clothes(damage_amount, damage_type = BRUTE, def_zone)
 	return
 
 

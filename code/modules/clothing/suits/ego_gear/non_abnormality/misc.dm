@@ -21,4 +21,3 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
-

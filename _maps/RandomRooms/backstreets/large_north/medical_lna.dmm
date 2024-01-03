@@ -1,0 +1,345 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/biogenerator,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"b" = (
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"c" = (
+/obj/machinery/dna_scannernew,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"f" = (
+/obj/machinery/modular_computer/console{
+	desc = "A corporate computer for private communications between persons of interest. This one appears to have its memory reset, however.";
+	name = "communications console"
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"i" = (
+/obj/machinery/door/airlock/public/glass,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"j" = (
+/obj/machinery/vending/wardrobe/gene_wardrobe,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/m2h,
+/obj/machinery/door/window{
+	dir = 1
+	},
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/window/shuttle{
+	name = "window"
+	},
+/obj/structure/grille/broken,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/h2m,
+/obj/machinery/door/window,
+/obj/structure/window{
+	dir = 8
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = -9
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"w" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/acidflesh,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"y" = (
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/table/glass,
+/obj/item/folder/white{
+	desc = "Looks to be remnants of the old G-Corp.";
+	name = "Outdated G-Corp Folder"
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/table/glass,
+/obj/item/clipboard,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/gigantism,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/table/glass,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/firemut,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"G" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"H" = (
+/obj/machinery/door/window,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/window,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"J" = (
+/obj/machinery/door/airlock/titanium{
+	name = "airlock"
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/table/glass,
+/obj/item/kirbyplants/random{
+	pixel_y = 10
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/epimut,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/chair/office/light,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"P" = (
+/obj/machinery/computer/scan_consolenew{
+	dir = 1
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/m2h,
+/obj/machinery/door/window{
+	dir = 1
+	},
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/h2m,
+/obj/machinery/door/window,
+/turf/open/floor/plasteel/freezer,
+/area/city/backstreets_room)
+"V" = (
+/obj/structure/table/glass,
+/obj/item/dnainjector/activator,
+/obj/item/disk/surgery,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/implantchair/genepurge,
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+"Z" = (
+/obj/machinery/door/airlock/freezer{
+	name = "airlock"
+	},
+/turf/open/floor/holofloor/white,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+L
+a
+b
+I
+X
+b
+X
+n
+"}
+(3,1,1) = {"
+L
+j
+b
+I
+c
+b
+c
+n
+"}
+(4,1,1) = {"
+L
+w
+b
+H
+b
+b
+b
+n
+"}
+(5,1,1) = {"
+L
+K
+b
+I
+V
+O
+P
+n
+"}
+(6,1,1) = {"
+L
+L
+i
+L
+n
+n
+n
+L
+"}
+(7,1,1) = {"
+L
+r
+b
+b
+b
+b
+K
+n
+"}
+(8,1,1) = {"
+L
+z
+b
+E
+b
+b
+b
+Z
+"}
+(9,1,1) = {"
+L
+f
+O
+B
+b
+b
+b
+Z
+"}
+(10,1,1) = {"
+L
+r
+b
+b
+b
+G
+e
+n
+"}
+(11,1,1) = {"
+L
+L
+J
+L
+L
+L
+L
+L
+"}
+(12,1,1) = {"
+L
+S
+y
+y
+y
+y
+R
+L
+"}
+(13,1,1) = {"
+L
+q
+y
+x
+F
+y
+m
+L
+"}
+(14,1,1) = {"
+L
+q
+y
+M
+C
+y
+m
+L
+"}
+(15,1,1) = {"
+L
+q
+y
+y
+y
+y
+m
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}

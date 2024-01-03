@@ -34,6 +34,8 @@
 	var/junkiness
 	///Will this food turn into badrecipe on a grill? Don't use this for everything; preferably mostly for food that is made on a grill to begin with so it burns after some time
 	var/burns_on_grill = FALSE
+	///List of reagents to be removed when cooked. IE vile_fluid or organ tissue.
+	var/list/remove_reagents_on_cooked = list()
 
 /obj/item/food/Initialize()
 	. = ..()
@@ -78,3 +80,10 @@
 	if(trash_type)
 		AddElement(/datum/element/food_trash, trash_type)
 	return
+
+///Handles the removal of unwanted reagents.
+/obj/item/food/proc/PurgeToxins()
+	for(var/goop in reagents.reagent_list)
+		var/datum/reagent/R = goop
+		if(R.type in remove_reagents_on_cooked)
+			reagents.remove_reagent(R.type, R.volume)

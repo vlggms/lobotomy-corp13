@@ -1,0 +1,202 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ag" = (
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"fU" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/obj/effect/landmark/department_center,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"ok" = (
+/obj/structure/barricade/security,
+/turf/open/floor/carpet/royalblue,
+/area/city/outskirts)
+"DG" = (
+/obj/structure/barricade/security,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Ro" = (
+/obj/effect/landmark/department_center,
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"UR" = (
+/turf/open/floor/carpet/blue,
+/area/city/outskirts)
+"Xn" = (
+/turf/closed/wall/mineral/plastitanium,
+/area/city/outskirts)
+
+(1,1,1) = {"
+Xn
+Xn
+Xn
+Ro
+UR
+UR
+UR
+UR
+Ro
+UR
+Xn
+"}
+(2,1,1) = {"
+Xn
+Xn
+Xn
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+Xn
+"}
+(3,1,1) = {"
+Xn
+Xn
+Xn
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+Xn
+"}
+(4,1,1) = {"
+Xn
+Xn
+Xn
+DG
+DG
+UR
+UR
+UR
+UR
+UR
+Xn
+"}
+(5,1,1) = {"
+Xn
+Xn
+UR
+UR
+UR
+UR
+UR
+UR
+DG
+DG
+Xn
+"}
+(6,1,1) = {"
+Xn
+UR
+UR
+UR
+UR
+fU
+UR
+UR
+UR
+UR
+Xn
+"}
+(7,1,1) = {"
+Xn
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+Xn
+"}
+(8,1,1) = {"
+Xn
+UR
+UR
+UR
+UR
+UR
+UR
+DG
+DG
+DG
+Xn
+"}
+(9,1,1) = {"
+Xn
+DG
+DG
+DG
+UR
+UR
+UR
+UR
+UR
+UR
+Xn
+"}
+(10,1,1) = {"
+Xn
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+UR
+Xn
+"}
+(11,1,1) = {"
+Xn
+ag
+ag
+UR
+UR
+UR
+UR
+UR
+ag
+ag
+Xn
+"}
+(12,1,1) = {"
+Xn
+ag
+ag
+ag
+ag
+ag
+ag
+ok
+ok
+Xn
+Xn
+"}
+(13,1,1) = {"
+Xn
+Xn
+Xn
+ag
+ag
+ag
+ag
+ag
+ag
+Xn
+Xn
+"}

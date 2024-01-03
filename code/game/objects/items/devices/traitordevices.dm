@@ -264,6 +264,13 @@ effective or pretty fucking useless.
 		GLOB.active_jammers -= src
 	update_icon()
 
+/obj/item/jammer/self_activated
+
+/obj/item/jammer/self_activated/Initialize()
+	. = ..()
+	GLOB.active_jammers |= src
+	update_icon()
+
 /obj/item/storage/toolbox/emergency/turret
 	desc = "You feel a strange urge to hit this with a wrench."
 
@@ -283,5 +290,4 @@ effective or pretty fucking useless.
 		var/obj/machinery/porta_turret/syndicate/pod/toolbox/turret = new(get_turf(loc))
 		turret.faction = list("[REF(user)]")
 		qdel(src)
-
 	..()

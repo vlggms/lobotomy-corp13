@@ -192,3 +192,9 @@
 	icon_state = "silence"
 	color = "#222222"
 	flags_inv = HIDEFACE|HIDEEYES|HIDEFACIALHAIR|HIDESNOUT
+
+/obj/item/clothing/mask/carnival_mask
+	name = "carnival mask"
+	desc = "A woven face mask that thoroughly conceals its user identity and that enables the carnival to do their work."
+	icon_state = "carnival_mask"
+	flags_inv = HIDEFACE|HIDEEYES|HIDEFACIALHAIR|HIDESNOUT

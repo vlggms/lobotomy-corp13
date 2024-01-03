@@ -12,15 +12,15 @@
 	message_living = ", and you gasp for breath"
 	reagent = /datum/reagent/blob/pressurized_slime
 
-/datum/blobstrain/reagent/pressurized_slime/damage_reaction(obj/structure/blob/B, damage, damage_type, damage_flag)
-	if((damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER) || damage_type != BURN)
+/datum/blobstrain/reagent/pressurized_slime/damage_reaction(obj/structure/blob/B, damage, damage_type)
+	if((damage_type in list(MELEE, BULLET, LASER)) || damage_type != BURN)
 		extinguisharea(B, damage)
 	if(damage_type == BRUTE)
 		return damage * 0.5
 	return ..()
 
-/datum/blobstrain/reagent/pressurized_slime/death_reaction(obj/structure/blob/B, damage_flag)
-	if(damage_flag == MELEE || damage_flag == BULLET || damage_flag == LASER)
+/datum/blobstrain/reagent/pressurized_slime/death_reaction(obj/structure/blob/B, damage_type)
+	if(damage_type in list(MELEE, BULLET, LASER))
 		B.visible_message("<span class='boldwarning'>The blob ruptures, spraying the area with liquid!</span>")
 		extinguisharea(B, 50)
 

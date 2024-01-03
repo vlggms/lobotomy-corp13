@@ -151,7 +151,7 @@
 	. = ..()
 	if(istype(target, /obj/vehicle/sealed/mecha))
 		var/obj/vehicle/sealed/mecha/M = target
-		M.take_damage(50, BRUTE, MELEE, 1)
+		M.take_damage(50, MELEE, 1)
 
 /mob/living/simple_animal/hostile/space_dragon/Move()
 	if(!using_special)
@@ -308,7 +308,7 @@
 		if(M in hit_list)
 			continue
 		hit_list += M
-		M.take_damage(50, BRUTE, MELEE, 1)
+		M.take_damage(50, MELEE, 1)
 
 /**
  * Handles consuming and storing consumed things inside Space Dragon
@@ -541,7 +541,7 @@
 	if(isobserver(user))
 		. += "<span class='notice'>It has [carp_stored] carp available to spawn as.</span>"
 
-/obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE, damage_flag = 0)
+/obj/structure/carp_rift/play_attack_sound(damage_amount, damage_type = BRUTE)
 	playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 
 /obj/structure/carp_rift/Destroy()

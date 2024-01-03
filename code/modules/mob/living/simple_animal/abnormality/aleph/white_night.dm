@@ -8,12 +8,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "white_night"
 	icon_living = "white_night"
+	portrait = "white_night"
 	health_doll_icon = "white_night"
 	faction = list("hostile", "apostle")
 	friendly_verb_continuous = "stares down"
 	friendly_verb_simple = "stare down"
 	speak_emote = list("proclaims")
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = -2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
 	is_flying_animal = TRUE
 	pixel_x = -16
 	base_pixel_x = -16
@@ -46,6 +47,10 @@ GLOBAL_LIST_EMPTY(apostles)
 		)
 	gift_type =  /datum/ego_gifts/paradise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/onesin = 5
+	)
 
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
@@ -94,13 +99,16 @@ GLOBAL_LIST_EMPTY(apostles)
 			continue
 		heretic.Apply_Gift(new /datum/ego_gifts/blessing)
 		heretic.playsound_local(get_turf(heretic), 'sound/abnormalities/whitenight/apostle_bell.ogg', 50)
-		to_chat(heretic, "<span class='userdanger'>[heretic], your Heresy will not be forgotten!</span>")
+		to_chat(heretic, span_userdanger("[heretic], your Heresy will not be forgotten!"))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/Destroy()
 	for(var/mob/living/simple_animal/hostile/apostle/A in apostles)
 		A.death()
 		QDEL_IN(A, 1.5 SECONDS)
+	apostles = null
+	QDEL_NULL(particles)
+	particles = null
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_humans(range_override = null, faction_check = "apostle")
@@ -135,12 +143,12 @@ GLOBAL_LIST_EMPTY(apostles)
 		L.apply_damage(dealt_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
-		to_chat(L, "<span class='userdanger'>The holy light... IT BURNS!!</span>")
+		to_chat(L, span_userdanger("The holy light... IT BURNS!!"))
 	else
 		if(istype(L, /mob/living/simple_animal/hostile/apostle) && L.stat == DEAD)
 			L.revive(full_heal = TRUE, admin_revive = FALSE)
 			L.grab_ghost(force = TRUE)
-			to_chat(L, "<span class='notice'>The holy light compels you to live!</span>")
+			to_chat(L, span_notice("The holy light compels you to live!"))
 		else if(L.stat != DEAD)
 			L.adjustBruteLoss(-(holy_revival_damage * 0.75) * (L.maxHealth/100))
 			if(ishuman(L))
@@ -148,7 +156,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				H.adjustSanityLoss(-(holy_revival_damage * 0.75) * (H.maxSanity/100))
 			L.regenerate_limbs()
 			L.regenerate_organs()
-			to_chat(L, "<span class='notice'>The holy light heals you!</span>")
+			to_chat(L, span_notice("The holy light heals you!"))
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/SpawnApostles()
 	for(var/i = 1 to 11)
@@ -207,6 +215,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		var/turf/T = pick(GLOB.department_centers)
 		forceMove(T)
 	SpawnApostles()
+	particles = new /particles/white_night()
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
 
@@ -229,13 +238,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	friendly_verb_simple = "stare down"
 	speak_emote = list("says")
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
 	melee_damage_lower = 35
 	melee_damage_upper = 45
 	obj_damage = 400
 	ranged = TRUE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
-	speed = 4
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	move_to_delay = 5
 	pixel_x = -8
 	base_pixel_x = -8
@@ -319,12 +326,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	SLEEP_CHECK_DEATH(10)
 	for(var/turf/T in view(scythe_range, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(L.stat == DEAD)
-				continue
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(scythe_damage, scythe_damage_type, null, L.run_armor_check(null, scythe_damage_type), spread_damage = TRUE)
+		HurtInTurf(T, list(), scythe_damage, scythe_damage_type, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/scythe_spell.ogg', 75, FALSE, 5)
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
@@ -333,11 +335,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	name = "guardian apostle"
 	health = 3000
 	maxHealth = 3000
-	speed = 5
 	move_to_delay = 7
 	melee_damage_type = PALE_DAMAGE
-	armortype = PALE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	vision_range = 12
 	aggro_vision_range = 12
 	patrol_cooldown_time = 10 SECONDS
@@ -371,7 +371,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/gibbed = FALSE
 	for(var/turf/T in view(scythe_range, src))
 		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
+		for(var/mob/living/L in T) // Not changing this one because it notable does not gib pre-dead bodies, only living ones.
 			if(L.stat == DEAD)
 				continue
 			if(faction_check_mob(L))
@@ -395,8 +395,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon_state = "apostle_spear"
 	icon_living = "apostle_spear"
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5)
 	var/spear_cooldown
 	var/spear_cooldown_time = 10 SECONDS
 	var/spear_max = 50
@@ -458,15 +457,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	forceMove(T)
 	for(var/turf/TF in view(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
-		for(var/mob/living/L in TF)
-			if(!faction_check_mob(L))
-				if(L in been_hit)
-					continue
-				visible_message("<span class='boldwarning'>[src] runs through [L]!</span>")
-				L.apply_damage(spear_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-				new /obj/effect/temp_visual/cleave(get_turf(L))
-				if(!(L in been_hit))
-					been_hit += L
+		var/list/new_hits = HurtInTurf(T, been_hit, spear_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/L in new_hits)
+			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
+			new /obj/effect/temp_visual/cleave(get_turf(L))
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/apostle/staff
@@ -481,8 +476,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	melee_damage_lower = 25
 	melee_damage_upper = 35
 	melee_damage_type = BLACK_DAMAGE // Okay, look, they aren't really meant to melee anyway
-	armortype = BLACK_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	var/staff_cooldown
 	var/staff_cooldown_time = 20 SECONDS
 	var/staff_damage = 20

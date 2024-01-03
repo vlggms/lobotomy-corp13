@@ -5,17 +5,22 @@
 	icon_state = "dr_jekyll"
 	var/list/users = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/hyde,
+		/datum/ego_datum/armor/hyde
+		)
+
 /obj/structure/toolabnormality/dr_jekyll/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(!do_after(user, 10, user))
 		return
 
 	if((user in users))
-		to_chat(user, "<span class='notice'>There's none left.</span>")
+		to_chat(user, span_notice("There's none left."))
 		return //You don't need any more.
 
 	users += user
-	to_chat(user, "<span class='userdanger'>You take a sip, it's lukewarm.</span>")
+	to_chat(user, span_userdanger("You take a sip, it's lukewarm."))
 	user.apply_status_effect(STATUS_EFFECT_DR_JEKYLL)
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10,50), TRUE)
 
@@ -78,17 +83,17 @@
 
 /datum/status_effect/dr_jekyll/proc/HydeTakeover()
 	var/mob/living/carbon/human/H = owner
-	to_chat(H, "<span class='notice'>You feel strange... Yet... Free?</span>")
+	to_chat(H, span_notice("You feel strange... Yet... Free?"))
 	takeover = TRUE
 	level = get_user_level(owner) // we only update when the debuff is inflicted
 	level_mod = (level * 5)
 	for(var/attribute in H.attributes)
 		AttributeCalc(attribute, H)
 
-	H.adjust_attribute_buff(lowest, 2 * level_mod)
-	H.adjust_attribute_buff(low, 1 * level_mod)
-	H.adjust_attribute_buff(high, -1 * level_mod)
-	H.adjust_attribute_buff(highest, -2 * level_mod)
+	H.adjust_attribute_bonus(lowest, 2 * level_mod)
+	H.adjust_attribute_bonus(low, 1 * level_mod)
+	H.adjust_attribute_bonus(high, -1 * level_mod)
+	H.adjust_attribute_bonus(highest, -2 * level_mod)
 	if(H.sanityhealth > (H.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to go away
 		H.sanityhealth = (H.maxSanity * 0.45)
 
@@ -113,12 +118,12 @@
 
 /datum/status_effect/dr_jekyll/proc/ReturnToNormal()
 	var/mob/living/carbon/human/H = owner
-	to_chat(H, "<span class='nicegreen'>The strange feeling goes away.</span>")
+	to_chat(H, span_nicegreen("The strange feeling goes away."))
 	takeover = FALSE
-	H.adjust_attribute_buff(lowest, -2 * level_mod)
-	H.adjust_attribute_buff(low, -1 * level_mod)
-	H.adjust_attribute_buff(high, 1 * level_mod)
-	H.adjust_attribute_buff(highest, 2 * level_mod)
+	H.adjust_attribute_bonus(lowest, -2 * level_mod)
+	H.adjust_attribute_bonus(low, -1 * level_mod)
+	H.adjust_attribute_bonus(high, 1 * level_mod)
+	H.adjust_attribute_bonus(highest, 2 * level_mod)
 	if(H.sanityhealth < (H.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to return
 		H.sanityhealth = (H.maxSanity * 0.55)
 	highest = 0

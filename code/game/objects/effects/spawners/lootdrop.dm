@@ -621,7 +621,6 @@
 /obj/effect/spawner/lootdrop/space/rareseed
 	lootcount = 5
 	loot = list(
-		/obj/item/seeds/random = 30,
 		/obj/item/seeds/glowshroom/shadowshroom = 1,
 		/obj/item/seeds/liberty = 5,
 		/obj/item/seeds/plump/walkingmushroom = 1

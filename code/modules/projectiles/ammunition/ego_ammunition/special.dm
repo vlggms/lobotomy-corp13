@@ -36,4 +36,11 @@
 /obj/item/ammo_casing/caseless/fullstop
 	name = "fullstop casing"
 	desc = "A casing."
-	projectile_type = /obj/projectile/ego_bullet/fullstop
+	projectile_type = /obj/projectile/ego_bullet/tendamage
+
+/obj/item/ammo_casing/caseless/thumbshell
+	name = "shell casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/tendamage
+	pellets = 8
+	variance = 16

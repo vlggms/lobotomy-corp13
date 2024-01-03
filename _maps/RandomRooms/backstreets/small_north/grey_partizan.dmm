@@ -1,0 +1,97 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"j" = (
+/obj/structure/table/greyscale,
+/obj/item/reagent_containers/food/drinks/coffee,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"k" = (
+/turf/closed/indestructible/rock,
+/area/space)
+"q" = (
+/obj/structure/table/greyscale,
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"u" = (
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"C" = (
+/obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,
+/obj/structure/table/greyscale,
+/obj/item/gun/ego_gun/pistol/kcorp/nade,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"M" = (
+/obj/item/ego_weapon/city/seven/vet,
+/obj/structure/table/greyscale,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/table/greyscale,
+/obj/structure/plaque/static_plaque{
+	desc = "The Gray Partizan.";
+	pixel_y = 32
+	},
+/obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"W" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+k
+k
+U
+U
+U
+"}
+(2,1,1) = {"
+U
+U
+U
+j
+U
+"}
+(3,1,1) = {"
+U
+M
+u
+W
+P
+"}
+(4,1,1) = {"
+U
+R
+u
+W
+U
+"}
+(5,1,1) = {"
+U
+C
+u
+W
+U
+"}
+(6,1,1) = {"
+U
+U
+U
+q
+U
+"}
+(7,1,1) = {"
+k
+k
+U
+U
+U
+"}

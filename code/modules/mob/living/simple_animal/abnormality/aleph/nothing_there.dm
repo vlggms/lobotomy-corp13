@@ -1,3 +1,5 @@
+#define NT_GOODBYE_COOLDOWN (20 SECONDS)
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there
 	name = "Nothing There"
 	desc = "A wicked creature that consists of various human body parts and organs."
@@ -10,12 +12,11 @@
 	icon_state = "nothing"
 	icon_living = "nothing"
 	icon_dead = "nothing_dead"
+	portrait = "nothing_there"
 	melee_damage_type = RED_DAMAGE
-	armortype = RED_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 55
 	melee_damage_upper = 65
-	speed = 2
 	move_to_delay = 3
 	ranged = TRUE
 	pixel_x = -8
@@ -39,6 +40,12 @@
 		)
 	gift_type =  /datum/ego_gifts/mimicry
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/kqe = 1.5,
+		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5
+	)
+
 	var/mob/living/disguise = null
 	var/saved_appearance
 	var/can_act = TRUE
@@ -66,6 +73,43 @@
 	var/utterance = 5 // 10 for testing, 5 for base
 	var/worker = null
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(
+		/datum/action/cooldown/nt_goodbye,
+		/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle
+	)
+
+/datum/action/cooldown/nt_goodbye
+	name = "Goodbye"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "nt_goodbye"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = NT_GOODBYE_COOLDOWN //20 seconds
+
+/datum/action/cooldown/nt_goodbye/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/nothing_there))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/nothing_there/nothing_there = owner
+	if(nothing_there.current_stage != 3)
+		return FALSE
+	StartCooldown()
+	nothing_there.Goodbye()
+	return TRUE
+
+/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle
+	name = "Toggle Hello"
+	button_icon_state = "nt_toggle0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't shoot anymore.")
+	button_icon_toggle_activated = "nt_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now shoot a welcoming sonic wave.")
+	button_icon_toggle_deactivated = "nt_toggle0"
+
+
 /mob/living/simple_animal/hostile/abnormality/nothing_there/Initialize()
 	. = ..()
 	saved_appearance = appearance
@@ -83,6 +127,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/PostSpawn()
+	. = ..()
 	var/list/old_heard = RememberVar(1)
 	if(islist(old_heard) && LAZYLEN(old_heard))
 		heard_words = old_heard
@@ -107,20 +152,27 @@
 /mob/living/simple_animal/hostile/abnormality/nothing_there/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
-		return Goodbye()
-	if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
-		var/turf/target_turf = get_turf(target)
-		for(var/i = 1 to 3)
-			target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
-		return Hello(target_turf)
+	if(!client)
+		if((current_stage == 3) && (goodbye_cooldown <= world.time) && prob(35))
+			return Goodbye()
+		if((current_stage == 3) && (hello_cooldown <= world.time) && prob(35))
+			var/turf/target_turf = get_turf(target)
+			for(var/i = 1 to 3)
+				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+			return Hello(target_turf)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/OpenFire()
 	if(!can_act)
 		return
-
 	if(current_stage == 3)
+
+		if(client)
+			switch(chosen_attack)
+				if(1)
+					Hello(target)
+			return
+
 		if(hello_cooldown <= world.time)
 			Hello(target)
 		if((goodbye_cooldown <= world.time) && (get_dist(src, target) < 3))
@@ -199,7 +251,7 @@
 	soundloop.stop()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/disguise.ogg', 75, 0, 5)
 	new /obj/effect/gibspawner/generic(get_turf(M))
-	to_chat(M, "<span class='userdanger'>Oh no...</span>")
+	to_chat(M, span_userdanger("Oh no..."))
 	disguise = M
 	// The following code makes it so that even if a disguised mob is resting, Nothing There's shell will still be standing up.
 	M.set_lying_angle(0)
@@ -214,7 +266,7 @@
 	if(!istype(disguise))
 		return
 	next_transform = world.time + rand(30 SECONDS, 40 SECONDS)
-	move_to_delay = initial(move_to_delay)
+	SpeedChange(1.5)
 	appearance = saved_appearance
 	disguise.forceMove(get_turf(src))
 	disguise.gib()
@@ -228,7 +280,7 @@
 	switch(current_stage)
 		if(1)
 			icon_state = "nothing_egg"
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1)
+			ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1))
 			can_act = FALSE
 			next_transform = world.time + rand(10 SECONDS, 25 SECONDS)
 			heartbeat.start()
@@ -242,13 +294,14 @@
 			icon_state = icon_living
 			pixel_x = -16
 			base_pixel_x = -16
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+			ChangeResistances(list(WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 			can_act = TRUE
 			melee_damage_lower = 65
 			melee_damage_upper = 75
-			move_to_delay = 4.5
+			SpeedChange(1.5)
 			heartbeat.stop()
 			breachloop.start()
+	UpdateSpeed()
 	adjustBruteLoss(-maxHealth)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
@@ -277,13 +330,10 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			for(var/mob/living/L in TF)
-				if(faction_check_mob(L) || (L in been_hit))
-					continue
-				been_hit += L
-				L.apply_damage(hello_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-				if(L.health < 0)
-					L.gib()
+			been_hit = HurtInTurf(TF, been_hit, hello_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE)
+	for(var/mob/living/L in been_hit)
+		if(L.health < 0)
+			L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 3)
 	icon_state = icon_living
@@ -298,11 +348,8 @@
 	icon_state = "nothing_blade"
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(2, src))
-		new /obj/effect/temp_visual/smash_effect(T)
-		for(var/mob/living/L in T)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(goodbye_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/nt_goodbye(T)
+		for(var/mob/living/L in HurtInTurf(T, list(), goodbye_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
 			if(L.health < 0)
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
@@ -349,8 +396,10 @@
 		playsound(get_turf(src), 'sound/abnormalities/nothingthere/breach.ogg', 50, 0, 5)
 		return
 	// Teleport us somewhere where nobody will see us at first
+	disguiseloop.stop()
 	fear_level = 0 // So it doesn't inflict fear to those around them
-	move_to_delay = 1.2 // This will make them move at a speed similar to normal players
+	SpeedChange(-1.5) // This will make them move at a speed similar to normal players
+	UpdateSpeed()
 	var/list/priority_list = list()
 	for(var/turf/T in GLOB.xeno_spawn)
 		var/people_in_range = 0
@@ -368,3 +417,5 @@
 		new /obj/effect/temp_visual/flesh(T)
 	forceMove(target_turf)
 	addtimer(CALLBACK(src, .proc/drop_disguise), rand(40 SECONDS, 90 SECONDS))
+
+#undef NT_GOODBYE_COOLDOWN

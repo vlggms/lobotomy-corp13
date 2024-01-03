@@ -727,25 +727,34 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 /obj/item/melee/flyswatter/Initialize()
 	. = ..()
 	strong_against = typecacheof(list(
-					/mob/living/simple_animal/hostile/poison/bees/,
-					/mob/living/simple_animal/butterfly,
-					/mob/living/simple_animal/hostile/cockroach,
-					/obj/item/queen_bee,
-					/obj/structure/spider/spiderling
+//		/mob/living/simple_animal/hostile/bee, REQUIRES PR#58882
+		/mob/living/simple_animal/hostile/poison/bees,
+		/mob/living/simple_animal/butterfly,
+//		/mob/living/basic/cockroach, REQUIRES PR #60694
+		/mob/living/simple_animal/hostile/cockroach,
+		/obj/item/queen_bee,
+		/obj/structure/spider/spiderling,
+//		/mob/living/simple_animal/ant, REQUIRES PR #59634
+//		/obj/effect/decal/cleanable/ants, REQUIRES PR #59634
 	))
 
 
 /obj/item/melee/flyswatter/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
-	if(proximity_flag)
-		if(is_type_in_typecache(target, strong_against))
-			new /obj/effect/decal/cleanable/insectguts(target.drop_location())
-			to_chat(user, "<span class='warning'>You easily splat the [target].</span>")
-			if(istype(target, /mob/living/))
-				var/mob/living/bug = target
-				bug.death(1)
-			else
-				qdel(target)
+	if(!proximity_flag)
+		return
+	if(!is_type_in_typecache(target, strong_against))
+		return
+	if (HAS_TRAIT(user, TRAIT_PACIFISM))
+		return
+
+	new /obj/effect/decal/cleanable/insectguts(target.drop_location())
+	to_chat(user, span_warning("You easily splat [target]."))
+	if(isliving(target))
+		var/mob/living/bug = target
+		bug.gib()
+	else
+		qdel(target)
 
 /obj/item/circlegame
 	name = "circled hand"
@@ -896,7 +905,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		return
 
 	// [user] gives [target] a [prefix_desc] noogie[affix_desc]!
-	var/brutal_noogie = FALSE // was it an extra hard noogie?
 	var/prefix_desc = "rough"
 	var/affix_desc = ""
 	var/affix_desc_target = ""
@@ -905,10 +913,8 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		prefix_desc = "violent"
 		affix_desc = "on [target.p_their()] sensitive antennae"
 		affix_desc_target = "on your highly sensitive antennae"
-		brutal_noogie = TRUE
 	if(user.dna?.check_mutation(HULK))
 		prefix_desc = "sickeningly brutal"
-		brutal_noogie = TRUE
 
 	var/message_others = "[prefix_desc] noogie[affix_desc]"
 	var/message_target = "[prefix_desc] noogie[affix_desc_target]"
@@ -921,10 +927,6 @@ for further reading, please see: https://github.com/tgstation/tgstation/pull/301
 		to_chat(target, "<span class='danger'>[user] fails to give you a noogie!</span>")
 		return
 
-	if(brutal_noogie)
-		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "noogie_harsh", /datum/mood_event/noogie_harsh)
-	else
-		SEND_SIGNAL(target, COMSIG_ADD_MOOD_EVENT, "noogie", /datum/mood_event/noogie)
 
 	noogie_loop(user, target, 0)
 

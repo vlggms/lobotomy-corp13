@@ -144,8 +144,8 @@
 		. += mutable_appearance(icon, "[initial(icon_state)]_panel-o")
 
 	if(beaker)
-		beaker_overlay = display_beaker()
-		. += beaker_overlay
+		var/mutable_appearance/new_beaker_overlay = display_beaker()
+		. += new_beaker_overlay
 
 
 /obj/machinery/chem_dispenser/emag_act(mob/user)
@@ -210,16 +210,10 @@
 		data["beakerTransferAmounts"] = null
 
 	var/chemicals[0]
-	var/is_hallucinating = FALSE
-	if(user.hallucinating())
-		is_hallucinating = TRUE
 	for(var/re in dispensable_reagents)
-		var/datum/reagent/temp = GLOB.chemical_reagents_list[re]
-		if(temp)
-			var/chemname = temp.name
-			if(is_hallucinating && prob(5))
-				chemname = "[pick_list_replacements("hallucination.json", "chemicals")]"
-			chemicals.Add(list(list("title" = chemname, "id" = ckey(temp.name))))
+		var/datum/reagent/R = GLOB.chemical_reagents_list[re]
+		if(R)
+			chemicals.Add(list(list("title" = R.name, "id" = ckey(R.name))))
 	data["chemicals"] = chemicals
 	data["recipes"] = saved_recipes
 

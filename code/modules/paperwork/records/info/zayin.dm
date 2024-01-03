@@ -14,7 +14,8 @@
 	abno_code = "O-03-03"
 	abno_info = list(
 		"One Sin and Hundreds of Good Deeds will restore the employee’s mental state when the work result is Good. Bong Bong, who received this benediction, commented that it felt refreshing.",
-		"After the maximum number of PE-Boxes was produced with One Sin and Hundreds of Good Deeds, it restored the mental health of every employee in the facility.")
+		"After the maximum number of PE-Boxes was produced with One Sin and Hundreds of Good Deeds, it restored the mental health of every employee in the facility.",
+		"Performing a confession to One Sin and Hundred of Good Deeds has often resulted in the employee being completely cured of their wounds, but it seems the abnormality can detect untruthful confessions.")
 
 //Wellcheers
 /obj/item/paper/fluff/info/zayin/shrimple
@@ -43,7 +44,7 @@
 	abno_info = list(
 		"When the work result was Normal or Good, small fairies appeared around the employee.",
 		"The small fairies will heal the employee’s HP over a limited time.",
-		"If an employee under the fairies’ care is assigned to a different Containment Unit, they will immediately die and be consumed by the fairies.")
+		"If an employee under the fairies’ care is assigned to a different Containment Unit, the fairies will cease their healing until the work is completed.")
 
 //We can change anything
 /obj/item/paper/fluff/info/zayin/change
@@ -51,7 +52,9 @@
 	abno_code = "T-09-85"
 	abno_info = list(
 		"The employee working on We Can Change Anything took continuous RED damage during work.",
-		"Upon successful work completion, the employee received a slight temporary resistance to RED damage.")
+		"Upon successful work completion, the employee received a slight temporary resistance to RED damage.",
+		"Placing an employee inside the machine will produce energy over time, and the RED damage was increased.",
+		"The amount of energy produced this way will increase as time goes by.")
 
 //Sleeping Beauty
 /obj/item/paper/fluff/info/zayin/sleeping
@@ -65,10 +68,19 @@
 //Quiet Day
 /obj/item/paper/fluff/info/zayin/quiet
 	abno_type = /mob/living/simple_animal/hostile/abnormality/quiet_day
-	abno_code = "T-01-145"
+	abno_code = "D-01-145"
 	abno_info = list(
 		"When work with T-01-145 was completed, it started to speak.",
-		"If the agent working with T-01-145 listened to it's entire story, they recieved a buff for the corresponding attribute lasting 5 minutes.")
+		"If the agent working with T-01-145 listened to it's entire story, they received a buff for the corresponding attribute, lasting 5 minutes.")
+
+//Letters on Standby
+/obj/item/paper/fluff/info/zayin/mail
+	abno_type = /mob/living/simple_animal/hostile/abnormality/mailpile
+	abno_code = "C-04-147"
+	abno_info = list("When an agent completed work with the abnormality with a neutral or good result, they were delivered a piece of mail.",
+	"Reading the mail produced differing effects depending on the type of mail received.",
+	"Upon successful repression work, the employee received a parcel.",
+	"Multiple repression works within short succession resulted in the death of the working agent.")
 
 //Fallen Amurdad
 /obj/item/paper/fluff/info/zayin/fallen_amurdad
@@ -84,4 +96,34 @@
 	abno_code = "T-02-158"
 	abno_info = list(
 		"When the abnormality was approached outside of work, it suddenly became extremely hostile to that specific employee.",
-		"Employees report the toad's cries having a soothing effect while in containment, recovering SP.")
+		"Upon successful work completion, the employee received a slight temporary resistance to BLACK damage.",
+		"Employees report that after a work, the toad's cries having a soothing effect while in containment, quickly recovering SP.")
+
+//Hammer of Light
+/obj/item/paper/fluff/info/zayin/hammer_light
+	abno_type = /mob/living/simple_animal/hostile/abnormality/hammer_light
+	abno_code = "O-05-48"
+	abno_info = list(
+		"Hammer of Light's room cannot be accessed when the facility is in peace, the seal is broken during an emergency.",
+		"When the seal is broken, an employee can simply walk up to the abnormality and pick up the hammer.",
+		"When a level 1 employee tried to pick up the hammer, they were reduced to ashes by its power.",
+		"When agent YumYum picked up the unsealed hammer, they were granted the immense power required to resolve the emergency situation.",
+		"However, once the situation began to settle down, YumYum disappeared.")
+
+//Vending Machine and Oceanic Waves
+/obj/item/paper/fluff/info/zayin/oceanic_waves
+	abno_type = /mob/living/simple_animal/hostile/abnormality/oceanicwaves
+	abno_code = "O-05-181"
+	abno_info = list(
+		"After work was completed, O-04-181 dispensed 3 soda cans.",
+		"After testing, it showed that the soda cans were spiked with various medicines, both beneficial and not.",
+		"The chances of recieving a beneficial soda increased the better the work result.")
+
+//Sunset Traveller
+/obj/item/paper/fluff/info/zayin/sunset_traveller
+	abno_type = /mob/living/simple_animal/hostile/abnormality/sunset_traveller
+	abno_code = "O-02-183"
+	abno_info = list(
+		"After work was completed, the fireflies glowed brighter.",
+		"The fireflies increased healing of HP and SP as long as the employee stayed in the room.",
+		"While the fireflies were glowing, no other work could be completed on O-02-183.")

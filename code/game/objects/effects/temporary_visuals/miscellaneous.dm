@@ -561,6 +561,8 @@
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)
 
+//LC13 EFFECTS
+
 /obj/effect/temp_visual/bee_gas
 	icon_state = "mustard"
 	alpha = 0
@@ -657,6 +659,21 @@
 	. = ..()
 	animate(src, alpha = 0, transform = transform*3, time = 5)
 
+
+/obj/effect/temp_visual/cherry_aura
+	name = "petal blizzard"
+	icon_state = "cherry_aura"
+	duration = 16
+
+/obj/effect/temp_visual/cherry_aura2
+	name = "petal blizzard2"
+	icon_state = "cherry_aura2"
+	duration = 16
+
+/obj/effect/temp_visual/cherry_aura3
+	name = "petal blizzard3"
+	icon_state = "cherry_aura3"
+	duration = 16
 /obj/effect/temp_visual/saw_effect
 	name = "saw"
 	icon_state = "claw"
@@ -843,7 +860,16 @@
 
 /obj/effect/temp_visual/healing
 	icon_state = "healing"
-	duration = 10
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 8
+
+/obj/effect/temp_visual/healing/Initialize(mapload)
+	. = ..()
+	pixel_x = rand(-12, 12)
+	pixel_y = rand(-9, 0)
+
+/obj/effect/temp_visual/healing/no_dam
+	icon_state = "no_dam"
 
 /obj/effect/temp_visual/pale_eye_attack
 	name = "pale particles"
@@ -883,3 +909,165 @@
 	icon = 'icons/effects/eldritch.dmi'
 	icon_state = "cloud_swirl"
 	duration = 10
+
+/obj/effect/temp_visual/nt_goodbye
+	name = "goodbye"
+	icon_state = "nt_goodbye"
+	duration = 5
+
+/obj/effect/temp_visual/talisman
+	name = "talisman"
+	icon_state = "talisman"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 10
+
+/obj/effect/temp_visual/talisman/Initialize()
+	. = ..()
+	animate(src, alpha = 0, time = 10)
+
+/obj/effect/temp_visual/talisman/curse
+	icon_state = "curse_talisman"
+
+/obj/effect/temp_visual/turn_book
+	name = "scattered pages"
+	icon_state = "turn_book"
+	duration = 6
+
+/obj/effect/temp_visual/lovetown_shapes
+	name = "shapes"
+	icon_state = "lovetown_shapes"
+	duration = 4
+
+/obj/effect/temp_visual/lovetown_whip
+	name = "whip"
+	icon_state = "lovetown_whip"
+	duration = 4
+
+/obj/effect/temp_visual/galaxy_aura
+	name = "galaxy_aura"
+	icon_state = "galaxy_aura"
+	duration = 6
+
+/obj/effect/temp_visual/human_horizontal_bisect
+	icon = 'icons/mob/mob.dmi'
+	icon_state = "Hbisected-h"
+	duration = 15
+
+/obj/effect/temp_visual/rip_space
+	name = "dimensional rift"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "rift"
+	duration = 2
+
+/obj/effect/temp_visual/ripped_space
+	name = "ripped space"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "ripped_space"
+	duration = 3
+
+/obj/effect/temp_visual/rip_space_slash
+	name = "ripped space"
+	icon_state = "rift"
+	duration = 2
+
+/obj/effect/temp_visual/rip_space_slash/Initialize()
+	. = ..()
+	var/matrix/M = matrix()
+	transform = M.Turn(45)
+	transform = M.Scale(5, 0.5)
+	transform = M.Turn(rand(0, 360))
+	animate(src, alpha = 0, transform = transform*2, time = 2)
+
+/obj/effect/temp_visual/mustardgas
+	icon_state = "mustard"
+	duration = 5
+
+/obj/effect/temp_visual/smash_effect/red
+	color = COLOR_RED
+
+/obj/effect/temp_visual/house
+	name = "home"
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon_state = "House"
+	duration = 4 SECONDS
+	pixel_x = -34
+	pixel_z = 128
+
+/obj/effect/temp_visual/house/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/FadeOut), 2 SECONDS)
+
+/obj/effect/temp_visual/house/proc/FadeOut()
+	animate(src, alpha = 0, time = 1 SECONDS)
+
+/obj/effect/temp_visual/v_noon
+	name = "violet noon"
+	icon = 'ModularTegustation/Teguicons/48x64.dmi'
+	icon_state = "violet_noon_ability"
+	pixel_x = -8
+
+/obj/effect/temp_visual/blubbering_smash
+	name = "blubbering smash"
+	icon_state = "blubbering_smash"
+	duration = 5
+
+/obj/effect/temp_visual/onesin_punishment
+	name = "heavenly punishment"
+	icon_state = "onesin_punishment"
+	duration = 6
+
+/obj/effect/temp_visual/onesin_blessing
+	name = "heavenly blessing"
+	icon_state = "onesin_blessing"
+	duration = 12
+
+/obj/effect/temp_visual/distortedform_shift
+	name = "shift"
+	icon_state = "shift"
+	duration = 3
+
+/obj/effect/temp_visual/warning3x3
+	name = "warning3x3"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "warning_gray"
+	duration = 2 SECONDS
+	pixel_x = -32
+	pixel_z = -32
+
+/obj/effect/temp_visual/nobody_grab
+	name = "goodbye"
+	icon_state = "nobody_slash"
+	duration = 5
+
+/obj/effect/temp_visual/holo_command
+	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
+	light_range = 1.5
+	light_power = 0.2
+	light_system = MOVABLE_LIGHT
+	duration = 150 		//15 Seconds
+
+/obj/effect/temp_visual/holo_command/command_move
+	icon_state = "Move_here_wagie"
+	light_range = 1
+	light_power = 1
+	light_color = COLOR_VERY_LIGHT_GRAY
+
+/obj/effect/temp_visual/holo_command/command_warn
+	icon_state = "Watch_out_wagie"
+	light_color = COLOR_PALE_RED_GRAY
+
+/obj/effect/temp_visual/holo_command/command_guard
+	icon_state = "Guard_this_wagie"
+	light_color = COLOR_VERY_SOFT_YELLOW
+
+/obj/effect/temp_visual/holo_command/command_heal
+	icon_state = "Heal_this_wagie"
+	light_color = COLOR_VERY_PALE_LIME_GREEN
+
+/obj/effect/temp_visual/holo_command/command_fight_a
+	icon_state = "Fight_this_wagie1"
+	light_color = COLOR_PALE_BLUE_GRAY
+
+/obj/effect/temp_visual/holo_command/command_fight_b
+	icon_state = "Fight_this_wagie2"
+	light_color = COLOR_PALE_BLUE_GRAY

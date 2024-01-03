@@ -5,6 +5,7 @@
 	add_verb(src, /mob/living/carbon/human/verb/show_attributes_to)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_self)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_other)
+	add_verb(src, /mob/living/carbon/human/verb/show_cores_info)
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
@@ -47,13 +48,19 @@
 
 /mob/living/carbon/human/verb/show_attributes_self()
 	set category = "IC"
-	set name = "Show Attributes"
-
+	set name = "View Attributes"
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 	show_attributes()
 
 /mob/living/carbon/human/verb/show_attributes_to(mob/living/L in oview(1))
 	set category = "IC"
 	set name = "Show Attributes To"
+
+	if(SSmaptype.maptype in SSmaptype.citymaps)
+		to_chat(src, "<span class='notice'>You have no clue what your potential is.</span>")
+		return
 
 	if(istype(L))
 		if(do_after(src, 1 SECONDS, L))
@@ -74,7 +81,13 @@
 		var/datum/attribute/atr = attributes[atrname]
 		dat += "[atr.name] [get_attribute_text_level(atr.get_level())]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
 
-	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 300)
+	dat += ""
+	for(var/atrname in attributes) //raw stats (health, sanity etc)
+		var/datum/attribute/atr = attributes[atrname]
+		for(var/stat in atr.affected_stats)
+			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+
+	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -117,16 +130,43 @@
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
+
+// Shows the list of specifically selected list of core suppressions and their status for this player
+/mob/living/carbon/human/verb/show_cores_info()
+	set category = "IC"
+	set name = "Display Cores Info"
+
+	var/list/dat = list()
+	// All the normal cores
+	for(var/core in GLOB.displayed_core_suppressions)
+		var/persistent_status = "N/A"
+		if(LAZYLEN(SSpersistence.cleared_core_suppressions))
+			if((ckey in SSpersistence.cleared_core_suppressions) && (core in SSpersistence.cleared_core_suppressions[ckey]))
+				persistent_status = "Yes"
+			else // N/A is used when persistence isn't loaded
+				persistent_status = "No"
+		dat += "<b>[core]</b>: [persistent_status]"
+	// Secret keter cores
+	for(var/core in GLOB.hidden_displayed_core_suppressions)
+		if(!LAZYLEN(SSpersistence.cleared_core_suppressions))
+			continue
+		if(!(ckey in SSpersistence.cleared_core_suppressions) || !(core in SSpersistence.cleared_core_suppressions[ckey]))
+			continue
+		var/secret_header = "<br><hr>"
+		if(!(secret_header in dat))
+			dat += secret_header
+		dat += "<b>[core]</b>: CLEARED!"
+
+	var/datum/browser/popup = new(src, "cores", "<div align='center'>Core Suppression Info</div>", 300, 500)
+	popup.set_content(dat.Join("<br>"))
+	popup.open(FALSE)
+
 /mob/living/carbon/human/proc/setup_human_dna()
 	//initialize dna. for spawned humans; overwritten by other code
 	create_dna(src)
 	randomize_human(src)
 	dna.initialize_dna()
 
-/mob/living/carbon/human/ComponentInitialize()
-	. = ..()
-	if(!CONFIG_GET(flag/disable_human_mood))
-		AddComponent(/datum/component/mood)
 
 /mob/living/carbon/human/Destroy()
 	QDEL_NULL(physiology)
@@ -359,6 +399,9 @@
 	var/mob/living/user = usr
 	if(istype(user) && href_list["shoes"] && shoes && (user.mobility_flags & MOBILITY_USE)) // we need to be on the ground, so we'll be a bit looser
 		shoes.handle_tying(usr)
+
+	if(href_list["see_attributes"])
+		show_attributes(usr)
 
 ///////HUDs///////
 	if(href_list["hud"])
@@ -779,7 +822,6 @@
 			return FALSE
 
 		visible_message("<span class='notice'>[src] performs CPR on [target.name]!</span>", "<span class='notice'>You perform CPR on [target.name].</span>")
-		SEND_SIGNAL(src, COMSIG_ADD_MOOD_EVENT, "saved_life", /datum/mood_event/saved_life)
 		log_combat(src, target, "CPRed")
 
 		if (HAS_TRAIT(target, TRAIT_NOBREATH))
@@ -1231,8 +1273,8 @@
 
 /mob/living/carbon/human/updatehealth()
 	if(LAZYLEN(attributes))
-		maxHealth = 100 + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE))
-		maxSanity = 100 + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE))
+		maxHealth = DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_level_bonus(src, FORTITUDE_ATTRIBUTE))
+		maxSanity = DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_level_bonus(src, PRUDENCE_ATTRIBUTE))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss
@@ -1242,10 +1284,11 @@
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
 		return
-	var/health_deficiency = max((maxHealth - health), staminaloss)
-	if(health_deficiency >= 40)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_deficiency / 200)
-		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_deficiency / 100)
+	// Gets a percent of lost health and applies the slowdown
+	var/health_missing_percent = (maxHealth - health) / maxHealth
+	if(health_missing_percent > 0.5)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown, TRUE, multiplicative_slowdown = health_missing_percent * 0.5)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying, TRUE, multiplicative_slowdown = health_missing_percent * 0.25)
 	else
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown)
 		remove_movespeed_modifier(/datum/movespeed_modifier/damage_slowdown_flying)
@@ -1497,3 +1540,6 @@
 
 /mob/living/carbon/human/species/zombie/krokodil_addict
 	race = /datum/species/krokodil_addict
+
+/mob/living/carbon/human/species/shrimp //for the funnies only
+	race = /datum/species/shrimp

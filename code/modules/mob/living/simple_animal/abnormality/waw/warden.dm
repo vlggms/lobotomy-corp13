@@ -5,18 +5,17 @@
 	icon_state = "warden"
 	icon_living = "warden"
 	icon_dead = "warden_dead"
+	portrait = "warden"
 	maxHealth = 2100
 	health = 2100
 	pixel_x = -8
 	base_pixel_x = -8
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 
-	speed = 4
 	move_to_delay = 4
 	melee_damage_lower = 70
 	melee_damage_upper = 70
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	stat_attack = HARD_CRIT
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	attack_verb_continuous = "claws"
@@ -63,12 +62,12 @@
 
 			// it gets faster.
 			if(move_to_delay>1)
-				move_to_delay -= move_to_delay*0.25
-				speed += speed*0.2
+				SpeedChange(-move_to_delay*0.25)
 				if(melee_damage_lower > 30)
 					melee_damage_lower -=5
 
 			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why. Still not as bad as judgement or big bird
+			update_simplemob_varspeed()
 
 			finishing = FALSE
 			icon_state = "warden"
@@ -103,5 +102,5 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/warden/bullet_act(obj/projectile/P)
-	visible_message("<span class='userdanger'>[src] is unfazed by \the [P]!</span>")
+	visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
 	P.Destroy()

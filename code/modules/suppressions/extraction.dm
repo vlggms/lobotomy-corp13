@@ -1,22 +1,24 @@
 // It is effectively an ordeal in how it works
 /datum/suppression/extraction
-	name = "Extraction Core Suppression"
+	name = EXTRACTION_CORE_SUPPRESSION
 	desc = "The illusion of the Arbiter will return to wreak havoc once more. <br>\
 			Special types of meltdowns have to be cleared to weaken the Arbiter; Otherwise you stand no chance."
 	goal_text = "Defeat the Arbiter."
 	run_text = "The core suppression of Extraction department has begun. The Arbiter has returned."
 	annonce_sound = 'sound/effects/combat_suppression_start.ogg'
 	end_sound = 'sound/effects/combat_suppression_end.ogg'
+	after_midnight = TRUE
 
-/datum/suppression/extraction/Run(run_white = FALSE)
+/datum/suppression/extraction/Run(run_white = FALSE, silent = FALSE)
 	..()
 	var/turf/T = pick(GLOB.department_centers)
 	var/mob/living/simple_animal/hostile/megafauna/arbiter/A = new(T)
 	RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/OnArbiterDeath)
 
-/datum/suppression/extraction/End()
+/datum/suppression/extraction/End(silent = FALSE)
 	..()
 	SSlobotomy_corp.core_suppression_state = max(SSlobotomy_corp.core_suppression_state, 3)
+	SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_ARBITER_DEAD)
 
 /datum/suppression/extraction/proc/OnArbiterDeath(datum/source)
 	SIGNAL_HANDLER
@@ -29,7 +31,7 @@
 	desc = "The elite agent of the head; Despite being a mere imitation, it is nonetheless an intimidating foe."
 	health = 10000
 	maxHealth = 10000
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	damage_coeff = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
 	icon_state = "arbiter"
 	icon_living = "arbiter"
 	icon_dead = "arbiter"
@@ -77,6 +79,8 @@
 	// Ability variables
 	var/fairy_count = 5
 	// Cooldowns for abilities
+	var/spikes_cooldown
+	var/spikes_cooldown_time = 90 SECONDS
 	var/fairy_cooldown
 	var/fairy_cooldown_time = 10 SECONDS
 	var/key_cooldown
@@ -125,6 +129,9 @@
 	if(remaining_healing_time > 0)
 		adjustBruteLoss(-maxHealth*0.01)
 		remaining_healing_time -= 1
+	// Spawn spikes every once in a while
+	if(spikes_cooldown <= world.time)
+		INVOKE_ASYNC(src, .proc/SpawnSpikes)
 	if(!client && !charging && meltdown_cooldown <= world.time && !LAZYLEN(meltdowns) && prob(50))
 		INVOKE_ASYNC(src, .proc/SpecialMeltdown)
 		return
@@ -152,7 +159,7 @@
 		return FALSE // Death
 	life_stage += 1
 	adjustHealth(-maxHealth)
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1))
 	fairy_cooldown_time = max(4 SECONDS, fairy_cooldown_time - 2 SECONDS)
 	key_cooldown_time = max(10 SECONDS, fairy_cooldown_time - 4 SECONDS)
 	playsound(get_turf(src), 'sound/magic/arbiter/repulse.ogg', 50, TRUE, 24)
@@ -162,7 +169,7 @@
 		if(2)
 			possible_meltdown_types |= MELTDOWN_PURPLE
 		if(3)
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+			ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	return TRUE
 
 /* Combat */
@@ -284,7 +291,7 @@
 		return
 	charging = TRUE
 	icon_state = "arbiter_ability"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1))
 
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	playsound(get_turf(src), 'sound/magic/arbiter/repulse.ogg', 50, TRUE, 7)
@@ -315,8 +322,9 @@
 	current_meltdown_type = meltdown_type
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
-		if(isliving(player))
-			player_count += 1
+		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))
+			player_count += 1.5
+	player_count = round(player_count) + (player_count > round(player_count) ? 1 : 0) // Trying to round up
 	meltdowns = SSlobotomy_corp.InitiateMeltdown(clamp(rand(player_count*0.5, player_count), 1, 10), TRUE, meltdown_type, meltdown_min_time, meltdown_max_time, meltdown_text, 'sound/magic/arbiter/meltdown.ogg')
 	for(var/obj/machinery/computer/abnormality/A in meltdowns)
 		RegisterSignal(A, COMSIG_MELTDOWN_FINISHED, .proc/OnMeltdownFinish)
@@ -364,7 +372,7 @@
 	switch(current_meltdown_type)
 		if(MELTDOWN_GRAY)
 			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "I am fading.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
+			ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
 			SLEEP_CHECK_DEATH(10 SECONDS)
 		if(MELTDOWN_GOLD)
 			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "The sandman calls me.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
@@ -375,7 +383,7 @@
 				SLEEP_CHECK_DEATH(1 SECONDS)
 				check_count += 1
 			charging = TRUE
-			damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+			ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8))
 			SLEEP_CHECK_DEATH(10 SECONDS)
 			charging = FALSE
 		if(MELTDOWN_PURPLE)
@@ -385,13 +393,13 @@
 			INVOKE_ASYNC(src, .proc/StopPillarStorm)
 
 	if(last_stage == life_stage)
-		damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
+		ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8))
 
 // Pillar Storm
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/StartPillarStorm()
 	charging = TRUE
 	icon_state = "arbiter_ability"
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
@@ -451,7 +459,7 @@
 	pillar_storm_cooldown = world.time + pillar_storm_cooldown_time
 	charging = FALSE
 	icon_state = icon_living
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1)
+	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1))
 
 // Arbiter either died(somehow) or meltdown of pillars was cleared
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/StopPillarStorm()
@@ -465,3 +473,60 @@
 	pillar_storm_cooldown = world.time + pillar_storm_cooldown_time
 	charging = FALSE
 	icon_state = icon_living
+
+/mob/living/simple_animal/hostile/megafauna/arbiter/proc/SpawnSpikes()
+	spikes_cooldown = world.time + spikes_cooldown_time
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(!H.client)
+			continue
+		if(H.stat)
+			continue
+		if(H.z != z)
+			continue
+		if(H.is_working)
+			continue
+		var/turf/T = get_turf(H)
+		new /obj/effect/arbiter_spike(T)
+		for(var/turf/open/TT in view(2, T))
+			if(prob(50))
+				continue
+			if(locate(/obj/effect/arbiter_spike) in TT)
+				continue
+			new /obj/effect/arbiter_spike(TT)
+
+/* Objects & Effects */
+// Spikes: Arbiter will spawn these from time to time around the agents, which after short delay will damage everything
+// on its tile for 100 BLACK damage
+/obj/effect/arbiter_spike
+	name = "dark spikes"
+	desc = "A weird construction. You should probably stay away from it..."
+	icon_state = "binah_spike"
+	alpha = 0
+	anchored = TRUE
+	density = FALSE
+	/// How much time must pass after Initialize() to activate
+	var/activation_delay = 2 SECONDS
+	/// Amount of BLACK damage done on activation
+	var/damage = 150
+
+/obj/effect/arbiter_spike/Initialize()
+	. = ..()
+	animate(src, alpha = 100, time = (activation_delay * 0.2))
+	addtimer(CALLBACK(src, .proc/Activate), activation_delay)
+
+/obj/effect/arbiter_spike/proc/Activate()
+	icon_state = icon_state + "_fire"
+	animate(src, alpha = 255, time = 2)
+	playsound(src, 'sound/magic/arbiter/pin.ogg', 75, TRUE)
+	for(var/mob/living/L in get_turf(src))
+		if(istype(L, /mob/living/simple_animal/hostile/megafauna/arbiter))
+			continue
+		if(L.stat == DEAD)
+			continue
+		L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.visible_message("<span class='danger'>[L] has been hit by [name]!</span>",
+						"<span class='userdanger'>You've been hit by [name]!</span>")
+	sleep(6)
+	animate(src, alpha = 0, time = 4)
+	sleep(4)
+	QDEL_NULL(src)

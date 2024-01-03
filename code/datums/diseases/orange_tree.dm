@@ -25,6 +25,12 @@
 		SanityCheck(TRUE)
 	return ..()
 
+/datum/disease/orange_tree/spread() //no airborne spread from a dead person
+	if(affected_mob.stat >= HARD_CRIT || affected_mob.health < 0)
+		cure(FALSE)
+		return
+	..()
+
 /datum/disease/orange_tree/stage_act()
 	. = ..()
 	if(!.)

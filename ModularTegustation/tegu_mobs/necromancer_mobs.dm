@@ -24,7 +24,6 @@
 	ranged = 1
 	ranged_cooldown_time = 40
 	melee_damage_type = BLACK_DAMAGE
-	armortype = BLACK_DAMAGE
 	melee_damage_lower = 24
 	melee_damage_upper = 28
 	retreat_distance = 2

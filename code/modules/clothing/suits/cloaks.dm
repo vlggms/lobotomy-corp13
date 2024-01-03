@@ -181,9 +181,6 @@
 	desc = "Worn by the wisest of veteran employees, this legendary cloak is only attainable by maintaining a living employment agreement with Nanotrasen for over <b>five thousand hours</b>. This status symbol represents a being is better than you in nearly every quantifiable way, simple as that."
 	icon_state = "playercloak"
 
-/obj/item/clothing/neck/cloak/skill_reward/playing/check_wearable(mob/user)
-	return user.client?.get_exp_living(TRUE) >= PLAYTIME_VETERAN
-
 /obj/item/clothing/neck/cloak/arbiter
 	name = "arbiter's cloak"
 	desc = "A fancy cloak worn by the Arbiters of the Head."

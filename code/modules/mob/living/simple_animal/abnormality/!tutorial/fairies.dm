@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "fairies"
 	icon_living = "fairies"
+	portrait = "fairies"
 	maxHealth = 50
 	health = 50
 	is_flying_animal = TRUE
@@ -19,10 +20,9 @@
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	melee_damage_type = PALE_DAMAGE
-
 	work_damage_amount = 2
 	work_damage_type = PALE_DAMAGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.5)
 	can_breach = TRUE
 	start_qliphoth = 2
 	can_spawn = FALSE // Normally doesn't appear

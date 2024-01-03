@@ -4,6 +4,7 @@
 	desc = "A gigantic stem that reaches higher than the eye can see."
 	icon = 'ModularTegustation/Teguicons/64x98.dmi'
 	icon_state = "beanstalk"
+	portrait = "beanstalk"
 	maxHealth = 500
 	health = 500
 	threat_level = TETH_LEVEL
@@ -43,7 +44,7 @@
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
 		animate(user, alpha = 0,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
-		to_chat(user, "<span class='userdanger'>You will make it to the top, no matter what!</span>")
+		to_chat(user, span_userdanger("You will make it to the top, no matter what!"))
 		QDEL_IN(user, 3.5 SECONDS)
 
 //The special work, if you survive you get a powerful EGO gift.
@@ -58,7 +59,7 @@
 		sleep(0.5 SECONDS)
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
-		to_chat(user, "<span class='userdanger'>You start to climb!</span>")
+		to_chat(user, span_userdanger("You start to climb!"))
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 		user.pixel_z = 16
 		user.Stun(10 SECONDS)
@@ -68,7 +69,7 @@
 		user.Apply_Gift(BWJEG)
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 3 SECONDS)
 		user.pixel_z = 0
-		to_chat(user, "<span class='userdanger'>You return with the giant's treasure!</span>")
+		to_chat(user, span_userdanger("You return with the giant's treasure!"))
 
 	work_damage_amount = 7
 	climbing = FALSE

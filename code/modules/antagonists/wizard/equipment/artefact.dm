@@ -130,15 +130,14 @@
 	)
 
 /obj/tear_in_reality/attack_tk(mob/user)
-	if(!iscarbon(user))
+	if(!ishuman(user))
 		return
 	. = COMPONENT_CANCEL_ATTACK_CHAIN
-	var/mob/living/carbon/jedi = user
-	var/datum/component/mood/insaneinthemembrane = jedi.GetComponent(/datum/component/mood)
-	if(insaneinthemembrane.sanity < 15)
+	var/mob/living/carbon/human/jedi = user
+	if(jedi.sanity_lost)
 		return //they've already seen it and are about to die, or are just too insane to care
 	to_chat(jedi, "<span class='userdanger'>OH GOD! NONE OF IT IS REAL! NONE OF IT IS REEEEEEEEEEEEEEEEEEEEEEEEAL!</span>")
-	insaneinthemembrane.sanity = 0
+	jedi.adjustSanityLoss(jedi.maxSanity) // To retain original function.
 	for(var/lore in typesof(/datum/brain_trauma/severe))
 		jedi.gain_trauma(lore)
 	addtimer(CALLBACK(src, .proc/deranged, jedi), 10 SECONDS)

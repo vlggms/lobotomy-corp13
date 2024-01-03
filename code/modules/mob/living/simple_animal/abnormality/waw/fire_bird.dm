@@ -5,8 +5,9 @@
 	name = "The Firebird"
 	desc = "A large bird covered in ashes, pray its feathers do not re-ignite."
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_state = "firebird_inert"
+	icon_state = "burntbird"
 	icon_living = "firebird_active"
+	portrait = "fire_bird"
 	threat_level = WAW_LEVEL
 	maxHealth = 2000
 	health = 2000
@@ -26,7 +27,7 @@
 	faction = list("hostile", "neutral")
 	can_breach = TRUE
 	start_qliphoth = 3
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2.0)
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
@@ -46,6 +47,16 @@
 	var/dash_damage = 220
 	var/list/been_hit = list()
 
+//Initialize
+/mob/living/simple_animal/hostile/abnormality/fire_bird/HandleStructures()
+	. = ..()
+	if(!.)
+		return
+	if(locate(/obj/structure/firetree) in datum_reference.connected_structures)
+		return
+	SpawnConnectedStructure(/obj/structure/firetree)
+
+//Work Procs
 /mob/living/simple_animal/hostile/abnormality/fire_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
 
@@ -78,19 +89,26 @@
 /mob/living/simple_animal/hostile/abnormality/fire_bird/WorkComplete(mob/living/carbon/human/user, work_type, pe, work_time)
 	. = ..()
 	if(datum_reference?.qliphoth_meter == 1 || user.health <= (user.maxHealth * 0.2))
-		to_chat(user, "<span class='nicegreen'>The Fire Bird heals your wounds!")
+		to_chat(user, span_nicegreen("The Fire Bird heals your wounds!"))
 		user.health = user.maxHealth
 		if(ishuman(user))
 			user.apply_status_effect(STATUS_EFFECT_BLAZING)
 
+/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
+	SIGNAL_HANDLER
+	user.remove_status_effect(STATUS_EFFECT_BLINDED)
+
+//Breach
 /mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user)
 	..()
-	//new /mob/living/simple_animal/hostile/firetree(get_turf(src))
 	loot = list(/obj/item/gun/ego_gun/feather)
 	icon_state = icon_living
 	light_range = 20
 	light_power = 20
 	update_light()
+	if(IsCombatMap())
+		loot = list()
+		return
 	addtimer(CALLBACK(src, .proc/KillOtherBird), 90 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/Life()
@@ -105,9 +123,11 @@
 	light_range = 0
 	light_power = 0
 	death()
+
+//Attacks
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/crispynugget()
 	pulse_cooldown = world.time + pulse_cooldown_time
-	for(var/mob/living/L in livinginview(48, src))
+	for(var/mob/living/carbon/human/L in livinginview(48, src))
 		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/retaliatedash()
@@ -156,7 +176,7 @@
 		for(var/mob/living/carbon/human/L in TF)
 			if(L in been_hit)
 				continue
-			visible_message("<span class='boldwarning'>[src] blazes through [L]!</span>")
+			visible_message(span_boldwarning("[src] blazes through [L]!"))
 			L.apply_damage(dash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			if(L.sanity_lost) // TODO: TEMPORARY AS HELL
@@ -182,29 +202,20 @@
 		carbon_firer.apply_status_effect(STATUS_EFFECT_BLINDED)
 	retaliatedash()
 
-/mob/living/simple_animal/hostile/abnormality/fire_bird/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
-	SIGNAL_HANDLER
-	user.remove_status_effect(STATUS_EFFECT_BLINDED)
+//Containment object
+/obj/structure/firetree
+	name = "Fire Bird's tree"
+	desc = "A burnt tree that is the Fire Bird's favored perching spot. There should probably be a bird here." //uhoh
+	icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	icon_state = "burnttree"
+	anchored = TRUE
+	resistance_flags = INDESTRUCTIBLE //should make this indestructible
+	pixel_x = -32
+	base_pixel_x = -32
+	pixel_y = -16
+	base_pixel_y = -16
 
-//code doesnt work, keeping for now as a reminder to get this to work somehow for all abnos that leave behind something
-
-///mob/living/simple_animal/hostile/firetree
-	//name = "Fire Bird's tree"
-	//desc = 	"A burnt tree that is the Fire Bird's favored perching spot. There should probably be a bird here." //uhoh
-	//icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	//pixel_x = -32
-	//base_pixel_x = -32
-	//pixel_y = -16
-	//base_pixel_y = -16
-	//icon_state = "burnttree"
-	//resistance_flags = INDESTRUCTIBLE //should make this indestructible
-
-///mob/living/simple_animal/hostile/firetree/Initialize(mapload)
-	//. = ..()
-	//toggle_ai(AI_OFF)
-	//status_flags |= GODMODE
-	//addtimer(CALLBACK(src, Destroy()), 120 SECONDS)
-
+//Status effect
 /datum/status_effect/blazing
 	id = "blazing"
 	status_type = STATUS_EFFECT_UNIQUE
@@ -247,17 +258,17 @@
 		var/mob/living/carbon/human/L = owner
 		cantsee += L
 		cantsee[L] = get_attribute_level(L, TEMPERANCE_ATTRIBUTE)/2
-		L.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, -cantsee[L])
-		to_chat(L, "<span class='userdanger'>The light of the bird burns your eyes!")
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -cantsee[L])
+		to_chat(L, span_userdanger("The light of the bird burns your eyes!"))
 		RegisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
 
 /datum/status_effect/blinded/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_level(TEMPERANCE_ATTRIBUTE, cantsee[L])
+		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, cantsee[L])
 		cantsee -= L
-		to_chat(L, "<span class='nicegreen'>The blinding light fades...")
+		to_chat(L, span_nicegreen("The blinding light fades..."))
 		UnregisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
 
 /datum/status_effect/blinded/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)

@@ -116,39 +116,44 @@
  * Lore Cabinet
  */
 
-//Zayin
-/obj/structure/filingcabinet/zayinlore
-	name = "zayin supplimentary information cabinet"
+/obj/structure/filingcabinet/lore
+	name = "template supplimentary information cabinet"
 	icon_state = "employmentcabinet"
 	var/virgin = TRUE
+	var/list/infotype = /obj/item/paper/fluff/lore/zayin
 
-/obj/structure/filingcabinet/zayinlore/interact(mob/user)
+/obj/structure/filingcabinet/lore/interact(mob/user)
 	if(virgin)
 		fillCurrent()
 		virgin = FALSE
 	return ..()
 
-/obj/structure/filingcabinet/zayinlore/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/lore/zayin)
-	for(var/sheet in queue)
+/obj/structure/filingcabinet/lore/proc/fillCurrent()
+	for(var/sheet in subtypesof(infotype))
 		new sheet(src)
 
+
+//Zayin
+/obj/structure/filingcabinet/lore/zayin
+	name = "zayin supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/zayin
+
+//Teth
+/obj/structure/filingcabinet/lore/teth
+	name = "teth supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/teth
+
+//He
+/obj/structure/filingcabinet/lore/he
+	name = "he supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/he
 
 //Waw
-/obj/structure/filingcabinet/wawlore
+/obj/structure/filingcabinet/lore/waw
 	name = "waw supplimentary information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	infotype = /obj/item/paper/fluff/lore/waw
 
-/obj/structure/filingcabinet/wawlore/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-/obj/structure/filingcabinet/wawlore/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/lore/waw)
-	for(var/sheet in queue)
-		new sheet(src)
-
-//todo: fuckign clean this up when you add more lore
+//Aleph
+/obj/structure/filingcabinet/lore/aleph
+	name = "aleph supplimentary information cabinet"
+	infotype = /obj/item/paper/fluff/lore/aleph

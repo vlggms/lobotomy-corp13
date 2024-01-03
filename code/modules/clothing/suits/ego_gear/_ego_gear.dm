@@ -13,16 +13,20 @@
 	drag_slowdown = 1
 	var/equip_slowdown = 3 SECONDS
 
-	var/obj/item/clothing/head/ego_hat/hat = null // Hat type, see clothing/head/misc.dm
+	var/obj/item/clothing/head/ego_hat/hat = null // Hat type, see clothing/head/_ego_head.dm
+	var/obj/item/clothing/neck/ego_neck/neck = null // Neckwear, see clothing/neck/_neck.dm
 	var/list/attribute_requirements = list()
 
 /obj/item/clothing/suit/armor/ego_gear/Initialize()
 	. = ..()
-	if(isnull(hat))
-		return
-	var/obj/effect/proc_holder/ability/hat_ability/HA = new(null, hat)
-	var/datum/action/spell_action/ability/item/H = HA.action
-	H.SetItem(src)
+	if(hat)
+		var/obj/effect/proc_holder/ability/hat_ability/HA = new(null, hat)
+		var/datum/action/spell_action/ability/item/H = HA.action
+		H.SetItem(src)
+	if(neck)
+		var/obj/effect/proc_holder/ability/neck_ability/NA = new(null, neck)
+		var/datum/action/spell_action/ability/item/N = NA.action
+		N.SetItem(src)
 
 /obj/item/clothing/suit/armor/ego_gear/mob_can_equip(mob/living/M, mob/living/equipper, slot, disable_warning = FALSE, bypass_equip_delay_self = FALSE)
 	if(!ishuman(M))
@@ -44,21 +48,29 @@
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
 		return
-	if(isnull(hat))
-		return
-	var/obj/item/clothing/head/headgear = user.get_item_by_slot(ITEM_SLOT_HEAD)
-	if(!istype(headgear, hat))
-		return
-	headgear.Destroy()
+	if(hat)
+		var/obj/item/clothing/head/headgear = user.get_item_by_slot(ITEM_SLOT_HEAD)
+		if(!istype(headgear, hat))
+			return
+		headgear.Destroy()
+	if(neck)
+		var/obj/item/clothing/neck/neckwear = user.get_item_by_slot(ITEM_SLOT_NECK)
+		if(!istype(neckwear, neck))
+			return
+		neckwear.Destroy()
 
 /obj/item/clothing/suit/armor/ego_gear/dropped(mob/user)
 	. = ..()
-	if(isnull(hat))
-		return
-	var/obj/item/clothing/head/headgear = user.get_item_by_slot(ITEM_SLOT_HEAD)
-	if(!istype(headgear, hat))
-		return
-	headgear.Destroy()
+	if(hat)
+		var/obj/item/clothing/head/headgear = user.get_item_by_slot(ITEM_SLOT_HEAD)
+		if(!istype(headgear, hat))
+			return
+		headgear.Destroy()
+	if(neck)
+		var/obj/item/clothing/neck/neckwear = user.get_item_by_slot(ITEM_SLOT_NECK)
+		if(!istype(neckwear, neck))
+			return
+		neckwear.Destroy()
 
 /obj/item/clothing/suit/armor/ego_gear/proc/CanUseEgo(mob/living/carbon/human/user)
 	if(!ishuman(user))
@@ -97,3 +109,37 @@
 		display_text += SpecialGearRequirements()
 		to_chat(usr, display_text)
 
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable
+	var/list/alternative_styles = list()
+	var/index = 1
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/Initialize()
+	. = ..()
+	alternative_styles |= icon_state
+	index = alternative_styles.len
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>It can be adjusted by right-clicking the armor.</span>"
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/verb/AdjustStyle()
+	set name = "Adjust EGO Style"
+	set category = null
+	set src in usr
+	Adjust()
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/proc/Adjust()
+	if(!ishuman(usr))
+		return
+	if(alternative_styles.len <= 1)
+		to_chat(usr, "<span class='notice'>Has no other styles!</span>")
+		return
+	index++
+	if(index > alternative_styles.len)
+		index = 1
+	icon_state = alternative_styles[index]
+	to_chat(usr, "<span class='notice'>You adjust [src] to a new style~!</span>")
+	var/mob/living/carbon/human/H = usr
+	H.update_inv_wear_suit()
+	H.update_body()
