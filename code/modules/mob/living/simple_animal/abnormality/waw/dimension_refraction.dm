@@ -61,8 +61,8 @@
 	return FALSE
 
 /* Qliphoth/Breach effects */
-/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	alpha = 30
 	addtimer(CALLBACK(src, .proc/Melter), cooldown_time)
 

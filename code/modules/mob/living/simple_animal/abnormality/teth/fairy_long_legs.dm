@@ -144,7 +144,7 @@
 	icon_state = "fairy_longlegs"
 	finishing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	if(raining)
 		for(var/obj/effect/rainy_effect/rain in range(3, src))

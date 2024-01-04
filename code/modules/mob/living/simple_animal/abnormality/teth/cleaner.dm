@@ -92,8 +92,8 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/cleaner/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/cleaner/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	GiveTarget(user)
 

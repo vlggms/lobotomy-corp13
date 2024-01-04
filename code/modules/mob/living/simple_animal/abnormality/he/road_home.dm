@@ -72,9 +72,9 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/road_home/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/road_home/BreachEffect(mob/living/carbon/human/user, breach_type)
 	flip_cooldown = world.time + flip_cooldown_time //we set it before she breach just so she doesn't affect everyone the moment she spawns
-	..()
+	. = ..()
 	toggle_ai(AI_OFF) //Road home doesn't need to attack or patrol so the AI is unecessary
 	NewHouse()
 	CreateRoad()

@@ -67,8 +67,8 @@
 	datum_reference.qliphoth_change(-2)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/highway_devotee/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/highway_devotee/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.xeno_spawn)
 	forceMove(T)
 	addtimer(CALLBACK(src, .proc/KillYourself), 3 MINUTES)

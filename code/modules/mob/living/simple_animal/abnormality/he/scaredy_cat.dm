@@ -81,7 +81,7 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user, breach_type)
 	protect_cooldown = world.time + protect_cooldown_time //to avoid him teleporting twice for no reason on breach
 	if(priority_friend) //if an oz abno escape they take absolute priority
 		ProtectFriend(priority_friend)
@@ -97,7 +97,7 @@
 		ProtectFriend(pick(breached_abno))
 	else
 		wait_for_friend = TRUE //Should only happen on meltdowns, can safely be killed in that state too
-	..()
+	return ..()
 
 ///checks if the friend is in view every 10 second, and if not teleports to it
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Life()

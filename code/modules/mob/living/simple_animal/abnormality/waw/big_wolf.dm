@@ -109,7 +109,7 @@
 	EatWorker(user)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/big_wolf/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/big_wolf/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	update_icon()
 

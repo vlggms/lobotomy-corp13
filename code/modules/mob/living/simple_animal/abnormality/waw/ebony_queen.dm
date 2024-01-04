@@ -117,8 +117,8 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/ebony_queen/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/ebony_queen/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Move()

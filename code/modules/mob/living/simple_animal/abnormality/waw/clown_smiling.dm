@@ -62,8 +62,8 @@
 	var/step = FALSE
 
 //A clown isn't a clown without his shoes
-/mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	pixel_y = 0
 	base_pixel_y = 0

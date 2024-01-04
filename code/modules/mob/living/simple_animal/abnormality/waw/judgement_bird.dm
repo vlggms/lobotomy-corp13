@@ -127,8 +127,8 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	if(IsCombatMap())
 		judgement_damage = 65
 		return

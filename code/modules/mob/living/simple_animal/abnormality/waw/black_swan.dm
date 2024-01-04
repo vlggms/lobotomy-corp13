@@ -132,7 +132,7 @@
 		BrotherOverlays()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/black_swan/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/black_swan/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	cut_overlays()
 	update_icon()

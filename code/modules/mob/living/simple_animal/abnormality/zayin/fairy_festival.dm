@@ -105,7 +105,7 @@
 		user.gib()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/fairy_festival/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+/mob/living/simple_animal/hostile/abnormality/fairy_festival/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		SummonGuys()
 		addtimer(CALLBACK(src, .proc/SummonGuys), 20 SECONDS)

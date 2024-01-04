@@ -202,9 +202,9 @@ GLOBAL_LIST_EMPTY(apostles)
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/white_night/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/white_night/BreachEffect(mob/living/carbon/human/user, breach_type)
 	holy_revival_cooldown = world.time + holy_revival_cooldown_base
-	..()
+	. = ..()
 	for(var/mob/M in GLOB.player_list)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			heretics += M

@@ -261,7 +261,7 @@
 				return
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	if(breached)
 		return

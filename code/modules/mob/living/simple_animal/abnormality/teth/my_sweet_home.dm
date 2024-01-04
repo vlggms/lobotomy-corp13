@@ -115,7 +115,7 @@
 	duration = 3
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(user)//code grabbed from scorched_girl
-	..()
+	. = ..()
 	update_icon_state()
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/update_icon_state() //code grabbed from forsaken_murderer and smile

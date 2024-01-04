@@ -181,13 +181,13 @@
 		user.SanityLossEffect(FORTITUDE_ATTRIBUTE)
 
 //BreachEffect and combat
-/mob/living/simple_animal/hostile/abnormality/red_shoes/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/red_shoes/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE))
 		return
 	soundloop.stop()
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
-	..()
+	. = ..()
 	if(!possessee)
 		name = "Red Shoe"
 		desc = "The Red Shoes’s bloody enameled leather glistens in the light."

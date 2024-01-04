@@ -99,8 +99,8 @@
 	user.remove_status_effect(STATUS_EFFECT_BLINDED)
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	loot = list(/obj/item/gun/ego_gun/feather)
 	icon_state = icon_living
 	light_range = 20

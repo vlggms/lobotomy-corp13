@@ -292,12 +292,12 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(downgraded)
 		Upgrade()
 		ZeroQliphoth()
 		return
-	..()
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 

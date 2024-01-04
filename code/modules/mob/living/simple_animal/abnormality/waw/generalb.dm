@@ -66,12 +66,6 @@
 	datum_reference.qliphoth_change(1)
 	return
 
-//Egor requested i make this an override of general bee rather than a alteration of the root. -IP
-/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
-	..()
-	//Run icon change proc.
-	update_icon()
-
 /mob/living/simple_animal/hostile/abnormality/general_b/update_icon_state()
 	icon = initial(icon)
 	if(status_flags & GODMODE)
@@ -126,7 +120,7 @@
 		volley_count=0
 		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
 
-/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect()
+/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	flick("generalbee_", src)
@@ -142,7 +136,7 @@
 			new /mob/living/simple_animal/hostile/soldier_bee(Y)
 		else if(prob(20))
 			new /mob/living/simple_animal/hostile/artillery_bee(Y)
-	..()
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/spawn_bees()

@@ -169,8 +169,8 @@
 		user.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -100)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/despair_knight/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/despair_knight/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_living = "despair_breach"
 	icon_state = icon_living
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)

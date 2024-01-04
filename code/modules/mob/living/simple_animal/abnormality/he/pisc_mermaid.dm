@@ -84,7 +84,7 @@
 //mermaid will immensely slow down their lover and slowly kill them by cutting off their oxygen supply
 //dying by oxydeath actually takes a while, but it puts them on a clear timer to actually get shit done instead of just hoping someone else takes care of it.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/BreachEffect()
-	..()
+	. = ..()
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_living = "pmermaid_breach"
 	icon_dead = "pmermaid_slain"

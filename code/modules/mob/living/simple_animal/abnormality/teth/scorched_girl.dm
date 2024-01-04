@@ -121,8 +121,8 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	boom_cooldown = world.time + 5 SECONDS // So it doesn't instantly explode
 	update_icon()
 	GiveTarget(user)

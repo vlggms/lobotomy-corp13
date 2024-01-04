@@ -137,7 +137,7 @@
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/melting_love/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/melting_love/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_living = "melting_breach"

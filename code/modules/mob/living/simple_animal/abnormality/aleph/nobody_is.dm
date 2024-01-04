@@ -190,12 +190,12 @@
 		return
 	datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/nobody_is/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/nobody_is/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
 	if(reflect_timer)
 		deltimer(reflect_timer)
-	..()
+	. = ..()
 	if(disguise)
 		return
 	CheckMirrorIcon() //Clear overlays
