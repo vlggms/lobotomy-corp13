@@ -4,6 +4,7 @@
 	desc = "A pile of stamped letters, none reaching their intended receiver."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "mailbox"
+	portrait = "pile_of_mail"
 	maxHealth = 100
 	health = 100
 	threat_level = ZAYIN_LEVEL
