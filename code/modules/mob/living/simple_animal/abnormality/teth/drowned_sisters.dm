@@ -4,6 +4,7 @@
 	desc = "A pair of girls with masks covering their faces."
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "sisters"
+	portrait = "drowned_sisters"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL

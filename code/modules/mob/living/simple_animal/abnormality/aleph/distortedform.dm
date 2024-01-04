@@ -50,7 +50,8 @@
 	var/transform_timer
 	var/list/transform_blacklist = list(
 		/mob/living/simple_animal/hostile/abnormality/hammer_light, /mob/living/simple_animal/hostile/abnormality/black_swan,
-		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird
+		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird,
+		/mob/living/simple_animal/hostile/abnormality/red_shoes
 		)
 	var/datum/looping_sound/distortedform/soundloop
 	var/transformed = FALSE //We'll use this variable to check for whether or not to play the sound loop
@@ -157,6 +158,7 @@
 	desc = abno.desc
 	icon = abno.icon
 	icon_state = abno.icon_state
+	portrait = abno.portrait
 	pixel_x = abno.pixel_x
 	base_pixel_x = abno.base_pixel_x
 	pixel_y = abno.pixel_y
@@ -186,6 +188,7 @@
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state)
+	portrait = initial(portrait)
 	pixel_x = initial(pixel_x)
 	base_pixel_x = initial(base_pixel_x)
 	pixel_y = initial(pixel_y)
