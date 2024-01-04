@@ -11939,7 +11939,7 @@
 	},
 /obj/machinery/vending/snack/orange{
 	density = 0;
-	pixel_y = 14
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
