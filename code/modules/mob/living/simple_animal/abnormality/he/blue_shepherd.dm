@@ -10,6 +10,7 @@
 	icon_state = "blueshep"
 	icon_living = "blueshep"
 	icon_dead = "blueshep_dead"
+	portrait = "blue_shepherd"
 	attack_sound = 'sound/weapons/slash.ogg'
 	del_on_death = FALSE
 	pixel_x = -8
