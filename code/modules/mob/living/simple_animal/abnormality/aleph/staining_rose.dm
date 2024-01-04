@@ -7,6 +7,7 @@
 	desc = "A tiny, wilting rose."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "rose"
+	portrait = "staining_rose"
 	maxHealth = 10
 	health = 10			//It's a rose lol
 	threat_level = ALEPH_LEVEL
