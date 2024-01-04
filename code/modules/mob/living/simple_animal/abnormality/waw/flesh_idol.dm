@@ -58,9 +58,13 @@
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/Worktick(mob/living/carbon/human/user)
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
-
+	work_damage_type = damage
 	user.apply_damage(damage_amount, damage, null, user.run_armor_check(null, damage)) // take 5 random damage each time
+	WorkDamageEffect()
 
+//Prevents red work damage effecs from appearing
+/mob/living/simple_animal/hostile/abnormality/flesh_idol/WorktickFailure(mob/living/carbon/human/user)
+	return
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/ZeroQliphoth(mob/living/carbon/human/user)

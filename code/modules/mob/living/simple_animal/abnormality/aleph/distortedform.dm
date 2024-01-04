@@ -116,9 +116,10 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/list/damtypes = list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	for(var/damagetype in damtypes) // take 4 of every damage type every failed tick
 		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(1)
