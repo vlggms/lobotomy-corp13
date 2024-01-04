@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "bottle1"
 	icon_living = "bottle1"
+	portrait = "bottle"
 	maxHealth = 800
 	health = 800
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
