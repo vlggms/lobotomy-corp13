@@ -4,6 +4,7 @@
 	desc = "A cone that goes up to the ceiling with a ribbon tied around it. Bodies are strung up around it, seeming to be tied to the ceiling."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "dangle"
+	portrait = "dingle_dangle"
 	maxHealth = 600
 	health = 600
 	threat_level = TETH_LEVEL

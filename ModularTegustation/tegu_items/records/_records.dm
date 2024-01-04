@@ -26,7 +26,7 @@
 		. += "[src.name] is ready to be used."
 	else
 		//We want to make sure that the failed verson is different enuff that at a glance someone can tell
-		. += "[src.name] is can not currently be used."
+		. += "[src.name] can not currently be used."
 
 
 //This is used to make sure that are records watch is able to be used by the player

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "titania"
 	icon_living = "titania"
+	portrait = "titania"
 	maxHealth = 3500
 	health = 3500
 	is_flying_animal = TRUE

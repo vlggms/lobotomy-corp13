@@ -11,6 +11,7 @@
 	icon_state = "nobody"
 	icon_living = "nobody"
 	icon_dead = "nobody_dead"
+	portrait = "nobody_is"
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 35
