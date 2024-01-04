@@ -209,6 +209,7 @@
 	work_damage_type = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season
+	portrait = "[current_season]_deity"
 	name = season_stats[current_season][4]
 	desc = season_stats[current_season][6]
 	attack_sound = breaching_stats[current_season][1]
@@ -217,6 +218,7 @@
 	projectiletype = breaching_stats[current_season][3]
 	if(downgraded)
 		icon_state = "[current_season]_mini"
+		portrait = "[current_season]"
 		name = season_stats[current_season][3]
 		desc = season_stats[current_season][5]
 	if(current_season == "winter")

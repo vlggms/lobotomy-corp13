@@ -2,7 +2,7 @@
 /turf/open/water/deep
 	name = "water"
 	desc = "Deep Water."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'icons/turf/floors/water.dmi'
 	icon_state = "water_turf1"
 	initial_gas_mix = OPENTURF_DEFAULT_ATMOS
 	//This is mostly for AI. CanAllowThrough still makes it passable.
