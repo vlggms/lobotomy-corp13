@@ -202,6 +202,10 @@
 	port_id = "zetadeparteast"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/deltamain
+	port_id = "deltamain"
+	can_be_bought = FALSE
+
 // Shuttles start here:
 
 /datum/map_template/shuttle/manager/elevator
@@ -235,6 +239,10 @@
 /datum/map_template/shuttle/zetadeparteast/elevator
 	suffix = "elevator"
 	name = "zetadeparteast elevator"
+
+/datum/map_template/shuttle/deltamain/elevator
+	suffix = "elevator"
+	name = "deltamain elevator"
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"
