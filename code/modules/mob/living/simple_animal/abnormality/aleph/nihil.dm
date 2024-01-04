@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "nihil"
 	icon_living = "nihil"
+	portrait = "nihil"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 15000
