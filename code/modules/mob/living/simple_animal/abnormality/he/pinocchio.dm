@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "pinocchio"
 	icon_living = "pinocchio"
+	portrait = "pinocchio"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL

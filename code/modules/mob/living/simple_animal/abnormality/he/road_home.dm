@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "road_home"
 	icon_living = "road_home"
+	portrait = "road_home"
 	maxHealth = 1000
 	health = 1000
 	move_resist = MOVE_FORCE_STRONG //So she can't be yeeted away and delayed indefinitely
