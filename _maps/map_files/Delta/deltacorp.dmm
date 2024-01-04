@@ -3038,6 +3038,7 @@
 	can_buckle = 0;
 	pixel_y = 3
 	},
+/obj/item/toy/plush/malkuth,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
 "hl" = (
@@ -5184,6 +5185,28 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/facility_hallway/information)
+"ml" = (
+/obj/structure/lattice/lava{
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	resistance_flags = 115;
+	name = "heatproof reinforced glass floor";
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	},
+/obj/item/toy/plush/yuri,
+/obj/item/food/grown/apple/gold{
+	pixel_y = -6
+	},
+/turf/open/lava{
+	color = "#006700";
+	name = "Unrefined Enkephalin";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	slowdown = 0
+	},
+/area/facility_hallway/human)
 "mm" = (
 /obj/effect/turf_decal/tile/green{
 	color = "#539b11"
@@ -6435,6 +6458,7 @@
 /obj/structure/chair/comfy/lime{
 	can_buckle = 0
 	},
+/obj/item/toy/plush/netzach,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
 "pq" = (
@@ -8421,6 +8445,21 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
+"tF" = (
+/obj/structure/chair/comfy/teal{
+	pixel_y = 1;
+	can_buckle = 0
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#5269e9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#5269e9"
+	},
+/obj/item/toy/plush/chesed,
+/turf/open/floor/plasteel/sepia,
+/area/department_main/welfare)
 "tG" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC2"
@@ -8655,6 +8694,7 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/tile/purple,
+/obj/item/toy/plush/yesod,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "us" = (
@@ -12682,6 +12722,7 @@
 	mouse_opacity = 0;
 	view_range = 13
 	},
+/obj/item/toy/plush/hokma,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "DS" = (
@@ -13220,6 +13261,7 @@
 	color = "#f8f8f8";
 	dir = 8
 	},
+/obj/item/toy/plush/enoch,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -14249,6 +14291,13 @@
 /obj/effect/turf_decal/caution/red,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/command)
+"HH" = (
+/obj/structure/chair/stool/bar,
+/obj/item/toy/plush/hod,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/department_main/training)
 "HI" = (
 /obj/effect/turf_decal/tile/red,
 /obj/effect/turf_decal/tile/red{
@@ -15209,6 +15258,14 @@
 	},
 /turf/open/floor/carpet/blue,
 /area/department_main/welfare)
+"Kb" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/item/toy/plush/pierre,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/training)
 "Kc" = (
 /obj/docking_port/stationary{
 	name = "NW - Safety";
@@ -17219,6 +17276,7 @@
 /obj/structure/chair/comfy/black{
 	can_buckle = 0
 	},
+/obj/item/toy/plush/binah,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Pb" = (
@@ -18081,6 +18139,22 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
+"Rl" = (
+/obj/structure/chair/comfy/brown{
+	can_buckle = 0;
+	dir = 8;
+	pixel_x = -5;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/red{
+	dir = 8
+	},
+/obj/item/toy/plush/gebura,
+/turf/open/floor/plasteel/sepia,
+/area/department_main/discipline)
 "Rm" = (
 /obj/structure/weightmachine/weightlifter,
 /turf/open/floor/carpet/orange,
@@ -21487,6 +21561,7 @@
 	color = "#f8f8f8";
 	dir = 4
 	},
+/obj/item/toy/plush/lisa,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -44862,7 +44937,7 @@ PP
 ao
 vC
 ao
-IG
+tF
 Dk
 Zr
 xj
@@ -52843,7 +52918,7 @@ jo
 mp
 ad
 RW
-RW
+ml
 RW
 mp
 Xr
@@ -59993,7 +60068,7 @@ uW
 qm
 PK
 Jy
-XP
+HH
 hX
 Ho
 VS
@@ -60504,7 +60579,7 @@ Na
 lW
 GV
 QF
-Na
+Kb
 PK
 Jy
 Kh
@@ -63103,7 +63178,7 @@ lF
 YY
 wF
 QG
-eu
+Rl
 eu
 me
 TX
