@@ -159,11 +159,13 @@
 		chosen.hairstyle = oldhair
 		chosen.facial_hairstyle = oldbeard
 	HD.update_limb()
-	headicon = SpawnConnectedStructure(headicon)
+	headicon = new(get_turf(src))
 	headicon.add_overlay(HD.get_limb_icon(TRUE,TRUE))
 	headicon.pixel_y -= 5
 	headicon.alpha = 150
 	headicon.desc = "It looks like [chosen] is reflected in the mirror."
+	//Handles connected structure part
+	datum_reference.connected_structures = list(headicon = list(0,-5))
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/CheckMirrorIcon()
 	if(headicon) //Grab their head. Literally, and grab the icons from it; discard our old icon if we have one.
