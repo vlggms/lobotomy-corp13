@@ -53,7 +53,7 @@
 /mob/living/simple_animal/hostile/abnormality/mailpile/WorktickFailure(mob/living/carbon/human/user)
 	if(prob(10))
 		to_chat(user, span_warning("Ouch! I got a paper cut!"))
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/DeliveryRepress(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(cooldown < world.time)
