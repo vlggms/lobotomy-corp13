@@ -87,12 +87,14 @@
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	AdjustSuffering(3)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	datum_reference.qliphoth_change(-1)

@@ -69,6 +69,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	return newchance
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

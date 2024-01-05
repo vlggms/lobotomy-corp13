@@ -175,17 +175,20 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(downgraded)
 		return
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/seasons/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!safe)
 		to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
 		safe = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/seasons/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!safe)
 		if(prob(25))
 			to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))

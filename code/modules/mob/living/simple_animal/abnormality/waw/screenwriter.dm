@@ -77,6 +77,7 @@ Defeating the murderer also surpresses the abnormality.
 	melting = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/screenwriter/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

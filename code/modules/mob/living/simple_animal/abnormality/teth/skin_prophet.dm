@@ -43,6 +43,7 @@
 //If you success on temperance or repression, clear all your temperance/justice buffs and then add to your max stats.
 //You're on the hook for any changes in your attribute
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_ATTACHMENT)
 		say(pick(speak_list))
 
@@ -65,6 +66,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	say(pick(speak_list))
 	//He has 10 candles. Each snuffed candle deals more work damage
 	if(candles != 10)

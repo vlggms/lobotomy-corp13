@@ -107,6 +107,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	return
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(datum_reference.qliphoth_meter == 0) // You did it! You survived a work at 0 qliphoth!
 		manual_emote("rests silent once more...") // The machine is now dormant.
 		playsound(src, 'sound/abnormalities/singingmachine/creak.ogg', 50, 0, 1)

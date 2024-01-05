@@ -325,14 +325,24 @@
 
 // Additional effects on good work result, if any
 /mob/living/simple_animal/hostile/abnormality/proc/SuccessEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	WorkCompleteEffect("good")
 	return
 
 // Additional effects on neutral work result, if any
 /mob/living/simple_animal/hostile/abnormality/proc/NeutralEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	WorkCompleteEffect("normal")
 	return
 
 // Additional effects on work failure
 /mob/living/simple_animal/hostile/abnormality/proc/FailureEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
+	WorkCompleteEffect("bad")
+	return
+
+// Visual effect for work completion
+/mob/living/simple_animal/hostile/abnormality/proc/WorkCompleteEffect(state)
+	var/turf/target_turf = get_ranged_target_turf(src, SOUTHWEST, 1)
+	var/obj/effect/temp_visual/workcomplete/VFX = new(target_turf)
+	VFX.icon_state = state
 	return
 
 // Giving an EGO gift to the user after work is complete

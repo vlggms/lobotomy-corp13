@@ -37,6 +37,7 @@
 	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/shadow/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

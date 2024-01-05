@@ -105,8 +105,12 @@
 
 //work stuff
 /mob/living/simple_animal/hostile/abnormality/space_lady/WorktickFailure(mob/living/carbon/human/user)
-	user.apply_damage(work_damage_amount, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	return ..()
+	var/list/damtypes = list(WHITE_DAMAGE, BLACK_DAMAGE)
+	for(var/damagetype in damtypes) // take 8 of both damage types every failed tick
+		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
+	work_damage_type = pick(damtypes) //Displays either work damage type every tick
+	WorkDamageEffect()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_user_level(user) < 5)
@@ -123,10 +127,12 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-2)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

@@ -127,6 +127,7 @@
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(user.stat != DEAD && !sculptor && istype(user))
 		sculptor = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/SculptorDeathOrInsane)

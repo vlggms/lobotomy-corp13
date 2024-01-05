@@ -57,16 +57,19 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40) && work_type == ABNORMALITY_WORK_INSIGHT)
 		datum_reference.qliphoth_change(1, user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		GuiltEffect(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	GuiltEffect(user)
 	return
 

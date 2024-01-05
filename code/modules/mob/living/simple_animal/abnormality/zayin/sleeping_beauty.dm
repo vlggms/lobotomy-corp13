@@ -48,11 +48,13 @@
 		return chance + 5
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	user.apply_status_effect(STATUS_EFFECT_RESTED)
 	to_chat(user, span_notice("You feel refreshed!."))
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	user.Stun(5 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)

@@ -190,6 +190,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(user == chosen) //It makes more sense to just check for a disguise, but this is called before PostWorkEffect()
 		return
 	datum_reference.qliphoth_change(-1)
