@@ -201,7 +201,7 @@
 	// Lower agent pop gets a bonus
 	var/agent_count = AvailableAgentCount()
 	if(agent_count <= 5 && percent)
-		percent *= 1 + (3 / agent_count)
+		percent *= 1 + (3 / max(agent_count, 1))
 
 	if(understanding != max_understanding) // This should render "full_understood" not required.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
