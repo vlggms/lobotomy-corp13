@@ -8,6 +8,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wrath"
 	icon_living = "wrath"
+	portrait = "wrath_servant"
 	faction = list("wrath")
 	speak_emote = list()
 	gender = FEMALE

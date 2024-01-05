@@ -5,6 +5,7 @@
 	icon_state = "scaredy_cat"
 	icon_living = "scaredy_cat"
 	icon_dead = "scaredy_dead"
+	portrait = "scaredy_cat"
 	del_on_death = FALSE
 	maxHealth = 800 //Lower health because he can revive indefinitely
 	health = 800
