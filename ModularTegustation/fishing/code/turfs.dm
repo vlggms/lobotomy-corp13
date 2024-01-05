@@ -17,8 +17,21 @@
 	var/static_target = FALSE
 	//Sound delay so we dont get splash spam.
 	var/sound_delay = 0
-	//Lootlist of things for fishing.
-	var/list/environment = list(/obj/item/food/grown/harebell = 200)
+	/* Loottable of things for fishing. Making these balanced
+		has actually been difficult so im going to simply make
+		the total amount of chance for each thing equal 100.
+		Fishing rods use pickweight which goes through each
+		of the items in the table and uses their assigned
+		chance to choose amongst them. This obviously becomes
+		a issue when level 1 has 10 objects each worth 5 and
+		level 2 has 5 objects each worth 5 meaning there is a
+		5/50 chance for individual level 1 objects and a 5/25
+		chance for level 2 objects.*/
+	var/list/loot_level1 = list()
+	var/list/loot_level2 = list()
+	var/list/loot_level3 = list(
+		/obj/item/food/grown/harebell = 100
+		)
 	//Things that just cant sink. Dont bother trying to sink them.
 	var/static/list/cant_sink_types = typecacheof(list(
 		/obj/effect,
@@ -30,6 +43,8 @@
 		/obj/structure/lattice,
 		/obj/projectile,
 		))
+
+	var/safe = FALSE
 
 /turf/open/water/deep/Initialize()
 	. = ..()
@@ -192,68 +207,85 @@
 		else
 			target_turf = get_turf(src)
 
-	//FOR FISHING: How this works is that it returns a list with a divided chance for anything lower than the maximum
-/turf/open/water/deep/proc/ReturnChanceList(maximum = FISH_RARITY_BASIC)
-	var/list/altered_loot_list = environment.Copy()
-	for(var/atom in altered_loot_list)
-		if(altered_loot_list[atom] < maximum)
-			altered_loot_list[atom] /= 5
+	//FOR FISHING: This will be remotely called by the fishing rod in order to get the tiles loottable.
+/turf/open/water/deep/proc/ReturnChanceList(skill_amount)
+	var/thefishnumber = ItemHowRare(skill_amount)
+
+	switch(thefishnumber)
+		if(0)
+			return loot_level1.Copy()
+		if(1)
+			return loot_level2.Copy()
+		if(2 to INFINITY)
+			return loot_level3.Copy()
+
+/* Randomized Rarity Chance. Each consecutive success
+	results in a rarity level increase. */
+/turf/open/water/deep/proc/ItemHowRare(rarity_mod = 1)
+	. = 0
+	for(var/i=0 to 3)
+		/* This formula inside prob is a base chance of 15 * rarity mod.
+			Each success reduces the base chance by 5. The clamp proc
+			is to set a max and minimum to the chance levels so the
+			highest level of chance you can get is 95%.*/
+		if(prob(clamp((15-(5*i))*rarity_mod,1,95)))
+			. = i
 			continue
-	return altered_loot_list
+		break
+	return
 
 /turf/open/water/deep/freshwater
 	name = "water"
 	desc = "Bodies of freshwater like these usually have stories of aquatic predators that assault fishermen."
 	icon_state = "water_turf1"
-	environment = list(
-		/obj/item/food/fish/fresh_water = FISH_RARITY_BASIC,
-		/obj/item/food/fish/fresh_water/angelfish = FISH_RARITY_BASIC,
-		/obj/item/food/fish/fresh_water/guppy = FISH_RARITY_BASIC,
-		/obj/item/food/fish/fresh_water/plasmatetra = FISH_RARITY_BASIC,
-		/obj/item/food/fish/fresh_water/catfish = FISH_RARITY_RARE,
-		/obj/item/food/fish/fresh_water/ratfish = FISH_RARITY_VERY_RARE,
-		/obj/item/food/fish/fresh_water/waterflea = FISH_RARITY_VERY_RARE,
-		/obj/item/food/fish/fresh_water/yin = FISH_RARITY_VERY_RARE,
-		/obj/item/food/fish/fresh_water/yang = FISH_RARITY_VERY_RARE,
-		/obj/item/food/fish/emulsijack = FISH_RARITY_GOOD_LUCK_FINDING_THIS,
-		//random things
-		/obj/item/stack/spacecash/c1 = 700,
-		/obj/item/stack/fish_points = 600,
-		/obj/item/food/dough = 500,
-		/obj/item/stack/sheet/leather = 500,
-		/obj/item/food/canned/peaches = 300,
-		/obj/item/food/breadslice/moldy = 300,
-		/obj/item/stack/sheet/sinew/wolf = 300,
-		/obj/item/clothing/head/beret/fishing_hat = 200,
-		/obj/item/food/grown/harebell = 200,
-		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200,
-		/obj/item/fishing_component/hook/bone = 100,
-		/mob/living/simple_animal/hostile/retaliate/frog = 50
+	loot_level1 = list(
+		//75% chance bulk
+		/obj/item/food/fish/fresh_water/guppy = 35,
+		/obj/item/food/fish/fresh_water/angelfish = 20,
+		/obj/item/food/fish/fresh_water/plasmatetra = 20,
+		//25% chance
+		/obj/item/stack/sheet/mineral/wood = 13,
+		/obj/item/fishing_component/hook/bone = 5,
+		/obj/item/food/grown/harebell = 5,
+		/obj/item/food/breadslice/moldy = 2,
+		)
+	loot_level2 = list(
+		/obj/item/food/fish/fresh_water/catfish = 50,
+		/obj/item/stack/sheet/sinew/wolf = 20,
+		/obj/item/stack/sheet/leather = 15,
+		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
+		/obj/item/clothing/head/beret/fishing_hat = 5,
+		)
+	loot_level3 = list(
+		/obj/item/food/fish/fresh_water/ratfish = 25,
+		/obj/item/food/fish/fresh_water/waterflea = 20,
+		/obj/item/food/fish/fresh_water/yin = 20,
+		/obj/item/food/fish/fresh_water/yang = 20,
+		/mob/living/simple_animal/hostile/retaliate/frog = 10,
+		/obj/item/food/fish/emulsijack = 5,
 		)
 
 /turf/open/water/deep/saltwater
 	name = "water"
 	desc = "Smells of the ocean. Darkness obscures what world might be down there."
 	icon_state = "water_turf2"
-	environment = list(
-		/obj/item/food/fish/salt_water/marine_shrimp = FISH_RARITY_BASIC,
-		/obj/item/food/fish/salt_water/clownfish = FISH_RARITY_BASIC,
-		/obj/item/food/fish/salt_water/greenchromis = FISH_RARITY_BASIC,
-		/obj/item/food/fish/salt_water/firefish = FISH_RARITY_BASIC,
-		/obj/item/food/fish/salt_water/cardinal = FISH_RARITY_RARE,
-		/obj/item/food/fish/salt_water = FISH_RARITY_RARE,
-		/obj/item/food/fish/salt_water/sheephead = FISH_RARITY_RARE,
-		/obj/item/food/fish/salt_water/lanternfish = FISH_RARITY_VERY_RARE,
-		/obj/item/food/fish/emulsijack = FISH_RARITY_GOOD_LUCK_FINDING_THIS,
-		//random things
-		/obj/item/stack/spacecash/c1 = 700,
-		/obj/item/fishing_component/hook/bone = 700,
-		/obj/item/stack/fish_points = 600,
-		/obj/item/food/canned/beans = 600,
-		/obj/item/food/canned/peaches = 600,
-		/obj/item/clothing/head/beret/fishing_hat = 200,
-		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100,
-		/mob/living/simple_animal/crab = 50
+	loot_level1 = list(
+		/obj/item/food/fish/salt_water/marine_shrimp = 40,
+		/obj/item/food/fish/salt_water/greenchromis = 20,
+		/obj/item/food/fish/salt_water/firefish = 20,
+		/obj/item/food/fish/salt_water/clownfish = 10,
+		/obj/item/stack/sheet/mineral/wood = 10,
+		)
+	loot_level2 = list(
+		/obj/item/food/fish/salt_water/cardinal = 45,
+		/obj/item/food/fish/salt_water/sheephead = 40,
+		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
+		/obj/item/clothing/head/beret/fishing_hat = 5,
+		)
+	loot_level3 = list(
+		/obj/item/food/fish/salt_water/lanternfish = 85,
+		/mob/living/simple_animal/crab = 10,
+		/obj/item/food/fish/emulsijack = 5,
 		)
 
 /turf/open/water/deep/polluted
@@ -261,30 +293,27 @@
 	desc = "An aquatic deadzone, your more likely to reel in junk due to the inhospitable enviorment."
 	icon_state = "water_turf2"
 	color = "GREEN"
-	environment = list(
-		/obj/item/food/fish/salt_water/piscine_mermaid = 200,
-		/obj/item/food/fish/fresh_water/mosb = 200,
-		/obj/item/food/fish/fresh_water/ratfish = 50,
-		/obj/item/food/fish/emulsijack = 10,
-		//random things
-		/obj/item/food/tofu/prison = 1000,
-		/obj/item/food/meat/slab/human/mutant/zombie = 1000,
-		/obj/item/food/dough = 800,
-		/obj/item/stack/spacecash/c1 = 700,
-		/obj/item/stack/sheet/leather = 500,
-		/obj/item/food/breadslice/moldy = 300,
-		/obj/item/stack/sheet/sinew/wolf = 300,
-		/obj/item/food/canned/beans = 300,
-		/obj/item/food/canned/peaches = 300,
-		/obj/item/reagent_containers/food/drinks/bottle/small = 300,
-		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300,
-		/obj/item/stack/sheet/plastic = 300,
-		/obj/item/stack/fish_points = 250,
-		/obj/item/food/spiderling = 200,
-		/obj/item/food/grown/harebell = 200,
-		/obj/item/stack/sheet/mineral/wood = 200,
-		/obj/item/ego_weapon/city/rats/brick = 100,
-		/mob/living/simple_animal/hostile/shrimp = 100
+	loot_level1 = list(
+		/obj/item/food/meat/slab/human/mutant/zombie = 45,
+		/obj/item/food/breadslice/moldy = 40,
+		/obj/item/stack/sheet/mineral/wood = 5,
+		/obj/item/food/grown/harebell = 5,
+		/obj/item/food/spiderling = 5
+		)
+	loot_level2 = list(
+		/obj/item/food/fish/fresh_water/ratfish = 35,
+		/obj/item/food/canned/peaches = 15,
+		/obj/item/food/canned/beans = 10,
+		/obj/item/reagent_containers/food/drinks/bottle/small = 10,
+		/obj/item/stack/sheet/plastic = 15,
+		/obj/item/ego_weapon/city/rats/brick = 10,
+		/obj/item/food/tofu/prison = 3,
+		/mob/living/simple_animal/hostile/shrimp = 2,
+		)
+	loot_level3 = list(
+		/obj/item/food/fish/fresh_water/mosb = 50,
+		/obj/item/food/fish/salt_water/piscine_mermaid = 45,
+		/obj/item/food/fish/emulsijack = 5,
 		)
 
 /turf/open/water/deep/polluted/ObjSink(atom/movable/sinkin_thing)

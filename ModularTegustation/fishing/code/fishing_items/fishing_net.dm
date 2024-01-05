@@ -18,7 +18,6 @@
 	debris = list(/obj/item/fishing_net = 1)
 	var/fishin_cooldown = 25 SECONDS
 	var/fishin_cooldown_delay = 1 SECONDS
-	var/list/stuff_to_catch
 	var/turf/open/water/deep/open_waters
 
 /obj/structure/destructible/fishing_net/Initialize()
@@ -27,7 +26,6 @@
 	if(!istype(open_waters, /turf/open/water/deep))
 		qdel(src)
 		return
-	stuff_to_catch = open_waters.ReturnChanceList()
 	//will proc at least 5 times before the loop stops.
 	addtimer(CALLBACK(src, .proc/CatchFish), fishin_cooldown + fishin_cooldown_delay)
 
@@ -51,7 +49,7 @@
 /obj/structure/destructible/fishing_net/proc/CatchFish()
 	if(contents.len >= 5 || !open_waters)
 		return
-	var/atom/thing_caught = pickweight(stuff_to_catch)
+	var/atom/thing_caught = pickweight(open_waters.ReturnChanceList(0.8))
 	new thing_caught(src)
 	icon_state = "trawling_net_full"
 	update_icon()
