@@ -172,7 +172,7 @@
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
-	deathsound = 'sound/abnormalities/bee/death.ogg'
+	death_sound = 'sound/abnormalities/bee/death.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'
@@ -195,7 +195,7 @@
 	maxHealth = 200
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1) // Just so it's declared.
 	del_on_death = TRUE
-	deathsound = 'sound/abnormalities/bee/death.ogg'
+	death_sound = 'sound/abnormalities/bee/death.ogg'
 	speak_emote = list("buzzes")
 
 	var/fire_cooldown_time = 10 SECONDS

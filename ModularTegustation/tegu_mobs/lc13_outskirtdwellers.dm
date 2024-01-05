@@ -32,7 +32,7 @@
 	turns_per_move = 2
 	butcher_difficulty = 2
 	buffed = 0
-	deathmessage = "pops."
+	death_message = "pops."
 	density = TRUE
 	search_objects = 1
 	tame_chance = 5
@@ -152,7 +152,7 @@
 		if(250)
 			response_help_continuous = "pets"
 			response_help_simple = "pet"
-			deathmessage = "collapses as their pustules lose their bright orange hue."
+			death_message = "collapses as their pustules lose their bright orange hue."
 			guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 4)
 			can_buckle = TRUE
 			buckle_lying = 0
@@ -200,7 +200,7 @@
 	a_intent = "help"
 	maxHealth = 300 //100 less due to loss of arm
 	health = 300
-	deathmessage = "falls to their knees as the sound of gears slowly fades."
+	death_message = "falls to their knees as the sound of gears slowly fades."
 	melee_damage_lower = 0
 	melee_damage_upper = 4
 	mob_size = MOB_SIZE_LARGE
@@ -378,7 +378,7 @@
 	butcher_difficulty = 2
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 2, /obj/item/food/meat/slab/human = 1, /obj/item/food/egg = 1,) // chicken and human for what he eats, egg? |MESSAGE BELOW|
 	food_type = list(/obj/item/organ, /obj/item/bodypart/head, /obj/item/bodypart/r_arm, /obj/item/bodypart/l_arm, /obj/item/bodypart/l_leg, /obj/item/bodypart/r_leg, /obj/item/food/meat/slab/human, /obj/item/food/meat/slab/crimson,) // scower area for food and eat it
-	deathmessage = "screeches as it falls over." // |MESSAGE ABOVE|
+	death_message = "screeches as it falls over." // |MESSAGE ABOVE|
 	density = TRUE
 	search_objects = 1
 	del_on_death = TRUE
@@ -416,7 +416,7 @@
 	turns_per_move = 3
 	butcher_difficulty = 3
 	butcher_results = list(/obj/item/ksyringe = 1, /obj/item/assembly/flash/handheld = 1)
-	deathmessage = "buzzes as he falls out of the air."
+	death_message = "buzzes as he falls out of the air."
 	density = FALSE
 	search_objects = 1
 	del_on_death = TRUE

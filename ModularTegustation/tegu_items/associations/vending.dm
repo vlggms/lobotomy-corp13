@@ -5,7 +5,7 @@
 	product_ads = "The best in the business!"
 	icon_state = "generic" //Placeholder
 	icon_deny = null
-	products = list(/obj/item/clothing/accessory/fixer_badge = 50,
+	products = list(/obj/item/clothing/accessory/lawyers_badge/fixer = 50,
 			/obj/item/radio/headset = 50,
 					//custom fixer office (and garbage) stuff is free.
 			/obj/item/storage/box/fixerhard/streetlight = 1,

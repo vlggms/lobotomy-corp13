@@ -23,7 +23,7 @@
 	disliked_food = GRAIN | DAIRY
 	liked_food = GROSS | MEAT
 	inert_mutation = FIREBREATH
-	deathsound = 'sound/voice/lizard/deathsound.ogg'
+	death_sound = 'sound/voice/lizard/deathsound.ogg'
 	wings_icon = "Dragon"
 	species_language_holder = /datum/language_holder/lizard
 	// Lizards are coldblooded and can stand a greater temperature range than humans

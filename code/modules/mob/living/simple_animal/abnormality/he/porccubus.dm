@@ -31,7 +31,7 @@
 	melee_damage_type = WHITE_DAMAGE
 	start_qliphoth = 2
 	can_breach = TRUE
-	deathsound = 'sound/abnormalities/porccubus/porccu_death.ogg'
+	death_sound = 'sound/abnormalities/porccubus/porccu_death.ogg'
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg'
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "stabs"

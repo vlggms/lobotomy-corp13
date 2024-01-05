@@ -21,8 +21,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	pixel_y = -16
 	base_pixel_y = -16
 	loot = list(/obj/item/ego_weapon/paradise)
-	deathmessage = "evaporates in a moment, leaving heavenly light and feathers behind."
-	deathsound = 'sound/abnormalities/whitenight/apostle_death.ogg'
+	death_message = "evaporates in a moment, leaving heavenly light and feathers behind."
+	death_sound = 'sound/abnormalities/whitenight/apostle_death.ogg'
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	fear_level = ALEPH_LEVEL + 1

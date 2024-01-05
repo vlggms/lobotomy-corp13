@@ -21,7 +21,7 @@
 	can_patrol = FALSE
 	can_breach = TRUE
 	del_on_death = FALSE
-	deathmessage = "creaks and crumbles into its core."
+	death_message = "creaks and crumbles into its core."
 	ranged = TRUE
 
 	work_damage_amount = 5

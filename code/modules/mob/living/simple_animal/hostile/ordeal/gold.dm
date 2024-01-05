@@ -17,7 +17,7 @@
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/abnormalities/ebonyqueen/attack.ogg'
-	deathsound = 'sound/creatures/venus_trap_death.ogg'
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
@@ -45,7 +45,7 @@
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/gold/rock_attack.ogg'
-	deathsound = 'sound/effects/ordeals/gold/rock_dead.ogg'
+	death_sound = 'sound/effects/ordeals/gold/rock_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/golem = 1)
@@ -208,7 +208,7 @@
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/effects/ordeals/gold/flower_attack.ogg'
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
@@ -262,7 +262,7 @@
 	attack_verb_continuous = "bisects"
 	attack_verb_simple = "bisects"
 	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/chicken = 1)
@@ -453,7 +453,7 @@
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/gold/flea_attack.ogg'
-	deathsound = 'sound/effects/ordeals/gold/flea_dead.ogg'
+	death_sound = 'sound/effects/ordeals/gold/flea_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/slime = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/slime = 1)
@@ -500,7 +500,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/ego/sword1.ogg'
-	deathsound = 'sound/effects/ordeals/gold/dead_generic.ogg'
+	death_sound = 'sound/effects/ordeals/gold/dead_generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/rawcrab = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/rawcrab = 1)
@@ -618,7 +618,7 @@
 	attack_verb_continuous = "chops"
 	attack_verb_simple = "chop"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_zombieattack.ogg'
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/chicken = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
@@ -682,7 +682,7 @@
 	attack_verb_continuous = "shocks"
 	attack_verb_simple = "shock"
 	attack_sound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.7)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/human = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human = 1)
@@ -744,7 +744,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/gold/tentacle_attack.ogg'
-	deathsound = 'sound/effects/ordeals/gold/dead_generic.ogg'
+	death_sound = 'sound/effects/ordeals/gold/dead_generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1)
 	guaranteed_butcher_results = list(/obj/item/food/carpmeat/icantbeliveitsnotcarp = 1) //should make its own kind of meat when I get around to it
@@ -819,7 +819,7 @@
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bashes"
 	attack_sound = 'sound/effects/ordeals/gold/cromer_slam.ogg'
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	butcher_results = list(/obj/item/food/meat/slab/human/mutant/lizard = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/lizard = 1)

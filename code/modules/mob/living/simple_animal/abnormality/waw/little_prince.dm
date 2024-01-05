@@ -183,11 +183,11 @@
 	melee_damage_lower = 40
 	melee_damage_upper = 50		//slow melee and has nothing else.
 	stat_attack = HARD_CRIT
-	deathsound = 'sound/abnormalities/littleprince/Prince_Death.ogg'
+	death_sound = 'sound/abnormalities/littleprince/Prince_Death.ogg'
 	attack_verb_continuous = "smashes"
 	attack_verb_simple = "smash"
 	attack_sound = 'sound/abnormalities/littleprince/Prince_Attack.ogg'
-	deathmessage = "shakes violently."
+	death_message = "shakes violently."
 	can_patrol = TRUE
 
 /mob/living/simple_animal/hostile/little_prince_1/Initialize()

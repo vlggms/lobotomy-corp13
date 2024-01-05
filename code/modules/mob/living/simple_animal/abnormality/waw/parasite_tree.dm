@@ -156,8 +156,8 @@
 	obj_damage = 0
 	del_on_death = TRUE
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	deathmessage = "shatters into numerous spongy splinters."
-	deathsound = 'sound/creatures/venus_trap_death.ogg'
+	death_message = "shatters into numerous spongy splinters."
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	projectilesound = 'sound/machines/clockcult/steam_whoosh.ogg'
 	var/mob/living/simple_animal/hostile/abnormality/parasite_tree/connected_abno

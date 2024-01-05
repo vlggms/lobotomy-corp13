@@ -70,7 +70,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/abnormalities/laetitia/spider_attack.ogg'
-	deathsound = 'sound/abnormalities/laetitia/spider_dead.ogg'
+	death_sound = 'sound/abnormalities/laetitia/spider_dead.ogg'
 
 /mob/living/simple_animal/hostile/gift/Initialize()
 	. = ..()

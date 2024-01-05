@@ -33,7 +33,7 @@
 	work_damage_amount = 7 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
 	can_patrol = FALSE
-	deathsound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
+	death_sound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/courage,
 		/datum/ego_datum/weapon/bravery,

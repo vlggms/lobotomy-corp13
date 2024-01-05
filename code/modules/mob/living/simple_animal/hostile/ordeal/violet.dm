@@ -197,8 +197,8 @@
 	maxHealth = 15000
 	health = 15000
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	deathmessage = "falls apart."
-	deathsound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
+	death_message = "falls apart."
+	death_sound = 'sound/effects/ordeals/violet/midnight_dead.ogg'
 	stat_attack = HARD_CRIT
 
 	var/ability_cooldown

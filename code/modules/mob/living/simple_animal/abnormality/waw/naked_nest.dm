@@ -40,8 +40,8 @@
 	ranged_cooldown_time = 1
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	deathmessage = "collapses as its residents flee."
-	deathsound = 'sound/effects/dismember.ogg'
+	death_message = "collapses as its residents flee."
+	death_sound = 'sound/effects/dismember.ogg'
 	var/serpentsnested = 4
 	var/origin_cooldown = 0
 
@@ -256,7 +256,7 @@
 	icon_state = "nakednest_minion"
 	icon_living = "nakednest_minion"
 	icon_dead = "nakednest_miniondead"
-	deathmessage = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
+	death_message = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
