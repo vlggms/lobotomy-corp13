@@ -41,8 +41,8 @@
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
 
 /mob/living/simple_animal/shade/death()
-	if(deathmessage == initial(deathmessage))
-		deathmessage = "lets out a contented sigh as [p_their()] form unwinds."
+	if(death_message == initial(death_message))
+		death_message = "lets out a contented sigh as [p_their()] form unwinds."
 	..()
 
 /mob/living/simple_animal/shade/canSuicide()

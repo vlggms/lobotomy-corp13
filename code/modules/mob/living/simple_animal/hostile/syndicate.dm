@@ -317,7 +317,7 @@
 	bubble_icon = "syndibot"
 	gold_core_spawnable = HOSTILE_SPAWN
 	del_on_death = 1
-	deathmessage = "is smashed into pieces!"
+	death_message = "is smashed into pieces!"
 
 /mob/living/simple_animal/hostile/viscerator/Initialize()
 	. = ..()

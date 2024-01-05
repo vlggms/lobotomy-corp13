@@ -253,16 +253,6 @@
  * or another carbon.
 */
 /mob/living/carbon/proc/disarm(mob/living/carbon/target)
-	if(zone_selected == BODY_ZONE_PRECISE_MOUTH)
-		var/target_on_help_and_unarmed = target.a_intent == INTENT_HELP && !target.get_active_held_item()
-		if(target_on_help_and_unarmed || HAS_TRAIT(target, TRAIT_RESTRAINED))
-			do_slap_animation(target)
-			playsound(target.loc, 'sound/weapons/slap.ogg', 50, TRUE, -1)
-			visible_message("<span class='danger'>[src] slaps [target] in the face!</span>",
-				"<span class='notice'>You slap [target] in the face! </span>",\
-			"You hear a slap.")
-			target.dna?.species?.stop_wagging_tail(target)
-			return
 	do_attack_animation(target, ATTACK_EFFECT_DISARM)
 	playsound(target, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
 	if (ishuman(target))
@@ -678,7 +668,7 @@
 		to_chat(src, "<span class='danger'>You fail to grasp your [grasped_part.name].</span>")
 		return
 
-	var/obj/item/self_grasp/grasp = new
+	var/obj/item/hand_item/self_grasp/grasp = new
 	if(starting_hand_index != active_hand_index || !put_in_active_hand(grasp))
 		to_chat(src, "<span class='danger'>You fail to grasp your [grasped_part.name].</span>")
 		QDEL_NULL(grasp)
@@ -686,13 +676,11 @@
 	grasp.grasp_limb(grasped_part)
 
 /// an abstract item representing you holding your own limb to staunch the bleeding, see [/mob/living/carbon/proc/grabbedby] will probably need to find somewhere else to put this.
-/obj/item/self_grasp
+/obj/item/hand_item/self_grasp
 	name = "self-grasp"
 	desc = "Sometimes all you can do is slow the bleeding."
 	icon_state = "latexballon"
 	inhand_icon_state = "nothing"
-	force = 0
-	throwforce = 0
 	slowdown = 1
 	item_flags = DROPDEL | ABSTRACT | NOBLUDGEON | SLOWS_WHILE_IN_HAND | HAND_ITEM
 	/// The bodypart we're staunching bleeding on, which also has a reference to us in [/obj/item/bodypart/var/grasped_by]
@@ -700,7 +688,7 @@
 	/// The carbon who owns all of this mess
 	var/mob/living/carbon/user
 
-/obj/item/self_grasp/Destroy()
+/obj/item/hand_item/self_grasp/Destroy()
 	if(user)
 		to_chat(user, "<span class='warning'>You stop holding onto your[grasped_part ? " [grasped_part.name]" : "self"].</span>")
 		UnregisterSignal(user, COMSIG_PARENT_QDELETING)
@@ -712,11 +700,12 @@
 	return ..()
 
 /// The limb or the whole damn person we were grasping got deleted or dismembered, so we don't care anymore
-/obj/item/self_grasp/proc/qdel_void()
+/obj/item/hand_item/self_grasp/proc/qdel_void()
+	SIGNAL_HANDLER
 	qdel(src)
 
 /// We've already cleared that the bodypart in question is bleeding in [the place we create this][/mob/living/carbon/proc/grabbedby], so set up the connections
-/obj/item/self_grasp/proc/grasp_limb(obj/item/bodypart/grasping_part)
+/obj/item/hand_item/self_grasp/proc/grasp_limb(obj/item/bodypart/grasping_part)
 	user = grasping_part.owner
 	if(!istype(user))
 		stack_trace("[src] attempted to try_grasp() with [istype(user, /datum) ? user.type : isnull(user) ? "null" : user] user")

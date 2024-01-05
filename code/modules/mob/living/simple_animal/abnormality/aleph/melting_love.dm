@@ -39,7 +39,7 @@
 	/* Sounds */
 	projectilesound = 'sound/abnormalities/meltinglove/ranged.ogg'
 	attack_sound = 'sound/abnormalities/meltinglove/attack.ogg'
-	deathsound = 'sound/abnormalities/meltinglove/death.ogg'
+	death_sound = 'sound/abnormalities/meltinglove/death.ogg'
 	/*Vars and others */
 	loot = list(/obj/item/reagent_containers/glass/bucket/melting)
 	del_on_death = FALSE
@@ -244,7 +244,7 @@
 	speed = 2
 	move_to_delay = 2.5
 	/* Sounds */
-	deathsound = 'sound/abnormalities/meltinglove/pawn_death.ogg'
+	death_sound = 'sound/abnormalities/meltinglove/pawn_death.ogg'
 	attack_sound = 'sound/abnormalities/meltinglove/pawn_attack.ogg'
 	/* Vars and others */
 	robust_searching = TRUE

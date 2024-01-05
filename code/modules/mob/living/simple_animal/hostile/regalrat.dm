@@ -4,11 +4,10 @@
 
 /mob/living/simple_animal/hostile/regalrat
 	name = "feral regal rat"
-	desc = "An evolved rat, created through some strange science. It leads nearby rats with deadly efficiency to protect its kingdom. Not technically a king."
+	desc = "An evolved rat, created through some strange science. They lead nearby rats with deadly efficiency to protect their kingdom. Not technically a king."
 	icon_state = "regalrat"
 	icon_living = "regalrat"
 	icon_dead = "regalrat_dead"
-	gender = NEUTER
 	speak_chance = 0
 	turns_per_move = 5
 	maxHealth = 70
@@ -44,7 +43,7 @@
 	AddElement(/datum/element/waddling)
 
 /mob/living/simple_animal/hostile/regalrat/proc/get_player()
-	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be his crown?", ROLE_SENTIENCE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
+	var/list/mob/dead/observer/candidates = pollGhostCandidates("Do you want to play as the Royal Rat, cheesey be their crown?", ROLE_SENTIENCE, null, FALSE, 100, POLL_IGNORE_SENTIENCE_POTION)
 	if(LAZYLEN(candidates) && !mind)
 		var/mob/dead/observer/C = pick(candidates)
 		key = C.key
@@ -76,9 +75,9 @@
 	if(istype(user,/mob/living/simple_animal/hostile/rat))
 		var/mob/living/simple_animal/hostile/rat/ratself = user
 		if(ratself.faction_check_mob(src, TRUE))
-			. += "<span class='notice'>This is your king. Long live his majesty!</span>"
+			. += span_notice("This is your king. Long live their majesty!")
 		else
-			. += "<span class='warning'>This is a false king! Strike him down!</span>"
+			. += span_warning("This is a false king! Strike them down!")
 	else if(user != src && istype(user,/mob/living/simple_animal/hostile/regalrat))
 		. += "<span class='warning'>Who is this foolish false king? This will not stand!</span>"
 
@@ -194,21 +193,21 @@
 			to_chat(owner,"<span class='warning'>There's too many mice on this station to beckon a new one! Find them first!</span>")
 			return
 		new /mob/living/simple_animal/mouse(owner.loc)
-		owner.visible_message("<span class='warning'>[owner] commands a mouse to its side!</span>")
+		owner.visible_message(span_warning("[owner] commands a mouse to their side!"))
 	else
-		owner.visible_message("<span class='warning'>[owner] commands its army to action, mutating them into rats!</span>")
+		owner.visible_message(span_warning("[owner] commands their army to action, mutating them into rats!"))
 	StartCooldown()
 
 /mob/living/simple_animal/hostile/rat
 	name = "rat"
-	desc = "It's a nasty, ugly, evil, disease-ridden rodent with anger issues."
+	desc = "They're a nasty, ugly, evil, disease-ridden rodent with anger issues."
 	icon_state = "mouse_gray"
 	icon_living = "mouse_gray"
 	icon_dead = "mouse_gray_dead"
 	speak = list("Skree!","SKREEE!","Squeak?")
 	speak_emote = list("squeaks")
 	emote_hear = list("Hisses.")
-	emote_see = list("runs in a circle.", "stands on its hind legs.")
+	emote_see = list("runs in a circle.", "stands on their hind legs.")
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	obj_damage = 5
@@ -265,7 +264,7 @@
 		if(ratking.faction_check_mob(src, TRUE))
 			. += "<span class='notice'>This rat serves under you.</span>"
 		else
-			. += "<span class='warning'>This peasant serves a different king! Strike him down!</span>"
+			. += span_warning("This peasant serves a different king! Strike them down!")
 
 /mob/living/simple_animal/hostile/rat/CanAttack(atom/the_target)
 	if(istype(the_target,/mob/living/simple_animal))

@@ -30,8 +30,8 @@
 						)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
-	deathmessage = "stops moving, with its torso rotating forwards."
-	deathsound = 'sound/abnormalities/scarecrow/death.ogg'
+	death_message = "stops moving, with its torso rotating forwards."
+	death_sound = 'sound/abnormalities/scarecrow/death.ogg'
 
 	ego_list = list(
 		/datum/ego_datum/weapon/harvest,

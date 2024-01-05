@@ -167,6 +167,7 @@
 	icon_state = "honkhulk"
 	icon_living = "honkhulk"
 	move_resist = INFINITY
+	gender = MALE
 	response_help_continuous = "tries desperately to appease"
 	response_help_simple = "try desperately to appease"
 	response_disarm_continuous = "foolishly pushes"
@@ -195,6 +196,7 @@
 	desc = "A real lunkhead who somehow gets all the girls."
 	icon_state = "chlown"
 	icon_living = "chlown"
+	gender = MALE
 	response_help_continuous = "submits to"
 	response_help_simple = "submit to"
 	response_disarm_continuous = "tries to assert dominance over"
@@ -307,7 +309,7 @@
 	attack_verb_continuous = "slams"
 	attack_verb_simple = "slam"
 	loot = list(/obj/effect/gibspawner/xeno/bodypartless, /obj/effect/gibspawner/generic, /obj/effect/gibspawner/generic/animal, /obj/effect/gibspawner/human/bodypartless)
-	deathsound = 'sound/misc/sadtrombone.ogg'
+	death_sound = 'sound/misc/sadtrombone.ogg'
 	food_type = list(/obj/item/food/cheesiehonkers, /obj/item/food/cornchips)
 	tame_chance = 30
 	///This is the list of items we are ready to regurgitate,

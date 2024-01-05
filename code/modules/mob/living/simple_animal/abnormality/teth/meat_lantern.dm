@@ -21,7 +21,7 @@
 	can_patrol = FALSE
 	can_breach = TRUE
 	del_on_death = FALSE
-	deathmessage = "explodes in a shower of gore."
+	death_message = "explodes in a shower of gore."
 
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE

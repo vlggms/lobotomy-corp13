@@ -120,7 +120,7 @@
 	spawnedmob.faction = list("hostile")
 	spawnedmob.maxHealth = (spawnedmob.maxHealth / 10)
 	spawnedmob.health = spawnedmob.maxHealth
-	spawnedmob.deathmessage = "collapses into a bunch of writing material."
+	spawnedmob.death_message = "collapses into a bunch of writing material."
 	spawnedmob.filters += filter(type="drop_shadow", x=0, y=0, size=1, offset=0, color=rgb(0, 0, 0))
 	src.visible_message(span_warning("Pages of [src] fold into [spawnedmob]!"))
 	playsound(get_turf(src), 'sound/items/handling/paper_pickup.ogg', 90, 1, FALSE)

@@ -25,8 +25,8 @@
 	projectiletype = /obj/projectile/hatred
 	del_on_death = FALSE
 	projectilesound = 'sound/abnormalities/hatredqueen/attack.ogg'
-	deathsound = 'sound/abnormalities/hatredqueen/dead.ogg'
-	deathmessage = "slowly falls to the ground."
+	death_sound = 'sound/abnormalities/hatredqueen/dead.ogg'
+	death_message = "slowly falls to the ground."
 	check_friendly_fire = TRUE
 
 	move_to_delay = 4

@@ -97,7 +97,7 @@
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
-	deathsound = 'sound/abnormalities/bee/death.ogg'
+	death_sound = 'sound/abnormalities/bee/death.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'

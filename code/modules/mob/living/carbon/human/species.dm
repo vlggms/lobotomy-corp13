@@ -108,8 +108,8 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 	var/fixed_mut_color = ""
 	///Special mutation that can be found in the genepool exclusively in this species. Dont leave empty or changing species will be a headache
 	var/inert_mutation 	= DWARFISM
-	///Used to set the mob's deathsound upon species change
-	var/deathsound
+	///Used to set the mob's death_sound upon species change
+	var/death_sound
 	///Sounds to override barefeet walking
 	var/list/special_step_sounds
 	///Special sound for grabbing
@@ -688,6 +688,12 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 					if((EYECOLOR in species_traits) && eye_organ)
 						eye_overlay.color = "#" + species_human.eye_color
 					standing += eye_overlay
+
+		// blush
+		if (HAS_TRAIT(species_human, TRAIT_BLUSHING)) // Caused by either the *blush emote or the "drunk" mood event
+			var/mutable_appearance/blush_overlay = mutable_appearance('icons/mob/human_face.dmi', "blush", -BODY_ADJ_LAYER) //should appear behind the eyes
+			blush_overlay.color = COLOR_BLUSH_PINK
+			standing += blush_overlay
 
 	// organic body markings
 	if(HAS_MARKINGS in species_traits)

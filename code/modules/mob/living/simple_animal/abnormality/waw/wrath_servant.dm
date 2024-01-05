@@ -40,7 +40,7 @@
 	rapid_melee = 2
 	attack_sound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 	stat_attack = HARD_CRIT
-	deathmessage = "vanishes from existance."
+	death_message = "vanishes from existance."
 
 	can_patrol = FALSE
 
@@ -748,7 +748,7 @@
 	icon_living = "stave"
 	maxHealth = 250
 	health = 250
-	deathmessage = "crumples to dust."
+	death_message = "crumples to dust."
 
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG

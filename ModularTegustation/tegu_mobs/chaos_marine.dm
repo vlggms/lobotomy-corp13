@@ -26,8 +26,8 @@
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
 	gps_name = "Chaotic Signal"
-	deathmessage = "falls to the ground, decaying into glowing particles."
-	deathsound = "sound/magic/curse.ogg"
+	death_message = "falls to the ground, decaying into glowing particles."
+	death_sound = "sound/magic/curse.ogg"
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(/datum/action/innate/megafauna_attack/blood_dash,
 							   /datum/action/innate/megafauna_attack/teleport_b,
@@ -469,8 +469,8 @@
 	move_to_delay = 3
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	del_on_death = TRUE
-	deathmessage = "screams in agony as it sublimates into a sulfurous smoke."
-	deathsound = 'sound/magic/demon_dies.ogg'
+	death_message = "screams in agony as it sublimates into a sulfurous smoke."
+	death_sound = 'sound/magic/demon_dies.ogg'
 
 /mob/living/simple_animal/hostile/chaos/greater
 	name = "daemon"

@@ -29,7 +29,7 @@
 	can_patrol = FALSE
 	wander = FALSE
 	del_on_death = FALSE
-	deathmessage = "crumbles into bits."
+	death_message = "crumbles into bits."
 	attack_sound = 'sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg'
 	melee_damage_lower = 10
 	melee_damage_upper = 15

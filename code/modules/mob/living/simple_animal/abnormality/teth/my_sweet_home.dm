@@ -24,7 +24,7 @@
 	stat_attack = CONSCIOUS
 	attack_verb_continuous = "stomps"
 	attack_verb_simple = "stomp"
-	deathmessage = "crumbles."
+	death_message = "crumbles."
 	faction = list("hostile")
 	start_qliphoth = 1
 	var/ranged_damage = 15

@@ -27,8 +27,8 @@
 	pixel_x = -48
 	base_pixel_x = -48
 	del_on_death = FALSE
-	deathmessage = "reverts into a tiny, disgusting fetus-like creature."
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_message = "reverts into a tiny, disgusting fetus-like creature."
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	can_breach = TRUE
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 25,
