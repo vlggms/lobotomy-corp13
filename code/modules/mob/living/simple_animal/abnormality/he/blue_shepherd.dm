@@ -188,7 +188,7 @@
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		hired = FALSE
-	. = ..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	. = ..()
