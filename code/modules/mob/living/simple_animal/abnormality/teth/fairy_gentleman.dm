@@ -112,7 +112,7 @@
 	return
 
 //Breach Mechanics
-/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/BreachEffect(mob/living/carbon/human/user) //he flies
+/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/BreachEffect(mob/living/carbon/human/user, breach_type) //he flies
 	. = ..()
 	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
 	say(pick(angry))

@@ -217,8 +217,8 @@
 		DigestPerson(user)//becomes its "berserk" form; the user is assimilated into it
 
 //***Breach Mechanics***//
-/mob/living/simple_animal/hostile/abnormality/golden_apple/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/golden_apple/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = "gold_apple"
 	icon_living = "gold_apple"
 

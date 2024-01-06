@@ -320,7 +320,8 @@
 	BreachEffect()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = TRUE
 	if(!datum_reference)
 		friendly = FALSE
 	if(friendly)

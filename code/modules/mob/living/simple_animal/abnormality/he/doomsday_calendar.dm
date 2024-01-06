@@ -173,8 +173,8 @@
 	other_works_maximum = (4 + round(player_count / 6))
 
 //***Breach Mechanics***//
-/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/doomsday_calendar/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	icon_state = "doomsday_active"
 	forceMove(T)

@@ -241,8 +241,8 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/headless_ichthys/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/headless_ichthys/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	GiveTarget(user)
 	AddComponent(/datum/component/knockback, 2, FALSE, TRUE)

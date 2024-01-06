@@ -166,10 +166,10 @@
 	return
 
 /*** Breach Procs ***/
-/mob/living/simple_animal/hostile/abnormality/kqe/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/kqe/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE)) // Already breaching
-		return
-	..()
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/kqe/proc/Stagger()
 	can_act = FALSE

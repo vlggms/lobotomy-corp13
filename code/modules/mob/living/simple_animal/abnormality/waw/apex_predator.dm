@@ -85,8 +85,8 @@
 	work_damage_amount = initial(work_damage_amount)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/apex_predator/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/apex_predator/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	Cloak()
 	GiveTarget(user)
 

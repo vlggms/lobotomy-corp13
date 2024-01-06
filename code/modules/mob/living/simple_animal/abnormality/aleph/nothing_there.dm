@@ -386,10 +386,10 @@
 	disguise_as(user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/nothing_there/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
-	..()
+	. = ..()
 	soundloop.stop()
 	if(!istype(disguise))
 		next_transform = world.time + rand(30 SECONDS, 40 SECONDS)

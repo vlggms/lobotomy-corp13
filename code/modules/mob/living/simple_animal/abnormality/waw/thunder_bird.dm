@@ -236,8 +236,8 @@
 	return
 
 /*---Breach effects---*/
-/mob/living/simple_animal/hostile/abnormality/thunder_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	name = "Thunderbird"
 	icon_living = "thunderbird_breach"
 	icon_state = icon_living

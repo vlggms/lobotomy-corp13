@@ -67,8 +67,8 @@
 			INVOKE_ASYNC(src, .proc/TryJump)
 		return
 
-/mob/living/simple_animal/hostile/abnormality/babayaga/BreachEffect(mob/living/carbon/human/user)//copied my code from crumbling armor
-	..()
+/mob/living/simple_animal/hostile/abnormality/babayaga/BreachEffect(mob/living/carbon/human/user, breach_type)//copied my code from crumbling armor
+	. = ..()
 	icon_state = icon_aggro
 	pixel_x = -16
 	base_pixel_x = -16

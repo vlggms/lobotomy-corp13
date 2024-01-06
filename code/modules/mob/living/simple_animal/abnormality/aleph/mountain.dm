@@ -375,8 +375,8 @@
 
 /* Abnormality breach */
 
-/mob/living/simple_animal/hostile/abnormality/mountain/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/mountain/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	GiveTarget(user)
 	icon_living = "mosb_breach"
 	icon_state = icon_living

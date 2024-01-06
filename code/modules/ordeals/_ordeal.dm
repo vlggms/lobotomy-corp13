@@ -77,6 +77,7 @@
 
 /datum/ordeal/proc/OnMobDeath(mob/living/deadMob)
 	ordeal_mobs.Remove(deadMob)
+	listclearnulls(ordeal_mobs)
 	if(!ordeal_mobs.len)
 		End()
 	return
