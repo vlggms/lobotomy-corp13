@@ -99,8 +99,8 @@
 		return 0
 	return init_work_chance
 
-/mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_living = "schadenfreude_breach"
 	icon_state = icon_living
 	GiveTarget(user)

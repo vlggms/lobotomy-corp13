@@ -137,8 +137,8 @@
 	return
 
 /* Qliphoth/Breach effects */
-/mob/living/simple_animal/hostile/abnormality/alriune/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/alriune/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	petals_next = world.time + petals_next_time + 30
 	TeleportAway()
 	icon_state = "alriune_active"

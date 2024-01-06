@@ -85,7 +85,9 @@
 					break
 				count++
 			break
+		. = ..()
 		HealAlt()
+		return
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/Move()
@@ -98,6 +100,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/HealAlt()
+	set waitfor = FALSE
 	while (stat != DEAD)
 		for(var/mob/living/L in view(5, src))
 			L.adjustBruteLoss(-L.maxHealth*0.02)

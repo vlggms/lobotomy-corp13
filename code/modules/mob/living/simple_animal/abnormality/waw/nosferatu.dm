@@ -113,8 +113,8 @@
 	return
 
 //breach
-/mob/living/simple_animal/hostile/abnormality/nosferatu/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/nosferatu/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 50, 8) //big loud warning
 	addtimer(CALLBACK(src, .proc/BatSpawn), 5 SECONDS)

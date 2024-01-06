@@ -114,7 +114,7 @@
 				continue
 			new /obj/structure/amurdad_bomb(T)
 			bombs++
-		return
+		return TRUE
 	return ..()
 
 //Magic bullshit amurdad soil
@@ -365,7 +365,8 @@
 	var/obj/projectile/P = new /obj/projectile/needle(get_turf(src))
 
 	P.spread = 0
-	P.original = target
+	if(prob(25))
+		P.original = target // Allows roughly 25% of them to hit the activator who's prone
 	P.fired_from = src
 	P.firer = src
 	P.impacted = list(src = TRUE)
@@ -379,7 +380,7 @@
 	icon_state = "needle"
 	ricochet_chance = 60
 	ricochets_max = 2
-	damage = 3
+	damage = 1
 	damage_type = RED_DAMAGE
 	eyeblur = 2
 	ricochet_ignore_flag = TRUE

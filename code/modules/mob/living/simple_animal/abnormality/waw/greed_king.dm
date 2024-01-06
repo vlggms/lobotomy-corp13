@@ -93,8 +93,8 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/greed_king/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/greed_king/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	//Center it on a hallway
 	pixel_y = -8

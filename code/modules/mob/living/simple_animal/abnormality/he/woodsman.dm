@@ -290,8 +290,8 @@
 		to_chat(user, span_userdanger("Stands up!"))
 		datum_reference.qliphoth_change(-2)
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user)
-	.=..()
+/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	layer = LARGE_MOB_LAYER
 	icon_state = icon_living
 	if (!isnull(user))

@@ -146,8 +146,8 @@
 	return
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/norinori/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/norinori/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = icon_aggro
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	pixel_x = -8

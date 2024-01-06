@@ -218,8 +218,8 @@
 	qdel(chosenorgan)
 
 // Breach
-/mob/living/simple_animal/hostile/abnormality/sphinx/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/sphinx/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, TRUE)
 	GiveTarget(user)
 

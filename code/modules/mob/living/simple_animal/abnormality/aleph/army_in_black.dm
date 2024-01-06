@@ -138,7 +138,7 @@ GLOBAL_LIST_EMPTY(army)
 	return TRUE
 
 //*--Combat Mechanics--*
-/mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user, breach_type)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	FearEffect()
 	Blackify()
@@ -148,6 +148,7 @@ GLOBAL_LIST_EMPTY(army)
 	density = FALSE
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/army/proc/SpawnAdds()
 	var/list/spawns = shuffle(GLOB.xeno_spawn)

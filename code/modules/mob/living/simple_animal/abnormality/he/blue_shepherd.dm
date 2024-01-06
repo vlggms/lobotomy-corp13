@@ -176,7 +176,7 @@
 		Lying(buddy_abno, user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user, breach_type)
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE
@@ -188,7 +188,7 @@
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		hired = FALSE
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	. = ..()

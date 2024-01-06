@@ -134,8 +134,8 @@
 		playsound(get_turf(user), 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	ability_cooldown = world.time + 4 SECONDS
 	if(IsCombatMap())
 		return

@@ -187,7 +187,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
-	..()
+	. = ..()
 	deltimer(lying_timer)
 	icon_state = "redbuddy_active"
 

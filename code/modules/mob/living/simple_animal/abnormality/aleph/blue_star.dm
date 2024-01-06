@@ -120,8 +120,8 @@
 		QDEL_IN(user, 5)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	soundloop.start()
 	forceMove(T)

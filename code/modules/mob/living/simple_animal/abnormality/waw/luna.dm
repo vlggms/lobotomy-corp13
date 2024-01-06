@@ -113,9 +113,9 @@
 
 
 //Side Gamemodes stuff, should only ever be called outside of the main gamemode
-/mob/living/simple_animal/hostile/abnormality/luna/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+/mob/living/simple_animal/hostile/abnormality/luna/BreachEffect(mob/living/carbon/human/user, breach_type)
 	ZeroQliphoth()
-
+	return FALSE
 
 /* Monster Half */
 /mob/living/simple_animal/hostile/luna

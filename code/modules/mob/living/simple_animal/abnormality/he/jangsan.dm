@@ -135,8 +135,8 @@
 	KillCheck(petter)
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/jangsan/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/jangsan/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	if(!datum_reference.abno_radio)
 		AbnoRadio()
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
