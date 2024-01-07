@@ -51,7 +51,7 @@
 	var/list/transform_blacklist = list(
 		/mob/living/simple_animal/hostile/abnormality/hammer_light, /mob/living/simple_animal/hostile/abnormality/black_swan,
 		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird,
-		/mob/living/simple_animal/hostile/abnormality/red_shoes
+		/mob/living/simple_animal/hostile/abnormality/red_shoes,/mob/living/simple_animal/hostile/abnormality/seasons
 		)
 	var/datum/looping_sound/distortedform/soundloop
 	var/transformed = FALSE //We'll use this variable to check for whether or not to play the sound loop
