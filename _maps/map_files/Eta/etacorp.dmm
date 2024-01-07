@@ -54,7 +54,7 @@
 "ag" = (
 /obj/machinery/computer/extraction_cargo{
 	pixel_x = 5;
-	order_list = list(new /datum/data/extraction_cargo("Barrier Grenade Kit ", /obj/item/storage/box/barrier, 60, 1) = 1, new /datum/data/extraction_cargo("Forcefield Projector ", /obj/item/forcefield_projector, 150, 1) = 1, new /datum/data/extraction_cargo("Tracking Implant Kit ", /obj/item/storage/box/minertracker, 150, 1) = 1, new /datum/data/extraction_cargo("Command Projector ", /obj/item/commandprojector, 150, 1) = 1, new /datum/data/extraction_cargo("'DEEPSCAN' Kit ", /obj/item/deepscanner, 150, 1) = 1, new /datum/data/extraction_cargo("Qliphoth Field Projector ", /obj/item/powered_gadget/slowingtrapmk1, 150, 1) = 1, new /datum/data/extraction_cargo("Regenerator Augmentor ", /obj/item/safety_kit, 150, 1) = 1, new /datum/data/extraction_cargo("Drain Monitor ", /obj/item/powered_gadget/detector_gadget/abnormality, 200, 1) = 1, new /datum/data/extraction_cargo("Keen-Sense Rangefinder ", /obj/item/powered_gadget/detector_gadget/ordeal, 200, 1) = 1, new /datum/data/extraction_cargo("EMAISCapacity Upgrade ", /obj/item/hypo_upgrade/cap_increase, 200, 1) = 1, new /datum/data/extraction_cargo("Prototype Enkephalin Injector ", /obj/item/powered_gadget/enkephalin_injector, 200, 1) = 1, new /datum/data/extraction_cargo("Instant Clerkbot Constructor ", /obj/item/clerkbot_gadget, 250, 1) = 1, new /datum/data/extraction_cargo("Handheld Taser", /obj/item/powered_gadget/handheld_taser, 300, 1) = 1, new /datum/data/extraction_cargo("Vitals Projector ", /obj/item/powered_gadget/vitals_projector, 300, 1) = 1, new /datum/data/extraction_cargo("Shrimp Injector ", /obj/item/trait_injector/shrimp_injector, 300, 1) = 1, new /datum/data/extraction_cargo("EMAISAutoinjector ", /obj/item/reagent_containers/hypospray/emais, 300, 1) = 1, new /datum/data/extraction_cargo("W-Corp Teleporter ", /obj/item/powered_gadget/teleporter, 300, 1) = 1, new /datum/data/extraction_cargo("Officer Upgrade Injector ", /obj/item/trait_injector/officer_upgrade_injector, 400, 1) = 1, new /datum/data/extraction_cargo("Meson Scanner Goggles ", /obj/item/clothing/glasses/meson, 500, 1) = 1, new /datum/data/extraction_cargo("Gar Meson Scanner Goggles ", /obj/item/clothing/glasses/meson/gar, 600, 1) = 1, new /datum/data/extraction_cargo("Agent Work Chance Injector ", /obj/item/trait_injector/agent_workchance_trait_injector, 700, 1) = 1, new /datum/data/extraction_cargo("'Seclite' Flashlight ", /obj/item/flashlight/seclite, 30, 2) = 1, new /datum/data/extraction_cargo("Hunting Knife ", /obj/item/kitchen/knife/hunting, 30, 2) = 1, new /datum/data/extraction_cargo("Throwing Bola ", /obj/item/restraints/legcuffs/bola, 50, 2) = 1, new /datum/data/extraction_cargo("EGO Small Arms Belt ", /obj/item/storage/belt/ego, 50, 2) = 1, new /datum/data/extraction_cargo("Nitrile Gloves ", /obj/item/clothing/gloves/color/latex/nitrile, 50, 2) = 1, new /datum/data/extraction_cargo("Combat Webbing ", /obj/item/storage/belt/military, 60, 2) = 1, new /datum/data/extraction_cargo("EZ Light Replacer ", /obj/item/lightreplacer, 60, 2) = 1, new /datum/data/extraction_cargo("Push Broom ", /obj/item/pushbroom, 60, 2) = 1, new /datum/data/extraction_cargo("Super Power Cell ", /obj/item/stock_parts/cell/super, 150, 2) = 1, new /datum/data/extraction_cargo("Megaphone ", /obj/item/megaphone, 150, 2) = 1, new /datum/data/extraction_cargo("Binoculars ", /obj/item/binoculars, 200, 2) = 1, new /datum/data/extraction_cargo("Epinepherine Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen, 40, 3) = 1, new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/salacid, 50, 3) = 1, new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/mental, 50, 3) = 1, new /datum/data/extraction_cargo("Standard First-Aid Kit ", /obj/item/storage/firstaid/regular, 250, 3) = 1, new /datum/data/extraction_cargo("Naked Nest Cure Vial ", /obj/item/serpentspoison, 400, 3) = 1, new /datum/data/extraction_cargo("Orange Tree Flamer", /obj/item/gun/ego_gun/flammenwerfer, 500, 3) = 1, new /datum/data/extraction_cargo("Prosthetic Limb Crate ", /obj/structure/closet/crate/freezer/surplus_limbs, 500, 3) = 1, new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ", /obj/item/storage/firstaid/revival, 500, 3) = 1, new /datum/data/extraction_cargo("Blue Filter ", /obj/item/refiner_filter/blue, 10, 4) = 1, new /datum/data/extraction_cargo("Green Filter ", /obj/item/refiner_filter/green, 10, 4) = 1, new /datum/data/extraction_cargo("Red Filter ", /obj/item/refiner_filter/red, 10, 4) = 1, new /datum/data/extraction_cargo("Yellow Filter ", /obj/item/refiner_filter/yellow, 10, 4) = 1, new /datum/data/extraction_cargo("Raw PE Box ", /obj/item/rawpe, 50, 4) = 1, new /datum/data/extraction_cargo("Abnormality Chemistry Pack ", /obj/structure/closet/crate/science/abnochem_startercrate, 100, 4) = 1, new /datum/data/extraction_cargo("Chemical Extraction Upgrade ", /obj/item/chemical_extraction_attachment, 150, 4) = 1, new /datum/data/extraction_cargo("Mysterious Invitation ", /obj/item/invitation, 1500, 4) = 1, new /datum/data/extraction_cargo("Bubblegum Gum Packet ", /obj/item/storage/box/gum/bubblegum, 15, 5) = 1, new /datum/data/extraction_cargo("Cigar ", /obj/item/clothing/mask/cigarette/cigar/havana, 25, 5) = 1, new /datum/data/extraction_cargo("Beer ", /obj/item/reagent_containers/food/drinks/beer, 25, 5) = 1, new /datum/data/extraction_cargo("Spraycan ", /obj/item/toy/crayon/spraycan, 40, 5) = 1, new /datum/data/extraction_cargo("Magic 8-Ball ", /obj/item/toy/eightball, 70, 5) = 1, new /datum/data/extraction_cargo("Six-Pack ", /obj/item/storage/cans, 70, 5) = 1, new /datum/data/extraction_cargo("Fishing Equipment ", /obj/item/storage/box/fishing, 70, 5) = 1, new /datum/data/extraction_cargo("Whiskey ", /obj/item/reagent_containers/food/drinks/bottle/whiskey, 100, 5) = 1, new /datum/data/extraction_cargo("Absinthe ", /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium, 100, 5) = 1, new /datum/data/extraction_cargo("Skateboard ", /obj/item/melee/skateboard, 100, 5) = 1, new /datum/data/extraction_cargo("Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar, 100, 5) = 1, new /datum/data/extraction_cargo("Skub ", /obj/item/skub, 200, 5) = 1, new /datum/data/extraction_cargo("Gold Fishing Hook ", /obj/item/fishing_component/hook/shiny, 200, 5) = 1, new /datum/data/extraction_cargo("Reinforced Fishing Line ", /obj/item/fishing_component/line/reinforced, 200, 5) = 1, new /datum/data/extraction_cargo("1000 Ahn ", /obj/item/stack/spacecash/c1000, 200, 5) = 1, new /datum/data/extraction_cargo("Pet Whistle", /obj/item/pet_whistle, 200, 5) = 1, new /datum/data/extraction_cargo("Margherita Pizza ", /obj/item/food/pizza/margherita, 300, 5) = 1, new /datum/data/extraction_cargo("Super Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar/supergar, 500, 5) = 1, new /datum/data/extraction_cargo("Agent Captain's Cloak ", /obj/item/clothing/neck/cloak/hos/agent, 500, 5) = 1, new /datum/data/extraction_cargo("Agent Captain's Cap ", /obj/item/clothing/head/hos/agent, 500, 5) = 1, new /datum/data/extraction_cargo("Plushie Lootbox", /obj/item/plushgacha, 1000, 5) = 1, new /datum/data/extraction_cargo("Binah Doll ", /obj/item/toy/plush/binah, 1000, 5) = 1)
+	order_list = list(new /datum/data/extraction_cargo("Barrier Grenade Kit ", /obj/item/storage/box/barrier, 60, 1)=1,new/datum/data/extraction_cargo("Forcefield Projector ", /obj/item/forcefield_projector, 150, 1)=1,new/datum/data/extraction_cargo("Tracking Implant Kit ", /obj/item/storage/box/minertracker, 150, 1)=1,new/datum/data/extraction_cargo("Command Projector ", /obj/item/commandprojector, 150, 1)=1,new/datum/data/extraction_cargo("'DEEPSCAN' Kit ", /obj/item/deepscanner, 150, 1)=1,new/datum/data/extraction_cargo("Qliphoth Field Projector ", /obj/item/powered_gadget/slowingtrapmk1, 150, 1)=1,new/datum/data/extraction_cargo("Regenerator Augmentor ", /obj/item/safety_kit, 150, 1)=1,new/datum/data/extraction_cargo("Drain Monitor ", /obj/item/powered_gadget/detector_gadget/abnormality, 200, 1)=1,new/datum/data/extraction_cargo("Keen-Sense Rangefinder ", /obj/item/powered_gadget/detector_gadget/ordeal, 200, 1)=1,new/datum/data/extraction_cargo("EMAISCapacity Upgrade ", /obj/item/hypo_upgrade/cap_increase, 200, 1)=1,new/datum/data/extraction_cargo("Prototype Enkephalin Injector ", /obj/item/powered_gadget/enkephalin_injector, 200, 1)=1,new/datum/data/extraction_cargo("Instant Clerkbot Constructor ", /obj/item/clerkbot_gadget, 250, 1)=1,new/datum/data/extraction_cargo("Handheld Taser", /obj/item/powered_gadget/handheld_taser, 300, 1)=1,new/datum/data/extraction_cargo("Vitals Projector ", /obj/item/powered_gadget/vitals_projector, 300, 1)=1,new/datum/data/extraction_cargo("Shrimp Injector ", /obj/item/trait_injector/shrimp_injector, 300, 1)=1,new/datum/data/extraction_cargo("EMAISAutoinjector ", /obj/item/reagent_containers/hypospray/emais, 300, 1)=1,new/datum/data/extraction_cargo("W-Corp Teleporter ", /obj/item/powered_gadget/teleporter, 300, 1)=1,new/datum/data/extraction_cargo("Officer Upgrade Injector ", /obj/item/trait_injector/officer_upgrade_injector, 400, 1)=1,new/datum/data/extraction_cargo("Meson Scanner Goggles ", /obj/item/clothing/glasses/meson, 500, 1)=1,new/datum/data/extraction_cargo("Gar Meson Scanner Goggles ", /obj/item/clothing/glasses/meson/gar, 600, 1)=1,new/datum/data/extraction_cargo("Agent Work Chance Injector ", /obj/item/trait_injector/agent_workchance_trait_injector, 700, 1)=1,new/datum/data/extraction_cargo("'Seclite' Flashlight ", /obj/item/flashlight/seclite, 30, 2)=1,new/datum/data/extraction_cargo("Hunting Knife ", /obj/item/kitchen/knife/hunting, 30, 2)=1,new/datum/data/extraction_cargo("Throwing Bola ", /obj/item/restraints/legcuffs/bola, 50, 2)=1,new/datum/data/extraction_cargo("EGO Small Arms Belt ", /obj/item/storage/belt/ego, 50, 2)=1,new/datum/data/extraction_cargo("Nitrile Gloves ", /obj/item/clothing/gloves/color/latex/nitrile, 50, 2)=1,new/datum/data/extraction_cargo("Combat Webbing ", /obj/item/storage/belt/military, 60, 2)=1,new/datum/data/extraction_cargo("EZ Light Replacer ", /obj/item/lightreplacer, 60, 2)=1,new/datum/data/extraction_cargo("Push Broom ", /obj/item/pushbroom, 60, 2)=1,new/datum/data/extraction_cargo("Super Power Cell ", /obj/item/stock_parts/cell/super, 150, 2)=1,new/datum/data/extraction_cargo("Megaphone ", /obj/item/megaphone, 150, 2)=1,new/datum/data/extraction_cargo("Binoculars ", /obj/item/binoculars, 200, 2)=1,new/datum/data/extraction_cargo("Epinepherine Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen, 40, 3)=1,new/datum/data/extraction_cargo("Sal-Acid Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/salacid, 50, 3)=1,new/datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/mental, 50, 3)=1,new/datum/data/extraction_cargo("Standard First-Aid Kit ", /obj/item/storage/firstaid/regular, 250, 3)=1,new/datum/data/extraction_cargo("Naked Nest Cure Vial ", /obj/item/serpentspoison, 400, 3)=1,new/datum/data/extraction_cargo("Orange Tree Flamer", /obj/item/gun/ego_gun/flammenwerfer, 500, 3)=1,new/datum/data/extraction_cargo("Prosthetic Limb Crate ", /obj/structure/closet/crate/freezer/surplus_limbs, 500, 3)=1,new/datum/data/extraction_cargo("Assorted Medi-Pen Kit ", /obj/item/storage/firstaid/revival, 500, 3)=1,new/datum/data/extraction_cargo("Blue Filter ", /obj/item/refiner_filter/blue, 10, 4)=1,new/datum/data/extraction_cargo("Green Filter ", /obj/item/refiner_filter/green, 10, 4)=1,new/datum/data/extraction_cargo("Red Filter ", /obj/item/refiner_filter/red, 10, 4)=1,new/datum/data/extraction_cargo("Yellow Filter ", /obj/item/refiner_filter/yellow, 10, 4)=1,new/datum/data/extraction_cargo("Raw PE Box ", /obj/item/rawpe, 50, 4)=1,new/datum/data/extraction_cargo("Abnormality Chemistry Pack ", /obj/structure/closet/crate/science/abnochem_startercrate, 100, 4)=1,new/datum/data/extraction_cargo("Chemical Extraction Upgrade ", /obj/item/chemical_extraction_attachment, 150, 4)=1,new/datum/data/extraction_cargo("Mysterious Invitation ", /obj/item/invitation, 1500, 4)=1,new/datum/data/extraction_cargo("Bubblegum Gum Packet ", /obj/item/storage/box/gum/bubblegum, 15, 5)=1,new/datum/data/extraction_cargo("Cigar ", /obj/item/clothing/mask/cigarette/cigar/havana, 25, 5)=1,new/datum/data/extraction_cargo("Beer ", /obj/item/reagent_containers/food/drinks/beer, 25, 5)=1,new/datum/data/extraction_cargo("Spraycan ", /obj/item/toy/crayon/spraycan, 40, 5)=1,new/datum/data/extraction_cargo("Magic 8-Ball ", /obj/item/toy/eightball, 70, 5)=1,new/datum/data/extraction_cargo("Six-Pack ", /obj/item/storage/cans, 70, 5)=1,new/datum/data/extraction_cargo("Fishing Equipment ", /obj/item/storage/box/fishing, 70, 5)=1,new/datum/data/extraction_cargo("Whiskey ", /obj/item/reagent_containers/food/drinks/bottle/whiskey, 100, 5)=1,new/datum/data/extraction_cargo("Absinthe ", /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium, 100, 5)=1,new/datum/data/extraction_cargo("Skateboard ", /obj/item/melee/skateboard, 100, 5)=1,new/datum/data/extraction_cargo("Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar, 100, 5)=1,new/datum/data/extraction_cargo("Skub ", /obj/item/skub, 200, 5)=1,new/datum/data/extraction_cargo("Gold Fishing Hook ", /obj/item/fishing_component/hook/shiny, 200, 5)=1,new/datum/data/extraction_cargo("Reinforced Fishing Line ", /obj/item/fishing_component/line/reinforced, 200, 5)=1,new/datum/data/extraction_cargo("1000 Ahn ", /obj/item/stack/spacecash/c1000, 200, 5)=1,new/datum/data/extraction_cargo("Pet Whistle", /obj/item/pet_whistle, 200, 5)=1,new/datum/data/extraction_cargo("Margherita Pizza ", /obj/item/food/pizza/margherita, 300, 5)=1,new/datum/data/extraction_cargo("Super Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar/supergar, 500, 5)=1,new/datum/data/extraction_cargo("Agent Captain's Cloak ", /obj/item/clothing/neck/cloak/hos/agent, 500, 5)=1,new/datum/data/extraction_cargo("Agent Captain's Cap ", /obj/item/clothing/head/hos/agent, 500, 5)=1,new/datum/data/extraction_cargo("Plushie Lootbox", /obj/item/plushgacha, 1000, 5)=1,new/datum/data/extraction_cargo("Binah Doll ", /obj/item/toy/plush/binah, 1000, 5)=1)
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -270,6 +270,12 @@
 	resistance_flags = 115;
 	pixel_x = 32
 	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
 "bg" = (
@@ -318,7 +324,6 @@
 	set_luminosity = 24
 	},
 /obj/effect/landmark/department_center,
-/obj/machinery/navbeacon/wayfinding/trainingdepartment,
 /obj/structure/disposalpipe/junction/flip{
 	dir = 2
 	},
@@ -710,12 +715,8 @@
 /area/facility_hallway/training)
 "du" = (
 /obj/effect/landmark/department_center,
-/obj/machinery/navbeacon/wayfinding/controldepartment,
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
+/mob/living/simple_animal/bot/cleanbot{
+	desc = "Even in death, a clerk does their job."
 	},
 /obj/effect/turf_decal/bot,
 /obj/machinery/camera/autoname{
@@ -725,8 +726,11 @@
 	name = "hidden security camera";
 	mouse_opacity = 0
 	},
-/mob/living/simple_animal/bot/cleanbot{
-	desc = "Even in death, a clerk does their job."
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
 	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
@@ -2733,12 +2737,6 @@
 /obj/structure/chair/office{
 	dir = 1;
 	anchored = 1
-	},
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -4794,15 +4792,6 @@
 /obj/structure/kitchenspike,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
-"vc" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/safety)
 "vd" = (
 /obj/effect/turf_decal/siding/thinplating/dark/end{
 	dir = 4
@@ -5569,19 +5558,17 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "yx" = (
-/obj/effect/turf_decal/plaque{
-	alpha = 230;
-	icon_state = "LC16"
-	},
+/obj/effect/landmark/observer_start,
 /obj/effect/landmark/department_center,
+/mob/living/simple_animal/bot/cleanbot{
+	desc = "Even in death, a clerk does their job."
+	},
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 25;
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
-/obj/structure/disposalpipe/junction,
 /obj/machinery/camera/autoname{
 	alpha = 0;
 	short_range = 13;
@@ -5589,9 +5576,13 @@
 	name = "hidden security camera";
 	mouse_opacity = 0
 	},
-/obj/effect/landmark/observer_start,
+/obj/structure/disposalpipe/junction,
 /mob/living/simple_animal/bot/cleanbot{
 	desc = "Even in death, a clerk does their job."
+	},
+/obj/effect/turf_decal/plaque{
+	alpha = 230;
+	icon_state = "LC16"
 	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
@@ -5847,12 +5838,6 @@
 /obj/structure/chair/office{
 	dir = 4;
 	anchored = 1
-	},
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
@@ -7001,7 +6986,6 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/obj/machinery/navbeacon/wayfinding/informationdepartment,
 /obj/machinery/light/floor,
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/box/red,
@@ -7016,6 +7000,7 @@
 /mob/living/simple_animal/bot/cleanbot{
 	desc = "Even in death, a clerk does their job."
 	},
+/obj/structure/disposalpipe/junction/flip,
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
 	},
@@ -9754,6 +9739,12 @@
 	pixel_y = 32
 	},
 /obj/item/toy/plush/mosb,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
 "Qz" = (
@@ -10466,7 +10457,6 @@
 /area/facility_hallway/training)
 "Uo" = (
 /obj/effect/landmark/department_center,
-/obj/machinery/navbeacon/wayfinding/safetydepartment,
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 25;
@@ -52873,7 +52863,7 @@ Mh
 ga
 xN
 Qx
-vc
+qY
 xm
 xP
 PZ
@@ -55453,7 +55443,7 @@ zy
 qY
 vN
 qY
-vc
+qY
 qY
 Dq
 ga
