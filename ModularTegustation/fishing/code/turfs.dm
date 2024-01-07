@@ -25,7 +25,6 @@
 		/obj/narsie,
 		/obj/docking_port,
 		/obj/structure/lattice,
-		/obj/structure/stone_tile,
 		/obj/projectile,
 		/obj/effect/projectile,
 		/obj/effect/portal,
@@ -82,6 +81,7 @@
 /turf/open/water/deep/proc/IsSafe()
 	//if anything matching this typecache is found in the lava, we don't burn things
 	var/static/list/water_safeties_typecache = typecacheof(list(
+		/obj/vehicle/ridden/lavaboat,
 		/obj/structure/lattice/catwalk,
 		/obj/structure/stone_tile,
 		/obj/structure/lattice/lava,
@@ -97,16 +97,18 @@
 
 	if(IsSafe())
 		return FALSE
-
 	var/thing_to_check = src
-	if (AM)
+	if(AM)
 		thing_to_check = list(AM)
+	else
+		return FALSE
 	for(var/thing in thing_to_check)
+		//Conditional check for objects.
 		if(isobj(thing))
 			var/obj/O = thing
-			if(O.throwing)
-				continue
 			if(O.anchored)
+				continue
+			if(O.throwing)
 				continue
 			ObjSink(thing)
 			if(istype(O, /obj/item/food/fish || /obj/item/aquarium_prop))
@@ -114,11 +116,21 @@
 				qdel(O)
 				continue
 			. = 1
-			//This may cause issues later on. Without this people can sit on office chairs and push themselves into water with no negative effects except being warped. -IP
+			//Most closets are not watertight.
+			if(istype(O, /obj/structure/closet))
+				var/obj/structure/closet/locker = O
+				visible_message("<span class='notice'>[locker] is not watertight.</span>")
+				for(var/I in locker.contents)
+					if(isliving(I))
+						MobSink(I)
+			/* This may cause issues later on. Without this people can sit on office chairs
+				and push themselves into water with no negative effects except being warped.
+				This appears to just leave people on the shore with the item being
+				teleported. -IP */
 			if(O.has_buckled_mobs())
 				O.unbuckle_all_mobs()
 				visible_message("<span class='notice'>[O] capsizes.</span>")
-			if(O)
+			if(O && O.loc == src)
 				WarpSunkStuff(O)
 
 		else if (isliving(thing))
@@ -134,6 +146,7 @@
 				continue
 			if(L)
 				MobSink(L)
+				WarpSunkStuff(L)
 
 	//Overridable Unique Reaction. Currently only used to pollute water.
 /turf/open/water/deep/proc/ObjSink(atom/movable/sinkin_thing)
@@ -144,19 +157,18 @@
 
 	//Overridable Mob Reaction
 /turf/open/water/deep/proc/MobSink(mob/living/drowner)
-	//100 brute damage to living mobs. If they are human add 50 oxygen damage to them. May change this later on.
-	drowner.adjustBruteLoss(100)
+	//50 brute damage to living mobs. If they are human add 50 oxygen damage to them. May change this later on.
+	drowner.adjustBruteLoss(50)
 	if(ishuman(drowner))
 		var/mob/living/carbon/human/H = drowner
 		H.Paralyze(30)
 		H.adjustOxyLoss(50)
-		visible_message("<span class='boldwarning'>[H] sinks into the deep!</span>")
-		to_chat(H, pick(
-			"<span class='userdanger'>Something in the [src] grabs you and pulls you into the darkness. Your eyes burn as the light becomes fainter and the deep darkness begins circle around you.</span>",
-			"<span class='userdanger'>The fluid around you starts crawling into your mouth.</span>",
-			"<span class='userdanger'>You feel a sudden sting, then everything goes numb.</span>"))
-	WarpSunkStuff(drowner)
 
+/* Currently water warps things to a random department but for other non Lobotomy Corp maps
+	It would be more helpful if the items were kept at sea for a few moments before teleporting
+	to a shore tile. But this also requires the existance of shore tiles and a place to fit
+	shore tiles. It would be funny to just go to the beach and corpses and items are just
+	teleported there because they fell into the water. -IP */
 /turf/open/water/deep/proc/WarpSunkStuff(atom/movable/thing)
 	//Randomize department that the water dumps you at, and also delay sound so that several items being placed into the deep dont scream.
 	if(sound_delay <= world.time)
@@ -165,6 +177,12 @@
 		//Might be redundant to randomize the location every time. -IP
 		WashedOnTheShore()
 	if(thing)
+		if(ishuman(thing))
+			visible_message("<span class='boldwarning'>[thing] sinks into the deep!</span>")
+			to_chat(thing, pick(
+				"<span class='userdanger'>Something in the [src] grabs you and pulls you into the darkness. Your eyes burn as the light becomes fainter and the deep darkness begins circle around you.</span>",
+				"<span class='userdanger'>The fluid around you starts crawling into your mouth.</span>",
+				"<span class='userdanger'>You feel a sudden sting, then everything goes numb.</span>"))
 		thing.forceMove(target_turf)
 
 	//Proc to randomize target_turf
