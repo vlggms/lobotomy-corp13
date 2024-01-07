@@ -327,9 +327,10 @@
 		SLEEP_CHECK_DEATH(1 SECONDS)
 		say("...If I earned a name, will I get to receive love and hate from you? Will you remember me as that name, as someone whom you emotionally cared for?")
 		SLEEP_CHECK_DEATH(1 SECONDS)
+		name = "Oberon"
 		say("Then yes, I am the Oberon you seek.")
 		SLEEP_CHECK_DEATH(1 SECONDS)
-			Oberon_Fusion(T)
+		Oberon_Fusion(T)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Oberon_Fusion(mob/living/simple_animal/hostile/abnormality/titania/T)
 		abno_host = T
@@ -337,7 +338,6 @@
 		T.is_flying_animal = FALSE
 		T.density = FALSE
 		T.forceMove(src)
-		name = "Oberon"
 		can_act = TRUE
 		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
