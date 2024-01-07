@@ -337,6 +337,7 @@
 /mob/living/simple_animal/bot/cleanbot{
 	desc = "Even in death, a clerk does their job."
 	},
+/obj/machinery/navbeacon/wayfinding/trainingdepartment,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
 	name = "floor"
@@ -732,6 +733,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/machinery/navbeacon/wayfinding/controldepartment,
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -5584,6 +5586,7 @@
 	alpha = 230;
 	icon_state = "LC16"
 	},
+/obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -7001,6 +7004,7 @@
 	desc = "Even in death, a clerk does their job."
 	},
 /obj/structure/disposalpipe/junction/flip,
+/obj/machinery/navbeacon/wayfinding/informationdepartment,
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
 	},
@@ -10474,6 +10478,7 @@
 /mob/living/simple_animal/bot/cleanbot{
 	desc = "Even in death, a clerk does their job."
 	},
+/obj/machinery/navbeacon/wayfinding/safetydepartment,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
 	name = "floor"
