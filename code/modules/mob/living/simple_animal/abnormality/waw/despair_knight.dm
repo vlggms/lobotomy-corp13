@@ -20,6 +20,7 @@
 	death_sound = 'sound/abnormalities/despairknight/dead.ogg'
 	threat_level = WAW_LEVEL
 	can_patrol = FALSE
+	can_breach = TRUE
 	start_qliphoth = 1
 	move_to_delay = 4
 
