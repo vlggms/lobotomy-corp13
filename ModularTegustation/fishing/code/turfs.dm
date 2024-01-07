@@ -13,8 +13,6 @@
 		This is a variable because some people may want water to work as
 		a portal to somewhere.*/
 	var/turf/target_turf
-	//If the turf is safe (wont make you sink when you enter it)
-	var/safe = FALSE
 	//If the target_turf is randomized.
 	var/static_target = FALSE
 	//Sound delay so we dont get splash spam.
@@ -46,6 +44,23 @@
 	. = ..()
 	WashedOnTheShore()
 
+/* These three procs are stolen from lava.dm. Basically when something enters the turf starts processing
+	and checking if the thing can have the turfs ability used on it IE melting things. If sink stuff returns
+	False it stops checking and accepts that the thing is immune to its ability. If it returns true it will
+	use its ability until that thing is gone.*/
+/turf/open/water/deep/Entered(atom/movable/AM)
+	if(SinkStuff(AM))
+		START_PROCESSING(SSobj, src)
+
+/turf/open/water/deep/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	if(SinkStuff(AM))
+		START_PROCESSING(SSobj, src)
+
+/turf/open/water/deep/process(delta_time)
+	if(!SinkStuff(null, delta_time))
+		STOP_PROCESSING(SSobj, src)
+
+//This is to prevent Mob AI from just walking into it. Works some of the time. -IP
 /turf/open/water/deep/CanAllowThrough(atom/movable/AM, turf/target)
 	. = ..()
 	return TRUE
@@ -61,38 +76,98 @@
 			return
 	..()
 
-/turf/open/water/deep/Entered(atom/movable/thing, atom/oldLoc) //Sinking Code
-	. = ..()
-	if(safe) // if this turf is in fact safe (currently only used for piscine mermaid)
-		return
-	if(!target_turf || is_type_in_typecache(thing, forbidden_types) || (thing.throwing && !istype(thing, /obj/item/food/fish || /obj/item/aquarium_prop )) || (thing.movement_type & (FLOATING|FLYING))) //replace this with a varient of chasm component sometime.
-		return
-	if(isliving(thing))
-		var/mob/living/L = thing
-		if(L.movement_type & FLYING)
-			return
-		//100 brute damage to living mobs. If they are human add 50 oxygen damage to them.
-		L.adjustBruteLoss(100)
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			H.Paralyze(30)
-			H.adjustOxyLoss(50)
-			visible_message("<span class='boldwarning'>[H] sinks into the deep!</span>")
-			to_chat(H, pick("<span class='userdanger'>Something in the [src] grabs you and pulls you into the darkness. Your eyes burn as the light becomes fainter and the deep darkness begins circle around you.</span>", "<span class='userdanger'>The fluid around you starts crawling into your mouth.</span>", "<span class='userdanger'>You feel a sudden sting, then everything goes numb.</span>"))
-		//Things that become lost in the deep. Objects like fish can be thrown into the deep. However some objects result in pollution.
-	else if(isitem(thing) || istype(thing, /obj/effect/decal/cleanable))
-		if(istype(thing, /obj/item/food/fish/emulsijack) && !istype(src, /turf/open/water/deep/polluted))
-			//Become polluted.
-			TerraformTurf(/turf/open/water/deep/polluted)
-		qdel(thing)
+//Stolen lava code -IP
+
+	//This IsSafe proc checks if there is a structure in place that will prevent the proc after this from running.
+/turf/open/water/deep/proc/IsSafe()
+	//if anything matching this typecache is found in the lava, we don't burn things
+	var/static/list/water_safeties_typecache = typecacheof(list(
+		/obj/structure/lattice/catwalk,
+		/obj/structure/stone_tile,
+		/obj/structure/lattice/lava,
+		//If anyone asks yes walking on nets is SORT of intended. -IP
+		/obj/structure/destructible/fishing_net
+		))
+	var/list/found_safeties = typecache_filter_list(contents, water_safeties_typecache)
+	return LAZYLEN(found_safeties)
+
+	//If this proc returns TRUE then the turf will continue rerunning the proc until the item is gone or immune.
+/turf/open/water/deep/proc/SinkStuff(AM, delta_time = 1)
+	. = 0
+
+	if(IsSafe())
+		return FALSE
+
+	var/thing_to_check = src
+	if (AM)
+		thing_to_check = list(AM)
+	for(var/thing in thing_to_check)
+		if(isobj(thing))
+			var/obj/O = thing
+			if(O.throwing)
+				continue
+			if(O.anchored)
+				continue
+			ObjSink(thing)
+			if(istype(O, /obj/item/food/fish || /obj/item/aquarium_prop))
+				//Fish exit the game world and enter the water world.
+				qdel(O)
+				continue
+			. = 1
+			//This may cause issues later on. Without this people can sit on office chairs and push themselves into water with no negative effects except being warped. -IP
+			if(O.has_buckled_mobs())
+				O.unbuckle_all_mobs()
+				visible_message("<span class='notice'>[O] capsizes.</span>")
+			if(O)
+				WarpSunkStuff(O)
+
+		else if (isliving(thing))
+			. = 1
+			var/mob/living/L = thing
+			if(L.movement_type & (FLOATING|FLYING))
+				continue	//YOU'RE FLYING OVER IT
+			if(L.throwing)
+				continue	//You can jump over water
+			var/buckle_check = L.buckled
+			//Your stuck to something that isnt sinking
+			if(isobj(buckle_check))
+				continue
+			if(L)
+				MobSink(L)
+
+	//Overridable Unique Reaction. Currently only used to pollute water.
+/turf/open/water/deep/proc/ObjSink(atom/movable/sinkin_thing)
+	if(istype(sinkin_thing, /obj/item/food/fish/emulsijack))
+		//Become polluted.
+		TerraformTurf(/turf/open/water/deep/polluted)
+		return TRUE
+
+	//Overridable Mob Reaction
+/turf/open/water/deep/proc/MobSink(mob/living/drowner)
+	//100 brute damage to living mobs. If they are human add 50 oxygen damage to them. May change this later on.
+	drowner.adjustBruteLoss(100)
+	if(ishuman(drowner))
+		var/mob/living/carbon/human/H = drowner
+		H.Paralyze(30)
+		H.adjustOxyLoss(50)
+		visible_message("<span class='boldwarning'>[H] sinks into the deep!</span>")
+		to_chat(H, pick(
+			"<span class='userdanger'>Something in the [src] grabs you and pulls you into the darkness. Your eyes burn as the light becomes fainter and the deep darkness begins circle around you.</span>",
+			"<span class='userdanger'>The fluid around you starts crawling into your mouth.</span>",
+			"<span class='userdanger'>You feel a sudden sting, then everything goes numb.</span>"))
+	WarpSunkStuff(drowner)
+
+/turf/open/water/deep/proc/WarpSunkStuff(atom/movable/thing)
 	//Randomize department that the water dumps you at, and also delay sound so that several items being placed into the deep dont scream.
 	if(sound_delay <= world.time)
 		playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
 		sound_delay = world.time + (3 SECONDS)
+		//Might be redundant to randomize the location every time. -IP
 		WashedOnTheShore()
-	thing.forceMove(target_turf)
+	if(thing)
+		thing.forceMove(target_turf)
 
-//Proc to randomize target_turf
+	//Proc to randomize target_turf
 /turf/open/water/deep/proc/WashedOnTheShore()
 	if(!static_target)
 		if(GLOB.department_centers.len > 0)
@@ -100,7 +175,7 @@
 		else
 			target_turf = get_turf(src)
 
-	//How this works is that it returns a list with a divided chance for anything lower than the maximum
+	//FOR FISHING: How this works is that it returns a list with a divided chance for anything lower than the maximum
 /turf/open/water/deep/proc/ReturnChanceList(maximum = FISH_RARITY_BASIC)
 	var/list/altered_loot_list = environment.Copy()
 	for(var/atom in altered_loot_list)
@@ -195,10 +270,17 @@
 		/mob/living/simple_animal/hostile/shrimp = 100
 		)
 
+/turf/open/water/deep/polluted/ObjSink(atom/movable/sinkin_thing)
+	return TRUE
+
+/* Change this later so that it is not a subtype since the variable is in the deep type.
+	Safe subtype isnt nessesary since it pre sets safe to TRUE when we can just set it to
+	true individually.-IP*/
+
 /**
  * Safe turfs, they wont sink you when you enter them
  */
 
-/turf/open/water/deep/saltwater/safe
-	safe = TRUE
+/turf/open/water/deep/saltwater/safe/IsSafe()
+	return TRUE
 
