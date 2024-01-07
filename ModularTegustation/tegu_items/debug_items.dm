@@ -72,6 +72,11 @@
 	ADD_TRAIT(user, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 	to_chat(user, span_nicegreen("Trait injected"))
 
+/obj/item/lc_debug/work_chance_injector/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	to_chat(user, span_nicegreen("Trait injected"))
+	to_chat(target, span_danger("You feel a tiny prick"))
+	ADD_TRAIT(target, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
+
 /**
  * Again, similar to /obj/item/trait_injector/clerk_fear_immunity_injector
  * and to everyone's suprise, this one is also un-restricted
@@ -88,6 +93,11 @@
 /obj/item/lc_debug/fear_immunity_injector/attack_self(mob/living/carbon/human/user)
 	ADD_TRAIT(user, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	to_chat(user, span_nicegreen("Trait injected"))
+
+/obj/item/lc_debug/fear_immunity_injector/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+	to_chat(user, span_nicegreen("Trait injected"))
+	to_chat(target, span_danger("You feel a tiny prick"))
+	ADD_TRAIT(target, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /**
  * An item used to get gifts of a particular abnormality by hitting it
@@ -129,8 +139,10 @@
 /obj/item/lc_debug/console_manipulator
 	name = "Abnormality work console manipulator"
 	desc = "A strange device that interacts with abnormality consoles in curious ways, banned by L-corp for its extremelly dangerous use cases"
-	icon_state = "oddity7"
+	icon_state = "watch_cobalt"
+	///The action you perform on the console itself in attack_obj()
 	var/selected_action = "Start a cell meltdown"
+	///The actions you can pick in the menu during attack_self()
 	var/avaible_actions = list(
 		"Start a cell meltdown",
 		"Force a cell meltdown",
@@ -141,7 +153,11 @@
 /obj/item/lc_debug/console_manipulator/examine(mob/user)
 	. = ..()
 	. += span_mind_control("When used in hand it will let you select an action to perform on an abnormality console")
-	. += span_mind_control("Currently: [selected_action]")
+	. += span_mind_control("\"Start a cell meltdown\" will simulate what happens if a random meltdown targets the console")
+	. += span_mind_control("\"Force a cell meltdown\" will simulate what happens at the end of a meltdown")
+	. += span_mind_control("\"Scramble work types\" will simulate the control supression's scramble")
+	. += span_mind_control("\"Force work result\" Will force a work result (for example: Good 12/12 PE)")
+	. += span_mind_control("Current action: [selected_action]")
 
 /obj/item/lc_debug/console_manipulator/attack_self(mob/living/carbon/human/user)
 	selected_action = input(user, "Select the action you want to perform on the console", "Console manipulator") as null|anything in avaible_actions
