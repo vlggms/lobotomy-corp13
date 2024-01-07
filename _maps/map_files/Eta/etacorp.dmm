@@ -53,7 +53,8 @@
 /area/facility_hallway/manager)
 "ag" = (
 /obj/machinery/computer/extraction_cargo{
-	pixel_x = 5
+	pixel_x = 5;
+	order_list = list(new /datum/data/extraction_cargo("Barrier Grenade Kit ", /obj/item/storage/box/barrier, 60, 1) = 1, new /datum/data/extraction_cargo("Forcefield Projector ", /obj/item/forcefield_projector, 150, 1) = 1, new /datum/data/extraction_cargo("Tracking Implant Kit ", /obj/item/storage/box/minertracker, 150, 1) = 1, new /datum/data/extraction_cargo("Command Projector ", /obj/item/commandprojector, 150, 1) = 1, new /datum/data/extraction_cargo("'DEEPSCAN' Kit ", /obj/item/deepscanner, 150, 1) = 1, new /datum/data/extraction_cargo("Qliphoth Field Projector ", /obj/item/powered_gadget/slowingtrapmk1, 150, 1) = 1, new /datum/data/extraction_cargo("Regenerator Augmentor ", /obj/item/safety_kit, 150, 1) = 1, new /datum/data/extraction_cargo("Drain Monitor ", /obj/item/powered_gadget/detector_gadget/abnormality, 200, 1) = 1, new /datum/data/extraction_cargo("Keen-Sense Rangefinder ", /obj/item/powered_gadget/detector_gadget/ordeal, 200, 1) = 1, new /datum/data/extraction_cargo("EMAISCapacity Upgrade ", /obj/item/hypo_upgrade/cap_increase, 200, 1) = 1, new /datum/data/extraction_cargo("Prototype Enkephalin Injector ", /obj/item/powered_gadget/enkephalin_injector, 200, 1) = 1, new /datum/data/extraction_cargo("Instant Clerkbot Constructor ", /obj/item/clerkbot_gadget, 250, 1) = 1, new /datum/data/extraction_cargo("Handheld Taser", /obj/item/powered_gadget/handheld_taser, 300, 1) = 1, new /datum/data/extraction_cargo("Vitals Projector ", /obj/item/powered_gadget/vitals_projector, 300, 1) = 1, new /datum/data/extraction_cargo("Shrimp Injector ", /obj/item/trait_injector/shrimp_injector, 300, 1) = 1, new /datum/data/extraction_cargo("EMAISAutoinjector ", /obj/item/reagent_containers/hypospray/emais, 300, 1) = 1, new /datum/data/extraction_cargo("W-Corp Teleporter ", /obj/item/powered_gadget/teleporter, 300, 1) = 1, new /datum/data/extraction_cargo("Officer Upgrade Injector ", /obj/item/trait_injector/officer_upgrade_injector, 400, 1) = 1, new /datum/data/extraction_cargo("Meson Scanner Goggles ", /obj/item/clothing/glasses/meson, 500, 1) = 1, new /datum/data/extraction_cargo("Gar Meson Scanner Goggles ", /obj/item/clothing/glasses/meson/gar, 600, 1) = 1, new /datum/data/extraction_cargo("Agent Work Chance Injector ", /obj/item/trait_injector/agent_workchance_trait_injector, 700, 1) = 1, new /datum/data/extraction_cargo("'Seclite' Flashlight ", /obj/item/flashlight/seclite, 30, 2) = 1, new /datum/data/extraction_cargo("Hunting Knife ", /obj/item/kitchen/knife/hunting, 30, 2) = 1, new /datum/data/extraction_cargo("Throwing Bola ", /obj/item/restraints/legcuffs/bola, 50, 2) = 1, new /datum/data/extraction_cargo("EGO Small Arms Belt ", /obj/item/storage/belt/ego, 50, 2) = 1, new /datum/data/extraction_cargo("Nitrile Gloves ", /obj/item/clothing/gloves/color/latex/nitrile, 50, 2) = 1, new /datum/data/extraction_cargo("Combat Webbing ", /obj/item/storage/belt/military, 60, 2) = 1, new /datum/data/extraction_cargo("EZ Light Replacer ", /obj/item/lightreplacer, 60, 2) = 1, new /datum/data/extraction_cargo("Push Broom ", /obj/item/pushbroom, 60, 2) = 1, new /datum/data/extraction_cargo("Super Power Cell ", /obj/item/stock_parts/cell/super, 150, 2) = 1, new /datum/data/extraction_cargo("Megaphone ", /obj/item/megaphone, 150, 2) = 1, new /datum/data/extraction_cargo("Binoculars ", /obj/item/binoculars, 200, 2) = 1, new /datum/data/extraction_cargo("Epinepherine Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen, 40, 3) = 1, new /datum/data/extraction_cargo("Sal-Acid Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/salacid, 50, 3) = 1, new /datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/mental, 50, 3) = 1, new /datum/data/extraction_cargo("Standard First-Aid Kit ", /obj/item/storage/firstaid/regular, 250, 3) = 1, new /datum/data/extraction_cargo("Naked Nest Cure Vial ", /obj/item/serpentspoison, 400, 3) = 1, new /datum/data/extraction_cargo("Orange Tree Flamer", /obj/item/gun/ego_gun/flammenwerfer, 500, 3) = 1, new /datum/data/extraction_cargo("Prosthetic Limb Crate ", /obj/structure/closet/crate/freezer/surplus_limbs, 500, 3) = 1, new /datum/data/extraction_cargo("Assorted Medi-Pen Kit ", /obj/item/storage/firstaid/revival, 500, 3) = 1, new /datum/data/extraction_cargo("Blue Filter ", /obj/item/refiner_filter/blue, 10, 4) = 1, new /datum/data/extraction_cargo("Green Filter ", /obj/item/refiner_filter/green, 10, 4) = 1, new /datum/data/extraction_cargo("Red Filter ", /obj/item/refiner_filter/red, 10, 4) = 1, new /datum/data/extraction_cargo("Yellow Filter ", /obj/item/refiner_filter/yellow, 10, 4) = 1, new /datum/data/extraction_cargo("Raw PE Box ", /obj/item/rawpe, 50, 4) = 1, new /datum/data/extraction_cargo("Abnormality Chemistry Pack ", /obj/structure/closet/crate/science/abnochem_startercrate, 100, 4) = 1, new /datum/data/extraction_cargo("Chemical Extraction Upgrade ", /obj/item/chemical_extraction_attachment, 150, 4) = 1, new /datum/data/extraction_cargo("Mysterious Invitation ", /obj/item/invitation, 1500, 4) = 1, new /datum/data/extraction_cargo("Bubblegum Gum Packet ", /obj/item/storage/box/gum/bubblegum, 15, 5) = 1, new /datum/data/extraction_cargo("Cigar ", /obj/item/clothing/mask/cigarette/cigar/havana, 25, 5) = 1, new /datum/data/extraction_cargo("Beer ", /obj/item/reagent_containers/food/drinks/beer, 25, 5) = 1, new /datum/data/extraction_cargo("Spraycan ", /obj/item/toy/crayon/spraycan, 40, 5) = 1, new /datum/data/extraction_cargo("Magic 8-Ball ", /obj/item/toy/eightball, 70, 5) = 1, new /datum/data/extraction_cargo("Six-Pack ", /obj/item/storage/cans, 70, 5) = 1, new /datum/data/extraction_cargo("Fishing Equipment ", /obj/item/storage/box/fishing, 70, 5) = 1, new /datum/data/extraction_cargo("Whiskey ", /obj/item/reagent_containers/food/drinks/bottle/whiskey, 100, 5) = 1, new /datum/data/extraction_cargo("Absinthe ", /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium, 100, 5) = 1, new /datum/data/extraction_cargo("Skateboard ", /obj/item/melee/skateboard, 100, 5) = 1, new /datum/data/extraction_cargo("Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar, 100, 5) = 1, new /datum/data/extraction_cargo("Skub ", /obj/item/skub, 200, 5) = 1, new /datum/data/extraction_cargo("Gold Fishing Hook ", /obj/item/fishing_component/hook/shiny, 200, 5) = 1, new /datum/data/extraction_cargo("Reinforced Fishing Line ", /obj/item/fishing_component/line/reinforced, 200, 5) = 1, new /datum/data/extraction_cargo("1000 Ahn ", /obj/item/stack/spacecash/c1000, 200, 5) = 1, new /datum/data/extraction_cargo("Pet Whistle", /obj/item/pet_whistle, 200, 5) = 1, new /datum/data/extraction_cargo("Margherita Pizza ", /obj/item/food/pizza/margherita, 300, 5) = 1, new /datum/data/extraction_cargo("Super Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar/supergar, 500, 5) = 1, new /datum/data/extraction_cargo("Agent Captain's Cloak ", /obj/item/clothing/neck/cloak/hos/agent, 500, 5) = 1, new /datum/data/extraction_cargo("Agent Captain's Cap ", /obj/item/clothing/head/hos/agent, 500, 5) = 1, new /datum/data/extraction_cargo("Plushie Lootbox", /obj/item/plushgacha, 1000, 5) = 1, new /datum/data/extraction_cargo("Binah Doll ", /obj/item/toy/plush/binah, 1000, 5) = 1)
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -1605,6 +1606,22 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
+"hx" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/south)
 "hy" = (
 /obj/effect/landmark/abnormality_spawn/training_rabbit,
 /obj/effect/turf_decal/box/red,
@@ -2318,21 +2335,19 @@
 	},
 /area/department_main/safety)
 "kG" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/east)
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/training)
 "kI" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -4404,22 +4419,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"td" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/south)
 "th" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
@@ -10243,19 +10242,21 @@
 /turf/open/floor/facility/dark,
 /area/department_main/training)
 "SY" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
+/obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "Tb" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/disposalpipe/segment{
@@ -42894,9 +42895,9 @@ FA
 zC
 zC
 tM
-SY
+kG
 oi
-SY
+kG
 JZ
 JZ
 mZ
@@ -43129,7 +43130,7 @@ KN
 KN
 KN
 Rr
-td
+hx
 Xz
 CT
 FY
@@ -43153,7 +43154,7 @@ GD
 Zh
 zC
 zC
-SY
+kG
 JZ
 wZ
 UI
@@ -43410,7 +43411,7 @@ zC
 zC
 zC
 zC
-SY
+kG
 JZ
 gh
 UI
@@ -43667,7 +43668,7 @@ Rs
 lU
 qC
 zC
-SY
+kG
 JZ
 vX
 UI
@@ -48251,7 +48252,7 @@ ME
 ME
 ME
 kL
-kG
+SY
 OF
 ts
 ZO
@@ -49536,7 +49537,7 @@ ME
 ME
 ME
 kL
-kG
+SY
 AP
 tI
 kL
