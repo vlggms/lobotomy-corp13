@@ -118,3 +118,64 @@
 	to_chat(user, span_nicegreen("[target.gift_message]"))
 	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 	to_chat(user, span_nicegreen("You aquire the [target]'s gift type"))
+
+/**
+ * An item used to test debugging features with work consoles of abnormalities
+ * REALLY usefull when trying to test something out
+ * This from all the other items, is a REAL problem if it gets to players
+ * So give it at your own discretion, once again <3
+ */
+
+/obj/item/lc_debug/console_manipulator
+	name = "Abnormality work console manipulator"
+	desc = "A strange device that interacts with abnormality consoles in curious ways, banned by L-corp for its extremelly dangerous use cases"
+	icon_state = "oddity7"
+	var/selected_action = "Start a cell meltdown"
+	var/avaible_actions = list(
+		"Start a cell meltdown",
+		"Force a cell meltdown",
+		"Scramble work types",
+		"Force work result",
+	)
+
+/obj/item/lc_debug/console_manipulator/examine(mob/user)
+	. = ..()
+	. += span_mind_control("When used in hand it will let you select an action to perform on an abnormality console")
+	. += span_mind_control("Currently: [selected_action]")
+
+/obj/item/lc_debug/console_manipulator/attack_self(mob/living/carbon/human/user)
+	selected_action = input(user, "Select the action you want to perform on the console", "Console manipulator") as null|anything in avaible_actions
+
+/obj/item/lc_debug/console_manipulator/attack_obj(obj/machinery/computer/abnormality/targeted_console, mob/living/carbon/human/user)
+	if(!istype(targeted_console, /obj/machinery/computer/abnormality))
+		to_chat(user, span_danger("ERROR: this manipulator only works on consoles"))
+		return
+
+	switch(selected_action)
+		if("Start a cell meltdown")
+			targeted_console.start_meltdown()
+
+		if("Force a cell meltdown")
+			targeted_console.qliphoth_meltdown_effect()
+
+		if("Scramble work types")
+			targeted_console.Scramble()
+
+		if("Force work result")
+			var/avaible_works = targeted_console.datum_reference.available_work
+			var/work_type = input(user, "Select what work type do you wish to simulate", "Console manipulator") as null|anything in avaible_works
+			var/success_boxes = input(user, "Select how many boxes did you \"make\"", "Console manipulator") as num|null
+			var/work_speed = input(user, "Select how long did it take for you to finish the work in seconds", "Console manipulator") as num|null
+			work_speed = work_speed * 10 // convert it into seconds
+
+			if(work_type == null || success_boxes == null) // they cancelled one of the prompts ;-;
+				to_chat(user, span_danger("ERROR: Work simulation failed, please select proper variables"))
+				return
+
+			targeted_console.meltdown = FALSE // Reset meltdown, without this the meltdown would instantly trigger
+			targeted_console.finish_work(user, work_type, success_boxes, work_speed)
+
+	to_chat(user, span_nicegreen("Console manipulated"))
+
+
+// /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete
