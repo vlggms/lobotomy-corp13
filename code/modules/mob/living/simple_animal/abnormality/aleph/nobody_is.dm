@@ -76,9 +76,9 @@
 
 	//Oberon shit
 	var/oberon_mode = FALSE
-	var/grab_damage_oberon = 100
-	var/strangle_damage_oberon = 25
-	var/melee_damage_oberon = 25
+	var/grab_damage_oberon = 140
+	var/strangle_damage_oberon = 35
+	var/melee_damage_oberon = 15
 	var/mob/living/simple_animal/hostile/abnormality/titania/abno_host
 	var/obj/effect/titania_aura/fairy_aura
 
@@ -344,10 +344,13 @@
 		add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
 		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.5))
 		maxHealth = 5000
-		melee_damage_lower = 50
+		adjustBruteLoss(-maxHealth) // It's not over yet!.
+		melee_damage_lower = 45
 		melee_damage_upper = 65
-		grab_damage = 200
-		strangle_damage = 50
+		grab_damage = 140
+		strangle_damage = 35
+		whip_damage = 15
+		whip_count = 6
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Move()
 	if(!can_act)
