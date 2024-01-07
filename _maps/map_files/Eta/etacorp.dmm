@@ -10,7 +10,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "ab" = (
 /obj/structure/table/reinforced,
 /obj/machinery/photocopier{
@@ -65,7 +65,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "ai" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
@@ -370,7 +370,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "bB" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -629,7 +629,7 @@
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "cZ" = (
 /obj/machinery/regenerator/safety,
 /obj/structure/window/reinforced/spawner,
@@ -1018,7 +1018,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "eK" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark,
@@ -1049,7 +1049,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "eR" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -1279,7 +1279,7 @@
 	icon = 'icons/obj/doors/airlocks/station/security.dmi'
 	},
 /turf/open/floor/facility/halls,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "gr" = (
 /obj/machinery/door/airlock/external/glass,
 /obj/effect/turf_decal/stripes/full,
@@ -1732,7 +1732,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "ik" = (
 /obj/effect/turf_decal/siding/thinplating/dark/end,
 /turf/open/floor/plasteel/dark,
@@ -1790,7 +1790,7 @@
 	pixel_x = 4
 	},
 /turf/open/floor/carpet/royalblack,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "ix" = (
 /obj/effect/turf_decal/siding/yellow/end,
 /obj/structure/chair/comfy/teal{
@@ -2354,7 +2354,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "kL" = (
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
@@ -2992,7 +2992,7 @@
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "np" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -3075,7 +3075,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "nJ" = (
 /obj/structure/chair/sofa/left{
 	dir = 4;
@@ -3219,7 +3219,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "of" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -3355,7 +3355,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "oQ" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115
@@ -3561,7 +3561,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "pE" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -3660,7 +3660,7 @@
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "qd" = (
 /obj/structure/table/wood/fancy/orange{
 	resistance_flags = 115
@@ -3809,7 +3809,7 @@
 	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "qJ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -4961,7 +4961,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "vR" = (
 /obj/machinery/light/floor,
 /turf/open/floor/facility/dark,
@@ -5004,7 +5004,7 @@
 	id = "extraction"
 	},
 /turf/open/floor/facility/halls,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "wh" = (
 /obj/machinery/sleeper/syndie{
 	dir = 8
@@ -5242,7 +5242,7 @@
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "xf" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
@@ -5429,7 +5429,7 @@
 	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "xW" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
@@ -5460,7 +5460,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "ya" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6258,7 +6258,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Bl" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -6541,7 +6541,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "CA" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 4
@@ -7304,7 +7304,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "FD" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -7397,7 +7397,7 @@
 /area/department_main/training)
 "Gj" = (
 /turf/open/floor/carpet/royalblack,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Gl" = (
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -7615,7 +7615,7 @@
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Hi" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC3"
@@ -7889,7 +7889,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "IB" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/disposalpipe/segment,
@@ -7930,7 +7930,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "IN" = (
 /obj/machinery/light{
 	dir = 1;
@@ -8051,7 +8051,7 @@
 	pixel_y = 4
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Jp" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
@@ -8341,7 +8341,7 @@
 	dir = 8
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Kx" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
@@ -8747,7 +8747,7 @@
 	pixel_y = -1
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Mf" = (
 /obj/effect/landmark/xeno_spawn,
 /obj/effect/turf_decal/bot_white,
@@ -8931,7 +8931,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Ni" = (
 /obj/effect/turf_decal/stripes/white/line,
 /obj/effect/turf_decal/stripes/white/line{
@@ -9229,7 +9229,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "OE" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/door/airlock{
@@ -9792,7 +9792,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "QP" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -10117,7 +10117,7 @@
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "SC" = (
 /obj/machinery/door/airlock{
 	name = "Safety Department";
@@ -10224,7 +10224,7 @@
 	mouse_opacity = 0
 	},
 /turf/open/floor/carpet/royalblack,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "SV" = (
 /turf/open/floor/mineral/titanium/purple{
 	color = "#E22303";
@@ -10832,7 +10832,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Wh" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
@@ -10928,7 +10928,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "WA" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
@@ -11006,7 +11006,7 @@
 "WW" = (
 /obj/effect/turf_decal/stripes/white/corner,
 /turf/open/floor/facility/dark,
-/area/facility_hallway/extraction)
+/area/department_main/extraction)
 "Xc" = (
 /obj/effect/landmark/toolspawn,
 /obj/effect/turf_decal/box/white,
@@ -36675,7 +36675,7 @@ xS
 ij
 aa
 Me
-hf
+xS
 Mh
 Mh
 Mh
@@ -36932,7 +36932,7 @@ xS
 Kv
 Iz
 oN
-hf
+xS
 Mh
 Mh
 Mh
