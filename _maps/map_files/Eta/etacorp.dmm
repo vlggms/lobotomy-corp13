@@ -1564,6 +1564,7 @@
 /obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
 /obj/item/crowbar/red,
+/obj/item/weldingtool/experimental,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "hp" = (
@@ -1606,22 +1607,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
-"hx" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/south)
 "hy" = (
 /obj/effect/landmark/abnormality_spawn/training_rabbit,
 /obj/effect/turf_decal/box/red,
@@ -2335,19 +2320,16 @@
 	},
 /area/department_main/safety)
 "kG" = (
-/obj/machinery/hydroponics/constructable,
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	pixel_x = -224
 	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
+/obj/structure/window/reinforced/spawner{
+	pixel_y = 25;
+	pixel_x = -224
 	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
+/turf/closed/indestructible/rock,
+/area/space)
 "kI" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -3236,16 +3218,20 @@
 	},
 /area/department_main/extraction)
 "of" = (
-/obj/structure/window/reinforced/spawner/east{
+/obj/structure/lattice/lava{
 	resistance_flags = 115;
-	pixel_x = -224
+	name = "heatproof reinforced glass floor";
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
 	},
-/obj/structure/window/reinforced/spawner{
-	pixel_y = 25;
-	pixel_x = -224
+/turf/open/lava{
+	color = "#006700";
+	name = "Unrefined Enkephalin";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	slowdown = 0
 	},
-/turf/closed/indestructible/rock,
-/area/space)
+/area/facility_hallway/south)
 "oi" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/brown{
@@ -3862,20 +3848,21 @@
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/information)
 "qN" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
 	},
-/area/facility_hallway/south)
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "qO" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC30"
@@ -4708,6 +4695,22 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
+"uG" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/south)
 "uJ" = (
 /obj/effect/turf_decal/caution/white{
 	pixel_y = -1
@@ -10242,21 +10245,19 @@
 /turf/open/floor/facility/dark,
 /area/department_main/training)
 "SY" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
+/obj/machinery/hydroponics/constructable,
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/east)
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/training)
 "Tb" = (
 /obj/effect/turf_decal/bot_red,
 /obj/structure/disposalpipe/segment{
@@ -10405,6 +10406,7 @@
 /obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
 /obj/item/crowbar/red,
+/obj/item/weldingtool/experimental,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "TX" = (
@@ -42895,9 +42897,9 @@ FA
 zC
 zC
 tM
-kG
+SY
 oi
-kG
+SY
 JZ
 JZ
 mZ
@@ -43130,7 +43132,7 @@ KN
 KN
 KN
 Rr
-hx
+uG
 Xz
 CT
 FY
@@ -43154,7 +43156,7 @@ GD
 Zh
 zC
 zC
-kG
+SY
 JZ
 wZ
 UI
@@ -43411,7 +43413,7 @@ zC
 zC
 zC
 zC
-kG
+SY
 JZ
 gh
 UI
@@ -43668,7 +43670,7 @@ Rs
 lU
 qC
 zC
-kG
+SY
 JZ
 vX
 UI
@@ -44151,7 +44153,7 @@ Xn
 Xn
 Xn
 sB
-qN
+of
 Qo
 GF
 cK
@@ -44665,7 +44667,7 @@ CA
 CA
 CA
 sB
-qN
+of
 Xr
 Qa
 AA
@@ -47004,7 +47006,7 @@ LA
 Rw
 Mh
 Mh
-of
+kG
 Mh
 Mh
 Mh
@@ -48252,7 +48254,7 @@ ME
 ME
 ME
 kL
-SY
+qN
 OF
 ts
 ZO
@@ -49537,7 +49539,7 @@ ME
 ME
 ME
 kL
-SY
+qN
 AP
 tI
 kL
