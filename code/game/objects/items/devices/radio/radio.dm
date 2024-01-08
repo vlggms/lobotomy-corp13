@@ -260,10 +260,8 @@
 
 	// Nearby active jammers prevent the message from transmitting
 	var/turf/position = get_turf(src)
-	for(var/obj/item/jammer/jammer in GLOB.active_jammers)
-		var/turf/jammer_turf = get_turf(jammer)
-		if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) <= jammer.range))
-			return
+	if(check_jammed(position))
+		return
 
 	// Determine the identity information which will be attached to the signal.
 	var/atom/movable/virtualspeaker/speaker = new(null, M, src)
@@ -289,6 +287,17 @@
 	// Non-subspace radios will check in a couple of seconds, and if the signal
 	// was never received, send a mundane broadcast (no headsets).
 	addtimer(CALLBACK(src, .proc/backup_transmission, signal), 20)
+
+/obj/item/radio/proc/check_jammed(turf/position)
+	for(var/obj/item/jammer/jammer in GLOB.active_jammers)
+		var/turf/jammer_turf = get_turf(jammer)
+		if(position.z == jammer_turf.z && (get_dist(position, jammer_turf) <= jammer.range))
+			return TRUE
+	for(var/obj/effect/radiojammer/radiojammer in GLOB.active_jammers)
+		var/turf/radiojammer_turf = get_turf(radiojammer)
+		if(position.z == radiojammer_turf.z && (get_dist(position, radiojammer_turf) <= radiojammer.range))
+			return TRUE
+	return FALSE
 
 /obj/item/radio/proc/backup_transmission(datum/signal/subspace/vocal/signal)
 	var/turf/T = get_turf(src)
