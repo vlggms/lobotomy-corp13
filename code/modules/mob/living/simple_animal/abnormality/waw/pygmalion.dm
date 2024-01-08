@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "pygmalion"
 	icon_living = "pygmalion"
+	portrait = "pygmalion"
 	faction = list("neutral")
 
 	pixel_x = -8

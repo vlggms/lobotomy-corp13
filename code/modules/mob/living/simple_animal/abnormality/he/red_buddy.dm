@@ -5,6 +5,7 @@
 	icon_state = "redbuddy"
 	icon_living = "redbuddy"
 	icon_dead = "redbuddy_dead"
+	portrait = "red_buddy"
 	del_on_death = FALSE
 	pixel_x = -8
 	base_pixel_x = -8

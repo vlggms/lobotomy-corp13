@@ -6,6 +6,7 @@
 	desc = "A girl with hair flowing over her eyes."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "penitent"
+	portrait = "penitent"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
