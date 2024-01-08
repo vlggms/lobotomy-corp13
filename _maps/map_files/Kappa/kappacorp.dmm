@@ -317,6 +317,7 @@
 "bE" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/turf_decal/trimline/purple/filled/warning,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel{
 	name = "anomalous floor";
 	slowdown = -0.3
@@ -330,13 +331,13 @@
 /area/department_main/command)
 "bM" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 5
 	},
-/turf/open/floor/plating/ironsand{
-	name = "anomalous sand";
-	slowdown = -0.3
+/turf/closed/indestructible/reinforced{
+	name = "facility wall";
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
-/area/department_main/command)
+/area/department_main/information)
 "bR" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -1178,9 +1179,6 @@
 /obj/item/lightreplacer,
 /obj/item/lightreplacer,
 /obj/item/lightreplacer,
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
@@ -1532,7 +1530,6 @@
 	},
 /area/facility_hallway/training)
 "ir" = (
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
 "it" = (
@@ -2267,14 +2264,19 @@
 /turf/open/floor/pod,
 /area/facility_hallway/control)
 "me" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/delivery/red,
 /obj/structure/disposalpipe/segment{
-	dir = 6
+	dir = 4
 	},
-/turf/open/floor/plating/ironsand{
-	name = "anomalous sand";
-	slowdown = -0.3
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
 	},
-/area/department_main/command)
+/area/facility_hallway/command)
 "mh" = (
 /obj/machinery/stasis/survival_pod,
 /obj/effect/turf_decal/siding/green{
@@ -2593,15 +2595,17 @@
 	},
 /area/facility_hallway/training)
 "mH" = (
-/obj/effect/turf_decal/sand,
+/obj/effect/turf_decal/arrows/red{
+	dir = 1
+	},
+/obj/machinery/conveyor_switch/oneway{
+	id = "1"
+	},
 /obj/structure/disposalpipe/segment{
-	dir = 9
+	dir = 4
 	},
-/turf/open/floor/plasteel{
-	name = "anomalous floor";
-	slowdown = -0.3
-	},
-/area/department_main/command)
+/turf/open/floor/facility/dark,
+/area/facility_hallway/command)
 "mI" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 8;
@@ -3643,10 +3647,9 @@
 	},
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
-	opacity = 0
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
-/area/department_main/command)
+/area/department_main/information)
 "rO" = (
 /obj/structure/bookcase/random{
 	pixel_y = 15;
@@ -5254,7 +5257,7 @@
 	pixel_y = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 9
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
@@ -5491,12 +5494,18 @@
 	},
 /area/department_main/training)
 "Ay" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plating/ironsand{
-	name = "anomalous sand";
-	slowdown = -0.3
+/obj/structure/disposaloutlet{
+	dir = 4;
+	pixel_x = -7;
+	resistance_flags = 115
 	},
-/area/department_main/command)
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/command)
 "AA" = (
 /obj/machinery/computer/abnormality_archive{
 	dir = 1;
@@ -5945,6 +5954,9 @@
 	max_integrity = 500;
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/facility/halls,
 /area/department_main/information)
 "DC" = (
@@ -5984,9 +5996,7 @@
 	pixel_x = -10;
 	density = 0
 	},
-/obj/structure/filingcabinet/tethinfo{
-	density = 0
-	},
+/obj/structure/filingcabinet/tethinfo,
 /obj/structure/filingcabinet/heinfo{
 	pixel_x = 10;
 	density = 0
@@ -6170,9 +6180,12 @@
 /area/facility_hallway/records)
 "EG" = (
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 10
 	},
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/reinforced{
+	name = "facility wall";
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	},
 /area/facility_hallway/command)
 "EH" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
@@ -6319,14 +6332,24 @@
 /turf/open/floor/pod/dark,
 /area/department_main/information)
 "Fo" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/turf/open/floor/plating/ironsand{
-	name = "anomalous sand";
-	slowdown = -0.3
+/obj/machinery/camera{
+	alpha = 0;
+	short_range = 13;
+	name = "hidden security camera";
+	mouse_opacity = 0;
+	view_range = 13
 	},
-/area/department_main/command)
+/obj/structure/sign/departments/custodian{
+	pixel_y = 1
+	},
+/turf/open/floor/mineral/titanium/yellow,
+/area/facility_hallway/command)
 "Fr" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 28
@@ -7711,13 +7734,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/records)
-"Ms" = (
-/obj/machinery/door/airlock/glass,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/facility/halls,
-/area/facility_hallway/command)
 "Mu" = (
 /turf/open/floor/pod/dark,
 /area/department_main/training)
@@ -8317,15 +8333,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel{
 	name = "anomalous floor";
-	slowdown = -0.3
-	},
-/area/department_main/command)
-"Pu" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/plating/ironsand{
-	name = "anomalous sand";
 	slowdown = -0.3
 	},
 /area/department_main/command)
@@ -9002,6 +9009,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel{
 	name = "anomalous floor";
 	slowdown = -0.3
@@ -9597,19 +9605,8 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
-"Wh" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
-	},
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
-	},
-/area/facility_hallway/safety)
 "Wi" = (
 /obj/machinery/door/airlock/glass,
-/obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
 /area/facility_hallway/command)
 "Wk" = (
@@ -9836,7 +9833,9 @@
 	name = "Information Department";
 	max_integrity = 500
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 4
+	},
 /turf/open/floor/facility/halls,
 /area/department_main/command)
 "XC" = (
@@ -10082,7 +10081,7 @@
 "YB" = (
 /obj/structure/bodycontainer/crematorium{
 	id = "cremawheat2";
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/button/crematorium/indestructible{
 	pixel_y = 6;
@@ -40364,7 +40363,7 @@ gl
 nO
 aL
 aL
-aL
+Us
 pQ
 pQ
 uh
@@ -40596,10 +40595,10 @@ bG
 bG
 bG
 bG
-me
-bM
-Ms
-EG
+bG
+bG
+Wi
+ir
 zf
 iQ
 nO
@@ -40853,11 +40852,11 @@ eZ
 eZ
 bG
 bG
-Pu
+bG
 bG
 Kk
 TW
-rm
+mH
 xQ
 nO
 SK
@@ -41110,11 +41109,11 @@ VA
 BJ
 hh
 HH
-Pu
+bG
 bG
 Kk
 ud
-vM
+me
 GO
 nO
 SK
@@ -41367,12 +41366,12 @@ va
 bG
 bG
 wG
-Pu
+bG
 bG
 Tm
 Tm
-Tm
-cA
+EG
+bM
 cA
 cA
 cA
@@ -41624,12 +41623,12 @@ va
 BJ
 hh
 hh
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 ua
 iI
 Uw
@@ -41881,12 +41880,12 @@ bG
 BJ
 NQ
 hh
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 du
 Ua
 Aj
@@ -42138,12 +42137,12 @@ VZ
 eZ
 va
 bG
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 bn
 jc
 tS
@@ -42395,12 +42394,12 @@ bG
 bG
 bG
 bG
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 du
 sX
 Gw
@@ -42652,12 +42651,12 @@ bG
 BJ
 hh
 hh
-rL
+BJ
 BJ
 hh
 hh
 bG
-cA
+rL
 Fn
 iI
 nQ
@@ -42909,10 +42908,10 @@ ei
 ei
 cE
 cE
-mH
-va
-eZ
-eZ
+cE
+cE
+ei
+ei
 bE
 DB
 DL
@@ -43423,12 +43422,12 @@ va
 va
 eZ
 eZ
-qi
+eZ
 eZ
 eZ
 va
 Ee
-DB
+PB
 XC
 RX
 RX
@@ -43680,12 +43679,12 @@ iX
 BJ
 hh
 hh
-Pu
+bG
 bG
 BJ
 VA
 hh
-cA
+rL
 Fn
 iI
 Uw
@@ -43937,12 +43936,12 @@ bG
 BJ
 hh
 hh
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 du
 sX
 mI
@@ -44194,12 +44193,12 @@ bG
 bG
 va
 bG
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 bn
 jc
 tS
@@ -44451,12 +44450,12 @@ bG
 BJ
 hh
 hh
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 du
 Ua
 CM
@@ -44708,12 +44707,12 @@ va
 VA
 hh
 hh
-Pu
 bG
 bG
 bG
 bG
-cA
+bG
+rL
 sG
 iI
 oo
@@ -44965,12 +44964,12 @@ Fz
 BJ
 NQ
 hh
-Pu
+bG
 va
 Tm
 Tm
 Tm
-cA
+rL
 cA
 cA
 cA
@@ -45222,12 +45221,12 @@ BJ
 BJ
 NQ
 hh
-Pu
+bG
 bG
 Kk
 GS
 gJ
-vN
+Ay
 nO
 SK
 SK
@@ -45479,11 +45478,11 @@ bG
 bG
 bG
 bG
-Pu
+bG
 bG
 Kk
 OM
-cV
+ir
 iQ
 nO
 SK
@@ -45736,11 +45735,11 @@ bG
 bG
 bG
 bG
-Fo
-Ay
+bG
+bG
 Wi
 ir
-zf
+Fo
 iQ
 nO
 SK
@@ -45761,7 +45760,7 @@ gl
 nO
 aL
 aL
-aL
+Us
 pQ
 pQ
 uh
@@ -51118,7 +51117,7 @@ Ec
 Il
 Il
 Il
-Wh
+Ec
 hL
 Ol
 Cl
