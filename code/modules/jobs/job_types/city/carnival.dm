@@ -42,12 +42,12 @@
 	suit = null
 	l_pocket = null
 	ears = /obj/item/radio/headset/syndicatecity
-	glasses = /obj/item/clothing/glasses/hud/health/night
 	mask = /obj/item/clothing/mask/carnival_mask
 	gloves = /obj/item/clothing/gloves/color/black
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/medical, /obj/item/organ/eyes/robotic/nightvision, /obj/item/organ/ears/cybernetic/upgraded, /obj/item/organ/heart/cybernetic, /obj/item/organ/liver/cybernetic/tier2, /obj/item/organ/stomach/cybernetic/tier3,/obj/item/organ/tongue/robot)
 
 	backpack_contents = list(
-		/obj/item/silkknife = 1,
+		/obj/item/autosurgeon/organ/syndicate/carnival,
 		/obj/item/pda/roboticist = 1,
 		/obj/item/book/granter/crafting_recipe/weaving_armor = 1,
 		/obj/item/stack/sheet/silk/indigo_simple = 4,

@@ -266,3 +266,11 @@
 	name = "surgical toolset implant"
 	desc = "A set of surgical tools hidden behind a concealed panel on the user's arm."
 	contents = newlist(/obj/item/retractor/augment, /obj/item/hemostat/augment, /obj/item/cautery/augment, /obj/item/surgicaldrill/augment, /obj/item/scalpel/augment, /obj/item/circular_saw/augment, /obj/item/surgical_drapes)
+
+/obj/item/organ/cyberimp/arm/carnival
+	name = "silkweaving arm"
+	desc = "A crucial component of a carnival member, allowing them to eat and produce silk for their business."
+	contents = newlist(/obj/item/silkknife)
+
+/obj/item/organ/cyberimp/arm/toolset/l
+	zone = BODY_ZONE_L_ARM

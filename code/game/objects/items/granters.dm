@@ -462,7 +462,7 @@
 		/datum/crafting_recipe/green_silk_advanced
 	)
 	icon_state = "book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Our first steps into the world of silk!", "With this, I can become a true tailor...")
 
 /obj/item/book/granter/crafting_recipe/weaving_kurokumo
 	name = "Weaving Armor: Kurokumo Edition"
@@ -473,7 +473,7 @@
 		/datum/crafting_recipe/kurokumo_captain
 	)
 	icon_state = "kurokumo_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "A lightweight armor while still maintaining decent protection.", "There are details written on how to weave the perfect kimono.")
 
 /obj/item/book/granter/crafting_recipe/weaving_seven
 	name = "Weaving Armor: Seven Edition"
@@ -486,7 +486,7 @@
 		/datum/crafting_recipe/seven_dir
 	)
 	icon_state = "seven_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Decent armor made for intelligence collection and combat.", "There are footnotes on the pages on information collection, they are useless to you however..."
 
 /obj/item/book/granter/crafting_recipe/weaving_ncorp
 	name = "Weaving Armor: N-Corp Edition"
@@ -501,7 +501,7 @@
 		/datum/crafting_recipe/ncorp_pale_mark
 	)
 	icon_state = "n-corp_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Heavy duty armor made for physical combat against the unfaithful", "There are scribblings ranting about the purity of flesh, nonsense to a tailor like you...")
 
 /obj/item/book/granter/crafting_recipe/weaving_liu
 	name = "Weaving Armor: Liu Edition"
@@ -516,7 +516,7 @@
 		/datum/crafting_recipe/liu_officer_coat
 	)
 	icon_state = "liu_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "A armor that gives low protection while granting heavy psychological defense.", "You cannot understand why there are four variations of the same armor design...")
 
 /obj/item/book/granter/crafting_recipe/weaving_index
 	name = "Weaving Armor: Index Edition"
@@ -527,7 +527,7 @@
 		/datum/crafting_recipe/index_mess
 	)
 	icon_state = "index_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "This armor is designed for protection in all areas, so the prescript may always be delivered", "There seems to be a lot of disdain from the writer towards the Index, though this does not change the fact of the quality of the armor...")
 
 /obj/item/book/granter/crafting_recipe/weaving_zwei
 	name = "Weaving Armor: Zwei Edition"
@@ -540,7 +540,7 @@
 		/datum/crafting_recipe/zwei_dir
 	)
 	icon_state = "zwei_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Heavy, cumbersome armor made for the protection of the streets against the horrors of the night.", "This page has multiple warnings about this association and it's capabilites, surely this won't be a issue for you..."
 
 /obj/item/book/granter/crafting_recipe/weaving_shi
 	name = "Weaving Armor: Shi Edition"
@@ -554,7 +554,7 @@
 		/datum/crafting_recipe/shi_5_dir
 	)
 	icon_state = "shi_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "A armor that lets you freely maneuver while still possessing proper defense.", "A short explanation within this page explains how Section 5 armor trades it's defense for speed..."
 
 /obj/item/book/granter/crafting_recipe/weaving_blade
 	name = "Weaving Armor: Blade Lineage Edition"
@@ -565,10 +565,10 @@
 		/datum/crafting_recipe/blade_lineage_admin
 	)
 	icon_state = "blade_lineage_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "The sole purpose of this armor is movement and fast strikes, do not get hit while wearing it.", "You do not believe this armor is worth the trouble the Blade Lineage brings to you..."
 
 /obj/item/book/granter/crafting_recipe/weaving_advancedsilk
-	name = "Weaving Armor: Conversation Edition"
+	name = "Weaving Armor: Conversion Edition"
 	desc = "A weaving book that teaches you how to weave one type of silk into another. Carnival approved!"
 	crafting_recipe_types = list(
 		/datum/crafting_recipe/converted_green_silk_advanced,
@@ -583,4 +583,4 @@
 		/datum/crafting_recipe/converted_human_silk_elegant
 	)
 	icon_state = "advanced_silkweaving_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Who knew there were such ways of cutting and spinning silk.", "Perhaps with this knowledge we will not need to hunt as many as we did before...")

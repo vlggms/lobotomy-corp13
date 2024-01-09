@@ -412,6 +412,12 @@
 	if(!isnull(light_flags))
 		set_light_flags(light_flags)
 
+/obj/item/organ/eyes/robotic/nightvision
+	name = "nocturnal eyes"
+	desc = "These cybernetic eye implants will give you night vision. Acquiring one is quite difficult."
+	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_VISIBLE
+	flash_protect = FLASH_PROTECTION_SENSITIVE
+	see_in_dark = 8
 
 /obj/item/organ/eyes/moth
 	name = "moth eyes"
