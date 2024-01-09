@@ -1280,7 +1280,6 @@
 #include "code\game\objects\items\fixerskills\level3\battleready.dm"
 #include "code\game\objects\items\fixerskills\level3\bulletproof.dm"
 #include "code\game\objects\items\fixerskills\level3\hud.dm"
-#include "code\game\objects\items\fixerskills\level3\nightvis.dm"
 #include "code\game\objects\items\fixerskills\level4\healing.dm"
 #include "code\game\objects\items\fixerskills\level4\status_effects.dm"
 #include "code\game\objects\items\food\_food.dm"
