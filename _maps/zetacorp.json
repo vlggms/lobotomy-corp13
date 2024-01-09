@@ -1,14 +1,9 @@
 {
 	"version": 1,
-	"map_name": "Facility F-321 AQUATIC",
+	"map_name": "Facility F-987 ISLAND",
 	"map_path": "map_files/Zeta",
 	"map_file": [
 		"zetacorp.dmm"
-	],
-	"traits": [
-		{
-			"Baseturf": "/turf/open/floor/plating/asteroid"
-		}
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
@@ -16,5 +11,5 @@
 		"emergency": "emergency_alpha"
 	},
 	"minetype": "none",
-	"maptype": "fishing"
+	"maptype": "standard"
 }
