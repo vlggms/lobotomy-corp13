@@ -20,3 +20,21 @@
 	pixel_x = base_pixel_x
 	pixel_y = base_pixel_y
 	animate(src, alpha = 0, time = 13)
+
+/obj/effect/temp_visual/workcomplete  // Work complete effect
+	name = "work complete"
+	duration = 15
+	icon = 'icons/effects/160x96.dmi'
+	icon_state = "normal"
+	layer = ABOVE_ALL_MOB_LAYER
+	alpha = 200
+
+/obj/effect/temp_visual/workcomplete/Initialize(mapload, set_dir)
+	. = ..()
+	animate(src, alpha = 100, time = 5)
+	addtimer(CALLBACK(src,.proc/ResetAnim),5)
+
+/obj/effect/temp_visual/workcomplete/proc/ResetAnim()
+	animate(src, alpha = 200, time = 5)
+	sleep(5)
+	animate(src, alpha = 0, time = 5)

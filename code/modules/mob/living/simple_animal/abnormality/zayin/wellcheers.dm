@@ -62,6 +62,7 @@
 	SpawnConnectedStructure(/obj/structure/wellcheers_side_shrimp, -1)
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	var/obj/item/dropped_can
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
@@ -80,6 +81,7 @@
 
 // Death!
 /mob/living/simple_animal/hostile/abnormality/wellcheers/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	// Visual effects
 	for(var/obj/structure/wellcheers_side_shrimp/shrimp in datum_reference.connected_structures)
 		shrimp.ShrimpDance()

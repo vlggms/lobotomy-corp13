@@ -51,7 +51,7 @@
 	var/list/transform_blacklist = list(
 		/mob/living/simple_animal/hostile/abnormality/hammer_light, /mob/living/simple_animal/hostile/abnormality/black_swan,
 		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird,
-		/mob/living/simple_animal/hostile/abnormality/red_shoes,/mob/living/simple_animal/hostile/abnormality/seasons
+		/mob/living/simple_animal/hostile/abnormality/red_shoes,/mob/living/simple_animal/hostile/abnormality/seasons,/mob/living/simple_animal/hostile/abnormality/pisc_mermaid
 		)
 	var/datum/looping_sound/distortedform/soundloop
 	var/transformed = FALSE //We'll use this variable to check for whether or not to play the sound loop
@@ -117,16 +117,20 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/list/damtypes = list(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	for(var/damagetype in damtypes) // take 4 of every damage type every failed tick
 		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
-	return ..()
+	work_damage_type = pick(damtypes) //Displays a random work damage type every tick
+	WorkDamageEffect()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	addtimer(CALLBACK(src, .proc/CauseMelts), 10) //Delaying it prevents some bugs; call a meltdown on a bad result or failed stat check
 	return
 

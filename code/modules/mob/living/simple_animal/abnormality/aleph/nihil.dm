@@ -63,11 +63,13 @@
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nihil/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-2)
 	return
 
 //In the future, this negative qliphoth change will be tied to whether or not magical girls are present, based on work type..
 /mob/living/simple_animal/hostile/abnormality/nihil/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return

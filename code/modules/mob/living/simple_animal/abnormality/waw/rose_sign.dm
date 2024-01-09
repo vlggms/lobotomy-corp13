@@ -82,6 +82,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSIGHT || work_type == ABNORMALITY_WORK_REPRESSION)
 		return
 	datum_reference.qliphoth_change(-1)

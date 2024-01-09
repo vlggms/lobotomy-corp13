@@ -131,6 +131,7 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	datum_reference.qliphoth_change(-1)

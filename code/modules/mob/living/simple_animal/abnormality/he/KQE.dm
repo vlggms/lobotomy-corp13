@@ -162,6 +162,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/kqe/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

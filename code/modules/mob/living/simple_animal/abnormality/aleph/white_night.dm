@@ -192,6 +192,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
@@ -199,6 +200,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

@@ -196,9 +196,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	Apply_Sheen(user)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		Apply_Sheen(user)
 	else
@@ -206,6 +209,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
