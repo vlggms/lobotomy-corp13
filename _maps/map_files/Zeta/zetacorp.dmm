@@ -1349,9 +1349,7 @@
 	dir = 1;
 	pixel_y = 19
 	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
+/turf/open/floor/carpet/black,
 /area/department_main/records)
 "eq" = (
 /obj/item/fishing_rod,
