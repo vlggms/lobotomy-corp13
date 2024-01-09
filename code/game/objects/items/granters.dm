@@ -486,7 +486,7 @@
 		/datum/crafting_recipe/seven_dir
 	)
 	icon_state = "seven_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Decent armor made for intelligence collection and combat.", "There are footnotes on the pages on information collection, they are useless to you however..."
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Decent armor made for intelligence collection and combat.", "There are footnotes on the pages on information collection, they are useless to you however...")
 
 /obj/item/book/granter/crafting_recipe/weaving_ncorp
 	name = "Weaving Armor: N-Corp Edition"
@@ -540,7 +540,7 @@
 		/datum/crafting_recipe/zwei_dir
 	)
 	icon_state = "zwei_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Heavy, cumbersome armor made for the protection of the streets against the horrors of the night.", "This page has multiple warnings about this association and it's capabilites, surely this won't be a issue for you..."
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "Heavy, cumbersome armor made for the protection of the streets against the horrors of the night.", "This page has multiple warnings about this association and it's capabilites, surely this won't be a issue for you...")
 
 /obj/item/book/granter/crafting_recipe/weaving_shi
 	name = "Weaving Armor: Shi Edition"
@@ -554,7 +554,7 @@
 		/datum/crafting_recipe/shi_5_dir
 	)
 	icon_state = "shi_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "A armor that lets you freely maneuver while still possessing proper defense.", "A short explanation within this page explains how Section 5 armor trades it's defense for speed..."
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "A armor that lets you freely maneuver while still possessing proper defense.", "A short explanation within this page explains how Section 5 armor trades it's defense for speed...")
 
 /obj/item/book/granter/crafting_recipe/weaving_blade
 	name = "Weaving Armor: Blade Lineage Edition"
@@ -565,7 +565,7 @@
 		/datum/crafting_recipe/blade_lineage_admin
 	)
 	icon_state = "blade_lineage_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "The sole purpose of this armor is movement and fast strikes, do not get hit while wearing it.", "You do not believe this armor is worth the trouble the Blade Lineage brings to you..."
+	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!", "The sole purpose of this armor is movement and fast strikes, do not get hit while wearing it.", "You do not believe this armor is worth the trouble the Blade Lineage brings to you...")
 
 /obj/item/book/granter/crafting_recipe/weaving_advancedsilk
 	name = "Weaving Armor: Conversion Edition"
