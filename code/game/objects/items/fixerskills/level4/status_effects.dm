@@ -3,6 +3,7 @@
 	actionname = "Timestop"
 	name = "Level 4 Skill: Timestop"
 	level = 4
+	custom_premium_price = 2400
 
 /datum/action/cooldown/timestop
 	icon_icon = 'icons/hud/screen_skills.dmi'
@@ -15,9 +16,7 @@
 	. = ..()
 	if(!.)
 		return FALSE
-
 	if (owner.stat)
 		return FALSE
-
 	new /obj/effect/timestop(get_turf(owner), timestop_range, timestop_duration, list(owner))
 	StartCooldown()
