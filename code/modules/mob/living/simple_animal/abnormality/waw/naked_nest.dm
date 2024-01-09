@@ -46,16 +46,19 @@
 	var/origin_cooldown = 0
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	to_chat(user, span_notice("The serpents seem to avoid areas of their nest covered in this solution."))
 	new /obj/item/serpentspoison(get_turf(user))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(30 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(60 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return

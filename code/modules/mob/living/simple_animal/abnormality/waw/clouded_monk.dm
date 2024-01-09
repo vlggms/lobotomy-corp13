@@ -84,10 +84,12 @@
 /* Eventually there needs to be code here that causes it to breach when Yin gets too close. Yin is not implemented at this time. */
 //work code
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(25))
 		datum_reference.qliphoth_change(-1)
 	return

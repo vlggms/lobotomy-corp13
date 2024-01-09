@@ -185,6 +185,7 @@
 			Dine(user)
 
 /mob/living/simple_animal/hostile/abnormality/eris/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-3)
 	return
 

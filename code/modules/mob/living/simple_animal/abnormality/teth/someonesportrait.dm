@@ -38,6 +38,7 @@
 	DestroyLights()
 
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if (!(user.sanity_lost))
 		PanicUser(user, TRUE)
 

@@ -52,6 +52,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(user.stat != DEAD && istype(user))
 		if(user in protected_people)
 			return

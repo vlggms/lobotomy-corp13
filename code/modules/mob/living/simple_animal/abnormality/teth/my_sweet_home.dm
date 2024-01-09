@@ -61,6 +61,7 @@
 		playsound(get_turf(src), 'sound/abnormalities/sweethome/walk.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	to_chat(user, span_danger("It whispers in your mind..."))
 	if(prob(50))
 		to_chat(user, span_danger("...and you accept."))

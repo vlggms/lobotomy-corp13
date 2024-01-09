@@ -119,14 +119,14 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	.=..()
+	. = ..()
 	if(family_status[5] != TRUE)
 		family_status[5] = TRUE
 		BrotherOverlays()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	.=..()
+	. = ..()
 	if(family_status[4] != TRUE)
 		family_status[4] = TRUE
 		BrotherOverlays()

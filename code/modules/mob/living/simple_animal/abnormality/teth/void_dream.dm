@@ -124,6 +124,7 @@
 
 // Work stuff
 /mob/living/simple_animal/hostile/abnormality/voiddream/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

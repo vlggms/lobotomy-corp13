@@ -99,12 +99,14 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT && user.stat != DEAD && locate(/mob/living) in contents)
 		flick("wolf_sad", src)
 		SpewStomach()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	EatWorker(user)
 	return ..()

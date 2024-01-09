@@ -83,6 +83,7 @@
 		it in order to manually change its counter.
 		Remember this because this opens the way for
 		coders to call procs on things that are outside this entitiy.*/
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
