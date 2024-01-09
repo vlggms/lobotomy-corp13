@@ -3863,6 +3863,10 @@
 	},
 /turf/open/floor/facility/white,
 /area/city/fixers)
+"JI" = (
+/obj/structure/closet/crate/freezer/blood/human,
+/turf/open/indestructible/white,
+/area/city/shop)
 "JL" = (
 /obj/machinery/door/airlock/wood{
 	name = "old warehouse"
@@ -48050,7 +48054,7 @@ Hm
 OT
 Hh
 tH
-We
+JI
 aE
 Ol
 Ol
