@@ -515,6 +515,9 @@
 /obj/item/kirbyplants/photosynthetic{
 	anchored = 1
 	},
+/obj/machinery/camera/autoname{
+	dir = 1
+	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "dP" = (
@@ -2624,6 +2627,7 @@
 	pixel_y = 15
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera,
 /turf/open/floor/noslip,
 /area/facility_hallway/north)
 "tM" = (
@@ -6865,6 +6869,7 @@
 	pixel_y = 15
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/machinery/camera,
 /turf/open/floor/noslip,
 /area/facility_hallway/central)
 
