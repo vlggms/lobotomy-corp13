@@ -12861,13 +12861,10 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
-/obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
-	},
 /obj/effect/turf_decal/arrows/red{
 	dir = 8
 	},
+/obj/machinery/facility_holomap,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -14367,7 +14364,8 @@
 /area/department_main/information)
 "OG" = (
 /obj/machinery/facility_holomap{
-	dir = 8
+	dir = 4;
+	forced_zLevel = 2
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -49295,11 +49293,11 @@ uY
 MD
 pm
 Hn
-VQ
+Kc
 Ns
 ZJ
 An
-Kc
+VQ
 cm
 Oa
 Gl
