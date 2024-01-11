@@ -212,3 +212,19 @@
 	icon_state = "bough_bough"
 	move_force = INFINITY
 	pull_force = INFINITY
+
+/obj/effect/sled
+	name = "sleigh"
+	desc = "The sleigh with presents!"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "sled"
+	density = FALSE
+	anchored = TRUE
+
+/obj/effect/sled/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, .proc/FadeOut), 5)
+
+/obj/effect/sled/proc/FadeOut()
+	animate(src, alpha = 0, time = 5)
+	QDEL_IN(src, 5)
