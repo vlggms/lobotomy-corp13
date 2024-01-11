@@ -46,6 +46,8 @@
 		/datum/action/innate/abnormality_attack/rudolta_buff_slam
 	)
 
+	can_spawn = FALSE
+
 	var/can_act = TRUE
 	// Onrush vars
 	var/onrush_cooldown
