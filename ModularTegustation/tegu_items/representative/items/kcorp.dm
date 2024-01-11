@@ -61,7 +61,7 @@
 
 // For Asset Reclimation
 /obj/item/grenade/spawnergrenade/kcorpdrone
-	name = "K-Corp Drone Assmebly Grenade"
+	name = "K-Corp Drone Assembly Grenade"
 	desc = "A quick and easy method of storing K-Corp drones for combat situations. It keeps its orignal programing, hopefully you're a part of K-Corp."
 	icon_state = "delivery"
 	spawner_type = /mob/living/simple_animal/hostile/kcorp/drone
