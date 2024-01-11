@@ -495,6 +495,12 @@
 /datum/holiday/festive_season/greet()
 	return "Have a nice festive season!"
 
+/datum/holiday/festive_season/celebrate()
+	SSticker.OnRoundstart(CALLBACK(src, .proc/roundstart_celebrate))
+
+/datum/holiday/festive_season/proc/roundstart_celebrate()
+	SSabnormality_queue.possible_abnormalities[ALEPH_LEVEL][/mob/living/simple_animal/hostile/abnormality/rudolta_buff] = 1
+
 /datum/holiday/boxing
 	name = "Boxing Day"
 	begin_day = 26

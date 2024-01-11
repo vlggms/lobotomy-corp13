@@ -1345,6 +1345,11 @@
 	justice_bonus = 10
 	slot = EYE
 
+/datum/ego_gifts/christmas/buff
+	name = "Ultimate Christmas"
+	fortitude_bonus = 25
+	prudence_bonus = -5
+
 /**
  * Event EGO Gifts
  */
