@@ -106,6 +106,15 @@
 	spawn_level = 80
 	uses = 4	//Not at much.
 
+/obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level3
+	name = "Wcorp L3 teleport zone"
+	desc = "A authorized zone for teleporting in wcorp L3 agents."
+	flavour_text = "Your team is here for a special kind of cleanup. Clean any L-Corp personnel within the facility and retrieve stolen company property."
+	outfit = /datum/outfit/wcorp/level3
+	assignedrole = "L3"
+	spawn_level = 130 //They need it badly
+	uses = 20
+
 //Fixers
 /obj/effect/mob_spawn/human/supplypod/r_corp/zwei_call
 	name = "Zwei teleport zone"
