@@ -19,24 +19,16 @@
 	var/sound_delay = 0
 	//Lootlist of things for fishing.
 	var/list/environment = list(/obj/item/food/grown/harebell = 200)
-	var/list/static/forbidden_types = typecacheof(list(
+	//Things that just cant sink. Dont bother trying to sink them.
+	var/static/list/cant_sink_types = typecacheof(list(
+		/obj/effect,
 		/obj/singularity,
 		/obj/energy_ball,
 		/obj/narsie,
 		/obj/docking_port,
+		/obj/item/jammer/self_activated,
 		/obj/structure/lattice,
 		/obj/projectile,
-		/obj/effect/projectile,
-		/obj/effect/portal,
-		/obj/effect/abstract,
-		/obj/effect/hotspot,
-		/obj/effect/landmark,
-		/obj/effect/temp_visual,
-		/obj/effect/light_emitter/tendril,
-		/obj/effect/collapse,
-		/obj/effect/particle_effect/ion_trails,
-		/obj/effect/dummy/phased_mob,
-		/obj/effect/yinyang_dragon
 		))
 
 /turf/open/water/deep/Initialize()
@@ -48,10 +40,14 @@
 	False it stops checking and accepts that the thing is immune to its ability. If it returns true it will
 	use its ability until that thing is gone.*/
 /turf/open/water/deep/Entered(atom/movable/AM)
+	if(is_type_in_typecache(AM, cant_sink_types))
+		return
 	if(SinkStuff(AM))
 		START_PROCESSING(SSobj, src)
 
 /turf/open/water/deep/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+	if(is_type_in_typecache(AM, cant_sink_types))
+		return
 	if(SinkStuff(AM))
 		START_PROCESSING(SSobj, src)
 
@@ -67,7 +63,7 @@
 //For fishing nets.
 /turf/open/water/deep/attackby(obj/item/C, mob/user, params)
 	if(istype(C, /obj/item/fishing_net) && params)
-		to_chat(user, "<span class='notice'>You start setting up the [C].</span>")
+		to_chat(user, span_notice("You start setting up the [C]."))
 		if(do_after(user, 2 SECONDS, target = user) && C && !locate(/obj/structure/destructible/fishing_net) in src)
 			new /obj/structure/destructible/fishing_net(get_turf(src))
 			playsound(get_turf(src), 'sound/misc/box_deploy.ogg', 5, 0, 3)
@@ -75,13 +71,12 @@
 			return
 	..()
 
-//Stolen lava code -IP
-
 	//This IsSafe proc checks if there is a structure in place that will prevent the proc after this from running.
 /turf/open/water/deep/proc/IsSafe()
 	//if anything matching this typecache is found in the lava, we don't burn things
 	var/static/list/water_safeties_typecache = typecacheof(list(
 		/obj/vehicle/ridden/lavaboat,
+		/obj/vehicle/ridden/simple_boat,
 		/obj/structure/lattice/catwalk,
 		/obj/structure/stone_tile,
 		/obj/structure/lattice/lava,
@@ -115,23 +110,22 @@
 				//Fish exit the game world and enter the water world.
 				qdel(O)
 				continue
-			. = 1
 			//Most closets are not watertight.
 			if(istype(O, /obj/structure/closet))
 				var/obj/structure/closet/locker = O
-				visible_message("<span class='notice'>[locker] is not watertight.</span>")
+				visible_message(span_notice("[locker] is not watertight."))
 				for(var/I in locker.contents)
 					if(isliving(I))
 						MobSink(I)
 			/* This may cause issues later on. Without this people can sit on office chairs
 				and push themselves into water with no negative effects except being warped.
-				This appears to just leave people on the shore with the item being
-				teleported. -IP */
+				This appears to just leave people on the shore with the item being teleported. -IP */
 			if(O.has_buckled_mobs())
 				O.unbuckle_all_mobs()
-				visible_message("<span class='notice'>[O] capsizes.</span>")
+				visible_message(span_notice("[O] capsizes."))
 			if(O && O.loc == src)
 				WarpSunkStuff(O)
+				return FALSE
 
 		else if (isliving(thing))
 			. = 1
@@ -147,6 +141,7 @@
 			if(L)
 				MobSink(L)
 				WarpSunkStuff(L)
+				return FALSE
 
 	//Overridable Unique Reaction. Currently only used to pollute water.
 /turf/open/water/deep/proc/ObjSink(atom/movable/sinkin_thing)
@@ -176,14 +171,18 @@
 		sound_delay = world.time + (3 SECONDS)
 		//Might be redundant to randomize the location every time. -IP
 		WashedOnTheShore()
-	if(thing)
+	if(thing && !QDELETED(thing))
 		if(ishuman(thing))
-			visible_message("<span class='boldwarning'>[thing] sinks into the deep!</span>")
+			visible_message(span_boldwarning("[thing] sinks into the deep!"))
 			to_chat(thing, pick(
-				"<span class='userdanger'>Something in the [src] grabs you and pulls you into the darkness. Your eyes burn as the light becomes fainter and the deep darkness begins circle around you.</span>",
-				"<span class='userdanger'>The fluid around you starts crawling into your mouth.</span>",
-				"<span class='userdanger'>You feel a sudden sting, then everything goes numb.</span>"))
-		thing.forceMove(target_turf)
+				span_userdanger("Something in the [src] grabs you and pulls you into the darkness. Your eyes burn as the light becomes fainter and the deep darkness begins circle around you."),
+				span_userdanger("The fluid around you starts crawling into your mouth."),
+				span_userdanger("You feel a sudden sting, then everything goes numb.")))
+		//Redundant check just in the case of extreme error.
+		if(target_turf)
+			thing.forceMove(target_turf)
+		else
+			qdel(thing)
 
 	//Proc to randomize target_turf
 /turf/open/water/deep/proc/WashedOnTheShore()

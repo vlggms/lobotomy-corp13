@@ -222,24 +222,39 @@
 
 //Shrimple boat stuff
 /turf/open/water/deep/saltwater/extradeep
+	static_target = TRUE
 
-/turf/open/water/deep/saltwater/extradeep/Entered(atom/movable/thing, atom/oldLoc) //Drowning code - you won't make it back to the station alive.
-	if(!target_turf || is_type_in_typecache(thing, forbidden_types) || (thing.throwing && !istype(thing, /obj/item/food/fish || /obj/item/aquarium_prop )) || (thing.movement_type & (FLOATING|FLYING))) //replace this with a varient of chasm component sometime.
-		return ..()
+/turf/open/water/deep/saltwater/extradeep/WarpSunkStuff(atom/movable/thing) //Drowning code - you won't make it back to the station alive.
+	if(!target_turf)
+		var/shrimpspot = locate(/obj/effect/landmark/shrimpship) in world.contents
+		if(shrimpspot)
+			target_turf = get_turf(shrimpspot)
+		else
+			qdel(thing)
+			return
 	if(isliving(thing))
 		var/mob/living/L = thing
 		if(L.movement_type & FLYING)
-			return ..()
+			return
 		if(!ishuman(L))
 			qdel(L)
 			return
-		var/shrimpspot = locate(/obj/effect/landmark/shrimpship) in world.contents
 		var/mob/living/carbon/human/H = L
-		for(var/obj/item/fishing_net/fishnet in H.GetAllContents())
-			fishnet.forceMove(get_turf(shrimpspot))
-		for(var/obj/item/fishing_rod/fishrod in H.GetAllContents())
-			fishrod.forceMove(get_turf(shrimpspot))
+		/* Im not entirely sure why this is here if the shrimp boat
+			is surrounded by indestructable railing. I guess if
+			other mappers want to use extradeep? -IP*/
+		if(target_turf)
+			for(var/obj/item/fishing_net/fishnet in H.GetAllContents())
+				fishnet.forceMove(target_turf)
+			for(var/obj/item/fishing_rod/fishrod in H.GetAllContents())
+				fishrod.forceMove(target_turf)
 		INVOKE_ASYNC(src, .proc/Drown, H)
+	else
+		//Fishing rods cant fit in bags or be worn so this may save any that fall into the water.
+		if((istype(thing, /obj/item/fishing_net) || istype(thing, /obj/item/fishing_rod)) && target_turf)
+			thing.forceMove(target_turf)
+			return
+		qdel(thing)
 
 /turf/open/water/deep/saltwater/extradeep/proc/Drown(mob/living/carbon/human/H)
 	H.Stun(30 SECONDS)
