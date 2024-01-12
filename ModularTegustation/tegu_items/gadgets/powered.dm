@@ -274,6 +274,7 @@
 	icon_state = "gadgetmod"
 	 //roundabout way of making update item easily changed. Used in updateicon proc.
 	default_icon = "gadgetmod"
+	force = 0
 
 /obj/item/powered_gadget/vitals_projector/Initialize()
 	. = ..()
@@ -311,14 +312,16 @@
 	. = ..()
 	if(!chosen_target_type)
 		to_chat(user, span_warning("Use in-hand to set the target type!"))
+		return
 	if(cell && cell.charge >= batterycost)
-		if(isliving(target) && !target_check(target))
-			to_chat(user, span_warning("The projector fails to scan [target] with its current setting."))
-			return
-		cell.charge -= batterycost
-		var/mob/living/L = target
-		to_chat(user, span_notice("Projection of [target] Vitals Initializing."))
-		L.apply_status_effect(/datum/status_effect/visualize_vitals)
+		if(isliving(target))
+			if(!target_check(target))
+				to_chat(user, span_warning("The projector fails to scan [target] with its current setting."))
+				return
+			cell.charge -= batterycost
+			var/mob/living/L = target
+			to_chat(user, span_notice("Projection of [target] Vitals Initializing."))
+			L.apply_status_effect(/datum/status_effect/visualize_vitals)
 	else if(!cell || cell.charge <= batterycost)
 		to_chat(user, span_warning("Insufficent Energy for Projection."))
 		update_icon()
