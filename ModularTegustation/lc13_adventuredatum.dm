@@ -489,7 +489,6 @@
 	. = ..()
 	gamer = player
 
-
 /*This is where most of the choices and effects will appear.
 	After your condition for the choice is made with
 	"if(cords == 2)" remember to add a return if you do not
@@ -592,26 +591,26 @@
 	/*---------------------\
 	|Profile Variable Edits|
 	\---------------------*/
-/datum/adventure_event/proc/AdjustHitPoint(datum/adventure_layout/P, add_num)
-	P.AdjustHP(add_num)
+/datum/adventure_event/proc/AdjustHitPoint(add_num)
+	gamer.AdjustHP(add_num)
 	if(add_num <= -1)
 		temp_text += "[add_num] HP LOST<br>"
 	if(add_num >= 1)
 		temp_text += "[add_num] HP GAINED<br>"
 
-/datum/adventure_event/proc/AdjustCurrency(datum/adventure_layout/P, add_num)
-	P.AdjustCoins(add_num)
+/datum/adventure_event/proc/AdjustCurrency(add_num)
+	gamer.AdjustCoins(add_num)
 	if(add_num <= -1)
 		temp_text += "[abs(add_num)] COIN[add_num == -1 ? "S" : ""] LOST<br>"
 	if(add_num >= 1)
 		temp_text += "[add_num] COIN[add_num == 1 ? "S" : ""] GAINED<br>"
 
-/datum/adventure_event/proc/AdjustStatNum(datum/adventure_layout/P, stat_to_add, add_num)
-	P.AdjustStats(stat_to_add, add_num)
+/datum/adventure_event/proc/AdjustStatNum(stat_to_add, add_num)
+	gamer.AdjustStats(stat_to_add, add_num)
 	if(add_num <= -1)
-		temp_text += "[add_num] [P.nameStat(stat_to_add)] LOST<br>"
+		temp_text += "[add_num] [gamer.nameStat(stat_to_add)] LOST<br>"
 	if(add_num >= 1)
-		temp_text += "[add_num] [P.nameStat(stat_to_add)] GAINED<br>"
+		temp_text += "[add_num] [gamer.nameStat(stat_to_add)] GAINED<br>"
 
 	/*------------\
 	|Unique Events|
@@ -648,6 +647,8 @@
 			playsound(get_turf(H), 'sound/effects/creak1.ogg', 20, FALSE)
 			AdjustStatNum(GLOOM_STAT,1)
 	. = ..()
+
+//////////
 
 /datum/adventure_event/quiz
 	name = "Quiz Time"
@@ -686,6 +687,8 @@
 			CauseBattle("Speculative Amalagam Error:Some imperfect mix of a fixer and a sweeper. The differing physiology of a sweeper and a human \
 				causes them to violently ooze red fluid from where the sweeper parts end and the human parts begin.","1d10",MON_HP_RAND_EASY)
 	. = ..()
+
+//////////
 
 /datum/adventure_event/sinking_bell
 	name = "Sinking Bell"
@@ -795,6 +798,8 @@
 			AdjustCurrency(-1)
 	. = ..()
 
+//////////
+
 /* This event is mostly based on what i THINK the creators of forsaken murderer are trying to say.
 	Experimentation on murderers that leave them lobotomized shadows is just inherently selfish
 	and provides only a oppertunity to do the unspeakable to others without a hint of guilt?
@@ -836,6 +841,8 @@
 		if(4)
 			AdjustHitPoint(-5)
 	. = ..()
+
+//////////
 
 /datum/adventure_event/old_lady
 	name = "The Lonely Lady"
@@ -945,6 +952,8 @@
 			AdjustCurrency(1)
 			AdjustHitPoint(-15)
 	. = ..()
+
+//////////
 
 /datum/adventure_event/coffin_return
 	name = "Mirror Shard:Coffin Return"
