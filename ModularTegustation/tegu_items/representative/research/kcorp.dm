@@ -146,3 +146,4 @@
 	ItemUnlock(caller.order_list, "K Corp Class-1 Armor", /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/weak, 600)
 	ItemUnlock(caller.order_list, "K Corp L1 Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp, 100)
 	ItemUnlock(caller.order_list, "K Corp L1 Visor Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp/visor, 100)
+
