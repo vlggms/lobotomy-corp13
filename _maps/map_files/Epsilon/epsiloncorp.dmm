@@ -1468,8 +1468,7 @@
 /turf/open/floor/noslip,
 /area/facility_hallway/welfare)
 "eb" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/information)
 "ed" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -2360,8 +2359,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/west)
 "gS" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/welfare)
 "gT" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -3739,11 +3737,7 @@
 	},
 /area/facility_hallway/east)
 "kO" = (
-/obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	},
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/training)
 "kP" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -4487,8 +4481,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
 "np" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/east)
 "nr" = (
 /obj/effect/turf_decal/tile/purple{
@@ -5144,12 +5137,8 @@
 	},
 /area/facility_hallway/human)
 "pY" = (
-/obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/information)
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/west)
 "pZ" = (
 /obj/effect/turf_decal/tile/brown{
 	color = "#734404"
@@ -9939,12 +9928,6 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9"
 	},
-/obj/structure/closet{
-	pixel_y = 19;
-	density = 0;
-	name = "fisherman closet";
-	anchored = 1
-	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
@@ -9998,6 +9981,13 @@
 /obj/item/fishing_net,
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
+/obj/structure/closet{
+	pixel_y = 19;
+	density = 0;
+	name = "fisherman closet";
+	anchored = 1;
+	storage_capacity = 60
+	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -13461,6 +13451,9 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/training)
+"Pz" = (
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/control)
 "PA" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 1
@@ -16554,8 +16547,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/information)
 "ZK" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/manager)
 "ZM" = (
 /obj/effect/turf_decal/tile/purple{
@@ -38880,9 +38872,9 @@ Uf
 Uf
 Uf
 cN
+Pz
 kD
-kD
-kD
+Pz
 cN
 Uf
 Uf
@@ -39136,11 +39128,11 @@ Wq
 Wq
 Wq
 Wq
-kD
+Pz
 cf
 cf
 cf
-kD
+Pz
 Wq
 Wq
 Wq
@@ -39398,10 +39390,10 @@ oU
 uK
 rk
 qj
-kD
-kD
-kD
-kD
+Pz
+Pz
+Pz
+Pz
 Wq
 Uf
 Uf
@@ -39658,7 +39650,7 @@ GN
 mf
 dl
 kP
-kD
+Pz
 Wq
 Uf
 Uf
@@ -39900,9 +39892,9 @@ Uf
 Uf
 Wq
 cN
-kD
-kD
-kD
+Pz
+Pz
+Pz
 qj
 JX
 JX
@@ -39915,7 +39907,7 @@ Xy
 xE
 hr
 BX
-kD
+Pz
 Wq
 Uf
 Uf
@@ -40156,7 +40148,7 @@ Uf
 Uf
 Uf
 Wq
-kD
+Pz
 cf
 cf
 cf
@@ -40172,7 +40164,7 @@ GN
 Wj
 Mg
 Ca
-kD
+Pz
 Wq
 Uf
 Uf
@@ -40712,10 +40704,10 @@ Il
 Il
 Il
 NV
-Ez
-Ez
-Ez
-Ez
+kO
+kO
+kO
+kO
 vU
 vU
 FC
@@ -40945,7 +40937,7 @@ uq
 QK
 HX
 AY
-kD
+Pz
 sE
 Uf
 Uf
@@ -40972,7 +40964,7 @@ iG
 LV
 Em
 Em
-Ez
+kO
 vU
 vU
 vU
@@ -41202,7 +41194,7 @@ es
 ry
 cx
 XA
-kD
+Pz
 sE
 Uf
 Uf
@@ -41229,7 +41221,7 @@ NV
 yI
 PL
 Lq
-Ez
+kO
 vU
 vU
 vU
@@ -41459,7 +41451,7 @@ uq
 cx
 ij
 DP
-kD
+Pz
 sE
 sE
 sE
@@ -41486,7 +41478,7 @@ NV
 jp
 tl
 uo
-Ez
+kO
 vU
 FC
 vU
@@ -41732,9 +41724,9 @@ Il
 Il
 Il
 NV
-Ez
-Ez
-Ez
+kO
+kO
+kO
 NV
 RE
 RE
@@ -42721,7 +42713,7 @@ sE
 Uf
 Uf
 Wq
-kD
+Pz
 UB
 Ki
 yC
@@ -42751,10 +42743,10 @@ Wq
 Wq
 vU
 vU
+pY
+pY
 qk
-qk
-qk
-qk
+pY
 NV
 RE
 RE
@@ -42978,7 +42970,7 @@ sE
 Uf
 Uf
 Wq
-kD
+Pz
 UB
 Rx
 EA
@@ -43001,14 +42993,14 @@ EP
 qj
 Vu
 qj
-qk
-qk
-qk
+pY
+pY
+pY
 fc
 Wq
 Il
 Il
-qk
+pY
 EO
 EO
 EO
@@ -43235,7 +43227,7 @@ sE
 Uf
 Uf
 Wq
-kD
+Pz
 UB
 GZ
 yC
@@ -44520,7 +44512,7 @@ sE
 sE
 sE
 Wq
-kD
+Pz
 Xz
 yX
 EW
@@ -44777,7 +44769,7 @@ Uf
 Uf
 Uf
 Wq
-kD
+Pz
 QE
 nx
 iF
@@ -45034,7 +45026,7 @@ Uf
 Uf
 Uf
 Wq
-kD
+Pz
 Xz
 Hh
 EW
@@ -45346,7 +45338,7 @@ Ur
 ME
 Kl
 Jo
-Ez
+kO
 Il
 vU
 vU
@@ -45860,7 +45852,7 @@ Ur
 pS
 Cy
 oI
-Ez
+kO
 Il
 vU
 vU
@@ -46888,7 +46880,7 @@ Ur
 zd
 uu
 cw
-Ez
+kO
 DZ
 vU
 vU
@@ -47145,7 +47137,7 @@ Ur
 Vo
 uu
 cw
-Ez
+kO
 DZ
 vU
 vU
@@ -47402,7 +47394,7 @@ ly
 Eg
 LS
 Py
-Ez
+kO
 Il
 vU
 FC
@@ -47659,7 +47651,7 @@ Ur
 nY
 zI
 cw
-Ez
+kO
 Il
 vU
 FC
@@ -47916,7 +47908,7 @@ Ur
 xy
 Hz
 En
-Ez
+kO
 Il
 vU
 vU
@@ -53824,10 +53816,10 @@ pH
 pH
 pH
 pH
-pY
-pY
-pY
-pY
+eb
+eb
+eb
+eb
 Ta
 pI
 pI
