@@ -51,7 +51,9 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "as" = (
@@ -393,6 +395,9 @@
 /obj/structure/closet/secure_closet/personal{
 	pixel_x = 6;
 	anchored = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/control)
@@ -1225,6 +1230,9 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "gN" = (
@@ -1264,9 +1272,6 @@
 	name = "hidden security camera";
 	mouse_opacity = 0;
 	view_range = 3
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 5
 	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
@@ -1523,11 +1528,7 @@
 	},
 /area/facility_hallway/human)
 "ip" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/training)
 "ir" = (
 /turf/open/floor/facility/dark,
@@ -2090,10 +2091,7 @@
 	},
 /area/facility_hallway/records)
 "lm" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/control)
 "ls" = (
 /obj/machinery/disposal/bin{
@@ -4005,18 +4003,15 @@
 /turf/open/floor/pod/dark,
 /area/department_main/control)
 "tr" = (
-/obj/effect/turf_decal/siding/red{
-	color = "#440000";
-	dir = 4
-	},
-/obj/machinery/cryopod{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/pod/dark,
-/area/facility_hallway/control)
+/turf/open/floor/plating/ironsand{
+	color = "#c3bab0";
+	name = "Outskirt";
+	density = 1
+	},
+/area/facility_hallway/central)
 "tw" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -5632,9 +5627,6 @@
 	dir = 9
 	},
 /obj/effect/landmark/latejoin,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
 "Bf" = (
@@ -6210,10 +6202,7 @@
 /turf/open/floor/pod/dark,
 /area/department_main/training)
 "EN" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/information)
 "EO" = (
 /obj/effect/turf_decal/plaque{
@@ -6279,7 +6268,9 @@
 /obj/effect/turf_decal/trimline/red/filled/warning{
 	dir = 1
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/pod,
 /area/facility_hallway/control)
 "Fi" = (
@@ -6443,6 +6434,9 @@
 	anchored = 1
 	},
 /obj/item/toy/plush/nihil,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/control)
 "FE" = (
@@ -6580,7 +6574,7 @@
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
-	dir = 1
+	dir = 5
 	},
 /turf/open/floor/pod,
 /area/facility_hallway/control)
@@ -7678,9 +7672,12 @@
 /turf/open/floor/pod/dark,
 /area/department_main/training)
 "Mh" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/turf/closed/indestructible/reinforced{
+	name = "facility wall";
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/facility_hallway/training)
 "Mj" = (
@@ -8068,9 +8065,6 @@
 	dir = 5
 	},
 /obj/effect/landmark/latejoin,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
 "Og" = (
@@ -8646,9 +8640,6 @@
 	mouse_opacity = 0;
 	view_range = 3
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
 "QH" = (
@@ -9104,6 +9095,9 @@
 /obj/item/food/grown/ambrosia/gaia,
 /obj/item/food/grown/ambrosia/gaia,
 /obj/item/food/grown/ambrosia/gaia,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "Tr" = (
@@ -9132,18 +9126,15 @@
 /turf/open/floor/plasteel,
 /area/facility_hallway/human)
 "Tv" = (
-/obj/effect/turf_decal/siding/red{
-	color = "#440000";
-	dir = 8
-	},
-/obj/machinery/cryopod{
-	dir = 1
-	},
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 10
 	},
-/turf/open/floor/pod/dark,
-/area/facility_hallway/control)
+/turf/open/floor/plating/ironsand{
+	color = "#c3bab0";
+	name = "Outskirt";
+	density = 1
+	},
+/area/facility_hallway/central)
 "Ty" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -9462,14 +9453,15 @@
 	},
 /area/facility_hallway/central)
 "UW" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/disposalpipe/segment{
-	dir = 4
+	dir = 5
 	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
+/turf/open/floor/plating/ironsand{
+	color = "#c3bab0";
+	name = "Outskirt";
+	density = 1
 	},
-/area/facility_hallway/control)
+/area/facility_hallway/central)
 "Vc" = (
 /obj/effect/turf_decal/box,
 /obj/structure/toolabnormality/shelter/entrance,
@@ -34939,8 +34931,8 @@ bA
 WT
 Ze
 oz
-Mh
-Mh
+ip
+ip
 oz
 oz
 aL
@@ -35199,8 +35191,8 @@ oz
 JB
 QU
 gM
-oz
-aL
+Mh
+UW
 aL
 pQ
 pQ
@@ -35456,8 +35448,8 @@ zv
 aO
 ml
 Tq
-Mh
-aL
+ip
+tr
 aL
 pQ
 pQ
@@ -35714,7 +35706,7 @@ sR
 oX
 ao
 ip
-HA
+Tv
 HA
 rD
 rD
@@ -36970,8 +36962,8 @@ XG
 wP
 dS
 dS
-dS
 vh
+dS
 dS
 dS
 dS
@@ -37227,8 +37219,8 @@ WV
 WV
 PH
 PH
-aL
-aH
+tr
+pQ
 pQ
 pQ
 pQ
@@ -37484,8 +37476,8 @@ cB
 cB
 hE
 hE
-hE
-UW
+cB
+lm
 lm
 hE
 hE
@@ -37742,7 +37734,7 @@ ig
 px
 hE
 FD
-Tv
+bc
 bc
 Pc
 hE
@@ -37998,7 +37990,7 @@ wL
 Yx
 DS
 ZN
-Dj
+RI
 Bb
 QA
 rf
@@ -48278,7 +48270,7 @@ CJ
 Yx
 MK
 ZN
-Dj
+RI
 Of
 ES
 rf
@@ -48536,7 +48528,7 @@ jy
 oq
 hE
 ca
-tr
+hc
 hc
 br
 hE
@@ -48792,8 +48784,8 @@ hE
 cB
 cB
 hE
-hE
-UW
+cB
+lm
 lm
 hE
 hE
@@ -49049,8 +49041,8 @@ PH
 WV
 cc
 dS
-dS
 KQ
+dS
 dS
 dS
 dS
