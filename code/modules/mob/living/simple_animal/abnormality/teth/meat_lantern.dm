@@ -75,7 +75,7 @@
 	if(!isliving(AM))
 		return
 	var/mob/living/L = AM
-	if(L.stat == DEAD)
+	if(L.stat == DEAD || faction_check_mob(L))
 		return
 	if(!can_act || (chop_cooldown > world.time))
 		return
@@ -94,7 +94,7 @@
 	pixel_x = base_pixel_x - 40
 	for(var/mob/living/L in oview(1, src))
 		if(faction_check_mob(L))
-			return
+			continue
 		L.apply_damage(chop_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(L.health < 0)
 			L.gib(FALSE,FALSE,TRUE)
@@ -108,6 +108,8 @@
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/proc/ProximityCheck()
 	for(var/mob/living/L in range(1,src)) //hidden istype() call
 		if(L == src)
+			continue
+		if(faction_check_mob(L))
 			continue
 		BigChop()
 		return
