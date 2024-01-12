@@ -84,7 +84,6 @@
 	desc = "A jacket worn by senior r-corp officers."
 	icon_state = "rcorp_cdrdress"
 
-
 //Fifth Pack
 /obj/item/clothing/suit/armor/ego_gear/rabbit/raccoon
 	name = "\improper raccoon suit"
@@ -108,12 +107,36 @@
 	icon_state = "roadrunner_captain"
 	slowdown = -0.25
 
-
 /obj/item/clothing/suit/armor/ego_gear/rabbit/rat
 	name = "\improper rat suit"
 	desc = "An armored combat suit worn by R-Corporation skirmishers."
 	icon_state = "rat"
 
+//Rabbit specific NVs that break on removal
+/obj/item/clothing/glasses/night/rabbit
+	desc = "These goggles let you see in the dark perfectly. Sadly they're quite delicate, trying to remove them now will break them for sure."
 
+/obj/item/clothing/glasses/night/rabbit/Destroy()
+	dropped()
+	return ..()
 
+/obj/item/clothing/glasses/night/rabbit/equipped(mob/user, slot)
+	if(slot != ITEM_SLOT_EYES)
+		Destroy()
+		to_chat(user, span_warning("The goggles crack and break apart as you take it off. You feel very stupid now."))
+		return
+	. = ..()
 
+/obj/item/clothing/glasses/hud/health/night/rabbit
+	desc = "An advanced medical heads up display that comes with night vision. Sadly they're quite delicate, trying to remove them now will break them for sure."
+
+/obj/item/clothing/glasses/hud/health/night/rabbit/Destroy()
+	dropped()
+	return ..()
+
+/obj/item/clothing/glasses/hud/health/night/rabbit/equipped(mob/user, slot)
+	if(slot != ITEM_SLOT_EYES)
+		Destroy()
+		to_chat(user, span_warning("The goggles crack and break apart as you take it off. You feel very stupid now."))
+		return
+	. = ..()

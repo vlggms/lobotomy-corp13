@@ -255,6 +255,8 @@
 	playsound(get_turf(src), 'sound/abnormalities/kqe/load2.ogg', 75, 0, 3)
 	new /obj/effect/temp_visual/approaching_claw(get_turf(src))
 	alpha = 1
+	for(var/obj/vehicle/sealed/mecha/M in view(1, src))
+		M.ejectall()
 	for(var/mob/living/carbon/human/H in view(1, src))
 		grabbed = TRUE
 		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)

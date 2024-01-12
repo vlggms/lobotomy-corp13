@@ -108,7 +108,7 @@
 /datum/outfit/job/reindeer/captain
 	name = "Reindeer Squad Captain"
 	jobtype = /datum/job/rcorp_captain/reindeer
-	glasses = /obj/item/clothing/glasses/hud/health/night
+	glasses = /obj/item/clothing/glasses/hud/health/night/rabbit
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeercap
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer
