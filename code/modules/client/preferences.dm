@@ -386,11 +386,11 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIRSTYLE]'>[(randomise[RANDOM_HAIRSTYLE]) ? "Lock" : "Unlock"]</A>"
 
 				dat += "<span style='border:1px solid #161616; background-color: #[hair_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=hair_color;task=input'>Change</a><BR>"
-				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIR_COLOR]'>[(randomise[RANDOM_HAIR_COLOR]) ? "Lock" : "Unlock"]</A>"
+				dat += "<a href='?_src_=prefs;preference=toggle_random;random_type=[RANDOM_HAIR_COLOR]'>[(randomise[RANDOM_HAIR_COLOR]) ? "Lock" : "Unlock"]</A><BR>"
 
 				dat += "<h3>Gradient Style</h3>"
 
-				dat += "<a href='?_src_=prefs;preference=gradient_style;task=input'>[gradient_style]</a><BR>"
+				dat += "<a href='?_src_=prefs;preference=gradient_style;task=input'>[gradient_style]</a>"
 				dat += "<a href='?_src_=prefs;preference=previous_gradient_style;task=input'>&lt;</a> <a href='?_src_=prefs;preference=next_gradient_style;task=input'>&gt;</a><BR>"
 				dat += "<span style='border:1px solid #161616; background-color: #[gradient_color];'>&nbsp;&nbsp;&nbsp;</span> <a href='?_src_=prefs;preference=gradient_color;task=input'>Change</a><BR>"
 
