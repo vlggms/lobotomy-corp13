@@ -44,7 +44,7 @@
 	name = "raven teleport zone"
 	desc = "A authorized zone for teleporting in ravens."
 	mob_name = "Scout Raven"
-	outfit = /datum/outfit/job/raven
+	outfit = /datum/outfit/job/raven/ert
 	assignedrole = "SPC"
 	spawn_level = 40
 
