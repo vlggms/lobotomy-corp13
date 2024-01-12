@@ -3370,29 +3370,24 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/discipline)
 "hV" = (
-/obj/effect/turf_decal/tile/purple{
-	color = "#bf48b1"
+/obj/machinery/jukebox,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1;
+	color = "#734404"
 	},
-/obj/effect/turf_decal/tile/purple{
-	color = "#bf48b1";
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	color = "#f8f8f8";
+/obj/effect/turf_decal/tile/brown{
+	color = "#734404";
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/neutral{
-	color = "#f8f8f8";
-	dir = 1
+/obj/effect/turf_decal/tile/brown{
+	color = "#734404"
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
+/obj/effect/turf_decal/tile/brown{
+	dir = 8;
+	color = "#734404"
 	},
-/turf/open/floor/plasteel/sepia{
-	color = "#ccc8c0"
-	},
-/area/department_main/extraction)
+/turf/open/floor/plasteel/sepia,
+/area/department_main/training)
 "hW" = (
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
@@ -5559,10 +5554,6 @@
 	dir = 4
 	},
 /obj/structure/bough,
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -13214,7 +13205,7 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/information)
 "EZ" = (
-/turf/closed/indestructible/rock,
+/turf/open/space/basic,
 /area/department_main/extraction)
 "Fa" = (
 /obj/effect/turf_decal/loading_area/red,
@@ -53651,7 +53642,7 @@ bn
 pq
 MR
 Tp
-hV
+cP
 Ss
 jK
 JV
@@ -55193,7 +55184,7 @@ bn
 pq
 MR
 Tp
-hV
+cP
 UZ
 Xl
 JV
@@ -57764,7 +57755,7 @@ fN
 nr
 ne
 UF
-Kh
+hV
 Yx
 TG
 lj
