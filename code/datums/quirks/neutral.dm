@@ -493,6 +493,7 @@
 	H.put_in_hands(spraycan)
 	H.equip_to_slot(spraycan, ITEM_SLOT_BACKPACK)
 	H.regenerate_icons()
+
 /datum/quirk/bongin
 	name = "Bong Bong"
 	desc = "Bong Bong, Bong, Bongbong."
