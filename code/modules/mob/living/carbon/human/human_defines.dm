@@ -15,12 +15,19 @@
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	can_be_shoved_into = TRUE
 
-	//Hair colour and style
+	///Hair colour
 	var/hair_color = "000"
+	///Hair style
 	var/hairstyle = "Bald"
 
-	//Facial hair colour and style
+	///Colour used for the hair gradient.
+	var/gradient_color = "000"
+	///Style used for the hair gradient.
+	var/gradient_style
+
+	///Facial hair colour
 	var/facial_hair_color = "000"
+	///Facil hair style
 	var/facial_hairstyle = "Shaved"
 
 	//Eye colour
