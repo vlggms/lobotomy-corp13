@@ -160,7 +160,7 @@
 			say("Atan eblak esm quistra utast.")//Bring me an armor EGO
 		if(/obj/item/ego_weapon)
 			say("Atan eblak esm sommel utast.")//Bring me an weapon EGO
-		if(/obj/item/reagent_containers/food/drinks)
+		if(/obj/item/reagent_containers)
 			say("Kom eblak mina brit hethre.")//Find me a water with vessel
 		if(/obj/item/food)
 			say("Atan eblak gorno tai por prin enum gorno.")//Bring me what the beggar consumes and needs (Its food)
@@ -173,7 +173,7 @@
 			to_chat(user, span_warning("[src] is not waiting for an offering at the moment."))
 		return
 
-	if(demand == /obj/item/reagent_containers/food/drinks)
+	if(demand == /obj/item/reagent_containers)
 		if(I.reagents.has_reagent(/datum/reagent/water))
 			qdel(I)
 		else
