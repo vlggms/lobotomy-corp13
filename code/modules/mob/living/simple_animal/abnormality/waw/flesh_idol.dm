@@ -33,8 +33,8 @@
 	var/damage_amount = 7
 	var/run_num = 2		//How many things you breach
 
-	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
-				/mob/living/simple_animal/hostile/abnormality/white_night)
+	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love, /mob/living/simple_animal/hostile/abnormality/distortedform,
+				/mob/living/simple_animal/hostile/abnormality/white_night, /mob/living/simple_animal/hostile/abnormality/nihil)
 
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorkComplete(mob/living/carbon/human/user, work_type, pe)
 	..()
