@@ -121,7 +121,8 @@
 	},
 /area/facility_hallway/information)
 "ay" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/facility/dark,
 /area/department_main/command)
 "az" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
@@ -361,7 +362,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "bv" = (
 /obj/structure/table/wood/fancy/orange{
@@ -395,10 +398,10 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
+	short_range = 13;
 	name = "hidden security camera";
 	mouse_opacity = 0;
-	view_range = 5
+	view_range = 13
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -434,18 +437,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/information)
-"bG" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
-	},
-/area/facility_hallway/east)
 "bH" = (
 /obj/structure/table/wood/fancy/royalblue,
 /turf/open/floor/carpet/royalblue,
@@ -498,8 +489,20 @@
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "bR" = (
-/turf/closed/indestructible/fakeglass,
-/area/space)
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/machinery/camera{
+	alpha = 0;
+	short_range = 13;
+	name = "hidden security camera";
+	mouse_opacity = 0;
+	view_range = 13
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/welfare)
 "bT" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -814,7 +817,11 @@
 	},
 /area/facility_hallway/discipline)
 "cw" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/closed/indestructible/reinforced{
+	name = "facility wall";
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	},
 /area/facility_hallway/east)
 "cy" = (
 /obj/structure/chair/comfy/black{
@@ -993,7 +1000,9 @@
 	alpha = 230;
 	icon_state = "LC10"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "cX" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -1007,7 +1016,9 @@
 	alpha = 230;
 	icon_state = "LC17"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "cZ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -1175,7 +1186,9 @@
 	alpha = 230;
 	icon_state = "LC20"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "dE" = (
 /obj/effect/light_emitter{
@@ -1281,8 +1294,9 @@
 	},
 /obj/structure/disposalpipe/junction,
 /mob/living/simple_animal/bot/cleanbot,
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "dW" = (
 /obj/machinery/telecomms/server/presets/service,
@@ -1546,7 +1560,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/facility/dark,
 /area/department_main/information)
@@ -1908,9 +1921,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/training)
-"gh" = (
-/turf/closed/indestructible/fakeglass,
-/area/department_main/training)
 "gj" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -2085,7 +2095,9 @@
 	alpha = 230;
 	icon_state = "LC12"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "gM" = (
 /obj/effect/turf_decal/arrows,
@@ -2849,7 +2861,8 @@
 	},
 /area/department_main/discipline)
 "iX" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/facility/dark,
 /area/facility_hallway/west)
 "iY" = (
 /obj/machinery/regenerator/safety,
@@ -3265,20 +3278,6 @@
 	name = "floor"
 	},
 /area/department_main/safety)
-"ko" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/information)
 "kr" = (
 /obj/structure/table/wood/fancy/royalblue,
 /obj/effect/turf_decal/siding/wood,
@@ -3293,18 +3292,6 @@
 	name = "floor"
 	},
 /area/department_main/safety)
-"kt" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 5
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/safety)
 "ku" = (
 /obj/item/assembly/control{
 	id = "centralX";
@@ -3506,6 +3493,16 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
+/obj/item/food/grown/ambrosia/gaia,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
@@ -3825,13 +3822,6 @@
 	dir = 1;
 	forced_zLevel = 2
 	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -4020,7 +4010,11 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "lW" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
 /area/facility_hallway/safety)
 "lY" = (
 /obj/docking_port/stationary{
@@ -4087,24 +4081,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
-"mk" = (
-/obj/effect/turf_decal/siding/thinplating{
-	dir = 1
-	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 28
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 5
-	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/welfare)
 "mm" = (
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
@@ -4217,13 +4193,6 @@
 	dir = 8;
 	resistance_flags = 115
 	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -4270,7 +4239,9 @@
 	alpha = 230;
 	icon_state = "LC5"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "na" = (
 /obj/effect/spawner/abnormality_room,
@@ -4336,6 +4307,13 @@
 	light_range = 25;
 	set_cap = 3;
 	set_luminosity = 24
+	},
+/obj/machinery/camera{
+	alpha = 0;
+	short_range = 13;
+	name = "hidden security camera";
+	mouse_opacity = 0;
+	view_range = 13
 	},
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
@@ -4728,13 +4706,6 @@
 /obj/machinery/facility_holomap{
 	dir = 8
 	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -4872,7 +4843,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "oY" = (
 /obj/effect/turf_decal/bot_white/right,
@@ -5032,7 +5005,9 @@
 	alpha = 230;
 	icon_state = "LC5"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "pC" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -5071,7 +5046,9 @@
 	alpha = 230;
 	icon_state = "LC7"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "pG" = (
 /obj/machinery/light{
@@ -5109,7 +5086,9 @@
 	alpha = 230;
 	icon_state = "LC12"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "pO" = (
 /obj/effect/turf_decal/box/red,
@@ -5147,7 +5126,9 @@
 	alpha = 230;
 	icon_state = "LC20"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "pQ" = (
 /obj/structure/window/reinforced/fulltile{
@@ -5387,13 +5368,6 @@
 	},
 /obj/machinery/facility_holomap{
 	dir = 8
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -5650,11 +5624,6 @@
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/extraction)
 "rI" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
-	},
 /obj/structure/railing{
 	resistance_flags = 115;
 	name = "wing-grade railing";
@@ -5668,13 +5637,8 @@
 	mouse_opacity = 0;
 	view_range = 13
 	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
 	},
 /area/department_main/control)
 "rK" = (
@@ -5838,15 +5802,15 @@
 /area/department_main/welfare)
 "sc" = (
 /obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /obj/machinery/camera{
 	alpha = 0;
 	short_range = 5;
 	name = "hidden security camera";
 	mouse_opacity = 0;
 	view_range = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/training)
@@ -6020,7 +5984,9 @@
 	icon_state = "LC11"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "sR" = (
 /turf/open/floor/plasteel/dark{
@@ -6124,13 +6090,6 @@
 /obj/machinery/facility_holomap{
 	dir = 4;
 	forced_zLevel = 2
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -6500,7 +6459,9 @@
 	alpha = 230;
 	icon_state = "LC10"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "uq" = (
 /obj/structure/window/reinforced/spawner/west{
@@ -6827,25 +6788,8 @@
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "vd" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
-	},
-/obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
-	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
-	},
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/facility/dark,
 /area/department_main/control)
 "vf" = (
 /turf/open/floor/mineral/titanium/purple{
@@ -6929,6 +6873,11 @@
 "vs" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 10
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -7067,17 +7016,16 @@
 	},
 /area/facility_hallway/control)
 "vS" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment,
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 5
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 8
 	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/training)
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/department_main/control)
 "vT" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -7324,7 +7272,9 @@
 	icon_state = "LC21"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "wA" = (
 /obj/effect/turf_decal/box/white/corners,
@@ -7912,7 +7862,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "yv" = (
 /obj/item/refiner_filter/yellow{
@@ -7994,9 +7946,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/command)
-"yH" = (
-/turf/closed/indestructible/fakeglass,
-/area/department_main/welfare)
 "yI" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /obj/effect/landmark/latejoin,
@@ -8004,20 +7953,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/east)
-"yJ" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 5
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/welfare)
 "yK" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -8501,8 +8436,9 @@
 /mob/living/simple_animal/bot/cleanbot{
 	desc = "Even in death, a clerk does their job."
 	},
-/mob/living/simple_animal/bot/cleanbot,
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "AC" = (
 /turf/open/floor/carpet/black,
@@ -8540,7 +8476,9 @@
 	alpha = 230;
 	icon_state = "LC22"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "AK" = (
 /obj/machinery/telecomms/server/presets/common,
@@ -8558,7 +8496,8 @@
 	},
 /area/facility_hallway/discipline)
 "AP" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/facility/dark,
 /area/facility_hallway/welfare)
 "AQ" = (
 /obj/machinery/sleeper/syndie{
@@ -9306,7 +9245,11 @@
 	},
 /area/space)
 "Do" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
 /area/facility_hallway/discipline)
 "Dp" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -9642,21 +9585,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/human)
-"Es" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 5
-	},
-/turf/open/floor/mineral/titanium/blue{
-	name = "floor"
-	},
-/area/facility_hallway/welfare)
 "Et" = (
 /obj/structure/table/wood,
 /obj/item/clothing/accessory/armband/lobotomy/training{
@@ -9879,7 +9807,7 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/control)
 "Fb" = (
-/turf/closed/indestructible/iron,
+/turf/closed/indestructible/rock,
 /area/department_main/control)
 "Fc" = (
 /obj/effect/turf_decal/siding/brown/corner{
@@ -10004,7 +9932,9 @@
 	alpha = 230;
 	icon_state = "LC15"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "FM" = (
 /obj/effect/turf_decal/stripes/asteroid/line,
@@ -10325,13 +10255,6 @@
 /obj/machinery/facility_holomap{
 	dir = 1;
 	forced_zLevel = 2
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -10696,7 +10619,9 @@
 	alpha = 230;
 	icon_state = "LC25"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "ID" = (
 /turf/open/floor/plasteel/dark{
@@ -10824,7 +10749,8 @@
 /turf/open/floor/facility/dark,
 /area/department_main/welfare)
 "Ja" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/facility/dark,
 /area/facility_hallway/training)
 "Jc" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -10880,7 +10806,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "Jq" = (
 /obj/effect/turf_decal/box/red,
@@ -11083,12 +11011,7 @@
 	},
 /area/space)
 "JW" = (
-/obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
-	},
+/obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
 "JY" = (
@@ -11339,20 +11262,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
-"Lc" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/information)
 "Le" = (
 /obj/machinery/computer/shuttle/mining{
 	max_integrity = 3000000;
@@ -11616,9 +11525,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/welfare)
-"LY" = (
-/turf/closed/indestructible/fakeglass,
-/area/department_main/discipline)
 "Mb" = (
 /obj/effect/turf_decal/bot_white{
 	color = "#ff4162"
@@ -11826,7 +11732,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "MQ" = (
 /obj/machinery/facility_holomap{
@@ -11993,7 +11901,6 @@
 	dir = 6
 	},
 /mob/living/simple_animal/bot/cleanbot,
-/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -12036,7 +11943,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "NA" = (
 /obj/machinery/chem_master/condimaster,
@@ -12102,7 +12011,9 @@
 	alpha = 230;
 	icon_state = "LC7"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "NN" = (
 /obj/effect/turf_decal/arrows,
@@ -12124,13 +12035,6 @@
 /obj/machinery/door/window{
 	dir = 1;
 	resistance_flags = 115
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -12563,7 +12467,9 @@
 	alpha = 230;
 	icon_state = "LC22"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "Pc" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -12643,20 +12549,6 @@
 	name = "floor"
 	},
 /area/department_main/discipline)
-"Pm" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 5
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/safety)
 "Po" = (
 /obj/machinery/disposal/bin{
 	resistance_flags = 115
@@ -13074,7 +12966,11 @@
 	},
 /area/department_main/discipline)
 "QN" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
 /area/facility_hallway/control)
 "QP" = (
 /obj/effect/turf_decal/bot_white{
@@ -13198,7 +13094,11 @@
 /turf/open/floor/facility,
 /area/facility_hallway/west)
 "Rl" = (
-/turf/closed/indestructible/fakeglass,
+/obj/structure/window/reinforced/fulltile/indestructable,
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/facility/dark,
 /area/facility_hallway/information)
 "Rm" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -13551,7 +13451,9 @@
 	alpha = 230;
 	icon_state = "LC27"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "SG" = (
 /obj/machinery/navbeacon/wayfinding/architecturedepartment,
@@ -13716,20 +13618,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/discipline)
-"SY" = (
-/obj/effect/turf_decal/bot_white,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/welfare)
 "Tb" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -13761,7 +13649,9 @@
 	alpha = 230;
 	icon_state = "LC25"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "Ti" = (
 /obj/effect/turf_decal/bot_red/left,
@@ -14016,6 +13906,13 @@
 /obj/effect/turf_decal/arrows/red{
 	dir = 8
 	},
+/obj/machinery/camera/autoname{
+	alpha = 0;
+	short_range = 13;
+	view_range = 13;
+	name = "hidden security camera";
+	mouse_opacity = 0
+	},
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 25;
@@ -14026,13 +13923,6 @@
 	dir = 8
 	},
 /obj/effect/landmark/xeno_spawn,
-/obj/machinery/camera/autoname{
-	alpha = 0;
-	short_range = 6;
-	view_range = 6;
-	name = "hidden security camera";
-	mouse_opacity = 0
-	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -14108,13 +13998,6 @@
 	resistance_flags = 115
 	},
 /obj/machinery/facility_holomap,
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -14350,7 +14233,6 @@
 	dir = 4
 	},
 /mob/living/simple_animal/bot/cleanbot,
-/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/dark,
 /area/department_main/welfare)
 "UZ" = (
@@ -14447,7 +14329,6 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/mob/living/simple_animal/bot/cleanbot,
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
@@ -15072,7 +14953,15 @@
 	},
 /area/department_main/control)
 "Xr" = (
-/turf/closed/indestructible/fakeglass,
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 9
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/facility/dark,
 /area/department_main/control)
 "Xs" = (
 /obj/structure/chair/comfy/black{
@@ -15093,7 +14982,9 @@
 	alpha = 230;
 	icon_state = "LC27"
 	},
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/discipline)
 "Xx" = (
 /turf/open/floor/plasteel/elevatorshaft,
@@ -15711,7 +15602,9 @@
 	icon_state = "LC26"
 	},
 /obj/structure/disposalpipe/segment,
-/turf/open/floor/facility/dark,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/control)
 "ZK" = (
 /obj/machinery/telecomms/server/presets/security,
@@ -36433,7 +36326,7 @@ Ru
 Ru
 xO
 Lw
-Pm
+wH
 FH
 Pr
 oC
@@ -36454,9 +36347,9 @@ WX
 vd
 vd
 vd
-vd
+vS
 rI
-vd
+vS
 vd
 vd
 vd
@@ -36709,7 +36602,7 @@ LL
 nv
 Gy
 Uc
-Du
+Xr
 Yk
 Yk
 Yk
@@ -36963,7 +36856,7 @@ uf
 uf
 vB
 nv
-Xr
+vd
 Pu
 Uc
 Gv
@@ -36975,7 +36868,7 @@ Cu
 Je
 Uc
 Vc
-Xr
+vd
 nv
 vB
 FG
@@ -38481,7 +38374,7 @@ uf
 Pr
 sE
 BT
-kt
+BT
 BT
 BT
 vz
@@ -38540,7 +38433,7 @@ LF
 Jw
 Gs
 ME
-vS
+ME
 ME
 ME
 sd
@@ -42394,7 +42287,7 @@ ya
 yK
 ya
 OI
-gh
+JH
 hz
 xg
 xg
@@ -42651,7 +42544,7 @@ iq
 iq
 RG
 KG
-gh
+JH
 hz
 xg
 xg
@@ -42908,7 +42801,7 @@ DB
 GY
 fz
 Fe
-gh
+JH
 hz
 xg
 xg
@@ -43165,7 +43058,7 @@ OY
 oK
 TS
 bv
-gh
+JH
 hz
 ce
 xg
@@ -43422,7 +43315,7 @@ DB
 GY
 fz
 kb
-gh
+JH
 hz
 xg
 xg
@@ -43679,7 +43572,7 @@ GJ
 oK
 fz
 PO
-gh
+JH
 hz
 xg
 xg
@@ -43936,7 +43829,7 @@ DB
 GY
 fz
 kb
-gh
+JH
 hz
 xg
 xg
@@ -44193,7 +44086,7 @@ So
 oK
 Qy
 bv
-gh
+JH
 hz
 xg
 xg
@@ -44450,7 +44343,7 @@ DB
 GY
 fz
 Fe
-gh
+JH
 hz
 xg
 xg
@@ -44707,7 +44600,7 @@ zc
 zc
 kO
 ff
-gh
+JH
 hz
 ce
 xg
@@ -44964,7 +44857,7 @@ iK
 Fp
 iK
 Jc
-gh
+JH
 hz
 xg
 xg
@@ -45961,7 +45854,7 @@ hw
 KB
 pv
 oj
-bR
+sg
 fg
 tP
 tP
@@ -46218,7 +46111,7 @@ KB
 kT
 KB
 pv
-bR
+sg
 bT
 tP
 sv
@@ -48045,7 +47938,7 @@ FG
 FG
 FG
 mm
-YA
+GF
 Ne
 Ho
 Ja
@@ -48816,7 +48709,7 @@ zr
 zr
 zr
 vi
-QW
+bR
 HJ
 PN
 AP
@@ -49073,7 +48966,7 @@ zr
 zr
 zr
 vi
-mk
+JP
 HJ
 PN
 AP
@@ -50844,13 +50737,13 @@ WO
 PS
 kT
 pv
-bR
+sg
 bT
 tP
 Mk
 tP
 oR
-bR
+sg
 oj
 zx
 oj
@@ -51101,13 +50994,13 @@ hw
 kT
 KB
 PS
-bR
+sg
 EE
 tP
 tP
 tP
 oZ
-bR
+sg
 pv
 kT
 kT
@@ -52160,7 +52053,7 @@ lx
 wm
 NI
 yC
-yH
+rq
 hz
 xg
 xg
@@ -52417,7 +52310,7 @@ gn
 sR
 kG
 IM
-yH
+rq
 hz
 xg
 xg
@@ -52674,7 +52567,7 @@ Bs
 gn
 xX
 Xn
-yH
+rq
 hz
 xg
 xg
@@ -52931,7 +52824,7 @@ Bs
 gn
 Gz
 cn
-yH
+rq
 hz
 ce
 xg
@@ -53188,7 +53081,7 @@ gn
 sR
 PM
 hl
-yH
+rq
 hz
 xg
 xg
@@ -53445,7 +53338,7 @@ gn
 sR
 xX
 Xn
-yH
+rq
 hz
 xg
 xg
@@ -53702,7 +53595,7 @@ gn
 sR
 Gz
 Ir
-yH
+rq
 hz
 xg
 xg
@@ -53959,7 +53852,7 @@ Bs
 gn
 kG
 bH
-yH
+rq
 hz
 xg
 xg
@@ -54216,7 +54109,7 @@ Bs
 gn
 xX
 Xn
-yH
+rq
 hz
 xg
 xg
@@ -54473,7 +54366,7 @@ gn
 sR
 Gz
 sC
-yH
+rq
 hz
 xg
 xg
@@ -54730,7 +54623,7 @@ ry
 OL
 JS
 TI
-yH
+rq
 hz
 xg
 xg
@@ -56266,7 +56159,7 @@ zr
 zr
 vi
 Nq
-Es
+nt
 PN
 AP
 hz
@@ -58528,7 +58421,7 @@ cP
 Oa
 hH
 hH
-Lc
+hH
 hH
 oY
 zQ
@@ -58586,7 +58479,7 @@ Mm
 Hr
 xe
 FW
-yJ
+FW
 FW
 FW
 DG
@@ -60067,7 +59960,7 @@ uf
 uf
 uf
 uf
-bG
+Uw
 Qx
 Qx
 Qx
@@ -60093,7 +59986,7 @@ WN
 Og
 ab
 YD
-LY
+JW
 Hf
 KO
 wi
@@ -60105,7 +59998,7 @@ wi
 wX
 KO
 BO
-LY
+JW
 YD
 ab
 zr
@@ -60131,7 +60024,7 @@ Qx
 Qx
 Qx
 AU
-bG
+Uw
 uf
 uf
 uf
@@ -60334,7 +60227,7 @@ Qx
 Qx
 vh
 fh
-ko
+nJ
 rU
 cP
 zr
@@ -60378,7 +60271,7 @@ uf
 uf
 vi
 QW
-SY
+vC
 PN
 xx
 Qx
