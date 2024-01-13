@@ -67,6 +67,7 @@
 	research_desc = "Hey man, its Joe from research. <br>We've got a new item over here, something about increasing your overall health? <br>They only really made one of these and told us to get it tested ASAP, i'm assuming that want to wait before investing. Mind helping us out?"
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/syringe
 
 /datum/data/lc13research/healthboost/ResearchEffect(obj/structure/representative_console/caller)
 	new /obj/item/khpboost(get_turf(caller))
@@ -147,3 +148,14 @@
 	ItemUnlock(caller.order_list, "K Corp L1 Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp, 100)
 	ItemUnlock(caller.order_list, "K Corp L1 Visor Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp/visor, 100)
 
+//Spawners
+/datum/data/lc13research/kdrones
+	research_name = "K-Corp Healing Drones"
+	research_desc = "Jill here, you know, from supply? <br>You guys wanted some of our Healing drones? <br>They're really fucking annoying but sure. Usually we're not supposed to give these out but fuck me if I'm going to miss my bonus this month."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/syringe
+
+/datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
+	ItemUnlock(caller.order_list, "K Corp Drone Spawner",	/obj/item/grenade/spawnergrenade/khealing, 600)
+	..()
