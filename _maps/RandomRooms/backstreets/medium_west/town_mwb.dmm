@@ -1,0 +1,119 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/meatfloor,
+/obj/structure/lootcrate/money,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/obj/effect/gibspawner/human,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"l" = (
+/turf/closed/indestructible/necropolis,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/lovetown/suicidal,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/lovetown/slumberer,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/statue/bone/rib,
+/obj/structure/meatfloor,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/meatfloor,
+/turf/closed/indestructible/necropolis,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/meatfloor,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/meatfloor,
+/obj/effect/gibspawner/human,
+/turf/open/indestructible/necropolis/air,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+l
+l
+l
+l
+l
+l
+l
+l
+x
+"}
+(3,1,1) = {"
+x
+l
+P
+p
+l
+Y
+P
+a
+l
+x
+"}
+(4,1,1) = {"
+x
+H
+Y
+P
+s
+P
+s
+l
+l
+x
+"}
+(5,1,1) = {"
+l
+a
+P
+p
+P
+P
+d
+P
+l
+l
+"}
+(6,1,1) = {"
+l
+l
+H
+l
+H
+H
+l
+P
+z
+l
+"}

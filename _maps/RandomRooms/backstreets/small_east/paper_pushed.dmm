@@ -1,0 +1,122 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/documents,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"h" = (
+/obj/structure/fluff/paper,
+/obj/item/paperplane/syndicate,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"i" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"o" = (
+/obj/item/clothing/head/papersack,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/mineral_door/silver,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"v" = (
+/obj/item/paper_bin,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"w" = (
+/obj/item/storage/box/papersack,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"x" = (
+/obj/item/stack/sheet/paperframes/fifty,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"A" = (
+/obj/item/newspaper,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/fluff/paper,
+/obj/structure/fluff/paper/corner,
+/obj/structure/fluff/paper/stack,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"J" = (
+/obj/item/paperplane,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/fluff/paper,
+/obj/item/mailpaper/junk,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"R" = (
+/obj/item/paper/crumpled,
+/obj/item/paper/crumpled,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"U" = (
+/obj/item/paper/crumpled,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+"X" = (
+/turf/closed/indestructible/paper,
+/area/city/backstreets_room)
+"Z" = (
+/obj/item/storage/fancy/rollingpapers,
+/turf/open/indestructible/paper,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+X
+X
+X
+t
+X
+X
+X
+"}
+(2,1,1) = {"
+X
+Z
+w
+o
+N
+h
+X
+"}
+(3,1,1) = {"
+X
+a
+U
+v
+R
+K
+X
+"}
+(4,1,1) = {"
+X
+A
+J
+i
+x
+C
+X
+"}
+(5,1,1) = {"
+X
+X
+X
+X
+X
+X
+X
+"}
