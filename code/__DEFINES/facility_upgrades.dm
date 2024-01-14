@@ -9,6 +9,8 @@
 #define BLACK_BULLET "BLACK Shield Bullet"
 #define PALE_BULLET "PALE Shield Bullet"
 #define YELLOW_BULLET "Qliphoth Intervention Bullet"
+#define KILL_BULLET "Execution Bullet"
+
 // Bullet upgrades.
 #define UPGRADE_BULLET_COUNT "Maximum Bullet Count"
 #define UPGRADE_BULLET_HEAL "Bullet Healing Amount"

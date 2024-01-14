@@ -6,6 +6,7 @@
 #define MANAGER_BLACK_BULLET 5
 #define MANAGER_PALE_BULLET 6
 #define MANAGER_YELLOW_BULLET 7
+#define MANAGER_KILL_BULLET 8
 
 /obj/machinery/computer/camera_advanced/manager
 	name = "managerial camera console"
@@ -81,6 +82,13 @@
 			"desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.",
 			"icon_state" = "yellow",
 		),
+
+		MANAGER_KILL_BULLET = list(
+			"name" = KILL_BULLET,
+			"desc" = "These bullets disintegrate the remains of a deceased employee. Contrary to the name, they cannot be used to kill anything.",
+			"icon_state" = "kill",
+		),
+
 	)
 
 	/* Locked actions */
@@ -223,6 +231,14 @@
 				H.apply_status_effect(/datum/status_effect/qliphothoverload)
 			else
 				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION."))
+				return FALSE
+		if(MANAGER_KILL_BULLET)
+			if(H.stat == DEAD)
+				H.unequip_everything()
+				new /obj/effect/temp_visual/impact_effect/red_laser(get_turf(H)) //TODO: Replace with an execution bullet animation
+				QDEL_IN(H, 30)
+			else
+				to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET VITALS REMAIN STABLE.</span>")
 				return FALSE
 		else
 			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
@@ -649,3 +665,4 @@
 #undef MANAGER_BLACK_BULLET
 #undef MANAGER_PALE_BULLET
 #undef MANAGER_YELLOW_BULLET
+#undef MANAGER_KILL_BULLET
