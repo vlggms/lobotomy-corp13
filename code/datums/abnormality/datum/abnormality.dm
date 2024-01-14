@@ -179,7 +179,7 @@
 				if(was_melting)
 					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 				else
-					to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
+					to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
 			user.adjust_attribute_level(attribute_type, attribute_given)
 	if(console?.tutorial) //don't run logging-related code if tutorial console
 		return
@@ -220,7 +220,7 @@
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
 		current?.ZeroQliphoth(user)
-		current?.visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
+		current?.visible_message(span_danger("Warning! Qliphoth level reduced to 0!"))
 		playsound(get_turf(current), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		work_logs += "\[[worldtime2text()]\]: Qliphoth counter reduced to 0!"
 		if(console?.recorded)
@@ -228,10 +228,10 @@
 		return
 	if(pre_qlip != qliphoth_meter)
 		if(pre_qlip < qliphoth_meter) // Alerts on change of counter. It's just nice to know instead of inspecting the console every time. Also helps for those nearby if something goes to shit.
-			current?.visible_message("<span class='notice'>Qliphoth level increased by [qliphoth_meter-pre_qlip]!</span>")
+			current?.visible_message(span_notice("Qliphoth level increased by [qliphoth_meter-pre_qlip]!"))
 			playsound(get_turf(current), 'sound/machines/synth_yes.ogg', 50, FALSE)
 		else
-			current?.visible_message("<span class='warning'>Qliphoth level decreased by [pre_qlip-qliphoth_meter]!</span>")
+			current?.visible_message(span_warning("Qliphoth level decreased by [pre_qlip-qliphoth_meter]!"))
 			playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
 		current?.OnQliphothChange(user, amount, pre_qlip)
 	if(console?.recorded)

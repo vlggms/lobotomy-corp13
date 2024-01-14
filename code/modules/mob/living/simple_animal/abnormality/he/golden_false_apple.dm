@@ -96,14 +96,14 @@
 	name = "Slam"
 	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	button_icon_state = "maggots_noBG"
-	chosen_message = "<span class='colossus'>You will now spread maggots within a wide vicinity.</span>"
+	chosen_message = span_colossus("You will now spread maggots within a wide vicinity.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/maggot_spread2
 	name = "Lunge"
 	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	button_icon_state = "maggots_noBG"
-	chosen_message = "<span class='colossus'>You will now spread maggots within a narrow vicinity.</span>"
+	chosen_message = span_colossus("You will now spread maggots within a narrow vicinity.")
 	chosen_attack_num = 2
 
 /datum/action/cooldown/gapple_pulse/Trigger()
@@ -478,7 +478,7 @@
 	icon_state = "maggots"
 
 /datum/status_effect/stacking/maggots/on_apply()
-	to_chat(owner, "<span class='warning'>You're covered in squirming maggots!</span>")
+	to_chat(owner, span_warning("You're covered in squirming maggots!"))
 	return ..()
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
@@ -512,12 +512,12 @@
 	if(L.has_status_effect(/datum/status_effect/stacking/golden_sheen))//this fixes a runtime
 		return
 	L.apply_status_effect(STATUS_EFFECT_GOLDENSHEEN)
-	to_chat(L, "<span class='nicegreen'>Your body glows warmly.</span>")
+	to_chat(L, span_nicegreen("Your body glows warmly."))
 
 /datum/reagent/abnormality/ambrosia/on_mob_life(mob/living/L)
 	var/datum/status_effect/stacking/golden_sheen/G = L.has_status_effect(/datum/status_effect/stacking/golden_sheen)
 	if(prob(10))
-		to_chat(L, "<span class='nicegreen'>Your glow shimmers!</span>")
+		to_chat(L, span_nicegreen("Your glow shimmers!"))
 		G.add_stacks(1)
 		G.refresh()
 	return ..()

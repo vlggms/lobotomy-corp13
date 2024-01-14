@@ -104,7 +104,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner //Stolen from Ptear Blade, MAYBE works on people?
-		to_chat(L, "<span class='userdanger'>You feel the foxes gaze upon you!</span>")
+		to_chat(L, span_userdanger("You feel the foxes gaze upon you!"))
 		L.physiology.black_mod *= 1.3
 		return
 
@@ -112,7 +112,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(L, "<span class='userdanger'>You feel as though its gaze has lifted.</span>") //stolen from PT wep, but I asked so this 100% ok.
+		to_chat(L, span_userdanger("You feel as though its gaze has lifted.")) //stolen from PT wep, but I asked so this 100% ok.
 		L.physiology.black_mod /= 1.3
 		return
 

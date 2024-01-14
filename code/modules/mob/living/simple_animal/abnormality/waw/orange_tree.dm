@@ -15,11 +15,11 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 60),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 45, 45),
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 60),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 45, 45),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -31,7 +31,7 @@
 		/datum/ego_datum/weapon/innocence,
 		/datum/ego_datum/weapon/innocence/gun,
 		/datum/ego_datum/armor/innocence,
-		)
+	)
 	gift_type =  /datum/ego_gifts/innocence
 	gift_message = "Everyone has their own sweet orange tree in their heart."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK

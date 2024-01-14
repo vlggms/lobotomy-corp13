@@ -196,7 +196,7 @@
 		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_lure", -HALO_LAYER))
 		if(istype(victim.ai_controller,/datum/ai_controller/insane/faelantern))
 			if(!stunned)
-				to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
+				to_chat(victim, span_boldwarning("You snap out of your trance!"))
 			qdel(victim.ai_controller)
 
 	//Effects

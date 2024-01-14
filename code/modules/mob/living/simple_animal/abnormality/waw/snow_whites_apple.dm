@@ -294,7 +294,7 @@
 /obj/structure/apple_barrier/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(ismecha(mover))
-		mover.visible_message("<span class='danger'>[mover] stomps on the [src]!</span>")
+		mover.visible_message(span_danger("[mover] stomps on the [src]!"))
 		if(obj_integrity <= 50)
 			qdel(src)
 		else
@@ -308,7 +308,7 @@
 		var/mob/living/carbon/human/L = mover
 		var/brooch = L.ego_gift_list[BROOCH]
 		if(istype(brooch, /datum/ego_gifts/stem))
-			to_chat(L, "<span class='nicegreen'>The branches relax.</span>")
+			to_chat(L, span_nicegreen("The branches relax."))
 			qdel(src)
 			return TRUE
 
@@ -431,9 +431,9 @@
 			var/weeding = trimming.get_sharpness()
 			if(weeding == SHARP_EDGED && trimming.force >= 5)
 				if(prob(10))
-					to_chat(lonely, "<span class='warning'>You cut back [name] as it reaches for you.</span>")
+					to_chat(lonely, span_warning("You cut back [name] as it reaches for you."))
 				else if(prob(10) || (prob(30) && old_growth))
-					to_chat(lonely, "<span class='warning'>[name] stab your legs spitefully.</span>")
+					to_chat(lonely, span_warning("[name] stab your legs spitefully."))
 					lonely.adjustBlackLoss(5)
 				take_damage(15, BRUTE, "melee", 1)
 				return TRUE
@@ -445,14 +445,14 @@
 
 	tangle--
 	if(prob(10))
-		to_chat(L, "<span class='danger'>[src] block your path!</span>")
+		to_chat(L, span_danger("[src] block your path!"))
 
 //Reaction to humans who have snow_whites_apple's gift.
 /obj/structure/spreading/apple_vine/proc/suiterReaction(mob/living/carbon/human/lonely)
 	var/lonelyhealth = (lonely.health / lonely.maxHealth) * 100
 	if(prob(10))
 		//it would be uncouth for the vines to hinder one gifted by the princess.
-		to_chat(lonely, "<span class='nicegreen'>The branches open a path.</span>")
+		to_chat(lonely, span_nicegreen("The branches open a path."))
 	if(lonelyhealth <= 30 && lonely.stat != DEAD)
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))
@@ -556,7 +556,7 @@
 
 /obj/effect/proc_holder/spell/pointed/apple_barrier/cast(list/targets, mob/user)
 	if(!LAZYLEN(targets))
-		to_chat(user, "<span class='warning'>No old growth in range!</span>")
+		to_chat(user, span_warning("No old growth in range!"))
 		return FALSE
 	if(!can_target(targets[1], user))
 		return FALSE

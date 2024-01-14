@@ -111,10 +111,10 @@
 	name = "Toggle Attack"
 	button_icon_state = "nt_toggle0"
 	chosen_attack_num = 2
-	chosen_message = "<span class='colossus'>You won't shoot anymore.</span>"
+	chosen_message = span_colossus("You won't shoot anymore.")
 	button_icon_toggle_activated = "nt_toggle1"
 	toggle_attack_num = 1
-	toggle_message = "<span class='colossus'>You will now shoot out tendrils.</span>"
+	toggle_message = span_colossus("You will now shoot out tendrils.")
 	button_icon_toggle_deactivated = "nt_toggle0"
 
 //Spawning
@@ -147,7 +147,7 @@
 	if(LAZYLEN(potentialmarked)) //It's fine if no one got picked. Probably.
 		ReflectChosen(pick(potentialmarked))
 		if(!IsContained())
-			to_chat(chosen, "<span class='warning'>You feel uneasy...</span>")
+			to_chat(chosen, span_warning("You feel uneasy..."))
 	else
 		ReflectChosen(null)
 
@@ -409,7 +409,7 @@
 		grab_victim.forceMove(T)
 	animate(grab_victim, pixel_y = 8, time = 5)
 	SLEEP_CHECK_DEATH(5)
-	to_chat(grab_victim, "<span class='userdanger'>[src] has grabbed you! Attack [src] to break free!</span>")
+	to_chat(grab_victim, span_userdanger("[src] has grabbed you! Attack [src] to break free!"))
 	StrangleHit(1)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/StrangleHit(count)
@@ -428,13 +428,13 @@
 	switch(count)
 		if(0 to 2)
 			playsound(get_turf(src), 'sound/effects/wounds/crack1.ogg', 200, 0, 7)
-			to_chat(grab_victim, "<span class='userdanger'>You felt something snap!</span>")
+			to_chat(grab_victim, span_userdanger("You felt something snap!"))
 		if(3)
 			playsound(get_turf(src), 'sound/effects/wounds/crack2.ogg', 200, 0, 7)
-			to_chat(grab_victim, "<span class='userdanger'>[src]'s grip on you is tightening!</span>")
+			to_chat(grab_victim, span_userdanger("[src]'s grip on you is tightening!"))
 		if(4)	//Apply double damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			to_chat(grab_victim, "<span class='userdanger'>It hurts so much!</span>")
+			to_chat(grab_victim, span_userdanger("It hurts so much!"))
 			grab_victim.apply_damage(strangle_damage, BLACK_DAMAGE, null, grab_victim.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		else	//Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
@@ -533,7 +533,7 @@
 		pinkflesh.density = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/disguise.ogg', 75, 0, 5)
 	new /obj/effect/gibspawner/generic(get_turf(M))
-	to_chat(M, "<span class='userdanger'>Oh no...</span>")
+	to_chat(M, span_userdanger("Oh no..."))
 	CheckMirrorIcon() //Clear overlays
 	// The following code makes it so that even if a disguised mob is resting, the shell will still be standing up.
 	if(M.hairstyle in longhair) //Sloppy fix since the layers don't work in the mutable appearances
@@ -593,7 +593,7 @@
 		return disguise.examine(user)
 	. = ..()
 	if(current_stage >= 1)
-		. += ("<span class='notice'>It looks angry!</span>")
+		. += (span_notice("It looks angry!"))
 
 
 //Misc

@@ -407,7 +407,7 @@
 	effect_max_time = 10 SECONDS
 
 /obj/item/mailpaper/trapped/urgent/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>If don't read this within 10 seconds we are going to kill you.</span>\n<span class='nicegreen'>Well, you read it fast enough so that's nice!</span>")
+	to_chat(user, span_notice("<span class='notice'>If don't read this within 10 seconds we are going to kill you.</span>\n<span class='nicegreen'>Well, you read it fast enough so that's nice!</span>"))
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustSanityLoss(-20)

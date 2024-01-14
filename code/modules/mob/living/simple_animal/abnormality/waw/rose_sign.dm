@@ -229,7 +229,7 @@
 	var/datum/status_effect/stacking/crownthorns/C = target.has_status_effect(/datum/status_effect/stacking/crownthorns)
 	C.status_applicant = R
 	C.master = src
-	to_chat(target, "<span class='userdanger'>You feel a terrifying pain coming from [get_area(T)].</span>")
+	to_chat(target, span_userdanger("You feel a terrifying pain coming from [get_area(T)]."))
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/OpenFire()
 	if(!can_act)
@@ -481,7 +481,7 @@
 	return ..()
 
 /datum/status_effect/stacking/crownthorns/tick()
-	to_chat(owner, "<span class='warning'>Thorns painfully dig into your skin!</span>")
+	to_chat(owner, span_warning("Thorns painfully dig into your skin!"))
 	owner.emote("scream")
 	stacks += 1
 	var/mob/living/carbon/human/H = owner
@@ -502,7 +502,7 @@
 		qdel(src)
 
 /datum/status_effect/stacking/crownthorns/on_remove()
-	to_chat(owner, "<span class='nicegreen'>The prickly feeling stops.</span>")
+	to_chat(owner, span_nicegreen("The prickly feeling stops."))
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
 	owner.adjustBruteLoss(-attribute_penalty)
@@ -547,7 +547,7 @@
 	M.pixel_x = M.base_pixel_x
 	unbuckle_mob(M,force=1)
 	M.pixel_z = 0
-	src.visible_message(text("<span class='danger'>[M] falls free of [src]!</span>"))
+	src.visible_message(text(span_danger("[M] falls free of [src]!")))
 	M.update_icon()
 
 /obj/structure/rose_crucifix/Destroy()

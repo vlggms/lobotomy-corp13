@@ -296,7 +296,7 @@
 		if(isatom(M.loc))
 			check_z = M.loc.z // So it plays even when you are in a locker/sleeper
 		if((check_z == z) && M.client)
-			to_chat(M, "<span class='userdanger'>Horrifying screams come from out of the darkness!</span>")
+			to_chat(M, span_userdanger("Horrifying screams come from out of the darkness!"))
 			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			survivors += M
@@ -329,7 +329,7 @@
 			continue
 		survivor.Apply_Gift(new /datum/ego_gifts/fervor)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
-		to_chat(survivor, "<span class='userdanger'>The screams subside - you recieve a gift!</span>")
+		to_chat(survivor, span_userdanger("The screams subside - you recieve a gift!"))
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	new /obj/item/ego_weapon/shield/distortion(get_turf(src))
@@ -868,7 +868,7 @@
 	transform_cooldown = world.time
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/Finisher(mob/living/target)
-	to_chat(target,"<span class='danger'>[src] is trying to cut you in half!</span>")
+	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
 		target.apply_damage(150, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //bit more than usual DPS in pale damage
 		return
@@ -907,7 +907,7 @@
 		else
 			var/mob/living/carbon/human/H = L
 			playsound(get_turf(H), 'sound/abnormalities/crumbling/warning.ogg', 50, FALSE, -3)
-			to_chat(H, "<span class='userdanger'>Show me that you can stand your ground!</span>")
+			to_chat(H, span_userdanger("Show me that you can stand your ground!"))
 			new /obj/effect/temp_visual/markedfordeath(get_turf(H))
 			H.apply_status_effect(/datum/status_effect/cowardice)
 			var/datum/status_effect/cowardice/C = H.has_status_effect(/datum/status_effect/cowardice)
@@ -1078,7 +1078,7 @@
 		var/list/new_hits = HurtInTurf(T, been_hit, 250, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>", "<span class='nicegreen'>You impaled heretic [L]!</span>")
+			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
 
@@ -1381,7 +1381,7 @@
 		L.apply_damage(dealt_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
-		to_chat(L, "<span class='userdanger'>IT BURNS!!</span>")
+		to_chat(L, span_userdanger("IT BURNS!!"))
 
 //Blue Star
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeStar()
@@ -1528,7 +1528,7 @@
 	flick("apocalypse_slam", src)
 	SLEEP_CHECK_DEATH(4)
 	playsound(src, 'sound/abnormalities/apocalypse/slam.ogg', 100, FALSE, 12)
-	visible_message("<span class='danger'>[src] slams at the floor with its talons!</span>")
+	visible_message(span_danger("[src] slams at the floor with its talons!"))
 	// Shake effect
 	for(var/mob/living/M in livinginrange(20, get_turf(src)))
 		shake_camera(M, 2, 3)
@@ -1587,7 +1587,7 @@
 	can_act = FALSE
 	var/mob/living/carbon/human/final_target = pick(marked)
 	final_target.apply_status_effect(/datum/status_effect/panicked_lvl_5)
-	to_chat(final_target, "<span class='userdanger'>Look out!</span>")
+	to_chat(final_target, span_userdanger("Look out!"))
 	var/jump_type = pick(transform_list_jump)
 	playsound(get_turf(src), 'sound/abnormalities/babayaga/charge.ogg', 100, 1)
 	pixel_z = 128
@@ -1602,7 +1602,7 @@
 			MediumJump(target_turf)
 		if("Heavy")
 			HeavyJump(target_turf)
-	visible_message("<span class='danger'>[src] drops down from the ceiling!</span>")
+	visible_message(span_danger("[src] drops down from the ceiling!"))
 	density = TRUE
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
