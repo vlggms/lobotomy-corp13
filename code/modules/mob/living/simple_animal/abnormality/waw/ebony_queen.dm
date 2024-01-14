@@ -33,11 +33,11 @@
 	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 0, 0),
-						ABNORMALITY_WORK_INSIGHT = list(10, 20, 45, 45, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 0, 0),
+		ABNORMALITY_WORK_INSIGHT = list(10, 20, 45, 45, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60),
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	var/barrier_cooldown
@@ -51,23 +51,23 @@
 	var/can_act = TRUE
 
 	ego_list = list(
-	/datum/ego_datum/weapon/ebony_stem,
-	/datum/ego_datum/armor/ebony_stem
+		/datum/ego_datum/weapon/ebony_stem,
+		/datum/ego_datum/armor/ebony_stem,
 	)
 	gift_type =  /datum/ego_gifts/ebony_stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/golden_apple = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5
+		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5,
 	)
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
-	/datum/action/innate/abnormality_attack/ebony_root,
-	/datum/action/innate/abnormality_attack/ebony_barrier,
-	/datum/action/innate/abnormality_attack/ebony_barrage,
-	/datum/action/cooldown/ebony_burst
+		/datum/action/innate/abnormality_attack/ebony_root,
+		/datum/action/innate/abnormality_attack/ebony_barrier,
+		/datum/action/innate/abnormality_attack/ebony_barrage,
+		/datum/action/cooldown/ebony_burst,
 	)
 
 /datum/action/innate/abnormality_attack/ebony_root

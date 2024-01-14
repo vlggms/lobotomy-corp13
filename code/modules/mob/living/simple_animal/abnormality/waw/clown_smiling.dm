@@ -32,11 +32,11 @@
 	patrol_cooldown_time = 5 SECONDS
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 35,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 65),
-						ABNORMALITY_WORK_REPRESSION = 35
-						)
+		ABNORMALITY_WORK_INSTINCT = 35,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 65),
+		ABNORMALITY_WORK_REPRESSION = 35,
+	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	death_message = "blows up like a balloon!"
@@ -51,8 +51,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/mini/mirth,
 		/datum/ego_datum/weapon/mini/malice,
-		/datum/ego_datum/armor/darkcarnival
-		)
+		/datum/ego_datum/armor/darkcarnival,
+	)
 	gift_type =  /datum/ego_gifts/darkcarnival
 	gift_message = "Life isn't scary when you don't fear death."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK

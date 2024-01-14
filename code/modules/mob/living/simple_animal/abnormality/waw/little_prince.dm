@@ -8,19 +8,19 @@
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 2)
 	threat_level = WAW_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_INSIGHT = list(25, 30, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_INSIGHT = list(25, 30, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 50, 55),
+	)
 	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 	start_qliphoth = 2
 
 	ego_list = list(
 		/datum/ego_datum/weapon/spore,
-		/datum/ego_datum/armor/spore
-		)
+		/datum/ego_datum/armor/spore,
+	)
 	gift_type = /datum/ego_gifts/spore
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -211,11 +211,11 @@
 
 /datum/ai_behavior/say_line/insanity_hypno
 	lines = list(
-				"I'm coming...",
-				"I have to go...",
-				"It's calling for me...",
-				"We'll finally be together..."
-				)
+		"I'm coming...",
+		"I have to go...",
+		"It's calling for me...",
+		"We'll finally be together...",
+	)
 
 /datum/ai_controller/insane/hypno/SelectBehaviors(delta_time)
 	..()

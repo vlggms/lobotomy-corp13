@@ -12,8 +12,8 @@
 		"None of us wanted to die.",
 		"......",
 		"What else am I supposed to do? Is it wrong that I survived?",
-		"Nhh... Aah."
-		)
+		"Nhh... Aah.",
+	)
 	pixel_x = -8
 	base_pixel_x = -8
 	pixel_y = 0
@@ -45,28 +45,26 @@
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 40, 45, 50),
 		ABNORMALITY_WORK_INSIGHT = list(60, 60, 45, 45, 50),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 15, 30, 45)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 15, 30, 45),
+	)
 	work_damage_amount = 12//decently high due to mechanics
 	work_damage_type = RED_DAMAGE
 	max_boxes = 18
 
 	ego_list = list(
 		/datum/ego_datum/weapon/legerdemain,
-		/datum/ego_datum/armor/legerdemain
-		)
+		/datum/ego_datum/armor/legerdemain,
+	)
 	gift_type = /datum/ego_gifts/legerdemain
 	gift_message = "You feel a sense of kinship with the apple. Because you're both pests."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5
+		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5,
 	)
 
-	attack_action_types = list(
-		/datum/action/cooldown/gapple_pulse
-		)
+	attack_action_types = list(/datum/action/cooldown/gapple_pulse)
 	var/datum/action/innate/abnormality_attack/maggot_spread/maggot_attack
 	var/datum/action/innate/abnormality_attack/maggot_spread2/maggot_attack2
 

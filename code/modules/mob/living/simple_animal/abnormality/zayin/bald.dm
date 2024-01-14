@@ -11,11 +11,11 @@
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
 
@@ -32,8 +32,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/tough,
-		/datum/ego_datum/armor/tough
-		)
+		/datum/ego_datum/armor/tough,
+	)
 	gift_type =  /datum/ego_gifts/tough
 	gift_chance = 10
 	gift_message = "Now we're feeling awesome!"

@@ -42,11 +42,11 @@
 	var/small_sprite_type = /datum/action/small_sprite/abnormality
 	/// Work types and chances
 	var/list/work_chances = list(
-							ABNORMALITY_WORK_INSTINCT = list(50, 55, 60, 65, 70),
-							ABNORMALITY_WORK_INSIGHT = list(50, 55, 60, 65, 70),
-							ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 70),
-							ABNORMALITY_WORK_REPRESSION = list(50, 55, 60, 65, 70)
-							)
+		ABNORMALITY_WORK_INSTINCT = list(50, 55, 60, 65, 70),
+		ABNORMALITY_WORK_INSIGHT = list(50, 55, 60, 65, 70),
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 70),
+		ABNORMALITY_WORK_REPRESSION = list(50, 55, 60, 65, 70),
+	)
 	/// Work Types and corresponding their attributes
 	var/list/work_attribute_types = WORK_TO_ATTRIBUTE
 	/// How much damage is dealt to user on each work failure
@@ -78,7 +78,13 @@
 	var/harvest_phrase = span_notice("You harvest... something... into %VESSEL.")
 	var/harvest_phrase_third = "%PERSON harvests... something... into %VESSEL."
 	// Dummy chemicals - called if chem_type is null.
-	var/list/dummy_chems = list(/datum/reagent/abnormality/nutrition, /datum/reagent/abnormality/cleanliness, /datum/reagent/abnormality/consensus, /datum/reagent/abnormality/amusement, /datum/reagent/abnormality/violence)
+	var/list/dummy_chems = list(
+		/datum/reagent/abnormality/nutrition,
+		/datum/reagent/abnormality/cleanliness,
+		/datum/reagent/abnormality/consensus,
+		/datum/reagent/abnormality/amusement,
+		/datum/reagent/abnormality/violence,
+	)
 	// Increased Abno appearance chance
 	/// Assoc list, you do [path] = [probability_multiplier] for each entry
 	var/list/grouped_abnos = list()
@@ -255,8 +261,8 @@
 		"2" = list("There's no room for error here.", "My legs are trembling...", "Damn, it's scary."),
 		"3" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"4" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
-		"5" = list("......")
-		)
+		"5" = list("......"),
+	)
 	return pick(result_text_list[level])
 
 // Called by datum_reference when the abnormality has been fully spawned

@@ -28,19 +28,19 @@
 	start_qliphoth = 2
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(80, 70, 60, 55, 50),
-						ABNORMALITY_WORK_INSIGHT = list(90, 80, 70, 65, 60),
-						ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 45, 40),
-						ABNORMALITY_WORK_REPRESSION = 0,
-						"Sacrifice" = 999,
-						)
+		ABNORMALITY_WORK_INSTINCT = list(80, 70, 60, 55, 50),
+		ABNORMALITY_WORK_INSIGHT = list(90, 80, 70, 65, 60),
+		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 45, 40),
+		ABNORMALITY_WORK_REPRESSION = 0,
+		"Sacrifice" = 999,
+	)
 	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/censored,
-		/datum/ego_datum/armor/censored
-		)
+		/datum/ego_datum/armor/censored,
+	)
 
 	gift_type =  /datum/ego_gifts/censored
 	gift_message = "You feel disgusted just looking at it."
@@ -68,8 +68,8 @@
 	var/list/result_text_list = list(
 		"3" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"4" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
-		"5" = list("It's all over...", "What...")
-		)
+		"5" = list("It's all over...", "What..."),
+	)
 	return pick(result_text_list[level])
 
 /* Combat */

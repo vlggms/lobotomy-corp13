@@ -26,18 +26,18 @@
 	can_breach = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(20, 20, 55, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 45, 45, 45),
-						ABNORMALITY_WORK_REPRESSION = list(40, 20, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(20, 20, 55, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(20, 45, 45, 45, 45),
+		ABNORMALITY_WORK_REPRESSION = list(40, 20, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/amrita,
-		/datum/ego_datum/armor/amrita
-		)
+		/datum/ego_datum/armor/amrita,
+	)
 	gift_type =  /datum/ego_gifts/amrita
 	gift_message = "Anyone can become a Buddha by washing away the anguish and delusion in their heart."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY

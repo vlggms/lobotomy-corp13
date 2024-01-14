@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 50, 55, 60),
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 70, 60, 50, 40),
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 40, 40, 50),
-		"Request" = 100
+		"Request" = 100,
 	)
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
@@ -46,7 +46,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blind_rage,
-		/datum/ego_datum/armor/blind_rage
+		/datum/ego_datum/armor/blind_rage,
 	)
 	gift_type = /datum/ego_gifts/blind_rage
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
@@ -55,7 +55,7 @@
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
-		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
 
 	var/friendly = TRUE
@@ -80,8 +80,8 @@
 	//PLAYABLES ACTIONS
 	attack_action_types = list(
 		/datum/action/cooldown/wrath_smash,
-		/datum/action/cooldown/wrath_dash
-		)
+		/datum/action/cooldown/wrath_dash,
+	)
 
 /datum/action/cooldown/wrath_smash
 	name = "Blind Rage"

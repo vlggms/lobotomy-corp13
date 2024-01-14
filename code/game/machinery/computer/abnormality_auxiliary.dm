@@ -50,7 +50,13 @@
 		if(FACILITY_UPGRADES)
 			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points, 0.1)]"
 			dat += "<hr>"
-			var/list/upgrades_per_category = list("Bullets" = list(), "Bullet Upgrades" = list(), "Agent" = list(), "Abnormalities" = list(), "Unsorted" = list())
+			var/list/upgrades_per_category = list(
+				"Bullets" = list(),
+				"Bullet Upgrades" = list(),
+				"Agent" = list(),
+				"Abnormalities" = list(),
+				"Unsorted" = list(),
+				)
 			for(var/datum/facility_upgrade/F in SSlobotomy_corp.upgrades)
 				if(!F.CanShowUpgrade())
 					continue

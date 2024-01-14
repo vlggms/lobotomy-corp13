@@ -12,7 +12,7 @@
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 40, 50),
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 40, 50),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 40, 50),
-			)
+	)
 	pixel_x = -16
 	base_pixel_x = -16
 	start_qliphoth = 2
@@ -22,7 +22,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/infinity,
 		/datum/ego_datum/armor/infinity,
-		)
+	)
 	gift_type = /datum/ego_gifts/infinity
 
 	var/list/total_havers = list()

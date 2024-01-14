@@ -25,18 +25,18 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 40,
-						ABNORMALITY_WORK_INSIGHT = 15,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 50
-						)
+		ABNORMALITY_WORK_INSTINCT = 40,
+		ABNORMALITY_WORK_INSIGHT = 15,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 50,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/correctional,
-		/datum/ego_datum/armor/correctional
-		)
+		/datum/ego_datum/armor/correctional,
+	)
 	gift_type =  /datum/ego_gifts/correctional
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 	var/finishing = FALSE

@@ -19,11 +19,11 @@
 	start_qliphoth = 2
 	// Work chances were slightly changed for it to be possible to get neutral result
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 40, 35),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 35, 30),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 35, 30, 25),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 40, 35),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 35, 30),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 35, 30, 25),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -42,8 +42,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/aroma,
-		/datum/ego_datum/armor/aroma
-		)
+		/datum/ego_datum/armor/aroma,
+	)
 	gift_type =  /datum/ego_gifts/aroma
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

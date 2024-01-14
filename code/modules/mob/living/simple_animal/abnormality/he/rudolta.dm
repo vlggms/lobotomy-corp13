@@ -20,11 +20,11 @@
 	move_to_delay = 6
 	minimum_distance = 2 // Don't move all the way to melee
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(20, 40, 40, 35, 0),
-						ABNORMALITY_WORK_INSIGHT = list(50, 60, 60, 55, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 50, 45, 40),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(20, 40, 40, 35, 0),
+		ABNORMALITY_WORK_INSIGHT = list(50, 60, 60, 55, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 50, 45, 40),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	friendly_verb_continuous = "scorns"
@@ -32,8 +32,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/christmas,
-		/datum/ego_datum/armor/christmas
-		)
+		/datum/ego_datum/armor/christmas,
+	)
 	gift_type =  /datum/ego_gifts/christmas
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/pulse_cooldown

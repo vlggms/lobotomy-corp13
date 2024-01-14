@@ -25,8 +25,8 @@
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Release" = 100
-		)
+		"Release" = 100,
+	)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 22
 	melee_damage_upper = 30
@@ -43,13 +43,13 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/oppression,
-		/datum/ego_datum/armor/oppression
-		)
+		/datum/ego_datum/armor/oppression,
+	)
 	gift_type = /datum/ego_gifts/oppression
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/red_buddy = 5
+		/mob/living/simple_animal/hostile/abnormality/red_buddy = 5,
 	)
 
 	var/death_counter //He won't go off a timer, he'll go off deaths. Takes 8 for him.
@@ -67,47 +67,47 @@
 	//lines said during combat
 	var/buddy_hit = FALSE
 	var/list/combat_lines = list(
-				"Have at you!",
-				"Take this!",
-				"I'll kill you!",
-				"This is for locking me up!",
-				"Die!"
-				)
+		"Have at you!",
+		"Take this!",
+		"I'll kill you!",
+		"This is for locking me up!",
+		"Die!",
+	)
 	//lines shepperd say when someone's dead
 	var/list/people_dead_lines = list(
-				" didn't last long huh?",
-				" died, if only I was here to help...",
-				"'s dead? what a shame, I kinda liked them.",
-				)
+		" didn't last long huh?",
+		" died, if only I was here to help...",
+		"'s dead? what a shame, I kinda liked them.",
+	)
 	//lines shepperd say when someone is still alive
 	var/list/people_alive_lines = list(
-				" is still alive somehow, won't last long though.",
-				" is doing much better than you, but I can take care of them if you want.",
-				"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
-				"'s would have released me by now, why can't you do the same?",
-				)
+		" is still alive somehow, won't last long though.",
+		" is doing much better than you, but I can take care of them if you want.",
+		"'s abilities are quite phenomenal, and yet I'm stuck with you, tch.",
+		"'s would have released me by now, why can't you do the same?",
+	)
 	//lines shepperd say when something has breached
 	var/list/abno_breach_lines = list(
-				" has breached, I could help you know?",
-				" is out, are you sure you're strong enough to take care of it by yourself?",
-				" is going on a rampage, you guys really can't do your job right huh?",
-				" has breached and you're still wasting your time on me? I'm flattered.",
-				)
+		" has breached, I could help you know?",
+		" is out, are you sure you're strong enough to take care of it by yourself?",
+		" is going on a rampage, you guys really can't do your job right huh?",
+		" has breached and you're still wasting your time on me? I'm flattered.",
+	)
 	//lines shepperd say when an abno hasn't breached (yet)
 	var/list/abno_safe_lines = list(
-				" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
-				" hasn't breached yet, but I wouldn't count on it staying that way.",
-				" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
-				"'s doing fine, don't you have a manager to check those things for you?",
-				)
+		" is still stuck in their cell like me, but freedom isn't something you can just take away so easily.",
+		" hasn't breached yet, but I wouldn't count on it staying that way.",
+		" hasn't escaped despite your terrible work ethic, I won't be as easy to handle.",
+		"'s doing fine, don't you have a manager to check those things for you?",
+	)
 	//lines shepherd say about red buddy
 	var/list/red_buddy_lines = list(
-				"The wolf is coming down the hill...",
-				"You'd think I lie when I foretell a wolf showing up and tearing this basement up too? ",
-				"You know what? about that thing connected to me. It has no life, lifeless things always wait.",
-				"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
-				"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy."
-				)
+		"The wolf is coming down the hill...",
+		"You'd think I lie when I foretell a wolf showing up and tearing this basement up too? ",
+		"You know what? about that thing connected to me. It has no life, lifeless things always wait.",
+		"That red thing? they miss the love, the cuddles, the happiness of that moment dearly.",
+		"And when that 'buddy' fully realises the situation it's in, it becomes a wolf. That's when it can get my attention and care, what a dummy.",
+	)
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/sheperd_spin_toggle)

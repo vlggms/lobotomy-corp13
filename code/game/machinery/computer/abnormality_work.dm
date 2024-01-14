@@ -307,7 +307,12 @@
 
 // Scrambles work types for this specific console
 /obj/machinery/computer/abnormality/proc/Scramble()
-	var/list/normal_works = shuffle(list(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION))
+	var/list/normal_works = shuffle(list(
+		ABNORMALITY_WORK_INSTINCT,
+		ABNORMALITY_WORK_INSIGHT,
+		ABNORMALITY_WORK_ATTACHMENT,
+		ABNORMALITY_WORK_REPRESSION,
+		))
 	var/list/choose_from = normal_works.Copy()
 	for(var/work in normal_works)
 		scramble_list[work] = pick(choose_from - work)

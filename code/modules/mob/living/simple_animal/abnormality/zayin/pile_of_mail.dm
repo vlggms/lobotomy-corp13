@@ -13,7 +13,7 @@
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 40, 30),
 		ABNORMALITY_WORK_REPRESSION = 0,
-		)
+	)
 	pixel_x = 0
 	base_pixel_x = 0
 
@@ -27,8 +27,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/letter_opener,
-		/datum/ego_datum/armor/letter_opener
-		)
+		/datum/ego_datum/armor/letter_opener,
+	)
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 	var/cooldown
@@ -146,7 +146,13 @@
 		chance = 20
 		if(role in list("Manager", "Extraction Officer", "Records Officer", "Sephirah"))
 			weaken = TRUE
-		var/threat_type = pickweight(list(/obj/item/mailpaper/trapped/fairies = 10, /obj/item/mailpaper/trapped/acid = 10, /obj/item/mailpaper/trapped/urgent = 6, /obj/item/mailpaper/trapped/flashbang = 3, /obj/item/mailpaper/coupon = 1))
+		var/threat_type = pickweight(list(
+			/obj/item/mailpaper/trapped/fairies = 10,
+			/obj/item/mailpaper/trapped/acid = 10,
+			/obj/item/mailpaper/trapped/urgent = 6,
+			/obj/item/mailpaper/trapped/flashbang = 3,
+			/obj/item/mailpaper/coupon = 1,
+		))
 		switch(threat_type)
 			if(/obj/item/mailpaper/trapped/fairies)
 				var/obj/item/mailpaper/trapped/fairies/MF = new threat_type(get_turf(H))
@@ -270,7 +276,16 @@
 	qdel(src)
 
 /obj/item/mailpaper/junk
-	var/JUNKMAIL = list(list("letter from RobustCO","The outside reads 'Improve your robustness today! Read our letter now!"),list("Suspicious message","Ever felt like you need a boost? Get swole today!"))
+	var/JUNKMAIL = list(
+		list(
+			"letter from RobustCO",
+			"The outside reads \"Improve your robustness today! Read our letter now!\"",
+		),
+		list(
+			"Suspicious message",
+			"Ever felt like you need a boost? Get swole today!",
+		),
+	)
 
 /obj/item/mailpaper/junk/Initialize()
 	. = ..()

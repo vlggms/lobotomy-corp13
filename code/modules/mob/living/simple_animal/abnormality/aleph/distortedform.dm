@@ -31,28 +31,32 @@
 	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 25,
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
+	)
 	start_qliphoth = 3
 	work_damage_amount = 4		//Work damage is later
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/armor/distortion
-		)
+		/datum/ego_datum/armor/distortion,
+	)
 	gift_type = /datum/ego_gifts/distortion
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 //Work vars
 	var/transform_timer
 	var/list/transform_blacklist = list(
-		/mob/living/simple_animal/hostile/abnormality/hammer_light, /mob/living/simple_animal/hostile/abnormality/black_swan,
-		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird,
-		/mob/living/simple_animal/hostile/abnormality/red_shoes,/mob/living/simple_animal/hostile/abnormality/seasons,/mob/living/simple_animal/hostile/abnormality/pisc_mermaid
-		)
+		/mob/living/simple_animal/hostile/abnormality/hammer_light,
+		/mob/living/simple_animal/hostile/abnormality/black_swan,
+		/mob/living/simple_animal/hostile/abnormality/fire_bird,
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird,
+		/mob/living/simple_animal/hostile/abnormality/red_shoes,
+		/mob/living/simple_animal/hostile/abnormality/seasons,
+		/mob/living/simple_animal/hostile/abnormality/pisc_mermaid.
+	)
 	var/datum/looping_sound/distortedform/soundloop
 	var/transformed = FALSE //We'll use this variable to check for whether or not to play the sound loop
 	/// List of melting consoles
@@ -80,7 +84,17 @@
 	var/transform_cooldown_time_short = 4 SECONDS
 	var/transform_cooldown_time = 6 SECONDS
 	var/transform_cooldown_time_long = 12 SECONDS
-	var/list/transform_list = list("Nothing There", "Apocalypse bird", "Puss in Boots", "Crumbling Armor", "Hammer of Light", "Halberd Apostle", "Red Queen", "Blubbering Toad", "Bloodbath")
+	var/list/transform_list = list(
+		"Nothing There",
+		"Apocalypse bird",
+		"Puss in Boots",
+		"Crumbling Armor",
+		"Hammer of Light",
+		"Halberd Apostle",
+		"Red Queen",
+		"Blubbering Toad",
+		"Bloodbath",
+	)
 	var/list/transform_list_longrange = list("Doomsday Calendar", "Blue Star", "Der Freischutz", "Apocalypse bird")
 	var/list/transform_list_jump = list("Light", "Medium", "Heavy")
 	var/transform_count = 0
@@ -106,8 +120,8 @@
 		"2" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"3" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
 		"4" = list("I'm so dead...", "That thing's just a monster!", "I need to get out of here!"),
-		"5" = list("Is that what it really looks like?", "It's over...", "I can’t even move my legs...")
-		)
+		"5" = list("Is that what it really looks like?", "It's over...", "I can’t even move my legs..."),
+	)
 	return pick(result_text_list[level])
 
 //Work Mechanics

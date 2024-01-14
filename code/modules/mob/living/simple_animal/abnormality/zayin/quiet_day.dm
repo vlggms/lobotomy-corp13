@@ -23,7 +23,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/nostalgia,
-		/datum/ego_datum/armor/nostalgia
+		/datum/ego_datum/armor/nostalgia,
 	)
 
 	faction = list("hostile", "neutral")
@@ -32,7 +32,7 @@
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
 	)
 
 	chem_type = /datum/reagent/abnormality/quiet_day
@@ -43,58 +43,66 @@
 	var/buff_given
 	var/datum/looping_sound/quietday_ambience/soundloop
 
-	var/list/war_story = list("Ah, I see you're interested in hearing about my experiences in the Smoke Wars. I'm happy to oblige.",
-	"During my time in the war, I served as a medic for L Corp, It was a grueling and heartbreaking experience, seeing so many young men and women injured or killed in the line of duty.",
-	"It was a foggy morning, and our unit was tasked with holding a hallway of the nest against the enemy's advance.",
-	"The smoke from the gunfire and explosions made it difficult to see more than a few feet in front of us, but we knew the enemy was out there, somewhere.",
-	"We took heavy losses. I remember patching up wounded soldiers as quickly as I could, trying to keep them alive long enough to get them to a field hospital.",
-	"At one point, while pulling a wounded lady back to safety I found myself alone. I could hear the sound of footsteps approaching, and I readied myself for a fight.",
-	"But as the figure emerged from around the corner, I saw that it was a young zwei fixer, barely more than a boy.",
-	"He was clutching his side, blood seeping through his uniform. I could tell from the look on his face that he was terrified, and I did my best to calm him down as I worked on his wounds.",
-	"As I finished up my work and prepared to help him to safety, he looked up at me with tears in his eyes and said, 'Thank you, sir. You're a true gentleman.'",
-	"That was the last I heard of him. I was shot in the back before I could pull the wounded woman back to safety.")
-
-	var/list/parable = list("Certainly, I would be happy to share a parable with you.",
-	"Once upon a time, in a small village nestled in a valley, there lived a wise old man. One day, a young traveler came to the village and sought out the old man, hoping to learn from his wisdom.",
-	"The young traveler asked the old man, 'What is the secret to a happy and fulfilled life?' The old man replied, 'I will show you.'",
-	"He took the young traveler to a nearby river and led him into the water. As they waded into the shallows, the old man suddenly grabbed the young man's head and held it under the water.",
-	"At first, the young traveler struggled and fought against the old man's grip, desperate for air. But as he began to lose consciousness, the old man released him and helped him back up to the surface.",
-	"The young traveler gasped for air, coughing and sputtering, and demanded to know why the old man had done such a thing. The old man replied, 'When you were underwater, what did you want more than anything else in the world?'.",
-	"The young traveler thought for a moment and then replied, 'Air. I wanted air more than anything.'",
-	"The old man smiled and said, 'Exactly. The secret to a happy and fulfilled life is to want something as much as you wanted air when you were underwater. That kind of drive and determination will help you achieve anything you set your mind to.'")
-
-	var/list/wife = list("Certainly, I would be happy to share a story about my dear wife",
-	"My wife and I were both from L Corporation, and we worked together in the same office for many years. We had a special bond, not just as husband and wife, but also as coworkers who shared a passion for our profession.",
-	"One day, she looked extremely stressed.",
-	"I asked her if everything was okay, and she confided in me that she was worried about a mistake she had made in one of the reports.",
-	"I am a very calm man, I reassured her that we would work together to fix the mistake and make sure that everything was correct. We spent the rest of the night poring over the reports, double-checking to make sure that everything was accurate.",
-	"By the time we finished, it was already well past midnight. We were both exhausted, but also relieved and proud of the work we had done. We hugged each other and I told my wife how much I appreciated her dedication and hard work.",
-	"She was quite the fiery woman, but I loved her so very much. I still miss her this very day, I hope she made it out of the nest.")
-
-	var/list/dementia = list("I'm sorry, what was your name again? My memory isn't what it used to be.",
-	"I remember a time when we used to... oh, wait, where was I going with this?",
-	"Sometimes, I feel like my memory is slipping away. But I still have all these stories and experiences inside me that I want to share.",
-	"I'm having trouble finding the right words to express myself. Please bear with me.",
-	"I'm sorry, my mind isn't as sharp as it used to be. Could you please repeat what you said?",
-	"Oh dear, where did I put my glasses? I can't seem to find them anywhere.",
-	"Now, what was I going to say? It's right on the tip of my tongue...",
-	"I think I've seen you somewhere before, haven't I? Or am I mistaken?",
-	"Sometimes my mind feels like a jumbled mess. I wish I could straighten it all out."
+	var/list/war_story = list(
+		"Ah, I see you're interested in hearing about my experiences in the Smoke Wars. I'm happy to oblige.",
+		"During my time in the war, I served as a medic for L Corp, It was a grueling and heartbreaking experience, seeing so many young men and women injured or killed in the line of duty.",
+		"It was a foggy morning, and our unit was tasked with holding a hallway of the nest against the enemy's advance.",
+		"The smoke from the gunfire and explosions made it difficult to see more than a few feet in front of us, but we knew the enemy was out there, somewhere.",
+		"We took heavy losses. I remember patching up wounded soldiers as quickly as I could, trying to keep them alive long enough to get them to a field hospital.",
+		"At one point, while pulling a wounded lady back to safety I found myself alone. I could hear the sound of footsteps approaching, and I readied myself for a fight.",
+		"But as the figure emerged from around the corner, I saw that it was a young zwei fixer, barely more than a boy.",
+		"He was clutching his side, blood seeping through his uniform. I could tell from the look on his face that he was terrified, and I did my best to calm him down as I worked on his wounds.",
+		"As I finished up my work and prepared to help him to safety, he looked up at me with tears in his eyes and said, \"Thank you, sir. You're a true gentleman.\"",
+		"That was the last I heard of him. I was shot in the back before I could pull the wounded woman back to safety.",
 	)
 
-	var/list/catt = list("Once upon a time, there lived a small kitten and their pack of friends...",
-	"The small kitten looked up to their friends, and in turn their friends lead them down the straight path.",
-	"Then one day, the small kitten's friends got in trouble, and the small kitten, being small and only having followed their lead, could do nothing.",
-	"So the kitten's friends died and left the little kitten alone. Heartbroken, the kitten swore they'd never care for another so long as they lived.",
-	"Years passed, and the kitten, now grown, became a powerful lion. Powerful and uncaring, they tore down beast after beast, yet hardly feasted.",
-	"One day, the powerful lion found two kittens. The lion dismissed them as it had many others, believing them to weak and fragile, and left them to fend for themselves.",
-	"However, bit by bit, those kittens followed the lion, and the lion felt itself taking steps back so they could catch up.",
-	"As time passed, the lion felt itself beginning to care for the kittens, and in thise care it felt it felt fear.",
-	"The kittens assured the lion they'd never leave them, and for once in a long time, the lion believed in someone else.",
-	"However, that was the lion's greatest mistake. Soon after, one of the kittens grew sick. The kitten was dying, and nothing could be done.",
-	"So the lion, still a small kitten, ran. They ran to the ends of the earth trying to hide from the pain of losing a friend, the pain of being alone.",
-	"But there, standing at the end of the earth, was the other kitten; And for once, the lion, still a little kitten, saw them for what they truly were. A lion looking for a friend.",
-	"Yet in the end, the lion was still a small kitten and could not accept their friendship; So they ran."
+	var/list/parable = list(
+		"Certainly, I would be happy to share a parable with you.",
+		"Once upon a time, in a small village nestled in a valley, there lived a wise old man. One day, a young traveler came to the village and sought out the old man, hoping to learn from his wisdom.",
+		"The young traveler asked the old man, \"What is the secret to a happy and fulfilled life?\" The old man replied, \"I will show you.\"",
+		"He took the young traveler to a nearby river and led him into the water. As they waded into the shallows, the old man suddenly grabbed the young man's head and held it under the water.",
+		"At first, the young traveler struggled and fought against the old man's grip, desperate for air. But as he began to lose consciousness, the old man released him and helped him back up to the surface.",
+		"The young traveler gasped for air, coughing and sputtering, and demanded to know why the old man had done such a thing. The old man replied, \"When you were underwater, what did you want more than anything else in the world?\".",
+		"The young traveler thought for a moment and then replied, \"Air. I wanted air more than anything.\"",
+		"The old man smiled and said, \"Exactly. The secret to a happy and fulfilled life is to want something as much as you wanted air when you were underwater. That kind of drive and determination will help you achieve anything you set your mind to.\"",
+	)
+
+	var/list/wife = list(
+		"Certainly, I would be happy to share a story about my dear wife",
+		"My wife and I were both from L Corporation, and we worked together in the same office for many years. We had a special bond, not just as husband and wife, but also as coworkers who shared a passion for our profession.",
+		"One day, she looked extremely stressed.",
+		"I asked her if everything was okay, and she confided in me that she was worried about a mistake she had made in one of the reports.",
+		"I am a very calm man, I reassured her that we would work together to fix the mistake and make sure that everything was correct. We spent the rest of the night poring over the reports, double-checking to make sure that everything was accurate.",
+		"By the time we finished, it was already well past midnight. We were both exhausted, but also relieved and proud of the work we had done. We hugged each other and I told my wife how much I appreciated her dedication and hard work.",
+		"She was quite the fiery woman, but I loved her so very much. I still miss her this very day, I hope she made it out of the nest.",
+	)
+
+	var/list/dementia = list(
+		"I'm sorry, what was your name again? My memory isn't what it used to be.",
+		"I remember a time when we used to... oh, wait, where was I going with this?",
+		"Sometimes, I feel like my memory is slipping away. But I still have all these stories and experiences inside me that I want to share.",
+		"I'm having trouble finding the right words to express myself. Please bear with me.",
+		"I'm sorry, my mind isn't as sharp as it used to be. Could you please repeat what you said?",
+		"Oh dear, where did I put my glasses? I can't seem to find them anywhere.",
+		"Now, what was I going to say? It's right on the tip of my tongue...",
+		"I think I've seen you somewhere before, haven't I? Or am I mistaken?",
+		"Sometimes my mind feels like a jumbled mess. I wish I could straighten it all out.",
+	)
+
+	var/list/catt = list(
+		"Once upon a time, there lived a small kitten and their pack of friends...",
+		"The small kitten looked up to their friends, and in turn their friends lead them down the straight path.",
+		"Then one day, the small kitten's friends got in trouble, and the small kitten, being small and only having followed their lead, could do nothing.",
+		"So the kitten's friends died and left the little kitten alone. Heartbroken, the kitten swore they'd never care for another so long as they lived.",
+		"Years passed, and the kitten, now grown, became a powerful lion. Powerful and uncaring, they tore down beast after beast, yet hardly feasted.",
+		"One day, the powerful lion found two kittens. The lion dismissed them as it had many others, believing them to weak and fragile, and left them to fend for themselves.",
+		"However, bit by bit, those kittens followed the lion, and the lion felt itself taking steps back so they could catch up.",
+		"As time passed, the lion felt itself beginning to care for the kittens, and in thise care it felt it felt fear.",
+		"The kittens assured the lion they'd never leave them, and for once in a long time, the lion believed in someone else.",
+		"However, that was the lion's greatest mistake. Soon after, one of the kittens grew sick. The kitten was dying, and nothing could be done.",
+		"So the lion, still a small kitten, ran. They ran to the ends of the earth trying to hide from the pain of losing a friend, the pain of being alone.",
+		"But there, standing at the end of the earth, was the other kitten; And for once, the lion, still a little kitten, saw them for what they truly were. A lion looking for a friend.",
+		"Yet in the end, the lion was still a small kitten and could not accept their friendship; So they ran.",
 	)
 
 	var/pink_speaktimer = null

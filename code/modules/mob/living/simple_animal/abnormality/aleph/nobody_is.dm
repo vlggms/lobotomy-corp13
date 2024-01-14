@@ -24,24 +24,24 @@
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = 50,
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = 50,
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 16
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/mockery,
-		/datum/ego_datum/armor/mockery
-		)
+		/datum/ego_datum/armor/mockery,
+	)
 	gift_type =  /datum/ego_gifts/mockery
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/nothing_there = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/kqe = 1.5
+		/mob/living/simple_animal/hostile/abnormality/kqe = 1.5,
 	)
 
 	//Contained Variables
@@ -52,7 +52,14 @@
 	var/can_act = TRUE
 	var/current_stage = 1
 	var/next_transform = null
-	var/list/longhair = list("Floorlength Bedhead", "Long Side Part", "Long Bedhead", "Drill Hair (Extended)", "Long Hair 2", "Silky") // EXTREMELY TEMPORARY but easier to do than figuring out complex image manipulation
+	var/list/longhair = list( // EXTREMELY TEMPORARY but easier to do than figuring out complex image manipulation
+		"Floorlength Bedhead",
+		"Long Side Part",
+		"Long Bedhead",
+		"Drill Hair (Extended)",
+		"Long Hair 2",
+		"Silky",
+	)
 	var/list/longbeard = list("Beard (Very Long)")
 
 	//Breach Variables
@@ -77,7 +84,7 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/nobody_attack,
-		/datum/action/innate/abnormality_attack/toggle/nobody_attack_toggle
+		/datum/action/innate/abnormality_attack/toggle/nobody_attack_toggle,
 	)
 
 /datum/action/cooldown/nobody_attack

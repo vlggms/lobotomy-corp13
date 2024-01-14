@@ -15,8 +15,8 @@
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Touch" = 100
-			) //for some reason all its work rates are uniform through attribute levels in LC
+		"Touch" = 100,
+	) //for some reason all its work rates are uniform through attribute levels in LC
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
@@ -39,8 +39,8 @@
 	faction = list("hostile", "porccubus") //so that he stops attacking overdosed people while still not attacking random abnormalities
 	ego_list = list(
 		/datum/ego_datum/weapon/pleasure,
-		/datum/ego_datum/armor/pleasure
-		)
+		/datum/ego_datum/armor/pleasure,
+	)
 	gift_type = /datum/ego_gifts/pleasure
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

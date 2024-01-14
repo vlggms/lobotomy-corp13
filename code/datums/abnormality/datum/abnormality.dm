@@ -21,7 +21,7 @@
 							ABNORMALITY_WORK_INSTINCT = 0,
 							ABNORMALITY_WORK_INSIGHT = 0,
 							ABNORMALITY_WORK_ATTACHMENT = 0,
-							ABNORMALITY_WORK_REPRESSION = 0
+							ABNORMALITY_WORK_REPRESSION = 0,
 							)
 	/// How much PE it produces. Also responsible for work time
 	var/max_boxes = 0
@@ -269,7 +269,12 @@
 /datum/abnormality/proc/AddWorkStats(mob/living/carbon/human/user, pe = 0, attribute_type = "N/A", attribute_given = 0)
 	var/user_name = "[user.real_name] ([user.ckey])"
 	if(!(user_name in work_stats))
-		work_stats[user_name] = list("name" = user.real_name,"works" = 0, "pe" = 0, "gain" = list())
+		work_stats[user_name] = list(
+			"name" = user.real_name,
+			"works" = 0,
+			"pe" = 0,
+			"gain" = list(),
+			)
 	work_stats[user_name]["works"] += 1
 	if(pe)
 		work_stats[user_name]["pe"] += pe
@@ -278,7 +283,12 @@
 
 	// Global agent stats
 	if(!(user_name in SSlobotomy_corp.work_stats))
-		SSlobotomy_corp.work_stats[user_name] = list("name" = user.real_name, "works" = 0, "pe" = 0, "gain" = list())
+		SSlobotomy_corp.work_stats[user_name] = list(
+			"name" = user.real_name,
+			"works" = 0,
+			"pe" = 0,
+			"gain" = list(),
+			)
 	SSlobotomy_corp.work_stats[user_name]["works"] += 1
 	if(pe)
 		SSlobotomy_corp.work_stats[user_name]["pe"] += pe

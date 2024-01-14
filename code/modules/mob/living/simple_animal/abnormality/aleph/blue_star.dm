@@ -19,11 +19,11 @@
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 40
-						)
+		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSIGHT = 50,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 40,
+	)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
 	can_patrol = FALSE
@@ -37,8 +37,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/star_sound,
-		/datum/ego_datum/armor/star_sound
-		)
+		/datum/ego_datum/armor/star_sound,
+	)
 	gift_type =  /datum/ego_gifts/star
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

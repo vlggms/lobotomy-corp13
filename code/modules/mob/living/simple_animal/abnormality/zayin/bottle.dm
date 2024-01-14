@@ -17,15 +17,15 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
 		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30), //How the fuck do you beat up a cake?
 		"Dining" = 100, //You can instead decide to eat the cake.
-		"Drink" = 100 //Or Drink the water
-		)
+		"Drink" = 100, //Or Drink the water
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/little_alice,
-		/datum/ego_datum/armor/little_alice
-		)
+		/datum/ego_datum/armor/little_alice,
+	)
 	gift_type = /datum/ego_gifts/alice
 	gift_message = "Welcome to your very own Wonderland~"
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB

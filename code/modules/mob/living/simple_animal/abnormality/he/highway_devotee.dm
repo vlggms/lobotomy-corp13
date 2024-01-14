@@ -18,18 +18,18 @@
 	faction = list("neutral", "hostile")
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = list(55, 55, 50, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 20, 10, 0, 0),
-						ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = list(55, 55, 50, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 20, 10, 0, 0),
+		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
+	)
 	work_damage_amount = 11
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/uturn,
-		/datum/ego_datum/armor/uturn
-		)
+		/datum/ego_datum/armor/uturn,
+	)
 	gift_type =  /datum/ego_gifts/uturn
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/talk = FALSE

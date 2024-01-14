@@ -15,8 +15,8 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = list(45, 45, 50, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = 60,
-		ABNORMALITY_WORK_REPRESSION = 45
-			)
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	can_patrol = FALSE
 	can_breach = TRUE
@@ -30,8 +30,8 @@
 	max_boxes = 12
 	ego_list = list(
 		/datum/ego_datum/weapon/faelantern,
-		/datum/ego_datum/armor/faelantern
-		)
+		/datum/ego_datum/armor/faelantern,
+	)
 
 	gift_type = /datum/ego_gifts/faelantern
 	gift_message = "The fairy extends an olive branch towards you."
@@ -246,10 +246,10 @@
 
 /datum/ai_behavior/say_line/insanity_faelantern
 	lines = list(
-				"Please, wait for me...",
-				"Okay, I'm coming.",
-				"Just a moment please."
-				)
+		"Please, wait for me...",
+		"Okay, I'm coming.",
+		"Just a moment please.",
+	)
 
 /datum/ai_controller/insane/faelantern/SelectBehaviors(delta_time)
 	..()

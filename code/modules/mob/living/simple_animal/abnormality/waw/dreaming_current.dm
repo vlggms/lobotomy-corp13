@@ -19,11 +19,11 @@
 	threat_level = WAW_LEVEL
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 50, 60, 55, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 45, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = 45
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 50, 60, 55, 55),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 45, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -33,8 +33,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/ecstasy,
-		/datum/ego_datum/armor/ecstasy
-		)
+		/datum/ego_datum/armor/ecstasy,
+	)
 	gift_type = /datum/ego_gifts/ecstasy
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -174,8 +174,17 @@
 		playsound(T, "sound/abnormalities/dreamingcurrent/move.ogg", 10, TRUE, 3)
 	for(var/turf/TF in view(1, T))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(TF)
-		var/list/potential_colors = list(COLOR_LIGHT_GRAYISH_RED, COLOR_SOFT_RED, COLOR_YELLOW, \
-			COLOR_VIBRANT_LIME, COLOR_GREEN, COLOR_CYAN, COLOR_BLUE, COLOR_PINK, COLOR_PURPLE)
+		var/list/potential_colors = list(
+			COLOR_LIGHT_GRAYISH_RED,
+			COLOR_SOFT_RED,
+			COLOR_YELLOW,
+			COLOR_VIBRANT_LIME,
+			COLOR_GREEN,
+			COLOR_CYAN,
+			COLOR_BLUE,
+			COLOR_PINK,
+			COLOR_PURPLE,
+		)
 		S.add_atom_colour(pick(potential_colors), FIXED_COLOUR_PRIORITY)
 		var/list/new_hits = HurtInTurf(TF, been_hit, dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE) - been_hit
 		been_hit += new_hits

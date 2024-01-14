@@ -42,8 +42,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower,
-		/datum/ego_datum/armor/sunshower
-		)
+		/datum/ego_datum/armor/sunshower,
+	)
 	gift_type = /datum/ego_gifts/sunshower
 	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs as thanks?"
 

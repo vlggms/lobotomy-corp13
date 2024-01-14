@@ -129,5 +129,6 @@
 	'icons/UI_Icons/abnormality_portraits/wrath_servant.png',
 	'icons/UI_Icons/abnormality_portraits/woodsman.png',
 	'icons/UI_Icons/abnormality_portraits/yang.png',
-	'icons/UI_Icons/abnormality_portraits/yin.png')
+	'icons/UI_Icons/abnormality_portraits/yin.png',
+	)
 	return paths
