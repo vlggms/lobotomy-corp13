@@ -312,7 +312,7 @@
 		ABNORMALITY_WORK_INSIGHT,
 		ABNORMALITY_WORK_ATTACHMENT,
 		ABNORMALITY_WORK_REPRESSION,
-		))
+	))
 	var/list/choose_from = normal_works.Copy()
 	for(var/work in normal_works)
 		scramble_list[work] = pick(choose_from - work)

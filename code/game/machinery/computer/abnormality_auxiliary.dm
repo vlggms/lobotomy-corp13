@@ -13,7 +13,7 @@
 	var/list/all_pages = list(
 		CORE_SUPPRESSIONS,
 		FACILITY_UPGRADES,
-		)
+	)
 	var/datum/suppression/selected_core_type = null
 
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
@@ -56,7 +56,7 @@
 				"Agent" = list(),
 				"Abnormalities" = list(),
 				"Unsorted" = list(),
-				)
+			)
 			for(var/datum/facility_upgrade/F in SSlobotomy_corp.upgrades)
 				if(!F.CanShowUpgrade())
 					continue

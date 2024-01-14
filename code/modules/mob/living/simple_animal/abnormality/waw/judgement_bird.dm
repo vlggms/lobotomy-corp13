@@ -248,7 +248,7 @@
 	M.pixel_x = M.base_pixel_x
 	unbuckle_mob(M,force=1)
 	M.pixel_z = 0
-	src.visible_message(text(span_danger("[M] falls free of [src]!")))
+	src.visible_message(text("<span class='danger'>[M] falls free of [src]!</span>"))
 	M.update_icon()
 
 /obj/structure/jbird_noose/Destroy()

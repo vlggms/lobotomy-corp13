@@ -81,7 +81,7 @@
 			UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
 		if("hardcore_fuck_it_lets_roll")
 			if (SSabnormality_queue.hardcore_roll_enabled)
-				var/mob/living/simple_animal/hostile/abnormality/target_type = pick(pick(SSabnormality_queue.possible_abnormalities))
+				var/mob/living/simple_animal/hostile/abnormality/target_type = pick(SSabnormality_queue.possible_abnormalities)
 				UpdateAnomaly(target_type, "hardcore fucked it and rolled", TRUE)
 			else
 				message_admins("[usr] has managed to send a TGUI signal to hardcore fuck it and roll despite the option being disabled. This is indicative of hacking.")

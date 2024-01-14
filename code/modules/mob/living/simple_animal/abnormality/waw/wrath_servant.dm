@@ -276,7 +276,7 @@
 				say(pick(
 					"You want to be my friend..?",
 					"\"Friend\" is not a word in the book of law...",
-					"I can be a friend that you deserve.".
+					"I can be a friend that you deserve.",
 				))
 				friend_ship += user
 				AdjustInstability(8) // Was 5
