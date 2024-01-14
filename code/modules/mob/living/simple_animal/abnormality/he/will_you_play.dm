@@ -71,7 +71,7 @@
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Tie(mob/living/carbon/human/user, work_type)
 	if(janken == 0)
 		SLEEP_CHECK_DEATH(20)
-		say("A draw. Did you think I wouldn�t play scissors?")
+		say("A draw. Did you think I wouldn't play scissors?")
 		SLEEP_CHECK_DEATH(20)
 		say("I don't play with folks who don't trust me.")
 	else
@@ -95,7 +95,7 @@
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Lose(mob/living/carbon/human/user, work_type)
 	if(janken == 0)
 		SLEEP_CHECK_DEATH(20)
-		say("You win. Scissors are only useful when cloth�s around")
+		say("You win. Scissors are only useful when cloth's around")
 		if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
 			return
 		if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 80)
