@@ -18,11 +18,11 @@
 
 	/// Available work types with their success chances per level. Used in console
 	var/list/available_work = list(
-							ABNORMALITY_WORK_INSTINCT = 0,
-							ABNORMALITY_WORK_INSIGHT = 0,
-							ABNORMALITY_WORK_ATTACHMENT = 0,
-							ABNORMALITY_WORK_REPRESSION = 0,
-							)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	/// How much PE it produces. Also responsible for work time
 	var/max_boxes = 0
 	/// How much PE you have to produce for good result.
@@ -274,7 +274,7 @@
 			"works" = 0,
 			"pe" = 0,
 			"gain" = list(),
-			)
+		)
 	work_stats[user_name]["works"] += 1
 	if(pe)
 		work_stats[user_name]["pe"] += pe
@@ -288,7 +288,7 @@
 			"works" = 0,
 			"pe" = 0,
 			"gain" = list(),
-			)
+		)
 	SSlobotomy_corp.work_stats[user_name]["works"] += 1
 	if(pe)
 		SSlobotomy_corp.work_stats[user_name]["pe"] += pe
