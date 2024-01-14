@@ -73,7 +73,7 @@
 		SLEEP_CHECK_DEATH(20)
 		say("A draw. Did you think I wouldn�t play scissors?")
 		SLEEP_CHECK_DEATH(20)
-		say("I don�t play with folks who don't trust me.")
+		say("I don't play with folks who don't trust me.")
 	else
 		say("Hmph, a draw. You got lucky this time.")
 
