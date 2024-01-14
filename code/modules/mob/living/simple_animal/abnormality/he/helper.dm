@@ -151,7 +151,7 @@
 	if(move_dir in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	SpinAnimation(3, 1, para)
-	playsound(src,"sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
+	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
 	for(var/mob/living/L in range(1, T))
 		if(!faction_check_mob(L))
 			if(L in been_hit)

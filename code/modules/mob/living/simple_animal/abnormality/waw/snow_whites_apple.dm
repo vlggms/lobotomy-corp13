@@ -456,11 +456,13 @@
 	if(lonelyhealth <= 30 && lonely.stat != DEAD)
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))
-			lonely.whisper(pick("First they had feasted upon my poisioned flesh, then i feasted upon them.",
+			lonely.whisper(pick(
+				"First they had feasted upon my poisioned flesh, then i feasted upon them.",
 				"Even after they left, my form would not decay.",
 				"She cast me aside and left with her prince.",
 				"After many days i wondered why i continued to exist.",
-				"Those that trampled me would speak of a witch who casted a spell that had taken her life."))
+				"Those that trampled me would speak of a witch who casted a spell that had taken her life.",
+			))
 
 //Called by snow white when she attacks
 /obj/structure/spreading/apple_vine/proc/VineAttack(hit_thing)

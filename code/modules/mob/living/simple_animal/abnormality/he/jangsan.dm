@@ -184,7 +184,12 @@
 		Players += H
 
 	if(!Players.len)
-		name = pick("Unassuming Friendly Guy","Zeta 123","Bong Bong","John Lobotomy")
+		name = pick(
+			"Unassuming Friendly Guy",
+			"Zeta 123",
+			"Bong Bong",
+			"John Lobotomy",
+		)
 	else
 		var/Sucker = pick(Players)
 		name = "[Sucker]"

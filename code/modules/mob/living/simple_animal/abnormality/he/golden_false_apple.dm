@@ -489,7 +489,11 @@
 		H.forceMove(casing)
 		casing.name = "pile of maggots"
 		casing.desc = "They're wriggling and writhing over something."
-		casing.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
+		casing.icon_state = pick(
+			"cocoon_large1",
+			"cocoon_large2",
+			"cocoon_large3",
+		)
 		casing.density = FALSE
 		casing.color = "#01F9C6"
 		qdel(src)

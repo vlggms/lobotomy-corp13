@@ -254,7 +254,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CauseMelts(datum/source, datum/abnormality/abno_datum, worked)
 	var/meltdown_text = "Horrible screeches have caused a disturbance in the containment zones of the following abnormalities:"
-	var/meltdown_sound = pick("sound/abnormalities/distortedform/screech3.ogg","sound/abnormalities/distortedform/screech4.ogg")
+	var/meltdown_sound = pick(
+		"sound/abnormalities/distortedform/screech3.ogg",
+		"sound/abnormalities/distortedform/screech4.ogg",
+	)
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))

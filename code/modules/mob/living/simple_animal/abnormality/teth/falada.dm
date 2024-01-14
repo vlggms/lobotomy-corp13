@@ -71,7 +71,12 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/falada/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	liked = pick(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
+	liked = pick(
+		ABNORMALITY_WORK_INSTINCT,
+		ABNORMALITY_WORK_INSIGHT,
+		ABNORMALITY_WORK_ATTACHMENT,
+		ABNORMALITY_WORK_REPRESSION,
+	)
 	switch(liked)
 		if(ABNORMALITY_WORK_INSTINCT)
 			say(pick(instinct))

@@ -273,7 +273,11 @@
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			AdjustInstability(4) // Was 2
 			if(!(user in friend_ship) && (pe >= datum_reference.success_boxes))
-				say(pick("You want to be my friend..?", "'Friend' is not a word in the book of law...", "I can be a friend that you deserve."))
+				say(pick(
+					"You want to be my friend..?",
+					"\"Friend\" is not a word in the book of law...",
+					"I can be a friend that you deserve.".
+				))
 				friend_ship += user
 				AdjustInstability(8) // Was 5
 				return
