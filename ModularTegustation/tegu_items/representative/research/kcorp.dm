@@ -136,6 +136,18 @@
 	ItemUnlock(caller.order_list, "K Corp Light Grenade Launcher",	/obj/item/gun/ego_gun/pistol/kcorp/nade, 600)
 	..()
 
+/datum/data/lc13research/karmor1
+	research_name = "K-Corp Class-1 Armor Shipment"
+	research_desc = "Not a lot of people buy these. <br>Hi, I'm Jill from supply. These armors were sitting around collecting dust in the warehouse as we have quite a lot of these, we could lend you some for general use, while in a better state compared to our spears I wouldn't call them top grade. <br>I trust you won't tell our client this however."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/kweapons
+
+/datum/data/lc13research/karmor1/ResearchEffect(obj/structure/representative_console/caller)
+	ItemUnlock(caller.order_list, "K Corp Class-1 Armor", /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/weak, 600)
+	ItemUnlock(caller.order_list, "K Corp L1 Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp, 100)
+	ItemUnlock(caller.order_list, "K Corp L1 Visor Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp/visor, 100)
+
 //Spawners
 /datum/data/lc13research/kdrones
 	research_name = "K-Corp Healing Drones"
