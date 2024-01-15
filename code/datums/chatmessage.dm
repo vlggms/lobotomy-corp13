@@ -104,6 +104,7 @@
 	var/static/list/language_icons
 
 	// Register client who owns this message
+	// /datum/chatmessage/New ensures this is non-null, add a nullcheck if this is ever called elsewhere without a check before it.
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel)
 
