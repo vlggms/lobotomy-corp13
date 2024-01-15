@@ -104,7 +104,6 @@
 	var/static/list/language_icons
 
 	// Register client who owns this message
-	// /datum/chatmessage/New ensures this is non-null, add a nullcheck if this is ever called elsewhere without a check before it.
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/on_parent_qdel)
 
@@ -171,11 +170,10 @@
 
 	// Translate any existing messages upwards, apply exponential decay factors to timers
 	message_loc = get_atom_on_turf(target)
-	var/list/seen_messages = owned_by?.seen_messages // Check for owned_by again, since it could've been nulled after MeasureText(), then cache it so it doesn't vanish.
-	if (seen_messages)
+	if (owned_by?.seen_messages) // Check for owned_by again, since it could've been nulled after MeasureText()
 		var/idx = 1
 		var/combined_height = approx_lines
-		for(var/msg in seen_messages[message_loc])
+		for(var/msg in owned_by?.seen_messages[message_loc])
 			var/datum/chatmessage/m = msg
 			animate(m.message, pixel_y = m.message.pixel_y + mheight, time = CHAT_MESSAGE_SPAWN_TIME)
 			combined_height += m.approx_lines
@@ -203,7 +201,7 @@
 	message.maptext = MAPTEXT(complete_text)
 
 	// View the message
-	LAZYADDASSOCLIST(seen_messages, message_loc, src) // This still modifies the client's list, since it's a reference to the list object. It saves us an owned_by nullcheck.
+	LAZYADDASSOCLIST(owned_by?.seen_messages, message_loc, src)
 	owned_by?.images |= message // We can't save a nullcheck here, though, since animate() may lead to owned_by being nulled.
 	animate(message, alpha = 255, time = CHAT_MESSAGE_SPAWN_TIME)
 
