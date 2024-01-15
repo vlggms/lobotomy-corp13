@@ -199,6 +199,7 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	icon_state = "hivebot_fab_on"
 	density = 1
 	anchored = 1
+	max_integrity = 500
 
 /obj/structure/rcorpcomms/deconstruct(disassembled = TRUE)
 	for(var/mob/M in GLOB.player_list)

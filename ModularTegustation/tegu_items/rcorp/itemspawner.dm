@@ -11,8 +11,10 @@
 	/obj/item/reagent_containers/hypospray/medipen/mental,
 	/obj/item/stack/sheet/mineral/sandbags/ten,
 	/obj/item/flashlight/flare,
-	/obj/item/kcrit,
+	/obj/item/storage/belt/egopcorp,
+	/obj/item/storage/pcorp_pocket,
 	)
+
 	var/list/possible_weapons = list(
 	/obj/item/gun/energy/e_gun/rabbitdash,
 	/obj/item/gun/energy/e_gun/rabbitdash/small,
