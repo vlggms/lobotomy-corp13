@@ -3,10 +3,6 @@
 /obj/machinery/bsa/middle,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
-"b" = (
-/obj/structure/lootcrate/r_corp,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
 "e" = (
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
 /turf/open/floor/plasteel/dark,
@@ -20,7 +16,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "l" = (
-/obj/structure/lootcrate/hana,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "m" = (
@@ -29,10 +25,6 @@
 /area/city/backstreets_room)
 "n" = (
 /obj/machinery/door/airlock/vault,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"q" = (
-/obj/structure/lootcrate/tres,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "s" = (
@@ -45,10 +37,6 @@
 /area/city/backstreets_room)
 "x" = (
 /obj/structure/table,
-/turf/open/floor/plasteel/dark,
-/area/city/backstreets_room)
-"y" = (
-/obj/structure/lootcrate/workshoprosespanner,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "F" = (
@@ -71,7 +59,7 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "T" = (
-/obj/structure/lootcrate/workshopzelkova,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "W" = (
@@ -98,8 +86,8 @@ L
 O
 T
 l
-q
-O
+T
+T
 m
 L
 "}
@@ -126,7 +114,7 @@ L
 (5,1,1) = {"
 L
 Q
-b
+l
 a
 h
 O
@@ -178,7 +166,7 @@ L
 O
 Y
 a
-b
+l
 O
 J
 L
@@ -196,7 +184,7 @@ L
 (12,1,1) = {"
 L
 O
-y
+l
 u
 F
 O

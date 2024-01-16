@@ -15,10 +15,6 @@
 /obj/structure/flora/ausbushes/lavendergrass,
 /turf/open/floor/grass/fairy,
 /area/city/backstreets_room)
-"p" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/jungle,
-/area/city/backstreets_room)
 "q" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /mob/living/simple_animal/hostile/fairyswarm,
@@ -31,10 +27,6 @@
 "t" = (
 /turf/open/floor/grass/fairy,
 /area/city/backstreets_room)
-"u" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/jungle,
-/area/city/backstreets_room)
 "x" = (
 /mob/living/simple_animal/hostile/fairyswarm,
 /turf/open/floor/grass/fairy,
@@ -46,7 +38,7 @@
 /turf/open/floor/grass/fairy,
 /area/city/backstreets_room)
 "D" = (
-/turf/open/floor/plating/grass/jungle,
+/turf/open/floor/grass,
 /area/city/backstreets_room)
 "F" = (
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -84,7 +76,7 @@ Q
 "}
 (2,1,1) = {"
 Q
-u
+r
 B
 t
 k
@@ -103,7 +95,7 @@ Q
 x
 Y
 t
-p
+c
 Q
 "}
 (5,1,1) = {"

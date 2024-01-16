@@ -3,14 +3,6 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/city/backstreets_room)
-"d" = (
-/obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/jungle,
-/area/city/backstreets_room)
-"f" = (
-/obj/structure/flora/ausbushes/fullgrass,
-/turf/open/floor/plating/grass/jungle,
-/area/city/backstreets_room)
 "i" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/sparsegrass,
@@ -48,7 +40,7 @@
 "u" = (
 /mob/living/simple_animal/chicken,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/plating/grass/jungle,
+/turf/open/floor/grass,
 /area/city/backstreets_room)
 "x" = (
 /turf/closed/indestructible/reinforced,
@@ -60,7 +52,7 @@
 "E" = (
 /obj/structure/flora/ausbushes/lavendergrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/jungle,
+/turf/open/floor/grass,
 /area/city/backstreets_room)
 "H" = (
 /obj/structure/mineral_door/wood,
@@ -82,7 +74,7 @@
 "U" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /obj/structure/flora/ausbushes/lavendergrass,
-/turf/open/floor/plating/grass/jungle,
+/turf/open/floor/grass,
 /area/city/backstreets_room)
 "W" = (
 /mob/living/simple_animal/chicken,
@@ -110,7 +102,7 @@ x
 (2,1,1) = {"
 x
 T
-f
+m
 Q
 s
 a
@@ -147,7 +139,7 @@ x
 x
 r
 C
-d
+Y
 P
 U
 a

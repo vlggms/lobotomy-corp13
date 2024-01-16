@@ -24,7 +24,7 @@
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "x" = (
-/obj/structure/lootcrate/workshopzelkova,
+/obj/effect/landmark/cratespawn/corpo,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "y" = (
@@ -40,7 +40,7 @@
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "C" = (
-/obj/structure/lootcrate/workshopleaf,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/plating,
 /area/city/backstreets_room)
 "D" = (
@@ -68,16 +68,12 @@
 /turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "R" = (
-/obj/structure/lootcrate/workshopallas,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "S" = (
 /obj/structure/lootcrate/tres,
 /turf/open/floor/plating/rust,
-/area/city/backstreets_room)
-"W" = (
-/obj/structure/lootcrate/hana,
-/turf/open/floor/plating,
 /area/city/backstreets_room)
 "Y" = (
 /obj/structure/fence{
@@ -108,7 +104,7 @@ n
 "}
 (3,1,1) = {"
 L
-W
+x
 t
 n
 N
