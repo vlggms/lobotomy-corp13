@@ -7,6 +7,7 @@
 	icon_state = "blubbering"
 	icon_living = "blubbering"
 	icon_dead = "blubbering_egg"
+	portrait = "blubbering_toad"
 	var/icon_tongue = "blubbering_tongue"
 	del_on_death = FALSE
 	pixel_x = -16
