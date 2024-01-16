@@ -1,0 +1,291 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/vending/city_clothing,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"b" = (
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c50,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"f" = (
+/obj/machinery/vending/autodrobe/all_access,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"i" = (
+/turf/open/floor/plasteel/white/corner,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/rack,
+/obj/item/storage/cans/sixbeer,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"l" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"n" = (
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/rack,
+/obj/item/dice/d6/space,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/rack,
+/obj/item/vending_refill/medical,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"w" = (
+/obj/machinery/vending/sovietsoda,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/rack,
+/obj/item/storage/cans/sixsoda,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"z" = (
+/turf/open/floor/plasteel/white/corner{
+	dir = 1
+	},
+/area/city/backstreets_room)
+"C" = (
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"E" = (
+/turf/open/floor/plasteel/white/corner{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/rack,
+/obj/item/vending_refill/snack,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"G" = (
+/obj/machinery/vending/medical,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/rack,
+/obj/item/dice/fourdd6,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/table/reinforced,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"O" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/lootcrate/tres,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"U" = (
+/obj/machinery/door/airlock/glass_large,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"V" = (
+/obj/machinery/vending/snack/blue,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/vending/cola/shamblers,
+/turf/open/floor/plasteel/shuttle,
+/area/city/backstreets_room)
+"Z" = (
+/turf/open/floor/plasteel/white/corner{
+	dir = 4
+	},
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+n
+z
+x
+F
+Q
+x
+E
+L
+"}
+(3,1,1) = {"
+n
+b
+o
+b
+l
+c
+b
+L
+"}
+(4,1,1) = {"
+n
+O
+x
+o
+x
+x
+b
+L
+"}
+(5,1,1) = {"
+n
+b
+b
+b
+b
+O
+b
+L
+"}
+(6,1,1) = {"
+n
+b
+l
+b
+C
+b
+G
+L
+"}
+(7,1,1) = {"
+n
+b
+b
+b
+b
+b
+w
+L
+"}
+(8,1,1) = {"
+U
+b
+C
+j
+y
+b
+V
+L
+"}
+(9,1,1) = {"
+b
+b
+k
+H
+p
+b
+X
+L
+"}
+(10,1,1) = {"
+n
+b
+b
+b
+b
+l
+f
+L
+"}
+(11,1,1) = {"
+n
+C
+b
+b
+k
+C
+a
+L
+"}
+(12,1,1) = {"
+n
+k
+b
+b
+b
+b
+b
+L
+"}
+(13,1,1) = {"
+n
+b
+x
+x
+x
+c
+b
+L
+"}
+(14,1,1) = {"
+n
+b
+M
+l
+b
+x
+b
+L
+"}
+(15,1,1) = {"
+n
+Z
+x
+t
+m
+x
+i
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}

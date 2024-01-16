@@ -1,0 +1,148 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/mineral_door/silver,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"g" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/mob/living/simple_animal/hostile/fairyswarm,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"t" = (
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"x" = (
+/mob/living/simple_animal/hostile/fairyswarm,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/table/wood/fancy/cyan,
+/obj/item/reagent_containers/food/drinks/fairywine,
+/obj/item/reagent_containers/food/drinks/fairywine,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"D" = (
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/lootcrate/limbus,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/mob/living/simple_animal/hostile/fairyswarm,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/mob/living/simple_animal/hostile/fairyswarm,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+r
+B
+t
+k
+Q
+"}
+(3,1,1) = {"
+Q
+q
+k
+c
+t
+Q
+"}
+(4,1,1) = {"
+Q
+x
+Y
+t
+c
+Q
+"}
+(5,1,1) = {"
+Q
+X
+x
+k
+t
+a
+"}
+(6,1,1) = {"
+Q
+x
+c
+t
+D
+a
+"}
+(7,1,1) = {"
+Q
+t
+t
+t
+t
+Q
+"}
+(8,1,1) = {"
+Q
+S
+t
+F
+r
+Q
+"}
+(9,1,1) = {"
+Q
+r
+J
+t
+g
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

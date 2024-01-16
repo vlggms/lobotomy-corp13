@@ -1,0 +1,233 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/bsa/middle,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"e" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"h" = (
+/obj/machinery/bsa/back,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"k" = (
+/obj/effect/mine/stun,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"l" = (
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"n" = (
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"s" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/frame/machine,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"F" = (
+/obj/machinery/bsa/back,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/table,
+/obj/item/documents,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"L" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"O" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Q" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"T" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"W" = (
+/obj/effect/mine/shrapnel,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Y" = (
+/obj/machinery/bsa/front,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
+(2,1,1) = {"
+L
+O
+T
+l
+T
+T
+m
+L
+"}
+(3,1,1) = {"
+L
+O
+O
+s
+O
+O
+O
+L
+"}
+(4,1,1) = {"
+L
+O
+O
+O
+O
+O
+O
+L
+"}
+(5,1,1) = {"
+L
+Q
+l
+a
+h
+O
+s
+L
+"}
+(6,1,1) = {"
+L
+O
+O
+O
+O
+O
+O
+L
+"}
+(7,1,1) = {"
+L
+O
+Y
+u
+h
+O
+x
+L
+"}
+(8,1,1) = {"
+L
+O
+O
+O
+O
+O
+J
+L
+"}
+(9,1,1) = {"
+L
+e
+O
+O
+s
+O
+x
+L
+"}
+(10,1,1) = {"
+L
+O
+Y
+a
+l
+O
+J
+L
+"}
+(11,1,1) = {"
+L
+Q
+O
+O
+O
+O
+O
+L
+"}
+(12,1,1) = {"
+L
+O
+l
+u
+F
+O
+s
+L
+"}
+(13,1,1) = {"
+L
+s
+O
+O
+O
+O
+O
+L
+"}
+(14,1,1) = {"
+L
+L
+L
+L
+L
+L
+n
+L
+"}
+(15,1,1) = {"
+n
+W
+O
+k
+O
+k
+O
+L
+"}
+(16,1,1) = {"
+L
+L
+L
+L
+L
+L
+L
+L
+"}
