@@ -97,6 +97,7 @@
 			SPAN_ITALICS,
 			SPAN_SANS,
 			SPAN_PAPYRUS,
+			SPAN_ROBOT,
 			SPAN_ITALICS,
 		)
 		var/list/lines = list(
@@ -434,9 +435,9 @@
 		SPAN_ROBOT,
 		SPAN_ITALICS,
 		SPAN_PAPYRUS,
+		SPAN_SANS,
 		SPAN_SINGING,
 	)
-
 	var/list/lines = list(
 		"Ah, how pretty.",
 		"And so vivid, too!",
