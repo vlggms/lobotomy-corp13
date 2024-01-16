@@ -11,6 +11,7 @@
 	icon_state = "blue_star"
 	icon_living = "blue_star"
 	icon_dead = "blue_star_dead"
+	portrait = "blue_star"
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	is_flying_animal = TRUE
 	del_on_death = FALSE
@@ -119,8 +120,8 @@
 		QDEL_IN(user, 5)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	soundloop.start()
 	forceMove(T)

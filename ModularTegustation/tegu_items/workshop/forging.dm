@@ -11,9 +11,9 @@
 	icon = 'ModularTegustation/Teguicons/workshop.dmi'
 	icon_state = "anvil"
 	resistance_flags = INDESTRUCTIBLE
-	smoothing_flags = null
-	smoothing_groups = list()
-	canSmoothWith = list()
+	smoothing_flags = NONE
+	smoothing_groups = null
+	canSmoothWith = null
 
 
 /obj/structure/forge

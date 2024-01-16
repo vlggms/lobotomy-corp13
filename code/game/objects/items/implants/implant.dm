@@ -10,10 +10,6 @@
 	var/uses = -1
 	item_flags = DROPDEL
 
-
-/obj/item/implant/proc/trigger(emote, mob/living/carbon/source)
-	return
-
 /obj/item/implant/proc/activate()
 	SEND_SIGNAL(src, COMSIG_IMPLANT_ACTIVATED)
 
@@ -91,8 +87,8 @@
 	imp_in = null
 	source.implants -= src
 	for(var/X in actions)
-		var/datum/action/A = X
-		A.Grant(source)
+		var/datum/action/implant_action = X
+		implant_action.Remove(source)
 	if(ishuman(source))
 		var/mob/living/carbon/human/H = source
 		H.sec_hud_set_implants()

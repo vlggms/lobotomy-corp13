@@ -10,6 +10,7 @@
 	icon_state = "blueshep"
 	icon_living = "blueshep"
 	icon_dead = "blueshep_dead"
+	portrait = "blue_shepherd"
 	attack_sound = 'sound/weapons/slash.ogg'
 	del_on_death = FALSE
 	pixel_x = -8
@@ -154,6 +155,7 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -175,7 +177,7 @@
 		Lying(buddy_abno, user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user, breach_type)
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE
@@ -187,7 +189,7 @@
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		hired = FALSE
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	. = ..()

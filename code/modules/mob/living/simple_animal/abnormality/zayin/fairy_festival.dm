@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "fairy"
 	icon_living = "fairy"
+	portrait = "fairy_festival"
 	maxHealth = 83
 	health = 83
 	is_flying_animal = TRUE
@@ -51,6 +52,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(user.stat != DEAD && istype(user))
 		if(user in protected_people)
 			return
@@ -83,15 +85,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyPause(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
-	if (datum_sent != datum_reference)
-		return
 	to_chat(user, span_notice("The fairies suddenly go eerily quiet."))
 	protected_people.Remove(user)
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyRestart(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)
 	SIGNAL_HANDLER
 	to_chat(user, span_nicegreen("The fairies start giggling and playing once more."))
-	protected_people += user
+	protected_people |= user
 	playsound(get_turf(user), 'sound/abnormalities/fairyfestival/fairylaugh.ogg', 50, 0, 2)
 
 //not called by anything anymore, left here if somebody wants to readd it later for any reason.
@@ -106,7 +106,7 @@
 		user.gib()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/fairy_festival/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+/mob/living/simple_animal/hostile/abnormality/fairy_festival/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		SummonGuys()
 		addtimer(CALLBACK(src, .proc/SummonGuys), 20 SECONDS)

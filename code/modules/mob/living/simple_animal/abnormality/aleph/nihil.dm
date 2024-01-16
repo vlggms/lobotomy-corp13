@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "nihil"
 	icon_living = "nihil"
+	portrait = "nihil"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 15000
@@ -62,11 +63,13 @@
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nihil/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-2)
 	return
 
 //In the future, this negative qliphoth change will be tied to whether or not magical girls are present, based on work type..
 /mob/living/simple_animal/hostile/abnormality/nihil/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return

@@ -7,6 +7,7 @@
 	icon_state = "rudolta"
 	icon_living = "rudolta"
 	icon_dead = "rudolta_dead"
+	portrait = "rudolta"
 	maxHealth = 1200
 	health = 1200
 	pixel_x = -16
@@ -40,11 +41,13 @@
 	var/pulse_damage = 20
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/rudolta/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return

@@ -10,6 +10,7 @@
 	icon_living = "hiding"
 	icon_dead = "blackswan_dream"
 	var/icon_aggro = "blackswan_closed"
+	portrait = "black_swan"
 	del_on_death = FALSE
 	maxHealth = 3000
 	health = 3000
@@ -41,7 +42,7 @@
 						)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
-	deathmessage = "weeps a green sludge while clutching her brooch."
+	death_message = "weeps a green sludge while clutching her brooch."
 	base_pixel_x = -16
 	pixel_x = -16
 
@@ -118,20 +119,20 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
-	.=..()
+	. = ..()
 	if(family_status[5] != TRUE)
 		family_status[5] = TRUE
 		BrotherOverlays()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	.=..()
+	. = ..()
 	if(family_status[4] != TRUE)
 		family_status[4] = TRUE
 		BrotherOverlays()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/black_swan/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/black_swan/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	cut_overlays()
 	update_icon()

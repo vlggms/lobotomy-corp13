@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "scorched"
 	icon_living = "scorched"
+	portrait = "scorched_girl"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
@@ -111,17 +112,19 @@
 	qdel(src)
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	boom_cooldown = world.time + 5 SECONDS // So it doesn't instantly explode
 	update_icon()
 	GiveTarget(user)

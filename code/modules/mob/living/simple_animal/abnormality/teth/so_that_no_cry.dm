@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "so_that_no_cry"
 	icon_living = "so_that_no_cry"
+	portrait = "so_that_no_cry"
 	maxHealth = 1200 //High health, can be stunned.
 	health = 1200
 	rapid_melee = 2

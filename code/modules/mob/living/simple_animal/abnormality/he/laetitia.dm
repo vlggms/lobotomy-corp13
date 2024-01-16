@@ -4,6 +4,7 @@
 	desc = "A wee witch."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "laetitia"
+	portrait = "laetitia"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL
@@ -26,6 +27,7 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
 	if(P)
 		if(prob(15)) //15% chance to remove prank
@@ -39,12 +41,14 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
 	if(P && prob(30)) //30% to remove prank
 		user.remove_status_effect(STATUS_EFFECT_PRANKED)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
 	if(P && prob(70)) //70% to trigger explosion
 		P.TriggerPrank()
@@ -69,7 +73,7 @@
 	attack_verb_continuous = "stabs"
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/abnormalities/laetitia/spider_attack.ogg'
-	deathsound = 'sound/abnormalities/laetitia/spider_dead.ogg'
+	death_sound = 'sound/abnormalities/laetitia/spider_dead.ogg'
 
 /mob/living/simple_animal/hostile/gift/Initialize()
 	. = ..()

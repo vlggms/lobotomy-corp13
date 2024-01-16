@@ -9,7 +9,8 @@
 	icon_state = "pmermaid_standing"
 	icon_living = "pmermaid_standing"
 	icon_dead = "pmermaid_laying" //she shouldn't die while contained so this is more of a placeholder death icon
-	deathsound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
+	portrait = "piscine"
+	death_sound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
 	attack_sound = 'sound/abnormalities/piscinemermaid/splashattack.ogg'
 	del_on_death = FALSE
 	maxHealth = 1500
@@ -53,13 +54,16 @@
 	var/mob/living/carbon/human/love_target
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!crown)
 		GiveGift(user)
 		return
@@ -83,7 +87,7 @@
 //mermaid will immensely slow down their lover and slowly kill them by cutting off their oxygen supply
 //dying by oxydeath actually takes a while, but it puts them on a clear timer to actually get shit done instead of just hoping someone else takes care of it.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/BreachEffect()
-	..()
+	. = ..()
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_living = "pmermaid_breach"
 	icon_dead = "pmermaid_slain"
@@ -256,7 +260,7 @@
 	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
 	var/success_mod = 1.15
 	var/love_cooldown
-	var/love_cooldown_time = 1 MINUTES //It takes around 3 minutes for mermaid to breach if left unchecked
+	var/love_cooldown_time = 3 MINUTES //It takes around 9 minutes for mermaid to breach if left unchecked
 	var/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/mermaid
 	var/mob/living/carbon/human/loved //What's wrong anon? Unconditional love is what you wanted right?
 

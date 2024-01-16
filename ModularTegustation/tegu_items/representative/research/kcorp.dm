@@ -67,6 +67,7 @@
 	research_desc = "Hey man, its Joe from research. <br>We've got a new item over here, something about increasing your overall health? <br>They only really made one of these and told us to get it tested ASAP, i'm assuming that want to wait before investing. Mind helping us out?"
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/syringe
 
 /datum/data/lc13research/healthboost/ResearchEffect(obj/structure/representative_console/caller)
 	new /obj/item/khpboost(get_turf(caller))
@@ -133,4 +134,28 @@
 /datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
 	ItemUnlock(caller.order_list, "K Corp Machinepistole",	/obj/item/gun/ego_gun/pistol/kcorp/smg, 600)
 	ItemUnlock(caller.order_list, "K Corp Light Grenade Launcher",	/obj/item/gun/ego_gun/pistol/kcorp/nade, 600)
+	..()
+
+/datum/data/lc13research/karmor1
+	research_name = "K-Corp Class-1 Armor Shipment"
+	research_desc = "Not a lot of people buy these. <br>Hi, I'm Jill from supply. These armors were sitting around collecting dust in the warehouse as we have quite a lot of these, we could lend you some for general use, while in a better state compared to our spears I wouldn't call them top grade. <br>I trust you won't tell our client this however."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/kweapons
+
+/datum/data/lc13research/karmor1/ResearchEffect(obj/structure/representative_console/caller)
+	ItemUnlock(caller.order_list, "K Corp Class-1 Armor", /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/weak, 600)
+	ItemUnlock(caller.order_list, "K Corp L1 Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp, 100)
+	ItemUnlock(caller.order_list, "K Corp L1 Visor Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp/visor, 100)
+
+//Spawners
+/datum/data/lc13research/kdrones
+	research_name = "K-Corp Healing Drones"
+	research_desc = "Jill here, you know, from supply? <br>You guys wanted some of our Healing drones? <br>They're really fucking annoying but sure. Usually we're not supposed to give these out but fuck me if I'm going to miss my bonus this month."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = K_CORP_REP
+	required_research = /datum/data/lc13research/syringe
+
+/datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
+	ItemUnlock(caller.order_list, "K Corp Drone Spawner",	/obj/item/grenade/spawnergrenade/khealing, 600)
 	..()

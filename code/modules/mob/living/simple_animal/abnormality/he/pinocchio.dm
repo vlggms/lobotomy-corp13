@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "pinocchio"
 	icon_living = "pinocchio"
+	portrait = "pinocchio"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL
@@ -118,7 +119,7 @@
 		datum_reference.available_work = work_chances
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/pinocchio/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+/mob/living/simple_animal/hostile/abnormality/pinocchio/BreachEffect(mob/living/carbon/human/user, breach_type)
 	playsound(src, 'sound/abnormalities/pinocchio/activate.ogg', 40, 0, 1)
 	density = FALSE
 	animate(src, alpha = 0,pixel_x = 0, pixel_z = 16, time = 4 SECONDS)
@@ -158,6 +159,7 @@
 	else
 		realboy.put_in_r_hand(new /obj/item/flashlight/seclite(realboy))
 		qdel(src)
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pinocchio/proc/PuppetDeath(gibbed) //we die when the puppet mob dies
 	UnregisterSignal(realboy, COMSIG_LIVING_DEATH)

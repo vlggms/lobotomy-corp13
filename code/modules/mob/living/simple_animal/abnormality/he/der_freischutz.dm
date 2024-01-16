@@ -3,6 +3,7 @@
 	desc = "A tall man adorned in grey, gold, and regal blue. His aim is impeccable."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "derfreischutz"
+	portrait = "der_freischutz"
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(

@@ -6,6 +6,7 @@
 	icon_state = "forsakenmurdererinert"
 	icon_living = "forsakenmurdererinert"
 	icon_dead = "forsakenmurdererdead"
+	portrait = "forsaken_murderer"
 	del_on_death = FALSE
 	/* Originally was 270. Fragment health is 800 with a original game health of 230 so techically forsaken
 		murderer has more health than fragment? Ill round the numbers to 600 since 270 can be rounded to 300 and doubled.
@@ -51,7 +52,7 @@
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	//shows in chat when the creature is defeated. Default is "stops moving".
-	deathmessage = "falls over."
+	death_message = "falls over."
 	//Phrases that the creature will emote randomly based on speak chance.
 	speak_chance = 2
 	emote_see = list("shakes while mumbling...")
@@ -82,6 +83,7 @@
 		it in order to manually change its counter.
 		Remember this because this opens the way for
 		coders to call procs on things that are outside this entitiy.*/
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -142,7 +144,7 @@
 /*This happens when the abnormality breaches. If your abnormality doesnt
 	Breach then the proc you want is ZeroQliphoth, other abnormality procs
 	can be found in the _abnormality.dm file.*/
-/mob/living/simple_animal/hostile/abnormality/forsaken_murderer/BreachEffect(mob/living/carbon/human/user) //causes breach?
+/mob/living/simple_animal/hostile/abnormality/forsaken_murderer/BreachEffect(mob/living/carbon/human/user, breach_type) //causes breach?
 	. = ..()
 	update_icon()
 	//Flick replaces the icon_state with the one defined until all the frames in the animation are done.

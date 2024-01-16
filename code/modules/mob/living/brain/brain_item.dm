@@ -405,8 +405,8 @@
 
 	if(!LAZYLEN(possible_traumas))
 		return
-	
-	if(owner.has_quirk(/datum/quirk/brainproblems))
+
+	if(owner?.has_quirk(/datum/quirk/brainproblems))
 		possible_traumas -= tumor_immune_traumas
 
 	var/trauma_type = pick(possible_traumas)

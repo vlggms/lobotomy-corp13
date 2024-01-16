@@ -37,8 +37,8 @@
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
 	del_on_death = TRUE
-	deathmessage = "screams in agony as it sublimates into a sulfurous smoke."
-	deathsound = 'sound/magic/demon_dies.ogg'
+	death_message = "screams in agony as it sublimates into a sulfurous smoke."
+	death_sound = 'sound/magic/demon_dies.ogg'
 	var/playstyle_string = "<span class='big bold'>You are an imp,</span><B> a mischievous creature from hell. You are the lowest rank on the hellish totem pole \
 							Though you are not obligated to help, perhaps by aiding a higher ranking devil, you might just get a promotion. However, you are incapable	\
 							of intentionally harming a fellow devil.</B>"
@@ -211,11 +211,11 @@
 
 	attack_sound = 'sound/items/bikehorn.ogg'
 	feast_sound = 'sound/spookoween/scary_horn2.ogg'
-	deathsound = 'sound/misc/sadtrombone.ogg'
+	death_sound = 'sound/misc/sadtrombone.ogg'
 
 	icon_state = "bowmon"
 	icon_living = "bowmon"
-	deathmessage = "fades out, as all of its friends are released from its \
+	death_message = "fades out, as all of its friends are released from its \
 		prison of hugs."
 	loot = list(/mob/living/simple_animal/pet/cat/kitten{name = "Laughter"})
 

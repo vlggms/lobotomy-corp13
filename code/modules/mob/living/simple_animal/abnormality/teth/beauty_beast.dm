@@ -5,6 +5,7 @@
 	icon_state = "beauty"
 	icon_living = "beauty"
 	icon_dead = "beauty_dead"
+	portrait = "beauty_beast"
 
 	pixel_x = -8
 	base_pixel_x = -8

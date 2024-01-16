@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "current"
 	icon_living = "current"
+	portrait = "dreaming_current"
 	pixel_x = -16
 	base_pixel_x = -16
 
@@ -13,7 +14,7 @@
 	health = 2000
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	stat_attack = HARD_CRIT
-	deathsound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
+	death_sound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
 
 	threat_level = WAW_LEVEL
 
@@ -191,11 +192,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/dreaming_current/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/dreaming_current/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
 	if(!alt_icon)
 		icon_living = "current_breach"

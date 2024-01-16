@@ -72,6 +72,7 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	var/gift = pick(dispenseitem)
 	new gift(dispense_turf)
@@ -79,6 +80,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "shadow"
 	icon_living = "shadow"
+	portrait = "shadow"
 	maxHealth = 75
 	health = 75
 	threat_level = TETH_LEVEL
@@ -30,12 +31,13 @@
 		datum_reference.qliphoth_change(-1)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/shadow/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/shadow/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	GiveTarget(user)
 	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/shadow/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

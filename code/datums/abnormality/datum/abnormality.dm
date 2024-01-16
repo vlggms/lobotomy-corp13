@@ -63,6 +63,8 @@
 	// Object = list(x tile offset, y tile offset)
 	/// List of connected structures; Used to teleport and delete them when abnormality is swapped or deleted
 	var/list/connected_structures = list()
+	// Abnormality Portrait, updated when abnormality spawns if they have one.
+	var/portrait = "UNKNOWN"
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -292,6 +294,11 @@
 	if(current)
 		return current.GetRiskLevel()
 	return threat_level
+
+/datum/abnormality/proc/GetPortrait()
+	if(current)
+		return current.GetPortrait()
+	return portrait
 
 /// Swaps the cells with target abnormality datum
 /datum/abnormality/proc/SwapPlaceWith(datum/abnormality/target = null)

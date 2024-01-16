@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "mhz"
 	icon_living = "mhz"
+	portrait = "MHz"
 	pixel_x = -32
 	base_pixel_x = -32
 	pixel_y = -32
@@ -42,16 +43,19 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/mhz/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	if(pe >= datum_reference.max_boxes)
 		datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/mhz/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/mhz/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return

@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "training_rabbit"
 	icon_living = "training_rabbit"
+	portrait = "training_rabbit"
 	maxHealth = 14 //hit with baton twice
 	health = 14
 	threat_level = TETH_LEVEL
@@ -34,8 +35,8 @@
 		pixel_x = -16
 		gift_type =  /datum/ego_gifts/bunny
 
-/mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	GiveTarget(user)
 	if(!client)
 		addtimer(CALLBACK(src, .proc/kill_dummy), 30 SECONDS)

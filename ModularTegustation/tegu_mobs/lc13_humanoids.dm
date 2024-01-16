@@ -68,7 +68,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 //Knife - The leader, has a pathetically weak dash, attacks fast
 /mob/living/simple_animal/hostile/humanoid/rat/knife
-	name = "rat"
+	name = "leader rat"
 	desc = "One of the many inhabitants of the backstreets, this one seems stronger than most rats, not like that's a hard feat."
 	icon_state = "rat_knife"
 	icon_living = "rat_knife"
@@ -131,8 +131,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 //Pipe - Big windup before each attack, hits very hard
 /mob/living/simple_animal/hostile/humanoid/rat/pipe
-	name = "rat"
-	desc = "One of the many inhabitants of the backstreets, the lowest on the food chain"
+	name = "brute rat"
+	desc = "One of the many inhabitants of the backstreets, armed with an odd pipe."
 	icon_state = "rat_pipe"
 	icon_living = "rat_pipe"
 	icon_dead = "rat_pipe"
@@ -153,8 +153,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 //Hammer - Tanky rat, but runs away at half health
 /mob/living/simple_animal/hostile/humanoid/rat/hammer
-	name = "rat"
-	desc = "One of the many inhabitants of the backstreets, they seem like they're barely holding on to their weapon"
+	name = "cowardly rat"
+	desc = "One of the many inhabitants of the backstreets, they seem like they're barely holding on to their weapon."
 	icon_state = "rat_hammer"
 	icon_living = "rat_hammer"
 	icon_dead = "rat_hammer"
@@ -177,9 +177,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if(health < coward_health_threshold)
 		retreat_distance_default = 4
 
-//Zippy - Uses a gun that fires 60% of the time
+//Zippy - Uses a gun that fires 70% of the time and has a 1% chance to explode, leaving them without a gun.
 /mob/living/simple_animal/hostile/humanoid/rat/zippy
-	name = "rat"
+	name = "fidgety rat"
 	desc = "One of the many inhabitants of the backstreets, this one is armed with a shoddy gun!"
 	icon_state = "rat_zippy"
 	icon_living = "rat_zippy"
@@ -201,6 +201,19 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	projectilesound = 'sound/weapons/gun/pistol/shot.ogg'
 
 /mob/living/simple_animal/hostile/humanoid/rat/zippy/OpenFire(atom/A)
-	if(prob(30))
-		return
-	. = ..()
+	switch(rand(1,100))
+		if(71 to 100) //29% for jamming.
+			visible_message(span_notice("[src]'s gun jams."))
+			playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 30, TRUE)
+			return
+		if(70) //1% for gun to explode.
+			ranged = FALSE
+			minimum_distance = 0
+			retreat_distance = 1
+			retreat_distance_default = 1
+			visible_message(span_notice("The gun explodes on [src]'s hands!."))
+			playsound(src, 'sound/abnormalities/scorchedgirl/explosion.ogg', 30, TRUE)
+			adjustBruteLoss(20)
+			return
+		else
+			. = ..()

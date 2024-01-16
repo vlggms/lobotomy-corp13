@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "road_home"
 	icon_living = "road_home"
+	portrait = "road_home"
 	maxHealth = 1000
 	health = 1000
 	move_resist = MOVE_FORCE_STRONG //So she can't be yeeted away and delayed indefinitely
@@ -25,7 +26,7 @@
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
-	deathsound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
+	death_sound = 'sound/abnormalities/roadhome/House_NormalAtk.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/brick_road,
 		/datum/ego_datum/weapon/homing_instinct,
@@ -68,12 +69,13 @@
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/road_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/road_home/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/road_home/BreachEffect(mob/living/carbon/human/user, breach_type)
 	flip_cooldown = world.time + flip_cooldown_time //we set it before she breach just so she doesn't affect everyone the moment she spawns
-	..()
+	. = ..()
 	toggle_ai(AI_OFF) //Road home doesn't need to attack or patrol so the AI is unecessary
 	NewHouse()
 	CreateRoad()

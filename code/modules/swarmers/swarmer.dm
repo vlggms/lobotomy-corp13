@@ -58,7 +58,7 @@
 	projectilesound = 'sound/weapons/taser2.ogg'
 	loot = list(/obj/effect/decal/cleanable/robot_debris, /obj/item/stack/ore/bluespace_crystal)
 	del_on_death = TRUE
-	deathmessage = "explodes with a sharp pop!"
+	death_message = "explodes with a sharp pop!"
 	light_system = MOVABLE_LIGHT
 	light_range = 3
 	light_color = LIGHT_COLOR_CYAN

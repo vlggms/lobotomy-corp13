@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "void_dream"
 	icon_living = "void_dream"
+	portrait = "void_dream"
 	del_on_death = TRUE
 	is_flying_animal = TRUE
 	maxHealth = 600
@@ -123,6 +124,7 @@
 
 // Work stuff
 /mob/living/simple_animal/hostile/abnormality/voiddream/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -133,8 +135,8 @@
 		playsound(get_turf(user), 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	ability_cooldown = world.time + 4 SECONDS
 	if(IsCombatMap())
 		return

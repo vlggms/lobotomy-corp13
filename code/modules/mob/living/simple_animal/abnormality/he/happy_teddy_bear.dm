@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "teddy"
 	icon_living = "teddy"
+	portrait = "happy_teddy_bear"
 	// adding this for when it drops you
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 200

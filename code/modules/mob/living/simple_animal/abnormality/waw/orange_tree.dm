@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "orange_tree"
 	icon_living = "orange_tree"
+	portrait = "orange_tree"
 	faction = list("hostile")
 	speak_emote = list("hums")
 	is_flying_animal = TRUE
@@ -60,12 +61,14 @@
 
 //Work/Breach
 /mob/living/simple_animal/hostile/abnormality/orange_tree/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		var/datum/disease/orange_tree/D = new()
 		user.ForceContractDisease(D, FALSE, TRUE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/orange_tree/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	var/datum/disease/orange_tree/D = new()

@@ -40,7 +40,7 @@
 
 /mob/living/simple_animal/hostile/hivebot/Initialize()
 	. = ..()
-	deathmessage = "[src] blows apart!"
+	death_message = "[src] blows apart!"
 
 /mob/living/simple_animal/hostile/hivebot/can_inject(mob/user, error_msg)
 	if(error_msg)

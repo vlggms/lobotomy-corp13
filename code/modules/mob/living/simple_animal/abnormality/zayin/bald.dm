@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "bald1"
 	icon_living = "bald1"
+	portrait = "bald"
 	maxHealth = 50
 	health = 50
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
@@ -111,7 +112,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(src, "<span class='userdanger'>You do not do damage, your sole mission is to spread the glory of baldness to all.</span>")
+	to_chat(src, span_userdanger("You do not do damage, your sole mission is to spread the glory of baldness to all."))
 
 /datum/reagent/abnormality/bald
 	name = "Essence of Baldness"
@@ -138,7 +139,7 @@
 		return
 	var/mob/living/carbon/human/victim = target
 	if(!HAS_TRAIT(victim, TRAIT_BALD))
-		to_chat(victim, "<span class='notice'>You feel awesome!</span>")
+		to_chat(victim, span_notice("You feel awesome!"))
 		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
 		victim.hairstyle = "Bald"
 		victim.update_hair()

@@ -80,11 +80,13 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50)) //slightly higher than other TETHs, given that the counter can be raised
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -103,8 +105,8 @@
 	BreachEffect()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/redblooded/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/redblooded/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = "american_aggro"
 	GiveTarget(user)
 

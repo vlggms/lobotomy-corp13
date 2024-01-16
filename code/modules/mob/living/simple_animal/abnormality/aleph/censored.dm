@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "censored"
 	icon_living = "censored"
+	portrait = "censored"
 	pixel_x = -16
 	base_pixel_x = -16
 	speak_emote = list("screeches")
@@ -215,11 +216,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/censored/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/censored/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/censored/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_living = "censored_breach"
 	icon_state = icon_living
 	return

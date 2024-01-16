@@ -4,6 +4,7 @@
 	desc = "A cone that goes up to the ceiling with a ribbon tied around it. Bodies are strung up around it, seeming to be tied to the ceiling."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "dangle"
+	portrait = "dingle_dangle"
 	maxHealth = 600
 	health = 600
 	threat_level = TETH_LEVEL
@@ -51,6 +52,7 @@
 	new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		//Yeah dust them too. No ego this time tho
 		user.dust()

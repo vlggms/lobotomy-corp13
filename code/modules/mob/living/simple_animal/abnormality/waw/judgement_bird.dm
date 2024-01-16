@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "judgement_bird"
 	icon_living = "judgement_bird"
+	portrait = "judgement_bird"
 	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")
 
@@ -116,18 +117,20 @@
 	judging = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 // Additional effects on work failure
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	if(IsCombatMap())
 		judgement_damage = 65
 		return

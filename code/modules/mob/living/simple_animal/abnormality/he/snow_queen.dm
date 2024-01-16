@@ -1,5 +1,7 @@
 //Just some map-related things and comments for the develeoper
 
+//portrait = "snow_queen"
+
 /obj/effect/landmark/snowqueen_teleport
 	name = "snow queen teleport"
 	icon_state = "x2"

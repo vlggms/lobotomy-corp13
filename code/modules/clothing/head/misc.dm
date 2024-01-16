@@ -391,12 +391,15 @@
 	. = ..()
 	if (slot == ITEM_SLOT_HEAD)
 		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+		ADD_TRAIT(M, TRAIT_GARLIC_BREATH, type)
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
+		REMOVE_TRAIT(M, TRAIT_GARLIC_BREATH, type)
 
 /obj/item/clothing/head/frenchberet/dropped(mob/M)
 	. = ..()
 	UnregisterSignal(M, COMSIG_MOB_SAY)
+	REMOVE_TRAIT(M, TRAIT_GARLIC_BREATH, type)
 
 /obj/item/clothing/head/frenchberet/proc/handle_speech(datum/source, mob/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]

@@ -6,6 +6,7 @@
 	icon_living = "yin"
 	var/icon_breach = "yin_breach"
 	icon_dead = "yin_slain"
+	portrait = "yin"
 	is_flying_animal = TRUE
 	maxHealth = 1600
 	health = 1600
@@ -172,6 +173,7 @@
 	SSlobotomy_events.yin_downed = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/yin/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1, user)
 	return
 

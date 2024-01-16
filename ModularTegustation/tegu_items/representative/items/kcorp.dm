@@ -61,8 +61,58 @@
 
 // For Asset Reclimation
 /obj/item/grenade/spawnergrenade/kcorpdrone
-	name = "K-Corp Drone Assmebly Grenade"
+	name = "K-Corp Drone Assembly Grenade"
 	desc = "A quick and easy method of storing K-Corp drones for combat situations. It keeps its orignal programing, hopefully you're a part of K-Corp."
 	icon_state = "delivery"
 	spawner_type = /mob/living/simple_animal/hostile/kcorp/drone
 	deliveryamt = 3
+
+//healing drone
+/mob/living/simple_animal/hostile/khealing
+	name = "K-Corporation healing drone"
+	desc = "A floating bot used by K-Corp to heal it's agents."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "khealing"
+	icon_living = "khealing"
+	faction = list("kcorp")
+	health = 500	//They're here to help
+	maxHealth = 500
+	melee_damage_type = STAMINA
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
+	melee_damage_lower = 14
+	melee_damage_upper = 18
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	attack_verb_continuous = "jabs"
+	attack_verb_simple = "jabs"
+	attack_sound = 'sound/weapons/bite.ogg'
+	can_patrol = TRUE
+	is_flying_animal = TRUE
+
+
+/mob/living/simple_animal/hostile/khealing/CanAttack(atom/the_target)
+	if(!ishuman(the_target))
+		return FALSE
+	var/mob/living/H = the_target
+	if(H.health != H.maxHealth)
+		return TRUE
+	return FALSE
+
+/mob/living/simple_animal/hostile/khealing/AttackingTarget(atom/attacked_target)
+	..()
+	if(!ishuman(attacked_target))
+		return
+	var/mob/living/H = attacked_target
+	H.adjustBruteLoss(-20)
+
+
+// For Asset Reclimation
+/obj/item/grenade/spawnergrenade/khealing
+	name = "K-Corp Drone Assmebly Grenade"
+	desc = "A quick and easy method of storing K-Corp drones for combat situations. It keeps its orignal programing, hopefully you're a part of K-Corp."
+	icon_state = "delivery"
+	spawner_type = /mob/living/simple_animal/hostile/khealing
+	deliveryamt = 3
+
+

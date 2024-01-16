@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "woodsman"
 	icon_living = "woodsman_breach"
+	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 1433
 	health = 1433
@@ -249,6 +250,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -289,8 +291,8 @@
 		to_chat(user, span_userdanger("Stands up!"))
 		datum_reference.qliphoth_change(-2)
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user)
-	.=..()
+/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	layer = LARGE_MOB_LAYER
 	icon_state = icon_living
 	if (!isnull(user))

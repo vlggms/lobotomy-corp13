@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x32.dmi'
 	icon_state = "lantern"
 	icon_living = "lantern"
+	portrait = "meat_lantern"
 	maxHealth = 900
 	health = 900
 	base_pixel_x = -16
@@ -20,7 +21,7 @@
 	can_patrol = FALSE
 	can_breach = TRUE
 	del_on_death = FALSE
-	deathmessage = "explodes in a shower of gore."
+	death_message = "explodes in a shower of gore."
 
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
@@ -74,7 +75,7 @@
 	if(!isliving(AM))
 		return
 	var/mob/living/L = AM
-	if(L.stat == DEAD)
+	if(L.stat == DEAD || faction_check_mob(L))
 		return
 	if(!can_act || (chop_cooldown > world.time))
 		return
@@ -93,7 +94,7 @@
 	pixel_x = base_pixel_x - 40
 	for(var/mob/living/L in oview(1, src))
 		if(faction_check_mob(L))
-			return
+			continue
 		L.apply_damage(chop_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(L.health < 0)
 			L.gib(FALSE,FALSE,TRUE)
@@ -107,6 +108,8 @@
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/proc/ProximityCheck()
 	for(var/mob/living/L in range(1,src)) //hidden istype() call
 		if(L == src)
+			continue
+		if(faction_check_mob(L))
 			continue
 		BigChop()
 		return
@@ -132,11 +135,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/meat_lantern/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/meat_lantern/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	density = FALSE
 	med_hud_set_health() //hides medhud

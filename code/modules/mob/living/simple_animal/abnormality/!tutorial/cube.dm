@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "cube"
 	icon_living = "cube"
+	portrait = "cube"
 	maxHealth = 50
 	health = 50
 	is_flying_animal = TRUE
@@ -25,8 +26,8 @@
 	var/pulse_cooldown_time = 3 SECONDS
 	var/pulse_damage = 6
 
-/mob/living/simple_animal/hostile/abnormality/cube/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/cube/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	GiveTarget(user)
 	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
 

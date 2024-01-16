@@ -36,8 +36,8 @@
 	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/crying_children/attack_salvador.ogg'
-	deathsound = 'sound/abnormalities/crying_children/death.ogg'
-	deathmessage = "crumbles into pieces."
+	death_sound = 'sound/abnormalities/crying_children/death.ogg'
+	death_message = "crumbles into pieces."
 	del_on_death = FALSE
 	ego_list = list(/datum/ego_datum/weapon/shield/combust, /datum/ego_datum/armor/combust)
 	gift_type =  /datum/ego_gifts/inconsolable
@@ -189,7 +189,7 @@
 		L.apply_lc_burn(50)
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
-/mob/living/simple_animal/hostile/abnormality/crying_children/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/crying_children/BreachEffect(mob/living/carbon/human/user, breach_type)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 20, "No one’s going to cry on my behalf even if I’m sad.", 25))
 	..()
 	desc = "A towering angel statue, setting everything on it's path ablaze"
@@ -374,11 +374,13 @@
 
 // Work Stuff
 /mob/living/simple_animal/hostile/abnormality/crying_children/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(20))
 		Curse(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	Curse(user)
 	return

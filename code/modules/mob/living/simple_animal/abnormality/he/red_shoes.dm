@@ -8,6 +8,7 @@
 	icon_state = "redshoes"
 	icon_living = "redshoes"
 	icon_dead = "redshoes_breach"//dels on death if it's possessing someone. Egg goes here
+	portrait = "red_shoes"
 	can_breach = TRUE
 	gender = NEUTER
 	threat_level = HE_LEVEL
@@ -22,7 +23,7 @@
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	del_on_death = FALSE
-	deathmessage = "crumples into a pile of bones."
+	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
 	melee_damage_lower = 15
 	melee_damage_upper = 30
@@ -67,7 +68,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/death()
 	if(possessee)
-		deathmessage = FALSE
+		death_message = FALSE
 		del_on_death = TRUE
 	density = FALSE
 	for(var/obj/O in src)
@@ -109,6 +110,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -180,13 +182,13 @@
 		user.SanityLossEffect(FORTITUDE_ATTRIBUTE)
 
 //BreachEffect and combat
-/mob/living/simple_animal/hostile/abnormality/red_shoes/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/red_shoes/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE))
 		return
 	soundloop.stop()
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
-	..()
+	. = ..()
 	if(!possessee)
 		name = "Red Shoe"
 		desc = "The Red Shoes’s bloody enameled leather glistens in the light."
@@ -363,7 +365,7 @@
 	gender = NEUTER
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	del_on_death = TRUE
-	deathmessage = "crumples into a pile of bones."
+	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
 	melee_damage_lower = 15
 	melee_damage_upper = 30

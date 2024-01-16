@@ -4,6 +4,7 @@
 	desc = "A scythe with a clock attached, quietly ticking."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "silence"
+	portrait = "silence"
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 50, 50),
@@ -39,11 +40,13 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/silence/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	safe = TRUE
 	to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silence/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		safe = TRUE
 		to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "pygmalion"
 	icon_living = "pygmalion"
+	portrait = "pygmalion"
 	faction = list("neutral")
 
 	pixel_x = -8
@@ -126,6 +127,7 @@
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pygmalion/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(user.stat != DEAD && !sculptor && istype(user))
 		sculptor = user
 		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/SculptorDeathOrInsane)

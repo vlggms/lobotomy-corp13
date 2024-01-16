@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "queen_bee"
 	icon_living = "queen_bee"
+	portrait = "queen_bee"
 	faction = list("hostile")
 	speak_emote = list("buzzes")
 
@@ -62,11 +63,13 @@
 				breached_others = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
@@ -96,7 +99,7 @@
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
 	del_on_death = TRUE
-	deathsound = 'sound/abnormalities/bee/death.ogg'
+	death_sound = 'sound/abnormalities/bee/death.ogg'
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
 	attack_sound = 'sound/weapons/bite.ogg'

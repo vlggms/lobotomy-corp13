@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "schadenfreude"
 	icon_living = "schadenfreude"
+	portrait = "schadenfreude"
 	pixel_x = -16
 	base_pixel_x = -16
 	del_on_death = TRUE
@@ -98,8 +99,8 @@
 		return 0
 	return init_work_chance
 
-/mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/schadenfreude/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_living = "schadenfreude_breach"
 	icon_state = icon_living
 	GiveTarget(user)

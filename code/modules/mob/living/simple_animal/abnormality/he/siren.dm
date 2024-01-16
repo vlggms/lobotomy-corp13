@@ -6,6 +6,7 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	icon_state = "siren"
+	portrait = "siren"
 	maxHealth = 1000
 	health = 1000
 	threat_level = HE_LEVEL

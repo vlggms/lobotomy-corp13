@@ -71,10 +71,12 @@
 	var/list/dangers = list()
 
 /mob/living/simple_animal/hostile/abnormality/watchman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/watchman/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(30))
 		datum_reference.qliphoth_change(-1)
 	return
@@ -89,8 +91,8 @@
 	user.hallucination += 20	//You're gonna be hallucinating for a while
 
 
-/mob/living/simple_animal/hostile/abnormality/watchman/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/watchman/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	set_light(30)	//Makes everything around it really dark, That's all it does lol
 
 

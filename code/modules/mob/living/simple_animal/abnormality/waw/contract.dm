@@ -89,6 +89,7 @@
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/contract/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if((user in total_havers))
 		return
 	switch(work_type)
@@ -112,14 +113,14 @@
 				temp_havers |= user
 			else
 				return
-				
+
 		if(ABNORMALITY_WORK_REPRESSION)
 			if(just_havers.len < total_per_contract)
 				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, (just_havers.len - 3)*-1 )
 				just_havers |= user
 			else
 				return
-				
+
 	total_havers |= user
 	say("Just sign here on the dotted line... and I'll take care of the rest.")
 	return
@@ -130,10 +131,12 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/contract/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/contract/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return

@@ -4,6 +4,7 @@
 	desc = "A thoroughly aged suit of samurai style armor with a V shaped crest on the helmet. It appears desuetude."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "crumbling"
+	portrait = "crumbling_armor"
 	maxHealth = 600
 	health = 600
 	start_qliphoth = 3
@@ -37,6 +38,7 @@
 		icon_state = "megalovania"
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/Cut_Head(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)

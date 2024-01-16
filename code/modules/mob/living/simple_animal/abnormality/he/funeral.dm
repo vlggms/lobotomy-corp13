@@ -5,6 +5,7 @@
 	icon_state = "funeral"
 	icon_living = "funeral"
 	icon_dead = "funeral_dead"
+	portrait = "funeral"
 	del_on_death = FALSE
 	maxHealth = 1350 //I am a menace to society.
 	health = 1350
@@ -31,7 +32,7 @@
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 16
-	deathmessage = "gently descends into its own coffin."
+	death_message = "gently descends into its own coffin."
 	base_pixel_x = -16
 	pixel_x = -16
 
@@ -267,6 +268,7 @@
 //he die
 
 /mob/living/simple_animal/hostile/abnormality/funeral/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return

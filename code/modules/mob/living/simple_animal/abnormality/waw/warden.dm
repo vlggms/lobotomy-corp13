@@ -5,6 +5,7 @@
 	icon_state = "warden"
 	icon_living = "warden"
 	icon_dead = "warden_dead"
+	portrait = "warden"
 	maxHealth = 2100
 	health = 2100
 	pixel_x = -8
@@ -72,6 +73,7 @@
 			icon_state = "warden"
 
 /mob/living/simple_animal/hostile/abnormality/warden/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -80,8 +82,8 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/warden/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/warden/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	GiveTarget(user)
 
 /mob/living/simple_animal/hostile/abnormality/warden/CanAttack(atom/the_target)
