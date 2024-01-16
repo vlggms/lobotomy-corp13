@@ -352,6 +352,9 @@
 		strangle_damage = 35
 		whip_damage = 15
 		whip_count = 6
+		loot = list(
+		/obj/item/clothing/suit/armor/ego_gear/aleph/oberon
+		)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Move()
 	if(!can_act)
