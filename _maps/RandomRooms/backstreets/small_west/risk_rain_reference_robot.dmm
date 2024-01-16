@@ -1,0 +1,98 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/obj/machinery/griddle,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	desc = "It's pretty rusty, looks like it might've been out in the RAIN, but it might be pretty RISKy to have a robot out in that kind of weather."
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"I" = (
+/obj/machinery/hydroponics,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"J" = (
+/obj/item/ego_weapon/city/district23,
+/obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"L" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/obj/machinery/deepfryer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/mob/living/simple_animal/cow,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+J
+w
+L
+N
+m
+a
+"}
+(3,1,1) = {"
+a
+U
+x
+v
+N
+I
+a
+"}
+(4,1,1) = {"
+a
+v
+v
+v
+v
+u
+a
+"}
+(5,1,1) = {"
+a
+X
+a
+a
+a
+a
+a
+"}

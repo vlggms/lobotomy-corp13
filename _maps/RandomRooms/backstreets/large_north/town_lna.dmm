@@ -324,7 +324,7 @@
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "QL" = (
-/obj/structure/lootcrate/w_corp,
+/obj/effect/landmark/cratespawn,
 /turf/open/floor/plating/rust,
 /area/city/backstreets_room)
 "TW" = (

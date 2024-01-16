@@ -1,0 +1,97 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"n" = (
+/obj/effect/mine/explosive,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/obj/effect/mine/shrapnel,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"J" = (
+/obj/effect/mob_spawn/human/corpse/charredskeleton,
+/obj/structure/bed,
+/obj/item/bedsheet/syndie,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"L" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/structure/dresser,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/table/wood,
+/obj/item/food/breadslice/moldy,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/closet/crate/wooden,
+/obj/item/stack/sheet/mineral/gold,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c500,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+J
+w
+x
+N
+O
+a
+"}
+(3,1,1) = {"
+a
+L
+x
+x
+n
+P
+a
+"}
+(4,1,1) = {"
+a
+v
+w
+w
+x
+n
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+X
+a
+a
+a
+"}

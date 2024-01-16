@@ -1,0 +1,144 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"f" = (
+/obj/item/food/meat/slab/fruit,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot/factory,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/lootcrate/backstreets,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"r" = (
+/obj/item/bedsheet/k_corporation,
+/obj/structure/bed,
+/obj/item/food/meat/slab/fruit,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"t" = (
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"v" = (
+/obj/item/bedsheet/cosmos,
+/obj/structure/bed,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"w" = (
+/mob/living/simple_animal/hostile/sweeper,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"B" = (
+/obj/item/bedsheet/ncorporation,
+/obj/structure/bed,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"M" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/green,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+x
+Q
+w
+o
+Q
+"}
+(3,1,1) = {"
+Q
+x
+a
+t
+B
+Q
+"}
+(4,1,1) = {"
+Q
+x
+Q
+Q
+Q
+Q
+"}
+(5,1,1) = {"
+Q
+x
+Q
+k
+D
+Q
+"}
+(6,1,1) = {"
+Q
+x
+c
+t
+v
+Q
+"}
+(7,1,1) = {"
+Q
+x
+Q
+Q
+Q
+Q
+"}
+(8,1,1) = {"
+Q
+x
+Q
+f
+M
+Q
+"}
+(9,1,1) = {"
+a
+x
+c
+t
+r
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

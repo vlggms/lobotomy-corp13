@@ -1,0 +1,161 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/flora/ausbushes/grassybush,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"o" = (
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass/fairy,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/spacevine,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"s" = (
+/mob/living/simple_animal/chicken,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"u" = (
+/mob/living/simple_animal/chicken,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"P" = (
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"Q" = (
+/mob/living/simple_animal/chicken,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"T" = (
+/mob/living/simple_animal/chicken,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"W" = (
+/mob/living/simple_animal/chicken,
+/obj/structure/flora/ausbushes/fullgrass,
+/obj/structure/flora/ausbushes/sparsegrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/grass,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+T
+m
+Q
+s
+a
+j
+C
+C
+x
+"}
+(3,1,1) = {"
+x
+o
+s
+a
+l
+Y
+u
+W
+i
+x
+"}
+(4,1,1) = {"
+x
+s
+m
+j
+s
+r
+s
+i
+P
+x
+"}
+(5,1,1) = {"
+x
+r
+C
+Y
+P
+U
+a
+E
+a
+x
+"}
+(6,1,1) = {"
+x
+H
+x
+q
+x
+x
+x
+q
+H
+x
+"}
