@@ -5,6 +5,7 @@
 	icon_state = "fairy_longlegs"
 	icon_living = "fairy_longlegs"
 	icon_dead = "fairy_longlegs_dead"
+	portrait = "fairy_long_legs"
 	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16

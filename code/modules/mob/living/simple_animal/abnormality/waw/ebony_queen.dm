@@ -6,6 +6,7 @@
 	icon_state = "ebonyqueen"
 	icon_living = "ebonyqueen"
 	icon_dead = "ebonyqueen_dead"
+	portrait = "ebony_queen"
 	maxHealth = 2000
 	health = 2000
 	pixel_x = -16
