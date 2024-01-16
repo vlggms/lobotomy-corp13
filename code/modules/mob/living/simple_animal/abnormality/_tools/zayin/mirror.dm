@@ -7,8 +7,13 @@
 /obj/structure/toolabnormality/mirror/attack_hand(mob/living/carbon/human/user)
 	. = ..()
 
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		to_chat(user, span_blob("If I only had a brain...")) // Little chance this gets seen, but...
+		return
+
 	var/stat_total = 0 // Start from nothing.
-	for(var/attribute in user.attributes)
+	for(var/attribute in attributes)
 		stat_total += get_raw_level(user, attribute)
 
 	if(stat_total <= 80) // Don't go under 80, I want to keep this clean and keep it from
@@ -16,7 +21,7 @@
 		return
 
 	var/total_addition // Just for the message upon using it
-	for(var/attribute in user.attributes)
+	for(var/attribute in attributes)
 		var/addition = rand(-20, 20)
 		if(user in gazers) // Why are you rerolling your stats twice!?
 			addition -= 10

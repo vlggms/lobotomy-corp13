@@ -14,8 +14,6 @@
 
 	setup_human_dna()
 
-	init_attributes()
-
 	if(dna.species)
 		INVOKE_ASYNC(src, .proc/set_species, dna.species.type)
 
@@ -32,13 +30,6 @@
 	AddComponent(/datum/component/bloodysoles/feet)
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	GLOB.human_list += src
-
-/mob/living/carbon/human/proc/init_attributes()
-	for(var/type in GLOB.attribute_types)
-		if(ispath(type, /datum/attribute))
-			var/datum/attribute/atr = new type
-			attributes[atr.name] = atr
-			atr.on_update(src)
 
 /mob/living/carbon/human/proc/init_gifts_slots()
 	for(var/gift_slot in list(HAT, HELMET, EYE, FACE, MOUTH_1, MOUTH_2, CHEEK, BROOCH, NECKWEAR, LEFTBACK, RIGHTBACK, HAND_1, HAND_2, SPECIAL))
@@ -70,6 +61,7 @@
 		to_chat(src, "<span class='notice'>You must remain in place to show someone your attributes!</span>")
 
 /mob/living/carbon/human/proc/show_attributes(mob/viewer = src)
+	var/list/attributes = get_attribute_list()
 	if(!LAZYLEN(attributes))
 		to_chat(viewer, "<span class='warning'>[src] has no attributes!</span>")
 		return
@@ -1286,6 +1278,7 @@
 	return ..()
 
 /mob/living/carbon/human/updatehealth()
+	var/list/attributes = get_attribute_list()
 	if(LAZYLEN(attributes))
 		maxHealth = DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_level_bonus(src, FORTITUDE_ATTRIBUTE))
 		maxSanity = DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_level_bonus(src, PRUDENCE_ATTRIBUTE))

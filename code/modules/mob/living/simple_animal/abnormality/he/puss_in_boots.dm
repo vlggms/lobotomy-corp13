@@ -329,7 +329,7 @@
 	user.physiology.white_mod /= 0.8
 	user.physiology.black_mod /= 0.8
 	user.physiology.pale_mod /= 0.8
-	for(var/attribute in user.attributes)
+	for(var/attribute in user.get_attribute_list())
 		user.adjust_attribute_buff(attribute, -attribute_bonus)
 	QDEL_IN(chosen_arms, 30)
 	return ..()
@@ -357,7 +357,7 @@
 		new_bonus = 20
 	if(new_bonus <= attribute_bonus)
 		return
-	for(var/attribute in user.attributes)
+	for(var/attribute in user.get_attribute_list())
 		user.adjust_attribute_buff(attribute, (new_bonus - attribute_bonus)) //should keep the bonus dynamically updated
 	attribute_bonus = new_bonus
 	return

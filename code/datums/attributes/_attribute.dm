@@ -77,12 +77,18 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /mob/living/carbon/human/proc/adjust_attribute_level(attribute, addition)
 	if(!attribute)
 		return 0
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return 0
 	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 0
 	return atr.adjust_level(src, addition)
 
 /mob/living/carbon/human/proc/adjust_all_attribute_levels(addition)
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return 0
 	for(var/atr_type in attributes)
 		var/datum/attribute/atr = attributes[atr_type]
 		if(!istype(atr))
@@ -94,7 +100,10 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /proc/get_attribute_level(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
 		return 1
-	var/datum/attribute/atr = user.attributes[attribute]
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		return 1
+	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 1
 	return max(1, atr.get_level())
@@ -103,7 +112,10 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /proc/get_modified_attribute_level(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
 		return 1
-	var/datum/attribute/atr = user.attributes[attribute]
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		return 1
+	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 1
 	return max(1, atr.get_modified_level())
@@ -112,7 +124,10 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /proc/get_raw_level(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
 		return 1
-	var/datum/attribute/atr = user.attributes[attribute]
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		return 1
+	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 1
 	return max(1, atr.get_raw_level())
@@ -121,7 +136,10 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /proc/get_level_buff(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
 		return 1
-	var/datum/attribute/atr = user.attributes[attribute]
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		return 1
+	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 1
 	return max(1, atr.get_level_buff())
@@ -129,7 +147,10 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /proc/get_level_bonus(mob/living/carbon/human/user, attribute)
 	if(!istype(user) || !attribute)
 		return 1
-	var/datum/attribute/atr = user.attributes[attribute]
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		return 1
+	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 1
 	return max(1, atr.get_level_bonus())
@@ -138,12 +159,18 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /mob/living/carbon/human/proc/adjust_attribute_buff(attribute, addition)
 	if(!attribute)
 		return 0
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return 0
 	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 0
 	return atr.adjust_buff(src, addition)
 
 /mob/living/carbon/human/proc/adjust_all_attribute_buffs(addition)
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return 0
 	for(var/atr_type in attributes)
 		var/datum/attribute/atr = attributes[atr_type]
 		if(!istype(atr))
@@ -155,12 +182,18 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /mob/living/carbon/human/proc/adjust_attribute_bonus(attribute, addition)
 	if(!attribute)
 		return 0
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return 0
 	var/datum/attribute/atr = attributes[attribute]
 	if(!istype(atr))
 		return 0
 	return atr.adjust_bonus(src, addition)
 
 /mob/living/carbon/human/proc/adjust_all_attribute_bonuses(addition)
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return FALSE
 	for(var/atr_type in attributes)
 		var/datum/attribute/atr = attributes[atr_type]
 		if(!istype(atr))
@@ -170,6 +203,9 @@ GLOBAL_LIST_INIT(attribute_types, list(
 
 //Set attribute levels
 /mob/living/carbon/human/proc/set_attribute_limit(attribute_set)
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return 0
 	for(var/atr_type in attributes)
 		var/datum/attribute/atr = attributes[atr_type]
 		if(!istype(atr))
@@ -178,6 +214,9 @@ GLOBAL_LIST_INIT(attribute_types, list(
 	return TRUE
 
 /mob/living/carbon/human/proc/adjust_attribute_limit(attribute_set)
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return 0
 	for(var/atr_type in attributes)
 		var/datum/attribute/atr = attributes[atr_type]
 		if(!istype(atr))
@@ -189,18 +228,23 @@ GLOBAL_LIST_INIT(attribute_types, list(
 /proc/get_user_level(mob/living/carbon/human/user)
 	if(!istype(user))
 		return 0
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		return 0
 	var/collective_levels = 0
-	for(var/a in user.attributes)
-		var/datum/attribute/atr = user.attributes[a]
+	for(var/a in attributes)
+		var/datum/attribute/atr = attributes[a]
 		collective_levels += atr.level
 	return clamp(round(collective_levels / 70), 1, 5)
 
 // Returns a level for the show_attributes proc as a roman numeral I - V, or EX if level is too high.
 /mob/living/carbon/human/proc/get_text_level()
 	var/collective_levels = 0
-	for(var/a in attributes)
-		var/datum/attribute/atr = attributes[a]
-		collective_levels += atr.level
+	var/list/attributes = get_attribute_list()
+	if(attributes)
+		for(var/a in attributes)
+			var/datum/attribute/atr = attributes[a]
+			collective_levels += atr.level
 	switch(clamp(round(collective_levels / 70), 1, 6))
 		if(1) // 70
 			return "I"

@@ -272,7 +272,7 @@
 	if(target.type in banned_list)
 		return
 	var/statbonus
-	for(var/attribute in user.attributes)
+	for(var/attribute in user.get_attribute_list())
 		var/attribute_level = get_raw_level(user, attribute)
 		statbonus += attribute_level
 	var/damage_multiplier = (clamp(statbonus * 0.25,0, 130) * 0.01)
