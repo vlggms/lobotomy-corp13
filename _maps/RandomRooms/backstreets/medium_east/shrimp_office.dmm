@@ -2,7 +2,16 @@
 "a" = (
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
+"b" = (
+/obj/structure/lootcrate/s_corp,
+/obj/structure/lootcrate/s_corp,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
 "l" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"o" = (
+/mob/living/simple_animal/hostile/shrimp,
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "s" = (
@@ -27,6 +36,10 @@
 /area/city/backstreets_room)
 "C" = (
 /obj/structure/lootcrate/money,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/lootcrate/s_corp,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 "H" = (
@@ -54,7 +67,7 @@
 /area/city/backstreets_room)
 "Y" = (
 /obj/structure/table/wood,
-/obj/item/ego_weapon/city/fixerblade,
+/obj/item/gun/ego_gun/sodarifle,
 /turf/open/floor/carpet/royalblack,
 /area/city/backstreets_room)
 
@@ -73,13 +86,13 @@ x
 (2,1,1) = {"
 x
 L
-a
+F
 x
 l
 l
 x
 v
-C
+b
 x
 "}
 (3,1,1) = {"
@@ -88,7 +101,7 @@ J
 a
 x
 l
-l
+o
 x
 Y
 K

@@ -16,11 +16,11 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "f" = (
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "g" = (
 /obj/effect/decal/cleanable/blood/tracks,
@@ -29,7 +29,7 @@
 "j" = (
 /obj/effect/decal/cleanable/blood/gibs/old,
 /obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "l" = (
 /obj/structure/meatfloor,
@@ -40,7 +40,7 @@
 "n" = (
 /obj/structure/meatfloor,
 /obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "o" = (
 /obj/structure/meatfloor,
@@ -58,7 +58,7 @@
 "s" = (
 /obj/structure/meatfloor,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "u" = (
 /obj/effect/decal/cleanable/blood/old,
@@ -104,7 +104,7 @@
 /area/city/backstreets_room)
 "H" = (
 /obj/effect/decal/cleanable/blood/tracks,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "I" = (
 /mob/living/simple_animal/hostile/lovetown/slasher,
@@ -118,7 +118,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 5
 	},
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "M" = (
 /obj/effect/decal/cleanable/blood/footprints,
@@ -150,11 +150,11 @@
 "R" = (
 /mob/living/simple_animal/hostile/lovetown/slasher,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "S" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "U" = (
 /obj/structure/lootcrate/money,
@@ -163,7 +163,7 @@
 "X" = (
 /obj/effect/decal/cleanable/blood/gibs/core,
 /mob/living/simple_animal/hostile/lovetown/stabber,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Y" = (
 /obj/structure/meatfloor,

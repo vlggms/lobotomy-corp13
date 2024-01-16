@@ -21,7 +21,7 @@
 "cr" = (
 /mob/living/simple_animal/hostile/lovetown/slumberer,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "cy" = (
 /obj/structure/table/wood/fancy/blue,
@@ -64,7 +64,7 @@
 /area/city/backstreets_room)
 "hQ" = (
 /obj/structure/barricade/sandbags,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "iw" = (
 /obj/structure/lootcrate/money,
@@ -95,7 +95,7 @@
 /area/city/backstreets_room)
 "kz" = (
 /obj/structure/lootcrate/money,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "mA" = (
 /turf/open/floor/wood,
@@ -103,7 +103,7 @@
 "mJ" = (
 /obj/effect/gibspawner/human/bodypartless,
 /mob/living/simple_animal/hostile/lovetown/suicidal,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "na" = (
 /obj/structure/meatfloor,
@@ -125,7 +125,7 @@
 "rX" = (
 /obj/structure/flora/rock,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "sP" = (
 /mob/living/simple_animal/hostile/lovetown/slumberer,
@@ -148,7 +148,7 @@
 "vF" = (
 /obj/structure/lootcrate/k_corp,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "vZ" = (
 /mob/living/simple_animal/hostile/lovetown/slumberer,
@@ -193,7 +193,7 @@
 /turf/closed/mineral/ash_rock,
 /area/city/backstreets_room)
 "zZ" = (
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "AX" = (
 /turf/open/floor/carpet/blue,
@@ -211,7 +211,7 @@
 /obj/structure/barricade/wooden,
 /obj/structure/barricade/wooden/crude,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "BV" = (
 /obj/effect/decal/cleanable/glass,
@@ -233,7 +233,7 @@
 /area/city/backstreets_room)
 "Dw" = (
 /mob/living/simple_animal/hostile/lovetown/suicidal,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "DB" = (
 /turf/open/floor/wood{
@@ -247,7 +247,7 @@
 /area/city/backstreets_room)
 "Ef" = (
 /obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "EC" = (
 /mob/living/simple_animal/hostile/lovetown/slasher,
@@ -257,7 +257,7 @@
 "EK" = (
 /mob/living/simple_animal/hostile/lovetown/suicidal,
 /obj/effect/rune/manifest,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Fc" = (
 /turf/open/floor/carpet/royalblack,
@@ -275,11 +275,11 @@
 "HL" = (
 /mob/living/simple_animal/hostile/lovetown/shambler,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Is" = (
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "IP" = (
 /obj/effect/gibspawner/human/bodypartless,
@@ -294,12 +294,12 @@
 /area/city/backstreets_room)
 "JV" = (
 /mob/living/simple_animal/hostile/lovetown/shambler,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "KV" = (
 /obj/effect/gibspawner/human/bodypartless,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Lw" = (
 /obj/structure/lootcrate/w_corp,
@@ -307,7 +307,7 @@
 /area/city/backstreets_room)
 "LC" = (
 /obj/structure/flora/rock/pile,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "LN" = (
 /obj/item/ego_weapon/city/charge/wcorp/hammer,
@@ -322,12 +322,12 @@
 /area/city/backstreets_room)
 "NC" = (
 /mob/living/simple_animal/hostile/lovetown/slammer,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "ND" = (
 /mob/living/simple_animal/hostile/lovetown/stabber,
 /obj/effect/gibspawner/human/bodypartless,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "OW" = (
 /mob/living/simple_animal/hostile/lovetown/stabber,
@@ -336,7 +336,7 @@
 "Pd" = (
 /obj/structure/lootcrate/w_corp,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "RP" = (
 /obj/structure/table/wood/fancy/blue,
@@ -346,7 +346,7 @@
 /area/city/backstreets_room)
 "Sd" = (
 /mob/living/simple_animal/hostile/lovetown/stabber,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "SO" = (
 /obj/effect/rune/manifest,
@@ -359,12 +359,12 @@
 "Ud" = (
 /mob/living/simple_animal/hostile/lovetown/slasher,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Uf" = (
 /mob/living/simple_animal/hostile/lovetown/stabber,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Ul" = (
 /obj/effect/decal/cleanable/glass,
@@ -374,12 +374,12 @@
 /area/city/backstreets_room)
 "Us" = (
 /mob/living/simple_animal/hostile/lovetown/slasher,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "UK" = (
 /mob/living/simple_animal/hostile/lovetown/slammer,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "VB" = (
 /obj/structure/table/wood/fancy/blue,
@@ -389,17 +389,17 @@
 "Wk" = (
 /obj/structure/lootcrate/money,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "Za" = (
 /obj/item/ego_weapon/city/charge/wcorp,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 "ZW" = (
 /obj/structure/meatfloor,
 /obj/structure/meatfloor,
-/turf/open/floor/plating/dirt,
+/turf/open/floor/plating/asteroid/basalt,
 /area/city/backstreets_room)
 
 (1,1,1) = {"

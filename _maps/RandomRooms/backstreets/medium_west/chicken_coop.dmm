@@ -3,7 +3,17 @@
 /obj/structure/flora/ausbushes/grassybush,
 /turf/open/floor/grass,
 /area/city/backstreets_room)
+"d" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/grass/jungle,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/flora/ausbushes/fullgrass,
+/turf/open/floor/plating/grass/jungle,
+/area/city/backstreets_room)
 "i" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass/fairy,
 /area/city/backstreets_room)
 "j" = (
@@ -28,8 +38,8 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "r" = (
-/obj/structure/mineral_door/wood,
-/turf/open/floor/plating,
+/obj/structure/flora/grass/jungle,
+/turf/open/floor/grass,
 /area/city/backstreets_room)
 "s" = (
 /mob/living/simple_animal/chicken,
@@ -38,7 +48,7 @@
 "u" = (
 /mob/living/simple_animal/chicken,
 /obj/structure/flora/ausbushes/sparsegrass,
-/turf/open/floor/grass,
+/turf/open/floor/plating/grass/jungle,
 /area/city/backstreets_room)
 "x" = (
 /turf/closed/indestructible/reinforced,
@@ -47,8 +57,14 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/open/floor/grass,
 /area/city/backstreets_room)
+"E" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/grass/jungle,
+/area/city/backstreets_room)
 "H" = (
-/turf/closed/indestructible/fakedoor,
+/obj/structure/mineral_door/wood,
+/turf/open/floor/grass,
 /area/city/backstreets_room)
 "P" = (
 /turf/open/floor/grass,
@@ -62,6 +78,11 @@
 /mob/living/simple_animal/chicken,
 /obj/structure/flora/grass/jungle,
 /turf/open/floor/grass,
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/flora/ausbushes/sparsegrass,
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/grass/jungle,
 /area/city/backstreets_room)
 "W" = (
 /mob/living/simple_animal/chicken,
@@ -89,7 +110,7 @@ x
 (2,1,1) = {"
 x
 T
-m
+f
 Q
 s
 a
@@ -116,7 +137,7 @@ s
 m
 j
 s
-P
+r
 s
 i
 P
@@ -125,24 +146,24 @@ x
 (5,1,1) = {"
 x
 r
-q
-x
-x
-q
-x
-x
-r
+C
+d
+P
+U
+a
+E
+a
 x
 "}
 (6,1,1) = {"
 x
 H
-H
-H
-H
-H
-H
-H
+x
+q
+x
+x
+x
+q
 H
 x
 "}
