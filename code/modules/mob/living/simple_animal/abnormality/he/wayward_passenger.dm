@@ -5,6 +5,7 @@
 	icon_state = "wayward"
 	icon_living = "wayward_breach"
 	icon_dead = "wayward_dead"
+	portrait = "wayward_passenger"
 	del_on_death = FALSE
 	maxHealth = 1200
 	health = 1200
