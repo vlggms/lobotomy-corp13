@@ -49,6 +49,7 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/ego_hat/wcorp
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
+	suit_store = /obj/item/announcementmaker/lcorp
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/storage/packet
 	backpack_contents = list(/obj/item/storage/box/pcorp, /obj/item/binoculars)

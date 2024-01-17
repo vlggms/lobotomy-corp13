@@ -142,6 +142,7 @@
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
+	r_pocket = /obj/item/announcementmaker/lcorp
 	suit = /obj/item/clothing/suit/armor/vest/alt
 
 // Trainee, for new players
