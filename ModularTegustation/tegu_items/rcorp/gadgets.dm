@@ -33,14 +33,3 @@
 	name = "small command shelter capsule"
 	desc = "A small command post in a capsule."
 	template_id = "shelter_smallcommand"
-
-//Announcement machines
-/obj/item/announcementmaker
-	name = "r-corp announcement tablet"
-	icon = 'icons/obj/modular_tablet.dmi'
-	icon_state = "tablet-red"
-
-/obj/item/announcementmaker/attack_self(mob/living/user)
-	..()
-	var/input = stripped_input(user,"What do you want announce?", ,"Test Announcement")
-	minor_announce("[input]" , "Announcement from: [user.name]")

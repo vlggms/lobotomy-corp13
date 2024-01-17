@@ -3973,6 +3973,7 @@
 #include "ModularTegustation\tegu_items\backstreets\random_rooms\small\north.dm"
 #include "ModularTegustation\tegu_items\backstreets\random_rooms\small\south.dm"
 #include "ModularTegustation\tegu_items\backstreets\random_rooms\small\west.dm"
+#include "ModularTegustation\tegu_items\gadgets\announcement.dm"
 #include "ModularTegustation\tegu_items\gadgets\detector.dm"
 #include "ModularTegustation\tegu_items\gadgets\manager_bullets.dm"
 #include "ModularTegustation\tegu_items\gadgets\powered.dm"
