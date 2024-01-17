@@ -26,6 +26,6 @@
 			M.set_confusion(10)
 			M.dizziness += 10
 			M.adjust_blurriness(15)
-			M.silent = 10
+			M.silent = 12
 	StartCooldown()
 
