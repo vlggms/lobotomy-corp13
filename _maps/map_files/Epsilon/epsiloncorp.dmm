@@ -1037,17 +1037,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
-"cE" = (
-/obj/structure/fluff/big_chain{
-	alpha = 0;
-	mouse_opacity = 0
-	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
-	icon_state = "purplewater2";
-	color = "#c3bab0"
-	},
-/area/facility_hallway/central)
 "cH" = (
 /obj/machinery/status_display/evac{
 	pixel_y = 32
@@ -2381,18 +2370,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/west)
-"gP" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
-	icon_state = "redwater1"
-	},
-/area/facility_hallway/central)
 "gS" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/welfare)
@@ -3146,18 +3123,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/information)
-"iZ" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
-	icon_state = "purplewater2"
-	},
-/area/facility_hallway/central)
 "jb" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
@@ -3738,10 +3703,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
 "kD" = (
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	icon_state = "redwater1";
+/turf/open/water/deep/saltwater/safe{
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	icon_state = "purplewater2";
 	color = "#c3bab0"
 	},
 /area/facility_hallway/central)
@@ -4381,6 +4345,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
+"mF" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/saltwater/safe{
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	icon_state = "purplewater3"
+	},
+/area/facility_hallway/central)
 "mJ" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -4866,17 +4842,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
-"ox" = (
-/obj/effect/turf_decal/tile/neutral{
-	color = "#090807";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	color = "#090807";
-	dir = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/east)
 "oE" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4;
@@ -4996,6 +4961,10 @@
 "pb" = (
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/west)
+"pd" = (
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/sepia,
+/area/department_main/command)
 "pf" = (
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
@@ -5090,6 +5059,17 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
+"pu" = (
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807";
+	dir = 4
+	},
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/east)
 "pw" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -5653,7 +5633,10 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "rd" = (
-/turf/open/water/deep/saltwater,
+/turf/open/water/deep/saltwater/safe{
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	color = "#f5f5f5"
+	},
 /area/facility_hallway/central)
 "re" = (
 /obj/effect/turf_decal/tile/brown,
@@ -5744,6 +5727,18 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
+"rm" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/saltwater/safe{
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	icon_state = "purplewater2"
+	},
+/area/facility_hallway/central)
 "rn" = (
 /obj/effect/turf_decal/tile/brown{
 	color = "#734404";
@@ -6067,7 +6062,8 @@
 /area/facility_hallway/east)
 "sE" = (
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	icon_state = "water_turf1"
 	},
 /area/facility_hallway/central)
 "sF" = (
@@ -7583,6 +7579,15 @@
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
+"xt" = (
+/obj/effect/turf_decal/tile/yellow{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/department_main/command)
 "xu" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -8072,28 +8077,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/human)
-"yU" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4;
-	color = "#000000"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1;
-	color = "#000000"
-	},
-/obj/effect/turf_decal/tile/neutral{
-	color = "#090807"
-	},
-/obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
-	},
-/obj/machinery/light/small{
-	dir = 1;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/east)
 "yW" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/brown{
@@ -9094,9 +9077,9 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+/turf/open/water/deep/saltwater/safe{
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	icon_state = "water_turf1"
 	},
 /area/facility_hallway/central)
 "Cr" = (
@@ -9585,10 +9568,6 @@
 	},
 /area/department_main/training)
 "DZ" = (
-/obj/structure/fluff/big_chain{
-	alpha = 0;
-	mouse_opacity = 0
-	},
 /turf/open/water/deep/saltwater/safe{
 	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "redwater2";
@@ -9798,9 +9777,14 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
 "Ez" = (
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/saltwater/safe{
+	icon_state = "darkbluewater1"
 	},
 /area/facility_hallway/central)
 "EA" = (
@@ -10012,6 +9996,18 @@
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"Fh" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/saltwater/safe{
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	icon_state = "redwater1"
+	},
+/area/facility_hallway/central)
 "Fj" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -11185,9 +11181,10 @@
 	},
 /area/department_main/training)
 "Il" = (
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
-	icon_state = "redwater2";
+/turf/open/water/deep/freshwater{
+	safe = 1;
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	icon_state = "redwater1";
 	color = "#c3bab0"
 	},
 /area/facility_hallway/central)
@@ -11615,18 +11612,6 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/department_main/training)
-"Jw" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
-	icon_state = "purplewater3"
-	},
-/area/facility_hallway/central)
 "Jx" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 4;
@@ -11883,10 +11868,6 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/department_main/welfare)
-"Kr" = (
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/sepia,
-/area/department_main/command)
 "Ks" = (
 /obj/effect/turf_decal/plaque{
 	alpha = 230;
@@ -12188,10 +12169,7 @@
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
-	},
+/turf/open/space/basic,
 /area/department_main/welfare)
 "Lq" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -12744,15 +12722,6 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/west)
-"MJ" = (
-/obj/effect/turf_decal/tile/yellow{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment,
-/turf/open/floor/plasteel/sepia{
-	color = "#ccc8c0"
-	},
-/area/department_main/command)
 "MN" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
@@ -12968,6 +12937,28 @@
 "NB" = (
 /turf/open/floor/plating,
 /area/facility_hallway/east)
+"ND" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807"
+	},
+/obj/machinery/vending/snack/teal{
+	pixel_y = 19;
+	density = 0
+	},
+/obj/machinery/light/small{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/east)
 "NI" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -13052,17 +13043,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/training)
-"Oa" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/water/deep/saltwater/safe{
-	icon_state = "darkbluewater1"
-	},
-/area/facility_hallway/central)
 "Oc" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/plasteel/sepia,
@@ -13162,10 +13142,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/line,
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
-	},
+/turf/open/space/basic,
 /area/department_main/welfare)
 "Oo" = (
 /obj/machinery/telecomms/server/presets/security,
@@ -13290,6 +13267,12 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/training)
+"OJ" = (
+/obj/structure/disposalpipe/junction{
+	dir = 8
+	},
+/turf/open/floor/plasteel/sepia,
+/area/department_main/command)
 "OL" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
@@ -13326,7 +13309,8 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	color = "#f5f5f5"
 	},
 /area/facility_hallway/central)
 "OQ" = (
@@ -13822,12 +13806,6 @@
 /obj/machinery/telecomms/server/presets/medical,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
-"Qm" = (
-/obj/structure/disposalpipe/junction{
-	dir = 8
-	},
-/turf/open/floor/plasteel/sepia,
-/area/department_main/command)
 "Qn" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14710,6 +14688,10 @@
 	},
 /area/department_main/command)
 "Ta" = (
+/obj/structure/fluff/big_chain{
+	alpha = 0;
+	mouse_opacity = 0
+	},
 /turf/open/water/deep/saltwater/safe{
 	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
 	icon_state = "purplewater2";
@@ -14961,10 +14943,7 @@
 	},
 /area/facility_hallway/east)
 "Uf" = (
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
-	},
+/turf/open/space/basic,
 /area/space)
 "Ug" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -15473,6 +15452,17 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/command)
+"VR" = (
+/obj/structure/fluff/big_chain{
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/turf/open/water/deep/saltwater/safe{
+	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+	icon_state = "redwater2";
+	color = "#c3bab0"
+	},
+/area/facility_hallway/central)
 "VV" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1;
@@ -36960,27 +36950,27 @@ JZ
 JZ
 JZ
 JZ
-Ez
 sE
-Ez
+rd
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+rd
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 JZ
 JZ
 JZ
@@ -37217,27 +37207,27 @@ JZ
 JZ
 JZ
 JZ
-Ez
+sE
+rd
+sE
+sE
+rd
 sE
 sE
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 JZ
 JZ
 JZ
@@ -37474,29 +37464,29 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+rd
+rd
+rd
+rd
 sE
 sE
 sE
+rd
+rd
+rd
 OP
+rd
+rd
+sE
+rd
+rd
+rd
+rd
+rd
+rd
 sE
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
 vU
 vU
 JZ
@@ -37731,29 +37721,29 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
+rd
+sE
+sE
+sE
+sE
+rd
+sE
+rd
+sE
+sE
+sE
+sE
+rd
+sE
+sE
 vU
 vU
 JZ
@@ -37981,36 +37971,36 @@ JZ
 JZ
 JZ
 JZ
-sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-sE
-sE
-sE
-Ez
-Ez
-sE
-Ez
-Ez
-Ez
-Ez
-sE
-Ez
-Ez
-Ez
+rd
 sE
 sE
 sE
 sE
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+rd
+rd
+rd
+sE
+sE
+rd
+sE
+sE
+sE
+sE
+rd
+sE
+rd
+sE
+sE
+sE
+sE
+rd
+sE
+sE
 vU
 vU
 JZ
@@ -38237,37 +38227,37 @@ JZ
 JZ
 JZ
 JZ
+rd
+rd
 sE
 sE
-Ez
-Ez
+rd
+rd
+rd
+rd
+rd
+sE
+sE
+rd
+sE
+rd
+sE
+sE
+rd
+rd
+rd
+rd
+rd
+rd
+sE
+rd
 sE
 sE
 sE
 sE
-sE
-Ez
-Ez
-sE
-Ez
-sE
-Ez
-Ez
+rd
 sE
 sE
-sE
-sE
-sE
-sE
-Ez
-Ez
-Ez
-sE
-Ez
-Ez
-sE
-Ez
-Ez
 vU
 vU
 JZ
@@ -38494,37 +38484,37 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
 sE
-Ez
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+rd
 sE
-Ez
-Ez
 sE
-Ez
-Ez
+sE
+rd
+sE
+sE
+rd
+sE
+rd
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+rd
+sE
+sE
+sE
+sE
+rd
+sE
+sE
 vU
 vU
 JZ
@@ -38751,37 +38741,37 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-sE
-Ez
-Ez
-Ez
-sE
-Ez
-Ez
-sE
-sE
-sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
 sE
 sE
 sE
 sE
-Ez
-Ez
+rd
+sE
+sE
+sE
+rd
+sE
+sE
+rd
+rd
+rd
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+rd
+rd
+rd
+rd
+rd
+rd
+rd
+rd
 vU
 vU
 JZ
@@ -39008,35 +38998,35 @@ JZ
 JZ
 JZ
 JZ
+rd
+rd
+rd
+sE
+rd
 sE
 sE
 sE
-Ez
+rd
 sE
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
 cN
 Pz
 Pz
 Pz
 cN
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
 sE
+sE
+sE
+sE
+sE
+sE
+sE
+rd
 sE
 sE
 vU
@@ -39265,17 +39255,17 @@ JZ
 JZ
 JZ
 JZ
+rd
 sE
-Ez
+rd
 sE
-Ez
 OP
+rd
+rd
+rd
+rd
 sE
 sE
-sE
-sE
-Ez
-Ez
 OG
 OG
 OG
@@ -39291,11 +39281,11 @@ OG
 OG
 OG
 OG
-Ez
-Ez
 sE
-Ez
-Ez
+sE
+rd
+sE
+sE
 vU
 vU
 JZ
@@ -39522,17 +39512,17 @@ JZ
 JZ
 JZ
 JZ
+rd
+rd
+rd
 sE
 sE
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
 OG
 qj
 qj
@@ -39548,11 +39538,11 @@ Pz
 Pz
 Pz
 OG
-Ez
-Ez
 sE
-Ez
-Ez
+sE
+rd
+sE
+sE
 vU
 vU
 JZ
@@ -39779,13 +39769,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+rd
+rd
+rd
+sE
+sE
 OG
 OG
 OG
@@ -39805,9 +39795,9 @@ dl
 kP
 Pz
 OG
-Ez
-Ez
 sE
+sE
+rd
 rd
 rd
 vU
@@ -40036,13 +40026,13 @@ JZ
 JZ
 JZ
 JZ
+rd
+rd
+rd
+sE
+rd
 sE
 sE
-sE
-Ez
-Ez
-Ez
-Ez
 OG
 cN
 Pz
@@ -40062,11 +40052,11 @@ hr
 BX
 Pz
 OG
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
 vU
 vU
 FC
@@ -40092,7 +40082,7 @@ vU
 vU
 vU
 vU
-gP
+Fh
 vU
 FC
 FC
@@ -40293,13 +40283,13 @@ JZ
 JZ
 JZ
 JZ
+rd
 sE
-Ez
+rd
+rd
+rd
 sE
-Ez
-Ez
-Ez
-Ez
+sE
 OG
 Pz
 cf
@@ -40319,11 +40309,11 @@ Mg
 Ca
 Pz
 OG
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
 vU
 vU
 FC
@@ -40332,7 +40322,7 @@ vU
 FC
 vU
 vU
-gP
+Fh
 vU
 vU
 vU
@@ -40550,10 +40540,10 @@ JZ
 JZ
 JZ
 JZ
+rd
 sE
-Ez
+rd
 sE
-Ez
 qj
 qj
 qj
@@ -40577,10 +40567,10 @@ qj
 qj
 qj
 qj
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
 vU
 vU
 vU
@@ -40802,15 +40792,15 @@ JZ
 JZ
 JZ
 JZ
-Ez
 sE
-Ez
 sE
-Ez
 sE
-Ez
+rd
 sE
-Ez
+rd
+sE
+rd
+sE
 qj
 JX
 JX
@@ -40834,9 +40824,9 @@ qN
 Iz
 zg
 qj
-sE
-sE
-sE
+rd
+rd
+rd
 sE
 vU
 vU
@@ -40851,11 +40841,11 @@ FC
 vU
 FC
 FC
-Il
-Il
-Il
-Il
-Il
+DZ
+DZ
+DZ
+DZ
+DZ
 NV
 kO
 kO
@@ -41059,15 +41049,15 @@ JZ
 JZ
 JZ
 JZ
-Ez
+rd
+rd
+rd
+rd
 sE
+rd
+rd
+rd
 sE
-sE
-Ez
-sE
-Ez
-sE
-Ez
 qj
 JX
 JX
@@ -41091,10 +41081,10 @@ QK
 HX
 AY
 Pz
+rd
 sE
-Ez
-Ez
-OP
+rd
+Cp
 vU
 FC
 FC
@@ -41108,7 +41098,7 @@ vU
 vU
 FC
 vU
-Il
+DZ
 NV
 NV
 NV
@@ -41316,15 +41306,15 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
 sE
 sE
 sE
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
 qj
 JX
 JX
@@ -41348,9 +41338,9 @@ ry
 cx
 XA
 Pz
+rd
 sE
-Ez
-Ez
+rd
 sE
 vU
 vU
@@ -41365,7 +41355,7 @@ vU
 vU
 vU
 vU
-Il
+DZ
 NV
 RE
 RE
@@ -41573,15 +41563,15 @@ JZ
 JZ
 JZ
 JZ
-Ez
+sE
+rd
+rd
+rd
 sE
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
 qj
 JX
 JX
@@ -41605,10 +41595,10 @@ cx
 ij
 DP
 Pz
+rd
+rd
+rd
 sE
-sE
-sE
-sE
 vU
 vU
 vU
@@ -41618,11 +41608,11 @@ vU
 vU
 vU
 vU
-Il
-Il
-Il
-Il
-Il
+DZ
+DZ
+DZ
+DZ
+DZ
 NV
 RE
 RE
@@ -41830,13 +41820,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
+sE
+rd
+sE
+rd
 sE
 sE
-Ez
 sE
-sE
-Ez
 OG
 OG
 qj
@@ -41862,20 +41852,20 @@ YV
 AX
 Xk
 qj
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+rd
+rd
 vU
 vU
 FC
 FC
 vU
-Il
-Il
-Il
-Il
-Il
+DZ
+DZ
+DZ
+DZ
+DZ
 NV
 kO
 kO
@@ -41889,7 +41879,7 @@ XK
 Zg
 uo
 NV
-Il
+DZ
 FC
 vU
 vU
@@ -42087,13 +42077,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
 sE
-sE
-Ez
+rd
+rd
+rd
+rd
+rd
+rd
 OG
 qj
 qj
@@ -42119,16 +42109,16 @@ hD
 qj
 qj
 qj
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+rd
+sE
 vU
 vU
 vU
 FC
 vU
-Il
+DZ
 NV
 NV
 NV
@@ -42146,7 +42136,7 @@ jp
 tG
 uo
 NV
-Il
+DZ
 FC
 FC
 FC
@@ -42344,13 +42334,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+rd
+sE
+rd
 OG
 IX
 mJ
@@ -42376,16 +42366,16 @@ RZ
 XN
 qj
 OG
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+rd
+rd
 vU
 vU
 vU
 vU
 vU
-Il
+DZ
 NV
 RE
 RE
@@ -42403,13 +42393,13 @@ xA
 zE
 uo
 NV
-Il
-Il
-Il
-Il
-Il
-Il
-Il
+DZ
+DZ
+DZ
+DZ
+DZ
+DZ
+DZ
 vU
 vU
 vU
@@ -42601,13 +42591,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
 sE
-sE
-sE
-sE
-Ez
-Ez
+rd
+rd
+rd
+rd
+rd
+rd
 OG
 IX
 mJ
@@ -42633,16 +42623,16 @@ RZ
 vh
 qj
 OG
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
 vU
 vU
 vU
 vU
 vU
-Il
+DZ
 NV
 RE
 RE
@@ -42666,11 +42656,11 @@ sA
 rC
 rC
 rC
-Il
+DZ
 vU
 vU
 vU
-gP
+Fh
 vU
 vU
 vU
@@ -42858,13 +42848,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
 sE
-Ez
-Ez
+rd
 sE
-Ez
-Ez
+sE
+rd
+sE
+sE
 OG
 Pz
 UB
@@ -42923,7 +42913,7 @@ eV
 eV
 eV
 rC
-Il
+DZ
 vU
 FC
 FC
@@ -43115,13 +43105,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
 sE
-Ez
-Ez
+rd
 sE
-Ez
-Ez
+sE
+rd
+sE
+sE
 OG
 Pz
 UB
@@ -43151,8 +43141,8 @@ pY
 pY
 fc
 OG
-kD
-kD
+Il
+Il
 pY
 EO
 EO
@@ -43180,7 +43170,7 @@ eV
 eV
 eV
 rC
-Il
+DZ
 vU
 FC
 vU
@@ -43372,13 +43362,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
+sE
+rd
+rd
+rd
+rd
 sE
 sE
-sE
-sE
-Ez
-Ez
 OG
 Pz
 UB
@@ -43437,7 +43427,7 @@ eV
 eV
 Vx
 rC
-Il
+DZ
 vU
 vU
 vU
@@ -43629,13 +43619,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 OG
 IX
 mJ
@@ -43694,7 +43684,7 @@ eV
 eV
 eV
 rC
-Il
+DZ
 vU
 vU
 vU
@@ -43886,13 +43876,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 OG
 IX
 mJ
@@ -43951,7 +43941,7 @@ eV
 eV
 eV
 rC
-Il
+DZ
 vU
 vU
 vU
@@ -44143,13 +44133,13 @@ JZ
 JZ
 JZ
 JZ
+rd
+rd
+rd
 sE
-sE
-sE
-Ez
-sE
-sE
-sE
+rd
+rd
+rd
 OG
 qj
 GN
@@ -44208,7 +44198,7 @@ RB
 rC
 rC
 rC
-Il
+DZ
 vU
 FC
 FC
@@ -44401,12 +44391,12 @@ JZ
 JZ
 JZ
 sE
-Ez
 sE
-Ez
+rd
+sE
 OP
-Ez
 sE
+rd
 OG
 qj
 Tr
@@ -44463,9 +44453,9 @@ lB
 PC
 Cc
 HJ
+VR
 DZ
-Il
-Il
+DZ
 vU
 vU
 FC
@@ -44658,12 +44648,12 @@ JZ
 JZ
 JZ
 sE
-Ez
 sE
-Ez
+rd
 sE
-sE
-sE
+rd
+rd
+rd
 OG
 Pz
 Xz
@@ -44720,7 +44710,7 @@ Tn
 Tn
 Er
 HJ
-DZ
+VR
 vU
 vU
 vU
@@ -44915,12 +44905,12 @@ JZ
 JZ
 JZ
 sE
-Ez
 sE
-Ez
-Ez
-Ez
-Ez
+rd
+sE
+sE
+sE
+sE
 OG
 Pz
 QE
@@ -44977,8 +44967,8 @@ JQ
 pX
 Ic
 HJ
+VR
 DZ
-Il
 vU
 vU
 vU
@@ -45171,13 +45161,13 @@ JZ
 JZ
 JZ
 JZ
-sE
-Ez
-sE
-Ez
-Ez
-Ez
-Ez
+rd
+rd
+rd
+rd
+rd
+rd
+rd
 OG
 Pz
 Xz
@@ -45235,7 +45225,7 @@ kO
 kO
 kO
 kO
-Il
+DZ
 vU
 vU
 FC
@@ -45430,11 +45420,11 @@ JZ
 JZ
 sE
 sE
+rd
 sE
 sE
 sE
-sE
-sE
+rd
 OG
 qj
 Tr
@@ -45492,7 +45482,7 @@ ME
 Kl
 Jo
 kO
-Il
+DZ
 vU
 vU
 vU
@@ -45685,13 +45675,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
 sE
+rd
+sE
+sE
+sE
+rd
 OG
 qj
 qj
@@ -45749,7 +45739,7 @@ um
 bI
 BG
 kO
-Il
+DZ
 vU
 vU
 vU
@@ -45942,13 +45932,13 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
 sE
+rd
+sE
+sE
+sE
+rd
 OG
 OG
 OG
@@ -46006,7 +45996,7 @@ pS
 Cy
 oI
 kO
-Il
+DZ
 vU
 vU
 FC
@@ -46199,18 +46189,18 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
+sE
+sE
+rd
+rd
+rd
+rd
+rd
 sE
 sE
 sE
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
 OG
 fc
 rp
@@ -46263,11 +46253,11 @@ NV
 NV
 NV
 NV
-Il
+DZ
 vU
 FC
 FC
-gP
+Fh
 vU
 vU
 vU
@@ -46456,18 +46446,18 @@ JZ
 JZ
 JZ
 JZ
-Ez
 sE
 sE
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 OG
 fc
 rp
@@ -46520,7 +46510,7 @@ oj
 PN
 pF
 NV
-Il
+DZ
 vU
 vU
 vU
@@ -46713,18 +46703,18 @@ JZ
 JZ
 JZ
 JZ
-Ez
-sE
-sE
-Ez
-Ez
-Ez
-Ez
-Ez
+rd
+rd
+rd
 sE
 sE
 sE
-Ez
+sE
+sE
+rd
+rd
+rd
+sE
 OG
 fc
 rp
@@ -46777,7 +46767,7 @@ im
 KP
 cw
 kO
-Il
+DZ
 vU
 vU
 FC
@@ -46970,18 +46960,18 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
 sE
 sE
+rd
 sE
+rd
+rd
+rd
 sE
-Ez
+rd
 sE
-Ez
+rd
 sE
-Ez
 OG
 fc
 rp
@@ -47034,7 +47024,7 @@ zd
 uu
 cw
 kO
-Il
+DZ
 vU
 vU
 vU
@@ -47227,18 +47217,18 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
 sE
-Ez
-Ez
 sE
-Ez
+rd
 sE
-Ez
+rd
 sE
-Ez
+rd
+sE
+rd
+sE
+rd
+sE
 OG
 fc
 fc
@@ -47291,7 +47281,7 @@ Vo
 uu
 cw
 kO
-Il
+DZ
 vU
 vU
 vU
@@ -47488,14 +47478,14 @@ JZ
 JZ
 JZ
 sE
-Ez
-Ez
+rd
+rd
+rd
 sE
-Ez
+rd
 sE
-Ez
+rd
 sE
-Ez
 OG
 fc
 rp
@@ -47548,7 +47538,7 @@ Eg
 LS
 Py
 kO
-Il
+DZ
 FC
 vU
 vU
@@ -47749,10 +47739,10 @@ sE
 sE
 sE
 Cp
+rd
 sE
-Ez
+rd
 sE
-Ez
 OG
 fc
 rp
@@ -47805,7 +47795,7 @@ nY
 zI
 cw
 kO
-Il
+DZ
 FC
 FC
 vU
@@ -48001,15 +47991,15 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
 sE
 sE
 sE
-Ez
+sE
+sE
+rd
+rd
+rd
+sE
 OG
 fc
 rp
@@ -48062,7 +48052,7 @@ xy
 Hz
 En
 kO
-Il
+DZ
 vU
 vU
 vU
@@ -48258,15 +48248,15 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 OG
 fc
 rp
@@ -48319,7 +48309,7 @@ AI
 Xi
 AI
 kO
-Il
+DZ
 FC
 FC
 vU
@@ -48515,15 +48505,15 @@ JZ
 JZ
 JZ
 JZ
-Ez
+sE
+rd
+rd
+rd
+rd
 sE
 sE
 sE
 sE
-Ez
-Ez
-Ez
-Ez
 OG
 fc
 rp
@@ -48576,7 +48566,7 @@ OD
 SF
 BB
 NV
-Il
+DZ
 vU
 FC
 vU
@@ -48772,14 +48762,14 @@ JZ
 JZ
 JZ
 JZ
-Ez
 sE
-Ez
-Ez
+rd
 sE
-Ez
-Ez
-Ez
+sE
+rd
+sE
+sE
+sE
 hx
 hx
 hx
@@ -48833,7 +48823,7 @@ NV
 NV
 NV
 NV
-Il
+DZ
 vU
 vU
 vU
@@ -49029,14 +49019,14 @@ JZ
 JZ
 JZ
 JZ
-Ez
+sE
+rd
+rd
+rd
+rd
 sE
 sE
 sE
-sE
-Ez
-Ez
-Ez
 ZK
 FX
 FX
@@ -49090,7 +49080,7 @@ tj
 CJ
 gu
 eb
-Il
+DZ
 vU
 FC
 FC
@@ -49286,14 +49276,14 @@ JZ
 JZ
 JZ
 JZ
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
-Ez
+sE
+sE
+sE
+sE
+sE
+sE
+sE
+sE
 ZK
 FX
 FX
@@ -49347,7 +49337,7 @@ cY
 cY
 gu
 eb
-Il
+DZ
 vU
 vU
 FC
@@ -49604,7 +49594,7 @@ Xh
 cY
 gu
 eb
-Il
+DZ
 vU
 vU
 vU
@@ -49861,7 +49851,7 @@ cY
 cY
 gu
 eb
-Ta
+kD
 pI
 pI
 pI
@@ -50081,9 +50071,9 @@ Wa
 ZD
 wC
 mN
-MJ
-Kr
-Qm
+xt
+pd
+OJ
 SB
 jN
 tL
@@ -50118,7 +50108,7 @@ tj
 cY
 gu
 eb
-Ta
+kD
 pI
 Dm
 Dm
@@ -50375,7 +50365,7 @@ jd
 ow
 jd
 jd
-Ta
+kD
 pI
 Dm
 Dm
@@ -50632,7 +50622,7 @@ Yf
 Vb
 Ry
 eb
-Ta
+kD
 pI
 Dm
 Dm
@@ -50889,7 +50879,7 @@ TX
 Dc
 YL
 eb
-Ta
+kD
 pI
 pI
 Dm
@@ -51146,7 +51136,7 @@ Zt
 SL
 Fd
 eb
-Ta
+kD
 pI
 pI
 Dm
@@ -51403,7 +51393,7 @@ jd
 jd
 jd
 jd
-Ta
+kD
 pI
 pI
 Dm
@@ -51603,7 +51593,7 @@ nX
 nX
 nX
 nX
-Oa
+Ez
 nX
 nX
 nX
@@ -51660,7 +51650,7 @@ BJ
 TI
 he
 eb
-Ta
+kD
 pI
 pI
 Dm
@@ -51917,7 +51907,7 @@ FJ
 FJ
 FJ
 eb
-Ta
+kD
 pI
 pI
 Dm
@@ -52174,11 +52164,11 @@ se
 Bd
 Ry
 eb
-Ta
+kD
 pI
 Dm
 Dm
-Jw
+mF
 pI
 Dm
 Dm
@@ -52431,7 +52421,7 @@ OW
 md
 kv
 eb
-Ta
+kD
 pI
 Dm
 Dm
@@ -52688,7 +52678,7 @@ Zt
 SL
 Fd
 eb
-Ta
+kD
 pI
 pI
 pI
@@ -52899,7 +52889,7 @@ NB
 NB
 NB
 ey
-ox
+pu
 bn
 GV
 Km
@@ -52945,7 +52935,7 @@ jd
 jd
 jd
 jd
-Ta
+kD
 pI
 Dm
 Dm
@@ -53202,7 +53192,7 @@ Yf
 Io
 Ry
 eb
-Ta
+kD
 pI
 Dm
 Dm
@@ -53459,7 +53449,7 @@ Ew
 kj
 YL
 eb
-Ta
+kD
 pI
 Dm
 Dm
@@ -53716,7 +53706,7 @@ Zt
 LY
 Fd
 eb
-Ta
+kD
 pI
 Dm
 Dm
@@ -53973,7 +53963,7 @@ eb
 eb
 eb
 eb
-Ta
+kD
 pI
 pI
 pI
@@ -54229,8 +54219,8 @@ Wk
 we
 Mh
 qQ
-cE
 Ta
+kD
 pI
 pI
 Dm
@@ -54486,7 +54476,7 @@ Tn
 Tn
 VA
 qQ
-cE
+Ta
 pI
 pI
 pI
@@ -54743,9 +54733,9 @@ VH
 PC
 ov
 qQ
-cE
 Ta
-Ta
+kD
+kD
 pI
 Dm
 Dm
@@ -55002,7 +54992,7 @@ Rc
 rC
 rC
 rC
-Ta
+kD
 pI
 Dm
 Dm
@@ -55198,7 +55188,7 @@ nX
 nX
 nX
 nX
-Oa
+Ez
 nX
 nX
 uL
@@ -55259,7 +55249,7 @@ eV
 eV
 eV
 rC
-Ta
+kD
 pI
 pI
 Dm
@@ -55516,7 +55506,7 @@ eV
 eV
 eV
 rC
-Ta
+kD
 pI
 pI
 Dm
@@ -55747,7 +55737,7 @@ ey
 ey
 ey
 ey
-yU
+ND
 wJ
 zT
 jd
@@ -55773,7 +55763,7 @@ eV
 eV
 yG
 rC
-Ta
+kD
 pI
 pI
 Dm
@@ -56001,8 +55991,8 @@ np
 np
 ey
 uL
-Ta
-Ta
+kD
+kD
 np
 dd
 dd
@@ -56030,7 +56020,7 @@ eV
 eV
 eV
 rC
-Ta
+kD
 pI
 pI
 Dm
@@ -56287,7 +56277,7 @@ eV
 eV
 eV
 rC
-Ta
+kD
 pI
 pI
 Dm
@@ -56520,7 +56510,7 @@ pI
 pI
 pI
 pI
-Ta
+kD
 jd
 Tq
 Tq
@@ -56544,7 +56534,7 @@ sA
 rC
 rC
 rC
-Ta
+kD
 pI
 Dm
 Dm
@@ -56777,7 +56767,7 @@ pI
 pI
 pI
 pI
-Ta
+kD
 jd
 Tq
 Tq
@@ -56795,13 +56785,13 @@ YS
 xC
 YG
 jd
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
-Ta
+kD
+kD
+kD
+kD
+kD
+kD
+kD
 pI
 Dm
 Dm
@@ -57034,7 +57024,7 @@ pI
 pI
 pI
 pI
-Ta
+kD
 jd
 jd
 jd
@@ -57052,7 +57042,7 @@ bg
 wP
 YG
 jd
-Ta
+kD
 pI
 pI
 pI
@@ -57291,11 +57281,11 @@ Dm
 Dm
 pI
 pI
-Ta
-Ta
-Ta
-Ta
-Ta
+kD
+kD
+kD
+kD
+kD
 jd
 eb
 eb
@@ -57309,7 +57299,7 @@ qy
 eY
 YG
 jd
-Ta
+kD
 pI
 pI
 Dm
@@ -57552,11 +57542,11 @@ pI
 pI
 pI
 pI
-Ta
-Ta
-Ta
-Ta
-Ta
+kD
+kD
+kD
+kD
+kD
 jd
 Tq
 Tq
@@ -57574,7 +57564,7 @@ Dm
 pI
 Dm
 Dm
-Jw
+mF
 Dm
 pI
 Dm
@@ -57813,7 +57803,7 @@ pI
 pI
 pI
 pI
-Ta
+kD
 jd
 Tq
 Tq
@@ -58060,7 +58050,7 @@ nX
 pI
 Dm
 Dm
-iZ
+rm
 Dm
 Dm
 Dm
@@ -58070,7 +58060,7 @@ pI
 pI
 pI
 pI
-Ta
+kD
 jd
 jd
 jd
@@ -58327,11 +58317,11 @@ Dm
 pI
 pI
 pI
-Ta
-Ta
-Ta
-Ta
-Ta
+kD
+kD
+kD
+kD
+kD
 jd
 eb
 eb
@@ -59830,7 +59820,7 @@ nX
 nX
 nX
 nX
-Oa
+Ez
 nX
 nX
 nX
@@ -59874,7 +59864,7 @@ pI
 Dm
 pI
 pI
-iZ
+rm
 pI
 pI
 pI
@@ -60878,7 +60868,7 @@ nX
 nX
 nX
 nX
-Oa
+Ez
 nX
 nX
 nX
