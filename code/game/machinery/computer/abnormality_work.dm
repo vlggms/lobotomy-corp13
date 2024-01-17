@@ -62,59 +62,78 @@
 				melt_text = " of Lunacy. Failure to clear the meltdown will cause another abnormality to breach"
 		. += span_warning("The containment unit is currently affected by a Qliphoth Meltdown[melt_text]. Time left: [meltdown_time].")
 
-/obj/machinery/computer/abnormality/ui_interact(mob/user)
+/obj/machinery/computer/abnormality/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	if(isliving(user))
-		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	if(!istype(datum_reference))
 		to_chat(user, span_boldannounce("The console has no information stored!"))
 		return
-	var/dat
-	dat += "<b><span style='color: [THREAT_TO_COLOR[datum_reference.GetRiskLevel()]]'>\[[THREAT_TO_NAME[datum_reference.GetRiskLevel()]]\]</span> [datum_reference.GetName()]</b><br>"
-	if(datum_reference.overload_chance[user.ckey])
-		dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Personal Work Success Rates are modified by [datum_reference.overload_chance[user.ckey]]%.</span><br>"
-		if(datum_reference.overload_chance_limit < 0 && datum_reference.overload_chance[user.ckey] <= datum_reference.overload_chance_limit) // How the fuck did you hit the limit..?
-			dat += "<span style='color: [COLOR_MOSTLY_PURE_RED]'>Work on other abnormalities, I beg you...</span><br>"
-	if(datum_reference.understanding != 0)
-		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
-	dat += "<br>"
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AbnormalityWork")
+		ui.open()
+		if(isliving(user))
+			playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 
-	//Abnormality portraits
-	var/list/paths = get_portrait_path()
-	for(var/pahs in paths)
+/obj/machinery/computer/abnormality/ui_static_data(mob/user)
+	. = list()
+	/// Colors
+	.["overload_color"] = COLOR_VERY_SOFT_YELLOW
+	.["plead_color"] = COLOR_MOSTLY_PURE_RED
+	.["understanding_color"] = COLOR_BLUE_LIGHT
+	/// Images
+	for(var/pahs in get_portrait_path())
 		user << browse_rsc(pahs)
-	dat += {"<div style="float:right; width: 60%;">
-	<img src='[datum_reference.GetPortrait()].png' class="fit-picture" width="192" height="192">
-	</div>"}
-	dat += "<br>"
 
+/obj/machinery/computer/abnormality/ui_data(mob/user)
+	. = list()
+	/// Colors
+	.["threat_color"] = THREAT_TO_COLOR[datum_reference.GetRiskLevel()]
+
+	/// Name Information
+	.["threat"] = THREAT_TO_NAME[datum_reference.GetRiskLevel()]
+	.["name"] = datum_reference.GetName()
+
+	/// Images
+	.["image"] = "[datum_reference.GetPortrait()].png"
+
+	/// Overload
+	.["overload"] = datum_reference.overload_chance[user.ckey] ? datum_reference.overload_chance[user.ckey] : FALSE
+	.["pleading"] = datum_reference.overload_chance_limit < 0 && datum_reference.overload_chance[user.ckey] <= datum_reference.overload_chance_limit // How the fuck did you hit the limit..?
+
+	// Understanding
+	.["understanding_percent"] = round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)
+	.["understanding"] = datum_reference.understanding
+
+	/// Works
 	var/list/work_list = datum_reference.available_work
+	.["work_links"] = list()
+	.["work_displays"] = list()
+	.["work_chances"] = list()
 	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
 		work_list = shuffle(work_list) // A minor annoyance, at most
 	for(var/wt in work_list)
 		var/work_display = "[wt] Work"
+		.["work_links"] += wt
 		if(scramble_list[wt] != null)
 			work_display += "?"
 		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
 		if(!tutorial && istype(I))
 			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
+		var/work_chance = null
 		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
-			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display] \[[datum_reference.get_work_chance(wt, user)]%\]</A> <br>"
-		else
-			dat += "<A href='byond://?src=[REF(src)];do_work=[wt]'>[work_display]</A> <br>"
+			work_chance = "\[[datum_reference.get_work_chance(wt, user)]%\]"
+		.["work_displays"][wt] = work_display
+		.["work_chances"][wt] = work_chance
 
-	var/datum/browser/popup = new(user, "abno_work", "Abnormality Work Console", 400, 350)
-	popup.set_content(dat)
-	popup.open()
-	return
-
-/obj/machinery/computer/abnormality/Topic(href, href_list)
+/obj/machinery/computer/abnormality/ui_act(action, list/params)
 	. = ..()
 	if(.)
-		return .
+		return
+	if(action != "do_work")
+		return
 	if(ishuman(usr))
 		usr.set_machine(src)
-		if(href_list["do_work"] in datum_reference.available_work)
+		if(params["do_work"] in datum_reference.available_work)
 			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN) && recorded) //let clerks work training rabbit
 				to_chat(usr, span_warning("The console cannot be operated by [prob(0.1) ? "a filthy clerk" : "you"]!"))
 				return
@@ -127,15 +146,14 @@
 			if(!(datum_reference.current.status_flags & GODMODE))
 				to_chat(usr, span_warning("The Abnormality has breached containment!"))
 				return
-			var/work_attempt = datum_reference.current.AttemptWork(usr, href_list["do_work"])
+			var/work_attempt = datum_reference.current.AttemptWork(usr, params["do_work"])
 			if(!work_attempt)
 				if(work_attempt == FALSE)
 					to_chat(usr, span_warning("This operation is currently unavailable."))
 				return
-			start_work(usr, href_list["do_work"])
+			start_work(usr, params["do_work"])
 
 	add_fingerprint(usr)
-	updateUsrDialog()
 
 /obj/machinery/computer/abnormality/proc/start_work(mob/living/carbon/human/user, work_type)
 	var/sanity_result = round(datum_reference.current.fear_level - get_user_level(user))
