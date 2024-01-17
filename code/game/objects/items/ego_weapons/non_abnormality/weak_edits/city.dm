@@ -145,7 +145,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-//Sottoacpo
+//Sottocapo
 /obj/item/gun/ego_gun/city/thumb/sottocapo/weak
 	force = 10	//It's a pistol
 	projectile_damage_multiplier = 0.7		//5 damage per bullet
@@ -181,3 +181,7 @@
 	desc = "Armor worn by Nagel Und Hammer."
 	icon_state = "ncorp"
 	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 50)
+	attribute_requirements = list()
+
+/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/weak
+	attribute_requirements = list()

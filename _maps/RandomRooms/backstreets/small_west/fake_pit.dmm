@@ -1,0 +1,73 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/statue/gold/rd,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/statue/gold/cmo,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/statue/gold/ce,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"J" = (
+/turf/open/floor/fakepit,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/statue/gold/hos,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"X" = (
+/obj/item/stack/spacecash/c100,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+x
+w
+X
+N
+v
+a
+"}
+(3,1,1) = {"
+a
+J
+J
+J
+J
+J
+a
+"}
+(4,1,1) = {"
+a
+J
+J
+J
+J
+J
+a
+"}
+(5,1,1) = {"
+a
+J
+J
+J
+J
+J
+a
+"}

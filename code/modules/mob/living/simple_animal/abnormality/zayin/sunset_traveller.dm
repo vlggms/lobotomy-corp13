@@ -3,6 +3,7 @@
 	desc = "A yellow creature with orange butterflies floating around it."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "sunset"
+	portrait = "sunset_traveller"
 	maxHealth = 400
 	health = 400
 	threat_level = ZAYIN_LEVEL

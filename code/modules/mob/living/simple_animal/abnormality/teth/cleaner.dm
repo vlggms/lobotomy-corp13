@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "cleaner"
 	icon_living = "cleaner"
+	portrait = "cleaner"
 	maxHealth = 800
 	health = 800
 	ranged = TRUE

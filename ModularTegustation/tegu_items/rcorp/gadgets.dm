@@ -37,6 +37,7 @@
 //Announcement machines
 /obj/item/announcementmaker
 	name = "r-corp announcement tablet"
+	desc = "A special tablet used by R-Corp Ground Commanders to make rapid announcements during pack deployments."
 	icon = 'icons/obj/modular_tablet.dmi'
 	icon_state = "tablet-red"
 
@@ -44,3 +45,14 @@
 	..()
 	var/input = stripped_input(user,"What do you want announce?", ,"Test Announcement")
 	minor_announce("[input]" , "Announcement from: [user.name]")
+
+//Tablet variants
+/obj/item/announcementmaker/wcorp
+	name = "w-corp announcement tablet"
+	desc = "A special tablet used by WARP Clean up L2-LT agents to make rapid announcements on the battlefield."
+	icon_state = "tablet-blue"
+
+/obj/item/announcementmaker/lcorp
+	name = "l-corp announcement tablet"
+	desc = "A special tablet used by L-Corp Agent Captains to make rapid announcements during ongoing breaches and meltdowns."
+	icon_state = "tablet-brown"

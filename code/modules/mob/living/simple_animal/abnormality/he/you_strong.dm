@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "you_strong_pause"
 	icon_living = "you_strong_pause"
+	portrait = "grown_strong"
 	maxHealth = 200
 	health = 200
 	threat_level = HE_LEVEL

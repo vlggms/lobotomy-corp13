@@ -8,6 +8,7 @@
 	icon_state = "drifting_fox"
 	icon_living = "drifting_fox"
 	icon_dead = "fox_egg"
+	portrait = "drifting_fox"
 	death_message = "Collapses into a glass egg"
 	death_sound = 'sound/abnormalities/drifting_fox/fox_death_sound.ogg'
 	pixel_x = -24

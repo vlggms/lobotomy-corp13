@@ -7,6 +7,7 @@
 	icon_state = "gold_inert"
 	icon_living = "gold_inert"
 	icon_dead = "gold_cracked"
+	portrait = "golden_apple"
 	var/list/golden_apple_lines = list(
 		"I didn't want to die.",
 		"None of us wanted to die.",

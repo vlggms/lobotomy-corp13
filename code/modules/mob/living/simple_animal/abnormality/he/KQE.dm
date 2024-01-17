@@ -10,6 +10,7 @@
 	icon_state = "kqe"
 	icon_living = "kqe"
 	icon_dead = "kqe_egg"
+	portrait = "KQE"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)

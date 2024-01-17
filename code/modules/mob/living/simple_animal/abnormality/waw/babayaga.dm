@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "babayaga"
 	icon_living = "babayaga"
+	portrait = "baba_yaga"
 	var/icon_aggro = "babayaga_breach"
 	faction = list("hostile", "babayaga")
 	speak_emote = list("intones")

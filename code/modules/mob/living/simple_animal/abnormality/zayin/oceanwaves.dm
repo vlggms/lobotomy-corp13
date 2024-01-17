@@ -3,6 +3,7 @@
 	desc = "An orange vending machine. Reminds you of home."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "oceanicwaves"
+	portrait = "oceanicwaves"
 	maxHealth = 600
 	health = 600
 	threat_level = ZAYIN_LEVEL

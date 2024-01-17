@@ -18,6 +18,7 @@
 		to_chat(user, span_notice("That's enough."))
 		return //You don't need any more.
 
+	flick(icon_state, src)
 	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
 	var/datum/status_effect/stacking/slab/S = user.has_status_effect(/datum/status_effect/stacking/slab)
 	if(!(user in users))
@@ -28,7 +29,7 @@
 			S.add_stacks(1)
 
 	user.apply_status_effect(STATUS_EFFECT_SLAB)
-	to_chat(user, span_userdanger("You caress the spikes, and blood flows painlessly. The runes begin to glow."))
+	to_chat(user, span_userdanger("You caress the slab, and blood painlessly flows from your fingers. The runes begin to glow."))
 
 // Status Effect
 /datum/status_effect/stacking/slab

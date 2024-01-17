@@ -66,7 +66,7 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	var/badge_data = badge_parse(get_badges())
 	//The linkify span classes and linkify=TRUE below make ooc text get clickable chat href links if you pass in something resembling a url
 	for(var/client/C in GLOB.clients)
-		if(C.prefs.chat_toggles & CHAT_OOC)
+		if(C.prefs?.chat_toggles & CHAT_OOC)
 			if(holder?.fakekey in C.prefs.ignoring)
 				continue
 			if(holder)

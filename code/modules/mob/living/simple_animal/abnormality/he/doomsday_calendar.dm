@@ -7,6 +7,7 @@
 	icon_state = "doomsday_inert"
 	icon_living = "doomsday_inert"
 	icon_dead = "doomsday_egg"
+	portrait = "doomsday"
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
