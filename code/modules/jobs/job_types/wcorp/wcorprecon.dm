@@ -51,4 +51,4 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/storage/packet
-	backpack_contents = list(/obj/item/storage/box/pcorp, /obj/item/binoculars, /obj/item/announcementmaker/warp)
+	backpack_contents = list(/obj/item/storage/box/pcorp, /obj/item/binoculars)

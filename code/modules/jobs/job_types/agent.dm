@@ -143,9 +143,6 @@
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
 	suit = /obj/item/clothing/suit/armor/vest/alt
-	backpack_contents = list(/obj/item/melee/classic_baton=1,
-		/obj/item/info_printer=1,
-		/obj/item/announcementmaker/captain = 1)
 
 // Trainee, for new players
 /datum/job/agent/intern
