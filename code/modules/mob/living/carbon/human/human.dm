@@ -66,22 +66,43 @@
 		to_chat(viewer, "<span class='warning'>[src] has no attributes!</span>")
 		return
 
-	var/list/dat = list()
-	dat += "<b>[real_name]</b><br>"
-	dat += "Level [get_text_level()]<br>"
+	var/obj/item/organ/brain/ourbrain = getorganslot(ORGAN_SLOT_BRAIN)
+	if(!ourbrain)
+		to_chat(viewer, "If [src] only had a brain!?")
+		return
+
+	ui_interact(viewer, "ShowAttributes")
+
+/mob/living/carbon/human/ui_data(mob/user)
+	. = list()
+	.["name"] = real_name
+	.["level"] = get_text_level()
+	.["attributes"] = list()
+	.["stats"] = list()
+	var/list/attributes = get_attribute_list()
+	if(!attributes)
+		return
 	for(var/atrname in attributes)
 		var/datum/attribute/atr = attributes[atrname]
-		dat += "[atr.name] [get_attribute_text_level(atr.get_level())]: [round(atr.level)]/[round(atr.level_limit)] + [round(atr.level_buff)]"
+		.["attributes"] += atrname
+		.[atrname + "name"] = atrname
+		.[atrname + "level_text"] = get_attribute_text_level(atr.get_level())
+		.[atrname + "level_current"] = round(atr.level)
+		.[atrname + "level_max"] = round(atr.level_limit)
+		.[atrname + "level_buff"] = atr.level_buff
 
-	dat += ""
-	for(var/atrname in attributes) //raw stats (health, sanity etc)
-		var/datum/attribute/atr = attributes[atrname]
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			.["stats"] += stat
+			.[stat + "name"] = stat
+			.[stat + "base"] = atr.get_printed_level_bonus() + atr.get_level_buff()
+			.[stat + "bonus"] = round(atr.level_bonus)
 
-	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
-	popup.set_content(dat.Join("<br>"))
-	popup.open(FALSE)
+/mob/living/carbon/human/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "ShowAttributes")
+		ui.open()
 
 /mob/living/carbon/human/verb/show_gifts_self()
 	set category = "IC"
