@@ -128,7 +128,6 @@
 /obj/structure/window/reinforced/tinted{
 	dir = 4
 	},
-/obj/item/clothing/suit/armor/ego_gear/city/kurokumo/jacket,
 /obj/item/clothing/suit/armor/ego_gear/city/kurokumo/captain,
 /obj/item/ego_weapon/city/kurokumo{
 	name = "captain kurokumo blade"
@@ -890,6 +889,16 @@
 	color = "#ccc8c0"
 	},
 /area/city/backstreets_room)
+"PK" = (
+/obj/item/ego_weapon/city/kurokumo/weak,
+/obj/item/ego_weapon/city/kurokumo/weak,
+/obj/structure/closet/cabinet{
+	anchored = 1
+	},
+/obj/item/clothing/suit/armor/ego_gear/city/kurokumo/jacket,
+/obj/item/clothing/suit/armor/ego_gear/city/kurokumo/jacket,
+/turf/open/floor/carpet/black,
+/area/city/backstreets_room)
 "Qo" = (
 /obj/structure/table/wood/fancy/royalblack,
 /obj/item/food/sashimi,
@@ -1197,7 +1206,7 @@ Hf
 wG
 bi
 ba
-GO
+PK
 "}
 (11,1,1) = {"
 eh
