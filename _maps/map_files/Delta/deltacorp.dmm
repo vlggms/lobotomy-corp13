@@ -1105,17 +1105,29 @@
 /turf/open/floor/facility/halls,
 /area/department_main/architecture)
 "cJ" = (
-/obj/structure/filingcabinet{
-	resistance_flags = 115
+/obj/item/refiner_filter/yellow{
+	pixel_x = 1;
+	pixel_y = -4
 	},
-/obj/structure/filingcabinet{
-	pixel_x = 10;
-	resistance_flags = 115
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
 	},
-/obj/structure/filingcabinet{
-	pixel_x = -10;
-	resistance_flags = 115
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/structure/closet{
+	anchored = 1
 	},
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "cK" = (
@@ -4177,6 +4189,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/bronze,
 /area/department_main/training)
 "jE" = (
@@ -4489,16 +4502,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
@@ -5244,6 +5247,7 @@
 	mouse_opacity = 0
 	},
 /obj/structure/disposalpipe/junction,
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -5558,11 +5562,11 @@
 	color = "#bf48b1";
 	dir = 4
 	},
-/obj/structure/bough,
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
 	},
+/obj/machinery/text_adventure_console,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -5911,6 +5915,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
 "nS" = (
@@ -5932,6 +5937,10 @@
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
+"nT" = (
+/obj/structure/chair/pew/left,
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/human)
 "nU" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -7764,7 +7773,9 @@
 	alpha = 230;
 	icon_state = "LC22"
 	},
-/turf/open/floor/mineral/silver,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
 /area/department_main/command)
 "sn" = (
 /obj/effect/turf_decal/tile/brown{
@@ -8314,6 +8325,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -8753,7 +8765,9 @@
 	name = "Alphacorp emergency evac bay";
 	width = 8
 	},
-/turf/open/floor/plasteel/elevatorshaft,
+/turf/open/floor/plasteel/elevatorshaft{
+	density = 1
+	},
 /area/facility_hallway/human)
 "uy" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -9101,28 +9115,23 @@
 "vw" = (
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115;
-	density = 0;
 	pixel_x = -57;
 	pixel_y = 32
 	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115;
-	density = 0;
 	pixel_x = -57
 	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115;
-	density = 0;
 	pixel_x = -57;
 	pixel_y = -32
 	},
 /turf/open/lava{
+	density = 1;
 	color = "#006700";
 	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink"
 	},
 /area/facility_hallway/human)
 "vz" = (
@@ -9462,16 +9471,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
@@ -9911,6 +9910,7 @@
 /obj/structure/disposalpipe/junction/flip{
 	dir = 8
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -10282,18 +10282,15 @@
 "yv" = (
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115;
-	density = 0;
 	pixel_x = 32;
 	pixel_y = -32
 	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115;
-	density = 0;
 	pixel_x = 32
 	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115;
-	density = 0;
 	pixel_x = 32;
 	pixel_y = 32
 	},
@@ -10690,6 +10687,18 @@
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/records)
+"zo" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/machinery/door/poddoor{
+	id = "facilitylockdown";
+	name = "Facility Lockdown Blast Door"
+	},
+/turf/open/floor/facility/halls,
+/area/facility_hallway/human)
 "zr" = (
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
@@ -11076,11 +11085,17 @@
 /obj/item/rawpe,
 /obj/item/rawpe,
 /obj/item/rawpe,
-/obj/structure/closet/crate{
-	name = "pe box crate";
-	anchored = 1;
-	opened = 1;
-	resistance_flags = 115
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/structure/closet{
+	anchored = 1
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -11154,16 +11169,6 @@
 /obj/effect/turf_decal/tile/green{
 	dir = 1
 	},
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
-/obj/item/food/grown/ambrosia/gaia,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "AB" = (
@@ -12221,19 +12226,26 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/information)
 "Df" = (
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	pixel_y = 2;
-	resistance_flags = 115
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1"
 	},
-/obj/structure/window/reinforced/spawner/east,
-/obj/machinery/text_adventure_console{
-	pixel_x = -5
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1";
+	dir = 4
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
 	},
-/turf/open/floor/facility/dark{
+/obj/structure/toolabnormality/realization,
+/turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
@@ -12765,6 +12777,7 @@
 /obj/structure/disposalpipe/junction{
 	dir = 4
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
 "DT" = (
@@ -14718,6 +14731,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
 "II" = (
@@ -14757,9 +14771,7 @@
 	color = "#f8f8f8";
 	dir = 8
 	},
-/turf/open/floor/plasteel/sepia{
-	color = "#ccc8c0"
-	},
+/turf/open/floor/plasteel/sepia,
 /area/department_main/command)
 "IO" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -15209,6 +15221,10 @@
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
+	},
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	density = 0
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -16201,7 +16217,9 @@
 	alpha = 230;
 	icon_state = "LC5"
 	},
-/turf/open/floor/mineral/silver,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
 /area/department_main/command)
 "Mk" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -17562,7 +17580,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/sepia,
 /area/facility_hallway/human)
 "PJ" = (
 /obj/effect/turf_decal/siding{
@@ -17918,7 +17936,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility/halls,
-/area/space)
+/area/facility_hallway/command)
 "QF" = (
 /obj/machinery/chem_master/condimaster,
 /obj/effect/turf_decal/tile/bar{
@@ -18350,7 +18368,9 @@
 	alpha = 230;
 	icon_state = "LC20"
 	},
-/turf/open/floor/mineral/gold,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
 /area/department_main/command)
 "RS" = (
 /obj/effect/turf_decal/tile/green{
@@ -18783,7 +18803,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
-/turf/open/floor/sepia,
+/turf/open/floor/plasteel/sepia,
 /area/facility_hallway/human)
 "SO" = (
 /obj/effect/turf_decal/tile/green{
@@ -20355,11 +20375,8 @@
 /turf/open/floor/facility/halls,
 /area/department_main/control)
 "WD" = (
-/obj/effect/turf_decal/arrows/red,
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/sepia,
+/obj/structure/chair/pew/right,
+/turf/open/floor/plasteel/sepia,
 /area/facility_hallway/human)
 "WE" = (
 /obj/machinery/disposal/bin{
@@ -20630,7 +20647,9 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
 "Xr" = (
-/turf/open/floor/plasteel/elevatorshaft,
+/turf/open/floor/plasteel/elevatorshaft{
+	density = 1
+	},
 /area/facility_hallway/human)
 "Xs" = (
 /obj/item/trash/boritos,
@@ -21191,6 +21210,11 @@
 	},
 /area/facility_hallway/manager)
 "YB" = (
+/obj/structure/lattice/lava{
+	resistance_flags = 115;
+	name = "heatproof reinforced glass floor";
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	},
 /turf/open/lava{
 	color = "#006700";
 	name = "Unrefined Enkephalin";
@@ -21541,7 +21565,9 @@
 	alpha = 230;
 	icon_state = "LC7"
 	},
-/turf/open/floor/mineral/gold,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
 /area/department_main/command)
 "ZN" = (
 /obj/effect/turf_decal/stripes/red/line{
@@ -53659,7 +53685,7 @@ HW
 fF
 IQ
 Gt
-cJ
+vr
 ul
 kv
 il
@@ -53698,7 +53724,7 @@ lF
 mp
 Gq
 eL
-ok
+nT
 pB
 BI
 Xr
@@ -53955,7 +53981,7 @@ mp
 mp
 mp
 CA
-Gq
+WD
 pB
 BI
 Xr
@@ -54461,8 +54487,8 @@ oY
 Fg
 lE
 DA
-VM
-WD
+zo
+LU
 PH
 SN
 PH
@@ -54983,7 +55009,7 @@ mp
 mp
 mp
 CA
-ok
+nT
 pB
 BI
 Xr
@@ -55240,7 +55266,7 @@ lF
 mp
 ok
 eL
-Gq
+WD
 pB
 BI
 Xr
@@ -56010,9 +56036,9 @@ yE
 jo
 mp
 YT
-RW
-RW
-RW
+YB
+YB
+YB
 ec
 Xr
 Xr
@@ -56267,9 +56293,9 @@ Fu
 Fu
 mp
 mp
-YB
-YB
-YB
+Sh
+Sh
+Sh
 mp
 Xr
 Xr
@@ -56524,9 +56550,9 @@ qh
 eb
 Mg
 mp
-YB
+Sh
 vw
-YB
+Sh
 mp
 Xr
 Xr
@@ -56781,9 +56807,9 @@ Iy
 Gr
 wV
 mp
-YB
-YB
-YB
+Sh
+Sh
+Sh
 mp
 Xr
 Xr
