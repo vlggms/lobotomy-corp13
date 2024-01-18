@@ -35,3 +35,25 @@ GLOBAL_VAR_INIT(last_cross_comms_message_time, 0)
 
 // If FALSE - All incoming cross-comms messages will be denied.
 GLOBAL_VAR_INIT(cross_comms_allowed, TRUE)
+
+// List of core suppressions by name that will appear in the human verb
+GLOBAL_LIST_INIT(displayed_core_suppressions, list(
+	CONTROL_CORE_SUPPRESSION,
+	INFORMATION_CORE_SUPPRESSION,
+	SAFETY_CORE_SUPPRESSION,
+	TRAINING_CORE_SUPPRESSION,
+	COMMAND_CORE_SUPPRESSION,
+	WELFARE_CORE_SUPPRESSION,
+	DISCIPLINARY_CORE_SUPPRESSION,
+	RECORDS_CORE_SUPPRESSION,
+	EXTRACTION_CORE_SUPPRESSION,
+	DAY46_CORE_SUPPRESSION,
+	))
+
+// List of core suppressions that will be only displayed if the user has cleared them before
+GLOBAL_LIST_INIT(hidden_displayed_core_suppressions, list(
+	DAY47_CORE_SUPPRESSION,
+	DAY48_CORE_SUPPRESSION,
+	DAY49_CORE_SUPPRESSION,
+	DAY50_CORE_SUPPRESSION,
+	))

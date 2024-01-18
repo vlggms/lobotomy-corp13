@@ -5,6 +5,7 @@
 	icon_state = "headless_ichthys"
 	icon_living = "headless_ichthys"
 	icon_dead = "headless_ichthys"
+	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 1200
@@ -232,17 +233,19 @@
 
 // Work stuff
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/headless_ichthys/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/headless_ichthys/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/headless_ichthys/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	GiveTarget(user)
 	AddComponent(/datum/component/knockback, 2, FALSE, TRUE)

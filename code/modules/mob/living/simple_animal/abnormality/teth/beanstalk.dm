@@ -4,6 +4,7 @@
 	desc = "A gigantic stem that reaches higher than the eye can see."
 	icon = 'ModularTegustation/Teguicons/64x98.dmi'
 	icon_state = "beanstalk"
+	portrait = "beanstalk"
 	maxHealth = 500
 	health = 500
 	threat_level = TETH_LEVEL

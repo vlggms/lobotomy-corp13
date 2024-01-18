@@ -3,6 +3,7 @@
 	desc = "A yellow creature with orange butterflies floating around it."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "sunset"
+	portrait = "sunset_traveller"
 	maxHealth = 400
 	health = 400
 	threat_level = ZAYIN_LEVEL
@@ -85,7 +86,9 @@
 					break
 				count++
 			break
+		. = ..()
 		HealAlt()
+		return
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/Move()
@@ -98,6 +101,7 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/sunset_traveller/proc/HealAlt()
+	set waitfor = FALSE
 	while (stat != DEAD)
 		for(var/mob/living/L in view(5, src))
 			L.adjustBruteLoss(-L.maxHealth*0.02)

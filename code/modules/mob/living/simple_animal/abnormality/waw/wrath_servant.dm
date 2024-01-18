@@ -8,6 +8,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wrath"
 	icon_living = "wrath"
+	portrait = "wrath_servant"
 	faction = list("wrath")
 	speak_emote = list()
 	gender = FEMALE
@@ -39,7 +40,7 @@
 	rapid_melee = 2
 	attack_sound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 	stat_attack = HARD_CRIT
-	deathmessage = "vanishes from existance."
+	death_message = "vanishes from existance."
 
 	can_patrol = FALSE
 
@@ -319,7 +320,8 @@
 	BreachEffect()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = TRUE
 	if(!datum_reference)
 		friendly = FALSE
 	if(friendly)
@@ -747,7 +749,7 @@
 	icon_living = "stave"
 	maxHealth = 250
 	health = 250
-	deathmessage = "crumples to dust."
+	death_message = "crumples to dust."
 
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG

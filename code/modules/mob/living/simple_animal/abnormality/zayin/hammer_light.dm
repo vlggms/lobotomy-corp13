@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "hammer_pedestal"
 	icon_living = "hammer_pedestal"
+	portrait = "hammer_light"
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -8

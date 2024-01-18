@@ -9,6 +9,7 @@
 	icon_state = "big_wolf"
 	icon_living = "big_wolf"
 	icon_dead = "big_wolf_slain"
+	portrait = "big_wolf"
 	faction = list("hostile")
 	speak_emote = list("growls")
 
@@ -98,17 +99,19 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT && user.stat != DEAD && locate(/mob/living) in contents)
 		flick("wolf_sad", src)
 		SpewStomach()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	EatWorker(user)
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/big_wolf/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/big_wolf/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	update_icon()
 

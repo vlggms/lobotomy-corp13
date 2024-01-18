@@ -1,4 +1,4 @@
-//Mostly copypaste from Nothing There. I promise this will look different later - Coxswain
+//Like a pink, weird nothing there. - Coxswain
 /mob/living/simple_animal/hostile/abnormality/nobody_is
 	name = "Nobody Is"
 	desc = "A mirror embedded in gross pink flesh."
@@ -11,10 +11,11 @@
 	icon_state = "nobody"
 	icon_living = "nobody"
 	icon_dead = "nobody_dead"
+	portrait = "nobody_is"
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.2)
-	melee_damage_lower = 35
-	melee_damage_upper = 60
+	melee_damage_lower = 30
+	melee_damage_upper = 50
 	move_to_delay = 3
 	melee_reach = 2
 	ranged = TRUE
@@ -46,6 +47,7 @@
 	//Contained Variables
 	var/reflect_timer
 	var/mob/living/disguise = null
+	var/shelled = FALSE
 	var/mob/living/carbon/human/chosen = null
 	var/can_act = TRUE
 	var/current_stage = 1
@@ -57,16 +59,17 @@
 	var/whip_attack_cooldown
 	var/whip_attack_cooldown_time = 6 SECONDS
 	var/whip_damage = 25
-	var/whip_count = 5
+	var/whip_count = 4
 	var/grab_cooldown
 	var/grab_cooldown_time = 20 SECONDS
+	var/grab_windup_time = 16
 	var/grab_damage = 200 //The amount dealt when grabbing someone, twice if they aren't grabbed for whatever reason
 	var/strangle_damage = 50 //dealt over time to whoever is grabbed
 	var/mob/living/carbon/human/grab_victim = null
 	var/release_threshold = 500 //Total raw damage needed to break a player out of a grab (from any source)
 	var/release_damage = 0
 	var/last_heal_time = 0
-	var/heal_percent_per_second = 0.0085
+	var/heal_percent_per_second = 0.0045
 
 	//Visual effects
 	var/obj/effect/reflection/headicon
@@ -158,11 +161,13 @@
 		chosen.hairstyle = oldhair
 		chosen.facial_hairstyle = oldbeard
 	HD.update_limb()
-	headicon = SpawnConnectedStructure(headicon)
+	headicon = new(get_turf(src))
 	headicon.add_overlay(HD.get_limb_icon(TRUE,TRUE))
 	headicon.pixel_y -= 5
 	headicon.alpha = 150
 	headicon.desc = "It looks like [chosen] is reflected in the mirror."
+	//Handles connected structure part
+	datum_reference.connected_structures = list(headicon = list(0,-5))
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/CheckMirrorIcon()
 	if(headicon) //Grab their head. Literally, and grab the icons from it; discard our old icon if we have one.
@@ -185,17 +190,18 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(user == chosen) //It makes more sense to just check for a disguise, but this is called before PostWorkEffect()
 		return
 	datum_reference.qliphoth_change(-1)
 
-/mob/living/simple_animal/hostile/abnormality/nobody_is/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/nobody_is/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
 	if(reflect_timer)
 		deltimer(reflect_timer)
-	..()
-	if(disguise)
+	. = ..()
+	if(shelled)
 		return
 	CheckMirrorIcon() //Clear overlays
 	next_stage()
@@ -222,13 +228,13 @@
 //Breach
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/next_stage()
 	next_transform = null
-	if(disguise) //We have a perfectly good shell already.
+	if(shelled) //We have a perfectly good shell already.
 		return
 	switch(current_stage)
 		if(1)
 			icon_state = "nobody_shell"
 			icon = 'ModularTegustation/Teguicons/64x96.dmi'
-			ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0, PALE_DAMAGE = 1))
+			ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.2))
 			can_act = FALSE
 			pixel_x = -16
 			base_pixel_x = -16
@@ -237,7 +243,7 @@
 			breach_affected = list() // Too spooky
 			FearEffect()
 			icon_state = icon_living
-			ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.8))
+			ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.2))
 			can_act = TRUE
 			SpeedChange(1.5)
 	UpdateSpeed()
@@ -297,7 +303,7 @@
 	can_act = FALSE
 	face_atom(target)
 	playsound(get_turf(src), 'sound/abnormalities/scarecrow/death.ogg', 75, 0, 3)
-	if(disguise)
+	if(shelled)
 		add_overlay(icon('icons/effects/effects.dmi', "galaxy_aura"))
 	else
 		icon_state = "nobody_ranged"
@@ -334,7 +340,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/fairygentleman/ego_sloshing.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(1 SECONDS)
-	if(disguise)
+	if(shelled)
 		cut_overlay(icon('icons/effects/effects.dmi', "galaxy_aura"))
 	else
 		icon_state = icon_living
@@ -346,11 +352,11 @@
 	grab_cooldown = world.time + grab_cooldown_time
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 75, 0, 5)
-	if(disguise)
+	if(shelled)
 		add_overlay(icon('icons/effects/effects.dmi', "lovetown_shapes"))
 	else
 		icon_state = "nobody_grab"
-	SLEEP_CHECK_DEATH(12)
+	SLEEP_CHECK_DEATH(grab_windup_time)
 	for(var/turf/T in view(3, src))
 		new /obj/effect/temp_visual/nobody_grab(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), grab_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
@@ -365,6 +371,9 @@
 				for(var/mob/living/carbon/human/H in T.contents)
 					if(faction_check_mob(H, FALSE) || H.z != z)
 						continue
+					if(!shelled) //If we don't have a shell, we can't grab just anyone. Only the chosen one.
+						if(H != chosen)
+							continue
 					grab_victim = H
 					Strangle()
 			else //deal the damage twice if we already have someone grabbed
@@ -372,7 +381,7 @@
 
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(3)
-	if(disguise)
+	if(shelled)
 		cut_overlay(icon('icons/effects/effects.dmi', "lovetown_shapes"))
 	else
 		icon_state = icon_living
@@ -451,7 +460,7 @@
 			GrabAttack()
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Finisher(mob/living/carbon/human/H) //return TRUE to prevent attacking, as attacking causes runtimes if the target is gibbed.
-	if(disguise)
+	if(shelled)
 		return FALSE //We don't want it repeatedly turning into different people
 	else if(H == chosen) // Uh oh
 		disguise_as(H)
@@ -545,6 +554,7 @@
 	if(!M)
 		return //We screwed up or the player successfully committed self-delete. Try again next time!
 	disguise = M
+	shelled = TRUE
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay", SUIT_LAYER))
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
 	appearance = M.appearance
@@ -565,7 +575,9 @@
 	grab_damage = 250
 	strangle_damage = 70
 	grab_cooldown_time = 12 SECONDS
+	grab_windup_time = 12
 	whip_attack_cooldown_time = 5 SECONDS
+	heal_percent_per_second = 0.0085
 	if(status_flags & GODMODE) // Still contained
 		addtimer(CALLBACK(src, .proc/ZeroQliphoth), rand(5 SECONDS, 10 SECONDS))
 

@@ -5,6 +5,7 @@
 	icon_state = "redbuddy"
 	icon_living = "redbuddy"
 	icon_dead = "redbuddy_dead"
+	portrait = "red_buddy"
 	del_on_death = FALSE
 	pixel_x = -8
 	base_pixel_x = -8
@@ -86,12 +87,14 @@
 		UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN)
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	AdjustSuffering(3)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSTINCT)
 		return
 	datum_reference.qliphoth_change(-1)
@@ -186,7 +189,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
-	..()
+	. = ..()
 	deltimer(lying_timer)
 	icon_state = "redbuddy_active"
 

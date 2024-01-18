@@ -36,8 +36,8 @@
 	wander = FALSE
 	del_on_death = TRUE
 	blood_volume = BLOOD_VOLUME_NORMAL
-	deathmessage = "falls to the ground, decaying into glowing particles."
-	deathsound = "sound/magic/curse.ogg"
+	death_message = "falls to the ground, decaying into glowing particles."
+	death_sound = "sound/magic/curse.ogg"
 	attack_action_types = list(/datum/action/innate/megafauna_attack/necrotic_revival,
 							/datum/action/innate/megafauna_attack/lightning_strike,
 							/datum/action/innate/megafauna_attack/repulse,

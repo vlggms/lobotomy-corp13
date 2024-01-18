@@ -6,6 +6,7 @@
 	icon_state = "sweet_home"
 	icon_living = "sweet_home"
 	icon_dead = "sweet_home_death"
+	portrait = "my_sweet_home"
 	var/can_act = TRUE
 	threat_level = TETH_LEVEL
 	can_breach = TRUE
@@ -23,7 +24,7 @@
 	stat_attack = CONSCIOUS
 	attack_verb_continuous = "stomps"
 	attack_verb_simple = "stomp"
-	deathmessage = "crumbles."
+	death_message = "crumbles."
 	faction = list("hostile")
 	start_qliphoth = 1
 	var/ranged_damage = 15
@@ -60,6 +61,7 @@
 		playsound(get_turf(src), 'sound/abnormalities/sweethome/walk.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	to_chat(user, span_danger("It whispers in your mind..."))
 	if(prob(50))
 		to_chat(user, span_danger("...and you accept."))
@@ -114,7 +116,7 @@
 	duration = 3
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(user)//code grabbed from scorched_girl
-	..()
+	. = ..()
 	update_icon_state()
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/update_icon_state() //code grabbed from forsaken_murderer and smile

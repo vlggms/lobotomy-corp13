@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "alriune"
 	icon_living = "alriune"
+	portrait = "alriune"
 
 	pixel_x = -8
 	base_pixel_x = -8
@@ -127,17 +128,19 @@
 
 /* Work stuff */
 /mob/living/simple_animal/hostile/abnormality/alriune/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(33))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/alriune/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /* Qliphoth/Breach effects */
-/mob/living/simple_animal/hostile/abnormality/alriune/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/alriune/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	petals_next = world.time + petals_next_time + 30
 	TeleportAway()
 	icon_state = "alriune_active"

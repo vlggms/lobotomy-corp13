@@ -12,6 +12,7 @@
 	icon_state = "nothing"
 	icon_living = "nothing"
 	icon_dead = "nothing_dead"
+	portrait = "nothing_there"
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	melee_damage_lower = 55
@@ -380,15 +381,16 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(GODMODE in user.status_flags)
 		return
 	disguise_as(user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/nothing_there/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/nothing_there/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE)) // Already breaching
 		return
-	..()
+	. = ..()
 	soundloop.stop()
 	if(!istype(disguise))
 		next_transform = world.time + rand(30 SECONDS, 40 SECONDS)

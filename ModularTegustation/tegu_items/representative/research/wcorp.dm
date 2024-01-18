@@ -69,6 +69,19 @@
 	required_research = /datum/data/lc13research/teleporter
 
 
+//Keys
+/datum/data/lc13research/qkeys
+	research_name = "Repurchasable: Quantum Pad Keys (x2)"
+	research_desc = "A pair of Quantum Pad Keys for you to ship out to whoever. We have extras."
+	cost = 3
+	corp = W_CORP_REP
+
+/datum/data/lc13research/qkeys/ResearchEffect(obj/structure/representative_console/caller)
+	var/place_to_place = get_turf(caller)
+	new /obj/item/quantum_keycard(place_to_place)
+	new /obj/item/quantum_keycard(place_to_place)
+
+
 //Fast Tiles
 /datum/data/lc13research/fasttiles
 	research_name = "Repurchasable: W-Corp High-Traction Tiles (x100)"

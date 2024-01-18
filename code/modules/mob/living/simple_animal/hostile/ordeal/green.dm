@@ -19,7 +19,7 @@
 	attack_verb_simple = "stab"
 	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
-	deathsound = 'sound/effects/ordeals/green/dawn_dead.ogg'
+	death_sound = 'sound/effects/ordeals/green/dawn_dead.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/green_simple = 1)
@@ -120,7 +120,7 @@
 	check_friendly_fire = TRUE //stop shooting each other
 	projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
 	projectilesound = 'sound/effects/ordeals/green/fire.ogg'
-	deathsound = 'sound/effects/ordeals/green/noon_dead.ogg'
+	death_sound = 'sound/effects/ordeals/green/noon_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 2)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
@@ -225,7 +225,7 @@
 	silk_results = list(/obj/item/stack/sheet/silk/green_elegant = 1,
 						/obj/item/stack/sheet/silk/green_advanced = 2,
 						/obj/item/stack/sheet/silk/green_simple = 4)
-	deathsound = 'sound/effects/ordeals/green/dusk_dead.ogg'
+	death_sound = 'sound/effects/ordeals/green/dusk_dead.ogg'
 	var/spawn_progress = 18 //spawn ready to produce robots
 	var/list/spawned_mobs = list()
 	var/producing = FALSE
@@ -342,7 +342,7 @@
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 22)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
-	deathsound = 'sound/effects/ordeals/green/midnight_dead.ogg'
+	death_sound = 'sound/effects/ordeals/green/midnight_dead.ogg'
 
 	var/laser_cooldown
 	var/laser_cooldown_time = 20 SECONDS

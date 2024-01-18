@@ -7,6 +7,7 @@ GLOBAL_LIST_EMPTY(army)
 	icon_state = "armyinpink"
 	icon_living = "armyinpink"
 	icon_dead = "armyinpink_heart"
+	portrait = "army_in_black"
 	pixel_x = -16
 	base_pixel_x = -16
 
@@ -113,6 +114,7 @@ GLOBAL_LIST_EMPTY(army)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/army/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -137,7 +139,7 @@ GLOBAL_LIST_EMPTY(army)
 	return TRUE
 
 //*--Combat Mechanics--*
-/mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/army/BreachEffect(mob/living/carbon/human/user, breach_type)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
 	FearEffect()
 	Blackify()
@@ -147,6 +149,7 @@ GLOBAL_LIST_EMPTY(army)
 	density = FALSE
 	alpha = 0
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/army/proc/SpawnAdds()
 	var/list/spawns = shuffle(GLOB.xeno_spawn)

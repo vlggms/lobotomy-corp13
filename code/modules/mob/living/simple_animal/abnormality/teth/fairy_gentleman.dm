@@ -3,6 +3,7 @@
 	desc = "A very wide humanoid with long arms made of green, dripping slime."
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "fairy_gentleman"
+	portrait = "fairy_gentleman"
 	maxHealth = 900
 	health = 900
 	ranged = TRUE
@@ -90,6 +91,7 @@
 
 //Work mechanics
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(pe >= 11) // Almost perfect work
 		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 		new/obj/item/reagent_containers/food/drinks/fairywine(dispense_turf)
@@ -105,14 +107,16 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	say(pick(disappointed))
 
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 //Breach Mechanics
-/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/BreachEffect(mob/living/carbon/human/user) //he flies
+/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/BreachEffect(mob/living/carbon/human/user, breach_type) //he flies
 	. = ..()
 	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
 	say(pick(angry))

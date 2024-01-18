@@ -4,6 +4,7 @@
 	desc = "A human sized container with spikes inside it. You shouldn't enter it"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wecanchange"
+	portrait = "we_can_change_anything"
 	maxHealth = 1000
 	health = 1000
 	threat_level = ZAYIN_LEVEL

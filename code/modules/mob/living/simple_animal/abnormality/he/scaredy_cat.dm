@@ -5,6 +5,7 @@
 	icon_state = "scaredy_cat"
 	icon_living = "scaredy_cat"
 	icon_dead = "scaredy_dead"
+	portrait = "scaredy_cat"
 	del_on_death = FALSE
 	maxHealth = 800 //Lower health because he can revive indefinitely
 	health = 800
@@ -32,7 +33,7 @@
 	work_damage_amount = 7 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
 	can_patrol = FALSE
-	deathsound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
+	death_sound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/courage,
 		/datum/ego_datum/weapon/bravery,
@@ -80,7 +81,7 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user, breach_type)
 	protect_cooldown = world.time + protect_cooldown_time //to avoid him teleporting twice for no reason on breach
 	if(priority_friend) //if an oz abno escape they take absolute priority
 		ProtectFriend(priority_friend)
@@ -96,7 +97,7 @@
 		ProtectFriend(pick(breached_abno))
 	else
 		wait_for_friend = TRUE //Should only happen on meltdowns, can safely be killed in that state too
-	..()
+	return ..()
 
 ///checks if the friend is in view every 10 second, and if not teleports to it
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Life()

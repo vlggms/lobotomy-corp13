@@ -4,6 +4,7 @@
 	desc = "A beautiful cherry tree."
 	icon = 'ModularTegustation/Teguicons/128x128.dmi'
 	icon_state = "graveofcherryblossoms_3"
+	portrait = "cherry_blossoms"
 	pixel_x = -48
 	base_pixel_x = -48
 	pixel_y = -16
@@ -36,6 +37,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	if(datum_reference.qliphoth_meter !=3)
 		icon_state = "graveofcherryblossoms_[datum_reference.qliphoth_meter]"

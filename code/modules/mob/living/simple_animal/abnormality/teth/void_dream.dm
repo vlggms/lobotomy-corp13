@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "void_dream"
 	icon_living = "void_dream"
+	portrait = "void_dream"
 	del_on_death = TRUE
 	is_flying_animal = TRUE
 	maxHealth = 600
@@ -38,6 +39,11 @@
 	var/pulse_damage = 50
 	var/ability_cooldown
 	var/ability_cooldown_time = 12 SECONDS
+
+/mob/living/simple_animal/hostile/abnormality/voiddream/Initialize()
+	. = ..()
+	if(IsCombatMap())
+		faction = list("hostile") //So that they don't target pino specificlly on RCA
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/Life()
 	. = ..()
@@ -92,6 +98,8 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/SleepyDart()
 	var/list/possibletargets = list()
 	for(var/mob/living/carbon/human/H in view(10, src))
+		if(faction_check(src.faction, H.faction))
+			continue
 		if(H.IsSleeping())
 			continue
 		if(H.stat >= SOFT_CRIT)
@@ -110,6 +118,8 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/Shout()
 	playsound(get_turf(src), 'sound/abnormalities/voiddream/shout.ogg', 75, FALSE, 5)
 	for(var/mob/living/carbon/human/L in range(10, src))
+		if(faction_check(src.faction, L.faction)) // I LOVE NESTING IF STATEMENTS
+			continue
 		if(L.has_status_effect(STATUS_EFFECT_SLEEPING))
 			L.SetSleeping(0)
 			L.adjustSanityLoss(1000) //Die.
@@ -123,6 +133,7 @@
 
 // Work stuff
 /mob/living/simple_animal/hostile/abnormality/voiddream/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -133,8 +144,8 @@
 		playsound(get_turf(user), 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/voiddream/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	ability_cooldown = world.time + 4 SECONDS
 	if(IsCombatMap())
 		return

@@ -10,6 +10,7 @@ Defeating the murderer also surpresses the abnormality.
 	desc = "A notebook containing a script used in a play. It is titled \"Peccatum Proprium\"."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "screenwriter"
+	portrait = "screenwriter"
 	faction = list("hostile")
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
@@ -76,6 +77,7 @@ Defeating the murderer also surpresses the abnormality.
 	melting = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/screenwriter/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

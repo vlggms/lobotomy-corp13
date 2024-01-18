@@ -7,6 +7,7 @@
 	icon_state = "gold_inert"
 	icon_living = "gold_inert"
 	icon_dead = "gold_cracked"
+	portrait = "golden_apple"
 	var/list/golden_apple_lines = list(
 		"I didn't want to die.",
 		"None of us wanted to die.",
@@ -18,8 +19,8 @@
 	base_pixel_x = -8
 	pixel_y = 0
 	del_on_death = FALSE
-	deathmessage = "falls over."
-	deathsound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
+	death_message = "falls over."
+	death_sound = 'sound/abnormalities/goldenapple/Gold_Attack2.ogg'
 	maxHealth = 1200
 	health = 1200
 	light_color = "D4FAF37"
@@ -196,9 +197,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	Apply_Sheen(user)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		Apply_Sheen(user)
 	else
@@ -206,6 +210,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -217,8 +222,8 @@
 		DigestPerson(user)//becomes its "berserk" form; the user is assimilated into it
 
 //***Breach Mechanics***//
-/mob/living/simple_animal/hostile/abnormality/golden_apple/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/golden_apple/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = "gold_apple"
 	icon_living = "gold_apple"
 
@@ -261,7 +266,7 @@
 	icon_state = "false_apple"
 	icon_living = "false_apple"
 	icon_dead = "false_egg"
-	deathmessage = "is reduced to a primordial egg."
+	death_message = "is reduced to a primordial egg."
 	name = "False Apple"
 	desc = "The apple ruptured and a swarm of maggots crawled inside, metamorphosing into a hideous face."
 	pixel_x = -32

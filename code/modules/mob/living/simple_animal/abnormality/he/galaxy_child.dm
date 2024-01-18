@@ -4,6 +4,7 @@
 	desc = "A young, lost child."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "galaxy"
+	portrait = "galaxy_child"
 	maxHealth = 650
 	health = 650
 	threat_level = HE_LEVEL

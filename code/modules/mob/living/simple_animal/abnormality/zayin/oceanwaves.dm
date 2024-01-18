@@ -3,6 +3,7 @@
 	desc = "An orange vending machine. Reminds you of home."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "oceanicwaves"
+	portrait = "oceanicwaves"
 	maxHealth = 600
 	health = 600
 	threat_level = ZAYIN_LEVEL
@@ -60,6 +61,7 @@
 
 //Shrimple work stuff
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	for(var/i = 1 to 3)
 		//Randomize the soders then vend.
 		switch(rand(1, 10))
@@ -74,6 +76,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	for(var/i = 1 to 3)
 		//Randomize the soders then vend.
 		switch(rand(1, 10))
@@ -88,6 +91,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	for(var/i = 1 to 3)
 		//Randomize the soders then vend.
 		switch(rand(1, 10))

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "titania"
 	icon_living = "titania"
+	portrait = "titania"
 	maxHealth = 3500
 	health = 3500
 	is_flying_animal = TRUE
@@ -223,8 +224,8 @@
 
 
 //Breach, work, 'n' stuff
-/mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	ChooseNemesis()
 	addtimer(CALLBACK(src, .proc/FairyLoop), 10 SECONDS)	//10 seconds from now you start spawning fairies
 	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
@@ -240,6 +241,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/titania/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 

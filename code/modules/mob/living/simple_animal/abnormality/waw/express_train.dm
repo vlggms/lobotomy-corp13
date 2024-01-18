@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "express_booth0"
 	icon_living = "express_booth0"
+	portrait = "express_train"
 	faction = list("hostile")
 	speak_emote = list("drones")
 

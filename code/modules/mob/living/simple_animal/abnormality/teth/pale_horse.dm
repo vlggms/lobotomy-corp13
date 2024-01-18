@@ -7,6 +7,7 @@
 	icon_state = "palehorse"
 	icon_living = "palehorse"
 	icon_dead = "palehorse"
+	portrait = "pale_horse"
 	speak_emote = list("neighs")
 	threat_level = TETH_LEVEL
 	maxHealth = 800
@@ -46,6 +47,7 @@
 
 //work stuff
 /mob/living/simple_animal/hostile/abnormality/pale_horse/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 

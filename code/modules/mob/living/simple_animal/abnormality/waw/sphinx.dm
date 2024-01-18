@@ -8,6 +8,7 @@
 	icon_state = "sphinx"
 	icon_living = "sphinx"
 	var/icon_aggro = "sphinx_eye"
+	portrait = "sphinx"
 	speak_emote = list("intones")
 	pixel_x = -16
 	base_pixel_x = -16
@@ -159,7 +160,7 @@
 			say("Atan eblak esm quistra utast.")//Bring me an armor EGO
 		if(/obj/item/ego_weapon)
 			say("Atan eblak esm sommel utast.")//Bring me an weapon EGO
-		if(/obj/item/reagent_containers/food/drinks)
+		if(/obj/item/reagent_containers)
 			say("Kom eblak mina brit hethre.")//Find me a water with vessel
 		if(/obj/item/food)
 			say("Atan eblak gorno tai por prin enum gorno.")//Bring me what the beggar consumes and needs (Its food)
@@ -172,7 +173,7 @@
 			to_chat(user, span_warning("[src] is not waiting for an offering at the moment."))
 		return
 
-	if(demand == /obj/item/reagent_containers/food/drinks)
+	if(demand == /obj/item/reagent_containers)
 		if(I.reagents.has_reagent(/datum/reagent/water))
 			qdel(I)
 		else
@@ -217,8 +218,8 @@
 	qdel(chosenorgan)
 
 // Breach
-/mob/living/simple_animal/hostile/abnormality/sphinx/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/sphinx/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, TRUE)
 	GiveTarget(user)
 

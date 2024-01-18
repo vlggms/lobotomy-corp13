@@ -17,6 +17,7 @@
 	icon_state = "distortedform"
 	icon_living = "distortedform"
 	icon_dead = "distortedform_dead"
+	portrait = "distortedform"
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 55
@@ -26,8 +27,8 @@
 	pixel_x = -48
 	base_pixel_x = -48
 	del_on_death = FALSE
-	deathmessage = "reverts into a tiny, disgusting fetus-like creature."
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_message = "reverts into a tiny, disgusting fetus-like creature."
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	can_breach = TRUE
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 25,
@@ -49,7 +50,8 @@
 	var/transform_timer
 	var/list/transform_blacklist = list(
 		/mob/living/simple_animal/hostile/abnormality/hammer_light, /mob/living/simple_animal/hostile/abnormality/black_swan,
-		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird
+		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird,
+		/mob/living/simple_animal/hostile/abnormality/red_shoes,/mob/living/simple_animal/hostile/abnormality/seasons,/mob/living/simple_animal/hostile/abnormality/pisc_mermaid
 		)
 	var/datum/looping_sound/distortedform/soundloop
 	var/transformed = FALSE //We'll use this variable to check for whether or not to play the sound loop
@@ -115,15 +117,20 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/list/damtypes = list(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	for(var/damagetype in damtypes) // take 4 of every damage type every failed tick
 		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
+	work_damage_type = pick(damtypes) //Displays a random work damage type every tick
+	WorkDamageEffect()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	addtimer(CALLBACK(src, .proc/CauseMelts), 10) //Delaying it prevents some bugs; call a meltdown on a bad result or failed stat check
 	return
 
@@ -156,6 +163,7 @@
 	desc = abno.desc
 	icon = abno.icon
 	icon_state = abno.icon_state
+	portrait = abno.portrait
 	pixel_x = abno.pixel_x
 	base_pixel_x = abno.base_pixel_x
 	pixel_y = abno.pixel_y
@@ -185,6 +193,7 @@
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state)
+	portrait = initial(portrait)
 	pixel_x = initial(pixel_x)
 	base_pixel_x = initial(base_pixel_x)
 	pixel_y = initial(pixel_y)
@@ -257,7 +266,7 @@
 				return
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	if(breached)
 		return

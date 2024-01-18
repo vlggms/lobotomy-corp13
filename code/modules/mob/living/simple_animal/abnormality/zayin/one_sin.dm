@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "onesin_halo_normal"
 	icon_living = "onesin_halo_normal"
+	portrait = "one_sin"
 	maxHealth = 777
 	health = 777
 	is_flying_animal = TRUE
@@ -104,6 +105,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type != "Confess")
 		new /obj/effect/temp_visual/onesin_blessing(get_turf(user))
 		user.adjustSanityLoss(-user.maxSanity * 0.5) // It's healing

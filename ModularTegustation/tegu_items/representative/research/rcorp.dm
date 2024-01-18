@@ -9,10 +9,11 @@
 
 /datum/data/lc13research/redweapon/ResearchEffect(obj/structure/representative_console/caller)
 	ItemUnlock(caller.order_list, "R Corp X-15 Minigun ",	/obj/item/gun/energy/e_gun/rabbit/minigun, 600)
-	ItemUnlock(caller.order_list, "R Corp Model 2200",	/obj/item/gun/energy/e_gun/rabbitdash/small, 600)
 	ItemUnlock(caller.order_list, "R Corp X-12 Sniper ",	/obj/item/gun/energy/e_gun/rabbitdash/sniper, 600)
 	ItemUnlock(caller.order_list, "R Corp X-13 Beam ",		/obj/item/gun/energy/e_gun/rabbitdash/laser, 600)
-	ItemUnlock(caller.order_list, "R Corp Model 2300",	/obj/item/gun/energy/e_gun/rabbitdash/shotgun, 600)
+	ItemUnlock(caller.order_list, "R Corp X-9 Heavy",	/obj/item/gun/energy/e_gun/rabbitdash/heavy, 700)
+	ItemUnlock(caller.order_list, "R Corp Model 2200",		/obj/item/gun/energy/e_gun/rabbitdash/small, 600)
+	ItemUnlock(caller.order_list, "R Corp Model 2300",		/obj/item/gun/energy/e_gun/rabbitdash/shotgun, 600)
 	..()
 
 /datum/data/lc13research/singlephase
@@ -23,10 +24,9 @@
 	required_research = /datum/data/lc13research/redweapon
 
 /datum/data/lc13research/singlephase/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "R Corp X-9 Heavy",	/obj/item/gun/energy/e_gun/rabbitdash/heavy, 700)
-	ItemUnlock(caller.order_list, "R Corp Lawnmower White",	/obj/item/gun/energy/e_gun/rabbitdash/white, 700)
-	ItemUnlock(caller.order_list, "R Corp Lawnmower Black",	/obj/item/gun/energy/e_gun/rabbitdash/black, 700)
-	ItemUnlock(caller.order_list, "R Corp Lawnmower Pale",	/obj/item/gun/energy/e_gun/rabbitdash/pale, 700)
+	ItemUnlock(caller.order_list, "R Corp Model 2100 White",	/obj/item/gun/energy/e_gun/rabbitdash/white, 700)
+	ItemUnlock(caller.order_list, "R Corp Model 2400 Black",		/obj/item/gun/energy/e_gun/rabbitdash/black, 700)
+	ItemUnlock(caller.order_list, "R Corp Model 2900 Blue",		/obj/item/gun/energy/e_gun/rabbitdash/pale, 700)
 	..()
 
 /datum/data/lc13research/multiphase
@@ -37,7 +37,7 @@
 	required_research = /datum/data/lc13research/singlephase
 
 /datum/data/lc13research/multiphase/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "R Corp Lawnmower 2800",	/obj/item/gun/energy/e_gun/rabbit/nopin, 800)
+	ItemUnlock(caller.order_list, "R Corp Model 2800",	/obj/item/gun/energy/e_gun/rabbit/nopin, 800)
 	ItemUnlock(caller.order_list, "R Corp 3500 Minigun",	/obj/item/gun/energy/e_gun/rabbit/minigun/tricolor, 800)
 	ItemUnlock(caller.order_list, "R Corp High Frequency Combat Blade",	/obj/item/ego_weapon/city/rabbit_blade, 800)
 	..()

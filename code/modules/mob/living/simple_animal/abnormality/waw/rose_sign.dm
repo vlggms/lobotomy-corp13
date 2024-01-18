@@ -6,6 +6,7 @@
 	icon_state = "rose_sign"
 	icon_living = "rose_sign"
 	icon_dead = "rosesign_egg"
+	portrait = "rose_sign"
 	del_on_death = FALSE
 	gender = NEUTER
 	threat_level = WAW_LEVEL
@@ -82,6 +83,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type == ABNORMALITY_WORK_INSIGHT || work_type == ABNORMALITY_WORK_REPRESSION)
 		return
 	datum_reference.qliphoth_change(-1)
@@ -158,8 +160,8 @@
 	return
 
 //***Breach Mechanics***//
-/mob/living/simple_animal/hostile/abnormality/rose_sign/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/rose_sign/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	for(var/obj/structure/rose_work/R in work_roses)//Destroy any roses left in the containment cell. How terrible!
 		work_roses -= R
 		qdel(R)

@@ -505,3 +505,18 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 /obj/effect/landmark/abnormality_spawn/tutorial/fairy
 	name = "tutorial spawn (fairy)"
 	chosen = /mob/living/simple_animal/hostile/abnormality/fairy_swarm
+
+/obj/effect/radiojammer
+	name = "radio jammer"
+	desc = "Device used to disrupt nearby radio communication."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "gangtool-blue"
+	anchored = TRUE
+	layer = MID_LANDMARK_LAYER
+	invisibility = INVISIBILITY_ABSTRACT
+	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
+	var/range = 12
+
+/obj/effect/radiojammer/Initialize()
+	. = ..()
+	GLOB.active_jammers |= src

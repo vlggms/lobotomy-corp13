@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "ppodae"
 	icon_living = "ppodae"
+	portrait = "ppodae"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 550 //fast but low hp abno
@@ -169,10 +170,11 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/ppodae/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = "ppodae_active"
 	GiveTarget(user)

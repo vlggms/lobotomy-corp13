@@ -10,6 +10,7 @@
 	icon_state = "kqe"
 	icon_living = "kqe"
 	icon_dead = "kqe_egg"
+	portrait = "KQE"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
@@ -162,14 +163,15 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/kqe/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /*** Breach Procs ***/
-/mob/living/simple_animal/hostile/abnormality/kqe/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/kqe/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE)) // Already breaching
-		return
-	..()
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/kqe/proc/Stagger()
 	can_act = FALSE
@@ -254,6 +256,8 @@
 	playsound(get_turf(src), 'sound/abnormalities/kqe/load2.ogg', 75, 0, 3)
 	new /obj/effect/temp_visual/approaching_claw(get_turf(src))
 	alpha = 1
+	for(var/obj/vehicle/sealed/mecha/M in view(1, src))
+		M.ejectall()
 	for(var/mob/living/carbon/human/H in view(1, src))
 		grabbed = TRUE
 		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)

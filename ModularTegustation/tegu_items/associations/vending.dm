@@ -5,7 +5,7 @@
 	product_ads = "The best in the business!"
 	icon_state = "generic" //Placeholder
 	icon_deny = null
-	products = list(/obj/item/clothing/accessory/fixer_badge = 50,
+	products = list(/obj/item/clothing/accessory/lawyers_badge/fixer = 50,
 			/obj/item/radio/headset = 50,
 					//custom fixer office (and garbage) stuff is free.
 			/obj/item/storage/box/fixerhard/streetlight = 1,
@@ -16,12 +16,6 @@
 			/obj/item/storage/box/miscarmor/four = 1,
 			/obj/item/storage/box/miscarmor/five = 1,
 			/obj/item/storage/box/miscarmor/six = 1,
-			/obj/item/book/granter/action/skill/dash = 15,
-			/obj/item/book/granter/action/skill/dashback = 15,
-			/obj/item/book/granter/action/skill/shockwave = 15,
-			/obj/item/book/granter/action/skill/bulletproof = 15,
-			/obj/item/book/granter/action/skill/timestop = 15,
-			/obj/item/book/granter/action/skill/assault = 15,
 
 					)
 
@@ -123,10 +117,33 @@
 			/obj/item/weldingtool/mini = 100,
 			/obj/item/reagent_containers/hypospray/medipen/mental = 100,
 			/obj/item/reagent_containers/hypospray/medipen/salacid = 100,
+
 					)
 
 	premium = list(
 			/obj/item/storage/firstaid/regular = 100,
+			/*Skills Below:
+			//Level 1
+			/obj/item/book/granter/action/skill/dash = 100,
+			/obj/item/book/granter/action/skill/dashback = 100,
+			/obj/item/book/granter/action/skill/assault = 100,
+			/obj/item/book/granter/action/skill/retreat = 100,
+			/obj/item/book/granter/action/skill/healing = 100,
+			/obj/item/book/granter/action/skill/soothing = 100,
+			/obj/item/book/granter/action/skill/curing = 100,
+			/obj/item/book/granter/action/skill/hunkerdown = 100,
+			//Level 2
+			/obj/item/book/granter/action/skill/shockwave = 100,
+			/obj/item/book/granter/action/skill/butcher = 100,
+			/obj/item/book/granter/action/skill/confusion = 100,
+			/obj/item/book/granter/action/skill/solarflare = 100,
+			//Level 3
+			/obj/item/book/granter/action/skill/healthhud = 100,
+			/obj/item/book/granter/action/skill/bulletproof = 100,
+			/obj/item/book/granter/action/skill/battleready = 100,
+			//Level 4
+			/obj/item/book/granter/action/skill/timestop = 100,
+			/obj/item/book/granter/action/skill/reraise = 100,*/
 			)
 
 	default_price = 300

@@ -74,6 +74,28 @@
 	new /obj/item/storage/pcorp_weapon(get_turf(caller))
 
 
+//Gloves line
+/datum/data/lc13research/smallgloves
+	research_name = "Repurchasable: P Corp Dimensional Gloves"
+	research_desc = "Dear ambassador. We have new items for you! <br>Gloves that hold various small EGO weapons. <br>Ship only to their best. "
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = P_CORP_REP
+	required_research = /datum/data/lc13research/pcorpbackpack
+
+/datum/data/lc13research/smallgloves/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/clothing/gloves/pcorp(get_turf(caller))
+
+/datum/data/lc13research/pcorpgloves
+	research_name = "Repurchasable: P Corp Dimensional Gloves MK2"
+	research_desc = "Dear ambassador. We have new items for you! <br>Gloves that can hold a single EGO weapon of any size <br>Ship only to their best. "
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = P_CORP_REP
+	required_research = /datum/data/lc13research/bigpcorpbackpack
+
+/datum/data/lc13research/pcorpgloves/ResearchEffect(obj/structure/representative_console/caller)
+	new /obj/item/clothing/gloves/pcorpbig(get_turf(caller))
+
+
 
 //Funny Crate
 /datum/data/lc13research/crate

@@ -10,6 +10,7 @@
 	icon_state = "blueshep"
 	icon_living = "blueshep"
 	icon_dead = "blueshep_dead"
+	portrait = "blue_shepherd"
 	attack_sound = 'sound/weapons/slash.ogg'
 	del_on_death = FALSE
 	pixel_x = -8
@@ -63,8 +64,9 @@
 	var/mob/living/simple_animal/hostile/abnormality/red_buddy/awakened_buddy //the red buddy shepherd is currently fighting with
 	var/awakened = FALSE //if shepherd has seen red buddy or not
 	var/list/people_list = list() //list of people shepperd can mention
-	//lines said during combat
 	var/buddy_hit = FALSE
+	var/red_hit = FALSE // Controls Little Red Riding Hooded Mercenary's ability to be "hit" by slash attacks
+	//lines said during combat
 	var/list/combat_lines = list(
 				"Have at you!",
 				"Take this!",
@@ -154,6 +156,7 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -175,7 +178,7 @@
 		Lying(buddy_abno, user)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd/BreachEffect(mob/living/carbon/human/user, breach_type)
 	var/sighted = FALSE
 	for(var/mob/living/carbon/human/L in view(4, src))
 		sighted = TRUE
@@ -187,7 +190,7 @@
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		hired = FALSE
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/AttackingTarget()
 	. = ..()
@@ -292,6 +295,15 @@
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
 			break
+		if(istype(L, /mob/living/simple_animal/hostile/abnormality/red_hood))
+			if(!red_hit)
+				red_hit = TRUE
+				var/mob/living/simple_animal/hostile/abnormality/red_hood/current_red = L
+				current_red.WatchIt()
+			all_turfs -= T
+			continue // Red doesn't get hit.
+		L.apply_damage(slash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		all_turfs -= T
 	if(slash_count >= range)
 		buddy_hit = FALSE
 		slashing = FALSE

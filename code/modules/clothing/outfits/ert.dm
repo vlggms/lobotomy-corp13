@@ -529,7 +529,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
 	l_hand = /obj/item/ego_weapon/city/zweihander/noreq
-	r_hand = /obj/item/clothing/accessory/fixer_badge
+	r_hand = /obj/item/clothing/accessory/lawyers_badge/fixer
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
 	implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)

@@ -175,17 +175,20 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(downgraded)
 		return
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/seasons/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!safe)
 		to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
 		safe = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/seasons/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!safe)
 		if(prob(25))
 			to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
@@ -209,6 +212,7 @@
 	work_damage_type = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season
+	portrait = "[current_season]_deity"
 	name = season_stats[current_season][4]
 	desc = season_stats[current_season][6]
 	attack_sound = breaching_stats[current_season][1]
@@ -217,6 +221,7 @@
 	projectiletype = breaching_stats[current_season][3]
 	if(downgraded)
 		icon_state = "[current_season]_mini"
+		portrait = "[current_season]"
 		name = season_stats[current_season][3]
 		desc = season_stats[current_season][5]
 	if(current_season == "winter")
@@ -290,12 +295,12 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(downgraded)
 		Upgrade()
 		ZeroQliphoth()
 		return
-	..()
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 

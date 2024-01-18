@@ -1936,15 +1936,6 @@
 /obj/structure/bed,
 /turf/open/floor/carpet/donk,
 /area/city/house)
-"vN" = (
-/obj/structure/table/wood,
-/obj/item/gun/magic/hook,
-/obj/item/gun/magic/hook{
-	pixel_x = 3;
-	pixel_y = 4
-	},
-/turf/open/floor/wood,
-/area/city/shop)
 "vQ" = (
 /obj/structure/table/greyscale,
 /obj/item/stack/medical/aloe{
@@ -47008,7 +46999,7 @@ OT
 xe
 lk
 lk
-vN
+Gb
 OT
 HF
 Gb

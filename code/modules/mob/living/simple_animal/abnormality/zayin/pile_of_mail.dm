@@ -4,6 +4,7 @@
 	desc = "A pile of stamped letters, none reaching their intended receiver."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "mailbox"
+	portrait = "pile_of_mail"
 	maxHealth = 100
 	health = 100
 	threat_level = ZAYIN_LEVEL
@@ -52,7 +53,7 @@
 /mob/living/simple_animal/hostile/abnormality/mailpile/WorktickFailure(mob/living/carbon/human/user)
 	if(prob(10))
 		to_chat(user, span_warning("Ouch! I got a paper cut!"))
-	return
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/DeliveryRepress(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(cooldown < world.time)

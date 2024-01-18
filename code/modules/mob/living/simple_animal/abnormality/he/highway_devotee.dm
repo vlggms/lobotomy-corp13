@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "highway_devotee"
 	icon_living = "highway_devotee"
+	portrait = "highway_devotee"
 	maxHealth = 1200
 	health = 1200
 	ranged = TRUE
@@ -27,7 +28,7 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-//		/datum/ego_datum/weapon/uturn,
+		/datum/ego_datum/weapon/uturn,
 		/datum/ego_datum/armor/uturn
 		)
 	gift_type =  /datum/ego_gifts/uturn
@@ -60,15 +61,17 @@
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/highway_devotee/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/highway_devotee/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-2)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/highway_devotee/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/highway_devotee/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.xeno_spawn)
 	forceMove(T)
 	addtimer(CALLBACK(src, .proc/KillYourself), 3 MINUTES)

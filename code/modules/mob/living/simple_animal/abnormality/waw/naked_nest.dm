@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "nakednest_inert"
 	icon_living = "nakednest_inert"
+	portrait = "naked_nest"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 800
@@ -39,22 +40,25 @@
 	ranged_cooldown_time = 1
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	deathmessage = "collapses as its residents flee."
-	deathsound = 'sound/effects/dismember.ogg'
+	death_message = "collapses as its residents flee."
+	death_sound = 'sound/effects/dismember.ogg'
 	var/serpentsnested = 4
 	var/origin_cooldown = 0
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	to_chat(user, span_notice("The serpents seem to avoid areas of their nest covered in this solution."))
 	new /obj/item/serpentspoison(get_turf(user))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(30 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(60 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
@@ -255,7 +259,7 @@
 	icon_state = "nakednest_minion"
 	icon_living = "nakednest_minion"
 	icon_dead = "nakednest_miniondead"
-	deathmessage = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
+	death_message = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE

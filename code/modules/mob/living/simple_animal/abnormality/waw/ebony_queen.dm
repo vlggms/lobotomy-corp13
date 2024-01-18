@@ -6,6 +6,7 @@
 	icon_state = "ebonyqueen"
 	icon_living = "ebonyqueen"
 	icon_dead = "ebonyqueen_dead"
+	portrait = "ebony_queen"
 	maxHealth = 2000
 	health = 2000
 	pixel_x = -16
@@ -29,8 +30,8 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	del_on_death = FALSE
-	deathmessage = "collapses into a pile of plantmatter."
-	deathsound = 'sound/creatures/venus_trap_death.ogg'
+	death_message = "collapses into a pile of plantmatter."
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 0, 0),
@@ -109,16 +110,18 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/ebony_queen/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/ebony_queen/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Move()

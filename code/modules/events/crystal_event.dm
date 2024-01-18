@@ -667,7 +667,7 @@ This section is for the crystal monsters variations
 	faction = list("crystal")
 	see_in_dark = 8
 	lighting_alpha = LIGHTING_PLANE_ALPHA_MOSTLY_INVISIBLE
-	deathmessage = "collapses into dust!"
+	death_message = "collapses into dust!"
 	del_on_death = 1
 	footstep_type = FOOTSTEP_MOB_SHOE
 	stop_automated_movement = FALSE
