@@ -53,8 +53,7 @@
 /area/facility_hallway/manager)
 "ag" = (
 /obj/machinery/computer/extraction_cargo{
-	pixel_x = 5;
-	order_list = list(new /datum/data/extraction_cargo("Barrier Grenade Kit ", /obj/item/storage/box/barrier, 60, 1)=1,new/datum/data/extraction_cargo("Forcefield Projector ", /obj/item/forcefield_projector, 150, 1)=1,new/datum/data/extraction_cargo("Tracking Implant Kit ", /obj/item/storage/box/minertracker, 150, 1)=1,new/datum/data/extraction_cargo("Command Projector ", /obj/item/commandprojector, 150, 1)=1,new/datum/data/extraction_cargo("'DEEPSCAN' Kit ", /obj/item/deepscanner, 150, 1)=1,new/datum/data/extraction_cargo("Qliphoth Field Projector ", /obj/item/powered_gadget/slowingtrapmk1, 150, 1)=1,new/datum/data/extraction_cargo("Regenerator Augmentor ", /obj/item/safety_kit, 150, 1)=1,new/datum/data/extraction_cargo("Drain Monitor ", /obj/item/powered_gadget/detector_gadget/abnormality, 200, 1)=1,new/datum/data/extraction_cargo("Keen-Sense Rangefinder ", /obj/item/powered_gadget/detector_gadget/ordeal, 200, 1)=1,new/datum/data/extraction_cargo("EMAISCapacity Upgrade ", /obj/item/hypo_upgrade/cap_increase, 200, 1)=1,new/datum/data/extraction_cargo("Prototype Enkephalin Injector ", /obj/item/powered_gadget/enkephalin_injector, 200, 1)=1,new/datum/data/extraction_cargo("Instant Clerkbot Constructor ", /obj/item/clerkbot_gadget, 250, 1)=1,new/datum/data/extraction_cargo("Handheld Taser", /obj/item/powered_gadget/handheld_taser, 300, 1)=1,new/datum/data/extraction_cargo("Vitals Projector ", /obj/item/powered_gadget/vitals_projector, 300, 1)=1,new/datum/data/extraction_cargo("Shrimp Injector ", /obj/item/trait_injector/shrimp_injector, 300, 1)=1,new/datum/data/extraction_cargo("EMAISAutoinjector ", /obj/item/reagent_containers/hypospray/emais, 300, 1)=1,new/datum/data/extraction_cargo("W-Corp Teleporter ", /obj/item/powered_gadget/teleporter, 300, 1)=1,new/datum/data/extraction_cargo("Officer Upgrade Injector ", /obj/item/trait_injector/officer_upgrade_injector, 400, 1)=1,new/datum/data/extraction_cargo("Meson Scanner Goggles ", /obj/item/clothing/glasses/meson, 500, 1)=1,new/datum/data/extraction_cargo("Gar Meson Scanner Goggles ", /obj/item/clothing/glasses/meson/gar, 600, 1)=1,new/datum/data/extraction_cargo("Agent Work Chance Injector ", /obj/item/trait_injector/agent_workchance_trait_injector, 700, 1)=1,new/datum/data/extraction_cargo("'Seclite' Flashlight ", /obj/item/flashlight/seclite, 30, 2)=1,new/datum/data/extraction_cargo("Hunting Knife ", /obj/item/kitchen/knife/hunting, 30, 2)=1,new/datum/data/extraction_cargo("Throwing Bola ", /obj/item/restraints/legcuffs/bola, 50, 2)=1,new/datum/data/extraction_cargo("EGO Small Arms Belt ", /obj/item/storage/belt/ego, 50, 2)=1,new/datum/data/extraction_cargo("Nitrile Gloves ", /obj/item/clothing/gloves/color/latex/nitrile, 50, 2)=1,new/datum/data/extraction_cargo("Combat Webbing ", /obj/item/storage/belt/military, 60, 2)=1,new/datum/data/extraction_cargo("EZ Light Replacer ", /obj/item/lightreplacer, 60, 2)=1,new/datum/data/extraction_cargo("Push Broom ", /obj/item/pushbroom, 60, 2)=1,new/datum/data/extraction_cargo("Super Power Cell ", /obj/item/stock_parts/cell/super, 150, 2)=1,new/datum/data/extraction_cargo("Megaphone ", /obj/item/megaphone, 150, 2)=1,new/datum/data/extraction_cargo("Binoculars ", /obj/item/binoculars, 200, 2)=1,new/datum/data/extraction_cargo("Epinepherine Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen, 40, 3)=1,new/datum/data/extraction_cargo("Sal-Acid Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/salacid, 50, 3)=1,new/datum/data/extraction_cargo("Mental-Stabilizer Medi-Pen ", /obj/item/reagent_containers/hypospray/medipen/mental, 50, 3)=1,new/datum/data/extraction_cargo("Standard First-Aid Kit ", /obj/item/storage/firstaid/regular, 250, 3)=1,new/datum/data/extraction_cargo("Naked Nest Cure Vial ", /obj/item/serpentspoison, 400, 3)=1,new/datum/data/extraction_cargo("Orange Tree Flamer", /obj/item/gun/ego_gun/flammenwerfer, 500, 3)=1,new/datum/data/extraction_cargo("Prosthetic Limb Crate ", /obj/structure/closet/crate/freezer/surplus_limbs, 500, 3)=1,new/datum/data/extraction_cargo("Assorted Medi-Pen Kit ", /obj/item/storage/firstaid/revival, 500, 3)=1,new/datum/data/extraction_cargo("Blue Filter ", /obj/item/refiner_filter/blue, 10, 4)=1,new/datum/data/extraction_cargo("Green Filter ", /obj/item/refiner_filter/green, 10, 4)=1,new/datum/data/extraction_cargo("Red Filter ", /obj/item/refiner_filter/red, 10, 4)=1,new/datum/data/extraction_cargo("Yellow Filter ", /obj/item/refiner_filter/yellow, 10, 4)=1,new/datum/data/extraction_cargo("Raw PE Box ", /obj/item/rawpe, 50, 4)=1,new/datum/data/extraction_cargo("Abnormality Chemistry Pack ", /obj/structure/closet/crate/science/abnochem_startercrate, 100, 4)=1,new/datum/data/extraction_cargo("Chemical Extraction Upgrade ", /obj/item/chemical_extraction_attachment, 150, 4)=1,new/datum/data/extraction_cargo("Mysterious Invitation ", /obj/item/invitation, 1500, 4)=1,new/datum/data/extraction_cargo("Bubblegum Gum Packet ", /obj/item/storage/box/gum/bubblegum, 15, 5)=1,new/datum/data/extraction_cargo("Cigar ", /obj/item/clothing/mask/cigarette/cigar/havana, 25, 5)=1,new/datum/data/extraction_cargo("Beer ", /obj/item/reagent_containers/food/drinks/beer, 25, 5)=1,new/datum/data/extraction_cargo("Spraycan ", /obj/item/toy/crayon/spraycan, 40, 5)=1,new/datum/data/extraction_cargo("Magic 8-Ball ", /obj/item/toy/eightball, 70, 5)=1,new/datum/data/extraction_cargo("Six-Pack ", /obj/item/storage/cans, 70, 5)=1,new/datum/data/extraction_cargo("Fishing Equipment ", /obj/item/storage/box/fishing, 70, 5)=1,new/datum/data/extraction_cargo("Whiskey ", /obj/item/reagent_containers/food/drinks/bottle/whiskey, 100, 5)=1,new/datum/data/extraction_cargo("Absinthe ", /obj/item/reagent_containers/food/drinks/bottle/absinthe/premium, 100, 5)=1,new/datum/data/extraction_cargo("Skateboard ", /obj/item/melee/skateboard, 100, 5)=1,new/datum/data/extraction_cargo("Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar, 100, 5)=1,new/datum/data/extraction_cargo("Skub ", /obj/item/skub, 200, 5)=1,new/datum/data/extraction_cargo("Gold Fishing Hook ", /obj/item/fishing_component/hook/shiny, 200, 5)=1,new/datum/data/extraction_cargo("Reinforced Fishing Line ", /obj/item/fishing_component/line/reinforced, 200, 5)=1,new/datum/data/extraction_cargo("1000 Ahn ", /obj/item/stack/spacecash/c1000, 200, 5)=1,new/datum/data/extraction_cargo("Pet Whistle", /obj/item/pet_whistle, 200, 5)=1,new/datum/data/extraction_cargo("Margherita Pizza ", /obj/item/food/pizza/margherita, 300, 5)=1,new/datum/data/extraction_cargo("Super Gar Glasses ", /obj/item/clothing/glasses/sunglasses/gar/supergar, 500, 5)=1,new/datum/data/extraction_cargo("Agent Captain's Cloak ", /obj/item/clothing/neck/cloak/hos/agent, 500, 5)=1,new/datum/data/extraction_cargo("Agent Captain's Cap ", /obj/item/clothing/head/hos/agent, 500, 5)=1,new/datum/data/extraction_cargo("Plushie Lootbox", /obj/item/plushgacha, 1000, 5)=1,new/datum/data/extraction_cargo("Binah Doll ", /obj/item/toy/plush/binah, 1000, 5)=1)
+	pixel_x = 5
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
@@ -754,6 +753,9 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -896,9 +898,6 @@
 	pixel_y = 28
 	},
 /obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
 	dir = 1
 	},
 /turf/open/floor/facility/dark,
@@ -1314,12 +1313,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/information)
-"gu" = (
-/obj/effect/turf_decal/bot,
-/turf/open/floor/mineral/titanium/yellow{
-	name = "floor"
-	},
-/area/facility_hallway/east)
 "gz" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 8
@@ -1430,9 +1423,6 @@
 "gO" = (
 /obj/effect/turf_decal/siding/thinplating/dark/end{
 	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 9
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
@@ -1599,9 +1589,6 @@
 "hq" = (
 /obj/structure/sign/warning/nosmoking/circle{
 	pixel_y = -5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
@@ -2407,18 +2394,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
-"kV" = (
-/obj/structure/disposaloutlet{
-	dir = 8;
-	density = 0;
-	alpha = 0
-	},
-/obj/structure/disposalpipe/trunk,
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
-	},
-/area/facility_hallway/safety)
 "kW" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -2832,8 +2807,8 @@
 "mG" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/sign/ordealmonitor,
-/obj/structure/disposalpipe/segment{
-	dir = 9
+/obj/structure/disposalpipe/junction/yjunction{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
@@ -3108,8 +3083,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -3565,8 +3539,7 @@
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/lava{
 	color = "#006700";
@@ -3638,9 +3611,6 @@
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
 	dir = 10
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -4052,8 +4022,7 @@
 	},
 /obj/effect/turf_decal/caution/white,
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -4374,8 +4343,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -4667,9 +4635,6 @@
 	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
 	opacity = 0
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/safety)
 "uz" = (
@@ -4866,6 +4831,9 @@
 	normal_integrity = 500;
 	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/east)
 "vu" = (
@@ -4929,18 +4897,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
-"vN" = (
-/obj/machinery/door/airlock{
-	name = "Safety Department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
-	opacity = 0
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/facility/halls,
-/area/facility_hallway/safety)
 "vO" = (
 /obj/effect/turf_decal/bot/left,
 /obj/structure/sign/ordealmonitor,
@@ -4966,10 +4922,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
-"vR" = (
-/obj/machinery/light/floor,
-/turf/open/floor/facility/dark,
-/area/department_main/command)
 "vX" = (
 /obj/structure/chair/sofa/corp/left,
 /turf/open/floor/facility/dark{
@@ -5057,8 +5009,8 @@
 /area/facility_hallway/training)
 "wq" = (
 /obj/effect/turf_decal/bot,
-/obj/structure/disposalpipe/segment{
-	dir = 6
+/obj/structure/disposalpipe/junction/flip{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
@@ -5402,7 +5354,9 @@
 	},
 /area/facility_hallway/west)
 "xN" = (
-/obj/structure/bodycontainer,
+/obj/structure/bodycontainer/extraction{
+	dir = 2
+	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
 "xO" = (
@@ -5498,15 +5452,6 @@
 	name = "floor"
 	},
 /area/facility_hallway/control)
-"yi" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
-	},
-/area/facility_hallway/safety)
 "yj" = (
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark,
@@ -5923,8 +5868,7 @@
 /area/facility_hallway/east)
 "zZ" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
@@ -5941,9 +5885,7 @@
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Ae" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -6186,9 +6128,6 @@
 	dir = 4;
 	resistance_flags = 115
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "AX" = (
@@ -6366,19 +6305,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
-"BL" = (
-/obj/structure/disposaloutlet{
-	pixel_y = -13;
-	density = 0
-	},
-/obj/structure/disposalpipe/trunk{
-	dir = 8
-	},
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
-	},
-/area/facility_hallway/safety)
 "BN" = (
 /obj/machinery/vending/medical{
 	req_access = list()
@@ -6664,6 +6590,9 @@
 	alpha = 230;
 	icon_state = "LC18"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -6873,8 +6802,7 @@
 	dir = 1
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -7353,7 +7281,9 @@
 	alpha = 230;
 	icon_state = "LC21"
 	},
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction/flip{
+	dir = 2
+	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -7720,12 +7650,6 @@
 	name = "floor"
 	},
 /area/facility_hallway/east)
-"HW" = (
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/safety)
 "HY" = (
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -7789,8 +7713,7 @@
 /area/facility_hallway/human)
 "Im" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -8075,8 +7998,13 @@
 	},
 /area/facility_hallway/west)
 "Jt" = (
-/turf/open/floor/plasteel/dark,
-/area/department_main/command)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "Ju" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/bot,
@@ -8297,6 +8225,9 @@
 	alpha = 230;
 	icon_state = "LC22"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 9
+	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -8309,9 +8240,6 @@
 /obj/machinery/computer/crew{
 	dir = 1;
 	resistance_flags = 115
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -8454,8 +8382,8 @@
 /turf/open/floor/plating,
 /area/facility_hallway/information)
 "KX" = (
-/obj/structure/bodycontainer{
-	dir = 4
+/obj/structure/bodycontainer/extraction{
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
@@ -8605,16 +8533,10 @@
 	color = "#006400";
 	dir = 10
 	},
-/obj/structure/table/wood/fancy/green,
-/obj/item/paper_bin{
-	pixel_y = 6
+/obj/machinery/disposal/bin{
+	resistance_flags = 115
 	},
-/obj/item/pen/fourcolor{
-	pixel_y = 5
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 1
-	},
+/obj/structure/disposalpipe/trunk,
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "LC" = (
@@ -9328,8 +9250,13 @@
 /turf/open/floor/facility/dark,
 /area/department_main/safety)
 "Pq" = (
-/turf/open/floor/facility/dark,
-/area/department_main/command)
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "Pr" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/sign/ordealmonitor,
@@ -9990,8 +9917,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -10441,6 +10367,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#E22303";
 	name = "floor"
@@ -10489,6 +10416,9 @@
 	alpha = 230;
 	icon_state = "LC17"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 6
+	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
 	},
@@ -10528,9 +10458,6 @@
 	},
 /area/department_main/training)
 "Uz" = (
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
 /turf/open/floor/facility/dark,
 /area/department_main/safety)
 "UB" = (
@@ -10866,16 +10793,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
-"Wo" = (
-/obj/effect/turf_decal/bot_red/left,
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/mineral/titanium/purple{
-	color = "#7FFF00";
-	name = "floor"
-	},
-/area/department_main/safety)
 "Ws" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 4
@@ -11371,9 +11288,6 @@
 /area/department_main/training)
 "YP" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
-	dir = 4
-	},
-/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/open/floor/facility/dark,
@@ -45166,7 +45080,7 @@ UB
 UB
 wc
 Ev
-vR
+ic
 CZ
 aN
 UB
@@ -45423,7 +45337,7 @@ UB
 UB
 dC
 gN
-Pq
+ya
 Ix
 LM
 UB
@@ -45680,7 +45594,7 @@ uL
 uL
 kp
 gN
-Jt
+YT
 Ix
 Iv
 uL
@@ -45937,7 +45851,7 @@ FK
 FK
 kp
 gN
-Jt
+YT
 Ix
 Iv
 FK
@@ -46194,7 +46108,7 @@ eg
 eg
 kp
 gN
-Jt
+YT
 Ix
 Iv
 FK
@@ -46451,7 +46365,7 @@ Kk
 kC
 Qf
 gN
-Jt
+YT
 Ix
 uv
 sP
@@ -47222,7 +47136,7 @@ kL
 QY
 QY
 NU
-ts
+Pq
 Lw
 QY
 QY
@@ -47479,7 +47393,7 @@ kL
 kL
 Vy
 Ek
-tI
+Jt
 xI
 QY
 QY
@@ -47736,7 +47650,7 @@ ME
 ME
 kL
 pw
-gu
+OF
 or
 SH
 SH
@@ -53381,11 +53295,11 @@ Mh
 Mh
 ga
 ga
-kV
+ga
 uw
-yi
+ga
 ee
-HW
+Uz
 AU
 LB
 vC
@@ -53647,7 +53561,7 @@ tc
 hB
 KY
 AI
-Ae
+AI
 gO
 bY
 Vp
@@ -53904,7 +53818,7 @@ KY
 KY
 Uo
 kE
-Wo
+kE
 hg
 hg
 hg
@@ -55446,7 +55360,7 @@ ga
 Qh
 zy
 qY
-vN
+uw
 qY
 qY
 qY
@@ -55703,7 +55617,7 @@ ga
 sS
 NL
 cj
-BL
+ga
 Ym
 bf
 qY
