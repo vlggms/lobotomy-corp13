@@ -3083,8 +3083,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -3540,8 +3539,7 @@
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/lava{
 	color = "#006700";
@@ -4024,8 +4022,7 @@
 	},
 /obj/effect/turf_decal/caution/white,
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -4346,8 +4343,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -5870,8 +5866,7 @@
 /area/facility_hallway/east)
 "zZ" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
@@ -6805,8 +6800,7 @@
 	dir = 1
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -7717,8 +7711,7 @@
 /area/facility_hallway/human)
 "Im" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -9922,8 +9915,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
