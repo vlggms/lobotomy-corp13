@@ -6,6 +6,7 @@
 	icon_state = "faelantern"
 	icon_living = "faelantern_fairy"
 	icon_dead = "faelantern_egg"
+	portrait = "faelantern"
 	maxHealth = 1200
 	health = 1200
 	base_pixel_x = -16

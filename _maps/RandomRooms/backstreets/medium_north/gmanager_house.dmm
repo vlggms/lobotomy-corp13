@@ -1,0 +1,157 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"b" = (
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"d" = (
+/obj/machinery/smartfridge/drying_rack,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"e" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/table/wood,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"g" = (
+/obj/item/folder/documents,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"k" = (
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/bed,
+/obj/item/bedsheet/captain,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/table/wood,
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table/wood,
+/obj/item/paper_bin,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/chair/wood,
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
+/area/city/backstreets_room)
+"K" = (
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/obj/effect/spawner/lootdrop/costume,
+/obj/structure/closet/cabinet,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"L" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dusk,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+q
+g
+L
+b
+Q
+"}
+(3,1,1) = {"
+Q
+K
+e
+e
+b
+Q
+"}
+(4,1,1) = {"
+Q
+Q
+Q
+Q
+a
+Q
+"}
+(5,1,1) = {"
+Q
+d
+k
+k
+k
+Q
+"}
+(6,1,1) = {"
+Q
+k
+c
+c
+k
+Q
+"}
+(7,1,1) = {"
+Q
+B
+t
+f
+k
+Q
+"}
+(8,1,1) = {"
+Q
+B
+x
+f
+k
+Q
+"}
+(9,1,1) = {"
+Q
+k
+J
+J
+k
+a
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

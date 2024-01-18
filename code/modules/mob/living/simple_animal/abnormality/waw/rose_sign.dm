@@ -6,6 +6,7 @@
 	icon_state = "rose_sign"
 	icon_living = "rose_sign"
 	icon_dead = "rosesign_egg"
+	portrait = "rose_sign"
 	del_on_death = FALSE
 	gender = NEUTER
 	threat_level = WAW_LEVEL

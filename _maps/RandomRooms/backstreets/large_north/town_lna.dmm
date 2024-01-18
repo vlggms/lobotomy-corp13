@@ -1,0 +1,520 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bk" = (
+/obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/lovetown,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"bl" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"bo" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"br" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"bZ" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"cA" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"cU" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood{
+	pixel_x = 8;
+	pixel_y = 11
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"dy" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood{
+	pixel_x = 7;
+	pixel_y = -10
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"dK" = (
+/obj/effect/decal/cleanable/blood/gibs/body,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"fr" = (
+/obj/effect/decal/cleanable/blood/gibs/old,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"fF" = (
+/obj/structure/meatfloor,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"gt" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"hG" = (
+/obj/item/organ/stomach,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"im" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"iD" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"iN" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/item/organ/lungs,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"iR" = (
+/obj/structure/meatfloor,
+/obj/structure/statue/bone/rib{
+	dir = 1
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"iV" = (
+/obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/lovetown/slasher,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"jo" = (
+/obj/effect/decal/cleanable/blood/gibs/limb,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"jQ" = (
+/obj/effect/rune/wall,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"jT" = (
+/obj/effect/decal/cleanable/blood{
+	pixel_x = -17;
+	pixel_y = -6
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"jZ" = (
+/obj/item/clothing/head/helmet/skull,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"lB" = (
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"lF" = (
+/obj/structure/meatfloor,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"lU" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"nK" = (
+/mob/living/simple_animal/hostile/lovetown,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"nN" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"pI" = (
+/obj/structure/meatfloor,
+/obj/item/organ/stomach,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"qk" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"rF" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/lovetown/slasher,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"sr" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"ta" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"to" = (
+/mob/living/simple_animal/hostile/lovetown/suicidal,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"uA" = (
+/obj/structure/meatfloor,
+/obj/structure/lootcrate/w_corp,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"uZ" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/obj/effect/rune/wall,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"vU" = (
+/obj/effect/decal/cleanable/blood/gibs/up,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"wr" = (
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"wI" = (
+/obj/item/organ/heart,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"yd" = (
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"yo" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood{
+	pixel_x = -17;
+	pixel_y = -6
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"zE" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"AP" = (
+/obj/structure/meatfloor,
+/obj/structure/statue/bone/rib{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"Bs" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Bz" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/obj/structure/lootcrate/w_corp,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"CI" = (
+/obj/structure/meatfloor,
+/obj/structure/statue/bone/skull/half,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Eg" = (
+/mob/living/simple_animal/hostile/lovetown/shambler,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Eu" = (
+/mob/living/simple_animal/hostile/lovetown/stabber,
+/obj/effect/decal/cleanable/blood/gibs/old,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"FA" = (
+/obj/structure/meatfloor,
+/obj/item/food/meat/slab/monkey,
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Hb" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/footprints,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Jp" = (
+/mob/living/simple_animal/hostile/lovetown/suicidal,
+/obj/effect/decal/cleanable/blood/footprints,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"JL" = (
+/obj/structure/statue/bone/rib,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Kh" = (
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Ks" = (
+/obj/effect/decal/cleanable/blood/drip,
+/obj/effect/decal/cleanable/blood/gibs/down,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"KB" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"LA" = (
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"ML" = (
+/obj/structure/barricade/wooden/crude,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/obj/machinery/door/airlock/hatch,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"Og" = (
+/obj/structure/meatfloor,
+/obj/effect/decal/cleanable/blood/tracks,
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Ol" = (
+/obj/effect/decal/cleanable/blood/gibs/core,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"PQ" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Qd" = (
+/mob/living/simple_animal/hostile/lovetown/stabber,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"QL" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"TW" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/mob/living/simple_animal/hostile/lovetown/slammer,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"Vw" = (
+/obj/effect/rune/manifest,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"VN" = (
+/mob/living/simple_animal/hostile/lovetown/slammer,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/drip,
+/turf/open/floor/plating/dirt,
+/area/city/backstreets_room)
+"Xa" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"XN" = (
+/mob/living/simple_animal/hostile/lovetown/slammer,
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+"ZO" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 8
+	},
+/turf/open/floor/plating/rust,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+ta
+ta
+ta
+ta
+ta
+ta
+ta
+ta
+"}
+(2,1,1) = {"
+ta
+pI
+im
+Bs
+Kh
+VN
+jo
+ta
+"}
+(3,1,1) = {"
+Vw
+Bz
+nK
+nK
+iR
+lF
+FA
+uZ
+"}
+(4,1,1) = {"
+ta
+CI
+TW
+zE
+lF
+QL
+gt
+nN
+"}
+(5,1,1) = {"
+ta
+lU
+fF
+fF
+rF
+LA
+PQ
+ta
+"}
+(6,1,1) = {"
+ta
+fF
+fF
+dK
+KB
+AP
+ZO
+ta
+"}
+(7,1,1) = {"
+jQ
+Bs
+JL
+Eu
+lB
+hG
+br
+Vw
+"}
+(8,1,1) = {"
+ta
+cU
+im
+Hb
+Eg
+bo
+Jp
+ML
+"}
+(9,1,1) = {"
+ta
+fF
+iN
+dy
+fF
+fF
+to
+yd
+"}
+(10,1,1) = {"
+ta
+iV
+fF
+Ol
+wr
+Ks
+cA
+ta
+"}
+(11,1,1) = {"
+ta
+QL
+fF
+fF
+fF
+lF
+bZ
+ta
+"}
+(12,1,1) = {"
+Vw
+jZ
+vU
+uA
+bk
+JL
+bZ
+ta
+"}
+(13,1,1) = {"
+ta
+Og
+qk
+Xa
+sr
+iD
+bl
+ta
+"}
+(14,1,1) = {"
+ta
+yo
+nK
+XN
+fr
+jT
+lF
+Vw
+"}
+(15,1,1) = {"
+ta
+Qd
+wr
+wI
+Bs
+lB
+Bs
+ta
+"}
+(16,1,1) = {"
+ta
+ta
+ta
+Vw
+ta
+ta
+ta
+ta
+"}

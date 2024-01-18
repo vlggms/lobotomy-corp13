@@ -1,0 +1,1364 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bk" = (
+/mob/living/simple_animal/hostile/lovetown/slumberer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"bC" = (
+/obj/item/chair/wood/wings,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"bZ" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"cj" = (
+/obj/item/chair/stool,
+/obj/structure/meatfloor,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"cr" = (
+/mob/living/simple_animal/hostile/lovetown/slumberer,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"cy" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/clothing/head/ego_hat/wcorp,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"dX" = (
+/turf/closed/wall/r_wall/syndicate,
+/area/city/backstreets_room)
+"eU" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/city/backstreets_room)
+"fk" = (
+/obj/effect/rune/wall,
+/turf/closed/wall/r_wall/syndicate,
+/area/city/backstreets_room)
+"fT" = (
+/obj/effect/rune/manifest,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/city/backstreets_room)
+"gY" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/meatfloor,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/city/backstreets_room)
+"hw" = (
+/mob/living/simple_animal/hostile/lovetown/shambler,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"hO" = (
+/mob/living/simple_animal/hostile/lovetown/stabber,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"hQ" = (
+/obj/structure/barricade/sandbags,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"iw" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"iy" = (
+/obj/structure/meatfloor,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/backstreets_room)
+"iC" = (
+/obj/structure/meatfloor,
+/obj/effect/rune/manifest,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"iL" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"kc" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"kx" = (
+/obj/structure/meatfloor,
+/turf/closed/wall/r_wall/syndicate,
+/area/city/backstreets_room)
+"kz" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"mA" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"mJ" = (
+/obj/effect/gibspawner/human/bodypartless,
+/mob/living/simple_animal/hostile/lovetown/suicidal,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"na" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"nO" = (
+/obj/structure/lootcrate/limbus,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"oQ" = (
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"pY" = (
+/obj/effect/rune/manifest,
+/turf/closed/wall/r_wall/syndicate,
+/area/city/backstreets_room)
+"rX" = (
+/obj/structure/flora/rock,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"sP" = (
+/mob/living/simple_animal/hostile/lovetown/slumberer,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"tD" = (
+/obj/structure/lootcrate/w_corp,
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"tF" = (
+/obj/structure/table/wood/fancy/blue,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"uo" = (
+/obj/effect/rune/wall,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"vF" = (
+/obj/structure/lootcrate/k_corp,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"vZ" = (
+/mob/living/simple_animal/hostile/lovetown/slumberer,
+/obj/structure/meatfloor,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"wh" = (
+/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"wu" = (
+/obj/effect/rune/wall,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"wG" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"xt" = (
+/obj/structure/meatfloor,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"xE" = (
+/obj/item/raw_anomaly_core/bluespace,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"xR" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"zL" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"zU" = (
+/obj/structure/flora/rock/pile,
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"zZ" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"AX" = (
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"Bb" = (
+/obj/structure/meatfloor,
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"Bd" = (
+/mob/living/simple_animal/hostile/lovetown/abomination,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"BJ" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/barricade/wooden,
+/obj/structure/barricade/wooden/crude,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"BV" = (
+/obj/effect/decal/cleanable/glass,
+/obj/structure/meatfloor,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/city/backstreets_room)
+"Dd" = (
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Dm" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/backstreets_room)
+"Dw" = (
+/mob/living/simple_animal/hostile/lovetown/suicidal,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"DB" = (
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/backstreets_room)
+"DN" = (
+/mob/living/simple_animal/hostile/lovetown/slasher,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ef" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"EC" = (
+/mob/living/simple_animal/hostile/lovetown/slasher,
+/obj/structure/meatfloor,
+/turf/open/floor/carpet/blue,
+/area/city/backstreets_room)
+"EK" = (
+/mob/living/simple_animal/hostile/lovetown/suicidal,
+/obj/effect/rune/manifest,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Fc" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"FN" = (
+/obj/item/raw_anomaly_core/bluespace,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Hb" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/wood{
+	icon_state = "wood-broken7"
+	},
+/area/city/backstreets_room)
+"HL" = (
+/mob/living/simple_animal/hostile/lovetown/shambler,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Is" = (
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"IP" = (
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/wood{
+	icon_state = "wood-broken"
+	},
+/area/city/backstreets_room)
+"Ja" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/effect/rune/manifest,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"JV" = (
+/mob/living/simple_animal/hostile/lovetown/shambler,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"KV" = (
+/obj/effect/gibspawner/human/bodypartless,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Lw" = (
+/obj/structure/lootcrate/w_corp,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"LC" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"LN" = (
+/obj/item/ego_weapon/city/charge/wcorp/hammer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"MA" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"Nq" = (
+/mob/living/simple_animal/hostile/lovetown/slasher,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"NC" = (
+/mob/living/simple_animal/hostile/lovetown/slammer,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"ND" = (
+/mob/living/simple_animal/hostile/lovetown/stabber,
+/obj/effect/gibspawner/human/bodypartless,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"OW" = (
+/mob/living/simple_animal/hostile/lovetown/stabber,
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"Pd" = (
+/obj/structure/lootcrate/w_corp,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"RP" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Sd" = (
+/mob/living/simple_animal/hostile/lovetown/stabber,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"SO" = (
+/obj/effect/rune/manifest,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Tw" = (
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ud" = (
+/mob/living/simple_animal/hostile/lovetown/slasher,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Uf" = (
+/mob/living/simple_animal/hostile/lovetown/stabber,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Ul" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood{
+	icon_state = "wood-broken6"
+	},
+/area/city/backstreets_room)
+"Us" = (
+/mob/living/simple_animal/hostile/lovetown/slasher,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"UK" = (
+/mob/living/simple_animal/hostile/lovetown/slammer,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"VB" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/structure/meatfloor,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Wk" = (
+/obj/structure/lootcrate/money,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Za" = (
+/obj/item/ego_weapon/city/charge/wcorp,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"ZW" = (
+/obj/structure/meatfloor,
+/obj/structure/meatfloor,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+MA
+MA
+MA
+Dw
+Ef
+zZ
+JV
+zZ
+zZ
+MA
+Dw
+zZ
+zZ
+Ef
+zZ
+EK
+zZ
+MA
+MA
+MA
+MA
+MA
+MA
+zZ
+Dw
+zZ
+Ef
+zZ
+zZ
+zZ
+"}
+(2,1,1) = {"
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+zZ
+MA
+MA
+MA
+zZ
+JV
+zZ
+LC
+zZ
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+zZ
+zZ
+Dw
+zZ
+zZ
+"}
+(3,1,1) = {"
+MA
+kz
+zZ
+LC
+zZ
+MA
+MA
+MA
+MA
+dX
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+Dd
+Dd
+dX
+ZW
+Is
+Bb
+MA
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+"}
+(4,1,1) = {"
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+MA
+MA
+MA
+dX
+Lw
+Lw
+MA
+MA
+MA
+MA
+MA
+Dd
+kc
+dX
+Is
+zZ
+KV
+Is
+Is
+MA
+MA
+zZ
+zZ
+zZ
+"}
+(5,1,1) = {"
+MA
+MA
+zZ
+Sd
+zZ
+zZ
+Is
+Is
+zZ
+pY
+iy
+mA
+mA
+uo
+AX
+xt
+Dd
+iy
+iw
+dX
+Is
+zZ
+Ef
+zZ
+zZ
+zZ
+Dw
+zZ
+zZ
+zZ
+"}
+(6,1,1) = {"
+MA
+MA
+zZ
+zZ
+Ef
+Is
+rX
+zZ
+zZ
+dX
+xE
+Dd
+mA
+AX
+Fc
+xt
+hw
+mA
+mA
+dX
+Is
+Is
+Is
+Is
+zZ
+JV
+zZ
+zZ
+zZ
+zZ
+"}
+(7,1,1) = {"
+MA
+MA
+Is
+Is
+HL
+Is
+Is
+zZ
+zZ
+pY
+kc
+gY
+Dd
+EC
+cj
+zL
+mA
+FN
+eU
+fk
+zZ
+zZ
+zZ
+Is
+Is
+Is
+zZ
+zZ
+Ef
+zZ
+"}
+(8,1,1) = {"
+MA
+MA
+vF
+zZ
+zZ
+zZ
+Uf
+zZ
+zZ
+dX
+hw
+mA
+mA
+iy
+Dd
+na
+Dd
+hO
+mA
+dX
+zZ
+NC
+zZ
+Sd
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(9,1,1) = {"
+Dw
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+Pd
+Is
+dX
+mA
+bk
+Dd
+RP
+tF
+VB
+iw
+Dd
+wu
+dX
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(10,1,1) = {"
+Ef
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+dX
+mA
+Dd
+Dd
+tF
+Ja
+VB
+kc
+Dd
+iC
+dX
+zZ
+zZ
+zZ
+zZ
+Ef
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(11,1,1) = {"
+JV
+MA
+MA
+MA
+NC
+Ef
+zZ
+zZ
+zZ
+MA
+mA
+Dd
+IP
+bC
+mA
+Dd
+mA
+DB
+wh
+dX
+Is
+Is
+Is
+Is
+Is
+Is
+JV
+zZ
+zZ
+zZ
+"}
+(12,1,1) = {"
+zZ
+MA
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+MA
+MA
+MA
+xR
+kc
+iL
+AX
+vZ
+mA
+wG
+mA
+pY
+Is
+Us
+zZ
+ND
+Is
+Is
+zZ
+zZ
+zZ
+zZ
+"}
+(13,1,1) = {"
+MA
+MA
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+hQ
+BJ
+BJ
+xR
+kc
+AX
+Fc
+xt
+Dd
+mA
+Tw
+dX
+Is
+Is
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(14,1,1) = {"
+MA
+MA
+MA
+MA
+Us
+zZ
+zZ
+zZ
+hQ
+MA
+MA
+kc
+mA
+AX
+Bd
+AX
+Dd
+mA
+mA
+dX
+zZ
+Is
+Is
+cr
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(15,1,1) = {"
+MA
+MA
+MA
+Is
+Is
+kz
+zZ
+zZ
+MA
+MA
+MA
+hw
+wu
+mA
+mA
+mA
+Dd
+DN
+mA
+dX
+zZ
+zZ
+zZ
+Is
+Ud
+zZ
+zZ
+Dw
+zZ
+zZ
+"}
+(16,1,1) = {"
+zZ
+MA
+MA
+MA
+Is
+Is
+zZ
+zZ
+MA
+MA
+mA
+mA
+Nq
+cy
+tF
+tF
+mA
+Dd
+mA
+fk
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(17,1,1) = {"
+Dw
+MA
+MA
+OW
+zZ
+Za
+Is
+Is
+Is
+dX
+Lw
+eU
+mA
+tF
+tF
+tF
+mA
+Dm
+bZ
+dX
+zZ
+Ef
+zZ
+zZ
+JV
+zZ
+zZ
+Dw
+zZ
+zZ
+"}
+(18,1,1) = {"
+zZ
+zZ
+MA
+MA
+zZ
+zZ
+NC
+zZ
+zZ
+dX
+eU
+SO
+mA
+mA
+mA
+wG
+mA
+Dd
+bC
+dX
+zZ
+Is
+Is
+Is
+ZW
+Is
+Is
+Is
+zZ
+zZ
+"}
+(19,1,1) = {"
+Ef
+zZ
+MA
+zZ
+zZ
+zZ
+zZ
+kz
+zZ
+dX
+mA
+mA
+mA
+sP
+AX
+AX
+mA
+tD
+Dd
+kx
+Is
+ZW
+kz
+zZ
+Ef
+zZ
+zZ
+Is
+zZ
+zZ
+"}
+(20,1,1) = {"
+zZ
+MA
+MA
+zZ
+JV
+Sd
+zZ
+zZ
+zZ
+fk
+Tw
+mA
+wG
+AX
+Fc
+AX
+BV
+mA
+Hb
+dX
+zZ
+Is
+Is
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(21,1,1) = {"
+JV
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+JV
+zZ
+dX
+mA
+Ul
+mA
+uo
+AX
+oQ
+Dd
+mA
+mA
+dX
+zZ
+zZ
+Is
+ZW
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(22,1,1) = {"
+zZ
+MA
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+zZ
+dX
+LN
+mA
+mA
+Lw
+FN
+Dd
+Dd
+mA
+Lw
+dX
+zZ
+Us
+zZ
+Is
+Is
+MA
+zZ
+zZ
+zZ
+zZ
+"}
+(23,1,1) = {"
+zZ
+MA
+zU
+MA
+zZ
+zZ
+Ef
+zZ
+zZ
+dX
+kc
+Tw
+mA
+fT
+Lw
+Dd
+mA
+mA
+MA
+dX
+zZ
+zZ
+zZ
+zZ
+Bb
+MA
+zZ
+zZ
+zZ
+zZ
+"}
+(24,1,1) = {"
+Dw
+MA
+MA
+zZ
+zZ
+Us
+zZ
+LC
+zZ
+dX
+nO
+mA
+wG
+mA
+mA
+Dd
+MA
+MA
+MA
+dX
+zZ
+zZ
+zZ
+zZ
+MA
+MA
+zZ
+zZ
+Ef
+zZ
+"}
+(25,1,1) = {"
+zZ
+MA
+MA
+zZ
+Is
+Is
+Is
+ZW
+zZ
+dX
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+dX
+zZ
+zZ
+zZ
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(26,1,1) = {"
+MA
+MA
+MA
+Is
+Wk
+zZ
+zZ
+Is
+Is
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+dX
+zZ
+zZ
+MA
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(27,1,1) = {"
+MA
+MA
+MA
+Is
+MA
+zZ
+zZ
+zZ
+Is
+Is
+MA
+MA
+MA
+MA
+MA
+zU
+MA
+MA
+MA
+dX
+zZ
+zZ
+MA
+MA
+zZ
+zZ
+Dw
+zZ
+zZ
+zZ
+"}
+(28,1,1) = {"
+zZ
+MA
+MA
+MA
+MA
+MA
+MA
+zZ
+zZ
+Is
+cr
+MA
+MA
+Is
+Is
+Is
+cr
+Is
+Is
+Is
+Is
+MA
+MA
+zZ
+zZ
+zZ
+Ef
+zZ
+zZ
+zZ
+"}
+(29,1,1) = {"
+mJ
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+ZW
+Is
+UK
+Is
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}
+(30,1,1) = {"
+zZ
+Dw
+MA
+zZ
+JV
+Ef
+zZ
+Dw
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+MA
+mJ
+MA
+MA
+MA
+zZ
+zZ
+zZ
+Dw
+zZ
+zZ
+zZ
+zZ
+zZ
+zZ
+"}

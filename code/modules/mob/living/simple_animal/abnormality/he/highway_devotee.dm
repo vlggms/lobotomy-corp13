@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "highway_devotee"
 	icon_living = "highway_devotee"
+	portrait = "highway_devotee"
 	maxHealth = 1200
 	health = 1200
 	ranged = TRUE

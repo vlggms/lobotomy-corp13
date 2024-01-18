@@ -3,6 +3,7 @@
 	desc = "A little fleshy being reading a tiny book."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "skin_prophet"
+	portrait = "skin_prophet"
 	maxHealth = 600
 	health = 600
 	threat_level = TETH_LEVEL
