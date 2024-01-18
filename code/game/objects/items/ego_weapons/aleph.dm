@@ -1282,7 +1282,7 @@
 	hitsound = 'sound/weapons/whip.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 120,
- 							PRUDENCE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 120,
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
