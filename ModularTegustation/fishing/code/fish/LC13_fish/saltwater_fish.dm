@@ -36,6 +36,7 @@
 	feeding_frequency = 25 MINUTES
 	microwaved_type = /obj/item/food/meat/crab
 	fillet_type = /obj/item/food/meat/rawcrab
+	food_reagents = list(/datum/reagent/consumable/nutriment/organ_tissue = 1, /datum/reagent/consumable/nutriment/vile_fluid = 1)
 
 /// Abnormalities
 
