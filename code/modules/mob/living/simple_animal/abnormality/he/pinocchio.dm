@@ -155,9 +155,10 @@
 		realboy.ai_controller = /datum/ai_controller/insane/murder/puppet
 		realboy.InitializeAIController()
 		realboy.apply_status_effect(/datum/status_effect/panicked_type/puppet)
-	//Destroys the invisible pinocchio, as it is unecessary in Rcorp, also gives him a flashlight as NV spell does not work on him.
+	//Destroys the invisible pinocchio, as it is unecessary in Rcorp, also gives him NV goggles and shoes.
 	else
-		realboy.put_in_r_hand(new /obj/item/flashlight/seclite(realboy))
+		realboy.equip_to_slot(new /obj/item/clothing/glasses/night/rabbit, ITEM_SLOT_EYES)
+		realboy.equip_to_slot(new /obj/item/clothing/shoes/combat, ITEM_SLOT_FEET)
 		qdel(src)
 	return TRUE
 
