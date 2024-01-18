@@ -9,7 +9,8 @@
 	icon_state = "siltcurrent"
 	icon_living = "siltcurrent"
 	icon_dead = "siltcurrent_egg"
-	deathmessage = "coalesces into a primordial egg."
+	portrait = "siltcurrent"
+	death_message = "coalesces into a primordial egg."
 	del_on_death = FALSE
 	pixel_x = -32
 	base_pixel_x = -32
@@ -23,7 +24,7 @@
 	health = 2000
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
-	deathsound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
+	death_sound = 'sound/abnormalities/dreamingcurrent/dead.ogg'
 	attack_sound = 'sound/effects/ordeals/crimson/noon_bite.ogg'
 	attack_verb_continuous = "chomps"
 	attack_verb_simple = "chomps"
