@@ -1267,3 +1267,180 @@
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		target.throw_at(throw_target, 7, 7, user)
+
+/obj/item/ego_weapon/oberon
+	name = "oberon"
+	desc = "Then yes, I am the Oberon you seek."
+	special = "Use this weapon in hand to swap between forms. The whip has higher reach and builds up attack speed before unleasheing a powerful burst, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage and incease the BLACK vulnerability by 0.2 in an area, and the bat does RED DAMAGE and knocks back enemies."
+	icon_state = "mockery_whip"
+	force = 45
+	attack_speed = 0.8
+	reach = 3
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("lacerates", "disciplines")
+	attack_verb_simple = list("lacerate", "discipline")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+ 							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 120
+							)
+	var/mob/current_holder
+	var/form = "whip"
+	var/list/weapon_list = list(
+		"whip" = list(45, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE),
+		"sword" = list(40, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE),
+		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE),
+		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE)
+		)
+	var/gun_cooldown
+	var/gun_cooldown_time = 1.5 SECONDS
+	var/build_up = 0.8
+	var/smashing = FALSE
+
+/obj/item/ego_weapon/oberon/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/ego_weapon/oberon/attack_self(mob/user)
+	. = ..()
+	if(!CanUseEgo(user))
+		return
+	SwitchForm(user)
+
+/obj/item/ego_weapon/oberon/equipped(mob/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/oberon/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/oberon/attack(mob/living/target, mob/living/carbon/human/user)
+	. = ..()
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	if(!.)
+		return FALSE
+	switch(form)
+		if("sword")
+			var/red = force
+			red*=justicemod
+			target.apply_damage(red, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if("bat")
+			var/atom/throw_target = get_edge_target_turf(target, user.dir)
+			if(!target.anchored)
+				var/whack_speed = (prob(60) ? 1 : 4)
+				target.throw_at(throw_target, rand(2, 5), whack_speed, user)
+		if("hammer")
+			for(var/mob/living/L in view(2, target))
+				var/aoe = force
+				aoe*=justicemod
+				if(user.faction_check_mob(L))
+					continue
+				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+				if(!ishuman(L))
+					if(!L.has_status_effect(/datum/status_effect/rend_black))
+						L.apply_status_effect(/datum/status_effect/rend_black)
+					if(!L.has_status_effect(/datum/status_effect/rend_red))
+						L.apply_status_effect(/datum/status_effect/rend_red)
+
+/obj/item/ego_weapon/oberon/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	switch(form)
+		if("whip")
+			if (isliving(target))
+				user.changeNext_move(CLICK_CD_MELEE * build_up) // Starts a little fast, but....
+				if (build_up <= 0.1)
+					build_up = 0.8
+					if(!smashing)
+						to_chat(user,"<span class='warning'>The whip starts to thrash around uncontrollably!</span>")
+						Smash(user, target)
+				else
+					build_up -= 0.05
+			else
+				user.changeNext_move(CLICK_CD_MELEE * 1.1)
+
+/obj/item/ego_weapon/oberon/proc/Smash(mob/user, atom/target)
+	smashing = TRUE
+	playsound(user, 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
+	var/smash_damage = 120*(1+(get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100))
+	sleep(0.5 SECONDS)
+	for(var/turf/T in view(3, user))
+		new /obj/effect/temp_visual/nobody_grab(T)
+		for(var/mob/living/L in T)
+			if(user.faction_check_mob(L))
+				continue
+			L.apply_damage(smash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	playsound(user, 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
+	sleep(0.5 SECONDS)
+	smashing = FALSE
+	return
+
+/obj/item/ego_weapon/oberon/get_clamped_volume()
+	return 40
+
+
+/obj/item/ego_weapon/oberon/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	switch(form)
+		if("sword")
+			if(!proximity_flag && gun_cooldown <= world.time)
+				var/turf/proj_turf = user.loc
+				if(!isturf(proj_turf))
+					return
+				var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
+				G.damage = 90
+				G.icon_state = "red_laser"
+				playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
+				G.firer = user
+				G.preparePixelProjectile(target, user, clickparams)
+				G.fire()
+				G.damage *= force_multiplier
+				gun_cooldown = world.time + gun_cooldown_time
+				return
+// Radial menu
+/obj/item/ego_weapon/oberon/proc/SwitchForm(mob/user)
+	var/list/armament_icons = list(
+		"whip" = image(icon = src.icon, icon_state = "mockery_whip"),
+		"sword"  = image(icon = src.icon, icon_state = "mockery_sword"),
+		"hammer"  = image(icon = src.icon, icon_state = "mockery_hammer"),
+		"bat"  = image(icon = src.icon, icon_state = "mockery_bat")
+	)
+	armament_icons = sortList(armament_icons)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/CheckMenu, user), radius = 42, require_near = TRUE)
+	if(!choice || !CheckMenu(user))
+		return
+	form = choice
+	Transform()
+
+/obj/item/ego_weapon/oberon/proc/CheckMenu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
+
+/obj/item/ego_weapon/oberon/proc/Transform()
+	icon_state = "mockery_[form]"
+	update_icon_state()
+	if(current_holder)
+		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		current_holder.update_inv_hands()
+		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
+	force = weapon_list[form][1]
+	attack_speed = weapon_list[form][2]
+	reach = weapon_list[form][3]
+	attack_verb_continuous = weapon_list[form][4]
+	attack_verb_simple = weapon_list[form][5]
+	hitsound = weapon_list[form][6]
+	damtype = weapon_list[form][7]
+
+/
