@@ -78,7 +78,7 @@
 //Temporary line
 /datum/data/lc13research/ntemp1
 	research_name = "N-Corporation Temporary Experience Ampules"
-	research_desc = "A permit to sell temporarily stat increasing experience ampules. <br>Through a bit of experimentation we have found out to repeatedly extract segmented experience from prisioners for mass production, however the repeated draining of their experiences causes these memories to become fragile and fade. I'm sure however you can still easily market these for some profit."
+	research_desc = "A permit to sell temporarily stat increasing experience ampules. <br>Through a bit of experimentation we have found out to repeatedly extract segmented experience from prisioners for mass production, <br>however the repeated draining of their experiences causes these memories to become fragile and fade. <br>I'm sure however you can still easily market these for some profit."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/nbuff1
@@ -92,7 +92,7 @@
 
 /datum/data/lc13research/ntemp2
 	research_name = "N-Corporation Strengthened Temporary Experience Ampules"
-	research_desc = "A permit to sell more potent temporary stat increasing experience ampules. <br>Through trial and error we have managed to increase the amount of experience that can be repeatedly gathered from a individual at the cost of heightened fading, though it's duration is ineffective for long-term use it can be efficiently deployed in emergencies. I believe you already know the drill, I'm sure these ones will sell far better than our previous ampules."
+	research_desc = "A permit to sell more potent temporary stat increasing experience ampules. <br>Through trial and error we have managed to increase the amount of experience that can be repeatedly gathered from a individual at the cost of heightened fading, <br>though it's duration is ineffective for long-term use it can be efficiently deployed in emergencies. I believe you already know the drill, <br>I'm sure these ones will sell far better than our previous ampules."
 	cost = AVERAGE_RESEARCH_PRICE+5
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/ntemp1
@@ -103,7 +103,7 @@
 
 /datum/data/lc13research/ntemp3
 	research_name = "N-Corporation Focused Temporary Experience Ampules"
-	research_desc = "A permit to sell focused temporary stat increasing experience ampules. <br>While losing a few impure guinea pigs in the attempt to make it we have finally suceeded, this ampule is the pinnacle of our research, capable of being infinitely produced out of repeated draining at 33% higher efficiency, learning from the failure of past fading ampules however this one will not grant experience in more than one area to avoid rapid fading. I'm sure you can put the remains of that mechanical filth to good use."
+	research_desc = "A permit to sell focused temporary stat increasing experience ampules. <br>While losing a few impure guinea pigs in the attempt to make it we have finally suceeded, <br>this ampule is the pinnacle of our research, capable of being infinitely produced out of repeated draining at 33% higher efficiency, <br>learning from the failure of past fading ampules however this one will not grant experience in more than one area to avoid rapid fading. I'm sure you can put the remains of that mechanical filth to good use."
 	cost = HIGH_RESEARCH_PRICE
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/ntemp2

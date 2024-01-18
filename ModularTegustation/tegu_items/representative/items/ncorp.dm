@@ -64,6 +64,47 @@
 	allowed_roles = list("Records Officer", "Extraction Officer")
 
 //Temporary attributes
+#define STATUS_EFFECT_FORTITUDE /datum/status_effect/ncorp/fortitude
+#define STATUS_EFFECT_PRUDENCE /datum/status_effect/ncorp/prudence
+#define STATUS_EFFECT_TEMPERANCE /datum/status_effect/ncorp/temperance
+#define STATUS_EFFECT_JUSTICE /datum/status_effect/ncorp/justice
+
+/atom/movable/screen/alert/status_effect/ncorp
+	name = "N-Corp Fading Ampules"
+	desc = "Your attributes are temporarily buffed."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "bg_template"
+
+/datum/status_effect/ncorp
+	id = "ncorptemp"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 3000		//Lasts 5 minutes
+	alert_type = /atom/movable/screen/alert/status_effect/ncorp
+	var/attribute_buff = FORTITUDE_ATTRIBUTE
+
+/datum/status_effect/ncorp/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(attribute_buff, 15)
+
+/datum/status_effect/ncorp/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(attribute_buff, -15)
+
+/datum/status_effect/ncorp/fortitude
+
+/datum/status_effect/ncorp/prudence
+	attribute_buff = PRUDENCE_ATTRIBUTE
+
+/datum/status_effect/ncorp/temperance
+	attribute_buff = TEMPERANCE_ATTRIBUTE
+
+/datum/status_effect/ncorp/justice
+	attribute_buff = JUSTICE_ATTRIBUTE
+
 /obj/item/attribute_temporary/justicesmall
 	name = "ncorp small fading justice accelerator"
 	desc = "A fluid used to increase the user's justice temporarily. Use in hand to activate."
@@ -72,30 +113,8 @@
 
 /obj/item/attribute_temporary/justicesmall/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/njustice)
+	user.apply_status_effect(STATUS_EFFECT_JUSTICE)
 	qdel(src)
-
-/datum/status_effect/njustice
-	id = "NJUSTICE"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/njustice
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/njustice
-	name = "N-Corp Experience"
-	desc = "Increases justice by 15."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/njustice/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 15)
-
-/datum/status_effect/njustice/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -15)
 
 /obj/item/attribute_temporary/temperancesmall
 	name = "ncorp small fading temperance  accelerator"
@@ -105,30 +124,8 @@
 
 /obj/item/attribute_temporary/temperancesmall/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/ntemperance)
+	user.apply_status_effect(STATUS_EFFECT_TEMPERANCE)
 	qdel(src)
-
-/datum/status_effect/ntemperance
-	id = "NTEMPERANCE"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/ntemperance
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/ntemperance
-	name = "N-Corp Experience"
-	desc = "Increases temperance by 15."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/ntemperance/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 15)
-
-/datum/status_effect/ntemperance/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -15)
 
 /obj/item/attribute_temporary/fortitudesmall
 	name = "ncorp small fading fortitude accelerator"
@@ -138,30 +135,8 @@
 
 /obj/item/attribute_temporary/fortitudesmall/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/nfortitude)
+	user.apply_status_effect(STATUS_EFFECT_FORTITUDE)
 	qdel(src)
-
-/datum/status_effect/nfortitude
-	id = "NFORTITUDE"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/nfortitude
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/nfortitude
-	name = "N-Corp Experience"
-	desc = "Increases fortitude by 15."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/nfortitude/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 15)
-
-/datum/status_effect/nfortitude/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -15)
 
 /obj/item/attribute_temporary/prudencesmall
 	name = "ncorp small fading prudence accelerator"
@@ -171,30 +146,8 @@
 
 /obj/item/attribute_temporary/prudencesmall/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/nprudence)
+	user.apply_status_effect(STATUS_EFFECT_PRUDENCE)
 	qdel(src)
-
-/datum/status_effect/nprudence
-	id = "NPRUDENCE"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/nprudence
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/nprudence
-	name = "N-Corp Experience"
-	desc = "Increases prudence by 15."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/nprudence/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 15)
-
-/datum/status_effect/nprudence/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -15)
 
 //Generalized temporary ampules
 /obj/item/attribute_temporary/stattemporary
@@ -209,18 +162,12 @@
 	qdel(src)
 
 /datum/status_effect/nstats
-	id = "NSTATS"
+	id = "nstats"
 	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/nstats
-	duration = 120 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/ncorp
+	duration = 1200
 
-/atom/movable/screen/alert/status_effect/nstats
-	name = "N-Corp Experience"
-	desc = "Increases all stats by 15."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/njustice/on_apply()
+/datum/status_effect/nstats/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 15)
@@ -228,13 +175,49 @@
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 15)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 15)
 
-/datum/status_effect/njustice/on_remove()
+/datum/status_effect/nstats/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -15)
 	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -15)
 	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -15)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -15)
+
+//Focused Ncorp ampules
+#define STATUS_EFFECT_FORTITUDE_FOCUS /datum/status_effect/nfocus/fortitude
+#define STATUS_EFFECT_PRUDENCE_FOCUS /datum/status_effect/nfocus/prudence
+#define STATUS_EFFECT_TEMPERANCE_FOCUS /datum/status_effect/nfocus/temperance
+#define STATUS_EFFECT_JUSTICE_FOCUS /datum/status_effect/nfocus/justice
+
+/datum/status_effect/nfocus
+	id = "nfocus"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 3000		//Lasts 5 minutes
+	alert_type = /atom/movable/screen/alert/status_effect/ncorp
+	var/attribute_buff = FORTITUDE_ATTRIBUTE
+
+/datum/status_effect/ncorp/on_apply()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(attribute_buff, 20)
+
+/datum/status_effect/ncorp/on_remove()
+	. = ..()
+	if(ishuman(owner))
+		var/mob/living/carbon/human/L = owner
+		L.adjust_attribute_buff(attribute_buff, -20)
+
+/datum/status_effect/nfocus/fortitude
+
+/datum/status_effect/nfocus/prudence
+	attribute_buff = PRUDENCE_ATTRIBUTE
+
+/datum/status_effect/nfocus/temperance
+	attribute_buff = TEMPERANCE_ATTRIBUTE
+
+/datum/status_effect/nfocus/justice
+	attribute_buff = JUSTICE_ATTRIBUTE
 
 /obj/item/attribute_temporary/justicebig
 	name = "ncorp large fading justice accelerator"
@@ -244,30 +227,8 @@
 
 /obj/item/attribute_temporary/justicebig/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/njusticebig)
+	user.apply_status_effect(STATUS_EFFECT_JUSTICE_FOCUS)
 	qdel(src)
-
-/datum/status_effect/njusticebig
-	id = "NJUSTICEBIG"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/njusticebig
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/njusticebig
-	name = "N-Corp Experience"
-	desc = "Increases justice by 20."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/njustice/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20)
-
-/datum/status_effect/njustice/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -20)
 
 /obj/item/attribute_temporary/temperancebig
 	name = "ncorp large fading temperance  accelerator"
@@ -277,30 +238,8 @@
 
 /obj/item/attribute_temporary/temperancebig/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/ntemperancebig)
+	user.apply_status_effect(STATUS_EFFECT_TEMPERANCE_FOCUS)
 	qdel(src)
-
-/datum/status_effect/ntemperancebig
-	id = "NTEMPERANCEBIG"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/ntemperancebig
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/ntemperancebig
-	name = "N-Corp Experience"
-	desc = "Increases temperance by 20."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/ntemperancebig/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 20)
-
-/datum/status_effect/ntemperancebig/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -20)
 
 /obj/item/attribute_temporary/fortitudebig
 	name = "ncorp large fading fortitude accelerator"
@@ -310,30 +249,8 @@
 
 /obj/item/attribute_temporary/fortitudebig/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/nfortitudebig)
+	user.apply_status_effect(STATUS_EFFECT_FORTITUDE_FOCUS)
 	qdel(src)
-
-/datum/status_effect/nfortitudebig
-	id = "NFORTITUDEBIG"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/nfortitudebig
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/nfortitudebig
-	name = "N-Corp Experience"
-	desc = "Increases fortitude by 20."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/nfortitudebig/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 20)
-
-/datum/status_effect/nfortitudebig/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -20)
 
 /obj/item/attribute_temporary/prudencebig
 	name = "ncorp large fading prudence accelerator"
@@ -343,28 +260,6 @@
 
 /obj/item/attribute_temporary/prudencebig/attack_self(mob/living/carbon/human/user)
 	to_chat(user, span_nicegreen("You suddenly feel different."))
-	user.apply_status_effect(/datum/status_effect/nprudencebig)
+	user.apply_status_effect(STATUS_EFFECT_PRUDENCE_FOCUS)
 	qdel(src)
-
-/datum/status_effect/nprudencebig
-	id = "NPRUDENCEBIG"
-	status_type = STATUS_EFFECT_UNIQUE
-	alert_type = /atom/movable/screen/alert/status_effect/nprudencebig
-	duration = 300 SECONDS
-
-/atom/movable/screen/alert/status_effect/nprudencebig
-	name = "N-Corp Experience"
-	desc = "Increases prudence by 20."
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "bg_template"
-
-/datum/status_effect/nprudencebig/on_apply()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 20)
-
-/datum/status_effect/nprudencebig/on_remove()
-	. = ..()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -20)
 
