@@ -69,7 +69,8 @@
 		return
 	if(crown?.loved == user)
 		if(crown.loved)
-			datum_reference.qliphoth_change(1)
+			datum_reference.qliphoth_change(2)
+			(crown.love_cooldown) = world.time + (crown.love_cooldown_time)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -263,7 +264,7 @@
 	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
 	var/success_mod = 1.15
 	var/love_cooldown
-	var/love_cooldown_time = 3 MINUTES //It takes around 9 minutes for mermaid to breach if left unchecked
+	var/love_cooldown_time = 3.3 MINUTES //It takes around 10 minutes for mermaid to breach if left unchecked
 	var/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/mermaid
 	var/mob/living/carbon/human/loved //What's wrong anon? Unconditional love is what you wanted right?
 
