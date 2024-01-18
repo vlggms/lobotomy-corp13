@@ -48,8 +48,6 @@
 	job_notice = "You cannot use guns, but have access to night vision. In your backpack you have a variety of tools to supply information to, and support your teammates. \
 		You are not as fast as scout ravens, try to stay with the group."
 
-
-
 /datum/job/rcorp_captain/raven
 	title = "Raven Squad Captain"
 	faction = "Station"
@@ -81,14 +79,12 @@
 	Gather and disseminate information among command. \
 	You are the fastest unit in the 4th pack, and can strike with the speed of which no one else can"
 
-
-
 /datum/outfit/job/raven
 	name = "R-Corp Scout Raven"
 	jobtype = /datum/job/raven
 
 	ears = /obj/item/radio/headset/headset_information
-	glasses = /obj/item/clothing/glasses/night
+	glasses = /obj/item/clothing/glasses/night/rabbit
 	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
@@ -111,11 +107,10 @@
 		/obj/item/powered_gadget/handheld_taser = 1,
 		/obj/item/grenade/smokebomb = 1)
 
-
 /datum/outfit/job/raven/captain
 	name = "Raven Squad Captain"
 	jobtype = /datum/job/rcorp_captain/raven
-	glasses = /obj/item/clothing/glasses/hud/health/night
+	glasses = /obj/item/clothing/glasses/hud/health/night/rabbit
 	head = /obj/item/clothing/head/rabbit_helmet/raven
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravencap
 	suit_store = null

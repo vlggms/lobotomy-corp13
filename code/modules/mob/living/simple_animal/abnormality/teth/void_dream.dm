@@ -40,6 +40,11 @@
 	var/ability_cooldown
 	var/ability_cooldown_time = 12 SECONDS
 
+/mob/living/simple_animal/hostile/abnormality/voiddream/Initialize()
+	. = ..()
+	if(IsCombatMap())
+		faction = list("hostile") //So that they don't target pino specificlly on RCA
+
 /mob/living/simple_animal/hostile/abnormality/voiddream/Life()
 	. = ..()
 	if(!.)
@@ -93,6 +98,8 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/SleepyDart()
 	var/list/possibletargets = list()
 	for(var/mob/living/carbon/human/H in view(10, src))
+		if(faction_check(src.faction, H.faction))
+			continue
 		if(H.IsSleeping())
 			continue
 		if(H.stat >= SOFT_CRIT)
@@ -111,6 +118,8 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/Shout()
 	playsound(get_turf(src), 'sound/abnormalities/voiddream/shout.ogg', 75, FALSE, 5)
 	for(var/mob/living/carbon/human/L in range(10, src))
+		if(faction_check(src.faction, L.faction)) // I LOVE NESTING IF STATEMENTS
+			continue
 		if(L.has_status_effect(STATUS_EFFECT_SLEEPING))
 			L.SetSleeping(0)
 			L.adjustSanityLoss(1000) //Die.
