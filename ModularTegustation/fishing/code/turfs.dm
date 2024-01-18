@@ -93,8 +93,9 @@
 		/obj/vehicle/ridden/lavaboat,
 		/obj/vehicle/ridden/simple_boat,
 		/obj/structure/lattice/catwalk,
-		/obj/structure/stone_tile,
 		/obj/structure/lattice/lava,
+		/obj/structure/stone_tile,
+		/obj/structure/flora,
 		//If anyone asks yes walking on nets is SORT of intended. -IP
 		/obj/structure/destructible/fishing_net
 		))
@@ -329,4 +330,3 @@
 
 /turf/open/water/deep/saltwater/safe/IsSafe()
 	return TRUE
-
