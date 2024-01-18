@@ -453,6 +453,9 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/east)
+"bu" = (
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/safety)
 "bv" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -2462,6 +2465,9 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/safety)
+"hf" = (
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/west)
 "hg" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 8
@@ -4546,6 +4552,19 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
+"mS" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/machinery/button/door/indestructible{
+	id = "extraction";
+	name = "Extraction Access Shutters";
+	pixel_y = 4;
+	req_one_access_txt = "19";
+	pixel_x = 22
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "mU" = (
 /obj/machinery/door/airlock{
 	name = "restroom"
@@ -4673,9 +4692,6 @@
 /obj/machinery/navbeacon/wayfinding/informationdepartment,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
-"nm" = (
-/turf/closed/indestructible/fakeglass,
-/area/facility_hallway/safety)
 "nn" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
@@ -7053,7 +7069,7 @@
 /area/facility_hallway/central)
 "ts" = (
 /turf/closed/indestructible/fakeglass,
-/area/facility_hallway/control)
+/area/facility_hallway/training)
 "tu" = (
 /obj/structure/bodycontainer,
 /obj/machinery/light{
@@ -7863,23 +7879,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
-"vM" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/machinery/vending/hydronutrients{
-	pixel_y = 19;
-	density = 0
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "vP" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -8605,7 +8604,10 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/dark,
+/obj/machinery/regenerator/safety,
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/extraction)
 "xE" = (
 /obj/effect/turf_decal/siding/thinplating/corner,
@@ -9057,9 +9059,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
-"zf" = (
-/turf/closed/indestructible/fakeglass,
-/area/facility_hallway/west)
 "zh" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/bot,
@@ -10513,9 +10512,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/training)
-"CJ" = (
-/turf/closed/indestructible/fakeglass,
-/area/facility_hallway/east)
 "CM" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -10760,6 +10756,9 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
+"Dv" = (
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/east)
 "Dw" = (
 /obj/machinery/light{
 	dir = 4;
@@ -11528,7 +11527,7 @@
 /area/facility_hallway/south)
 "FH" = (
 /turf/closed/indestructible/fakeglass,
-/area/facility_hallway/training)
+/area/facility_hallway/control)
 "FL" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -17450,6 +17449,23 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"XW" = (
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/brown{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/machinery/vending/hydronutrients{
+	pixel_y = 19;
+	density = 0
+	},
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/training)
 "XX" = (
 /obj/effect/turf_decal/box/red,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -40783,8 +40799,8 @@ Pr
 Qo
 Qo
 Qo
-FH
-FH
+ts
+ts
 Qo
 Qo
 Qo
@@ -40793,9 +40809,9 @@ RY
 RY
 Qo
 Qo
-FH
-FH
-FH
+ts
+ts
+ts
 Qo
 Qo
 RY
@@ -41563,7 +41579,7 @@ KV
 Pt
 LQ
 Qo
-vM
+XW
 Se
 Jj
 Se
@@ -43082,9 +43098,9 @@ fv
 CZ
 fv
 zS
-ts
-ts
-ts
+FH
+FH
+FH
 Qo
 qN
 qN
@@ -43367,7 +43383,7 @@ TZ
 ii
 vZ
 rN
-FH
+ts
 RY
 RY
 rg
@@ -43624,7 +43640,7 @@ Cg
 we
 vZ
 Qb
-FH
+ts
 RY
 RY
 rg
@@ -43881,7 +43897,7 @@ TZ
 qb
 vZ
 dC
-FH
+ts
 RY
 RY
 rg
@@ -45418,7 +45434,7 @@ tC
 qn
 qS
 tb
-zf
+hf
 RY
 RY
 RY
@@ -45675,7 +45691,7 @@ TV
 Vb
 GH
 cX
-zf
+hf
 RY
 RY
 RY
@@ -47735,7 +47751,7 @@ wK
 Oh
 Ac
 Ba
-zf
+hf
 RY
 RY
 RY
@@ -47992,7 +48008,7 @@ Bf
 eI
 Ej
 Rl
-zf
+hf
 RY
 Sb
 Sb
@@ -48249,7 +48265,7 @@ uX
 uX
 Np
 UA
-zf
+hf
 RY
 Sb
 Sb
@@ -53357,7 +53373,7 @@ of
 Nd
 Nd
 xD
-Nd
+mS
 Nd
 bm
 OJ
@@ -54658,7 +54674,7 @@ rg
 RY
 RY
 RY
-CJ
+Dv
 Ph
 EA
 rA
@@ -54915,7 +54931,7 @@ RY
 RY
 RY
 RY
-CJ
+Dv
 ap
 HX
 bt
@@ -54935,7 +54951,7 @@ IJ
 IJ
 vd
 gc
-CJ
+Dv
 ya
 PZ
 TF
@@ -55172,7 +55188,7 @@ RY
 RY
 RY
 RY
-CJ
+Dv
 BH
 UX
 Pk
@@ -55192,7 +55208,7 @@ Zf
 WX
 IJ
 Cf
-CJ
+Dv
 tr
 Er
 Er
@@ -55426,8 +55442,8 @@ rg
 RY
 RY
 iL
-nm
-nm
+bu
+bu
 iL
 It
 It
@@ -55449,7 +55465,7 @@ Jn
 Hh
 IJ
 Nt
-CJ
+Dv
 sx
 sx
 sx
@@ -55682,7 +55698,7 @@ rg
 rg
 RY
 RY
-nm
+bu
 UN
 QD
 yR
@@ -55939,7 +55955,7 @@ rg
 rg
 RY
 RY
-nm
+bu
 XM
 Ci
 Kj
@@ -57248,7 +57264,7 @@ iL
 gX
 FY
 oW
-nm
+bu
 Er
 nJ
 sx
@@ -57505,7 +57521,7 @@ iL
 bX
 IV
 dc
-nm
+bu
 sx
 sx
 sx
@@ -57762,7 +57778,7 @@ iL
 vS
 ft
 Eh
-nm
+bu
 sx
 sx
 sx
@@ -57995,7 +58011,7 @@ RY
 RY
 RY
 RY
-nm
+bu
 XM
 UJ
 Kj
@@ -58252,7 +58268,7 @@ RY
 RY
 RY
 RY
-nm
+bu
 UN
 Ql
 yR
@@ -58790,7 +58806,7 @@ Ok
 Dr
 ft
 xe
-nm
+bu
 RY
 RY
 RY
@@ -59047,7 +59063,7 @@ qH
 kt
 zW
 xe
-nm
+bu
 RY
 RY
 RY
@@ -59304,7 +59320,7 @@ AA
 Ov
 ft
 xe
-nm
+bu
 RY
 RY
 rg
@@ -59798,8 +59814,8 @@ RY
 iL
 iL
 iL
-nm
-nm
+bu
+bu
 iL
 iL
 iL
@@ -60332,7 +60348,7 @@ iL
 AD
 ft
 xe
-nm
+bu
 RY
 RY
 rg
@@ -60589,7 +60605,7 @@ iL
 Zl
 ft
 dc
-nm
+bu
 RY
 RY
 rg
@@ -60846,7 +60862,7 @@ iL
 wY
 dQ
 Eh
-nm
+bu
 RY
 RY
 rg
