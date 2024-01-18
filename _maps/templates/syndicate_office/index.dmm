@@ -94,6 +94,12 @@
 	name = "floor"
 	},
 /area/city/backstreets_room)
+"fN" = (
+/obj/structure/railing,
+/turf/open/floor/mineral/titanium/white{
+	name = "floor"
+	},
+/area/city/backstreets_room)
 "gL" = (
 /obj/structure/bed{
 	name = "bunk beds";
@@ -183,6 +189,14 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"jI" = (
+/obj/effect/turf_decal/siding/wideplating{
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/white{
+	name = "floor"
+	},
 /area/city/backstreets_room)
 "lc" = (
 /turf/open/floor/mineral/titanium/tiled/white,
@@ -298,6 +312,13 @@
 	name = "floor"
 	},
 /area/city/backstreets_room)
+"sl" = (
+/obj/structure/table/wood,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/blue,
+/area/city/backstreets_room)
 "sA" = (
 /obj/structure/table/greyscale,
 /obj/item/storage/firstaid/regular,
@@ -325,6 +346,7 @@
 	dir = 1;
 	pixel_y = 19
 	},
+/obj/structure/railing,
 /turf/open/floor/mineral/titanium/white{
 	name = "floor"
 	},
@@ -339,9 +361,13 @@
 /area/city/backstreets_room)
 "uj" = (
 /obj/structure/table/wood,
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 10
 	},
+/turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
 "ul" = (
 /obj/effect/turf_decal/tile/blue{
@@ -520,9 +546,7 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
-	},
+/turf/open/floor/plasteel/stairs,
 /area/city/backstreets_room)
 "Kx" = (
 /obj/effect/turf_decal/tile/blue{
@@ -876,11 +900,11 @@ PP
 Ii
 "}
 (10,1,1) = {"
-Gz
+fN
+sl
+sl
 uj
-uj
-uj
-Gz
+jI
 Gz
 Ii
 sA
@@ -890,9 +914,9 @@ Tc
 "}
 (11,1,1) = {"
 sE
-Gz
-Gz
-Gz
+vL
+vL
+vL
 Ke
 Gz
 PP
