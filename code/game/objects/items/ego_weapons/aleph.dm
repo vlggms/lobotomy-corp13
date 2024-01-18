@@ -1442,5 +1442,3 @@
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
 	damtype = weapon_list[form][7]
-
-/
