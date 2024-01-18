@@ -30,8 +30,8 @@
 	var/list/loot_level1 = list()
 	var/list/loot_level2 = list()
 	var/list/loot_level3 = list(
-		/obj/item/food/grown/harebell = 100
-		)
+		/obj/item/food/grown/harebell = 100,
+	)
 	//Things that just cant sink. Dont bother trying to sink them.
 	var/static/list/cant_sink_types = typecacheof(list(
 		/obj/effect,
@@ -42,7 +42,7 @@
 		/obj/item/jammer/self_activated,
 		/obj/structure/lattice,
 		/obj/projectile,
-		))
+	))
 
 	var/safe = FALSE
 
@@ -97,8 +97,8 @@
 		/obj/structure/stone_tile,
 		/obj/structure/flora,
 		//If anyone asks yes walking on nets is SORT of intended. -IP
-		/obj/structure/destructible/fishing_net
-		))
+		/obj/structure/destructible/fishing_net,
+	))
 	var/list/found_safeties = typecache_filter_list(contents, water_safeties_typecache)
 	return LAZYLEN(found_safeties)
 
@@ -249,14 +249,14 @@
 		/obj/item/fishing_component/hook/bone = 5,
 		/obj/item/food/grown/harebell = 5,
 		/obj/item/food/breadslice/moldy = 2,
-		)
+	)
 	loot_level2 = list(
 		/obj/item/food/fish/fresh_water/catfish = 50,
 		/obj/item/stack/sheet/sinew/wolf = 20,
 		/obj/item/stack/sheet/leather = 15,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
-		)
+	)
 	loot_level3 = list(
 		/obj/item/food/fish/fresh_water/ratfish = 25,
 		/obj/item/food/fish/fresh_water/waterflea = 20,
@@ -264,7 +264,7 @@
 		/obj/item/food/fish/fresh_water/yang = 20,
 		/mob/living/simple_animal/hostile/retaliate/frog = 10,
 		/obj/item/food/fish/emulsijack = 5,
-		)
+	)
 
 /turf/open/water/deep/saltwater
 	name = "water"
@@ -276,18 +276,18 @@
 		/obj/item/food/fish/salt_water/firefish = 20,
 		/obj/item/food/fish/salt_water/clownfish = 10,
 		/obj/item/stack/sheet/mineral/wood = 10,
-		)
+	)
 	loot_level2 = list(
 		/obj/item/food/fish/salt_water/cardinal = 45,
 		/obj/item/food/fish/salt_water/sheephead = 40,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
-		)
+	)
 	loot_level3 = list(
 		/obj/item/food/fish/salt_water/lanternfish = 85,
 		/mob/living/simple_animal/crab = 10,
 		/obj/item/food/fish/emulsijack = 5,
-		)
+	)
 
 /turf/open/water/deep/polluted
 	name = "polluted water"
@@ -299,8 +299,8 @@
 		/obj/item/food/breadslice/moldy = 40,
 		/obj/item/stack/sheet/mineral/wood = 5,
 		/obj/item/food/grown/harebell = 5,
-		/obj/item/food/spiderling = 5
-		)
+		/obj/item/food/spiderling = 5,
+	)
 	loot_level2 = list(
 		/obj/item/food/fish/fresh_water/ratfish = 35,
 		/obj/item/food/canned/peaches = 15,
@@ -310,12 +310,12 @@
 		/obj/item/ego_weapon/city/rats/brick = 10,
 		/obj/item/food/tofu/prison = 3,
 		/mob/living/simple_animal/hostile/shrimp = 2,
-		)
+	)
 	loot_level3 = list(
 		/obj/item/food/fish/fresh_water/mosb = 50,
 		/obj/item/food/fish/salt_water/piscine_mermaid = 45,
 		/obj/item/food/fish/emulsijack = 5,
-		)
+	)
 
 /turf/open/water/deep/polluted/ObjSink(atom/movable/sinkin_thing)
 	return TRUE

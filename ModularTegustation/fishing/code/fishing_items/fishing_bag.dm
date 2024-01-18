@@ -27,7 +27,7 @@
 		/obj/item/food/fish,
 		/obj/item/fishing_component/hook/bone,
 		/obj/item/stack/fish_points,
-		))
+	))
 
 /obj/item/storage/bag/fish/equipped(mob/user)
 	. = ..()
