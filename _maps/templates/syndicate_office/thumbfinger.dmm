@@ -1,0 +1,1089 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"bh" = (
+/obj/structure/bookcase/random{
+	density = 0;
+	pixel_x = -32
+	},
+/obj/machinery/door/window/survival_pod{
+	dir = 4;
+	name = "capo quarters";
+	req_access_txt = "150";
+	opacity = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"bp" = (
+/obj/machinery/door/airlock/wood{
+	name = "sottocapo quarters";
+	req_access_txt = "151"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"bA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"bC" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/closet/crate/bin{
+	pixel_y = 2
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"dz" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"dG" = (
+/obj/structure/bookcase/random{
+	density = 0;
+	pixel_x = -32
+	},
+/obj/structure/window/reinforced/survival_pod{
+	opacity = 1;
+	name = "tinted window";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"dT" = (
+/obj/structure/chair/comfy/brown{
+	dir = 1;
+	can_buckle = 0;
+	pixel_y = 9
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"er" = (
+/obj/structure/bed/pod,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/bedsheet/hos{
+	anchored = 1;
+	name = "capo's bedsheet";
+	desc = "It is decorated with a bullet emblem. The Thumbs see subordination and insubordination an equal parallel to life and death."
+	},
+/obj/structure/window/reinforced/tinted,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"ez" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/closet/crate/bin{
+	pixel_y = 10
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"fi" = (
+/obj/structure/chair/office,
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"fl" = (
+/obj/item/banner/cargo/mundane{
+	color = "red";
+	pixel_y = 23
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"fJ" = (
+/obj/structure/table/wood/fancy,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"gq" = (
+/obj/machinery/door/airlock/wood{
+	name = "capo quarters";
+	req_access_txt = "150"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"gr" = (
+/obj/structure/window/reinforced/survival_pod,
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800";
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"gB" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = -5;
+	layer = 2.97;
+	mouse_opacity = 0
+	},
+/obj/structure/table{
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/bedsheet/red{
+	layer = 2.96;
+	name = "soldato bedsheet";
+	anchored = 1;
+	pixel_y = 15
+	},
+/obj/item/bedsheet/red{
+	layer = 2.94;
+	name = "soldato bedsheet";
+	anchored = 1
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"iT" = (
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"kE" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/machinery/vending/boozeomat{
+	pixel_x = -32;
+	density = 0
+	},
+/obj/structure/window/reinforced/survival_pod{
+	opacity = 1;
+	name = "tinted window";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"lb" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/machinery/vending/coffee{
+	pixel_y = 19;
+	density = 0
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"le" = (
+/obj/machinery/jukebox,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"lj" = (
+/obj/machinery/door/window/survival_pod{
+	name = "soldato barracks";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ln" = (
+/obj/machinery/door/airlock/wood{
+	name = "thumb storage closet";
+	req_access_txt = "151"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"mF" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"nw" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"oi" = (
+/obj/item/modular_computer/laptop,
+/obj/structure/table/wood,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"pe" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/closet/crate{
+	anchored = 1;
+	opened = 1
+	},
+/obj/item/clothing/suit/armor/ego_gear/city/thumb,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb,
+/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"pE" = (
+/obj/structure/closet/cabinet,
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/item/gun/ego_gun/city/thumb/capo/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
+/obj/item/ego_weapon/city/thumbmelee/weak,
+/obj/item/grenade/frag,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"qC" = (
+/obj/item/paper_bin{
+	pixel_y = 5
+	},
+/obj/item/pen/fountain/captain{
+	pixel_y = 5;
+	name = "sottocapo's fountain pen"
+	},
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/wood/fancy,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"rI" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/syndie{
+	name = "sottocapo bedsheet";
+	desc = "The fact that this bedsheet was tailored by the Carnival, speaks volumes on its price alone."
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"rW" = (
+/obj/structure/chair/comfy/brown,
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"sm" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/cas/black,
+/obj/effect/holodeck_effect/cards{
+	pixel_y = 11
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"tz" = (
+/obj/structure/chair/comfy/brown{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"tZ" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/structure/window/reinforced/survival_pod{
+	opacity = 1;
+	name = "tinted window";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"uc" = (
+/obj/machinery/door/window/survival_pod{
+	dir = 1;
+	name = "soldato barracks";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ul" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"uP" = (
+/turf/closed/indestructible/wood,
+/area/city/backstreets_room)
+"vH" = (
+/obj/structure/table/wood/poker,
+/obj/item/toy/cards/deck/kotahi,
+/obj/effect/holodeck_effect/cards{
+	pixel_y = 11
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"wi" = (
+/obj/structure/window/reinforced/tinted,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"wO" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Bk" = (
+/obj/item/modular_computer/laptop{
+	pixel_y = 4
+	},
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Cj" = (
+/obj/machinery/door/airlock/wood{
+	name = "sottocapo office";
+	req_access_txt = "151"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Ds" = (
+/obj/machinery/door/window/survival_pod{
+	opacity = 1;
+	name = "thumb meeting room";
+	req_access_txt = "150"
+	},
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Fq" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = -5;
+	layer = 2.97;
+	mouse_opacity = 0
+	},
+/obj/structure/table{
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/item/bedsheet/red{
+	layer = 2.94;
+	name = "soldato bedsheet";
+	anchored = 1
+	},
+/obj/item/bedsheet/red{
+	layer = 2.96;
+	name = "soldato bedsheet";
+	anchored = 1;
+	pixel_y = 15
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"Gr" = (
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"GJ" = (
+/obj/machinery/vending/cigarette{
+	pixel_y = 19;
+	density = 0
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"HF" = (
+/obj/structure/closet/crate{
+	anchored = 1;
+	opened = 1
+	},
+/obj/item/storage/firstaid/revival,
+/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/tank/internals/anesthetic,
+/obj/item/clothing/mask/breath/medical,
+/obj/item/storage/firstaid/regular,
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"HY" = (
+/obj/structure/chair/comfy/brown,
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"Jd" = (
+/obj/structure/bookcase/random{
+	pixel_y = 32;
+	density = 0
+	},
+/obj/structure/chair/comfy/brown{
+	dir = 8;
+	can_buckle = 0;
+	pixel_y = 4;
+	pixel_x = 5
+	},
+/obj/machinery/vending/boozeomat{
+	pixel_x = 32;
+	density = 0
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"Jz" = (
+/obj/structure/window/reinforced/survival_pod,
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800";
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Kf" = (
+/obj/structure/chair/comfy/brown{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Kz" = (
+/obj/structure/chair/sofa/right{
+	pixel_x = 3;
+	name = "fancy leather sofa";
+	desc = "Custom order, this piece of furniture. Its origins made - made apparent - from a wealthy nest in a far-away district.";
+	dir = 1;
+	mouse_opacity = 0
+	},
+/obj/structure/chair/sofa/left{
+	pixel_x = -3;
+	dir = 1;
+	name = "fancy leather sofa";
+	desc = "Custom order, this piece of furniture. Its origins made - made apparent - from a wealthy nest in a far-away district."
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Ll" = (
+/obj/structure/chair/wood/wings{
+	dir = 8
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"LE" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/table{
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = 11;
+	layer = 2;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/red{
+	layer = 2.94;
+	name = "soldato bedsheet";
+	anchored = 1
+	},
+/obj/item/bedsheet/red{
+	layer = 2.96;
+	name = "soldato bedsheet";
+	anchored = 1;
+	pixel_y = 15
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"LT" = (
+/obj/structure/fireplace,
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"Mi" = (
+/obj/machinery/vending/boozeomat{
+	pixel_x = -32;
+	density = 0
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"MB" = (
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/obj/structure/table/wood,
+/obj/item/modular_computer/laptop,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/obj/item/stack/spacecash/c10000,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Ng" = (
+/obj/structure/table/wood/fancy/red,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Oy" = (
+/obj/structure/chair/comfy/brown{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"OC" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 8
+	},
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"ON" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/closet/crate{
+	pixel_y = 5;
+	anchored = 1;
+	opened = 1
+	},
+/obj/item/clothing/suit/armor/ego_gear/city/thumb,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb,
+/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/item/gun/ego_gun/city/thumb/weak,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"OZ" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800"
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Qj" = (
+/obj/machinery/door/window/survival_pod{
+	name = "sottocapo bedroom";
+	opacity = 1;
+	req_access_txt = "151";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Sd" = (
+/obj/structure/chair/sofa/left{
+	pixel_x = 3;
+	mouse_opacity = 0
+	},
+/obj/structure/chair/sofa/right{
+	pixel_x = -3;
+	name = "fancy leather sofa";
+	desc = "Custom order, this piece of furniture. Its origins made - made apparent - from a wealthy nest in a far-away district."
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/obj/structure/plaque{
+	pixel_y = 26
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Sl" = (
+/obj/structure/closet/cabinet,
+/obj/item/ego_weapon/city/thumbcane/weak,
+/obj/item/gun/ego_gun/city/thumb/sottocapo/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
+/obj/structure/window/reinforced/tinted{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Uk" = (
+/obj/structure/closet/cabinet,
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/item/gun/ego_gun/city/thumb/capo/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
+/obj/item/ego_weapon/city/thumbmelee/weak,
+/obj/item/grenade/frag,
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Us" = (
+/obj/item/flashlight/lamp/green,
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/wood/fancy,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Vm" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"WU" = (
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"WW" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/machinery/vending/cigarette{
+	pixel_y = 19;
+	density = 0
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Xl" = (
+/obj/machinery/door/airlock/wood{
+	name = "sottocapo office";
+	req_access_txt = "151"
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"XF" = (
+/obj/structure/chair/wood{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"XO" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/window/reinforced/survival_pod,
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"XV" = (
+/obj/structure/table/wood/fancy/red,
+/obj/effect/spawner/lootdrop/donkpockets,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"YO" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/structure/table/wood/poker,
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 3
+	},
+/obj/item/storage/fancy/cigarettes/cigars/havana{
+	pixel_y = 7
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"YX" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Zb" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/hos{
+	anchored = 1;
+	name = "capo's bedsheet";
+	desc = "It is decorated with a bullet emblem. The Thumbs see subordination and insubordination an equal parallel to life and death."
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/red,
+/area/city/backstreets_room)
+"Zl" = (
+/obj/structure/table/wood/fancy/red,
+/turf/open/floor/mineral/gold,
+/area/city/backstreets_room)
+"Zx" = (
+/obj/structure/window/reinforced/survival_pod{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "#331800";
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"ZG" = (
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/table{
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = 11;
+	layer = 2;
+	mouse_opacity = 0
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/item/bedsheet/red{
+	layer = 2.96;
+	name = "soldato bedsheet";
+	anchored = 1;
+	pixel_y = 15
+	},
+/obj/item/bedsheet/red{
+	layer = 2.94;
+	name = "soldato bedsheet";
+	anchored = 1
+	},
+/turf/open/floor/carpet,
+/area/city/backstreets_room)
+"ZX" = (
+/obj/item/banner/cargo/mundane{
+	color = "red";
+	pixel_y = 23
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+rW
+sm
+dT
+bC
+OZ
+ul
+Jz
+ez
+HY
+vH
+Oy
+"}
+(2,1,1) = {"
+lb
+iT
+iT
+mF
+uc
+OC
+lj
+YX
+iT
+iT
+iT
+"}
+(3,1,1) = {"
+gB
+iT
+LE
+pe
+Zx
+dz
+gr
+ON
+Fq
+iT
+ZG
+"}
+(4,1,1) = {"
+uP
+uP
+uP
+uP
+uP
+GJ
+uP
+uP
+uP
+uP
+uP
+"}
+(5,1,1) = {"
+ZX
+tz
+Gr
+XF
+XO
+Vm
+uP
+wO
+Us
+Mi
+YO
+"}
+(6,1,1) = {"
+Sd
+XV
+fJ
+Zl
+Ds
+Vm
+Cj
+fi
+Ng
+Kz
+Vm
+"}
+(7,1,1) = {"
+fl
+Kf
+Ll
+nw
+XO
+Vm
+uP
+bA
+qC
+Vm
+Vm
+"}
+(8,1,1) = {"
+uP
+uP
+uP
+uP
+uP
+WW
+uP
+uP
+uP
+uP
+Xl
+"}
+(9,1,1) = {"
+kE
+bh
+dG
+bh
+gq
+Vm
+bp
+tZ
+Qj
+tZ
+Qj
+"}
+(10,1,1) = {"
+Bk
+wi
+oi
+WU
+uP
+ln
+uP
+LT
+iT
+MB
+WU
+"}
+(11,1,1) = {"
+Uk
+er
+pE
+Zb
+uP
+HF
+uP
+Jd
+le
+Sl
+rI
+"}

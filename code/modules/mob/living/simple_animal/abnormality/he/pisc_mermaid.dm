@@ -133,6 +133,9 @@
 		return
 	if(!love_target)
 		for(var/mob/living/carbon/human/H in oview(src, vision_range))
+			if(IsCombatMap())
+				if(faction_check(src.faction, H.faction)) // I LOVE NESTING IF STATEMENTS
+					continue
 			//if there's no love target, they suffocate everyone they can see but you can just get out of her view to stop it
 			H.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
 			new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))

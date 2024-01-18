@@ -4908,15 +4908,6 @@
 /obj/item/reagent_containers/hypospray/emais,
 /turf/open/floor/pod,
 /area/department_main/safety)
-"xI" = (
-/obj/structure/flora/rock/pile/largejungle,
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	icon_state = "red1";
-	color = "#c3bab0"
-	},
-/area/facility_hallway/central)
 "xM" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -9765,6 +9756,14 @@
 	color = "#c3bab0"
 	},
 /area/facility_hallway/manager)
+"Xb" = (
+/obj/structure/flora/rock/pile/largejungle,
+/turf/open/water/deep/freshwater{
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	icon_state = "red1";
+	color = "#c3bab0"
+	},
+/area/facility_hallway/central)
 "Xj" = (
 /obj/structure/closet/crate/freezer/surplus_limbs{
 	anchored = 1
@@ -33914,7 +33913,7 @@ oz
 PH
 aL
 pQ
-xI
+Xb
 KF
 pQ
 pQ
@@ -34689,7 +34688,7 @@ pQ
 pQ
 pQ
 uJ
-xI
+Xb
 pQ
 pQ
 pQ
@@ -35939,7 +35938,7 @@ pQ
 pQ
 pQ
 pQ
-xI
+Xb
 uJ
 pQ
 pQ
@@ -36247,7 +36246,7 @@ gl
 nO
 aL
 xT
-xI
+Xb
 dr
 pQ
 pQ
@@ -36459,7 +36458,7 @@ pQ
 pQ
 pQ
 KF
-xI
+Xb
 Fy
 pQ
 pQ
@@ -37283,7 +37282,7 @@ aL
 aL
 pQ
 dr
-xI
+Xb
 uJ
 pQ
 pQ
@@ -39593,7 +39592,7 @@ nO
 aL
 aL
 aL
-xI
+Xb
 KF
 pQ
 pQ
@@ -41062,7 +41061,7 @@ pQ
 pQ
 pQ
 pQ
-xI
+Xb
 dr
 pQ
 pQ
@@ -44661,7 +44660,7 @@ pQ
 pQ
 pQ
 Fy
-xI
+Xb
 Fy
 pQ
 pQ
@@ -47305,7 +47304,7 @@ aL
 aL
 pQ
 Fy
-xI
+Xb
 Fy
 pQ
 pQ
@@ -50078,7 +50077,7 @@ pQ
 pQ
 pQ
 bC
-xI
+Xb
 dr
 pQ
 pQ
@@ -50131,7 +50130,7 @@ pQ
 pQ
 pQ
 dr
-xI
+Xb
 pQ
 pQ
 pQ
@@ -50841,7 +50840,7 @@ pQ
 pQ
 pQ
 uJ
-xI
+Xb
 KF
 pQ
 pQ
@@ -51624,7 +51623,7 @@ pQ
 pQ
 pQ
 dr
-xI
+Xb
 uJ
 pQ
 Ec

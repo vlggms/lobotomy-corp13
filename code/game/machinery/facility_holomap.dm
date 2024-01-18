@@ -63,13 +63,13 @@
 
 /obj/machinery/facility_holomap/proc/update_map_data()
 	var/turf/T = get_turf(src)
-	if(forced_zLevel)
+	original_zLevel = T.z
+	var/forced = FALSE
+	if(forced_zLevel && original_zLevel != forced_zLevel) //in case a holomap is forced to the level its already on
 		T = locate(T.x,T.y,forced_zLevel)
 		original_zLevel = forced_zLevel
-	else
-		original_zLevel = T.z
+		forced = TRUE
 
-	var/forced = forced_zLevel ? TRUE : FALSE
 	holomap_datum.initialize_holomap(T, reinit = TRUE, is_forced = forced)
 
 	//Small map for icon
