@@ -24,7 +24,15 @@
 	anchored = 1;
 	opened = 1
 	},
+/obj/item/clothing/glasses/trickblindfold,
+/obj/item/food/canned/pcorp,
 /turf/open/floor/mineral/silver,
+/area/city/backstreets_room)
+"ah" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "bL" = (
 /obj/structure/bed{
@@ -77,11 +85,35 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
+"ce" = (
+/obj/item/kirbyplants,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
 "eC" = (
 /obj/structure/table/greyscale,
 /obj/machinery/computer/libraryconsole{
 	pixel_y = 10;
 	resistance_flags = 115
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
@@ -95,10 +127,30 @@
 	},
 /area/city/backstreets_room)
 "fN" = (
-/obj/structure/railing,
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "gL" = (
 /obj/structure/bed{
@@ -164,13 +216,13 @@
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "hy" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
 	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 8
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
-/turf/open/floor/mineral/titanium/tiled/white,
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "ik" = (
 /obj/effect/turf_decal/tile/blue{
@@ -190,13 +242,70 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
-"jI" = (
-/obj/effect/turf_decal/siding/wideplating{
+"ks" = (
+/obj/machinery/door/airlock/silver{
+	req_access_txt = "151";
+	name = "messenger workplace"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"kN" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "lc" = (
 /turf/open/floor/mineral/titanium/tiled/white,
@@ -204,9 +313,6 @@
 "mp" = (
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -219,6 +325,10 @@
 	dir = 4;
 	pixel_x = 9;
 	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
@@ -233,39 +343,68 @@
 /obj/effect/turf_decal/tile/blue{
 	dir = 8
 	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/backstreets_room)
-"mX" = (
-/obj/item/bedsheet,
-/obj/structure/bed/maint,
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/turf/open/floor/mineral/titanium/tiled/white,
-/area/city/backstreets_room)
-"nH" = (
-/turf/closed/indestructible/fakeglass,
-/area/city/backstreets_room)
-"oz" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
-	dir = 4
-	},
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9"
 	},
 /obj/effect/turf_decal/tile/blue{
 	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
 	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"mX" = (
+/obj/item/bedsheet,
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/structure/bed,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"nl" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"nH" = (
+/obj/structure/curtain/cloth,
+/turf/closed/indestructible/fakeglass,
+/area/city/backstreets_room)
+"nR" = (
+/obj/structure/table/wood,
+/obj/item/gavelblock,
+/obj/item/gavelhammer,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"oz" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
 	},
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
 	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
@@ -280,6 +419,21 @@
 /obj/item/bedsheet,
 /obj/structure/bed/pod{
 	name = "king-sized bed"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
@@ -304,20 +458,20 @@
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
+"qX" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
 "rc" = (
 /obj/structure/chair/pew/left{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
-	},
-/area/city/backstreets_room)
-"sl" = (
-/obj/structure/table/wood,
-/obj/structure/railing{
-	dir = 8
-	},
-/turf/open/floor/mineral/titanium/blue,
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "sA" = (
 /obj/structure/table/greyscale,
@@ -346,10 +500,10 @@
 	dir = 1;
 	pixel_y = 19
 	},
-/obj/structure/railing,
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
 	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "tO" = (
 /obj/machinery/light{
@@ -361,22 +515,39 @@
 /area/city/backstreets_room)
 "uj" = (
 /obj/structure/table/wood,
-/obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 10
-	},
-/turf/open/floor/mineral/titanium/blue,
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/mineral/plastitanium,
 /area/city/backstreets_room)
 "ul" = (
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
+/obj/effect/turf_decal/siding/thinplating/light/end{
 	dir = 1
 	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"uE" = (
+/obj/structure/table/wood,
+/obj/item/paperslip,
+/obj/item/pen/charcoal,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"vq" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
 /obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
 	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/item/kirbyplants/dead{
+	desc = "A plant that's clearly been neglected by it's owner.";
+	name = "Withered Plant"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
@@ -411,22 +582,187 @@
 	color = "#3234B9";
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "wS" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
 /obj/machinery/door/airlock/silver{
 	req_access_txt = "150";
 	name = "prescript distribution room"
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"yI" = (
+/obj/structure/chair/pew/left{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"zv" = (
+/obj/structure/table/wood,
+/obj/item/paperslip,
+/obj/item/pen/charcoal,
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "zG" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/donkpockets,
+/obj/effect/spawner/lootdrop/donkpockets,
 /turf/open/floor/mineral/titanium/blue,
+/area/city/backstreets_room)
+"zO" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"Af" = (
+/obj/structure/table/greyscale,
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"CV" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"Dy" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"DH" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"Eq" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"EM" = (
+/obj/structure/chair/pew/right{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "Fh" = (
 /obj/structure/chair/pew/left{
@@ -437,9 +773,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
-	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "Gs" = (
 /obj/machinery/light{
@@ -447,32 +781,44 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/effect/turf_decal/tile/blue,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "Gz" = (
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
-	},
-/area/city/backstreets_room)
-"GY" = (
-/obj/effect/turf_decal/tile/blue{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/blue{
+/obj/effect/turf_decal/tile/neutral{
 	dir = 4
 	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
-	dir = 8
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"GH" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"GY" = (
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "HH" = (
@@ -502,41 +848,79 @@
 	req_access_txt = "150";
 	name = "proselyte commune"
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
-	},
+/turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
 "HX" = (
 /obj/structure/chair/pew/right{
 	dir = 4
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
 	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "Ii" = (
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"Jz" = (
-/obj/effect/turf_decal/tile/blue{
+"IL" = (
+/obj/effect/turf_decal/siding/thinplating/light/end,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"IY" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
 	dir = 1
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"Jz" = (
 /obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
 	dir = 4
 	},
 /obj/effect/turf_decal/tile/blue{
-	color = "#3234B9"
+	color = "#3234B9";
+	dir = 1
 	},
 /obj/effect/turf_decal/tile/blue{
-	color = "#3234B9";
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/blue,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "JJ" = (
 /obj/structure/chair/comfy/black{
 	dir = 4;
 	can_buckle = 0
+	},
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
@@ -546,7 +930,16 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/turf/open/floor/plasteel/stairs,
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "Kx" = (
 /obj/effect/turf_decal/tile/blue{
@@ -575,20 +968,140 @@
 	},
 /turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
+"Lu" = (
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
 "LU" = (
 /obj/machinery/door/airlock/silver{
 	req_access_txt = "151";
 	name = "proxy resting grounds"
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
-	},
+/turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
 "LW" = (
 /obj/structure/chair/comfy/black{
 	dir = 8
 	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"Ma" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"Mq" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/machinery/door/airlock/silver{
+	req_access_txt = "150";
+	name = "messenger office"
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "MW" = (
 /obj/structure/chair/pew/right{
@@ -603,9 +1116,13 @@
 	dir = 1;
 	pixel_y = 19
 	},
-/turf/open/floor/mineral/titanium/white{
-	name = "floor"
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
 	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "Na" = (
 /obj/effect/turf_decal/tile/blue{
@@ -622,6 +1139,12 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"Nj" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 "NA" = (
 /obj/item/clothing/suit/armor/ego_gear/city/index,
@@ -653,12 +1176,37 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/item/clothing/glasses/trickblindfold,
+/obj/item/food/canned/pcorp,
 /turf/open/floor/mineral/silver,
 /area/city/backstreets_room)
 "Ob" = (
 /obj/structure/table/greyscale,
 /obj/item/paper_bin,
 /obj/item/pen,
+/obj/effect/turf_decal/tile,
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"PD" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "PP" = (
@@ -669,6 +1217,10 @@
 /turf/open/floor/mineral/titanium/white{
 	name = "floor"
 	},
+/area/city/backstreets_room)
+"QU" = (
+/obj/structure/reagent_dispensers/water_cooler,
+/turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "RG" = (
 /obj/structure/bed/pod{
@@ -691,10 +1243,41 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
 /turf/open/floor/mineral/titanium/blue,
 /area/city/backstreets_room)
 "Sy" = (
 /obj/structure/table/greyscale,
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/structure/fluff/paper/stack,
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "Tc" = (
@@ -761,6 +1344,35 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"Uv" = (
+/obj/effect/turf_decal/tile/blue,
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"Vn" = (
+/obj/effect/turf_decal/siding/thinplating/light/end,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
 /turf/open/floor/mineral/titanium/tiled/white,
 /area/city/backstreets_room)
 "Vq" = (
@@ -780,6 +1392,50 @@
 	color = "#3234B9"
 	},
 /turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"XV" = (
+/obj/structure/table/wood,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"Yh" = (
+/obj/structure/table/greyscale,
+/obj/item/paper_bin,
+/obj/effect/turf_decal/tile/blue{
+	color = "#3234B9"
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/blue{
+	dir = 8
+	},
+/obj/item/pen/fountain,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"YE" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"Za" = (
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/turf/open/floor/pod,
+/area/city/backstreets_room)
+"ZH" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/turf/open/floor/pod,
 /area/city/backstreets_room)
 
 (1,1,1) = {"
@@ -801,7 +1457,7 @@ vL
 vL
 nH
 Jz
-lc
+QU
 Na
 nH
 bL
@@ -849,49 +1505,49 @@ Ii
 "}
 (6,1,1) = {"
 MW
-rc
-Gz
+yI
+uE
 HX
 Fh
-Gz
+GH
 Ii
 Gs
-lc
+PD
 JJ
-Gs
+Dy
 "}
 (7,1,1) = {"
 ul
+IL
+ce
 ul
-Gz
-ul
-ul
-Gz
+Vn
+ZH
 Ii
-lc
+Uv
 Sy
-Sy
+Af
 Ob
 "}
 (8,1,1) = {"
-HX
+EM
 rc
-Gz
+zv
 HX
-rc
-Gz
-eK
-tO
+yI
+nl
+Mq
+DH
 eC
 LW
-tO
+vq
 "}
 (9,1,1) = {"
-ul
+Za
 hy
-Gz
+Eq
 hy
-ul
+YE
 Gz
 Ii
 Ii
@@ -900,28 +1556,28 @@ PP
 Ii
 "}
 (10,1,1) = {"
-fN
-sl
-sl
+kN
+nR
+XV
 uj
-jI
-Gz
+Nj
+qX
 Ii
 sA
-Ob
-lc
+Yh
+CV
 Tc
 "}
 (11,1,1) = {"
 sE
-vL
-vL
-vL
+IY
+Ma
+fN
 Ke
-Gz
-PP
+ah
+ks
 tO
-lc
-lc
+Lu
+zO
 mX
 "}
