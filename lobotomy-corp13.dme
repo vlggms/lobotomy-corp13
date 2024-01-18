@@ -2868,6 +2868,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\waw\parasite_tree.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\pygmalion.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\queen_bee.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\red_riding_mercenary.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\rose_sign.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\screenwriter.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\shrimp.dm"
