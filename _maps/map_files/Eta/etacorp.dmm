@@ -5354,7 +5354,9 @@
 	},
 /area/facility_hallway/west)
 "xN" = (
-/obj/structure/bodycontainer,
+/obj/structure/bodycontainer/extraction{
+	dir = 2
+	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
 "xO" = (
@@ -8380,8 +8382,8 @@
 /turf/open/floor/plating,
 /area/facility_hallway/information)
 "KX" = (
-/obj/structure/bodycontainer{
-	dir = 4
+/obj/structure/bodycontainer/extraction{
+	dir = 8
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
