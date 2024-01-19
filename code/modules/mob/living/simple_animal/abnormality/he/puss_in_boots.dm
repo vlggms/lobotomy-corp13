@@ -28,23 +28,25 @@
 		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 40, 40)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/inheritance,
-		/datum/ego_datum/armor/inheritance
+		/datum/ego_datum/armor/inheritance,
 	)
 	gift_type =  /datum/ego_gifts/inheritance
 	abnormality_origin = "Artbook"
 
 	//Work/misc Vars
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 	pet_bonus = "meows" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/mob/living/carbon/human/blessed_human = null
 	var/friendly

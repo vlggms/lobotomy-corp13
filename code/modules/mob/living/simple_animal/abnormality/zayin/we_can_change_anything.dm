@@ -14,8 +14,8 @@
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_REPRESSION = list(80, 85, 90, 95, 100),
-		"Enter machine" = 100 //"Go inside the torture machine, it'll be fun they said"
-		)
+		"Enter machine" = 100, //"Go inside the torture machine, it'll be fun they said"
+	)
 
 	charger = TRUE
 	charge_distance = 8
@@ -32,8 +32,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/change,
 		/datum/ego_datum/armor/change,
-		/datum/ego_datum/weapon/iron_maiden
-		)
+		/datum/ego_datum/weapon/iron_maiden,
+	)
 
 	gift_type =  /datum/ego_gifts/change
 	gift_message = "Your heart beats with new vigor."
@@ -41,7 +41,7 @@
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
 	var/grinding = FALSE

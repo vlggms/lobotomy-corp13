@@ -23,25 +23,25 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
-						ABNORMALITY_WORK_ATTACHMENT = list(35, 40, 40, 35, 35),
-						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
+		ABNORMALITY_WORK_ATTACHMENT = list(35, 40, 40, 35, 35),
+		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/grinder,
-		/datum/ego_datum/armor/grinder
-		)
+		/datum/ego_datum/armor/grinder,
+	)
 	gift_type =  /datum/ego_gifts/grinder
 	gift_message = "Contamination scan complete. Initiating cleaning protocol."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/we_can_change_anything = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
 	var/charging = FALSE
@@ -152,7 +152,7 @@
 	if(move_dir in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	SpinAnimation(3, 1, para)
-	playsound(src,"sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
+	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
 	for(var/mob/living/L in range(1, T))
 		if(!faction_check_mob(L))
 			if(L in been_hit)

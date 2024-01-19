@@ -17,8 +17,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 55),
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 45, 45, 50),
-		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 40, 40)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 40, 40),
+	)
 	work_damage_amount = 14
 	work_damage_type = RED_DAMAGE
 	max_boxes = 22
@@ -27,8 +27,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/exuviae,
-		/datum/ego_datum/armor/exuviae
-		)
+		/datum/ego_datum/armor/exuviae,
+	)
 	gift_type =  /datum/ego_gifts/exuviae
 	gift_message = "You manage to shave off a patch of scales."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY

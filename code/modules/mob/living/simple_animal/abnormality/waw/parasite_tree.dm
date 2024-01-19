@@ -23,15 +23,15 @@
 		ABNORMALITY_WORK_INSTINCT = 45,
 		ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 45, 45),
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 50, 50, 55),
-		ABNORMALITY_WORK_REPRESSION = 20
-		)
+		ABNORMALITY_WORK_REPRESSION = 20,
+	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hypocrisy,
-		/datum/ego_datum/armor/hypocrisy
-		)
+		/datum/ego_datum/armor/hypocrisy,
+	)
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	gift_type =  /datum/ego_gifts/hypocrisy

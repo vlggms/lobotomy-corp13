@@ -21,18 +21,18 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 45,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = 60,
-						ABNORMALITY_WORK_REPRESSION = 20
-						)
+		ABNORMALITY_WORK_INSTINCT = 45,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = 60,
+		ABNORMALITY_WORK_REPRESSION = 20,
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/dream,
-		/datum/ego_datum/armor/dream
-		)
+		/datum/ego_datum/armor/dream,
+	)
 	gift_type =  /datum/ego_gifts/dream
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/punched = FALSE

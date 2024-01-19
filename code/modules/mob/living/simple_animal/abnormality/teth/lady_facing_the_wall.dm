@@ -11,8 +11,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 55, 55, 55),
 		ABNORMALITY_WORK_INSIGHT = list(45, 45, 30, 30, 0),
 		ABNORMALITY_WORK_ATTACHMENT = list(100, 100, 100, 100, 100),
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 30, 30, 30)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(55, 55, 30, 30, 30),
+	)
 	pixel_x = -32
 	base_pixel_x = -8
 
@@ -23,8 +23,8 @@
 	var/scream_damage = 45
 	ego_list = list(
 		/datum/ego_datum/weapon/wedge,
-		/datum/ego_datum/armor/wedge
-		)
+		/datum/ego_datum/armor/wedge,
+	)
 	gift_type =  /datum/ego_gifts/wedge
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

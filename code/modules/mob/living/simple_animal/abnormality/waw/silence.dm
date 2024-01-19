@@ -10,8 +10,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 40, 40),
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45),
+	)
 	start_qliphoth = 1
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
@@ -19,7 +19,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/thirteen,
 		/datum/ego_datum/armor/thirteen,
-		)
+	)
 	gift_type = /datum/ego_gifts/thirteen
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 

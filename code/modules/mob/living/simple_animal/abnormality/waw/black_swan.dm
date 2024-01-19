@@ -35,11 +35,11 @@
 	attack_verb_simple = "twack"
 	start_qliphoth = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 45, 50),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 45, 50),
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
+	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	death_message = "weeps a green sludge while clutching her brooch."
@@ -48,8 +48,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/swan,
-		/datum/ego_datum/armor/swan
-		)
+		/datum/ego_datum/armor/swan,
+	)
 	gift_type =  /datum/ego_gifts/swan
 	gift_message = "You feel exhausted but if you work a little harder, things will work themselves out."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -59,11 +59,12 @@
 	var/abnos_breached = 0
 	//brothers from left to right
 	var/list/family_status = list(
-					1 = FALSE,
-					2 = FALSE,
-					3 = FALSE,
-					4 = FALSE,
-					5 = FALSE)
+		1 = FALSE,
+		2 = FALSE,
+		3 = FALSE,
+		4 = FALSE,
+		5 = FALSE,
+	)
 	//If is in closed or open mode
 	var/beak_closed = FALSE
 	var/can_act = TRUE

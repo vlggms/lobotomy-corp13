@@ -17,7 +17,7 @@
 		ABNORMALITY_WORK_INSIGHT = list(50, 55, 55, 50, 45),
 		ABNORMALITY_WORK_ATTACHMENT = 45,
 		ABNORMALITY_WORK_REPRESSION = list(40, 45, 45, 40, 40),
-		"Lying is Bad!" = 0
+		"Lying is Bad!" = 0,
 	)
 
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.9)
@@ -26,9 +26,9 @@
 	max_boxes = 16
 
 	ego_list = list(
-			/datum/ego_datum/weapon/marionette,
-			/datum/ego_datum/armor/marionette
-		)
+		/datum/ego_datum/weapon/marionette,
+		/datum/ego_datum/armor/marionette,
+	)
 	gift_type = /datum/ego_gifts/marionette
 	abnormality_origin = ABNORMALITY_ORIGIN_RUINA
 
@@ -37,33 +37,33 @@
 	var/mob/living/carbon/human/species/pinocchio/realboy = null
 	var/list/modular_work_chance = list(
 		"lie1" = list( //LIES!
-		"Instingt" = 0,
-		ABNORMALITY_WORK_INSIGHT = 0,
-		ABNORMALITY_WORK_ATTACHMENT = 0,
-		"Represion" = 0,
-		"Lying is Bad!" = 100
-	),
+			"Instingt" = 0,
+			ABNORMALITY_WORK_INSIGHT = 0,
+			ABNORMALITY_WORK_ATTACHMENT = 0,
+			"Represion" = 0,
+			"Lying is Bad!" = 100,
+		),
 		"lie2" = list(
-		ABNORMALITY_WORK_INSTINCT = 0,
-		ABNORMALITY_WORK_INSIGHT = 0,
-		"Atachment" = 0,
-		"Represion" = 0,
-		"Lying is Bad!" = 100
-	),
+			ABNORMALITY_WORK_INSTINCT = 0,
+			ABNORMALITY_WORK_INSIGHT = 0,
+			"Atachment" = 0,
+			"Represion" = 0,
+			"Lying is Bad!" = 100,
+		),
 		"lie3" = list(
-		"Insignt" = 0,
-		ABNORMALITY_WORK_INSIGHT = 0,
-		"Attachnent" = 0,
-		ABNORMALITY_WORK_REPRESSION = 0,
-		"Lying is Bad!" = 100
-	),
+			"Insignt" = 0,
+			ABNORMALITY_WORK_INSIGHT = 0,
+			"Attachnent" = 0,
+			ABNORMALITY_WORK_REPRESSION = 0,
+			"Lying is Bad!" = 100,
+		),
 		"normal" = list(
-		ABNORMALITY_WORK_INSTINCT = 35,
-		ABNORMALITY_WORK_INSIGHT = list(50, 55, 55, 50, 45),
-		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = list(40, 45, 45, 40, 40),
-		"Lying is Bad!" = 0
-	)
+			ABNORMALITY_WORK_INSTINCT = 35,
+			ABNORMALITY_WORK_INSIGHT = list(50, 55, 55, 50, 45),
+			ABNORMALITY_WORK_ATTACHMENT = 45,
+			ABNORMALITY_WORK_REPRESSION = list(40, 45, 45, 40, 40),
+			"Lying is Bad!" = 0,
+		),
 	)
 
 //Spawn
@@ -234,11 +234,11 @@
 
 /datum/ai_behavior/say_line/insanity_murder/puppet
 	lines = list(
-				"I'm keen to learn as usual. Would you like to see me learn?",
-				"Lalala... I sing along to the song of lies all the people sing.",
-				"Did I look just like a human? I hope I did...",
-				"It's people's fault for falling for my lies."
-				)
+		"I'm keen to learn as usual. Would you like to see me learn?",
+		"Lalala... I sing along to the song of lies all the people sing.",
+		"Did I look just like a human? I hope I did...",
+		"It's people's fault for falling for my lies.",
+	)
 
 //Carbon code
 /mob/living/carbon/human/species/pinocchio //a real boy. Compatiable with being spawned by admins to boot! Can't panic outside of fear, though.

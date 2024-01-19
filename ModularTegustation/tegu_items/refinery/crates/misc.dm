@@ -24,7 +24,7 @@
 		/obj/item/clothing/accessory/limbusvest,
 		/obj/item/clothing/under/limbus/prison,
 		/obj/item/clothing/neck/limbus_tie,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
@@ -32,7 +32,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,
 		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/cast,
 		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/branch,
-		)
+	)
 
 /obj/structure/lootcrate/money
 	name = "Money Crate"
@@ -44,10 +44,10 @@
 		/obj/item/stack/spacecash/c100,
 		/obj/item/stack/spacecash/c200,
 		/obj/item/stack/spacecash/c500,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/documents,
 		/obj/item/folder/syndicate,
 		/obj/item/folder/documents,
-		)
+	)
