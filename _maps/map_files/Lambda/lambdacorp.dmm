@@ -1153,8 +1153,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/pod,
 /area/department_main/command)
@@ -1168,8 +1167,7 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
 "fS" = (
-/obj/machinery/light{
-	dir = 1;
+/obj/machinery/vending/autodrobe{
 	pixel_y = 19
 	},
 /turf/open/floor/pod/light,
@@ -1609,9 +1607,9 @@
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
 "hZ" = (
-/obj/machinery/vending/autodrobe{
+/obj/machinery/vending/dinnerware{
 	pixel_y = 19;
-	pixel_x = 6
+	density = 0
 	},
 /turf/open/floor/pod/light,
 /area/department_main/training)
@@ -5766,8 +5764,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/pod,
 /area/department_main/safety)
@@ -5870,7 +5867,8 @@
 /area/facility_hallway/command)
 "Fh" = (
 /obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "extraction1"
+	id = "extraction1";
+	opacity = 1
 	},
 /turf/closed/indestructible/fakeglass,
 /area/department_main/command)
@@ -7126,8 +7124,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/command)
@@ -8343,7 +8340,8 @@
 /area/facility_hallway/information)
 "QF" = (
 /obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "extraction1"
+	id = "extraction1";
+	opacity = 1
 	},
 /turf/closed/indestructible/fakeglass,
 /area/department_main/extraction)
@@ -8488,8 +8486,7 @@
 	dir = 1
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/training)
@@ -8715,7 +8712,9 @@
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/command)
 "Sx" = (
-/obj/structure/bodycontainer,
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/safety)
 "Sy" = (
@@ -9089,16 +9088,14 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/information)
 "Uq" = (
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/pod,
 /area/department_main/control)
@@ -10182,7 +10179,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/machinery/gibber,
+/obj/machinery/processor,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "YX" = (
