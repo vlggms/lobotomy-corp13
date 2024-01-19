@@ -57,4 +57,3 @@
 			if(!A.patrol_to(destination))
 				A.forceMove(destination)
 			ordeal_reference.ordeal_mobs |= A
-	RegisterSignal(ordeal_reference, COMSIG_GLOB_MOB_DEATH, /datum/ordeal/.proc/OnMobDeath)
