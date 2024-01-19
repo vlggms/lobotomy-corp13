@@ -4519,8 +4519,7 @@
 	color = "#ff4162"
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
@@ -4963,8 +4962,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/welfare)
@@ -5566,7 +5564,7 @@
 	dir = 1;
 	pixel_y = 19
 	},
-/obj/machinery/text_adventure_console,
+/obj/structure/toolabnormality/realization,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -5955,8 +5953,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
@@ -6067,8 +6064,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
@@ -11906,8 +11902,7 @@
 	dir = 1
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
@@ -12244,7 +12239,7 @@
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
 	},
-/obj/structure/toolabnormality/realization,
+/obj/machinery/text_adventure_console,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -12690,8 +12685,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
@@ -14463,8 +14457,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
@@ -14523,8 +14516,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
@@ -16860,6 +16852,27 @@
 "NU" = (
 /turf/closed/indestructible/fakedoor,
 /area/facility_hallway/extraction)
+"NW" = (
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1"
+	},
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1";
+	dir = 8
+	},
+/obj/machinery/regenerator/safety,
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/purple{
+	color = "#bf48b1";
+	dir = 4
+	},
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/department_main/extraction)
 "NX" = (
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -19801,8 +19814,7 @@
 	color = "#f8f8f8"
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/command)
@@ -20264,8 +20276,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
@@ -21160,8 +21171,7 @@
 /area/facility_hallway/control)
 "Yx" = (
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1;
@@ -21419,8 +21429,7 @@
 	dir = 1
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
@@ -21628,8 +21637,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/discipline)
@@ -54191,7 +54199,7 @@ qM
 Kn
 MR
 Tp
-cP
+NW
 Bz
 zr
 cq
