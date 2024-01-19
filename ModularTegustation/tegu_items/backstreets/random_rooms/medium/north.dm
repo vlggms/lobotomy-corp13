@@ -20,6 +20,15 @@
 	room_id = "workshop_mn"
 	mappath = "_maps/RandomRooms/backstreets/medium_north/workshop_mn"
 
+/datum/map_template/random_room/backstreets/medium_north/rage_cage
+    name = "Rage Cage - Medium North"
+    room_id = "rage_cage"
+    mappath = "_maps/RandomRooms/backstreets/medium_north/rage_cage.dmm"
+
+    /datum/map_template/random_room/backstreets/medium_north/rat_mna
+    name = "Rat - Medium North A"
+    room_id = "rat_mna"
+    mappath = "_maps/RandomRooms/backstreets/medium_north/rat_mna.dmm"
 
 
 

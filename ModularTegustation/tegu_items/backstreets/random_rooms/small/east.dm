@@ -30,5 +30,8 @@
 	room_id = "noodlebar_se"
 	mappath = "_maps/RandomRooms/backstreets/small_east/noodlebar.dmm"
 
-
+/datum/map_template/random_room/backstreets/small_east/rat_sea
+    name = "Rat - Small East A"
+    room_id = "rat_sea"
+    mappath = "_maps/RandomRooms/backstreets/small_east/rat_sea.dmm"
 

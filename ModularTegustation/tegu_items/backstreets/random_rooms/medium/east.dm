@@ -31,3 +31,17 @@
 	room_id = "kcorp_storage_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/kcorp_storage.dmm"
 
+/datum/map_template/random_room/backstreets/medium_east/church
+    name = "Church - Medium East"
+    room_id = "church"
+    mappath = "_maps/RandomRooms/backstreets/medium_east/church.dmm"
+
+    /datum/map_template/random_room/backstreets/medium_east/roach_mafia
+    name = "Roach Mafia - Medium East"
+    room_id = "roach_mafia"
+    mappath = "_maps/RandomRooms/backstreets/medium_east/roach_mafia.dmm"
+
+    /datum/map_template/random_room/backstreets/medium_east/robot_mea
+    name = "Robot - Medium East A"
+    room_id = "robot_mea"
+    mappath = "_maps/RandomRooms/backstreets/medium_east/robot_mea.dmm"
