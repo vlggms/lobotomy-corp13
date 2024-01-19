@@ -1383,7 +1383,7 @@
 
 /obj/item/ego_weapon/oberon/get_clamped_volume()
 	return 40
-
+//aaaa
 
 /obj/item/ego_weapon/oberon/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
