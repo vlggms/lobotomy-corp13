@@ -660,14 +660,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
-"dk" = (
-/obj/structure/disposalpipe/segment{
-	dir = 6
-	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/department_main/information)
 "dl" = (
 /obj/machinery/rnd/server,
 /turf/open/floor/carpet/purple,
@@ -2045,14 +2037,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/manager)
-"jB" = (
-/obj/structure/disposalpipe/segment{
-	dir = 9
-	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/department_main/information)
 "jC" = (
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
@@ -5354,7 +5338,7 @@
 	},
 /area/facility_hallway/west)
 "xN" = (
-/obj/structure/bodycontainer/extraction{
+/obj/structure/bodycontainer/morgue{
 	dir = 2
 	},
 /turf/open/floor/facility/white,
@@ -6785,14 +6769,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/safety)
-"DF" = (
-/obj/structure/disposalpipe/segment{
-	dir = 10
-	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/department_main/information)
 "DG" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -6931,8 +6907,8 @@
 /mob/living/simple_animal/bot/cleanbot{
 	desc = "Even in death, a clerk does their job."
 	},
-/obj/structure/disposalpipe/junction/flip,
 /obj/machinery/navbeacon/wayfinding/informationdepartment,
+/obj/structure/disposalpipe/junction/yjunction,
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
 	},
@@ -8382,7 +8358,7 @@
 /turf/open/floor/plating,
 /area/facility_hallway/information)
 "KX" = (
-/obj/structure/bodycontainer/extraction{
+/obj/structure/bodycontainer/morgue{
 	dir = 8
 	},
 /turf/open/floor/facility/white,
@@ -44024,8 +44000,8 @@ we
 we
 we
 XA
-dk
-jB
+uA
+dH
 uA
 WL
 we
@@ -44281,7 +44257,7 @@ Gb
 we
 MZ
 xR
-DF
+uA
 DY
 LV
 Za
