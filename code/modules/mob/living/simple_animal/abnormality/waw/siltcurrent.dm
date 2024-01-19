@@ -68,8 +68,6 @@
 	//The amount of flotsams that should spawn in the hallways when it breaches
 	var/tube_spawn_amount = 6
 	var/list/spawned_flotsams = list()
-	//If it hits a damaged flotsam or not
-	var/hitflotsam
 
 	var/list/water = list()
 
@@ -151,7 +149,7 @@
 	if(get_dist(target, src) > 1 && dive_cooldown < world.time)
 		dive_cooldown = world.time + dive_cooldown_time
 		diving = TRUE
-		hitflotsam = FALSE
+		var/hitflotsam = FALSE
 		//icon_state = "current_prepare"
 		SLEEP_CHECK_DEATH(0.4 SECONDS)
 		animate(src, alpha = 1,pixel_x = -32, pixel_z = -32, time = 0.2 SECONDS)

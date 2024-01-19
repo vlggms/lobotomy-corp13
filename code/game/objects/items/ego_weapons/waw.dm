@@ -1839,6 +1839,7 @@
 	var/charged
 	var/speed_slowdown = 0
 	var/mob/current_holder
+	var/power_timer
 
 
 //Equipped setup
@@ -1881,12 +1882,15 @@
 	if(user.get_inactive_held_item())
 		to_chat(user, span_notice("You cannot impower [src] with only one hand!"))
 		return
+	if(charged)
+		to_chat(user, span_notice("You've already prepared to throw [src]!"))
+		return
 	if(do_after(user, 12, src))
 		charged = TRUE
 		speed_slowdown = 2
 		throwforce = 100//TIME TO DIE!
 		to_chat(user,span_warning("You put your strength behind this attack."))
-		addtimer(CALLBACK(src, .proc/PowerReset), 18,user)//prevents storing 3 powered up anchors and unloading all of them at once
+		power_timer = addtimer(CALLBACK(src, .proc/PowerReset), 18,user, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
 
 /obj/item/ego_weapon/blind_obsession/proc/PowerReset(mob/user)
 	to_chat(user, span_warning("You lose your balance while holding [src]."))
@@ -1905,6 +1909,7 @@
 
 /obj/item/ego_weapon/blind_obsession/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	. = ..()
+	deltimer(power_timer)
 	playsound(src, 'sound/weapons/ego/hammer.ogg', 300, FALSE, 9)
 	if(charged)
 		var/damage = 75
