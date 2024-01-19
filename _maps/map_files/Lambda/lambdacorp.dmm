@@ -1167,8 +1167,7 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
 "fS" = (
-/obj/machinery/light{
-	dir = 1;
+/obj/machinery/vending/autodrobe{
 	pixel_y = 19
 	},
 /turf/open/floor/pod/light,
@@ -1608,9 +1607,9 @@
 /turf/open/floor/pod/light,
 /area/facility_hallway/control)
 "hZ" = (
-/obj/machinery/vending/autodrobe{
+/obj/machinery/vending/dinnerware{
 	pixel_y = 19;
-	pixel_x = 6
+	density = 0
 	},
 /turf/open/floor/pod/light,
 /area/department_main/training)
