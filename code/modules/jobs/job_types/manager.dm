@@ -44,6 +44,7 @@
 	secsensor.add_hud_to(H)
 	medsensor.add_hud_to(H)
 
+
 /datum/outfit/job/manager
 	name = "Manager"
 	jobtype = /datum/job/manager

@@ -171,6 +171,11 @@
 			Y.registered_name = H.name
 			Y.update_label()
 
+	//Sets up the extra information for roles that need extra info
+	var/atom/movable/screen/plane_master/extra_visual_effects/PM = locate(/atom/movable/screen/plane_master/extra_visual_effects) in M.client.screen
+	if(PM)
+		PM.backdrop(M.client.mob)
+
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)
