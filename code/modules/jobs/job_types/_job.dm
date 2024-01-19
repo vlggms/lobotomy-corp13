@@ -149,15 +149,19 @@
 			experiencer.mind.adjust_experience(i, roundstart_experience[i], TRUE)
 
 	if(roundstart_attributes.len)
-		var/mob/living/carbon/human/HA = H
-		HA.set_attribute_limit(job_attribute_limit)
-		var/list/attributes = HA.get_attribute_list()
-		if(attributes)
-			for(var/atrib in roundstart_attributes)
-				var/datum/attribute/atr = attributes[atrib]
-				if(istype(atr))
-					atr.level = roundstart_attributes[atrib]
-					atr.on_update(HA)
+		if(H.mind)
+			if(H.mind.set_job_attributes)
+				var/mob/living/carbon/human/HA = H
+				HA.set_attribute_limit(job_attribute_limit)
+				var/list/attributes = HA.get_attribute_list()
+				if(attributes)
+					for(var/atrib in roundstart_attributes)
+						var/datum/attribute/atr = attributes[atrib]
+						if(istype(atr))
+							atr.level = roundstart_attributes[atrib]
+							atr.on_update(HA)
+			else
+				H.mind.set_job_attributes = TRUE // Reset it so that next time we respawn, unless told otherwise we use our starting stats.
 
 
 	if(job_important)

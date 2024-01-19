@@ -418,12 +418,16 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		record_found = find_record("id", id, GLOB.data_core.locked)
 
 	if(record_found)//If they have a record we can determine a few things.
-		for(var/rec in record_found.fields)
-			to_chat(world, rec)
 		new_character.real_name = record_found.fields["name"]
 		new_character.gender = record_found.fields["gender"]
 		new_character.age = record_found.fields["age"]
-		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], record_found.fields["species"], record_found.fields["features"])
+		var/datum/species/nc_race = record_found.fields["species"]
+		if(!istype(nc_race) && !ispath(nc_race))
+			stack_trace("[new_character]'s respawned race isn't valid")
+			nc_race = null
+		else
+			nc_race = new nc_race()
+		new_character.hardset_dna(record_found.fields["identity"], record_found.fields["enzymes"], null, record_found.fields["name"], record_found.fields["blood_type"], nc_race, record_found.fields["features"])
 	else
 		var/datum/preferences/A = new()
 		A.copy_to(new_character)
@@ -433,6 +437,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	new_character.name = new_character.real_name
 
 	if(G_found.mind && !G_found.mind.active)
+		G_found.mind.set_job_attributes = FALSE
 		G_found.mind.transfer_to(new_character)	//be careful when doing stuff like this! I've already checked the mind isn't in use
 	else
 		new_character.mind_initialize()

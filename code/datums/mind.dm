@@ -93,13 +93,14 @@
 
 	/// Assoc list of attributes. Starts with 4.
 	var/list/attributes = list()
+	/// Variable for if job should replace our attributes, used for Respawn and Admin Respawn
+	var/set_job_attributes = TRUE
 
 /datum/mind/New(_key)
 	key = _key
 	martial_art = default_martial_art
 	init_known_skills()
-	if(!LAZYLEN(attributes))
-		init_attributes()
+	init_attributes()
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
@@ -142,7 +143,7 @@
 		var/mob/living/carbon/C = new_character
 		C.last_mind = src
 		for(var/datum/attribute/attribute in attributes)
-			attribute.on_update(new_character)
+			attribute.on_update(current)
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
@@ -845,7 +846,6 @@
 		mind.key = key
 
 	else
-		to_chat(world, "Making new Mind")
 		mind = new /datum/mind(key)
 		SSticker.minds += mind
 	if(!mind.name)
