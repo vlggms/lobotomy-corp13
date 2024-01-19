@@ -167,15 +167,14 @@
 		for(var/turf/T in view(2, src))
 			var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 			smonk.color = COLOR_TEAL
+			for(var/obj/structure/flotsam/F in T)
+				if(F.broken)
+					hitflotsam = TRUE
+					Stunned()
+					src.adjustBruteLoss(1000)
+					visible_message(span_boldwarning("[src] gets impaled on the Flotsam taking heavy damage!"))
+					playsound(F, "sound/effects/hit_on_shattered_glass.ogg", 50, TRUE)
 			for(var/mob/living/L in T)
-				if(istype(L, /mob/living/simple_animal/hostile/flotsam))
-					if(L.stat == DEAD)
-						//icon_state = icon_living
-						hitflotsam = TRUE
-						Stunned()
-						src.adjustBruteLoss(1000)
-						visible_message(span_boldwarning("[src] gets impaled on the Flotsam taking heavy damage!"))
-						playsound(L, "sound/effects/hit_on_shattered_glass.ogg", 50, TRUE)
 				if (ishuman(L))
 					if(hitflotsam)
 						continue
@@ -231,7 +230,7 @@
 		var/turf/deploy_spot = T //spot you are being deployed
 		if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
 			deploy_spot = pick_n_take(deployment_area)
-		var/mob/living/simple_animal/hostile/flotsam/F = new get_turf(deploy_spot)
+		var/obj/structure/flotsam/F = new get_turf(deploy_spot)
 		spawned_flotsams += F
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/OxygenLoss()//While its alive all humans around it will lose oxygen.
@@ -244,7 +243,7 @@
 	density = FALSE
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
-	for(var/mob/living/simple_animal/hostile/flotsam/F in spawned_flotsams)
+	for(var/obj/structure/flotsam/F in spawned_flotsams)
 		QDEL_IN(F, rand(5) SECONDS)
 		spawned_flotsams -= F
 	for(var/obj/effect/obsessing_water_effect/W in water)
@@ -257,43 +256,42 @@
 	for(var/turf/open/T in range(1, src)) // fill its cell with water
 		T.TerraformTurf(/turf/open/water/deep/obsessing_water, flags = CHANGETURF_INHERIT_AIR)
 
-/mob/living/simple_animal/hostile/flotsam
-	name = "Flotsam"
-	desc = "A pile of teal light tubes embedded into the floor."
-	icon = 'ModularTegustation/Teguicons/64x32.dmi'
-	pixel_x = -16
-	base_pixel_x = -16
-	icon_state = "flotsam"
-	icon_living = "flotsam"
-	icon_dead = "flotsam_dead"
-	/*Stats*/
-	health = 750
-	maxHealth = 750
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
-	density = TRUE
-	light_color = COLOR_TEAL
-	light_range = 4
-	light_power = 5
+/obj/structure/flotsam
+    name = "Flotsam"
+    desc = "A pile of teal light tubes embedded into the floor."
+    icon = 'ModularTegustation/Teguicons/64x32.dmi'
+    pixel_x = -16
+    base_pixel_x = -16
+    icon_state = "flotsam"
+    var/icon_broken = "flotsam_dead"
+    max_integrity = 750
+    density = TRUE
+    anchored = TRUE
+    light_color = COLOR_TEAL
+    light_range = 4
+    light_power = 5
 
-/mob/living/simple_animal/hostile/flotsam/Move()
-	return FALSE
+/obj/structure/flotsam/attackby(obj/item/W, mob/user, params)
+    . = ..()
+    Refill(user)
 
-/mob/living/simple_animal/hostile/flotsam/CanAttack(atom/the_target)
-	return FALSE
+/obj/structure/flotsam/bullet_act(obj/projectile/P)
+    . = ..()
+    Refill(P.firer)
 
-/mob/living/simple_animal/hostile/flotsam/attackby(obj/item/W, mob/user, params)
-	. = ..()
-	Refill(user)
+/obj/structure/flotsam/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
+    . = ..()
+    if(throwingdatum.thrower)
+        Refill(throwingdatum.thrower)
 
-/mob/living/simple_animal/hostile/flotsam/bullet_act(obj/projectile/P)
-	. = ..()
-	Refill(P.firer)
+/obj/structure/flotsam/obj_destruction(damage_flag)
+    if(broken)
+        return
+    broken = TRUE
+    icon_state = icon_broken
 
-/mob/living/simple_animal/hostile/flotsam/proc/Refill(mob/living/attacker)
-	attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
-
-/mob/living/simple_animal/hostile/flotsam/gib()
-	return FALSE
+/obj/structure/flotsam/proc/Refill(mob/living/attacker)
+    attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
 
 /obj/effect/obsessing_water_effect
 	name = "Obsessing water"
