@@ -257,41 +257,41 @@
 		T.TerraformTurf(/turf/open/water/deep/obsessing_water, flags = CHANGETURF_INHERIT_AIR)
 
 /obj/structure/flotsam
-    name = "Flotsam"
-    desc = "A pile of teal light tubes embedded into the floor."
-    icon = 'ModularTegustation/Teguicons/64x32.dmi'
-    pixel_x = -16
-    base_pixel_x = -16
-    icon_state = "flotsam"
-    var/icon_broken = "flotsam_dead"
-    max_integrity = 750
-    density = TRUE
-    anchored = TRUE
-    light_color = COLOR_TEAL
-    light_range = 4
-    light_power = 5
+	name = "Flotsam"
+	desc = "A pile of teal light tubes embedded into the floor."
+	icon = 'ModularTegustation/Teguicons/64x32.dmi'
+	pixel_x = -16
+	base_pixel_x = -16
+	icon_state = "flotsam"
+	var/icon_broken = "flotsam_dead"
+	max_integrity = 750
+	density = TRUE
+	anchored = TRUE
+	light_color = COLOR_TEAL
+	light_range = 4
+	light_power = 5
 
 /obj/structure/flotsam/attackby(obj/item/W, mob/user, params)
-    . = ..()
-    Refill(user)
+	. = ..()
+	Refill(user)
 
 /obj/structure/flotsam/bullet_act(obj/projectile/P)
-    . = ..()
-    Refill(P.firer)
+	. = ..()
+	Refill(P.firer)
 
 /obj/structure/flotsam/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
-    . = ..()
-    if(throwingdatum.thrower)
-        Refill(throwingdatum.thrower)
+	. = ..()
+	if(throwingdatum.thrower)
+		Refill(throwingdatum.thrower)
 
 /obj/structure/flotsam/obj_destruction(damage_flag)
-    if(broken)
-        return
-    broken = TRUE
-    icon_state = icon_broken
+	if(broken)
+		return
+	broken = TRUE
+	icon_state = icon_broken
 
 /obj/structure/flotsam/proc/Refill(mob/living/attacker)
-    attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
+	attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
 
 /obj/effect/obsessing_water_effect
 	name = "Obsessing water"
