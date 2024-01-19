@@ -334,8 +334,7 @@
 /turf/open/water/deep/obsessing_water
 	safe = TRUE
 	name = "Obsessing water"
-	desc = "A strange black and teal water"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	desc = "A strange black and teal water."
 	icon_state = "obsessing_water"
 	loot_level1 = list(
 		/obj/item/stack/sheet/mineral/wood = 30,
