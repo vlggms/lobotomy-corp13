@@ -257,11 +257,14 @@
 	if(!..())
 		return
 	creation.AddComponent(/datum/component/edible,\
-		initial_reagents = list(/datum/reagent/consumable/nutriment/protein = 20*(quality+1), /datum/reagent/consumable/nutriment/vitamin = 6*(quality+1)),\
-		foodtypes = MEAT,\
-		volume = 1000,\
-		tastes = list("pain", "meat", "hunger"),\
-		eat_time = 0)
+		initial_reagents = list(
+			/datum/reagent/consumable/nutriment/protein = 20*(quality+1),
+			/datum/reagent/consumable/nutriment/vitamin = 6*(quality+1)),\
+			foodtypes = MEAT,\
+			volume = 1000,\
+			tastes = list("pain", "meat", "hunger"),\
+			eat_time = 0,\
+		)
 	return
 
 

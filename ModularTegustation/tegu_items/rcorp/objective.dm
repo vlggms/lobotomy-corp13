@@ -188,8 +188,8 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 		/obj/effect/proc_holder/spell/aimed/pillar,
 		/obj/effect/proc_holder/spell/aimed/spell_cards,
 		/obj/effect/proc_holder/spell/targeted/forcewall,
-		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter
-		)
+		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter,
+	)
 
 //R Corp Comms
 /obj/structure/rcorpcomms

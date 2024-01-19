@@ -18,7 +18,7 @@
 		/obj/item/clothing/glasses/meson,
 		/obj/item/powered_gadget/vitals_projector,
 		/obj/item/powered_gadget/enkephalin_injector,
-		)
+	)
 
 	//Stuff that LC stocks, but isn't made by LC. Like the R corp Ordeal finder and W-Corp hand tele.
 	//Lore reasons tm
@@ -27,7 +27,7 @@
 		/obj/item/managerbullet,
 		/obj/item/powered_gadget/teleporter,
 		/obj/item/tool_extractor,
-		)
+	)
 
 //K Corporation
 /obj/structure/lootcrate/k_corp
@@ -39,7 +39,7 @@
 	lootlist =	list(
 		/obj/item/managerbullet,
 		/obj/item/ksyringe,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/kcorp,
@@ -47,7 +47,7 @@
 		/obj/item/ego_weapon/city/kcorp/axe,
 		/obj/item/gun/ego_gun/pistol/kcorp,
 		/obj/item/storage/box/kcorp_armor,
-		)
+	)
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci,
@@ -57,7 +57,7 @@
 		/obj/item/gun/ego_gun/pistol/kcorp/nade,
 		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3,
 		/obj/item/toy/plush/bongy,
-		)
+	)
 
 
 //N Corporation
@@ -71,7 +71,7 @@
 		/obj/item/storage/box/ncorp_seals,
 		/obj/item/storage/box/ncorp_seals/white,
 		/obj/item/storage/box/ncorp_seals/black,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/ncorp_nail,
@@ -81,8 +81,8 @@
 		/obj/item/ego_weapon/city/ncorp_hammer,
 		/obj/item/ego_weapon/city/ncorp_hammer/big,
 		/obj/item/clothing/suit/armor/ego_gear/city/ncorp,
-		/obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet
-		)
+		/obj/item/clothing/suit/armor/ego_gear/city/ncorp/vet,
+	)
 
 	veryrareloot =	list(
 		/obj/item/storage/box/ncorp_seals/pale,
@@ -94,7 +94,7 @@
 		/obj/item/ego_weapon/city/ncorp_brassnail/rose,
 		/obj/item/clothing/suit/armor/ego_gear/city/grosshammmer,
 		/obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander,
-		)
+	)
 
 //R Corporation
 /obj/structure/lootcrate/r_corp
@@ -112,19 +112,19 @@
 		/obj/item/gun/energy/e_gun/rabbitdash,
 		/obj/item/ego_weapon/city/rabbit_rush,
 		/obj/item/clothing/under/suit/lobotomy/rcorp_command,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade,
 		/obj/item/ego_weapon/city/reindeer,
 		/obj/item/clothing/head/beret/tegu/rcorp,
 		/obj/item/clothing/neck/cloak/rcorp,
-		)
+	)
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade/command,
 		/obj/item/ego_weapon/city/reindeer/captain,
-		)
+	)
 
 //S Corporation
 /obj/structure/lootcrate/s_corp
@@ -139,13 +139,13 @@
 		/obj/item/gun/ego_gun/sodarifle,
 		/obj/item/gun/ego_gun/sodasmg,
 		/obj/item/gun/ego_gun/shrimp/assault,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/gun/ego_gun/shrimp/minigun,
 		/mob/living/simple_animal/hostile/shrimp,
 		/obj/item/grenade/spawnergrenade/shrimp,
-		)
+	)
 
 
 //W Corporation
@@ -159,7 +159,7 @@
 		/obj/item/clothing/under/suit/lobotomy/wcorp,
 		/obj/item/clothing/suit/armor/ego_gear/wcorp,
 		/obj/item/powered_gadget/teleporter,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/charge/wcorp/fist,
@@ -172,4 +172,4 @@
 		/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
 		/obj/item/ego_weapon/city/charge/wcorp/shield/club,
 		/obj/item/ego_weapon/city/charge/wcorp/shield/axe,
-		)
+	)
