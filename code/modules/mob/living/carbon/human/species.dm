@@ -310,9 +310,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(slot == ORGAN_SLOT_BRAIN)
 				var/obj/item/organ/brain/brain = oldorgan
 				if(!brain.decoy_override)//"Just keep it if it's fake" - confucius, probably
-					var/obj/item/organ/brain/newbrain = neworgan
 					brain.before_organ_replacement(neworgan)
-					newbrain.attributes = brain.attributes.Copy() // Copy the old ones to move them over.
 					brain.Remove(C,TRUE, TRUE) //brain argument used so it doesn't cause any... sudden death.
 					QDEL_NULL(brain)
 					oldorgan = null //now deleted

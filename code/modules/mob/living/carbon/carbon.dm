@@ -1325,3 +1325,8 @@
 
 /mob/living/carbon/proc/attach_rot(mapload)
 	AddComponent(/datum/component/rot/corpse)
+
+/mob/living/carbon/proc/get_attribute_list()
+	if(!mind)
+		return FALSE
+	return mind.attributes

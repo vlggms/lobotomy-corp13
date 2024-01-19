@@ -243,10 +243,3 @@
 	destination.undershirt = undershirt
 	destination.socks = socks
 	destination.jumpsuit_style = jumpsuit_style
-
-/mob/living/carbon/human/proc/get_attribute_list()
-	. = list()
-	var/obj/item/organ/brain/brain = getorganslot(ORGAN_SLOT_BRAIN)
-	if(!brain)
-		return FALSE
-	return brain.attributes
