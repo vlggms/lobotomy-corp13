@@ -4377,17 +4377,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
-"mj" = (
-/obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
-	},
-/turf/open/floor/wood{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/control)
 "mk" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -6224,8 +6213,7 @@
 	},
 /area/department_main/information)
 "rg" = (
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+/turf/open/water/deep/saltwater/extradeep{
 	color = "#dddddd"
 	},
 /area/facility_hallway/central)
@@ -9895,9 +9883,11 @@
 	},
 /obj/structure/railing{
 	resistance_flags = 115;
-	name = "wing-grade railing";
+	name = "invisble wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -15536,9 +15526,11 @@
 	},
 /obj/structure/railing{
 	resistance_flags = 115;
-	name = "wing-grade railing";
+	name = "invisble wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -17396,8 +17388,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+/turf/open/water/deep/saltwater/extradeep{
 	color = "#dddddd"
 	},
 /area/facility_hallway/central)
@@ -41457,7 +41448,7 @@ rg
 rg
 rg
 rg
-Sb
+RY
 RY
 Qo
 qN
@@ -41486,7 +41477,7 @@ Se
 Se
 Qo
 RY
-Sb
+RY
 rg
 rg
 rg
@@ -41714,7 +41705,7 @@ Ye
 rg
 rg
 rg
-Sb
+RY
 RY
 Qo
 qN
@@ -41743,7 +41734,7 @@ Rv
 yz
 Qo
 RY
-Sb
+RY
 rg
 rg
 rg
@@ -42738,7 +42729,7 @@ RY
 ML
 wx
 Bs
-mj
+ht
 Su
 Wc
 OO
@@ -47158,9 +47149,9 @@ RY
 RY
 RY
 RY
-Sb
-Sb
-Sb
+RY
+RY
+RY
 RY
 RY
 RY
@@ -47397,7 +47388,7 @@ TJ
 wK
 RY
 RY
-RY
+rg
 RY
 Sb
 Sb
@@ -47416,8 +47407,8 @@ ah
 ah
 RY
 RY
-Sb
-Sb
+RY
+RY
 RY
 Ke
 Ke
@@ -47653,8 +47644,8 @@ Ac
 Ba
 tC
 RY
-RY
-RY
+rg
+rg
 RY
 RY
 RY
@@ -47910,8 +47901,8 @@ Ej
 Rl
 tC
 RY
-Sb
-Sb
+rg
+rg
 RY
 Hn
 Hn
@@ -48167,8 +48158,8 @@ Np
 UA
 tC
 RY
-Sb
-Sb
+RY
+RY
 RY
 Hn
 Yu
@@ -54052,9 +54043,9 @@ RY
 RY
 RY
 RY
-rg
-rg
-rg
+RY
+RY
+RY
 RY
 RY
 RY
@@ -54103,8 +54094,8 @@ ah
 dD
 OO
 RY
-Sb
-Sb
+RY
+RY
 RY
 RY
 RY
@@ -55643,7 +55634,7 @@ RY
 RY
 RY
 RY
-Sb
+RY
 rg
 rg
 rg
@@ -59235,7 +59226,7 @@ Df
 kE
 yN
 OO
-Sb
+RY
 rg
 rg
 Ye
@@ -59492,7 +59483,7 @@ WE
 WE
 WE
 gv
-Sb
+RY
 rg
 rg
 rg
@@ -61535,7 +61526,7 @@ XQ
 Xc
 sF
 OO
-Sb
+RY
 rg
 rg
 rg
@@ -61792,7 +61783,7 @@ WE
 WE
 WE
 gv
-Sb
+RY
 rg
 rg
 rg
