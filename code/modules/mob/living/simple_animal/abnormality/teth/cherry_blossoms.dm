@@ -16,16 +16,16 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = 20
-			)
+		ABNORMALITY_WORK_REPRESSION = 20,
+	)
 	start_qliphoth = 3
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blossom,
-		/datum/ego_datum/armor/blossom
-		)
+		/datum/ego_datum/armor/blossom,
+	)
 	gift_type = /datum/ego_gifts/blossom
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 	var/numbermarked = 5

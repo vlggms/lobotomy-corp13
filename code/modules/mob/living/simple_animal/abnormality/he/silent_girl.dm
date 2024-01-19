@@ -18,19 +18,19 @@
 	gender = FEMALE // Is this used basically anywhere? Not that I know of. But seeing "Gender: Male" on Silent Girl doesn't seem right.
 	threat_level = HE_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 25,
-						ABNORMALITY_WORK_INSIGHT = list(-50, -50, 60, 60, 60),
-						ABNORMALITY_WORK_ATTACHMENT = -50,
-						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 60, 60)
-						)
+		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSIGHT = list(-50, -50, 60, 60, 60),
+		ABNORMALITY_WORK_ATTACHMENT = -50,
+		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 60, 60),
+	)
 	work_damage_amount = 0
 	work_damage_type = WHITE_DAMAGE
 	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/remorse,
-		/datum/ego_datum/armor/remorse
-		)
+		/datum/ego_datum/armor/remorse,
+	)
 	gift_type = /datum/ego_gifts/remorse
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 

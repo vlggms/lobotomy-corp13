@@ -13,15 +13,15 @@
 		ABNORMALITY_WORK_INSTINCT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70),
+	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/daredevil,
-		/datum/ego_datum/armor/daredevil
-		)
+		/datum/ego_datum/armor/daredevil,
+	)
 	gift_type = null
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY

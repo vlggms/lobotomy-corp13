@@ -28,11 +28,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	fear_level = ALEPH_LEVEL + 1
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45)
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45),
+	)
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
 	can_patrol = FALSE
@@ -43,13 +43,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	light_power = 3
 
 	ego_list = list(
-		/datum/ego_datum/armor/paradise
-		)
+		/datum/ego_datum/armor/paradise,
+	)
 	gift_type =  /datum/ego_gifts/paradise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/onesin = 5
+		/mob/living/simple_animal/hostile/abnormality/onesin = 5,
 	)
 
 	var/holy_revival_cooldown
@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		"2" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"3" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
 		"4" = list("So this is God...", "My existence is meaningless...", "We are petty beings..."),
-		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe...")
+		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe..."),
 		)
 	return pick(result_text_list[level])
 

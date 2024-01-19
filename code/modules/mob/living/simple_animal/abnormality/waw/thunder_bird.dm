@@ -9,12 +9,12 @@
 	speak_emote = list("intones")
 	gender = NEUTER
 	var/list/thunder_bird_lines = list(
-				"Prostrate yourself! Harder!",
-				"Do you think I am happy, feather? Think again!",
-				"You folk, nothing but sacrifices. Sacrifices for me and everyone else here!",
-				"Your kind can never be forgiven!",
-				"Look around, you monsters! You've destroyed my people and nature!"
-				)
+		"Prostrate yourself! Harder!",
+		"Do you think I am happy, feather? Think again!",
+		"You folk, nothing but sacrifices. Sacrifices for me and everyone else here!",
+		"Your kind can never be forgiven!",
+		"Look around, you monsters! You've destroyed my people and nature!",
+	)
 	//Ideally it should only glow in its breached state
 	light_color = LIGHT_COLOR_BLUE
 	light_range = 0
@@ -35,11 +35,11 @@
 	start_qliphoth = 3
 	//Unlike firebird, you're aiming for good results. The success rates are lower overall and it hates attachment work.
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
-						ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
-						ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
+		ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -47,8 +47,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/warring,
 		/datum/ego_datum/weapon/warring2,
-		/datum/ego_datum/armor/warring
-		)
+		/datum/ego_datum/armor/warring,
+	)
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL

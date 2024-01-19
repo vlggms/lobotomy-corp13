@@ -12,7 +12,7 @@
 		ABNORMALITY_WORK_INSTINCT = 50,
 		ABNORMALITY_WORK_INSIGHT = 65,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 20
+		ABNORMALITY_WORK_REPRESSION = 20,
 	)
 	start_qliphoth = 3
 	work_damage_amount = 5		//Calculated later
@@ -22,7 +22,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sorority,
-		/datum/ego_datum/armor/sorority
+		/datum/ego_datum/armor/sorority,
 	)
 	gift_type =  /datum/ego_gifts/sorority
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB

@@ -30,18 +30,18 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 40, 45),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 40, 45),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/animalism,
-		/datum/ego_datum/armor/animalism
-		)
+		/datum/ego_datum/armor/animalism,
+	)
 //	gift_type =  /datum/ego_gifts/animalism
 
 	var/revealed = TRUE

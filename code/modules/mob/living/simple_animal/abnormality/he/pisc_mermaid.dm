@@ -27,19 +27,19 @@
 	start_qliphoth = 3
 	move_to_delay = 2.8
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
-						ABNORMALITY_WORK_INSIGHT = list(30, 30, 35, 35, 35),
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 55, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(40, 50, 60, 60, 60),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
+		ABNORMALITY_WORK_INSIGHT = list(30, 30, 35, 35, 35),
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 55, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(40, 50, 60, 60, 60),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	melee_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/unrequited,
-		/datum/ego_datum/armor/unrequited
-		)
+		/datum/ego_datum/armor/unrequited,
+	)
 	gift_type =  /datum/ego_gifts/unrequited_love
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 

@@ -73,7 +73,7 @@
 		/obj/effect/temp_visual/holo_command/command_heal,
 		/obj/effect/temp_visual/holo_command/command_fight_a,
 		/obj/effect/temp_visual/holo_command/command_fight_b,
-		)
+	)
 
 /obj/item/commandprojector/attack_self(mob/user)
 	..()
@@ -379,7 +379,7 @@
 	var/stored_enkephalin = 0
 	var/maximum_enkephalin = 250
 	var/drawn_amount = 50
-	var/list/possible_drawn_amounts = list(5,10,15,20,25,50)
+	var/list/possible_drawn_amounts = list(5, 10, 15, 20, 25, 50)
 	var/ego_selection
 	var/ego_array
 
@@ -495,7 +495,7 @@
 		'sound/effects/wounds/blood3.ogg',
 		'sound/weapons/circsawhit.ogg',
 		'sound/weapons/bladeslice.ogg',
-		'sound/weapons/bite.ogg'
+		'sound/weapons/bite.ogg',
 	)
 	mid_length = 2 SECONDS
 	volume = 20

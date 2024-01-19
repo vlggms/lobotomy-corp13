@@ -25,12 +25,12 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(90, 60, 55, 50, 45),
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = 30,
-						ABNORMALITY_WORK_REPRESSION = 0,
-						"Take cover" = 0,
-						)
+		ABNORMALITY_WORK_INSTINCT = list(90, 60, 55, 50, 45),
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = 30,
+		ABNORMALITY_WORK_REPRESSION = 0,
+		"Take cover" = 0,
+	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	death_message = "coalesces into a primordial egg."
@@ -40,7 +40,7 @@
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/fairy_gentleman = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/fairy_festival = 1.5,
-		// Fae Lantern = 1.5
+		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
 	var/finishing = FALSE //cant move/attack when it's TRUE
@@ -50,8 +50,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/fourleaf_clover,
-		/datum/ego_datum/armor/fourleaf_clover
-		)
+		/datum/ego_datum/armor/fourleaf_clover,
+	)
 	gift_type =  /datum/ego_gifts/fourleaf_clover
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/death(gibbed)

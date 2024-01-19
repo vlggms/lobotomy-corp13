@@ -24,13 +24,15 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/eclipse,
-		/datum/ego_datum/armor/eclipse
+		/datum/ego_datum/armor/eclipse,
 	)
 
 	gift_type =  /datum/ego_gifts/eclipse
-	var/list/saylines = list("Wasn't it tiring coming all the way here?",
+	var/list/saylines = list(
+		"Wasn't it tiring coming all the way here?",
 		"Really, check out those butterflies.",
-		"Just watching them will warm your heart.")
+		"Just watching them will warm your heart.",
+	)
 	light_color = COLOR_ORANGE
 	light_range = 5
 	light_power = 7

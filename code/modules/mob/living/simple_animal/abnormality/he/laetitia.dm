@@ -12,16 +12,16 @@
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 60, 65, 65),
-		ABNORMALITY_WORK_REPRESSION = 0
-			)
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 16 // Accurate to base game
 
 	ego_list = list(
 		/datum/ego_datum/weapon/prank,
-		/datum/ego_datum/armor/prank
-		)
+		/datum/ego_datum/armor/prank,
+	)
 	gift_type = /datum/ego_gifts/prank
 	gift_message = "I hope you're pleased with this!"
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY

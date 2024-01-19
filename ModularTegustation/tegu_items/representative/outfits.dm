@@ -19,10 +19,12 @@
 	belt = null
 
 /datum/outfit/wcorp/level2/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/belt = pick(/obj/item/ego_weapon/city/charge/wcorp/fist,
+	var/belt = pick(
+		/obj/item/ego_weapon/city/charge/wcorp/fist,
 		/obj/item/ego_weapon/city/charge/wcorp/axe,
 		/obj/item/ego_weapon/city/charge/wcorp/spear,
-		/obj/item/ego_weapon/city/charge/wcorp/dagger)
+		/obj/item/ego_weapon/city/charge/wcorp/dagger,
+	)
 
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
 
@@ -47,10 +49,14 @@
 	id = /obj/item/card/id
 
 /datum/outfit/kcorp/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/head = pick(/obj/item/clothing/head/ego_hat/helmet/kcorp,
-		/obj/item/clothing/head/ego_hat/helmet/kcorp/visor)
-	var/belt = pick(/obj/item/ego_weapon/city/kcorp,
-		/obj/item/ego_weapon/city/kcorp/axe)
+	var/head = pick(
+		/obj/item/clothing/head/ego_hat/helmet/kcorp,
+		/obj/item/clothing/head/ego_hat/helmet/kcorp/visor,
+	)
+	var/belt = pick(
+		/obj/item/ego_weapon/city/kcorp,
+		/obj/item/ego_weapon/city/kcorp/axe,
+	)
 
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
 	H.equip_to_slot_or_del(new head(H),ITEM_SLOT_HEAD, TRUE)
@@ -65,8 +71,10 @@
 	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3/ert
 
 /datum/outfit/kcorp/level3/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/belt = pick(/obj/item/ego_weapon/city/kcorp/spear,
-		/obj/item/ego_weapon/city/kcorp/dspear)
+	var/belt = pick(
+		/obj/item/ego_weapon/city/kcorp/spear,
+		/obj/item/ego_weapon/city/kcorp/dspear,
+	)
 
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
 
@@ -82,8 +90,10 @@
 	r_pocket = /obj/item/krevive
 
 /datum/outfit/kcorp/level3/kill/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/belt = pick(/obj/item/ego_weapon/city/kcorp/spear,
-		/obj/item/ego_weapon/city/kcorp/dspear)
+	var/belt = pick(
+		/obj/item/ego_weapon/city/kcorp/spear,
+		/obj/item/ego_weapon/city/kcorp/dspear,
+	)
 
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
 

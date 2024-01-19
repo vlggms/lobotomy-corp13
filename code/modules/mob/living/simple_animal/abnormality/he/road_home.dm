@@ -18,11 +18,11 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 20,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = 45,
-						ABNORMALITY_WORK_REPRESSION = list(50, 60, 70, 80, 90)
-						)
+		ABNORMALITY_WORK_INSTINCT = 20,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = 45,
+		ABNORMALITY_WORK_REPRESSION = list(50, 60, 70, 80, 90),
+	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
@@ -30,8 +30,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/brick_road,
 		/datum/ego_datum/weapon/homing_instinct,
-		/datum/ego_datum/armor/homing_instinct
-		)
+		/datum/ego_datum/armor/homing_instinct,
+	)
 	gift_type = /datum/ego_gifts/homing_instinct
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -40,7 +40,7 @@
 		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
 		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
 		// Ozma = 2,
-		// Lies = 1.5
+		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5
 	)
 
 	///Stuff related to the house and its path
@@ -53,10 +53,10 @@
 
 	///If those abnos are available, she will make a path towards them instead. (isn't used for anything right now)
 	var/list/preferred_abno_list = list(
-									/mob/living/simple_animal/hostile/abnormality/woodsman,
-									/mob/living/simple_animal/hostile/abnormality/scarecrow,
-									/mob/living/simple_animal/hostile/abnormality/scaredy_cat
-									)
+		/mob/living/simple_animal/hostile/abnormality/woodsman,
+		/mob/living/simple_animal/hostile/abnormality/scarecrow,
+		/mob/living/simple_animal/hostile/abnormality/scaredy_cat,
+	)
 	var/move_timer_id
 	var/spawn_tried = 0
 	var/flip_cooldown_time = 10 SECONDS
@@ -356,10 +356,10 @@
 
 /datum/ai_behavior/say_line/insanity_road_home
 	lines = list(
-				"The sound of back home... If I can just go back...",
-				"Let us all gather, let us all dance around...",
-				"Let's go on an adventure!"
-				)
+		"The sound of back home... If I can just go back...",
+		"Let us all gather, let us all dance around...",
+		"Let's go on an adventure!",
+	)
 
 /datum/ai_controller/insane/road_home/PossessPawn(atom/new_pawn)
 	. = ..()
