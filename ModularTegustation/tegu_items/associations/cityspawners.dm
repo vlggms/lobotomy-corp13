@@ -46,7 +46,6 @@
 		/obj/structure/lootcrate/workshoprosespanner,
 		/obj/structure/lootcrate/backstreets,
 		/obj/structure/lootcrate/jcorp,
-		/obj/structure/lootcrate/limbus,
 		)
 
 /obj/effect/landmark/cratespawn/Initialize()
