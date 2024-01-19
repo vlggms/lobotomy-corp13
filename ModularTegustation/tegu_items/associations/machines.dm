@@ -19,6 +19,7 @@
 	var/list/level_2 = list(
 		/obj/item/clothing/suit/armor/ego_gear/city,
 		/obj/item/ego_weapon/city,
+		/obj/item/gun/ego_gun,
 	)
 	var/list/level_3 = list(
 		/obj/item/raw_anomaly_core,
