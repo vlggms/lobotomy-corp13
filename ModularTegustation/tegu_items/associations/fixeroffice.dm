@@ -99,37 +99,37 @@
 	name = "Fishing Office"
 	shelter_id = "fishing_office"
 	description = "A fixer office made for fishhook fixers."
-	mappath = "_maps/templates/fixer_office/fishing.dmm"
+	mappath = "_maps/templates/fixer_office/fishingfixer.dmm"
 
 /datum/map_template/shelter/combat
 	name = "Combat Office"
 	shelter_id = "combat_office"
 	description = "A fixer office made for combat oriented fixers."
-	mappath = "_maps/templates/fixer_office/combat.dmm"
+	mappath = "_maps/templates/fixer_office/combatfixer.dmm"
 
 /datum/map_template/shelter/protection
 	name = "Protection Office"
 	shelter_id = "protection_office"
 	description = "A fixer office made for protection oriented fixers."
-	mappath = "_maps/templates/fixer_office/protection.dmm"
+	mappath = "_maps/templates/fixer_office/protectionfixer.dmm"
 
 /datum/map_template/shelter/workshop
 	name = "Workshop Office"
 	shelter_id = "workshop_office"
 	description = "A fixer office made for workshop oriented fixers."
-	mappath = "_maps/templates/fixer_office/workshop.dmm"
+	mappath = "_maps/templates/fixer_office/workshopfixer.dmm"
 
 /datum/map_template/shelter/recon
 	name = "Recon Office"
 	shelter_id = "recon_office"
 	description = "A fixer office made for recon oriented fixers."
-	mappath = "_maps/templates/fixer_office/recon.dmm"
+	mappath = "_maps/templates/fixer_office/reconfixer.dmm"
 
 /datum/map_template/shelter/peacekeeper
 	name = "Peacekeeper Office"
 	shelter_id = "peacekeeper_office"
 	description = "A fixer office made for peacekeeping oriented fixers."
-	mappath = "_maps/templates/fixer_office/peacekeeping.dmm"
+	mappath = "_maps/templates/fixer_office/peacekeepingfixer.dmm"
 
 
 

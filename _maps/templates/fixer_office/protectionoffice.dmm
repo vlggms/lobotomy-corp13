@@ -167,7 +167,8 @@
 /obj/structure/table/wood/fancy/red,
 /obj/structure/railing,
 /obj/machinery/dish_drive{
-	pixel_y = 9
+	pixel_y = 9;
+	density = 1
 	},
 /turf/open/floor/pod/dark,
 /area/city/fixers)

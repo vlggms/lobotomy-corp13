@@ -126,6 +126,14 @@
 /obj/structure/railing{
 	dir = 4
 	},
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "invisble wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
+	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -223,6 +231,14 @@
 /obj/structure/railing{
 	dir = 4;
 	pixel_y = 21
+	},
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "invisble wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
