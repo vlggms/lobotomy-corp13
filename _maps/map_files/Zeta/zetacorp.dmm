@@ -12017,18 +12017,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/human)
-"HK" = (
-/obj/structure/lattice/catwalk{
-	resistance_flags = 115;
-	name = "wing-grade catwalk";
-	desc = "A catwalk for easy traversal over difficult terrain with a fraction of the cost."
-	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
-	density = 0;
-	slowdown = 0
-	},
-/area/department_main/command)
 "HL" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -48920,9 +48908,9 @@ uY
 uY
 xB
 Eq
-HK
+uY
 Ay
-HK
+uY
 Eg
 JY
 uY
@@ -49177,9 +49165,9 @@ Do
 SY
 st
 MH
-HK
-HK
-HK
+uY
+uY
+uY
 Do
 SY
 st
@@ -49434,9 +49422,9 @@ ck
 ck
 ck
 YT
-HK
-HK
-HK
+uY
+uY
+uY
 ck
 ck
 ck
@@ -49948,9 +49936,9 @@ ck
 gi
 Hm
 hl
-HK
-HK
-HK
+uY
+uY
+uY
 Rm
 NK
 bb
@@ -50205,9 +50193,9 @@ ck
 gi
 UB
 QX
-HK
-HK
-HK
+uY
+uY
+uY
 QX
 ze
 DB
@@ -50456,21 +50444,21 @@ xy
 dh
 BO
 yb
-HK
-HK
-HK
+uY
+uY
+uY
 gi
-HK
-HK
-HK
+uY
+uY
+uY
 YD
-HK
-HK
-HK
+uY
+uY
+uY
 PW
-HK
-HK
-HK
+uY
+uY
+uY
 yb
 rH
 Kx
@@ -50714,19 +50702,19 @@ BM
 MJ
 ra
 Cb
-HK
-HK
+uY
+uY
 tB
-HK
-HK
+uY
+uY
 ek
 PX
 Dm
-HK
-HK
+uY
+uY
 Un
-HK
-HK
+uY
+uY
 Cb
 FE
 ZQ
@@ -50970,21 +50958,21 @@ ko
 VG
 Sk
 yb
-HK
-HK
-HK
+uY
+uY
+uY
 gi
-HK
-HK
-HK
+uY
+uY
+uY
 qO
-HK
-HK
-HK
+uY
+uY
+uY
 PW
-HK
-HK
-HK
+uY
+uY
+uY
 yb
 JE
 LZ
@@ -51233,9 +51221,9 @@ eF
 ff
 Xq
 QX
-HK
-HK
-HK
+uY
+uY
+uY
 QX
 xd
 PW
@@ -51490,9 +51478,9 @@ ck
 gi
 NK
 yc
-HK
-HK
-HK
+uY
+uY
+uY
 XU
 Ep
 PW
@@ -52004,9 +51992,9 @@ ck
 ck
 ck
 YT
-HK
-HK
-HK
+uY
+uY
+uY
 ck
 ck
 ck
@@ -52261,9 +52249,9 @@ AK
 bD
 BW
 Iw
-HK
-HK
-HK
+uY
+uY
+uY
 AK
 bD
 BW
@@ -52518,9 +52506,9 @@ uY
 uY
 Cl
 JI
-HK
+uY
 pA
-HK
+uY
 zy
 nU
 uY
