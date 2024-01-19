@@ -457,6 +457,12 @@
 	name = "ncorp recruit equipment crate";
 	opened = 1
 	},
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
+/obj/item/clothing/suit/armor/ego_gear/city/ncorp/weak,
 /turf/open/floor/stone,
 /area/city/backstreets_room)
 "wu" = (

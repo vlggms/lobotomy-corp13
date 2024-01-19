@@ -223,9 +223,7 @@
 /obj/structure/closet/crate/large,
 /obj/item/ego_weapon/city/ncorp_mark,
 /obj/item/ego_weapon/city/ncorp_mark/black,
-/obj/item/ego_weapon/city/ncorp_mark/pale,
 /obj/item/ego_weapon/city/ncorp_mark/white,
-/obj/item/soap/ncorporation,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "S" = (
