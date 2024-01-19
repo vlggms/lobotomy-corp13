@@ -14,8 +14,21 @@
 	var/turf/target_turf = get_turf(user)
 	var/list/line_turfs = list(target_turf)
 	var/list/mobs_to_hit = list()
+	var/stop_charge = FALSE
 	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, target, dash_range)))
 		if(!dash_ignore_walls && T.density)
+			break
+		if(!dash_ignore_walls)
+			for(var/obj/structure/window/W in T.contents)
+				stop_charge = TRUE
+				break
+			for(var/obj/machinery/door/MD in T.contents)
+				if(!MD.CanAStarPass(null))
+					stop_charge = TRUE
+					break
+				if(MD.density)
+					INVOKE_ASYNC(MD, /obj/machinery/door/proc/open, 2)
+		if(stop_charge)
 			break
 		target_turf = T
 		line_turfs += T
@@ -35,9 +48,6 @@
 		D.alpha = min(150 + i*15, 255)
 		animate(D, alpha = 0, time = 2 + i*2)
 		playsound(D, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(10, 30), 1, 3)
-		for(var/obj/machinery/door/MD in T.contents)
-			if(MD.density)
-				addtimer(CALLBACK (MD, .obj/machinery/door/proc/open))
 	// Damage
 	for(var/mob/living/L in mobs_to_hit)
 		if(user.faction_check_mob(L))

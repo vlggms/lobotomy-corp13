@@ -382,14 +382,6 @@
 	slowdown = 0
 	},
 /area/facility_hallway/information)
-"bm" = (
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
-/area/department_main/extraction)
 "bn" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -834,7 +826,7 @@
 	dir = 1
 	},
 /turf/open/floor/facility/dark,
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "cv" = (
 /obj/effect/turf_decal/arrows/red{
 	dir = 8
@@ -980,27 +972,28 @@
 /turf/open/floor/noslip,
 /area/facility_hallway/north)
 "cX" = (
-/obj/effect/turf_decal/stripes/white/line{
+/obj/effect/turf_decal/stripes/white/line,
+/obj/effect/turf_decal/caution/white{
 	dir = 1
 	},
-/obj/effect/turf_decal/caution/white,
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
+/obj/machinery/camera{
+	alpha = 0;
+	short_range = 3;
+	name = "hidden security camera";
+	mouse_opacity = 0;
+	view_range = 3
 	},
 /turf/open/floor/facility/dark,
-/area/facility_hallway/west)
+/area/facility_hallway/extraction)
 "cY" = (
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 8
 	},
-/obj/machinery/text_adventure_console,
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
 	},
+/obj/machinery/regenerator/safety,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -1268,7 +1261,7 @@
 	mouse_opacity = 0;
 	view_range = 3
 	},
-/turf/open/floor/plasteel/dark{
+/turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
@@ -1857,23 +1850,6 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/control)
 "fy" = (
-/obj/effect/turf_decal/box/corners{
-	dir = 4
-	},
-/obj/effect/turf_decal/box/corners{
-	dir = 8
-	},
-/obj/effect/turf_decal/box/red/corners,
-/obj/effect/turf_decal/box/red/corners{
-	dir = 1
-	},
-/obj/effect/turf_decal/arrows/red{
-	dir = 1
-	},
-/obj/effect/turf_decal/arrows/red,
-/obj/effect/turf_decal/siding/thinplating/dark/corner{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
@@ -2150,13 +2126,6 @@
 "gl" = (
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/training)
-"gn" = (
-/turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	color = "#dddddd"
-	},
-/area/facility_hallway/central)
 "gp" = (
 /obj/machinery/light{
 	dir = 1;
@@ -2277,7 +2246,7 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/facility/dark,
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "gE" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -2764,8 +2733,7 @@
 /area/facility_hallway/training)
 "hP" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 8
@@ -3222,8 +3190,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
@@ -3446,7 +3413,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "jG" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -3494,16 +3461,8 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/east)
 "jP" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 4
-	},
-/obj/effect/turf_decal/stripes/white/corner{
-	dir = 8
-	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/west)
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/control)
 "jQ" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /turf/open/floor/plasteel/dark,
@@ -4176,7 +4135,7 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark{
+/turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
@@ -4418,17 +4377,6 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
-"mj" = (
-/obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
-	},
-/turf/open/floor/wood{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/control)
 "mk" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -4660,8 +4608,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -5006,7 +4953,7 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark{
+/turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
@@ -5394,19 +5341,8 @@
 	},
 /area/facility_hallway/control)
 "pv" = (
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/caution/white{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/west)
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/east)
 "pw" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -5847,14 +5783,8 @@
 	},
 /area/facility_hallway/information)
 "qn" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 1
-	},
-/obj/effect/turf_decal/stripes/white/corner,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/west)
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/training)
 "qp" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -6175,19 +6105,22 @@
 	},
 /area/facility_hallway/east)
 "qS" = (
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
-	},
-/obj/effect/turf_decal/stripes/white/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/caution/white{
+/obj/effect/turf_decal/tile/green,
+/obj/effect/turf_decal/tile/brown{
 	dir = 8
 	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/west)
+/obj/effect/turf_decal/tile/brown{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/green{
+	dir = 1
+	},
+/obj/machinery/vending/hydronutrients{
+	pixel_y = 19;
+	density = 0
+	},
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/training)
 "qX" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/brown{
@@ -6280,8 +6213,7 @@
 	},
 /area/department_main/information)
 "rg" = (
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+/turf/open/water/deep/saltwater/extradeep{
 	color = "#dddddd"
 	},
 /area/facility_hallway/central)
@@ -6396,8 +6328,7 @@
 	dir = 1
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -6611,7 +6542,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "rT" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -6680,11 +6611,7 @@
 	},
 /area/facility_hallway/information)
 "sc" = (
-/obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	},
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/information)
 "sf" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
@@ -6967,16 +6894,11 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "tb" = (
-/obj/effect/turf_decal/box/white/corners{
-	dir = 8
+/obj/machinery/door/airlock/highsecurity{
+	name = "Extraction Office Secure Area"
 	},
-/obj/effect/turf_decal/stripes/white/corner{
-	dir = 4
-	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/west)
+/turf/open/floor/facility/halls,
+/area/facility_hallway/extraction)
 "td" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -7060,21 +6982,23 @@
 	},
 /area/facility_hallway/central)
 "ts" = (
-/obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+/obj/effect/turf_decal/box/red,
+/obj/structure/toolabnormality/wishwell,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
-/area/facility_hallway/central)
+/turf/open/floor/facility,
+/area/facility_hallway/extraction)
 "tu" = (
-/obj/structure/bodycontainer,
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
+	},
+/obj/structure/bodycontainer/morgue{
+	dir = 2
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -7132,11 +7056,7 @@
 	},
 /area/department_main/command)
 "tC" = (
-/obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	},
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/west)
 "tD" = (
 /obj/structure/lattice/lava{
@@ -7376,7 +7296,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "up" = (
 /obj/effect/turf_decal/siding/purple{
 	color = "#8a3080";
@@ -7730,8 +7650,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -8562,8 +8481,7 @@
 /area/facility_hallway/north)
 "xB" = (
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /obj/effect/turf_decal/box/red/corners{
 	dir = 4
@@ -8596,16 +8514,11 @@
 	},
 /area/facility_hallway/south)
 "xD" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
+/turf/closed/indestructible/reinforced{
+	name = "facility wall";
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "xE" = (
 /obj/effect/turf_decal/siding/thinplating/corner,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -9000,7 +8913,7 @@
 	view_range = 3
 	},
 /turf/open/floor/facility/dark,
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "za" = (
 /obj/structure/mirror{
 	pixel_y = 27
@@ -9225,11 +9138,7 @@
 	},
 /area/department_main/command)
 "zz" = (
-/obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	},
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/department_main/records)
 "zC" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -9487,14 +9396,14 @@
 	},
 /area/facility_hallway/west)
 "Ad" = (
-/obj/effect/turf_decal/box/white/corners,
-/obj/effect/turf_decal/stripes/white/corner{
-	dir = 1
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 4
 	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
+/obj/effect/turf_decal/caution/white{
+	dir = 8
 	},
-/area/facility_hallway/west)
+/turf/open/floor/facility/dark,
+/area/facility_hallway/extraction)
 "Ae" = (
 /obj/effect/turf_decal/box,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -9974,9 +9883,11 @@
 	},
 /obj/structure/railing{
 	resistance_flags = 115;
-	name = "wing-grade railing";
+	name = "invisble wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -10756,7 +10667,7 @@
 	dir = 4
 	},
 /turf/open/floor/facility/dark,
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "Dw" = (
 /obj/machinery/light{
 	dir = 4;
@@ -10827,8 +10738,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /obj/effect/turf_decal/arrows/red{
 	dir = 4
@@ -11024,11 +10934,7 @@
 	},
 /area/facility_hallway/human)
 "En" = (
-/obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	},
-/turf/open/floor/facility/dark,
+/turf/closed/indestructible/fakeglass,
 /area/facility_hallway/manager)
 "Ep" = (
 /obj/item/instrument/guitar,
@@ -11528,14 +11434,26 @@
 /turf/open/floor/facility/halls,
 /area/facility_hallway/south)
 "FH" = (
-/obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 8
+/obj/effect/turf_decal/delivery,
+/obj/structure/closet/crate{
+	name = "pe box crate";
+	anchored = 1;
+	opened = 1
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
 	},
-/area/facility_hallway/central)
+/area/department_main/extraction)
 "FL" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -11866,10 +11784,12 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
 "GH" = (
-/obj/effect/turf_decal/box/red,
-/obj/structure/toolabnormality/wishwell,
-/turf/open/floor/facility,
-/area/facility_hallway/west)
+/obj/effect/turf_decal/stripes/white/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/caution/white,
+/turf/open/floor/facility/dark,
+/area/facility_hallway/extraction)
 "GK" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -12097,18 +12017,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/human)
-"HK" = (
-/obj/structure/lattice/catwalk{
-	resistance_flags = 115;
-	name = "wing-grade catwalk";
-	desc = "A catwalk for easy traversal over difficult terrain with a fraction of the cost."
-	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
-	density = 0;
-	slowdown = 0
-	},
-/area/department_main/command)
 "HL" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -12497,7 +12405,7 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
-/turf/open/floor/plasteel/dark{
+/turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
@@ -12809,8 +12717,7 @@
 /area/facility_hallway/west)
 "JY" = (
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /obj/effect/turf_decal/box/red/corners,
 /obj/effect/turf_decal/box/red/corners{
@@ -12861,13 +12768,10 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
 	},
-/obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
-	},
 /obj/effect/turf_decal/arrows/red{
 	dir = 8
 	},
+/obj/machinery/facility_holomap,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -12976,7 +12880,9 @@
 	},
 /area/facility_hallway/human)
 "KC" = (
-/obj/structure/bodycontainer,
+/obj/structure/bodycontainer/morgue{
+	dir = 2
+	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -13631,12 +13537,8 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "MF" = (
-/obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/extraction)
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/extraction)
 "MH" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -13792,9 +13694,6 @@
 	},
 /area/department_main/safety)
 "Nd" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 8
-	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
 "Ng" = (
@@ -13875,7 +13774,7 @@
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "Np" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -14367,7 +14266,7 @@
 /area/department_main/information)
 "OG" = (
 /obj/machinery/facility_holomap{
-	dir = 8
+	dir = 4
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -15615,9 +15514,11 @@
 	},
 /obj/structure/railing{
 	resistance_flags = 115;
-	name = "wing-grade railing";
+	name = "invisble wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -15904,8 +15805,7 @@
 /area/department_main/information)
 "Tw" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -15942,21 +15842,8 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
 "Tz" = (
-/obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate{
-	name = "pe box crate";
-	anchored = 1;
-	opened = 1
-	},
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/item/rawpe,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/department_main/extraction)
+/turf/closed/indestructible/fakeglass,
+/area/facility_hallway/safety)
 "TA" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 4
@@ -16600,19 +16487,15 @@
 	},
 /area/facility_hallway/south)
 "Vb" = (
-/obj/effect/turf_decal/stripes/white/line,
-/obj/effect/turf_decal/caution/white{
-	dir = 1
+/obj/machinery/button/door/indestructible{
+	id = "extraction";
+	name = "Extraction Access Shutters";
+	pixel_y = 4;
+	req_one_access_txt = "19";
+	pixel_x = 22
 	},
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 3
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/west)
+/turf/open/floor/plasteel/dark,
+/area/department_main/extraction)
 "Vd" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
@@ -16736,7 +16619,7 @@
 	dir = 1
 	},
 /obj/machinery/chem_dispenser/fullupgrade{
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
+	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel,/datum/reagent/consumable/soymilk,/datum/reagent/consumable/milk);
 	name = "Industrial Foodstuff Dispenser";
 	desc = "Creates and dispenses a variety of kitchen ingredients.";
 	emagged_reagents = null
@@ -17493,8 +17376,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100);
+/turf/open/water/deep/saltwater/extradeep{
 	color = "#dddddd"
 	},
 /area/facility_hallway/central)
@@ -18048,7 +17930,7 @@
 /obj/effect/turf_decal/box/red,
 /obj/structure/toolabnormality/realization,
 /turf/open/floor/facility,
-/area/department_main/extraction)
+/area/facility_hallway/extraction)
 "ZX" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -40283,12 +40165,12 @@ LM
 ll
 RY
 RY
-Sb
-Sb
 RY
 RY
 RY
-gn
+RY
+RY
+rg
 RY
 RY
 RY
@@ -40796,8 +40678,8 @@ Pr
 Qo
 Qo
 Qo
-Pr
-Pr
+qn
+qn
 Qo
 Qo
 Qo
@@ -40806,9 +40688,9 @@ RY
 RY
 Qo
 Qo
-Pr
-Pr
-Pr
+qn
+qn
+qn
 Qo
 Qo
 RY
@@ -41554,7 +41436,7 @@ rg
 rg
 rg
 rg
-Sb
+RY
 RY
 Qo
 qN
@@ -41576,14 +41458,14 @@ KV
 Pt
 LQ
 Qo
-So
+qS
 Se
 Jj
 Se
 Se
 Qo
 RY
-Sb
+RY
 rg
 rg
 rg
@@ -41811,7 +41693,7 @@ Ye
 rg
 rg
 rg
-Sb
+RY
 RY
 Qo
 qN
@@ -41840,7 +41722,7 @@ Rv
 yz
 Qo
 RY
-Sb
+RY
 rg
 rg
 rg
@@ -42835,7 +42717,7 @@ RY
 ML
 wx
 Bs
-mj
+ht
 Su
 Wc
 OO
@@ -43095,9 +42977,9 @@ fv
 CZ
 fv
 zS
-fv
-fv
-fv
+jP
+jP
+jP
 Qo
 qN
 qN
@@ -43380,7 +43262,7 @@ TZ
 ii
 vZ
 rN
-Pr
+qn
 RY
 RY
 rg
@@ -43637,7 +43519,7 @@ Cg
 we
 vZ
 Qb
-Pr
+qn
 RY
 RY
 rg
@@ -43894,7 +43776,7 @@ TZ
 qb
 vZ
 dC
-Pr
+qn
 RY
 RY
 rg
@@ -44876,7 +44758,7 @@ pm
 rg
 rg
 rg
-gn
+rg
 rg
 rg
 rg
@@ -45134,8 +45016,8 @@ rg
 rg
 rg
 rg
-gn
-gn
+rg
+rg
 RY
 el
 LM
@@ -45428,17 +45310,17 @@ ED
 mV
 Ea
 tC
-qn
-qS
-tb
-tC
 RY
 RY
 RY
 RY
 RY
 RY
-Sb
+RY
+RY
+RY
+RY
+RY
 rg
 rg
 rg
@@ -45684,18 +45566,18 @@ EE
 Oz
 aP
 fy
-TV
-Vb
-GH
-cX
 tC
+RY
+RY
+RY
+RY
 RY
 RY
 RY
 el
 LM
 ll
-Sb
+RY
 rg
 rg
 rg
@@ -45942,9 +45824,9 @@ xu
 uX
 TJ
 tC
-jP
-pv
-Ad
+RY
+RY
+RY
 wK
 wK
 wK
@@ -47255,9 +47137,9 @@ RY
 RY
 RY
 RY
-Sb
-Sb
-Sb
+RY
+RY
+RY
 RY
 RY
 RY
@@ -47445,7 +47327,7 @@ pm
 pm
 rg
 rg
-Sb
+RY
 RY
 zS
 zS
@@ -47494,7 +47376,7 @@ TJ
 wK
 RY
 RY
-RY
+rg
 RY
 Sb
 Sb
@@ -47507,14 +47389,14 @@ RY
 RY
 ah
 ah
-ZL
-ZL
+sc
+sc
 ah
 ah
 RY
 RY
-Sb
-Sb
+RY
+RY
 RY
 Ke
 Ke
@@ -47702,7 +47584,7 @@ pm
 pm
 rg
 rg
-Sb
+RY
 RY
 RY
 RY
@@ -47750,8 +47632,8 @@ Ac
 Ba
 tC
 RY
-RY
-RY
+rg
+rg
 RY
 RY
 RY
@@ -48007,8 +47889,8 @@ Ej
 Rl
 tC
 RY
-Sb
-Sb
+rg
+rg
 RY
 Hn
 Hn
@@ -48264,8 +48146,8 @@ Np
 UA
 tC
 RY
-Sb
-Sb
+RY
+RY
 RY
 Hn
 Yu
@@ -49026,9 +48908,9 @@ uY
 uY
 xB
 Eq
-HK
+uY
 Ay
-HK
+uY
 Eg
 JY
 uY
@@ -49283,9 +49165,9 @@ Do
 SY
 st
 MH
-HK
-HK
-HK
+uY
+uY
+uY
 Do
 SY
 st
@@ -49295,11 +49177,11 @@ uY
 MD
 pm
 Hn
-VQ
+Kc
 Ns
 ZJ
 An
-Kc
+VQ
 cm
 Oa
 Gl
@@ -49540,9 +49422,9 @@ ck
 ck
 ck
 YT
-HK
-HK
-HK
+uY
+uY
+uY
 ck
 ck
 ck
@@ -50054,9 +49936,9 @@ ck
 gi
 Hm
 hl
-HK
-HK
-HK
+uY
+uY
+uY
 Rm
 NK
 bb
@@ -50311,9 +50193,9 @@ ck
 gi
 UB
 QX
-HK
-HK
-HK
+uY
+uY
+uY
 QX
 ze
 DB
@@ -50562,21 +50444,21 @@ xy
 dh
 BO
 yb
-HK
-HK
-HK
+uY
+uY
+uY
 gi
-HK
-HK
-HK
+uY
+uY
+uY
 YD
-HK
-HK
-HK
+uY
+uY
+uY
 PW
-HK
-HK
-HK
+uY
+uY
+uY
 yb
 rH
 Kx
@@ -50820,19 +50702,19 @@ BM
 MJ
 ra
 Cb
-HK
-HK
+uY
+uY
 tB
-HK
-HK
+uY
+uY
 ek
 PX
 Dm
-HK
-HK
+uY
+uY
 Un
-HK
-HK
+uY
+uY
 Cb
 FE
 ZQ
@@ -51076,21 +50958,21 @@ ko
 VG
 Sk
 yb
-HK
-HK
-HK
+uY
+uY
+uY
 gi
-HK
-HK
-HK
+uY
+uY
+uY
 qO
-HK
-HK
-HK
+uY
+uY
+uY
 PW
-HK
-HK
-HK
+uY
+uY
+uY
 yb
 JE
 LZ
@@ -51339,9 +51221,9 @@ eF
 ff
 Xq
 QX
-HK
-HK
-HK
+uY
+uY
+uY
 QX
 xd
 PW
@@ -51596,9 +51478,9 @@ ck
 gi
 NK
 yc
-HK
-HK
-HK
+uY
+uY
+uY
 XU
 Ep
 PW
@@ -52110,9 +51992,9 @@ ck
 ck
 ck
 YT
-HK
-HK
-HK
+uY
+uY
+uY
 ck
 ck
 ck
@@ -52367,9 +52249,9 @@ AK
 bD
 BW
 Iw
-HK
-HK
-HK
+uY
+uY
+uY
 AK
 bD
 BW
@@ -52624,9 +52506,9 @@ uY
 uY
 Cl
 JI
-HK
+uY
 pA
-HK
+uY
 zy
 nU
 uY
@@ -52863,7 +52745,7 @@ OJ
 rR
 yZ
 jC
-OJ
+xD
 HY
 CA
 xm
@@ -53116,11 +52998,11 @@ Pc
 uw
 DZ
 Lu
-rj
+tb
 cu
 ZV
 gC
-OJ
+xD
 so
 og
 eq
@@ -53367,17 +53249,17 @@ RY
 RY
 BU
 of
+Vb
 Nd
 Nd
-xD
 Nd
-Nd
-bm
+Vb
+aw
 OJ
 No
 Du
 uo
-OJ
+xD
 WE
 WE
 WE
@@ -53615,7 +53497,7 @@ pm
 pm
 pm
 pm
-rg
+pm
 rg
 rg
 rg
@@ -53624,17 +53506,17 @@ RY
 RY
 BU
 Jh
-Tz
 OJ
 OJ
+rj
 OJ
-Tz
-aw
+OJ
+FH
 OJ
 MF
 MF
 MF
-OJ
+xD
 RY
 RY
 RY
@@ -53872,7 +53754,7 @@ pm
 pm
 pm
 pm
-rg
+pm
 rg
 rg
 rg
@@ -53880,13 +53762,13 @@ rg
 RY
 RY
 OJ
-MF
-MF
 OJ
-RY
+xD
+rR
+Ad
+jC
+xD
 OJ
-MF
-MF
 OJ
 RY
 RY
@@ -54129,11 +54011,20 @@ pm
 pm
 pm
 pm
+pm
 rg
 rg
 rg
 rg
-rg
+RY
+RY
+RY
+RY
+MF
+cX
+ts
+GH
+MF
 RY
 RY
 RY
@@ -54143,15 +54034,6 @@ RY
 RY
 RY
 RY
-RY
-RY
-RY
-Sb
-Sb
-RY
-rg
-rg
-rg
 RY
 RY
 RY
@@ -54200,8 +54082,8 @@ ah
 dD
 OO
 RY
-Sb
-Sb
+RY
+RY
 RY
 RY
 RY
@@ -54386,24 +54268,24 @@ pm
 pm
 pm
 pm
+pm
 rg
 rg
 rg
 rg
-rg
 RY
 RY
 RY
 RY
+MF
+No
+Du
+uo
+MF
 RY
 RY
 RY
 RY
-RY
-RY
-RY
-RY
-Sb
 rg
 rg
 rg
@@ -54643,22 +54525,22 @@ pm
 pm
 pm
 pm
+pm
 rg
 rg
 rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+RY
+RY
+MF
+MF
+MF
+MF
+MF
+RY
+RY
 rg
 rg
 rg
@@ -54671,7 +54553,7 @@ rg
 RY
 RY
 RY
-EL
+pv
 Ph
 EA
 rA
@@ -54900,22 +54782,7 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-Ye
-rg
-rg
-rg
-rg
+pm
 rg
 rg
 rg
@@ -54928,7 +54795,22 @@ RY
 RY
 RY
 RY
-EL
+RY
+RY
+RY
+rg
+rg
+rg
+rg
+rg
+rg
+RY
+RY
+RY
+RY
+RY
+RY
+pv
 ap
 HX
 bt
@@ -54948,7 +54830,7 @@ IJ
 IJ
 vd
 gc
-EL
+pv
 ya
 PZ
 TF
@@ -55157,22 +55039,7 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+pm
 rg
 rg
 rg
@@ -55185,7 +55052,22 @@ RY
 RY
 RY
 RY
-EL
+RY
+RY
+RY
+rg
+rg
+rg
+rg
+rg
+rg
+RY
+RY
+RY
+RY
+RY
+RY
+pv
 BH
 UX
 Pk
@@ -55205,7 +55087,7 @@ Zf
 WX
 IJ
 Cf
-EL
+pv
 tr
 Er
 Er
@@ -55414,7 +55296,7 @@ pm
 pm
 pm
 pm
-rg
+pm
 rg
 rg
 rg
@@ -55439,8 +55321,8 @@ rg
 RY
 RY
 iL
-pU
-pU
+Tz
+Tz
 iL
 It
 It
@@ -55462,7 +55344,7 @@ Jn
 Hh
 IJ
 Nt
-EL
+pv
 sx
 sx
 sx
@@ -55671,6 +55553,13 @@ pm
 pm
 pm
 pm
+pm
+rg
+rg
+rg
+rg
+rg
+Ye
 rg
 rg
 rg
@@ -55686,16 +55575,9 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-Sb
 RY
-pU
+RY
+Tz
 UN
 QD
 yR
@@ -55735,12 +55617,12 @@ ah
 Wn
 dx
 NI
-ZL
+sc
 RY
 RY
 RY
 RY
-Sb
+RY
 rg
 rg
 rg
@@ -55928,6 +55810,7 @@ pm
 pm
 pm
 pm
+pm
 rg
 rg
 rg
@@ -55949,10 +55832,9 @@ rg
 rg
 rg
 rg
-rg
-Sb
 RY
-pU
+RY
+Tz
 XM
 Ci
 Kj
@@ -55992,10 +55874,10 @@ dI
 Mo
 dx
 Ft
-ZL
+sc
 RY
 RY
-rg
+RY
 rg
 rg
 rg
@@ -56185,7 +56067,7 @@ pm
 pm
 pm
 pm
-rg
+pm
 rg
 rg
 rg
@@ -56249,7 +56131,7 @@ oA
 uI
 dj
 fc
-ZL
+sc
 RY
 RY
 RY
@@ -56443,21 +56325,21 @@ pm
 pm
 pm
 pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
 rg
 rg
 rg
@@ -56700,21 +56582,21 @@ pm
 pm
 pm
 pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
-pm
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
+rg
 rg
 rg
 rg
@@ -57021,7 +56903,7 @@ ah
 sb
 GA
 ev
-ZL
+sc
 RY
 RY
 rg
@@ -57261,7 +57143,7 @@ iL
 gX
 FY
 oW
-pU
+Tz
 Er
 nJ
 sx
@@ -57278,7 +57160,7 @@ lg
 rd
 mc
 dU
-ZL
+sc
 RY
 RY
 rg
@@ -57518,7 +57400,7 @@ iL
 bX
 IV
 dc
-pU
+Tz
 sx
 sx
 sx
@@ -57535,7 +57417,7 @@ ah
 Xt
 yM
 FV
-ZL
+sc
 RY
 RY
 rg
@@ -57775,7 +57657,7 @@ iL
 vS
 ft
 Eh
-pU
+Tz
 sx
 sx
 sx
@@ -58008,7 +57890,7 @@ RY
 RY
 RY
 RY
-pU
+Tz
 XM
 UJ
 Kj
@@ -58265,7 +58147,7 @@ RY
 RY
 RY
 RY
-pU
+Tz
 UN
 Ql
 yR
@@ -58803,9 +58685,9 @@ Ok
 Dr
 ft
 xe
-pU
+Tz
 RY
-rg
+RY
 RY
 RY
 ah
@@ -59060,10 +58942,10 @@ qH
 kt
 zW
 xe
-pU
+Tz
 RY
-rg
-rg
+RY
+RY
 RY
 RY
 RY
@@ -59317,9 +59199,9 @@ AA
 Ov
 ft
 xe
-pU
+Tz
 RY
-rg
+RY
 rg
 rg
 rg
@@ -59332,7 +59214,7 @@ Df
 kE
 yN
 OO
-Sb
+RY
 rg
 rg
 Ye
@@ -59589,7 +59471,7 @@ WE
 WE
 WE
 gv
-Sb
+RY
 rg
 rg
 rg
@@ -59811,8 +59693,8 @@ RY
 iL
 iL
 iL
-pU
-pU
+Tz
+Tz
 iL
 iL
 iL
@@ -60345,7 +60227,7 @@ iL
 AD
 ft
 xe
-pU
+Tz
 RY
 RY
 rg
@@ -60602,7 +60484,7 @@ iL
 Zl
 ft
 dc
-pU
+Tz
 RY
 RY
 rg
@@ -60859,7 +60741,7 @@ iL
 wY
 dQ
 Eh
-pU
+Tz
 RY
 RY
 rg
@@ -61632,7 +61514,7 @@ XQ
 Xc
 sF
 OO
-Sb
+RY
 rg
 rg
 rg
@@ -61882,14 +61764,14 @@ WE
 Nw
 gv
 RY
-FH
-ts
+jl
+WE
 WE
 WE
 WE
 WE
 gv
-Sb
+RY
 rg
 rg
 rg

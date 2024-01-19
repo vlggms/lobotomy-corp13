@@ -74,7 +74,7 @@
 		loaded = FALSE
 	else if(blackjack == 0)
 		timeleft -= round(refine_timer/3)
-		to_chat(user, "<span class='notice'>You correctly filter the PE, speding up refining.</span>")
+		to_chat(user, "<span class='notice'>You correctly filter the PE, speeding up refining.</span>")
 
 /obj/structure/refinery/proc/counter()
 	timeleft--

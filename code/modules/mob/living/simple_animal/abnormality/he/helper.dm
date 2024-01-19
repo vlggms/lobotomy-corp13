@@ -137,10 +137,11 @@
 	for(var/obj/structure/window/W in T.contents)
 		W.obj_destruction("spinning blades")
 	for(var/obj/machinery/door/D in T.contents)
-		if(istype(D, /obj/machinery/door/poddoor))
-			continue
+		if(!D.CanAStarPass(null))
+			stop_charge = TRUE
+			break
 		if(D.density)
-			D.open(2)
+			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/helper/disable.ogg', 75, 1)
 		SLEEP_CHECK_DEATH(5 SECONDS)

@@ -83,7 +83,7 @@
 	required_research = /datum/data/lc13research/pcorpbackpack
 
 /datum/data/lc13research/smallgloves/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/pcorp_pocket(get_turf(caller))
+	new /obj/item/clothing/gloves/pcorp(get_turf(caller))
 
 /datum/data/lc13research/pcorpgloves
 	research_name = "Repurchasable: P Corp Dimensional Gloves MK2"
@@ -93,7 +93,7 @@
 	required_research = /datum/data/lc13research/bigpcorpbackpack
 
 /datum/data/lc13research/pcorpgloves/ResearchEffect(obj/structure/representative_console/caller)
-	new /obj/item/storage/pcorp_weapon(get_turf(caller))
+	new /obj/item/clothing/gloves/pcorpbig(get_turf(caller))
 
 
 

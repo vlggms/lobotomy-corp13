@@ -183,16 +183,17 @@
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-	for(var/obj/machinery/door/poddoor/P in T.contents)//FIXME: Still opens the "poddoor" secure shutters
-		stop_charge = TRUE
-		continue
+		break
+	for(var/obj/machinery/door/D in T.contents)
+		if(!D.CanAStarPass(null))
+			stop_charge = TRUE
+			break
+		if(D.density)
+			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
 	if(stop_charge)
 		charging = FALSE
 		icon_state = icon_aggro
 		return
-	for(var/obj/machinery/door/D in T.contents)
-		if(D.density)
-			D.open(2)
 	forceMove(T)
 	playsound(src, 'sound/abnormalities/clouded_monk/monk_groggy.ogg', 150, 1)
 	for(var/turf/TF in range(1, T))//Smash AOE visual

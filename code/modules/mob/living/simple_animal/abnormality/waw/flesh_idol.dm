@@ -38,6 +38,9 @@
 		/mob/living/simple_animal/hostile/abnormality/distortedform,
 		/mob/living/simple_animal/hostile/abnormality/white_night,
 		/mob/living/simple_animal/hostile/abnormality/nihil,
+		/mob/living/simple_animal/hostile/abnormality/galaxy_child,
+		/mob/living/simple_animal/hostile/abnormality/fetus,
+		/mob/living/simple_animal/hostile/abnormality/crying_children,
 	)
 
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorkComplete(mob/living/carbon/human/user, work_type, pe)

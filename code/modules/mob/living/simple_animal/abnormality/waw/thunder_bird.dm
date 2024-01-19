@@ -174,14 +174,13 @@
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-	for(var/obj/machinery/door/poddoor/P in T.contents)
-		stop_charge = TRUE
-		continue
+		break
 	for(var/obj/machinery/door/D in T.contents)
-		if(istype(D, /obj/machinery/door/poddoor))	//Should fix.
-			continue
+		if(!D.CanAStarPass(null))
+			stop_charge = TRUE
+			break
 		if(D.density)
-			D.open(2)
+			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 75, 1)
 		charging = FALSE
