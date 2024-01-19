@@ -25,7 +25,7 @@
     room_id = "rage_cage"
     mappath = "_maps/RandomRooms/backstreets/medium_north/rage_cage.dmm"
 
-    /datum/map_template/random_room/backstreets/medium_north/rat_mna
+/datum/map_template/random_room/backstreets/medium_north/rat_mna
     name = "Rat - Medium North A"
     room_id = "rat_mna"
     mappath = "_maps/RandomRooms/backstreets/medium_north/rat_mna.dmm"

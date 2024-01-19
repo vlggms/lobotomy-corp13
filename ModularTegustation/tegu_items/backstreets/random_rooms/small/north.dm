@@ -40,7 +40,7 @@
     room_id = "pet_store"
     mappath = "_maps/RandomRooms/backstreets/small_north/pet_store.dmm"
 
-    /datum/map_template/random_room/backstreets/small_north/snow_forest
+/datum/map_template/random_room/backstreets/small_north/snow_forest
     name = "Snow Forest - Small North"
     room_id = "snow_forest"
     mappath = "_maps/RandomRooms/backstreets/small_north/snow_forest.dmm"

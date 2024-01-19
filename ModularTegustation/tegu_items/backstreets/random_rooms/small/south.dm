@@ -40,12 +40,12 @@
 	room_id = "lcorp_tomb"
 	mappath = "_maps/RandomRooms/backstreets/small_south/lcorp_tomb.dmm"
 
-	/datum/map_template/random_room/backstreets/small_south/rat_ssa
+/datum/map_template/random_room/backstreets/small_south/rat_ssa
 	name = "Rat - Small South A"
 	room_id = "rat_ssa"
 	mappath = "_maps/RandomRooms/backstreets/small_south/rat_ssa.dmm"
 
-	/datum/map_template/random_room/backstreets/small_south/robot_ssa
+/datum/map_template/random_room/backstreets/small_south/robot_ssa
 	name = "Robot - Small South A"
 	room_id = "robot_ssa"
 	mappath = "_maps/RandomRooms/backstreets/small_south/robot_ssa.dmm"
