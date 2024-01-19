@@ -198,9 +198,10 @@
 	desc = "Just like how the ever-watching eyes, the scale that could measure any and all sin, \
 	and the beak that could swallow everything protected the peace of the Black Forest... \
 	The wielder of this armament may also bring peace as they did."
+	special = "Use this weapon to change its damage type between red, white, black and pale."
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
-	force = 35
+	force = 110
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -212,19 +213,22 @@
 							JUSTICE_ATTRIBUTE = 120
 							)
 
-/obj/item/ego_weapon/twilight/attack(mob/living/M, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	..()
-	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
-		damtype = damage_type
-		M.attacked_by(src, user)
-	damtype = initial(damtype)
-
-/obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
-	if(force_multiplier != 1)
-		return "<span class='notice'>It deals [round((force * 4) * force_multiplier)] red, white, black and pale damage combined. (+ [(force_multiplier - 1) * 100]%)</span>"
-	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
+/obj/item/ego_weapon/twilight/attack_self(mob/living/user)
+	switch(damtype)
+		if(RED_DAMAGE)
+			damtype = WHITE_DAMAGE
+			force = 120
+		if(WHITE_DAMAGE)
+			damtype = BLACK_DAMAGE
+			force = 120
+		if(BLACK_DAMAGE)
+			damtype = PALE_DAMAGE
+			force = 80
+		if(PALE_DAMAGE)
+			damtype = RED_DAMAGE
+			force = 120
+	to_chat(user, "<span class='notice'>\[src] will now deal [force] [damtype] damage.</span>")
+	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
