@@ -55,7 +55,7 @@
 /obj/item/structurecapsule/fixer
 	name = "Fishing Office Capsule"
 	desc = "Use this capsule in a designated fixer office area to start your fishing fixer office."
-	template_id = "fishing_office"
+	template_id = "fishingfixer_office"
 	delay_time = 0
 
 /obj/item/structurecapsule/fixer/attack_self()
@@ -72,24 +72,24 @@
 
 /obj/item/structurecapsule/fixer/combat
 	name = "Combat Office Capsule"
-	template_id = "combat_office"
+	template_id = "combatfixer_office"
 
 
 /obj/item/structurecapsule/fixer/protection
 	name = "Protection Office Capsule"
-	template_id = "protection_office"
+	template_id = "protectionfixer_office"
 
 /obj/item/structurecapsule/fixer/workshop
 	name = "Workshop Office Capsule"
-	template_id = "workshop_office"
+	template_id = "workshopfixer_office"
 
 /obj/item/structurecapsule/fixer/recon
 	name = "Recon Office Capsule"
-	template_id = "recon_office"
+	template_id = "reconfixer_office"
 
 /obj/item/structurecapsule/fixer/peacekeeper
 	name = "Peacekeeper Office Capsule"
-	template_id = "peacekeeper_office"
+	template_id = "peacekeeperfixer_office"
 
 
 
@@ -97,37 +97,37 @@
 //Office templates
 /datum/map_template/shelter/fishing
 	name = "Fishing Office"
-	shelter_id = "fishing_office"
+	shelter_id = "fishingfixer_office"
 	description = "A fixer office made for fishhook fixers."
 	mappath = "_maps/templates/fixer_office/fishingfixer.dmm"
 
 /datum/map_template/shelter/combat
 	name = "Combat Office"
-	shelter_id = "combat_office"
+	shelter_id = "combatfixer_office"
 	description = "A fixer office made for combat oriented fixers."
 	mappath = "_maps/templates/fixer_office/combatfixer.dmm"
 
 /datum/map_template/shelter/protection
 	name = "Protection Office"
-	shelter_id = "protection_office"
+	shelter_id = "protectionfixer_office"
 	description = "A fixer office made for protection oriented fixers."
 	mappath = "_maps/templates/fixer_office/protectionfixer.dmm"
 
 /datum/map_template/shelter/workshop
 	name = "Workshop Office"
-	shelter_id = "workshop_office"
+	shelter_id = "workshopfixer_office"
 	description = "A fixer office made for workshop oriented fixers."
 	mappath = "_maps/templates/fixer_office/workshopfixer.dmm"
 
 /datum/map_template/shelter/recon
 	name = "Recon Office"
-	shelter_id = "recon_office"
+	shelter_id = "reconfixer_office"
 	description = "A fixer office made for recon oriented fixers."
 	mappath = "_maps/templates/fixer_office/reconfixer.dmm"
 
 /datum/map_template/shelter/peacekeeper
 	name = "Peacekeeper Office"
-	shelter_id = "peacekeeper_office"
+	shelter_id = "peacekeeperfixer_office"
 	description = "A fixer office made for peacekeeping oriented fixers."
 	mappath = "_maps/templates/fixer_office/peacekeepingfixer.dmm"
 
