@@ -1271,9 +1271,9 @@
 /obj/item/ego_weapon/oberon
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
-	special = "Use this weapon in hand to swap between forms. The whip has higher reach and builds up attack speed before unleasheing a powerful burst, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage and incease the BLACK vulnerability by 0.2 in an area, and the bat does RED DAMAGE and knocks back enemies."
+	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage and incease the BLACK vulnerability by 0.2 in an area, and the bat does RED DAMAGE and knocks back enemies."
 	icon_state = "mockery_whip"
-	force = 45
+	force = 15
 	attack_speed = 0.8
 	reach = 3
 	damtype = BLACK_DAMAGE
@@ -1289,7 +1289,7 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"whip" = list(45, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE),
+		"whip" = list(15, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE),
 		"sword" = list(40, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE),
 		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE),
 		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE)
@@ -1297,6 +1297,8 @@
 	var/gun_cooldown
 	var/gun_cooldown_time = 1.5 SECONDS
 	var/build_up = 0.8
+	var/build_up_time
+	var/build_up_wait = 10
 	var/smashing = FALSE
 
 /obj/item/ego_weapon/oberon/Initialize()
@@ -1328,8 +1330,20 @@
 	switch(form)
 		if("sword")
 			var/red = force
-			red*=justicemod
+			red*=justicemod * force_multiplier
 			target.apply_damage(red, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if("whip")
+			if(world.time > build_up_time)
+				build_up = 0.8
+			build_up_time = world.time + build_up_wait
+			var/multihit = force
+			multihit*= justicemod * force_multiplier
+			sleep(2)
+			for(var/i = 1 to 2)
+				sleep(2)
+				target.apply_damage(multihit, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+				user.do_attack_animation(target)
+				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		if("bat")
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			if(!target.anchored)
@@ -1338,7 +1352,7 @@
 		if("hammer")
 			for(var/mob/living/L in view(2, target))
 				var/aoe = force
-				aoe*=justicemod
+				aoe*=justicemod * force_multiplier
 				if(user.faction_check_mob(L))
 					continue
 				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -1356,19 +1370,19 @@
 			if (isliving(target))
 				user.changeNext_move(CLICK_CD_MELEE * build_up) // Starts a little fast, but....
 				if (build_up <= 0.1)
-					build_up = 0.8
+					user.changeNext_move(CLICK_CD_MELEE * 4)
 					if(!smashing)
 						to_chat(user,"<span class='warning'>The whip starts to thrash around uncontrollably!</span>")
 						Smash(user, target)
 				else
 					build_up -= 0.05
 			else
-				user.changeNext_move(CLICK_CD_MELEE * 1.1)
+				user.changeNext_move(CLICK_CD_MELEE * 0.8)
 
 /obj/item/ego_weapon/oberon/proc/Smash(mob/user, atom/target)
 	smashing = TRUE
 	playsound(user, 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
-	var/smash_damage = 120*(1+(get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100))
+	var/smash_damage = 140*(1+(get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)) * force_multiplier
 	sleep(0.5 SECONDS)
 	for(var/turf/T in view(3, user))
 		new /obj/effect/temp_visual/nobody_grab(T)
