@@ -160,7 +160,7 @@
 
 /datum/adventure_layout/proc/TravelUI(obj/machinery/call_machine)
 	switch(travel_mode)
-		if(ADVENTURE_MODE_BATTLE)
+		if(ADVENTURE_MODE_BATTLE to ADVENTURE_MODE_EVENT_BATTLE)
 			if(!enemy_desc)
 				GenerateEnemy()
 			. += BattleModeDisplay(call_machine)
