@@ -10,7 +10,7 @@
 		You watch their body as the darkness consumes them.",
 
 		"\"LET US SEE HOW MUCH YOU KNOW YOUR CITY!\"<br>\
-		The figure then pulls a peice of paper out of their pocket and unfolds it<br>\
+		The figure then pulls a piece of paper out of their pocket and unfolds it<br>\
 		\"SWEEPER FLUID IS PATENTED BY ONE PERSON AND ONE PERSON ONLY. WHO IS IT?\"",
 
 		"\"YES THAT DOES SEEM TO BE WRITTEN HERE!\"<br>\
