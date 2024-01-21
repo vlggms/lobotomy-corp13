@@ -39,6 +39,9 @@
 	target_floating_text_effect.maptext_height = 128 //32x4
 	target_floating_text_effect.maptext_width = 128
 
+	//This makes it look more dynamic, does not actually change the real damage of it.
+	postcalc_damage_number_or_str += rand(-3,3)
+
 	switch(damage_type_str)
 		if(RED_DAMAGE)
 			target_floating_text_effect.icon = 'icons/effects/RedDamageTypeIcon.png'
