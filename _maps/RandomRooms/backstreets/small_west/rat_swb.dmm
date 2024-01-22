@@ -1,0 +1,89 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"g" = (
+/obj/structure/flora/icechunk,
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"n" = (
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/plating/snowed/smoothed,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/flora/iceslab/alt,
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"v" = (
+/turf/open/floor/plating/snowed/smoothed,
+/area/city/backstreets_room)
+"w" = (
+/turf/closed/indestructible/rock/snow/ice/ore,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/flora/icestalagmite/small,
+/turf/open/floor/plating/ice,
+/area/city/backstreets_room)
+"J" = (
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/flora/iceshards,
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plating/ice,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/flora/iceshards,
+/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"X" = (
+/obj/machinery/door/airlock/freezer,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+w
+a
+a
+"}
+(2,1,1) = {"
+a
+w
+w
+w
+N
+w
+a
+"}
+(3,1,1) = {"
+a
+w
+g
+v
+J
+w
+a
+"}
+(4,1,1) = {"
+a
+n
+J
+T
+x
+s
+a
+"}
+(5,1,1) = {"
+a
+X
+a
+a
+a
+a
+a
+"}

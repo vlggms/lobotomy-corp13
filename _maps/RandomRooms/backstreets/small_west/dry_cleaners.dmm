@@ -1,0 +1,89 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"b" = (
+/obj/machinery/washing_machine,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"v" = (
+/obj/machinery/washing_machine,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"w" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"E" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"N" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"T" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/mineral_door/iron,
+/turf/open/floor/plasteel/airless/white,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+w
+v
+N
+v
+a
+"}
+(3,1,1) = {"
+a
+E
+x
+x
+T
+T
+a
+"}
+(4,1,1) = {"
+a
+b
+J
+v
+N
+v
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+X
+a
+a
+"}
