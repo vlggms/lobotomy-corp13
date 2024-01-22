@@ -3,17 +3,14 @@
 	name = "Lobotomy Corporation Gear Crate"
 	desc = "A crate recieved from headquarters. Contains standard gear for lobotomy corporation employees. Open with a Crowbar."
 	icon_state = "crate_lc"
-	rarechance = 10
+	rarechance = 25
+	veryrarechance = 10
 	lootlist =	list(
 		/obj/item/powered_gadget/detector_gadget/abnormality,
 		/obj/item/powered_gadget/slowingtrapmk1,
 		/obj/item/clerkbot_gadget,
 		/obj/item/powered_gadget/handheld_taser,
-		/obj/item/storage/box/minertracker,
 		/obj/item/forcefield_projector,
-		/obj/item/flashlight/seclite,
-		/obj/item/storage/belt/ego,
-		/obj/item/safety_kit,
 		/obj/item/reagent_containers/hypospray/emais,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/powered_gadget/vitals_projector,
@@ -27,6 +24,13 @@
 		/obj/item/managerbullet,
 		/obj/item/powered_gadget/teleporter,
 		/obj/item/tool_extractor,
+	)
+
+	//Injectors, quite desireable as they are quite expensive.
+	veryrareloot =	list(
+		/obj/item/trait_injector/agent_workchance_trait_injector,
+		/obj/item/trait_injector/clerk_fear_immunity_injector,
+		/obj/item/trait_injector/officer_upgrade_injector,
 	)
 
 //K Corporation
