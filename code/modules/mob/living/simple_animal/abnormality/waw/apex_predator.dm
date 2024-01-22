@@ -59,6 +59,8 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/Move()
+	if(notransform)
+		return ..()
 	if(busy)
 		return FALSE
 	..()
@@ -95,7 +97,6 @@
 /mob/living/simple_animal/hostile/abnormality/apex_predator/AttackingTarget()
 	if(!can_act)
 		return
-
 	if(!revealed)
 		//Will want this to be crazy
 		say("Behind you.")
@@ -103,18 +104,31 @@
 		SLEEP_CHECK_DEATH(7)
 		Decloak()
 		SLEEP_CHECK_DEATH(3)
-
-		var/mob/living/V = target
 		//Backstab
-		if(target in range(1,src))
-			visible_message(span_danger("\The [src] rips out [target]'s guts!"))
-			new /obj/effect/gibspawner/generic(get_turf(V))
-			V.apply_damage(backstab_damage, RED_DAMAGE, null, V.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if(target in range(1, src))
+			if(isliving(target))
+				var/mob/living/V = target
+				visible_message(span_danger("The [src] rips out [target]'s guts!"))
+				new /obj/effect/gibspawner/generic(get_turf(V))
+				V.apply_damage(backstab_damage, RED_DAMAGE, null, V.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			//Backstab succeeds from any one of 3 tiles behind a mecha, backstab from directly behind gets boosted by mecha directional armor weakness
+			else if(ismecha(target))
+				var/relative_angle = abs(dir2angle(target.dir) - dir2angle(get_dir(target, src)))
+				relative_angle = relative_angle > 180 ? 360 - relative_angle : relative_angle
+				if(relative_angle >= 135)
+					visible_message(span_danger("The [src] shreds [target]'s armor!"))
+					var/obj/vehicle/sealed/mecha/M = target
+					M.take_damage(backstab_damage, RED_DAMAGE, attack_dir = get_dir(M, src))
+					new /obj/effect/temp_visual/kinetic_blast(get_turf(M))
+				else
+					visible_message(span_danger("The [src]'s attack misses [target]'s weakspots!"))
+					..()
+			else
+				..()
 			SLEEP_CHECK_DEATH(20)
 			Cloak()
 			//Remove target
 			FindTarget()
-
 		else
 			if(!jumping)
 				Jump()
@@ -146,7 +160,7 @@
 		return
 
 	//For readability
-	if((jump_cooldown < world.time) && !(status_flags & GODMODE))
+	if(!jumping && (jump_cooldown < world.time) && !(status_flags & GODMODE))
 		Jump()
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Jump()
@@ -157,24 +171,21 @@
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Leap()
 	density = FALSE
-	var/target_turf = get_turf(target)
+	var/turf/target_turf = get_turf(target)
 	playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-	throw_at(target_turf, 7, 1, src, FALSE)
+	notransform = TRUE
+	throw_at(target_turf, 7, 1, src, FALSE, callback = CALLBACK(src, PROC_REF(Slam)))
 	icon_state = "apex_leap"
 
 	addtimer(CALLBACK(src, PROC_REF(Slam)), 10)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Slam()
+	notransform = FALSE
 	icon_state = "apex_crouch"
 	playsound(src, 'sound/effects/meteorimpact.ogg', 300, FALSE, 9)
 	for(var/turf/T in range(1, src))
+		HurtInTurf(T, list(), jump_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE)
 		new /obj/effect/temp_visual/kinetic_blast(T)
-	for(var/mob/living/L in range(1, src))
-		if(faction_check_mob(L, FALSE))
-			continue
-		if(L.stat == DEAD)
-			continue
-		L.apply_damage(jump_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Reset)), 12)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Reset()
@@ -183,4 +194,3 @@
 	jumping = FALSE
 	icon_state = "apex"
 	jump_cooldown = world.time + jump_cooldown_time
-

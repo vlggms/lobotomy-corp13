@@ -153,7 +153,8 @@
 		para = FALSE
 	SpinAnimation(3, 1, para)
 	playsound(src, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(50, 70), 1)
-	for(var/mob/living/L in range(1, T))
+	var/list/hit_turfs = range(1, T)
+	for(var/mob/living/L in hit_turfs)
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
@@ -162,19 +163,22 @@
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
-				// Ugly code
-				var/affecting = get_bodypart(ran_zone(pick(BODY_ZONE_CHEST, BODY_ZONE_PRECISE_L_HAND, BODY_ZONE_PRECISE_R_HAND, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)))
-				var/armor = H.run_armor_check(affecting, melee_damage_type, armour_penetration = src.armour_penetration)
-				H.apply_damage(60, src.melee_damage_type, affecting, armor, wound_bonus = src.wound_bonus, bare_wound_bonus = src.bare_wound_bonus, sharpness = src.sharpness)
-			else
-				L.adjustRedLoss(120)
+			var/damage = 60
+			if(!ishuman(L))
+				damage = 120
+			L.apply_damage(damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue
-			if(!(L in been_hit))
-				been_hit += L
+			been_hit += L
+	for(var/obj/vehicle/sealed/mecha/V in hit_turfs)
+		if(V in been_hit)
+			continue
+		visible_message(span_boldwarning("[src] runs through [V]!"))
+		to_chat(V.occupants, span_userdanger("[src] pierces your mech with their spinning blades!"))
+		playsound(V, attack_sound, 75, 1)
+		V.take_damage(60, melee_damage_type, attack_dir = get_dir(V, src))
+		been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
 
 /* Work effects */
