@@ -1,5 +1,5 @@
 /obj/vehicle/sealed/mecha/proc/get_armour_facing(relative_dir)
-	switch(relative_dir)
+	switch(relative_dir > 180 ? 360 - relative_dir : relative_dir)
 		if(180) // BACKSTAB!
 			return facing_modifiers[MECHA_BACK_ARMOUR]
 		if(0, 45) // direct or 45 degrees off
