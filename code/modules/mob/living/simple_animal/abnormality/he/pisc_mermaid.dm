@@ -70,7 +70,7 @@
 	if(crown?.loved == user)
 		if(crown.loved)
 			datum_reference.qliphoth_change(2)
-			(crown.love_cooldown) = world.time + (crown.love_cooldown_time)
+			crown.love_cooldown = world.time + (crown.love_cooldown_time)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/AttemptWork(mob/living/carbon/human/user, work_type)
