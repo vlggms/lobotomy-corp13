@@ -14,15 +14,15 @@
 		ABNORMALITY_WORK_INSTINCT = 100,
 		ABNORMALITY_WORK_INSIGHT = 100,
 		ABNORMALITY_WORK_ATTACHMENT = 100,
-		ABNORMALITY_WORK_REPRESSION = 100
+		ABNORMALITY_WORK_REPRESSION = 100,
 	)
-	work_damage_amount = 5	//This literally does not matter
+	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	max_boxes = 12
 
 	ego_list = list(
 		/datum/ego_datum/weapon/metal,
-		/datum/ego_datum/armor/metal
+		/datum/ego_datum/armor/metal,
 	)
 	gift_type = /datum/ego_gifts/metal
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK

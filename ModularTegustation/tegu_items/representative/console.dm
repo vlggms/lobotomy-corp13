@@ -176,7 +176,7 @@
 				new /datum/data/extraction_cargo("K Corp Axe", /obj/item/ego_weapon/city/kcorp/axe, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Shield", /obj/item/ego_weapon/shield/kcorp, 400, K_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("K Corp Pistol", /obj/item/gun/ego_gun/pistol/kcorp, 400, K_CORP_REP) = 1,
-				)
+			)
 
 		if("Main Office Representative")
 			our_corporation = L_CORP_REP
@@ -187,7 +187,7 @@
 				new /datum/data/extraction_cargo("L Corp Vitals Projector", /obj/item/powered_gadget/vitals_projector, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Clerkbot Kit", /obj/item/clerkbot_gadget, 400, L_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("L Corp Taser", /obj/item/powered_gadget/handheld_taser, 700, L_CORP_REP) = 1,
-				)
+			)
 
 		if("R Corp Representative")
 			our_corporation = R_CORP_REP
@@ -197,7 +197,7 @@
 				new /datum/data/extraction_cargo("R Corp Ordeal Detector", /obj/item/powered_gadget/detector_gadget/ordeal, 400, R_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("R Corp Lawnmower 2000", /obj/item/gun/energy/e_gun/rabbitdash, 500, R_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("R Corp Officer Outfit", /obj/item/clothing/under/suit/lobotomy/rabbit, 100, R_CORP_REP) = 1,
-				)
+			)
 
 		if("W Corp Representative")
 			our_corporation = W_CORP_REP
@@ -207,7 +207,7 @@
 				new /datum/data/extraction_cargo("W Corp Hat", /obj/item/clothing/head/ego_hat/wcorp, 100, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Cleanup Baton", /obj/item/ego_weapon/city/charge/wcorp, 500, W_CORP_REP) = 1,
 				new /datum/data/extraction_cargo("W Corp Armor Vest", /obj/item/clothing/suit/armor/ego_gear/wcorp, 700, W_CORP_REP) = 1,
-				)
+			)
 
 		if("N Corp Representative")
 			our_corporation = N_CORP_REP
@@ -218,7 +218,8 @@
 			our_corporation = P_CORP_REP
 			CustomizeOffice(null, null)
 			order_list = list(
-				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1)
+				new /datum/data/extraction_cargo("P Corp Canned Bread", /obj/item/food/canned/pcorp, 10, P_CORP_REP) = 1,
+			)
 
 		else
 			to_chat(usr, span_warning("ASSIGNMENT ERROR."))

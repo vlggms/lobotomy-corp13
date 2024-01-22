@@ -8,19 +8,19 @@
 	portrait = "fallen_amurdad"
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
-						ABNORMALITY_WORK_INSIGHT = 70,
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-						ABNORMALITY_WORK_REPRESSION = list(70, 60, 50, 50, 50)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 40, 30, 30, 30),
+		ABNORMALITY_WORK_INSIGHT = 70,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
+		ABNORMALITY_WORK_REPRESSION = list(70, 60, 50, 50, 50),
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 10
 
 	ego_list = list(
 		/datum/ego_datum/weapon/nightshade,
-		/datum/ego_datum/armor/nightshade
-		)
+		/datum/ego_datum/armor/nightshade,
+	)
 	gift_type = /datum/ego_gifts/nightshade
 	gift_message = "The lifeless body of amurdad hands you a flower."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -43,8 +43,8 @@
 		/obj/item/seeds/galaxythistle/amurdad,
 		/obj/item/seeds/peas/worldpeas,
 		/obj/item/seeds/corpseflower,
-		/obj/item/seeds/jupitercup
-		)
+		/obj/item/seeds/jupitercup,
+	)
 
 	/// How many bombs are placed on breach.
 	var/max_bombs = 12
@@ -176,14 +176,25 @@
 // Non-toxic varieties of normal plants
 /obj/item/seeds/berry/glow/amurdad
 	genes = list(/datum/plant_gene/trait/glow/white)
-	reagents_add = list(/datum/reagent/iodine = 0.2, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(
+		/datum/reagent/iodine = 0.2,
+		/datum/reagent/consumable/nutriment/vitamin = 0.04,
+		/datum/reagent/consumable/nutriment = 0.1,
+	)
 
 /obj/item/seeds/cannabis/white/amurdad
 	genes = list()
-	reagents_add = list(/datum/reagent/drug/space_drugs = 0.15, /datum/reagent/consumable/nutriment/vitamin = 0.04, /datum/reagent/consumable/nutriment = 0.1)
+	reagents_add = list(
+		/datum/reagent/drug/space_drugs = 0.15,
+		/datum/reagent/consumable/nutriment/vitamin = 0.04,
+		/datum/reagent/consumable/nutriment = 0.1,
+	)
 
 /obj/item/seeds/amanita/amurdad
-	reagents_add = list(/datum/reagent/drug/space_drugs = 0.15, /datum/reagent/consumable/nutriment = 0.04)
+	reagents_add = list(
+		/datum/reagent/drug/space_drugs = 0.15,
+		/datum/reagent/consumable/nutriment = 0.04,
+	)
 
 // Modified Weeds
 /obj/item/seeds/starthistle/amurdad
@@ -220,7 +231,11 @@
 	icon_dead = "worldpeas-dead"
 	genes = list ()
 	mutatelist = list ()
-	reagents_add = list (/datum/reagent/consumable/sugar = 0.05, /datum/reagent/consumable/nutriment = 0.07, /datum/reagent/abnormality/wellcheers_zero = 0.07)
+	reagents_add = list (
+		/datum/reagent/consumable/sugar = 0.05,
+		/datum/reagent/consumable/nutriment = 0.07,
+		/datum/reagent/abnormality/wellcheers_zero = 0.07,
+	)
 	rarity = 30
 
 /obj/item/food/grown/worldpeas
@@ -253,7 +268,10 @@
 	icon_dead = "corpse-flower-dead"
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy)
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/abnormality/quiet_day = 0.07)
+	reagents_add = list(
+		/datum/reagent/consumable/nutriment = 0.07,
+		/datum/reagent/abnormality/quiet_day = 0.07,
+	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
 
@@ -283,7 +301,11 @@
 	growthstages = 3
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.07, /datum/reagent/consumable/sugar = 0.07, /datum/reagent/abnormality/we_can_change_anything = 0.07)
+	reagents_add = list(
+		/datum/reagent/consumable/nutriment = 0.07,
+		/datum/reagent/consumable/sugar = 0.07,
+		/datum/reagent/abnormality/we_can_change_anything = 0.07,
+	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism
 

@@ -369,15 +369,14 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/control)
 "bY" = (
-/obj/structure/table/reinforced,
-/obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace."
+/obj/structure/chair/sofa/corp/left{
+	dir = 8;
+	can_buckle = 0
 	},
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/pod/dark,
-/area/department_main/extraction)
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/human)
 "ca" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 28
@@ -460,8 +459,7 @@
 	color = "#422702"
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/training)
@@ -973,8 +971,7 @@
 /area/facility_hallway/safety)
 "fs" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/red{
 	color = "#440000"
@@ -1130,6 +1127,12 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
+"gA" = (
+/obj/structure/window/reinforced/fulltile/indestructable,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/training)
 "gE" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC33"
@@ -1761,6 +1764,19 @@
 /obj/effect/turf_decal/trimline/green/filled/warning,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/safety)
+"jE" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	pixel_y = -160;
+	density = 0;
+	pixel_x = 159
+	},
+/turf/open/floor/plating/ironsand{
+	density = 1;
+	name = "Outskirt"
+	},
+/area/facility_hallway/central)
 "jL" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 6
@@ -2091,6 +2107,9 @@
 /area/facility_hallway/records)
 "lm" = (
 /obj/structure/window/reinforced/fulltile/indestructable,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -2627,19 +2646,22 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
+"mL" = (
+/obj/machinery/button/door/indestructible{
+	id = "extraction";
+	name = "Extraction Access Shutters";
+	pixel_y = 5;
+	req_one_access_txt = "19";
+	pixel_x = 22
+	},
+/turf/open/floor/pod/dark,
+/area/department_main/extraction)
 "mN" = (
-/obj/structure/chair/sofa/corp/right{
-	dir = 8;
-	can_buckle = 0
-	},
-/obj/item/toy/plush/yuri,
-/obj/item/food/grown/apple/gold{
-	pixel_y = -6
-	},
+/obj/structure/window/reinforced/fulltile/indestructable,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/human)
+/area/facility_hallway/control)
 "nh" = (
 /obj/effect/turf_decal/siding/purple{
 	color = "#511c4b";
@@ -2935,10 +2957,11 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "ot" = (
-/obj/structure/refinery,
-/obj/effect/turf_decal/box,
-/turf/open/floor/pod/dark,
-/area/department_main/information)
+/obj/machinery/computer/abnormality/training_rabbit{
+	dir = 4
+	},
+/turf/open/floor/pod/light,
+/area/facility_hallway/information)
 "ov" = (
 /obj/structure/rack{
 	pixel_x = -1
@@ -2995,16 +3018,6 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/facility_hallway/training)
-"oA" = (
-/obj/machinery/button/door/indestructible{
-	id = "extraction";
-	name = "Extraction Access Shutters";
-	pixel_y = 5;
-	req_one_access_txt = "19";
-	pixel_x = 22
-	},
-/turf/open/floor/pod/dark,
-/area/department_main/extraction)
 "oB" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel,
@@ -3505,8 +3518,7 @@
 /obj/effect/turf_decal/trimline/red/filled,
 /obj/structure/fans/tiny,
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
@@ -3824,15 +3836,6 @@
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/records)
-"sx" = (
-/obj/effect/turf_decal/stripes/line{
-	dir = 4
-	},
-/obj/effect/turf_decal/caution{
-	dir = 8
-	},
-/turf/open/floor/pod/dark,
-/area/facility_hallway/information)
 "sB" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel,
@@ -4007,10 +4010,10 @@
 "tr" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
-	dir = 4
+	dir = 8
 	},
 /obj/machinery/cryopod{
-	dir = 8
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -4876,8 +4879,7 @@
 	dir = 4
 	},
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5123,8 +5125,7 @@
 	dir = 8
 	},
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -5542,8 +5543,7 @@
 /area/facility_hallway/information)
 "AH" = (
 /obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
+	dir = 1
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -5923,9 +5923,8 @@
 	},
 /area/facility_hallway/human)
 "Dp" = (
-/obj/effect/turf_decal/arrows{
-	dir = 4
-	},
+/obj/structure/refinery,
+/obj/effect/turf_decal/box,
 /turf/open/floor/pod/dark,
 /area/department_main/information)
 "Dw" = (
@@ -5979,8 +5978,7 @@
 /area/department_main/information)
 "DE" = (
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 8
@@ -6857,6 +6855,16 @@
 	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
+"HL" = (
+/obj/structure/table/reinforced,
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace."
+	},
+/obj/effect/turf_decal/siding/brown,
+/turf/open/floor/pod/dark,
+/area/department_main/extraction)
 "HO" = (
 /obj/effect/turf_decal/caution/white{
 	pixel_y = -1
@@ -7120,6 +7128,20 @@
 /obj/machinery/telecomms/processor/preset_three,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
+"IU" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115;
+	pixel_y = -128;
+	density = 0;
+	pixel_x = 96
+	},
+/turf/open/floor/plating/ironsand{
+	density = 1;
+	name = "Outskirt"
+	},
+/area/facility_hallway/central)
 "Jb" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 8;
@@ -7195,7 +7217,7 @@
 	},
 /area/department_main/command)
 "Jv" = (
-/obj/structure/bodycontainer{
+/obj/structure/bodycontainer/morgue{
 	dir = 8
 	},
 /turf/open/floor/pod/dark,
@@ -7232,8 +7254,7 @@
 /area/facility_hallway/central)
 "JI" = (
 /obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/information)
@@ -7677,12 +7698,6 @@
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/training)
-"Mh" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/training)
 "Mj" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 5
@@ -8450,20 +8465,6 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
-"PX" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/window/reinforced/spawner/west{
-	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_y = -128;
-	density = 0;
-	pixel_x = 96
-	},
-/turf/open/floor/plating/ironsand{
-	density = 1;
-	name = "Outskirt"
-	},
-/area/facility_hallway/central)
 "PY" = (
 /obj/effect/turf_decal/trimline/brown/filled/line{
 	dir = 1
@@ -8738,6 +8739,17 @@
 	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/safety)
+"Rm" = (
+/obj/effect/turf_decal/siding/purple{
+	color = "#511c4b"
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/department_main/information)
 "Rp" = (
 /obj/effect/turf_decal/plaque{
 	icon_state = "LC30"
@@ -9131,19 +9143,6 @@
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel,
 /area/facility_hallway/human)
-"Tv" = (
-/obj/effect/turf_decal/siding/red{
-	color = "#440000";
-	dir = 8
-	},
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
-	},
-/turf/open/floor/pod/dark,
-/area/facility_hallway/control)
 "Ty" = (
 /obj/effect/turf_decal/sand,
 /obj/effect/turf_decal/trimline/brown/filled/warning{
@@ -9449,26 +9448,17 @@
 	},
 /area/department_main/command)
 "UV" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115;
-	pixel_y = -160;
-	density = 0;
-	pixel_x = 159
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 4
 	},
-/turf/open/floor/plating/ironsand{
-	density = 1;
-	name = "Outskirt"
+/obj/machinery/cryopod{
+	dir = 8
 	},
-/area/facility_hallway/central)
-"UW" = (
-/obj/structure/window/reinforced/fulltile/indestructable,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
+/turf/open/floor/pod/dark,
 /area/facility_hallway/control)
 "Vc" = (
 /obj/effect/turf_decal/box,
@@ -9935,9 +9925,13 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/training)
 "XM" = (
-/obj/structure/chair/sofa/corp/left{
+/obj/structure/chair/sofa/corp/right{
 	dir = 8;
 	can_buckle = 0
+	},
+/obj/item/toy/plush/yuri,
+/obj/item/food/grown/apple/gold{
+	pixel_y = -6
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -9957,11 +9951,11 @@
 	},
 /area/department_main/safety)
 "XT" = (
-/obj/machinery/computer/abnormality/training_rabbit{
+/obj/effect/turf_decal/arrows{
 	dir = 4
 	},
-/turf/open/floor/pod/light,
-/area/facility_hallway/information)
+/turf/open/floor/pod/dark,
+/area/department_main/information)
 "XW" = (
 /obj/effect/turf_decal/sand/plating{
 	color = "#c3bab0"
@@ -10021,9 +10015,7 @@
 	},
 /area/facility_hallway/information)
 "Ye" = (
-/obj/structure/bodycontainer{
-	dir = 4
-	},
+/obj/structure/bodycontainer/morgue,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/safety)
 "Yi" = (
@@ -10233,16 +10225,14 @@
 /turf/open/floor/pod/light,
 /area/facility_hallway/human)
 "Zo" = (
-/obj/effect/turf_decal/siding/purple{
-	color = "#511c4b"
+/obj/effect/turf_decal/stripes/line{
+	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
+/obj/effect/turf_decal/caution{
+	dir = 8
 	},
 /turf/open/floor/pod/dark,
-/area/department_main/information)
+/area/facility_hallway/information)
 "Zu" = (
 /obj/effect/turf_decal/trimline/green/filled/line{
 	dir = 1
@@ -34939,8 +34929,8 @@ bA
 WT
 Ze
 oz
-Mh
-Mh
+gA
+gA
 oz
 oz
 aL
@@ -35456,7 +35446,7 @@ zv
 aO
 ml
 Tq
-Mh
+gA
 aL
 aL
 pQ
@@ -36976,8 +36966,8 @@ dS
 dS
 dS
 dS
-UV
-PX
+jE
+IU
 dS
 lW
 VL
@@ -37485,8 +37475,8 @@ cB
 hE
 hE
 hE
-UW
 lm
+mN
 hE
 hE
 hE
@@ -37742,7 +37732,7 @@ ig
 px
 hE
 FD
-Tv
+tr
 bc
 Pc
 hE
@@ -37754,7 +37744,7 @@ aL
 VL
 LG
 cH
-bY
+HL
 Dx
 Dx
 zi
@@ -38011,7 +38001,7 @@ aL
 VL
 AK
 gV
-bY
+HL
 eu
 eu
 by
@@ -38268,7 +38258,7 @@ aL
 VL
 wr
 cH
-bY
+HL
 Sg
 Sg
 Mu
@@ -38780,7 +38770,7 @@ hE
 aL
 aL
 yy
-oA
+mL
 ha
 NK
 bu
@@ -42926,8 +42916,8 @@ Ud
 kj
 hk
 cA
-mN
 XM
+bY
 uh
 Vg
 Vg
@@ -43180,7 +43170,7 @@ Pl
 IM
 HY
 Tf
-Dp
+XT
 hk
 cA
 uh
@@ -43437,11 +43427,11 @@ AY
 DZ
 AY
 hs
-ot
+Dp
 vw
-Zo
+Rm
 cA
-XT
+ot
 nO
 nO
 nO
@@ -43955,9 +43945,9 @@ jc
 cd
 hk
 ay
-sx
-sx
-sx
+Zo
+Zo
+Zo
 nO
 zA
 zA
@@ -48536,7 +48526,7 @@ jy
 oq
 hE
 ca
-tr
+UV
 hc
 br
 hE
@@ -48793,8 +48783,8 @@ cB
 cB
 hE
 hE
-UW
 lm
+mN
 hE
 hE
 hE

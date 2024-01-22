@@ -1,0 +1,83 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/bed/maint,
+/obj/item/reagent_containers/syringe/contraband/methamphetamine,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"w" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/bed/maint,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"J" = (
+/obj/item/ego_weapon/city/rats/knife,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"U" = (
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"X" = (
+/obj/effect/spawner/structure/window,
+/obj/structure/barricade/wooden/crude,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+a
+X
+X
+s
+X
+X
+a
+"}
+(2,1,1) = {"
+a
+N
+w
+w
+w
+x
+a
+"}
+(3,1,1) = {"
+a
+v
+N
+w
+N
+J
+a
+"}
+(4,1,1) = {"
+a
+w
+w
+U
+x
+w
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+"}

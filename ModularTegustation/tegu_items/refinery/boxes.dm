@@ -69,7 +69,7 @@
 /obj/item/storage/box/kcorp_armor/PopulateContents()
 	var/loot_list = list(
 		/obj/item/clothing/head/ego_hat/helmet/kcorp,
-		/obj/item/clothing/head/ego_hat/helmet/kcorp/visor
+		/obj/item/clothing/head/ego_hat/helmet/kcorp/visor,
 	)
 	var/loot = pick(loot_list)
 	new /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1(src)

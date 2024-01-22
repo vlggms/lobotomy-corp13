@@ -2,7 +2,7 @@
 GLOBAL_LIST_EMPTY(army)
 /mob/living/simple_animal/hostile/abnormality/army
 	name = "Army in Black"
-	desc = "The color of the human heart is pink, and by wearing the same color, we can blend in with people’s minds."
+	desc = "The color of the human heart is pink, and by wearing the same color, we can blend in with people's minds."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "armyinpink"
 	icon_living = "armyinpink"
@@ -30,26 +30,26 @@ GLOBAL_LIST_EMPTY(army)
 	can_breach = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 50, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = 30,
-						"Protection" = 0//shouldn't attempt to generate any PE
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 50, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = 30,
+		"Protection" = 0, //shouldn't attempt to generate any PE
+	)
 	work_damage_amount = 17
 	work_damage_type = WHITE_DAMAGE
 
 	//E.G.O list
 	ego_list = list(
 		/datum/ego_datum/weapon/pink,
-		/datum/ego_datum/armor/pink
-		)
+		/datum/ego_datum/armor/pink,
+	)
 	gift_type =  /datum/ego_gifts/pink
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5
+		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
 	)
 
 	//Unique variables

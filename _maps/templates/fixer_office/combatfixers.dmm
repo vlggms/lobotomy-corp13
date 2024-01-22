@@ -1,0 +1,411 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/storage/secure/safe{
+	pixel_x = -22
+	},
+/obj/structure/filingcabinet{
+	pixel_y = 18;
+	density = 0
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10;
+	resistance_flags = 115;
+	pixel_y = 18;
+	density = 0
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10;
+	resistance_flags = 115;
+	pixel_y = 18;
+	density = 0
+	},
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
+/area/city/fixers)
+"b" = (
+/obj/item/modular_computer/laptop/preset/civilian{
+	pixel_y = 20
+	},
+/obj/structure/table/reinforced{
+	pixel_y = 16;
+	density = 0
+	},
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/carpet/black,
+/area/city/fixers)
+"e" = (
+/obj/effect/turf_decal/caution/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
+/obj/effect/turf_decal/arrows/red,
+/obj/effect/turf_decal/arrows/red{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"f" = (
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/microwave{
+	pixel_y = 7
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+"g" = (
+/obj/machinery/vending/boozeomat{
+	req_access = list();
+	pixel_x = -28;
+	density = 0
+	},
+/turf/open/floor/carpet/black,
+/area/city/fixers)
+"i" = (
+/obj/effect/turf_decal/arrows/red,
+/obj/effect/turf_decal/arrows/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+"j" = (
+/obj/effect/turf_decal/caution/red,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"k" = (
+/obj/structure/table/wood/fancy/black{
+	pixel_y = 21;
+	resistance_flags = 115;
+	name = "wing-grade fancy table"
+	},
+/obj/item/paper_bin/carbon{
+	pixel_y = 26
+	},
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "invisble wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 6;
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "invisble wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"l" = (
+/obj/structure/table/wood/fancy/black{
+	pixel_y = 21;
+	density = 0;
+	resistance_flags = 115;
+	name = "wing-grade fancy table"
+	},
+/obj/machinery/door/window,
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"n" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-07";
+	pixel_y = 15
+	},
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/structure/table/reinforced,
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+"p" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 4
+	},
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"s" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"u" = (
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"v" = (
+/obj/machinery/jukebox{
+	pixel_x = -4;
+	pixel_y = 18;
+	density = 0
+	},
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"y" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/structure/table/wood/fancy/black{
+	pixel_y = 21;
+	resistance_flags = 115;
+	name = "wing-grade fancy table"
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-23";
+	pixel_y = 30
+	},
+/obj/item/pen{
+	pixel_y = -4
+	},
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/railing{
+	dir = 4;
+	pixel_y = 21
+	},
+/obj/structure/railing{
+	resistance_flags = 115;
+	name = "invisble wing-grade railing";
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 8;
+	alpha = 0;
+	mouse_opacity = 0
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"C" = (
+/obj/structure/chair/comfy{
+	dir = 4
+	},
+/turf/open/floor/carpet/black,
+/area/city/fixers)
+"H" = (
+/obj/structure/chair/comfy/black{
+	dir = 8
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"J" = (
+/obj/structure/window/reinforced/spawner{
+	dir = 8;
+	resistance_flags = 115
+	},
+/obj/structure/rack,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/ego_weapon/city/fixerblade,
+/obj/item/ego_weapon/city/fixerblade,
+/obj/item/ego_weapon/city/fixergreatsword,
+/obj/item/ego_weapon/city/fixergreatsword,
+/obj/item/ego_weapon/city/fixerhammer,
+/obj/item/ego_weapon/city/fixerhammer,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/revival,
+/obj/item/storage/firstaid/revival,
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+"K" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+"L" = (
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
+/turf/open/floor/carpet/black,
+/area/city/fixers)
+"M" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+"Q" = (
+/obj/machinery/vending/cola{
+	pixel_y = 19;
+	density = 0;
+	pixel_x = -10
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-07";
+	pixel_y = 18;
+	pixel_x = 10
+	},
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"S" = (
+/obj/machinery/door/window{
+	dir = 8
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 4
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/arrows/red,
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+"U" = (
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/carpet/black,
+/area/city/fixers)
+"W" = (
+/obj/structure/chair/sofa/corp/corner{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/mineral/plastitanium,
+/area/city/fixers)
+
+(1,1,1) = {"
+a
+g
+U
+K
+W
+"}
+(2,1,1) = {"
+b
+C
+L
+n
+M
+"}
+(3,1,1) = {"
+y
+k
+l
+j
+s
+"}
+(4,1,1) = {"
+v
+H
+u
+S
+J
+"}
+(5,1,1) = {"
+Q
+e
+p
+i
+f
+"}

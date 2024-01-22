@@ -28,18 +28,18 @@
 	threat_level = WAW_LEVEL
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 50, 55, 55, 60),
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = 50,
-						ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 35, 30)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 50, 55, 55, 60),
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = 50,
+		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 35, 30),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/my_own_bride,
-		/datum/ego_datum/armor/my_own_bride
-		)
+		/datum/ego_datum/armor/my_own_bride,
+	)
 	gift_type =  /datum/ego_gifts/bride
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 

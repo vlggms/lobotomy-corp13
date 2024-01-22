@@ -20,8 +20,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 60),
 		ABNORMALITY_WORK_INSIGHT = list(30, 30, 25, 25, 35),
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 40, 40, 50),
-		ABNORMALITY_WORK_REPRESSION = list(45, 45, 40, 40, 50)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(45, 45, 40, 40, 50),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	faction = list("hostile", "neutral")

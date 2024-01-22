@@ -34,11 +34,11 @@
 	can_patrol = FALSE
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(30, 40, 40, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
-						ABNORMALITY_WORK_REPRESSION = list(20, 20, 20, 0, 0)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(30, 40, 40, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
+		ABNORMALITY_WORK_REPRESSION = list(20, 20, 20, 0, 0),
+	)
 	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 
@@ -47,8 +47,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hatred,
-		/datum/ego_datum/armor/hatred
-		)
+		/datum/ego_datum/armor/hatred,
+	)
 	gift_type = /datum/ego_gifts/love_and_hate
 	gift_message = "In fact, \"peace\" is not what she desires."
 
@@ -56,7 +56,7 @@
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
 		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
-		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
 
 	var/chance_modifier = 1
@@ -90,8 +90,8 @@
 		/datum/action/innate/abnormality_attack/qoh_beam,
 		/datum/action/innate/abnormality_attack/qoh_beats,
 		/datum/action/innate/abnormality_attack/qoh_teleport,
-		/datum/action/innate/abnormality_attack/qoh_normal
-		)
+		/datum/action/innate/abnormality_attack/qoh_normal,
+	)
 
 /datum/action/innate/abnormality_attack/qoh_beam
 	name = "Arcana Slave"
@@ -312,7 +312,14 @@
 	var/my_dir = dir
 	var/turf/my_turf = get_turf(src)
 	can_act = FALSE
-	var/list/beamtalk = list("Heed me, thou that are more azure than justice and more crimson than love…","In the name of those buried in destiny…","I shall make this oath to the light.","Mark the hateful beings who stand before us…","Let your strength merge with mine…", "so that we may deliver the power of love to all…")
+	var/list/beamtalk = list(
+		"Heed me, thou that are more azure than justice and more crimson than love…",
+		"In the name of those buried in destiny…",
+		"I shall make this oath to the light.",
+		"Mark the hateful beings who stand before us…",
+		"Let your strength merge with mine…",
+		"so that we may deliver the power of love to all…",
+	)
 	for(var/i = 1 to 3)
 		var/obj/effect/qoh_sygil/S = new(my_turf)
 		spawned_effects += S

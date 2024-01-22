@@ -36,6 +36,10 @@
 	feeding_frequency = 25 MINUTES
 	microwaved_type = /obj/item/food/meat/crab
 	fillet_type = /obj/item/food/meat/rawcrab
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/consumable/nutriment/vile_fluid = 1,
+	)
 
 /// Abnormalities
 
@@ -51,4 +55,8 @@
 	sprite_height = 8
 	average_size = 100
 	average_weight = 16000
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/nutriment/organ_tissue = 1, /datum/reagent/consumable/salt = 8)
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 1,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/consumable/salt = 8,
+	)

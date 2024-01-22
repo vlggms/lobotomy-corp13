@@ -8,7 +8,7 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	del_on_death = TRUE
-	maxHealth = 1800		//It's fucking slow as hell, and you can beat it to death if you're alone for free
+	maxHealth = 1800 //It's fucking slow as hell, and you can beat it to death if you're alone for free
 	health = 1800
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.7)
@@ -23,18 +23,18 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 4
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(30, 40, 40, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 40, 40, 30, 20),
-						ABNORMALITY_WORK_REPRESSION = list(40, 45, 50, 55, 60)
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(30, 40, 40, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 40, 40, 30, 20),
+		ABNORMALITY_WORK_REPRESSION = list(40, 45, 50, 55, 60),
+	)
 	work_damage_amount = 7
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/gaze,
-		/datum/ego_datum/armor/gaze
-		)
+		/datum/ego_datum/armor/gaze,
+	)
 	gift_type =  /datum/ego_gifts/gaze
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

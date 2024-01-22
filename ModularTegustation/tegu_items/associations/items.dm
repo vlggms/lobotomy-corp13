@@ -5,10 +5,12 @@
 	icon_state = "potential_scanner"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 
 /obj/item/potential_tester/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()

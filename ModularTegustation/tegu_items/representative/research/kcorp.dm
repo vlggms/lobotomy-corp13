@@ -36,7 +36,7 @@
 //Misc stuff.
 /datum/data/lc13research/bullets
 	research_name = "Manager Bullet Permits"
-	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing low level hp ampules at a 90% discount."
+	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing managerial bullets at a 90% discount."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = K_CORP_REP
 

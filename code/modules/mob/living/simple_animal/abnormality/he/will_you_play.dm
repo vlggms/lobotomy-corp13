@@ -10,16 +10,16 @@
 	work_chances = list(
 		"Rock" = 80,
 		"Paper" = 80,
-		"Scissors" = 80
-			)
+		"Scissors" = 80,
+	)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 15
 
 	ego_list = list(
 		/datum/ego_datum/weapon/voodoo,
-		/datum/ego_datum/armor/voodoo
-		)
+		/datum/ego_datum/armor/voodoo,
+	)
 	gift_type = /datum/ego_gifts/voodoo
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/janken = 0			//0 for scissors, 1 for Rock, 2 for paper
@@ -71,9 +71,9 @@
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Tie(mob/living/carbon/human/user, work_type)
 	if(janken == 0)
 		SLEEP_CHECK_DEATH(20)
-		say("A draw. Did you think I wouldn’t play scissors?")
+		say("A draw. Did you think I wouldn't play scissors?")
 		SLEEP_CHECK_DEATH(20)
-		say("I don’t play with folks who don't trust me.")
+		say("I don't play with folks who don't trust me.")
 	else
 		say("Hmph, a draw. You got lucky this time.")
 
@@ -95,7 +95,7 @@
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Lose(mob/living/carbon/human/user, work_type)
 	if(janken == 0)
 		SLEEP_CHECK_DEATH(20)
-		say("You win. Scissors are only useful when cloth’s around")
+		say("You win. Scissors are only useful when cloth's around")
 		if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
 			return
 		if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 80)

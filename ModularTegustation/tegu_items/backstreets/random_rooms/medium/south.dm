@@ -20,6 +20,7 @@
 	room_id = "eyes_temple"
 	mappath = "_maps/RandomRooms/backstreets/medium_south/eyes_temple.dmm"
 
+
 /datum/map_template/random_room/backstreets/medium_south/seven_office_msa
 	name = "Seven Office - Medium South A"
 	room_id = "seven_office_msa"
@@ -30,5 +31,13 @@
 	room_id = "bar_msa"
 	mappath = "_maps/RandomRooms/backstreets/medium_south/bar_msa.dmm"
 
+/datum/map_template/random_room/backstreets/medium_south/rat_msa
+    name = "Rat - Medium South A"
+    room_id = "rat_msa"
+    mappath = "_maps/RandomRooms/backstreets/medium_south/rat_msa.dmm"
 
+/datum/map_template/random_room/backstreets/medium_south/theatre
+    name = "Theatre - Medium South"
+    room_id = "theatre"
+    mappath = "_maps/RandomRooms/backstreets/medium_south/theatre.dmm"
 

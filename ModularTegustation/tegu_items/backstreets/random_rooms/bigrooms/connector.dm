@@ -29,3 +29,8 @@
 	name = "Sweeper - Connector"
 	room_id = "sweeper_ca"
 	mappath = "_maps/RandomRooms/backstreets/connector/sweeper_ca.dmm"
+
+/datum/map_template/random_room/backstreets/connector/rat_cave
+    name = "Rat - Connector"
+    room_id = "rat_cave"
+    mappath = "_maps/RandomRooms/backstreets/connector/rat_cave.dmm"

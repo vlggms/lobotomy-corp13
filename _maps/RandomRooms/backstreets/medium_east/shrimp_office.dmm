@@ -1,0 +1,145 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/lootcrate/s_corp,
+/obj/structure/lootcrate/s_corp,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"l" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"o" = (
+/mob/living/simple_animal/hostile/shrimp,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/chair/sofa/corp,
+/obj/item/ego_weapon/city/fixergreatsword,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/chair/office{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/shrimp_soldier,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/chair/sofa/corp/left,
+/mob/living/simple_animal/hostile/shrimp,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"C" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/lootcrate/s_corp,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"H" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/chair/sofa/corp,
+/mob/living/simple_animal/hostile/shrimp,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/table/wood,
+/obj/item/storage/fancy/cigarettes/cigars/havana,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"L" = (
+/obj/structure/chair/sofa/corp/right,
+/mob/living/simple_animal/hostile/shrimp,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"P" = (
+/obj/machinery/door/airlock/wood/glass,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/table/wood,
+/obj/item/gun/ego_gun/sodarifle,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+H
+H
+x
+x
+x
+x
+"}
+(2,1,1) = {"
+x
+L
+F
+x
+l
+l
+x
+v
+b
+x
+"}
+(3,1,1) = {"
+x
+J
+a
+x
+l
+o
+x
+Y
+K
+x
+"}
+(4,1,1) = {"
+x
+s
+a
+x
+l
+l
+x
+a
+a
+x
+"}
+(5,1,1) = {"
+x
+y
+a
+P
+l
+l
+P
+a
+C
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

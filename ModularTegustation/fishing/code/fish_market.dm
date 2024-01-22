@@ -21,6 +21,7 @@
 		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		500) = 1,
 		new /datum/data/extraction_cargo("Fishing Hat ",		 		/obj/item/clothing/head/beret/fishing_hat,			500) = 1,
 		new /datum/data/extraction_cargo("Aquarium Branch Office ",		/obj/item/aquarium_prop/lcorp,						500) = 1,
+		new /datum/data/extraction_cargo("Tier 1 Fishing Rod ",			/obj/item/fishing_rod/tier1,						500) = 1,
 		//Yes we are scamming you.
 		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				1000) = 1,
 	)
@@ -49,10 +50,10 @@
 		if(href_list["purchase"])
 			var/datum/data/extraction_cargo/product_datum = locate(href_list["purchase"]) in order_list //The href_list returns the individual number code and only works if we have it in the first column. -IP
 			if(!product_datum)
-				to_chat(usr, "<span class='warning'>ERROR.</span>")
+				to_chat(usr, span_warning("ERROR."))
 				return FALSE
 			if(fish_points < product_datum.cost)
-				to_chat(usr, "<span class='warning'>Yer lackin some points there lad.</span>")
+				to_chat(usr, span_warning("Yer lackin some points there lad."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
 			new product_datum.equipment_path(get_turf(src))
@@ -78,7 +79,7 @@
 		return
 	if(istype(I, /obj/item/fishing_component/hook/bone))
 		AdjustPoints(5)
-		to_chat(user, "<span class='notice'>Thank you for notifying us of this object. 5 point reward.</span>")
+		to_chat(user, span_notice("Thank you for notifying us of this object. 5 point reward."))
 		playsound(get_turf(src), 'sound/machines/machine_vend.ogg', 10, TRUE)
 		qdel(I)
 		return
@@ -88,7 +89,6 @@
 		for(var/item in bag.contents)
 			if(istype(item, /obj/item/fishing_component/hook/bone))
 				fish_value += 5
-				to_chat(user, "<span class='notice'>Thank you for notifying us of this object. 5 point reward.</span>")
 
 			if(istype(item, /obj/item/food/fish))
 				fish_value += ValueFish(item)

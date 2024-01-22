@@ -12,11 +12,11 @@
 	health = 600
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(70, 70, 60, 60, 60),
-						ABNORMALITY_WORK_INSIGHT = list(70, 70, 60, 60, 60),
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
-						ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(70, 70, 60, 60, 60),
+		ABNORMALITY_WORK_INSIGHT = list(70, 70, 60, 60, 60),
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 40, 40, 40),
+		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
+	)
 	work_damage_amount = 1
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
@@ -29,7 +29,11 @@
 	retreat_distance = 4
 	check_friendly_fire = TRUE
 	projectiletype = /obj/projectile/wellcheers
-	var/projectile_list = list(/obj/projectile/wellcheers, /obj/projectile/wellcheers/white, /obj/projectile/wellcheers/purple)
+	var/projectile_list = list(
+		/obj/projectile/wellcheers,
+		/obj/projectile/wellcheers/white,
+		/obj/projectile/wellcheers/purple,
+	)
 	projectilesound = 'sound/machines/machine_vend.ogg'
 
 	faction = list("shrimp")
@@ -38,14 +42,14 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/soda,
-		/datum/ego_datum/armor/soda
-		)
+		/datum/ego_datum/armor/soda,
+	)
 	gift_type = /datum/ego_gifts/soda
 	gift_message = "You feel like you've been doing this your whole life."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/shrimp_exec = 1.5
+		/mob/living/simple_animal/hostile/abnormality/shrimp_exec = 1.5,
 	)
 
 	chem_type = /datum/reagent/abnormality/wellcheers_zero

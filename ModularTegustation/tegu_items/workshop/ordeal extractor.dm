@@ -36,7 +36,7 @@
 		PEOPLE_MAT,
 		GREEN_MAT,
 		INDIGO_MAT,
-		AMBER_MAT
+		AMBER_MAT,
 	)
 
 	var/list/to_process = list()
@@ -275,7 +275,7 @@
 		typecacheof(GREEN),
 		typecacheof(INDIGO),
 		typecacheof(AMBER),
-		)
+	)
 	ST.max_w_class = WEIGHT_CLASS_BULKY
 	ST.max_combined_w_class = 80 // Max 20 Bulky Items
 	ST.max_items = 21 // Rows of 7, so 21 for 3 rows.
