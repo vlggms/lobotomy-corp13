@@ -1,0 +1,304 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"e" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"h" = (
+/mob/living/simple_animal/hostile/humanoid/rat/knife,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"i" = (
+/obj/item/trash/can/food/pcorp,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"j" = (
+/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"m" = (
+/obj/item/trash/candy,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/flora/rock/pile,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/flora/rock,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"y" = (
+/obj/structure/flora/rock/pile,
+/obj/effect/spawner/lootdrop/cigbutt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"z" = (
+/obj/item/trash/can/food/peaches,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"D" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"E" = (
+/obj/item/trash/cheesie,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"F" = (
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"G" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/bed/maint,
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/bed/maint,
+/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/spacedrugs,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Q" = (
+/obj/effect/spawner/lootdrop/cigbutt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"W" = (
+/obj/item/trash/energybar,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+e
+e
+e
+e
+a
+a
+D
+D
+D
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+e
+H
+D
+e
+e
+e
+D
+o
+Q
+e
+e
+e
+e
+e
+a
+"}
+(3,1,1) = {"
+e
+e
+D
+G
+e
+e
+E
+D
+D
+F
+e
+e
+e
+e
+a
+"}
+(4,1,1) = {"
+e
+j
+D
+o
+i
+Q
+D
+e
+D
+D
+D
+e
+e
+e
+a
+"}
+(5,1,1) = {"
+a
+e
+Q
+D
+Q
+Q
+D
+e
+e
+D
+Q
+W
+e
+e
+a
+"}
+(6,1,1) = {"
+D
+D
+D
+h
+D
+D
+D
+D
+e
+S
+D
+D
+D
+D
+D
+"}
+(7,1,1) = {"
+D
+D
+D
+e
+e
+e
+e
+D
+e
+D
+D
+D
+y
+D
+D
+"}
+(8,1,1) = {"
+D
+e
+e
+e
+e
+S
+j
+K
+e
+S
+D
+D
+D
+D
+D
+"}
+(9,1,1) = {"
+e
+e
+e
+e
+e
+e
+D
+e
+e
+e
+D
+v
+D
+D
+a
+"}
+(10,1,1) = {"
+a
+e
+e
+e
+e
+z
+D
+D
+e
+e
+D
+m
+e
+e
+a
+"}
+(11,1,1) = {"
+a
+e
+e
+F
+D
+Q
+D
+o
+D
+D
+F
+e
+e
+e
+a
+"}
+(12,1,1) = {"
+a
+e
+e
+e
+D
+D
+D
+D
+D
+e
+e
+e
+e
+e
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+e
+e
+e
+Q
+D
+D
+a
+a
+a
+a
+a
+a
+"}
