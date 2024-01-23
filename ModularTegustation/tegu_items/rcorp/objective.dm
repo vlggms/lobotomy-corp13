@@ -199,6 +199,13 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	icon_state = "hivebot_fab_on"
 	density = 1
 	anchored = 1
+	resistance_flags = INDESTRUCTIBLE
+
+/obj/structure/rcorpcomms/Initialize()
+	..()
+	minor_announce("Warning: The communications shields are now disabled. Communications are now vulnerable" , "R-Corporation Command Update")
+	icon_state = "hivebot_fab"
+	resistance_flags &= ~INDESTRUCTIBLE
 
 /obj/structure/rcorpcomms/deconstruct(disassembled = TRUE)
 	for(var/mob/M in GLOB.player_list)
