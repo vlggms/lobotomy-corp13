@@ -658,7 +658,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 
 	if(possession_cooldown >= world.time)
-		to_chat(src, span_warning("You are under a cooldown for possessing for [(possession_cooldown - world.time) * 10] more seconds!"))
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) * 10] more seconds!"))
 		return FALSE
 
 	if(ismegafauna(target))
@@ -725,6 +725,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_userdanger("This abnormality is blacklisted from being possessed!"))
 		return ..()
 
+	if(possession_cooldown >= world.time)
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) * 10] more seconds!"))
+		return ..()
+
 	if(!isobserver(usr)) // safety check
 		to_chat(usr, span_userdanger("you are not an observer despite being an observer, silly. You cant possess abnormalities!"))
 		return ..()
@@ -738,7 +742,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return ..()
 
 	try_take_abnormality(src, over)
-	return
+	return ..()
 	//LOBOTOMYCORPORATION ADDITION END
 
 //	return ..() LOBOTOMYCORPORATION REMOVAL -- we dont need this anymore since we do safety checks with early returns instead
