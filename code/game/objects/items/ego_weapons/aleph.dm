@@ -1297,9 +1297,9 @@
 	var/gun_cooldown
 	var/gun_cooldown_time = 1.5 SECONDS
 	var/build_up = 0.8
-	var/build_up_time
-	var/build_up_wait = 10
 	var/smashing = FALSE
+	var/combo_time
+	var/combo_wait = 15
 
 /obj/item/ego_weapon/oberon/Initialize()
 	. = ..()
@@ -1322,6 +1322,9 @@
 	current_holder = null
 
 /obj/item/ego_weapon/oberon/attack(mob/living/target, mob/living/carbon/human/user)
+	if(world.time > combo_time)
+		build_up = 0.8
+	combo_time = world.time + combo_wait
 	. = ..()
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
@@ -1333,22 +1336,21 @@
 			red*=justicemod * force_multiplier
 			target.apply_damage(red, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if("whip")
-			if(world.time > build_up_time)
-				build_up = 0.8
-			build_up_time = world.time + build_up_wait
 			var/multihit = force
 			multihit*= justicemod * force_multiplier
-			sleep(2)
 			for(var/i = 1 to 2)
 				sleep(2)
+				if(!target in view(3,user))
+					continue
+				target.send_item_attack_message(src, user,target)
 				target.apply_damage(multihit, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 				user.do_attack_animation(target)
 				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		if("bat")
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			if(!target.anchored)
-				var/whack_speed = (prob(60) ? 1 : 4)
-				target.throw_at(throw_target, rand(2, 5), whack_speed, user)
+				var/whack_speed = (prob(60) ? 2 : 5)
+				target.throw_at(throw_target, rand(2, 4), whack_speed, user)
 		if("hammer")
 			for(var/mob/living/L in view(2, target))
 				var/aoe = force
@@ -1370,6 +1372,7 @@
 			if (isliving(target))
 				user.changeNext_move(CLICK_CD_MELEE * build_up) // Starts a little fast, but....
 				if (build_up <= 0.1)
+					build_up = 0.8
 					user.changeNext_move(CLICK_CD_MELEE * 4)
 					if(!smashing)
 						to_chat(user,"<span class='warning'>The whip starts to thrash around uncontrollably!</span>")
@@ -1455,3 +1458,4 @@
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
 	damtype = weapon_list[form][7]
+	build_up = 0.8
