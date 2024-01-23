@@ -11,8 +11,8 @@
 	health = 3000
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 40
-	melee_damage_upper = 50
+	melee_damage_lower = 30
+	melee_damage_upper = 40
 	move_to_delay = 2.6
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
@@ -27,14 +27,14 @@
 	var/busy = FALSE
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 20 SECONDS
-	var/pulse_damage = 20 // Dealt consistently across the entire room 5 times
+	var/pulse_damage = 18 // Dealt consistently across the entire room 5 times
 	/// Default range of triggering meltdowns during pulse attack
 	var/pulse_range = 24
 	/// The actual range of triggering meltdowns. Gets decreased with each attack during pulse attack
 	var/current_pulse_range = 24
 	var/hammer_cooldown
 	var/hammer_cooldown_time = 6 SECONDS
-	var/hammer_damage = 250
+	var/hammer_damage = 200
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/Initialize()
@@ -351,8 +351,8 @@
 	health = 3000
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 4
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_lower = 15
+	melee_damage_upper = 35
 	move_to_delay = 2.2
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
@@ -366,7 +366,7 @@
 	var/busy = FALSE
 	var/multislash_cooldown
 	var/multislash_cooldown_time = 4 SECONDS
-	var/multislash_damage = 75
+	var/multislash_damage = 60
 	var/multislash_range = 6
 	var/beam_cooldown
 	var/beam_cooldown_time = 10 SECONDS
@@ -470,7 +470,7 @@
 			been_hit |= L
 			new /obj/effect/temp_visual/cult/sparks(get_turf(L))
 	playsound(src, 'sound/effects/ordeals/white/red_beam_fire.ogg', 100, FALSE, 32)
-	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
 	beam_cooldown = world.time + beam_cooldown_time
 	busy = FALSE
 	icon_state = icon_living
