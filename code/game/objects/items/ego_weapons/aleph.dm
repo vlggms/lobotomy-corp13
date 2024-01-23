@@ -1340,12 +1340,11 @@
 			multihit*= justicemod * force_multiplier
 			for(var/i = 1 to 2)
 				sleep(2)
-				if(!target in view(3,user))
-					continue
-				target.send_item_attack_message(src, user,target)
-				target.apply_damage(multihit, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-				user.do_attack_animation(target)
-				playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+				if(target in view(reach,user))
+					target.send_item_attack_message(src, user,target)
+					target.apply_damage(multihit, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+					user.do_attack_animation(target)
+					playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		if("bat")
 			var/atom/throw_target = get_edge_target_turf(target, user.dir)
 			if(!target.anchored)
