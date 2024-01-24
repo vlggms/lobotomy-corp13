@@ -3,8 +3,9 @@ GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as t
 
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
-GLOBAL_LIST_INIT(unpossessable_mobs, list(
-	/mob/living/simple_animal/hostile/abnormality/woodsman))
+GLOBAL_LIST_INIT(unpossessable_mobs, list( // LOBOTOMYCORPORATION ADDITION -- abnormality blacklist
+	/mob/living/simple_animal/hostile/abnormality/woodsman,
+))
 
 /mob/dead/observer
 	name = "ghost"
@@ -65,7 +66,7 @@ GLOBAL_LIST_INIT(unpossessable_mobs, list(
 	var/datum/orbit_menu/orbit_menu
 	var/datum/spawners_menu/spawners_menu
 
-	var/possession_cooldown = 0
+	var/possession_cooldown = 0 // LOBOTOMYCORPORATION ADDITION -- Possession cooldown
 
 /mob/dead/observer/Initialize()
 	set_invisibility(GLOB.observer_default_invisibility)
@@ -151,7 +152,8 @@ GLOBAL_LIST_INIT(unpossessable_mobs, list(
 	grant_all_languages()
 	show_data_huds()
 	data_huds_on = 1
-	possession_cooldown = world.time + (10 SECONDS)
+
+	possession_cooldown = world.time + (10 SECONDS) // LOBOTOMYCORPORATION ADDITION -- Possession cooldown
 
 /mob/dead/observer/get_photo_description(obj/item/camera/camera)
 	if(!invisibility || camera.see_ghosts)
@@ -638,14 +640,25 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/possessible = list()
 	for(var/mob/living/L in GLOB.alive_mob_list)
-		if(istype(L,/mob/living/carbon/human/dummy) || !get_turf(L) || !SSlobotomy_corp.enable_possession || is_type_in_list(L, GLOB.unpossessable_mobs))
+		if(istype(L,/mob/living/carbon/human/dummy) || !get_turf(L)) //Haha no.
 			continue
+		// LOBOTOMYCORPORATION ADDITION START
+		if(!SSlobotomy_corp.enable_possession)
+			message_admins(span_adminnotice("[src.key] has accessed the mob/dead/observer/verb/possess() whilst abnormality possession is not enabled!"))
+			return
+		if(is_type_in_list(L, GLOB.unpossessable_mobs))
+			continue
+		// LOBOTOMYCORPORATION ADDITION END
 		if(!(L in GLOB.player_list) && !L.mind)
 			possessible += L
 
 	var/mob/living/target = input("Your new life begins today!", "Possess Mob", null, null) as null|anything in sortNames(possessible)
 
-	if(!target || possession_cooldown >= world.time)
+	if(!target)
+		return FALSE
+
+	if(possession_cooldown >= world.time)
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) * 10] more seconds!"))
 		return FALSE
 
 	if(ismegafauna(target))
@@ -660,6 +673,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return FALSE
 
 	target.key = key
+//	target.faction = list("neutral") LOBOTOMYCORPORATION REMOVAL -- messes with the posessed abnormality's factions
 	return TRUE
 
 //this is a mob verb instead of atom for performance reasons
@@ -700,8 +714,19 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(usr != src) // dont give chat feedback, dragging others onto an abnormality is probably just a silly mistake
 		return ..()
 
+	if(!isliving(over)) // you really did just miss your possession target, pathetic. You dont get a satisfactory message for that
+		return ..()
+
 	if(!SSlobotomy_corp.enable_possession) // if admins dont want us to fuck around, lets not fuck around
 		to_chat(usr, span_userdanger("Abnormality possession is not enabled!"))
+		return ..()
+
+	if(is_type_in_list(over, GLOB.unpossessable_mobs))
+		to_chat(usr, span_userdanger("This abnormality is blacklisted from being possessed!"))
+		return ..()
+
+	if(possession_cooldown >= world.time)
+		to_chat(src, span_userdanger("You are under a cooldown for possessing for [(possession_cooldown - world.time) * 10] more seconds!"))
 		return ..()
 
 	if(!isobserver(usr)) // safety check
@@ -717,7 +742,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return ..()
 
 	try_take_abnormality(src, over)
-	return
+	return ..()
 	//LOBOTOMYCORPORATION ADDITION END
 
 //	return ..() LOBOTOMYCORPORATION REMOVAL -- we dont need this anymore since we do safety checks with early returns instead
