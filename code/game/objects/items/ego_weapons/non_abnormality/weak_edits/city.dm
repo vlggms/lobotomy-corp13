@@ -213,6 +213,3 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 80
 							)
-	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
-
-
