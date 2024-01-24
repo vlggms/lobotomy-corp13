@@ -2761,8 +2761,8 @@
 /obj/machinery/computer/shuttle/mining{
 	max_integrity = 3000000;
 	name = "warp pod console";
-	possible_destinations = "iotamain_southwest";
-	shuttleId = "iotamain";
+	possible_destinations = "deltamain_northwest";
+	shuttleId = "deltamain";
 	dir = 1;
 	resistance_flags = 115;
 	pixel_x = -6
@@ -13164,8 +13164,8 @@
 /obj/machinery/computer/shuttle/mining{
 	max_integrity = 3000000;
 	name = "warp pod console";
-	possible_destinations = "iotamain_southwest";
-	shuttleId = "iotamain";
+	possible_destinations = "deltamain_northeast";
+	shuttleId = "deltamain";
 	dir = 1;
 	resistance_flags = 115;
 	pixel_x = 6

@@ -4613,12 +4613,6 @@
 	},
 /area/department_main/command)
 "uw" = (
-/obj/machinery/door/airlock{
-	name = "Safety Department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
-	opacity = 0
-	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/safety)
 "uz" = (
@@ -5698,27 +5692,14 @@
 	},
 /area/facility_hallway/east)
 "zl" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
-	},
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
 	resistance_flags = 115;
-	pixel_y = 32;
-	pixel_x = 32;
+	pixel_x = -128;
 	density = 0
 	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
-	},
-/area/department_main/safety)
+/turf/closed/indestructible/rock,
+/area/space)
 "zn" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -6964,14 +6945,13 @@
 	},
 /area/department_main/command)
 "Er" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /obj/machinery/door/airlock{
 	name = "Safety Department";
 	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
-	opacity = 0
-	},
-/obj/structure/disposalpipe/segment{
-	dir = 4
+	icon = 'icons/obj/doors/airlocks/station/virology.dmi'
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/east)
@@ -10025,8 +10005,7 @@
 /obj/machinery/door/airlock{
 	name = "Safety Department";
 	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
-	opacity = 0
+	icon = 'icons/obj/doors/airlocks/station/virology.dmi'
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
@@ -10597,26 +10576,12 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "Vq" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
-	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115;
-	pixel_y = 32;
-	pixel_x = 32;
-	density = 0
+	pixel_x = -160
 	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
-	},
-/area/department_main/safety)
+/turf/closed/indestructible/rock,
+/area/space)
 "Vs" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -10655,6 +10620,13 @@
 	set_luminosity = 24
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/camera/autoname{
+	alpha = 0;
+	short_range = 13;
+	view_range = 13;
+	name = "hidden security camera";
+	mouse_opacity = 0
+	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -54559,7 +54531,7 @@ Mh
 Mh
 hf
 kn
-Vq
+hg
 zx
 Og
 Og
@@ -54817,7 +54789,7 @@ hf
 hf
 KB
 hg
-zl
+hg
 jj
 aO
 Po
@@ -56100,8 +56072,8 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
+Vq
+zl
 Mh
 Mh
 Mh

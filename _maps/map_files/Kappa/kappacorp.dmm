@@ -5045,8 +5045,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/machinery/grill,
-/obj/item/stack/sheet/mineral/wood/fifty,
+/obj/machinery/chem_master/condimaster,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "yr" = (
