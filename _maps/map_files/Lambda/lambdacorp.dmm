@@ -871,6 +871,9 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 9
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/command)
 "ev" = (
@@ -953,7 +956,9 @@
 /area/facility_hallway/control)
 "eS" = (
 /obj/effect/turf_decal/trimline/brown/filled/end,
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
 /turf/open/floor/pod,
 /area/department_main/training)
 "eT" = (
@@ -1534,6 +1539,9 @@
 	light_range = 25;
 	set_cap = 3;
 	set_luminosity = 24
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/command)
@@ -2251,6 +2259,14 @@
 	},
 /turf/open/floor/pod/light,
 /area/department_main/control)
+"la" = (
+/obj/effect/turf_decal/trimline/yellow/filled,
+/obj/structure/fans/tiny,
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/bluespace{
+	name = "secure flooring"
+	},
+/area/department_main/command)
 "lb" = (
 /obj/effect/turf_decal/trimline/purple/filled/end,
 /obj/structure/disposalpipe/segment,
@@ -2508,12 +2524,12 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/command)
 "mD" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
+/obj/effect/turf_decal/trimline/yellow/filled/end{
 	dir = 1
 	},
-/obj/effect/landmark/xeno_spawn,
-/turf/open/floor/pod/dark,
-/area/facility_hallway/command)
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/pod/light,
+/area/department_main/command)
 "mG" = (
 /obj/effect/turf_decal/trimline/purple/filled/line{
 	dir = 1
@@ -2868,11 +2884,14 @@
 /turf/open/floor/pod/light,
 /area/facility_hallway/east)
 "ow" = (
-/obj/effect/turf_decal/trimline/yellow/filled/line{
-	dir = 1
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 10
 	},
-/turf/open/floor/pod/dark,
-/area/facility_hallway/command)
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/open/floor/pod,
+/area/department_main/training)
 "oD" = (
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 6
@@ -2921,6 +2940,7 @@
 /area/facility_hallway/training)
 "oW" = (
 /obj/effect/turf_decal/trimline/yellow/filled/end,
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/pod,
 /area/department_main/command)
 "pd" = (
@@ -5741,6 +5761,9 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/open/floor/pod/light,
 /area/department_main/command)
 "Ev" = (
@@ -5858,17 +5881,12 @@
 /turf/open/floor/pod/light,
 /area/department_main/command)
 "Fg" = (
-/obj/machinery/door/airlock{
-	name = "Central Command";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
-	},
-/turf/open/floor/facility/halls,
-/area/facility_hallway/command)
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/pod/light,
+/area/facility_hallway/human)
 "Fh" = (
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "extraction1";
-	opacity = 1
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "extraction1"
 	},
 /turf/closed/indestructible/fakeglass,
 /area/department_main/command)
@@ -6135,6 +6153,15 @@
 	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
+"Gu" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 5
+	},
+/turf/open/floor/pod,
+/area/department_main/training)
 "GB" = (
 /obj/machinery/cryopod{
 	dir = 8
@@ -7314,6 +7341,9 @@
 	mouse_opacity = 0
 	},
 /obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
 /turf/open/floor/plasteel/bluespace{
 	name = "secure flooring"
 	},
@@ -7435,6 +7465,7 @@
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/pod,
 /area/department_main/command)
 "Mf" = (
@@ -7911,6 +7942,17 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/pod,
 /area/department_main/safety)
+"Oo" = (
+/obj/machinery/door/airlock/external/glass,
+/obj/effect/turf_decal/stripes/full,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/door/poddoor{
+	id = "facilitylockdown";
+	name = "Facility Lockdown Blast Door"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "Op" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -8339,9 +8381,8 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
 "QF" = (
-/obj/machinery/door/poddoor/shutters/window/preopen{
-	id = "extraction1";
-	opacity = 1
+/obj/machinery/door/poddoor/shutters/preopen{
+	id = "extraction1"
 	},
 /turf/closed/indestructible/fakeglass,
 /area/department_main/extraction)
@@ -8392,6 +8433,9 @@
 	name = "Training department";
 	normal_integrity = 500;
 	icon = 'icons/obj/doors/airlocks/station/mining.dmi'
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/command)
@@ -10119,6 +10163,7 @@
 	mouse_opacity = 0;
 	view_range = 5
 	},
+/obj/structure/disposalpipe/segment,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/human)
 "YN" = (
@@ -36445,8 +36490,8 @@ ir
 Kg
 WW
 WW
-ir
-HD
+ow
+Gu
 Cj
 Gj
 xj
@@ -36703,7 +36748,7 @@ au
 kN
 wX
 mM
-HD
+SN
 Cj
 iz
 MJ
@@ -36960,7 +37005,7 @@ HD
 eH
 wX
 mM
-HD
+SN
 Cj
 Rz
 en
@@ -37217,7 +37262,7 @@ Hh
 kN
 wX
 mM
-Zl
+QG
 de
 Cu
 Cu
@@ -37474,7 +37519,7 @@ HD
 WW
 WW
 rs
-Kg
+Kv
 WW
 WW
 WW
@@ -37731,7 +37776,7 @@ hf
 dI
 wk
 cG
-HD
+SN
 jA
 hJ
 bc
@@ -38245,7 +38290,7 @@ ZU
 ZU
 PZ
 sz
-ow
+gi
 MP
 PZ
 sR
@@ -38502,7 +38547,7 @@ ZU
 ZU
 PZ
 sz
-ow
+gi
 MP
 PZ
 sR
@@ -38759,7 +38804,7 @@ ZU
 ZU
 PZ
 yd
-ow
+gi
 MP
 PZ
 sR
@@ -39016,7 +39061,7 @@ ZU
 ZU
 PZ
 sz
-ow
+gi
 MP
 PZ
 sR
@@ -39273,7 +39318,7 @@ ZU
 ZU
 PZ
 Fy
-ow
+gi
 MP
 PZ
 sR
@@ -39530,7 +39575,7 @@ PZ
 PZ
 bz
 qZ
-mD
+VS
 MP
 PZ
 PZ
@@ -39787,7 +39832,7 @@ ZU
 ZU
 PZ
 uB
-ow
+gi
 MP
 PZ
 Rj
@@ -40044,7 +40089,7 @@ ZU
 ZU
 PZ
 sz
-ow
+gi
 MP
 Yr
 mC
@@ -40815,7 +40860,7 @@ ZU
 ZU
 PZ
 Fy
-ow
+gi
 MP
 PZ
 ul
@@ -41072,7 +41117,7 @@ uO
 uO
 uO
 kq
-Fg
+FW
 kq
 uO
 uO
@@ -41329,7 +41374,7 @@ Zv
 cF
 Ak
 cU
-PL
+jw
 cE
 iC
 MH
@@ -41586,7 +41631,7 @@ tz
 aB
 ni
 XT
-PL
+jw
 Pv
 ni
 XT
@@ -41843,7 +41888,7 @@ Is
 KH
 JM
 sk
-PL
+jw
 cU
 Fv
 zQ
@@ -42100,7 +42145,7 @@ Rl
 KH
 AI
 sk
-PL
+jw
 cU
 ND
 cU
@@ -42357,7 +42402,7 @@ Nx
 Eg
 vE
 zQ
-PL
+jw
 cU
 VG
 XT
@@ -42614,7 +42659,7 @@ fM
 cF
 cE
 cU
-PL
+jw
 fr
 vE
 zQ
@@ -43129,15 +43174,15 @@ Bg
 Xx
 VF
 Lp
-VF
-Bg
+la
+mD
 Md
 Md
 Md
 Md
 oW
-FU
-Rd
+Oo
+Fg
 YI
 FU
 TH
