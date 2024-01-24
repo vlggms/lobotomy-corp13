@@ -72,6 +72,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Initialize()
 	. = ..()
+	if(IsCombatMap())
+		faction |= "hostile"
 	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
 		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
 			if(A.name == "Blue Smocked Shepherd")
