@@ -62,7 +62,7 @@ export const AbnormalityWork = (props, context) => {
             </span>
           )}
           <br />
-          <div style={{ float: 'right', width: '60%' }}>
+          <div style={{ float: 'right', width: '52.5%' }}>
             <image src={image} class="fit-picture" width={192} height={192} />
           </div>
           <br />
@@ -72,7 +72,7 @@ export const AbnormalityWork = (props, context) => {
                 <Button
                   content={
                     work_displays[line]
-                      + "["
+                      + " ["
                       + work_chances[line]
                       + "%]"
                   }
