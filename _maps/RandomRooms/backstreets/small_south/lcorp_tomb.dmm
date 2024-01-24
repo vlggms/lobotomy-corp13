@@ -1,0 +1,119 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"h" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/fluff/arc,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"x" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"A" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"M" = (
+/turf/closed/mineral/ash_rock,
+/area/city/backstreets_room)
+"N" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/cavein_door,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"R" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+/turf/open/floor/mineral/plastitanium,
+/area/city/backstreets_room)
+"T" = (
+/obj/machinery/door/airlock/vault,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+P
+M
+M
+M
+U
+"}
+(3,1,1) = {"
+U
+M
+M
+R
+U
+"}
+(4,1,1) = {"
+U
+k
+A
+S
+U
+"}
+(5,1,1) = {"
+U
+t
+a
+x
+U
+"}
+(6,1,1) = {"
+T
+A
+h
+N
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

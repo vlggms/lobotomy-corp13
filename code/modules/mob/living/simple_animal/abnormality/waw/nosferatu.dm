@@ -16,11 +16,11 @@
 	rapid_melee = 1
 	threat_level = WAW_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 35, 35, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 20, 25, 30)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 35, 35, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 20, 25, 30),
+	)
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 35
 	melee_damage_upper = 45 //has a wide range, he can critically hit you
@@ -39,8 +39,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/dipsia,
 		/datum/ego_datum/weapon/banquet,
-		/datum/ego_datum/armor/dipsia
-		)
+		/datum/ego_datum/armor/dipsia,
+	)
 	gift_type = /datum/ego_gifts/dipsia
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 

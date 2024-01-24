@@ -156,6 +156,18 @@
 	else
 		return ..()
 
+/obj/vehicle/sealed/mecha/attacked_by(obj/item/I, mob/living/user)
+	if(I.force)
+		user.visible_message(span_danger("[user] hits [src] with [I]!"), span_danger("You hit [src] with [I]!"), null, COMBAT_MESSAGE_RANGE)
+		log_combat(user, src, "attacked", I)
+		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+		var/damage = I.force * justice_mod
+		if(istype(I, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/theweapon = I
+			damage *= theweapon.force_multiplier
+		take_damage(damage, I.damtype, attack_dir = get_dir(src, user))
+		return TRUE
+
 /**
  * Last proc in the [/obj/item/proc/melee_attack_chain]
  *

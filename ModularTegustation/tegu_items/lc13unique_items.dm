@@ -27,7 +27,8 @@
 		/obj/item/toy/plush/bigbird = 10,
 		/obj/item/toy/plush/rabbit = 5,
 		/obj/item/toy/plush/yuri = 5,
-		/obj/item/toy/plush/nihil = 4)
+		/obj/item/toy/plush/nihil = 4,
+	)
 
 /obj/item/plushgacha/attack_self(mob/user)
 	var/obj/item/toy/plush/reward = pickweight(rewards)

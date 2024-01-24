@@ -1,0 +1,426 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
+"f" = (
+/obj/item/storage/secure/safe{
+	pixel_y = 30
+	},
+/obj/structure/chair/comfy/brown{
+	pixel_x = -10;
+	can_buckle = 0
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/obj/machinery/camera{
+	pixel_x = 22;
+	pixel_y = 22
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/machinery/computer/secure_data{
+	dir = 8;
+	pixel_x = 16;
+	density = 0
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"g" = (
+/obj/structure/filingcabinet{
+	pixel_x = -10;
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet,
+/obj/structure/filingcabinet{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/green,
+/area/city/fixers)
+"k" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
+"n" = (
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
+/obj/machinery/camera{
+	pixel_x = -4;
+	dir = 4
+	},
+/obj/structure/closet{
+	pixel_x = -7
+	},
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/binoculars,
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/obj/item/toy/crayon/spraycan,
+/obj/item/toy/crayon/spraycan,
+/obj/item/gps,
+/obj/item/gps,
+/obj/item/gps,
+/obj/item/gps,
+/obj/item/gps,
+/obj/item/clothing/glasses/night,
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807";
+	dir = 8
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/fixers)
+"r" = (
+/obj/machinery/camera{
+	dir = 9;
+	pixel_x = 4
+	},
+/obj/structure/table/wood,
+/obj/effect/spawner/lootdrop/donkpockets,
+/turf/open/floor/wood,
+/area/city/fixers)
+"t" = (
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
+"u" = (
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/carpet/green,
+/area/city/fixers)
+"v" = (
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 8
+	},
+/turf/open/floor/carpet/green,
+/area/city/fixers)
+"w" = (
+/obj/structure/table/wood/fancy/green,
+/turf/open/floor/wood,
+/area/city/fixers)
+"y" = (
+/obj/structure/chair/office/light{
+	dir = 1;
+	anchored = 1;
+	can_buckle = 0;
+	pixel_y = 6
+	},
+/turf/open/floor/carpet/green,
+/area/city/fixers)
+"z" = (
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 10
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
+"D" = (
+/obj/structure/closet{
+	pixel_x = -7
+	},
+/obj/item/flashlight/seclite,
+/obj/item/flashlight/seclite,
+/obj/item/toy/crayon/spraycan,
+/obj/item/toy/crayon/spraycan,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/flashlight/flare,
+/obj/item/gps,
+/obj/item/gps,
+/obj/item/gps,
+/obj/item/gps,
+/obj/item/gps,
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807";
+	dir = 8
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/fixers)
+"F" = (
+/obj/structure/showcase/machinery{
+	desc = "A server purchased second-hand. Stores information.";
+	icon_state = "blackbox";
+	name = "Information Server";
+	resistance_flags = 115;
+	pixel_y = 19
+	},
+/obj/structure/showcase/machinery{
+	desc = "A server purchased second-hand. Stores information.";
+	icon_state = "blackbox";
+	name = "Information Server";
+	resistance_flags = 115
+	},
+/turf/open/floor/circuit/green/anim,
+/area/city/fixers)
+"G" = (
+/obj/effect/turf_decal/arrows/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/caution/red{
+	dir = 8
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/fixers)
+"J" = (
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/turf/open/floor/carpet/green,
+/area/city/fixers)
+"N" = (
+/obj/structure/chair/sofa/left{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
+"O" = (
+/obj/structure/window/reinforced/spawner/west{
+	max_integrity = 25;
+	resistance_flags = 115
+	},
+/obj/structure/table/wood/fancy/green,
+/obj/item/paper_bin/carbon{
+	pixel_y = 6
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
+"P" = (
+/obj/machinery/space_heater{
+	pixel_x = -14;
+	anchored = 1;
+	mouse_opacity = 0;
+	density = 0
+	},
+/obj/machinery/space_heater{
+	pixel_x = -14;
+	pixel_y = -4;
+	anchored = 1;
+	mouse_opacity = 0;
+	density = 0
+	},
+/obj/machinery/space_heater{
+	pixel_x = -14;
+	pixel_y = -8;
+	anchored = 1;
+	name = "air conditioner";
+	desc = "Its purpose is to ensure perfect room temperature despite its surrounding enviroment.";
+	density = 0
+	},
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/city/fixers)
+"Q" = (
+/turf/open/floor/wood,
+/area/city/fixers)
+"R" = (
+/obj/machinery/door/window{
+	dir = 1
+	},
+/obj/effect/turf_decal/arrows/red{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 4
+	},
+/obj/effect/turf_decal/caution/red{
+	dir = 8
+	},
+/obj/structure/fluff/paper/stack,
+/obj/structure/fluff/paper/stack{
+	dir = 1
+	},
+/turf/open/floor/plasteel/sepia,
+/area/city/fixers)
+"S" = (
+/obj/structure/table/reinforced,
+/obj/machinery/computer/libraryconsole{
+	pixel_y = 9;
+	plane = 0;
+	name = "archive inquiry console";
+	desc = "An old but reliable computer used to access the vast database of the recon office."
+	},
+/turf/open/floor/carpet/green,
+/area/city/fixers)
+"W" = (
+/obj/machinery/vending/coffee{
+	pixel_y = 19;
+	pixel_x = 2;
+	density = 0
+	},
+/obj/machinery/door/window{
+	dir = 8;
+	resistance_flags = 115
+	},
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#2e1f0e"
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
+/area/city/fixers)
+"X" = (
+/obj/structure/chair/sofa/right{
+	dir = 1
+	},
+/obj/structure/fluff/paper/stack{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/wood,
+/area/city/fixers)
+"Y" = (
+/obj/structure/showcase/machinery{
+	desc = "A server purchased second-hand. Stores information.";
+	icon_state = "blackbox";
+	name = "Information Server";
+	resistance_flags = 115;
+	pixel_y = 19
+	},
+/obj/structure/showcase/machinery{
+	desc = "A server purchased second-hand. Stores information.";
+	icon_state = "blackbox";
+	name = "Information Server";
+	resistance_flags = 115
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/circuit/green/anim,
+/area/city/fixers)
+
+(1,1,1) = {"
+Y
+g
+P
+n
+D
+"}
+(2,1,1) = {"
+F
+S
+y
+R
+G
+"}
+(3,1,1) = {"
+J
+u
+v
+z
+k
+"}
+(4,1,1) = {"
+W
+O
+t
+Q
+N
+"}
+(5,1,1) = {"
+f
+w
+a
+r
+X
+"}

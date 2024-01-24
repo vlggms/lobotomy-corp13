@@ -1,0 +1,214 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/clothing/mask/gas/clown_hat{
+	name = "Comedy!";
+	anchored = 1;
+	desc = "Some sort of advertisement for a show."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"c" = (
+/obj/effect/decal/cleanable/blood/splatter,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"d" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"e" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/mirror,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"h" = (
+/obj/machinery/vending/city_clothing,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/mob_spawn/human/clown/corpse,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"o" = (
+/obj/structure/table/wood,
+/obj/item/lipstick,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"p" = (
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"s" = (
+/obj/machinery/vending/autodrobe/all_access,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"t" = (
+/obj/effect/decal/cleanable/food/tomato_smudge,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"u" = (
+/obj/structure/mineral_door/silver,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"v" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"A" = (
+/obj/item/clothing/mask/gas/mime{
+	name = "Tragedy!";
+	anchored = 1;
+	desc = "Some sort of advertisement for a show."
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"B" = (
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"E" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/carpet/stellar,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/mineral_door/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/food/tomato_smudge,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"P" = (
+/obj/item/food/pie/cream/nostun,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/stairs{
+	dir = 8
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+Q
+s
+v
+E
+Q
+"}
+(3,1,1) = {"
+Q
+f
+o
+z
+k
+Q
+"}
+(4,1,1) = {"
+Q
+Q
+h
+H
+B
+Q
+"}
+(5,1,1) = {"
+Q
+Q
+Q
+Q
+K
+Q
+"}
+(6,1,1) = {"
+Q
+P
+c
+t
+d
+Q
+"}
+(7,1,1) = {"
+Q
+M
+m
+e
+S
+Q
+"}
+(8,1,1) = {"
+a
+W
+q
+q
+x
+Q
+"}
+(9,1,1) = {"
+u
+x
+p
+x
+x
+Q
+"}
+(10,1,1) = {"
+A
+Q
+Q
+Q
+Q
+Q
+"}

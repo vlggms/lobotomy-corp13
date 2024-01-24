@@ -7,8 +7,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hyde,
-		/datum/ego_datum/armor/hyde
-		)
+		/datum/ego_datum/armor/hyde,
+	)
 
 /obj/structure/toolabnormality/dr_jekyll/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -137,13 +137,13 @@
 
 /datum/ai_behavior/say_line/insanity_hyde
 	lines = list(
-				"If I am the chief of sinners, I am the chief of sufferers too.",
-				"I incline to Cain's heresy!",
-				"Finally, you've given in! This body is mine!",
-				"Now, let's see what this body is good for.",
-				"Hark! I'll put an end to your pitiful squealing!",
-				"O, my poor old soul!"
-				)
+		"If I am the chief of sinners, I am the chief of sufferers too.",
+		"I incline to Cain's heresy!",
+		"Finally, you've given in! This body is mine!",
+		"Now, let's see what this body is good for.",
+		"Hark! I'll put an end to your pitiful squealing!",
+		"O, my poor old soul!",
+	)
 
 /datum/status_effect/panicked_type/hyde
 	icon = "hyde"

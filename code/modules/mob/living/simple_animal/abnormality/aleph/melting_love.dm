@@ -29,11 +29,11 @@
 	start_qliphoth = 3
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(20, 20, 30, 40, 40),
-						ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 45, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 40, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 0, 0),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(20, 20, 30, 40, 40),
+		ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 45, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 40, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 0, 0),
+	)
 	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
 	/* Sounds */

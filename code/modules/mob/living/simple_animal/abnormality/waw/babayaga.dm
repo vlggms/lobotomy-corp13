@@ -22,17 +22,17 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 50),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/rimeshank,
-		/datum/ego_datum/armor/rimeshank
-		)
+		/datum/ego_datum/armor/rimeshank,
+	)
 	gift_type =  /datum/ego_gifts/rimeshank
 
 	var/jump_cooldown = 0

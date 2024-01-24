@@ -12,11 +12,11 @@
 	fear_level = 0
 	move_to_delay = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 20,
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = 40,
-						ABNORMALITY_WORK_REPRESSION = 50,
-						)
+		ABNORMALITY_WORK_INSTINCT = 20,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = 40,
+		ABNORMALITY_WORK_REPRESSION = 50,
+	)
 	melee_damage_lower = 3
 	melee_damage_upper = 5
 	melee_damage_type = PALE_DAMAGE

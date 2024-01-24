@@ -5,8 +5,15 @@
 	icon = 'ModularTegustation/fishing/icons/fish_sprites.dmi'
 	icon_state = "bugfish"
 	microwaved_type = /obj/item/food/cooked_fish
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/organ_tissue = 1, /datum/reagent/consumable/nutriment/vile_fluid = 4)
-	remove_reagents_on_cooked = list(/datum/reagent/consumable/nutriment/organ_tissue, /datum/reagent/consumable/nutriment/vile_fluid)
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 2,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/consumable/nutriment/vile_fluid = 4,
+	)
+	remove_reagents_on_cooked = list(
+		/datum/reagent/consumable/nutriment/organ_tissue,
+		/datum/reagent/consumable/nutriment/vile_fluid,
+	)
 	bite_consumption = 10
 	foodtypes = MEAT | RAW | GROSS
 	tastes = list("fish" = 1)
@@ -110,7 +117,7 @@
 	if(fillet_type)
 		AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, 1, 5)
 		AddComponent(/datum/component/grillable, /obj/item/food/cooked_fish, rand(30 SECONDS, 40 SECONDS), TRUE)
-	AddComponent(/datum/component/aquarium_content, .proc/get_aquarium_animation, list(COMSIG_FISH_STATUS_CHANGED,COMSIG_FISH_STIRRED))
+	AddComponent(/datum/component/aquarium_content, .proc/get_aquarium_animation, list(COMSIG_FISH_STATUS_CHANGED, COMSIG_FISH_STIRRED))
 	RegisterSignal(src, COMSIG_ATOM_TEMPORARY_ANIMATION_START, .proc/on_temp_animation)
 
 	check_environment_after_movement()

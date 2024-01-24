@@ -27,18 +27,18 @@
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
+	)
 	work_damage_amount = 16
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/smile,
-		/datum/ego_datum/armor/smile
-		)
+		/datum/ego_datum/armor/smile,
+	)
 	gift_type =  /datum/ego_gifts/smile
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	/// Is user performing work hurt at the beginning?

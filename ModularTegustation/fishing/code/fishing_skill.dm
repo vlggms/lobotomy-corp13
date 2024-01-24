@@ -22,14 +22,16 @@
 	icon_state = "fishbook"
 	var/granted_skill = /datum/skill/fishing
 	var/skillname = "beginner level fishing" //might not seem nessesary but this makes it so you can safely name action buttons toggle this or that without it fucking up the granter, also caps
-	remarks = list("Dont eat fish raw due to the vile fluid that they have inside...",
-					"The more you fish the higher your fishing skill goes and the faster you fish...",
-					"This page just has the image of a front facing fish...",
-					"This page is covered in numerous stickers for wellcheers soda...",
-					"The Great Lake is seperated into numerous smaller lakes that each have their own laws...",
-					"The Great Lake is a large waterbody south of the city...",
-					"Sailing past the coast of U corp is unadvised without a sailor and maybe 4 fixers...",
-					"The next book will expand on the dangers of whales and their mermaids...")
+	remarks = list(
+		"Dont eat fish raw due to the vile fluid that they have inside...",
+		"The more you fish the higher your fishing skill goes and the faster you fish...",
+		"This page just has the image of a front facing fish...",
+		"This page is covered in numerous stickers for wellcheers soda...",
+		"The Great Lake is seperated into numerous smaller lakes that each have their own laws...",
+		"The Great Lake is a large waterbody south of the city...",
+		"Sailing past the coast of U corp is unadvised without a sailor and maybe 4 fixers...",
+		"The next book will expand on the dangers of whales and their mermaids...",
+	)
 
 /obj/item/book/granter/fish_skill/already_known(mob/user)
 	if(user.mind?.get_skill_level(granted_skill) >= 2)

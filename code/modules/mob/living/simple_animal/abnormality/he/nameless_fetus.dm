@@ -11,8 +11,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(40, 50, 60, 60, 60),
 		ABNORMALITY_WORK_INSIGHT = list(20, 30, 30, 30, 30),
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 30, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(20, 30, 30, 30, 30)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(20, 30, 30, 30, 30),
+	)
 	start_qliphoth = 1
 	pixel_x = -8
 	base_pixel_x = -8
@@ -23,8 +23,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/syrinx,
 		/datum/ego_datum/weapon/trachea,
-		/datum/ego_datum/armor/syrinx
-		)
+		/datum/ego_datum/armor/syrinx,
+	)
 	gift_type =  /datum/ego_gifts/syrinx
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/mob/living/carbon/human/calling = null

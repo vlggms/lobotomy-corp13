@@ -15,8 +15,8 @@
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50),
+	)
 	start_qliphoth = 1
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
@@ -28,8 +28,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/blooming,
 		/datum/ego_datum/armor/blooming,
-		/datum/ego_datum/armor/flowering
-		)
+		/datum/ego_datum/armor/flowering,
+	)
 	gift_type = /datum/ego_gifts/blossoming
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 

@@ -18,7 +18,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		ABNORMALITY_WORK_INSTINCT = list(60, 60, 65, 65, 70),
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = 40
+		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 	// Adjusted the work chances a little to really funnel people through Instinct work. You can do other stuff... sort of.
 	work_damage_amount = 12
@@ -26,8 +26,8 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	ego_list = list(
 		/datum/ego_datum/weapon/harmony,
 		/datum/ego_datum/weapon/rhythm,
-		/datum/ego_datum/armor/harmony
-		)
+		/datum/ego_datum/armor/harmony,
+	)
 	gift_type = /datum/ego_gifts/harmony
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
@@ -182,11 +182,11 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 /datum/ai_behavior/say_line/insanity_singing_machine
 	lines = list(
 		"A corpse, I need a corpse...",
-		"I’ll listen to that song at any cost.",
-		"Don’t struggle, you’ll love its melodies too.",
-		"I’m sorry, but I have to hear that song again.",
-		"Now, I am reborn."
-		)
+		"I'll listen to that song at any cost.",
+		"Don't struggle, you'll love its melodies too.",
+		"I'm sorry, but I have to hear that song again.",
+		"Now, I am reborn.",
+	)
 
 /datum/status_effect/display/singing_machine
 	id = "music"

@@ -15,11 +15,11 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 50, 45, 50, 60),
-						ABNORMALITY_WORK_INSIGHT = list(50, 60, 55, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 50, 45, 50, 60),
+		ABNORMALITY_WORK_INSIGHT = list(50, 60, 55, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	del_on_death = FALSE
@@ -32,23 +32,24 @@
 	rapid_melee = 2
 	ego_list = list(
 		/datum/ego_datum/weapon/sanguine,
-		/datum/ego_datum/armor/sanguine
-		)
+		/datum/ego_datum/armor/sanguine,
+	)
 	gift_type =  /datum/ego_gifts/desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(
 		"Give them back to me!",
-		"Don’t take them away from me...",
-		"No no no! Don’t take them, no!",
-		"I’m sorry...")
+		"Don't take them away from me...",
+		"No no no! Don't take them, no!",
+		"I'm sorry...",
+	)
 	var/list/possessee_lines = list(
-				"Where is everyone?",
-				"Guys, look at me! I’ve got such nice shoes on!",
-				"You all need to see how lovely my shoes are!",
-				"They’re much prettier with blood on them."
-				)
+		"Where is everyone?",
+		"Guys, look at me! I've got such nice shoes on!",
+		"You all need to see how lovely my shoes are!",
+		"They're much prettier with blood on them.",
+	)
 	var/datum/looping_sound/redshoes_ambience/soundloop
 	var/numbermarked = 0//default amount of people that get possessed
 	var/steppy = 0
@@ -277,11 +278,11 @@
 
 /datum/ai_behavior/say_line/insanity_red_possess
 	lines = list(
-				"Where is everyone?",
-				"Guys, look at me! I’ve got such nice shoes on!",
-				"You all need to see how lovely my shoes are!",
-				"They’re much prettier with blood on them."
-				)
+		"Where is everyone?",
+		"Guys, look at me! I've got such nice shoes on!",
+		"You all need to see how lovely my shoes are!",
+		"They're much prettier with blood on them.",
+	)
 
 /datum/ai_controller/insane/red_possess/SelectBehaviors(delta_time)//Selects red shoes as the target
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)

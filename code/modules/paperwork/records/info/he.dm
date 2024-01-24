@@ -191,7 +191,7 @@
 		"When the work result was Normal or Bad, the Qliphoth Counter lowered.",
 		"When the work result was Good, Piscine Mermaid offered a crown if no other copies were present in the facility. (From then on, the employee wearing the crown will be referred to as O-01-129-1).",
 		"O-01-129-1 had greatly increased work success rates with any Abnormality, but the Qliphoth Counter would periodically decrease as long as the crown was worn.",
-		"When O-01-129-1 completed their work on Piscine Mermaid with a Good result, the Qliphoth Counter increased.",
+		"When O-01-129-1 completed their work on Piscine Mermaid with a Good result, the Qliphoth Counter increased by 2. This would also delay the reduction of the Qlipoth Counter",
 		"The Qliphoth Counter dropped to 0 when O-01-129-1 removed their crown.",
 		"When the Qliphoth Counter reached 0, the crown was destroyed. O-01-129-1 was greatly slowed before Piscine Mermaid teleported to them.",
 		"Piscine Mermaid slowly suffocated everyone within sight. O-01-129-1 could not breath as long as Piscine Mermaid was alive.",
