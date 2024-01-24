@@ -7,8 +7,8 @@
 	pixel_x = -32
 	base_pixel_x = -32
 	del_on_death = TRUE
-	maxHealth = 1200		//It's really fast
-	health = 1200
+	maxHealth = 600		//It normally just counters
+	health = 600
 	move_to_delay = 0
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
 	stat_attack = HARD_CRIT
@@ -39,6 +39,7 @@
 
 	var/seen	//Are you being looked at right now?
 	var/solo_punish //Are you alone?
+	var/abno_seen //Is an abnormality in view?
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 //Sight Check
@@ -64,26 +65,56 @@
 	else
 		seen = FALSE
 
+	//Checking for abnos.
+	abno_seen = FALSE
+	for(var/mob/living/simple_animal/hostile/abnormality/B in view(10))
+		abno_seen = TRUE
+		break
+
+
 //Stuff that needs sight check
 /mob/living/simple_animal/hostile/abnormality/burrowingheaven/Move()
-	if(seen)
-		if(client)
-			to_chat(src, "<span class='warning'>You cannot move, there are eyes on you!</span>")
-		return FALSE
-	..()
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/burrowingheaven/AttackingTarget()
-	if(seen)
-		if(client)
-			to_chat(src, "<span class='warning'>You cannot attack, there are eyes on you!</span>")
-		return FALSE
+	return FALSE
 
-	..()	//To do; Unique animation.
-	if(!solo_punish)
-		SLEEP_CHECK_DEATH(5 SECONDS)
 
-	else	//If you're literally alone it's an armor check.
-		SLEEP_CHECK_DEATH(120 SECONDS)
+
+//Counter
+//Ranged stuff
+/mob/living/simple_animal/hostile/abnormality/burrowingheaven/bullet_act(obj/projectile/Proj)
+	..()
+	var/mob/living/carbon/human/H = Proj.firer
+	if(abno_seen)
+		Punishment(H)
+
+
+/mob/living/simple_animal/hostile/abnormality/burrowingheaven/attacked_by(obj/item/I, mob/living/user)
+	..()
+	if(!user)
+		return
+	if(abno_seen)
+		Punishment(user)
+
+/mob/living/simple_animal/hostile/abnormality/burrowingheaven/proc/Punishment(mob/living/sinner)
+	to_chat(sinner, span_userdanger("Burrowing Heaven sears into your skull!"))
+	sinner.apply_damage(30, BLACK_DAMAGE, null, sinner.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(sinner), pick(GLOB.alldirs))
+
+//Chufflin around
+/mob/living/simple_animal/hostile/abnormality/burrowingheaven/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+	addtimer(CALLBACK(src, .proc/aoe), 2 SECONDS)
+
+//The actual attack
+/mob/living/simple_animal/hostile/abnormality/burrowingheaven/proc/aoe()
+	for(var/mob/living/carbon/human/H in view(7))
+		to_chat(H, span_userdanger("Burrowing Heaven burns into your skull!"))
+		H.apply_damage(70, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
 
 //Work stuff
 //Need 2 people to actually work on it
