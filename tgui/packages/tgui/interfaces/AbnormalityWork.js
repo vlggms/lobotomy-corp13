@@ -16,6 +16,7 @@ export const AbnormalityWork = (props, context) => {
     pleading,
     understanding,
     understanding_percent,
+    work_knowledge,
   } = data;
 
   const work_links = data.work_links || [];
@@ -67,14 +68,13 @@ export const AbnormalityWork = (props, context) => {
           <br />
           {work_links.map(line => (
             <span key={line}>
-              {!!work_chances[line] && (
+              {!!work_knowledge && (
                 <Button
                   content={
                     work_displays[line]
-                      + <AnimatedNumber
-                        initial={0}
-                        value={work_chances[line]}
-                      />
+                      + "["
+                      + work_chances[line]
+                      + "%]"
                   }
                   onClick={() => act('do_work', { do_work: line })}
                 />

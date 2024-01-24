@@ -109,6 +109,7 @@
 	.["work_links"] = list()
 	.["work_displays"] = list()
 	.["work_chances"] = list()
+	.["work_knowledge"] = HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE)
 	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
 		work_list = shuffle(work_list) // A minor annoyance, at most
 	for(var/wt in work_list)
@@ -119,11 +120,8 @@
 		var/datum/suppression/information/I = GetCoreSuppression(/datum/suppression/information)
 		if(!tutorial && istype(I))
 			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
-		var/work_chance = null
-		if(HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE))
-			work_chance = "\[[datum_reference.get_work_chance(wt, user)]%\]"
 		.["work_displays"][wt] = work_display
-		.["work_chances"][wt] = work_chance
+		.["work_chances"][wt] = round(datum_reference.get_work_chance(wt, user))
 
 /obj/machinery/computer/abnormality/ui_act(action, list/params)
 	. = ..()
