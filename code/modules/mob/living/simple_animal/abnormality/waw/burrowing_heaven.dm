@@ -105,6 +105,9 @@
 //Chufflin around
 /mob/living/simple_animal/hostile/abnormality/burrowingheaven/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
+	teleport()
+
+/mob/living/simple_animal/hostile/abnormality/burrowingheaven/proc/teleport()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 	addtimer(CALLBACK(src, .proc/aoe), 2 SECONDS)
@@ -115,6 +118,7 @@
 		to_chat(H, span_userdanger("Burrowing Heaven burns into your skull!"))
 		H.apply_damage(70, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(H), pick(GLOB.alldirs))
+	addtimer(CALLBACK(src, .proc/teleport), 50 SECONDS)
 
 //Work stuff
 //Need 2 people to actually work on it

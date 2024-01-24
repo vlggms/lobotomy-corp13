@@ -526,5 +526,5 @@
 	abno_info = list(
 		"Work with The Burrowing Heaven must proceed while the Containment Unit is viewable by more than two people.",
 		"Commencing work while in the view of only one person will cause The Burrowing Heaven's counter to decrease.",
-		"The burrowing Heaven became completely stationary when it was viewed by two or more people. Please take this into account when suppressing it.")
+		"Burrowing Heaven must be attacked with another abnormality in sight.",)
 
