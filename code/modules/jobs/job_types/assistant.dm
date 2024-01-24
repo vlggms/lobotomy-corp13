@@ -33,6 +33,12 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
+
+	for(var/upgradecheck in GLOB.lcorp_upgrades)
+		if(upgradecheck == "Clerk Buff")
+			H.set_attribute_limit(40)
+			H.adjust_all_attribute_levels(40)
+
 /datum/outfit/job/assistant
 	name = "Clerk"
 	jobtype = /datum/job/assistant
