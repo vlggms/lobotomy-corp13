@@ -26,4 +26,4 @@ Generally speaking, a less efficient abnormality is better to work on for stats 
 Press z to use items that are currently in your hand. Imagine what wonders may come!
 Stubbornness and determination can overcome any challenge that doesn't heal - our records department has provided you an infinite amount of "respawns", so don't give up!
 Taking an abnormalities resistances into consideration is important, but that's not all that matters! A weapon doing 50 damage to a 0.8 resistance is better than one doing 30 damage to a 1.2.
-Whenever you strike an abnormalities that's immune to a damage type, red Xs will appear. If it absorbs the damage and heal from it, green crosses will appear instead.
+Whenever you strike an abnormality that's immune to a damage type, red Xs will appear. If it absorbs the damage and heal from it, green crosses will appear instead.
