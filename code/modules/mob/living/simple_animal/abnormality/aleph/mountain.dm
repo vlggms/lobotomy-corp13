@@ -119,7 +119,7 @@
 	. = ..()
 	if(.)
 		var/mob/living/L = target
-		if(L.health < 0 || L.stat == DEAD)
+		if(isliving(target) && (L.health < 0 || L.stat == DEAD))
 			finishing = TRUE
 			if(phase == 3)
 				icon_state = "mosb_bite2"

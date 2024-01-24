@@ -57,7 +57,7 @@
 
 /obj/projectile/melting_blob/prehit_pierce(atom/A)
 	if(isliving(A) && isliving(firer))
-		var/mob/living/mob_firer
+		var/mob/living/mob_firer = firer
 		var/mob/living/L = A
 		if(mob_firer.faction_check_mob(L))
 			return PROJECTILE_PIERCE_PHASE
