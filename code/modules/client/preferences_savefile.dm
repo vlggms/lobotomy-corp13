@@ -105,17 +105,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 			continue // key is unbound and or bound to something
 		var/addedbind = FALSE
 		if(hotkeys)
-			for(var/hotkeytobind in kb.classic_keys)
-				if(!length(key_bindings[hotkeytobind]))
+			for(var/hotkeytobind in kb.hotkey_keys)
+				if(!length(key_bindings[hotkeytobind]) || hotkeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
 					LAZYADD(key_bindings[hotkeytobind], kb.name)
 					addedbind = TRUE
 		else
 			for(var/classickeytobind in kb.classic_keys)
-				if(!length(key_bindings[classickeytobind]))
+				if(!length(key_bindings[classickeytobind]) || classickeytobind == "Unbound") //Only bind to the key if nothing else is bound expect for Unbound
 					LAZYADD(key_bindings[classickeytobind], kb.name)
 					addedbind = TRUE
 		if(!addedbind)
 			notadded += kb
+	save_preferences() //Save the players pref so that new keys that were set to Unbound as default are permanently stored
 	if(length(notadded))
 		addtimer(CALLBACK(src, .proc/announce_conflict, notadded), 5 SECONDS)
 
@@ -127,6 +128,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		var/datum/keybinding/conflicted = item
 		to_chat(parent, "<span class='userdanger'>[conflicted.category]: [conflicted.full_name] needs updating")
 		LAZYADD(key_bindings["Unbound"], conflicted.name) // set it to unbound to prevent this from opening up again in the future
+		save_preferences()
 
 
 
@@ -377,10 +379,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	READ_FILE(S["body_type"], body_type)
 	READ_FILE(S["age"], age)
 	READ_FILE(S["hair_color"], hair_color)
+	READ_FILE(S["gradient_color"], gradient_color)
 	READ_FILE(S["facial_hair_color"], facial_hair_color)
 	READ_FILE(S["eye_color"], eye_color)
 	READ_FILE(S["skin_tone"], skin_tone)
 	READ_FILE(S["hairstyle_name"], hairstyle)
+	READ_FILE(S["gradient_style"], gradient_style)
 	READ_FILE(S["facial_style_name"], facial_hairstyle)
 	READ_FILE(S["underwear"], underwear)
 	READ_FILE(S["underwear_color"], underwear_color)
@@ -490,6 +494,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	hair_color			= sanitize_hexcolor(hair_color, 3, 0)
 	facial_hair_color			= sanitize_hexcolor(facial_hair_color, 3, 0)
+	gradient_style = sanitize_inlist(gradient_style, GLOB.hair_gradients_list, "None")
+	gradient_color = sanitize_hexcolor(gradient_color, 3, 0)
 	underwear_color			= sanitize_hexcolor(underwear_color, 3, 0)
 	eye_color		= sanitize_hexcolor(eye_color, 3, 0)
 	skin_tone		= sanitize_inlist(skin_tone, GLOB.skin_tones)
@@ -545,10 +551,12 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["body_type"]		, body_type)
 	WRITE_FILE(S["age"]			, age)
 	WRITE_FILE(S["hair_color"]			, hair_color)
+	WRITE_FILE(S["gradient_color"]		, gradient_color)
 	WRITE_FILE(S["facial_hair_color"]			, facial_hair_color)
 	WRITE_FILE(S["eye_color"]			, eye_color)
 	WRITE_FILE(S["skin_tone"]			, skin_tone)
 	WRITE_FILE(S["hairstyle_name"]			, hairstyle)
+	WRITE_FILE(S["gradient_style"]		, gradient_style)
 	WRITE_FILE(S["facial_style_name"]			, facial_hairstyle)
 	WRITE_FILE(S["underwear"]			, underwear)
 	WRITE_FILE(S["underwear_color"]			, underwear_color)

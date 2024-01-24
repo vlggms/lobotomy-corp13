@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "scorched"
 	icon_living = "scorched"
+	portrait = "scorched_girl"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
@@ -16,8 +17,8 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = list(60, 60, 50, 50, 50),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 15, 0, -40, -50),
-		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
+	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -27,8 +28,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/match,
-		/datum/ego_datum/armor/match
-		)
+		/datum/ego_datum/armor/match,
+	)
 	gift_type =  /datum/ego_gifts/match
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	/// Restrict movement when this is set to TRUE
@@ -111,17 +112,19 @@
 	qdel(src)
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/scorched_girl/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	boom_cooldown = world.time + 5 SECONDS // So it doesn't instantly explode
 	update_icon()
 	GiveTarget(user)

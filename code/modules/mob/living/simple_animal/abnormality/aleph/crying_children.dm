@@ -28,16 +28,16 @@
 	start_qliphoth = 2
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 45, 50),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 10, 20),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 10, 20),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
+	)
 	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/crying_children/attack_salvador.ogg'
-	deathsound = 'sound/abnormalities/crying_children/death.ogg'
-	deathmessage = "crumbles into pieces."
+	death_sound = 'sound/abnormalities/crying_children/death.ogg'
+	death_message = "crumbles into pieces."
 	del_on_death = FALSE
 	ego_list = list(/datum/ego_datum/weapon/shield/combust, /datum/ego_datum/armor/combust)
 	gift_type =  /datum/ego_gifts/inconsolable
@@ -63,7 +63,7 @@
 
 	attack_action_types = list(
 		/datum/action/cooldown/tcc_sorrow,
-		/datum/action/cooldown/tcc_combust
+		/datum/action/cooldown/tcc_combust,
 	)
 
 // Sorrow is too strong to be spammed, so you can only do it when mobs are nearby as a player
@@ -189,7 +189,7 @@
 		L.apply_lc_burn(50)
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
-/mob/living/simple_animal/hostile/abnormality/crying_children/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/crying_children/BreachEffect(mob/living/carbon/human/user, breach_type)
 	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 20, "No one’s going to cry on my behalf even if I’m sad.", 25))
 	..()
 	desc = "A towering angel statue, setting everything on it's path ablaze"
@@ -374,11 +374,13 @@
 
 // Work Stuff
 /mob/living/simple_animal/hostile/abnormality/crying_children/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(20))
 		Curse(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	Curse(user)
 	return

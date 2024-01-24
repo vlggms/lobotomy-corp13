@@ -10,22 +10,22 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 30,
-						ABNORMALITY_WORK_ATTACHMENT = 30,
-						ABNORMALITY_WORK_REPRESSION = -100	//He's a snobby shrimp dude.
-						)
+		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_ATTACHMENT = 30,
+		ABNORMALITY_WORK_REPRESSION = -100,	//He's a snobby shrimp dude.
+	)
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE	//He insults you.
 
 	ego_list = list(
 		/datum/ego_datum/weapon/executive,
-		/datum/ego_datum/armor/executive
-		)
+		/datum/ego_datum/armor/executive,
+	)
 	gift_type =  /datum/ego_gifts/executive
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/wellcheers = 1.5 // I... if you ever get a zayin this far in, good luck.
+		/mob/living/simple_animal/hostile/abnormality/wellcheers = 1.5, // I... if you ever get a zayin this far in, good luck.
 	)
 
 	var/liked
@@ -34,37 +34,42 @@
 	var/hint_cooldown
 	var/hint_cooldown_time = 30 SECONDS
 	var/list/cooldown = list(
-				"Stop meandering around and get to work!",
-				"I can be quite patient at times, but you are beginning to test me!",
-				"The service here can be dreadful at times. Why don't you just make yourself useful?")
+		"Stop meandering around and get to work!",
+		"I can be quite patient at times, but you are beginning to test me!",
+		"The service here can be dreadful at times. Why don't you just make yourself useful?",
+	)
+
 	var/list/instinct = list(
-				"I am getting quite old, and my back is hurting me. Could you send a chiropractor to my office immediately?",
-				"I am quite peckish, could you send me a charcuterie board?",
-				"Could you get me a glass of pinot noir, please?")
+		"I am getting quite old, and my back is hurting me. Could you send a chiropractor to my office immediately?",
+		"I am quite peckish, could you send me a charcuterie board?",
+		"Could you get me a glass of pinot noir, please?",
+	)
 
 	var/list/insight = list(
-				"Get me my phonograph, I would like to listen to Moonlight Sonata, 1st Movement.",
-				"The plants in my office are dying, could you water them please?",
-				"It is rather dull, with all the negotiations that we have been doing. Could you get me the morning crossword?")
+		"Get me my phonograph, I would like to listen to Moonlight Sonata, 1st Movement.",
+		"The plants in my office are dying, could you water them please?",
+		"It is rather dull, with all the negotiations that we have been doing. Could you get me the morning crossword?",
+	)
 
 	var/list/attachment = list(
-				"You know, I had this brand new deal that I am setting up. Care to listen sometime?",
-				"I was wondering if YOU had any good business offers. It would be nice to hear from a fellow intellectual. Stop by and tell me sometime.",
-				"Come, pull up a glass, old friend. Let's drink to a good deal!")
+		"You know, I had this brand new deal that I am setting up. Care to listen sometime?",
+		"I was wondering if YOU had any good business offers. It would be nice to hear from a fellow intellectual. Stop by and tell me sometime.",
+		"Come, pull up a glass, old friend. Let's drink to a good deal!",
+	)
 
 	//A list of shit that it can create. Yes, it includes ego. How did a shrimp get ego? IDFK. I guess his company makes it.
 	//Could diversify clerks I guess.
 	var/list/dispenseitem= list(
-				/obj/item/grenade/spawnergrenade/shrimp,
-				/obj/item/grenade/spawnergrenade/shrimp/super,
-				/obj/item/gun/ego_gun/pistol/soda,
-				/obj/item/gun/ego_gun/sodasmg,
-				/obj/item/gun/ego_gun/sodashotty,
-				/obj/item/gun/ego_gun/sodarifle,
-				/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
-				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-				/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white
-				)
+		/obj/item/grenade/spawnergrenade/shrimp,
+		/obj/item/grenade/spawnergrenade/shrimp/super,
+		/obj/item/gun/ego_gun/pistol/soda,
+		/obj/item/gun/ego_gun/sodasmg,
+		/obj/item/gun/ego_gun/sodashotty,
+		/obj/item/gun/ego_gun/sodarifle,
+		/obj/item/clothing/suit/armor/ego_gear/zayin/soda,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
+		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
+	)
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/WorkChance(mob/living/carbon/human/user, chance)
 	if(happy)
@@ -72,6 +77,7 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	var/gift = pick(dispenseitem)
 	new gift(dispense_turf)
@@ -79,6 +85,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/shrimp_exec/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

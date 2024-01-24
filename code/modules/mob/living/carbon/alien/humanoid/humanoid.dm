@@ -17,7 +17,7 @@
 	var/pounce_cooldown_time = 30
 	var/sneaking = 0 //For sneaky-sneaky mode and appropriate slowdown
 	var/drooling = 0 //For Neruotoxic spit overlays
-	deathsound = 'sound/voice/hiss6.ogg'
+	death_sound = 'sound/voice/hiss6.ogg'
 	bodyparts = list(
 		/obj/item/bodypart/chest/alien,
 		/obj/item/bodypart/head/alien,

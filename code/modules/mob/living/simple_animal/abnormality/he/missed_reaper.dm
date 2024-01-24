@@ -4,6 +4,7 @@
 	desc = "Appears to be a little girl standing next to a looming shadow. Your instincts tell you to avoid her at all costs."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "reaper"
+	portrait = "missed_reaper"
 	maxHealth = 400
 	health = 400
 	melee_damage_lower = 35
@@ -19,14 +20,14 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0)
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0),
 	)
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/grasp,
-		/datum/ego_datum/armor/grasp
+		/datum/ego_datum/armor/grasp,
 	)
 	gift_type = /datum/ego_gifts/grasp
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -60,6 +61,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/missed_reaper/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

@@ -4,6 +4,7 @@
 	desc = "A young, lost child."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "galaxy"
+	portrait = "galaxy_child"
 	maxHealth = 650
 	health = 650
 	threat_level = HE_LEVEL
@@ -12,16 +13,16 @@
 		ABNORMALITY_WORK_INSTINCT = 45,
 		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = 45
-		)
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 16
 
 	ego_list = list(
 		/datum/ego_datum/weapon/galaxy,
-		/datum/ego_datum/armor/galaxy
-		)
+		/datum/ego_datum/armor/galaxy,
+	)
 	gift_type = /datum/ego_gifts/galaxy
 	gift_message = "A teardrop fell from the child’s dewy eyes, as stars showered from the sky."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY

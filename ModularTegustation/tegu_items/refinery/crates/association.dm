@@ -26,7 +26,7 @@
 		/obj/item/ego_weapon/city/liu/fist,
 		/obj/item/clothing/suit/armor/ego_gear/city/cinq,
 		/obj/item/ego_weapon/city/cinq,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/zweihander/vet,
@@ -47,7 +47,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
 		/obj/item/ego_weapon/city/liu/fist/vet,
-		)
+	)
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/hana,
@@ -55,7 +55,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/hanacombat,
 		/obj/item/clothing/suit/armor/ego_gear/city/hanacombat/paperwork,
 		/obj/item/clothing/suit/armor/ego_gear/city/hanadirector,
-		)
+	)
 
 //Zwei - Zwei Association
 /obj/structure/lootcrate/zwei
@@ -70,13 +70,13 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot,
 		/obj/item/ego_weapon/city/zweibaton,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/zweihander/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
 		/obj/item/clothing/suit/armor/ego_gear/city/zweileader,
-		)
+	)
 
 //Tres - Tres Association (Not really accessible)
 /obj/structure/lootcrate/tres
@@ -87,7 +87,7 @@
 	veryrarechance = 10
 	lootlist =	list(
 		/obj/item/tresmetal,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/workshop_mod/regular/red,
@@ -105,7 +105,7 @@
 		/obj/item/workshop_mod/aoe/red,
 		/obj/item/workshop_mod/aoe/white,
 		/obj/item/workshop_mod/aoe/black,
-		)
+	)
 
 	veryrareloot =	list(
 		/obj/item/workshop_mod/regular/pale,
@@ -135,7 +135,7 @@
 		/obj/item/workshop_mod/sharp/pale,
 		/obj/item/workshop_mod/split/redpale,
 		/obj/item/workshop_mod/split/whiteblack,
-		)
+	)
 
 //Shi - Shi Association
 /obj/structure/lootcrate/shi
@@ -147,7 +147,7 @@
 		/obj/item/ego_weapon/city/shi_knife,
 		/obj/item/clothing/suit/armor/ego_gear/city/shi,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/shi_assassin/yokai,
@@ -159,7 +159,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/shi/director,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director,
-		)
+	)
 
 //Cinq - Cinq Association
 /obj/structure/lootcrate/cinq
@@ -171,7 +171,7 @@
 		/obj/item/ego_weapon/city/shi_knife,
 		/obj/item/clothing/suit/armor/ego_gear/city/shi,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/shi_assassin/yokai,
@@ -183,7 +183,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/shi/director,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director,
-		)
+	)
 
 //Liu - Liu Association
 /obj/structure/lootcrate/liu
@@ -195,7 +195,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/liu/section5,
 		/obj/item/ego_weapon/city/liu/fire,
 		/obj/item/ego_weapon/city/liu/fist,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/liu/fist/vet,
@@ -208,7 +208,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5,
-		)
+	)
 
 //Seven - Seven and its associates
 /obj/structure/lootcrate/seven
@@ -223,18 +223,18 @@
 		/obj/item/clothing/suit/armor/ego_gear/city/seven,
 		/obj/item/clothing/suit/armor/ego_gear/city/sevenrecon,
 		/obj/item/binoculars,
-		)
+	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/seven/vet,
 		/obj/item/ego_weapon/city/seven_fencing/vet,
 		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet,
 		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel,
-		)
+	)
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/sevendirector,
 		/obj/item/ego_weapon/city/seven/director,
 		/obj/item/ego_weapon/city/seven/cane,
 		/obj/item/ego_weapon/city/seven_fencing/dagger,
-		)
+	)

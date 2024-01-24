@@ -7,8 +7,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/aspiration,
-		/datum/ego_datum/armor/aspiration
-		)
+		/datum/ego_datum/armor/aspiration,
+	)
 
 /obj/structure/toolabnormality/aspiration/attack_hand(mob/living/carbon/human/user)
 	. = ..()

@@ -8,21 +8,22 @@
 	icon_state = "redshoes"
 	icon_living = "redshoes"
 	icon_dead = "redshoes_breach"//dels on death if it's possessing someone. Egg goes here
+	portrait = "red_shoes"
 	can_breach = TRUE
 	gender = NEUTER
 	threat_level = HE_LEVEL
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 50, 45, 50, 60),
-						ABNORMALITY_WORK_INSIGHT = list(50, 60, 55, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 50, 45, 50, 60),
+		ABNORMALITY_WORK_INSIGHT = list(50, 60, 55, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	del_on_death = FALSE
-	deathmessage = "crumples into a pile of bones."
+	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
 	melee_damage_lower = 15
 	melee_damage_upper = 30
@@ -31,23 +32,24 @@
 	rapid_melee = 2
 	ego_list = list(
 		/datum/ego_datum/weapon/sanguine,
-		/datum/ego_datum/armor/sanguine
-		)
+		/datum/ego_datum/armor/sanguine,
+	)
 	gift_type =  /datum/ego_gifts/desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(
 		"Give them back to me!",
-		"Don’t take them away from me...",
-		"No no no! Don’t take them, no!",
-		"I’m sorry...")
+		"Don't take them away from me...",
+		"No no no! Don't take them, no!",
+		"I'm sorry...",
+	)
 	var/list/possessee_lines = list(
-				"Where is everyone?",
-				"Guys, look at me! I’ve got such nice shoes on!",
-				"You all need to see how lovely my shoes are!",
-				"They’re much prettier with blood on them."
-				)
+		"Where is everyone?",
+		"Guys, look at me! I've got such nice shoes on!",
+		"You all need to see how lovely my shoes are!",
+		"They're much prettier with blood on them.",
+	)
 	var/datum/looping_sound/redshoes_ambience/soundloop
 	var/numbermarked = 0//default amount of people that get possessed
 	var/steppy = 0
@@ -67,7 +69,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/death()
 	if(possessee)
-		deathmessage = FALSE
+		death_message = FALSE
 		del_on_death = TRUE
 	density = FALSE
 	for(var/obj/O in src)
@@ -109,6 +111,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -180,13 +183,13 @@
 		user.SanityLossEffect(FORTITUDE_ATTRIBUTE)
 
 //BreachEffect and combat
-/mob/living/simple_animal/hostile/abnormality/red_shoes/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/red_shoes/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(!(status_flags & GODMODE))
 		return
 	soundloop.stop()
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
-	..()
+	. = ..()
 	if(!possessee)
 		name = "Red Shoe"
 		desc = "The Red Shoes’s bloody enameled leather glistens in the light."
@@ -275,11 +278,11 @@
 
 /datum/ai_behavior/say_line/insanity_red_possess
 	lines = list(
-				"Where is everyone?",
-				"Guys, look at me! I’ve got such nice shoes on!",
-				"You all need to see how lovely my shoes are!",
-				"They’re much prettier with blood on them."
-				)
+		"Where is everyone?",
+		"Guys, look at me! I've got such nice shoes on!",
+		"You all need to see how lovely my shoes are!",
+		"They're much prettier with blood on them.",
+	)
 
 /datum/ai_controller/insane/red_possess/SelectBehaviors(delta_time)//Selects red shoes as the target
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
@@ -363,7 +366,7 @@
 	gender = NEUTER
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	del_on_death = TRUE
-	deathmessage = "crumples into a pile of bones."
+	death_message = "crumples into a pile of bones."
 	attack_sound = 'sound/abnormalities/redshoes/RedShoes_Attack.ogg'
 	melee_damage_lower = 15
 	melee_damage_upper = 30

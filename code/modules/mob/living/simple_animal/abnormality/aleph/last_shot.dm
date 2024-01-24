@@ -11,12 +11,12 @@ GLOBAL_LIST_EMPTY(meat_list)
 	health = 3100
 	threat_level = ALEPH_LEVEL
 
-	work_chances = list(
+	work_chances = list( //Calculated later
 		ABNORMALITY_WORK_INSTINCT = 55,
 		ABNORMALITY_WORK_INSIGHT = 15,
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 0, 0, 0),
-		ABNORMALITY_WORK_REPRESSION = 40
-	)		//Calculated later
+		ABNORMALITY_WORK_REPRESSION = 40,
+	)
 
 	work_damage_amount = 5		//Damage is low, could be doubled or quadrupled.
 	work_damage_type = RED_DAMAGE
@@ -27,7 +27,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/willing,
-		/datum/ego_datum/armor/willing
+		/datum/ego_datum/armor/willing,
 	)
 	var/list/gremlins = list()	//For the meatballs
 	var/list/meat = list()		//For the floors
@@ -69,6 +69,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	return newchance
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

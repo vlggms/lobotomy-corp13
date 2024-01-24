@@ -7,6 +7,7 @@
 	icon_state = "snowwhitesapple_inert"
 	icon_living = "snowwhitesapple_inert"
 	icon_dead = "snowwhitesapple_dead"
+	portrait = "snow_whites_apple"
 	maxHealth = 1600
 	health = 1600
 	obj_damage = 0
@@ -24,16 +25,16 @@
 	start_qliphoth = 1
 	del_on_death = FALSE
 	can_patrol = FALSE
-	deathmessage = "collapses into a pile of plantmatter."
+	death_message = "collapses into a pile of plantmatter."
 	vision_range = 15
-	deathsound = 'sound/creatures/venus_trap_death.ogg'
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_INSIGHT = list(10, 20, 45, 45, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 0, 0),
-						ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_INSIGHT = list(10, 20, 45, 45, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 0, 0),
+		ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60),
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	initial_language_holder = /datum/language_holder/plant //essentially flavor
@@ -50,28 +51,31 @@
 	var/static/list/vine_list = list()
 
 	ego_list = list(
-	/datum/ego_datum/weapon/stem,
-	/datum/ego_datum/armor/stem
+		/datum/ego_datum/weapon/stem,
+		/datum/ego_datum/armor/stem,
 	)
+
 	gift_type =  /datum/ego_gifts/stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/golden_apple = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5
+		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5,
 	)
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/snow_whites_apple/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/Initialize()
@@ -268,8 +272,15 @@
 	density = TRUE
 	max_integrity = 100
 	resistance_flags = FLAMMABLE
-	armor = list(MELEE = 0, BULLET = 0, FIRE = -50, RED_DAMAGE = 20,
-		WHITE_DAMAGE = 0, BLACK_DAMAGE = 80, PALE_DAMAGE = -50)
+	armor = list(
+		MELEE = 0,
+		BULLET = 0,
+		FIRE = -50,
+		RED_DAMAGE = 20,
+		WHITE_DAMAGE = 0,
+		BLACK_DAMAGE = 80,
+		PALE_DAMAGE = -50,
+	)
 
 /obj/structure/apple_barrier/Initialize()
 	. = ..()
@@ -283,7 +294,7 @@
 /obj/structure/apple_barrier/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
 	if(ismecha(mover))
-		mover.visible_message("<span class='danger'>[mover] stomps on the [src]!</span>")
+		mover.visible_message(span_danger("[mover] stomps on the [src]!"))
 		if(obj_integrity <= 50)
 			qdel(src)
 		else
@@ -297,7 +308,7 @@
 		var/mob/living/carbon/human/L = mover
 		var/brooch = L.ego_gift_list[BROOCH]
 		if(istype(brooch, /datum/ego_gifts/stem))
-			to_chat(L, "<span class='nicegreen'>The branches relax.</span>")
+			to_chat(L, span_nicegreen("The branches relax."))
 			qdel(src)
 			return TRUE
 
@@ -317,8 +328,15 @@
 	max_integrity = 15
 	resistance_flags = FLAMMABLE
 	pass_flags_self = LETPASSTHROW
-	armor = list(MELEE = 0, BULLET = 0, FIRE = -50, RED_DAMAGE = 20,
-		WHITE_DAMAGE = 0, BLACK_DAMAGE = 80, PALE_DAMAGE = -50)
+	armor = list(
+		MELEE = 0,
+		BULLET = 0,
+		FIRE = -50,
+		RED_DAMAGE = 20,
+		WHITE_DAMAGE = 0,
+		BLACK_DAMAGE = 80,
+		PALE_DAMAGE = -50,
+	)
 	var/old_growth = FALSE
 	/* Number of tries it takes to get through the vines.
 		Patrol shuts off if the creature fails to move 5 times. */
@@ -351,7 +369,8 @@
 			/mob/living/simple_animal/hostile/abnormality/greed_king,
 			/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
 			/mob/living/simple_animal/hostile/abnormality/wrath_servant,
-			/obj/vehicle/sealed/mecha))
+			/obj/vehicle/sealed/mecha,
+		))
 
 	if(!ignore_typecache)
 		ignore_typecache = typecacheof(list(
@@ -360,7 +379,8 @@
 			/mob/living/simple_animal/hostile/abnormality/snow_whites_apple,
 			/mob/living/simple_animal/hostile/abnormality/golden_apple,
 			/mob/living/simple_animal/hostile/abnormality/ebony_queen,
-			/mob/living/simple_animal/hostile/abnormality/seasons))
+			/mob/living/simple_animal/hostile/abnormality/seasons,
+		))
 
 /obj/structure/spreading/apple_vine/Destroy()
 	if(connected_abno)
@@ -411,9 +431,9 @@
 			var/weeding = trimming.get_sharpness()
 			if(weeding == SHARP_EDGED && trimming.force >= 5)
 				if(prob(10))
-					to_chat(lonely, "<span class='warning'>You cut back [name] as it reaches for you.</span>")
+					to_chat(lonely, span_warning("You cut back [name] as it reaches for you."))
 				else if(prob(10) || (prob(30) && old_growth))
-					to_chat(lonely, "<span class='warning'>[name] stab your legs spitefully.</span>")
+					to_chat(lonely, span_warning("[name] stab your legs spitefully."))
 					lonely.adjustBlackLoss(5)
 				take_damage(15, BRUTE, "melee", 1)
 				return TRUE
@@ -425,22 +445,24 @@
 
 	tangle--
 	if(prob(10))
-		to_chat(L, "<span class='danger'>[src] block your path!</span>")
+		to_chat(L, span_danger("[src] block your path!"))
 
 //Reaction to humans who have snow_whites_apple's gift.
 /obj/structure/spreading/apple_vine/proc/suiterReaction(mob/living/carbon/human/lonely)
 	var/lonelyhealth = (lonely.health / lonely.maxHealth) * 100
 	if(prob(10))
 		//it would be uncouth for the vines to hinder one gifted by the princess.
-		to_chat(lonely, "<span class='nicegreen'>The branches open a path.</span>")
+		to_chat(lonely, span_nicegreen("The branches open a path."))
 	if(lonelyhealth <= 30 && lonely.stat != DEAD)
 		lonely.adjustBruteLoss(-1)
 		if(prob(2))
-			lonely.whisper(pick("First they had feasted upon my poisioned flesh, then i feasted upon them.",
+			lonely.whisper(pick(
+				"First they had feasted upon my poisioned flesh, then i feasted upon them.",
 				"Even after they left, my form would not decay.",
 				"She cast me aside and left with her prince.",
 				"After many days i wondered why i continued to exist.",
-				"Those that trampled me would speak of a witch who casted a spell that had taken her life."))
+				"Those that trampled me would speak of a witch who casted a spell that had taken her life.",
+			))
 
 //Called by snow white when she attacks
 /obj/structure/spreading/apple_vine/proc/VineAttack(hit_thing)
@@ -536,7 +558,7 @@
 
 /obj/effect/proc_holder/spell/pointed/apple_barrier/cast(list/targets, mob/user)
 	if(!LAZYLEN(targets))
-		to_chat(user, "<span class='warning'>No old growth in range!</span>")
+		to_chat(user, span_warning("No old growth in range!"))
 		return FALSE
 	if(!can_target(targets[1], user))
 		return FALSE

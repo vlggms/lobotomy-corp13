@@ -87,7 +87,7 @@
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
 	attack_sound = 'sound/effects/ordeals/amber/dusk_attack.ogg'
-	deathsound = 'sound/effects/ordeals/amber/dusk_dead.ogg'
+	death_sound = 'sound/effects/ordeals/amber/dusk_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
@@ -221,7 +221,7 @@
 	base_pixel_y = -16
 
 	blood_volume = BLOOD_VOLUME_NORMAL
-	deathsound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
+	death_sound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
 
 	var/burrowing = FALSE
 	var/burrow_cooldown

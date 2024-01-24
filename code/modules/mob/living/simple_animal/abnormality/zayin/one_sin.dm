@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "onesin_halo_normal"
 	icon_living = "onesin_halo_normal"
+	portrait = "one_sin"
 	maxHealth = 777
 	health = 777
 	is_flying_animal = TRUE
@@ -13,22 +14,22 @@
 		ABNORMALITY_WORK_INSIGHT = list(70, 70, 50, 50, 50),
 		ABNORMALITY_WORK_ATTACHMENT = 70,
 		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),
-		"Confess" = 50
-		)
+		"Confess" = 50,
+	)
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/penitence,
 		/datum/ego_datum/armor/penitence
-		)
+	)
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/penitence
 	gift_message = "From this day forth, you shall never forget his words."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/white_night = 5
+		/mob/living/simple_animal/hostile/abnormality/white_night = 5,
 	)
 
 	chem_type = /datum/reagent/abnormality/onesin
@@ -104,6 +105,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/onesin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(work_type != "Confess")
 		new /obj/effect/temp_visual/onesin_blessing(get_turf(user))
 		user.adjustSanityLoss(-user.maxSanity * 0.5) // It's healing
@@ -124,7 +126,7 @@
 
 /datum/reagent/abnormality/onesin
 	name = "Holy Light"
-	description = "It\'s calming, even if you can\'t quite look at it straight."
+	description = "It's calming, even if you can't quite look at it straight."
 	color = "#eff16d"
 	sanity_restore = -2
 	special_properties = list("may alter sanity of those near the subject")

@@ -10,6 +10,7 @@ Defeating the murderer also surpresses the abnormality.
 	desc = "A notebook containing a script used in a play. It is titled \"Peccatum Proprium\"."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "screenwriter"
+	portrait = "screenwriter"
 	faction = list("hostile")
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
@@ -18,14 +19,14 @@ Defeating the murderer also surpresses the abnormality.
 		"Cleanliness" = 35,
 		"Consensus" = 35,
 		"Amusement" = 35,
-		"Violence" = 35
+		"Violence" = 35,
 	)
 	work_attribute_types = list(
 		"Nutrition" = FORTITUDE_ATTRIBUTE,
 		"Cleanliness" = PRUDENCE_ATTRIBUTE,
 		"Consensus" = PRUDENCE_ATTRIBUTE,
 		"Amusement" = TEMPERANCE_ATTRIBUTE,
-		"Violence" = JUSTICE_ATTRIBUTE
+		"Violence" = JUSTICE_ATTRIBUTE,
 	)
 	max_boxes = 24
 	work_damage_amount = 12
@@ -33,8 +34,8 @@ Defeating the murderer also surpresses the abnormality.
 
 	ego_list = list(
 		/datum/ego_datum/weapon/scene,
-		/datum/ego_datum/armor/scene
-		)
+		/datum/ego_datum/armor/scene,
+	)
 	gift_type = /datum/ego_gifts/scene
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
 
@@ -76,6 +77,7 @@ Defeating the murderer also surpresses the abnormality.
 	melting = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/screenwriter/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -126,7 +128,11 @@ Defeating the murderer also surpresses the abnormality.
 		marked+=Y
 	if(marked.len <= 0) //Oh no, everyone's dead!
 		return
-	var/list/role_list = list("coward", "broken", "failed")
+	var/list/role_list = list(
+		"coward",
+		"broken",
+		"failed",
+	)
 	for(Y in marked)
 		to_chat(Y, span_warning("The play is starting, do you remember your lines?"))
 		Y.apply_status_effect(STATUS_EFFECT_ACTOR)
@@ -330,12 +336,12 @@ Defeating the murderer also surpresses the abnormality.
 
 /datum/ai_behavior/say_line/insanity_scene
 	lines = list(
-				"If thou be merciful, open the tomb, lay me with peace.",
-				"Thy knives are quick. Thus with a kiss I die.",
-				"He has killed me, friend. Run away, I pray you!",
-				"Out on thee, murderer! Thou kill'st my heart!",
-				"Thus I die. Thus, thus, thus. Now I am dead, Now I am fled, My soul is in the sky!"
-				)
+		"If thou be merciful, open the tomb, lay me with peace.",
+		"Thy knives are quick. Thus with a kiss I die.",
+		"He has killed me, friend. Run away, I pray you!",
+		"Out on thee, murderer! Thou kill'st my heart!",
+		"Thus I die. Thus, thus, thus. Now I am dead, Now I am fled, My soul is in the sky!",
+	)
 
 /datum/status_effect/panicked_type/scene
 	icon = "scene"

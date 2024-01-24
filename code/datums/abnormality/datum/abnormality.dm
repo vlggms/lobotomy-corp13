@@ -18,11 +18,11 @@
 
 	/// Available work types with their success chances per level. Used in console
 	var/list/available_work = list(
-							ABNORMALITY_WORK_INSTINCT = 0,
-							ABNORMALITY_WORK_INSIGHT = 0,
-							ABNORMALITY_WORK_ATTACHMENT = 0,
-							ABNORMALITY_WORK_REPRESSION = 0
-							)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	/// How much PE it produces. Also responsible for work time
 	var/max_boxes = 0
 	/// How much PE you have to produce for good result.
@@ -63,6 +63,8 @@
 	// Object = list(x tile offset, y tile offset)
 	/// List of connected structures; Used to teleport and delete them when abnormality is swapped or deleted
 	var/list/connected_structures = list()
+	// Abnormality Portrait, updated when abnormality spawns if they have one.
+	var/portrait = "UNKNOWN"
 
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
@@ -177,7 +179,7 @@
 				if(was_melting)
 					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 				else
-					to_chat(user, "<span class='warning'>You don't feel like you've learned anything from this!</span>")
+					to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
 			user.adjust_attribute_level(attribute_type, attribute_given)
 	if(console?.tutorial) //don't run logging-related code if tutorial console
 		return
@@ -197,7 +199,7 @@
 
 /datum/abnormality/proc/UpdateUnderstanding(percent)
 	// Lower agent pop gets a bonus
-	var/agent_count = AvailableAgentCount()
+	var/agent_count = max(AvailableAgentCount(), 1)
 	if(agent_count <= 5 && percent)
 		percent *= 1 + (3 / agent_count)
 
@@ -218,7 +220,7 @@
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
 	if((qliphoth_meter_max > 0) && (qliphoth_meter <= 0) && (pre_qlip > 0))
 		current?.ZeroQliphoth(user)
-		current?.visible_message("<span class='danger'>Warning! Qliphoth level reduced to 0!")
+		current?.visible_message(span_danger("Warning! Qliphoth level reduced to 0!"))
 		playsound(get_turf(current), 'sound/effects/alertbeep.ogg', 50, FALSE)
 		work_logs += "\[[worldtime2text()]\]: Qliphoth counter reduced to 0!"
 		if(console?.recorded)
@@ -226,10 +228,10 @@
 		return
 	if(pre_qlip != qliphoth_meter)
 		if(pre_qlip < qliphoth_meter) // Alerts on change of counter. It's just nice to know instead of inspecting the console every time. Also helps for those nearby if something goes to shit.
-			current?.visible_message("<span class='notice'>Qliphoth level increased by [qliphoth_meter-pre_qlip]!</span>")
+			current?.visible_message(span_notice("Qliphoth level increased by [qliphoth_meter-pre_qlip]!"))
 			playsound(get_turf(current), 'sound/machines/synth_yes.ogg', 50, FALSE)
 		else
-			current?.visible_message("<span class='warning'>Qliphoth level decreased by [pre_qlip-qliphoth_meter]!</span>")
+			current?.visible_message(span_warning("Qliphoth level decreased by [pre_qlip-qliphoth_meter]!"))
 			playsound(get_turf(current), 'sound/machines/synth_no.ogg', 50, FALSE)
 		current?.OnQliphothChange(user, amount, pre_qlip)
 	if(console?.recorded)
@@ -267,7 +269,12 @@
 /datum/abnormality/proc/AddWorkStats(mob/living/carbon/human/user, pe = 0, attribute_type = "N/A", attribute_given = 0)
 	var/user_name = "[user.real_name] ([user.ckey])"
 	if(!(user_name in work_stats))
-		work_stats[user_name] = list("name" = user.real_name,"works" = 0, "pe" = 0, "gain" = list())
+		work_stats[user_name] = list(
+			"name" = user.real_name,
+			"works" = 0,
+			"pe" = 0,
+			"gain" = list(),
+		)
 	work_stats[user_name]["works"] += 1
 	if(pe)
 		work_stats[user_name]["pe"] += pe
@@ -276,7 +283,12 @@
 
 	// Global agent stats
 	if(!(user_name in SSlobotomy_corp.work_stats))
-		SSlobotomy_corp.work_stats[user_name] = list("name" = user.real_name, "works" = 0, "pe" = 0, "gain" = list())
+		SSlobotomy_corp.work_stats[user_name] = list(
+			"name" = user.real_name,
+			"works" = 0,
+			"pe" = 0,
+			"gain" = list(),
+		)
 	SSlobotomy_corp.work_stats[user_name]["works"] += 1
 	if(pe)
 		SSlobotomy_corp.work_stats[user_name]["pe"] += pe
@@ -292,6 +304,11 @@
 	if(current)
 		return current.GetRiskLevel()
 	return threat_level
+
+/datum/abnormality/proc/GetPortrait()
+	if(current)
+		return current.GetPortrait()
+	return portrait
 
 /// Swaps the cells with target abnormality datum
 /datum/abnormality/proc/SwapPlaceWith(datum/abnormality/target = null)

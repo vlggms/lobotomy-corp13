@@ -7,6 +7,7 @@
 	icon_living = "clown_smiling"
 	var/icon_aggro = "clown_breach"
 	icon_dead = "clown_breach"
+	portrait = "clown_smiling"
 	pixel_y = 64
 	base_pixel_y = 64
 	speak_emote = list("honks")
@@ -31,14 +32,14 @@
 	patrol_cooldown_time = 5 SECONDS
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 35,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 65),
-						ABNORMALITY_WORK_REPRESSION = 35
-						)
+		ABNORMALITY_WORK_INSTINCT = 35,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 60, 65, 65),
+		ABNORMALITY_WORK_REPRESSION = 35,
+	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
-	deathmessage = "blows up like a balloon!"
+	death_message = "blows up like a balloon!"
 	speak_chance = 2
 	emote_see = list("honks.")
 	emote_hear = list("honks.")
@@ -50,8 +51,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/mini/mirth,
 		/datum/ego_datum/weapon/mini/malice,
-		/datum/ego_datum/armor/darkcarnival
-		)
+		/datum/ego_datum/armor/darkcarnival,
+	)
 	gift_type =  /datum/ego_gifts/darkcarnival
 	gift_message = "Life isn't scary when you don't fear death."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -61,8 +62,8 @@
 	var/step = FALSE
 
 //A clown isn't a clown without his shoes
-/mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	pixel_y = 0
 	base_pixel_y = 0
@@ -148,11 +149,13 @@
 
 //When the work result was good...
 /mob/living/simple_animal/hostile/abnormality/clown/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/clown/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

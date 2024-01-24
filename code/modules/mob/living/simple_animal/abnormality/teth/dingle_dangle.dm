@@ -4,6 +4,7 @@
 	desc = "A cone that goes up to the ceiling with a ribbon tied around it. Bodies are strung up around it, seeming to be tied to the ceiling."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "dangle"
+	portrait = "dingle_dangle"
 	maxHealth = 600
 	health = 600
 	threat_level = TETH_LEVEL
@@ -11,8 +12,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 40, 40, 40),
 		ABNORMALITY_WORK_INSIGHT = list(30, 40, 70, 70, 70),
 		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 40
-			)
+		ABNORMALITY_WORK_REPRESSION = 40,
+	)
 	start_qliphoth = 3
 	pixel_x = -16
 	base_pixel_x = -16
@@ -22,7 +23,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/lutemia,
 		/datum/ego_datum/armor/lutemia
-		)
+	)
 	gift_type = /datum/ego_gifts/lutemis
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -51,6 +52,7 @@
 	new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		//Yeah dust them too. No ego this time tho
 		user.dust()

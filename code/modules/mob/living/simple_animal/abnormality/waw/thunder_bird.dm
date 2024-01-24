@@ -9,12 +9,12 @@
 	speak_emote = list("intones")
 	gender = NEUTER
 	var/list/thunder_bird_lines = list(
-				"Prostrate yourself! Harder!",
-				"Do you think I am happy, feather? Think again!",
-				"You folk, nothing but sacrifices. Sacrifices for me and everyone else here!",
-				"Your kind can never be forgiven!",
-				"Look around, you monsters! You've destroyed my people and nature!"
-				)
+		"Prostrate yourself! Harder!",
+		"Do you think I am happy, feather? Think again!",
+		"You folk, nothing but sacrifices. Sacrifices for me and everyone else here!",
+		"Your kind can never be forgiven!",
+		"Look around, you monsters! You've destroyed my people and nature!",
+	)
 	//Ideally it should only glow in its breached state
 	light_color = LIGHT_COLOR_BLUE
 	light_range = 0
@@ -35,11 +35,11 @@
 	start_qliphoth = 3
 	//Unlike firebird, you're aiming for good results. The success rates are lower overall and it hates attachment work.
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
-						ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
-						ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
+		ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -47,8 +47,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/warring,
 		/datum/ego_datum/weapon/warring2,
-		/datum/ego_datum/armor/warring
-		)
+		/datum/ego_datum/armor/warring,
+	)
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
@@ -174,14 +174,13 @@
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-	for(var/obj/machinery/door/poddoor/P in T.contents)
-		stop_charge = TRUE
-		continue
+		break
 	for(var/obj/machinery/door/D in T.contents)
-		if(istype(D, /obj/machinery/door/poddoor))	//Should fix.
-			continue
+		if(!D.CanAStarPass(null))
+			stop_charge = TRUE
+			break
 		if(D.density)
-			D.open(2)
+			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 75, 1)
 		charging = FALSE
@@ -213,6 +212,7 @@
 /*---Qliphoth Counter---*/
 //counter goes up when you're above 80% hp on a good result, 50% down otherwise
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(user.health > (user.maxHealth*0.8))
 		datum_reference.qliphoth_change(1)
 		user.apply_damage(45, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -227,17 +227,19 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /*---Breach effects---*/
-/mob/living/simple_animal/hostile/abnormality/thunder_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/thunder_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	name = "Thunderbird"
 	icon_living = "thunderbird_breach"
 	icon_state = icon_living

@@ -13,21 +13,21 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 40,
 		"Input One" = 0,		//These should never be used, but it's here for brevity
-		"Input Zero" = 0
+		"Input Zero" = 0,
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/transmission,
-		/datum/ego_datum/armor/transmission
+		/datum/ego_datum/armor/transmission,
 	)
 	gift_type = /datum/ego_gifts/transmission
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
 	)
 
 	var/input

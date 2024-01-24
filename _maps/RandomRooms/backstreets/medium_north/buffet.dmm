@@ -1,0 +1,205 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/freezer,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"c" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/obj/effect/light_emitter,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"f" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/pizza/meat,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"j" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/sundae/jbird,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/crab_rangoon,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"p" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/burger/bigbite,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/soup/clownchili,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/pie/cream/nostun,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/stack/spacecash/c500,
+/obj/item/food/bread/bongbread,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"x" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"z" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/pizza/mushroom,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/cake/bbird,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/light_emitter,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/pie/meatpie,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"E" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/bbqribs,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/wormfood,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/eggplantparm,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/spaghetti/spesslaw,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/khachapuri,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"U" = (
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"W" = (
+/mob/living/simple_animal/crab{
+	name = "Crab Chef"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/food/pie/appletart,
+/mob/living/simple_animal/hostile/ordeal/amber_bug{
+	name = "carnivorous worm"
+	},
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+E
+M
+Y
+U
+Q
+"}
+(3,1,1) = {"
+Q
+B
+W
+c
+x
+a
+"}
+(4,1,1) = {"
+Q
+O
+U
+D
+x
+Q
+"}
+(5,1,1) = {"
+Q
+v
+c
+k
+x
+Q
+"}
+(6,1,1) = {"
+Q
+f
+c
+t
+x
+Q
+"}
+(7,1,1) = {"
+Q
+H
+U
+N
+U
+Q
+"}
+(8,1,1) = {"
+Q
+p
+U
+C
+x
+a
+"}
+(9,1,1) = {"
+Q
+z
+j
+r
+x
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

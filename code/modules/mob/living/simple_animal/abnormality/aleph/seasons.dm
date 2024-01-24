@@ -33,18 +33,18 @@
 	start_qliphoth = 1
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
+	)
 	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/seasons,
-		/datum/ego_datum/armor/seasons
-		)
+		/datum/ego_datum/armor/seasons,
+	)
 
 	gift_type =  /datum/ego_gifts/seasons
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -55,35 +55,43 @@
 		"summer" = list(/datum/weather/heatwave, RED_DAMAGE, "Summer God", "Summer Deity, \"Great Heat\" T'cau", "A hot-headed spirit.","He looks angry."),
 		"fall" = list(/datum/weather/fog, BLACK_DAMAGE, "Autumn God", "Fall Deity, \"Hegemon\" Ber","A calm and collected spirit cloaked in leaves.","A powerful tree spirit."),
 		"winter" = list(/datum/weather/freezing_wind, PALE_DAMAGE, "Winter God", "Winter Deity, \"Quietus\" Fuyuryou","A regal-looking snow spirit.","This winter brings bitter cold.")
-		)
+	)
 
 	var/list/breaching_stats = list(
 		"spring" = list('sound/creatures/venus_trap_hurt.ogg', 'sound/abnormalities/seasons/spring_change.ogg', /obj/projectile/season_projectile/spring, /obj/effect/season_effect/spring, /obj/effect/season_effect/breath/spring, /obj/effect/season_warn/spring, /obj/effect/season_warn/spring),
 		"summer" = list('sound/abnormalities/seasons/summer_attack.ogg', 'sound/abnormalities/seasons/summer_change.ogg', /obj/projectile/season_projectile/summer, /obj/effect/season_effect/summer, /obj/effect/season_effect/breath/summer, /obj/effect/season_warn/summer, /obj/effect/season_warn/summer),
 		"fall" = list('sound/abnormalities/seasons/fall_attack.ogg', 'sound/abnormalities/seasons/fall_change.ogg', /obj/projectile/season_projectile/fall, /obj/effect/season_effect/fall, /obj/effect/season_effect/breath/fall, /obj/effect/season_warn/fall, /obj/effect/season_warn/fall),
 		"winter" = list('sound/abnormalities/seasons/winter_attack.ogg', 'sound/abnormalities/seasons/winter_change.ogg', /obj/projectile/season_projectile/winter, /obj/effect/season_effect/winter, /obj/effect/season_effect/breath/winter, /obj/effect/season_warn/winter, /obj/effect/season_warn/winterspikes)
-		)
+	)
 
 	var/list/modular_work_chance = list( //You can work anything on it! Just not all at once.
-		"spring" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 35, 40),
-						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 0),
+		"spring" = list(
+			ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 35, 40),
+			ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+			ABNORMALITY_WORK_ATTACHMENT = 0,
+			ABNORMALITY_WORK_REPRESSION = 0,
+			),
 
-		"summer" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 35, 40),
-						ABNORMALITY_WORK_REPRESSION = 0),
+		"summer" = list(
+			ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+			ABNORMALITY_WORK_INSIGHT = 0,
+			ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 35, 40),
+			ABNORMALITY_WORK_REPRESSION = 0,
+			),
 
-		"fall" = list(ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 35, 40)),
+		"fall" = list(
+			ABNORMALITY_WORK_INSTINCT = 0,
+			ABNORMALITY_WORK_INSIGHT = 0,
+			ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+			ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 35, 40),
+			),
 
-		"winter" = list(ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 35, 40),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55))
+		"winter" = list(
+			ABNORMALITY_WORK_INSTINCT = 0,
+			ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 35, 40),
+			ABNORMALITY_WORK_ATTACHMENT = 0,
+			ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
+			)
 		)
 
 	var/list/modular_damage_coeff = list(
@@ -113,8 +121,8 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
-		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle
-		)
+		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle,
+	)
 
 /datum/action/cooldown/seasons_slam
 	name = "Slam"
@@ -175,17 +183,20 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(downgraded)
 		return
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/seasons/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!safe)
 		to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
 		safe = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/seasons/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!safe)
 		if(prob(25))
 			to_chat(user, span_nicegreen("The abnormality seems to be satisfied, at least for now..."))
@@ -209,6 +220,7 @@
 	work_damage_type = season_stats[current_season][2]
 	melee_damage_type = season_stats[current_season][2]
 	icon_state = current_season
+	portrait = "[current_season]_deity"
 	name = season_stats[current_season][4]
 	desc = season_stats[current_season][6]
 	attack_sound = breaching_stats[current_season][1]
@@ -217,6 +229,7 @@
 	projectiletype = breaching_stats[current_season][3]
 	if(downgraded)
 		icon_state = "[current_season]_mini"
+		portrait = "[current_season]"
 		name = season_stats[current_season][3]
 		desc = season_stats[current_season][5]
 	if(current_season == "winter")
@@ -290,12 +303,12 @@
 	QDEL_IN(src, 10 SECONDS)
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(downgraded)
 		Upgrade()
 		ZeroQliphoth()
 		return
-	..()
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 
@@ -677,8 +690,8 @@
 		"spring" = list("razorgrass", "A thick layer of razor sharp foilage that never seems to die down."),
 		"summer" = list("volcanic rock","Some incredibly hot igneus rock."),
 		"fall" = list("swampy grass","A thick marsh, deep enough that you need to wear boots."),
-		"winter" = list("snow","A patch of snow.")
-		)
+		"winter" = list("snow","A patch of snow."),
+	)
 	var/current_season
 
 /obj/effect/season_turf/Initialize()

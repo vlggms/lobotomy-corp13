@@ -22,18 +22,18 @@
 	pet_bonus = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(35, 40, 40, 35, 35),
-						ABNORMALITY_WORK_INSIGHT = list(35, 40, 40, 35, 35),
-						ABNORMALITY_WORK_ATTACHMENT = 70,
-						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(35, 40, 40, 35, 35),
+		ABNORMALITY_WORK_INSIGHT = list(35, 40, 40, 35, 35),
+		ABNORMALITY_WORK_ATTACHMENT = 70,
+		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/coiling,
-		/datum/ego_datum/armor/coiling
-		)
+		/datum/ego_datum/armor/coiling,
+	)
 	gift_type =  /datum/ego_gifts/coiling
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/girlboss_level = 0
@@ -185,11 +185,12 @@
 			Dine(user)
 
 /mob/living/simple_animal/hostile/abnormality/eris/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-3)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/eris/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/eris/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	GiveTarget(user)
 

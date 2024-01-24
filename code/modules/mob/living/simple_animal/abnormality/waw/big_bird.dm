@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "big_bird"
 	icon_living = "big_bird"
+	portrait = "big_bird"
 	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")
 
@@ -25,11 +26,11 @@
 	can_breach = TRUE
 	start_qliphoth = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(45, 45, 45, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = 35,
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 50, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(25, 20, 15, 10, 0)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(45, 45, 45, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = 35,
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 50, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(25, 20, 15, 10, 0),
+	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
@@ -44,14 +45,14 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
-		/datum/ego_datum/armor/lamp
-		)
+		/datum/ego_datum/armor/lamp,
+	)
 	gift_type =  /datum/ego_gifts/lamp
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3,
-		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3,
 	)
 
 	var/bite_cooldown
@@ -168,10 +169,12 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

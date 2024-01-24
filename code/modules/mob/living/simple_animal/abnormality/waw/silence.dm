@@ -4,13 +4,14 @@
 	desc = "A scythe with a clock attached, quietly ticking."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "silence"
+	portrait = "silence"
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 40, 40),
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 45, 45),
+	)
 	start_qliphoth = 1
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
@@ -18,7 +19,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/thirteen,
 		/datum/ego_datum/armor/thirteen,
-		)
+	)
 	gift_type = /datum/ego_gifts/thirteen
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -39,11 +40,13 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/silence/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	safe = TRUE
 	to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silence/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		safe = TRUE
 		to_chat(user, span_nicegreen("The bells do not toll for thee. Not yet."))

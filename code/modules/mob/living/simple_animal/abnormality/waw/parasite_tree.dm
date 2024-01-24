@@ -10,6 +10,7 @@
 	icon = 'ModularTegustation/Teguicons/128x128.dmi'
 	icon_state = "parasitetreeshine"
 	icon_living = "parasitetreeshine"
+	portrait = "parasite_tree"
 	pixel_x = -48
 	base_pixel_x = -48
 	pixel_y = -10
@@ -22,15 +23,15 @@
 		ABNORMALITY_WORK_INSTINCT = 45,
 		ABNORMALITY_WORK_INSIGHT = list(40, 40, 40, 45, 45),
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 50, 50, 55),
-		ABNORMALITY_WORK_REPRESSION = 20
-		)
+		ABNORMALITY_WORK_REPRESSION = 20,
+	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hypocrisy,
-		/datum/ego_datum/armor/hypocrisy
-		)
+		/datum/ego_datum/armor/hypocrisy,
+	)
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	gift_type =  /datum/ego_gifts/hypocrisy
@@ -155,8 +156,8 @@
 	obj_damage = 0
 	del_on_death = TRUE
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	deathmessage = "shatters into numerous spongy splinters."
-	deathsound = 'sound/creatures/venus_trap_death.ogg'
+	death_message = "shatters into numerous spongy splinters."
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	projectilesound = 'sound/machines/clockcult/steam_whoosh.ogg'
 	var/mob/living/simple_animal/hostile/abnormality/parasite_tree/connected_abno

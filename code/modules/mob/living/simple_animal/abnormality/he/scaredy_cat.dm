@@ -5,6 +5,7 @@
 	icon_state = "scaredy_cat"
 	icon_living = "scaredy_cat"
 	icon_dead = "scaredy_dead"
+	portrait = "scaredy_cat"
 	del_on_death = FALSE
 	maxHealth = 800 //Lower health because he can revive indefinitely
 	health = 800
@@ -23,21 +24,21 @@
 	can_breach = TRUE
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
-	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 60, 70, 80, 90),
-						ABNORMALITY_WORK_INSIGHT = list(40, 50, 55, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(20, 30, 40, 40, 40)
-						) //higher work chance than the rest of oz because he can breach so easily
+	work_chances = list( //higher work chance than the rest of oz because he can breach so easily
+		ABNORMALITY_WORK_INSTINCT = list(50, 60, 70, 80, 90),
+		ABNORMALITY_WORK_INSIGHT = list(40, 50, 55, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 50, 55, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(20, 30, 40, 40, 40),
+	)
 	work_damage_amount = 7 //Shit damage because it's a small cat
 	work_damage_type = RED_DAMAGE
 	can_patrol = FALSE
-	deathsound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
+	death_sound = 'sound/abnormalities/scaredycat/catgrunt.ogg'
 	ego_list = list(
 		/datum/ego_datum/weapon/courage,
 		/datum/ego_datum/weapon/bravery,
-		/datum/ego_datum/armor/courage
-		)
+		/datum/ego_datum/armor/courage,
+	)
 	gift_type =  /datum/ego_gifts/courage_cat //the sprites for the EGO are shitty codersprites placeholders and are only here so that there's EGO to use
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -46,19 +47,19 @@
 		/mob/living/simple_animal/hostile/abnormality/woodsman = 2,
 		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
 		// Ozma = 2,
-		// Lies = 1.5
+		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
 	)
 
 	/// The list of abnormality scaredy cat will automatically join when they breach, add any "Oz" abno to this list if possible
 	var/list/prefered_abno_list = list(
-									/mob/living/simple_animal/hostile/abnormality/woodsman,
-									/mob/living/simple_animal/hostile/abnormality/scarecrow,
-									/mob/living/simple_animal/hostile/abnormality/road_home
-									)
+		/mob/living/simple_animal/hostile/abnormality/woodsman,
+		/mob/living/simple_animal/hostile/abnormality/scarecrow,
+		/mob/living/simple_animal/hostile/abnormality/road_home,
+	)
 	/// Types of abnormalities that we will ignore when they are breaching
 	var/list/ignore_abno_list = list(
-									/mob/living/simple_animal/hostile/abnormality/training_rabbit
-									)
+		/mob/living/simple_animal/hostile/abnormality/training_rabbit,
+	)
 	/// If scaredy cat is breaching but has no "friend" to follow, he'll wait for the next abno breach to follow them
 	var/wait_for_friend = FALSE
 	/// The abnormality scaredy cat follows on breach
@@ -80,7 +81,7 @@
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/scaredy_cat/BreachEffect(mob/living/carbon/human/user, breach_type)
 	protect_cooldown = world.time + protect_cooldown_time //to avoid him teleporting twice for no reason on breach
 	if(priority_friend) //if an oz abno escape they take absolute priority
 		ProtectFriend(priority_friend)
@@ -96,7 +97,7 @@
 		ProtectFriend(pick(breached_abno))
 	else
 		wait_for_friend = TRUE //Should only happen on meltdowns, can safely be killed in that state too
-	..()
+	return ..()
 
 ///checks if the friend is in view every 10 second, and if not teleports to it
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Life()

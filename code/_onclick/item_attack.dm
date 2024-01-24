@@ -56,7 +56,7 @@
 	return FALSE
 
 /obj/attackby(obj/item/I, mob/living/user, params)
-	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user))
+	return ..() || ((obj_flags & CAN_BE_HIT) && I.attack_obj(src, user, params))
 
 /mob/living/attackby(obj/item/I, mob/living/user, params)
 	if(..())
@@ -111,7 +111,7 @@
 
 
 /// The equivalent of the standard version of [/obj/item/proc/attack] but for object targets.
-/obj/item/proc/attack_obj(obj/O, mob/living/user)
+/obj/item/proc/attack_obj(obj/O, mob/living/user, params)
 	if(SEND_SIGNAL(src, COMSIG_ITEM_ATTACK_OBJ, O, user) & COMPONENT_CANCEL_ATTACK_CHAIN)
 		return
 	if(item_flags & NOBLUDGEON)
@@ -155,6 +155,18 @@
 		playsound(loc, 'sound/weapons/tap.ogg', I.get_clamped_volume(), TRUE, -1)
 	else
 		return ..()
+
+/obj/vehicle/sealed/mecha/attacked_by(obj/item/I, mob/living/user)
+	if(I.force)
+		user.visible_message(span_danger("[user] hits [src] with [I]!"), span_danger("You hit [src] with [I]!"), null, COMBAT_MESSAGE_RANGE)
+		log_combat(user, src, "attacked", I)
+		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+		var/damage = I.force * justice_mod
+		if(istype(I, /obj/item/ego_weapon))
+			var/obj/item/ego_weapon/theweapon = I
+			damage *= theweapon.force_multiplier
+		take_damage(damage, I.damtype, attack_dir = get_dir(src, user))
+		return TRUE
 
 /**
  * Last proc in the [/obj/item/proc/melee_attack_chain]

@@ -182,6 +182,30 @@
 	port_id = "secondary"
 	can_be_bought = FALSE
 
+/datum/map_template/shuttle/iotamain
+	port_id = "iotamain"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/iotaextra
+	port_id = "iotaextra"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/iotafinal
+	port_id = "iotafinal"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/zetadepartwest
+	port_id = "zetadepartwest"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/zetadeparteast
+	port_id = "zetadeparteast"
+	can_be_bought = FALSE
+
+/datum/map_template/shuttle/deltamain
+	port_id = "deltamain"
+	can_be_bought = FALSE
+
 // Shuttles start here:
 
 /datum/map_template/shuttle/manager/elevator
@@ -195,6 +219,30 @@
 /datum/map_template/shuttle/secondary/epsilon
 	suffix = "epsilon"
 	name = "epsilon backup"
+
+/datum/map_template/shuttle/iotamain/elevator
+	suffix = "elevator"
+	name = "iotamain elevator"
+
+/datum/map_template/shuttle/iotaextra/elevator
+	suffix = "elevator"
+	name = "iotaextra elevator"
+
+/datum/map_template/shuttle/iotafinal/elevator
+	suffix = "elevator"
+	name = "iotafinal elevator"
+
+/datum/map_template/shuttle/zetadepartwest/elevator
+	suffix = "elevator"
+	name = "zetadepartwest elevator"
+
+/datum/map_template/shuttle/zetadeparteast/elevator
+	suffix = "elevator"
+	name = "zetadeparteast elevator"
+
+/datum/map_template/shuttle/deltamain/elevator
+	suffix = "elevator"
+	name = "deltamain elevator"
 
 /datum/map_template/shuttle/emergency/backup
 	suffix = "backup"

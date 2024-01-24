@@ -7,6 +7,7 @@
 	icon_state = "nosferatu"
 	icon_living = "nosferatu"
 	var/icon_aggro = "nosferatu_breach"
+	portrait = "nosferatu"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 2000
@@ -15,11 +16,11 @@
 	rapid_melee = 1
 	threat_level = WAW_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 35, 35, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 20, 25, 30)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 35, 35, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 20, 25, 30),
+	)
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 35
 	melee_damage_upper = 45 //has a wide range, he can critically hit you
@@ -38,8 +39,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/dipsia,
 		/datum/ego_datum/weapon/banquet,
-		/datum/ego_datum/armor/dipsia
-		)
+		/datum/ego_datum/armor/dipsia,
+	)
 	gift_type = /datum/ego_gifts/dipsia
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -86,6 +87,7 @@
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nosferatu/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -99,6 +101,7 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Worktick(mob/living/carbon/human/user) //take damage every work on instinct
 	if(feeding)
 		user.apply_damage(3, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user)) //Indicates damage being dealt to the player
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	switch(work_type)
@@ -112,8 +115,8 @@
 	return
 
 //breach
-/mob/living/simple_animal/hostile/abnormality/nosferatu/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/nosferatu/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	update_icon()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 50, 8) //big loud warning
 	addtimer(CALLBACK(src, .proc/BatSpawn), 5 SECONDS)

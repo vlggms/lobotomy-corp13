@@ -6,6 +6,7 @@
 	pixel_x = -16
 	base_pixel_x = -16
 	icon_state = "siren"
+	portrait = "siren"
 	maxHealth = 1000
 	health = 1000
 	threat_level = HE_LEVEL
@@ -15,16 +16,16 @@
 		ABNORMALITY_WORK_INSTINCT = 25,
 		ABNORMALITY_WORK_INSIGHT = 80,
 		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 50
-		)
+		ABNORMALITY_WORK_REPRESSION = 50,
+	)
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/song,
 		/datum/ego_datum/weapon/songmini,
-		/datum/ego_datum/armor/song
-		)
+		/datum/ego_datum/armor/song,
+	)
 	gift_type = /datum/ego_gifts/song
 
 

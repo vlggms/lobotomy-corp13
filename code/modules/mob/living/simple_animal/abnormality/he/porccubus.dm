@@ -4,6 +4,7 @@
 	desc = "A long flowerlike creature covered in thorns"
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "porrcubus_inert"
+	portrait = "porccubus"
 	maxHealth = 1500
 	health = 1500
 	pixel_x = -10
@@ -14,8 +15,8 @@
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Touch" = 100
-			) //for some reason all its work rates are uniform through attribute levels in LC
+		"Touch" = 100,
+	) //for some reason all its work rates are uniform through attribute levels in LC
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
 	ranged = TRUE
 	ranged_cooldown_time = 15 SECONDS //will dash at people if they get out of range but not too often
@@ -30,7 +31,7 @@
 	melee_damage_type = WHITE_DAMAGE
 	start_qliphoth = 2
 	can_breach = TRUE
-	deathsound = 'sound/abnormalities/porccubus/porccu_death.ogg'
+	death_sound = 'sound/abnormalities/porccubus/porccu_death.ogg'
 	attack_sound = 'sound/abnormalities/porccubus/porccu_attack.ogg'
 	attack_verb_continuous = "stings"
 	attack_verb_simple = "stabs"
@@ -38,8 +39,8 @@
 	faction = list("hostile", "porccubus") //so that he stops attacking overdosed people while still not attacking random abnormalities
 	ego_list = list(
 		/datum/ego_datum/weapon/pleasure,
-		/datum/ego_datum/armor/pleasure
-		)
+		/datum/ego_datum/armor/pleasure,
+	)
 	gift_type = /datum/ego_gifts/pleasure
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -87,6 +88,7 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -118,8 +120,8 @@
 //Breach Code
 //Porccubus can't actually move so it's more of a "bring your friend to beat it to death it isn't going anywhere" type of thing.
 //it does have a dash that makes it able to jump around, but it can't properly "roam" per say.
-/mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/porccubus/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 	icon_living = "porrcubus"
 	icon_state = icon_living

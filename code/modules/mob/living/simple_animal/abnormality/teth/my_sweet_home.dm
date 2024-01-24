@@ -6,6 +6,7 @@
 	icon_state = "sweet_home"
 	icon_living = "sweet_home"
 	icon_dead = "sweet_home_death"
+	portrait = "my_sweet_home"
 	var/can_act = TRUE
 	threat_level = TETH_LEVEL
 	can_breach = TRUE
@@ -23,18 +24,18 @@
 	stat_attack = CONSCIOUS
 	attack_verb_continuous = "stomps"
 	attack_verb_simple = "stomp"
-	deathmessage = "crumbles."
+	death_message = "crumbles."
 	faction = list("hostile")
 	start_qliphoth = 1
 	var/ranged_damage = 15
 	var/damage_dealt = 0
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
-						ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
+	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 
@@ -46,8 +47,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hearth,
-		/datum/ego_datum/armor/hearth
-		)
+		/datum/ego_datum/armor/hearth,
+	)
 
 	gift_type =  /datum/ego_gifts/hearth
 
@@ -60,6 +61,7 @@
 		playsound(get_turf(src), 'sound/abnormalities/sweethome/walk.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	to_chat(user, span_danger("It whispers in your mind..."))
 	if(prob(50))
 		to_chat(user, span_danger("...and you accept."))
@@ -114,7 +116,7 @@
 	duration = 3
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/BreachEffect(user)//code grabbed from scorched_girl
-	..()
+	. = ..()
 	update_icon_state()
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/update_icon_state() //code grabbed from forsaken_murderer and smile

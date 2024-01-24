@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "nihil"
 	icon_living = "nihil"
+	portrait = "nihil"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 15000
@@ -14,11 +15,11 @@
 	rapid_melee = 1
 	threat_level = ALEPH_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 40),
+	)
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
 	melee_damage_lower = 55
 	melee_damage_upper = 65
@@ -37,36 +38,39 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/nihil,
-		/datum/ego_datum/armor/nihil
-		)
+		/datum/ego_datum/armor/nihil,
+	)
 	gift_type = /datum/ego_gifts/nihil
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 5,
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 5,
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 5,
-		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 5
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 5,
 	)
 
 	// Range ofthe debuff
 	var/debuff_range = 40
-	var/list/quotes = list("Everybody's agony becomes one.",
+	var/list/quotes = list(
+		"Everybody's agony becomes one.",
 		"Leading the way through foolishness, there's not a thing to guide me.",
 		"I slowly traced the road back. It's the road you would've taken.",
 		"Where is the right path? Where do I go?",
 		"I look just like them, and they look just like me when they're together.",
 		"My mind is a void, my thoughts empty.",
 		"I become more fearless as they become more vacant.",
-		"In the end, all returns to nihil."
-		)
+		"In the end, all returns to nihil.",
+	)
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nihil/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-2)
 	return
 
 //In the future, this negative qliphoth change will be tied to whether or not magical girls are present, based on work type..
 /mob/living/simple_animal/hostile/abnormality/nihil/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return

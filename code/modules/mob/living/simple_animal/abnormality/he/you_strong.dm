@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "you_strong_pause"
 	icon_living = "you_strong_pause"
+	portrait = "grown_strong"
 	maxHealth = 200
 	health = 200
 	threat_level = HE_LEVEL
@@ -14,14 +15,14 @@
 		ABNORMALITY_WORK_ATTACHMENT = 45,
 		ABNORMALITY_WORK_REPRESSION = 0,
 		"YES" = 0,
-		"NO" = 0
+		"NO" = 0,
 	)
 	work_damage_amount = 8
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
-			/datum/ego_datum/weapon/get_strong,
-			/datum/ego_datum/armor/get_strong
-		)
+		/datum/ego_datum/weapon/get_strong,
+		/datum/ego_datum/armor/get_strong,
+	)
 	gift_type = /datum/ego_gifts/get_strong
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -41,14 +42,14 @@
 		/obj/item/bodypart/r_leg,
 		/obj/item/bodypart/l_arm,
 		/obj/item/bodypart/r_arm,
-		/obj/item/bodypart/head
-		)
+		/obj/item/bodypart/head,
+	)
 	var/rejected_parts = list(
 		/obj/item/bodypart/l_leg/robot,
 		/obj/item/bodypart/r_leg/robot,
 		/obj/item/bodypart/l_arm/robot,
 		/obj/item/bodypart/r_arm/robot,
-		)
+	)
 	var/datum/looping_sound/server/soundloop
 
 	var/operating = FALSE
@@ -306,8 +307,14 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE)
-	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+		COLOR_ASSEMBLY_PURPLE,
+	)
+	buff_type = pick(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 
 /obj/item/bodypart/r_leg/grown_strong/drop_limb(special)
 	if(!ishuman(owner))
@@ -350,8 +357,14 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE)
-	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+		COLOR_ASSEMBLY_PURPLE,
+	)
+	buff_type = pick(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 
 /obj/item/bodypart/l_leg/grown_strong/drop_limb(special)
 	if(!ishuman(owner))
@@ -394,8 +407,14 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE)
-	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+		COLOR_ASSEMBLY_PURPLE,
+	)
+	buff_type = pick(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 
 /obj/item/bodypart/r_arm/grown_strong/drop_limb(special)
 	if(!ishuman(owner))
@@ -443,8 +462,14 @@
 		COLOR_ASSEMBLY_BLUE,
 		COLOR_ASSEMBLY_YELLOW,
 		COLOR_ASSEMBLY_BGRAY,
-		COLOR_ASSEMBLY_PURPLE)
-	buff_type = pick(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+		COLOR_ASSEMBLY_PURPLE,
+	)
+	buff_type = pick(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 
 /obj/item/bodypart/l_arm/grown_strong/drop_limb(special)
 	if(!ishuman(owner))

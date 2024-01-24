@@ -19,15 +19,15 @@
 		ABNORMALITY_WORK_INSTINCT = 50,
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 70
-		)
+		ABNORMALITY_WORK_REPRESSION = 70,
+	)
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/doze,
-		/datum/ego_datum/armor/doze
-		)
+		/datum/ego_datum/armor/doze,
+	)
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/doze
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -48,11 +48,13 @@
 		return chance + 5
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	user.apply_status_effect(STATUS_EFFECT_RESTED)
 	to_chat(user, span_notice("You feel refreshed!."))
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	user.Stun(5 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)

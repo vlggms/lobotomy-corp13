@@ -12,24 +12,25 @@
 	desc = "A purple haired girl in a sundress. You see a metalic glint from behind her back..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "silent_girl"
+	portrait = "silent_girl"
 	maxHealth = 650
 	health = 650
 	gender = FEMALE // Is this used basically anywhere? Not that I know of. But seeing "Gender: Male" on Silent Girl doesn't seem right.
 	threat_level = HE_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 25,
-						ABNORMALITY_WORK_INSIGHT = list(-50, -50, 60, 60, 60),
-						ABNORMALITY_WORK_ATTACHMENT = -50,
-						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 60, 60)
-						)
+		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSIGHT = list(-50, -50, 60, 60, 60),
+		ABNORMALITY_WORK_ATTACHMENT = -50,
+		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 60, 60),
+	)
 	work_damage_amount = 0
 	work_damage_type = WHITE_DAMAGE
 	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/remorse,
-		/datum/ego_datum/armor/remorse
-		)
+		/datum/ego_datum/armor/remorse,
+	)
 	gift_type = /datum/ego_gifts/remorse
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -56,16 +57,19 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40) && work_type == ABNORMALITY_WORK_INSIGHT)
 		datum_reference.qliphoth_change(1, user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		GuiltEffect(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silent_girl/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	GuiltEffect(user)
 	return
 

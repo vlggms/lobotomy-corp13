@@ -3,6 +3,7 @@
 	desc = "An old, dusty tome. There is a pen within the folded pages."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "book_0"
+	portrait = "book"
 	maxHealth = 600
 	health = 600
 	start_qliphoth = 2
@@ -11,25 +12,25 @@
 		ABNORMALITY_WORK_INSTINCT = list(50, 45, 40, 40, 40),
 		ABNORMALITY_WORK_INSIGHT = list(60, 55, 50, 50, 50),
 		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 30)
+		ABNORMALITY_WORK_REPRESSION = 30,
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/page,
-		/datum/ego_datum/armor/page
-		)
+		/datum/ego_datum/armor/page,
+	)
 	gift_type = /datum/ego_gifts/page
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	var/wordcount = 0
-	var/list/oddities = list( //List gets populated with friendly animals
-		)
+	var/list/oddities = list() //List gets populated with friendly animals
 	var/list/nasties = list( //Todo: Eventually make a list of custom threats possibly
 		/mob/living/simple_animal/hostile/ordeal/green_bot,
 		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
-		/mob/living/simple_animal/hostile/ordeal/violet_fruit
-		)
+		/mob/living/simple_animal/hostile/ordeal/violet_fruit,
+	)
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
 
@@ -117,8 +118,9 @@
 	spawnedmob.desc = "It looks like a [spawnedmob.name] but made of paper."
 	spawnedmob.name = "Paper [initial(spawnedmob.name)]"
 	spawnedmob.faction = list("hostile")
-	spawnedmob.health = (spawnedmob.maxHealth / 10)
-	spawnedmob.deathmessage = "collapses into a bunch of writing material."
+	spawnedmob.maxHealth = (spawnedmob.maxHealth / 10)
+	spawnedmob.health = spawnedmob.maxHealth
+	spawnedmob.death_message = "collapses into a bunch of writing material."
 	spawnedmob.filters += filter(type="drop_shadow", x=0, y=0, size=1, offset=0, color=rgb(0, 0, 0))
 	src.visible_message(span_warning("Pages of [src] fold into [spawnedmob]!"))
 	playsound(get_turf(src), 'sound/items/handling/paper_pickup.ogg', 90, 1, FALSE)

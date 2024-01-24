@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "steam"
 	icon_living = "steam"
+	portrait = "steam_transport_machine"
 	maxHealth = 1600
 	health = 1600
 	ranged = TRUE
@@ -25,11 +26,11 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 4
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 70,
-						ABNORMALITY_WORK_INSIGHT = 40,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 60
-						)
+		ABNORMALITY_WORK_INSTINCT = 70,
+		ABNORMALITY_WORK_INSIGHT = 40,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 60,
+	)
 	work_damage_amount = 9
 	work_damage_type = RED_DAMAGE
 
@@ -42,8 +43,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/nixie,
-		/datum/ego_datum/armor/nixie
-		)
+		/datum/ego_datum/armor/nixie,
+	)
 	gift_type =  /datum/ego_gifts/nixie
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -83,7 +84,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/steam/proc/UpdateStats()
 	src.set_light(3, (gear * 2), "D4FAF37")
-	ChangeResistances(list(RED_DAMAGE = (0.5 - (gear * 0.1)), WHITE_DAMAGE = (1 - (gear * 0.1)), BLACK_DAMAGE = (2 - (gear * 0.1)), PALE_DAMAGE = (1.5 - (gear * 0.1))))
+	ChangeResistances(list(
+		RED_DAMAGE = (0.5 - (gear * 0.1)),
+		WHITE_DAMAGE = (1 - (gear * 0.1)),
+		BLACK_DAMAGE = (2 - (gear * 0.1)),
+		PALE_DAMAGE = (1.5 - (gear * 0.1)),
+	))
 	var/oldhealth = maxHealth
 	maxHealth = (1600 + (400 * gear))
 	adjustBruteLoss(oldhealth - maxHealth) //Heals 400 health in a gear shift if it's already breached
@@ -108,10 +114,12 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/steam/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/steam/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return

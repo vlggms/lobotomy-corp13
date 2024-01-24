@@ -6,6 +6,7 @@
 	desc = "A girl with hair flowing over her eyes."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "penitent"
+	portrait = "penitent"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
@@ -13,7 +14,7 @@
 		ABNORMALITY_WORK_INSTINCT = 50,
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 60, 50, 50, 50),
-		ABNORMALITY_WORK_REPRESSION = 50
+		ABNORMALITY_WORK_REPRESSION = 50,
 	)
 	is_flying_animal = TRUE
 	work_damage_amount = 6
@@ -21,7 +22,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sorrow,
-		/datum/ego_datum/armor/sorrow
+		/datum/ego_datum/armor/sorrow,
 	)
 	gift_type =  /datum/ego_gifts/sorrow
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
@@ -97,12 +98,12 @@
 
 /datum/ai_behavior/say_line/insanity_penitence
 	lines = list(
-				"Care to join me?",
-				"Why do I want to dance? Why do you want to live?",
-				"Check out these moves!",
-				"Hahaha...",
-				"I feel so alive!"
-				)
+		"Care to join me?",
+		"Why do I want to dance? Why do you want to live?",
+		"Check out these moves!",
+		"Hahaha...",
+		"I feel so alive!",
+	)
 
 /datum/status_effect/panicked_type/wander/penitence
 	icon = "penitence"

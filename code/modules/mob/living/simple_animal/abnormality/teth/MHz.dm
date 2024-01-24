@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "mhz"
 	icon_living = "mhz"
+	portrait = "MHz"
 	pixel_x = -32
 	base_pixel_x = -32
 	pixel_y = -32
@@ -16,22 +17,22 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 20, 20),
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 10, 0, 0, 0),
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 60, 60, 60)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(55, 55, 60, 60, 60),
+	)
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/noise,
-		/datum/ego_datum/armor/noise
-		)
+		/datum/ego_datum/armor/noise,
+	)
 	gift_type =  /datum/ego_gifts/noise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
 	)
 
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
@@ -42,16 +43,19 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/mhz/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	if(pe >= datum_reference.max_boxes)
 		datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/mhz/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/mhz/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return

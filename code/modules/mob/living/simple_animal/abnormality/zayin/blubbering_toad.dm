@@ -7,6 +7,7 @@
 	icon_state = "blubbering"
 	icon_living = "blubbering"
 	icon_dead = "blubbering_egg"
+	portrait = "blubbering_toad"
 	var/icon_tongue = "blubbering_tongue"
 	del_on_death = FALSE
 	pixel_x = -16
@@ -32,8 +33,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 50, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = 70,
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30),
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
@@ -60,8 +61,8 @@
 	var/persistant = FALSE
 
 	ego_list = list(
-	/datum/ego_datum/weapon/melty_eyeball,
-	/datum/ego_datum/armor/melty_eyeball
+		/datum/ego_datum/weapon/melty_eyeball,
+		/datum/ego_datum/armor/melty_eyeball,
 	)
 	gift_type =  /datum/ego_gifts/melty_eyeball
 	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"
@@ -133,9 +134,9 @@
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/proc/SetIdiot(mob/living/L)
 	idiot = L
 	if(idiot)
-		to_chat(src, "<span class='notice'>You current target is [idiot]!</span>")
+		to_chat(src, span_notice("You current target is [idiot]!"))
 	else
-		to_chat(src, "<span class='notice'>Your work here is done, you should now return to your cell.</span>")
+		to_chat(src, span_notice("Your work here is done, you should now return to your cell."))
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/death() //EGG! just kidding no egg....
 	density = FALSE

@@ -3,6 +3,7 @@
 	desc = "An old, decrepit lady sitting in a worn-out rocking chair"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "old_lady"
+	portrait = "old_lady"
 	maxHealth = 400
 	health = 400
 	threat_level = TETH_LEVEL
@@ -11,14 +12,15 @@
 		ABNORMALITY_WORK_INSIGHT = list(45, 45, 50, 50, 50),
 		ABNORMALITY_WORK_ATTACHMENT = list(65, 65, 60, 60, 60),
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Clear Solitude" = -100)
+		"Clear Solitude" = -100,
+	)
 	start_qliphoth = 4
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/solitude,
-		/datum/ego_datum/armor/solitude
-		)
+		/datum/ego_datum/armor/solitude,
+	)
 	gift_type =  /datum/ego_gifts/solitude
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/meltdown_cooldown_time = 120 SECONDS

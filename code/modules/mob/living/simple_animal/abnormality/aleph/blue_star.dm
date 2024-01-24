@@ -11,6 +11,7 @@
 	icon_state = "blue_star"
 	icon_living = "blue_star"
 	icon_dead = "blue_star_dead"
+	portrait = "blue_star"
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 1.2)
 	is_flying_animal = TRUE
 	del_on_death = FALSE
@@ -18,11 +19,11 @@
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 40
-						)
+		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSIGHT = 50,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 40,
+	)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
 	can_patrol = FALSE
@@ -36,8 +37,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/star_sound,
-		/datum/ego_datum/armor/star_sound
-		)
+		/datum/ego_datum/armor/star_sound,
+	)
 	gift_type =  /datum/ego_gifts/star
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -119,8 +120,8 @@
 		QDEL_IN(user, 5)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/bluestar/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	soundloop.start()
 	forceMove(T)

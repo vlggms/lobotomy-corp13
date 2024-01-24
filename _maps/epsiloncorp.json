@@ -1,25 +1,15 @@
 {
 	"version": 1,
-	"map_name": "Facility E-553 AMALGAM",
+	"map_name": "Facility E-117 LAKES",
 	"map_path": "map_files/Epsilon",
 	"map_file": [
-		"epsiloncommand.dmm",
 		"epsiloncorp.dmm"
 	],
 	"space_ruin_levels": 0,
 	"space_empty_levels": 0,
-	"traits": [
-		{
-			"Up": 1,
-			"Baseturf": "/turf/open/indestructible",
-			"Linkage": "Cross"
-		},
-		{
-			"Down": -1,
-			"Baseturf": "/turf/open/indestructible",
-			"Linkage": "Cross"
-		}
-	],
+	"shuttles": {
+		"emergency": "emergency_alpha"
+	},
 	"minetype": "none",
-	"maptype": "wonderlabs"
+	"maptype": "standard"
 }

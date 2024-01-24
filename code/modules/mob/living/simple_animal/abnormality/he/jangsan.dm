@@ -6,6 +6,7 @@
 	icon_state = "jangsan_idle"
 	icon_living = "jangsan_idle"
 	var/icon_aggro = "jangsan"
+	portrait = "jangsan"
 	speak_emote = list("growls")
 	pixel_x = -16
 	base_pixel_x = -16
@@ -20,11 +21,11 @@
 	can_breach = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 60,
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = 60,
-						ABNORMALITY_WORK_REPRESSION = 60
-						)
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = 60,
+		ABNORMALITY_WORK_REPRESSION = 60,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
@@ -36,8 +37,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/maneater,
-		/datum/ego_datum/armor/maneater
-		)
+		/datum/ego_datum/armor/maneater,
+	)
 	gift_type =  /datum/ego_gifts/maneater
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -47,10 +48,12 @@
 	var/strong_counter
 	var/weak_counter
 	pet_bonus = "meows" //saves a few lines of code by allowing funpet() to be called by attack_hand()
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 //attack vars
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS
@@ -60,10 +63,16 @@
 	var/lure_cooldown_time = 120 SECONDS
 
 //speak_list + location + speak_list2
-	var/list/speak_list = list(";Hey guys im at ",
-			";Over here at ", ";Im in ")
-	var/list/speak_list2 = list(", let's have a pizza party!",
-			", i'll protect you!", ", let's work together!")
+	var/list/speak_list = list(
+		";Hey guys im at ",
+		";Over here at ",
+		";Im in ",
+	)
+	var/list/speak_list2 = list(
+		", let's have a pizza party!",
+		", i'll protect you!",
+		", let's work together!",
+	)
 
 //Init
 /mob/living/simple_animal/hostile/abnormality/jangsan/Initialize()
@@ -134,8 +143,8 @@
 	KillCheck(petter)
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/jangsan/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/jangsan/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	if(!datum_reference.abno_radio)
 		AbnoRadio()
 	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
@@ -175,7 +184,12 @@
 		Players += H
 
 	if(!Players.len)
-		name = pick("Unassuming Friendly Guy","Zeta 123","Bong Bong","John Lobotomy")
+		name = pick(
+			"Unassuming Friendly Guy",
+			"Zeta 123",
+			"Bong Bong",
+			"John Lobotomy",
+		)
 	else
 		var/Sucker = pick(Players)
 		name = "[Sucker]"

@@ -5,6 +5,7 @@
 	desc = "A piano, with a woman sitting on the stool next to it"
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "dellaluna"
+	portrait = "luna"
 	maxHealth = 400
 	health = 400
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -15,8 +16,8 @@
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 50, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Performance" = 70
-		)
+		"Performance" = 70,
+	)
 	pixel_x = -32
 	base_pixel_x = -32
 	work_damage_amount = 10
@@ -24,8 +25,8 @@
 	max_boxes = 20
 	ego_list = list(
 		/datum/ego_datum/weapon/moonlight,
-		/datum/ego_datum/armor/moonlight
-		)
+		/datum/ego_datum/armor/moonlight,
+	)
 	gift_type =  /datum/ego_gifts/moonlight
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/performance = FALSE
@@ -36,11 +37,13 @@
 	var/killspawn
 
 /mob/living/simple_animal/hostile/abnormality/luna/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/luna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -112,9 +115,9 @@
 
 
 //Side Gamemodes stuff, should only ever be called outside of the main gamemode
-/mob/living/simple_animal/hostile/abnormality/luna/BreachEffect(mob/living/carbon/human/user, breach_type = BREACH_NORMAL)
+/mob/living/simple_animal/hostile/abnormality/luna/BreachEffect(mob/living/carbon/human/user, breach_type)
 	ZeroQliphoth()
-
+	return FALSE
 
 /* Monster Half */
 /mob/living/simple_animal/hostile/luna

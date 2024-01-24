@@ -9,7 +9,8 @@
 	icon_state = "pmermaid_standing"
 	icon_living = "pmermaid_standing"
 	icon_dead = "pmermaid_laying" //she shouldn't die while contained so this is more of a placeholder death icon
-	deathsound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
+	portrait = "piscine"
+	death_sound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
 	attack_sound = 'sound/abnormalities/piscinemermaid/splashattack.ogg'
 	del_on_death = FALSE
 	maxHealth = 1500
@@ -26,19 +27,19 @@
 	start_qliphoth = 3
 	move_to_delay = 2.8
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
-						ABNORMALITY_WORK_INSIGHT = list(30, 30, 35, 35, 35),
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 55, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(40, 50, 60, 60, 60),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(20, 20, 25, 30, 30),
+		ABNORMALITY_WORK_INSIGHT = list(30, 30, 35, 35, 35),
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 55, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(40, 50, 60, 60, 60),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	melee_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/unrequited,
-		/datum/ego_datum/armor/unrequited
-		)
+		/datum/ego_datum/armor/unrequited,
+	)
 	gift_type =  /datum/ego_gifts/unrequited_love
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -53,19 +54,23 @@
 	var/mob/living/carbon/human/love_target
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(!crown)
 		GiveGift(user)
 		return
 	if(crown?.loved == user)
 		if(crown.loved)
-			datum_reference.qliphoth_change(1)
+			datum_reference.qliphoth_change(2)
+			crown.love_cooldown = (world.time + crown.love_cooldown_time)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -83,7 +88,7 @@
 //mermaid will immensely slow down their lover and slowly kill them by cutting off their oxygen supply
 //dying by oxydeath actually takes a while, but it puts them on a clear timer to actually get shit done instead of just hoping someone else takes care of it.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/BreachEffect()
-	..()
+	. = ..()
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_living = "pmermaid_breach"
 	icon_dead = "pmermaid_slain"
@@ -129,6 +134,9 @@
 		return
 	if(!love_target)
 		for(var/mob/living/carbon/human/H in oview(src, vision_range))
+			if(IsCombatMap())
+				if(faction_check(src.faction, H.faction)) // I LOVE NESTING IF STATEMENTS
+					continue
 			//if there's no love target, they suffocate everyone they can see but you can just get out of her view to stop it
 			H.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
 			new /obj/effect/temp_visual/mermaid_drowning(get_turf(H))
@@ -256,7 +264,7 @@
 	worn_icon = 'icons/mob/clothing/ego_gear/head.dmi'
 	var/success_mod = 1.15
 	var/love_cooldown
-	var/love_cooldown_time = 1 MINUTES //It takes around 3 minutes for mermaid to breach if left unchecked
+	var/love_cooldown_time = 3.3 MINUTES //It takes around 10 minutes for mermaid to breach if left unchecked
 	var/mob/living/simple_animal/hostile/abnormality/pisc_mermaid/mermaid
 	var/mob/living/carbon/human/loved //What's wrong anon? Unconditional love is what you wanted right?
 

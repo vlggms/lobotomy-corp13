@@ -1,0 +1,171 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/spawner/lootdrop/cigbutt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"b" = (
+/obj/item/trash/can,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"c" = (
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/obj/effect/spawner/lootdrop/cigbutt,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"m" = (
+/obj/structure/grille,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"t" = (
+/obj/item/ego_weapon/city/rats/brick,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"u" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"x" = (
+/obj/item/ego_weapon/city/rats/pipe,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/chair/plastic{
+	dir = 8
+	},
+/obj/item/stack/spacecash/c50,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/decal/cleanable/garbage,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"I" = (
+/obj/structure/chair{
+	dir = 4
+	},
+/obj/item/trash/can/food/pcorp,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"K" = (
+/obj/structure/chair{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/humanoid/rat,
+/obj/item/stack/spacecash/c50,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"P" = (
+/obj/item/trash/popcorn,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"S" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/obj/item/ego_weapon/city/rats/brick,
+/obj/item/stack/spacecash/c50,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/obj/item/stack/spacecash/c50,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+a
+C
+u
+P
+u
+"}
+(3,1,1) = {"
+Q
+T
+W
+I
+u
+a
+"}
+(4,1,1) = {"
+Q
+m
+m
+m
+m
+u
+"}
+(5,1,1) = {"
+Q
+m
+x
+k
+m
+u
+"}
+(6,1,1) = {"
+Q
+m
+c
+t
+m
+u
+"}
+(7,1,1) = {"
+Q
+m
+m
+m
+m
+u
+"}
+(8,1,1) = {"
+Q
+K
+B
+S
+C
+u
+"}
+(9,1,1) = {"
+Q
+C
+P
+b
+u
+a
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

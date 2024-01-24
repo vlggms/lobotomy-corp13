@@ -5,6 +5,7 @@
 	icon_state = "pbird_breach"
 	icon_living = "pbird_breach"
 	icon_dead = "pbird_dead"
+	portrait = "punishing_bird"
 	turns_per_move = 2
 	response_help_continuous = "brushes aside"
 	response_help_simple = "brush aside"
@@ -36,25 +37,25 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 40, 45, 45),
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = list(55, 55, 50, 50, 50),
-						ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 40, 45, 45),
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = list(55, 55, 50, 50, 50),
+		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
+	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/beak,
 		/datum/ego_datum/weapon/beakmagnum,
-		/datum/ego_datum/armor/beak
-		)
+		/datum/ego_datum/armor/beak,
+	)
 	gift_type =  /datum/ego_gifts/beak
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
-		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3
+		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3,
 	)
 
 	var/list/enemies = list()
@@ -272,8 +273,8 @@
 	..()
 	Retaliate(user)
 
-/mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = initial(icon_state)
 	icon_living = initial(icon_living)
 	pixel_x = initial(pixel_x)
@@ -322,11 +323,13 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	manual_emote("chirps!")
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

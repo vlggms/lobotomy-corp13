@@ -4,17 +4,18 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "bald1"
 	icon_living = "bald1"
+	portrait = "bald"
 	maxHealth = 50
 	health = 50
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	is_flying_animal = TRUE
 	threat_level = ZAYIN_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 4
 	work_damage_type = WHITE_DAMAGE
 
@@ -31,8 +32,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/tough,
-		/datum/ego_datum/armor/tough
-		)
+		/datum/ego_datum/armor/tough,
+	)
 	gift_type =  /datum/ego_gifts/tough
 	gift_chance = 10
 	gift_message = "Now we're feeling awesome!"
@@ -111,7 +112,7 @@
 	. = ..()
 	if(!.)
 		return
-	to_chat(src, "<span class='userdanger'>You do not do damage, your sole mission is to spread the glory of baldness to all.</span>")
+	to_chat(src, span_userdanger("You do not do damage, your sole mission is to spread the glory of baldness to all."))
 
 /datum/reagent/abnormality/bald
 	name = "Essence of Baldness"
@@ -138,7 +139,7 @@
 		return
 	var/mob/living/carbon/human/victim = target
 	if(!HAS_TRAIT(victim, TRAIT_BALD))
-		to_chat(victim, "<span class='notice'>You feel awesome!</span>")
+		to_chat(victim, span_notice("You feel awesome!"))
 		ADD_TRAIT(victim, TRAIT_BALD, "ABNORMALITY_BALD")
 		victim.hairstyle = "Bald"
 		victim.update_hair()

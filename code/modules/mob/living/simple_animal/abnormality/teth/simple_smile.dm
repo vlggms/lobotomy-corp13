@@ -27,24 +27,26 @@
 	retreat_distance = 3
 	minimum_distance = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 80,
-						ABNORMALITY_WORK_INSIGHT = 80,
-						ABNORMALITY_WORK_ATTACHMENT = 80,
-						ABNORMALITY_WORK_REPRESSION = 80,
-						)
+		ABNORMALITY_WORK_INSTINCT = 80,
+		ABNORMALITY_WORK_INSIGHT = 80,
+		ABNORMALITY_WORK_ATTACHMENT = 80,
+		ABNORMALITY_WORK_REPRESSION = 80,
+	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/trick,
-		/datum/ego_datum/armor/trick
-		)
+		/datum/ego_datum/armor/trick,
+	)
 	gift_type =  /datum/ego_gifts/trick
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+		)
 
 	var/lucky_counter
 
@@ -77,6 +79,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/smile/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 

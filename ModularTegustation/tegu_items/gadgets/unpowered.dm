@@ -73,7 +73,7 @@
 		/obj/effect/temp_visual/holo_command/command_heal,
 		/obj/effect/temp_visual/holo_command/command_fight_a,
 		/obj/effect/temp_visual/holo_command/command_fight_b,
-		)
+	)
 
 /obj/item/commandprojector/attack_self(mob/user)
 	..()
@@ -379,7 +379,7 @@
 	var/stored_enkephalin = 0
 	var/maximum_enkephalin = 250
 	var/drawn_amount = 50
-	var/list/possible_drawn_amounts = list(5,10,15,20,25,50)
+	var/list/possible_drawn_amounts = list(5, 10, 15, 20, 25, 50)
 	var/ego_selection
 	var/ego_array
 
@@ -495,7 +495,122 @@
 		'sound/effects/wounds/blood3.ogg',
 		'sound/weapons/circsawhit.ogg',
 		'sound/weapons/bladeslice.ogg',
-		'sound/weapons/bite.ogg'
+		'sound/weapons/bite.ogg',
 	)
 	mid_length = 2 SECONDS
 	volume = 20
+
+//Clerkbot Spawner
+/obj/item/clerkbot_gadget
+	name = "Instant Clerkbot Constructor"
+	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. In order to prevent \
+		abnormalities infesting the clerkbots, only those registered as a Lobotomy Corp clerk can activate them. Clerkbot \
+		will last for 2 minutes before it preforms auto shutdown."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "clerkbot2_deactivated"
+
+/obj/item/clerkbot_gadget/attack_self(mob/user)
+	..()
+	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
+		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
+		return
+	new /mob/living/simple_animal/hostile/clerkbot(get_turf(user))
+	to_chat(user, span_nicegreen("The Gadget turns warm and sparks."))
+	qdel(src)
+
+	//Clerkbot spawned by the Clerkbot Spawner
+/mob/living/simple_animal/hostile/clerkbot
+	name = "A Well Rounded Clerkbot"
+	desc = "Trusted and loyal best friend."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "clerkbot2"
+	icon_living = "clerkbot2"
+	gender = NEUTER
+	mob_biotypes = MOB_ROBOTIC
+	faction = list("neutral")
+	health = 150
+	maxHealth = 150
+	healable = FALSE
+	melee_damage_type = RED_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 0.9, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 12
+	melee_damage_upper = 14
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = TRUE
+	attack_verb_continuous = "buzzes"
+	attack_verb_simple = "buzz"
+	attack_sound = 'sound/weapons/etherealhit.ogg'
+	verb_say = "states"
+	verb_ask = "queries"
+	verb_exclaim = "declares"
+	verb_yell = "alarms"
+	bubble_icon = "machine"
+	speech_span = SPAN_ROBOT
+
+/mob/living/simple_animal/hostile/clerkbot/Initialize()
+	..()
+	QDEL_IN(src, (120 SECONDS))
+	if(prob(50))
+		icon_state = "clerkbot1"
+		icon_living = "clerkbot1"
+
+/mob/living/simple_animal/hostile/clerkbot/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	to_chat(src, "<b>WARNING:THIS CREATURE IS TEMPORARY AND WILL DELETE ITSELF AFTER A GIVEN TIME!</b>")
+
+/mob/living/simple_animal/hostile/clerkbot/Destroy()
+	new /obj/item/clerkbot_gadget(get_turf(src))
+	return ..()
+
+/mob/living/simple_animal/hostile/clerkbot/spawn_gibs()
+	new /obj/effect/gibspawner/robot(drop_location(), src)
+
+
+/// Info Page Printer (Does not print info sheets)
+
+/obj/item/info_printer
+	name = "Abnormality Information Display System"
+	desc = "" // Done later
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "aids"
+	var/use_time = 150 // For future mods, maybe? :shrug:
+
+/obj/item/info_printer/examine(mob/user)
+	. = ..()
+	. += "Use on an Abnormality to display the information on screen after [use_time/10] seconds."
+
+/obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
+	if(Scan(A, user))
+		return TRUE
+	return ..()
+
+/obj/item/info_printer/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(Scan(target, user))
+		return TRUE
+	return ..()
+
+/obj/item/info_printer/proc/Scan(atom/A, mob/living/user)
+	if(!isabnormalitymob(A))
+		return FALSE
+	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, A, 7)))
+		var/list/information = GenerateInfo(A)
+		if(information)
+			var/datum/browser/popup = new(user, "information", FALSE, 300, 350)
+			popup.set_content(information)
+			popup.open(FALSE)
+	return TRUE
+
+/obj/item/info_printer/proc/GenerateInfo(mob/living/simple_animal/hostile/abnormality/abno_mob)
+	for(var/path in subtypesof(/obj/item/paper/fluff/info))
+		var/obj/item/paper/fluff/info/info_paper = path
+		if(abno_mob.type == initial(info_paper.abno_type))
+			info_paper = new path(src)
+			stoplag(1)
+			. = info_paper.info
+			QDEL_NULL(info_paper)
+			return
+	return FALSE
+

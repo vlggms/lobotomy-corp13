@@ -443,9 +443,6 @@
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/plating/grass,
 /area/space)
-"fr" = (
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_checkpoint)
 "fs" = (
 /obj/effect/turf_decal/siding/green/corner{
 	dir = 4
@@ -458,12 +455,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/space)
-"fG" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 8
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_checkpoint)
 "fL" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -706,10 +697,6 @@
 	},
 /obj/effect/turf_decal/siding/purple,
 /turf/open/floor/plasteel/dark,
-/area/space)
-"hI" = (
-/obj/machinery/navbeacon/wayfinding/informationdepartment,
-/turf/open/floor/facility/dark,
 /area/space)
 "hL" = (
 /obj/effect/turf_decal/tile/brown,
@@ -1121,9 +1108,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/space)
-"lR" = (
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_checkpoint)
 "lZ" = (
 /obj/machinery/shower{
 	pixel_y = 15
@@ -1430,10 +1414,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/space)
-"pb" = (
-/obj/effect/landmark/backstreetspawnwest,
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_checkpoint)
 "pe" = (
 /obj/structure/table/glass,
 /obj/item/encryptionkey/headset_information,
@@ -5092,12 +5072,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/space)
-"Xt" = (
-/obj/effect/turf_decal/weather/dirt{
-	dir = 4
-	},
-/turf/open/floor/plating/asteroid/basalt,
-/area/city/backstreets_checkpoint)
 "Xy" = (
 /obj/effect/turf_decal/siding/red/corner{
 	dir = 1
@@ -6748,9 +6722,9 @@ Yt
 Yt
 Yt
 Yt
-lR
-lR
-lR
+iW
+iW
+iW
 iW
 UZ
 UZ
@@ -6859,8 +6833,8 @@ Yt
 Yt
 Yt
 Yt
-fG
-fG
+WY
+WY
 WY
 iW
 iW
@@ -6970,8 +6944,8 @@ Yt
 Yt
 Yt
 Yt
-fr
-pb
+Xj
+Qe
 Xj
 Xj
 Xj
@@ -7081,8 +7055,8 @@ Yt
 Yt
 Yt
 Yt
-fr
-fr
+Xj
+Xj
 Xj
 Xj
 Xj
@@ -7192,8 +7166,8 @@ Yt
 Yt
 Yt
 Yt
-fr
-fr
+Xj
+Xj
 Xj
 Xj
 Xj
@@ -7303,8 +7277,8 @@ Yt
 Yt
 Yt
 Yt
-pb
-fr
+Qe
+Xj
 Xj
 Xj
 Xj
@@ -7414,8 +7388,8 @@ Yt
 Yt
 Yt
 Yt
-Xt
-Xt
+eC
+eC
 eC
 iW
 iW
@@ -7525,9 +7499,9 @@ Yt
 Yt
 Yt
 Yt
-lR
-lR
-lR
+iW
+iW
+iW
 iW
 UZ
 UZ
@@ -13571,7 +13545,7 @@ Fv
 Fv
 Fv
 hQ
-hI
+hQ
 hQ
 hQ
 Fv

@@ -17,6 +17,7 @@
 	icon_state = "distortedform"
 	icon_living = "distortedform"
 	icon_dead = "distortedform_dead"
+	portrait = "distortedform"
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
 	melee_damage_lower = 55
@@ -26,31 +27,36 @@
 	pixel_x = -48
 	base_pixel_x = -48
 	del_on_death = FALSE
-	deathmessage = "reverts into a tiny, disgusting fetus-like creature."
-	deathsound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
+	death_message = "reverts into a tiny, disgusting fetus-like creature."
+	death_sound = 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg'
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 25,
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
+	)
 	start_qliphoth = 3
 	work_damage_amount = 4		//Work damage is later
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/armor/distortion
-		)
+		/datum/ego_datum/armor/distortion,
+	)
 	gift_type = /datum/ego_gifts/distortion
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 //Work vars
 	var/transform_timer
 	var/list/transform_blacklist = list(
-		/mob/living/simple_animal/hostile/abnormality/hammer_light, /mob/living/simple_animal/hostile/abnormality/black_swan,
-		/mob/living/simple_animal/hostile/abnormality/fire_bird, /mob/living/simple_animal/hostile/abnormality/punishing_bird
-		)
+		/mob/living/simple_animal/hostile/abnormality/hammer_light,
+		/mob/living/simple_animal/hostile/abnormality/black_swan,
+		/mob/living/simple_animal/hostile/abnormality/fire_bird,
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird,
+		/mob/living/simple_animal/hostile/abnormality/red_shoes,
+		/mob/living/simple_animal/hostile/abnormality/seasons,
+		/mob/living/simple_animal/hostile/abnormality/pisc_mermaid.
+	)
 	var/datum/looping_sound/distortedform/soundloop
 	var/transformed = FALSE //We'll use this variable to check for whether or not to play the sound loop
 	/// List of melting consoles
@@ -78,7 +84,17 @@
 	var/transform_cooldown_time_short = 4 SECONDS
 	var/transform_cooldown_time = 6 SECONDS
 	var/transform_cooldown_time_long = 12 SECONDS
-	var/list/transform_list = list("Nothing There", "Apocalypse bird", "Puss in Boots", "Crumbling Armor", "Hammer of Light", "Halberd Apostle", "Red Queen", "Blubbering Toad", "Bloodbath")
+	var/list/transform_list = list(
+		"Nothing There",
+		"Apocalypse bird",
+		"Puss in Boots",
+		"Crumbling Armor",
+		"Hammer of Light",
+		"Halberd Apostle",
+		"Red Queen",
+		"Blubbering Toad",
+		"Bloodbath",
+	)
 	var/list/transform_list_longrange = list("Doomsday Calendar", "Blue Star", "Der Freischutz", "Apocalypse bird")
 	var/list/transform_list_jump = list("Light", "Medium", "Heavy")
 	var/transform_count = 0
@@ -104,8 +120,8 @@
 		"2" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"3" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
 		"4" = list("I'm so dead...", "That thing's just a monster!", "I need to get out of here!"),
-		"5" = list("Is that what it really looks like?", "It's over...", "I can’t even move my legs...")
-		)
+		"5" = list("Is that what it really looks like?", "It's over...", "I can’t even move my legs..."),
+	)
 	return pick(result_text_list[level])
 
 //Work Mechanics
@@ -115,15 +131,20 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/list/damtypes = list(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	for(var/damagetype in damtypes) // take 4 of every damage type every failed tick
 		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
+	work_damage_type = pick(damtypes) //Displays a random work damage type every tick
+	WorkDamageEffect()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	addtimer(CALLBACK(src, .proc/CauseMelts), 10) //Delaying it prevents some bugs; call a meltdown on a bad result or failed stat check
 	return
 
@@ -156,6 +177,7 @@
 	desc = abno.desc
 	icon = abno.icon
 	icon_state = abno.icon_state
+	portrait = abno.portrait
 	pixel_x = abno.pixel_x
 	base_pixel_x = abno.base_pixel_x
 	pixel_y = abno.pixel_y
@@ -185,6 +207,7 @@
 	desc = initial(desc)
 	icon = initial(icon)
 	icon_state = initial(icon_state)
+	portrait = initial(portrait)
 	pixel_x = initial(pixel_x)
 	base_pixel_x = initial(base_pixel_x)
 	pixel_y = initial(pixel_y)
@@ -231,7 +254,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CauseMelts(datum/source, datum/abnormality/abno_datum, worked)
 	var/meltdown_text = "Horrible screeches have caused a disturbance in the containment zones of the following abnormalities:"
-	var/meltdown_sound = pick("sound/abnormalities/distortedform/screech3.ogg","sound/abnormalities/distortedform/screech4.ogg")
+	var/meltdown_sound = pick(
+		"sound/abnormalities/distortedform/screech3.ogg",
+		"sound/abnormalities/distortedform/screech4.ogg",
+	)
 	var/player_count = 0
 	for(var/mob/player in GLOB.player_list)
 		if(isliving(player) && (player.mind?.assigned_role in GLOB.security_positions))
@@ -257,7 +283,7 @@
 				return
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	if(breached)
 		return
@@ -273,7 +299,7 @@
 		if(isatom(M.loc))
 			check_z = M.loc.z // So it plays even when you are in a locker/sleeper
 		if((check_z == z) && M.client)
-			to_chat(M, "<span class='userdanger'>Horrifying screams come from out of the darkness!</span>")
+			to_chat(M, span_userdanger("Horrifying screams come from out of the darkness!"))
 			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			survivors += M
@@ -306,7 +332,7 @@
 			continue
 		survivor.Apply_Gift(new /datum/ego_gifts/fervor)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
-		to_chat(survivor, "<span class='userdanger'>The screams subside - you recieve a gift!</span>")
+		to_chat(survivor, span_userdanger("The screams subside - you recieve a gift!"))
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	new /obj/item/ego_weapon/shield/distortion(get_turf(src))
@@ -845,7 +871,7 @@
 	transform_cooldown = world.time
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/Finisher(mob/living/target)
-	to_chat(target,"<span class='danger'>[src] is trying to cut you in half!</span>")
+	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
 		target.apply_damage(150, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //bit more than usual DPS in pale damage
 		return
@@ -884,7 +910,7 @@
 		else
 			var/mob/living/carbon/human/H = L
 			playsound(get_turf(H), 'sound/abnormalities/crumbling/warning.ogg', 50, FALSE, -3)
-			to_chat(H, "<span class='userdanger'>Show me that you can stand your ground!</span>")
+			to_chat(H, span_userdanger("Show me that you can stand your ground!"))
 			new /obj/effect/temp_visual/markedfordeath(get_turf(H))
 			H.apply_status_effect(/datum/status_effect/cowardice)
 			var/datum/status_effect/cowardice/C = H.has_status_effect(/datum/status_effect/cowardice)
@@ -1055,7 +1081,7 @@
 		var/list/new_hits = HurtInTurf(T, been_hit, 250, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			visible_message("<span class='boldwarning'>[src] runs through [L]!</span>", "<span class='nicegreen'>You impaled heretic [L]!</span>")
+			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
 
@@ -1358,7 +1384,7 @@
 		L.apply_damage(dealt_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
-		to_chat(L, "<span class='userdanger'>IT BURNS!!</span>")
+		to_chat(L, span_userdanger("IT BURNS!!"))
 
 //Blue Star
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeStar()
@@ -1505,7 +1531,7 @@
 	flick("apocalypse_slam", src)
 	SLEEP_CHECK_DEATH(4)
 	playsound(src, 'sound/abnormalities/apocalypse/slam.ogg', 100, FALSE, 12)
-	visible_message("<span class='danger'>[src] slams at the floor with its talons!</span>")
+	visible_message(span_danger("[src] slams at the floor with its talons!"))
 	// Shake effect
 	for(var/mob/living/M in livinginrange(20, get_turf(src)))
 		shake_camera(M, 2, 3)
@@ -1564,7 +1590,7 @@
 	can_act = FALSE
 	var/mob/living/carbon/human/final_target = pick(marked)
 	final_target.apply_status_effect(/datum/status_effect/panicked_lvl_5)
-	to_chat(final_target, "<span class='userdanger'>Look out!</span>")
+	to_chat(final_target, span_userdanger("Look out!"))
 	var/jump_type = pick(transform_list_jump)
 	playsound(get_turf(src), 'sound/abnormalities/babayaga/charge.ogg', 100, 1)
 	pixel_z = 128
@@ -1579,7 +1605,7 @@
 			MediumJump(target_turf)
 		if("Heavy")
 			HeavyJump(target_turf)
-	visible_message("<span class='danger'>[src] drops down from the ceiling!</span>")
+	visible_message(span_danger("[src] drops down from the ceiling!"))
 	density = TRUE
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE

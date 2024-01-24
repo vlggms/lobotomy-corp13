@@ -8,6 +8,7 @@
 	var/icon_aggro = "cat_breached"
 	var/icon_friendly = "cat_breached_friendly"
 	icon_dead = "cat_breached"  //defeated icon? Maybe someday.
+	portrait = "puss_in_boots"
 	maxHealth = 1000
 	health = 1000
 	threat_level = HE_LEVEL
@@ -27,23 +28,25 @@
 		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 40, 40)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/inheritance,
-		/datum/ego_datum/armor/inheritance
+		/datum/ego_datum/armor/inheritance,
 	)
 	gift_type =  /datum/ego_gifts/inheritance
 	abnormality_origin = "Artbook"
 
 	//Work/misc Vars
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 	pet_bonus = "meows" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/mob/living/carbon/human/blessed_human = null
 	var/friendly
@@ -157,8 +160,8 @@
 		return FALSE
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/puss_in_boots/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	desc = "He's got a sword!"
 	if(friendly)
 		fear_level = ZAYIN_LEVEL

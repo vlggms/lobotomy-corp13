@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "judgement_bird"
 	icon_living = "judgement_bird"
+	portrait = "judgement_bird"
 	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")
 
@@ -24,11 +25,11 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(20, 20, 35, 45, 45),
-						ABNORMALITY_WORK_INSIGHT = list(20, 20, 40, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 35, 45, 45),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(20, 20, 35, 45, 45),
+		ABNORMALITY_WORK_INSIGHT = list(20, 20, 40, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 35, 45, 45),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
 
@@ -36,14 +37,14 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/justitia,
-		/datum/ego_datum/armor/justitia
-		)
+		/datum/ego_datum/armor/justitia,
+	)
 	gift_type =  /datum/ego_gifts/justitia
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
-		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3,
 	)
 
 	var/judgement_cooldown = 10 SECONDS
@@ -116,18 +117,20 @@
 	judging = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 // Additional effects on work failure
 /mob/living/simple_animal/hostile/abnormality/judgement_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/judgement_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	if(IsCombatMap())
 		judgement_damage = 65
 		return

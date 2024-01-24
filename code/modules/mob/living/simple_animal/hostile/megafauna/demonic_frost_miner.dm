@@ -36,8 +36,9 @@ Difficulty: Extremely Hard
 	achievement_type = /datum/award/achievement/boss/demonic_miner_kill
 	crusher_achievement_type = /datum/award/achievement/boss/demonic_miner_crusher
 	score_achievement_type = /datum/award/score/demonic_miner_score
-	deathmessage = "falls to the ground, decaying into plasma particles."
-	deathsound = "bodyfall"
+	death_message = "falls to the ground, decaying into plasma particles."
+//	death_sound = SFX_BODYFALL REQUIRES TG PR
+	death_sound = "bodyfall" // REQUIRES TG PR
 	footstep_type = FOOTSTEP_MOB_HEAVY
 	attack_action_types = list(/datum/action/innate/megafauna_attack/frost_orbs,
 							   /datum/action/innate/megafauna_attack/snowball_machine_gun,

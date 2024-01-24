@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	/obj/item/powered_gadget/detector_gadget/abnormality,
 	/obj/item/powered_gadget/detector_gadget/ordeal,
 	/obj/item/powered_gadget/enkephalin_injector,
-	/obj/item/powered_gadget/clerkbot_gadget,
+	/obj/item/clerkbot_gadget,
 	/obj/item/powered_gadget/handheld_taser,
 	/obj/item/powered_gadget/vitals_projector,
 	/obj/item/reagent_containers/hypospray/emais,

@@ -5,6 +5,7 @@
 	add_verb(src, /mob/living/carbon/human/verb/show_attributes_to)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_self)
 	add_verb(src, /mob/living/carbon/human/verb/show_gifts_other)
+	add_verb(src, /mob/living/carbon/human/verb/show_cores_info)
 
 	icon_state = ""		//Remove the inherent human icon that is visible on the map editor. We're rendering ourselves limb by limb, having it still be there results in a bug where the basic human icon appears below as south in all directions and generally looks nasty.
 
@@ -126,6 +127,37 @@
 			[get_user_level(src) > 3 && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=lock'>[alpha_gift.locked ? "Locked" : "Unlocked"]</A>" : ""] \
 			[!istype(alpha_gift, /datum/ego_gifts/empty) && viewer == src ? "<A href='byond://?src=[REF(alpha_gift)];choice=hide'>[alpha_gift.visible ? "Hide" : "Show"]</A>" : ""]"
 	var/datum/browser/popup = new(viewer, "gifts", "<div align='center'>E.G.O. Gifts</div>", 600, 450)
+	popup.set_content(dat.Join("<br>"))
+	popup.open(FALSE)
+
+
+// Shows the list of specifically selected list of core suppressions and their status for this player
+/mob/living/carbon/human/verb/show_cores_info()
+	set category = "IC"
+	set name = "Display Cores Info"
+
+	var/list/dat = list()
+	// All the normal cores
+	for(var/core in GLOB.displayed_core_suppressions)
+		var/persistent_status = "N/A"
+		if(LAZYLEN(SSpersistence.cleared_core_suppressions))
+			if((ckey in SSpersistence.cleared_core_suppressions) && (core in SSpersistence.cleared_core_suppressions[ckey]))
+				persistent_status = "Yes"
+			else // N/A is used when persistence isn't loaded
+				persistent_status = "No"
+		dat += "<b>[core]</b>: [persistent_status]"
+	// Secret keter cores
+	for(var/core in GLOB.hidden_displayed_core_suppressions)
+		if(!LAZYLEN(SSpersistence.cleared_core_suppressions))
+			continue
+		if(!(ckey in SSpersistence.cleared_core_suppressions) || !(core in SSpersistence.cleared_core_suppressions[ckey]))
+			continue
+		var/secret_header = "<br><hr>"
+		if(!(secret_header in dat))
+			dat += secret_header
+		dat += "<b>[core]</b>: CLEARED!"
+
+	var/datum/browser/popup = new(src, "cores", "<div align='center'>Core Suppression Info</div>", 300, 500)
 	popup.set_content(dat.Join("<br>"))
 	popup.open(FALSE)
 
@@ -839,14 +871,28 @@
 	return TRUE
 
 /**
- * Cleans the lips of any lipstick. Returns TRUE if the lips had any lipstick and was thus cleaned
+ * Used to update the makeup on a human and apply/remove lipstick traits, then store/unstore them on the head object in case it gets severed
+ */
+/mob/living/carbon/human/proc/update_lips(new_style, new_colour, apply_trait)
+	lip_style = new_style
+	lip_color = new_colour
+	update_body()
+
+	var/obj/item/bodypart/head/hopefully_a_head = get_bodypart(BODY_ZONE_HEAD)
+	REMOVE_TRAITS_IN(src, LIPSTICK_TRAIT)
+	hopefully_a_head?.stored_lipstick_trait = null
+
+	if(new_style && apply_trait)
+		ADD_TRAIT(src, apply_trait, LIPSTICK_TRAIT)
+		hopefully_a_head?.stored_lipstick_trait = apply_trait
+
+/**
+ * A wrapper for [mob/living/carbon/human/proc/update_lips] that tells us if there were lip styles to change
  */
 /mob/living/carbon/human/proc/clean_lips()
 	if(isnull(lip_style) && lip_color == initial(lip_color))
 		return FALSE
-	lip_style = null
-	lip_color = initial(lip_color)
-	update_body()
+	update_lips(null)
 	return TRUE
 
 /**
@@ -1241,8 +1287,8 @@
 
 /mob/living/carbon/human/updatehealth()
 	if(LAZYLEN(attributes))
-		maxHealth = DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_level_bonus(src, FORTITUDE_ATTRIBUTE))
-		maxSanity = DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_level_bonus(src, PRUDENCE_ATTRIBUTE))
+		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_level_bonus_raw(src, FORTITUDE_ATTRIBUTE)))
+		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_level_bonus_raw(src, PRUDENCE_ATTRIBUTE)))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss

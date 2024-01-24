@@ -5,6 +5,7 @@
 	icon_state = "fairy_longlegs"
 	icon_living = "fairy_longlegs"
 	icon_dead = "fairy_longlegs_dead"
+	portrait = "fairy_long_legs"
 	del_on_death = FALSE
 	pixel_x = -16
 	base_pixel_x = -16
@@ -24,22 +25,22 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(90, 60, 55, 50, 45),
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = 30,
-						ABNORMALITY_WORK_REPRESSION = 0,
-						"Take cover" = 0,
-						)
+		ABNORMALITY_WORK_INSTINCT = list(90, 60, 55, 50, 45),
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = 30,
+		ABNORMALITY_WORK_REPRESSION = 0,
+		"Take cover" = 0,
+	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
-	deathmessage = "coalesces into a primordial egg."
-	deathsound = 'sound/abnormalities/fairy_longlegs/death.ogg'
+	death_message = "coalesces into a primordial egg."
+	death_sound = 'sound/abnormalities/fairy_longlegs/death.ogg'
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/fairy_gentleman = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/fairy_festival = 1.5,
-		// Fae Lantern = 1.5
+		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
 	var/finishing = FALSE //cant move/attack when it's TRUE
@@ -49,8 +50,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/fourleaf_clover,
-		/datum/ego_datum/armor/fourleaf_clover
-		)
+		/datum/ego_datum/armor/fourleaf_clover,
+	)
 	gift_type =  /datum/ego_gifts/fourleaf_clover
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/death(gibbed)
@@ -106,6 +107,7 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -144,7 +146,7 @@
 	icon_state = "fairy_longlegs"
 	finishing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/fairy_longlegs/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	if(raining)
 		for(var/obj/effect/rainy_effect/rain in range(3, src))

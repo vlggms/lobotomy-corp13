@@ -430,6 +430,32 @@
 		/obj/item/storage/box/fireworks=3,\
 		/obj/item/food/cake/birthday=1)
 
+/datum/outfit/job/raven/ert
+	name = "R-Corp Scout Raven"
+	jobtype = /datum/job/raven
+
+	ears = /obj/item/radio/headset/headset_cent/alt
+	glasses = /obj/item/clothing/glasses/night
+	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
+	shoes = /obj/item/clothing/shoes/combat
+	gloves = /obj/item/clothing/gloves/color/black
+	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	head = /obj/item/clothing/head/rabbit_helmet/raven/grunt
+	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
+	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
+	r_pocket = /obj/item/pinpointer/nuke/rcorp
+	backpack_contents = list(
+		/obj/item/grenade/smokebomb = 1)
+
+/datum/outfit/job/raven/ert/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+	if(visualsOnly)
+		return
+
+	var/obj/item/implant/sanity_death/L = new/obj/item/implant/sanity_death(H)
+	L.implant(H, null, 1)
+	H.faction |= "rabbit"
+	..()
+
 /datum/outfit/centcom/ert/commander/rabbit
 	name = "Rabbit Team Leader"
 
@@ -529,7 +555,7 @@
 	gloves = /obj/item/clothing/gloves/combat
 	ears = /obj/item/radio/headset/headset_cent/alt
 	l_hand = /obj/item/ego_weapon/city/zweihander/noreq
-	r_hand = /obj/item/clothing/accessory/fixer_badge
+	r_hand = /obj/item/clothing/accessory/lawyers_badge/fixer
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
 	implants = list(/obj/item/implant/mindshield, /obj/item/organ/cyberimp/eyes/hud/security)

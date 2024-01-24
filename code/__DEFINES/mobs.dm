@@ -362,6 +362,9 @@
 
 /// If you examine the same atom twice in this timeframe, we call examine_more() instead of examine()
 #define EXAMINE_MORE_TIME	1 SECONDS
+/// If you yawn while someone nearby has examined you within this time frame, it will force them to yawn as well. Tradecraft!
+#define YAWN_PROPAGATION_EXAMINE_WINDOW 2 SECONDS
+
 /// How far away you can be to make eye contact with someone while examining
 #define EYE_CONTACT_RANGE	5
 

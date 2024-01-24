@@ -544,6 +544,13 @@
 	fortitude_bonus = 4
 	slot = MOUTH_2
 
+/datum/ego_gifts/faelantern
+	name = "Midwinter Nightmare"
+	icon_state = "faelantern"
+	prudence_bonus = 3
+	temperance_bonus = 2
+	slot = LEFTBACK
+
 /datum/ego_gifts/fluid_sac
 	name = "Fluid Sac"
 	icon_state = "fluid_sac"
@@ -838,6 +845,14 @@
 	fortitude_bonus  = 4
 	justice_bonus = 2
 	slot = HAND_2
+
+/datum/ego_gifts/sunshower
+	name = "Sunshower"
+	icon_state = "sunshower"
+	temperance_bonus = 5
+	justice_bonus = -2
+	prudence_bonus = -2
+	slot = LEFTBACK
 
 /**
  * WAW EGO Gifts
@@ -1329,6 +1344,11 @@
 	icon_state = "star"
 	justice_bonus = 10
 	slot = EYE
+
+/datum/ego_gifts/christmas/buff
+	name = "Ultimate Christmas"
+	fortitude_bonus = 25
+	prudence_bonus = -5
 
 /**
  * Event EGO Gifts

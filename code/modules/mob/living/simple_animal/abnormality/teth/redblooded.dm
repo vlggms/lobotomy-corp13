@@ -29,18 +29,18 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 45,
-						ABNORMALITY_WORK_INSIGHT = 30,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(55,55,55,60,60)
-						)
+		ABNORMALITY_WORK_INSTINCT = 45,
+		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(55, 55, 55, 60, 60),
+	)
 	max_boxes = 14
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		  /datum/ego_datum/weapon/patriot,
-		  /datum/ego_datum/armor/patriot
+		/datum/ego_datum/weapon/patriot,
+		/datum/ego_datum/armor/patriot,
 	)
 	gift_type = /datum/ego_gifts/patriot
 	gift_message = "Protect and serve."
@@ -48,25 +48,28 @@
 
 	var/bloodlust = 0 //more you do repression, more damage it deals. decreases on other works.
 	var/list/fighting_quotes = list(
-				"Go ahead, freakshit! Do your best!",
-				"Pft. Go ahead and try, freakshit.",
-				"Good, something fun for once. Go ahead, freakshit.",
-				"One of you finally has some balls.",
-				"Pathetic. You're too weak for this, you know?")
+		"Go ahead, freakshit! Do your best!",
+		"Pft. Go ahead and try, freakshit.",
+		"Good, something fun for once. Go ahead, freakshit.",
+		"One of you finally has some balls.",
+		"Pathetic. You're too weak for this, you know?",
+	)
 
 	var/list/bored_quotes = list(
-				"Boring. C'mon, we both know a little roughhousing would be better.",
-				"Aw, what a wimp. Alright, you do your thing, pansy.",
-				"Yawn. Damn, you freakshits are lame.",
-				"Commies. None of them have any fight in them, do they?",
-				"Why was I sent here if I was just going to sit around waiting all day?")
+		"Boring. C'mon, we both know a little roughhousing would be better.",
+		"Aw, what a wimp. Alright, you do your thing, pansy.",
+		"Yawn. Damn, you freakshits are lame.",
+		"Commies. None of them have any fight in them, do they?",
+		"Why was I sent here if I was just going to sit around waiting all day?",
+	)
 
 	var/list/breach_quotes = list(
-				"Time to wipe you freakshits out!",
-				"HA! It's over for you freaks!",
-				"You're outmatched! Just drop dead already!",
-				"Eat shit, you fucking commies!",
-				"This is going to be fun!")
+		"Time to wipe you freakshits out!",
+		"HA! It's over for you freaks!",
+		"You're outmatched! Just drop dead already!",
+		"Eat shit, you fucking commies!",
+		"This is going to be fun!",
+	)
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_amount = 6 + bloodlust
@@ -80,11 +83,13 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(50)) //slightly higher than other TETHs, given that the counter can be raised
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/redblooded/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -103,8 +108,8 @@
 	BreachEffect()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/redblooded/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/redblooded/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = "american_aggro"
 	GiveTarget(user)
 

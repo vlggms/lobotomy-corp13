@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "burntbird"
 	icon_living = "firebird_active"
+	portrait = "fire_bird"
 	threat_level = WAW_LEVEL
 	maxHealth = 2000
 	health = 2000
@@ -19,8 +20,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 60),
 		ABNORMALITY_WORK_INSIGHT = list(30, 30, 25, 25, 35),
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 40, 40, 50),
-		ABNORMALITY_WORK_REPRESSION = list(45, 45, 40, 40, 50)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(45, 45, 40, 40, 50),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	faction = list("hostile", "neutral")
@@ -57,13 +58,16 @@
 
 //Work Procs
 /mob/living/simple_animal/hostile/abnormality/fire_bird/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(30))
 		datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/OnQliphothChange(mob/living/carbon/human/user)
@@ -98,8 +102,8 @@
 	user.remove_status_effect(STATUS_EFFECT_BLINDED)
 
 //Breach
-/mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/fire_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	loot = list(/obj/item/gun/ego_gun/feather)
 	icon_state = icon_living
 	light_range = 20

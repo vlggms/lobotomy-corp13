@@ -12,15 +12,15 @@
 		ABNORMALITY_WORK_INSTINCT = 65,
 		ABNORMALITY_WORK_INSIGHT = 65,
 		ABNORMALITY_WORK_ATTACHMENT = 65,
-		ABNORMALITY_WORK_REPRESSION = 65
-		)
+		ABNORMALITY_WORK_REPRESSION = 65,
+	)
 	work_damage_amount = 20			//Unlikely to hurt you but if she ever does she'll fuck you
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/fury,
-		/datum/ego_datum/armor/fury
-		)
+		/datum/ego_datum/armor/fury,
+	)
 	gift_type = /datum/ego_gifts/fury
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 

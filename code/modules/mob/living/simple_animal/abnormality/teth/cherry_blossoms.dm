@@ -4,6 +4,7 @@
 	desc = "A beautiful cherry tree."
 	icon = 'ModularTegustation/Teguicons/128x128.dmi'
 	icon_state = "graveofcherryblossoms_3"
+	portrait = "cherry_blossoms"
 	pixel_x = -48
 	base_pixel_x = -48
 	pixel_y = -16
@@ -15,16 +16,16 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = 20
-			)
+		ABNORMALITY_WORK_REPRESSION = 20,
+	)
 	start_qliphoth = 3
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blossom,
-		/datum/ego_datum/armor/blossom
-		)
+		/datum/ego_datum/armor/blossom,
+	)
 	gift_type = /datum/ego_gifts/blossom
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 	var/numbermarked = 5
@@ -36,6 +37,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/cherry_blossoms/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	if(datum_reference.qliphoth_meter !=3)
 		icon_state = "graveofcherryblossoms_[datum_reference.qliphoth_meter]"

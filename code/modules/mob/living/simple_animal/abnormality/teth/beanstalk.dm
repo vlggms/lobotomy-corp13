@@ -4,6 +4,7 @@
 	desc = "A gigantic stem that reaches higher than the eye can see."
 	icon = 'ModularTegustation/Teguicons/64x98.dmi'
 	icon_state = "beanstalk"
+	portrait = "beanstalk"
 	maxHealth = 500
 	health = 500
 	threat_level = TETH_LEVEL
@@ -11,8 +12,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(35, 45, 55, 0, 10),
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = 35
-			)
+		ABNORMALITY_WORK_REPRESSION = 35,
+	)
 	pixel_x = -16
 	base_pixel_x = -16
 	work_damage_amount = 7
@@ -21,7 +22,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/bean,
 		/datum/ego_datum/weapon/giant,
-		/datum/ego_datum/armor/bean
+		/datum/ego_datum/armor/bean,
 	)
 	gift_type = /datum/ego_gifts/bean
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK

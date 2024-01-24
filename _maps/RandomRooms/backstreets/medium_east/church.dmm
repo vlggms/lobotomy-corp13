@@ -1,0 +1,224 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/stairs/north,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"c" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"d" = (
+/obj/structure/railing,
+/obj/item/storage/book/bible,
+/turf/open/floor/plasteel/dark/side,
+/area/city/backstreets_room)
+"i" = (
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room)
+"j" = (
+/obj/item/reagent_containers/glass/bowl,
+/obj/item/stack/spacecash/c100,
+/obj/item/stack/spacecash/c20,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c50,
+/obj/item/stack/spacecash/c200,
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/turf/open/floor/plasteel/chapel{
+	dir = 1
+	},
+/area/city/backstreets_room)
+"p" = (
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/railing/corner{
+	dir = 8
+	},
+/turf/open/floor/plasteel/dark/corner{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/structure/stairs/north,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/railing/corner,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark/corner,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/plasteel/chapel,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/fluff/paper/stack,
+/turf/open/floor/plasteel/chapel{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"H" = (
+/obj/structure/mineral_door/iron,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"J" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark/side{
+	dir = 8
+	},
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/chair/pew/right{
+	dir = 1
+	},
+/turf/open/floor/plasteel/chapel,
+/area/city/backstreets_room)
+"Q" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"T" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark/side{
+	dir = 4
+	},
+/area/city/backstreets_room)
+"U" = (
+/obj/structure/railing,
+/mob/living/simple_animal/hostile/humanoid/rat/knife,
+/turf/open/floor/plasteel/dark/side,
+/area/city/backstreets_room)
+"W" = (
+/turf/open/floor/plasteel/chapel,
+/area/city/backstreets_room)
+"Y" = (
+/obj/structure/chair/pew/left{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/plasteel/chapel{
+	dir = 8
+	},
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+H
+x
+"}
+(2,1,1) = {"
+x
+w
+T
+T
+T
+T
+Q
+v
+p
+x
+"}
+(3,1,1) = {"
+x
+U
+i
+Y
+l
+Y
+i
+c
+p
+x
+"}
+(4,1,1) = {"
+x
+d
+j
+B
+s
+P
+D
+W
+p
+x
+"}
+(5,1,1) = {"
+x
+r
+a
+a
+J
+a
+a
+b
+p
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

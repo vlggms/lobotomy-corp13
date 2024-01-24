@@ -16,18 +16,18 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2) //goose stats
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 30,
-						ABNORMALITY_WORK_ATTACHMENT = 30,
-						ABNORMALITY_WORK_REPRESSION = 30
-						)
+		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSIGHT = 30,
+		ABNORMALITY_WORK_ATTACHMENT = 30,
+		ABNORMALITY_WORK_REPRESSION = 30,
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/zauberhorn,
-		/datum/ego_datum/armor/zauberhorn
-		)
+		/datum/ego_datum/armor/zauberhorn,
+	)
 	gift_type =  /datum/ego_gifts/zauberhorn
 
 	var/liked
@@ -35,23 +35,19 @@
 	pet_bonus = "neighs" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/hint_cooldown
 	var/hint_cooldown_time = 30 SECONDS
-	var/list/cooldown = list(
-				"It is not the time now, not yet.")
+	var/list/cooldown = list("It is not the time now, not yet.")
 
-	var/list/instinct = list(
-				"I should have trusted my instincts, I should have stopped that vile maidservant before it was too late. Look at what happened to me!")
+	var/list/instinct = list("I should have trusted my instincts, I should have stopped that vile maidservant before it was too late. Look at what happened to me!")
 
-	var/list/insight = list(
-				"The late princess was a woman of incredible insight, it may do you well to do the same.")
+	var/list/insight = list("The late princess was a woman of incredible insight, it may do you well to do the same.")
 
-	var/list/attachment = list(
-				"Poor Anidori, her attachment to that woman was too great. She could not see the jealousy harbored within her.")
+	var/list/attachment = list("Poor Anidori, her attachment to that woman was too great. She could not see the jealousy harbored within her.")
 
-	var/list/repression = list(
-				"The things that they did to me, the things they did to her, all for the want of justice in the world.")
+	var/list/repression = list("The things that they did to me, the things they did to her, all for the want of justice in the world.")
 
 // Work Mechanics
 /mob/living/simple_animal/hostile/abnormality/falada/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -75,7 +71,12 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/falada/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
-	liked = pick(ABNORMALITY_WORK_INSTINCT, ABNORMALITY_WORK_INSIGHT, ABNORMALITY_WORK_ATTACHMENT, ABNORMALITY_WORK_REPRESSION)
+	liked = pick(
+		ABNORMALITY_WORK_INSTINCT,
+		ABNORMALITY_WORK_INSIGHT,
+		ABNORMALITY_WORK_ATTACHMENT,
+		ABNORMALITY_WORK_REPRESSION,
+	)
 	switch(liked)
 		if(ABNORMALITY_WORK_INSTINCT)
 			say(pick(instinct))

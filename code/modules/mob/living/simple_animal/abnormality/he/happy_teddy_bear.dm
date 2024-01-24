@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "teddy"
 	icon_living = "teddy"
+	portrait = "happy_teddy_bear"
 	// adding this for when it drops you
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 200
@@ -15,7 +16,7 @@
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 45, 35, 35),
 		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 60, 50, 45),
-		ABNORMALITY_WORK_REPRESSION = list(40, 45, 45, 40, 35)
+		ABNORMALITY_WORK_REPRESSION = list(40, 45, 45, 40, 35),
 	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
@@ -29,8 +30,8 @@
 	var/hugging = FALSE
 	ego_list = list(
 		/datum/ego_datum/weapon/paw,
-		/datum/ego_datum/armor/paw
-		)
+		/datum/ego_datum/armor/paw,
+	)
 	gift_type =  /datum/ego_gifts/bearpaw
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

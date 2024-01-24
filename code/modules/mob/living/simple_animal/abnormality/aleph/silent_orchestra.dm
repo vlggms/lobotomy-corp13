@@ -6,16 +6,17 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "silent"
 	icon_living = "silent"
+	portrait = "silent_orchestra"
 	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 50),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 30)
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 50),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 30),
+	)
 	work_damage_amount = 16
 	work_damage_type = WHITE_DAMAGE
 	can_patrol = FALSE
@@ -28,8 +29,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/da_capo,
-		/datum/ego_datum/armor/da_capo
-		)
+		/datum/ego_datum/armor/da_capo,
+	)
 	gift_type =  /datum/ego_gifts/dacapo
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	/// Range of the damage
@@ -132,15 +133,17 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/silentorchestra/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/silentorchestra/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/silentorchestra/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 	DamagePulse()

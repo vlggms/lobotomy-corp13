@@ -3,6 +3,7 @@
 	desc = "A very wide humanoid with long arms made of green, dripping slime."
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "fairy_gentleman"
+	portrait = "fairy_gentleman"
 	maxHealth = 900
 	health = 900
 	ranged = TRUE
@@ -24,8 +25,8 @@
 		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
-		ABNORMALITY_WORK_REPRESSION = list(30, 25, 25, 20, 15)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(30, 25, 25, 20, 15),
+	)
 	pixel_x = -34
 	base_pixel_x = -34
 	work_damage_amount = 8
@@ -33,7 +34,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sloshing,
-		/datum/ego_datum/armor/sloshing
+		/datum/ego_datum/armor/sloshing,
 	)
 	gift_type = /datum/ego_gifts/sloshing
 	gift_message = "This wine tastes quite good..."
@@ -42,7 +43,7 @@
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/fairy_festival = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/fairy_longlegs = 1.5,
-		// Fae Lantern = 1.5
+		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
 	var/can_act = TRUE
@@ -53,27 +54,27 @@
 	var/jump_aoe = 1
 
 	var/list/give_drink = list(
-				"You quite an interesting one, Feel free to take this drink! It is on the house!",
-				"Attaboy, I think you deserve this! Drink! Drink 'til you're half seas over!",
-				"HA HA HA HA!!! You can really talk an earful! Here, have one on me!",
-				"Come on now, no need to worry. Try some of this giggle water, it's the bee's knees!",
-				"Plum outta luck for eatery, I’ve already had all the food. Would ya care for a drink?"
-				)
+		"You quite an interesting one, Feel free to take this drink! It is on the house!",
+		"Attaboy, I think you deserve this! Drink! Drink 'til you're half seas over!",
+		"HA HA HA HA!!! You can really talk an earful! Here, have one on me!",
+		"Come on now, no need to worry. Try some of this giggle water, it's the bee's knees!",
+		"Plum outta luck for eatery, I've already had all the food. Would ya care for a drink?",
+	)
 	var/list/disappointed = list(
-				"Pipe down, pinko. I don't think this will help any of us if you continue like this.",
-				"Come on now, what did I ever do to you? A little hootch never hurt nobody.",
-				"This is how you treat me after giving you all of you my finest drinks?",
-				"I have to go see a man about a dog.",
-				"Are you okay? A big shot like yourself has no need to hold back."
-				)
+		"Pipe down, pinko. I don't think this will help any of us if you continue like this.",
+		"Come on now, what did I ever do to you? A little hootch never hurt nobody.",
+		"This is how you treat me after giving you all of you my finest drinks?",
+		"I have to go see a man about a dog.",
+		"Are you okay? A big shot like yourself has no need to hold back.",
+	)
 
 	var/list/angry = list(
-				"I'll wring you out!",
-				"Come on, I'm taking you for a ride!",
-				"This is all I got!",
-				"I'll be havin' this!",
-				"Scram!"
-				)
+		"I'll wring you out!",
+		"Come on, I'm taking you for a ride!",
+		"This is all I got!",
+		"I'll be havin' this!",
+		"Scram!",
+	)
 
 //Action Buttons
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/FairyJump)
@@ -90,6 +91,7 @@
 
 //Work mechanics
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(pe >= 11) // Almost perfect work
 		var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 		new/obj/item/reagent_containers/food/drinks/fairywine(dispense_turf)
@@ -105,14 +107,16 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	say(pick(disappointed))
 
 /mob/living/simple_animal/hostile/abnormality/fairy_gentleman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 //Breach Mechanics
-/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/BreachEffect(mob/living/carbon/human/user) //he flies
+/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/BreachEffect(mob/living/carbon/human/user, breach_type) //he flies
 	. = ..()
 	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
 	say(pick(angry))

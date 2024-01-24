@@ -6,6 +6,7 @@
 	icon_living = "yin"
 	var/icon_breach = "yin_breach"
 	icon_dead = "yin_slain"
+	portrait = "yin"
 	is_flying_animal = TRUE
 	maxHealth = 1600
 	health = 1600
@@ -23,24 +24,24 @@
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	max_boxes = 20
 	success_boxes = 16
 	neutral_boxes = 9
 
 	ego_list = list(
 		/datum/ego_datum/weapon/discord,
-		/datum/ego_datum/armor/discord
-		)
+		/datum/ego_datum/armor/discord,
+	)
 	gift_type = /datum/ego_gifts/discord
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/yang = 5 // TAKE THE FISH. DO IT
+		/mob/living/simple_animal/hostile/abnormality/yang = 5, // TAKE THE FISH. DO IT
 	)
 
 	faction = list("neutral", "hostile") // Not fought by anything, typically. But...
@@ -71,7 +72,7 @@
 		/mob/living/simple_animal/hostile/megafauna/apocalypse_bird,
 		/mob/living/simple_animal/hostile/megafauna/arbiter,
 		/mob/living/simple_animal/hostile/abnormality/yang,
-		/mob/living/simple_animal/hostile/abnormality/yin
+		/mob/living/simple_animal/hostile/abnormality/yin,
 	)
 	var/dragon_spawned = FALSE
 
@@ -172,6 +173,7 @@
 	SSlobotomy_events.yin_downed = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/yin/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1, user)
 	return
 

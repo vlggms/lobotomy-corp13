@@ -42,7 +42,7 @@
 		if(A.type in blacklist)
 			continue
 
-		if(A.IsContained() && A.z == z)
+		if(A.IsContained() && (A.z == z))
 			if(!A.BreachEffect(null, BREACH_PINK)) // We try breaching them our way!
 				continue // If they can't we just go home!
 			if(A.status_flags & GODMODE)
@@ -57,4 +57,3 @@
 			if(!A.patrol_to(destination))
 				A.forceMove(destination)
 			ordeal_reference.ordeal_mobs |= A
-	RegisterSignal(ordeal_reference, COMSIG_GLOB_MOB_DEATH, /datum/ordeal/.proc/OnMobDeath)

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "babayaga"
 	icon_living = "babayaga"
+	portrait = "baba_yaga"
 	var/icon_aggro = "babayaga_breach"
 	faction = list("hostile", "babayaga")
 	speak_emote = list("intones")
@@ -21,17 +22,17 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 50),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/rimeshank,
-		/datum/ego_datum/armor/rimeshank
-		)
+		/datum/ego_datum/armor/rimeshank,
+	)
 	gift_type =  /datum/ego_gifts/rimeshank
 
 	var/jump_cooldown = 0
@@ -46,11 +47,13 @@
 		SpawnMobs()
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	SpawnMobs()
 	return
@@ -67,8 +70,8 @@
 			INVOKE_ASYNC(src, .proc/TryJump)
 		return
 
-/mob/living/simple_animal/hostile/abnormality/babayaga/BreachEffect(mob/living/carbon/human/user)//copied my code from crumbling armor
-	..()
+/mob/living/simple_animal/hostile/abnormality/babayaga/BreachEffect(mob/living/carbon/human/user, breach_type)//copied my code from crumbling armor
+	. = ..()
 	icon_state = icon_aggro
 	pixel_x = -16
 	base_pixel_x = -16

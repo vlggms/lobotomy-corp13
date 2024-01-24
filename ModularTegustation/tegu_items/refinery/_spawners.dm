@@ -18,7 +18,6 @@ GLOBAL_LIST_INIT(unspawned_sales, list(
 	/obj/structure/pe_sales/syndicate,
 	/obj/structure/pe_sales/backstreet,
 	/obj/structure/pe_sales/jcorp,
-
 ))
 
 /obj/effect/landmark/salesspawn

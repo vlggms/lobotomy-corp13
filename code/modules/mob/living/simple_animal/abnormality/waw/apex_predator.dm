@@ -30,18 +30,18 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 40, 45),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 40, 45),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(25, 20, 15, 10, 0),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 50, 55, 55),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/animalism,
-		/datum/ego_datum/armor/animalism
-		)
+		/datum/ego_datum/armor/animalism,
+	)
 //	gift_type =  /datum/ego_gifts/animalism
 
 	var/revealed = TRUE
@@ -65,11 +65,13 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(40))
 		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -85,8 +87,8 @@
 	work_damage_amount = initial(work_damage_amount)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/apex_predator/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/apex_predator/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	Cloak()
 	GiveTarget(user)
 

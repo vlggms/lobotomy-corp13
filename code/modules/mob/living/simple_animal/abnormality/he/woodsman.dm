@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "woodsman"
 	icon_living = "woodsman_breach"
+	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 1433
 	health = 1433
@@ -22,11 +23,11 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 45,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
-						ABNORMALITY_WORK_REPRESSION = 45
-						)
+		ABNORMALITY_WORK_INSTINCT = 45,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	move_to_delay = 4
@@ -35,8 +36,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/logging,
-		/datum/ego_datum/armor/logging
-		)
+		/datum/ego_datum/armor/logging,
+	)
 	gift_type =  /datum/ego_gifts/loggging
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -45,7 +46,7 @@
 		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
 		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
 		// Ozma = 2,
-		// Lies = 1.5
+		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
 	)
 
 	var/flurry_cooldown = 0
@@ -249,6 +250,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
@@ -289,8 +291,8 @@
 		to_chat(user, span_userdanger("Stands up!"))
 		datum_reference.qliphoth_change(-2)
 
-/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user)
-	.=..()
+/mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	layer = LARGE_MOB_LAYER
 	icon_state = icon_living
 	if (!isnull(user))

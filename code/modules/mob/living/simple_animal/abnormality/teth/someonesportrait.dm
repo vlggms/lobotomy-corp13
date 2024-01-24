@@ -7,12 +7,13 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "someones_portrait"
 	icon_living = "someones_portrait"
+	portrait = "someonesportrait"
 	threat_level = TETH_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,
 		ABNORMALITY_WORK_INSIGHT = list(30, 20, 10, 0, 0),
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 45, 40, 40, 40),
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 50, 50, 50)
+		ABNORMALITY_WORK_REPRESSION = list(55, 55, 50, 50, 50),
 	)
 	work_damage_amount = 7
 	work_damage_type = WHITE_DAMAGE
@@ -20,7 +21,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/snapshot,
-		/datum/ego_datum/armor/snapshot
+		/datum/ego_datum/armor/snapshot,
 	)
 	gift_type = /datum/ego_gifts/snapshot
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -37,6 +38,7 @@
 	DestroyLights()
 
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if (!(user.sanity_lost))
 		PanicUser(user, TRUE)
 

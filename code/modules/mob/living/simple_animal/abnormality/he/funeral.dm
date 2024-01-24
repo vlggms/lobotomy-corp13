@@ -5,6 +5,7 @@
 	icon_state = "funeral"
 	icon_living = "funeral"
 	icon_dead = "funeral_dead"
+	portrait = "funeral"
 	del_on_death = FALSE
 	maxHealth = 1350 //I am a menace to society.
 	health = 1350
@@ -23,23 +24,23 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 45, 40, 0, 0),
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 45, 40, 0, 0),
+		ABNORMALITY_WORK_INSIGHT = 50,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 60, 60, 60),
+	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 16
-	deathmessage = "gently descends into its own coffin."
+	death_message = "gently descends into its own coffin."
 	base_pixel_x = -16
 	pixel_x = -16
 
 	ego_list = list(
 		/datum/ego_datum/weapon/solemnvow,
 		/datum/ego_datum/weapon/solemnlament,
-		/datum/ego_datum/armor/solemnlament
-		)
+		/datum/ego_datum/armor/solemnlament,
+	)
 	gift_type =  /datum/ego_gifts/solemnlament
 	gift_message = "The butterflies are waiting for the end of the world."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -267,6 +268,7 @@
 //he die
 
 /mob/living/simple_animal/hostile/abnormality/funeral/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(80))
 		datum_reference.qliphoth_change(-1)
 	return

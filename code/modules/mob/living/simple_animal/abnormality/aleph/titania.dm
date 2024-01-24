@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "titania"
 	icon_living = "titania"
+	portrait = "titania"
 	maxHealth = 3500
 	health = 3500
 	is_flying_animal = TRUE
@@ -13,8 +14,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 45, 50),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 10, 20, 35),
-		ABNORMALITY_WORK_REPRESSION = 0
-			)
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	start_qliphoth = 3
 	move_to_delay = 4
 
@@ -30,8 +31,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/soulmate,
-		/datum/ego_datum/armor/soulmate
-		)
+		/datum/ego_datum/armor/soulmate,
+	)
 	gift_type = /datum/ego_gifts/soulmate
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -223,8 +224,8 @@
 
 
 //Breach, work, 'n' stuff
-/mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	ChooseNemesis()
 	addtimer(CALLBACK(src, .proc/FairyLoop), 10 SECONDS)	//10 seconds from now you start spawning fairies
 	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
@@ -240,6 +241,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/titania/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 

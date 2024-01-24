@@ -22,18 +22,18 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 40,
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = 40,
-						ABNORMALITY_WORK_REPRESSION = 10
-						)
+		ABNORMALITY_WORK_INSTINCT = 40,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = 40,
+		ABNORMALITY_WORK_REPRESSION = 10,
+	)
 	work_damage_amount = 7
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/alleyway,
-		/datum/ego_datum/armor/alleyway
-		)
+		/datum/ego_datum/armor/alleyway,
+	)
 
 	gift_type =  /datum/ego_gifts/alleyway
 	light_color = "FFFFFFF"
@@ -46,35 +46,37 @@
 		"#Another night, another shift.",
 		"#Stay safe out here.",
 		"#It's not safe to roam the streets at night.",
-		"#Be careful of what may lie in the dark."
+		"#Be careful of what may lie in the dark.",
 	)
 	var/speak_alert = list(
 		"Creatures roam the night, you should find shelter.",
 		"The night has become home to many creatures of the dark, be careful.",
 		"It's not safe out, return home.",
 		"This darkness hides evil within it, stay safe.",
-		"I pray the beings of the night return to their dens soon..."
+		"I pray the beings of the night return to their dens soon...",
 	)
 	var/speak_attacked_human = list(
 		"#Nothing better to do than hit the Watchman..?",
 		"#Kids these days...",
 		"#The audacity of some people..!",
-		"#May your woes be many and your days few."
+		"#May your woes be many and your days few.",
 	)
 	var/speak_attacked_monster = list(
 		"Begone, foul creature of the night!",
 		"Your kind are unwelcome here!",
 		"Never should have come here!",
-		"This darkness is not for you and you alone, monster!"
+		"This darkness is not for you and you alone, monster!",
 	)
 	// Breached Abno tracker.
 	var/list/dangers = list()
 
 /mob/living/simple_animal/hostile/abnormality/watchman/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/watchman/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(30))
 		datum_reference.qliphoth_change(-1)
 	return
@@ -89,8 +91,8 @@
 	user.hallucination += 20	//You're gonna be hallucinating for a while
 
 
-/mob/living/simple_animal/hostile/abnormality/watchman/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/watchman/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	set_light(30)	//Makes everything around it really dark, That's all it does lol
 
 

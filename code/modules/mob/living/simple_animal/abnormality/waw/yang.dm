@@ -6,6 +6,7 @@
 	icon_living = "yang"
 	var/icon_breach = "yang_breach"
 	icon_dead = "yang_slain"
+	portrait = "yang"
 	is_flying_animal = TRUE
 	maxHealth = 800	//It is helpful and therefore weak.
 	health = 800
@@ -23,25 +24,25 @@
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
-						"Release" = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+		"Release" = 0,
+	)
 	max_boxes = 20
 	success_boxes = 16
 	neutral_boxes = 9
 
 	ego_list = list(
 		/datum/ego_datum/weapon/assonance,
-		/datum/ego_datum/armor/assonance
-		)
+		/datum/ego_datum/armor/assonance,
+	)
 	gift_type = /datum/ego_gifts/assonance
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/yin = 5 // TAKE THE FISH. DO IT NOW.
+		/mob/living/simple_animal/hostile/abnormality/yin = 5, // TAKE THE FISH. DO IT NOW.
 	)
 
 	//Melee
@@ -214,11 +215,12 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/yang/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/yang/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/yang/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_state = icon_breach
 	SSlobotomy_events.yang_downed = FALSE
 

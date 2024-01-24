@@ -22,8 +22,8 @@
 	base_pixel_x = -96
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = TRUE
-	deathmessage = "finally stops moving, falling to the ground."
-	deathsound = 'sound/abnormalities/apocalypse/dead.ogg'
+	death_message = "finally stops moving, falling to the ground."
+	death_sound = 'sound/abnormalities/apocalypse/dead.ogg'
 
 	loot = list(
 		/obj/item/ego_weapon/twilight,
@@ -643,7 +643,6 @@
 /datum/ai_controller/insane/enchanted
 	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
 	var/last_message = 0
-	var/list/current_path = list()
 
 /datum/ai_behavior/say_line/insanity_enchanted
 	lines = list(

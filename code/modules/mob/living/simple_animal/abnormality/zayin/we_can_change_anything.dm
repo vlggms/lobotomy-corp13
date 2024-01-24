@@ -4,6 +4,7 @@
 	desc = "A human sized container with spikes inside it. You shouldn't enter it"
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "wecanchange"
+	portrait = "we_can_change_anything"
 	maxHealth = 1000
 	health = 1000
 	threat_level = ZAYIN_LEVEL
@@ -13,8 +14,8 @@
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_REPRESSION = list(80, 85, 90, 95, 100),
-		"Enter machine" = 100 //"Go inside the torture machine, it'll be fun they said"
-		)
+		"Enter machine" = 100, //"Go inside the torture machine, it'll be fun they said"
+	)
 
 	charger = TRUE
 	charge_distance = 8
@@ -31,8 +32,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/change,
 		/datum/ego_datum/armor/change,
-		/datum/ego_datum/weapon/iron_maiden
-		)
+		/datum/ego_datum/weapon/iron_maiden,
+	)
 
 	gift_type =  /datum/ego_gifts/change
 	gift_message = "Your heart beats with new vigor."
@@ -40,7 +41,7 @@
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
 	var/grinding = FALSE
@@ -164,7 +165,7 @@
 		return
 	grinding = TRUE
 	var/list/AoE = list()
-	visible_message("<span class='userdanger'>[src] opens wide!</span>", "<span class='nicegreen'>Time to begin another productive day!</span>")
+	visible_message(span_warning("[src] opens wide!"), span_nicegreen("Time to begin another productive day!"))
 	for(var/turf/open/T in view(2, src))
 		AoE += T
 		new /obj/effect/temp_visual/cult/sparks(T)

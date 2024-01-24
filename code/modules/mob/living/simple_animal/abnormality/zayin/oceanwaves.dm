@@ -3,6 +3,7 @@
 	desc = "An orange vending machine. Reminds you of home."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "oceanicwaves"
+	portrait = "oceanicwaves"
 	maxHealth = 600
 	health = 600
 	threat_level = ZAYIN_LEVEL
@@ -11,8 +12,8 @@
 		ABNORMALITY_WORK_INSTINCT = 70,
 		ABNORMALITY_WORK_INSIGHT = 70,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 50
-		)
+		ABNORMALITY_WORK_REPRESSION = 50,
+	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
@@ -21,8 +22,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/oceanic,
-		/datum/ego_datum/armor/oceanic
-		)
+		/datum/ego_datum/armor/oceanic,
+	)
 	gift_type = /datum/ego_gifts/oceanic
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -45,7 +46,8 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/sali,
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mental,
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/morphine,
-		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mannitol,)
+		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mannitol,
+	)
 
 	var/list/badsoders = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/spacedrugs,
@@ -55,11 +57,13 @@
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/lexorin,
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/lsd,
 		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/clh,
-		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mute,)
+		/obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mute,
+	)
 	var/currentvend
 
 //Shrimple work stuff
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	for(var/i = 1 to 3)
 		//Randomize the soders then vend.
 		switch(rand(1, 10))
@@ -74,6 +78,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	for(var/i = 1 to 3)
 		//Randomize the soders then vend.
 		switch(rand(1, 10))
@@ -88,6 +93,7 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/oceanicwaves/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	for(var/i = 1 to 3)
 		//Randomize the soders then vend.
 		switch(rand(1, 10))
@@ -126,17 +132,17 @@
 	nodamage = TRUE
 	spread = 15
 	var/list/CIA_EASY = list(
-						/datum/reagent/drug/space_drugs,
-						/datum/reagent/drug/nicotine,
-						/datum/reagent/drug/methamphetamine,
-						/datum/reagent/toxin/mutetoxin,
-						)
+		/datum/reagent/drug/space_drugs,
+		/datum/reagent/drug/nicotine,
+		/datum/reagent/drug/methamphetamine,
+		/datum/reagent/toxin/mutetoxin,
+	)
 	var/list/CIA_HARD = list(
-						/datum/reagent/toxin/lexorin,
-						/datum/reagent/toxin/carpotoxin,
-						/datum/reagent/toxin/mindbreaker,
-						/datum/reagent/drug/crank
-						)
+		/datum/reagent/toxin/lexorin,
+		/datum/reagent/toxin/carpotoxin,
+		/datum/reagent/toxin/mindbreaker,
+		/datum/reagent/drug/crank,
+	)
 	var/list/current_reagents = list()
 
 /obj/projectile/oceanic/Initialize()
@@ -173,52 +179,100 @@
 
 //Drugged up soders
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/spacedrugs
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/drug/space_drugs = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/drug/space_drugs = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/nicotine
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/drug/nicotine = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/drug/nicotine = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/crank
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/drug/crank = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/drug/crank = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/meth
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/drug/methamphetamine = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/drug/methamphetamine = 10,
+	)
 
 //Toxic Sodas
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/lexorin
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 10, /datum/reagent/toxin/lexorin = 5)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 10,
+		/datum/reagent/toxin/lexorin = 5,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/carpotoxin
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 10, /datum/reagent/toxin/carpotoxin = 5)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 10,
+		/datum/reagent/toxin/carpotoxin = 5,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/lsd
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/toxin/mindbreaker = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/toxin/mindbreaker = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/clh
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/toxin/chloralhydrate = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/toxin/chloralhydrate = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mute
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/toxin/mutetoxin = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/toxin/mutetoxin = 10,
+	)
 
 //Random healing soders
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/oxan
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/medicine/oxandrolone = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/medicine/oxandrolone = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/omni
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 10, /datum/reagent/medicine/omnizine = 5)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 10,
+		/datum/reagent/medicine/omnizine = 5,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/penacid
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/medicine/pen_acid = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/medicine/pen_acid = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/sali
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/medicine/sal_acid = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/medicine/sal_acid = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mental
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/medicine/mental_stabilizator = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/medicine/mental_stabilizator = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/morphine
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/medicine/morphine = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/medicine/morphine = 10,
+	)
 
 /obj/item/reagent_containers/food/drinks/soda_cans/oceanwave/mannitol
-	list_reagents = list(/datum/reagent/consumable/wellcheers_purple/oceanwave = 5, /datum/reagent/medicine/mannitol = 10)
+	list_reagents = list(
+		/datum/reagent/consumable/wellcheers_purple/oceanwave = 5,
+		/datum/reagent/medicine/mannitol = 10,
+	)
 

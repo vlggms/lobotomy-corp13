@@ -8,6 +8,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wrath"
 	icon_living = "wrath"
+	portrait = "wrath_servant"
 	faction = list("wrath")
 	speak_emote = list()
 	gender = FEMALE
@@ -28,7 +29,7 @@
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 50, 55, 60),
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 70, 60, 50, 40),
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 40, 40, 50),
-		"Request" = 100
+		"Request" = 100,
 	)
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
@@ -39,13 +40,13 @@
 	rapid_melee = 2
 	attack_sound = 'sound/abnormalities/wrath_servant/small_smash1.ogg'
 	stat_attack = HARD_CRIT
-	deathmessage = "vanishes from existance."
+	death_message = "vanishes from existance."
 
 	can_patrol = FALSE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blind_rage,
-		/datum/ego_datum/armor/blind_rage
+		/datum/ego_datum/armor/blind_rage,
 	)
 	gift_type = /datum/ego_gifts/blind_rage
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
@@ -54,7 +55,7 @@
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
-		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
 
 	var/friendly = TRUE
@@ -79,8 +80,8 @@
 	//PLAYABLES ACTIONS
 	attack_action_types = list(
 		/datum/action/cooldown/wrath_smash,
-		/datum/action/cooldown/wrath_dash
-		)
+		/datum/action/cooldown/wrath_dash,
+	)
 
 /datum/action/cooldown/wrath_smash
 	name = "Blind Rage"
@@ -272,7 +273,11 @@
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			AdjustInstability(4) // Was 2
 			if(!(user in friend_ship) && (pe >= datum_reference.success_boxes))
-				say(pick("You want to be my friend..?", "'Friend' is not a word in the book of law...", "I can be a friend that you deserve."))
+				say(pick(
+					"You want to be my friend..?",
+					"\"Friend\" is not a word in the book of law...",
+					"I can be a friend that you deserve.",
+				))
 				friend_ship += user
 				AdjustInstability(8) // Was 5
 				return
@@ -319,7 +324,8 @@
 	BreachEffect()
 	return
 
-/mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = TRUE
 	if(!datum_reference)
 		friendly = FALSE
 	if(friendly)
@@ -747,7 +753,7 @@
 	icon_living = "stave"
 	maxHealth = 250
 	health = 250
-	deathmessage = "crumples to dust."
+	death_message = "crumples to dust."
 
 	a_intent = INTENT_HARM
 	move_resist = MOVE_FORCE_STRONG

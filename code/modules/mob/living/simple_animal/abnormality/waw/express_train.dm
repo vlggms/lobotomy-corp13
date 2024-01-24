@@ -4,17 +4,18 @@
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "express_booth0"
 	icon_living = "express_booth0"
+	portrait = "express_train"
 	faction = list("hostile")
 	speak_emote = list("drones")
 
 	threat_level = WAW_LEVEL
 	start_qliphoth = 4
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 35,
-						ABNORMALITY_WORK_INSIGHT = 35,
-						ABNORMALITY_WORK_ATTACHMENT = 35,
-						ABNORMALITY_WORK_REPRESSION = 35
-						)
+		ABNORMALITY_WORK_INSTINCT = 35,
+		ABNORMALITY_WORK_INSIGHT = 35,
+		ABNORMALITY_WORK_ATTACHMENT = 35,
+		ABNORMALITY_WORK_REPRESSION = 35,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	pixel_x = -16
@@ -23,8 +24,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/intentions,
 		/datum/ego_datum/armor/intentions,
-		/datum/ego_datum/weapon/laststop
-		)
+		/datum/ego_datum/weapon/laststop,
+	)
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	var/meltdown_tick = 60 SECONDS

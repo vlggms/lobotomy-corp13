@@ -7,6 +7,7 @@
 	icon_state = "palehorse"
 	icon_living = "palehorse"
 	icon_dead = "palehorse"
+	portrait = "pale_horse"
 	speak_emote = list("neighs")
 	threat_level = TETH_LEVEL
 	maxHealth = 800
@@ -19,18 +20,18 @@
 	start_qliphoth = 4
 	is_flying_animal = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 55,
-						ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50)
-						)
+		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSIGHT = 50,
+		ABNORMALITY_WORK_ATTACHMENT = 55,
+		ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50),
+	)
 	work_damage_amount = 3
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/revelation,
-		/datum/ego_datum/armor/revelation
-		)
+		/datum/ego_datum/armor/revelation,
+	)
 	gift_type =  /datum/ego_gifts/revelation
 	gift_message = "He will wipe away every tear from their eyes, and death shall be evermore."
 
@@ -46,6 +47,7 @@
 
 //work stuff
 /mob/living/simple_animal/hostile/abnormality/pale_horse/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 	return
 

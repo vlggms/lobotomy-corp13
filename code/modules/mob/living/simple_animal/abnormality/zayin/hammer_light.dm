@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "hammer_pedestal"
 	icon_living = "hammer_pedestal"
+	portrait = "hammer_light"
 	pixel_x = -16
 	base_pixel_x = -16
 	pixel_y = -8
@@ -13,19 +14,19 @@
 	threat_level = ZAYIN_LEVEL
 	can_breach = FALSE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 70,
-						ABNORMALITY_WORK_INSIGHT = 70,
-						ABNORMALITY_WORK_ATTACHMENT = 70,
-						ABNORMALITY_WORK_REPRESSION = 70
-						)
+		ABNORMALITY_WORK_INSTINCT = 70,
+		ABNORMALITY_WORK_INSIGHT = 70,
+		ABNORMALITY_WORK_ATTACHMENT = 70,
+		ABNORMALITY_WORK_REPRESSION = 70,
+	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	max_boxes = 8
 
 	ego_list = list(
 		/datum/ego_datum/weapon/evening,
-		/datum/ego_datum/armor/evening
-		)
+		/datum/ego_datum/armor/evening,
+	)
 	gift_type = /datum/ego_gifts/evening
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
 	//add an abnochem at some point. Looking at you, nutter
@@ -43,10 +44,12 @@
 	var/usable_cooldown_time = 5 MINUTES
 
 	var/list/lock_sounds = list(
-	'sound/abnormalities/lighthammer/hammer_filterOut1.ogg','sound/abnormalities/lighthammer/hammer_filterOut2.ogg'
+		'sound/abnormalities/lighthammer/hammer_filterOut1.ogg',
+		'sound/abnormalities/lighthammer/hammer_filterOut2.ogg',
 	)
 	var/list/pickup_sounds = list(
-	'sound/abnormalities/lighthammer/hammer_usable1.ogg','sound/abnormalities/lighthammer/hammer_usable2.ogg'
+		'sound/abnormalities/lighthammer/hammer_usable1.ogg',
+		'sound/abnormalities/lighthammer/hammer_usable2.ogg',
 	)
 
 //Lock/Unlocking system

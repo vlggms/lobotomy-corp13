@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "so_that_no_cry"
 	icon_living = "so_that_no_cry"
+	portrait = "so_that_no_cry"
 	maxHealth = 1200 //High health, can be stunned.
 	health = 1200
 	rapid_melee = 2
@@ -25,8 +26,8 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = list(45, 50, 55, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = 60
-				)
+		ABNORMALITY_WORK_REPRESSION = 60,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	base_pixel_x = -12
@@ -34,8 +35,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/red_sheet,
-		/datum/ego_datum/armor/red_sheet
-		)
+		/datum/ego_datum/armor/red_sheet,
+	)
 	gift_type = /datum/ego_gifts/red_sheet
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 

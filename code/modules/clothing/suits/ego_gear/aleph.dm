@@ -63,7 +63,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "mimicry"
 	desc = "It takes human hide to protect human flesh. To protect humans, you need something made out of humans."
 	icon_state = "mimicry"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 50) // 220
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -102,7 +102,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "It is holding all of the laughter of those who cannot be seen here."
 	icon_state = "smile"
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 90, PALE_DAMAGE = 50) // 220
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -376,7 +376,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "flesh is willing"
 	desc = "Is it immoral if you want it to happen?"
 	icon_state = "willing"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 30, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 220
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -388,7 +388,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "Pink"
 	desc = "A pink military uniform. Its pockets allow the wearer to carry various types of ammunition. It soothes the wearer; they say pink provides psychological comfort to many people."
 	icon_state = "pink"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)//240
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 50) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -404,6 +404,20 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/ultimate_christmas
+	name = "ultimate christmas"
+	desc = "Christmas is the jolliest time of the year, and Rudolta is always ready for it."
+	icon = 'icons/obj/clothing/ego_gear/abnormality/aleph.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/aleph.dmi'
+	icon_state = "ultimate_christmas"
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 50) // 240
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80

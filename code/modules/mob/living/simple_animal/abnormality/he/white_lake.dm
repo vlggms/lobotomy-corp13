@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "white_lake"
 	icon_living = "white_lake"
+	portrait = "white_lake"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL
@@ -14,7 +15,7 @@
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 40
+		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
@@ -26,8 +27,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wings,
-		/datum/ego_datum/armor/wings
-		)
+		/datum/ego_datum/armor/wings,
+	)
 	gift_type = /datum/ego_gifts/waltz
 	gift_chance = 0
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
@@ -40,10 +41,12 @@
 	return chance
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 60)		//Doesn't like these people
 		champion = user
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)	//Lower it again.
@@ -143,10 +146,10 @@
 
 /datum/ai_behavior/say_line/insanity_whitelake
 	lines = list(
-				"I will protect her!!",
-				"You're in the way!",
-				"I will dance with her forever!"
-				)
+		"I will protect her!!",
+		"You're in the way!",
+		"I will dance with her forever!",
+	)
 //CHAMPION
 //Sets the defenses of the champion
 /datum/status_effect/champion

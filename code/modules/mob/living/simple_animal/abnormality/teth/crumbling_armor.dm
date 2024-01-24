@@ -4,6 +4,7 @@
 	desc = "A thoroughly aged suit of samurai style armor with a V shaped crest on the helmet. It appears desuetude."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "crumbling"
+	portrait = "crumbling_armor"
 	maxHealth = 600
 	health = 600
 	start_qliphoth = 3
@@ -12,15 +13,15 @@
 		ABNORMALITY_WORK_INSTINCT = list(50, 50, 55, 55, 60),
 		ABNORMALITY_WORK_INSIGHT = 40,
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 65, 65, 70),
+	)
 	work_damage_amount = 5
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/daredevil,
-		/datum/ego_datum/armor/daredevil
-		)
+		/datum/ego_datum/armor/daredevil,
+	)
 	gift_type = null
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -37,6 +38,7 @@
 		icon_state = "megalovania"
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(1)
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/proc/Cut_Head(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user, work_type)

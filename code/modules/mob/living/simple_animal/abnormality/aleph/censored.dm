@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "censored"
 	icon_living = "censored"
+	portrait = "censored"
 	pixel_x = -16
 	base_pixel_x = -16
 	speak_emote = list("screeches")
@@ -16,7 +17,6 @@
 	fear_level = ALEPH_LEVEL + 3
 	health = 4000
 	maxHealth = 4000
-	obj_damage = 600
 	damage_coeff = list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 75
@@ -27,19 +27,19 @@
 	start_qliphoth = 2
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(80, 70, 60, 55, 50),
-						ABNORMALITY_WORK_INSIGHT = list(90, 80, 70, 65, 60),
-						ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 45, 40),
-						ABNORMALITY_WORK_REPRESSION = 0,
-						"Sacrifice" = 999,
-						)
+		ABNORMALITY_WORK_INSTINCT = list(80, 70, 60, 55, 50),
+		ABNORMALITY_WORK_INSIGHT = list(90, 80, 70, 65, 60),
+		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 45, 40),
+		ABNORMALITY_WORK_REPRESSION = 0,
+		"Sacrifice" = 999,
+	)
 	work_damage_amount = 14
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/censored,
-		/datum/ego_datum/armor/censored
-		)
+		/datum/ego_datum/armor/censored,
+	)
 
 	gift_type =  /datum/ego_gifts/censored
 	gift_message = "You feel disgusted just looking at it."
@@ -67,8 +67,8 @@
 	var/list/result_text_list = list(
 		"3" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"4" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
-		"5" = list("It's all over...", "What...")
-		)
+		"5" = list("It's all over...", "What..."),
+	)
 	return pick(result_text_list[level])
 
 /* Combat */
@@ -215,11 +215,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/censored/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/censored/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/censored/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	icon_living = "censored_breach"
 	icon_state = icon_living
 	return
@@ -238,7 +239,6 @@
 	/* Stats */
 	health = 600
 	maxHealth = 600
-	obj_damage = 300
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 25

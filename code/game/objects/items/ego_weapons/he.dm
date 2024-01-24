@@ -250,8 +250,8 @@
 	icon_state = "logging"
 	force = 33
 	damtype = RED_DAMAGE
-	attack_verb_continuous = "chops"
-	attack_verb_simple = "chop"
+	attack_verb_continuous = list("chops")
+	attack_verb_simple = list("chop")
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
@@ -374,8 +374,8 @@
 	icon_state = "courage"
 	force = 10 //if 4 people are around, the weapon can deal up to 70 damage per strike, but alone it's a glorified baton.
 	damtype = RED_DAMAGE
-	attack_verb_continuous = "slash"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = list("slashes")
+	attack_verb_simple = list("slash")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -452,8 +452,8 @@
 	icon_state = "pleasure"
 	force = 30
 	damtype = WHITE_DAMAGE
-	attack_verb_continuous = "slash"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = list("slashes")
+	attack_verb_simple = list("slash")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
@@ -1025,6 +1025,7 @@
 	name = "dimensional ripple"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	icon_state = "warp2"
+	force = 24
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32
@@ -1497,7 +1498,7 @@
 	attack_verb_simple = list("poke", "slash")
 	hitsound = 'sound/weapons/fixer/generic/sword1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40
+							PRUDENCE_ATTRIBUTE = 40
 							)
 	var/firing_cooldown = 0
 	var/hit_cooldown_time = 10 SECONDS
@@ -1748,3 +1749,85 @@
 
 /obj/item/ego_weapon/nixie/get_clamped_volume()
 	return 50
+
+/obj/item/ego_weapon/sunshower //TD
+	name = "sunshower"
+	desc = "I cannot protect you from this rain, but I can guard you from false kindness."
+	special = "This weapon gains 1 poise for every attack. 1 poise gives you a 2% chance to crit at 3x damage, stacking linearly. Critical hits reduce poise to 0."
+	icon_state = "sunshower"
+	force = 17
+	attack_speed = 0.5
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("slices", "cleaves", "chops")
+	attack_verb_simple = list("slice", "cleave", "chop")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							TEMPERANCE_ATTRIBUTE = 40
+							)
+	var/poise = 0
+
+/obj/item/ego_weapon/sunshower/examine(mob/user)
+	. = ..()
+	. += "Current Poise: [poise]/20."
+
+/obj/item/ego_weapon/sunshower/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	poise+=1
+	if(poise>= 20)
+		poise = 20
+
+	//Crit stuff, taken from fourleaf, so thanks to whomever coded that!
+	if(prob(poise*2))
+		force*=3
+		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		poise = 0
+	..()
+	force = initial(force)
+
+/obj/item/ego_weapon/uturn
+	name = "u-turn"
+	desc = "It's a large scythe, that probably hurts a lot."
+	icon_state = "uturn"
+	force = 30
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("whips", "lashes", "tears")
+	attack_verb_simple = list("whip", "lash", "tear")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+	var/can_spin = TRUE
+	var/spinning = FALSE
+
+/obj/item/ego_weapon/uturn/attack(mob/living/target, mob/living/user)
+	if(spinning)
+		return FALSE
+	..()
+	can_spin = FALSE
+	addtimer(CALLBACK(src, .proc/spin_reset), 12)
+
+/obj/item/ego_weapon/uturn/proc/spin_reset()
+	can_spin = TRUE
+
+/obj/item/ego_weapon/uturn/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(!can_spin)
+		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+		return
+	if(do_after(user, 12, src))
+		can_spin = TRUE
+		addtimer(CALLBACK(src, .proc/spin_reset), 12)
+		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
+		for(var/turf/T in orange(1, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+
+		for(var/mob/living/L in range(1, user))
+			var/aoe = 30
+			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+			var/justicemod = 1 + userjust/100
+			aoe*=justicemod
+			if(L == user || ishuman(L))
+				continue
+			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)

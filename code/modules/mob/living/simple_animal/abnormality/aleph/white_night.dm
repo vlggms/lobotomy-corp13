@@ -8,6 +8,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "white_night"
 	icon_living = "white_night"
+	portrait = "white_night"
 	health_doll_icon = "white_night"
 	faction = list("hostile", "apostle")
 	friendly_verb_continuous = "stares down"
@@ -20,18 +21,18 @@ GLOBAL_LIST_EMPTY(apostles)
 	pixel_y = -16
 	base_pixel_y = -16
 	loot = list(/obj/item/ego_weapon/paradise)
-	deathmessage = "evaporates in a moment, leaving heavenly light and feathers behind."
-	deathsound = 'sound/abnormalities/whitenight/apostle_death.ogg'
+	death_message = "evaporates in a moment, leaving heavenly light and feathers behind."
+	death_sound = 'sound/abnormalities/whitenight/apostle_death.ogg'
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	fear_level = ALEPH_LEVEL + 1
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45)
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45),
+	)
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
 	can_patrol = FALSE
@@ -42,13 +43,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	light_power = 3
 
 	ego_list = list(
-		/datum/ego_datum/armor/paradise
-		)
+		/datum/ego_datum/armor/paradise,
+	)
 	gift_type =  /datum/ego_gifts/paradise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/onesin = 5
+		/mob/living/simple_animal/hostile/abnormality/onesin = 5,
 	)
 
 	var/holy_revival_cooldown
@@ -69,7 +70,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		"2" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"3" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
 		"4" = list("So this is God...", "My existence is meaningless...", "We are petty beings..."),
-		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe...")
+		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe..."),
 		)
 	return pick(result_text_list[level])
 
@@ -191,6 +192,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
@@ -198,12 +200,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-/mob/living/simple_animal/hostile/abnormality/white_night/BreachEffect(mob/living/carbon/human/user)
+/mob/living/simple_animal/hostile/abnormality/white_night/BreachEffect(mob/living/carbon/human/user, breach_type)
 	holy_revival_cooldown = world.time + holy_revival_cooldown_base
-	..()
+	. = ..()
 	for(var/mob/M in GLOB.player_list)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			heretics += M

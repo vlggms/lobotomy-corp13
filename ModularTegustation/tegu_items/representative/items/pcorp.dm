@@ -30,7 +30,7 @@
 	STR.set_holdable(list(
 		/obj/item/gun/ego_gun,
 		/obj/item/ego_weapon,
-		))
+	))
 
 /obj/item/storage/belt/egoarmor
 	name = "ego armor belt"
@@ -52,8 +52,8 @@
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 100
 	STR.set_holdable(list(
-		/obj/item/clothing/suit/armor/ego_gear
-		))
+		/obj/item/clothing/suit/armor/ego_gear,
+	))
 
 //Heavy backpacks
 /obj/item/storage/backpack/pcorp
@@ -121,5 +121,39 @@
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 32
 	STR.set_holdable(GLOB.small_ego)
+
+
+//Gloves
+/obj/item/clothing/gloves/pcorp
+	name = "P-Corp Dimensional Containment Gloves"
+	desc = "Holds 3 small ego weapons."
+	icon_state = "tackledolphin"
+	w_class = WEIGHT_CLASS_BULKY
+	drag_slowdown = 1
+
+/obj/item/clothing/gloves/pcorp/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 3
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 100
+	STR.set_holdable(GLOB.small_ego)
+
+//better gloves
+/obj/item/clothing/gloves/pcorpbig
+	name = "P-Corp Dimensional Containment Gloves MK2"
+	desc = "Holds a single large EGO weapon."
+	icon_state = "pcorp"
+	w_class = WEIGHT_CLASS_BULKY
+	drag_slowdown = 1
+
+/obj/item/clothing/gloves/pcorpbig/ComponentInitialize()
+	. = ..()
+	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
+	STR.max_items = 3
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 100
+	STR.set_holdable(GLOB.small_ego)
+
 
 

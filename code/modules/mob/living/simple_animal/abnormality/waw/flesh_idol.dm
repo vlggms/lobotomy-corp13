@@ -3,6 +3,7 @@
 	desc = "A cross with flesh stapled in the middle."
 	icon = 'ModularTegustation/Teguicons/64x96.dmi'
 	icon_state = "flesh_idol"
+	portrait = "flesh_idol"
 	maxHealth = 600
 	health = 600
 	threat_level = WAW_LEVEL
@@ -12,8 +13,8 @@
 		ABNORMALITY_WORK_INSTINCT = 55,
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = 55
-			)
+		ABNORMALITY_WORK_REPRESSION = 55,
+	)
 	start_qliphoth = 1
 	max_boxes = 20
 	work_damage_amount = 0		//Work damage is later
@@ -21,8 +22,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/heart,
-		/datum/ego_datum/armor/heart
-		)
+		/datum/ego_datum/armor/heart,
+	)
 	gift_type = /datum/ego_gifts/heart
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
@@ -32,8 +33,15 @@
 	var/damage_amount = 7
 	var/run_num = 2		//How many things you breach
 
-	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
-				/mob/living/simple_animal/hostile/abnormality/white_night)
+	var/list/blacklist = list(
+		/mob/living/simple_animal/hostile/abnormality/melting_love,
+		/mob/living/simple_animal/hostile/abnormality/distortedform,
+		/mob/living/simple_animal/hostile/abnormality/white_night,
+		/mob/living/simple_animal/hostile/abnormality/nihil,
+		/mob/living/simple_animal/hostile/abnormality/galaxy_child,
+		/mob/living/simple_animal/hostile/abnormality/fetus,
+		/mob/living/simple_animal/hostile/abnormality/crying_children,
+	)
 
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/WorkComplete(mob/living/carbon/human/user, work_type, pe)
 	..()
@@ -57,9 +65,13 @@
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/Worktick(mob/living/carbon/human/user)
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
-
+	work_damage_type = damage
 	user.apply_damage(damage_amount, damage, null, user.run_armor_check(null, damage)) // take 5 random damage each time
+	WorkDamageEffect()
 
+//Prevents red work damage effecs from appearing
+/mob/living/simple_animal/hostile/abnormality/flesh_idol/WorktickFailure(mob/living/carbon/human/user)
+	return
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/ZeroQliphoth(mob/living/carbon/human/user)

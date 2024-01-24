@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "dmr_abnormality"
 	icon_living = "dmr_abnormality"
+	portrait = "dimension_refraction"
 	del_on_death = TRUE
 	pixel_x = -16
 	base_pixel_x = -16
@@ -22,18 +23,18 @@
 	move_to_delay = 6
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_INSIGHT = list(35, 40, 45, 50, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_INSIGHT = list(35, 40, 45, 50, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/diffraction,
-		/datum/ego_datum/armor/diffraction
-		)
+		/datum/ego_datum/armor/diffraction,
+	)
 	gift_type =  /datum/ego_gifts/diffraction
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -60,12 +61,13 @@
 	return FALSE
 
 /* Qliphoth/Breach effects */
-/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/BreachEffect(mob/living/carbon/human/user)
-	..()
+/mob/living/simple_animal/hostile/abnormality/dimensional_refraction/BreachEffect(mob/living/carbon/human/user, breach_type)
+	. = ..()
 	alpha = 30
 	addtimer(CALLBACK(src, .proc/Melter), cooldown_time)
 
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return

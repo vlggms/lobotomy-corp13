@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "nakednest_inert"
 	icon_living = "nakednest_inert"
+	portrait = "naked_nest"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 800
@@ -16,8 +17,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 55),
 		ABNORMALITY_WORK_INSIGHT = 0,
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 45, 45, 50),
-		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 40, 40)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 40, 40),
+	)
 	work_damage_amount = 14
 	work_damage_type = RED_DAMAGE
 	max_boxes = 22
@@ -26,8 +27,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/exuviae,
-		/datum/ego_datum/armor/exuviae
-		)
+		/datum/ego_datum/armor/exuviae,
+	)
 	gift_type =  /datum/ego_gifts/exuviae
 	gift_message = "You manage to shave off a patch of scales."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
@@ -39,22 +40,25 @@
 	ranged_cooldown_time = 1
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
-	deathmessage = "collapses as its residents flee."
-	deathsound = 'sound/effects/dismember.ogg'
+	death_message = "collapses as its residents flee."
+	death_sound = 'sound/effects/dismember.ogg'
 	var/serpentsnested = 4
 	var/origin_cooldown = 0
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	to_chat(user, span_notice("The serpents seem to avoid areas of their nest covered in this solution."))
 	new /obj/item/serpentspoison(get_turf(user))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(30 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/naked_nest/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	. = ..()
 	if(prob(60 + PERCENT((user.maxHealth - user.health)/ user.maxHealth)) && !user.NAKED_NESTED)
 		new /obj/item/organ/naked_nest(user)
 	return
@@ -255,7 +259,7 @@
 	icon_state = "nakednest_minion"
 	icon_living = "nakednest_minion"
 	icon_dead = "nakednest_miniondead"
-	deathmessage = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
+	death_message = "collapses into a unrecognizable pile of scales, shredded clothing, and broken serpents."
 	melee_damage_lower = 10
 	melee_damage_upper = 30
 	melee_damage_type = RED_DAMAGE
