@@ -28,7 +28,7 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, "<span class='userdanger'>Allons-y!</span>")
+	to_chat(user, "<span class='danger'>Allons-y!</span>")
 	force*=multiplier
 	reach = 2
 	//Dodging backwards
@@ -69,11 +69,11 @@
 /obj/item/ego_weapon/city/cinq/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
-	to_chat(user, "<span class='notice'>� bout de souffle.</span>")
+	to_chat(user, "<span class='notice'>A tout de souffle.</span>")
 
 /obj/item/ego_weapon/city/cinq/proc/Reset(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
 	ready = TRUE
-	to_chat(user, "<span class='notice'>Pr�t � nouveau.</span>")
+	to_chat(user, "<span class='notice'>Pret a nouveau.</span>")
 
