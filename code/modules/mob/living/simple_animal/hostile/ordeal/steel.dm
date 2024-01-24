@@ -51,7 +51,7 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/LoseAggro()
 	. = ..()
 	a_intent_change(INTENT_HELP)
-	if(leader)
+	if(leader && stat != DEAD)
 		Goto(leader,move_to_delay,1)
 
 //More Mutated Subtype of Dawns, they are fast and hit faster.
