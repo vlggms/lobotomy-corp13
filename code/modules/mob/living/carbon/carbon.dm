@@ -203,9 +203,8 @@
 	visible_message(span_danger("[src] [verb_text][plural_s(verb_text)] [thrown_thing][power_throw_text]"), \
 					span_danger("You [verb_text] [thrown_thing][power_throw_text]"))
 	log_message("has thrown [thrown_thing] [power_throw_text]", LOG_ATTACK)
-	var/extra_throw_range = HAS_TRAIT(src, TRAIT_THROWINGARM) ? 2 : 0
 	newtonian_move(get_dir(target, src))
-	thrown_thing.safe_throw_at(target, thrown_thing.throw_range + extra_throw_range, max(1,thrown_thing.throw_speed + power_throw), src, null, null, null, move_force)
+	thrown_thing.safe_throw_at(target, thrown_thing.throw_range, max(1,thrown_thing.throw_speed + power_throw), src, null, null, null, move_force)
 
 /mob/living/carbon/proc/canBeHandcuffed()
 	return FALSE
