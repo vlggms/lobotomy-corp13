@@ -66,6 +66,7 @@
 	var/list/people_list = list() //list of people shepperd can mention
 	var/buddy_hit = FALSE
 	var/red_hit = FALSE // Controls Little Red Riding Hooded Mercenary's ability to be "hit" by slash attacks
+	var/combat_map = FALSE
 	//lines said during combat
 	var/list/combat_lines = list(
 		"Have at you!",
@@ -126,6 +127,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Initialize()
 	. = ..()
+	if(IsCombatMap())
+		combat_map = TRUE
+		faction |= "hostile"
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
 	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
 	//makes a list of people and abno to shit talk
@@ -290,7 +294,7 @@
 	if(stat == DEAD)
 		return
 	new /obj/effect/temp_visual/smash_effect(T)
-	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
+	for(var/mob/living/L in HurtInTurf(T, list(), slash_damage, BLACK_DAMAGE, check_faction = combat_map, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE))
 		if(L == awakened_buddy && !buddy_hit)
 			buddy_hit = TRUE //sometimes buddy get hit twice so we check if it got hit in this slash
 			awakened_buddy.adjustHealth(700) //it would take approximatively 9 slashes to take buddy down
