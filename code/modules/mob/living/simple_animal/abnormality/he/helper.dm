@@ -49,6 +49,7 @@
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
+	var/stuntime = 5 SECONDS
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
@@ -144,7 +145,7 @@
 			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/helper/disable.ogg', 75, 1)
-		SLEEP_CHECK_DEATH(5 SECONDS)
+		SLEEP_CHECK_DEATH(stuntime)
 		charging = FALSE
 		return
 	forceMove(T)

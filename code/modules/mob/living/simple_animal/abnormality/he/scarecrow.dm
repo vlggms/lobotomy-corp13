@@ -50,6 +50,8 @@
 
 	/// Can't move/attack when it's TRUE
 	var/finishing = FALSE
+	var/braineating = TRUE
+	var/healthmodifier = 0.05	// Can restore 30% of HP
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/CanAttack(atom/the_target)
 	if(finishing)
@@ -85,15 +87,16 @@
 				playsound(get_turf(src), 'sound/abnormalities/scarecrow/drink.ogg', 50, 1)
 				if(H.health < -120) //prevents infinite healing, corpse is too mangled
 					break
-				adjustBruteLoss(-(maxHealth*0.05)) // Can restore 30% of HP
+				adjustBruteLoss(-(maxHealth*healthmodifier))
 				H.adjustBruteLoss(20)
 				SLEEP_CHECK_DEATH(4)
 			if(!targets_from.Adjacent(H) || QDELETED(H))
 				finishing = FALSE
 				return
-			for(var/obj/item/organ/O in H.getorganszone(BODY_ZONE_HEAD, TRUE))
-				O.Remove(H)
-				QDEL_NULL(O)
+			if(braineating)
+				for(var/obj/item/organ/O in H.getorganszone(BODY_ZONE_HEAD, TRUE))
+					O.Remove(H)
+					QDEL_NULL(O)
 			finishing = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/FailureEffect(mob/living/carbon/human/user, work_type, pe)

@@ -3984,6 +3984,7 @@
 #include "ModularTegustation\tegu_items\gadgets\manager_bullets.dm"
 #include "ModularTegustation\tegu_items\gadgets\powered.dm"
 #include "ModularTegustation\tegu_items\gadgets\unpowered.dm"
+#include "ModularTegustation\tegu_items\rcorp\!abno_overwrites.dm"
 #include "ModularTegustation\tegu_items\rcorp\basecode.dm"
 #include "ModularTegustation\tegu_items\rcorp\gadgets.dm"
 #include "ModularTegustation\tegu_items\rcorp\itemspawner.dm"
