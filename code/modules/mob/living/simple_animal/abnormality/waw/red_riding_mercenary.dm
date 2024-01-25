@@ -439,6 +439,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 		else
 			manual_emote("perks up for a moment, then settles back down, looking annoyed.")
 		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
+		return
 	if(datum_reference.qliphoth_meter > 1)
 		if(client)
 			to_chat(src, span_notice("You hear something..."))
