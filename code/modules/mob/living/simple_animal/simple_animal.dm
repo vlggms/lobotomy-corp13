@@ -258,9 +258,9 @@
 	if(!is_type_in_list(O, food_type))
 		return ..()
 	if(stat == DEAD)
-		to_chat(user, "<span class='warning'>[src] is dead!</span>")
+		to_chat(user, span_warning("[src] is dead!"))
 		return
-	user.visible_message("<span class='notice'>[user] hand-feeds [O] to [src].</span>", "<span class='notice'>You hand-feed [O] to [src].</span>")
+	user.visible_message(span_notice("[user] hand-feeds [O] to [src]."), span_notice("You hand-feed [O] to [src]."))
 	qdel(O)
 	if(tame)
 		return
@@ -277,7 +277,7 @@
 /mob/living/simple_animal/examine(mob/user)
 	. = ..()
 	if(stat == DEAD)
-		. += "<span class='deadsay'>Upon closer examination, [p_they()] appear[p_s()] to be dead.</span>"
+		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
 
 
 /mob/living/simple_animal/update_stat()

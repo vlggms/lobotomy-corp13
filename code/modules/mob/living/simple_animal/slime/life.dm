@@ -202,7 +202,7 @@
 			if (transformeffects & SLIME_EFFECT_BLACK)
 				make_baby(drop_location(),FALSE,round(nutrition * 0.9),round(powerlevel / 4))
 		if (transformeffects & SLIME_EFFECT_GREEN)
-			visible_message("<span class='warning'>[src] slurps up [M]!</span>")
+			visible_message(span_warning("[src] slurps up [M]!"))
 			adjust_nutrition(100)
 			layer = initial(layer)
 			M.forceMove(src)

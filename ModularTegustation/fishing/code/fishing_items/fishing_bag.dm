@@ -58,11 +58,11 @@
 				show_message = TRUE
 			else
 				if(!spam_protection)
-					to_chat(user, "<span class='warning'>Your [name] is full and can't hold any more!</span>")
+					to_chat(user, span_warning("Your [name] is full and can't hold any more!"))
 					spam_protection = TRUE
 					continue
 	if(show_message)
 		playsound(user, "rustle", 50, TRUE)
-		user.visible_message("<span class='notice'>[user] scoops up the fish beneath [user.p_them()].</span>", \
-		"<span class='notice'>You scoop up the fish beneath you with your [name].</span>")
+		user.visible_message(span_notice("[user] scoops up the fish beneath [user.p_them()]."), \
+		span_notice("You scoop up the fish beneath you with your [name]."))
 	spam_protection = FALSE

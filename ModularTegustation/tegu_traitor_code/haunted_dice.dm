@@ -30,7 +30,7 @@
 	var/turf/T = get_turf(src)
 	playsound(T, 'sound/effects/phasein.ogg', 100, 1)
 	var/datum/effect_system/smoke_spread/smoke = new
-	src.visible_message("<span class='warning'>ROLL INITIATIVE!</span>")
+	src.visible_message(span_warning("ROLL INITIATIVE!"))
 	smoke.set_up(1, T)
 	smoke.start()
 
@@ -71,7 +71,7 @@
 /obj/item/storage/pill_bottle/encounter_dice/attack_self()
 	if(!rattled)
 		var/mob/living/carbon/H = usr
-		to_chat(usr, "<span class='notice'>You give the bag a rattle, for luck.</span>")
+		to_chat(usr, span_notice("You give the bag a rattle, for luck."))
 		rattled = TRUE
 		for(var/obj/item/dice/encounter/D in contents)
 			if(!D.owner)

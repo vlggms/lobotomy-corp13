@@ -34,7 +34,7 @@
 
 /obj/item/gun/medbeam/cyborg/process_fire(atom/target, mob/living/silicon/robot/user, message = TRUE, params = null, zone_override = "", bonus_spread = 0)
 	if(user.cell.charge < power_cost) //Check if we have enough power.
-		to_chat(user, "<span class='warning'>Power inadequate to initiate beam projection.</span>")
+		to_chat(user, span_warning("Power inadequate to initiate beam projection."))
 		LoseTarget()
 		return
 
@@ -49,11 +49,11 @@
 
 	if(!user || !target) //Sanity
 		LoseTarget()
-		to_chat(user, "<span class='warning'>No target or user detected. Aborting.</span>")
+		to_chat(user, span_warning("No target or user detected. Aborting."))
 		return
 
 	if(user.cell.charge < power_cost) //Check if we have enough power.
-		to_chat(user, "<span class='warning'>Power inadequate to maintain beam projection.</span>")
+		to_chat(user, span_warning("Power inadequate to maintain beam projection."))
 		LoseTarget()
 		return
 
@@ -67,7 +67,7 @@
 	. = ..()
 	LoseTarget()
 	playsound(get_turf(src), 'sound/machines/chime.ogg', 30, TRUE)
-	to_chat(user, "<span class='warning'>You deactivate the beam projector.</span>")
+	to_chat(user, span_warning("You deactivate the beam projector."))
 	return
 
 

@@ -61,7 +61,7 @@
 		return
 	if(value <= 250)
 		say("That's not enough! It is never enough!")
-		user.visible_message("<span class='danger'>[src] is not fazed by [user]'s offering!</span>", "<span class='userdanger'>Your peace offering is rejected by [src]!</span>")
+		user.visible_message(span_danger("[src] is not fazed by [user]'s offering!"), span_userdanger("Your peace offering is rejected by [src]!"))
 	else
 		qdel(I)
 		say("You really mean it? A paid vacation?")
