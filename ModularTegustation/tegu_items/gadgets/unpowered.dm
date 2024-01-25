@@ -572,7 +572,7 @@
 
 /obj/item/info_printer/examine(mob/user)
 	. = ..()
-	. += "Use on an Abnormality to display their information on screen after [use_time/10] seconds."
+	. += "Use on an Abnormality to display its information on screen after [use_time/10] seconds."
 
 /obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
 	if(Scan(A, user))
