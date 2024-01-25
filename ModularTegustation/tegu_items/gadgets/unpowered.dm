@@ -39,7 +39,7 @@
 	//abnos spawn slower, for maps that suck lol
 /obj/item/lc13_abnospawn
 	name = "Lobotomy Corporation Radio"
-	desc = "A device to call HQ and slow down abnormality arrival rate. Use in hand to activate."
+	desc = "A device that can call L Corp HQ and slow down the Abnormality arrival rate. Use in hand to activate."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-yellow"
 
@@ -47,9 +47,6 @@
 	to_chat(user, span_nicegreen("You feel that you now have more time."))
 	SSabnormality_queue.next_abno_spawn_time *= 1.5
 	qdel(src)
-
-
-
 
 //Command projector
 /obj/item/commandprojector
@@ -79,26 +76,26 @@
 	..()
 	switch(commandtype)
 		if(0) //if 0 change to 1
-			to_chat(user, span_notice("MOVE IMAGE INITIALIZED."))
+			to_chat(user, span_robot("MOVE IMAGE INITIALIZED."))
 			commandtype += 1
 		if(1)
-			to_chat(user, span_notice("WARN IMAGE INITIALIZED."))
+			to_chat(user, span_robot("WARN IMAGE INITIALIZED."))
 			commandtype += 1
 		if(2)
-			to_chat(user, span_notice("GUARD IMAGE INITIALIZED."))
+			to_chat(user, span_robot("GUARD IMAGE INITIALIZED."))
 			commandtype += 1
 		if(3)
-			to_chat(user, span_notice("HEAL IMAGE INITIALIZED."))
+			to_chat(user, span_robot("HEAL IMAGE INITIALIZED."))
 			commandtype += 1
 		if(4)
-			to_chat(user, span_notice("FIGHT_LIGHT IMAGE INITIALIZED."))
+			to_chat(user, span_robot("LIGHT FIGHTING IMAGE INITIALIZED."))
 			commandtype += 1
 		if(5)
-			to_chat(user, span_notice("FIGHT_HEAVY IMAGE INITIALIZED."))
+			to_chat(user, span_robot("HEAVY FIGHTING IMAGE INITIALIZED."))
 			commandtype += 1
 		else
 			commandtype -= 5
-			to_chat(user, span_notice("MOVE IMAGE INITIALIZED."))
+			to_chat(user, span_robot("MOVE IMAGE INITIALIZED."))
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
 /obj/item/commandprojector/afterattack(atom/target, mob/user, proximity_flag)
@@ -127,8 +124,8 @@
 //Deepscanner
 /obj/item/deepscanner //intended for ordeals
 	name = "deep scan kit"
-	desc = "A collection of tools used for scanning the physical form of an entity.\n\
-			Scanning an active hostile entity will make it 10% weaker to all damage."
+	desc = "A contraption of various tools capable of scanning the interior form of an entity.\n\
+			Scanning nonhuman entities will make it 10% weaker to all damage types."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "maint_kit"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
@@ -199,7 +196,7 @@
 //General Invitation
 /obj/item/invitation //intended for ordeals
 	name = "General Invitation"
-	desc = "A mysterious invitation to a certain library. Using this on an abnormality seems to teleport them away when they die, leaving an incomplete book on the spot."
+	desc = "A mysterious invitation to a certain Library. Using this on an Abnormality will cause them to transform into an incomplete Book upon death."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "invitation"
 
@@ -279,7 +276,7 @@
 		to_chat(user, span_warning("You don't know how to use this."))
 		return
 	if(R.modified)
-		to_chat(user, span_notice("The [R] is already modified."))
+		to_chat(user, span_notice("[R] is already modified."))
 		return
 	to_chat(user, span_notice("You begin tinkering with the [R]."))
 	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, .proc/ModifiedCheck, R)))
@@ -316,16 +313,16 @@
 
 	switch(mode)
 		if(RAK_HP_MODE)
-			to_chat(user, span_notice("You will now improve the HP Regeneration of the Regenerator at the cost of the SP Regeneration."))
+			to_chat(user, span_notice("You will now greatly improve the HP Regeneration of regenerators at the cost of the SP Regeneration."))
 		if(RAK_SP_MODE)
-			to_chat(user, span_notice("You will now improve the SP Regeneration of the Regenerator at the cost of the HP Regeneration."))
+			to_chat(user, span_notice("You will now greatly improve the SP Regeneration of regenerators at the cost of the HP Regeneration."))
 		if(RAK_DUAL_MODE)
-			to_chat(user, span_notice("You will now slightly improve the overall performance of the Regenerator."))
+			to_chat(user, span_notice("You will now slightly improve the overall performance of regenerators."))
 		if(RAK_CRIT_MODE)
-			to_chat(user, span_notice("You will now enable the Regenerator to heal those in critical conditions at the cost of overall performance."))
+			to_chat(user, span_notice("You will now enable regenerators to heal those in critical conditions at the cost of overall performance."))
 		if(RAK_BURST_MODE)
-			to_chat(user, span_notice("You will now cause the Regenerator to heal a large burst of HP and SP."))
-			to_chat(user, span_warning("This will cause the Regenerator to go on a cooldown period afterwards."))
+			to_chat(user, span_notice("You will now cause regenerators to provide a large burst of HP and SP recovery."))
+			to_chat(user, span_warning("This will cause regenerators to go on a cooldown period afterwards."))
 
 
 /obj/item/safety_kit/proc/check_menu(mob/user)
@@ -341,16 +338,16 @@
 	. = ..()
 	switch(mode)
 		if(RAK_HP_MODE)
-			. += span_info("Currently set to sacrifice SP regen for more HP regen.")
+			. += span_info("Currently set to increase HP regen by sacrificing SP regen.")
 		if(RAK_SP_MODE)
-			. += span_info("Currently set to sacrifice HP regen for more SP regen.")
+			. += span_info("Currently set to increase SP regen by sacrificing HP regen.")
 		if(RAK_DUAL_MODE)
 			. += span_info("Currently set to slightly increase both HP and SP regen.")
 		if(RAK_CRIT_MODE)
-			. += span_info("Currently set to enable healing insane and crit people but reducing HP and SP regen.")
+			. += span_info("Currently set to enable healing insane and crit people but reducing overall healing.")
 		if(RAK_BURST_MODE)
-			. += "Currently set to cause the Regenerator to burst recovery."
-			. += span_warning("This will cause the Regenerator to go on a cooldown period afterwards.")
+			. += span_info("Currently set to cause regenerators to create a burst of healing.")
+			. += span_warning("This will disable regenerators for a short period afterwards.")
 
 /obj/item/safety_kit/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
@@ -366,7 +363,7 @@
 //Tool E.G.O extractor
 /obj/item/tool_extractor
 	name = "Enkephalin Resonance Unit"
-	desc = "A specialized set of tools that allows E.G.O extraction from tool abnormalities."
+	desc = "A specialized tool that allows E.G.O extraction from tool Abnormalities."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "RPED"
 	w_class = WEIGHT_CLASS_BULKY
@@ -499,8 +496,8 @@
 /obj/item/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"
 	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. In order to prevent \
-		abnormalities infesting the clerkbots, only those registered as a Lobotomy Corp clerk can activate them. Clerkbot \
-		will last for 2 minutes before it preforms auto shutdown."
+		unauthorized access, only those registered as a Lobotomy Corp clerk can activate them. Clerkbot \
+		will last for 2 minutes before it automatically shuts down."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "clerkbot2_deactivated"
 
@@ -575,7 +572,7 @@
 
 /obj/item/info_printer/examine(mob/user)
 	. = ..()
-	. += "Use on an Abnormality to display the information on screen after [use_time/10] seconds."
+	. += "Use on an Abnormality to display their information on screen after [use_time/10] seconds."
 
 /obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
 	if(Scan(A, user))
