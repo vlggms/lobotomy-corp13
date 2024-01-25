@@ -1,8 +1,8 @@
 /obj/item/clothing/neck/cloak/skill_reward/fishing
 	name = "legendary fisher cloak"
 	desc = "Worn by someone who has mastered the art of fishing and gained the attention of S corp."
-	icon = 'ModularTegustation/fishing/icons/clothes_items.dmi'
-	worn_icon = 'ModularTegustation/fishing/icons/clothes_worn.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/clothes_items.dmi'
+	worn_icon = 'modular_lobotomy/modules/fishing/icons/clothes_worn.dmi'
 	icon_state = "fishing_cloak"
 	associated_skill_path = /datum/skill/fishing
 

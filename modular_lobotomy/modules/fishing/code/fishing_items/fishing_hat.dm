@@ -2,8 +2,8 @@
 	name = "unhinged fishing hat"
 	desc = "On the white part of this hat is the words: <span class='boldwarning'>Women fear me, fish fear me, men turn their eyes away from me as i walk, no beast dare make a sound in my presence, i am alone on this barren earth...</span> at the end of this manifesto is the picture of a very silly salmon."
 	icon_state = "fishing_hat"
-	icon = 'ModularTegustation/fishing/icons/clothes_items.dmi'
-	worn_icon = 'ModularTegustation/fishing/icons/clothes_worn.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/clothes_items.dmi'
+	worn_icon = 'modular_lobotomy/modules/fishing/icons/clothes_worn.dmi'
 	max_integrity = 1000000
 	// how many hats do we have in ourselfes?
 	var/amount = 1

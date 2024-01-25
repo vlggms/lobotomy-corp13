@@ -2,7 +2,7 @@
 /obj/item/food/fish
 	name = "generic looking aquarium fish"
 	desc = "very bland"
-	icon = 'ModularTegustation/fishing/icons/fish_sprites.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fish_sprites.dmi'
 	icon_state = "bugfish"
 	microwaved_type = /obj/item/food/cooked_fish
 	food_reagents = list(

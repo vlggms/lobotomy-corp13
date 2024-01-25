@@ -1,7 +1,7 @@
 /obj/item/ego_weapon/template
 	name = "blank template"
 	desc = "A blank template. You should never see this!"
-	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon = 'modular_lobotomy/icons/workshop.dmi'
 	force = 0
 	attack_speed = 1
 	damtype = RED_DAMAGE

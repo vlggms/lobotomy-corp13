@@ -1,7 +1,7 @@
 /obj/item/tresmetal
 	name = "tres metal"
 	desc = "Metal used for forging into workshop weapons."
-	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon = 'modular_lobotomy/icons/workshop.dmi'
 	icon_state = "tresmetal"
 	w_class = WEIGHT_CLASS_BULKY
 	var/quality = 0
@@ -54,7 +54,7 @@
 /obj/item/hot_tresmetal
 	name = "heated tres metal"
 	desc = "Metal used for forging workshop weapons."
-	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon = 'modular_lobotomy/icons/workshop.dmi'
 	icon_state = "tresmetal_hot"
 	w_class = WEIGHT_CLASS_BULKY
 	var/matname = "tressium"

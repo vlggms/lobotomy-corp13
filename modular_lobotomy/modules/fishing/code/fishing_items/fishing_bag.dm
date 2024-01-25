@@ -9,7 +9,7 @@
 /obj/item/storage/bag/fish
 	name = "fish bag"
 	desc = "A weird plastic bag that can hold upto 100 fish or brass pebbles."
-	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fishing.dmi'
 	icon_state = "bag"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
 	resistance_flags = FLAMMABLE

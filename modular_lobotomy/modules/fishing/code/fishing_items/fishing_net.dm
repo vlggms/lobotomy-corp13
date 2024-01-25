@@ -1,7 +1,7 @@
 /obj/item/fishing_net
 	name = "fishing net"
 	desc = "This tool functions as a aquatic wall you can put down and just harvest the fish that get tangled in it."
-	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fishing.dmi'
 	icon_state = "trawling_net"
 	w_class = WEIGHT_CLASS_HUGE
 	//Item deployment code is inside /turf/open/water/deep
@@ -9,7 +9,7 @@
 /obj/structure/destructible/fishing_net
 	name = "fishing net"
 	desc = "A wall of twine and wires that traps fish. Alt click to harvest."
-	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fishing.dmi'
 	icon_state = "trawling_net_empty"
 	anchored = TRUE
 	max_integrity = 5

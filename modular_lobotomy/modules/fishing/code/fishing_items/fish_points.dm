@@ -2,7 +2,7 @@
 	name = "fish points"
 	singular_name = "fish point"
 	desc = "Brass pebbles that are used as a special currency by fishers."
-	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fishing.dmi'
 	icon_state = "brassball"
 	w_class = WEIGHT_CLASS_TINY
 	full_w_class = WEIGHT_CLASS_TINY

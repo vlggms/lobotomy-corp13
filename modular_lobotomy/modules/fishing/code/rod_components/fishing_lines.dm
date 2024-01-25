@@ -9,7 +9,7 @@
 /obj/item/fishing_component/line
 	name = "fishing line reel"
 	desc = "Simple fishing line."
-	icon = 'ModularTegustation/fishing/icons/fishing_lines.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fishing_lines.dmi'
 	icon_state = "blue"
 	var/line_color = "#808080"
 

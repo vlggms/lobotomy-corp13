@@ -33,4 +33,3 @@
 /obj/item/radio/headset/wcorp/welfare/head
 	name = "cleaver squad captain radio headset"
 	command = TRUE
-

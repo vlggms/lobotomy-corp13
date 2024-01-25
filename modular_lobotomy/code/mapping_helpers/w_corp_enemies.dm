@@ -253,4 +253,3 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 			return
 	SSticker.force_ending = 1
 	to_chat(world, "<span class='userdanger'>All W-Corp staff is dead! Round automatically ending.</span>")
-

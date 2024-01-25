@@ -1,14 +1,14 @@
 /obj/item/forginghammer
 	name = "forging hammer"
 	desc = "Metal used for forging into workshop weapons. Use on hot tresmetal resting on an anvil to work it"
-	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon = 'modular_lobotomy/icons/workshop.dmi'
 	icon_state = "hammer"
 	w_class = WEIGHT_CLASS_BULKY
 
 /obj/structure/table/anvil
 	name = "workshop anvil"
 	desc = "An anvil used by workshop offices. Put hot tresmetal on it and hit with a hammer to make a weapon."
-	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon = 'modular_lobotomy/icons/workshop.dmi'
 	icon_state = "anvil"
 	resistance_flags = INDESTRUCTIBLE
 	smoothing_flags = NONE
@@ -19,7 +19,7 @@
 /obj/structure/forge
 	name = "workshop forge"
 	desc = "A machine used to refine tres metal into templates."
-	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon = 'modular_lobotomy/icons/workshop.dmi'
 	icon_state = "furnace_on"
 	anchored = TRUE
 	density = TRUE

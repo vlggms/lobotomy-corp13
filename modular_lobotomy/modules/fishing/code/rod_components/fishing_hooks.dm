@@ -9,7 +9,7 @@
 /obj/item/fishing_component/hook
 	name = "simple fishing hook"
 	desc = "A simple fishing hook."
-	icon = 'ModularTegustation/fishing/icons/fishing_hooks.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fishing_hooks.dmi'
 	icon_state = "hook"
 	/// icon state added to main rod icon when this hook is equipped
 	var/rod_overlay_icon_state = "hook_overlay"

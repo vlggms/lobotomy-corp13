@@ -49,6 +49,7 @@ const taskDm = new Task('dm')
   .depends('tgui/public/*.bundle.*')
   .depends('tgui/public/*.chunk.*')
   .depends('ModularTegustation/**') // LOBOTOMYCORPORATION ADDITION ensure it also checks for updates in modular code
+  .depends('modular_lobotomy/**') // LOBOTOMYCORPORATION ADDITION
   .depends('lobotomy-corp13.dme')
   .provides('lobotomy-corp13.dmb')
   .provides('lobotomy-corp13.rsc')

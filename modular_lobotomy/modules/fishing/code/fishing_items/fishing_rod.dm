@@ -13,7 +13,7 @@
 /obj/item/fishing_rod
 	name = "ramshackle fishing rod"
 	desc = "A tool used to dredge up aquatic entities. Though since the pole is so weak you may as well be handline fishing, a technique where you hold the line with your hands."
-	icon = 'ModularTegustation/fishing/icons/fishing.dmi'
+	icon = 'modular_lobotomy/modules/fishing/icons/fishing.dmi'
 	icon_state = "rod"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'

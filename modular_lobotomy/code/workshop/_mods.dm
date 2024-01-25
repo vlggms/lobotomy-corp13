@@ -1,7 +1,7 @@
 /obj/item/workshop_mod
 	name = "workshop mod"
 	desc = "A workshop mod template. You should never see this!"
-	icon = 'ModularTegustation/Teguicons/workshop.dmi'
+	icon = 'modular_lobotomy/icons/workshop.dmi'
 	var/forcemod = 1
 	var/damagemod = 1
 	var/attackspeedmod = 1
