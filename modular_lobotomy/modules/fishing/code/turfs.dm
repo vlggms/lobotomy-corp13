@@ -183,7 +183,7 @@
 /turf/open/water/deep/proc/WarpSunkStuff(atom/movable/thing)
 	//Randomize department that the water dumps you at, and also delay sound so that several items being placed into the deep dont scream.
 	if(sound_delay <= world.time)
-		playsound(get_turf(src), 'modular_lobotomy/sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
+		playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
 		sound_delay = world.time + (3 SECONDS)
 		//Might be redundant to randomize the location every time. -IP
 		WashedOnTheShore()
