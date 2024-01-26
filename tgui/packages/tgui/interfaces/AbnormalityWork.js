@@ -36,7 +36,7 @@ export const AbnormalityWork = (props, context) => {
             <span style={{
               color: overload_color,
             }}>
-              Personal Work Success Rates are modified by
+              Personal Work Success Rates are modified by&nbsp;
               <AnimatedNumber initial={0} value={overload} />%.
               <br />
             </span>
