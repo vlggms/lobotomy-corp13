@@ -101,7 +101,7 @@
 /datum/status_effect/pranked/on_apply()
 	if(get_attribute_level(owner, PRUDENCE_ATTRIBUTE) >= 80)
 		to_chat(owner, span_warning("You feel something slipped into your pocket."))
-	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/WorkCheck)
+	RegisterSignal(owner, COMSIG_WORK_STARTED, PROC_REF(WorkCheck))
 	return ..()
 
 /datum/status_effect/pranked/tick()

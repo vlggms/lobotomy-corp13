@@ -204,7 +204,7 @@
 
 /obj/structure/timelock/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/die), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(die)), 15 MINUTES)
 
 /obj/structure/timelock/proc/die()
 	qdel(src)

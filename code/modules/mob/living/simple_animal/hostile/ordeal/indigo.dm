@@ -570,7 +570,7 @@
 
 /obj/effect/sweeperspawn/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/spawnscout), 6)
+	addtimer(CALLBACK(src, PROC_REF(spawnscout)), 6)
 
 /obj/effect/sweeperspawn/proc/spawnscout()
 	new /mob/living/simple_animal/hostile/ordeal/indigo_spawn(get_turf(src))

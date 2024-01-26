@@ -224,7 +224,7 @@
 				bite_consumption = bite_consumption,\
 				microwaved_type = microwaved_type,\
 				junkiness = junkiness,\
-				after_eat = CALLBACK(src, .proc/after_bite))
+				after_eat = CALLBACK(src, PROC_REF(after_bite)))
 
 
 /obj/item/food/popsicle/update_overlays()

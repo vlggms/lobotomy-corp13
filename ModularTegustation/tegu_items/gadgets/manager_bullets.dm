@@ -48,8 +48,8 @@
 	shieldhealth = GetFacilityUpgradeValue(UPGRADE_BULLET_SHIELD_HEALTH)
 	owner.add_overlay(statuseffectvisual)
 	owner.visible_message(span_notice("[owner]s shield activates!"))
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnApplyDamage) //stolen from caluan
-	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/Destroy)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnApplyDamage)) //stolen from caluan
+	RegisterSignal(owner, COMSIG_WORK_STARTED, PROC_REF(Destroy))
 
 /datum/status_effect/interventionshield/proc/OnApplyDamage(datum_source, amount, damagetype, def_zone)
 	SIGNAL_HANDLER

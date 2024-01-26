@@ -297,7 +297,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
 	Transform()
 	var/obj/effect/proc_holder/ability/AS = new /obj/effect/proc_holder/ability/seasons_toggle
 	var/datum/action/spell_action/ability/item/A = AS.action

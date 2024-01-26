@@ -67,7 +67,7 @@
 		if(client)
 			return
 		if(jump_cooldown <= world.time)
-			INVOKE_ASYNC(src, .proc/TryJump)
+			INVOKE_ASYNC(src, PROC_REF(TryJump))
 		return
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/BreachEffect(mob/living/carbon/human/user, breach_type)//copied my code from crumbling armor

@@ -10,11 +10,11 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 
 /obj/effect/landmark/wavespawn/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/tryspawn), 3 MINUTES, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(tryspawn)), 3 MINUTES, TIMER_STOPPABLE)
 
 //Wave increases.
 /obj/effect/landmark/wavespawn/proc/tryspawn()
-	addtimer(CALLBACK(src, .proc/tryspawn), 45 SECONDS, TIMER_STOPPABLE)
+	addtimer(CALLBACK(src, PROC_REF(tryspawn)), 45 SECONDS, TIMER_STOPPABLE)
 	if(GLOB.combat_counter == 0)
 		return
 	switch(GLOB.wcorp_enemy_faction) //Each round has a specific faction, decided on code/game/gamemodes/management/event/combat

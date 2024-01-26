@@ -352,7 +352,7 @@
 
 /obj/item/mailpaper/trapped/Initialize()
 	. = ..()
-	effect_timer = new(CALLBACK(src, .proc/Trap), rand(effect_min_time, effect_max_time))
+	effect_timer = new(CALLBACK(src, PROC_REF(Trap)), rand(effect_min_time, effect_max_time))
 	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
 
 /obj/item/mailpaper/trapped/attack_self(mob/user)
