@@ -106,6 +106,7 @@ GLOBAL_LIST_INIT(common_loot, list( //common: basic items
 		/obj/item/stock_parts/cell = 1,
 		/obj/item/stack/rods/twentyfive = 1,
 		/obj/item/stack/sheet/metal/twenty = 1,
+//      /obj/item/stack/sheet/mineral/plasma = 1, LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 		/obj/item/sign = 1,
 
 		//assemblies
