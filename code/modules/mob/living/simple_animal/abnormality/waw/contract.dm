@@ -60,7 +60,7 @@
 	work_damage_amount = initial(work_damage_amount)
 	. = ..()
 	if(ContractedUser(user, work_type) && .)
-		work_damage_amount = initial(work_damage_amount) / 4
+		work_damage_amount /= 4
 		say("Yes, yes... I remember the contract.")
 	return
 
