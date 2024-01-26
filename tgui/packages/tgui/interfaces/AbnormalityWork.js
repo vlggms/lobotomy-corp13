@@ -54,9 +54,9 @@ export const AbnormalityWork = (props, context) => {
               color: understanding_color,
             }}>
               Current Understanding is:
-              <AnimatedNumber initial={0} value={understanding_percent} />%,
+               <AnimatedNumber initial={0} value={understanding_percent} />%,
               granting a
-              <AnimatedNumber initial={0} value={understanding} />
+               <AnimatedNumber initial={0} value={understanding} />
               % Work Success and Speed bonus.
               <br />
             </span>
