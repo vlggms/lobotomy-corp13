@@ -53,10 +53,10 @@ export const AbnormalityWork = (props, context) => {
             <span style={{
               color: understanding_color,
             }}>
-              Current Understanding is:
-               <AnimatedNumber initial={0} value={understanding_percent} />%,
-              granting a
-               <AnimatedNumber initial={0} value={understanding} />
+              Current Understanding is:&nbsp;
+              <AnimatedNumber initial={0} value={understanding_percent} />%,
+              granting a&nbsp;
+              <AnimatedNumber initial={0} value={understanding} />
               % Work Success and Speed bonus.
               <br />
             </span>
