@@ -3003,7 +3003,7 @@
 	pixel_y = 4
 	},
 /obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/item/clothing/suit/apron/surgical,
 /obj/effect/turf_decal/stripes/red/full,
 /obj/item/reagent_containers/spray/cleaner,
@@ -13470,7 +13470,7 @@
 /area/space)
 "SA" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/item/clothing/suit/apron/surgical,
 /obj/effect/turf_decal/stripes/red/full,
 /obj/item/reagent_containers/spray/cleaner,

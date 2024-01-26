@@ -6716,10 +6716,10 @@
 /area/ruin/space/has_grav/ancientstation/hydroponics)
 "Gy" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery{
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
 	pixel_y = 10
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/floor/facility/white,
 /area/department_main/safety)
 "GC" = (

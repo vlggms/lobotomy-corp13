@@ -3927,7 +3927,7 @@
 /turf/open/floor/facility/white,
 /area/department_main/command)
 "zr" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/structure/table/reinforced,
 /turf/open/floor/facility/white,
 /area/department_main/safety)

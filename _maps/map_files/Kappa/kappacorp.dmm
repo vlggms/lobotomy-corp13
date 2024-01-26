@@ -7675,8 +7675,8 @@
 /obj/structure/table/reinforced{
 	resistance_flags = 115
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
-/obj/item/storage/backpack/duffelbag/med/surgery{
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
 	pixel_y = 12
 	},
 /obj/item/clothing/suit/apron/surgical,

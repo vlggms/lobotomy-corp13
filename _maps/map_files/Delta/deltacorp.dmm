@@ -452,7 +452,7 @@
 	color = "#006400"
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/safety)
 "bc" = (

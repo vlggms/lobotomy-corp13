@@ -8868,7 +8868,7 @@
 /area/facility_hallway/safety)
 "yR" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/effect/turf_decal/stripes/red/full,
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
