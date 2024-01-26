@@ -494,7 +494,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/drifting_fox
 	abno_code = "T-02-173"
 	abno_info = list(
-		"It was noted that working on T-02-11-03 with a Temperance level of 2 or less lowered the Qliphoth counter.",
+		"It was noted that working on T-02-11-03 with a Temperance level of less than 2 lowered the Qliphoth counter.",
 		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the Abnormality when completing Attachment work.",
 		"When the work result was Bad, the Qliphoth counter lowered.")
 
