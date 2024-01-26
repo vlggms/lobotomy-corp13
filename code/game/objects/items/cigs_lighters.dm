@@ -206,6 +206,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		e.start()
 		qdel(src)
 		return
+	// allowing reagents to react after being lit
 	*/
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
