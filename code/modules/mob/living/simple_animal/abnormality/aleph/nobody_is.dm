@@ -339,6 +339,7 @@
 		T.is_flying_animal = FALSE
 		T.density = FALSE
 		T.forceMove(src)
+		//T.fairy_spawn_time = 10 SECONDS
 		can_act = TRUE
 		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
@@ -674,7 +675,6 @@
 	maxHealth = 4000
 	melee_damage_lower = 65
 	melee_damage_upper = 75
-	SpeedChange(-1)
 	current_stage = 3
 	melee_reach = 1
 	whip_count = 8
