@@ -47,33 +47,44 @@
 			spawnables += abno
 
 /mob/living/simple_animal/hostile/abnormality/contract/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	. = chance
 	if(!(user in total_havers))
-		return chance
+		return
 
-	var/enabled = FALSE
+	if(ContractedUser(user, work_type))
+		. /= 2
+
+	return
+
+/mob/living/simple_animal/hostile/abnormality/contract/AttemptWork(mob/living/carbon/human/user, work_type)
+	work_damage_amount = initial(work_damage_amount)
+	. = ..()
+	if(ContractedUser(user, work_type) && .)
+		work_damage_amount = initial(work_damage_amount) / 4
+		say("Yes, yes... I remember the contract.")
+	return
+
+/mob/living/simple_animal/hostile/abnormality/contract/proc/ContractedUser(mob/living/carbon/human/user, work_type)
+	. = FALSE
+	if(!(user in total_havers))
+		return
+	
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			if(user in fort_havers)
-				enabled = TRUE
+				return TRUE
 
 		if(ABNORMALITY_WORK_INSIGHT)
 			if(user in prud_havers)
-				enabled = TRUE
+				return TRUE
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			if(user in temp_havers)
-				enabled = TRUE
+				return TRUE
 
 		if(ABNORMALITY_WORK_REPRESSION)
 			if(user in just_havers)
-				enabled = TRUE
-
-	if(enabled)
-		work_damage_amount /= 4
-		say("Yes, yes... I remember the contract.")
-		return chance/2
-
-	return chance
+				return TRUE
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/contract/ZeroQliphoth(mob/living/carbon/human/user)
