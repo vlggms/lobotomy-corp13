@@ -943,28 +943,6 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		reagents.flags |= NO_REACT
 		STOP_PROCESSING(SSobj, src)
 
-/obj/item/clothing/mask/vape/proc/hand_reagents()//had to rename to avoid duplicate error
-	if(reagents.total_volume)
-		if(iscarbon(loc))
-			var/mob/living/carbon/C = loc
-			if (src == C.wear_mask) // if it's in the human/monkey mouth, transfer reagents to the mob
-				var/fraction = min(REAGENTS_METABOLISM/reagents.total_volume, 1) //this will react instantly, making them a little more dangerous than cigarettes
-				reagents.expose(C, INGEST, fraction)
-				if(!reagents.trans_to(C, REAGENTS_METABOLISM))
-					reagents.remove_any(REAGENTS_METABOLISM)
-				if(reagents.get_reagent_amount(/datum/reagent/fuel))
-					//HOT STUFF
-					C.adjust_fire_stacks(2)
-					C.IgniteMob()
-
-				if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
-					var/datum/effect_system/reagents_explosion/e = new()
-					e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
-					e.start()
-					qdel(src)
-				return
-		reagents.remove_any(REAGENTS_METABOLISM)
-
 /obj/item/clothing/mask/vape/process(delta_time)
 	var/mob/living/M = loc
 
@@ -987,21 +965,4 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		s.start()
 		vapetime -= vapedelay
 
-	if((obj_flags & EMAGGED) && vapetime >= vapedelay)
-		var/datum/effect_system/smoke_spread/chem/smoke_machine/s = new
-		s.set_up(reagents, 4, 24, loc)
-		s.start()
-		vapetime -= vapedelay
-		if(prob(5))//small chance for the vape to break and deal damage if it's emagged
-			playsound(get_turf(src), 'sound/effects/pop_expl.ogg', 50, FALSE)
-			M.apply_damage(20, BURN, BODY_ZONE_HEAD)
-			M.Paralyze(300)
-			var/datum/effect_system/spark_spread/sp = new /datum/effect_system/spark_spread
-			sp.set_up(5, 1, src)
-			sp.start()
-			to_chat(M, "<span class='userdanger'>[src] suddenly explodes in your mouth!</span>")
-			qdel(src)
-			return
 
-	if(reagents?.total_volume)
-		hand_reagents()
