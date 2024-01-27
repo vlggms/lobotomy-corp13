@@ -416,6 +416,16 @@
 	name = "floor"
 	},
 /area/department_main/information)
+"bG" = (
+/obj/structure/table/reinforced,
+/obj/item/kirbyplants/dead{
+	pixel_y = 13
+	},
+/obj/item/wallframe/painting{
+	pixel_y = 26
+	},
+/turf/open/floor/pod/dark,
+/area/facility_hallway/human)
 "bH" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -926,13 +936,16 @@
 	},
 /area/department_main/command)
 "eh" = (
-/obj/machinery/vending/snack{
-	pixel_y = 14
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
 	},
-/turf/open/floor/facility/dark{
+/obj/structure/sign/departments/command{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/human)
+/area/facility_hallway/south)
 "ei" = (
 /obj/machinery/light{
 	dir = 8;
@@ -1070,6 +1083,15 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
+"eV" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/sign/departments/safety{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/safety)
 "eW" = (
 /obj/structure/showcase/machinery{
 	desc = "A server for the information department. Stores information.";
@@ -1193,6 +1215,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
+"fH" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/safety)
 "fR" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Records Office Secure Area"
@@ -1234,11 +1270,10 @@
 	},
 /area/facility_hallway/information)
 "gh" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
+/obj/item/wallframe/painting{
+	pixel_y = 26
 	},
-/obj/structure/chair/sofa/corp/right,
+/obj/structure/chair/sofa/corp/left,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -1471,6 +1506,15 @@
 	},
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/information)
+"hb" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/departments/training{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "he" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/decal/cleanable/dirt,
@@ -1547,8 +1591,6 @@
 	dir = 5
 	},
 /obj/structure/table/wood/fancy/red,
-/obj/structure/lootcrate/l_corp,
-/obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
 /obj/item/crowbar/red,
@@ -1703,6 +1745,17 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/facility_hallway/south)
+"if" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/sign/departments/info{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/north)
 "ij" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -2536,6 +2589,30 @@
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink"
 	},
 /area/space)
+"lK" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/south)
+"lM" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/facility/dark,
+/area/facility_hallway/information)
 "lS" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -2635,11 +2712,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 1;
-	pixel_y = 32
-	},
-/obj/structure/sign/directions/medical{
-	pixel_y = 26;
-	dir = 4
+	pixel_y = 32;
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -3338,6 +3412,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
 "pa" = (
@@ -3984,6 +4061,15 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/facility_hallway/information)
+"rK" = (
+/obj/machinery/vending/snack{
+	pixel_y = 14
+	},
+/obj/effect/turf_decal/stripes/white/corner,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/human)
 "rL" = (
 /obj/structure/bodycontainer/crematorium{
 	dir = 8;
@@ -4253,16 +4339,15 @@
 	},
 /area/department_main/information)
 "sE" = (
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32
 	},
-/area/facility_hallway/human)
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "sG" = (
 /obj/machinery/light{
 	dir = 1;
@@ -4274,6 +4359,15 @@
 "sH" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
+"sI" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/sign/departments/control{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "sK" = (
 /obj/effect/landmark/latejoin,
 /obj/effect/landmark/latejoin,
@@ -4854,6 +4948,18 @@
 	name = "floor"
 	},
 /area/department_main/safety)
+"vD" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/west)
 "vF" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -4875,6 +4981,17 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
+"vK" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/departments/command{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "vO" = (
 /obj/effect/turf_decal/bot/left,
 /obj/structure/sign/ordealmonitor,
@@ -4994,6 +5111,22 @@
 	name = "floor"
 	},
 /area/facility_hallway/east)
+"ws" = (
+/obj/structure/filingcabinet{
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10;
+	resistance_flags = 115
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10;
+	resistance_flags = 115
+	},
+/turf/open/floor/mineral/titanium/purple{
+	name = "floor"
+	},
+/area/department_main/information)
 "wt" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -5021,6 +5154,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"wz" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/sign/departments/control{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "wC" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 28
@@ -5161,9 +5303,10 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/records)
 "wZ" = (
-/obj/machinery/vending/coffee{
-	pixel_y = 14
+/obj/item/wallframe/painting{
+	pixel_y = 26
 	},
+/obj/structure/chair/sofa/corp/right,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -5515,7 +5658,9 @@
 	},
 /area/department_main/command)
 "yC" = (
-/obj/structure/sign/directions/evac,
+/obj/structure/sign/directions/evac{
+	pixel_x = -3
+	},
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
@@ -5683,6 +5828,17 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/safety)
+"zj" = (
+/obj/machinery/vending/coffee{
+	pixel_y = 14
+	},
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 8
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/human)
 "zk" = (
 /obj/structure/disposalpipe/segment{
 	dir = 9
@@ -5907,6 +6063,18 @@
 	name = "floor"
 	},
 /area/facility_hallway/safety)
+"As" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "Au" = (
 /obj/machinery/vending/medical{
 	req_access = list();
@@ -5987,8 +6155,8 @@
 /area/facility_hallway/east)
 "AF" = (
 /obj/effect/turf_decal/bot,
-/obj/structure/disposalpipe/junction/flip{
-	dir = 4
+/obj/structure/disposalpipe/junction{
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
@@ -6178,6 +6346,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"Bp" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/sign/departments/info{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/north)
 "Br" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -6399,6 +6578,34 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"Ct" = (
+/obj/item/refiner_filter/yellow{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/structure/rack,
+/obj/item/refiner_filter/blue{
+	pixel_x = 7;
+	pixel_y = 3
+	},
+/obj/item/refiner_filter/yellow{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/obj/item/rawpe,
+/turf/open/floor/mineral/titanium/purple{
+	name = "floor"
+	},
+/area/department_main/information)
 "Cy" = (
 /obj/machinery/fat_sucker,
 /turf/open/floor/mineral/titanium/purple{
@@ -6446,11 +6653,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 4;
-	pixel_y = 32
-	},
-/obj/structure/sign/directions/security{
-	pixel_y = 26;
-	dir = 8
+	pixel_y = 32;
+	pixel_x = -3
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6680,6 +6884,16 @@
 /obj/structure/bed/roller,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/safety)
+"Dj" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Dk" = (
 /obj/effect/turf_decal/loading_area/red,
 /turf/open/floor/facility/dark{
@@ -6820,18 +7034,9 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "DO" = (
-/obj/item/refiner_filter/yellow{
-	pixel_x = 1;
-	pixel_y = -4
-	},
-/obj/item/refiner_filter/blue{
-	pixel_x = 7;
-	pixel_y = 3
-	},
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/structure/rack,
+/obj/structure/table/wood/fancy/purple,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
 	},
@@ -7180,6 +7385,16 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"FB" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/training)
 "FC" = (
 /obj/machinery/smartfridge/extraction_storage/ego_weapon,
 /turf/open/floor/facility/dark{
@@ -7332,13 +7547,11 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "GF" = (
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
-	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
+	},
+/obj/structure/sign/departments/training{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -7472,16 +7685,18 @@
 	},
 /area/facility_hallway/control)
 "He" = (
-/obj/structure/chair/comfy/shuttle{
-	dir = 1;
-	can_buckle = 0;
-	desc = "A comfortable, secure seat.";
-	name = "metalic seat";
-	pixel_y = 7
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
 	},
-/obj/item/toy/plush/yesod,
-/turf/open/floor/plasteel/dark,
-/area/department_main/information)
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/south)
 "Hf" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -7569,7 +7784,9 @@
 /area/facility_hallway/north)
 "HH" = (
 /obj/effect/spawner/abnormality_room,
-/obj/structure/sign/directions/evac,
+/obj/structure/sign/directions/evac{
+	pixel_x = 4
+	},
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
@@ -7811,6 +8028,9 @@
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
+	},
+/obj/structure/sign/departments/extraction{
+	pixel_x = 32
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#E22303";
@@ -8200,15 +8420,16 @@
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "Kt" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
 	},
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/facility/dark{
+/obj/structure/sign/departments/command{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/human)
+/area/facility_hallway/west)
 "Ku" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/mental,
@@ -8759,6 +8980,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
 	},
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "MZ" = (
@@ -8920,6 +9144,19 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/facility_hallway/west)
+"NJ" = (
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/obj/structure/sign/departments/extraction{
+	pixel_x = -32
+	},
+/turf/open/floor/mineral/titanium/purple{
+	color = "#E22303";
+	name = "floor"
+	},
+/area/department_main/control)
 "NL" = (
 /obj/machinery/light{
 	dir = 4;
@@ -9423,6 +9660,17 @@
 /obj/machinery/telecomms/relay/preset/telecomms,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
+"PI" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/departments/safety{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "PM" = (
 /obj/structure/disposaloutlet{
 	pixel_x = -3;
@@ -9478,13 +9726,11 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "Qa" = (
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
+	},
+/obj/structure/sign/departments/training{
+	pixel_x = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -9597,6 +9843,17 @@
 	light_power = 0;
 	light_range = 0;
 	slowdown = 0
+	},
+/area/facility_hallway/south)
+"Qp" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/sign/departments/command{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
 	},
 /area/facility_hallway/south)
 "Qq" = (
@@ -9847,18 +10104,25 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/control)
+"RI" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/safety)
 "RJ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/structure/sign/directions/science{
-	pixel_y = 25;
-	dir = 1
+/obj/structure/sign/departments/info{
+	pixel_y = 32
 	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/north)
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "RK" = (
 /obj/effect/turf_decal/bot/left,
 /obj/structure/disposalpipe/segment{
@@ -9913,6 +10177,17 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
 /area/facility_hallway/north)
+"Se" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/departments/control{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/west)
 "Sg" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -9955,6 +10230,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
+"Ss" = (
+/obj/structure/sign/departments/records{
+	pixel_y = 32
+	},
+/turf/open/floor/mineral/titanium/purple{
+	name = "floor"
+	},
+/area/department_main/information)
 "St" = (
 /obj/machinery/computer/shuttle/mining{
 	dir = 4;
@@ -10188,6 +10471,16 @@
 	name = "floor"
 	},
 /area/facility_hallway/control)
+"Tr" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "Tv" = (
 /obj/effect/turf_decal/bot/right,
 /obj/structure/sign/ordealmonitor,
@@ -10246,13 +10539,16 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
 	},
-/obj/structure/sign/directions/supply{
-	pixel_y = 25
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
 	},
-/turf/open/floor/plasteel/dark{
-	color = "#ccc8c0"
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
 	},
-/area/facility_hallway/south)
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/control)
 "TS" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
@@ -10277,8 +10573,6 @@
 	dir = 10
 	},
 /obj/structure/table/wood/fancy/red,
-/obj/structure/lootcrate/l_corp,
-/obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
 /obj/item/crowbar/red,
@@ -10602,16 +10896,12 @@
 	},
 /area/facility_hallway/south)
 "Vu" = (
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
+/obj/structure/sign/departments/command,
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
 	},
-/area/facility_hallway/human)
+/area/facility_hallway/north)
 "Vv" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -10810,6 +11100,16 @@
 	name = "floor"
 	},
 /area/department_main/information)
+"WG" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "WK" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 5
@@ -11070,6 +11370,15 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
+"Ya" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/sign/departments/safety{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/safety)
 "Yd" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera{
@@ -33215,7 +33524,7 @@ ke
 ke
 ke
 US
-Co
+Tr
 Qm
 Qg
 ke
@@ -33456,7 +33765,7 @@ xS
 xS
 xS
 dz
-IN
+NJ
 JV
 YI
 rz
@@ -33472,7 +33781,7 @@ gT
 gT
 gT
 ke
-TO
+TP
 yg
 Qg
 ke
@@ -35012,7 +35321,7 @@ bi
 Jm
 ec
 rp
-qJ
+wz
 qJ
 fn
 yg
@@ -35526,7 +35835,7 @@ bi
 Jm
 nM
 cP
-bg
+sI
 bg
 Bc
 Hd
@@ -36803,7 +37112,7 @@ Mh
 Mh
 Mh
 Yg
-Rb
+Se
 Jj
 nz
 Yg
@@ -39347,7 +39656,7 @@ rI
 rI
 gj
 fg
-es
+lM
 LW
 rI
 Mh
@@ -39630,7 +39939,7 @@ Yg
 Yg
 Yg
 NH
-nR
+vD
 Jj
 nz
 Yg
@@ -40117,7 +40426,7 @@ KW
 KW
 KW
 rI
-Ns
+ED
 uz
 TS
 rI
@@ -40401,7 +40710,7 @@ yY
 yY
 yY
 Yg
-nR
+Kt
 Jj
 DC
 lX
@@ -40888,7 +41197,7 @@ rI
 rI
 rI
 gj
-hV
+WG
 BZ
 yM
 yM
@@ -40942,7 +41251,7 @@ Rw
 Rw
 Rw
 EW
-fA
+FB
 DH
 sH
 FY
@@ -41145,7 +41454,7 @@ KW
 KW
 KW
 rI
-Ns
+Bl
 uz
 TS
 TS
@@ -41456,7 +41765,7 @@ LZ
 LZ
 LZ
 Rw
-dj
+yN
 BP
 sH
 FY
@@ -41659,7 +41968,7 @@ KW
 KW
 KW
 rI
-Bl
+RJ
 uz
 TS
 rI
@@ -41713,7 +42022,7 @@ LZ
 LZ
 LZ
 Rw
-yN
+hb
 BP
 sH
 FY
@@ -42694,7 +43003,7 @@ iq
 Qd
 wR
 zc
-WC
+Ct
 Yy
 Bi
 Bi
@@ -42704,7 +43013,7 @@ Of
 ys
 Od
 wM
-wM
+Vu
 wM
 uf
 nd
@@ -42758,11 +43067,11 @@ SY
 oi
 SY
 JZ
-JZ
+zj
 mZ
 ZT
 Ni
-sE
+xz
 wu
 wu
 wu
@@ -43276,7 +43585,7 @@ gh
 UI
 IE
 wk
-xz
+DP
 wu
 wu
 wu
@@ -43529,11 +43838,11 @@ qC
 zC
 SY
 JZ
-vX
+bG
 UI
 vX
 wk
-DP
+xz
 wu
 wu
 wu
@@ -43710,7 +44019,7 @@ hE
 hE
 hE
 hE
-xR
+Ss
 we
 eW
 dl
@@ -43728,7 +44037,7 @@ wM
 wM
 wM
 yC
-RJ
+oo
 ys
 Dc
 oF
@@ -43760,7 +44069,7 @@ Rr
 Rr
 Rr
 id
-TP
+qA
 Xz
 CT
 FY
@@ -43983,7 +44292,7 @@ bt
 XF
 ZK
 eS
-Hf
+Bp
 Hf
 HD
 Et
@@ -44012,9 +44321,9 @@ Xn
 sB
 of
 Qo
-GF
 cK
-cK
+eh
+He
 GF
 cK
 ez
@@ -44497,7 +44806,7 @@ Xo
 XF
 ky
 Kl
-nN
+if
 nN
 qk
 Qc
@@ -44526,9 +44835,9 @@ CA
 sB
 of
 Xr
-Qa
 AA
-AA
+Qp
+lK
 Qa
 AA
 ez
@@ -44750,13 +45059,13 @@ cZ
 LC
 we
 qW
-DO
+WC
 Yy
 wM
 wM
 wM
 HH
-RJ
+oo
 Qc
 Dc
 oF
@@ -44788,7 +45097,7 @@ Rr
 Rr
 Rr
 oT
-TP
+qA
 cR
 CT
 FY
@@ -44999,7 +45308,7 @@ uA
 jp
 yP
 Ch
-He
+Ia
 we
 Tb
 we
@@ -45071,11 +45380,11 @@ Rw
 Mh
 Mh
 JZ
-IE
+bG
 UI
 IE
 wk
-DP
+xz
 wu
 wu
 wu
@@ -45328,11 +45637,11 @@ Rw
 Mh
 Mh
 JZ
-Kt
+wZ
 UI
 vX
 wk
-xz
+DP
 wu
 wu
 wu
@@ -45521,7 +45830,7 @@ Xo
 Xo
 Xo
 Tl
-No
+ws
 Yy
 Bi
 Bi
@@ -45585,7 +45894,7 @@ Rw
 Mh
 Mh
 JZ
-eh
+gh
 UI
 UI
 wk
@@ -45778,7 +46087,7 @@ bE
 Iq
 gs
 GM
-WC
+ws
 Yy
 Bi
 Bi
@@ -45788,7 +46097,7 @@ oo
 Qc
 Od
 wM
-wM
+Vu
 wM
 uf
 nd
@@ -45842,11 +46151,11 @@ Rw
 Mh
 Mh
 JZ
-JZ
+rK
 Lc
 Ws
 Cm
-Vu
+xz
 wu
 wu
 wu
@@ -46098,7 +46407,7 @@ rL
 Rw
 Mh
 Mh
-Mh
+JZ
 JZ
 zK
 zK
@@ -46799,7 +47108,7 @@ KW
 KW
 KW
 rI
-ED
+RJ
 uz
 TS
 rI
@@ -46853,7 +47162,7 @@ LZ
 LZ
 LZ
 Rw
-sm
+hb
 BP
 sH
 FY
@@ -47570,7 +47879,7 @@ rI
 rI
 rI
 gj
-Ns
+Dj
 BZ
 yM
 yM
@@ -47624,7 +47933,7 @@ Rw
 Rw
 Rw
 EW
-fA
+sE
 DH
 sH
 FY
@@ -48084,7 +48393,7 @@ KW
 KW
 KW
 rI
-Ns
+ED
 uz
 TS
 rI
@@ -48111,7 +48420,7 @@ ME
 ME
 ME
 kL
-qN
+vK
 OF
 ts
 ZO
@@ -48882,7 +49191,7 @@ kL
 kL
 kL
 Vy
-pw
+As
 OF
 tI
 kL
@@ -51709,7 +52018,7 @@ Mh
 Mh
 Mh
 kL
-qq
+PI
 OF
 tI
 kL
@@ -53002,7 +53311,7 @@ on
 pb
 tJ
 CO
-VW
+Ya
 VW
 Zr
 tn
@@ -53516,7 +53825,7 @@ Vp
 pb
 MB
 sd
-ol
+eV
 ol
 Sp
 Fs
@@ -55317,7 +55626,7 @@ ga
 ga
 ga
 tw
-mN
+RI
 VJ
 Mn
 ga
@@ -55574,7 +55883,7 @@ sr
 sr
 sr
 ga
-MR
+fH
 Fs
 Mn
 ga
