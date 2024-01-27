@@ -29,7 +29,7 @@
  *	Updates the static data of all given Abnormality Consoles.
  *  Returns the update console or consoles, accepts a console or a list of consoles as an input.
  */
-/proc/UpdateAbnoConsole(var/console)
+/proc/UpdateAbnoConsole(console)
 	if(islist(console))
 		. = list()
 		for(var/obj/machinery/computer/abnormality/abno_console in console)
