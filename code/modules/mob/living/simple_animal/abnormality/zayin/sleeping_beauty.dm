@@ -43,9 +43,9 @@
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/sleeping/WorkChance(mob/living/carbon/human/user, chance)
-	. = ..()
 	if (istype(user.ego_gift_list[EYE], /datum/ego_gifts/doze))
 		return chance + 5
+	return chance
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
