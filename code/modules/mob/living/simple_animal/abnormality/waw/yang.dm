@@ -88,7 +88,6 @@
 		HealPulse()
 
 /mob/living/simple_animal/hostile/abnormality/yang/WorkChance(mob/living/carbon/human/user, chance, work_type)
-	. = ..()
 	return YinCheck() ? chance + 10 : chance
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/YinCheck()
