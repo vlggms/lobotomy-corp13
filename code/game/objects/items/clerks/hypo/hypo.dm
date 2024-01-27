@@ -5,7 +5,7 @@
 	reagent_flags = NONE
 	var/list/reagent_ids = list(/datum/reagent/medicine/mental_stabilizator,/datum/reagent/medicine/sal_acid,/datum/reagent/medicine/epinephrine)
 	var/list/reagent_names = list()
-	var/chem_capacity = 10
+	var/chem_capacity = 15
 	var/list/datum/reagents/reagent_list = list()
 	var/list/datum/hypo_upgrade/upgrades = list()
 	var/list/modes = list()
