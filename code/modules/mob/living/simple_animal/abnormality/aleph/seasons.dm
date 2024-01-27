@@ -232,6 +232,7 @@
 		cone_attack_damage = initial(cone_attack_damage)
 		slam_damage = initial(slam_damage)
 		pulse_damage = initial(pulse_damage)
+	UpdateAbnoConsole(datum_reference.console)
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Downgrade()

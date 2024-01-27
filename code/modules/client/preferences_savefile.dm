@@ -212,6 +212,9 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//favorite outfits
 	READ_FILE(S["favorite_outfits"], favorite_outfits)
 
+	//lc13
+	READ_FILE(S["work_images_visible"], work_images_visible)
+
 	var/list/parsed_favs = list()
 	for(var/typetext in favorite_outfits)
 		var/datum/outfit/path = text2path(typetext)
@@ -265,6 +268,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	pda_color		= sanitize_hexcolor(pda_color, 6, 1, initial(pda_color))
 	key_bindings 	= sanitize_keybindings(key_bindings)
 	favorite_outfits = SANITIZE_LIST(favorite_outfits)
+	work_images_visible		= sanitize_integer(work_images_visible, FALSE, TRUE, initial(work_images_visible))
 
 	if(needs_update >= 0) //save the updated version
 		var/old_default_slot = default_slot
@@ -341,6 +345,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["key_bindings"], key_bindings)
 	WRITE_FILE(S["hearted_until"], (hearted_until > world.realtime ? hearted_until : null))
 	WRITE_FILE(S["favorite_outfits"], favorite_outfits)
+	WRITE_FILE(S["work_images_visible"], work_images_visible)
 	return TRUE
 
 /datum/preferences/proc/load_character(slot)

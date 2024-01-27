@@ -62,14 +62,16 @@ export const AbnormalityWork = (props, context) => {
             </span>
           )}
           <br />
-          {!!work_knowledge && (
-            <div style={{ float: 'right', width: '52.5%' }}>
-              <image src={image} class="fit-picture" width={192} height={192} />
-            </div>
-          ) || (
-            <div style={{ float: 'right', width: '60%' }}>
-              <image src={image} class="fit-picture" width={192} height={192} />
-            </div>
+          {!!image && (
+            !!work_knowledge && (
+              <div style={{ float: 'right', width: '52.5%' }}>
+                <image src={image} class="fit-picture" width={192} height={192} />
+              </div>
+            ) || (
+              <div style={{ float: 'right', width: '60%' }}>
+                <image src={image} class="fit-picture" width={192} height={192} />
+              </div>
+            )
           )}
           <br />
           {work_links.map(line => (

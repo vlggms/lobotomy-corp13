@@ -2,6 +2,7 @@
 	name = "abnormality work console"
 	desc = "Used to perform various tasks with the abnormalities."
 	resistance_flags = INDESTRUCTIBLE
+	obj_flags = CAN_BE_HIT | USES_TGUI
 
 	/// Datum reference of the abnormality this console is related to
 	var/datum/abnormality/datum_reference = null
@@ -80,40 +81,26 @@
 	.["overload_color"] = COLOR_VERY_SOFT_YELLOW
 	.["plead_color"] = COLOR_MOSTLY_PURE_RED
 	.["understanding_color"] = COLOR_BLUE_LIGHT
-	/// Images
-	for(var/pahs in get_portrait_path())
-		user << browse_rsc(pahs)
-
-/obj/machinery/computer/abnormality/ui_data(mob/user)
-	. = list()
-	/// Colors
 	.["threat_color"] = THREAT_TO_COLOR[datum_reference.GetRiskLevel()]
-
+	/// Images
+	if(GetCoreSuppression(/datum/suppression/information) || !user.client?.prefs.work_images_visible) // If it's not visible, don't send it.
+		for(var/paths in get_portrait_path())
+			user << browse_rsc(paths)
+		.["image"] = "[datum_reference.GetPortrait()].png"
+	else
+		.["image"] = FALSE
 	/// Name Information
 	.["threat"] = THREAT_TO_NAME[datum_reference.GetRiskLevel()]
 	.["name"] = datum_reference.GetName()
-
-	/// Images
-	.["image"] = "[datum_reference.GetPortrait()].png"
-
-	/// Overload
-	.["overload"] = datum_reference.overload_chance[user.ckey] ? datum_reference.overload_chance[user.ckey] : FALSE
-	.["pleading"] = datum_reference.overload_chance_limit < 0 && datum_reference.overload_chance[user.ckey] <= datum_reference.overload_chance_limit // How the fuck did you hit the limit..?
-
-	// Understanding
-	.["understanding_percent"] = round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)
-	.["understanding"] = datum_reference.understanding
-
 	/// Works
 	var/list/work_list = datum_reference.available_work
 	.["work_links"] = list()
 	.["work_displays"] = list()
-	.["work_chances"] = list()
 	.["work_knowledge"] = HAS_TRAIT(user, TRAIT_WORK_KNOWLEDGE)
-	if(!tutorial && istype(SSlobotomy_corp.core_suppression, /datum/suppression/information))
+	if(!tutorial && GetCoreSuppression(/datum/suppression/information))
 		work_list = shuffle(work_list) // A minor annoyance, at most
 	for(var/wt in work_list)
-		var/work_display = "[wt] Work"
+		var/work_display = "[TeguTranslate(wt, user)] [TeguTranslate("Work", user)]"
 		.["work_links"] += wt
 		if(scramble_list[wt] != null)
 			work_display += "?"
@@ -121,6 +108,20 @@
 		if(!tutorial && istype(I))
 			work_display = Gibberish(work_display, TRUE, I.gibberish_value)
 		.["work_displays"][wt] = work_display
+
+/obj/machinery/computer/abnormality/ui_data(mob/user)
+	. = list()
+	/// Overload
+	.["overload"] = datum_reference.overload_chance[user.ckey] ? datum_reference.overload_chance[user.ckey] : FALSE
+	.["pleading"] = datum_reference.overload_chance_limit < 0 && datum_reference.overload_chance[user.ckey] <= datum_reference.overload_chance_limit // How the fuck did you hit the limit..?
+
+	/// Understanding
+	.["understanding_percent"] = round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)
+	.["understanding"] = datum_reference.understanding
+
+	/// Works
+	.["work_chances"] = list()
+	for(var/wt in datum_reference.available_work)
 		.["work_chances"][wt] = round(datum_reference.get_work_chance(wt, user))
 
 /obj/machinery/computer/abnormality/ui_act(action, list/params)

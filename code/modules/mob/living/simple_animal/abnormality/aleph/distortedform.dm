@@ -170,7 +170,8 @@
 	base_pixel_y = abno.base_pixel_y
 	if(!datum_reference?.console)
 		return
-	datum_reference.console.updateUsrDialog() //Update the console and change our name into a lie
+	//Update the console and change our name into a lie
+	UpdateAbnoConsole(datum_reference.console)
 	transformed = TRUE
 	transform_timer = addtimer(CALLBACK(src, .proc/UnTransform), 1 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
 	update_icon()
@@ -202,7 +203,7 @@
 	fakerisklevel = null
 	if(!datum_reference?.console)
 		return
-	datum_reference.console.updateUsrDialog()
+	UpdateAbnoConsole(datum_reference.console)
 	if(connected_door) //doors can be destroyed
 		connected_door.name = "Distorted Form containment zone" //Initial() turns it into "vault door"
 	connected_panel.name = "Distorted Form's containment panel"
