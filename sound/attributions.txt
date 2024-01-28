@@ -18,3 +18,8 @@ captured by the BBC
 bbc.co.uk - (c) copyright 2018 BBC
 
 kiss sound: https://freesound.org/people/stereostereo/sounds/117355/
+
+throw.ogg, throwhard.ogg and throwsoft.ogg (Royalty-Free and Copyright-Free) are adapted from Jam FX, SmartSound FX and Epic Stock Media in :
+https://uppbeat.io/sfx/whoosh-swift-cut/7727/23617
+https://uppbeat.io/sfx/whoosh-air-punch/114/1168
+https://uppbeat.io/sfx/throwing-item-swing/9430/25267
