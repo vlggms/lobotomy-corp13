@@ -281,7 +281,8 @@
 	special = "Attack nearby turfs to create traps. Remote mode can trigger traps from a distance. \
 	Automatic mode places traps that trigger when enemies walk over them. Use in hand to switch between modes."
 	icon_state = "lantern"
-	force = 8 //less than the baton, don't hit things with it
+	force = 30//not 8 black damage any more but still less than normal teth tier dps.
+	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
 	var/mode = LANTERN_MODE_REMOTE
@@ -317,7 +318,7 @@
 
 /obj/effect/temp_visual/lanterntrap
 	name = "lantern trap"
-	icon_state = "shield1" //temp visual
+	icon_state = "mini_lantern" //temp visual
 	layer = ABOVE_ALL_MOB_LAYER
 	duration = 30 SECONDS
 	var/resonance_damage = 35
@@ -328,7 +329,7 @@
 
 /obj/effect/temp_visual/lanterntrap/Initialize(mapload, set_creator, set_resonator, mode)
 	if(mode == LANTERN_MODE_AUTO)
-		icon_state = "shield2" //temp visual
+		icon_state = "mini_lantern_auto" //temp visual
 		resonance_damage = 25
 		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/burst)
 	. = ..()
@@ -353,7 +354,7 @@
 	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
 
-	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
 		if(creator)
 			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
