@@ -224,9 +224,11 @@
 			forced_open = C.force_opens
 		try_to_crowbar(I, user, forced_open)
 		return TRUE
+/*LC13 Removal - Yeah you can guess why
 	else if(I.tool_behaviour == TOOL_WELDER)
 		try_to_weld(I, user)
 		return TRUE
+*/
 	else if(!(I.item_flags & NOBLUDGEON) && user.a_intent != INTENT_HARM)
 		try_to_activate_door(user)
 		return TRUE
