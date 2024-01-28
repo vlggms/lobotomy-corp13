@@ -265,18 +265,26 @@
 		release_damage = clamp(release_damage + damage, 0, release_threshold)
 		if(release_damage >= release_threshold)
 			ReleaseGrab()
-	last_heal_time = world.time + 10 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
+	if(!oberon_mode)
+		last_heal_time = world.time + 10 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
+	else
+		last_heal_time = world.time + 40 SECONDS // Heal delayed even more when taking damage; It was basically unkillable when it was 10 seconds.
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Life()
 	. = ..()
 	if(!.)
 		return
-	if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
-		var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
-		if(health <= maxHealth*0.3)
-			heal_amount *= 2
-		adjustBruteLoss(-heal_amount)
-		last_heal_time = world.time
+	if(!oberon_mode)
+		if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
+			var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
+			if(oberon_mode)
+				if(abno_host && abno_host.currentlaw == "armor")//prevents regen from happening when you can't smack it with the type it hurts it the most. Range and melee laws aren't affected due to with titania you have soulmate.
+					last_heal_time = world.time + 40 SECONDS
+			if(health <= maxHealth*0.3)
+				heal_amount *= 2
+			adjustBruteLoss(-heal_amount)
+			last_heal_time = world.time
+
 	if(next_transform && (world.time > next_transform))
 		next_stage()
 	if(current_stage == 2) // Egg
@@ -339,13 +347,14 @@
 		T.is_flying_animal = FALSE
 		T.density = FALSE
 		T.forceMove(src)
-		//T.fairy_spawn_time = 10 SECONDS
+		T.fairy_spawn_time = 10 SECONDS
 		can_act = TRUE
 		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
 		add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
 		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.5))
-		maxHealth = 5000
+		heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
+		maxHealth = 10000
 		adjustBruteLoss(-maxHealth) // It's not over yet!.
 		melee_damage_lower = 45
 		melee_damage_upper = 65
