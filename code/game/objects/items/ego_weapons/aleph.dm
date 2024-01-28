@@ -1271,7 +1271,7 @@
 /obj/item/ego_weapon/oberon
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
-	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage and incease the BLACK vulnerability by 0.2 in an area, and the bat does RED DAMAGE and knocks back enemies."
+	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area, and the bat does RED DAMAGE and knocks back enemies."
 	icon_state = "mockery_whip"
 	force = 15
 	attack_speed = 0.8
