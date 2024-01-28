@@ -3436,7 +3436,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/floor/plasteel/white,
 /area/department_main/safety)
 "qR" = (
@@ -9786,7 +9786,7 @@
 /area/department_main/command)
 "WE" = (
 /obj/structure/table/optable,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "WF" = (

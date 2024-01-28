@@ -263,7 +263,7 @@
 /area/department_main/control)
 "be" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery{
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
 	pixel_y = 12
 	},
 /obj/item/clothing/suit/apron/surgical,

@@ -4772,7 +4772,7 @@
 	dir = 1
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/storage/backpack/duffelbag/med/surgery{
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
 	pixel_y = 4
 	},
 /turf/open/floor/plasteel/sepia,
@@ -5463,7 +5463,7 @@
 	dir = 8
 	},
 /obj/structure/table/wood/fancy/green,
-/obj/item/storage/backpack/duffelbag/med/surgery{
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
 	pixel_y = 4
 	},
 /turf/open/floor/plasteel/sepia,
