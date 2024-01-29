@@ -8,7 +8,7 @@
 
 /obj/item/fishing_rod/debug/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>you can click on this rod to set how fast it fishes, right now its [speed_override * 0.1] seconds.</span>"
+	. += span_notice("you can click on this rod to set how fast it fishes, right now its [speed_override * 0.1] seconds.")
 
 /obj/item/fishing_rod/debug/attack_self(mob/user, datum/source)
 	speed_override = input(user, "How fast do you wish to fish in seconds?", "debug fishing speed") as num|null
@@ -49,9 +49,9 @@
 	var/old_name = T.name
 	if(!istype(T, turf_type))
 		if(T.TerraformTurf(turf_type, flags = CHANGETURF_INHERIT_AIR))
-			user.visible_message("<span class='danger'>[user] turns \the [old_name] into [transform_string]!</span>")
+			user.visible_message(span_danger("[user] turns \the [old_name] into [transform_string]!"))
 			playsound(T, 'sound/machines/terminal_processing.ogg', 20, TRUE)
 	else
 		if(T.TerraformTurf(reset_turf_type, flags = CHANGETURF_INHERIT_AIR))
-			user.visible_message("<span class='danger'>[user] turns \the [old_name] into [reset_string]!</span>")
+			user.visible_message(span_danger("[user] turns \the [old_name] into [reset_string]!"))
 			playsound(T, 'sound/machines/terminal_processing.ogg', 20, TRUE)

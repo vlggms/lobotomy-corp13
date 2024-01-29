@@ -69,42 +69,42 @@
 	name = "Serum 'W'"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "static"
-	chosen_message = "<span class='colossus'>You will now jump to random targets in the facility.</span>"
+	chosen_message = span_colossus("You will now jump to random targets in the facility.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/swift_dash
 	name = "Swift Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "rift"
-	chosen_message = "<span class='colossus'>You will now dash forward for a short distance.</span>"
+	chosen_message = span_colossus("You will now dash forward for a short distance.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/swift_dash_long
 	name = "Long Dash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "plasmasoul"
-	chosen_message = "<span class='colossus'>You will now dash forward for a long distance.</span>"
+	chosen_message = span_colossus("You will now dash forward for a long distance.")
 	chosen_attack_num = 3
 
 /datum/action/innate/megafauna_attack/serum_a
 	name = "Serum 'A'"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "impact_laser"
-	chosen_message = "<span class='colossus'>You will now continously dash towards your target.</span>"
+	chosen_message = span_colossus("You will now continously dash towards your target.")
 	chosen_attack_num = 4
 
 /datum/action/innate/megafauna_attack/wide_slash
 	name = "Wide Slash"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "bluestream"
-	chosen_message = "<span class='colossus'>You will now slash in a wide area with white damage.</span>"
+	chosen_message = span_colossus("You will now slash in a wide area with white damage.")
 	chosen_attack_num = 5
 
 /datum/action/innate/megafauna_attack/tri_serum
 	name = "Tri-Serum Attack"
 	icon_icon = 'icons/effects/effects.dmi'
 	button_icon_state = "static"
-	chosen_message = "<span class='colossus'>You will now jump to random targets in the facility, dealing pale damage to anyone on your way.</span>"
+	chosen_message = span_colossus("You will now jump to random targets in the facility, dealing pale damage to anyone on your way.")
 	chosen_attack_num = 6
 
 /obj/effect/temp_visual/target_field
@@ -213,7 +213,7 @@
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
 	if(!LAZYLEN(death_candidates)) // If there is 0 candidates - stop the spell.
-		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
+		to_chat(src, span_notice("There is no more human survivors in the facility."))
 		return
 	if(length(death_candidates) == 1) // Exactly one? Do targeted thing for lulz
 		return TargetSerumW(death_candidates[1])
@@ -233,7 +233,7 @@
 	uhoh.orbit(target, 0)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
-	to_chat(target, "<span class='danger'>The [src] is going to hunt you down!</span>")
+	to_chat(target, span_danger("The [src] is going to hunt you down!"))
 	addtimer(CALLBACK(src, .proc/eviscerate2, target, uhoh), 30)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
@@ -241,8 +241,8 @@
 		qdel(eff)
 		return
 	if(prob(2) || target.z != z || !target.loc.AllowClick()) // Be happy, mortal. Did you just hide in a locker?
-		to_chat(src, "<span class='notice'>Your teleportation device malfunctions!</span>")
-		to_chat(target, "<span class='notice'>It seems you are safe. For now...</span>")
+		to_chat(src, span_notice("Your teleportation device malfunctions!"))
+		to_chat(target, span_notice("It seems you are safe. For now..."))
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
 		qdel(eff)
 		return
@@ -250,7 +250,7 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(loc, src)
 	D.color = COLOR_BRIGHT_BLUE
 	animate(D, alpha = 0, time = 5)
-	visible_message("<span class='warning'>[src] blinks away!</span>")
+	visible_message(span_warning("[src] blinks away!"))
 	var/turf/tp_loc = get_step(target.loc, pick(0,1,2,4,5,6,8,9,10))
 	new /obj/effect/temp_visual/emp/pulse(tp_loc)
 	forceMove(tp_loc)
@@ -260,7 +260,7 @@
 	for(var/mob/living/L in range(1, get_turf(src))) // Attacks everyone around.
 		if(faction_check_mob(L))
 			continue
-		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
+		to_chat(target, span_userdanger("\The [src] eviscerates you!"))
 		L.apply_damage(75, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 
@@ -273,7 +273,7 @@
 	playsound(L, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 1, 1)
 	icon_state = "claw_prepare"
-	to_chat(L, "<span class='danger'>The [src] is going to hunt you down!</span>")
+	to_chat(L, span_danger("The [src] is going to hunt you down!"))
 	addtimer(CALLBACK(src, .proc/TargetEviscerate, L, uhoh), 15)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetEviscerate(mob/living/L, obj/effect/eff)
@@ -282,7 +282,7 @@
 		return FALSE
 	new /obj/effect/temp_visual/emp/pulse(src.loc)
 	icon_state = icon_living
-	visible_message("<span class='warning'>[src] blinks away!</span>")
+	visible_message(span_warning("[src] blinks away!"))
 	var/turf/tp_loc = get_step(L, pick(GLOB.alldirs))
 	new /obj/effect/temp_visual/emp/pulse(tp_loc)
 	forceMove(tp_loc)
@@ -295,8 +295,8 @@
 		charging = FALSE
 		return FALSE
 	L.visible_message(
-		"<span class='warning'>[src] disappears, taking [L] with them!</span>",
-		"<span class='userdanger'>[src] teleports with you through the entire facility!</span>"
+		span_warning("[src] disappears, taking [L] with them!"),
+		span_userdanger("[src] teleports with you through the entire facility!")
 		)
 	var/list/teleport_turfs = list()
 	for(var/turf/T in shuffle(GLOB.department_centers))
@@ -322,7 +322,7 @@
 				continue
 			if(LL == L)
 				continue
-			to_chat(LL, "<span class='userdanger'>\The [src] slashes you!</span>")
+			to_chat(LL, span_userdanger("\The [src] slashes you!"))
 			LL.apply_damage(15, BLACK_DAMAGE, null, LL.run_armor_check(null, BLACK_DAMAGE))
 			new /obj/effect/temp_visual/cleave(get_turf(LL))
 		tp_loc = get_step(src, pick(1,2,4,5,6,8,9,10))
@@ -337,7 +337,7 @@
 		if(i < 5)
 			SLEEP_CHECK_DEATH(4)
 	if(istype(L) && !QDELETED(L))
-		to_chat(L, "<span class='userdanger'>\The [src] slashes you, finally releasing you from his grasp!</span>")
+		to_chat(L, span_userdanger("\The [src] slashes you, finally releasing you from his grasp!"))
 		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		GiveTarget(L)
 	charging = FALSE
@@ -354,7 +354,7 @@
 		if((maybe_victim.stat != DEAD) && maybe_victim.z == z)
 			death_candidates += maybe_victim
 	if(!death_candidates.len) // If there is 0 candidates - stop the spell.
-		to_chat(src, "<span class='notice'>There is no more human survivors in the facility.</span>")
+		to_chat(src, span_notice("There is no more human survivors in the facility."))
 		return
 	for(var/i in 1 to 5)
 		if(!death_candidates.len) // No more candidates left? Let's stop picking through the list.
@@ -372,19 +372,19 @@
 	uhoh.orbit(target, 0)
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
-	to_chat(target, "<span class='danger'>The [src] is going to hunt you down!</span>")
+	to_chat(target, span_danger("The [src] is going to hunt you down!"))
 	addtimer(CALLBACK(src, .proc/triserum_eviscerate2, target, uhoh), 40)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
 	if(!istype(target) || QDELETED(target))
 		return
 	if(target.z != z || !target.loc.AllowClick()) // Be happy, mortal. Did you just hide in a locker?
-		to_chat(src, "<span class='notice'>Your teleportation device malfunctions!</span>")
-		to_chat(target, "<span class='notice'>It seems you are safe. For now...</span>")
+		to_chat(src, span_notice("Your teleportation device malfunctions!"))
+		to_chat(target, span_notice("It seems you are safe. For now..."))
 		playsound(src.loc, 'ModularTegustation/Tegusounds/claw/error.ogg', 50, 1)
 		qdel(eff)
 		return
-	visible_message("<span class='warning'>[src] blinks away!</span>")
+	visible_message(span_warning("[src] blinks away!"))
 	var/list/been_hit = list()
 	var/turf/prev_loc = get_turf(src)
 	new /obj/effect/temp_visual/emp/pulse(prev_loc)
@@ -404,7 +404,7 @@
 		if(faction_check_mob(L))
 			continue
 		been_hit |= L
-		to_chat(target, "<span class='userdanger'>\The [src] eviscerates you!</span>")
+		to_chat(target, span_userdanger("\The [src] eviscerates you!"))
 		L.apply_damage(70, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 		new /obj/effect/temp_visual/cleave(get_turf(L))
 	for(var/turf/B in getline(prev_loc, tp_loc))
@@ -414,7 +414,7 @@
 			if(faction_check_mob(L))
 				continue
 			been_hit |= L
-			to_chat(L, "<span class='userdanger'>\The [src] slashes you!</span>")
+			to_chat(L, span_userdanger("\The [src] slashes you!"))
 			L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
 			playsound(L, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
@@ -514,7 +514,7 @@
 					continue
 				if(victim == LT)
 					continue
-				to_chat(victim, "<span class='userdanger'>\The [src] slashes you!</span>")
+				to_chat(victim, span_userdanger("\The [src] slashes you!"))
 				victim.apply_damage(serumA_damage, RED_DAMAGE, null, victim.run_armor_check(null, RED_DAMAGE))
 				new /obj/effect/temp_visual/cleave(victim.loc)
 				playsound(victim, 'ModularTegustation/Tegusounds/claw/attack.ogg', 35, 1)

@@ -71,7 +71,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/can_inject(mob/user, error_msg)
 	if(error_msg)
-		to_chat(user, "<span class='alert'>[p_they(TRUE)] [p_are(TRUE)] too tough!</span>")
+		to_chat(user, span_alert("[p_they(TRUE)] [p_are(TRUE)] too tough!"))
 	return FALSE
 
 /mob/living/simple_animal/hostile/megafauna/Moved()

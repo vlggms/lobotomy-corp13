@@ -103,10 +103,10 @@
 	. = ..()
 	if(G.trigger_guard == TRIGGER_GUARD_NORMAL)
 		if(HAS_TRAIT(src, TRAIT_CHUNKYFINGERS))
-			to_chat(src, "<span class='warning'>Your meaty finger is much too large for the trigger guard!</span>")
+			to_chat(src, span_warning("Your meaty finger is much too large for the trigger guard!"))
 			return FALSE
 	if(HAS_TRAIT(src, TRAIT_NOGUNS))
-		to_chat(src, "<span class='warning'>You can't bring yourself to use a ranged weapon!</span>")
+		to_chat(src, span_warning("You can't bring yourself to use a ranged weapon!"))
 		return FALSE
 
 /mob/living/carbon/human/get_policy_keywords()
@@ -228,13 +228,13 @@
 	var/t_his = p_their()
 	var/t_is = p_are()
 	if(key || !getorgan(/obj/item/organ/brain))
-		return "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life...</span>" //Default death message
+		return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life...") //Default death message
 	//The death mob has a brain and no client/player that is assigned to the mob
 	if(!ghost?.can_reenter_corpse)  //And there is no ghost that could reenter the body
 		//There is no way this mob can in any normal way get a player, so they lost the will to live
-		return "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has lost the will to live...</span>"
+		return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has lost the will to live...")
 	//This mob has a ghost linked that could still reenter the body, so the soul only departed
-	return "<span class='deadsay'>[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed, but the link is not yet fully broken...</span>"
+	return span_deadsay("[t_He] [t_is] limp and unresponsive; there are no signs of life and [t_his] soul has departed, but the link is not yet fully broken...")
 
 ///copies over clothing preferences like underwear to another human
 /mob/living/carbon/human/proc/copy_clothing_prefs(mob/living/carbon/human/destination)

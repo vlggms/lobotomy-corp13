@@ -13,7 +13,7 @@
 	icon_state = "trawling_net_empty"
 	anchored = TRUE
 	max_integrity = 5
-	break_message = "<span class='notice'>The net falls apart!</span>"
+	break_message = span_notice("The net falls apart!")
 	break_sound = 'sound/items/wirecutter.ogg'
 	debris = list(/obj/item/fishing_net = 1)
 	var/fishin_cooldown = 25 SECONDS
@@ -32,7 +32,7 @@
 /obj/structure/destructible/fishing_net/examine(mob/user)
 	. = ..()
 	if(contents.len > 0)
-		. += "<span class='notice'>[contents.len]/5 things are caught in the [src].</span>"
+		. += span_notice("[contents.len]/5 things are caught in the [src].")
 
 /obj/structure/destructible/fishing_net/AltClick(mob/user)
 	. = ..()

@@ -157,7 +157,7 @@
 	flick("apocalypse_slam", src)
 	SLEEP_CHECK_DEATH(4)
 	playsound(src, 'sound/abnormalities/apocalypse/slam.ogg', 100, FALSE, 12)
-	visible_message("<span class='danger'>[src] slams at the floor with its talons!</span>")
+	visible_message(span_danger("[src] slams at the floor with its talons!"))
 	// Shake effect
 	for(var/mob/living/M in livinginrange(20, get_turf(src)))
 		shake_camera(M, 2, 3)
@@ -189,9 +189,9 @@
 	animate(src, alpha = 0, time = 15)
 	SLEEP_CHECK_DEATH(1.8 SECONDS)
 	animate(src, alpha = 255, time = 5)
-	visible_message("<span class='danger'>[src] suddenly disappears!</span>")
+	visible_message(span_danger("[src] suddenly disappears!"))
 	forceMove(T)
-	visible_message("<span class='danger'>[src] suddenly appears in front of you!</span>")
+	visible_message(span_danger("[src] suddenly appears in front of you!"))
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	teleport_cooldown = world.time + teleport_cooldown_time
 	attacking = FALSE
@@ -254,7 +254,7 @@
 	SLEEP_CHECK_DEATH(10)
 	flick("apocalypse_slam", src)
 	playsound(src, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
-	visible_message("<span class='danger'>[src] opens its mouth and devours everything in its path!</span>")
+	visible_message(span_danger("[src] opens its mouth and devours everything in its path!"))
 	var/list/been_hit = list()
 	for(var/turf/TF in area_of_effect)
 		new /obj/effect/temp_visual/beakbite(TF)

@@ -29,7 +29,7 @@
 		for(var/path in ABNO.ego_list)
 			var/datum/ego_datum/I = path
 			lor.lootbox += initial(I.item_path)
-		
+
 	//Reverts loot and body if there were custom ones
 	if(custom_loot)
 		lor.lootbox = custom_loot
@@ -51,7 +51,7 @@
 			var/obj/item/loot = I
 			lor.info += "[initial(loot.name)]<br>"
 
-	visible_message("<span class='userdanger'>[src] was turned into a book!</span>")
+	visible_message(span_userdanger("[src] was turned into a book!"))
 	playsound(src, 'sound/effects/book_turn.ogg', 75, TRUE, TRUE)
 	new /obj/effect/temp_visual/turn_book(get_turf(src))
 	qdel(src)
@@ -74,7 +74,7 @@
 		var/obj/item/loot = pick(lootbox)
 		if(loot)
 			new loot(get_turf(src))
-			visible_message("<span class='nicegreen'>A [initial(loot.name)] came out of the ashes!</span>")
+			visible_message(span_nicegreen("A [initial(loot.name)] came out of the ashes!"))
 			playsound(src, 'sound/effects/book_burn.ogg', 50, TRUE, TRUE)
 		SStgui.close_uis(src)
 		qdel(src)
