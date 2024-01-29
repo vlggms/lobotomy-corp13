@@ -25,6 +25,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 //	loadalways = TRUE
 	job_important = "You are a Clerk. You're the jack of all trades in LCorp. You are to assist with cleanup, cooking, medical and other miscellaneous tasks. You are fragile, but important."
 
+	rank_title = "CLRK"
 
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)

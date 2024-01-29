@@ -24,6 +24,7 @@
 								TEMPERANCE_ATTRIBUTE = 20,
 								JUSTICE_ATTRIBUTE = 20
 								)
+	rank_title = "AGT"
 
 	job_important = "You are an L-Corp agent. Your job is to work on, and suppress abnormalities. Use :h to talk on your departmental radio."
 
@@ -135,6 +136,7 @@
 	exp_type_department = EXP_TYPE_SECURITY
 	mapexclude = list("wonderlabs", "mini")
 	job_important = "You are an Agent Captain. You're an experienced agent, that is expected to disseminate your information and experience as well as help lead the agents."
+	rank_title = "CPT"
 
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
@@ -159,6 +161,7 @@
 	exp_requirements = 0
 	job_important = "You are an Agent Intern. Your main goal is to learn how to work on abnormalities, and assist in suppression. Other agents should be more understanding to your mistakes. \
 	If there is a Records Officer, seek them for assistance."
+	rank_title = "INRN"
 
 /datum/outfit/job/agent/intern
 	name = "Agent Intern"
