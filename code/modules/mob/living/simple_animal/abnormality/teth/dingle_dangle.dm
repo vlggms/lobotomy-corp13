@@ -36,26 +36,26 @@
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	//if your prudence is low, give a short hallucination, apply the buff, and lower counter.
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60) // below level 3
-		user.hallucination += 5
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60)
+		user.hallucination += 20
 		user.apply_status_effect(STATUS_EFFECT_DANGLE)
 		datum_reference.qliphoth_change(-1)
 		return ..()
 
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // fort 4 or higher
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80)
 		return ..()
 
 	//I mean it does this in wonderlabs
-	//But here's the twist: You get a better ego as long as you didn't fail the work.
-	if(user && pe >= datum_reference.neutral_boxes)
-		var/location = get_turf(user)
-		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
-		user.dust() // this is here so people don't get dusted again after failing
-	return ..()
+	user.dust()
+
+	//But here's the twist: You get a better ego.
+	var/location = get_turf(user)
+	new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(50))
+		//Yeah dust them too. No ego this time tho
 		user.dust()
 
 /atom/movable/screen/alert/status_effect/dangle
