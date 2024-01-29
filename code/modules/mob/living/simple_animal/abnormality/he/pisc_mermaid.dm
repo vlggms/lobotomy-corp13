@@ -70,13 +70,16 @@
 	if(crown?.loved == user)
 		if(crown.loved)
 			datum_reference.qliphoth_change(2)
-			crown.love_cooldown = (world.time + crown.love_cooldown_time)
+			crown.love_cooldown = (world.time + crown.love_cooldown_time) //Reset the qliphoth reduction timer
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(status_flags & GODMODE)
 		icon_living = "pmermaid_laying"
 		icon_state = "pmermaid_laying"
+		if(crown?.loved == user)
+			if(crown.loved)
+				crown.love_cooldown = (crown.love_cooldown + 300) //Add 30 seconds to the qliphoth reduction timer while we work her to avoid counter drop midwork
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
