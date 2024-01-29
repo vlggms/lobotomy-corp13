@@ -83,13 +83,14 @@
 		say("At last, someone worthy!")
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Blessing(mob/living/carbon/human/user)
-	var/datum/status_effect/chosen/C = blessed_human.has_status_effect(/datum/status_effect/chosen)
-	if(!C)
-		user.apply_status_effect(STATUS_EFFECT_CHOSEN)
-		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
-		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
-		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/OnWorkStart)
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	var/datum/status_effect/chosen/Chosen = blessed_human.has_status_effect(/datum/status_effect/chosen)
+	if(Chosen)
+		return
+	user.apply_status_effect(STATUS_EFFECT_CHOSEN)
+	RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
+	RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
+	RegisterSignal(user, COMSIG_WORK_STARTED, .proc/OnWorkStart)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/BlessedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER

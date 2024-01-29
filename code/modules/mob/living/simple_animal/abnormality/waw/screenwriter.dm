@@ -200,13 +200,13 @@ Defeating the murderer also surpresses the abnormality.
 /datum/status_effect/actor/proc/ChangeToVictim() // So you have chosen death
 	if(role == "victim")
 		return
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/human/status_holder = owner
 	if(stat)
-		H.adjust_attribute_bonus(stat, -stat_modifier)
+		status_holder.adjust_attribute_bonus(stat, -stat_modifier)
 	else
 		return
 	stat_modifier = -100
-	H.adjust_all_attribute_bonuses(stat_modifier)
+	status_holder.adjust_all_attribute_bonuses(stat_modifier)
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	role = "victim"
 	owner.add_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
@@ -214,7 +214,7 @@ Defeating the murderer also surpresses the abnormality.
 	to_chat(owner, span_userdanger("You will now play the role of the victim!"))
 
 /datum/status_effect/actor/proc/AssignRole()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/human/status_holder = owner
 	owner.add_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	switch(role)
 		if("coward")
@@ -228,9 +228,9 @@ Defeating the murderer also surpresses the abnormality.
 			stat = PRUDENCE_ATTRIBUTE
 		if("victim")
 			stat_modifier = -100
-			H.adjust_all_attribute_bonuses(stat_modifier)
+			status_holder.adjust_all_attribute_bonuses(stat_modifier)
 			return
-	H.adjust_attribute_bonus(stat, stat_modifier)
+	status_holder.adjust_attribute_bonus(stat, stat_modifier)
 
 //Mob
 /mob/living/simple_animal/hostile/actor

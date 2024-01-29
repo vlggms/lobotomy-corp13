@@ -857,14 +857,14 @@
 	. = ..()
 	if(!isliving(owner))
 		return
-	var/mob/living/L = owner
-	L.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	if(!ishuman(L))
+	var/mob/living/status_holder = owner
+	status_holder.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	if(!ishuman(status_holder))
 		return
-	if((L.sanityhealth <= 0) || (L.health <= 0))
-		var/turf/T = get_turf(L)
-		L.gib(TRUE, TRUE, TRUE)
-		new /mob/living/simple_animal/hostile/azure_stave(T)
+	if((status_holder.sanityhealth <= 0) || (status_holder.health <= 0))
+		var/turf/spawner_turf = get_turf(status_holder)
+		status_holder.gib(TRUE, TRUE, TRUE)
+		new /mob/living/simple_animal/hostile/azure_stave(spawner_turf)
 
 #undef STATUS_EFFECT_ACIDIC_GOO
 #undef SERVANT_SMASH_COOLDOWN

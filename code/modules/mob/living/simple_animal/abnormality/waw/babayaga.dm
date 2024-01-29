@@ -253,7 +253,7 @@
 /datum/status_effect/babayaga
 	id = "babayaga"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 50		//Lasts 5 seconds
+	duration = 5 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/babayaga
 
 /atom/movable/screen/alert/status_effect/babayaga

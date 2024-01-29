@@ -642,7 +642,7 @@
 /datum/status_effect/freezing
 	id = "freezing"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 300
+	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/freezing
 
 /atom/movable/screen/alert/status_effect/freezing
@@ -654,7 +654,7 @@
 /datum/status_effect/fogbound
 	id = "fogbound"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 300
+	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/fogbound
 
 /datum/status_effect/fogbound/on_apply()

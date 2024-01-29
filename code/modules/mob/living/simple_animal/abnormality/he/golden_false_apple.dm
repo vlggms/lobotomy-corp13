@@ -483,21 +483,22 @@
 	return ..()
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
-	var/mob/living/carbon/human/H = owner
-	H.apply_damage(stacks * 1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
-	if(H.stat >= HARD_CRIT)
-		var/obj/structure/spider/cocoon/casing = new(H.loc)
-		H.forceMove(casing)
-		casing.name = "pile of maggots"
-		casing.desc = "They're wriggling and writhing over something."
-		casing.icon_state = pick(
-			"cocoon_large1",
-			"cocoon_large2",
-			"cocoon_large3",
-		)
-		casing.density = FALSE
-		casing.color = "#01F9C6"
-		qdel(src)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+	if(status_holder.stat < HARD_CRIT)
+		return
+	var/obj/structure/spider/cocoon/casing = new(H.loc)
+	status_holder.forceMove(casing)
+	casing.name = "pile of maggots"
+	casing.desc = "They're wriggling and writhing over something."
+	casing.icon_state = pick(
+		"cocoon_large1",
+		"cocoon_large2",
+		"cocoon_large3",
+	)
+	casing.density = FALSE
+	casing.color = "#01F9C6"
+	qdel(src)
 
 /obj/item/food/grown/apple/gold/abnormality
 	food_reagents = list(/datum/reagent/abnormality/ambrosia = 10)

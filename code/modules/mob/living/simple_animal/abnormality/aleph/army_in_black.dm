@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(army)
 /datum/status_effect/protection
 	id = "protection"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 120 SECONDS
+	duration = 2 MINUTES
 	alert_type = null
 	tick_interval = 30
 	var/boom = TRUE

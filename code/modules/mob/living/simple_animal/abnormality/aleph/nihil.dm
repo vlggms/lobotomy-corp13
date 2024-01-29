@@ -120,7 +120,7 @@
 /datum/status_effect/stacking/void
 	id = "stacking_void"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 200 //20 seconds
+	duration = 20 SECONDS
 	alert_type = null
 	stack_decay = 0
 	stacks = 1

@@ -207,12 +207,13 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 /datum/status_effect/display/singing_machine/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -5)
-		H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5)
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10)
-		H.physiology.white_mod *= 1.1
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -5)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -5)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10)
+	status_holder.physiology.white_mod *= 1.1
 
 /datum/status_effect/display/singing_machine/tick()
 	if(world.time % addictionTick == 0 && ishuman(owner)) // Give or take one, this will fire off as many times as if I set up a proper timer variable.
@@ -221,11 +222,12 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 /datum/status_effect/display/singing_machine/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5)
-		H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10)
-		H.physiology.white_mod /= 1.1
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 5)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 5)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10)
+	status_holder.physiology.white_mod /= 1.1
 
 #undef STATUS_EFFECT_MUSIC

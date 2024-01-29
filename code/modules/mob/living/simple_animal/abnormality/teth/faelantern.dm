@@ -354,14 +354,16 @@
 
 /datum/status_effect/fairy_lure/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.red_mod *= 5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 5
 
 /datum/status_effect/fairy_lure/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.red_mod /= 5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 5
 
 #undef STATUS_EFFECT_FAIRYLURE

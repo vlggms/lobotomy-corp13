@@ -460,10 +460,10 @@
 /datum/status_effect/stacking/crownthorns
 	id = "thorns"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = -1//INFINITE POWER!!!
+	duration = -1 //INFINITE POWER!!!
 	max_stacks = 5
 	stacks = 1
-	tick_interval = 25 SECONDS//you get about a minute and a half
+	tick_interval = 25 SECONDS //you get about a minute and a half
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/crownthorns
 	consumed_on_threshold = FALSE
@@ -478,36 +478,37 @@
 	icon_state = "rose_sign"
 
 /datum/status_effect/stacking/crownthorns/on_apply()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -attribute_penalty)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -attribute_penalty)
 	return ..()
 
 /datum/status_effect/stacking/crownthorns/tick()
 	to_chat(owner, span_warning("Thorns painfully dig into your skin!"))
 	owner.emote("scream")
 	stacks += 1
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -25)//By using bonuses, this lowers your maximum health
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -25)//By using bonuses, this lowers your maximum health
 	attribute_penalty += 25
 	if(master)
 		master.adjustBruteLoss(-100)
-	if(H.stat >= HARD_CRIT || stacks == max_stacks)
-		status_applicant.killed = FALSE
-		status_applicant.death()
-		H.death()
-		var/turf/T = get_turf(owner)
-		if(locate(/obj/structure/rose_crucifix) in T)
-			T = pick_n_take(T.reachableAdjacentTurfs())//if a crucifix is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
-			owner.forceMove(T)
-		var/obj/structure/rose_crucifix/N = new(get_turf(T))
-		N.buckle_mob(owner)
-		qdel(src)
+	if(!status_holder.stat >= HARD_CRIT || stacks != max_stacks)
+		return
+	status_applicant.killed = FALSE
+	status_applicant.death()
+	status_holder.death()
+	var/turf/T = get_turf(owner)
+	if(locate(/obj/structure/rose_crucifix) in T)
+		T = pick_n_take(T.reachableAdjacentTurfs())//if a crucifix is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
+		owner.forceMove(T)
+	var/obj/structure/rose_crucifix/N = new(get_turf(T))
+	N.buckle_mob(owner)
+	qdel(src)
 
 /datum/status_effect/stacking/crownthorns/on_remove()
 	to_chat(owner, span_nicegreen("The prickly feeling stops."))
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
-	owner.adjustBruteLoss(-attribute_penalty)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
+	status_holder.adjustBruteLoss(-attribute_penalty)
 	return ..()
 
 //On-kill visual effect

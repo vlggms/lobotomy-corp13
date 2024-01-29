@@ -204,7 +204,7 @@
 /datum/status_effect/tears
 	id = "tears"
 	status_type = STATUS_EFFECT_MULTIPLE	//You should be able to stack this, I hope
-	duration = 3000 //Lasts 5 minutes.
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/tears
 	var/scaling = 20
 
@@ -216,23 +216,25 @@
 
 /datum/status_effect/tears/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(owner, span_danger("Something once important to you is gone now. You feel like crying."))
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -scaling)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -scaling)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -scaling)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -scaling)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(owner, span_danger("Something once important to you is gone now. You feel like crying."))
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -scaling)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -scaling)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -scaling)
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -scaling)
 
 /datum/status_effect/tears/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(owner, span_nicegreen("You feel your strength return to you."))
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, scaling)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, scaling)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, scaling)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, scaling)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(owner, span_nicegreen("You feel your strength return to you."))
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, scaling)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, scaling)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, scaling)
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, scaling)
 
 /datum/status_effect/tears/less
 	duration = 2 MINUTES

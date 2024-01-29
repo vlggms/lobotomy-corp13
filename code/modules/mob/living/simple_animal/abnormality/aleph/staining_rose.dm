@@ -140,7 +140,7 @@
 /datum/status_effect/wilting
 	id = "wilting"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 minutes, or when the weather ends
+	duration = 5 MINUTES	// Can end early when the weather ends
 	alert_type = null
 
 /datum/status_effect/wilting/on_apply()
