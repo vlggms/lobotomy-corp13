@@ -206,7 +206,7 @@
 	status_holder.apply_damage(punishment_damage, PALE_DAMAGE, null, status_holder.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	if(status_holder.health < 0)
 		holders_head.dismember()
-	new /obj/effect/temp_visual/slice(get_turf(H))
+	new /obj/effect/temp_visual/slice(get_turf(status_holder))
 	qdel(src)
 
 
