@@ -163,13 +163,6 @@
 	if(job_notice)
 		to_chat(M, "<span class='notice'>[job_notice] </span>")
 
-	//Sets your rank title
-	if(rank_title)
-		H.real_name = "[rank_title] [H.real_name]"
-		H.name = H.real_name
-		for(var/obj/item/card/id/Y in H.contents)
-			Y.registered_name = H.name
-			Y.update_label()
 
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
@@ -190,6 +183,11 @@
 
 //Don't override this unless the job transforms into a non-human (Silicons do this for example)
 /datum/job/proc/equip(mob/living/carbon/human/H, visualsOnly = FALSE, announce = TRUE, latejoin = FALSE, datum/outfit/outfit_override = null, client/preference_source)
+	//Sets your rank title
+	if(rank_title)
+		H.real_name = "[rank_title] [H.real_name]"
+		H.name = H.real_name
+
 	if(!H)
 		return FALSE
 	if(CONFIG_GET(flag/enforce_human_authority) && (title in GLOB.command_positions))
