@@ -25,7 +25,6 @@
 		/datum/ego_datum/armor/lutemia
 	)
 	gift_type = /datum/ego_gifts/lutemis
-	gift_message = "Let's all become fruits. Let's hang together. Your despair, sadness... Let's all dangle down."
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 //Introduction to our hallucinations. This is a global hallucination, but it's all it really does.
@@ -36,13 +35,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	//if your prudence is low, give a short hallucination, apply the buff, and lower counter.
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) > 60)
 		user.hallucination += 20
 		user.apply_status_effect(STATUS_EFFECT_DANGLE)
 		datum_reference.qliphoth_change(-1)
 		return ..()
 
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80)
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 80)
 		return ..()
 
 	//I mean it does this in wonderlabs
@@ -60,7 +59,7 @@
 
 /atom/movable/screen/alert/status_effect/dangle
 	name = "That Woozy Feeling"
-	desc = "Your combat senses sharpen even as you feel your mind dangling."
+	desc = "+15 to Combat bonus."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "rest"
 
