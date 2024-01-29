@@ -45,12 +45,12 @@
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // fort 4 or higher
 		return ..()
 
+	//I mean it does this in wonderlabs
 	//But here's the twist: You get a better ego.
 	if(user && !canceled)
 		var/location = get_turf(user)
 		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
-	//I mean it does this in wonderlabs
-	if(stat != DEAD) //dusting sets you dead before the animation, we don't want to dust twice
+	if(user.stat != DEAD) //dusting sets you dead before the animation, we don't want to dust user twice after failing work
 		user.dust()
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
