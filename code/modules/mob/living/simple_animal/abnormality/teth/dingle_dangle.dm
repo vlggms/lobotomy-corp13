@@ -37,7 +37,7 @@
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	//if your prudence is low, give a short hallucination, apply the buff, and lower counter.
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60) // below level 3
-		user.hallucination += 20
+		user.hallucination += 5
 		user.apply_status_effect(STATUS_EFFECT_DANGLE)
 		datum_reference.qliphoth_change(-1)
 		return ..()
