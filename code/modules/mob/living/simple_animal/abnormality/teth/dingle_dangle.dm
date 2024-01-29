@@ -34,7 +34,7 @@
 		H.hallucination += 10
 	datum_reference.qliphoth_change(3)
 
-/mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	//if your prudence is low, give a short hallucination, apply the buff, and lower counter.
 	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60) // below level 3
 		user.hallucination += 20
@@ -45,11 +45,13 @@
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // fort 4 or higher
 		return ..()
 
-	//But here's the twist: You get a better ego as long as you didn't fail the work.
-	if(pe >= datum_reference.neutral_boxes)
+	//But here's the twist: You get a better ego.
+	if(user && !canceled)
 		var/location = get_turf(user)
 		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
-		user.dust() // this is here so people don't get dusted again after a fail work
+	//I mean it does this in wonderlabs
+	if(stat != DEAD) //dusting sets you dead before the animation, we don't want to dust twice
+		user.dust()
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
