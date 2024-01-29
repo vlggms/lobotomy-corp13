@@ -50,7 +50,7 @@
 	if(user && !canceled)
 		var/location = get_turf(user)
 		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
-	if(user.stat != DEAD) //dusting sets you dead before the animation, we don't want to dust user twice after failing work
+	if(user?.stat != DEAD) //dusting sets you dead before the animation, we don't want to dust user twice after failing work
 		user.dust()
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
