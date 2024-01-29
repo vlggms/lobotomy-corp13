@@ -89,5 +89,5 @@
 		if(atom_rename && !iseffect(M))
 			M.name = atom_rename
 		if(spawn_flavor_text)
-			M.visible_message("<span class='danger'>[M] [spawn_flavor_text].</span>")
+			M.visible_message(span_danger("[M] [spawn_flavor_text]."))
 		return M

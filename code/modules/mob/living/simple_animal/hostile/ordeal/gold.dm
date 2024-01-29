@@ -179,7 +179,7 @@
 			if(!faction_check_mob(L))
 				if(L in been_hit)
 					continue
-				L.visible_message("<span class='warning'>[src] rams [L]!</span>", "<span class='boldwarning'>[src] rams into you!</span>")
+				L.visible_message(span_warning("[src] rams [L]!"), span_boldwarning("[src] rams into you!"))
 				L.apply_damage(charge_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 				new /obj/effect/temp_visual/cleave(get_turf(L))
 				playsound(L, 'sound/effects/ordeals/gold/rock_kill.ogg', 50, TRUE)
@@ -228,8 +228,8 @@
 	if(!L)
 		return
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
 	adjustBruteLoss(-(maxHealth/2))
 	playsound(get_turf(L), 'sound/effects/ordeals/gold/flower_kill.ogg', 50, 4)
 	if(iscarbon(L))
@@ -403,14 +403,14 @@
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/bullet_act(obj/projectile/P)
-	visible_message("<span class='userdanger'>[P] is easily deflected by [src]!</span>")
+	visible_message(span_userdanger("[P] is easily deflected by [src]!"))
 	P.Destroy()
 	return
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/attacked_by(obj/item/I, mob/living/user)
 	var/checkdir = check_target_facings(user, src)
 	if((get_dist(user, src) > 1) || checkdir == FACING_EACHOTHER)
-		user.visible_message("<span class='danger'>[user]'s attack is easily deflected by [src]!</span>", "<span class='userdanger'>Your attack is easily deflected by [src]!</span>")
+		user.visible_message(span_danger("[user]'s attack is easily deflected by [src]!"), span_userdanger("Your attack is easily deflected by [src]!"))
 		return
 	return ..()
 
@@ -473,7 +473,7 @@
 /mob/living/simple_animal/hostile/ordeal/sin_gloom/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	playsound(loc, 'sound/effects/ordeals/gold/tentacle_explode.ogg', 60, TRUE)
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	for(var/mob/living/L in viewers(2, src))
@@ -587,7 +587,7 @@
 			continue
 		if(L.z != z)
 			continue
-		L.visible_message("<span class='warning'>[src] shreds [L] as it passes by!</span>", "<span class='boldwarning'>[src] shreds you!</span>")
+		L.visible_message(span_warning("[src] shreds [L] as it passes by!"), span_boldwarning("[src] shreds you!"))
 		var/turf/LT = get_turf(L)
 		new /obj/effect/temp_visual/kinetic_blast(LT)
 		L.apply_damage(150, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
@@ -637,7 +637,7 @@
 	if(charged)
 		L.apply_damage(15, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
-		to_chat(L,"<span class='danger'>The [src] unleashes its charge!</span>")
+		to_chat(L,span_danger("The [src] unleashes its charge!"))
 		charged = FALSE
 	if(!ishuman(target))
 		return
@@ -722,7 +722,7 @@
 			continue
 		TB.charged = TRUE
 		playsound(get_turf(TB), 'sound/weapons/fixer/generic/energy3.ogg', 75, FALSE, 3)
-		TB.visible_message("<span class='warning'>[TB] absorbs the arcing electricity!</span>")
+		TB.visible_message(span_warning("[TB] absorbs the arcing electricity!"))
 
 
 //Gold Midnight //todo: add inquisitor corrosions
@@ -756,10 +756,10 @@
 	var/mob/living/carbon/human/H = target
 	var/datum/status_effect/stacking/fuming/F = H.has_status_effect(/datum/status_effect/stacking/fuming)
 	if(!F)
-		to_chat(H, "<span class='userdanger'>You start to feel overcome with rage!</span>")
+		to_chat(H, span_userdanger("You start to feel overcome with rage!"))
 		H.apply_status_effect(STATUS_EFFECT_FUMING)
 	else
-		to_chat(H, "<span class='userdanger'>You feel angrier!!</span>")
+		to_chat(H, span_userdanger("You feel angrier!!"))
 		F.add_stacks(1)
 		F.refresh()
 	return
@@ -789,7 +789,7 @@
 		return
 	exploding = TRUE
 	playsound(get_turf(owner), 'sound/effects/ordeals/gold/tentacle_before_explode.ogg', 50, 0, 2)
-	to_chat(owner, "<span class='userdanger'>You feel like something popped in your head!</span>")
+	to_chat(owner, span_userdanger("You feel like something popped in your head!"))
 	playsound(get_turf(owner), 'sound/effects/ordeals/gold/tentacle_explode.ogg', 100, 0, 4)
 	for(var/mob/living/carbon/human/H in oview(3, src))
 		H.apply_damage(250, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
@@ -829,14 +829,14 @@
 	AddComponent(/datum/component/knockback, 2, FALSE, TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/sin_lust/bullet_act(obj/projectile/P)
-	visible_message("<span class='userdanger'>[P] is blocked by [src]!</span>")
+	visible_message(span_userdanger("[P] is blocked by [src]!"))
 	P.Destroy()
 	return
 
 /mob/living/simple_animal/hostile/ordeal/sin_lust/attacked_by(obj/item/I, mob/living/user)
 	var/checkdir = check_target_facings(user, src)
 	if((get_dist(user, src) > 1) || checkdir == FACING_EACHOTHER)
-		user.visible_message("<span class='danger'>[user]'s attack is easily deflected by [src]!</span>", "<span class='userdanger'>Your attack is easily deflected by [src]!</span>")
+		user.visible_message(span_danger("[user]'s attack is easily deflected by [src]!"), span_userdanger("Your attack is easily deflected by [src]!"))
 		return
 	return ..()
 

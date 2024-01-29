@@ -147,7 +147,7 @@
 	var/max_spawn = clamp(GLOB.clients.len * 5, 5, 25)
 	if(length(spawned_mobs) >= max_spawn)
 		return
-	visible_message("<span class='danger'>Five smaller bugs appear out of [src]!</span>")
+	visible_message(span_danger("Five smaller bugs appear out of [src]!"))
 	for(var/i = 1 to 5)
 		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		if(T.density) // Retry
@@ -162,7 +162,7 @@
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/BurrowIn()
 	burrowing = TRUE
 	density = FALSE
-	visible_message("<span class='danger'>[src] burrows into the ground!</span>")
+	visible_message(span_danger("[src] burrows into the ground!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_dig_in.ogg', 50, 1)
 	animate(src, alpha = 0, time = 5)
 	for(var/turf/open/OT in range(1, src))
@@ -178,7 +178,7 @@
 	animate(src, alpha = 255, time = 5)
 	SLEEP_CHECK_DEATH(5)
 	density = TRUE
-	visible_message("<span class='danger'>[src] burrows out from the ground!</span>")
+	visible_message(span_danger("[src] burrows out from the ground!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_dig_out.ogg', 50, 1)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, src)
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
@@ -268,7 +268,7 @@
 	if(length(spawned_mobs) >= max_spawn)
 		return FALSE
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_create.ogg', 50, FALSE)
-	visible_message("<span class='danger'>Two large bugs appear out of [src]!</span>")
+	visible_message(span_danger("Two large bugs appear out of [src]!"))
 	for(var/i = 1 to 2)
 		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		var/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/nb = new(T)
@@ -283,7 +283,7 @@
 		SLEEP_CHECK_DEATH(2 SECONDS)
 	burrowing = TRUE
 	density = FALSE
-	visible_message("<span class='danger'>[src] burrows into the ground!</span>")
+	visible_message(span_danger("[src] burrows into the ground!"))
 	playsound(src, 'sound/effects/ordeals/amber/midnight_in.ogg', 50, FALSE, 7)
 	animate(src, alpha = 0, time = 7)
 	for(var/turf/open/OT in range(2, src))
@@ -320,7 +320,7 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out_far.ogg', 25, FALSE, 24, 2, falloff_distance = 9)
 	SLEEP_CHECK_DEATH(2)
 	density = TRUE
-	visible_message("<span class='danger'>[src] burrows out from the ground!</span>")
+	visible_message(span_danger("[src] burrows out from the ground!"))
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*1.25, time = 3)
 	SLEEP_CHECK_DEATH(2)

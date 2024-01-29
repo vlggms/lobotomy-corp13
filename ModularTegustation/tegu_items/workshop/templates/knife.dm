@@ -17,7 +17,7 @@
 
 /obj/item/ego_weapon/template/knife/attack_self(mob/living/carbon/user)
 	if(!active)
-		to_chat(user, "<span class='notice'>This weapon is unfinished!</span>")
+		to_chat(user, span_notice("This weapon is unfinished!"))
 		return
 	if(user.dir == 1)
 		dodgelanding = locate(user.x, user.y + 5, user.z)

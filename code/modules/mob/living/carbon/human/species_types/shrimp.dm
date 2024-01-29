@@ -30,9 +30,9 @@
 				if(!(src.key))
 					src.transfer_personality(O.client)
 				else if(src.key)
-					to_chat(src, "<span class='notice'>Somebody is already controlling this creature.</span>")
+					to_chat(src, span_notice("Somebody is already controlling this creature."))
 		else if(!(O.can_reenter_corpse))
-			to_chat(O,"<span class='notice'>You cannot control this creature.</span>")
+			to_chat(O,span_notice("You cannot control this creature."))
 
 /mob/living/carbon/human/species/shrimp/proc/transfer_personality(client/candidate)
 	if(!candidate)
@@ -40,4 +40,4 @@
 	src.ckey = candidate.ckey
 	if(src.mind)
 		src.mind.assigned_role = "Clerk"
-		to_chat(src, "<span class='info'>You are a Clerk. You're the jack of all trades in LCorp. You are to assist with cleanup, cooking, medical and other miscellaneous tasks. You are fragile, but important.</span>")
+		to_chat(src, span_info("You are a Clerk. You're the jack of all trades in LCorp. You are to assist with cleanup, cooking, medical and other miscellaneous tasks. You are fragile, but important."))

@@ -80,7 +80,7 @@
 	if(possessed)
 		return
 
-	to_chat(user, "<span class='notice'>You plumb the depths of your Inland Empire. Whispers seem to emanate from [src], as though it had somehow come to life; could it be?</span>")
+	to_chat(user, span_notice("You plumb the depths of your Inland Empire. Whispers seem to emanate from [src], as though it had somehow come to life; could it be?"))
 
 	possessed = TRUE
 
@@ -101,7 +101,7 @@
 			name = input
 			S.fully_replace_character_name(null, "The spirit of [input]")
 	else
-		to_chat(user, "<span class='warning'>The whispers coming from [src] fade and are silent again... Was it all your imagination? Maybe you can try again later.</span>")
+		to_chat(user, span_warning("The whispers coming from [src] fade and are silent again... Was it all your imagination? Maybe you can try again later."))
 		possessed = FALSE
 
 /obj/item/clothing/neck/tie/detective/disco_necktie/Destroy()
@@ -110,7 +110,7 @@
 
 /obj/item/clothing/neck/tie/detective/disco_necktie/proc/deconceptualize()
 	for(var/mob/living/simple_animal/shade/S in contents)
-		to_chat(S, "<span class='userdanger'>You were deconceptualized!</span>")
+		to_chat(S, span_userdanger("You were deconceptualized!"))
 		qdel(S)
 
 /obj/item/clothing/neck/tie/detective/disco_necktie/verb/deconceptualize_tie()
@@ -123,7 +123,7 @@
 	if (!can_use(M))
 		return
 	if (!possessed)
-		to_chat(M, "<span class='warning'>There is no tie persona to deconceptualize!</span>")
+		to_chat(M, span_warning("There is no tie persona to deconceptualize!"))
 		return
 
 	var/list/deconceptualize_options = list(
@@ -134,10 +134,10 @@
 
 	switch(choice)
 		if("Yes.")
-			to_chat(M, "<span class='warning'>Asserting your volition in a triumphant act of will, you dispel the phantom persona imposed upon your preternaturally ugly tie.</span>")
+			to_chat(M, span_warning("Asserting your volition in a triumphant act of will, you dispel the phantom persona imposed upon your preternaturally ugly tie."))
 			deconceptualize() //This kills the tie ghost.
 		if("No.")
-			to_chat(M, "<span class='warning'>Thinking better of it, you choose not to banish your phantom friend to the conceptual oblivion from which it was dredged.</span>")
+			to_chat(M, span_warning("Thinking better of it, you choose not to banish your phantom friend to the conceptual oblivion from which it was dredged."))
 
 /obj/item/clothing/glasses/sunglasses/disco
 	name = "binoclard lenses"
