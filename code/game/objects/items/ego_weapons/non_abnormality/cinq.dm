@@ -51,7 +51,7 @@
 /obj/item/ego_weapon/city/cinq/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(reach == 2)
-		to_chat(user, "<span class='userdanger'>Magnifique!</span>")
+		to_chat(user, span_userdanger("Magnifique!")
 		reach = 1
 		target.Immobilize(5)
 		//Now rush forwards.
@@ -69,11 +69,11 @@
 /obj/item/ego_weapon/city/cinq/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
-	to_chat(user, "<span class='notice'>A tout de souffle.</span>")
+	to_chat(user, span_notice("A tout de souffle.")
 
 /obj/item/ego_weapon/city/cinq/proc/Reset(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
 	ready = TRUE
-	to_chat(user, "<span class='notice'>Pret a nouveau.</span>")
+	to_chat(user, span_notice("Pret a nouveau.")
 
