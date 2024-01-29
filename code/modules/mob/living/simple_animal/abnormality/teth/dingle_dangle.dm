@@ -74,10 +74,10 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 8)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
 
 /datum/status_effect/dangle/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -8)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)
