@@ -28,7 +28,7 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, span_danger("Allons-y!"))
+	to_chat(user, span_danger("Allons-y!")
 	force*=multiplier
 	reach = 2
 	//Dodging backwards
