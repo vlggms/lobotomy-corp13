@@ -18,12 +18,12 @@
 		One undone knot accompanies sorrow.<br>\
 		One undone knot accompanies lamentation.<br>\
 		When the last is released, you discover that there is no one inside.<br>\
-		Perplexed, you examine the interior, and find a single, red-jeweled beetle.<br>",
+		Perplexed, you examine the interior, and find a single, red-jeweled beetle.",
 
 		"With each rope that's untied, the wail grows louder.<br>\
 		There's more than one individual occupying the coffin.<br>\
 		Several people are clinging to each other, all crying.<br>\
-		The coffin bursts open, letting them out.<br>",
+		The coffin bursts open, letting them out.",
 
 		"Ability Challenge",
 
