@@ -1,0 +1,85 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/item/ego_weapon/justitia{
+	force = 0;
+	name = "Fancy Stick"
+	},
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"t" = (
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"x" = (
+/mob/living/simple_animal/hostile/runawaybird{
+	name = "crow"
+	},
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"J" = (
+/obj/item/food/sundae/jbird,
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"M" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"P" = (
+/turf/open/floor/plating/asteroid/basalt,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/flora/tree/pine,
+/turf/open/floor/grass/snow/safe,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+U
+J
+R
+x
+P
+"}
+(3,1,1) = {"
+U
+M
+t
+R
+t
+"}
+(4,1,1) = {"
+U
+t
+x
+P
+t
+"}
+(5,1,1) = {"
+U
+t
+t
+x
+P
+"}
+(6,1,1) = {"
+U
+t
+a
+R
+P
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

@@ -699,6 +699,14 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -709,11 +717,6 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/west)
@@ -887,6 +890,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/structure/sign/departments/command{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/west)
 "cF" = (
@@ -952,14 +958,14 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "cS" = (
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
+/obj/machinery/vending/coffee{
+	pixel_y = 14
 	},
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 8
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
 	},
 /area/facility_hallway/human)
 "cV" = (
@@ -1064,6 +1070,17 @@
 	name = "floor"
 	},
 /area/facility_hallway/information)
+"dk" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/obj/structure/sign/departments/training{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/west)
 "dl" = (
 /obj/machinery/door/airlock{
 	name = "restroom"
@@ -1071,9 +1088,10 @@
 /turf/open/floor/facility/halls,
 /area/facility_hallway/safety)
 "dp" = (
-/obj/machinery/vending/coffee{
-	pixel_y = 14
+/obj/item/wallframe/painting{
+	pixel_y = 26
 	},
+/obj/structure/chair/sofa/corp/right,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -1084,6 +1102,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"dw" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/east)
 "dx" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -1849,6 +1880,23 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/control)
+"fx" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/effect/turf_decal/box/corners{
+	dir = 8
+	},
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32;
+	pixel_x = -3
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/control)
 "fy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -2217,6 +2265,11 @@
 "gy" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32;
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -2625,6 +2678,19 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
+"hx" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner,
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/control)
 "hB" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
@@ -3356,15 +3422,17 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "jt" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
 	},
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
 	},
-/area/facility_hallway/human)
+/obj/structure/sign/departments/command{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/north)
 "jw" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -3420,6 +3488,11 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32;
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -3907,6 +3980,10 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
+/obj/structure/sign/directions/evac{
+	pixel_y = 32;
+	pixel_x = -3
+	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -4149,13 +4226,9 @@
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
+/obj/structure/sign/directions/evac{
+	pixel_y = 32;
+	pixel_x = -3
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -5090,6 +5163,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
 	},
+/obj/structure/sign/departments/training{
+	pixel_x = 32
+	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
 "oI" = (
@@ -5380,6 +5456,11 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/west)
@@ -6339,13 +6420,9 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
 	},
-/obj/machinery/light{
+/obj/structure/sign/directions/evac{
 	dir = 1;
-	pixel_y = 19
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6385,6 +6462,18 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/west)
+"rz" = (
+/obj/effect/turf_decal/siding/thinplating{
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	pixel_y = 32;
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/south)
 "rA" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 8
@@ -7244,6 +7333,18 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/south)
+"uh" = (
+/obj/effect/turf_decal/siding/purple/corner{
+	color = "#511c4b";
+	dir = 8
+	},
+/obj/structure/table/wood/fancy/purple,
+/obj/item/toy/plush/yesod,
+/turf/open/floor/mineral/titanium/purple{
+	name = "floor";
+	color = "#aaa396"
+	},
+/area/department_main/information)
 "ui" = (
 /obj/structure/lattice/lava{
 	resistance_flags = 115;
@@ -7308,13 +7409,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
+/obj/structure/sign/departments/info{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -7413,8 +7509,6 @@
 /obj/structure/table/wood/fancy/red,
 /obj/structure/lootcrate/l_corp,
 /obj/structure/lootcrate/l_corp,
-/obj/structure/lootcrate/l_corp,
-/obj/structure/lootcrate/l_corp,
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000";
 	dir = 4
@@ -7488,13 +7582,9 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
+/obj/structure/sign/directions/evac{
+	pixel_y = 32;
+	pixel_x = -3
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -7762,6 +7852,15 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/control)
+"vC" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/structure/sign/departments/command{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/west)
 "vI" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 8;
@@ -7951,10 +8050,6 @@
 "wh" = (
 /obj/effect/turf_decal/siding/purple{
 	color = "#511c4b"
-	},
-/obj/structure/chair/office/light{
-	anchored = 1;
-	can_buckle = 0
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -8707,10 +8802,26 @@
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
 	},
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32;
+	pixel_x = -3
+	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/control)
+"yo" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/departments/safety{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/safety)
 "yt" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -8868,7 +8979,7 @@
 /area/facility_hallway/safety)
 "yR" = (
 /obj/structure/table/reinforced,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/effect/turf_decal/stripes/red/full,
 /turf/open/floor/facility/white,
 /area/facility_hallway/safety)
@@ -8881,12 +8992,15 @@
 /area/facility_hallway/south)
 "yU" = (
 /obj/effect/turf_decal/siding/yellow{
-	dir = 4
+	dir = 1
+	},
+/obj/structure/sign/departments/safety{
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
-/area/facility_hallway/south)
+/area/facility_hallway/east)
 "yX" = (
 /turf/closed/indestructible/reinforced{
 	name = "facility wall";
@@ -9276,11 +9390,6 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
@@ -10923,15 +11032,14 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/west)
 "El" = (
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
+/obj/structure/table/reinforced,
+/obj/item/kirbyplants/dead{
+	pixel_y = 13
 	},
-/turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+/obj/item/wallframe/painting{
+	pixel_y = 26
 	},
+/turf/open/floor/pod/dark,
 /area/facility_hallway/human)
 "En" = (
 /turf/closed/indestructible/fakeglass,
@@ -11454,6 +11562,26 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
+"FJ" = (
+/obj/effect/turf_decal/siding/red{
+	color = "#440000";
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/control)
 "FL" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -11746,8 +11874,13 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/structure/extinguisher_cabinet{
-	pixel_y = 28
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 15
+	},
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -11776,10 +11909,8 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
+/obj/structure/sign/departments/command{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
@@ -11815,6 +11946,20 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
+"GR" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_y = 32;
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/safety)
 "GU" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 10
@@ -11853,6 +11998,11 @@
 "Hh" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32;
+	pixel_x = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -12513,6 +12663,11 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -12659,15 +12814,10 @@
 	},
 /area/facility_hallway/control)
 "JQ" = (
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
+/turf/open/water/deep/saltwater/extradeep{
+	color = "#b7b7b7"
 	},
-/obj/structure/chair/sofa/corp/right,
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/facility_hallway/human)
+/area/facility_hallway/central)
 "JR" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 1
@@ -12852,6 +13002,8 @@
 	color = "#511c4b"
 	},
 /obj/structure/table/wood/fancy/purple,
+/obj/item/deepscanner,
+/obj/item/deepscanner,
 /obj/item/deepscanner,
 /obj/item/deepscanner,
 /turf/open/floor/carpet/purple,
@@ -13265,6 +13417,20 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
+"LK" = (
+/obj/effect/turf_decal/siding/purple{
+	color = "#8a3080";
+	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 32;
+	pixel_x = 4
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/information)
 "LM" = (
 /obj/structure/railing{
 	resistance_flags = 115;
@@ -13968,6 +14134,19 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/safety)
+"NN" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/effect/turf_decal/siding/thinplating/dark/corner{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/departments/command{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/south)
 "NO" = (
 /obj/machinery/smartfridge/extraction_storage/ego_armor,
 /turf/closed/indestructible/reinforced{
@@ -14015,9 +14194,10 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
 "NV" = (
-/obj/machinery/vending/snack{
-	pixel_y = 14
+/obj/item/wallframe/painting{
+	pixel_y = 26
 	},
+/obj/structure/chair/sofa/corp/left,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -14111,6 +14291,11 @@
 	},
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
+	},
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32;
+	pixel_x = -3
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14324,6 +14509,15 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/east)
+"OW" = (
+/obj/machinery/vending/snack{
+	pixel_y = 14
+	},
+/obj/effect/turf_decal/stripes/white/corner,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/human)
 "OX" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -14530,13 +14724,9 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 1
 	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 15
+/obj/structure/sign/directions/evac{
+	dir = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14769,6 +14959,17 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
+"Qh" = (
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/obj/structure/sign/departments/training{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/training)
 "Qi" = (
 /obj/effect/turf_decal/arrows{
 	dir = 1
@@ -14991,11 +15192,6 @@
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
 	},
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -15137,11 +15333,6 @@
 /obj/machinery/vending/cigarette{
 	pixel_y = 19;
 	density = 0
-	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -15617,6 +15808,24 @@
 	name = "floor"
 	},
 /area/department_main/training)
+"SK" = (
+/obj/structure/lattice/lava{
+	resistance_flags = 115;
+	name = "heatproof reinforced glass floor";
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	},
+/obj/structure/sign/departments/extraction{
+	pixel_x = 32
+	},
+/turf/open/lava{
+	color = "#006700";
+	name = "Unrefined Enkephalin";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	slowdown = 0
+	},
+/area/department_main/control)
 "SM" = (
 /obj/structure/chair/office/light{
 	dir = 1;
@@ -15633,6 +15842,17 @@
 "SR" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"SS" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/structure/sign/departments/info{
+	pixel_x = 32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/south)
 "ST" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -15656,6 +15876,11 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
@@ -15744,6 +15969,18 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
+"Tj" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/structure/sign/departments/control{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/north)
 "Tk" = (
 /obj/machinery/computer/abnormality_logs{
 	dir = 8
@@ -15754,11 +15991,6 @@
 	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_y = 6
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -17075,6 +17307,17 @@
 	name = "floor"
 	},
 /area/department_main/training)
+"Xb" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/structure/sign/departments/records{
+	pixel_x = -32
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/department_main/information)
 "Xc" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -17723,10 +17966,8 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
+/obj/structure/sign/departments/command{
+	pixel_x = -32
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
@@ -17779,13 +18020,6 @@
 	set_luminosity = 24
 	},
 /obj/effect/turf_decal/stripes/white/line,
-/obj/machinery/camera{
-	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
-	mouse_opacity = 0;
-	view_range = 13
-	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -38350,27 +38584,27 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -38607,42 +38841,42 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -38864,42 +39098,42 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -39121,12 +39355,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -40651,16 +40885,16 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -40908,16 +41142,16 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -41165,16 +41399,16 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -41213,8 +41447,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -41422,12 +41656,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -41470,8 +41704,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -41727,8 +41961,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -41984,8 +42218,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -42241,8 +42475,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -42498,8 +42732,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -42755,8 +42989,8 @@ Ye
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -43012,8 +43246,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -43213,12 +43447,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -43242,7 +43476,7 @@ qN
 qN
 qN
 Qo
-Lb
+Qh
 KP
 gT
 zo
@@ -43269,8 +43503,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -43470,12 +43704,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -43526,8 +43760,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -43727,12 +43961,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -43783,8 +44017,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -43984,12 +44218,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -44040,8 +44274,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -44297,8 +44531,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -44554,8 +44788,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -44811,8 +45045,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -45068,8 +45302,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -45325,24 +45559,24 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -45582,24 +45816,24 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -45837,6 +46071,12 @@ OO
 rg
 rg
 rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -45846,15 +46086,9 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -46077,7 +46311,7 @@ RZ
 RZ
 RZ
 wK
-zM
+dk
 uX
 Ba
 wK
@@ -46094,12 +46328,12 @@ OO
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -46314,7 +46548,7 @@ zS
 zS
 zS
 zS
-im
+fx
 Bc
 RU
 zS
@@ -46334,7 +46568,7 @@ RZ
 RZ
 RZ
 wK
-ce
+zM
 uX
 Ba
 wK
@@ -46351,10 +46585,10 @@ OO
 rg
 rg
 rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -46608,10 +46842,10 @@ OO
 rg
 rg
 rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -47596,7 +47830,7 @@ bU
 bU
 bU
 zS
-Xs
+hx
 xi
 pu
 zS
@@ -47853,7 +48087,7 @@ bU
 bU
 bU
 zS
-jy
+FJ
 gM
 Vj
 zS
@@ -48110,7 +48344,7 @@ bU
 bU
 bU
 zS
-rT
+Xs
 gM
 pu
 zS
@@ -48397,7 +48631,7 @@ cD
 hS
 gk
 Oy
-Oy
+vC
 pC
 cg
 Oy
@@ -49192,7 +49426,7 @@ wj
 AP
 cV
 lc
-Xo
+Xb
 Xo
 Xo
 bK
@@ -49203,11 +49437,11 @@ Mg
 bG
 pm
 yX
-yX
+cS
 Hw
 xb
 KU
-El
+Xi
 nq
 nq
 nq
@@ -49717,11 +49951,11 @@ tY
 bG
 pm
 yX
-JQ
+NV
 Kz
 yK
 RS
-Xi
+Xz
 nq
 nq
 nq
@@ -49966,7 +50200,7 @@ kU
 aA
 if
 RC
-FC
+uh
 HC
 SM
 cV
@@ -49974,11 +50208,11 @@ tY
 bG
 pm
 yX
-bA
+El
 Kz
 bA
 RS
-Xz
+Xi
 nq
 nq
 nq
@@ -50434,7 +50668,7 @@ Qe
 Gx
 qA
 LD
-LD
+Tj
 Qw
 sL
 HS
@@ -50462,7 +50696,7 @@ uY
 yb
 rH
 Kx
-Qv
+NN
 yT
 pV
 Kx
@@ -50954,7 +51188,7 @@ ko
 VG
 iq
 jS
-ko
+jt
 VG
 Sk
 yb
@@ -50982,8 +51216,8 @@ wX
 oI
 RN
 ul
+SS
 YM
-yU
 mw
 zp
 rf
@@ -51235,7 +51469,7 @@ Hn
 Hn
 Hn
 Lq
-HN
+rz
 AR
 UY
 Hn
@@ -51516,11 +51750,11 @@ cV
 bG
 pm
 yX
-yK
+El
 Kz
 yK
 RS
-Xz
+Xi
 nq
 nq
 nq
@@ -51773,11 +52007,11 @@ cV
 bG
 pm
 yX
-jt
+dp
 Kz
 bA
 RS
-Xi
+Xz
 nq
 nq
 nq
@@ -52219,7 +52453,7 @@ RY
 nM
 Xl
 Nl
-TS
+SK
 TS
 uE
 aK
@@ -52227,7 +52461,7 @@ Nm
 ci
 uE
 TS
-TS
+SK
 Qi
 My
 nM
@@ -52287,11 +52521,11 @@ zZ
 bG
 pm
 yX
-yX
+OW
 HJ
 oY
 wT
-cS
+Xi
 nq
 nq
 nq
@@ -53017,7 +53251,7 @@ aD
 aD
 Ew
 Rr
-jd
+dw
 jd
 GG
 YV
@@ -54301,7 +54535,7 @@ Ew
 Ew
 Ew
 Ew
-EI
+yU
 IJ
 Nt
 Ew
@@ -54526,8 +54760,8 @@ pm
 pm
 pm
 pm
-rg
-rg
+JQ
+JQ
 rg
 rg
 rg
@@ -54783,8 +55017,8 @@ pm
 pm
 pm
 pm
-rg
-rg
+JQ
+JQ
 rg
 rg
 rg
@@ -55040,8 +55274,8 @@ pm
 pm
 pm
 pm
-rg
-rg
+JQ
+JQ
 rg
 rg
 rg
@@ -55297,6 +55531,8 @@ pm
 pm
 pm
 pm
+JQ
+JQ
 rg
 rg
 rg
@@ -55312,10 +55548,8 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
+JQ
+JQ
 rg
 rg
 RY
@@ -55554,8 +55788,8 @@ pm
 pm
 pm
 pm
-rg
-rg
+JQ
+JQ
 rg
 rg
 rg
@@ -55571,8 +55805,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 rg
 rg
 RY
@@ -55811,6 +56045,8 @@ pm
 pm
 pm
 pm
+JQ
+JQ
 rg
 rg
 rg
@@ -55826,10 +56062,8 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
+JQ
+JQ
 rg
 rg
 RY
@@ -56068,6 +56302,8 @@ pm
 pm
 pm
 pm
+JQ
+JQ
 rg
 rg
 rg
@@ -56081,12 +56317,10 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 RY
@@ -56325,25 +56559,25 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 RY
@@ -56396,11 +56630,11 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -56582,23 +56816,23 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -56653,11 +56887,11 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -56854,8 +57088,8 @@ pm
 pm
 pm
 pm
-rg
-rg
+JQ
+JQ
 rg
 rg
 rg
@@ -56910,11 +57144,11 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -57153,7 +57387,7 @@ ah
 ah
 ah
 OI
-OZ
+LK
 dx
 dV
 lg
@@ -57167,11 +57401,11 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -57424,8 +57658,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -57681,8 +57915,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -57938,8 +58172,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -58195,8 +58429,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -58452,8 +58686,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -58673,7 +58907,7 @@ pU
 od
 Rg
 Vu
-uc
+yo
 sw
 sw
 sw
@@ -58709,8 +58943,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -58966,8 +59200,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -59223,8 +59457,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -59453,7 +59687,7 @@ iL
 iL
 iL
 LH
-Kf
+GR
 ft
 xe
 iL
@@ -59476,12 +59710,12 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -59733,8 +59967,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -59990,8 +60224,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -60247,8 +60481,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -60504,8 +60738,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -60748,21 +60982,21 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -61005,21 +61239,21 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -61262,21 +61496,21 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -61484,12 +61718,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -61519,21 +61753,21 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -61741,12 +61975,12 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -61776,21 +62010,21 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -62033,21 +62267,21 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -62290,21 +62524,21 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -62547,8 +62781,8 @@ rg
 rg
 rg
 rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -62777,6 +63011,13 @@ pm
 pm
 pm
 pm
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 rg
 rg
 rg
@@ -62797,15 +63038,8 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
 pm
 pm
 pm
@@ -63034,35 +63268,35 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -63291,35 +63525,35 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm
@@ -63548,35 +63782,35 @@ pm
 pm
 pm
 pm
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
+JQ
 pm
 pm
 pm

@@ -57,7 +57,7 @@
 	icon_state = "[initial(icon_state)]_dead"
 	inhand_icon_state = "bongy_dead"
 	stat = DEAD
-	visible_message("<span class='danger'>[src] suddenly stops moving!</span>")
+	visible_message(span_danger("[src] suddenly stops moving!"))
 
 /obj/item/clothing/mask/facehugger/bongy/handle_speech(datum/source, list/speech_args)
 	speech_args[SPEECH_MESSAGE] = pick((prob(animal_sounds_alt_probability) && LAZYLEN(animal_sounds_alt)) ? animal_sounds_alt : animal_sounds)

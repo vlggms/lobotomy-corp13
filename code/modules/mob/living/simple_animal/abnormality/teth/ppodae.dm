@@ -50,7 +50,7 @@
 	if(!can_act)
 		return FALSE
 	var/mob/living/carbon/L = target
-	if(L.health < 0 || L.stat == DEAD)
+	if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
 		if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
 			return
 		var/list/parts = list()

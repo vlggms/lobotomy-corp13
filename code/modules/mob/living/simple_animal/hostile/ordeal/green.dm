@@ -269,7 +269,7 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "green_dusk_create"
 	SLEEP_CHECK_DEATH(6)
-	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
+	visible_message(span_danger("\The [src] produces a new set of robots!"))
 	for(var/i = 1 to 3)
 		var/turf/T = get_step(get_turf(src), pick(0, EAST))
 		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot/factory, /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory)

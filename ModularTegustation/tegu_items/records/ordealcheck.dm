@@ -25,7 +25,7 @@
 	//PE stuff. He doesn't really need to know this but information and all that
 	if(SSlobotomy_corp.box_goal != 0)	//Make sure it's not infinity
 		if(SSlobotomy_corp.goal_reached)
-			to_chat(user, "<span class='notice'>PE Quota Reached!</span><br><span class='notice'>Current PE: [SSlobotomy_corp.available_box]</span>")
+			to_chat(user, span_notice("PE Quota Reached!</span><br><span class='notice'>Current PE: [SSlobotomy_corp.available_box]"))
 		else
 			to_chat(user, span_notice("PE Goal: [SSlobotomy_corp.goal_boxes + SSlobotomy_corp.available_box] / [SSlobotomy_corp.box_goal]."))
 	else
