@@ -15,7 +15,6 @@
 		This is an OOC tool. Do not bring alert to the fact that you can do this IC. Alert any administrators if any IC action is taken against you. \
 		Abusing this will result in a loss of whitelist."
 
-	rank_title = "SEPH"
 
 /datum/job/command/sephirah/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
