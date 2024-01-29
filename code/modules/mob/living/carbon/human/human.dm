@@ -85,7 +85,7 @@
 	for(var/atrname in attributes) //raw stats (health, sanity etc)
 		var/datum/attribute/atr = attributes[atrname]
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.stat_bonus)]" //todo: calculate work chance/speed/etc for respective values
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
@@ -1287,8 +1287,8 @@
 
 /mob/living/carbon/human/updatehealth()
 	if(LAZYLEN(attributes))
-		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_level_bonus_raw(src, FORTITUDE_ATTRIBUTE)))
-		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_level_bonus_raw(src, PRUDENCE_ATTRIBUTE)))
+		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_stat_bonus(src, FORTITUDE_ATTRIBUTE, no_neg = FALSE)))
+		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_stat_bonus(src, PRUDENCE_ATTRIBUTE, no_neg = FALSE)))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss

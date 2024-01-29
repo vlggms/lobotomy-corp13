@@ -25,6 +25,7 @@
 		/datum/ego_datum/armor/lutemia
 	)
 	gift_type = /datum/ego_gifts/lutemis
+	gift_message = "Let's all become fruits. Let's hang together. Your despair, sadness... Let's all dangle down."
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 //Introduction to our hallucinations. This is a global hallucination, but it's all it really does.
@@ -35,31 +36,30 @@
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	//if your prudence is low, give a short hallucination, apply the buff, and lower counter.
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) > 60)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60) // below level 3
 		user.hallucination += 20
 		user.apply_status_effect(STATUS_EFFECT_DANGLE)
 		datum_reference.qliphoth_change(-1)
 		return ..()
 
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 80)
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // fort 4 or higher
 		return ..()
 
 	//I mean it does this in wonderlabs
-	user.dust()
-
-	//But here's the twist: You get a better ego.
-	var/location = get_turf(user)
-	new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
+	//But here's the twist: You get a better ego as long as you didn't fail the work.
+	if(pe >= datum_reference.neutral_boxes)
+		user.dust() // this is here so people don't get dusted twice
+		var/location = get_turf(user)
+		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(50))
-		//Yeah dust them too. No ego this time tho
 		user.dust()
 
 /atom/movable/screen/alert/status_effect/dangle
 	name = "That Woozy Feeling"
-	desc = "+15 to Combat bonus."
+	desc = "Your Justice has slightly improved even as you feel your mind dangling."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "rest"
 
@@ -74,10 +74,10 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 8)
 
 /datum/status_effect/dangle/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)
+		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -8)

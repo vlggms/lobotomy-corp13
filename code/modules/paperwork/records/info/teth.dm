@@ -51,10 +51,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/dingledangle
 	abno_code = "T-04-111"
 	abno_info = list(
-		"When employees with Prudence Level 3 or higher completed their work, they were immediately consumed by Dingle-Dangle, unless their Fortitude was Level 4 or above.",
-		"When employees with Prudence Level 2 or lower completed work with Dingle-Dangle, the Qliphoth counter lowered.",
-		"When employees with Prudence Level 2 or lower completed work with Dingle-Dangle, they reported heightend combat abilities.",
-		"When the work result was Bad, the employee was consumed by Dingle-Dangle with a normal probability.")
+		"When the work result was Bad, the employee was immediately consumed by Dingle-Dangle with a normal probability.",
+		"When employees with Prudence Level 3 or higher completed their work, they were consumed by Dingle-Dangle unless their Fortitude was Level 4 or higher.",
+		"When employees with Prudence Level 2 or lower completed their work with Dingle-Dangle, the Qliphoth Counter decreased.",
+		"These employees reported sensory hallucinations as well heightened combat capabilities.",
+		"When the Qliphoth Counter reached 0, everyone in the facility was afflicted with hallucinations.")
 
 //Beauty and the Beast
 /obj/item/paper/fluff/info/teth/beauty
