@@ -47,10 +47,11 @@
 
 	//I mean it does this in wonderlabs
 	//But here's the twist: You get a better ego as long as you didn't fail the work.
-	if(pe >= datum_reference.neutral_boxes)
-		user.dust() // this is here so people don't get dusted twice
+	if(user && pe >= datum_reference.neutral_boxes)
 		var/location = get_turf(user)
 		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
+		user.dust() // this is here so people don't get dusted again after failing
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
