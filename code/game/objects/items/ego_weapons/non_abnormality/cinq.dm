@@ -28,7 +28,7 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, "<span class='danger'>Allons-y!</span>")
+	to_chat(user, span_danger("Allons-y!"))
 	force*=multiplier
 	reach = 2
 	//Dodging backwards
