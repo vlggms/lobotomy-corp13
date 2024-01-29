@@ -203,8 +203,8 @@
 	if(!istype(holders_head))
 		return FALSE
 	playsound(get_turf(status_holder), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-	status_holder.apply_damage(punishment_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-	if(H.health < 0)
+	status_holder.apply_damage(punishment_damage, PALE_DAMAGE, null, status_holder.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	if(status_holder.health < 0)
 		holders_head.dismember()
 	new /obj/effect/temp_visual/slice(get_turf(H))
 	qdel(src)

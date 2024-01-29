@@ -336,10 +336,10 @@
 			connected_abno.endBreach()
 	if(status_holder.sanity_lost && status_holder.stat != DEAD)
 		var/mob/living/simple_animal/hostile/parasite_tree_sapling/new_mob = new(owner.loc)
-		nested_items(new_mob, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
-		nested_items(new_mob, host.get_item_by_slot(ITEM_SLOT_BELT))
-		nested_items(new_mob, host.get_item_by_slot(ITEM_SLOT_BACK))
-		nested_items(new_mob, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_SUITSTORE))
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_BELT))
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_BACK))
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		QDEL_IN(owner, 5) //rabbit sanity implant explodes at 5
 	return ..()
 

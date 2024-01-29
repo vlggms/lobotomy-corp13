@@ -257,7 +257,7 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
 	if(status_holder.sanity_lost)
 		QDEL_NULL(owner.ai_controller)
 		status_holder.ai_controller = /datum/ai_controller/insane/red_possess
@@ -267,7 +267,7 @@
 /datum/status_effect/red_possess/tick()//delete the status if sanity is restored or a panic occurs
 	..()
 	var/mob/living/carbon/human/status_holder = owner
-	if(status_holder.sanityhealth == H.maxSanity)
+	if(status_holder.sanityhealth == status_holder.maxSanity)
 		qdel(src)
 	if(status_holder.sanity_lost)
 		qdel(src)

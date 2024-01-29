@@ -858,7 +858,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/status_holder = owner
-	status_holder.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	status_holder.apply_damage(5, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 	if(!ishuman(status_holder))
 		return
 	if((status_holder.sanityhealth <= 0) || (status_holder.health <= 0))

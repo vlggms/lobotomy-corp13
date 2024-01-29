@@ -449,8 +449,8 @@
 		owner.adjustBruteLoss(stacks * -5)
 		return
 	owner.adjustBruteLoss(stacks * -0.5)
-	var/mob/living/carbon/human/H = owner
-	H.adjustSanityLoss(stacks * -0.5)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustSanityLoss(stacks * -0.5)
 
 /obj/item/glow_object
 	name = "golden apple core"
@@ -484,10 +484,10 @@
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE))
 	if(status_holder.stat < HARD_CRIT)
 		return
-	var/obj/structure/spider/cocoon/casing = new(H.loc)
+	var/obj/structure/spider/cocoon/casing = new(status_holder.loc)
 	status_holder.forceMove(casing)
 	casing.name = "pile of maggots"
 	casing.desc = "They're wriggling and writhing over something."
