@@ -1272,7 +1272,7 @@
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
 	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst of damage, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area, the bat does RED DAMAGE and knocks back enemies, and the scythe does RED DAMAGE and heals you on hit."
-	icon_state = "mockery_whip"
+	icon_state = "oberon_whip"
 	force = 15
 	attack_speed = 0.8
 	reach = 3
@@ -1433,11 +1433,11 @@
 // Radial menu
 /obj/item/ego_weapon/oberon/proc/SwitchForm(mob/user)
 	var/list/armament_icons = list(
-		"whip" = image(icon = src.icon, icon_state = "mockery_whip"),
-		"sword"  = image(icon = src.icon, icon_state = "mockery_sword"),
-		"hammer"  = image(icon = src.icon, icon_state = "mockery_hammer"),
-		"bat"  = image(icon = src.icon, icon_state = "mockery_bat"),
-		"scythe" = image(icon = src.icon, icon_state = "mimicry")
+		"whip" = image(icon = src.icon, icon_state = "oberon_whip"),
+		"sword"  = image(icon = src.icon, icon_state = "oberon_sword"),
+		"hammer"  = image(icon = src.icon, icon_state = "oberon_hammer"),
+		"bat"  = image(icon = src.icon, icon_state = "oberon_bat"),
+		"scythe" = image(icon = src.icon, icon_state = "oberon_scythe")
 	)
 	armament_icons = sortList(armament_icons)
 	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/CheckMenu, user), radius = 42, require_near = TRUE)
@@ -1456,7 +1456,7 @@
 	return TRUE
 
 /obj/item/ego_weapon/oberon/proc/Transform()
-	icon_state = "mockery_[form]"
+	icon_state = "oberon_[form]"
 	update_icon_state()
 	if(current_holder)
 		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
