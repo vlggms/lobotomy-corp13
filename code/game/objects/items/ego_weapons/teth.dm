@@ -278,43 +278,18 @@
 /obj/item/ego_weapon/lantern //meat lantern
 	name = "lantern"
 	desc = "Teeth sticking out of some spots of the equipment is a rather frightening sight."
-	special = "Attack nearby turfs to create traps. Remote mode can trigger traps from a distance. \
-	Automatic mode places traps that trigger when enemies walk over them. Use in hand to switch between modes."
+	special = "Heals 3 hp when you're under 75% health."
 	icon_state = "lantern"
-	force = 30//not 8 black damage any more but still less than normal teth tier dps.
+	force = 32//not 8 black damage any more but still less than normal teth tier dps.
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-	var/mode = LANTERN_MODE_REMOTE
-	var/traplimit = 6
-	var/list/traps = list()
 
-/obj/item/ego_weapon/lantern/attack_self(mob/user)
-	if(mode == LANTERN_MODE_REMOTE)
-		to_chat(user, "<span class='info'>You adjust any newly-placed traps to be set off by motion.</span>")
-		mode = LANTERN_MODE_AUTO
-	else
-		to_chat(user, "<span class='info'>You can now remotely trigger any placed traps.</span>")
-		mode = LANTERN_MODE_REMOTE
-
-/obj/item/ego_weapon/lantern/proc/CreateTrap(target, mob/user, proximity_flag)
-	var/turf/T = get_turf(target)
-	if((get_dist(user, T) > 20))
-		return
-	var/obj/effect/temp_visual/lanterntrap/R = locate(/obj/effect/temp_visual/lanterntrap) in T
-	if(R)
-		if(!proximity_flag && mode != LANTERN_MODE_REMOTE)
-			return
-		R.burst()
-		return
-	if(proximity_flag && (LAZYLEN(traps) < traplimit))
-		new /obj/effect/temp_visual/lanterntrap(T, user, src, mode)
-		user.changeNext_move(CLICK_CD_MELEE)
-
-/obj/item/ego_weapon/lantern/afterattack(atom/target, mob/living/user, proximity_flag, params)
-	if(check_allowed_items(target, 1))
-		CreateTrap(target, user, proximity_flag)
-	. = ..()
+/obj/item/ego_weapon/lantern/attack(mob/living/target, mob/living/carbon/human/user)
+	var/our_health = 100 * (user.health / user.maxHealth)
+	if(our_health <= 75 && isliving(target) && target.stat != DEAD)
+		user.adjustBruteLoss(-3)
+	..()
 
 /obj/effect/temp_visual/lanterntrap
 	name = "lantern trap"
@@ -324,43 +299,43 @@
 	var/resonance_damage = 35
 	var/damage_multiplier = 1
 	var/mob/creator
-	var/obj/item/ego_weapon/lantern/res
+	//var/obj/item/ego_weapon/lantern/res
 	var/rupturing = FALSE //So it won't recurse
 
 /obj/effect/temp_visual/lanterntrap/Initialize(mapload, set_creator, set_resonator, mode)
 	if(mode == LANTERN_MODE_AUTO)
 		icon_state = "mini_lantern_auto" //temp visual
-		resonance_damage = 25
+		resonance_damage = 30
 		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/burst)
 	. = ..()
 	creator = set_creator
-	res = set_resonator
-	if(res)
-		res.traps += src
+	//res = set_resonator
+	//if(res)
+	//	res.traps += src
 	playsound(src,'sound/weapons/resonator_fire.ogg',50,TRUE)
 	deltimer(timerid)
 	timerid = addtimer(CALLBACK(src, .proc/burst), duration, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/lanterntrap/Destroy()
-	if(res)
-		res.traps -= src
-		res = null
+	//if(res)
+	//	res.traps -= src
+	//	res = null
 	creator = null
 	. = ..()
 
 /obj/effect/temp_visual/lanterntrap/proc/burst()
 	rupturing = TRUE
 	var/turf/T = get_turf(src)
-	new /obj/effect/temp_visual/resonance_crush(T) //temp visual
-	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
-
-	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
-		if(creator)
-			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
-	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
-		if(field != src && !field.rupturing)
-			field.burst()
+	playsound(T, 'sound/effects/ordeals/amber/midnight_out.ogg', 40,TRUE)
+	for(var/turf/open/T2 in range(1, src))
+		new /obj/effect/temp_visual/yellowsmoke(T2)
+		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+			to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+			if(creator)
+				creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+		for(var/obj/effect/temp_visual/lanterntrap/field in T2)
+			if(field != src && !field.rupturing)
+				field.burst()
 	qdel(src)
 
 #undef LANTERN_MODE_REMOTE
