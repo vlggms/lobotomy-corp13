@@ -399,7 +399,7 @@
 
 //Burrowing Heaven - Heaven
 /datum/ego_datum/armor/heaven
-	item_path = /obj/item/clothing/suit/armor/ego_gear/heaven
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/heaven
 	cost = 50
 
 /datum/ego_datum/weapon/heaven
