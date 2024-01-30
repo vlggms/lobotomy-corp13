@@ -1271,7 +1271,7 @@
 /obj/item/ego_weapon/oberon
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
-	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area, and the bat does RED DAMAGE and knocks back enemies."
+	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst of damage, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area, the bat does RED DAMAGE and knocks back enemies, and the scythe does RED DAMAGE and heals you on hit."
 	icon_state = "mockery_whip"
 	force = 15
 	attack_speed = 0.8
@@ -1292,7 +1292,8 @@
 		"whip" = list(15, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE),
 		"sword" = list(40, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE),
 		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE),
-		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE)
+		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE),
+		"scythe" = list(75, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE)
 		)
 	var/gun_cooldown
 	var/gun_cooldown_time = 1.5 SECONDS
@@ -1363,6 +1364,16 @@
 						L.apply_status_effect(/datum/status_effect/rend_black)
 					if(!L.has_status_effect(/datum/status_effect/rend_red))
 						L.apply_status_effect(/datum/status_effect/rend_red)
+		if("scythe")//shitty ass mimicry
+			if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+				var/heal_amt = force*0.1
+				if(isanimal(target))
+					var/mob/living/simple_animal/S = target
+					if(S.damage_coeff.getCoeff(damtype) > 0)
+						heal_amt *= S.damage_coeff.getCoeff(damtype)
+					else
+						heal_amt = 0
+				user.adjustBruteLoss(-heal_amt)
 
 /obj/item/ego_weapon/oberon/melee_attack_chain(mob/user, atom/target, params)
 	..()
@@ -1425,7 +1436,8 @@
 		"whip" = image(icon = src.icon, icon_state = "mockery_whip"),
 		"sword"  = image(icon = src.icon, icon_state = "mockery_sword"),
 		"hammer"  = image(icon = src.icon, icon_state = "mockery_hammer"),
-		"bat"  = image(icon = src.icon, icon_state = "mockery_bat")
+		"bat"  = image(icon = src.icon, icon_state = "mockery_bat"),
+		"scythe" = image(icon = src.icon, icon_state = "mimicry")
 	)
 	armament_icons = sortList(armament_icons)
 	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/CheckMenu, user), radius = 42, require_near = TRUE)
