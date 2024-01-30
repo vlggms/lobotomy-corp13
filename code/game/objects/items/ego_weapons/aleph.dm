@@ -1302,6 +1302,16 @@
 	var/combo_time
 	var/combo_wait = 15
 
+/*
+	Each form is meant to have their own purpose and niche,
+	Whip: Far reaching melee and raw fast attacking black damage.(It looks cool as hell and has good dps I think. It's an aleph fusion of logging and aninmalism with animalism's multiple hits when you attack and loggings attack speed build up into aoe burst.)
+	Sword: Raw mixed damage/ranged weapon also.(Since its like a buffed soulmate without the mark gimmick.)
+	Hammer: Black damage aoe support/armor weakener.(Meant to combo with the other weapons with the red and black rend it has and to deal with groups also incase you somehow kill oberon before amber midnight.)
+	Bat: Raw slow attacking red damage with knockback.(Simple yes, but it's useful versus stuff like Censored or Black Fixer. I guess it's an upgrade/sidegrade of flesh is willing and summer solstice but that wasn't intentional since it was black before I changed it.)
+	Scythe: Red damage with life steal.(A poor man's mimicry, meant to be useful for low while you're low rather then a must have at all times due to the life steal being 10% instead of 15% and it having a slower attack speed even though it has 5 more damage(37.5 hp gained in 5 hits when  mimicry can 63 hp gained after 6 in the same amount of time.). It's meant to be weaker than mimicry since lets be honest, mimicry is broken as fuck.)
+	Whip, Sword, and Bat are meant to be raw damage while Scythe and Hammer are meant to be support.
+*/
+
 /obj/item/ego_weapon/oberon/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
