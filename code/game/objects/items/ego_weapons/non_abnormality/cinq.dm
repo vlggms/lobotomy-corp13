@@ -28,7 +28,7 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, span_danger("Allons-y!")
+	to_chat(user, span_danger("Allons-y!"))
 	force*=multiplier
 	reach = 2
 	//Dodging backwards
@@ -51,7 +51,7 @@
 /obj/item/ego_weapon/city/cinq/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(reach == 2)
-		to_chat(user, span_userdanger("Magnifique!")
+		to_chat(user, span_userdanger("Magnifique!"))
 		reach = 1
 		target.Immobilize(5)
 		//Now rush forwards.
@@ -69,11 +69,11 @@
 /obj/item/ego_weapon/city/cinq/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
-	to_chat(user, span_notice("A tout de souffle.")
+	to_chat(user, span_notice("A tout de souffle."))
 
 /obj/item/ego_weapon/city/cinq/proc/Reset(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
 	ready = TRUE
-	to_chat(user, span_notice("Pret a nouveau.")
+	to_chat(user, span_notice("Pret a nouveau."))
 
