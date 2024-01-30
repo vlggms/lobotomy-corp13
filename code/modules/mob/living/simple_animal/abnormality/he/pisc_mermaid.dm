@@ -221,7 +221,7 @@
 			petter.pull_force = PULL_FORCE_DEFAULT
 			break
 		petter.adjustOxyLoss(3, updating_health=TRUE, forced=TRUE)
-		time_strangled += 1 SECONDS
+		time_strangled++
 		SLEEP_CHECK_DEATH(1 SECONDS)
 
 //This is a dating sim now fuck you
