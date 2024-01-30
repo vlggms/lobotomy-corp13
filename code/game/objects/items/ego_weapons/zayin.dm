@@ -275,35 +275,37 @@
 	var/msg = stripped_input(usr, "What do you wish to tell [M]?", null, "")
 	if(!msg)
 		return
-	to_chat(M, "<span class='warning'>[user] has sent you a message!</span>")
+	to_chat(M, span_notice("[user] has sent you a message!"))
 	var/obj/item/paper/P = new(get_turf(M))
 	P.setText(msg)
 	P.icon_state = "mail"
 	var/mob/living/carbon/human/H = M
-	var/datum/attribute/highest_attribute = null
-	for(var/datum/attribute/A in H.attributes)
-		if(isnull(highest_attribute))
-			highest_attribute = A
-			continue
-		if(A.get_level() > highest_attribute.get_level())
-			highest_attribute = A
-	switch(highest_attribute)
-		if(/datum/attribute/fortitude)
-			new /obj/item/mailpaper/instinct(get_turf(H), H)
-		if(/datum/attribute/prudence)
-			new /obj/item/mailpaper/insight(get_turf(H), H)
-		if(/datum/attribute/temperance)
-			new /obj/item/mailpaper/coupon(get_turf(H))
-		if(/datum/attribute/justice) // "These two seem to be backwards?" Yes. Justice is the one stat that does basically nothing for grinding, this buffs those who want to be able to do damage AND work.
-			new /obj/item/mailpaper/attachment(get_turf(H), H)
+	var/list/attributes = H.get_attribute_list()
+	if(attributes)
+		var/datum/attribute/highest_attribute = null
+		for(var/datum/attribute/A in attributes)
+			if(isnull(highest_attribute))
+				highest_attribute = A
+				continue
+			if(A.get_level() > highest_attribute.get_level())
+				highest_attribute = A
+		switch(highest_attribute)
+			if(/datum/attribute/fortitude)
+				new /obj/item/mailpaper/instinct(get_turf(H), H)
+			if(/datum/attribute/prudence)
+				new /obj/item/mailpaper/insight(get_turf(H), H)
+			if(/datum/attribute/temperance)
+				new /obj/item/mailpaper/coupon(get_turf(H))
+			if(/datum/attribute/justice) // "These two seem to be backwards?" Yes. Justice is the one stat that does basically nothing for grinding, this buffs those who want to be able to do damage AND work.
+				new /obj/item/mailpaper/attachment(get_turf(H), H)
 	QDEL_IN(P, 30 SECONDS)
-	to_chat(user, "<span class='boldnotice'>You transmit to [M]:</span> <span class='notice'>[msg]</span>")
+	to_chat(user, "[span_boldnotice("You transmit to [M]:")] [span_notice(msg)]")
 	for(var/ded in GLOB.dead_mob_list)
 		if(!isobserver(ded))
 			continue
 		var/follow_rev = FOLLOW_LINK(ded, user)
 		var/follow_whispee = FOLLOW_LINK(ded, M)
-		to_chat(ded, "[follow_rev] <span class='boldnotice'>[user] [name]:</span> <span class='notice'>\"[msg]\" to</span> [follow_whispee] <span class='name'>[M]</span>")
+		to_chat(ded, "[follow_rev] [span_boldnotice("[user] [name]:")] [span_notice("\"[msg]\" to")] [follow_whispee] [span_name(M)]")
 
 /obj/item/ego_weapon/support/letter_opener/proc/GetPlayers(mob/living/carbon/human/user)
 	. = list()

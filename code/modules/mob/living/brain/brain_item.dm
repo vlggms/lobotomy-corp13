@@ -27,6 +27,9 @@
 
 	var/list/datum/brain_trauma/traumas = list()
 
+	/// Assoc list of attributes. Starts with 4.
+	var/list/attributes = list()
+
 	/// List of skillchip items, their location should be this brain.
 	var/list/obj/item/skillchip/skillchips
 	/// Maximum skillchip complexity we can support before they stop working. Do not reference this var directly and instead call get_max_skillchip_complexity()
@@ -44,6 +47,12 @@
 	..()
 
 	name = "brain"
+
+	if(!attributes.len)
+		init_attributes()
+	else
+		for(var/datum/attribute/attribute in attributes)
+			attribute.on_update(C)
 
 	if(C.mind && C.mind.has_antag_datum(/datum/antagonist/changeling) && !no_id_transfer)	//congrats, you're trapped in a body you don't control
 		if(brainmob && !(C.stat == DEAD || (HAS_TRAIT(C, TRAIT_DEATHCOMA))))
@@ -90,6 +99,13 @@
 	if((!gc_destroyed || (owner && !owner.gc_destroyed)) && !no_id_transfer)
 		transfer_identity(C)
 	C.update_hair()
+
+/obj/item/organ/brain/proc/init_attributes()
+	for(var/type in GLOB.attribute_types)
+		if(ispath(type, /datum/attribute))
+			var/datum/attribute/atr = new type
+			attributes[atr.name] = atr
+			atr.on_update(src)
 
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
 	name = "[L.name]'s brain"

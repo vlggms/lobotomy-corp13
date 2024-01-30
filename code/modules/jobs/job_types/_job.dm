@@ -151,11 +151,13 @@
 	if(roundstart_attributes.len)
 		var/mob/living/carbon/human/HA = H
 		HA.set_attribute_limit(job_attribute_limit)
-		for(var/atrib in roundstart_attributes)
-			var/datum/attribute/atr = HA?.attributes[atrib]
-			if(istype(atr))
-				atr.level = roundstart_attributes[atrib]
-				atr.on_update(HA)
+		var/list/attributes = HA.get_attribute_list()
+		if(attributes)
+			for(var/atrib in roundstart_attributes)
+				var/datum/attribute/atr = attributes[atrib]
+				if(istype(atr))
+					atr.level = roundstart_attributes[atrib]
+					atr.on_update(HA)
 
 
 	if(job_important)
