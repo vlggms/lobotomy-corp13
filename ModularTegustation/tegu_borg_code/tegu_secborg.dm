@@ -35,7 +35,7 @@
 	generate_reagents()
 
 /obj/item/reagent_containers/spray/pepper/cyborg/empty()
-	to_chat(usr, "<span class='warning'>You can not empty this!</span>")
+	to_chat(usr, span_warning("You can not empty this!"))
 	return
 
 /obj/item/reagent_containers/spray/pepper/cyborg/proc/generate_reagents()
@@ -73,7 +73,7 @@
 	if(.)
 		var/obj/item/holosign_creator/security/cyborg/E = locate() in R.model.modules
 		if(E)
-			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
+			to_chat(user, span_warning("This unit already has a [E] installed!"))
 			return FALSE
 
 		E = new(R.model)
@@ -101,7 +101,7 @@
 		var/mob/living/silicon/robot/R = user
 
 		if(shock)
-			to_chat(user, "<span class='notice'>You clear all active holograms, and reset your projector to normal.</span>")
+			to_chat(user, span_notice("You clear all active holograms, and reset your projector to normal."))
 			holosign_type = /obj/structure/holosign/barrier
 			creation_time = 5
 			if(signs.len)
@@ -110,7 +110,7 @@
 			shock = 0
 			return
 		else if(R.emagged&&!shock)
-			to_chat(user, "<span class='warning'>You clear all active holograms, and overload your energy projector!</span>")
+			to_chat(user, span_warning("You clear all active holograms, and overload your energy projector!"))
 			holosign_type = /obj/structure/holosign/barrier/cyborg/hacked
 			creation_time = 30
 			if(signs.len)
@@ -122,11 +122,11 @@
 			if(signs.len)
 				for(var/H in signs)
 					qdel(H)
-				to_chat(user, "<span class='notice'>You clear all active holograms.</span>")
+				to_chat(user, span_notice("You clear all active holograms."))
 	if(signs.len)
 		for(var/H in signs)
 			qdel(H)
-		to_chat(user, "<span class='notice'>You clear all active holograms.</span>")
+		to_chat(user, span_notice("You clear all active holograms."))
 
 //*******************************************
 //SEC HOLOBARRIER ITEM AND UPGRADE - ENDS
@@ -158,7 +158,7 @@
 	if(.)
 		var/obj/item/gun/energy/e_gun/e_bola/cyborg/E = locate() in R.model.modules
 		if(E)
-			to_chat(user, "<span class='warning'>This unit already has a [E] installed!</span>")
+			to_chat(user, span_warning("This unit already has a [E] installed!"))
 			return FALSE
 
 		E = new(R.model)
@@ -208,7 +208,7 @@
 
 	if((GLOB.security_level < SEC_LEVEL_RED && shot.harmful) && !R.emagged) //If we're emagged we don't care about alert level
 		playsound(loc, 'sound/machines/buzz-two.ogg', get_clamped_volume(), TRUE, -1)
-		to_chat(loc,"<span class='warning'>ERROR: Weapon cannot fire on lethal modes while the alert level is less than red.</span>")
+		to_chat(loc,span_warning("ERROR: Weapon cannot fire on lethal modes while the alert level is less than red."))
 		return FALSE
 
 	return TRUE
@@ -227,11 +227,11 @@
 	if(.)
 		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
-			to_chat(user, "<span class='warning'>There's no [T] in this unit!</span>")
+			to_chat(user, span_warning("There's no [T] in this unit!"))
 			return FALSE
 		if(T.ammo_type.len > 1)
-			to_chat(R, "<span class='warning'>Lethals are already unlocked for your [T]!</span>")
-			to_chat(user, "<span class='warning'>Lethals are already unlocked for [R]'s [T]!</span>")
+			to_chat(R, span_warning("Lethals are already unlocked for your [T]!"))
+			to_chat(user, span_warning("Lethals are already unlocked for [R]'s [T]!"))
 			return FALSE
 
 		T.ammo_type = list(/obj/item/ammo_casing/energy/disabler, /obj/item/ammo_casing/energy/laser)
@@ -260,11 +260,11 @@
 	if(.)
 		var/obj/item/gun/energy/e_gun/cyborg/T = locate() in R.model.modules
 		if(!T)
-			to_chat(user, "<span class='warning'>There's no [T] in this unit!</span>")
+			to_chat(user, span_warning("There's no [T] in this unit!"))
 			return FALSE
 		if(T.charge_delay <= 2)
-			to_chat(R, "<span class='warning'>A cooling unit is already installed!</span>")
-			to_chat(user, "<span class='warning'>There's no room for another cooling unit!</span>")
+			to_chat(R, span_warning("A cooling unit is already installed!"))
+			to_chat(user, span_warning("There's no room for another cooling unit!"))
 			return FALSE
 
 		T.charge_delay = max(2 , T.charge_delay - 4)
@@ -299,11 +299,11 @@
 	if(.)
 		var/obj/item/reagent_containers/spray/pepper/cyborg/T = locate() in R.model.modules
 		if(!T)
-			to_chat(user, "<span class='warning'>There's no pepper spray synthesizer in this unit!</span>")
+			to_chat(user, span_warning("There's no pepper spray synthesizer in this unit!"))
 			return FALSE
 		if(T.upgraded)
-			to_chat(R, "<span class='warning'>A [T] unit is already installed!</span>")
-			to_chat(user, "<span class='warning'>There's no room for another [T]!</span>")
+			to_chat(R, span_warning("A [T] unit is already installed!"))
+			to_chat(user, span_warning("There's no room for another [T]!"))
 			return FALSE
 
 		T.generate_amount += initial(T.generate_amount)

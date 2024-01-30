@@ -116,7 +116,7 @@
 		return
 
 	if(!ID_imprint)
-		to_chat(user, "<span class='notice'>Parental lock ID imprinted. Swipe again with imprinted ID to toggle the parental lock feature.</span>")
+		to_chat(user, span_notice("Parental lock ID imprinted. Swipe again with imprinted ID to toggle the parental lock feature."))
 		ID_imprint = I
 		return
 
@@ -124,24 +124,24 @@
 
 	if(parental_lock)
 		parental_lock = FALSE
-		to_chat(user, "<span class='notice'>Parental lock deactivated. Swipe again with imprinted ID to toggle the parental lock feature.</span>")
+		to_chat(user, span_notice("Parental lock deactivated. Swipe again with imprinted ID to toggle the parental lock feature."))
 		modifystate = 1
 
 	else
 		parental_lock = TRUE
-		to_chat(user, "<span class='notice'>Parental lock activated. Swipe again with imprinted ID to toggle the parental lock feature.</span>")
+		to_chat(user, span_notice("Parental lock activated. Swipe again with imprinted ID to toggle the parental lock feature."))
 		activate_parental_lock(user)
 		modifystate = 0
 
 /obj/item/gun/energy/laser/redtag/deadly/multitool_act(user, I)
 	if(!parental_lock)
-		to_chat(user, "<span class='notice'>You reset the parental lock ID; [src] can now imprint a new ID.</span>")
+		to_chat(user, span_notice("You reset the parental lock ID; [src] can now imprint a new ID."))
 		playsound(loc, SEC_BODY_CAM_SOUND, get_clamped_volume(), TRUE, -1)
 
 /obj/item/gun/energy/laser/redtag/deadly/emag_act(mob/user)
 	if(ID_imprint)
 		ID_imprint = null
-		to_chat(user, "<span class='warning'>You forcibly reset the [src]'s parental lock ID; it can now imprint a new ID.</span>")
+		to_chat(user, span_warning("You forcibly reset the [src]'s parental lock ID; it can now imprint a new ID."))
 
 /obj/item/gun/energy/laser/redtag/deadly/attack_self(mob/living/user as mob)
 	if(parental_lock)
@@ -154,7 +154,7 @@
 	fire_sound = shot.fire_sound
 	fire_delay = shot.delay
 	if (shot.select_name)
-		to_chat(user, "<span class='notice'>[src] is now set to [shot.select_name].</span>")
+		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
 	chambered = null
 	recharge_newshot(TRUE)
 	update_icon(TRUE)
@@ -178,30 +178,30 @@
 	playsound(loc, SEC_BODY_CAM_SOUND, get_clamped_volume(), TRUE, -1)
 
 	if(!ID_imprint)
-		to_chat(user, "<span class='notice'>Parental lock ID imprinted. Swipe again with imprinted ID to toggle the parental lock feature.</span>")
+		to_chat(user, span_notice("Parental lock ID imprinted. Swipe again with imprinted ID to toggle the parental lock feature."))
 		ID_imprint = I
 		return
 
 	if(parental_lock)
 		parental_lock = FALSE
-		to_chat(user, "<span class='notice'>Parental lock deactivated. Swipe again with imprinted ID to toggle the parental lock feature.</span>")
+		to_chat(user, span_notice("Parental lock deactivated. Swipe again with imprinted ID to toggle the parental lock feature."))
 		modifystate = 1
 
 	else
 		parental_lock = TRUE
-		to_chat(user, "<span class='notice'>Parental lock activated. Swipe again with imprinted ID to toggle the parental lock feature.</span>")
+		to_chat(user, span_notice("Parental lock activated. Swipe again with imprinted ID to toggle the parental lock feature."))
 		activate_parental_lock(user)
 		modifystate = 0
 
 /obj/item/gun/energy/laser/bluetag/deadly/multitool_act(user, I)
 	if(!parental_lock)
-		to_chat(user, "<span class='notice'>You reset the parental lock ID; [src] can now imprint a new ID.</span>")
+		to_chat(user, span_notice("You reset the parental lock ID; [src] can now imprint a new ID."))
 		playsound(loc, SEC_BODY_CAM_SOUND, get_clamped_volume(), TRUE, -1)
 
 /obj/item/gun/energy/laser/bluetag/deadly/emag_act(mob/user)
 	if(ID_imprint)
 		ID_imprint = null
-		to_chat(user, "<span class='warning'>You forcibly reset the [src]'s parental lock ID; it can now imprint a new ID.</span>")
+		to_chat(user, span_warning("You forcibly reset the [src]'s parental lock ID; it can now imprint a new ID."))
 
 
 /obj/item/gun/energy/laser/bluetag/deadly/attack_self(mob/living/user as mob)
@@ -215,7 +215,7 @@
 	fire_sound = shot.fire_sound
 	fire_delay = shot.delay
 	if (shot.select_name)
-		to_chat(user, "<span class='notice'>[src] is now set to [shot.select_name].</span>")
+		to_chat(user, span_notice("[src] is now set to [shot.select_name]."))
 	chambered = null
 	recharge_newshot(TRUE)
 	update_icon(TRUE)

@@ -100,21 +100,21 @@
 	name = "Necrotic Revival"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "skeleton"
-	chosen_message = "<span class='colossus'>You will now force skeletons to rise once more.</span>"
+	chosen_message = span_colossus("You will now force skeletons to rise once more.")
 	chosen_attack_num = 1
 
 /datum/action/innate/megafauna_attack/lightning_strike
 	name = "Lightning Strike"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "lightning"
-	chosen_message = "<span class='colossus'>You will now strike with a force of lightning all around your target.</span>"
+	chosen_message = span_colossus("You will now strike with a force of lightning all around your target.")
 	chosen_attack_num = 2
 
 /datum/action/innate/megafauna_attack/repulse
 	name = "Repulse"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "repulse"
-	chosen_message = "<span class='colossus'>You will now throw all enemies away from you.</span>"
+	chosen_message = span_colossus("You will now throw all enemies away from you.")
 	chosen_attack_num = 3
 
 // Stage two spells
@@ -123,14 +123,14 @@
 	name = "Flight"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "jaunt"
-	chosen_message = "<span class='colossus'>You will now toggle flight.</span>"
+	chosen_message = span_colossus("You will now toggle flight.")
 	chosen_attack_num = 101
 
 /datum/action/innate/megafauna_attack/instant_strike
 	name = "Instant Strike"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "lightning1"
-	chosen_message = "<span class='colossus'>You will now strike with fast lightning bolts around your target.</span>"
+	chosen_message = span_colossus("You will now strike with fast lightning bolts around your target.")
 	chosen_attack_num = 102
 
 /// Stage three spells
@@ -138,21 +138,21 @@
 	name = "Massacre"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "declaration"
-	chosen_message = "<span class='colossus'>You will swiftly strike with your blade.</span>"
+	chosen_message = span_colossus("You will swiftly strike with your blade.")
 	chosen_attack_num = 201
 
 /datum/action/innate/megafauna_attack/blade_dash
 	name = "Blade Dash"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "icebeam"
-	chosen_message = "<span class='colossus'>You will now dash towards your target.</span>"
+	chosen_message = span_colossus("You will now dash towards your target.")
 	chosen_attack_num = 202
 
 /datum/action/innate/megafauna_attack/lightning_storm
 	name = "Lightning Storm"
 	icon_icon = 'icons/mob/actions/actions_spells.dmi'
 	button_icon_state = "storm"
-	chosen_message = "<span class='colossus'>You will now start a giant storm near your target.</span>"
+	chosen_message = span_colossus("You will now start a giant storm near your target.")
 	chosen_attack_num = 203
 
 /mob/living/simple_animal/hostile/megafauna/necromancer/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -244,7 +244,7 @@
 	for(var/obj/item/W in L)
 		if(!L.dropItemToGround(W))
 			qdel(W)
-	visible_message("<span class='danger'>[src] turns [L] to dust!</span>","<span class='userdanger'>You annihilate [L], restoring your health!</span>")
+	visible_message(span_danger("[src] turns [L] to dust!"),span_userdanger("You annihilate [L], restoring your health!"))
 	adjustHealth(-L.maxHealth*0.5)
 	L.dust() // More remains to make skeletons from
 
@@ -330,14 +330,14 @@
 				if(!faction_check_mob(M))
 					M.Knockdown(1)
 					M.apply_damage(50, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-					to_chat(M, "<span class='userdanger'>You're slammed into the floor by [src]!</span>")
+					to_chat(M, span_userdanger("You're slammed into the floor by [src]!"))
 		else
 			new /obj/effect/temp_visual/gravpush(get_turf(AM), get_dir(src, AM))
 			if(isliving(AM))
 				var/mob/living/M = AM
 				if(!faction_check_mob(M))
 					M.apply_damage(25, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-					to_chat(M, "<span class='userdanger'>You're thrown back by [src]!</span>")
+					to_chat(M, span_userdanger("You're thrown back by [src]!"))
 			AM.safe_throw_at(throwtarget, ((clamp((5 - (clamp(distfromcaster - 2, 0, distfromcaster))), 3, 5))), 1, src, force = MOVE_FORCE_VERY_STRONG, gentle = TRUE)
 
 
@@ -354,7 +354,7 @@
 	icon_living = "necromancer_winged[has_sword]"
 	icon = 'ModularTegustation/Teguicons/megafauna.dmi'
 	update_icon()
-	visible_message("<span class='boldannounce'>The [src] shivers for a moment as a pair of skeletal wings grow from his back!</span>")
+	visible_message(span_boldannounce("The [src] shivers for a moment as a pair of skeletal wings grow from his back!"))
 	playsound(src, 'sound/effects/wounds/crack2.ogg', 100, 1)
 	for(var/action_type in stage_two_actions)
 		var/datum/action/innate/megafauna_attack/attack_action = new action_type()
@@ -368,7 +368,7 @@
 	if(!can_attack || (flight_cooldown > world.time))
 		return
 	flight_cooldown = world.time + 600 SECONDS // Actual cooldown is set on landing
-	visible_message("<span class='boldwarning'>[src] takes off from the ground!</span>")
+	visible_message(span_boldwarning("[src] takes off from the ground!"))
 	flying = TRUE
 	can_attack = FALSE
 	repulse_cooldown = world.time + 600 SECONDS // So no double repulse
@@ -436,7 +436,7 @@
 	max_revived = 6
 	repulse_range = 5
 	strike_range = 6
-	visible_message("<span class='boldannounce'>The [src] raises arm in the air as a sword materializes in his hand!</span>")
+	visible_message(span_boldannounce("The [src] raises arm in the air as a sword materializes in his hand!"))
 	playsound(src, 'sound/magic/wand_teleport.ogg', 100, 1)
 	sword = new(src)
 	has_sword = TRUE
@@ -612,13 +612,13 @@
 	if(!iscarbon(user) || !user.canUseTopic(src, BE_CLOSE, ismonkey(user)))
 		return
 	if(primed)
-		to_chat(user, "<span class='notice'>You let the energy dissipate.</span>")
+		to_chat(user, span_notice("You let the energy dissipate."))
 		primed = FALSE
 	else
 		if(bolt_cooldown > world.time)
-			to_chat(user, "<span class='notice'>[src] isn't ready yet.</span>")
+			to_chat(user, span_notice("[src] isn't ready yet."))
 			return
-		to_chat(user, "<span class='notice'>[src] begins to glow, as you channel the electric energy into it.</span>")
+		to_chat(user, span_notice("[src] begins to glow, as you channel the electric energy into it."))
 		primed = TRUE
 
 /obj/item/necromancer_sword/afterattack(atom/A, mob/living/user, proximity_flag, params)
@@ -634,7 +634,7 @@
 		lightning_bolt(T, user)
 
 /obj/item/necromancer_sword/proc/lightning_bolt(turf/T, mob/living/user)
-	user.visible_message("<span class='warning'>[user] points [user.p_their()] blade towards [T] as a lightning bolt appears!</span>", "<span class='notice'>You release blade's energy at [T]!</span>", "<span class='warning'>You hear an electric discharge!</span>")
+	user.visible_message(span_warning("[user] points [user.p_their()] blade towards [T] as a lightning bolt appears!"), span_notice("You release blade's energy at [T]!"), span_warning("You hear an electric discharge!"))
 	playsound(user, 'sound/magic/lightningshock.ogg', 40, 1)
 	new /obj/effect/temp_visual/cult/turf/floor(T)
 	addtimer(CALLBACK(src, .proc/send_bolt, T, user), 5)
@@ -650,7 +650,7 @@
 			return
 		currently_affected += 1
 		L.apply_damage(bolt_power/500, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-		to_chat(L, "<span class='userdanger'>You've been hit by a magical lightning bolt!</span>")
+		to_chat(L, span_userdanger("You've been hit by a magical lightning bolt!"))
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.electrocution_animation(5)
@@ -658,7 +658,7 @@
 		if(currently_affected >= max_affected)
 			return
 		currently_affected += 1
-		T.visible_message("<span class='warning'>A skeleton rises from a pile of remains!</span>")
+		T.visible_message(span_warning("A skeleton rises from a pile of remains!"))
 		var/mob/living/simple_animal/skele = new /mob/living/simple_animal/hostile/skeleton/necromancer(T)
 		// Skeleton will not attack its creator
 		var/list/skele_factions = user?.faction.Copy()
@@ -673,6 +673,6 @@
 			return
 		if(!O.density)
 			continue
-		T.visible_message("<span class='warning'>[O] has been hit by a lightning bolt!</span>")
+		T.visible_message(span_warning("[O] has been hit by a lightning bolt!"))
 		currently_affected += 1
 		O.zap_act(bolt_power, zap_flags = ZAP_DEFAULT_FLAGS)
