@@ -1,0 +1,190 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/landmark/cratespawn,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"c" = (
+/obj/structure/showcase/cyborg/old,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"f" = (
+/obj/item/food/meat/slab/robot,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"k" = (
+/obj/item/restraints/legcuffs/beartrap/energy/cyborg,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"l" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"s" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"w" = (
+/obj/structure/fluff/broken_flooring,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"x" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/closet/wardrobe/robotics_black,
+/obj/item/clothing/head/helmet/space/plasmaman/robotics,
+/obj/item/clothing/suit/toggle/labcoat/roboticist,
+/obj/item/clothing/under/rank/rnd/roboticist,
+/obj/item/skillchip/job/roboticist,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"G" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gun bot"
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"H" = (
+/obj/machinery/door/airlock/science,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"N" = (
+/obj/item/bodypart/r_arm/robot,
+/obj/structure/closet/crate/science,
+/obj/item/borg/upgrade/selfrepair,
+/obj/item/borg/upgrade/syndicate,
+/obj/item/borg/upgrade/syndifaction,
+/obj/item/bodypart/head/robot,
+/obj/item/bodypart/l_arm/robot,
+/obj/item/bodypart/chest/robot,
+/obj/item/bodypart/l_leg/robot,
+/obj/item/bodypart/r_arm/robot,
+/obj/item/bodypart/r_leg/robot,
+/obj/item/organ/lungs/cybernetic/tier3,
+/obj/item/organ/liver/cybernetic/tier3,
+/obj/item/organ/heart/cybernetic/tier2,
+/obj/item/organ/stomach/cybernetic/tier3,
+/obj/item/organ/ears/cybernetic/upgraded,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"O" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/landmark/cratespawn/corpo,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"P" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"U" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big{
+	name = "gun bot"
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/fluff/broken_flooring{
+	dir = 4
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/fluff/broken_flooring{
+	dir = 4
+	},
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/plating,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+"Z" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot{
+	name = "clerk bot"
+	},
+/turf/open/floor/plasteel,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+H
+x
+"}
+(2,1,1) = {"
+x
+c
+O
+l
+F
+G
+f
+Y
+k
+C
+"}
+(3,1,1) = {"
+x
+f
+X
+Z
+Y
+Y
+w
+Y
+P
+x
+"}
+(4,1,1) = {"
+x
+a
+P
+Y
+s
+P
+U
+Y
+P
+x
+"}
+(5,1,1) = {"
+x
+N
+Z
+W
+f
+P
+a
+Y
+Y
+x
+"}
+(6,1,1) = {"
+x
+x
+x
+x
+x
+x
+x
+x
+x
+x
+"}

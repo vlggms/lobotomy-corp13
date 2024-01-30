@@ -16,7 +16,7 @@
 
 /obj/item/construction/rcd/arcd/bluespace/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/assembly/signaler/anomaly/bluespace) && !anomaly_core)
-		to_chat(user, "<span class='notice'>You insert [C] into the [src] and green light blinks on the panel.</span>")
+		to_chat(user, span_notice("You insert [C] into the [src] and green light blinks on the panel."))
 		anomaly_core = TRUE
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		desc = "A prototype RCD with ranged capability and extended capacity."
@@ -26,19 +26,19 @@
 
 /obj/item/construction/rcd/arcd/bluespace/attack_self(mob/user)
 	if(!anomaly_core)
-		to_chat(user, "<span class='warning'>The BRCD requires a bluespace anomaly core to operate!</span>")
+		to_chat(user, span_warning("The BRCD requires a bluespace anomaly core to operate!"))
 		return
 	. = ..()
 
 /obj/item/construction/rcd/arcd/bluespace/afterattack(atom/A, mob/user)
 	if(!anomaly_core)
-		to_chat(user, "<span class='warning'>The BRCD requires a bluespace anomaly core to operate!</span>")
+		to_chat(user, span_warning("The BRCD requires a bluespace anomaly core to operate!"))
 		return
 	. = ..()
 
 /obj/item/construction/rcd/arcd/bluespace/range_check(atom/A, mob/user)
 	if(!(A in view(rcd_range, get_turf(user))))
-		to_chat(user, "<span class='warning'>The \'Out of Range\' light on [src] blinks red.</span>")
+		to_chat(user, span_warning("The \"Out of Range\" light on [src] blinks red."))
 		return FALSE
 	else
 		return TRUE
@@ -62,14 +62,14 @@
 
 /obj/item/clothing/shoes/magboots/noslow/attack_self(mob/user)
 	if(!anomaly_core)
-		to_chat(user, "<span class='warning'>[src] require a gravity anomaly core to operate!</span>")
+		to_chat(user, span_warning("[src] require a gravity anomaly core to operate!"))
 		return
 	. = ..()
 
 /obj/item/clothing/shoes/magboots/noslow/attackby(obj/item/C, mob/user)
 	if(istype(C, /obj/item/assembly/signaler/anomaly/grav) && !anomaly_core)
 		name = "anomalous magboots"
-		to_chat(user, "<span class='notice'>You insert [C] into [src] and they start to feel much lighter.</span>")
+		to_chat(user, span_notice("You insert [C] into [src] and they start to feel much lighter."))
 		playsound(src.loc, 'sound/machines/click.ogg', 50, TRUE)
 		anomaly_core = TRUE
 		throw_speed = 3

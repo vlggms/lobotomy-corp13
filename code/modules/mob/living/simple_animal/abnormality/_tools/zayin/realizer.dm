@@ -143,7 +143,6 @@
 
 	qdel(I)
 	realized_users |= user.ckey
-	user.adjust_all_attribute_levels(-10)
 	var/atom/new_item = new item_out(get_turf(user))
 	user.put_in_hands(new_item)
 	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))

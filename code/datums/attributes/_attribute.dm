@@ -134,6 +134,14 @@ GLOBAL_LIST_INIT(attribute_types, list(
 		return 1
 	return max(1, atr.get_level_bonus())
 
+/proc/get_level_bonus_raw(mob/living/carbon/human/user, attribute)
+	if(!istype(user) || !attribute)
+		return 0
+	var/datum/attribute/atr = user.attributes[attribute]
+	if(!istype(atr))
+		return 0
+	return atr.get_level_bonus()
+
 // Attribute buffs
 /mob/living/carbon/human/proc/adjust_attribute_buff(attribute, addition)
 	if(!attribute)

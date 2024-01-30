@@ -15,7 +15,7 @@
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 40
+		ABNORMALITY_WORK_REPRESSION = 40,
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
@@ -27,8 +27,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wings,
-		/datum/ego_datum/armor/wings
-		)
+		/datum/ego_datum/armor/wings,
+	)
 	gift_type = /datum/ego_gifts/waltz
 	gift_chance = 0
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
@@ -146,10 +146,10 @@
 
 /datum/ai_behavior/say_line/insanity_whitelake
 	lines = list(
-				"I will protect her!!",
-				"You're in the way!",
-				"I will dance with her forever!"
-				)
+		"I will protect her!!",
+		"You're in the way!",
+		"I will dance with her forever!",
+	)
 //CHAMPION
 //Sets the defenses of the champion
 /datum/status_effect/champion

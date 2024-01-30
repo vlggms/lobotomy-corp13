@@ -30,7 +30,7 @@
 	STR.set_holdable(list(
 		/obj/item/gun/ego_gun,
 		/obj/item/ego_weapon,
-		))
+	))
 
 /obj/item/storage/belt/egoarmor
 	name = "ego armor belt"
@@ -52,8 +52,8 @@
 	STR.max_w_class = WEIGHT_CLASS_BULKY
 	STR.max_combined_w_class = 100
 	STR.set_holdable(list(
-		/obj/item/clothing/suit/armor/ego_gear
-		))
+		/obj/item/clothing/suit/armor/ego_gear,
+	))
 
 //Heavy backpacks
 /obj/item/storage/backpack/pcorp

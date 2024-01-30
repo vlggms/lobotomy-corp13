@@ -82,7 +82,7 @@
 		return
 	var/turf/target_c = get_turf(src)
 	var/list/turf_list = spiral_range_turfs(15, target_c)
-	visible_message("<span class='danger'>[src] releases a cloud of nauseating gas!</span>")
+	visible_message(span_danger("[src] releases a cloud of nauseating gas!"))
 	playsound(target_c, 'sound/effects/ordeals/violet/fruit_suicide.ogg', 50, 1, 16)
 	adjustWhiteLoss(maxHealth) // Die
 	for(var/turf/open/T in turf_list)
@@ -151,7 +151,7 @@
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
 	density = TRUE
-	visible_message("<span class='danger'>[src] drops down from the ceiling!</span>")
+	visible_message(span_danger("[src] drops down from the ceiling!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/monolith_down.ogg', 65, 1)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*2, time = 5)

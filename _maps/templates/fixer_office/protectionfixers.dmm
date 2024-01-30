@@ -1,0 +1,430 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/bed{
+	pixel_y = 15;
+	layer = 2.95;
+	can_buckle = 0;
+	name = "bunk beds";
+	density = 1
+	},
+/obj/structure/bed{
+	name = "bunk beds";
+	can_buckle = 0;
+	density = 1
+	},
+/obj/structure/ladder{
+	pixel_x = 4;
+	pixel_y = 11;
+	layer = 2;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/hos{
+	layer = 2.94;
+	anchored = 1
+	},
+/obj/item/bedsheet/hos{
+	pixel_y = 16;
+	layer = 2.96;
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"b" = (
+/obj/machinery/light/floor{
+	pixel_y = 8;
+	pixel_x = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#000000"
+	},
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
+/turf/open/floor/pod/light,
+/area/city/fixers)
+"d" = (
+/obj/structure/fans/tiny,
+/obj/effect/turf_decal/trimline/red/filled,
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
+/turf/open/floor/bluespace,
+/area/city/fixers)
+"f" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8
+	},
+/obj/machinery/chem_dispenser/drinks{
+	density = 0;
+	pixel_y = 26
+	},
+/obj/structure/table/wood{
+	pixel_y = 19;
+	density = 0
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"g" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"n" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar{
+	dir = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"p" = (
+/obj/machinery/light/floor{
+	pixel_y = 8;
+	pixel_x = -8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#000000"
+	},
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
+/turf/open/floor/pod/light,
+/area/city/fixers)
+"r" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8;
+	color = "#000000"
+	},
+/obj/machinery/chem_dispenser/drinks/beer{
+	density = 0;
+	pixel_y = 26
+	},
+/obj/machinery/light{
+	dir = 8;
+	pixel_x = -9;
+	pixel_y = 4
+	},
+/obj/structure/table/wood{
+	pixel_y = 19;
+	density = 0
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"t" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807";
+	dir = 4
+	},
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115
+	},
+/turf/open/floor/pod/light,
+/area/city/fixers)
+"u" = (
+/obj/structure/table/wood/fancy/red,
+/obj/structure/railing,
+/obj/machinery/dish_drive{
+	pixel_y = 9;
+	density = 1
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"v" = (
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/pinpointer/nuke/rcorp,
+/obj/item/pinpointer/nuke/rcorp,
+/obj/item/pinpointer/nuke/rcorp,
+/obj/item/pinpointer/nuke/rcorp,
+/obj/item/pinpointer/nuke/rcorp,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
+/obj/item/disk/nuclear/rcorp,
+/obj/structure/closet/cabinet,
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"A" = (
+/obj/structure/railing,
+/obj/structure/table/wood/fancy,
+/obj/effect/spawner/lootdrop/donkpockets,
+/obj/item/reagent_containers/food/drinks/shaker{
+	pixel_y = 3;
+	pixel_x = 22
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"D" = (
+/obj/machinery/door/airlock/glass{
+	icon = 'icons/obj/doors/airlocks/station/security.dmi';
+	color = "#877e6d"
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"G" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-04";
+	pixel_y = 20;
+	pixel_x = 6;
+	anchored = 1
+	},
+/obj/structure/table/wood/fancy,
+/obj/effect/spawner/lootdrop/three_course_meal,
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"I" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 8
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1;
+	color = "#000000"
+	},
+/obj/machinery/door/window{
+	dir = 4;
+	resistance_flags = 115
+	},
+/turf/open/floor/pod/light,
+/area/city/fixers)
+"J" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/filingcabinet{
+	pixel_y = 18;
+	density = 0
+	},
+/obj/structure/filingcabinet{
+	pixel_x = 10;
+	pixel_y = 18;
+	density = 0
+	},
+/obj/structure/filingcabinet{
+	pixel_x = -10;
+	resistance_flags = 115;
+	pixel_y = 18;
+	density = 0
+	},
+/obj/structure/chair/comfy/black,
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"L" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/obj/item/kirbyplants{
+	pixel_y = 17
+	},
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115;
+	pixel_y = -32
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"N" = (
+/obj/structure/bed/pod{
+	pixel_y = 13;
+	mouse_opacity = 0
+	},
+/obj/structure/bed/pod{
+	name = "king-sized bed"
+	},
+/obj/item/bedsheet/mime{
+	pixel_y = 14;
+	anchored = 1;
+	mouse_opacity = 0
+	},
+/obj/item/bedsheet/mime{
+	anchored = 1;
+	name = "VIP's blanket"
+	},
+/obj/machinery/camera{
+	dir = 8;
+	pixel_x = 4
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"O" = (
+/obj/structure/table/wood/fancy/red,
+/obj/structure/railing,
+/obj/machinery/reagentgrinder{
+	pixel_y = 12
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"Q" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8;
+	color = "#000000"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#000000"
+	},
+/obj/structure/chair/comfy{
+	dir = 1
+	},
+/turf/open/floor/pod/light,
+/area/city/fixers)
+"R" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 8;
+	color = "#000000"
+	},
+/obj/machinery/vending/boozeomat{
+	pixel_y = 22;
+	density = 0
+	},
+/obj/machinery/light{
+	dir = 4;
+	pixel_x = 9;
+	pixel_y = 4
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"V" = (
+/obj/machinery/door/window,
+/obj/effect/turf_decal/trimline/red/filled,
+/obj/structure/fans/tiny,
+/turf/open/floor/bluespace,
+/area/city/fixers)
+"W" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral,
+/obj/machinery/computer/security/telescreen{
+	pixel_y = 25
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+"X" = (
+/obj/structure/closet/cabinet{
+	pixel_x = 7
+	},
+/obj/structure/reagent_dispensers/water_cooler{
+	pixel_x = -9
+	},
+/turf/open/floor/pod/dark,
+/area/city/fixers)
+
+(1,1,1) = {"
+r
+D
+V
+n
+a
+"}
+(2,1,1) = {"
+f
+u
+p
+L
+v
+"}
+(3,1,1) = {"
+J
+A
+Q
+t
+I
+"}
+(4,1,1) = {"
+W
+O
+b
+X
+g
+"}
+(5,1,1) = {"
+R
+D
+d
+G
+N
+"}

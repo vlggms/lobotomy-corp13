@@ -25,11 +25,11 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(25, 25, 50, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(25, 25, 50, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 50, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	//Some Variables cannibalized from helper
@@ -41,8 +41,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/goldrush,
-		/datum/ego_datum/armor/goldrush
-		)
+		/datum/ego_datum/armor/goldrush,
+	)
 	gift_type =  /datum/ego_gifts/goldrush
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -50,13 +50,13 @@
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
 		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
-		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
-	/datum/action/innate/abnormality_attack/kog_dash,
-	/datum/action/innate/abnormality_attack/kog_teleport
+		/datum/action/innate/abnormality_attack/kog_dash,
+		/datum/action/innate/abnormality_attack/kog_teleport,
 	)
 
 /datum/action/innate/abnormality_attack/kog_dash

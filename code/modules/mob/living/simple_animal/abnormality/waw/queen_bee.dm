@@ -14,24 +14,24 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 45),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 45),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hornet,
 		/datum/ego_datum/weapon/tattered_kingdom,
-		/datum/ego_datum/armor/hornet
-		)
+		/datum/ego_datum/armor/hornet,
+	)
 	gift_type =  /datum/ego_gifts/hornet
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/general_b = 5
+		/mob/living/simple_animal/hostile/abnormality/general_b = 5,
 	)
 
 	var/datum/looping_sound/queenbee/soundloop

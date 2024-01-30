@@ -160,7 +160,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	name = "Locate target"
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "red_target"
-	chosen_message = "<span class='danger'>You try to suss out where your target is...</span>"
+	chosen_message = span_danger("You try to suss out where your target is...")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/find_target/Activate()
@@ -174,7 +174,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	name = "Evade"
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "ruina_evade"
-	chosen_message = "<span class='danger'>You prepare to avoid an incoming attack.</span>"
+	chosen_message = span_danger("You prepare to avoid an incoming attack.")
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/catch_breath/Activate()
@@ -184,7 +184,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/AttemptEvade()
 	if((world.time < evade_timer) || evading_attack)
 		if(client)
-			to_chat(src, "<span class='danger'> You can't do that now!</span>")
+			to_chat(src, span_danger(" You can't do that now!"))
 		return FALSE
 	evading_attack = TRUE
 	addtimer(CALLBACK(src, .proc/EndEvade), 20)
@@ -261,7 +261,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	name = "Hollowpoint Shell"
 	icon_icon = 'ModularTegustation/Teguicons/teguicons.dmi'
 	button_icon_state = "hollowpoint_ability"
-	chosen_message = "<span class='danger'>You will now fire at whatever you next click on.</span>"
+	chosen_message = span_danger("You will now fire at whatever you next click on.")
 	chosen_attack_num = 3
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/Hollowpoint(atom/target) // Fire a round in the direction of the enemy. When enraged, shoot multiple times.
@@ -438,6 +438,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 			to_chat(src, span_notice("You hear an annoying fluttering, and immediately disregard it."))
 		else
 			manual_emote("perks up for a moment, then settles back down, looking annoyed.")
+		return
+	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/training_rabbit))
 		return
 	if(datum_reference.qliphoth_meter > 1)
 		if(client)

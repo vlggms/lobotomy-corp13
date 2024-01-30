@@ -26,18 +26,18 @@
 	can_breach = TRUE
 	start_qliphoth = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 40,
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = -80,
-						ABNORMALITY_WORK_REPRESSION = 35
-						)
+		ABNORMALITY_WORK_INSTINCT = 40,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = -80,
+		ABNORMALITY_WORK_REPRESSION = 35,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/split,
-		/datum/ego_datum/armor/split
-		)
+		/datum/ego_datum/armor/split,
+	)
 	gift_type =  /datum/ego_gifts/split
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -51,9 +51,7 @@
 	var/split_cooldown_time = 8 SECONDS
 
 //PLAYABLES ATTACKS
-	attack_action_types = list(
-		/datum/action/cooldown/norisplit
-	)
+	attack_action_types = list(/datum/action/cooldown/norisplit)
 
 /datum/action/cooldown/norisplit
 	name = "Split"

@@ -20,8 +20,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(0, 10, 20, 20, 20),
 		ABNORMALITY_WORK_INSIGHT = list(35, 40, 50, 50, 50),
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 10, 20, 20, 20),
-		ABNORMALITY_WORK_REPRESSION = 0
-		)
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 	can_breach = TRUE
@@ -30,8 +30,8 @@
 	ranged = TRUE
 	ego_list = list(
 		/datum/ego_datum/weapon/rosa,
-		/datum/ego_datum/armor/rosa
-		)
+		/datum/ego_datum/armor/rosa,
+	)
 	gift_type = /datum/ego_gifts/rosa
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/list/work_roses = list()
@@ -92,15 +92,34 @@
 /mob/living/simple_animal/hostile/abnormality/rose_sign/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION && !LAZYLEN(work_roses))
 		datum_reference.qliphoth_change(-1)
-		var/list/speech_styles = list(SPAN_ITALICS, SPAN_ROBOT, SPAN_ITALICS, SPAN_SANS, SPAN_PAPYRUS, SPAN_ROBOT, SPAN_ITALICS)
-		var/list/lines = list("Foolish.", "Everyone has wishes. To deny them is to deny yourself.", "I can see how... vivid your seeds are. To not allow them to bloom isn't fair.", \
-		"Well... That's too bad.", "If you have no wishes, then remain here forevermore.", "Until you realize that there is no moving on without acceptance.", "Be with us. With me.")
+		var/list/speech_styles = list(
+			SPAN_ITALICS,
+			SPAN_ROBOT,
+			SPAN_ITALICS,
+			SPAN_SANS,
+			SPAN_PAPYRUS,
+			SPAN_ROBOT,
+			SPAN_ITALICS,
+		)
+		var/list/lines = list(
+			"Foolish.",
+			"Everyone has wishes. To deny them is to deny yourself.",
+			"I can see how... vivid your seeds are. To not allow them to bloom isn't fair.",
+			"Well... That's too bad.",
+			"If you have no wishes, then remain here forevermore.",
+			"Until you realize that there is no moving on without acceptance.",
+			"Be with us. With me.",
+		)
 		INVOKE_ASYNC(src, .proc/WorkSpeech, lines, speech_styles)
 		return
 	if(work_type == ABNORMALITY_WORK_INSIGHT && LAZYLEN(work_roses) >= rose_max)
 		datum_reference.qliphoth_change(-1)
 		var/list/speech_styles = list(SPAN_ITALICS, SPAN_ROBOT, SPAN_SANS)
-		var/list/lines = list("Mm, still too pale.", "We don't need bland flowers like yours.", "How disappointing~")
+		var/list/lines = list(
+			"Mm, still too pale.",
+			"We don't need bland flowers like yours.",
+			"How disappointing~",
+		)
 		INVOKE_ASYNC(src, .proc/WorkSpeech, lines, speech_styles)
 		return
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
@@ -212,7 +231,7 @@
 	var/datum/status_effect/stacking/crownthorns/C = target.has_status_effect(/datum/status_effect/stacking/crownthorns)
 	C.status_applicant = R
 	C.master = src
-	to_chat(target, "<span class='userdanger'>You feel a terrifying pain coming from [get_area(T)].</span>")
+	to_chat(target, span_userdanger("You feel a terrifying pain coming from [get_area(T)]."))
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/OpenFire()
 	if(!can_act)
@@ -411,9 +430,24 @@
 			sin = "death"
 
 /obj/structure/rose_work/proc/RoseLines(mob/living/simple_animal/hostile/abnormality/rose_sign/master)
-	var/list/speech_styles = list(SPAN_ITALICS, SPAN_SANS, SPAN_ROBOT, SPAN_ITALICS, SPAN_PAPYRUS, SPAN_SANS, SPAN_SINGING)
-	var/list/lines = list("Ah, how pretty.", "And so vivid, too!", "Your sin was such a beautiful hue of [sin].", "You've really made a fine addition to the garden.", \
-	"The color [sin]?! I'll plant it right next to me.", "Then... Shall we play some more?", "This garden will become terribly beautiful with more sinful flowers we bloom!")
+	var/list/speech_styles = list(
+		SPAN_ITALICS,
+		SPAN_SANS,
+		SPAN_ROBOT,
+		SPAN_ITALICS,
+		SPAN_PAPYRUS,
+		SPAN_SANS,
+		SPAN_SINGING,
+	)
+	var/list/lines = list(
+		"Ah, how pretty.",
+		"And so vivid, too!",
+		"Your sin was such a beautiful hue of [sin].",
+		"You've really made a fine addition to the garden.",
+		"The color [sin]?! I'll plant it right next to me.",
+		"Then... Shall we play some more?",
+		"This garden will become terribly beautiful with more sinful flowers we bloom!",
+	)
 	INVOKE_ASYNC(master, /mob/living/simple_animal/hostile/abnormality/rose_sign.proc/WorkSpeech, lines, speech_styles)
 
 /obj/structure/rose_work/Destroy()
@@ -449,7 +483,7 @@
 	return ..()
 
 /datum/status_effect/stacking/crownthorns/tick()
-	to_chat(owner, "<span class='warning'>Thorns painfully dig into your skin!</span>")
+	to_chat(owner, span_warning("Thorns painfully dig into your skin!"))
 	owner.emote("scream")
 	stacks += 1
 	var/mob/living/carbon/human/H = owner
@@ -470,7 +504,7 @@
 		qdel(src)
 
 /datum/status_effect/stacking/crownthorns/on_remove()
-	to_chat(owner, "<span class='nicegreen'>The prickly feeling stops.</span>")
+	to_chat(owner, span_nicegreen("The prickly feeling stops."))
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
 	owner.adjustBruteLoss(-attribute_penalty)

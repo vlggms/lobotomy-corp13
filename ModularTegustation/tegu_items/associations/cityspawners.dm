@@ -46,8 +46,7 @@
 		/obj/structure/lootcrate/workshoprosespanner,
 		/obj/structure/lootcrate/backstreets,
 		/obj/structure/lootcrate/jcorp,
-		/obj/structure/lootcrate/limbus,
-		)
+	)
 
 /obj/effect/landmark/cratespawn/Initialize()
 	. = ..()
@@ -60,7 +59,8 @@
 		/obj/structure/lootcrate/k_corp,
 		/obj/structure/lootcrate/s_corp,
 		/obj/structure/lootcrate/r_corp,
-		/obj/structure/lootcrate/w_corp,)
+		/obj/structure/lootcrate/w_corp,
+	)
 
 
 //City enemy spawners
@@ -76,8 +76,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 	var/list/enemytypes = list(
 		"gcorp",
 		"sweeper",
-		"bots"
-		)
+		"bots",
+	)
 
 /obj/effect/landmark/backstreetspawn/Initialize()
 	. = ..()
@@ -110,8 +110,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 	var/list/enemytypes = list(
 		"gcorp",
 		"sweeper",
-		"bots"
-		)
+		"bots",
+	)
 
 /obj/effect/landmark/backstreetspawnwest/Initialize()
 	. = ..()
@@ -143,8 +143,8 @@ GLOBAL_VAR_INIT(city_east_enemies, FALSE)
 	var/list/enemytypes = list(
 		"gcorp",
 		"sweeper",
-		"bots"
-		)
+		"bots",
+	)
 
 /obj/effect/landmark/backstreetspawneast/Initialize()
 	. = ..()

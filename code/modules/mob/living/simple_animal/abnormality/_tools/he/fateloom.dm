@@ -8,8 +8,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/destiny,
-		/datum/ego_datum/armor/destiny
-		)
+		/datum/ego_datum/armor/destiny,
+	)
 
 /obj/structure/toolabnormality/fateloom/attack_hand(mob/living/carbon/human/user)
 	. = ..()

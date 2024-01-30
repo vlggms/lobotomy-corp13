@@ -20,9 +20,10 @@
 		/obj/item/toy/plush/sinclair,
 		/obj/item/toy/plush/outis,
 		/obj/item/toy/plush/gregor,
-		/obj/item/toy/plush/yuri)
+		/obj/item/toy/plush/yuri,
+	)
 
-	var/rareloot =	list(/obj/item/toy/plush/dante,)
+	var/rareloot =	list(/obj/item/toy/plush/dante)
 	var/veryrareloot =	list()	//Only Kcorp uses these atm, because It's important that they have 3 tiers of weapons
 	var/rarechance = 20
 	var/veryrarechance

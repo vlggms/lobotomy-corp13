@@ -24,25 +24,25 @@
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
-						"Release" = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 55, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+		"Release" = 0,
+	)
 	max_boxes = 20
 	success_boxes = 16
 	neutral_boxes = 9
 
 	ego_list = list(
 		/datum/ego_datum/weapon/assonance,
-		/datum/ego_datum/armor/assonance
-		)
+		/datum/ego_datum/armor/assonance,
+	)
 	gift_type = /datum/ego_gifts/assonance
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/yin = 5 // TAKE THE FISH. DO IT NOW.
+		/mob/living/simple_animal/hostile/abnormality/yin = 5, // TAKE THE FISH. DO IT NOW.
 	)
 
 	//Melee
@@ -88,7 +88,6 @@
 		HealPulse()
 
 /mob/living/simple_animal/hostile/abnormality/yang/WorkChance(mob/living/carbon/human/user, chance, work_type)
-	. = ..()
 	return YinCheck() ? chance + 10 : chance
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/YinCheck()

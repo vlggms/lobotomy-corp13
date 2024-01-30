@@ -33,8 +33,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 50, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = 70,
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30),
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
@@ -61,8 +61,8 @@
 	var/persistant = FALSE
 
 	ego_list = list(
-	/datum/ego_datum/weapon/melty_eyeball,
-	/datum/ego_datum/armor/melty_eyeball
+		/datum/ego_datum/weapon/melty_eyeball,
+		/datum/ego_datum/armor/melty_eyeball,
 	)
 	gift_type =  /datum/ego_gifts/melty_eyeball
 	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"

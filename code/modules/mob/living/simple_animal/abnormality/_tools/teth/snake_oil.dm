@@ -7,8 +7,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/swindle,
-		/datum/ego_datum/armor/swindle
-		)
+		/datum/ego_datum/armor/swindle,
+	)
 
 /obj/structure/toolabnormality/snake_oil/attack_hand(mob/living/carbon/human/user)
 	..()

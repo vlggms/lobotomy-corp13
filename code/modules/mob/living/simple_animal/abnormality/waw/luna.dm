@@ -16,8 +16,8 @@
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 50, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 50, 50, 55),
 		ABNORMALITY_WORK_REPRESSION = 30,
-		"Performance" = 70
-		)
+		"Performance" = 70,
+	)
 	pixel_x = -32
 	base_pixel_x = -32
 	work_damage_amount = 10
@@ -25,8 +25,8 @@
 	max_boxes = 20
 	ego_list = list(
 		/datum/ego_datum/weapon/moonlight,
-		/datum/ego_datum/armor/moonlight
-		)
+		/datum/ego_datum/armor/moonlight,
+	)
 	gift_type =  /datum/ego_gifts/moonlight
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/performance = FALSE

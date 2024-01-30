@@ -14,8 +14,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 45, 50),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 10, 20, 35),
-		ABNORMALITY_WORK_REPRESSION = 0
-			)
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	start_qliphoth = 3
 	move_to_delay = 4
 
@@ -31,8 +31,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/soulmate,
-		/datum/ego_datum/armor/soulmate
-		)
+		/datum/ego_datum/armor/soulmate,
+	)
 	gift_type = /datum/ego_gifts/soulmate
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 

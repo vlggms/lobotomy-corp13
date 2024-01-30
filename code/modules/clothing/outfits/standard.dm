@@ -444,7 +444,8 @@
 	back = /obj/item/storage/backpack/holding
 	box = /obj/item/storage/box/debugtools
 	internals_slot = ITEM_SLOT_SUITSTORE
-	backpack_contents = list(
+	backpack_contents = list( // LOBOTOMYCORPORATION ADDITION -- debug items (added lc_debugtools box), we cant put this comment down there
+		/obj/item/storage/box/lc_debugtools=1, \
 		/obj/item/melee/transforming/energy/axe=1,\
 		/obj/item/storage/part_replacer/bluespace/tier4=1,\
 		/obj/item/gun/magic/wand/resurrection/debug=1,\

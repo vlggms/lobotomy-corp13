@@ -103,7 +103,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	forceMove(slash_end)
 	for(var/turf/T in hitline)
 		for(var/mob/living/L in HurtInTurf(T, list(), dash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
-			to_chat(L, "<span class='userdanger'>[src] quickly slashes you!</span>")
+			to_chat(L, span_userdanger("[src] quickly slashes you!"))
 	new /datum/beam(slash_start.Beam(slash_end, "1-full", time=3))
 	playsound(src, attack_sound, 50, FALSE, 4)
 	can_act = TRUE
