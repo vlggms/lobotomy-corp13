@@ -24,7 +24,7 @@
 								JUSTICE_ATTRIBUTE = 0
 								)
 	job_important = "You are the Manager. Your goal is to provide overwatch to all agents and clerks and direct works. You can also choose abnormalities and apply buffs to agents."
-	rank_title = "MNGR"
+	rank_title = "MGR"
 
 /datum/job/manager/announce(mob/living/carbon/human/H)
 	..()
