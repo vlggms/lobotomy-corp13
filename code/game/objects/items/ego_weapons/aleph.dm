@@ -1271,7 +1271,7 @@
 /obj/item/ego_weapon/oberon
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
-	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst of damage, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area, the bat does RED DAMAGE and knocks back enemies, and the scythe does RED DAMAGE and heals you on hit."
+	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst of damage, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area, the bat does RED DAMAGE and knocks back enemies, and the scythe does RED DAMAGE and attacks faster when hitting targets below 50% health."
 	icon_state = "oberon_whip"
 	force = 15
 	attack_speed = 0.8
@@ -1293,7 +1293,7 @@
 		"sword" = list(40, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE),
 		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE),
 		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE),
-		"scythe" = list(75, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE)
+		"scythe" = list(90, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE)
 		)
 	var/gun_cooldown
 	var/gun_cooldown_time = 1.5 SECONDS
@@ -1307,9 +1307,9 @@
 	Whip: Far reaching melee and raw fast attacking black damage.(It looks cool as hell and has good dps I think. It's an aleph fusion of logging and aninmalism with animalism's multiple hits when you attack and loggings attack speed build up into aoe burst.)
 	Sword: Raw mixed damage/ranged weapon also.(Since its like a buffed soulmate without the mark gimmick.)
 	Hammer: Black damage aoe support/armor weakener.(Meant to combo with the other weapons with the red and black rend it has and to deal with groups also incase you somehow kill oberon before amber midnight.)
-	Bat: Raw slow attacking red damage with knockback.(Simple yes, but it's useful versus stuff like Censored or Black Fixer. I guess it's an upgrade/sidegrade of flesh is willing and summer solstice but that wasn't intentional since it was black before I changed it.)
-	Scythe: Red damage with life steal.(A poor man's mimicry, meant to be useful for low while you're low rather then a must have at all times due to the life steal being 10% instead of 15% and it having a slower attack speed even though it has 5 more damage(37.5 hp gained in 5 hits when mimicry can 63 hp gained after 6 hits in the same amount of time.). It's meant to be weaker than mimicry since lets be honest, mimicry is broken as fuck.)
-	Whip, Sword, and Bat are meant to be raw damage while Scythe and Hammer are meant to be support.
+	Bat: Slow attacking red damage with knockback.(Simple yes, but it's useful versus stuff like Censored or Black Fixer. I guess it's an upgrade/sidegrade of flesh is willing and summer solstice but that wasn't intentional since it was black before I changed it.)
+	Scythe: Raw Red damage that becomes better when enemies are under half.(Used to be a shittier mimicry)
+	Whip, Sword, and Scythe are meant to be raw damage while Bat and Hammer are meant to be utility.
 */
 
 /obj/item/ego_weapon/oberon/Initialize()
@@ -1374,16 +1374,11 @@
 						L.apply_status_effect(/datum/status_effect/rend_black)
 					if(!L.has_status_effect(/datum/status_effect/rend_red))
 						L.apply_status_effect(/datum/status_effect/rend_red)
-		if("scythe")//shitty ass mimicry
-			if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-				var/heal_amt = force*0.1
-				if(isanimal(target))
-					var/mob/living/simple_animal/S = target
-					if(S.damage_coeff.getCoeff(damtype) > 0)
-						heal_amt *= S.damage_coeff.getCoeff(damtype)
-					else
-						heal_amt = 0
-				user.adjustBruteLoss(-heal_amt)
+		if("scythe")
+			if(target.health <= (target.maxHealth * 0.5))
+				attack_speed = 0.75
+			else
+				attack_speed = 1.2
 
 /obj/item/ego_weapon/oberon/melee_attack_chain(mob/user, atom/target, params)
 	..()
