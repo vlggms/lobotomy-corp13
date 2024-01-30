@@ -1308,7 +1308,7 @@
 	Sword: Raw mixed damage/ranged weapon also.(Since its like a buffed soulmate without the mark gimmick.)
 	Hammer: Black damage aoe support/armor weakener.(Meant to combo with the other weapons with the red and black rend it has and to deal with groups also incase you somehow kill oberon before amber midnight.)
 	Bat: Raw slow attacking red damage with knockback.(Simple yes, but it's useful versus stuff like Censored or Black Fixer. I guess it's an upgrade/sidegrade of flesh is willing and summer solstice but that wasn't intentional since it was black before I changed it.)
-	Scythe: Red damage with life steal.(A poor man's mimicry, meant to be useful for low while you're low rather then a must have at all times due to the life steal being 10% instead of 15% and it having a slower attack speed even though it has 5 more damage(37.5 hp gained in 5 hits when  mimicry can 63 hp gained after 6 in the same amount of time.). It's meant to be weaker than mimicry since lets be honest, mimicry is broken as fuck.)
+	Scythe: Red damage with life steal.(A poor man's mimicry, meant to be useful for low while you're low rather then a must have at all times due to the life steal being 10% instead of 15% and it having a slower attack speed even though it has 5 more damage(37.5 hp gained in 5 hits when mimicry can 63 hp gained after 6 hits in the same amount of time.). It's meant to be weaker than mimicry since lets be honest, mimicry is broken as fuck.)
 	Whip, Sword, and Bat are meant to be raw damage while Scythe and Hammer are meant to be support.
 */
 
