@@ -12,7 +12,7 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
-	paycheck = 2100
+	paycheck = 0
 	maptype = "city"
 
 
@@ -56,7 +56,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JOB_DISPLAY_ORDER_MANAGER
-	paycheck = 10000
+	paycheck = 0
 
 
 	//Mostly for armor.
@@ -79,8 +79,8 @@
 /datum/job/hana/intern
 	title = "Hana Intern"
 	outfit = /datum/outfit/job/hana/intern
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	display_order = JOB_DISPLAY_ORDER_INTERN
 	paycheck = 1000
 	trusted_only = FALSE
@@ -103,5 +103,4 @@
 /datum/outfit/job/hana/intern
 	name = "Hana Intern"
 	jobtype = /datum/job/hana/intern
-
 	l_hand = null
