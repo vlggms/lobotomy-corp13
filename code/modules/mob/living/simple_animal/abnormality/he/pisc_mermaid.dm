@@ -43,6 +43,10 @@
 	gift_type =  /datum/ego_gifts/unrequited_love
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/siltcurrent = 1.5//check siltcurrent.dm for my reasoning
+	)
+
 	response_help_continuous = "pets" //You sick fuck
 	response_help_simple = "pet"
 	pet_bonus = TRUE
