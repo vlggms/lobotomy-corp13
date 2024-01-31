@@ -56,7 +56,6 @@
 		if(L.client && CanAttack(L) && L.stat != DEAD)
 			if(!L.is_blind())
 				people_watching += 1
-				seen = TRUE
 
 
 	//Only gets mad if you are NOT alone.
