@@ -25,12 +25,17 @@
 	room_id = "office_kcorp_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/office_kcorp.dmm"
 
-
 /datum/map_template/random_room/backstreets/medium_east/kcorp_storage
 	name = "KCorp Storage - Medium East"
 	room_id = "kcorp_storage_me"
 	mappath = "_maps/RandomRooms/backstreets/medium_east/kcorp_storage.dmm"
 
+
+/datum/map_template/random_room/backstreets/medium_east/zwei_office_mea
+	name = "Zwei Office - Medium East"
+	room_id = "zwei_office_mea"
+	mappath = "_maps/RandomRooms/backstreets/medium_east/zwei_office_mea.dmm"
+  
 /datum/map_template/random_room/backstreets/medium_east/church
     name = "Church - Medium East"
     room_id = "church"
@@ -45,3 +50,4 @@
     name = "Robot - Medium East A"
     room_id = "robot_mea"
     mappath = "_maps/RandomRooms/backstreets/medium_east/robot_mea.dmm"
+    
