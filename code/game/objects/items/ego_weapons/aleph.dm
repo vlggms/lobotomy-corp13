@@ -1336,6 +1336,14 @@
 	if(world.time > combo_time)
 		build_up = 0.8
 	combo_time = world.time + combo_wait
+	switch(form)
+		if("scythe")
+			if(target.health <= (target.maxHealth * 0.5))
+				playsound(get_turf(target), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
+				new /obj/effect/temp_visual/nobody_grab(get_turf(target))
+				force = 135
+			else
+				force = 90
 	. = ..()
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
@@ -1374,13 +1382,6 @@
 						L.apply_status_effect(/datum/status_effect/rend_black)
 					if(!L.has_status_effect(/datum/status_effect/rend_red))
 						L.apply_status_effect(/datum/status_effect/rend_red)
-		if("scythe")
-			if(target.health <= (target.maxHealth * 0.5))
-				playsound(get_turf(target), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
-				new /obj/effect/temp_visual/nobody_grab(get_turf(target))
-				force = 135
-			else
-				force = 90
 
 /obj/item/ego_weapon/oberon/melee_attack_chain(mob/user, atom/target, params)
 	..()
