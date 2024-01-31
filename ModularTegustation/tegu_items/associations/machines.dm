@@ -180,7 +180,7 @@
 			to_chat(user, "<span class='notice'>Potential too low to give grade. Not recommended to issue fixer license.</span>")
 			return
 
-		to_chat(user, "<span class='notice'>Recommended Grade - [10-grade].</span>")
+		to_chat(user, "<span class='notice'>Recommended Grade - [max(10-grade, 1)].</span>")
 		to_chat(user, "<span class='notice'>This grade may be adjusted by your local Hana representative.</span>")
 		return
 
