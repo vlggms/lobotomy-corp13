@@ -1376,9 +1376,11 @@
 						L.apply_status_effect(/datum/status_effect/rend_red)
 		if("scythe")
 			if(target.health <= (target.maxHealth * 0.5))
-				attack_speed = 0.75
+				playsound(get_turf(target), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
+				new /obj/effect/temp_visual/nobody_grab(get_turf(target))
+				force = 135
 			else
-				attack_speed = 1.2
+				force = 90
 
 /obj/item/ego_weapon/oberon/melee_attack_chain(mob/user, atom/target, params)
 	..()
