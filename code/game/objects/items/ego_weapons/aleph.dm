@@ -1271,9 +1271,9 @@
 /obj/item/ego_weapon/oberon
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
-	special = "Use this weapon in hand to swap between forms. The whip has higher reach, hits 3 times, builds up attack speed before unleasheing a powerful burst of damage, the sword can fire a projectile and does both RED DAMAGE and BLACK DAMAGE, the hammer deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area, the bat does RED DAMAGE and knocks back enemies, and the scythe does RED DAMAGE and does 50% more damage when hitting targets below 50% health."
+	special = "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."
 	icon_state = "oberon_whip"
-	force = 15
+	force = 18
 	attack_speed = 0.8
 	reach = 3
 	damtype = BLACK_DAMAGE
@@ -1289,11 +1289,11 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"whip" = list(15, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE),
-		"sword" = list(45, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE),
-		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE),
-		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE),
-		"scythe" = list(90, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE)
+		"whip" = list(18, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."),
+		"sword" = list(45, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form can fire a projectile and does both RED DAMAGE and BLACK DAMAGE."),
+		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area."),
+		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE, "Use this weapon in hand to swap between forms. This form does RED DAMAGE and knocks back enemies"),
+		"scythe" = list(90, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE, "Use this weapon in hand to swap between forms. This form does RED DAMAGE and does 50% more damage when hitting targets below 50% health.")
 		)
 	var/gun_cooldown
 	var/gun_cooldown_time = 1.5 SECONDS
@@ -1396,7 +1396,7 @@
 						to_chat(user,"<span class='warning'>The whip starts to thrash around uncontrollably!</span>")
 						Smash(user, target)
 				else
-					build_up -= 0.05
+					build_up -= 0.1
 			else
 				user.changeNext_move(CLICK_CD_MELEE * 0.8)
 
@@ -1477,4 +1477,5 @@
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
 	damtype = weapon_list[form][7]
+	special = weapon_list[form][8]
 	build_up = 0.8
