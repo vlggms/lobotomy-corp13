@@ -1290,7 +1290,7 @@
 	var/form = "whip"
 	var/list/weapon_list = list(
 		"whip" = list(15, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE),
-		"sword" = list(40, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE),
+		"sword" = list(45, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE),
 		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE),
 		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE),
 		"scythe" = list(90, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE)
@@ -1308,8 +1308,8 @@
 	Sword: Raw mixed damage/ranged weapon also.(Since its like a buffed soulmate without the mark gimmick.)
 	Hammer: Black damage aoe support/armor weakener.(Meant to combo with the other weapons with the red and black rend it has and to deal with groups also incase you somehow kill oberon before amber midnight.)
 	Bat: Slow attacking red damage with knockback.(Simple yes, but it's useful versus stuff like Censored or Black Fixer. I guess it's an upgrade/sidegrade of flesh is willing and summer solstice but that wasn't intentional since it was black before I changed it.)
-	Scythe: Raw Red damage that becomes better when enemies are under half.(Used to be a shittier mimicry)
-	Whip, Sword, and Scythe are meant to be raw damage while Bat and Hammer are meant to be utility.
+	Scythe: A good finisher that has dps on par with the sword when the target has 50% hp or lower while being slightly worse than aleph dps wise otherwise I think.(Used to be a shittier mimicry)
+	Whip, Sword, and Bat are meant to be raw damage, Hammer is meant to be utility, and  Scythe is meant to be a finisher.
 */
 
 /obj/item/ego_weapon/oberon/Initialize()
