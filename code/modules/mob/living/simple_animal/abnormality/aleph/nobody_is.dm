@@ -359,7 +359,7 @@
 		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
 		add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
-		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = -1, PALE_DAMAGE = 0.5))
+		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.5))
 		heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
 		maxHealth = 10000
 		adjustBruteLoss(-maxHealth) // It's not over yet!.

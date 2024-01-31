@@ -1290,7 +1290,7 @@
 	var/form = "whip"
 	var/list/weapon_list = list(
 		"whip" = list(18, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."),
-		"sword" = list(45, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form can fire a projectile and does both RED DAMAGE and BLACK DAMAGE."),
+		"sword" = list(55, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form can fire a projectile and does both RED DAMAGE and BLACK DAMAGE."),
 		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area."),
 		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE, "Use this weapon in hand to swap between forms. This form does RED DAMAGE and knocks back enemies"),
 		"scythe" = list(90, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE, "Use this weapon in hand to swap between forms. This form does RED DAMAGE and does 50% more damage when hitting targets below 50% health.")
