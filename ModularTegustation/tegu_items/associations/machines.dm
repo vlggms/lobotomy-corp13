@@ -179,9 +179,6 @@
 		if (10 - grade >= 10)
 			to_chat(user, "<span class='notice'>Potential too low to give grade. Not recommended to issue fixer license.</span>")
 			return
-		if (10 - grade <= 0)	//Once people saw Dong-Hwan, the -7 Grade fixer.
-			to_chat(user, "<span class='notice'>Recommended Grade - 1.</span>")
-			return
 
 		to_chat(user, "<span class='notice'>Recommended Grade - [10-grade].</span>")
 		to_chat(user, "<span class='notice'>This grade may be adjusted by your local Hana representative.</span>")
