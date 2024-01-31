@@ -73,11 +73,12 @@
 	pixel_z = 16
 	animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 4 SECONDS)
 	pixel_z = 0
-	if(!datum_reference?.console)
-		return
-	datum_reference.console.updateUsrDialog()
 
 //Work/Misc
+/mob/living/simple_animal/hostile/abnormality/proc/UpdateWorkDisplay(mob/user)
+	// Doesn't use UpdateAbnoConsole(datum_reference.console) because we HAVE a user here in every scenario this changes.
+	datum_reference.console.update_static_data(user, SStgui.get_open_ui(user, datum_reference.console))
+
 /mob/living/simple_animal/hostile/abnormality/pinocchio/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(realboy)
 		to_chat(user, span_warning("The abnormality isn't in here!"))
@@ -89,7 +90,6 @@
 			lying = FALSE
 			datum_reference.qliphoth_change(1)
 			PostWorkEffect()
-			datum_reference.console.updateUsrDialog()
 			return
 		else
 			datum_reference.qliphoth_change(-1)
@@ -107,6 +107,7 @@
 		var/list/new_work_chances = modular_work_chance["normal"]
 		work_chances = new_work_chances.Copy()
 		datum_reference.available_work = work_chances
+		UpdateWorkDisplay(user)
 		new /obj/effect/temp_visual/pinocchio/caught(get_turf(src))
 		return
 	playsound(src, 'sound/abnormalities/pinocchio/activate.ogg', 40, 0, 1)
@@ -117,6 +118,7 @@
 		lying = TRUE
 		work_chances = new_work_chances.Copy()
 		datum_reference.available_work = work_chances
+		UpdateWorkDisplay(user)
 
 //Breach
 /mob/living/simple_animal/hostile/abnormality/pinocchio/BreachEffect(mob/living/carbon/human/user, breach_type)
