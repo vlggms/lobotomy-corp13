@@ -28,11 +28,11 @@
 	start_qliphoth = 2
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 45, 50),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 10, 20),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 0, 10, 20),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 45, 50, 55),
+	)
 	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 	attack_sound = 'sound/abnormalities/crying_children/attack_salvador.ogg'
@@ -63,7 +63,7 @@
 
 	attack_action_types = list(
 		/datum/action/cooldown/tcc_sorrow,
-		/datum/action/cooldown/tcc_combust
+		/datum/action/cooldown/tcc_combust,
 	)
 
 // Sorrow is too strong to be spammed, so you can only do it when mobs are nearby as a player

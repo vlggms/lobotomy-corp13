@@ -1,0 +1,805 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aB" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/structure/mineral_door/paperframe{
+	name = "salsu bedroom"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"aU" = (
+/obj/structure/chair/wood/wings{
+	dir = 1
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"bg" = (
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4;
+	color = "black"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1;
+	color = "black"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "black"
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	color = "black";
+	dir = 8
+	},
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	name = "floor"
+	},
+/area/city/backstreets_room)
+"cP" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/hop{
+	name = "salsu's bedsheet";
+	desc = "It is decorated with golden threads, signifying one's own deeds made for the cause of oneself."
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"ef" = (
+/obj/structure/chair/comfy/teal{
+	dir = 8;
+	pixel_y = 5;
+	pixel_x = -6;
+	can_buckle = 0
+	},
+/obj/structure/plaque{
+	pixel_y = 32
+	},
+/turf/open/floor/carpet/cyan,
+/area/city/backstreets_room)
+"eh" = (
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/item/flashlight/lantern/jade{
+	pixel_y = 4;
+	pixel_x = 16;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/obj/item/ego_weapon/city/bladelineage,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"gL" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/mineral_door/paperframe{
+	name = "salsu bedroom"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"hV" = (
+/obj/effect/turf_decal/siding/wood,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"ij" = (
+/obj/structure/mineral_door/paperframe{
+	name = "cutthroat master bedroom"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"iU" = (
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"iZ" = (
+/obj/structure/chair/wood/wings,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"jw" = (
+/obj/structure/window/paperframe{
+	CanAtmosPass = 0;
+	resistance_flags = 115
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"jF" = (
+/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat,
+/obj/item/clothing/head/rice_hat,
+/obj/structure/closet/cabinet{
+	anchored = 1
+	},
+/turf/open/floor/carpet/cyan,
+/area/city/backstreets_room)
+"jU" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 1
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"mS" = (
+/obj/structure/chair/pew/left{
+	dir = 8;
+	pixel_y = 7;
+	mouse_opacity = 0
+	},
+/obj/structure/chair/pew/right{
+	dir = 8;
+	pixel_y = -7;
+	name = "chair of the dominant";
+	desc = "made of fancy authentic wood. This chair was made to be sat by only the dominant, whos will is declared strongest."
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"nu" = (
+/obj/structure/closet/crate{
+	anchored = 1
+	},
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/item/food/sashimi,
+/obj/machinery/light/floor,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"nR" = (
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-10";
+	pixel_y = 15;
+	pixel_x = 6;
+	anchored = 1
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"oq" = (
+/obj/item/bedsheet/wiz{
+	name = "cutthroat's bedsheet";
+	desc = "A unique fabric earned through one's own will.";
+	pixel_y = 13;
+	anchored = 1
+	},
+/obj/item/bedsheet/wiz{
+	name = "cutthroat's bedsheet";
+	desc = "A unique fabric earned through one's own will.";
+	anchored = 1
+	},
+/obj/structure/bed/pod{
+	pixel_y = 13;
+	mouse_opacity = 0
+	},
+/obj/structure/bed/pod{
+	name = "king-sized bed"
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/cyan,
+/area/city/backstreets_room)
+"oU" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 8
+	},
+/obj/structure/mineral_door/paperframe{
+	name = "salsu bedroom"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"pr" = (
+/obj/structure/flora/ausbushes/lavendergrass{
+	pixel_x = -6
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/obj/item/flashlight/lantern/jade{
+	pixel_y = 4;
+	pixel_x = 16;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"qS" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/hop{
+	name = "salsu's bedsheet";
+	desc = "It is decorated with golden threads, signifying one's own deeds made for the cause of oneself."
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-10";
+	pixel_y = 19;
+	pixel_x = 6;
+	anchored = 1
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"qZ" = (
+/obj/structure/table/wood/fancy/blue,
+/obj/item/flashlight/lamp{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/obj/effect/spawner/lootdrop/three_course_meal,
+/obj/item/pen/fountain/captain{
+	pixel_y = 11;
+	name = "gold fountain pen";
+	pixel_x = 10
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/carpet/cyan,
+/area/city/backstreets_room)
+"rr" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 1
+	},
+/obj/structure/mineral_door/paperframe{
+	name = "salsu bedroom"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"rx" = (
+/obj/structure/closet/cabinet{
+	anchored = 1
+	},
+/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu,
+/obj/item/clothing/head/rice_hat,
+/obj/machinery/light/floor,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"ss" = (
+/obj/structure/table/wood/fancy/red,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/machinery/light/floor,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"sw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1;
+	color = "#694720"
+	},
+/mob/living/simple_animal/hostile/abnormality/cherry_blossoms{
+	pixel_y = 13;
+	density = 0;
+	alpha = 230;
+	icon_state = "graveofcherryblossoms_1";
+	name = "Cherry Blossoms Tree";
+	faction = list("neutral");
+	layer = 3.9;
+	can_be_z_moved = 0;
+	anchored = 1;
+	animate_movement = 0;
+	movement_type = 0;
+	stop_automated_movement = 1;
+	stop_automated_movement_when_pulled = 1;
+	buckled = 1;
+	health = 90000
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"sF" = (
+/obj/structure/chair/wood{
+	dir = 1
+	},
+/obj/item/flashlight/lantern/jade{
+	pixel_x = -16;
+	pixel_y = 4;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"sY" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"tb" = (
+/obj/item/flashlight/lantern/jade{
+	pixel_y = 24;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"uJ" = (
+/obj/structure/table/wood,
+/obj/item/food/sashimi{
+	pixel_y = 5
+	},
+/obj/item/flashlight/lamp{
+	pixel_y = -3;
+	pixel_x = -5
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"vA" = (
+/obj/structure/bed/pod,
+/obj/item/bedsheet/hop{
+	name = "salsu's bedsheet";
+	desc = "It is decorated with golden threads, signifying one's own deeds made for the cause of oneself.";
+	layer = 3.8
+	},
+/obj/item/kirbyplants{
+	icon_state = "plant-10";
+	pixel_y = 19;
+	pixel_x = 6;
+	anchored = 1;
+	layer = 3.8
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"wf" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/structure/mineral_door/paperframe{
+	name = "salsu bedroom"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xe" = (
+/obj/structure/mineral_door/paperframe{
+	name = "captain kurokumo office"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"xg" = (
+/obj/structure/flora/ausbushes/lavendergrass{
+	pixel_y = 6
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"zv" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 1
+	},
+/obj/effect/turf_decal/siding/wood/corner{
+	dir = 4
+	},
+/obj/structure/mineral_door/paperframe{
+	name = "salsu bedroom"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"zy" = (
+/obj/item/flashlight/lantern/jade{
+	pixel_x = -16;
+	pixel_y = 4;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/obj/structure/chair/wood/wings{
+	dir = 4
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Bp" = (
+/obj/item/storage/firstaid/revival,
+/obj/item/storage/firstaid/regular,
+/obj/structure/closet/crate{
+	anchored = 1
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Ef" = (
+/obj/structure/mineral_door/paperframe{
+	name = "cellar"
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"Fw" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 6;
+	color = "#2e1f0e"
+	},
+/obj/structure/flora/ausbushes/lavendergrass{
+	pixel_y = 5;
+	pixel_x = -5
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"FP" = (
+/obj/structure/chair/wood,
+/obj/item/flashlight/lantern/jade{
+	pixel_x = -16;
+	pixel_y = 4;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Gg" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 4
+	},
+/obj/item/flashlight/lantern/jade{
+	pixel_y = 4;
+	pixel_x = 16;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"HG" = (
+/obj/structure/flora/ausbushes/lavendergrass,
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Ip" = (
+/obj/structure/table/wood,
+/obj/item/flashlight/lamp{
+	pixel_y = 10;
+	pixel_x = -5
+	},
+/obj/item/food/sashimi,
+/obj/structure/plaque{
+	pixel_y = 32
+	},
+/obj/machinery/light/floor,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Ix" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 1
+	},
+/obj/structure/flora/ausbushes/lavendergrass{
+	pixel_y = -5
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Kb" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"KI" = (
+/obj/effect/turf_decal/siding/wood,
+/obj/effect/turf_decal/siding/wood/corner,
+/obj/structure/mineral_door/paperframe{
+	name = "salsu bedroom"
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/turf/open/floor/stone,
+/area/city/backstreets_room)
+"MW" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 9;
+	color = "#2e1f0e"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Nz" = (
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"OQ" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 5;
+	color = "#2e1f0e"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"PY" = (
+/obj/structure/closet/crate{
+	anchored = 1
+	},
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/item/reagent_containers/food/drinks/mug/tea,
+/obj/machinery/light/floor,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"RQ" = (
+/obj/item/kirbyplants{
+	icon_state = "plant-10";
+	pixel_y = 22;
+	pixel_x = 6;
+	anchored = 1
+	},
+/obj/structure/table/wood{
+	density = 0;
+	mouse_opacity = 0;
+	alpha = 0
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"RY" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 10;
+	color = "#2e1f0e"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Ss" = (
+/obj/item/flashlight/lantern/jade{
+	pixel_y = 4;
+	pixel_x = 16;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/obj/structure/chair/wood{
+	dir = 8
+	},
+/obj/item/ego_weapon/city/bladelineage,
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"SL" = (
+/turf/open/floor/carpet/cyan,
+/area/city/backstreets_room)
+"Ug" = (
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e"
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"WV" = (
+/obj/structure/chair/office{
+	dir = 4;
+	anchored = 1;
+	name = "chair of the outsider";
+	desc = "Those not of the Blade Lineage sit here. Either by will or force."
+	},
+/turf/open/floor/stone{
+	color = "#ccc8c0"
+	},
+/area/city/backstreets_room)
+"Za" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 4
+	},
+/turf/open/floor/plating/beach/sand,
+/area/city/backstreets_room)
+"Zs" = (
+/obj/structure/table/bronze,
+/obj/item/flashlight/lantern/jade{
+	pixel_y = 4;
+	pixel_x = 16;
+	layer = 3.3;
+	anchored = 1;
+	light_on = 1
+	},
+/obj/item/ego_weapon/city/bladelineage{
+	name = "prestigious blade lineage katana";
+	desc = "This blade shimmers in city light despite its bloody past. Claim their lives swordman.";
+	force = 50
+	},
+/turf/open/floor/carpet/cyan,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Ip
+sF
+oU
+MW
+Kb
+sY
+Kb
+RY
+rr
+FP
+uJ
+"}
+(2,1,1) = {"
+rx
+Nz
+aB
+jU
+HG
+sY
+iU
+xg
+wf
+Nz
+rx
+"}
+(3,1,1) = {"
+vA
+Ss
+gL
+jU
+iU
+iU
+iU
+Ug
+zv
+Ss
+cP
+"}
+(4,1,1) = {"
+jw
+jw
+jw
+sw
+iU
+bg
+HG
+hV
+jw
+jw
+jw
+"}
+(5,1,1) = {"
+Ip
+sF
+oU
+Ix
+iU
+iU
+iU
+Ug
+rr
+FP
+uJ
+"}
+(6,1,1) = {"
+rx
+Nz
+aB
+jU
+iU
+Za
+iU
+Ug
+wf
+Nz
+rx
+"}
+(7,1,1) = {"
+qS
+eh
+KI
+OQ
+pr
+Za
+Gg
+Fw
+zv
+eh
+cP
+"}
+(8,1,1) = {"
+jw
+jw
+jw
+jw
+jw
+xe
+jw
+jw
+jw
+jw
+jw
+"}
+(9,1,1) = {"
+qZ
+jF
+jw
+tb
+zy
+WV
+zy
+Nz
+jw
+tb
+Bp
+"}
+(10,1,1) = {"
+ef
+SL
+ij
+iZ
+ss
+ss
+ss
+aU
+Ef
+Nz
+nu
+"}
+(11,1,1) = {"
+oq
+Zs
+jw
+tb
+RQ
+mS
+Nz
+nR
+jw
+tb
+PY
+"}

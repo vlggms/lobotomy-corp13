@@ -19,15 +19,15 @@
 		ABNORMALITY_WORK_INSTINCT = 50,
 		ABNORMALITY_WORK_INSIGHT = 50,
 		ABNORMALITY_WORK_ATTACHMENT = 50,
-		ABNORMALITY_WORK_REPRESSION = 70
-		)
+		ABNORMALITY_WORK_REPRESSION = 70,
+	)
 	work_damage_amount = 6
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/doze,
-		/datum/ego_datum/armor/doze
-		)
+		/datum/ego_datum/armor/doze,
+	)
 	max_boxes = 10
 	gift_type =  /datum/ego_gifts/doze
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -43,9 +43,9 @@
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/sleeping/WorkChance(mob/living/carbon/human/user, chance)
-	. = ..()
 	if (istype(user.ego_gift_list[EYE], /datum/ego_gifts/doze))
 		return chance + 5
+	return chance
 
 /mob/living/simple_animal/hostile/abnormality/sleeping/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

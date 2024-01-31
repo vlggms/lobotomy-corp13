@@ -20,14 +20,14 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0)
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0),
 	)
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/grasp,
-		/datum/ego_datum/armor/grasp
+		/datum/ego_datum/armor/grasp,
 	)
 	gift_type = /datum/ego_gifts/grasp
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK

@@ -62,5 +62,8 @@
 	sprite_height = 8
 	average_size = 100
 	average_weight = 16000
-	food_reagents = list(/datum/reagent/medicine/mental_stabilizator = 2, /datum/reagent/consumable/nutriment/vile_fluid = 6)
+	food_reagents = list(
+		/datum/reagent/medicine/mental_stabilizator = 2,
+		/datum/reagent/consumable/nutriment/vile_fluid = 6,
+	)
 	fillet_type = /obj/item/food/meat/slab/human/mutant/zombie //zombi meat

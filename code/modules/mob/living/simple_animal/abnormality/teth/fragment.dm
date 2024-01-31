@@ -24,17 +24,17 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(30, 30, 20, 20, 20),
-						ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
-						ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 50, 50, 50),
-						ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(30, 30, 20, 20, 20),
+		ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
+		ABNORMALITY_WORK_ATTACHMENT = list(60, 60, 50, 50, 50),
+		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
+	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/fragment,
-		/datum/ego_datum/armor/fragment
-		)
+		/datum/ego_datum/armor/fragment,
+	)
 	gift_type =  /datum/ego_gifts/fragments
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/song_cooldown

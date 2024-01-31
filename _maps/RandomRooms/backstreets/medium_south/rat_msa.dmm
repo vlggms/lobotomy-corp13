@@ -1,0 +1,222 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/wood,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"b" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/toy/cards/deck,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"c" = (
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"k" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/table/wood/bar,
+/obj/item/toy/figure/bartender,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"r" = (
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/drinks/colocup/lean,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/chair/plastic,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/structure/closet/secure_closet/bar,
+/obj/item/reagent_containers/food/drinks/bottle/lizardwine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/absinthe,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/champagne,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/cognac,
+/obj/item/reagent_containers/food/drinks/bottle/fernet,
+/obj/item/reagent_containers/food/drinks/bottle/fernet,
+/obj/item/reagent_containers/food/drinks/bottle/fernet,
+/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
+/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
+/obj/item/reagent_containers/food/drinks/bottle/grappa,
+/obj/item/reagent_containers/food/drinks/bottle/grappa,
+/obj/item/reagent_containers/food/drinks/bottle/grappa,
+/obj/item/reagent_containers/food/drinks/bottle/hcider,
+/obj/item/reagent_containers/food/drinks/bottle/hcider,
+/obj/item/reagent_containers/food/drinks/bottle/hcider,
+/obj/item/reagent_containers/food/drinks/bottle/maltliquor,
+/obj/item/reagent_containers/food/drinks/bottle/maltliquor,
+/obj/item/reagent_containers/food/drinks/bottle/maltliquor,
+/obj/item/reagent_containers/food/drinks/bottle/moonshine,
+/obj/item/reagent_containers/food/drinks/bottle/moonshine,
+/obj/item/reagent_containers/food/drinks/bottle/moonshine,
+/obj/item/reagent_containers/food/drinks/bottle/patron,
+/obj/item/reagent_containers/food/drinks/bottle/patron,
+/obj/item/reagent_containers/food/drinks/bottle/patron,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/sake,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka/badminka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/vodka,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/obj/item/reagent_containers/food/drinks/bottle/wine,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"x" = (
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"B" = (
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"C" = (
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/obj/structure/chair/plastic{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"D" = (
+/mob/living/simple_animal/hostile/humanoid/rat/zippy,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"F" = (
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"H" = (
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"L" = (
+/obj/structure/chair/plastic{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"N" = (
+/obj/structure/fermenting_barrel,
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"R" = (
+/obj/structure/table/wood/fancy/green,
+/obj/item/stack/spacecash/c500,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"S" = (
+/mob/living/simple_animal/hostile/humanoid/rat/pipe,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+"V" = (
+/turf/open/floor/carpet/royalblack,
+/area/city/backstreets_room)
+"W" = (
+/obj/structure/table/wood/bar,
+/obj/item/reagent_containers/food/drinks/bottle/moonshine,
+/turf/open/floor/wood,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}
+(2,1,1) = {"
+Q
+v
+V
+V
+V
+Q
+"}
+(3,1,1) = {"
+Q
+N
+D
+V
+V
+Q
+"}
+(4,1,1) = {"
+Q
+q
+F
+r
+W
+Q
+"}
+(5,1,1) = {"
+a
+k
+x
+k
+k
+Q
+"}
+(6,1,1) = {"
+a
+H
+c
+c
+S
+Q
+"}
+(7,1,1) = {"
+Q
+c
+C
+B
+c
+Q
+"}
+(8,1,1) = {"
+Q
+t
+b
+R
+L
+Q
+"}
+(9,1,1) = {"
+Q
+t
+R
+b
+L
+Q
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+Q
+Q
+"}

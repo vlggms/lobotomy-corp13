@@ -40,8 +40,8 @@
 	if(SSmaptype.maptype == "city")
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
 	if(istype(L, SWEEPER_TYPES))
 		//Would have made it based on biotypes but that has its own issues.
 		adjustBruteLoss(-20)
@@ -107,8 +107,8 @@
 	if(SSmaptype.maptype == "city")
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
 	if(istype(L, SWEEPER_TYPES))
 		adjustBruteLoss(-20)
 	else
@@ -273,8 +273,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
 	if(istype(L, SWEEPER_TYPES))
 		adjustBruteLoss(-20)
 	else
@@ -442,8 +442,8 @@
 	if(!L)
 		return FALSE
 	visible_message(
-		"<span class='danger'>[src] devours [L]!</span>",
-		"<span class='userdanger'>You feast on [L], restoring your health!</span>")
+		span_danger("[src] devours [L]!"),
+		span_userdanger("You feast on [L], restoring your health!"))
 	if(istype(L, SWEEPER_TYPES))
 		adjustBruteLoss(-20)
 	else
@@ -546,7 +546,7 @@
 			for(var/mob/living/carbon/human/L in T)
 				if(L == src || L.throwing)
 					continue
-				to_chat(L, "<span class='userdanger'>[src]'s ground slam shockwave sends you flying!</span>")
+				to_chat(L, span_userdanger("[src]'s ground slam shockwave sends you flying!"))
 				var/turf/thrownat = get_ranged_target_turf_direct(src, L, 8, rand(-10, 10))
 				L.throw_at(thrownat, 8, 2, src, TRUE, force = MOVE_FORCE_OVERPOWERING, gentle = TRUE)
 				L.apply_damage(slam_damage, RED_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)

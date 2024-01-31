@@ -250,8 +250,8 @@
 	icon_state = "logging"
 	force = 33
 	damtype = RED_DAMAGE
-	attack_verb_continuous = "chops"
-	attack_verb_simple = "chop"
+	attack_verb_continuous = list("chops")
+	attack_verb_simple = list("chop")
 	hitsound = 'sound/abnormalities/woodsman/woodsman_attack.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
@@ -374,8 +374,8 @@
 	icon_state = "courage"
 	force = 10 //if 4 people are around, the weapon can deal up to 70 damage per strike, but alone it's a glorified baton.
 	damtype = RED_DAMAGE
-	attack_verb_continuous = "slash"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = list("slashes")
+	attack_verb_simple = list("slash")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -452,8 +452,8 @@
 	icon_state = "pleasure"
 	force = 30
 	damtype = WHITE_DAMAGE
-	attack_verb_continuous = "slash"
-	attack_verb_simple = "slash"
+	attack_verb_continuous = list("slashes")
+	attack_verb_simple = list("slash")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40

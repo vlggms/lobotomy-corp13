@@ -18,8 +18,30 @@
 /datum/map_template/random_room/backstreets/medium_north/workshop_mn
 	name = "Workshop - Medium North"
 	room_id = "workshop_mn"
-	mappath = "_maps/RandomRooms/backstreets/medium_north/workshop_mn"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/workshop_mn.dmm"
 
+/datum/map_template/random_room/backstreets/medium_north/cirno_mn
+	name = "Cirno Room - Medium North"
+	room_id = "cirno_mn"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/cirno_mn.dmm"
+	stock = 1
+	weight = 2 //1/5th as common
+
+/datum/map_template/random_room/backstreets/medium_north/hana_office_mn
+	name = "Hana Office - Medium North"
+	room_id = "hana_office_mn"
+	mappath = "_maps/RandomRooms/backstreets/medium_north/hana_office_mn.dmm"
+  
+/datum/map_template/random_room/backstreets/medium_north/rage_cage
+    name = "Rage Cage - Medium North"
+    room_id = "rage_cage"
+    mappath = "_maps/RandomRooms/backstreets/medium_north/rage_cage.dmm"
+
+/datum/map_template/random_room/backstreets/medium_north/rat_mna
+    name = "Rat - Medium North A"
+    room_id = "rat_mna"
+    mappath = "_maps/RandomRooms/backstreets/medium_north/rat_mna.dmm"
+    
 
 
 

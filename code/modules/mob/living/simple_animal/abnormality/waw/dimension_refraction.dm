@@ -23,18 +23,18 @@
 	move_to_delay = 6
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_INSIGHT = list(35, 40, 45, 50, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_INSIGHT = list(35, 40, 45, 50, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/diffraction,
-		/datum/ego_datum/armor/diffraction
-		)
+		/datum/ego_datum/armor/diffraction,
+	)
 	gift_type =  /datum/ego_gifts/diffraction
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

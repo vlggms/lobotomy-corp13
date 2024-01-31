@@ -33,11 +33,11 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 45, 50),
-						ABNORMALITY_WORK_INSIGHT = list(30, 30, 30, 20, 20),
-						ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(30, 30, 30, 20, 20),
+		ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
@@ -47,13 +47,13 @@
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/toggle/wolf_dash_toggle,
-		/datum/action/cooldown/wolf_howl
-		)
+		/datum/action/cooldown/wolf_howl,
+	)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/cobalt,
-		/datum/ego_datum/armor/cobalt
-		)
+		/datum/ego_datum/armor/cobalt,
+	)
 	gift_type =  /datum/ego_gifts/cobalt
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 

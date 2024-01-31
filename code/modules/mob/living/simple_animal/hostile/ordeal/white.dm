@@ -11,8 +11,8 @@
 	health = 3000
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	melee_damage_lower = 40
-	melee_damage_upper = 50
+	melee_damage_lower = 30
+	melee_damage_upper = 40
 	move_to_delay = 2.6
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
@@ -27,14 +27,14 @@
 	var/busy = FALSE
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 20 SECONDS
-	var/pulse_damage = 20 // Dealt consistently across the entire room 5 times
+	var/pulse_damage = 18 // Dealt consistently across the entire room 5 times
 	/// Default range of triggering meltdowns during pulse attack
 	var/pulse_range = 24
 	/// The actual range of triggering meltdowns. Gets decreased with each attack during pulse attack
 	var/current_pulse_range = 24
 	var/hammer_cooldown
 	var/hammer_cooldown_time = 6 SECONDS
-	var/hammer_damage = 250
+	var/hammer_damage = 200
 	var/list/been_hit = list()
 
 /mob/living/simple_animal/hostile/ordeal/black_fixer/Initialize()
@@ -104,7 +104,7 @@
 	hammer_cooldown = world.time + hammer_cooldown_time
 	busy = TRUE
 	been_hit = list()
-	visible_message("<span class='warning'>[src] raises their hammer high above the ground!</span>")
+	visible_message(span_warning("[src] raises their hammer high above the ground!"))
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, 14, rand(-15,15))
 	var/list/turfs_to_hit = getline(src, target_turf)
 	for(var/turf/T in turfs_to_hit)
@@ -217,7 +217,7 @@
 	beam_cooldown = world.time + beam_cooldown_time
 	can_act = FALSE
 	icon_state = "fixer_w_beam"
-	visible_message("<span class='warning'>[src] takes their weapon in hands, aiming it at [target]!</span>")
+	visible_message(span_warning("[src] takes their weapon in hands, aiming it at [target]!"))
 	playsound(src, 'sound/effects/ordeals/white/white_beam_start.ogg', 75, FALSE, 10)
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, 24, rand(-20,20))
 	var/list/turfs_to_hit = getline(src, target_turf)
@@ -351,8 +351,8 @@
 	health = 3000
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 4
-	melee_damage_lower = 30
-	melee_damage_upper = 40
+	melee_damage_lower = 15
+	melee_damage_upper = 35
 	move_to_delay = 2.2
 	ranged = TRUE
 	attack_verb_continuous = "slashes"
@@ -366,7 +366,7 @@
 	var/busy = FALSE
 	var/multislash_cooldown
 	var/multislash_cooldown_time = 4 SECONDS
-	var/multislash_damage = 75
+	var/multislash_damage = 60
 	var/multislash_range = 6
 	var/beam_cooldown
 	var/beam_cooldown_time = 10 SECONDS
@@ -427,7 +427,7 @@
 	forceMove(slash_end)
 	for(var/turf/T in hitline)
 		for(var/mob/living/L in HurtInTurf(T, list(), multislash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
-			to_chat(L, "<span class='userdanger'>[src] slashes you at a high speed!</span>")
+			to_chat(L, span_userdanger("[src] slashes you at a high speed!"))
 	var/datum/beam/B1 = slash_start.Beam(slash_end, "volt_ray", time=3)
 	B1.visuals.color = COLOR_YELLOW
 	playsound(src, attack_sound, 50, FALSE, 4)
@@ -435,7 +435,7 @@
 	forceMove(slash_start)
 	for(var/turf/T in hitline)
 		for(var/mob/living/L in HurtInTurf(T, list(), multislash_damage, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
-			to_chat(L, "<span class='userdanger'>[src] slashes you at a high speed!</span>")
+			to_chat(L, span_userdanger("[src] slashes you at a high speed!"))
 	var/datum/beam/B2 = slash_start.Beam(slash_end, "volt_ray", time=6)
 	B2.visuals.color = COLOR_RED
 	playsound(src, attack_sound, 75, FALSE, 8)
@@ -465,12 +465,12 @@
 				continue
 			if(faction_check_mob(L))
 				continue
-			to_chat(L, "<span class='userdanger'>A red laser passes right through you!</span>")
+			to_chat(L, span_userdanger("A red laser passes right through you!"))
 			L.apply_damage(beam_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			been_hit |= L
 			new /obj/effect/temp_visual/cult/sparks(get_turf(L))
 	playsound(src, 'sound/effects/ordeals/white/red_beam_fire.ogg', 100, FALSE, 32)
-	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
 	beam_cooldown = world.time + beam_cooldown_time
 	busy = FALSE
 	icon_state = icon_living
@@ -594,7 +594,7 @@
 			S.pixel_y = rand(-8, 8)
 			animate(S, alpha = 0, time = 1.5)
 			for(var/mob/living/L in HurtInTurf(T, list(), multislash_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE))
-				to_chat(L, "<span class='userdanger'>[src] stabs you!</span>")
+				to_chat(L, span_userdanger("[src] stabs you!"))
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), dir_to_target)
 		playsound(src, attack_sound, 50, TRUE, 3)
 		SLEEP_CHECK_DEATH(multislash_speed)
@@ -606,7 +606,7 @@
 		return
 	tentacle_cooldown = world.time + tentacle_cooldown_time
 	can_act = FALSE
-	visible_message("<span class='danger'>[src] drops their suitcase on the ground!</span>")
+	visible_message(span_danger("[src] drops their suitcase on the ground!"))
 	face_atom(target)
 	var/turf/beam_start = get_step(src, dir)
 	var/turf/beam_end
@@ -631,7 +631,7 @@
 		new /obj/effect/temp_visual/cult/sparks(T)
 	SLEEP_CHECK_DEATH(10)
 	case.icon_state = "pale_case_open"
-	visible_message("<span class='danger'>[case] suddenly opens!</span>")
+	visible_message(span_danger("[case] suddenly opens!"))
 	playsound(beam_start, 'sound/effects/ordeals/white/pale_suitcase.ogg', 75, FALSE, tentacle_range)
 	var/datum/beam/B = beam_start.Beam(beam_end, "bsa_beam", time = 8)
 	var/matrix/M = matrix()
@@ -642,7 +642,7 @@
 		var/list/new_hits = HurtInTurf(T, been_hit, tentacle_damage, PALE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE) - been_hit
 		been_hit += new_hits
 		for(var/mob/living/L in new_hits)
-			to_chat(L, "<span class='userdanger'>A pale beam passes right through you!</span>")
+			to_chat(L, span_userdanger("A pale beam passes right through you!"))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	SLEEP_CHECK_DEATH(8)
 	case.FadeOut()

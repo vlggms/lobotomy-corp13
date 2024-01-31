@@ -506,3 +506,16 @@
 		"When O-04-177-1 was suppressed, Sign of Roses became more vulnerable to damage.")
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Low"
+
+//Little Red Riding Hooded Mercenary
+/obj/item/paper/fluff/info/waw/red_hood
+	abno_type = /mob/living/simple_animal/hostile/abnormality/red_hood
+	abno_code = "F-01-57"
+	abno_info = list(
+		"Requesting F-01-57 to suppress escaping Abnormalities or manifested Ordeals is a very useful resource. However, making such a request is not free.",
+		"When F-01-57 was denied the killing blow to a requested suppression, it did not show an extreme emotional response, but begin attacking indiscriminately.",
+		"The Qliphoth Counter decreased every time an Abnormality escaped. However, it did not respond similarly to the escape of O-02-56.",
+		"The abnormality had particularly strong reactions when encountering F-01-117 (Blue-Smocked Shepherd), F-02-127 (Reddened Buddy), and especially F-02-58 (Big and will be Bad Wolf).",
+		"When the above occurred, F-01-57 entered a state of apparent heightened emotion, attacking more rapidly, dealing and taking more damage, and ignoring other targets.",
+		"When F-01-57 was denied a killing blow to F-02-58, the abnormality went on a rampage."
+	)

@@ -11,7 +11,7 @@
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = list(45, 45, 40, 40, 40),
 		ABNORMALITY_WORK_ATTACHMENT = 60,
-		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0)
+		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
 	)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
@@ -19,7 +19,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wrist,
-		/datum/ego_datum/armor/wrist
+		/datum/ego_datum/armor/wrist,
 	)
 
 	gift_type =  /datum/ego_gifts/wrist

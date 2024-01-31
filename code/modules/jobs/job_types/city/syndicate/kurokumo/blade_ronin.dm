@@ -38,7 +38,7 @@
 	name = "Blade Lineage Ronin"
 	jobtype = /datum/job/ronin
 
-	belt = /obj/item/ego_weapon/city/bladelineage/city
+	belt = /obj/item/ego_weapon/city/bladelineage
 	ears = null
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	glasses = /obj/item/clothing/glasses/sunglasses

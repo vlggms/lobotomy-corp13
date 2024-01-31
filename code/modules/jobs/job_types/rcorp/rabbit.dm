@@ -113,7 +113,7 @@
 /datum/outfit/job/rabbit/captain
 	name = "Rabbit Squad Captain"
 	jobtype = /datum/job/rcorp_captain/rabbit
-	glasses = /obj/item/clothing/glasses/hud/health/night
+	glasses = /obj/item/clothing/glasses/hud/health/night/rabbit
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	head = null

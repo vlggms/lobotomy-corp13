@@ -13,16 +13,16 @@
 		ABNORMALITY_WORK_INSTINCT = 70,
 		ABNORMALITY_WORK_INSIGHT = list(50, 40, 30, 30, 30),
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 50, 50),
-		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(50, 40, 30, 30, 30),
+	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	max_boxes = 10
 
 	ego_list = list(
 		/datum/ego_datum/weapon/wingbeat,
-		/datum/ego_datum/armor/wingbeat
-		)
+		/datum/ego_datum/armor/wingbeat,
+	)
 	gift_type =  /datum/ego_gifts/wingbeat
 	gift_message = "Fairy Dust covers your hands..."
 

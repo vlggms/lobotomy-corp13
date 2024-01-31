@@ -10,18 +10,18 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 55, 55, 60),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 45, 50),
-						ABNORMALITY_WORK_ATTACHMENT = 0,						//DO NOT FUCK THE BEEGIRL
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 55, 55, 60),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 45, 50),
+		ABNORMALITY_WORK_ATTACHMENT = 0,						//DO NOT FUCK THE BEEGIRL
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/loyalty,
 		/datum/ego_datum/weapon/praetorian,
-		/datum/ego_datum/armor/loyalty
-		)
+		/datum/ego_datum/armor/loyalty,
+	)
 	gift_type =  /datum/ego_gifts/loyalty
 	loot = list(/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian) // Don't think it was dropping before, this should make it do so
 	//She doesn't usually breach. However, when she does, she's practically an Aleph-level threat. She's also really slow, and should pack a punch.
@@ -34,7 +34,7 @@
 	stat_attack = HARD_CRIT
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/queen_bee = 5
+		/mob/living/simple_animal/hostile/abnormality/queen_bee = 5,
 	)
 	//She has a Quad Artillery Cannon
 

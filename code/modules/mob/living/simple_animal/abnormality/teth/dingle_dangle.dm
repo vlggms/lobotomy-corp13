@@ -12,8 +12,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 40, 40, 40),
 		ABNORMALITY_WORK_INSIGHT = list(30, 40, 70, 70, 70),
 		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 40
-			)
+		ABNORMALITY_WORK_REPRESSION = 40,
+	)
 	start_qliphoth = 3
 	pixel_x = -16
 	base_pixel_x = -16
@@ -23,7 +23,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/lutemia,
 		/datum/ego_datum/armor/lutemia
-		)
+	)
 	gift_type = /datum/ego_gifts/lutemis
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 

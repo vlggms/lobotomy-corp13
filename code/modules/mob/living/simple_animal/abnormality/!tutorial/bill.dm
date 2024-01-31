@@ -10,11 +10,11 @@
 	threat_level = TETH_LEVEL
 	move_to_delay = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = 80,
-						ABNORMALITY_WORK_ATTACHMENT = 65,
-						ABNORMALITY_WORK_REPRESSION = 45,
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = 80,
+		ABNORMALITY_WORK_ATTACHMENT = 65,
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	melee_damage_lower = 4
 	melee_damage_upper = 6
 	melee_damage_type = RED_DAMAGE

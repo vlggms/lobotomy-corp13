@@ -13,7 +13,7 @@
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 40, 30),
 		ABNORMALITY_WORK_REPRESSION = 0,
-		)
+	)
 	pixel_x = 0
 	base_pixel_x = 0
 
@@ -27,8 +27,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/letter_opener,
-		/datum/ego_datum/armor/letter_opener
-		)
+		/datum/ego_datum/armor/letter_opener,
+	)
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
 	var/cooldown
@@ -146,7 +146,13 @@
 		chance = 20
 		if(role in list("Manager", "Extraction Officer", "Records Officer", "Sephirah"))
 			weaken = TRUE
-		var/threat_type = pickweight(list(/obj/item/mailpaper/trapped/fairies = 10, /obj/item/mailpaper/trapped/acid = 10, /obj/item/mailpaper/trapped/urgent = 6, /obj/item/mailpaper/trapped/flashbang = 3, /obj/item/mailpaper/coupon = 1))
+		var/threat_type = pickweight(list(
+			/obj/item/mailpaper/trapped/fairies = 10,
+			/obj/item/mailpaper/trapped/acid = 10,
+			/obj/item/mailpaper/trapped/urgent = 6,
+			/obj/item/mailpaper/trapped/flashbang = 3,
+			/obj/item/mailpaper/coupon = 1,
+		))
 		switch(threat_type)
 			if(/obj/item/mailpaper/trapped/fairies)
 				var/obj/item/mailpaper/trapped/fairies/MF = new threat_type(get_turf(H))
@@ -270,7 +276,16 @@
 	qdel(src)
 
 /obj/item/mailpaper/junk
-	var/JUNKMAIL = list(list("letter from RobustCO","The outside reads 'Improve your robustness today! Read our letter now!"),list("Suspicious message","Ever felt like you need a boost? Get swole today!"))
+	var/JUNKMAIL = list(
+		list(
+			"letter from RobustCO",
+			"The outside reads \"Improve your robustness today! Read our letter now!\"",
+		),
+		list(
+			"Suspicious message",
+			"Ever felt like you need a boost? Get swole today!",
+		),
+	)
 
 /obj/item/mailpaper/junk/Initialize()
 	. = ..()
@@ -392,7 +407,8 @@
 	effect_max_time = 10 SECONDS
 
 /obj/item/mailpaper/trapped/urgent/attack_self(mob/user)
-	to_chat(user, "<span class='notice'>If don't read this within 10 seconds we are going to kill you.</span>\n<span class='nicegreen'>Well, you read it fast enough so that's nice!</span>")
+	to_chat(user, span_notice("If don't read this within 10 seconds we are going to kill you."))
+	to_chat(user, span_nicegreen("Well, you read it fast enough so that's nice!"))
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustSanityLoss(-20)
@@ -414,7 +430,8 @@
 /obj/item/mailpaper/trapped/flashbang/Trap()
 	var/turf/T = get_turf(src)
 	var/obj/item/grenade/flashbang/F = new(T)
-	T.visible_message("<span class='notice'>A beeping flashbang drops out of the mail.</span>\n<span class='userdanger'>WAIT, WHAT!?</span>")
+	T.visible_message(span_notice("A beeping flashbang drops out of the mail."))
+	T.visible_message(span_userdanger("WAIT, WHAT!?"))
 	F.det_time = isnull(timeleft(effect_timer)) ? 0 : timeleft(effect_timer)
 	F.arm_grenade()
 	return ..()

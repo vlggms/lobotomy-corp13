@@ -31,11 +31,11 @@
 	var/damage_dealt = 0
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
-						ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
+	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 
@@ -47,8 +47,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hearth,
-		/datum/ego_datum/armor/hearth
-		)
+		/datum/ego_datum/armor/hearth,
+	)
 
 	gift_type =  /datum/ego_gifts/hearth
 

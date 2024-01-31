@@ -17,8 +17,8 @@
 
 /datum/antagonist/apostle/proc/prophet_death()
 	var/mob/living/carbon/human/H = owner.current
-	to_chat(H, "<span class='colossus'>The prophet is dead...</span>")
-	H.visible_message("<span class='danger'>[H.real_name] briefly looks above...</span>", "<span class='userdanger'>You see the light above...</span>")
+	to_chat(H, span_colossus("The prophet is dead..."))
+	H.visible_message(span_danger("[H.real_name] briefly looks above..."), span_userdanger("You see the light above..."))
 	H.emote("scream")
 	H.Immobilize(200)
 	addtimer(CALLBACK(src, .proc/soundd_in), 10)

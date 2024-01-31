@@ -8147,7 +8147,7 @@
 /turf/open/floor/wood,
 /area/city/shop)
 "uC" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/structure/window/reinforced/spawner{
 	max_integrity = 25
 	},
@@ -17460,7 +17460,7 @@
 /turf/open/floor/plating/ashplanet/rocky,
 /area/city/backstreets_alley)
 "Sf" = (
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
 	opacity = 1
@@ -17705,7 +17705,7 @@
 /area/city/house)
 "SI" = (
 /obj/machinery/vending/medical,
-/obj/item/storage/backpack/duffelbag/med/surgery{
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
 	pixel_y = 18
 	},
 /turf/open/floor/plasteel/showroomfloor,
