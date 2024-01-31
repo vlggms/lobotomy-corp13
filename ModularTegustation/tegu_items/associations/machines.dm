@@ -186,8 +186,8 @@
 			to_chat(user, "<span class='notice'>Recommended Grade - 1.</span>")
 			return
 
-		to_chat(user, span_notice("Recommended Grade - [10-grade]."))
-		to_chat(user, span_notice("This grade may be adjusted by your local Hana representative."))
+		to_chat(user, "<span class='notice'>Recommended Grade - [max(10-grade, 1)].</span>")
+		to_chat(user, "<span class='notice'>This grade may be adjusted by your local Hana representative.</span>")
 		return
 
 	to_chat(user, span_notice("No human potential identified."))
