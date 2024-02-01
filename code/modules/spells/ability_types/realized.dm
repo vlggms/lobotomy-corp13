@@ -595,7 +595,7 @@
 	base_icon_state = "petalblizzard"
 	cooldown_time = 30 SECONDS
 	var/healing_amount = 70 // Amount of healing to plater per "pulse".
-	var/healing_range = 8
+	var/healing_range = 5
 
 /obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
@@ -1055,7 +1055,7 @@
 /* Flesh Idol - Repentance */
 /obj/effect/proc_holder/ability/prayer
 	name = "Prayer"
-	desc = "An ability that does causes you to start praying reducing damage taken by 25% but removing your ability to move and lowers justice by 80. \
+	desc = "An ability that does causes you to start praying reducing damage taken by 25% at the cost of removing your ability to move, lowing justice by 80, and abnormalities being able to target you from anywhere. \
 	When you finish praying everyone gets a 20 justice increase and gets healed."
 	action_icon_state = "flesh0"
 	base_icon_state = "flesh"
@@ -1063,9 +1063,12 @@
 
 /obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
 	user.apply_status_effect(/datum/status_effect/flesh1)
-	cooldown = world.time + (15 SECONDS)
+	cooldown = world.time + (20 SECONDS)
+	stop_targeting_the_fucker(user)
+	target_the_fucker(user)
 	to_chat(user, "<span class='userdanger'>You start praying...</span>")
-	if(!do_after(user, 15 SECONDS))
+	if(!do_after(user, 20 SECONDS))
+		stop_targeting_the_fucker(user)
 		user.remove_status_effect(/datum/status_effect/flesh1)
 		return
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -1079,13 +1082,39 @@
 		H.adjustSanityLoss(-100)
 		H.apply_status_effect(/datum/status_effect/flesh2)
 		new /obj/effect/temp_visual/healing(get_turf(H))
+	stop_targeting_the_fucker(user)
 	return ..()
+
+/obj/effect/proc_holder/ability/prayer/proc/target_the_fucker(mob/living/carbon/user)
+	new /obj/effect/temp_visual/dir_setting/speedbike_trail(get_turf(user))
+	for(var/mob/living/simple_animal/hostile/H in GLOB.alive_mob_list)
+		if(H.z != user.z)
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(H.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(H, FALSE))
+			continue
+		H.patrol_to(get_turf(user), TRUE)
+
+/obj/effect/proc_holder/ability/prayer/proc/stop_targeting_the_fucker(mob/living/carbon/user)
+	for(var/mob/living/simple_animal/hostile/H in GLOB.alive_mob_list)
+		if(H.z != user.z)
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(H.status_flags & GODMODE)
+			continue
+		if(user.faction_check_mob(H, FALSE))
+			continue
+		H.patrol_reset()
 
 /datum/status_effect/flesh1
 	id = "FLESH1"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/flesh1
-	duration = 15 SECONDS
+	duration = 20 SECONDS
 
 /atom/movable/screen/alert/status_effect/flesh1
 	name = "A prayer to god"
@@ -1093,6 +1122,7 @@
 	Decreases justice by 80."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "flesh"
+	var/timer
 
 /datum/status_effect/flesh1/on_apply()
 	. = ..()
