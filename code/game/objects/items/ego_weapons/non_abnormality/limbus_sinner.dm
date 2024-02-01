@@ -221,7 +221,7 @@
 /obj/item/ego_weapon/nobody
 	name = "nobody"
 	desc = "I am nothing at all."
-	special = "This E.G.O. functions as both a gun and a mele weapon."
+	special = "This E.G.O. functions as both a gun and a melee weapon."
 	icon_state = "nobody"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'

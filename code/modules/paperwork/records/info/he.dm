@@ -37,7 +37,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/whitelake
 	abno_code = "F-01-120"
 	abno_info = list(
-		"When an employee with Fortitude Level 2 or lower finished their work, White Lake appointed them as her champion.",
+		"When an employee with Fortitude Level 2 or lower finished their work with a good result, White Lake appointed them as her champion with a gift.",
 		"When an employee with Fortitude Level 3 or higher worked on White Lake, the work success rate was lowered.",
 		"When the work result was Bad, the Qliphoth Counter lowered. If the employee also had Fortitude Level 3 or higher, the Qliphoth Counter lowered again.",
 		"When the Qliphoth Counter reached 0, the champion panicked and began attacking those around them. If there was no champion, all employees in the facility received heavy WHITE damage.")

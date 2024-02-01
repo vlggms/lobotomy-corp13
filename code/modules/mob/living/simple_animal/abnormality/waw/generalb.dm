@@ -102,6 +102,31 @@
 /mob/living/simple_animal/hostile/abnormality/general_b/PostSpawn()
 	..()
 	update_icon()
+/*
+* General Bee Breach Sequence
+* General Bee blurbs then puts her icon file to 48x96 before flicking her breach animation.
+* Sleeps for 8 seconds so that her animation ends. Then she picks a department.
+* Moves to the department, lists herself as true_breached, and spawns minions.
+* Root code is called so that she is taken out of godmode. Then update_icon() is called.
+*/
+/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type)
+	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
+	icon = 'ModularTegustation/Teguicons/48x96.dmi'
+	flick("generalbee_", src)
+	SLEEP_CHECK_DEATH(80)
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+	true_breached = TRUE
+	var/turf/orgin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(2, orgin)
+	for(var/turf/Y in all_turfs)
+		if(prob(60))
+			new /mob/living/simple_animal/hostile/soldier_bee(Y)
+		else if(prob(20))
+			new /mob/living/simple_animal/hostile/artillery_bee(Y)
+	. = ..()
+	datum_reference.qliphoth_change(-1)
+	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
@@ -121,25 +146,6 @@
 	if(volley_count>=4)
 		volley_count=0
 		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
-
-/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
-	icon = 'ModularTegustation/Teguicons/48x96.dmi'
-	flick("generalbee_", src)
-	SLEEP_CHECK_DEATH(80)
-	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
-	update_icon()
-	true_breached = TRUE
-	var/turf/orgin = get_turf(src)
-	var/list/all_turfs = RANGE_TURFS(2, orgin)
-	for(var/turf/Y in all_turfs)
-		if(prob(60))
-			new /mob/living/simple_animal/hostile/soldier_bee(Y)
-		else if(prob(20))
-			new /mob/living/simple_animal/hostile/artillery_bee(Y)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
 
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/spawn_bees()
 	var/X = pick(GLOB.xeno_spawn)
