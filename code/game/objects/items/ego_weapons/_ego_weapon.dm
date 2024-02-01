@@ -28,41 +28,41 @@
 	. = ..()
 	. += EgoAttackInfo(user)
 	if(special)
-		. += "<span class='notice'>[special]</span>"
+		. += span_notice("[special]")
 	if(LAZYLEN(attribute_requirements))
-		. += "<span class='notice'>It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.</span>"
+		. += span_notice("It has <a href='?src=[REF(src)];list_attributes=1'>certain requirements</a> for the wearer.")
 
 	if(type in GLOB.small_ego)
-		. += "<span class='notice'>This weapon fits in an EGO belt.</span>"
+		. += span_notice("This weapon fits in an EGO belt.")
 
 	if(reach>1)
-		. += "<span class='notice'>This weapon has a reach of [reach].</span>"
+		. += span_notice("This weapon has a reach of [reach].")
 
 	if(throwforce>force)
-		. += "<span class='notice'>This weapon deals [throwforce] [damtype] damage when thrown.</span>"
+		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
 
 	if(!attack_speed)
 		return
 
 	//Can't switch for less than for some reason
 	if(attack_speed<0.4)
-		. += "<span class='notice'>This weapon has a very fast attack speed.</span>"
+		. += span_notice("This weapon has a very fast attack speed.")
 	else if(attack_speed<0.7)
-		. += "<span class='notice'>This weapon has a fast attack speed.</span>"
+		. += span_notice("This weapon has a fast attack speed.")
 	else if(attack_speed<1)
-		. += "<span class='notice'>This weapon attacks slightly faster than normal.</span>"
+		. += span_notice("This weapon attacks slightly faster than normal.")
 	else if(attack_speed<1.5)
-		. += "<span class='notice'>This weapon attacks slightly slower than normal.</span>"
+		. += span_notice("This weapon attacks slightly slower than normal.")
 	else if(attack_speed<2)
-		. += "<span class='notice'>This weapon has a slow attack speed.</span>"
+		. += span_notice("This weapon has a slow attack speed.")
 	else if(attack_speed>=2)
-		. += "<span class='notice'>This weapon attacks extremely slow.</span>"
+		. += span_notice("This weapon attacks extremely slow.")
 
 
 /obj/item/ego_weapon/Topic(href, href_list)
 	. = ..()
 	if(href_list["list_attributes"])
-		var/display_text = "<span class='warning'><b>It requires the following attributes:</b></span>"
+		var/display_text = span_warning("<b>It requires the following attributes:</b>")
 		for(var/atr in attribute_requirements)
 			if(attribute_requirements[atr] > 0)
 				display_text += "\n <span class='warning'>[atr]: [attribute_requirements[atr]].</span>"
@@ -85,7 +85,7 @@
 	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
 		if(attribute_requirements[atr] > get_attribute_level(H, atr))
-			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
+			to_chat(H, span_notice("You cannot use [src]!"))
 			return FALSE
 	if(!SpecialEgoCheck(H))
 		return FALSE
@@ -99,8 +99,8 @@
 
 /obj/item/ego_weapon/proc/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
-		return "<span class='notice'>It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)</span>"
-	return "<span class='notice'>It deals [force] [damtype] damage.</span>"
+		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force] [damtype] damage.")
 
 /*
 * Used to clean up any remaining variables or timers in an ego weapon.

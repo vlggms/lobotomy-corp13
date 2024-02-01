@@ -57,7 +57,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(!can_spin)
-		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+		to_chat(user,span_warning("You attacked too recently."))
 		return
 	if(do_after(user, 12, src))
 		can_spin = TRUE
@@ -105,7 +105,7 @@
 
 	if(target.stat == DEAD && living)
 		if(!rage)
-			to_chat(user, "<span class='userdanger'>LONG LIVE THE QUEEN!</span>")
+			to_chat(user, span_userdanger("LONG LIVE THE QUEEN!"))
 			rage = FALSE
 		force *= 3
 		rage = TRUE
@@ -216,7 +216,7 @@
 		force = 48 // bonus damage for like, 2 seconds.
 		hit_message = "A GOD DOES NOT FEAR DEATH!"
 	else if(damagetype == PALE_DAMAGE)
-		to_chat(source,"<span class='warning'>To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death.</span>")
+		to_chat(source,span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
 	..()
 
 /obj/item/ego_weapon/christmas
@@ -473,7 +473,7 @@
 		force = 0
 		happy = TRUE
 		icon_state = "pleasure_active"
-		to_chat(H, "<span class='notice'>The thorns start secreting some strange substance.</span>")
+		to_chat(H, span_notice("The thorns start secreting some strange substance."))
 		playsound(H, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 50, FALSE, 4)
 		playsound(H, 'sound/weapons/bladeslice.ogg', 50, FALSE, 4)
 		addtimer(CALLBACK(src, .proc/Withdrawal), 20 SECONDS)
@@ -482,7 +482,7 @@
 
 /obj/item/ego_weapon/pleasure/proc/Withdrawal(mob/living/M, mob/living/user)
 	playsound(user, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 50, FALSE, 4)
-	to_chat(user, "<span class='notice'>The [src] is returning back to normal.</span>")
+	to_chat(user, span_notice("The [src] is returning back to normal."))
 	icon_state = "pleasure"
 	happy = FALSE
 	force = 30
@@ -647,11 +647,11 @@
 /obj/item/ego_weapon/inheritance/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user,"<span class='warning'>You change your stance, and will no longer perform a finisher.</span>")
+		to_chat(user,span_warning("You change your stance, and will no longer perform a finisher."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user,"<span class='warning'>You change your stance, and will now perform a finisher.</span>")
+		to_chat(user,span_warning("You change your stance, and will now perform a finisher."))
 		combo_on =TRUE
 		return
 
@@ -669,7 +669,7 @@
 			force *= 6
 			combo = -4
 			playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-			to_chat(user,"<span class='warning'>You take a moment to reset your stance.</span>")
+			to_chat(user,span_warning("You take a moment to reset your stance."))
 		else
 			user.changeNext_move(CLICK_CD_MELEE * 0.3)
 	..()
@@ -715,9 +715,9 @@
 
 /obj/item/ego_weapon/shield/legerdemain/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	if (damagetype == PALE_DAMAGE)
-		to_chat(source,"<span class='nicegreen'>Your [src] withers at the touch of death!</span>")
+		to_chat(source,span_nicegreen("Your [src] withers at the touch of death!"))
 		return ..()
-	to_chat(source,"<span class='nicegreen'>You are healed by [src].</span>")
+	to_chat(source,span_nicegreen("You are healed by [src]."))
 	source.adjustBruteLoss(-10)
 	source.adjustSanityLoss(-5)
 	..()
@@ -761,9 +761,9 @@
 			mode = "Gauntlet"
 		if("Gauntlet")
 			mode = "Spear"
-	to_chat(user, "<span class='notice'>[src] makes a whirling sound as it changes shape!</span>")
+	to_chat(user, span_notice("[src] makes a whirling sound as it changes shape!"))
 	if(prob(5))
-		to_chat(user, "<span class='notice'>Do you love your city?</span>")
+		to_chat(user, span_notice("Do you love your city?"))
 	icon_state = "become_strong"+mode_stats[mode][1]
 	update_icon_state()
 	force = mode_stats[mode][2]
@@ -783,9 +783,9 @@
 		if("Sword")
 			windup = min(windup+2, 50)
 		if("Gauntlet")
-			to_chat(user, "<span class='notice'>You start winding up your fist!</span>")
+			to_chat(user, span_notice("You start winding up your fist!"))
 			if(!do_after(user, 0.75 SECONDS, target))
-				to_chat(user, "<span class='warning'>You stop winding up your fist!</span>")
+				to_chat(user, span_warning("You stop winding up your fist!"))
 				return
 			force += windup
 			windup = 0
@@ -794,7 +794,7 @@
 	switch(windup)
 		if(50 to INFINITY)
 			playsound(src, 'sound/weapons/ego/strong_charged2.ogg', 60)
-			to_chat(user, "<span class='nicegreen'>[src] beeps and whirls as it reaches full capacity!</span>")
+			to_chat(user, span_nicegreen("[src] beeps and whirls as it reaches full capacity!"))
 		if(25 to 49)
 			playsound(src, 'sound/weapons/ego/strong_charged1.ogg', 40)
 		else
@@ -829,7 +829,7 @@
 
 	if(target.stat == DEAD && living)
 		if(!sacrifice)
-			to_chat(user, "<span class='userdanger'>Impending Day extends outward!</span>")
+			to_chat(user, span_userdanger("Impending Day extends outward!"))
 			playsound('sound/abnormalities/doomsdaycalendar/Doomsday_Attack.ogg', 3, TRUE)
 			sacrifice = FALSE
 		for(var/mob/living/L in livinginrange(1, target))
@@ -882,7 +882,7 @@
 	if(!isliving(A))
 		return
 	if(dash_cooldown > world.time)
-		to_chat(user, "<span class='warning'>Your dash is still recharging!</span>")
+		to_chat(user, span_warning("Your dash is still recharging!"))
 		return
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
@@ -897,7 +897,7 @@
 			step_towards(user,A)
 		if((get_dist(user, A) < 2))
 			JumpAttack(A,user)
-		to_chat(user, "<span class='warning'>You jump towards [A]!</span>")
+		to_chat(user, span_warning("You jump towards [A]!"))
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
 
@@ -977,10 +977,10 @@
 /obj/item/ego_weapon/replica/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
-		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		to_chat(user, span_notice("You prepare to release your charge."))
 		activated = TRUE
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/replica/attack(mob/living/target, mob/living/user)
 	..()
@@ -1075,14 +1075,14 @@
 /obj/item/ego_weapon/warp/attack_self(mob/user)
 	..()
 	if(activated == TRUE)
-		to_chat(user, "<span class='notice'>You are no longer prepared to release your charge.</span>")
+		to_chat(user, span_notice("You are no longer prepared to release your charge."))
 		activated = FALSE
 		return
 	if(charge>=charge_cost)
-		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		to_chat(user, span_notice("You prepare to release your charge."))
 		activated = TRUE
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/warp/proc/UserMoved()
 	SIGNAL_HANDLER
@@ -1091,12 +1091,12 @@
 
 /obj/item/ego_weapon/warp/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
-		to_chat(user, "<span class='notice'>You cannot use this!</span>")
+		to_chat(user, span_notice("You cannot use this!"))
 		return
 	if(!activated)
 		return
 	if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 20)))
-		to_chat(user, "<span class='notice'>Invalid target.</span>")
+		to_chat(user, span_notice("Invalid target."))
 		activated = FALSE
 		return
 	if(!proximity_flag)
@@ -1211,7 +1211,7 @@
 	..()
 	if(target != stored_target)
 		stored_target = target
-		to_chat(user, "<span class='notice'>You pursue a new target.</span>")
+		to_chat(user, span_notice("You pursue a new target."))
 		force = initial(force)
 		target_hits = 0
 
@@ -1310,7 +1310,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(do_after(user, 30, src))//3 seconds
-		to_chat(user, "<span class='notice'>You hoist [src] over your shoulder.</span>")
+		to_chat(user, span_notice("You hoist [src] over your shoulder."))
 		charged = TRUE
 
 /obj/item/ego_weapon/aedd/attack(mob/living/target, mob/living/user)
@@ -1457,7 +1457,7 @@
 		if(!stored_projectiles)
 			return
 		if(firing_cooldown >= world.time)
-			to_chat(user, "<span class='notice'>[src] is overheated and not ready to fire!</span>")
+			to_chat(user, span_notice("[src] is overheated and not ready to fire!"))
 			return
 		var/obj/projectile/ego_bullet/lifestew/G = new /obj/projectile/ego_bullet/lifestew(proj_turf)
 		G.fired_from = src //for signal check
@@ -1485,7 +1485,6 @@
 	damage_type = BLACK_DAMAGE
 
 
-#define STATUS_EFFECT_FAIRYBITE /datum/status_effect/fairybite
 /obj/item/ego_weapon/faelantern
 	name = "midwinter nightmare"
 	desc = "How's about I tell you a tale?"
@@ -1498,8 +1497,8 @@
 	attack_verb_simple = list("poke", "slash")
 	hitsound = 'sound/weapons/fixer/generic/sword1.ogg'
 	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
-							)
+		PRUDENCE_ATTRIBUTE = 40,
+	)
 	var/firing_cooldown = 0
 	var/hit_cooldown_time = 10 SECONDS
 	var/firing_cooldown_time = 1 SECONDS
@@ -1525,7 +1524,7 @@
 		if(!isturf(proj_turf))
 			return
 		if(firing_cooldown >= world.time)
-			to_chat(user, "<span class='notice'>The fairy has yet to return!</span>")
+			to_chat(user, span_notice("The fairy has yet to return!"))
 			return
 		var/obj/projectile/ego_bullet/faelantern/G = new /obj/projectile/ego_bullet/faelantern(proj_turf)
 		G.fired_from = src //for signal check
@@ -1550,7 +1549,7 @@
 
 /obj/item/ego_weapon/faelantern/proc/Reload(mob/living/carbon/human/firer)
 	if(firing_cooldown < world.time)
-		to_chat(firer, "<span class='notice'>The fairy has returned!</span>")
+		to_chat(firer, span_notice("The fairy has returned!"))
 	update_icon_state(firer)
 
 /obj/projectile/ego_bullet/faelantern
@@ -1566,8 +1565,8 @@
 	. = ..()
 	var/mob/living/H = target
 	if(!isbot(H) && isliving(H))
-		H.apply_status_effect(STATUS_EFFECT_FAIRYBITE)
-		H.visible_message("<span class='warning'>The [src] latches on [target]!</span>")
+		H.apply_status_effect(/datum/status_effect/fairybite)
+		H.visible_message(span_warning("The [src] latches on [target]!"))
 
 /datum/status_effect/fairybite
 	id = "fairybite"
@@ -1589,7 +1588,6 @@
 	playsound(owner, 'sound/abnormalities/mountain/bite.ogg', 70, TRUE) //yes im reusing a sound bite me
 	new /obj/effect/temp_visual/beakbite(get_turf(owner))
 
-#undef STATUS_EFFECT_FAIRYBITE
 
 /obj/item/ego_weapon/lance/brick_road
 	name = "brick road"
@@ -1735,7 +1733,7 @@
 	if(do_after(user, 12, src))
 		charged = TRUE
 		force = 90	//FULL POWER
-		to_chat(user,"<span class='warning'>You put your strength behind this attack.</span>")
+		to_chat(user,span_warning("You put your strength behind this attack."))
 		playsound(src.loc, 'sound/abnormalities/clock/clank.ogg', 75, TRUE)
 		set_light(3, 6, "#D4FAF37")
 		PlayChargeSound()
@@ -1780,7 +1778,7 @@
 	//Crit stuff, taken from fourleaf, so thanks to whomever coded that!
 	if(prob(poise*2))
 		force*=3
-		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		to_chat(user, span_userdanger("Critical!"))
 		poise = 0
 	..()
 	force = initial(force)
@@ -1814,7 +1812,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(!can_spin)
-		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+		to_chat(user,span_warning("You attacked too recently."))
 		return
 	if(do_after(user, 12, src))
 		can_spin = TRUE
