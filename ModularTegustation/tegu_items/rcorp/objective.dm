@@ -42,7 +42,7 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 
 //Delay the fucker by 20 minutes. Someone waltzed into briefing one Rcorp round with this.
 /obj/effect/landmark/objectivespawn/proc/arbspawn()
-	new /obj/effect/mob_spawn/human/arbiter(get_turf(src))
+	new /obj/effect/mob_spawn/human/arbiter/rcorp(get_turf(src))
 	minor_announce("DANGER - HOSTILE ARBITER IN THE AREA. NEUTRALIZE IMMEDIATELY." , "R-Corp Intelligence Office")
 	GLOB.rcorp_wincondition = 2
 
@@ -166,23 +166,15 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	..()
 
 //Arbiter
-/obj/effect/mob_spawn/human/arbiter
-	name = "The Arbiter"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper_s"
-	short_desc = "You are The Arbiter."
+/obj/effect/mob_spawn/human/arbiter/rcorp
 	important_info = "You are hostile to R-Corp. Assist abnormalities in killing them all."
-	outfit = /datum/outfit/arbiter
-	max_integrity = 9999999
-	density = TRUE
-	roundstart = FALSE
-	death = FALSE
 
 
-/obj/effect/mob_spawn/human/arbiter/special(mob/living/new_spawn)
+/obj/effect/mob_spawn/human/arbiter/rcorp/special(mob/living/new_spawn)
 	new_spawn.mind.add_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)
 
 /datum/antagonist/wizard/arbiter/rcorp
+	name = "Arbiter (rcorp)"
 	spell_types = list(
 		/obj/effect/proc_holder/spell/aimed/fairy,
 		/obj/effect/proc_holder/spell/aimed/pillar,
