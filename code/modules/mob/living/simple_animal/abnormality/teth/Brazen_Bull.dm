@@ -10,7 +10,7 @@
 	health = 850
 	vision_range = 11
 	aggro_vision_range = 17
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	melee_damage_lower = 6
 	melee_damage_upper = 12
 	melee_damage_type = RED_DAMAGE
@@ -62,13 +62,13 @@
 	if(!.)
 		return FALSE
 	if(!(status_flags & GODMODE))
-		if(!busy)
-			charge_check()
+		return
+	if(!busy)
+		return
+	charge_check()
 
 /mob/living/simple_animal/hostile/abnormality/brazen_bull/proc/charge_check()
-	var/mob/living/carbon/human/target
-	if(busy)
-		return
+	var/mob/living/carbon/human/person
 	var/list/possible_targets = list()
 	for(var/mob/living/carbon/human/H in view(20, src))
 		possible_targets += H
@@ -90,9 +90,7 @@
 		stop_charge = TRUE
 	var/turf/T = get_step(get_turf(src), move_dir)
 	if(!T)
-		been_hit = list()
 		stop_charge = TRUE
-		return
 	if(T.density)
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
@@ -120,10 +118,9 @@
 			playsound(L, attack_sound, 75, 1)
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
-				H.apply_damage(30, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(30, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			else
-				L.adjustRedLoss(10)
+				L.adjustRedLoss(30)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 		for(var/obj/vehicle/V in new_hits)
@@ -138,5 +135,5 @@
 	busy = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/brazen_bull/BreachEffect(mob/living/carbon/human/user)
-		..()
+		.=..()
 		GiveTarget(user)

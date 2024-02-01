@@ -347,9 +347,9 @@
 //Brazen Bull
 /obj/item/paper/fluff/info/teth/Brazen_Bull
 	abno_type = /mob/living/simple_animal/hostile/abnormality/brazen_bull
-	abno_code = "M-01-117"
+	abno_code = "M-01-194"
 	abno_info = list(
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
-		"When the work result was bad, the Qliphoth Counter lowered.",
-		"While breached it has been seen charging at it's target.",)
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"While breached M-01-194 will charge around the facilty. It is recormmed that employees try not to get hit by M-01-194",)
 
