@@ -511,6 +511,13 @@
 	justice_bonus = 1
 	slot = HAND_1
 
+/datum/ego_gifts/capote
+	name = "Capote"
+	icon_state = "capote"
+	fortitude_bonus = 5
+	temperance_bonus = -2
+	slot = BROOCH
+
 /**
  * HE EGO Gifts
  */
