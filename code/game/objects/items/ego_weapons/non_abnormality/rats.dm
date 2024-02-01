@@ -80,14 +80,14 @@
 	..()
 	if(prob(33))
 		playsound(src, 'sound/weapons/gun/general/dry_fire.ogg', 30, TRUE)
-		visible_message("<span class='notice'>The gun jams.</span>")
+		visible_message(span_notice("The gun jams."))
 		return FALSE
 	else
 		return TRUE
 
 /obj/item/gun/ego_gun/pistol/rats/afterattack(atom/target, mob/living/user, flag, params)
 	if(prob(50))
-		to_chat(user,"<span class='warning'>You pinch your fingers in the weapon.</span>")
+		to_chat(user,span_warning("You pinch your fingers in the weapon."))
 		user.apply_damage(10, RED_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE))
 		return FALSE
 	..()

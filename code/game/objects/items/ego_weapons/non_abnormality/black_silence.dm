@@ -15,11 +15,11 @@
 	attack_verb_simple = list("tap", "pat")
 	hitsound = 'sound/effects/hit_punch.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 120,
-							TEMPERANCE_ATTRIBUTE = 120,
-							JUSTICE_ATTRIBUTE = 120
-							)
+		FORTITUDE_ATTRIBUTE = 120,
+		PRUDENCE_ATTRIBUTE = 120,
+		TEMPERANCE_ATTRIBUTE = 120,
+		JUSTICE_ATTRIBUTE = 120,
+	)
 	actions_types = list(/datum/action/item_action/toggle_iff)
 	var/special_cooldown
 	var/special_cooldown_time
@@ -61,10 +61,10 @@
 /obj/item/ego_weapon/black_silence_gloves/proc/toggle_iff(mob/living/user)
 	if(iff)
 		iff = FALSE
-		to_chat(user,"<span class='warning'>You will now attack everything indiscriminately!</span>")
+		to_chat(user,span_warning("You will now attack everything indiscriminately!"))
 	else
 		iff = TRUE
-		to_chat(user,"<span class='warning'>You will now only attack enemies!</span>")
+		to_chat(user,span_warning("You will now only attack enemies!"))
 
 /obj/item/ego_weapon/black_silence_gloves/proc/dash(mob/living/user, turf/target_turf)
 	var/list/line_turfs = list(get_turf(user))
@@ -104,7 +104,7 @@
 // Radial menu
 /obj/item/ego_weapon/black_silence_gloves/proc/exchange_armaments(mob/user)
 	if(exchange_cooldown > world.time)
-		to_chat(user, "<span class='notice'>Your gloves are still recharging, keep hitting enemies to charge it faster.</span>")
+		to_chat(user, span_notice("Your gloves are still recharging, keep hitting enemies to charge it faster."))
 		return
 
 	var/list/display_names = list()
@@ -144,7 +144,7 @@
 		user.put_in_hands(Y)
 		if(!(unlocked) && Y.unlocked_list.len > 8)
 			playsound(playsound(user, 'sound/weapons/black_silence/unlock.ogg', 100, 1))
-			to_chat(user,"<span class='userdanger'>You are ready to unleash Furioso!</span>")
+			to_chat(user,span_userdanger("You are ready to unleash Furioso!"))
 			Y.unlocked = TRUE
 		if(unlocked)
 			Y.unlocked = TRUE
@@ -179,7 +179,7 @@
 		if(unlocked_list.len > 8)
 			furioso(user, target)
 		else
-			to_chat(user,"<span class='userdanger'>You haven't used all of Black Silence's Weapons!</span>")
+			to_chat(user,span_userdanger("You haven't used all of Black Silence's Weapons!"))
 
 // switching weapon increases damage dealt. Annoying but high damage, you're supposed to keep changing weapons anyway
 /obj/item/ego_weapon/black_silence_gloves/zelkova
@@ -311,11 +311,11 @@
 	if (block == 0)
 		var/mob/living/carbon/human/shield_user = user
 		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-			to_chat(shield_user,"<span class='warning'>You're still off-balance!</span>")
+			to_chat(shield_user,span_warning("You're still off-balance!"))
 			return FALSE
 		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
 			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
+				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
 				return FALSE
 		block = TRUE
 		block_success = FALSE
@@ -326,7 +326,7 @@
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
 		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), 1 SECONDS)
-		to_chat(user,"<span class='userdanger'>You attempt to parry the attack!</span>")
+		to_chat(user,span_userdanger("You attempt to parry the attack!"))
 		return TRUE
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/DisableBlock(mob/living/carbon/human/user)
@@ -343,15 +343,15 @@
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockCooldown(mob/living/carbon/human/user)
 	block = FALSE
-	to_chat(user,"<span class='nicegreen'>You rearm your hammer</span>")
+	to_chat(user,span_nicegreen("You rearm your hammer"))
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockFail(mob/living/carbon/human/user)
-	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
+	to_chat(user,span_warning("Your stance is widened."))
 	force = 50
 	addtimer(CALLBACK(src, .proc/RemoveDebuff, user), 2 SECONDS)
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/RemoveDebuff(mob/living/carbon/human/user)
-	to_chat(user,"<span class='nicegreen'>You recollect your stance.</span>")
+	to_chat(user,span_nicegreen("You recollect your stance."))
 	force = 80
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
@@ -359,7 +359,7 @@
 	block_success = TRUE
 
 	playsound(get_turf(src), 'sound/weapons/black_silence/guard.ogg', 50, 0, 7)
-	source.visible_message("<span class='userdanger'>[source.real_name] parried the attack!</span>")
+	source.visible_message(span_userdanger("[source.real_name] parried the attack!"))
 	exchange_cooldown -= 100
 	if(!(buff_check))
 		parry_buff = TRUE

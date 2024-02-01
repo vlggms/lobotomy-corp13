@@ -11,11 +11,11 @@
 	attack_verb_continuous = list("stabs", "slices")
 	attack_verb_simple = list("stab", "slice")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 55,
-							PRUDENCE_ATTRIBUTE = 55,
-							TEMPERANCE_ATTRIBUTE = 55,
-							JUSTICE_ATTRIBUTE = 55
-							)
+		FORTITUDE_ATTRIBUTE = 55,
+		PRUDENCE_ATTRIBUTE = 55,
+		TEMPERANCE_ATTRIBUTE = 55,
+		JUSTICE_ATTRIBUTE = 55,
+	)
 
 /obj/item/ego_weapon/city/rabbit_blade/attack_self(mob/living/user)
 	switch(damtype)
@@ -30,7 +30,7 @@
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
 			force = 35
-	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
+	to_chat(user, span_notice("\The [src] will now deal [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 //Command Sabre
@@ -59,7 +59,7 @@
 			damtype = PALE_DAMAGE
 		if(PALE_DAMAGE)
 			damtype = RED_DAMAGE
-	to_chat(user, "<span class='notice'>\The [src] will now deal [damtype] damage.</span>")
+	to_chat(user, span_notice("\The [src] will now deal [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 
@@ -154,7 +154,7 @@
 /obj/item/gun/energy/e_gun/rabbit/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(user.mind)
 		if(user.mind.assigned_role in banned_roles)
-			to_chat(user, "<span class='notice'>You are not trained to use Rcorp firearms!</span>")
+			to_chat(user, span_notice("You are not trained to use Rcorp firearms!"))
 			return FALSE
 	..()
 
@@ -236,10 +236,10 @@
 		return
 	if(teleporting)
 		teleporting = FALSE
-		to_chat(user,"<span class='warning'>You disable teleport.</span>")
+		to_chat(user,span_warning("You disable teleport."))
 	else
 		teleporting = TRUE
-		to_chat(user,"<span class='warning'>You prepare to teleport.</span>")
+		to_chat(user,span_warning("You prepare to teleport."))
 
 /obj/item/ego_weapon/city/rabbit_rush/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	var/turf/target_turf = get_turf(A)
@@ -259,7 +259,7 @@
 		targetfound = TRUE
 	//So you can't fucking teleport into a place where you are immune to all damage
 	if(!targetfound)
-		to_chat(user,"<span class='warning'>No target found!</span>")
+		to_chat(user,span_warning("No target found!"))
 		return
 
 	new /obj/effect/temp_visual/kinetic_blast(target_turf)
@@ -269,7 +269,7 @@
 	for(var/turf/open/Y in orange(1, target_turf))
 		teleport_targets+=Y
 	if(!LAZYLEN(teleport_targets))
-		to_chat(user,"<span class='warning'>Failed to Teleport!</span>")
+		to_chat(user,span_warning("Failed to Teleport!"))
 		return
 
 	new /obj/effect/temp_visual/guardian/phase (get_turf(user))

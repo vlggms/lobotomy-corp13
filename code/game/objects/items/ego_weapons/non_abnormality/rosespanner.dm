@@ -18,10 +18,10 @@
 /obj/item/ego_weapon/city/charge/rosespanner/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
-		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		to_chat(user, span_notice("You prepare to release your charge."))
 		activated = TRUE
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/city/charge/rosespanner/examine(mob/user)
 	. = ..()
@@ -31,7 +31,7 @@
 	..()
 	if(!istype(I, /obj/item/rosespanner_gear))
 		return
-	to_chat(user, "<span class='notice'>You apply a gear to your weapon, changing its damage type.</span>")
+	to_chat(user, span_notice("You apply a gear to your weapon, changing its damage type."))
 	damtype = I.damtype
 	charged = TRUE
 	qdel(I)
@@ -54,7 +54,7 @@
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 
 	if(overcharged)
-		to_chat(user, "<span class='danger'>You overcharged your weapon!.</span>")
+		to_chat(user, span_danger("You overcharged your weapon!."))
 
 	var/aoe = force * (1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE))/100)
 	for(var/turf/T in view(2, target))
