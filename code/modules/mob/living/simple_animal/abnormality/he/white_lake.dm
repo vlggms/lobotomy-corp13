@@ -166,30 +166,33 @@
 
 /datum/status_effect/champion/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		ADD_TRAIT(L, TRAIT_STUNIMMUNE, type)
-		ADD_TRAIT(L, TRAIT_PUSHIMMUNE, type)
-		L.physiology.red_mod *= 0.6
-		L.physiology.white_mod *= 0.4
-		L.physiology.black_mod *= 0.4
-		L.physiology.pale_mod *= 0.6
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	ADD_TRAIT(status_holder, TRAIT_STUNIMMUNE, type)
+	ADD_TRAIT(status_holder, TRAIT_PUSHIMMUNE, type)
+	status_holder.physiology.red_mod *= 0.6
+	status_holder.physiology.white_mod *= 0.4
+	status_holder.physiology.black_mod *= 0.4
+	status_holder.physiology.pale_mod *= 0.6
 
 /datum/status_effect/champion/tick()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		if(!L.sanity_lost)
-			L.remove_status_effect(STATUS_EFFECT_CHAMPION)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	if(!status_holder.sanity_lost)
+		status_holder.remove_status_effect(STATUS_EFFECT_CHAMPION)
 
 /datum/status_effect/champion/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		REMOVE_TRAIT(L, TRAIT_STUNIMMUNE, type)
-		REMOVE_TRAIT(L, TRAIT_PUSHIMMUNE, type)
-		L.physiology.red_mod /= 0.6
-		L.physiology.white_mod /= 0.4
-		L.physiology.black_mod /= 0.4
-		L.physiology.pale_mod /= 0.6
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	REMOVE_TRAIT(status_holder, TRAIT_STUNIMMUNE, type)
+	REMOVE_TRAIT(status_holder, TRAIT_PUSHIMMUNE, type)
+	status_holder.physiology.red_mod /= 0.6
+	status_holder.physiology.white_mod /= 0.4
+	status_holder.physiology.black_mod /= 0.4
+	status_holder.physiology.pale_mod /= 0.6
 
 #undef STATUS_EFFECT_CHAMPION
