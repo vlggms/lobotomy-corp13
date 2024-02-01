@@ -310,7 +310,8 @@
 		return
 	var/deathgift
 	var/stat_total
-	for(var/attribute in M.attributes)
+
+	for(var/attribute in M.get_attribute_list())
 		stat_total += round(get_raw_level(M, attribute))
 
 	switch(stat_total)

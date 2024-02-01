@@ -91,10 +91,16 @@
 	///Assoc list of key active addictions and value amount of cycles that it has been active.
 	var/list/active_addictions
 
+	/// Assoc list of attributes. Starts with 4.
+	var/list/attributes = list()
+	/// Variable for if job should replace our attributes, used for Respawn and Admin Respawn
+	var/set_job_attributes = TRUE
+
 /datum/mind/New(_key)
 	key = _key
 	martial_art = default_martial_art
 	init_known_skills()
+	init_attributes()
 
 /datum/mind/Destroy()
 	SSticker.minds -= src
@@ -136,6 +142,8 @@
 	if(iscarbon(new_character))
 		var/mob/living/carbon/C = new_character
 		C.last_mind = src
+		for(var/datum/attribute/attribute in attributes)
+			attribute.on_update(current)
 	transfer_antag_huds(hud_to_transfer)				//inherit the antag HUD
 	transfer_actions(new_character)
 	transfer_martial_arts(new_character)
@@ -150,6 +158,13 @@
 /datum/mind/proc/init_known_skills()
 	for (var/type in GLOB.skill_types)
 		known_skills[type] = list(SKILL_LEVEL_NONE, 0)
+
+/datum/mind/proc/init_attributes()
+	for(var/type in GLOB.attribute_types)
+		if(ispath(type, /datum/attribute))
+			var/datum/attribute/atr = new type
+			attributes[atr.name] = atr
+			atr.on_update(src)
 
 ///Return the amount of EXP needed to go to the next level. Returns 0 if max level
 /datum/mind/proc/exp_needed_to_level_up(skill)

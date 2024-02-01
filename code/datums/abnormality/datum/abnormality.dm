@@ -169,7 +169,8 @@
 	var/attribute_given = 0
 	if(pe > 0) // Work did not fail
 		attribute_type = current.work_attribute_types[work_type]
-		var/datum/attribute/user_attribute = user.attributes[attribute_type]
+		var/list/attributes = user.get_attribute_list()
+		var/datum/attribute/user_attribute = attributes[attribute_type]
 		if(user_attribute) //To avoid runtime if it's a custom work type like "Release".
 			var/user_attribute_level = max(1, user_attribute.level)
 			attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)

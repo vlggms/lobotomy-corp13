@@ -91,6 +91,7 @@
 		transfer_identity(C)
 	C.update_hair()
 
+
 /obj/item/organ/brain/proc/transfer_identity(mob/living/L)
 	name = "[L.name]'s brain"
 	if(brainmob || decoy_override)

@@ -40,11 +40,13 @@ Civilian
 		H.equip_to_slot_or_del(random_book,ITEM_SLOT_BACKPACK, TRUE)
 
 /proc/get_civilian_level(mob/living/carbon/human/user)
-	var/collective_levels = 0
-	for(var/a in user.attributes)
-		var/datum/attribute/atr = user.attributes[a]
-		collective_levels += atr.level
-	var/level = collective_levels / 4
+	var/level = 0
+	var/list/attributes = user.get_attribute_list()
+	if(attributes)
+		for(var/a in attributes)
+			var/datum/attribute/atr = attributes[a]
+			level += atr?.level
+	level /= 4
 	if (level < 40)
 		return 0
 	else if (level >= 40 && level < 60 )
@@ -53,8 +55,7 @@ Civilian
 		return 2
 	else if (level >= 100 && level < 120 )
 		return 3
-	else
-		return 4
+	return 4
 
 /datum/job/civilian/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)

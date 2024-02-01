@@ -122,8 +122,11 @@ GLOBAL_LIST_EMPTY(antagonists)
 		var/mob/living/carbon/human/H = owner.current
 		if(!istype(H))
 			return
+		var/list/attributes = H.get_attribute_list()
+		if(!attributes)
+			return
 		for(var/atrib in antag_attributes)
-			var/datum/attribute/atr = H?.attributes[atrib]
+			var/datum/attribute/atr = attributes[atrib]
 			if(istype(atr))
 				atr.level = antag_attributes[atrib]
 				atr.on_update(H)

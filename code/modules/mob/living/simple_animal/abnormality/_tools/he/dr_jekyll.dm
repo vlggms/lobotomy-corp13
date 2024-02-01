@@ -83,11 +83,14 @@
 
 /datum/status_effect/dr_jekyll/proc/HydeTakeover()
 	var/mob/living/carbon/human/H = owner
+	var/list/attributes = H.get_attribute_list()
+	if(!attributes)
+		return FALSE
 	to_chat(H, span_notice("You feel strange... Yet... Free?"))
 	takeover = TRUE
 	level = get_user_level(owner) // we only update when the debuff is inflicted
 	level_mod = (level * 5)
-	for(var/attribute in H.attributes)
+	for(var/attribute in attributes)
 		AttributeCalc(attribute, H)
 
 	H.adjust_attribute_bonus(lowest, 2 * level_mod)

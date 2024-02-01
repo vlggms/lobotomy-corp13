@@ -12,6 +12,7 @@
 	return damage_amt
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount)
+	var/list/attributes = get_attribute_list()
 	if((status_flags & GODMODE) || !attributes || stat == DEAD)
 		return FALSE
 	sanityloss = clamp(sanityloss + amount, 0, maxSanity)
@@ -38,7 +39,7 @@
 		var/highest_atr = PRUDENCE_ATTRIBUTE
 		if(LAZYLEN(attributes))
 			var/highest_level = -1
-			for(var/i in shuffle(attributes))
+			for(var/i in shuffle(attributes.Copy()))
 				var/datum/attribute/atr = attributes[i]
 				if(atr.get_level() > highest_level)
 					highest_level = atr.get_level()

@@ -128,8 +128,12 @@
 		to_chat(user, span_warning("You have realized your full potential already."))
 		return
 
+	var/list/attributes = user.get_attribute_list()
+	if(!attributes)
+		return
+
 	var/stat_total = 0
-	for(var/attribute in user.attributes)
+	for(var/attribute in attributes)
 		stat_total += get_raw_level(user, attribute)
 
 	if(stat_total <= 500) // ~125 in all stats required
