@@ -368,11 +368,11 @@ GLOBAL_LIST_EMPTY(army)
 /datum/status_effect/protection/on_remove()
 	. = ..()
 	if(boom)
+		playsound(get_turf(owner), 'sound/abnormalities/armyinblack/pink_explosion.ogg', 125, 0, 8)
+		new /obj/effect/temp_visual/pink_explosion(get_turf(owner))
 		for(var/mob/living/carbon/human/affected_human in view(7, owner))
 			affected_human.adjustBruteLoss(-20)
 			affected_human.adjustSanityLoss(20)
-			playsound(get_turf(owner), 'sound/abnormalities/armyinblack/pink_explosion.ogg', 125, 0, 8)
-			new /obj/effect/temp_visual/pink_explosion(get_turf(owner))
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
