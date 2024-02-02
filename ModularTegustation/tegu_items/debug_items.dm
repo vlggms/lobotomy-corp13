@@ -193,5 +193,102 @@
 
 	to_chat(user, span_nicegreen("Console manipulated"))
 
+//Test dummy and spawner
+/obj/item/lc_debug/debugdummyspawner
+	name = "dummy spawner"
+	desc = "Summons an immortal test dummy to your location."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "skub"
 
-// /mob/living/simple_animal/hostile/abnormality/proc/WorkComplete
+/obj/item/lc_debug/debugdummyspawner/attack_self(mob/living/carbon/human/user)
+	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
+	new /mob/living/simple_animal/debugdummy(get_turf(src))
+	qdel(src)
+
+/mob/living/simple_animal/debugdummy
+	name = "Test Dummy"
+	desc = "Records damage dealt."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "training_rabbit"
+	icon_living = "training_rabbit"
+	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
+	maxHealth = 99999999
+	health = 99999999
+	var/dps_mode = FALSE
+	var/interval = null
+	var/dps_timer
+	var/accumulated_damage = 0
+	pet_bonus = "beeps" //saves a few lines of code by allowing funpet() to be called by attack_hand()
+
+/mob/living/simple_animal/debugdummy/Life()
+	. = ..()
+	adjustBruteLoss(-(maxHealth))
+
+/mob/living/simple_animal/debugdummy/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
+	. = ..()
+	if(!dps_mode)
+		say("Ow! That dealt [damage] [damagetype] damage!")
+		return
+	accumulated_damage += damage
+
+/mob/living/simple_animal/debugdummy/Move()
+	return FALSE
+
+/mob/living/simple_animal/debugdummy/funpet(mob/petter)
+	switch(tgui_alert(petter, "Would you like to test DPS?", "DPS TESTING MODE", list("Yes", "No thanks"), timeout = 0))
+		if("Yes")
+			var/userinput
+			userinput = input(petter, "For how long, in seconds? Be aware that low durations tend to be less accurate.", "DPS TESTING MODE ENABLED")
+			if(!text2num(userinput))
+				say("ERROR - Not a number!")
+				return
+			var/newvalue = text2num(userinput)
+			if(newvalue <= 0)
+				say("ERROR - Too low of a number!")
+				return
+			interval = (newvalue *= 10)
+		if("No thanks")
+			if(dps_mode)
+				say("DPS mode has been turned off!")
+				if(dps_timer)
+					deltimer(dps_timer)
+					dps_timer = null
+			dps_mode = FALSE
+			return
+	dps_mode = TRUE
+	DeepsCheckStart()
+
+/mob/living/simple_animal/debugdummy/proc/DeepsCheckStart()
+	if(!dps_mode)
+		return
+	if(dps_timer)
+		return
+	say("DPS check will start in three seconds!")
+	SLEEP_CHECK_DEATH(5)
+	say("3!")
+	SLEEP_CHECK_DEATH(10)
+	say("2!")
+	SLEEP_CHECK_DEATH(10)
+	say("1!")
+	SLEEP_CHECK_DEATH(10)
+	if(!dps_mode) //We check again here in case it was turned off during the countdown
+		return
+	dps_timer = addtimer(CALLBACK(src, .proc/DeepsCheck), interval, TIMER_STOPPABLE)
+	say("Go!")
+
+/mob/living/simple_animal/debugdummy/proc/DeepsCheck()
+	if(dps_timer)
+		deltimer(dps_timer)
+		dps_timer = null
+	if(!dps_mode)
+		accumulated_damage = 0
+		return
+	if(!accumulated_damage)
+		say("You didn't deal any damage at all!")
+	else
+		say("Ow! That dealt [accumulated_damage / (interval / 10)] damage per second for a total of [accumulated_damage] damage!")
+	accumulated_damage = 0
+	SLEEP_CHECK_DEATH(10)
+	say("Restarting...")
+	SLEEP_CHECK_DEATH(10)
+	DeepsCheckStart()
