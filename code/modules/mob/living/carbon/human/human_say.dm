@@ -38,16 +38,6 @@
 /mob/living/carbon/human/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
 	var/job_abbreviation = speaker.GetJobAbbrev()
 	return job_abbreviation ? (radio_freq ? " ([job_abbreviation])" : "") : ""
-	// if(job_abbreviation)
-	// 	return radio_freq ? " ([job_abbreviation])" : ""
-	// else
-	// 	return ""
-	// if(job_abbreviation)
-	// 	return "[radio_freq ? " \[[job_abbreviation]\]" : ""]"
-	// else
-	// 	return ""
-//	return job_abbreviation ? "[(radio_freq ? " \[[job_abbreviation]\]" : " NORADIO"]" : " NOABBREV"
-//	return "[radio_freq ? " (" + speaker.GetJobAbbrev() + ")"]": ""
 
 /mob/living/carbon/human/IsVocal()
 	// how do species that don't breathe talk? magic, that's what.
