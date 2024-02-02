@@ -101,6 +101,9 @@
 	var/rank_title
 	var/trusted_rank
 
+	///Job abbreviation used when humans talk on radio. If null should not add anything to radio messages
+	var/job_abbreviation
+
 /datum/job/New()
 	. = ..()
 	var/list/jobs_changes = GetMapChanges()
