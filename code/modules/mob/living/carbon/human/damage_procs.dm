@@ -30,8 +30,8 @@
 		sanity_lost = FALSE
 		grab_ghost(force = TRUE)
 		remove_status_effect(/datum/status_effect/panicked_type)
-		visible_message(span_notice("[src] comes back to [p_their(TRUE)] senses!"), \
-						span_notice("You are back to normal!"))
+		visible_message(span_boldnotice("[src] comes back to [p_their(TRUE)] senses!"), \
+						span_boldnotice("You are back to normal!"))
 	else if(!sanity_lost && sanityhealth <= 0)
 		sanity_lost = TRUE
 		apply_status_effect(/datum/status_effect/panicked)
@@ -77,7 +77,7 @@
 			warning_text = "[src] laughs for a moment, as [p_they()] start[p_s()] approaching nearby containment zones."
 			status_effect_type = /datum/status_effect/panicked_type/release
 	apply_status_effect(status_effect_type)
-	visible_message(span_danger("[warning_text]"), \
+	visible_message(span_bolddanger("[warning_text]"), \
 					span_userdanger("You've been overwhelmed by what is going on in this place... There's no hope!"))
 	var/turf/T = get_turf(src)
 	if(mind)
