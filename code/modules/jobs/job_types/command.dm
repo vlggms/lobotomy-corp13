@@ -62,7 +62,7 @@
 	outfit = /datum/outfit/job/command/records
 	exp_requirements = 600
 	job_important = "You are the Records Officer. Your job is to manage Records. You have filing cabinets in the back of your office filled with information about Abnormalities; ensure Agents are well-informed about any in the facility. \
-	You have access to powerful handheld watches with various beneficial effects."
+	You also have access to powerful handheld watches with various beneficial effects."
 	job_notice = "Being in charge of handling Abnormality documentation, you should also assist new Interns and Clerks in learning how to work at L-Corp."
 
 	job_abbreviation = "RO"
