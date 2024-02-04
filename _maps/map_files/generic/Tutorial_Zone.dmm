@@ -35,6 +35,12 @@
 	},
 /turf/open/floor/carpet/stellar,
 /area/facility_hallway/human)
+"bj" = (
+/obj/effect/step_trigger/projectile{
+	projectile_dist_y = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/human)
 "bl" = (
 /obj/effect/spawner/randomsnackvend,
 /turf/open/floor/wood,
@@ -197,6 +203,10 @@
 /obj/machinery/cryopod,
 /turf/open/floor/wood,
 /area/department_main/human)
+"gy" = (
+/obj/structure/sign/poster/official/dick_gum,
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 "hD" = (
 /obj/structure/table/reinforced,
 /obj/item/megaphone,
@@ -216,10 +226,6 @@
 	pixel_y = 15
 	},
 /turf/open/floor/noslip,
-/area/department_main/human)
-"iG" = (
-/obj/machinery/power/emitter/energycannon/tutorialemitter,
-/turf/open/floor/wood,
 /area/department_main/human)
 "iO" = (
 /obj/structure/chair/wood{
@@ -289,6 +295,9 @@
 /obj/item/disk/holodisk/tutorial/basicmechanic2,
 /turf/open/floor/wood,
 /area/department_main/human)
+"lW" = (
+/turf/open/floor/plasteel/dark,
+/area/department_main/human)
 "mt" = (
 /obj/structure/fluff/arc{
 	desc = "A slim robot with a spear in place of its hand.";
@@ -312,6 +321,10 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"mQ" = (
+/obj/structure/sign/warning/firingrange,
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 "mU" = (
 /obj/structure/table/reinforced,
 /obj/item/paper/fluff/tutorial/levels{
@@ -510,6 +523,10 @@
 /obj/structure/tutorialbox,
 /turf/open/floor/wood,
 /area/department_main/human)
+"tV" = (
+/obj/effect/turf_decal/bot,
+/turf/open/floor/wood,
+/area/department_main/human)
 "ue" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -543,6 +560,23 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"vf" = (
+/obj/structure/table{
+	max_integrity = 1000
+	},
+/obj/effect/turf_decal/bot,
+/turf/open/floor/wood,
+/area/department_main/human)
+"vw" = (
+/obj/effect/decal/cleanable/blood/splatter/over_window{
+	pixel_y = 38
+	},
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
+"vz" = (
+/obj/structure/sign/poster/official/work_for_a_future,
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 "wb" = (
 /obj/structure/table/wood,
 /obj/machinery/light/small{
@@ -564,6 +598,10 @@
 /area/facility_hallway/human)
 "wD" = (
 /turf/closed/indestructible/rock,
+/area/department_main/human)
+"wF" = (
+/obj/effect/decal/cleanable/food/plant_smudge,
+/turf/open/floor/plasteel/dark,
 /area/department_main/human)
 "wI" = (
 /obj/structure/table/reinforced,
@@ -588,10 +626,13 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
+"yg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
+/area/department_main/human)
 "yp" = (
-/obj/machinery/modular_computer/console/preset/civilian{
-	dir = 4
-	},
+/obj/effect/decal/cleanable/dirt,
 /turf/open/floor/wood,
 /area/department_main/human)
 "yu" = (
@@ -619,6 +660,12 @@
 /obj/machinery/door/airlock/vault,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
+"zS" = (
+/obj/effect/turf_decal/caution/red{
+	pixel_y = -6
+	},
+/turf/closed/indestructible/fakeglass,
+/area/department_main/human)
 "zV" = (
 /obj/effect/landmark/abnormality_spawn/tutorial,
 /turf/open/floor/plasteel/dark,
@@ -656,6 +703,12 @@
 /area/department_main/human)
 "AY" = (
 /obj/structure/table/wood,
+/turf/open/floor/wood,
+/area/department_main/human)
+"AZ" = (
+/obj/effect/turf_decal/arrows{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "Cc" = (
@@ -717,12 +770,6 @@
 "Di" = (
 /obj/structure/sign/poster/lobotomycorp/egoinfo{
 	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/department_main/human)
-"DC" = (
-/obj/machinery/power/emitter/energycannon/tutorialemitter{
-	dir = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -818,9 +865,21 @@
 /obj/item/ego_weapon/tutorial/pale,
 /turf/open/floor/wood,
 /area/department_main/human)
+"GO" = (
+/obj/structure/sign/poster/lobotomycorp/qliphoth,
+/turf/closed/indestructible/reinforced,
+/area/facility_hallway/human)
+"Ha" = (
+/obj/structure/sign/poster/lobotomycorp/joinforces,
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 "Hh" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/scanner_gate/tutorialscanner,
+/turf/open/floor/wood,
+/area/department_main/human)
+"Ht" = (
+/obj/effect/turf_decal/arrows,
 /turf/open/floor/wood,
 /area/department_main/human)
 "HS" = (
@@ -883,15 +942,15 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
-"JT" = (
-/obj/item/paper/fluff/info/tutorial/bill{
-	anchored = 1
+"JI" = (
+/obj/structure/sign/poster/official/help_others{
+	pixel_y = 31
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
-"JU" = (
-/obj/structure/railing{
-	dir = 4
+"JT" = (
+/obj/item/paper/fluff/info/tutorial/bill{
+	anchored = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -942,15 +1001,19 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
-"LI" = (
-/obj/structure/railing,
+"MA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/step_trigger/projectile{
+	projectile_dist_y = -1;
+	projectile_dir = "NORTH"
+	},
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 25;
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/floor/wood,
+/turf/open/floor/plasteel/dark,
 /area/department_main/human)
 "MH" = (
 /obj/structure/fluff/arc{
@@ -961,6 +1024,10 @@
 	},
 /turf/open/floor/carpet,
 /area/facility_hallway/human)
+"MS" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/department_main/human)
 "Na" = (
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/zayin,
@@ -984,11 +1051,26 @@
 /obj/machinery/regenerator/tutorial,
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
+"Pc" = (
+/obj/machinery/bookbinder,
+/turf/open/floor/wood,
+/area/department_main/human)
+"Pk" = (
+/obj/item/food/spiderling{
+	pixel_y = 15;
+	pixel_x = -13
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/human)
 "Pt" = (
 /obj/effect/portal/permanent/one_way{
 	id = "tutorial1"
 	},
 /turf/open/floor/wood,
+/area/department_main/human)
+"Pv" = (
+/obj/structure/sign/poster/lobotomycorp/cleancorpses,
+/turf/closed/indestructible/reinforced,
 /area/department_main/human)
 "PN" = (
 /obj/machinery/holopad/tutorial,
@@ -1026,6 +1108,14 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"RR" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/damage{
+	anchored = 1
+	},
+/obj/effect/decal/cleanable/cobweb/cobweb2,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Sd" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 4
@@ -1096,6 +1186,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
+"UF" = (
+/obj/effect/turf_decal/arrows/red{
+	dir = 4;
+	pixel_y = -1;
+	pixel_x = -5
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "UO" = (
 /obj/structure/sign/ordealmonitor{
 	pixel_x = -32
@@ -1156,6 +1254,10 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"WP" = (
+/obj/structure/sign/poster/contraband/kudzu,
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 "WU" = (
 /obj/structure/railing{
 	dir = 1
@@ -1171,6 +1273,10 @@
 /area/facility_hallway/human)
 "Xt" = (
 /obj/structure/plasticflaps,
+/obj/effect/step_trigger/projectile{
+	projectile_dist_y = 1;
+	projectile_dist_x = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "Xy" = (
@@ -1183,6 +1289,13 @@
 "XL" = (
 /turf/open/space/basic,
 /area/space)
+"XM" = (
+/obj/effect/turf_decal/arrows{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/turf/open/floor/wood,
+/area/department_main/human)
 "XP" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -1194,6 +1307,10 @@
 	dir = 8
 	},
 /turf/open/floor/wood,
+/area/department_main/human)
+"Yp" = (
+/obj/structure/sign/poster/contraband/donut_corp,
+/turf/closed/indestructible/reinforced,
 /area/department_main/human)
 "Yq" = (
 /obj/structure/table/reinforced,
@@ -1270,6 +1387,10 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"ZZ" = (
+/obj/effect/wall_vent,
+/turf/closed/indestructible/reinforced,
+/area/department_main/human)
 
 (1,1,1) = {"
 XL
@@ -3166,12 +3287,12 @@ XL
 XL
 XL
 XL
-iU
-iU
-iU
 XL
 XL
 XL
+iU
+iU
+iU
 XL
 XL
 XL
@@ -3265,18 +3386,18 @@ iU
 iU
 XL
 XL
-iU
-iU
-iU
-iU
-xf
-iU
-iU
-iU
-iU
 XL
 XL
 XL
+iU
+iU
+iU
+iU
+tV
+iU
+iU
+iU
+iU
 XL
 XL
 XL
@@ -3367,18 +3488,18 @@ qd
 iU
 XL
 XL
+XL
+XL
+XL
 iU
 xf
 xf
-LI
+kD
 td
 WU
 PN
 xf
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -3469,18 +3590,18 @@ bx
 iU
 iU
 XL
-iU
+XL
+XL
+XL
+ZZ
 Gd
 xf
 iU
-xf
+JI
 xf
 xf
 xf
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -3571,18 +3692,18 @@ xf
 xf
 iU
 XL
-iU
-xf
-xf
-iU
-iU
-iU
-JU
-iU
-iU
 XL
 XL
 XL
+iU
+yp
+UF
+iU
+iU
+iU
+vf
+iU
+iU
 XL
 XL
 XL
@@ -3673,18 +3794,18 @@ kD
 NP
 iU
 XL
-iU
-SJ
+XL
+XL
+XL
+mQ
+zS
 Xt
 iU
-iU
+vw
 xf
 kD
 xf
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -3769,24 +3890,24 @@ iU
 iU
 xf
 xf
-iU
+Ha
 mU
 xf
 xf
 iU
 XL
+XL
+XL
+XL
 iU
-iG
-xf
-DC
+yg
+bj
+lW
 iU
 VJ
 sx
 QL
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -3877,18 +3998,18 @@ Cc
 iU
 iU
 XL
+XL
+XL
+XL
 iU
-iG
-kD
-DC
-iU
+lW
+MA
+MS
+Pv
 rl
 xf
 Ze
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -3977,20 +4098,20 @@ iU
 Iu
 xf
 xf
-iU
+ZZ
+XL
+XL
+XL
 XL
 iU
-iG
-xf
-DC
+wF
+bj
+Pk
 iU
 Cy
 xf
 rz
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4072,7 +4193,7 @@ XL
 XL
 XL
 iU
-Xy
+RR
 xf
 xf
 iU
@@ -4081,8 +4202,11 @@ xf
 hG
 iU
 XL
+XL
+XL
+XL
 iU
-iU
+Yp
 dA
 iU
 iU
@@ -4094,9 +4218,6 @@ iU
 iU
 iU
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4183,22 +4304,22 @@ xf
 xf
 iU
 XL
+XL
+XL
+XL
 iU
 iU
+ZZ
 iU
-iU
-iU
+gy
 hD
-xf
+AZ
 xf
 Jr
 xf
 Uo
 Vw
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4279,15 +4400,18 @@ iU
 Di
 xf
 xf
-iU
+ZZ
 Zi
 kD
 TO
 iU
 XL
+XL
+XL
+XL
 iU
 VW
-yp
+Pc
 bp
 iU
 Qy
@@ -4295,12 +4419,9 @@ mu
 Jr
 ue
 xf
-xf
+Ht
 AV
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4387,6 +4508,9 @@ xf
 xf
 iU
 XL
+XL
+XL
+XL
 iU
 FY
 xf
@@ -4400,9 +4524,6 @@ xf
 xf
 dj
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4489,6 +4610,9 @@ xf
 pu
 iU
 XL
+XL
+XL
+XL
 iU
 ih
 JV
@@ -4502,9 +4626,6 @@ xf
 xf
 iU
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4591,6 +4712,9 @@ xf
 xf
 iU
 XL
+XL
+XL
+XL
 iU
 xf
 xf
@@ -4599,13 +4723,10 @@ rY
 xf
 xf
 xf
-Jr
+XM
 lE
 xf
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4693,21 +4814,21 @@ Cc
 iU
 iU
 XL
+XL
+XL
+XL
 iU
 fH
 xf
 dk
 iU
 iU
-iU
+WP
 sH
 Yq
 ka
 gc
 iU
-XL
-XL
-XL
 XL
 XL
 XL
@@ -4795,21 +4916,21 @@ xf
 xf
 iU
 XL
-iU
-iU
-iU
-iU
-iU
-iU
-iU
-iU
-iU
-iU
-iU
-iU
 XL
 XL
 XL
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 XL
 XL
 XL
@@ -5099,7 +5220,7 @@ iU
 iU
 HZ
 xf
-iU
+vz
 xf
 Pt
 xf
@@ -5491,7 +5612,7 @@ sE
 sE
 sE
 sE
-sE
+GO
 Qf
 Qf
 Qf
