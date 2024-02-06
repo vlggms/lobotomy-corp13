@@ -1273,7 +1273,7 @@
 	desc = "Then yes, I am the Oberon you seek."
 	special = "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."
 	icon_state = "oberon_whip"
-	force = 18
+	force = 30
 	attack_speed = 0.8
 	reach = 3
 	damtype = BLACK_DAMAGE
@@ -1289,14 +1289,14 @@
 	var/mob/current_holder
 	var/form = "whip"
 	var/list/weapon_list = list(
-		"whip" = list(18, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."),
+		"whip" = list(30, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."),
 		"sword" = list(55, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form can fire a projectile and does both RED DAMAGE and BLACK DAMAGE."),
 		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE, "Use this weapon in hand to swap between forms. This form deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area."),
 		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE, "Use this weapon in hand to swap between forms. This form does RED DAMAGE and knocks back enemies"),
-		"scythe" = list(90, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE, "Use this weapon in hand to swap between forms. This form does RED DAMAGE and does 50% more damage when hitting targets below 50% health.")
+		"scythe" = list(100, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE, "Use this weapon in hand to swap between forms. This form does RED DAMAGE and does 50% more damage when hitting targets below 50% health.")
 		)
 	var/gun_cooldown
-	var/gun_cooldown_time = 1.5 SECONDS
+	var/gun_cooldown_time = 1 SECONDS
 	var/build_up = 0.8
 	var/smashing = FALSE
 	var/combo_time
@@ -1341,9 +1341,9 @@
 			if(target.health <= (target.maxHealth * 0.5))
 				playsound(get_turf(target), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 				new /obj/effect/temp_visual/nobody_grab(get_turf(target))
-				force = 135
+				force = 150
 			else
-				force = 90
+				force = 100
 	. = ..()
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
@@ -1352,16 +1352,16 @@
 	switch(form)
 		if("sword")
 			var/red = force
-			red*=justicemod * force_multiplier
-			target.apply_damage(red, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			red*=justicemod
+			target.apply_damage(red * force_multiplier, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if("whip")
 			var/multihit = force
-			multihit*= justicemod * force_multiplier
+			multihit*= justicemod
 			for(var/i = 1 to 2)
 				sleep(2)
 				if(target in view(reach,user))
 					target.send_item_attack_message(src, user,target)
-					target.apply_damage(multihit, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+					target.apply_damage(multihit * force_multiplier, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 					user.do_attack_animation(target)
 					playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 		if("bat")
@@ -1372,10 +1372,10 @@
 		if("hammer")
 			for(var/mob/living/L in view(2, target))
 				var/aoe = force
-				aoe*=justicemod * force_multiplier
+				aoe*=justicemod
 				if(user.faction_check_mob(L))
 					continue
-				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.apply_damage(aoe * force_multiplier, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 				if(!ishuman(L))
 					if(!L.has_status_effect(/datum/status_effect/rend_black))
@@ -1403,16 +1403,20 @@
 /obj/item/ego_weapon/oberon/proc/Smash(mob/user, atom/target)
 	smashing = TRUE
 	playsound(user, 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
-	var/smash_damage = 140*(1+(get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)) * force_multiplier
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/smash_damage = 170
+	smash_damage *= justicemod
 	sleep(0.5 SECONDS)
-	for(var/turf/T in view(3, user))
-		new /obj/effect/temp_visual/nobody_grab(T)
-		for(var/mob/living/L in T)
-			if(user.faction_check_mob(L))
-				continue
-			L.apply_damage(smash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	playsound(user, 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
-	sleep(0.5 SECONDS)
+	for(var/i = 0; i < 3; i++)
+		for(var/turf/T in view(3, user))
+			new /obj/effect/temp_visual/nobody_grab(T)
+			for(var/mob/living/L in T)
+				if(user.faction_check_mob(L))
+					continue
+				L.apply_damage(smash_damage * force_multiplier, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		playsound(user, 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
+		sleep(0.5 SECONDS)
 	smashing = FALSE
 	return
 
