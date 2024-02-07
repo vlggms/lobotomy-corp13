@@ -206,6 +206,21 @@
 
 	wound_bonus = 15
 
+//Examine text
+/obj/item/melee/classic_baton/examine(mob/user)
+	. = ..()
+
+	. += span_notice("This weapon works differently from most weapons and can be used to disarm other players.")
+
+	. += span_notice("It has a <a href='?src=[REF(src)];'>tag</a> explaining how to use [src].")
+
+/obj/item/melee/classic_baton/Topic(href, href_list)
+	. = ..()
+	var/list/readout = list("<u><b>Attacks that are not on harm intent deal nonlethal stamina damage, which will eventually cause humans to collapse from exhaustion.</u></b>")
+	readout += "\nAim for a leg to attempt to trip someone over when attacking."
+	readout += "\nAim for an arm to attempt to force the target to drop the item they are holding in that hand."
+	to_chat(usr, "[span_notice(readout.Join())]")
+
 // Description for trying to stun when still on cooldown.
 /obj/item/melee/classic_baton/proc/get_wait_description()
 	return
@@ -289,7 +304,7 @@
 		return
 	if(!isliving(target))
 		return
-	if (user.a_intent == INTENT_HARM)
+	if (user.a_intent == INTENT_HARM || !ishuman(target))
 		if(!..())
 			return
 		if(!iscyborg(target))
