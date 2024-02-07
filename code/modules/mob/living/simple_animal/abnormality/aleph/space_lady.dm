@@ -54,7 +54,7 @@
 		return
 
 	if(prob(10))
-		addtimer(CALLBACK(src, .proc/ExplodeTimer), explosion_timer*2)
+		addtimer(CALLBACK(src, PROC_REF(ExplodeTimer)), explosion_timer*2)
 		can_act = FALSE
 
 	else if(prob(50))
@@ -73,9 +73,9 @@
 	if (explosion_state == 0)
 		explosion_state = initial(explosion_state)
 		icon_state = "space_attack"
-		addtimer(CALLBACK(src, .proc/Explode), 15)
+		addtimer(CALLBACK(src, PROC_REF(Explode)), 15)
 	else
-		addtimer(CALLBACK(src, .proc/ExplodeTimer), explosion_timer)
+		addtimer(CALLBACK(src, PROC_REF(ExplodeTimer)), explosion_timer)
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/proc/Explode()
 	//Black hole effect

@@ -487,7 +487,7 @@
 		to_chat(user, "<span class='notice'>[src]' feathers bristle!</span>") // "Hey dumbass, you can stop smacking them now"
 	combo_hold = world.time + decay_time
 	..()
-	INVOKE_ASYNC(src, .proc/SecondSwing, M, user)
+	INVOKE_ASYNC(src, PROC_REF(SecondSwing), M, user)
 	return
 
 /obj/item/ego_weapon/wings/attack_self(mob/user)
@@ -531,7 +531,7 @@
 		special_combo_hold = world.time + decay_time
 		hit_turfs = list() // Clear the list of turfs we hit last time
 		specialing = TRUE
-		addtimer(CALLBACK(src, .proc/ResetSpecial), special_cooldown)// Engage special cooldown
+		addtimer(CALLBACK(src, PROC_REF(ResetSpecial)), special_cooldown)// Engage special cooldown
 		Leap(user, aim_dir, 0)
 	return
 
@@ -585,7 +585,7 @@
 		return
 	for(var/turf/T in orange(1, user))
 		hit_turfs |= T
-	addtimer(CALLBACK(src, .proc/Leap, user, dir, times_ran + 1), 0.1)
+	addtimer(CALLBACK(src, PROC_REF(Leap), user, dir, times_ran + 1), 0.1)
 
 /obj/item/ego_weapon/wings/proc/CheckPath(mob/living/user, dir = SOUTH)
 	var/list/immediate_path = list() // Looks two tiles ahead for anything dense; the leap attack must move you at least one tile and will stop one tile short of a dense one
@@ -819,7 +819,7 @@
 
 /obj/item/ego_weapon/shield/swan/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/Reflect, source, damage)
+	INVOKE_ASYNC(src, PROC_REF(Reflect), source, damage)
 
 /obj/item/ego_weapon/shield/swan/proc/Reflect(mob/living/carbon/human/user, damage, damagetype, def_zone)
 	if(!block)
@@ -846,7 +846,7 @@
 	return
 
 /obj/item/ego_weapon/shield/swan/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/shield/swan/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
@@ -1144,7 +1144,7 @@
 		if(mark_type == BLACK_DAMAGE)
 			P.color = COLOR_PURPLE
 
-		addtimer(CALLBACK(src, .proc/cast, target, user, mark_type), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(cast), target, user, mark_type), 5 SECONDS)
 
 		//So you can see what the next mark is.
 		mark_type = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE)
@@ -1199,7 +1199,7 @@
 		return FALSE
 	..()
 	can_spin = FALSE
-	addtimer(CALLBACK(src, .proc/spin_reset), 13)
+	addtimer(CALLBACK(src, PROC_REF(spin_reset)), 13)
 
 /obj/item/ego_weapon/amrita/proc/spin_reset()
 	can_spin = TRUE
@@ -1217,7 +1217,7 @@
 		var/justicemod = 1 + userjust/100
 		var/firsthit = TRUE //One target takes full damage
 		can_spin = TRUE
-		addtimer(CALLBACK(src, .proc/spin_reset), 13)
+		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 13)
 		playsound(src, 'sound/abnormalities/clouded_monk/monk_bite.ogg', 75, FALSE, 4)
 		aoe*=justicemod
 		aoe*=force_multiplier
@@ -1252,8 +1252,8 @@
 
 /obj/item/ego_weapon/discord/Initialize()
 	. = ..()
-	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, .proc/OnWield)
-	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, .proc/on_unwield)
+	RegisterSignal(src, COMSIG_TWOHANDED_WIELD, PROC_REF(OnWield))
+	RegisterSignal(src, COMSIG_TWOHANDED_UNWIELD, PROC_REF(on_unwield))
 
 /obj/item/ego_weapon/discord/ComponentInitialize()
 	. = ..()
@@ -1279,7 +1279,7 @@
 		return
 	user.changeNext_move(CLICK_CD_MELEE*attack_speed*2.5)
 	for(var/i = 1 to 2)
-		addtimer(CALLBACK(src, .proc/MultiSwing, target, user), CLICK_CD_MELEE * 0.6 * i)
+		addtimer(CALLBACK(src, PROC_REF(MultiSwing), target, user), CLICK_CD_MELEE * 0.6 * i)
 
 /obj/item/ego_weapon/discord/proc/MultiSwing(mob/living/target, mob/living/carbon/human/user)
 	if(get_dist(target, user) > 1)
@@ -1355,7 +1355,7 @@
 		return
 	..()
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
 
 /obj/item/ego_weapon/rimeshank/proc/JumpReset()
 	can_attack = TRUE
@@ -1390,7 +1390,7 @@
 	A.attackby(src,user)
 	force = initial(force)
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
 	for(var/mob/living/L in livinginrange(2, A))
 		if(L.z != user.z) // Not on our level
 			continue
@@ -1693,7 +1693,7 @@
 	if(thrownby && !caught)
 		if(charge >= charge_cost && isliving(hit_atom))
 			release_charge(hit_atom)
-		addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
@@ -1756,7 +1756,7 @@
 		ADD_TRAIT(src, TRAIT_NODROP, null)
 		user.update_inv_hands()
 		transformed = TRUE
-		addtimer(CALLBACK(src, .proc/Reset_Timer), 600)
+		addtimer(CALLBACK(src, PROC_REF(Reset_Timer)), 600)
 	return
 
 /obj/item/ego_weapon/hyde/proc/Reset_Timer(mob/living/carbon/human/user)
@@ -1848,7 +1848,7 @@
 	if(!user)
 		return
 	current_holder = user
-	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 
 //Destroy setup
 /obj/item/ego_weapon/blind_obsession/Destroy(mob/user)
@@ -1890,7 +1890,7 @@
 		speed_slowdown = 2
 		throwforce = 100//TIME TO DIE!
 		to_chat(user,span_warning("You put your strength behind this attack."))
-		power_timer = addtimer(CALLBACK(src, .proc/PowerReset), 3 SECONDS,user, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
+		power_timer = addtimer(CALLBACK(src, PROC_REF(PowerReset)), 3 SECONDS,user, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
 
 /obj/item/ego_weapon/blind_obsession/proc/PowerReset(mob/user)
 	to_chat(user, span_warning("You lose your balance while holding [src]."))
@@ -2005,7 +2005,7 @@
 /obj/item/ego_weapon/abyssal_route/proc/DiveAttack(atom/A, mob/living/user, proximity_flag, params)
 	A.attackby(src,user)
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/DiveReset), 5)
+	addtimer(CALLBACK(src, PROC_REF(DiveReset)), 5)
 	for(var/turf/open/T in range(1, user))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_TEAL

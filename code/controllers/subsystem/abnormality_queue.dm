@@ -40,7 +40,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 	var/hardcore_roll_enabled = FALSE
 
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, .proc/OnOrdealEnd)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
 	rooms_start = GLOB.abnormality_room_spawners.len
 	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
@@ -192,7 +192,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		return
 	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		Q.audible_message("<span class='announce'>Due to [O.name] finishing early, additional abnormalities will be extracted soon.</span>")
-	INVOKE_ASYNC(src, .proc/SpawnOrdealAbnos, level_threat)
+	INVOKE_ASYNC(src, PROC_REF(SpawnOrdealAbnos), level_threat)
 
 /datum/controller/subsystem/abnormality_queue/proc/SpawnOrdealAbnos(level_threat = 1)
 	// Spawn stuff until we reach the desired threat level, or spawn too many things

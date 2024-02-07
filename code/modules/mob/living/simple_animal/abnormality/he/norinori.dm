@@ -80,7 +80,7 @@
 //Init
 /mob/living/simple_animal/hostile/abnormality/norinori/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/On_Mob_Death) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(On_Mob_Death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/norinori/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)

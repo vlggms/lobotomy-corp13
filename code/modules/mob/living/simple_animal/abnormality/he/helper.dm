@@ -118,7 +118,7 @@
 		para = FALSE
 	been_hit = list()
 	SpinAnimation(1.8 SECONDS, 1, para)
-	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), dir_to_target, 0), 1.5 SECONDS)
 	playsound(src, 'sound/abnormalities/helper/rise.ogg', 100, 1)
 
 /mob/living/simple_animal/hostile/abnormality/helper/proc/do_dash(move_dir, times_ran)
@@ -175,7 +175,7 @@
 				continue
 			if(!(L in been_hit))
 				been_hit += L
-	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/helper/NeutralEffect(mob/living/carbon/human/user, work_type, pe)

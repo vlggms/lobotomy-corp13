@@ -19,8 +19,8 @@
 /obj/vehicle/sealed/mecha/combat/durand/Initialize()
 	. = ..()
 	shield = new /obj/durand_shield(loc, src, plane, layer, dir)
-	RegisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER, .proc/relay)
-	RegisterSignal(src, COMSIG_PROJECTILE_PREHIT, .proc/prehit)
+	RegisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER, PROC_REF(relay))
+	RegisterSignal(src, COMSIG_PROJECTILE_PREHIT, PROC_REF(prehit))
 
 
 /obj/vehicle/sealed/mecha/combat/durand/Destroy()
@@ -57,7 +57,7 @@
 	if(defense_mode)
 		var/datum/action/action = LAZYACCESSASSOC(occupant_actions, M, /datum/action/vehicle/sealed/mecha/mech_defense_mode)
 		if(action)
-			INVOKE_ASYNC(action, /datum/action.proc/Trigger, FALSE)
+			INVOKE_ASYNC(action, TYPE_PROC_REF(/datum/action, Trigger), FALSE)
 	return ..()
 
 ///Relays the signal from the action button to the shield, and creates a new shield if the old one is MIA.
@@ -172,8 +172,8 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 	src.layer = layer
 	src.plane = plane
 	setDir(dir)
-	RegisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER, .proc/activate)
-	RegisterSignal(chassis, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, .proc/shield_glide_size_update)
+	RegisterSignal(src, COMSIG_MECHA_ACTION_TRIGGER, PROC_REF(activate))
+	RegisterSignal(chassis, COMSIG_MOVABLE_UPDATE_GLIDE_SIZE, PROC_REF(shield_glide_size_update))
 
 
 /obj/durand_shield/Destroy()
@@ -235,13 +235,13 @@ Expects a turf. Returns true if the attack should be blocked, false if not.*/
 		playsound(src, 'sound/mecha/mech_shield_raise.ogg', 50, FALSE)
 		set_light(l_range = MINIMUM_USEFUL_LIGHT_RANGE , l_power = 5, l_color = "#FF8000")
 		icon_state = "shield"
-		RegisterSignal(chassis, COMSIG_ATOM_DIR_CHANGE, .proc/resetdir)
+		RegisterSignal(chassis, COMSIG_ATOM_DIR_CHANGE, PROC_REF(resetdir))
 	else
 		flick("shield_drop", src)
 		playsound(src, 'sound/mecha/mech_shield_drop.ogg', 50, FALSE)
 		set_light(0)
 		icon_state = "shield_null"
-		addtimer(CALLBACK(src, .proc/make_invisible), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(make_invisible)), 1 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 		UnregisterSignal(chassis, COMSIG_ATOM_DIR_CHANGE)
 	switching = FALSE
 

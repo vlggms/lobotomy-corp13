@@ -32,7 +32,7 @@
 		var/mob/living/carbon/human/H = owner
 		H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 15)
 		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
-		RegisterSignal(H, COMSIG_HUMAN_INSANE, .proc/UserInsane)
+		RegisterSignal(H, COMSIG_HUMAN_INSANE, PROC_REF(UserInsane))
 
 /datum/status_effect/display/behavior/on_remove()
 	. = ..()

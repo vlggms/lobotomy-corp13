@@ -106,7 +106,7 @@
 		var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(src))
 		V.faction = faction
 		spawned_mobs+=V
-	addtimer(CALLBACK(src, .proc/FairyLoop), fairy_spawn_time)
+	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), fairy_spawn_time)
 
 //Setting the nemesis
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ChooseNemesis()
@@ -161,11 +161,11 @@
 
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		to_chat(H, span_colossus("[lawmessage]"))
-	addtimer(CALLBACK(src, .proc/ActivateLaw), law_startup)	//Start Law 3 Seconds
+	addtimer(CALLBACK(src, PROC_REF(ActivateLaw)), law_startup)	//Start Law 3 Seconds
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ActivateLaw()
-	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
+	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
 	currentlaw = nextlaw
 	to_chat(GLOB.clients, span_danger("The new law is now in effect."))
 
@@ -227,8 +227,8 @@
 /mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	ChooseNemesis()
-	addtimer(CALLBACK(src, .proc/FairyLoop), 10 SECONDS)	//10 seconds from now you start spawning fairies
-	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
+	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), 10 SECONDS)	//10 seconds from now you start spawning fairies
+	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
 	if(nemesis)
 		to_chat(src, span_userdanger("[nemesis], you are to die!"))
 	if(!client && nemesis)

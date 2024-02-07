@@ -128,7 +128,7 @@
 		jam_noticed = FALSE
 		fire_delay = 2
 		burst_size = 5
-		addtimer(CALLBACK(src, .proc/ResetDelay), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(ResetDelay)), 15 SECONDS)
 		to_chat(user,"<span class='notice'>You succesfully unjammed [src]!</span>")
 		jam_cooldown_time = rand(1, 5) MINUTES
 		jam_cooldown = jam_cooldown_time + world.time
@@ -241,7 +241,7 @@
 /obj/item/gun/ego_gun/ringing/equipped(mob/M, slot)//megaphone code
 	. = ..()
 	if (slot == ITEM_SLOT_HANDS && !HAS_TRAIT(M, TRAIT_SIGN_LANG))
-		RegisterSignal(M, COMSIG_MOB_SAY, .proc/handle_speech)
+		RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 	else
 		UnregisterSignal(M, COMSIG_MOB_SAY)
 

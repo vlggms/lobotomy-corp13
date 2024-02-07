@@ -147,7 +147,7 @@ GLOBAL_LIST_EMPTY(conveyors_by_id)
 		affecting = items
 	conveying = TRUE
 
-	addtimer(CALLBACK(src, .proc/convey, affecting), 1)//Movement effect
+	addtimer(CALLBACK(src, PROC_REF(convey), affecting), 1)//Movement effect
 
 /obj/machinery/conveyor/proc/convey(list/affecting)
 	for(var/am in affecting)

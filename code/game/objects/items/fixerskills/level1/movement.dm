@@ -104,7 +104,7 @@
 		human.physiology.white_mod *= 1.3
 		human.physiology.black_mod *= 1.3
 		human.physiology.pale_mod *= 1.3
-		addtimer(CALLBACK(src, .proc/Recall,), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(Recall),), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		StartCooldown()
 
 /datum/action/cooldown/retreat/proc/Recall()

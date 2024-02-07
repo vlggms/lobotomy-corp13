@@ -40,7 +40,7 @@
 //	hardcore_value = -2 // un-comment to let hardcore random cause chaos, unrecommended
 
 /datum/quirk/fluffy_tongue/on_spawn()
-	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, .proc/handle_speech)
+	RegisterSignal(quirk_holder, COMSIG_MOB_SAY, PROC_REF(handle_speech))
 
 /datum/quirk/fluffy_tongue/proc/handle_speech(datum/source, list/speech_args)
 	var/message = speech_args[SPEECH_MESSAGE]

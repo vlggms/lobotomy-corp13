@@ -1,5 +1,5 @@
 /datum/antagonist/wizard/arbiter
-	name = "Arbiter"
+	name = "Incomplete Arbiter"
 	roundend_category = "arbiters"
 	antagpanel_category = "The Head"
 	give_objectives = FALSE
@@ -79,3 +79,78 @@
 	W.registered_name = H.real_name
 	W.update_label()
 	..()
+
+//Spawner
+/obj/effect/mob_spawn/human/arbiter
+	name = "The Arbiter"
+	icon = 'icons/obj/machines/sleeper.dmi'
+	icon_state = "sleeper_s"
+	short_desc = "You are The Arbiter."
+	important_info = "You are hostile to L-Corp. Assist abnormalities in killing them all."
+	outfit = /datum/outfit/arbiter
+	max_integrity = 9999999
+	density = TRUE
+	roundstart = FALSE
+	death = FALSE
+
+/obj/effect/mob_spawn/human/arbiter/special(mob/living/new_spawn)
+	new_spawn.mind.add_antag_datum(/datum/antagonist/wizard/arbiter)
+
+/obj/effect/mob_spawn/human/arbiter/complete
+
+/obj/effect/mob_spawn/human/arbiter/complete/special(mob/living/new_spawn)
+	new_spawn.mind.add_antag_datum(/datum/antagonist/wizard/arbiter/complete)
+
+/datum/antagonist/wizard/arbiter/complete
+	name = "Arbiter"
+	spell_types = list(
+		/obj/effect/proc_holder/spell/aimed/fairy,
+		/obj/effect/proc_holder/spell/aimed/pillar,
+		/obj/effect/proc_holder/spell/aoe_turf/repulse/arbiter,
+		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter,
+		/obj/effect/proc_holder/spell/aoe_turf/singularity,
+	)
+
+/obj/effect/proc_holder/spell/aoe_turf/singularity
+	name = "Singularity Swap"
+	desc = "Utilize a different singularity to deal a different damage type."
+	school = SCHOOL_EVOCATION
+	charge_max = 150
+	range = 15
+	clothes_req = FALSE
+	antimagic_allowed = TRUE
+	invocation_type = "none"
+	base_icon_state = "singularity"
+	action_icon_state = "singularity"
+	sound = 'sound/magic/castsummon.ogg'
+	var/damage_type = BLACK_DAMAGE
+	var/list/damage_type_list = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/filter
+
+/obj/effect/proc_holder/spell/aoe_turf/singularity/cast(list/targets,mob/user = usr)
+	playMagSound()
+	var/index = damage_type_list.Find(damage_type)
+	index = (index % damage_type_list.len) + 1
+	damage_type = damage_type_list[index]
+	to_chat(usr, span_nicegreen("You are now dealing [damage_type] damage with your pillar and fairy attacks!"))
+	for(var/thespell in usr.mind.spell_list)
+		if(istype(thespell, /obj/effect/proc_holder/spell/aimed/fairy))
+			var/obj/effect/proc_holder/spell/aimed/fairy/fairyspell = thespell
+			fairyspell.damage_type = damage_type
+		if(istype(thespell, /obj/effect/proc_holder/spell/aimed/pillar))
+			var/obj/effect/proc_holder/spell/aimed/fairy/pillarspell = thespell
+			pillarspell.damage_type = damage_type
+	if(!filter)
+		filter = TRUE
+		usr.filters += filter(type="drop_shadow", x=0, y=0, size=5, offset=2, color=rgb(128, 128, 128))
+		return
+	var/f1 = usr.filters[usr.filters.len]
+	switch(damage_type)
+		if(RED_DAMAGE)
+			animate(f1,color = rgb(255, 0, 0),time=5)
+		if(WHITE_DAMAGE)
+			animate(f1,color = rgb(255,255,255),time=5)
+		if(BLACK_DAMAGE)
+			animate(f1,color = rgb(48, 25, 52),time=5)
+		if(PALE_DAMAGE)
+			animate(f1,color = rgb(128, 128, 128),time=5)

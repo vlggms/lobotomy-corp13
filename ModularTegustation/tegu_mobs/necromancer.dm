@@ -281,7 +281,7 @@
 		if(prob(40))
 			target_turfs += T
 			new /obj/effect/temp_visual/cult/turf/floor(T)
-			addtimer(CALLBACK(src, .proc/lightning_bolt, T), 7)
+			addtimer(CALLBACK(src, PROC_REF(lightning_bolt), T), 7)
 			SLEEP_CHECK_DEATH(strike_delay)
 
 /mob/living/simple_animal/hostile/megafauna/necromancer/proc/lightning_bolt(turf/open/T)
@@ -388,7 +388,7 @@
 	alpha = 255
 	animate(src, alpha = 100, transform = matrix()*0.9, time = 5, easing = BOUNCE_EASING)
 	animate(src, pixel_z = 16, time = 5, easing = BOUNCE_EASING)
-	addtimer(CALLBACK(src, .proc/stop_flight, oldtransform), 50)
+	addtimer(CALLBACK(src, PROC_REF(stop_flight), oldtransform), 50)
 
 /mob/living/simple_animal/hostile/megafauna/necromancer/proc/stop_flight(oldtransform)
 	can_move = FALSE
@@ -425,7 +425,7 @@
 		if(prob(50))
 			target_turfs += T
 			new /obj/effect/temp_visual/cult/turf/floor(T)
-			addtimer(CALLBACK(src, .proc/lightning_bolt, T), 7)
+			addtimer(CALLBACK(src, PROC_REF(lightning_bolt), T), 7)
 
 /* Stage three stuff */
 
@@ -516,7 +516,7 @@
 	for(var/x in 1 to storm_amount)
 		var/turf/open/TT = pick(target_turfs)
 		new /obj/effect/temp_visual/cult/turf/floor(TT)
-		addtimer(CALLBACK(src, .proc/lightning_bolt, TT), 9)
+		addtimer(CALLBACK(src, PROC_REF(lightning_bolt), TT), 9)
 		SLEEP_CHECK_DEATH(strike_delay)
 
 // Necromancer loot
@@ -637,7 +637,7 @@
 	user.visible_message(span_warning("[user] points [user.p_their()] blade towards [T] as a lightning bolt appears!"), span_notice("You release blade's energy at [T]!"), span_warning("You hear an electric discharge!"))
 	playsound(user, 'sound/magic/lightningshock.ogg', 40, 1)
 	new /obj/effect/temp_visual/cult/turf/floor(T)
-	addtimer(CALLBACK(src, .proc/send_bolt, T, user), 5)
+	addtimer(CALLBACK(src, PROC_REF(send_bolt), T, user), 5)
 
 /obj/item/necromancer_sword/proc/send_bolt(turf/T, mob/living/user)
 	var/turf/lightning_source = get_step(get_step(T, NORTH), NORTH)

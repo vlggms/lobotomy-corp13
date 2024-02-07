@@ -91,9 +91,9 @@
 		return
 	ability_cooldown = world.time + ability_cooldown_time
 	if(punched)
-		INVOKE_ASYNC(src, .proc/Shout)
+		INVOKE_ASYNC(src, PROC_REF(Shout))
 	else
-		INVOKE_ASYNC(src, .proc/SleepyDart)
+		INVOKE_ASYNC(src, PROC_REF(SleepyDart))
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/SleepyDart()
 	var/list/possibletargets = list()
@@ -149,7 +149,7 @@
 	ability_cooldown = world.time + 4 SECONDS
 	if(IsCombatMap())
 		return
-	addtimer(CALLBACK(src, .proc/DelPassive), rand((3 MINUTES), (5 MINUTES)))
+	addtimer(CALLBACK(src, PROC_REF(DelPassive)), rand((3 MINUTES), (5 MINUTES)))
 
 // Projectile code
 /obj/projectile/sleepdart

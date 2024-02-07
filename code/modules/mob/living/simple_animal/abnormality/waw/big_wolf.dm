@@ -232,7 +232,7 @@
 		patrol_to(target_center)
 		//Used to be in patrol_reset until i learned that patrol reset is inside patrol_to.
 		update_icon()
-		addtimer(CALLBACK(src, .proc/StopFleeing), 3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(StopFleeing)), 3 SECONDS)
 		return
 	StopFleeing()
 
