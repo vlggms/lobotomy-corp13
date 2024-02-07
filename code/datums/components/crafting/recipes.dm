@@ -638,7 +638,7 @@
 				/obj/item/food/grown/poppy/geranium = 2)
 	category = CAT_MISC
 
-	/datum/crafting_recipe/noose
+/datum/crafting_recipe/noose
 	name = "Noose"
 	result = /obj/structure/chair/noose
 	reqs = list(/obj/item/stack/cable_coil = 20)
