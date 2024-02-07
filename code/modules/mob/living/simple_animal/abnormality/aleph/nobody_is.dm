@@ -744,8 +744,40 @@
 		abno_host.attacked_by(I, user)
 	..()
 
-//A simple test function to force oberon to happen
+//A simple test function to force oberon to happen without killing the reflected
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform_No_Kill(mob/living/carbon/human/M)
+	set waitfor = FALSE
+	SLEEP_CHECK_DEATH(5)
+	if(!M)
+		return //We screwed up or the player successfully committed self-delete. Try again next time!
+	disguise = M
+	shelled = TRUE
+	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay", SUIT_LAYER))
+	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
+	appearance = M.appearance
+	if(target)
+		LoseTarget(target)
+	attack_verb_continuous = "strikes"
+	attack_verb_simple = "strike"
+	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
+	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.8)) //Damage, resistances, and cooldowns all go to the roof
+	maxHealth = 4000
+	melee_damage_lower = 65
+	melee_damage_upper = 75
+	current_stage = 3
+	melee_reach = 1
+	whip_count = 8
+	grab_damage = 250
+	strangle_damage = 70
+	grab_cooldown_time = 12 SECONDS
+	grab_windup_time = 12
+	whip_attack_cooldown_time = 5 SECONDS
+	heal_percent_per_second = 0.0085
+	if(status_flags & GODMODE) // Still contained
+		addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), rand(5 SECONDS, 10 SECONDS))
+
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Quick_Oberon_Spawn()
-	Transform(chosen)
-	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
-	Oberon_Fusion(T)
+	Transform_No_Kill(chosen)
+	var/mob/living/simple_animal/hostile/abnormality/titania/TIT = new(get_turf(src))
+	Oberon_Fusion(TIT)
