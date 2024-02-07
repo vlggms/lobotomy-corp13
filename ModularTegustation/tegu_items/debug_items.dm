@@ -273,7 +273,7 @@
 	SLEEP_CHECK_DEATH(10)
 	if(!dps_mode) //We check again here in case it was turned off during the countdown
 		return
-	dps_timer = addtimer(CALLBACK(src, .proc/DeepsCheck), interval, TIMER_STOPPABLE)
+	dps_timer = addtimer(CALLBACK(src, PROC_REF(DeepsCheck)), interval, TIMER_STOPPABLE)
 	say("Go!")
 
 /mob/living/simple_animal/debugdummy/proc/DeepsCheck()
