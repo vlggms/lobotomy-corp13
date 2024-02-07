@@ -98,7 +98,7 @@
 	follow = new
 
 	command_cooldown = world.time
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/RechargeMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(RechargeMeltdown))
 
 /obj/machinery/computer/camera_advanced/manager/Destroy()
 	GLOB.lobotomy_devices -= src
@@ -144,10 +144,10 @@
 		swap.selected_abno = null
 		actions += swap
 
-	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/OnHotkeyClick) //wanted to use shift click but shift click only allowed applying the effects to my player.
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/OnAltClick)
-	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
-	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, .proc/OnCtrlShiftClick)
+	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, PROC_REF(OnHotkeyClick)) //wanted to use shift click but shift click only allowed applying the effects to my player.
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, PROC_REF(OnAltClick))
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(ManagerExaminate))
+	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, PROC_REF(OnCtrlShiftClick))
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/managerbullet) && ammo <= GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT))
@@ -287,7 +287,7 @@
 			var/thing_to_spawn = command_types[command_type]
 			var/thing_spawned = new thing_to_spawn(get_turf(T))
 			current_commands++
-			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, .proc/ReduceCommandAmount)
+			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, PROC_REF(ReduceCommandAmount))
 		else
 			to_chat(C, span_warning("ERROR: Calibration Faliure."))
 		CommandTimer()
@@ -633,8 +633,8 @@
 		follow.Grant(user)
 		actions += follow
 
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/OnAltClick)
-	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, PROC_REF(OnAltClick))
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(ManagerExaminate))
 
 /obj/machinery/computer/camera_advanced/manager/sephirah/ClickedEmployee()
 	return

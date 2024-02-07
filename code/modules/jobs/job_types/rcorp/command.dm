@@ -41,13 +41,13 @@
 	..()
 	switch(rank_title)
 		if("CDR")
-			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "All rise for commander [H.real_name]."))
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "All rise for commander [H.real_name]."))
 		if("JCDR")
-			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Junior Commander [H.real_name] is in command of this operation."))
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "Junior Commander [H.real_name] is in command of this operation."))
 		if("LCDR")
-			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Lieutenant commander [H.real_name] has arrived."))
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "Lieutenant commander [H.real_name] has arrived."))
 		if("CPT")
-			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Captain [H.real_name] has arrived."))
+			SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "Captain [H.real_name] has arrived."))
 
 /datum/outfit/job/commander
 	name = "Ground Commander"

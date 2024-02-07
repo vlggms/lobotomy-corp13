@@ -58,7 +58,7 @@
 	if(. & EMP_PROTECT_SELF)
 		return
 	set_machine_stat(machine_stat | EMPED)
-	addtimer(CALLBACK(src, .proc/unemp), 600)
+	addtimer(CALLBACK(src, PROC_REF(unemp)), 600)
 	refresh_working()
 
 /obj/machinery/rnd/server/proc/unemp()

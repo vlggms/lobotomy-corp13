@@ -29,7 +29,7 @@
 /mob/living/simple_animal/hostile/abnormality/cube/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	GiveTarget(user)
-	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(die)), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/cube/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)

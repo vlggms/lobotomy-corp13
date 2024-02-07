@@ -34,7 +34,7 @@
 	to_chat(user, "<span class='userdanger'>READY.</span>")
 	force*=1.5
 	user.adjustBruteLoss(user.maxHealth*0.5)
-	addtimer(CALLBACK(src, .proc/Return, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 15 SECONDS)
 
 
 /obj/item/ego_weapon/city/vermillion/attack(mob/living/target, mob/living/carbon/human/user)

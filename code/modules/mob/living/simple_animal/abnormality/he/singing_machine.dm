@@ -103,7 +103,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		musicalAddicts |= user
 		user.apply_status_effect(STATUS_EFFECT_MUSIC) // Time to addict them.
 		SEND_SOUND(user, 'sound/abnormalities/singingmachine/addiction.ogg')
-		addtimer(CALLBACK(src, .proc/removeAddict, user), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(removeAddict), user), 5 MINUTES)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
@@ -164,7 +164,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	datum_reference.qliphoth_change(2)
 	grindNoise = new(list(src), TRUE)
 	musicNoise = new(list(src), TRUE)
-	addtimer(CALLBACK(src, .proc/stopPlaying), playLength) // This is the callback from earlier.
+	addtimer(CALLBACK(src, PROC_REF(stopPlaying)), playLength) // This is the callback from earlier.
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/driveInsane(list/addicts)
 	if(LAZYLEN(addicts))

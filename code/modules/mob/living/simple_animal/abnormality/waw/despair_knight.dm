@@ -159,8 +159,8 @@
 	. = ..()
 	if(user.stat != DEAD && !blessed_human && istype(user) && (work_type == ABNORMALITY_WORK_ATTACHMENT))
 		blessed_human = user
-		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
-		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
+		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
+		RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(BlessedDeath))
 		to_chat(user, span_nicegreen("You feel protected."))
 		user.physiology.red_mod *= 0.5
 		user.physiology.white_mod *= 0.5
@@ -175,5 +175,5 @@
 	. = ..()
 	icon_living = "despair_breach"
 	icon_state = icon_living
-	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 	return

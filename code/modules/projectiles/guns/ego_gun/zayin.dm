@@ -46,7 +46,7 @@
 		baldtargets += L
 		to_chat(L, "<span class='warning'>You have been hit by the baldy-bald psychological attack. If a non-bald person is reading this, they will be granted the privilege of going bald at an extremely rapid pace if they stay within range of [user]!</span>")
 	if(!burst_chain)
-		addtimer(CALLBACK(src, .proc/BaldBlast, user, baldtargets, TRUE), blast_delay)
+		addtimer(CALLBACK(src, PROC_REF(BaldBlast), user, baldtargets, TRUE), blast_delay)
 
 /obj/item/gun/ego_gun/pistol/tough/SpecialEgoCheck(mob/living/carbon/human/H)
 	if(HAS_TRAIT(H, TRAIT_BALD))
@@ -76,7 +76,7 @@
 	if(!user)
 		return
 	shrimp_chosen = user
-	RegisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH, .proc/ShrimpFuneral)
+	RegisterSignal(shrimp_chosen, COMSIG_LIVING_DEATH, PROC_REF(ShrimpFuneral))
 
 /obj/item/gun/ego_gun/pistol/soda/dropped(mob/user)
 	. = ..()
@@ -221,7 +221,7 @@
 			continue
 		L.adjustSanityLoss(pulse_healing)
 		to_chat(L, "<span class='nicegreen'>A pulse from [user] makes your mind feel a bit clearer.</span>")
-	addtimer(CALLBACK(src, .proc/HealPulse, user, count += 1), pulse_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(HealPulse), user, count += 1), pulse_cooldown)
 
 /obj/item/gun/ego_gun/pistol/nightshade
 	name = "nightshade"

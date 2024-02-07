@@ -16,15 +16,15 @@
 
 /datum/suppression/training/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnJoin))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
 		H.adjust_all_attribute_buffs(attribute_debuff_count_starting)
 		to_chat(H, "<span class='danger'>You feel weaker...</span>")
 		affected_mobs[H] = attribute_debuff_count
-		RegisterSignal(H, COMSIG_PARENT_QDELETING, .proc/RemoveFromAffectedMobs)
+		RegisterSignal(H, COMSIG_PARENT_QDELETING, PROC_REF(RemoveFromAffectedMobs))
 	current_debuff_amount = attribute_debuff_count_starting
 
 /datum/suppression/training/End(silent = FALSE)
@@ -47,7 +47,7 @@
 	H.adjust_all_attribute_buffs(current_debuff_amount) // Suffer
 	to_chat(H, "<span class='danger'>You feel weaker...</span>")
 	affected_mobs[H] = current_debuff_amount
-	RegisterSignal(H, COMSIG_PARENT_QDELETING, .proc/RemoveFromAffectedMobs)
+	RegisterSignal(H, COMSIG_PARENT_QDELETING, PROC_REF(RemoveFromAffectedMobs))
 	return TRUE
 
 // Whenever an affected mob gets deleted

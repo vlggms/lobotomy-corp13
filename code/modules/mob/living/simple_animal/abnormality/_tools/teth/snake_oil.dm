@@ -36,7 +36,7 @@
 	alert_type = null
 
 /datum/status_effect/snake_oil/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/DamageCheck)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(DamageCheck))
 	return ..()
 
 /datum/status_effect/snake_oil/on_remove()
@@ -45,7 +45,7 @@
 
 /datum/status_effect/snake_oil/proc/DamageCheck()
 	SIGNAL_HANDLER
-	addtimer(CALLBACK(src, .proc/HealthCheck), 1) //Gives health time to update
+	addtimer(CALLBACK(src, PROC_REF(HealthCheck)), 1) //Gives health time to update
 
 /datum/status_effect/snake_oil/proc/HealthCheck()
 	var/mob/living/carbon/human/H = owner

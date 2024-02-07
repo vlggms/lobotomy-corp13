@@ -159,7 +159,7 @@
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
-	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1.5 SECONDS)//how long it takes for the dash to initiate. Set it back to 1 second when thunderbird gets directional sprites
+	addtimer(CALLBACK(src, PROC_REF(do_dash), dir_to_target, 0), 1.5 SECONDS)//how long it takes for the dash to initiate. Set it back to 1 second when thunderbird gets directional sprites
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 100, 1)
 
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/do_dash(move_dir, times_ran)
@@ -207,7 +207,7 @@
 				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
 			if(!(L in been_hit))
 				been_hit += L
-	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
 
 /*---Qliphoth Counter---*/
 //counter goes up when you're above 80% hp on a good result, 50% down otherwise
@@ -280,7 +280,7 @@
 
 /obj/effect/thunderbolt/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 3 SECONDS)
 
 //Zombie conversion through lightning bombs
 /obj/effect/thunderbolt/proc/Convert(mob/living/carbon/human/H)
@@ -379,7 +379,7 @@
 
 //reanimated if thunderbird isn't suppressed within 30 seconds
 /mob/living/simple_animal/hostile/thunder_zombie/death(gibbed)
-	addtimer(CALLBACK(src, .proc/resurrect), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(resurrect)), 30 SECONDS)
 	return ..()
 
 /mob/living/simple_animal/hostile/thunder_zombie/proc/resurrect()

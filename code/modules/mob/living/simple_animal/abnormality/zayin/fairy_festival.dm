@@ -58,12 +58,12 @@
 			return
 		flick("fairy_blessing",src)
 		protected_people += user
-		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/FairyPause)
-		RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/FairyRestart)
+		RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(FairyPause))
+		RegisterSignal(user, COMSIG_WORK_COMPLETED, PROC_REF(FairyRestart))
 		to_chat(user, span_nicegreen("You feel at peace under the fairies' care."))
 		playsound(get_turf(user), 'sound/abnormalities/fairyfestival/fairylaugh.ogg', 50, 0, 2)
 		user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_heal", -MUTATIONS_LAYER))
-		addtimer(CALLBACK(src, .proc/FairyEnd, user), heal_duration)
+		addtimer(CALLBACK(src, PROC_REF(FairyEnd), user), heal_duration)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
@@ -109,7 +109,7 @@
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
 		SummonGuys()
-		addtimer(CALLBACK(src, .proc/SummonGuys), 20 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(SummonGuys)), 20 SECONDS)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/SummonGuys()

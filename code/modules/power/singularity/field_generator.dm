@@ -58,7 +58,7 @@ no power level overlay is currently in the overlays list.
 	. = ..()
 	fields = list()
 	connected_gens = list()
-	RegisterSignal(src, COMSIG_ATOM_SINGULARITY_TRY_MOVE, .proc/block_singularity_if_active)
+	RegisterSignal(src, COMSIG_ATOM_SINGULARITY_TRY_MOVE, PROC_REF(block_singularity_if_active))
 
 /obj/machinery/field/generator/anchored/Initialize()
 	. = ..()
@@ -189,8 +189,8 @@ no power level overlay is currently in the overlays list.
 	active = FG_OFFLINE
 	CanAtmosPass = ATMOS_PASS_YES
 	air_update_turf(TRUE, FALSE)
-	INVOKE_ASYNC(src, .proc/cleanup)
-	addtimer(CALLBACK(src, .proc/cool_down), 50)
+	INVOKE_ASYNC(src, PROC_REF(cleanup))
+	addtimer(CALLBACK(src, PROC_REF(cool_down)), 50)
 
 /obj/machinery/field/generator/proc/cool_down()
 	if(active || warming_up <= 0)
@@ -198,11 +198,11 @@ no power level overlay is currently in the overlays list.
 	warming_up--
 	update_icon()
 	if(warming_up > 0)
-		addtimer(CALLBACK(src, .proc/cool_down), 50)
+		addtimer(CALLBACK(src, PROC_REF(cool_down)), 50)
 
 /obj/machinery/field/generator/proc/turn_on()
 	active = FG_CHARGING
-	addtimer(CALLBACK(src, .proc/warm_up), 50)
+	addtimer(CALLBACK(src, PROC_REF(warm_up)), 50)
 
 /obj/machinery/field/generator/proc/warm_up()
 	if(!active)
@@ -212,7 +212,7 @@ no power level overlay is currently in the overlays list.
 	if(warming_up >= 3)
 		start_fields()
 	else
-		addtimer(CALLBACK(src, .proc/warm_up), 50)
+		addtimer(CALLBACK(src, PROC_REF(warm_up)), 50)
 
 /obj/machinery/field/generator/proc/calc_power(set_power_draw)
 	var/power_draw = 2 + fields.len
@@ -267,10 +267,10 @@ no power level overlay is currently in the overlays list.
 	move_resist = INFINITY
 	CanAtmosPass = ATMOS_PASS_NO
 	air_update_turf(TRUE, TRUE)
-	addtimer(CALLBACK(src, .proc/setup_field, 1), 1)
-	addtimer(CALLBACK(src, .proc/setup_field, 2), 2)
-	addtimer(CALLBACK(src, .proc/setup_field, 4), 3)
-	addtimer(CALLBACK(src, .proc/setup_field, 8), 4)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 1), 1)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 2), 2)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 4), 3)
+	addtimer(CALLBACK(src, PROC_REF(setup_field), 8), 4)
 	addtimer(VARSET_CALLBACK(src, active, FG_ONLINE), 5)
 
 /obj/machinery/field/generator/proc/setup_field(NSEW)

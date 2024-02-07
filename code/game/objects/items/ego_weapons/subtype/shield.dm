@@ -65,7 +65,7 @@
 	if(cleaning)
 		DropStance()
 	else
-		projectile_timer = addtimer(CALLBACK(src, .proc/DropStance), projectile_block_duration, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+		projectile_timer = addtimer(CALLBACK(src, PROC_REF(DropStance)), projectile_block_duration, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/shield/proc/DropStance()
 	attacking = FALSE
@@ -94,11 +94,11 @@
 		shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
 		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
 		if(cleaning)
 			DisableBlock(shield_user)
 		else
-			parry_timer = addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), block_duration, TIMER_STOPPABLE)
+			parry_timer = addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), block_duration, TIMER_STOPPABLE)
 		to_chat(user,"<span class='userdanger'>[block_message]</span>")
 		return TRUE
 
@@ -115,7 +115,7 @@
 	if(cleaning)
 		BlockCooldown(user)
 	else
-		parry_timer = addtimer(CALLBACK(src, .proc/BlockCooldown, user), block_cooldown, TIMER_STOPPABLE)
+		parry_timer = addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), block_cooldown, TIMER_STOPPABLE)
 	if (!block_success)
 		BlockFail(user)
 
@@ -134,7 +134,7 @@
 	if(cleaning)
 		RemoveDebuff(user)
 	else
-		addtimer(CALLBACK(src, .proc/RemoveDebuff, user), debuff_duration)
+		addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), debuff_duration)
 
 /obj/item/ego_weapon/shield/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,"<span class='nicegreen'>You recollect your stance.</span>")

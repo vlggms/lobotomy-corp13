@@ -29,7 +29,7 @@
 		H.remove_hud_from(M)
 	if(HUD_trait)
 		REMOVE_TRAIT(M, HUD_trait, ORGAN_TRAIT)
-	addtimer(CALLBACK(src, .proc/rotMalfunction), 10)
+	addtimer(CALLBACK(src, PROC_REF(rotMalfunction)), 10)
 	..()
 
 /obj/item/organ/cyberimp/eyes/hud/proc/rotMalfunction() //Cannot be removed and reused

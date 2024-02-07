@@ -58,7 +58,7 @@
 	var/steps = rand(1,4)
 	for(var/i in 1 to steps)
 		step_away(src,loc)
-	addtimer(CALLBACK(src, .proc/detonate), rand(15,60))
+	addtimer(CALLBACK(src, PROC_REF(detonate)), rand(15,60))
 
 /obj/item/grenade/clusterbuster/segment/detonate(mob/living/lanced_by)
 	new payload_spawner(drop_location(), payload, rand(min_spawned,max_spawned))

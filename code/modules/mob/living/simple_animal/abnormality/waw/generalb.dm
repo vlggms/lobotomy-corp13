@@ -110,7 +110,7 @@
 * Root code is called so that she is taken out of godmode. Then update_icon() is called.
 */
 /mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "My queen? I hear your cries...", 25))
 	icon = 'ModularTegustation/Teguicons/48x96.dmi'
 	flick("generalbee_", src)
 	SLEEP_CHECK_DEATH(80)
@@ -246,7 +246,7 @@
 
 /obj/effect/beeshell/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 3.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 3.5 SECONDS)
 
 /obj/effect/beeshell/New(loc, ...)
 	. = ..()

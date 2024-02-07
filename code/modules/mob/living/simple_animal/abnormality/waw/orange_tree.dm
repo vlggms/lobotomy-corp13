@@ -195,7 +195,7 @@
 /obj/effect/temp_visual/dancing_lights/Initialize()
 	..()
 	animate(src, alpha = rand(125,200), time = 5)
-	addtimer(CALLBACK(src, .proc/fade_out), 5)
+	addtimer(CALLBACK(src, PROC_REF(fade_out)), 5)
 
 /obj/effect/temp_visual/dancing_lights/proc/fade_out()
 	animate(src, alpha = 0, time = duration-5)

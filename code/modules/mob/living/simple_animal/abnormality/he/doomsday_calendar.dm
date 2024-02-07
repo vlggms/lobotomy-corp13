@@ -67,7 +67,7 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Initialize()
 	. = ..()
 	updateWorkMaximum()
-	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
+	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, PROC_REF(OnAbnoWork))
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Move()
 	return FALSE

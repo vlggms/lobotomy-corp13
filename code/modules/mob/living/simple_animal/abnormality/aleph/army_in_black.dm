@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(army)
 //checks for deaths
 /mob/living/simple_animal/hostile/abnormality/army/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	adds_max = clamp((LAZYLEN(GLOB.player_list)/ 2),2, 5)//between 2 and 5 mooks on breach, one for every 2 people.
 
 //stops the previous snippet from destroying the server
@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(army)
 		for(var/turf/T in spawns)//this picks the first few shuffled xeno spawns. Maybe change it to a different type of loop
 			var/mob/living/simple_animal/hostile/army_enemy/E = new(get_turf(T))
 			summoned_army += E//the actual army list
-			RegisterSignal(E, COMSIG_PARENT_QDELETING, .proc/ArmyDeath)
+			RegisterSignal(E, COMSIG_PARENT_QDELETING, PROC_REF(ArmyDeath))
 			spawns -= T
 			break
 
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(army)
 
 /mob/living/simple_animal/hostile/army_enemy/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/Explode), 120 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Explode)), 120 SECONDS)
 	var/list/depts = shuffle(GLOB.department_centers)
 	var/list/depts_far = list()
 	if(!LAZYLEN(depts))
@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(army)
 		var/obj/effect/pink_beacon/P = new(get_turf(T))//beacon
 		targetted_beacon = P
 		P.targetted_army = src
-		INVOKE_ASYNC(src, .proc/SetSpeed)
+		INVOKE_ASYNC(src, PROC_REF(SetSpeed))
 		break
 	if(!targetted_beacon)//if none of the above are picked, grab one that's further away
 		for(var/turf/T in depts_far)
@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(army)
 			var/obj/effect/pink_beacon/P = new(get_turf(T))//beacon
 			targetted_beacon = P
 			P.targetted_army = src
-			INVOKE_ASYNC(src, .proc/SetSpeed)
+			INVOKE_ASYNC(src, PROC_REF(SetSpeed))
 			break
 
 /mob/living/simple_animal/hostile/army_enemy/death()

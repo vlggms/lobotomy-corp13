@@ -35,7 +35,7 @@
 		return
 	if(listeningTo)
 		UnregisterSignal(listeningTo, COMSIG_MOVABLE_MOVED)
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/Pickup_fish)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(Pickup_fish))
 	listeningTo = user
 
 /obj/item/storage/bag/fish/dropped()

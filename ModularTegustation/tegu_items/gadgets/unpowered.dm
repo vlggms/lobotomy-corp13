@@ -114,7 +114,7 @@
 			var/thing_to_spawn = commandtypes[commandtype]
 			var/thing_spawned = new thing_to_spawn(get_turf(target))
 			current_commands++
-			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, .proc/ReduceCommandAmount)
+			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, PROC_REF(ReduceCommandAmount))
 		else
 			to_chat(user, span_warning("CALIBRATION ERROR."))
 		cooldown = world.time + commanddelay
@@ -159,7 +159,7 @@
 		return
 	user.visible_message(span_notice("[user] takes a tool out of [src] and begins scanning [target]."), span_notice("You begin scanning [target]."))
 	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, target, 7)))
+	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, target, 7)))
 		return
 	check1e = FALSE
 	if(ishuman(target))
@@ -221,7 +221,7 @@
 
 /datum/status_effect/invitation/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_LIVING_DEATH, .proc/invite)
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(invite))
 
 /datum/status_effect/invitation/proc/invite()
 	SIGNAL_HANDLER
@@ -282,7 +282,7 @@
 		to_chat(user, span_notice("The [R] is already modified."))
 		return
 	to_chat(user, span_notice("You begin tinkering with the [R]."))
-	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, .proc/ModifiedCheck, R)))
+	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, PROC_REF(ModifiedCheck), R)))
 		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
 		return
 	R.modified = TRUE
@@ -308,7 +308,7 @@
 		choice_list[modes] = image(icon = icon, icon_state = modes+"_rak")
 	choice_list[RAK_BURST_MODE] = image(icon = icon, icon_state = "sdrak")
 
-	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 	if(!choice || !check_menu(user))
 		return
 
@@ -595,7 +595,7 @@
 /obj/item/info_printer/proc/Scan(atom/A, mob/living/user)
 	if(!isabnormalitymob(A))
 		return FALSE
-	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, A, 7)))
+	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, A, 7)))
 		var/list/information = GenerateInfo(A)
 		if(information)
 			var/datum/browser/popup = new(user, "information", FALSE, 300, 350)

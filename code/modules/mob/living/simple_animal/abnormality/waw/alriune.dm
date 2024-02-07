@@ -75,7 +75,7 @@
 			// Attack visual effect, so to speak
 			for(var/turf/T in view(7, get_turf(src)))
 				animate(T, color = COLOR_PINK, time = 2)
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/SetColorOverTime, T, initial(T.color), (2 SECONDS)), 4)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(SetColorOverTime), T, initial(T.color), (2 SECONDS)), 4)
 			for(var/mob/living/L in livinginview(7, get_turf(src)))
 				if(faction_check_mob(L))
 					continue
@@ -92,7 +92,7 @@
 						playsound(H, 'sound/abnormalities/alriune/kill.ogg', 75, TRUE)
 						H.death()
 			petals_next = world.time + (petals_next_time * 2)
-			addtimer(CALLBACK(src, .proc/TeleportAway), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(TeleportAway)), 2 SECONDS)
 		else
 			playsound(src, 'sound/abnormalities/alriune/timer.ogg', 50, FALSE, 12)
 		update_icon()

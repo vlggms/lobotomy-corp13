@@ -27,7 +27,7 @@
 		qdel(src)
 		return
 	//will proc at least 5 times before the loop stops.
-	addtimer(CALLBACK(src, .proc/CatchFish), fishin_cooldown + fishin_cooldown_delay)
+	addtimer(CALLBACK(src, PROC_REF(CatchFish)), fishin_cooldown + fishin_cooldown_delay)
 
 /obj/structure/destructible/fishing_net/examine(mob/user)
 	. = ..()
@@ -54,4 +54,4 @@
 	icon_state = "trawling_net_full"
 	update_icon()
 	fishin_cooldown_delay = rand(0, 5) SECONDS
-	addtimer(CALLBACK(src, .proc/CatchFish), fishin_cooldown + fishin_cooldown_delay)
+	addtimer(CALLBACK(src, PROC_REF(CatchFish)), fishin_cooldown + fishin_cooldown_delay)
