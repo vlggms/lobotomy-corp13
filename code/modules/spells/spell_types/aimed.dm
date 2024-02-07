@@ -202,6 +202,25 @@
 	active_msg = "You activate the power of Fairy singularity!"
 	deactive_msg = "You let the energy flow out of your hands back into its storage space..."
 	projectile_type = /obj/projectile/beam/fairy
+	var/damage_type = BLACK_DAMAGE
+
+/obj/effect/proc_holder/spell/aimed/fairy/fire_projectile(mob/living/user, atom/target)
+	current_amount--
+	var/list/fired_projs = list()
+	for(var/i in 1 to projectiles_per_fire)
+		var/obj/projectile/P = new projectile_type(user.loc)
+		P.damage_type = damage_type
+		if(damage_type == PALE_DAMAGE)
+			P.damage = 30
+		P.firer = user
+		P.preparePixelProjectile(target, user)
+		for(var/V in projectile_var_overrides)
+			if(P.vars[V])
+				P.vv_edit_var(V, projectile_var_overrides[V])
+		ready_projectile(P, target, user, i)
+		P.fire()
+		fired_projs += P
+	return fired_projs
 
 /obj/effect/proc_holder/spell/aimed/pillar
 	name = "Pillar"
@@ -217,10 +236,20 @@
 	deactive_msg = "You remove the pillar from this plane, for now..."
 	projectile_type = /obj/projectile/magic/aoe/pillar
 	var/fire_delay = 1 SECONDS
+	var/damage_type = BLACK_DAMAGE
 
 /obj/effect/proc_holder/spell/aimed/pillar/fire_projectile(mob/living/user, atom/target)
 	current_amount--
 	var/list/fired_projs = list()
+	switch(damage_type)
+		if(RED_DAMAGE)
+			projectile_type = /obj/projectile/magic/aoe/pillar/red
+		if(WHITE_DAMAGE)
+			projectile_type = /obj/projectile/magic/aoe/pillar/white
+		if(BLACK_DAMAGE)
+			projectile_type = /obj/projectile/magic/aoe/pillar
+		if(PALE_DAMAGE)
+			projectile_type = /obj/projectile/magic/aoe/pillar/pale
 	for(var/i in 1 to projectiles_per_fire)
 		var/obj/projectile/P = new projectile_type(get_turf(user))
 		P.firer = user
