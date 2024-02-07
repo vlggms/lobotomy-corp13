@@ -114,7 +114,7 @@
 
 /mob/living/simple_animal/hostile/regalrat/controlled/Initialize()
 	. = ..()
-	INVOKE_ASYNC(src, .proc/get_player)
+	INVOKE_ASYNC(src, PROC_REF(get_player))
 
 
 /**

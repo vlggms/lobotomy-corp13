@@ -12,8 +12,8 @@
 
 /datum/ordeal/boss/pink_midnight/Run()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/MobDeathWrapper)
-	addtimer(CALLBACK(src, .proc/OnMobDeath), 2.5 MINUTES, TIMER_LOOP) // Some abnos qdel, if the last one does then this is the failsafe.
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(MobDeathWrapper))
+	addtimer(CALLBACK(src, PROC_REF(OnMobDeath)), 2.5 MINUTES, TIMER_LOOP) // Some abnos qdel, if the last one does then this is the failsafe.
 
 /datum/ordeal/boss/pink_midnight/End()
 	. = ..()

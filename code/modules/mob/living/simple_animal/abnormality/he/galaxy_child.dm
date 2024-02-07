@@ -67,7 +67,7 @@
 		galaxy_friend |= user
 		heal_amount += heal_mod
 		damage_amount += damage_mod
-		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/FriendDeath)
+		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
 		src.say("I really, really like you! This pebble is super important to me! Please keep it with you forever.")
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/GiftUser(mob/living/carbon/human/user, pe, chance)

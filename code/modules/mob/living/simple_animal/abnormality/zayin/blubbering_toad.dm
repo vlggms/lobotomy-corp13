@@ -84,7 +84,7 @@
 		return
 	var/num = pick(1,2,3,4)
 	playsound(get_turf(src), "sound/abnormalities/blubbering_toad/blurble[num].ogg", 100, FALSE)
-	addtimer(CALLBACK(src, .proc/BlubberLoop), rand(3,10) SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(BlubberLoop)), rand(3,10) SECONDS)
 	if(IsContained() && (healing_pulse_amount > 0)) //isn't breached and has charges left
 		healing_pulse_amount --
 		HealPulse()
@@ -221,7 +221,7 @@
 	if(H.health < 0)
 		H.gib()
 		if(!persistant)
-			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(ReturnCell)), 10 SECONDS)
 			return
 		idiot = null
 		for(var/mob/living/carbon/human/HU in GLOB.player_list)
@@ -234,7 +234,7 @@
 			if(idiot.health > HU.health)
 				idiot = HU
 		if(isnull(idiot))
-			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(ReturnCell)), 10 SECONDS)
 			return
 		SetIdiot(idiot)
 

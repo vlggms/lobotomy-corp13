@@ -98,9 +98,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Hell
-	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/PostSpawn()
 	. = ..()
@@ -221,7 +221,7 @@
 	umbrella_cooldown = world.time + SWAN_UMBRELLA_COOLDOWN
 	update_icon_state()
 	visible_message(span_userdanger("[src] opens up their umbrella!"), span_notice("You open up your umbrella"))
-	addtimer(CALLBACK(src, .proc/CloseUmbrella), SWAN_UMBRELLA_DURATION)
+	addtimer(CALLBACK(src, PROC_REF(CloseUmbrella)), SWAN_UMBRELLA_DURATION)
 
 /mob/living/simple_animal/hostile/abnormality/black_swan/proc/CloseUmbrella()
 	if(QDELETED(src))

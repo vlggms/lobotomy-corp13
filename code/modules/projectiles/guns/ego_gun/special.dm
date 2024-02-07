@@ -134,4 +134,4 @@
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
 				L.throw_at(throw_target, rand(1, 2), whack_speed, user)
-	addtimer(CALLBACK(src, .proc/Recharge, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Recharge), user), 15 SECONDS)

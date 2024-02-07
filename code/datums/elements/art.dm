@@ -8,7 +8,7 @@
 	if(!isatom(target) || isarea(target))
 		return ELEMENT_INCOMPATIBLE
 	impressiveness = impress
-	RegisterSignal(target, COMSIG_PARENT_EXAMINE, .proc/on_examine)
+	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
 
 /datum/element/art/Detach(datum/target)
 	UnregisterSignal(target, COMSIG_PARENT_EXAMINE)
@@ -18,7 +18,7 @@
 	SIGNAL_HANDLER
 
 	if(!DOING_INTERACTION_WITH_TARGET(user, source))
-		INVOKE_ASYNC(src, .proc/appraise, source, user) //Do not sleep the proc.
+		INVOKE_ASYNC(src, PROC_REF(appraise), source, user) //Do not sleep the proc.
 
 /datum/element/art/proc/appraise(atom/source, mob/user)
 	to_chat(user, "<span class='notice'>You start appraising [source]...</span>")

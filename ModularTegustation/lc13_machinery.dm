@@ -95,7 +95,7 @@
 
 /obj/machinery/abnormality_monitor/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/UpdateNetwork) //return a list of the abnormalities
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(UpdateNetwork)) //return a list of the abnormalities
 
 /obj/machinery/abnormality_monitor/examine(mob/user)
 	. = ..()
@@ -120,7 +120,7 @@
 
 /obj/machinery/abnormality_monitor/proc/UpdateNetwork()
 	SIGNAL_HANDLER
-	INVOKE_ASYNC(src, .proc/PingFacilityNetwork)
+	INVOKE_ASYNC(src, PROC_REF(PingFacilityNetwork))
 
 /obj/machinery/abnormality_monitor/proc/PingFacilityNetwork()
 	sleep(20) //2 seconds i think. Delay so that the most recently linked containment panel reads its console.

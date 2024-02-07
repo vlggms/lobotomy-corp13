@@ -124,7 +124,7 @@
 		break
 	if(found)
 		COOLDOWN_START(src, pulse, pulse_cooldown)
-		INVOKE_ASYNC(src, .proc/Pulse)
+		INVOKE_ASYNC(src, PROC_REF(Pulse))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/yin/death(gibbed)
@@ -133,7 +133,7 @@
 		return ..()
 	if(SSlobotomy_events.yin_downed)
 		return FALSE
-	INVOKE_ASYNC(src, .proc/BeDead)
+	INVOKE_ASYNC(src, PROC_REF(BeDead))
 
 /mob/living/simple_animal/hostile/abnormality/yin/proc/BeDead()
 	icon_state = icon_dead

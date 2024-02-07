@@ -20,10 +20,10 @@
 	// unarmed attack is a special case for gunboots so they can shoot someone you stomp on. This happens 100% of the time you kick, ignoring shot_prob
 	if(islist(signal_or_sig_list) && (COMSIG_HUMAN_MELEE_UNARMED_ATTACK in signal_or_sig_list))
 		signal_or_sig_list -= COMSIG_HUMAN_MELEE_UNARMED_ATTACK
-		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/check_equip)
-		RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/check_dropped)
+		RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(check_equip))
+		RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(check_dropped))
 
-	RegisterSignal(parent, signal_or_sig_list, .proc/shoot_randomly) //Registers all the signals in signal_or_sig_list.
+	RegisterSignal(parent, signal_or_sig_list, PROC_REF(shoot_randomly)) //Registers all the signals in signal_or_sig_list.
 
 /// Whatever signals you hook up (minus the unarmed attack case) goes through here, and fires a projectile at a random tile around the parent's turf
 /datum/component/projectile_shooter/proc/shoot_randomly()
@@ -33,7 +33,7 @@
 
 	var/atom/parent_atom = parent
 	var/turf/random_target = get_offset_target_turf(get_turf(parent_atom), rand(-3, 3), rand(-3,3))
-	INVOKE_ASYNC(src, .proc/pew, random_target)
+	INVOKE_ASYNC(src, PROC_REF(pew), random_target)
 
 /// This is where the magic happens, and a projectile is made and fired at wherever
 /datum/component/projectile_shooter/proc/pew(atom/target)
@@ -63,12 +63,12 @@
 		return
 	var/mob/living/attacked_living = attacked_atom
 	if(attacked_living.body_position == LYING_DOWN)
-		INVOKE_ASYNC(src, .proc/pew, attacked_living)
+		INVOKE_ASYNC(src, PROC_REF(pew), attacked_living)
 
 /// As above, special case for gun shoes so they can kick and shoot
 /datum/component/projectile_shooter/proc/check_equip(datum/source, mob/living/user, slot)
 	SIGNAL_HANDLER
-	RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, .proc/check_kick)
+	RegisterSignal(user, COMSIG_HUMAN_MELEE_UNARMED_ATTACK, PROC_REF(check_kick))
 
 /// As above, special case for gun shoes so they can kick and shoot
 /datum/component/projectile_shooter/proc/check_dropped(datum/source, mob/living/user)

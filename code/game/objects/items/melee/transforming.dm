@@ -30,7 +30,7 @@
 			updateEmbedding()
 	if(sharpness)
 		AddComponent(/datum/component/butchering, 50, 100, 0, hitsound)
-	RegisterSignal(src, COMSIG_ITEM_SHARPEN_ACT, .proc/on_sharpen)
+	RegisterSignal(src, COMSIG_ITEM_SHARPEN_ACT, PROC_REF(on_sharpen))
 
 /obj/item/melee/transforming/attack_self(mob/living/carbon/user)
 	if(transform_weapon(user))

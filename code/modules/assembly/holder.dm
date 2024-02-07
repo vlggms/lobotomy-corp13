@@ -25,7 +25,7 @@
 
 /obj/item/assembly_holder/Initialize(mapload)
 	if(mapload && preassembled)
-		addtimer(CALLBACK(src, .proc/assemble_contents), 0)
+		addtimer(CALLBACK(src, PROC_REF(assemble_contents)), 0)
 	. = ..()
 
 /obj/item/assembly_holder/proc/assemble(obj/item/assembly/A, obj/item/assembly/A2, mob/user)

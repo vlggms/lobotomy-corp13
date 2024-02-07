@@ -134,15 +134,15 @@
 		return
 	dir = SOUTH
 	ChangeReflection()
-	reflect_timer = addtimer(CALLBACK(src, .proc/ReflectionCheck), 3 MINUTES, TIMER_STOPPABLE)
+	reflect_timer = addtimer(CALLBACK(src, PROC_REF(ReflectionCheck)), 3 MINUTES, TIMER_STOPPABLE)
 
 //Work
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/ReflectionCheck()
 	if(datum_reference.working)
-		reflect_timer = addtimer(CALLBACK(src, .proc/ReflectionCheck), 30 SECONDS, TIMER_STOPPABLE)
+		reflect_timer = addtimer(CALLBACK(src, PROC_REF(ReflectionCheck)), 30 SECONDS, TIMER_STOPPABLE)
 		return
 	ChangeReflection()
-	reflect_timer = addtimer(CALLBACK(src, .proc/ReflectionCheck), 3 MINUTES, TIMER_STOPPABLE)
+	reflect_timer = addtimer(CALLBACK(src, PROC_REF(ReflectionCheck)), 3 MINUTES, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/ChangeReflection()
 	var/list/potentialmarked = list()
@@ -701,7 +701,7 @@
 	whip_attack_cooldown_time = 5 SECONDS
 	heal_percent_per_second = 0.0085
 	if(status_flags & GODMODE) // Still contained
-		addtimer(CALLBACK(src, .proc/ZeroQliphoth), rand(5 SECONDS, 10 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), rand(5 SECONDS, 10 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/examine(mob/user)
 	if(disguise)

@@ -223,7 +223,7 @@
 
 /obj/effect/sled/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/FadeOut), 5)
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 5)
 
 /obj/effect/sled/proc/FadeOut()
 	animate(src, alpha = 0, time = 5)

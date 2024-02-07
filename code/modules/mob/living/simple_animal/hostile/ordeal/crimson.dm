@@ -55,7 +55,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/death(gibbed)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 15)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/TeleportAway()
@@ -122,7 +122,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/death(gibbed)
 	animate(src, transform = matrix()*1.25, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, .proc/DeathExplosion), 5)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 5)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion()
@@ -139,7 +139,7 @@
 	for(var/i = 1 to mob_spawn_amount)
 		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/nc = new(T)
-		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/.proc/TeleportAway), 1)
+		addtimer(CALLBACK(nc, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ordeal/crimson_clown, TeleportAway)), 1)
 		if(ordeal_reference)
 			nc.ordeal_reference = ordeal_reference
 			ordeal_reference.ordeal_mobs += nc
@@ -282,7 +282,7 @@
 			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			if(!(L in been_hit))
 				been_hit += L
-	addtimer(CALLBACK(src, .proc/do_roll, move_dir, (times_ran + 1)), 1.5)
+	addtimer(CALLBACK(src, PROC_REF(do_roll), move_dir, (times_ran + 1)), 1.5)
 
 // Crimson midnight
 // Tent
@@ -350,7 +350,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/death(gibbed)
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_dead.ogg', 30, 0)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 2.8 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 2.8 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 2.8 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/proc/DeathExplosion()
@@ -536,7 +536,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/Initialize() //this should effectively limit how many are active at a time
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/TeleportAway()
 	if(console_attack_counter >= 10)
@@ -558,7 +558,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/Initialize()
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 45 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 45 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 45 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/death(gibbed)
 	. = ..()
@@ -579,7 +579,7 @@
 	for(var/i = 1 to mob_spawn_amount)
 		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/nc = new(T)
-		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/.proc/TeleportAway), 1)
+		addtimer(CALLBACK(nc, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned, TeleportAway)), 1)
 		if(ordeal_reference)
 			nc.ordeal_reference = ordeal_reference
 			ordeal_reference.ordeal_mobs += nc
@@ -597,7 +597,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/Initialize()
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/death(gibbed)
 	. = ..()

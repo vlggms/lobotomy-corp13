@@ -15,7 +15,7 @@
 	playsound(get_turf(user), 'sound/abnormalities/fragment/sing.ogg', 50, 0, 4)
 	Pulse(user)
 	for(var/i = 1 to damage_count - 1)
-		addtimer(CALLBACK(src, .proc/Pulse, user), i*3)
+		addtimer(CALLBACK(src, PROC_REF(Pulse), user), i*3)
 	return ..()
 
 /obj/effect/proc_holder/ability/universe_song/proc/Pulse(mob/user)
@@ -282,7 +282,7 @@
 		animate(F, alpha = 0, time = 5)
 		return
 	animate(F, alpha = 0, time = 5)
-	INVOKE_ASYNC(src, .proc/FireExplosion, get_turf(user))
+	INVOKE_ASYNC(src, PROC_REF(FireExplosion), get_turf(user))
 	return ..()
 
 /obj/effect/proc_holder/ability/fire_explosion/proc/FireExplosion(turf/T)
@@ -428,7 +428,7 @@
 	var/list/targets_hit = list()
 
 /obj/effect/proc_holder/ability/justice_and_balance/Perform(target, user)
-	INVOKE_ASYNC(src, .proc/Smash, user, charges)
+	INVOKE_ASYNC(src, PROC_REF(Smash), user, charges)
 	charges--
 	if(charges < 1)
 		charges = max_charges
@@ -543,7 +543,7 @@
 
 /datum/status_effect/punishment/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/Rage)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(Rage))
 
 /datum/status_effect/punishment/proc/Rage(mob/living/sorce, obj/item/thing, mob/living/attacker)
 	SIGNAL_HANDLER

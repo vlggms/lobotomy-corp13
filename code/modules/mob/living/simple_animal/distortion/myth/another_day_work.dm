@@ -66,7 +66,7 @@
 		qdel(I)
 		say("You really mean it? A paid vacation?")
 		can_act = FALSE
-		addtimer(CALLBACK(src,.proc/Unmanifest),3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Unmanifest)),3 SECONDS)
 
 /mob/living/simple_animal/hostile/distortion/another_day_work/OpenFire(atom/A)
 	if(!can_act)
@@ -145,7 +145,7 @@
 	var/gun_cooldown_time = 5 SECONDS //this is amazing for pvp, so long cooldown
 
 /obj/item/ego_weapon/waging/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/waging/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)

@@ -23,9 +23,9 @@
 
 /datum/suppression/records/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnQlipMeltdown)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SWAP, .proc/OnAbnoSwap)
-	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnQlipMeltdown))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SWAP, PROC_REF(OnAbnoSwap))
+	addtimer(CALLBACK(src, PROC_REF(TeleportLivingMobs)), teleport_interval)
 
 /datum/suppression/records/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)
@@ -122,9 +122,9 @@
 		if(!LAZYLEN(valid_mobs))
 			break
 		var/mob/living/L = pick(valid_mobs)
-		addtimer(CALLBACK(src, .proc/TryToTeleportMob, L), rand(0, 6))
+		addtimer(CALLBACK(src, PROC_REF(TryToTeleportMob), L), rand(0, 6))
 		valid_mobs -= L
-	addtimer(CALLBACK(src, .proc/TeleportLivingMobs), teleport_interval)
+	addtimer(CALLBACK(src, PROC_REF(TeleportLivingMobs)), teleport_interval)
 
 /datum/suppression/records/proc/TryToTeleportMob(mob/living/L)
 	if(QDELETED(L))

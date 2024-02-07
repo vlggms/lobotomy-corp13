@@ -138,11 +138,11 @@
 		icon_state = "yang_blow"
 		exploding = TRUE
 		SSlobotomy_events.yang_downed = TRUE
-		addtimer(CALLBACK(src, .proc/explode), explosion_timer)
+		addtimer(CALLBACK(src, PROC_REF(explode)), explosion_timer)
 		return
 	if(SSlobotomy_events.yang_downed)
 		return
-	INVOKE_ASYNC(src, .proc/BeDead)
+	INVOKE_ASYNC(src, PROC_REF(BeDead))
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/BeDead()
 	icon_state = icon_dead

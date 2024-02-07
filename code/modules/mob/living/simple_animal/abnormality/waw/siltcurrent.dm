@@ -213,7 +213,7 @@
 	. = ..()
 	icon_living = "current_breach"
 	//icon_state = icon_living
-	addtimer(CALLBACK(src, .proc/OxygenLoss), 5 SECONDS, TIMER_LOOP)
+	addtimer(CALLBACK(src, PROC_REF(OxygenLoss)), 5 SECONDS, TIMER_LOOP)
 	for(var/mob/living/L in GLOB.player_list)//Spawns Flotsams in the halls and notifies people that it's out.
 		if(L.z != z || L.stat >= HARD_CRIT)
 			continue

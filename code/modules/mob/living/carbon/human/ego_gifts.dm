@@ -886,10 +886,10 @@
 
 /datum/ego_gifts/aroma/Initialize(mob/living/carbon/human/user)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
 
 /datum/ego_gifts/aroma/Remove(mob/living/carbon/human/user)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
 	return ..()
 
 /datum/ego_gifts/aroma/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)

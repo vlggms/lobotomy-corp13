@@ -41,8 +41,8 @@
 	var/level_mod
 
 /datum/status_effect/dr_jekyll/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/HydeDam)
-	RegisterSignal(owner, COMSIG_FEAR_EFFECT, .proc/HydeDam)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(HydeDam))
+	RegisterSignal(owner, COMSIG_FEAR_EFFECT, PROC_REF(HydeDam))
 	return ..()
 
 /datum/status_effect/dr_jekyll/on_remove()
@@ -59,7 +59,7 @@
 
 /datum/status_effect/dr_jekyll/proc/HydeDam()
 	SIGNAL_HANDLER
-	addtimer(CALLBACK(src, .proc/SanityCheck), 1) //Gives sanity time to update
+	addtimer(CALLBACK(src, PROC_REF(SanityCheck)), 1) //Gives sanity time to update
 
 /datum/status_effect/dr_jekyll/proc/SanityCheck()
 	var/mob/living/carbon/human/H = owner
