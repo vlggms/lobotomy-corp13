@@ -1,22 +1,22 @@
 // defines used in ModularTegustation/_adventure_console
 
-#define DEBUG_TEXT_DISPLAY 1
-#define NORMAL_TEXT_DISPLAY 2
-#define ADVENTURE_TEXT_DISPLAY 3
+#define DEBUG_TEXT_DISPLAY (1<<0)
+#define NORMAL_TEXT_DISPLAY (1<<1)
+#define ADVENTURE_TEXT_DISPLAY (1<<2)
 
 //Modes for what is displayed on the adventure panel.
-#define ADVENTURE_MODE_TRAVEL 1
-#define ADVENTURE_MODE_BATTLE 2
-#define ADVENTURE_MODE_EVENT_BATTLE 3
+#define ADVENTURE_MODE_TRAVEL (1<<0)
+#define ADVENTURE_MODE_BATTLE (1<<1)
+#define ADVENTURE_MODE_EVENT_BATTLE (1<<2)
 
 //Stats defined. I honestly didnt want to make it have limbus company sins but here we are.
-#define WRATH_STAT 1
-#define LUST_STAT 2
-#define SLOTH_STAT 3
-#define GLUTT_STAT 4
-#define GLOOM_STAT 5
-#define PRIDE_STAT 6
-#define ENVY_STAT 7
+#define WRATH_STAT (1<<0)
+#define LUST_STAT (1<<1)
+#define SLOTH_STAT (1<<2)
+#define GLUTT_STAT (1<<3)
+#define GLOOM_STAT (1<<4)
+#define PRIDE_STAT (1<<5)
+#define ENVY_STAT (1<<6)
 #define RAND_STAT rand(1,7)
 
 //Enemy Standardization. Basically what is considered HARD and what is considered EASY.
