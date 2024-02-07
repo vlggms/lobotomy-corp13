@@ -250,7 +250,7 @@
 
 /obj/effect/kqe_claw/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/GrabAttack), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/kqe_claw/proc/GrabAttack()
 	playsound(get_turf(src), 'sound/abnormalities/kqe/load2.ogg', 75, 0, 3)
@@ -270,7 +270,7 @@
 /obj/effect/kqe_claw/proc/GrabStun(mob/living/carbon/human/target)
 	animate(target, pixel_x = 0, pixel_z = 12, time = 5)
 	target.Stun(6 SECONDS)
-	addtimer(CALLBACK(src, .proc/AnimateBack,target), 6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(AnimateBack),target), 6 SECONDS)
 
 /obj/effect/kqe_claw/proc/AnimateBack(mob/living/carbon/human/target)
 	animate(target, pixel_x = 0, pixel_z = 0, time = 1 SECONDS)

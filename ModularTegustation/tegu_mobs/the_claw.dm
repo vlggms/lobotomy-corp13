@@ -147,29 +147,29 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				INVOKE_ASYNC(src, .proc/SerumW, target)
+				INVOKE_ASYNC(src, PROC_REF(SerumW), target)
 			if(2)
-				INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_short, 5)
+				INVOKE_ASYNC(src, PROC_REF(SwiftDash), target, dash_num_short, 5)
 			if(3)
-				INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_long, 20)
+				INVOKE_ASYNC(src, PROC_REF(SwiftDash), target, dash_num_long, 20)
 			if(4)
-				INVOKE_ASYNC(src, .proc/SerumA, target)
+				INVOKE_ASYNC(src, PROC_REF(SerumA), target)
 			if(5)
-				INVOKE_ASYNC(src, .proc/WideSlash, target)
+				INVOKE_ASYNC(src, PROC_REF(WideSlash), target)
 			if(6)
-				INVOKE_ASYNC(src, .proc/TriSerum)
+				INVOKE_ASYNC(src, PROC_REF(TriSerum))
 		return
 
 	Goto(target, move_to_delay, minimum_distance)
 	if(serumA_cooldown <= world.time && !charging)
-		INVOKE_ASYNC(src, .proc/SerumA, target)
+		INVOKE_ASYNC(src, PROC_REF(SerumA), target)
 	else if(dash_cooldown <= world.time && !charging)
 		if(prob(15) && (health < maxHealth*0.5))
-			INVOKE_ASYNC(src, .proc/ContinuousDash, target, 5)
+			INVOKE_ASYNC(src, PROC_REF(ContinuousDash), target, 5)
 			return
-		INVOKE_ASYNC(src, .proc/SwiftDash, target, dash_num_short, 5)
+		INVOKE_ASYNC(src, PROC_REF(SwiftDash), target, dash_num_short, 5)
 	else if(wide_slash_cooldown <= world.time && !charging)
-		INVOKE_ASYNC(src, .proc/WideSlash, target)
+		INVOKE_ASYNC(src, PROC_REF(WideSlash), target)
 
 /mob/living/simple_animal/hostile/megafauna/claw/Move()
 	if(charging)
@@ -192,11 +192,11 @@
 					targets_in_view += L
 				if(length(targets_in_view) > 3)
 					var/mob/living/L = pick(targets_in_view)
-					INVOKE_ASYNC(src, .proc/SerumW, L) // Will do targeted serum W
+					INVOKE_ASYNC(src, PROC_REF(SerumW), L) // Will do targeted serum W
 					return
-				INVOKE_ASYNC(src, .proc/SerumW) // So we don't get stuck
+				INVOKE_ASYNC(src, PROC_REF(SerumW)) // So we don't get stuck
 			if(triserum_cooldown <= world.time && (health < maxHealth*0.2))
-				INVOKE_ASYNC(src, .proc/TriSerum)
+				INVOKE_ASYNC(src, PROC_REF(TriSerum))
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/SerumW(target)
 	if(serumW_cooldown > world.time)
@@ -224,7 +224,7 @@
 		death_candidates.Remove(H)
 		if(!istype(H) || QDELETED(H)) // Shouldn't be possible, but here we are
 			continue
-		addtimer(CALLBACK(src, .proc/eviscerate, H), i*4)
+		addtimer(CALLBACK(src, PROC_REF(eviscerate), H), i*4)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate(mob/living/carbon/human/target)
 	if(!istype(target) || QDELETED(target))
@@ -234,7 +234,7 @@
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
 	to_chat(target, span_danger("The [src] is going to hunt you down!"))
-	addtimer(CALLBACK(src, .proc/eviscerate2, target, uhoh), 30)
+	addtimer(CALLBACK(src, PROC_REF(eviscerate2), target, uhoh), 30)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
 	if(!istype(target) || QDELETED(target) || !target.loc)
@@ -274,7 +274,7 @@
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 1, 1)
 	icon_state = "claw_prepare"
 	to_chat(L, span_danger("The [src] is going to hunt you down!"))
-	addtimer(CALLBACK(src, .proc/TargetEviscerate, L, uhoh), 15)
+	addtimer(CALLBACK(src, PROC_REF(TargetEviscerate), L, uhoh), 15)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/TargetEviscerate(mob/living/L, obj/effect/eff)
 	if(!istype(L) || QDELETED(L))
@@ -363,7 +363,7 @@
 		death_candidates.Remove(H)
 		if(!istype(H) || QDELETED(H)) // Shouldn't be possible, but here we are
 			continue
-		addtimer(CALLBACK(src, .proc/triserum_eviscerate, H), i*5)
+		addtimer(CALLBACK(src, PROC_REF(triserum_eviscerate), H), i*5)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate(mob/living/carbon/human/target)
 	if(!istype(target) || QDELETED(target))
@@ -373,7 +373,7 @@
 	playsound(target, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 100, 1)
 	playsound(src, 'ModularTegustation/Tegusounds/claw/eviscerate1.ogg', 1, 1)
 	to_chat(target, span_danger("The [src] is going to hunt you down!"))
-	addtimer(CALLBACK(src, .proc/triserum_eviscerate2, target, uhoh), 40)
+	addtimer(CALLBACK(src, PROC_REF(triserum_eviscerate2), target, uhoh), 40)
 
 /mob/living/simple_animal/hostile/megafauna/claw/proc/triserum_eviscerate2(mob/living/carbon/human/target, obj/effect/eff)
 	if(!istype(target) || QDELETED(target))
@@ -475,7 +475,7 @@
 	for(var/i = 1 to 8)
 		if(!isliving(LT) || QDELETED(LT))
 			break
-		INVOKE_ASYNC(src, .proc/blink, LT)
+		INVOKE_ASYNC(src, PROC_REF(blink), LT)
 		SLEEP_CHECK_DEATH(2)
 	icon_state = icon_living
 	charging = FALSE
@@ -543,7 +543,7 @@
 		angle += 360
 	var/turf/T2 = get_turf_in_angle(angle, T, wide_slash_range)
 	var/list/line = getline(T, T2)
-	INVOKE_ASYNC(src, .proc/DoLineAttack, line)
+	INVOKE_ASYNC(src, PROC_REF(DoLineAttack), line)
 	for(var/i = 1 to 20)
 		angle += ((wide_slash_angle / 20) * rotate_dir)
 		if(angle > 360)
@@ -552,7 +552,7 @@
 			angle += 360
 		T2 = get_turf_in_angle(angle, T, wide_slash_range)
 		line = getline(T, T2)
-		addtimer(CALLBACK(src, .proc/DoLineAttack, line), i * 0.04)
+		addtimer(CALLBACK(src, PROC_REF(DoLineAttack), line), i * 0.04)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	icon_state = icon_living
 	charging = FALSE

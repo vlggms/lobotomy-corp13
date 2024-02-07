@@ -219,7 +219,7 @@ GLOBAL_VAR_INIT(deaths_during_shift, 0)
 		gangbanger.add_antag_datum(new_gangster)
 		// see /datum/antagonist/gang/create_team() for how the gang team datum gets instantiated and added to our gangs list
 
-	addtimer(CALLBACK(src, .proc/announce_gang_locations), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(announce_gang_locations)), 5 MINUTES)
 	SSshuttle.registerHostileEnvironment(src)
 	return TRUE
 
@@ -240,7 +240,7 @@ GLOBAL_VAR_INIT(deaths_during_shift, 0)
 	if(check_counter >= 5)
 		if(world.time > (end_time - 5 MINUTES) && !sent_second_announcement)
 			five_minute_warning()
-			addtimer(CALLBACK(src, .proc/send_in_the_fuzz), 5 MINUTES)
+			addtimer(CALLBACK(src, PROC_REF(send_in_the_fuzz)), 5 MINUTES)
 
 		check_counter = 0
 
@@ -495,7 +495,7 @@ GLOBAL_VAR_INIT(deaths_during_shift, 0)
 			numagents--
 	cops_arrived = TRUE
 	update_wanted_level(wanted_level) // gotta make sure everyone's wanted level display looks nice
-	addtimer(CALLBACK(src, .proc/end_hostile_sit), 10 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(end_hostile_sit)), 10 MINUTES)
 	return TRUE
 
 /// Internal. Clears the hostile environment, letting the shuttle leave.

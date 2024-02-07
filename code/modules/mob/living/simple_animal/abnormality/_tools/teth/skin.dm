@@ -31,7 +31,7 @@
 
 /datum/status_effect/skin/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_HUMAN_INSANE, .proc/UserInsane)
+	RegisterSignal(owner, COMSIG_HUMAN_INSANE, PROC_REF(UserInsane))
 
 /datum/status_effect/skin/on_remove()
 	. = ..()

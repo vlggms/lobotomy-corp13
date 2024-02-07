@@ -17,13 +17,13 @@
 /datum/ai_controller/insane/TryPossessPawn(atom/new_pawn)
 	if(!ishuman(new_pawn))
 		return AI_CONTROLLER_INCOMPATIBLE
-	RegisterSignal(new_pawn, COMSIG_PARENT_ATTACKBY, .proc/on_attackby)
-	RegisterSignal(new_pawn, COMSIG_ATOM_ATTACK_ANIMAL, .proc/on_attackby_animal)
-	RegisterSignal(new_pawn, COMSIG_ATOM_ATTACK_HAND, .proc/on_attack_hand)
-	RegisterSignal(new_pawn, COMSIG_ATOM_BULLET_ACT, .proc/on_bullet_act)
-	RegisterSignal(new_pawn, COMSIG_ATOM_HITBY, .proc/on_hitby)
-	RegisterSignal(new_pawn, COMSIG_MOVABLE_CROSSED, .proc/on_Crossed)
-	RegisterSignal(new_pawn, COMSIG_LIVING_START_PULL, .proc/on_startpulling)
+	RegisterSignal(new_pawn, COMSIG_PARENT_ATTACKBY, PROC_REF(on_attackby))
+	RegisterSignal(new_pawn, COMSIG_ATOM_ATTACK_ANIMAL, PROC_REF(on_attackby_animal))
+	RegisterSignal(new_pawn, COMSIG_ATOM_ATTACK_HAND, PROC_REF(on_attack_hand))
+	RegisterSignal(new_pawn, COMSIG_ATOM_BULLET_ACT, PROC_REF(on_bullet_act))
+	RegisterSignal(new_pawn, COMSIG_ATOM_HITBY, PROC_REF(on_hitby))
+	RegisterSignal(new_pawn, COMSIG_MOVABLE_CROSSED, PROC_REF(on_Crossed))
+	RegisterSignal(new_pawn, COMSIG_LIVING_START_PULL, PROC_REF(on_startpulling))
 	return ..() //Run parent at end
 
 /datum/ai_controller/insane/UnpossessPawn(destroy)
@@ -130,7 +130,7 @@
 		move_mod *= 1.2
 
 
-	timerid = addtimer(CALLBACK(src, .proc/MoveTo, delta_time), move_mod) // SLIGHTLY slower than what they should be *BUT* takes corners better.
+	timerid = addtimer(CALLBACK(src, PROC_REF(MoveTo), delta_time), move_mod) // SLIGHTLY slower than what they should be *BUT* takes corners better.
 
 	var/turf/our_turf = get_turf(living_pawn)
 	var/turf/target_turf

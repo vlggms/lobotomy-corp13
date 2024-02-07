@@ -138,8 +138,8 @@
 			else if(i % 2)
 				persX -= xIncrement/4
 		segments += seg
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
-	addtimer(CALLBACK(src, .proc/moveTrain), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/expresstrain/express_summoned.ogg', 50), 1)
+	addtimer(CALLBACK(src, PROC_REF(moveTrain)), 10 SECONDS)
 	/*
 	The logic is pretty simple in what it's SUPPOSED to produce.
 	Every train segment is comprised of 2 effects; the spawn positions of these effects are four tiles offset from one another. This number cannot change.
@@ -150,7 +150,7 @@
 /mob/living/simple_animal/hostile/abnormality/express_train/proc/moveTrain()
 	// I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS I HATE CALLBACKS
 	if(LAZYLEN(src.segments))
-		addtimer(CALLBACK(src, .proc/moveTrain), 0.5)
+		addtimer(CALLBACK(src, PROC_REF(moveTrain)), 0.5)
 		for(var/obj/effect/expresstrain/seg in segments)
 			if((seg.x < 10 && seg.dir == WEST) || (seg.x > 245 && seg.dir == EAST))
 				QDEL_IN(seg, 1)

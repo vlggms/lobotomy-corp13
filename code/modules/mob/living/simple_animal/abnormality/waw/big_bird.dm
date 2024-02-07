@@ -93,7 +93,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)

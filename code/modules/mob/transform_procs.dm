@@ -16,7 +16,7 @@
 
 	new /obj/effect/temp_visual/monkeyify(loc)
 
-	transformation_timer = addtimer(CALLBACK(src, .proc/finish_monkeyize), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+	transformation_timer = addtimer(CALLBACK(src, PROC_REF(finish_monkeyize)), TRANSFORMATION_DURATION, TIMER_UNIQUE)
 
 /mob/living/carbon/proc/finish_monkeyize()
 	transformation_timer = null
@@ -46,7 +46,7 @@
 	invisibility = INVISIBILITY_MAXIMUM
 
 	new /obj/effect/temp_visual/monkeyify/humanify(loc)
-	transformation_timer = addtimer(CALLBACK(src, .proc/finish_humanize, species), TRANSFORMATION_DURATION, TIMER_UNIQUE)
+	transformation_timer = addtimer(CALLBACK(src, PROC_REF(finish_humanize), species), TRANSFORMATION_DURATION, TIMER_UNIQUE)
 
 /mob/living/carbon/proc/finish_humanize(species = /datum/species/human)
 	transformation_timer = null
@@ -282,7 +282,7 @@
 /mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in sortList(mobtypes, /proc/cmp_typepaths_asc)
+	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))
@@ -316,7 +316,7 @@
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_animal)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in sortList(mobtypes, /proc/cmp_typepaths_asc)
+	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in sortList(mobtypes, GLOBAL_PROC_REF(cmp_typepaths_asc))
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, span_danger("Sorry but this mob type is currently unavailable."))

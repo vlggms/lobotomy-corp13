@@ -42,7 +42,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/parasite_tree/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/dropLeaf)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(dropLeaf))
 
 /mob/living/simple_animal/hostile/abnormality/parasite_tree/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type != ABNORMALITY_WORK_REPRESSION && user.stat != DEAD)
@@ -234,7 +234,7 @@
 	if(C.has_status_effect(THE_TREE_CURSE)) //If you have the status effect already dont mess with them.
 		return FALSE
 	C.smoke_delay++
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
+	addtimer(CALLBACK(src, PROC_REF(remove_smoke_delay), C), 10)
 	return smoke_mob_effect(C)
 
 

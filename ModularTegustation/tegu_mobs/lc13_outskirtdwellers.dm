@@ -89,7 +89,7 @@
 	if(.)
 		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 		animate(src, pixel_y = (base_pixel_y + 18), time = 2)
-		addtimer(CALLBACK(src, .proc/AnimateBack), 2)
+		addtimer(CALLBACK(src, PROC_REF(AnimateBack)), 2)
 		for(var/i = 1 to 2)
 			var/turf/T = get_step(get_turf(src), dir_to_target)
 			if(T.density)
@@ -327,7 +327,7 @@
 /mob/living/simple_animal/hostile/smallchuckles/death(gibbed)
 	playsound(get_turf(src), 'sound/machines/honkbot_evil_laugh.ogg', 10, 3, 3)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-	addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
 	..()
 
 /mob/living/simple_animal/hostile/smallchuckles/attack_hand(mob/living/carbon/M)
@@ -524,7 +524,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 /mob/living/simple_animal/hostile/lovetown/death(gibbed)
 	if(mob_spawn_amount > 0)
 		animate(src, transform = matrix()*1.2, color = "#FF0000", time = 5)
-		addtimer(CALLBACK(src, .proc/SpawnSuicidal), 5)
+		addtimer(CALLBACK(src, PROC_REF(SpawnSuicidal)), 5)
 	..()
 
 //Love Town Suicidal - Weak, screams around itself occasionally, spawned by other enemies on death.
@@ -749,7 +749,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3)
 		SLEEP_CHECK_DEATH(1.5 SECONDS) //so we  dont instantly grab people
 		grab_ready = TRUE
-		addtimer(CALLBACK (src, .proc/DisableCounter), 4 SECONDS)
+		addtimer(CALLBACK (src, PROC_REF(DisableCounter)), 4 SECONDS)
 		damage_taken = 0
 
 //WAW(?) miniboss, takes quite a lot of firepower to take down
@@ -838,7 +838,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 	//Speed becomes 4 or 2 and returns to 6 or 4 after 4 seconds.
 	TemporarySpeedChange(-counter_speed, 4 SECONDS)
 	visible_message(span_warning("[src] sprints toward [target]!"), span_notice("You quickly dash!"), span_notice("You hear heavy footsteps speed up."))
-	addtimer(CALLBACK(src, .proc/DisableCounter), 4 SECONDS) //disables the counter after 4 seconds
+	addtimer(CALLBACK(src, PROC_REF(DisableCounter)), 4 SECONDS) //disables the counter after 4 seconds
 
 /mob/living/simple_animal/hostile/lovetown/abomination/proc/DisableCounter() //resets the counter
 	if(countering)

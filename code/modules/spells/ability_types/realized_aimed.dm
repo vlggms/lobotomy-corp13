@@ -78,7 +78,7 @@
 		return
 	var/turf/target_turf = get_turf(target)
 	new /obj/effect/temp_visual/cross/fall(target_turf)
-	addtimer(CALLBACK(src, .proc/SplashEffect, target_turf, user), 5.5)
+	addtimer(CALLBACK(src, PROC_REF(SplashEffect), target_turf, user), 5.5)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/cross_spawn/proc/SplashEffect(turf/T, mob/user)
@@ -178,7 +178,7 @@
 
 /obj/effect/proc_holder/ability/aimed/arcana_slave/Perform(target, user)
 	var/turf/t_turf = get_turf(target)
-	INVOKE_ASYNC(src, .proc/Cast, t_turf, user)
+	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Cast(turf/target, mob/user)
@@ -400,7 +400,7 @@
 	. = ..()
 	QDEL_IN(src, (30 SECONDS))
 	for(var/i = 1 to 10)
-		addtimer(CALLBACK(src, .proc/SplashEffect), i * 3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 3 SECONDS)
 
 /mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
@@ -450,7 +450,7 @@
 	. = ..()
 	QDEL_IN(src, (20 SECONDS))
 	for(var/i = 1 to 10)
-		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 2 SECONDS)
 
 /obj/projectile/black_hole_realized/proc/SplashEffect()
 	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
@@ -475,7 +475,7 @@
 
 /obj/effect/proc_holder/ability/aimed/yin_laser/Perform(target, user)
 	var/turf/t_turf = get_turf(target)
-	INVOKE_ASYNC(src, .proc/Cast, t_turf, user)
+	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/yin_laser/proc/Cast(turf/target, mob/living/carbon/human/user)
@@ -591,7 +591,7 @@
 	var/obj/effect/temp_visual/house/F = new(target_turf)
 	animate(F, pixel_z = 0, alpha = 255, time = 1 SECONDS)
 	playsound(user, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 50, FALSE, 8)
-	addtimer(CALLBACK(src, .proc/HouseSlam, target_turf, user), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(HouseSlam), target_turf, user), 1 SECONDS)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/house_spawn/proc/HouseSlam(turf/T, mob/user)

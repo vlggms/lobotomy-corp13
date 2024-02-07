@@ -12,7 +12,7 @@
 
 /datum/suppression/information/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
 
 /datum/suppression/information/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)

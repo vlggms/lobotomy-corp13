@@ -57,7 +57,7 @@
 //init
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Hell
 	soundloop = new(list(src), FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Destroy()
@@ -164,7 +164,7 @@
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
 	dash_num = (get_dist(src, target) + 3)
-	addtimer(CALLBACK(src, .proc/Charge, dir_to_target, 0), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Charge), dir_to_target, 0), 2 SECONDS)
 	charge_ready = FALSE
 	if(!eaten) //different sfx before and after eating someone
 		playsound(src, 'sound/abnormalities/clouded_monk/monk_cast.ogg', 100, 1)
@@ -222,4 +222,4 @@
 			times_ran = dash_num //stop the charge, we got the meats!
 			if(!eaten)
 				eaten = TRUE
-	addtimer(CALLBACK(src, .proc/Charge, move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(Charge), move_dir, (times_ran + 1)), 1)

@@ -100,10 +100,10 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
-	addtimer(CALLBACK(src, .proc/SetGoal), 5 MINUTES)
-	addtimer(CALLBACK(src, .proc/InitializeOrdeals), 60 SECONDS)
-	addtimer(CALLBACK(src, .proc/PickPotentialSuppressions), 60 SECONDS)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
+	addtimer(CALLBACK(src, PROC_REF(SetGoal)), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(InitializeOrdeals)), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(PickPotentialSuppressions)), 60 SECONDS)
 	for(var/F in subtypesof(/datum/facility_upgrade))
 		upgrades += new F
 
@@ -156,7 +156,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		return
 	// This solution is hacky and extra dirty I hate it
 	if(extra_core)
-		addtimer(CALLBACK(src, .proc/WarnBeforeReset), (4 MINUTES))
+		addtimer(CALLBACK(src, PROC_REF(WarnBeforeReset)), (4 MINUTES))
 	if(announce)
 		var/announce_text = "[extra_core ? "Extra" : "Sephirah"] Core Suppressions have been made available via auxiliary managerial consoles."
 		var/announce_title = "[extra_core ? "Extra" : "Sephirah"] Core Suppression"
@@ -171,7 +171,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		A.audible_message("<span class='userdanger'>Core Suppression options will be disabled if you don't pick one in a minute!</span>")
 		playsound(get_turf(A), 'sound/machines/dun_don_alert.ogg', 100, TRUE, 14)
-	addtimer(CALLBACK(src, .proc/ResetPotentialSuppressions, TRUE), (1 MINUTES))
+	addtimer(CALLBACK(src, PROC_REF(ResetPotentialSuppressions), TRUE), (1 MINUTES))
 
 /datum/controller/subsystem/lobotomy_corp/proc/ResetPotentialSuppressions(announce = FALSE)
 	if(istype(core_suppression) || !LAZYLEN(available_core_suppressions))
@@ -393,5 +393,5 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		SSticker.force_ending = TRUE
 		return TRUE
 	to_chat(world, span_danger("<b>All agents are dead! If ordeals are left unresolved or new agents don't join, the round will automatically end in <u>[round(time/10)] seconds!</u></b>"))
-	addtimer(CALLBACK(src, .proc/OrdealDeathAutoRestart, max(0, time - 30 SECONDS)), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(OrdealDeathAutoRestart), max(0, time - 30 SECONDS)), 30 SECONDS)
 	return TRUE

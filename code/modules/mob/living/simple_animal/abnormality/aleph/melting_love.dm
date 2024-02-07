@@ -164,8 +164,8 @@
 		return
 	if(!gifted_human && istype(user) && work_type != ABNORMALITY_WORK_REPRESSION && user.stat != DEAD)
 		gifted_human = user
-		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/GiftedDeath)
-		RegisterSignal(user, COMSIG_WORK_COMPLETED, .proc/GiftedAnger)
+		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(GiftedDeath))
+		RegisterSignal(user, COMSIG_WORK_COMPLETED, PROC_REF(GiftedAnger))
 		to_chat(user, span_nicegreen("You feel like you received a gift..."))
 		user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 30)
 		user.add_overlay(mutable_appearance('icons/effects/32x64.dmi', "gift", -HALO_LAYER))
@@ -222,7 +222,7 @@
 	gifted_human.gib()
 	gifted_human = null
 	var/mob/living/simple_animal/hostile/slime/big/S = new(T)
-	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/SlimeDeath)
+	RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(SlimeDeath))
 
 
 /* Slimes (HE) */

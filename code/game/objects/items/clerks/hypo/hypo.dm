@@ -111,7 +111,7 @@
 			continue
 		temp_reag[reag] = image(icon = 'icons/hud/screen_gen.dmi', icon_state = "x3")
 
-	var/choice = show_radial_menu(user, src, temp_reag, radius = temp_reag.len * 14, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE)
+	var/choice = show_radial_menu(user, src, temp_reag, radius = temp_reag.len * 14, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE)
 	if(!choice || !check_menu(user))
 		return FALSE
 

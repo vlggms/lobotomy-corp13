@@ -84,7 +84,7 @@
 	var/obj/item/held = H.get_active_held_item()
 	var/obj/item/wep = new /obj/item/ego_weapon/flower_waltz(H)
 	H.dropItemToGround(held) //Drop weapon
-	RegisterSignal(H, COMSIG_LIVING_DEATH, .proc/Champion_Death_Sword)
+	RegisterSignal(H, COMSIG_LIVING_DEATH, PROC_REF(Champion_Death_Sword))
 	ADD_TRAIT(wep, TRAIT_NODROP, wep)
 	H.put_in_hands(wep) 		//Time for pale
 	sword = TRUE

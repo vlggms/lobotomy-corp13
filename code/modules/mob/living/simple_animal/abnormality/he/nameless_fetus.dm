@@ -46,7 +46,7 @@
 		datum_reference.qliphoth_change(1)
 		return
 
-	addtimer(CALLBACK(src, .proc/check_range), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_range)), 2 SECONDS)
 
 
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_players()
@@ -87,7 +87,7 @@
 		L.apply_damage(20, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 		L.playsound_local(get_turf(L), 'sound/abnormalities/fetus/crying.ogg', 50, FALSE)
 
-	addtimer(CALLBACK(src, .proc/check_players), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(check_players)), 30 SECONDS)
 
 
 /* Work effects */

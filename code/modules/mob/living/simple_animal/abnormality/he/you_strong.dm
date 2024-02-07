@@ -271,7 +271,7 @@
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)
 	if(maxHealth > 200)
-		INVOKE_ASYNC(src, .proc/Undie)
+		INVOKE_ASYNC(src, PROC_REF(Undie))
 		return FALSE
 	visible_message(span_notice("[src] explodes into a mess of plastic and gore!"))
 	. = ..()

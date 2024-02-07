@@ -80,7 +80,7 @@
 				master = A
 				return
 	if(!master)
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/OnAbnoSpawn) //if shepherd isn't here yet, buddy will wait for him like a good dog
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(OnAbnoSpawn)) //if shepherd isn't here yet, buddy will wait for him like a good dog
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/OnAbnoSpawn(datum/source, datum/abnormality/abno)
 	SIGNAL_HANDLER
@@ -204,7 +204,7 @@
 		master.qliphoth_change(-1) //shepherd doesn't breach instantly but it's only a matter of time
 	playsound(src, 'sound/abnormalities/redbuddy/redbuddy_howl.ogg', 100, FALSE, 8)
 	for(var/i = 1 to 4)
-		addtimer(CALLBACK(src, .proc/AwooDamage, abused), 1 SECONDS * (i))
+		addtimer(CALLBACK(src, PROC_REF(AwooDamage), abused), 1 SECONDS * (i))
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/AwooDamage(abused = FALSE)
 	var/heard_awoo = FALSE //red buddy is only hurt by his howl if someone hears it

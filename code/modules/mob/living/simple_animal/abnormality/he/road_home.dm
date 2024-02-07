@@ -109,7 +109,7 @@
 		road_segment_finished = TRUE
 		return
 	for(var/i = 1 to road_range)
-		addtimer(CALLBACK(src, .proc/AddBrick, i, road_range), 0.25 SECONDS * i) //The road is created slowly for dramatic effect
+		addtimer(CALLBACK(src, PROC_REF(AddBrick), i, road_range), 0.25 SECONDS * i) //The road is created slowly for dramatic effect
 
 /mob/living/simple_animal/hostile/abnormality/road_home/proc/AddBrick(current_brick, max_brick)
 	if(brick_list.len == house_path.len)
@@ -134,7 +134,7 @@
 		SpinAnimation(20,1)
 		flip_cooldown = world.time + flip_cooldown_time
 		playsound(src, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 100, FALSE, 8)
-		addtimer(CALLBACK(src, .proc/FlipAttack), 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(FlipAttack)), 2 SECONDS)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/road_home/Destroy(gibbed)
@@ -200,7 +200,7 @@
 
 
 	deltimer(move_timer_id)
-	move_timer_id = addtimer(CALLBACK(src, .proc/MoveToBrick), move_to_delay, TIMER_STOPPABLE)
+	move_timer_id = addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), move_to_delay, TIMER_STOPPABLE)
 
 ///If road home fails to advance, destroy everything in front of her so she can't be infinitely blocked.
 ///This includes bolted doors, barriers or built walls (even indestructible ones)
@@ -261,7 +261,7 @@
 	road_segment_finished = FALSE
 	if(move_timer_id)
 		deltimer(move_timer_id)
-	move_timer_id = addtimer(CALLBACK(src, .proc/MoveToBrick), 10 SECONDS, TIMER_STOPPABLE) //We give the players a slight headstart to beat the shit out of her
+	move_timer_id = addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), 10 SECONDS, TIMER_STOPPABLE) //We give the players a slight headstart to beat the shit out of her
 	for(var/obj/effect/golden_road/GR in brick_list)
 		brick_list -= GR
 		qdel(GR)
@@ -364,7 +364,7 @@
 /datum/ai_controller/insane/road_home/PossessPawn(atom/new_pawn)
 	. = ..()
 	move_speed = rand(14, 23) //Everyone has a slightly different move speed so they don't trip over each other. They should also be slower than the road home.
-	addtimer(CALLBACK(src, .proc/MoveToBrick), move_speed)
+	addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), move_speed)
 
 /datum/ai_controller/insane/road_home/proc/MoveToBrick()
 	var/mob/living/living_pawn = pawn
@@ -375,7 +375,7 @@
 	for(var/obj/effect/golden_road/GR in orgin.contents)
 		if(GR.brick_number < road_home_mob.brick_list.len && living_pawn.stat != DEAD)
 			step_towards(living_pawn, road_home_mob.brick_list[GR.brick_number + 1], 1)
-		addtimer(CALLBACK(src, .proc/MoveToBrick), move_speed)
+		addtimer(CALLBACK(src, PROC_REF(MoveToBrick)), move_speed)
 
 /datum/status_effect/stay_home
 	id = "stay home"
@@ -391,7 +391,7 @@
 
 /datum/status_effect/stay_home/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, .proc/Moved)
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
 
 ///If someone has this status effect, they will be incapable of leaving the gold road if they ever step on it.
 /datum/status_effect/stay_home/proc/Moved(datum/source, atom/new_location)

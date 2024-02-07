@@ -110,9 +110,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/PostSpawn()
 	..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED, .proc/OnMeltdownFinish)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED, PROC_REF(OnMeltdownFinish))
 	soundloop.start()
-	transform_timer = addtimer(CALLBACK(src, .proc/Transform), 3 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
+	transform_timer = addtimer(CALLBACK(src, PROC_REF(Transform)), 3 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, 1, 5))
@@ -146,13 +146,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/CauseMelts), 10) //Delaying it prevents some bugs; call a meltdown on a bad result or failed stat check
+	addtimer(CALLBACK(src, PROC_REF(CauseMelts)), 10) //Delaying it prevents some bugs; call a meltdown on a bad result or failed stat check
 	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 100)
 		if(pe > datum_reference.neutral_boxes) // Not work failure, we don't need to call TWO melts
-			addtimer(CALLBACK(src, .proc/CauseMelts), 10)
+			addtimer(CALLBACK(src, PROC_REF(CauseMelts)), 10)
 	return
 
 //Contained Mechanics
@@ -160,7 +160,7 @@
 	if(!(IsContained(src)))
 		return
 	if(datum_reference.working) //If we are being worked on - transform later instead.
-		transform_timer = addtimer(CALLBACK(src, .proc/Transform), 3 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
+		transform_timer = addtimer(CALLBACK(src, PROC_REF(Transform)), 3 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
 		return
 	var/list/abno_list = AbnoListGen()
 	if(!LAZYLEN(abno_list))
@@ -168,7 +168,7 @@
 	var/datum/abnormality/abno_datum = pick(abno_list)
 	var/mob/living/simple_animal/hostile/abnormality/abno = abno_datum.current
 	if(!abno || (abno.health <= 0)) //If the target is dead or otherwise missing, we'll try again in a minute
-		transform_timer = addtimer(CALLBACK(src, .proc/Transform), 1 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
+		transform_timer = addtimer(CALLBACK(src, PROC_REF(Transform)), 1 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
 		return
 	soundloop.stop()
 	new /obj/effect/temp_visual/distortedform_shift(get_turf(src))
@@ -187,7 +187,7 @@
 		return
 	datum_reference.console.updateUsrDialog() //Update the console and change our name into a lie
 	transformed = TRUE
-	transform_timer = addtimer(CALLBACK(src, .proc/UnTransform), 1 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
+	transform_timer = addtimer(CALLBACK(src, PROC_REF(UnTransform)), 1 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
 	update_icon()
 	if(!connected_panel) // Update the panel and door so they don't give us away
 		for(var/obj/machinery/door/airlock/vault/door in orange(3, src))
@@ -222,7 +222,7 @@
 		connected_door.name = "Distorted Form containment zone" //Initial() turns it into "vault door"
 	connected_panel.name = "Distorted Form's containment panel"
 	transformed = FALSE
-	transform_timer = addtimer(CALLBACK(src, .proc/Transform), 3 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
+	transform_timer = addtimer(CALLBACK(src, PROC_REF(Transform)), 3 MINUTES, TIMER_STOPPABLE & TIMER_OVERRIDE)
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/AbnoListGen() // List of possible transformations
@@ -268,7 +268,7 @@
 	for(var/obj/machinery/computer/abnormality/A in meltdowns) // TODO: Figure out a way to exclude it entirely from melts so it doesn't breach itself.
 		if(A == datum_reference.console) // TODO: This shouldn't be neccessary when I fix the above comment
 			continue
-		RegisterSignal(A, COMSIG_MELTDOWN_FINISHED, .proc/SpecialMeltFinish)
+		RegisterSignal(A, COMSIG_MELTDOWN_FINISHED, PROC_REF(SpecialMeltFinish))
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/SpecialMeltFinish(datum/source, datum/abnormality/abno_datum, worked)
 	SIGNAL_HANDLER
@@ -305,8 +305,8 @@
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			survivors += M
 	can_act = FALSE
-	addtimer(CALLBACK(src, .proc/GoActive), 50)
-	addtimer(CALLBACK(src, .proc/BreachAudioFX), 45)
+	addtimer(CALLBACK(src, PROC_REF(GoActive)), 50)
+	addtimer(CALLBACK(src, PROC_REF(BreachAudioFX)), 45)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/GoActive(mob/living/carbon/human/user)
 	can_act = TRUE
@@ -511,8 +511,8 @@
 	if(!newicon)
 		return
 	icon_state = icon_living
-	addtimer(CALLBACK(src, .proc/DFScreech), 10)
-	addtimer(CALLBACK(src, .proc/DFAttack), 60) //We call DFAttack() which picks one of four attacks
+	addtimer(CALLBACK(src, PROC_REF(DFScreech)), 10)
+	addtimer(CALLBACK(src, PROC_REF(DFAttack)), 60) //We call DFAttack() which picks one of four attacks
 	transform_cooldown = transform_cooldown_time + world.time
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/DFScreech()
@@ -767,8 +767,8 @@
 	move_to_delay = 4.5
 	UpdateSpeed()
 	can_move = TRUE
-	addtimer(CALLBACK(src, .proc/Goodbye), 30)
-	special_attack = .proc/Hello
+	addtimer(CALLBACK(src, PROC_REF(Goodbye)), 30)
+	special_attack = PROC_REF(Hello)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/Goodbye()
 	if(!can_act)
@@ -842,7 +842,7 @@
 	UpdateSpeed()
 	can_move = TRUE
 	can_attack = TRUE
-	special_attack = .proc/Execute
+	special_attack = PROC_REF(Execute)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/Execute(target) //Puss in boots execute but it hits up to 5 people with 300 pale. Youch!
 	if(!can_act)
@@ -931,7 +931,7 @@
 	base_pixel_x = 0
 	can_move = FALSE
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/CrumblingArmorAttack), 20)
+	addtimer(CALLBACK(src, PROC_REF(CrumblingArmorAttack)), 20)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CrumblingArmorAttack()
 	for(var/mob/living/L in livinginrange(10, src))
@@ -966,7 +966,7 @@
 	can_move = FALSE
 	can_act = FALSE //we stay transformed until the attack finishes firing
 	playsound(get_turf(src), 'sound/abnormalities/lighthammer/chain.ogg', 75, FALSE, 7)
-	addtimer(CALLBACK(src, .proc/HammerOfLightAttack), 20)
+	addtimer(CALLBACK(src, PROC_REF(HammerOfLightAttack)), 20)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/HammerOfLightAttack()
 	playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 50, FALSE, 7)
@@ -1005,7 +1005,7 @@
 
 /obj/effect/lightbolt/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 2 SECONDS)
 
 /obj/effect/lightbolt/proc/explode()
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, FALSE, -3)
@@ -1042,8 +1042,8 @@
 	base_pixel_x = -8
 	move_to_delay = 5
 	can_move = TRUE
-	special_attack = .proc/SpearAttack
-	addtimer(CALLBACK(src, .proc/ScytheAttack), 30)
+	special_attack = PROC_REF(SpearAttack)
+	addtimer(CALLBACK(src, PROC_REF(ScytheAttack)), 30)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ScytheAttack()
 	if(!can_act)
@@ -1097,7 +1097,7 @@
 	if(!T)
 		transform_cooldown += 1 SECONDS
 		can_act = TRUE
-		addtimer(CALLBACK(src, .proc/ScytheAttack), 5)
+		addtimer(CALLBACK(src, PROC_REF(ScytheAttack)), 5)
 		return
 	if(T.density)
 		stop_charge = TRUE
@@ -1109,7 +1109,7 @@
 	if(stop_charge)
 		transform_cooldown += 1 SECONDS
 		can_act = TRUE
-		addtimer(CALLBACK(src, .proc/ScytheAttack), 5)
+		addtimer(CALLBACK(src, PROC_REF(ScytheAttack)), 5)
 		return
 	forceMove(T)
 	for(var/turf/TF in view(1, T))
@@ -1119,7 +1119,7 @@
 		for(var/mob/living/L in new_hits)
 			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
-	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
+	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 0.5) // SPEED
 
 //Red Queen
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeQueen()
@@ -1194,7 +1194,7 @@
 	attack_verb_simple = "maul"
 	UpdateSpeed()
 	can_move = TRUE
-	special_attack = .proc/ToadAttack
+	special_attack = PROC_REF(ToadAttack)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ToadAttack()
 	if(!can_act)
@@ -1280,8 +1280,8 @@
 	attack_verb_simple = "maul"
 	UpdateSpeed()
 	can_move = TRUE
-	addtimer(CALLBACK(src, .proc/BloodBathBeamPrep), 30)
-	special_attack = .proc/BloodBathSlam
+	addtimer(CALLBACK(src, PROC_REF(BloodBathBeamPrep)), 30)
+	special_attack = PROC_REF(BloodBathSlam)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/BloodBathBeamPrep()
 	if(!can_act)
@@ -1409,7 +1409,7 @@
 	target.add_overlay(icon('icons/effects/effects.dmi', "chronofield"))
 	addtimer(CALLBACK(target, .atom/proc/cut_overlay, \
 							icon('icons/effects/effects.dmi', "chronofield")), 40)
-	addtimer(CALLBACK(src, .proc/FreezeMob, target), 40)
+	addtimer(CALLBACK(src, PROC_REF(FreezeMob), target), 40)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/FreezeMob(mob/living/H)
 	if(!H)
@@ -1421,7 +1421,7 @@
 	ADD_TRAIT(H, TRAIT_MUTE, TIMESTOP_TRAIT)
 	walk(H, 0) //stops them mid pathing even if they're stunimmune
 	H.add_atom_colour(list(-1,0,0,0, 0,-1,0,0, 0,0,-1,0, 0,0,0,1, 1,1,1,0), TEMPORARY_COLOUR_PRIORITY)
-	addtimer(CALLBACK(src, .proc/UnFreezeMob, H), 20)
+	addtimer(CALLBACK(src, PROC_REF(UnFreezeMob), H), 20)
 	var/flipped_dir = turn(H.dir, 180)
 	var/turf/T = get_step(H, flipped_dir)
 	var/obj/effect/temp_visual/remnant_of_time/attack = new(T, src) //Effect defined at the end of file
@@ -1448,7 +1448,7 @@
 	pixel_x = -16
 	can_move = FALSE
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/CalanderAttack), 5)
+	addtimer(CALLBACK(src, PROC_REF(CalanderAttack)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CalanderAttack(faction_check = "hostile")
 	icon_state = "doomsday_universe"
@@ -1463,7 +1463,7 @@
 			S.color = "#003FFF"
 			for(var/mob/living/L in T)
 				new /obj/effect/temp_visual/dir_setting/cult/phase(T, L.dir)
-				addtimer(CALLBACK(src, .proc/CalanderAttackHit, L, i, faction_check))
+				addtimer(CALLBACK(src, PROC_REF(CalanderAttackHit), L, i, faction_check))
 		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/CalanderAttackHit(mob/living/L, attack_range = 1, faction_check = "hostile")
@@ -1491,7 +1491,7 @@
 	base_pixel_y = -16
 	can_move = FALSE
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/BlueStarAttack), 5)
+	addtimer(CALLBACK(src, PROC_REF(BlueStarAttack)), 5)
 
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/BlueStarAttack()
@@ -1522,7 +1522,7 @@
 	desc = "A tall man adorned in grey, gold, and regal blue. His aim is impeccable."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "derfreischutz"
-	addtimer(CALLBACK(src, .proc/DerAttack), 5)
+	addtimer(CALLBACK(src, PROC_REF(DerAttack)), 5)
 	pixel_x = 0
 	base_pixel_x = 0
 
@@ -1599,7 +1599,7 @@
 	icon_state = "siren_breach"
 	can_move = FALSE
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/SirenAttack), 5)
+	addtimer(CALLBACK(src, PROC_REF(SirenAttack)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/SirenAttack() //EXTREMELY Evil
 	playsound(src, 'sound/abnormalities/siren/sirenhappy.ogg', 100, FALSE, 10)
@@ -1635,9 +1635,9 @@
 		LongRange = FALSE
 		break
 	if(LongRange)
-		addtimer(CALLBACK(src, .proc/ApocJudge), 30)
+		addtimer(CALLBACK(src, PROC_REF(ApocJudge)), 30)
 	else
-		addtimer(CALLBACK(src, .proc/ApocSlam), 30)
+		addtimer(CALLBACK(src, PROC_REF(ApocSlam)), 30)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ApocSlam()
 	playsound(src, 'sound/abnormalities/apocalypse/pre_attack.ogg', 125, FALSE, 4)
@@ -1896,7 +1896,7 @@
 	. = ..()
 	if(new_caster)
 		caster = new_caster
-	addtimer(CALLBACK(src, .proc/explode), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 2 SECONDS)
 
 /obj/effect/temp_visual/remnant_of_time/proc/explode()
 	var/turf/source_turf = get_turf(src)

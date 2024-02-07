@@ -125,7 +125,7 @@
 	animate(src, alpha = 0,pixel_x = 0, pixel_z = 16, time = 4 SECONDS)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	realboy = new (get_turf(src)) //Technically the breach version is a separate entity, requires a lot of tinkering but works.
-	RegisterSignal(realboy, COMSIG_LIVING_DEATH, .proc/PuppetDeath)
+	RegisterSignal(realboy, COMSIG_LIVING_DEATH, PROC_REF(PuppetDeath))
 	realboy.name = "Pinocchio the Liar"
 	realboy.real_name = "Pinocchio the Liar"
 	realboy.adjust_all_attribute_levels(100)
@@ -189,7 +189,7 @@
 
 /obj/item/ego_weapon/marionette/abnormality/dropped(mob/user)
 	. = ..()
-	delete_timer = addtimer(CALLBACK(src, .proc/TryDelete, user), 3 SECONDS, TIMER_STOPPABLE)
+	delete_timer = addtimer(CALLBACK(src, PROC_REF(TryDelete), user), 3 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/marionette/abnormality/proc/TryDelete(mob/user)
 	if(!delete_timer)

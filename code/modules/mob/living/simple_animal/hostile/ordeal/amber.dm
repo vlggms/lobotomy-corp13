@@ -36,7 +36,7 @@
 	if(.)
 		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 		animate(src, pixel_y = (base_pixel_y + 18), time = 2)
-		addtimer(CALLBACK(src, .proc/AnimateBack), 2)
+		addtimer(CALLBACK(src, PROC_REF(AnimateBack)), 2)
 		for(var/i = 1 to 2)
 			var/turf/T = get_step(get_turf(src), dir_to_target)
 			if(T.density)
@@ -117,7 +117,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/BurrowOut, get_turf(src)))
+	addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
 	soundloop = new(list(src), TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Destroy()
@@ -234,7 +234,7 @@
 	. = ..()
 	burrow_cooldown = world.time + 20 SECONDS
 	soundloop = new(list(src), TRUE)
-	addtimer(CALLBACK(src, .proc/BurrowOut))
+	addtimer(CALLBACK(src, PROC_REF(BurrowOut)))
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/Destroy()
 	QDEL_NULL(soundloop)

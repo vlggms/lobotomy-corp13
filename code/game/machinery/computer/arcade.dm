@@ -350,7 +350,7 @@ GLOBAL_LIST_INIT(arcade_prize_pool, list(
 		else
 			playsound(src, 'sound/arcade/hit.ogg', 50, TRUE, extrarange = -3)
 
-	timer_id = addtimer(CALLBACK(src, .proc/enemy_action,player_stance,user),1 SECONDS,TIMER_STOPPABLE)
+	timer_id = addtimer(CALLBACK(src, PROC_REF(enemy_action),player_stance,user),1 SECONDS,TIMER_STOPPABLE)
 	gameover_check(user)
 
 

@@ -14,7 +14,7 @@
 		owner.visible_message("<span class='danger'>[owner] starts having a seizure!</span>", "<span class='userdanger'>You have a seizure!</span>")
 		owner.Unconscious(200 * GET_MUTATION_POWER(src))
 		owner.Jitter(1000 * GET_MUTATION_POWER(src))
-		addtimer(CALLBACK(src, .proc/jitter_less), 90)
+		addtimer(CALLBACK(src, PROC_REF(jitter_less)), 90)
 
 /datum/mutation/human/epilepsy/proc/jitter_less()
 	if(owner)
@@ -400,7 +400,7 @@
 	. = ..()
 	if(.)
 		return
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/on_move)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(on_move))
 
 /datum/mutation/human/extrastun/on_losing()
 	. = ..()
@@ -431,7 +431,7 @@
 	. = ..()
 	if(.)
 		return TRUE
-	RegisterSignal(owner, COMSIG_MOB_STATCHANGE, .proc/bloody_shower)
+	RegisterSignal(owner, COMSIG_MOB_STATCHANGE, PROC_REF(bloody_shower))
 
 /datum/mutation/human/martyrdom/on_losing()
 	. = ..()
@@ -488,7 +488,7 @@
 		head.drop_organs()
 		qdel(head)
 		owner.regenerate_icons()
-	RegisterSignal(owner, COMSIG_CARBON_ATTACH_LIMB, .proc/abortattachment)
+	RegisterSignal(owner, COMSIG_CARBON_ATTACH_LIMB, PROC_REF(abortattachment))
 
 /datum/mutation/human/headless/on_losing()
 	. = ..()

@@ -64,7 +64,7 @@
 	if(!.)
 		return
 	owner = H
-	RegisterSignal(H, COMSIG_MOB_ATTACK_RANGED, .proc/on_ranged_attack)
+	RegisterSignal(H, COMSIG_MOB_ATTACK_RANGED, PROC_REF(on_ranged_attack))
 
 
 /datum/martial_art/starter_sith/on_remove(mob/living/carbon/human/H)
