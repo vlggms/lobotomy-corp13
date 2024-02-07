@@ -28,12 +28,7 @@
 	return TRUE
 
 
-/datum/crafting_recipe/noose
-	name = "Noose"
-	result = /obj/structure/chair/noose
-	reqs = list(/obj/item/stack/cable_coil = 20)
-	time = 20 //i mean cmon you gotta attach it to the damn ceiling (fuck you cox its REAAL)
-	category = CAT_MISC
+
 
 /datum/crafting_recipe/improv_explosive
 	name = "IED"
@@ -641,6 +636,13 @@
 	reqs = list(/obj/item/food/grown/poppy/lily =2,
 				/obj/item/grown/sunflower = 2,
 				/obj/item/food/grown/poppy/geranium = 2)
+	category = CAT_MISC
+
+	/datum/crafting_recipe/noose
+	name = "Noose"
+	result = /obj/structure/chair/noose
+	reqs = list(/obj/item/stack/cable_coil = 20)
+	time = 20 //i mean cmon you gotta attach it to the damn ceiling (fuck you cox its REAAL)
 	category = CAT_MISC
 
 /datum/crafting_recipe/sunbouquet
