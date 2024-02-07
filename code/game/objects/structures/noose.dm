@@ -15,7 +15,9 @@
 	var/mutable_appearance/overlay
 
 /obj/structure/chair/noose/attackby(obj/item/W, mob/user, params)
-	if(W.tool_behaviour == TOOL_WIRECUTTER)
+	if(W.tool_behaviour != TOOL_WIRECUTTER)
+		return ..()
+	[the rest of code 1 layer thinner]
 		user.visible_message("[user] cuts the noose.", span_notice("You cut the noose."))
 		if(has_buckled_mobs())
 			for(var/m in buckled_mobs)
