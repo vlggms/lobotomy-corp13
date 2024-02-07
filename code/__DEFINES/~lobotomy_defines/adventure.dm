@@ -10,13 +10,13 @@
 #define ADVENTURE_MODE_EVENT_BATTLE (1<<2)
 
 //Stats defined. I honestly didnt want to make it have limbus company sins but here we are.
-#define WRATH_STAT (1<<0)
-#define LUST_STAT (1<<1)
-#define SLOTH_STAT (1<<2)
-#define GLUTT_STAT (1<<3)
-#define GLOOM_STAT (1<<4)
-#define PRIDE_STAT (1<<5)
-#define ENVY_STAT (1<<6)
+#define WRATH_STAT 1
+#define LUST_STAT 2
+#define SLOTH_STAT 3
+#define GLUTT_STAT 4
+#define GLOOM_STAT 5
+#define PRIDE_STAT 6
+#define ENVY_STAT 7
 #define RAND_STAT rand(1,7)
 
 //Enemy Standardization. Basically what is considered HARD and what is considered EASY.
