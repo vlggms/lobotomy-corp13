@@ -27,6 +27,15 @@
 /datum/crafting_recipe/proc/check_requirements(mob/user, list/collected_requirements)
 	return TRUE
 
+
+/datum/crafting_recipe/noose
+	name = "Noose"
+	result = /obj/structure/chair/noose
+	reqs = list(/obj/item/stack/cable_coil = 20)
+	time = 20 //i mean cmon you gotta attach it to the damn ceiling
+	category = CAT_MISC
+
+
 /datum/crafting_recipe/improv_explosive
 	name = "IED"
 	result = /obj/item/grenade/iedcasing
