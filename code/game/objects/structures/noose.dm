@@ -1,7 +1,7 @@
 /obj/item/stack/cable_coil/building_checks(datum/stack_recipe/R, multiplier)
 	if(R.result_type == /obj/structure/chair/noose)
 		if(!(locate(/obj/structure/chair) in get_turf(usr)))
-			to_chat(usr, SPAN_WARNING("You have to be standing on top of a chair to make a noose!"))
+			to_chat(usr, span_warning("You have to be standing on top of a chair to make a noose!"))
 			return FALSE
 	return ..()
 
@@ -16,13 +16,13 @@
 
 /obj/structure/chair/noose/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WIRECUTTER)
-		user.visible_message("[user] cuts the noose.", SPAN_NOTICE("You cut the noose."))
+		user.visible_message("[user] cuts the noose.", span_notice("You cut the noose."))
 		if(has_buckled_mobs())
 			for(var/m in buckled_mobs)
 				var/mob/living/buckled_mob = m
 				if(buckled_mob.has_gravity())
-					buckled_mob.visible_message(SPAN_WARNING("[buckled_mob] falls over and hits the ground!"))
-					to_chat(buckled_mob, SPAN_USERDANGER("You fall over and hit the ground!"))
+					buckled_mob.visible_message(span_warning("[buckled_mob] falls over and hits the ground!"))
+					to_chat(buckled_mob, span_userdanger("You fall over and hit the ground!"))
 					buckled_mob.adjustBruteLoss(10)
 		var/obj/item/stack/cable_coil/C = new(get_turf(src))
 		C.amount = 25
@@ -57,24 +57,24 @@
 /obj/structure/chair/noose/user_unbuckle_mob(mob/living/M,mob/living/user)
 	if(has_buckled_mobs())
 		if(M != user)
-			user.visible_message(SPAN_NOTICE("[user] begins to untie the noose over [M]'s neck..."))
-			to_chat(user, SPAN_NOTICE("You begin to untie the noose over [M]'s neck..."))
+			user.visible_message(span_notice("[user] begins to untie the noose over [M]'s neck..."))
+			to_chat(user, span_notice("You begin to untie the noose over [M]'s neck..."))
 			if(!do_after(user, 10 SECONDS, M))
 				return
-			user.visible_message(SPAN_NOTICE("[user] unties the noose over [M]'s neck!"))
-			to_chat(user, SPAN_NOTICE("You untie the noose over [M]'s neck!"))
+			user.visible_message(span_notice("[user] unties the noose over [M]'s neck!"))
+			to_chat(user, span_notice("You untie the noose over [M]'s neck!"))
 			M.Knockdown(60)
 		else
-			M.visible_message(SPAN_WARNING("[M] struggles to untie the noose over their neck!"))
-			to_chat(M, SPAN_NOTICE("You struggle to untie the noose over your neck... (Stay still for 25 seconds.)"))
-			if(!do_after(M, 250, target = src))
+			M.visible_message(span_warning("[M] struggles to untie the noose over their neck!"))
+			to_chat(M, span_notice("You struggle to untie the noose over your neck... (Stay still for 20 seconds.)"))
+			if(!do_after(M, 200, target = src)) // yeah if you dont try to untie yourself in like 6 seconds you're cooked
 				if(M && M.buckled)
-					to_chat(M, SPAN_WARNING("You fail to untie yourself!</span>"))
+					to_chat(M, span_warning("You fail to untie yourself!</span>"))
 				return
 			if(!M.buckled)
 				return
-			M.visible_message(SPAN_WARNING("[M] unties the noose over their neck!</span>"))
-			to_chat(M,SPAN_NOTICE("You untie the noose over your neck!</span>"))
+			M.visible_message(span_warning("[M] unties the noose over their neck!</span>"))
+			to_chat(M,span_notice("You untie the noose over your neck!</span>"))
 			M.Knockdown(60)
 		unbuckle_all_mobs(force=1)
 		M.pixel_z = initial(M.pixel_z)
@@ -88,7 +88,7 @@
 		//return FALSE
 
 	if (!M.get_bodypart("head"))
-		to_chat(user, SPAN_WARNING("[M] has no head!</span>"))
+		to_chat(user, span_warning("[M] has no head!</span>"))
 		return FALSE
 
 	if(M.loc != src.loc)
@@ -96,21 +96,21 @@
 
 	add_fingerprint(user)
 	log_combat(user, M, "Attempted to Hang", src)
-	M.visible_message(SPAN_DANGER("[user] attempts to tie \the [src] over [M]'s neck!</span>"))
+	M.visible_message(span_danger("[user] attempts to tie \the [src] over [M]'s neck!</span>"))
 	if(user != M)
-		to_chat(user, SPAN_NOTICE("It will take 20 seconds and you have to stand still.</span>"))
+		to_chat(user, span_notice("It will take 20 seconds and you have to stand still.</span>"))
 	if(do_after(user, user == M ? 0:20 SECONDS, M))
 		if(buckle_mob(M))
-			user.visible_message(SPAN_WARNING("[user] ties \the [src] over [M]'s neck!</span>"))
+			user.visible_message(span_warning("[user] ties \the [src] over [M]'s neck!</span>"))
 			if(user == M)
-				to_chat(M, SPAN_USERDANGER("You tie \the [src] over your neck!</span>"))
+				to_chat(M, span_userdanger("You tie \the [src] over your neck!</span>"))
 			else
-				to_chat(M, SPAN_USERDANGER("[user] ties \the [src] over your neck!</span>"))
+				to_chat(M, span_userdanger("[user] ties \the [src] over your neck!</span>"))
 			playsound(user.loc, 'sound/effects/noosed.ogg', 50, 1, -1)
 			log_combat(user, M, "hanged", src)
 			return TRUE
-	user.visible_message(SPAN_WARNING("[user] fails to tie \the [src] over [M]'s neck!</span>"))
-	to_chat(user, SPAN_WARNING("You fail to tie \the [src] over [M]'s neck!</span>"))
+	user.visible_message(span_warning("[user] fails to tie \the [src] over [M]'s neck!</span>"))
+	to_chat(user, span_warning("You fail to tie \the [src] over [M]'s neck!</span>"))
 	return FALSE
 
 
@@ -134,13 +134,13 @@
 						if(prob(40))
 							buckled_mob.emote("gasp")
 					if(prob(20))
-						var/flavor_text = list(SPAN_SUICIDE("[buckled_mob]'s legs flail for anything to stand on.</span>"),\
-												SPAN_SUICIDE("[buckled_mob]'s hands are desperately clutching the noose.</span>"),\
-												SPAN_SUICIDE("[buckled_mob]'s limbs sway back and forth with diminishing strength.</span>")
+						var/flavor_text = list(span_suicide("[buckled_mob]'s legs flail for anything to stand on.</span>"),\
+												span_suicide("[buckled_mob]'s hands are desperately clutching the noose.</span>"),\
+												span_suicide("[buckled_mob]'s limbs sway back and forth with diminishing strength.</span>")
 						buckled_mob.visible_message(pick(flavor_text))
 				playsound(buckled_mob.loc, 'sound/effects/noose_idle.ogg', 30, 1, -3)
 			else
-				buckled_mob.visible_message(SPAN_DANGER("[buckled_mob] drops from the noose!</span>"))
+				buckled_mob.visible_message(span_danger("[buckled_mob] drops from the noose!</span>"))
 				buckled_mob.Knockdown(60)
 				buckled_mob.pixel_z = initial(buckled_mob.pixel_z)
 				pixel_z = initial(pixel_z)
