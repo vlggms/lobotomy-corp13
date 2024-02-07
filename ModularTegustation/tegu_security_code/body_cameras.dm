@@ -8,9 +8,9 @@
 	builtInCamera = new (src)
 	builtInCamera.internal_light = FALSE
 
-	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, .proc/auto_register_bodycam)
+	RegisterSignal(src, COMSIG_ITEM_EQUIPPED, PROC_REF(auto_register_bodycam))
 
-	addtimer(CALLBACK(src, /obj/item/clothing/under/rank/security.proc/auto_register_bodycam, null, ITEM_SLOT_ICLOTHING), SEC_BODY_CAM_REG_DELAY)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/clothing/under/rank/security, auto_register_bodycam), null, ITEM_SLOT_ICLOTHING), SEC_BODY_CAM_REG_DELAY)
 
 /obj/item/clothing/under/rank/security/proc/auto_register_bodycam(mob/living/user, slot)
 	if(!builtInCamera)

@@ -231,7 +231,7 @@
 		return
 	if(!is_maggot)
 		playsound(src, 'sound/abnormalities/goldenapple/Gold_Attack.ogg', 100, 1)
-		addtimer(CALLBACK(src, .proc/EatEmployees), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(EatEmployees)), 15 SECONDS)
 		return ..()
 	density = FALSE
 	for(var/atom/movable/AM in src) //morph code
@@ -319,11 +319,11 @@
 					L.forceMove(src)
 					last_target = TRUE
 					target_hit = TRUE
-					addtimer(CALLBACK(src, .proc/DigestPerson, L), 5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(DigestPerson), L), 5 SECONDS)
 				else
 					L.gib(TRUE, TRUE, TRUE)
 		if (!target_hit)
-			addtimer(CALLBACK(src, .proc/BecomeRotten), 5 SECONDS)//if nobody got killed
+			addtimer(CALLBACK(src, PROC_REF(BecomeRotten)), 5 SECONDS)//if nobody got killed
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/proc/DigestPerson(mob/living/carbon/human/H)//berserk mode

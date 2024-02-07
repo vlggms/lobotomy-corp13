@@ -112,7 +112,7 @@
 	if(IsCombatMap())
 		loot = list()
 		return
-	addtimer(CALLBACK(src, .proc/KillOtherBird), 90 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(KillOtherBird)), 90 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/Life()
 	. = ..()
@@ -188,7 +188,7 @@
 				been_hit += L
 
 
-	addtimer(CALLBACK(src, .proc/DoDash, move_dir, (times_ran + 1)), 0.5) // SPEED
+	addtimer(CALLBACK(src, PROC_REF(DoDash), move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -265,7 +265,7 @@
 	cantsee[status_holder] = get_attribute_level(status_holder, TEMPERANCE_ATTRIBUTE)/2
 	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -cantsee[status_holder])
 	to_chat(status_holder, span_userdanger("The light of the bird burns your eyes!"))
-	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
+	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(BlindedWork))
 
 /datum/status_effect/blinded/on_remove()
 	. = ..()
@@ -275,7 +275,7 @@
 	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, cantsee[status_holder])
 	cantsee -= status_holder
 	to_chat(status_holder, span_nicegreen("The blinding light fades..."))
-	UnregisterSignal(status_holder, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
+	UnregisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(BlindedWork))
 
 /datum/status_effect/blinded/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
 	SIGNAL_HANDLER

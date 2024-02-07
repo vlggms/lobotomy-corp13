@@ -29,7 +29,7 @@
 		template.weight = (template.weight / 2)
 		if(template.stock <= 0)
 			template.spawned = TRUE
-		addtimer(CALLBACK(src, /obj/effect/spawner/room.proc/LateSpawn), 600)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/effect/spawner/room, LateSpawn)), 600)
 	else
 		template = null
 	if(!template)

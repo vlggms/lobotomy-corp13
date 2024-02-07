@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	natural = !forced
 
 	// Cancel early if the target is deleted
-	RegisterSignal(target, COMSIG_PARENT_QDELETING, .proc/target_deleting)
+	RegisterSignal(target, COMSIG_PARENT_QDELETING, PROC_REF(target_deleting))
 
 /datum/hallucination/proc/target_deleting()
 	SIGNAL_HANDLER
@@ -349,7 +349,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		target.client.images |= fakerune
 	target.playsound_local(wall,'sound/effects/meteorimpact.ogg', 150, 1)
 	bubblegum = new(wall, target)
-	addtimer(CALLBACK(src, .proc/start_processing), 10)
+	addtimer(CALLBACK(src, PROC_REF(start_processing)), 10)
 
 /datum/hallucination/oh_yeah/proc/start_processing()
 	if (isnull(target))
@@ -462,15 +462,15 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, fire_sound, 25, 1)
 
 			if(prob(50))
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, hit_person_sound, 25, 1), rand(5,10))
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, hit_person_sound, 25, 1), rand(5,10))
 				hits += 1
 			else
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, hit_wall_sound, 25, 1), rand(5,10))
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, hit_wall_sound, 25, 1), rand(5,10))
 
 			next_action = rand(CLICK_CD_RANGE, CLICK_CD_RANGE + 6)
 
 			if(hits >= number_of_hits && prob(chance_to_fall))
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, get_sfx("bodyfall"), 25, 1), next_action)
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, get_sfx("bodyfall"), 25, 1), next_action)
 				qdel(src)
 				return
 		if ("esword")
@@ -589,7 +589,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				A = image(image_file,H,"arm_blade", layer=ABOVE_MOB_LAYER)
 		if(target.client)
 			target.client.images |= A
-			addtimer(CALLBACK(src, .proc/cleanup, item, A, H), rand(15 SECONDS, 25 SECONDS))
+			addtimer(CALLBACK(src, PROC_REF(cleanup), item, A, H), rand(15 SECONDS, 25 SECONDS))
 			return
 	qdel(src)
 
@@ -913,7 +913,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	// Display message
 	if (!is_radio && !target.client?.prefs.chat_on_map)
 		var/image/speech_overlay = image('icons/mob/talk.dmi', person, "default0", layer = ABOVE_MOB_LAYER)
-		INVOKE_ASYNC(GLOBAL_PROC, /proc/flick_overlay, speech_overlay, list(target.client), 30)
+		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(flick_overlay), speech_overlay, list(target.client), 30)
 	if (target.client?.prefs.chat_on_map)
 		target.create_chat_message(person, understood_language, chosen, spans)
 	to_chat(target, message)
@@ -995,46 +995,46 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 					for(var/i = 1 to rand(1, 4))
 						if(prob(10))
 							continue
-						addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3), 3*i)
+						addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3), 3*i)
 				if(3 to 5)
 					target.playsound_local(source,'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
-					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7), 5)
-					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 3), 5)
+					addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7), 5)
+					addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/abnormalities/nothingthere/hello_clash.ogg', 75, 0, 3), 5)
 				if(6 to 8)
 					target.playsound_local(source,'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
-					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 5), 8)
+					addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 5), 8)
 				if(9)
 					target.playsound_local(source,'sound/abnormalities/nothingthere/breach.ogg', 50, 0, 5)
 				if(10 to 12)
 					target.playsound_local(source,'sound/abnormalities/nothingthere/attack.ogg', 75, 0, 3)
 		if("sorched")
 			target.playsound_local(source, 'sound/abnormalities/scorchedgirl/pre_ability.ogg', 50, 0, 2)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4), 1.5 SECONDS)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8), 3 SECONDS)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4), 1.5 SECONDS)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8), 3 SECONDS)
 		if("gbee")
 			target.playsound_local(source, 'sound/effects/explosion2.ogg', 50, 0, 8)
 		if("alriune")
 			for(var/i = 0 to 2)
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/alriune/timer.ogg', 50, FALSE), (6*i) SECONDS)
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/abnormalities/alriune/timer.ogg', 50, FALSE), (6*i) SECONDS)
 		if("clown")
 			switch(rand(1, 6))
 				if(1 to 3)
 					for(var/i = 1 to rand(2, 8))
 						if(i % 2 == 0)
-							addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/effects/clownstep2.ogg', 30, 0, 3), 2*i)
+							addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/effects/clownstep2.ogg', 30, 0, 3), 2*i)
 						else
-							addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/effects/clownstep1.ogg', 30, 0, 3), 2*i)
+							addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/effects/clownstep1.ogg', 30, 0, 3), 2*i)
 				if(4)
 					target.playsound_local(source,'sound/abnormalities/clownsmiling/announce.ogg', 75, 1)
 				if(5 to 6)
 					target.playsound_local(source,'sound/abnormalities/clownsmiling/final_stab.ogg', 50, 1)
 		if("kog")
 			for(var/i = 0 to get_dist(source, target))
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/effects/bamf.ogg', 70, TRUE, 20), 2*i)
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/effects/bamf.ogg', 70, TRUE, 20), 2*i)
 				source = get_step_towards(source, target)
 				if(prob(5))
-					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1), 2*i)
-					addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1), 2*i)
+					addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/abnormalities/kog/GreedHit1.ogg', 40, 1), 2*i)
+					addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/abnormalities/kog/GreedHit2.ogg', 40, 1), 2*i)
 		if("silent orchestra")
 			target.playsound_local(target,'sound/abnormalities/silentorchestra/movement0.ogg', 50, FALSE)
 		if("home")
@@ -1050,7 +1050,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 				target.playsound_local(target,'sound/abnormalities/silence/price.ogg', 50)
 		if("judgement")
 			target.playsound_local(source, 'sound/abnormalities/judgementbird/pre_ability.ogg', 50, 0, 2)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source,'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7), 2 SECONDS)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source,'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 7), 2 SECONDS)
 		if("breach")
 			target.playsound_local(source, 'sound/effects/alertbeep.ogg', 50, FALSE)
 		if("train")
@@ -1107,7 +1107,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 		if("phone")
 			target.playsound_local(source, 'sound/weapons/ring.ogg', 15)
 			for (var/next_rings in 1 to 3)
-				addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/weapons/ring.ogg', 15), 25 * next_rings)
+				addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/weapons/ring.ogg', 15), 25 * next_rings)
 		if("hyperspace")
 			target.playsound_local(null, 'sound/runtime/hyperspace/hyperspace_begin.ogg', 50)
 		if("hallelujah")
@@ -1126,8 +1126,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.playsound_local(source, pick(GLOB.creepy_ambience), 50, 1)
 		if("tesla") //Tesla loose!
 			target.playsound_local(source, 'sound/magic/lightningbolt.ogg', 35, 1)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/magic/lightningbolt.ogg', 65, 1), 30)
-			addtimer(CALLBACK(target, /mob/.proc/playsound_local, source, 'sound/magic/lightningbolt.ogg', 100, 1), 60)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/magic/lightningbolt.ogg', 65, 1), 30)
+			addtimer(CALLBACK(target, TYPE_PROC_REF(/mob, playsound_local), source, 'sound/magic/lightningbolt.ogg', 100, 1), 60)
 
 	qdel(src)
 
@@ -1203,7 +1203,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			target.throw_alert(alert_type, /atom/movable/screen/alert/status_effect/cowardice, override = TRUE)
 
 
-	addtimer(CALLBACK(src, .proc/cleanup), duration)
+	addtimer(CALLBACK(src, PROC_REF(cleanup)), duration)
 
 /datum/hallucination/fake_alert/proc/cleanup()
 	target.clear_alert(alert_type, clear_override = TRUE)
@@ -1353,7 +1353,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			return
 		to_chat(target, "<span class='userdanger'>You fall into the chasm!</span>")
 		target.Paralyze(40)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, "<span class='notice'>It's surprisingly shallow.</span>"), 15)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), target, "<span class='notice'>It's surprisingly shallow.</span>"), 15)
 		QDEL_IN(src, 30)
 
 /obj/effect/hallucination/danger/anomaly
@@ -1465,10 +1465,10 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			fakemob = target //ever been so lonely you had to haunt yourself?
 		if(fakemob)
 			delay = rand(20, 50)
-			addtimer(CALLBACK(GLOBAL_PROC, .proc/to_chat, target, "<span class='deadsay'><b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.first_name()]","git gud","you too?","is the AI rogue?",\
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(to_chat), target, "<span class='deadsay'><b>DEAD: [fakemob.name]</b> says, \"[pick("rip","why did i just drop dead?","hey [target.first_name()]","git gud","you too?","is the AI rogue?",\
 				"i[prob(50)?" fucking":""] hate [pick("blood cult", "clock cult", "revenants", "this round","this","myself","admins","you")]")]\"</span>"), delay)
 
-	addtimer(CALLBACK(src, .proc/cleanup), delay + rand(70, 90))
+	addtimer(CALLBACK(src, PROC_REF(cleanup)), delay + rand(70, 90))
 
 /datum/hallucination/death/proc/cleanup()
 	if (target)
@@ -1501,7 +1501,7 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	to_chat(target, "<span class='userdanger'>You're set on fire!</span>")
 	target.throw_alert("fire", /atom/movable/screen/alert/fire, override = TRUE)
 	times_to_lower_stamina = rand(5, 10)
-	addtimer(CALLBACK(src, .proc/start_expanding), 20)
+	addtimer(CALLBACK(src, PROC_REF(start_expanding)), 20)
 
 /datum/hallucination/fire/Destroy()
 	. = ..()
@@ -1584,13 +1584,13 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 	if(target.client)
 		target.client.images |= shock_image
 		target.client.images |= electrocution_skeleton_anim
-	addtimer(CALLBACK(src, .proc/reset_shock_animation), 40)
+	addtimer(CALLBACK(src, PROC_REF(reset_shock_animation)), 40)
 	target.playsound_local(get_turf(src), "sparks", 100, 1)
 	target.staminaloss += 50
 	target.Stun(40)
 	target.jitteriness += 1000
 	target.do_jitter_animation(target.jitteriness)
-	addtimer(CALLBACK(src, .proc/shock_drop), 20)
+	addtimer(CALLBACK(src, PROC_REF(shock_drop)), 20)
 
 /datum/hallucination/shock/proc/reset_shock_animation()
 	if(target.client)

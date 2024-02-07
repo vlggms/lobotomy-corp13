@@ -108,7 +108,7 @@ Defeating the murderer also surpresses the abnormality.
 /mob/living/simple_animal/hostile/abnormality/screenwriter/proc/MeltdownEffect()
 	var/turf/actor_location = pick(GLOB.department_centers) //Spawn the murderer
 	A = new (actor_location)
-	RegisterSignal(A, COMSIG_LIVING_DEATH, .proc/EndScenario)
+	RegisterSignal(A, COMSIG_LIVING_DEATH, PROC_REF(EndScenario))
 	var/list/potentialmarked = list()
 	var/list/marked = list()
 	var/mob/living/carbon/human/Y

@@ -30,6 +30,11 @@
 	room_id = "jumpscare_closet"
 	mappath = "_maps/RandomRooms/backstreets/small_south/jumpscare_closet.dmm"
 
+/datum/map_template/random_room/backstreets/small_south/wcorp_base_ssa
+	name = "W Corp Base - Small South A"
+	room_id = "wcorp_base_ssa"
+	mappath = "_maps/RandomRooms/backstreets/small_south/wcorp_base_ssa.dmm"
+
 /datum/map_template/random_room/backstreets/small_south/human_experiment
 	name = "Human Experiment - Small South"
 	room_id = "human_experiment"

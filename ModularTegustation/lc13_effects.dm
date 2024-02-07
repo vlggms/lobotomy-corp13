@@ -14,7 +14,7 @@
 /obj/effect/temp_visual/roomdamage/Initialize(mapload, set_dir)
 	. = ..()
 	animate(src, pixel_x = base_pixel_x + rand(-3, 3), pixel_y = base_pixel_y + rand(-3, 3), time = 1)
-	addtimer(CALLBACK(src,.proc/ResetAnim),2)
+	addtimer(CALLBACK(src, PROC_REF(ResetAnim)),2)
 
 /obj/effect/temp_visual/roomdamage/proc/ResetAnim()
 	pixel_x = base_pixel_x
@@ -32,7 +32,7 @@
 /obj/effect/temp_visual/workcomplete/Initialize(mapload, set_dir)
 	. = ..()
 	animate(src, alpha = 100, time = 5)
-	addtimer(CALLBACK(src,.proc/ResetAnim),5)
+	addtimer(CALLBACK(src, PROC_REF(ResetAnim)),5)
 
 /obj/effect/temp_visual/workcomplete/proc/ResetAnim()
 	animate(src, alpha = 200, time = 5)

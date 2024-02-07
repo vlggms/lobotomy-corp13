@@ -1,0 +1,172 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/machinery/door/airlock/silver,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"c" = (
+/turf/closed/wall/mineral/plastitanium/nosmooth,
+/area/city/backstreets_room)
+"i" = (
+/obj/structure/lootcrate/n_corp,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"k" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"n" = (
+/obj/structure/lootcrate/workshopzelkova,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"q" = (
+/obj/structure/lootcrate/limbus,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"s" = (
+/obj/structure/lootcrate/seven,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"t" = (
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"u" = (
+/obj/machinery/light/cold,
+/turf/closed/wall/bathhouse,
+/area/city/backstreets_room)
+"v" = (
+/obj/machinery/light/cold{
+	dir = 8
+	},
+/turf/closed/wall/bathhouse,
+/area/city/backstreets_room)
+"x" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"B" = (
+/mob/living/simple_animal/hostile/ordeal/green_bot_big,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"D" = (
+/obj/structure/filingcabinet,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"I" = (
+/obj/machinery/light/cold{
+	dir = 4
+	},
+/turf/closed/wall/bathhouse,
+/area/city/backstreets_room)
+"K" = (
+/obj/item/folder/syndicate/red{
+	desc = "A folder belonging to one of the City's corporations.";
+	name = "Corporation Folder"
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"O" = (
+/obj/structure/lootcrate/workshopleaf,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"P" = (
+/obj/structure/lootcrate/zwei,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"Q" = (
+/turf/closed/wall/bathhouse,
+/area/city/backstreets_room)
+"W" = (
+/obj/item/folder/syndicate/blue{
+	desc = "You have a feeling that these series of documents within this folder are not for the average person to gaze at.";
+	name = "Highly Confidential Folder"
+	},
+/obj/structure/filingcabinet,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+"X" = (
+/obj/structure/table/reinforced,
+/obj/item/flashlight/lamp,
+/turf/open/floor/facility/white,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+Q
+Q
+Q
+Q
+I
+Q
+"}
+(2,1,1) = {"
+Q
+W
+x
+O
+q
+c
+"}
+(3,1,1) = {"
+Q
+D
+x
+t
+t
+c
+"}
+(4,1,1) = {"
+u
+s
+x
+t
+B
+c
+"}
+(5,1,1) = {"
+Q
+B
+X
+k
+t
+a
+"}
+(6,1,1) = {"
+Q
+B
+x
+t
+k
+a
+"}
+(7,1,1) = {"
+u
+P
+x
+B
+k
+c
+"}
+(8,1,1) = {"
+Q
+K
+x
+t
+t
+c
+"}
+(9,1,1) = {"
+Q
+D
+x
+n
+i
+c
+"}
+(10,1,1) = {"
+Q
+Q
+Q
+Q
+v
+Q
+"}

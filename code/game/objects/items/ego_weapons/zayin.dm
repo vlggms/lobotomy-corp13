@@ -46,7 +46,7 @@
 		return
 	if(count >= 10)
 		return
-	addtimer(CALLBACK(src, .proc/Pulse, user, count += 1), pulse_delay)
+	addtimer(CALLBACK(src, PROC_REF(Pulse), user, count += 1), pulse_delay)
 
 /obj/item/ego_weapon/support/penitence
 	name = "penitence"

@@ -118,7 +118,7 @@
 	playsound(get_turf(status_holder), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 	status_holder.add_overlay(guilt_icon)
 	status_holder.physiology.work_success_mod *= 0.70
-	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, .proc/OnWorkComplete)
+	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(OnWorkComplete))
 
 /datum/status_effect/sg_guilty/on_remove()
 	. = ..()

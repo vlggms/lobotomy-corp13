@@ -110,7 +110,7 @@
 			"Until you realize that there is no moving on without acceptance.",
 			"Be with us. With me.",
 		)
-		INVOKE_ASYNC(src, .proc/WorkSpeech, lines, speech_styles)
+		INVOKE_ASYNC(src, PROC_REF(WorkSpeech), lines, speech_styles)
 		return
 	if(work_type == ABNORMALITY_WORK_INSIGHT && LAZYLEN(work_roses) >= rose_max)
 		datum_reference.qliphoth_change(-1)
@@ -120,7 +120,7 @@
 			"We don't need bland flowers like yours.",
 			"How disappointing~",
 		)
-		INVOKE_ASYNC(src, .proc/WorkSpeech, lines, speech_styles)
+		INVOKE_ASYNC(src, PROC_REF(WorkSpeech), lines, speech_styles)
 		return
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
 		SpawnWorkRose()
@@ -200,7 +200,7 @@
 			continue
 		var/A = pick_n_take(spawns)
 		SpawnBreachRose(H, get_turf(A))
-		INVOKE_ASYNC(src, .proc/RoseSounds, delay)
+		INVOKE_ASYNC(src, PROC_REF(RoseSounds), delay)
 		delay += 5
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/proc/RoseSounds(delay)
@@ -293,7 +293,7 @@
 
 /obj/effect/rose_target/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/GrabAttack), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/rose_target/proc/GrabAttack()
 	playsound(get_turf(src), 'sound/abnormalities/rosesign/vinegrab.ogg', 75, 0, 3)
@@ -324,7 +324,7 @@
 
 /obj/effect/roseRoot/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/roseRoot/proc/explode()
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 0, 8)
@@ -448,7 +448,7 @@
 		"Then... Shall we play some more?",
 		"This garden will become terribly beautiful with more sinful flowers we bloom!",
 	)
-	INVOKE_ASYNC(master, /mob/living/simple_animal/hostile/abnormality/rose_sign.proc/WorkSpeech, lines, speech_styles)
+	INVOKE_ASYNC(master, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/rose_sign, WorkSpeech), lines, speech_styles)
 
 /obj/structure/rose_work/Destroy()
 	if(killed)
@@ -540,7 +540,7 @@
 	if(M.buckled)
 		return
 	M.setDir(2)
-	addtimer(CALLBACK(src, .proc/BuckleAnimation, M), 1)
+	addtimer(CALLBACK(src, PROC_REF(BuckleAnimation), M), 1)
 	return ..()
 
 /obj/structure/rose_crucifix/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)

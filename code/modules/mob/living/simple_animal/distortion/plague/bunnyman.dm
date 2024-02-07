@@ -61,7 +61,7 @@
 		qdel(I)
 		say("That's all I ever wanted!")
 		can_act = FALSE
-		addtimer(CALLBACK(src,.proc/Unmanifest),3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Unmanifest)),3 SECONDS)
 
 
 /mob/living/simple_animal/hostile/distortion/bunnyman/ComponentInitialize()

@@ -17,7 +17,7 @@
 	init_attributes()
 
 	if(dna.species)
-		INVOKE_ASYNC(src, .proc/set_species, dna.species.type)
+		INVOKE_ASYNC(src, PROC_REF(set_species), dna.species.type)
 
 	//initialise organs
 	create_internal_organs() //most of it is done in set_species now, this is only for parent call
@@ -26,7 +26,7 @@
 
 	. = ..()
 
-	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, .proc/clean_face)
+	RegisterSignal(src, COMSIG_COMPONENT_CLEAN_FACE_ACT, PROC_REF(clean_face))
 	AddComponent(/datum/component/personal_crafting)
 	AddComponent(/datum/component/footstep, FOOTSTEP_MOB_HUMAN, 1, -6)
 	AddComponent(/datum/component/bloodysoles/feet)
@@ -85,7 +85,7 @@
 	for(var/atrname in attributes) //raw stats (health, sanity etc)
 		var/datum/attribute/atr = attributes[atrname]
 		for(var/stat in atr.affected_stats)
-			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.level_bonus)]" //todo: calculate work chance/speed/etc for respective values
+			dat += "[stat] : [atr.get_printed_level_bonus() + atr.get_level_buff()] + [round(atr.stat_bonus)]" //todo: calculate work chance/speed/etc for respective values
 
 	var/datum/browser/popup = new(viewer, "skills", "<div align='center'>Attributes</div>", 300, 350)
 	popup.set_content(dat.Join("<br>"))
@@ -953,7 +953,7 @@
 			electrocution_skeleton_anim = mutable_appearance(icon, "electrocuted_base")
 			electrocution_skeleton_anim.appearance_flags |= RESET_COLOR|KEEP_APART
 		add_overlay(electrocution_skeleton_anim)
-		addtimer(CALLBACK(src, .proc/end_electrocution_animation, electrocution_skeleton_anim), anim_duration)
+		addtimer(CALLBACK(src, PROC_REF(end_electrocution_animation), electrocution_skeleton_anim), anim_duration)
 
 	else //or just do a generic animation
 		flick_overlay_view(image(icon,src,"electrocuted_generic",ABOVE_MOB_LAYER), src, anim_duration)
@@ -1287,8 +1287,8 @@
 
 /mob/living/carbon/human/updatehealth()
 	if(LAZYLEN(attributes))
-		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_level_bonus_raw(src, FORTITUDE_ATTRIBUTE)))
-		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_level_bonus_raw(src, PRUDENCE_ATTRIBUTE)))
+		maxHealth = max(1, DEFAULT_HUMAN_MAX_HEALTH + round(get_attribute_level(src, FORTITUDE_ATTRIBUTE) * FORTITUDE_MOD + get_stat_bonus(src, FORTITUDE_ATTRIBUTE, no_neg = FALSE)))
+		maxSanity = max(1, DEFAULT_HUMAN_MAX_SANITY + round(get_attribute_level(src, PRUDENCE_ATTRIBUTE) * PRUDENCE_MOD + get_stat_bonus(src, PRUDENCE_ATTRIBUTE, no_neg = FALSE)))
 	. = ..()
 	dna?.species.spec_updatehealth(src)
 	sanityhealth = maxSanity - sanityloss
@@ -1392,7 +1392,7 @@
 
 /mob/living/carbon/human/species/Initialize()
 	. = ..()
-	INVOKE_ASYNC(src, .proc/set_species, race)
+	INVOKE_ASYNC(src, PROC_REF(set_species), race)
 
 /mob/living/carbon/human/species/set_species(datum/species/mrace, icon_update, pref_load)
 	. = ..()

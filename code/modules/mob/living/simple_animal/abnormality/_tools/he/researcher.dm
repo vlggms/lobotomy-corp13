@@ -37,8 +37,8 @@
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 20)
-	RegisterSignal(status_holder, COMSIG_MOB_APPLY_DAMGE, .proc/TakeDamage)
-	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, .proc/OnWorkComplete)
+	RegisterSignal(status_holder, COMSIG_MOB_APPLY_DAMGE, PROC_REF(TakeDamage))
+	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(OnWorkComplete))
 	damage_max = (status_holder.maxHealth + status_holder.maxSanity)
 
 /datum/status_effect/display/researcher/on_remove()
@@ -64,7 +64,7 @@
 	if(damage_counter >= (damage_max * 0.6))
 		to_chat(owner, span_userdanger("You feel like you should avoid taking any more damage!"))
 	if(damage_counter >= damage_max) //if the stored damage exceeds the players maxhealth + maxsanity they explode
-		addtimer(CALLBACK(src, .proc/Explode, owner), 1) //Gives damage procs time to process
+		addtimer(CALLBACK(src, PROC_REF(Explode), owner), 1) //Gives damage procs time to process
 
 /datum/status_effect/display/researcher/proc/Explode(mob/living/carbon/human/owner)
 	playsound(get_turf(owner), 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)

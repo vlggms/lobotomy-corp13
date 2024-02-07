@@ -122,7 +122,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Move()
 	if(!can_act)
@@ -248,7 +248,7 @@
 	. = ..()
 	if(new_caster)
 		caster = new_caster
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/temp_visual/root/proc/explode()
 	var/turf/target_turf = get_turf(src)
@@ -342,7 +342,7 @@
 		count = count + 1
 		if(get_dist(src, T) < 2)
 			continue
-		addtimer(CALLBACK(src, .proc/stabHit, T), (3 * ((count*0.50)+1)) + 0.25 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(stabHit), T), (3 * ((count*0.50)+1)) + 0.25 SECONDS)
 	SLEEP_CHECK_DEATH(10)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(3)

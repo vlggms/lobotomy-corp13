@@ -77,7 +77,7 @@
 		walk_to(src, 0)
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-		addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
+		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/proc/DeathExplosion()

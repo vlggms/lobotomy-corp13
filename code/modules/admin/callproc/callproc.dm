@@ -26,7 +26,7 @@
 			target = null
 			targetselected = FALSE
 
-	var/procpath = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
+	var/procpath = input("Proc path, eg: GLOBAL_PROC_REF(fake_blood)","Path:", null) as text|null
 	if(!procpath)
 		return
 

@@ -74,7 +74,7 @@
 	. = ..()
 	var/turf/T = pick(GLOB.xeno_spawn)
 	forceMove(T)
-	addtimer(CALLBACK(src, .proc/KillYourself), 3 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(KillYourself)), 3 MINUTES)
 	dir = pick(list(NORTH, SOUTH, WEST, EAST))
 	for(var/turf/open/U in range(2, src))
 		var/obj/structure/blockedpath/P = new(U)

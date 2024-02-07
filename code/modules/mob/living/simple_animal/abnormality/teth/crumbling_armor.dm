@@ -100,7 +100,7 @@
 			var/datum/ego_gifts/phase1/CAEG = new
 			CAEG.datum_reference = datum_reference
 			user.Apply_Gift(CAEG)
-			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
+			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(Cut_Head))
 			to_chat(user, span_userdanger("Just a drop of blood is what it takes..."))
 		else
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/courage)) // From Courage to Recklessness
@@ -130,7 +130,7 @@
 			var/datum/ego_gifts/courage/CAEG = new
 			CAEG.datum_reference = datum_reference
 			user.Apply_Gift(CAEG)
-			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
+			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(Cut_Head))
 			to_chat(user, span_userdanger("A strange power flows through you!"))
 	return
 
@@ -187,7 +187,7 @@
 	icon_state = "crumbling"
 
 /datum/status_effect/cowardice/on_apply()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/Punishment)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Punishment))
 	return..()
 
 /datum/status_effect/cowardice/on_remove()

@@ -53,7 +53,7 @@
 	..()
 	user.adjustBruteLoss(-user.maxHealth*0.07)
 	user.adjustSanityLoss(-user.maxSanity*0.07)
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/charge/cane/cane/proc/Return(mob/living/carbon/human/user)
 	to_chat(user, "<span class='notice'>You heal once more.</span>")
@@ -107,7 +107,7 @@
 /obj/item/ego_weapon/city/charge/cane/fist/release_charge(target, mob/living/carbon/human/user)
 	..()
 	force = force*2
-	addtimer(CALLBACK(src, .proc/Return, user), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 2 SECONDS)
 
 /obj/item/ego_weapon/city/charge/cane/fist/proc/Return(mob/living/user)
 	force = initial(force)

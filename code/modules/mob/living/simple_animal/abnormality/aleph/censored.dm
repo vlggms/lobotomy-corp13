@@ -266,7 +266,7 @@
 	if(status_flags & GODMODE)
 		return FALSE
 	for(var/i = 1 to 2)
-		addtimer(CALLBACK(src, .proc/ShakePixels), i*5 + rand(1, 4))
+		addtimer(CALLBACK(src, PROC_REF(ShakePixels)), i*5 + rand(1, 4))
 	ShakePixels()
 	FearEffect()
 	return

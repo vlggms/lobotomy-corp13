@@ -195,9 +195,9 @@
 	var/story_time = 1
 	if(pink_story)
 		for(var/line in catt)
-			addtimer(CALLBACK(src, /atom/movable.proc/say, ";"+line), (2 SECONDS)*story_time)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), ";"+line), (2 SECONDS)*story_time)
 			story_time++
-		pink_speaktimer = addtimer(CALLBACK(src, .proc/Ramble, FALSE), (3 SECONDS)*(story_time + 1))
+		pink_speaktimer = addtimer(CALLBACK(src, PROC_REF(Ramble), FALSE), (3 SECONDS)*(story_time + 1))
 		return
 	var/list/gibberish = list()
 	gibberish += dementia
@@ -209,8 +209,8 @@
 		var/line = pick(gibberish)
 		gibberish -= line
 		story_time++
-		addtimer(CALLBACK(src, /atom/movable.proc/say, ";"+line), (4 SECONDS)*story_time)
-	pink_speaktimer = addtimer(CALLBACK(src, .proc/Ramble, FALSE), (4 SECONDS)*story_time*2)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), ";"+line), (4 SECONDS)*story_time)
+	pink_speaktimer = addtimer(CALLBACK(src, PROC_REF(Ramble), FALSE), (4 SECONDS)*story_time*2)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	if(stat == DEAD)

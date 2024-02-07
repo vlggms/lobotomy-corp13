@@ -83,14 +83,14 @@
 		say("At last, someone worthy!")
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Blessing(mob/living/carbon/human/user)
-	var/datum/status_effect/chosen/Chosen = blessed_human.has_status_effect(/datum/status_effect/chosen)
-	if(Chosen)
+	var/datum/status_effect/chosen/status_holder = blessed_human.has_status_effect(/datum/status_effect/chosen)
+	if(status_holder)
 		return
 	user.apply_status_effect(STATUS_EFFECT_CHOSEN)
-	RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
-	RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
-	RegisterSignal(user, COMSIG_WORK_STARTED, .proc/OnWorkStart)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
+	RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(BlessedDeath))
+	RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnWorkStart))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/BlessedDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
@@ -167,7 +167,7 @@
 	if(friendly)
 		fear_level = ZAYIN_LEVEL
 		health = 300 //He's pretty tough at max HP
-		addtimer(CALLBACK(src, .proc/escape), 45 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(escape)), 45 SECONDS)
 		GoToFriend()
 		density = FALSE
 		icon_state = icon_friendly
@@ -295,7 +295,7 @@
 	if(!friendly)
 		return
 	if(finishing) //we dont wanna interrupt
-		addtimer(CALLBACK(src, .proc/escape), 7 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(escape)), 7 SECONDS)
 		return
 	death()
 

@@ -84,7 +84,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/BreachDig)
+	INVOKE_ASYNC(src, PROC_REF(BreachDig))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/OpenFire()
@@ -176,7 +176,7 @@
 		victim.ai_controller = /datum/ai_controller/insane/faelantern
 		victim.InitializeAIController()
 		victim.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_lure", -HALO_LAYER))
-		addtimer(CALLBACK(src,.proc/EndEnchant, victim), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(EndEnchant), victim), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	can_act = TRUE
 
@@ -222,7 +222,7 @@
 
 /obj/effect/root/faelantern/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/root/faelantern/proc/explode() //repurposed code from artillary bees, a delayed attack
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 0, 8)
@@ -323,7 +323,7 @@
 				else
 					controller.pathing_attempts++
 			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
-			addtimer(CALLBACK(src, .proc/Movement, controller), move_delay)
+			addtimer(CALLBACK(src, PROC_REF(Movement), controller), move_delay)
 			return TRUE
 	finish_action(controller, FALSE)
 	return FALSE

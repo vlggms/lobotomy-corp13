@@ -125,7 +125,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/Initialize(mapload)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/IsContained()
 	if((status_flags & GODMODE) && !stunned)
@@ -551,7 +551,7 @@
 		return ..()
 	if(ending)
 		return FALSE
-	INVOKE_ASYNC(src, .proc/Downed)
+	INVOKE_ASYNC(src, PROC_REF(Downed))
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/gib()
@@ -727,7 +727,7 @@
 	density = TRUE
 
 /mob/living/simple_animal/hostile/azure_hermit/death()
-	INVOKE_ASYNC(src, .proc/Downed)
+	INVOKE_ASYNC(src, PROC_REF(Downed))
 
 /mob/living/simple_animal/hostile/azure_hermit/gib(real = FALSE)
 	if(!real)

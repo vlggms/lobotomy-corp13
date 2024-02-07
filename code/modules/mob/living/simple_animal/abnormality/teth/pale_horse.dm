@@ -59,7 +59,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	if(prob(1))
 		icon_state = "palehorse_hungry"
 
@@ -136,7 +136,7 @@
 			playsound(T, 'sound/abnormalities/palehorse/debuff.ogg', 50, 0, -1)
 		LoseTarget(T)
 	else
-		addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 		ToAshes(T)
 
 

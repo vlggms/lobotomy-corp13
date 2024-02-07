@@ -140,7 +140,7 @@
 				var/stat_change = 0
 				stat_change = temperance - 20
 				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
-				addtimer(CALLBACK(src, .proc/DecayProtagonistBuff, user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
+				addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
 			else
 				to_chat(user, span_userdanger("The room is filling with water! Are you going to drown?!"))
 				goal_damage = 99999 // DIE.
@@ -165,7 +165,7 @@
 	buffed.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -1)
 	if(prob(10))
 		buffed.adjust_attribute_level(JUSTICE_ATTRIBUTE, 1) // 10% chance for justice buff to become real justice as it decays.
-	addtimer(CALLBACK(src, .proc/DecayProtagonistBuff, buffed, justice - 1), timing)
+	addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), buffed, justice - 1), timing)
 
 /mob/living/simple_animal/hostile/abnormality/bottle/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)

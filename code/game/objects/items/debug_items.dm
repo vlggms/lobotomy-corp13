@@ -68,7 +68,7 @@
 		"Blood Filter" = image(icon = 'icons/obj/surgery.dmi', icon_state = "bloodfilter"),
 		"Rolling Pin" = image(icon = 'icons/obj/kitchen.dmi', icon_state = "rolling_pin")
 		)
-	var/tool_result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/tool_result = show_radial_menu(user, src, tool_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(tool_result)

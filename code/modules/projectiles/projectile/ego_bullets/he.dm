@@ -29,7 +29,7 @@
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/fireback), 3)
+	addtimer(CALLBACK(src, PROC_REF(fireback)), 3)
 
 /obj/projectile/ego_bullet/ego_galaxy/homing/proc/fireback()
 	icon_state = "magich"

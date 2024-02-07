@@ -36,8 +36,8 @@ SUBSYSTEM_DEF(lobotomy_events)
 
 /datum/controller/subsystem/lobotomy_events/Initialize(start_timeofday)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnNewCrew))
 
 /datum/controller/subsystem/lobotomy_events/fire(resumed)
 	if(season_last_change < world.time)
@@ -55,9 +55,9 @@ SUBSYSTEM_DEF(lobotomy_events)
 				AB_breached += A.current
 				break
 	if(AB_breached.len >= 3)
-		INVOKE_ASYNC(src, .proc/SpawnEvent, APOCALYPSE)
+		INVOKE_ASYNC(src, PROC_REF(SpawnEvent), APOCALYPSE)
 	if(PruneList(YINYANG) && YY_breached.len >= 2 && isnull(YY_middle))
-		INVOKE_ASYNC(src, .proc/SpawnEvent, YINYANG)
+		INVOKE_ASYNC(src, PROC_REF(SpawnEvent), YINYANG)
 	else if(YY_breached.len >= 2 && !isnull(YY_middle))
 		for(var/mob/living/simple_animal/hostile/abnormality/A in YY_breached)
 			if(yin_downed && yang_downed)

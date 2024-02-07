@@ -47,7 +47,7 @@
 			continue
 		L.apply_damage(aoe_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
-	addtimer(CALLBACK(src, .proc/Melter), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(Melter)), cooldown_time)
 
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/AttackingTarget()
@@ -64,7 +64,7 @@
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	alpha = 30
-	addtimer(CALLBACK(src, .proc/Melter), cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(Melter)), cooldown_time)
 
 
 /mob/living/simple_animal/hostile/abnormality/dimensional_refraction/FailureEffect(mob/living/carbon/human/user, work_type, pe)

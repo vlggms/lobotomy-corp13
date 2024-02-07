@@ -8,10 +8,10 @@
 
 /obj/structure/toolabnormality/treesap/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/reset), 20 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(reset)), 20 MINUTES)
 
 /obj/structure/toolabnormality/treesap/proc/reset()
-	addtimer(CALLBACK(src, .proc/reset), 20 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(reset)), 20 MINUTES)
 	used = list()
 
 	for(var/mob/living/carbon/human/L in GLOB.player_list)
