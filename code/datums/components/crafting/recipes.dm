@@ -703,6 +703,13 @@
 				/obj/item/stack/rods = 1)
 	category = CAT_MISC
 
+/datum/crafting_recipe/noose
+	name = "Noose"
+	result = /obj/structure/chair/noose
+	reqs = list(/obj/item/stack/cable_coil = 20)
+	time = 20 //i mean cmon you gotta attach it to the damn ceiling (fuck you cox its REAAL)
+	category = CAT_MISC
+
 /datum/crafting_recipe/papersack
 	name = "Paper Sack"
 	result = /obj/item/storage/box/papersack
