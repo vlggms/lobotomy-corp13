@@ -134,7 +134,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/active()
 	icon_state = "radio-on"
-	addtimer(CALLBACK(src, .proc/deactive), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(deactive)), 3 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/deactive()
 	icon_state = "radio"

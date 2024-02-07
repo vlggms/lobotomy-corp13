@@ -237,7 +237,7 @@
 	M.setDir(2)
 	M.pixel_x = M.base_pixel_x - 20
 //	animate(M, pixel_z = 16, time = 30)
-	addtimer(CALLBACK(src, .proc/BuckleAnimation, M), 10)
+	addtimer(CALLBACK(src, PROC_REF(BuckleAnimation), M), 10)
 	return ..()
 
 /obj/structure/jbird_noose/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)

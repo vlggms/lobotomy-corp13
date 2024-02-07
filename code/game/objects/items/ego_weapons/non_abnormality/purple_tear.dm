@@ -28,7 +28,7 @@
 	. = ..()
 	if(!user)
 		return
-	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/DoChecks)
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(DoChecks))
 
 /obj/item/ego_weapon/city/pt/Destroy(mob/user)
 	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
@@ -106,7 +106,7 @@
 			armament_icons += list(initial(armstype.name) = image(icon = initial(armstype.icon), icon_state = initial(armstype.icon_state)))
 
 	armament_icons = sortList(armament_icons)
-	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 	if(!choice || !check_menu(user))
 		return
 
@@ -352,8 +352,8 @@
 		shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
 		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), 1 SECONDS)
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
+		addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), 1 SECONDS)
 		to_chat(user,span_userdanger("You attempt to parry the attack!"))
 		return TRUE
 
@@ -365,7 +365,7 @@
 	user.physiology.pale_mod /= max(0.001, (1 - ((reductions[4]) / 100)))
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	buff_check = FALSE
-	addtimer(CALLBACK(src, .proc/BlockCooldown, user), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), 3 SECONDS)
 	if (!block_success)
 		BlockFail(user)
 
@@ -376,7 +376,7 @@
 /obj/item/ego_weapon/city/pt/guard/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,span_warning("Your stance is widened."))
 	force = 50
-	addtimer(CALLBACK(src, .proc/RemoveDebuff, user), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), 2 SECONDS)
 
 /obj/item/ego_weapon/city/pt/guard/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,span_nicegreen("You recollect your stance."))

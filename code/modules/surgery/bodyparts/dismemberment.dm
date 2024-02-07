@@ -17,7 +17,7 @@
 	affecting.receive_damage(clamp(brute_dam/2 * affecting.body_damage_coeff, 15, 50), clamp(burn_dam/2 * affecting.body_damage_coeff, 0, 50), wound_bonus=CANT_WOUND) //Damage the chest based on limb's existing damage
 	if(!silent)
 		C.visible_message("<span class='danger'><B>[C]'s [name] is violently dismembered!</B></span>")
-	INVOKE_ASYNC(C, /mob.proc/emote, "scream")
+	INVOKE_ASYNC(C, TYPE_PROC_REF(/mob, emote), "scream")
 	playsound(get_turf(C), 'sound/effects/dismember.ogg', 80, TRUE)
 	drop_limb()
 

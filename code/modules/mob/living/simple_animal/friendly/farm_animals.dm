@@ -185,7 +185,7 @@
 		to_chat(src, span_userdanger("You are tipped over by [M]!"))
 		Paralyze(60, ignore_canstun = TRUE)
 		icon_state = icon_dead
-		addtimer(CALLBACK(src, .proc/cow_tipped, M), rand(20,50))
+		addtimer(CALLBACK(src, PROC_REF(cow_tipped), M), rand(20,50))
 
 	else
 		..()

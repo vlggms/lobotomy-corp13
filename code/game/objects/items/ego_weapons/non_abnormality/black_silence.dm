@@ -37,7 +37,7 @@
 	. = ..()
 	if(!user)
 		return
-	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/DoChecks)
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(DoChecks))
 
 /obj/item/ego_weapon/black_silence_gloves/Destroy(mob/user)
 	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
@@ -121,7 +121,7 @@
 				armament_icons += list(initial(armstype.name) = image(icon = initial(armstype.icon), icon_state = initial(armstype.locked_state)))
 
 	armament_icons = sortList(armament_icons)
-	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 	if(!choice || !check_menu(user))
 		return
 
@@ -133,11 +133,11 @@
 		Y.unlocked_list = unlocked_list
 		if(!(Y.name in unlocked_list) && Y.name != origin_name)
 			Y.unlocked_list += Y.name
-			addtimer(CALLBACK(Y, .proc/furioso_reset), furioso_wait)
+			addtimer(CALLBACK(Y, PROC_REF(furioso_reset)), furioso_wait)
 			Y.furioso_time = world.time + furioso_wait
 		else
 			var/time_left = max((furioso_time - world.time), 0)
-			addtimer(CALLBACK(Y, .proc/furioso_reset), time_left)
+			addtimer(CALLBACK(Y, PROC_REF(furioso_reset)), time_left)
 			Y.furioso_time = world.time + time_left
 		Y.iff = iff
 		qdel(src)
@@ -267,11 +267,11 @@
 		if(0)
 			playsound(user, 'sound/weapons/black_silence/mace.ogg', 80, 1)
 			dash_count += 1
-			addtimer(CALLBACK(src, .proc/dash_attack, user, target), 3)
+			addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 3)
 		if(1)
 			playsound(user, 'sound/weapons/black_silence/axe.ogg', 80, 1)
 			dash_count += 1
-			addtimer(CALLBACK(src, .proc/dash_attack, user, target), 3)
+			addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 3)
 		if(2)
 			playsound(user, 'sound/weapons/black_silence/shortsword.ogg', 90, 1)
 			dash_count = 0
@@ -324,9 +324,9 @@
 		shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
 		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), 1 SECONDS)
-		to_chat(user,span_userdanger("You attempt to parry the attack!"))
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
+		addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), 1 SECONDS)
+		to_chat(user, span_userdanger("You attempt to parry the attack!"))
 		return TRUE
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/DisableBlock(mob/living/carbon/human/user)
@@ -337,7 +337,7 @@
 	user.physiology.pale_mod /= max(0.001, (1 - ((reductions[4]) / 100)))
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	buff_check = FALSE
-	addtimer(CALLBACK(src, .proc/BlockCooldown, user), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), 3 SECONDS)
 	if (!block_success)
 		BlockFail(user)
 
@@ -348,7 +348,7 @@
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,span_warning("Your stance is widened."))
 	force = 50
-	addtimer(CALLBACK(src, .proc/RemoveDebuff, user), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), 2 SECONDS)
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,span_nicegreen("You recollect your stance."))
@@ -492,7 +492,7 @@
 	locked_state = "logic_locked"
 
 /obj/item/ego_weapon/black_silence_gloves/logic/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/black_silence_gloves/logic/Special(mob/living/user, atom/target)
@@ -744,7 +744,7 @@
 	playsound(user, 'sound/weapons/black_silence/duelsword.ogg', 50, 1)
 	if(dash_count < 1)
 		L.apply_damage(60, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-		addtimer(CALLBACK(src, .proc/dash_attack, user, target), 5)
+		addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 5)
 		new /obj/effect/temp_visual/smash_effect(F)
 		dash_count += 1
 	else

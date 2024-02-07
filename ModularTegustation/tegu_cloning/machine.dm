@@ -173,7 +173,7 @@
 			if(G.suiciding) // The ghost came from a body that is suiciding.
 				return NONE
 		if(clonemind.damnation_type) //Can't clone the damned.
-			INVOKE_ASYNC(src, .proc/horrifyingsound)
+			INVOKE_ASYNC(src, PROC_REF(horrifyingsound))
 			mess = TRUE
 			update_icon()
 			return NONE

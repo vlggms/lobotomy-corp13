@@ -113,7 +113,7 @@
 	return
 
 /obj/item/ego_weapon/city/reverberation/proc/VibrationChange()
-	vibration_timer = addtimer(CALLBACK(src, .proc/VibrationChange), 10 SECONDS, TIMER_STOPPABLE)
+	vibration_timer = addtimer(CALLBACK(src, PROC_REF(VibrationChange)), 10 SECONDS, TIMER_STOPPABLE)
 	if(active)
 		return
 	var/list/vibes = list(4, 5, 6)
@@ -173,7 +173,7 @@
 		var/datum/action/item_action/charging/tempestuous/T = locate() in actions
 		T.AddCharge(T.max_charge) // Refund if no targets
 	active = FALSE
-	vibration_timer = addtimer(CALLBACK(src, .proc/VibrationChange), 10 SECONDS, TIMER_STOPPABLE)
+	vibration_timer = addtimer(CALLBACK(src, PROC_REF(VibrationChange)), 10 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/city/reverberation/proc/GrandFinale(mob/living/user)
 	set waitfor = FALSE
@@ -223,7 +223,7 @@
 		to_chat(L, span_userdanger("[user] eviscerates you!"), MESSAGE_TYPE_COMBAT)
 		to_chat(user, span_warning("You eviscerate [L]!"), MESSAGE_TYPE_COMBAT)
 	active = FALSE
-	vibration_timer = addtimer(CALLBACK(src, .proc/VibrationChange), 10 SECONDS, TIMER_STOPPABLE)
+	vibration_timer = addtimer(CALLBACK(src, PROC_REF(VibrationChange)), 10 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/city/reverberation/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)

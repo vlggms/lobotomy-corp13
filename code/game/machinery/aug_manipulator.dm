@@ -105,7 +105,7 @@
 		for(var/skin_option in style_list_icons)
 			var/image/part_image = image(icon = style_list_icons[skin_option], icon_state = storedpart.icon_state)
 			skins += list("[skin_option]" = part_image)
-		var/choice = show_radial_menu(user, src, skins, custom_check = CALLBACK(src, .proc/check_menu, user, storedpart), require_near = TRUE)
+		var/choice = show_radial_menu(user, src, skins, custom_check = CALLBACK(src, PROC_REF(check_menu), user, storedpart), require_near = TRUE)
 		if(!choice)
 			return
 		storedpart.icon = style_list_icons[choice]

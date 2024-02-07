@@ -54,7 +54,7 @@
 		to_chat(L, span_userdanger("HOLD THE LINE!"))
 
 	playsound(src, 'sound/misc/whistle.ogg', 50, TRUE)
-	addtimer(CALLBACK(src, .proc/Return, user), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 3 SECONDS)
 
 /obj/item/ego_weapon/city/zweihander/proc/Return(mob/living/carbon/human/user)
 	user.physiology.red_mod /= defense_buff_self
@@ -70,7 +70,7 @@
 		L.physiology.pale_mod /= defense_buff_others
 		to_chat(L, span_notice("Your defense buff has expired!"))
 
-	addtimer(CALLBACK(src, .proc/Cooldown, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Cooldown), user), 15 SECONDS)
 
 /obj/item/ego_weapon/city/zweihander/proc/Cooldown(mob/living/carbon/human/user)
 	ready = TRUE

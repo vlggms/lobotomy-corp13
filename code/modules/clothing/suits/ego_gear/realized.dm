@@ -282,7 +282,7 @@
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(item_action_slot_check(slot, user))
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/dropped(mob/user)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
@@ -294,7 +294,7 @@
 		return
 	if(loc.z != abno.z)
 		return
-	addtimer(CALLBACK(src, .proc/NotifyEscape, loc, abno), rand(1 SECONDS, 3 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(NotifyEscape), loc, abno), rand(1 SECONDS, 3 SECONDS))
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/proc/NotifyEscape(mob/living/carbon/human/user, mob/living/simple_animal/hostile/abnormality/abno)
 	if(QDELETED(abno) || abno.stat == DEAD || loc != user)
@@ -360,7 +360,7 @@
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
 		CanSpawn = TRUE
-		addtimer(CALLBACK(src, .proc/Spawn,user), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Spawn),user), 10 SECONDS)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/dropped(mob/user)
 	CanSpawn = FALSE
@@ -374,7 +374,7 @@
 /obj/item/clothing/suit/armor/ego_gear/realization/nest/proc/Spawn(mob/user)
 	if(!CanSpawn)
 		return
-	addtimer(CALLBACK(src, .proc/Reset,user), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Reset),user), 10 SECONDS)
 	playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
 	var/mob/living/simple_animal/hostile/naked_nest_serpent_friend/W = new(get_turf(user))
 	W.origin_nest = user
@@ -421,7 +421,7 @@
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamaged)
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnDamaged))
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors/dropped(mob/user)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
@@ -437,7 +437,7 @@
 	if(user.is_working)
 		return
 	canSUCC = FALSE
-	addtimer(CALLBACK(src, .proc/Reset), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Reset)), 2 SECONDS)
 	for(var/turf/T in view(3, user))
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/L in T)

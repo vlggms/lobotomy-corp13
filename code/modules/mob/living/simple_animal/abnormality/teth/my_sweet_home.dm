@@ -12,7 +12,7 @@
 	can_breach = TRUE
 	del_on_death = FALSE
 	maxHealth = 600
-	health = 500
+	health = 600
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 15

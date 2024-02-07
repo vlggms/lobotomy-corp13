@@ -110,7 +110,7 @@
 	to_chat(user, span_userdanger("Yield my flesh."))
 	force*=multiplier
 
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/bladelineage/attack(mob/living/target, mob/living/carbon/human/user)
 	..()

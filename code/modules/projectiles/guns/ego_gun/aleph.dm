@@ -182,8 +182,8 @@
 		UnregisterSignal(user, COMSIG_ATOM_DIR_CHANGE)
 		user.client.view_size.zoomIn()
 	else
-		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, .proc/rotate)
-		RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+		RegisterSignal(user, COMSIG_ATOM_DIR_CHANGE, PROC_REF(rotate))
+		RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 		user.client.view_size.zoomOut(zoom_out_amt, zoom_amt, direc)
 	return zoomed
 

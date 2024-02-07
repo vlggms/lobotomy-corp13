@@ -119,10 +119,10 @@
 		hotkey_help.Grant(user)
 		actions += hotkey_help
 
-	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/on_ctrl_click)
-	RegisterSignal(user, COMSIG_XENO_SLIME_CLICK_ALT, .proc/XenoSlimeClickAlt)
-	RegisterSignal(user, COMSIG_XENO_SLIME_CLICK_SHIFT, .proc/XenoSlimeClickShift)
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT, .proc/XenoTurfClickShift)
+	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, PROC_REF(on_ctrl_click))
+	RegisterSignal(user, COMSIG_XENO_SLIME_CLICK_ALT, PROC_REF(XenoSlimeClickAlt))
+	RegisterSignal(user, COMSIG_XENO_SLIME_CLICK_SHIFT, PROC_REF(XenoSlimeClickShift))
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_SHIFT, PROC_REF(XenoTurfClickShift))
 
 	//Checks for recycler on every interact, prevents issues with load order on certain maps.
 	if(!connected_recycler)

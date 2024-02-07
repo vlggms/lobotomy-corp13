@@ -28,7 +28,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/Breach_All), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Breach_All)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/pink_midnight/death(gibbed)
 	animate(src, alpha = 0, time = 5 SECONDS)

@@ -44,8 +44,8 @@
 	user.adjustStaminaLoss(10, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
 
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
-	addtimer(CALLBACK(src, .proc/Reset, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Reset), user), 15 SECONDS)
 
 
 /obj/item/ego_weapon/city/cinq/attack(mob/living/target, mob/living/carbon/human/user)

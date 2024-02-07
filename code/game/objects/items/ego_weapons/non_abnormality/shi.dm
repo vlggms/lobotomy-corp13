@@ -74,7 +74,7 @@
 	damtype = PALE_DAMAGE
 	user.adjustBruteLoss(user.maxHealth*0.25)
 
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/shi_assassin/attack(mob/living/target, mob/living/carbon/human/user)
 	..()

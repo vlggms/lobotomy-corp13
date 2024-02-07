@@ -40,8 +40,8 @@
 		return
 	current_holder = user
 	RaiseLance(user)
-	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, .proc/UserBump)
-	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, PROC_REF(UserBump))
+	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 	if(!force_cap)
 		force_cap = (initial(force) * 2)
 
@@ -90,7 +90,7 @@
 	if(user.pulling)
 		RaiseLance(user) //no stupid super speed dragging
 		to_chat(user, span_warning("You can't maintain your momentum while pulling something!"))
-	addtimer(CALLBACK(src, .proc/MoveCheck, user, user.loc), required_movement_time)
+	addtimer(CALLBACK(src, PROC_REF(MoveCheck), user, user.loc), required_movement_time)
 
 //The player is readying a charge. CHARGE!!!
 /obj/item/ego_weapon/lance/proc/LowerLance(mob/user)

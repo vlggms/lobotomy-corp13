@@ -164,7 +164,7 @@
 
 /obj/effect/malicious_shadow/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/malicious_shadow/proc/explode() //repurposed code from artillary bees, a delayed attack
 	playsound(get_turf(src), 'sound/abnormalities/missed_reaper/shadowhit.ogg', 50, 0, 8)

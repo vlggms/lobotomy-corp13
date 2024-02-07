@@ -173,7 +173,7 @@
 			results[text] = 1
 		else
 			results[text] += 1
-	sortTim(results, cmp=/proc/cmp_numeric_dsc, associative = TRUE)
+	sortTim(results, cmp=GLOBAL_PROC_REF(cmp_numeric_dsc), associative = TRUE)
 	if(!COOLDOWN_FINISHED(src, vote_print_cooldown))
 		return
 	COOLDOWN_START(src, vote_print_cooldown, 60 SECONDS)

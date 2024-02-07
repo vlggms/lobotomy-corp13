@@ -38,7 +38,7 @@
 /obj/item/ego_weapon/chaosdunk/Initialize()
 	..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	addtimer(CALLBACK(src, .proc/ChangeColors), 5) //Call ourselves every 0.5 seconds to change color
+	addtimer(CALLBACK(src, PROC_REF(ChangeColors)), 5) //Call ourselves every 0.5 seconds to change color
 	set_light(4, 3, "#FFFF00") //Range of 4, brightness of 3 - Same range as a flashlight
 	filters += filter(type="drop_shadow", x=0, y=0, size=5, offset=2, color=rgb(158, 4, 163))
 	filters += filter(type="drop_shadow", x=0, y=0, size=5, offset=2, color=rgb(27, 255, 6))

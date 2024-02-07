@@ -40,7 +40,7 @@
 	if(cable)
 		debris += new /obj/item/stack/cable_coil(src, cable)
 
-	RegisterSignal(src, COMSIG_COMPONENT_NTNET_RECEIVE, .proc/ntnet_receive)
+	RegisterSignal(src, COMSIG_COMPONENT_NTNET_RECEIVE, PROC_REF(ntnet_receive))
 
 /obj/machinery/door/window/ComponentInitialize()
 	. = ..()
@@ -332,11 +332,11 @@
 				return
 
 			if(density)
-				INVOKE_ASYNC(src, .proc/open)
+				INVOKE_ASYNC(src, PROC_REF(open))
 			else
-				INVOKE_ASYNC(src, .proc/close)
+				INVOKE_ASYNC(src, PROC_REF(close))
 		if("touch")
-			INVOKE_ASYNC(src, .proc/open_and_close)
+			INVOKE_ASYNC(src, PROC_REF(open_and_close))
 
 /obj/machinery/door/window/rcd_vals(mob/user, obj/item/construction/rcd/the_rcd)
 	switch(the_rcd.mode)

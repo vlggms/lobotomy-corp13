@@ -125,7 +125,7 @@
 /obj/item/ego_weapon/mini/blossom/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
@@ -258,7 +258,7 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	icon_state = icon_on
 	//light_on = TRUE
-	addtimer(CALLBACK(src, .proc/IconOff), 20)
+	addtimer(CALLBACK(src, PROC_REF(IconOff)), 20)
 	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
 	var/damage_dealt = 0
 	for(var/turf/open/T in range(target_turf, 0))
@@ -330,7 +330,7 @@
 	if(mode == LANTERN_MODE_AUTO)
 		icon_state = "shield2" //temp visual
 		resonance_damage = 25
-		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/burst)
+		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), PROC_REF(burst))
 	. = ..()
 	creator = set_creator
 	res = set_resonator
@@ -338,7 +338,7 @@
 		res.traps += src
 	playsound(src,'sound/weapons/resonator_fire.ogg',50,TRUE)
 	deltimer(timerid)
-	timerid = addtimer(CALLBACK(src, .proc/burst), duration, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(burst)), duration, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/lanterntrap/Destroy()
 	if(res)
@@ -469,7 +469,7 @@
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/zauberhorn/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)

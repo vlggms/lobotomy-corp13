@@ -574,8 +574,8 @@
 /obj/item/storage/organbox/Initialize()
 	. = ..()
 	create_reagents(100, TRANSPARENT)
-	RegisterSignal(src, COMSIG_ATOM_ENTERED, .proc/freeze)
-	RegisterSignal(src, COMSIG_TRY_STORAGE_TAKE, .proc/unfreeze)
+	RegisterSignal(src, COMSIG_ATOM_ENTERED, PROC_REF(freeze))
+	RegisterSignal(src, COMSIG_TRY_STORAGE_TAKE, PROC_REF(unfreeze))
 	START_PROCESSING(SSobj, src)
 
 /obj/item/storage/organbox/process(delta_time)

@@ -452,7 +452,7 @@
 	var/mark_cooldown_time = 15 SECONDS
 
 /obj/item/ego_weapon/soulmate/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
@@ -467,7 +467,7 @@
 			update_icon()
 			attack_speed = 0.4
 			gunmark_cooldown = world.time + mark_cooldown_time
-			addtimer(CALLBACK(src, .proc/BladeRevert), 50)
+			addtimer(CALLBACK(src, PROC_REF(BladeRevert)), 50)
 			return
 		if(!(bladebuff) && blademark_cooldown <= world.time)
 			blademark_targets += target
@@ -504,7 +504,7 @@
 			update_icon_state()
 			update_icon()
 			blademark_cooldown = world.time + mark_cooldown_time
-			addtimer(CALLBACK(src, .proc/GunRevert), 80)
+			addtimer(CALLBACK(src, PROC_REF(GunRevert)), 80)
 			return TRUE
 		if(!(gunbuff) && gunmark_cooldown <= world.time)
 			gunmark_targets += target
@@ -645,7 +645,7 @@
 /obj/item/ego_weapon/seasons/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
 	Transform()
 
 /obj/item/ego_weapon/seasons/equipped(mob/living/carbon/human/user, slot)
@@ -909,7 +909,7 @@
 		return
 	playsound(src, 'sound/weapons/ego/spicebush_openfan.ogg', 50, TRUE)
 	icon_state = "spicebush_2a"
-	addtimer(CALLBACK(src, .proc/ResetIcons), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(ResetIcons)), 30 SECONDS)
 	..()
 
 /obj/item/ego_weapon/spicebush/fan/afterattack(atom/A, mob/living/user, proximity_flag, params)
@@ -1209,7 +1209,7 @@
 		"bat"  = image(icon = src.icon, icon_state = "mockery_bat")
 	)
 	armament_icons = sortList(armament_icons)
-	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/CheckMenu, user), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
 	if(!choice || !CheckMenu(user))
 		return
 	form = choice

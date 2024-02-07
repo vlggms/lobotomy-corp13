@@ -54,7 +54,7 @@
 		var/turf/W = pick(GLOB.department_centers)
 		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(W))
 		breached_monster = spawningmonster
-		addtimer(CALLBACK(src, .proc/BreachEnd, user), breach_length)
+		addtimer(CALLBACK(src, PROC_REF(BreachEnd), user), breach_length)
 
 	//--Side Gamemodes stuff--
 	//Timer will not run the timer on Rcorp.
@@ -86,7 +86,7 @@
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type == "Performance")
 		to_chat(user, span_nicegreen("Please wait until the performance is completed."))
-		addtimer(CALLBACK(src, .proc/PerformanceEnd, user), performance_length)
+		addtimer(CALLBACK(src, PROC_REF(PerformanceEnd), user), performance_length)
 		for(var/mob/living/carbon/human/L in GLOB.player_list)
 			L.apply_status_effect(STATUS_EFFECT_LUNAR)
 
@@ -163,8 +163,8 @@
 	aoeactive = TRUE
 	canaoe = FALSE
 	playsound(src, 'sound/magic/wandodeath.ogg', 200, FALSE, 9)
-	addtimer(CALLBACK(src, .proc/AOE), 9)
-	addtimer(CALLBACK(src, .proc/Reset), 7 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(AOE)), 9)
+	addtimer(CALLBACK(src, PROC_REF(Reset)), 7 SECONDS)
 
 
 /mob/living/simple_animal/hostile/luna/proc/AOE()

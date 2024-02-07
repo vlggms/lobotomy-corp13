@@ -157,7 +157,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/funeral/coffin.ogg', 40, extrarange = 10, ignore_walls = TRUE) // bwiiiiiiinng >flapping
 	var/i = 0
 	for(var/turf/T in middle_line)
-		addtimer(CALLBACK(src, .proc/SwarmTurf, T, dir_to_target), i*1.4) //swarm travel speed
+		addtimer(CALLBACK(src, PROC_REF(SwarmTurf), T, dir_to_target), i*1.4) //swarm travel speed
 		i++
 	SLEEP_CHECK_DEATH(10 SECONDS)
 	icon_state = icon_living
@@ -218,7 +218,7 @@
 		if(locate(/obj/effect/temp_visual/funeral_swarm) in TT)
 			continue
 		new /obj/effect/temp_visual/funeral_swarm(TT)
-		addtimer(CALLBACK(src, .proc/SwarmTurfLinger, TT))
+		addtimer(CALLBACK(src, PROC_REF(SwarmTurfLinger), TT))
 
 /mob/living/simple_animal/hostile/abnormality/funeral/proc/SwarmTurfLinger(turf/T)
 	for(var/i = 1 to 40) //40 times

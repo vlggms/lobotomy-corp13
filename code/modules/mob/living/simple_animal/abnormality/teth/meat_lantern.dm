@@ -79,7 +79,7 @@
 		return
 	if(!can_act || (chop_cooldown > world.time))
 		return
-	INVOKE_ASYNC(src, .proc/BigChop)
+	INVOKE_ASYNC(src, PROC_REF(BigChop))
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/proc/BigChop()
 	can_act = FALSE
@@ -103,7 +103,7 @@
 	pixel_x = base_pixel_x
 	can_act = TRUE
 	chop_cooldown = world.time + chop_cooldown_time
-	addtimer(CALLBACK(src, .proc/ProximityCheck), chop_cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(ProximityCheck)), chop_cooldown_time)
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/proc/ProximityCheck()
 	for(var/mob/living/L in range(1,src)) //hidden istype() call

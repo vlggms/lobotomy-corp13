@@ -48,7 +48,7 @@
 		return FALSE
 	..()
 	can_spin = FALSE
-	addtimer(CALLBACK(src, .proc/spin_reset), 12)
+	addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 
 /obj/item/ego_weapon/harvest/proc/spin_reset()
 	can_spin = TRUE
@@ -61,7 +61,7 @@
 		return
 	if(do_after(user, 12, src))
 		can_spin = TRUE
-		addtimer(CALLBACK(src, .proc/spin_reset), 12)
+		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
 		for(var/turf/T in orange(1, user))
 			new /obj/effect/temp_visual/smash_effect(T)
@@ -476,7 +476,7 @@
 		to_chat(H, span_notice("The thorns start secreting some strange substance."))
 		playsound(H, 'sound/abnormalities/porccubus/porccu_giggle.ogg', 50, FALSE, 4)
 		playsound(H, 'sound/weapons/bladeslice.ogg', 50, FALSE, 4)
-		addtimer(CALLBACK(src, .proc/Withdrawal), 20 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Withdrawal)), 20 SECONDS)
 	..()
 	force = round(missing_sanity + original_force)
 
@@ -555,7 +555,7 @@
 	. = ..()
 	if(!user)
 		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 	current_holder = user
 
 /obj/item/ego_weapon/homing_instinct/Destroy(mob/user)
@@ -703,8 +703,8 @@
 /obj/item/ego_weapon/shield/legerdemain/attack_self(mob/user)//FIXME: Find a better way to use this override!
 	if(block == 0) //Extra check because shields returns nothing on 1
 		if(..())
-			RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, .proc/NoParry, override = TRUE)//creates runtimes without overrides, double check if something's fucked
-			RegisterSignal(user, COMSIG_PARENT_ATTACKBY, .proc/NoParry, override = TRUE)//728 and 729 must be able to unregister the signal of 730
+			RegisterSignal(user, COMSIG_ATOM_ATTACK_HAND, PROC_REF(NoParry), override = TRUE)//creates runtimes without overrides, double check if something's fucked
+			RegisterSignal(user, COMSIG_PARENT_ATTACKBY, PROC_REF(NoParry), override = TRUE)//728 and 729 must be able to unregister the signal of 730
 			return TRUE
 		else
 			return FALSE
@@ -871,7 +871,7 @@
 		return
 	..()
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
 
 /obj/item/ego_weapon/fluid_sac/proc/JumpReset()
 	can_attack = TRUE
@@ -906,7 +906,7 @@
 	A.attackby(src,user)
 	force = initial(force)
 	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/JumpReset), 20)
+	addtimer(CALLBACK(src, PROC_REF(JumpReset)), 20)
 	for(var/mob/living/L in livinginrange(1, A))
 		if(L.z != user.z) // Not on our level
 			continue
@@ -967,7 +967,7 @@
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/replica/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/replica/examine(mob/user)
@@ -1055,7 +1055,7 @@
 	. = ..()
 	if(!user)
 		return
-	RegisterSignal(user, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+	RegisterSignal(user, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 	current_holder = user
 
 /obj/item/ego_weapon/warp/Destroy(mob/user)
@@ -1433,7 +1433,7 @@
 		user.update_inv_hands()
 
 /obj/item/ego_weapon/lifestew/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/lifestew/attack(mob/living/target, mob/living/carbon/human/user)
@@ -1513,7 +1513,7 @@
 		user.update_inv_hands()
 
 /obj/item/ego_weapon/faelantern/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/faelantern/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
@@ -1535,16 +1535,16 @@
 		G.damage*=force_multiplier
 		firing_cooldown = firing_cooldown_time + world.time
 		update_icon_state(user)
-		addtimer(CALLBACK(src, .proc/Reload, user), firing_cooldown_time + 3)
+		addtimer(CALLBACK(src, PROC_REF(Reload), user), firing_cooldown_time + 3)
 		return
 
 /obj/item/ego_weapon/faelantern/proc/projectile_hit(atom/fired_from, mob/living/carbon/human/firer, atom/target, Angle)
 	SIGNAL_HANDLER
 	if(isliving(target))
 		firing_cooldown = hit_cooldown_time + world.time
-		addtimer(CALLBACK(src, .proc/Reload, firer), hit_cooldown_time + 3)
+		addtimer(CALLBACK(src, PROC_REF(Reload), firer), hit_cooldown_time + 3)
 		return TRUE
-	addtimer(CALLBACK(src, .proc/Reload, firer), 3)
+	addtimer(CALLBACK(src, PROC_REF(Reload), firer), 3)
 	return TRUE
 
 /obj/item/ego_weapon/faelantern/proc/Reload(mob/living/carbon/human/firer)
@@ -1652,8 +1652,8 @@
 	. = ..()
 	QDEL_IN(src, 30 SECONDS)
 	animate(src, alpha = 255,transform= transform, time = 0.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/FadeOut), 29.5 SECONDS)
-	addtimer(CALLBACK(src, .proc/Slow),1 SECONDS, TIMER_LOOP)
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 29.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Slow)),1 SECONDS, TIMER_LOOP)
 
 /obj/effect/golden_road2/proc/FadeOut()
 	animate(src, alpha = 0, time = 0.5 SECONDS)
@@ -1803,7 +1803,7 @@
 		return FALSE
 	..()
 	can_spin = FALSE
-	addtimer(CALLBACK(src, .proc/spin_reset), 12)
+	addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 
 /obj/item/ego_weapon/uturn/proc/spin_reset()
 	can_spin = TRUE
@@ -1816,7 +1816,7 @@
 		return
 	if(do_after(user, 12, src))
 		can_spin = TRUE
-		addtimer(CALLBACK(src, .proc/spin_reset), 12)
+		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
 		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
 		for(var/turf/T in orange(1, user))
 			new /obj/effect/temp_visual/smash_effect(T)

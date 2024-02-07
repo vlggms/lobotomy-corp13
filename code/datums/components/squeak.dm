@@ -23,25 +23,25 @@
 /datum/component/squeak/Initialize(custom_sounds, volume_override, chance_override, step_delay_override, use_delay_override, extrarange, falloff_exponent, fallof_distance)
 	if(!isatom(parent))
 		return COMPONENT_INCOMPATIBLE
-	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_ATOM_HULK_ATTACK, COMSIG_PARENT_ATTACKBY), .proc/play_squeak)
+	RegisterSignal(parent, list(COMSIG_ATOM_ENTERED, COMSIG_ATOM_BLOB_ACT, COMSIG_ATOM_HULK_ATTACK, COMSIG_PARENT_ATTACKBY), PROC_REF(play_squeak))
 	if(ismovable(parent))
-		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT, COMSIG_PROJECTILE_BEFORE_FIRE), .proc/play_squeak)
-		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, .proc/play_squeak_crossed)
-		RegisterSignal(parent, COMSIG_ITEM_WEARERCROSSED, .proc/play_squeak_crossed)
-		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react)
+		RegisterSignal(parent, list(COMSIG_MOVABLE_BUMP, COMSIG_MOVABLE_IMPACT, COMSIG_PROJECTILE_BEFORE_FIRE), PROC_REF(play_squeak))
+		RegisterSignal(parent, COMSIG_MOVABLE_CROSSED, PROC_REF(play_squeak_crossed))
+		RegisterSignal(parent, COMSIG_ITEM_WEARERCROSSED, PROC_REF(play_squeak_crossed))
+		RegisterSignal(parent, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposing_react))
 		if(isitem(parent))
-			RegisterSignal(parent, list(COMSIG_ITEM_ATTACK, COMSIG_ITEM_ATTACK_OBJ, COMSIG_ITEM_HIT_REACT), .proc/play_squeak)
-			RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, .proc/use_squeak)
-			RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, .proc/on_equip)
-			RegisterSignal(parent, COMSIG_ITEM_DROPPED, .proc/on_drop)
+			RegisterSignal(parent, list(COMSIG_ITEM_ATTACK, COMSIG_ITEM_ATTACK_OBJ, COMSIG_ITEM_HIT_REACT), PROC_REF(play_squeak))
+			RegisterSignal(parent, COMSIG_ITEM_ATTACK_SELF, PROC_REF(use_squeak))
+			RegisterSignal(parent, COMSIG_ITEM_EQUIPPED, PROC_REF(on_equip))
+			RegisterSignal(parent, COMSIG_ITEM_DROPPED, PROC_REF(on_drop))
 			if(istype(parent, /obj/item/clothing/shoes))
-				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, .proc/step_squeak)
+				RegisterSignal(parent, COMSIG_SHOES_STEP_ACTION, PROC_REF(step_squeak))
 		else if(isstructure(parent))
-			RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, .proc/use_squeak)
+			RegisterSignal(parent, COMSIG_ATOM_ATTACK_HAND, PROC_REF(use_squeak))
 
 	if(istype(parent, /obj/item/organ/liver))
 		// Liver squeaking is depending on them functioning like a clown's liver
-		RegisterSignal(parent, SIGNAL_REMOVETRAIT(TRAIT_COMEDY_METABOLISM), .proc/on_comedy_metabolism_removal)
+		RegisterSignal(parent, SIGNAL_REMOVETRAIT(TRAIT_COMEDY_METABOLISM), PROC_REF(on_comedy_metabolism_removal))
 
 	override_squeak_sounds = custom_sounds
 	if(chance_override)
@@ -100,7 +100,7 @@
 /datum/component/squeak/proc/on_equip(datum/source, mob/equipper, slot)
 	SIGNAL_HANDLER
 
-	RegisterSignal(equipper, COMSIG_MOVABLE_DISPOSING, .proc/disposing_react, TRUE)
+	RegisterSignal(equipper, COMSIG_MOVABLE_DISPOSING, PROC_REF(disposing_react), TRUE)
 
 /datum/component/squeak/proc/on_drop(datum/source, mob/user)
 	SIGNAL_HANDLER
@@ -112,7 +112,7 @@
 	SIGNAL_HANDLER
 
 	//We don't need to worry about unregistering this signal as it will happen for us automaticaly when the holder is qdeleted
-	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, .proc/holder_dir_change)
+	RegisterSignal(holder, COMSIG_ATOM_DIR_CHANGE, PROC_REF(holder_dir_change))
 
 /datum/component/squeak/proc/holder_dir_change(datum/source, old_dir, new_dir)
 	SIGNAL_HANDLER

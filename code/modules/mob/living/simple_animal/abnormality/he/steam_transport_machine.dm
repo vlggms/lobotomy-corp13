@@ -73,7 +73,7 @@
 		ClankSound()
 		UpdateStats()
 	if(gear < 4)
-		updatetimer = addtimer(CALLBACK(src, .proc/GearUpdate), 1 MINUTES, TIMER_STOPPABLE) //Let's just call this every minute
+		updatetimer = addtimer(CALLBACK(src, PROC_REF(GearUpdate)), 1 MINUTES, TIMER_STOPPABLE) //Let's just call this every minute
 	return
 
 /mob/living/simple_animal/hostile/abnormality/steam/proc/ClankSound()
@@ -179,7 +179,7 @@
 		return
 	. = ..()
 	can_act = FALSE
-	guntimer = addtimer(CALLBACK(src, .proc/startMoving), (10), TIMER_STOPPABLE)
+	guntimer = addtimer(CALLBACK(src, PROC_REF(startMoving)), (10), TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/abnormality/steam/proc/startMoving()
 	can_act = TRUE
