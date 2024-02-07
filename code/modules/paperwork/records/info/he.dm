@@ -210,7 +210,7 @@
 		"When the Qliphoth Counter reached 0, Singing Machine activated and began to emit a grinding noise, dealing constant WHITE damage to those nearby.",
 		"While Singing Machine was in operation, performing Instinct work continuously dealt severe RED damage.",
 		"When the work result was Bad while Singing Machine was in operation, the employee dove into Singing Machine, causing the noise to deal more WHITE damage and driving all afflicted by Musical Addiction into a frenzy. The Qliphoth Counter increased by 2 and Singing Machine deactivated shortly afterwards.",
-		"When the work result was Normal while Singing Machien was in operation, the machine clamped down and tried to swallow the employee, if it succeded, the situation above also ocurred",
+		"When the work result was Normal while Singing Machine was in operation, Singing Machine clamped down and tried to swallow the employee. If it succeeded, the situation above also occurred",
 		"The above situation also occurred when an employee panicked or died during work. However, when the work result was Good, the Qliphoth Counter increased by 2 and Singing Machine deactivated.")
 
 //The Watchman
