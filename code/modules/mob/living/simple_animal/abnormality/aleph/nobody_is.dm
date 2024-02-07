@@ -775,9 +775,9 @@
 	whip_attack_cooldown_time = 5 SECONDS
 	heal_percent_per_second = 0.0085
 	if(status_flags & GODMODE) // Still contained
-		addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), rand(5 SECONDS, 10 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), 1 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Quick_Oberon_Spawn()
 	Transform_No_Kill(chosen)
-	var/mob/living/simple_animal/hostile/abnormality/titania/TIT = new(get_turf(src))
-	Oberon_Fusion(TIT)
+	sleep(1.5 SECONDS)
+	Oberon_Fusion(new/mob/living/simple_animal/hostile/abnormality/titania(get_turf(src)))
