@@ -33,9 +33,9 @@
 
 /datum/component/riding/creature/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_MOB_EMOTE, .proc/check_emote)
+	RegisterSignal(parent, COMSIG_MOB_EMOTE, PROC_REF(check_emote))
 	if(can_be_driven)
-		RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, .proc/driver_move) // this isn't needed on riding humans or cyborgs since the rider can't control them
+		RegisterSignal(parent, COMSIG_RIDDEN_DRIVER_MOVE, PROC_REF(driver_move)) // this isn't needed on riding humans or cyborgs since the rider can't control them
 
 /// Creatures need to be logged when being mounted
 /datum/component/riding/creature/proc/log_riding(mob/living/living_parent, mob/living/rider)
@@ -157,8 +157,8 @@
 
 /datum/component/riding/creature/human/RegisterWithParent()
 	. = ..()
-	RegisterSignal(parent, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, .proc/on_host_unarmed_melee)
-	RegisterSignal(parent, COMSIG_LIVING_SET_BODY_POSITION, .proc/check_carrier_fall_over)
+	RegisterSignal(parent, COMSIG_HUMAN_EARLY_UNARMED_ATTACK, PROC_REF(on_host_unarmed_melee))
+	RegisterSignal(parent, COMSIG_LIVING_SET_BODY_POSITION, PROC_REF(check_carrier_fall_over))
 
 /datum/component/riding/creature/human/log_riding(mob/living/living_parent, mob/living/rider)
 	if(!istype(living_parent) || !istype(rider))

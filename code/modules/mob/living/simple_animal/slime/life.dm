@@ -202,7 +202,7 @@
 			if (transformeffects & SLIME_EFFECT_BLACK)
 				make_baby(drop_location(),FALSE,round(nutrition * 0.9),round(powerlevel / 4))
 		if (transformeffects & SLIME_EFFECT_GREEN)
-			visible_message("<span class='warning'>[src] slurps up [M]!</span>")
+			visible_message(span_warning("[src] slurps up [M]!"))
 			adjust_nutrition(100)
 			layer = initial(layer)
 			M.forceMove(src)
@@ -400,7 +400,7 @@
 				else if(!HAS_TRAIT(src, TRAIT_IMMOBILIZED) && isturf(loc) && prob(33))
 					step(src, pick(GLOB.cardinals))
 		else if(!AIproc)
-			INVOKE_ASYNC(src, .proc/AIprocess)
+			INVOKE_ASYNC(src, PROC_REF(AIprocess))
 
 /mob/living/simple_animal/slime/handle_automated_movement()
 	return //slime random movement is currently handled in handle_targets()

@@ -348,7 +348,7 @@
 	ProtectPlants()
 	if(stage >= 5)
 		return
-	addtimer(CALLBACK(src, .proc/Grow), grow_interval)
+	addtimer(CALLBACK(src, PROC_REF(Grow)), grow_interval)
 
 /obj/structure/amurdad_bomb/proc/UpdateStage()
 	cut_overlays()
@@ -380,8 +380,8 @@
 	stage = 0
 	UpdateStage()
 	for(var/turf/shootat_turf in all_the_turfs_were_gonna_lacerate)
-		INVOKE_ASYNC(src, .proc/FireProjectile, shootat_turf)
-	addtimer(CALLBACK(src, .proc/Grow), grow_interval)
+		INVOKE_ASYNC(src, PROC_REF(FireProjectile), shootat_turf)
+	addtimer(CALLBACK(src, PROC_REF(Grow)), grow_interval)
 
 /obj/structure/amurdad_bomb/proc/FireProjectile(atom/target)
 	var/obj/projectile/P = new /obj/projectile/needle(get_turf(src))

@@ -71,7 +71,7 @@
 	prescript_target = null
 	to_chat(user, "<span class='userdanger'>You have completed your prescript, and you have been graced.</span>")
 	force *= 1.45	//BEEG BONUS
-	addtimer(CALLBACK(src, .proc/Return, user), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 MINUTES)
 
 /obj/item/ego_weapon/city/index/proc/Return(mob/living/carbon/human/user)
 	force /= 1.45	//BEEG BONUS

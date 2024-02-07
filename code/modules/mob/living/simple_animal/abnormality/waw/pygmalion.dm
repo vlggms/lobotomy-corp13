@@ -130,8 +130,8 @@
 	. = ..()
 	if(user.stat != DEAD && !sculptor && istype(user))
 		sculptor = user
-		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/SculptorDeathOrInsane)
-		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/SculptorDeathOrInsane)
+		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(SculptorDeathOrInsane))
+		RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(SculptorDeathOrInsane))
 		user.apply_status_effect(STATUS_EFFECT_SCULPTOR)
 		to_chat(user, span_nicegreen("You feel attached to this abnormality."))
 

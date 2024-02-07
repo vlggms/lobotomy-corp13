@@ -117,7 +117,7 @@
 		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
 		H.add_overlay(guilt_icon)
 		H.physiology.work_success_mod *= 0.70
-		RegisterSignal(H, COMSIG_WORK_COMPLETED, .proc/OnWorkComplete)
+		RegisterSignal(H, COMSIG_WORK_COMPLETED, PROC_REF(OnWorkComplete))
 
 /datum/status_effect/sg_guilty/on_remove()
 	. = ..()

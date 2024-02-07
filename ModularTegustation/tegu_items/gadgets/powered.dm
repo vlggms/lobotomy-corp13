@@ -410,9 +410,6 @@
 		if(H.target != user)
 			hit_message = span_warning("[user] injected some enkephalin into [T].")
 			H.GiveTarget(user)
-			if(isabnormalitymob(H)) // RISK. REWARD.
-				var/mob/living/simple_animal/hostile/abnormality/abno = H
-				abno.GiftUser(user, 1, 100)
 			user.visible_message(hit_message)
 			cell.charge -= batterycost
 			update_icon()

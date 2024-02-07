@@ -185,3 +185,31 @@
 
 /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/weak
 	attribute_requirements = list()
+
+
+//People bitched a lot
+/obj/item/ego_weapon/city/liu/fire/section5
+	name = "liu combat gloves"
+	icon_state = "liufist"
+	desc = "A gauntlet used by Liu Sections 4,5 and 6. Requires martial arts training to make use of."
+	force = 20
+	attack_speed = 0.7
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
+							)
+	hitsound = 'sound/weapons/fixer/generic/fist1.ogg'
+
+
+/obj/item/ego_weapon/city/liu/fire/section5/vet
+	name = "liu veteran combat gloves"
+	icon_state = "liufist_vet"
+	force = 32
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)

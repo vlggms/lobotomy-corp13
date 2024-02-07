@@ -4138,7 +4138,7 @@
 /area/facility_hallway/control)
 "EJ" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 5;
 	pixel_y = 5
@@ -4273,7 +4273,7 @@
 /area/facility_hallway/command)
 "FE" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/item/reagent_containers/spray/cleaner{
 	pixel_x = 5;
 	pixel_y = 5

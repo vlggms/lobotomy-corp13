@@ -196,7 +196,7 @@
 /obj/item/ego_weapon/raskolot/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
@@ -221,7 +221,7 @@
 /obj/item/ego_weapon/nobody
 	name = "nobody"
 	desc = "I am nothing at all."
-	special = "This E.G.O. functions as both a gun and a mele weapon."
+	special = "This E.G.O. functions as both a gun and a melee weapon."
 	icon_state = "nobody"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/weapons/limbus_lefthand.dmi'
@@ -240,7 +240,7 @@
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/nobody/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/nobody/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)

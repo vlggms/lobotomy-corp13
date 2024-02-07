@@ -88,7 +88,6 @@
 		HealPulse()
 
 /mob/living/simple_animal/hostile/abnormality/yang/WorkChance(mob/living/carbon/human/user, chance, work_type)
-	. = ..()
 	return YinCheck() ? chance + 10 : chance
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/YinCheck()
@@ -139,11 +138,11 @@
 		icon_state = "yang_blow"
 		exploding = TRUE
 		SSlobotomy_events.yang_downed = TRUE
-		addtimer(CALLBACK(src, .proc/explode), explosion_timer)
+		addtimer(CALLBACK(src, PROC_REF(explode)), explosion_timer)
 		return
 	if(SSlobotomy_events.yang_downed)
 		return
-	INVOKE_ASYNC(src, .proc/BeDead)
+	INVOKE_ASYNC(src, PROC_REF(BeDead))
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/BeDead()
 	icon_state = icon_dead

@@ -17,18 +17,18 @@
 
 /datum/antagonist/apostle/proc/prophet_death()
 	var/mob/living/carbon/human/H = owner.current
-	to_chat(H, "<span class='colossus'>The prophet is dead...</span>")
-	H.visible_message("<span class='danger'>[H.real_name] briefly looks above...</span>", "<span class='userdanger'>You see the light above...</span>")
+	to_chat(H, span_colossus("The prophet is dead..."))
+	H.visible_message(span_danger("[H.real_name] briefly looks above..."), span_userdanger("You see the light above..."))
 	H.emote("scream")
 	H.Immobilize(200)
-	addtimer(CALLBACK(src, .proc/soundd_in), 10)
+	addtimer(CALLBACK(src, PROC_REF(soundd_in)), 10)
 
 /datum/antagonist/apostle/proc/soundd_in()
 	var/mob/living/carbon/human/H = owner.current
 	var/turf/T = get_turf(H)
 	playsound(H, 'sound/abnormalities/whitenight/apostle_death_final.ogg', 60, TRUE, TRUE)
 	new /obj/effect/temp_visual/cult/sparks(T)
-	addtimer(CALLBACK(src, .proc/drop_dust), 25)
+	addtimer(CALLBACK(src, PROC_REF(drop_dust)), 25)
 
 /datum/antagonist/apostle/proc/drop_dust()
 	var/mob/living/carbon/human/H = owner.current

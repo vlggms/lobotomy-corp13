@@ -187,7 +187,8 @@ GLOBAL_LIST_INIT(plasteel_recipes, list ( \
 	armor = list(MELEE = 0, BULLET = 0, LASER = 0, ENERGY = 0, BOMB = 0, BIO = 0, RAD = 0, FIRE = 100, ACID = 80)
 	resistance_flags = FIRE_PROOF
 	merge_type = /obj/item/stack/sheet/plasteel
-	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20)
+	//	grind_results = list(/datum/reagent/iron = 20, /datum/reagent/toxin/plasma = 20) LOBOTOMYCORPORATION EDIT CHANGE OLD
+	grind_results = list(/datum/reagent/iron = 20) // LOBOTOMYCORPORATION EDIT CHANGE NEW -- Removes plasma
 	point_value = 23
 	tableVariant = /obj/structure/table/reinforced
 	material_flags = MATERIAL_NO_EFFECTS

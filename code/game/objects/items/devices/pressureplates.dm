@@ -31,7 +31,7 @@
 		sigdev.frequency = roundstart_signaller_freq
 
 	AddElement(/datum/element/undertile, tile_overlay = tile_overlay, use_anchor = TRUE)
-	RegisterSignal(src, COMSIG_OBJ_HIDE, .proc/ToggleActive)
+	RegisterSignal(src, COMSIG_OBJ_HIDE, PROC_REF(ToggleActive))
 
 /obj/item/pressure_plate/Crossed(atom/movable/AM)
 	. = ..()
@@ -45,7 +45,7 @@
 	else if(!trigger_item)
 		return
 	can_trigger = FALSE
-	addtimer(CALLBACK(src, .proc/trigger), trigger_delay)
+	addtimer(CALLBACK(src, PROC_REF(trigger)), trigger_delay)
 
 /obj/item/pressure_plate/proc/trigger()
 	can_trigger = TRUE

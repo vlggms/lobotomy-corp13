@@ -193,6 +193,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	hitsound = 'sound/items/welder.ogg'
 	damtype = BURN
 	force = 4
+	/* LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 	if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
@@ -206,6 +207,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		qdel(src)
 		return
 	// allowing reagents to react after being lit
+	*/
 	reagents.flags &= ~(NO_REACT)
 	reagents.handle_reactions()
 	icon_state = icon_on
@@ -956,12 +958,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					//HOT STUFF
 					C.adjust_fire_stacks(2)
 					C.IgniteMob()
-
+/* LOBOTOMYCORPORATION REMOVAL -- This was used to blatantly grief
 				if(reagents.get_reagent_amount(/datum/reagent/toxin/plasma)) // the plasma explodes when exposed to fire
 					var/datum/effect_system/reagents_explosion/e = new()
 					e.set_up(round(reagents.get_reagent_amount(/datum/reagent/toxin/plasma) / 2.5, 1), get_turf(src), 0, 0)
 					e.start()
 					qdel(src)
+*/
 				return
 		reagents.remove_any(REAGENTS_METABOLISM)
 

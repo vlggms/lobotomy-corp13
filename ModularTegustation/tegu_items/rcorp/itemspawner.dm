@@ -34,11 +34,11 @@
 		spawning = pick(possible_weapons)
 	new spawning(get_turf(src))
 	var/timeradd = rand(1200, 1800)
-	addtimer(CALLBACK(src, .proc/spawnagain), timeradd)
+	addtimer(CALLBACK(src, PROC_REF(spawnagain)), timeradd)
 
 /obj/effect/landmark/rcorpitemspawn/proc/spawnagain()
 	var/timeradd = rand(1200, 1800)
-	addtimer(CALLBACK(src, .proc/spawnagain), timeradd)
+	addtimer(CALLBACK(src, PROC_REF(spawnagain)), timeradd)
 
 	if(prob(50))	//50% to spawn
 		return
@@ -60,7 +60,7 @@
 
 /obj/effect/landmark/zombiespawn/proc/spawnzombie()
 	var/timeradd = rand(300, 1000)
-	addtimer(CALLBACK(src, .proc/spawnzombie), timeradd)
+	addtimer(CALLBACK(src, PROC_REF(spawnzombie)), timeradd)
 	var/mob/living/simple_animal/hostile/sweeper/A = new(get_turf(src))
 
 

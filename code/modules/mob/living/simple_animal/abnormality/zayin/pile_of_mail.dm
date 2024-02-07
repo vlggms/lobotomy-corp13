@@ -352,7 +352,7 @@
 
 /obj/item/mailpaper/trapped/Initialize()
 	. = ..()
-	effect_timer = new(CALLBACK(src, .proc/Trap), rand(effect_min_time, effect_max_time))
+	effect_timer = new(CALLBACK(src, PROC_REF(Trap)), rand(effect_min_time, effect_max_time))
 	playsound(get_turf(src), 'sound/abnormalities/mailpile/gotmail.ogg', 50, 1)
 
 /obj/item/mailpaper/trapped/attack_self(mob/user)
@@ -407,7 +407,8 @@
 	effect_max_time = 10 SECONDS
 
 /obj/item/mailpaper/trapped/urgent/attack_self(mob/user)
-	to_chat(user, span_notice("<span class='notice'>If don't read this within 10 seconds we are going to kill you.</span>\n<span class='nicegreen'>Well, you read it fast enough so that's nice!</span>"))
+	to_chat(user, span_notice("If don't read this within 10 seconds we are going to kill you."))
+	to_chat(user, span_nicegreen("Well, you read it fast enough so that's nice!"))
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		H.adjustSanityLoss(-20)
@@ -429,7 +430,8 @@
 /obj/item/mailpaper/trapped/flashbang/Trap()
 	var/turf/T = get_turf(src)
 	var/obj/item/grenade/flashbang/F = new(T)
-	T.visible_message("<span class='notice'>A beeping flashbang drops out of the mail.</span>\n<span class='userdanger'>WAIT, WHAT!?</span>")
+	T.visible_message(span_notice("A beeping flashbang drops out of the mail."))
+	T.visible_message(span_userdanger("WAIT, WHAT!?"))
 	F.det_time = isnull(timeleft(effect_timer)) ? 0 : timeleft(effect_timer)
 	F.arm_grenade()
 	return ..()

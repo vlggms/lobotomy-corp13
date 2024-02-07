@@ -119,7 +119,7 @@
 	. = ..()
 	update_icon()
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 50, 8) //big loud warning
-	addtimer(CALLBACK(src, .proc/BatSpawn), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(BatSpawn)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/update_icon_state()
 	if(status_flags & GODMODE) // Not breaching
@@ -205,7 +205,7 @@
 	for(var/i=bat_spawn_number, i>=0, i--)	//This counts down.
 		var/mob/living/simple_animal/hostile/nosferatu_mob/B = new(get_turf(src))
 		spawned_bats+=B
-	addtimer(CALLBACK(src, .proc/BatSpawn), summon_cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(BatSpawn)), summon_cooldown_time)
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/proc/Banquet()//AOE attack
 	banquet_cooldown = world.time + banquet_cooldown_time

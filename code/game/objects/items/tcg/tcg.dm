@@ -83,7 +83,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		"Tap" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_tap"),
 		"Flip" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_flip"),
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -205,7 +205,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 		"Pickup" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_pickup"),
 		"Flip" = image(icon = 'icons/hud/radial.dmi', icon_state = "radial_flip"),
 		)
-	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
+	var/choice = show_radial_menu(user, src, choices, custom_check = CALLBACK(src, PROC_REF(check_menu), user), require_near = TRUE, tooltips = TRUE)
 	if(!check_menu(user))
 		return
 	switch(choice)
@@ -553,7 +553,7 @@ GLOBAL_LIST_EMPTY(tcgcard_radial_choices)
 			totalCards++
 			cardsByCount[id] += 1
 	var/toSend = "Out of [totalCards] cards"
-	for(var/id in sortList(cardsByCount, /proc/cmp_num_string_asc))
+	for(var/id in sortList(cardsByCount, GLOBAL_PROC_REF(cmp_num_string_asc)))
 		if(id)
 			var/datum/card/template = GLOB.cached_cards[pack.series]["ALL"][id]
 			toSend += "\nID:[id] [template.name] [(cardsByCount[id] * 100) / totalCards]% Total:[cardsByCount[id]]"

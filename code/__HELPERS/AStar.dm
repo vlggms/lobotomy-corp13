@@ -111,7 +111,7 @@ Actual Adjacent procs :
 		if(call(start, dist)(end) > maxnodes)
 			return FALSE
 		maxnodedepth = maxnodes //no need to consider path longer than maxnodes
-	var/datum/heap/open = new /datum/heap(/proc/HeapPathWeightCompare) //the open list
+	var/datum/heap/open = new /datum/heap(GLOBAL_PROC_REF(HeapPathWeightCompare)) //the open list
 	var/list/openc = new() //open list for node check
 	var/list/path = null //the returned path, if any
 	//initialization

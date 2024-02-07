@@ -25,7 +25,7 @@
 	if(!src.on_squash_callback && squash_callback)
 		on_squash_callback = CALLBACK(target, squash_callback)
 
-	RegisterSignal(target, COMSIG_MOVABLE_CROSSED, .proc/OnCrossed)
+	RegisterSignal(target, COMSIG_MOVABLE_CROSSED, PROC_REF(OnCrossed))
 
 /datum/element/squashable/Detach(mob/living/target)
 	UnregisterSignal(target, COMSIG_MOVABLE_CROSSED)

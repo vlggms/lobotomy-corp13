@@ -31,8 +31,8 @@
 	ready = FALSE
 	to_chat(user, "<span class='userdanger'>Low at Night.</span>")
 	force*=3
-	user.adjustBruteLoss(user.maxHealth*0.4)
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
+	user.adjustBruteLoss(user.maxHealth*0.2)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/jeong/attack(mob/living/target, mob/living/carbon/human/user)
 	..()

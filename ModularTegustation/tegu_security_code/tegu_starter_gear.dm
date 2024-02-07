@@ -58,13 +58,13 @@
 		return
 
 	if(check_access(I))
-		to_chat(user, "<span class='notice'>ID authenticated. Unit reset to security emergency frequency.</span>") //If we swipe it with Sec access, we return to the default emergency signal.
+		to_chat(user, span_notice("ID authenticated. Unit reset to security emergency frequency.")) //If we swipe it with Sec access, we return to the default emergency signal.
 		frequency = sanitize_frequency(random_static_channel, freerange)
 		set_frequency(frequency)
 		sec_radio_sound()
 
 	else
-		to_chat(user, "<span class='warning'>ID is not authorized for reset to security emergency frequency.</span>")
+		to_chat(user, span_warning("ID is not authorized for reset to security emergency frequency."))
 		sec_radio_sound(FALSE)
 
 /obj/item/radio/off/security/proc/sec_radio_sound(accepted = TRUE)

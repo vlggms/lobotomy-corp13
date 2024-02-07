@@ -4026,10 +4026,10 @@
 /area/department_main/information)
 "EI" = (
 /obj/structure/table/glass,
-/obj/item/storage/backpack/duffelbag/med/surgery{
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
 	pixel_y = 10
 	},
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/structure/sign/poster/official/cleanliness{
 	pixel_x = -32
 	},

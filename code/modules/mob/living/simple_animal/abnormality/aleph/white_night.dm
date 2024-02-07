@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				S.color = "#AAFFAA" // Indicating that it's a good thing
 			for(var/mob/living/L in T)
 				new /obj/effect/temp_visual/dir_setting/cult/phase(T, L.dir)
-				addtimer(CALLBACK(src, .proc/revive_target, L, i, faction_check))
+				addtimer(CALLBACK(src, PROC_REF(revive_target), L, i, faction_check))
 		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_target(mob/living/L, attack_range = 1, faction_check = "apostle")
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
-			INVOKE_ASYNC(src, .proc/revive_humans, 48, "neutral") // Big heal
+			INVOKE_ASYNC(src, PROC_REF(revive_humans), 48, "neutral") // Big heal
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -218,7 +218,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		forceMove(T)
 	SpawnApostles()
 	particles = new /particles/white_night()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
 
 /* Apostles */
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		for(var/mob/living/L in new_hits)
 			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
-	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
+	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/apostle/staff
 	name = "staff apostle"
@@ -532,7 +532,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		can_act = TRUE
 		return FALSE
 	for(var/turf/TT in chosen_turfs)
-		addtimer(CALLBACK(src, .proc/HolyBeam, TT))
+		addtimer(CALLBACK(src, PROC_REF(HolyBeam), TT))
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/staff_prepare.ogg', 75, 0, 7)
 	SLEEP_CHECK_DEATH(2.5 SECONDS)
 	beamloop.start()

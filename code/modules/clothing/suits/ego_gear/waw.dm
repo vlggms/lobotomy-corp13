@@ -459,3 +459,12 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
+	name = "blind obsession"
+	desc = "Allow me to describe this grand and epic beast!"
+	icon_state = "blind_obsession"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -10, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)//140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 60)

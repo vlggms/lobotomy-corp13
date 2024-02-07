@@ -162,7 +162,7 @@
 //Death explosion
 /mob/living/simple_animal/hostile/abnormality/clown/death(gibbed)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 20)
-	addtimer(CALLBACK(src, .proc/DeathExplosion), 20)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 20)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/clown/proc/DeathExplosion()

@@ -30,8 +30,8 @@
 /obj/item/workshop_mod/vile/InstallationEffect(obj/item/ego_weapon/template/T)
 	modded_temp = T
 	if(screen_obj_type)
-		RegisterSignal(modded_temp, COMSIG_ITEM_EQUIPPED, .proc/itemGrabbed)
-		RegisterSignal(modded_temp, COMSIG_ITEM_DROPPED, .proc/itemDropped)
+		RegisterSignal(modded_temp, COMSIG_ITEM_EQUIPPED, PROC_REF(itemGrabbed))
+		RegisterSignal(modded_temp, COMSIG_ITEM_DROPPED, PROC_REF(itemDropped))
 		applyAbilities()
 	..()
 

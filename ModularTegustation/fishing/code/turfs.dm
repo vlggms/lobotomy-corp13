@@ -330,3 +330,27 @@
 
 /turf/open/water/deep/saltwater/safe/IsSafe()
 	return TRUE
+
+/turf/open/water/deep/obsessing_water
+	safe = TRUE
+	name = "Obsessing water"
+	desc = "A strange black and teal water."
+	icon_state = "obsessing_water"
+	loot_level1 = list(
+		/obj/item/stack/sheet/mineral/wood = 30,
+		/obj/item/food/grown/harebell = 35,
+		/obj/item/food/spiderling = 35
+		)
+	loot_level2 = list(
+		/obj/item/food/fish/siltcurrent = 35,
+		/obj/item/ego_weapon/city/rats/brick = 25,
+		/obj/item/stack/sheet/plastic = 10,
+		/obj/item/stack/fish_points = 10,
+		/obj/item/clothing/head/beret/fishing_hat = 10,
+		/obj/item/fishing_component/hook/bone = 9,
+		/obj/item/food/fish/emulsijack = 1,
+		)
+	loot_level3 = list(
+		/obj/item/food/fish/siltcurrent = 60,
+		/obj/item/food/fish/emulsijack = 40,
+		)

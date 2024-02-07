@@ -66,6 +66,7 @@
 		src.datum_reference.qliphoth_change(-1) // No. Don't.
 	work_count++
 	icon_state = "you_strong_pause"
+	penalize = FALSE
 	if(work_count < 3)
 		return
 	work_count = 0
@@ -102,7 +103,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/you_strong/WorkChance(mob/living/carbon/human/user, chance, work_type)
 	if(penalize)
-		penalize = FALSE
 		return chance /= 2
 	return ..()
 
@@ -271,7 +271,7 @@
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)
 	if(maxHealth > 200)
-		INVOKE_ASYNC(src, .proc/Undie)
+		INVOKE_ASYNC(src, PROC_REF(Undie))
 		return FALSE
 	visible_message(span_notice("[src] explodes into a mess of plastic and gore!"))
 	. = ..()

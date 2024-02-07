@@ -13,7 +13,7 @@
 	icon_state = "trawling_net_empty"
 	anchored = TRUE
 	max_integrity = 5
-	break_message = "<span class='notice'>The net falls apart!</span>"
+	break_message = span_notice("The net falls apart!")
 	break_sound = 'sound/items/wirecutter.ogg'
 	debris = list(/obj/item/fishing_net = 1)
 	var/fishin_cooldown = 25 SECONDS
@@ -27,12 +27,12 @@
 		qdel(src)
 		return
 	//will proc at least 5 times before the loop stops.
-	addtimer(CALLBACK(src, .proc/CatchFish), fishin_cooldown + fishin_cooldown_delay)
+	addtimer(CALLBACK(src, PROC_REF(CatchFish)), fishin_cooldown + fishin_cooldown_delay)
 
 /obj/structure/destructible/fishing_net/examine(mob/user)
 	. = ..()
 	if(contents.len > 0)
-		. += "<span class='notice'>[contents.len]/5 things are caught in the [src].</span>"
+		. += span_notice("[contents.len]/5 things are caught in the [src].")
 
 /obj/structure/destructible/fishing_net/AltClick(mob/user)
 	. = ..()
@@ -54,4 +54,4 @@
 	icon_state = "trawling_net_full"
 	update_icon()
 	fishin_cooldown_delay = rand(0, 5) SECONDS
-	addtimer(CALLBACK(src, .proc/CatchFish), fishin_cooldown + fishin_cooldown_delay)
+	addtimer(CALLBACK(src, PROC_REF(CatchFish)), fishin_cooldown + fishin_cooldown_delay)

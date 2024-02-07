@@ -21,7 +21,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/ReleaseDeathGas), rand(60 SECONDS, 65 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(ReleaseDeathGas)), rand(60 SECONDS, 65 SECONDS))
 
 /mob/living/simple_animal/hostile/ordeal/violet_fruit/Found(atom/A)
 	if(isliving(A))
@@ -82,7 +82,7 @@
 		return
 	var/turf/target_c = get_turf(src)
 	var/list/turf_list = spiral_range_turfs(15, target_c)
-	visible_message("<span class='danger'>[src] releases a cloud of nauseating gas!</span>")
+	visible_message(span_danger("[src] releases a cloud of nauseating gas!"))
 	playsound(target_c, 'sound/effects/ordeals/violet/fruit_suicide.ogg', 50, 1, 16)
 	adjustWhiteLoss(maxHealth) // Die
 	for(var/turf/open/T in turf_list)
@@ -116,7 +116,7 @@
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/Initialize()
 	. = ..()
 	next_pulse = world.time + 30 SECONDS
-	addtimer(CALLBACK(src, .proc/FallDown))
+	addtimer(CALLBACK(src, PROC_REF(FallDown)))
 
 /mob/living/simple_animal/hostile/ordeal/violet_monolith/CanAttack(atom/the_target)
 	return FALSE
@@ -151,7 +151,7 @@
 	animate(src, pixel_z = 0, alpha = 255, time = 10)
 	SLEEP_CHECK_DEATH(10)
 	density = TRUE
-	visible_message("<span class='danger'>[src] drops down from the ceiling!</span>")
+	visible_message(span_danger("[src] drops down from the ceiling!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/violet/monolith_down.ogg', 65, 1)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*2, time = 5)
@@ -227,7 +227,7 @@
 	if(!.)
 		return
 	if(world.time > ability_cooldown)
-		INVOKE_ASYNC(src, .proc/StartAbility)
+		INVOKE_ASYNC(src, PROC_REF(StartAbility))
 
 /mob/living/simple_animal/hostile/ordeal/violet_midnight/AttackingTarget(atom/attacked_target)
 	return FALSE
@@ -271,7 +271,7 @@
 	D.plane = plane
 	D.alpha = alpha
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 4)
-	addtimer(CALLBACK(src, .proc/AnimatePortal), 2)
+	addtimer(CALLBACK(src, PROC_REF(AnimatePortal)), 2)
 
 /obj/effect/violet_portal/red
 	name = "red portal"
@@ -333,8 +333,8 @@
 	animate(B.visuals, alpha = 0, time = (0.5 SECONDS))
 	var/list/first_line = getline(T1, get_ranged_target_turf_direct(T1, T2, 18))
 	var/list/second_line = getline(T2, get_ranged_target_turf_direct(T2, T1, 18))
-	INVOKE_ASYNC(src, .proc/DoLineAttack, first_line)
-	INVOKE_ASYNC(src, .proc/DoLineAttack, second_line)
+	INVOKE_ASYNC(src, PROC_REF(DoLineAttack), first_line)
+	INVOKE_ASYNC(src, PROC_REF(DoLineAttack), second_line)
 	playsound(T, 'sound/effects/ordeals/violet/midnight_red_attack.ogg', 50, FALSE, 24)
 	SLEEP_CHECK_DEATH(3 SECONDS)
 	playsound(T, 'sound/effects/ordeals/violet/midnight_portal_off.ogg', 50, TRUE, 8)
@@ -411,7 +411,7 @@
 	animate(B.visuals, alpha = 0, time = (0.5 SECONDS))
 	playsound(T, 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 	var/list/line = getline(T1, T2)
-	INVOKE_ASYNC(src, .proc/DoLineAttack, line)
+	INVOKE_ASYNC(src, PROC_REF(DoLineAttack), line)
 	for(var/i = 1 to 6)
 		angle2 += (10 * rotation_dir)
 		if(angle2 > 360) // This might be pointless, but I just want to be extra sure
@@ -420,7 +420,7 @@
 			angle2 += 360
 		T2 = get_turf_in_angle(angle2, T1, 24)
 		line = getline(T1, T2)
-		addtimer(CALLBACK(src, .proc/DoLineAttack, line), i)
+		addtimer(CALLBACK(src, PROC_REF(DoLineAttack), line), i)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(T, 'sound/effects/ordeals/violet/midnight_portal_off.ogg', 50, TRUE, 8)
 	animate(P, alpha = 0, time = (1 SECONDS))
@@ -494,8 +494,8 @@
 	SLEEP_CHECK_DEATH(0.4 SECONDS)
 	var/list/first_line = getline(T1, get_ranged_target_turf_direct(T1, T2, 18))
 	var/list/second_line = getline(T2, get_ranged_target_turf_direct(T2, T1, 18))
-	INVOKE_ASYNC(src, .proc/DoLineAttack, first_line)
-	INVOKE_ASYNC(src, .proc/DoLineAttack, second_line)
+	INVOKE_ASYNC(src, PROC_REF(DoLineAttack), first_line)
+	INVOKE_ASYNC(src, PROC_REF(DoLineAttack), second_line)
 	playsound(T, 'sound/effects/ordeals/violet/midnight_black_attack2.ogg', 50, FALSE, 24)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	playsound(T, 'sound/effects/ordeals/violet/midnight_portal_off.ogg', 50, TRUE, 8)
@@ -611,7 +611,7 @@
 	animate(D, alpha = 0, transform = matrix()*1.25, time = 4)
 	if(has_targets)
 		playsound(get_turf(eye), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 75, TRUE, 8)
-	addtimer(CALLBACK(src, .proc/Pulsate), pulse_delay)
+	addtimer(CALLBACK(src, PROC_REF(Pulsate)), pulse_delay)
 
 /obj/effect/pale_eye
 	name = "pale eye"

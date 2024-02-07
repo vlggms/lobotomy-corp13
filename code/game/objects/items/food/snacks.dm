@@ -39,7 +39,7 @@
 				bite_consumption = bite_consumption,\
 				microwaved_type = microwaved_type,\
 				junkiness = junkiness,\
-				after_eat = CALLBACK(src, .proc/after_eat))
+				after_eat = CALLBACK(src, PROC_REF(after_eat)))
 
 /obj/item/food/candy/bronx/proc/after_eat(mob/living/eater)
 	if(ishuman(eater))
