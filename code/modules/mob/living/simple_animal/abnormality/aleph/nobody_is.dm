@@ -743,3 +743,9 @@
 	if(oberon_mode)
 		abno_host.attacked_by(I, user)
 	..()
+
+//A simple test function to force oberon to happen
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Quick_Oberon_Spawn()
+	Transform(chosen)
+	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
+	Oberon_Fusion(T)
