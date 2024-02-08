@@ -126,7 +126,7 @@
 		charges-=1
 	if(charges <= 0 && charged)
 		damtype = initial(damtype)
-		to_chat(user, "<span class='notice'>Your hammer has run out of charges.</span>")
+		to_chat(user, span_notice("Your hammer has run out of charges."))
 		charged = FALSE
 	force = initial(force)
 
@@ -134,7 +134,7 @@
 	..()
 	if(!istype(I, /obj/item/ego_weapon/city/ncorp_mark))
 		return
-	to_chat(user, "<span class='notice'>You apply a mark to your hammer, changing its damage type.</span>")
+	to_chat(user, span_notice("You apply a mark to your hammer, changing its damage type."))
 	damtype = I.damtype
 	charges = 10
 	charged = TRUE
@@ -217,7 +217,7 @@
 
 	I.force += I.force* nails *0.1
 	nails = 0
-	to_chat(user, "<span class='notice'>You transfer [nails] nails to your hammer, increasing it's damage.</span>")
+	to_chat(user, span_notice("You transfer [nails] nails to your hammer, increasing it's damage."))
 
 /obj/item/ego_weapon/city/ncorp_brassnail/big
 	name = "Elektrumnagel"

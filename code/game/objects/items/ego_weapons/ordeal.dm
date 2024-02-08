@@ -17,11 +17,11 @@
 	hitsound = 'ModularTegustation/Tegusounds/claw/attack.ogg'
 	actions_types = list(/datum/action/item_action/switch_serum)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 130,
-							PRUDENCE_ATTRIBUTE = 130,
-							TEMPERANCE_ATTRIBUTE = 130,
-							JUSTICE_ATTRIBUTE = 130
-							)
+		FORTITUDE_ATTRIBUTE = 130,
+		PRUDENCE_ATTRIBUTE = 130,
+		TEMPERANCE_ATTRIBUTE = 130,
+		JUSTICE_ATTRIBUTE = 130,
+	)
 	var/serum = "K"
 	var/special_attack = FALSE
 	var/special_cooldown
