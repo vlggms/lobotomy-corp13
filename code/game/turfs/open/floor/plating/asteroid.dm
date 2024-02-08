@@ -152,7 +152,7 @@
 	icon_state = "snow"
 	base_icon_state = "snow"
 	initial_gas_mix = FROZEN_ATMOS
-	slowdown = 2
+	slowdown = 0
 	flags_1 = NONE
 	planetary_atmos = TRUE
 	bullet_sizzle = TRUE
