@@ -318,7 +318,10 @@ DEFINE_BITFIELD(smoothing_junction, list(
 	var/new_junction = NONE
 
 	for(var/direction in GLOB.cardinals) //Cardinal case first.
-		SET_ADJ_IN_DIR(src, new_junction, direction, direction)
+		try
+			SET_ADJ_IN_DIR(src, new_junction, direction, direction)
+		catch(var/exception/except)
+			CRASH("[src] tried smoothing but failed; [except]")
 
 	if(!(new_junction & (NORTH|SOUTH)) || !(new_junction & (EAST|WEST)))
 		set_smoothed_icon_state(new_junction)
