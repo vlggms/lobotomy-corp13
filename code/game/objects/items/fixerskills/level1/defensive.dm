@@ -19,7 +19,7 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
 		human.add_movespeed_modifier(/datum/movespeed_modifier/hunkerdown)
-		addtimer(CALLBACK(human, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/hunkerdown), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/hunkerdown), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		human.physiology.red_mod *= 0.6
 		human.physiology.white_mod *= 0.6
 		human.physiology.black_mod *= 0.6

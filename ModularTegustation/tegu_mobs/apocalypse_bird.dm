@@ -367,7 +367,7 @@
 		P.xo = PT.x - T.x
 		P.original = PT
 		P.preparePixelProjectile(PT, T)
-		addtimer(CALLBACK (P, .obj/projectile/proc/fire), 6.5 SECONDS)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 6.5 SECONDS)
 
 	SLEEP_CHECK_DEATH(6.5 SECONDS)
 	playsound(src, 'sound/abnormalities/apocalypse/fire.ogg', 75, FALSE, 12)
@@ -690,7 +690,7 @@
 		return
 
 	if(!LAZYLEN(controller.current_path))
-		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
 		if(!controller.current_path.len) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return

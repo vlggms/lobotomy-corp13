@@ -964,7 +964,7 @@
 	if(isnull(target_location)) // Sets a preset location for them to go to
 		return FALSE
 	patrol_reset() // Stop your current patrol for this one
-	patrol_path = get_path_to(src, target_location, /turf/proc/Distance_cardinal, 0, 200)
+	patrol_path = get_path_to(src, target_location, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 	if(patrol_path.len <= 0)
 		return FALSE
 	patrol_move(patrol_path[patrol_path.len])
@@ -989,7 +989,7 @@
 		target_center = pick(GLOB.department_centers)
 	SEND_SIGNAL(src, COMSIG_PATROL_START, src, target_center)
 	SEND_GLOBAL_SIGNAL(src, COMSIG_GLOB_PATROL_START, src, target_center)
-	patrol_path = get_path_to(src, target_center, /turf/proc/Distance_cardinal, 0, 200)
+	patrol_path = get_path_to(src, target_center, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 
 /mob/living/simple_animal/hostile/proc/patrol_reset()
 	patrol_path = list()

@@ -230,7 +230,7 @@
 	finishing = TRUE
 	face_atom(target)
 	T.add_overlay(icon('icons/effects/effects.dmi', "zorowarning"))
-	addtimer(CALLBACK(T, .atom/proc/cut_overlay, \
+	addtimer(CALLBACK(T, TYPE_PROC_REF(/atom, cut_overlay), \
 							icon('icons/effects/effects.dmi', "zorowarning")), 40)
 	say("En garde!")
 	SLEEP_CHECK_DEATH(40)
@@ -240,7 +240,7 @@
 		if(jump_turf.is_blocked_turf(exclude_mobs = TRUE))
 			jump_turf = get_turf(target)
 		T.add_overlay(icon('icons/effects/effects.dmi', "zoro"))
-		addtimer(CALLBACK(T, .atom/proc/cut_overlay, \
+		addtimer(CALLBACK(T, TYPE_PROC_REF(/atom, cut_overlay), \
 								icon('icons/effects/effects.dmi', "zoro")), 14)
 		playsound(target, 'sound/abnormalities/pussinboots/slash.ogg', 50, 0, 2)
 		forceMove(jump_turf)

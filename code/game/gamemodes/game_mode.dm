@@ -116,7 +116,7 @@
 		addtimer(CALLBACK(src, PROC_REF(send_intercept), 0), rand(waittime_l, waittime_h))
 	generate_station_goals()
 
-	addtimer(CALLBACK(SSabnormality_queue, /datum/controller/subsystem/abnormality_queue/proc/HandleStartingAbnormalities), ABNORMALITY_DELAY)
+	addtimer(CALLBACK(SSabnormality_queue, TYPE_PROC_REF(/datum/controller/subsystem/abnormality_queue, HandleStartingAbnormalities)), ABNORMALITY_DELAY)
 
 	gamemode_ready = TRUE
 	return TRUE

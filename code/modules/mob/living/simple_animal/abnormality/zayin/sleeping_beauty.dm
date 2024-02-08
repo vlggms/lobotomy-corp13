@@ -169,12 +169,12 @@
 	var/mob/living/carbon/C = L
 	to_chat(C, span_warning("You feel tired..."))
 	C.blur_eyes(5)
-	addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 20), 2 SECONDS)
+	addtimer(CALLBACK (C, TYPE_PROC_REF(/mob/living, AdjustSleeping), 20), 2 SECONDS)
 	return ..()
 
 /datum/reagent/abnormality/sleeping/on_mob_life(mob/living/L)
 	if(!iscarbon(L))
 		return
 	var/mob/living/carbon/C = L
-	addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 20), 2 SECONDS)
+	addtimer(CALLBACK (C, TYPE_PROC_REF(/mob/living, AdjustSleeping), 20), 2 SECONDS)
 	return ..()

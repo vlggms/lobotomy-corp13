@@ -1095,7 +1095,7 @@
 		return
 	if(!activated)
 		return
-	if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 20)))
+	if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 20)))
 		to_chat(user, span_notice("Invalid target."))
 		activated = FALSE
 		return

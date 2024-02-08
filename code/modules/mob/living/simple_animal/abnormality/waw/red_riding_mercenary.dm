@@ -164,7 +164,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/find_target/Activate()
-	addtimer(CALLBACK(A, .mob/living/simple_animal/hostile/abnormality/red_hood/proc/PlayerTargetFind), 1)
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_hood, PlayerTargetFind)), 1)
 	to_chat(A, chosen_message)
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/PlayerTargetFind()
@@ -178,7 +178,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/catch_breath/Activate()
-	addtimer(CALLBACK(A, .mob/living/simple_animal/hostile/abnormality/red_hood/proc/AttemptEvade), 1)
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_hood, AttemptEvade)), 1)
 	to_chat(A, chosen_message)
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/AttemptEvade()

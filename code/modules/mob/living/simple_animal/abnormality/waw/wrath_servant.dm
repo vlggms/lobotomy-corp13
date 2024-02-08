@@ -652,7 +652,7 @@
 			playsound(SW, 'sound/abnormalities/wrath_servant/enrage.ogg', 100, FALSE, 40, falloff_distance = 20)
 			visible_message(span_userdanger("[src] plunges their staff into [SW]'s chest!"))
 			SW.stunned = TRUE
-			addtimer(CALLBACK(SW, /mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Unstun), 3 MINUTES)
+			addtimer(CALLBACK(SW, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/wrath_servant, Unstun)), 3 MINUTES)
 			SW.status_flags |= GODMODE
 			SW.icon_state = "wrath_staff_stun"
 			SW.desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid. A wooden staff is impaled in its chest, it can't seem to move!"

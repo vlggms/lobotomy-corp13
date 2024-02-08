@@ -129,7 +129,7 @@
 		H.physiology.work_success_mod /= 0.70
 		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
 		if(!isnull(datum_reference))
-			INVOKE_ASYNC(datum_reference, /datum/abnormality/proc/qliphoth_change, 1, owner)
+			INVOKE_ASYNC(datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), 1, owner)
 
 /datum/status_effect/sg_guilty/refresh()
 	playsound(get_turf(owner), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)

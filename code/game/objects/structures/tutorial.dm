@@ -21,7 +21,7 @@
 		var/turf/shove_turf = get_step(loc, shove_dir)
 		if(Move(shove_turf, shove_dir))
 			to_chat(user, "<span class='notice'>You push \the [src] out of the way.</span>")
-			addtimer(CALLBACK(src, /atom/movable/proc/forceMove, oldturf), 20 SECONDS)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, forceMove), oldturf), 20 SECONDS)
 
 /obj/machinery/power/emitter/energycannon/tutorialemitter
 
