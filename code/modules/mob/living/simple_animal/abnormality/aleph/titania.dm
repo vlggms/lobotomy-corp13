@@ -55,6 +55,11 @@
 	//Oberon stuff
 	var/fused = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/titania/Life()
+	. = ..()
+	if(fused) // So you can't just spoon her to death while in nobody is.
+		adjustBruteLoss(-(maxHealth))
+
 /mob/living/simple_animal/hostile/abnormality/titania/Move()
 	if(fused)
 		return FALSE
@@ -67,6 +72,8 @@
 
 //Attacking code
 /mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget()
+	if(fused)
+		return FALSE
 	var/mob/living/carbon/human/H = target
 	//Kills the weak immediately.
 	if(get_user_level(H) < 4 && (ishuman(H)))

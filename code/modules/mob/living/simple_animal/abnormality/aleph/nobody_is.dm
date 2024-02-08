@@ -355,6 +355,8 @@
 		T.density = FALSE
 		T.forceMove(src)
 		T.fairy_spawn_time = 10 SECONDS
+		T.melee_damage_lower = 0
+		T.melee_damage_upper = 0
 		can_act = TRUE
 		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
 		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
@@ -775,9 +777,13 @@
 	whip_attack_cooldown_time = 5 SECONDS
 	heal_percent_per_second = 0.0085
 	if(status_flags & GODMODE) // Still contained
-		addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), 1 SECONDS)
+		ZeroQliphoth()
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Quick_Oberon_Spawn()
 	Transform_No_Kill(chosen)
-	sleep(1.5 SECONDS)
-	Oberon_Fusion(new/mob/living/simple_animal/hostile/abnormality/titania(get_turf(src)))
+	oberon_mode = TRUE
+	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
+	T.BreachEffect()
+	T.fused = TRUE
+	T.ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))//fuck you no damaging while they erp
+	Oberon_Fusion(T)
