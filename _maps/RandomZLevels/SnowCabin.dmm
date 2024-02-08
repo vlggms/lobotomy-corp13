@@ -2732,12 +2732,6 @@
 /obj/structure/cable,
 /turf/open/floor/plating,
 /area/awaymission/cabin)
-"hk" = (
-/obj/structure/sign/poster/official/nanotrasen_logo{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/awaymission/cabin)
 "hl" = (
 /obj/structure/sign/poster/official/here_for_your_safety{
 	pixel_y = 32
@@ -2934,13 +2928,6 @@
 /obj/item/reagent_containers/food/drinks/beer,
 /turf/open/floor/plating/snowed,
 /area/awaymission/cabin/caves)
-"hR" = (
-/obj/structure/reagent_dispensers/beerkeg{
-	desc = "Hey, CentCom, we located our complimentary case of space beer! The pamphlet didn't lie!";
-	name = "complimentary keg of space beer"
-	},
-/turf/open/floor/plating/snowed,
-/area/awaymission/cabin/caves)
 "hS" = (
 /mob/living/simple_animal/hostile/tree{
 	desc = "I am death. I will have my vengeance upon my enemies.";
@@ -3121,18 +3108,6 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/machinery/door/airlock/hatch,
 /obj/structure/barricade/wooden,
-/turf/open/floor/mineral/plastitanium/red{
-	name = "soviet floor"
-	},
-/area/awaymission/cabin/caves/sovietcave)
-"iq" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/hivebot/range{
-	desc = "Looks like he's been left behind.";
-	faction = list("russian");
-	maxHealth = 5;
-	name = "soviet machine"
-	},
 /turf/open/floor/mineral/plastitanium/red{
 	name = "soviet floor"
 	},
@@ -3468,15 +3443,6 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/cabin)
-"jo" = (
-/obj/machinery/button/door{
-	id = "fightingcommunity40";
-	name = "shutter button";
-	pixel_x = 28;
-	pixel_y = 30
-	},
-/turf/open/floor/wood,
-/area/awaymission/cabin)
 "jp" = (
 /obj/machinery/button/door{
 	id = "fightingcommunity50";
@@ -3688,12 +3654,6 @@
 	name = "soviet floor"
 	},
 /area/awaymission/cabin/caves/sovietcave)
-"jO" = (
-/obj/structure/sign/warning/nosmoking{
-	pixel_x = 32
-	},
-/turf/open/floor/wood/cold,
-/area/awaymission/cabin/lumbermill)
 "jP" = (
 /obj/structure/sign/warning/nosmoking{
 	pixel_x = -32
@@ -3904,11 +3864,6 @@
 "kq" = (
 /turf/open/floor/wood/cold{
 	icon_state = "wood-broken5"
-	},
-/area/awaymission/cabin/caves)
-"kr" = (
-/turf/open/floor/wood/cold{
-	icon_state = "wood-broken3"
 	},
 /area/awaymission/cabin/caves)
 "ks" = (
@@ -4230,12 +4185,6 @@
 /obj/effect/decal/cleanable/oil,
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/cabin/caves)
-"kX" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/effect/decal/cleanable/blood,
-/obj/effect/decal/cleanable/blood/gibs,
-/turf/open/floor/carpet,
-/area/awaymission/cabin/caves/mountain)
 "kY" = (
 /obj/effect/decal/remains/human,
 /obj/item/shovel,
@@ -4340,15 +4289,6 @@
 /area/awaymission/cabin/caves)
 "ll" = (
 /obj/structure/barricade/wooden/snowed,
-/turf/open/floor/plating/asteroid/snow,
-/area/awaymission/cabin/caves)
-"lm" = (
-/obj/effect/decal/cleanable/blood/old,
-/obj/effect/decal/remains/human,
-/obj/effect/decal/cleanable/glitter/blue{
-	desc = "It looks like fancy glitter to me.";
-	name = "icy wind"
-	},
 /turf/open/floor/plating/asteroid/snow,
 /area/awaymission/cabin/caves)
 "ln" = (
@@ -4474,14 +4414,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/awaymission/cabin)
-"lA" = (
-/obj/effect/decal/cleanable/glitter/blue{
-	desc = "It looks like fancy glitter to me.";
-	name = "icy wind"
-	},
-/obj/effect/decal/remains/xeno/larva,
-/turf/open/floor/plating/asteroid/snow,
-/area/awaymission/cabin/caves)
 "lB" = (
 /obj/structure/statue/snow/snowman{
 	anchored = 1;
@@ -4734,13 +4666,6 @@
 	set_luminosity = 6
 	},
 /turf/open/floor/plating/snowed/smoothed,
-/area/awaymission/cabin/caves)
-"mk" = (
-/obj/structure/fence{
-	dir = 4
-	},
-/obj/structure/sign/ncorporation,
-/turf/open/floor/plating/asteroid/snow,
 /area/awaymission/cabin/caves)
 "ml" = (
 /obj/structure/fence{
@@ -5150,15 +5075,6 @@
 	name = "soviet floor"
 	},
 /area/awaymission/cabin/caves/sovietcave)
-"ns" = (
-/obj/effect/decal/cleanable/dirt/dust,
-/obj/effect/decal/cleanable/cobweb/cobweb2{
-	desc = "No, the spider web doesn't have any secrets. For fucksake."
-	},
-/turf/open/floor/mineral/plastitanium/red{
-	name = "soviet floor"
-	},
-/area/awaymission/cabin/caves/sovietcave)
 "nt" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/ladder/unbreakable/rune{
@@ -5177,6 +5093,18 @@
 	pixel_x = -8
 	},
 /turf/open/floor/carpet,
+/area/awaymission/cabin)
+"nC" = (
+/obj/machinery/button/door{
+	id = "fightingcommunity40";
+	name = "shutter button";
+	pixel_x = 28;
+	pixel_y = 30
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dawn{
+	name = "lost remnant"
+	},
+/turf/open/floor/wood,
 /area/awaymission/cabin)
 "nI" = (
 /obj/effect/rune/malformed{
@@ -5253,13 +5181,6 @@
 	},
 /turf/open/floor/wood,
 /area/awaymission/cabin)
-"nT" = (
-/obj/structure/window{
-	dir = 4
-	},
-/obj/structure/chair/stool,
-/turf/open/floor/wood,
-/area/awaymission/cabin)
 "nU" = (
 /obj/machinery/door/airlock{
 	name = "Bathroom"
@@ -5274,6 +5195,302 @@
 	},
 /turf/open/floor/plating,
 /area/awaymission/cabin)
+"pM" = (
+/obj/structure/sign/poster/official/nanotrasen_logo{
+	pixel_x = 32
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dusk{
+	name = "old manager"
+	},
+/turf/open/floor/wood,
+/area/awaymission/cabin)
+"rr" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/ordeal/sin_pride,
+/turf/open/floor/carpet,
+/area/awaymission/cabin/caves/mountain)
+"rC" = (
+/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+/turf/open/floor/wood,
+/area/awaymission/cabin/caves)
+"rR" = (
+/mob/living/simple_animal/hostile/ordeal/sin_pride,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"ty" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/hivebot/range{
+	damage_coeff = list("brute" = 1, "red" = 0.5, "white" = 1.2, "black" = 1.5, "pale" = 2);
+	desc = "Looks like he's been left behind.";
+	faction = list("russian");
+	health = 250;
+	maxHealth = 5;
+	name = "soviet machine"
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	name = "soviet floor"
+	},
+/area/awaymission/cabin/caves/sovietcave)
+"tG" = (
+/obj/item/ego_weapon/rimeshank,
+/turf/open/floor/wood/cold,
+/area/awaymission/cabin/snowforest)
+"uD" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/cobweb/cobweb2{
+	desc = "No, the spider web doesn't have any secrets. For fucksake."
+	},
+/obj/structure/lootcrate/money,
+/turf/open/floor/mineral/plastitanium/red{
+	name = "soviet floor"
+	},
+/area/awaymission/cabin/caves/sovietcave)
+"uL" = (
+/obj/structure/sign/warning/nosmoking{
+	pixel_x = 32
+	},
+/obj/structure/lootcrate/money,
+/turf/open/floor/wood/cold,
+/area/awaymission/cabin/lumbermill)
+"vs" = (
+/obj/effect/decal/cleanable/blood/old,
+/obj/effect/decal/remains/human,
+/obj/effect/decal/cleanable/glitter/blue{
+	desc = "It looks like fancy glitter to me.";
+	name = "icy wind"
+	},
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"vx" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn{
+	name = "lost remnant"
+	},
+/turf/open/floor/wood,
+/area/awaymission/cabin)
+"wx" = (
+/mob/living/simple_animal/hostile/yagaslave,
+/turf/open/floor/wood/cold,
+/area/awaymission/cabin/lumbermill)
+"xX" = (
+/obj/structure/reagent_dispensers/beerkeg{
+	desc = "Hey, CentCom, we located our complimentary case of space beer! The pamphlet didn't lie!";
+	name = "complimentary keg of space beer"
+	},
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion{
+	light_color = "#34e8eb";
+	name = "Guardian of the Ice"
+	},
+/turf/open/floor/plating/snowed,
+/area/awaymission/cabin/caves)
+"ym" = (
+/mob/living/simple_animal/hostile/yagaslave,
+/turf/open/floor/plating/snowed/temperatre,
+/area/awaymission/cabin/snowforest)
+"yp" = (
+/mob/living/simple_animal/hostile/yagaslave,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/snowforest)
+"zS" = (
+/obj/structure/sign/poster/official/cleanliness{
+	pixel_y = -32
+	},
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/white,
+/area/awaymission/cabin)
+"Am" = (
+/obj/effect/decal/cleanable/glitter/blue{
+	desc = "It looks like fancy glitter to me.";
+	name = "icy wind"
+	},
+/obj/effect/decal/cleanable/generic,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"AQ" = (
+/turf/open/space/basic,
+/area/space)
+"CT" = (
+/obj/structure/window{
+	dir = 4
+	},
+/obj/structure/chair/stool,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn{
+	name = "lost remnant"
+	},
+/turf/open/floor/wood,
+/area/awaymission/cabin)
+"Ef" = (
+/obj/effect/landmark/custom_office/poster,
+/turf/closed/wall/mineral/wood,
+/area/awaymission/cabin/lumbermill)
+"EM" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/hivebot/range{
+	damage_coeff = list("brute" = 1, "red" = 0.5, "white" = 1.2, "black" = 1.5, "pale" = 2);
+	desc = "Looks like he's been left behind.";
+	faction = list("russian");
+	health = 250;
+	maxHealth = 5;
+	name = "soviet machine"
+	},
+/turf/open/floor/mineral/plastitanium/red{
+	name = "soviet floor"
+	},
+/area/awaymission/cabin/caves/sovietcave)
+"Gt" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/ice/smooth,
+/area/awaymission/cabin/caves)
+"GF" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/lootcrate/money,
+/turf/open/floor/mineral/plastitanium/red{
+	name = "soviet floor"
+	},
+/area/awaymission/cabin/caves/sovietcave)
+"GJ" = (
+/obj/structure/cable,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn{
+	name = "lost remnant"
+	},
+/turf/open/floor/wood,
+/area/awaymission/cabin)
+"HD" = (
+/mob/living/simple_animal/hostile/ordeal/sin_pride,
+/turf/open/floor/wood/cold{
+	icon_state = "wood-broken3"
+	},
+/area/awaymission/cabin/caves)
+"HN" = (
+/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"HS" = (
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/plasteel/white,
+/area/awaymission/cabin)
+"IB" = (
+/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"IK" = (
+/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+/turf/open/floor/plating/ice/smooth,
+/area/awaymission/cabin/caves)
+"IS" = (
+/obj/item/clothing/suit/armor/ego_gear/waw/rimeshank,
+/turf/open/floor/wood/cold,
+/area/awaymission/cabin/snowforest)
+"Jt" = (
+/mob/living/simple_animal/hostile/ordeal/sin_pride,
+/turf/open/floor/wood/cold,
+/area/awaymission/cabin/caves)
+"Kd" = (
+/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+/turf/open/floor/plating/asteroid/snow{
+	floor_variance = 0;
+	icon_state = "snow_dug";
+	slowdown = 1
+	},
+/area/awaymission/cabin/caves)
+"KP" = (
+/obj/structure/lattice/catwalk,
+/mob/living/simple_animal/hostile/ordeal/sin_pride,
+/turf/open/indestructible{
+	icon_state = "plating";
+	name = "bridge"
+	},
+/area/awaymission/cabin/caves/mountain)
+"LK" = (
+/mob/living/simple_animal/hostile/asteroid/ice_whelp{
+	damage_coeff = list("brute" = 1, "red" = 1.5, "white" = 0, "black" = 1.5, "pale" = 2);
+	faction = list("skeleton");
+	melee_damage_type = "white"
+	},
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"Mh" = (
+/obj/item/extraction_pack,
+/turf/open/floor/carpet,
+/area/awaymission/cabin)
+"Oe" = (
+/obj/effect/decal/cleanable/insectguts,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+/turf/open/floor/carpet,
+/area/awaymission/cabin/caves/mountain)
+"On" = (
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+/turf/open/indestructible/binary{
+	density = 1;
+	desc = "No, I am not going through this.";
+	icon = 'icons/misc/beach.dmi';
+	icon_state = "water";
+	name = "dirty water"
+	},
+/area/awaymission/cabin/caves/mountain)
+"Qw" = (
+/mob/living/simple_animal/hostile/asteroid/ice_demon{
+	damage_coeff = list("brute" = 1, "red" = 0.7, "white" = 0.5, "black" = 1.2, "pale" = 2);
+	health = 500;
+	melee_damage_lower = 25;
+	melee_damage_type = "white";
+	melee_damage_upper = 25
+	},
+/turf/open/floor/wood/cold,
+/area/awaymission/cabin/snowforest)
+"RG" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+/turf/open/floor/carpet,
+/area/awaymission/cabin/caves/mountain)
+"Sa" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/obj/effect/decal/cleanable/blood/gibs,
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+/turf/open/floor/carpet,
+/area/awaymission/cabin/caves/mountain)
+"VB" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying{
+	name = "lost aerial scout"
+	},
+/turf/open/floor/plating,
+/area/awaymission/cabin)
+"Wh" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 1
+	},
+/mob/living/simple_animal/hostile/yagaslave,
+/turf/open/floor/plating/snowed/temperatre,
+/area/awaymission/cabin/snowforest)
+"XZ" = (
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"YR" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/obj/effect/landmark/custom_office/poster,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
+"ZL" = (
+/obj/structure/extraction_point,
+/turf/open/floor/wood,
+/area/awaymission/cabin)
+"ZX" = (
+/obj/effect/decal/cleanable/glitter/blue{
+	desc = "It looks like fancy glitter to me.";
+	name = "icy wind"
+	},
+/obj/effect/decal/remains/xeno/larva,
+/obj/structure/lootcrate/money,
+/turf/open/floor/plating/asteroid/snow,
+/area/awaymission/cabin/caves)
 
 (1,1,1) = {"
 ab
@@ -8853,7 +9070,7 @@ it
 it
 it
 it
-it
+XZ
 mP
 ms
 ms
@@ -9367,7 +9584,7 @@ hO
 mQ
 hO
 it
-it
+LK
 it
 it
 mP
@@ -9618,7 +9835,7 @@ ab
 ab
 ms
 ms
-it
+LK
 hO
 hO
 hO
@@ -10902,7 +11119,7 @@ ab
 ab
 ab
 ms
-it
+XZ
 it
 hO
 hO
@@ -11423,7 +11640,7 @@ hO
 mT
 hO
 hO
-it
+LK
 it
 it
 it
@@ -11673,7 +11890,7 @@ ab
 ab
 ab
 ms
-it
+LK
 hO
 hO
 hO
@@ -12454,7 +12671,7 @@ ms
 ms
 it
 it
-it
+LK
 it
 it
 it
@@ -12701,7 +12918,7 @@ ab
 gx
 ms
 ms
-it
+XZ
 it
 it
 it
@@ -16810,7 +17027,7 @@ ac
 ac
 ac
 ac
-mk
+YR
 mu
 mA
 mA
@@ -17446,7 +17663,7 @@ it
 it
 it
 hO
-hO
+IK
 hO
 hO
 hO
@@ -17857,7 +18074,7 @@ hO
 hO
 hO
 hO
-hO
+LK
 iC
 mP
 mP
@@ -18303,7 +18520,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -18477,7 +18694,7 @@ hO
 hO
 hO
 hO
-it
+HN
 it
 it
 ab
@@ -18609,7 +18826,7 @@ ac
 ac
 ac
 ac
-mk
+YR
 mu
 mA
 mA
@@ -19301,7 +19518,7 @@ gP
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -19787,7 +20004,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -20014,7 +20231,7 @@ it
 it
 it
 hO
-hO
+IK
 hO
 hO
 it
@@ -20087,7 +20304,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -20462,7 +20679,7 @@ fG
 fG
 gu
 fG
-fG
+RG
 fG
 fG
 hK
@@ -20578,10 +20795,10 @@ ac
 ac
 ac
 ac
+yp
 ac
 ac
-ac
-ac
+yp
 ac
 ac
 ac
@@ -20713,17 +20930,17 @@ cx
 fG
 fG
 fG
-gd
+On
 gd
 fG
 gA
 fL
-fG
+rr
 gT
-fH
+Oe
 gT
 fG
-kX
+Sa
 kZ
 cx
 co
@@ -21235,7 +21452,7 @@ gd
 gd
 gd
 gd
-hJ
+KP
 hJ
 gd
 gd
@@ -21295,11 +21512,11 @@ ab
 it
 it
 ki
-ki
+Jt
 kq
 ks
 ki
-ki
+Jt
 ki
 it
 it
@@ -21394,7 +21611,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -21485,10 +21702,10 @@ fG
 fG
 fH
 gd
+On
 gd
 gd
-gd
-gd
+On
 gd
 gd
 gd
@@ -21554,7 +21771,7 @@ it
 ko
 ki
 ki
-ki
+Jt
 ki
 ku
 ki
@@ -21668,7 +21885,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -21745,12 +21962,12 @@ fG
 fH
 fG
 fG
+RG
+RG
 fG
 fG
 fG
-fG
-fG
-fG
+RG
 fL
 fG
 cx
@@ -22005,7 +22222,7 @@ fG
 fG
 fG
 fI
-fG
+rr
 fG
 fG
 fG
@@ -22674,7 +22891,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -22836,7 +23053,7 @@ ab
 ab
 ab
 hO
-hO
+IK
 hO
 hO
 hO
@@ -23403,7 +23620,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -23610,7 +23827,7 @@ hO
 hO
 hO
 hO
-hO
+IK
 hO
 it
 it
@@ -25146,12 +25363,12 @@ it
 it
 it
 it
+Jt
 ki
 ki
 ki
 ki
-ki
-kr
+HD
 it
 it
 gx
@@ -25405,7 +25622,7 @@ it
 it
 ki
 ki
-ki
+Jt
 kp
 ki
 ki
@@ -25483,11 +25700,11 @@ eg
 nR
 an
 eg
+GJ
 eg
 eg
 eg
-eg
-eg
+GJ
 hB
 eg
 eg
@@ -25911,7 +26128,7 @@ gx
 gx
 gx
 gx
-it
+rR
 gx
 gx
 gx
@@ -25987,11 +26204,11 @@ ac
 dB
 iZ
 bp
-aq
+vx
 az
 az
 az
-aq
+vx
 an
 aq
 eg
@@ -26256,7 +26473,7 @@ an
 cE
 aq
 aq
-aq
+vx
 aq
 ht
 an
@@ -27024,7 +27241,7 @@ hg
 aq
 ht
 an
-nT
+CT
 bo
 bo
 bo
@@ -27539,11 +27756,11 @@ aq
 eg
 an
 az
-aq
+vx
 aq
 az
 aq
-aq
+vx
 cO
 aq
 ht
@@ -27569,7 +27786,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -27796,7 +28013,7 @@ bs
 eg
 eh
 bb
-eg
+GJ
 bb
 hC
 bb
@@ -27975,7 +28192,7 @@ hO
 hO
 hO
 hO
-hO
+IK
 hO
 hO
 hO
@@ -28229,7 +28446,7 @@ it
 it
 hO
 hO
-hO
+IK
 hO
 hO
 hO
@@ -28272,7 +28489,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ch
 ac
@@ -28304,7 +28521,7 @@ jF
 az
 bb
 bb
-aq
+vx
 an
 aq
 ht
@@ -28485,7 +28702,7 @@ it
 it
 hO
 hO
-hO
+IK
 hO
 hO
 hO
@@ -28814,7 +29031,7 @@ ac
 dB
 an
 an
-aq
+vx
 aA
 aI
 aA
@@ -28999,7 +29216,7 @@ it
 it
 hO
 hO
-hO
+IK
 hO
 hO
 hO
@@ -29081,11 +29298,11 @@ ct
 aq
 an
 jE
-aq
+vx
 aq
 az
 aq
-aq
+vx
 aO
 aq
 eg
@@ -29520,7 +29737,7 @@ hO
 hO
 hO
 hO
-hO
+IK
 hO
 hO
 it
@@ -29589,7 +29806,7 @@ jn
 az
 bb
 bb
-eg
+GJ
 iX
 eg
 ht
@@ -30072,7 +30289,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -30294,8 +30511,8 @@ hO
 hO
 hO
 hO
-it
-it
+HN
+HN
 it
 it
 gx
@@ -30356,7 +30573,7 @@ ac
 dB
 an
 an
-aq
+vx
 aA
 aI
 aA
@@ -30630,7 +30847,7 @@ bO
 hz
 eo
 eg
-eg
+GJ
 aq
 an
 an
@@ -31052,7 +31269,7 @@ it
 it
 it
 it
-hO
+IK
 hO
 hO
 hO
@@ -31400,7 +31617,7 @@ ck
 cj
 hz
 an
-aq
+vx
 eg
 aq
 aN
@@ -32159,7 +32376,7 @@ aq
 az
 az
 az
-aq
+vx
 an
 aq
 eg
@@ -32669,7 +32886,7 @@ ac
 dB
 jc
 bp
-jo
+nC
 az
 bb
 bb
@@ -32943,7 +33160,7 @@ hq
 cv
 an
 aq
-eg
+GJ
 aq
 aN
 ao
@@ -33197,7 +33414,7 @@ bE
 bE
 bE
 bE
-lz
+zS
 an
 aq
 eg
@@ -33368,11 +33585,11 @@ it
 it
 it
 iv
+rC
 iM
 iM
 iM
-iM
-iM
+rC
 iv
 it
 it
@@ -33450,7 +33667,7 @@ eg
 aq
 an
 bD
-bE
+HS
 bE
 cI
 hD
@@ -33707,7 +33924,7 @@ eg
 aq
 an
 bE
-bE
+HS
 bE
 cP
 jq
@@ -34215,7 +34432,7 @@ aq
 az
 az
 az
-aq
+vx
 an
 eg
 nS
@@ -34468,7 +34685,7 @@ ac
 dB
 an
 an
-aq
+vx
 aA
 aI
 aA
@@ -35768,7 +35985,7 @@ aq
 cp
 eg
 eg
-aq
+ZL
 cQ
 hI
 an
@@ -36010,7 +36227,7 @@ ac
 dB
 ax
 aw
-ed
+VB
 ed
 hv
 an
@@ -36275,7 +36492,7 @@ aZ
 be
 az
 bi
-hk
+pM
 bL
 an
 bn
@@ -36283,8 +36500,8 @@ aq
 aq
 aq
 aq
-az
-az
+Mh
+Mh
 an
 dB
 ac
@@ -36492,10 +36709,10 @@ af
 jB
 af
 af
-af
+wx
 af
 ad
-ad
+Ef
 ac
 ac
 ac
@@ -36743,7 +36960,7 @@ ac
 ad
 ew
 af
-af
+wx
 al
 kf
 ff
@@ -37487,7 +37704,7 @@ gx
 it
 it
 iL
-iL
+Kd
 it
 it
 gx
@@ -37520,7 +37737,7 @@ af
 af
 af
 af
-af
+wx
 jR
 ad
 ac
@@ -38288,7 +38505,7 @@ gY
 af
 jW
 af
-af
+wx
 jU
 jT
 af
@@ -38512,7 +38729,7 @@ it
 it
 it
 iL
-iL
+Kd
 iL
 it
 gx
@@ -38860,7 +39077,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -39055,7 +39272,7 @@ ac
 ac
 ad
 ex
-af
+wx
 af
 af
 jZ
@@ -39570,13 +39787,13 @@ ac
 ae
 ad
 ad
-jO
+uL
 af
 af
+wx
 af
 af
-af
-jO
+uL
 ad
 ad
 fb
@@ -39621,7 +39838,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -40292,12 +40509,12 @@ gx
 gx
 gx
 gx
+IB
 it
 it
+IB
 it
-it
-it
-it
+IB
 gx
 gx
 gx
@@ -40378,7 +40595,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -40552,7 +40769,7 @@ gx
 it
 it
 hO
-it
+HN
 it
 it
 gx
@@ -40562,7 +40779,7 @@ it
 it
 iL
 iL
-iL
+Kd
 it
 it
 it
@@ -40807,7 +41024,7 @@ gx
 gx
 gx
 it
-hO
+IK
 hO
 it
 it
@@ -40859,7 +41076,7 @@ eE
 cZ
 eJ
 eR
-eV
+Wh
 cZ
 eE
 bS
@@ -41066,7 +41283,7 @@ gx
 it
 hO
 hO
-it
+IB
 it
 it
 gx
@@ -41388,7 +41605,7 @@ ac
 ac
 ac
 ac
-ac
+yp
 ac
 ac
 ac
@@ -41582,7 +41799,7 @@ hO
 hO
 it
 it
-it
+HN
 it
 it
 it
@@ -41627,7 +41844,7 @@ ag
 cZ
 bS
 bS
-cZ
+ym
 nJ
 eS
 nK
@@ -41835,7 +42052,7 @@ gx
 gx
 hO
 hO
-it
+HN
 hO
 it
 it
@@ -42656,9 +42873,9 @@ cZ
 cZ
 cZ
 bS
-bS
-bS
-bS
+IS
+Qw
+tG
 bS
 cZ
 cZ
@@ -45949,7 +46166,7 @@ hO
 it
 hO
 hO
-hO
+IK
 hO
 hO
 it
@@ -46957,7 +47174,7 @@ gx
 gx
 gx
 gx
-hO
+Gt
 hO
 gx
 gx
@@ -47233,7 +47450,7 @@ gx
 it
 it
 it
-it
+HN
 it
 it
 hO
@@ -48250,7 +48467,7 @@ gx
 it
 it
 it
-it
+HN
 it
 it
 it
@@ -48498,7 +48715,7 @@ gx
 gx
 hM
 hQ
-hR
+xX
 hQ
 ig
 il
@@ -50039,7 +50256,7 @@ gx
 gx
 gx
 gx
-hO
+Gt
 hO
 hO
 gx
@@ -51194,7 +51411,7 @@ it
 it
 ld
 gx
-lm
+vs
 ld
 gx
 gx
@@ -52993,7 +53210,7 @@ gx
 gx
 gx
 gx
-li
+Am
 le
 le
 lo
@@ -53253,7 +53470,7 @@ le
 lk
 le
 ld
-lA
+ZX
 gx
 gx
 gx
@@ -57898,7 +58115,7 @@ it
 it
 it
 ii
-iq
+ty
 ii
 gx
 ii
@@ -57921,7 +58138,7 @@ ii
 im
 im
 kF
-iq
+ty
 ii
 im
 ii
@@ -58165,13 +58382,13 @@ ii
 ii
 ii
 kH
-im
+ty
 ii
 ii
 gx
 ii
 im
-im
+ty
 kF
 kH
 im
@@ -59198,7 +59415,7 @@ im
 ii
 ii
 ii
-im
+GF
 im
 kF
 im
@@ -59720,7 +59937,7 @@ im
 im
 im
 kF
-im
+EM
 ii
 gx
 gx
@@ -60478,7 +60695,7 @@ gx
 gx
 ii
 ir
-im
+ty
 ir
 ii
 kN
@@ -62283,7 +62500,7 @@ gx
 gx
 ii
 im
-iq
+AQ
 ii
 gx
 gx
@@ -62796,7 +63013,7 @@ gx
 gx
 gx
 ii
-iq
+ty
 im
 ii
 gx
@@ -64596,7 +64813,7 @@ gx
 gx
 ii
 im
-iq
+ty
 ii
 gx
 gx
@@ -65109,7 +65326,7 @@ gx
 gx
 gx
 ii
-iq
+ty
 im
 ii
 gx
@@ -70249,7 +70466,7 @@ gx
 gx
 gx
 ii
-im
+GF
 im
 ii
 gx
@@ -70506,7 +70723,7 @@ gx
 gx
 gx
 ii
-ns
+uD
 nt
 ii
 gx
