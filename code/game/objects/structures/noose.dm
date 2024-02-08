@@ -17,7 +17,6 @@
 /obj/structure/chair/noose/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_WIRECUTTER)
 		return ..()
-	[the rest of code 1 layer thinner]
 		user.visible_message("[user] cuts the noose.", span_notice("You cut the noose."))
 		if(has_buckled_mobs())
 			for(var/m in buckled_mobs)
@@ -29,8 +28,7 @@
 		var/obj/item/stack/cable_coil/C = new(get_turf(src))
 		C.amount = 25
 		qdel(src)
-		return
-	..()
+
 
 /obj/structure/chair/noose/Initialize(mapload)
 	. = ..()
