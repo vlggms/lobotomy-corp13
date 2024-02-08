@@ -10,11 +10,11 @@
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 80
-							)
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 100,
+		TEMPERANCE_ATTRIBUTE = 100,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 	var/ahn_amount = 300
 	var/boxchance = 10
 
@@ -28,7 +28,7 @@
 	..()
 
 	if(target.stat == DEAD && living)
-		to_chat(user, "<span class='minorannounce'>Payday!!!</span>")
+		to_chat(user, span_minorannounce("Payday!!!"))
 		var/obj/item/holochip/C = new (get_turf(src))
 		C.credits = rand(ahn_amount/4,ahn_amount)
 		//10% chance for this

@@ -11,11 +11,11 @@
 	attack_verb_simple = list("cuts", "slices")
 	hitsound = 'sound/weapons/fixer/hana_slash.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 100
-							)
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 100,
+	)
 	var/mode = 1
 
 /obj/item/ego_weapon/city/hana/attack_self(mob/living/user)
@@ -55,5 +55,5 @@
 			force = 50
 			attack_speed = 1
 
-	to_chat(user, "<span class='notice'>[message]</span>")
+	to_chat(user, span_notice("[message]"))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)

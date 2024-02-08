@@ -11,11 +11,11 @@
 	attack_verb_simple = list("purge", "purify")
 	hitsound = 'sound/weapons/ego/paradise.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 100
-							)
+		FORTITUDE_ATTRIBUTE = 100,
+		PRUDENCE_ATTRIBUTE = 100,
+		TEMPERANCE_ATTRIBUTE = 100,
+		JUSTICE_ATTRIBUTE = 100,
+	)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.8 SECONDS
 	var/ranged_damage = 70
@@ -223,8 +223,8 @@
 
 /obj/item/ego_weapon/twilight/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
-		return "<span class='notice'>It deals [round((force * 4) * force_multiplier)] red, white, black and pale damage combined. (+ [(force_multiplier - 1) * 100]%)</span>"
-	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
+		return span_notice("It deals [round((force * 4) * force_multiplier)] red, white, black and pale damage combined. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
 
 /obj/item/ego_weapon/goldrush
 	name = "gold rush"
@@ -251,9 +251,9 @@
 		return
 	if(do_after(user, 5, target))
 
-		target.visible_message("<span class='danger'>[user] rears up and slams into [target]!</span>", \
-						"<span class='userdanger'>[user] punches you with everything you got!!</span>", COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, "<span class='danger'>You throw your entire body into this punch!</span>")
+		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
+						span_userdanger("[user] punches you with everything you got!!"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("You throw your entire body into this punch!"))
 		goldrush_damage = force
 		//I gotta regrab  justice here
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
@@ -280,7 +280,7 @@
 	if(!istype(I, /obj/item/nihil/diamond))
 		return
 	new /obj/item/ego_weapon/goldrush/nihil(get_turf(src))
-	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)
 	qdel(src)
@@ -345,7 +345,7 @@
 			damtype = RED_DAMAGE
 			force = 80
 			icon_state = "rosered"
-	to_chat(user, "<span class='notice'>\[src] will now deal [force] [damtype] damage.</span>")
+	to_chat(user, span_notice("\[src] will now deal [force] [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 /obj/item/ego_weapon/censored
@@ -380,9 +380,9 @@
 		return
 	special_attack = !special_attack
 	if(special_attack)
-		to_chat(user, "<span class='notice'>You prepare special attack.</span>")
+		to_chat(user, span_notice("You prepare special attack."))
 	else
-		to_chat(user, "<span class='notice'>You decide to not use special attack.</span>")
+		to_chat(user, span_notice("You decide to not use special attack."))
 
 /obj/item/ego_weapon/censored/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -609,8 +609,8 @@
 
 /obj/item/ego_weapon/space/EgoAttackInfo(mob/user)
 	if(force_multiplier != 1)
-		return "<span class='notice'>It deals [round(force * force_multiplier)] of both white and black damage. (+ [(force_multiplier - 1) * 100]%)</span>"
-	return "<span class='notice'>It deals [force] of both white and black damage.</span>"
+		return span_notice("It deals [round(force * force_multiplier)] of both white and black damage. (+ [(force_multiplier - 1) * 100]%)")
+	return span_notice("It deals [force] of both white and black damage.")
 
 /obj/item/ego_weapon/seasons
 	name = "Seasons Greetings"
@@ -661,12 +661,12 @@
 /obj/item/ego_weapon/seasons/attack_self(mob/user)
 	..()
 	if(transforming)
-		to_chat(user,"<span class='warning'>[src] will no longer transform to match the seasons.</span>")
+		to_chat(user,span_warning("[src] will no longer transform to match the seasons."))
 		transforming = FALSE
 		special = "This E.G.O. will not transform to match the seasons."
 		return
 	if(!transforming)
-		to_chat(user,"<span class='warning'>[src] will now transform to match the seasons.</span>")
+		to_chat(user,span_warning("[src] will now transform to match the seasons."))
 		transforming = TRUE
 		special = "This E.G.O. will transform to match the seasons."
 		return
@@ -688,7 +688,7 @@
 		inhand_y_dimension = 32
 	update_icon_state()
 	if(current_holder)
-		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
 		current_holder.update_inv_hands()
 		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
 	force = season_list[current_season][1]
@@ -741,7 +741,7 @@
 
 
 /obj/item/ego_weapon/shield/distortion/EgoAttackInfo(mob/user)
-	return "<span class='notice'>It deals [force * 4] red, white, black and pale damage combined.</span>"
+	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
 
 /obj/item/ego_weapon/shield/distortion/attack(mob/living/target, mob/living/user)
 	. = ..()
@@ -759,7 +759,7 @@
 /obj/item/ego_weapon/shield/distortion/CanUseEgo(mob/living/user)
 	. = ..()
 	if(user.get_inactive_held_item())
-		to_chat(user, "<span class='notice'>You cannot use [src] with only one hand!</span>")
+		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
 		return FALSE
 
 /obj/item/ego_weapon/shield/distortion/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
@@ -813,7 +813,7 @@
 		playsound(src, 'sound/weapons/ego/farmwatch_tree.ogg', 200, 1)
 		user.adjustBruteLoss(-10)
 		user.adjustSanityLoss(-15)
-		to_chat(user, "<span class='notice'>You reap the fruits of your labor!</span>")
+		to_chat(user, span_notice("You reap the fruits of your labor!"))
 		..()
 		return
 	..()
@@ -823,7 +823,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(ability_cooldown > world.time)
-		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
+		to_chat(user, span_warning("You have used this ability too recently!"))
 		return FALSE
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE)
 	to_chat(user, "You cultivate seeds of desires.")
@@ -867,7 +867,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(ability_cooldown > world.time)
-		to_chat(user, "<span class='warning'>You have used this ability too recently!</span>")
+		to_chat(user, span_warning("You have used this ability too recently!"))
 		return FALSE
 	if(do_after(user, 20, src))
 		playsound(src, 'sound/weapons/ego/spicebush_special.ogg', 50, FALSE)
@@ -1040,7 +1040,7 @@
 /obj/item/ego_weapon/shield/combust/CanUseEgo(mob/living/user)
 	. = ..()
 	if(user.get_inactive_held_item())
-		to_chat(user, "<span class='notice'>You cannot use [src] with only one hand!</span>")
+		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
 		return FALSE
 
 /obj/item/ego_weapon/shield/combust/attack_self(mob/user)
@@ -1051,7 +1051,7 @@
 
 	if (block && !special_attack && special_cooldown < world.time)
 		special_attack = TRUE
-		to_chat(user, "<span class='notice'>You prepare to perform a blazing strike.</span>")
+		to_chat(user, span_notice("You prepare to perform a blazing strike."))
 	..()
 
 // Counter
@@ -1119,7 +1119,7 @@
 					continue
 				if(L in been_hit || L == user)
 					continue
-				user.visible_message("<span class='boldwarning'>[user] blazes through [L]!</span>")
+				user.visible_message(span_boldwarning("[user] blazes through [L]!"))
 				L.apply_damage((special_damage + extra_damage), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 				been_hit += L
 
@@ -1228,7 +1228,7 @@
 	icon_state = "mockery_[form]"
 	update_icon_state()
 	if(current_holder)
-		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
 		current_holder.update_inv_hands()
 		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
 	force = weapon_list[form][1]

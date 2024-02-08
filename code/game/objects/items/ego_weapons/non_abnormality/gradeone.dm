@@ -13,11 +13,11 @@
 	attack_verb_continuous = list("attacks", "slashes", "stabs", "slices", "tears", "lacerates", "rips", "dices", "cuts")
 	attack_verb_simple = list("attack", "slash", "stab", "slice", "tear", "lacerate", "rip", "dice", "cut")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 100
-							)
+		FORTITUDE_ATTRIBUTE = 120,
+		PRUDENCE_ATTRIBUTE = 100,
+		TEMPERANCE_ATTRIBUTE = 100,
+		JUSTICE_ATTRIBUTE = 100,
+	)
 	var/active
 	var/attackchoice
 
@@ -32,7 +32,7 @@
 /obj/item/ego_weapon/city/donghwan/attack_self(mob/living/carbon/human/user)
 	active = TRUE
 	if(attackchoice == 1)
-		to_chat(user, "<span class='notice'>Now's my chance.</span>")
+		to_chat(user, span_notice("Now's my chance."))
 		attackchoice = 2
 
 /obj/item/ego_weapon/city/donghwan/attack(mob/living/target, mob/living/carbon/human/user)
@@ -61,10 +61,10 @@
 			attackchoice = 0
 		else
 			attackchoice = 1
-			to_chat(user, "<span class='notice'>Ready to shove.</span>")
+			to_chat(user, span_notice("Ready to shove."))
 
 /obj/item/ego_weapon/city/donghwan/proc/Shove(mob/living/target, mob/living/carbon/human/user)
-	to_chat(user, "<span class='notice'>Fuck off.</span>")
+	to_chat(user, span_notice("Fuck off."))
 
 	playsound(src, 'sound/weapons/fixer/generic/nail2.ogg', 100, FALSE, 4)
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
@@ -74,7 +74,7 @@
 	attackchoice = 5
 
 /obj/item/ego_weapon/city/donghwan/proc/CriticalMoment(mob/living/target, mob/living/carbon/human/user)
-	to_chat(user, "<span class='notice'>Gotcha.</span>")
+	to_chat(user, span_notice("Gotcha."))
 	playsound(src, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
 	//Deals half of % of your sanity, inverted.
 	force += force*((user.sanityhealth/user.maxSanity)-1)*-0.5
@@ -83,9 +83,9 @@
 /obj/item/ego_weapon/city/donghwan/proc/Toughness(mob/living/target, mob/living/carbon/human/user)
 	if(user.sanityhealth>= user.maxSanity*0.3)
 		user.adjustSanityLoss(user.sanityhealth*0.71)
-		to_chat(user, "<span class='notice'>Feels good.</span>")
+		to_chat(user, span_notice("Feels good."))
 	else
-		to_chat(user, "<span class='notice'>Shouldn't push it.</span>")
+		to_chat(user, span_notice("Shouldn't push it."))
 		user.adjustSanityLoss(-user.sanityhealth*0.2)
 	attackchoice = 0
 
