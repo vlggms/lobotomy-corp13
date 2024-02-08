@@ -780,8 +780,11 @@
 		ZeroQliphoth()
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Quick_Oberon_Spawn()
+	if(!chosen || oberon_mode)//makes sure it doesn't continue if its already oberon or if there's no chosen.)
+		return
 	Transform_No_Kill(chosen)
 	oberon_mode = TRUE
+	name = "Oberon"
 	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
 	T.BreachEffect()
 	T.fused = TRUE
