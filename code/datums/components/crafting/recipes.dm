@@ -707,7 +707,7 @@
 	name = "Noose"
 	result = /obj/structure/chair/noose
 	reqs = list(/obj/item/stack/cable_coil = 20)
-	time = 20 //womp womp
+	time = 20 SECONDS //womp womp
 	category = CAT_MISC
 
 /datum/crafting_recipe/papersack
