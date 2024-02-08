@@ -131,7 +131,7 @@
 	if(islist(damage_coeff))
 		ChangeResistances(damage_coeff)
 		stack_trace("[src] has a damage_coeff list and was hurt!")
-	else if(!type(damage_coeff))
+	else if(!istype(damage_coeff))
 		stack_trace("[src] has an invalid damage coeff entirely!? Resetting to default.")
 		if(!istype(unmodified_damage_coeff_datum))
 			stack_trace("[src] has an invalid unmodified damage coeff!? Resetting to 1s")
