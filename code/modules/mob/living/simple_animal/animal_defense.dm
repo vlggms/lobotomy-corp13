@@ -131,6 +131,13 @@
 	if(islist(damage_coeff))
 		ChangeResistances(damage_coeff)
 		stack_trace("[src] has a damage_coeff list and was hurt!")
+	else if(!type(damage_coeff))
+		stack_trace("[src] has an invalid damage coeff entirely!? Resetting to default.")
+		if(!istype(unmodified_damage_coeff_datum))
+			stack_trace("[src] has an invalid unmodified damage coeff!? Resetting to 1s")
+			unmodified_damage_coeff_datum = makeDamCoeff()
+		damage_coeff = unmodified_damage_coeff_datum
+		UpdateResistances()
 	temp_damage *= damage_coeff.getCoeff(damagetype)
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
