@@ -16,19 +16,18 @@
 
 /obj/structure/chair/noose/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour != TOOL_WIRECUTTER)
-		return ..()
-		user.visible_message("[user] cuts the noose.", span_notice("You cut the noose."))
-		if(has_buckled_mobs())
-			for(var/m in buckled_mobs)
-				var/mob/living/buckled_mob = m
-				if(buckled_mob.has_gravity())
-					buckled_mob.visible_message(span_warning("[buckled_mob] falls over and hits the ground!"))
-					to_chat(buckled_mob, span_userdanger("You fall over and hit the ground!"))
-					buckled_mob.adjustBruteLoss(10)
-		var/obj/item/stack/cable_coil/C = new(get_turf(src))
-		C.amount = 25
-		qdel(src)
-
+	return ..()
+	user.visible_message("[user] cuts the noose.", span_notice("You cut the noose."))
+	if(has_buckled_mobs())
+		for(var/m in buckled_mobs)
+			var/mob/living/buckled_mob = m
+			if(buckled_mob.has_gravity())
+				buckled_mob.visible_message(span_warning("[buckled_mob] falls over and hits the ground!"))
+				to_chat(buckled_mob, span_userdanger("You fall over and hit the ground!"))
+				buckled_mob.adjustBruteLoss(10)
+	var/obj/item/stack/cable_coil/C = new(get_turf(src))
+	C.amount = 25
+	qdel(src)
 
 /obj/structure/chair/noose/Initialize(mapload)
 	. = ..()
