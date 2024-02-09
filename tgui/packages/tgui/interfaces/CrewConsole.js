@@ -5,12 +5,12 @@ import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
 const HEALTH_COLOR_BY_LEVEL = [
-  '#17d568',
+  '#1dee6d',
   '#2ecc71',
-  '#e67e22',
-  '#ed5100',
-  '#e74c3c',
-  '#ed2814',
+  '#e69822',
+  '#eb6206',
+  '#ff4631',
+  '#da1f0a',
 ];
 
 const jobIsHead = jobId => jobId % 10 === 0;
@@ -46,9 +46,10 @@ const jobToColor = jobId => {
   return COLORS.department.other;
 };
 
-const healthToColor = (oxy, tox, burn, brute) => {
+const healthToColor = (oxy, tox, burn, brute, maxhp) => {
   const healthSum = oxy + tox + burn + brute;
-  const level = Math.min(Math.max(Math.ceil(healthSum / 25), 0), 5);
+  const healthQuarter = maxhp / 4
+  const level = Math.min(Math.max(Math.ceil(healthSum / healthQuarter), 0), 5);
   return HEALTH_COLOR_BY_LEVEL[level];
 };
 
@@ -125,6 +126,7 @@ const CrewTableEntry = (props, context) => {
     burndam,
     brutedam,
     sandam,
+    maxhp,
     area,
     can_track,
   } = sensor_data;
@@ -142,7 +144,8 @@ const CrewTableEntry = (props, context) => {
             oxydam,
             toxdam,
             burndam,
-            brutedam)} />
+            brutedam,
+            maxhp)} />
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined ? (

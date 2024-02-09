@@ -238,6 +238,7 @@ GLOBAL_DATUM_INIT(crewmonitor, /datum/crewmonitor, new)
 				"brutedam" = round(tracked_living_mob.getBruteLoss(), 1),
 				"sandam" = round(tracked_living_mob.getSanityLoss(), 1)
 			)
+			entry["maxhp"] = round(tracked_living_mob.maxHealth)
 
 		// Location
 		if (sensor_mode >= SENSOR_COORDS)
