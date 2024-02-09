@@ -5,12 +5,21 @@ import { COLORS } from '../constants';
 import { Window } from '../layouts';
 
 const HEALTH_COLOR_BY_LEVEL = [
-  '#1dee6d',
-  '#2ecc71',
-  '#e69822',
-  '#eb6206',
-  '#ff4631',
-  '#da1f0a',
+  '#1bee6c',
+  '#7ed014',
+  '#a8b000',
+  '#c48b00',
+  '#d55f00',
+  '#db1f0a',
+];
+
+const SANITY_COLOR_BY_LEVEL = [
+  '#97f7f7',
+  '#75c8ce',
+  '#559ba5',
+  '#39707c',
+  '#1e4854',
+  '#05242e',
 ];
 
 const jobIsHead = jobId => jobId % 10 === 0;
@@ -56,7 +65,7 @@ const healthToColor = (oxy, tox, burn, brute, maxhp) => {
 const sanityToColor = (san, maxsp) => {
   const sanityQuarter = maxsp / 4
   const level = Math.min(Math.max(Math.ceil(san / sanityQuarter), 0), 5);
-  return HEALTH_COLOR_BY_LEVEL[level];
+  return SANITY_COLOR_BY_LEVEL[level];
 };
 
 const HealthStat = props => {
