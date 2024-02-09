@@ -127,7 +127,7 @@
 			var/obj/effect/magic_bullet/B = new(T)
 			playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, 0, 20)
 			B.dir = freidir
-			addtimer(CALLBACK(B, .obj/effect/magic_bullet/proc/moveBullet), 0.1)
+			addtimer(CALLBACK(B, TYPE_PROC_REF(/obj/effect/magic_bullet, moveBullet)), 0.1)
 			src.icon = 'ModularTegustation/Teguicons/32x64.dmi'
 			src.update_icon()
 			for(var/obj/effect/frei_magic/Port in portals)

@@ -639,7 +639,7 @@
 		if(Y.stat == DEAD) //they chose to die instead of facing the fear
 			continue
 		Y.add_overlay(icon('icons/effects/effects.dmi', "spreadwarning"))
-		addtimer(CALLBACK(Y, .atom/proc/cut_overlay, \
+		addtimer(CALLBACK(Y, TYPE_PROC_REF(/atom, cut_overlay), \
 								icon('icons/effects/effects.dmi', "spreadwarning")), 45)
 		chosen_targets += Y
 
@@ -694,7 +694,7 @@
 	if(target.sanity_lost)
 		target.Stun(55) //Immobilize does not stop AI controllers from moving, for some reason.
 	target.add_overlay(icon('icons/effects/effects.dmi', "distortedgrab"))
-	addtimer(CALLBACK(target, .atom/proc/cut_overlay, \
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, cut_overlay), \
 							icon('icons/effects/effects.dmi', "distortedgrab")), 50)
 	if(get_dist(src, target) > 3)
 		var/list/all_turfs = RANGE_TURFS(1, src) //We need to grab the player, but also have them be visible.
@@ -873,7 +873,7 @@
 		if(Y.stat == DEAD) //they chose to die instead of facing the fear
 			continue
 		Y.add_overlay(icon('icons/effects/effects.dmi', "zorowarning"))
-		addtimer(CALLBACK(Y, .atom/proc/cut_overlay, \
+		addtimer(CALLBACK(Y, TYPE_PROC_REF(/atom, cut_overlay), \
 								icon('icons/effects/effects.dmi', "zorowarning")), 40)
 		chosen_targets += Y
 	SLEEP_CHECK_DEATH(35)
@@ -890,7 +890,7 @@
 		if(jump_turf.is_blocked_turf(exclude_mobs = TRUE))
 			jump_turf = get_turf(Y)
 		Y.add_overlay(icon('icons/effects/effects.dmi', "zoro"))
-		addtimer(CALLBACK(Y, .atom/proc/cut_overlay, \
+		addtimer(CALLBACK(Y, TYPE_PROC_REF(/atom, cut_overlay), \
 								icon('icons/effects/effects.dmi', "zoro")), 14)
 		playsound(Y, 'sound/abnormalities/pussinboots/slash.ogg', 50, FALSE, 2)
 		forceMove(jump_turf)
@@ -1105,7 +1105,7 @@
 		W.obj_destruction("holy spear")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	if(stop_charge)
 		transform_cooldown += 1 SECONDS
 		can_act = TRUE
@@ -1407,7 +1407,7 @@
 		return
 	playsound(target, 'sound/weapons/ego/price_of_silence.ogg', 25, FALSE, 9)
 	target.add_overlay(icon('icons/effects/effects.dmi', "chronofield"))
-	addtimer(CALLBACK(target, .atom/proc/cut_overlay, \
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, cut_overlay), \
 							icon('icons/effects/effects.dmi', "chronofield")), 40)
 	addtimer(CALLBACK(src, PROC_REF(FreezeMob), target), 40)
 
@@ -1582,7 +1582,7 @@
 			var/obj/effect/magic_bullet/B = new(T)
 			playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, FALSE, 20)
 			B.dir = freidir
-			addtimer(CALLBACK(B, .obj/effect/magic_bullet/proc/moveBullet), 0.1)
+			addtimer(CALLBACK(B, TYPE_PROC_REF(/obj/effect/magic_bullet, moveBullet)), 0.1)
 			src.icon = 'ModularTegustation/Teguicons/32x64.dmi'
 			src.update_icon()
 			for(var/obj/effect/frei_magic/Port in portals)

@@ -170,7 +170,7 @@
 				playsound(user, 'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
 				for(var/obj/machinery/door/MD in T.contents) // Hiding behind a door mortal?
 					if(MD.density)
-						addtimer(CALLBACK (MD, .obj/machinery/door/proc/open))
+						addtimer(CALLBACK (MD, TYPE_PROC_REF(/obj/machinery/door, open)))
 			// Damage
 			for(var/mob/living/L in mobs_to_hit)
 				if(user.faction_check_mob(L))

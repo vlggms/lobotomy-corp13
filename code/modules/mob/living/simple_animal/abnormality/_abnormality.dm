@@ -129,7 +129,7 @@
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
-		addtimer(CALLBACK (datum_reference, .datum/abnormality/proc/RespawnAbno), 30 SECONDS)
+		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
 	..()
 	if(loc)
 		if(isarea(loc))
