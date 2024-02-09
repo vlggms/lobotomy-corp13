@@ -72,7 +72,7 @@
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/kog_teleport/Activate()
-	addtimer(CALLBACK(A, .mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport), 1)
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/greed_king, startTeleport)), 1)
 	to_chat(A, chosen_message)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/Life()

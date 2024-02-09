@@ -91,7 +91,7 @@
 		P.xo = target.x - T.x
 		P.original = target
 		P.preparePixelProjectile(target, T)
-		addtimer(CALLBACK (P, .obj/projectile/proc/fire), 3)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 3)
 	SLEEP_CHECK_DEATH(3)
 	playsound(get_turf(src), 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 	return

@@ -149,11 +149,11 @@
 		if(prob(66))
 			to_chat(C, span_warning("You feel tired..."))
 			C.blur_eyes(5)
-			addtimer(CALLBACK (C, .mob/proc/blind_eyes, 2), 2 SECONDS)
-			addtimer(CALLBACK (C, .mob/living/proc/Stun, 2 SECONDS), 2 SECONDS)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/mob, blind_eyes), 2), 2 SECONDS)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/mob/living, Stun), 2 SECONDS), 2 SECONDS)
 			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
 			C.add_overlay(new_overlay)
-			addtimer(CALLBACK (C, .atom/proc/cut_overlay, new_overlay), 4 SECONDS)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 4 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER

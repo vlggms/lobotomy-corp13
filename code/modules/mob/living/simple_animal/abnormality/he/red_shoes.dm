@@ -313,7 +313,7 @@
 		finish_action(controller, FALSE)
 		return
 	if(!LAZYLEN(current_path))
-		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
 		if(!current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return

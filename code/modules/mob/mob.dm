@@ -515,7 +515,7 @@
 	/// our current intent, so we can go back to it after touching
 	var/previous_intent = a_intent
 	a_intent = INTENT_HELP
-	INVOKE_ASYNC(examined_thing, /atom/proc/attack_hand, src)
+	INVOKE_ASYNC(examined_thing, TYPE_PROC_REF(/atom, attack_hand), src)
 	a_intent = previous_intent
 	return TRUE
 

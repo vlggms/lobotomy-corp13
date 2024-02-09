@@ -1103,7 +1103,7 @@
 			break
 		for(var/obj/machinery/door/D in T.contents)
 			if(D.density)
-				addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+				addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 		target_turf = T
 		line_turfs += T
 	user.dir = get_dir(user, A)

@@ -242,7 +242,7 @@
 		NewHouse()
 		return
 	var/house_turf = pick(potential_centers)
-	house_path = get_path_to(road_home_turf, house_turf, /turf/proc/Distance_cardinal, 0, 400)
+	house_path = get_path_to(road_home_turf, house_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 400)
 	if(!house_path.len)
 		spawn_tried++
 		NewHouse()
@@ -256,7 +256,7 @@
 	house.alpha = 0
 	house.road_home_mob = src
 
-	addtimer(CALLBACK(house, .obj/road_house/proc/FallDown), 3 SECONDS)
+	addtimer(CALLBACK(house, TYPE_PROC_REF(/obj/road_house, FallDown)), 3 SECONDS)
 	road_finished = FALSE
 	road_segment_finished = FALSE
 	if(move_timer_id)

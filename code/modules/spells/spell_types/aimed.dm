@@ -258,6 +258,6 @@
 			if(P.vars[V])
 				P.vv_edit_var(V, projectile_var_overrides[V])
 		ready_projectile(P, target, user, i)
-		addtimer(CALLBACK (P, .obj/projectile/proc/fire), fire_delay)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), fire_delay)
 		fired_projs += P
 	return fired_projs

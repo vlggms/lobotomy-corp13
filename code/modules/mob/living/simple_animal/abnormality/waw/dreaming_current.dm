@@ -131,7 +131,7 @@
 			break
 		var/list/our_path = list()
 		for(var/o = 1 to 3) // Grand total of 3 retries
-			our_path = get_path_to(path_start, T, /turf/proc/Distance_cardinal, dash_max_distance)
+			our_path = get_path_to(path_start, T, TYPE_PROC_REF(/turf, Distance_cardinal), dash_max_distance)
 			if(islist(our_path) && LAZYLEN(our_path))
 				break
 			potential_turfs -= T // Couldn't find path to it, don't try again
@@ -172,7 +172,7 @@
 		W.obj_destruction("teeth")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	forceMove(T)
 	if(prob(33))
 		playsound(T, "sound/abnormalities/dreamingcurrent/move.ogg", 10, TRUE, 3)

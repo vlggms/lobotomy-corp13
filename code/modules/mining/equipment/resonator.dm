@@ -111,7 +111,7 @@
 		to_chat(L, span_userdanger("[src] ruptured with you in it!"))
 		L.apply_damage(resonance_damage, BRUTE)
 		L.add_movespeed_modifier(/datum/movespeed_modifier/resonance)
-		addtimer(CALLBACK(L, /mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/resonance), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(L, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/resonance), 10 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	for(var/obj/effect/temp_visual/resonance/field in range(1, src))
 		if(field != src && !field.rupturing)
 			field.burst()

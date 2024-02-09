@@ -141,7 +141,7 @@
 			stop_charge = TRUE
 			break
 		if(D.density)
-			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/helper/disable.ogg', 75, 1)
 		SLEEP_CHECK_DEATH(5 SECONDS)
