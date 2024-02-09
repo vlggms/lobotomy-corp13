@@ -24,6 +24,7 @@
 
 // Big bird - Lamp
 /datum/ego_datum/weapon/lamp
+	item_category = "Weapon (Hammer)"
 	item_path = /obj/item/ego_weapon/lamp
 	cost = 50
 

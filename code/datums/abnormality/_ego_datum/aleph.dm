@@ -84,6 +84,12 @@
 	item_path = /obj/item/ego_weapon/goldrush
 	cost = 100
 
+// Big Bird Alt - Guiding Light
+/datum/ego_datum/weapon/light
+	item_category = "Weapon (Knife)"
+	item_path = /obj/item/ego_weapon/mini/light
+	cost = 100
+
 // Titania - Soulmate
 /datum/ego_datum/weapon/soulmate
 	item_path = /obj/item/ego_weapon/soulmate

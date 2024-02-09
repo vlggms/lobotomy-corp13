@@ -1267,3 +1267,27 @@
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		target.throw_at(throw_target, 7, 7, user)
+
+
+
+/obj/item/ego_weapon/mini/light
+	name = "guiding light"
+	desc = "I will be your north star."
+	special = "This weapon applies slowdown on hit."
+	icon_state = "light"
+	force = 100
+	attack_speed = 1.5
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("slashes")
+	attack_verb_simple = list("slash")
+	hitsound = 'sound/weapons/bladeslice.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/ego_weapon/mini/light/attack(mob/living/target, mob/living/user)
+	..()
+	target.apply_status_effect(/datum/status_effect/qliphothoverload)

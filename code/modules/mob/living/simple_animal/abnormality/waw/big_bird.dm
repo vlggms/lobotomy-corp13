@@ -45,6 +45,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
+		/datum/ego_datum/weapon/light,
 		/datum/ego_datum/armor/lamp,
 	)
 	gift_type =  /datum/ego_gifts/lamp
