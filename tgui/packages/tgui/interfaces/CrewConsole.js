@@ -53,6 +53,12 @@ const healthToColor = (oxy, tox, burn, brute, maxhp) => {
   return HEALTH_COLOR_BY_LEVEL[level];
 };
 
+const sanityToColor = (san, maxsp) => {
+  const sanityQuarter = maxsp / 4
+  const level = Math.min(Math.max(Math.ceil(san / sanityQuarter), 0), 5);
+  return HEALTH_COLOR_BY_LEVEL[level];
+};
+
 const HealthStat = props => {
   const { type, value } = props;
   return (
@@ -93,6 +99,7 @@ const CrewTable = (props, context) => {
           Name
         </Table.Cell>
         <Table.Cell bold collapsing />
+        <Table.Cell bold collapsing />
         <Table.Cell bold collapsing textAlign="center">
           Vitals
         </Table.Cell>
@@ -127,6 +134,7 @@ const CrewTableEntry = (props, context) => {
     brutedam,
     sandam,
     maxhp,
+    maxsp,
     area,
     can_track,
   } = sensor_data;
@@ -148,17 +156,23 @@ const CrewTableEntry = (props, context) => {
             maxhp)} />
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
+        <ColorBox
+          color={sanityToColor(
+            sandam,
+            maxsp)} />
+      </Table.Cell>
+      <Table.Cell collapsing textAlign="center">
         {oxydam !== undefined ? (
           <Box inline>
+            <HealthStat type="brute" value={brutedam} />
+            {'/'}
+            <HealthStat type="sanity" value={sandam} />
+            {'/'}
             <HealthStat type="oxy" value={oxydam} />
             {'/'}
             <HealthStat type="toxin" value={toxdam} />
             {'/'}
             <HealthStat type="burn" value={burndam} />
-            {'/'}
-            <HealthStat type="brute" value={brutedam} />
-            {'/'}
-            <HealthStat type="sanity" value={sandam} />
           </Box>
         ) : (
           life_status ? 'Alive' : 'Dead'
