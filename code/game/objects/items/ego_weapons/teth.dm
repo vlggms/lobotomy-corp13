@@ -169,7 +169,7 @@
 /obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
 	var/area/turf_area = get_area(get_turf(user))
 	if(istype(turf_area, /area/fishboat))
-		to_chat(user, "<span class='warning'>[src] will not work here!.</span>")
+		to_chat(user, span_warning("[src] will not work here!."))
 		return
 	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
@@ -272,8 +272,8 @@
 	icon_state = "smash1"
 	duration = 3
 
-#define LANTERN_MODE_REMOTE 1
-#define LANTERN_MODE_AUTO 2
+#define LANTERN_MODE_REMOTE (1<<0)
+#define LANTERN_MODE_AUTO (1<<1)
 
 /obj/item/ego_weapon/lantern //meat lantern
 	name = "lantern"
@@ -290,10 +290,10 @@
 
 /obj/item/ego_weapon/lantern/attack_self(mob/user)
 	if(mode == LANTERN_MODE_REMOTE)
-		to_chat(user, "<span class='info'>You adjust any newly-placed traps to be set off by motion.</span>")
+		to_chat(user, span_info("You adjust any newly-placed traps to be set off by motion."))
 		mode = LANTERN_MODE_AUTO
 	else
-		to_chat(user, "<span class='info'>You can now remotely trigger any placed traps.</span>")
+		to_chat(user, span_info("You can now remotely trigger any placed traps."))
 		mode = LANTERN_MODE_REMOTE
 
 /obj/item/ego_weapon/lantern/proc/CreateTrap(target, mob/user, proximity_flag)
@@ -354,9 +354,9 @@
 	playsound(T,'sound/weapons/resonator_blast.ogg',50,TRUE)
 
 	for(var/mob/living/L in creator.HurtInTurf(T, list(), resonance_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-		to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+		to_chat(L, span_userdanger("[src] bites you!"))
 		if(creator)
-			creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+			creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
 	for(var/obj/effect/temp_visual/lanterntrap/field in range(1, src))
 		if(field != src && !field.rupturing)
 			field.burst()
@@ -448,7 +448,7 @@
 	//Crit itself.
 	if(prob(poise*2))
 		force*=3
-		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		to_chat(user, span_userdanger("Critical!"))
 		poise = 0
 	..()
 	force = initial(force)

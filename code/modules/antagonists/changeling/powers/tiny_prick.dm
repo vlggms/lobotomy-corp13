@@ -47,7 +47,7 @@
 		return
 	if(!isturf(user.loc))
 		return
-	if(!AStar(user, target.loc, /turf/proc/Distance, changeling.sting_range, simulated_only = FALSE))
+	if(!AStar(user, target.loc, TYPE_PROC_REF(/turf, Distance), changeling.sting_range, simulated_only = FALSE))
 		return
 	if(target.mind && target.mind.has_antag_datum(/datum/antagonist/changeling))
 		sting_feedback(user, target)

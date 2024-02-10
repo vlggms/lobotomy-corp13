@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(!istype(WN))
 		return
 	var/turf/target_turf = pick(RANGE_TURFS(2, WN))
-	patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+	patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/apostle_growl.ogg', 75, FALSE)
 	TemporarySpeedChange(-4, 5 SECONDS) // OUT OF MY WAY
 
@@ -452,7 +452,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		W.obj_destruction("holy spear")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	if(stop_charge)
 		can_act = TRUE
 		return

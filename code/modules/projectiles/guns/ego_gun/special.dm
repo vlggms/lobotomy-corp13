@@ -112,7 +112,7 @@
 		if(NORTH)
 			S.pixel_y += 16
 			S.layer -= 0.1
-	addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 3 SECONDS)
+	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 3 SECONDS)
 	if(do_after(user, 15, src))
 		var/aoe = blast_damage
 		var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))

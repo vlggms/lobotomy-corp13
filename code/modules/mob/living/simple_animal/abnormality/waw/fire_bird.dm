@@ -169,7 +169,7 @@
 		W.obj_destruction("flames")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	if(stop_charge)
 		can_act = TRUE
 		return

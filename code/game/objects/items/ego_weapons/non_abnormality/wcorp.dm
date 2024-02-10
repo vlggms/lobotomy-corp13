@@ -16,10 +16,10 @@
 /obj/item/ego_weapon/city/charge/wcorp/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
-		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		to_chat(user, span_notice("You prepare to release your charge."))
 		activated = TRUE
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/city/charge/wcorp/attack(mob/living/target, mob/living/user)
 	. = ..()

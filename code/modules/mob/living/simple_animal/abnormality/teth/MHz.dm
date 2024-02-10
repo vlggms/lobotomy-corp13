@@ -71,7 +71,7 @@
 		rose_available = TRUE
 		break
 
-	addtimer(CALLBACK (datum_reference, /datum/abnormality/proc/qliphoth_change, 4), reset_time)
+	addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), 4), reset_time)
 
 	if(!rose_available)
 		SSweather.run_weather(/datum/weather/mhz)

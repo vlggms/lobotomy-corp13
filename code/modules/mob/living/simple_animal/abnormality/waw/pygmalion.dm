@@ -83,7 +83,7 @@
 		P.xo = target.x - T.x
 		P.original = target
 		P.preparePixelProjectile(target, T)
-		addtimer(CALLBACK (P, .obj/projectile/proc/fire), 3)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 3)
 	return
 
 

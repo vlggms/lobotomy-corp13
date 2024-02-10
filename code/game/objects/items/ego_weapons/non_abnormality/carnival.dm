@@ -11,18 +11,18 @@
 	attack_verb_continuous = list("whacks", "slashes")
 	attack_verb_simple = list("whack", "slash")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
-							)
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 60,
+	)
 
 	var/list/empowered_targets = list(
 		/mob/living/simple_animal/hostile/shrimp,
 		/mob/living/simple_animal/hostile/shrimp_soldier,
 		/mob/living/simple_animal/hostile/ordeal,
-		/mob/living/simple_animal/hostile/kcorp/drone
-		)
+		/mob/living/simple_animal/hostile/kcorp/drone,
+	)
 
 /obj/item/ego_weapon/city/carnival_spear/Initialize()
 	. = ..()

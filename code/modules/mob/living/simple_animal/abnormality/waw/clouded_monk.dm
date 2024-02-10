@@ -189,7 +189,7 @@
 			stop_charge = TRUE
 			break
 		if(D.density)
-			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 	if(stop_charge)
 		charging = FALSE
 		icon_state = icon_aggro

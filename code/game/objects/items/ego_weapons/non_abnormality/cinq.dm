@@ -11,11 +11,11 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
-							)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 	var/ready = TRUE
 	var/multiplier = 2
 

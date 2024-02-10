@@ -148,7 +148,7 @@
 		T = pick(turf_list)
 		turf_list -= T
 		// Found good target turf
-		if(LAZYLEN(get_path_to(L, T, /turf/proc/Distance_cardinal, 0, teleport_max_distance * 2)))
+		if(LAZYLEN(get_path_to(L, T, TYPE_PROC_REF(/turf, Distance_cardinal), 0, teleport_max_distance * 2)))
 			break
 		T = null
 	// Didn't find anything, very sad
