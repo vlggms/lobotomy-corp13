@@ -236,7 +236,7 @@
 	for(var/mob/living/L in spawned_mobs)
 		if(L.stat == DEAD)
 			spawned_mobs -= L
-	var/max_spawn = clamp(GLOB.player_list.len * 2, 4, 8)
+	var/max_spawn = clamp(GLOB.clients.len * 2, 4, 8)
 	if(length(spawned_mobs) >= max_spawn)
 		return FALSE
 	burrowing = TRUE
@@ -375,7 +375,7 @@
 	for(var/mob/living/L in spawned_mobs)
 		if(L.stat == DEAD)
 			spawned_mobs -= L
-	var/max_spawn = clamp(GLOB.player_list.len * 0.6, 2, 8)
+	var/max_spawn = clamp(GLOB.clients.len * 0.6, 2, 8)
 	if(length(spawned_mobs) >= max_spawn)
 		return FALSE
 	burrowing = TRUE
