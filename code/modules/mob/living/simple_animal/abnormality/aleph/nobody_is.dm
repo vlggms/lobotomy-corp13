@@ -297,7 +297,7 @@
 	if(current_stage == 2) // Egg
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.2, time = 7)
-	if(disguise)
+	if(shelled)
 		var/mob/living/simple_animal/hostile/abnormality/titania/titania
 		for(var/mob/living/L in view(2, src))
 			if(istype(L, /mob/living/simple_animal/hostile/abnormality/titania))
