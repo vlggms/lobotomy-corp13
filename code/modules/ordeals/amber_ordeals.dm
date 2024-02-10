@@ -3,6 +3,7 @@
 	name = "The Dawn of Amber"
 	flavor_name = "The Perfect Meal"
 	announce_text = "A perfect meal, an excellent substitute."
+	end_announce_text = "We ate incessantly to live. The inevitable diminution, the waste..."
 	level = 1
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
@@ -17,6 +18,7 @@
 	name = "The Dusk of Amber"
 	flavor_name = "Food Chain"
 	announce_text = "To accustom oneself to the taste was an inevitable process."
+	end_announce_text = "We could live. We could continue eating."
 	level = 3
 	reward_percent = 0.2
 	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
@@ -33,6 +35,7 @@
 	name = "The Midnight of Amber"
 	flavor_name = "Eternal Meal"
 	announce_text = "They fought amongst themselves to eat the others."
+	end_announce_text = "And the stronger side survived. That, simply, is the story."
 	level = 4
 	reward_percent = 0.25
 	announce_sound = 'sound/effects/ordeals/amber_start.ogg'
