@@ -445,7 +445,7 @@
 	for(var/mob/living/L in view(7, src))
 		if(faction_check_mob(L))
 			continue
-		var/distance_decrease = get_dist(src, L) * 90
+		var/distance_decrease = get_dist(src, L) * 85
 		L.apply_damage((1000 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		if(L.health < 0)
 			L.gib()
