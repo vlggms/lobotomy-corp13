@@ -68,9 +68,6 @@
 	//The amount of flotsams that should spawn in the hallways when it breaches
 	var/tube_spawn_amount = 6
 	var/list/spawned_flotsams = list()
-	//A way to get to another target
-	var/teleport_cooldown
-	var/teleport_cooldown_time = 10 SECONDS
 	var/list/water = list()
 
 	//PLAYABLES ATTACKS
@@ -90,8 +87,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/Life()
 	. = ..()
-	if(!target)
-		TeleDive()
 	if(!.) // Dead
 		return FALSE
 
@@ -110,55 +105,6 @@
 	if(diving || stunned)
 		return FALSE
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/TeleDive()
-	if(diving || stunned)
-		return
-	if(teleport_cooldown > world.time)
-		return FALSE
-	if(diving)
-		return FALSE
-	if(target && !client) // Actively fighting
-		return FALSE
-	var/targets_in_range = 0
-	for(var/mob/living/L in view(8, src))
-		if(!faction_check_mob(L) && L.stat != DEAD && !(L.status_flags & GODMODE))
-			targets_in_range += 1
-			break
-	if(targets_in_range >= 1)
-		to_chat(src, span_warning("You cannot dive to a new target while enemies are nearby!"))
-		return FALSE
-	teleport_cooldown = world.time + teleport_cooldown_time
-	diving = TRUE
-	var/list/teleport_potential = list()
-	for(var/mob/living/L in get_turf(water))
-		if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE || faction_check_mob(L))
-			continue
-		if(!ishuman(L))
-			continue
-		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
-			if(H.is_working)
-				continue
-		teleport_potential += L
-	if(!LAZYLEN(teleport_potential))
-		diving = FALSE
-		to_chat(src, span_warning("There is noone you can dive to!"))
-		return FALSE
-	var/mob/living/carbon/human/H = pick(teleport_potential)
-	SLEEP_CHECK_DEATH(0.4 SECONDS)
-	animate(src, alpha = 1,pixel_x = -32, pixel_z = -32, time = 0.2 SECONDS)
-	src.pixel_z = -32
-	playsound(src, "sound/abnormalities/piscinemermaid/waterjump.ogg", 10, TRUE, 3)
-	var/turf/target_turf = get_turf(H)
-	SLEEP_CHECK_DEATH(0.75 SECONDS)
-	forceMove(target_turf) //look out, someone is rushing you!
-	visible_message(span_boldwarning("[src] dives towards [H]!"))
-	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 50, FALSE, 4)
-	animate(src, alpha = 255,pixel_x = -32, pixel_z = 32, time = 0.1 SECONDS)
-	src.pixel_z = 0
-	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	diving = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/Goto(target, delay, minimum_distance)
 	if(diving || stunned)
