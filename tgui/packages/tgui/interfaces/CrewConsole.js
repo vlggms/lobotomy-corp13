@@ -57,13 +57,13 @@ const jobToColor = jobId => {
 
 const healthToColor = (oxy, tox, burn, brute, maxhp) => {
   const healthSum = oxy + tox + burn + brute;
-  const healthQuarter = maxhp / 4
+  const healthQuarter = maxhp / 4;
   const level = Math.min(Math.max(Math.ceil(healthSum / healthQuarter), 0), 5);
   return HEALTH_COLOR_BY_LEVEL[level];
 };
 
 const sanityToColor = (san, maxsp) => {
-  const sanityQuarter = maxsp / 4
+  const sanityQuarter = maxsp / 4;
   const level = Math.min(Math.max(Math.ceil(san / sanityQuarter), 0), 5);
   return SANITY_COLOR_BY_LEVEL[level];
 };
