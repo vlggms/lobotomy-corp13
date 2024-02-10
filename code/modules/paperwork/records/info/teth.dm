@@ -356,3 +356,12 @@
 		"When an Agent with Level 1 Temperance completed any other work type, the Qliphoth Counter lowered",
 		"When approached during suppression work, F-01-178 attempted to lure agents with Temperance I.",
 		"During work, the final result of any modified attributes were recognized by Faelantern.")
+
+//Brazen Bull
+/obj/item/paper/fluff/info/teth/Brazen_Bull
+	abno_type = /mob/living/simple_animal/hostile/abnormality/brazen_bull
+	abno_code = "M-01-194"
+	abno_info = list(
+		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When breached M-01-194 will charge around the facility. We recommend employees don't get hit by M-01-194")
