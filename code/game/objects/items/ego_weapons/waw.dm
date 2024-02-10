@@ -1856,7 +1856,9 @@
 		return ..()
 	speed_slowdown = 0
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	PowerReset(user)
 	current_holder = null
+	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 	return ..()
 
 //Dropped setup
@@ -1866,7 +1868,9 @@
 		return
 	speed_slowdown = 0
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	PowerReset(user)
 	current_holder = null
+	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 
 /obj/item/ego_weapon/blind_obsession/proc/UserMoved(mob/user)
 	SIGNAL_HANDLER
@@ -1887,7 +1891,7 @@
 		return
 	if(do_after(user, 12, src))
 		charged = TRUE
-		speed_slowdown = 2
+		speed_slowdown = 1
 		throwforce = 100//TIME TO DIE!
 		to_chat(user,span_warning("You put your strength behind this attack."))
 		power_timer = addtimer(CALLBACK(src, PROC_REF(PowerReset)), 3 SECONDS,user, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
@@ -1897,6 +1901,7 @@
 	charged = FALSE
 	speed_slowdown = 0
 	throwforce = 80
+	deltimer(power_timer)
 
 /obj/item/ego_weapon/blind_obsession/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill others with this
 	if(!CanUseEgo(user))
@@ -1987,20 +1992,20 @@
 	..()
 	if(combo == 4)
 		can_attack = FALSE
-		if(do_after(user, 5, src))
-			playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
-			animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
-			user.pixel_z = -16
-			sleep(0.5 SECONDS)
-			can_attack = TRUE
-			for(var/i in 2 to get_dist(user, A))
-				step_towards(user,A)
-			if((get_dist(user, A) < 2))
-				DiveAttack(A,user)
-			playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
-			to_chat(user, span_warning("You dive towards [A]!"))
-			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
-			user.pixel_z = 0
+		sleep(0.5 SECONDS)
+		playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
+		animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+		user.pixel_z = -16
+		sleep(0.5 SECONDS)
+		can_attack = TRUE
+		for(var/i in 2 to get_dist(user, A))
+			step_towards(user,A)
+		if((get_dist(user, A) < 2))
+			DiveAttack(A,user)
+		playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
+		to_chat(user, span_warning("You dive towards [A]!"))
+		animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+		user.pixel_z = 0
 
 /obj/item/ego_weapon/abyssal_route/proc/DiveAttack(atom/A, mob/living/user, proximity_flag, params)
 	A.attackby(src,user)
