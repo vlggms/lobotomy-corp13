@@ -52,7 +52,6 @@
 	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit =  /obj/item/clothing/suit/toggle/labcoat
-	backpack_contents = list()
+	backpack_contents = list(/obj/item/station_charter)
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
-	l_pocket = /obj/item/station_charter
