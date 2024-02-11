@@ -266,9 +266,9 @@
 	special = "This weapon fires slow bullets with limited range."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
 	weapon_weight = WEAPON_HEAVY
-	spread = 40
+	spread = 30
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
-	autofire = 0.08 SECONDS
+	autofire = 0.12 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 	)

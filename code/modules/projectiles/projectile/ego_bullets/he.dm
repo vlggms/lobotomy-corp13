@@ -133,6 +133,6 @@
 	icon_state = "ecstasy"
 	damage_type = WHITE_DAMAGE
 	color = COLOR_GREEN
-	damage = 7
+	damage = 5
 	speed = 1.3
-	range = 6
+	range = 7
