@@ -55,3 +55,4 @@
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
+	l_pocket = /obj/item/station_charter
