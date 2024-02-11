@@ -268,7 +268,7 @@
 	weapon_weight = WEAPON_HEAVY
 	spread = 30
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
-	autofire = 0.12 SECONDS
+	autofire = 0.06 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 	)
