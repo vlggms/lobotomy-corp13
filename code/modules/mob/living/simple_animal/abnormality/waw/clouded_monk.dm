@@ -47,10 +47,8 @@
 	var/charging = FALSE
 	var/revving_charge = FALSE
 	var/charge_ready = FALSE
-//	var/charge_end_timer
 	var/monk_charge_cooldown = 0
 	var/monk_charge_cooldown_time = 6 SECONDS
-	var/list/been_hit = list() // Don't get hit twice.
 	var/deathcount
 	var/heal_amount = 250
 	var/charge_damage = 350
@@ -183,6 +181,8 @@
 
 //charge code
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/Charge(atom/chargeat = target, delay = 1 SECONDS, chargepast = 3)
+	if(stat == DEAD)
+		return
 	if(monk_charge_cooldown > world.time || charging || revving_charge)
 		return
 	if(!chargeat)
