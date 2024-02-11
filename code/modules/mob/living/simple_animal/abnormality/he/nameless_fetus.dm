@@ -40,10 +40,49 @@
 		You plugged your ears silently. <br>No sound is heard."
 
 	var/mob/living/carbon/human/calling = null
+	var/satisfied = FALSE
+	var/hunger = 0
+	var/crying = FALSE
+
+//Work-related
+/mob/living/simple_animal/hostile/abnormality/fetus/WorkChance(mob/living/carbon/human/user, chance, work_type) //Insight work has a qliphoth-based success rate
+	var/chance_modifier = 0
+	if(satisfied)
+		chance_modifier = 40
+	return chance + chance_modifier
+
+/mob/living/simple_animal/hostile/abnormality/fetus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+	if(satisfied)
+		hunger--
+		if(hunger <= 0)
+			satisfied = FALSE
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
+				to_chat(H, span_userdanger("The creature grew hungry!"))
+
+/mob/living/simple_animal/hostile/abnormality/fetus/user_buckle_mob(mob/living/M, mob/user, check_loc)
+	if(M.stat != DEAD)
+		return FALSE
+	if(do_after(user, 20, target = M))
+		if(!ishuman(M) || crying)
+			to_chat(user, span_warning("[src] rejects your offering!"))
+			return
+		to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
+		M.gib()
+		satisfied = TRUE
+		hunger += 4
+		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
-	check_players()
-	check_range()
+	if(satisfied)
+		satisfied = FALSE
+		hunger = 0
+		datum_reference.qliphoth_change(1)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_userdanger("The creature grew hungry!"))
+	else
+		crying = TRUE
+		check_players()
+		check_range()
 
 	//Are they nearby?
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_range()
@@ -56,6 +95,9 @@
 
 		notify_ghosts("The nameless fetus is satisfied.", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 		datum_reference.qliphoth_change(1)
+		satisfied = TRUE
+		hunger += 12 //Ehh might as well triple the effects of it being fed if you have to die.
+		crying = FALSE
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(check_range)), 2 SECONDS)
