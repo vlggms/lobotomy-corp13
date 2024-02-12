@@ -61,7 +61,7 @@
 
 /atom/movable/screen/alert/status_effect/dangle
 	name = "That Woozy Feeling"
-	desc = "Your Justice has improved even as you feel your mind dangling."
+	desc = "Your combat senses have improved even as you feel your mind dangling."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "rest"
 
