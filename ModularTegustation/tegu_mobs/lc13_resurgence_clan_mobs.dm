@@ -37,7 +37,24 @@
 /mob/living/simple_animal/hostile/clan/proc/GainCharge()
 	if (charge < max_charge)
 		charge += 1
+		ChargeUpdated()
 	addtimer(CALLBACK(src, PROC_REF(GainCharge)), 2 SECONDS)
 
+/mob/living/simple_animal/hostile/clan/proc/ChargeUpdate()
 
 /mob/living/simple_animal/hostile/clan/scout
+	var/max_speed = 2
+	var/normal_speed = 3
+	var/max_attack_speed = 3
+	var/normal_attack_speed = 1
+
+/mob/living/simple_animal/hostile/clan/scout/ChargeUpdated()
+	move_to_delay = normal_speed - (normal_speed - max_speed) * charge / max_charge
+	rapid_melee = normal_attack_speed + (max_attack_speed - normal_attack_speed) * charge / max_charge
+	UpdateSpeed()
+
+/mob/living/simple_animal/hostile/clan/scout/AttackingTarget()
+	. = ..()
+	if (charge > 0)
+		charge -= 1
+	say("Lost 1 Charge")
