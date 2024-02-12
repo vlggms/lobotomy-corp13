@@ -1,4 +1,4 @@
-/mob/living/simple_animal/hostile/scout
+/mob/living/simple_animal/hostile/clan
 	name = "scout"
 	desc = "scout"
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
@@ -26,5 +26,18 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
+	var/charge = 0
+	var/max_charge = 10
 
-	
+
+/mob/living/simple_animal/hostile/clan/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(GainCharge)), 2 SECONDS)
+
+/mob/living/simple_animal/hostile/clan/proc/GainCharge()
+	if (charge < max_charge)
+		charge += 1
+	addtimer(CALLBACK(src, PROC_REF(GainCharge)), 2 SECONDS)
+
+
+/mob/living/simple_animal/hostile/clan/scout
