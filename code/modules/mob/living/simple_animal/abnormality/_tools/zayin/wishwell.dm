@@ -191,6 +191,8 @@
 //End of loot lists
 /obj/structure/toolabnormality/wishwell/attackby(obj/item/I, mob/living/carbon/human/user)
 	//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
+	if(istype(I, /obj/item/tool_extractor))
+		return ..()
 	if(!do_after(user, 0.5 SECONDS))
 		return
 	RunGacha(I, user)
@@ -296,7 +298,7 @@
 		Dispense(gift)
 
 /obj/structure/toolabnormality/wishwell/proc/Dispense(atom/dispenseobject)
-	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
+	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, FALSE, -3)
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	new dispenseobject(dispense_turf)
 	var/list/water_area = range(1, dispense_turf)
