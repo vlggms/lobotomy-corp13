@@ -339,7 +339,8 @@
 	loot_level1 = list(
 		/obj/item/stack/sheet/mineral/wood = 30,
 		/obj/item/food/grown/harebell = 35,
-		/obj/item/food/spiderling = 35
+		/obj/item/food/spiderling = 25,
+		/obj/item/food/fish/siltcurrent = 10
 		)
 	loot_level2 = list(
 		/obj/item/food/fish/siltcurrent = 35,
@@ -354,3 +355,6 @@
 		/obj/item/food/fish/siltcurrent = 60,
 		/obj/item/food/fish/emulsijack = 40,
 		)
+
+/turf/open/water/deep/obsessing_water/IsSafe()
+	return TRUE
