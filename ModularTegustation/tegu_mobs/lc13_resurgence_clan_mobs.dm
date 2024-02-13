@@ -1,29 +1,23 @@
 /mob/living/simple_animal/hostile/clan
-	name = "scout"
-	desc = "scout"
+	name = "Scout"
+	desc = "A humanoid looking machine... It appears to have 'Resurgence Clan' etched on their back..."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "scout"
-	icon_living = "scout"
-	icon_dead = "scout"
-	faction = list("resurgence_clan", "neutral")
-	wander = 0
-	obj_damage = 5
-	response_disarm_continuous = "gently pushes aside"
-	response_disarm_simple = "gently push aside"
-	environment_smash = FALSE
+	icon_state = "clan_scout"
+	icon_living = "clan_scout"
+	icon_dead = "clan_scout_dead"
+	faction = list("resurgence_clan", "hostile")
 	mob_biotypes = MOB_ROBOTIC
 	gender = NEUTER
 	speech_span = SPAN_ROBOT
 	emote_hear = list("creaks.", "emits the sound of grinding gears.")
-	speak_chance = 1
-	a_intent = "help"
-	maxHealth = 300 //100 less due to loss of arm
-	health = 300
-	death_message = "falls to their knees as the sound of gears slowly fades."
-	melee_damage_lower = 0
-	melee_damage_upper = 4
+	maxHealth = 500
+	health = 500
+	death_message = "falls to their knees as their lights slowly go out..."
+	melee_damage_lower = 15
+	melee_damage_upper = 19
 	mob_size = MOB_SIZE_LARGE
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	melee_damage_type = BLACK_DAMAGE
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
 	var/charge = 0
@@ -37,15 +31,16 @@
 /mob/living/simple_animal/hostile/clan/proc/GainCharge()
 	if (charge < max_charge)
 		charge += 1
+		say("Gained 1 Charge")
 		ChargeUpdated()
 	addtimer(CALLBACK(src, PROC_REF(GainCharge)), 2 SECONDS)
 
-/mob/living/simple_animal/hostile/clan/proc/ChargeUpdate()
+/mob/living/simple_animal/hostile/clan/proc/ChargeUpdated()
 
 /mob/living/simple_animal/hostile/clan/scout
 	var/max_speed = 2
 	var/normal_speed = 3
-	var/max_attack_speed = 3
+	var/max_attack_speed = 4
 	var/normal_attack_speed = 1
 
 /mob/living/simple_animal/hostile/clan/scout/ChargeUpdated()
