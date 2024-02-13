@@ -65,6 +65,7 @@
 
 /obj/projectile/melting_blob/on_hit(target)
 	if(isliving(target))
+		new /obj/effect/gibspawner/generic/silent/melty_slime(get_turf(target))
 		var/mob/living/L = target
 		if(L.stat == DEAD && ishuman(L))
 			var/turf/T = get_turf(L)
@@ -74,8 +75,7 @@
 			return BULLET_ACT_HIT
 		if(!isbot(L))
 			L.visible_message("<span class='warning'>[L] is hit by [src], they seem to wither away!</span>")
-			for(var/i = 1 to 10)
-				addtimer(CALLBACK(L, /mob/living/proc/apply_damage, rand(4,6), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)), 2 SECONDS * i)
+			L.apply_status_effect(/datum/status_effect/melty_slimed)
 			return BULLET_ACT_HIT
 	return ..()
 
@@ -121,7 +121,7 @@
 		return ..()
 	var/mob/living/carbon/human/H = target
 	H.add_movespeed_modifier(/datum/movespeed_modifier/clowned)
-	addtimer(CALLBACK(H, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/clowned), 2 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	..()
 
 /datum/movespeed_modifier/clowned

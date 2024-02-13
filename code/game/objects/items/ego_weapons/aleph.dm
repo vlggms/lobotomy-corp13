@@ -1103,7 +1103,7 @@
 			break
 		for(var/obj/machinery/door/D in T.contents)
 			if(D.density)
-				addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+				addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 		target_turf = T
 		line_turfs += T
 	user.dir = get_dir(user, A)
@@ -1267,3 +1267,223 @@
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		target.throw_at(throw_target, 7, 7, user)
+
+/obj/item/ego_weapon/oberon
+	name = "oberon"
+	desc = "Then yes, I am the Oberon you seek."
+	special = "Use this weapon in hand to swap between forms. This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."
+	icon_state = "oberon_whip"
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 30
+	attack_speed = 0.8
+	reach = 3
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("lacerates", "disciplines")
+	attack_verb_simple = list("lacerate", "discipline")
+	hitsound = 'sound/weapons/whip.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 120,
+							JUSTICE_ATTRIBUTE = 120
+							)
+	var/mob/current_holder
+	var/form = "whip"
+	var/list/weapon_list = list(
+		"whip" = list(30, 0.8, 3, list("lacerates", "disciplines"), list("lacerate", "discipline"), 'sound/weapons/whip.ogg', BLACK_DAMAGE, "This form has higher reach, hits 3 times, and builds up attack speed before unleasheing a powerful burst of damage."),
+		"sword" = list(55, 0.8, 1, list("tears", "slices", "mutilates"), list("tear", "slice","mutilate"), 'sound/weapons/fixer/generic/blade4.ogg', BLACK_DAMAGE, "This form can fire a projectile and does both RED DAMAGE and BLACK DAMAGE."),
+		"hammer" = list(55, 1.4, 1, list("crushes"), list("crush"), 'sound/weapons/fixer/generic/baton2.ogg', BLACK_DAMAGE, "This form deals damage in an area and incease the RED and BLACK vulnerability by 0.2 to everything in that area."),
+		"bat" = list(160, 1.6, 1, list("bludgeons", "bashes"), list("bludgeon", "bash"), 'sound/weapons/fixer/generic/gen1.ogg', RED_DAMAGE, "This form does RED DAMAGE and knocks back enemies."),
+		"scythe" = list(100, 1.2, 1, list("slashes", "slices", "rips", "cuts"), list("slash", "slice", "rip", "cut"), 'sound/abnormalities/nothingthere/attack.ogg', RED_DAMAGE, "This form does RED DAMAGE and does 50% more damage when hitting targets below 50% health.")
+		)
+	var/gun_cooldown
+	var/gun_cooldown_time = 1 SECONDS
+	var/build_up = 0.8
+	var/smashing = FALSE
+	var/combo_time
+	var/combo_wait = 15
+
+/*
+	Each form is meant to have their own purpose and niche,
+	Whip: Far reaching melee and raw fast attacking black damage.(It looks cool as hell and has good dps I think. It's an aleph fusion of logging and aninmalism with animalism's multiple hits when you attack and loggings attack speed build up into aoe burst.)
+	Sword: Raw mixed damage/ranged weapon also.(Since its like a buffed soulmate without the mark gimmick.)
+	Hammer: Black damage aoe support/armor weakener.(Meant to combo with the other weapons with the red and black rend it has and to deal with groups also incase you somehow kill oberon before amber midnight.)
+	Bat: Slow attacking red damage with knockback.(Simple yes, but it's useful versus stuff like Censored or Black Fixer. I guess it's an upgrade/sidegrade of flesh is willing and summer solstice but that wasn't intentional since it was black before I changed it.)
+	Scythe: A good finisher that has dps on par with the sword when the target has 50% hp or lower while being slightly worse than aleph dps wise otherwise I think.(Used to be a shittier mimicry)
+	Whip, Sword, and Bat are meant to be raw damage, Hammer is meant to be utility, and  Scythe is meant to be a finisher.
+*/
+
+/obj/item/ego_weapon/oberon/Initialize()
+	. = ..()
+	AddElement(/datum/element/update_icon_updates_onmob)
+
+/obj/item/ego_weapon/oberon/attack_self(mob/user)
+	. = ..()
+	if(!CanUseEgo(user))
+		return
+	SwitchForm(user)
+
+/obj/item/ego_weapon/oberon/equipped(mob/user, slot)
+	. = ..()
+	if(!user)
+		return
+	current_holder = user
+
+/obj/item/ego_weapon/oberon/dropped(mob/user)
+	. = ..()
+	current_holder = null
+
+/obj/item/ego_weapon/oberon/attack(mob/living/target, mob/living/carbon/human/user)
+	if(world.time > combo_time)
+		build_up = 0.8
+	combo_time = world.time + combo_wait
+	switch(form)
+		if("scythe")
+			if(target.health <= (target.maxHealth * 0.5))
+				playsound(get_turf(target), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
+				new /obj/effect/temp_visual/nobody_grab(get_turf(target))
+				force = 150
+			else
+				force = 100
+	. = ..()
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	if(!.)
+		return FALSE
+	switch(form)
+		if("sword")
+			var/red = force
+			red*=justicemod
+			target.apply_damage(red * force_multiplier, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		if("whip")
+			var/multihit = force
+			multihit*= justicemod
+			for(var/i = 1 to 2)
+				sleep(2)
+				if(target in view(reach,user))
+					target.send_item_attack_message(src, user,target)
+					target.apply_damage(multihit * force_multiplier, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+					user.do_attack_animation(target)
+					playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		if("bat")
+			var/atom/throw_target = get_edge_target_turf(target, user.dir)
+			if(!target.anchored)
+				var/whack_speed = (prob(60) ? 2 : 5)
+				target.throw_at(throw_target, rand(2, 4), whack_speed, user)
+		if("hammer")
+			for(var/mob/living/L in view(2, target))
+				var/aoe = force
+				aoe*=justicemod
+				if(user.faction_check_mob(L))
+					continue
+				L.apply_damage(aoe * force_multiplier, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+				if(!ishuman(L))
+					if(!L.has_status_effect(/datum/status_effect/rend_black))
+						L.apply_status_effect(/datum/status_effect/rend_black)
+					if(!L.has_status_effect(/datum/status_effect/rend_red))
+						L.apply_status_effect(/datum/status_effect/rend_red)
+
+/obj/item/ego_weapon/oberon/melee_attack_chain(mob/user, atom/target, params)
+	..()
+	switch(form)
+		if("whip")
+			if (isliving(target))
+				user.changeNext_move(CLICK_CD_MELEE * build_up) // Starts a little fast, but....
+				if (build_up <= 0.1)
+					build_up = 0.8
+					user.changeNext_move(CLICK_CD_MELEE * 4)
+					if(!smashing)
+						to_chat(user,"<span class='warning'>The whip starts to thrash around uncontrollably!</span>")
+						Smash(user, target)
+				else
+					build_up -= 0.1
+			else
+				user.changeNext_move(CLICK_CD_MELEE * 0.8)
+
+/obj/item/ego_weapon/oberon/proc/Smash(mob/user, atom/target)
+	smashing = TRUE
+	playsound(user, 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 50, 0, 3)
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/smash_damage = 170
+	smash_damage *= justicemod
+	sleep(0.5 SECONDS)
+	for(var/i = 0; i < 3; i++)
+		for(var/turf/T in view(3, user))
+			new /obj/effect/temp_visual/nobody_grab(T)
+			for(var/mob/living/L in T)
+				if(user.faction_check_mob(L))
+					continue
+				L.apply_damage(smash_damage * force_multiplier, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		playsound(user, 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
+		sleep(0.5 SECONDS)
+	smashing = FALSE
+	return
+
+/obj/item/ego_weapon/oberon/get_clamped_volume()
+	return 40
+
+/obj/item/ego_weapon/oberon/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	switch(form)
+		if("sword")
+			if(!proximity_flag && gun_cooldown <= world.time)
+				var/turf/proj_turf = user.loc
+				if(!isturf(proj_turf))
+					return
+				var/obj/projectile/ego_bullet/gunblade/G = new /obj/projectile/ego_bullet/gunblade(proj_turf)
+				G.damage = 90
+				G.icon_state = "red_laser"
+				playsound(user, 'sound/weapons/ionrifle.ogg', 100, TRUE)
+				G.firer = user
+				G.preparePixelProjectile(target, user, clickparams)
+				G.fire()
+				G.damage *= force_multiplier
+				gun_cooldown = world.time + gun_cooldown_time
+				return
+// Radial menu
+/obj/item/ego_weapon/oberon/proc/SwitchForm(mob/user)
+	var/list/armament_icons = list(
+		"whip" = image(icon = src.icon, icon_state = "oberon_whip"),
+		"sword"  = image(icon = src.icon, icon_state = "oberon_sword"),
+		"hammer"  = image(icon = src.icon, icon_state = "oberon_hammer"),
+		"bat"  = image(icon = src.icon, icon_state = "oberon_bat"),
+		"scythe" = image(icon = src.icon, icon_state = "oberon_scythe")
+	)
+	armament_icons = sortList(armament_icons)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
+	if(!choice || !CheckMenu(user))
+		return
+	form = choice
+	Transform()
+
+/obj/item/ego_weapon/oberon/proc/CheckMenu(mob/user)
+	if(!istype(user))
+		return FALSE
+	if(QDELETED(src))
+		return FALSE
+	if(user.incapacitated() || !user.is_holding(src))
+		return FALSE
+	return TRUE
+
+/obj/item/ego_weapon/oberon/proc/Transform()
+	icon_state = "oberon_[form]"
+	update_icon_state()
+	if(current_holder)
+		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		current_holder.update_inv_hands()
+		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
+	force = weapon_list[form][1]
+	attack_speed = weapon_list[form][2]
+	reach = weapon_list[form][3]
+	attack_verb_continuous = weapon_list[form][4]
+	attack_verb_simple = weapon_list[form][5]
+	hitsound = weapon_list[form][6]
+	damtype = weapon_list[form][7]
+	special = "Use this weapon in hand to swap between forms. [weapon_list[form][8]]"
+	build_up = 0.8

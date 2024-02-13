@@ -106,7 +106,7 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 30)))
+				if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 30)))
 					to_chat(src, span_notice("Invalid target."))
 					return
 				TryTeleport(get_turf(target))

@@ -15,7 +15,19 @@
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
 		/obj/item/ego_weapon/paradise,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight,
-		/obj/item/ego_weapon/twilight
+		/obj/item/ego_weapon/twilight,
+		/obj/item/ego_weapon/shield/distortion
+		)
+	var/list/strongaleph = list( //items that can be bought with PE with costs over 100 and other goodies
+		/obj/item/nihil/heart,
+		/obj/item/nihil/spade,
+		/obj/item/nihil/diamond,
+		/obj/item/nihil/club,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/paradise,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/distortion,
+		/obj/item/ego_weapon/iron_maiden,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/flowering,
+		/obj/item/toy/plush/bongbong
 		)
 	var/list/alephitem = list(//less junk items at higher risk levels
 		/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian,
@@ -77,7 +89,7 @@
 		/obj/item/clothing/neck/tie/black,
 		/obj/item/clothing/neck/tie/blue,
 		/obj/item/clothing/neck/tie/red,
-		/obj/item/clothing/under/suit/lobotomy/control, //remove these once enough items are here
+		/obj/item/clothing/under/suit/lobotomy/control,
 		/obj/item/clothing/under/suit/lobotomy/information,
 		/obj/item/clothing/under/suit/lobotomy/safety,
 		/obj/item/clothing/under/suit/lobotomy/training,
@@ -135,24 +147,24 @@
 		/mob/living/simple_animal/hostile/ordeal/green_bot,
 		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
 		/obj/item/clothing/mask/facehugger/bongy,
-		/mob/living/simple_animal/hostile/ordeal/violet_fruit
+		/mob/living/simple_animal/hostile/ordeal/violet_fruit,
+		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
+		/mob/living/simple_animal/hostile/ordeal/sin_gluttony
 		)
 	var/list/noon = list(
 		/mob/living/simple_animal/hostile/ordeal/green_bot_big,
 		/mob/living/simple_animal/hostile/ordeal/indigo_noon,
-		/mob/living/simple_animal/hostile/slime
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom
 		)
 	var/list/dusk = list(
-		/mob/living/simple_animal/hostile/ordeal/amber_dusk,
-		/mob/living/simple_animal/hostile/ordeal/green_dusk,
+		/mob/living/simple_animal/hostile/ordeal/sin_pride,
+		/mob/living/simple_animal/hostile/ordeal/KHz_corrosion,
 		/mob/living/simple_animal/hostile/mini_censored,
-		/mob/living/simple_animal/hostile/slime/big
+		/mob/living/simple_animal/hostile/slime
 		)
-	var/list/midnight = list(//TODO: Wait until reasonable threats exist. These guys are too easy and midnights are too hard. Egor said no fixers.
-		/mob/living/simple_animal/hostile/ordeal/indigo_dusk/red,
-		/mob/living/simple_animal/hostile/ordeal/indigo_dusk/white,
-		/mob/living/simple_animal/hostile/ordeal/indigo_dusk/black,
-		/mob/living/simple_animal/hostile/ordeal/indigo_dusk/pale
+	var/list/midnight = list(//TODO: Add more somewhat reasonable threats
+		/mob/living/simple_animal/hostile/slime/big,
+		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
 		)
 
 //This proc removes the need to copypaste every single armor and weapon into a list.
@@ -178,20 +190,23 @@
 
 //End of loot lists
 /obj/structure/toolabnormality/wishwell/attackby(obj/item/I, mob/living/carbon/human/user)
-	. = ..()
 	//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
+	if(istype(I, /obj/item/tool_extractor))
+		return ..()
 	if(!do_after(user, 0.5 SECONDS))
 		return
+	RunGacha(I, user)
 
+/obj/structure/toolabnormality/wishwell/proc/RunGacha(obj/item/I, mob/living/carbon/human/user)
 	var/output = null
 	if(istype(I, /obj/item/holochip))
 		output = "MONEY"
-		playsound(src, 'sound/items/coinflip.ogg', 80, TRUE, -3)
 		to_chat(user, span_notice("You hear a plop as the holochip comes in contact with the water..."))
+		user.playsound_local(user, 'sound/items/coinflip.ogg', 80, TRUE)
 	else if(istype(I, /obj/item/clothing/suit/armor/ego_gear) || istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/ego_weapon) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
-		playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
 		to_chat(user, span_notice("You hear the ego dissolve as it comes in contact with the water..."))
-		if(locate(I) in tethitem) //TODO: use a different proc? We want an exact match in item paths.
+		user.playsound_local(user, 'sound/effects/wounds/sizzle1.ogg', 40, TRUE)
+		if(locate(I) in tethitem)
 			output = "TETH"
 		else if(locate(I) in heitem)
 			output = "HE"
@@ -207,78 +222,89 @@
 	// Now for outputs
 	if(!output)
 		return
-
-	if(!do_after(user, 7 SECONDS))
-		to_chat(user, span_userdanger("The well goes silent as it detects your impatience."))
+	if(!do_after(user, 2 SECONDS))
+		to_chat(user, span_notice("You decide you want to keep your item."))
 		return
 
 	var/gift = null
 	qdel(I)
 	var/gacha = rand(1,100)
-	if(gacha > 50)
-		playsound(src, 'sound/abnormalities//dreamingcurrent/dead.ogg', 80, TRUE, -3)
-		to_chat(user, span_notice("Nothing happens..."))
-		return
-
 	switch(output)
 		if("MONEY")
 			switch(gacha)
-				if(1 to 5) //5% odds, spawn trash....
+				if(1 to 10) //10% odds, spawn trash....
 					gift = pick(trash)
-				if(6 to 15)// 10% odds, down 1 risk level
+				if(11 to 60)// 50% odds, down 1 risk level
 					gift = pick(baditem)
-				if(16 to 50)//35% odds, spawn an item of the same tier
+				if(61 to 95)//35% odds, spawn an item of the same tier
 					gift = pick(normalitem)
+				if(96 to 100)//5% odds, go up 1 risk level
+					gift = pick(zayinitem)
 		if("ZAYIN")
 			switch(gacha)
-				if(1 to 5)//5% odds, ...or a hostile mob if using EGO
+				if(1 to 10)//10% odds, ...or a hostile mob if using EGO
 					gift = pick(pick(dawn),pick(trash))
-				if(6 to 15)
+				if(11 to 60)
 					gift = pick(normalitem)
-				if(16 to 50)
+				if(61 to 95)
 					gift = pick(zayinitem)
+				if(96 to 100)
+					gift = pick(tethitem)
 		if("TETH")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 10)
 					gift = pick(dawn)
-				if(6 to 15)
+				if(11 to 60)
 					gift = pick(zayinitem)
-				if(16 to 50)
+				if(61 to 95)
 					gift = pick(tethitem)
+				if(96 to 100)
+					gift = pick(heitem)
 		if("HE")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 10)
 					gift = pick(noon)
-				if(6 to 15)
+				if(11 to 60)
 					gift = pick(tethitem)
-				if(16 to 50)
+				if(61 to 95)
 					gift = pick(heitem)
+				if(96 to 100)
+					gift = pick(wawitem)
 		if("WAW")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 10)
 					gift = pick(dusk)
-				if(6 to 15)
+				if(11 to 60)
 					gift = pick(heitem)
-				if(16 to 20)//5% odds to get a rarer item at WAW/ALEPH
-					gift = pick(/obj/item/ego_weapon/city/rabbit_blade,/obj/item/clothing/suit/armor/ego_gear/rabbit)
-				if(21 to 50)
+				if(61 to 95)
 					gift = pick(wawitem)
+				if(96 to 100)
+					gift = pick(alephitem)
 		if("ALEPH")
 			switch(gacha)
-				if(1 to 5)
+				if(1 to 10)
 					gift = pick(midnight)
-				if(6 to 15)
+				if(11 to 60)
 					gift = pick(wawitem)
-				if(16 to 20)
-					gift = pick(pick(alephitem),/obj/item/toy/plush/bongbong) //egor says no PL/flowering/twilight
-				if(21 to 50)
+				if(61 to 95)
 					gift = pick(alephitem)
+				if(96 to 100)
+					gift = pick(strongaleph) //The rarest item of all
 
 	//Gacha now locked in
+	playsound(src, 'sound/effects/bubbles.ogg', 80, TRUE, -3)
+	sleep(4 SECONDS)
 	if(gift)
-		playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
-		new gift(get_turf(src))
-		visible_message(span_notice("Something comes out of the well!"))
+		Dispense(gift)
+
+/obj/structure/toolabnormality/wishwell/proc/Dispense(atom/dispenseobject)
+	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, FALSE, -3)
+	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
+	new dispenseobject(dispense_turf)
+	var/list/water_area = range(1, dispense_turf)
+	for(var/turf/open/O in water_area)
+		new /obj/effect/particle_effect/water(O)
+	visible_message(span_notice("Something comes out of the well!"))
 
 //Throw yourself into the well : The Code
 /obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
@@ -334,7 +360,5 @@
 
 	bastards += M.ckey
 	sleep(10)
-	new deathgift(get_turf(src))
-	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, TRUE, -3)
-	visible_message(span_notice("Something comes out of the well!"))
+	Dispense(deathgift)
 	..()

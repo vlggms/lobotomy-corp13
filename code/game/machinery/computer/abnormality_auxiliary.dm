@@ -119,7 +119,7 @@
 			to_chat(usr, span_userdanger("Good luck, Manager."))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
-			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/Run), 2 SECONDS)
+			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, Run)), 2 SECONDS)
 			return TRUE
 
 		// Facility upgrade topics

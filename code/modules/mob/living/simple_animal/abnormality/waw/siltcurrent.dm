@@ -68,7 +68,6 @@
 	//The amount of flotsams that should spawn in the hallways when it breaches
 	var/tube_spawn_amount = 6
 	var/list/spawned_flotsams = list()
-
 	var/list/water = list()
 
 	//PLAYABLES ATTACKS

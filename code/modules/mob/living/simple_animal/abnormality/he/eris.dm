@@ -83,7 +83,7 @@
 
 	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 

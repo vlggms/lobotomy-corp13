@@ -54,7 +54,7 @@
 	if(!target_center)
 		..()
 	else
-		patrol_path = get_path_to(src, target_center, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_center, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/MeleeAction()
 	return OpenFire()

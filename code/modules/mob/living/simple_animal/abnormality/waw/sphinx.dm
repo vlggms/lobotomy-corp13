@@ -310,7 +310,7 @@
 	var/mob/living/carbon/human/H = target
 	if(!(H.has_movespeed_modifier(/datum/movespeed_modifier/petrify_partial)))
 		H.add_movespeed_modifier(/datum/movespeed_modifier/petrify_partial)
-		addtimer(CALLBACK(H, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/petrify_partial), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/petrify_partial), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		to_chat(H, span_warning("Your whole body feels heavy..."))
 		playsound(get_turf(H), 'sound/abnormalities/sphinx/petrify.ogg', 50, 0, 5)
 	else

@@ -180,7 +180,7 @@
 			stop_charge = TRUE
 			break
 		if(D.density)
-			INVOKE_ASYNC(D, /obj/machinery/door/proc/open, 2)
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 75, 1)
 		charging = FALSE

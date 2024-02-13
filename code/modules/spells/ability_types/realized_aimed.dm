@@ -27,7 +27,7 @@
 					stop_charge = TRUE
 					break
 				if(MD.density)
-					INVOKE_ASYNC(MD, /obj/machinery/door/proc/open, 2)
+					INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 		if(stop_charge)
 			break
 		target_turf = T
@@ -126,7 +126,7 @@
 		RP.xo = target_turf.x - T.x
 		RP.original = target_turf
 		RP.preparePixelProjectile(target_turf, T)
-		addtimer(CALLBACK (RP, .obj/projectile/proc/fire), 3)
+		addtimer(CALLBACK (RP, TYPE_PROC_REF(/obj/projectile, fire)), 3)
 	sleep(3)
 	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 	return ..()
@@ -210,11 +210,11 @@
 		S.transform = M
 		if(speak)
 			if(custom_speech.len <= 0)
-				addtimer(CALLBACK(H, .atom/movable/proc/say, default_speech[i*2 - 1]))
-				addtimer(CALLBACK(H, .atom/movable/proc/say, default_speech[i*2]), 10)
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2]), 10)
 			else
-				addtimer(CALLBACK(H, .atom/movable/proc/say, custom_speech[i*2 - 1]))
-				addtimer(CALLBACK(H, .atom/movable/proc/say, custom_speech[i*2]), 10)
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2]), 10)
 		if(!Channel(H, 20))
 			CleanUp(user)
 			return
@@ -231,7 +231,7 @@
 	justice++
 	beam_damage *= justice
 	if(speak)
-		addtimer(CALLBACK(H, .atom/movable/proc/say, "ARCANA SLAVE!"))
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
 		if(accumulated_beam_damage >= 150 && beam_stage < 2)
