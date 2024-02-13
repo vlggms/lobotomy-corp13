@@ -120,7 +120,7 @@
 /datum/status_effect/stacking/void
 	id = "stacking_void"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 200 //20 seconds
+	duration = 20 SECONDS
 	alert_type = null
 	stack_decay = 0
 	stacks = 1
@@ -143,24 +143,26 @@
 
 /datum/status_effect/stacking/void/add_stacks(stacks_added)
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10 * stacks_added)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10 * stacks_added)
 
 /datum/status_effect/stacking/void/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
-		to_chat(owner, span_nicegreen("You feel normal again."))
-		if(owner.client)
-			owner.remove_client_colour(/datum/client_colour/monochrome)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10 * stacks)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
+	to_chat(owner, span_nicegreen("You feel normal again."))
+	if(owner.client)
+		owner.remove_client_colour(/datum/client_colour/monochrome)
 
 //items
 /obj/item/nihil

@@ -284,16 +284,18 @@
 
 /datum/status_effect/mortis/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		to_chat(owner, span_warning("You feel weak..."))
-		var/mob/living/carbon/human/M = owner
-		M.physiology.pale_mod *= 2
+	if(!ishuman(owner))
+		return
+	to_chat(owner, span_warning("You feel weak..."))
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.pale_mod *= 2
 
 /datum/status_effect/mortis/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		to_chat(owner, span_warning("You regain your vigor."))
-		var/mob/living/carbon/human/M = owner
-		M.physiology.pale_mod /= 2
+	if(!ishuman(owner))
+		return
+	to_chat(owner, span_warning("You regain your vigor."))
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.pale_mod /= 2
 
 #undef STATUS_EFFECT_MORTIS

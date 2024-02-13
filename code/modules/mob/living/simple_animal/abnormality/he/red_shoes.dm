@@ -230,7 +230,7 @@
 /datum/status_effect/red_possess//This status will cause you to special panic if your sanity reaches 0 while you have it. If red shoes isn't present or already breached, it will swap to murder panic.
 	id = "redpossess"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 120 SECONDS
+	duration = 2 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/red_possess
 
 /atom/movable/screen/alert/status_effect/red_possess
@@ -243,12 +243,12 @@
 	if(!ishuman(owner))
 		qdel(src)
 		return
-	var/mob/living/carbon/human/H = owner
-	var/usertemp = (get_attribute_level(H, TEMPERANCE_ATTRIBUTE))
+	var/mob/living/carbon/human/status_holder = owner
+	var/usertemp = (get_attribute_level(status_holder, TEMPERANCE_ATTRIBUTE))
 	var/desire_damage = clamp((80 - (usertemp / 2)),80, 10)//deals between 80 and 10 white damage depending on your temperance attribute when applied.
-	H.apply_damage(desire_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)//DIE!
-	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -50)//By using bonuses, this lowers your maximum prudence
-	if(H.sanity_lost)
+	status_holder.apply_damage(desire_damage, WHITE_DAMAGE, null, status_holder.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)//DIE!
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -50)//By using bonuses, this lowers your maximum prudence
+	if(status_holder.sanity_lost)
 		qdel(src)
 		return
 	return ..()
@@ -256,20 +256,20 @@
 /datum/status_effect/red_possess/on_remove()
 	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
-	if(H.sanity_lost)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
+	if(status_holder.sanity_lost)
 		QDEL_NULL(owner.ai_controller)
-		H.ai_controller = /datum/ai_controller/insane/red_possess
-		H.InitializeAIController()
+		status_holder.ai_controller = /datum/ai_controller/insane/red_possess
+		status_holder.InitializeAIController()
 	return ..()
 
 /datum/status_effect/red_possess/tick()//delete the status if sanity is restored or a panic occurs
 	..()
-	var/mob/living/carbon/human/H = owner
-	if(H.sanityhealth == H.maxSanity)
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.sanityhealth == status_holder.maxSanity)
 		qdel(src)
-	if(H.sanity_lost)
+	if(status_holder.sanity_lost)
 		qdel(src)
 
 //***Custom Panic Definiton***
