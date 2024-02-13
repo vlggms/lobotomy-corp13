@@ -1,6 +1,6 @@
 /mob/living/simple_animal/hostile/clan
-	name = "Scout"
-	desc = "A humanoid looking machine... It appears to have 'Resurgence Clan' etched on their back..."
+	name = "Clan Member..."
+	desc = "You should not bee seeing this!"
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "clan_scout"
 	icon_living = "clan_scout"
@@ -37,6 +37,8 @@
 /mob/living/simple_animal/hostile/clan/proc/ChargeUpdated()
 
 /mob/living/simple_animal/hostile/clan/scout
+	name = "Scout"
+	desc = "A humanoid looking machine wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
 	var/max_speed = 1.5
 	var/normal_speed = 3
 	var/max_attack_speed = 4
