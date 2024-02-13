@@ -36,6 +36,8 @@
 
 /mob/living/simple_animal/hostile/clan/proc/ChargeUpdated()
 
+
+//Clan Member: Scout
 /mob/living/simple_animal/hostile/clan/scout
 	name = "Scout"
 	desc = "A humanoid looking machine wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
@@ -66,3 +68,8 @@
 	. = ..()
 	if (charge > 0)
 		charge -= 1
+
+//Clan Member: Defender
+/mob/living/simple_animal/hostile/clan/defender
+	name = "Defender"
+	desc = "A humanoid looking machine with 2 shields... It appears to have 'Resurgence Clan' etched on their back..."
