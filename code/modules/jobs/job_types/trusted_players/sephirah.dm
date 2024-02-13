@@ -68,18 +68,18 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 /client/proc/randomabno()
 	set name = "Randomize Current Abnormality"
 	set category = "OOC"
-	var/obj/machinery/computer/abnormality_queue/Q = pick(GLOB.lobotomy_devices)
-	var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
-	if(Q.locked)
-		to_chat(src, "<span class='danger'>The abnormality was already randomized. </span>")
+	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
+		var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
+		if(Q.locked)
+			to_chat(src, span_danger("The abnormality was already randomized."))
+			return
+		Q.UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
+		SSabnormality_queue.AnnounceLock()
+		SSabnormality_queue.ClearChoices()
+
+		//Literally being griefed.
+		SSlobotomy_corp.available_box += 500
+		minor_announce("Due to a lack of resources; a random abnormality has been chosen and PE has been deposited in your account. \
+				Extraction Headquarters apologizes for the inconvenience", "Extraction Alert:", TRUE)
 		return
-
-	Q.UpdateAnomaly(target_type, "fucked it lets rolled", TRUE)
-	SSabnormality_queue.AnnounceLock()
-	SSabnormality_queue.ClearChoices()
-
-	//Literally being griefed.
-	SSlobotomy_corp.available_box += 500
-	minor_announce("Due to a lack of resources; a random abnormality has been chosen and PE has been deposited in your account. \
-			Extraction Headquarters apologizes for the inconvenience", "Extraction Alert:", TRUE)
 
