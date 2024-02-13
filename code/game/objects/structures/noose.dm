@@ -69,6 +69,11 @@
 			if(!do_after(M, 200, target = src)) // yeah if you dont try to untie yourself in like 6 seconds you're cooked
 				if(M && M.buckled)
 					to_chat(M, span_warning("You fail to untie yourself!"))
+
+			if(user?.mind?.assigned_role != "Records Officer")
+				!do_after(M, 300, target = src)
+			if(user?.mind?.assigned_role != "Extraction Officer")
+				!do_after(M, 300, target = src)
 				return
 			if(!M.buckled)
 				return
