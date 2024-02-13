@@ -74,6 +74,11 @@
 		return FALSE
 	return ..()
 
+/mob/living/simple_animal/hostile/ordeal/amber_bug/GiveTarget(new_target)
+	. = ..()
+	if(. && target) //reset burrow cooldown whenever in combat
+		burrow_cooldown = world.time + burrow_cooldown_time
+
 /mob/living/simple_animal/hostile/ordeal/amber_bug/AttackingTarget()
 	. = ..()
 	if(.)
@@ -104,13 +109,11 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_in.ogg', 25, 1)
 	animate(src, alpha = 0, time = 5)
 	SLEEP_CHECK_DEATH(5)
-	density = FALSE
 	BurrowOut(T)
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/proc/BurrowOut(turf/T)
 	burrowing = TRUE
 	alpha = 0
-	density = FALSE
 	var/list/valid_turfs = list(T)
 	for(var/turf/PT in RANGE_TURFS(2, T))
 		if(!PT.is_blocked_turf_ignore_climbable())
@@ -122,7 +125,6 @@
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
 	visible_message(span_bolddanger("[src] burrows out from the ground!"))
 	SLEEP_CHECK_DEATH(5)
-	density = TRUE
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(target_turf, src)
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
 	for(var/mob/living/L in target_turf)
@@ -175,7 +177,7 @@
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
-	var/burrow_cooldown_time = 18 SECONDS
+	var/burrow_cooldown_time = 20 SECONDS
 
 	/// If TRUE - cannot move nor attack
 	var/burrowing = FALSE
@@ -228,6 +230,7 @@
 	soundloop.stop()
 	listclearnulls(spawned_mobs)
 	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/AB in spawned_mobs)
+		AB.burrow_cooldown = world.time + AB.burrow_cooldown_time
 		AB.can_burrow_solo = TRUE
 	..()
 

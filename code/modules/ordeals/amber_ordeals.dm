@@ -13,6 +13,9 @@
 	spawn_amount = 3
 	spawn_type = /mob/living/simple_animal/hostile/ordeal/amber_bug
 
+/datum/ordeal/simplespawn/amber_dawn/DeploymentZone(turf/T, no_center = FALSE)
+	return T //deployment zone unnecessary since amber dawns burrow out of a 5x5 zone
+
 // Dusk
 /datum/ordeal/simplespawn/amber_dusk
 	name = "The Dusk of Amber"
