@@ -313,7 +313,7 @@
 
 /datum/status_effect/overwhelming_fear/tick()
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	if(H.getSanityLoss() >= H.getMaxSanity() * sanity_limit_percent)
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.getSanityLoss() >= status_holder.getMaxSanity() * sanity_limit_percent)
 		return
-	H.adjustSanityLoss(H.getMaxSanity() * sanity_damage_percent)
+	status_holder.adjustSanityLoss(status_holder.getMaxSanity() * sanity_damage_percent)

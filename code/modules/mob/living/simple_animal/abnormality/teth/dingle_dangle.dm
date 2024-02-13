@@ -67,17 +67,19 @@
 /datum/status_effect/dangle
 	id = "dangle"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 minutes
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/dangle
 
 /datum/status_effect/dangle/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
 
 /datum/status_effect/dangle/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)

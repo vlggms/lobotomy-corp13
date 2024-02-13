@@ -228,21 +228,23 @@
 /datum/status_effect/quiet
 	id = "quiet_day"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 minutes
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/quiet
 	var/attribute_buff = FORTITUDE_ATTRIBUTE
 
 /datum/status_effect/quiet/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(attribute_buff, 15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(attribute_buff, 15)
 
 /datum/status_effect/quiet/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(attribute_buff, -15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(attribute_buff, -15)
 
 
 //Here so that the defines work

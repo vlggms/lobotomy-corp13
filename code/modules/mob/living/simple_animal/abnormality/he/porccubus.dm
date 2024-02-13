@@ -250,9 +250,10 @@
 	withdrawal_cooldown = withdrawal_cooldown_time + world.time
 	var/datum/abnormality/porc_datum
 	for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
-		if(A.name == "Porccubus")
-			porc_datum = A
-			break
+		if(A.name != "Porccubus")
+			continue
+		porc_datum = A
+		break
 	if(!ishuman(owner))
 		owner.remove_status_effect(src)
 		return
@@ -303,32 +304,33 @@
 
 /datum/status_effect/porccubus_addiction/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		if(previous_addict)
-			to_chat(addict, span_userdanger("Your body has a sudden allergic reaction to the substance!"))
-			addict.vomit()
+	if(!ishuman(owner))
+		return
+	if(previous_addict)
+		to_chat(addict, span_userdanger("Your body has a sudden allergic reaction to the substance!"))
+		addict.vomit()
+		return
+	var/obj/item/bodypart/head/head = addict.get_bodypart("head")
+	if(QDELETED(head))
+		return
+	playsound(addict, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
+	var/obj/expanding_head = HeadExplode(head)
+	sleep(2 SECONDS) //mostly so the head exploding is synced in with the sound effect and animation
+	head.dismember(silent = TRUE)
+	QDEL_NULL(head)
+	addict.regenerate_icons()
+	addict.vis_contents -= expanding_head
+	playsound(addict, 'sound/abnormalities/porccubus/head_explode.ogg', 50, FALSE, 4)
+	var/turf/orgin = get_turf(addict)
+	var/list/all_turfs = RANGE_TURFS(2, orgin)
+	new /obj/effect/gibspawner/generic/silent(get_turf(addict))
+	for(var/i = 1 to 3)
+		var/obj/item/porccubus_drug/drug = new(get_turf(addict)) //if you still want to try it out after seeing a man's head fucking explode
+		var/turf/open/Y = pick(all_turfs - orgin)
+		if(!LAZYLEN(all_turfs))
 			return
-		var/obj/item/bodypart/head/head = addict.get_bodypart("head")
-		if(QDELETED(head))
-			return
-		playsound(addict, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
-		var/obj/expanding_head = HeadExplode(head)
-		sleep(2 SECONDS) //mostly so the head exploding is synced in with the sound effect and animation
-		head.dismember(silent = TRUE)
-		QDEL_NULL(head)
-		addict.regenerate_icons()
-		addict.vis_contents -= expanding_head
-		playsound(addict, 'sound/abnormalities/porccubus/head_explode.ogg', 50, FALSE, 4)
-		var/turf/orgin = get_turf(addict)
-		var/list/all_turfs = RANGE_TURFS(2, orgin)
-		new /obj/effect/gibspawner/generic/silent(get_turf(addict))
-		for(var/i = 1 to 3)
-			var/obj/item/porccubus_drug/drug = new(get_turf(addict)) //if you still want to try it out after seeing a man's head fucking explode
-			var/turf/open/Y = pick(all_turfs - orgin)
-			if(!LAZYLEN(all_turfs))
-				return
-			drug.throw_at(Y, 2, 3)
-			all_turfs -= Y //so it doesn't throw all of them on the same tiles
+		drug.throw_at(Y, 2, 3)
+		all_turfs -= Y //so it doesn't throw all of them on the same tiles
 
 //we copy the head icon and apply it as a vis content. because while overlays can't be animated, visual objects that have overlays on them can
 /datum/status_effect/porccubus_addiction/proc/HeadExplode(obj/item/bodypart/head/head)
