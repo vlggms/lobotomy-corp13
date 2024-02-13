@@ -31,14 +31,13 @@
 /mob/living/simple_animal/hostile/clan/proc/GainCharge()
 	if (charge < max_charge)
 		charge += 1
-		say("Gained 1 Charge")
 		ChargeUpdated()
 	addtimer(CALLBACK(src, PROC_REF(GainCharge)), 2 SECONDS)
 
 /mob/living/simple_animal/hostile/clan/proc/ChargeUpdated()
 
 /mob/living/simple_animal/hostile/clan/scout
-	var/max_speed = 2
+	var/max_speed = 1.5
 	var/normal_speed = 3
 	var/max_attack_speed = 4
 	var/normal_attack_speed = 1
@@ -47,9 +46,21 @@
 	move_to_delay = normal_speed - (normal_speed - max_speed) * charge / max_charge
 	rapid_melee = normal_attack_speed + (max_attack_speed - normal_attack_speed) * charge / max_charge
 	UpdateSpeed()
+	var/flamelayer = layer + 0.1
+	var/flame
+	if(charge > 7)
+		cut_overlays()
+		flame = "scout_blue"
+	else if(charge > 3)
+		cut_overlays()
+		flame = "scout_red"
+	else
+		cut_overlays()
+		return
+	var/mutable_appearance/colored_overlay = mutable_appearance(icon, flame, flamelayer)
+	add_overlay(colored_overlay)
 
 /mob/living/simple_animal/hostile/clan/scout/AttackingTarget()
 	. = ..()
 	if (charge > 0)
 		charge -= 1
-	say("Lost 1 Charge")
