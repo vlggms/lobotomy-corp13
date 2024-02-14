@@ -230,7 +230,6 @@
 	soundloop.stop()
 	listclearnulls(spawned_mobs)
 	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/AB in spawned_mobs)
-		AB.burrow_cooldown = world.time + AB.burrow_cooldown_time
 		AB.can_burrow_solo = TRUE
 	..()
 
