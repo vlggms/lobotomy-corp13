@@ -1253,6 +1253,15 @@
 	always_available = FALSE
 	category = CAT_CLOTHING
 
+/datum/crafting_recipe/azure_armor
+	name = "Reforged Suit"
+	result = obj/item/clothing/suit/armor/ego_gear/city/azure_armor
+	reqs = list(/obj/item/stack/sheet/silk/azure_simple = 2)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/carnival_robes
 	name = "Carnival's Robes"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/carnival_robes
@@ -1263,7 +1272,7 @@
 	time = 15
 	always_available = FALSE
 	category = CAT_CLOTHING
-
+///obj/item/clothing/suit/armor/ego_gear/city/azure_armor
 //Meat Crafting
 /datum/crafting_recipe/azure_silk_simple
 	name = "Simple Azure Silk"

@@ -453,6 +453,7 @@
 		/datum/crafting_recipe/green_armor,
 		/datum/crafting_recipe/amber_armor,
 		/datum/crafting_recipe/steel_armor,
+		/datum/crafting_recipe/azure_armor,
 		/datum/crafting_recipe/carnival_robes,
 		/datum/crafting_recipe/amber_silk_simple,
 		/datum/crafting_recipe/steel_silk_simple,
