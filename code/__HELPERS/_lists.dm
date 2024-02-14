@@ -316,6 +316,23 @@
 
 	return null
 
+/proc/PickWeightRealNumber(list/L)
+	var/total = 0.0
+	var/item
+	for (item in L)
+		if (!L[item])
+			L[item] = 1.0
+		total += L[item]
+	var/generator/G = generator("num", 0.0, total, UNIFORM_RAND)
+	total = G.Rand()
+	for (item in L)
+		total -= L[item]
+		if (total <= 0.000001)
+			return item
+	if(LAZYLEN(L))
+		log_runtime("PickWeightRealNumber failed with leftover total = [total]")
+	return null
+
 /proc/pickweightAllowZero(list/L) //The original pickweight proc will sometimes pick entries with zero weight.  I'm not sure if changing the original will break anything, so I left it be.
 	var/total = 0
 	var/item

@@ -141,7 +141,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 		picked_levs |= lev
 		if(!LAZYLEN(possible_abnormalities[lev] - picking_abnormalities))
 			continue
-		var/chosen_abno = pickweight(possible_abnormalities[lev] - picking_abnormalities)
+		var/chosen_abno = PickWeightRealNumber(possible_abnormalities[lev] - picking_abnormalities)
 		picking_abnormalities += chosen_abno
 	if(!LAZYLEN(picking_abnormalities))
 		return FALSE
