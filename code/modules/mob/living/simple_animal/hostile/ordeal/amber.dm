@@ -27,7 +27,7 @@
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
-	var/burrow_cooldown_time = 36 SECONDS
+	var/burrow_cooldown_time = 1 MINUTES
 
 	/// If TRUE - cannot move nor attack
 	var/burrowing = FALSE
