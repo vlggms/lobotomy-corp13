@@ -20,6 +20,10 @@ const damageTypes = [
     label: "Burn",
     type: "fireLoss",
   },
+  {
+    label: "Sanity",
+    type: "sanityLoss",
+  },
 ];
 
 export const Cryo = () => {
