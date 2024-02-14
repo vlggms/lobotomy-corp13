@@ -20,6 +20,7 @@
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 1)
 	var/charge = 0
 	var/max_charge = 10
 
@@ -76,6 +77,8 @@
 /mob/living/simple_animal/hostile/clan/defender
 	name = "Defender"
 	desc = "A humanoid looking machine with 2 shields... It appears to have 'Resurgence Clan' etched on their back..."
+	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
+						/obj/item/stack/sheet/silk/azure_advanced = 1)
 	var/list/locked_list = list()
 	var/list/locked_tiles_list = list()
 	var/stunned = FALSE
