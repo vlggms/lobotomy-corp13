@@ -1846,8 +1846,8 @@
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
 	attribute_requirements = list(
-                            FORTITUDE_ATTRIBUTE = 40
-                            )
+							FORTITUDE_ATTRIBUTE = 40
+							)
 	var/amount_filled
 	var/amount_max = 30
 
@@ -1859,27 +1859,27 @@
 		. += "It looks empty"
 
 /obj/item/ego_weapon/giant_tree_branch/attack(mob/living/target, mob/living/carbon/human/user)
-    if(!CanUseEgo(user))
-        return
-    if(!(target.status_flags & GODMODE) && target.stat != DEAD)
-        var/heal_amt = force*0.10
-        if(isanimal(target))
-            var/mob/living/simple_animal/S = target
-            if(S.damage_coeff.getCoeff(damtype) > 0)
-                heal_amt *= S.damage_coeff.getCoeff(damtype)
-            else
-                heal_amt = 0
-        amount_filled = clamp(amount_filled + heal_amt, 0, amount_max)
-        if(amount_filled >= amount_max)
-            to_chat(user, "<span class='warning'>[src] is full!")
-    ..()
+	if(!CanUseEgo(user))
+		return
+	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
+		var/heal_amt = force*0.10
+		if(isanimal(target))
+			var/mob/living/simple_animal/S = target
+			if(S.damage_coeff.getCoeff(damtype) > 0)
+				heal_amt *= S.damage_coeff.getCoeff(damtype)
+			else
+				heal_amt = 0
+		amount_filled = clamp(amount_filled + heal_amt, 0, amount_max)
+		if(amount_filled >= amount_max)
+			to_chat(user, "<span class='warning'>[src] is full!")
+	..()
 /obj/item/ego_weapon/giant_tree_branch/attack_self(mob/living/carbon/human/user)
-    ..()
-    if(!amount_filled)
-        to_chat(user, "<span class='warning'>[src] is empty!")
-        return
-    if(do_after(user, 12, src))
-        to_chat(user, "<span class='warning'>You take a sip from [src]!")
-        playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
-        user.adjustBruteLoss(-amount_filled*2)
-        amount_filled = 0
+	..()
+	if(!amount_filled)
+		to_chat(user, "<span class='warning'>[src] is empty!")
+		return
+	if(do_after(user, 12, src))
+		to_chat(user, "<span class='warning'>You take a sip from [src]!")
+		playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
+		user.adjustBruteLoss(-amount_filled*2)
+		amount_filled = 0
