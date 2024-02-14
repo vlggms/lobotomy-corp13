@@ -559,8 +559,9 @@
 	current_holder = user
 
 /obj/item/ego_weapon/homing_instinct/Destroy(mob/user)
-	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	current_holder = null
+	if(current_holder)
+		UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+		current_holder = null
 	return ..()
 
 /obj/item/ego_weapon/homing_instinct/dropped(mob/user)
