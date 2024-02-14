@@ -29,6 +29,9 @@
 	addtimer(CALLBACK(src, PROC_REF(GainCharge)), 2 SECONDS)
 
 /mob/living/simple_animal/hostile/clan/proc/GainCharge()
+	if(stat == DEAD)
+		return
+
 	if (charge < max_charge)
 		charge += 1
 		ChargeUpdated()
@@ -73,3 +76,119 @@
 /mob/living/simple_animal/hostile/clan/defender
 	name = "Defender"
 	desc = "A humanoid looking machine with 2 shields... It appears to have 'Resurgence Clan' etched on their back..."
+	var/list/locked_list = list()
+	var/list/locked_tiles_list = list()
+	var/stunned = FALSE
+
+/mob/living/simple_animal/hostile/clan/defender/GainCharge()
+	if (!stunned)
+		. = ..()
+
+/mob/living/simple_animal/hostile/clan/defender/AttackingTarget(atom/attacked_target)
+	if (stunned)  // dont attack if coiled or stunned
+		return FALSE
+	if(!client)
+		if (charge >= 10)
+			Lock()
+	. = ..()
+
+/mob/living/simple_animal/hostile/clan/defender/Move()
+	if (stunned)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/clan/defender/proc/Lock()
+	say("Starting lock")
+	stunned = TRUE
+	// create tiles
+	for(var/turf/T in view(2, src))
+		var/obj/effect/defender_field/DF = new(T)
+		locked_tiles_list += DF
+		DF.defender = src
+		for(var/mob/living/L in T)
+			say("Checking faction " + L.name)
+			if(faction_check_mob(L, FALSE))
+				continue
+			// apply status effect
+			say("Adding status effect to " + L.name)
+			var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
+			if(!S)
+				S = L.apply_status_effect(/datum/status_effect/locked)
+			S.list_of_defenders += src
+			// keep a list of everyone locked
+			locked_list += L
+	// add timer to unstun and release players
+	addtimer(CALLBACK(src, PROC_REF(Unlock)), charge * 10)
+
+/mob/living/simple_animal/hostile/clan/defender/proc/Unlock()
+	say("Starting unlock")
+	// clear tiles
+	for(var/obj/effect/defender_field/DF in locked_tiles_list)
+		qdel(DF)
+	// remove status effect
+	for(var/mob/living/L in locked_list)
+		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
+		if (!S)
+			say("No status effect found!" + L.name)
+		else
+			say("Found status effect " + L.name)
+			if (length(S.list_of_defenders) == 1)
+				say("Removing status effect")
+				L.remove_status_effect(/datum/status_effect/locked)
+			else
+				S.list_of_defenders -= src
+
+	// restart charge
+	charge = 0
+	stunned = FALSE
+	GainCharge()
+	say("Unlocked completed")
+
+
+//Not an actual floor, but an effect you put on top of it. The gold road is periodically being created by the road home.
+/obj/effect/defender_field
+	name = "Locked"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "gold" //note : find a proper brick road sprite later
+	alpha = 0
+	anchored = TRUE
+	var/defender
+
+/obj/effect/defender_field/Initialize()
+	. = ..()
+	animate(src, alpha = 255, time = 0.5 SECONDS)
+
+/datum/status_effect/locked
+	id = "locked"
+	status_type = STATUS_EFFECT_UNIQUE
+	alert_type = /atom/movable/screen/alert/status_effect/locked
+	var/list_of_defenders = list()
+
+
+/atom/movable/screen/alert/status_effect/locked
+	name = "locked"
+	desc = "Locked"
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "home"
+
+
+/datum/status_effect/locked/on_apply()
+	. = ..()
+	RegisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE, PROC_REF(Moved))
+
+
+/datum/status_effect/locked/proc/Moved(datum/source, atom/new_location)
+	SIGNAL_HANDLER
+	var/turf/newloc_turf = get_turf(new_location)
+	var/valid_tile = FALSE
+
+
+	for(var/obj/effect/defender_field/GR in newloc_turf.contents)
+		valid_tile = TRUE
+
+	if(!valid_tile)
+		return COMPONENT_MOVABLE_BLOCK_PRE_MOVE
+
+/datum/status_effect/locked/on_remove()
+	UnregisterSignal(owner, COMSIG_MOVABLE_PRE_MOVE)
+	return ..()
