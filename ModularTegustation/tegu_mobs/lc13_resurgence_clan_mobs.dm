@@ -170,10 +170,10 @@
 
 
 /atom/movable/screen/alert/status_effect/locked
-	name = "locked"
-	desc = "Locked"
+	name = "Locked"
+	desc = "You are being locked by a Defender!"
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "home"
+	icon_state = "locked"
 
 
 /datum/status_effect/locked/on_apply()
