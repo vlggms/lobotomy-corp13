@@ -1255,7 +1255,7 @@
 
 /datum/crafting_recipe/azure_armor
 	name = "Reforged Suit"
-	result = obj/item/clothing/suit/armor/ego_gear/city/azure_armor
+	result = /obj/item/clothing/suit/armor/ego_gear/city/azure_armor
 	reqs = list(/obj/item/stack/sheet/silk/azure_simple = 2)
 	tools = list(/obj/item/silkknife = 1)
 	time = 15

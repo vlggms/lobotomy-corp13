@@ -151,9 +151,9 @@
 
 //Not an actual floor, but an effect you put on top of it. The gold road is periodically being created by the road home.
 /obj/effect/defender_field
-	name = "Locked"
+	name = "Locked Down"
 	icon = 'icons/turf/floors.dmi'
-	icon_state = "gold" //note : find a proper brick road sprite later
+	icon_state = "locked_down"
 	alpha = 0
 	anchored = TRUE
 	var/defender
