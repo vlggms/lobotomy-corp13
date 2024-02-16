@@ -113,27 +113,43 @@
 /mob/living/simple_animal/hostile/clan/defender/proc/Lock()
 	say("Starting lock")
 	stunned = TRUE
+	icon_state = "defender_locked_down"
 	// create tiles
 	for(var/turf/T in view(2, src))
 		var/obj/effect/defender_field/DF = new(T)
 		locked_tiles_list += DF
 		DF.defender = src
 		for(var/mob/living/L in T)
-			say("Checking faction " + L.name)
-			if(faction_check_mob(L, FALSE))
-				continue
-			// apply status effect
-			say("Adding status effect to " + L.name)
-			var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
-			if(!S)
-				S = L.apply_status_effect(/datum/status_effect/locked)
-			S.list_of_defenders += src
-			// keep a list of everyone locked
-			locked_list += L
+			ApplyLock(L)
 	// add timer to unstun and release players
 	addtimer(CALLBACK(src, PROC_REF(Unlock)), charge * 10)
 
+/mob/living/simple_animal/hostile/clan/defender/death(gibbed)
+	if(stat == DEAD)
+		return
+
+	if (stunned == TRUE)
+		Unlock()
+	. =  ..()
+
+/mob/living/simple_animal/hostile/clan/defender/proc/ApplyLock(mob/living/L)
+	say("Checking faction " + L.name)
+	if(!faction_check_mob(L, FALSE))
+		// apply status effect
+		say("Adding status effect to " + L.name)
+		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
+		if(!S)
+			S = L.apply_status_effect(/datum/status_effect/locked)
+		S.list_of_defenders += src
+		// keep a list of everyone locked
+		locked_list += L
+
+
 /mob/living/simple_animal/hostile/clan/defender/proc/Unlock()
+	if (stat == DEAD)
+		return
+
+	icon_state = "defender"
 	say("Starting unlock")
 	// clear tiles
 	for(var/obj/effect/defender_field/DF in locked_tiles_list)
@@ -157,7 +173,6 @@
 	GainCharge()
 	say("Unlocked completed")
 
-
 //Not an actual floor, but an effect you put on top of it. The gold road is periodically being created by the road home.
 /obj/effect/defender_field
 	name = "Locked Down"
@@ -165,11 +180,17 @@
 	icon_state = "locked_down"
 	alpha = 0
 	anchored = TRUE
-	var/defender
+	var/mob/living/simple_animal/hostile/clan/defender/defender
 
 /obj/effect/defender_field/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 0.5 SECONDS)
+
+/obj/effect/defender_field/Crossed(atom/movable/AM)
+	. = ..()
+	if (isliving(AM))
+		var/mob/living/L = AM
+		defender.ApplyLock(L)
 
 /datum/status_effect/locked
 	id = "locked"
