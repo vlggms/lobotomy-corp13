@@ -45,6 +45,8 @@
 /mob/living/simple_animal/hostile/clan/scout
 	name = "Scout"
 	desc = "A humanoid looking machine wielding a spear... It appears to have 'Resurgence Clan' etched on their back..."
+	attack_verb_continuous = "stabs"
+	attack_verb_simple = "stab"
 	var/max_speed = 1.5
 	var/normal_speed = 3
 	var/max_attack_speed = 4
@@ -76,7 +78,14 @@
 //Clan Member: Defender
 /mob/living/simple_animal/hostile/clan/defender
 	name = "Defender"
-	desc = "A humanoid looking machine with 2 shields... It appears to have 'Resurgence Clan' etched on their back..."
+	desc = "A humanoid looking machine with two shields... It appears to have 'Resurgence Clan' etched on their back..."
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "defender"
+	icon_living = "defender"
+	icon_dead = "defender_dead"
+	attack_verb_continuous = "punches"
+	attack_verb_simple = "punch"
+
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
 						/obj/item/stack/sheet/silk/azure_advanced = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 4, /obj/item/food/meat/slab/sweeper = 4)
