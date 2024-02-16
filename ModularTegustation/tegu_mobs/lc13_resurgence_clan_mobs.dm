@@ -15,7 +15,13 @@
 	death_message = "falls to their knees as their lights slowly go out..."
 	melee_damage_lower = 15
 	melee_damage_upper = 19
-	mob_size = MOB_SIZE_LARGE
+	mob_size = MOB_SIZE_HUGE
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	a_intent = INTENT_HARM
+	see_in_dark = 7
+	vision_range = 12
+	aggro_vision_range = 20
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	butcher_results = list(/obj/item/food/meat/slab/robot = 1, /obj/item/food/meat/slab/sweeper = 1)
@@ -85,12 +91,15 @@
 	icon_dead = "defender_dead"
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
-	health = 1000
+	health = 1200
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
 						/obj/item/stack/sheet/silk/azure_advanced = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 4, /obj/item/food/meat/slab/sweeper = 4)
+	melee_damage_lower = 20
+	melee_damage_upper = 25
+
 	var/list/locked_list = list()
 	var/list/locked_tiles_list = list()
 	var/stunned = FALSE
@@ -114,6 +123,7 @@
 
 /mob/living/simple_animal/hostile/clan/defender/proc/Lock()
 	stunned = TRUE
+	density = FALSE
 	icon_state = "defender_locked_down"
 	// create tiles
 	for(var/turf/T in view(2, src))
@@ -149,19 +159,17 @@
 		return
 
 	icon_state = "defender"
+	density = TRUE
 	// clear tiles
 	for(var/obj/effect/defender_field/DF in locked_tiles_list)
 		qdel(DF)
 	// remove status effect
 	for(var/mob/living/L in locked_list)
 		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
-		if (!S)
-			say("No status effect found!" + L.name)
+		if (length(S.list_of_defenders) == 1)
+			L.remove_status_effect(/datum/status_effect/locked)
 		else
-			if (length(S.list_of_defenders) == 1)
-				L.remove_status_effect(/datum/status_effect/locked)
-			else
-				S.list_of_defenders -= src
+			S.list_of_defenders -= src
 
 	// restart charge
 	charge = 0
