@@ -85,6 +85,8 @@
 	icon_dead = "defender_dead"
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
+	health = 1000
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1.5)
 
 	silk_results = list(/obj/item/stack/sheet/silk/azure_simple = 2,
 						/obj/item/stack/sheet/silk/azure_advanced = 1)
@@ -111,7 +113,6 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/clan/defender/proc/Lock()
-	say("Starting lock")
 	stunned = TRUE
 	icon_state = "defender_locked_down"
 	// create tiles
@@ -133,10 +134,8 @@
 	. =  ..()
 
 /mob/living/simple_animal/hostile/clan/defender/proc/ApplyLock(mob/living/L)
-	say("Checking faction " + L.name)
 	if(!faction_check_mob(L, FALSE))
 		// apply status effect
-		say("Adding status effect to " + L.name)
 		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
 		if(!S)
 			S = L.apply_status_effect(/datum/status_effect/locked)
@@ -150,7 +149,6 @@
 		return
 
 	icon_state = "defender"
-	say("Starting unlock")
 	// clear tiles
 	for(var/obj/effect/defender_field/DF in locked_tiles_list)
 		qdel(DF)
@@ -160,9 +158,7 @@
 		if (!S)
 			say("No status effect found!" + L.name)
 		else
-			say("Found status effect " + L.name)
 			if (length(S.list_of_defenders) == 1)
-				say("Removing status effect")
 				L.remove_status_effect(/datum/status_effect/locked)
 			else
 				S.list_of_defenders -= src
@@ -171,7 +167,6 @@
 	charge = 0
 	stunned = FALSE
 	GainCharge()
-	say("Unlocked completed")
 
 //Not an actual floor, but an effect you put on top of it. The gold road is periodically being created by the road home.
 /obj/effect/defender_field
