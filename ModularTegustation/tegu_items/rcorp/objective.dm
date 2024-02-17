@@ -203,7 +203,7 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 
 /obj/structure/rcorpcomms/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/vulnerable), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(vulnerable)), 15 MINUTES)
 
 /obj/structure/rcorpcomms/proc/vulnerable()
 	minor_announce("Warning: The communications shields are now disabled. Communications are now vulnerable" , "R-Corporation Command Update")
