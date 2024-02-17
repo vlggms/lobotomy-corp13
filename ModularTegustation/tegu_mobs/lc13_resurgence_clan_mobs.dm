@@ -111,9 +111,8 @@
 /mob/living/simple_animal/hostile/clan/defender/AttackingTarget(atom/attacked_target)
 	if (stunned)  // dont attack if coiled or stunned
 		return FALSE
-	if(!client)
-		if (charge >= 10)
-			Lock()
+	if (charge >= 10)
+		Lock()
 	. = ..()
 
 /mob/living/simple_animal/hostile/clan/defender/Move()
