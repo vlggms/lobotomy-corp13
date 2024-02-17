@@ -14,10 +14,15 @@
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return
 
+	if(!do_after(user, 10 SECONDS, src))
+		to_chat(user, span_warning("Failed to insert into the engine. Please make sure to fully insert the box"))
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+		return
+
 	to_chat(user, span_notice("Request accepted. PE launching soon."))
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 	qdel(I)
-	addtimer(CALLBACK(src, .proc/launch), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(launch)), 10 SECONDS)
 
 
 /obj/structure/refiner/quick/proc/launch()

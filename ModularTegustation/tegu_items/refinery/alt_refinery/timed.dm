@@ -36,4 +36,4 @@
 	new /obj/item/refinedpe(get_turf(src))
 	new /obj/item/refinedpe(get_turf(src))
 	ready = FALSE
-	addtimer(CALLBACK(src, .proc/reset), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(reset)), 5 MINUTES)

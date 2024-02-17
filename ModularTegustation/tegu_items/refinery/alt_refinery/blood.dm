@@ -38,5 +38,5 @@
 	else
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		to_chat(M, span_warning("Refining failure. Please try again."))
-	addtimer(CALLBACK(src, .proc/reset), 45 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(reset)), 45 SECONDS)
 
