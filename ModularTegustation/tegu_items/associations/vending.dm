@@ -122,7 +122,6 @@
 
 	premium = list(
 		/obj/item/storage/firstaid/regular = 100,
-		/*
 		// Skills Below:
 		//Level 1
 		/obj/item/book/granter/action/skill/dash = 100,
@@ -145,7 +144,6 @@
 		//Level 4
 		/obj/item/book/granter/action/skill/timestop = 100,
 		/obj/item/book/granter/action/skill/reraise = 100,
-		*/
 	)
 
 	default_price = 300
