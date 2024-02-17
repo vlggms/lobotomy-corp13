@@ -116,21 +116,6 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	new /obj/item/understandingbooster(get_turf(caller))
 	..()
 
-//Global Health Hud
-/datum/data/lc13research/globalhud
-	research_name = "Global Health Hud"
-	research_desc = "An authorization to activate everyone's health huds. <br>We keep them off to save money."
-	cost = HIGH_RESEARCH_PRICE
-	corp = L_CORP_REP
-
-/datum/data/lc13research/globalhud/ResearchEffect(obj/structure/representative_console/caller)
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-		medsensor.add_hud_to(H)
-
-	GLOB.lcorp_upgrades += "Health Hud"
-	..()
-
 //Level 2 Clerks
 /datum/data/lc13research/clerkbuff
 	research_name = "Clerk Advanced Training"
