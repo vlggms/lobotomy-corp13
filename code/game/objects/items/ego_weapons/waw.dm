@@ -1512,7 +1512,7 @@
 	desc = "Once upon a time, these claws would cut open the bellies of numerous creatures and tear apart their guts."
 	special = "Preform an additional attack of 50% damage when at half health."
 	icon_state = "cobalt"
-	force = 20
+	force = 24
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("claws")
@@ -1548,11 +1548,17 @@
 	if(prob(25))
 		wolf.visible_message(span_warning("[wolf] claws [those_we_rend] in a blind frenzy!"), span_warning("You swipe your claws at [those_we_rend]!"))
 	wolf.do_attack_animation(those_we_rend)
-	those_we_rend.apply_damage(10, damtype, null, those_we_rend.run_armor_check(null, damtype), spread_damage = TRUE)
-	those_we_rend.lastattacker = wolf.real_name
-	those_we_rend.lastattackerckey = wolf.ckey
-	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-	wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
+	if(ishuman(wolf))
+		var/rend_damage = 16
+		var/userjust = (get_modified_attribute_level(wolf, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		rend_damage*=justicemod
+		rend_damage*=force_multiplier
+		those_we_rend.apply_damage(rend_damage, damtype, null, those_we_rend.run_armor_check(null, damtype), spread_damage = TRUE)
+		those_we_rend.lastattacker = wolf.real_name
+		those_we_rend.lastattackerckey = wolf.ckey
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
 	return TRUE
 
 /obj/item/ego_weapon/scene
