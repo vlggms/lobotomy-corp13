@@ -60,17 +60,17 @@
 				to_chat(H, span_userdanger("The creature grew hungry!"))
 
 /mob/living/simple_animal/hostile/abnormality/fetus/user_buckle_mob(mob/living/M, mob/user, check_loc)
-	if(M.stat != DEAD)
+	if(!IsContained() || user == src || !ishuman(M) || (GODMODE in M.status_flags))
 		return FALSE
-	if(do_after(user, 20, target = M))
-		if(!ishuman(M) || crying)
-			to_chat(user, span_warning("[src] rejects your offering!"))
-			return
-		to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
-		M.gib()
-		satisfied = TRUE
-		hunger += 4
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
+		to_chat(user, span_warning("[src] rejects your offering!"))
+	. = ..()
+	to_chat(user, span_userdanger("The Woodsman swings his axe down and...!"))
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	M.gib()
+	to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
+	satisfied = TRUE
+	hunger += 4
+	playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
 	if(satisfied)
