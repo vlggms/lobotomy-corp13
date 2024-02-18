@@ -1011,6 +1011,8 @@
 
 /obj/item/ego_weapon/replica/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
+	if(!isliving(target))
+		return TRUE
 	var/mob/living/T = target
 	var/range = (get_dist(firer, T) - 1)//it should never pull things into your tile.
 	var/throw_target = get_edge_target_turf(T, get_dir(T, get_step_towards(T, src)))

@@ -112,12 +112,14 @@
 
 /obj/projectile/ego_bullet/ego_aspiration/on_hit(atom/target, blocked = FALSE)
 	. = ..()
-	var/mob/living/carbon/human/H = target
+	if(!isliving(target))
+		return
+	var/mob/living/T = target
 	var/mob/living/user = firer
-	if(firer==target)
+	if(firer == target)
 		return BULLET_ACT_BLOCK
-	if(user.faction_check_mob(H)) // Our faction
-		H.adjustBruteLoss(-10)
+	if(user.faction_check_mob(T)) // Our faction
+		T.adjustBruteLoss(-10)
 		return BULLET_ACT_BLOCK
 
 /obj/projectile/ego_bullet/ego_patriot
