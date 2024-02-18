@@ -35,6 +35,7 @@
 	flavor_name = "A Request"
 	announce_text = "From meaningless errands, to exploration, to contract killing; they will do whatever you wish, \
 	so long as you pay them sufficiently."
+	end_announce_text = "They work in the Offices, Syndicates, and the Wings. Their tasks vary from banal things to something truly sublime."
 	can_run = TRUE
 	level = 6
 	reward_percent = 0.1
@@ -54,6 +55,7 @@
 	flavor_name = "Armaments"
 	announce_text = "They search constantly, be it for the Backers of the Wings, the Inventions of the Backstreets, \
 	the Reliques of the Outskirts, the Artefacts of the Ruins..."
+	end_announce_text = "As they have always done, they will overcome all that impedes them, weapons in hand."
 	can_run = TRUE
 	level = 7
 	reward_percent = 0.15
@@ -64,6 +66,8 @@
 	flavor_name = "The Fixers"
 	announce_text = "The colossal tower of light was titled The Library. It is only natural for the Fixers \
 	to be drawn to such a mystic place of life and death."
+	end_announce_text = "Bookhunters… One day they will rummage through The Library reigned over by the Pale Librarian. \
+	They are what shall become of the Fixers."
 	can_run = TRUE
 	level = 8
 	reward_percent = 0.2
@@ -81,6 +85,8 @@
 	flavor_name = "The Claw"
 	announce_text = "To know and manipulate all the secrets of the world; that is the \
 	privilege of the Head, the Eye, and the Claws. It is their honor and absolute power."
+	end_announce_text = "No one dares to stand against them. As long as they exist, \
+	the tale of the Nest will never reach its close."
 	level = 9
 	delay = 1
 	random_delay = FALSE
