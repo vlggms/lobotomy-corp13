@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "watchman"
 	icon_living = "watchman"
+	portrait = "watchman"
 	del_on_death = TRUE
 	maxHealth = 1200
 	health = 1200
