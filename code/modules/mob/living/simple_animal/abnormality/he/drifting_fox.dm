@@ -103,19 +103,19 @@
 
 /datum/status_effect/false_kindness/on_apply() //" Borrowed " from Ptear blade, courtesy of gong.
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner //Stolen from Ptear Blade, MAYBE works on people?
-		to_chat(L, span_userdanger("You feel the foxes gaze upon you!"))
-		L.physiology.black_mod *= 1.3
+	if(!ishuman(owner))
 		return
+	var/mob/living/carbon/human/status_holder = owner //Stolen from Ptear Blade, MAYBE works on people?
+	to_chat(status_holder, span_userdanger("You feel the foxes gaze upon you!"))
+	status_holder.physiology.black_mod *= 1.3
 
 /datum/status_effect/false_kindness/on_remove()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(L, span_userdanger("You feel as though its gaze has lifted.")) //stolen from PT wep, but I asked so this 100% ok.
-		L.physiology.black_mod /= 1.3
 		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_userdanger("You feel as though its gaze has lifted.")) //stolen from PT wep, but I asked so this 100% ok.
+	status_holder.physiology.black_mod /= 1.3
 
 //mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
 	//. = ..()

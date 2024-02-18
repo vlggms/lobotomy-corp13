@@ -88,7 +88,7 @@
 	user.emote("scream")
 	user.gib()
 	var /mob/living/simple_animal/hostile/little_prince_1/S = new(T)
-	RegisterSignal(S, COMSIG_LIVING_DEATH, .proc/PrinceDeath)
+	RegisterSignal(S, COMSIG_LIVING_DEATH, PROC_REF(PrinceDeath))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/OnAbnoWork(datum/source, datum/abnormality/abno_datum, mob/user, work_type)
@@ -116,7 +116,7 @@
 		twice += user
 	if (!(user in once) && !(user in twice))
 		once += user
-		RegisterSignal(user, COMSIG_WORK_STARTED, .proc/OnAbnoWork)
+		RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(OnAbnoWork))
 
 	//insight work checks
 	if (work_type == ABNORMALITY_WORK_INSIGHT)
@@ -259,11 +259,11 @@
 		return
 
 	if(!LAZYLEN(current_path))
-		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
 		if(!current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
-	addtimer(CALLBACK(src, .proc/Movement, controller), 1.25 SECONDS, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(Movement), controller), 1.25 SECONDS, TIMER_UNIQUE)
 
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)

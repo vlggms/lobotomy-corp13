@@ -6,7 +6,7 @@
 
 /datum/suppression/control/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
 	OnMeltdown()
 
 /datum/suppression/control/End(silent = FALSE)

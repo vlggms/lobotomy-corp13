@@ -10,8 +10,8 @@
 		return ELEMENT_INCOMPATIBLE
 	var/atom/to_track = target
 	if(isopenturf(to_track.loc))
-		to_track.RegisterSignal(to_track.loc, COMSIG_TURF_EXPOSE, /atom/proc/check_atmos_process)
-	RegisterSignal(to_track, COMSIG_MOVABLE_MOVED, .proc/handle_move)
+		to_track.RegisterSignal(to_track.loc, COMSIG_TURF_EXPOSE, TYPE_PROC_REF(/atom, check_atmos_process))
+	RegisterSignal(to_track, COMSIG_MOVABLE_MOVED, PROC_REF(handle_move))
 	return ..()
 
 /datum/element/atmos_sensitive/Detach(datum/source, force)
@@ -28,7 +28,7 @@
 	microchipped_lad.UnregisterSignal(oldloc, COMSIG_TURF_EXPOSE)
 	if(isopenturf(microchipped_lad.loc))
 		var/turf/open/new_spot = microchipped_lad.loc
-		microchipped_lad.RegisterSignal(new_spot, COMSIG_TURF_EXPOSE, /atom/proc/check_atmos_process)
+		microchipped_lad.RegisterSignal(new_spot, COMSIG_TURF_EXPOSE, TYPE_PROC_REF(/atom, check_atmos_process))
 		microchipped_lad.check_atmos_process(null, new_spot.air, new_spot.temperature) //Make sure you're properly registered
 
 /atom/proc/check_atmos_process(datum/source, datum/gas_mixture/air, exposed_temperature)

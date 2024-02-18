@@ -15,11 +15,11 @@
 	attack_verb_simple = list("tap", "pat")
 	hitsound = 'sound/effects/hit_punch.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 120,
-							TEMPERANCE_ATTRIBUTE = 120,
-							JUSTICE_ATTRIBUTE = 120
-							)
+		FORTITUDE_ATTRIBUTE = 120,
+		PRUDENCE_ATTRIBUTE = 120,
+		TEMPERANCE_ATTRIBUTE = 120,
+		JUSTICE_ATTRIBUTE = 120,
+	)
 	actions_types = list(/datum/action/item_action/toggle_iff)
 	var/special_cooldown
 	var/special_cooldown_time
@@ -37,7 +37,7 @@
 	. = ..()
 	if(!user)
 		return
-	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/DoChecks)
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(DoChecks))
 
 /obj/item/ego_weapon/black_silence_gloves/Destroy(mob/user)
 	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
@@ -61,10 +61,10 @@
 /obj/item/ego_weapon/black_silence_gloves/proc/toggle_iff(mob/living/user)
 	if(iff)
 		iff = FALSE
-		to_chat(user,"<span class='warning'>You will now attack everything indiscriminately!</span>")
+		to_chat(user,span_warning("You will now attack everything indiscriminately!"))
 	else
 		iff = TRUE
-		to_chat(user,"<span class='warning'>You will now only attack enemies!</span>")
+		to_chat(user,span_warning("You will now only attack enemies!"))
 
 /obj/item/ego_weapon/black_silence_gloves/proc/dash(mob/living/user, turf/target_turf)
 	var/list/line_turfs = list(get_turf(user))
@@ -104,7 +104,7 @@
 // Radial menu
 /obj/item/ego_weapon/black_silence_gloves/proc/exchange_armaments(mob/user)
 	if(exchange_cooldown > world.time)
-		to_chat(user, "<span class='notice'>Your gloves are still recharging, keep hitting enemies to charge it faster.</span>")
+		to_chat(user, span_notice("Your gloves are still recharging, keep hitting enemies to charge it faster."))
 		return
 
 	var/list/display_names = list()
@@ -121,7 +121,7 @@
 				armament_icons += list(initial(armstype.name) = image(icon = initial(armstype.icon), icon_state = initial(armstype.locked_state)))
 
 	armament_icons = sortList(armament_icons)
-	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(user, src , armament_icons, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 	if(!choice || !check_menu(user))
 		return
 
@@ -133,18 +133,18 @@
 		Y.unlocked_list = unlocked_list
 		if(!(Y.name in unlocked_list) && Y.name != origin_name)
 			Y.unlocked_list += Y.name
-			addtimer(CALLBACK(Y, .proc/furioso_reset), furioso_wait)
+			addtimer(CALLBACK(Y, PROC_REF(furioso_reset)), furioso_wait)
 			Y.furioso_time = world.time + furioso_wait
 		else
 			var/time_left = max((furioso_time - world.time), 0)
-			addtimer(CALLBACK(Y, .proc/furioso_reset), time_left)
+			addtimer(CALLBACK(Y, PROC_REF(furioso_reset)), time_left)
 			Y.furioso_time = world.time + time_left
 		Y.iff = iff
 		qdel(src)
 		user.put_in_hands(Y)
 		if(!(unlocked) && Y.unlocked_list.len > 8)
 			playsound(playsound(user, 'sound/weapons/black_silence/unlock.ogg', 100, 1))
-			to_chat(user,"<span class='userdanger'>You are ready to unleash Furioso!</span>")
+			to_chat(user,span_userdanger("You are ready to unleash Furioso!"))
 			Y.unlocked = TRUE
 		if(unlocked)
 			Y.unlocked = TRUE
@@ -179,7 +179,7 @@
 		if(unlocked_list.len > 8)
 			furioso(user, target)
 		else
-			to_chat(user,"<span class='userdanger'>You haven't used all of Black Silence's Weapons!</span>")
+			to_chat(user,span_userdanger("You haven't used all of Black Silence's Weapons!"))
 
 // switching weapon increases damage dealt. Annoying but high damage, you're supposed to keep changing weapons anyway
 /obj/item/ego_weapon/black_silence_gloves/zelkova
@@ -267,11 +267,11 @@
 		if(0)
 			playsound(user, 'sound/weapons/black_silence/mace.ogg', 80, 1)
 			dash_count += 1
-			addtimer(CALLBACK(src, .proc/dash_attack, user, target), 3)
+			addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 3)
 		if(1)
 			playsound(user, 'sound/weapons/black_silence/axe.ogg', 80, 1)
 			dash_count += 1
-			addtimer(CALLBACK(src, .proc/dash_attack, user, target), 3)
+			addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 3)
 		if(2)
 			playsound(user, 'sound/weapons/black_silence/shortsword.ogg', 90, 1)
 			dash_count = 0
@@ -311,11 +311,11 @@
 	if (block == 0)
 		var/mob/living/carbon/human/shield_user = user
 		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-			to_chat(shield_user,"<span class='warning'>You're still off-balance!</span>")
+			to_chat(shield_user,span_warning("You're still off-balance!"))
 			return FALSE
 		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
 			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
+				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
 				return FALSE
 		block = TRUE
 		block_success = FALSE
@@ -324,9 +324,9 @@
 		shield_user.physiology.white_mod *= max(0.001, (1 - ((reductions[2]) / 100)))
 		shield_user.physiology.black_mod *= max(0.001, (1 - ((reductions[3]) / 100)))
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
-		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AnnounceBlock)
-		addtimer(CALLBACK(src, .proc/DisableBlock, shield_user), 1 SECONDS)
-		to_chat(user,"<span class='userdanger'>You attempt to parry the attack!</span>")
+		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
+		addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), 1 SECONDS)
+		to_chat(user, span_userdanger("You attempt to parry the attack!"))
 		return TRUE
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/DisableBlock(mob/living/carbon/human/user)
@@ -337,21 +337,21 @@
 	user.physiology.pale_mod /= max(0.001, (1 - ((reductions[4]) / 100)))
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE)
 	buff_check = FALSE
-	addtimer(CALLBACK(src, .proc/BlockCooldown, user), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(BlockCooldown), user), 3 SECONDS)
 	if (!block_success)
 		BlockFail(user)
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockCooldown(mob/living/carbon/human/user)
 	block = FALSE
-	to_chat(user,"<span class='nicegreen'>You rearm your hammer</span>")
+	to_chat(user,span_nicegreen("You rearm your hammer"))
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockFail(mob/living/carbon/human/user)
-	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
+	to_chat(user,span_warning("Your stance is widened."))
 	force = 50
-	addtimer(CALLBACK(src, .proc/RemoveDebuff, user), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), 2 SECONDS)
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/RemoveDebuff(mob/living/carbon/human/user)
-	to_chat(user,"<span class='nicegreen'>You recollect your stance.</span>")
+	to_chat(user,span_nicegreen("You recollect your stance."))
 	force = 80
 
 /obj/item/ego_weapon/black_silence_gloves/old_boys/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
@@ -359,7 +359,7 @@
 	block_success = TRUE
 
 	playsound(get_turf(src), 'sound/weapons/black_silence/guard.ogg', 50, 0, 7)
-	source.visible_message("<span class='userdanger'>[source.real_name] parried the attack!</span>")
+	source.visible_message(span_userdanger("[source.real_name] parried the attack!"))
 	exchange_cooldown -= 100
 	if(!(buff_check))
 		parry_buff = TRUE
@@ -492,7 +492,7 @@
 	locked_state = "logic_locked"
 
 /obj/item/ego_weapon/black_silence_gloves/logic/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/black_silence_gloves/logic/Special(mob/living/user, atom/target)
@@ -744,7 +744,7 @@
 	playsound(user, 'sound/weapons/black_silence/duelsword.ogg', 50, 1)
 	if(dash_count < 1)
 		L.apply_damage(60, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-		addtimer(CALLBACK(src, .proc/dash_attack, user, target), 5)
+		addtimer(CALLBACK(src, PROC_REF(dash_attack), user, target), 5)
 		new /obj/effect/temp_visual/smash_effect(F)
 		dash_count += 1
 	else

@@ -50,7 +50,7 @@
 		qdel(I)
 		say("That's all I ever wanted!")
 		can_act = FALSE
-		addtimer(CALLBACK(src,.proc/Unmanifest),3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Unmanifest)),3 SECONDS)
 
 
 /mob/living/simple_animal/hostile/distortion/lantern/AttackingTarget()
@@ -63,10 +63,10 @@
 		if(!CanAttack(C))
 			continue
 		C.blur_eyes(5)
-		addtimer(CALLBACK (C, .mob/proc/blind_eyes, 2), 2 SECONDS)
+		addtimer(CALLBACK (C, TYPE_PROC_REF(/mob, blind_eyes), 2), 2 SECONDS)
 		var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
 		C.add_overlay(new_overlay)
-		addtimer(CALLBACK (C, .atom/proc/cut_overlay, new_overlay), 4 SECONDS)
+		addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 4 SECONDS)
 
 
 

@@ -21,7 +21,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 	//Breach all
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.mob_list)
-		INVOKE_ASYNC(A, /mob/living/simple_animal/hostile/abnormality.proc/BreachEffect)
+		INVOKE_ASYNC(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality, BreachEffect))
 
 	//Non-abnos too need to see in the dark
 	for(var/mob/living/simple_animal/hostile/A in GLOB.mob_list)
@@ -34,14 +34,14 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 			//R-Corp stuff.
 			if("rcorp")
-				addtimer(CALLBACK(src, .proc/drawround), 40 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 				to_chat(world, span_userdanger("Round will end in a draw after 40 minutes.</span>"))
-				addtimer(CALLBACK(src, .proc/rcorp_announce), 3 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
 
 			//W-Corp stuff
 			if("wcorp")
-				addtimer(CALLBACK(src, .proc/winround), 20 MINUTES)
-				addtimer(CALLBACK(src, .proc/counterincrease), 3 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(winround)), 20 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(counterincrease)), 3 MINUTES)
 				to_chat(world, span_userdanger("Players will be victorius 20 minutes."))
 
 				switch(rand(1,4))
@@ -69,7 +69,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 //Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()
-	addtimer(CALLBACK(src, .proc/counterincrease), 1 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(counterincrease)), 1 MINUTES)
 	GLOB.combat_counter+=1
 	if(SSmaptype.maptype == "wcorp")
 		for(var/mob/living/carbon/human/H in GLOB.human_list)

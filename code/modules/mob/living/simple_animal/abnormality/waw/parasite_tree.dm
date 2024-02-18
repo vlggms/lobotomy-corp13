@@ -42,7 +42,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/parasite_tree/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/dropLeaf)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(dropLeaf))
 
 /mob/living/simple_animal/hostile/abnormality/parasite_tree/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	if(work_type != ABNORMALITY_WORK_REPRESSION && user.stat != DEAD)
@@ -234,7 +234,7 @@
 	if(C.has_status_effect(THE_TREE_CURSE)) //If you have the status effect already dont mess with them.
 		return FALSE
 	C.smoke_delay++
-	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
+	addtimer(CALLBACK(src, PROC_REF(remove_smoke_delay), C), 10)
 	return smoke_mob_effect(C)
 
 
@@ -262,34 +262,38 @@
 
 /datum/status_effect/display/parasite_tree_blessing/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
-		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
-		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/parasite_tree) in GLOB.abnormality_mob_list
-		if(connected_abno)
-			connected_abno.blessed += src
-			connected_abno.datum_reference.qliphoth_change(-1)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
+	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/parasite_tree) in GLOB.abnormality_mob_list
+	if(!connected_abno)
+		return
+	connected_abno.blessed += src
+	connected_abno.datum_reference.qliphoth_change(-1)
 
 /datum/status_effect/display/parasite_tree_blessing/tick()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjustSanityLoss(-3)
-		if(H.stat == DEAD)
-			qdel(src)
-	else
+	if(!ishuman(owner))
 		QDEL_IN(src, 5)
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustSanityLoss(-3)
+	if(status_holder.stat == DEAD)
+		qdel(src)
 
 /datum/status_effect/display/parasite_tree_blessing/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		if(connected_abno)
-			connected_abno.blessed -= src
-			if(H.stat == DEAD)
-				connected_abno.datum_reference.qliphoth_change(1)
-		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
-		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
+	if(!ishuman(owner))
+		return ..()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -10)
+	if(!connected_abno)
+		return ..()
+	connected_abno.blessed -= src
+	if(status_holder.stat == DEAD)
+		connected_abno.datum_reference.qliphoth_change(1)
 	return ..()
 
 /datum/status_effect/display/parasite_tree_blessing/proc/facadeFalls()
@@ -310,31 +314,32 @@
 /datum/status_effect/display/parasite_tree_curse/on_apply()
 	. = ..()
 	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/parasite_tree) in GLOB.abnormality_mob_list
+	to_chat(owner, span_warning("You feel something sprouting under your skin! Its time to be reborn with the tree."))
 	if(connected_abno)
 		connected_abno.blessed += src
-	to_chat(owner, span_warning("You feel something sprouting under your skin! Its time to be reborn with the tree."))
 
 /datum/status_effect/display/parasite_tree_curse/tick()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		if(L.sanity_lost || L.stat == DEAD)
-			qdel(src)
-		var/tree_toxin = L.maxSanity * 0.20
-		L.apply_damage(tree_toxin, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.sanity_lost || status_holder.stat == DEAD)
+		qdel(src)
+	var/tree_toxin = status_holder.maxSanity * 0.20
+	status_holder.apply_damage(tree_toxin, WHITE_DAMAGE, null, status_holder.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
 
 /datum/status_effect/display/parasite_tree_curse/on_remove()
-	var/mob/living/carbon/human/host = owner
+	var/mob/living/carbon/human/status_holder = owner
 	if(connected_abno)
 		connected_abno.blessed -= src
-		if(!owner || host.stat == DEAD)
+		if(!owner || status_holder.stat == DEAD)
 			connected_abno.endBreach()
-	if(host.sanity_lost && host.stat != DEAD)
-		var/mob/living/simple_animal/hostile/parasite_tree_sapling/N = new(owner.loc)
-		nested_items(N, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
-		nested_items(N, host.get_item_by_slot(ITEM_SLOT_BELT))
-		nested_items(N, host.get_item_by_slot(ITEM_SLOT_BACK))
-		nested_items(N, host.get_item_by_slot(ITEM_SLOT_OCLOTHING))
+	if(status_holder.sanity_lost && status_holder.stat != DEAD)
+		var/mob/living/simple_animal/hostile/parasite_tree_sapling/new_mob = new(owner.loc)
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_SUITSTORE))
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_BELT))
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_BACK))
+		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		QDEL_IN(owner, 5) //rabbit sanity implant explodes at 5
 	return ..()
 

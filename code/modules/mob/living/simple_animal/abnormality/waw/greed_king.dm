@@ -72,7 +72,7 @@
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/kog_teleport/Activate()
-	addtimer(CALLBACK(A, .mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport), 1)
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/greed_king, startTeleport)), 1)
 	to_chat(A, chosen_message)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/Life()
@@ -111,7 +111,7 @@
 	//set busy, animate and call the proc that actually teleports.
 	busy = TRUE
 	animate(src, alpha = 0, time = 5)
-	addtimer(CALLBACK(src, .proc/endTeleport), 5)
+	addtimer(CALLBACK(src, PROC_REF(endTeleport)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/endTeleport()
 	var/turf/T = pick(GLOB.xeno_spawn)
@@ -119,7 +119,7 @@
 	forceMove(T)
 	busy = FALSE
 	if(!client)
-		addtimer(CALLBACK(src, .proc/startTeleport), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(startTeleport)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/charge_check()
 	//targeting
@@ -135,7 +135,7 @@
 		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 		if(dir_to_target)
 			busy = TRUE
-			addtimer(CALLBACK(src, .proc/charge, dir_to_target, 0, target), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(charge), dir_to_target, 0, target), 2 SECONDS)
 			return
 	return
 
@@ -174,7 +174,7 @@
 	//Stop charging
 	if(stop_charge)
 		busy = TRUE
-		addtimer(CALLBACK(src, .proc/endCharge), 7 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(endCharge)), 7 SECONDS)
 		been_hit = list()
 		return
 	forceMove(T)
@@ -206,7 +206,7 @@
 	playsound(src,'sound/effects/bamf.ogg', 70, TRUE, 20)
 	for(var/turf/open/R in range(1, src))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(R)
-	addtimer(CALLBACK(src, .proc/charge, move_dir, (times_ran + 1)), 2)
+	addtimer(CALLBACK(src, PROC_REF(charge), move_dir, (times_ran + 1)), 2)
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/endCharge()
 	busy = FALSE

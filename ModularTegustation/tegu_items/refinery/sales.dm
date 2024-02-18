@@ -72,7 +72,7 @@
 		new crate(get_turf(src))
 
 	if(generating == TRUE)
-		addtimer(CALLBACK(src, .proc/counter), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(counter)), 1 SECONDS)
 
 /obj/structure/pe_sales/l_corp
 	name = "Headquarters Power Input"

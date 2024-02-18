@@ -94,7 +94,7 @@
 		QDEL_NULL(m)
 	var/blurb_text = "Three birds, now as one, looked around to find the monster but couldn't find it.\
 	There were no creatures, no sun and moon, and no monsters. All that is left is just a bird, and the black forest."
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 10 SECONDS, blurb_text, 25), 5 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 25), 5 SECONDS)
 	for(var/mob/living/carbon/human/M in GLOB.player_list)
 		if(M.stat != DEAD && M.client)
 			M.Apply_Gift(new /datum/ego_gifts/twilight)
@@ -324,7 +324,7 @@
 		H.InitializeAIController()
 		enchanted_list.Add(H)
 		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
-		addtimer(CALLBACK(src,.proc/EndEnchant, H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(EndEnchant), H), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	special_cooldown = world.time + special_cooldown_time
@@ -367,7 +367,7 @@
 		P.xo = PT.x - T.x
 		P.original = PT
 		P.preparePixelProjectile(PT, T)
-		addtimer(CALLBACK (P, .obj/projectile/proc/fire), 6.5 SECONDS)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 6.5 SECONDS)
 
 	SLEEP_CHECK_DEATH(6.5 SECONDS)
 	playsound(src, 'sound/abnormalities/apocalypse/fire.ogg', 75, FALSE, 12)
@@ -412,7 +412,7 @@
 	return ..()
 
 /mob/living/simple_animal/apocalypse_egg/death(gibbed)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 25))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBCC", flash_time = 50)
@@ -521,7 +521,7 @@
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "A long time ago, in a warm and dense forest lived three happy birds.", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "A long time ago, in a warm and dense forest lived three happy birds.", 25))
 	COOLDOWN_START(src, speak_bird, 10 SECONDS)
 	COOLDOWN_START(src, summon_bird, 30 SECONDS)
 	force_bird_time = world.time + 3 MINUTES
@@ -576,7 +576,7 @@
 	for(var/mob/living/simple_animal/hostile/abnormality/bird in SSlobotomy_events.AB_breached)
 		bird.death()
 	SSlobotomy_events.AB_breached = list()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "But that is a story for another time...", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "But that is a story for another time...", 25))
 	. = ..()
 	return
 
@@ -610,7 +610,7 @@
 	stored_birds["unspoken"] -= bird // Remove it from list
 	stored_birds["spoken"] += bird // Add it to the one where they spoke
 	update_icon()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 25))
 	for(var/mob/M in GLOB.player_list)
 		if(M.z == z && M.client)
 			flash_color(M, flash_color = "#CCBBBB", flash_time = 50)
@@ -621,7 +621,7 @@
 			B.forceMove(AB)
 			AB.birds += B
 		var/final_text = "In chaotic cries, somebody shouted: \"It's the monster! Big terrible monster lives in the dark, black forest!\""
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 10 SECONDS, final_text, 50))
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, final_text, 50))
 		sound_to_playing_players_on_level('sound/abnormalities/apocalypse/appear.ogg', 100, zlevel = z)
 		for(var/mob/M in GLOB.player_list)
 			if(M.z == z && M.client)
@@ -690,7 +690,7 @@
 		return
 
 	if(!LAZYLEN(controller.current_path))
-		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
 		if(!controller.current_path.len) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
@@ -723,7 +723,7 @@
 				else
 					controller.pathing_attempts++
 			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
-			addtimer(CALLBACK(src, .proc/Movement, controller), move_delay)
+			addtimer(CALLBACK(src, PROC_REF(Movement), controller), move_delay)
 			return TRUE
 	finish_action(controller, FALSE)
 	return FALSE

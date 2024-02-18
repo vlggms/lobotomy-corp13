@@ -45,5 +45,11 @@
 	stock = 3 //Scorp has a lot of these
 	weight = 4 //40% as common
 
+/datum/map_template/random_room/backstreets/large_north/lab_ln
+	name = "Laboratory - Large North"
+	room_id = "lab_ln"
+	mappath = "_maps/RandomRooms/backstreets/large_north/lab_ln.dmm"
+
+
 
 

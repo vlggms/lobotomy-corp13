@@ -132,7 +132,7 @@
 /datum/status_effect/stacking/fanhot
 	id = "stacking_fanhot"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 200 //20 seconds
+	duration = 20 SECONDS
 	alert_type = null
 	stack_decay = 0
 	tick_interval = 10
@@ -159,21 +159,24 @@
 	. = ..()
 	if(!stacks_added)
 		return
-	if(stacks > 10)
-		owner.apply_damage((stacks / 5), RED_DAMAGE, null, owner.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 25, TRUE)
+	if(stacks <= 10)
+		return
+	owner.apply_damage((stacks / 5), RED_DAMAGE, null, owner.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 25, TRUE)
 
 /datum/status_effect/stacking/fanhot/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		to_chat(owner, span_nicegreen("Someone turned on the AC! Rejoice!"))
-		if(owner.client)
-			owner.remove_client_colour(/datum/client_colour/glass_colour/orange)
+	if(!ishuman(owner))
+		return
+	to_chat(owner, span_nicegreen("Someone turned on the AC! Rejoice!"))
+	if(owner.client)
+		owner.remove_client_colour(/datum/client_colour/glass_colour/orange)
 
 /datum/status_effect/stacking/fanhot/threshold_cross_effect()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		to_chat(owner, span_warning("IT'S TOO HOT!"))
-		H.adjust_fire_stacks(15)
-		H.IgniteMob()
-		stacks -= 5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_warning("IT'S TOO HOT!"))
+	status_holder.adjust_fire_stacks(15)
+	status_holder.IgniteMob()
+	stacks -= 5

@@ -84,7 +84,7 @@
 		return
 	var/num = pick(1,2,3,4)
 	playsound(get_turf(src), "sound/abnormalities/blubbering_toad/blurble[num].ogg", 100, FALSE)
-	addtimer(CALLBACK(src, .proc/BlubberLoop), rand(3,10) SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(BlubberLoop)), rand(3,10) SECONDS)
 	if(IsContained() && (healing_pulse_amount > 0)) //isn't breached and has charges left
 		healing_pulse_amount --
 		HealPulse()
@@ -221,7 +221,7 @@
 	if(H.health < 0)
 		H.gib()
 		if(!persistant)
-			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(ReturnCell)), 10 SECONDS)
 			return
 		idiot = null
 		for(var/mob/living/carbon/human/HU in GLOB.player_list)
@@ -234,7 +234,7 @@
 			if(idiot.health > HU.health)
 				idiot = HU
 		if(isnull(idiot))
-			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(ReturnCell)), 10 SECONDS)
 			return
 		SetIdiot(idiot)
 
@@ -277,7 +277,7 @@
 /datum/status_effect/blue_resin
 	id = "blue resin"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000 //Lasts 5 mins
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/blue_resin
 
 /atom/movable/screen/alert/status_effect/blue_resin
@@ -289,13 +289,15 @@
 /datum/status_effect/blue_resin/on_apply()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.black_mod *= 0.9
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.black_mod *= 0.9
 
 /datum/status_effect/blue_resin/on_remove()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.black_mod /= 0.9
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.black_mod /= 0.9
 
 #undef STATUS_EFFECT_BLUERESIN

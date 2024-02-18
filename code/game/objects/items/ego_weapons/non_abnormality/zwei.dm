@@ -19,11 +19,11 @@
 	var/defense_buff_others = 0.8
 	var/list/buffed_people = list()
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 40,
-							TEMPERANCE_ATTRIBUTE = 40,
-							JUSTICE_ATTRIBUTE = 40
-							)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 40,
+		TEMPERANCE_ATTRIBUTE = 40,
+		JUSTICE_ATTRIBUTE = 40,
+	)
 
 
 /obj/item/ego_weapon/city/zweihander/attack_self(mob/living/carbon/human/user)
@@ -39,7 +39,7 @@
 	user.physiology.white_mod *= defense_buff_self
 	user.physiology.black_mod *= defense_buff_self
 	user.physiology.pale_mod *= defense_buff_self
-	to_chat(user, "<span class='userdanger'>HOLD THE LINE!</span>")
+	to_chat(user, span_userdanger("HOLD THE LINE!"))
 
 	buffed_people = list()
 
@@ -51,30 +51,30 @@
 		buffed_people += L
 
 		//Visible message just didn't work here. No clue why.
-		to_chat(L, "<span class='userdanger'>HOLD THE LINE!</span>")
+		to_chat(L, span_userdanger("HOLD THE LINE!"))
 
 	playsound(src, 'sound/misc/whistle.ogg', 50, TRUE)
-	addtimer(CALLBACK(src, .proc/Return, user), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 3 SECONDS)
 
 /obj/item/ego_weapon/city/zweihander/proc/Return(mob/living/carbon/human/user)
 	user.physiology.red_mod /= defense_buff_self
 	user.physiology.white_mod /= defense_buff_self
 	user.physiology.black_mod /= defense_buff_self
 	user.physiology.pale_mod /= defense_buff_self
-	to_chat(user, "<span class='notice'>Your defense buff has expired!</span>")
+	to_chat(user, span_notice("Your defense buff has expired!"))
 
 	for(var/mob/living/carbon/human/L in buffed_people)
 		L.physiology.red_mod /= defense_buff_others
 		L.physiology.white_mod /= defense_buff_others
 		L.physiology.black_mod /= defense_buff_others
 		L.physiology.pale_mod /= defense_buff_others
-		to_chat(L, "<span class='notice'>Your defense buff has expired!</span>")
+		to_chat(L, span_notice("Your defense buff has expired!"))
 
-	addtimer(CALLBACK(src, .proc/Cooldown, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Cooldown), user), 15 SECONDS)
 
 /obj/item/ego_weapon/city/zweihander/proc/Cooldown(mob/living/carbon/human/user)
 	ready = TRUE
-	to_chat(user, "<span class='notice'>You can use your defense buff again.</span>")
+	to_chat(user, span_notice("You can use your defense buff again."))
 
 //Vet Zwei
 /obj/item/ego_weapon/city/zweihander/vet

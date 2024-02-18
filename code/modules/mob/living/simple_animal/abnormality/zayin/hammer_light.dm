@@ -55,8 +55,8 @@
 //Lock/Unlocking system
 /mob/living/simple_animal/hostile/abnormality/hammer_light/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/Check)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/Check)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(Check))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(Check))
 
 /mob/living/simple_animal/hostile/abnormality/hammer_light/proc/Check() //A lot going on here, but basically we assess how bad the situation in the facility is
 	if((!hammer_present) || usable_cooldown > world.time)
@@ -140,7 +140,7 @@
 	usable_cooldown = world.time + usable_cooldown_time
 	banned += user.ckey
 	current_user = user
-	RegisterSignal(current_user, COMSIG_LIVING_DEATH, .proc/UserDeath)
+	RegisterSignal(current_user, COMSIG_LIVING_DEATH, PROC_REF(UserDeath))
 	user.apply_status_effect(STATUS_EFFECT_EVENING_TWILIGHT)
 	chosen_arms = new /obj/item/ego_weapon/hammer_light(get_turf(user))
 	user.put_in_hands(chosen_arms, forced = TRUE)
@@ -153,7 +153,7 @@
 	user.hairstyle = "Bald"
 	user.update_hair()
 	update_icon()
-	addtimer(CALLBACK(src, .proc/HammerCheck), 3050) // max duration of buff + 5 seconds
+	addtimer(CALLBACK(src, PROC_REF(HammerCheck)), 3050) // max duration of buff + 5 seconds
 	new /obj/effect/temp_visual/beam_in(get_turf(user))
 
 /mob/living/simple_animal/hostile/abnormality/hammer_light/proc/HammerCheck()
@@ -199,7 +199,7 @@
 				continue
 			if(!V.patrol_to(destination)) //Move them to pink midnight
 				V.forceMove(destination)
-	addtimer(CALLBACK(src, .proc/UserDeath), usable_cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(UserDeath)), usable_cooldown_time)
 	return TRUE
 
 //Item version
@@ -339,32 +339,28 @@
 /datum/status_effect/evening_twilight
 	id = "evening_twilight"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000 // max duration
+	duration = 5 MINUTES // max duration
 	alert_type = null
 	var/attribute_bonus = 0
 
 /datum/status_effect/evening_twilight/on_apply()
 	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/human/user = owner
-	to_chat(user, span_nicegreen("You feel powerful."))
-	user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "hammer_overlay", -ABOVE_MOB_LAYER))
-	user.physiology.red_mod *= 0.3
-	user.physiology.white_mod *= 0.3
-	user.physiology.black_mod *= 0.3
-	user.physiology.pale_mod *= 0.3
-	duration = min(get_user_level(user) * 300, initial(duration)) //30 seconds per level, so a max of about 3.5 minutes at 130/all.
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_nicegreen("You feel powerful."))
+	status_holder.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "hammer_overlay", -ABOVE_MOB_LAYER))
+	status_holder.physiology.red_mod *= 0.3
+	status_holder.physiology.white_mod *= 0.3
+	status_holder.physiology.black_mod *= 0.3
+	status_holder.physiology.pale_mod *= 0.3
+	duration = min(get_user_level(status_holder) * 300, initial(duration)) //30 seconds per level, so a max of about 3.5 minutes at 130/all.
 	return ..()
 
 /datum/status_effect/evening_twilight/on_remove()
 	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/human/user = owner
-	user.physiology.red_mod /= 0.3
-	user.physiology.white_mod /= 0.3
-	user.physiology.black_mod /= 0.3
-	user.physiology.pale_mod /= 0.3
-	user.dust()
+	var/mob/living/status_holder = owner
+	status_holder.dust()
 	return ..()
 
 //Simple mob

@@ -81,6 +81,14 @@
 	//Visual effects
 	var/obj/effect/reflection/headicon
 
+	//Oberon shit
+	var/oberon_mode = FALSE
+	var/grab_damage_oberon = 140
+	var/strangle_damage_oberon = 35
+	var/melee_damage_oberon = 15
+	var/mob/living/simple_animal/hostile/abnormality/titania/abno_host
+	var/obj/effect/titania_aura/fairy_aura
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/nobody_attack,
@@ -126,15 +134,15 @@
 		return
 	dir = SOUTH
 	ChangeReflection()
-	reflect_timer = addtimer(CALLBACK(src, .proc/ReflectionCheck), 3 MINUTES, TIMER_STOPPABLE)
+	reflect_timer = addtimer(CALLBACK(src, PROC_REF(ReflectionCheck)), 3 MINUTES, TIMER_STOPPABLE)
 
 //Work
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/ReflectionCheck()
 	if(datum_reference.working)
-		reflect_timer = addtimer(CALLBACK(src, .proc/ReflectionCheck), 30 SECONDS, TIMER_STOPPABLE)
+		reflect_timer = addtimer(CALLBACK(src, PROC_REF(ReflectionCheck)), 30 SECONDS, TIMER_STOPPABLE)
 		return
 	ChangeReflection()
-	reflect_timer = addtimer(CALLBACK(src, .proc/ReflectionCheck), 3 MINUTES, TIMER_STOPPABLE)
+	reflect_timer = addtimer(CALLBACK(src, PROC_REF(ReflectionCheck)), 3 MINUTES, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/ChangeReflection()
 	var/list/potentialmarked = list()
@@ -264,24 +272,108 @@
 		release_damage = clamp(release_damage + damage, 0, release_threshold)
 		if(release_damage >= release_threshold)
 			ReleaseGrab()
-	last_heal_time = world.time + 10 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
+	if(!oberon_mode)
+		last_heal_time = world.time + 10 SECONDS // Heal delayed when taking damage; Doubled because it was a little too quick.
+	else
+		last_heal_time = world.time + 40 SECONDS // Heal delayed even more when taking damage; It was basically unkillable when it was 10 seconds.
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Life()
 	. = ..()
 	if(!.)
 		return
-	if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
-		var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
-		if(health <= maxHealth*0.3)
-			heal_amount *= 2
-		adjustBruteLoss(-heal_amount)
-		last_heal_time = world.time
+	if(!oberon_mode)
+		if((last_heal_time + 1 SECONDS) < world.time) // One Second between heals guaranteed
+			var/heal_amount = ((world.time - last_heal_time)/10)*heal_percent_per_second*maxHealth
+			if(oberon_mode)
+				if(abno_host && abno_host.currentlaw == "armor")//prevents regen from happening when you can't smack it with the type it hurts it the most. Range and melee laws aren't affected due to with titania you have soulmate.
+					last_heal_time = world.time + 40 SECONDS
+			if(health <= maxHealth*0.3)
+				heal_amount *= 2
+			adjustBruteLoss(-heal_amount)
+			last_heal_time = world.time
+
 	if(next_transform && (world.time > next_transform))
 		next_stage()
 	if(current_stage == 2) // Egg
 		var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 		animate(D, alpha = 0, transform = matrix()*1.2, time = 7)
+	if(shelled)
+		var/mob/living/simple_animal/hostile/abnormality/titania/titania
+		for(var/mob/living/L in view(2, src))
+			if(istype(L, /mob/living/simple_animal/hostile/abnormality/titania))
+				titania = L
+		if(!titania)
+			return
+		if(titania.status_flags & GODMODE)
+			return
+		Oberon(titania)
 
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Oberon(mob/living/simple_animal/hostile/abnormality/titania/T)
+	if(!istype(T))
+		return
+	if(T.IsContained()) // prevents nobody is from just yoinking her while she's contained
+		return
+	if(stat == DEAD || T.stat == DEAD)
+		return
+	if(!oberon_mode)
+		T.ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))//fuck you no damaging while they erp
+		ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+		can_act = FALSE
+		oberon_mode = TRUE
+		T.fused = TRUE
+		say("It's you,")
+		SLEEP_CHECK_DEATH(2 SECONDS)
+		T.say("My nemesis, my beloved devil,")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		T.say("The abhorrent name of the one who stole my child.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		T.say("Oberon,")
+		SLEEP_CHECK_DEATH(2 SECONDS)
+		say("Is that who I am?")
+		SLEEP_CHECK_DEATH(2 SECONDS)//theres more that I cut out but you know, people will be bored watching 2 alephs bonding before murder boning
+		say("I was born mere moments ago.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		say("Just now I was pondering what I should live as, and how I am to live.")
+		SLEEP_CHECK_DEATH(2 SECONDS)
+		T.say("Now answer me. Are you Oberon,")
+		SLEEP_CHECK_DEATH(2 SECONDS)
+		say("Regardless of my stuggles to live, those who remembered me and my memories of them would vaporize in the end...")
+		SLEEP_CHECK_DEATH(0.5 SECONDS)
+		say("Leaving no trace behind to each other.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		say("...If I earned a name, will I get to receive love and hate from you? Will you remember me as that name, as someone whom you emotionally cared for?")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		name = "Oberon"
+		say("Then yes, I am the Oberon you seek.")
+		SLEEP_CHECK_DEATH(1 SECONDS)
+		Oberon_Fusion(T)
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Oberon_Fusion(mob/living/simple_animal/hostile/abnormality/titania/T)
+		abno_host = T
+		T.pass_flags = PASSTABLE | PASSMOB
+		T.is_flying_animal = FALSE
+		T.density = FALSE
+		T.forceMove(src)
+		T.fairy_spawn_time = 10 SECONDS
+		T.melee_damage_lower = 0
+		T.melee_damage_upper = 0
+		can_act = TRUE
+		fairy_aura = new/obj/effect/titania_aura(get_turf(src))
+		cut_overlay(icon('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
+		add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face_oberon", GLASSES_LAYER))
+		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.5))
+		heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
+		maxHealth = 10000
+		adjustBruteLoss(-maxHealth) // It's not over yet!.
+		melee_damage_lower = 45
+		melee_damage_upper = 65
+		grab_damage = 140
+		strangle_damage = 35
+		whip_damage = 15
+		whip_count = 6
+		loot = list(
+		/obj/item/ego_weapon/oberon
+		)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Move()
 	if(!can_act)
@@ -291,13 +383,29 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/Moved()
 	if(current_stage == 3)
 		playsound(get_turf(src), 'sound/abnormalities/nothingthere/walk.ogg', 50, 0, 3)
-	return ..()
+	. = ..()
+	if(.)
+		MoveVFX()
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/MoveVFX()
+	set waitfor = FALSE
+	if(fairy_aura)
+		fairy_aura.forceMove(get_turf(src))
+		fairy_aura.dir = dir
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/death(gibbed)
 	if(headicon) //Gets rid of the reflection if they died in containtment for any reason
 		qdel(headicon)
 		headicon = null
 		datum_reference.connected_structures = list()
+	if(oberon_mode)
+		for(var/mob/living/carbon/human/M in GLOB.player_list)
+			if(M.stat != DEAD && M.client)
+				M.Apply_Gift(new /datum/ego_gifts/oberon)
+		if(fairy_aura)
+			qdel(fairy_aura)
+		if(abno_host)
+			abno_host.death()
 	if(grab_victim)
 		ReleaseGrab()
 	return ..()
@@ -326,6 +434,8 @@
 	SLEEP_CHECK_DEATH(whip_delay)
 	for(var/i = 1 to whip_count)
 		var/obj/projectile/P = new /obj/projectile/beam/nobody(start_loc)
+		if(oberon_mode)
+			P = new /obj/projectile/beam/oberon(start_loc)
 		P.starting = start_loc
 		P.firer = src
 		P.fired_from = src
@@ -367,6 +477,8 @@
 	for(var/turf/T in view(3, src))
 		new /obj/effect/temp_visual/nobody_grab(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), grab_damage, BLACK_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE))
+			if(oberon_mode)
+				HurtInTurf(T, list(), grab_damage_oberon, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
 			if(L.health < 0)
 				if(ishuman(L))
 					var/mob/living/carbon/H = L
@@ -422,6 +534,8 @@
 		ReleaseGrab()
 		return
 	grab_victim.apply_damage(strangle_damage, BLACK_DAMAGE, null, grab_victim.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	if(oberon_mode)
+		grab_victim.apply_damage(strangle_damage_oberon, RED_DAMAGE, null, grab_victim.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nobodyis/strangle.ogg', 100, 0, 7)
@@ -478,6 +592,10 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
+	if(oberon_mode)
+		if(isliving(attacked_target))
+			var/mob/living/L = attacked_target
+			L.apply_damage(melee_damage_oberon, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	if(!client)
 		if((current_stage == 3) && (grab_cooldown <= world.time) && prob(35))
 			return GrabAttack()
@@ -575,7 +693,6 @@
 	maxHealth = 4000
 	melee_damage_lower = 65
 	melee_damage_upper = 75
-	SpeedChange(-1)
 	current_stage = 3
 	melee_reach = 1
 	whip_count = 8
@@ -586,7 +703,7 @@
 	whip_attack_cooldown_time = 5 SECONDS
 	heal_percent_per_second = 0.0085
 	if(status_flags & GODMODE) // Still contained
-		addtimer(CALLBACK(src, .proc/ZeroQliphoth), rand(5 SECONDS, 10 SECONDS))
+		addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), rand(5 SECONDS, 10 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/examine(mob/user)
 	if(disguise)
@@ -617,3 +734,59 @@
 //Objects
 /obj/effect/reflection // Hopefully temporary or at least removed someday
 	layer = ABOVE_ALL_MOB_LAYER
+
+//Allow for titana's laws to exist for nobody is I think
+/mob/living/simple_animal/hostile/abnormality/nobody_is/bullet_act(obj/projectile/Proj)
+	if(oberon_mode)
+		abno_host.bullet_act(Proj)
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/attacked_by(obj/item/I, mob/living/user)
+	if(oberon_mode)
+		abno_host.attacked_by(I, user)
+	..()
+
+//A simple test function to force oberon to happen without killing the reflected
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform_No_Kill(mob/living/carbon/human/M)
+	set waitfor = FALSE
+	SLEEP_CHECK_DEATH(5)
+	if(!M)
+		return //We screwed up or the player successfully committed self-delete. Try again next time!
+	disguise = M
+	shelled = TRUE
+	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay", SUIT_LAYER))
+	add_overlay(mutable_appearance('icons/effects/effects.dmi', "nobody_overlay_face", GLASSES_LAYER))
+	appearance = M.appearance
+	if(target)
+		LoseTarget(target)
+	attack_verb_continuous = "strikes"
+	attack_verb_simple = "strike"
+	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
+	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.8)) //Damage, resistances, and cooldowns all go to the roof
+	maxHealth = 4000
+	melee_damage_lower = 65
+	melee_damage_upper = 75
+	current_stage = 3
+	melee_reach = 1
+	whip_count = 8
+	grab_damage = 250
+	strangle_damage = 70
+	grab_cooldown_time = 12 SECONDS
+	grab_windup_time = 12
+	whip_attack_cooldown_time = 5 SECONDS
+	heal_percent_per_second = 0.0085
+	if(status_flags & GODMODE) // Still contained
+		ZeroQliphoth()
+
+/mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Quick_Oberon_Spawn()
+	if(!chosen || oberon_mode)//makes sure it doesn't continue if its already oberon or if there's no chosen.)
+		return
+	Transform_No_Kill(chosen)
+	oberon_mode = TRUE
+	name = "Oberon"
+	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
+	T.BreachEffect()
+	T.fused = TRUE
+	T.ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))//fuck you no damaging while they erp
+	Oberon_Fusion(T)

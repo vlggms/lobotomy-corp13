@@ -266,7 +266,7 @@
 	if(status_flags & GODMODE)
 		return FALSE
 	for(var/i = 1 to 2)
-		addtimer(CALLBACK(src, .proc/ShakePixels), i*5 + rand(1, 4))
+		addtimer(CALLBACK(src, PROC_REF(ShakePixels)), i*5 + rand(1, 4))
 	ShakePixels()
 	FearEffect()
 	return
@@ -313,7 +313,7 @@
 
 /datum/status_effect/overwhelming_fear/tick()
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	if(H.getSanityLoss() >= H.getMaxSanity() * sanity_limit_percent)
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.getSanityLoss() >= status_holder.getMaxSanity() * sanity_limit_percent)
 		return
-	H.adjustSanityLoss(H.getMaxSanity() * sanity_damage_percent)
+	status_holder.adjustSanityLoss(status_holder.getMaxSanity() * sanity_damage_percent)

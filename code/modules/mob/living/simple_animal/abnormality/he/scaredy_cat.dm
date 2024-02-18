@@ -73,8 +73,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /mob/living/simple_animal/hostile/abnormality/scaredy_cat/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 60)
@@ -123,7 +123,7 @@
 	density = FALSE
 	anchored = TRUE
 	if(friend)
-		addtimer(CALLBACK(src, .proc/Regenerate), 20 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Regenerate)), 20 SECONDS)
 		stunned_effect = new(get_turf(src))
 	else
 		animate(src, alpha = 0, time = 10 SECONDS)

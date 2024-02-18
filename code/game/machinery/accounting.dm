@@ -26,7 +26,7 @@
 			to_chat(user, span_warning("\the [src] blinks red as you try to insert the ID Card!"))
 			return
 		inserted_id = new_id
-		RegisterSignal(inserted_id, COMSIG_PARENT_QDELETING, .proc/remove_card)
+		RegisterSignal(inserted_id, COMSIG_PARENT_QDELETING, PROC_REF(remove_card))
 		var/datum/bank_account/bank_account = new /datum/bank_account(inserted_id.registered_name)
 		inserted_id.registered_account = bank_account
 		playsound(loc, 'sound/machines/synth_yes.ogg', 30 , TRUE)

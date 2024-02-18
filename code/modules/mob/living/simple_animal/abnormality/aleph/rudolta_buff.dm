@@ -195,7 +195,7 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(L), L)
 	animate(D, alpha = 0, transform = matrix()*1.2, time = 3)
 	face_atom(L)
-	addtimer(CALLBACK(src, .proc/OnRush, L, iteration + 1), rand(onrush_min_delay, onrush_max_delay))
+	addtimer(CALLBACK(src, PROC_REF(OnRush), L, iteration + 1), rand(onrush_min_delay, onrush_max_delay))
 
 // Slams the area with the sleigh, doing heavy damage
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/proc/SleighSlam(atom/target)

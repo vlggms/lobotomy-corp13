@@ -10,7 +10,7 @@
 	cell_type = /obj/item/stock_parts/cell/infinite
 	ammo_type = list(
 		/obj/item/ammo_casing/energy/laser/red,
-		)
+	)
 	can_charge = FALSE
 	weapon_weight = WEAPON_HEAVY // No dual wielding
 	pin = /obj/item/firing_pin
@@ -22,7 +22,7 @@
 /obj/item/gun/energy/e_gun/rabbitdash/process_fire(atom/target, mob/living/user, message, params, zone_override, bonus_spread)
 	if(user.mind)
 		if(user.mind.assigned_role in banned_roles)
-			to_chat(user, "<span class='notice'>You are not trained to use Rcorp firearms!</span>")
+			to_chat(user, span_notice("You are not trained to use Rcorp firearms!"))
 			return FALSE
 	..()
 

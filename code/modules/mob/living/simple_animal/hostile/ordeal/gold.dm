@@ -131,7 +131,7 @@
 			break
 		var/list/our_path = list()
 		for(var/o = 1 to 3) // Grand total of 3 retries
-			our_path = get_path_to(path_start, T, /turf/proc/Distance_cardinal, charge_max_distance)
+			our_path = get_path_to(path_start, T, TYPE_PROC_REF(/turf, Distance_cardinal), charge_max_distance)
 			if(islist(our_path) && LAZYLEN(our_path))
 				break
 			potential_turfs -= T // Couldn't find path to it, don't try again
@@ -169,7 +169,7 @@
 		W.obj_destruction("teeth")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	forceMove(T)
 	if(prob(33))
 		playsound(T, 'sound/effects/ordeals/gold/rock_attack.ogg', 10, TRUE, 3)
@@ -467,7 +467,7 @@
 	if(health <= maxHealth*0.5 && stat != DEAD)
 		walk_to(src, 0)
 		animate(src, transform = matrix()*1.8, time = 15)
-		addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
+		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/sin_gloom/proc/DeathExplosion()
@@ -550,7 +550,7 @@
 	been_hit = list()
 	SpinAnimation(3, 10)
 	dash_num = (get_dist(src, target) + 3)
-	addtimer(CALLBACK(src, .proc/Charge, dir_to_target, 0), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Charge), dir_to_target, 0), 2 SECONDS)
 	playsound(src, 'sound/effects/ordeals/gold/pridespin.ogg', 125, FALSE)
 
 /mob/living/simple_animal/hostile/ordeal/sin_pride/proc/Charge(move_dir, times_ran)
@@ -599,7 +599,7 @@
 		if(H.health < 0)
 			H.gib()
 			playsound(src, 'sound/weapons/fixer/generic/blade4.ogg', 75, 1)
-	addtimer(CALLBACK(src, .proc/Charge, move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(Charge), move_dir, (times_ran + 1)), 1)
 
 
 /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion
@@ -708,8 +708,8 @@
 				continue
 			if(T.density)
 				continue
-			addtimer(CALLBACK(src, .proc/PulseWarn, T), (3 * (i+1)) + 0.1 SECONDS)
-			addtimer(CALLBACK(src, .proc/PulseHit, T), (3 * (i+1)) + 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(PulseWarn), T), (3 * (i+1)) + 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(PulseHit), T), (3 * (i+1)) + 0.5 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/KHz_corrosion/proc/PulseWarn(turf/T)
 	new /obj/effect/temp_visual/cult/sparks(T)

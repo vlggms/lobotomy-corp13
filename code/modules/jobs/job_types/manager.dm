@@ -30,7 +30,7 @@
 	var/displayed_rank = title // Handle alt titles
 	if(title in H?.client?.prefs?.alt_titles_preferences)
 		displayed_rank = H.client.prefs.alt_titles_preferences[title]
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "[displayed_rank] [H.real_name] has arrived to the facility."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "[displayed_rank] [H.real_name] has arrived to the facility."))
 
 /datum/job/manager/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
@@ -52,6 +52,6 @@
 	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit =  /obj/item/clothing/suit/toggle/labcoat
-	backpack_contents = list()
+	backpack_contents = list(/obj/item/station_charter)
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command

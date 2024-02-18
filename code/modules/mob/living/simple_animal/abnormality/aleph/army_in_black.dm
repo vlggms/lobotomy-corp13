@@ -65,7 +65,7 @@ GLOBAL_LIST_EMPTY(army)
 //checks for deaths
 /mob/living/simple_animal/hostile/abnormality/army/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	adds_max = clamp((LAZYLEN(GLOB.player_list)/ 2),2, 5)//between 2 and 5 mooks on breach, one for every 2 people.
 
 //stops the previous snippet from destroying the server
@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(army)
 		for(var/turf/T in spawns)//this picks the first few shuffled xeno spawns. Maybe change it to a different type of loop
 			var/mob/living/simple_animal/hostile/army_enemy/E = new(get_turf(T))
 			summoned_army += E//the actual army list
-			RegisterSignal(E, COMSIG_PARENT_QDELETING, .proc/ArmyDeath)
+			RegisterSignal(E, COMSIG_PARENT_QDELETING, PROC_REF(ArmyDeath))
 			spawns -= T
 			break
 
@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(army)
 
 /mob/living/simple_animal/hostile/army_enemy/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/Explode), 120 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Explode)), 120 SECONDS)
 	var/list/depts = shuffle(GLOB.department_centers)
 	var/list/depts_far = list()
 	if(!LAZYLEN(depts))
@@ -247,7 +247,7 @@ GLOBAL_LIST_EMPTY(army)
 		var/obj/effect/pink_beacon/P = new(get_turf(T))//beacon
 		targetted_beacon = P
 		P.targetted_army = src
-		INVOKE_ASYNC(src, .proc/SetSpeed)
+		INVOKE_ASYNC(src, PROC_REF(SetSpeed))
 		break
 	if(!targetted_beacon)//if none of the above are picked, grab one that's further away
 		for(var/turf/T in depts_far)
@@ -256,7 +256,7 @@ GLOBAL_LIST_EMPTY(army)
 			var/obj/effect/pink_beacon/P = new(get_turf(T))//beacon
 			targetted_beacon = P
 			P.targetted_army = src
-			INVOKE_ASYNC(src, .proc/SetSpeed)
+			INVOKE_ASYNC(src, PROC_REF(SetSpeed))
 			break
 
 /mob/living/simple_animal/hostile/army_enemy/death()
@@ -343,7 +343,7 @@ GLOBAL_LIST_EMPTY(army)
 /datum/status_effect/protection
 	id = "protection"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 120 SECONDS
+	duration = 2 MINUTES
 	alert_type = null
 	tick_interval = 30
 	var/boom = TRUE
@@ -351,37 +351,38 @@ GLOBAL_LIST_EMPTY(army)
 
 /datum/status_effect/protection/on_creation(mob/living/new_owner, ...)
 	army_bud = new /obj/effect/army_friend
-	. = ..()
+	return ..()
 
 /datum/status_effect/protection/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.red_mod *= 0.8
-		H.physiology.white_mod *= 0.8
-		H.physiology.black_mod *= 0.8
-		H.physiology.pale_mod *= 0.8
-		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', "pink", -MUTATIONS_LAYER))
-		H.vis_contents += army_bud
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.8
+	status_holder.physiology.white_mod *= 0.8
+	status_holder.physiology.black_mod *= 0.8
+	status_holder.physiology.pale_mod *= 0.8
+	status_holder.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', "pink", -MUTATIONS_LAYER))
+	status_holder.vis_contents += army_bud
 
 /datum/status_effect/protection/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.red_mod /= 0.8
-		H.physiology.white_mod /= 0.8
-		H.physiology.black_mod /= 0.8
-		H.physiology.pale_mod /= 0.8
-		H.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', "pink", -MUTATIONS_LAYER))
-		H.vis_contents -= army_bud
-		to_chat(H, span_notice("The pink soldier assigned to you returns to its containment cell."))
-	if(!boom)
+	if(boom)
+		playsound(get_turf(owner), 'sound/abnormalities/armyinblack/pink_explosion.ogg', 125, 0, 8)
+		new /obj/effect/temp_visual/pink_explosion(get_turf(owner))
+		for(var/mob/living/carbon/human/affected_human in view(7, owner))
+			affected_human.adjustBruteLoss(-20)
+			affected_human.adjustSanityLoss(20)
+	if(!ishuman(owner))
 		return
-	for(var/mob/living/carbon/human/H in view(7, owner))
-		H.adjustBruteLoss(-20)
-		H.adjustSanityLoss(20)
-	playsound(get_turf(owner), 'sound/abnormalities/armyinblack/pink_explosion.ogg', 125, 0, 8)
-	new /obj/effect/temp_visual/pink_explosion(get_turf(owner))
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.8
+	status_holder.physiology.white_mod /= 0.8
+	status_holder.physiology.black_mod /= 0.8
+	status_holder.physiology.pale_mod /= 0.8
+	status_holder.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects10x10.dmi', "pink", -MUTATIONS_LAYER))
+	status_holder.vis_contents -= army_bud
+	to_chat(status_holder, span_notice("The pink soldier assigned to you returns to its containment cell."))
 
 /datum/status_effect/protection/tick()
 	if(owner.health < 0)

@@ -92,7 +92,7 @@
 	playsound(src, 'sound/effects/ordeals/white/black_ability_end.ogg', 100, FALSE, 30)
 	for(var/obj/machinery/computer/abnormality/A in urange(current_pulse_range, src))
 		if(prob(66) && !A.meltdown && A.datum_reference && A.datum_reference.current && A.datum_reference.qliphoth_meter)
-			INVOKE_ASYNC(A.datum_reference, /datum/abnormality/proc/qliphoth_change, pick(-1, -2))
+			INVOKE_ASYNC(A.datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), pick(-1, -2))
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(5)
 	pulse_cooldown = world.time + pulse_cooldown_time
@@ -228,7 +228,7 @@
 	been_hit = list()
 	var/i = 1
 	for(var/turf/T in turfs_to_hit)
-		addtimer(CALLBACK(src, .proc/LongBeamTurf, T), i*0.3)
+		addtimer(CALLBACK(src, PROC_REF(LongBeamTurf), T), i*0.3)
 		i++
 	SLEEP_CHECK_DEATH(5)
 	icon_state = icon_living
@@ -271,7 +271,7 @@
 		var/list/turf_list = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		for(var/turf/T in turf_list)
 			new /obj/effect/temp_visual/small_smoke(T)
-			addtimer(CALLBACK(src, .proc/BeamTurfEffect, T, circle_overtime_damage))
+			addtimer(CALLBACK(src, PROC_REF(BeamTurfEffect), T, circle_overtime_damage))
 		SLEEP_CHECK_DEATH(0.5)
 	SLEEP_CHECK_DEATH(5)
 	icon_state = icon_living

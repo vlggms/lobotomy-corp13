@@ -125,7 +125,7 @@
 /obj/item/ego_weapon/mini/blossom/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		addtimer(CALLBACK(src, /atom/movable.proc/throw_at, thrownby, throw_range+2, throw_speed, null, TRUE), 1)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
@@ -169,7 +169,7 @@
 /obj/item/ego_weapon/sorrow/attack_self(mob/living/user)
 	var/area/turf_area = get_area(get_turf(user))
 	if(istype(turf_area, /area/fishboat))
-		to_chat(user, "<span class='warning'>[src] will not work here!.</span>")
+		to_chat(user, span_warning("[src] will not work here!."))
 		return
 	if(do_after(user, 50, src))	//Five seconds of not doing anything, then teleport.
 		new /obj/effect/temp_visual/dir_setting/ninja/phase/out (get_turf(user))
@@ -258,7 +258,7 @@
 	ranged_cooldown = world.time + ranged_cooldown_time
 	icon_state = icon_on
 	//light_on = TRUE
-	addtimer(CALLBACK(src, .proc/IconOff), 20)
+	addtimer(CALLBACK(src, PROC_REF(IconOff)), 20)
 	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
 	var/damage_dealt = 0
 	for(var/turf/open/T in range(target_turf, 0))
@@ -272,8 +272,8 @@
 	icon_state = "smash1"
 	duration = 3
 
-#define LANTERN_MODE_REMOTE 1
-#define LANTERN_MODE_AUTO 2
+#define LANTERN_MODE_REMOTE (1<<0)
+#define LANTERN_MODE_AUTO (1<<1)
 
 /obj/item/ego_weapon/lantern //meat lantern
 	name = "lantern"
@@ -293,10 +293,10 @@
 
 /obj/item/ego_weapon/lantern/attack_self(mob/user)
 	if(mode == LANTERN_MODE_REMOTE)
-		to_chat(user, "<span class='info'>You adjust any newly-placed traps to be set off by motion.</span>")
+		to_chat(user, span_info("You adjust any newly-placed traps to be set off by motion."))
 		mode = LANTERN_MODE_AUTO
 	else
-		to_chat(user, "<span class='info'>You can now remotely trigger any placed traps.</span>")
+		to_chat(user, span_info("You can now remotely trigger any placed traps."))
 		mode = LANTERN_MODE_REMOTE
 
 /obj/item/ego_weapon/lantern/proc/CreateTrap(target, mob/user, proximity_flag)
@@ -345,7 +345,7 @@
 		icon_state = "mini_lantern_auto" //temp visual
 		resonance_damage = 25
 		range = 0
-		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), .proc/burst_check)
+		RegisterSignal(src, list(COMSIG_MOVABLE_CROSSED, COMSIG_ATOM_ENTERED), PROC_REF(burst_check))
 	. = ..()
 	creator = set_creator
 	res = set_resonator
@@ -353,7 +353,7 @@
 		res.traps += src
 	playsound(src,'sound/weapons/resonator_fire.ogg',50,TRUE)
 	deltimer(timerid)
-	timerid = addtimer(CALLBACK(src, .proc/burst), duration, TIMER_STOPPABLE)
+	timerid = addtimer(CALLBACK(src, PROC_REF(burst)), duration, TIMER_STOPPABLE)
 
 /obj/effect/temp_visual/lanterntrap/Destroy()
 	if(res)
@@ -474,7 +474,7 @@
 	//Crit itself.
 	if(prob(poise*2))
 		force*=3
-		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		to_chat(user, span_userdanger("Critical!"))
 		poise = 0
 	..()
 	force = initial(force)
@@ -495,7 +495,7 @@
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/zauberhorn/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, .proc/projectile_hit)
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	..()
 
 /obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)

@@ -85,7 +85,7 @@
 /obj/item/card/emag/doorjack/proc/use_charge(mob/user)
 	charges --
 	to_chat(user, "<span class='notice'>You use [src]. It now has [charges] charges remaining.</span>")
-	charge_timers.Add(addtimer(CALLBACK(src, .proc/recharge), charge_time, TIMER_STOPPABLE))
+	charge_timers.Add(addtimer(CALLBACK(src, PROC_REF(recharge)), charge_time, TIMER_STOPPABLE))
 
 /obj/item/card/emag/doorjack/proc/recharge(mob/user)
 	charges = min(charges+1, max_charges)

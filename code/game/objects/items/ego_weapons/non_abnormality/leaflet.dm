@@ -28,10 +28,10 @@
 	if(!CanUseEgo(user))
 		return
 	if(broken)
-		to_chat(user, "<span class='notice'>You start reparing your weapon...</span>")
+		to_chat(user, span_notice("You start reparing your weapon..."))
 		if(!do_after(user, 12 SECONDS, src))
 			return
-		to_chat(user, "<span class='notice'>You finish repairing your weapon</span>")
+		to_chat(user, span_notice("You finish repairing your weapon"))
 		durability = max_durability
 		force = initial(force)
 
@@ -41,7 +41,7 @@
 		durability -= 1
 	else if(durability == 0 && !broken)
 		broken = TRUE
-		to_chat(user, "<span class='userdanger'>Your weapon has broken!</span>")
+		to_chat(user, span_userdanger("Your weapon has broken!"))
 		force = force*0.5
 		playsound(src, 'sound/weapons/ego/shield1.ogg', 100, FALSE, 4)
 
