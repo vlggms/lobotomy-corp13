@@ -229,6 +229,7 @@
 			deploy_spot = pick_n_take(deployment_area)
 		var/obj/structure/flotsam/F = new get_turf(deploy_spot)
 		spawned_flotsams += F
+		F.silt = src
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/OxygenLoss()//While its alive all humans around it will lose oxygen.
 	for(var/mob/living/carbon/human/H in oview(src, 20))//Used to be global but this should prevent it from being asinine when other abormalities are out
@@ -267,6 +268,7 @@
 	light_color = COLOR_TEAL
 	light_range = 4
 	light_power = 5
+	var/mob/living/simple_animal/hostile/abnormality/siltcurrent/silt
 
 /obj/structure/flotsam/attackby(obj/item/W, mob/user, params)
 	. = ..()
@@ -289,11 +291,15 @@
 
 /obj/structure/flotsam/proc/Refill(mob/living/attacker)
 	attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
+	if(!(silt.target) && !(silt.diving || silt.stunned))
+		silt.dive_cooldown = world.time
+		silt.SlitDive(attacker)
+		to_chat(attacker, span_userdanger("Something is approaching  you!"))
 
 /obj/effect/obsessing_water_effect
 	name = "Obsessing water"
 	desc = "A strange black and teal water"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'icons/turf/floors/water.dmi'
 	icon_state = "obsessing_water"
 	layer = 1.9//Prevents it from blocking bitter flora
 	anchored = TRUE
