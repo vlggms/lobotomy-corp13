@@ -215,7 +215,7 @@
 			if(H.is_working)//Because fuck you
 				to_chat(owner, span_warning("ERROR: CAN'T REPLENISH SP OF AGENT WHILE THEY'RE WORKING!"))
 				return FALSE
-			H.adjustSanityLoss((-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity) * H.sanity_lost? 0.25 : 1)
+			H.adjustSanityLoss((-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity) * H.sanity_lost? 0.5 : 1)
 		if(MANAGER_RED_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield)
 		if(MANAGER_WHITE_BULLET)
