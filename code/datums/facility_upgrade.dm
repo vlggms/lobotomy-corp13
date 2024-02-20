@@ -102,7 +102,6 @@
 
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
-	max_value = 0.5
 
 // Bullet upgrades
 /datum/facility_upgrade/bullet_count
