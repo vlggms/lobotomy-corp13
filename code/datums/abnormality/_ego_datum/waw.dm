@@ -364,15 +364,6 @@
 	item_path = /obj/item/gun/ego_gun/pistol/crimson
 	cost = 50
 
-//Pure Hearted Believer - Untainted Faith
-/datum/ego_datum/armor/faith
-	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/faith
-	cost = 50
-
-/*/datum/ego_datum/weapon/faith
-	item_path = /obj/item/ego_weapon/faith
-	cost = 50*/
-
 //My Sweet Orange Tree - Innocence
 /datum/ego_datum/armor/innocence
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/innocence
