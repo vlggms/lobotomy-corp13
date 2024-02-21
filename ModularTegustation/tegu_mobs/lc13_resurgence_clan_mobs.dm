@@ -37,6 +37,7 @@
 
 /mob/living/simple_animal/hostile/clan/proc/GainCharge()
 	if(stat == DEAD)
+		charge = 0
 		return
 
 	if (charge < max_charge)
@@ -80,6 +81,9 @@
 	. = ..()
 	if (charge > 0)
 		charge -= 1
+
+/mob/living/simple_animal/hostile/clan/scout/death(gibbed)
+	charge = 0
 
 //Clan Member: Defender
 /mob/living/simple_animal/hostile/clan/defender
@@ -135,12 +139,10 @@
 	addtimer(CALLBACK(src, PROC_REF(Unlock)), charge * 10)
 
 /mob/living/simple_animal/hostile/clan/defender/death(gibbed)
-	if(stat == DEAD)
-		return
-
+	. =  ..()
+	charge = 0
 	if (stunned == TRUE)
 		Unlock()
-	. =  ..()
 
 /mob/living/simple_animal/hostile/clan/defender/proc/ApplyLock(mob/living/L)
 	if(!faction_check_mob(L, FALSE))
@@ -148,9 +150,11 @@
 		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
 		if(!S)
 			S = L.apply_status_effect(/datum/status_effect/locked)
-		S.list_of_defenders += src
+		if (!S.list_of_defenders.Find(src))
+			S.list_of_defenders += src
+			locked_list += L
 		// keep a list of everyone locked
-		locked_list += L
+
 
 
 /mob/living/simple_animal/hostile/clan/defender/proc/Unlock()
@@ -159,21 +163,31 @@
 
 	icon_state = "defender"
 	density = TRUE
+	stunned = FALSE
 	// clear tiles
 	for(var/obj/effect/defender_field/DF in locked_tiles_list)
 		qdel(DF)
 	// remove status effect
 	for(var/mob/living/L in locked_list)
+		say("Unlocking living: " + L.name)
 		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
-		if (length(S.list_of_defenders) == 1)
+		if (!S)
+			say("No status effect!")
+		else
+			say("Status effect present")
+
+		say("Length of defenders " + S.list_of_defenders.len)
+		if (S.list_of_defenders.len == 1)
 			L.remove_status_effect(/datum/status_effect/locked)
 		else
 			S.list_of_defenders -= src
-
+	locked_list = list()
+	locked_tiles_list = list()
 	// restart charge
 	charge = 0
 	stunned = FALSE
 	GainCharge()
+	say("Unlock completed")
 
 //Not an actual floor, but an effect you put on top of it. The gold road is periodically being created by the road home.
 /obj/effect/defender_field
@@ -198,7 +212,7 @@
 	id = "locked"
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/locked
-	var/list_of_defenders = list()
+	var/list/list_of_defenders = list()
 
 
 /atom/movable/screen/alert/status_effect/locked
