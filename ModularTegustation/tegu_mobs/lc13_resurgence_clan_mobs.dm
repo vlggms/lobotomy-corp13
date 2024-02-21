@@ -163,20 +163,12 @@
 
 	icon_state = "defender"
 	density = TRUE
-	stunned = FALSE
 	// clear tiles
 	for(var/obj/effect/defender_field/DF in locked_tiles_list)
 		qdel(DF)
 	// remove status effect
 	for(var/mob/living/L in locked_list)
-		say("Unlocking living: " + L.name)
 		var/datum/status_effect/locked/S = L.has_status_effect(/datum/status_effect/locked)
-		if (!S)
-			say("No status effect!")
-		else
-			say("Status effect present " + S)
-
-		say("Length of defenders " + S.list_of_defenders.len)
 		if (S.list_of_defenders.len == 1)
 			L.remove_status_effect(/datum/status_effect/locked)
 		else
