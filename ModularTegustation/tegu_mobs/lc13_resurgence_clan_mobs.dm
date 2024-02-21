@@ -174,7 +174,7 @@
 		if (!S)
 			say("No status effect!")
 		else
-			say("Status effect present")
+			say("Status effect present " + S)
 
 		say("Length of defenders " + S.list_of_defenders.len)
 		if (S.list_of_defenders.len == 1)
