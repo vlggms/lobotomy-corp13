@@ -71,7 +71,7 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
 		human.add_movespeed_modifier(/datum/movespeed_modifier/assault)
-		addtimer(CALLBACK(human, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/assault), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/assault), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		StartCooldown()
 
 /datum/movespeed_modifier/assault
@@ -99,7 +99,7 @@
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
 		human.add_movespeed_modifier(/datum/movespeed_modifier/retreat)
-		addtimer(CALLBACK(human, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/retreat), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/retreat), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		human.physiology.red_mod *= 1.3
 		human.physiology.white_mod *= 1.3
 		human.physiology.black_mod *= 1.3

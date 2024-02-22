@@ -335,7 +335,7 @@
 	if(prob(lie_chance))
 		lie = TRUE
 		if(buddy_abno)
-			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/ShepherdLying), 90 SECONDS)
+			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_buddy, ShepherdLying)), 90 SECONDS)
 			buddy_abno.lying = TRUE
 	else
 		lie = FALSE

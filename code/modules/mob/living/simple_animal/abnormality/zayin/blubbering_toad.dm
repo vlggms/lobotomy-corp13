@@ -277,7 +277,7 @@
 /datum/status_effect/blue_resin
 	id = "blue resin"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000 //Lasts 5 mins
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/blue_resin
 
 /atom/movable/screen/alert/status_effect/blue_resin
@@ -289,13 +289,15 @@
 /datum/status_effect/blue_resin/on_apply()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.black_mod *= 0.9
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.black_mod *= 0.9
 
 /datum/status_effect/blue_resin/on_remove()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.black_mod /= 0.9
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.black_mod /= 0.9
 
 #undef STATUS_EFFECT_BLUERESIN

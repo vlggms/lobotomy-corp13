@@ -84,7 +84,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 				continue
 			if(!A.IsContained())
 				continue
-			INVOKE_ASYNC(A.datum_reference, /datum/abnormality/proc/qliphoth_change, -999)
+			INVOKE_ASYNC(A.datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), -999)
 			break
 	return
 	//Further checks for event abnos can go here.
@@ -140,7 +140,7 @@ SUBSYSTEM_DEF(lobotomy_events)
 		if(YINYANG)
 			if(YY_breached.len < 2)
 				return FALSE
-			var/list/meet_path = get_path_to(YY_breached[1], YY_breached[2], /turf/proc/Distance, 0, 200)
+			var/list/meet_path = get_path_to(YY_breached[1], YY_breached[2], TYPE_PROC_REF(/turf, Distance), 0, 200)
 			YY_middle = meet_path[round(meet_path.len/2)]
 			for(var/mob/living/simple_animal/hostile/abnormality/A in YY_breached)
 				A.patrol_to(YY_middle)

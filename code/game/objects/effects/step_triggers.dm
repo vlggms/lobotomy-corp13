@@ -193,3 +193,47 @@
 
 	if(happens_once)
 		qdel(src)
+
+/* Simple projectile firer! */
+
+/obj/effect/step_trigger/projectile
+	var/happens_once = FALSE
+	var/fire_cooldown = 0
+	var/fire_cooldown_delay = 2 SECONDS
+	var/projectile_dir = "SOUTH"
+	var/projectile_dist_y = 0
+	var/projectile_dist_x = 0
+	var/turf/projectile_origin
+	var/projectile_sound = 'sound/weapons/emitter.ogg'
+	var/projectile_type = /obj/projectile/energy/electrode
+
+/obj/effect/step_trigger/projectile/Initialize()
+	. = ..()
+	if(!projectile_origin)
+		projectile_origin = locate(x + projectile_dist_x, y + projectile_dist_y, z)
+
+/obj/effect/step_trigger/projectile/Trigger(atom/movable/A)
+	var/turf/T = get_turf(A)
+	if(!T)
+		return
+	if(!ismob(A))
+		return
+	if(fire_cooldown > world.time)
+		return
+
+	//Its not ideal but it will do -IP
+	FireProjectile(A, projectile_origin)
+
+	if(happens_once)
+		qdel(src)
+	else
+		fire_cooldown = world.time + fire_cooldown_delay
+
+/obj/effect/step_trigger/projectile/proc/FireProjectile(mob/user, turf/firing_origin)
+	var/obj/projectile/P = new projectile_type(get_turf(firing_origin))
+	P.firer = src
+	P.fired_from = src
+	P.fire(dir2angle(text2dir(projectile_dir)))
+	if(projectile_sound)
+		playsound(src, projectile_sound, 50, TRUE)
+	return P

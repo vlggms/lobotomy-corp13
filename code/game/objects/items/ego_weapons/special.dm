@@ -11,8 +11,8 @@
 	attack_verb_continuous = list("cuts", "smacks", "bashes")
 	attack_verb_simple = list("cuts", "smacks", "bashes")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 20		//It's 20 to keep clerks from using it
-							)
+		FORTITUDE_ATTRIBUTE = 20, //It's 20 to keep clerks from using it
+	)
 
 /obj/item/ego_weapon/eyeball/attack(mob/living/target, mob/living/carbon/human/user)
 	var/userfort = (get_attribute_level(user, FORTITUDE_ATTRIBUTE))
@@ -99,7 +99,7 @@
 	. = ..()
 	var/datum/status_effect/chosen/C = user.has_status_effect(/datum/status_effect/chosen)
 	if(!C)
-		to_chat(user, "<span class='notice'>You cannot use [src], only the abnormality's chosen can!</span>")
+		to_chat(user, span_notice("You cannot use [src], only the abnormality's chosen can!"))
 		return FALSE
 
 /obj/item/ego_weapon/lance/famiglia/attack(mob/living/target, mob/living/user)
@@ -189,9 +189,9 @@
 
 /obj/item/ego_weapon/iron_maiden/attack_self(mob/user)
 	if(ramping_speed == 0)
-		to_chat(user,"<span class='notice'>It is already revved down!</span>")
+		to_chat(user,span_notice("It is already revved down!"))
 		return
-	to_chat(user,"<span class='notice'>You being to cool down [src].</span>")
+	to_chat(user,span_notice("You being to cool down [src]."))
 	playsound(src, 'sound/abnormalities/we_can_change_anything/change_gas.ogg', 50, TRUE)
 	if(do_after(user, 2.5 SECONDS, src))
 		icon_state = "iron_maiden"
@@ -199,7 +199,7 @@
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
 		ramping_speed = 0
 		ramping_damage = 0
-		to_chat(user,"<span class='notice'>The mechanism on [src] dies down!</span>")
+		to_chat(user,span_notice("The mechanism on [src] dies down!"))
 
 //Event rewards
 /obj/item/ego_weapon/goldrush/nihil
@@ -237,7 +237,7 @@
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 		force *= 5	// Should actually keep up with normal damage.
 		playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 50, FALSE, 9)
-		to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
+		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	..()
@@ -247,12 +247,12 @@
 /obj/item/ego_weapon/goldrush/nihil/attack_self(mob/user)
 	..()
 	if(finisher_on)
-		to_chat(user,"<span class='warning'>You will now perform a combo attack instead of a heavy attack.</span>")
+		to_chat(user,span_warning("You will now perform a combo attack instead of a heavy attack."))
 		finisher_on = FALSE
 		force = 40
 		return
 
-	to_chat(user,"<span class='warning'>You will now perform a heavy attack instead of a combo attack.</span>")
+	to_chat(user,span_warning("You will now perform a heavy attack instead of a combo attack."))
 	finisher_on =TRUE
 	force = 140
 
@@ -317,7 +317,7 @@
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 		force *= 5	// Should actually keep up with normal damage.
 		playsound(src, 'sound/weapons/fixer/generic/sword5.ogg', 50, FALSE, 9)
-		to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
+		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	..()

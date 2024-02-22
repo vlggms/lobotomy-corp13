@@ -12,9 +12,9 @@
 	attack_verb_simple = list("slam", "attack")
 	hitsound = 'sound/weapons/ego/hammer.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60
-							)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 60,
+	)
 
 /obj/item/ego_weapon/lamp/attack(mob/living/M, mob/living/user)
 	. = ..()
@@ -55,11 +55,11 @@
 /obj/item/ego_weapon/despair/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will no longer perform a finisher.</span>")
+		to_chat(user,span_warning("You swap your grip, and will no longer perform a finisher."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will now perform a finisher.</span>")
+		to_chat(user,span_warning("You swap your grip, and will now perform a finisher."))
 		combo_on =TRUE
 		return
 
@@ -75,7 +75,7 @@
 		user.changeNext_move(CLICK_CD_MELEE * 2)
 		force *= 5	// Should actually keep up with normal damage.
 		playsound(src, 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-		to_chat(user,"<span class='warning'>You are offbalance, you take a moment to reset your stance.</span>")
+		to_chat(user,span_warning("You are offbalance, you take a moment to reset your stance."))
 	else
 		user.changeNext_move(CLICK_CD_MELEE * 0.4)
 	..()
@@ -87,7 +87,7 @@
 	if(!istype(I, /obj/item/nihil/spade))
 		return
 	new /obj/item/ego_weapon/shield/despair_nihil(get_turf(src))
-	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)
 	qdel(src)
@@ -117,7 +117,7 @@
 	if(do_after(user, 12, src))
 		charged = TRUE
 		force = 120	//FULL POWER
-		to_chat(user,"<span class='warning'>You put your strength behind this attack.</span>")
+		to_chat(user,span_warning("You put your strength behind this attack."))
 
 /obj/item/ego_weapon/totalitarianism/get_clamped_volume()
 	return 50
@@ -143,7 +143,7 @@
 /obj/item/ego_weapon/oppression/attack_self(mob/user)
 	if (!charged)
 		charged = TRUE
-		to_chat(user,"<span class='warning'>You focus your energy, adding [meter] damage to your next attack.</span>")
+		to_chat(user,span_warning("You focus your energy, adding [meter] damage to your next attack."))
 		force += meter
 		meter = 0
 
@@ -203,13 +203,13 @@
 		return
 	if(mode)	//Turn to nail
 		mode = FALSE
-		to_chat(user,"<span class='warning'>You swap to nail mode, clearing all marks.</span>")
+		to_chat(user,span_warning("You swap to nail mode, clearing all marks."))
 		targets = list()
 		return
 
 	if(!mode)	//Turn to hammer
 		mode = TRUE
-		to_chat(user,"<span class='warning'>You swap to hammer mode.</span>")
+		to_chat(user,span_warning("You swap to hammer mode."))
 		return
 
 /obj/item/ego_weapon/mini/crimson
@@ -267,9 +267,9 @@
 		return
 	special_attack = !special_attack
 	if(special_attack)
-		to_chat(user, "<span class='notice'>You prepare to throw [src].</span>")
+		to_chat(user, span_notice("You prepare to throw [src]."))
 	else
-		to_chat(user, "<span class='notice'>You decide to not throw [src], for now.</span>")
+		to_chat(user, span_notice("You decide to not throw [src], for now."))
 
 /obj/item/ego_weapon/mini/crimson/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
@@ -291,7 +291,7 @@
 	if(!LAZYLEN(turfs_to_hit))
 		return
 	playsound(user, 'sound/abnormalities/redhood/throw.ogg', 75, TRUE, 3)
-	user.visible_message("<span class='warning'>[user] throws [src] towards [A]!</span>")
+	user.visible_message(span_warning("[user] throws [src] towards [A]!"))
 	var/dealing_damage = special_damage // Damage reduces a little with each mob hit
 	dealing_damage*=force_multiplier
 	for(var/i = 1 to turfs_to_hit.len) // Basically, I copied my code from helper's realized ability. Yep.
@@ -313,7 +313,7 @@
 				continue
 			if(special_checks_faction && user.faction_check_mob(L))
 				continue
-			to_chat(L, "<span class='userdanger'>You are hit by [src]!</span>")
+			to_chat(L, span_userdanger("You are hit by [src]!"))
 			L.apply_damage(dealing_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			dealing_damage = max(dealing_damage * 0.9, special_damage * 0.3)
@@ -383,7 +383,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(vine_cooldown <= world.time)
-		user.visible_message("<span class='notice'>[user] stabs [src] into the ground.</span>", "<span class='nicegreen'>You stab your [src] into the ground.</span>")
+		user.visible_message(span_notice("[user] stabs [src] into the ground."), span_nicegreen("You stab your [src] into the ground."))
 		var/mob/living/carbon/human/L = user
 		L.adjustSanityLoss(30)
 
@@ -392,7 +392,7 @@
 			var/channel_level = (3 SECONDS) / i //Burst is 3 + 1.5 + 1 + 0.75 + 0.6 + 0.2 seconds for a total of 60-90 damage over a period of 7.05 seconds if you allow it to finish.
 			vine_cooldown = world.time + channel_level + (1 SECONDS)
 			if(!do_after(user, channel_level, target = user))
-				to_chat(user, "<span class='warning'>Your vineburst is interrupted.</span>")
+				to_chat(user, span_warning("Your vineburst is interrupted."))
 				break
 			for(var/mob/living/C in oview(3, get_turf(src)))
 				var/vine_damage = 10
@@ -484,7 +484,7 @@
 	if(max_count > hit_count)
 		hit_count++
 	else if(prob(10))
-		to_chat(user, "<span class='notice'>[src]' feathers bristle!</span>") // "Hey dumbass, you can stop smacking them now"
+		to_chat(user, span_notice("[src]' feathers bristle!")) // "Hey dumbass, you can stop smacking them now"
 	combo_hold = world.time + decay_time
 	..()
 	INVOKE_ASYNC(src, PROC_REF(SecondSwing), M, user)
@@ -493,7 +493,7 @@
 /obj/item/ego_weapon/wings/attack_self(mob/user)
 	. = ..()
 	if(world.time > combo_hold && hit_count > 0)
-		to_chat(user, "<span class='notice'>[src]' feathers fall still...</span>") // Notify you the combo's over
+		to_chat(user, span_notice("[src]' feathers fall still...")) // Notify you the combo's over
 		hit_count = 0
 	if(!(special_cost > hit_count) && !(specialing))
 		specialing = TRUE
@@ -502,22 +502,22 @@
 		if(special_combo < 4) // Special combo goes up to 5.
 			special_combo++
 		else if(prob(20)) // If your special combo is at max, you get some glory.
-			user.visible_message("<span class='notice'>[user] is moving like the wind!</span>")
+			user.visible_message(span_notice("[user] is moving like the wind!"))
 		Pirouette(user)
 		specialing = FALSE
 
 /obj/item/ego_weapon/wings/afterattack(atom/A, mob/living/user, params) // Time for the ANIME BLADE DASH ATTACK
 	if(world.time > combo_hold && hit_count > 0)
-		to_chat(user, "<span class='notice'>[src]' feathers fall still...</span>")
+		to_chat(user, span_notice("[src]' feathers fall still..."))
 		hit_count = 0
 		return
 	if(special_cost > hit_count || !CanUseEgo(user) || get_dist(get_turf(A), get_turf(user)) < 2 || specialing)
 		return
 	var/aim_dir = get_cardinal_dir(get_turf(user), get_turf(A)) // You can only anime dash in a cardinal direction.
 	if(CheckPath(user, aim_dir))
-		to_chat(user,"<span class='notice'>You need more room to do that!</span>")
+		to_chat(user,span_notice("You need more room to do that!"))
 	else
-		user.visible_message("<span class='notice'>[user] lunges forward, [src] dancing in their grasp!</span>") // ANIME AS FUCK
+		user.visible_message(span_notice("[user] lunges forward, [src] dancing in their grasp!")) // ANIME AS FUCK
 		playsound(src, hitsound, 75, FALSE, 4) // Might need a punchier sound, but none come to mind.
 		hit_count -= special_cost
 		combo_hold = world.time + decay_time // Specials continue the regular AND special combo.
@@ -525,7 +525,7 @@
 			if(special_combo < 4)
 				special_combo++
 			else if(prob(20))
-				user.visible_message("<span class='notice'>[user] is moving like the wind!</span>")
+				user.visible_message(span_notice("[user] is moving like the wind!"))
 		else
 			special_combo = 1
 		special_combo_hold = world.time + decay_time
@@ -536,7 +536,7 @@
 	return
 
 /obj/item/ego_weapon/wings/proc/Pirouette(mob/living/user)
-	user.visible_message("<span class='notice'>[user] whirls in place, [src] flicking out at enemies!</span>") // You cool looking bitch
+	user.visible_message(span_notice("[user] whirls in place, [src] flicking out at enemies!")) // You cool looking bitch
 	playsound(src, hitsound, 75, FALSE, 4)
 	for(var/turf/T in orange(1, user)) // Most of this code was jacked from Harvest tbh
 		new /obj/effect/temp_visual/smash_effect(T)
@@ -553,7 +553,7 @@
 			if(!H.sanity_lost)
 				continue
 		L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-		L.visible_message("<span class='danger'>[user] slices [L]!</span>")
+		L.visible_message(span_danger("[user] slices [L]!"))
 
 /obj/item/ego_weapon/wings/proc/Leap(mob/living/user, dir = SOUTH, times_ran = 3)
 	user.forceMove(get_step(get_turf(user), dir))
@@ -561,7 +561,7 @@
 	if(times_ran > 2)
 		end_leap = TRUE
 	if(CheckPath(user, dir)) // If we have something ahead of us, yes, but we're ALSO going to attack around us
-		to_chat(user,"<span class='notice'>You cut your leap short!</span>")
+		to_chat(user,span_notice("You cut your leap short!"))
 		for(var/turf/T in orange(1, user)) // I hate having to use this code twice but it's TWO LINES and I don't need to use callbacks with it so it's not getting a proc
 			hit_turfs |= T
 		end_leap = TRUE
@@ -581,7 +581,7 @@
 					if(!H.sanity_lost)
 						continue
 				L.apply_damage(aoe, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				L.visible_message("<span class='danger'>[user] evicerates [L]!</span>")
+				L.visible_message(span_danger("[user] evicerates [L]!"))
 		return
 	for(var/turf/T in orange(1, user))
 		hit_turfs |= T
@@ -607,12 +607,12 @@
 	if(get_dist(M, user) > 1)
 		return
 	if(force && HAS_TRAIT(user, TRAIT_PACIFISM))
-		to_chat(user, "<span class='warning'>You don't want to harm other living beings!</span>")
+		to_chat(user, span_warning("You don't want to harm other living beings!"))
 		return
 	if(max_count > hit_count)
 		hit_count++
 	else if(prob(10))
-		to_chat(user, "<span class='notice'>[src]' feathers bristle!</span>") // "Hey dumbass, you can stop smacking them now"
+		to_chat(user, span_notice("[src]' feathers bristle!")) // "Hey dumbass, you can stop smacking them now"
 	combo_hold = world.time + decay_time
 	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	user.do_attack_animation(M)
@@ -649,11 +649,11 @@
 /obj/item/ego_weapon/mini/mirth/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will no longer fight with two weapons.</span>")
+		to_chat(user,span_warning("You swap your grip, and will no longer fight with two weapons."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will now fight with two weapons.</span>")
+		to_chat(user,span_warning("You swap your grip, and will now fight with two weapons."))
 		combo_on =TRUE
 		return
 
@@ -724,11 +724,11 @@
 /obj/item/ego_weapon/mini/malice/attack_self(mob/user)
 	..()
 	if(combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will no longer fight with two weapons.</span>")
+		to_chat(user,span_warning("You swap your grip, and will no longer fight with two weapons."))
 		combo_on = FALSE
 		return
 	if(!combo_on)
-		to_chat(user,"<span class='warning'>You swap your grip, and will now fight with two weapons.</span>")
+		to_chat(user,span_warning("You swap your grip, and will now fight with two weapons."))
 		combo_on =TRUE
 		return
 
@@ -802,7 +802,7 @@
 
 /obj/item/ego_weapon/shield/swan/attack_self(mob/user)
 	if(close_cooldown > world.time) //prevents shield usage with no DPS loss
-		to_chat(user,"<span class='warning'>You cannot use this again so soon!</span>")
+		to_chat(user,span_warning("You cannot use this again so soon!"))
 		return
 	if(do_after(user, 4, src))
 		icon_state = "swan"
@@ -813,7 +813,7 @@
 /obj/item/ego_weapon/shield/swan/DisableBlock(mob/living/carbon/human/user)
 	. = ..()
 	icon_state = "swan_closed"
-	to_chat(user,"<span class='nicegreen'>You close the umbrella.</span>")
+	to_chat(user,span_nicegreen("You close the umbrella."))
 	user.update_inv_hands()
 	return
 
@@ -888,7 +888,7 @@
 		playsound(src, 'sound/magic/staff_healing.ogg', 200, FALSE, 9)
 		for(var/mob/living/carbon/human/L in range(5, get_turf(user)))
 			if(L.is_working)
-				to_chat(L, "<span class='nicegreen'>The powers of the moon are the same as the powers of the sun. The redundancy of moonlight does not make this work any less mind-numbing.</span>")
+				to_chat(L, span_nicegreen("The powers of the moon are the same as the powers of the sun. The redundancy of moonlight does not make this work any less mind-numbing."))
 				continue
 			L.adjustSanityLoss(-10)
 	inuse = FALSE
@@ -998,7 +998,7 @@
 /obj/item/ego_weapon/shield/pharaoh/pre_attack(atom/A, mob/living/user, params)
 	if(istype(A,/obj/structure/statue/petrified) && CanUseEgo(user))
 		playsound(A, 'sound/effects/break_stone.ogg', rand(10,50), TRUE)
-		A.visible_message("<span class='danger'>[A] returns to normal!</span>", "<span class='userdanger'>You break free of the stone!</span>")
+		A.visible_message(span_danger("[A] returns to normal!"), span_userdanger("You break free of the stone!"))
 		A.Destroy()
 		return
 	..()
@@ -1060,7 +1060,7 @@
 	if(!istype(I, /obj/item/nihil/club))
 		return
 	new /obj/item/ego_weapon/blind_rage/nihil(get_turf(src))
-	to_chat(user,"<span class='warning'>The [I] seems to drain all of the light away as it is absorbed into [src]!</span>")
+	to_chat(user,span_warning("The [I] seems to drain all of the light away as it is absorbed into [src]!"))
 	playsound(user, 'sound/abnormalities/nihil/filter.ogg', 15, FALSE, -3)
 	qdel(I)
 	qdel(src)
@@ -1126,9 +1126,9 @@
 	..()
 	if(do_after(user, 4, src))
 		playsound(loc, hitsound, 120, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		target.visible_message("<span class='danger'>[user] markes [target]!</span>", \
-						"<span class='userdanger'>[user] marks you!</span>", COMBAT_MESSAGE_RANGE, user)
-		to_chat(user, "<span class='danger'>You enscribe a code on [target]!</span>")
+		target.visible_message(span_danger("[user] markes [target]!"), \
+						span_userdanger("[user] marks you!"), COMBAT_MESSAGE_RANGE, user)
+		to_chat(user, span_danger("You enscribe a code on [target]!"))
 
 		mark_damage = force*2
 		//I gotta grab  justice here
@@ -1208,7 +1208,7 @@
 	if(!CanUseEgo(user))
 		return
 	if(!can_spin)
-		to_chat(user,"<span class='warning'>You attacked too recently.</span>")
+		to_chat(user,span_warning("You attacked too recently."))
 		return
 	can_spin = FALSE
 	if(do_after(user, 13, src))
@@ -1366,7 +1366,7 @@
 	if(!isliving(A))
 		return
 	if(dash_cooldown > world.time)
-		to_chat(user, "<span class='warning'>Your dash is still recharging!</span>")
+		to_chat(user, span_warning("Your dash is still recharging!"))
 		return
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
@@ -1381,7 +1381,7 @@
 			step_towards(user,A)
 		if((get_dist(user, A) < 2))
 			JumpAttack(A,user)
-		to_chat(user, "<span class='warning'>You jump towards [A]!</span>")
+		to_chat(user, span_warning("You jump towards [A]!"))
 		animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = 0
 
@@ -1478,12 +1478,12 @@
 /obj/item/ego_weapon/grasp/attack_self(mob/user)
 	..()
 	if(charging)
-		to_chat(user,"<span class='warning'>You change your stance, and will no longer perform a dash towards enemies.</span>")
+		to_chat(user,span_warning("You change your stance, and will no longer perform a dash towards enemies."))
 		charging = FALSE
 		force = initial(force) + 2
 		return
 	if(!charging)
-		to_chat(user,"<span class='warning'>You change your stance, and will now perform a dash towards enemies.</span>")
+		to_chat(user,span_warning("You change your stance, and will now perform a dash towards enemies."))
 		charging =TRUE
 		force = initial(force)
 		return
@@ -1512,7 +1512,7 @@
 	desc = "Once upon a time, these claws would cut open the bellies of numerous creatures and tear apart their guts."
 	special = "Preform an additional attack of 50% damage when at half health."
 	icon_state = "cobalt"
-	force = 20
+	force = 24
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("claws")
@@ -1546,13 +1546,19 @@
 	if(!those_we_rend)
 		return FALSE
 	if(prob(25))
-		wolf.visible_message("<span class='warning'>[wolf] claws [those_we_rend] in a blind frenzy!</span>", "<span class='warning'>You swipe your claws at [those_we_rend]!</span>")
+		wolf.visible_message(span_warning("[wolf] claws [those_we_rend] in a blind frenzy!"), span_warning("You swipe your claws at [those_we_rend]!"))
 	wolf.do_attack_animation(those_we_rend)
-	those_we_rend.apply_damage(10, damtype, null, those_we_rend.run_armor_check(null, damtype), spread_damage = TRUE)
-	those_we_rend.lastattacker = wolf.real_name
-	those_we_rend.lastattackerckey = wolf.ckey
-	playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-	wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
+	if(ishuman(wolf))
+		var/rend_damage = 16
+		var/userjust = (get_modified_attribute_level(wolf, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		rend_damage*=justicemod
+		rend_damage*=force_multiplier
+		those_we_rend.apply_damage(rend_damage, damtype, null, those_we_rend.run_armor_check(null, damtype), spread_damage = TRUE)
+		those_we_rend.lastattacker = wolf.real_name
+		those_we_rend.lastattackerckey = wolf.ckey
+		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+		wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
 	return TRUE
 
 /obj/item/ego_weapon/scene
@@ -1742,16 +1748,16 @@
 			if("red")
 				user.apply_damage(50, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 				damtype = RED_DAMAGE
-				to_chat(user, "<span class='notice'>Your bones are painfully sculpted to fit a muscular claw.</span>")
+				to_chat(user, span_notice("Your bones are painfully sculpted to fit a muscular claw."))
 				hitsound = 'sound/weapons/bladeslice.ogg'
 			if("white")
 				user.apply_damage(50, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				damtype = WHITE_DAMAGE
-				to_chat(user, "<span class='notice'>Your angst is plastered onto your arm.</span>")
+				to_chat(user, span_notice("Your angst is plastered onto your arm."))
 			if("black")
 				user.apply_damage(50, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				damtype = BLACK_DAMAGE
-				to_chat(user, "<span class='notice'>Bristles are painfully ejected from your arm, filled with hate.</span>")
+				to_chat(user, span_notice("Bristles are painfully ejected from your arm, filled with hate."))
 				hitsound = 'sound/weapons/ego/spear1.ogg'
 		ADD_TRAIT(src, TRAIT_NODROP, null)
 		user.update_inv_hands()
@@ -1770,7 +1776,7 @@
 	REMOVE_TRAIT(src, TRAIT_NODROP, null)
 	if(user)
 		user.update_inv_hands()
-		to_chat(user, "<span class='notice'>Your arm returns to normal.</span>")
+		to_chat(user, span_notice("Your arm returns to normal."))
 
 /obj/item/ego_weapon/hyde/on_thrown(mob/living/carbon/user, atom/target)//you can't throw it. bleh
 	if(transformed)
@@ -1856,7 +1862,9 @@
 		return ..()
 	speed_slowdown = 0
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	PowerReset(user)
 	current_holder = null
+	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 	return ..()
 
 //Dropped setup
@@ -1866,7 +1874,9 @@
 		return
 	speed_slowdown = 0
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
+	PowerReset(user)
 	current_holder = null
+	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 
 /obj/item/ego_weapon/blind_obsession/proc/UserMoved(mob/user)
 	SIGNAL_HANDLER
@@ -1887,7 +1897,7 @@
 		return
 	if(do_after(user, 12, src))
 		charged = TRUE
-		speed_slowdown = 2
+		speed_slowdown = 1
 		throwforce = 100//TIME TO DIE!
 		to_chat(user,span_warning("You put your strength behind this attack."))
 		power_timer = addtimer(CALLBACK(src, PROC_REF(PowerReset)), 3 SECONDS,user, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
@@ -1897,6 +1907,7 @@
 	charged = FALSE
 	speed_slowdown = 0
 	throwforce = 80
+	deltimer(power_timer)
 
 /obj/item/ego_weapon/blind_obsession/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill others with this
 	if(!CanUseEgo(user))
@@ -1987,20 +1998,20 @@
 	..()
 	if(combo == 4)
 		can_attack = FALSE
-		if(do_after(user, 5, src))
-			playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
-			animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
-			user.pixel_z = -16
-			sleep(0.5 SECONDS)
-			can_attack = TRUE
-			for(var/i in 2 to get_dist(user, A))
-				step_towards(user,A)
-			if((get_dist(user, A) < 2))
-				DiveAttack(A,user)
-			playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
-			to_chat(user, span_warning("You dive towards [A]!"))
-			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
-			user.pixel_z = 0
+		sleep(0.5 SECONDS)
+		playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
+		animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+		user.pixel_z = -16
+		sleep(0.5 SECONDS)
+		can_attack = TRUE
+		for(var/i in 2 to get_dist(user, A))
+			step_towards(user,A)
+		if((get_dist(user, A) < 2))
+			DiveAttack(A,user)
+		playsound(get_turf(src), 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 20, 0, 3)
+		to_chat(user, span_warning("You dive towards [A]!"))
+		animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+		user.pixel_z = 0
 
 /obj/item/ego_weapon/abyssal_route/proc/DiveAttack(atom/A, mob/living/user, proximity_flag, params)
 	A.attackby(src,user)

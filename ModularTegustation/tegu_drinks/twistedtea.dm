@@ -110,7 +110,7 @@
 		W.reagents.add_reagent(chem, 1)
 
 	//Make em move dat ass, hun
-	addtimer(CALLBACK(src, /obj/item/melee/twistedtea/proc/move_particles, reagent_particles), 2)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/melee/twistedtea, move_particles), reagent_particles), 2)
 
 	if(!unlimiteduse)
 		broken = TRUE
@@ -143,7 +143,7 @@
 			particles -= W
 	if(repetition < power)
 		repetition++
-		addtimer(CALLBACK(src, /obj/item/melee/twistedtea/proc/move_particles, particles, repetition), 2)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/obj/item/melee/twistedtea, move_particles), particles, repetition), 2)
 
 
 

@@ -87,7 +87,7 @@
 					var/mob/living/carbon/human/H = L
 					if(H.sanity_lost)
 						new /obj/effect/temp_visual/alriune_curtain(get_turf(H))
-						addtimer(CALLBACK(H, .atom/proc/add_overlay, \
+						addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, add_overlay), \
 							icon('ModularTegustation/Teguicons/tegu_effects.dmi', "alriune_kill")), 5)
 						playsound(H, 'sound/abnormalities/alriune/kill.ogg', 75, TRUE)
 						H.death()

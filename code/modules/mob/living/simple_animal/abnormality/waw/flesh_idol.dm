@@ -75,7 +75,7 @@
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/flesh_idol/ZeroQliphoth(mob/living/carbon/human/user)
-	addtimer(CALLBACK (datum_reference, /datum/abnormality/proc/qliphoth_change, 4), reset_time)
+	addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), 4), reset_time)
 	var/list/total_abnormalities = list()
 
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list)

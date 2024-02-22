@@ -121,7 +121,7 @@
 /datum/status_effect/rested
 	id = "rested"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 600		//Lasts 60 seconds
+	duration = 60 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/rested
 
 /atom/movable/screen/alert/status_effect/rested
@@ -132,10 +132,11 @@
 
 /datum/status_effect/rested/tick()
 	. = ..()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/human/status_holder = owner
 	if(prob(50))
-		H.adjustBruteLoss(-1)
-		H.adjustSanityLoss(-1)
+		return
+	status_holder.adjustBruteLoss(-1)
+	status_holder.adjustSanityLoss(-1)
 
 //pink midnight code
 
@@ -169,12 +170,12 @@
 	var/mob/living/carbon/C = L
 	to_chat(C, span_warning("You feel tired..."))
 	C.blur_eyes(5)
-	addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 20), 2 SECONDS)
+	addtimer(CALLBACK (C, TYPE_PROC_REF(/mob/living, AdjustSleeping), 20), 2 SECONDS)
 	return ..()
 
 /datum/reagent/abnormality/sleeping/on_mob_life(mob/living/L)
 	if(!iscarbon(L))
 		return
 	var/mob/living/carbon/C = L
-	addtimer(CALLBACK (C, .mob/living/proc/AdjustSleeping, 20), 2 SECONDS)
+	addtimer(CALLBACK (C, TYPE_PROC_REF(/mob/living, AdjustSleeping), 20), 2 SECONDS)
 	return ..()

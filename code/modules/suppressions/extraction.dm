@@ -213,7 +213,7 @@
 	charging = TRUE
 	icon_state = "arbiter_fairy"
 	if(prob(35))
-		INVOKE_ASYNC(src, .atom/movable/proc/say, pick("Disperse.", "Heed my words, Fairies.", "Analyze. Compress. Expand.", "Do not dare to stand before me."))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), pick("Disperse.", "Heed my words, Fairies.", "Analyze. Compress. Expand.", "Do not dare to stand before me."))
 
 	var/turf/target_loc = get_turf(target)
 	var/turf/start_loc = get_turf(src)
@@ -251,7 +251,7 @@
 	charging = TRUE
 	icon_state = "arbiter_ability"
 	if(prob(35))
-		INVOKE_ASYNC(src, .atom/movable/proc/say, pick("Condensing the Key.", "Focus.", "Open.", "Wreak havoc.", "Come on out.", "Crumble."))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), pick("Condensing the Key.", "Focus.", "Open.", "Wreak havoc.", "Come on out.", "Crumble."))
 
 	var/turf/target_loc = get_turf(target)
 	var/turf/start_loc = get_turf(src)
@@ -271,7 +271,7 @@
 	P.xo = target_loc.x - start_loc.x
 	P.original = target
 	P.preparePixelProjectile(target_loc, src)
-	addtimer(CALLBACK (P, .obj/projectile/proc/fire), 0.8 SECONDS)
+	addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.8 SECONDS)
 
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
 

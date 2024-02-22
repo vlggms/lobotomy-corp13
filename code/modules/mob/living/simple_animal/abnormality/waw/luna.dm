@@ -181,7 +181,7 @@
 /datum/status_effect/lunar
 	id = "lunar"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 600		//Lasts 60 seconds
+	duration = 60 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/lunar
 
 /atom/movable/screen/alert/status_effect/lunar
@@ -192,16 +192,18 @@
 
 /datum/status_effect/lunar/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 
 /datum/status_effect/lunar/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 
 #undef STATUS_EFFECT_LUNAR

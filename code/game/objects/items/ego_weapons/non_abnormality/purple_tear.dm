@@ -7,11 +7,11 @@
 	damtype = RED_DAMAGE
 
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 120,
-							TEMPERANCE_ATTRIBUTE = 120,
-							JUSTICE_ATTRIBUTE = 120
-							)
+		FORTITUDE_ATTRIBUTE = 120,
+		PRUDENCE_ATTRIBUTE = 120,
+		TEMPERANCE_ATTRIBUTE = 120,
+		JUSTICE_ATTRIBUTE = 120,
+	)
 	actions_types = list(/datum/action/item_action/miragestorm)
 	var/special_cooldown
 	var/special_cooldown_time = 30 SECONDS
@@ -44,7 +44,7 @@
 	if(user.get_active_held_item() != src)
 		return
 	if(special_cooldown > world.time)
-		to_chat(user, "<span class='warning'>You can't sheathe your blade yet!</span>")
+		to_chat(user, span_warning("You can't sheathe your blade yet!"))
 		return
 	else
 		if(target == user)
@@ -53,10 +53,10 @@
 
 /obj/item/ego_weapon/city/pt/proc/Special(mob/living/user, atom/target)
 	if(sheathed)
-		to_chat(user, "<span class='warning'>Your blade is already sheathed!</span>")
+		to_chat(user, span_warning("Your blade is already sheathed!"))
 		return
 	sheathed = TRUE
-	to_chat(user, "<span class='notice'>You prepare your blade.</span>")
+	to_chat(user, span_notice("You prepare your blade."))
 
 /obj/item/ego_weapon/city/pt/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -64,7 +64,7 @@
 	..()
 	if(target.stat != DEAD)
 		if(mirage_charge == mirage_charge_max)
-			to_chat(user,"<span class='userdanger'>Your storm is ready.</span>") //If i cant figure out how to update the action icon, heres the notif
+			to_chat(user,span_userdanger("Your storm is ready.")) //If i cant figure out how to update the action icon, heres the notif
 		mirage_charge += 1
 	if(boost)
 		boost = FALSE
@@ -77,10 +77,10 @@
 		if(istype(trimming, H))
 			H.MirageStorm(owner)
 		else
-			to_chat(owner,"<span class='warning'>You must hold the weapon to unleash Mirage Storm!</span>")
+			to_chat(owner,span_warning("You must hold the weapon to unleash Mirage Storm!"))
 			return
 	else
-		to_chat(owner,"<span class='warning'>You're not ready to unleash Mirage Storm!</span>")
+		to_chat(owner,span_warning("You're not ready to unleash Mirage Storm!"))
 		return
 
 /obj/item/ego_weapon/city/pt/attack_self(mob/user)
@@ -92,7 +92,7 @@
 // currently causes a runtime everytime a switch occurs, killing myself
 /obj/item/ego_weapon/city/pt/proc/exchange_armaments(mob/user)
 	if(exchange_cooldown > world.time)
-		to_chat(user, "<span class='notice'>You can't change stances yet.</span>")
+		to_chat(user, span_notice("You can't change stances yet."))
 		return
 
 	var/list/display_names = list()
@@ -234,7 +234,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(L, "<span class='userdanger'>The hole in your chest heals.</span>") //fluff text
+		to_chat(L, span_userdanger("The hole in your chest heals.")) //fluff text
 		L.physiology.red_mod /= 2
 		L.physiology.white_mod /= 2
 		L.physiology.black_mod /= 2
@@ -304,7 +304,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(L, "<span class='userdanger'>You return to a normal posture.</span>")
+		to_chat(L, span_userdanger("You return to a normal posture."))
 		L.physiology.red_mod *= 2
 		L.physiology.white_mod *= 2
 		L.physiology.black_mod *= 2
@@ -339,11 +339,11 @@
 	if (block == 0)
 		var/mob/living/carbon/human/shield_user = user
 		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
-			to_chat(shield_user,"<span class='warning'>You're still off-balance!</span>")
+			to_chat(shield_user,span_warning("You're still off-balance!"))
 			return FALSE
 		for(var/obj/machinery/computer/abnormality/AC in range(1, shield_user))
 			if(AC.datum_reference.working) // No blocking during work.
-				to_chat(shield_user,"<span class='notice'>You cannot defend yourself from responsibility!</span>")
+				to_chat(shield_user,span_notice("You cannot defend yourself from responsibility!"))
 				return FALSE
 		block = TRUE
 		block_success = FALSE
@@ -354,7 +354,7 @@
 		shield_user.physiology.pale_mod *= max(0.001, (1 - ((reductions[4]) / 100)))
 		RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AnnounceBlock))
 		addtimer(CALLBACK(src, PROC_REF(DisableBlock), shield_user), 1 SECONDS)
-		to_chat(user,"<span class='userdanger'>You attempt to parry the attack!</span>")
+		to_chat(user,span_userdanger("You attempt to parry the attack!"))
 		return TRUE
 
 /obj/item/ego_weapon/city/pt/guard/proc/DisableBlock(mob/living/carbon/human/user)
@@ -371,15 +371,15 @@
 
 /obj/item/ego_weapon/city/pt/guard/proc/BlockCooldown(mob/living/carbon/human/user)
 	block = FALSE
-	to_chat(user,"<span class='nicegreen'>You rearm your greatsword</span>")
+	to_chat(user,span_nicegreen("You rearm your greatsword"))
 
 /obj/item/ego_weapon/city/pt/guard/proc/BlockFail(mob/living/carbon/human/user)
-	to_chat(user,"<span class='warning'>Your stance is widened.</span>")
+	to_chat(user,span_warning("Your stance is widened."))
 	force = 50
 	addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), 2 SECONDS)
 
 /obj/item/ego_weapon/city/pt/guard/proc/RemoveDebuff(mob/living/carbon/human/user)
-	to_chat(user,"<span class='nicegreen'>You recollect your stance.</span>")
+	to_chat(user,span_nicegreen("You recollect your stance."))
 	force = 90
 
 /obj/item/ego_weapon/city/pt/guard/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
@@ -387,7 +387,7 @@
 	block_success = TRUE
 
 	playsound(get_turf(src), 'sound/weapons/purple_tear/guard.ogg', 50, 0, 7)
-	source.visible_message("<span class='userdanger'>[source.real_name] parried the attack!</span>")
+	source.visible_message(span_userdanger("[source.real_name] parried the attack!"))
 	if(!(buff_check))
 		parry_buff = TRUE
 
@@ -417,7 +417,7 @@
 			continue
 		targets += L
 	if(!LAZYLEN(targets))
-		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>") //so you dont fuck up i guess
+		to_chat(user, span_warning("There are no enemies nearby!")) //so you dont fuck up i guess
 		active = FALSE
 		return
 

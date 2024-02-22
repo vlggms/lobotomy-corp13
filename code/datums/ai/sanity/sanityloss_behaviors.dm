@@ -189,7 +189,7 @@
 			return
 
 	// If we can't move towards the item
-	if(!get_path_to(living_pawn, get_turf(target), /turf/proc/Distance_cardinal, 0, 10))
+	if(!get_path_to(living_pawn, get_turf(target), TYPE_PROC_REF(/turf, Distance_cardinal), 0, 10))
 		finish_action(controller, FALSE)
 		return
 
@@ -260,7 +260,7 @@
 
 	var/turf/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!LAZYLEN(controller.current_path) && !living_pawn.Adjacent(target))
-		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 120)
+		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 120)
 		if(!LAZYLEN(controller.current_path)) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
@@ -370,7 +370,7 @@
 
 	var/obj/machinery/computer/abnormality/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(!LAZYLEN(controller.current_path) && !living_pawn.Adjacent(target))
-		controller.current_path = get_path_to(living_pawn, get_step(target, SOUTH), /turf/proc/Distance_cardinal, 0, 50)
+		controller.current_path = get_path_to(living_pawn, get_step(target, SOUTH), TYPE_PROC_REF(/turf, Distance_cardinal), 0, 50)
 		if(!LAZYLEN(controller.current_path)) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
@@ -401,7 +401,7 @@
 	if(succeeded)
 		var/turf/T = get_closest_atom(/turf/open, GLOB.xeno_spawn, controller.pawn)
 		if(T)
-			controller.current_path = get_path_to(controller.pawn, T, /turf/proc/Distance_cardinal, 0, 50)
+			controller.current_path = get_path_to(controller.pawn, T, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 50)
 			if(!LAZYLEN(controller.current_path))
 				finish_action(controller, FALSE)
 				return
