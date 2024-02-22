@@ -207,8 +207,14 @@
 
 	switch(bullet_type)
 		if(MANAGER_HP_BULLET)
+			if(H.is_working)
+				to_chat(owner, span_warning("ERROR: TARGET IS CURRENTLY WORKING."))
+				return FALSE
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 		if(MANAGER_SP_BULLET)
+			if(H.is_working)
+				to_chat(owner, span_warning("ERROR: TARGET IS CURRENTLY WORKING."))
+				return FALSE
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
 		if(MANAGER_RED_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield)
