@@ -113,6 +113,7 @@
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	ranged = 1
 	rapid = 5
 	rapid_fire_delay = 2
