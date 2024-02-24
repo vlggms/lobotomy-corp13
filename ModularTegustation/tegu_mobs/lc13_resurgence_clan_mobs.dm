@@ -104,6 +104,9 @@
 	melee_damage_lower = 20
 	melee_damage_upper = 25
 
+	var/max_speed = 1.5
+	var/normal_speed = 3
+
 	var/list/locked_list = list()
 	var/list/locked_tiles_list = list()
 	var/stunned = FALSE
@@ -155,6 +158,11 @@
 			locked_list += L
 		// keep a list of everyone locked
 
+/mob/living/simple_animal/hostile/clan/defender/ChargeUpdated()
+	if (charge >= max_charge)
+		move_to_delay = max_speed
+	else
+		move_to_delay = normal_speed
 
 
 /mob/living/simple_animal/hostile/clan/defender/proc/Unlock()
