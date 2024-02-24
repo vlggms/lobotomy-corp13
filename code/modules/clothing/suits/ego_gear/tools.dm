@@ -59,3 +59,12 @@
 	desc = "Excessive aspiration would bring about unwarranted frenzy."
 	icon_state = "aspiration"
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+
+/obj/item/clothing/suit/armor/ego_gear/tools/giant_tree_branch
+	name = "giant tree branch"
+	desc = "The tree simply reaped from what it sowed."
+	icon_state = "sap"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
