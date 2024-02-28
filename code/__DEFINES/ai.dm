@@ -41,10 +41,11 @@
 #define BB_INSANE_BEST_FORCE_FOUND "BB_insane_bestforcefound"
 #define BB_INSANE_ENEMIES "BB_insane_enemies"
 #define BB_INSANE_BLACKLISTITEMS "BB_insane_blacklistitems"
+#define BB_INSANE_TEMPORARY_BLACKLISTITEMS "BB_insane_temporary_blacklistitems"
 #define BB_INSANE_PICKUPTARGET "BB_insane_pickuptarget"
 #define BB_INSANE_CURRENT_ATTACK_TARGET "BB_insane_current_attack_target"
 
-
+#define INSANE_MINIMUM_WEAPON_FORCE 10
 
 ///Haunted item controller defines
 
