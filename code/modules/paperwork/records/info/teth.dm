@@ -149,7 +149,7 @@
 	abno_info = list(
 		"When the work result was Good, the Qliphoth Counter lowered.",
 		"When an employee panicked in the Containment Unit, the Qliphoth Counter lowered.",
-		"When the Qliphoth Counter reached 0, five employees were marked for death. Upon taking damage, they died immediately.",
+		"When the Qliphoth Counter reached 0, five employees were marked for death. Whilst under its effect, employees with the mark recieved 4x as much damage from all sources.",
 		"Upon the death of one of these employees, the HP and SP of every employee in the facility was healed, and all marks were removed.")
 
 //Gone with a Simple Smile
