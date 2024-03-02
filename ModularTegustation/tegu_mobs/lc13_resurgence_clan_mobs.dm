@@ -83,6 +83,7 @@
 		charge -= 1
 
 /mob/living/simple_animal/hostile/clan/scout/death(gibbed)
+	. = ..()
 	charge = 0
 
 //Clan Member: Defender
@@ -142,10 +143,12 @@
 	addtimer(CALLBACK(src, PROC_REF(Unlock)), charge * 10)
 
 /mob/living/simple_animal/hostile/clan/defender/death(gibbed)
-	. =  ..()
 	charge = 0
 	if (stunned == TRUE)
 		Unlock()
+
+	. =  ..()
+
 
 /mob/living/simple_animal/hostile/clan/defender/proc/ApplyLock(mob/living/L)
 	if(!faction_check_mob(L, FALSE))
@@ -187,7 +190,6 @@
 	charge = 0
 	stunned = FALSE
 	GainCharge()
-	say("Unlock completed")
 
 //Not an actual floor, but an effect you put on top of it. The gold road is periodically being created by the road home.
 /obj/effect/defender_field
