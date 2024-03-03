@@ -121,7 +121,6 @@
 	. = ..()
 	if(!.)
 		return
-	AddComponent(/datum/component/rot/gibs)
 
 /obj/effect/decal/cleanable/blood/gibs/ex_act(severity, target)
 	return FALSE
