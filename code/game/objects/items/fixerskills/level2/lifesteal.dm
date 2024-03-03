@@ -24,6 +24,7 @@
 
 	//Compile people around you
 	for(var/mob/living/M in view(2, get_turf(src)))
+		new /obj/effect/temp_visual/cult/sparks (get_turf(M))
 		M.adjustBruteLoss(10)	//Healing for those around.
 		skilluser.adjustBruteLoss(-10)	//Healing for those around.
 

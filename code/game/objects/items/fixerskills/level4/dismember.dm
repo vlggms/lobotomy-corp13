@@ -20,6 +20,7 @@
 		return FALSE
 
 	//Compile people around you
+	playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_attack.ogg', 75, 0, 5)
 	for(var/mob/living/carbon/human/M in view(1, get_turf(src)))
 		if(M == owner)
 			continue
@@ -27,6 +28,7 @@
 		//Lop off a random arm
 		if(HAS_TRAIT(M, TRAIT_NODISMEMBER))
 			return
+		new /obj/effect/temp_visual/smash_effect(get_turf(M))
 		var/obj/item/bodypart/arm = pick(M.get_bodypart(BODY_ZONE_R_ARM), M.get_bodypart(BODY_ZONE_L_ARM))
 
 		var/did_the_thing = (arm?.dismember()) //not all limbs can be removed, so important to check that we did. the. thing.
