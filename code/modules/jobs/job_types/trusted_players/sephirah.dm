@@ -23,6 +23,10 @@
 
 	//Let'em Grief
 	add_verb(H, /mob/living/carbon/human/proc/randomabno)
+	add_verb(H, /mob/living/carbon/human/proc/nextabno)
+	add_verb(H, /mob/living/carbon/human/proc/slowgame)
+	add_verb(H, /mob/living/carbon/human/proc/quickengame)
+	add_verb(H, /mob/living/carbon/human/proc/challengemode)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -121,7 +125,7 @@ GLOBAL_VAR_INIT(Sephirahspeed, 3)
 
 GLOBAL_LIST_EMPTY(challenged_players)
 
-/mob/living/carbon/human/proc/challenge_mode()
+/mob/living/carbon/human/proc/challengemode()
 	set name = "Challenge Player"
 	set category = "Gamemaster"
 
