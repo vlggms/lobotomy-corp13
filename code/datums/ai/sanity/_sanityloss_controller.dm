@@ -188,12 +188,7 @@
 /turf/proc/reachableTurftestWithMobs(caller, turf/T, ID, simulated_only)
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
 		for(var/mob/living/L in T)
-			if(L.density)
-				return FALSE
-		for(var/obj/machinery/M in T)
-			if(istype(M, /obj/machinery/door))
-				continue
-			if(M.density)
+			if(!L.CanPass(caller, T))
 				return FALSE
 		return TRUE
 
