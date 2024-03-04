@@ -10,8 +10,7 @@
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
 	mapexclude = list("wonderlabs", "mini")
 	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
-	job_notice = "In the OOC tab you have a verb called 'randomize current abnormality'. \
-		It is to be used to spice up boring rounds, and punish manager players you think are playing too safe. \
+	job_notice = "In the gamemaster tab, you may adjust game perimeters. \
 		This is an OOC tool. Do not bring alert to the fact that you can do this IC. Alert any administrators if any IC action is taken against you. \
 		Abusing this will result in a loss of whitelist."
 
@@ -21,7 +20,7 @@
 	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT)
 
 	//Let'em Grief
-	add_verb(H, /client/proc/randomabno)
+	add_verb(H, /mob/living/carbon/human/proc/randomabno)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -65,9 +64,14 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 	"Job", "Lot", "Isaac", "Lazarus", "Gaius", "Abel", "Enoch", "Jescha",))
 
 
-/client/proc/randomabno()
+
+
+/*************************************************/
+//Sephirah Gamemaster commands.
+
+/mob/living/carbon/human/proc/randomabno()
 	set name = "Randomize Current Abnormality"
-	set category = "OOC"
+	set category = "Gamemaster"
 	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
 		if(Q.locked)
@@ -82,4 +86,54 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 		minor_announce("Due to a lack of resources; a random abnormality has been chosen and PE has been deposited in your account. \
 				Extraction Headquarters apologizes for the inconvenience", "Extraction Alert:", TRUE)
 		return
+
+//See next abnormality
+/mob/living/carbon/human/proc/nextabno()
+	set name = "Next Abnormality Check"
+	set category = "Gamemaster"
+	//Abno stuff, so you can grief more effectively.
+	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
+	to_chat(src, span_notice("Current Status:"))
+	to_chat(src, span_notice("Number of Abnormalities: [SSabnormality_queue.spawned_abnos]."))
+	to_chat(src, span_notice("Next Abnormality: [initial(queued_abno.name)]."))
+
+//Speed stuff
+GLOBAL_VAR_INIT(Sephirahspeed, 3)
+
+/mob/living/carbon/human/proc/slowgame()
+	set name = "Abnormality Time Slow"
+	set category = "Gamemaster"
+	if(GLOB.Sephirahspeed > 0)
+		SSabnormality_queue.next_abno_spawn_time *= 1.2
+		GLOB.Sephirahspeed --
+		message_admins("<span class='notice'>A sephirah ([src.ckey]) has slowed down the game.</span>")
+
+/mob/living/carbon/human/proc/quickengame()
+	set name = "Abnormality Time Quicken"
+	set category = "Gamemaster"
+	if(GLOB.Sephirahspeed < 5)
+		SSabnormality_queue.next_abno_spawn_time /= 1.2
+		GLOB.Sephirahspeed ++
+		message_admins("<span class='notice'>A sephirah ([src.ckey]) has sped up the game.</span>")
+
+
+GLOBAL_LIST_EMPTY(challenged_players)
+
+/mob/living/carbon/human/proc/challenge_mode()
+	set name = "Challenge Player"
+	set category = "Gamemaster"
+
+	var/list/display_names
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		display_names += H
+
+	if(!display_names.len)
+		return
+	var/choice = input(src,"Who would you like to challenge?","Select a player") as null|anything in sortList(display_names)
+	if(!choice)
+		return
+	GLOB.challenged_players += display_names[choice]
+
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made the game harder for [display_names[choice]].</span>")
+
 

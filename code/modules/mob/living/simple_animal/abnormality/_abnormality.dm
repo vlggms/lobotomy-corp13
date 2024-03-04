@@ -376,7 +376,10 @@
 
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/proc/WorktickFailure(mob/living/carbon/human/user)
-	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
+	if(user in GLOB.challenged_players)	//The gamemaster has decided that these people should suffer.
+		user.apply_damage(work_damage_amount*1.4, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
+	else
+		user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
 	WorkDamageEffect()
 	return
 
