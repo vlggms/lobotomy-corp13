@@ -86,22 +86,27 @@
 
 /datum/facility_upgrade/bullet/red
 	name = RED_BULLET
-	max_value = 0.5
+	max_value = 1
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/white
 	name = WHITE_BULLET
-	max_value = 0.5
+	max_value = 1
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/black
 	name = BLACK_BULLET
-	max_value = 0.5
+	max_value = 1
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/pale
 	name = PALE_BULLET
-	max_value = 0.5
+	max_value = 1
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET
+	max_value = 1
 
 // Bullet upgrades
 /datum/facility_upgrade/bullet_count
