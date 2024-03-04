@@ -23,8 +23,9 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 
 	allow_bureaucratic_error = FALSE
 //	loadalways = TRUE
-	job_important = "You are a Clerk. You're the jack of all trades in LCorp. You are to assist with cleanup, cooking, medical and other miscellaneous tasks. You are fragile, but important."
+	job_important = "You are a Clerk. Since you are unable to work with Abnormalities, you are expected to do cleanup, cooking, medical and other miscellaneous tasks. You are fragile but have access to a variety of support tools."
 
+	job_abbreviation = "CLK"
 
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)

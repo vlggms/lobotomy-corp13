@@ -51,6 +51,7 @@
 	response_help_simple = "pet"
 	pet_bonus = TRUE
 	pet_bonus_emote = "smiles!"
+	var/workingflag = FALSE
 	var/pet_count = 0
 	var/mob/living/carbon/human/petter
 
@@ -74,19 +75,21 @@
 	if(crown?.loved == user)
 		if(crown.loved)
 			datum_reference.qliphoth_change(2)
-			crown.love_cooldown = (world.time + crown.love_cooldown_time)
+			crown.love_cooldown = (world.time + crown.love_cooldown_time) //Reset the qliphoth reduction timer
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(status_flags & GODMODE)
 		icon_living = "pmermaid_laying"
 		icon_state = "pmermaid_laying"
+		workingflag = TRUE
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(status_flags & GODMODE)
 		icon_living = "pmermaid_standing"
 		icon_state = "pmermaid_standing"
+		workingflag = FALSE
 	return
 
 //mermaid will immensely slow down their lover and slowly kill them by cutting off their oxygen supply
@@ -289,7 +292,7 @@
 		love_cooldown = world.time + love_cooldown_time
 
 /obj/item/clothing/head/unrequited_crown/process()
-	if((love_cooldown < world.time) && loved)
+	if((love_cooldown < world.time) && loved && mermaid.workingflag != TRUE)
 		mermaid.datum_reference.qliphoth_change(-1)
 		new /obj/effect/temp_visual/heart(get_turf(loved))
 		to_chat(loved, span_warning("You feel as though you're forgetting someone..."))

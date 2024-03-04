@@ -9,10 +9,12 @@
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
 	mapexclude = list("wonderlabs", "mini")
-	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
+	job_important = "You are a strictly roleplay role and are forbidden from partaking in combat. Assist the Manager and improve IC roleplay during the round."
 	job_notice = "In the gamemaster tab, you may adjust game perimeters. \
-		This is an OOC tool. Do not bring alert to the fact that you can do this IC. Alert any administrators if any IC action is taken against you. \
+		This is an OOC-only tool. Do not allow anyone IC to learn of this ability. Alert administrators if any IC action is taken against you. \
 		Abusing this will result in a loss of whitelist."
+
+	job_abbreviation = "SEPH"
 
 /datum/job/command/sephirah/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
