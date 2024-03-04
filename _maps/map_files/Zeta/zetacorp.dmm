@@ -41,8 +41,8 @@
 /area/department_main/control)
 "ah" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/information)
 "al" = (
@@ -119,8 +119,8 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -128,12 +128,12 @@
 	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 5;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
@@ -181,17 +181,17 @@
 /area/facility_hallway/east)
 "aF" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/training)
@@ -203,12 +203,12 @@
 	dir = 1
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -17
+	pixel_x = -17;
+	pixel_y = 27
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = 27
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -265,8 +265,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/west)
 "aR" = (
@@ -277,8 +277,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/structure/chair/comfy/lime{
 	can_buckle = 0
@@ -340,8 +340,8 @@
 /area/facility_hallway/east)
 "bf" = (
 /obj/machinery/disposal/bin{
-	pixel_y = 4;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 4
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -353,8 +353,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -362,23 +362,23 @@
 /area/facility_hallway/control)
 "bk" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/information)
@@ -438,9 +438,9 @@
 /obj/effect/turf_decal/caution/white,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -450,8 +450,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -538,8 +538,8 @@
 /area/department_main/information)
 "bG" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/information)
 "bH" = (
@@ -560,9 +560,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/plasteel/dark{
@@ -595,8 +595,8 @@
 /area/department_main/information)
 "bL" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/information)
@@ -641,8 +641,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "bT" = (
@@ -737,11 +737,11 @@
 /area/department_main/control)
 "cj" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -758,8 +758,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
@@ -768,8 +768,8 @@
 /area/facility_hallway/safety)
 "cm" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/south)
@@ -783,8 +783,8 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "cs" = (
@@ -799,16 +799,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -873,8 +873,8 @@
 "cB" = (
 /obj/machinery/smartfridge,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/training)
@@ -984,9 +984,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/facility/dark,
@@ -1117,16 +1117,16 @@
 /area/facility_hallway/east)
 "dx" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/information)
@@ -1171,23 +1171,23 @@
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	pixel_x = -5;
@@ -1201,17 +1201,17 @@
 /area/facility_hallway/training)
 "dD" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/item/toy/plush/don,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 10;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/information)
@@ -1287,9 +1287,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/facility/dark{
@@ -1348,8 +1348,8 @@
 	name = "wing-grade railing"
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "en" = (
@@ -1365,9 +1365,9 @@
 /area/facility_hallway/south)
 "ep" = (
 /obj/machinery/computer/abnormality_logs{
-	pixel_y = 13;
 	density = 0;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 13
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -1424,21 +1424,21 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 10;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 10
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/north)
@@ -1585,8 +1585,8 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -1594,12 +1594,12 @@
 	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
@@ -1665,23 +1665,23 @@
 /area/department_main/control)
 "fa" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/control)
@@ -1724,8 +1724,8 @@
 "ff" = (
 /obj/effect/turf_decal/siding/yellow,
 /obj/structure/chair/comfy/teal{
-	pixel_y = 3;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 3
 	},
 /obj/item/toy/plush/lisa,
 /obj/structure/disposalpipe/junction{
@@ -1735,9 +1735,9 @@
 /area/department_main/command)
 "fg" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/security.dmi';
 	name = "Control Department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/security.dmi'
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1780,8 +1780,8 @@
 /area/facility_hallway/safety)
 "fk" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -1798,17 +1798,17 @@
 /area/facility_hallway/north)
 "fo" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/item/toy/plush/don,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 6;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/west)
@@ -1836,12 +1836,12 @@
 /area/facility_hallway/control)
 "fr" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -1854,16 +1854,16 @@
 /area/facility_hallway/training)
 "ft" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/safety)
@@ -1875,8 +1875,8 @@
 /area/department_main/command)
 "fv" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/control)
@@ -1890,8 +1890,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 4;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -1923,16 +1923,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
@@ -1944,15 +1944,15 @@
 /area/department_main/command)
 "fG" = (
 /obj/effect/turf_decal/siding/purple{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /obj/structure/chair/office/light{
-	dir = 4;
-	can_buckle = 0;
 	anchored = 1;
-	pixel_y = 4;
-	pixel_x = 7
+	can_buckle = 0;
+	dir = 4;
+	pixel_x = 7;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -1987,13 +1987,13 @@
 /area/department_main/control)
 "fV" = (
 /obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10;
-	density = 0
+	density = 0;
+	pixel_x = -10
 	},
 /obj/structure/filingcabinet/tethinfo,
 /obj/structure/filingcabinet/heinfo{
-	pixel_x = 10;
-	density = 0
+	density = 0;
+	pixel_x = 10
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -2046,8 +2046,8 @@
 	dir = 4
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -2059,8 +2059,8 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/west)
 "gb" = (
@@ -2116,8 +2116,8 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/command)
 "gh" = (
@@ -2219,19 +2219,19 @@
 /area/department_main/safety)
 "gv" = (
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 1
+	dir = 1;
+	name = "wing-grade railing"
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "gw" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -2241,18 +2241,18 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/safety)
@@ -2268,8 +2268,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 1;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -2282,8 +2282,8 @@
 "gA" = (
 /obj/effect/turf_decal/siding/thinplating/corner,
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
@@ -2318,16 +2318,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -2369,16 +2369,16 @@
 /area/department_main/command)
 "gM" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/control)
@@ -2428,8 +2428,8 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/command)
 "gX" = (
@@ -2437,8 +2437,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/snack/green{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -2496,8 +2496,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/chair/comfy/lime{
 	can_buckle = 0;
@@ -2511,9 +2511,9 @@
 /area/department_main/safety)
 "hi" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -2524,25 +2524,25 @@
 /obj/effect/landmark/department_center,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/control)
 "hk" = (
 /obj/structure/table/wood/fancy/green,
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/item/clothing/accessory/armband/lobotomy/safety{
 	pixel_y = 4
@@ -2569,44 +2569,44 @@
 	resistance_flags = 115
 	},
 /obj/item/camera{
-	pixel_y = 9;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 9
 	},
 /obj/item/camera{
-	pixel_y = 9;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 9
 	},
 /obj/item/camera{
-	pixel_y = 9;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 9
 	},
 /obj/item/camera{
-	pixel_y = 9;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 9
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
@@ -2622,8 +2622,8 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/west)
 "hr" = (
@@ -2650,12 +2650,12 @@
 /area/department_main/control)
 "ht" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -2664,8 +2664,8 @@
 "hu" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 4;
-	resistance_flags = 115;
-	pixel_x = -3
+	pixel_x = -3;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
@@ -2716,9 +2716,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/dark,
@@ -2805,8 +2805,8 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/command)
 "hQ" = (
@@ -2857,19 +2857,19 @@
 "ie" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
@@ -2882,8 +2882,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -2952,8 +2952,8 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "il" = (
@@ -3022,12 +3022,12 @@
 	},
 /obj/item/toy/plush/faust,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 10;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
@@ -3039,11 +3039,11 @@
 /area/facility_hallway/north)
 "ir" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
@@ -3080,23 +3080,23 @@
 /area/department_main/safety)
 "iu" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/control)
@@ -3113,8 +3113,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -3206,8 +3206,8 @@
 /area/department_main/control)
 "iL" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/safety)
 "iM" = (
@@ -3301,10 +3301,10 @@
 /area/facility_hallway/east)
 "iY" = (
 /turf/open/lava{
-	density = 1;
 	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink"
+	density = 1;
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	name = "Unrefined Enkephalin"
 	},
 /area/facility_hallway/human)
 "iZ" = (
@@ -3322,8 +3322,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3363,10 +3363,10 @@
 "je" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -3393,12 +3393,12 @@
 /area/facility_hallway/training)
 "jl" = (
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing"
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "jq" = (
@@ -3439,8 +3439,8 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3491,8 +3491,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 1;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -3562,16 +3562,16 @@
 /area/facility_hallway/north)
 "jU" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "jW" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/command)
 "jY" = (
@@ -3583,12 +3583,12 @@
 /area/department_main/safety)
 "jZ" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -3627,24 +3627,24 @@
 /area/facility_hallway/north)
 "kf" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/south)
@@ -3794,16 +3794,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -3822,15 +3822,15 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/information)
 "kH" = (
@@ -3839,9 +3839,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /turf/open/floor/plasteel/dark,
@@ -3867,8 +3867,8 @@
 "kO" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/training)
 "kP" = (
@@ -3876,8 +3876,8 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "kQ" = (
@@ -3945,9 +3945,9 @@
 /area/department_main/training)
 "kX" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/mining.dmi';
 	name = "Training department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/mining.dmi'
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -3981,8 +3981,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -4032,8 +4032,8 @@
 	dir = 8
 	},
 /obj/structure/chair/sofa/left{
-	dir = 8;
 	can_buckle = 0;
+	dir = 8;
 	pixel_x = -5
 	},
 /turf/open/floor/plasteel/dark,
@@ -4051,21 +4051,21 @@
 	dir = 1
 	},
 /obj/structure/chair/office/light{
-	dir = 1;
 	anchored = 1;
 	can_buckle = 0;
+	dir = 1;
 	pixel_y = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ll" = (
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing"
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "ln" = (
@@ -4104,8 +4104,8 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "lr" = (
@@ -4123,8 +4123,8 @@
 /area/facility_hallway/safety)
 "lx" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/space)
 "lA" = (
@@ -4132,8 +4132,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
@@ -4166,8 +4166,8 @@
 	dir = 5
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/south)
 "lF" = (
@@ -4192,8 +4192,8 @@
 /area/department_main/information)
 "lG" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/central)
 "lJ" = (
@@ -4227,8 +4227,8 @@
 	dir = 4
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -4255,8 +4255,8 @@
 /area/facility_hallway/east)
 "lV" = (
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /obj/structure/table/wood/fancy/purple,
 /obj/item/clothing/accessory/armband/lobotomy/info{
@@ -4319,8 +4319,8 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -4328,12 +4328,12 @@
 	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 5;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
@@ -4353,9 +4353,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark,
@@ -4390,23 +4390,23 @@
 /area/facility_hallway/information)
 "md" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 6;
-	view_range = 6;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 6;
+	view_range = 6
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/west)
@@ -4423,8 +4423,8 @@
 /area/facility_hallway/safety)
 "mg" = (
 /obj/machinery/vending/games{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
@@ -4434,35 +4434,35 @@
 "mi" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
 "mk" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/west)
@@ -4495,8 +4495,8 @@
 	set_luminosity = 24
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/human)
 "mw" = (
@@ -4504,8 +4504,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -4538,9 +4538,9 @@
 /obj/structure/chair/office{
 	anchored = 1;
 	can_buckle = 0;
+	dir = 4;
 	pixel_x = 6;
-	pixel_y = 6;
-	dir = 4
+	pixel_y = 6
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -4647,8 +4647,8 @@
 /area/department_main/safety)
 "ne" = (
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -4748,8 +4748,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/control)
 "nt" = (
@@ -4770,15 +4770,15 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "nx" = (
 /obj/machinery/smartfridge/extraction_storage/ego_weapon,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/extraction)
@@ -4794,19 +4794,19 @@
 "nz" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -4838,8 +4838,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -4850,8 +4850,8 @@
 /area/facility_hallway/south)
 "nH" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 4
@@ -4863,8 +4863,8 @@
 /area/department_main/safety)
 "nJ" = (
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 1
+	dir = 1;
+	name = "wing-grade railing"
 	},
 /turf/open/water/deep/polluted{
 	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
@@ -4883,8 +4883,8 @@
 /area/department_main/information)
 "nM" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/control)
 "nN" = (
@@ -4907,12 +4907,12 @@
 	},
 /obj/item/toy/plush/rodion,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 6;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
@@ -4946,8 +4946,8 @@
 	dir = 8
 	},
 /obj/machinery/vending/snack/green{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -4955,23 +4955,23 @@
 /area/facility_hallway/safety)
 "nW" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/east)
@@ -4998,8 +4998,8 @@
 /area/department_main/control)
 "oc" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -5035,17 +5035,17 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 8
 	},
 /obj/item/toy/plush/meursault,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -5079,8 +5079,8 @@
 /area/department_main/safety)
 "ol" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -5251,8 +5251,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -5330,8 +5330,8 @@
 /obj/effect/turf_decal/siding/thinplating,
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "pl" = (
@@ -5424,8 +5424,8 @@
 	dir = 8
 	},
 /obj/structure/chair/sofa/left{
-	dir = 8;
 	can_buckle = 0;
+	dir = 8;
 	pixel_x = -5
 	},
 /obj/item/toy/plush/chesed,
@@ -5590,8 +5590,8 @@
 /area/department_main/training)
 "pU" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/safety)
@@ -5624,8 +5624,8 @@
 "qb" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1;
-	storage_capacity = 1000;
-	name = "Meat Storage Refrigerator"
+	name = "Meat Storage Refrigerator";
+	storage_capacity = 1000
 	},
 /obj/item/food/meat/slab,
 /obj/item/food/meat/slab,
@@ -5819,8 +5819,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -5835,8 +5835,8 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
@@ -5851,9 +5851,9 @@
 /area/department_main/command)
 "ql" = (
 /obj/machinery/button/crematorium/indestructible{
-	pixel_y = 6;
 	id = "cremawheat4";
-	pixel_x = 21
+	pixel_x = 21;
+	pixel_y = 6
 	},
 /obj/structure/bodycontainer/crematorium{
 	dir = 8;
@@ -5930,21 +5930,21 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 10;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/information)
@@ -5953,15 +5953,15 @@
 	dir = 4
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/command)
 "qt" = (
 /obj/effect/turf_decal/siding/thinplating/corner,
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6030,8 +6030,8 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "qA" = (
@@ -6066,30 +6066,30 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "qE" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/training)
@@ -6102,17 +6102,17 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 4
 	},
 /obj/item/toy/plush/honglu,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 10;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -6134,9 +6134,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -6197,8 +6197,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/hydronutrients{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
@@ -6221,8 +6221,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -6233,9 +6233,9 @@
 /area/facility_hallway/north)
 "ra" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi';
 	name = "Central Command";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
+	normal_integrity = 500
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/north)
@@ -6268,9 +6268,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/facility/dark,
@@ -6353,8 +6353,8 @@
 /area/facility_hallway/control)
 "rl" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/disposalpipe/junction{
 	dir = 8
@@ -6388,16 +6388,16 @@
 /area/facility_hallway/north)
 "ro" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/training)
@@ -6449,8 +6449,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/information)
 "rw" = (
@@ -6467,8 +6467,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6490,8 +6490,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/purple{
-	dir = 8;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
@@ -6510,8 +6510,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "rH" = (
@@ -6603,21 +6603,21 @@
 "rO" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/item/toy/plush/yuri,
 /obj/item/food/grown/apple/gold,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -6662,8 +6662,8 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/command)
 "rW" = (
@@ -6683,8 +6683,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6721,16 +6721,16 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -6784,23 +6784,23 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -6818,8 +6818,8 @@
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -6876,8 +6876,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -6900,27 +6900,27 @@
 	},
 /obj/item/toy/plush/outis,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 6;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
 "sG" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 4;
-	resistance_flags = 115;
-	pixel_x = -2
+	pixel_x = -2;
+	resistance_flags = 115
 	},
 /obj/effect/turf_decal/siding/purple/corner{
 	color = "#511c4b"
 	},
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "sL" = (
@@ -6950,8 +6950,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
@@ -7015,20 +7015,20 @@
 /area/department_main/control)
 "tl" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/command)
@@ -7039,31 +7039,31 @@
 /area/facility_hallway/training)
 "to" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/north)
 "tr" = (
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing"
 	},
 /turf/open/water/deep/polluted{
 	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
@@ -7123,9 +7123,9 @@
 /area/facility_hallway/training)
 "tA" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/security.dmi';
 	name = "Control Department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/security.dmi'
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -7149,23 +7149,23 @@
 /area/facility_hallway/west)
 "tD" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/south)
@@ -7247,9 +7247,9 @@
 /area/facility_hallway/south)
 "tW" = (
 /obj/machinery/vending/medical{
-	req_access = list();
+	density = 0;
 	pixel_y = 19;
-	density = 0
+	req_access = list()
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -7341,26 +7341,26 @@
 /obj/structure/table/wood/fancy/purple,
 /obj/item/toy/plush/yesod,
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "ui" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/command)
@@ -7479,8 +7479,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -7500,8 +7500,8 @@
 /area/facility_hallway/information)
 "uK" = (
 /obj/machinery/computer/message_monitor{
-	pixel_y = 13;
-	density = 0
+	density = 0;
+	pixel_y = 13
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -7539,9 +7539,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -7583,8 +7583,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -7592,31 +7592,31 @@
 /area/facility_hallway/training)
 "uX" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/west)
 "uY" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/command)
@@ -7643,9 +7643,9 @@
 /area/facility_hallway/training)
 "vd" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -7655,10 +7655,10 @@
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/east)
@@ -7711,9 +7711,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -7760,8 +7760,8 @@
 /area/department_main/safety)
 "vr" = (
 /obj/machinery/computer/crew{
-	resistance_flags = 115;
-	pixel_y = 3
+	pixel_y = 3;
+	resistance_flags = 115
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
@@ -7803,9 +7803,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/facility/dark,
@@ -7864,8 +7864,8 @@
 "vI" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 8;
-	resistance_flags = 115;
-	pixel_x = 3
+	pixel_x = 3;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
@@ -7875,9 +7875,9 @@
 "vJ" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 1;
-	resistance_flags = 115;
+	pixel_x = -2;
 	pixel_y = -1;
-	pixel_x = -2
+	resistance_flags = 115
 	},
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000";
@@ -7910,12 +7910,12 @@
 	},
 /obj/item/toy/plush/ryoshu,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -7924,8 +7924,8 @@
 "vQ" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/information)
 "vS" = (
@@ -7948,9 +7948,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -7959,15 +7959,15 @@
 /area/facility_hallway/safety)
 "vU" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/manager)
 "vW" = (
 /obj/effect/turf_decal/box/red,
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/structure/closet/crate/freezer/blood,
 /obj/machinery/light{
@@ -8029,15 +8029,15 @@
 	},
 /obj/machinery/computer/camera_advanced{
 	dir = 4;
-	resistance_flags = 115;
+	pixel_x = -2;
 	pixel_y = 27;
-	pixel_x = -2
+	resistance_flags = 115
 	},
 /obj/machinery/computer/camera_advanced{
 	dir = 4;
-	resistance_flags = 115;
+	pixel_x = -2;
 	pixel_y = 7;
-	pixel_x = -2
+	resistance_flags = 115
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -8075,11 +8075,11 @@
 	dir = 4
 	},
 /obj/structure/chair/office{
-	dir = 1;
 	anchored = 1;
-	pixel_y = 10;
 	can_buckle = 0;
-	pixel_x = -13
+	dir = 1;
+	pixel_x = -13;
+	pixel_y = 10
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -8114,8 +8114,8 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "wq" = (
@@ -8133,8 +8133,8 @@
 "wv" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 4;
-	resistance_flags = 115;
-	pixel_x = -3
+	pixel_x = -3;
+	resistance_flags = 115
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -8187,8 +8187,8 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -8196,12 +8196,12 @@
 	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 9;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/control)
@@ -8265,8 +8265,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "wJ" = (
@@ -8274,8 +8274,8 @@
 	dir = 1
 	},
 /obj/structure/bookcase/random{
-	pixel_y = 15;
-	density = 0
+	density = 0;
+	pixel_y = 15
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
@@ -8284,8 +8284,8 @@
 /area/department_main/training)
 "wK" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/west)
 "wL" = (
@@ -8298,26 +8298,26 @@
 /area/facility_hallway/east)
 "wM" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/training)
 "wN" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/vending/lobotomyheadset{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/command)
@@ -8333,8 +8333,8 @@
 /area/facility_hallway/safety)
 "wP" = (
 /obj/machinery/disposal/bin{
-	pixel_y = 4;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 4
 	},
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000";
@@ -8349,10 +8349,6 @@
 	},
 /area/department_main/control)
 "wQ" = (
-/obj/machinery/vending/autodrobe{
-	pixel_y = 18;
-	density = 0
-	},
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
@@ -8419,8 +8415,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -8518,8 +8514,8 @@
 /area/facility_hallway/control)
 "xm" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/north)
 "xo" = (
@@ -8599,9 +8595,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -8610,8 +8606,8 @@
 /area/facility_hallway/south)
 "xD" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/extraction)
 "xE" = (
@@ -8638,8 +8634,8 @@
 "xG" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 8;
-	resistance_flags = 115;
-	pixel_x = 3
+	pixel_x = 3;
+	resistance_flags = 115
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -8658,8 +8654,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/east)
 "xT" = (
@@ -8671,10 +8667,10 @@
 "xV" = (
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 6;
-	view_range = 6;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 6;
+	view_range = 6
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
@@ -8688,9 +8684,9 @@
 /area/facility_hallway/safety)
 "ya" = (
 /obj/structure/railing{
-	resistance_flags = 115;
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace."
+	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
 	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
@@ -8699,17 +8695,17 @@
 /area/facility_hallway/central)
 "yb" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/command)
 "yc" = (
 /obj/machinery/disposal/bin{
-	resistance_flags = 115;
+	pixel_x = 2;
 	pixel_y = 3;
-	pixel_x = 2
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25
@@ -8764,11 +8760,11 @@
 	dir = 8
 	},
 /obj/structure/chair/office{
-	dir = 8;
-	can_buckle = 0;
 	anchored = 1;
-	pixel_y = 22;
-	pixel_x = -5
+	can_buckle = 0;
+	dir = 8;
+	pixel_x = -5;
+	pixel_y = 22
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -8788,9 +8784,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/facility/dark{
@@ -8804,8 +8800,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 4;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -8882,9 +8878,9 @@
 /obj/structure/chair/office{
 	anchored = 1;
 	can_buckle = 0;
+	dir = 4;
 	pixel_x = 6;
-	pixel_y = 6;
-	dir = 4
+	pixel_y = 6
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
@@ -8959,12 +8955,12 @@
 	},
 /obj/item/toy/plush/sinclair,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 6;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/information)
@@ -9003,8 +8999,8 @@
 /area/facility_hallway/east)
 "yX" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/human)
 "yZ" = (
@@ -9021,9 +9017,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/facility/dark,
@@ -9033,8 +9029,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -9064,8 +9060,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
@@ -9112,8 +9108,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -9121,17 +9117,17 @@
 /area/facility_hallway/south)
 "zo" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/training)
 "zp" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/information)
@@ -9191,21 +9187,21 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 10;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/west)
@@ -9218,8 +9214,8 @@
 /area/facility_hallway/east)
 "zu" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/thinplating/corner,
 /obj/structure/disposalpipe/segment{
@@ -9277,9 +9273,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /turf/open/floor/facility/white,
@@ -9325,23 +9321,23 @@
 /area/facility_hallway/north)
 "zI" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/training)
@@ -9396,19 +9392,19 @@
 "zR" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -9416,8 +9412,8 @@
 /area/facility_hallway/west)
 "zS" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/control)
 "zT" = (
@@ -9447,9 +9443,9 @@
 /area/facility_hallway/training)
 "zW" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -9460,10 +9456,10 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/safety)
@@ -9476,17 +9472,17 @@
 /area/department_main/information)
 "Aa" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/north)
@@ -9520,14 +9516,14 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/information)
 "Af" = (
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing"
 	},
 /turf/open/water/deep/polluted{
 	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
@@ -9563,8 +9559,8 @@
 /area/department_main/training)
 "Ak" = (
 /obj/structure/chair/comfy/brown{
-	dir = 1;
 	can_buckle = 0;
+	dir = 1;
 	pixel_y = 9
 	},
 /turf/open/floor/carpet/orange,
@@ -9684,10 +9680,10 @@
 "Az" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 1
+	dir = 1;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/item/reagent_containers/food/condiment/saltshaker{
 	pixel_x = -3;
@@ -9751,8 +9747,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -9873,8 +9869,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -9896,8 +9892,8 @@
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk,
@@ -9924,9 +9920,9 @@
 /area/department_main/training)
 "Bn" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -9937,24 +9933,24 @@
 /obj/effect/landmark/department_center,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/information)
 "Bp" = (
 /obj/machinery/vending/donksofttoyvendor{
-	pixel_y = 18;
-	density = 0
+	density = 0;
+	pixel_y = 18
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ffa500";
@@ -9974,8 +9970,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/dinnerware{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
@@ -9991,12 +9987,12 @@
 	color = "#2e1f0e"
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -10122,8 +10118,8 @@
 	dir = 1
 	},
 /obj/structure/bookcase/random{
-	pixel_y = 15;
-	density = 0
+	density = 0;
+	pixel_y = 15
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -10159,8 +10155,8 @@
 "BU" = (
 /obj/effect/landmark/salesspawn,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/extraction)
 "BV" = (
@@ -10184,23 +10180,23 @@
 /area/department_main/command)
 "BY" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/east)
@@ -10274,9 +10270,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /turf/open/floor/plasteel/white,
@@ -10310,15 +10306,15 @@
 /area/facility_hallway/safety)
 "Cj" = (
 /obj/effect/turf_decal/siding/purple{
-	dir = 8;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 8
 	},
 /obj/structure/chair/office/light{
-	dir = 8;
-	can_buckle = 0;
 	anchored = 1;
-	pixel_y = 4;
-	pixel_x = -7
+	can_buckle = 0;
+	dir = 8;
+	pixel_x = -7;
+	pixel_y = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
@@ -10357,8 +10353,8 @@
 "Cp" = (
 /obj/machinery/modular_computer/console/preset/research{
 	name = "information department console";
-	resistance_flags = 115;
-	pixel_y = 1
+	pixel_y = 1;
+	resistance_flags = 115
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -10440,12 +10436,12 @@
 /area/facility_hallway/control)
 "CA" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 10;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 10
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -10472,8 +10468,8 @@
 /area/facility_hallway/south)
 "CE" = (
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -10496,8 +10492,8 @@
 	},
 /obj/structure/table/wood/fancy/purple,
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "CH" = (
@@ -10546,10 +10542,10 @@
 /area/facility_hallway/control)
 "CN" = (
 /obj/structure/closet/secure_closet/record{
-	pixel_y = 21;
-	density = 0;
 	anchored = 1;
-	breakout_time = 1
+	breakout_time = 1;
+	density = 0;
+	pixel_y = 21
 	},
 /obj/item/toy/crayon/spraycan/infinite{
 	pixel_x = 8
@@ -10562,15 +10558,15 @@
 /obj/item/folder/white,
 /obj/item/toy/plush/dante,
 /obj/item/toner/extreme{
-	pixel_y = -5;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = -5
 	},
 /obj/item/toner/extreme{
 	pixel_x = -6
 	},
 /obj/item/toner/extreme{
-	pixel_y = 5;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 5
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -10603,8 +10599,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
@@ -10621,12 +10617,12 @@
 /area/facility_hallway/east)
 "Df" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -10650,9 +10646,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -10662,8 +10658,8 @@
 "Di" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/north)
 "Dj" = (
@@ -10814,16 +10810,16 @@
 /area/facility_hallway/control)
 "Dz" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/south)
@@ -10833,8 +10829,8 @@
 	},
 /obj/structure/chair/comfy/teal{
 	dir = 1;
-	pixel_y = 6;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 6
 	},
 /obj/item/toy/plush/enoch,
 /obj/structure/disposalpipe/segment{
@@ -10968,9 +10964,9 @@
 /obj/structure/curtain,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/noslip,
@@ -11058,9 +11054,9 @@
 /obj/item/instrument/trumpet,
 /obj/item/instrument/violin,
 /obj/structure/closet/crate{
-	name = "instrument crate";
-	desc = "A rectangular steel crate containing multiple varieties of musical instruments.";
 	anchored = 1;
+	desc = "A rectangular steel crate containing multiple varieties of musical instruments.";
+	name = "instrument crate";
 	opened = 1
 	},
 /turf/open/floor/carpet/royalblue,
@@ -11080,10 +11076,10 @@
 /area/department_main/command)
 "Er" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
 	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
@@ -11110,8 +11106,8 @@
 /area/facility_hallway/north)
 "Ew" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/east)
 "Ex" = (
@@ -11126,9 +11122,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -11159,8 +11155,8 @@
 "EC" = (
 /obj/structure/railing,
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "ED" = (
@@ -11171,8 +11167,8 @@
 	dir = 4
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -11181,8 +11177,8 @@
 "EE" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/west)
 "EF" = (
@@ -11221,9 +11217,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/plasteel/dark{
@@ -11241,8 +11237,8 @@
 "EJ" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
-	name = "Information Department";
-	max_integrity = 500
+	max_integrity = 500;
+	name = "Information Department"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11261,8 +11257,8 @@
 /area/facility_hallway/control)
 "EL" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/east)
@@ -11390,20 +11386,20 @@
 /area/facility_hallway/east)
 "Fm" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/vending/lobotomyarmband{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/command)
@@ -11414,12 +11410,12 @@
 	},
 /obj/item/toy/plush/gregor,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 6;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
@@ -11457,12 +11453,12 @@
 /area/facility_hallway/north)
 "Fx" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -11501,8 +11497,8 @@
 "FA" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
-	name = "Information Department";
-	max_integrity = 500
+	max_integrity = 500;
+	name = "Information Department"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
@@ -11514,17 +11510,17 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "FD" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 1
+	dir = 1;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/machinery/dish_drive{
 	pixel_y = 6
@@ -11535,17 +11531,17 @@
 /area/facility_hallway/training)
 "FE" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi';
 	name = "Central Command";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
+	normal_integrity = 500
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/south)
 "FH" = (
 /obj/effect/turf_decal/delivery,
 /obj/structure/closet/crate{
-	name = "pe box crate";
 	anchored = 1;
+	name = "pe box crate";
 	opened = 1
 	},
 /obj/item/rawpe,
@@ -11719,8 +11715,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "Gm" = (
@@ -11740,9 +11736,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/freezer,
@@ -11750,19 +11746,19 @@
 "Go" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -11773,8 +11769,8 @@
 	dir = 1
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/command)
 "Gs" = (
@@ -11786,15 +11782,15 @@
 	},
 /obj/structure/chair/comfy/black{
 	dir = 8;
-	pixel_y = 4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 6;
-	view_range = 6;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 6;
+	view_range = 6
 	},
 /obj/machinery/navbeacon/wayfinding/extractiondepartment,
 /obj/item/toy/plush/binah,
@@ -11820,9 +11816,9 @@
 /area/department_main/training)
 "Gx" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/control)
@@ -11831,8 +11827,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11926,8 +11922,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -11935,9 +11931,9 @@
 /area/department_main/safety)
 "GN" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi';
 	name = "Central Command";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
+	normal_integrity = 500
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/west)
@@ -11953,8 +11949,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -12001,8 +11997,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 1;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -12032,15 +12028,15 @@
 /area/department_main/command)
 "Hm" = (
 /obj/machinery/jukebox{
-	req_access = list();
-	pixel_y = 5
+	pixel_y = 5;
+	req_access = list()
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Hn" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/south)
 "Ho" = (
@@ -12062,8 +12058,8 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "Hr" = (
@@ -12096,9 +12092,9 @@
 /area/facility_hallway/east)
 "Ht" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/mining.dmi';
 	name = "Training department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/mining.dmi'
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12129,8 +12125,8 @@
 	color = "#511c4b"
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -12150,12 +12146,12 @@
 	},
 /obj/item/toy/plush/yisang,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 6;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
@@ -12179,12 +12175,12 @@
 	color = "#2e1f0e"
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -12211,8 +12207,8 @@
 	dir = 4
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/safety)
 "HX" = (
@@ -12222,12 +12218,12 @@
 /area/facility_hallway/east)
 "HY" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -12282,8 +12278,8 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -12291,12 +12287,12 @@
 	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 5;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/information)
@@ -12305,8 +12301,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark,
@@ -12375,8 +12371,8 @@
 /area/department_main/safety)
 "It" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/safety)
 "Iv" = (
@@ -12444,8 +12440,8 @@
 	dir = 1
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 27
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -12459,16 +12455,16 @@
 /area/facility_hallway/south)
 "IJ" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/east)
@@ -12493,8 +12489,8 @@
 "IP" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 4;
-	resistance_flags = 115;
-	pixel_x = -3
+	pixel_x = -3;
+	resistance_flags = 115
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -12564,8 +12560,8 @@
 	dir = 10
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/north)
 "Jj" = (
@@ -12587,9 +12583,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/sepia,
@@ -12604,8 +12600,8 @@
 "Jn" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/east)
 "Jo" = (
@@ -12622,8 +12618,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -12639,12 +12635,12 @@
 /area/facility_hallway/north)
 "Jr" = (
 /obj/structure/filingcabinet/wawinfo{
-	pixel_x = -11;
-	density = 0
+	density = 0;
+	pixel_x = -11
 	},
 /obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10;
-	density = 0
+	density = 0;
+	pixel_x = 10
 	},
 /obj/structure/filingcabinet/alephinfo,
 /turf/open/floor/facility/dark{
@@ -12655,8 +12651,8 @@
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/east)
 "Jt" = (
@@ -12674,16 +12670,16 @@
 /area/facility_hallway/west)
 "Jv" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/safety)
@@ -12698,8 +12694,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 1;
-	color = "#006400"
+	color = "#006400";
+	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
@@ -12709,8 +12705,8 @@
 /area/facility_hallway/north)
 "JA" = (
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = 50
+	pixel_x = 50;
+	pixel_y = 27
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
@@ -12777,10 +12773,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 8;
-	view_range = 8;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 8;
+	view_range = 8
 	},
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
@@ -12839,16 +12835,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -12928,8 +12924,8 @@
 /area/facility_hallway/south)
 "Ke" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/records)
 "Kf" = (
@@ -12951,9 +12947,9 @@
 /obj/effect/turf_decal/stripes/red/line,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/white,
@@ -12992,14 +12988,14 @@
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/information)
 "Kq" = (
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /obj/structure/table/wood/fancy/purple,
 /obj/item/deepscanner,
@@ -13048,8 +13044,8 @@
 "KF" = (
 /obj/structure/chair/comfy{
 	dir = 4;
-	pixel_y = 4;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 4
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -13099,16 +13095,16 @@
 /area/facility_hallway/safety)
 "KP" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/training)
@@ -13126,8 +13122,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/snack/orange{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
@@ -13145,8 +13141,8 @@
 /area/facility_hallway/training)
 "KX" = (
 /obj/structure/bookcase/random{
-	pixel_y = 15;
-	density = 0
+	density = 0;
+	pixel_y = 15
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -13165,8 +13161,8 @@
 "La" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 8;
-	resistance_flags = 115;
-	pixel_x = 3
+	pixel_x = 3;
+	resistance_flags = 115
 	},
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000";
@@ -13194,8 +13190,8 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "Lf" = (
@@ -13207,10 +13203,10 @@
 /area/facility_hallway/control)
 "Lg" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
 	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
@@ -13233,8 +13229,8 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "Lk" = (
@@ -13287,8 +13283,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/dark,
@@ -13296,8 +13292,8 @@
 "Lq" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/south)
 "Lt" = (
@@ -13305,8 +13301,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -13318,9 +13314,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -13406,8 +13402,8 @@
 "LH" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/safety)
 "LJ" = (
@@ -13424,8 +13420,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 1;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -13433,14 +13429,14 @@
 /area/facility_hallway/information)
 "LM" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "LO" = (
@@ -13468,8 +13464,8 @@
 	color = "#006400"
 	},
 /obj/machinery/computer/crew{
-	resistance_flags = 115;
-	pixel_y = 3
+	pixel_y = 3;
+	resistance_flags = 115
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
@@ -13521,8 +13517,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -13587,9 +13583,9 @@
 /area/facility_hallway/safety)
 "Mx" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -13600,17 +13596,17 @@
 /obj/effect/landmark/department_center,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/training)
@@ -13642,20 +13638,20 @@
 /area/department_main/control)
 "MA" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/vending/lobotomyuniform{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/command)
@@ -13664,8 +13660,8 @@
 	dir = 8
 	},
 /obj/structure/chair/sofa/right{
-	dir = 8;
 	can_buckle = 0;
+	dir = 8;
 	pixel_x = -5
 	},
 /obj/item/toy/plush/hod,
@@ -13681,14 +13677,14 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "MD" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/command)
 "ME" = (
@@ -13725,16 +13721,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -13771,20 +13767,20 @@
 /area/department_main/training)
 "ML" = (
 /obj/structure/railing{
-	resistance_flags = 115;
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	name = "wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace."
+	resistance_flags = 115
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "MM" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/control)
 "MS" = (
@@ -13823,8 +13819,8 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/landmark/latejoin,
 /turf/open/floor/plasteel/dark,
@@ -13834,17 +13830,17 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/item/toy/plush/ishmael,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 6;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
@@ -13883,8 +13879,8 @@
 /obj/item/flashlight/seclite,
 /obj/item/flashlight/seclite,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "Nk" = (
@@ -13926,8 +13922,8 @@
 	pixel_y = 4
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "No" = (
@@ -14033,18 +14029,18 @@
 /area/facility_hallway/training)
 "Nw" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 1
+	dir = 1;
+	name = "wing-grade railing"
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "Nx" = (
@@ -14053,36 +14049,36 @@
 /obj/item/flashlight/seclite,
 /obj/item/flashlight/seclite,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/south)
 "NC" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "NE" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/control)
@@ -14091,12 +14087,12 @@
 	dir = 1
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -20
+	pixel_x = -20;
+	pixel_y = 27
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 27
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14150,8 +14146,8 @@
 "NO" = (
 /obj/machinery/smartfridge/extraction_storage/ego_armor,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/extraction)
@@ -14167,9 +14163,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/dark{
@@ -14294,8 +14290,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 4;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14330,8 +14326,8 @@
 	dir = 8
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/training)
 "Op" = (
@@ -14373,8 +14369,8 @@
 /area/facility_hallway/control)
 "Ov" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14424,11 +14420,11 @@
 /area/facility_hallway/east)
 "OD" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	alpha = 0;
-	mouse_opacity = 0
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -14437,16 +14433,16 @@
 "OE" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 1;
-	resistance_flags = 115;
-	pixel_y = -3
+	pixel_y = -3;
+	resistance_flags = 115
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/information)
 "OG" = (
@@ -14460,14 +14456,14 @@
 "OI" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/information)
 "OJ" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/extraction)
 "ON" = (
@@ -14482,14 +14478,14 @@
 /area/facility_hallway/safety)
 "OO" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 1
+	dir = 1;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "OR" = (
@@ -14531,8 +14527,8 @@
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/east)
 "OY" = (
@@ -14619,12 +14615,12 @@
 	color = "#331800"
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -14667,8 +14663,8 @@
 /area/facility_hallway/information)
 "Pr" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/training)
@@ -14691,9 +14687,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/noslip,
@@ -14710,8 +14706,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/snack/blue{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14732,25 +14728,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/west)
-"PF" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115;
-	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
-	},
-/obj/machinery/vending/clothing{
-	pixel_y = 19;
-	density = 0
-	},
-/turf/open/lava{
-	color = "#006700";
-	name = "Unrefined Enkephalin";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	slowdown = 0
-	},
-/area/department_main/command)
 "PH" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/structure/disposalpipe/segment{
@@ -14839,10 +14816,10 @@
 /obj/effect/landmark/department_center,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
 /turf/open/floor/mineral/titanium/yellow{
@@ -14908,8 +14885,8 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -14917,12 +14894,12 @@
 	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 5;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/south)
@@ -14943,9 +14920,9 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/white,
@@ -14999,8 +14976,8 @@
 /area/facility_hallway/south)
 "Ql" = (
 /obj/structure/chair/office{
-	dir = 1;
-	anchored = 1
+	anchored = 1;
+	dir = 1
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -15014,8 +14991,8 @@
 /area/facility_hallway/safety)
 "Qo" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/training)
 "Qp" = (
@@ -15045,8 +15022,8 @@
 /area/department_main/information)
 "Qs" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 8
@@ -15106,12 +15083,12 @@
 /area/facility_hallway/training)
 "QA" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -15128,8 +15105,8 @@
 /area/department_main/command)
 "QD" = (
 /obj/structure/chair/office{
-	dir = 1;
-	anchored = 1
+	anchored = 1;
+	dir = 1
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -15147,8 +15124,8 @@
 /area/facility_hallway/east)
 "QG" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/north)
@@ -15201,8 +15178,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -15228,8 +15205,8 @@
 	dir = 4
 	},
 /obj/machinery/vending/snack/orange{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -15271,8 +15248,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
@@ -15285,8 +15262,8 @@
 /area/facility_hallway/safety)
 "Ri" = (
 /obj/structure/sign/ordealmonitor{
-	pixel_y = 16;
-	pixel_x = 15
+	pixel_x = 15;
+	pixel_y = 16
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -15315,8 +15292,8 @@
 /area/department_main/command)
 "Ro" = (
 /obj/effect/turf_decal/siding/purple{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
@@ -15331,8 +15308,8 @@
 	dir = 4
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -15413,8 +15390,8 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
@@ -15422,12 +15399,12 @@
 	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 9;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/training)
@@ -15454,38 +15431,38 @@
 /area/facility_hallway/training)
 "Rz" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/north)
 "RA" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/west)
@@ -15566,10 +15543,10 @@
 "RW" = (
 /obj/structure/table/reinforced,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -15588,8 +15565,8 @@
 /area/department_main/information)
 "RY" = (
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "RZ" = (
@@ -15675,8 +15652,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/hydroseeds{
-	pixel_y = 19;
 	density = 0;
+	pixel_y = 19;
 	resistance_flags = 115
 	},
 /turf/open/floor/plasteel/sepia,
@@ -15686,8 +15663,8 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 4;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 4
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
@@ -15700,16 +15677,16 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 4
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 8;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -15717,9 +15694,9 @@
 /area/facility_hallway/control)
 "Sv" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi';
 	name = "Central Command";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
+	normal_integrity = 500
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/east)
@@ -15751,23 +15728,23 @@
 /area/facility_hallway/west)
 "Sz" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 6;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 6;
 	view_range = 6
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/north)
@@ -15810,27 +15787,27 @@
 /area/department_main/training)
 "SK" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/structure/sign/departments/extraction{
 	pixel_x = 32
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/control)
 "SM" = (
 /obj/structure/chair/office/light{
-	dir = 1;
 	anchored = 1;
 	can_buckle = 0;
+	dir = 1;
 	pixel_y = 4
 	},
 /obj/effect/turf_decal/siding/purple{
@@ -15893,10 +15870,10 @@
 /area/department_main/control)
 "SX" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 1
+	dir = 1;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
 	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
@@ -15959,8 +15936,8 @@
 	dir = 4
 	},
 /obj/machinery/vending/snack/blue{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -15986,8 +15963,8 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced/spawner{
-	resistance_flags = 115;
-	pixel_y = -3
+	pixel_y = -3;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
@@ -16009,12 +15986,12 @@
 /area/facility_hallway/east)
 "Tt" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/structure/sign/ordealmonitor{
-	pixel_y = 16;
-	pixel_x = 15
+	pixel_x = 15;
+	pixel_y = 16
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -16043,8 +16020,8 @@
 	dir = 4
 	},
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/command)
 "Tx" = (
@@ -16119,9 +16096,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -16140,16 +16117,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 8
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -16259,16 +16236,16 @@
 /area/facility_hallway/information)
 "TS" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/control)
@@ -16287,8 +16264,8 @@
 /area/facility_hallway/west)
 "TW" = (
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
@@ -16345,8 +16322,8 @@
 "Ue" = (
 /obj/structure/table/wood/fancy/green,
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 4;
-	color = "#006400"
+	color = "#006400";
+	dir = 4
 	},
 /obj/item/clothing/accessory/armband/lobotomy/safety{
 	pixel_y = 4
@@ -16441,8 +16418,8 @@
 	dir = 1
 	},
 /turf/open/floor/mineral/titanium/purple{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/command)
 "Uo" = (
@@ -16470,8 +16447,8 @@
 "Ur" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 1;
-	resistance_flags = 115;
-	pixel_y = -3
+	pixel_y = -3;
+	resistance_flags = 115
 	},
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
@@ -16483,8 +16460,8 @@
 	dir = 1
 	},
 /obj/structure/chair/sofa/right{
-	dir = 8;
 	can_buckle = 0;
+	dir = 8;
 	pixel_x = -5
 	},
 /turf/open/floor/plasteel/dark,
@@ -16615,9 +16592,9 @@
 /area/facility_hallway/safety)
 "UK" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -16628,10 +16605,10 @@
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/south)
@@ -16722,9 +16699,9 @@
 /obj/machinery/button/door/indestructible{
 	id = "extraction";
 	name = "Extraction Access Shutters";
+	pixel_x = 22;
 	pixel_y = 4;
-	req_one_access_txt = "19";
-	pixel_x = 22
+	req_one_access_txt = "19"
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
@@ -16780,21 +16757,21 @@
 /obj/item/storage/box/fishing,
 /obj/item/storage/box/fishing,
 /obj/structure/closet{
-	name = "fisherman closet";
 	anchored = 1;
+	name = "fisherman closet";
 	storage_capacity = 60
 	},
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 10;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/east)
@@ -16841,8 +16818,8 @@
 	pixel_y = 19
 	},
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/command)
 "Vo" = (
@@ -16851,10 +16828,10 @@
 	dir = 1
 	},
 /obj/machinery/chem_dispenser/fullupgrade{
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel,/datum/reagent/consumable/soymilk,/datum/reagent/consumable/milk);
-	name = "Industrial Foodstuff Dispenser";
 	desc = "Creates and dispenses a variety of kitchen ingredients.";
-	emagged_reagents = null
+	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel,/datum/reagent/consumable/soymilk,/datum/reagent/consumable/milk);
+	emagged_reagents = null;
+	name = "Industrial Foodstuff Dispenser"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
@@ -16894,15 +16871,15 @@
 /area/facility_hallway/safety)
 "Vv" = (
 /obj/effect/turf_decal/siding/purple{
-	dir = 8;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 8
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "VB" = (
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /obj/structure/filingcabinet{
 	pixel_x = 10;
@@ -16937,15 +16914,15 @@
 /area/department_main/training)
 "VK" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/training)
 "VN" = (
 /obj/effect/turf_decal/siding/purple/corner{
-	dir = 1;
-	color = "#511c4b"
+	color = "#511c4b";
+	dir = 1
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -16958,8 +16935,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/department_main/safety)
 "VQ" = (
@@ -16978,8 +16955,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -17021,12 +16998,12 @@
 	},
 /obj/item/toy/plush/heathcliff,
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 10;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/control)
@@ -17051,8 +17028,8 @@
 	pixel_y = 14
 	},
 /obj/machinery/vending/boozeomat/all_access{
-	pixel_x = 32;
-	density = 0
+	density = 0;
+	pixel_x = 32
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -17174,14 +17151,14 @@
 /area/facility_hallway/training)
 "WE" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/water/deep/freshwater{
-	safe = 1;
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100)
+	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
+	safe = 1
 	},
 /area/facility_hallway/central)
 "WF" = (
@@ -17260,12 +17237,12 @@
 /area/department_main/command)
 "WV" = (
 /obj/structure/railing/corner{
-	name = "wing-grade railing";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing"
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/training)
 "WX" = (
@@ -17284,8 +17261,8 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/green/corner{
-	dir = 8;
-	color = "#006400"
+	color = "#006400";
+	dir = 8
 	},
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
@@ -17327,16 +17304,16 @@
 	dir = 8
 	},
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
@@ -17404,8 +17381,8 @@
 /area/department_main/training)
 "Xq" = (
 /obj/machinery/modular_computer/console/preset/civilian{
-	name = "enkephalin monitor console";
 	dir = 1;
+	name = "enkephalin monitor console";
 	pixel_x = 4
 	},
 /obj/structure/window/reinforced/spawner/west{
@@ -17476,11 +17453,11 @@
 	dir = 8
 	},
 /obj/structure/chair/office{
-	dir = 8;
-	can_buckle = 0;
 	anchored = 1;
-	pixel_y = 6;
-	pixel_x = -6
+	can_buckle = 0;
+	dir = 8;
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
@@ -17537,11 +17514,11 @@
 	dir = 8
 	},
 /obj/structure/chair/office{
-	dir = 8;
-	can_buckle = 0;
 	anchored = 1;
-	pixel_y = 6;
-	pixel_x = -6
+	can_buckle = 0;
+	dir = 8;
+	pixel_x = -6;
+	pixel_y = 6
 	},
 /obj/item/toy/plush/gebura,
 /turf/open/floor/plasteel/dark,
@@ -17557,12 +17534,12 @@
 /area/facility_hallway/safety)
 "XQ" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "invisble wing-grade railing";
+	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
 	dir = 4;
-	alpha = 0;
-	mouse_opacity = 0
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/safety)
@@ -17596,8 +17573,8 @@
 	},
 /obj/structure/sign/ordealmonitor,
 /turf/open/floor/mineral/titanium/yellow{
-	name = "floor";
-	color = "#aaa396"
+	color = "#aaa396";
+	name = "floor"
 	},
 /area/facility_hallway/north)
 "Yb" = (
@@ -17637,16 +17614,16 @@
 /area/department_main/safety)
 "Yk" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/information)
@@ -17677,8 +17654,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -17715,9 +17692,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /turf/open/floor/plasteel/freezer,
@@ -17744,25 +17721,25 @@
 /area/facility_hallway/south)
 "YF" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/effect/landmark/xeno_spawn,
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/facility_hallway/control)
 "YG" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/command)
 "YH" = (
@@ -17914,9 +17891,9 @@
 /area/facility_hallway/south)
 "Zc" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/safety)
@@ -17944,8 +17921,8 @@
 	id = "cremawheat1"
 	},
 /obj/machinery/button/crematorium/indestructible{
-	pixel_y = 27;
-	id = "cremawheat1"
+	id = "cremawheat1";
+	pixel_y = 27
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -18047,10 +18024,10 @@
 /area/department_main/command)
 "ZB" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -52477,7 +52454,7 @@ DG
 xm
 hH
 MD
-PF
+uY
 qq
 AK
 bD
