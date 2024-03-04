@@ -26,7 +26,11 @@
 	add_verb(H, /mob/living/carbon/human/proc/nextabno)
 	add_verb(H, /mob/living/carbon/human/proc/slowgame)
 	add_verb(H, /mob/living/carbon/human/proc/quickengame)
-	add_verb(H, /mob/living/carbon/human/proc/challengemode)
+	add_verb(H, /mob/living/carbon/human/proc/workmeltincrease)
+	add_verb(H, /mob/living/carbon/human/proc/workmeltdecrease)
+	add_verb(H, /mob/living/carbon/human/proc/meltincrease)
+	add_verb(H, /mob/living/carbon/human/proc/meltdecrease)
+//	add_verb(H, /mob/living/carbon/human/proc/challengemode)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -113,7 +117,7 @@ GLOBAL_VAR_INIT(Sephirahspeed, 3)
 		SSabnormality_queue.next_abno_spawn_time *= 1.2
 		GLOB.Sephirahspeed --
 		to_chat(src, span_notice("You have now slowed down when abnormalities arrive."))
-		message_admins("<span class='notice'>A sephirah ([src.ckey]) has slowed down the game.</span>")
+		message_admins("<span class='notice'>A sephirah ([src.ckey]) has slowed down the abnormality rate.</span>")
 
 /mob/living/carbon/human/proc/quickengame()
 	set name = "Abnormality Time Quicken"
@@ -123,7 +127,63 @@ GLOBAL_VAR_INIT(Sephirahspeed, 3)
 		SSabnormality_queue.next_abno_spawn_time /= 1.2
 		GLOB.Sephirahspeed ++
 		to_chat(src, span_notice("You have now sped up when abnormalities arrive."))
-		message_admins("<span class='notice'>A sephirah ([src.ckey]) has sped up the game.</span>")
+		message_admins("<span class='notice'>A sephirah ([src.ckey]) has sped up the abnormality rate.</span>")
+
+//Ordeal Stuff
+GLOBAL_VAR_INIT(Sephirahordealspeed, 0)
+
+/mob/living/carbon/human/proc/workmeltincrease()
+	set name = "Works Per Melt Increase"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahordealspeed > 5)
+		to_chat(src, span_notice("Meltdowns are already taking too long!"))
+		return
+
+	GLOB.Sephirahordealspeed ++
+	to_chat(src, span_notice("All meltdowns will take one more work."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made works per melt longer.</span>")
+
+
+/mob/living/carbon/human/proc/workmeltdecrease()
+	set name = "Works Per Melt Decrease"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahordealspeed < -3 )
+		to_chat(src, span_notice("Meltdowns are already too fast!"))
+		return
+
+	GLOB.Sephirahordealspeed --
+	to_chat(src, span_notice("All meltdowns will take one less work."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made works per melt shorter.</span>")
+
+
+GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
+
+/mob/living/carbon/human/proc/meltincrease()
+	set name = "Abno Melts Per Event Increase"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahmeltmodifier > 5)
+		to_chat(src, span_notice("Too many abnormalities are melting!"))
+		return
+
+	GLOB.Sephirahmeltmodifier ++
+	to_chat(src, span_notice("One more abnormality will melt per event."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made more abnormalities melt per event.</span>")
+
+
+/mob/living/carbon/human/proc/meltdecrease()
+	set name = "Abno Melts Per Event Decrease"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahmeltmodifier < -1*qliphoth_meltdown_amount+2)
+		to_chat(src, span_notice("Too little abnormalities are melting!"))
+		return
+
+	GLOB.Sephirahmeltmodifier --
+	to_chat(src, span_notice("One less abnormality will melt per event."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made less abnormalities melt per event.</span>")
 
 
 GLOBAL_LIST_EMPTY(challenged_players)
