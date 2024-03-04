@@ -35,6 +35,10 @@
 		return GetSpecialVoice()
 	return real_name
 
+/mob/living/carbon/human/compose_job(atom/movable/speaker, message_langs, raw_message, radio_freq)
+	var/job_abbreviation = speaker.GetJobAbbrev()
+	return job_abbreviation ? (radio_freq ? " ([job_abbreviation])" : "") : ""
+
 /mob/living/carbon/human/IsVocal()
 	// how do species that don't breathe talk? magic, that's what.
 	if(!HAS_TRAIT_FROM(src, TRAIT_NOBREATH, SPECIES_TRAIT) && !getorganslot(ORGAN_SLOT_LUNGS))
