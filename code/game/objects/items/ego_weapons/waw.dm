@@ -1926,14 +1926,14 @@
 		var/damage = 75
 		if(ishuman(thrownby))
 			damage *= 1 + (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))/100
-		damage *= force_multiplier
-		for(var/turf/open/T in range(1, src))
-			var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
-			smonk.color = COLOR_TEAL
-			if(!ismob(thrownby))
-				continue
-			thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
-		PowerReset(thrownby)
+			damage *= force_multiplier
+			for(var/turf/open/T in range(1, src))
+				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+				smonk.color = COLOR_TEAL
+				if(!ismob(thrownby))
+					continue
+				thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
+			PowerReset(thrownby)
 
 /datum/movespeed_modifier/anchor
 	multiplicative_slowdown = 0
