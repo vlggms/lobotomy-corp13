@@ -9,10 +9,9 @@
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER) // Network is the trusted chat gamer access
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
 	mapexclude = list("wonderlabs", "mini")
-	job_important = "You are a strictly roleplay role and are forbidden from partaking in combat. Assist the Manager and improve IC roleplay during the round."
-	job_notice = "In the OOC tab you have a verb called 'Randomize Current Abnormality'. \
-		It should be used to spice up boring rounds and discourage Managers you think are playing too safe. \
-		This is an OOC-only tool. Do not allow anyone IC to learn of this ability. Alert administrators if any IC action is taken against you. \
+	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
+	job_notice = "In the gamemaster tab, you may adjust game perimeters. \
+		This is an OOC tool. Do not bring alert to the fact that you can do this IC. Alert any administrators if any IC action is taken against you. \
 		Abusing this will result in a loss of whitelist."
 
 	job_abbreviation = "SEPH"
@@ -23,7 +22,14 @@
 	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT)
 
 	//Let'em Grief
-	add_verb(H, /client/proc/randomabno)
+	add_verb(H, /mob/living/carbon/human/proc/randomabno)
+	add_verb(H, /mob/living/carbon/human/proc/nextabno)
+	add_verb(H, /mob/living/carbon/human/proc/slowgame)
+	add_verb(H, /mob/living/carbon/human/proc/quickengame)
+	add_verb(H, /mob/living/carbon/human/proc/workmeltincrease)
+	add_verb(H, /mob/living/carbon/human/proc/workmeltdecrease)
+	add_verb(H, /mob/living/carbon/human/proc/meltincrease)
+	add_verb(H, /mob/living/carbon/human/proc/meltdecrease)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -67,9 +73,14 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 	"Job", "Lot", "Isaac", "Lazarus", "Gaius", "Abel", "Enoch", "Jescha",))
 
 
-/client/proc/randomabno()
+
+
+/*************************************************/
+//Sephirah Gamemaster commands.
+
+/mob/living/carbon/human/proc/randomabno()
 	set name = "Randomize Current Abnormality"
-	set category = "OOC"
+	set category = "Gamemaster"
 	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
 		if(Q.locked)
@@ -85,3 +96,107 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 				Extraction Headquarters apologizes for the inconvenience", "Extraction Alert:", TRUE)
 		return
 
+//See next abnormality
+/mob/living/carbon/human/proc/nextabno()
+	set name = "Next Abnormality Check"
+	set category = "Gamemaster"
+	//Abno stuff, so you can grief more effectively.
+	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
+	to_chat(src, span_notice("Current Status:"))
+	to_chat(src, span_notice("Number of Abnormalities: [SSabnormality_queue.spawned_abnos]."))
+	to_chat(src, span_notice("Next Abnormality: [initial(queued_abno.name)]."))
+
+//Speed stuff
+GLOBAL_VAR_INIT(Sephirahspeed, 0)
+
+/mob/living/carbon/human/proc/slowgame()
+	set name = "Abnormality Time Slow"
+	set category = "Gamemaster"
+	if(GLOB.Sephirahspeed > -3)
+		SSabnormality_queue.next_abno_spawn_time *= 1.2
+		GLOB.Sephirahspeed --
+		to_chat(src, span_notice("You have now slowed down when abnormalities arrive."))
+		message_admins("<span class='notice'>A sephirah ([src.ckey]) has slowed down the abnormality rate.</span>")
+	else
+		to_chat(src, span_notice("Abnormality extraction cannot be slower."))
+
+/mob/living/carbon/human/proc/quickengame()
+	set name = "Abnormality Time Quicken"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahspeed < 3)
+		SSabnormality_queue.next_abno_spawn_time /= 1.2
+		GLOB.Sephirahspeed ++
+		to_chat(src, span_notice("You have now sped up when abnormalities arrive."))
+		message_admins("<span class='notice'>A sephirah ([src.ckey]) has sped up the abnormality rate.</span>")
+	else
+		to_chat(src, span_notice("Abnormality extraction cannot be faster."))
+
+//Ordeal Stuff
+GLOBAL_VAR_INIT(Sephirahordealspeed, 0)
+
+/mob/living/carbon/human/proc/workmeltincrease()
+	set name = "Works Per Melt Increase"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahordealspeed > 5)
+		to_chat(src, span_notice("Meltdowns are already taking too long!"))
+		return
+
+	GLOB.Sephirahordealspeed ++
+	to_chat(src, span_notice("All meltdowns will take one more work."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made works per melt longer.</span>")
+
+
+/mob/living/carbon/human/proc/workmeltdecrease()
+	set name = "Works Per Melt Decrease"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahordealspeed < -3 )
+		to_chat(src, span_notice("Meltdowns are already too fast!"))
+		return
+
+	GLOB.Sephirahordealspeed --
+	to_chat(src, span_notice("All meltdowns will take one less work."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made works per melt shorter.</span>")
+
+
+GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
+
+/mob/living/carbon/human/proc/meltincrease()
+	set name = "Abno Melts Per Event Increase"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahmeltmodifier > 5)
+		to_chat(src, span_notice("Too many abnormalities are melting!"))
+		return
+
+	GLOB.Sephirahmeltmodifier ++
+	to_chat(src, span_notice("One more abnormality will melt per event."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made more abnormalities melt per event.</span>")
+
+
+/mob/living/carbon/human/proc/meltdecrease()
+	set name = "Abno Melts Per Event Decrease"
+	set category = "Gamemaster"
+
+	if(GLOB.Sephirahmeltmodifier < -1*SSlobotomy_corp.qliphoth_meltdown_amount+2)
+		to_chat(src, span_notice("Too little abnormalities are melting!"))
+		return
+
+	GLOB.Sephirahmeltmodifier --
+	to_chat(src, span_notice("One less abnormality will melt per event."))
+	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made less abnormalities melt per event.</span>")
+
+
+
+//See next abnormality
+/mob/living/carbon/human/proc/gameinfo()
+	set name = "Check Game Info"
+	set category = "Gamemaster"
+	//So you can see what the others have done
+	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
+	to_chat(src, span_notice("Current Status:"))
+	to_chat(src, span_notice("Sephirah Meltdown Modifier: [GLOB.Sephirahmeltmodifier]."))
+	to_chat(src, span_notice("Sephirah Workmelt Modifier: [GLOB.Sephirahordealspeed]."))
+	to_chat(src, span_notice("Abnormality Extraction Speed Modifier: [GLOB.Sephirahordealspeed]."))
