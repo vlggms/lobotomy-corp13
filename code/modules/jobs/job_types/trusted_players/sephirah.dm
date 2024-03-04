@@ -112,14 +112,17 @@ GLOBAL_VAR_INIT(Sephirahspeed, 3)
 	if(GLOB.Sephirahspeed > 0)
 		SSabnormality_queue.next_abno_spawn_time *= 1.2
 		GLOB.Sephirahspeed --
+		to_chat(src, span_notice("You have now slowed down when abnormalities arrive."))
 		message_admins("<span class='notice'>A sephirah ([src.ckey]) has slowed down the game.</span>")
 
 /mob/living/carbon/human/proc/quickengame()
 	set name = "Abnormality Time Quicken"
 	set category = "Gamemaster"
+
 	if(GLOB.Sephirahspeed < 5)
 		SSabnormality_queue.next_abno_spawn_time /= 1.2
 		GLOB.Sephirahspeed ++
+		to_chat(src, span_notice("You have now sped up when abnormalities arrive."))
 		message_admins("<span class='notice'>A sephirah ([src.ckey]) has sped up the game.</span>")
 
 
@@ -134,9 +137,13 @@ GLOBAL_LIST_EMPTY(challenged_players)
 		display_names += H
 
 	if(!display_names.len)
+		to_chat(src, span_notice("Issue loading player list. Contact a dev."))
 		return
 	var/choice = input(src,"Who would you like to challenge?","Select a player") as null|anything in sortList(display_names)
 	if(!choice)
+		return
+	if(choice in GLOB.challenged_players)
+		to_chat(src, span_notice("This Agent is already in hardmode"))
 		return
 	GLOB.challenged_players += display_names[choice]
 
