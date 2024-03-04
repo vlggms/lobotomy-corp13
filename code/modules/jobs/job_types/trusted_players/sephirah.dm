@@ -177,7 +177,7 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 	set name = "Abno Melts Per Event Decrease"
 	set category = "Gamemaster"
 
-	if(GLOB.Sephirahmeltmodifier < -1*qliphoth_meltdown_amount+2)
+	if(GLOB.Sephirahmeltmodifier < -1*SSlobotomy_corp.qliphoth_meltdown_amount+2)
 		to_chat(src, span_notice("Too little abnormalities are melting!"))
 		return
 
