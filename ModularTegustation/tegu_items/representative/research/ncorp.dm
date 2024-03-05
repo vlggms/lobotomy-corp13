@@ -108,7 +108,7 @@
 	corp = N_CORP_REP
 	required_research = /datum/data/lc13research/ntemp2
 
-/datum/data/lc13research/ntemp1/ResearchEffect(obj/structure/representative_console/caller)
+/datum/data/lc13research/ntemp3/ResearchEffect(obj/structure/representative_console/caller)
 	ItemUnlock(caller.order_list, "Focused Fading Fortitude Ampule",	/obj/item/attribute_temporary/fortitudebig, 1500)
 	ItemUnlock(caller.order_list, "Focused Fading Temperance Ampule",	/obj/item/attribute_temporary/temperancebig, 1500)
 	ItemUnlock(caller.order_list, "Focused Fading Prudence Ampule",	/obj/item/attribute_temporary/prudencebig, 1500)
