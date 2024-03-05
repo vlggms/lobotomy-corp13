@@ -2,7 +2,7 @@
 	name = "Blood Refinery"
 	desc = "A machine used by the Extraction Officer to give all but 1 of their HP for a chance at a PE box."
 	icon_state = "dominator-red"
-	var/ready = TRUE
+	var/pecost = 100
 
 /obj/structure/refiner/blood/proc/reset()
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
@@ -21,22 +21,23 @@
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return
 
-	if(!ready)
-		to_chat(M, span_warning("This machine is not yet ready."))
+	//This is more expensive than regular refining still
+	if(SSlobotomy_corp.available_box < pecost)
+		to_chat(M, span_warning("Not enough PE boxes stored for this operation. 100 PE is necessary for this operation. Current PE: [SSlobotomy_corp.available_box]."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return
 
+	//Gamble it
 	var/gambling_number = (M.health - 1)
 	M.adjustBruteLoss(gambling_number-1)	//Just in case we get weird rounding shit
 
-	//So you can't actually use it repeatedly
+	//So you can't actually use it repeatedly, have a min health of 20
 	if(prob(gambling_number-20))
 		to_chat(M, span_notice("Refining success."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		new /obj/item/refinedpe(get_turf(src))
-		ready = FALSE
 	else
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		to_chat(M, span_warning("Refining failure. Please try again."))
-	addtimer(CALLBACK(src, PROC_REF(reset)), 45 SECONDS)
+	SSlobotomy_corp.AdjustAvailableBoxes(-1 * pecost)
 
