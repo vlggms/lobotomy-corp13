@@ -40,7 +40,7 @@
 		return
 	current_holder = user
 	RaiseLance(user)
-	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, PROC_REF(UserBump))
+	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, PROC_REF(UserBump), override = TRUE)
 	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 	if(!force_cap)
 		force_cap = (initial(force) * 2)

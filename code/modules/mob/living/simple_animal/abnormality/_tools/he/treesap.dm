@@ -6,6 +6,11 @@
 	icon_state = "treesap"
 	var/list/used = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/giant_tree_branch,
+		/datum/ego_datum/armor/giant_tree_branch,
+	)
+
 /obj/structure/toolabnormality/treesap/Initialize()
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(reset)), 20 MINUTES)

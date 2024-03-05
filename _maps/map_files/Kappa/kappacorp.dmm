@@ -896,7 +896,6 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "eT" = (
-/obj/machinery/vending/autodrobe,
 /obj/effect/turf_decal/siding/brown{
 	color = "#422702";
 	dir = 4

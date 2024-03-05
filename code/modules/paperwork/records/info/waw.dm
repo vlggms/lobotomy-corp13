@@ -381,7 +381,7 @@
 	abno_code = "D-01-110"
 	abno_info = list(
 		"An employee’s SP was healed when they performed Insight work.",
-		"The Qliphoth Counter lowered every time two employees died.",
+		"The Qliphoth Counter lowered every time 2 employees died.",
 		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter decreased.")
 
