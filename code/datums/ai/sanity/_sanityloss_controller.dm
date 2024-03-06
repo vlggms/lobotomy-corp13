@@ -162,7 +162,7 @@
 			target_turf = path[2]
 		else
 			target_turf = get_step_towards(living_pawn, current_movement_target)
-	if(target_turf && !is_type_in_typecache(target_turf, GLOB.dangerous_turfs))
+	if(target_turf)
 		living_pawn.Move(target_turf, get_dir(our_turf, target_turf))
 
 	if(!(current_movement_target in oview(7, living_pawn))) // If you can't see the target enough
@@ -187,6 +187,8 @@
 
 /turf/proc/reachableTurftestWithMobs(caller, turf/T, ID, simulated_only)
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
+		if(is_type_in_typecache(T, GLOB.dangerous_turfs) && !(locate(/obj/structure/lattice) in T))
+			return FALSE
 		for(var/mob/living/L in T)
 			if(!L.CanPass(caller, T))
 				return FALSE
