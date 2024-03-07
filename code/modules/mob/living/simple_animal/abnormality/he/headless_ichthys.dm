@@ -90,7 +90,8 @@
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
 		var/turf/target_turf = get_turf(target)
 		SLEEP_CHECK_DEATH(1 SECONDS)
-		forceMove(target_turf) //look out, someone is rushing you!
+		if(target_turf)
+			forceMove(target_turf) //look out, someone is rushing you!
 		playsound(src, jump_sound, 50, FALSE, 4)
 		animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		src.pixel_z = 0
