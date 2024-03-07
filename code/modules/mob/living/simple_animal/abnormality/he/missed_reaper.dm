@@ -69,12 +69,20 @@
 	user.Stun(3 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	user.attack_animal(src)
 	sleep(0.2 SECONDS)
+	if(QDELETED(user))
+		return
 	user.attack_animal(src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	to_chat(user, span_userdanger("[src] stabs you!"))
 	user.apply_damage(3000, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	playsound(user, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
