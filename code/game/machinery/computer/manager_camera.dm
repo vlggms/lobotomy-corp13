@@ -209,6 +209,9 @@
 		if(MANAGER_HP_BULLET)
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 		if(MANAGER_SP_BULLET)
+			if(H.sanity_lost)
+				to_chat(owner, span_warning("ERROR: TARGET'S MIND IS TOO UNSTABLE."))
+				return FALSE
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
 		if(MANAGER_RED_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield)
