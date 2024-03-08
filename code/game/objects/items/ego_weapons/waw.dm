@@ -1784,7 +1784,7 @@
 	return ..()
 
 /obj/item/ego_weapon/rosa
-	name = "flore sicut rosa"
+	name = "garden of thorns"
 	desc = "See? Wish, wish for it. Knowing that it is a sin. Only then can you bloom such colorful roses."
 	special = "Hit yourself to heal the sanity of others"
 	icon_state = "rosa"

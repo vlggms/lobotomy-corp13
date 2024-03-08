@@ -447,7 +447,7 @@
 	item_path = /obj/item/ego_weapon/scene
 	cost = 50
 
-//Sign of Roses - Flore sicut rosa
+//Sign of Roses - Garden Of Thorns
 /datum/ego_datum/armor/rosa
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rosa
 	cost = 50
