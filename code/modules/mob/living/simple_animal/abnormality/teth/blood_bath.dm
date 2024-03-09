@@ -36,8 +36,12 @@
 		user.Stun(30 SECONDS)
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			return
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			return
 		user.dust()
 		visible_message(span_warning("[src] drags [user] into itself!"))
 		playsound(get_turf(src),'sound/effects/wounds/blood2.ogg')
