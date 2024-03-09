@@ -192,9 +192,13 @@
 		user.Stun(30 SECONDS)
 		step_towards(user, src)
 		sleep(0.3 SECONDS)
+		if(QDELETED(user))
+			return TRUE
 		step_towards(user, src)
 		new /obj/effect/temp_visual/censored(get_turf(src))
 		sleep(0.3 SECONDS)
+		if(QDELETED(user))
+			return TRUE
 		playsound(src, 'sound/abnormalities/censored/sacrifice.ogg', 45, FALSE, 10)
 		if(status_flags & GODMODE) //If CENSORED is still contained within this small time frame
 			datum_reference.qliphoth_change(1)

@@ -58,10 +58,16 @@
 	user.Stun(5 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	to_chat(user, span_userdanger("That was tough work, time for a break."))
 	buckle_mob(user)
 	update_icon()
