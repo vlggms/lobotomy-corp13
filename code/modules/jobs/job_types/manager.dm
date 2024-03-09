@@ -23,7 +23,9 @@
 								TEMPERANCE_ATTRIBUTE = 0,
 								JUSTICE_ATTRIBUTE = 0
 								)
-	job_important = "You are the Manager. Your goal is to provide overwatch to all agents and clerks and direct works. You can also choose abnormalities and apply buffs to agents."
+	job_important = "You are the Manager. Your goal is to provide overwatch to Agents and Clerks while guiding the facility's progress. You are able to choose arriving Abnormalities, buy facility upgrades, and apply buffs through your camera console."
+
+	job_abbreviation = "MGR"
 
 /datum/job/manager/announce(mob/living/carbon/human/H)
 	..()

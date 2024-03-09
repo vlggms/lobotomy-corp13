@@ -97,7 +97,7 @@
 /datum/looping_sound/cloudedmonk_ambience
 	mid_sounds = 'sound/abnormalities/clouded_monk/run.ogg'
 	mid_length = 6 SECONDS
-	volume = 25
+	volume = 12.5 //SO ANNOYING
 	extra_range = -4
 
 /datum/looping_sound/orangetree_ambience
