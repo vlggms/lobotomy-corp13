@@ -6,6 +6,7 @@
 
 /proc/get_portrait_path()
 	var/list/paths = list(
+	'icons/UI_Icons/abnormality_portraits/apex.png',
 	'icons/UI_Icons/abnormality_portraits/alriune.png',
 	'icons/UI_Icons/abnormality_portraits/army_in_black.png',
 	'icons/UI_Icons/abnormality_portraits/bald.png',
@@ -38,6 +39,7 @@
 	'icons/UI_Icons/abnormality_portraits/eris.png',
 	'icons/UI_Icons/abnormality_portraits/express_train.png',
 	'icons/UI_Icons/abnormality_portraits/fairy_festival.png',
+	'icons/UI_Icons/abnormality_portraits/falada.png',
 	'icons/UI_Icons/abnormality_portraits/fallen_amurdad.png',
 	'icons/UI_Icons/abnormality_portraits/fan.png',
 	'icons/UI_Icons/abnormality_portraits/fairies.png',
@@ -93,6 +95,7 @@
 	'icons/UI_Icons/abnormality_portraits/puss_in_boots.png',
 	'icons/UI_Icons/abnormality_portraits/pygmalion.png',
 	'icons/UI_Icons/abnormality_portraits/queen_bee.png',
+	'icons/UI_Icons/abnormality_portraits/red_blooded_american.png',
 	'icons/UI_Icons/abnormality_portraits/red_queen.png',
 	'icons/UI_Icons/abnormality_portraits/red_shoes.png',
 	'icons/UI_Icons/abnormality_portraits/red_buddy.png',
@@ -104,6 +107,7 @@
 	'icons/UI_Icons/abnormality_portraits/scorched_girl.png',
 	'icons/UI_Icons/abnormality_portraits/screenwriter.png',
 	'icons/UI_Icons/abnormality_portraits/shadow.png',
+	'icons/UI_Icons/abnormality_portraits/shrimp_executive.png',
 	'icons/UI_Icons/abnormality_portraits/shy_look.png',
 	'icons/UI_Icons/abnormality_portraits/silence.png',
 	'icons/UI_Icons/abnormality_portraits/silent_orchestra.png',
