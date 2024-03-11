@@ -124,9 +124,9 @@
 /obj/item/ego_weapon/iron_maiden
 	name = "iron maiden"
 	desc = "Just open up the machine, step inside, and press the button to make it shut. Now everything will be just fine.."
-	special = "This weapon builds up the amount of times it hits as you attack, at maximum speed it will damage you per hit, increasing more and more, use it in hands."
+	special = "This weapon builds up the amount of times it hits as you attack, at maximum speed it will damage you per hit after attacking 5 times, increasing more and more, use it in hands to set back the speed it attacks at."
 	icon_state = "iron_maiden"
-	force = 25 //DPS of 25, 50, 75, 100 at each ramping level
+	force = 35 //DPS of 35, 70, 105, 140 at each ramping level
 	damtype = RED_DAMAGE
 
 	attack_verb_continuous = list("clamps")
@@ -146,6 +146,8 @@
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
 	sleep(1)
 	for(var/i = 1 to attack_amount)
 		switch(attack_amount)
@@ -155,11 +157,13 @@
 				sleep(3)
 			if(3)
 				sleep(2)
-		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-		user.do_attack_animation(target)
-		playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+		var/multihit = force * justicemod * force_multiplier
+		if(target in view(reach,user))
+			target.apply_damage(multihit, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+			user.do_attack_animation(target)
+			playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
@@ -167,8 +171,12 @@
 		if (ramping_speed < 20)
 			ramping_speed += 1
 		else
-			ramping_damage += 0.02
-			user.adjustBruteLoss(user.maxHealth*ramping_damage)
+			ramping_damage += 4
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
+			user.apply_damage(ramping_damage, damtype, null, user.run_armor_check(null, damtype), spread_damage = TRUE)
+			if(user.stat >= SOFT_CRIT)
+				playsound(loc, 'sound/abnormalities/change/change_end.ogg', 25, 0, -9)
+				user.gib()
 
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
@@ -197,9 +205,9 @@
 		icon_state = "iron_maiden"
 		update_icon_state()
 		playsound(src, 'sound/abnormalities/we_can_change_anything/change_start.ogg', 50, FALSE)
-		ramping_speed = 0
+		ramping_speed -= 10
 		ramping_damage = 0
-		to_chat(user,span_notice("The mechanism on [src] dies down!"))
+		to_chat(user,span_notice("The mechanism on [src] dies down a bit!"))
 
 //Event rewards
 /obj/item/ego_weapon/goldrush/nihil
