@@ -1688,12 +1688,13 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/voodoo
+/obj/item/ego_weapon/mini/voodoo
 	name = "voodoo"
 	desc = "What seems to be a giant half of a scissors pair."
 	icon_state = "voodoo"
-	special = "This weapon deals both red and white damage."
+	special = "This weapon can be paired with itself to unlock the ability to parry."
 	force = 20
+	attack_speed = 0.7
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
@@ -1702,9 +1703,22 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/ego_weapon/voodoo/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/mini/voodoo/attack(mob/living/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	var/combo = FALSE
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/ego_weapon/mini/voodoo/Y = myman.get_inactive_held_item()
+	if(istype(Y)) //dual wielding? if so...
+		combo = TRUE //hits twice, you're spending more PE then you would getting a WAW anyways
 	..()
-	target.apply_damage(force, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	if(combo)
+		sleep(attack_speed/2 SECONDS)
+		if(target in view(reach,user))
+			target.attacked_by(src, user)
+			target.send_item_attack_message(src, user,target)
+			user.do_attack_animation(target)
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 
 /obj/item/ego_weapon/nixie
 	name = "nixie divergence"
@@ -1795,8 +1809,11 @@
 /obj/item/ego_weapon/uturn
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
+	special = "Knocks certain enemies forward you in an area."
 	icon_state = "uturn"
 	force = 30
+	reach = 4
+	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("whips", "lashes", "tears")
 	attack_verb_simple = list("whip", "lash", "tear")
@@ -1804,40 +1821,30 @@
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
-	var/can_spin = TRUE
-	var/spinning = FALSE
 
 /obj/item/ego_weapon/uturn/attack(mob/living/target, mob/living/user)
-	if(spinning)
-		return FALSE
-	..()
-	can_spin = FALSE
-	addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
-
-/obj/item/ego_weapon/uturn/proc/spin_reset()
-	can_spin = TRUE
-
-/obj/item/ego_weapon/uturn/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
-	if(!can_spin)
-		to_chat(user,span_warning("You attacked too recently."))
-		return
-	if(do_after(user, 12, src))
-		can_spin = TRUE
-		addtimer(CALLBACK(src, PROC_REF(spin_reset)), 12)
-		playsound(src, 'sound/weapons/ego/harvest.ogg', 75, FALSE, 4)
-		for(var/turf/T in orange(1, user))
-			new /obj/effect/temp_visual/smash_effect(T)
-
-		for(var/mob/living/L in range(1, user))
-			var/aoe = 30
-			var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-			var/justicemod = 1 + userjust/100
-			aoe*=justicemod
-			if(L == user || ishuman(L))
-				continue
-			L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	. = ..()
+	var/list/been_hit = list()
+	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 3, 0)
+	for(var/turf/T in getline(user, end_turf))
+		if(user in T)
+			continue
+		for(var/turf/T2 in view(T,1))
+			new /obj/effect/temp_visual/smash_effect(T2)
+			for(var/mob/living/L in T2)
+				var/aoe = 10
+				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+				var/justicemod = 1 + userjust/100
+				aoe*=justicemod
+				aoe*=force_multiplier
+				if(L == user || ishuman(L))
+					continue
+				been_hit = user.HurtInTurf(T2, been_hit, aoe, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
+				var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(user))))
+				if(!L.anchored)
+					L.throw_at(throw_target, 1, get_dist(user, L) - 1, user)
 
 /obj/item/ego_weapon/giant_tree_branch
 	name = "giant tree branch"

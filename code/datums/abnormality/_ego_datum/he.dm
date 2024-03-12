@@ -408,7 +408,7 @@
 	cost = 35
 
 /datum/ego_datum/weapon/voodoo
-	item_path = /obj/item/ego_weapon/voodoo
+	item_path = /obj/item/ego_weapon/mini/voodoo
 	cost = 35
 
 //Eris - Coiling
