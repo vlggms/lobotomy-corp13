@@ -700,7 +700,3 @@
 
 /obj/machinery/computer/camera_advanced/manager/representative/proc/RepExaminate(mob/living/user, atom/clicked_atom)
 	user.examinate(clicked_atom) //maybe put more info on the agent/abno they examine if we want to be fancy later
-
-#undef MANAGER_HP_BULLET
-#undef MANAGER_SP_BULLET
-#undef MANAGER_RED_BULLET
