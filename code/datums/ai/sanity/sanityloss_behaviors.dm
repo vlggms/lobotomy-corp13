@@ -259,7 +259,9 @@
 
 /datum/ai_behavior/insanity_attack_mob/proc/DelayedGunAttack(mob/living/user, obj/item/gun/weapon, atom/target, next_move)
 	if(weapon && !IS_DEAD_OR_INCAP(user) && (weapon in user.held_items))
+		weapon.spread += 20
 		weapon.afterattack(target, user, FALSE)
+		weapon.spread -= 20
 		user.next_move = next_move
 
 /datum/ai_behavior/insanity_attack_mob/proc/DestroyPathToTarget(datum/ai_controller/insane/murder/controller, atom/target, delta_time)
@@ -392,27 +394,44 @@
 		return
 
 	var/turf/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	if(!LAZYLEN(controller.current_path) && !living_pawn.Adjacent(target))
+	if(living_pawn.Adjacent(target))
+		controller.pathing_attempts = 0
+		controller.current_path.Cut()
+		finish_action(controller, FALSE)
+		return
+	if(!LAZYLEN(controller.current_path))
 		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 120)
 		if(!LAZYLEN(controller.current_path)) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
 		controller.current_path.Remove(controller.current_path[1])
 		MoveInPath(controller)
+		return
+	if(!controller.timerid)
+		MoveInPath(controller)
+		return
 
 /datum/ai_behavior/insanity_wander/proc/MoveInPath(datum/ai_controller/insane/controller)
+	controller.timerid = null
 	var/mob/living/living_pawn = controller.pawn
-	if(!living_pawn)
+	if(!living_pawn || IS_DEAD_OR_INCAP(living_pawn))
 		controller.pathing_attempts = 0
 		controller.current_path = list() // Reset the path and stop
 		finish_action(controller, TRUE)
-		return
+		return FALSE
 	if(!PreMoveCheck(controller, living_pawn))
-		return
+		if(!QDELETED(controller))
+			controller.pathing_attempts = 0
+			controller.current_path.Cut()
+			finish_action(controller, TRUE)
+			if(istype(controller, /datum/ai_controller/insane/murder))
+				var/datum/ai_controller/insane/murder/M = controller
+				M.FindEnemies()
+		return FALSE
 	// Movement
-	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+	if(LAZYLEN(controller.current_path))
 		var/target_turf = controller.current_path[1]
-		if(target_turf && get_dist(living_pawn, target_turf) < 3)
+		if(target_turf && get_dist(living_pawn, target_turf) < 2)
 			if(!step_towards(living_pawn, target_turf)) //If it fails to move
 				controller.pathing_attempts++
 				if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
@@ -427,7 +446,7 @@
 				else
 					controller.pathing_attempts++
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * movement_mod))
-			addtimer(CALLBACK(src, PROC_REF(MoveInPath), controller), move_delay)
+			controller.timerid = addtimer(CALLBACK(src, PROC_REF(MoveInPath), controller), move_delay)
 			return TRUE
 	controller.pathing_attempts = 0
 	controller.current_path = list() // Reset the path and stop
@@ -482,10 +501,6 @@
 			continue
 		if(living_pawn.see_invisible < L.invisibility)
 			continue
-		controller.pathing_attempts = 0
-		controller.current_path = list() // Reset the path and stop
-		finish_action(controller, TRUE)
-		controller.FindEnemies()
 		return FALSE
 	return ..()
 

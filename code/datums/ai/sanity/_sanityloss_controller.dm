@@ -15,6 +15,8 @@
 	var/list/current_path = list()
 	var/next_smash = 0
 
+	var/timerid = null
+
 /datum/ai_controller/insane/TryPossessPawn(atom/new_pawn)
 	if(!ishuman(new_pawn))
 		return AI_CONTROLLER_INCOMPATIBLE
@@ -100,7 +102,6 @@
 	lines_type = /datum/ai_behavior/say_line/insanity_lines
 	resist_chance = 80 // Anger powered break out attempts
 	var/list/currently_scared = list()
-	var/timerid = null
 	var/interest = 3
 	var/asshole = FALSE
 
@@ -351,6 +352,8 @@
 		if(blackboard[BB_INSANE_BLACKLISTITEMS][I])
 			continue
 		if(blackboard[BB_INSANE_TEMPORARY_BLACKLISTITEMS][I])
+			continue
+		if(istype(I, /obj/item/offhand))
 			continue
 		var/item_force = GetEffectiveItemForce(I)
 		if(item_force <= INSANE_MINIMUM_WEAPON_FORCE)
