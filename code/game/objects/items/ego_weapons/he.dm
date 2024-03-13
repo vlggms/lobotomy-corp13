@@ -1809,15 +1809,15 @@
 /obj/item/ego_weapon/uturn
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
-	special = "Knocks certain enemies towards you in an area."
+	special = "Knocks certain enemies towards you in an area. This weapon does half damage when attacking 3 tiles or more away."
 	icon_state = "uturn"
-	force = 30
+	force = 40
 	reach = 4
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
-	attack_verb_continuous = list("whips", "lashes", "tears")
-	attack_verb_simple = list("whip", "lash", "tear")
-	hitsound = 'sound/weapons/whip.ogg'
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	hitsound = 'sound/weapons/ego/da_capo2.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
@@ -1825,9 +1825,13 @@
 /obj/item/ego_weapon/uturn/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
+	if(get_dist(target, user) > 2)//Spear range for full damage.
+		force = 20
 	. = ..()
-	var/list/been_hit = list()
-	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 3, 0)
+	if(force != initial(force))
+		force = initial(force)
+	var/list/been_hit = list(target)
+	var/turf/end_turf = get_ranged_target_turf_direct(user, target, 4, 0)
 	for(var/turf/T in getline(user, end_turf))
 		if(user in T)
 			continue
@@ -1845,6 +1849,8 @@
 				var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(user))))
 				if(!L.anchored)
 					L.throw_at(throw_target, 1, get_dist(user, L) - 1, user)
+				to_chat(user, MESSAGE_TYPE_WARNING, "You reel in [L]!")
+				to_chat(L, MESSAGE_TYPE_WARNING, "[user] reels you in!")
 
 /obj/item/ego_weapon/giant_tree_branch
 	name = "giant tree branch"
