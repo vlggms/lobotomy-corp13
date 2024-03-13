@@ -1809,7 +1809,7 @@
 /obj/item/ego_weapon/uturn
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
-	special = "Knocks certain enemies forward you in an area."
+	special = "Knocks certain enemies towards you in an area."
 	icon_state = "uturn"
 	force = 30
 	reach = 4
