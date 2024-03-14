@@ -217,3 +217,25 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 			return
 		else
 			. = ..()
+
+/mob/living/simple_animal/hostile/humanoid/fixer
+	name = "fixer"
+	desc = "One of the many inhabitants of the backstreets, extremely weak and skittish."
+	icon_state = "flame_fixer"
+	icon_living = "flame_fixer"
+	icon_dead = "flame_fixer"
+	maxHealth = 1500
+	health = 1500
+	move_to_delay = 4
+	melee_damage_lower = 11
+	melee_damage_upper = 16
+	rapid_melee = 2
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_verb_continuous = "slices"
+	attack_verb_simple = "slice"
+	del_on_death = TRUE
+
+/mob/living/simple_animal/hostile/humanoid/fixer/flame
+
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal
