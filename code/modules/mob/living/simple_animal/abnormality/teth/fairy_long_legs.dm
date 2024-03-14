@@ -123,8 +123,12 @@
 	user.Stun(3 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	step_towards(user, src)
 	sleep(1.5 SECONDS)
+	if(QDELETED(user))
+		return
 	user.visible_message(span_warning("You feel a stinging pain in your chest, is that...blood?!"))
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 50, 1)
 	user.apply_damage(100, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)

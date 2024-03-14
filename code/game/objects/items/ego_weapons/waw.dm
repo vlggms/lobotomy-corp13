@@ -1377,6 +1377,12 @@
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			return
+		else if(QDELETED(A) || !can_see(user, A, dash_range))
+			animate(user, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
+			user.pixel_z = 0
+			return
 		for(var/i in 2 to get_dist(user, A))
 			step_towards(user,A)
 		if((get_dist(user, A) < 2))
@@ -1784,7 +1790,7 @@
 	return ..()
 
 /obj/item/ego_weapon/rosa
-	name = "flore sicut rosa"
+	name = "garden of thorns"
 	desc = "See? Wish, wish for it. Knowing that it is a sin. Only then can you bloom such colorful roses."
 	special = "Hit yourself to heal the sanity of others"
 	icon_state = "rosa"
@@ -1999,11 +2005,19 @@
 	if(combo == 4)
 		can_attack = FALSE
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			return
 		playsound(get_turf(src), 'sound/abnormalities/piscinemermaid/waterjump.ogg', 20, 0, 3)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		user.pixel_z = -16
 		sleep(0.5 SECONDS)
 		can_attack = TRUE
+		if(QDELETED(user))
+			return
+		else if(QDELETED(A) || user.z != A.z)
+			animate(user, alpha = 255,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
+			user.pixel_z = 0
+			return
 		for(var/i in 2 to get_dist(user, A))
 			step_towards(user,A)
 		if((get_dist(user, A) < 2))
