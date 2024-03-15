@@ -22,6 +22,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 10
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/pod/light,
 /area/department_main/safety)
 "ao" = (
@@ -217,6 +218,7 @@
 /obj/structure/chair/sofa/corp/left{
 	dir = 4
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -329,6 +331,13 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
+"bI" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/floor/pod/dark,
+/area/department_main/training)
 "bM" = (
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -591,6 +600,13 @@
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/safety)
+"db" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 4
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/floor/pod/dark,
+/area/department_main/training)
 "dd" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -654,6 +670,13 @@
 	dir = 1
 	},
 /turf/open/floor/pod/dark,
+/area/department_main/control)
+"dz" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 8
+	},
+/obj/effect/landmark/start/agent_captain,
+/turf/open/floor/pod/light,
 /area/department_main/control)
 "dB" = (
 /obj/machinery/telecomms/server/presets/security,
@@ -956,6 +979,14 @@
 "fe" = (
 /turf/open/floor/pod/light,
 /area/facility_hallway/human)
+"fg" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/training)
 "fh" = (
 /obj/machinery/announcement_system,
 /obj/effect/turf_decal/bot,
@@ -1377,6 +1408,14 @@
 /obj/effect/turf_decal/arrows,
 /turf/open/floor/pod,
 /area/department_main/information)
+"hx" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/agent,
+/turf/open/floor/pod/light,
+/area/department_main/control)
 "hy" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -1553,6 +1592,7 @@
 /obj/structure/chair/pew/left{
 	dir = 8
 	},
+/obj/effect/landmark/start/agent_intern,
 /turf/open/floor/pod/dark,
 /area/department_main/training)
 "iz" = (
@@ -1774,6 +1814,10 @@
 	dir = 6
 	},
 /turf/open/floor/pod,
+/area/department_main/training)
+"jM" = (
+/obj/effect/landmark/start/agent_captain,
+/turf/open/floor/pod/dark,
 /area/department_main/training)
 "jO" = (
 /obj/effect/turf_decal/siding/purple{
@@ -3111,10 +3155,23 @@
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/training)
+"oI" = (
+/obj/structure/chair/comfy/shuttle{
+	can_buckle = 0;
+	desc = "A comfortable, secure seat.";
+	dir = 4;
+	name = "metalic seat";
+	pixel_x = 5;
+	pixel_y = 4
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/pod/dark,
+/area/department_main/information)
 "oN" = (
 /obj/structure/chair/pew/left{
 	dir = 4
 	},
+/obj/effect/landmark/start/agent_intern,
 /turf/open/floor/pod/dark,
 /area/department_main/training)
 "oR" = (
@@ -3571,6 +3628,13 @@
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
+"rb" = (
+/obj/effect/turf_decal/trimline/brown/filled/line{
+	dir = 8
+	},
+/obj/effect/landmark/start/extraction,
+/turf/open/floor/pod,
+/area/department_main/training)
 "re" = (
 /obj/machinery/telecomms/server/presets/command{
 	name = "Command Server"
@@ -3628,6 +3692,15 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/command)
+"rn" = (
+/obj/effect/turf_decal/sand,
+/obj/effect/turf_decal/sand,
+/obj/effect/landmark/start/agent,
+/turf/open/floor/plasteel{
+	name = "anomalous floor";
+	slowdown = -0.3
+	},
+/area/department_main/command)
 "ro" = (
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/trimline/brown/filled,
@@ -3746,6 +3819,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel,
 /area/facility_hallway/human)
+"rV" = (
+/obj/structure/chair/office{
+	anchored = 1;
+	can_buckle = 0
+	},
+/obj/effect/turf_decal/trimline/red/filled/line,
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/pod/dark,
+/area/department_main/control)
 "rW" = (
 /obj/effect/turf_decal/siding/purple{
 	color = "#511c4b";
@@ -4416,6 +4498,16 @@
 	},
 /turf/open/floor/pod/dark,
 /area/facility_hallway/records)
+"uL" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/floor/pod/light,
+/area/department_main/information)
 "uW" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/siding/brown{
@@ -4513,6 +4605,18 @@
 	},
 /turf/open/floor/pod,
 /area/facility_hallway/control)
+"vq" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 1
+	},
+/obj/structure/chair/comfy/shuttle{
+	can_buckle = 0;
+	desc = "A comfortable, secure seat.";
+	name = "metalic seat"
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/pod,
+/area/department_main/information)
 "vt" = (
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 1
@@ -4880,6 +4984,7 @@
 /obj/effect/turf_decal/trimline/red/filled/line{
 	dir = 8
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/pod/dark,
 /area/department_main/control)
 "wZ" = (
@@ -4962,6 +5067,10 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
+"xr" = (
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/pod,
+/area/department_main/safety)
 "xx" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 28
@@ -5584,6 +5693,7 @@
 	},
 /area/department_main/command)
 "Ac" = (
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/control)
 "Ag" = (
@@ -5597,6 +5707,7 @@
 	dir = 1;
 	pixel_y = 12
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Ai" = (
@@ -5920,6 +6031,13 @@
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
 	name = "facility wall";
 	opacity = 0
+	},
+/area/department_main/command)
+"BL" = (
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/plating/ironsand{
+	name = "anomalous sand";
+	slowdown = -0.3
 	},
 /area/department_main/command)
 "BU" = (
@@ -6478,6 +6596,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 9
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/pod,
 /area/facility_hallway/control)
 "Fi" = (
@@ -6548,6 +6667,13 @@
 	},
 /turf/open/floor/mineral/titanium/yellow,
 /area/facility_hallway/command)
+"Fp" = (
+/obj/effect/landmark/start/agent,
+/turf/open/floor/plating/ironsand{
+	name = "anomalous sand";
+	slowdown = -0.3
+	},
+/area/department_main/command)
 "Fr" = (
 /obj/machinery/computer/cryopod{
 	pixel_y = 28
@@ -6798,6 +6924,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 5
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/pod,
 /area/facility_hallway/control)
 "Gv" = (
@@ -7271,6 +7398,14 @@
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/training)
+"IB" = (
+/obj/effect/turf_decal/trimline/purple/filled/line{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/landmark/start/agent_captain,
+/turf/open/floor/pod/light,
+/area/department_main/information)
 "IC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
@@ -8050,6 +8185,10 @@
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
+"My" = (
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/pod/light,
+/area/facility_hallway/safety)
 "Mz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -8477,6 +8616,30 @@
 	},
 /turf/open/floor/pod/light,
 /area/department_main/information)
+"Ow" = (
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/floor/pod/light,
+/area/department_main/control)
+"Ox" = (
+/obj/effect/turf_decal/trimline/green/filled/line{
+	dir = 1
+	},
+/obj/structure/chair/comfy/shuttle{
+	can_buckle = 0;
+	desc = "A comfortable, secure seat.";
+	dir = 1;
+	name = "metalic seat";
+	pixel_y = 7
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/pod/dark,
+/area/department_main/safety)
 "Oy" = (
 /obj/effect/turf_decal/trimline/purple/filled/corner{
 	dir = 8
@@ -8831,6 +8994,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Ql" = (
@@ -9170,6 +9334,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/pod/light,
 /area/department_main/safety)
 "RD" = (
@@ -9264,6 +9429,14 @@
 	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
+"RW" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 1
+	},
+/obj/effect/landmark/start/records,
+/turf/open/floor/pod/light,
+/area/department_main/safety)
 "RX" = (
 /turf/open/floor/pod/light,
 /area/department_main/information)
@@ -9510,6 +9683,10 @@
 	slowdown = -0.3
 	},
 /area/department_main/command)
+"TB" = (
+/obj/effect/landmark/start/agent_captain,
+/turf/open/floor/pod,
+/area/department_main/safety)
 "TC" = (
 /turf/open/floor/facility/halls,
 /area/facility_hallway/training)
@@ -9531,6 +9708,14 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"TI" = (
+/obj/effect/turf_decal/trimline/purple/filled/line,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/floor/pod/light,
+/area/department_main/information)
 "TJ" = (
 /obj/effect/turf_decal/siding/red{
 	color = "#440000";
@@ -9839,6 +10024,19 @@
 /obj/structure/toolabnormality/shelter/entrance,
 /turf/open/floor/pod/dark,
 /area/facility_hallway/control)
+"Vd" = (
+/obj/structure/chair/office{
+	anchored = 1;
+	can_buckle = 0;
+	dir = 1;
+	pixel_y = 10
+	},
+/obj/effect/turf_decal/trimline/red/filled/line{
+	dir = 1
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/pod/dark,
+/area/department_main/control)
 "Vf" = (
 /obj/machinery/computer/message_monitor{
 	dir = 1
@@ -9904,6 +10102,7 @@
 	pixel_x = 15;
 	pixel_y = 16
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/pod/dark,
 /area/department_main/information)
 "VA" = (
@@ -10040,6 +10239,10 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/carpet/orange,
+/area/department_main/training)
+"Wz" = (
+/obj/effect/landmark/start/agent_intern,
+/turf/open/floor/pod/dark,
 /area/department_main/training)
 "WA" = (
 /obj/machinery/disposal/delivery_chute{
@@ -37987,7 +38190,7 @@ pG
 ck
 cI
 ck
-ck
+fg
 ck
 Fw
 nO
@@ -38234,11 +38437,11 @@ cH
 HL
 Dx
 Dx
-zi
+db
 Mg
 QL
 Mu
-Mu
+Wz
 hT
 uW
 ck
@@ -38489,7 +38692,7 @@ VL
 AK
 gV
 HL
-eu
+rb
 eu
 by
 IA
@@ -38748,11 +38951,11 @@ cH
 HL
 Sg
 Sg
-Mu
+jM
 Dz
 nz
 by
-by
+bI
 eu
 uW
 ck
@@ -41073,7 +41276,7 @@ bG
 bG
 bG
 bG
-bG
+BL
 Wi
 ir
 zf
@@ -42584,12 +42787,12 @@ mo
 FR
 JX
 LN
-MJ
+Ow
 Xk
 pJ
 Iu
 cv
-rk
+Vd
 fs
 JP
 hh
@@ -42600,7 +42803,7 @@ bG
 bG
 bG
 bG
-bG
+Fp
 bG
 wG
 eZ
@@ -42610,7 +42813,7 @@ va
 wG
 bG
 bG
-VZ
+rn
 eZ
 va
 bG
@@ -42625,7 +42828,7 @@ jc
 tS
 zo
 iI
-AY
+TI
 Ou
 cW
 cN
@@ -43608,7 +43811,7 @@ sB
 kK
 hf
 hf
-hf
+dz
 hf
 hf
 ND
@@ -43616,7 +43819,7 @@ Zh
 Ka
 cz
 WF
-WF
+hx
 WF
 Cj
 ZJ
@@ -43650,7 +43853,7 @@ Pt
 Xw
 EH
 ax
-ax
+IB
 ax
 ax
 Pl
@@ -44164,7 +44367,7 @@ hh
 rL
 Fn
 iI
-Uw
+oI
 iI
 iI
 AY
@@ -44378,7 +44581,7 @@ VK
 ZN
 JP
 dx
-pJ
+rV
 Iu
 cv
 kD
@@ -44427,7 +44630,7 @@ iI
 AY
 DZ
 AY
-DD
+vq
 jc
 cd
 hk
@@ -44640,7 +44843,7 @@ Iu
 cv
 rk
 LN
-MJ
+Ow
 Xk
 JX
 FR
@@ -44656,7 +44859,7 @@ bG
 bG
 bG
 bG
-bG
+Fp
 wG
 bG
 wG
@@ -44666,7 +44869,7 @@ va
 eZ
 bG
 bG
-bG
+Fp
 bG
 va
 bG
@@ -44682,7 +44885,7 @@ tS
 NF
 iI
 AY
-DZ
+uL
 AY
 Tf
 AJ
@@ -46213,7 +46416,7 @@ bG
 bG
 bG
 bG
-bG
+BL
 Wi
 ir
 Fo
@@ -48515,7 +48718,7 @@ Xq
 IE
 if
 qb
-Jg
+Ox
 ru
 BU
 HB
@@ -48770,16 +48973,16 @@ mA
 id
 Sl
 Vf
-if
+RW
 bp
 Ke
 lQ
 QB
-bp
+TB
 Km
 jC
 Or
-Or
+My
 rt
 Md
 Ec
@@ -49798,7 +50001,7 @@ vY
 lZ
 ym
 bp
-bp
+xr
 yj
 Ke
 an

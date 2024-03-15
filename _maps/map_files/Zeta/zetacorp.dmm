@@ -23,6 +23,7 @@
 	color = "#006400";
 	dir = 8
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#7FFF00";
 	name = "floor"
@@ -179,6 +180,14 @@
 "aD" = (
 /turf/open/floor/plating,
 /area/facility_hallway/east)
+"aE" = (
+/obj/effect/turf_decal/siding/green{
+	color = "#006400";
+	dir = 8
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "aF" = (
 /obj/structure/lattice/lava{
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
@@ -254,6 +263,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 4
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -1087,6 +1097,15 @@
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/safety)
+"do" = (
+/obj/structure/chair/comfy/brown{
+	can_buckle = 0;
+	dir = 1;
+	pixel_y = 9
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/carpet/orange,
+/area/department_main/training)
 "dp" = (
 /obj/item/wallframe/painting{
 	pixel_y = 26
@@ -1096,6 +1115,15 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/human)
+"dt" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 8
+	},
+/obj/effect/landmark/start/records,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/department_main/information)
 "dv" = (
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -1243,6 +1271,22 @@
 	},
 /turf/open/floor/facility,
 /area/department_main/command)
+"dO" = (
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
+	},
+/obj/effect/landmark/start/agent_captain,
+/turf/open/lava{
+	color = "#006700";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	name = "Unrefined Enkephalin";
+	slowdown = 0
+	},
+/area/department_main/control)
 "dP" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
@@ -1347,10 +1391,7 @@
 /obj/structure/railing/corner{
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "en" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
@@ -2222,10 +2263,7 @@
 	dir = 1;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "gw" = (
 /obj/structure/lattice/lava{
@@ -3396,10 +3434,7 @@
 	dir = 8;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "jq" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
@@ -3708,6 +3743,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/north)
+"kq" = (
+/obj/effect/turf_decal/siding/green/corner{
+	color = "#006400"
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "ks" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /turf/open/floor/plasteel/dark,
@@ -4036,6 +4078,7 @@
 	dir = 8;
 	pixel_x = -5
 	},
+/obj/effect/landmark/start/agent_intern,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "lj" = (
@@ -4056,6 +4099,7 @@
 	dir = 1;
 	pixel_y = 4
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "ll" = (
@@ -4063,10 +4107,7 @@
 	dir = 4;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "ln" = (
 /obj/structure/rack,
@@ -4542,6 +4583,7 @@
 	pixel_x = 6;
 	pixel_y = 6
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/facility/dark,
 /area/department_main/control)
 "mJ" = (
@@ -4769,10 +4811,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "nx" = (
 /obj/machinery/smartfridge/extraction_storage/ego_weapon,
@@ -4866,10 +4905,7 @@
 	dir = 1;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "nL" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
@@ -5151,10 +5187,7 @@
 /area/facility_hallway/information)
 "oC" = (
 /obj/structure/railing/corner,
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "oH" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -5588,6 +5621,13 @@
 	name = "floor"
 	},
 /area/department_main/training)
+"pT" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 8
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/facility,
+/area/department_main/command)
 "pU" = (
 /obj/structure/window/reinforced/fulltile{
 	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
@@ -6202,6 +6242,22 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"qW" = (
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
+	},
+/obj/effect/landmark/start/agent_captain,
+/turf/open/lava{
+	color = "#006700";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	name = "Unrefined Enkephalin";
+	slowdown = 0
+	},
+/area/department_main/training)
 "qX" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/brown{
@@ -6866,10 +6922,7 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
 "sx" = (
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "sA" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -6885,6 +6938,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/control)
+"sC" = (
+/obj/effect/turf_decal/siding/yellow{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/facility,
+/area/department_main/command)
 "sE" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -7065,10 +7128,7 @@
 	dir = 8;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "ts" = (
 /obj/effect/turf_decal/box/red,
@@ -7139,6 +7199,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start/agent_captain,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#E22303";
 	name = "floor"
@@ -7245,6 +7306,22 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/south)
+"tV" = (
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/lava{
+	color = "#006700";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	name = "Unrefined Enkephalin";
+	slowdown = 0
+	},
+/area/department_main/information)
 "tW" = (
 /obj/machinery/vending/medical{
 	density = 0;
@@ -7505,6 +7582,15 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"uM" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 4
+	},
+/obj/effect/landmark/start/extraction,
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/department_main/control)
 "uO" = (
 /obj/structure/table/wood/fancy/red,
 /obj/structure/lootcrate/l_corp,
@@ -8688,10 +8774,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "yb" = (
 /obj/structure/window/reinforced/fulltile{
@@ -9136,6 +9219,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
 "zr" = (
@@ -9525,10 +9609,7 @@
 	dir = 4;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "Ag" = (
 /obj/effect/turf_decal/siding/thinplating,
@@ -9548,6 +9629,20 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/command)
+"Ai" = (
+/obj/structure/table/wood/fancy/red,
+/obj/structure/lootcrate/l_corp,
+/obj/structure/lootcrate/l_corp,
+/obj/effect/turf_decal/siding/red/corner{
+	color = "#440000";
+	dir = 4
+	},
+/obj/item/crowbar/red,
+/turf/open/floor/mineral/titanium/purple{
+	color = "#8b0000";
+	name = "floor"
+	},
+/area/department_main/control)
 "Aj" = (
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -9555,6 +9650,7 @@
 /obj/structure/chair/stool/bar{
 	pixel_y = 11
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "Ak" = (
@@ -9563,6 +9659,7 @@
 	dir = 1;
 	pixel_y = 9
 	},
+/obj/effect/landmark/start/agent_intern,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "Al" = (
@@ -10080,6 +10177,7 @@
 	dir = 4
 	},
 /obj/effect/turf_decal/stripes/red/corner,
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -10948,6 +11046,7 @@
 /obj/effect/turf_decal/stripes/red/corner{
 	dir = 1
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -11081,10 +11180,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "Es" = (
 /obj/machinery/door/airlock/external/glass,
@@ -11154,10 +11250,7 @@
 /area/facility_hallway/manager)
 "EC" = (
 /obj/structure/railing,
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "ED" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -11853,6 +11946,7 @@
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -12588,6 +12682,7 @@
 	short_range = 3;
 	view_range = 3
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "Jk" = (
@@ -12960,6 +13055,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "Km" = (
@@ -13208,10 +13304,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "Li" = (
 /obj/effect/turf_decal/arrows/red{
@@ -13434,10 +13527,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "LO" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -13771,10 +13861,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "MM" = (
 /obj/effect/spawner/abnormality_room,
@@ -13871,6 +13958,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/safety)
 "Nj" = (
@@ -14038,10 +14126,7 @@
 	dir = 1;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "Nx" = (
 /obj/structure/rack,
@@ -14342,10 +14427,7 @@
 /area/department_main/control)
 "Or" = (
 /obj/structure/railing,
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "Os" = (
 /obj/effect/turf_decal/arrows/red{
@@ -14483,10 +14565,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "OR" = (
 /obj/machinery/telecomms/server/presets/command{
@@ -15225,6 +15304,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#cc8400";
 	name = "floor"
@@ -15514,6 +15594,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
+"RO" = (
+/obj/effect/turf_decal/siding/thinplating/dark{
+	dir = 1
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/plasteel/dark,
+/area/department_main/safety)
 "RQ" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -15564,10 +15651,7 @@
 	},
 /area/department_main/information)
 "RY" = (
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "RZ" = (
 /turf/open/floor/plating,
@@ -15585,9 +15669,7 @@
 	},
 /area/department_main/safety)
 "Sb" = (
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/saltwater/safe,
 /area/facility_hallway/central)
 "Sc" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -15617,6 +15699,14 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/west)
+"Si" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/training)
 "Sk" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -15658,6 +15748,22 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"Sp" = (
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
+	},
+/obj/effect/landmark/start/agent_captain,
+/turf/open/lava{
+	color = "#006700";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	name = "Unrefined Enkephalin";
+	slowdown = 0
+	},
+/area/department_main/safety)
 "Sr" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -15814,6 +15920,7 @@
 	color = "#511c4b";
 	dir = 1
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "SR" = (
@@ -15875,10 +15982,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "SY" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
@@ -16161,6 +16265,11 @@
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/facility/halls,
 /area/facility_hallway/information)
+"TL" = (
+/obj/effect/turf_decal/siding/thinplating/dark,
+/obj/effect/landmark/start/agent,
+/turf/open/floor/plasteel/dark,
+/area/department_main/information)
 "TN" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
@@ -16194,6 +16303,7 @@
 /turf/open/floor/noslip,
 /area/facility_hallway/south)
 "TP" = (
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/south)
 "TQ" = (
@@ -16417,6 +16527,7 @@
 	color = "#511c4b";
 	dir = 1
 	},
+/obj/effect/landmark/start/agent,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#aaa396";
 	name = "floor"
@@ -16464,6 +16575,7 @@
 	dir = 8;
 	pixel_x = -5
 	},
+/obj/effect/landmark/start/agent_intern,
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "Uv" = (
@@ -16496,6 +16608,7 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
 "Uz" = (
+/obj/effect/landmark/start/agent,
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/north)
 "UA" = (
@@ -16612,6 +16725,22 @@
 	slowdown = 0
 	},
 /area/facility_hallway/south)
+"UM" = (
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
+	},
+/obj/effect/landmark/start/agent,
+/turf/open/lava{
+	color = "#006700";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	name = "Unrefined Enkephalin";
+	slowdown = 0
+	},
+/area/department_main/control)
 "UN" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/facility/white,
@@ -16664,6 +16793,22 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/west)
+"UU" = (
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
+	},
+/obj/effect/landmark/start/agent_captain,
+/turf/open/lava{
+	color = "#006700";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	name = "Unrefined Enkephalin";
+	slowdown = 0
+	},
+/area/department_main/information)
 "UW" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -16705,6 +16850,14 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/extraction)
+"Vc" = (
+/obj/effect/turf_decal/stripes/red/line,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/information)
 "Vd" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
@@ -17156,10 +17309,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/freshwater,
 /area/facility_hallway/central)
 "WF" = (
 /obj/effect/turf_decal/box/corners{
@@ -17459,6 +17609,7 @@
 	pixel_x = -6;
 	pixel_y = 6
 	},
+/obj/effect/landmark/start/clerk,
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
 "XG" = (
@@ -17766,6 +17917,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/east)
+"YK" = (
+/obj/effect/landmark/start/agent,
+/turf/open/floor/carpet/green,
+/area/department_main/safety)
 "YM" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -17966,10 +18121,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "Zt" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -18035,10 +18187,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
-	safe = 1
-	},
+/turf/open/water/deep/polluted,
 /area/facility_hallway/central)
 "ZF" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -18090,6 +18239,15 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/east)
+"ZP" = (
+/obj/effect/turf_decal/stripes/red/line{
+	dir = 8
+	},
+/obj/effect/landmark/start/clerk,
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
+/area/department_main/control)
 "ZQ" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
@@ -42946,7 +43104,7 @@ wM
 wJ
 ks
 pM
-Ak
+do
 tZ
 xT
 VH
@@ -43716,7 +43874,7 @@ Ja
 kX
 Oc
 SI
-ro
+qW
 ro
 ro
 Mx
@@ -43728,7 +43886,7 @@ xL
 FD
 Cg
 we
-vZ
+Si
 Qb
 qn
 RY
@@ -48629,7 +48787,7 @@ eK
 ah
 wV
 CH
-Hb
+Vc
 TR
 Ke
 ep
@@ -49405,7 +49563,7 @@ cV
 lc
 Xb
 Xo
-Xo
+dt
 bK
 UD
 Ck
@@ -49610,7 +49768,7 @@ jL
 tT
 Mz
 qC
-qC
+ZP
 qC
 aM
 Mp
@@ -49888,7 +50046,7 @@ wN
 pJ
 ck
 Ct
-dK
+sC
 WT
 dK
 Rf
@@ -50121,7 +50279,7 @@ vJ
 Mp
 at
 wn
-TS
+UM
 ve
 uO
 wP
@@ -50175,7 +50333,7 @@ bN
 Jd
 kU
 aA
-if
+TL
 RC
 uh
 HC
@@ -50381,7 +50539,7 @@ UF
 TS
 af
 wS
-uO
+Ai
 UF
 iK
 rp
@@ -50889,13 +51047,13 @@ rI
 Qp
 oa
 TS
-TS
+dO
 TS
 TS
 hi
 TS
 TS
-TS
+UM
 TS
 ns
 dA
@@ -50942,7 +51100,7 @@ Dk
 FA
 jc
 pi
-Yk
+UU
 Yk
 Yk
 Yk
@@ -51950,7 +52108,7 @@ KE
 ae
 KE
 KE
-KE
+pT
 Ml
 ck
 Ah
@@ -51974,7 +52132,7 @@ jh
 DH
 Vv
 qt
-Yk
+tV
 DO
 Kq
 bf
@@ -52434,7 +52592,7 @@ SK
 TS
 uE
 aK
-Nm
+uM
 ci
 uE
 TS
@@ -56308,11 +56466,11 @@ iL
 iL
 It
 ok
-ID
+kq
 LJ
 LJ
 ja
-Jv
+Sp
 jY
 UG
 Ri
@@ -57087,7 +57245,7 @@ Pa
 TA
 Nr
 pD
-RM
+RO
 gj
 It
 Ew
@@ -57852,11 +58010,11 @@ It
 ok
 gu
 UG
-UG
+YK
 Fc
 Jv
 sQ
-qp
+aE
 qp
 jU
 gj
