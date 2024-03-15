@@ -235,7 +235,94 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 
-/mob/living/simple_animal/hostile/humanoid/fixer/flame
-
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal
+	name = "fixer"
+	desc = "One of the many inhabitants of the backstreets, extremely weak and skittish."
+	icon_state = "metal_fixer"
+	icon_living = "metal_fixer"
+	icon_dead = "metal_fixer"
+	var/icon_attacking = "metal_fixer_weapon"
+	maxHealth = 1500
+	health = 1500
+	move_to_delay = 4
+	melee_damage_lower = 11
+	melee_damage_upper = 16
+	rapid_melee = 2
+	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_verb_continuous = "slices"
+	attack_verb_simple = "slice"
+	del_on_death = TRUE
+	ranged = TRUE
+	var/shots_cooldown = 50
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/Aggro()
+	icon_state = icon_attacking
+	. = ..()
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/LoseTarget()
+	icon_state = icon_living
+	. = ..()
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/OpenFire()
+	ranged_cooldown = world.time + shots_cooldown
+	//playsound(src, 'sound/magic/clockwork/invoke_general.ogg', 200, TRUE, 2) // pick sound
+	for(var/d in GLOB.cardinals)
+		var/turf/E = get_step(src, d)
+		shoot_projectile(E)
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/AttackingTarget(atom/attacked_target)
+	if (ranged_cooldown <= world.time)
+		OpenFire()
+	// do AOE
+	. = ..()
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/proc/shoot_projectile(turf/marker, set_angle)
+	if(!isnum(set_angle) && (!marker || marker == loc))
+		return
+	var/turf/startloc = get_turf(src)
+	var/obj/projectile/P = new /obj/projectile/metal_fixer(startloc)
+	P.preparePixelProjectile(marker, startloc)
+	P.firer = src
+	if(target)
+		P.original = target
+	P.fire(set_angle)
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	if (istype(P, /obj/projectile/metal_fixer))
+		adjustHealth(-P.damage)
+		visible_message("<span class='warning'>[P]  contacts with [src] and heals them!</span>")
+		DamageEffect(P.damage, P.damage_type)
+	else
+		. = ..()
+
+
+
+/obj/projectile/metal_fixer
+	name ="metal bolt"
+	icon_state= "chronobolt"
+	damage = 15
+	speed = 2
+	damage_type = BLACK_DAMAGE
+	projectile_piercing = PASSMOB
+	ricochets_max = 3
+	ricochet_chance = 100
+	ricochet_decay_chance = 1
+	ricochet_decay_damage = 1
+	ricochet_incidence_leeway = 0
+
+/obj/projectile/metal_fixer/check_ricochet_flag(atom/A)
+	if(istype(A, /turf/closed))
+		return TRUE
+	return FALSE
+
+/obj/projectile/metal_fixer/on_hit(atom/target, blocked = FALSE)
+	if(firer==target)
+		var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = target
+
+		qdel(src)
+		return BULLET_ACT_BLOCK
+	. = ..()
+
+
+/mob/living/simple_animal/hostile/humanoid/fixer/flame
