@@ -2972,6 +2972,7 @@
 /obj/structure/chair/comfy/lime{
 	dir = 4
 	},
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "lt" = (
@@ -3139,6 +3140,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
 	},
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
 "mj" = (
@@ -3173,6 +3175,7 @@
 /obj/structure/chair/comfy/black{
 	dir = 1
 	},
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/carpet/royalblack,
 /area/facility_hallway/manager)
 "mq" = (
@@ -3291,6 +3294,7 @@
 /area/facility_hallway/manager)
 "mZ" = (
 /obj/structure/chair/comfy/beige,
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
 "na" = (
@@ -3353,6 +3357,13 @@
 /obj/structure/closet/crate/bin,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
+"nl" = (
+/obj/machinery/door/window/brigdoor/southleft{
+	dir = 8
+	},
+/obj/effect/landmark/start/manager,
+/turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/manager)
 "no" = (
 /obj/machinery/vending/lobotomyarmband{
@@ -3579,6 +3590,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 1
 	},
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "op" = (
@@ -5920,6 +5932,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
+"wD" = (
+/obj/effect/landmark/start/representative,
+/turf/open/floor/carpet/black,
+/area/facility_hallway/manager)
 "wI" = (
 /obj/effect/turf_decal/weather/snow/corner{
 	dir = 5
@@ -7890,6 +7906,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/item/dyespray{
+	pixel_x = 5;
+	pixel_y = 5
+	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/manager)
 "DZ" = (
@@ -8544,6 +8564,7 @@
 	dir = 1
 	},
 /obj/effect/turf_decal/siding/white,
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "Hm" = (
@@ -9371,6 +9392,14 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
+"JW" = (
+/obj/structure/chair/comfy/brown,
+/obj/effect/turf_decal/siding/yellow{
+	dir = 1
+	},
+/obj/effect/landmark/start/sephirah,
+/turf/open/floor/carpet/green,
+/area/facility_hallway/manager)
 "Ka" = (
 /obj/machinery/light{
 	dir = 1
@@ -10471,6 +10500,7 @@
 /obj/structure/chair/comfy/brown{
 	dir = 8
 	},
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/carpet/orange,
 /area/facility_hallway/manager)
 "Ok" = (
@@ -12169,6 +12199,7 @@
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
+/obj/effect/landmark/start/sephirah,
 /turf/open/floor/carpet/black,
 /area/facility_hallway/manager)
 "Vs" = (
@@ -12449,6 +12480,7 @@
 /area/department_main/manager)
 "WF" = (
 /obj/effect/turf_decal/siding/blue,
+/obj/effect/landmark/start/manager,
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
 "WH" = (
@@ -13081,6 +13113,10 @@
 	},
 /obj/structure/table/wood/fancy/black,
 /turf/open/floor/carpet/green,
+/area/facility_hallway/manager)
+"YX" = (
+/obj/effect/landmark/start/manager,
+/turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
 "YZ" = (
 /obj/structure/chair{
@@ -15395,7 +15431,7 @@ qp
 er
 dk
 dk
-dk
+YX
 dk
 dk
 cP
@@ -18491,7 +18527,7 @@ sP
 RE
 Sp
 OX
-OX
+wD
 AG
 qp
 aa
@@ -23611,7 +23647,7 @@ aa
 qp
 Bj
 qp
-Bj
+nl
 qp
 dL
 dL
@@ -23629,7 +23665,7 @@ rA
 nP
 HW
 VK
-CI
+JW
 iQ
 dT
 vy

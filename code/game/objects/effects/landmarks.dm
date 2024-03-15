@@ -211,6 +211,50 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 	primary_ai = FALSE
 	latejoin_active = FALSE
 
+//Lobotomy Corp employee spawns
+
+/obj/effect/landmark/start/agent_captain
+	name = "Agent Captain"
+	icon_state = "Agent Captain"
+
+/obj/effect/landmark/start/agent
+	name = "Agent"
+	icon_state = "Agent"
+
+/obj/effect/landmark/start/agent_intern
+	name = "Agent Intern"
+	icon_state = "Agent Intern"
+
+/obj/effect/landmark/start/clerk
+	name = "Clerk"
+	icon_state = "Clerk"
+
+/obj/effect/landmark/start/manager
+	name = "Manager"
+	icon_state = "Manager"
+	jobspawn_override = TRUE
+	delete_after_roundstart = FALSE
+
+/obj/effect/landmark/start/sephirah
+	name = "Sephirah"
+	icon_state = "Sephirah"
+	jobspawn_override = TRUE
+	delete_after_roundstart = FALSE
+
+/obj/effect/landmark/start/records
+	name = "Records Officer"
+	icon_state = "Records Officer"
+
+/obj/effect/landmark/start/extraction
+	name = "Extraction Officer"
+	icon_state = "Extraction Officer"
+
+/obj/effect/landmark/start/representative
+	name = "Main Office Representative"
+	icon_state = "Main Office Representative"
+	jobspawn_override = TRUE
+	delete_after_roundstart = FALSE
+
 //Department Security spawns
 
 /obj/effect/landmark/start/depsec
