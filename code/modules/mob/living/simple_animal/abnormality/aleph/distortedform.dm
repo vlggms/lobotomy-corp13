@@ -96,9 +96,9 @@
 		"Blubbering Toad",
 		"Bloodbath",
 		"Price of Silence",
+		"You’re Bald...",
 	)
-	//var/list/transform_list_longrange = list("Doomsday Calendar", "Blue Star", "Der Freischutz", "Apocalypse bird", "Siren")
-	var/list/transform_list_longrange = list("You’re Bald...")
+	var/list/transform_list_longrange = list("Doomsday Calendar", "Blue Star", "Der Freischutz", "Apocalypse bird", "Siren")
 	var/list/transform_list_jump = list("Light", "Medium", "Heavy")
 	var/transform_count = 0
 	var/jump_ready = FALSE
@@ -1427,6 +1427,49 @@
 	REMOVE_TRAIT(H, TRAIT_MUTE, TIMESTOP_TRAIT)
 	H.remove_atom_colour(TEMPORARY_COLOUR_PRIORITY)
 
+
+//You’re Bald...
+/mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeBald()//man roleplayers are going to hate this one
+	transform_cooldown = transform_cooldown_time_short + world.time
+	name = "You’re Bald..."
+	desc = "A helpful sphere, you think."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "bald1"
+	icon_living = "bald1"
+	pixel_x = 0
+	base_pixel_x = 0
+	pixel_y = 0
+	base_pixel_y = 0
+	can_move = FALSE
+	can_attack = FALSE
+	can_act = FALSE //we stay transformed until the skill finishes firing
+	addtimer(CALLBACK(src, PROC_REF(BaldBlast)), 5)
+
+
+/mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldBlast()
+	icon_state = "bald3"
+	src.set_light(12, 12, "FFFFFF", TRUE)
+	playsound(get_turf(src), 'sound/abnormalities/sphinx/stone_ready.ogg', 50, 0, 5)
+	SLEEP_CHECK_DEATH(12)
+	for(var/mob/living/L in viewers(12, src))
+		if(!ishuman(L))
+			continue
+		var/mob/living/carbon/human/H = L
+		if(!H.is_blind() && is_A_facing_B(H,src))
+			if(!HAS_TRAIT(H, TRAIT_BALD))
+				H.emote("scream")
+				H.Stun(20)
+				H.adjust_blindness(2)
+				to_chat(H, span_notice("You feel awesome?"))
+				ADD_TRAIT(H, TRAIT_BALD, "ABNORMALITY_BALD")
+				H.hairstyle = "Bald"
+				H.update_hair()
+				H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				if(H.sanity_lost) // They can't deal with being bald
+					H.dust()
+	src.set_light(0, 0, null, FALSE) //using all params takes care of the other procs.
+	can_act = TRUE
+
 /*
 	Long-ranged "Punishment" Transfromations
 	The farther you are - the less damage it deals. Followed up by a Teleport
@@ -1603,82 +1646,6 @@
 			if(ABNO.IsContained())
 				ABNO.datum_reference.qliphoth_change(-1)
 				continue
-
-//You’re Bald...
-/mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeBald()//man roleplayers are going to hate this one
-	transform_cooldown = transform_cooldown_time_short + world.time
-	name = "You’re Bald..."
-	desc = "A helpful sphere, you think."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "bald1"
-	icon_living = "bald1"
-	pixel_x = 0
-	base_pixel_x = 0
-	pixel_y = 0
-	base_pixel_y = 0
-	can_move = FALSE
-	can_attack = FALSE
-	addtimer(CALLBACK(src, .proc/BaldAttack), 5)
-
-
-/mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldAttack()
-	var/list/potential_targets = list()
-	var/list/chosen_targets = list()
-	var/mob/living/Y
-	var/turf/start = get_turf(src)
-	potential_targets += target
-	for(var/mob/living/carbon/human/L in GLOB.player_list)
-		if(faction_check_mob(L, FALSE) || L.stat >= HARD_CRIT || z != L.z || (L.status_flags & GODMODE)) // Dead or in hard crit, insane, or on a different Z level.
-			continue
-		if(HAS_TRAIT(L, TRAIT_BALD))
-			continue
-		potential_targets += L
-		if((LAZYLEN(potential_targets)) > 5)
-			break
-	for(var/i = LAZYLEN(potential_targets), i >= 1, i--)
-		if(potential_targets.len <= 0)
-			break
-		Y = pick(potential_targets)
-		potential_targets -= Y
-		if(Y.stat == DEAD) //they chose to die instead of facing the fear
-			continue
-		chosen_targets += Y
-	SLEEP_CHECK_DEATH(10)
-	for(var/i = LAZYLEN(chosen_targets), i >= 1, i--)
-		if(chosen_targets.len <= 0)
-			break
-		Y = pick(chosen_targets)
-		chosen_targets -= Y
-		if(Y.stat == DEAD) //they chose to die instead of facing the fear
-			continue
-		var/turf/jump_turf = get_step(Y, pick(GLOB.alldirs))
-		if(jump_turf.is_blocked_turf(exclude_mobs = TRUE))
-			jump_turf = get_turf(Y)
-		forceMove(jump_turf)
-		if(ishuman(Y))
-			var/mob/living/carbon/human/H = Y
-			H.Stun(20)
-		SLEEP_CHECK_DEATH(6)
-		playsound(Y, 'sound/abnormalities/crumbling/attack.ogg', 50, TRUE)
-		BaldBlast()
-		SLEEP_CHECK_DEATH(1.5 SECONDS)
-	forceMove(start)
-
-/mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldBlast()
-	for(var/mob/living/L in livinginrange(12, src))
-		if(L.z != z)
-			continue
-		if(faction_check_mob(L))
-			continue
-		if(!ishuman(L))
-			continue
-		var/mob/living/carbon/human/H = L
-		if(!HAS_TRAIT(H, TRAIT_BALD))
-			to_chat(H, span_notice("You feel awesome?"))
-			ADD_TRAIT(H, TRAIT_BALD, "ABNORMALITY_BALD")
-			H.hairstyle = "Bald"
-			H.update_hair()
-			H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 
 //Apocalypse Bird
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ChangeApoc()
