@@ -1651,18 +1651,17 @@
 		chosen_targets -= Y
 		if(Y.stat == DEAD) //they chose to die instead of facing the fear
 			continue
-		if(!(Y in view(src, 8)))
-			continue
 		var/turf/jump_turf = get_step(Y, pick(GLOB.alldirs))
 		if(jump_turf.is_blocked_turf(exclude_mobs = TRUE))
 			jump_turf = get_turf(Y)
 		forceMove(jump_turf)
 		if(ishuman(Y))
 			var/mob/living/carbon/human/H = Y
-			H.Stun(9)
+			H.Stun(20)
 		SLEEP_CHECK_DEATH(6)
 		playsound(Y, 'sound/abnormalities/crumbling/attack.ogg', 50, TRUE)
 		BaldBlast()
+		SLEEP_CHECK_DEATH(1.5 SECONDS)
 	forceMove(start)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldBlast()
