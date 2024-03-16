@@ -234,6 +234,18 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
+	var/can_act = TRUE
+
+
+/mob/living/simple_animal/hostile/humanoid/fixer/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/humanoid/fixer/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return FALSE
+	. = ..()
 
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal
@@ -248,13 +260,23 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	move_to_delay = 4
 	melee_damage_lower = 11
 	melee_damage_upper = 16
+	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	ranged = TRUE
+	var/statue_type = /mob/living/simple_animal/hostile/metal_fixer_statue
 	var/shots_cooldown = 50
+	var/max_statues = 12
+	var/health_lost_per_statue = 100
+	var/list/statues = list()
+	var/current_healthloss = 0
+	var/aoe_cooldown = 300
+	var/last_aoe_time = 0
+	var/aoe_damage = 50
+	var/stun_duration = 50
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/Aggro()
 	icon_state = icon_attacking
@@ -274,8 +296,54 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/AttackingTarget(atom/attacked_target)
 	if (ranged_cooldown <= world.time)
 		OpenFire()
+
 	// do AOE
+	if (world.time > last_aoe_time + aoe_cooldown)
+		last_aoe_time = world.time
+		can_act = FALSE
+		SLEEP_CHECK_DEATH(8)
+		var/hit_statue = FALSE
+		for(var/turf/T in view(2, src))
+			new /obj/effect/temp_visual/slice(T)
+			for(var/mob/living/L in T)
+				if (istype(L, /mob/living/simple_animal/hostile/metal_fixer_statue))
+					var/mob/living/simple_animal/hostile/metal_fixer_statue/S = L
+					qdel(S)
+					hit_statue = TRUE
+			HurtInTurf(T, list(), aoe_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
+
+		if (hit_statue)
+			SLEEP_CHECK_DEATH(stun_duration)
+		can_act = TRUE
 	. = ..()
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	//say("Damage taken. Current health: [health]")
+	var/old_health = health
+	. = ..()
+	var/health_loss = old_health - health
+	current_healthloss += health_loss
+	if (current_healthloss > health_lost_per_statue)
+		current_healthloss -= health_lost_per_statue
+		spawn_statue()
+
+/mob/living/simple_animal/hostile/humanoid/fixer/metal/proc/spawn_statue()
+	if (statues.len < max_statues)
+		var/list/available_turfs = list()
+		for(var/turf/T in view(4, loc))
+			if(isfloorturf(T) && !T.density && !locate(/mob/living) in T)
+				available_turfs += T
+		visible_message("<span class='danger'>[src] start spawning a statue! Turfs: [available_turfs.len]</span>")
+		if(available_turfs.len)
+			var/turf/statue_turf = pick(available_turfs)
+			var/mob/living/simple_animal/hostile/metal_fixer_statue/S = new statue_type(statue_turf)
+			statues += S
+			S.metal = src
+			S.icon_state = "memory_statute_grow" // Set the initial icon state to the rising animation
+			flick("memory_statute_grow", S) // Play the rising animation
+			spawn(10) // Wait for the animation to finish
+				S.icon_state = initial(S.icon_state) // Set the icon state back to the default statue icon
+			visible_message("<span class='danger'>[src] spawns a statue on [statue_turf]!</span>")
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
@@ -318,11 +386,69 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /obj/projectile/metal_fixer/on_hit(atom/target, blocked = FALSE)
 	if(firer==target)
-		var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = target
-
+		//var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = target
 		qdel(src)
 		return BULLET_ACT_BLOCK
 	. = ..()
 
+
+/mob/living/simple_animal/hostile/metal_fixer_statue
+	name = "Statue"
+	desc = "A statue spawned by the Metal Fixer."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "memory_statute"
+	health = 100
+	maxHealth = 100
+	speed = 0
+	move_resist = INFINITY
+	mob_size = MOB_SIZE_HUGE
+	var/mob/living/simple_animal/hostile/humanoid/fixer/metal/metal
+	var/heal_cooldown = 50
+	var/heal_timer
+	var/heal_per_tick = 50
+	var/self_destruct_timer
+
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
+	if (istype(P, /obj/projectile/metal_fixer))
+		DamageEffect(P.damage, P.damage_type)
+	else
+		. = ..()
+
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/Initialize()
+	. = ..()
+	heal_timer = addtimer(CALLBACK(src, .proc/heal_metal_fixer), heal_cooldown, TIMER_STOPPABLE)
+	self_destruct_timer = addtimer(CALLBACK(src, .proc/self_destruct), 1 MINUTES, TIMER_STOPPABLE)
+	AIStatus = AI_OFF
+	stop_automated_movement = TRUE
+	anchored = TRUE
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/Destroy()
+	deltimer(heal_timer)
+	deltimer(self_destruct_timer)
+	return ..()
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/proc/self_destruct()
+	visible_message("<span class='danger'>The statue crumbles and self-destructs!</span>")
+	qdel(src)
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(health <= 0)
+		visible_message("<span class='danger'>The statue crumbles into pieces!</span>")
+		qdel(src)
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/proc/heal_metal_fixer()
+	if(metal)
+		metal.adjustHealth(-heal_per_tick)
+		visible_message("<span class='notice'>The statue heals the Metal Fixer!</span>")
+	heal_timer = addtimer(CALLBACK(src, .proc/heal_metal_fixer), heal_cooldown, TIMER_STOPPABLE)
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/AttackingTarget()
+	return FALSE
+
+/mob/living/simple_animal/hostile/metal_fixer_statue/CanAttack(atom/the_target)
+	return FALSE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame
