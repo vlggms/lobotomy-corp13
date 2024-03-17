@@ -249,20 +249,21 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal
-	name = "fixer"
-	desc = "One of the many inhabitants of the backstreets, extremely weak and skittish."
+	name = "Metal Fixer"
+	desc = "A dude covered in a full white cloak and always wear a white mask. He seems to be wearing a tactical vest."
 	icon_state = "metal_fixer"
 	icon_living = "metal_fixer"
 	icon_dead = "metal_fixer"
 	var/icon_attacking = "metal_fixer_weapon"
 	maxHealth = 1500
 	health = 1500
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 	move_to_delay = 4
-	melee_damage_lower = 11
-	melee_damage_upper = 16
+	melee_damage_lower = 15
+	melee_damage_upper = 19
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
-	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
@@ -288,7 +289,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/OpenFire()
 	ranged_cooldown = world.time + shots_cooldown
-	//playsound(src, 'sound/magic/clockwork/invoke_general.ogg', 200, TRUE, 2) // pick sound
+	say("Experience is what brought me here.")
+	playsound(src, 'sound/weapons/fixer/hana_pierce.ogg', 200, TRUE, 2) // pick sound
 	for(var/d in GLOB.cardinals)
 		var/turf/E = get_step(src, d)
 		shoot_projectile(E)
@@ -301,9 +303,11 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if (world.time > last_aoe_time + aoe_cooldown)
 		last_aoe_time = world.time
 		can_act = FALSE
+		say("This is the culmination of my work.")
 		SLEEP_CHECK_DEATH(8)
 		var/hit_statue = FALSE
 		for(var/turf/T in view(2, src))
+			playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 200, TRUE, 2)
 			new /obj/effect/temp_visual/slice(T)
 			for(var/mob/living/L in T)
 				if (istype(L, /mob/living/simple_animal/hostile/metal_fixer_statue))
@@ -313,6 +317,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 			HurtInTurf(T, list(), aoe_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
 
 		if (hit_statue)
+			say("...")
 			SLEEP_CHECK_DEATH(stun_duration)
 		can_act = TRUE
 	. = ..()
@@ -334,6 +339,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 			if(isfloorturf(T) && !T.density && !locate(/mob/living) in T)
 				available_turfs += T
 		visible_message("<span class='danger'>[src] start spawning a statue! Turfs: [available_turfs.len]</span>")
+		say("The days of the past.")
 		if(available_turfs.len)
 			var/turf/statue_turf = pick(available_turfs)
 			var/mob/living/simple_animal/hostile/metal_fixer_statue/S = new statue_type(statue_turf)
@@ -359,12 +365,11 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	if (istype(P, /obj/projectile/metal_fixer))
 		adjustHealth(-P.damage)
+		playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 200, TRUE, 2)
 		visible_message("<span class='warning'>[P]  contacts with [src] and heals them!</span>")
 		DamageEffect(P.damage, P.damage_type)
 	else
 		. = ..()
-
-
 
 /obj/projectile/metal_fixer
 	name ="metal bolt"
@@ -397,6 +402,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	desc = "A statue spawned by the Metal Fixer."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "memory_statute"
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
 	health = 100
 	maxHealth = 100
 	speed = 0
@@ -405,7 +411,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/mob/living/simple_animal/hostile/humanoid/fixer/metal/metal
 	var/heal_cooldown = 50
 	var/heal_timer
-	var/heal_per_tick = 50
+	var/heal_per_tick = 25
 	var/self_destruct_timer
 
 
@@ -443,6 +449,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if(metal)
 		metal.adjustHealth(-heal_per_tick)
 		visible_message("<span class='notice'>The statue heals the Metal Fixer!</span>")
+		playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 200, TRUE, 2)
 	heal_timer = addtimer(CALLBACK(src, .proc/heal_metal_fixer), heal_cooldown, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/metal_fixer_statue/AttackingTarget()
