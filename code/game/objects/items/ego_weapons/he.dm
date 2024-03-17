@@ -1809,7 +1809,8 @@
 /obj/item/ego_weapon/uturn
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
-	special = "Knocks certain enemies towards you in an area. This weapon does half damage when attacking 3 tiles or more away."
+	special = "Knocks certain enemies towards you in an area. \
+	This weapon does half damage when attacking 3 or tiles more away."
 	icon_state = "uturn"
 	force = 40
 	reach = 4
