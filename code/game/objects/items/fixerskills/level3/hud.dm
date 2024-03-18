@@ -10,7 +10,7 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 
 /datum/action/innate/healthhud/Activate()
-	to_chat(owner, "<span class='notice'>You will now see the health of all living beings.</span>")
+	to_chat(owner, span_notice("You will now see the health of all living beings."))
 	button_icon_state = "healthhud_on"
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.add_hud_to(owner)
@@ -18,7 +18,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/healthhud/Deactivate()
-	to_chat(owner, "<span class='notice'>You will no longer see the health of all living beings.</span>")
+	to_chat(owner, span_notice("You will no longer see the health of all living beings."))
 	button_icon_state = "healthhud_off"
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 	medsensor.remove_hud_from(owner)

@@ -9,7 +9,7 @@
 // 	icon_icon = 'icons/hud/screen_skills.dmi'
 
 // /datum/action/innate/nightvision/Activate()
-// 	to_chat(owner, "<span class='notice'>You will now see in the dark.</span>")
+// 	to_chat(owner, span_notice("You will now see in the dark."))
 // 	button_icon_state = "night_eye_on"
 // 	if (ishuman(owner))
 // 		var/mob/living/carbon/human/human = owner
@@ -22,7 +22,7 @@
 // 	UpdateButtonIcon()
 
 // /datum/action/innate/nightvision/Deactivate()
-// 	to_chat(owner, "<span class='notice'>You will no longer see in the dark.</span>")
+// 	to_chat(owner, span_notice("You will no longer see in the dark."))
 // 	button_icon_state = "night_eye_off"
 // 	if (ishuman(owner))
 // 		var/mob/living/carbon/human/human = owner
