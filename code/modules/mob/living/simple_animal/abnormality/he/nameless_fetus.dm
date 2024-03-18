@@ -27,6 +27,7 @@
 	)
 	gift_type =  /datum/ego_gifts/syrinx
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_buckle = TRUE
 	var/mob/living/carbon/human/calling = null
 	var/satisfied = FALSE
 	var/hunger = 0
@@ -36,7 +37,7 @@
 /mob/living/simple_animal/hostile/abnormality/fetus/WorkChance(mob/living/carbon/human/user, chance, work_type) //Insight work has a qliphoth-based success rate
 	var/chance_modifier = 0
 	if(satisfied)
-		chance_modifier = 40
+		chance_modifier = 40//4 100% instict works might be too powerful
 	return chance + chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/fetus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
@@ -48,11 +49,11 @@
 				to_chat(H, span_userdanger("The creature grew hungry!"))
 
 /mob/living/simple_animal/hostile/abnormality/fetus/user_buckle_mob(mob/living/M, mob/user, check_loc)
-	if(!IsContained() || user == src || !ishuman(M) || (GODMODE in M.status_flags))
+	if(crying || user == src || !ishuman(M) || (GODMODE in M.status_flags))
 		return FALSE
 		to_chat(user, span_warning("[src] rejects your offering!"))
 	. = ..()
-	to_chat(user, span_userdanger("The Woodsman swings his axe down and...!"))
+	to_chat(user, span_userdanger("The fetus opens its maw and...!"))
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	M.gib()
 	to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
@@ -66,7 +67,7 @@
 		hunger = 0
 		datum_reference.qliphoth_change(1)
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			to_chat(H, span_userdanger("The creature grew hungry!"))
+			to_chat(H, span_userdanger("The fetus grew hungry!"))
 	else
 		crying = TRUE
 		check_players()
