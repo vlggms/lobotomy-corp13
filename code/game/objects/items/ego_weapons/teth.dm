@@ -373,7 +373,6 @@
 			burst()
 
 /obj/effect/temp_visual/lanterntrap/proc/burst()
-	rupturing = TRUE
 	var/turf/T = get_turf(src)
 	playsound(T, 'sound/effects/ordeals/amber/midnight_out.ogg', 40,TRUE)
 	for(var/turf/open/T2 in range(range, src))
@@ -383,10 +382,13 @@
 			if(creator)
 				creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
 	if(mine_mode == LANTERN_MODE_REMOTE)//So that you can't just place one automatic mine and 5 manual ones around it
+		rupturing = TRUE
 		for(var/obj/effect/temp_visual/lanterntrap/field in range((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
-			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident
+			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident.
 				field.burst()
-	qdel(src)
+		qdel(src)
+	else
+		qdel(src)
 
 #undef LANTERN_MODE_REMOTE
 #undef LANTERN_MODE_AUTO
