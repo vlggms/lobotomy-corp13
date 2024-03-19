@@ -35,14 +35,7 @@ export const AuxiliaryManagerConsole = (props, context) => {
 
 const FacilityUpgrades = (props, context) => {
   const { data } = useBackend(context);
-  const {
-    Upgrade_points,
-    bullet_upgrades,
-    real_bullet_upgrades,
-    agent_upgrades,
-    abnormality_upgrades,
-    misc_upgrades,
-  } = data;
+  const { Upgrade_points } = data;
 
   return (
     <Section title="Master facility upgrade systems">
@@ -53,7 +46,7 @@ const FacilityUpgrades = (props, context) => {
       </LabeledList>
       {/*
       All of the upgrade parts are basically the same,
-      except they have different mapping variables so we can sort out categories.
+      except they have different mapping variables so we can sort out categories
       Surelly there's a better way to do this
       */}
       <Box textColor="blue" mt="1em" ml="0.5em" fontSize="20px" nowrap>
@@ -109,7 +102,7 @@ const CoreSupressionSelector = (props, context) => {
     <Section title="Master core supression systems">
       {available_suppressions.length > 0 && (
         <LabeledList>
-          {available_suppressions.map((available_suppressions) => (
+          {available_suppressions.map(available_suppressions => (
             <LabeledList.Item
               key={available_suppressions.name}
               label={available_suppressions.name}
@@ -120,8 +113,7 @@ const CoreSupressionSelector = (props, context) => {
                   onClick={() =>
                     act('Select Core Suppression', {
                       selected_core: available_suppressions.ref,
-                    })
-                  }
+                    })}
                 />
               }
             />
@@ -161,7 +153,7 @@ const BulletUpgrades = (props, context) => {
 
   return (
     <LabeledList>
-      {bullet_upgrades.map((bullet_upgrades) => (
+      {bullet_upgrades.map(bullet_upgrades => (
         <LabeledList.Item
           key={bullet_upgrades.name}
           label={bullet_upgrades.name}
@@ -169,22 +161,21 @@ const BulletUpgrades = (props, context) => {
             <Button
               content={
                 bullet_upgrades.available === 1
-                  ? 'Purchase the bullet for ' +
-                  bullet_upgrades.cost +
-                  ' LOB points'
+                  ? 'Purchase the bullet for '
+                  + bullet_upgrades.cost
+                  + ' LOB points'
                   : 'UPGRADE PURCHASED'
               }
               color={
-                Upgrade_points >= bullet_upgrades.cost &&
-                bullet_upgrades.available === 1
+                Upgrade_points >= bullet_upgrades.cost
+                && bullet_upgrades.available === 1
                   ? 'green'
                   : 'red'
               }
               onClick={() =>
                 act('Buy Upgrade', {
                   selected_upgrade: bullet_upgrades.ref,
-                })
-              }
+                })}
             />
           }
         />
@@ -203,7 +194,7 @@ const MoreBulletUpgrades = (props, context) => {
 
   return (
     <LabeledList>
-      {real_bullet_upgrades.map((real_bullet_upgrades) => (
+      {real_bullet_upgrades.map(real_bullet_upgrades => (
         <LabeledList.Item
           key={real_bullet_upgrades.name}
           label={real_bullet_upgrades.name}
@@ -211,22 +202,21 @@ const MoreBulletUpgrades = (props, context) => {
             <Button
               content={
                 real_bullet_upgrades.available === 1
-                  ? 'Purchase the bullet upgrade for ' +
-                  real_bullet_upgrades.cost +
-                  ' LOB points'
+                  ? 'Purchase the bullet upgrade for '
+                  + real_bullet_upgrades.cost
+                  + ' LOB points'
                   : 'UPGRADE PURCHASED'
               }
               color={
-                Upgrade_points >= real_bullet_upgrades.cost &&
-                real_bullet_upgrades.available === 1
+                Upgrade_points >= real_bullet_upgrades.cost
+                && real_bullet_upgrades.available === 1
                   ? 'green'
                   : 'red'
               }
               onClick={() =>
                 act('Buy Upgrade', {
                   selected_upgrade: real_bullet_upgrades.ref,
-                })
-              }
+                })}
             />
           }
         />
@@ -245,7 +235,7 @@ const AgentUpgrades = (props, context) => {
 
   return (
     <LabeledList>
-      {agent_upgrades.map((agent_upgrades) => (
+      {agent_upgrades.map(agent_upgrades => (
         <LabeledList.Item
           key={agent_upgrades.name}
           label={agent_upgrades.name}
@@ -253,22 +243,21 @@ const AgentUpgrades = (props, context) => {
             <Button
               content={
                 agent_upgrades.available === 1
-                  ? 'Purchase the agent upgrade for ' +
-                  agent_upgrades.cost +
-                  ' LOB points'
+                  ? 'Purchase the agent upgrade for '
+                  + agent_upgrades.cost
+                  + ' LOB points'
                   : 'UPGRADE PURCHASED'
               }
               color={
-                Upgrade_points >= agent_upgrades.cost &&
-                agent_upgrades.available === 1
+                Upgrade_points >= agent_upgrades.cost
+                && agent_upgrades.available === 1
                   ? 'green'
                   : 'red'
               }
               onClick={() =>
                 act('Buy Upgrade', {
                   selected_upgrade: agent_upgrades.ref,
-                })
-              }
+                })}
             />
           }
         />
@@ -287,7 +276,7 @@ const AbnormalityUpgrades = (props, context) => {
 
   return (
     <LabeledList>
-      {abnormality_upgrades.map((abnormality_upgrades) => (
+      {abnormality_upgrades.map(abnormality_upgrades => (
         <LabeledList.Item
           key={abnormality_upgrades.name}
           label={abnormality_upgrades.name}
@@ -295,22 +284,21 @@ const AbnormalityUpgrades = (props, context) => {
             <Button
               content={
                 abnormality_upgrades.available === 1
-                  ? 'Purchase the abnormality cell upgrade for ' +
-                  abnormality_upgrades.cost +
-                  ' LOB points'
+                  ? 'Purchase the abnormality cell upgrade for '
+                  + abnormality_upgrades.cost
+                  + ' LOB points'
                   : 'UPGRADE PURCHASED'
               }
               color={
-                Upgrade_points >= abnormality_upgrades.cost &&
-                abnormality_upgrades.available === 1
+                Upgrade_points >= abnormality_upgrades.cost
+                && abnormality_upgrades.available === 1
                   ? 'green'
                   : 'red'
               }
               onClick={() =>
                 act('Buy Upgrade', {
                   selected_upgrade: abnormality_upgrades.ref,
-                })
-              }
+                })}
             />
           }
         />
@@ -329,7 +317,7 @@ const MiscUpgrades = (props, context) => {
 
   return (
     <LabeledList>
-      {misc_upgrades.map((misc_upgrades) => (
+      {misc_upgrades.map(misc_upgrades => (
         <LabeledList.Item
           key={misc_upgrades.name}
           label={misc_upgrades.name}
@@ -337,22 +325,21 @@ const MiscUpgrades = (props, context) => {
             <Button
               content={
                 misc_upgrades.available === 1
-                  ? 'Purchase the upgrade for ' +
-                  misc_upgrades.cost +
-                  ' LOB points'
+                  ? 'Purchase the upgrade for '
+                  + misc_upgrades.cost
+                  + ' LOB points'
                   : 'UPGRADE PURCHASED'
               }
               color={
-                Upgrade_points >= misc_upgrades.cost &&
-                misc_upgrades.available === 1
+                Upgrade_points >= misc_upgrades.cost
+                && misc_upgrades.available === 1
                   ? 'green'
                   : 'red'
               }
               onClick={() =>
                 act('Buy Upgrade', {
                   selected_upgrade: misc_upgrades.ref,
-                })
-              }
+                })}
             />
           }
         />
