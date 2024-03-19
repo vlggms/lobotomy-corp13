@@ -77,13 +77,13 @@ const FacilityUpgrades = (props, context) => {
             })}
           />
           <Button
-          content={'ADMIN: Add 10 LOB points'}
-          color={'purple'}
-          onClick={() => act('Change LOB Points', {
-            LOB_amount: 10,
-          })}
+            content={'ADMIN: Add 10 LOB points'}
+            color={'purple'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 10,
+            })}
           />
-      </Box>
+        </Box>
       )}
       <LabeledList>
         <LabeledList.Item label="available LOB points: ">
