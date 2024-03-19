@@ -1539,7 +1539,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/liu_coat
-	name = "Liu Association combat coat"
+	name = "Liu Association section 1 combat coat"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/liuvet
 	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
 				/obj/item/stack/sheet/silk/amber_advanced = 4,
@@ -1552,6 +1552,17 @@
 /datum/crafting_recipe/liu_combat_coat
 	name = "Liu Association section 2 combat coat"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2
+	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
+				/obj/item/stack/sheet/silk/amber_advanced = 4,
+				/obj/item/stack/sheet/silk/human_advanced = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/liu_jacket
+	name = "Liu Association section 4 combat jacket"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/liuvet/section4
 	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
 				/obj/item/stack/sheet/silk/amber_advanced = 4,
 				/obj/item/stack/sheet/silk/human_advanced = 1)
@@ -1701,11 +1712,10 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/seven_vet_intel
-	name = "Seven Association recon armor"
+	name = "Seven Association intelligence armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel
 	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
-				/obj/item/stack/sheet/silk/indigo_advanced = 2,
-				/obj/item/stack/sheet/silk/green_advanced = 2,
+				/obj/item/stack/sheet/silk/green_advanced = 4,
 				/obj/item/stack/sheet/silk/human_advanced = 1)
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
@@ -1713,7 +1723,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/seven_dir
-	name = "Seven Association recon armor"
+	name = "Seven Association director armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/sevendirector
 	reqs = list(/obj/item/stack/sheet/silk/amber_simple = 5,
 				/obj/item/stack/sheet/silk/indigo_advanced = 2,
@@ -1726,7 +1736,7 @@
 
 //Shi Recipes
 /datum/crafting_recipe/shi_2
-	name = "Shi association jacket section 2"
+	name = "Shi association section 2 jacket"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shi
 	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 2,
 				/obj/item/stack/sheet/silk/green_simple = 2,
@@ -1738,7 +1748,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/shi_5
-	name = "Shi association jacket section 5"
+	name = "Shi association section 5 combat suit"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shilimbus
 	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 2,
 				/obj/item/stack/sheet/silk/green_simple = 2,
@@ -1750,7 +1760,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/shi_2_vet
-	name = "Shi association veteran jacket"
+	name = "Shi association veteran section 2 jacket"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shi/vet
 	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
 				/obj/item/stack/sheet/silk/green_simple = 3,
@@ -1762,7 +1772,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/shi_5_vet
-	name = "Shi association veteran combat suit"
+	name = "Shi association veteran section 5 combat suit"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet
 	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
 				/obj/item/stack/sheet/silk/green_simple = 3,
@@ -1774,7 +1784,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/shi_2_dir
-	name = "Shi association director jacket"
+	name = "Shi association director section 2 jacket"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shi/director
 	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
 				/obj/item/stack/sheet/silk/green_simple = 3,
@@ -1786,7 +1796,7 @@
 	category = CAT_CLOTHING
 
 /datum/crafting_recipe/shi_5_dir
-	name = "Shi association director combat suit"
+	name = "Shi association director section 5 combat suit"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director
 	reqs = list(/obj/item/stack/sheet/silk/indigo_simple = 3,
 				/obj/item/stack/sheet/silk/green_simple = 3,
@@ -1798,6 +1808,16 @@
 	category = CAT_CLOTHING
 
 //Zwei Recipes
+/datum/crafting_recipe/zwei_junior
+	name = "Zwei Association junior armor"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/zweijunior
+	reqs = list(/obj/item/stack/sheet/silk/green_simple = 3,
+				/obj/item/stack/sheet/silk/indigo_simple = 1)
+	tools = list(/obj/item/silkknife = 1)
+	time = 10
+	always_available = FALSE
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/zwei
 	name = "Zwei Association armor"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/zwei
@@ -1807,16 +1827,6 @@
 				/obj/item/stack/sheet/silk/human_simple = 1)
 	tools = list(/obj/item/silkknife = 1)
 	time = 15
-	always_available = FALSE
-	category = CAT_CLOTHING
-
-/datum/crafting_recipe/zwei_junior
-	name = "Zwei Association junior armor"
-	result = /obj/item/clothing/suit/armor/ego_gear/city/zweijunior
-	reqs = list(/obj/item/stack/sheet/silk/green_simple = 3,
-				/obj/item/stack/sheet/silk/indigo_simple = 1)
-	tools = list(/obj/item/silkknife = 1)
-	time = 10
 	always_available = FALSE
 	category = CAT_CLOTHING
 

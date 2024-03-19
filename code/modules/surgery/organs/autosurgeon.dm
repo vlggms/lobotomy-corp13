@@ -111,6 +111,12 @@
 /obj/item/autosurgeon/organ/syndicate/reviver
 	starting_organ = /obj/item/organ/cyberimp/chest/reviver
 
+/obj/item/autosurgeon/organ/syndicate/carnival
+	name = "Carnival silkweaver autosurgeon"
+	desc = "A single use auto surgeon that contains a silkweaver. A screwdriver can be used to remove it, but implants can't be placed back in."
+	uses = 1
+	starting_organ = /obj/item/organ/cyberimp/arm/carnival
+
 /obj/item/autosurgeon/skillchip
 	name = "skillchip autosurgeon"
 	desc = "A device that automatically inserts a skillchip into the user's brain without the hassle of extensive surgery. \
