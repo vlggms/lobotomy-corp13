@@ -19,6 +19,8 @@
 	// toggles if the window being opened is TGUI or UI, used as a failsafe if TGUI fails to load
 	// turning this to -1 will prevent TGUI from opening, or switching the consoles mode to TGUI. Use in case of complete failure
 	var/TGUI_mode = TRUE
+	// toggles special debugging options if the person is an admin, can also be switched permanently off the same way as the above var
+	var/is_admin = FALSE
 
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
 	. = ..()
@@ -35,6 +37,8 @@
 		say("ERROR: UNABLE TO SWITCH ON TGUI MODE DUE TO TECHNICAL DIFFICULTIES")
 		return
 
+	// If we dont close them, some things can be weird
+	SStgui.close_uis(src)
 	TGUI_mode = !TGUI_mode
 	say("[TGUI_mode ? "Turned on" : "Turned off"] TGUI mode")
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
@@ -42,6 +46,11 @@
 /obj/machinery/computer/abnormality_auxiliary/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	if(TGUI_mode)
+		if(is_admin != -1) // if we seriously fuck up, we need to lock all admin controls for both players and admins alike
+			if(user.client.holder)
+				is_admin = TRUE
+			else
+				is_admin = FALSE
 		ui = SStgui.try_update_ui(user, src, ui)
 		if(!ui)
 			to_chat(user, span_notice("If TGUI is failing to load, you can alt+click the console to switch to UI mode"))
@@ -269,6 +278,11 @@
 	data["available_suppressions"] = available_supressions
 	// end core supression info
 
+	if(is_admin != -1) // if its -1, someone or something seriously fucked up
+		data["is_admin"] = is_admin
+	else
+		data["is_admin"] = FALSE
+
 	return data
 
 
@@ -278,7 +292,7 @@
 		return
 
 	switch(action)
-		if("Select Core Suppression")
+		if("Select Core Suppression") // selects a core supression
 			var/core_supression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
 			if(!ispath(core_supression) || !(core_supression in SSlobotomy_corp.available_core_suppressions))
 				return FALSE
@@ -286,7 +300,7 @@
 			say("[initial(selected_core_type.name)] has been selected!")
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 
-		if("Activate Core Suppression")
+		if("Activate Core Suppression") // activates the currently selected core supression
 			if(!ispath(selected_core_type) || !(selected_core_type in SSlobotomy_corp.available_core_suppressions))
 				return FALSE
 			if(istype(SSlobotomy_corp.core_suppression))
@@ -300,10 +314,33 @@
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, Run)), 2 SECONDS)
 
-		if("Buy Upgrade")
+		if("Buy Upgrade") // Buys an upgrade, looking for a parameter that is given to the upgrade thats being bought on the TGUI side
 			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
 			if(!istype(U) || !U.CanUpgrade())
 				return FALSE
 
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+
+		// admin-only options forward, ensure all of them have an admin check to make sure admins are actually doing them
+		if("Unlock All Cores")
+			if(!usr.client.holder)
+				is_admin = -1
+				log_game("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
+				message_admins("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
+				return
+			log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
+			message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
+			SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
+			SStgui.close_uis(src) // cores are static, so we need to close the UI
+
+		if("Add Lobotomy Point")
+			if(!usr.client.holder)
+				is_admin = -1
+				log_game("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
+				message_admins("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
+				return
+
+			log_game("[usr] has used admin powers to add a LOB point in the auxiliary console")
+			message_admins("[usr] has used admin powers to add a LOB point in the auxiliary console")
+			SSlobotomy_corp.lob_points += 1

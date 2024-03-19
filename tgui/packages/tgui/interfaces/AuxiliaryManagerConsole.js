@@ -34,11 +34,18 @@ export const AuxiliaryManagerConsole = (props, context) => {
 };
 
 const FacilityUpgrades = (props, context) => {
-  const { data } = useBackend(context);
-  const { Upgrade_points } = data;
+  const { act, data } = useBackend(context);
+  const { Upgrade_points, is_admin } = data;
 
   return (
     <Section title="Master facility upgrade systems">
+      {is_admin === 1 && (
+        <Button
+          content={'ADMIN: Add a LOB point'}
+          color={'purple'}
+          onClick={() => act('Add Lobotomy Point')}
+        />
+      )}
       <LabeledList>
         <LabeledList.Item label="available LOB points: ">
           {Upgrade_points}
@@ -80,6 +87,7 @@ const FacilityUpgrades = (props, context) => {
 const CoreSupressionSelector = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    is_admin,
     current_supression,
     available_suppressions,
     selected_core_name,
@@ -100,6 +108,13 @@ const CoreSupressionSelector = (props, context) => {
 
   return (
     <Section title="Master core supression systems">
+      {is_admin === 1 && (
+        <Button
+          content={'ADMIN: Unlock all core supressions (needs a TGUI restart)'}
+          color={'purple'}
+          onClick={() => act('Unlock All Cores')}
+        />
+      )}
       {available_suppressions.length > 0 && (
         <LabeledList>
           {available_suppressions.map(available_suppressions => (
