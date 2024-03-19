@@ -334,13 +334,14 @@
 			SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
 			SStgui.close_uis(src) // cores are static, so we need to close the UI
 
-		if("Add Lobotomy Point")
+		if("Change LOB Points")
 			if(!usr.client.holder)
 				is_admin = -1
 				log_game("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
 				message_admins("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
 				return
 
-			log_game("[usr] has used admin powers to add a LOB point in the auxiliary console")
-			message_admins("[usr] has used admin powers to add a LOB point in the auxiliary console")
-			SSlobotomy_corp.lob_points += 1
+			var/amount = params["LOB_amount"]
+			log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+			message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+			SSlobotomy_corp.lob_points += amount

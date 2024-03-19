@@ -40,11 +40,50 @@ const FacilityUpgrades = (props, context) => {
   return (
     <Section title="Master facility upgrade systems">
       {is_admin === 1 && (
-        <Button
-          content={'ADMIN: Add a LOB point'}
+        <Box mt="0.5em">
+          <Button
+            content={'ADMIN: Remove 10 LOB points'}
+            color={'purple'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -10,
+            })}
+          />
+          <Button
+            content={'ADMIN: Remove 5 LOB points'}
+            color={'purple'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -5,
+            })}
+          />
+          <Button
+            content={'ADMIN: Remove 1 LOB point'}
+            color={'purple'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -1,
+            })}
+          />
+          <Button
+            content={'ADMIN: Add 1 LOB point'}
+            color={'purple'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 1,
+            })}
+          />
+          <Button
+            content={'ADMIN: Add 5 LOB points'}
+            color={'purple'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 5,
+            })}
+          />
+          <Button
+          content={'ADMIN: Add 10 LOB points'}
           color={'purple'}
-          onClick={() => act('Add Lobotomy Point')}
-        />
+          onClick={() => act('Change LOB Points', {
+            LOB_amount: 10,
+          })}
+          />
+      </Box>
       )}
       <LabeledList>
         <LabeledList.Item label="available LOB points: ">
