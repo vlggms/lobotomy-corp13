@@ -16,6 +16,10 @@
 	)
 	var/datum/suppression/selected_core_type = null
 
+	// toggles if the window being opened is TGUI or UI, used as a failsafe if TGUI fails to load
+	// turning this to -1 will prevent TGUI from opening, or switching the consoles mode to TGUI. Use in case of complete failure
+	var/TGUI_mode = TRUE
+
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
 	. = ..()
 	GLOB.lobotomy_devices += src
@@ -25,8 +29,27 @@
 	GLOB.lobotomy_devices -= src
 	..()
 
-/obj/machinery/computer/abnormality_auxiliary/ui_interact(mob/user)
+/obj/machinery/computer/abnormality_auxiliary/AltClick(mob/user) // toggles if the UI is using TGUI or not
 	. = ..()
+	if(TGUI_mode == -1)
+		say("ERROR: UNABLE TO SWITCH ON TGUI MODE DUE TO TECHNICAL DIFFICULTIES")
+		return
+
+	TGUI_mode = !TGUI_mode
+	say("[TGUI_mode ? "Turned on" : "Turned off"] TGUI mode")
+	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+
+/obj/machinery/computer/abnormality_auxiliary/ui_interact(mob/user, datum/tgui/ui)
+	. = ..()
+	if(TGUI_mode)
+		ui = SStgui.try_update_ui(user, src, ui)
+		if(!ui)
+			to_chat(user, span_notice("If TGUI is failing to load, you can alt+click the console to switch to UI mode"))
+			ui = new(user, src, "AuxiliaryManagerConsole")
+			ui.open()
+			ui.set_autoupdate(TRUE)
+		return
+
 	var/dat
 	for(var/p in all_pages)
 		dat += "<A href='byond://?src=[REF(src)];set_page=[p]'>[p == page ? "<b><u>[p]</u></b>" : "[p]"]</A>"
@@ -135,3 +158,152 @@
 
 #undef CORE_SUPPRESSIONS
 #undef FACILITY_UPGRADES
+
+// TGUI stuff onwards, all beware ye who enter
+
+/obj/machinery/computer/abnormality_auxiliary/ui_data(mob/user)
+	. = ..()
+	var/list/data = list()
+
+	// start core supression info
+	data["current_supression"] = FALSE
+	if(istype(SSlobotomy_corp.core_suppression))
+		data["current_supression"] = SSlobotomy_corp.core_suppression.name
+
+	data["selected_core_name"] = FALSE
+	data["selected_core_description"] = "Select a core to see its description"
+	data["selected_core_goal"] = "Select a core to see its goal"
+	data["selected_core_reward"] = "Select a core to see its rewards obtained upon completing it"
+	if(ispath(selected_core_type))
+		data["selected_core_name"] = initial(selected_core_type.name)
+		data["selected_core_description"] = initial(selected_core_type.desc)
+		data["selected_core_goal"] = initial(selected_core_type.goal_text)
+		data["selected_core_reward"] = initial(selected_core_type.reward_text)
+	// end core supression info
+
+	// start facility upgrade info
+	data["Upgrade_points"] = round(SSlobotomy_corp.lob_points, 0.1)
+	// end facility upgrade info
+
+	// start facility upgrade info
+	// preferably this would be in static, but the cost and avaibility needs to be updated whenever an action is performed
+
+	var/list/bullet_upgrades = list()
+	var/list/real_bullet_upgrades = list()
+	var/list/agent_upgrades = list()
+	var/list/abnormality_upgrades = list()
+	var/list/you_didnt_give_it_a_proper_category_dammit_upgrades = list()
+
+	for(var/thing in SSlobotomy_corp.upgrades)
+		var/datum/facility_upgrade/upgrade = thing
+		if(!upgrade.CanShowUpgrade())
+			continue
+
+		var/available = TRUE
+		if(upgrade.value >= upgrade.max_value)
+			available = FALSE
+
+		var/upgrade_category = upgrade.category
+		switch(upgrade_category) // surelly there's a better way to handle this than copypasta
+			if("Bullets")
+				bullet_upgrades += list(list(
+					"name" = upgrade.name,
+					"ref" = REF(upgrade),
+					"cost" = upgrade.cost,
+					"available" = available,
+				))
+
+			if("Bullet Upgrades")
+				real_bullet_upgrades += list(list(
+					"name" = "[upgrade.name] ([upgrade.value])",
+					"ref" = REF(upgrade),
+					"cost" = upgrade.cost,
+					"available" = available,
+				))
+
+			if("Agent")
+				agent_upgrades += list(list(
+					"name" = "[upgrade.name] ([upgrade.value])",
+					"ref" = REF(upgrade),
+					"cost" = upgrade.cost,
+					"available" = available,
+				))
+
+			if("Abnormalities")
+				abnormality_upgrades += list(list(
+					"name" = "[upgrade.name] ([upgrade.value])",
+					"ref" = REF(upgrade),
+					"cost" = upgrade.cost,
+					"available" = available,
+				))
+
+			else
+				you_didnt_give_it_a_proper_category_dammit_upgrades += list(list(
+					"name" = "[upgrade.name] ([upgrade.value])",
+					"ref" = REF(upgrade),
+					"cost" = upgrade.cost,
+					"available" = available,
+				))
+
+	data["bullet_upgrades"] = bullet_upgrades
+	data["real_bullet_upgrades"] = real_bullet_upgrades
+	data["agent_upgrades"] = agent_upgrades
+	data["abnormality_upgrades"] = abnormality_upgrades
+	data["misc_upgrades"] = you_didnt_give_it_a_proper_category_dammit_upgrades
+
+	return data
+
+
+/obj/machinery/computer/abnormality_auxiliary/ui_static_data(mob/user)
+	. = ..()
+	var/list/data = list()
+
+	// start core supression info
+	var/list/available_supressions = list()
+	for(var/core_type in SSlobotomy_corp.available_core_suppressions)
+		var/datum/suppression/available_suppression = core_type
+		available_supressions += list(list(
+			"name" = available_suppression.name,
+			"ref" = REF(available_suppression),
+		))
+	data["available_suppressions"] = available_supressions
+	// end core supression info
+
+	return data
+
+
+/obj/machinery/computer/abnormality_auxiliary/ui_act(action, list/params)
+	. = ..()
+	if (.)
+		return
+
+	switch(action)
+		if("Select Core Suppression")
+			var/core_supression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
+			if(!ispath(core_supression) || !(core_supression in SSlobotomy_corp.available_core_suppressions))
+				return FALSE
+			selected_core_type = core_supression
+			say("[initial(selected_core_type.name)] has been selected!")
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+
+		if("Activate Core Suppression")
+			if(!ispath(selected_core_type) || !(selected_core_type in SSlobotomy_corp.available_core_suppressions))
+				return FALSE
+			if(istype(SSlobotomy_corp.core_suppression))
+				CRASH("[src] has attempted to activate a core supression via TGUI whilst its not possible!")
+
+			say("[initial(selected_core_type.name)] protocol activated, good luck manager.")
+			SSlobotomy_corp.core_suppression = new selected_core_type
+			SSlobotomy_corp.core_suppression.legitimate = TRUE
+			SSlobotomy_corp.available_core_suppressions = list()
+			selected_core_type = null
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, Run)), 2 SECONDS)
+
+		if("Buy Upgrade")
+			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
+			if(!istype(U) || !U.CanUpgrade())
+				return FALSE
+
+			U.Upgrade()
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
