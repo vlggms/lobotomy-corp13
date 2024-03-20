@@ -1,9 +1,9 @@
-/obj/structure/refiner/quick
+/obj/structure/altrefiner/quick
 	name = "Quick Refinery"
 	desc = "A machine used by the Extraction Officer to ship PE to command to refine."
 	icon_state = "dominator-yellow"
 
-/obj/structure/refiner/quick/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/altrefiner/quick/attackby(obj/item/I, mob/living/user, params)
 	if(user?.mind?.assigned_role != "Extraction Officer")
 		to_chat(user, span_warning("Only the Extraction Officer can use this machine."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
@@ -25,7 +25,7 @@
 	addtimer(CALLBACK(src, PROC_REF(launch)), 10 SECONDS)
 
 
-/obj/structure/refiner/quick/proc/launch()
+/obj/structure/altrefiner/quick/proc/launch()
 	//Pick a landmark
 	var/landmark = pick(GLOB.xeno_spawn)
 	//Ship it down

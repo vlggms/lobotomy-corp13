@@ -1,15 +1,15 @@
-/obj/structure/refiner/timed
+/obj/structure/altrefiner/timed
 	name = "Timed Auto-Refinery"
 	desc = "A machine used by the Extraction Officer to automatically refine PE at the rate of 5 boxes every 5 minutes."
 	icon_state = "dominator-blue"
 	var/pecost = 500
 	var/ready = TRUE
 
-/obj/structure/refiner/timed/proc/reset()
+/obj/structure/altrefiner/timed/proc/reset()
 	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 	ready = TRUE
 
-/obj/structure/refiner/timed/attack_hand(mob/living/carbon/M)
+/obj/structure/altrefiner/timed/attack_hand(mob/living/carbon/M)
 	..()
 	//Only the EO may use it
 	if(M?.mind?.assigned_role != "Extraction Officer")

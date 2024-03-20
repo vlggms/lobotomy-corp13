@@ -1,5 +1,5 @@
-/obj/structure/refiner
-	name = "Unknwon refinery"
+/obj/structure/altrefiner
+	name = "Unknown refinery"
 	desc = "Contact a coder immediately!"
 	icon = 'icons/obj/machines/dominator.dmi'
 	icon_state = "dominator-blue"
@@ -7,19 +7,19 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/refiner/Initialize()
+/obj/structure/altrefiner/Initialize()
 	. = ..()
 	GLOB.lobotomy_devices += src
 
-/obj/structure/refiner/Destroy()
+/obj/structure/altrefiner/Destroy()
 	GLOB.lobotomy_devices -= src
 	return ..()
 
 GLOBAL_LIST_INIT(unspawned_refiners, list(
-	/obj/structure/refiner/blood,
-	/obj/structure/refiner/quick,
-	/obj/structure/refiner/timed,
-	/obj/structure/refiner/weapon,
+	/obj/structure/altrefiner/blood,
+	/obj/structure/altrefiner/quick,
+	/obj/structure/altrefiner/timed,
+	/obj/structure/altrefiner/weapon,
 ))
 
 /obj/effect/landmark/refinerspawn
@@ -32,7 +32,7 @@ GLOBAL_LIST_INIT(unspawned_refiners, list(
 	..()
 	if(!LAZYLEN(GLOB.unspawned_refiners))
 		return INITIALIZE_HINT_QDEL
-	var/obj/structure/refiner/spawning = pick_n_take(GLOB.unspawned_refiners)
+	var/obj/structure/altrefiner/spawning = pick_n_take(GLOB.unspawned_refiners)
 	new spawning(get_turf(src))
 	return INITIALIZE_HINT_QDEL
 

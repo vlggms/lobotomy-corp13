@@ -1,16 +1,16 @@
-/obj/structure/refiner/weapon
+/obj/structure/altrefiner/weapon
 	name = "EGO Refinery"
 	desc = "A machine used by the Extraction Officer to automatically melt EGO and potentially spit out a refined PE."
 	icon_state = "dominator-green"
 	var/list/meltable
 
-/obj/structure/refiner/weapon/Initialize()
+/obj/structure/altrefiner/weapon/Initialize()
 	var/list/processing = list(/obj/item/ego_weapon, /obj/item/gun/ego_gun, /obj/item/clothing/suit/armor/ego_gear)
 	for(var/Y in processing)
 		meltable += subtypesof(Y)
 	..()
 
-/obj/structure/refiner/weapon/attackby(obj/item/I, mob/living/user, params)
+/obj/structure/altrefiner/weapon/attackby(obj/item/I, mob/living/user, params)
 	if(user?.mind?.assigned_role != "Extraction Officer")
 		to_chat(user, span_warning("Only the Extraction Officer can use this machine."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
