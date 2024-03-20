@@ -1397,7 +1397,7 @@
 					build_up = 0.8
 					user.changeNext_move(CLICK_CD_MELEE * 4)
 					if(!smashing)
-						to_chat(user,"<span class='warning'>The whip starts to thrash around uncontrollably!</span>")
+						to_chat(user,span_warning("The whip starts to thrash around uncontrollably!"))
 						Smash(user, target)
 				else
 					build_up -= 0.1
@@ -1475,7 +1475,7 @@
 	icon_state = "oberon_[form]"
 	update_icon_state()
 	if(current_holder)
-		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
+		to_chat(current_holder,span_notice("[src] suddenly transforms!"))
 		current_holder.update_inv_hands()
 		current_holder.playsound_local(current_holder, 'sound/effects/blobattack.ogg', 75, FALSE)
 	force = weapon_list[form][1]
