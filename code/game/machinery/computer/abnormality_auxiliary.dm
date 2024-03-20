@@ -16,10 +16,9 @@
 	)
 	var/datum/suppression/selected_core_type = null
 
-	// toggles if the window being opened is TGUI or UI, used as a failsafe if TGUI fails to load
-	// turning this to -1 will prevent TGUI from opening, or switching the consoles mode to TGUI. Use in case of complete failure
+	// toggles if the window being opened is TGUI or UI, players can toggle it in case TGUI fails to load
 	var/TGUI_mode = TRUE
-	// toggles special debugging options if the person is an admin, can also be switched permanently off the same way as the above var
+	// toggles special debugging options if the person is an admin
 	var/is_admin = FALSE
 
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
@@ -33,10 +32,6 @@
 
 /obj/machinery/computer/abnormality_auxiliary/AltClick(mob/user) // toggles if the UI is using TGUI or not
 	. = ..()
-	if(TGUI_mode == -1)
-		say("ERROR: UNABLE TO SWITCH ON TGUI MODE DUE TO TECHNICAL DIFFICULTIES")
-		return
-
 	// If we dont close them, some things can be weird
 	SStgui.close_uis(src)
 	TGUI_mode = !TGUI_mode
@@ -46,13 +41,13 @@
 /obj/machinery/computer/abnormality_auxiliary/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
 	if(TGUI_mode)
-		if(is_admin != -1) // if we seriously fuck up, we need to lock all admin controls for both players and admins alike
-			if(user.client.holder)
+		ui = SStgui.try_update_ui(user, src, ui)
+		if(!ui)
+			if(user.client.holder) // we only ever need to set it once when opening the TGUI, no need to continue refreshing it
 				is_admin = TRUE
 			else
 				is_admin = FALSE
-		ui = SStgui.try_update_ui(user, src, ui)
-		if(!ui)
+
 			to_chat(user, span_notice("If TGUI is failing to load, you can alt+click the console to switch to UI mode"))
 			ui = new(user, src, "AuxiliaryManagerConsole")
 			ui.open()
@@ -268,10 +263,7 @@
 	data["available_suppressions"] = available_supressions
 	// end core supression info
 
-	if(is_admin != -1) // if its -1, someone or something seriously fucked up
-		data["is_admin"] = is_admin
-	else
-		data["is_admin"] = FALSE
+	data["is_admin"] = is_admin // used to determine if we unlock special admin-only options
 
 	return data
 
@@ -281,7 +273,7 @@
 	if (.)
 		return
 
-	switch(action)
+	switch(action) // player actions
 		if("Select Core Suppression") // selects a core supression
 			var/core_supression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
 			if(!ispath(core_supression) || !(core_supression in SSlobotomy_corp.available_core_suppressions))
@@ -312,25 +304,17 @@
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 
-		// admin-only options forward, ensure all of them have an admin check to make sure admins are actually doing them
+	if(!usr.client.holder)
+		return
+
+	switch(action) // admin actions
 		if("Unlock All Cores")
-			if(!usr.client.holder)
-				is_admin = -1
-				log_game("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
-				message_admins("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
-				return
 			log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
 			message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
 			SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
-			SStgui.close_uis(src) // cores are static, so we need to close the UI
+			SStgui.close_uis(src) // cores are static, so we need to close the TGUI to forcibly update static data
 
 		if("Change LOB Points")
-			if(!usr.client.holder)
-				is_admin = -1
-				log_game("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
-				message_admins("An admin-only option was selected by a non-admin ([usr]), emergency shutting off all admin-procs on the auxiliary console for the rest of the shift!")
-				return
-
 			var/amount = params["LOB_amount"]
 			log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
 			message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
