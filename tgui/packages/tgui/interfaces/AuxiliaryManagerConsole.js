@@ -42,10 +42,10 @@ const FacilityUpgrades = (props, context) => {
       {is_admin === 1 && (
         <Box mt="0.5em">
           <Button
-            content={'ADMIN: Remove 10 LOB points'}
+            content={'ADMIN: Remove 1 LOB point'}
             color={'purple'}
             onClick={() => act('Change LOB Points', {
-              LOB_amount: -10,
+              LOB_amount: -1,
             })}
           />
           <Button
@@ -56,10 +56,10 @@ const FacilityUpgrades = (props, context) => {
             })}
           />
           <Button
-            content={'ADMIN: Remove 1 LOB point'}
+            content={'ADMIN: Remove 10 LOB points'}
             color={'purple'}
             onClick={() => act('Change LOB Points', {
-              LOB_amount: -1,
+              LOB_amount: -10,
             })}
           />
           <Button
