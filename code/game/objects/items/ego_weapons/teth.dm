@@ -379,9 +379,9 @@
 	for(var/turf/open/T2 in range(range, src))
 		new /obj/effect/temp_visual/yellowsmoke(T2)
 		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-			to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+			to_chat(L, span_userdanger("[src] bites you!"))
 			if(creator)
-				creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+				creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
 	if(mine_mode == LANTERN_MODE_REMOTE)//So that you can't just place one automatic mine and 5 manual ones around it
 		for(var/obj/effect/temp_visual/lanterntrap/field in range((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
 			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident
