@@ -212,47 +212,37 @@
 		if(upgrade.value >= upgrade.max_value)
 			available = FALSE
 
+		var/modified_upgrade_name
+		if(upgrade.value == 0) // if the upgrade is just a toggle, there's no point in showing its value now, is there?
+			modified_upgrade_name = upgrade.name
+		else
+			modified_upgrade_name = "[upgrade.name] ([upgrade.value])"
+
+
+		var/list/upgrade_data = list(list(
+			"name" = modified_upgrade_name,
+			"ref" = REF(upgrade),
+			"cost" = upgrade.cost,
+			"available" = available,
+		))
+
+
 		var/upgrade_category = upgrade.category
-		switch(upgrade_category) // surelly there's a better way to handle this than copypasta
+		switch(upgrade_category) // sort them into different lists depending on what category they fit in
 			if("Bullets")
-				bullet_upgrades += list(list(
-					"name" = upgrade.name,
-					"ref" = REF(upgrade),
-					"cost" = upgrade.cost,
-					"available" = available,
-				))
+				bullet_upgrades += upgrade_data
 
 			if("Bullet Upgrades")
-				real_bullet_upgrades += list(list(
-					"name" = "[upgrade.name] ([upgrade.value])",
-					"ref" = REF(upgrade),
-					"cost" = upgrade.cost,
-					"available" = available,
-				))
+				real_bullet_upgrades += upgrade_data
 
 			if("Agent")
-				agent_upgrades += list(list(
-					"name" = "[upgrade.name] ([upgrade.value])",
-					"ref" = REF(upgrade),
-					"cost" = upgrade.cost,
-					"available" = available,
-				))
+				agent_upgrades += upgrade_data
 
 			if("Abnormalities")
-				abnormality_upgrades += list(list(
-					"name" = "[upgrade.name] ([upgrade.value])",
-					"ref" = REF(upgrade),
-					"cost" = upgrade.cost,
-					"available" = available,
-				))
+				abnormality_upgrades += upgrade_data
 
 			else
-				you_didnt_give_it_a_proper_category_dammit_upgrades += list(list(
-					"name" = "[upgrade.name] ([upgrade.value])",
-					"ref" = REF(upgrade),
-					"cost" = upgrade.cost,
-					"available" = available,
-				))
+				you_didnt_give_it_a_proper_category_dammit_upgrades += upgrade_data
 
 	data["bullet_upgrades"] = bullet_upgrades
 	data["real_bullet_upgrades"] = real_bullet_upgrades
