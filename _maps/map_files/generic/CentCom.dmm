@@ -3517,7 +3517,7 @@
 /obj/effect/turf_decal/siding/wood{
 	dir = 7
 	},
-/obj/machinery/computer/camera_advanced{
+/obj/machinery/computer/camera_advanced/manager/representative{
 	dir = 1
 	},
 /turf/open/floor/wood,
