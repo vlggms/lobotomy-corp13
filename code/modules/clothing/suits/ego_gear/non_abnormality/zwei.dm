@@ -73,3 +73,31 @@
 /obj/item/clothing/suit/armor/ego_gear/city/zweileader/noreq
 	equip_slowdown = 0
 	attribute_requirements = list()
+
+//for the PVE(inputs).
+/obj/item/clothing/suit/armor/ego_gear/city/zweijunior/gacha
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/city/zweiriot/gacha
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 30)
+
+/obj/item/clothing/suit/armor/ego_gear/city/zwei/gacha
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/zweivet/gacha
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/city/zweileader/gacha
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 100
+							)

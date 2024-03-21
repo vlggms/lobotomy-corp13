@@ -64,18 +64,18 @@
 	icon_state = "crate_zwei"
 	rarechance = 30
 	lootlist =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/zweijunior,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweijunior/gacha,
 		/obj/item/ego_weapon/city/zweihander,
 		/obj/item/ego_weapon/city/zweihander/knife,
-		/obj/item/clothing/suit/armor/ego_gear/city/zwei,
-		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot,
+		/obj/item/clothing/suit/armor/ego_gear/city/zwei/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweiriot/gacha,
 		/obj/item/ego_weapon/city/zweibaton,
 	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/zweihander/vet,
-		/obj/item/clothing/suit/armor/ego_gear/city/zweivet,
-		/obj/item/clothing/suit/armor/ego_gear/city/zweileader,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweivet/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/zweileader/gacha,
 	)
 
 //Tres - Tres Association (Not really accessible)
@@ -145,8 +145,8 @@
 	lootlist =	list(
 		/obj/item/ego_weapon/city/shi_assassin,
 		/obj/item/ego_weapon/city/shi_knife,
-		/obj/item/clothing/suit/armor/ego_gear/city/shi,
-		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus,
+		/obj/item/clothing/suit/armor/ego_gear/city/shi/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/gacha,
 	)
 
 	rareloot =	list(
@@ -155,10 +155,10 @@
 		/obj/item/ego_weapon/city/shi_assassin/serpent,
 		/obj/item/ego_weapon/city/shi_assassin/vet,
 		/obj/item/ego_weapon/city/shi_assassin/director,
-		/obj/item/clothing/suit/armor/ego_gear/city/shi/vet,
-		/obj/item/clothing/suit/armor/ego_gear/city/shi/director,
-		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet,
-		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director,
+		/obj/item/clothing/suit/armor/ego_gear/city/shi/vet/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/shi/director/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/vet/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/shilimbus/director/gacha,
 	)
 
 //Cinq - Cinq Association
@@ -191,8 +191,8 @@
 	desc = "A crate recieved from the liu association. Open with a Crowbar."
 	icon_state = "crate_liu"
 	lootlist =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/liu,
-		/obj/item/clothing/suit/armor/ego_gear/city/liu/section5,
+		/obj/item/clothing/suit/armor/ego_gear/city/liu/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/liu/section5/gacha,
 		/obj/item/ego_weapon/city/liu/fire,
 		/obj/item/ego_weapon/city/liu/fist,
 	)
@@ -202,12 +202,12 @@
 		/obj/item/ego_weapon/city/liu/fire/fist,
 		/obj/item/ego_weapon/city/liu/fire/spear,
 		/obj/item/ego_weapon/city/liu/fire/sword,
-		/obj/item/clothing/suit/armor/ego_gear/city/liuvet,
-		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2,
-		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section4,
-		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5,
-		/obj/item/clothing/suit/armor/ego_gear/city/liuleader,
-		/obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section2/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section4/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuvet/section5/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuleader/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/liuleader/section5/gacha,
 	)
 
 //Seven - Seven and its associates
@@ -220,7 +220,7 @@
 	lootlist =	list(
 		/obj/item/ego_weapon/city/seven,
 		/obj/item/ego_weapon/city/seven_fencing,
-		/obj/item/clothing/suit/armor/ego_gear/city/seven,
+		/obj/item/clothing/suit/armor/ego_gear/city/seven/gacha,
 		/obj/item/clothing/suit/armor/ego_gear/city/sevenrecon,
 		/obj/item/binoculars,
 	)
@@ -228,12 +228,12 @@
 	rareloot =	list(
 		/obj/item/ego_weapon/city/seven/vet,
 		/obj/item/ego_weapon/city/seven_fencing/vet,
-		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet,
-		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel,
+		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/sevenvet/intel/gacha,
 	)
 
 	veryrareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/sevendirector,
+		/obj/item/clothing/suit/armor/ego_gear/city/sevendirector/gacha,
 		/obj/item/ego_weapon/city/seven/director,
 		/obj/item/ego_weapon/city/seven/cane,
 		/obj/item/ego_weapon/city/seven_fencing/dagger,

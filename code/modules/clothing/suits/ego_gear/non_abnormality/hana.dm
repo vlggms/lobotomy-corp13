@@ -39,3 +39,16 @@
 							TEMPERANCE_ATTRIBUTE = 120,
 							JUSTICE_ATTRIBUTE = 120
 							)
+
+//For the PVE(inputs)
+/obj/item/clothing/suit/armor/ego_gear/city/hana/gacha
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)
+
+/obj/item/clothing/suit/armor/ego_gear/city/hanacombat/gacha
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 90)
+
+/obj/item/clothing/suit/armor/ego_gear/city/hanacombat/paperwork/gacha
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 90)
+
+/obj/item/clothing/suit/armor/ego_gear/city/hanadirector/gacha
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 90)
