@@ -22,7 +22,7 @@ GLOBAL_LIST_INIT(unspawned_refiners, list(
 	/obj/structure/altrefiner/weapon,
 ))
 
-/obj/effect/landmark/refinerspaw
+/obj/effect/landmark/refinerspawn
 	name = "alt-refinery spawner"
 	desc = "This is weird. Please inform a coder that you have this. Thanks!"
 	icon = 'icons/effects/landmarks_static.dmi'
