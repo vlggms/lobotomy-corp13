@@ -38,7 +38,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 10
+	work_damage_amount = 12
 	work_damage_type = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 20
