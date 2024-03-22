@@ -1443,30 +1443,37 @@
 	can_move = FALSE
 	can_attack = FALSE
 	can_act = FALSE //we stay transformed until the skill finishes firing
-	addtimer(CALLBACK(src, PROC_REF(BaldBlast)), 5)
+	addtimer(CALLBACK(src, PROC_REF(BaldBlast), FALSE), 5)
 
 
-/mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldBlast()
-	icon_state = "bald3"
-	src.set_light(12, 12, "FFFFFF", TRUE)
-	playsound(get_turf(src), 'sound/abnormalities/sphinx/stone_ready.ogg', 50, 0, 5)
+/mob/living/simple_animal/hostile/abnormality/distortedform/proc/BaldBlast(attack_chain)
+	if(!attack_chain)
+		icon_state = "bald3"
+		src.set_light(12, 12, "FFFFFF", TRUE)
+		playsound(get_turf(src), 'sound/abnormalities/sphinx/stone_ready.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(12)
-	for(var/mob/living/L in viewers(12, src))
-		if(!ishuman(L))
-			continue
-		var/mob/living/carbon/human/H = L
-		if(!H.is_blind() && is_A_facing_B(H,src))
-			if(!HAS_TRAIT(H, TRAIT_BALD))
-				H.emote("scream")
-				H.Stun(20)
-				H.adjust_blindness(2)
-				to_chat(H, span_notice("You feel awesome?"))
-				ADD_TRAIT(H, TRAIT_BALD, "ABNORMALITY_BALD")
-				H.hairstyle = "Bald"
-				H.update_hair()
-				H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-				if(H.sanity_lost) // They can't deal with being bald
-					H.dust()
+	if(attack_chain)
+		for(var/mob/living/L in viewers(12, src))
+			if(!ishuman(L))
+				continue
+			var/mob/living/carbon/human/H = L
+			if(!H.is_blind() && is_A_facing_B(H,src))
+				if(!HAS_TRAIT(H, TRAIT_BALD))
+					H.emote("scream")
+					H.Stun(20)
+					H.Paralyze(20)
+					H.Knockdown(200)
+					H.adjust_blindness(2)
+					to_chat(H, span_notice("You feel awesome?"))
+					ADD_TRAIT(H, TRAIT_BALD, "ABNORMALITY_BALD")
+					H.hairstyle = "Bald"
+					H.update_hair()
+					H.apply_damage(100, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					if(H.sanity_lost) // They can't deal with being bald
+						H.dust()
+	if(!attack_chain)
+		BaldBlast(TRUE)
+		return
 	src.set_light(0, 0, null, FALSE) //using all params takes care of the other procs.
 	can_act = TRUE
 
