@@ -1451,7 +1451,7 @@
 		icon_state = "bald3"
 		src.set_light(12, 12, "FFFFFF", TRUE)
 		playsound(get_turf(src), 'sound/abnormalities/sphinx/stone_ready.ogg', 50, 0, 5)
-	SLEEP_CHECK_DEATH(12)
+	SLEEP_CHECK_DEATH(9)
 	if(attack_chain)
 		for(var/mob/living/L in viewers(12, src))
 			if(!ishuman(L))
