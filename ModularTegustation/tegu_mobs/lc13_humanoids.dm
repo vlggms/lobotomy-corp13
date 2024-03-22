@@ -285,6 +285,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/last_creation_line_time = 0
 	var/statue_cooldown = 25
 	var/last_statue_cooldown_time = 0
+	var/self_damage_statue = 100
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/Aggro()
 	icon_state = icon_attacking
@@ -332,6 +333,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		if (hit_statue)
 			say("...")
 			SLEEP_CHECK_DEATH(stun_duration)
+			adjustHealth(self_damage_statue)
 		can_act = TRUE
 	else
 		. = ..()
