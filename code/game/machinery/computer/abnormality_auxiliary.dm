@@ -273,6 +273,19 @@
 				SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
 				update_static_data_for_all_viewers()
 
+			if("Disable Core Supression")
+				log_game("[usr] has used admin powers to disable all core supressions")
+				message_admins("[usr] has used admin powers to disable all core supressions")
+				SSlobotomy_corp.ResetPotentialSuppressions()
+				update_static_data_for_all_viewers()
+
+			if("End Core Supression")
+				log_game("[usr] has used admin powers to end the current core supression (persistence not saved)")
+				message_admins("[usr] has used admin powers to end the current core supression (persistence not saved)")
+				SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
+				SSlobotomy_corp.core_suppression.End()
+				update_static_data_for_all_viewers()
+
 			if("Change LOB Points")
 				var/amount = params["LOB_amount"]
 				log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")

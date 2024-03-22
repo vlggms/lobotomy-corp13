@@ -138,6 +138,13 @@ const CoreSupressionSelector = (props, context) => {
   if (current_supression) {
     return (
       <Section minHeight="220px">
+        {is_admin === 1 && (
+          <Button
+            content={'ADMIN: End core suppression'}
+            color={'purple'}
+            onClick={() => act('End Core Supression')}
+          />
+        )}
         <Box mt="0.5em" bold textAlign="center" fontSize="40px">
           {current_supression} in progress!
         </Box>
@@ -148,11 +155,18 @@ const CoreSupressionSelector = (props, context) => {
   return (
     <Section title="Master core supression systems">
       {is_admin === 1 && (
-        <Button
-          content={'ADMIN: Unlock all core supressions'}
-          color={'purple'}
-          onClick={() => act('Unlock All Cores')}
-        />
+        <Box mt="0.5em">
+          <Button
+            content={'ADMIN: Unlock all core supressions'}
+            color={'purple'}
+            onClick={() => act('Unlock All Cores')}
+          />
+          <Button
+            content={'ADMIN: Disable all core supressions'}
+            color={'purple'}
+            onClick={() => act('Disable Core Supression')}
+          />
+        </Box>
       )}
       {available_suppressions.length > 0 && (
         <LabeledList>
