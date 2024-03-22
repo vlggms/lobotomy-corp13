@@ -120,10 +120,10 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				SlitDive(target)
+				SiltDive(get_turf(target),TRUE)
 		return
 	if(!client)
-		SlitDive(target)
+		SiltDive(get_turf(target),TRUE)
 		return
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/attackby(obj/item/W, mob/user, params)
@@ -141,9 +141,8 @@
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/Refill(mob/living/attacker)
 	attacker.adjustOxyLoss(-25, updating_health=TRUE, forced=TRUE)
 
-
-/mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/SlitDive(mob/living/target)
-	if(!istype(target) || diving || stunned)
+/mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/SiltDive(turf/target, damaging)
+	if(diving || stunned)
 		return
 	if(get_dist(target, src) > 1 && dive_cooldown < world.time)
 		dive_cooldown = world.time + dive_cooldown_time
@@ -154,33 +153,33 @@
 		animate(src, alpha = 1,pixel_x = -32, pixel_z = -32, time = 0.2 SECONDS)
 		src.pixel_z = -32
 		playsound(src, "sound/abnormalities/piscinemermaid/waterjump.ogg", 10, TRUE, 3)
-		var/turf/target_turf = get_turf(target)
 		SLEEP_CHECK_DEATH(0.75 SECONDS)
-		forceMove(target_turf) //look out, someone is rushing you!
+		forceMove(target) //look out, someone is rushing you!
 		playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 50, FALSE, 4)
 		animate(src, alpha = 255,pixel_x = -32, pixel_z = 32, time = 0.1 SECONDS)
 		src.pixel_z = 0
 		SLEEP_CHECK_DEATH(0.1 SECONDS)
-		for(var/turf/T in view(2, src))
-			var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
-			smonk.color = COLOR_TEAL
-			for(var/obj/structure/flotsam/F in T)
-				if(F.broken)
-					hitflotsam = TRUE
-					Stunned()
-					src.adjustBruteLoss(1000)
-					visible_message(span_boldwarning("[src] gets impaled on the Flotsam taking heavy damage!"))
-					playsound(F, "sound/effects/hit_on_shattered_glass.ogg", 50, TRUE)
-			for(var/mob/living/L in T)
-				if (ishuman(L))
-					if(hitflotsam)
-						continue
-					playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
-					visible_message(span_boldwarning("[src] mauls through [L]!"))
-					to_chat(L, span_userdanger("[src] mauls you!"))
-					HurtInTurf(T, list(), dive_damage, RED_DAMAGE)
-					if(L.health < 0 || L.stat == DEAD)
-						L.gib()
+		if(damaging)
+			for(var/turf/T in view(2, src))
+				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+				smonk.color = COLOR_TEAL
+				for(var/obj/structure/flotsam/F in T)
+					if(F.broken)
+						hitflotsam = TRUE
+						Stunned()
+						src.adjustBruteLoss(750)
+						visible_message(span_boldwarning("[src] gets impaled on the Flotsam taking heavy damage!"))
+						playsound(F, "sound/effects/hit_on_shattered_glass.ogg", 50, TRUE)
+				for(var/mob/living/L in T)
+					if (ishuman(L))
+						if(hitflotsam)
+							continue
+						playsound(L, "sound/abnormalities/dreamingcurrent/bite.ogg", 50, TRUE)
+						visible_message(span_boldwarning("[src] mauls through [L]!"))
+						to_chat(L, span_userdanger("[src] mauls you!"))
+						HurtInTurf(T, list(), dive_damage, RED_DAMAGE)
+						if(L.health < 0 || L.stat == DEAD)
+							L.gib()
 		SLEEP_CHECK_DEATH(0.5 SECONDS)
 		diving = FALSE
 
@@ -205,7 +204,7 @@
 	if(user.oxyloss >= 50)//POWER GRINDER SPOTTED! MUST MAUL THE FUCK!
 		datum_reference.qliphoth_change(-1)
 		GiveTarget(user)
-		SlitDive(user)
+		SiltDive(get_turf(user),TRUE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/BreachEffect(mob/living/carbon/human/user)
@@ -229,6 +228,7 @@
 			deploy_spot = pick_n_take(deployment_area)
 		var/obj/structure/flotsam/F = new get_turf(deploy_spot)
 		spawned_flotsams += F
+		F.silt = src
 
 /mob/living/simple_animal/hostile/abnormality/siltcurrent/proc/OxygenLoss()//While its alive all humans around it will lose oxygen.
 	for(var/mob/living/carbon/human/H in oview(src, 20))//Used to be global but this should prevent it from being asinine when other abormalities are out
@@ -267,6 +267,7 @@
 	light_color = COLOR_TEAL
 	light_range = 4
 	light_power = 5
+	var/mob/living/simple_animal/hostile/abnormality/siltcurrent/silt
 
 /obj/structure/flotsam/attackby(obj/item/W, mob/user, params)
 	. = ..()
@@ -289,11 +290,15 @@
 
 /obj/structure/flotsam/proc/Refill(mob/living/attacker)
 	attacker.adjustOxyLoss(-100, updating_health=TRUE, forced=TRUE)
+	if(!silt.target && !(silt.diving || silt.stunned))
+		silt.dive_cooldown = 0
+		to_chat(attacker, span_userdanger("Something is approaching  you!"))
+		silt.SiltDive(get_turf(attacker),FALSE)
 
 /obj/effect/obsessing_water_effect
 	name = "Obsessing water"
 	desc = "A strange black and teal water"
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'icons/turf/floors/water.dmi'
 	icon_state = "obsessing_water"
 	layer = 1.9//Prevents it from blocking bitter flora
 	anchored = TRUE
