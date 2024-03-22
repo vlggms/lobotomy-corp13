@@ -306,6 +306,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		shoot_projectile(E)
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return FALSE
+
 	if (ranged_cooldown <= world.time)
 		OpenFire()
 
@@ -314,7 +317,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		last_aoe_time = world.time
 		can_act = FALSE
 		say("This is the culmination of my work.")
-		SLEEP_CHECK_DEATH(10)
+		SLEEP_CHECK_DEATH(20)
 		var/hit_statue = FALSE
 		for(var/turf/T in view(2, src))
 			playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 200, TRUE, 2)
@@ -325,14 +328,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 					qdel(S)
 					hit_statue = TRUE
 			HurtInTurf(T, list(), aoe_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE)
-			SLEEP_CHECK_DEATH(1)
-
 
 		if (hit_statue)
 			say("...")
 			SLEEP_CHECK_DEATH(stun_duration)
 		can_act = TRUE
-	. = ..()
+	else
+		. = ..()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	//say("Damage taken. Current health: [health]")
@@ -466,6 +468,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		metal.adjustHealth(-heal_per_tick)
 		visible_message("<span class='notice'>The statue heals the Metal Fixer!</span>")
 		playsound(src, 'sound/abnormalities/rosesign/rose_summon.ogg', 200, TRUE, 2)
+		icon_state = "memory_statute_heal" // Set the initial icon state to the rising animation
+		flick("memory_statute_heal", src) // Play the rising animation
+		spawn(10) // Wait for the animation to finish
+			icon_state = initial(icon_state) // Set the icon state back to the default statue icon
 	heal_timer = addtimer(CALLBACK(src, .proc/heal_metal_fixer), heal_cooldown, TIMER_STOPPABLE)
 
 /mob/living/simple_animal/hostile/metal_fixer_statue/AttackingTarget()
@@ -507,33 +513,33 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	// unstun
 
 // /mob/living/simple_animal/hostile/abnormality/big_wolf/proc/ScratchDash(dash_target)
-/mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/Dash(dash_target)
-	can_act = FALSE
-	var/turf/target_turf = get_turf(dash_target)
-	var/list/hit_mob = list()
-	do_shaky_animation(2)
-	if(do_after(src, 1 SECONDS, target = src))
-		var/turf/wallcheck = get_turf(src)
-		var/enemy_direction = get_dir(src, target_turf)
-		for(var/i=0 to 7)
-			if(get_turf(src) != wallcheck || stat == DEAD || IsContained())
-				break
-			wallcheck = get_step(src, enemy_direction)
-			if(!ClearSky(wallcheck))
-				break
-			//without this the attack happens instantly
-			sleep(1)
-			forceMove(wallcheck)
-			playsound(wallcheck, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
-			for(var/turf/T in orange(get_turf(src), 1))
-				if(isclosedturf(T))
-					continue
-				new /obj/effect/temp_visual/slice(T)
-				for(var/mob/living/L in T)
-					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
-						L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-						LAZYADD(hit_mob, L)
-	can_act = TRUE
+// /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/Dash(dash_target)
+// 	can_act = FALSE
+// 	var/turf/target_turf = get_turf(dash_target)
+// 	var/list/hit_mob = list()
+// 	do_shaky_animation(2)
+// 	if(do_after(src, 1 SECONDS, target = src))
+// 		var/turf/wallcheck = get_turf(src)
+// 		var/enemy_direction = get_dir(src, target_turf)
+// 		for(var/i=0 to 7)
+// 			if(get_turf(src) != wallcheck || stat == DEAD || IsContained())
+// 				break
+// 			wallcheck = get_step(src, enemy_direction)
+// 			if(!ClearSky(wallcheck))
+// 				break
+// 			//without this the attack happens instantly
+// 			sleep(1)
+// 			forceMove(wallcheck)
+// 			playsound(wallcheck, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
+// 			for(var/turf/T in orange(get_turf(src), 1))
+// 				if(isclosedturf(T))
+// 					continue
+// 				new /obj/effect/temp_visual/slice(T)
+// 				for(var/mob/living/L in T)
+// 					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
+// 						L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+// 						LAZYADD(hit_mob, L)
+// 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/OpenFire(atom/A)
 	if (!can_act)
