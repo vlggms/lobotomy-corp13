@@ -1436,7 +1436,6 @@
 	for(var/i = 1 to 3)
 		sleep(2)
 		if(target in view(reach,user))
-			gibcheck(target)
 			target.send_item_attack_message(src, user,target)
 			target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 			user.do_attack_animation(target)
