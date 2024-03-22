@@ -1433,7 +1433,6 @@
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	multihit*= justicemod * force_multiplier
-	gibcheck(target)
 	for(var/i = 1 to 3)
 		sleep(2)
 		if(target in view(reach,user))
@@ -1443,10 +1442,6 @@
 			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
-
-/obj/item/ego_weapon/animalism/proc/gibcheck(mob/living/target)
-	if(target.stat == DEAD && !(GODMODE in target.status_flags))
-		target.gib()
 
 /obj/item/ego_weapon/psychic
 	name = "psychic dagger"
