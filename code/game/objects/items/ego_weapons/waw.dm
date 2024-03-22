@@ -1416,7 +1416,7 @@
 	desc = "The frothing madness of the revving engine brings a fleeting warmth to your hands and heart alike."
 	special = "This weapon hits 4 times for every hit"
 	icon_state = "animalism"
-	force = 20
+	force = 12
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
@@ -1429,13 +1429,18 @@
 /obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	sleep(2)
+	var/multihit = force
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	multihit*= justicemod * force_multiplier
 	for(var/i = 1 to 3)
 		sleep(2)
-		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-		user.do_attack_animation(target)
-		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+		if(target in view(reach,user))
+			target.send_item_attack_message(src, user,target)
+			target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+			user.do_attack_animation(target)
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/psychic
 	name = "psychic dagger"
