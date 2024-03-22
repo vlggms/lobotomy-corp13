@@ -108,6 +108,7 @@
 	. = ..()
 	if(.)
 		return .
+
 	if(ishuman(usr))
 		usr.set_machine(src)
 		add_fingerprint(usr)
@@ -174,10 +175,6 @@
 	if(istype(SSlobotomy_corp.core_suppression))
 		data["current_supression"] = SSlobotomy_corp.core_suppression.name
 
-	data["selected_core_name"] = FALSE
-	data["selected_core_description"] = "Select a core to see its description"
-	data["selected_core_goal"] = "Select a core to see its goal"
-	data["selected_core_reward"] = "Select a core to see its rewards obtained upon completing it"
 	if(ispath(selected_core_type))
 		data["selected_core_name"] = initial(selected_core_type.name)
 		data["selected_core_description"] = initial(selected_core_type.desc)
@@ -187,9 +184,7 @@
 
 	// start facility upgrade info
 	data["Upgrade_points"] = round(SSlobotomy_corp.lob_points, 0.1)
-	// end facility upgrade info
 
-	// start facility upgrade info
 	// preferably this would be in static, but the cost and avaibility needs to be updated whenever an action is performed
 
 	var/list/bullet_upgrades = list()
@@ -270,6 +265,20 @@
 
 /obj/machinery/computer/abnormality_auxiliary/ui_act(action, list/params)
 	. = ..()
+	if(usr.client.holder) // allows admins to bypass typical TGUI checks for admin actions, including proximity and not being a ghost
+		switch(action)
+			if("Unlock All Cores")
+				log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
+				message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
+				SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
+				update_static_data_for_all_viewers()
+
+			if("Change LOB Points")
+				var/amount = params["LOB_amount"]
+				log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+				message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+				SSlobotomy_corp.lob_points += amount
+
 	if (.)
 		return
 
@@ -303,19 +312,3 @@
 
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
-
-	if(!usr.client.holder)
-		return
-
-	switch(action) // admin actions
-		if("Unlock All Cores")
-			log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
-			message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
-			SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
-			SStgui.close_uis(src) // cores are static, so we need to close the TGUI to forcibly update static data
-
-		if("Change LOB Points")
-			var/amount = params["LOB_amount"]
-			log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
-			message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
-			SSlobotomy_corp.lob_points += amount

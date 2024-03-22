@@ -149,7 +149,7 @@ const CoreSupressionSelector = (props, context) => {
     <Section title="Master core supression systems">
       {is_admin === 1 && (
         <Button
-          content={'ADMIN: Unlock all core supressions (needs a TGUI restart)'}
+          content={'ADMIN: Unlock all core supressions'}
           color={'purple'}
           onClick={() => act('Unlock All Cores')}
         />
@@ -174,25 +174,27 @@ const CoreSupressionSelector = (props, context) => {
           ))}
         </LabeledList>
       )}
-      <LabeledList>
-        <LabeledList.Item label="Selected core name: ">
-          {selected_core_name}
-        </LabeledList.Item>
-        <LabeledList.Item label="Selected core description: ">
-          {selected_core_description}
-        </LabeledList.Item>
-        <LabeledList.Item label="Selected core goal: ">
-          {selected_core_goal}
-        </LabeledList.Item>
-        <LabeledList.Item label="Selected core reward: ">
-          {selected_core_reward}
-        </LabeledList.Item>
-      </LabeledList>
-      <Button
-        content={'Confirm core selection'}
-        color={selected_core_name ? 'green' : 'red'}
-        onClick={() => act('Activate Core Suppression')}
-      />
+      {selected_core_name && (
+        <LabeledList>
+          <LabeledList.Item label="Selected core name: ">
+            {selected_core_name}
+          </LabeledList.Item>
+          <LabeledList.Item label="Selected core description: ">
+            {selected_core_description}
+          </LabeledList.Item>
+          <LabeledList.Item label="Selected core goal: ">
+            {selected_core_goal}
+          </LabeledList.Item>
+          <LabeledList.Item label="Selected core reward: ">
+            {selected_core_reward}
+          </LabeledList.Item>
+          <Button mt="1em" ml="0.5em"
+            content={'Confirm core selection'}
+            color={'green'}
+            onClick={() => act('Activate Core Suppression')}
+          />
+        </LabeledList>
+      )}
     </Section>
   );
 };
