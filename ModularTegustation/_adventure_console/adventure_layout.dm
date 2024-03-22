@@ -2,6 +2,7 @@
  * TEXT BASED ADVENTURES
  * Adventures that are mostly predefined paths.
  * This was difficult to finalize since i havent made a text based adventure before.
+ * Special defines such as button macros are in the code/_DEFINES/~lobotomy_defines.dm
  */
 
 /datum/adventure_layout
@@ -160,7 +161,7 @@
 
 /datum/adventure_layout/proc/TravelUI(obj/machinery/call_machine)
 	switch(travel_mode)
-		if(ADVENTURE_MODE_BATTLE to ADVENTURE_MODE_EVENT_BATTLE)
+		if(ADVENTURE_MODE_BATTLE, ADVENTURE_MODE_EVENT_BATTLE)
 			if(!enemy_desc)
 				GenerateEnemy()
 			. += BattleModeDisplay(call_machine)
@@ -259,7 +260,7 @@
 
 		/*I put || in here and the code got upset so i have to do TO instead
 			Eugh maybe we will fix it later on if adventure mode event battle stops being 3. -IP*/
-		if(ADVENTURE_MODE_BATTLE to ADVENTURE_MODE_EVENT_BATTLE)
+		if(ADVENTURE_MODE_BATTLE, ADVENTURE_MODE_EVENT_BATTLE)
 			BattleModeReact(num)
 
 //Reactions for adventure based on mode.
@@ -291,6 +292,9 @@
 					temp_text += "<br>YOU RUN AWAY FROM YOUR OPPONENT<br>5 DAMAGE HEALED<br>EVENT PROGRESS -5<br>"
 					AdjustHP(5)
 					AdjustProgress(-5)
+					paths_to_tread.Cut()
+					enemy_desc = null
+					travel_mode = ADVENTURE_MODE_TRAVEL
 				else
 					DoBattle(0)
 					temp_text += "<br>YOU FAIL TO ESCAPE THE ENEMY<br>"
