@@ -227,6 +227,7 @@
 	data["agent_upgrades"] = agent_upgrades
 	data["abnormality_upgrades"] = abnormality_upgrades
 	data["misc_upgrades"] = you_didnt_give_it_a_proper_category_dammit_upgrades
+	// end facility upgrade info
 
 	return data
 
@@ -333,10 +334,10 @@
 				update_static_data_for_all_viewers()
 
 			if("Change LOB Points")
+				var/amount = params["LOB_amount"]
 				log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
 				message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
 
-				var/amount = params["LOB_amount"]
 				SSlobotomy_corp.lob_points += amount
 
 	if (.)

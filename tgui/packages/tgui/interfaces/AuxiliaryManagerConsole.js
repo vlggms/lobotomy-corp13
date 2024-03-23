@@ -224,6 +224,10 @@ const CoreSuppressionSelector = (props, context) => {
   );
 };
 
+/**
+ * Tons of copy paste down below
+ */
+
 const BulletUpgrades = (props, context) => {
   const { act, data } = useBackend(context);
   const { Upgrade_points, bullet_upgrades } = data;
