@@ -146,15 +146,15 @@ const CoreSuppressionSelector = (props, context) => {
             onClick={() => act('End Core Suppression')}
           />
         )}
-        <Box textColor="red" textAlign="center">
+        <Box textColor="red" textAlign="center" fontFamily="Baskerville">
           WARNING WARNING WARNING
           WARNING WARNING WARNING
           WARNING WARNING WARNING
         </Box>
-        <NoticeBox color={selected_core_color} bold textAlign="center" fontSize="40px">
+        <NoticeBox color={selected_core_color} bold textAlign="center" fontSize="40px" fontFamily="Baskerville">
           {current_suppression} in progress!
         </NoticeBox>
-        <Box textColor="red" textAlign="center">
+        <Box textColor="red" textAlign="center" fontFamily="Baskerville">
           WARNING WARNING WARNING
           WARNING WARNING WARNING
           WARNING WARNING WARNING
