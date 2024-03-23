@@ -11,7 +11,7 @@
 	var/datum/martial_art/bulletproof/MA = new /datum/martial_art/bulletproof
 
 /datum/action/innate/bulletproof/Activate()
-	to_chat(owner, "<span class='notice'>You will now block bullets.</span>")
+	to_chat(owner, span_notice("You will now block bullets."))
 	button_icon_state = "shield_on"
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
@@ -20,7 +20,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/bulletproof/Deactivate()
-	to_chat(owner, "<span class='notice'>You will no longer block bullets.</span>")
+	to_chat(owner, span_notice("You will no longer block bullets."))
 	button_icon_state = "shield_off"
 	if (ishuman(owner))
 		var/mob/living/carbon/human/human = owner
@@ -30,5 +30,5 @@
 
 /datum/martial_art/bulletproof/on_projectile_hit(mob/living/A, obj/projectile/P, def_zone)
 	if(prob(40))
-		to_chat(A, "<span class='notice'>You blocked a bullet.</span>")
+		to_chat(A, span_notice("You blocked a bullet."))
 		return BULLET_ACT_BLOCK
