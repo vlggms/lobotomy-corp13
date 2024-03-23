@@ -4020,6 +4020,7 @@
 #include "ModularTegustation\tegu_items\refinery\tools.dm"
 #include "ModularTegustation\tegu_items\refinery\alt_refinery\_refiner.dm"
 #include "ModularTegustation\tegu_items\refinery\alt_refinery\blood.dm"
+#include "ModularTegustation\tegu_items\refinery\alt_refinery\chance.dm"
 #include "ModularTegustation\tegu_items\refinery\alt_refinery\quickrefine.dm"
 #include "ModularTegustation\tegu_items\refinery\alt_refinery\timed.dm"
 #include "ModularTegustation\tegu_items\refinery\alt_refinery\weapon.dm"

@@ -6,8 +6,11 @@
 
 /obj/structure/altrefiner/weapon/Initialize()
 	var/list/processing = list(/obj/item/ego_weapon, /obj/item/gun/ego_gun, /obj/item/clothing/suit/armor/ego_gear)
+	var/list/banned = list(/obj/item/ego_weapon/city/ncorp_mark)
 	for(var/Y in processing)
 		meltable += subtypesof(Y)
+	for(var/X in banned)
+		meltable -= subtypesof(X)
 	..()
 
 /obj/structure/altrefiner/weapon/attackby(obj/item/I, mob/living/user, params)

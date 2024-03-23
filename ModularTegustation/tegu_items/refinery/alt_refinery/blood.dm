@@ -3,6 +3,7 @@
 	desc = "A machine used by the Extraction Officer to give all but 1 of their HP for a chance at a PE box."
 	icon_state = "dominator-red"
 	var/pecost = 100
+
 /obj/structure/altrefiner/blood/attack_hand(mob/living/carbon/M)
 	..()
 	//Only the EO may use it
