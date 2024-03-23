@@ -16,6 +16,7 @@
 	var/obj/item/clothing/head/ego_hat/hat = null // Hat type, see clothing/head/_ego_head.dm
 	var/obj/item/clothing/neck/ego_neck/neck = null // Neckwear, see clothing/neck/_neck.dm
 	var/list/attribute_requirements = list()
+	var/equip_bonus
 
 /obj/item/clothing/suit/armor/ego_gear/Initialize()
 	. = ..()
@@ -81,7 +82,7 @@
 
 	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
-		if(attribute_requirements[atr] > get_attribute_level(H, atr))
+		if(attribute_requirements[atr] > get_attribute_level(H, atr) + equip_bonus)
 			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
 			return FALSE
 	if(!SpecialEgoCheck(H))

@@ -19,6 +19,9 @@
 	/// How much knockback does this weapon deal, if at all?
 	var/knockback = FALSE
 
+	//Is there a bonus to equipping this?
+	var/equip_bonus = 0
+
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
@@ -95,9 +98,6 @@
 		if(2 to INFINITY)
 			. += span_notice("This weapon attacks extremely slow.")
 
-	if(!knockback)
-		return
-
 	switch(knockback)
 		if(KNOCKBACK_LIGHT)
 			. += span_notice("This weapon has slight enemy knockback.")
@@ -108,7 +108,7 @@
 		if(KNOCKBACK_HEAVY)
 			. += span_notice("This weapon has neck-snapping enemy knockback.")
 
-		else
+		else if(knockback)
 			. += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
 
 /obj/item/ego_weapon/Topic(href, href_list)
@@ -136,7 +136,7 @@
 
 	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
-		if(attribute_requirements[atr] > get_attribute_level(H, atr))
+		if(attribute_requirements[atr] > get_attribute_level(H, atr) + equip_bonus)
 			to_chat(H, span_notice("You cannot use [src]!"))
 			return FALSE
 	if(!SpecialEgoCheck(H))
