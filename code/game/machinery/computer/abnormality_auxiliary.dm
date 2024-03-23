@@ -264,7 +264,8 @@
 			if(WELFARE_CORE_SUPPRESSION)
 				data["selected_core_color"] = "blue"
 
-			// where gebura?
+			if(DISCIPLINARY_CORE_SUPPRESSION)
+				data["selected_core_color"] = "red"
 
 			// bottom layer
 			if(EXTRACTION_CORE_SUPPRESSION)
@@ -277,7 +278,7 @@
 
 			// should divide them and give them colors later, but no clue what they could have for now
 			if(DAY46_CORE_SUPPRESSION, DAY47_CORE_SUPPRESSION, DAY48_CORE_SUPPRESSION, DAY49_CORE_SUPPRESSION, DAY50_CORE_SUPPRESSION)
-				data["selected_core_color"] = "red"
+				data["selected_core_color"] = "white"
 
 			// you didnt set a proper core layer
 			else
@@ -312,26 +313,30 @@
 			if("Unlock All Cores")
 				log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
 				message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
+
 				SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
 				update_static_data_for_all_viewers()
 
 			if("Disable Core Suppression")
 				log_game("[usr] has used admin powers to disable all core suppressions")
 				message_admins("[usr] has used admin powers to disable all core suppressions")
+
 				SSlobotomy_corp.ResetPotentialSuppressions()
 				update_static_data_for_all_viewers()
 
 			if("End Core Suppression")
 				log_game("[usr] has used admin powers to end the current core suppression (persistence not saved)")
 				message_admins("[usr] has used admin powers to end the current core suppression (persistence not saved)")
+
 				SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
 				SSlobotomy_corp.core_suppression.End()
 				update_static_data_for_all_viewers()
 
 			if("Change LOB Points")
-				var/amount = params["LOB_amount"]
 				log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
 				message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+
+				var/amount = params["LOB_amount"]
 				SSlobotomy_corp.lob_points += amount
 
 	if (.)
@@ -342,6 +347,7 @@
 			var/core_suppression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
 			if(!ispath(core_suppression) || !(core_suppression in SSlobotomy_corp.available_core_suppressions))
 				return FALSE
+
 			selected_core_type = core_suppression
 			say("[initial(selected_core_type.name)] has been selected!")
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
