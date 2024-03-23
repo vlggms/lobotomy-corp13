@@ -484,7 +484,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame
 	name = "Flame Fixer"
-	desc = "Flame Fixer"
+	desc = "A lanky young man with fair skin, dark, sparkling eyes, and an often overoptimistic expression. A heavy spear decorated with vibrant patterns on the head."
 	icon_state = "flame_fixer"
 	icon_living = "flame_fixer"
 	icon_dead = "flame_fixer"
@@ -496,9 +496,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	melee_damage_upper = 14
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 0.5
-	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
-	attack_verb_continuous = "slices"
-	attack_verb_simple = "slice"
+	attack_sound = 'sound/weapons/fixer/generic/spear3.ogg'
+	attack_verb_continuous = "pierces"
+	attack_verb_simple = "pierce"
 	del_on_death = TRUE
 	ranged = TRUE
 	ranged_cooldown_time = 100
@@ -506,7 +506,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/burn_stacks = 1
 	projectiletype = /obj/projectile/flame_fixer
 	var/damage_reflection = FALSE
-	var/dash_cooldown = 300
+	var/dash_cooldown = 350
 	var/last_dash = 0
 	var/dash_damage = 25
 	var/last_counter = 0
@@ -523,9 +523,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if (world.time > last_dash + dash_cooldown)
 		last_dash = world.time
 		can_act = FALSE
-		say("Here we go!")
+		say("Dissatisfaction")
 		icon_state = "flame_fixer_dashing"
-		SLEEP_CHECK_DEATH(30)
+		SLEEP_CHECK_DEATH(20)
 		Dash(target)
 		Dash(target)
 		Dash(target)
@@ -551,7 +551,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 			//without this the attack happens instantly
 			sleep(0.5)
 			forceMove(wallcheck)
-			playsound(wallcheck, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
+			playsound(wallcheck, 'sound/weapons/ego/burn_sword.ogg', 20, 0, 4)
 			for(var/turf/T in orange(get_turf(src), 1))
 				if(isclosedturf(T))
 					continue
@@ -561,7 +561,6 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 						LAZYADD(hit_mob, L)
 
-//Used in Steel noons for if they are allowed to fly through something.
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/ClearSky(turf/T)
 	if(!T || isclosedturf(T) || T == loc)
 		return FALSE
@@ -601,6 +600,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		last_counter = world.time
 		can_act = FALSE
 		icon_state = "flame_fixer_counter_start"
+		say("Debilitation")
 		SLEEP_CHECK_DEATH(10)
 		damage_reflection = TRUE
 		icon_state = "flame_fixer_counter"
@@ -610,6 +610,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		icon_state = initial(icon_state)
 		last_counter = world.time
 		counter_cooldown = rand(300, 500)
+		return
 
 	. = ..()
 	if (istype(target, /mob/living))
@@ -628,8 +629,6 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		return
 	ReflectDamage(user, I.damtype, I.force)
 
-//Breach Mechanics
-// All damage reflection stuff is down here
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/ReflectDamage(mob/living/attacker, attack_type = RED_DAMAGE, damage)
 	if(damage < 1)
 		return
@@ -640,8 +639,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		jump_turf = get_turf(attacker)
 	forceMove(jump_turf)
 	//playsound(src, 'sound/abnormalities/so_that_no_cry/counter.ogg', min(15 + damage, 100), TRUE, 4)
-	attacker.visible_message(span_danger("[src] hits [attacker] with a barrage of punches!"), span_userdanger("[src] counters your attack!"))
+	attacker.visible_message(span_danger("[src] hits [attacker] with a counterattack!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
+	playsound('sound/weapons/ego/burn_guard.ogg', 20, 0, 4)
 	attacker.apply_damage(damage * 2, attack_type, null, attacker.getarmor(null, attack_type))
 	attacker.apply_damage(damage, STAMINA, null, null)
 
@@ -661,7 +661,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	ricochet_incidence_leeway = 0
 	homing = TRUE
 	homing_turn_speed = 10		//Angle per tick.
-	var/stun_duration = 50
+	var/stun_duration = 75
 	var/burn_stacks = 20
 
 
@@ -678,7 +678,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		var/mob/living/simple_animal/hostile/humanoid/fixer/flame/F = target
 		qdel(src)
 		F.can_act = FALSE
-		F.say("Im stunned")
+		F.say("Derealization...")
 		sleep(stun_duration)
 		F.can_act = TRUE
 		return BULLET_ACT_BLOCK
