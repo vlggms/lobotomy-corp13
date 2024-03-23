@@ -1,7 +1,7 @@
 // THIS IS A LOBOTOMYCORPORATION UI FILE
 
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, Section, Tabs } from '../components';
+import { Box, Button, LabeledList, NoticeBox, Section, Tabs } from '../components';
 import { Window } from '../layouts';
 
 export const AuxiliaryManagerConsole = (props, context) => {
@@ -27,7 +27,7 @@ export const AuxiliaryManagerConsole = (props, context) => {
           </Tabs.Tab>
         </Tabs>
         {tab === 1 && <FacilityUpgrades />}
-        {tab === 2 && <CoreSupressionSelector />}
+        {tab === 2 && <CoreSuppressionSelector />}
       </Window.Content>
     </Window>
   );
@@ -123,48 +123,55 @@ const FacilityUpgrades = (props, context) => {
   );
 };
 
-const CoreSupressionSelector = (props, context) => {
+const CoreSuppressionSelector = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     is_admin,
-    current_supression,
+    current_suppression,
     available_suppressions,
     selected_core_name,
     selected_core_description,
     selected_core_goal,
     selected_core_reward,
+    selected_core_color,
   } = data;
 
-  if (current_supression) {
+  if (current_suppression) {
     return (
       <Section minHeight="220px">
         {is_admin === 1 && (
           <Button
             content={'ADMIN: End core suppression'}
             color={'purple'}
-            onClick={() => act('End Core Supression')}
+            onClick={() => act('End Core Suppression')}
           />
         )}
-        <Box mt="0.5em" bold textAlign="center" fontSize="40px">
-          {current_supression} in progress!
+        <Box textColor="red" textAlign="center">
+          WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING
+        </Box>
+        <NoticeBox color={selected_core_color} bold textAlign="center" fontSize="40px">
+          {current_suppression} in progress!
+        </NoticeBox>
+        <Box textColor="red" textAlign="center">
+          WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING
         </Box>
       </Section>
     );
   }
 
   return (
-    <Section title="Master core supression systems">
+    <Section title="Master core suppression systems">
       {is_admin === 1 && (
         <Box mt="0.5em">
           <Button
-            content={'ADMIN: Unlock all core supressions'}
+            content={'ADMIN: Unlock all core suppressions'}
             color={'purple'}
             onClick={() => act('Unlock All Cores')}
           />
           <Button
-            content={'ADMIN: Disable all core supressions'}
+            content={'ADMIN: Disable all core suppressions'}
             color={'purple'}
-            onClick={() => act('Disable Core Supression')}
+            onClick={() => act('Disable Core Suppression')}
           />
         </Box>
       )}
@@ -176,7 +183,7 @@ const CoreSupressionSelector = (props, context) => {
               label={available_suppressions.name}
               buttons={
                 <Button
-                  content={'Choose core supression'}
+                  content={'Choose core suppression'}
                   color={'green'}
                   onClick={() =>
                     act('Select Core Suppression', {

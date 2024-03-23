@@ -170,18 +170,6 @@
 	. = ..()
 	var/list/data = list()
 
-	// start core supression info
-	data["current_supression"] = FALSE
-	if(istype(SSlobotomy_corp.core_suppression))
-		data["current_supression"] = SSlobotomy_corp.core_suppression.name
-
-	if(ispath(selected_core_type))
-		data["selected_core_name"] = initial(selected_core_type.name)
-		data["selected_core_description"] = initial(selected_core_type.desc)
-		data["selected_core_goal"] = initial(selected_core_type.goal_text)
-		data["selected_core_reward"] = initial(selected_core_type.reward_text)
-	// end core supression info
-
 	// start facility upgrade info
 	data["Upgrade_points"] = round(SSlobotomy_corp.lob_points, 0.1)
 
@@ -247,16 +235,70 @@
 	. = ..()
 	var/list/data = list()
 
-	// start core supression info
-	var/list/available_supressions = list()
+	// start core suppression info
+	data["current_suppression"] = FALSE // if the type check fails, we send FALSE instead
+	if(istype(SSlobotomy_corp.core_suppression))
+		var/core_suppression_name = SSlobotomy_corp.core_suppression.name
+
+		data["current_suppression"] = core_suppression_name
+		data["selected_core_color"] = "red"
+		switch(core_suppression_name) // we choose the core's color once its locked in place here, the mother of all switches
+			// upper layer
+			if(CONTROL_CORE_SUPPRESSION)
+				data["selected_core_color"] = "yellow"
+
+			if(INFORMATION_CORE_SUPPRESSION)
+				data["selected_core_color"] = "purple"
+
+			if(SAFETY_CORE_SUPPRESSION)
+				data["selected_core_color"] = "green"
+
+			if(TRAINING_CORE_SUPPRESSION)
+				data["selected_core_color"] = "orange"
+
+			// middle layer
+
+			if(COMMAND_CORE_SUPPRESSION)
+				data["selected_core_color"] = "yellow"
+
+			if(WELFARE_CORE_SUPPRESSION)
+				data["selected_core_color"] = "blue"
+
+			// where gebura?
+
+			// bottom layer
+			if(EXTRACTION_CORE_SUPPRESSION)
+				data["selected_core_color"] = "yellow"
+
+			if(RECORDS_CORE_SUPPRESSION)
+				data["selected_core_color"] = "white"
+
+			// literal hell layer
+
+			// should divide them and give them colors later, but no clue what they could have for now
+			if(DAY46_CORE_SUPPRESSION, DAY47_CORE_SUPPRESSION, DAY48_CORE_SUPPRESSION, DAY49_CORE_SUPPRESSION, DAY50_CORE_SUPPRESSION)
+				data["selected_core_color"] = "red"
+
+			// you didnt set a proper core layer
+			else
+				data["selected_core_color"] = "red"
+
+	if(ispath(selected_core_type))
+		data["selected_core_name"] = initial(selected_core_type.name)
+		data["selected_core_description"] = initial(selected_core_type.desc)
+		data["selected_core_goal"] = initial(selected_core_type.goal_text)
+		data["selected_core_reward"] = initial(selected_core_type.reward_text)
+
+	var/list/available_suppressions = list()
 	for(var/core_type in SSlobotomy_corp.available_core_suppressions)
 		var/datum/suppression/available_suppression = core_type
-		available_supressions += list(list(
+		available_suppressions += list(list(
 			"name" = available_suppression.name,
 			"ref" = REF(available_suppression),
 		))
-	data["available_suppressions"] = available_supressions
-	// end core supression info
+
+	data["available_suppressions"] = available_suppressions
+	// end core suppression info
 
 	data["is_admin"] = is_admin // used to determine if we unlock special admin-only options
 
@@ -273,15 +315,15 @@
 				SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
 				update_static_data_for_all_viewers()
 
-			if("Disable Core Supression")
-				log_game("[usr] has used admin powers to disable all core supressions")
-				message_admins("[usr] has used admin powers to disable all core supressions")
+			if("Disable Core Suppression")
+				log_game("[usr] has used admin powers to disable all core suppressions")
+				message_admins("[usr] has used admin powers to disable all core suppressions")
 				SSlobotomy_corp.ResetPotentialSuppressions()
 				update_static_data_for_all_viewers()
 
-			if("End Core Supression")
-				log_game("[usr] has used admin powers to end the current core supression (persistence not saved)")
-				message_admins("[usr] has used admin powers to end the current core supression (persistence not saved)")
+			if("End Core Suppression")
+				log_game("[usr] has used admin powers to end the current core suppression (persistence not saved)")
+				message_admins("[usr] has used admin powers to end the current core suppression (persistence not saved)")
 				SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
 				SSlobotomy_corp.core_suppression.End()
 				update_static_data_for_all_viewers()
@@ -296,19 +338,20 @@
 		return
 
 	switch(action) // player actions
-		if("Select Core Suppression") // selects a core supression
-			var/core_supression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
-			if(!ispath(core_supression) || !(core_supression in SSlobotomy_corp.available_core_suppressions))
+		if("Select Core Suppression") // selects a core suppression
+			var/core_suppression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
+			if(!ispath(core_suppression) || !(core_suppression in SSlobotomy_corp.available_core_suppressions))
 				return FALSE
-			selected_core_type = core_supression
+			selected_core_type = core_suppression
 			say("[initial(selected_core_type.name)] has been selected!")
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+			update_static_data_for_all_viewers()
 
-		if("Activate Core Suppression") // activates the currently selected core supression
+		if("Activate Core Suppression") // activates the currently selected core suppression
 			if(!ispath(selected_core_type) || !(selected_core_type in SSlobotomy_corp.available_core_suppressions))
 				return FALSE
 			if(istype(SSlobotomy_corp.core_suppression))
-				CRASH("[src] has attempted to activate a core supression via TGUI whilst its not possible!")
+				CRASH("[src] has attempted to activate a core suppression via TGUI whilst its not possible!")
 
 			say("[initial(selected_core_type.name)] protocol activated, good luck manager.")
 			SSlobotomy_corp.core_suppression = new selected_core_type
@@ -317,6 +360,7 @@
 			selected_core_type = null
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, Run)), 2 SECONDS)
+			update_static_data_for_all_viewers()
 
 		if("Buy Upgrade") // Buys an upgrade, looking for a parameter that is given to the upgrade thats being bought on the TGUI side
 			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
