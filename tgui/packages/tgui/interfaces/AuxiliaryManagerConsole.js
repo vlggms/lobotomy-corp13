@@ -147,13 +147,17 @@ const CoreSuppressionSelector = (props, context) => {
           />
         )}
         <Box textColor="red" textAlign="center">
-          WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNIN
+          WARNING WARNING WARNING
+          WARNING WARNING WARNING
+          WARNING WARNING WARNING
         </Box>
         <NoticeBox color={selected_core_color} bold textAlign="center" fontSize="40px">
           {current_suppression} in progress!
         </NoticeBox>
         <Box textColor="red" textAlign="center">
-          WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNING WARNIN
+          WARNING WARNING WARNING
+          WARNING WARNING WARNING
+          WARNING WARNING WARNING
         </Box>
       </Section>
     );
