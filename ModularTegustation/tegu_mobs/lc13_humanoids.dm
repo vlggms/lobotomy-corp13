@@ -492,17 +492,18 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	health = 1500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
 	move_to_delay = 4
-	melee_damage_lower = 1
-	melee_damage_upper = 2
+	melee_damage_lower = 10
+	melee_damage_upper = 14
 	melee_damage_type = RED_DAMAGE
-	//rapid_melee = 2
+	rapid_melee = 0.5
 	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
 	attack_verb_continuous = "slices"
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	ranged = TRUE
+	ranged_cooldown_time = 100
 	melee_reach = 2
-	var/burn_stacks = 2
+	var/burn_stacks = 1
 	projectiletype = /obj/projectile/flame_fixer
 	var/damage_reflection = FALSE
 	var/dash_cooldown = 300
@@ -605,7 +606,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		can_act = TRUE
 		icon_state = initial(icon_state)
 		last_counter = world.time
-		counter_cooldown = random(300, 500)
+		counter_cooldown = rand(300, 500)
 
 	. = ..()
 	if (istype(target, /mob/living))
