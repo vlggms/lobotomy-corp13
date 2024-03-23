@@ -6,6 +6,7 @@
 
 /datum/smite/bread/effect(client/user, mob/living/target)
 	. = ..()
+	var/mutable_appearance/bread_appearance
 	if(target.name == "Bong Bong")
 		var/mutable_appearance/bread_appearance = mutable_appearance('icons/obj/food/burgerbread.dmi', "bongbread")
 	else
