@@ -512,7 +512,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/last_counter = 0
 	var/counter_cooldown = 30
 	var/last_voice_line = 0
-	var/voice_line_cooldown = 300
+	var/voice_line_cooldown = 250
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/TripleDash()
 	// if dash is off cooldown stun until the end of dashes and say quote
@@ -586,6 +586,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/Shoot(atom/targeted_atom)
 	var/obj/projectile/flame_fixer/P = ..()
 	P.set_homing_target(target)
+	if (world.time > last_voice_line + voice_line_cooldown)
+		say("Helios fire!")
+		last_voice_line = world.time
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/AttackingTarget(atom/attacked_target)
 	// check cooldown and start countering
