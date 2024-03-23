@@ -33,3 +33,12 @@
 	name = "welfare head beret"
 	desc = "A blue beret emblazened with the welfare logo. It smells of coffee."
 	icon_state = "beret_com"
+
+//Other agents
+//Agent beret
+/obj/item/clothing/head/beret/tegu/lobotomy/agent
+	name = "agent head beret"
+	desc = "A grey beret that's standard among lobotomy corporation agents."
+	icon_state = "beret_mining"
+
+
