@@ -555,7 +555,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 			for(var/turf/T in orange(get_turf(src), 1))
 				if(isclosedturf(T))
 					continue
-				new /obj/effect/temp_visual/slice(T)
+				new /obj/effect/temp_visual/mech_fire(T)
 				for(var/mob/living/L in T)
 					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
 						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
@@ -638,10 +638,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if(jump_turf.is_blocked_turf(exclude_mobs = TRUE))
 		jump_turf = get_turf(attacker)
 	forceMove(jump_turf)
-	//playsound(src, 'sound/abnormalities/so_that_no_cry/counter.ogg', min(15 + damage, 100), TRUE, 4)
+	playsound(src, 'sound/weapons/ego/burn_guard.ogg', min(15 + damage, 100), TRUE, 4)
 	attacker.visible_message(span_danger("[src] hits [attacker] with a counterattack!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
-	playsound('sound/weapons/ego/burn_guard.ogg', 20, 0, 4)
 	attacker.apply_damage(damage * 2, attack_type, null, attacker.getarmor(null, attack_type))
 	attacker.apply_damage(damage, STAMINA, null, null)
 
