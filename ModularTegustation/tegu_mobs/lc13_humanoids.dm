@@ -505,47 +505,81 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/burn_stacks = 2
 	projectiletype = /obj/projectile/flame_fixer
 	var/damage_reflection = FALSE
+	var/dash_cooldown = 300
+	var/last_dash = 0
+	var/dash_damage = 25
+	var/last_counter = 0
+	var/counter_cooldown = 30
+	var/last_voice_line = 0
+	var/voice_line_cooldown = 300
 
-/mob/living/simple_animal/hostile/humanoid/fixer/flame/Aggro()
-	. = ..()
+/mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/TripleDash()
 	// if dash is off cooldown stun until the end of dashes and say quote
 	// wait 2 sec for the first dash
 	// after 2 sec dash towards the target dealing red dmg and applying burn
 	// repeat 3 times with 1 sec delay between each
 	// unstun
+	if (world.time > last_dash + dash_cooldown)
+		last_dash = world.time
+		can_act = FALSE
+		say("Here we go!")
+		icon_state = "flame_fixer_dashing"
+		SLEEP_CHECK_DEATH(30)
+		Dash(target)
+		Dash(target)
+		Dash(target)
+		icon_state = initial(icon_state)
+		last_dash = world.time
+		can_act = TRUE
 
-// /mob/living/simple_animal/hostile/abnormality/big_wolf/proc/ScratchDash(dash_target)
-// /mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/Dash(dash_target)
-// 	can_act = FALSE
-// 	var/turf/target_turf = get_turf(dash_target)
-// 	var/list/hit_mob = list()
-// 	do_shaky_animation(2)
-// 	if(do_after(src, 1 SECONDS, target = src))
-// 		var/turf/wallcheck = get_turf(src)
-// 		var/enemy_direction = get_dir(src, target_turf)
-// 		for(var/i=0 to 7)
-// 			if(get_turf(src) != wallcheck || stat == DEAD || IsContained())
-// 				break
-// 			wallcheck = get_step(src, enemy_direction)
-// 			if(!ClearSky(wallcheck))
-// 				break
-// 			//without this the attack happens instantly
-// 			sleep(1)
-// 			forceMove(wallcheck)
-// 			playsound(wallcheck, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
-// 			for(var/turf/T in orange(get_turf(src), 1))
-// 				if(isclosedturf(T))
-// 					continue
-// 				new /obj/effect/temp_visual/slice(T)
-// 				for(var/mob/living/L in T)
-// 					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
-// 						L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-// 						LAZYADD(hit_mob, L)
-// 	can_act = TRUE
+/mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/Dash(dash_target)
+	if (!dash_target)
+		return
+	var/turf/target_turf = get_turf(dash_target)
+	var/list/hit_mob = list()
+	//do_shaky_animation(2)
+	if(do_after(src, 0.5 SECONDS, target = src))
+		var/turf/wallcheck = get_turf(src)
+		var/enemy_direction = get_dir(src, target_turf)
+		for(var/i=0 to 7)
+			if(get_turf(src) != wallcheck || stat == DEAD )
+				break
+			wallcheck = get_step(src, enemy_direction)
+			if(!ClearSky(wallcheck))
+				break
+			//without this the attack happens instantly
+			sleep(0.5)
+			forceMove(wallcheck)
+			playsound(wallcheck, 'sound/abnormalities/doomsdaycalendar/Lor_Slash_Generic.ogg', 20, 0, 4)
+			for(var/turf/T in orange(get_turf(src), 1))
+				if(isclosedturf(T))
+					continue
+				new /obj/effect/temp_visual/slice(T)
+				for(var/mob/living/L in T)
+					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
+						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+						LAZYADD(hit_mob, L)
+
+//Used in Steel noons for if they are allowed to fly through something.
+/mob/living/simple_animal/hostile/humanoid/fixer/flame/proc/ClearSky(turf/T)
+	if(!T || isclosedturf(T) || T == loc)
+		return FALSE
+	if(locate(/obj/structure/window) in T.contents)
+		return FALSE
+	if(locate(/obj/structure/table) in T.contents)
+		return FALSE
+	if(locate(/obj/structure/railing) in T.contents)
+		return FALSE
+	for(var/obj/machinery/door/D in T.contents)
+		if(D.density)
+			return FALSE
+	return TRUE
+
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/OpenFire(atom/A)
 	if (!can_act)
 		return
+	TripleDash()
 	. = ..()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/Shoot(atom/targeted_atom)
@@ -559,7 +593,19 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	// change icon_state to counter
 	// if they hit after wind up during counter deal RED damage and stamina damage
 	// counter has random cooldown 15-40 sec
-
+	if (world.time > last_counter + counter_cooldown)
+		last_counter = world.time
+		can_act = FALSE
+		icon_state = "flame_fixer_counter_start"
+		SLEEP_CHECK_DEATH(10)
+		damage_reflection = TRUE
+		icon_state = "flame_fixer_counter"
+		SLEEP_CHECK_DEATH(40)
+		damage_reflection = FALSE
+		can_act = TRUE
+		icon_state = initial(icon_state)
+		last_counter = world.time
+		counter_cooldown = random(300, 500)
 
 	. = ..()
 	if (istype(target, /mob/living))
