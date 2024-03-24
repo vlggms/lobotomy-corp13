@@ -144,7 +144,7 @@
 /datum/job/agent/captain/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	..()
 	for(var/datum/job/processing in SSjob.occupations)
-		if(istype(processing, /datum/job/suppression))
+		if(istype(processing, /datum/job/suppression/captain))
 			processing.total_positions = 1
 
 /datum/outfit/job/agent/captain
