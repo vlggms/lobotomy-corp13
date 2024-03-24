@@ -159,3 +159,4 @@
 
 	//Now we have to bring it back up
 	user.adjust_all_attribute_levels(set_attribute)
+	to_chat(user, span_notice("You feel reset, and more ready for combat."))
