@@ -39,6 +39,14 @@ GLOBAL_LIST_INIT(command_positions, list(
 	//Wcorp stuff
 	"W-Corp Representative",
 	"W-Corp L3 Squad Captain",
+
+	//LCB Labs
+	"District Manager",
+	"LC Asset Protection",
+	"Chief Medical Officer",
+	"Lead Researcher",
+	"High Security Commander",
+	"Low Security Commander",
 	))
 
 
@@ -47,6 +55,12 @@ GLOBAL_LIST_INIT(engineering_positions, list(
 
 
 GLOBAL_LIST_INIT(medical_positions, list(
+	//LC Labs
+	"Chief Medical Officer",
+	"Surgeon",
+	"Nurse Practitioner",
+	"Pharmacist",
+	"Emergency Medical Technician",
 	))
 
 
@@ -61,6 +75,15 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"East Office Fixer",
 	"North Office Director",
 	"North Office Fixer",
+
+	//LCB Labs
+	"Lead Researcher",
+	"Senior Researcher",
+	"Information Systems Tech",
+	"Research Archivist",
+	"Researcher",
+	"LC Staff",
+
 	))
 
 
@@ -81,6 +104,11 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Main Office Representative",
 	"Fishhook Office Fixer",
 	"Rat",
+
+	//LCB Labs
+	"Containment Engineer",
+	"LC Chef",
+	"LC Janitor",
 	))
 
 
@@ -140,6 +168,15 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
 
+
+	//LCB Labs
+	"High Security Commander",
+	"Low Security Commander",
+	"High Security Officer",
+	"Low Security Officer",
+	"Damage Mitigation Officer",
+	"Damage Exasperation Officer",
+	"Internal Police",
 	))
 
 

@@ -220,7 +220,7 @@
 			icon = 'ModularTegustation/Teguicons/96x96.dmi'
 			pixel_x = -32
 			base_pixel_x = -32
-			if(phase == 3)
+			if(phase == 3 && SSmaptype.maptype != "limbus_labs")
 				icon_living = "mosb_breach2"
 				SpeedChange(1)
 				patrol_cooldown_time = 30 SECONDS
