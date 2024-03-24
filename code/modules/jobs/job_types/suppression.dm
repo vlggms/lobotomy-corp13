@@ -51,7 +51,7 @@
 	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
 		set_attribute *= 1.5
 
-	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
 
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
@@ -152,7 +152,7 @@
 	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
 		set_attribute *= 1.5
 
-	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) 	//Get double stats because this is all they get.
 
 	//Set all stats to 0
 	for(var/A in attribute_list)
