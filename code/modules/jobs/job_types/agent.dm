@@ -140,6 +140,13 @@
 
 	job_abbreviation = "CPT"
 
+
+/datum/job/agent/captain/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	for(var/datum/job/processing in SSjob.occupations)
+		if(istype(processing, /datum/job/suppression))
+			processing.total_positions = 3
+
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
 	jobtype = /datum/job/agent/captain

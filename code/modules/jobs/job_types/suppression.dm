@@ -130,8 +130,10 @@
 		to_chat(user, span_notice("The Gadget's light flashes red. You aren't an ERA or Disciplinary Officer. Check the label before use."))
 		return
 
+	var/list/attribute_list = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+
 	//I got lazy and this needs to be shipped out today
-	var/set_attribute = normal_attribute_level
+	var/set_attribute = 20
 
 	// Variables from abno queue subsystem
 	var/spawned_abnos = SSabnormality_queue.spawned_abnos
@@ -150,6 +152,10 @@
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
 
-	for(var/A in roundstart_attributes)
-		roundstart_attributes[A] = round(set_attribute)
+	//Set all stats to 0
+	for(var/A in attribute_list)
+		var/processing = get_attribute_level(user, A)
+		user.adjust_attribute_level(A, -1*processing)
 
+	//Now we have to bring it back up
+	user.adjust_all_attribute_levels(set_attribute)
