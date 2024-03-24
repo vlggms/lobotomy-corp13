@@ -145,7 +145,7 @@
 	..()
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/suppression))
-			processing.total_positions = 3
+			processing.total_positions = 1
 
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
