@@ -9,12 +9,13 @@
 	density = TRUE
 	//Keepin it simple and soft coded.
 	var/datum/adventure_layout/adventure_data
+	//Saved profiles that are password locked
+	var/list/profile_list = list()
 
 //Console with debug text adventure program for testing.
 /obj/machinery/text_adventure_console/debug/Initialize()
 	. = ..()
-	if(!adventure_data)
-		adventure_data = new(TRUE)
+	NewProfile(TRUE)
 
 //Stolen from nanite_program_hub.dm
 /obj/machinery/text_adventure_console/update_overlays()
@@ -28,9 +29,12 @@
 	if(isliving(user))
 		playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
 	var/dat
-	if(!adventure_data)
-		adventure_data = new
-	dat += adventure_data.Adventure(src, user)
+	if(adventure_data)
+		dat += adventure_data.Adventure(src, user)
+		dat += "<br><A href='byond://?src=[REF(src)];log_out_profile=[REF(src)]'>LOG OUT</A><br>\
+			<A href='byond://?src=[REF(src)];new_profile_password=[REF(src)]'>CREATE PASSWORD</A>"
+	else
+		dat += ProfileMenu()
 	var/datum/browser/popup = new(user, "Adventure", "AdventureTest", 500, 600)
 	popup.set_content(dat)
 	popup.open()
@@ -46,6 +50,39 @@
 
 	usr.set_machine(src)
 	add_fingerprint(usr)
+
+	//Profile Selection
+	if(href_list["profile"])
+		var/set_profile = profile_list[text2num(href_list["profile"])]
+		if(!set_profile)
+			updateUsrDialog()
+			return TRUE
+		if(profile_list[set_profile] != null)
+			var/input_password = input(usr, "PLEASE TYPE IN PASSWORD", "PASSWORD INPUT") as null|num
+			if(input_password != profile_list[set_profile])
+				to_chat(usr, span_notice("INCORRECT PASSWORD"))
+				return TRUE
+		adventure_data = set_profile
+		updateUsrDialog()
+		return TRUE
+
+	if(href_list["log_out_profile"])
+		adventure_data = null
+		updateUsrDialog()
+		return TRUE
+
+	if(href_list["new_profile"])
+		NewProfile()
+		updateUsrDialog()
+		return TRUE
+
+	if(href_list["new_profile_password"])
+		var/new_password = input(usr, "PLEASE TYPE IN 3 DIGIT PASSWORD", "PASSWORD INPUT") as null|num
+		if(new_password)
+			profile_list[adventure_data] = clamp(new_password,100,999)
+			to_chat(usr, span_notice("PASSWORD SUCCESSFULLY CHANGED TO [profile_list[adventure_data]]"))
+			updateUsrDialog()
+			return TRUE
 
 	//Setting display menu for the text adventure.
 	if(href_list["set_display"])
@@ -110,3 +147,26 @@
 		playsound(get_turf(src), 'sound/machines/pda_button2.ogg', 50, TRUE)
 		updateUsrDialog()
 		return TRUE
+
+/obj/machinery/text_adventure_console/proc/ProfileMenu(href, href_list)
+	. = "<tt>\
+		-------------------<br>\
+		|PROFILE SELECTION|<br>\
+		-------------------<br></tt>"
+	var/profile_num = 1
+	for(var/i in profile_list)
+		if(i)
+			. += "|<A href='byond://?src=[REF(src)];profile=[profile_num]'>PROFILE [profile_num]</A><br>"
+			profile_num++
+
+	. += "|<A href='byond://?src=[REF(src)];new_profile=[ref(src)]'>NEW PROFILE</A><br>\
+		<tt>-----------------</tt>"
+
+/obj/machinery/text_adventure_console/proc/NewProfile(debug_profile = FALSE)
+	if(profile_list.len > 4)
+		to_chat(usr, span_notice("MAXIMUM PROFILES REACHED"))
+		return
+	var/new_profile = new /datum/adventure_layout(debug_profile)
+	profile_list += new_profile
+	profile_list[new_profile] = null
+	adventure_data = new_profile
