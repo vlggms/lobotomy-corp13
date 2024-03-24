@@ -100,6 +100,8 @@
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/suppression))
 			processing.total_positions = 3
+		if(istype(processing, /datum/job/suppression/captain))
+			processing.total_positions = 1
 
 /datum/outfit/job/suppression/captain
 	name = "Disciplinary Officer"
