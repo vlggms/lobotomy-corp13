@@ -69,7 +69,9 @@
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/discipline
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(/obj/item/melee/classic_baton=1)
+	backpack_contents = list(
+		/obj/item/melee/classic_baton=1,
+		/obj/item/suppressionupdate = 1,)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -99,7 +101,6 @@
 		if(istype(processing, /datum/job/suppression))
 			processing.total_positions = 3
 
-
 /datum/outfit/job/suppression/captain
 	name = "Disciplinary Officer"
 	jobtype = /datum/job/suppression/captain
@@ -107,5 +108,48 @@
 	ears = /obj/item/radio/headset/heads/headset_discipline
 	l_pocket = /obj/item/commandprojector
 	suit = /obj/item/clothing/suit/armor/vest/alt
-	backpack_contents = list(/obj/item/melee/classic_baton=1,
-		/obj/item/announcementmaker/lcorp)
+	backpack_contents = list(
+		/obj/item/melee/classic_baton=1,
+		/obj/item/announcementmaker/lcorp=1,
+		/obj/item/suppressionupdate = 1,
+		)
+
+
+	//Stat update
+/obj/item/suppressionupdate
+	name = "stat equalizer"
+	desc = "A localized source of stats, only usable by Emergency Response Agents and the Disciplinary Officer"
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "canopic_jar"
+	w_class = WEIGHT_CLASS_SMALL
+	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
+	var/list/suppressionroles = list("Emergency Response Agent", "Disciplinary Officer")
+
+/obj/item/suppressionupdate/attack_self(mob/living/carbon/human/user)
+	if(!istype(user) || !(user?.mind?.assigned_role in suppressionroles))
+		to_chat(user, span_notice("The Gadget's light flashes red. You aren't an ERA or Disciplinary Officer. Check the label before use."))
+		return
+
+	//I got lazy and this needs to be shipped out today
+	var/set_attribute = normal_attribute_level
+
+	// Variables from abno queue subsystem
+	var/spawned_abnos = SSabnormality_queue.spawned_abnos
+	var/rooms_start = SSabnormality_queue.rooms_start
+
+	if(spawned_abnos > rooms_start * 0.95) // Full facility!
+		set_attribute *= 4
+	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs around here
+		set_attribute *= 3
+	else if(spawned_abnos > rooms_start * 0.5) // WAWs and others
+		set_attribute *= 2.5
+	else if(spawned_abnos > rooms_start * 0.35) // HEs
+		set_attribute *= 2
+	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
+		set_attribute *= 1.5
+
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
+
+	for(var/A in roundstart_attributes)
+		roundstart_attributes[A] = round(set_attribute)
+
