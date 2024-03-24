@@ -111,7 +111,7 @@
 		TEMPERANCE_ATTRIBUTE = 60,
 		JUSTICE_ATTRIBUTE = 60,
 	)
-	multiplier = 5
+	multiplier = 3
 
 //Kurokumo
 /obj/item/ego_weapon/city/kurokumo/weak
