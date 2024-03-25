@@ -27,3 +27,12 @@
 	desc = "An armored jacket worn by the stationary gunners of the Full Stop office. The pockets are filled with all sorts of spent casings, but you can't reload them."
 	icon_state = "fullstopsharpshooter"
 
+//For the PVE(inputs)
+/obj/item/clothing/suit/armor/ego_gear/city/fullstop/gacha
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/fullstop/sniper/gacha
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader/gacha
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)

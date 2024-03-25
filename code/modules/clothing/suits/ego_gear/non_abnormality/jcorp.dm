@@ -72,3 +72,29 @@
 	name = "los mariachis sombrero"
 	desc = "A sombrero worn by the Los Mariachis leader. This one has a glowing mask of a skull."
 	icon_state = "aida_boss"
+
+
+//For the PVE(inputs)
+/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/gacha
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/puffer/gacha
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/rustic/gacha
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 40, BLACK_DAMAGE = 20, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/boss/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/mariachi/gacha
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/city/mariachi/vivaz/gacha
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/gacha
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/boss/gacha
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)

@@ -32,3 +32,16 @@
 	desc = "An armored dress worn by dawn office fixers. The dress doesn't fit too tight, \
 		and leaves just enough for a full range of movement while leaving plenty to the imagination."
 	icon_state = "dawn_fem"
+
+//For the PVE(inputs)
+/obj/item/clothing/suit/armor/ego_gear/city/dawn/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/dawn/vet/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/dawn/female/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 60, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/dawnleader/gacha
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 30)

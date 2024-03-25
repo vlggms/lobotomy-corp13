@@ -6,16 +6,16 @@
 	rarechance = 30
 	veryrarechance = 5
 	lootlist =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu,
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_salsu/gacha,
 		/obj/item/gun/ego_gun/city/thumb,
-		/obj/item/clothing/suit/armor/ego_gear/city/thumb,
-		/obj/item/clothing/suit/armor/ego_gear/city/index,
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/index/gacha,
 	)
 
 	rareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat,
-		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo,
-		/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_cutthroat/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb_capo/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy/gacha,
 		/obj/item/ego_weapon/city/index,
 		/obj/item/ego_weapon/city/awl,
 		/obj/item/ego_weapon/city/kurokumo,
@@ -25,9 +25,9 @@
 	)
 
 	veryrareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin,
-		/obj/item/clothing/suit/armor/ego_gear/city/index_mess,
-		/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo,
+		/obj/item/clothing/suit/armor/ego_gear/city/blade_lineage_admin/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/index_mess/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/thumb_sottocapo/gacha,
 		/obj/item/ego_weapon/city/index/proxy,
 		/obj/item/ego_weapon/city/index/proxy/spear,
 		/obj/item/ego_weapon/city/index/yan,
@@ -73,26 +73,26 @@
 	rarechance = 30
 	veryrarechance = 10
 	lootlist =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/mariachi,
-		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/vivaz,
+		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/vivaz/gacha,
 		/obj/item/ego_weapon/city/mariachi_blades,
 		/obj/item/ego_weapon/city/ting_tang,
 		/obj/item/ego_weapon/city/ting_tang/cleaver,
 		/obj/item/ego_weapon/city/ting_tang/pipe,
-		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang,
-		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/puffer,
-		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/rustic,
+		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/puffer/gacha,
+		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/rustic/gacha,
 	)
 
 	rareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/boss,
+		/obj/item/clothing/suit/armor/ego_gear/city/ting_tang/boss/gacha,
 		/obj/item/ego_weapon/city/ting_tang/knife,
-		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida,
+		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/gacha,
 		/obj/item/ego_weapon/city/mariachi,
 		/obj/item/ego_weapon/city/mariachi/dual,
 	)
 
 	veryrareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/boss,
+		/obj/item/clothing/suit/armor/ego_gear/city/mariachi/aida/boss/gacha,
 		/obj/item/ego_weapon/city/mariachi/dual/boss,
 	)

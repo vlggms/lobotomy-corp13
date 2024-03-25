@@ -21,3 +21,10 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
+
+//For the PVE(inputs)
+/obj/item/clothing/suit/armor/ego_gear/city/udjat/gacha
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
+
+/obj/item/clothing/suit/armor/ego_gear/city/mirae/gacha
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 40)

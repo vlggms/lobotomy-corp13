@@ -26,3 +26,13 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+//For the PVE(inputs)
+/obj/item/clothing/suit/armor/ego_gear/city/rosespanner/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+
+/obj/item/clothing/suit/armor/ego_gear/city/rosespanner/assassin/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 30)
+
+/obj/item/clothing/suit/armor/ego_gear/city/rosespannerrep/gacha
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)

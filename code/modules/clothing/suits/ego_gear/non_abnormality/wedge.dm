@@ -26,3 +26,14 @@
 	name = "wedge office dress"
 	desc = "An armored jacket worn by female wedge office fixers. While the undersuit is well-built, the design of a gothic doll is hardly ideal for combat."
 	icon_state = "wedge_fem"
+
+
+//For the PVE(inputs)
+/obj/item/clothing/suit/armor/ego_gear/city/wedge/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/wedge/female/gacha
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 30, BLACK_DAMAGE = 60, PALE_DAMAGE = 20)
+
+/obj/item/clothing/suit/armor/ego_gear/city/wedgeleader/gacha
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)
