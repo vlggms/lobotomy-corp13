@@ -1857,6 +1857,7 @@
 	var/speed_slowdown = 0
 	var/mob/current_holder
 	var/power_timer
+	var/thrown = FALSE
 
 
 //Equipped setup
@@ -1885,7 +1886,8 @@
 		return
 	speed_slowdown = 0
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	PowerReset(user)
+	if(!thrown)
+		PowerReset(user)
 	current_holder = null
 	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 
@@ -1919,6 +1921,7 @@
 	speed_slowdown = 0
 	throwforce = 80
 	deltimer(power_timer)
+	thrown = FALSE
 
 /obj/item/ego_weapon/blind_obsession/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill others with this
 	if(!CanUseEgo(user))
@@ -1926,6 +1929,7 @@
 	if(user.get_inactive_held_item())
 		to_chat(user, span_notice("You cannot throw [src] with only one hand!"))
 		return
+	thrown = TRUE
 	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 	return ..()
 
