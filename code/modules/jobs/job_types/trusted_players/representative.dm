@@ -36,7 +36,7 @@
 	jobtype = /datum/job/representative
 
 	belt = /obj/item/pda/lawyer
-	ears = /obj/item/radio/headset/heads
+	ears = /obj/item/radio/headset/heads/rep
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
