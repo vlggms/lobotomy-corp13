@@ -1,0 +1,33 @@
+/datum/job/lead_researcher
+	title = "Lead Researcher"
+	faction = "Station"
+	supervisors = "District Manager"
+	total_positions = 1
+	spawn_positions = 1
+	selection_color = "#aabbcc"
+
+	outfit = /datum/outfit/job/lead_researcher
+
+	access = list(ACCESS_RND, ACCESS_COMMAND)
+	minimal_access = list(ACCESS_RND, ACCESS_COMMAND)
+
+	job_attribute_limit = 0
+
+
+	display_order = 2.6
+	alt_titles = list()
+	maptype = list("lcb")
+	job_important = "You are the Lead Researcher. Your job is to run research on the abnormalities, make sure paperwork is in order and sent into command, and that the proper procedure is followed by the other researchers."
+
+
+
+/datum/outfit/job/lead_researcher
+	name = "Lead Researcher"
+	jobtype = /datum/job/lead_researcher
+
+	belt = /obj/item/pda/toxins
+	ears = /obj/item/radio/headset/head/headset_information
+	uniform = /obj/item/clothing/under/suit/lobotomy/plain
+	shoes = /obj/item/clothing/shoes/sneakers/white
+	head = /obj/item/clothing/head/beret/tegu/sci
+	suit = /obj/item/clothing/suit/toggle/labcoat
