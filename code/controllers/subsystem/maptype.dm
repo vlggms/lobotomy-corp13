@@ -12,13 +12,13 @@ SUBSYSTEM_DEF(maptype)
 	var/jobtype		//If a map RNGs which jobs are available, use this
 
 	//All the map tags that delete all jobs and replace them with others.
-	var/list/clearmaps = list("rcorp", "city", "wcorp")
+	var/list/clearmaps = list("rcorp", "city", "wcorp", "limbus_labs")
 
 	//All the map tags that are combat maps and need abnos to breach immediately
-	var/list/combatmaps = list("rcorp", "wcorp")
+	var/list/combatmaps = list("rcorp", "wcorp", "limbus_labs")
 
 	//Ghosts should be possessbale at all times
-	var/list/autopossess = list("rcorp")
+	var/list/autopossess = list("rcorp", "limbus_labs")
 
 	//These end after a certain number of minutes.
 	var/list/autoend = list("rcorp", "wcorp")
@@ -29,6 +29,9 @@ SUBSYSTEM_DEF(maptype)
 	//This is for maps that incorporate space, and crafting is enabled.
 	var/list/spacemaps = list("skeld")
 
+	//Maps that give no fear. Everyone cannot work as is fear immune.
+	var/list/nofear = list("limbus_labs")
+
 	//What departments are we looking at
 	var/list/departments = list("Command","Security","Service")
 
@@ -38,7 +41,7 @@ SUBSYSTEM_DEF(maptype)
 
 	//Badda Bing Badda Da. This makes the latejoin menu cleaner
 	switch(SSmaptype.maptype)
-		if("wonderlabs", "city")
+		if("wonderlabs", "city", "limbus_labs")
 			departments = list("Command", "Security", "Service", "Science")
 		if("rcorp", "wcorp")
 			departments = list("Command", "Security")

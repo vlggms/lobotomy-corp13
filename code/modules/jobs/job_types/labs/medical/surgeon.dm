@@ -18,7 +18,7 @@
 	exp_requirements = 180
 
 	display_order = 5
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are a surgeon hired by LCB. Your job is to revive people and perform surgery on them."
 
 /datum/outfit/job/surgeon
@@ -31,6 +31,7 @@
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/med
 	l_hand = /obj/item/storage/firstaid/medical
+	l_pocket = /obj/item/radio
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

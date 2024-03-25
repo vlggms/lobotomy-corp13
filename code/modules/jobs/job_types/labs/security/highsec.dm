@@ -23,7 +23,7 @@
                                 JUSTICE_ATTRIBUTE = 40
                                 )
     loadalways = FALSE
-    maptype = "lcb"
+    maptype = "limbus_labs"
 
 
 /datum/job/high_sec_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
@@ -35,14 +35,15 @@
 	name = "High Security Officer"
 	jobtype = /datum/job/low_sec_officer
 
-	head = /obj/item/clothing/beret/security
+	head = /obj/item/clothing/head/beret/tegu/lobotomy/discipline
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/headset_security
+	ears = /obj/item/radio/headset/headset_discipline
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/radio
 
 /datum/job/high_sec_commander
     title = "High Security Commander"
@@ -68,7 +69,7 @@
                                 JUSTICE_ATTRIBUTE = 60
                                 )
     loadalways = FALSE
-    maptype = "lcb"
+    maptype = "limbus_labs"
 
 
 /datum/job/high_sec_commander/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
@@ -80,9 +81,10 @@
 	jobtype = /datum/job/high_sec_commander
 
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/heads/headset_security
+	ears = /obj/item/radio/headset/heads/headset_discipline
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/radio

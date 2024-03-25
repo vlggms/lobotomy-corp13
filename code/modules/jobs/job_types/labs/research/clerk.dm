@@ -17,7 +17,7 @@
 
 	display_order = 999
 	alt_titles = list()
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are a LC Staff Member. You have little responsibilities, but are encouraged to assist research."
 
 
@@ -27,8 +27,8 @@
 	jobtype = /datum/job/staff
 
 	belt = /obj/item/pda/toxins
-	ears = /obj/item/radio/headset/headset_information
+	ears = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	head = /obj/item/clothing/head/beret/tegu/sci
 	suit = /obj/item/clothing/suit/toggle/labcoat
+	l_pocket = /obj/item/radio

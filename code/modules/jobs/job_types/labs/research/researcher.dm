@@ -16,7 +16,7 @@
 
 	display_order = 6.5
 	alt_titles = list()
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are a Researcher. Your job is to interact with abnormalities, write down notes based on how they reacted, and report your findings to the Senior Researcher or the office workers."
 
 
@@ -29,5 +29,5 @@
 	ears = /obj/item/radio/headset/headset_information
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	head = /obj/item/clothing/head/beret/tegu/sci
 	suit = /obj/item/clothing/suit/toggle/labcoat
+	l_pocket = /obj/item/radio

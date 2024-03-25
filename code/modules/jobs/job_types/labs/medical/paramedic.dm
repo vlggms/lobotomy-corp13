@@ -18,7 +18,7 @@
 	exp_requirements = 180
 
 	display_order = 5.3
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are a paramedic hired by LCB. You retrieve the bodies of badly damaged or killed LCB members to be treated in the Medical Zone."
 
 
@@ -34,3 +34,4 @@
 	suit = /obj/item/clothing/suit/toggle/labcoat/paramedic
 	backpack_contents = list(/obj/item/pinpointer/crew=1)
 	implants = /obj/item/organ/cyberimp/eyes/hud/medical
+	l_pocket = /obj/item/radio

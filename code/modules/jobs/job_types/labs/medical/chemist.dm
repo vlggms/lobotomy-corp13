@@ -6,8 +6,8 @@
 
 	outfit = /datum/outfit/job/pharmacist
 
-	access = list(ACCESS_MEDICAL)
-	minimal_access = list(ACCESS_MEDICAL)
+	access = list(ACCESS_MEDICAL, ACCESS_PHARMACY)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_PHARMACY)
 
 	job_attribute_limit = 0
 
@@ -18,7 +18,7 @@
 	exp_requirements = 180
 
 	display_order = 5.5
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are a pharmacist hired by LCB. Your job is to make the medicine used by the Medical Zone."
 
 
@@ -27,8 +27,10 @@
 	jobtype = /datum/job/pharmacist
 
 	belt = /obj/item/pda/medical
-	ears = /obj/item/radio/headset_welfare
+	ears = /obj/item/radio/headset/headset_welfare
 	uniform = /obj/item/clothing/under/rank/medical/doctor/blue
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/med
 	implants = /obj/item/organ/cyberimp/eyes/hud/science
+	l_pocket = /obj/item/radio
+	glasses = /obj/item/clothing/glasses/sunglasses/chemical

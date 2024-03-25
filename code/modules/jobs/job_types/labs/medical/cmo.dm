@@ -18,7 +18,7 @@
 
 	display_order = 2.5
 	alt_titles = list("Medical Director", "Medical Officer")
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are the Chief Medical Officer. You run the Medical Zone and coordinate the medical department."
 
 
@@ -28,7 +28,7 @@
 	jobtype = /datum/job/cmo
 
 	belt = /obj/item/pda/medical
-	ears = /obj/item/radio/headset/head/headset_welfare
+	ears = /obj/item/radio/headset/heads/headset_welfare
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/med
@@ -40,3 +40,4 @@
 	duffelbag = /obj/item/storage/backpack/duffelbag/med
 	box = /obj/item/storage/box/survival/medical
 	implants = /obj/item/organ/cyberimp/eyes/hud/medical
+	l_pocket = /obj/item/radio

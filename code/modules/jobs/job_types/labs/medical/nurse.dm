@@ -18,7 +18,7 @@
 	exp_requirements = 180
 
 	display_order = 5.2
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are a nurse hired by LCB. You help the other members of the Medical Zone tend to the patients."
 
 
@@ -31,7 +31,7 @@
 	uniform = /obj/item/clothing/under/rank/medical/doctor/blue
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/med
-	l_hand = /obj/item/storage/firstaid/medical
+	l_pocket = /obj/item/radio
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

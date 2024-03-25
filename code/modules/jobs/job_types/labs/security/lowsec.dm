@@ -23,7 +23,7 @@
                                 JUSTICE_ATTRIBUTE = 20
                                 )
     loadalways = FALSE
-    maptype = "lcb"
+    maptype = "limbus_labs"
 
 
 /datum/job/low_sec_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
@@ -34,15 +34,15 @@
 	name = "Low Security Officer"
 	jobtype = /datum/job/low_sec_officer
 
-	head = /obj/item/clothing/beret/control
+	head = /obj/item/clothing/head/beret/tegu/lobotomy/welfare
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_control
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/radio
 
 
 /datum/job/low_sec_commander
@@ -69,25 +69,24 @@
                                 JUSTICE_ATTRIBUTE = 60
                                 )
     loadalways = FALSE
-    maptype = "lcb"
+    maptype = "limbus_labs"
 
 
 /datum/job/low_sec_commander/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
     H.set_attribute_limit(60)
     ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
-/datum/outfit/job/low_sec_officer
-	name = "Low Security Officer"
-	jobtype = /datum/job/low_sec_officer
+/datum/outfit/job/low_sec_commander
+	name = "Low Security Commander"
+	jobtype = /datum/job/low_sec_commander
 
-	head = /obj/item/clothing/beret/control
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/heads/headset_control
+	ears = /obj/item/radio/headset/heads/headset_welfare
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/radio
 
 

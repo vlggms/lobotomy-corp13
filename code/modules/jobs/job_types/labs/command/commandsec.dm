@@ -23,7 +23,7 @@
 								JUSTICE_ATTRIBUTE = 60
 								)
 	loadalways = FALSE
-	maptype = "lcb"
+	maptype = "limbus_labs"
 
 
 /datum/job/damage_mitigation_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
@@ -34,15 +34,16 @@
 	name = "Damage Mitigation Officer"
 	jobtype = /datum/job/damage_mitigation_officer
 
-	head = obj/item/clothing/head/hos/beret
+	head = /obj/item/clothing/head/hos/beret
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/heads/manager/alt
+	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/radio
 
 
 //The Kill gooners
@@ -70,7 +71,7 @@
 								JUSTICE_ATTRIBUTE = 60
 								)
 	loadalways = FALSE
-	maptype = "lcb"
+	maptype = "limbus_labs"
 
 
 /datum/job/damage_exasperation_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
@@ -81,12 +82,13 @@
 	name = "Damage Exasperation Officer"
 	jobtype = /datum/job/damage_exasperation_officer
 
-	head = obj/item/clothing/head/hos/beret
+	head = /obj/item/clothing/head/hos/beret
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/heads/manager/alt
+	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+	l_pocket = /obj/item/radio

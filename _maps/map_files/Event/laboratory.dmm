@@ -42,6 +42,14 @@
 /obj/structure/chair/comfy/black,
 /turf/open/floor/plasteel,
 /area/centcom)
+"bx" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/stack/spacecash/c1000,
+/turf/open/floor/plasteel,
+/area/centcom)
 "bB" = (
 /obj/item/screwdriver,
 /obj/item/screwdriver,
@@ -393,6 +401,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/storage/firstaid/regular,
 /turf/open/floor/plasteel,
 /area/centcom)
 "iP" = (
@@ -831,7 +840,6 @@
 /turf/open/floor/grass,
 /area/centcom)
 "sF" = (
-/obj/machinery/telecomms/server/presets/common,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/north)
 "sG" = (
@@ -931,6 +939,9 @@
 "wc" = (
 /obj/structure/table,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/plasteel,
 /area/centcom)
 "wf" = (
@@ -963,8 +974,8 @@
 "xi" = (
 /obj/structure/table,
 /obj/item/clothing/gloves/color/latex/nitrile,
-/obj/item/clothing/glasses/hud/health/sunglasses,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
+/obj/item/clothing/glasses/sunglasses/chemical,
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "xp" = (
@@ -1187,6 +1198,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/plasteel,
 /area/centcom)
 "yx" = (
@@ -1211,6 +1224,21 @@
 /area/centcom)
 "yI" = (
 /turf/open/floor/wood,
+/area/centcom)
+"yW" = (
+/obj/structure/table,
+/obj/item/folder{
+	pixel_y = 4
+	},
+/obj/item/folder{
+	pixel_y = 2
+	},
+/obj/item/folder,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/stack/spacecash/c10000,
+/turf/open/floor/plasteel,
 /area/centcom)
 "zo" = (
 /obj/machinery/door/airlock/highsecurity{
@@ -1350,6 +1378,13 @@
 "BT" = (
 /obj/structure/table,
 /obj/item/modular_computer/laptop/preset/civilian,
+/turf/open/floor/plasteel,
+/area/centcom)
+"Cf" = (
+/obj/machinery/door/airlock/highsecurity{
+	name = "asset protection office";
+	req_access_txt = "20"
+	},
 /turf/open/floor/plasteel,
 /area/centcom)
 "Cj" = (
@@ -1704,7 +1739,7 @@
 "LV" = (
 /obj/machinery/door/airlock/medical{
 	name = "pharmacy";
-	req_one_access_txt = "69"
+	req_one_access_txt = "69;19"
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom)
@@ -2310,6 +2345,9 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "Xw" = (
@@ -32252,11 +32290,11 @@ Ps
 ZP
 ZP
 Ps
-rD
+wv
 ID
 IX
 Ps
-wv
+rD
 ID
 IX
 Ps
@@ -32509,11 +32547,11 @@ Ps
 Ps
 Ps
 Ps
-rD
+wv
 ID
 nS
 Ps
-wv
+rD
 ID
 nS
 Ps
@@ -34558,7 +34596,7 @@ Ps
 Ps
 Ps
 Ps
-Ps
+Cf
 Ps
 Ps
 Ps
@@ -34812,9 +34850,9 @@ oL
 ID
 ID
 Ps
+KI
 ID
-ID
-ID
+oL
 ID
 ID
 Ps
@@ -35069,11 +35107,11 @@ ef
 sG
 eg
 Ps
-ID
-ID
-ID
-ID
-ID
+nS
+bv
+ef
+sG
+eg
 Ps
 xt
 sG
@@ -35320,13 +35358,13 @@ ZP
 ZP
 ZP
 Ps
-yk
+yW
 ID
 ID
 ID
 ID
 Ps
-ID
+yW
 ID
 ID
 ID
@@ -35339,7 +35377,7 @@ Zi
 sG
 eg
 Ps
-Ne
+bx
 ID
 ID
 WV

@@ -16,7 +16,7 @@
 
 	display_order = 2.6
 	alt_titles = list()
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are the Lead Researcher. Your job is to run research on the abnormalities, make sure paperwork is in order and sent into command, and that the proper procedure is followed by the other researchers."
 
 
@@ -26,8 +26,9 @@
 	jobtype = /datum/job/lead_researcher
 
 	belt = /obj/item/pda/toxins
-	ears = /obj/item/radio/headset/head/headset_information
+	ears = /obj/item/radio/headset/heads/headset_information
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	head = /obj/item/clothing/head/beret/tegu/sci
+	head = /obj/item/clothing/head/beret/tegu/rd
 	suit = /obj/item/clothing/suit/toggle/labcoat
+	l_pocket = /obj/item/radio

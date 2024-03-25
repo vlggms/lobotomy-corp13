@@ -15,7 +15,7 @@
 
 	display_order = 1
 	alt_titles = list()
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are the District Manager. Your job is to ensure everybody is following proper procedure."
 
 
@@ -29,6 +29,7 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/laceup
+	l_pocket = /obj/item/radio
 
 
 
@@ -49,7 +50,7 @@
 
 	display_order = 1.5
 	alt_titles = list()
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are the LC Asset Protection. Your job is to make sure that all assets are taken care of, and that no abnormalites are suppressed. Report to the Executives (Admins) as needed."
 
 
@@ -63,4 +64,5 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	suit = /obj/item/clothing/suit/toggle/labcoat
 	shoes = /obj/item/clothing/shoes/laceup
+	l_pocket = /obj/item/radio
 

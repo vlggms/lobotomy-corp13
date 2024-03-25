@@ -16,7 +16,7 @@
 
 	display_order = 2.5
 	alt_titles = list()
-	maptype = list("lcb")
+	maptype = "limbus_labs"
 	job_important = "You are the Information Systems Tech. Your job is to build, operate and maintain computer systems in the lab."
 
 
@@ -26,8 +26,9 @@
 	jobtype = /datum/job/ist
 
 	belt = /obj/item/pda/toxins
-	ears = /obj/item/radio/headset/headset_information
+	ears = /obj/item/radio/headset/agent_lieutenant
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	head = /obj/item/clothing/head/beret/tegu/sci
+	head = /obj/item/clothing/head/beret/tegu/science
 	suit = /obj/item/clothing/suit/toggle/labcoat
+	l_pocket = /obj/item/radio
