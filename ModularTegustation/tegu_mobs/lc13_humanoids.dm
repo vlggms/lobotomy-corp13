@@ -259,9 +259,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	maxHealth = 1500
 	health = 1500
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
-	move_to_delay = 4
-	melee_damage_lower = 8
-	melee_damage_upper = 12
+	move_to_delay = 5
+	melee_damage_lower = 10
+	melee_damage_upper = 14
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
 	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
@@ -332,8 +332,11 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 		if (hit_statue)
 			say("...")
-			SLEEP_CHECK_DEATH(stun_duration)
 			adjustHealth(self_damage_statue)
+			var/mutable_appearance/colored_overlay = mutable_appearance(icon, "small_stagger", layer + 0.1)
+			add_overlay(colored_overlay)
+			SLEEP_CHECK_DEATH(stun_duration)
+			cut_overlays()
 		can_act = TRUE
 	else
 		. = ..()
@@ -369,7 +372,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 			flick("memory_statute_grow", S) // Play the rising animation
 			spawn(10) // Wait for the animation to finish
 				S.icon_state = initial(S.icon_state) // Set the icon state back to the default statue icon
-			visible_message("<span class='danger'>[src] spawns a statue on [statue_turf]!</span>")
+			visible_message("<span class='danger'>[src] spawns a statue. </span>")
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/proc/shoot_projectile(turf/marker, set_angle)
 	if(!isnum(set_angle) && (!marker || marker == loc))
@@ -394,8 +397,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /obj/projectile/metal_fixer
 	name ="metal bolt"
 	icon_state= "chronobolt"
-	damage = 10
-	speed = 2
+	damage = 25
+	speed = 1
 	damage_type = BLACK_DAMAGE
 	projectile_piercing = PASSMOB
 	ricochets_max = 3
@@ -484,16 +487,16 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame
 	name = "Flame Fixer"
-	desc = "A lanky young man with fair skin, dark, sparkling eyes, and an often overoptimistic expression. A heavy spear decorated with vibrant patterns on the head."
+	desc = "A lanky young man with fair skin, dark eyes, and an often overoptimistic expression. A heavy spear decorated with vibrant patterns on the head."
 	icon_state = "flame_fixer"
 	icon_living = "flame_fixer"
 	icon_dead = "flame_fixer"
 	maxHealth = 1500
 	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
 	move_to_delay = 4
-	melee_damage_lower = 10
-	melee_damage_upper = 14
+	melee_damage_lower = 20
+	melee_damage_upper = 24
 	melee_damage_type = RED_DAMAGE
 	rapid_melee = 0.5
 	attack_sound = 'sound/weapons/fixer/generic/spear3.ogg'
@@ -501,14 +504,14 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "pierce"
 	del_on_death = TRUE
 	ranged = TRUE
-	ranged_cooldown_time = 100
+	ranged_cooldown_time = 75
 	melee_reach = 2
-	var/burn_stacks = 1
+	var/burn_stacks = 2
 	projectiletype = /obj/projectile/flame_fixer
 	var/damage_reflection = FALSE
-	var/dash_cooldown = 350
+	var/dash_cooldown = 150
 	var/last_dash = 0
-	var/dash_damage = 25
+	var/dash_damage = 50
 	var/last_counter = 0
 	var/counter_cooldown = 30
 	var/last_voice_line = 0
@@ -596,6 +599,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	// change icon_state to counter
 	// if they hit after wind up during counter deal RED damage and stamina damage
 	// counter has random cooldown 15-40 sec
+	if (!can_act)
+		return
+	TripleDash()
+
 	if (world.time > last_counter + counter_cooldown)
 		last_counter = world.time
 		can_act = FALSE
@@ -609,7 +616,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		can_act = TRUE
 		icon_state = initial(icon_state)
 		last_counter = world.time
-		counter_cooldown = rand(300, 500)
+		counter_cooldown = rand(100, 250)
 		return
 
 	. = ..()
@@ -620,7 +627,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
 	..()
 	if(damage_reflection && Proj.firer)
-		if(get_dist(Proj.firer, src) < 5)
+		if(get_dist(Proj.firer, src) < 8)
 			ReflectDamage(Proj.firer, Proj.damage_type, Proj.damage)
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame/attackby(obj/item/I, mob/living/user, params)
@@ -678,7 +685,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		qdel(src)
 		F.can_act = FALSE
 		F.say("Derealization...")
+		var/mutable_appearance/colored_overlay = mutable_appearance(F.icon, "small_stagger", F.layer + 0.1)
+		F.add_overlay(colored_overlay)
 		sleep(stun_duration)
+		F.cut_overlays()
 		F.can_act = TRUE
 		return BULLET_ACT_BLOCK
 	. = ..()
