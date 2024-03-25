@@ -28,7 +28,7 @@
 			return
 		if(2)
 			AdjustHitPoint(10)
-			AdjustStatNum(ENVY_STAT, 1)
+			AdjustStatNum(ENVY_STAT, ADV_EVENT_STAT_EASY)
 		if(3)
 			AdjustCurrency(-1)
-	. = ..()
+	return ..()

@@ -29,6 +29,18 @@
 
 #define MON_DAMAGE_RAND "[rand(1,2)]d[rand(3,7)]"
 
+//Rewards for events to encourage balancing
+
+	//Stat Reward
+#define ADV_EVENT_STAT_EASY 1
+#define ADV_EVENT_STAT_NORMAL 3
+#define ADV_EVENT_STAT_HARD 5
+
+	//Coin Reward
+#define ADV_EVENT_COIN_EASY 1
+#define ADV_EVENT_COIN_NORMAL 2
+#define ADV_EVENT_COIN_HARD 3
+
 /**
  * Easy define for html button format.
  * Place a <br> after this to make the buttons not be right next to eachother.
