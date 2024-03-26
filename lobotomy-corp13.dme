@@ -2097,6 +2097,7 @@
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\kcorp.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\kurokumo.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\limbus_ego.dm"
+#include "code\modules\clothing\suits\ego_gear\non_abnormality\limbus_labs.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\limbus_sinner.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\liu.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\misc.dm"

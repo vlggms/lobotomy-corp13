@@ -31,6 +31,5 @@
 	uniform = /obj/item/clothing/under/rank/medical/doctor/blue
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/med
-	implants = /obj/item/organ/cyberimp/eyes/hud/science
 	l_pocket = /obj/item/radio
 	glasses = /obj/item/clothing/glasses/sunglasses/chemical

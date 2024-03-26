@@ -169,7 +169,7 @@ GLOBAL_LIST_INIT(security_positions, list(
 
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
-	"High Security Commander"
+	"High Security Commander",
 	"Low Security Commander",
 	"High Security Officer",
 	"Low Security Officer",
