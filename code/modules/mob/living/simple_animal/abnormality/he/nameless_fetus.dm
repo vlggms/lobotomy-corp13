@@ -44,12 +44,13 @@
 	var/satisfied = FALSE
 	var/hunger = 0
 	var/crying = FALSE
+	var/cry_amount = 0
 
 //Work-related
 /mob/living/simple_animal/hostile/abnormality/fetus/WorkChance(mob/living/carbon/human/user, chance, work_type) //Insight work has a qliphoth-based success rate
 	var/chance_modifier = 0
 	if(satisfied)
-		chance_modifier = 40//4 100% instict works might be too powerful
+		chance_modifier = 30//4 90% instict works might be too powerful
 	return chance + chance_modifier
 
 /mob/living/simple_animal/hostile/abnormality/fetus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
@@ -99,6 +100,7 @@
 		satisfied = TRUE
 		hunger += 12 //Ehh might as well triple the effects of it being fed if you have to die.
 		crying = FALSE
+		cry_amount = 0
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(check_range)), 2 SECONDS)
@@ -107,7 +109,14 @@
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_players()
 	if(datum_reference.qliphoth_meter == 1)
 		return
-
+	if(cry_amount >= 20)//Fetus really should stop crying after a while and Kirie said she wanted it to cry 20 times before stoping.
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_userdanger("The creature stoped crying."))
+		notify_ghosts("The nameless fetus stop crying.", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
+		datum_reference.qliphoth_change(1)
+		cry_amount = 0
+		crying = FALSE
+		return
 	//Find a living player, they're the new target.
 	var/list/checking = list()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -119,7 +128,8 @@
 		//and make a global announce
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			to_chat(H, span_userdanger("The fetus calls out for [calling.real_name]."))
-
+		//also adds 1 to the cry amount
+		cry_amount += 1
 		notify_ghosts("The fetus calls out for [calling.real_name].", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 
 	var/list/qliphoth_abnos = list()
