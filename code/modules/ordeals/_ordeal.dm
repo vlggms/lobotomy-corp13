@@ -67,10 +67,10 @@
 	/// If it was a midnight and we got to it before time limit
 	if(level == 4 && start_time <= CONFIG_GET(number/suppression_time_limit))
 		// Extra cores, and announced!
-		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions, TRUE, TRUE), 15 SECONDS)
+		addtimer(CALLBACK(SSlobotomy_corp, TYPE_PROC_REF(/datum/controller/subsystem/lobotomy_corp, PickPotentialSuppressions), TRUE, TRUE), 15 SECONDS)
 	/// If it was a dusk - we end running core suppression
 	else if(level == 3 && istype(SSlobotomy_corp.core_suppression))
-		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
+		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, End)), 5 SECONDS)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ORDEAL_END, src)
 	qdel(src)
 	return
@@ -115,8 +115,8 @@
 	C.screen += BG
 	animate(T, alpha = 255, time = 10)
 	T.maptext = "<span style=\"[style1]\">[name]</span><br><span style=\"[style2]\">[flavor_name]</span><br><span style=\"[style3]\">[announce_text]</span>"
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_blurb, C, T, fade_time), duration)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_blurb, C, BG, fade_time), duration)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, T, fade_time), duration)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, BG, fade_time), duration)
 
 //Black background for blurb
 /obj/effect/overlay/ordeal

@@ -116,7 +116,7 @@
 				to_chat(M, telegraph_message)
 			if(telegraph_sound)
 				SEND_SOUND(M, sound(telegraph_sound))
-	addtimer(CALLBACK(src, .proc/start), telegraph_duration)
+	addtimer(CALLBACK(src, PROC_REF(start)), telegraph_duration)
 
 /**
  * Starts the actual weather and effects from it
@@ -138,7 +138,7 @@
 			if(weather_sound)
 				SEND_SOUND(M, sound(weather_sound))
 	if(!perpetual)
-		addtimer(CALLBACK(src, .proc/wind_down), weather_duration)
+		addtimer(CALLBACK(src, PROC_REF(wind_down)), weather_duration)
 
 /**
  * Weather enters the winding down phase, stops effects
@@ -159,7 +159,7 @@
 				to_chat(M, end_message)
 			if(end_sound)
 				SEND_SOUND(M, sound(end_sound))
-	addtimer(CALLBACK(src, .proc/end), end_duration)
+	addtimer(CALLBACK(src, PROC_REF(end)), end_duration)
 
 /**
  * Fully ends the weather

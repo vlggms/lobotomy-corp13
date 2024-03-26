@@ -499,7 +499,8 @@
 	icon_state = "hypocrisy"
 	inhand_icon_state = "hypocrisy"
 	worn_icon_state = "hypocrisy"
-	special = "Use this weapon in hand to place a trap."
+	special = "Use this weapon in hand to place a trap that inflicts \
+		50 RED damage and alerts the user of the area it was triggered."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hypocrisy
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 25

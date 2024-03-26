@@ -252,7 +252,7 @@
 				fishnet.forceMove(target_turf)
 			for(var/obj/item/fishing_rod/fishrod in H.GetAllContents())
 				fishrod.forceMove(target_turf)
-		INVOKE_ASYNC(src, .proc/Drown, H)
+		INVOKE_ASYNC(src, PROC_REF(Drown), H)
 	else
 		//Fishing rods cant fit in bags or be worn so this may save any that fall into the water.
 		if((istype(thing, /obj/item/fishing_net) || istype(thing, /obj/item/fishing_rod)) && target_turf)

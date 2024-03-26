@@ -176,6 +176,8 @@ GLOBAL_LIST_INIT(freqtospan, list(
 
 /atom/movable/proc/GetJob() //Get a job, you lazy butte
 
+/atom/movable/proc/GetJobAbbrev()
+
 /atom/movable/proc/GetSource()
 
 /atom/movable/proc/GetRadio()
@@ -183,6 +185,7 @@ GLOBAL_LIST_INIT(freqtospan, list(
 //VIRTUALSPEAKERS
 /atom/movable/virtualspeaker
 	var/job
+	var/jobabbrev
 	var/atom/movable/source
 	var/obj/item/radio/radio
 
@@ -202,9 +205,12 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 	if(ishuman(M))
 		// Humans use their job as seen on the crew manifest. This is so the AI
 		// can know their job even if they don't carry an ID.
-		var/datum/data/record/findjob = find_record("name", name, GLOB.data_core.general)
+		// LCorp13 Changes: Due to having respawn, we have to search by assignment instead of name
+		var/mob/living/carbon/human/H = M
+		var/datum/data/record/findjob = find_record("truerank", H.mind.assigned_role, GLOB.data_core.general)
 		if(findjob)
 			job = findjob.fields["rank"]
+			jobabbrev = findjob.fields["jobabbrev"]
 		else
 			job = "Unknown"
 	else if(iscarbon(M))  // Carbon nonhuman
@@ -220,6 +226,9 @@ INITIALIZE_IMMEDIATE(/atom/movable/virtualspeaker)
 		job = "Machine"
 	else  // Unidentifiable mob
 		job = "Unknown"
+
+/atom/movable/virtualspeaker/GetJobAbbrev()
+	return jobabbrev
 
 /atom/movable/virtualspeaker/GetJob()
 	return job

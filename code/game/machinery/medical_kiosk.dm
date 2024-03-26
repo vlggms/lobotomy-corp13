@@ -176,6 +176,7 @@
 	var/fire_loss = altPatient.getFireLoss()
 	var/tox_loss = altPatient.getToxLoss()
 	var/oxy_loss = altPatient.getOxyLoss()
+	var/sanity_loss = altPatient.getSanityLoss()
 	var/chaos_modifier = 0
 
 	var/sickness = "Patient does not show signs of disease."
@@ -300,6 +301,7 @@
 	data["burn_health"] = round(fire_loss+(chaos_modifier * (rand(1,30))),0.001)		//then a random number is added, which is multiplied by chaos modifier.
 	data["toxin_health"] = round(tox_loss+(chaos_modifier * (rand(1,30))),0.001)		//That allows for a weaker version of the affect to be applied while hallucinating as opposed to emagged.
 	data["suffocation_health"] = round(oxy_loss+(chaos_modifier * (rand(1,30))),0.001)	//It's not the cleanest but it does make for a colorful window.
+	data["sanity_health"] = round(sanity_loss+(chaos_modifier * (rand(1,30))),0.001)
 	data["clone_health"] = round(clone_loss+(chaos_modifier * (rand(1,30))),0.001)
 	data["brain_health"] = brain_status
 	data["brain_damage"] = brain_loss+(chaos_modifier * (rand(1,30)))

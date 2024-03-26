@@ -112,7 +112,7 @@
 	if(IsCombatMap())
 		loot = list()
 		return
-	addtimer(CALLBACK(src, .proc/KillOtherBird), 90 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(KillOtherBird)), 90 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/Life()
 	. = ..()
@@ -169,7 +169,7 @@
 		W.obj_destruction("flames")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	if(stop_charge)
 		can_act = TRUE
 		return
@@ -188,7 +188,7 @@
 				been_hit += L
 
 
-	addtimer(CALLBACK(src, .proc/DoDash, move_dir, (times_ran + 1)), 0.5) // SPEED
+	addtimer(CALLBACK(src, PROC_REF(DoDash), move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -222,7 +222,7 @@
 /datum/status_effect/blazing
 	id = "blazing"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 600
+	duration = 60 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/FireRegen
 	var/b_tick = 10
 	tick_interval = 5 SECONDS
@@ -235,11 +235,12 @@
 
 /datum/status_effect/blazing/tick()
 	..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjustBruteLoss(-b_tick)
-		L.adjustFireLoss(-b_tick)
-		L.adjustSanityLoss(-b_tick)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustBruteLoss(-b_tick)
+	status_holder.adjustFireLoss(-b_tick)
+	status_holder.adjustSanityLoss(-b_tick)
 
 #undef STATUS_EFFECT_BLAZING
 
@@ -257,22 +258,24 @@
 
 /datum/status_effect/blinded/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		cantsee += L
-		cantsee[L] = get_attribute_level(L, TEMPERANCE_ATTRIBUTE)/2
-		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -cantsee[L])
-		to_chat(L, span_userdanger("The light of the bird burns your eyes!"))
-		RegisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	cantsee += status_holder
+	cantsee[status_holder] = get_attribute_level(status_holder, TEMPERANCE_ATTRIBUTE)/2
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -cantsee[status_holder])
+	to_chat(status_holder, span_userdanger("The light of the bird burns your eyes!"))
+	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(BlindedWork))
 
 /datum/status_effect/blinded/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, cantsee[L])
-		cantsee -= L
-		to_chat(L, span_nicegreen("The blinding light fades..."))
-		UnregisterSignal(L, COMSIG_WORK_COMPLETED, .proc/BlindedWork)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, cantsee[status_holder])
+	cantsee -= status_holder
+	to_chat(status_holder, span_nicegreen("The blinding light fades..."))
+	UnregisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(BlindedWork))
 
 /datum/status_effect/blinded/proc/BlindedWork(datum/source, datum/abnormality/datum_sent, mob/living/carbon/human/user)
 	SIGNAL_HANDLER

@@ -106,7 +106,7 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 30)))
+				if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 30)))
 					to_chat(src, span_notice("Invalid target."))
 					return
 				TryTeleport(get_turf(target))
@@ -208,7 +208,7 @@
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
-	addtimer(CALLBACK(src, .proc/Do_Dash, dir_to_target, 0), 2 SECONDS)//how long it takes for the dash to initiate.
+	addtimer(CALLBACK(src, PROC_REF(Do_Dash), dir_to_target, 0), 2 SECONDS)//how long it takes for the dash to initiate.
 	playsound(src, 'sound/abnormalities/wayward_passenger/attack1.ogg', 300, 1)
 	icon_state = "wayward_charge"
 
@@ -256,7 +256,7 @@
 			L.apply_damage(60,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			if(!(L in been_hit))
 				been_hit += L
-	addtimer(CALLBACK(src, .proc/Do_Dash, move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(Do_Dash), move_dir, (times_ran + 1)), 1)
 
 /obj/effect/portal/abno_warp
 	name = "dimensional rift"

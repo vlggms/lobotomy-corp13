@@ -13,7 +13,7 @@
 	..()
 	var/turf/T = pick(GLOB.department_centers)
 	var/mob/living/simple_animal/hostile/megafauna/arbiter/A = new(T)
-	RegisterSignal(A, COMSIG_PARENT_QDELETING, .proc/OnArbiterDeath)
+	RegisterSignal(A, COMSIG_PARENT_QDELETING, PROC_REF(OnArbiterDeath))
 
 /datum/suppression/extraction/End(silent = FALSE)
 	..()
@@ -131,9 +131,9 @@
 		remaining_healing_time -= 1
 	// Spawn spikes every once in a while
 	if(spikes_cooldown <= world.time)
-		INVOKE_ASYNC(src, .proc/SpawnSpikes)
+		INVOKE_ASYNC(src, PROC_REF(SpawnSpikes))
 	if(!client && !charging && meltdown_cooldown <= world.time && !LAZYLEN(meltdowns) && prob(50))
-		INVOKE_ASYNC(src, .proc/SpecialMeltdown)
+		INVOKE_ASYNC(src, PROC_REF(SpecialMeltdown))
 		return
 
 /* Death and "Death" */
@@ -183,18 +183,18 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				INVOKE_ASYNC(src, .proc/FairyFire, target)
+				INVOKE_ASYNC(src, PROC_REF(FairyFire), target)
 			if(2)
-				INVOKE_ASYNC(src, .proc/KeyFire, target)
+				INVOKE_ASYNC(src, PROC_REF(KeyFire), target)
 			if(3)
-				INVOKE_ASYNC(src, .proc/SpecialMeltdown)
+				INVOKE_ASYNC(src, PROC_REF(SpecialMeltdown))
 		return
 
 	if(fairy_cooldown <= world.time)
-		INVOKE_ASYNC(src, .proc/FairyFire, target)
+		INVOKE_ASYNC(src, PROC_REF(FairyFire), target)
 		return
 	if(key_cooldown <= world.time)
-		INVOKE_ASYNC(src, .proc/KeyFire, target)
+		INVOKE_ASYNC(src, PROC_REF(KeyFire), target)
 		return
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/Move()
@@ -213,7 +213,7 @@
 	charging = TRUE
 	icon_state = "arbiter_fairy"
 	if(prob(35))
-		INVOKE_ASYNC(src, .atom/movable/proc/say, pick("Disperse.", "Heed my words, Fairies.", "Analyze. Compress. Expand.", "Do not dare to stand before me."))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), pick("Disperse.", "Heed my words, Fairies.", "Analyze. Compress. Expand.", "Do not dare to stand before me."))
 
 	var/turf/target_loc = get_turf(target)
 	var/turf/start_loc = get_turf(src)
@@ -251,7 +251,7 @@
 	charging = TRUE
 	icon_state = "arbiter_ability"
 	if(prob(35))
-		INVOKE_ASYNC(src, .atom/movable/proc/say, pick("Condensing the Key.", "Focus.", "Open.", "Wreak havoc.", "Come on out.", "Crumble."))
+		INVOKE_ASYNC(src, TYPE_PROC_REF(/atom/movable, say), pick("Condensing the Key.", "Focus.", "Open.", "Wreak havoc.", "Come on out.", "Crumble."))
 
 	var/turf/target_loc = get_turf(target)
 	var/turf/start_loc = get_turf(src)
@@ -271,7 +271,7 @@
 	P.xo = target_loc.x - start_loc.x
 	P.original = target
 	P.preparePixelProjectile(target_loc, src)
-	addtimer(CALLBACK (P, .obj/projectile/proc/fire), 0.8 SECONDS)
+	addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 0.8 SECONDS)
 
 	SLEEP_CHECK_DEATH(0.8 SECONDS)
 
@@ -327,13 +327,13 @@
 	player_count = round(player_count) + (player_count > round(player_count) ? 1 : 0) // Trying to round up
 	meltdowns = SSlobotomy_corp.InitiateMeltdown(clamp(rand(player_count*0.5, player_count), 1, 10), TRUE, meltdown_type, meltdown_min_time, meltdown_max_time, meltdown_text, 'sound/magic/arbiter/meltdown.ogg')
 	for(var/obj/machinery/computer/abnormality/A in meltdowns)
-		RegisterSignal(A, COMSIG_MELTDOWN_FINISHED, .proc/OnMeltdownFinish)
+		RegisterSignal(A, COMSIG_MELTDOWN_FINISHED, PROC_REF(OnMeltdownFinish))
 
 	icon_state = icon_living
 	charging = FALSE
 
 	if(LAZYLEN(meltdowns) && meltdown_type == MELTDOWN_CYAN)
-		INVOKE_ASYNC(src, .proc/StartPillarStorm)
+		INVOKE_ASYNC(src, PROC_REF(StartPillarStorm))
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/OnMeltdownFinish(datum/source, datum/abnormality/abno_datum, worked)
 	SIGNAL_HANDLER
@@ -344,10 +344,10 @@
 		for(var/obj/machinery/computer/abnormality/A in meltdowns)
 			UnregisterSignal(A, COMSIG_MELTDOWN_FINISHED)
 		meltdowns = list()
-		INVOKE_ASYNC(src, .proc/FailedMeltdownEffect)
+		INVOKE_ASYNC(src, PROC_REF(FailedMeltdownEffect))
 		return
 	if(!LAZYLEN(meltdowns))
-		INVOKE_ASYNC(src, .proc/HandledMeltdownEffect)
+		INVOKE_ASYNC(src, PROC_REF(HandledMeltdownEffect))
 		return
 	playsound(get_turf(src), 'sound/magic/arbiter/meltdown_clear.ogg', 50, TRUE, 4)
 
@@ -362,8 +362,8 @@
 			blurb_text = "You cannot stop the torrent of this world alone."
 		if(MELTDOWN_CYAN)
 			blurb_text = "Your immaturity is to blame."
-			INVOKE_ASYNC(src, .proc/FirePillarStorm)
-	INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, blurb_text, 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(src, PROC_REF(FirePillarStorm))
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/HandledMeltdownEffect()
 	playsound(get_turf(src), 'sound/magic/arbiter/meltdown_clear_all.ogg', 50, TRUE, 24)
@@ -371,11 +371,11 @@
 	var/last_stage = life_stage
 	switch(current_meltdown_type)
 		if(MELTDOWN_GRAY)
-			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "I am fading.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "I am fading.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
 			ChangeResistances(list(RED_DAMAGE = 2, WHITE_DAMAGE = 2, BLACK_DAMAGE = 2, PALE_DAMAGE = 2))
 			SLEEP_CHECK_DEATH(10 SECONDS)
 		if(MELTDOWN_GOLD)
-			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "The sandman calls me.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "The sandman calls me.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
 			var/check_count = 0
 			while(charging) // In case meltdowns get cleared mid-ability
 				if(check_count > 4)
@@ -387,10 +387,10 @@
 			SLEEP_CHECK_DEATH(10 SECONDS)
 			charging = FALSE
 		if(MELTDOWN_PURPLE)
-			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "The waves will rock the shore again.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "The waves will rock the shore again.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
 		if(MELTDOWN_CYAN)
-			INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "Excellent.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
-			INVOKE_ASYNC(src, .proc/StopPillarStorm)
+			INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "Excellent.", 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+			INVOKE_ASYNC(src, PROC_REF(StopPillarStorm))
 
 	if(last_stage == life_stage)
 		ChangeResistances(list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8))
@@ -403,9 +403,9 @@
 
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
-	INVOKE_ASYNC(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, pick("I'll open the door if I must.", "Let us sink here together."), 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
+	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, pick("I'll open the door if I must.", "Let us sink here together."), 1 SECONDS, "black", "yellow", "left", "CENTER,BOTTOM+2")
 	stop_storm_effect = FALSE
-	INVOKE_ASYNC(src, .proc/PillarStormEffect)
+	INVOKE_ASYNC(src, PROC_REF(PillarStormEffect))
 
 	SLEEP_CHECK_DEATH(1 SECONDS)
 
@@ -438,7 +438,7 @@
 		return
 	for(var/turf/T in orange(1, src))
 		new /obj/effect/temp_visual/revenant(T)
-	addtimer(CALLBACK(src, .proc/PillarStormEffect), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(PillarStormEffect)), 1 SECONDS)
 
 /mob/living/simple_animal/hostile/megafauna/arbiter/proc/FirePillarStorm()
 	stormloop.stop()
@@ -512,7 +512,7 @@
 /obj/effect/arbiter_spike/Initialize()
 	. = ..()
 	animate(src, alpha = 100, time = (activation_delay * 0.2))
-	addtimer(CALLBACK(src, .proc/Activate), activation_delay)
+	addtimer(CALLBACK(src, PROC_REF(Activate)), activation_delay)
 
 /obj/effect/arbiter_spike/proc/Activate()
 	icon_state = icon_state + "_fire"

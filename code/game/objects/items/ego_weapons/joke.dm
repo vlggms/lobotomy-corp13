@@ -29,16 +29,16 @@
 		"purple" = "#FF00FF"
 	)
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 100
-							)
+		FORTITUDE_ATTRIBUTE = 100,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 100,
+	)
 
 /obj/item/ego_weapon/chaosdunk/Initialize()
 	..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	addtimer(CALLBACK(src, .proc/ChangeColors), 5) //Call ourselves every 0.5 seconds to change color
+	addtimer(CALLBACK(src, PROC_REF(ChangeColors)), 5) //Call ourselves every 0.5 seconds to change color
 	set_light(4, 3, "#FFFF00") //Range of 4, brightness of 3 - Same range as a flashlight
 	filters += filter(type="drop_shadow", x=0, y=0, size=5, offset=2, color=rgb(158, 4, 163))
 	filters += filter(type="drop_shadow", x=0, y=0, size=5, offset=2, color=rgb(27, 255, 6))
@@ -48,7 +48,7 @@
 	if(activated)
 		return
 	if(!CanUseEgo(user))
-		to_chat(user, "<span class='warning'>The [src] lies dormant in your hands...</span>")
+		to_chat(user, span_warning("The [src] lies dormant in your hands..."))
 		return
 	activated = TRUE
 
@@ -70,11 +70,11 @@
 		M.apply_damage(10, STAMINA)
 		if(prob(75))
 			M.Paralyze(60)
-			visible_message("<span class='danger'>[M] barely manages to contain the power of the [src]!</span>")
+			visible_message(span_danger("[M] barely manages to contain the power of the [src]!"))
 			return
 	else
 		new /obj/effect/temp_visual/explosion(get_turf(src))
-		visible_message("<span class='danger'>[src] explodes violently!</span>")
+		visible_message(span_danger("[src] explodes violently!"))
 		playsound(src, 'sound/abnormalities/crying_children/sorrow_shot.ogg', 45, FALSE, 5)
 		for(var/mob/living/L in view(1, src))
 			var/aoe = 50
@@ -127,10 +127,10 @@
 	if(!CanUseEgo(user))
 		return
 	if(charge>=charge_cost)
-		to_chat(user, "<span class='notice'>You prepare to jump.</span>")
+		to_chat(user, span_notice("You prepare to jump."))
 		activated = TRUE
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/violet_curse/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
@@ -193,6 +193,6 @@
 		if(L == user) //This WILL friendly fire there is no escape
 			continue
 		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		to_chat(L, "<span class='userdanger'>You are crushed by a monolith!</span>")
+		to_chat(L, span_userdanger("You are crushed by a monolith!"))
 		if(L.health < 0)
 			L.gib()

@@ -231,7 +231,7 @@
 		return
 	if(!is_maggot)
 		playsound(src, 'sound/abnormalities/goldenapple/Gold_Attack.ogg', 100, 1)
-		addtimer(CALLBACK(src, .proc/EatEmployees), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(EatEmployees)), 15 SECONDS)
 		return ..()
 	density = FALSE
 	for(var/atom/movable/AM in src) //morph code
@@ -319,11 +319,11 @@
 					L.forceMove(src)
 					last_target = TRUE
 					target_hit = TRUE
-					addtimer(CALLBACK(src, .proc/DigestPerson, L), 5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(DigestPerson), L), 5 SECONDS)
 				else
 					L.gib(TRUE, TRUE, TRUE)
 		if (!target_hit)
-			addtimer(CALLBACK(src, .proc/BecomeRotten), 5 SECONDS)//if nobody got killed
+			addtimer(CALLBACK(src, PROC_REF(BecomeRotten)), 5 SECONDS)//if nobody got killed
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/proc/DigestPerson(mob/living/carbon/human/H)//berserk mode
@@ -449,8 +449,8 @@
 		owner.adjustBruteLoss(stacks * -5)
 		return
 	owner.adjustBruteLoss(stacks * -0.5)
-	var/mob/living/carbon/human/H = owner
-	H.adjustSanityLoss(stacks * -0.5)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustSanityLoss(stacks * -0.5)
 
 /obj/item/glow_object
 	name = "golden apple core"
@@ -483,21 +483,22 @@
 	return ..()
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
-	var/mob/living/carbon/human/H = owner
-	H.apply_damage(stacks * 1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
-	if(H.stat >= HARD_CRIT)
-		var/obj/structure/spider/cocoon/casing = new(H.loc)
-		H.forceMove(casing)
-		casing.name = "pile of maggots"
-		casing.desc = "They're wriggling and writhing over something."
-		casing.icon_state = pick(
-			"cocoon_large1",
-			"cocoon_large2",
-			"cocoon_large3",
-		)
-		casing.density = FALSE
-		casing.color = "#01F9C6"
-		qdel(src)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE))
+	if(status_holder.stat < HARD_CRIT)
+		return
+	var/obj/structure/spider/cocoon/casing = new(status_holder.loc)
+	status_holder.forceMove(casing)
+	casing.name = "pile of maggots"
+	casing.desc = "They're wriggling and writhing over something."
+	casing.icon_state = pick(
+		"cocoon_large1",
+		"cocoon_large2",
+		"cocoon_large3",
+	)
+	casing.density = FALSE
+	casing.color = "#01F9C6"
+	qdel(src)
 
 /obj/item/food/grown/apple/gold/abnormality
 	food_reagents = list(/datum/reagent/abnormality/ambrosia = 10)

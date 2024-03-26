@@ -40,8 +40,16 @@
 	user.Stun(30 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		src.hugging = FALSE
+		last_worker = null
+		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		src.hugging = FALSE
+		last_worker = null
+		return
 	src.buckle_mob(user, force = TRUE, check_loc = FALSE)
 	src.icon_state = "teddy_hug"
 	src.visible_message(span_warning("[src] hugs [user]!"))
@@ -57,6 +65,11 @@
 		user.adjustOxyLoss(10, updating_health=TRUE, forced=TRUE)
 		time_strangled++
 		SLEEP_CHECK_DEATH(1 SECONDS)
+		if(QDELETED(user))
+			src.hugging = FALSE
+			last_worker = null
+			src.icon_state = "teddy"
+			return
 	src.unbuckle_mob(user, force=TRUE)
 	src.icon_state = "teddy"
 	src.visible_message(span_warning("[src] drops [user] to the ground!"))

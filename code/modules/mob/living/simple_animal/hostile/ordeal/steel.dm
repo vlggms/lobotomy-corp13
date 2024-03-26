@@ -77,7 +77,7 @@
 		walk_to(src, 0)
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-		addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
+		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/proc/DeathExplosion()
@@ -262,7 +262,7 @@
 	else if(!troops.len)
 		var/area/forward_base = get_area(fob)
 		if(!istype(get_area(src), forward_base) && z == fob.z)
-			patrol_path = get_path_to(src, fob, /turf/proc/Distance_cardinal, 0, 200)
+			patrol_path = get_path_to(src, fob, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 			return
 	..()
 

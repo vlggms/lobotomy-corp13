@@ -84,4 +84,4 @@
 		visible_message(span_notice("The refinery finishes refining a box."))
 
 	if(loaded)
-		addtimer(CALLBACK(src, .proc/counter), 1 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(counter)), 1 SECONDS)

@@ -49,7 +49,7 @@
 	//Ask if we do infact have a cooldown or not
 	if(records_cooldown_timer)
 		//We have a cooldown, so first to not cheat the player out of time we first start the cooldown timer
-		addtimer(CALLBACK(src, .proc/reset), records_cooldown_timer)
+		addtimer(CALLBACK(src, PROC_REF(reset)), records_cooldown_timer)
 		//Set the watch to not be usable as we are now on cooldown
 		usable = FALSE
 

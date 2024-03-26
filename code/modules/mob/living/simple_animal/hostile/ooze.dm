@@ -174,8 +174,8 @@
 		return
 	var/mob/living/simple_animal/hostile/ooze/ooze = owner
 	ooze.add_movespeed_modifier(/datum/movespeed_modifier/metabolicboost)
-	var/timerid = addtimer(CALLBACK(src, .proc/HeatUp), 1 SECONDS, TIMER_STOPPABLE | TIMER_LOOP) //Heat up every second
-	addtimer(CALLBACK(src, .proc/FinishSpeedup, timerid), 6 SECONDS)
+	var/timerid = addtimer(CALLBACK(src, PROC_REF(HeatUp)), 1 SECONDS, TIMER_STOPPABLE | TIMER_LOOP) //Heat up every second
+	addtimer(CALLBACK(src, PROC_REF(FinishSpeedup), timerid), 6 SECONDS)
 	to_chat(ooze, "<span class='notice'>You start feel a lot quicker.</span>")
 	active = TRUE
 	ooze.adjust_ooze_nutrition(-10)
@@ -209,8 +209,8 @@
 ///Register for owner death
 /datum/action/consume/New(Target)
 	. = ..()
-	RegisterSignal(owner, COMSIG_LIVING_DEATH, .proc/on_owner_death)
-	RegisterSignal(owner, COMSIG_PARENT_PREQDELETED, .proc/handle_mob_deletion)
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(on_owner_death))
+	RegisterSignal(owner, COMSIG_PARENT_PREQDELETED, PROC_REF(handle_mob_deletion))
 
 /datum/action/consume/proc/handle_mob_deletion()
 	stop_consuming() //Shit out the vored mob before u go go
@@ -241,7 +241,7 @@
 /datum/action/consume/proc/start_consuming(mob/living/target)
 	vored_mob = target
 	vored_mob.forceMove(owner) ///AAAAAAAAAAAAAAAAAAAAAAHHH!!!
-	RegisterSignal(vored_mob, COMSIG_PARENT_PREQDELETED, .proc/handle_mob_deletion)
+	RegisterSignal(vored_mob, COMSIG_PARENT_PREQDELETED, PROC_REF(handle_mob_deletion))
 	playsound(owner,'sound/items/eatfood.ogg', rand(30,50), TRUE)
 	owner.visible_message("<span class='warning>[src] devours [target]!</span>", "<span class='notice'>You devour [target].</span>")
 	START_PROCESSING(SSprocessing, src)

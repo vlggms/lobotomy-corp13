@@ -1,8 +1,8 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ab" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/discipline)
 "ae" = (
@@ -77,8 +77,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -113,8 +113,8 @@
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_northeast";
-	shuttleId = "iotamain";
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -183,8 +183,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -226,8 +226,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -249,11 +249,11 @@
 /area/department_main/command)
 "be" = (
 /obj/docking_port/stationary{
-	name = "SW - Control/Training";
-	height = 7;
 	dwidth = 4;
-	width = 8;
-	id = "iotamain_southwest"
+	height = 7;
+	id = "iotamain_southwest";
+	name = "SW - Control/Training";
+	width = 8
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/east)
@@ -263,10 +263,10 @@
 /area/department_main/records)
 "bh" = (
 /obj/docking_port/stationary{
-	name = "Departures";
-	id = "iotafinal_depart";
 	dwidth = 3;
 	height = 5;
+	id = "iotafinal_depart";
+	name = "Departures";
 	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
@@ -305,16 +305,16 @@
 /area/facility_hallway/welfare)
 "bn" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/discipline)
 "bo" = (
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 8
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -345,8 +345,8 @@
 	id = "1"
 	},
 /obj/structure/disposaloutlet{
-	pixel_y = 20;
-	density = 0
+	density = 0;
+	pixel_y = 20
 	},
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/facility/dark{
@@ -395,9 +395,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/plasteel/dark{
@@ -413,8 +413,8 @@
 	pixel_y = 19
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk,
@@ -442,8 +442,8 @@
 	set_luminosity = 24
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/east)
 "bH" = (
@@ -489,10 +489,10 @@
 /area/department_main/discipline)
 "bQ" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/effect/turf_decal/siding/wideplating/dark,
 /turf/open/floor/facility/dark,
@@ -523,9 +523,9 @@
 /area/department_main/command)
 "ca" = (
 /obj/structure/chair/comfy/shuttle{
-	dir = 4;
 	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
+	dir = 4;
 	name = "metalic seat";
 	pixel_y = 4
 	},
@@ -553,8 +553,8 @@
 "ce" = (
 /obj/structure/flora/tree/dead,
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "cf" = (
@@ -594,8 +594,8 @@
 "cn" = (
 /obj/structure/table/wood/fancy/royalblue,
 /obj/item/candle{
-	pixel_y = 7;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -757,9 +757,9 @@
 /obj/item/food/meat/slab/xeno,
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1;
-	storage_capacity = 1000;
+	density = 0;
 	pixel_y = 19;
-	density = 0
+	storage_capacity = 1000
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -822,9 +822,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/white,
@@ -922,8 +922,8 @@
 /area/facility_hallway/command)
 "cP" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/information)
 "cQ" = (
@@ -931,8 +931,8 @@
 	dir = 9
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -976,8 +976,8 @@
 	dir = 4
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/command)
 "cW" = (
@@ -1038,8 +1038,8 @@
 	name = "lobotomy corp issued fountain pen"
 	},
 /obj/item/flashlight/lamp{
-	pixel_y = 15;
-	pixel_x = -2
+	pixel_x = -2;
+	pixel_y = 15
 	},
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
@@ -1104,11 +1104,11 @@
 /area/department_main/records)
 "dv" = (
 /obj/docking_port/stationary{
-	name = "West - Control";
-	height = 16;
 	dwidth = 4;
-	width = 8;
-	id = "iotaextra_control"
+	height = 16;
+	id = "iotaextra_control";
+	name = "West - Control";
+	width = 8
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/extraction)
@@ -1192,8 +1192,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -1229,8 +1229,8 @@
 /area/facility_hallway/command)
 "dR" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/safety)
@@ -1252,10 +1252,10 @@
 /obj/machinery/navbeacon/wayfinding/disciplinarydepartment,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -1283,9 +1283,9 @@
 /area/facility_hallway/command)
 "dY" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/safety)
@@ -1295,8 +1295,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -1383,8 +1383,8 @@
 /area/facility_hallway/east)
 "ez" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 9;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 9
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -1398,9 +1398,9 @@
 /area/facility_hallway/training)
 "eG" = (
 /obj/structure/chair/comfy/shuttle{
-	dir = 1;
 	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
+	dir = 1;
 	name = "metalic seat";
 	pixel_y = 4
 	},
@@ -1484,8 +1484,8 @@
 "eV" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/science.dmi';
-	name = "Information Department";
-	max_integrity = 500
+	max_integrity = 500;
+	name = "Information Department"
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1505,8 +1505,8 @@
 	dir = 8
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "eY" = (
@@ -1519,8 +1519,8 @@
 /area/facility_hallway/discipline)
 "fa" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/training)
 "fb" = (
@@ -1535,10 +1535,10 @@
 /obj/machinery/navbeacon/wayfinding/informationdepartment,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 11;
-	view_range = 11;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 11;
+	view_range = 11
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1662,9 +1662,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -1799,9 +1799,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/white,
@@ -1823,10 +1823,10 @@
 "gd" = (
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 6;
-	view_range = 6;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 6;
+	view_range = 6
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -1955,8 +1955,8 @@
 /area/department_main/welfare)
 "gw" = (
 /obj/structure/chair/sofa/left{
-	dir = 8;
 	can_buckle = 0;
+	dir = 8;
 	pixel_x = -5
 	},
 /obj/effect/turf_decal/siding/brown{
@@ -2008,8 +2008,8 @@
 /area/department_main/command)
 "gH" = (
 /obj/machinery/disposal/bin{
-	pixel_y = 4;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 4
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -2073,10 +2073,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction/yjunction{
 	dir = 4
@@ -2163,9 +2163,9 @@
 /area/facility_hallway/control)
 "hd" = (
 /obj/structure/chair/sofa/left{
+	can_buckle = 0;
 	dir = 1;
-	pixel_y = 9;
-	can_buckle = 0
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -2292,8 +2292,8 @@
 	dir = 1
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "hA" = (
@@ -2412,9 +2412,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/freezer,
@@ -2462,8 +2462,8 @@
 	dir = 8
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "hP" = (
@@ -2483,9 +2483,9 @@
 "hR" = (
 /obj/effect/turf_decal/delivery/red,
 /obj/machinery/button/crematorium/indestructible{
-	pixel_y = 5;
 	id = "cremawheat4";
-	pixel_x = 21
+	pixel_x = 21;
+	pixel_y = 5
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/welfare)
@@ -2503,9 +2503,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/freezer,
@@ -2528,8 +2528,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/cola{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -2569,8 +2569,8 @@
 /area/facility_hallway/welfare)
 "ig" = (
 /obj/machinery/vending/hydronutrients{
-	pixel_y = 19;
 	density = 0;
+	pixel_y = 19;
 	resistance_flags = 115
 	},
 /obj/effect/turf_decal/tile/green{
@@ -2672,8 +2672,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 1;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -2747,8 +2747,8 @@
 /area/facility_hallway/command)
 "iG" = (
 /obj/machinery/vending/boozeomat/all_access{
-	pixel_y = 20;
-	density = 0
+	density = 0;
+	pixel_y = 20
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -2760,8 +2760,8 @@
 	dir = 4
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "iJ" = (
@@ -2858,13 +2858,13 @@
 /area/department_main/control)
 "jc" = (
 /obj/machinery/computer/shuttle/mining{
+	dir = 8;
 	max_integrity = 3000000;
 	name = "warp pod console";
-	possible_destinations = "iotaextra_disciplinary";
-	shuttleId = "iotaextra";
-	dir = 8;
 	pixel_x = 4;
-	resistance_flags = 115
+	possible_destinations = "iotaextra_disciplinary";
+	resistance_flags = 115;
+	shuttleId = "iotaextra"
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -2973,8 +2973,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -2987,8 +2987,8 @@
 	dir = 9
 	},
 /obj/machinery/disposal/bin{
-	pixel_y = 4;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 4
 	},
 /obj/structure/disposalpipe/trunk,
 /turf/open/floor/wood{
@@ -3044,8 +3044,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -3110,8 +3110,8 @@
 /area/facility_hallway/welfare)
 "jN" = (
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#331800"
+	color = "#331800";
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/welfare)
@@ -3173,8 +3173,8 @@
 	pixel_y = 19
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -3281,9 +3281,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -3307,24 +3307,24 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/safety)
 "ku" = (
 /obj/item/assembly/control{
-	id = "centralX";
-	anchored = 1
+	anchored = 1;
+	id = "centralX"
 	},
 /obj/item/assembly/signaler{
 	anchored = 1
 	},
 /obj/item/assembly_holder{
-	preassembled = 1;
-	anchored = 1
+	anchored = 1;
+	preassembled = 1
 	},
 /turf/open/floor/circuit/telecomms{
 	density = 1
@@ -3447,10 +3447,10 @@
 /area/department_main/welfare)
 "kH" = (
 /obj/machinery/door/airlock{
-	name = "Disciplinary Department";
-	normal_integrity = 500;
+	color = "#877e6d";
 	icon = 'icons/obj/doors/airlocks/station/security.dmi';
-	color = "#877e6d"
+	name = "Disciplinary Department";
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -3543,15 +3543,15 @@
 /area/space)
 "kW" = (
 /obj/item/assembly/control{
-	id = "centralY";
-	anchored = 1
+	anchored = 1;
+	id = "centralY"
 	},
 /obj/item/assembly/signaler{
 	anchored = 1
 	},
 /obj/item/assembly_holder{
-	preassembled = 1;
-	anchored = 1
+	anchored = 1;
+	preassembled = 1
 	},
 /turf/open/floor/circuit/telecomms{
 	density = 1
@@ -3604,8 +3604,8 @@
 "ld" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/safety)
 "lf" = (
@@ -3764,8 +3764,8 @@
 /area/facility_hallway/training)
 "lG" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -3776,8 +3776,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -3792,9 +3792,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/freezer,
@@ -3804,8 +3804,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -3831,9 +3831,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 3;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 3;
 	view_range = 3
 	},
 /obj/machinery/light{
@@ -3861,9 +3861,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -4047,9 +4047,9 @@
 /obj/effect/turf_decal/tile/bar,
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1;
-	storage_capacity = 1000;
+	density = 0;
 	pixel_y = 19;
-	density = 0
+	storage_capacity = 1000
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
@@ -4070,9 +4070,9 @@
 "lZ" = (
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /obj/structure/disposalpipe/segment{
@@ -4092,9 +4092,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -4139,9 +4139,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/plasteel/dark{
@@ -4150,8 +4150,8 @@
 /area/facility_hallway/welfare)
 "mm" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/training)
 "mp" = (
@@ -4184,8 +4184,8 @@
 /area/facility_hallway/control)
 "mu" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/space)
 "mv" = (
@@ -4262,9 +4262,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -4282,21 +4282,21 @@
 /area/facility_hallway/command)
 "mQ" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/discipline)
 "mR" = (
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_y = -160
+	pixel_y = -160;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	resistance_flags = 115;
 	pixel_x = -32;
-	pixel_y = -160
+	pixel_y = -160;
+	resistance_flags = 115
 	},
 /turf/open/floor/grass{
 	density = 1
@@ -4318,8 +4318,8 @@
 "na" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/safety)
 "nc" = (
@@ -4362,15 +4362,15 @@
 "ng" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/welfare)
 "nh" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/discipline)
 "nj" = (
@@ -4381,8 +4381,8 @@
 	set_luminosity = 24
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/west)
 "nk" = (
@@ -4409,8 +4409,8 @@
 "no" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/information)
 "nq" = (
@@ -4435,10 +4435,10 @@
 	dir = 1
 	},
 /obj/machinery/chem_dispenser/fullupgrade{
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
-	name = "Industrial Foodstuff Dispenser";
 	desc = "Creates and dispenses a variety of kitchen ingredients.";
-	emagged_reagents = null
+	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
+	emagged_reagents = null;
+	name = "Industrial Foodstuff Dispenser"
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
@@ -4474,8 +4474,8 @@
 /area/space)
 "nB" = (
 /obj/machinery/vending/donksofttoyvendor{
-	pixel_y = 18;
-	density = 0
+	density = 0;
+	pixel_y = 18
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -4495,8 +4495,8 @@
 /area/facility_hallway/discipline)
 "nF" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/human)
 "nH" = (
@@ -4514,13 +4514,13 @@
 /area/facility_hallway/information)
 "nR" = (
 /obj/machinery/computer/shuttle/mining{
+	dir = 8;
 	max_integrity = 3000000;
 	name = "warp pod console";
-	possible_destinations = "iotafinal_central";
-	shuttleId = "iotafinal";
-	dir = 8;
 	pixel_x = 4;
-	pixel_y = 4
+	pixel_y = 4;
+	possible_destinations = "iotafinal_central";
+	shuttleId = "iotafinal"
 	},
 /obj/effect/turf_decal/stripes/asteroid/line{
 	dir = 1
@@ -4595,9 +4595,9 @@
 /obj/machinery/button/door/indestructible{
 	id = "extraction3";
 	name = "Records Access Shutters";
+	pixel_x = 21;
 	pixel_y = 4;
-	req_one_access_txt = "19";
-	pixel_x = 21
+	req_one_access_txt = "19"
 	},
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
@@ -4617,8 +4617,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/cola{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -4639,8 +4639,8 @@
 /area/facility_hallway/welfare)
 "os" = (
 /obj/machinery/vending/games{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -4705,16 +4705,16 @@
 "oB" = (
 /obj/structure/chair/comfy/black{
 	dir = 8;
-	pixel_y = 4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /obj/item/toy/plush/gebura,
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
 "oC" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/west)
 "oD" = (
@@ -4773,9 +4773,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -4804,9 +4804,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/sepia,
@@ -4941,8 +4941,8 @@
 /area/department_main/command)
 "pa" = (
 /obj/machinery/vending/boozeomat/all_access{
-	pixel_y = 20;
-	density = 0
+	density = 0;
+	pixel_y = 20
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 9
@@ -4967,8 +4967,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -4990,9 +4990,9 @@
 /area/department_main/records)
 "pk" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/control)
@@ -5028,12 +5028,12 @@
 /area/department_main/command)
 "po" = (
 /turf/open/lava{
-	density = 1;
 	color = "#006700";
-	name = "Unrefined Enkephalin";
+	density = 1;
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
-	light_range = 0
+	light_range = 0;
+	name = "Unrefined Enkephalin"
 	},
 /area/facility_hallway/human)
 "ps" = (
@@ -5144,8 +5144,8 @@
 	pixel_y = 4
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/human)
 "pN" = (
@@ -5175,10 +5175,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction,
 /obj/effect/landmark/xeno_spawn,
@@ -5195,8 +5195,8 @@
 /area/department_main/discipline)
 "pQ" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -5204,9 +5204,9 @@
 /area/facility_hallway/east)
 "pR" = (
 /obj/structure/chair/office/light{
-	dir = 1;
 	anchored = 1;
 	can_buckle = 0;
+	dir = 1;
 	pixel_y = 4
 	},
 /turf/open/floor/carpet/purple,
@@ -5250,12 +5250,12 @@
 /area/department_main/command)
 "qk" = (
 /obj/structure/chair/comfy/shuttle{
-	dir = 4;
 	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
+	dir = 4;
 	name = "metalic seat";
-	pixel_y = 5;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 5
 	},
 /obj/machinery/door/window{
 	dir = 8;
@@ -5308,8 +5308,8 @@
 	pixel_y = 19
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -5368,9 +5368,9 @@
 /area/facility_hallway/welfare)
 "qC" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/security.dmi';
 	name = "Control Department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/security.dmi'
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -5379,11 +5379,11 @@
 /area/facility_hallway/command)
 "qD" = (
 /obj/docking_port/stationary{
-	name = "NE - Disciplinary/Information";
-	height = 7;
 	dwidth = 4;
-	width = 8;
-	id = "iotamain_northeast"
+	height = 7;
+	id = "iotamain_northeast";
+	name = "NE - Disciplinary/Information";
+	width = 8
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/east)
@@ -5396,8 +5396,8 @@
 	pixel_y = 19
 	},
 /obj/machinery/vending/snack/blue{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -5433,9 +5433,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -5483,8 +5483,8 @@
 "qP" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/training)
 "qQ" = (
@@ -5537,8 +5537,8 @@
 "ra" = (
 /obj/structure/fence/corner,
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "rb" = (
@@ -5619,8 +5619,8 @@
 /area/department_main/training)
 "rt" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -5645,9 +5645,9 @@
 /obj/structure/window/reinforced/fulltile/indestructable,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -5687,8 +5687,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -5696,40 +5696,40 @@
 /area/facility_hallway/welfare)
 "rH" = (
 /obj/docking_port/stationary{
-	name = "East - Discipliary";
-	height = 16;
 	dwidth = 4;
-	width = 8;
+	height = 16;
 	id = "iotaextra_disciplinary";
-	roundstart_template = /datum/map_template/shuttle/iotaextra/elevator
+	name = "East - Discipliary";
+	roundstart_template = /datum/map_template/shuttle/iotaextra/elevator;
+	width = 8
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/extraction)
 "rI" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/control)
@@ -5740,8 +5740,8 @@
 /obj/structure/chair/comfy/shuttle{
 	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
-	name = "metalic seat";
 	dir = 1;
+	name = "metalic seat";
 	pixel_y = 7
 	},
 /turf/open/floor/plasteel/white,
@@ -5816,8 +5816,8 @@
 /area/department_main/safety)
 "rP" = (
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 1;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 1
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -5899,9 +5899,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/facility/dark,
@@ -5945,8 +5945,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -5997,13 +5997,13 @@
 	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_y = -96
+	pixel_y = -96;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_y = -128
+	pixel_y = -128;
+	resistance_flags = 115
 	},
 /turf/open/floor/grass{
 	density = 1
@@ -6015,8 +6015,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6045,8 +6045,8 @@
 "sC" = (
 /obj/structure/table/wood/fancy/royalblue,
 /obj/item/candle{
-	pixel_y = 6;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 6
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
@@ -6080,8 +6080,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6194,8 +6194,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6232,9 +6232,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -6273,8 +6273,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6379,12 +6379,12 @@
 	max_integrity = 25
 	},
 /obj/machinery/computer/shuttle/mining{
+	dir = 4;
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_southwest";
-	shuttleId = "iotamain";
-	dir = 4;
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -6406,16 +6406,16 @@
 /area/facility_hallway/human)
 "tP" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/command)
@@ -6423,8 +6423,8 @@
 /obj/structure/chair/comfy/shuttle{
 	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
-	name = "metalic seat";
 	dir = 1;
+	name = "metalic seat";
 	pixel_y = 7
 	},
 /turf/open/floor/carpet/green,
@@ -6449,12 +6449,12 @@
 /area/department_main/control)
 "tU" = (
 /obj/machinery/computer/shuttle/mining{
+	dir = 8;
 	max_integrity = 3000000;
 	name = "warp pod console";
+	pixel_x = 4;
 	possible_destinations = "iotafinal_depart";
-	shuttleId = "iotafinal";
-	dir = 8;
-	pixel_x = 4
+	shuttleId = "iotafinal"
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -6496,10 +6496,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction/flip,
 /obj/effect/landmark/xeno_spawn,
@@ -6575,8 +6575,8 @@
 "uj" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/control)
 "ul" = (
@@ -6593,8 +6593,8 @@
 	dir = 9
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "un" = (
@@ -6638,8 +6638,8 @@
 	dir = 4
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "uw" = (
@@ -6682,8 +6682,8 @@
 /area/facility_hallway/training)
 "ux" = (
 /obj/structure/chair/sofa/right{
-	dir = 8;
 	can_buckle = 0;
+	dir = 8;
 	pixel_x = -5
 	},
 /obj/effect/turf_decal/siding/brown{
@@ -6714,9 +6714,9 @@
 /obj/effect/turf_decal/caution/white,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -6731,9 +6731,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -6748,8 +6748,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/cola{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6823,9 +6823,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility,
@@ -6847,8 +6847,8 @@
 "uP" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/information)
 "uR" = (
@@ -6895,9 +6895,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/freezer,
@@ -6945,22 +6945,22 @@
 /area/department_main/discipline)
 "vd" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/control)
@@ -6975,8 +6975,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/snack/orange{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -6984,15 +6984,15 @@
 /area/facility_hallway/training)
 "vh" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/facility_hallway/information)
 "vi" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/welfare)
 "vk" = (
@@ -7025,8 +7025,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -7050,8 +7050,8 @@
 /area/department_main/discipline)
 "vq" = (
 /obj/machinery/vending/coffee{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -7103,8 +7103,8 @@
 /area/facility_hallway/safety)
 "vB" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/control)
 "vC" = (
@@ -7167,8 +7167,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -7183,9 +7183,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/freezer,
@@ -7202,9 +7202,9 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/facility/dark,
@@ -7305,8 +7305,8 @@
 /area/department_main/control)
 "wi" = (
 /obj/structure/sign/ordealmonitor{
-	pixel_y = -15;
-	pixel_x = 15
+	pixel_x = 15;
+	pixel_y = -15
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
@@ -7330,10 +7330,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 6;
-	view_range = 6;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 6;
+	view_range = 6
 	},
 /obj/structure/disposalpipe/junction/flip{
 	dir = 4
@@ -7399,9 +7399,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -7413,13 +7413,13 @@
 /area/facility_hallway/safety)
 "wv" = (
 /obj/machinery/computer/shuttle/mining{
+	density = 0;
+	dir = 4;
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_northwest";
-	shuttleId = "iotamain";
-	dir = 4;
-	density = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 4
@@ -7482,9 +7482,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -7507,9 +7507,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -7560,16 +7560,16 @@
 /area/department_main/safety)
 "wU" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -7612,9 +7612,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -7634,8 +7634,8 @@
 /area/facility_hallway/welfare)
 "xg" = (
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "xh" = (
@@ -7656,26 +7656,26 @@
 /area/facility_hallway/discipline)
 "xi" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/safety)
 "xj" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/records)
 "xm" = (
 /obj/machinery/computer/shuttle/mining{
+	dir = 8;
 	max_integrity = 3000000;
 	name = "warp pod console";
-	possible_destinations = "iotaextra_disciplinary";
-	shuttleId = "iotaextra";
-	dir = 8;
 	pixel_x = 4;
-	resistance_flags = 115
+	possible_destinations = "iotaextra_disciplinary";
+	resistance_flags = 115;
+	shuttleId = "iotaextra"
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -7708,14 +7708,14 @@
 "xu" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/welfare)
 "xx" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/facility_hallway/welfare)
@@ -7806,8 +7806,8 @@
 /area/facility_hallway/command)
 "xO" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/facility_hallway/west)
@@ -7840,9 +7840,9 @@
 "xV" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1;
-	storage_capacity = 1000;
+	density = 0;
 	pixel_y = 19;
-	density = 0
+	storage_capacity = 1000
 	},
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -7894,8 +7894,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -7929,12 +7929,12 @@
 /area/department_main/training)
 "yc" = (
 /turf/open/lava{
-	density = 1;
 	color = "#006700";
-	name = "Unrefined Enkephalin";
+	density = 1;
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
-	light_range = 0
+	light_range = 0;
+	name = "Unrefined Enkephalin"
 	},
 /area/department_main/discipline)
 "yg" = (
@@ -7966,8 +7966,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 4;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -7985,9 +7985,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -8000,16 +8000,16 @@
 /area/facility_hallway/command)
 "yo" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/discipline)
@@ -8064,8 +8064,8 @@
 	pixel_y = 3
 	},
 /obj/structure/closet/crate{
-	name = "pe box crate";
 	anchored = 1;
+	name = "pe box crate";
 	opened = 1;
 	resistance_flags = 115
 	},
@@ -8087,18 +8087,6 @@
 	name = "floor"
 	},
 /area/department_main/information)
-"yw" = (
-/obj/effect/turf_decal/siding/thinplating/dark{
-	dir = 1
-	},
-/obj/machinery/vending/autodrobe{
-	pixel_y = 18;
-	density = 0
-	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
-/area/department_main/training)
 "yy" = (
 /obj/machinery/vending/snack{
 	pixel_y = 14
@@ -8131,8 +8119,8 @@
 /area/facility_hallway/training)
 "yC" = (
 /obj/structure/chair/sofa/corp/right{
-	dir = 4;
-	can_buckle = 0
+	can_buckle = 0;
+	dir = 4
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
@@ -8162,9 +8150,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/facility/dark,
@@ -8210,8 +8198,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -8269,8 +8257,8 @@
 "za" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/command)
 "zc" = (
@@ -8324,8 +8312,8 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "zx" = (
@@ -8340,8 +8328,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/cola{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -8411,8 +8399,8 @@
 /area/department_main/information)
 "zN" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/department_main/command)
@@ -8467,8 +8455,8 @@
 /area/facility_hallway/west)
 "zT" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 10;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 10
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -8514,8 +8502,8 @@
 	dir = 5
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -8534,8 +8522,8 @@
 /area/facility_hallway/safety)
 "Af" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/command)
 "Ai" = (
@@ -8551,10 +8539,10 @@
 /area/facility_hallway/welfare)
 "Aj" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -8563,10 +8551,10 @@
 /area/department_main/discipline)
 "Ak" = (
 /obj/machinery/chem_dispenser/fullupgrade{
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
-	name = "Industrial Foodstuff Dispenser";
 	desc = "Creates and dispenses a variety of kitchen ingredients.";
-	emagged_reagents = null
+	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel);
+	emagged_reagents = null;
+	name = "Industrial Foodstuff Dispenser"
 	},
 /obj/effect/turf_decal/siding/wood{
 	dir = 6
@@ -8581,15 +8569,15 @@
 	set_luminosity = 24
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "Am" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
@@ -8604,8 +8592,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -8621,8 +8609,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -8637,8 +8625,8 @@
 /area/space)
 "Av" = (
 /obj/machinery/jukebox{
-	req_access = list();
-	pixel_y = 5
+	pixel_y = 5;
+	req_access = list()
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -8656,10 +8644,10 @@
 /obj/machinery/navbeacon/wayfinding/controldepartment,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction/flip,
 /obj/effect/light_emitter{
@@ -8743,8 +8731,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -8752,11 +8740,11 @@
 /area/facility_hallway/discipline)
 "AU" = (
 /obj/docking_port/stationary{
-	name = "SE - Disciplinary/Welfare";
-	height = 7;
 	dwidth = 4;
-	width = 8;
-	id = "iotamain_southeast"
+	height = 7;
+	id = "iotamain_southeast";
+	name = "SE - Disciplinary/Welfare";
+	width = 8
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/east)
@@ -8800,8 +8788,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -8854,8 +8842,8 @@
 /area/department_main/safety)
 "Bn" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/east)
 "Bq" = (
@@ -8918,8 +8906,8 @@
 /area/department_main/safety)
 "BB" = (
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -8975,8 +8963,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/snack/blue{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -9050,8 +9038,8 @@
 /area/facility_hallway/safety)
 "Cd" = (
 /obj/machinery/disposal/bin{
-	pixel_y = 4;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 4
 	},
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -9064,12 +9052,12 @@
 "Ce" = (
 /obj/effect/turf_decal/stripes/red/line,
 /obj/machinery/computer/shuttle/mining{
+	dir = 1;
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_southeast";
-	shuttleId = "iotamain";
-	dir = 1;
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
@@ -9094,9 +9082,9 @@
 /area/department_main/safety)
 "Cj" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
 	name = "Safety Department";
 	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
 	opacity = 0
 	},
 /turf/open/floor/facility/halls,
@@ -9161,9 +9149,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -9234,8 +9222,8 @@
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /obj/structure/table/wood,
 /obj/effect/turf_decal/siding/wood{
@@ -9253,9 +9241,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /obj/structure/disposalpipe/segment{
@@ -9269,8 +9257,8 @@
 "CH" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/training)
 "CI" = (
@@ -9302,10 +9290,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction/flip{
 	dir = 1
@@ -9328,8 +9316,8 @@
 /area/facility_hallway/safety)
 "CK" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/welfare)
 "CL" = (
@@ -9348,8 +9336,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/west)
@@ -9396,13 +9384,13 @@
 /obj/structure/flora/ausbushes/brflowers,
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	resistance_flags = 115;
 	pixel_x = 32;
-	pixel_y = -128
+	pixel_y = -128;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115;
-	pixel_y = -96
+	pixel_y = -96;
+	resistance_flags = 115
 	},
 /turf/open/floor/grass{
 	density = 1
@@ -9462,8 +9450,8 @@
 	dir = 1
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "Do" = (
@@ -9512,10 +9500,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction,
 /obj/effect/landmark/xeno_spawn,
@@ -9526,31 +9514,31 @@
 "Dt" = (
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
-	resistance_flags = 115;
-	pixel_x = 32
+	pixel_x = 32;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner{
-	resistance_flags = 115;
-	pixel_y = 32
+	pixel_y = 32;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
-	resistance_flags = 115;
 	pixel_x = 32;
-	pixel_y = -32
+	pixel_y = -32;
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner{
-	resistance_flags = 115;
+	pixel_x = -32;
 	pixel_y = 32;
-	pixel_x = -32
+	resistance_flags = 115
 	},
 /turf/open/lava{
-	density = 1;
 	color = "#006700";
-	name = "Unrefined Enkephalin";
+	density = 1;
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
-	light_range = 0
+	light_range = 0;
+	name = "Unrefined Enkephalin"
 	},
 /area/department_main/discipline)
 "Du" = (
@@ -9617,9 +9605,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -9633,10 +9621,10 @@
 /obj/docking_port/stationary{
 	dwidth = 3;
 	height = 5;
-	width = 6;
 	id = "iotafinal_central";
 	name = "Central Command";
-	roundstart_template = /datum/map_template/shuttle/iotafinal/elevator
+	roundstart_template = /datum/map_template/shuttle/iotafinal/elevator;
+	width = 6
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/human)
@@ -9673,9 +9661,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -9750,7 +9738,6 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "Ed" = (
-/obj/machinery/vending/clothing,
 /obj/item/wallframe/painting{
 	pixel_y = 26
 	},
@@ -9786,8 +9773,8 @@
 /area/facility_hallway/safety)
 "Ek" = (
 /obj/structure/chair/sofa/right{
-	dir = 4;
 	can_buckle = 0;
+	dir = 4;
 	pixel_x = 5
 	},
 /obj/effect/turf_decal/siding/brown{
@@ -9809,9 +9796,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/mineral/titanium/blue{
@@ -9843,35 +9830,35 @@
 	dir = 4
 	},
 /obj/item/camera{
-	pixel_y = 9;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 9
 	},
 /obj/item/camera{
-	pixel_y = 9;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 9
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /obj/item/camera_film{
-	pixel_y = 2;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 2
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
 "Ey" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -9917,9 +9904,9 @@
 /area/department_main/command)
 "EG" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/mining.dmi';
 	name = "Training department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/mining.dmi'
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9987,10 +9974,10 @@
 /obj/machinery/navbeacon/wayfinding/centralcommanddepartment,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 11;
-	view_range = 11;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 11;
+	view_range = 11
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -10021,8 +10008,8 @@
 	pixel_x = -7
 	},
 /obj/item/reagent_containers/glass/rag{
-	pixel_y = 2;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = 2
 	},
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -10063,8 +10050,8 @@
 	},
 /obj/item/pen/fountain/captain{
 	name = "lobotomy corp issued fountain pen";
-	pixel_y = 5;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 5
 	},
 /obj/structure/table/wood,
 /turf/open/floor/mineral/titanium/purple{
@@ -10161,8 +10148,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -10170,10 +10157,10 @@
 /area/facility_hallway/control)
 "FK" = (
 /obj/machinery/vending/medical{
-	req_access = list();
+	density = 0;
 	pixel_x = 0s;
 	pixel_y = 19;
-	density = 0
+	req_access = list()
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -10220,8 +10207,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -10276,8 +10263,8 @@
 	dir = 4
 	},
 /obj/machinery/button/crematorium/indestructible{
-	pixel_y = 27;
-	id = "cremawheat1"
+	id = "cremawheat1";
+	pixel_y = 27
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -10321,20 +10308,20 @@
 /obj/structure/toolabnormality/shelter/entrance,
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	resistance_flags = 115;
+	pixel_x = -128;
 	pixel_y = 167;
-	pixel_x = -128
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/east{
-	resistance_flags = 115;
+	pixel_x = -160;
 	pixel_y = 160;
-	pixel_x = -160
+	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/north{
 	max_integrity = 25;
-	resistance_flags = 115;
+	pixel_x = -128;
 	pixel_y = 167;
-	pixel_x = -128
+	resistance_flags = 115
 	},
 /turf/open/floor/facility,
 /area/space)
@@ -10370,8 +10357,8 @@
 	pixel_y = 4
 	},
 /obj/machinery/vending/snack/blue{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -10394,8 +10381,8 @@
 	dir = 8
 	},
 /obj/machinery/button/crematorium/indestructible{
-	pixel_y = 27;
-	id = "cremawheat2"
+	id = "cremawheat2";
+	pixel_y = 27
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -10436,8 +10423,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -10491,8 +10478,8 @@
 	pixel_y = 4
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/human)
 "GN" = (
@@ -10554,9 +10541,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/dark{
@@ -10592,8 +10579,8 @@
 	desc = "A server for the information department. Stores information.";
 	icon_state = "blackbox";
 	name = "Information Server";
-	resistance_flags = 115;
-	pixel_y = 19
+	pixel_y = 19;
+	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -10601,8 +10588,8 @@
 /area/department_main/information)
 "GY" = (
 /obj/structure/chair/comfy/brown{
-	dir = 1;
 	can_buckle = 0;
+	dir = 1;
 	pixel_y = 12
 	},
 /turf/open/floor/carpet/orange,
@@ -10610,8 +10597,8 @@
 "Ha" = (
 /obj/structure/table/reinforced,
 /obj/structure/sign/ordealmonitor{
-	pixel_y = 2;
-	pixel_x = -1
+	pixel_x = -1;
+	pixel_y = 2
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -10621,9 +10608,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/wood,
@@ -10650,8 +10637,8 @@
 	dir = 8
 	},
 /obj/structure/chair/sofa/left{
-	dir = 8;
 	can_buckle = 0;
+	dir = 8;
 	pixel_x = -5
 	},
 /obj/effect/turf_decal/siding/brown{
@@ -10762,18 +10749,18 @@
 /area/department_main/records)
 "HF" = (
 /obj/structure/filingcabinet/zayininfo{
+	density = 0;
 	pixel_x = -10;
-	pixel_y = 19;
-	density = 0
+	pixel_y = 19
 	},
 /obj/structure/filingcabinet/tethinfo{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /obj/structure/filingcabinet/heinfo{
+	density = 0;
 	pixel_x = 10;
-	pixel_y = 19;
-	density = 0
+	pixel_y = 19
 	},
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
@@ -10802,8 +10789,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -10815,8 +10802,8 @@
 /area/facility_hallway/safety)
 "HM" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/architecture)
 "HO" = (
@@ -10861,9 +10848,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -10938,8 +10925,8 @@
 	pixel_y = 10
 	},
 /obj/item/candle{
-	pixel_y = 7;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 7
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
@@ -10973,12 +10960,12 @@
 /area/department_main/safety)
 "IG" = (
 /turf/open/lava{
-	density = 1;
 	color = "#006700";
-	name = "Unrefined Enkephalin";
+	density = 1;
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
-	light_range = 0
+	light_range = 0;
+	name = "Unrefined Enkephalin"
 	},
 /area/department_main/control)
 "IH" = (
@@ -11011,8 +10998,8 @@
 "IM" = (
 /obj/structure/table/wood/fancy/royalblue,
 /obj/item/candle{
-	pixel_y = 6;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 6
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
@@ -11173,10 +11160,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction/flip{
 	dir = 2
@@ -11201,8 +11188,8 @@
 /area/department_main/command)
 "Jv" = (
 /obj/structure/chair/sofa/left{
-	dir = 4;
 	can_buckle = 0;
+	dir = 4;
 	pixel_x = 5
 	},
 /obj/effect/turf_decal/siding/brown{
@@ -11221,8 +11208,8 @@
 	dir = 5
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -11237,11 +11224,11 @@
 /area/department_main/safety)
 "JA" = (
 /obj/structure/chair/office/light{
-	dir = 8;
-	can_buckle = 0;
 	anchored = 1;
-	pixel_y = 4;
-	pixel_x = -7
+	can_buckle = 0;
+	dir = 8;
+	pixel_x = -7;
+	pixel_y = 4
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 8
@@ -11284,8 +11271,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -11307,8 +11294,8 @@
 	resistance_flags = 115
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "JO" = (
@@ -11355,10 +11342,10 @@
 /area/space)
 "JW" = (
 /obj/structure/railing{
-	resistance_flags = 115;
-	name = "wing-grade railing";
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 4
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/discipline)
@@ -11402,9 +11389,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -11541,8 +11528,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/boozeomat/all_access{
-	pixel_y = 20;
-	density = 0
+	density = 0;
+	pixel_y = 20
 	},
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
@@ -11561,8 +11548,8 @@
 /area/department_main/safety)
 "KS" = (
 /obj/machinery/door/airlock/glass{
-	icon = 'icons/obj/doors/airlocks/station/security.dmi';
-	color = "#877e6d"
+	color = "#877e6d";
+	icon = 'icons/obj/doors/airlocks/station/security.dmi'
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/discipline)
@@ -11604,9 +11591,9 @@
 /area/department_main/safety)
 "KZ" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/command)
@@ -11617,21 +11604,21 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/information)
 "Le" = (
 /obj/machinery/computer/shuttle/mining{
+	dir = 8;
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_southeast";
-	shuttleId = "iotamain";
-	dir = 8;
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
@@ -11668,19 +11655,19 @@
 /area/facility_hallway/command)
 "Ln" = (
 /obj/structure/filingcabinet/wawinfo{
+	density = 0;
 	pixel_x = -11;
-	pixel_y = 19;
-	density = 0
+	pixel_y = 19
 	},
 /obj/structure/filingcabinet/alephinfo{
+	density = 0;
 	pixel_x = -1;
-	pixel_y = 19;
-	density = 0
+	pixel_y = 19
 	},
 /obj/structure/filingcabinet/toolinfo{
+	density = 0;
 	pixel_x = 9;
-	pixel_y = 19;
-	density = 0
+	pixel_y = 19
 	},
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
@@ -11762,8 +11749,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -11781,8 +11768,8 @@
 	},
 /obj/structure/sign/directions/evac{
 	dir = 8;
-	pixel_y = 32;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -11813,13 +11800,13 @@
 /area/facility_hallway/control)
 "LL" = (
 /obj/machinery/computer/shuttle/mining{
+	dir = 4;
 	max_integrity = 3000000;
 	name = "warp pod console";
-	possible_destinations = "iotaextra_control";
-	shuttleId = "iotaextra";
-	dir = 4;
 	pixel_x = -4;
-	resistance_flags = 115
+	possible_destinations = "iotaextra_control";
+	resistance_flags = 115;
+	shuttleId = "iotaextra"
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ff4162";
@@ -11841,8 +11828,8 @@
 /area/department_main/information)
 "LN" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/information)
 "LO" = (
@@ -11850,9 +11837,9 @@
 	dir = 4
 	},
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/command.dmi';
 	name = "Welfare Department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/command.dmi'
+	normal_integrity = 500
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/welfare)
@@ -11940,8 +11927,8 @@
 	},
 /obj/structure/sink/kitchen{
 	dir = 8;
-	pixel_y = 4;
-	pixel_x = 16
+	pixel_x = 16;
+	pixel_y = 4
 	},
 /obj/item/reagent_containers/glass/bucket,
 /turf/open/floor/plasteel/white,
@@ -11956,9 +11943,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
@@ -11971,9 +11958,9 @@
 /area/facility_hallway/east)
 "Mh" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
 	name = "Safety Department";
 	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/virology.dmi';
 	opacity = 0
 	},
 /obj/structure/disposalpipe/segment{
@@ -11986,8 +11973,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -12069,8 +12056,8 @@
 /area/facility_hallway/human)
 "My" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/extraction)
 "MA" = (
@@ -12154,14 +12141,14 @@
 /area/department_main/information)
 "MR" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/records)
 "MS" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -12178,8 +12165,8 @@
 /area/facility_hallway/east)
 "MZ" = (
 /obj/structure/window/reinforced/fulltile{
-	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
+	max_integrity = 500
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -12195,12 +12182,12 @@
 /area/facility_hallway/human)
 "Nc" = (
 /obj/machinery/computer/shuttle/mining{
+	density = 0;
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_northwest";
-	shuttleId = "iotamain";
-	density = 0;
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
@@ -12219,8 +12206,8 @@
 	dir = 9
 	},
 /obj/machinery/vending/snack/teal{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
@@ -12300,10 +12287,10 @@
 /obj/machinery/navbeacon/wayfinding/safetydepartment,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 11;
-	view_range = 11;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 11;
+	view_range = 11
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 6
@@ -12373,8 +12360,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 4;
@@ -12396,8 +12383,8 @@
 /area/facility_hallway/safety)
 "NI" = (
 /obj/structure/chair/sofa/corp/corner{
-	dir = 4;
-	can_buckle = 0
+	can_buckle = 0;
+	dir = 4
 	},
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 1
@@ -12442,9 +12429,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -12462,8 +12449,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/east)
@@ -12512,10 +12499,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -12570,9 +12557,9 @@
 /area/department_main/safety)
 "Oj" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/training)
@@ -12698,8 +12685,8 @@
 /area/facility_hallway/discipline)
 "OE" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/control)
 "OF" = (
@@ -12784,8 +12771,8 @@
 	dir = 8
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -12795,8 +12782,8 @@
 /area/facility_hallway/command)
 "OQ" = (
 /obj/machinery/computer/message_monitor{
-	pixel_y = 13;
-	density = 0
+	density = 0;
+	pixel_y = 13
 	},
 /obj/machinery/light{
 	dir = 1;
@@ -12902,8 +12889,8 @@
 	pixel_y = 4
 	},
 /obj/machinery/vending/snack/green{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -12912,9 +12899,9 @@
 "Pf" = (
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/carpet/black,
@@ -12962,9 +12949,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /turf/open/floor/facility/dark,
@@ -12983,14 +12970,14 @@
 	dir = 5
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "Pr" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/safety)
 "Ps" = (
@@ -13006,8 +12993,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -13058,8 +13045,8 @@
 	dir = 1
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "PL" = (
@@ -13134,10 +13121,10 @@
 /area/facility_hallway/east)
 "PW" = (
 /obj/machinery/door/airlock{
-	name = "Disciplinary Department";
-	normal_integrity = 500;
+	color = "#877e6d";
 	icon = 'icons/obj/doors/airlocks/station/security.dmi';
-	color = "#877e6d"
+	name = "Disciplinary Department";
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
@@ -13320,8 +13307,8 @@
 /area/facility_hallway/safety)
 "QD" = (
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 4
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -13452,12 +13439,12 @@
 	resistance_flags = 115
 	},
 /obj/machinery/computer/shuttle/mining{
+	dir = 8;
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_northeast";
-	shuttleId = "iotamain";
-	dir = 8;
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -13485,9 +13472,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 5;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 5;
 	view_range = 5
 	},
 /obj/structure/disposalpipe/segment{
@@ -13557,8 +13544,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -13570,8 +13557,8 @@
 /area/facility_hallway/control)
 "Rz" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 6;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 6
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -13606,10 +13593,10 @@
 /area/department_main/training)
 "RK" = (
 /obj/machinery/door/airlock{
-	name = "Disciplinary Department";
-	normal_integrity = 500;
+	color = "#877e6d";
 	icon = 'icons/obj/doors/airlocks/station/security.dmi';
-	color = "#877e6d"
+	name = "Disciplinary Department";
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
@@ -13732,8 +13719,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -13741,8 +13728,8 @@
 /area/facility_hallway/welfare)
 "Sh" = (
 /obj/machinery/disposal/bin{
-	pixel_x = -15;
 	density = 0;
+	pixel_x = -15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -13803,8 +13790,8 @@
 "St" = (
 /obj/machinery/computer/crew{
 	dir = 4;
-	resistance_flags = 115;
-	pixel_x = -3
+	pixel_x = -3;
+	resistance_flags = 115
 	},
 /turf/open/floor/mineral/titanium/blue{
 	name = "floor"
@@ -13816,8 +13803,8 @@
 	dir = 4
 	},
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "SA" = (
@@ -13831,8 +13818,8 @@
 "SD" = (
 /obj/structure/flora/tree/pine,
 /turf/open/floor/holofloor/snow/cold{
-	name = "polluted snow";
-	color = "#ccc8c0"
+	color = "#ccc8c0";
+	name = "polluted snow"
 	},
 /area/space)
 "SF" = (
@@ -13894,8 +13881,8 @@
 	set_luminosity = 24
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/human)
 "SM" = (
@@ -13977,10 +13964,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -13993,8 +13980,8 @@
 /area/facility_hallway/command)
 "SV" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/command)
 "SW" = (
@@ -14012,9 +13999,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -14027,12 +14014,12 @@
 /area/department_main/safety)
 "Tc" = (
 /obj/docking_port/stationary{
-	name = "NW - Control/Safety";
-	height = 7;
 	dwidth = 4;
-	width = 8;
+	height = 7;
 	id = "iotamain_northwest";
-	roundstart_template = /datum/map_template/shuttle/iotamain/elevator
+	name = "NW - Control/Safety";
+	roundstart_template = /datum/map_template/shuttle/iotamain/elevator;
+	width = 8
 	},
 /turf/open/floor/plasteel/elevatorshaft,
 /area/facility_hallway/west)
@@ -14085,8 +14072,8 @@
 /area/facility_hallway/east)
 "Ts" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 5;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 5
 	},
 /turf/open/floor/wood{
 	color = "#ccc8c0"
@@ -14128,8 +14115,8 @@
 	resistance_flags = 115
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -4
+	pixel_x = -4;
+	pixel_y = 27
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ff4162";
@@ -14174,8 +14161,8 @@
 /area/facility_hallway/welfare)
 "TI" = (
 /obj/structure/chair/sofa/corp/left{
-	dir = 8;
-	can_buckle = 0
+	can_buckle = 0;
+	dir = 8
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/welfare)
@@ -14184,12 +14171,12 @@
 	resistance_flags = 115
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = -17
+	pixel_x = -17;
+	pixel_y = 27
 	},
 /obj/machinery/computer/security/telescreen{
-	pixel_y = 27;
-	pixel_x = 3
+	pixel_x = 3;
+	pixel_y = 27
 	},
 /turf/open/floor/mineral/titanium/purple{
 	color = "#ff4162";
@@ -14253,9 +14240,9 @@
 /area/facility_hallway/information)
 "TU" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/atmos.dmi';
 	name = "Central Command";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/atmos.dmi'
+	normal_integrity = 500
 	},
 /turf/open/floor/facility/halls,
 /area/facility_hallway/command)
@@ -14296,10 +14283,10 @@
 /obj/effect/landmark/xeno_spawn,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 6;
-	view_range = 6;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 6;
+	view_range = 6
 	},
 /turf/open/floor/mineral/titanium/yellow{
 	name = "floor"
@@ -14313,32 +14300,32 @@
 /area/facility_hallway/safety)
 "Uc" = (
 /obj/structure/lattice/lava{
-	resistance_flags = 115;
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step."
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
-	name = "Unrefined Enkephalin";
 	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
 	light_power = 0;
 	light_range = 0;
+	name = "Unrefined Enkephalin";
 	slowdown = 0
 	},
 /area/department_main/control)
 "Ud" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/welfare)
 "Uf" = (
 /obj/effect/turf_decal/siding/wood/corner,
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 8;
-	color = "#331800"
+	color = "#331800";
+	dir = 8
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/welfare)
@@ -14378,9 +14365,9 @@
 /obj/machinery/facility_holomap,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark{
@@ -14419,8 +14406,8 @@
 	dir = 1
 	},
 /obj/structure/sign/directions/evac{
-	pixel_y = 32;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 32
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14432,12 +14419,12 @@
 	dir = 1
 	},
 /obj/machinery/computer/shuttle/mining{
+	dir = 1;
 	max_integrity = 3000000;
 	name = "warp pod console";
 	possible_destinations = "iotamain_southwest";
-	shuttleId = "iotamain";
-	dir = 1;
-	resistance_flags = 115
+	resistance_flags = 115;
+	shuttleId = "iotamain"
 	},
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
@@ -14477,14 +14464,14 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/facility_hallway/east)
 "UA" = (
@@ -14496,8 +14483,8 @@
 /area/facility_hallway/discipline)
 "UD" = (
 /obj/machinery/vending/hydroseeds{
-	pixel_y = 19;
 	density = 0;
+	pixel_y = 19;
 	resistance_flags = 115
 	},
 /obj/effect/turf_decal/tile/brown{
@@ -14553,9 +14540,9 @@
 /obj/effect/turf_decal/caution/white,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -14586,8 +14573,8 @@
 /area/facility_hallway/welfare)
 "UQ" = (
 /obj/effect/turf_decal/siding/wood{
-	dir = 6;
-	color = "#2e1f0e"
+	color = "#2e1f0e";
+	dir = 6
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 5
@@ -14603,9 +14590,9 @@
 /obj/effect/turf_decal/caution/white,
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/facility/dark,
@@ -14621,10 +14608,10 @@
 /obj/machinery/navbeacon/wayfinding/welfaredepartment,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14638,23 +14625,23 @@
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	pixel_x = -5;
@@ -14719,10 +14706,10 @@
 /obj/machinery/navbeacon/wayfinding/trainingdepartment,
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14739,8 +14726,8 @@
 	dir = 4
 	},
 /obj/machinery/disposal/bin{
-	pixel_x = 15;
 	density = 0;
+	pixel_x = 15;
 	resistance_flags = 115
 	},
 /obj/structure/disposalpipe/trunk{
@@ -14763,9 +14750,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/freezer,
@@ -14894,8 +14881,8 @@
 	dir = 1
 	},
 /obj/machinery/vending/cigarette{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -14919,9 +14906,9 @@
 /area/facility_hallway/command)
 "VL" = (
 /obj/structure/chair/sofa/right{
+	can_buckle = 0;
 	dir = 1;
-	pixel_y = 9;
-	can_buckle = 0
+	pixel_y = 9
 	},
 /obj/effect/turf_decal/siding/brown{
 	dir = 1
@@ -14975,9 +14962,9 @@
 	},
 /obj/machinery/camera{
 	alpha = 0;
-	short_range = 13;
-	name = "hidden security camera";
 	mouse_opacity = 0;
+	name = "hidden security camera";
+	short_range = 13;
 	view_range = 13
 	},
 /turf/open/floor/plasteel/freezer,
@@ -14998,9 +14985,9 @@
 /area/department_main/command)
 "Wc" = (
 /obj/structure/window/reinforced/fulltile{
-	opacity = 1;
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
 	max_integrity = 500;
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70)
+	opacity = 1
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/information)
@@ -15185,8 +15172,8 @@
 	set_luminosity = 24
 	},
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction."
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
 	},
 /area/department_main/extraction)
 "WS" = (
@@ -15206,8 +15193,8 @@
 	pixel_y = 19
 	},
 /obj/machinery/vending/snack/orange{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -15222,10 +15209,10 @@
 /area/facility_hallway/command)
 "WW" = (
 /obj/structure/closet/secure_closet/record{
-	pixel_y = 21;
-	density = 0;
 	anchored = 1;
-	breakout_time = 1
+	breakout_time = 1;
+	density = 0;
+	pixel_y = 21
 	},
 /obj/item/toy/crayon/spraycan/infinite{
 	pixel_x = 8
@@ -15238,15 +15225,15 @@
 /obj/item/folder/white,
 /obj/item/toy/plush/dante,
 /obj/item/toner/extreme{
-	pixel_y = -5;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = -5
 	},
 /obj/item/toner/extreme{
 	pixel_x = -6
 	},
 /obj/item/toner/extreme{
-	pixel_y = 5;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 5
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -15365,8 +15352,8 @@
 "Xs" = (
 /obj/structure/chair/comfy/black{
 	dir = 8;
-	pixel_y = 4;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = 4
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/discipline)
@@ -15406,8 +15393,8 @@
 /area/department_main/command)
 "XA" = (
 /obj/effect/turf_decal/siding/wood/corner{
-	dir = 4;
-	color = "#331800"
+	color = "#331800";
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/welfare)
@@ -15430,9 +15417,9 @@
 "XF" = (
 /obj/structure/closet/secure_closet/freezer/fridge/open{
 	anchored = 1;
-	storage_capacity = 1000;
+	density = 0;
 	pixel_y = 19;
-	density = 0
+	storage_capacity = 1000
 	},
 /obj/item/reagent_containers/food/condiment/flour,
 /obj/item/reagent_containers/food/condiment/flour,
@@ -15486,23 +15473,23 @@
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 1;
-	pixel_x = 4
+	pixel_x = 4;
+	pixel_y = 1
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
 	pixel_y = 12
 	},
 /obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 7;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = 7
 	},
 /obj/item/reagent_containers/food/condiment/enzyme{
 	pixel_x = -5;
@@ -15516,8 +15503,8 @@
 /area/facility_hallway/training)
 "XL" = (
 /obj/machinery/vending/snack/blue{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
@@ -15535,8 +15522,8 @@
 /area/facility_hallway/training)
 "XP" = (
 /turf/closed/indestructible/reinforced{
-	name = "facility wall";
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall";
 	opacity = 0
 	},
 /area/facility_hallway/training)
@@ -15585,9 +15572,9 @@
 /area/facility_hallway/information)
 "Yf" = (
 /obj/machinery/door/airlock{
+	icon = 'icons/obj/doors/airlocks/station/security.dmi';
 	name = "Control Department";
-	normal_integrity = 500;
-	icon = 'icons/obj/doors/airlocks/station/security.dmi'
+	normal_integrity = 500
 	},
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/facility/halls,
@@ -15606,8 +15593,8 @@
 	pixel_y = 19
 	},
 /obj/machinery/vending/snack{
-	pixel_y = 19;
-	density = 0
+	density = 0;
+	pixel_y = 19
 	},
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
@@ -15693,10 +15680,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 13;
-	view_range = 13;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 13;
+	view_range = 13
 	},
 /obj/structure/disposalpipe/junction/yjunction,
 /obj/effect/landmark/xeno_spawn,
@@ -15752,8 +15739,8 @@
 	name = "lobotomy corp issued fountain pen"
 	},
 /obj/item/flashlight/lamp{
-	pixel_y = 16;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 16
 	},
 /turf/open/floor/mineral/titanium/purple{
 	name = "floor"
@@ -15786,10 +15773,10 @@
 	},
 /obj/machinery/camera/autoname{
 	alpha = 0;
-	short_range = 6;
-	view_range = 6;
+	mouse_opacity = 0;
 	name = "hidden security camera";
-	mouse_opacity = 0
+	short_range = 6;
+	view_range = 6
 	},
 /obj/structure/disposalpipe/junction/yjunction,
 /obj/effect/landmark/xeno_spawn,
@@ -15814,8 +15801,8 @@
 	pixel_y = 27
 	},
 /obj/structure/sink{
-	pixel_y = 14;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = 14
 	},
 /obj/machinery/light{
 	dir = 8;
@@ -15902,8 +15889,8 @@
 /area/facility_hallway/command)
 "Zm" = (
 /obj/machinery/door/airlock/glass{
-	icon = 'icons/obj/doors/airlocks/station/security.dmi';
-	color = "#877e6d"
+	color = "#877e6d";
+	icon = 'icons/obj/doors/airlocks/station/security.dmi'
 	},
 /turf/open/floor/facility/halls,
 /area/department_main/extraction)
@@ -16017,8 +16004,8 @@
 "ZT" = (
 /obj/machinery/modular_computer/console/preset/research{
 	dir = 1;
-	resistance_flags = 115;
-	pixel_y = 5
+	pixel_y = 5;
+	resistance_flags = 115
 	},
 /obj/machinery/modular_computer/console/preset/research{
 	pixel_y = -12;
@@ -44199,7 +44186,7 @@ hV
 md
 XN
 fa
-yw
+pu
 OG
 Jv
 Ek

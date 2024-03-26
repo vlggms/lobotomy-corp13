@@ -364,15 +364,6 @@
 	item_path = /obj/item/gun/ego_gun/pistol/crimson
 	cost = 50
 
-//Pure Hearted Believer - Untainted Faith
-/datum/ego_datum/armor/faith
-	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/faith
-	cost = 50
-
-/*/datum/ego_datum/weapon/faith
-	item_path = /obj/item/ego_weapon/faith
-	cost = 50*/
-
 //My Sweet Orange Tree - Innocence
 /datum/ego_datum/armor/innocence
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/innocence
@@ -456,7 +447,7 @@
 	item_path = /obj/item/ego_weapon/scene
 	cost = 50
 
-//Sign of Roses - Flore sicut rosa
+//Sign of Roses - Garden Of Thorns
 /datum/ego_datum/armor/rosa
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/rosa
 	cost = 50
@@ -464,3 +455,17 @@
 /datum/ego_datum/weapon/rosa
 	item_path = /obj/item/ego_weapon/rosa
 	cost = 50
+
+//Dream-Devouring Siltcurrent - Blind Obsession/Abyssal-Route
+/datum/ego_datum/armor/blind_obsession
+	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
+	cost = 50
+
+/datum/ego_datum/weapon/blind_obsession
+	item_path = /obj/item/ego_weapon/blind_obsession
+	cost = 50
+
+/datum/ego_datum/weapon/abyssal_route
+	item_path = /obj/item/ego_weapon/abyssal_route
+	cost = 50
+

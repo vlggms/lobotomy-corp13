@@ -86,15 +86,19 @@
 
 /datum/facility_upgrade/bullet/red
 	name = RED_BULLET
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/white
 	name = WHITE_BULLET
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/black
 	name = BLACK_BULLET
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/pale
 	name = PALE_BULLET
+	cost = 0.5
 
 /datum/facility_upgrade/bullet/yellow
 	name = YELLOW_BULLET

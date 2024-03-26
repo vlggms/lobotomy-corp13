@@ -158,13 +158,13 @@
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/seasons/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
 
 /mob/living/simple_animal/hostile/abnormality/seasons/PostSpawn()
 	. = ..()
 	dir = SOUTH
 	Transform()
-	work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 	if((locate(/obj/effect/season_turf) in range(1, src)))
 		return
 	Downgrade()
@@ -275,9 +275,9 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/WorkCheck()
 	if(!CheckWeather() && !safe)
 		StartWeather()
-		work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 30 SECONDS, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+		work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 30 SECONDS, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 		return
-	work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 	if(safe)
 		if(CheckWeather())
 			SSweather.end_weather(season_stats[current_season][1])
@@ -291,8 +291,8 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()
 	if(downgraded)
-		addtimer(CALLBACK(src, .proc/Upgrade), 10 SECONDS)
-		addtimer(CALLBACK(src, .proc/EndWeather), 60 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Upgrade)), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(EndWeather)), 60 SECONDS)
 	if(!CheckWeather())
 		StartWeather()
 
@@ -460,8 +460,8 @@
 				continue
 			if(T.density)
 				continue
-			addtimer(CALLBACK(src, .proc/PulseWarn, T), (3 * (i+1)) + 0.1 SECONDS)
-			addtimer(CALLBACK(src, .proc/PulseHit, T), (3 * (i+1)) + 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(PulseWarn), T), (3 * (i+1)) + 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(PulseHit), T), (3 * (i+1)) + 0.5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/PulseWarn(turf/T)
 	var/attacktype = breaching_stats[current_season][6]
@@ -642,7 +642,7 @@
 /datum/status_effect/freezing
 	id = "freezing"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 300
+	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/freezing
 
 /atom/movable/screen/alert/status_effect/freezing
@@ -654,7 +654,7 @@
 /datum/status_effect/fogbound
 	id = "fogbound"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 300
+	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/fogbound
 
 /datum/status_effect/fogbound/on_apply()
@@ -696,7 +696,7 @@
 
 /obj/effect/season_turf/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
 	Transform()
 
 /obj/effect/season_turf/proc/Transform()
@@ -809,7 +809,7 @@
 
 /obj/effect/season_effect/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/pop), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(pop)), 0.5 SECONDS)
 
 /obj/effect/season_effect/proc/pop()
 	if(!locate(/obj/effect/season_turf/temporary) in get_turf(src))

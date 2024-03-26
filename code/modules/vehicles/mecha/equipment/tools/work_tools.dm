@@ -185,7 +185,7 @@
 	var/turf/T2 = get_step(T,turn(direction, -90))
 
 	var/list/the_targets = list(T,T1,T2)
-	INVOKE_ASYNC(src, .proc/do_extinguish, the_targets, source)
+	INVOKE_ASYNC(src, PROC_REF(do_extinguish), the_targets, source)
 	return ..()
 
 ///Creates new water effects and moves them, takes a list of turfs as an argument

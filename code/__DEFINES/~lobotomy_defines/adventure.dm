@@ -1,13 +1,13 @@
 // defines used in ModularTegustation/_adventure_console
 
-#define DEBUG_TEXT_DISPLAY 1
-#define NORMAL_TEXT_DISPLAY 2
-#define ADVENTURE_TEXT_DISPLAY 3
+#define DEBUG_TEXT_DISPLAY (1<<0)
+#define NORMAL_TEXT_DISPLAY (1<<1)
+#define ADVENTURE_TEXT_DISPLAY (1<<2)
 
 //Modes for what is displayed on the adventure panel.
-#define ADVENTURE_MODE_TRAVEL 1
-#define ADVENTURE_MODE_BATTLE 2
-#define ADVENTURE_MODE_EVENT_BATTLE 3
+#define ADVENTURE_MODE_TRAVEL (1<<0)
+#define ADVENTURE_MODE_BATTLE (1<<1)
+#define ADVENTURE_MODE_EVENT_BATTLE (1<<2)
 
 //Stats defined. I honestly didnt want to make it have limbus company sins but here we are.
 #define WRATH_STAT 1

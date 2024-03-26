@@ -71,8 +71,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
-	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, .proc/OnHumanInsane)
+	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, PROC_REF(OnAbnoWork))
+	RegisterSignal(SSdcs, COMSIG_GLOB_HUMAN_INSANE, PROC_REF(OnHumanInsane))
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED)
@@ -283,14 +283,14 @@
 	base_pixel_y = initial(base_pixel_y)
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
 	update_icon()
-	death_timer = addtimer(CALLBACK(src, .proc/kill_bird), 180 SECONDS, TIMER_STOPPABLE)
+	death_timer = addtimer(CALLBACK(src, PROC_REF(kill_bird)), 180 SECONDS, TIMER_STOPPABLE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/kill_bird()
 	if(!(status_flags & GODMODE) && !isliving(target) && icon_state != "pbird_red")
 		QDEL_NULL(src)
 	else
-		death_timer = addtimer(CALLBACK(src, .proc/kill_bird), 60 SECONDS, TIMER_STOPPABLE)
+		death_timer = addtimer(CALLBACK(src, PROC_REF(kill_bird)), 60 SECONDS, TIMER_STOPPABLE)
 
 // Modified patrolling
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/patrol_select()
@@ -312,7 +312,7 @@
 
 	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 

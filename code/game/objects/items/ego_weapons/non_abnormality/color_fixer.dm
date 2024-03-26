@@ -15,11 +15,11 @@
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 120,
-							TEMPERANCE_ATTRIBUTE = 120,
-							JUSTICE_ATTRIBUTE = 120
-							)
+		FORTITUDE_ATTRIBUTE = 120,
+		PRUDENCE_ATTRIBUTE = 120,
+		TEMPERANCE_ATTRIBUTE = 120,
+		JUSTICE_ATTRIBUTE = 120,
+	)
 	var/ready = TRUE
 
 
@@ -31,10 +31,10 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, "<span class='userdanger'>READY.</span>")
+	to_chat(user, span_userdanger("READY."))
 	force*=1.5
 	user.adjustBruteLoss(user.maxHealth*0.5)
-	addtimer(CALLBACK(src, .proc/Return, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 15 SECONDS)
 
 
 /obj/item/ego_weapon/city/vermillion/attack(mob/living/target, mob/living/carbon/human/user)
@@ -47,14 +47,14 @@
 		living = FALSE
 
 	if(force != initial(force) && !living)
-		to_chat(user, "<span class='userdanger'>ANOTHER.</span>")
+		to_chat(user, span_userdanger("ANOTHER."))
 		force*=1.5
 		user.adjustBruteLoss(-user.maxHealth*0.1)
 
 /obj/item/ego_weapon/city/vermillion/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
-	to_chat(user, "<span class='notice'>I AM NOT SATED.</span>")
+	to_chat(user, span_notice("I AM NOT SATED."))
 
 /obj/item/ego_weapon/mimicry/kali
 	name = "True Mimicry"

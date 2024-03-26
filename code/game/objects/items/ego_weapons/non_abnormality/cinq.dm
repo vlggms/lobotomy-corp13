@@ -11,11 +11,11 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
-							)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 	var/ready = TRUE
 	var/multiplier = 2
 
@@ -44,8 +44,8 @@
 	user.adjustStaminaLoss(10, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
 
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
-	addtimer(CALLBACK(src, .proc/Reset, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Reset), user), 15 SECONDS)
 
 
 /obj/item/ego_weapon/city/cinq/attack(mob/living/target, mob/living/carbon/human/user)

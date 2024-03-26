@@ -28,6 +28,7 @@
 	attack_verb_simple = "bite into"
 	speak_emote = list("chitters")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_vis_effect = ATTACK_EFFECT_BITE
 	aggro_vision_range = 9
 	turns_per_move = 5
 	gold_core_spawnable = HOSTILE_SPAWN
@@ -78,7 +79,7 @@
 			set_varspeed(0)
 			warmed_up = TRUE
 			projectiletype = /obj/projectile/temp/basilisk/heated
-			addtimer(CALLBACK(src, .proc/cool_down), 3000)
+			addtimer(CALLBACK(src, PROC_REF(cool_down)), 3000)
 
 /mob/living/simple_animal/hostile/asteroid/basilisk/proc/cool_down()
 	visible_message(span_warning("[src] appears to be cooling down..."))
@@ -108,6 +109,7 @@
 	a_intent = INTENT_HARM
 	speak_emote = list("telepathically cries")
 	attack_sound = 'sound/weapons/bladeslice.ogg'
+	attack_vis_effect = null // doesn't bite unlike the parent type.
 	stat_attack = HARD_CRIT
 	is_flying_animal = TRUE
 	robust_searching = 1

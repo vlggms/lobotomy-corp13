@@ -43,7 +43,7 @@
 	if(CA_count > 0 && records_cooldown_timer && usable)
 		//We have a cooldown, so first to not cheat the player out of time we first start the cooldown timer
 		//If we have more then console in are view then increase are cooldown by that count. This is to keep the watches cost constant
-		addtimer(CALLBACK(src, .proc/reset), (records_cooldown_timer * CA_count))
+		addtimer(CALLBACK(src, PROC_REF(reset)), (records_cooldown_timer * CA_count))
 		//Set the watch to not be usable as we are now on cooldown
 		usable = FALSE
 	else

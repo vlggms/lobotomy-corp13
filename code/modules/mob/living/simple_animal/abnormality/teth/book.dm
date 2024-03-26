@@ -69,6 +69,8 @@
 	user.Stun(5 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return FALSE
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
 	return TRUE

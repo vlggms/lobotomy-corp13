@@ -41,8 +41,12 @@
 		user.Stun(30 SECONDS)
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			return
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			return
 		animate(user, alpha = 0,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 		to_chat(user, span_userdanger("You will make it to the top, no matter what!"))
 		QDEL_IN(user, 3.5 SECONDS)
@@ -57,13 +61,25 @@
 		user.Stun(3 SECONDS)
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			work_damage_amount = 7
+			climbing = FALSE
+			return
 		step_towards(user, src)
 		sleep(0.5 SECONDS)
+		if(QDELETED(user))
+			work_damage_amount = 7
+			climbing = FALSE
+			return
 		to_chat(user, span_userdanger("You start to climb!"))
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 		user.pixel_z = 16
 		user.Stun(10 SECONDS)
 		sleep(6 SECONDS)
+		if(QDELETED(user))
+			work_damage_amount = 7
+			climbing = FALSE
+			return
 		var/datum/ego_gifts/giant/BWJEG = new
 		BWJEG.datum_reference = datum_reference
 		user.Apply_Gift(BWJEG)

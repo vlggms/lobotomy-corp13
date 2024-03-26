@@ -14,6 +14,7 @@
 
 // BEGIN_INCLUDE
 #include "_maps\_basemap.dm"
+#include "code\__byond_version_compat.dm"
 #include "code\_compile_options.dm"
 #include "code\world.dm"
 #include "code\__DEFINES\_click.dm"
@@ -178,6 +179,7 @@
 #include "code\__HELPERS\matrices.dm"
 #include "code\__HELPERS\mobs.dm"
 #include "code\__HELPERS\mouse_control.dm"
+#include "code\__HELPERS\nameof.dm"
 #include "code\__HELPERS\names.dm"
 #include "code\__HELPERS\priority_announce.dm"
 #include "code\__HELPERS\pronouns.dm"
@@ -524,7 +526,6 @@
 #include "code\datums\components\radioactive.dm"
 #include "code\datums\components\religious_tool.dm"
 #include "code\datums\components\remote_materials.dm"
-#include "code\datums\components\rot.dm"
 #include "code\datums\components\rotation.dm"
 #include "code\datums\components\shrink.dm"
 #include "code\datums\components\silkweave.dm"
@@ -2883,6 +2884,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\waw\screenwriter.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\shrimp.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\silence.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\waw\siltcurrent.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\snow_whites_apple.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\sphinx.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\waw\thunder_bird.dm"

@@ -120,7 +120,7 @@
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Initialize()
 	. = ..()
 	beamloop = new(list(src), FALSE)
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
 	var/icon/I = icon('ModularTegustation/Teguicons/64x48.dmi',icon_living) //create inverted colors icon
 	I.MapColors(-1,0,0, 0,-1,0, 0,0,-1, 1,1,1)
 	icon_inverted = I
@@ -134,7 +134,7 @@
 	alpha = initial(alpha)
 	var/obj/effect/qoh_sygil/S = new(get_turf(src))
 	S.icon_state = "qoh2"
-	addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 5 SECONDS)
+	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 5 SECONDS)
 	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
 		QS.fade_out()
 	spawned_effects.Cut()
@@ -185,37 +185,37 @@
 		return
 
 	if(prob(4))
-		addtimer(CALLBACK(src, .atom/movable/proc/say, "With love!"))
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "With love!"))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/Life()
 	. = ..()
 	if(IsContained()) // Contained
 		if(datum_reference?.qliphoth_meter == 1)
-			addtimer(CALLBACK(src, .proc/SpawnHeart), rand(2,8))
-			addtimer(CALLBACK(src, .proc/SpawnHeart), rand(4,10))
+			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(2,8))
+			addtimer(CALLBACK(src, PROC_REF(SpawnHeart)), rand(4,10))
 	if(.)
 		if(!friendly && can_act)
 			switch(hp_teleport_counter)
 				if(3)
 					if(maxHealth*0.7 > health) // These work specifically well because she heals while Hysteric.
 						hp_teleport_counter--
-						INVOKE_ASYNC(src, .proc/TryTeleport, TRUE)
+						INVOKE_ASYNC(src, PROC_REF(TryTeleport), TRUE)
 						return
 				if(2)
 					if(maxHealth*0.4 > health)
 						hp_teleport_counter--
-						INVOKE_ASYNC(src, .proc/TryTeleport, TRUE)
+						INVOKE_ASYNC(src, PROC_REF(TryTeleport), TRUE)
 						return
 				if(1)
 					if(maxHealth*0.1 > health)
 						hp_teleport_counter--
-						INVOKE_ASYNC(src, .proc/TryTeleport, TRUE)
+						INVOKE_ASYNC(src, PROC_REF(TryTeleport), TRUE)
 						return
 		if(client)
 			return
 		if(teleport_cooldown <= world.time)
-			INVOKE_ASYNC(src, .proc/TryTeleport)
+			INVOKE_ASYNC(src, PROC_REF(TryTeleport))
 		return
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/SpawnHeart()
@@ -254,7 +254,7 @@
 	var/obj/effect/qoh_sygil/S = new(get_turf(src))
 	S.icon_state = "qoh1"
 	spawned_effects += S
-	addtimer(CALLBACK(src, .atom/movable/proc/say, "Go! Arcana Beats~!"))
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "Go! Arcana Beats~!"))
 	switch(dir)
 		if(EAST)
 			S.pixel_x += 16
@@ -280,7 +280,7 @@
 	beats_hit = list()
 	var/i = 1
 	for(var/turf/T in turfs_to_hit)
-		addtimer(CALLBACK(src, .proc/BeatsTurf, T), i*0.4)
+		addtimer(CALLBACK(src, PROC_REF(BeatsTurf), T), i*0.4)
 		i++
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	for(var/obj/effect/qoh_sygil/SE in spawned_effects)
@@ -341,8 +341,8 @@
 					S.layer += i*0.1
 				if(NORTH)
 					S.layer -= i*0.1 // So they appear below each other
-			addtimer(CALLBACK(src, .atom/movable/proc/say, beamtalk[i*2 - 1]))
-			addtimer(CALLBACK(src, .atom/movable/proc/say, beamtalk[i*2]), beam_startup/2)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), beamtalk[i*2 - 1]))
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), beamtalk[i*2]), beam_startup/2)
 		else //hostile sigil spawning
 			switch(i)
 				if(1)
@@ -370,7 +370,7 @@
 	var/beam_stage = 1
 	var/beam_damage_final = beam_damage
 	if(friendly)
-		addtimer(CALLBACK(src, .atom/movable/proc/say, "ARCANA SLAVE!"))
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	else
 		accumulated_beam_damage = 150
 	for(var/h = 1 to beam_maximum_ticks)
@@ -480,7 +480,7 @@
 	forceMove(teleport_target)
 	var/obj/effect/qoh_sygil/S = new(teleport_target)
 	S.icon_state = "qoh2"
-	addtimer(CALLBACK(S, .obj/effect/qoh_sygil/proc/fade_out), 2 SECONDS)
+	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 2 SECONDS)
 	SLEEP_CHECK_DEATH(2 SECONDS) //2 seconds to teleport
 	invisibility = 0
 	density = TRUE
@@ -542,14 +542,14 @@
 		return
 	if(!can_act)
 		if(retries < 50)
-			addtimer(CALLBACK(src, .proc/GoHysteric, retries++), 1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(GoHysteric), retries++), 1 SECONDS)
 		return
 	can_act = FALSE
 	breach_max_death = 0
 	icon_state = icon_crazy
 	visible_message(span_danger("[src] falls to her knees, muttering something under her breath."))
-	addtimer(CALLBACK(src, .atom/movable/proc/say, "I wasn’t able to protect anyone like she did…"))
-	addtimer(CALLBACK(src, .proc/HostileTransform), 10 SECONDS)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "I wasn’t able to protect anyone like she did…"))
+	addtimer(CALLBACK(src, PROC_REF(HostileTransform)), 10 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -586,7 +586,7 @@
 	teleport_cooldown_time = 10 SECONDS
 	retreat_distance = null //this is annoying
 	beam_cooldown = world.time + beam_cooldown_time
-	addtimer(CALLBACK(src, .proc/TryTeleport, TRUE), 5)
+	addtimer(CALLBACK(src, PROC_REF(TryTeleport), TRUE), 5)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/ZeroQliphoth(mob/living/carbon/human/user)
 	friendly = FALSE
@@ -598,12 +598,12 @@
 		friendly = TRUE
 		fear_level = TETH_LEVEL
 		beam_cooldown = world.time + beam_cooldown_time //no immediate beam
-		addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 		for(var/mob/living/carbon/human/saving_humans in GLOB.mob_living_list) //gets all alive people
 			if((saving_humans.stat != DEAD) && saving_humans.z == z)
 				breach_max_death++
 		breach_max_death = max(breach_max_death/2, 1) //make it 1 if it's somehow zero
-		addtimer(CALLBACK(src, .atom/movable/proc/say, "In the name of Love and Justice~ Here comes Magical Girl!"))
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "In the name of Love and Justice~ Here comes Magical Girl!"))
 		return ..()
 	HostileTransform()
 	return ..()

@@ -12,11 +12,11 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
-							)
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 100,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 
 
 /obj/item/ego_weapon/city/awl/attack(mob/living/target, mob/living/carbon/human/user)
@@ -24,7 +24,7 @@
 		return
 	if(prob(10))
 		force*=2
-		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		to_chat(user, span_userdanger("Critical!"))
 	..()
 	force = initial(force)
 
@@ -67,7 +67,7 @@
 	//Crit itself.
 	if(prob(poise*2))
 		force*=3
-		to_chat(user, "<span class='userdanger'>Critical!</span>")
+		to_chat(user, span_userdanger("Critical!"))
 		poise = 0
 		icon_state = "kurokumo_sheathed"
 		inhand_icon_state = "kurokumo_sheathed"
@@ -107,18 +107,18 @@
 		return
 	ready = FALSE
 	user.Immobilize(3 SECONDS)
-	to_chat(user, "<span class='userdanger'>Yield my flesh.</span>")
+	to_chat(user, span_userdanger("Yield my flesh."))
 	force*=multiplier
 
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/bladelineage/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(force != initial(force))
-		to_chat(user, "<span class='userdanger'>To claim their bones.</span>")
+		to_chat(user, span_userdanger("To claim their bones."))
 		force = initial(force)
 
 /obj/item/ego_weapon/city/bladelineage/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
-	to_chat(user, "<span class='notice'>Your blade is ready.</span>")
+	to_chat(user, span_notice("Your blade is ready."))

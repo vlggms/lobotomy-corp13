@@ -40,7 +40,7 @@
 /mob/living/simple_animal/hostile/abnormality/bill/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	GiveTarget(user)
-	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(die)), 60 SECONDS)
 
 
 /mob/living/simple_animal/hostile/abnormality/bill/proc/die()

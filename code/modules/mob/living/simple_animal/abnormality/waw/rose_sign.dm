@@ -110,7 +110,7 @@
 			"Until you realize that there is no moving on without acceptance.",
 			"Be with us. With me.",
 		)
-		INVOKE_ASYNC(src, .proc/WorkSpeech, lines, speech_styles)
+		INVOKE_ASYNC(src, PROC_REF(WorkSpeech), lines, speech_styles)
 		return
 	if(work_type == ABNORMALITY_WORK_INSIGHT && LAZYLEN(work_roses) >= rose_max)
 		datum_reference.qliphoth_change(-1)
@@ -120,7 +120,7 @@
 			"We don't need bland flowers like yours.",
 			"How disappointing~",
 		)
-		INVOKE_ASYNC(src, .proc/WorkSpeech, lines, speech_styles)
+		INVOKE_ASYNC(src, PROC_REF(WorkSpeech), lines, speech_styles)
 		return
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
 		SpawnWorkRose()
@@ -200,7 +200,7 @@
 			continue
 		var/A = pick_n_take(spawns)
 		SpawnBreachRose(H, get_turf(A))
-		INVOKE_ASYNC(src, .proc/RoseSounds, delay)
+		INVOKE_ASYNC(src, PROC_REF(RoseSounds), delay)
 		delay += 5
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/proc/RoseSounds(delay)
@@ -293,7 +293,7 @@
 
 /obj/effect/rose_target/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/GrabAttack), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/rose_target/proc/GrabAttack()
 	playsound(get_turf(src), 'sound/abnormalities/rosesign/vinegrab.ogg', 75, 0, 3)
@@ -324,7 +324,7 @@
 
 /obj/effect/roseRoot/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/roseRoot/proc/explode()
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 0, 8)
@@ -448,7 +448,7 @@
 		"Then... Shall we play some more?",
 		"This garden will become terribly beautiful with more sinful flowers we bloom!",
 	)
-	INVOKE_ASYNC(master, /mob/living/simple_animal/hostile/abnormality/rose_sign.proc/WorkSpeech, lines, speech_styles)
+	INVOKE_ASYNC(master, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/rose_sign, WorkSpeech), lines, speech_styles)
 
 /obj/structure/rose_work/Destroy()
 	if(killed)
@@ -460,10 +460,10 @@
 /datum/status_effect/stacking/crownthorns
 	id = "thorns"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = -1//INFINITE POWER!!!
+	duration = -1 //INFINITE POWER!!!
 	max_stacks = 5
 	stacks = 1
-	tick_interval = 25 SECONDS//you get about a minute and a half
+	tick_interval = 25 SECONDS //you get about a minute and a half
 	on_remove_on_mob_delete = TRUE
 	alert_type = /atom/movable/screen/alert/status_effect/crownthorns
 	consumed_on_threshold = FALSE
@@ -478,36 +478,37 @@
 	icon_state = "rose_sign"
 
 /datum/status_effect/stacking/crownthorns/on_apply()
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -attribute_penalty)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -attribute_penalty)
 	return ..()
 
 /datum/status_effect/stacking/crownthorns/tick()
 	to_chat(owner, span_warning("Thorns painfully dig into your skin!"))
 	owner.emote("scream")
 	stacks += 1
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -25)//By using bonuses, this lowers your maximum health
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -25)//By using bonuses, this lowers your maximum health
 	attribute_penalty += 25
 	if(master)
 		master.adjustBruteLoss(-100)
-	if(H.stat >= HARD_CRIT || stacks == max_stacks)
-		status_applicant.killed = FALSE
-		status_applicant.death()
-		H.death()
-		var/turf/T = get_turf(owner)
-		if(locate(/obj/structure/rose_crucifix) in T)
-			T = pick_n_take(T.reachableAdjacentTurfs())//if a crucifix is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
-			owner.forceMove(T)
-		var/obj/structure/rose_crucifix/N = new(get_turf(T))
-		N.buckle_mob(owner)
-		qdel(src)
+	if(!status_holder.stat >= HARD_CRIT || stacks != max_stacks)
+		return
+	status_applicant.killed = FALSE
+	status_applicant.death()
+	status_holder.death()
+	var/turf/T = get_turf(owner)
+	if(locate(/obj/structure/rose_crucifix) in T)
+		T = pick_n_take(T.reachableAdjacentTurfs())//if a crucifix is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
+		owner.forceMove(T)
+	var/obj/structure/rose_crucifix/N = new(get_turf(T))
+	N.buckle_mob(owner)
+	qdel(src)
 
 /datum/status_effect/stacking/crownthorns/on_remove()
 	to_chat(owner, span_nicegreen("The prickly feeling stops."))
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
-	owner.adjustBruteLoss(-attribute_penalty)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, attribute_penalty)
+	status_holder.adjustBruteLoss(-attribute_penalty)
 	return ..()
 
 //On-kill visual effect
@@ -539,7 +540,7 @@
 	if(M.buckled)
 		return
 	M.setDir(2)
-	addtimer(CALLBACK(src, .proc/BuckleAnimation, M), 1)
+	addtimer(CALLBACK(src, PROC_REF(BuckleAnimation), M), 1)
 	return ..()
 
 /obj/structure/rose_crucifix/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)

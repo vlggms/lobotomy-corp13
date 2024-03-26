@@ -1,13 +1,19 @@
 //Box used to teach intents
 /obj/structure/tutorialbox
-	icon = 'icons/obj/mining.dmi'
-	desc = "A heavy wooden box, which can be pushed."
-	icon_state = "orebox"
 	name = "pushable box"
+	desc = "A heavy wooden box, which can be pushed."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "orebox"
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	flags_1 = NODECONSTRUCT_1
 	move_resist = MOVE_FORCE_STRONG
+	var/turf/origin_turf
+
+/obj/structure/tutorialbox/Initialize()
+	. = ..()
+	if(!origin_turf)
+		origin_turf = get_turf(src)
 
 /obj/structure/tutorialbox/attack_hand(mob/user)
 	. = ..()
@@ -20,33 +26,15 @@
 		var/shove_dir = get_dir(user.loc, oldturf)
 		var/turf/shove_turf = get_step(loc, shove_dir)
 		if(Move(shove_turf, shove_dir))
-			to_chat(user, "<span class='notice'>You push \the [src] out of the way.</span>")
-			addtimer(CALLBACK(src, /atom/movable/proc/forceMove, oldturf), 20 SECONDS)
-
-/obj/machinery/power/emitter/energycannon/tutorialemitter
-
-//I only removed the playsound because its SO ANNOYING
-/obj/machinery/power/emitter/energycannon/tutorialemitter/fire_beam(mob/user)
-	var/obj/projectile/P = new projectile_type(get_turf(src))
-	if(prob(35))
-		sparks.start()
-	P.firer = user ? user : src
-	P.fired_from = src
-	if(last_projectile_params)
-		P.p_x = last_projectile_params[2]
-		P.p_y = last_projectile_params[3]
-		P.fire(last_projectile_params[1])
-	else
-		P.fire(dir2angle(dir))
-	if(!manual)
-		last_shot = world.time
-		if(shot_number < 3)
-			fire_delay = 20
-			shot_number ++
-		else
-			fire_delay = rand(minimum_fire_delay,maximum_fire_delay)
-			shot_number = 0
-	return P
+			to_chat(user, span_notice("You push \the [src] out of the way."))
+			/*
+			* If pushed out of the way from its original spot
+			* in 20 seconds it will return to its original spot.
+			* This obviously breaks if it is pushed from a spot
+			* that isnt its origin but it prevents callback spam.
+			*/
+			if(oldturf == origin_turf && loc != origin_turf)
+				addtimer(CALLBACK(src, /atom/movable/proc/forceMove, origin_turf), 20 SECONDS)
 
 //prevent smuggling tutorial items
 /obj/machinery/scanner_gate/tutorialscanner
@@ -100,14 +88,14 @@
 		if(check_bag)
 			if(istype(H.get_item_by_slot(ITEM_SLOT_BACK),/obj/item/storage/backpack))
 				if(!check_times[H] || check_times[H] < world.time) //Let's not spam the message
-					to_chat(H, "<span class='warning'>You need to take your backpack off your back slot!</span>")
+					to_chat(H, span_boldwarning("You need to take your backpack off your back slot!"))
 					check_times[H] = world.time + TUTORIAL_MESSAGE_COOLDOWN
 				alarm_beep()
 				return FALSE
 		for(var/obj/O in H.get_contents())
 			if(O.type in prohibited_objects)
 				if(!check_times[H] || check_times[H] < world.time)
-					to_chat(H, "<span class='warning'>Please return any tutorial items you have taken!</span>")
+					to_chat(H, span_boldwarning("Please return any tutorial items you have taken!"))
 					check_times[H] = world.time + TUTORIAL_MESSAGE_COOLDOWN
 				alarm_beep()
 				return FALSE
@@ -145,7 +133,9 @@
 	if(LAZYLEN(avaliable))
 		var/obj/machinery/computer/abnormality/tutorial/T = pick(avaliable)
 		T.start_meltdown()
-		to_chat(user, "<span class='alert'>A Qliphoth Meltdown has occured in the Containment Zone of [T.datum_reference.name].</span>")
+		to_chat(user, span_alert("A Qliphoth Meltdown has occured in the Containment Zone of [T.datum_reference.name]."))
 		playsound(src, 'sound/effects/meltdownAlert.ogg', 30)
 		return
-	to_chat(user, "<span class='notice'>There are no avaliable abnormalities to meltdown.</span>")
+	to_chat(user, span_notice("There are no avaliable abnormalities to meltdown."))
+
+//Tutorial Holodisks are located in holocall.dm

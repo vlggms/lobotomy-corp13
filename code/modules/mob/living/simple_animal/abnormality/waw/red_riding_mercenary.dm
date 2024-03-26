@@ -164,7 +164,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/find_target/Activate()
-	addtimer(CALLBACK(A, .mob/living/simple_animal/hostile/abnormality/red_hood/proc/PlayerTargetFind), 1)
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_hood, PlayerTargetFind)), 1)
 	to_chat(A, chosen_message)
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/PlayerTargetFind()
@@ -178,7 +178,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	chosen_attack_num = 2
 
 /datum/action/innate/abnormality_attack/catch_breath/Activate()
-	addtimer(CALLBACK(A, .mob/living/simple_animal/hostile/abnormality/red_hood/proc/AttemptEvade), 1)
+	addtimer(CALLBACK(A, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_hood, AttemptEvade)), 1)
 	to_chat(A, chosen_message)
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/AttemptEvade()
@@ -187,7 +187,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 			to_chat(src, span_danger(" You can't do that now!"))
 		return FALSE
 	evading_attack = TRUE
-	addtimer(CALLBACK(src, .proc/EndEvade), 20)
+	addtimer(CALLBACK(src, PROC_REF(EndEvade)), 20)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/apply_damage(damage = 0,damagetype = RED_DAMAGE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
@@ -271,14 +271,14 @@ It has now been over four months. Now we get her for real. -Coxswain
 		return FALSE
 	special_attacking = TRUE
 	gun_timer = world.time + gun_cooldown
-	addtimer(CALLBACK(src, .proc/SpecialReset), 10 + bullet_additional * gun_multishot_pause)
+	addtimer(CALLBACK(src, PROC_REF(SpecialReset)), 10 + bullet_additional * gun_multishot_pause)
 	manual_emote("raises her gun.")
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "redhood_shoot"
 	icon_living = "redhood_shoot"
 	pixel_x = -32
 	base_pixel_x = -32
-	addtimer(CALLBACK(src, .proc/HunterBullet, target, bullet_additional), special_windup * 0.75)
+	addtimer(CALLBACK(src, PROC_REF(HunterBullet), target, bullet_additional), special_windup * 0.75)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/HunterBullet(atom/target, shots_remaining = 0)
@@ -295,7 +295,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	P.fire()
 	playsound(src, 'sound/abnormalities/redhood/fire.ogg', 50, FALSE, 4)
 	if(shots_remaining)
-		addtimer(CALLBACK(src, .proc/HunterBullet, target, shots_remaining - 1), gun_multishot_pause)
+		addtimer(CALLBACK(src, PROC_REF(HunterBullet), target, shots_remaining - 1), gun_multishot_pause)
 	return
 
 /datum/action/innate/abnormality_attack/strike_without_hesitation
@@ -311,10 +311,10 @@ It has now been over four months. Now we get her for real. -Coxswain
 			to_chat(src, span_danger("You can't do that now!"))
 		return FALSE
 	special_attacking = TRUE
-	addtimer(CALLBACK(src, .proc/SpecialReset), 15)
+	addtimer(CALLBACK(src, PROC_REF(SpecialReset)), 15)
 	throw_timer = world.time + throw_cooldown
 	say(pick(weapon_throw_lines))
-	addtimer(CALLBACK(src, .proc/GetThrown, target), special_windup)
+	addtimer(CALLBACK(src, PROC_REF(GetThrown), target), special_windup)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/GetThrown(atom/target)
@@ -344,7 +344,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/Initialize()
 	..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, .proc/OnAbnoBreach)
+	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH)
@@ -495,7 +495,7 @@ Also a toned down version
 		return FALSE
 	if(attempts == 0)
 		patrol_to(get_turf(hunted_target))
-		addtimer(CALLBACK(src, .proc/HunterTracking, hunted_target, get_turf(hunted_target), attempts), fuzzy_tracking_cooldown)
+		addtimer(CALLBACK(src, PROC_REF(HunterTracking), hunted_target, get_turf(hunted_target), attempts), fuzzy_tracking_cooldown)
 		return TRUE
 	var/list/points_of_interest = GLOB.department_centers + GLOB.xeno_spawn
 	var/lowest_dist = 999
@@ -511,7 +511,7 @@ Also a toned down version
 		return FALSE // Where the fuck even ARE you?
 	patrol_to(closest)
 	attempts -= 1
-	addtimer(CALLBACK(src, .proc/HunterTracking, hunted_target, closest, attempts), fuzzy_tracking_cooldown)
+	addtimer(CALLBACK(src, PROC_REF(HunterTracking), hunted_target, closest, attempts), fuzzy_tracking_cooldown)
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/FindTarget(list/possible_targets, HasTargetsList = 0)
@@ -550,7 +550,7 @@ Also a toned down version
 					if(out_on_request)
 						if(client)
 							to_chat(src, span_notice("Your job here is done! Returning to cell in 10 seconds."))
-							addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+							addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
 						else
 							QDEL_IN(src, 3 SECONDS)
 					else
@@ -559,7 +559,7 @@ Also a toned down version
 					if(kill_confirmed)
 						if(client)
 							to_chat(src, span_notice("You killed the requested target! Returning to cell in 10 seconds."))
-							addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+							addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
 						else
 							QDEL_IN(src, 3 SECONDS)
 					else
@@ -576,7 +576,7 @@ Also a toned down version
 							if(out_on_request)
 								if(client)
 									to_chat(src, span_notice("That's all you can do... Returning to cell in 10 seconds."))
-									addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+									addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
 								else
 									QDEL_IN(src, 3 SECONDS)
 							else
@@ -596,7 +596,7 @@ Also a toned down version
 						if(out_on_request)
 							if(client)
 								to_chat(src, span_notice("That's all you can do... Returning to cell in 10 seconds."))
-								addtimer(CALLBACK(src, .proc/ReturnToCell), 10 SECONDS)
+								addtimer(CALLBACK(src, PROC_REF(ReturnToCell)), 10 SECONDS)
 							else
 								QDEL_IN(src, 3 SECONDS)
 						else
@@ -666,7 +666,7 @@ Also a toned down version
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/ConfirmRangedKill(length)
 	kill_confirmed = TRUE
 	LoseTarget()
-	addtimer(CALLBACK(src, .proc/EndRangedConfirm), length)
+	addtimer(CALLBACK(src, PROC_REF(EndRangedConfirm)), length)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/EndRangedConfirm()
@@ -679,7 +679,7 @@ Also a toned down version
 	out_on_request = FALSE
 	ResetPriority()
 	animate(src, alpha = 0, time = 10)
-	addtimer(CALLBACK(src, .proc/FinishReturn, return_point), 10)
+	addtimer(CALLBACK(src, PROC_REF(FinishReturn), return_point), 10)
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/FinishReturn(turf/return_point)
 	forceMove(return_point)

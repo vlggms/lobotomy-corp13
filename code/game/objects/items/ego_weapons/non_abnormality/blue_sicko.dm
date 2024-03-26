@@ -21,18 +21,18 @@
 		FORTITUDE_ATTRIBUTE = 120,
 		PRUDENCE_ATTRIBUTE = 120,
 		TEMPERANCE_ATTRIBUTE = 120,
-		JUSTICE_ATTRIBUTE = 120
+		JUSTICE_ATTRIBUTE = 120,
 	)
 	var/mode = MODE_ADD
 	var/vibration = 4
 	var/vibration_timer
 	var/active = FALSE
 	var/list/intrusive_thoughts = list(
-		"Can’t you feel this tremor…?",
+		"Can't you feel this tremor…?",
 		"Could there be an overture with a rhythm more beautiful than this?",
-		"We’ll complete our own score…",
+		"We'll complete our own score…",
 		"One that can be played indefinitely, even if there seems to be an end!",
-		"So you will take the honor of remembering the first note of this everlasting performance…"
+		"So you will take the honor of remembering the first note of this everlasting performance…",
 	)
 	var/finale_damage = 200
 
@@ -98,7 +98,7 @@
 	if(S)
 		if(S.stacks == vibration)
 			if(prob(8))
-				to_chat(user, "<span class='blueteamradio'>[pick(intrusive_thoughts)]</span>", MESSAGE_TYPE_LOCALCHAT)
+				to_chat(user, span_blueteamradio("[pick(intrusive_thoughts)]"), MESSAGE_TYPE_LOCALCHAT)
 			if(target.stat != DEAD && target != user)
 				for(var/datum/action/item_action/charging/CA in actions)
 					CA.charge += 2
@@ -109,11 +109,11 @@
 			S.seers |= user
 			S.UpdateStatus()
 	if(!S)
-		to_chat(user, "<span class='notice'>Your blade emits a dull hum as your target ceases to vibrate.</span>", MESSAGE_TYPE_INFO)
+		to_chat(user, span_notice("Your blade emits a dull hum as your target ceases to vibrate."), MESSAGE_TYPE_INFO)
 	return
 
 /obj/item/ego_weapon/city/reverberation/proc/VibrationChange()
-	vibration_timer = addtimer(CALLBACK(src, .proc/VibrationChange), 10 SECONDS, TIMER_STOPPABLE)
+	vibration_timer = addtimer(CALLBACK(src, PROC_REF(VibrationChange)), 10 SECONDS, TIMER_STOPPABLE)
 	if(active)
 		return
 	var/list/vibes = list(4, 5, 6)
@@ -145,7 +145,7 @@
 	if(active || !CanUseEgo(user))
 		return FALSE
 	active = TRUE
-	to_chat(user, "<span class='blueteamradio'>We will shape this world together.</span>", MESSAGE_TYPE_LOCALCHAT)
+	to_chat(user, span_blueteamradio("We will shape this world together."), MESSAGE_TYPE_LOCALCHAT)
 	deltimer(vibration_timer)
 	var/hit_target = FALSE
 	for(var/mob/living/L in livinginrange(8, user))
@@ -173,7 +173,7 @@
 		var/datum/action/item_action/charging/tempestuous/T = locate() in actions
 		T.AddCharge(T.max_charge) // Refund if no targets
 	active = FALSE
-	vibration_timer = addtimer(CALLBACK(src, .proc/VibrationChange), 10 SECONDS, TIMER_STOPPABLE)
+	vibration_timer = addtimer(CALLBACK(src, PROC_REF(VibrationChange)), 10 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/city/reverberation/proc/GrandFinale(mob/living/user)
 	set waitfor = FALSE
@@ -181,7 +181,7 @@
 		return FALSE
 	active = TRUE
 	deltimer(vibration_timer)
-	user.visible_message("<span class='blueteamradio'>Your performance may be reaching an end, but I do hope you’ll shine gorgeously in your own right.</span>")
+	user.visible_message(span_blueteamradio("Your performance may be reaching an end, but I do hope you’ll shine gorgeously in your own right."))
 	playsound(user, "sound/weapons/fixer/reverb_grand_start.ogg", 70, extrarange = 8)
 	sleep(3)
 	var/turf/original_turf = get_turf(user)
@@ -209,7 +209,7 @@
 		T.AddCharge(T.max_charge) // Refund if no targets
 		return
 	user.forceMove(original_turf)
-	user.visible_message("<span class='blueteamradio'>I hope you can stay with me until the end of the performance, at least.</span>")
+	user.visible_message(span_blueteamradio("I hope you can stay with me until the end of the performance, at least."))
 	playsound(user, "sound/weapons/fixer/reverb_grand_end.ogg", 70, extrarange = 8)
 	for(var/mob/living/L in to_hit)
 		var/datum/status_effect/stacking/vibration/V = L.has_status_effect(STATUS_EFFECT_VIBRATION)
@@ -220,15 +220,15 @@
 		if(isanimal(L))
 			damage *= 1.5
 		L.apply_damage(damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE))
-		to_chat(L, "<span class='userdanger'>[user] eviscerates you!</span>", MESSAGE_TYPE_COMBAT)
-		to_chat(user, "<span class='warning'>You eviscerate [L]!</span>", MESSAGE_TYPE_COMBAT)
+		to_chat(L, span_userdanger("[user] eviscerates you!"), MESSAGE_TYPE_COMBAT)
+		to_chat(user, span_warning("You eviscerate [L]!"), MESSAGE_TYPE_COMBAT)
 	active = FALSE
-	vibration_timer = addtimer(CALLBACK(src, .proc/VibrationChange), 10 SECONDS, TIMER_STOPPABLE)
+	vibration_timer = addtimer(CALLBACK(src, PROC_REF(VibrationChange)), 10 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/city/reverberation/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	SEND_SIGNAL(src, COMSIG_ITEM_HIT_REACT, args)
 	if(attack_type == PROJECTILE_ATTACK)
-		owner.visible_message("<span class='blueteamradio'>[owner.real_name] deflects the projectile!</span>", "<span class='blueteamradio>Like the pecking of baby chicks~</span>", "<span class='warning'>*clang*</span>")
+		owner.visible_message(span_blueteamradio("[owner.real_name] deflects the projectile!"), span_blueteamradio("Like the pecking of baby chicks~"), span_warning("*clang*"))
 		return TRUE
 	return FALSE
 

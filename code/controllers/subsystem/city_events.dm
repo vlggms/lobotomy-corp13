@@ -26,9 +26,9 @@ SUBSYSTEM_DEF(cityevents)
 	InitializeEvents()
 	if(!can_fire)
 		return
-	addtimer(CALLBACK(src, .proc/Event), 15 MINUTES)	//Start doing events in 15 minutes
-	addtimer(CALLBACK(src, .proc/Distort), 20 MINUTES)		//Distortions start in 20
-	addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Event)), 15 MINUTES)	//Start doing events in 15 minutes
+	addtimer(CALLBACK(src, PROC_REF(Distort)), 20 MINUTES)		//Distortions start in 20
+	addtimer(CALLBACK(src, PROC_REF(Daynight)), 10 SECONDS)
 
 ///Ran on initialize, slap these puppies in a new list.
 /datum/controller/subsystem/cityevents/proc/InitializeLandmarks()
@@ -69,7 +69,7 @@ SUBSYSTEM_DEF(cityevents)
 
 //Events
 /datum/controller/subsystem/cityevents/proc/Event()
-	addtimer(CALLBACK(src, .proc/Event), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(Event)), 5 MINUTES)
 	var/chosen_event
 	if(wavetime == 10 && wavetime !=0)	//after 50 minutes
 		chosen_event = Boss()
@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(cityevents)
 	sleep(10)
 	var/spawning = pick(distortions_available)
 	new spawning (get_turf(T))
-	addtimer(CALLBACK(src, .proc/Distort), 20 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(Distort)), 20 MINUTES)
 
 //Daynight stuff
 /datum/controller/subsystem/cityevents/proc/Daynight()
@@ -176,20 +176,20 @@ SUBSYSTEM_DEF(cityevents)
 		L.set_light(25, globalillumination)
 
 	if(globalillumination <= -0.2)	//Go back up
-		addtimer(CALLBACK(src, .proc/Daynight), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(Daynight)), 5 MINUTES)
 		daystatus = FALSE
 		globalillumination = -0.18	//Ship it back up
 		return
 
 	if(globalillumination >= 1.1)	//Go back down.
-		addtimer(CALLBACK(src, .proc/Daynight), 5 MINUTES)
+		addtimer(CALLBACK(src, PROC_REF(Daynight)), 5 MINUTES)
 		daystatus = TRUE
 		globalillumination = 1.08	//Ship it back down
 		return
 
 	if(daystatus)	//After noon
 		globalillumination -= 0.02
-		addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Daynight)), 10 SECONDS)
 	else		//before noon
 		globalillumination += 0.02
-		addtimer(CALLBACK(src, .proc/Daynight), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Daynight)), 10 SECONDS)

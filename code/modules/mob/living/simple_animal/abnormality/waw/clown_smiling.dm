@@ -143,7 +143,7 @@
 
 	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 
@@ -162,7 +162,7 @@
 //Death explosion
 /mob/living/simple_animal/hostile/abnormality/clown/death(gibbed)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 20)
-	addtimer(CALLBACK(src, .proc/DeathExplosion), 20)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 20)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/clown/proc/DeathExplosion()
