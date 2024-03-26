@@ -243,3 +243,4 @@
 		return FALSE
 	L.apply_status_effect(STATUS_EFFECT_WELFARE_REWARD)
 	return TRUE
+
