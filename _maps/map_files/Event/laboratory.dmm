@@ -93,7 +93,6 @@
 /area/centcom)
 "bT" = (
 /obj/machinery/button/door/indestructible{
-	id = highsec_outside;
 	name = "outside lock button"
 	},
 /obj/structure/table,
