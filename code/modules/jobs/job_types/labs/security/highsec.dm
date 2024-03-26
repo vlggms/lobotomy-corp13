@@ -37,7 +37,7 @@
 
 /datum/outfit/job/high_sec_officer
 	name = "High Security Officer"
-	jobtype = /datum/job/low_sec_officer
+	jobtype = /datum/job/high_sec_officer
 
 	head = /obj/item/clothing/head/beret/sec
 	belt = /obj/item/pda/security
