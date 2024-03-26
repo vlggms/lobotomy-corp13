@@ -1,3 +1,5 @@
+#define JANGSAN_FEAR_COOLDOWN (8 SECONDS)
+
 //Code by Coxswain, EGO sprites by Sky_ and abnormality sprites by Mel
 /mob/living/simple_animal/hostile/abnormality/jangsan
 	name = "Jangsan Tiger"
@@ -73,6 +75,29 @@
 		", i'll protect you!",
 		", let's work together!",
 	)
+
+//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/cooldown/jangsan_fear)
+
+/datum/action/cooldown/jangsan_fear
+	name = "Fear"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "jangsan"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = JANGSAN_FEAR_COOLDOWN
+
+/datum/action/cooldown/jangsan_fear/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/jangsan))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/jangsan/jangsan = owner
+	if(jangsan.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	jangsan.TryFearStun()
+	return TRUE
 
 //Init
 /mob/living/simple_animal/hostile/abnormality/jangsan/Initialize()
@@ -243,6 +268,20 @@
 	to_chat(target, span_warning("Is that what it really looks like? It's over... I can’t even move my legs..."))
 	return
 
+/mob/living/simple_animal/hostile/abnormality/jangsan/proc/TryFearStun()
+	playsound(get_turf(src), 'sound/abnormalities/scaredycat/catgrunt.ogg', 50, 1, 2)
+	for(var/mob/living/carbon/human/H in view(3, src))
+		StatCheck(H)
+		if(faction_check_mob(H, FALSE))
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(weak_counter >= 4)
+			icon_state = "jangsan_bite"
+			FearStun(H)
+			chase_cooldown = world.time + chase_cooldown_time
+			break
+
 //targetting
 /mob/living/simple_animal/hostile/abnormality/jangsan/PickTarget(list/Targets) //Stolen from MOSB
 	var/list/highest_priority = list()
@@ -301,3 +340,5 @@
 	. = ..()
 	animate(src, pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 	QDEL_IN(src, 30 SECONDS)
+
+#undef JANGSAN_FEAR_COOLDOWN
