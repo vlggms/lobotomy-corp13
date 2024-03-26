@@ -1,34 +1,34 @@
 
 /datum/job/high_sec_officer
-    title = "High Security Officer"
-    faction = "Station"
-    supervisors = "High Security Commander"
-    total_positions = 3
-    spawn_positions = 3
-    exp_requirements = 0
-    selection_color = "#cf5979"
-    access = list(ACCESS_ARMORY)            //See /datum/job/assistant/get_access()
-    minimal_access = list(ACCESS_ARMORY)    //See /datum/job/assistant/get_access()
+	title = "High Security Officer"
+	faction = "Station"
+	supervisors = "High Security Commander"
+	total_positions = 3
+	spawn_positions = 3
+	exp_requirements = 0
+	selection_color = "#cf5979"
+	access = list(ACCESS_ARMORY)			//See /datum/job/assistant/get_access()
+	minimal_access = list(ACCESS_ARMORY)	//See /datum/job/assistant/get_access()
 
-    outfit = /datum/outfit/job/high_sec_officer
-    display_order = 9.5
+	outfit = /datum/outfit/job/high_sec_officer
+	display_order = 9.5
 
-    job_important = "You are a High Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the High Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them."
+	job_important = "You are a High Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the High Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them."
 
-    alt_titles = list()
-    roundstart_attributes = list(
-                                FORTITUDE_ATTRIBUTE = 40,
-                                PRUDENCE_ATTRIBUTE = 40,
-                                TEMPERANCE_ATTRIBUTE = 40,
-                                JUSTICE_ATTRIBUTE = 40
-                                )
-    loadalways = FALSE
-    maptype = "limbus_labs"
+	alt_titles = list()
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 40,
+								PRUDENCE_ATTRIBUTE = 40,
+								TEMPERANCE_ATTRIBUTE = 40,
+								JUSTICE_ATTRIBUTE = 40
+								)
+	loadalways = FALSE
+	maptype = "limbus_labs"
 
 
 /datum/job/high_sec_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-    H.set_attribute_limit(40)
-    ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	H.set_attribute_limit(40)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 
 /datum/outfit/job/high_sec_officer
@@ -46,36 +46,36 @@
 	l_pocket = /obj/item/radio
 
 /datum/job/high_sec_commander
-    title = "High Security Commander"
-    faction = "Station"
-    supervisors = "LCB officials"
-    total_positions = 1
-    spawn_positions = 1
-    exp_requirements = 0
-    selection_color = "#99314d"
-    access = list(ACCESS_ARMORY, ACCESS_COMMAND)            //See /datum/job/assistant/get_access()
-    minimal_access = list(ACCESS_ARMORY, ACCESS_COMMAND)    //See /datum/job/assistant/get_access()
+	title = "High Security Commander"
+	faction = "Station"
+	supervisors = "LCB officials"
+	total_positions = 1
+	spawn_positions = 1
+	exp_requirements = 0
+	selection_color = "#99314d"
+	access = list(ACCESS_ARMORY, ACCESS_COMMAND)			//See /datum/job/assistant/get_access()
+	minimal_access = list(ACCESS_ARMORY, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
 
-    outfit = /datum/outfit/job/high_sec_commander
-    display_order = 9
+	outfit = /datum/outfit/job/high_sec_commander
+	display_order = 9
 
-    job_important = "You are a High Security Commander, hired by LCB. Your job to commnand the High Security Zone."
+	job_important = "You are a High Security Commander, hired by LCB. Your job to commnand the High Security Zone."
 
-    alt_titles = list()
-    roundstart_attributes = list(
-                                FORTITUDE_ATTRIBUTE = 60,
-                                PRUDENCE_ATTRIBUTE = 60,
-                                TEMPERANCE_ATTRIBUTE = 60,
-                                JUSTICE_ATTRIBUTE = 60
-                                )
-    loadalways = FALSE
-    trusted_only = TRUE //remove later
-    maptype = "limbus_labs"
+	alt_titles = list()
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 60,
+								PRUDENCE_ATTRIBUTE = 60,
+								TEMPERANCE_ATTRIBUTE = 60,
+								JUSTICE_ATTRIBUTE = 60
+								)
+	loadalways = FALSE
+	trusted_only = TRUE //remove later
+	maptype = "limbus_labs"
 
 
 /datum/job/high_sec_commander/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-    H.set_attribute_limit(60)
-    ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	H.set_attribute_limit(60)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/high_sec_commander
 	name = "High Security Commander"

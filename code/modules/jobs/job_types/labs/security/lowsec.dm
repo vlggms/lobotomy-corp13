@@ -1,34 +1,34 @@
 
 /datum/job/low_sec_officer
-    title = "Low Security Officer"
-    faction = "Station"
-    supervisors = "Low Security Commander"
-    total_positions = 5
-    spawn_positions = 5
-    exp_requirements = 0
-    selection_color = "#6571a6"
-    access = list(ACCESS_SECURITY)            //See /datum/job/assistant/get_access()
-    minimal_access = list(ACCESS_SECURITY)    //See /datum/job/assistant/get_access()
+	title = "Low Security Officer"
+	faction = "Station"
+	supervisors = "Low Security Commander"
+	total_positions = 5
+	spawn_positions = 5
+	exp_requirements = 0
+	selection_color = "#6571a6"
+	access = list(ACCESS_SECURITY)			//See /datum/job/assistant/get_access()
+	minimal_access = list(ACCESS_SECURITY)	//See /datum/job/assistant/get_access()
 
-    outfit = /datum/outfit/job/low_sec_officer
-    display_order = 8.5
+	outfit = /datum/outfit/job/low_sec_officer
+	display_order = 8.5
 
-    job_important = "You are a Low Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the Low Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them."
+	job_important = "You are a Low Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the Low Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them."
 
-    alt_titles = list()
-    roundstart_attributes = list(
-                                FORTITUDE_ATTRIBUTE = 20,
-                                PRUDENCE_ATTRIBUTE = 20,
-                                TEMPERANCE_ATTRIBUTE = 20,
-                                JUSTICE_ATTRIBUTE = 20
-                                )
-    loadalways = FALSE
-    maptype = "limbus_labs"
+	alt_titles = list()
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 20,
+								PRUDENCE_ATTRIBUTE = 20,
+								TEMPERANCE_ATTRIBUTE = 20,
+								JUSTICE_ATTRIBUTE = 20
+								)
+	loadalways = FALSE
+	maptype = "limbus_labs"
 
 
 /datum/job/low_sec_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-    H.set_attribute_limit(20)
-    ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	H.set_attribute_limit(20)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/low_sec_officer
 	name = "Low Security Officer"
@@ -46,35 +46,35 @@
 
 
 /datum/job/low_sec_commander
-    title = "Low Security Commander"
-    faction = "Station"
-    supervisors = "LCB officials"
-    total_positions = 1
-    spawn_positions = 1
-    exp_requirements = 0
-    selection_color = "#444d75"
-    access = list(ACCESS_SECURITY, ACCESS_COMMAND)            //See /datum/job/assistant/get_access()
-    minimal_access = list(ACCESS_SECURITY, ACCESS_COMMAND)    //See /datum/job/assistant/get_access()
+	title = "Low Security Commander"
+	faction = "Station"
+	supervisors = "LCB officials"
+	total_positions = 1
+	spawn_positions = 1
+	exp_requirements = 0
+	selection_color = "#444d75"
+	access = list(ACCESS_SECURITY, ACCESS_COMMAND)			//See /datum/job/assistant/get_access()
+	minimal_access = list(ACCESS_SECURITY, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
 
-    outfit = /datum/outfit/job/low_sec_commander
-    display_order = 8
+	outfit = /datum/outfit/job/low_sec_commander
+	display_order = 8
 
-    job_important = "You are a Low Security Commander, hired by LCB. Your job to commnand the Low Security Zone."
+	job_important = "You are a Low Security Commander, hired by LCB. Your job to commnand the Low Security Zone."
 
-    alt_titles = list()
-    roundstart_attributes = list(
-                                FORTITUDE_ATTRIBUTE = 60,
-                                PRUDENCE_ATTRIBUTE = 60,
-                                TEMPERANCE_ATTRIBUTE = 60,
-                                JUSTICE_ATTRIBUTE = 60
-                                )
-    loadalways = FALSE
-    trusted_only = TRUE //remove later
+	alt_titles = list()
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 60,
+								PRUDENCE_ATTRIBUTE = 60,
+								TEMPERANCE_ATTRIBUTE = 60,
+								JUSTICE_ATTRIBUTE = 60
+								)
+	loadalways = FALSE
+	trusted_only = TRUE //remove later
 
 
 /datum/job/low_sec_commander/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-    H.set_attribute_limit(60)
-    ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	H.set_attribute_limit(60)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/low_sec_commander
 	name = "Low Security Commander"
