@@ -91,7 +91,7 @@
 	jobtype = /datum/job/low_sec_commander
 
 	belt = /obj/item/pda/security
-	ears = /obj/item/radio/headset/heads/headset_welfare
+	ears = /obj/item/radio/headset/heads/headset_control
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/limbus/officer
 	shoes = /obj/item/clothing/shoes/laceup

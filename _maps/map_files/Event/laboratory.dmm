@@ -167,6 +167,48 @@
 /obj/machinery/vending/medical,
 /turf/open/floor/plasteel,
 /area/centcom)
+"cs" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/storage/bag/trash/bluespace,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/pushbroom,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/soap,
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/obj/item/reagent_containers/spray/cleaner{
+	pixel_x = 5;
+	pixel_y = -1
+	},
+/turf/open/floor/plasteel/dark,
+/area/centcom)
 "cv" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/beakers{
@@ -183,6 +225,19 @@
 	name = "botany"
 	},
 /turf/open/indestructible/white,
+/area/centcom)
+"cJ" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "garbage"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/machinery/recycler,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/centcom)
 "cL" = (
 /obj/effect/light_emitter{
@@ -377,6 +432,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
+"fR" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/turf_decal/siding/brown{
+	dir = 1
+	},
+/turf/open/floor/plating,
+/area/centcom)
 "gd" = (
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/plasteel/white,
@@ -394,6 +456,26 @@
 	max_integrity = 25
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"gy" = (
+/obj/structure/rack,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/reagent_containers/spray/chemsprayer/janitor,
+/obj/item/storage/box/lights/tubes,
+/obj/item/storage/box/lights/mixed,
+/obj/item/mop/advanced,
+/turf/open/floor/plasteel/dark,
 /area/centcom)
 "ht" = (
 /obj/effect/spawner/structure/window/reinforced,
@@ -431,6 +513,14 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"il" = (
+/obj/structure/sink/kitchen{
+	pixel_y = 14
+	},
+/obj/item/reagent_containers/glass/bucket,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
 /area/centcom)
 "ip" = (
 /obj/structure/chair/office,
@@ -638,6 +728,13 @@
 "nw" = (
 /obj/structure/closet/secure_closet/chemical,
 /turf/open/floor/plasteel/white,
+/area/centcom)
+"nz" = (
+/obj/structure/closet/crate/trashcart,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/toy/plush/melt,
+/obj/effect/turf_decal/bot,
+/turf/open/floor/plasteel/dark,
 /area/centcom)
 "nD" = (
 /obj/machinery/button/door/indestructible{
@@ -863,11 +960,6 @@
 /obj/machinery/biogenerator,
 /turf/open/indestructible/white,
 /area/centcom)
-"rO" = (
-/obj/structure/table,
-/obj/item/papercutter,
-/turf/open/floor/plasteel,
-/area/centcom)
 "rU" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
 /obj/structure/emergency_shield,
@@ -937,6 +1029,18 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"tg" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "garbage"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/centcom)
 "ts" = (
 /obj/structure/filingcabinet/chestdrawer,
@@ -1061,6 +1165,10 @@
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
 /obj/item/clothing/glasses/sunglasses/chemical,
 /turf/open/floor/plasteel/white,
+/area/centcom)
+"xo" = (
+/obj/structure/sign/poster/official/cleanliness,
+/turf/closed/indestructible/reinforced,
 /area/centcom)
 "xp" = (
 /obj/effect/turf_decal/tile/bar,
@@ -1310,6 +1418,19 @@
 "yI" = (
 /turf/open/floor/wood,
 /area/centcom)
+"yO" = (
+/obj/machinery/conveyor{
+	dir = 4;
+	id = "garbage"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 1
+	},
+/obj/effect/turf_decal/stripes/line,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light,
+/turf/open/floor/plating,
+/area/centcom)
 "yW" = (
 /obj/structure/table,
 /obj/item/folder{
@@ -1360,6 +1481,13 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"zY" = (
+/obj/effect/turf_decal/stripes/end{
+	dir = 8
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/centcom)
 "Av" = (
 /obj/structure/chair/plastic{
@@ -1774,6 +1902,15 @@
 "Js" = (
 /obj/effect/landmark/toolspawn,
 /turf/open/floor/plasteel,
+/area/centcom)
+"Jy" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/turf_decal/caution/stand_clear,
+/turf/open/floor/plating,
+/area/centcom)
+"JH" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
 /area/centcom)
 "JM" = (
 /obj/machinery/chem_dispenser,
@@ -2234,6 +2371,13 @@
 /obj/structure/table/wood/fancy/red,
 /turf/open/floor/plasteel,
 /area/centcom)
+"RQ" = (
+/obj/effect/turf_decal/bot,
+/obj/structure/mopbucket,
+/obj/item/mop,
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/centcom)
 "RU" = (
 /obj/structure/flora/ausbushes/genericbush,
 /turf/open/floor/plating/grass,
@@ -2324,6 +2468,20 @@
 	},
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/plasteel,
+/area/centcom)
+"Tu" = (
+/obj/machinery/conveyor/inverted{
+	dir = 10;
+	id = "garbage"
+	},
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/turf_decal/stripes/corner{
+	dir = 1
+	},
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plating,
 /area/centcom)
 "TP" = (
 /obj/structure/flora/ausbushes/fullgrass,
@@ -2426,6 +2584,15 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"UZ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/conveyor_switch/oneway{
+	dir = 4;
+	id = "garbage";
+	name = "disposal conveyor"
+	},
+/turf/open/floor/plasteel/dark,
 /area/centcom)
 "Vg" = (
 /obj/machinery/door/airlock/medical{
@@ -37349,9 +37516,9 @@ CE
 BT
 wG
 Ly
-rO
-UM
-Ph
+ID
+ID
+ID
 Ps
 ID
 ID
@@ -37606,9 +37773,9 @@ Ps
 Ps
 Ps
 Ps
-Ps
-Ps
-Ps
+nz
+UZ
+zY
 Ps
 ID
 ID
@@ -37862,11 +38029,11 @@ Ps
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
 Ps
+RQ
+JH
+yO
+xo
 ID
 ID
 ht
@@ -38119,10 +38286,10 @@ Ps
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+gy
+JH
+tg
 Ps
 ID
 ID
@@ -38376,10 +38543,10 @@ Ps
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+cs
+JH
+cJ
 Ps
 ID
 ID
@@ -38633,10 +38800,10 @@ Ps
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+il
+Jy
+Tu
 Ps
 Nt
 eg
@@ -38883,10 +39050,10 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+Ps
+Ps
+Ps
 ZP
 ZP
 ZP
@@ -39141,7 +39308,7 @@ ZP
 ZP
 ZP
 ZP
-ZP
+fR
 ZP
 ZP
 ZP
