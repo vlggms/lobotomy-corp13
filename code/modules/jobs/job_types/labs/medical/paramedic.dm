@@ -1,6 +1,11 @@
 /datum/job/lcb_medic
-	title = "Paramedic"
+	title = "Emergency Medical Technician"
+	faction = "Station"
+	supervisors = "the Chief Medical Officer"
 	selection_color = "#ccddee"
+	total_positions = 1
+	spawn_positions = 1
+	exp_requirements = 180
 	department_head = list("Chief Medical Officer")
 	supervisors = "Chief Medical Officer"
 
@@ -13,11 +18,8 @@
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
 
-	total_positions = 1
-	spawn_positions = 1
-	exp_requirements = 180
 
-	display_order = 5.3
+	display_order = 5.4
 	maptype = "limbus_labs"
 	job_important = "You are a paramedic hired by LCB. You retrieve the bodies of badly damaged or killed LCB members to be treated in the Medical Zone."
 

@@ -1,6 +1,12 @@
 /datum/job/lcb_nurse
 	title = "Nurse Practitioner"
+	faction = "Station"
+	supervisors = "the Chief Medical Officer"
 	selection_color = "#ccddee"
+	total_positions = 3
+	spawn_positions = 3
+	exp_requirements = 180
+
 	department_head = list("Chief Medical Officer", "Surgeon")
 	supervisors = "the Chief Medical Officer and the Surgeon"
 
@@ -13,11 +19,7 @@
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
 
-	total_positions = 3
-	spawn_positions = 3
-	exp_requirements = 180
-
-	display_order = 5.2
+	display_order = 5.3
 	maptype = "limbus_labs"
 	job_important = "You are a nurse hired by LCB. You help the other members of the Medical Zone tend to the patients."
 

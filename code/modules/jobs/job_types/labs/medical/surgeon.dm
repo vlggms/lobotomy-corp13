@@ -1,6 +1,11 @@
 /datum/job/surgeon
 	title = "Surgeon"
+	faction = "Station"
+	supervisors = "the Chief Medical Officer"
 	selection_color = "#ccddee"
+	total_positions = 1
+	spawn_positions = 1
+	exp_requirements = 180
 	department_head = list("Chief Medical Officer")
 	supervisors = "the Chief Medical Officer"
 
@@ -13,11 +18,8 @@
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
 
-	total_positions = 1
-	spawn_positions = 1
-	exp_requirements = 180
 
-	display_order = 5
+	display_order = 5.1
 	maptype = "limbus_labs"
 	job_important = "You are a surgeon hired by LCB. Your job is to revive people and perform surgery on them."
 

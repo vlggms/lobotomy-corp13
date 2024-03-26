@@ -5,7 +5,7 @@
 	supervisors = "Researchers"
 	total_positions = -1
 	spawn_positions = -1
-	selection_color = "#aabbcc"
+	selection_color = "#bbbbbb"
 
 	outfit = /datum/outfit/job/staff
 

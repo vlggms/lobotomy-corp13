@@ -20,6 +20,7 @@
 /obj/machinery/light,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/autopistol,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "aW" = (
@@ -784,6 +785,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/autopistol,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "rG" = (
@@ -933,7 +935,7 @@
 /turf/open/floor/plasteel,
 /area/centcom)
 "vC" = (
-/mob/living/simple_animal/hostile/abnormality/big_bird,
+/mob/living/simple_animal/hostile/abnormality/despair_knight,
 /turf/open/floor/plasteel,
 /area/centcom)
 "wc" = (
@@ -960,6 +962,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/ego_weapon/city/lccb_bat,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "wG" = (
@@ -1200,6 +1203,7 @@
 	},
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
 "yx" = (
@@ -1464,6 +1468,13 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
+"Ey" = (
+/obj/structure/rack,
+/obj/machinery/light,
+/obj/item/gun/ego_gun/city/ammogun/shottie,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/turf/open/floor/plasteel,
+/area/centcom)
 "EN" = (
 /obj/structure/table/optable,
 /obj/machinery/defibrillator_mount{
@@ -1542,6 +1553,7 @@
 /obj/structure/rack,
 /obj/machinery/light,
 /obj/item/ego_weapon/city/lccb_bat,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
 "GR" = (
@@ -1766,6 +1778,7 @@
 /obj/structure/rack,
 /obj/machinery/light,
 /obj/item/gun/ego_gun/city/ammogun/shottie,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Mi" = (
@@ -1862,6 +1875,23 @@
 "NY" = (
 /obj/machinery/light/floor,
 /obj/machinery/light,
+/turf/open/floor/plasteel,
+/area/centcom)
+"Oh" = (
+/obj/structure/table,
+/obj/item/folder{
+	pixel_y = 4
+	},
+/obj/item/folder{
+	pixel_y = 2
+	},
+/obj/item/folder,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Om" = (
@@ -1975,6 +2005,7 @@
 /obj/machinery/light,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Py" = (
@@ -2020,6 +2051,12 @@
 	name = "district manager's office";
 	req_access_txt = "20"
 	},
+/turf/open/floor/plasteel,
+/area/centcom)
+"PY" = (
+/obj/structure/rack,
+/obj/item/ego_weapon/city/lccb_bat,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Qh" = (
@@ -2136,6 +2173,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Sr" = (
@@ -2294,6 +2332,7 @@
 "Vo" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
 "VC" = (
@@ -17661,7 +17700,7 @@ ID
 Ps
 PD
 ID
-Me
+Ey
 Ps
 ZP
 ZP
@@ -17918,7 +17957,7 @@ eg
 Ps
 ri
 ID
-Vo
+PY
 Ps
 ZP
 ZP
@@ -21771,7 +21810,7 @@ ht
 ID
 ID
 Ps
-yk
+Oh
 ID
 ID
 ID

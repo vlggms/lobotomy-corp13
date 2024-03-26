@@ -4,7 +4,7 @@
 	supervisors = "Lead Researcher"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#aabbcc"
+	selection_color = "#cd6fd9"
 
 	outfit = /datum/outfit/job/senior_researcher
 
@@ -14,7 +14,7 @@
 	job_attribute_limit = 0
 
 
-	display_order = 6
+	display_order = 6.2
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are the Senior Researcher. Your job is to run research on the abnormalities, and report back to the lead researcher and command."

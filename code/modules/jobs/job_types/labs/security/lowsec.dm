@@ -6,12 +6,12 @@
     total_positions = 5
     spawn_positions = 5
     exp_requirements = 0
-    selection_color = "#ccaaaa"
+    selection_color = "#6571a6"
     access = list(ACCESS_SECURITY)            //See /datum/job/assistant/get_access()
     minimal_access = list(ACCESS_SECURITY)    //See /datum/job/assistant/get_access()
 
     outfit = /datum/outfit/job/low_sec_officer
-    display_order = 10.5
+    display_order = 8.5
 
     job_important = "You are a Low Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the Low Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them."
 
@@ -52,12 +52,12 @@
     total_positions = 1
     spawn_positions = 1
     exp_requirements = 0
-    selection_color = "#ccaaaa"
+    selection_color = "#444d75"
     access = list(ACCESS_SECURITY, ACCESS_COMMAND)            //See /datum/job/assistant/get_access()
     minimal_access = list(ACCESS_SECURITY, ACCESS_COMMAND)    //See /datum/job/assistant/get_access()
 
     outfit = /datum/outfit/job/low_sec_commander
-    display_order = 3.5
+    display_order = 8
 
     job_important = "You are a Low Security Commander, hired by LCB. Your job to commnand the Low Security Zone."
 
@@ -69,7 +69,7 @@
                                 JUSTICE_ATTRIBUTE = 60
                                 )
     loadalways = FALSE
-    maptype = "limbus_labs"
+    trusted_only = TRUE //remove later
 
 
 /datum/job/low_sec_commander/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)

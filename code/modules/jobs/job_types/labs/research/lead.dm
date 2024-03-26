@@ -4,7 +4,7 @@
 	supervisors = "District Manager"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#aabbcc"
+	selection_color = "#854a8c"
 
 	outfit = /datum/outfit/job/lead_researcher
 
@@ -14,11 +14,13 @@
 	job_attribute_limit = 0
 
 
-	display_order = 2.6
+	display_order = 6
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are the Lead Researcher. Your job is to run research on the abnormalities, make sure paperwork is in order and sent into command, and that the proper procedure is followed by the other researchers."
 
+	//remove later
+	trusted_only = TRUE
 
 
 /datum/outfit/job/lead_researcher

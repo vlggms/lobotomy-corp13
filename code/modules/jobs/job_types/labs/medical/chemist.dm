@@ -1,5 +1,10 @@
 /datum/job/pharmacist
 	title = "Pharmacist"
+	faction = "Station"
+	supervisors = "the Chief Medical Officer"
+	total_positions = 1
+	spawn_positions = 1
+	exp_requirements = 180
 	selection_color = "#ccddee"
 	department_head = list("Chief Medical Officer")
 	supervisors = "Chief Medical Officer"
@@ -13,11 +18,8 @@
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
 
-	total_positions = 1
-	spawn_positions = 1
-	exp_requirements = 180
 
-	display_order = 5.5
+	display_order = 5.2
 	maptype = "limbus_labs"
 	job_important = "You are a pharmacist hired by LCB. Your job is to make the medicine used by the Medical Zone."
 

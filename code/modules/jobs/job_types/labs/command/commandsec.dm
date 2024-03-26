@@ -6,12 +6,12 @@
 	total_positions = 2
 	spawn_positions = 2
 	exp_requirements = 0
-	selection_color = "#ccaaaa"
+	selection_color = "#555555"
 	access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)		//See /datum/job/assistant/get_access()
 	minimal_access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
 
 	outfit = /datum/outfit/job/damage_mitigation_officer
-	display_order = 4
+	display_order = 7
 
 	job_important = "You are a Damage Mitigation Officer, hired by LCB. Your job to protect the Command Team and department heads."
 
@@ -54,12 +54,12 @@
 	total_positions = 2
 	spawn_positions = 2
 	exp_requirements = 0
-	selection_color = "#ccaaaa"
+	selection_color = "#555555"
 	access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)		//See /datum/job/assistant/get_access()
 	minimal_access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
 
 	outfit = /datum/outfit/job/damage_exasperation_officer
-	display_order = 4.5
+	display_order = 7.1
 
 	job_important = "You are a Damage Exasperation Officer, hired by LCB. Your job to protect ensure the safety of LC employees when the security officers are unable or fail to handle the threat."
 

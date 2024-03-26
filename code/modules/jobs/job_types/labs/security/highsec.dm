@@ -6,12 +6,12 @@
     total_positions = 3
     spawn_positions = 3
     exp_requirements = 0
-    selection_color = "#ccaaaa"
+    selection_color = "#cf5979"
     access = list(ACCESS_ARMORY)            //See /datum/job/assistant/get_access()
     minimal_access = list(ACCESS_ARMORY)    //See /datum/job/assistant/get_access()
 
     outfit = /datum/outfit/job/high_sec_officer
-    display_order = 10
+    display_order = 9.5
 
     job_important = "You are a High Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the High Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them."
 
@@ -52,12 +52,12 @@
     total_positions = 1
     spawn_positions = 1
     exp_requirements = 0
-    selection_color = "#ccaaaa"
+    selection_color = "#99314d"
     access = list(ACCESS_ARMORY, ACCESS_COMMAND)            //See /datum/job/assistant/get_access()
     minimal_access = list(ACCESS_ARMORY, ACCESS_COMMAND)    //See /datum/job/assistant/get_access()
 
     outfit = /datum/outfit/job/high_sec_commander
-    display_order = 3
+    display_order = 9
 
     job_important = "You are a High Security Commander, hired by LCB. Your job to commnand the High Security Zone."
 
@@ -69,6 +69,7 @@
                                 JUSTICE_ATTRIBUTE = 60
                                 )
     loadalways = FALSE
+    trusted_only = TRUE //remove later
     maptype = "limbus_labs"
 
 

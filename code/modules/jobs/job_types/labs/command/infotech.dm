@@ -4,7 +4,7 @@
 	supervisors = "District Manager"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#aabbcc"
+	selection_color = "#af57ba"
 
 	outfit = /datum/outfit/job/ist
 
@@ -14,7 +14,7 @@
 	job_attribute_limit = 0
 
 
-	display_order = 2.5
+	display_order = 6.1
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are the Information Systems Tech. Your job is to build, operate and maintain computer systems in the lab."

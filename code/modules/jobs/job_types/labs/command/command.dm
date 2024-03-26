@@ -4,7 +4,7 @@
 	supervisors = "LCB Executive Manager"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#aabbcc"
+	selection_color = "#444444"
 
 	outfit = /datum/outfit/job/district_manager
 
@@ -17,6 +17,9 @@
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are the District Manager. Your job is to ensure everybody is following proper procedure."
+
+	//remove later
+	trusted_only = TRUE
 
 
 
@@ -39,7 +42,7 @@
 	supervisors = "Limbus Company Executives"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#aabbcc"
+	selection_color = "#444444"
 	trusted_only = TRUE
 	outfit = /datum/outfit/job/asset_protection
 
@@ -48,7 +51,7 @@
 
 	job_attribute_limit = 0
 
-	display_order = 1.5
+	display_order = 2
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are the LC Asset Protection. Your job is to make sure that all assets are taken care of, and that no abnormalites are suppressed. Report to the Executives (Admins) as needed."

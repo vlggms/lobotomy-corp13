@@ -43,8 +43,6 @@ GLOBAL_LIST_INIT(command_positions, list(
 	//LCB Labs
 	"District Manager",
 	"LC Asset Protection",
-	"Damage Mitigation Officer",
-	"Damage Exasperation Officer",
 	"Chief Medical Officer",
 	"Lead Researcher",
 	"High Security Commander",
@@ -78,6 +76,7 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"Information Systems Tech",
 	"Researcher",
 	"LC Staff",
+
 	))
 
 
@@ -104,7 +103,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Surgeon",
 	"Nurse Practitioner",
 	"Pharmacist",
-	"Paramedic",
+	"Emergency Medical Technician",
 	))
 
 

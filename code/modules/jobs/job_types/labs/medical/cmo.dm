@@ -2,9 +2,10 @@
 	title = "Chief Medical Officer"
 	faction = "Station"
 	supervisors = "the District Manager"
+	selection_color = "#95acc2"
 	total_positions = 1
 	spawn_positions = 1
-	selection_color = "#aabbcc"
+	exp_requirements = 600
 
 	outfit = /datum/outfit/job/cmo
 
@@ -14,13 +15,14 @@
 	job_attribute_limit = 0
 
 	liver_traits = list(TRAIT_MEDICAL_METABOLISM)
-	exp_requirements = 600
 
-	display_order = 2.5
+	display_order = 5
 	alt_titles = list("Medical Director", "Medical Officer")
 	maptype = "limbus_labs"
 	job_important = "You are the Chief Medical Officer. You run the Medical Zone and coordinate the medical department."
 
+	//remove later
+	trusted_only = TRUE
 
 
 /datum/outfit/job/cmo

@@ -18,6 +18,7 @@
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	weapon_weight = WEAPON_LIGHT
+	spread = 30
 	shotsleft = 13
 	reloadtime = 1.2 SECONDS
 	autofire = 0.12 SECONDS
@@ -32,10 +33,22 @@
 	icon = 'icons/obj/limbus_weapons.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/thumbshell //Does 8 shells at 5 damage, total 40
 	projectile_damage_multiplier = 0.5 //5 damage per bullet
+	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	shotsleft = 7
 	reloadtime = 3 SECONDS
+	force = 10	//You have knockback
 
+
+/obj/item/gun/ego_gun/city/ammogun/shottie/attack(mob/living/target, mob/living/user)
+	. = ..()
+	user.changeNext_move(CLICK_CD_MELEE * 1.5)
+	if(!.)
+		return FALSE
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 //LCCB Defensive Equipment
 /obj/item/ego_weapon/shield/lccb
@@ -59,6 +72,16 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 
 
+/obj/item/ego_weapon/shield/lccb/attack(mob/living/target, mob/living/user)
+	. = ..()
+	if(!.)
+		return FALSE
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	if(!target.anchored)
+		var/whack_speed = (prob(60) ? 1 : 4)
+		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+
 //Bats for the bat people
 /obj/item/ego_weapon/city/lccb_bat
 	name = "LCCB bat"
@@ -80,4 +103,4 @@
 	var/atom/throw_target = get_edge_target_turf(target, user.dir)
 	if(!target.anchored)
 		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+		target.throw_at(throw_target, rand(1, 4), whack_speed, user)
