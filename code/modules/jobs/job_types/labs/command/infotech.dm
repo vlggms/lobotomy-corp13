@@ -2,8 +2,8 @@
 	title = "Information Systems Tech"
 	faction = "Station"
 	supervisors = "District Manager"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 0
+	spawn_positions = 0
 	selection_color = "#af57ba"
 
 	outfit = /datum/outfit/job/ist

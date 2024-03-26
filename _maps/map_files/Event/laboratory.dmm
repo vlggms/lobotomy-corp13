@@ -415,8 +415,9 @@
 /area/centcom)
 "fF" = (
 /obj/structure/table,
-/obj/item/folder/blue,
 /obj/machinery/light,
+/obj/item/clipboard,
+/obj/item/folder/blue,
 /turf/open/floor/plasteel,
 /area/centcom)
 "fJ" = (
@@ -431,13 +432,6 @@
 	name = "Blubbering Toad containment"
 	},
 /turf/open/floor/plasteel,
-/area/centcom)
-"fR" = (
-/obj/effect/spawner/structure/window/reinforced,
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/turf/open/floor/plating,
 /area/centcom)
 "gd" = (
 /obj/machinery/sleeper/syndie,
@@ -596,6 +590,10 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/stellar,
 /area/centcom)
+"jD" = (
+/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
+/turf/open/floor/plasteel,
+/area/centcom)
 "jE" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/centcom)
@@ -685,6 +683,8 @@
 "ls" = (
 /obj/structure/table,
 /obj/item/clipboard,
+/obj/item/folder/blue,
+/obj/item/folder/blue,
 /obj/item/folder/blue,
 /turf/open/floor/plasteel/dark,
 /area/centcom)
@@ -943,9 +943,9 @@
 /area/centcom)
 "rD" = (
 /obj/structure/rack,
-/obj/item/ego_weapon/shield/lccb,
-/obj/item/gun/ego_gun/city/ammogun/autopistol,
+/obj/item/gun/ego_gun/city/ammogun/smg,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/gun/ego_gun/city/ammogun/autopistol,
 /turf/open/floor/plasteel,
 /area/centcom)
 "rG" = (
@@ -959,6 +959,13 @@
 "rI" = (
 /obj/machinery/biogenerator,
 /turf/open/indestructible/white,
+/area/centcom)
+"rO" = (
+/obj/machinery/button/door/indestructible{
+	id = containment5;
+	name = "containment button"
+	},
+/turf/closed/indestructible/reinforced,
 /area/centcom)
 "rU" = (
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -1145,9 +1152,9 @@
 /area/centcom)
 "wv" = (
 /obj/structure/rack,
-/obj/item/ego_weapon/shield/lccb,
 /obj/item/ego_weapon/city/lccb_bat,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/gun/ego_gun/city/ammogun/smg,
 /turf/open/floor/plasteel,
 /area/centcom)
 "wG" = (
@@ -1564,6 +1571,13 @@
 /mob/living/simple_animal/hostile/abnormality/pinocchio,
 /turf/open/floor/plasteel,
 /area/centcom)
+"BN" = (
+/obj/machinery/door/poddoor{
+	id = containment6;
+	name = "Containment 6 Blast Door"
+	},
+/turf/open/floor/plasteel,
+/area/centcom)
 "BP" = (
 /obj/structure/closet{
 	name = "high-security officer equipment"
@@ -1735,6 +1749,13 @@
 "FY" = (
 /obj/structure/fluff/hedge/opaque,
 /turf/open/floor/grass,
+/area/centcom)
+"Ga" = (
+/obj/machinery/button/door/indestructible{
+	id = containment6;
+	name = "containment button"
+	},
+/turf/closed/indestructible/reinforced,
 /area/centcom)
 "Gq" = (
 /obj/machinery/door/poddoor{
@@ -1939,6 +1960,13 @@
 	pixel_y = 2
 	},
 /obj/item/folder,
+/turf/open/floor/plasteel,
+/area/centcom)
+"KS" = (
+/obj/structure/closet/crate/bin,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel,
 /area/centcom)
 "KT" = (
@@ -2506,6 +2534,13 @@
 	},
 /turf/open/floor/plating/grass,
 /area/centcom)
+"Up" = (
+/obj/machinery/door/poddoor{
+	id = containment5;
+	name = "Containment 5 Blast Door"
+	},
+/turf/open/floor/plasteel,
+/area/centcom)
 "Uz" = (
 /obj/structure/table,
 /obj/machinery/door/window/brigdoor{
@@ -2703,6 +2738,12 @@
 	name = "low-security checkpoint";
 	req_access_txt = "1"
 	},
+/turf/open/floor/plasteel,
+/area/centcom)
+"YJ" = (
+/obj/structure/table,
+/obj/item/clipboard,
+/obj/item/folder/blue,
 /turf/open/floor/plasteel,
 /area/centcom)
 "YP" = (
@@ -23124,10 +23165,10 @@ ZP
 ZP
 ZP
 Ps
-CE
-um
-um
-Ps
+KS
+ID
+ID
+zo
 ID
 ID
 Ps
@@ -23381,10 +23422,10 @@ ZP
 ZP
 ZP
 Ps
-Nt
+um
 ID
 ID
-zo
+ht
 ID
 ID
 Ps
@@ -23641,7 +23682,7 @@ Ps
 ID
 ID
 nD
-Ps
+ht
 Sm
 Sm
 Ps
@@ -24669,7 +24710,7 @@ Ps
 ID
 ID
 bT
-Ps
+ht
 ft
 ft
 Ps
@@ -24923,10 +24964,10 @@ ZP
 ZP
 ZP
 Ps
-Nt
+qN
 ID
 ID
-zo
+ht
 ID
 ID
 Ps
@@ -25182,8 +25223,8 @@ ZP
 Ps
 wG
 nS
-Ph
-Ps
+ID
+zo
 ID
 ID
 Ps
@@ -35445,7 +35486,7 @@ ef
 sG
 eg
 Ps
-xt
+YJ
 sG
 Ps
 qN
@@ -36216,7 +36257,7 @@ ZP
 ZP
 ZP
 Ps
-xt
+YJ
 ID
 rm
 ID
@@ -39050,10 +39091,10 @@ ZP
 ZP
 ZP
 ZP
-Ps
-Ps
-Ps
-Ps
+ZP
+ZP
+ZP
+ZP
 ZP
 ZP
 ZP
@@ -39308,7 +39349,7 @@ ZP
 ZP
 ZP
 ZP
-fR
+ZP
 ZP
 ZP
 ZP
@@ -39318,7 +39359,7 @@ Ps
 nS
 um
 um
-Ps
+ht
 ID
 ID
 ID
@@ -39833,7 +39874,7 @@ ID
 ID
 fy
 Ps
-Sm
+Dj
 Dj
 Ps
 fj
@@ -41374,7 +41415,7 @@ Ps
 ID
 ID
 ID
-Ps
+ht
 ID
 ID
 Ps
@@ -41856,13 +41897,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+Ps
+Ps
+Ps
+Ps
+Ps
+Ps
 Ps
 Ps
 Ps
@@ -42113,13 +42154,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+vo
+IS
+IS
+FN
+Pd
+FN
 Ps
 vo
 IS
@@ -42370,13 +42411,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+ID
+ID
+ID
+ID
+ID
 Ps
 ID
 ID
@@ -42627,13 +42668,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+eg
+rO
+Up
+Up
+Up
 Ps
 ID
 eg
@@ -42884,13 +42925,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+Zi
+ht
+Ua
+ID
+Ua
 Ps
 ID
 Zi
@@ -43141,13 +43182,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+ip
+ht
+ID
+jD
+ID
 Ps
 ID
 ip
@@ -43398,13 +43439,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+Nt
+Zi
+ht
+Ua
+ID
+Ua
 Ps
 Nt
 Zi
@@ -43655,13 +43696,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+AK
+ht
+Ps
+Ps
+Ps
+Ps
 Ps
 AK
 ht
@@ -43912,14 +43953,14 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
 Ps
+ID
+ID
+ID
+ID
+Rp
+ID
+ID
 ID
 ID
 Rp
@@ -44169,15 +44210,15 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
 Ps
 Nt
+ID
+ID
+ID
+ID
+ID
+ID
+ID
 ID
 ID
 ID
@@ -44426,14 +44467,14 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
 Ps
+ID
+ID
+ID
+ID
+Nb
+ID
+ID
 ID
 ID
 Nb
@@ -44683,13 +44724,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+pL
+ht
+Ps
+Ps
+Ps
+Ps
 Ps
 pL
 ht
@@ -44940,13 +44981,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+Nt
+Zi
+ht
+Ua
+ID
+Ua
 Ps
 Nt
 Zi
@@ -45197,13 +45238,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+ip
+ht
+ID
+ID
+ID
 Ps
 ID
 ip
@@ -45454,13 +45495,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+Zi
+ht
+Ua
+ID
+Ua
 Ps
 ID
 Zi
@@ -45711,13 +45752,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+eg
+Ga
+BN
+BN
+BN
 Ps
 ID
 eg
@@ -45968,13 +46009,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+ID
+ID
+ID
+ID
+ID
+ID
 Ps
 ID
 ID
@@ -46225,13 +46266,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+vo
+IS
+IS
+FN
+hD
+FN
 Ps
 vo
 IS
@@ -46482,13 +46523,13 @@ ZP
 ZP
 ZP
 ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
-ZP
+Ps
+Ps
+Ps
+Ps
+Ps
+Ps
+Ps
 Ps
 Ps
 Ps

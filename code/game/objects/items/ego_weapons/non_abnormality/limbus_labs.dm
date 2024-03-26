@@ -23,6 +23,18 @@
 	reloadtime = 1.2 SECONDS
 	autofire = 0.12 SECONDS
 
+//SMG
+/obj/item/gun/ego_gun/city/ammogun/smg
+	name = "LCCB auto pistol"
+	desc = "An SMG often found in the hands of LCCB staff. This one is fully automatic, but requires two hands."
+	icon_state = "lccb_smg"
+	inhand_icon_state = "lccb_pistol"
+	icon = 'icons/obj/limbus_weapons.dmi'
+	spread = 30
+	shotsleft = 30
+	reloadtime = 2.5 SECONDS
+	autofire = 0.12 SECONDS
+
 
 //Shottie
 /obj/item/gun/ego_gun/city/ammogun/shottie

@@ -2,8 +2,8 @@
 	title = "Researcher"
 	faction = "Station"
 	supervisors = "Senior Researcher"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	selection_color = "#cd6fd9"
 
 	outfit = /datum/outfit/job/researcher
