@@ -17,34 +17,40 @@
 	name = "limbus company CMO labcoat"
 	desc = "It says Limbus Company on the tag. Used by the Limbus Company Chief Medical Officer."
 	icon_state = "cmo"
+	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/doctor
 	name = "limbus company doctor labcoat"
 	desc = "It says Limbus Company on the tag. Used by the Limbus Company Surgeon."
 	icon_state = "doctor"
+	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem
 	name = "limbus company pharmacist labcoat"
 	desc = "It says Limbus Company on the tag. Used by the Limbus Company Pharmacist."
 	icon_state = "pharmacist"
+	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/lr
 	name = "limbus company LR labcoat"
 	desc = "It says Limbus Company on the tag. Used by the Limbus Company Lead Researcher."
 	icon_state = "lr"
+	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/sresearch
 	name = "limbus company SR labcoat"
 	desc = "It says Limbus Company on the tag. Used by the Limbus Company Senior Researcher."
 	icon_state = "seniorresearch"
+	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/research
 	name = "limbus company research labcoat"
 	desc = "It says Limbus Company on the tag. Used by Limbus Company Researchers."
 	icon_state = "research"
+	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
