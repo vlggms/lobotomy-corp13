@@ -1,5 +1,5 @@
 /datum/job/lcb_nurse
-	title = "Nurse"
+	title = "Nurse Practitioner"
 	selection_color = "#ccddee"
 	department_head = list("Chief Medical Officer", "Surgeon")
 	supervisors = "the Chief Medical Officer and the Surgeon"
