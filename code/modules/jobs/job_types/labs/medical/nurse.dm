@@ -22,6 +22,13 @@
 	display_order = 5.3
 	maptype = "limbus_labs"
 	job_important = "You are a nurse hired by LCB. You help the other members of the Medical Zone tend to the patients."
+	job_abbreviation = "NP"
+
+
+/datum/job/lcb_nurse/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 
 /datum/outfit/job/lcb_nurse

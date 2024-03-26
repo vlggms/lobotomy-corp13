@@ -16,11 +16,16 @@
 	display_order = 1
 	alt_titles = list()
 	maptype = "limbus_labs"
+	job_abbreviation = "ExMGR"
 	job_important = "You are the District Manager. Your job is to ensure everybody is following proper procedure."
 
 	//remove later
 	trusted_only = TRUE
 
+/datum/job/district_manager/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 
 /datum/outfit/job/district_manager
@@ -53,8 +58,15 @@
 
 	display_order = 2
 	alt_titles = list()
+	job_abbreviation = "OVR"
 	maptype = "limbus_labs"
 	job_important = "You are the LC Asset Protection. Your job is to make sure that all assets are taken care of, and that no abnormalites are suppressed. Report to the Executives (Admins) as needed."
+
+/datum/job/asset_protection/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+
 
 
 

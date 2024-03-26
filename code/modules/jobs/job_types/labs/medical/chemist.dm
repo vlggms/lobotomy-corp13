@@ -22,6 +22,7 @@
 	display_order = 5.2
 	maptype = "limbus_labs"
 	job_important = "You are a pharmacist hired by LCB. Your job is to make the medicine used by the Medical Zone."
+	job_abbreviation = "PHAR"
 
 
 /datum/outfit/job/pharmacist
@@ -32,6 +33,7 @@
 	ears = /obj/item/radio/headset/headset_welfare
 	uniform = /obj/item/clothing/under/rank/medical/doctor/blue
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	head = /obj/item/clothing/head/beret/tegu/med
+	head = /obj/item/clothing/head/beret/tegu/chem
 	l_pocket = /obj/item/radio
 	glasses = /obj/item/clothing/glasses/sunglasses/chemical
+	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem

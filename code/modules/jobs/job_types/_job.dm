@@ -174,11 +174,6 @@
 			Y.registered_name = H.name
 			Y.update_label()
 
-	//On these gamemodes, everyone should be fear immune
-	if(SSmaptype.maptype in SSmaptype.nofear)
-		ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-		ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-
 
 /datum/job/proc/announce(mob/living/carbon/human/H)
 	if(head_announce)

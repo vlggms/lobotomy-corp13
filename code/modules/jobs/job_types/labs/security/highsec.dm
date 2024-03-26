@@ -24,22 +24,26 @@
 								)
 	loadalways = FALSE
 	maptype = "limbus_labs"
+	rank_title = "CPL"
+	job_abbreviation = "HSO"
 
 
 /datum/job/high_sec_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
 	H.set_attribute_limit(40)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 
 /datum/outfit/job/high_sec_officer
 	name = "High Security Officer"
 	jobtype = /datum/job/low_sec_officer
 
-	head = /obj/item/clothing/head/beret/tegu/lobotomy/discipline
+	head = /obj/item/clothing/head/beret/sec
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_discipline
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy
+	uniform = /obj/item/clothing/under/limbus/highsec
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -71,10 +75,14 @@
 	loadalways = FALSE
 	trusted_only = TRUE //remove later
 	maptype = "limbus_labs"
+	rank_title = "SiCPT"
+	job_abbreviation = "HSC"
 
 
 /datum/job/high_sec_commander/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
 	H.set_attribute_limit(60)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/high_sec_commander
@@ -84,7 +92,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/headset_discipline
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy
+	uniform = /obj/item/clothing/under/limbus/officer
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)

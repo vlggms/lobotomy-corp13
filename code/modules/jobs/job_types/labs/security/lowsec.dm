@@ -24,10 +24,14 @@
 								)
 	loadalways = FALSE
 	maptype = "limbus_labs"
+	rank_title = "LNC"
+	job_abbreviation = "LSO"
 
 
 /datum/job/low_sec_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
 	H.set_attribute_limit(20)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/low_sec_officer
@@ -38,17 +42,18 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/headset_control
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy
+	uniform = /obj/item/clothing/under/limbus/lowsec
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	l_pocket = /obj/item/radio
 
 
+//Commander
 /datum/job/low_sec_commander
 	title = "Low Security Commander"
 	faction = "Station"
-	supervisors = "LCB officials"
+	supervisors = "the District Manager"
 	total_positions = 1
 	spawn_positions = 1
 	exp_requirements = 0
@@ -70,10 +75,15 @@
 								)
 	loadalways = FALSE
 	trusted_only = TRUE //remove later
+	maptype = "limbus_labs"
+	rank_title = "SiCPT"
+	job_abbreviation = "LSC"
 
 
 /datum/job/low_sec_commander/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	H.set_attribute_limit(60)
+	..()
+	H.set_attribute_limit(20)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/low_sec_commander
@@ -83,10 +93,9 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/headset_welfare
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy
+	uniform = /obj/item/clothing/under/limbus/officer
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	l_pocket = /obj/item/radio
-
 

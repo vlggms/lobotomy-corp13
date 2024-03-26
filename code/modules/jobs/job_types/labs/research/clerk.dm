@@ -19,6 +19,7 @@
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are a LC Staff Member. You have little responsibilities, but are encouraged to assist research."
+	job_abbreviation = "STF"
 
 
 

@@ -8,8 +8,8 @@
 
 	outfit = /datum/outfit/job/lead_researcher
 
-	access = list(ACCESS_RND, ACCESS_COMMAND)
-	minimal_access = list(ACCESS_RND, ACCESS_COMMAND)
+	access = list(ACCESS_RND, ACCESS_COMMAND, ACCESS_ARMORY, ACCESS_SECURITY)
+	minimal_access = list(ACCESS_RND, ACCESS_COMMAND, ACCESS_ARMORY, ACCESS_SECURITY)
 
 	job_attribute_limit = 0
 
@@ -21,7 +21,13 @@
 
 	//remove later
 	trusted_only = TRUE
+	job_abbreviation = "LR"
 
+
+/datum/job/lead_researcher/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 /datum/outfit/job/lead_researcher
 	name = "Lead Researcher"
@@ -32,5 +38,5 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/rd
-	suit = /obj/item/clothing/suit/toggle/labcoat
+	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/lr
 	l_pocket = /obj/item/radio

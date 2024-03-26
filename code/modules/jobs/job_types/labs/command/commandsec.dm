@@ -11,7 +11,7 @@
 	minimal_access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
 
 	outfit = /datum/outfit/job/damage_mitigation_officer
-	display_order = 7
+	display_order = 3
 
 	job_important = "You are a Damage Mitigation Officer, hired by LCB. Your job to protect the Command Team and department heads."
 
@@ -24,11 +24,15 @@
 								)
 	loadalways = FALSE
 	maptype = "limbus_labs"
+	rank_title = "SiLT"
+	job_abbreviation = "DMO"
 
 
 /datum/job/damage_mitigation_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
 	H.set_attribute_limit(60)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/outfit/job/damage_mitigation_officer
 	name = "Damage Mitigation Officer"
@@ -38,7 +42,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy
+	uniform = /obj/item/clothing/under/limbus/commandsec
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
@@ -59,7 +63,7 @@
 	minimal_access = list(ACCESS_ARMORY, ACCESS_SECURITY, ACCESS_RND, ACCESS_MEDICAL, ACCESS_COMMAND)	//See /datum/job/assistant/get_access()
 
 	outfit = /datum/outfit/job/damage_exasperation_officer
-	display_order = 7.1
+	display_order = 3.1
 
 	job_important = "You are a Damage Exasperation Officer, hired by LCB. Your job to protect ensure the safety of LC employees when the security officers are unable or fail to handle the threat."
 
@@ -72,11 +76,15 @@
 								)
 	loadalways = FALSE
 	maptype = "limbus_labs"
+	rank_title = "SiLT"
+	job_abbreviation = "DEO"
 
 
 /datum/job/damage_exasperation_officer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
 	H.set_attribute_limit(60)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 /datum/outfit/job/damage_exasperation_officer
 	name = "Damage Exasperation Officer"
@@ -86,7 +94,7 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
-	uniform = /obj/item/clothing/under/suit/lobotomy
+	uniform = /obj/item/clothing/under/limbus/commandsec
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black

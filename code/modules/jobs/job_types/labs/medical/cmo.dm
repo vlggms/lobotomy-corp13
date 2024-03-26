@@ -9,8 +9,8 @@
 
 	outfit = /datum/outfit/job/cmo
 
-	access = list(ACCESS_MEDICAL, ACCESS_COMMAND)
-	minimal_access = list(ACCESS_MEDICAL, ACCESS_COMMAND)
+	access = list(ACCESS_MEDICAL, ACCESS_COMMAND, ACCESS_ARMORY, ACCESS_SECURITY)
+	minimal_access = list(ACCESS_MEDICAL, ACCESS_COMMAND, ACCESS_ARMORY, ACCESS_SECURITY)
 
 	job_attribute_limit = 0
 
@@ -23,6 +23,12 @@
 
 	//remove later
 	trusted_only = TRUE
+	job_abbreviation = "CMO"
+
+/datum/job/cmo/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 
 /datum/outfit/job/cmo
@@ -33,8 +39,8 @@
 	ears = /obj/item/radio/headset/heads/headset_welfare
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	head = /obj/item/clothing/head/beret/tegu/med
-	suit = /obj/item/clothing/suit/toggle/labcoat
+	head = /obj/item/clothing/head/beret/tegu/cmo
+	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/cmo
 	l_hand = /obj/item/storage/firstaid/medical
 
 	backpack = /obj/item/storage/backpack/medic
