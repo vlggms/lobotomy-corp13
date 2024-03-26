@@ -87,7 +87,7 @@
 "bN" = (
 /obj/machinery/door/airlock/research{
 	name = "computer tech office";
-	req_access_txt = "67:19"
+	req_one_access_txt = "67; 19"
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -2467,7 +2467,7 @@
 "WV" = (
 /obj/machinery/door/airlock/glass_large{
 	name = "computer tech office";
-	req_access_txt = "67; 19"
+	req_one_access_txt = "67; 19"
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
