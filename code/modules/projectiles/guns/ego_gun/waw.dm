@@ -203,7 +203,7 @@
 							JUSTICE_ATTRIBUTE = 60
 	)
 
-/obj/item/gun/ego_gun/ecstasy
+/obj/item/gun/pistol/ecstasy
 	name = "ecstasy"
 	desc = "Tell the kid today's treat is going to be grape-flavored candy. It's his favorite."
 	icon_state = "ecstasy"
