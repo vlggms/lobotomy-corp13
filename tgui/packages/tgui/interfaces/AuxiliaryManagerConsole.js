@@ -41,7 +41,8 @@ const FacilityUpgrades = (props, context) => {
     <Section title="Master facility upgrade systems">
       {is_admin === 1 && (
         <NoticeBox danger bold textAlign="center">
-          !! Due to being adminned, your proximity and living checks are bypassed !!
+          !! Due to being adminned,
+          your proximity and living checks are bypassed !!
         </NoticeBox>
       )}
       {is_admin === 1 && (
@@ -187,7 +188,8 @@ const CoreSuppressionSelector = (props, context) => {
     <Section title="Master core suppression systems">
       {is_admin === 1 && (
         <NoticeBox danger bold textAlign="center">
-          !! Due to being adminned, your proximity and living checks are bypassed !!
+          !! Due to being adminned,
+          your proximity and living checks are bypassed !!
         </NoticeBox>
       )}
       {is_admin === 1 && (
