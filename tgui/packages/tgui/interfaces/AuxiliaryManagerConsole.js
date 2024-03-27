@@ -40,7 +40,7 @@ const FacilityUpgrades = (props, context) => {
   return (
     <Section title="Master facility upgrade systems">
       {is_admin === 1 && (
-        <Box mt="0.5em" backgroundColor='purple'>
+        <Box mt="0.5em" backgroundColor="purple">
           (ADMIN ONLY) Add/Subtract LOB points:
           <Button
             content={'-100'}
@@ -110,27 +110,27 @@ const FacilityUpgrades = (props, context) => {
       except they have different mapping variables so we can sort out categories
       Surelly there's a better way to do this
       */}
-      <Box textColor="blue" mt="1em" ml="0.5em" fontSize="20px" nowrap>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
         available unlockable bullets:
       </Box>
       <BulletUpgrades />
 
-      <Box textColor="blue" mt="1em" ml="1em" fontSize="20px" nowrap>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
         available bullet upgrades:
       </Box>
       <MoreBulletUpgrades />
 
-      <Box textColor="blue" mt="1em" ml="1em" fontSize="20px" nowrap>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
         available agent upgrades:
       </Box>
       <AgentUpgrades />
 
-      <Box textColor="blue" mt="1em" ml="1em" fontSize="20px" nowrap>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
         available abnormality cell upgrades:
       </Box>
       <AbnormalityUpgrades />
 
-      <Box textColor="blue" mt="1em" ml="1em" fontSize="20px" nowrap>
+      <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
         available uncategorized upgrades:
       </Box>
       <MiscUpgrades />
@@ -298,6 +298,7 @@ const MoreBulletUpgrades = (props, context) => {
         <LabeledList.Item
           key={real_bullet_upgrades.name}
           label={real_bullet_upgrades.name}
+          ml="1em"
           buttons={
             <Button
               content={
