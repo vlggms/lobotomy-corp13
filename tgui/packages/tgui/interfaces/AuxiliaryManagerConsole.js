@@ -40,6 +40,11 @@ const FacilityUpgrades = (props, context) => {
   return (
     <Section title="Master facility upgrade systems">
       {is_admin === 1 && (
+        <NoticeBox danger bold textAlign="center">
+          !! Due to being adminned, your proximity and living checks are bypassed !!
+        </NoticeBox>
+      )}
+      {is_admin === 1 && (
         <Box mt="0.5em" backgroundColor="purple">
           (ADMIN ONLY) Add/Subtract LOB points:
           <Button
@@ -101,7 +106,7 @@ const FacilityUpgrades = (props, context) => {
         </Box>
       )}
       <LabeledList>
-        <LabeledList.Item label="available LOB points: ">
+        <LabeledList.Item label="available LOB points">
           {Upgrade_points}
         </LabeledList.Item>
       </LabeledList>
@@ -111,27 +116,27 @@ const FacilityUpgrades = (props, context) => {
       Surelly there's a better way to do this
       */}
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        available unlockable bullets:
+        Available unlockable bullets:
       </Box>
       <BulletUpgrades />
 
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        available bullet upgrades:
+        Available bullet upgrades:
       </Box>
       <MoreBulletUpgrades />
 
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        available agent upgrades:
+        Available agent upgrades:
       </Box>
       <AgentUpgrades />
 
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        available abnormality cell upgrades:
+        Available abnormality cell upgrades:
       </Box>
       <AbnormalityUpgrades />
 
       <Box textColor="blue" mt="1em" fontSize="20px" nowrap>
-        available uncategorized upgrades:
+        Available uncategorized upgrades:
       </Box>
       <MiscUpgrades />
     </Section>
@@ -180,6 +185,11 @@ const CoreSuppressionSelector = (props, context) => {
 
   return (
     <Section title="Master core suppression systems">
+      {is_admin === 1 && (
+        <NoticeBox danger bold textAlign="center">
+          !! Due to being adminned, your proximity and living checks are bypassed !!
+        </NoticeBox>
+      )}
       {is_admin === 1 && (
         <Box mt="0.5em">
           <Button

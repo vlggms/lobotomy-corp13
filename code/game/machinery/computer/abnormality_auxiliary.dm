@@ -309,45 +309,10 @@
 
 /obj/machinery/computer/abnormality_auxiliary/ui_act(action, list/params)
 	. = ..()
-	if(usr.client.holder) // allows admins to bypass typical TGUI checks for admin actions, including proximity and not being a ghost
-		switch(action)
-			if("Unlock All Cores")
-				log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
-				message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
-
-				SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
-				update_static_data_for_all_viewers()
-				return
-
-			if("Disable Core Suppression")
-				log_game("[usr] has used admin powers to disable all core suppressions")
-				message_admins("[usr] has used admin powers to disable all core suppressions")
-
-				SSlobotomy_corp.ResetPotentialSuppressions()
-				update_static_data_for_all_viewers()
-				return
-
-			if("End Core Suppression")
-				log_game("[usr] has used admin powers to end the current core suppression (persistence not saved)")
-				message_admins("[usr] has used admin powers to end the current core suppression (persistence not saved)")
-
-				SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
-				SSlobotomy_corp.core_suppression.End()
-				update_static_data_for_all_viewers()
-				return
-
-			if("Change LOB Points")
-				var/amount = params["LOB_amount"]
-				log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
-				message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
-
-				SSlobotomy_corp.lob_points += amount
-				return
-
-	if (.)
+	if(. && !usr.client.holder) // the usr.client.holder check allows admins to bypass the typical TGUI proximity checks
 		return
 
-	switch(action) // player actions
+	switch(action)
 		if("Select Core Suppression") // selects a core suppression
 			var/core_suppression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
 			if(!ispath(core_suppression) || !(core_suppression in SSlobotomy_corp.available_core_suppressions))
@@ -380,5 +345,52 @@
 
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
-		else // they probably called an admin proc, lets update the static data to resolve deadmin edge cases
+
+		// admin-only actions, remember to put a if(usr.client.holder) check
+		if("Unlock All Cores")
+			if(!usr.client.holder)
+				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+				return
+
+			log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
+			message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
+
+			SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
+			update_static_data_for_all_viewers()
+
+		if("Disable Core Suppression")
+			if(!usr.client.holder)
+				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+				return
+
+			log_game("[usr] has used admin powers to disable all core suppressions")
+			message_admins("[usr] has used admin powers to disable all core suppressions")
+
+			SSlobotomy_corp.ResetPotentialSuppressions()
+			update_static_data_for_all_viewers()
+
+		if("End Core Suppression")
+			if(!usr.client.holder)
+				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+				return
+
+			log_game("[usr] has used admin powers to end the current core suppression (persistence not saved)")
+			message_admins("[usr] has used admin powers to end the current core suppression (persistence not saved)")
+
+			SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
+			SSlobotomy_corp.core_suppression.End()
+			update_static_data_for_all_viewers()
+
+		if("Change LOB Points")
+			if(!usr.client.holder)
+				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+				return
+
+			var/amount = params["LOB_amount"]
+			log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+			message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+
+			SSlobotomy_corp.lob_points += amount
+
+		else // something bad happened, refresh the data and it hopefully fixes itself
 			update_static_data_for_all_viewers()
