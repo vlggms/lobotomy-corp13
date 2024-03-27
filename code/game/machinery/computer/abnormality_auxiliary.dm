@@ -317,6 +317,7 @@
 
 				SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
 				update_static_data_for_all_viewers()
+				return
 
 			if("Disable Core Suppression")
 				log_game("[usr] has used admin powers to disable all core suppressions")
@@ -324,6 +325,7 @@
 
 				SSlobotomy_corp.ResetPotentialSuppressions()
 				update_static_data_for_all_viewers()
+				return
 
 			if("End Core Suppression")
 				log_game("[usr] has used admin powers to end the current core suppression (persistence not saved)")
@@ -332,6 +334,7 @@
 				SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
 				SSlobotomy_corp.core_suppression.End()
 				update_static_data_for_all_viewers()
+				return
 
 			if("Change LOB Points")
 				var/amount = params["LOB_amount"]
@@ -339,6 +342,7 @@
 				message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
 
 				SSlobotomy_corp.lob_points += amount
+				return
 
 	if (.)
 		return
@@ -376,3 +380,5 @@
 
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+		else // they probably called an admin proc, lets update the static data to resolve deadmin edge cases
+			update_static_data_for_all_viewers()
