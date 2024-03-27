@@ -40,47 +40,62 @@ const FacilityUpgrades = (props, context) => {
   return (
     <Section title="Master facility upgrade systems">
       {is_admin === 1 && (
-        <Box mt="0.5em">
+        <Box mt="0.5em" backgroundColor='purple'>
+          (ADMIN ONLY) Add/Subtract LOB points:
           <Button
-            content={'ADMIN: Remove 1 LOB point'}
-            color={'purple'}
+            content={'-100'}
+            color={'red'}
             onClick={() => act('Change LOB Points', {
-              LOB_amount: -1,
+              LOB_amount: -100,
             })}
           />
           <Button
-            content={'ADMIN: Remove 5 LOB points'}
-            color={'purple'}
-            onClick={() => act('Change LOB Points', {
-              LOB_amount: -5,
-            })}
-          />
-          <Button
-            content={'ADMIN: Remove 10 LOB points'}
-            color={'purple'}
+            content={'-10'}
+            color={'red'}
             onClick={() => act('Change LOB Points', {
               LOB_amount: -10,
             })}
           />
           <Button
-            content={'ADMIN: Add 1 LOB point'}
-            color={'purple'}
+            content={'-5'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -5,
+            })}
+          />
+          <Button
+            content={'-1'}
+            color={'red'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: -1,
+            })}
+          />
+          <Button
+            content={'+1'}
+            color={'green'}
             onClick={() => act('Change LOB Points', {
               LOB_amount: 1,
             })}
           />
           <Button
-            content={'ADMIN: Add 5 LOB points'}
-            color={'purple'}
+            content={'+5'}
+            color={'green'}
             onClick={() => act('Change LOB Points', {
               LOB_amount: 5,
             })}
           />
           <Button
-            content={'ADMIN: Add 10 LOB points'}
-            color={'purple'}
+            content={'+10'}
+            color={'green'}
             onClick={() => act('Change LOB Points', {
               LOB_amount: 10,
+            })}
+          />
+          <Button
+            content={'+100'}
+            color={'green'}
+            onClick={() => act('Change LOB Points', {
+              LOB_amount: 100,
             })}
           />
         </Box>
