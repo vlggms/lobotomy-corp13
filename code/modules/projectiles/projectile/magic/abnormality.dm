@@ -22,6 +22,20 @@
 		if((old_stat < DEAD) && (H.stat >= DEAD))
 			H.add_overlay(icon('ModularTegustation/Teguicons/tegu_effects.dmi', "despair_kill"))
 
+/obj/projectile/despair_rapier/justice
+	desc = "A magic rapier, enchanted with the power of justice."
+	nodamage = TRUE	//Damage is calculated later
+	projectile_piercing = PASSMOB
+
+/obj/projectile/despair_rapier/justice/on_hit(atom/target, blocked = FALSE)
+	if(!ishuman(target))
+		nodamage = FALSE
+	else
+		return
+	..()
+	if(!ishuman(target))
+		qdel(src)
+
 /obj/projectile/apocalypse
 	name = "light"
 	icon_state = "apocalypse"

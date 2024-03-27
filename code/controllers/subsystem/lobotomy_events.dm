@@ -1,5 +1,6 @@
 #define APOCALYPSE 1
 #define YINYANG 2
+#define NIHIL 3
 SUBSYSTEM_DEF(lobotomy_events)
 	name = "Lobotomy Corp Events"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
@@ -12,6 +13,14 @@ SUBSYSTEM_DEF(lobotomy_events)
 		/mob/living/simple_animal/hostile/abnormality/big_bird,
 		/mob/living/simple_animal/hostile/abnormality/judgement_bird)
 	var/list/AB_breached = list()
+
+	//Jester Of Nihil
+	var/list/JN_types = list(
+		/mob/living/simple_animal/hostile/abnormality/nihil,
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant,
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen,
+		/mob/living/simple_animal/hostile/abnormality/despair_knight,
+		/mob/living/simple_animal/hostile/abnormality/greed_king)
 
 	// Yin and Yang
 	var/list/YY_types = list(
@@ -159,6 +168,9 @@ SUBSYSTEM_DEF(lobotomy_events)
 			type_list = AB_types.Copy()
 		if(YINYANG)
 			type_list = YY_types.Copy()
+	switch(event_type)
+		if(NIHIL)
+			type_list = JN_types.Copy()
 	for(var/type in type_list)
 		SSabnormality_queue.queued_abnormality = type
 		SSabnormality_queue.SpawnAbno()
