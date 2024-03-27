@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "apex"
 	icon_living = "apex"
+	portrait = "apex"
 	pixel_x = -16
 	base_pixel_x = -16
 

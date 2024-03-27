@@ -8,6 +8,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "falada"
 	icon_living = "falada"
+	portrait = "falada"
 	faction = list("neutral")
 	speak_emote = list("neighs")
 	threat_level = TETH_LEVEL

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "smile"
 	icon_living = "smile"
+	portrait = "simple_smile"
 	del_on_death = TRUE
 	maxHealth = 400		//He's a little shit.
 	health = 400

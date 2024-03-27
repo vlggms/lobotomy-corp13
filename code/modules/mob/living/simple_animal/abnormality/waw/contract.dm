@@ -6,6 +6,7 @@
 	desc = "A man with a flaming head sitting behind a desk."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "firstfold"
+	portrait = "contract"
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 30, 40, 50),
@@ -68,7 +69,7 @@
 	. = FALSE
 	if(!(user in total_havers))
 		return
-	
+
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			if(user in fort_havers)

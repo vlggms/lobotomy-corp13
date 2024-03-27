@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "executive"
 	icon_living = "executive"
+	portrait = "shrimp_executive"
 	faction = list("neutral")
 	speak_emote = list("burbles")
 	threat_level = WAW_LEVEL

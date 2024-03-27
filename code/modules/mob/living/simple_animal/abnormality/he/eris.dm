@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "eris"
 	icon_living = "eris"
+	portrait = "eris"
 	maxHealth = 1100
 	health = 1100
 	ranged = TRUE
