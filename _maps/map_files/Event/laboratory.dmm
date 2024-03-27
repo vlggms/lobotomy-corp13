@@ -207,6 +207,9 @@
 	pixel_x = 5;
 	pixel_y = -1
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/centcom)
 "cv" = (
@@ -279,6 +282,12 @@
 "dn" = (
 /obj/structure/table/wood/fancy/red,
 /obj/item/flashlight/lamp,
+/turf/open/floor/plasteel,
+/area/centcom)
+"dr" = (
+/obj/machinery/light,
+/obj/structure/table/reinforced,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel,
 /area/centcom)
 "dB" = (
@@ -525,15 +534,6 @@
 	name = "high-security commander office";
 	req_access_txt = "19;3"
 	},
-/turf/open/floor/plasteel,
-/area/centcom)
-"iN" = (
-/obj/structure/table/reinforced,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/storage/firstaid/regular,
-/obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel,
 /area/centcom)
 "iP" = (
@@ -805,6 +805,10 @@
 	icon_state = "hoscapblue";
 	name = "low-sec commander cap"
 	},
+/turf/open/floor/plasteel,
+/area/centcom)
+"pp" = (
+/obj/machinery/vending/clothing,
 /turf/open/floor/plasteel,
 /area/centcom)
 "pw" = (
@@ -1160,6 +1164,14 @@
 "wG" = (
 /obj/structure/table,
 /obj/item/clipboard,
+/turf/open/floor/plasteel,
+/area/centcom)
+"wH" = (
+/obj/structure/table/reinforced,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/storage/firstaid/regular,
 /turf/open/floor/plasteel,
 /area/centcom)
 "xa" = (
@@ -1797,6 +1809,10 @@
 	req_access_txt = "67"
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"GS" = (
+/obj/structure/flora/tree/jungle/small,
+/turf/open/floor/grass,
 /area/centcom)
 "GV" = (
 /obj/structure/table/wood,
@@ -2445,11 +2461,6 @@
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
-"Sr" = (
-/obj/machinery/vending/medical,
-/obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/centcom)
 "Sx" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/medipens,
@@ -2511,6 +2522,10 @@
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
 /area/centcom)
+"TH" = (
+/obj/item/instrument/banjo,
+/turf/open/floor/grass,
+/area/centcom)
 "TP" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/open/floor/grass,
@@ -2540,6 +2555,16 @@
 	name = "Containment 5 Blast Door"
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"Ur" = (
+/obj/structure/flora/tree/jungle/small,
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/floor/grass,
 /area/centcom)
 "Uz" = (
 /obj/structure/table,
@@ -16741,10 +16766,10 @@ ID
 ID
 ID
 Ps
+Or
 oO
 oO
-CN
-co
+dr
 Ps
 ZP
 ZP
@@ -16998,10 +17023,10 @@ ID
 ID
 Ua
 Ps
-Nt
 ID
 ID
-eg
+ID
+ID
 Ps
 ZP
 ZP
@@ -17255,10 +17280,10 @@ uG
 uG
 Ps
 Ps
-dV
+wH
 ID
-Td
-md
+Rq
+RF
 Ps
 ZP
 ZP
@@ -25736,7 +25761,7 @@ eu
 fj
 fj
 pK
-fj
+TH
 fj
 Ps
 Ed
@@ -27021,7 +27046,7 @@ eu
 fj
 fj
 vi
-iV
+Ur
 vi
 vi
 vi
@@ -34731,9 +34756,9 @@ BC
 Ps
 Ps
 Ps
-ID
-ID
-ID
+ht
+ht
+CE
 ID
 ID
 ID
@@ -34988,9 +35013,9 @@ ID
 BT
 Zi
 ow
+pp
 ht
 ht
-CE
 ID
 ID
 ID
@@ -35246,7 +35271,7 @@ ID
 Bz
 ID
 ID
-ht
+ID
 ht
 ID
 eg
@@ -37051,8 +37076,8 @@ ID
 ID
 ht
 fj
-ZP
-FE
+fj
+GS
 Mk
 vi
 vi
@@ -41664,8 +41689,8 @@ ZP
 Ps
 Or
 oO
-CN
-Sr
+oO
+dr
 Ps
 ZP
 Ps
@@ -41673,8 +41698,8 @@ wG
 nS
 Ph
 Ps
-Nt
-eg
+ID
+ID
 Ps
 Ps
 Ps
@@ -42176,7 +42201,7 @@ ID
 ip
 js
 Ps
-iN
+wH
 ID
 Rq
 RF

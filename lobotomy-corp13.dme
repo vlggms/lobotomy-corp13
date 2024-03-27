@@ -2408,6 +2408,7 @@
 #include "code\modules\jobs\job_types\labs\medical\surgeon.dm"
 #include "code\modules\jobs\job_types\labs\research\clerk.dm"
 #include "code\modules\jobs\job_types\labs\research\lead.dm"
+#include "code\modules\jobs\job_types\labs\research\paperwork.dm"
 #include "code\modules\jobs\job_types\labs\research\researcher.dm"
 #include "code\modules\jobs\job_types\labs\research\senior.dm"
 #include "code\modules\jobs\job_types\labs\security\highsec.dm"

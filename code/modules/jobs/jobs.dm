@@ -74,6 +74,7 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"Lead Researcher",
 	"Senior Researcher",
 	"Information Systems Tech",
+	"Research Archivist",
 	"Researcher",
 	"LC Staff",
 
