@@ -112,7 +112,6 @@
 /datum/surgery/healing/brute/upgraded
 	name = "Tend Wounds (Bruises, Adv.)"
 	replaced_by = /datum/surgery/healing/brute/upgraded/femto
-	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/brute/upgraded
 	desc = "A surgical procedure that provides advanced treatment for a patient's brute traumas. Heals more when the patient is severely injured."
 
@@ -150,7 +149,6 @@
 /datum/surgery/healing/burn/upgraded
 	name = "Tend Wounds (Burn, Adv.)"
 	replaced_by = /datum/surgery/healing/burn/upgraded/femto
-	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/burn/upgraded
 	desc = "A surgical procedure that provides advanced treatment for a patient's burns. Heals more when the patient is severely injured."
 
@@ -182,7 +180,6 @@
 /datum/surgery/healing/combo
 	name = "Tend Wounds (Mixture, Basic)"
 	replaced_by = /datum/surgery/healing/combo/upgraded
-	requires_tech = TRUE
 	healing_step_type = /datum/surgery_step/heal/combo
 	desc = "A surgical procedure that provides basic treatment for a patient's burns and brute traumas. Heals slightly more when the patient is severely injured."
 
@@ -192,9 +189,9 @@
 	healing_step_type = /datum/surgery_step/heal/combo/upgraded
 	desc = "A surgical procedure that provides advanced treatment for a patient's burns and brute traumas. Heals more when the patient is severely injured."
 
-
 /datum/surgery/healing/combo/upgraded/femto //no real reason to type it like this except consistency, don't worry you're not missing anything
 	name = "Tend Wounds (Mixture, Exp.)"
+	requires_tech = TRUE
 	replaced_by = null
 	healing_step_type = /datum/surgery_step/heal/combo/upgraded/femto
 	desc = "A surgical procedure that provides experimental treatment for a patient's burns and brute traumas. Heals considerably more when the patient is severely injured."

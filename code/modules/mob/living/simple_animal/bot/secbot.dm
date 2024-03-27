@@ -116,7 +116,7 @@
 		base_speed += 3
 		addtimer(VARSET_CALLBACK(src, base_speed, base_speed - 3), 60)
 		playsound(src, 'sound/machines/defib_zap.ogg', 50)
-		visible_message("<span class='warning'>[src] shakes and speeds up!</span>")
+		visible_message(span_warning("[src] shakes and speeds up!"))
 
 /mob/living/simple_animal/bot/secbot/set_custom_texts()
 	text_hack = "You overload [name]'s target identification system."
@@ -176,7 +176,7 @@ Auto Patrol: []"},
 
 /mob/living/simple_animal/bot/secbot/proc/retaliate(mob/living/carbon/human/H)
 	var/judgement_criteria = judgement_criteria()
-	threatlevel = H.assess_threat_tegu(judgement_criteria, src, TRUE, null, weaponcheck=CALLBACK(src, .proc/check_for_weapons)) // Tegustation Bodycameras edit
+	threatlevel = H.assess_threat_tegu(judgement_criteria, src, TRUE, null, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons))) // Tegustation Bodycameras edit
 	threatlevel += 6
 	if(threatlevel >= 4)
 		target = H
@@ -207,8 +207,8 @@ Auto Patrol: []"},
 
 		// Turns an oversight into a feature. Beepsky will now announce when pacifists taunt him over sec comms.
 		if(HAS_TRAIT(H, TRAIT_PACIFISM))
-			H.visible_message("<span class='notice'>[H] taunts [src], daring [p_them()] to give chase!</span>", \
-				"<span class='notice'>You taunt [src], daring [p_them()] to chase you!</span>", "<span class='hear'>You hear someone shout a daring taunt!</span>", DEFAULT_MESSAGE_RANGE, H)
+			H.visible_message(span_notice("[H] taunts [src], daring [p_them()] to give chase!"), \
+				span_notice("You taunt [src], daring [p_them()] to chase you!"), span_hear("You hear someone shout a daring taunt!"), DEFAULT_MESSAGE_RANGE, H)
 			speak("Taunted by pacifist scumbag <b>[H]</b> in [get_area(src)].", radio_channel)
 
 			// Interrupt the attack chain. We've already handled this scenario for pacifists.
@@ -229,9 +229,9 @@ Auto Patrol: []"},
 	..()
 	if(emagged == 2)
 		if(user)
-			to_chat(user, "<span class='danger'>You short out [src]'s target assessment circuits.</span>")
+			to_chat(user, span_danger("You short out [src]'s target assessment circuits."))
 			oldtarget_name = user.name
-		audible_message("<span class='danger'>[src] buzzes oddly!</span>")
+		audible_message(span_danger("[src] buzzes oddly!"))
 		declare_arrests = FALSE
 		update_icon()
 
@@ -270,9 +270,9 @@ Auto Patrol: []"},
 /mob/living/simple_animal/bot/secbot/proc/cuff(mob/living/carbon/C)
 	mode = BOT_ARREST
 	playsound(src, 'sound/weapons/cablecuff.ogg', 30, TRUE, -2)
-	C.visible_message("<span class='danger'>[src] is trying to put zipties on [C]!</span>",\
-						"<span class='userdanger'>[src] is trying to put zipties on you!</span>")
-	addtimer(CALLBACK(src, .proc/attempt_handcuff, C), 60)
+	C.visible_message(span_danger("[src] is trying to put zipties on [C]!"),\
+						span_userdanger("[src] is trying to put zipties on you!"))
+	addtimer(CALLBACK(src, PROC_REF(attempt_handcuff), C), 60)
 
 /mob/living/simple_animal/bot/secbot/proc/attempt_handcuff(mob/living/carbon/C)
 	if( !on || !Adjacent(C) || !isturf(C.loc) ) //if he's in a closet or not adjacent, we cancel cuffing.
@@ -287,7 +287,7 @@ Auto Patrol: []"},
 	var/judgement_criteria = judgement_criteria()
 	playsound(src, 'sound/weapons/egloves.ogg', 50, TRUE, -1)
 	icon_state = "[initial(icon_state)]-c"
-	addtimer(CALLBACK(src, /atom/.proc/update_icon), 2)
+	addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 2)
 	var/threat = 5
 
 	if(harm)
@@ -296,19 +296,19 @@ Auto Patrol: []"},
 		C.stuttering = 5
 		C.Paralyze(100)
 		var/mob/living/carbon/human/H = C
-		threat = H.assess_threat_tegu(judgement_criteria, src, FALSE, null, weaponcheck=CALLBACK(src, .proc/check_for_weapons)) // Tegustation Imrpoved Security Records edit:
+		threat = H.assess_threat_tegu(judgement_criteria, src, FALSE, null, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons))) // Tegustation Imrpoved Security Records edit:
 	else
 		C.Paralyze(100)
 		C.stuttering = 5
-		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, .proc/check_for_weapons))
+		threat = C.assess_threat(judgement_criteria, weaponcheck=CALLBACK(src, PROC_REF(check_for_weapons)))
 
 	log_combat(src,C,"stunned")
 	if(declare_arrests)
 		secbot_declare_arrest_completion(C, threat) // Tegustation Imrpoved Security Records edit: this makes a record of the arrest, including timestamp and location.
 		//var/area/location = get_area(src) // Tegustation Imrpoved Security Records edit:
 		//speak("[arrest_type ? "Detaining" : "Arresting"] level [threat] scumbag <b>[C]</b> in [location].", radio_channel)  // Tegustation Imrpoved Security Records edit:
-	C.visible_message("<span class='danger'>[src] stuns [C]!</span>",\
-							"<span class='userdanger'>[src] stuns you!</span>")
+	C.visible_message(span_danger("[src] stuns [C]!"),\
+							span_userdanger("[src] stuns you!"))
 
 /mob/living/simple_animal/bot/secbot/handle_automated_action()
 	if(!..())
@@ -410,13 +410,13 @@ Auto Patrol: []"},
 	target = null
 	last_found = world.time
 	frustration = 0
-	INVOKE_ASYNC(src, .proc/handle_automated_action)
+	INVOKE_ASYNC(src, PROC_REF(handle_automated_action))
 
 /mob/living/simple_animal/bot/secbot/proc/back_to_hunt()
 	anchored = FALSE
 	frustration = 0
 	mode = BOT_HUNT
-	INVOKE_ASYNC(src, .proc/handle_automated_action)
+	INVOKE_ASYNC(src, PROC_REF(handle_automated_action))
 // look for a criminal in view of the bot
 
 /mob/living/simple_animal/bot/secbot/proc/look_for_perp()
@@ -447,7 +447,7 @@ Auto Patrol: []"},
 				playsound(src, pick('sound/voice/beepsky/criminal.ogg', 'sound/voice/beepsky/justice.ogg', 'sound/voice/beepsky/freeze.ogg'), 50, FALSE)
 			visible_message("<b>[src]</b> points at [C.name]!")
 			mode = BOT_HUNT
-			INVOKE_ASYNC(src, .proc/handle_automated_action)
+			INVOKE_ASYNC(src, PROC_REF(handle_automated_action))
 			break
 		else
 			continue
@@ -460,7 +460,7 @@ Auto Patrol: []"},
 /mob/living/simple_animal/bot/secbot/explode()
 
 	walk_to(src,0)
-	visible_message("<span class='boldannounce'>[src] blows apart!</span>")
+	visible_message(span_boldannounce("[src] blows apart!"))
 	var/atom/Tsec = drop_location()
 	if(ranged)
 		var/obj/item/bot_assembly/ed209/Sa = new (Tsec)

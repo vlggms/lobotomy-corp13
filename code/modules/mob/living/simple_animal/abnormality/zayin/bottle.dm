@@ -140,7 +140,7 @@
 				var/stat_change = 0
 				stat_change = temperance - 20
 				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stat_change) // Gain benefit from what you lost.
-				addtimer(CALLBACK(src, .proc/DecayProtagonistBuff, user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
+				addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), user, stat_change), 20 SECONDS) // Short grace period. 10s of this happens while you're asleep.
 			else
 				to_chat(user, span_userdanger("The room is filling with water! Are you going to drown?!"))
 				goal_damage = 99999 // DIE.
@@ -165,7 +165,7 @@
 	buffed.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -1)
 	if(prob(10))
 		buffed.adjust_attribute_level(JUSTICE_ATTRIBUTE, 1) // 10% chance for justice buff to become real justice as it decays.
-	addtimer(CALLBACK(src, .proc/DecayProtagonistBuff, buffed, justice - 1), timing)
+	addtimer(CALLBACK(src, PROC_REF(DecayProtagonistBuff), buffed, justice - 1), timing)
 
 /mob/living/simple_animal/hostile/abnormality/bottle/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
@@ -204,7 +204,7 @@
 /datum/status_effect/tears
 	id = "tears"
 	status_type = STATUS_EFFECT_MULTIPLE	//You should be able to stack this, I hope
-	duration = 3000 //Lasts 5 minutes.
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/tears
 	var/scaling = 20
 
@@ -216,23 +216,25 @@
 
 /datum/status_effect/tears/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(owner, span_danger("Something once important to you is gone now. You feel like crying."))
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -scaling)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -scaling)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -scaling)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -scaling)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(owner, span_danger("Something once important to you is gone now. You feel like crying."))
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -scaling)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -scaling)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -scaling)
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -scaling)
 
 /datum/status_effect/tears/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(owner, span_nicegreen("You feel your strength return to you."))
-		L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, scaling)
-		L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, scaling)
-		L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, scaling)
-		L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, scaling)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(owner, span_nicegreen("You feel your strength return to you."))
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, scaling)
+	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, scaling)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, scaling)
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, scaling)
 
 /datum/status_effect/tears/less
 	duration = 2 MINUTES

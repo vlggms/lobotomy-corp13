@@ -25,6 +25,7 @@
 		/datum/ego_datum/armor/lutemia
 	)
 	gift_type = /datum/ego_gifts/lutemis
+	gift_message = "Let's all become fruits. Let's hang together. Your despair, sadness... Let's all dangle down."
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 //Introduction to our hallucinations. This is a global hallucination, but it's all it really does.
@@ -33,23 +34,24 @@
 		H.hallucination += 10
 	datum_reference.qliphoth_change(3)
 
-/mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+/mob/living/simple_animal/hostile/abnormality/dingledangle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time, canceled)
 	//if your prudence is low, give a short hallucination, apply the buff, and lower counter.
-	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) > 60)
+	if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 60) // below level 3
 		user.hallucination += 20
 		user.apply_status_effect(STATUS_EFFECT_DANGLE)
 		datum_reference.qliphoth_change(-1)
 		return ..()
 
-	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) <= 80)
+	if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) >= 80) // fort 4 or higher
 		return ..()
 
 	//I mean it does this in wonderlabs
-	user.dust()
-
 	//But here's the twist: You get a better ego.
-	var/location = get_turf(user)
-	new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
+	if(user && !canceled)
+		var/location = get_turf(user)
+		new /obj/item/clothing/suit/armor/ego_gear/he/lutemis(location)
+	if(user?.stat != DEAD) //dusting sets you dead before the animation, we don't want to dust user twice after failing work
+		user.dust()
 
 /mob/living/simple_animal/hostile/abnormality/dingledangle/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -59,7 +61,7 @@
 
 /atom/movable/screen/alert/status_effect/dangle
 	name = "That Woozy Feeling"
-	desc = "+15 to Combat bonus."
+	desc = "Your combat senses have sharpened even as you feel your mind dangling."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "rest"
 
@@ -67,17 +69,19 @@
 /datum/status_effect/dangle
 	id = "dangle"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 minutes
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/dangle
 
 /datum/status_effect/dangle/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 15)
 
 /datum/status_effect/dangle/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -15)

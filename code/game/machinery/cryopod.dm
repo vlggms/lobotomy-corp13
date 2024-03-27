@@ -216,7 +216,7 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 	crew_member["name"] = mob_occupant.real_name
 
-	if(mob_occupant.mind && mob_occupant.mind.assigned_role)
+	if(mob_occupant.mind && mob_occupant.mind?.assigned_role)
 		// Handle job slot/tater cleanup.
 		var/job = mob_occupant.mind.assigned_role
 		crew_member["job"] = job
@@ -249,24 +249,13 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 
 	visible_message(span_notice("[src] hums and hisses as it moves [mob_occupant.real_name] into storage."))
 
-#if MIN_COMPILER_VERSION >= 514
-	#warn Please replace the loop below this warning with an `as anything` loop.
-#endif
-	for(var/mob_content in mob_occupant)
-		if(SSmaptype.maptype in SSmaptype.citymaps)	//Don't let people constantly dupe things on citymaps
-			break
-		var/obj/item/item_content = mob_content
-		if(!istype(item_content))
-			continue
-
-		mob_occupant.transferItemToLoc(item_content, drop_location(), force = TRUE, silent = TRUE)
-
-	// Ghost and delete the mob.
-	if(!mob_occupant.get_ghost(TRUE))
-		if(world.time < 15 MINUTES) // before the 15 minute mark
-			mob_occupant.ghostize(FALSE) // Players despawned too early may not re-enter the game
-		else
-			mob_occupant.ghostize(TRUE)
+	if(!(SSmaptype.maptype in SSmaptype.citymaps))	//Don't let people constantly dupe things on citymaps
+		for(var/obj/item/item_content as anything in mob_occupant)
+			if(!istype(item_content) || HAS_TRAIT(item_content, TRAIT_NODROP))
+				continue
+			if (issilicon(mob_occupant) && istype(item_content, /obj/item/mmi))
+				continue
+			mob_occupant.transferItemToLoc(item_content, drop_location(), force = TRUE, silent = TRUE)
 
 	handle_objectives()
 	QDEL_NULL(occupant)

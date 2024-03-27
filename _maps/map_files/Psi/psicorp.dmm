@@ -5497,7 +5497,7 @@
 	},
 /obj/structure/table/glass,
 /obj/machinery/door/window/southleft,
-/obj/item/storage/backpack/duffelbag/med/surgery,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery,
 /obj/item/reagent_containers/medigel/sterilizine{
 	pixel_x = -5;
 	pixel_y = 6

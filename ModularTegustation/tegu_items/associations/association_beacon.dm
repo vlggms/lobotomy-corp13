@@ -42,11 +42,11 @@
 	desc = "A kit from Section 1 containing Liu association gear."
 
 /obj/item/storage/box/association/liu/PopulateContents()
-	new /obj/item/ego_weapon/city/liu/fist(src)
-	new /obj/item/ego_weapon/city/liu/fist(src)
-	new /obj/item/ego_weapon/city/liu/fist(src)
-	new /obj/item/ego_weapon/city/liu/fist/vet(src)
-	new /obj/item/ego_weapon/city/liu/fist/vet(src)
+	new /obj/item/ego_weapon/city/liu/fire/section5(src)
+	new /obj/item/ego_weapon/city/liu/fire/section5(src)
+	new /obj/item/ego_weapon/city/liu/fire/section5(src)
+	new /obj/item/ego_weapon/city/liu/fire/section5/vet(src)
+	new /obj/item/ego_weapon/city/liu/fire/section5/vet(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/liu/section5(src)

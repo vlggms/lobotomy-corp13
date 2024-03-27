@@ -202,7 +202,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "The jester retraced the steps of a path everybody would’ve taken. The jester always found itself at the end of that road. \
 	There was no way to know if they had gathered to become the jester, or if the jester had come to resemble them."
 	icon_state = "nihil"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240 - 360, 30 per upgrade
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 40) // 240 - 300, 15 per upgrade; caps out at 70,80,80,70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80, //+10 per upgrade to all, only 5 to temperance
 							PRUDENCE_ATTRIBUTE = 80,
@@ -226,7 +226,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 		return
 
 	if(equipped)
-		to_chat(user,"<span class='warning'>You need to put down [src] before attempting this!</span>")
+		to_chat(user, span_warning("You need to put down [src] before attempting this!"))
 		return
 
 	if(powers[1] == "hatred" && istype(I, /obj/item/nihil/heart))
@@ -246,7 +246,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 		IncreaseAttributes(user, powers[4])
 		qdel(I)
 	else
-		to_chat(user,"<span class='warning'>You have already used this upgrade!</span>")
+		to_chat(user, span_warning("You have already used this upgrade!"))
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/nihil/proc/IncreaseAttributes(user, current_suit)
 	for(var/atr in attribute_requirements)
@@ -254,24 +254,24 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 			attribute_requirements[atr] += 5
 		else
 			attribute_requirements[atr] += 10
-	to_chat(user,"<span class='warning'>The requirements to equip [src] have increased!</span>")
+	to_chat(user, span_warning("The requirements to equip [src] have increased!"))
 
 	switch(current_suit)
 		if("hearts")
-			armor = armor.modifyRating(white = 20, pale = 10)
-			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to WHITE and PALE damage!</span>")
+			armor = armor.modifyRating(white = 10, pale = 5)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to WHITE and PALE damage!"))
 
 		if("spades")
-			armor = armor.modifyRating(pale = 30)
-			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to PALE damage!</span>")
+			armor = armor.modifyRating(pale = 15)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to PALE damage!"))
 
 		if("diamonds")
-			armor = armor.modifyRating(red = 30)
-			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to RED damage!</span>")
+			armor = armor.modifyRating(red = 10, pale = 5)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to RED damage!"))
 
 		if("clubs")
-			armor = armor.modifyRating(black = 20, pale = 10)
-			to_chat(user,"<span class='nicegreen'>[src] has gained extra resistance to BLACK and PALE damage!</span>")
+			armor = armor.modifyRating(black = 10, pale = 5)
+			to_chat(user, span_nicegreen("[src] has gained extra resistance to BLACK and PALE damage!"))
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons
 	name = "Seasons Greetings"
@@ -286,6 +286,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							)
 	var/mob/current_holder
 	var/current_season = "winter"
+	var/stored_season = "winter"
 	var/list/season_list = list(
 		"spring" = list("vernal equinox", "Some heavy armor, completely overtaken by foilage."),
 		"summer" = list("summer solstice","It looks painful to wear!"),
@@ -297,7 +298,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
 	Transform()
 	var/obj/effect/proc_holder/ability/AS = new /obj/effect/proc_holder/ability/seasons_toggle
 	var/datum/action/spell_action/ability/item/A = AS.action
@@ -314,27 +315,61 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	current_holder = null
 
 /obj/item/clothing/suit/armor/ego_gear/aleph/seasons/proc/Transform()
-	if(!transforming)
-		desc = season_list[current_season][2]  + " \n This E.G.O. will not transform to match the seasons."
-		return
 	current_season = SSlobotomy_events.current_season
-	icon_state = "[current_season]"
-	update_icon_state()
-	if(current_holder)
-		current_holder.update_inv_wear_suit()
-		to_chat(current_holder,"<span class='notice'>[src] suddenly transforms!</span>")
-		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
-	name = season_list[current_season][1]
-	desc = season_list[current_season][2]  + " \n This E.G.O. will transform to match the seasons."
-	switch(current_season) //you are probably wondering why didn't I use setRating()... well, it does not seem to work here.
+	if(!transforming) //No need to do all of the icon updates and stuff if we aren't changing
+		desc = season_list[current_season][2]  + " \n This E.G.O. will not transform to match the seasons."
+	else
+		icon_state = "[current_season]"
+		update_icon_state()
+		to_chat(current_holder, span_notice("[src] suddenly transforms!"))
+		name = season_list[current_season][1]
+		desc = season_list[current_season][2]  + " \n This E.G.O. will transform to match the seasons."
+		stored_season = current_season
+		if(current_holder) //Notify the user we've changed
+			current_holder.update_inv_wear_suit()
+			playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
+	var/weakened = FALSE
+	var/warning_message
+	switch(stored_season) //Hopefully someday someone finds a more efficient way to change armor values
 		if("spring")
-			src.armor = new(red = 60, white = 80, black = 40, pale = 60)
+			src.armor = new(red = 60, white = 80, black = 40, pale = 60)	//240
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 50, white = 80, black = 40, pale = 50)	//220
+				weakened = TRUE
+				if(current_season == "fall")
+					src.armor = new(red = 50, white = 70, black = 30, pale = 50)	//200
+					warning_message = "Fall has come, the leaves on your armor wither and die."
 		if("summer")
 			src.armor = new(red = 80, white = 40, black = 60, pale = 60)
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 80, white = 40, black = 50, pale = 50)
+				weakened = TRUE
+				if(current_season == "winter")
+					src.armor = new(red = 70, white = 30, black = 50, pale = 50)
+					warning_message = "Winter is here. Your armor reacts, becoming stiff and brittle."
 		if("fall")
 			src.armor = new(red = 40, white = 60, black = 80, pale = 60)
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 40, white = 50, black = 80, pale = 50)
+				weakened = TRUE
+				if(current_season == "spring")
+					src.armor = new(red = 30, white = 50, black = 70, pale = 50)
+					warning_message = "The arrival of spring weakens your armor further."
 		if("winter")
 			src.armor = new(red = 40, white = 60, black = 60, pale = 80)
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 40, white = 50, black = 50, pale = 80)
+				weakened = TRUE
+				if(current_season == "summer")
+					src.armor = new(red = 30, white = 50, black = 50, pale = 70)
+					warning_message = "The summer heat is melting your armor."
+
+	if(current_holder && (weakened == TRUE))
+		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
+		if(!warning_message)
+			to_chat(current_holder, span_notice("[src] has been weakened by the turn of a new season."))
+			return
+		to_chat(current_holder, span_notice("[warning_message]"))
 
 /obj/effect/proc_holder/ability/seasons_toggle
 	name = "Transformation"
@@ -346,15 +381,15 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 /obj/effect/proc_holder/ability/seasons_toggle/Perform(target, mob/user)
 	var/obj/item/clothing/suit/armor/ego_gear/aleph/seasons/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(T))
-		to_chat(user, "<span class='warning'>You must have the corrosponding armor equipped to use this ability!</span>")
+		to_chat(user, span_warning("You must have the corrosponding armor equipped to use this ability!"))
 		return
 	if(T.transforming)
-		to_chat(user,"<span class='warning'>[src] will no longer transform to match the seasons.</span>")
+		to_chat(user, span_warning("[T.name] will no longer transform to match the seasons."))
 		T.transforming = FALSE
 		T.Transform()
 		return ..()
 	if(!T.transforming)
-		to_chat(user,"<span class='warning'>[src] will now transform to match the seasons.</span>")
+		to_chat(user, span_warning("[src] will now transform to match the seasons."))
 		T.transforming = TRUE
 		T.desc = T.season_list[T.current_season][2]  + " \n This E.G.O. will transform to match the seasons."
 		return ..()

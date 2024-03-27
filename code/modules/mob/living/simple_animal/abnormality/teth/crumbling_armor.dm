@@ -100,7 +100,7 @@
 			var/datum/ego_gifts/phase1/CAEG = new
 			CAEG.datum_reference = datum_reference
 			user.Apply_Gift(CAEG)
-			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
+			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(Cut_Head))
 			to_chat(user, span_userdanger("Just a drop of blood is what it takes..."))
 		else
 			if(istype(user.ego_gift_list[HAT], /datum/ego_gifts/courage)) // From Courage to Recklessness
@@ -130,7 +130,7 @@
 			var/datum/ego_gifts/courage/CAEG = new
 			CAEG.datum_reference = datum_reference
 			user.Apply_Gift(CAEG)
-			RegisterSignal(user, COMSIG_WORK_STARTED, .proc/Cut_Head)
+			RegisterSignal(user, COMSIG_WORK_STARTED, PROC_REF(Cut_Head))
 			to_chat(user, span_userdanger("A strange power flows through you!"))
 	return
 
@@ -176,7 +176,7 @@
 /datum/status_effect/cowardice
 	id = "cowardice"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 10		//Lasts 1 second
+	duration = 1 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/cowardice
 	var/punishment_damage = 25
 
@@ -187,7 +187,7 @@
 	icon_state = "crumbling"
 
 /datum/status_effect/cowardice/on_apply()
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, .proc/Punishment)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Punishment))
 	return..()
 
 /datum/status_effect/cowardice/on_remove()
@@ -196,17 +196,17 @@
 
 /datum/status_effect/cowardice/proc/Punishment()
 	SIGNAL_HANDLER
-	var/mob/living/carbon/human/H = owner
-	if(!istype(H))
+	var/mob/living/carbon/human/status_holder = owner
+	if(!istype(status_holder))
 		return
-	var/obj/item/bodypart/head/head = owner.get_bodypart("head")
-	if(!istype(head))
+	var/obj/item/bodypart/head/holders_head = owner.get_bodypart("head")
+	if(!istype(holders_head))
 		return FALSE
-	playsound(get_turf(H), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-	H.apply_damage(punishment_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
-	if(H.health < 0)
-		head.dismember()
-	new /obj/effect/temp_visual/slice(get_turf(H))
+	playsound(get_turf(status_holder), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
+	status_holder.apply_damage(punishment_damage, PALE_DAMAGE, null, status_holder.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	if(status_holder.health < 0)
+		holders_head.dismember()
+	new /obj/effect/temp_visual/slice(get_turf(status_holder))
 	qdel(src)
 
 

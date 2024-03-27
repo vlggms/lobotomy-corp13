@@ -25,7 +25,7 @@
 	user.Immobilize(attack_speed*attack_speed*10)
 	to_chat(user, span_userdanger("From moonlight."))
 	force*=2
-	addtimer(CALLBACK(src, .proc/Return, user), attack_speed*attack_speed*30)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), attack_speed*attack_speed*30)
 
 /obj/item/ego_weapon/template/katana/attack(mob/living/target, mob/living/carbon/human/user)
 	..()

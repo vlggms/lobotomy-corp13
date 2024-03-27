@@ -92,7 +92,10 @@
 	var/attack_verb_continuous = "attacks"
 	///Attacking verb in present simple tense.
 	var/attack_verb_simple = "attack"
-	var/attack_sound = null
+	/// Sound played when the critter attacks.
+	var/attack_sound
+	/// Override for the visual attack effect shown on 'do_attack_animation()'.
+	var/attack_vis_effect
 	///Attacking, but without damage, verb in present continuous tense.
 	var/friendly_verb_continuous = "nuzzles"
 	///Attacking, but without damage, verb in present simple tense.
@@ -258,9 +261,9 @@
 	if(!is_type_in_list(O, food_type))
 		return ..()
 	if(stat == DEAD)
-		to_chat(user, "<span class='warning'>[src] is dead!</span>")
+		to_chat(user, span_warning("[src] is dead!"))
 		return
-	user.visible_message("<span class='notice'>[user] hand-feeds [O] to [src].</span>", "<span class='notice'>You hand-feed [O] to [src].</span>")
+	user.visible_message(span_notice("[user] hand-feeds [O] to [src]."), span_notice("You hand-feed [O] to [src]."))
 	qdel(O)
 	if(tame)
 		return
@@ -277,7 +280,7 @@
 /mob/living/simple_animal/examine(mob/user)
 	. = ..()
 	if(stat == DEAD)
-		. += "<span class='deadsay'>Upon closer examination, [p_they()] appear[p_s()] to be dead.</span>"
+		. += span_deadsay("Upon closer examination, [p_they()] appear[p_s()] to be dead.")
 
 
 /mob/living/simple_animal/update_stat()
@@ -728,7 +731,7 @@
 	return relaydrive(user, direction)
 
 /mob/living/simple_animal/deadchat_plays(mode = ANARCHY_MODE, cooldown = 12 SECONDS)
-	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, list(), cooldown, CALLBACK(src, .proc/stop_deadchat_plays))
+	. = AddComponent(/datum/component/deadchat_control/cardinal_movement, mode, list(), cooldown, CALLBACK(src, PROC_REF(stop_deadchat_plays)))
 
 	if(. == COMPONENT_INCOMPATIBLE)
 		return

@@ -20,7 +20,7 @@
 	var/turf/T = get_turf(target)
 	var/distance = get_dist(T, src)
 	if(distance > holo_range)
-		to_chat(user, "<span class='warning'>[src] can't project that far! (<b>[distance - holo_range]</b> tiles beyond the maximum range of <b>[holo_range]</b>)</span>")
+		to_chat(user, span_warning("[src] can't project that far! (<b>[distance - holo_range]</b> tiles beyond the maximum range of <b>[holo_range]</b>)"))
 		return
 	if(!isopenturf(T))
 		return
@@ -50,7 +50,7 @@
 			user = loc
 
 	if(user)
-		to_chat(user, "<span class='notice'>[src] stops projecting [loaded].</span>")
+		to_chat(user, span_notice("[src] stops projecting [loaded]."))
 
 	playsound(get_turf(src), 'sound/machines/chime.ogg', 30, TRUE)
 	new /obj/effect/temp_visual/dir_setting/firing_effect/magic(get_turf(loaded))
@@ -67,10 +67,10 @@
 		loaded = new(src)
 		loaded.projector = src
 		loaded.forceMove(location)
-		user.visible_message("<span class='notice'>[user] projects [loaded].</span>", "<span class='notice'>You project [loaded].</span>")
+		user.visible_message(span_notice("[user] projects [loaded]."), span_notice("You project [loaded]."))
 
 	else if(location != get_turf(loaded))
-		loaded.visible_message("<span class='warning'>[src] suddenly flickers and vanishes!</span>")
+		loaded.visible_message(span_warning("[src] suddenly flickers and vanishes!"))
 		new /obj/effect/temp_visual/dir_setting/firing_effect/magic(get_turf(loaded))
 		loaded.handle_unbuckling()
 		loaded.forceMove(location)
@@ -104,7 +104,7 @@
 
 	new /obj/effect/temp_visual/dir_setting/firing_effect/magic(src.loc)
 	handle_unbuckling()
-	visible_message("<span class='warning'>[src] suddenly flickers and vanishes!</span>")
+	visible_message(span_warning("[src] suddenly flickers and vanishes!"))
 	return ..()
 
 /obj/structure/bed/holobed/play_attack_sound(damage_amount, damage_type = BRUTE)
@@ -112,7 +112,7 @@
 
 /obj/structure/bed/holobed/attackby(obj/item/W, mob/user, params)
 	if(W.tool_behaviour == TOOL_WRENCH && !(flags_1&NODECONSTRUCT_1))
-		to_chat("<span class='notice'>You can't dismantle this! It's made of hard light!</span>")
+		to_chat(span_notice("You can't dismantle this! It's made of hard light!"))
 		return
 	else
 		return ..()
@@ -132,7 +132,7 @@
 		if(buckled_mobs.len > 1 || !user)
 			unbuckle_all_mobs()
 			if(user)
-				user.visible_message("<span class='notice'>[user] unbuckles all creatures from [src].</span>")
+				user.visible_message(span_notice("[user] unbuckles all creatures from [src]."))
 		else
 			user_unbuckle_mob(buckled_mobs[1],user)
 
@@ -147,7 +147,7 @@
 	. = ..()
 	if(validate_location()) //Check if we're out of projection range
 		return
-	visible_message("<span class='warning'>[src] suddenly flickers and vanishes!</span>")
+	visible_message(span_warning("[src] suddenly flickers and vanishes!"))
 	qdel(src)
 /obj/structure/bed/holobed/proc/validate_location()
 	if(!projector) //nothing projecting the bed so auto-fail

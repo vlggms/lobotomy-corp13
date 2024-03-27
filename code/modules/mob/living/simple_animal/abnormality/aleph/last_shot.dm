@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	desc = "A large ball of flesh, pulsating slowly."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "last_shot"
+	portrait = "last_shot"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 3100

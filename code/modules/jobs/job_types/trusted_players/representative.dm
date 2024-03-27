@@ -22,6 +22,8 @@
 								JUSTICE_ATTRIBUTE = 0
 								)
 
+	job_abbreviation = "REP"
+
 /datum/job/representative/after_spawn(mob/living/carbon/human/H, mob/M)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
@@ -34,7 +36,7 @@
 	jobtype = /datum/job/representative
 
 	belt = /obj/item/pda/lawyer
-	ears = /obj/item/radio/headset/heads
+	ears = /obj/item/radio/headset/heads/rep
 	uniform = /obj/item/clothing/under/suit/lobotomy
 	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup

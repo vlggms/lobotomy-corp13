@@ -16,8 +16,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 2500
+	health = 2500
 	del_on_death = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
 	see_in_dark = 10
@@ -38,7 +38,7 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
 		ABNORMALITY_WORK_REPRESSION = 0,
 	)
-	work_damage_amount = 16
+	work_damage_amount = 12
 	work_damage_type = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 20
@@ -232,7 +232,7 @@
 		patrol_to(target_center)
 		//Used to be in patrol_reset until i learned that patrol reset is inside patrol_to.
 		update_icon()
-		addtimer(CALLBACK(src, .proc/StopFleeing), 3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(StopFleeing)), 3 SECONDS)
 		return
 	StopFleeing()
 

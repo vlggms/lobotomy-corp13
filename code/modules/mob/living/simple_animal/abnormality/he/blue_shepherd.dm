@@ -130,8 +130,8 @@
 	if(IsCombatMap())
 		combat_map = TRUE
 		faction |= "hostile"
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath) // Alright, here we go again
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnNewCrew)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Alright, here we go again
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnNewCrew))
 	//makes a list of people and abno to shit talk
 	if(LAZYLEN(GLOB.mob_living_list))
 		for(var/mob/living/carbon/human/H in GLOB.mob_living_list)
@@ -144,7 +144,7 @@
 				buddy = A
 				return
 	if(!buddy)
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/OnAbnoSpawn) //if red buddy isn't in the facility, we wait for him
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(OnAbnoSpawn)) //if red buddy isn't in the facility, we wait for him
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -288,7 +288,7 @@
 		for(var/turf/T in all_turfs)
 			if(get_dist(orgin, T) > i)
 				continue
-			addtimer(CALLBACK(src, .proc/SlashHit, T, all_turfs, i, buddy_hit), (3 * (i+1)) + 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(SlashHit), T, all_turfs, i, buddy_hit), (3 * (i+1)) + 0.5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/blue_shepherd/proc/SlashHit(turf/T, list/all_turfs, slash_count, buddy_hit)
 	if(stat == DEAD)
@@ -335,7 +335,7 @@
 	if(prob(lie_chance))
 		lie = TRUE
 		if(buddy_abno)
-			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/ShepherdLying), 90 SECONDS)
+			buddy_abno.lying_timer = addtimer(CALLBACK(buddy_abno, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/red_buddy, ShepherdLying)), 90 SECONDS)
 			buddy_abno.lying = TRUE
 	else
 		lie = FALSE

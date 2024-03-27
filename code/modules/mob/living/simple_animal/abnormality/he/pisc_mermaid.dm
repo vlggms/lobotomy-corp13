@@ -43,10 +43,15 @@
 	gift_type =  /datum/ego_gifts/unrequited_love
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
+	grouped_abnos = list(
+		/mob/living/simple_animal/hostile/abnormality/siltcurrent = 1.5//check siltcurrent.dm for my reasoning
+	)
+
 	response_help_continuous = "pets" //You sick fuck
 	response_help_simple = "pet"
 	pet_bonus = TRUE
 	pet_bonus_emote = "smiles!"
+	var/workingflag = FALSE
 	var/pet_count = 0
 	var/mob/living/carbon/human/petter
 
@@ -70,19 +75,21 @@
 	if(crown?.loved == user)
 		if(crown.loved)
 			datum_reference.qliphoth_change(2)
-			crown.love_cooldown = (world.time + crown.love_cooldown_time)
+			crown.love_cooldown = (world.time + crown.love_cooldown_time) //Reset the qliphoth reduction timer
 		return
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(status_flags & GODMODE)
 		icon_living = "pmermaid_laying"
 		icon_state = "pmermaid_laying"
+		workingflag = TRUE
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(status_flags & GODMODE)
 		icon_living = "pmermaid_standing"
 		icon_state = "pmermaid_standing"
+		workingflag = FALSE
 	return
 
 //mermaid will immensely slow down their lover and slowly kill them by cutting off their oxygen supply
@@ -185,7 +192,7 @@
 //Gives a crown thing when you get good work on her. Anyone can wear the crown, even those that didn't work on her and there can only be one gift at a time.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/proc/GiveGift(mob/living/carbon/human/user)
 	FluffSpeak("Do you like it? You do right? I worked so hard on it...")
-	addtimer(CALLBACK(src, .proc/FluffSpeak, "If you don't like it then can you find someone who does? Bring them to me please."), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(FluffSpeak), "If you don't like it then can you find someone who does? Bring them to me please."), 3 SECONDS)
 	var/obj/item/clothing/head/unrequited_crown/UC = new(get_turf(src))
 	crown = UC
 	crown.throw_at(user, 4, 1, src, spin = FALSE, gentle = TRUE, quickstart = FALSE)
@@ -200,8 +207,8 @@
 	// here, we talk to them whilst they are dying, just a tiny bit
 	to_chat(petter, span_userdanger("Something is pulling you into the water!"))
 	FluffSpeak("I'm really sorry, but it's fine, right? Isn't it wonderful to be loved?")
-	addtimer(CALLBACK(src, .proc/FluffSpeak, "I am merely in love, I am merely wanting salvation."), 5 SECONDS)
-	addtimer(CALLBACK(src, .proc/FluffSpeak, "You can breath underwater right?"), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(FluffSpeak), "I am merely in love, I am merely wanting salvation."), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(FluffSpeak), "You can breath underwater right?"), 30 SECONDS)
 	// here, we murder them whilst we are talking
 	petter.Stun(2 MINUTES)
 	petter.move_resist = MOVE_FORCE_VERY_STRONG
@@ -285,7 +292,7 @@
 		love_cooldown = world.time + love_cooldown_time
 
 /obj/item/clothing/head/unrequited_crown/process()
-	if((love_cooldown < world.time) && loved)
+	if((love_cooldown < world.time) && loved && mermaid.workingflag != TRUE)
 		mermaid.datum_reference.qliphoth_change(-1)
 		new /obj/effect/temp_visual/heart(get_turf(loved))
 		to_chat(loved, span_warning("You feel as though you're forgetting someone..."))

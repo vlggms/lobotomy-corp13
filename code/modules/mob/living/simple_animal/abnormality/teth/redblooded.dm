@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "american_idle"
 	icon_living = "american_idle"
+	portrait = "red_blooded_american"
 	var/icon_furious = "american_idle_injured"
 	del_on_death = TRUE
 	maxHealth = 825

@@ -260,7 +260,7 @@
 	M.death()
 	M.forceMove(src) // Hide them for examine message to work
 	disguiseloop.start()
-	addtimer(CALLBACK(src, .proc/ZeroQliphoth), rand(20 SECONDS, 50 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), rand(20 SECONDS, 50 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/drop_disguise()
 	if(!istype(disguise))
@@ -417,6 +417,6 @@
 	for(var/turf/open/T in view(3, src))
 		new /obj/effect/temp_visual/flesh(T)
 	forceMove(target_turf)
-	addtimer(CALLBACK(src, .proc/drop_disguise), rand(40 SECONDS, 90 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(drop_disguise)), rand(40 SECONDS, 90 SECONDS))
 
 #undef NT_GOODBYE_COOLDOWN

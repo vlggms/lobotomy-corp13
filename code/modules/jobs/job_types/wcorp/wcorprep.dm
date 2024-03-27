@@ -32,11 +32,11 @@
 
 /datum/job/wcorprep/announce(mob/living/carbon/human/H)
 	..()
-	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "W-Corp Representative [H.real_name] has arrived for oversight."))
+	SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "W-Corp Representative [H.real_name] has arrived for oversight."))
 	if(commander)
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "W-Corp Representative [H.real_name] has arrived for oversight."))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "W-Corp Representative [H.real_name] has arrived for oversight."))
 	else
-		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, .proc/minor_announce, "Notice: [H.real_name] has arrived as W-Corp's Representative."))
+		SSticker.OnRoundstart(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(minor_announce), "Notice: [H.real_name] has arrived as W-Corp's Representative."))
 
 /datum/job/wcorprep/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()

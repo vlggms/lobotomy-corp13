@@ -178,7 +178,7 @@
 	user.visible_message("<span class='suicide'>[user] consumes [src]! It looks like [user.p_theyre()] trying to commit suicicide!</span>")
 	playsound(user, 'sound/items/eatfood.ogg', 50, TRUE)
 	user.adjust_nutrition(50) // mmmm delicious
-	addtimer(CALLBACK(src, .proc/manual_suicide, user), (3SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(manual_suicide), user), (3SECONDS))
 	return MANUAL_SUICIDE
 
 /**
@@ -398,7 +398,7 @@
 		active = TRUE
 		playsound(src, 'sound/effects/pope_entry.ogg', 100)
 		Rumble()
-		addtimer(CALLBACK(src, .proc/stopRumble), 600)
+		addtimer(CALLBACK(src, PROC_REF(stopRumble)), 600)
 	else
 		to_chat(user, "<span class='warning'>[src] is already active!</span>")
 
@@ -513,7 +513,7 @@
 
 /obj/effect/decal/cleanable/ash/snappop_phoenix/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/respawn), respawn_time)
+	addtimer(CALLBACK(src, PROC_REF(respawn)), respawn_time)
 
 /obj/effect/decal/cleanable/ash/snappop_phoenix/proc/respawn()
 	new /obj/item/toy/snappop/phoenix(get_turf(src))
@@ -542,7 +542,7 @@
 		activation_message(user)
 		playsound(loc, 'sound/machines/click.ogg', 20, TRUE)
 
-		INVOKE_ASYNC(src, .proc/do_toy_talk, user)
+		INVOKE_ASYNC(src, PROC_REF(do_toy_talk), user)
 
 		cooldown = TRUE
 		addtimer(VARSET_CALLBACK(src, cooldown, FALSE), recharge_time)
@@ -794,7 +794,7 @@
 	if(!(cardUser.mobility_flags & MOBILITY_USE))
 		return
 	var/O = src
-	var/choice = show_radial_menu(usr,src, handradial, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 36, require_near = TRUE)
+	var/choice = show_radial_menu(usr,src, handradial, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 36, require_near = TRUE)
 	if(!choice)
 		return FALSE
 	var/obj/item/toy/cards/singlecard/C = new/obj/item/toy/cards/singlecard(cardUser.loc)
@@ -1075,7 +1075,7 @@
 			if(!M.stat && !isAI(M)) // Checks to make sure whoever's getting shaken is alive/not the AI
 				// Short delay to match up with the explosion sound
 				// Shakes player camera 2 squares for 1 second.
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/shake_camera, M, 2, 1), 0.8 SECONDS)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(shake_camera), M, 2, 1), 0.8 SECONDS)
 
 	else
 		to_chat(user, "<span class='alert'>Nothing happens.</span>")
@@ -1463,7 +1463,7 @@
 	if(cooldown <= world.time)
 		cooldown = (world.time + 300)
 		user.visible_message("<span class='notice'>[user] adjusts the dial on [src].</span>")
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, src, 'sound/items/radiostatic.ogg', 50, FALSE), 0.5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, 'sound/items/radiostatic.ogg', 50, FALSE), 0.5 SECONDS)
 	else
 		to_chat(user, "<span class='warning'>The dial on [src] jams up</span>")
 		return
@@ -1478,7 +1478,7 @@
 /obj/item/toy/braintoy/attack_self(mob/user)
 	if(cooldown <= world.time)
 		cooldown = (world.time + 10)
-		addtimer(CALLBACK(GLOBAL_PROC, .proc/playsound, src, 'sound/effects/blobattack.ogg', 50, FALSE), 0.5 SECONDS)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(playsound), src, 'sound/effects/blobattack.ogg', 50, FALSE), 0.5 SECONDS)
 
 
 /*

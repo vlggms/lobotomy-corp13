@@ -53,7 +53,7 @@
 /datum/status_effect/penitence
 	id = "penitence"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 600		//Cut off your own legs after 60 seconds if you are still insane
+	duration = 1 MINUTES
 	alert_type = null
 
 /datum/status_effect/penitence/on_apply()
@@ -65,29 +65,30 @@
 /datum/status_effect/penitence/on_remove()
 	. = ..()
 	owner.cut_overlay(mutable_appearance('icons/mob/clothing/feet.dmi', "red_shoes", -ABOVE_MOB_LAYER))
-	if(ishuman(owner))
-		var/mob/living/carbon/human/user = owner
-		if(!user.sanity_lost) //Are we still insane? If not, we get to keep our legs.
-			return
-		if(HAS_TRAIT(user, TRAIT_NODISMEMBER))
-			return
-		var/obj/item/bodypart/l_leg = user.get_bodypart(BODY_ZONE_L_LEG)
-		var/obj/item/bodypart/r_leg = user.get_bodypart(BODY_ZONE_R_LEG)
-		var/did_the_thing = (l_leg?.dismember() && r_leg?.dismember()) //not all limbs can be removed, so important to check that we did. the. thing.
-		if(!did_the_thing)
-			return
-		if(user.stat < UNCONSCIOUS) //Not unconscious/dead
-			user.say("Please forgive me... I'll just cut off my feet.")
-		user.adjustBruteLoss(300)//DIE! For real, this time.
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	if(!status_holder.sanity_lost) //Are we still insane? If not, we get to keep our legs.
+		return
+	if(HAS_TRAIT(status_holder, TRAIT_NODISMEMBER))
+		return
+	var/obj/item/bodypart/left_leg = status_holder.get_bodypart(BODY_ZONE_L_LEG)
+	var/obj/item/bodypart/right_leg = status_holder.get_bodypart(BODY_ZONE_R_LEG)
+	var/did_the_thing = (left_leg?.dismember() && right_leg?.dismember()) //not all limbs can be removed, so important to check that we did. the. thing.
+	if(!did_the_thing)
+		return
+	if(status_holder.stat < UNCONSCIOUS) //Not unconscious/dead
+		status_holder.say("Please forgive me... I'll just cut off my feet.")
+	status_holder.adjustBruteLoss(300)//DIE! For real, this time.
 
 /datum/status_effect/penitence/tick()
 	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/human/user = owner
-	if(!user.sanity_lost && !QDELETED(user))
+	var/mob/living/carbon/human/status_holder = owner
+	if(!status_holder.sanity_lost && !QDELETED(status_holder))
 		qdel(src)
 	else
-		user.emote("spin")
+		status_holder.emote("spin")
 
 #undef STATUS_EFFECT_PENITENCE
 

@@ -381,15 +381,6 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							FORTITUDE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/waw/faith //pure-hearted believer
-	name = "untainted faith"
-	desc = "To have absolute faith on something that gives you salvation."
-	icon_state = "faith"
-	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 30) //140
-	attribute_requirements = list(
-					PRUDENCE_ATTRIBUTE = 80
-					)
-
 /obj/item/clothing/suit/armor/ego_gear/waw/innocence
 	name = "childhood memories"
 	desc = "In my dreams as child, Peter Pan would reach out a hand for me to hold and take me to Neverland. I had forgotten all of that, until I went into that room."
@@ -451,7 +442,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							PRUDENCE_ATTRIBUTE = 80)
 
 /obj/item/clothing/suit/armor/ego_gear/waw/rosa
-	name = "flore sicut rosa"
+	name = "garden of thorns"
 	desc = "Our only wish is that our garden will bloom full of flowers."
 	icon_state = "rosa"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 140
@@ -459,3 +450,12 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							PRUDENCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/waw/blind_obsession
+	name = "blind obsession"
+	desc = "Allow me to describe this grand and epic beast!"
+	icon_state = "blind_obsession"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = -10, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)//140
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 60)

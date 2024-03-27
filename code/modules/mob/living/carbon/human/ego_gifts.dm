@@ -76,6 +76,14 @@
 				if(locked)
 					to_chat(owner, span_warning("[src] is locked and cannot be dissolved! Phew!"))
 					return
+				if(istype(src, /datum/ego_gifts/waltz)) // Blessing Rejection
+					if(tgui_alert(owner, "Are you sure you want to do this? A champion should not abandon their post.", "Remove Blessing", list("Yes", "No"), 0) == "Yes")
+						if(QDELETED(src) || !istype(src, /datum/ego_gifts/waltz))
+							return
+						to_chat(owner, span_warning("Removal of the crown leaves your mind scarred!"))
+						owner.adjustSanityLoss(75)
+					else
+						return
 				var/datum/ego_gifts/empty/dissolving = new
 				dissolving.slot = src.slot
 				if(!datum_reference)
@@ -831,12 +839,12 @@
 	fortitude_bonus  = 2
 	justice_bonus = 2
 
-/datum/ego_gifts/waltz // Locked to Champions only, so Improved it
+/datum/ego_gifts/waltz // Locked to Champions only, wearing it carries a risk but it's powerful
 	name = "Flower Waltz"
 	icon_state = "waltz"
-	fortitude_bonus = 2
 	prudence_bonus = 2
-	justice_bonus = 2
+	temperance_bonus = 2
+	justice_bonus = 12
 	slot = HELMET
 
 /datum/ego_gifts/warp
@@ -878,10 +886,10 @@
 
 /datum/ego_gifts/aroma/Initialize(mob/living/carbon/human/user)
 	. = ..()
-	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
 
 /datum/ego_gifts/aroma/Remove(mob/living/carbon/human/user)
-	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, .proc/AttemptHeal)
+	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
 	return ..()
 
 /datum/ego_gifts/aroma/proc/AttemptHeal(datum/source, damage, damagetype, def_zone)
@@ -906,6 +914,13 @@
 	prudence_bonus = 15
 	temperance_bonus = 5
 	slot = RIGHTBACK
+
+/datum/ego_gifts/blind_obsession
+	name = "Blind Obsession"
+	icon_state = "slitcurrent"
+	temperance_bonus = -5//People are going to hate this.
+	justice_bonus = 12
+	slot = HAT
 
 /datum/ego_gifts/blind_rage
 	name = "Blind Rage"
@@ -1394,6 +1409,25 @@
 	user.physiology.white_mod /= 0.95
 	user.physiology.black_mod /= 0.95
 	user.physiology.pale_mod /= 0.95
+	return ..()
+
+/datum/ego_gifts/oberon
+	name = "Oberon"
+	icon_state = "oberon"
+	desc = "Provides the user with 10% resistance to RED and BLACK damage."
+	fortitude_bonus = 6
+	temperance_bonus = 6
+	justice_bonus = 6
+	slot = LEFTBACK
+
+/datum/ego_gifts/oberon/Initialize(mob/living/carbon/human/user) // Lowered Stats but grants resistance
+	. = ..()
+	user.physiology.red_mod *= 0.9
+	user.physiology.black_mod *= 0.9
+
+/datum/ego_gifts/oberon/Remove(mob/living/carbon/human/user)
+	user.physiology.red_mod /= 0.9
+	user.physiology.black_mod /= 0.9
 	return ..()
 
 /datum/ego_gifts/twilight

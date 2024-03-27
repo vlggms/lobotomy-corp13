@@ -195,9 +195,9 @@
 	var/story_time = 1
 	if(pink_story)
 		for(var/line in catt)
-			addtimer(CALLBACK(src, /atom/movable.proc/say, ";"+line), (2 SECONDS)*story_time)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), ";"+line), (2 SECONDS)*story_time)
 			story_time++
-		pink_speaktimer = addtimer(CALLBACK(src, .proc/Ramble, FALSE), (3 SECONDS)*(story_time + 1))
+		pink_speaktimer = addtimer(CALLBACK(src, PROC_REF(Ramble), FALSE), (3 SECONDS)*(story_time + 1))
 		return
 	var/list/gibberish = list()
 	gibberish += dementia
@@ -209,8 +209,8 @@
 		var/line = pick(gibberish)
 		gibberish -= line
 		story_time++
-		addtimer(CALLBACK(src, /atom/movable.proc/say, ";"+line), (4 SECONDS)*story_time)
-	pink_speaktimer = addtimer(CALLBACK(src, .proc/Ramble, FALSE), (4 SECONDS)*story_time*2)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), ";"+line), (4 SECONDS)*story_time)
+	pink_speaktimer = addtimer(CALLBACK(src, PROC_REF(Ramble), FALSE), (4 SECONDS)*story_time*2)
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/say(message, bubble_type, list/spans, sanitize, datum/language/language, ignore_spam, forced)
 	if(stat == DEAD)
@@ -228,21 +228,23 @@
 /datum/status_effect/quiet
 	id = "quiet_day"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 minutes
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/quiet
 	var/attribute_buff = FORTITUDE_ATTRIBUTE
 
 /datum/status_effect/quiet/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(attribute_buff, 15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(attribute_buff, 15)
 
 /datum/status_effect/quiet/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_buff(attribute_buff, -15)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(attribute_buff, -15)
 
 
 //Here so that the defines work

@@ -30,6 +30,12 @@
 	room_id = "coffee_break"
 	mappath = "_maps/RandomRooms/backstreets/small_north/coffee_break.dmm"
 
+
+/datum/map_template/random_room/backstreets/small_north/kcorp_stash_sna
+	name = "KCorp Stash - Small North A"
+	room_id = "kcorp_stash_sna"
+	mappath = "_maps/RandomRooms/backstreets/small_north/kcorp_stash_sna.dmm"
+
 /datum/map_template/random_room/backstreets/small_north/ash_exhibit
     name = "Ashwalker Exhibit - Small North"
     room_id = "ash_exhibit"

@@ -3,6 +3,7 @@
 	desc = "A noble red abnormality sitting in her chair."
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "redqueen"
+	portrait = "red_queen"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 650

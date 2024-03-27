@@ -15,7 +15,7 @@
 	after_select_cb = _after_select_cb
 
 /datum/component/surgery_initiator/RegisterWithParent()
-	RegisterSignal(parent, COMSIG_ITEM_ATTACK, .proc/initiate_surgery_moment)
+	RegisterSignal(parent, COMSIG_ITEM_ATTACK, PROC_REF(initiate_surgery_moment))
 
 /datum/component/surgery_initiator/UnregisterFromParent()
 	UnregisterSignal(parent, COMSIG_ITEM_ATTACK)
@@ -34,7 +34,7 @@
 	SIGNAL_HANDLER
 	if(!isliving(target))
 		return
-	INVOKE_ASYNC(src, .proc/do_initiate_surgery_moment, source, target, user)
+	INVOKE_ASYNC(src, PROC_REF(do_initiate_surgery_moment), source, target, user)
 	return COMPONENT_CANCEL_ATTACK_CHAIN
 
 /datum/component/surgery_initiator/proc/do_initiate_surgery_moment(datum/source, atom/target, mob/user)

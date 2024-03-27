@@ -478,7 +478,7 @@
 	if(reviving)
 		switch(owner.stat)
 			if(UNCONSCIOUS, HARD_CRIT)
-				addtimer(CALLBACK(src, .proc/heal), 2 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(heal)), 2 SECONDS)
 			else
 				COOLDOWN_START(src, reviver_cooldown, revive_cost)
 				reviving = FALSE

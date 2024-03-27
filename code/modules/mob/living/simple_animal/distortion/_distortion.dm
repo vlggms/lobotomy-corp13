@@ -93,24 +93,24 @@
 		switch(sanity_result)
 			if(-INFINITY to 0)
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_0)
-				to_chat(H, "<span class='notice'>[result_text]</span>")
+				to_chat(H, span_notice("[result_text]"))
 				continue
 			if(1)
 				sanity_damage = H.maxSanity*0.1
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_1)
-				to_chat(H, "<span class='warning'>[result_text]</span>")
+				to_chat(H, span_warning("[result_text]"))
 			if(2)
 				sanity_damage = H.maxSanity*0.3
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_2)
-				to_chat(H, "<span class='danger'>[result_text]</span>")
+				to_chat(H, span_danger("[result_text]"))
 			if(3)
 				sanity_damage = H.maxSanity*0.6
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_3)
-				to_chat(H, "<span class='userdanger'>[result_text]</span>")
+				to_chat(H, span_userdanger("[result_text]"))
 			if(4)
 				sanity_damage = H.maxSanity*0.95
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)
-				to_chat(H, "<span class='userdanger'><b>[result_text]</b></span>")
+				to_chat(H, span_userdanger("<b>[result_text]</b>"))
 			if(5)
 				sanity_damage = H.maxSanity
 				H.apply_status_effect(/datum/status_effect/panicked_lvl_4)

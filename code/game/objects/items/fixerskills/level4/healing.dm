@@ -21,6 +21,6 @@
 	var/mob/living/carbon/human/human = owner
 	if(human.revive(full_heal = TRUE, admin_revive = TRUE))
 		human.grab_ghost(force = TRUE) // even suicides
-		to_chat(target, "<span class='notice'>You refuse to die.</span>")
+		to_chat(target, span_notice("You refuse to die."))
 	StartCooldown()
 

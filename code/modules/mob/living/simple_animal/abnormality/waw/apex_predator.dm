@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "apex"
 	icon_living = "apex"
+	portrait = "apex"
 	pixel_x = -16
 	base_pixel_x = -16
 
@@ -153,7 +154,7 @@
 	jumping = TRUE
 	busy = TRUE
 	icon_state = "apex_crouch"
-	addtimer(CALLBACK(src, .proc/Leap), 5)
+	addtimer(CALLBACK(src, PROC_REF(Leap)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Leap()
 	density = FALSE
@@ -162,7 +163,7 @@
 	throw_at(target_turf, 7, 1, src, FALSE)
 	icon_state = "apex_leap"
 
-	addtimer(CALLBACK(src, .proc/Slam), 10)
+	addtimer(CALLBACK(src, PROC_REF(Slam)), 10)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Slam()
 	icon_state = "apex_crouch"
@@ -175,7 +176,7 @@
 		if(L.stat == DEAD)
 			continue
 		L.apply_damage(jump_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-	addtimer(CALLBACK(src, .proc/Reset), 12)
+	addtimer(CALLBACK(src, PROC_REF(Reset)), 12)
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Reset()
 	density = TRUE

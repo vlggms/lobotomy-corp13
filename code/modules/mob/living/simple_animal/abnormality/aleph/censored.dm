@@ -192,9 +192,13 @@
 		user.Stun(30 SECONDS)
 		step_towards(user, src)
 		sleep(0.3 SECONDS)
+		if(QDELETED(user))
+			return TRUE
 		step_towards(user, src)
 		new /obj/effect/temp_visual/censored(get_turf(src))
 		sleep(0.3 SECONDS)
+		if(QDELETED(user))
+			return TRUE
 		playsound(src, 'sound/abnormalities/censored/sacrifice.ogg', 45, FALSE, 10)
 		if(status_flags & GODMODE) //If CENSORED is still contained within this small time frame
 			datum_reference.qliphoth_change(1)
@@ -266,7 +270,7 @@
 	if(status_flags & GODMODE)
 		return FALSE
 	for(var/i = 1 to 2)
-		addtimer(CALLBACK(src, .proc/ShakePixels), i*5 + rand(1, 4))
+		addtimer(CALLBACK(src, PROC_REF(ShakePixels)), i*5 + rand(1, 4))
 	ShakePixels()
 	FearEffect()
 	return
@@ -313,7 +317,7 @@
 
 /datum/status_effect/overwhelming_fear/tick()
 	. = ..()
-	var/mob/living/carbon/human/H = owner
-	if(H.getSanityLoss() >= H.getMaxSanity() * sanity_limit_percent)
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.getSanityLoss() >= status_holder.getMaxSanity() * sanity_limit_percent)
 		return
-	H.adjustSanityLoss(H.getMaxSanity() * sanity_damage_percent)
+	status_holder.adjustSanityLoss(status_holder.getMaxSanity() * sanity_damage_percent)

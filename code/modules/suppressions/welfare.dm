@@ -24,8 +24,8 @@
 
 /datum/suppression/welfare/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnJoin))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
 	for(var/mob/living/carbon/human/H in GLOB.human_list)
 		if(!H.ckey)
 			continue
@@ -161,7 +161,7 @@
 	var/minimum_restore_percentage = 0.1
 
 /datum/status_effect/welfare_reward/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/OnDamage)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(OnDamage))
 	to_chat(owner, "<span class='notice'>Welfare Department modification has been applied to you!</span>")
 	return ..()
 
@@ -230,7 +230,7 @@
 
 /datum/welfare_reward_tracker/New()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, .proc/OnJoin)
+	RegisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED, PROC_REF(OnJoin))
 
 /datum/welfare_reward_tracker/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_CREWMEMBER_JOINED)

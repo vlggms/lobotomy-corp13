@@ -77,13 +77,13 @@
 		walk_to(src, 0)
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-		addtimer(CALLBACK(src, .proc/DeathExplosion), 15)
+		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
 	for(var/mob/living/L in view(2, src))
@@ -132,7 +132,7 @@
 	if(do_after(src, 2 SECONDS, target = src))
 		ArialSupport()
 	else
-		visible_message("<span class='notice'>[src] crashes to the ground.</span>")
+		visible_message(span_notice("[src] crashes to the ground."))
 		apply_damage(100, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	//return to the ground
 	density = TRUE
@@ -169,7 +169,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/SweepAttack(mob/living/sweeptarget)
-	sweeptarget.visible_message("<span class='danger'>[src] slams into [sweeptarget]!</span>", "<span class='userdanger'>[src] slams into you!</span>")
+	sweeptarget.visible_message(span_danger("[src] slams into [sweeptarget]!"), span_userdanger("[src] slams into you!"))
 	sweeptarget.apply_damage(30, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 50, TRUE)
 	if(sweeptarget.mob_size <= MOB_SIZE_HUMAN)
@@ -262,7 +262,7 @@
 	else if(!troops.len)
 		var/area/forward_base = get_area(fob)
 		if(!istype(get_area(src), forward_base) && z == fob.z)
-			patrol_path = get_path_to(src, fob, /turf/proc/Distance_cardinal, 0, 200)
+			patrol_path = get_path_to(src, fob, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 			return
 	..()
 

@@ -57,7 +57,7 @@
 	playsound(get_turf(user), 'sound/abnormalities/someonesportrait/panic.ogg', 40, FALSE, -5)
 	user.adjustSanityLoss(user.maxSanity)
 	if(!workfailure)
-		addtimer(CALLBACK(src, .proc/PanicCheck, user), 1) //Gives sanity time to update for forced panic type
+		addtimer(CALLBACK(src, PROC_REF(PanicCheck), user), 1) //Gives sanity time to update for forced panic type
 
 /mob/living/simple_animal/hostile/abnormality/someones_portrait/proc/PanicCheck(mob/living/carbon/human/user) //forced wander panic
 	var/mob/living/carbon/human/H = user

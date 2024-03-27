@@ -172,7 +172,7 @@
 		landminemode.activate()
 		return
 	active = TRUE
-	addtimer(CALLBACK(src, .proc/detonate), isnull(delayoverride)? det_time : delayoverride)
+	addtimer(CALLBACK(src, PROC_REF(detonate)), isnull(delayoverride)? det_time : delayoverride)
 
 /obj/item/grenade/chem_grenade/detonate(mob/living/lanced_by)
 	if(stage != GRENADE_READY)
@@ -298,7 +298,7 @@
 	chem_splash(get_turf(src), affected_area, list(reactants), ignition_temp, threatscale)
 
 	var/turf/DT = get_turf(src)
-	addtimer(CALLBACK(src, .proc/detonate), det_time)
+	addtimer(CALLBACK(src, PROC_REF(detonate)), det_time)
 	log_game("A grenade detonated at [AREACOORD(DT)]")
 
 

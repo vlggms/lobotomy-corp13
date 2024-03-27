@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "eris"
 	icon_living = "eris"
+	portrait = "eris"
 	maxHealth = 1100
 	health = 1100
 	ranged = TRUE
@@ -42,7 +43,7 @@
 //Okay, but here's the breach on death
 /mob/living/simple_animal/hostile/abnormality/eris/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/eris/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -82,7 +83,7 @@
 
 	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 
