@@ -5,7 +5,7 @@
 	special = "Attack a human to stun them after a period of time."
 	icon_state = "protection_baton"
 	inhand_icon_state = "protection_baton"
-	force = 15
+	force = 30
 	attribute_requirements = list()
 
 

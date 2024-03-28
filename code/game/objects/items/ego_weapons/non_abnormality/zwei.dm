@@ -112,7 +112,7 @@
 	special = "Attack a human to stun them after a period of time."
 	icon_state = "zwei_baton"
 	inhand_icon_state = "zwei_baton"
-	force = 30
+	force = 40
 	attack_speed = 2
 	damtype = RED_DAMAGE
 
@@ -134,7 +134,7 @@
 	T.Jitter(20)
 	T.set_confusion(max(10, T.get_confusion()))
 	T.stuttering = max(8, T.stuttering)
-	T.apply_damage(force, STAMINA, BODY_ZONE_CHEST)
+	T.adjustStaminaLoss(force, TRUE, TRUE)
 
 	SEND_SIGNAL(T, COMSIG_LIVING_MINOR_SHOCK)
 

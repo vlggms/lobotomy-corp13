@@ -39,6 +39,10 @@
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/salsu))
 			processing.total_positions = 2
+
+	//Someone for them to fight, and give the fixers a scare.
+		if(istype(processing, /datum/job/butcher))
+			processing.total_positions = 2
 	. = ..()
 
 

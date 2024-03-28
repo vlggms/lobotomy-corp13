@@ -12,8 +12,14 @@
 	trusted_only = TRUE
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
-	paycheck = 2100
+	paycheck = 0
 	maptype = "city"
+	job_important = "You are the city's administrator, and have a small sort of power over the local association. \
+		You MUST assist new fixer offices in getting set up, as well as issuing fixer licenses. \
+		All new fixer offices MUST be announced upon creation, including office name and director name."
+	job_notice = "Along with this, you may announce new taboos (which must be announced), and issue the association to enforce them. \
+		You may also grade fixers, administer quests, and perform office inspections at your leisure. \
+		For more information, see https://wiki.lc13.net/view/Hana_Association"
 
 
 	//Mostly for armor.
@@ -27,11 +33,13 @@
 /datum/job/hana/after_spawn(mob/living/carbon/human/H, mob/M)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	job_important = "You are the city's administrator, and have a small sort of power over the local association. \
-		You MUST assist new fixer offices in getting set up, as well as issuing fixer licenses. \
-		All new fixer offices MUST be announced upon creation, including office name and director name."
-	job_notice = "Along with this, you may announce new taboos (which must be announced), and issue the association to enforce them. \
-		You may also grade fixers, administer quests, and perform office inspections at your leisure."
+
+	//Don't give this shit to the interns, my lord
+	if(paycheck==0)
+		add_verb(H, /client/proc/hanafetchquest)
+//		add_verb(H, /client/proc/hanaslayquest)
+
+
 	. = ..()
 
 
@@ -56,7 +64,7 @@
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JOB_DISPLAY_ORDER_MANAGER
-	paycheck = 10000
+	paycheck = 0
 
 
 	//Mostly for armor.
@@ -79,8 +87,8 @@
 /datum/job/hana/intern
 	title = "Hana Intern"
 	outfit = /datum/outfit/job/hana/intern
-	total_positions = 4
-	spawn_positions = 4
+	total_positions = 2
+	spawn_positions = 2
 	display_order = JOB_DISPLAY_ORDER_INTERN
 	paycheck = 1000
 	trusted_only = FALSE
@@ -97,11 +105,31 @@
 	job_important = "You are a Intern for the Hana association, Your only job is to assist the higher ups with their duities. \
 		You MUST assist new fixer offices in getting set up, as well as issuing fixer licenses. \
 		All new fixer offices MUST be announced upon creation, including office name and director name. "
-	job_notice = null
+	job_notice = "For more information, see https://wiki.lc13.net/view/Hana_Association"
 
 
 /datum/outfit/job/hana/intern
 	name = "Hana Intern"
 	jobtype = /datum/job/hana/intern
-
 	l_hand = null
+
+
+/client/proc/hanafetchquest()
+	set name = "Issue Fetch Quest"
+	set category = "Hana Quests"
+
+	minor_announce("Hana has issued a request for a diamond coin. Payment will be given upon quest completion", "Hana Assignment:", TRUE)
+	var/T = pick(SScityevents.distortion)
+	var/Y = /obj/item/coin/diamond
+	new Y (get_turf(T))
+
+/client/proc/hanaslayquest()
+	set name = "Issue Slay Quest"
+	set category = "Hana Quests"
+
+	minor_announce("Hana has issued a kill request on an unknown distortion. Payment will be given upon quest completion", "Hana Assignment:", TRUE)
+	var/T = pick(SScityevents.distortion)
+	new /obj/effect/bloodpool(get_turf(T))
+	sleep(10)
+	var/spawning = pick(SScityevents.distortions_available)
+	new spawning (get_turf(T))
