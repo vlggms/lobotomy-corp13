@@ -1,7 +1,7 @@
 // Dawn
 /datum/ordeal/gold_dawn
 	name = "The Dawn of Gold"
-	flavor_name = "The First Trumpet" //Temporary as can be, but an interesting allusion to the original game
+	flavor_name = "As Little Flowers"
 	announce_text = "Our choice could be hope or despair as the sun comes."
 	level = 1
 	reward_percent = 0.1
@@ -51,7 +51,7 @@
 //Noon
 /datum/ordeal/boss/gold_noon
 	name = "The Noon of Gold"
-	flavor_name = "The Second Trumpet"
+	flavor_name = "No Greater Sorrow"
 	announce_text = "Our light blazed brightly in the sky, the stars that marked our starting fell away."
 	level = 2
 	reward_percent = 0.15
@@ -82,7 +82,7 @@
 //Dusk
 /datum/ordeal/gold_dawn/gold_dusk
 	name = "The Dusk of Gold"
-	flavor_name = "The Third Trumpet"
+	flavor_name = "Pandaemonium"
 	announce_text = "Stay vigilant, stay resolved. Let our minds be strong when dusk falls."
 	level = 3
 	reward_percent = 0.2
@@ -94,12 +94,66 @@
 	roamer_amount = 4
 
 //Midnight
-/*
-/datum/ordeal/simplecommander/gold_dawn/gold_midnight
+/datum/ordeal/gold_dawn/gold_midnight
 	name = "The Midnight of Gold"
-	flavor_name = "The Fourth Trumpet"
+	flavor_name = "The Human Protoplast"
 	announce_text = "The night has come. Our ignorance as its origin. No one shall be redeemed at its end."
 	level = 4
 	reward_percent = 0.25
+	//3 different simplespawns in one ordeal. Similar to simplecommanders but each commander has its own set of grunts
+	boss_type = /mob/living/simple_animal/hostile/ordeal/NT_corrosion
+	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/sin_wrath, /mob/living/simple_animal/hostile/ordeal/sin_lust)
+	//2 other pools of simplespawns.
+	var/boss_2 = /mob/living/simple_animal/hostile/ordeal/snake_corrosion/strong
+	var/list/group_2_grunts = list(/mob/living/simple_animal/hostile/ordeal/snake_corrosion)
+	var/boss_3 = /mob/living/simple_animal/hostile/ordeal/dog_corrosion/strong
+	var/list/group_3_grunts = list(/mob/living/simple_animal/hostile/ordeal/dog_corrosion)
+	roamer_type = list(/mob/living/simple_animal/hostile/ordeal/sin_wrath,/mob/living/simple_animal/hostile/ordeal/sin_lust)
+	boss_amount = 1
+	grunt_amount = 2
+	roamer_amount = 3
+	boss_player_multiplicator = 0.025
+	grunt_player_multiplicator = 0.05
 
-*/
+/datum/ordeal/gold_dawn/gold_midnight/Run() //Icky copypaste code but the important part is it works
+	..()
+	if(!LAZYLEN(GLOB.xeno_spawn))
+		message_admins("No xeno spawns found when spawning in ordeal!")
+		return
+	var/boss_player_mod = round(GLOB.clients.len * boss_player_multiplicator)
+	var/grunt_player_mod = round(GLOB.clients.len * grunt_player_multiplicator)
+	var/list/available_locs = GLOB.xeno_spawn.Copy()
+
+	for(var/i = 1 to round(boss_amount + boss_player_mod))
+		var/turf/T = pick(available_locs)
+		if(available_locs.len > 1)
+			available_locs -= T
+		var/mob/living/simple_animal/hostile/ordeal/A = new boss_type(T)
+		ordeal_mobs += A
+		A.ordeal_reference = src
+		spawngrunts(T, grunt_type, (grunt_amount + grunt_player_mod))
+
+		T = pick(available_locs)
+		if(available_locs.len > 1)
+			available_locs -= T
+		var/mob/living/simple_animal/hostile/ordeal/B = new boss_2(T)
+		ordeal_mobs += B
+		B.ordeal_reference = src
+		spawngrunts(T, group_2_grunts, (grunt_amount + grunt_player_mod))
+
+		T = pick(available_locs)
+		if(available_locs.len > 1)
+			available_locs -= T
+		var/mob/living/simple_animal/hostile/ordeal/C = new boss_3(T)
+		ordeal_mobs += C
+		C.ordeal_reference = src
+		spawngrunts(T, group_3_grunts, (grunt_amount + grunt_player_mod))
+
+	for(var/i = 1 to round(roamer_amount + boss_player_mod)) //we spawn groups of roamers using boss slots as a base
+		var/turf/T = pick(available_locs)
+		if(available_locs.len > 1)
+			available_locs -= T
+		for(var/Y in roamer_type)
+			var/mob/living/simple_animal/hostile/ordeal/C = new Y(T)
+			ordeal_mobs += C
+			C.ordeal_reference = src
