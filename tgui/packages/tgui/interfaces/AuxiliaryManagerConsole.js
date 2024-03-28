@@ -1,7 +1,7 @@
 // THIS IS A LOBOTOMYCORPORATION UI FILE
 
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, LabeledList, NoticeBox, Section, Tabs } from '../components';
+import { Box, Button, LabeledList, NoticeBox, Section, Tabs, Collapsible } from '../components';
 import { Window } from '../layouts';
 
 export const AuxiliaryManagerConsole = (props, context) => {
@@ -197,7 +197,10 @@ const CoreSuppressionSelector = (props, context) => {
           <Button
             content={'ADMIN: Unlock all core suppressions'}
             color={'purple'}
-            onClick={() => act('Unlock All Cores')}
+            onClick={() =>
+              act('Unlock Core Suppressions', {
+                core_unlock: 1,
+              })}
           />
           <Button
             content={'ADMIN: Disable all core suppressions'}
@@ -205,6 +208,13 @@ const CoreSuppressionSelector = (props, context) => {
             onClick={() => act('Disable Core Suppression')}
           />
         </Box>
+      )}
+      {is_admin === 1 && (
+        <Collapsible
+        title="ADMIN: Select a specific core suppression to unlock"
+        color='purple'>
+          <AllCores />
+        </Collapsible>
       )}
       {available_suppressions.length > 0 && (
         <LabeledList>
@@ -452,6 +462,36 @@ const MiscUpgrades = (props, context) => {
               onClick={() =>
                 act('Buy Upgrade', {
                   selected_upgrade: misc_upgrades.ref,
+                })}
+            />
+          }
+        />
+      ))}
+    </LabeledList>
+  );
+};
+
+const AllCores = (props, context) => {
+  const { act, data } = useBackend(context);
+  const { all_core_suppressions } = data;
+
+  if (all_core_suppressions.length < 1) {
+    return;
+  }
+
+  return (
+    <LabeledList>
+      {all_core_suppressions.map(all_core_suppressions => (
+        <LabeledList.Item
+          key={all_core_suppressions.name}
+          label={all_core_suppressions.name}
+          buttons={
+            <Button
+              content={'Add core suppression to the avaible cores pool'}
+              color={'purple'}
+              onClick={() =>
+                act('Unlock Core Suppressions', {
+                  core_unlock: all_core_suppressions.ref,
                 })}
             />
           }

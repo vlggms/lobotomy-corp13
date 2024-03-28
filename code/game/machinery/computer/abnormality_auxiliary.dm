@@ -293,13 +293,24 @@
 
 	var/list/available_suppressions = list()
 	for(var/core_type in SSlobotomy_corp.available_core_suppressions)
-		var/datum/suppression/available_suppression = core_type
+		var/datum/suppression/core_suppression = core_type
 		available_suppressions += list(list(
-			"name" = available_suppression.name,
-			"ref" = REF(available_suppression),
+			"name" = core_suppression.name,
+			"ref" = REF(core_suppression),
 		))
 
 	data["available_suppressions"] = available_suppressions
+
+	var/list/pre_made_core_suppressions = subtypesof(/datum/suppression)
+	var/list/all_core_suppressions = list()
+	for(var/core_type in pre_made_core_suppressions)
+		var/datum/suppression/core_suppression = core_type
+		all_core_suppressions += list(list(
+			"name" = core_suppression.name,
+			"ref" = REF(core_suppression),
+		))
+
+	data["all_core_suppressions"] = all_core_suppressions
 	// end core suppression info
 
 	data["is_admin"] = is_admin // used to determine if we unlock special admin-only options
@@ -354,13 +365,23 @@
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 
 		// admin-only actions, remember to put a if(!log_action) check with a proper return
-		if("Unlock All Cores")
+		if("Unlock Core Suppressions")
 			if(!log_action(usr, admin_action = TRUE,
-				message_override = "[usr] has used admin powers to make all cores avaible in the auxiliary console"
+				message_override = "[usr] has used admin powers to manipulate the avaible cores in the auxiliary console"
 			))
 				return
 
-			SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
+			var/core_to_unlock = params["core_unlock"]
+
+			if(core_to_unlock != 1)
+				var/list/all_cores = subtypesof(/datum/suppression)
+				var/selected_core = locate(params["core_unlock"]) in all_cores
+
+				SSlobotomy_corp.available_core_suppressions += selected_core
+
+			else // unlock all of them if the core to unlock is not specified
+				SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
+
 			update_static_data_for_all_viewers()
 
 		if("Disable Core Suppression")
