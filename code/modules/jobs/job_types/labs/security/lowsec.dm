@@ -94,7 +94,7 @@
 	ears = /obj/item/radio/headset/heads/headset_control
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/limbus/officer
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/hsc
+	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/lsc
 	head = /obj/item/clothing/head/beret/sec/lccb_commander
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black

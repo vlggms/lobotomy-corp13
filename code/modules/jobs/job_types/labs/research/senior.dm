@@ -14,7 +14,7 @@
 	job_attribute_limit = 0
 
 
-	display_order = 6.2
+	display_order = 6.4
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are the Senior Researcher. Your job is to run research on the abnormalities, and report back to the lead researcher and command."

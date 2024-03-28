@@ -38,7 +38,7 @@
 	name = "Damage Mitigation Officer"
 	jobtype = /datum/job/damage_mitigation_officer
 
-	head = /obj/item/clothing/head/hos/beret
+	head = /obj/item/clothing/head/beret/sec/navywarden
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -91,7 +91,7 @@
 	name = "Damage Exasperation Officer"
 	jobtype = /datum/job/damage_exasperation_officer
 
-	head = /obj/item/clothing/head/hos/beret
+	head = /obj/item/clothing/head/beret/sec/navywarden
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses

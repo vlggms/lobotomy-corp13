@@ -14,7 +14,7 @@
 	job_attribute_limit = 0
 
 
-	display_order = 6.3
+	display_order = 6.1
 	alt_titles = list()
 	maptype = "limbus_labs"
 	job_important = "You are the research archivist. Your goal is to assist Research in filing paperwork."
