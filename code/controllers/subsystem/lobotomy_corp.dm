@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = AvailableAgentCount()
-	qliphoth_max = (player_count > 1 ? 4 : 3) + player_count // Some extra help on non solo rounds
+	qliphoth_max = (player_count > 1 ? 4 : 3) + player_count + GLOB.Sephirahordealspeed // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
@@ -301,7 +301,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		if(!(cmp.datum_reference.threat_level in qliphoth_meltdown_affected) && !forced)
 			continue
 		computer_list += cmp
-	for(var/i = 1 to meltdown_amount)
+	for(var/i = 1 to meltdown_amount + GLOB.Sephirahmeltmodifier)
 		if(!LAZYLEN(computer_list))
 			break
 		var/obj/machinery/computer/abnormality/computer = pick(computer_list)
