@@ -590,10 +590,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/carpet/stellar,
 /area/centcom)
-"jD" = (
-/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
-/turf/open/floor/plasteel,
-/area/centcom)
 "jE" = (
 /turf/open/floor/plasteel/showroomfloor,
 /area/centcom)
@@ -706,10 +702,6 @@
 /obj/machinery/iv_drip/saline,
 /turf/open/floor/plasteel,
 /area/centcom)
-"mi" = (
-/mob/living/simple_animal/hostile/abnormality/funeral,
-/turf/open/floor/plasteel,
-/area/centcom)
 "mo" = (
 /obj/machinery/door/airlock/glass_large{
 	name = "Command Zone";
@@ -762,6 +754,11 @@
 /obj/machinery/stasis,
 /turf/open/indestructible/white,
 /area/centcom)
+"op" = (
+/obj/structure/table,
+/obj/item/toy/cards/deck,
+/turf/open/floor/plasteel,
+/area/centcom)
 "ov" = (
 /obj/structure/chair/comfy/black{
 	dir = 4
@@ -785,7 +782,7 @@
 /turf/open/floor/plasteel,
 /area/centcom)
 "oK" = (
-/mob/living/simple_animal/hostile/abnormality/clouded_monk,
+/obj/effect/landmark/abnospawn/highsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "oL" = (
@@ -800,11 +797,7 @@
 /area/centcom)
 "oR" = (
 /obj/structure/table,
-/obj/item/gun/ego_gun/city/ammogun/autopistol,
-/obj/item/clothing/head/hos/agent{
-	icon_state = "hoscapblue";
-	name = "low-sec commander cap"
-	},
+/obj/item/gun/ego_gun/city/ammogun/limbusmagnum,
 /turf/open/floor/plasteel,
 /area/centcom)
 "pp" = (
@@ -948,7 +941,6 @@
 "rD" = (
 /obj/structure/rack,
 /obj/item/gun/ego_gun/city/ammogun/smg,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /obj/item/gun/ego_gun/city/ammogun/autopistol,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -981,6 +973,14 @@
 /obj/structure/chair/office{
 	dir = 4
 	},
+/turf/open/floor/plasteel,
+/area/centcom)
+"sg" = (
+/obj/structure/table,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/toy/cards/deck,
 /turf/open/floor/plasteel,
 /area/centcom)
 "sl" = (
@@ -1122,18 +1122,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
-"vC" = (
-/mob/living/simple_animal/hostile/abnormality/despair_knight,
-/turf/open/floor/plasteel,
-/area/centcom)
-"vJ" = (
-/obj/structure/table,
-/obj/item/gun/ego_gun/city/ammogun/autopistol,
-/obj/item/clothing/head/hos{
-	name = "high-sec commander cap"
-	},
-/turf/open/floor/plasteel,
-/area/centcom)
 "wc" = (
 /obj/structure/table,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
@@ -1157,7 +1145,6 @@
 "wv" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /obj/item/gun/ego_gun/city/ammogun/smg,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -1411,7 +1398,6 @@
 	},
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /turf/open/floor/plasteel,
 /area/centcom)
 "yx" = (
@@ -1580,7 +1566,7 @@
 /turf/open/floor/plasteel/white,
 /area/centcom)
 "BK" = (
-/mob/living/simple_animal/hostile/abnormality/pinocchio,
+/obj/effect/landmark/abnospawn/lowsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "BN" = (
@@ -1732,10 +1718,6 @@
 "Fs" = (
 /obj/machinery/photocopier,
 /obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/centcom)
-"FB" = (
-/mob/living/simple_animal/hostile/abnormality/cleaner,
 /turf/open/floor/plasteel,
 /area/centcom)
 "FE" = (
@@ -2146,23 +2128,6 @@
 "NY" = (
 /obj/machinery/light/floor,
 /obj/machinery/light,
-/turf/open/floor/plasteel,
-/area/centcom)
-"Oh" = (
-/obj/structure/table,
-/obj/item/folder{
-	pixel_y = 4
-	},
-/obj/item/folder{
-	pixel_y = 2
-	},
-/obj/item/folder,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/item/stack/spacecash/c1000,
-/obj/item/stack/spacecash/c1000,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Om" = (
@@ -2727,10 +2692,6 @@
 /obj/item/stack/spacecash/c1000,
 /obj/item/stack/spacecash/c1000,
 /turf/open/floor/plasteel/white,
-/area/centcom)
-"Xw" = (
-/mob/living/simple_animal/hostile/abnormality/kqe,
-/turf/open/floor/plasteel,
 /area/centcom)
 "XG" = (
 /obj/machinery/light{
@@ -15989,7 +15950,7 @@ Ps
 rA
 oL
 Zi
-fA
+ht
 Ua
 ID
 ID
@@ -16246,7 +16207,7 @@ CY
 ID
 ip
 wG
-fA
+ht
 ID
 ID
 ID
@@ -16503,7 +16464,7 @@ nS
 ID
 ip
 eq
-fA
+ht
 ID
 oK
 ID
@@ -16760,7 +16721,7 @@ KQ
 ID
 ip
 Zi
-fA
+ht
 ID
 ID
 ID
@@ -17017,7 +16978,7 @@ Ps
 Nt
 ID
 ma
-fA
+ht
 Ua
 ID
 ID
@@ -17271,9 +17232,9 @@ ZP
 ZP
 ZP
 Ps
-fA
+ht
 sK
-fA
+ht
 Ps
 uG
 uG
@@ -18813,9 +18774,9 @@ ZP
 ZP
 ZP
 Ps
-fA
+ht
 qP
-fA
+ht
 Ps
 Gq
 Gq
@@ -19073,7 +19034,7 @@ Ps
 Nt
 ID
 wG
-fA
+ht
 Ua
 ID
 ID
@@ -19330,7 +19291,7 @@ KQ
 ID
 ip
 Zi
-fA
+ht
 ID
 ID
 ID
@@ -19587,9 +19548,9 @@ nS
 ID
 ip
 Mc
-fA
+ht
 ID
-vC
+oK
 ID
 ID
 Ps
@@ -19844,7 +19805,7 @@ CY
 ID
 ip
 ma
-fA
+ht
 ID
 ID
 ID
@@ -20101,7 +20062,7 @@ Ps
 rA
 Zi
 oL
-fA
+ht
 Ua
 ID
 ID
@@ -20624,7 +20585,7 @@ Ps
 ID
 ID
 ht
-Ne
+sg
 ID
 ID
 ID
@@ -21654,7 +21615,7 @@ ID
 Ps
 nS
 bv
-vJ
+oR
 sG
 eg
 Ps
@@ -21909,7 +21870,7 @@ ht
 ID
 ID
 Ps
-Oh
+yk
 ID
 ID
 ID
@@ -42218,7 +42179,7 @@ Nk
 ID
 ID
 ID
-Zi
+ZN
 sG
 Ps
 ZP
@@ -42732,7 +42693,7 @@ ht
 bv
 Zi
 ID
-Zi
+ZN
 su
 Ps
 ZP
@@ -43212,14 +43173,14 @@ ID
 ip
 ht
 ID
-jD
+BK
 ID
 Ps
 ID
 ip
 ht
 ID
-mi
+BK
 ID
 Ps
 ID
@@ -43246,7 +43207,7 @@ Nk
 ID
 ID
 ID
-Zi
+op
 sG
 Ps
 ZP
@@ -45268,21 +45229,21 @@ ID
 ip
 ht
 ID
-ID
-ID
-Ps
-ID
-ip
-ht
-ID
-FB
+BK
 ID
 Ps
 ID
 ip
 ht
 ID
-Xw
+BK
+ID
+Ps
+ID
+ip
+ht
+ID
+BK
 ID
 Ps
 ID

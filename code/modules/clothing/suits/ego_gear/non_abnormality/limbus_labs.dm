@@ -18,6 +18,37 @@
 	icon_state = "damageofficer"
 	equip_slowdown = 0
 
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/jacket
+	name = "limbus company kevlar coat"
+	desc = "It says Limbus Company on the tag. Used by junior officers."
+	icon_state = "lccb_officer"
+	equip_slowdown = 0
+
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/hsc
+	name = "limbus company high-sec commander jacket"
+	desc = "It says Limbus Company on the tag. Used by the high security commander."
+	icon_state = "lccb_hsc"
+	equip_slowdown = 0
+
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/lsc
+	name = "limbus company low-sec commander jacket"
+	desc = "It says Limbus Company on the tag. Used by the low security commander."
+	icon_state = "lccb_lsc"
+	equip_slowdown = 0
+
+
+//Hats
+/obj/item/clothing/head/beret/sec/lccb_commander
+	desc = "A black cap used by limbus company commanders"
+	icon_state = "lccb_cap"
+
+/obj/item/clothing/head/beret/sec/lccb
+	desc = "A helmet used by lccb."
+	icon_state = "lccb_helmet"
+	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
+	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
+	dynamic_hair_suffix = ""
+	dynamic_fhair_suffix = ""
 
 //Labcoats
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/cmo

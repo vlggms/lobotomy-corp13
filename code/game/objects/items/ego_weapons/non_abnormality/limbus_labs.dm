@@ -23,18 +23,30 @@
 	reloadtime = 1.2 SECONDS
 	autofire = 0.12 SECONDS
 
+//Magnum
+/obj/item/gun/ego_gun/city/ammogun/limbusmagnum
+	name = "LCCB magnum"
+	desc = "A pistol often found in the hands of LCCB combat officers."
+	icon_state = "lccb_magnum"
+	inhand_icon_state = "lccb_magnum"
+	icon = 'icons/obj/limbus_weapons.dmi'
+	weapon_weight = WEAPON_HEAVY
+	projectile_damage_multiplier = 4 //40 damage per bullet
+	shotsleft = 6
+	reloadtime = 3 SECONDS
+	fire_delay = 12
+
 //SMG
 /obj/item/gun/ego_gun/city/ammogun/smg
 	name = "LCCB auto pistol"
 	desc = "An SMG often found in the hands of LCCB staff. This one is fully automatic, but requires two hands."
 	icon_state = "lccb_smg"
-	inhand_icon_state = "lccb_pistol"
+	inhand_icon_state = "lccb_smg"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	spread = 30
 	shotsleft = 30
 	reloadtime = 2.5 SECONDS
 	autofire = 0.12 SECONDS
-
 
 //Shottie
 /obj/item/gun/ego_gun/city/ammogun/shottie

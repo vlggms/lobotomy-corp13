@@ -93,6 +93,8 @@
 	ears = /obj/item/radio/headset/heads/headset_discipline
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/limbus/officer
+	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/hsc
+	head = /obj/item/clothing/head/beret/sec/lccb_commander
 	shoes = /obj/item/clothing/shoes/jackboots
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
