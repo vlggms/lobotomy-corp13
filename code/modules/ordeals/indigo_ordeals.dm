@@ -19,6 +19,7 @@
 	name = "The Noon of Indigo"
 	flavor_name = "The Sweepers"
 	announce_text = "When night falls in the Backstreets, they will come."
+	end_announce_text = "When the sun rises anew, not a scrap will remain."
 	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 2
@@ -34,7 +35,8 @@
 /datum/ordeal/specificcommanders/indigo_dusk
 	name = "The Dusk of Indigo"
 	flavor_name = "Night in the Backstreets"
-	announce_text = "They will not melt. They do not appear to be people."
+	announce_text = "We still have some more fuel. The power of family is not a bad thing."
+	end_announce_text = "Dear neighbors, we could not finish the sweeping."
 	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 3

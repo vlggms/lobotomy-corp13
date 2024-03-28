@@ -4,6 +4,7 @@
 	flavor_name = "Cheers for the Beginning"
 	announce_text = "Let us light a flame yet more radiant in our lives; for life is a candlelight, \
 	destined to snuff out one day."
+	end_announce_text = "To live is to yearn and fight for our desires."
 	level = 1
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
@@ -27,6 +28,7 @@
 	name = "The Noon of Crimson"
 	flavor_name = "The Harmony of Skin"
 	announce_text = "We marched from time to time, and we would share our pleasure."
+	end_announce_text = "The collision of one life with another, skin harmonizing, painting a yet more beautiful appearance."
 	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	level = 2
@@ -42,6 +44,7 @@
 	name = "The Dusk of Crimson"
 	flavor_name = "The Struggle at the Climax"
 	announce_text = "Throwing away our old bodies, we all become one, infinitely continuing the red march."
+	end_announce_text = "One day we will know, and tomorrow we will march hand in hand."
 	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'
 	end_sound = 'sound/effects/ordeals/crimson_end.ogg'
 	level = 3
