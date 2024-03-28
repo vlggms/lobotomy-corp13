@@ -329,6 +329,10 @@
 			if(istype(SSlobotomy_corp.core_suppression))
 				CRASH("[src] has attempted to activate a core suppression via TGUI whilst its not possible!")
 
+			log_action(usr,
+				message_override = "[usr] has started the [initial(selected_core_type.name)] core suppression"
+			)
+
 			say("[initial(selected_core_type.name)] protocol activated, good luck manager.")
 			SSlobotomy_corp.core_suppression = new selected_core_type
 			SSlobotomy_corp.core_suppression.legitimate = TRUE
@@ -343,54 +347,83 @@
 			if(!istype(U) || !U.CanUpgrade())
 				return FALSE
 
+			log_action(usr,
+				message_override = "[usr] has purchased the [U.name] facility upgrade"
+			)
 			U.Upgrade()
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 
-		// admin-only actions, remember to put a if(usr.client.holder) check
+		// admin-only actions, remember to put a if(!log_action) check with a proper return
 		if("Unlock All Cores")
-			if(!usr.client.holder)
-				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+			if(!log_action(usr, admin_action = TRUE,
+				message_override = "[usr] has used admin powers to make all cores avaible in the auxiliary console"
+			))
 				return
-
-			log_game("[usr] has used admin powers to make all cores avaible in the auxiliary console")
-			message_admins("[usr] has used admin powers to make all cores avaible in the auxiliary console")
 
 			SSlobotomy_corp.available_core_suppressions = subtypesof(/datum/suppression)
 			update_static_data_for_all_viewers()
 
 		if("Disable Core Suppression")
-			if(!usr.client.holder)
-				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+			if(!log_action(usr, admin_action = TRUE,
+				message_override = "[usr] has used admin powers to disable all core suppressions!"
+			))
 				return
-
-			log_game("[usr] has used admin powers to disable all core suppressions")
-			message_admins("[usr] has used admin powers to disable all core suppressions")
 
 			SSlobotomy_corp.ResetPotentialSuppressions()
 			update_static_data_for_all_viewers()
 
 		if("End Core Suppression")
-			if(!usr.client.holder)
-				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+			if(!log_action(usr, admin_action = TRUE,
+				message_override = "[usr] has used admin powers to end the current core suppression (persistence not saved)"
+			))
 				return
-
-			log_game("[usr] has used admin powers to end the current core suppression (persistence not saved)")
-			message_admins("[usr] has used admin powers to end the current core suppression (persistence not saved)")
 
 			SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
 			SSlobotomy_corp.core_suppression.End()
 			update_static_data_for_all_viewers()
 
 		if("Change LOB Points")
-			if(!usr.client.holder)
-				message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
-				return
-
 			var/amount = params["LOB_amount"]
-			log_game("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
-			message_admins("[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console")
+			if(!log_action(usr, admin_action = TRUE,
+				message_override = "[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console"
+			))
+				return
 
 			SSlobotomy_corp.lob_points += amount
 
 		else // something bad happened, refresh the data and it hopefully fixes itself
 			update_static_data_for_all_viewers()
+
+/**
+ * Logs interactions with the console
+ *
+ * arguments:
+ * (required) console_user = the user that is using the console (usr)
+ * (optional) admin_action = if the current action should be restricted for only admins
+ * (optional/required) message_override = if set on any value other than FALSE, the logging message will be replaced by it
+ */
+/obj/machinery/computer/abnormality_auxiliary/proc/log_action(mob/console_user, admin_action = FALSE, message_override = FALSE)
+	if(!console_user)
+		CRASH("user not provided in (/obj/machinery/computer/abnormality_auxiliary/proc/log_action)")
+
+	if(!admin_action)
+		if(message_override)
+			log_game(message_override)
+			message_admins(message_override)
+			return TRUE
+		else // if you are going to use it on non-admin actions, you need a message because we have actually no clue whats happening
+			CRASH("message_override not set up on a non-admin action within the TGUI auxiliary console whilst its mandatory!")
+
+	var/is_admin = console_user.client.holder
+	if(!is_admin)
+		message_admins("[usr] has used an admin-only option in the auxiliary console TGUI whilst not an admin!")
+		return FALSE
+
+	if(message_override)
+		log_game(message_override)
+		message_admins(message_override)
+		return TRUE
+
+	log_game("[usr] has used admin powers to trigger an admin-only action in the auxiliary console")
+	message_admins("[usr] has used admin powers to trigger an admin-only action in the auxiliary console")
+	return TRUE
