@@ -58,11 +58,11 @@
 	},
 /obj/effect/landmark/snowqueen_spawn,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "am" = (
@@ -114,8 +114,8 @@
 /area/centcom/hub)
 "at" = (
 /obj/structure/flora/icechunk{
-	pixel_y = 27;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 27
 	},
 /obj/structure/flora/iceslab{
 	pixel_y = 24
@@ -139,8 +139,8 @@
 /area/facility_hallway/manager)
 "ay" = (
 /obj/structure/flora/icestalactite{
-	pixel_y = -39;
-	pixel_x = 2
+	pixel_x = 2;
+	pixel_y = -39
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -169,15 +169,15 @@
 /area/facility_hallway/manager)
 "aC" = (
 /obj/structure/flora/icestalagmite{
-	pixel_y = -7;
-	pixel_x = 6
+	pixel_x = 6;
+	pixel_y = -7
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "aF" = (
@@ -230,15 +230,15 @@
 	pixel_y = 7
 	},
 /obj/structure/flora/icechunk/alt{
-	pixel_y = 11;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = 11
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "aL" = (
@@ -436,15 +436,15 @@
 "bF" = (
 /obj/effect/turf_decal/weather/snow/corner,
 /obj/structure/flora/iceslab/alt{
-	pixel_y = 10;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "bJ" = (
@@ -552,8 +552,8 @@
 /area/centcom/hub)
 "cl" = (
 /obj/structure/flora/icestalactite/small{
-	pixel_y = -38;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = -38
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -620,13 +620,16 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
+"cz" = (
+/turf/open/floor/carpet/red,
+/area/space)
 "cB" = (
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/carpet/royalblack,
@@ -668,11 +671,11 @@
 	pixel_y = 7
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "cK" = (
@@ -784,11 +787,11 @@
 "dl" = (
 /obj/structure/flora/icestalactite/small,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "dn" = (
@@ -834,24 +837,24 @@
 	range = 14
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "dv" = (
 /obj/structure/flora/iceshards{
-	pixel_y = -12;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = -12
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "dw" = (
@@ -961,8 +964,8 @@
 /area/department_main/manager)
 "dW" = (
 /obj/structure/flora/icestalagmite/small{
-	pixel_y = 16;
-	pixel_x = -13
+	pixel_x = -13;
+	pixel_y = 16
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -976,6 +979,12 @@
 /obj/item/pen/fourcolor,
 /turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
+"ec" = (
+/obj/structure/table,
+/obj/item/paper_bin,
+/obj/item/pen/fourcolor,
+/turf/open/floor/carpet/red,
+/area/space)
 "ee" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
@@ -997,11 +1006,11 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "ei" = (
@@ -1302,11 +1311,11 @@
 "fH" = (
 /obj/structure/flora/icestalagmite/small,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "fI" = (
@@ -2511,11 +2520,11 @@
 	pixel_y = 14
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "jt" = (
@@ -2565,11 +2574,11 @@
 	dir = 6
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "jH" = (
@@ -2598,6 +2607,9 @@
 	dir = 10
 	},
 /area/tdome/tdomeadmin)
+"jR" = (
+/turf/closed/indestructible/reinforced,
+/area/space)
 "jS" = (
 /obj/machinery/door/airlock/public/glass{
 	hackProof = 1;
@@ -2875,11 +2887,11 @@
 	dir = 5
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "le" = (
@@ -3118,15 +3130,15 @@
 	pixel_y = 25
 	},
 /obj/structure/flora/iceshards{
-	pixel_y = 8;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "mf" = (
@@ -3701,6 +3713,12 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/tdome/tdomeadmin)
+"oL" = (
+/obj/structure/chair/sofa/corp{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/space)
 "oM" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -3736,11 +3754,11 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "oV" = (
@@ -3804,11 +3822,11 @@
 	pixel_y = -8
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "pg" = (
@@ -3857,15 +3875,15 @@
 /area/centcom/evac)
 "pu" = (
 /obj/structure/flora/icestalagmite/small{
-	pixel_y = 1;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = 1
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "px" = (
@@ -3899,15 +3917,15 @@
 /area/centcom/ferry)
 "pC" = (
 /obj/item/chair/icequeen{
-	plane = 0;
-	desc = "A giant throne of ice, who would be comfortable sitting in this? It's super cold!"
+	desc = "A giant throne of ice, who would be comfortable sitting in this? It's super cold!";
+	plane = 0
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "pE" = (
@@ -3933,15 +3951,15 @@
 /area/syndicate_mothership)
 "pJ" = (
 /obj/structure/flora/iceshards{
-	pixel_y = 13;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 13
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "pL" = (
@@ -3966,8 +3984,8 @@
 /area/facility_hallway/manager)
 "pP" = (
 /obj/structure/flora/icegrave/alt{
-	pixel_y = 22;
-	pixel_x = 11
+	pixel_x = 11;
+	pixel_y = 22
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -4356,11 +4374,11 @@
 "rs" = (
 /obj/structure/flora/icestalagmite,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "ru" = (
@@ -4405,11 +4423,11 @@
 /area/facility_hallway/manager)
 "rB" = (
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "rE" = (
@@ -4426,19 +4444,19 @@
 /area/tdome/arena)
 "rH" = (
 /obj/structure/flora/icestalactite{
-	pixel_y = -2;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = -2
 	},
 /obj/structure/flora/iceshards{
 	pixel_x = 1;
 	pixel_y = 7
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "rI" = (
@@ -4504,15 +4522,15 @@
 "rU" = (
 /obj/structure/flora/iceslab{
 	layer = 2.8;
-	pixel_y = -4;
-	pixel_x = -8
+	pixel_x = -8;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "rV" = (
@@ -4670,11 +4688,11 @@
 "st" = (
 /obj/effect/landmark/snowqueen_teleport,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "su" = (
@@ -4793,11 +4811,11 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "sS" = (
@@ -4931,11 +4949,11 @@
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "tm" = (
@@ -4979,15 +4997,15 @@
 	pixel_y = 12
 	},
 /obj/structure/flora/icestalactite{
-	pixel_y = -9;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = -9
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "tv" = (
@@ -5039,11 +5057,11 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "tF" = (
@@ -5121,19 +5139,19 @@
 /area/facility_hallway/manager)
 "tV" = (
 /obj/structure/flora/icegrave{
-	pixel_y = -1;
-	pixel_x = 22
+	pixel_x = 22;
+	pixel_y = -1
 	},
 /obj/structure/flora/iceshards{
-	pixel_y = 8;
-	pixel_x = 36
+	pixel_x = 36;
+	pixel_y = 8
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "tW" = (
@@ -5252,8 +5270,8 @@
 /area/department_main/manager)
 "ux" = (
 /obj/structure/flora/icestalactite{
-	pixel_y = -43;
-	pixel_x = -18
+	pixel_x = -18;
+	pixel_y = -43
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -5569,15 +5587,15 @@
 	pixel_x = -8
 	},
 /obj/structure/flora/iceslab{
-	pixel_y = -1;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = -1
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "vB" = (
@@ -5691,8 +5709,8 @@
 /area/space)
 "vW" = (
 /obj/structure/flora/icestalactite/small{
-	pixel_y = -8;
-	pixel_x = -18
+	pixel_x = -18;
+	pixel_y = -8
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -5749,11 +5767,11 @@
 	pixel_x = -13
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "wf" = (
@@ -5925,15 +5943,15 @@
 	dir = 5
 	},
 /obj/structure/flora/icestalagmite{
-	pixel_y = -4;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "wM" = (
@@ -6066,6 +6084,16 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
+"xk" = (
+/obj/machinery/computer/camera_advanced/manager/representative{
+	dir = 4;
+	name = "discipinary camera console"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/space)
 "xl" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -6318,6 +6346,10 @@
 "yi" = (
 /turf/open/space/basic,
 /area/centcom/ferry)
+"yj" = (
+/obj/structure/table,
+/turf/open/floor/carpet/red,
+/area/space)
 "yk" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -6655,15 +6687,15 @@
 	dir = 10
 	},
 /obj/structure/flora/icestalagmite{
-	pixel_y = -6;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "zj" = (
@@ -6684,11 +6716,11 @@
 	pixel_x = 18
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "zn" = (
@@ -6738,15 +6770,15 @@
 /area/centcom/supplypod/loading/two)
 "zv" = (
 /obj/structure/flora/iceslab{
-	pixel_y = -4;
-	pixel_x = -12
+	pixel_x = -12;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "zw" = (
@@ -6840,15 +6872,15 @@
 /area/fishboat)
 "zG" = (
 /obj/structure/flora/iceshards{
-	pixel_y = 29;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 29
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "zH" = (
@@ -6993,11 +7025,11 @@
 	pixel_y = 7
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Ar" = (
@@ -7368,8 +7400,8 @@
 /area/fishboat)
 "BO" = (
 /obj/structure/flora/icestalactite{
-	pixel_y = -44;
-	pixel_x = 13
+	pixel_x = 13;
+	pixel_y = -44
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -7627,13 +7659,17 @@
 	dir = 10
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
+"CR" = (
+/obj/structure/chair/office,
+/turf/open/floor/carpet/red,
+/area/space)
 "CT" = (
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -7676,15 +7712,15 @@
 "Dm" = (
 /obj/structure/flora/icestalagmite{
 	layer = 3;
-	pixel_y = 6;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = 6
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Do" = (
@@ -7735,16 +7771,16 @@
 /area/facility_hallway/manager)
 "Dz" = (
 /obj/structure/flora/icestalagmite{
-	pixel_y = -4;
+	layer = 3;
 	pixel_x = 8;
-	layer = 3
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "DB" = (
@@ -7778,19 +7814,19 @@
 "DG" = (
 /obj/structure/flora/icegrave/alt,
 /obj/structure/flora/iceslab/alt{
-	pixel_y = -8;
-	pixel_x = 13
+	pixel_x = 13;
+	pixel_y = -8
 	},
 /obj/structure/flora/iceshards{
-	pixel_y = -12;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = -12
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "DH" = (
@@ -8169,6 +8205,12 @@
 /obj/machinery/vending/cigarette,
 /turf/open/floor/wood,
 /area/centcom/holding)
+"Fk" = (
+/obj/structure/chair/sofa/corp/left{
+	dir = 8
+	},
+/turf/open/floor/carpet/red,
+/area/space)
 "Fm" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -8287,6 +8329,12 @@
 	dir = 4
 	},
 /area/tdome/tdomeobserve)
+"FL" = (
+/obj/machinery/door/airlock/wood{
+	name = "Discipline Office"
+	},
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/manager)
 "FM" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 4
@@ -8304,11 +8352,11 @@
 	pixel_y = 8
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "FT" = (
@@ -8332,12 +8380,12 @@
 /area/centcom/holding)
 "Gd" = (
 /obj/structure/flora/icestalactite{
-	pixel_y = -45;
-	pixel_x = 9
+	pixel_x = 9;
+	pixel_y = -45
 	},
 /obj/structure/flora/icestalactite/small{
-	pixel_y = -39;
-	pixel_x = -6
+	pixel_x = -6;
+	pixel_y = -39
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -8499,11 +8547,11 @@
 "Ha" = (
 /obj/effect/landmark/snowqueen_teleport,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Hc" = (
@@ -8525,11 +8573,11 @@
 	dir = 9
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Hk" = (
@@ -8562,11 +8610,11 @@
 	},
 /obj/effect/landmark/snowqueen_victimspawn,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Hp" = (
@@ -8648,11 +8696,11 @@
 	pixel_y = 15
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "HL" = (
@@ -9380,11 +9428,11 @@
 "Kd" = (
 /obj/structure/flora/icegrave,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Kk" = (
@@ -10460,11 +10508,11 @@
 "Oe" = (
 /obj/structure/frozensword,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Oj" = (
@@ -10483,22 +10531,22 @@
 /area/centcom/hub)
 "Ol" = (
 /obj/machinery/door/airlock/snowqueen{
-	plane = 0;
-	pixel_y = -7
+	pixel_y = -7;
+	plane = 0
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
 "On" = (
 /obj/structure/stairs{
-	dir = 1;
-	density = 1
+	density = 1;
+	dir = 1
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Op" = (
@@ -10534,11 +10582,11 @@
 "Ow" = (
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Ox" = (
@@ -10562,15 +10610,15 @@
 	dir = 10
 	},
 /obj/structure/flora/icestalagmite{
-	pixel_y = -4;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "OF" = (
@@ -10987,15 +11035,15 @@
 /area/facility_hallway/manager)
 "Qm" = (
 /obj/structure/flora/icestalagmite{
-	pixel_y = -6;
-	pixel_x = -9
+	pixel_x = -9;
+	pixel_y = -6
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Qn" = (
@@ -11059,11 +11107,11 @@
 	range = 6
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "QH" = (
@@ -11139,19 +11187,19 @@
 /area/centcom/hub)
 "QV" = (
 /obj/structure/flora/icechunk/alt{
-	pixel_y = -3;
-	pixel_x = 5
+	pixel_x = 5;
+	pixel_y = -3
 	},
 /obj/structure/flora/iceslab/alt{
-	pixel_y = -2;
-	pixel_x = -11
+	pixel_x = -11;
+	pixel_y = -2
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "QW" = (
@@ -11357,11 +11405,11 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "RP" = (
@@ -11445,11 +11493,11 @@
 	pixel_y = -12
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Si" = (
@@ -11639,8 +11687,8 @@
 /area/facility_hallway/manager)
 "Te" = (
 /obj/structure/flora/icestalagmite/small{
-	pixel_y = 19;
-	pixel_x = -3
+	pixel_x = -3;
+	pixel_y = 19
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -11764,11 +11812,11 @@
 /area/centcom/hub)
 "TF" = (
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "TG" = (
@@ -11843,11 +11891,11 @@
 	pixel_y = -7
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Ud" = (
@@ -11906,11 +11954,11 @@
 	set_luminosity = 50
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Uj" = (
@@ -11922,15 +11970,15 @@
 "Uk" = (
 /obj/structure/flora/icechunk/alt,
 /obj/structure/flora/iceslab{
-	pixel_y = -8;
-	pixel_x = 17
+	pixel_x = 17;
+	pixel_y = -8
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Ul" = (
@@ -12383,11 +12431,11 @@
 	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "Ws" = (
@@ -12456,11 +12504,11 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow-ice";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow-ice";
-	name = "ice";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
+	name = "ice"
 	},
 /area/snowqueen)
 "WJ" = (
@@ -12647,6 +12695,15 @@
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
+"Xp" = (
+/obj/structure/chair/sofa/corp/right{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/red,
+/area/space)
 "Xr" = (
 /obj/effect/turf_decal/tile/blue,
 /obj/effect/turf_decal/tile/blue{
@@ -12698,8 +12755,8 @@
 /area/centcom/hub)
 "XB" = (
 /obj/structure/flora/icegrave/alt{
-	pixel_y = -43;
-	pixel_x = 12
+	pixel_x = 12;
+	pixel_y = -43
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -12748,11 +12805,11 @@
 	pixel_y = -5
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "XJ" = (
@@ -12851,11 +12908,11 @@
 "Yb" = (
 /obj/effect/turf_decal/weather/snow/corner,
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Yd" = (
@@ -13121,15 +13178,15 @@
 /area/facility_hallway/manager)
 "Zq" = (
 /obj/structure/flora/icestalagmite{
-	pixel_y = -17;
-	pixel_x = -12
+	pixel_x = -12;
+	pixel_y = -17
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Zr" = (
@@ -13184,15 +13241,15 @@
 /area/centcom/holding)
 "Zy" = (
 /obj/structure/flora/icestalagmite{
-	pixel_y = -4;
-	pixel_x = 8
+	pixel_x = 8;
+	pixel_y = -4
 	},
 /turf/open/floor/plasteel/dark{
+	base_icon_state = "snow";
 	icon = 'icons/turf/snow.dmi';
 	icon_state = "snow";
-	name = "snow";
 	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
+	name = "snow"
 	},
 /area/snowqueen)
 "Zz" = (
@@ -13272,12 +13329,12 @@
 /area/centcom/hub)
 "ZS" = (
 /obj/structure/flora/iceslab{
-	pixel_y = -6;
-	pixel_x = 49
+	pixel_x = 49;
+	pixel_y = -6
 	},
 /obj/structure/flora/icechunk/alt{
-	pixel_y = -1;
-	pixel_x = 25
+	pixel_x = 25;
+	pixel_y = -1
 	},
 /turf/closed/mineral/snowmountain/cavern,
 /area/snowqueen)
@@ -17957,12 +18014,12 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-qp
+jR
+xk
+ec
+cz
+cz
+JP
 MB
 pE
 OX
@@ -18214,13 +18271,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-qp
-Ws
+jR
+CR
+yj
+cz
+cz
+JP
+Xc
 pE
 OX
 ew
@@ -18471,13 +18528,13 @@ aa
 aa
 aa
 aa
-aa
-aa
-aa
-aa
-aa
-qp
-SJ
+jR
+cz
+cz
+cz
+cz
+FL
+Xc
 pE
 OX
 ew
@@ -18730,9 +18787,9 @@ VR
 VR
 VR
 VR
-aa
-aa
-aa
+Xp
+oL
+Fk
 qp
 Hc
 pE
@@ -18989,7 +19046,7 @@ mV
 VR
 VR
 VR
-aa
+jR
 qp
 Yl
 pE
@@ -19248,7 +19305,7 @@ kI
 VR
 VR
 qp
-Xc
+SJ
 pE
 OX
 ew

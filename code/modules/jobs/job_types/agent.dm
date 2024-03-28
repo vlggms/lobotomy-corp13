@@ -110,7 +110,7 @@
 	name = "Agent"
 	jobtype = /datum/job/agent
 
-	head = /obj/item/clothing/head/beret/sec
+	head = /obj/item/clothing/head/beret/tegu/lobotomy/agent
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -125,8 +125,8 @@
 /datum/job/agent/captain
 	title = "Agent Captain"
 	selection_color = "#BB9999"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 	normal_attribute_level = 20 // Used to have 21, but it was just picked for the roundstart +1 stat to instantly mirror. - Kirie/Kitsunemitsu
@@ -140,13 +140,19 @@
 
 	job_abbreviation = "CPT"
 
+
+/datum/job/agent/captain/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+	..()
+	for(var/datum/job/processing in SSjob.occupations)
+		if(istype(processing, /datum/job/suppression/captain))
+			processing.total_positions = 1
+
 /datum/outfit/job/agent/captain
 	name = "Agent Captain"
 	jobtype = /datum/job/agent/captain
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
-	suit = /obj/item/clothing/suit/armor/vest/alt
 	backpack_contents = list(/obj/item/melee/classic_baton=1,
 		/obj/item/info_printer=1,
 		/obj/item/announcementmaker/lcorp)
