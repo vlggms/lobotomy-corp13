@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <base href="../../../" />
+    <link rel="stylesheet" href="dmdoc.css" />
+    <title>&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;lobotomy_corp - &#x2F;tg&#x2F; Station 13</title>
+</head>
+<body>
+<header>
+    <a href="index.html">&#x2F;tg&#x2F; Station 13</a> -
+    <a href="index.html#modules">Modules</a> -
+    <a href="index.html#types">Types</a>
+ &mdash; <a href="datum/controller/subsystem/lobotomy_corp.html#var">Var Details</a> - <a href="datum/controller/subsystem/lobotomy_corp.html#proc">Proc Details</a></header>
+<main>
+<h1>lobotomy_corp <aside>/<a href="datum.html">datum</a>/<a href="datum/controller/subsystem.html">controller/subsystem</a>/<a href="datum/controller/subsystem/lobotomy_corp.html">lobotomy_corp</a></aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L10">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 10"/></a></h1>
+
+<table class="summary" cellspacing="0"><tr><td colspan="2"><h2>Vars</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/auto_restart_in_progress">auto_restart_in_progress</a></th><td>If TRUE - will not count deaths for auto restart</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/box_work_multiplier">box_work_multiplier</a></th><td>Multiplier to PE earned from working on abnormalities</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/current_ordeals">current_ordeals</a></th><td>List of currently running ordeals</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/enable_possession">enable_possession</a></th><td>When TRUE - abnormalities can be possessed by ghosts</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/lob_points">lob_points</a></th><td>Points used for facility upgrades</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/manager_bullet_area">manager_bullet_area</a></th><td>The area of effect of manager's bullets; -1 is for direct target only</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/max_core_options">max_core_options</a></th><td>The amount of core suppression options that will be available</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/melt_work_multiplier">melt_work_multiplier</a></th><td>Multiplier towards attribute points earned for working on melting abnormalities</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#var/understood_abnos">understood_abnos</a></th><td>Amount of abnormalities that agents achieved full understanding on</td></tr><tr><td colspan="2"><h2>Procs</h2></td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#proc/AddLobPoints">AddLobPoints</a></th><td>Adds LOB points and notifies players via aux consoles</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#proc/OrdealDeathAutoRestart">OrdealDeathAutoRestart</a></th><td>Restarts the round when time reaches 0</td></tr>
+            <tr><th><a href="datum/controller/subsystem/lobotomy_corp.html#proc/OrdealDeathCheck">OrdealDeathCheck</a></th><td>Checks if all agents are dead with ordeals running. Used for procs below.</td></tr></table>
+    <h2 id="var">Var Details</h2><h3 id="var/auto_restart_in_progress"><aside class="declaration">var </aside>auto_restart_in_progress
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L99">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 99"/></a></h3>
+        <p>If TRUE - will not count deaths for auto restart</p><h3 id="var/box_work_multiplier"><aside class="declaration">var </aside>box_work_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L84">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 84"/></a></h3>
+        <p>Multiplier to PE earned from working on abnormalities</p><h3 id="var/current_ordeals"><aside class="declaration">var </aside>current_ordeals
+            <aside>&ndash; /list</aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L55">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 55"/></a></h3>
+        <p>List of currently running ordeals</p><h3 id="var/enable_possession"><aside class="declaration">var </aside>enable_possession
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L90">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 90"/></a></h3>
+        <p>When TRUE - abnormalities can be possessed by ghosts</p><h3 id="var/lob_points"><aside class="declaration">var </aside>lob_points
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L96">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 96"/></a></h3>
+        <p>Points used for facility upgrades</p><h3 id="var/manager_bullet_area"><aside class="declaration">var </aside>manager_bullet_area
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L88">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 88"/></a></h3>
+        <p>The area of effect of manager's bullets; -1 is for direct target only</p><h3 id="var/max_core_options"><aside class="declaration">var </aside>max_core_options
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L94">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 94"/></a></h3>
+        <p>The amount of core suppression options that will be available</p><h3 id="var/melt_work_multiplier"><aside class="declaration">var </aside>melt_work_multiplier
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L86">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 86"/></a></h3>
+        <p>Multiplier towards attribute points earned for working on melting abnormalities</p><h3 id="var/understood_abnos"><aside class="declaration">var </aside>understood_abnos
+            <aside>&ndash; </aside>
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L92">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 92"/></a></h3>
+        <p>Amount of abnormalities that agents achieved full understanding on</p><h2 id="proc">Proc Details</h2><h3 id="proc/AddLobPoints"><aside class="declaration">proc </aside>AddLobPoints<aside>(amount, message) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L354">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 354"/></a></aside>
+        </h3>
+        <p>Adds LOB points and notifies players via aux consoles</p><h3 id="proc/OrdealDeathAutoRestart"><aside class="declaration">proc </aside>OrdealDeathAutoRestart<aside>(time) 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L384">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 384"/></a></aside>
+        </h3>
+        <p>Restarts the round when time reaches 0</p><h3 id="proc/OrdealDeathCheck"><aside class="declaration">proc </aside>OrdealDeathCheck<aside>() 
+        
+    
+            <a href="https://github.com/vlggms/lobotomy-corp13/blob/4e1e67cd5e777fbf1b575a71e93853beea00ed23/code/controllers/subsystem/lobotomy_corp.dm#L362">
+        <img src="git.png" width="16" height="16" title="code&#x2F;controllers&#x2F;subsystem&#x2F;lobotomy_corp.dm 362"/></a></aside>
+        </h3>
+        <p>Checks if all agents are dead with ordeals running. Used for procs below.</p></main>
+<footer>
+    lobotomy-corp13.dme
+    <a href="https://github.com/vlggms/lobotomy-corp13/tree/4e1e67cd5e777fbf1b575a71e93853beea00ed23">4e1e67c</a>
+        (master) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/crates/dmdoc/README.md">dmdoc 1.8.0</a></footer>
+</body>
+</html>
