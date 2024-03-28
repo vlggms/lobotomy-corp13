@@ -215,6 +215,9 @@
 
 /proc/get_hearers_in_view(R, atom/source)
 	// Returns a list of hearers in view(R) from source (ignoring luminosity). Used in saycode.
+	if(!isnum(R))
+		stack_trace("invalid get_hearers_in_view call on [source] with an range [R]")
+		return list()
 	var/turf/T = get_turf(source)
 	. = list()
 	if(!T)

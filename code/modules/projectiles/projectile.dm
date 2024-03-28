@@ -486,8 +486,11 @@
 //Returns true if the target atom is on our current turf and above the right layer
 //If direct target is true it's the originally clicked target.
 /obj/projectile/proc/can_hit_target(atom/target, direct_target = FALSE, ignore_loc = FALSE, cross_failed = FALSE)
-	if(QDELETED(target) || impacted[target])
+	if(QDELETED(target))
 		return FALSE
+	if(target in impacted)
+		if(impacted[target])
+			return FALSE
 	if(!ignore_loc && (loc != target.loc))
 		return FALSE
 	// if pass_flags match, pass through entirely - unless direct target is set.

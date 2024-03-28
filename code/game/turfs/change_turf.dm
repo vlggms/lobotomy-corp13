@@ -320,8 +320,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	var/energy = 0
 	var/heat_cap = 0
 
-	for(var/t in turf_list)
-		var/turf/open/T = t
+	for(var/turf/open/T in turf_list)
 		//Cache?
 		var/datum/gas_mixture/turf/mix = T.air
 		//"borrowing" this code from merge(), I need to play with the temp portion. Lets expand it out
@@ -339,8 +338,7 @@ GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
 	for(var/id in total_gases)
 		total_gases[id][MOLES] /= turflen
 
-	for(var/t in turf_list)
-		var/turf/open/T = t
+	for(var/turf/open/T in turf_list)
 		T.air.copy_from(total)
 		T.update_visuals()
 		SSair.add_to_active(T)
