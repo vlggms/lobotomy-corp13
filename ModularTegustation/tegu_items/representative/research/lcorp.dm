@@ -1,5 +1,6 @@
 //-----L_CORP-----
 //L Corp generally makes your life a lot easier with L-Corp related things.
+GLOBAL_LIST_EMPTY(lcorp_upgrades)
 
 //Roll stuff
 /datum/data/lc13research/reroll
@@ -29,7 +30,7 @@
 /datum/data/lc13research/regenerator_overcharge
 	research_name = "Repeatable: RAK the Regenerator System"
 	research_desc = "The security department blueprints say that all the regenerators <br>healing systems are connected at a junction point. <br>A department clerk offers to take the 10 second trip to the junction <br>and overcharge the whole system at the cost of some refined PE."
-	cost = AVERAGE_RESEARCH_PRICE
+	cost = 2
 	corp = L_CORP_REP
 
 /datum/data/lc13research/regenerator_overcharge/ResearchEffect(obj/structure/representative_console/caller)
@@ -113,6 +114,36 @@
 
 /datum/data/lc13research/understandingmachine/ResearchEffect(obj/structure/representative_console/caller)
 	new /obj/item/understandingbooster(get_turf(caller))
+	..()
+
+//Level 2 Clerks
+/datum/data/lc13research/clerkbuff
+	research_name = "Clerk Advanced Training"
+	research_desc = "An authorization to train clerks better. <br>This should bring them up to around a level 2 agent."
+	cost = HIGH_RESEARCH_PRICE
+	corp = L_CORP_REP
+
+/datum/data/lc13research/clerkbuff/ResearchEffect(obj/structure/representative_console/caller)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H?.mind?.assigned_role in GLOB.service_positions)
+			H.set_attribute_limit(40)
+			H.adjust_all_attribute_levels(40)
+
+	GLOB.lcorp_upgrades += "Clerk Buff"
+	..()
+
+//Agent Workchange injector
+/datum/data/lc13research/agentworkchance
+	research_name = "Global Agent Workchance"
+	research_desc = "An authorization to allow all agents to see work chances. <br>We this feature off to save money."
+	cost = HIGH_RESEARCH_PRICE
+	corp = L_CORP_REP
+
+/datum/data/lc13research/agentworkchance/ResearchEffect(obj/structure/representative_console/caller)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		ADD_TRAIT(H, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
+
+	GLOB.lcorp_upgrades += "Agent Workchance"
 	..()
 
 //Refinery Upgrades
