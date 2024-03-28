@@ -547,7 +547,9 @@
 /area/city/outskirts)
 "EW" = (
 /obj/machinery/door/airlock/survival_pod{
+	max_integrity = 500;
 	name = "defensive equipment room";
+	normal_integrity = 500;
 	req_access_txt = "7;5"
 	},
 /turf/open/floor/pod/dark,
@@ -605,7 +607,9 @@
 /area/city/outskirts)
 "Gh" = (
 /obj/machinery/door/airlock/survival_pod{
+	max_integrity = 500;
 	name = "tcomms room";
+	normal_integrity = 500;
 	req_access_txt = "7;5"
 	},
 /turf/open/floor/pod/dark,
@@ -662,7 +666,9 @@
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
 "Ie" = (
-/obj/structure/rcorpcomms,
+/obj/structure/rcorpcomms{
+	max_integrity = 500
+	},
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
 "Im" = (

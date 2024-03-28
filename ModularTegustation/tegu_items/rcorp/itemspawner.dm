@@ -5,14 +5,16 @@
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x4"
 	var/list/possible_items = list(
-		/obj/item/grenade/smokebomb,
-		/obj/item/ksyringe,
-		/obj/item/reagent_containers/hypospray/medipen/salacid,
-		/obj/item/reagent_containers/hypospray/medipen/mental,
-		/obj/item/stack/sheet/mineral/sandbags/ten,
-		/obj/item/flashlight/flare,
-		/obj/item/kcrit,
+	/obj/item/grenade/smokebomb,
+	/obj/item/ksyringe,
+	/obj/item/reagent_containers/hypospray/medipen/salacid,
+	/obj/item/reagent_containers/hypospray/medipen/mental,
+	/obj/item/stack/sheet/mineral/sandbags/ten,
+	/obj/item/flashlight/flare,
+	/obj/item/storage/belt/egopcorp,
+	/obj/item/storage/pcorp_pocket,
 	)
+
 	var/list/possible_weapons = list(
 		/obj/item/gun/energy/e_gun/rabbitdash,
 		/obj/item/gun/energy/e_gun/rabbitdash/small,
