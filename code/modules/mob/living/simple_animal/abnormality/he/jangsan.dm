@@ -43,6 +43,7 @@
 	)
 	gift_type =  /datum/ego_gifts/maneater
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
+	var/bullet_threshold = 40
 
 //breach related
 	var/teleport_cooldown
@@ -318,7 +319,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/bullet_act(obj/projectile/P)
-	if(P.damage <= 40)
+	if(P.damage <= bullet_threshold)
 		visible_message(span_userdanger("[P] is caught in [src]'s thick fur!"))
 		P.Destroy()
 		return
