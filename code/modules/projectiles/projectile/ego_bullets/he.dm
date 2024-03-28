@@ -137,4 +137,4 @@
 	color = COLOR_GREEN
 	damage = 7
 	speed = 1.3
-	range = 6
+	range = 7
