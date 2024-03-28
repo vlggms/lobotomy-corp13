@@ -30,7 +30,6 @@
 	add_verb(H, /mob/living/carbon/human/proc/workmeltdecrease)
 	add_verb(H, /mob/living/carbon/human/proc/meltincrease)
 	add_verb(H, /mob/living/carbon/human/proc/meltdecrease)
-//	add_verb(H, /mob/living/carbon/human/proc/challengemode)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -184,29 +183,5 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 	GLOB.Sephirahmeltmodifier --
 	to_chat(src, span_notice("One less abnormality will melt per event."))
 	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made less abnormalities melt per event.</span>")
-
-
-GLOBAL_LIST_EMPTY(challenged_players)
-
-/mob/living/carbon/human/proc/challengemode()
-	set name = "Challenge Player"
-	set category = "Gamemaster"
-
-	var/list/display_names
-	for(var/mob/living/carbon/human/H in GLOB.player_list)
-		display_names += H
-
-	if(!display_names.len)
-		to_chat(src, span_notice("Issue loading player list. Contact a dev."))
-		return
-	var/choice = input(src,"Who would you like to challenge?","Select a player") as null|anything in sortList(display_names)
-	if(!choice)
-		return
-	if(choice in GLOB.challenged_players)
-		to_chat(src, span_notice("This Agent is already in hardmode"))
-		return
-	GLOB.challenged_players += display_names[choice]
-
-	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made the game harder for [display_names[choice]].</span>")
 
 
