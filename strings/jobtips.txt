@@ -1,5 +1,5 @@
 As the Manager, remember that while democracy may keep your agents happy, sometimes you need to use your own judgement.
-As the Manager, your responsibility isn't just picking the next abnormality! The bullets at your command are powerful tools, and they refill to full at the start of every meltdown and ordeal, so use them if they'll help! You also get more over time - plus one to your max bullet capacity every four refills.
+As the Manager, your responsibility isn't just picking the next abnormality! The bullets at your command are powerful tools, and they refill to full at the start of every meltdown and ordeal, so use them if they'll help! And don't forget to upgrade your bullet capacity and their healing!
 As the Extraction Officer, keep note of the EGO available, and assist the manager in filling in the holes in your damage types.
 As the Extraction Officer, be sure to dish out gadgets as well as PE boxes and EGO. They increase Clerk efficiency greatly.
 As the Extraction Officer, give clerks abnormality chemistry equipment. They increase efficiency greatly.

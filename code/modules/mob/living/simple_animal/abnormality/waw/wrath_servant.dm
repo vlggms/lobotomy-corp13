@@ -29,7 +29,7 @@
 		ABNORMALITY_WORK_INSIGHT = list(40, 45, 50, 55, 60),
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 70, 60, 50, 40),
 		ABNORMALITY_WORK_REPRESSION = list(30, 30, 40, 40, 50),
-		"Request" = 100
+		"Request" = 100,
 	)
 	work_damage_amount = 12
 	work_damage_type = BLACK_DAMAGE
@@ -46,7 +46,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blind_rage,
-		/datum/ego_datum/armor/blind_rage
+		/datum/ego_datum/armor/blind_rage,
 	)
 	gift_type = /datum/ego_gifts/blind_rage
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
@@ -55,7 +55,7 @@
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 2,
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
-		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
 
 	var/friendly = TRUE
@@ -80,8 +80,8 @@
 	//PLAYABLES ACTIONS
 	attack_action_types = list(
 		/datum/action/cooldown/wrath_smash,
-		/datum/action/cooldown/wrath_dash
-		)
+		/datum/action/cooldown/wrath_dash,
+	)
 
 /datum/action/cooldown/wrath_smash
 	name = "Blind Rage"
@@ -125,7 +125,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/Initialize(mapload)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/IsContained()
 	if((status_flags & GODMODE) && !stunned)
@@ -273,7 +273,11 @@
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			AdjustInstability(4) // Was 2
 			if(!(user in friend_ship) && (pe >= datum_reference.success_boxes))
-				say(pick("You want to be my friend..?", "'Friend' is not a word in the book of law...", "I can be a friend that you deserve."))
+				say(pick(
+					"You want to be my friend..?",
+					"\"Friend\" is not a word in the book of law...",
+					"I can be a friend that you deserve.",
+				))
 				friend_ship += user
 				AdjustInstability(8) // Was 5
 				return
@@ -547,7 +551,7 @@
 		return ..()
 	if(ending)
 		return FALSE
-	INVOKE_ASYNC(src, .proc/Downed)
+	INVOKE_ASYNC(src, PROC_REF(Downed))
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/gib()
@@ -648,7 +652,7 @@
 			playsound(SW, 'sound/abnormalities/wrath_servant/enrage.ogg', 100, FALSE, 40, falloff_distance = 20)
 			visible_message(span_userdanger("[src] plunges their staff into [SW]'s chest!"))
 			SW.stunned = TRUE
-			addtimer(CALLBACK(SW, /mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/Unstun), 3 MINUTES)
+			addtimer(CALLBACK(SW, TYPE_PROC_REF(/mob/living/simple_animal/hostile/abnormality/wrath_servant, Unstun)), 3 MINUTES)
 			SW.status_flags |= GODMODE
 			SW.icon_state = "wrath_staff_stun"
 			SW.desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid. A wooden staff is impaled in its chest, it can't seem to move!"
@@ -723,7 +727,7 @@
 	density = TRUE
 
 /mob/living/simple_animal/hostile/azure_hermit/death()
-	INVOKE_ASYNC(src, .proc/Downed)
+	INVOKE_ASYNC(src, PROC_REF(Downed))
 
 /mob/living/simple_animal/hostile/azure_hermit/gib(real = FALSE)
 	if(!real)
@@ -853,14 +857,14 @@
 	. = ..()
 	if(!isliving(owner))
 		return
-	var/mob/living/L = owner
-	L.apply_damage(5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-	if(!ishuman(L))
+	var/mob/living/status_holder = owner
+	status_holder.apply_damage(5, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	if(!ishuman(status_holder))
 		return
-	if((L.sanityhealth <= 0) || (L.health <= 0))
-		var/turf/T = get_turf(L)
-		L.gib(TRUE, TRUE, TRUE)
-		new /mob/living/simple_animal/hostile/azure_stave(T)
+	if((status_holder.sanityhealth <= 0) || (status_holder.health <= 0))
+		var/turf/spawner_turf = get_turf(status_holder)
+		status_holder.gib(TRUE, TRUE, TRUE)
+		new /mob/living/simple_animal/hostile/azure_stave(spawner_turf)
 
 #undef STATUS_EFFECT_ACIDIC_GOO
 #undef SERVANT_SMASH_COOLDOWN

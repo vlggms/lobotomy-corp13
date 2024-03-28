@@ -1,3 +1,5 @@
+#define JANGSAN_FEAR_COOLDOWN (8 SECONDS)
+
 //Code by Coxswain, EGO sprites by Sky_ and abnormality sprites by Mel
 /mob/living/simple_animal/hostile/abnormality/jangsan
 	name = "Jangsan Tiger"
@@ -21,11 +23,11 @@
 	can_breach = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 60,
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = 60,
-						ABNORMALITY_WORK_REPRESSION = 60
-						)
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = 60,
+		ABNORMALITY_WORK_REPRESSION = 60,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
@@ -37,8 +39,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/maneater,
-		/datum/ego_datum/armor/maneater
-		)
+		/datum/ego_datum/armor/maneater,
+	)
 	gift_type =  /datum/ego_gifts/maneater
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -48,10 +50,12 @@
 	var/strong_counter
 	var/weak_counter
 	pet_bonus = "meows" //saves a few lines of code by allowing funpet() to be called by attack_hand()
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 //attack vars
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS
@@ -61,15 +65,44 @@
 	var/lure_cooldown_time = 120 SECONDS
 
 //speak_list + location + speak_list2
-	var/list/speak_list = list(";Hey guys im at ",
-			";Over here at ", ";Im in ")
-	var/list/speak_list2 = list(", let's have a pizza party!",
-			", i'll protect you!", ", let's work together!")
+	var/list/speak_list = list(
+		";Hey guys im at ",
+		";Over here at ",
+		";Im in ",
+	)
+	var/list/speak_list2 = list(
+		", let's have a pizza party!",
+		", i'll protect you!",
+		", let's work together!",
+	)
+
+//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/cooldown/jangsan_fear)
+
+/datum/action/cooldown/jangsan_fear
+	name = "Fear"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "jangsan"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = JANGSAN_FEAR_COOLDOWN
+
+/datum/action/cooldown/jangsan_fear/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/jangsan))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/jangsan/jangsan = owner
+	if(jangsan.IsContained()) // No more using cooldowns while contained
+		return FALSE
+	StartCooldown()
+	jangsan.TryFearStun()
+	return TRUE
 
 //Init
 /mob/living/simple_animal/hostile/abnormality/jangsan/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/On_Mob_Death) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(On_Mob_Death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -139,7 +172,7 @@
 	. = ..()
 	if(!datum_reference.abno_radio)
 		AbnoRadio()
-	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/jangsan/proc/TryTeleport() //stolen from knight of despair
 	dir = 2
@@ -176,7 +209,12 @@
 		Players += H
 
 	if(!Players.len)
-		name = pick("Unassuming Friendly Guy","Zeta 123","Bong Bong","John Lobotomy")
+		name = pick(
+			"Unassuming Friendly Guy",
+			"Zeta 123",
+			"Bong Bong",
+			"John Lobotomy",
+		)
 	else
 		var/Sucker = pick(Players)
 		name = "[Sucker]"
@@ -229,6 +267,20 @@
 	H.Stun(5 SECONDS)
 	to_chat(target, span_warning("Is that what it really looks like? It's over... I can’t even move my legs..."))
 	return
+
+/mob/living/simple_animal/hostile/abnormality/jangsan/proc/TryFearStun()
+	playsound(get_turf(src), 'sound/abnormalities/scaredycat/catgrunt.ogg', 50, 1, 2)
+	for(var/mob/living/carbon/human/H in view(3, src))
+		StatCheck(H)
+		if(faction_check_mob(H, FALSE))
+			continue
+		if(H.stat == DEAD)
+			continue
+		if(weak_counter >= 4)
+			icon_state = "jangsan_bite"
+			FearStun(H)
+			chase_cooldown = world.time + chase_cooldown_time
+			break
 
 //targetting
 /mob/living/simple_animal/hostile/abnormality/jangsan/PickTarget(list/Targets) //Stolen from MOSB
@@ -288,3 +340,5 @@
 	. = ..()
 	animate(src, pixel_x = 0, pixel_z = 16, time = 3 SECONDS)
 	QDEL_IN(src, 30 SECONDS)
+
+#undef JANGSAN_FEAR_COOLDOWN

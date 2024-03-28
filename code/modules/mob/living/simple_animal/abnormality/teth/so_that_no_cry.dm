@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "so_that_no_cry"
 	icon_living = "so_that_no_cry"
+	portrait = "so_that_no_cry"
 	maxHealth = 1200 //High health, can be stunned.
 	health = 1200
 	rapid_melee = 2
@@ -25,8 +26,8 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = list(45, 50, 55, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = 60
-				)
+		ABNORMALITY_WORK_REPRESSION = 60,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	base_pixel_x = -12
@@ -34,8 +35,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/red_sheet,
-		/datum/ego_datum/armor/red_sheet
-		)
+		/datum/ego_datum/armor/red_sheet,
+	)
 	gift_type = /datum/ego_gifts/red_sheet
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
@@ -227,7 +228,7 @@
 /datum/status_effect/stacking/talisman //Justice increasing talismans
 	id = "talisman"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = 240 SECONDS //Lasts for 4 minutes
+	duration = 4 MINUTES
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	max_stacks = 6 //actual max is 5 for +25 Justice, 6 instantly curses you
 	stacks = 1
@@ -237,38 +238,41 @@
 	var/safe_removal = FALSE
 
 /datum/status_effect/stacking/talisman/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5)
+	if(!ishuman(owner))
+		return ..()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5)
 	return ..()
 
 /datum/status_effect/stacking/talisman/add_stacks(stacks_added)
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5 * stacks_added)//max of 25
+	if(!ishuman(owner))
+		return ..()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 5 * stacks_added) //max of 25
 	return ..()
 
 /datum/status_effect/stacking/talisman/threshold_cross_effect()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/human/status_holder = owner
 	safe_removal = TRUE
-	H.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
-	new /obj/effect/temp_visual/talisman/curse(get_turf(H))
-	var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
-	G.add_stacks(5)
+	status_holder.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
+	new /obj/effect/temp_visual/talisman/curse(get_turf(status_holder))
+	var/datum/status_effect/stacking/curse_talisman/talismans = status_holder.has_status_effect(/datum/status_effect/stacking/curse_talisman)
+	talismans.add_stacks(5)
 	return ..()
 
 /datum/status_effect/stacking/talisman/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -5 * stacks)
-		if(safe_removal == TRUE)
-			safe_removal = FALSE
-			return ..()
-		if (stacks > 0)
-			safe_removal = FALSE
-			H.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
-			var/datum/status_effect/stacking/curse_talisman/G = H.has_status_effect(/datum/status_effect/stacking/curse_talisman)
-			G.add_stacks(stacks-1)
+	if(!ishuman(owner))
+		return ..()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -5 * stacks)
+	if(safe_removal == TRUE)
+		safe_removal = FALSE
+		return ..()
+	if(stacks > 0)
+		safe_removal = FALSE
+		status_holder.apply_status_effect(STATUS_EFFECT_CURSETALISMAN)
+		var/datum/status_effect/stacking/curse_talisman/talismans = status_holder.has_status_effect(/datum/status_effect/stacking/curse_talisman)
+		talismans.add_stacks(stacks-1)
 	return ..()
 
 /atom/movable/screen/alert/status_effect/talisman
@@ -281,7 +285,7 @@
 /datum/status_effect/stacking/curse_talisman //Justice DECREASING talismans
 	id = "curse_talisman"
 	status_type = STATUS_EFFECT_MULTIPLE
-	duration = 360 SECONDS //Lasts for 6 minutes
+	duration = 6 MINUTES
 	stack_decay = 0 //Without this the stacks were decaying after 1 sec
 	max_stacks = 6 // -7 per stack, up to -42 Justice
 	stacks = 1
@@ -289,21 +293,24 @@
 	consumed_on_threshold = FALSE
 
 /datum/status_effect/stacking/curse_talisman/on_apply()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -7 * stacks)
+	if(!ishuman(owner))
+		return ..()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -7 * stacks)
 	return ..()
 
 /datum/status_effect/stacking/curse_talisman/add_stacks(stacks_added)
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -7 * stacks_added)//max of -42
+	if(!ishuman(owner))
+		return ..()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -7 * stacks_added) //max of -42
 	return ..()
 
 /datum/status_effect/stacking/curse_talisman/on_remove()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 7 * stacks)
+	if(!ishuman(owner))
+		return ..()
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 7 * stacks)
 	return ..()
 
 /atom/movable/screen/alert/status_effect/curse_talisman

@@ -6,6 +6,7 @@
 	icon_state = "ebonyqueen"
 	icon_living = "ebonyqueen"
 	icon_dead = "ebonyqueen_dead"
+	portrait = "ebony_queen"
 	maxHealth = 2000
 	health = 2000
 	pixel_x = -16
@@ -33,11 +34,11 @@
 	death_sound = 'sound/creatures/venus_trap_death.ogg'
 	attacked_sound = 'sound/creatures/venus_trap_hurt.ogg'
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 0, 0),
-						ABNORMALITY_WORK_INSIGHT = list(10, 20, 45, 45, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
-						ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 0, 0),
+		ABNORMALITY_WORK_INSIGHT = list(10, 20, 45, 45, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 40, 40),
+		ABNORMALITY_WORK_REPRESSION = list(20, 30, 55, 55, 60),
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	var/barrier_cooldown
@@ -51,23 +52,23 @@
 	var/can_act = TRUE
 
 	ego_list = list(
-	/datum/ego_datum/weapon/ebony_stem,
-	/datum/ego_datum/armor/ebony_stem
+		/datum/ego_datum/weapon/ebony_stem,
+		/datum/ego_datum/armor/ebony_stem,
 	)
 	gift_type =  /datum/ego_gifts/ebony_stem
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/golden_apple = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5
+		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5,
 	)
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
-	/datum/action/innate/abnormality_attack/ebony_root,
-	/datum/action/innate/abnormality_attack/ebony_barrier,
-	/datum/action/innate/abnormality_attack/ebony_barrage,
-	/datum/action/cooldown/ebony_burst
+		/datum/action/innate/abnormality_attack/ebony_root,
+		/datum/action/innate/abnormality_attack/ebony_barrier,
+		/datum/action/innate/abnormality_attack/ebony_barrage,
+		/datum/action/cooldown/ebony_burst,
 	)
 
 /datum/action/innate/abnormality_attack/ebony_root
@@ -121,7 +122,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 
 /mob/living/simple_animal/hostile/abnormality/ebony_queen/Move()
 	if(!can_act)
@@ -247,7 +248,7 @@
 	. = ..()
 	if(new_caster)
 		caster = new_caster
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/temp_visual/root/proc/explode()
 	var/turf/target_turf = get_turf(src)
@@ -341,7 +342,7 @@
 		count = count + 1
 		if(get_dist(src, T) < 2)
 			continue
-		addtimer(CALLBACK(src, .proc/stabHit, T), (3 * ((count*0.50)+1)) + 0.25 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(stabHit), T), (3 * ((count*0.50)+1)) + 0.25 SECONDS)
 	SLEEP_CHECK_DEATH(10)
 	icon_state = icon_living
 	SLEEP_CHECK_DEATH(3)

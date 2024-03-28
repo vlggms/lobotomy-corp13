@@ -33,18 +33,18 @@
 	start_qliphoth = 1
 	can_breach = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+		ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
+	)
 	work_damage_amount = 14
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/seasons,
-		/datum/ego_datum/armor/seasons
-		)
+		/datum/ego_datum/armor/seasons,
+	)
 
 	gift_type =  /datum/ego_gifts/seasons
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -55,35 +55,43 @@
 		"summer" = list(/datum/weather/heatwave, RED_DAMAGE, "Summer God", "Summer Deity, \"Great Heat\" T'cau", "A hot-headed spirit.","He looks angry."),
 		"fall" = list(/datum/weather/fog, BLACK_DAMAGE, "Autumn God", "Fall Deity, \"Hegemon\" Ber","A calm and collected spirit cloaked in leaves.","A powerful tree spirit."),
 		"winter" = list(/datum/weather/freezing_wind, PALE_DAMAGE, "Winter God", "Winter Deity, \"Quietus\" Fuyuryou","A regal-looking snow spirit.","This winter brings bitter cold.")
-		)
+	)
 
 	var/list/breaching_stats = list(
 		"spring" = list('sound/creatures/venus_trap_hurt.ogg', 'sound/abnormalities/seasons/spring_change.ogg', /obj/projectile/season_projectile/spring, /obj/effect/season_effect/spring, /obj/effect/season_effect/breath/spring, /obj/effect/season_warn/spring, /obj/effect/season_warn/spring),
 		"summer" = list('sound/abnormalities/seasons/summer_attack.ogg', 'sound/abnormalities/seasons/summer_change.ogg', /obj/projectile/season_projectile/summer, /obj/effect/season_effect/summer, /obj/effect/season_effect/breath/summer, /obj/effect/season_warn/summer, /obj/effect/season_warn/summer),
 		"fall" = list('sound/abnormalities/seasons/fall_attack.ogg', 'sound/abnormalities/seasons/fall_change.ogg', /obj/projectile/season_projectile/fall, /obj/effect/season_effect/fall, /obj/effect/season_effect/breath/fall, /obj/effect/season_warn/fall, /obj/effect/season_warn/fall),
 		"winter" = list('sound/abnormalities/seasons/winter_attack.ogg', 'sound/abnormalities/seasons/winter_change.ogg', /obj/projectile/season_projectile/winter, /obj/effect/season_effect/winter, /obj/effect/season_effect/breath/winter, /obj/effect/season_warn/winter, /obj/effect/season_warn/winterspikes)
-		)
+	)
 
 	var/list/modular_work_chance = list( //You can work anything on it! Just not all at once.
-		"spring" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 35, 40),
-						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = 0),
+		"spring" = list(
+			ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 35, 40),
+			ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
+			ABNORMALITY_WORK_ATTACHMENT = 0,
+			ABNORMALITY_WORK_REPRESSION = 0,
+			),
 
-		"summer" = list(ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 35, 40),
-						ABNORMALITY_WORK_REPRESSION = 0),
+		"summer" = list(
+			ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
+			ABNORMALITY_WORK_INSIGHT = 0,
+			ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 35, 40),
+			ABNORMALITY_WORK_REPRESSION = 0,
+			),
 
-		"fall" = list(ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
-						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 35, 40)),
+		"fall" = list(
+			ABNORMALITY_WORK_INSTINCT = 0,
+			ABNORMALITY_WORK_INSIGHT = 0,
+			ABNORMALITY_WORK_ATTACHMENT = list(5, 10, 15, 50, 55),
+			ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 35, 40),
+			),
 
-		"winter" = list(ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 35, 40),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55))
+		"winter" = list(
+			ABNORMALITY_WORK_INSTINCT = 0,
+			ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 35, 40),
+			ABNORMALITY_WORK_ATTACHMENT = 0,
+			ABNORMALITY_WORK_REPRESSION = list(5, 10, 15, 50, 55),
+			)
 		)
 
 	var/list/modular_damage_coeff = list(
@@ -113,8 +121,8 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
-		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle
-		)
+		/datum/action/innate/abnormality_attack/toggle/seasons_cone_toggle,
+	)
 
 /datum/action/cooldown/seasons_slam
 	name = "Slam"
@@ -150,13 +158,13 @@
 //Spawning
 /mob/living/simple_animal/hostile/abnormality/seasons/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
 
 /mob/living/simple_animal/hostile/abnormality/seasons/PostSpawn()
 	. = ..()
 	dir = SOUTH
 	Transform()
-	work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 	if((locate(/obj/effect/season_turf) in range(1, src)))
 		return
 	Downgrade()
@@ -267,9 +275,9 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/WorkCheck()
 	if(!CheckWeather() && !safe)
 		StartWeather()
-		work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 30 SECONDS, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+		work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 30 SECONDS, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 		return
-	work_timer = addtimer(CALLBACK(src, .proc/WorkCheck), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
+	work_timer = addtimer(CALLBACK(src, PROC_REF(WorkCheck)), 9 MINUTES, TIMER_OVERRIDE & TIMER_UNIQUE & TIMER_STOPPABLE)
 	if(safe)
 		if(CheckWeather())
 			SSweather.end_weather(season_stats[current_season][1])
@@ -283,8 +291,8 @@
 /mob/living/simple_animal/hostile/abnormality/seasons/ZeroQliphoth(mob/living/carbon/human/user)
 	. = ..()
 	if(downgraded)
-		addtimer(CALLBACK(src, .proc/Upgrade), 10 SECONDS)
-		addtimer(CALLBACK(src, .proc/EndWeather), 60 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Upgrade)), 10 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(EndWeather)), 60 SECONDS)
 	if(!CheckWeather())
 		StartWeather()
 
@@ -452,8 +460,8 @@
 				continue
 			if(T.density)
 				continue
-			addtimer(CALLBACK(src, .proc/PulseWarn, T), (3 * (i+1)) + 0.1 SECONDS)
-			addtimer(CALLBACK(src, .proc/PulseHit, T), (3 * (i+1)) + 0.5 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(PulseWarn), T), (3 * (i+1)) + 0.1 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(PulseHit), T), (3 * (i+1)) + 0.5 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/PulseWarn(turf/T)
 	var/attacktype = breaching_stats[current_season][6]
@@ -634,7 +642,7 @@
 /datum/status_effect/freezing
 	id = "freezing"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 300
+	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/freezing
 
 /atom/movable/screen/alert/status_effect/freezing
@@ -646,7 +654,7 @@
 /datum/status_effect/fogbound
 	id = "fogbound"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 300
+	duration = 30 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/fogbound
 
 /datum/status_effect/fogbound/on_apply()
@@ -682,13 +690,13 @@
 		"spring" = list("razorgrass", "A thick layer of razor sharp foilage that never seems to die down."),
 		"summer" = list("volcanic rock","Some incredibly hot igneus rock."),
 		"fall" = list("swampy grass","A thick marsh, deep enough that you need to wear boots."),
-		"winter" = list("snow","A patch of snow.")
-		)
+		"winter" = list("snow","A patch of snow."),
+	)
 	var/current_season
 
 /obj/effect/season_turf/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, .proc/Transform)
+	RegisterSignal(SSdcs, COMSIG_GLOB_SEASON_CHANGE, PROC_REF(Transform))
 	Transform()
 
 /obj/effect/season_turf/proc/Transform()
@@ -801,7 +809,7 @@
 
 /obj/effect/season_effect/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/pop), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(pop)), 0.5 SECONDS)
 
 /obj/effect/season_effect/proc/pop()
 	if(!locate(/obj/effect/season_turf/temporary) in get_turf(src))

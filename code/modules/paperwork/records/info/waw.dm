@@ -381,7 +381,7 @@
 	abno_code = "D-01-110"
 	abno_info = list(
 		"An employee’s SP was healed when they performed Insight work.",
-		"The Qliphoth Counter lowered every time two employees died.",
+		"The Qliphoth Counter lowered every time 2 employees died.",
 		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter decreased.")
 
@@ -506,3 +506,34 @@
 		"When O-04-177-1 was suppressed, Sign of Roses became more vulnerable to damage.")
 	abno_breach_damage_type = "Black"
 	abno_breach_damage_count = "Low"
+
+//Dream-Devouring Siltcurrent
+/obj/item/paper/fluff/info/waw/siltcurrent
+	abno_type = /mob/living/simple_animal/hostile/abnormality/siltcurrent
+	abno_code = "T-02-179"
+	abno_info = list(
+		"When an employee with Fortitude Level 2 or lower finished their work, the Qliphoth Counter lowered.",
+		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"When an employee fainted due to a lack of oxygen, the Qliphoth Counter lowered.",
+		"While working, Jimbo noticed he was losing oxygen during the work.",
+		"Upon breaching, the facility became flooded until Dream-Devouring Siltcurrent was recontained.",
+		"While the facility was flooded, all employees took constant oxygen damage when near Dream-Devouring Siltcurrent.",
+		"Upon breaching, Flotsams appeared throughout the facility.",
+		"When LaVerne damaged the Flotsams or Dream-Devouring Siltcurrent some of his oxygen was replenished.",
+		"When Dream-Devouring Siltcurrent tried to dive into a broken down Frotsam it became briefly stunned and was heavily damaged.",
+		"While stunned, Dream-Devouring Siltcurrent took extra damage.")
+	abno_breach_damage_type = "Red"
+	abno_breach_damage_count = "Extreme"
+
+//Little Red Riding Hooded Mercenary
+/obj/item/paper/fluff/info/waw/red_hood
+	abno_type = /mob/living/simple_animal/hostile/abnormality/red_hood
+	abno_code = "F-01-57"
+	abno_info = list(
+		"Requesting F-01-57 to suppress escaping Abnormalities or manifested Ordeals is a very useful resource. However, making such a request is not free.",
+		"When F-01-57 was denied the killing blow to a requested suppression, it did not show an extreme emotional response, but begin attacking indiscriminately.",
+		"The Qliphoth Counter decreased every time an Abnormality escaped. However, it did not respond similarly to the escape of O-02-56.",
+		"The abnormality had particularly strong reactions when encountering F-01-117 (Blue-Smocked Shepherd), F-02-127 (Reddened Buddy), and especially F-02-58 (Big and will be Bad Wolf).",
+		"When the above occurred, F-01-57 entered a state of apparent heightened emotion, attacking more rapidly, dealing and taking more damage, and ignoring other targets.",
+		"When F-01-57 was denied a killing blow to F-02-58, the abnormality went on a rampage."
+	)

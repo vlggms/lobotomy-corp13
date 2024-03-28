@@ -444,7 +444,7 @@
 
 /datum/reagent/medicine/sal_acid
 	name = "Salicylic Acid"
-	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will worsen existing bruising."
+	description = "Stimulates the healing of severe bruises. Extremely rapidly heals severe bruising and slowly heals minor ones. Overdose will halt metabolization of the medicine."
 	reagent_state = LIQUID
 	color = "#D2D2D2"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -527,7 +527,7 @@
 
 /datum/reagent/medicine/mental_stabilizator //Classic sanity restoration medicine.
 	name = "Mental Stabilizator"
-	description = "Heals any potential issues with mental state of the patient."
+	description = "Counters mental corruption and restores the mental state of the patient. Overdose will halt metabolization of the medicine."
 	reagent_state = LIQUID
 	color = "#CCFFFF"
 	metabolization_rate = 0.5 * REAGENTS_METABOLISM
@@ -744,9 +744,9 @@
 	exposed_mob.notify_ghost_cloning("Your body is being revived with Strange Reagent!")
 	exposed_mob.do_jitter_animation(10)
 	var/excess_healing = 5*(reac_volume-amount_to_revive) //excess reagent will heal blood and organs across the board
-	addtimer(CALLBACK(exposed_mob, /mob/living/carbon.proc/do_jitter_animation, 10), 40) //jitter immediately, then again after 4 and 8 seconds
-	addtimer(CALLBACK(exposed_mob, /mob/living/carbon.proc/do_jitter_animation, 10), 80)
-	addtimer(CALLBACK(exposed_mob, /mob/living.proc/revive, FALSE, FALSE, excess_healing), 79)
+	addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 40) //jitter immediately, then again after 4 and 8 seconds
+	addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living/carbon, do_jitter_animation), 10), 80)
+	addtimer(CALLBACK(exposed_mob, TYPE_PROC_REF(/mob/living, revive), FALSE, FALSE, excess_healing), 79)
 	..()
 
 /datum/reagent/medicine/strange_reagent/on_mob_life(mob/living/M)
@@ -1329,12 +1329,12 @@
 	/// For tracking when we tell the person we're no longer bleeding
 	var/was_working
 
-/datum/reagent/medicine/coagulant/on_mob_metabolize(mob/living/M)
-	ADD_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+/datum/reagent/medicine/coagulant/on_mob_add(mob/living/M)
+	ADD_TRAIT(M, TRAIT_COAGULATING, type)
 	return ..()
 
-/datum/reagent/medicine/coagulant/on_mob_end_metabolize(mob/living/M)
-	REMOVE_TRAIT(M, TRAIT_COAGULATING, /datum/reagent/medicine/coagulant)
+/datum/reagent/medicine/coagulant/on_mob_delete(mob/living/M)
+	REMOVE_TRAIT(M, TRAIT_COAGULATING, type)
 	return ..()
 
 /datum/reagent/medicine/coagulant/on_mob_life(mob/living/carbon/M)

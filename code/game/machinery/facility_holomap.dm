@@ -63,13 +63,13 @@
 
 /obj/machinery/facility_holomap/proc/update_map_data()
 	var/turf/T = get_turf(src)
-	if(forced_zLevel)
+	original_zLevel = T.z
+	var/forced = FALSE
+	if(forced_zLevel && original_zLevel != forced_zLevel) //in case a holomap is forced to the level its already on
 		T = locate(T.x,T.y,forced_zLevel)
 		original_zLevel = forced_zLevel
-	else
-		original_zLevel = T.z
+		forced = TRUE
 
-	var/forced = forced_zLevel ? TRUE : FALSE
 	holomap_datum.initialize_holomap(T, reinit = TRUE, is_forced = forced)
 
 	//Small map for icon
@@ -124,7 +124,7 @@
 			flick("facility_map_activate", src)
 			animate(holomap_datum.facility_map, alpha = 255, time = 5, easing = LINEAR_EASING)
 
-			RegisterSignal(watching_mob, COMSIG_MOVABLE_MOVED, .proc/checkPosition)
+			RegisterSignal(watching_mob, COMSIG_MOVABLE_MOVED, PROC_REF(checkPosition))
 			use_power = ACTIVE_POWER_USE
 
 			if(holomap_datum.bogus)
@@ -150,7 +150,7 @@
 		if(watching_mob.client)
 			animate(holomap_datum.facility_map, alpha = 0, time = 5, easing = LINEAR_EASING)
 			var/mob/M = watching_mob
-			addtimer(CALLBACK(src, .proc/clear_image, M, holomap_datum.facility_map), 5, TIMER_CLIENT_TIME)//we give it time to fade out
+			addtimer(CALLBACK(src, PROC_REF(clear_image), M, holomap_datum.facility_map), 5, TIMER_CLIENT_TIME)//we give it time to fade out
 		UnregisterSignal(watching_mob, COMSIG_MOVABLE_MOVED)
 	watching_mob = null
 	use_power = IDLE_POWER_USE

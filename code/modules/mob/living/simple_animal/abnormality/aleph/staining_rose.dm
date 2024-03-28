@@ -15,8 +15,8 @@
 		ABNORMALITY_WORK_INSTINCT = 0,
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50)
-			)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 45, 50),
+	)
 	start_qliphoth = 1
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
@@ -28,8 +28,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/blooming,
 		/datum/ego_datum/armor/blooming,
-		/datum/ego_datum/armor/flowering
-		)
+		/datum/ego_datum/armor/flowering,
+	)
 	gift_type = /datum/ego_gifts/blossoming
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -140,26 +140,28 @@
 /datum/status_effect/wilting
 	id = "wilting"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000		//Lasts 5 minutes, or when the weather ends
+	duration = 5 MINUTES // Can end early when the weather ends
 	alert_type = null
 
 /datum/status_effect/wilting/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 0.5
-		L.physiology.white_mod /= 0.5
-		L.physiology.black_mod /= 0.5
-		L.physiology.pale_mod /= 0.5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.5
+	status_holder.physiology.white_mod /= 0.5
+	status_holder.physiology.black_mod /= 0.5
+	status_holder.physiology.pale_mod /= 0.5
 
 /datum/status_effect/wilting/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.5
-		L.physiology.white_mod *= 0.5
-		L.physiology.black_mod *= 0.5
-		L.physiology.pale_mod *= 0.5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.5
+	status_holder.physiology.white_mod *= 0.5
+	status_holder.physiology.black_mod *= 0.5
+	status_holder.physiology.pale_mod *= 0.5
 
 
 //SCHISMATIC
@@ -178,21 +180,23 @@
 
 /datum/status_effect/schismatic/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 0.8
-		L.physiology.white_mod /= 0.8
-		L.physiology.black_mod /= 0.8
-		L.physiology.pale_mod /= 0.8
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.8
+	status_holder.physiology.white_mod /= 0.8
+	status_holder.physiology.black_mod /= 0.8
+	status_holder.physiology.pale_mod /= 0.8
 
 /datum/status_effect/schismatic/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.8
-		L.physiology.white_mod *= 0.8
-		L.physiology.black_mod *= 0.8
-		L.physiology.pale_mod *= 0.8
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.8
+	status_holder.physiology.white_mod *= 0.8
+	status_holder.physiology.black_mod *= 0.8
+	status_holder.physiology.pale_mod *= 0.8
 
 
 //SACRIFICE
@@ -211,21 +215,23 @@
 
 /datum/status_effect/sacrifice/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 0.7
-		L.physiology.white_mod /= 0.7
-		L.physiology.black_mod /= 0.7
-		L.physiology.pale_mod /= 0.7
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.7
+	status_holder.physiology.white_mod /= 0.7
+	status_holder.physiology.black_mod /= 0.7
+	status_holder.physiology.pale_mod /= 0.7
 
 /datum/status_effect/sacrifice/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.7
-		L.physiology.white_mod *= 0.7
-		L.physiology.black_mod *= 0.7
-		L.physiology.pale_mod *= 0.7
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.7
+	status_holder.physiology.white_mod *= 0.7
+	status_holder.physiology.black_mod *= 0.7
+	status_holder.physiology.pale_mod *= 0.7
 
 #undef STATUS_EFFECT_WILTING
 #undef STATUS_EFFECT_SCHISMATIC

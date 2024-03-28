@@ -36,7 +36,7 @@
 		PEOPLE_MAT,
 		GREEN_MAT,
 		INDIGO_MAT,
-		AMBER_MAT
+		AMBER_MAT,
 	)
 
 	var/list/to_process = list()
@@ -180,7 +180,7 @@
 		to_chat(user, span_notice("[src] is currently processing, you can't start it again?!"))
 		return FALSE
 	processing = TRUE
-	processing_timer = addtimer(CALLBACK(src, .proc/ProcessContents, material_type, quality), processing_time_base, TIMER_UNIQUE)
+	processing_timer = addtimer(CALLBACK(src, PROC_REF(ProcessContents), material_type, quality), processing_time_base, TIMER_UNIQUE)
 	icon_state = "smoke1"
 	playsound(src, "sound/items/welder.ogg", 70)
 	visible_message(span_nicegreen("[src] has begun processing materials."))
@@ -275,7 +275,7 @@
 		typecacheof(GREEN),
 		typecacheof(INDIGO),
 		typecacheof(AMBER),
-		)
+	)
 	ST.max_w_class = WEIGHT_CLASS_BULKY
 	ST.max_combined_w_class = 80 // Max 20 Bulky Items
 	ST.max_items = 21 // Rows of 7, so 21 for 3 rows.

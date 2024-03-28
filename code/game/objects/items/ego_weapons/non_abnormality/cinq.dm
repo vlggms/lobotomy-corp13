@@ -11,11 +11,11 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/fixer/generic/nail1.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
-							)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 	var/ready = TRUE
 	var/multiplier = 2
 
@@ -28,7 +28,7 @@
 	if(!ready)
 		return
 	ready = FALSE
-	to_chat(user, "<span class='userdanger'>Allons-y!</span>")
+	to_chat(user, span_danger("Allons-y!"))
 	force*=multiplier
 	reach = 2
 	//Dodging backwards
@@ -44,14 +44,14 @@
 	user.adjustStaminaLoss(10, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
 
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
-	addtimer(CALLBACK(src, .proc/Reset, user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Reset), user), 15 SECONDS)
 
 
 /obj/item/ego_weapon/city/cinq/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(reach == 2)
-		to_chat(user, "<span class='userdanger'>Magnifique!</span>")
+		to_chat(user, span_userdanger("Magnifique!"))
 		reach = 1
 		target.Immobilize(5)
 		//Now rush forwards.
@@ -69,11 +69,11 @@
 /obj/item/ego_weapon/city/cinq/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
-	to_chat(user, "<span class='notice'>� bout de souffle.</span>")
+	to_chat(user, span_notice("A tout de souffle."))
 
 /obj/item/ego_weapon/city/cinq/proc/Reset(mob/living/carbon/human/user)
 	force = initial(force)
 	reach = 1
 	ready = TRUE
-	to_chat(user, "<span class='notice'>Pr�t � nouveau.</span>")
+	to_chat(user, span_notice("Pret a nouveau."))
 

@@ -12,11 +12,11 @@
 	charge_effect = "deal an extra attack in damage."
 	charge_cost = 2
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
-							)
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 100,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 
 /obj/item/ego_weapon/city/charge/cane/attack_self(mob/user)
 	..()
@@ -26,7 +26,7 @@
 		var/target //Didn't even need new var, could literally put anything for first arg, but for consistency sake and less confusion
 		release_charge(target, user)
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/city/charge/cane/release_charge(target, mob/living/user)
 	..()
@@ -53,10 +53,10 @@
 	..()
 	user.adjustBruteLoss(-user.maxHealth*0.07)
 	user.adjustSanityLoss(-user.maxSanity*0.07)
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/charge/cane/cane/proc/Return(mob/living/carbon/human/user)
-	to_chat(user, "<span class='notice'>You heal once more.</span>")
+	to_chat(user, span_notice("You heal once more."))
 	user.adjustBruteLoss(-user.maxHealth*0.07)
 	user.adjustSanityLoss(-user.maxSanity*0.07)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
@@ -107,7 +107,7 @@
 /obj/item/ego_weapon/city/charge/cane/fist/release_charge(target, mob/living/carbon/human/user)
 	..()
 	force = force*2
-	addtimer(CALLBACK(src, .proc/Return, user), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 2 SECONDS)
 
 /obj/item/ego_weapon/city/charge/cane/fist/proc/Return(mob/living/user)
 	force = initial(force)

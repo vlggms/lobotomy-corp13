@@ -39,7 +39,7 @@
 	//abnos spawn slower, for maps that suck lol
 /obj/item/lc13_abnospawn
 	name = "Lobotomy Corporation Radio"
-	desc = "A device to call HQ and slow down abnormality arrival rate. Use in hand to activate."
+	desc = "A device that can call L Corp HQ and slow down the Abnormality arrival rate. Use in hand to activate."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "gangtool-yellow"
 
@@ -47,9 +47,6 @@
 	to_chat(user, span_nicegreen("You feel that you now have more time."))
 	SSabnormality_queue.next_abno_spawn_time *= 1.5
 	qdel(src)
-
-
-
 
 //Command projector
 /obj/item/commandprojector
@@ -73,32 +70,32 @@
 		/obj/effect/temp_visual/holo_command/command_heal,
 		/obj/effect/temp_visual/holo_command/command_fight_a,
 		/obj/effect/temp_visual/holo_command/command_fight_b,
-		)
+	)
 
 /obj/item/commandprojector/attack_self(mob/user)
 	..()
 	switch(commandtype)
 		if(0) //if 0 change to 1
-			to_chat(user, span_notice("MOVE IMAGE INITIALIZED."))
+			to_chat(user, span_robot("MOVE IMAGE INITIALIZED."))
 			commandtype += 1
 		if(1)
-			to_chat(user, span_notice("WARN IMAGE INITIALIZED."))
+			to_chat(user, span_robot("WARN IMAGE INITIALIZED."))
 			commandtype += 1
 		if(2)
-			to_chat(user, span_notice("GUARD IMAGE INITIALIZED."))
+			to_chat(user, span_robot("GUARD IMAGE INITIALIZED."))
 			commandtype += 1
 		if(3)
-			to_chat(user, span_notice("HEAL IMAGE INITIALIZED."))
+			to_chat(user, span_robot("HEAL IMAGE INITIALIZED."))
 			commandtype += 1
 		if(4)
-			to_chat(user, span_notice("FIGHT_LIGHT IMAGE INITIALIZED."))
+			to_chat(user, span_robot("LIGHT FIGHTING IMAGE INITIALIZED."))
 			commandtype += 1
 		if(5)
-			to_chat(user, span_notice("FIGHT_HEAVY IMAGE INITIALIZED."))
+			to_chat(user, span_robot("HEAVY FIGHTING IMAGE INITIALIZED."))
 			commandtype += 1
 		else
 			commandtype -= 5
-			to_chat(user, span_notice("MOVE IMAGE INITIALIZED."))
+			to_chat(user, span_robot("MOVE IMAGE INITIALIZED."))
 	playsound(src, 'sound/machines/pda_button1.ogg', 20, TRUE)
 
 /obj/item/commandprojector/afterattack(atom/target, mob/user, proximity_flag)
@@ -114,7 +111,7 @@
 			var/thing_to_spawn = commandtypes[commandtype]
 			var/thing_spawned = new thing_to_spawn(get_turf(target))
 			current_commands++
-			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, .proc/ReduceCommandAmount)
+			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, PROC_REF(ReduceCommandAmount))
 		else
 			to_chat(user, span_warning("CALIBRATION ERROR."))
 		cooldown = world.time + commanddelay
@@ -127,8 +124,8 @@
 //Deepscanner
 /obj/item/deepscanner //intended for ordeals
 	name = "deep scan kit"
-	desc = "A collection of tools used for scanning the physical form of an entity.\n\
-			Scanning an active hostile entity will make it 10% weaker to all damage."
+	desc = "A contraption of various tools capable of scanning the interior form of an entity.\n\
+			Scanning nonhuman entities will make it 10% weaker to all damage types."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "maint_kit"
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
@@ -159,7 +156,7 @@
 		return
 	user.visible_message(span_notice("[user] takes a tool out of [src] and begins scanning [target]."), span_notice("You begin scanning [target]."))
 	playsound(get_turf(target), 'sound/misc/box_deploy.ogg', 5, 0, 3)
-	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, target, 7)))
+	if(!do_after(user, 2 SECONDS, target, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, target, 7)))
 		return
 	check1e = FALSE
 	if(ishuman(target))
@@ -199,7 +196,7 @@
 //General Invitation
 /obj/item/invitation //intended for ordeals
 	name = "General Invitation"
-	desc = "A mysterious invitation to a certain library. Using this on an abnormality seems to teleport them away when they die, leaving an incomplete book on the spot."
+	desc = "A mysterious invitation to a certain Library. Using this on an Abnormality will cause them to transform into an incomplete Book upon death."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "invitation"
 
@@ -221,7 +218,7 @@
 
 /datum/status_effect/invitation/on_apply()
 	. = ..()
-	RegisterSignal(owner, COMSIG_LIVING_DEATH, .proc/invite)
+	RegisterSignal(owner, COMSIG_LIVING_DEATH, PROC_REF(invite))
 
 /datum/status_effect/invitation/proc/invite()
 	SIGNAL_HANDLER
@@ -239,10 +236,10 @@
 #define RAK_CRIT_MODE "Crit mode"
 #define RAK_BURST_MODE "Burst mode"
 /obj/item/safety_kit
-	name = "Safety Department Regenerator Augmentation Kit"
-	desc = "R.A.K. for short, it's utilized to enhance and modify regenerators for short periods of time."
+	name = "\improper Safety Department Regenerator Augmentation Kit"
+	desc = "This gadget is necessary for making temporary modifications on regenerators."
 	icon = 'icons/obj/tools.dmi'
-	icon_state = "sdrak"
+	icon_state = "HP mode_rak"
 	inhand_icon_state = "sdrak"
 	lefthand_file = 'icons/mob/inhands/equipment/tools_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/equipment/tools_righthand.dmi'
@@ -279,11 +276,11 @@
 		to_chat(user, span_warning("You don't know how to use this."))
 		return
 	if(R.modified)
-		to_chat(user, span_notice("The [R] is already modified."))
+		to_chat(user, span_notice("[R] is already modified."))
 		return
 	to_chat(user, span_notice("You begin tinkering with the [R]."))
 	if(!do_after(user, 2.5 SECONDS, R, extra_checks = CALLBACK(src, .proc/ModifiedCheck, R)))
-		to_chat(user, "<span class='spider'>Your work has been interrupted!</span>")
+		to_chat(user, span_warning("Your work has been interrupted!"))
 		return
 	R.modified = TRUE
 	switch(mode)
@@ -304,33 +301,28 @@
 
 /obj/item/safety_kit/proc/ChangeMode(mob/user)
 	var/list/choice_list = list()
-	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE))
+	for(var/modes in list(RAK_HP_MODE, RAK_SP_MODE, RAK_DUAL_MODE, RAK_CRIT_MODE, RAK_BURST_MODE))
 		choice_list[modes] = image(icon = icon, icon_state = modes+"_rak")
-	choice_list[RAK_BURST_MODE] = image(icon = icon, icon_state = "sdrak")
 
-	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, .proc/check_menu, user), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(user, src, choice_list, custom_check = CALLBACK(src, PROC_REF(check_menu), user), radius = 42, require_near = TRUE)
 	if(!choice || !check_menu(user))
 		return
 
 	mode = choice
-
-	if(mode != RAK_BURST_MODE)
-		icon_state = mode+"_rak"
-	else
-		icon_state = "sdrak"
+	icon_state = mode+"_rak"
 
 	switch(mode)
 		if(RAK_HP_MODE)
-			to_chat(user, span_notice("You will now improve the HP Regeneration of the Regenerator at the cost of the SP Regeneration."))
+			to_chat(user, span_notice("You will now greatly improve the HP Regeneration of regenerators at the cost of the SP Regeneration."))
 		if(RAK_SP_MODE)
-			to_chat(user, span_notice("You will now improve the SP Regeneration of the Regenerator at the cost of the HP Regeneration."))
+			to_chat(user, span_notice("You will now greatly improve the SP Regeneration of regenerators at the cost of the HP Regeneration."))
 		if(RAK_DUAL_MODE)
-			to_chat(user, span_notice("You will now slightly improve the overall performance of the Regenerator."))
+			to_chat(user, span_notice("You will now slightly improve the overall performance of regenerators."))
 		if(RAK_CRIT_MODE)
-			to_chat(user, span_notice("You will now enable the Regenerator to heal those in critical conditions at the cost of overall performance."))
+			to_chat(user, span_notice("You will now enable regenerators to heal those in critical conditions at the cost of overall performance."))
 		if(RAK_BURST_MODE)
-			to_chat(user, span_notice("You will now cause the Regenerator to heal a large burst of HP and SP."))
-			to_chat(user, span_warning("This will cause the Regenerator to go on a cooldown period afterwards."))
+			to_chat(user, span_notice("You will now cause regenerators to provide a large burst of HP and SP recovery."))
+			to_chat(user, span_warning("This will cause regenerators to go on a cooldown period afterwards."))
 
 
 /obj/item/safety_kit/proc/check_menu(mob/user)
@@ -346,16 +338,16 @@
 	. = ..()
 	switch(mode)
 		if(RAK_HP_MODE)
-			. += "Currently set to sacrifice SP Regeneration for HP Regeneration."
+			. += span_info("Currently set to increase HP regen by sacrificing SP regen.")
 		if(RAK_SP_MODE)
-			. += "Currently set to sacrifice HP Regeneration for SP Regeneration."
+			. += span_info("Currently set to increase SP regen by sacrificing HP regen.")
 		if(RAK_DUAL_MODE)
-			. += "Currently set to improve overall Regenerator functions."
+			. += span_info("Currently set to slightly increase both HP and SP regen.")
 		if(RAK_CRIT_MODE)
-			. += "Currently set to allow healing of those in Critical Condition."
+			. += span_info("Currently set to enable healing insane and crit people but reducing overall healing.")
 		if(RAK_BURST_MODE)
-			. += "Currently set to cause the Regenerator to burst recovery."
-			. += span_warning("This will cause the Regenerator to go on a cooldown period afterwards.")
+			. += span_info("Currently set to cause regenerators to create a burst of healing.")
+			. += span_warning("This will disable regenerators for a short period afterwards.")
 
 /obj/item/safety_kit/proc/clerk_check(mob/living/carbon/human/H)
 	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
@@ -371,7 +363,7 @@
 //Tool E.G.O extractor
 /obj/item/tool_extractor
 	name = "Enkephalin Resonance Unit"
-	desc = "A specialized set of tools that allows E.G.O extraction from tool abnormalities."
+	desc = "A specialized tool that allows E.G.O extraction from tool Abnormalities."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "RPED"
 	w_class = WEIGHT_CLASS_BULKY
@@ -379,7 +371,7 @@
 	var/stored_enkephalin = 0
 	var/maximum_enkephalin = 250
 	var/drawn_amount = 50
-	var/list/possible_drawn_amounts = list(5,10,15,20,25,50)
+	var/list/possible_drawn_amounts = list(5, 10, 15, 20, 25, 50)
 	var/ego_selection
 	var/ego_array
 
@@ -495,7 +487,7 @@
 		'sound/effects/wounds/blood3.ogg',
 		'sound/weapons/circsawhit.ogg',
 		'sound/weapons/bladeslice.ogg',
-		'sound/weapons/bite.ogg'
+		'sound/weapons/bite.ogg',
 	)
 	mid_length = 2 SECONDS
 	volume = 20
@@ -504,8 +496,8 @@
 /obj/item/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"
 	desc = "An instant constructor for Clerkbots. Loyal little things that attack hostile creatures. In order to prevent \
-		abnormalities infesting the clerkbots, only those registered as a Lobotomy Corp clerk can activate them. Clerkbot \
-		will last for 2 minutes before it preforms auto shutdown."
+		unauthorized access, only those registered as a Lobotomy Corp clerk can activate them. Clerkbot \
+		will last for 2 minutes before it automatically shuts down."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "clerkbot2_deactivated"
 
@@ -580,7 +572,7 @@
 
 /obj/item/info_printer/examine(mob/user)
 	. = ..()
-	. += "Use on an Abnormality to display the information on screen after [use_time/10] seconds."
+	. += "Use on an Abnormality to display its information on screen after [use_time/10] seconds."
 
 /obj/item/info_printer/pre_attack(atom/A, mob/living/user, params)
 	if(Scan(A, user))
@@ -595,7 +587,7 @@
 /obj/item/info_printer/proc/Scan(atom/A, mob/living/user)
 	if(!isabnormalitymob(A))
 		return FALSE
-	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, /proc/can_see, user, A, 7)))
+	if(do_after(user, max(use_time-1, 0), A, IGNORE_USER_LOC_CHANGE | IGNORE_TARGET_LOC_CHANGE, TRUE, CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(can_see), user, A, 7)))
 		var/list/information = GenerateInfo(A)
 		if(information)
 			var/datum/browser/popup = new(user, "information", FALSE, 300, 350)

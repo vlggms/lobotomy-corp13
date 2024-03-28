@@ -113,6 +113,7 @@
 	attack_verb_continuous = "saws"
 	attack_verb_simple = "saw"
 	attack_sound = 'sound/effects/ordeals/green/saw.ogg'
+	attack_vis_effect = ATTACK_EFFECT_CLAW
 	ranged = 1
 	rapid = 5
 	rapid_fire_delay = 2
@@ -269,7 +270,7 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "green_dusk_create"
 	SLEEP_CHECK_DEATH(6)
-	visible_message("<span class='danger'>\The [src] produces a new set of robots!</span>")
+	visible_message(span_danger("\The [src] produces a new set of robots!"))
 	for(var/i = 1 to 3)
 		var/turf/T = get_step(get_turf(src), pick(0, EAST))
 		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot/factory, /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory)
@@ -371,7 +372,7 @@
 	laser_cooldown = world.time + 6 SECONDS
 	next_health_mark = maxHealth * 0.9
 	laserloop = new(list(src), FALSE)
-	addtimer(CALLBACK(src, .proc/OpenShell), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(OpenShell)), 5 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/Destroy()
 	QDEL_NULL(left_shell)
@@ -417,7 +418,7 @@
 	if(firing)
 		return FALSE
 	if(world.time > laser_cooldown)
-		INVOKE_ASYNC(src, .proc/SetupLaser)
+		INVOKE_ASYNC(src, PROC_REF(SetupLaser))
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/OpenShell()
 	animate(left_shell, pixel_x = base_pixel_x - 24, time = 4 SECONDS, easing = QUAD_EASING)
@@ -438,7 +439,7 @@
 		var/obj/effect/greenmidnight_laser/L = new(get_turf(src))
 		lasers[L] = get_turf_in_angle(new_angle, get_turf(src), 64)
 		playsound(get_turf(src), 'sound/effects/ordeals/green/midnight_laser_new.ogg', 50 + 5 * (i - max_lasers), FALSE)
-		addtimer(CALLBACK(src, .proc/PrepareLaser, L, new_angle), 0.5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(PrepareLaser), L, new_angle), 0.5 SECONDS)
 		var/old_angle = new_angle
 		for(var/attempt = 1 to 3) // Just so that we don't get ourselves absolutely the same angle twice in a row
 			new_angle = rand(0, 360)
@@ -487,7 +488,7 @@
 		B.visuals.transform = M
 		beams += B
 		hit_line |= getline(T, lasers[L])
-	INVOKE_ASYNC(src, .proc/LaserEffect)
+	INVOKE_ASYNC(src, PROC_REF(LaserEffect))
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/LaserEffect()
 	if(stat == DEAD)

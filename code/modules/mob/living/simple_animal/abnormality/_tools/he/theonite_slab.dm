@@ -7,8 +7,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/divinity,
-		/datum/ego_datum/armor/divinity
-		)
+		/datum/ego_datum/armor/divinity,
+	)
 
 /obj/structure/toolabnormality/theonite_slab/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -46,7 +46,7 @@
 	var/punishment_size
 
 /datum/status_effect/stacking/slab/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/Punishment)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(Punishment))
 	return ..()
 
 /datum/status_effect/stacking/slab/on_remove()
@@ -71,7 +71,7 @@
 	var/turf/R = get_turf(H)
 	for(var/turf/T in view(punishment_size, R))
 		new /obj/effect/temp_visual/pale_eye_attack(T)
-	addtimer(CALLBACK(src, .proc/PunishHit, R, damage, damagetype), clamp(punishment_size, 1, 2) SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(PunishHit), R, damage, damagetype), clamp(punishment_size, 1, 2) SECONDS)
 
 /datum/status_effect/stacking/slab/proc/PunishHit(turf/R, damage, damagetype)
 	for(var/turf/T in view(punishment_size, R))

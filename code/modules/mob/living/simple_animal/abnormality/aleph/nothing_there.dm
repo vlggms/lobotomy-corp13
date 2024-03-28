@@ -26,24 +26,24 @@
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 40, 45),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = 50,
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 40, 45),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 50,
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/mimicry,
-		/datum/ego_datum/armor/mimicry
-		)
+		/datum/ego_datum/armor/mimicry,
+	)
 	gift_type =  /datum/ego_gifts/mimicry
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/kqe = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5,
 	)
 
 	var/mob/living/disguise = null
@@ -76,7 +76,7 @@
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/nt_goodbye,
-		/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle
+		/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle,
 	)
 
 /datum/action/cooldown/nt_goodbye
@@ -260,7 +260,7 @@
 	M.death()
 	M.forceMove(src) // Hide them for examine message to work
 	disguiseloop.start()
-	addtimer(CALLBACK(src, .proc/ZeroQliphoth), rand(20 SECONDS, 50 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(ZeroQliphoth)), rand(20 SECONDS, 50 SECONDS))
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/drop_disguise()
 	if(!istype(disguise))
@@ -417,6 +417,6 @@
 	for(var/turf/open/T in view(3, src))
 		new /obj/effect/temp_visual/flesh(T)
 	forceMove(target_turf)
-	addtimer(CALLBACK(src, .proc/drop_disguise), rand(40 SECONDS, 90 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(drop_disguise)), rand(40 SECONDS, 90 SECONDS))
 
 #undef NT_GOODBYE_COOLDOWN

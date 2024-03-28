@@ -26,24 +26,24 @@
 	start_qliphoth = 2
 	move_to_delay = 4
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(100, 90, 80, 75, 50),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 40, 35),
-						ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 40, 30),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 30),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(100, 90, 80, 75, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 40, 35),
+		ABNORMALITY_WORK_ATTACHMENT = list(70, 60, 50, 40, 30),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 10, 20, 30),
+	)
 	work_damage_amount = 25
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/buff_christmas,
-		/datum/ego_datum/armor/buff_christmas
-		)
+		/datum/ego_datum/armor/buff_christmas,
+	)
 	gift_type = /datum/ego_gifts/christmas/buff
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/rudolta_buff_onrush,
-		/datum/action/innate/abnormality_attack/rudolta_buff_slam
+		/datum/action/innate/abnormality_attack/rudolta_buff_slam,
 	)
 
 	can_spawn = FALSE
@@ -62,7 +62,7 @@
 		'sound/abnormalities/rudolta_buff/onrush1.ogg',
 		'sound/abnormalities/rudolta_buff/onrush2.ogg',
 		'sound/abnormalities/rudolta_buff/onrush3.ogg',
-		)
+	)
 	// Sleigh slam vars
 	var/slam_cooldown
 	var/slam_cooldown_time = 20 SECONDS
@@ -195,7 +195,7 @@
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(L), L)
 	animate(D, alpha = 0, transform = matrix()*1.2, time = 3)
 	face_atom(L)
-	addtimer(CALLBACK(src, .proc/OnRush, L, iteration + 1), rand(onrush_min_delay, onrush_max_delay))
+	addtimer(CALLBACK(src, PROC_REF(OnRush), L, iteration + 1), rand(onrush_min_delay, onrush_max_delay))
 
 // Slams the area with the sleigh, doing heavy damage
 /mob/living/simple_animal/hostile/abnormality/rudolta_buff/proc/SleighSlam(atom/target)

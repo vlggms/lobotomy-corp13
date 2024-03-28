@@ -16,8 +16,8 @@
 	pixel_x = -16
 	base_pixel_x = -16
 
-	maxHealth = 4000
-	health = 4000
+	maxHealth = 2500
+	health = 2500
 	del_on_death = FALSE
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
 	see_in_dark = 10
@@ -33,12 +33,12 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 45, 50),
-						ABNORMALITY_WORK_INSIGHT = list(30, 30, 30, 20, 20),
-						ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
-	work_damage_amount = 16
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 45, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(30, 30, 30, 20, 20),
+		ABNORMALITY_WORK_ATTACHMENT = list(45, 50, 50, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
+	work_damage_amount = 12
 	work_damage_type = RED_DAMAGE
 	melee_damage_type = RED_DAMAGE
 	melee_damage_lower = 20
@@ -47,13 +47,13 @@
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/toggle/wolf_dash_toggle,
-		/datum/action/cooldown/wolf_howl
-		)
+		/datum/action/cooldown/wolf_howl,
+	)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/cobalt,
-		/datum/ego_datum/armor/cobalt
-		)
+		/datum/ego_datum/armor/cobalt,
+	)
 	gift_type =  /datum/ego_gifts/cobalt
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -232,7 +232,7 @@
 		patrol_to(target_center)
 		//Used to be in patrol_reset until i learned that patrol reset is inside patrol_to.
 		update_icon()
-		addtimer(CALLBACK(src, .proc/StopFleeing), 3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(StopFleeing)), 3 SECONDS)
 		return
 	StopFleeing()
 

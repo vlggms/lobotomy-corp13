@@ -15,11 +15,11 @@
 	rapid_melee = 1
 	threat_level = ALEPH_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 35, 40),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 35, 40),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 35, 40),
+	)
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5) //change on phase
 	melee_damage_lower = 55
 	melee_damage_upper = 65
@@ -38,28 +38,29 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/nihil,
-		/datum/ego_datum/armor/nihil
-		)
+		/datum/ego_datum/armor/nihil,
+	)
 	gift_type = /datum/ego_gifts/nihil
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 5,
 		/mob/living/simple_animal/hostile/abnormality/despair_knight = 5,
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 5,
-		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 5
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 5,
 	)
 
 	// Range ofthe debuff
 	var/debuff_range = 40
-	var/list/quotes = list("Everybody's agony becomes one.",
+	var/list/quotes = list(
+		"Everybody's agony becomes one.",
 		"Leading the way through foolishness, there's not a thing to guide me.",
 		"I slowly traced the road back. It's the road you would've taken.",
 		"Where is the right path? Where do I go?",
 		"I look just like them, and they look just like me when they're together.",
 		"My mind is a void, my thoughts empty.",
 		"I become more fearless as they become more vacant.",
-		"In the end, all returns to nihil."
-		)
+		"In the end, all returns to nihil.",
+	)
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nihil/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -119,7 +120,7 @@
 /datum/status_effect/stacking/void
 	id = "stacking_void"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 200 //20 seconds
+	duration = 20 SECONDS
 	alert_type = null
 	stack_decay = 0
 	stacks = 1
@@ -142,24 +143,26 @@
 
 /datum/status_effect/stacking/void/add_stacks(stacks_added)
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10 * stacks_added)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -10 * stacks_added)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -10 * stacks_added)
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -10 * stacks_added)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, -10 * stacks_added)
 
 /datum/status_effect/stacking/void/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
-		L.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
-		to_chat(owner, span_nicegreen("You feel normal again."))
-		if(owner.client)
-			owner.remove_client_colour(/datum/client_colour/monochrome)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 10 * stacks)
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 10 * stacks)
+	status_holder.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 10 * stacks)
+	status_holder.adjust_attribute_bonus(JUSTICE_ATTRIBUTE, 10 * stacks)
+	to_chat(owner, span_nicegreen("You feel normal again."))
+	if(owner.client)
+		owner.remove_client_colour(/datum/client_colour/monochrome)
 
 //items
 /obj/item/nihil

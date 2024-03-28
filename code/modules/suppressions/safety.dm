@@ -8,7 +8,7 @@
 
 /datum/suppression/safety/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnMeltdown))
 	for(var/obj/machinery/regenerator/R in GLOB.lobotomy_devices)
 		R.reset_timer = INFINITY
 		R.burst_cooldown = TRUE

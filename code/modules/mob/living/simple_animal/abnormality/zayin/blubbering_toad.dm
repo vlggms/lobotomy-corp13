@@ -7,6 +7,7 @@
 	icon_state = "blubbering"
 	icon_living = "blubbering"
 	icon_dead = "blubbering_egg"
+	portrait = "blubbering_toad"
 	var/icon_tongue = "blubbering_tongue"
 	del_on_death = FALSE
 	pixel_x = -16
@@ -32,8 +33,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 50, 50, 50),
 		ABNORMALITY_WORK_INSIGHT = 70,
 		ABNORMALITY_WORK_ATTACHMENT = list(50, 40, 30, 30, 30),
-		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(70, 30, 30, 30, 30),
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
@@ -60,8 +61,8 @@
 	var/persistant = FALSE
 
 	ego_list = list(
-	/datum/ego_datum/weapon/melty_eyeball,
-	/datum/ego_datum/armor/melty_eyeball
+		/datum/ego_datum/weapon/melty_eyeball,
+		/datum/ego_datum/armor/melty_eyeball,
 	)
 	gift_type =  /datum/ego_gifts/melty_eyeball
 	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"
@@ -83,7 +84,7 @@
 		return
 	var/num = pick(1,2,3,4)
 	playsound(get_turf(src), "sound/abnormalities/blubbering_toad/blurble[num].ogg", 100, FALSE)
-	addtimer(CALLBACK(src, .proc/BlubberLoop), rand(3,10) SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(BlubberLoop)), rand(3,10) SECONDS)
 	if(IsContained() && (healing_pulse_amount > 0)) //isn't breached and has charges left
 		healing_pulse_amount --
 		HealPulse()
@@ -220,7 +221,7 @@
 	if(H.health < 0)
 		H.gib()
 		if(!persistant)
-			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(ReturnCell)), 10 SECONDS)
 			return
 		idiot = null
 		for(var/mob/living/carbon/human/HU in GLOB.player_list)
@@ -233,7 +234,7 @@
 			if(idiot.health > HU.health)
 				idiot = HU
 		if(isnull(idiot))
-			addtimer(CALLBACK(src, .proc/ReturnCell), 10 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(ReturnCell)), 10 SECONDS)
 			return
 		SetIdiot(idiot)
 
@@ -276,7 +277,7 @@
 /datum/status_effect/blue_resin
 	id = "blue resin"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000 //Lasts 5 mins
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/blue_resin
 
 /atom/movable/screen/alert/status_effect/blue_resin
@@ -288,13 +289,15 @@
 /datum/status_effect/blue_resin/on_apply()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.black_mod *= 0.9
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.black_mod *= 0.9
 
 /datum/status_effect/blue_resin/on_remove()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.black_mod /= 0.9
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.black_mod /= 0.9
 
 #undef STATUS_EFFECT_BLUERESIN

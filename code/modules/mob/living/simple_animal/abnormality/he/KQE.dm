@@ -10,6 +10,7 @@
 	icon_state = "kqe"
 	icon_living = "kqe"
 	icon_dead = "kqe_egg"
+	portrait = "KQE"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.2)
@@ -24,27 +25,27 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 25,
-						ABNORMALITY_WORK_INSIGHT = list(30, 30, 50, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = 55,
-						ABNORMALITY_WORK_REPRESSION = list(30, 35, 40, 45, 50),
-						"Write HELLO" = 0,
-						"Write GOODBYE" = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSIGHT = list(30, 30, 50, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = 55,
+		ABNORMALITY_WORK_REPRESSION = list(30, 35, 40, 45, 50),
+		"Write HELLO" = 0,
+		"Write GOODBYE" = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/replica,
-		/datum/ego_datum/armor/replica
-		)
+		/datum/ego_datum/armor/replica,
+	)
 	gift_type =  /datum/ego_gifts/replica
 	gift_message = "The abnormality hands you a pendant made from circuits and sinews."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/nothing_there = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5,
 	)
 
 	var/can_act = TRUE
@@ -249,12 +250,14 @@
 
 /obj/effect/kqe_claw/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/GrabAttack), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/kqe_claw/proc/GrabAttack()
 	playsound(get_turf(src), 'sound/abnormalities/kqe/load2.ogg', 75, 0, 3)
 	new /obj/effect/temp_visual/approaching_claw(get_turf(src))
 	alpha = 1
+	for(var/obj/vehicle/sealed/mecha/M in view(1, src))
+		M.ejectall()
 	for(var/mob/living/carbon/human/H in view(1, src))
 		grabbed = TRUE
 		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -267,7 +270,7 @@
 /obj/effect/kqe_claw/proc/GrabStun(mob/living/carbon/human/target)
 	animate(target, pixel_x = 0, pixel_z = 12, time = 5)
 	target.Stun(6 SECONDS)
-	addtimer(CALLBACK(src, .proc/AnimateBack,target), 6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(AnimateBack),target), 6 SECONDS)
 
 /obj/effect/kqe_claw/proc/AnimateBack(mob/living/carbon/human/target)
 	animate(target, pixel_x = 0, pixel_z = 0, time = 1 SECONDS)

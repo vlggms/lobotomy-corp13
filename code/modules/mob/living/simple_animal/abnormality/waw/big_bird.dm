@@ -26,11 +26,11 @@
 	can_breach = TRUE
 	start_qliphoth = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(45, 45, 45, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = 35,
-						ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 50, 55, 55),
-						ABNORMALITY_WORK_REPRESSION = list(25, 20, 15, 10, 0)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(45, 45, 45, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = 35,
+		ABNORMALITY_WORK_ATTACHMENT = list(40, 45, 50, 55, 55),
+		ABNORMALITY_WORK_REPRESSION = list(25, 20, 15, 10, 0),
+	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
@@ -45,14 +45,14 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/lamp,
-		/datum/ego_datum/armor/lamp
-		)
+		/datum/ego_datum/armor/lamp,
+	)
 	gift_type =  /datum/ego_gifts/lamp
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3,
-		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3,
 	)
 
 	var/bite_cooldown
@@ -93,7 +93,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -149,11 +149,11 @@
 		if(prob(66))
 			to_chat(C, span_warning("You feel tired..."))
 			C.blur_eyes(5)
-			addtimer(CALLBACK (C, .mob/proc/blind_eyes, 2), 2 SECONDS)
-			addtimer(CALLBACK (C, .mob/living/proc/Stun, 2 SECONDS), 2 SECONDS)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/mob, blind_eyes), 2), 2 SECONDS)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/mob/living, Stun), 2 SECONDS), 2 SECONDS)
 			var/new_overlay = mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER)
 			C.add_overlay(new_overlay)
-			addtimer(CALLBACK (C, .atom/proc/cut_overlay, new_overlay), 4 SECONDS)
+			addtimer(CALLBACK (C, TYPE_PROC_REF(/atom, cut_overlay), new_overlay), 4 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/big_bird/proc/on_mob_death(datum/source, mob/living/died, gibbed)
 	SIGNAL_HANDLER

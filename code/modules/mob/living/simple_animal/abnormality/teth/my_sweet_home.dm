@@ -12,7 +12,7 @@
 	can_breach = TRUE
 	del_on_death = FALSE
 	maxHealth = 600
-	health = 500
+	health = 600
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 0.9, WHITE_DAMAGE = 0.9, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 2)
 	melee_damage_lower = 15
@@ -31,11 +31,11 @@
 	var/damage_dealt = 0
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
-						ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = list(40, 40, 50, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(70, 70, 80, 80, 90),
+		ABNORMALITY_WORK_REPRESSION = list(60, 60, 50, 40, 40),
+	)
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 
@@ -47,8 +47,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hearth,
-		/datum/ego_datum/armor/hearth
-		)
+		/datum/ego_datum/armor/hearth,
+	)
 
 	gift_type =  /datum/ego_gifts/hearth
 

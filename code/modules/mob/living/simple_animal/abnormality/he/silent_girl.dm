@@ -18,19 +18,19 @@
 	gender = FEMALE // Is this used basically anywhere? Not that I know of. But seeing "Gender: Male" on Silent Girl doesn't seem right.
 	threat_level = HE_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 25,
-						ABNORMALITY_WORK_INSIGHT = list(-50, -50, 60, 60, 60),
-						ABNORMALITY_WORK_ATTACHMENT = -50,
-						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 60, 60)
-						)
-	work_damage_amount = 0
+		ABNORMALITY_WORK_INSTINCT = 25,
+		ABNORMALITY_WORK_INSIGHT = list(-50, -50, 60, 60, 60),
+		ABNORMALITY_WORK_ATTACHMENT = -50,
+		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 60, 60),
+	)
+	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 	start_qliphoth = 3
 
 	ego_list = list(
 		/datum/ego_datum/weapon/remorse,
-		/datum/ego_datum/armor/remorse
-		)
+		/datum/ego_datum/armor/remorse,
+	)
 	gift_type = /datum/ego_gifts/remorse
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -111,25 +111,27 @@
 
 /datum/status_effect/sg_guilty/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		to_chat(H, span_userdanger("You feel a heavy weight upon your shoulders."))
-		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
-		H.add_overlay(guilt_icon)
-		H.physiology.work_success_mod *= 0.70
-		RegisterSignal(H, COMSIG_WORK_COMPLETED, .proc/OnWorkComplete)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_userdanger("You feel a heavy weight upon your shoulders."))
+	playsound(get_turf(status_holder), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)
+	status_holder.add_overlay(guilt_icon)
+	status_holder.physiology.work_success_mod *= 0.70
+	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(OnWorkComplete))
 
 /datum/status_effect/sg_guilty/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		to_chat(H, span_nicegreen("You feel a weight lift from your shoulders."))
-		playsound(get_turf(H), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
-		H.cut_overlay(guilt_icon)
-		H.physiology.work_success_mod /= 0.70
-		UnregisterSignal(H, COMSIG_WORK_COMPLETED)
-		if(!isnull(datum_reference))
-			INVOKE_ASYNC(datum_reference, /datum/abnormality/proc/qliphoth_change, 1, owner)
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_nicegreen("You feel a weight lift from your shoulders."))
+	playsound(get_turf(status_holder), 'sound/abnormalities/silentgirl/Guilt_Remove.ogg', 50, 0, 2)
+	status_holder.cut_overlay(guilt_icon)
+	status_holder.physiology.work_success_mod /= 0.70
+	UnregisterSignal(status_holder, COMSIG_WORK_COMPLETED)
+	if(!isnull(datum_reference))
+		INVOKE_ASYNC(datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), 1, owner)
 
 /datum/status_effect/sg_guilty/refresh()
 	playsound(get_turf(owner), 'sound/abnormalities/silentgirl/Guilt_Apply.ogg', 50, 0, 2)

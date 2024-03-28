@@ -15,11 +15,11 @@
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 50, 45, 50, 60),
-						ABNORMALITY_WORK_INSIGHT = list(50, 60, 55, 55, 55),
-						ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 50, 45, 50, 60),
+		ABNORMALITY_WORK_INSIGHT = list(50, 60, 55, 55, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(99, 99, 50, 40, 30),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	del_on_death = FALSE
@@ -32,23 +32,24 @@
 	rapid_melee = 2
 	ego_list = list(
 		/datum/ego_datum/weapon/sanguine,
-		/datum/ego_datum/armor/sanguine
-		)
+		/datum/ego_datum/armor/sanguine,
+	)
 	gift_type =  /datum/ego_gifts/desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(
 		"Give them back to me!",
-		"Don’t take them away from me...",
-		"No no no! Don’t take them, no!",
-		"I’m sorry...")
+		"Don't take them away from me...",
+		"No no no! Don't take them, no!",
+		"I'm sorry...",
+	)
 	var/list/possessee_lines = list(
-				"Where is everyone?",
-				"Guys, look at me! I’ve got such nice shoes on!",
-				"You all need to see how lovely my shoes are!",
-				"They’re much prettier with blood on them."
-				)
+		"Where is everyone?",
+		"Guys, look at me! I've got such nice shoes on!",
+		"You all need to see how lovely my shoes are!",
+		"They're much prettier with blood on them.",
+	)
 	var/datum/looping_sound/redshoes_ambience/soundloop
 	var/numbermarked = 0//default amount of people that get possessed
 	var/steppy = 0
@@ -229,7 +230,7 @@
 /datum/status_effect/red_possess//This status will cause you to special panic if your sanity reaches 0 while you have it. If red shoes isn't present or already breached, it will swap to murder panic.
 	id = "redpossess"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 120 SECONDS
+	duration = 2 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/red_possess
 
 /atom/movable/screen/alert/status_effect/red_possess
@@ -242,12 +243,12 @@
 	if(!ishuman(owner))
 		qdel(src)
 		return
-	var/mob/living/carbon/human/H = owner
-	var/usertemp = (get_attribute_level(H, TEMPERANCE_ATTRIBUTE))
+	var/mob/living/carbon/human/status_holder = owner
+	var/usertemp = (get_attribute_level(status_holder, TEMPERANCE_ATTRIBUTE))
 	var/desire_damage = clamp((80 - (usertemp / 2)),80, 10)//deals between 80 and 10 white damage depending on your temperance attribute when applied.
-	H.apply_damage(desire_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)//DIE!
-	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -50)//By using bonuses, this lowers your maximum prudence
-	if(H.sanity_lost)
+	status_holder.apply_damage(desire_damage, WHITE_DAMAGE, null, status_holder.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)//DIE!
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -50)//By using bonuses, this lowers your maximum prudence
+	if(status_holder.sanity_lost)
 		qdel(src)
 		return
 	return ..()
@@ -255,20 +256,20 @@
 /datum/status_effect/red_possess/on_remove()
 	if(!ishuman(owner))
 		return
-	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
-	if(H.sanity_lost)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, 50)//Return prudence back to normal
+	if(status_holder.sanity_lost)
 		QDEL_NULL(owner.ai_controller)
-		H.ai_controller = /datum/ai_controller/insane/red_possess
-		H.InitializeAIController()
+		status_holder.ai_controller = /datum/ai_controller/insane/red_possess
+		status_holder.InitializeAIController()
 	return ..()
 
 /datum/status_effect/red_possess/tick()//delete the status if sanity is restored or a panic occurs
 	..()
-	var/mob/living/carbon/human/H = owner
-	if(H.sanityhealth == H.maxSanity)
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.sanityhealth == status_holder.maxSanity)
 		qdel(src)
-	if(H.sanity_lost)
+	if(status_holder.sanity_lost)
 		qdel(src)
 
 //***Custom Panic Definiton***
@@ -277,11 +278,11 @@
 
 /datum/ai_behavior/say_line/insanity_red_possess
 	lines = list(
-				"Where is everyone?",
-				"Guys, look at me! I’ve got such nice shoes on!",
-				"You all need to see how lovely my shoes are!",
-				"They’re much prettier with blood on them."
-				)
+		"Where is everyone?",
+		"Guys, look at me! I've got such nice shoes on!",
+		"You all need to see how lovely my shoes are!",
+		"They're much prettier with blood on them.",
+	)
 
 /datum/ai_controller/insane/red_possess/SelectBehaviors(delta_time)//Selects red shoes as the target
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
@@ -312,14 +313,14 @@
 		finish_action(controller, FALSE)
 		return
 	if(!LAZYLEN(current_path))
-		current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
 		if(!current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
 	if(!ishuman(living_pawn))
 		return
 	walkspeed -= (max(0.95,((get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)) * 0.01)))//one-hundreth of a second for every point of justice, capped at 95
-	addtimer(CALLBACK(src, .proc/Movement, controller), walkspeed SECONDS, TIMER_UNIQUE)
+	addtimer(CALLBACK(src, PROC_REF(Movement), controller), walkspeed SECONDS, TIMER_UNIQUE)
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)
 		return

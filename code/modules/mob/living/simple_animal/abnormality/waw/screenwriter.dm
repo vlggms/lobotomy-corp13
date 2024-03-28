@@ -19,14 +19,14 @@ Defeating the murderer also surpresses the abnormality.
 		"Cleanliness" = 35,
 		"Consensus" = 35,
 		"Amusement" = 35,
-		"Violence" = 35
+		"Violence" = 35,
 	)
 	work_attribute_types = list(
 		"Nutrition" = FORTITUDE_ATTRIBUTE,
 		"Cleanliness" = PRUDENCE_ATTRIBUTE,
 		"Consensus" = PRUDENCE_ATTRIBUTE,
 		"Amusement" = TEMPERANCE_ATTRIBUTE,
-		"Violence" = JUSTICE_ATTRIBUTE
+		"Violence" = JUSTICE_ATTRIBUTE,
 	)
 	max_boxes = 24
 	work_damage_amount = 12
@@ -34,8 +34,8 @@ Defeating the murderer also surpresses the abnormality.
 
 	ego_list = list(
 		/datum/ego_datum/weapon/scene,
-		/datum/ego_datum/armor/scene
-		)
+		/datum/ego_datum/armor/scene,
+	)
 	gift_type = /datum/ego_gifts/scene
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
 
@@ -108,7 +108,7 @@ Defeating the murderer also surpresses the abnormality.
 /mob/living/simple_animal/hostile/abnormality/screenwriter/proc/MeltdownEffect()
 	var/turf/actor_location = pick(GLOB.department_centers) //Spawn the murderer
 	A = new (actor_location)
-	RegisterSignal(A, COMSIG_LIVING_DEATH, .proc/EndScenario)
+	RegisterSignal(A, COMSIG_LIVING_DEATH, PROC_REF(EndScenario))
 	var/list/potentialmarked = list()
 	var/list/marked = list()
 	var/mob/living/carbon/human/Y
@@ -128,7 +128,11 @@ Defeating the murderer also surpresses the abnormality.
 		marked+=Y
 	if(marked.len <= 0) //Oh no, everyone's dead!
 		return
-	var/list/role_list = list("coward", "broken", "failed")
+	var/list/role_list = list(
+		"coward",
+		"broken",
+		"failed",
+	)
 	for(Y in marked)
 		to_chat(Y, span_warning("The play is starting, do you remember your lines?"))
 		Y.apply_status_effect(STATUS_EFFECT_ACTOR)
@@ -196,13 +200,13 @@ Defeating the murderer also surpresses the abnormality.
 /datum/status_effect/actor/proc/ChangeToVictim() // So you have chosen death
 	if(role == "victim")
 		return
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/human/status_holder = owner
 	if(stat)
-		H.adjust_attribute_bonus(stat, -stat_modifier)
+		status_holder.adjust_attribute_bonus(stat, -stat_modifier)
 	else
 		return
 	stat_modifier = -100
-	H.adjust_all_attribute_bonuses(stat_modifier)
+	status_holder.adjust_all_attribute_bonuses(stat_modifier)
 	owner.cut_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	role = "victim"
 	owner.add_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
@@ -210,7 +214,7 @@ Defeating the murderer also surpresses the abnormality.
 	to_chat(owner, span_userdanger("You will now play the role of the victim!"))
 
 /datum/status_effect/actor/proc/AssignRole()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/human/status_holder = owner
 	owner.add_overlay(mutable_appearance('icons/effects/32x64.dmi', role, -ABOVE_MOB_LAYER))
 	switch(role)
 		if("coward")
@@ -224,9 +228,9 @@ Defeating the murderer also surpresses the abnormality.
 			stat = PRUDENCE_ATTRIBUTE
 		if("victim")
 			stat_modifier = -100
-			H.adjust_all_attribute_bonuses(stat_modifier)
+			status_holder.adjust_all_attribute_bonuses(stat_modifier)
 			return
-	H.adjust_attribute_bonus(stat, stat_modifier)
+	status_holder.adjust_attribute_bonus(stat, stat_modifier)
 
 //Mob
 /mob/living/simple_animal/hostile/actor
@@ -332,12 +336,12 @@ Defeating the murderer also surpresses the abnormality.
 
 /datum/ai_behavior/say_line/insanity_scene
 	lines = list(
-				"If thou be merciful, open the tomb, lay me with peace.",
-				"Thy knives are quick. Thus with a kiss I die.",
-				"He has killed me, friend. Run away, I pray you!",
-				"Out on thee, murderer! Thou kill'st my heart!",
-				"Thus I die. Thus, thus, thus. Now I am dead, Now I am fled, My soul is in the sky!"
-				)
+		"If thou be merciful, open the tomb, lay me with peace.",
+		"Thy knives are quick. Thus with a kiss I die.",
+		"He has killed me, friend. Run away, I pray you!",
+		"Out on thee, murderer! Thou kill'st my heart!",
+		"Thus I die. Thus, thus, thus. Now I am dead, Now I am fled, My soul is in the sky!",
+	)
 
 /datum/status_effect/panicked_type/scene
 	icon = "scene"

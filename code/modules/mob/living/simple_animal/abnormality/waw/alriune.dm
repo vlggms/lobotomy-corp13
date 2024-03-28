@@ -19,11 +19,11 @@
 	start_qliphoth = 2
 	// Work chances were slightly changed for it to be possible to get neutral result
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 40, 35),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 35, 30),
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 35, 30, 25),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 40, 35),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 50, 45, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 40, 35, 30),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 35, 30, 25),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -42,8 +42,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/aroma,
-		/datum/ego_datum/armor/aroma
-		)
+		/datum/ego_datum/armor/aroma,
+	)
 	gift_type =  /datum/ego_gifts/aroma
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -75,7 +75,7 @@
 			// Attack visual effect, so to speak
 			for(var/turf/T in view(7, get_turf(src)))
 				animate(T, color = COLOR_PINK, time = 2)
-				addtimer(CALLBACK(GLOBAL_PROC, .proc/SetColorOverTime, T, initial(T.color), (2 SECONDS)), 4)
+				addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(SetColorOverTime), T, initial(T.color), (2 SECONDS)), 4)
 			for(var/mob/living/L in livinginview(7, get_turf(src)))
 				if(faction_check_mob(L))
 					continue
@@ -87,12 +87,12 @@
 					var/mob/living/carbon/human/H = L
 					if(H.sanity_lost)
 						new /obj/effect/temp_visual/alriune_curtain(get_turf(H))
-						addtimer(CALLBACK(H, .atom/proc/add_overlay, \
+						addtimer(CALLBACK(H, TYPE_PROC_REF(/atom, add_overlay), \
 							icon('ModularTegustation/Teguicons/tegu_effects.dmi', "alriune_kill")), 5)
 						playsound(H, 'sound/abnormalities/alriune/kill.ogg', 75, TRUE)
 						H.death()
 			petals_next = world.time + (petals_next_time * 2)
-			addtimer(CALLBACK(src, .proc/TeleportAway), 2 SECONDS)
+			addtimer(CALLBACK(src, PROC_REF(TeleportAway)), 2 SECONDS)
 		else
 			playsound(src, 'sound/abnormalities/alriune/timer.ogg', 50, FALSE, 12)
 		update_icon()

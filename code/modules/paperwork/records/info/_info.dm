@@ -141,7 +141,8 @@ For escape damage you will have to get creative and figure out how dangerous it 
 	F is for abnormalities that take on the traits of fictional stories or urban legends.<br>
 	T is for abnormalities that formed from traumatic experiences or embody a certain phobia.<br>
 	O is for abnormalities that do not take on the traits of traumas or fairy tales. <br>
-	D is for abnormalities that were labeled as non essential for our overall goal. <br>
+	D and C is for abnormalities that were labeled as non essential for our overall goal. <br>
+	M is for abnormalities that take on the traits of old world mythology. <br>
 	-<br>
 	The second letter of the classification code is their physical form, this is easier to find if you have seen the abnormality.<br>
 	01 is humanoids, <br>

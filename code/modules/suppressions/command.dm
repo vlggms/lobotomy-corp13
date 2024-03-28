@@ -18,8 +18,8 @@
 
 /datum/suppression/command/Run(run_white = FALSE, silent = FALSE)
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/OnQlipMeltdown)
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED, .proc/OnAbnoMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(OnQlipMeltdown))
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_FINISHED, PROC_REF(OnAbnoMeltdown))
 
 /datum/suppression/command/End(silent = FALSE)
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START)

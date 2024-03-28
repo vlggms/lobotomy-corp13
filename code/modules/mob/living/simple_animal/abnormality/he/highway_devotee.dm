@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "highway_devotee"
 	icon_living = "highway_devotee"
+	portrait = "highway_devotee"
 	maxHealth = 1200
 	health = 1200
 	ranged = TRUE
@@ -18,18 +19,18 @@
 	faction = list("neutral", "hostile")
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 50),
-						ABNORMALITY_WORK_INSIGHT = list(55, 55, 50, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 20, 10, 0, 0),
-						ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(55, 55, 50, 50, 50),
+		ABNORMALITY_WORK_INSIGHT = list(55, 55, 50, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 20, 10, 0, 0),
+		ABNORMALITY_WORK_REPRESSION = list(30, 20, 10, 0, 0),
+	)
 	work_damage_amount = 11
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/uturn,
-		/datum/ego_datum/armor/uturn
-		)
+		/datum/ego_datum/armor/uturn,
+	)
 	gift_type =  /datum/ego_gifts/uturn
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/talk = FALSE
@@ -73,7 +74,7 @@
 	. = ..()
 	var/turf/T = pick(GLOB.xeno_spawn)
 	forceMove(T)
-	addtimer(CALLBACK(src, .proc/KillYourself), 3 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(KillYourself)), 3 MINUTES)
 	dir = pick(list(NORTH, SOUTH, WEST, EAST))
 	for(var/turf/open/U in range(2, src))
 		var/obj/structure/blockedpath/P = new(U)

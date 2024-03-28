@@ -31,7 +31,7 @@
 		if(world.time > couch_cooldown + couch_cooldown_time)
 			LowerLance(user)
 		else
-			to_chat(user, "<span class='warning'>You are not ready to couch the [src] yet!</span>")
+			to_chat(user, span_warning("You are not ready to couch the [src] yet!"))
 
 //Equipped setup
 /obj/item/ego_weapon/lance/equipped(mob/living/carbon/human/user, slot)
@@ -40,8 +40,8 @@
 		return
 	current_holder = user
 	RaiseLance(user)
-	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, .proc/UserBump)
-	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, .proc/UserMoved)
+	RegisterSignal(current_holder, COMSIG_MOVABLE_BUMP, PROC_REF(UserBump), override = TRUE)
+	RegisterSignal(current_holder, COMSIG_MOVABLE_MOVED, PROC_REF(UserMoved))
 	if(!force_cap)
 		force_cap = (initial(force) * 2)
 
@@ -80,7 +80,7 @@
 		return
 	if(user.dir != initial_dir || src != user.get_active_held_item())
 		RaiseLance(user)
-		to_chat(user, "<span class='warning'>You lose control of [src]!</span>")
+		to_chat(user, span_warning("You lose control of [src]!"))
 		return
 	if(force < force_cap)
 		force += force_per_tile
@@ -89,8 +89,8 @@
 		user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/charge, multiplicative_slowdown = charge_speed)
 	if(user.pulling)
 		RaiseLance(user) //no stupid super speed dragging
-		to_chat(user, "<span class='warning'>You can't maintain your momentum while pulling something!</span>")
-	addtimer(CALLBACK(src, .proc/MoveCheck, user, user.loc), required_movement_time)
+		to_chat(user, span_warning("You can't maintain your momentum while pulling something!"))
+	addtimer(CALLBACK(src, PROC_REF(MoveCheck), user, user.loc), required_movement_time)
 
 //The player is readying a charge. CHARGE!!!
 /obj/item/ego_weapon/lance/proc/LowerLance(mob/user)
@@ -128,21 +128,21 @@
 		if(ishuman(A) && user.faction_check_mob(A))
 			var/mob/living/carbon/human/H = A
 			H.Knockdown(4 SECONDS) //we dont want humans getting skewered for a million damage
-			to_chat(user, "<span class='warning'>You crash into [H]!</span>")
+			to_chat(user, span_warning("You crash into [H]!"))
 			playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
 			if(charge_speed > -(pierce_threshold))
 				user.Knockdown(2 SECONDS)
 				return
 		else
 			A.attackby(src,user)
-			to_chat(user, "<span class='warning'>You successfully impale [A]!</span>")
+			to_chat(user, span_warning("You successfully impale [A]!"))
 
 		if(charge_speed < -(pierce_threshold)) //you can keep going!
 			charge_speed += pierce_speed_cost
 			force -= pierce_force_cost
 			return
 	else
-		to_chat(user, "<span class='warning'>You lose control of [src]!</span>")
+		to_chat(user, span_warning("You lose control of [src]!"))
 		user.Knockdown(4 SECONDS) //crash if you bump into a wall too fast
 		playsound(loc, 'sound/weapons/genhit1.ogg', 50, TRUE, -1)
 	RaiseLance(user)
@@ -152,14 +152,14 @@
 	if(raised)
 		return
 	if(!user.loc.AllowClick() || user.loc == location)
-		to_chat(user, "<span class='warning'>Your momentum runs out.</span>")
+		to_chat(user, span_warning("Your momentum runs out."))
 		RaiseLance(user)
 		return
 
 //Examine text
 /obj/item/ego_weapon/lance/examine(mob/user)
 	. = ..()
-	. += "<span class='notice'>This weapon can be used to perform a running charge by using it in hand. Charge into an enemy at high speeds for massive damage!</span>"
+	. += span_notice("This weapon can be used to perform a running charge by using it in hand. Charge into an enemy at high speeds for massive damage!")
 
 /datum/movespeed_modifier/charge
 	multiplicative_slowdown = 0

@@ -17,22 +17,22 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 20, 20),
 		ABNORMALITY_WORK_ATTACHMENT = list(20, 10, 0, 0, 0),
-		ABNORMALITY_WORK_REPRESSION = list(55, 55, 60, 60, 60)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(55, 55, 60, 60, 60),
+	)
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/noise,
-		/datum/ego_datum/armor/noise
-		)
+		/datum/ego_datum/armor/noise,
+	)
 	gift_type =  /datum/ego_gifts/noise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
 	)
 
 	var/reset_time = 4 MINUTES //Qliphoth resets after this time. To prevent bugs
@@ -71,7 +71,7 @@
 		rose_available = TRUE
 		break
 
-	addtimer(CALLBACK (datum_reference, /datum/abnormality/proc/qliphoth_change, 4), reset_time)
+	addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, qliphoth_change), 4), reset_time)
 
 	if(!rose_available)
 		SSweather.run_weather(/datum/weather/mhz)

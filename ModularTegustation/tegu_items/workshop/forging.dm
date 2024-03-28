@@ -37,7 +37,7 @@
 			loaded = TRUE
 			to_chat(user, span_notice("You load \a [I] into the machine."))
 			qdel(I)
-			addtimer(CALLBACK(src, .proc/finish, I), heat_timer)
+			addtimer(CALLBACK(src, PROC_REF(finish), I), heat_timer)
 
 			playsound(get_turf(src), 'sound/items/welder.ogg', 100, 0)
 		else

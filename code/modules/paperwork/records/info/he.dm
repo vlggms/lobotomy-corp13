@@ -37,7 +37,7 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/whitelake
 	abno_code = "F-01-120"
 	abno_info = list(
-		"When an employee with Fortitude Level 2 or lower finished their work, White Lake appointed them as her champion.",
+		"When an employee with Fortitude Level 2 or lower finished their work with a good result, White Lake appointed them as her champion with a gift.",
 		"When an employee with Fortitude Level 3 or higher worked on White Lake, the work success rate was lowered.",
 		"When the work result was Bad, the Qliphoth Counter lowered. If the employee also had Fortitude Level 3 or higher, the Qliphoth Counter lowered again.",
 		"When the Qliphoth Counter reached 0, the champion panicked and began attacking those around them. If there was no champion, all employees in the facility received heavy WHITE damage.")
@@ -191,7 +191,7 @@
 		"When the work result was Normal or Bad, the Qliphoth Counter lowered.",
 		"When the work result was Good, Piscine Mermaid offered a crown if no other copies were present in the facility. (From then on, the employee wearing the crown will be referred to as O-01-129-1).",
 		"O-01-129-1 had greatly increased work success rates with any Abnormality, but the Qliphoth Counter would periodically decrease as long as the crown was worn.",
-		"When O-01-129-1 completed their work on Piscine Mermaid with a Good result, the Qliphoth Counter increased.",
+		"When O-01-129-1 completed their work on Piscine Mermaid with a Good result, the Qliphoth Counter increased by 2. This would also delay the reduction of the Qlipoth Counter",
 		"The Qliphoth Counter dropped to 0 when O-01-129-1 removed their crown.",
 		"When the Qliphoth Counter reached 0, the crown was destroyed. O-01-129-1 was greatly slowed before Piscine Mermaid teleported to them.",
 		"Piscine Mermaid slowly suffocated everyone within sight. O-01-129-1 could not breath as long as Piscine Mermaid was alive.",

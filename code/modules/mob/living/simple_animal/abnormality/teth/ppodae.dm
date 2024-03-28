@@ -15,11 +15,11 @@
 	response_help_continuous = "pet"
 	response_help_simple = "pet"
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 60,
-						ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
-						ABNORMALITY_WORK_ATTACHMENT = 40,
-						ABNORMALITY_WORK_REPRESSION = list(40, 40, 30, 30, 30),
-						)
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = list(40, 40, 30, 30, 30),
+		ABNORMALITY_WORK_ATTACHMENT = 40,
+		ABNORMALITY_WORK_REPRESSION = list(40, 40, 30, 30, 30),
+	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -36,8 +36,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/cute,
-		/datum/ego_datum/armor/cute
-		)
+		/datum/ego_datum/armor/cute,
+	)
 	gift_type =  /datum/ego_gifts/cute
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -50,7 +50,7 @@
 	if(!can_act)
 		return FALSE
 	var/mob/living/carbon/L = target
-	if(L.health < 0 || L.stat == DEAD)
+	if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
 		if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
 			return
 		var/list/parts = list()

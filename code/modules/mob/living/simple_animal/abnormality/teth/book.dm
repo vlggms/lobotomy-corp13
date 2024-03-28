@@ -12,25 +12,25 @@
 		ABNORMALITY_WORK_INSTINCT = list(50, 45, 40, 40, 40),
 		ABNORMALITY_WORK_INSIGHT = list(60, 55, 50, 50, 50),
 		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 30)
+		ABNORMALITY_WORK_REPRESSION = 30,
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/page,
-		/datum/ego_datum/armor/page
-		)
+		/datum/ego_datum/armor/page,
+	)
 	gift_type = /datum/ego_gifts/page
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
 	var/wordcount = 0
-	var/list/oddities = list( //List gets populated with friendly animals
-		)
+	var/list/oddities = list() //List gets populated with friendly animals
 	var/list/nasties = list( //Todo: Eventually make a list of custom threats possibly
 		/mob/living/simple_animal/hostile/ordeal/green_bot,
 		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
-		/mob/living/simple_animal/hostile/ordeal/violet_fruit
-		)
+		/mob/living/simple_animal/hostile/ordeal/violet_fruit,
+	)
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
 
@@ -69,6 +69,8 @@
 	user.Stun(5 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return FALSE
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
 	return TRUE

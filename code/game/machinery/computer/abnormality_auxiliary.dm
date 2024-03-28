@@ -13,7 +13,7 @@
 	var/list/all_pages = list(
 		CORE_SUPPRESSIONS,
 		FACILITY_UPGRADES,
-		)
+	)
 	var/datum/suppression/selected_core_type = null
 
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
@@ -50,7 +50,13 @@
 		if(FACILITY_UPGRADES)
 			dat += "<b>LOB Points:</b> [round(SSlobotomy_corp.lob_points, 0.1)]"
 			dat += "<hr>"
-			var/list/upgrades_per_category = list("Bullets" = list(), "Bullet Upgrades" = list(), "Agent" = list(), "Abnormalities" = list(), "Unsorted" = list())
+			var/list/upgrades_per_category = list(
+				"Bullets" = list(),
+				"Bullet Upgrades" = list(),
+				"Agent" = list(),
+				"Abnormalities" = list(),
+				"Unsorted" = list(),
+			)
 			for(var/datum/facility_upgrade/F in SSlobotomy_corp.upgrades)
 				if(!F.CanShowUpgrade())
 					continue
@@ -113,7 +119,7 @@
 			to_chat(usr, span_userdanger("Good luck, Manager."))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
-			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/Run), 2 SECONDS)
+			addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, Run)), 2 SECONDS)
 			return TRUE
 
 		// Facility upgrade topics

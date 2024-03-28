@@ -1,0 +1,117 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/machinery/implantchair/genepurge,
+/obj/effect/decal/cleanable/blood,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"f" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/mob_spawn/human/corpse,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"p" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"t" = (
+/obj/structure/table/reinforced,
+/obj/item/documents,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"x" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 4
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"C" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"D" = (
+/obj/effect/decal/cleanable/blood/tracks,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"I" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/obj/machinery/light,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"M" = (
+/obj/structure/fence,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"P" = (
+/obj/machinery/door/airlock/centcom,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"R" = (
+/mob/living/simple_animal/hostile/humanoid/rat/hammer,
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"S" = (
+/obj/effect/decal/cleanable/blood/tracks{
+	dir = 6
+	},
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+"U" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"Y" = (
+/turf/open/floor/mineral/titanium/tiled/white,
+/area/city/backstreets_room)
+
+(1,1,1) = {"
+U
+U
+U
+U
+U
+"}
+(2,1,1) = {"
+U
+f
+R
+R
+U
+"}
+(3,1,1) = {"
+U
+M
+M
+M
+U
+"}
+(4,1,1) = {"
+P
+p
+Y
+I
+U
+"}
+(5,1,1) = {"
+U
+t
+C
+x
+U
+"}
+(6,1,1) = {"
+U
+a
+D
+S
+U
+"}
+(7,1,1) = {"
+U
+U
+U
+U
+U
+"}

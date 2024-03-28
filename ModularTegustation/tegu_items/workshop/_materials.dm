@@ -68,7 +68,7 @@
 	var/cool_timer
 
 /obj/item/hot_tresmetal/Initialize()
-	cool_timer = addtimer(CALLBACK(src, .proc/cooling), 5 MINUTES, TIMER_STOPPABLE)
+	cool_timer = addtimer(CALLBACK(src, PROC_REF(cooling)), 5 MINUTES, TIMER_STOPPABLE)
 	..()
 	name = "heated " + initial(original_mat.name)
 	desc += " Put it on an anvil and hit with a hammer to work it."
@@ -257,11 +257,14 @@
 	if(!..())
 		return
 	creation.AddComponent(/datum/component/edible,\
-		initial_reagents = list(/datum/reagent/consumable/nutriment/protein = 20*(quality+1), /datum/reagent/consumable/nutriment/vitamin = 6*(quality+1)),\
-		foodtypes = MEAT,\
-		volume = 1000,\
-		tastes = list("pain", "meat", "hunger"),\
-		eat_time = 0)
+		initial_reagents = list(
+			/datum/reagent/consumable/nutriment/protein = 20*(quality+1),
+			/datum/reagent/consumable/nutriment/vitamin = 6*(quality+1)),\
+			foodtypes = MEAT,\
+			volume = 1000,\
+			tastes = list("pain", "meat", "hunger"),\
+			eat_time = 0,\
+		)
 	return
 
 

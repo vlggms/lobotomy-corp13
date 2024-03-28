@@ -25,11 +25,11 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(20, 20, 35, 45, 45),
-						ABNORMALITY_WORK_INSIGHT = list(20, 20, 40, 50, 50),
-						ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 35, 45, 45),
-						ABNORMALITY_WORK_REPRESSION = 0
-						)
+		ABNORMALITY_WORK_INSTINCT = list(20, 20, 35, 45, 45),
+		ABNORMALITY_WORK_INSIGHT = list(20, 20, 40, 50, 50),
+		ABNORMALITY_WORK_ATTACHMENT = list(20, 20, 35, 45, 45),
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 10
 	work_damage_type = PALE_DAMAGE
 
@@ -37,14 +37,14 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/justitia,
-		/datum/ego_datum/armor/justitia
-		)
+		/datum/ego_datum/armor/justitia,
+	)
 	gift_type =  /datum/ego_gifts/justitia
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
-		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3
+		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3,
 	)
 
 	var/judgement_cooldown = 10 SECONDS
@@ -196,7 +196,7 @@
 
 	var/turf/target_turf = pick(target_turfs)
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 
@@ -237,7 +237,7 @@
 	M.setDir(2)
 	M.pixel_x = M.base_pixel_x - 20
 //	animate(M, pixel_z = 16, time = 30)
-	addtimer(CALLBACK(src, .proc/BuckleAnimation, M), 10)
+	addtimer(CALLBACK(src, PROC_REF(BuckleAnimation), M), 10)
 	return ..()
 
 /obj/structure/jbird_noose/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)

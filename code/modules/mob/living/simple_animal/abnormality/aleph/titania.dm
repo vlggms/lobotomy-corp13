@@ -14,8 +14,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 45, 50),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 30, 40),
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 10, 20, 35),
-		ABNORMALITY_WORK_REPRESSION = 0
-			)
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	start_qliphoth = 3
 	move_to_delay = 4
 
@@ -31,8 +31,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/soulmate,
-		/datum/ego_datum/armor/soulmate
-		)
+		/datum/ego_datum/armor/soulmate,
+	)
 	gift_type = /datum/ego_gifts/soulmate
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
@@ -52,9 +52,28 @@
 	var/law_damage = 30		//Take damage, idiot
 	var/law_timer = 60 SECONDS
 	var/law_startup = 3 SECONDS
+	//Oberon stuff
+	var/fused = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/titania/Life()
+	. = ..()
+	if(fused) // So you can't just spoon her to death while in nobody is.
+		adjustBruteLoss(-(maxHealth))
+
+/mob/living/simple_animal/hostile/abnormality/titania/Move()
+	if(fused)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/titania/CanAttack(atom/the_target)
+	if(fused)
+		return FALSE
+	return ..()
 
 //Attacking code
 /mob/living/simple_animal/hostile/abnormality/titania/AttackingTarget()
+	if(fused)
+		return FALSE
 	var/mob/living/carbon/human/H = target
 	//Kills the weak immediately.
 	if(get_user_level(H) < 4 && (ishuman(H)))
@@ -106,7 +125,7 @@
 		var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(src))
 		V.faction = faction
 		spawned_mobs+=V
-	addtimer(CALLBACK(src, .proc/FairyLoop), fairy_spawn_time)
+	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), fairy_spawn_time)
 
 //Setting the nemesis
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ChooseNemesis()
@@ -141,7 +160,7 @@
 
 	var/lawmessage
 
-	if(!nemesis || nemesis.stat == DEAD)
+	if(!nemesis || nemesis.stat == DEAD || fused)
 		laws -= "nemesis"
 	nextlaw = pick(laws.Copy() - currentlaw)
 
@@ -161,11 +180,11 @@
 
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		to_chat(H, span_colossus("[lawmessage]"))
-	addtimer(CALLBACK(src, .proc/ActivateLaw), law_startup)	//Start Law 3 Seconds
+	addtimer(CALLBACK(src, PROC_REF(ActivateLaw)), law_startup)	//Start Law 3 Seconds
 
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/ActivateLaw()
-	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
+	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
 	currentlaw = nextlaw
 	to_chat(GLOB.clients, span_danger("The new law is now in effect."))
 
@@ -227,8 +246,8 @@
 /mob/living/simple_animal/hostile/abnormality/titania/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	ChooseNemesis()
-	addtimer(CALLBACK(src, .proc/FairyLoop), 10 SECONDS)	//10 seconds from now you start spawning fairies
-	addtimer(CALLBACK(src, .proc/SetLaw), law_timer)	//Set Laws in 30 Seconds
+	addtimer(CALLBACK(src, PROC_REF(FairyLoop)), 10 SECONDS)	//10 seconds from now you start spawning fairies
+	addtimer(CALLBACK(src, PROC_REF(SetLaw)), law_timer)	//Set Laws in 30 Seconds
 	if(nemesis)
 		to_chat(src, span_userdanger("[nemesis], you are to die!"))
 	if(!client && nemesis)

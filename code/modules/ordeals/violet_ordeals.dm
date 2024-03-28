@@ -4,6 +4,7 @@
 	name = "The Dawn of Violet"
 	flavor_name = "Fruit of Understanding"
 	announce_text = "To gain an understanding of what is incomprehensible, they dream, staring."
+	end_announce_text = "They complied with nothing in their bid to understand. They simply did so."
 	announce_sound = 'sound/effects/ordeals/violet_start.ogg'
 	end_sound = 'sound/effects/ordeals/violet_end.ogg'
 	spawn_places = 4
@@ -20,6 +21,7 @@
 	name = "The Noon of Violet"
 	flavor_name = "Grant Us Love"
 	announce_text = "We could only hear the weakest and faintest of their acts. We sought for love and compassion from them."
+	end_announce_text = "We cannot understand them, nor will they understand us."
 	announce_sound = 'sound/effects/ordeals/violet_start.ogg'
 	end_sound = 'sound/effects/ordeals/violet_end.ogg'
 	level = 2
@@ -43,6 +45,7 @@
 	name = "The Midnight of Violet"
 	flavor_name = "The God Delusion"
 	announce_text = "We incessantly tried to accept it. We wanted to understand them in our heads by any means, regardless of the consequences."
+	end_announce_text = "For the sake of not crumbling in on oneself. The idea that they may impossibly exist, or that they are unreachable and forever enigmatic no matter the path. Unacceptable…"
 	announce_sound = 'sound/effects/ordeals/violet_start.ogg'
 	end_sound = 'sound/effects/ordeals/violet_end.ogg'
 	level = 4

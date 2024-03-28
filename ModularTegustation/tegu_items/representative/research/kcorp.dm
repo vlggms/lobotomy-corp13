@@ -36,7 +36,7 @@
 //Misc stuff.
 /datum/data/lc13research/bullets
 	research_name = "Manager Bullet Permits"
-	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing low level hp ampules at a 90% discount."
+	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing managerial bullets at a 90% discount."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = K_CORP_REP
 
@@ -147,6 +147,7 @@
 	ItemUnlock(caller.order_list, "K Corp Class-1 Armor", /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/weak, 600)
 	ItemUnlock(caller.order_list, "K Corp L1 Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp, 100)
 	ItemUnlock(caller.order_list, "K Corp L1 Visor Helmet",	/obj/item/clothing/head/ego_hat/helmet/kcorp/visor, 100)
+	..()
 
 //Spawners
 /datum/data/lc13research/kdrones

@@ -34,10 +34,10 @@
 /obj/item/ego_weapon/charge/onattack/attack_self(mob/user)
 	..()
 	if(charge>=charge_cost)
-		to_chat(user, "<span class='notice'>You prepare to release your charge.</span>")
+		to_chat(user, span_notice("You prepare to release your charge."))
 		activated = TRUE
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))
 
 /obj/item/ego_weapon/charge/onattack/attack(mob/living/target, mob/living/user)
 	. = ..()
@@ -45,7 +45,7 @@
 		return FALSE
 	if(activated)
 		charge -= charge_cost
-		to_chat(user, "<span class='notice'>[release_message].</span>")
+		to_chat(user, span_notice("[release_message]."))
 		release_charge(target, user)
 		activated = FALSE
 
@@ -57,7 +57,7 @@
 		return FALSE
 	if(charge>=charge_cost)
 		charge -= charge_cost
-		to_chat(user, "<span class='notice'>[release_message].</span>")
+		to_chat(user, span_notice("[release_message]."))
 		release_charge(user)
 	else
-		to_chat(user, "<span class='notice'>You don't have enough charge.</span>")
+		to_chat(user, span_notice("You don't have enough charge."))

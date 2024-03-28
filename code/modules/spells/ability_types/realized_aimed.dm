@@ -14,8 +14,21 @@
 	var/turf/target_turf = get_turf(user)
 	var/list/line_turfs = list(target_turf)
 	var/list/mobs_to_hit = list()
+	var/stop_charge = FALSE
 	for(var/turf/T in getline(user, get_ranged_target_turf_direct(user, target, dash_range)))
 		if(!dash_ignore_walls && T.density)
+			break
+		if(!dash_ignore_walls)
+			for(var/obj/structure/window/W in T.contents)
+				stop_charge = TRUE
+				break
+			for(var/obj/machinery/door/MD in T.contents)
+				if(!MD.CanAStarPass(null))
+					stop_charge = TRUE
+					break
+				if(MD.density)
+					INVOKE_ASYNC(MD, TYPE_PROC_REF(/obj/machinery/door, open), 2)
+		if(stop_charge)
 			break
 		target_turf = T
 		line_turfs += T
@@ -35,9 +48,6 @@
 		D.alpha = min(150 + i*15, 255)
 		animate(D, alpha = 0, time = 2 + i*2)
 		playsound(D, "sound/abnormalities/helper/move0[pick(1,2,3)].ogg", rand(10, 30), 1, 3)
-		for(var/obj/machinery/door/MD in T.contents)
-			if(MD.density)
-				addtimer(CALLBACK (MD, .obj/machinery/door/proc/open))
 	// Damage
 	for(var/mob/living/L in mobs_to_hit)
 		if(user.faction_check_mob(L))
@@ -68,7 +78,7 @@
 		return
 	var/turf/target_turf = get_turf(target)
 	new /obj/effect/temp_visual/cross/fall(target_turf)
-	addtimer(CALLBACK(src, .proc/SplashEffect, target_turf, user), 5.5)
+	addtimer(CALLBACK(src, PROC_REF(SplashEffect), target_turf, user), 5.5)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/cross_spawn/proc/SplashEffect(turf/T, mob/user)
@@ -116,7 +126,7 @@
 		RP.xo = target_turf.x - T.x
 		RP.original = target_turf
 		RP.preparePixelProjectile(target_turf, T)
-		addtimer(CALLBACK (RP, .obj/projectile/proc/fire), 3)
+		addtimer(CALLBACK (RP, TYPE_PROC_REF(/obj/projectile, fire)), 3)
 	sleep(3)
 	playsound(target_turf, 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 	return ..()
@@ -168,7 +178,7 @@
 
 /obj/effect/proc_holder/ability/aimed/arcana_slave/Perform(target, user)
 	var/turf/t_turf = get_turf(target)
-	INVOKE_ASYNC(src, .proc/Cast, t_turf, user)
+	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/arcana_slave/proc/Cast(turf/target, mob/user)
@@ -200,11 +210,11 @@
 		S.transform = M
 		if(speak)
 			if(custom_speech.len <= 0)
-				addtimer(CALLBACK(H, .atom/movable/proc/say, default_speech[i*2 - 1]))
-				addtimer(CALLBACK(H, .atom/movable/proc/say, default_speech[i*2]), 10)
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), default_speech[i*2]), 10)
 			else
-				addtimer(CALLBACK(H, .atom/movable/proc/say, custom_speech[i*2 - 1]))
-				addtimer(CALLBACK(H, .atom/movable/proc/say, custom_speech[i*2]), 10)
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2 - 1]))
+				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2]), 10)
 		if(!Channel(H, 20))
 			CleanUp(user)
 			return
@@ -221,7 +231,7 @@
 	justice++
 	beam_damage *= justice
 	if(speak)
-		addtimer(CALLBACK(H, .atom/movable/proc/say, "ARCANA SLAVE!"))
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	for(var/o = 1 to 50) // Half duration but gets Justice Mod
 		var/list/already_hit = list()
 		if(accumulated_beam_damage >= 150 && beam_stage < 2)
@@ -390,7 +400,7 @@
 	. = ..()
 	QDEL_IN(src, (30 SECONDS))
 	for(var/i = 1 to 10)
-		addtimer(CALLBACK(src, .proc/SplashEffect), i * 3 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 3 SECONDS)
 
 /mob/living/simple_animal/cocoonability/proc/SplashEffect()
 	for(var/turf/T in view(damage_range, src))
@@ -440,7 +450,7 @@
 	. = ..()
 	QDEL_IN(src, (20 SECONDS))
 	for(var/i = 1 to 10)
-		addtimer(CALLBACK(src, .proc/SplashEffect), i * 2 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 2 SECONDS)
 
 /obj/projectile/black_hole_realized/proc/SplashEffect()
 	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
@@ -465,7 +475,7 @@
 
 /obj/effect/proc_holder/ability/aimed/yin_laser/Perform(target, user)
 	var/turf/t_turf = get_turf(target)
-	INVOKE_ASYNC(src, .proc/Cast, t_turf, user)
+	INVOKE_ASYNC(src, PROC_REF(Cast), t_turf, user)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/yin_laser/proc/Cast(turf/target, mob/living/carbon/human/user)
@@ -581,7 +591,7 @@
 	var/obj/effect/temp_visual/house/F = new(target_turf)
 	animate(F, pixel_z = 0, alpha = 255, time = 1 SECONDS)
 	playsound(user, 'sound/abnormalities/roadhome/House_MakeRoad.ogg', 50, FALSE, 8)
-	addtimer(CALLBACK(src, .proc/HouseSlam, target_turf, user), 1 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(HouseSlam), target_turf, user), 1 SECONDS)
 	return ..()
 
 /obj/effect/proc_holder/ability/aimed/house_spawn/proc/HouseSlam(turf/T, mob/user)

@@ -10,18 +10,18 @@
 	threat_level = WAW_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 55, 55, 60),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 45, 50),
-						ABNORMALITY_WORK_ATTACHMENT = 0,						//DO NOT FUCK THE BEEGIRL
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 55, 55, 60),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 45, 45, 50),
+		ABNORMALITY_WORK_ATTACHMENT = 0,						//DO NOT FUCK THE BEEGIRL
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/loyalty,
 		/datum/ego_datum/weapon/praetorian,
-		/datum/ego_datum/armor/loyalty
-		)
+		/datum/ego_datum/armor/loyalty,
+	)
 	gift_type =  /datum/ego_gifts/loyalty
 	loot = list(/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian) // Don't think it was dropping before, this should make it do so
 	//She doesn't usually breach. However, when she does, she's practically an Aleph-level threat. She's also really slow, and should pack a punch.
@@ -34,7 +34,7 @@
 	stat_attack = HARD_CRIT
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/queen_bee = 5
+		/mob/living/simple_animal/hostile/abnormality/queen_bee = 5,
 	)
 	//She has a Quad Artillery Cannon
 
@@ -64,7 +64,7 @@
 	for(var/mob/living/simple_animal/hostile/artillery_bee/artillerbee in GLOB.mob_living_list)
 		artillerbee_count++
 	if(artillerbee_count < 4)
-		spawn_bees()
+		SpawnBees()
 	datum_reference.qliphoth_change(1)
 	return
 
@@ -102,6 +102,42 @@
 /mob/living/simple_animal/hostile/abnormality/general_b/PostSpawn()
 	..()
 	update_icon()
+/*
+* General Bee Breach Sequence
+* General Bee blurbs then puts her icon file to 48x96 before flicking her breach animation.
+* Sleeps for 8 seconds so that her animation ends. Then she picks a department.
+* Moves to the department, lists herself as true_breached, and spawns minions.
+* Root code is called so that she is taken out of godmode. Then update_icon() is called.
+*/
+/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(breach_type != BREACH_PINK)
+		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "My queen? I hear your cries...", 25))
+		icon = 'ModularTegustation/Teguicons/48x96.dmi'
+		flick("generalbee_", src)
+		SLEEP_CHECK_DEATH(80)
+	else
+		//This is placed here so that her soldiers know its a party.
+		faction += "pink_midnight"
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+	//Call root code but with normal breach
+	. = ..(null, BREACH_NORMAL)
+	true_breached = TRUE
+	var/turf/orgin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(2, orgin)
+	SpawnMinions(all_turfs, TRUE)
+	datum_reference.qliphoth_change(-1)
+	update_icon()
+
+/mob/living/simple_animal/hostile/abnormality/general_b/proc/SpawnMinions(list/spawn_turfs, copy_faction = FALSE)
+	var/mob/living/simple_animal/spawn_minion
+	for(var/turf/Y in spawn_turfs)
+		if(prob(60))
+			spawn_minion = new /mob/living/simple_animal/hostile/soldier_bee(Y)
+		else if(prob(20))
+			spawn_minion = new /mob/living/simple_animal/hostile/artillery_bee(Y)
+		if(spawn_minion && copy_faction)
+			spawn_minion.faction = faction.Copy()
 
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
@@ -116,32 +152,15 @@
 		if(L.stat == DEAD)
 			continue
 		targets += L
+	if(!targets)
+		return
 	new /obj/effect/beeshell(get_turf(pick(targets)), faction)
 	volley_count+=1
 	if(volley_count>=4)
 		volley_count=0
 		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
 
-/mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/show_global_blurb, 5 SECONDS, "My queen? I hear your cries...", 25))
-	icon = 'ModularTegustation/Teguicons/48x96.dmi'
-	flick("generalbee_", src)
-	SLEEP_CHECK_DEATH(80)
-	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
-	update_icon()
-	true_breached = TRUE
-	var/turf/orgin = get_turf(src)
-	var/list/all_turfs = RANGE_TURFS(2, orgin)
-	for(var/turf/Y in all_turfs)
-		if(prob(60))
-			new /mob/living/simple_animal/hostile/soldier_bee(Y)
-		else if(prob(20))
-			new /mob/living/simple_animal/hostile/artillery_bee(Y)
-	. = ..()
-	datum_reference.qliphoth_change(-1)
-
-/mob/living/simple_animal/hostile/abnormality/general_b/proc/spawn_bees()
+/mob/living/simple_animal/hostile/abnormality/general_b/proc/SpawnBees()
 	var/X = pick(GLOB.xeno_spawn)
 	var/turf/T = get_turf(X)
 	new /mob/living/simple_animal/hostile/artillery_bee(T)
@@ -240,7 +259,7 @@
 
 /obj/effect/beeshell/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 3.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 3.5 SECONDS)
 
 /obj/effect/beeshell/New(loc, ...)
 	. = ..()

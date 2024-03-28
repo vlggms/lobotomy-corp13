@@ -4,6 +4,7 @@
 	desc = "A ham radio resting on a table."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "radio"
+	portrait = "khz"
 	maxHealth = 400
 	health = 400
 	threat_level = HE_LEVEL
@@ -13,21 +14,21 @@
 		ABNORMALITY_WORK_ATTACHMENT = 40,
 		ABNORMALITY_WORK_REPRESSION = 40,
 		"Input One" = 0,		//These should never be used, but it's here for brevity
-		"Input Zero" = 0
+		"Input Zero" = 0,
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/transmission,
-		/datum/ego_datum/armor/transmission
+		/datum/ego_datum/armor/transmission,
 	)
 	gift_type = /datum/ego_gifts/transmission
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/quiet_day = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/army = 1.5
+		/mob/living/simple_animal/hostile/abnormality/army = 1.5,
 	)
 
 	var/input
@@ -134,7 +135,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/active()
 	icon_state = "radio-on"
-	addtimer(CALLBACK(src, .proc/deactive), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(deactive)), 3 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/khz/proc/deactive()
 	icon_state = "radio"

@@ -18,11 +18,11 @@
 	move_resist = MOVE_FORCE_NORMAL + 1 //Can't be pulled by humans, but can be pulled by shepherd this might have other unforeseen consequences
 	threat_level = HE_LEVEL
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 30, 35, 35, 35),
-						ABNORMALITY_WORK_INSIGHT = list(0, 20, 40, 40, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(20, 55, 60, 60, 60),
-						ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 30, 35, 35, 35),
+		ABNORMALITY_WORK_INSIGHT = list(0, 20, 40, 40, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(20, 55, 60, 60, 60),
+		ABNORMALITY_WORK_REPRESSION = list(20, 55, 60, 60, 60),
+	)
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.5)
 	melee_damage_lower = 35
 	melee_damage_upper = 70 //has a wide range, he can critically hit you
@@ -40,13 +40,13 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/totalitarianism,
-		/datum/ego_datum/armor/totalitarianism
-		)
+		/datum/ego_datum/armor/totalitarianism,
+	)
 	gift_type = /datum/ego_gifts/totalitarianism
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/blue_shepherd = 5
+		/mob/living/simple_animal/hostile/abnormality/blue_shepherd = 5,
 	)
 
 	///The blue smocked shepherd linked to red buddy
@@ -72,13 +72,15 @@
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/Initialize()
 	. = ..()
+	if(IsCombatMap())
+		faction |= "hostile"
 	if(LAZYLEN(SSlobotomy_corp.all_abnormality_datums))
 		for(var/datum/abnormality/A in SSlobotomy_corp.all_abnormality_datums)
 			if(A.name == "Blue Smocked Shepherd")
 				master = A
 				return
 	if(!master)
-		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, .proc/OnAbnoSpawn) //if shepherd isn't here yet, buddy will wait for him like a good dog
+		RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_SPAWN, PROC_REF(OnAbnoSpawn)) //if shepherd isn't here yet, buddy will wait for him like a good dog
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/OnAbnoSpawn(datum/source, datum/abnormality/abno)
 	SIGNAL_HANDLER
@@ -202,7 +204,7 @@
 		master.qliphoth_change(-1) //shepherd doesn't breach instantly but it's only a matter of time
 	playsound(src, 'sound/abnormalities/redbuddy/redbuddy_howl.ogg', 100, FALSE, 8)
 	for(var/i = 1 to 4)
-		addtimer(CALLBACK(src, .proc/AwooDamage, abused), 1 SECONDS * (i))
+		addtimer(CALLBACK(src, PROC_REF(AwooDamage), abused), 1 SECONDS * (i))
 
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/AwooDamage(abused = FALSE)
 	var/heard_awoo = FALSE //red buddy is only hurt by his howl if someone hears it

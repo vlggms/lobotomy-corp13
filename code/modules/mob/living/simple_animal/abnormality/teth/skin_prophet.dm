@@ -3,6 +3,7 @@
 	desc = "A little fleshy being reading a tiny book."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "skin_prophet"
+	portrait = "skin_prophet"
 	maxHealth = 600
 	health = 600
 	threat_level = TETH_LEVEL
@@ -10,18 +11,23 @@
 		ABNORMALITY_WORK_INSTINCT = list(70, 60, 50, 50, 40),
 		ABNORMALITY_WORK_INSIGHT = list(70, 60, 50, 50, 40),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = 0
-			)
+		ABNORMALITY_WORK_REPRESSION = 0,
+	)
 	work_damage_amount = 6	//Gets more later
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/visions,
-		/datum/ego_datum/armor/visions
-		)
+		/datum/ego_datum/armor/visions,
+	)
 	gift_type = /datum/ego_gifts/visions
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
-	var/list/speak_list = list("!@)(!@&)&*%(%@!@#*(#)*(%&!@#$", "@$*@)$?", "@#$!!@#*!", "@*()!%&$(^!!!!@&(@)")
+	var/list/speak_list = list(
+		"!@)(!@&)&*%(%@!@#*(#)*(%&!@#$",
+		"@$*@)$?",
+		"@#$!!@#*!",
+		"@*()!%&$(^!!!!@&(@)",
+	)
 	var/candles = 0
 
 /mob/living/simple_animal/hostile/abnormality/skin_prophet/WorkChance(mob/living/carbon/human/user, chance)

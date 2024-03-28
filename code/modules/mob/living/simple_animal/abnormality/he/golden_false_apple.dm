@@ -7,13 +7,14 @@
 	icon_state = "gold_inert"
 	icon_living = "gold_inert"
 	icon_dead = "gold_cracked"
+	portrait = "golden_apple"
 	var/list/golden_apple_lines = list(
 		"I didn't want to die.",
 		"None of us wanted to die.",
 		"......",
 		"What else am I supposed to do? Is it wrong that I survived?",
-		"Nhh... Aah."
-		)
+		"Nhh... Aah.",
+	)
 	pixel_x = -8
 	base_pixel_x = -8
 	pixel_y = 0
@@ -45,28 +46,26 @@
 		ABNORMALITY_WORK_INSTINCT = list(55, 55, 40, 45, 50),
 		ABNORMALITY_WORK_INSIGHT = list(60, 60, 45, 45, 50),
 		ABNORMALITY_WORK_ATTACHMENT = 0,
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 15, 30, 45)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 15, 30, 45),
+	)
 	work_damage_amount = 12//decently high due to mechanics
 	work_damage_type = RED_DAMAGE
 	max_boxes = 18
 
 	ego_list = list(
 		/datum/ego_datum/weapon/legerdemain,
-		/datum/ego_datum/armor/legerdemain
-		)
+		/datum/ego_datum/armor/legerdemain,
+	)
 	gift_type = /datum/ego_gifts/legerdemain
 	gift_message = "You feel a sense of kinship with the apple. Because you're both pests."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/snow_whites_apple = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5
+		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5,
 	)
 
-	attack_action_types = list(
-		/datum/action/cooldown/gapple_pulse
-		)
+	attack_action_types = list(/datum/action/cooldown/gapple_pulse)
 	var/datum/action/innate/abnormality_attack/maggot_spread/maggot_attack
 	var/datum/action/innate/abnormality_attack/maggot_spread2/maggot_attack2
 
@@ -98,14 +97,14 @@
 	name = "Slam"
 	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	button_icon_state = "maggots_noBG"
-	chosen_message = "<span class='colossus'>You will now spread maggots within a wide vicinity.</span>"
+	chosen_message = span_colossus("You will now spread maggots within a wide vicinity.")
 	chosen_attack_num = 1
 
 /datum/action/innate/abnormality_attack/maggot_spread2
 	name = "Lunge"
 	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	button_icon_state = "maggots_noBG"
-	chosen_message = "<span class='colossus'>You will now spread maggots within a narrow vicinity.</span>"
+	chosen_message = span_colossus("You will now spread maggots within a narrow vicinity.")
 	chosen_attack_num = 2
 
 /datum/action/cooldown/gapple_pulse/Trigger()
@@ -232,7 +231,7 @@
 		return
 	if(!is_maggot)
 		playsound(src, 'sound/abnormalities/goldenapple/Gold_Attack.ogg', 100, 1)
-		addtimer(CALLBACK(src, .proc/EatEmployees), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(EatEmployees)), 15 SECONDS)
 		return ..()
 	density = FALSE
 	for(var/atom/movable/AM in src) //morph code
@@ -320,11 +319,11 @@
 					L.forceMove(src)
 					last_target = TRUE
 					target_hit = TRUE
-					addtimer(CALLBACK(src, .proc/DigestPerson, L), 5 SECONDS)
+					addtimer(CALLBACK(src, PROC_REF(DigestPerson), L), 5 SECONDS)
 				else
 					L.gib(TRUE, TRUE, TRUE)
 		if (!target_hit)
-			addtimer(CALLBACK(src, .proc/BecomeRotten), 5 SECONDS)//if nobody got killed
+			addtimer(CALLBACK(src, PROC_REF(BecomeRotten)), 5 SECONDS)//if nobody got killed
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/proc/DigestPerson(mob/living/carbon/human/H)//berserk mode
@@ -450,8 +449,8 @@
 		owner.adjustBruteLoss(stacks * -5)
 		return
 	owner.adjustBruteLoss(stacks * -0.5)
-	var/mob/living/carbon/human/H = owner
-	H.adjustSanityLoss(stacks * -0.5)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjustSanityLoss(stacks * -0.5)
 
 /obj/item/glow_object
 	name = "golden apple core"
@@ -480,21 +479,26 @@
 	icon_state = "maggots"
 
 /datum/status_effect/stacking/maggots/on_apply()
-	to_chat(owner, "<span class='warning'>You're covered in squirming maggots!</span>")
+	to_chat(owner, span_warning("You're covered in squirming maggots!"))
 	return ..()
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
-	var/mob/living/carbon/human/H = owner
-	H.apply_damage(stacks * 1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
-	if(H.stat >= HARD_CRIT)
-		var/obj/structure/spider/cocoon/casing = new(H.loc)
-		H.forceMove(casing)
-		casing.name = "pile of maggots"
-		casing.desc = "They're wriggling and writhing over something."
-		casing.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
-		casing.density = FALSE
-		casing.color = "#01F9C6"
-		qdel(src)
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE))
+	if(status_holder.stat < HARD_CRIT)
+		return
+	var/obj/structure/spider/cocoon/casing = new(status_holder.loc)
+	status_holder.forceMove(casing)
+	casing.name = "pile of maggots"
+	casing.desc = "They're wriggling and writhing over something."
+	casing.icon_state = pick(
+		"cocoon_large1",
+		"cocoon_large2",
+		"cocoon_large3",
+	)
+	casing.density = FALSE
+	casing.color = "#01F9C6"
+	qdel(src)
 
 /obj/item/food/grown/apple/gold/abnormality
 	food_reagents = list(/datum/reagent/abnormality/ambrosia = 10)
@@ -514,12 +518,12 @@
 	if(L.has_status_effect(/datum/status_effect/stacking/golden_sheen))//this fixes a runtime
 		return
 	L.apply_status_effect(STATUS_EFFECT_GOLDENSHEEN)
-	to_chat(L, "<span class='nicegreen'>Your body glows warmly.</span>")
+	to_chat(L, span_nicegreen("Your body glows warmly."))
 
 /datum/reagent/abnormality/ambrosia/on_mob_life(mob/living/L)
 	var/datum/status_effect/stacking/golden_sheen/G = L.has_status_effect(/datum/status_effect/stacking/golden_sheen)
 	if(prob(10))
-		to_chat(L, "<span class='nicegreen'>Your glow shimmers!</span>")
+		to_chat(L, span_nicegreen("Your glow shimmers!"))
 		G.add_stacks(1)
 		G.refresh()
 	return ..()

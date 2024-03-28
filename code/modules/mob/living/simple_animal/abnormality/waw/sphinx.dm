@@ -32,15 +32,15 @@
 		ABNORMALITY_WORK_ATTACHMENT = 0,
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 25, 30, 30),
 		"Riddle" = 0,		//These should never be used, but they're here for clarity.
-		"Make Offering" = 0
+		"Make Offering" = 0,
 	)
 	work_damage_amount = 12
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/pharaoh,
-		/datum/ego_datum/armor/pharaoh
-		)
+		/datum/ego_datum/armor/pharaoh,
+	)
 	gift_type =  /datum/ego_gifts/pharaoh
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -51,15 +51,27 @@
 	var/work_cooldown_time = 3 SECONDS
 	var/list/worked = list()
 	var/list/satisfied = list(
-				"Ipi etog sind lemanto.", "Lemantinco kom geng kaskihir etog!") //you mind big human || (Human-honor) show has (not-lazy) mind
+		"Ipi etog sind lemanto.", //You mind big human
+		"Lemantinco kom geng kaskihir etog!", //(Human-honor) show has (not-lazy) mind
+	)
 	var/list/angry = list(
-				"Mi cadu cef ipi por sagmo!","Mi thran lemantolly quistramos!" )//I king threat you beggar begone || I angry stupid man (body-coin)
+		"Mi cadu cef ipi por sagmo!", //I king threat you beggar begone
+		"Mi thran lemantolly quistramos!", //I angry stupid man (body-coin)
+	)
 	var/list/translate = list(
-				"Ipi etog geng quir.", "Ipi inspuz geng quir.") //you mind paper translate || you quest paper translate
+		"Ipi etog geng quir.", //You mind paper translate
+		"Ipi inspuz geng quir.", //You quest paper translate
+	)
 	var/list/riddleloot = list(
-				/obj/item/golden_needle, /obj/item/canopic_jar)
+		/obj/item/golden_needle,
+		/obj/item/canopic_jar,
+	)
 	var/list/demandlist = list(
-				/obj/item/clothing/suit/armor/ego_gear, /obj/item/ego_weapon, /obj/item/reagent_containers/food/drinks, /obj/item/food)
+		/obj/item/clothing/suit/armor/ego_gear,
+		/obj/item/ego_weapon,
+		/obj/item/reagent_containers/food/drinks,
+		/obj/item/food,
+	)
 
 	//breach
 	var/can_act = TRUE
@@ -298,7 +310,7 @@
 	var/mob/living/carbon/human/H = target
 	if(!(H.has_movespeed_modifier(/datum/movespeed_modifier/petrify_partial)))
 		H.add_movespeed_modifier(/datum/movespeed_modifier/petrify_partial)
-		addtimer(CALLBACK(H, .mob/proc/remove_movespeed_modifier, /datum/movespeed_modifier/petrify_partial), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/petrify_partial), 3 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 		to_chat(H, span_warning("Your whole body feels heavy..."))
 		playsound(get_turf(H), 'sound/abnormalities/sphinx/petrify.ogg', 50, 0, 5)
 	else
@@ -310,12 +322,12 @@
 
 /datum/ai_behavior/say_line/insanity_sphinx
 	lines = list(
-				"Utast tom tai beos... Utast tom esm cadu!",
-				"TAI ARKUR AGAL TOM LUVRI!!!",
-				"Mi tai hur... Mi tai hur... Mi tai hur... Mi tai hur...",
-				"Mies geng thran utast lemantomos!",
-				"Ipi manba geng mosleti atan brit utast!"
-				)
+		"Utast tom tai beos... Utast tom esm cadu!",
+		"TAI ARKUR AGAL TOM LUVRI!!!",
+		"Mi tai hur... Mi tai hur... Mi tai hur... Mi tai hur...",
+		"Mies geng thran utast lemantomos!",
+		"Ipi manba geng mosleti atan brit utast!",
+	)
 
 // Objects - Items
 /obj/item/golden_needle

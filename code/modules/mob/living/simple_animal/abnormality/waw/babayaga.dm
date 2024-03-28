@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "babayaga"
 	icon_living = "babayaga"
+	portrait = "baba_yaga"
 	var/icon_aggro = "babayaga_breach"
 	faction = list("hostile", "babayaga")
 	speak_emote = list("intones")
@@ -21,17 +22,17 @@
 	can_breach = TRUE
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 50),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 45, 45, 50),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 55, 55, 60),
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 40, 40, 40),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/rimeshank,
-		/datum/ego_datum/armor/rimeshank
-		)
+		/datum/ego_datum/armor/rimeshank,
+	)
 	gift_type =  /datum/ego_gifts/rimeshank
 
 	var/jump_cooldown = 0
@@ -66,7 +67,7 @@
 		if(client)
 			return
 		if(jump_cooldown <= world.time)
-			INVOKE_ASYNC(src, .proc/TryJump)
+			INVOKE_ASYNC(src, PROC_REF(TryJump))
 		return
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/BreachEffect(mob/living/carbon/human/user, breach_type)//copied my code from crumbling armor
@@ -252,7 +253,7 @@
 /datum/status_effect/babayaga
 	id = "babayaga"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 50		//Lasts 5 seconds
+	duration = 5 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/babayaga
 
 /atom/movable/screen/alert/status_effect/babayaga

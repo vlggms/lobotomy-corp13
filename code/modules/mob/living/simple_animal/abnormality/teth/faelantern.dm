@@ -6,6 +6,7 @@
 	icon_state = "faelantern"
 	icon_living = "faelantern_fairy"
 	icon_dead = "faelantern_egg"
+	portrait = "faelantern"
 	maxHealth = 1200
 	health = 1200
 	base_pixel_x = -16
@@ -15,8 +16,8 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = list(45, 45, 50, 55, 55),
 		ABNORMALITY_WORK_ATTACHMENT = 60,
-		ABNORMALITY_WORK_REPRESSION = 45
-			)
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 2)
 	can_patrol = FALSE
 	can_breach = TRUE
@@ -30,8 +31,8 @@
 	max_boxes = 12
 	ego_list = list(
 		/datum/ego_datum/weapon/faelantern,
-		/datum/ego_datum/armor/faelantern
-		)
+		/datum/ego_datum/armor/faelantern,
+	)
 
 	gift_type = /datum/ego_gifts/faelantern
 	gift_message = "The fairy extends an olive branch towards you."
@@ -83,7 +84,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	INVOKE_ASYNC(src, .proc/BreachDig)
+	INVOKE_ASYNC(src, PROC_REF(BreachDig))
 	return
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/OpenFire()
@@ -175,7 +176,7 @@
 		victim.ai_controller = /datum/ai_controller/insane/faelantern
 		victim.InitializeAIController()
 		victim.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_lure", -HALO_LAYER))
-		addtimer(CALLBACK(src,.proc/EndEnchant, victim), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+		addtimer(CALLBACK(src, PROC_REF(EndEnchant), victim), 20 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	can_act = TRUE
 
@@ -196,7 +197,7 @@
 		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "fairy_lure", -HALO_LAYER))
 		if(istype(victim.ai_controller,/datum/ai_controller/insane/faelantern))
 			if(!stunned)
-				to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
+				to_chat(victim, span_boldwarning("You snap out of your trance!"))
 			qdel(victim.ai_controller)
 
 	//Effects
@@ -221,7 +222,7 @@
 
 /obj/effect/root/faelantern/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/root/faelantern/proc/explode() //repurposed code from artillary bees, a delayed attack
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 0, 8)
@@ -246,10 +247,10 @@
 
 /datum/ai_behavior/say_line/insanity_faelantern
 	lines = list(
-				"Please, wait for me...",
-				"Okay, I'm coming.",
-				"Just a moment please."
-				)
+		"Please, wait for me...",
+		"Okay, I'm coming.",
+		"Just a moment please.",
+	)
 
 /datum/ai_controller/insane/faelantern/SelectBehaviors(delta_time)
 	..()
@@ -289,7 +290,7 @@
 		return
 
 	if(!LAZYLEN(controller.current_path))
-		controller.current_path = get_path_to(living_pawn, target, /turf/proc/Distance_cardinal, 0, 80)
+		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
 		if(!controller.current_path.len) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
@@ -322,7 +323,7 @@
 				else
 					controller.pathing_attempts++
 			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
-			addtimer(CALLBACK(src, .proc/Movement, controller), move_delay)
+			addtimer(CALLBACK(src, PROC_REF(Movement), controller), move_delay)
 			return TRUE
 	finish_action(controller, FALSE)
 	return FALSE
@@ -353,14 +354,16 @@
 
 /datum/status_effect/fairy_lure/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.red_mod *= 5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 5
 
 /datum/status_effect/fairy_lure/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
-		H.physiology.red_mod /= 5
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 5
 
 #undef STATUS_EFFECT_FAIRYLURE

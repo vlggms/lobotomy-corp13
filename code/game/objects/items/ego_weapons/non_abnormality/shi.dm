@@ -13,11 +13,11 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 60
-							)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 60
+	)
 	var/force_update = 44
 	var/static/suicide_used = list()
 
@@ -25,11 +25,11 @@
 	force = force_update
 	if(target == user)
 		if(user.ckey in suicide_used)
-			to_chat(user, "<span class='warning'>To suicide once more would bring dishonor to your name.</span>")
+			to_chat(user, span_warning("To suicide once more would bring dishonor to your name."))
 			return
 		user.death()
 		for(var/mob/M in GLOB.player_list)
-			to_chat(M, "<span class='userdanger'>[uppertext(user.real_name)] has gone out with honor. 灰から灰へ</span>")
+			to_chat(M, span_userdanger("[uppertext(user.real_name)] has gone out with honor. 灰から灰へ"))
 		new /obj/effect/temp_visual/BoD(get_turf(target))
 		suicide_used |= user.ckey
 	if(!CanUseEgo(user))
@@ -69,17 +69,17 @@
 		return
 	ready = FALSE
 	user.Immobilize(17)
-	to_chat(user, "<span class='userdanger'>Draw.</span>")
+	to_chat(user, span_userdanger("Draw."))
 	force*=multiplier
 	damtype = PALE_DAMAGE
 	user.adjustBruteLoss(user.maxHealth*0.25)
 
-	addtimer(CALLBACK(src, .proc/Return, user), 5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 SECONDS)
 
 /obj/item/ego_weapon/city/shi_assassin/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(force != initial(force))
-		to_chat(user, "<span class='userdanger'>Boundary of Death.</span>")
+		to_chat(user, span_userdanger("Boundary of Death."))
 		new /obj/effect/temp_visual/BoD(get_turf(target))
 		force = initial(force)
 	damtype = initial(damtype)
@@ -87,7 +87,7 @@
 /obj/item/ego_weapon/city/shi_assassin/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
-	to_chat(user, "<span class='notice'>Your blade is ready.</span>")
+	to_chat(user, span_notice("Your blade is ready."))
 	damtype = initial(damtype)
 
 /obj/effect/temp_visual/BoD

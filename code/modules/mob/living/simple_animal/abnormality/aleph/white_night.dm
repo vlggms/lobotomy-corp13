@@ -28,11 +28,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	fear_level = ALEPH_LEVEL + 1
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
-						ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
-						ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45)
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 30, 40),
+		ABNORMALITY_WORK_ATTACHMENT = list(30, 30, 35, 40, 45),
+		ABNORMALITY_WORK_REPRESSION = list(30, 30, 35, 40, 45),
+	)
 	work_damage_amount = 14
 	work_damage_type = PALE_DAMAGE
 	can_patrol = FALSE
@@ -43,13 +43,13 @@ GLOBAL_LIST_EMPTY(apostles)
 	light_power = 3
 
 	ego_list = list(
-		/datum/ego_datum/armor/paradise
-		)
+		/datum/ego_datum/armor/paradise,
+	)
 	gift_type =  /datum/ego_gifts/paradise
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	grouped_abnos = list(
-		/mob/living/simple_animal/hostile/abnormality/onesin = 5
+		/mob/living/simple_animal/hostile/abnormality/onesin = 5,
 	)
 
 	var/holy_revival_cooldown
@@ -70,7 +70,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		"2" = list("GODDAMN IT!!!!", "H-Help...", "I don't want to die!"),
 		"3" = list("What am I seeing...?", "I-I can't take it...", "I can't understand..."),
 		"4" = list("So this is God...", "My existence is meaningless...", "We are petty beings..."),
-		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe...")
+		"5" = list("Please, mercy...", "Grant us salvation...", "Let us witness in awe..."),
 		)
 	return pick(result_text_list[level])
 
@@ -129,7 +129,7 @@ GLOBAL_LIST_EMPTY(apostles)
 				S.color = "#AAFFAA" // Indicating that it's a good thing
 			for(var/mob/living/L in T)
 				new /obj/effect/temp_visual/dir_setting/cult/phase(T, L.dir)
-				addtimer(CALLBACK(src, .proc/revive_target, L, i, faction_check))
+				addtimer(CALLBACK(src, PROC_REF(revive_target), L, i, faction_check))
 		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_target(mob/living/L, attack_range = 1, faction_check = "apostle")
@@ -196,7 +196,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(prob(66))
 		datum_reference.qliphoth_change(1)
 		if(prob(66)) // Rare effect, mmmm
-			INVOKE_ASYNC(src, .proc/revive_humans, 48, "neutral") // Big heal
+			INVOKE_ASYNC(src, PROC_REF(revive_humans), 48, "neutral") // Big heal
 	return
 
 /mob/living/simple_animal/hostile/abnormality/white_night/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -218,7 +218,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		forceMove(T)
 	SpawnApostles()
 	particles = new /particles/white_night()
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/sound_to_playing_players, 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(sound_to_playing_players), 'sound/abnormalities/whitenight/rapture2.ogg', 50), 10 SECONDS)
 	return
 
 /* Apostles */
@@ -358,7 +358,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(!istype(WN))
 		return
 	var/turf/target_turf = pick(RANGE_TURFS(2, WN))
-	patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+	patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/apostle_growl.ogg', 75, FALSE)
 	TemporarySpeedChange(-4, 5 SECONDS) // OUT OF MY WAY
 
@@ -452,7 +452,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		W.obj_destruction("holy spear")
 	for(var/obj/machinery/door/D in T.contents)
 		if(D.density)
-			addtimer(CALLBACK (D, .obj/machinery/door/proc/open))
+			addtimer(CALLBACK (D, TYPE_PROC_REF(/obj/machinery/door, open)))
 	if(stop_charge)
 		can_act = TRUE
 		return
@@ -464,7 +464,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		for(var/mob/living/L in new_hits)
 			visible_message(span_boldwarning("[src] runs through [L]!"), span_nicegreen("You impaled heretic [L]!"))
 			new /obj/effect/temp_visual/cleave(get_turf(L))
-	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 0.5) // SPEED
+	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 0.5) // SPEED
 
 /mob/living/simple_animal/hostile/apostle/staff
 	name = "staff apostle"
@@ -532,7 +532,7 @@ GLOBAL_LIST_EMPTY(apostles)
 		can_act = TRUE
 		return FALSE
 	for(var/turf/TT in chosen_turfs)
-		addtimer(CALLBACK(src, .proc/HolyBeam, TT))
+		addtimer(CALLBACK(src, PROC_REF(HolyBeam), TT))
 	playsound(get_turf(src), 'sound/abnormalities/whitenight/staff_prepare.ogg', 75, 0, 7)
 	SLEEP_CHECK_DEATH(2.5 SECONDS)
 	beamloop.start()

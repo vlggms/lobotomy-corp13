@@ -5,6 +5,7 @@
 	icon_state = "wayward"
 	icon_living = "wayward_breach"
 	icon_dead = "wayward_dead"
+	portrait = "wayward_passenger"
 	del_on_death = FALSE
 	maxHealth = 1200
 	health = 1200
@@ -25,11 +26,11 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 1
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 55, 60),
-						ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 40, 40),
-						ABNORMALITY_WORK_ATTACHMENT = 30,
-						ABNORMALITY_WORK_REPRESSION = list(55, 60, 60, 60, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 55, 60),
+		ABNORMALITY_WORK_INSIGHT = list(40, 30, 20, 40, 40),
+		ABNORMALITY_WORK_ATTACHMENT = 30,
+		ABNORMALITY_WORK_REPRESSION = list(55, 60, 60, 60, 55),
+	)
 	work_damage_amount = 11
 	work_damage_type = RED_DAMAGE
 	fear_level = WAW_LEVEL
@@ -40,16 +41,16 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/warp,
 		/datum/ego_datum/weapon/warp/spear,
-		/datum/ego_datum/armor/warp
-		)
+		/datum/ego_datum/armor/warp,
+	)
 	gift_type =  /datum/ego_gifts/warp
 	gift_message = "This lighter is branded with a certain company logo."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/wayward_tele,
-		/datum/action/innate/abnormality_attack/wayward_dash
-		)
+		/datum/action/innate/abnormality_attack/wayward_dash,
+	)
 
 	//teleport vars
 	var/teleport_cooldown
@@ -105,7 +106,7 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				if(!LAZYLEN(get_path_to(src,target, /turf/proc/Distance, 0, 30)))
+				if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 30)))
 					to_chat(src, span_notice("Invalid target."))
 					return
 				TryTeleport(get_turf(target))
@@ -135,8 +136,8 @@
 		"-1" = list("I've got this.", "How boring.", "Doesn't even phase me."),
 		"0" = list("Just calm down, do what we always do.", "Just don't lose your head and stick to the manual.", "Focus...", "Just call the squire... wait, what?", "I've seen that logo somewhere..."),
 		"3" = list("Why do I feel so angry?", "Help me...", "I don't want to die!", "Why does this look familiar?"),
-		"4" = list("Is that... from a wing?!", "No... it can't be...", "WHAT IS THAT THING?!")
-		)
+		"4" = list("Is that... from a wing?!", "No... it can't be...", "WHAT IS THAT THING?!"),
+	)
 	return pick(result_text_list[level])
 
 //*** Breach mechanics ***
@@ -207,7 +208,7 @@
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
-	addtimer(CALLBACK(src, .proc/Do_Dash, dir_to_target, 0), 2 SECONDS)//how long it takes for the dash to initiate.
+	addtimer(CALLBACK(src, PROC_REF(Do_Dash), dir_to_target, 0), 2 SECONDS)//how long it takes for the dash to initiate.
 	playsound(src, 'sound/abnormalities/wayward_passenger/attack1.ogg', 300, 1)
 	icon_state = "wayward_charge"
 
@@ -255,7 +256,7 @@
 			L.apply_damage(60,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 			if(!(L in been_hit))
 				been_hit += L
-	addtimer(CALLBACK(src, .proc/Do_Dash, move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(Do_Dash), move_dir, (times_ran + 1)), 1)
 
 /obj/effect/portal/abno_warp
 	name = "dimensional rift"

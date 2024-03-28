@@ -15,8 +15,8 @@
 		ABNORMALITY_WORK_INSTINCT = list(45, 45, 50, 55, 55),
 		ABNORMALITY_WORK_INSIGHT = 60,
 		ABNORMALITY_WORK_ATTACHMENT = 45,
-		ABNORMALITY_WORK_REPRESSION = 30
-			)
+		ABNORMALITY_WORK_REPRESSION = 30,
+	)
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	can_patrol = FALSE
 	can_breach = TRUE
@@ -29,11 +29,11 @@
 	max_boxes = 14
 	ego_list = list(
 		/datum/ego_datum/weapon/lantern,
-		/datum/ego_datum/armor/lantern
-		)
+		/datum/ego_datum/armor/lantern,
+	)
 
 	gift_type = /datum/ego_gifts/lantern
-	gift_message = "Not a single employee has seen Meat Lantern’s full form."
+	gift_message = "Not a single employee has seen Meat Lantern's full form."
 
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -79,7 +79,7 @@
 		return
 	if(!can_act || (chop_cooldown > world.time))
 		return
-	INVOKE_ASYNC(src, .proc/BigChop)
+	INVOKE_ASYNC(src, PROC_REF(BigChop))
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/proc/BigChop()
 	can_act = FALSE
@@ -103,7 +103,7 @@
 	pixel_x = base_pixel_x
 	can_act = TRUE
 	chop_cooldown = world.time + chop_cooldown_time
-	addtimer(CALLBACK(src, .proc/ProximityCheck), chop_cooldown_time)
+	addtimer(CALLBACK(src, PROC_REF(ProximityCheck)), chop_cooldown_time)
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/proc/ProximityCheck()
 	for(var/mob/living/L in range(1,src)) //hidden istype() call

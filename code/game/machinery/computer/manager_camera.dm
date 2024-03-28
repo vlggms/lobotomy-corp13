@@ -35,19 +35,53 @@
 		/obj/effect/temp_visual/holo_command/command_guard,
 		/obj/effect/temp_visual/holo_command/command_heal,
 		/obj/effect/temp_visual/holo_command/command_fight_a,
-		/obj/effect/temp_visual/holo_command/command_fight_b
-		)
+		/obj/effect/temp_visual/holo_command/command_fight_b,
+	)
 	/// Used for radial menu; Type = list(name, desc, icon_state)
 	/// List of bullets available for use are defined in lobotomy_corp subsystem
 	var/list/bullet_types = list(
-		MANAGER_HP_BULLET = list("name" = HP_BULLET, "desc" = "These bullets speed up the recovery of an employee.", "icon_state" = "green"),
-		MANAGER_SP_BULLET = list("name" = SP_BULLET, "desc" = "Bullets that inject an employee with diluted Enkephalin.", "icon_state" = "blue"),
-		MANAGER_RED_BULLET = list("name" = RED_BULLET, "desc" = "Attach a RED DAMAGE forcefield onto a employee.", "icon_state" = "red"),
-		MANAGER_WHITE_BULLET = list("name" = WHITE_BULLET, "desc" = "Attach a WHITE DAMAGE forcefield onto a employee.", "icon_state" = "white"),
-		MANAGER_BLACK_BULLET = list("name" = BLACK_BULLET, "desc" = "Attach a BLACK DAMAGE forcefield onto a employee.", "icon_state" = "black"),
-		MANAGER_PALE_BULLET = list("name" = PALE_BULLET, "desc" = "Attach a PALE DAMAGE forcefield onto a employee.", "icon_state" = "pale"),
-		MANAGER_YELLOW_BULLET = list("name" = YELLOW_BULLET, "desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.", "icon_state" = "yellow"),
-		)
+		MANAGER_HP_BULLET = list(
+			"name" = HP_BULLET,
+			"desc" = "These bullets speed up the recovery of an employee.",
+			"icon_state" = "green",
+		),
+
+		MANAGER_SP_BULLET = list(
+			"name" = SP_BULLET,
+			"desc" = "Bullets that inject an employee with diluted Enkephalin.",
+			"icon_state" = "blue",
+		),
+
+		MANAGER_RED_BULLET = list(
+			"name" = RED_BULLET,
+			"desc" = "Attach a RED DAMAGE forcefield onto a employee.",
+			"icon_state" = "red",
+		),
+
+		MANAGER_WHITE_BULLET = list(
+			"name" = WHITE_BULLET,
+			"desc" = "Attach a WHITE DAMAGE forcefield onto a employee.",
+			"icon_state" = "white",
+		),
+
+		MANAGER_BLACK_BULLET = list(
+			"name" = BLACK_BULLET,
+			"desc" = "Attach a BLACK DAMAGE forcefield onto a employee.",
+			"icon_state" = "black",
+		),
+
+		MANAGER_PALE_BULLET = list(
+			"name" = PALE_BULLET,
+			"desc" = "Attach a PALE DAMAGE forcefield onto a employee.",
+			"icon_state" = "pale",
+		),
+
+		MANAGER_YELLOW_BULLET = list(
+			"name" = YELLOW_BULLET,
+			"desc" = "Overload a abnormalities Qliphoth Control to reduce their movement speed.",
+			"icon_state" = "yellow",
+		),
+	)
 
 	/* Locked actions */
 	// Unlocked by completing records core suppression
@@ -64,7 +98,7 @@
 	follow = new
 
 	command_cooldown = world.time
-	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, .proc/RechargeMeltdown)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START, PROC_REF(RechargeMeltdown))
 
 /obj/machinery/computer/camera_advanced/manager/Destroy()
 	GLOB.lobotomy_devices -= src
@@ -73,7 +107,7 @@
 /obj/machinery/computer/camera_advanced/manager/examine(mob/user)
 	. = ..()
 	if(ammo)
-		. += "<span class='notice'>It has [round(ammo)] bullets loaded.</span>"
+		. += span_notice("It has [round(ammo)] bullets loaded.")
 
 /obj/machinery/computer/camera_advanced/manager/GrantActions(mob/living/carbon/user) //sephirah console breaks off from this branch so any edits you want on both must be done manually.
 	..()
@@ -110,15 +144,15 @@
 		swap.selected_abno = null
 		actions += swap
 
-	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, .proc/OnHotkeyClick) //wanted to use shift click but shift click only allowed applying the effects to my player.
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/OnAltClick)
-	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
-	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, .proc/OnCtrlShiftClick)
+	RegisterSignal(user, COMSIG_MOB_CTRL_CLICKED, PROC_REF(OnHotkeyClick)) //wanted to use shift click but shift click only allowed applying the effects to my player.
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, PROC_REF(OnAltClick))
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(ManagerExaminate))
+	RegisterSignal(user, COMSIG_MOB_CTRLSHIFTCLICKON, PROC_REF(OnCtrlShiftClick))
 
 /obj/machinery/computer/camera_advanced/manager/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/managerbullet) && ammo <= GetFacilityUpgradeValue(UPGRADE_BULLET_COUNT))
 		ammo++
-		to_chat(user, "<span class='notice'>You load [O] in to the [src]. It now has [ammo] bullets stored.</span>")
+		to_chat(user, span_notice("You load [O] in to the [src]. It now has [ammo] bullets stored."))
 		playsound(get_turf(src), 'sound/weapons/kenetic_reload.ogg', 10, 0, 3)
 		qdel(O)
 		return
@@ -138,7 +172,7 @@
 	// No bullets :(
 	if(!ammo)
 		playsound(get_turf(src), 'sound/weapons/empty.ogg', 10, 0, 3)
-		to_chat(source, "<span class='warning'>AMMO RESERVE EMPTY.</span>")
+		to_chat(source, span_warning("AMMO RESERVE EMPTY."))
 		return
 
 	// AOE bullets
@@ -175,6 +209,9 @@
 		if(MANAGER_HP_BULLET)
 			H.adjustBruteLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxHealth)
 		if(MANAGER_SP_BULLET)
+			if(H.sanity_lost)
+				to_chat(owner, span_warning("ERROR: TARGET'S MIND IS TOO UNSTABLE."))
+				return FALSE
 			H.adjustSanityLoss(-GetFacilityUpgradeValue(UPGRADE_BULLET_HEAL)*H.maxSanity)
 		if(MANAGER_RED_BULLET)
 			H.apply_status_effect(/datum/status_effect/interventionshield)
@@ -188,10 +225,10 @@
 			if(!owner.faction_check_mob(H))
 				H.apply_status_effect(/datum/status_effect/qliphothoverload)
 			else
-				to_chat(owner, "<span class='warning'>WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION.</span>")
+				to_chat(owner, span_warning("WELFARE SAFETY SYSTEM ERROR: TARGET SHARES CORPORATE FACTION."))
 				return FALSE
 		else
-			to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
+			to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
 			return FALSE
 	playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 	playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
@@ -199,17 +236,17 @@
 
 /obj/machinery/computer/camera_advanced/manager/proc/ClickedAbno(mob/living/owner, mob/living/simple_animal/hostile/H)
 	if(!istype(H))
-		to_chat(owner, "<span class='warning'>NO VALID TARGET.</span>")
+		to_chat(owner, span_warning("NO VALID TARGET."))
 		return FALSE
 
 	if(bullet_type == 7)
 		H.apply_status_effect(/datum/status_effect/qliphothoverload)
 		playsound(get_turf(src), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
 		playsound(get_turf(H), 'ModularTegustation/Tegusounds/weapons/guns/manager_bullet_fire.ogg', 10, 0, 3)
-		to_chat(owner, "<span class='warning'><b>[ammo]</b> bullets remaining.</span>")
+		to_chat(owner, span_warning("<b>[ammo]</b> bullets remaining."))
 		return TRUE
 
-	to_chat(owner, "<span class='warning'>ERROR: BULLET INITIALIZATION FAILURE.</span>")
+	to_chat(owner, span_warning("ERROR: BULLET INITIALIZATION FAILURE."))
 	return FALSE
 
 /obj/machinery/computer/camera_advanced/manager/proc/ManagerExaminate(mob/living/user, atom/clicked_atom)
@@ -217,11 +254,11 @@
 
 	if(ishuman(clicked_atom))
 		var/mob/living/carbon/human/H = clicked_atom
-		to_chat(user, "<span class='notice'>Agent level [get_user_level(H)].</span>")
-		to_chat(user, "<span class='notice'>Fortitude level [get_attribute_level(H, FORTITUDE_ATTRIBUTE)].</span>")
-		to_chat(user, "<span class='notice'>Prudence level [get_attribute_level(H, PRUDENCE_ATTRIBUTE)].</span>")
-		to_chat(user, "<span class='notice'>Temperance level [get_attribute_level(H, TEMPERANCE_ATTRIBUTE)].</span>")
-		to_chat(user, "<span class='notice'>Justice level [get_attribute_level(H, JUSTICE_ATTRIBUTE)].</span>")
+		to_chat(user, span_notice("Agent level [get_user_level(H)]."))
+		to_chat(user, span_notice("Fortitude level [get_attribute_level(H, FORTITUDE_ATTRIBUTE)]."))
+		to_chat(user, span_notice("Prudence level [get_attribute_level(H, PRUDENCE_ATTRIBUTE)]."))
+		to_chat(user, span_notice("Temperance level [get_attribute_level(H, TEMPERANCE_ATTRIBUTE)]."))
+		to_chat(user, span_notice("Justice level [get_attribute_level(H, JUSTICE_ATTRIBUTE)]."))
 		return
 
 	if(istype(clicked_atom, /mob/living/simple_animal))
@@ -245,7 +282,7 @@
 			qdel(V)
 			return
 		if(current_commands >= max_commands)
-			to_chat(C, "<span class='warning'>COMMAND CAPACITY REACHED.</span>")
+			to_chat(C, span_warning("COMMAND CAPACITY REACHED."))
 			return
 		playsound(get_turf(src), 'sound/machines/terminal_success.ogg', 8, 3, 3)
 		playsound(get_turf(T), 'sound/machines/terminal_success.ogg', 8, 3, 3)
@@ -253,9 +290,9 @@
 			var/thing_to_spawn = command_types[command_type]
 			var/thing_spawned = new thing_to_spawn(get_turf(T))
 			current_commands++
-			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, .proc/ReduceCommandAmount)
+			RegisterSignal(thing_spawned, COMSIG_PARENT_QDELETING, PROC_REF(ReduceCommandAmount))
 		else
-			to_chat(C, "<span class='warning'>ERROR: Calibration Faliure.</span>")
+			to_chat(C, span_warning("ERROR: Calibration Faliure."))
 		CommandTimer()
 
 /obj/machinery/computer/camera_advanced/manager/proc/OnCtrlShiftClick(mob/living/user, atom/target)
@@ -320,19 +357,19 @@
 //Proc for following a target.
 /obj/machinery/computer/camera_advanced/manager/proc/MobTracking(mob/living/target)
 	if(!istype(target))
-		to_chat(current_user, "<span class='warning'>ERROR: Invalid Tracking Target.</span>")
+		to_chat(current_user, span_warning("ERROR: Invalid Tracking Target."))
 		return
 
 	if(!target || !target.can_track(current_user))
-		to_chat(current_user, "<span class='warning'>Target is not near any active cameras.</span>")
+		to_chat(current_user, span_warning("Target is not near any active cameras."))
 		return
 
-	to_chat(current_user, "<span class='notice'>Now tracking [target.get_visible_name()] on camera.</span>")
+	to_chat(current_user, span_notice("Now tracking [target.get_visible_name()] on camera."))
 	if(eyeobj)
 		//Orbit proc is essentially follow.
 		eyeobj.orbit(target)
 	else
-		to_chat(current_user, "<span class='notice'>ERROR: Camera Eye Unresponsive.</span>")
+		to_chat(current_user, span_notice("ERROR: Camera Eye Unresponsive."))
 
 	/*----------\
 	|Action Code|
@@ -359,7 +396,7 @@
 	if(QDELETED(src) || QDELETED(target) || QDELETED(owner) || !chosen_bullet)
 		return FALSE
 
-	to_chat(owner, "<span class='notice'>[console.bullet_types[chosen_bullet]["name"]] bullet selected.</span>")
+	to_chat(owner, span_notice("[console.bullet_types[chosen_bullet]["name"]] bullet selected."))
 	name = "[console.bullet_types[chosen_bullet]["name"]] bullet"
 	desc = console.bullet_types[chosen_bullet]["desc"]
 	button_icon_state = console.bullet_types[chosen_bullet]["icon_state"]
@@ -387,7 +424,7 @@
 			continue
 		valid_targets += L
 	if(!LAZYLEN(valid_targets))
-		to_chat(C, "<span class='warning'>No valid targets found!</span>")
+		to_chat(C, span_warning("No valid targets found!"))
 		return FALSE
 	return X.OnHotkeyClick(C, pick(valid_targets))
 
@@ -407,32 +444,32 @@
 	var/obj/machinery/computer/camera_advanced/manager/X = target
 	switch(X.command_type)
 		if(0) //if 0 change to 1
-			to_chat(owner, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
+			to_chat(owner, span_notice("MOVE IMAGE INITIALIZED."))
 			button_icon_state = button_icon1
 			X.AlterCommandType(1)
 		if(1)
-			to_chat(owner, "<span class='notice'>WARN IMAGE INITIALIZED.</span>")
+			to_chat(owner, span_notice("WARN IMAGE INITIALIZED."))
 			button_icon_state = button_icon2
 			X.AlterCommandType(1)
 		if(2)
-			to_chat(owner, "<span class='notice'>GAURD IMAGE INITIALIZED.</span>")
+			to_chat(owner, span_notice("GAURD IMAGE INITIALIZED."))
 			button_icon_state = button_icon3
 			X.AlterCommandType(1)
 		if(3)
-			to_chat(owner, "<span class='notice'>HEAL IMAGE INITIALIZED.</span>")
+			to_chat(owner, span_notice("HEAL IMAGE INITIALIZED."))
 			button_icon_state = button_icon4
 			X.AlterCommandType(1)
 		if(4)
-			to_chat(owner, "<span class='notice'>FIGHT_LIGHT IMAGE INITIALIZED.</span>")
+			to_chat(owner, span_notice("FIGHT_LIGHT IMAGE INITIALIZED."))
 			button_icon_state = button_icon5
 			X.AlterCommandType(1)
 		if(5)
-			to_chat(owner, "<span class='notice'>FIGHT_HEAVY IMAGE INITIALIZED.</span>")
+			to_chat(owner, span_notice("FIGHT_HEAVY IMAGE INITIALIZED."))
 			button_icon_state = button_icon6
 			X.AlterCommandType(1)
 		else
 			X.AlterCommandType(-5)
-			to_chat(owner, "<span class='notice'>MOVE IMAGE INITIALIZED.</span>")
+			to_chat(owner, span_notice("MOVE IMAGE INITIALIZED."))
 			button_icon_state = button_icon1
 	UpdateButtonIcon()
 
@@ -599,8 +636,8 @@
 		follow.Grant(user)
 		actions += follow
 
-	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, .proc/OnAltClick)
-	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, .proc/ManagerExaminate)
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, PROC_REF(OnAltClick))
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(ManagerExaminate))
 
 /obj/machinery/computer/camera_advanced/manager/sephirah/ClickedEmployee()
 	return
@@ -615,3 +652,54 @@
 #undef MANAGER_BLACK_BULLET
 #undef MANAGER_PALE_BULLET
 #undef MANAGER_YELLOW_BULLET
+
+/obj/machinery/computer/camera_advanced/manager/representative
+	name = "representative camera console"
+	desc = "A computer used for remotely monitoring a facility."
+	icon_screen = "cameras"
+	icon_keyboard = "security_key"
+	light_color = COLOR_SOFT_RED
+	ammo = 0
+
+/obj/machinery/computer/camera_advanced/manager/representative/Initialize(mapload)
+	. = ..()
+	UnregisterSignal(SSdcs, COMSIG_GLOB_MELTDOWN_START) //unsure if this is the most effective way of doing it.
+
+/obj/machinery/computer/camera_advanced/manager/representative/GrantActions(mob/living/carbon/user)
+	if(off_action)
+		off_action.target = user
+		off_action.Grant(user)
+		actions += off_action
+
+	if(jump_action)
+		jump_action.target = user
+		jump_action.Grant(user)
+		actions += jump_action
+	//replaces proc from camera_advance origin.
+
+	if(cyclecommand)
+		cyclecommand.target = src
+		cyclecommand.Grant(user)
+		actions += cyclecommand
+
+	if(command)
+		command.target = src
+		command.Grant(user)
+		actions += command
+
+	if(follow)
+		follow.target = src
+		follow.Grant(user)
+		actions += follow
+
+	RegisterSignal(user, COMSIG_XENO_TURF_CLICK_ALT, PROC_REF(OnAltClick))
+	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(RepExaminate))
+
+/obj/machinery/computer/camera_advanced/manager/representative/ClickedEmployee()
+	return
+
+/obj/machinery/computer/camera_advanced/manager/representative/RechargeMeltdown()
+	return
+
+/obj/machinery/computer/camera_advanced/manager/representative/proc/RepExaminate(mob/living/user, atom/clicked_atom)
+	user.examinate(clicked_atom) //maybe put more info on the agent/abno they examine if we want to be fancy later

@@ -16,16 +16,16 @@
 		ABNORMALITY_WORK_INSTINCT = 25,
 		ABNORMALITY_WORK_INSIGHT = 80,
 		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 50
-		)
+		ABNORMALITY_WORK_REPRESSION = 50,
+	)
 	work_damage_amount = 11
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/song,
 		/datum/ego_datum/weapon/songmini,
-		/datum/ego_datum/armor/song
-		)
+		/datum/ego_datum/armor/song,
+	)
 	gift_type = /datum/ego_gifts/song
 
 
@@ -60,7 +60,7 @@
 		meltdown_imminent = TRUE
 		playsound(src, 'sound/abnormalities/siren/burningmemory.ogg', 100, FALSE, 40, falloff_distance = 20, channel = CHANNEL_SIREN)
 		playstatus = TRUE
-		musictimer = addtimer(CALLBACK(src, .proc/stopPlaying), 55 SECONDS, TIMER_STOPPABLE)
+		musictimer = addtimer(CALLBACK(src, PROC_REF(stopPlaying)), 55 SECONDS, TIMER_STOPPABLE)
 		icon_state = "siren_breach"
 		warning()
 
@@ -119,7 +119,7 @@
 		playstatus = TRUE //prevents song overlap
 		if(musictimer)
 			deltimer(musictimer)
-		musictimer = addtimer(CALLBACK(src, .proc/stopPlaying), 60 SECONDS, TIMER_STOPPABLE)
+		musictimer = addtimer(CALLBACK(src, PROC_REF(stopPlaying)), 60 SECONDS, TIMER_STOPPABLE)
 		icon_state = "siren_breach"
 
 //Breach

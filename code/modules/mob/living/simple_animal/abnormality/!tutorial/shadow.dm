@@ -11,11 +11,11 @@
 	fear_level = 0
 	move_to_delay = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 60,
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = 80,
-						ABNORMALITY_WORK_REPRESSION = 50,
-						)
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 80,
+		ABNORMALITY_WORK_REPRESSION = 50,
+	)
 	melee_damage_lower = 4
 	melee_damage_upper = 6
 	melee_damage_type = BLACK_DAMAGE
@@ -34,7 +34,7 @@
 /mob/living/simple_animal/hostile/abnormality/shadow/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	GiveTarget(user)
-	addtimer(CALLBACK(src, .proc/die), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(die)), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/shadow/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

@@ -14,16 +14,16 @@
 	var/prescript_target
 	var/weapon_owner
 	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 80
-							)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 
 /obj/item/ego_weapon/city/index/attack_self(mob/user)
 	..()
 	if(force != initial(force))
-		to_chat(user, "<span class='notice'>The prescript buff is still active.</span>")
+		to_chat(user, span_notice("The prescript buff is still active."))
 		return
 
 	//Okay, check if you have a prescript
@@ -31,9 +31,9 @@
 		var/mob/living/simple_animal/hostile/abnormality/Y = prescript_target
 		if(Y.stat == DEAD)
 			prescript_target = null
-			to_chat(user, "<span class='notice'>Your prescript has died. Use it in hand to recieve a prescript.</span>")
+			to_chat(user, span_notice("Your prescript has died. Use it in hand to recieve a prescript."))
 		else
-			to_chat(user, "<span class='notice'>Your prescript target is [prescript_target].</span>")
+			to_chat(user, span_notice("Your prescript target is [prescript_target]."))
 
 	//If you don't have one, pick a breached mob if available.
 	else if(!prescript_target && user == weapon_owner)
@@ -43,17 +43,17 @@
 				breached+=B
 		if(LAZYLEN(breached))
 			prescript_target = pick(breached)
-			to_chat(user, "<span class='userdanger'>Your prescript target is [prescript_target]. Slay them, and deal the killing blow with this weapon.</span>")
+			to_chat(user, span_userdanger("Your prescript target is [prescript_target]. Slay them, and deal the killing blow with this weapon."))
 		else
-			to_chat(user, "<span class='notice'>There are no prescripts available.</span>")
+			to_chat(user, span_notice("There are no prescripts available."))
 
 	//If this weapon has no owner, than make you it.
 	else if(!weapon_owner)
-		to_chat(user, "<span class='notice'>This weapon is now yours. Use it in hand to recieve a prescript.</span>")
+		to_chat(user, span_notice("This weapon is now yours. Use it in hand to recieve a prescript."))
 		weapon_owner = user
 
 	else
-		to_chat(user, "<span class='warning'>This is not your weapon!</span>")
+		to_chat(user, span_warning("This is not your weapon!"))
 
 
 /obj/item/ego_weapon/city/index/attack(mob/living/target, mob/living/user)
@@ -69,13 +69,13 @@
 //Make this do something
 /obj/item/ego_weapon/city/index/proc/prescript_complete(mob/living/user)
 	prescript_target = null
-	to_chat(user, "<span class='userdanger'>You have completed your prescript, and you have been graced.</span>")
+	to_chat(user, span_userdanger("You have completed your prescript, and you have been graced."))
 	force *= 1.45	//BEEG BONUS
-	addtimer(CALLBACK(src, .proc/Return, user), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(Return), user), 5 MINUTES)
 
 /obj/item/ego_weapon/city/index/proc/Return(mob/living/carbon/human/user)
 	force /= 1.45	//BEEG BONUS
-	to_chat(user, "<span class='notice'>The power from your prescript is now gone.</span>")
+	to_chat(user, span_notice("The power from your prescript is now gone."))
 
 
 //Just gonna set this to the big proxy weapon for requirement reasons

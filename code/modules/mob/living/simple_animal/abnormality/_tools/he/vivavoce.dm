@@ -7,8 +7,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/ringing,
-		/datum/ego_datum/armor/ringing
-		)
+		/datum/ego_datum/armor/ringing,
+	)
 
 /obj/structure/toolabnormality/vivavoce/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -45,8 +45,8 @@
 	var/damage_mod
 
 /datum/status_effect/stacking/rolecall/on_apply()
-	RegisterSignal(owner, COMSIG_WORK_STARTED, .proc/UserDebuff)
-	RegisterSignal(owner, COMSIG_WORK_COMPLETED, .proc/UserBuff)
+	RegisterSignal(owner, COMSIG_WORK_STARTED, PROC_REF(UserDebuff))
+	RegisterSignal(owner, COMSIG_WORK_COMPLETED, PROC_REF(UserBuff))
 	return ..()
 
 /datum/status_effect/stacking/rolecall/on_remove()

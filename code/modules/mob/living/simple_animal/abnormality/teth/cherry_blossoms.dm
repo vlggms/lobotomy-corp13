@@ -16,16 +16,16 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = 55,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = 20
-			)
+		ABNORMALITY_WORK_REPRESSION = 20,
+	)
 	start_qliphoth = 3
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/blossom,
-		/datum/ego_datum/armor/blossom
-		)
+		/datum/ego_datum/armor/blossom,
+	)
 	gift_type = /datum/ego_gifts/blossom
 	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
 	var/numbermarked = 5
@@ -77,7 +77,7 @@
 /datum/status_effect/markedfordeath
 	id = "markedfordeath"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 100		//Lasts 10 seconds
+	duration = 10 SECONDS
 	alert_type = /atom/movable/screen/alert/status_effect/marked
 
 /atom/movable/screen/alert/status_effect/marked
@@ -88,31 +88,35 @@
 
 /datum/status_effect/markedfordeath/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 4
-		L.physiology.white_mod *= 4
-		L.physiology.black_mod *= 4
-		L.physiology.pale_mod *= 4
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 4
+	status_holder.physiology.white_mod *= 4
+	status_holder.physiology.black_mod *= 4
+	status_holder.physiology.pale_mod *= 4
 
 /datum/status_effect/markedfordeath/tick()
-	var/mob/living/carbon/human/Y = owner
-	if(Y.sanity_lost)
-		Y.death()
-	if(owner.stat == DEAD)
-		for(var/mob/living/carbon/human/H in GLOB.player_list)
-			if(H.stat != DEAD)
-				H.adjustBruteLoss(-500) // It heals everyone to full
-				H.adjustSanityLoss(-500) // It heals everyone to full
-				H.remove_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.sanity_lost)
+		status_holder.death()
+	if(owner.stat != DEAD)
+		return
+	for(var/mob/living/carbon/human/affected_human in GLOB.player_list)
+		if(affected_human.stat == DEAD)
+			continue
+		affected_human.adjustBruteLoss(-500) // It heals everyone to full
+		affected_human.adjustSanityLoss(-500) // It heals everyone to full
+		affected_human.remove_status_effect(STATUS_EFFECT_MARKEDFORDEATH)
 
 /datum/status_effect/markedfordeath/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 4
-		L.physiology.white_mod /= 4
-		L.physiology.black_mod /= 4
-		L.physiology.pale_mod /= 4
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 4
+	status_holder.physiology.white_mod /= 4
+	status_holder.physiology.black_mod /= 4
+	status_holder.physiology.pale_mod /= 4
 
 #undef STATUS_EFFECT_MARKEDFORDEATH

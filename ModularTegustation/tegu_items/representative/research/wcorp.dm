@@ -45,6 +45,18 @@
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level2
 	required_research = /datum/data/lc13research/mobspawner/wcorp
 
+/datum/data/lc13research/mobspawner/wcorpl3
+	research_name = "W-Corp L3 Cleanup Team"
+	research_desc = "Currently there are no trains requiring trains requiring major cleanup so we have nearby L3 available for contingency measures, only use this if corporation assets are claimed by another Wing. <br>They'll clean up any problems you have."
+	cost = 0
+	corp = W_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/wcorp_call/level3
+	required_research = /datum/data/lc13research/mobspawner/wcorp
+
+/datum/data/lc13research/mobspawner/wcorpl3/ResearchEffect(obj/structure/representative_console/caller)
+	minor_announce("A notice to all L-Corp clientele, we have the saddening news that this facility is in need of cleanup due to a breach of contract, remain seated as W-Corp Staff resolve the issue.", "W Corp HQ Update:", TRUE)
+	..()
+
 //Teleporters
 /datum/data/lc13research/teleporter
 	research_name = "Prototype Quantum Pads"

@@ -3,6 +3,7 @@
 	desc = "A yellow creature with orange butterflies floating around it."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "sunset"
+	portrait = "sunset_traveller"
 	maxHealth = 400
 	health = 400
 	threat_level = ZAYIN_LEVEL
@@ -23,13 +24,15 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/eclipse,
-		/datum/ego_datum/armor/eclipse
+		/datum/ego_datum/armor/eclipse,
 	)
 
 	gift_type =  /datum/ego_gifts/eclipse
-	var/list/saylines = list("Wasn't it tiring coming all the way here?",
+	var/list/saylines = list(
+		"Wasn't it tiring coming all the way here?",
 		"Really, check out those butterflies.",
-		"Just watching them will warm your heart.")
+		"Just watching them will warm your heart.",
+	)
 	light_color = COLOR_ORANGE
 	light_range = 5
 	light_power = 7

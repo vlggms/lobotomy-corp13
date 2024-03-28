@@ -16,18 +16,18 @@
 	if(..())
 		return
 	//checking spells cast by honorbound
-	RegisterSignal(owner, COMSIG_MOB_CAST_SPELL, .proc/spell_check)
-	RegisterSignal(owner, COMSIG_MOB_FIRED_GUN, .proc/staff_check)
+	RegisterSignal(owner, COMSIG_MOB_CAST_SPELL, PROC_REF(spell_check))
+	RegisterSignal(owner, COMSIG_MOB_FIRED_GUN, PROC_REF(staff_check))
 	//signals that check for guilt
-	RegisterSignal(owner, COMSIG_PARENT_ATTACKBY, .proc/attackby_guilt)
-	RegisterSignal(owner, COMSIG_ATOM_HULK_ATTACK, .proc/hulk_guilt)
-	RegisterSignal(owner, COMSIG_ATOM_ATTACK_HAND, .proc/hand_guilt)
-	RegisterSignal(owner, COMSIG_ATOM_ATTACK_PAW, .proc/paw_guilt)
-	RegisterSignal(owner, COMSIG_ATOM_BULLET_ACT, .proc/bullet_guilt)
-	RegisterSignal(owner, COMSIG_ATOM_HITBY, .proc/thrown_guilt)
+	RegisterSignal(owner, COMSIG_PARENT_ATTACKBY, PROC_REF(attackby_guilt))
+	RegisterSignal(owner, COMSIG_ATOM_HULK_ATTACK, PROC_REF(hulk_guilt))
+	RegisterSignal(owner, COMSIG_ATOM_ATTACK_HAND, PROC_REF(hand_guilt))
+	RegisterSignal(owner, COMSIG_ATOM_ATTACK_PAW, PROC_REF(paw_guilt))
+	RegisterSignal(owner, COMSIG_ATOM_BULLET_ACT, PROC_REF(bullet_guilt))
+	RegisterSignal(owner, COMSIG_ATOM_HITBY, PROC_REF(thrown_guilt))
 
 	//signal that checks for dishonorable attacks
-	RegisterSignal(owner, COMSIG_MOB_CLICKON, .proc/attack_honor)
+	RegisterSignal(owner, COMSIG_MOB_CLICKON, PROC_REF(attack_honor))
 
 /datum/mutation/human/honorbound/on_losing(mob/living/carbon/human/owner)
 	UnregisterSignal(owner, list(

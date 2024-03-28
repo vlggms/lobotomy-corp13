@@ -16,7 +16,7 @@ Clicking on door with empty hand to open and close it faster. This helps with br
 Place a corpse of an ordeal in a door to wedge it open.
 Spray painting the spawn windows with an open spray can on harm intent usually saves new agents from getting killed immediately.
 LC13 abnos usually have similar work rates to base game, but their effects may be slightly different.
-You can put your ID into your PDA, and then put the PDA into the ID slot. The now freed belt slot can hold any ego weapon for extra carrying capacity. 
+You can put your ID into your PDA, and then put the PDA into the ID slot. The now freed belt slot can hold any ego weapon for extra carrying capacity.
 Don't like the UI? Change it in game preferences.
 Examine an EGO to see what abilities it has.
 Always exercise caution when dealing with something you're not completely familiar with! Even a helpful zayin can kill you if you think yourself above its rules.
@@ -25,4 +25,5 @@ It is strongly recommended to only do two works at a time before letting the nex
 Generally speaking, a less efficient abnormality is better to work on for stats than a more efficient one with a long line of agents waiting to work.
 Press z to use items that are currently in your hand. Imagine what wonders may come!
 Stubbornness and determination can overcome any challenge that doesn't heal - our records department has provided you an infinite amount of "respawns", so don't give up!
-Taking an abnormalities resistances into consideration is important, but that's not all that matters! A weapon doing 50 damage to a 0.8 resistance is better than one doing 30 damage to a 1.2. 
+Taking an abnormalities resistances into consideration is important, but that's not all that matters! A weapon doing 50 damage to a 0.8 resistance is better than one doing 30 damage to a 1.2.
+Whenever you strike an abnormality that's immune to a damage type, red Xs will appear. If it absorbs the damage and heal from it, green crosses will appear instead.

@@ -17,3 +17,18 @@
 		if(istype(I, /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/))
 			var/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/gun = I
 			gun.projectiles_cache = gun.projectiles_cache_max
+
+/obj/vehicle/sealed/mecha/combat/attack_animal(mob/living/simple_animal/user)
+	log_message("Attack by simple animal. Attacker - [user].", LOG_MECHA, color="red")
+	if(!user.melee_damage_upper && !user.obj_damage)
+		user.emote("custom", message = "[user.friendly_verb_continuous] [src].")
+		return 0
+	else
+		var/play_soundeffect = 1
+		if(user.environment_smash)
+			play_soundeffect = 0
+			playsound(src, 'sound/effects/bang.ogg', 50, TRUE)
+		var/animal_damage = rand(user.melee_damage_lower,user.melee_damage_upper)
+		log_combat(user, src, "attacked")
+		attack_generic(user, animal_damage, user.melee_damage_type, MELEE, play_soundeffect)
+		return 1

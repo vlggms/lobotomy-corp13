@@ -26,18 +26,18 @@
 	can_breach = TRUE
 	start_qliphoth = 5
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 40,
-						ABNORMALITY_WORK_INSIGHT = 60,
-						ABNORMALITY_WORK_ATTACHMENT = -80,
-						ABNORMALITY_WORK_REPRESSION = 35
-						)
+		ABNORMALITY_WORK_INSTINCT = 40,
+		ABNORMALITY_WORK_INSIGHT = 60,
+		ABNORMALITY_WORK_ATTACHMENT = -80,
+		ABNORMALITY_WORK_REPRESSION = 35,
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/split,
-		/datum/ego_datum/armor/split
-		)
+		/datum/ego_datum/armor/split,
+	)
 	gift_type =  /datum/ego_gifts/split
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
@@ -51,9 +51,7 @@
 	var/split_cooldown_time = 8 SECONDS
 
 //PLAYABLES ATTACKS
-	attack_action_types = list(
-		/datum/action/cooldown/norisplit
-	)
+	attack_action_types = list(/datum/action/cooldown/norisplit)
 
 /datum/action/cooldown/norisplit
 	name = "Split"
@@ -82,7 +80,7 @@
 //Init
 /mob/living/simple_animal/hostile/abnormality/norinori/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/On_Mob_Death) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(On_Mob_Death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/norinori/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -123,12 +121,28 @@
 	user.Stun(3 SECONDS)
 	step_towards(user, src)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	if(QDELETED(user))
+		attack_sound = initial(attack_sound)
+		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		return
 	step_towards(user, src)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	if(QDELETED(user))
+		attack_sound = initial(attack_sound)
+		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		return
 	user.attack_animal(src)
 	SLEEP_CHECK_DEATH(0.2 SECONDS)
+	if(QDELETED(user))
+		attack_sound = initial(attack_sound)
+		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		return
 	user.attack_animal(src)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	if(QDELETED(user))
+		attack_sound = initial(attack_sound)
+		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		return
 	user.visible_message(span_warning("[src] mutilates [user]!"), span_userdanger("[src] mutilates you!"))
 	user.apply_damage(3000, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	playsound(user, 'sound/abnormalities/helper/attack.ogg', 100, FALSE, 4)

@@ -41,12 +41,12 @@
 		var/obj/machinery/computer/abnormality/CA = target
 		if(console_attack_counter < 12)
 			console_attack_counter += 1
-			visible_message("<span class='warning'>[src] hits [CA]'s buttons at random!</span>")
+			visible_message(span_warning("[src] hits [CA]'s buttons at random!"))
 			playsound(get_turf(CA), "sound/machines/terminal_button0[rand(1,8)].ogg", 50, 1)
 			changeNext_move(CLICK_CD_MELEE * 2)
 		else
 			console_attack_counter = 0
-			visible_message("<span class='warning'>[CA]'s screen produces an error!</span>")
+			visible_message(span_warning("[CA]'s screen produces an error!"))
 			playsound(get_turf(CA), 'sound/machines/terminal_error.ogg', 50, 1)
 			CA.datum_reference.qliphoth_change(-1, src)
 			TeleportAway()
@@ -55,7 +55,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/death(gibbed)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 15)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 15)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/TeleportAway()
@@ -87,7 +87,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(35, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
@@ -122,13 +122,13 @@
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/death(gibbed)
 	animate(src, transform = matrix()*1.25, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, .proc/DeathExplosion), 5)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 5)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
 	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		var/turf/TF = get_step(src, d)
@@ -139,7 +139,7 @@
 	for(var/i = 1 to mob_spawn_amount)
 		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/nc = new(T)
-		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/.proc/TeleportAway), 1)
+		addtimer(CALLBACK(nc, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ordeal/crimson_clown, TeleportAway)), 1)
 		if(ordeal_reference)
 			nc.ordeal_reference = ordeal_reference
 			ordeal_reference.ordeal_mobs += nc
@@ -190,7 +190,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
 	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -275,14 +275,14 @@
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
-			visible_message("<span class='boldwarning'>[src] rolls past [L]!</span>")
-			to_chat(L, "<span class='userdanger'>[src] rolls past you!</span>")
+			visible_message(span_boldwarning("[src] rolls past [L]!"))
+			to_chat(L, span_userdanger("[src] rolls past you!"))
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
 			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 			if(!(L in been_hit))
 				been_hit += L
-	addtimer(CALLBACK(src, .proc/do_roll, move_dir, (times_ran + 1)), 1.5)
+	addtimer(CALLBACK(src, PROC_REF(do_roll), move_dir, (times_ran + 1)), 1.5)
 
 // Crimson midnight
 // Tent
@@ -335,7 +335,7 @@
 	if((spawn_time > world.time))
 		return
 	spawn_time = world.time + spawn_time_cooldown
-	visible_message("<span class='danger'>\The [src] opens wide and more clowns appear from inside!</span>")
+	visible_message(span_danger("\The [src] opens wide and more clowns appear from inside!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_spawn.ogg', 75, FALSE)
 	var/spawnchance = pick(1,2)
 	for(var/i = 1 to spawnchance)
@@ -350,13 +350,13 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/death(gibbed)
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/midnight_dead.ogg', 30, 0)
 	animate(src, transform = matrix()*1.8, color = "#FF0000", time = 2.8 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 2.8 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 2.8 SECONDS)
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_tent/proc/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	for(var/turf/L in view(4, src))
 		if(prob(25) && !(L.density))
 			new /obj/item/food/meat/slab/crimson (get_turf(L))
@@ -506,7 +506,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
 	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
@@ -536,7 +536,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/Initialize() //this should effectively limit how many are active at a time
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/TeleportAway()
 	if(console_attack_counter >= 10)
@@ -558,7 +558,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/Initialize()
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 45 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 45 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 45 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/death(gibbed)
 	. = ..()
@@ -568,7 +568,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
 	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		var/turf/TF = get_step(src, d)
@@ -579,7 +579,7 @@
 	for(var/i = 1 to mob_spawn_amount)
 		var/turf/T = get_step(get_turf(src), pick(valid_directions))
 		var/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/nc = new(T)
-		addtimer(CALLBACK(nc, /mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned/.proc/TeleportAway), 1)
+		addtimer(CALLBACK(nc, TYPE_PROC_REF(/mob/living/simple_animal/hostile/ordeal/crimson_clown/spawned, TeleportAway)), 1)
 		if(ordeal_reference)
 			nc.ordeal_reference = ordeal_reference
 			ordeal_reference.ordeal_mobs += nc
@@ -597,7 +597,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/Initialize()
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
-	addtimer(CALLBACK(src, .proc/DeathExplosion, ordeal_reference), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/death(gibbed)
 	. = ..()
@@ -607,7 +607,7 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/DeathExplosion()
 	if(QDELETED(src))
 		return
-	visible_message("<span class='danger'>[src] suddenly explodes!</span>")
+	visible_message(span_danger("[src] suddenly explodes!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
 	for(var/d in list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))

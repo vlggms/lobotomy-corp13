@@ -15,6 +15,8 @@
 	var/announce_sound = null
 	/// Mobs spawned by event. On their death - event ends
 	var/list/ordeal_mobs = list()
+	/// End announcment_text. When event ends
+	var/end_announce_text = "The ordeal has ended."
 	/// Sound to play on event end, if any
 	var/end_sound = null
 	/// Reward in percents to PE upon winning ordeal. From 0 to 1
@@ -50,14 +52,17 @@
 // Ends the event
 /datum/ordeal/proc/End()
 	var/total_reward = max(SSlobotomy_corp.box_goal, 3000) * reward_percent
-	priority_announce("The ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
+	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
 	SSlobotomy_corp.AddLobPoints(level * 0.5, "Ordeal Reward")
 	if(end_sound)
 		for(var/mob/player in GLOB.player_list)
 			if(player.client)
-				player.playsound_local(get_turf(player), end_sound, 35, 0)
+				var/client/watcher = player.client
+				ShowOrdealBlurb(watcher, 25, 40, color, ending = TRUE)
+				if(announce_sound)
+					player.playsound_local(get_turf(player), end_sound, 35, 0)
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.stat == DEAD)
 			continue
@@ -67,17 +72,17 @@
 	/// If it was a midnight and we got to it before time limit
 	if(level == 4 && start_time <= CONFIG_GET(number/suppression_time_limit))
 		// Extra cores, and announced!
-		addtimer(CALLBACK(SSlobotomy_corp, /datum/controller/subsystem/lobotomy_corp/proc/PickPotentialSuppressions, TRUE, TRUE), 15 SECONDS)
+		addtimer(CALLBACK(SSlobotomy_corp, TYPE_PROC_REF(/datum/controller/subsystem/lobotomy_corp, PickPotentialSuppressions), TRUE, TRUE), 15 SECONDS)
 	/// If it was a dusk - we end running core suppression
 	else if(level == 3 && istype(SSlobotomy_corp.core_suppression))
-		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, /datum/suppression/proc/End), 5 SECONDS)
+		addtimer(CALLBACK(SSlobotomy_corp.core_suppression, TYPE_PROC_REF(/datum/suppression, End)), 5 SECONDS)
 	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ORDEAL_END, src)
 	qdel(src)
 	return
 
 /datum/ordeal/proc/OnMobDeath(mob/living/deadMob)
 	ordeal_mobs.Remove(deadMob)
-	while(ordeal_mobs.Remove(null))
+	ordeal_mobs = removeNullsFromList(ordeal_mobs)
 	if(!ordeal_mobs.len)
 		End()
 	return
@@ -96,7 +101,7 @@
 	return "Unknown"
 
 //Global special blurb
-/datum/ordeal/proc/ShowOrdealBlurb(client/C, duration, fade_time = 5, text_color = color, text_align = "center", screen_location = "Center-6,Center+3")
+/datum/ordeal/proc/ShowOrdealBlurb(client/C, duration, fade_time = 5, text_color = color, text_align = "center", screen_location = "Center-6,Center+3", ending = FALSE)
 	if(!C)
 		return
 	var/style1 = "font-family: 'Baskerville'; text-align: [text_align]; color: [text_color]; font-size:12pt;"
@@ -114,9 +119,10 @@
 	C.screen += T
 	C.screen += BG
 	animate(T, alpha = 255, time = 10)
-	T.maptext = "<span style=\"[style1]\">[name]</span><br><span style=\"[style2]\">[flavor_name]</span><br><span style=\"[style3]\">[announce_text]</span>"
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_blurb, C, T, fade_time), duration)
-	addtimer(CALLBACK(GLOBAL_PROC, .proc/fade_blurb, C, BG, fade_time), duration)
+	var/display_text = ending ? end_announce_text : announce_text
+	T.maptext = "<span style=\"[style1]\">[name]</span><br><span style=\"[style2]\">[flavor_name]</span><br><span style=\"[style3]\">[display_text]</span>"
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, T, fade_time), duration) //fade_blurb qdels the object
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(fade_blurb), C, BG, fade_time), duration)
 
 //Black background for blurb
 /obj/effect/overlay/ordeal

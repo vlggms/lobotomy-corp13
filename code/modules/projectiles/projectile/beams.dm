@@ -330,3 +330,39 @@
 /obj/effect/projectile/impact/laser/nobody
 	name = "whip impact"
 	icon_state = "nobody"
+
+/obj/projectile/beam/oberon
+	name = "whip"
+	icon_state = "nobody"
+	damage = 15
+	hitsound = 'sound/weapons/slash.ogg'
+	hitsound_wall = 'sound/weapons/slash.ogg'
+	damage_type = BLACK_DAMAGE
+	hit_stunned_targets = TRUE
+	white_healing = FALSE
+	projectile_piercing = PASSMOB
+	projectile_phasing = (ALL & (~PASSMOB) & (~PASSCLOSEDTURF))
+	hitscan = TRUE
+	tracer_type = /obj/effect/projectile/tracer/laser/nobody
+	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
+	impact_type = /obj/effect/projectile/impact/laser/nobody
+
+/obj/projectile/beam/oberon/on_hit(atom/target, blocked = FALSE)
+	. = ..()
+	if(iscarbon(target))
+		var/mob/living/carbon/M = target
+		M.apply_damage(15, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+
+/obj/projectile/beam/nobody_friendly
+	name = "whip"
+	icon_state = "nobody"
+	damage = 30
+	hitsound = 'sound/weapons/slash.ogg'
+	hitsound_wall = 'sound/weapons/slash.ogg'
+	damage_type = BLACK_DAMAGE
+	hit_stunned_targets = TRUE
+	white_healing = FALSE
+	hitscan = TRUE
+	tracer_type = /obj/effect/projectile/tracer/laser/nobody
+	muzzle_type = /obj/effect/projectile/tracer/laser/nobody
+	impact_type = /obj/effect/projectile/impact/laser/nobody

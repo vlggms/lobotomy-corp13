@@ -7,6 +7,7 @@
 	icon_state = "doomsday_inert"
 	icon_living = "doomsday_inert"
 	icon_dead = "doomsday_egg"
+	portrait = "doomsday"
 	light_color = COLOR_LIGHT_ORANGE
 	light_range = 0
 	light_power = 0
@@ -19,11 +20,11 @@
 	start_qliphoth = 5
 	max_boxes = 18//this is the normal amount
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 60,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = 20,
-						ABNORMALITY_WORK_REPRESSION = 50
-						)
+		ABNORMALITY_WORK_INSTINCT = 60,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = 20,
+		ABNORMALITY_WORK_REPRESSION = 50,
+	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	can_patrol = FALSE
@@ -36,8 +37,8 @@
 	melee_damage_type = BLACK_DAMAGE
 	ego_list = list(
 		/datum/ego_datum/weapon/impending_day,
-		/datum/ego_datum/armor/impending_day
-		)
+		/datum/ego_datum/armor/impending_day,
+	)
 	gift_type =  /datum/ego_gifts/impending_day
 	gift_message = "Let the blood flow, the fire ignite, and the star fall."
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
@@ -66,7 +67,7 @@
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Initialize()
 	. = ..()
 	updateWorkMaximum()
-	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, .proc/OnAbnoWork)
+	RegisterSignal(SSdcs, COMSIG_GLOB_WORK_STARTED, PROC_REF(OnAbnoWork))
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/Move()
 	return FALSE

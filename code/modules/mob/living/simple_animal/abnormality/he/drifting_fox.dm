@@ -8,6 +8,7 @@
 	icon_state = "drifting_fox"
 	icon_living = "drifting_fox"
 	icon_dead = "fox_egg"
+	portrait = "drifting_fox"
 	death_message = "Collapses into a glass egg"
 	death_sound = 'sound/abnormalities/drifting_fox/fox_death_sound.ogg'
 	pixel_x = -24
@@ -42,8 +43,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/sunshower,
-		/datum/ego_datum/armor/sunshower
-		)
+		/datum/ego_datum/armor/sunshower,
+	)
 	gift_type = /datum/ego_gifts/sunshower
 	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs as thanks?"
 
@@ -62,7 +63,7 @@
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(user in pet)
 		pet -= user
-	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) <= 40)
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40)
 		datum_reference.qliphoth_change(-1)
 	return
 
@@ -102,19 +103,19 @@
 
 /datum/status_effect/false_kindness/on_apply() //" Borrowed " from Ptear blade, courtesy of gong.
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner //Stolen from Ptear Blade, MAYBE works on people?
-		to_chat(L, "<span class='userdanger'>You feel the foxes gaze upon you!</span>")
-		L.physiology.black_mod *= 1.3
+	if(!ishuman(owner))
 		return
+	var/mob/living/carbon/human/status_holder = owner //Stolen from Ptear Blade, MAYBE works on people?
+	to_chat(status_holder, span_userdanger("You feel the foxes gaze upon you!"))
+	status_holder.physiology.black_mod *= 1.3
 
 /datum/status_effect/false_kindness/on_remove()
 	. = ..()
 	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		to_chat(L, "<span class='userdanger'>You feel as though its gaze has lifted.</span>") //stolen from PT wep, but I asked so this 100% ok.
-		L.physiology.black_mod /= 1.3
 		return
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_userdanger("You feel as though its gaze has lifted.")) //stolen from PT wep, but I asked so this 100% ok.
+	status_holder.physiology.black_mod /= 1.3
 
 //mob/living/simple_animal/hostile/abnormality/drifting_fox/Life()
 	//. = ..()

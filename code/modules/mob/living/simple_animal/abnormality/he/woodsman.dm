@@ -23,11 +23,11 @@
 	threat_level = HE_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 45,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
-						ABNORMALITY_WORK_REPRESSION = 45
-						)
+		ABNORMALITY_WORK_INSTINCT = 45,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 60, 70, 80, 90),
+		ABNORMALITY_WORK_REPRESSION = 45,
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	move_to_delay = 4
@@ -36,8 +36,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/logging,
-		/datum/ego_datum/armor/logging
-		)
+		/datum/ego_datum/armor/logging,
+	)
 	gift_type =  /datum/ego_gifts/loggging
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -46,7 +46,7 @@
 		/mob/living/simple_animal/hostile/abnormality/road_home = 2,
 		/mob/living/simple_animal/hostile/abnormality/scaredy_cat = 2,
 		// Ozma = 2,
-		// Lies = 1.5
+		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
 	)
 
 	var/flurry_cooldown = 0

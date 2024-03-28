@@ -5,8 +5,15 @@
 	icon = 'ModularTegustation/fishing/icons/fish_sprites.dmi'
 	icon_state = "bugfish"
 	microwaved_type = /obj/item/food/cooked_fish
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 2, /datum/reagent/consumable/nutriment/organ_tissue = 1, /datum/reagent/consumable/nutriment/vile_fluid = 4)
-	remove_reagents_on_cooked = list(/datum/reagent/consumable/nutriment/organ_tissue, /datum/reagent/consumable/nutriment/vile_fluid)
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 2,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/consumable/nutriment/vile_fluid = 4,
+	)
+	remove_reagents_on_cooked = list(
+		/datum/reagent/consumable/nutriment/organ_tissue,
+		/datum/reagent/consumable/nutriment/vile_fluid,
+	)
 	bite_consumption = 10
 	foodtypes = MEAT | RAW | GROSS
 	tastes = list("fish" = 1)
@@ -110,8 +117,8 @@
 	if(fillet_type)
 		AddElement(/datum/element/processable, TOOL_KNIFE, fillet_type, 1, 5)
 		AddComponent(/datum/component/grillable, /obj/item/food/cooked_fish, rand(30 SECONDS, 40 SECONDS), TRUE)
-	AddComponent(/datum/component/aquarium_content, .proc/get_aquarium_animation, list(COMSIG_FISH_STATUS_CHANGED,COMSIG_FISH_STIRRED))
-	RegisterSignal(src, COMSIG_ATOM_TEMPORARY_ANIMATION_START, .proc/on_temp_animation)
+	AddComponent(/datum/component/aquarium_content, PROC_REF(get_aquarium_animation), list(COMSIG_FISH_STATUS_CHANGED, COMSIG_FISH_STIRRED))
+	RegisterSignal(src, COMSIG_ATOM_TEMPORARY_ANIMATION_START, PROC_REF(on_temp_animation))
 
 	check_environment_after_movement()
 	if(status != FISH_DEAD)
@@ -153,8 +160,8 @@
 /obj/item/food/fish/proc/on_aquarium_insertion(obj/structure/aquarium)
 	if(isnull(last_feeding)) //Fish start fed.
 		last_feeding = world.time
-	RegisterSignal(aquarium, COMSIG_ATOM_EXITED, .proc/aquarium_exited)
-	RegisterSignal(aquarium, COMSIG_PARENT_ATTACKBY, .proc/attack_reaction)
+	RegisterSignal(aquarium, COMSIG_ATOM_EXITED, PROC_REF(aquarium_exited))
+	RegisterSignal(aquarium, COMSIG_PARENT_ATTACKBY, PROC_REF(attack_reaction))
 
 /obj/item/food/fish/proc/aquarium_exited(datum/source, atom/movable/gone, direction)
 	SIGNAL_HANDLER
@@ -351,7 +358,7 @@
 /// Refreshes flopping animation after temporary animation finishes
 /obj/item/food/fish/proc/on_temp_animation(datum/source, animation_duration)
 	if(animation_duration > 0)
-		addtimer(CALLBACK(src, .proc/refresh_flopping, animation_duration))
+		addtimer(CALLBACK(src, PROC_REF(refresh_flopping), animation_duration))
 
 /obj/item/food/fish/proc/refresh_flopping()
 	if(flopping)

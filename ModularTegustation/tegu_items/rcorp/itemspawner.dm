@@ -16,16 +16,16 @@
 	)
 
 	var/list/possible_weapons = list(
-	/obj/item/gun/energy/e_gun/rabbitdash,
-	/obj/item/gun/energy/e_gun/rabbitdash/small,
-	/obj/item/gun/energy/e_gun/rabbitdash/sniper,
-	/obj/item/gun/energy/e_gun/rabbitdash/white,
-	/obj/item/gun/energy/e_gun/rabbitdash/black,
-	/obj/item/gun/energy/e_gun/rabbitdash/shotgun,
-//	/obj/item/gun/energy/e_gun/rabbitdash/laser,
-	/obj/item/gun/energy/e_gun/rabbitdash/pale,
-	/obj/item/gun/energy/e_gun/rabbit/minigun,
-	/obj/item/gun/energy/e_gun/rabbitdash/heavy,
+		/obj/item/gun/energy/e_gun/rabbitdash,
+		/obj/item/gun/energy/e_gun/rabbitdash/small,
+		/obj/item/gun/energy/e_gun/rabbitdash/sniper,
+		/obj/item/gun/energy/e_gun/rabbitdash/white,
+		/obj/item/gun/energy/e_gun/rabbitdash/black,
+		/obj/item/gun/energy/e_gun/rabbitdash/shotgun,
+//		/obj/item/gun/energy/e_gun/rabbitdash/laser,
+		/obj/item/gun/energy/e_gun/rabbitdash/pale,
+		/obj/item/gun/energy/e_gun/rabbit/minigun,
+		/obj/item/gun/energy/e_gun/rabbitdash/heavy,
 	)
 
 
@@ -36,11 +36,11 @@
 		spawning = pick(possible_weapons)
 	new spawning(get_turf(src))
 	var/timeradd = rand(1200, 1800)
-	addtimer(CALLBACK(src, .proc/spawnagain), timeradd)
+	addtimer(CALLBACK(src, PROC_REF(spawnagain)), timeradd)
 
 /obj/effect/landmark/rcorpitemspawn/proc/spawnagain()
 	var/timeradd = rand(1200, 1800)
-	addtimer(CALLBACK(src, .proc/spawnagain), timeradd)
+	addtimer(CALLBACK(src, PROC_REF(spawnagain)), timeradd)
 
 	if(prob(50))	//50% to spawn
 		return
@@ -62,7 +62,7 @@
 
 /obj/effect/landmark/zombiespawn/proc/spawnzombie()
 	var/timeradd = rand(300, 1000)
-	addtimer(CALLBACK(src, .proc/spawnzombie), timeradd)
+	addtimer(CALLBACK(src, PROC_REF(spawnzombie)), timeradd)
 	var/mob/living/simple_animal/hostile/sweeper/A = new(get_turf(src))
 
 
@@ -76,10 +76,12 @@
 	desc = "It spawns an item. Notify a coder. Thanks!"
 	icon = 'icons/effects/landmarks_static.dmi'
 	icon_state = "x4"
-	var/list/possible_mecha = list(/obj/vehicle/sealed/mecha/combat/rhino,
+	var/list/possible_mecha = list(
+		/obj/vehicle/sealed/mecha/combat/rhino,
 		/obj/vehicle/sealed/mecha/combat/rhinosupport,
 		/obj/vehicle/sealed/mecha/combat/rhinoshotgun,
-		/obj/vehicle/sealed/mecha/combat/rhinorifle,)
+		/obj/vehicle/sealed/mecha/combat/rhinorifle,
+	)
 
 /obj/effect/landmark/rhinospawner/Initialize()
 	..()

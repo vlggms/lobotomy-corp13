@@ -11,11 +11,11 @@
 	fear_level = 0 //rabbit not scary
 	move_to_delay = 16
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 65,
-						ABNORMALITY_WORK_INSIGHT = 65,
-						ABNORMALITY_WORK_ATTACHMENT = 100,
-						ABNORMALITY_WORK_REPRESSION = 40,
-						)
+		ABNORMALITY_WORK_INSTINCT = 65,
+		ABNORMALITY_WORK_INSIGHT = 65,
+		ABNORMALITY_WORK_ATTACHMENT = 100,
+		ABNORMALITY_WORK_REPRESSION = 40,
+	)
 	work_damage_amount = 2
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
@@ -39,7 +39,7 @@
 	. = ..()
 	GiveTarget(user)
 	if(!client)
-		addtimer(CALLBACK(src, .proc/kill_dummy), 30 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(kill_dummy)), 30 SECONDS)
 	if(icon_state == "Bungal")
 		icon = 'ModularTegustation/Teguicons/64x96.dmi'
 		icon_state = "Bungal_breach"

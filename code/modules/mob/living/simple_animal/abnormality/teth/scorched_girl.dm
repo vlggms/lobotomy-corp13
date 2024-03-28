@@ -17,8 +17,8 @@
 		ABNORMALITY_WORK_INSTINCT = 40,
 		ABNORMALITY_WORK_INSIGHT = list(60, 60, 50, 50, 50),
 		ABNORMALITY_WORK_ATTACHMENT = list(30, 15, 0, -40, -50),
-		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40)
-		)
+		ABNORMALITY_WORK_REPRESSION = list(50, 50, 40, 40, 40),
+	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
@@ -28,8 +28,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/match,
-		/datum/ego_datum/armor/match
-		)
+		/datum/ego_datum/armor/match,
+	)
 	gift_type =  /datum/ego_gifts/match
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	/// Restrict movement when this is set to TRUE
@@ -54,7 +54,7 @@
 	if(!target_center)
 		..()
 	else
-		patrol_path = get_path_to(src, target_center, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_center, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/MeleeAction()
 	return OpenFire()

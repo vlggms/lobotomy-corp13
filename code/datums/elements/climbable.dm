@@ -18,13 +18,15 @@
 	if(climb_stun)
 		src.climb_stun = climb_stun
 
-	RegisterSignal(target, COMSIG_ATOM_ATTACK_HAND, .proc/attack_hand)
-	RegisterSignal(target, COMSIG_PARENT_EXAMINE, .proc/on_examine)
-	RegisterSignal(target, COMSIG_MOUSEDROPPED_ONTO, .proc/mousedrop_receive)
-	RegisterSignal(target, COMSIG_ATOM_BUMPED, .proc/try_speedrun)
+	RegisterSignal(target, COMSIG_ATOM_ATTACK_HAND, PROC_REF(attack_hand))
+	RegisterSignal(target, COMSIG_PARENT_EXAMINE, PROC_REF(on_examine))
+	RegisterSignal(target, COMSIG_MOUSEDROPPED_ONTO, PROC_REF(mousedrop_receive))
+	RegisterSignal(target, COMSIG_ATOM_BUMPED, PROC_REF(try_speedrun))
+	ADD_TRAIT(target, TRAIT_CLIMBABLE, src)
 
 /datum/element/climbable/Detach(datum/target, force)
 	UnregisterSignal(target, list(COMSIG_ATOM_ATTACK_HAND, COMSIG_PARENT_EXAMINE, COMSIG_MOUSEDROPPED_ONTO, COMSIG_ATOM_BUMPED))
+	REMOVE_TRAIT(target, TRAIT_CLIMBABLE, src)
 	return ..()
 
 /datum/element/climbable/proc/on_examine(atom/source, mob/user, list/examine_texts)
@@ -92,7 +94,7 @@
 			if (!animal.dextrous)
 				return
 		if(living_target.mobility_flags & MOBILITY_MOVE)
-			INVOKE_ASYNC(src, .proc/climb_structure, climbed_thing, living_target)
+			INVOKE_ASYNC(src, PROC_REF(climb_structure), climbed_thing, living_target)
 			return
 
 ///Tries to climb onto the target if the forced movement of the mob allows it

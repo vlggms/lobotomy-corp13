@@ -1,0 +1,208 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/sign/poster/contraband/smoke,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"b" = (
+/obj/structure/chair/stool/bar,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"c" = (
+/obj/structure/sign/poster/official/bless_this_spess,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"d" = (
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"f" = (
+/obj/structure/table/wood/bar,
+/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"h" = (
+/obj/item/storage/toolbox/mechanical,
+/obj/structure/closet,
+/obj/item/ego_weapon/city/district23,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"i" = (
+/obj/structure/mineral_door/wood,
+/turf/open/space/basic,
+/area/city/backstreets_alley)
+"j" = (
+/obj/machinery/vending/cigarette{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"k" = (
+/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"m" = (
+/obj/structure/sign/poster/official/cohiba_robusto_ad,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"p" = (
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"t" = (
+/obj/structure/sign/poster/lobotomycorp/wellcheers,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"v" = (
+/obj/machinery/door/window{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"w" = (
+/obj/structure/sign/poster/lobotomycorp/suckmyenegy,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"y" = (
+/obj/structure/window/reinforced/tinted/fulltile,
+/obj/structure/barricade/wooden,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"z" = (
+/obj/structure/sign/poster/lobotomycorp/bearbeer,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"C" = (
+/obj/structure/sign/poster/contraband/space_cube,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"E" = (
+/obj/structure/table/wood/bar,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"H" = (
+/obj/structure/table/wood/bar,
+/obj/machinery/chem_dispenser/drinks/fullupgrade{
+	dir = 4
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"M" = (
+/obj/machinery/computer/slot_machine,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"N" = (
+/obj/structure/sign/poster/contraband/red_rum,
+/obj/machinery/light/warm{
+	dir = 4
+	},
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"Q" = (
+/obj/machinery/vending/cola,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"U" = (
+/obj/structure/sign/poster/official/love_ian,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"V" = (
+/obj/structure/sign/poster/official/high_class_martini,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_alley)
+"X" = (
+/obj/machinery/vending/snack/orange,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+"Z" = (
+/obj/machinery/computer/slot_machine,
+/turf/open/floor/wood,
+/area/city/backstreets_alley)
+
+(1,1,1) = {"
+d
+d
+w
+N
+d
+d
+"}
+(2,1,1) = {"
+y
+k
+f
+H
+h
+d
+"}
+(3,1,1) = {"
+c
+p
+p
+p
+p
+a
+"}
+(4,1,1) = {"
+z
+p
+p
+p
+p
+C
+"}
+(5,1,1) = {"
+y
+v
+E
+E
+E
+d
+"}
+(6,1,1) = {"
+i
+p
+b
+b
+b
+d
+"}
+(7,1,1) = {"
+y
+j
+p
+p
+p
+d
+"}
+(8,1,1) = {"
+V
+X
+p
+b
+b
+m
+"}
+(9,1,1) = {"
+t
+Q
+p
+Z
+M
+U
+"}
+(10,1,1) = {"
+d
+d
+d
+d
+d
+d
+"}

@@ -25,18 +25,18 @@
 	move_to_delay = 4
 
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 0,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
-						ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 35, 30)
-						)
+		ABNORMALITY_WORK_INSTINCT = 0,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 50, 55, 55, 60),
+		ABNORMALITY_WORK_REPRESSION = list(40, 40, 40, 35, 30),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/despair,
-		/datum/ego_datum/armor/despair
-		)
+		/datum/ego_datum/armor/despair,
+	)
 	gift_type =  /datum/ego_gifts/tears
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
@@ -44,7 +44,7 @@
 		/mob/living/simple_animal/hostile/abnormality/wrath_servant = 2,
 		/mob/living/simple_animal/hostile/abnormality/hatred_queen = 2,
 		/mob/living/simple_animal/hostile/abnormality/greed_king = 2,
-		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5
+		/mob/living/simple_animal/hostile/abnormality/nihil = 1.5,
 	)
 
 	var/mob/living/carbon/human/blessed_human = null
@@ -91,7 +91,7 @@
 		P.xo = target.x - T.x
 		P.original = target
 		P.preparePixelProjectile(target, T)
-		addtimer(CALLBACK (P, .obj/projectile/proc/fire), 3)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 3)
 	SLEEP_CHECK_DEATH(3)
 	playsound(get_turf(src), 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 	return
@@ -159,8 +159,8 @@
 	. = ..()
 	if(user.stat != DEAD && !blessed_human && istype(user) && (work_type == ABNORMALITY_WORK_ATTACHMENT))
 		blessed_human = user
-		RegisterSignal(user, COMSIG_LIVING_DEATH, .proc/BlessedDeath)
-		RegisterSignal(user, COMSIG_HUMAN_INSANE, .proc/BlessedDeath)
+		RegisterSignal(user, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
+		RegisterSignal(user, COMSIG_HUMAN_INSANE, PROC_REF(BlessedDeath))
 		to_chat(user, span_nicegreen("You feel protected."))
 		user.physiology.red_mod *= 0.5
 		user.physiology.white_mod *= 0.5
@@ -175,5 +175,5 @@
 	. = ..()
 	icon_living = "despair_breach"
 	icon_state = icon_living
-	addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 	return

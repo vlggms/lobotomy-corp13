@@ -8,8 +8,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/destiny,
-		/datum/ego_datum/armor/destiny
-		)
+		/datum/ego_datum/armor/destiny,
+	)
 
 /obj/structure/toolabnormality/fateloom/attack_hand(mob/living/carbon/human/user)
 	. = ..()
@@ -46,7 +46,7 @@
 	consumed_on_threshold = FALSE
 
 /datum/status_effect/stacking/red_string/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/heal)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(heal))
 	return ..()
 
 /datum/status_effect/stacking/red_string/proc/heal()

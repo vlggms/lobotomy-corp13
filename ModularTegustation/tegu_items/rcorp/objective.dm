@@ -23,26 +23,26 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	switch(GLOB.rcorp_objective)
 		if("button")
 			new /obj/structure/bough(get_turf(src))
-			addtimer(CALLBACK(src, .proc/reinforce), 25 MINUTES)
+			addtimer(CALLBACK(src, PROC_REF(reinforce)), 25 MINUTES)
 		if("vip")
 			new /mob/living/simple_animal/hostile/shrimp_vip(get_turf(src))
 		if("arbiter")
 			new /obj/structure/bough(get_turf(src))
-			addtimer(CALLBACK(src, .proc/arbspawn), 20 MINUTES)
+			addtimer(CALLBACK(src, PROC_REF(arbspawn)), 20 MINUTES)
 	..()
 
 /obj/effect/landmark/objectivespawn/proc/reinforce()
 	minor_announce("R-Corp reinforcements are on the way. Hang on tight, commander." , "R-Corp Intelligence Office")
 	CONFIG_SET(flag/norespawn, 0)
 	GLOB.rcorp_wincondition = 1
-	addtimer(CALLBACK(src, .proc/reinforce_end), 2 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(reinforce_end)), 2 MINUTES)
 
 /obj/effect/landmark/objectivespawn/proc/reinforce_end()
 	CONFIG_SET(flag/norespawn, 1)
 
 //Delay the fucker by 20 minutes. Someone waltzed into briefing one Rcorp round with this.
 /obj/effect/landmark/objectivespawn/proc/arbspawn()
-	new /obj/effect/mob_spawn/human/arbiter(get_turf(src))
+	new /obj/effect/mob_spawn/human/arbiter/rcorp(get_turf(src))
 	minor_announce("DANGER - HOSTILE ARBITER IN THE AREA. NEUTRALIZE IMMEDIATELY." , "R-Corp Intelligence Office")
 	GLOB.rcorp_wincondition = 2
 
@@ -95,14 +95,14 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 			if(1)
 				animate(f1, radius = 60, time = 60, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
 				animate(f2, size = 30, offset = pick(4,5,6), time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_PARALLEL)
-				addtimer(CALLBACK(src, .proc/FilterLoop, 2), 6 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(FilterLoop), 2), 6 SECONDS)
 			if(2)
 				animate(f1, size = 25, radius = 80, time = 20, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
 				animate(f2, size = 20, offset = pick(0.2,0.4), time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_END_NOW | ANIMATION_PARALLEL)
-				addtimer(CALLBACK(src, .proc/FilterLoop, 3), 2 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(FilterLoop), 3), 2 SECONDS)
 			if(3)
 				animate(f1, size = 20, radius = 0, time = 0, flags = CIRCULAR_EASING | EASE_IN | EASE_OUT | ANIMATION_PARALLEL)
-				addtimer(CALLBACK(src, .proc/FilterLoop, 1), 4 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(FilterLoop), 1), 4 SECONDS)
 		update_icon()
 
 /obj/structure/bough/attack_hand(mob/living/carbon/human/user)
@@ -166,30 +166,22 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	..()
 
 //Arbiter
-/obj/effect/mob_spawn/human/arbiter
-	name = "The Arbiter"
-	icon = 'icons/obj/machines/sleeper.dmi'
-	icon_state = "sleeper_s"
-	short_desc = "You are The Arbiter."
+/obj/effect/mob_spawn/human/arbiter/rcorp
 	important_info = "You are hostile to R-Corp. Assist abnormalities in killing them all."
-	outfit = /datum/outfit/arbiter
-	max_integrity = 9999999
-	density = TRUE
-	roundstart = FALSE
-	death = FALSE
 
 
-/obj/effect/mob_spawn/human/arbiter/special(mob/living/new_spawn)
+/obj/effect/mob_spawn/human/arbiter/rcorp/special(mob/living/new_spawn)
 	new_spawn.mind.add_antag_datum(/datum/antagonist/wizard/arbiter/rcorp)
 
 /datum/antagonist/wizard/arbiter/rcorp
+	name = "Arbiter (rcorp)"
 	spell_types = list(
 		/obj/effect/proc_holder/spell/aimed/fairy,
 		/obj/effect/proc_holder/spell/aimed/pillar,
 		/obj/effect/proc_holder/spell/aimed/spell_cards,
 		/obj/effect/proc_holder/spell/targeted/forcewall,
-		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter
-		)
+		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter,
+	)
 
 //R Corp Comms
 /obj/structure/rcorpcomms

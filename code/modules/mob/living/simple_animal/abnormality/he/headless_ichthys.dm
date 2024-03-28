@@ -5,6 +5,7 @@
 	icon_state = "headless_ichthys"
 	icon_living = "headless_ichthys"
 	icon_dead = "headless_ichthys"
+	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
 	maxHealth = 1200
@@ -26,18 +27,18 @@
 	start_qliphoth = 2
 	del_on_death = FALSE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
-						ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
-						ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 55, 50, 45),
-						ABNORMALITY_WORK_REPRESSION = list(35, 40, 40, 35, 35)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(50, 55, 55, 50, 45),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, -30, -60, -90),
+		ABNORMALITY_WORK_ATTACHMENT = list(50, 55, 55, 50, 45),
+		ABNORMALITY_WORK_REPRESSION = list(35, 40, 40, 35, 35),
+	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/fluid_sac,
-		/datum/ego_datum/armor/fluid_sac
-		)
+		/datum/ego_datum/armor/fluid_sac,
+	)
 	gift_type =  /datum/ego_gifts/fluid_sac
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/can_act = TRUE
@@ -55,8 +56,8 @@
 	var/datum/beam/current_beam
 
 	attack_action_types = list(
-	/datum/action/innate/abnormality_attack/IchthysJump,
-	/datum/action/innate/abnormality_attack/BloodCannon
+		/datum/action/innate/abnormality_attack/IchthysJump,
+		/datum/action/innate/abnormality_attack/BloodCannon,
 	)
 
 // Player-Controlled code
@@ -89,7 +90,8 @@
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, 4)
 		var/turf/target_turf = get_turf(target)
 		SLEEP_CHECK_DEATH(1 SECONDS)
-		forceMove(target_turf) //look out, someone is rushing you!
+		if(target_turf)
+			forceMove(target_turf) //look out, someone is rushing you!
 		playsound(src, jump_sound, 50, FALSE, 4)
 		animate(src, alpha = 255,pixel_x = 0, pixel_z = -16, time = 0.1 SECONDS)
 		src.pixel_z = 0

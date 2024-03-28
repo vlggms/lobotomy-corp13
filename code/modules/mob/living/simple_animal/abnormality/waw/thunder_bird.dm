@@ -9,12 +9,12 @@
 	speak_emote = list("intones")
 	gender = NEUTER
 	var/list/thunder_bird_lines = list(
-				"Prostrate yourself! Harder!",
-				"Do you think I am happy, feather? Think again!",
-				"You folk, nothing but sacrifices. Sacrifices for me and everyone else here!",
-				"Your kind can never be forgiven!",
-				"Look around, you monsters! You've destroyed my people and nature!"
-				)
+		"Prostrate yourself! Harder!",
+		"Do you think I am happy, feather? Think again!",
+		"You folk, nothing but sacrifices. Sacrifices for me and everyone else here!",
+		"Your kind can never be forgiven!",
+		"Look around, you monsters! You've destroyed my people and nature!",
+	)
 	//Ideally it should only glow in its breached state
 	light_color = LIGHT_COLOR_BLUE
 	light_range = 0
@@ -35,11 +35,11 @@
 	start_qliphoth = 3
 	//Unlike firebird, you're aiming for good results. The success rates are lower overall and it hates attachment work.
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
-						ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
-						ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
-						ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(25, 25, 20, 20, 20),
+		ABNORMALITY_WORK_INSIGHT = list(30, 35, 35, 40, 45),
+		ABNORMALITY_WORK_ATTACHMENT = list(10, 10, 5, 5, 15),
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 50, 55, 55),
+	)
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
@@ -47,8 +47,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/warring,
 		/datum/ego_datum/weapon/warring2,
-		/datum/ego_datum/armor/warring
-		)
+		/datum/ego_datum/armor/warring,
+	)
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
@@ -159,7 +159,7 @@
 	charging = TRUE
 	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
 	been_hit = list()
-	addtimer(CALLBACK(src, .proc/do_dash, dir_to_target, 0), 1.5 SECONDS)//how long it takes for the dash to initiate. Set it back to 1 second when thunderbird gets directional sprites
+	addtimer(CALLBACK(src, PROC_REF(do_dash), dir_to_target, 0), 1.5 SECONDS)//how long it takes for the dash to initiate. Set it back to 1 second when thunderbird gets directional sprites
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_charge.ogg', 100, 1)
 
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/do_dash(move_dir, times_ran)
@@ -174,14 +174,13 @@
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-	for(var/obj/machinery/door/poddoor/P in T.contents)
-		stop_charge = TRUE
-		continue
+		break
 	for(var/obj/machinery/door/D in T.contents)
-		if(istype(D, /obj/machinery/door/poddoor))	//Should fix.
-			continue
+		if(!D.CanAStarPass(null))
+			stop_charge = TRUE
+			break
 		if(D.density)
-			D.open(2)
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 75, 1)
 		charging = FALSE
@@ -208,7 +207,7 @@
 				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
 			if(!(L in been_hit))
 				been_hit += L
-	addtimer(CALLBACK(src, .proc/do_dash, move_dir, (times_ran + 1)), 1)
+	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
 
 /*---Qliphoth Counter---*/
 //counter goes up when you're above 80% hp on a good result, 50% down otherwise
@@ -281,7 +280,7 @@
 
 /obj/effect/thunderbolt/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 3 SECONDS)
 
 //Zombie conversion through lightning bombs
 /obj/effect/thunderbolt/proc/Convert(mob/living/carbon/human/H)
@@ -380,7 +379,7 @@
 
 //reanimated if thunderbird isn't suppressed within 30 seconds
 /mob/living/simple_animal/hostile/thunder_zombie/death(gibbed)
-	addtimer(CALLBACK(src, .proc/resurrect), 30 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(resurrect)), 30 SECONDS)
 	return ..()
 
 /mob/living/simple_animal/hostile/thunder_zombie/proc/resurrect()

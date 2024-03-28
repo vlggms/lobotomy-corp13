@@ -7,8 +7,8 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/hyde,
-		/datum/ego_datum/armor/hyde
-		)
+		/datum/ego_datum/armor/hyde,
+	)
 
 /obj/structure/toolabnormality/dr_jekyll/attack_hand(mob/living/carbon/human/user)
 	..()
@@ -41,8 +41,8 @@
 	var/level_mod
 
 /datum/status_effect/dr_jekyll/on_apply()
-	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, .proc/HydeDam)
-	RegisterSignal(owner, COMSIG_FEAR_EFFECT, .proc/HydeDam)
+	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(HydeDam))
+	RegisterSignal(owner, COMSIG_FEAR_EFFECT, PROC_REF(HydeDam))
 	return ..()
 
 /datum/status_effect/dr_jekyll/on_remove()
@@ -59,43 +59,43 @@
 
 /datum/status_effect/dr_jekyll/proc/HydeDam()
 	SIGNAL_HANDLER
-	addtimer(CALLBACK(src, .proc/SanityCheck), 1) //Gives sanity time to update
+	addtimer(CALLBACK(src, PROC_REF(SanityCheck)), 1) //Gives sanity time to update
 
 /datum/status_effect/dr_jekyll/proc/SanityCheck()
-	var/mob/living/carbon/human/H = owner
-	if (H.sanity_lost)
+	var/mob/living/carbon/human/status_holder = owner
+	if(status_holder.sanity_lost)
 		if(panic_override)
 			return
-		QDEL_NULL(H.ai_controller)
-		H.ai_controller = /datum/ai_controller/insane/murder/hyde
-		H.InitializeAIController()
-		H.apply_status_effect(/datum/status_effect/panicked_type/hyde)
+		QDEL_NULL(status_holder.ai_controller)
+		status_holder.ai_controller = /datum/ai_controller/insane/murder/hyde
+		status_holder.InitializeAIController()
+		status_holder.apply_status_effect(/datum/status_effect/panicked_type/hyde)
 		panic_override = TRUE
 		return
 
 	panic_override = FALSE
 	if(!takeover)
-		if(H.sanityhealth < (H.maxSanity * 0.5))
+		if(status_holder.sanityhealth < (status_holder.maxSanity * 0.5))
 			HydeTakeover()
 		return
-	if(H.sanityhealth > (H.maxSanity * 0.5))
+	if(status_holder.sanityhealth > (status_holder.maxSanity * 0.5))
 		ReturnToNormal()
 
 /datum/status_effect/dr_jekyll/proc/HydeTakeover()
-	var/mob/living/carbon/human/H = owner
-	to_chat(H, span_notice("You feel strange... Yet... Free?"))
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_notice("You feel strange... Yet... Free?"))
 	takeover = TRUE
 	level = get_user_level(owner) // we only update when the debuff is inflicted
 	level_mod = (level * 5)
-	for(var/attribute in H.attributes)
-		AttributeCalc(attribute, H)
+	for(var/attribute in status_holder.attributes)
+		AttributeCalc(attribute, status_holder)
 
-	H.adjust_attribute_bonus(lowest, 2 * level_mod)
-	H.adjust_attribute_bonus(low, 1 * level_mod)
-	H.adjust_attribute_bonus(high, -1 * level_mod)
-	H.adjust_attribute_bonus(highest, -2 * level_mod)
-	if(H.sanityhealth > (H.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to go away
-		H.sanityhealth = (H.maxSanity * 0.45)
+	status_holder.adjust_attribute_bonus(lowest, 2 * level_mod)
+	status_holder.adjust_attribute_bonus(low, 1 * level_mod)
+	status_holder.adjust_attribute_bonus(high, -1 * level_mod)
+	status_holder.adjust_attribute_bonus(highest, -2 * level_mod)
+	if(status_holder.sanityhealth > (status_holder.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to go away
+		status_holder.sanityhealth = (status_holder.maxSanity * 0.45)
 
 /datum/status_effect/dr_jekyll/proc/AttributeCalc(attribute, mob/living/carbon/human/H)
 	var/attribute_level = get_raw_level(H, attribute)
@@ -117,15 +117,15 @@
 	lowest = attribute
 
 /datum/status_effect/dr_jekyll/proc/ReturnToNormal()
-	var/mob/living/carbon/human/H = owner
-	to_chat(H, span_nicegreen("The strange feeling goes away."))
+	var/mob/living/carbon/human/status_holder = owner
+	to_chat(status_holder, span_nicegreen("The strange feeling goes away."))
 	takeover = FALSE
-	H.adjust_attribute_bonus(lowest, -2 * level_mod)
-	H.adjust_attribute_bonus(low, -1 * level_mod)
-	H.adjust_attribute_bonus(high, 1 * level_mod)
-	H.adjust_attribute_bonus(highest, 2 * level_mod)
-	if(H.sanityhealth < (H.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to return
-		H.sanityhealth = (H.maxSanity * 0.55)
+	status_holder.adjust_attribute_bonus(lowest, -2 * level_mod)
+	status_holder.adjust_attribute_bonus(low, -1 * level_mod)
+	status_holder.adjust_attribute_bonus(high, 1 * level_mod)
+	status_holder.adjust_attribute_bonus(highest, 2 * level_mod)
+	if(status_holder.sanityhealth < (status_holder.maxSanity * 0.5)) //We need to check if prudence changes would cause hyde to return
+		status_holder.sanityhealth = (status_holder.maxSanity * 0.55)
 	highest = 0
 	high = 0
 	low = 0
@@ -137,13 +137,13 @@
 
 /datum/ai_behavior/say_line/insanity_hyde
 	lines = list(
-				"If I am the chief of sinners, I am the chief of sufferers too.",
-				"I incline to Cain's heresy!",
-				"Finally, you've given in! This body is mine!",
-				"Now, let's see what this body is good for.",
-				"Hark! I'll put an end to your pitiful squealing!",
-				"O, my poor old soul!"
-				)
+		"If I am the chief of sinners, I am the chief of sufferers too.",
+		"I incline to Cain's heresy!",
+		"Finally, you've given in! This body is mine!",
+		"Now, let's see what this body is good for.",
+		"Hark! I'll put an end to your pitiful squealing!",
+		"O, my poor old soul!",
+	)
 
 /datum/status_effect/panicked_type/hyde
 	icon = "hyde"

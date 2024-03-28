@@ -93,14 +93,14 @@
 			if(1)
 				animate(f1, radius = 60, time = 60, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
 				animate(f2, size = 30, offset = pick(4,5,6), time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_PARALLEL)
-				addtimer(CALLBACK(src, .proc/FilterLoop, 2), 6 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(FilterLoop), 2), 6 SECONDS)
 			if(2)
 				animate(f1, size = 25, radius = 80, time = 20, flags = CIRCULAR_EASING | EASE_OUT | ANIMATION_PARALLEL)
 				animate(f2, size = 20, offset = pick(0.2,0.4), time = 60, flags = SINE_EASING | EASE_OUT | ANIMATION_END_NOW | ANIMATION_PARALLEL)
-				addtimer(CALLBACK(src, .proc/FilterLoop, 3), 2 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(FilterLoop), 3), 2 SECONDS)
 			if(3)
 				animate(f1, size = 20, radius = 0, time = 0, flags = CIRCULAR_EASING | EASE_IN | EASE_OUT | ANIMATION_PARALLEL)
-				addtimer(CALLBACK(src, .proc/FilterLoop, 1), 4 SECONDS)
+				addtimer(CALLBACK(src, PROC_REF(FilterLoop), 1), 4 SECONDS)
 		update_icon()
 
 /obj/structure/toolabnormality/realization/proc/YinYangCheck()
@@ -143,7 +143,6 @@
 
 	qdel(I)
 	realized_users |= user.ckey
-	user.adjust_all_attribute_levels(-10)
 	var/atom/new_item = new item_out(get_turf(user))
 	user.put_in_hands(new_item)
 	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))

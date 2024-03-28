@@ -534,7 +534,7 @@
 	status = rcd_status
 	delay = rcd_delay
 	if (status == RCD_DECONSTRUCT)
-		addtimer(CALLBACK(src, /atom/.proc/update_icon), 11)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom, update_icon)), 11)
 		delay -= 11
 		icon_state = "rcd_end_reverse"
 	else
@@ -556,7 +556,7 @@
 		qdel(src)
 	else
 		icon_state = "rcd_end"
-		addtimer(CALLBACK(src, .proc/end), 15)
+		addtimer(CALLBACK(src, PROC_REF(end)), 15)
 
 /obj/effect/constructing_effect/proc/end()
 	qdel(src)
@@ -571,7 +571,7 @@
 /obj/effect/temp_visual/bee_gas/Initialize()
 	. = ..()
 	animate(src, alpha = rand(125,200), time = 5)
-	addtimer(CALLBACK(src, .proc/fade_out), 5)
+	addtimer(CALLBACK(src, PROC_REF(fade_out)), 5)
 
 /obj/effect/temp_visual/bee_gas/proc/fade_out()
 	animate(src, alpha = 0, time = duration-5)
@@ -597,7 +597,7 @@
 
 /obj/effect/temp_visual/judgement/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/fade_out), 10)
+	addtimer(CALLBACK(src, PROC_REF(fade_out)), 10)
 
 /obj/effect/temp_visual/judgement/proc/fade_out()
 	animate(src, alpha = 0, time = duration-10)
@@ -634,7 +634,7 @@
 /obj/effect/temp_visual/water_waves/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 10)
-	addtimer(CALLBACK(src, .proc/fade_out), 10 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(fade_out)), 10 SECONDS)
 
 /obj/effect/temp_visual/water_waves/proc/fade_out()
 	animate(src, alpha = 0, time = (duration - 10 SECONDS))
@@ -731,7 +731,7 @@
 	. = ..()
 	icon_state = "flesh[rand(0,3)]"
 	animate(src, alpha = 255, time = 5)
-	addtimer(CALLBACK(src, .proc/fade_out), 4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(fade_out)), 4 SECONDS)
 
 /obj/effect/temp_visual/flesh/proc/fade_out()
 	animate(src, alpha = 0, time = (duration - 4 SECONDS))
@@ -763,9 +763,9 @@
 /obj/effect/temp_visual/censored/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 2)
-	addtimer(CALLBACK(src, .proc/fade_out), 17)
+	addtimer(CALLBACK(src, PROC_REF(fade_out)), 17)
 	for(var/i = 1 to 9)
-		addtimer(CALLBACK(src, .proc/shake), 2*i)
+		addtimer(CALLBACK(src, PROC_REF(shake)), 2*i)
 
 /obj/effect/temp_visual/censored/proc/shake()
 	animate(src, pixel_x = base_pixel_x + rand(-4, 4), pixel_y = base_pixel_y + rand(-4, 4), time = 1)
@@ -784,20 +784,6 @@
 	icon_state = "apocalypse_enchant_effect"
 	layer = ABOVE_ALL_MOB_LAYER
 
-/obj/effect/temp_visual/ambermidnight_hole
-	name = "hole"
-	icon = 'ModularTegustation/Teguicons/224x128.dmi'
-	icon_state = "ambermidnight_hole"
-	duration = 10 SECONDS
-	pixel_x = -96
-	base_pixel_x = -96
-	pixel_y = -16
-	base_pixel_y = -16
-
-/obj/effect/temp_visual/ambermidnight_hole/Initialize()
-	. = ..()
-	animate(src, alpha = 0, time = duration)
-
 /obj/effect/temp_visual/cross
 	name = "holy cross"
 	icon = 'icons/effects/32x64.dmi'
@@ -810,7 +796,7 @@
 
 /obj/effect/temp_visual/cross/fall/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/FadeOut), 6 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 6 SECONDS)
 
 /obj/effect/temp_visual/cross/fall/proc/FadeOut()
 	animate(src, alpha = 0, time = 2 SECONDS)
@@ -844,7 +830,7 @@
 /obj/effect/temp_visual/alriune_curtain/Initialize()
 	. = ..()
 	animate(src, alpha = 255, time = 5)
-	addtimer(CALLBACK(src, .proc/FadeOut), 5)
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 5)
 
 /obj/effect/temp_visual/alriune_curtain/proc/FadeOut()
 	animate(src, alpha = 0, time = 15)
@@ -995,7 +981,7 @@
 
 /obj/effect/temp_visual/house/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/FadeOut), 2 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 2 SECONDS)
 
 /obj/effect/temp_visual/house/proc/FadeOut()
 	animate(src, alpha = 0, time = 1 SECONDS)

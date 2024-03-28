@@ -21,24 +21,29 @@
 	threat_level = TETH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 45,
-						ABNORMALITY_WORK_INSIGHT = 45,
-						ABNORMALITY_WORK_ATTACHMENT = 60,
-						ABNORMALITY_WORK_REPRESSION = 20
-						)
+		ABNORMALITY_WORK_INSTINCT = 45,
+		ABNORMALITY_WORK_INSIGHT = 45,
+		ABNORMALITY_WORK_ATTACHMENT = 60,
+		ABNORMALITY_WORK_REPRESSION = 20,
+	)
 	work_damage_amount = 6
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/dream,
-		/datum/ego_datum/armor/dream
-		)
+		/datum/ego_datum/armor/dream,
+	)
 	gift_type =  /datum/ego_gifts/dream
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/punched = FALSE
 	var/pulse_damage = 50
 	var/ability_cooldown
 	var/ability_cooldown_time = 12 SECONDS
+
+/mob/living/simple_animal/hostile/abnormality/voiddream/Initialize()
+	. = ..()
+	if(IsCombatMap())
+		faction = list("hostile") //So that they don't target pino specificlly on RCA
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/Life()
 	. = ..()
@@ -86,13 +91,15 @@
 		return
 	ability_cooldown = world.time + ability_cooldown_time
 	if(punched)
-		INVOKE_ASYNC(src, .proc/Shout)
+		INVOKE_ASYNC(src, PROC_REF(Shout))
 	else
-		INVOKE_ASYNC(src, .proc/SleepyDart)
+		INVOKE_ASYNC(src, PROC_REF(SleepyDart))
 
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/SleepyDart()
 	var/list/possibletargets = list()
 	for(var/mob/living/carbon/human/H in view(10, src))
+		if(faction_check(src.faction, H.faction))
+			continue
 		if(H.IsSleeping())
 			continue
 		if(H.stat >= SOFT_CRIT)
@@ -111,6 +118,8 @@
 /mob/living/simple_animal/hostile/abnormality/voiddream/proc/Shout()
 	playsound(get_turf(src), 'sound/abnormalities/voiddream/shout.ogg', 75, FALSE, 5)
 	for(var/mob/living/carbon/human/L in range(10, src))
+		if(faction_check(src.faction, L.faction)) // I LOVE NESTING IF STATEMENTS
+			continue
 		if(L.has_status_effect(STATUS_EFFECT_SLEEPING))
 			L.SetSleeping(0)
 			L.adjustSanityLoss(1000) //Die.
@@ -140,7 +149,7 @@
 	ability_cooldown = world.time + 4 SECONDS
 	if(IsCombatMap())
 		return
-	addtimer(CALLBACK(src, .proc/DelPassive), rand((3 MINUTES), (5 MINUTES)))
+	addtimer(CALLBACK(src, PROC_REF(DelPassive)), rand((3 MINUTES), (5 MINUTES)))
 
 // Projectile code
 /obj/projectile/sleepdart

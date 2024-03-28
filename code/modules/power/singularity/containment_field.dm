@@ -20,7 +20,7 @@
 /obj/machinery/field/containment/Initialize()
 	. = ..()
 	air_update_turf(TRUE, TRUE)
-	RegisterSignal(src, COMSIG_ATOM_SINGULARITY_TRY_MOVE, .proc/block_singularity)
+	RegisterSignal(src, COMSIG_ATOM_SINGULARITY_TRY_MOVE, PROC_REF(block_singularity))
 
 /obj/machinery/field/containment/Destroy()
 	FG1.fields -= src
@@ -146,4 +146,4 @@
 	do_sparks(5, TRUE, AM.loc)
 	var/atom/target = get_edge_target_turf(AM, get_dir(src, get_step_away(AM, src)))
 	AM.throw_at(target, 200, 4)
-	addtimer(CALLBACK(src, .proc/clear_shock), 5)
+	addtimer(CALLBACK(src, PROC_REF(clear_shock)), 5)

@@ -6,13 +6,14 @@
 	desc = "A man with a flaming head sitting behind a desk."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "firstfold"
+	portrait = "contract"
 	threat_level = WAW_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(0, 0, 30, 40, 50),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 40, 50),
 		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 40, 50),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 40, 50),
-			)
+	)
 	pixel_x = -16
 	base_pixel_x = -16
 	start_qliphoth = 2
@@ -22,7 +23,7 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/infinity,
 		/datum/ego_datum/armor/infinity,
-		)
+	)
 	gift_type = /datum/ego_gifts/infinity
 
 	var/list/total_havers = list()
@@ -47,33 +48,44 @@
 			spawnables += abno
 
 /mob/living/simple_animal/hostile/abnormality/contract/WorkChance(mob/living/carbon/human/user, chance, work_type)
+	. = chance
 	if(!(user in total_havers))
-		return chance
+		return
 
-	var/enabled = FALSE
+	if(ContractedUser(user, work_type))
+		. /= 2
+
+	return
+
+/mob/living/simple_animal/hostile/abnormality/contract/AttemptWork(mob/living/carbon/human/user, work_type)
+	work_damage_amount = initial(work_damage_amount)
+	. = ..()
+	if(ContractedUser(user, work_type) && .)
+		work_damage_amount /= 4
+		say("Yes, yes... I remember the contract.")
+	return
+
+/mob/living/simple_animal/hostile/abnormality/contract/proc/ContractedUser(mob/living/carbon/human/user, work_type)
+	. = FALSE
+	if(!(user in total_havers))
+		return
+
 	switch(work_type)
 		if(ABNORMALITY_WORK_INSTINCT)
 			if(user in fort_havers)
-				enabled = TRUE
+				return TRUE
 
 		if(ABNORMALITY_WORK_INSIGHT)
 			if(user in prud_havers)
-				enabled = TRUE
+				return TRUE
 
 		if(ABNORMALITY_WORK_ATTACHMENT)
 			if(user in temp_havers)
-				enabled = TRUE
+				return TRUE
 
 		if(ABNORMALITY_WORK_REPRESSION)
 			if(user in just_havers)
-				enabled = TRUE
-
-	if(enabled)
-		work_damage_amount /= 4
-		say("Yes, yes... I remember the contract.")
-		return chance/2
-
-	return chance
+				return TRUE
 
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/contract/ZeroQliphoth(mob/living/carbon/human/user)

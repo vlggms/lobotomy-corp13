@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "eris"
 	icon_living = "eris"
+	portrait = "eris"
 	maxHealth = 1100
 	health = 1100
 	ranged = TRUE
@@ -22,18 +23,18 @@
 	pet_bonus = TRUE
 	start_qliphoth = 3
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(35, 40, 40, 35, 35),
-						ABNORMALITY_WORK_INSIGHT = list(35, 40, 40, 35, 35),
-						ABNORMALITY_WORK_ATTACHMENT = 70,
-						ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
-						)
+		ABNORMALITY_WORK_INSTINCT = list(35, 40, 40, 35, 35),
+		ABNORMALITY_WORK_INSIGHT = list(35, 40, 40, 35, 35),
+		ABNORMALITY_WORK_ATTACHMENT = 70,
+		ABNORMALITY_WORK_REPRESSION = list(50, 55, 55, 50, 45),
+	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/coiling,
-		/datum/ego_datum/armor/coiling
-		)
+		/datum/ego_datum/armor/coiling,
+	)
 	gift_type =  /datum/ego_gifts/coiling
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 	var/girlboss_level = 0
@@ -42,7 +43,7 @@
 //Okay, but here's the breach on death
 /mob/living/simple_animal/hostile/abnormality/eris/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death) // Hell
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death)) // Hell
 
 /mob/living/simple_animal/hostile/abnormality/eris/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -82,7 +83,7 @@
 
 	var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 

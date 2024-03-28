@@ -20,14 +20,14 @@
 		ABNORMALITY_WORK_INSTINCT = 30,
 		ABNORMALITY_WORK_INSIGHT = 45,
 		ABNORMALITY_WORK_ATTACHMENT = 55,
-		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0)
+		ABNORMALITY_WORK_REPRESSION = list(50, 45, 40, 0, 0),
 	)
 	work_damage_amount = 8
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/grasp,
-		/datum/ego_datum/armor/grasp
+		/datum/ego_datum/armor/grasp,
 	)
 	gift_type = /datum/ego_gifts/grasp
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
@@ -69,12 +69,20 @@
 	user.Stun(3 SECONDS)
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	step_towards(user, src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	user.attack_animal(src)
 	sleep(0.2 SECONDS)
+	if(QDELETED(user))
+		return
 	user.attack_animal(src)
 	sleep(0.5 SECONDS)
+	if(QDELETED(user))
+		return
 	to_chat(user, span_userdanger("[src] stabs you!"))
 	user.apply_damage(3000, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	playsound(user, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
@@ -164,7 +172,7 @@
 
 /obj/effect/malicious_shadow/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, .proc/explode), 0.5 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
 
 /obj/effect/malicious_shadow/proc/explode() //repurposed code from artillary bees, a delayed attack
 	playsound(get_turf(src), 'sound/abnormalities/missed_reaper/shadowhit.ogg', 50, 0, 8)

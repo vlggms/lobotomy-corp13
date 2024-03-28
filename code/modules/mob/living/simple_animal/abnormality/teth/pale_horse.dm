@@ -20,18 +20,18 @@
 	start_qliphoth = 4
 	is_flying_animal = TRUE
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = 30,
-						ABNORMALITY_WORK_INSIGHT = 50,
-						ABNORMALITY_WORK_ATTACHMENT = 55,
-						ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50)
-						)
+		ABNORMALITY_WORK_INSTINCT = 30,
+		ABNORMALITY_WORK_INSIGHT = 50,
+		ABNORMALITY_WORK_ATTACHMENT = 55,
+		ABNORMALITY_WORK_REPRESSION = list(70, 65, 60, 50, 50),
+	)
 	work_damage_amount = 3
 	work_damage_type = PALE_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/revelation,
-		/datum/ego_datum/armor/revelation
-		)
+		/datum/ego_datum/armor/revelation,
+	)
 	gift_type =  /datum/ego_gifts/revelation
 	gift_message = "He will wipe away every tear from their eyes, and death shall be evermore."
 
@@ -59,7 +59,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/OnMobDeath)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
 	if(prob(1))
 		icon_state = "palehorse_hungry"
 
@@ -136,7 +136,7 @@
 			playsound(T, 'sound/abnormalities/palehorse/debuff.ogg', 50, 0, -1)
 		LoseTarget(T)
 	else
-		addtimer(CALLBACK(src, .proc/TryTeleport), 5)
+		addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 		ToAshes(T)
 
 
@@ -205,7 +205,7 @@
 		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
 
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 
@@ -284,16 +284,18 @@
 
 /datum/status_effect/mortis/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		to_chat(owner, span_warning("You feel weak..."))
-		var/mob/living/carbon/human/M = owner
-		M.physiology.pale_mod *= 2
+	if(!ishuman(owner))
+		return
+	to_chat(owner, span_warning("You feel weak..."))
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.pale_mod *= 2
 
 /datum/status_effect/mortis/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		to_chat(owner, span_warning("You regain your vigor."))
-		var/mob/living/carbon/human/M = owner
-		M.physiology.pale_mod /= 2
+	if(!ishuman(owner))
+		return
+	to_chat(owner, span_warning("You regain your vigor."))
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.pale_mod /= 2
 
 #undef STATUS_EFFECT_MORTIS

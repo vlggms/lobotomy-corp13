@@ -27,18 +27,18 @@
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 2
 	work_chances = list(
-						ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 50, 55),
-						ABNORMALITY_WORK_INSIGHT = 0,
-						ABNORMALITY_WORK_ATTACHMENT = 0,
-						ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55)
-						)
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 50, 55),
+		ABNORMALITY_WORK_INSIGHT = 0,
+		ABNORMALITY_WORK_ATTACHMENT = 0,
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
+	)
 	work_damage_amount = 16
 	work_damage_type = BLACK_DAMAGE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/smile,
-		/datum/ego_datum/armor/smile
-		)
+		/datum/ego_datum/armor/smile,
+	)
 	gift_type =  /datum/ego_gifts/smile
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	/// Is user performing work hurt at the beginning?
@@ -61,7 +61,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
 	if(prob(1)) // Kirie, why
 		icon_state = "amog"
 		gift_type =  /datum/ego_gifts/amogus
@@ -119,7 +119,7 @@
 	. = ..()
 	if(.)
 		var/mob/living/L = target
-		if(L.health < 0 || L.stat == DEAD)
+		if(isliving(target) && (L.health < 0 || L.stat == DEAD))
 			finishing = TRUE
 			if(phase == 3)
 				icon_state = "mosb_bite2"
@@ -350,7 +350,7 @@
 		target_turf = get_closest_atom(/turf/open, low_priority_turfs, src)
 
 	if(istype(target_turf))
-		patrol_path = get_path_to(src, target_turf, /turf/proc/Distance_cardinal, 0, 200)
+		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	return ..()
 

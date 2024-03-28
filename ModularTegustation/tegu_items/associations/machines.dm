@@ -14,11 +14,12 @@
 		/obj/item/food/meat/slab/sweeper,
 		/obj/item/food/meat/slab/worm,
 		/obj/item/food/meat/slab/robot,
-		/obj/item/food/meat/slab/human/mutant/moth
-		)
+		/obj/item/food/meat/slab/human/mutant/moth,
+	)
 	var/list/level_2 = list(
 		/obj/item/clothing/suit/armor/ego_gear/city,
 		/obj/item/ego_weapon/city,
+		/obj/item/gun/ego_gun,
 	)
 	var/list/level_3 = list(
 		/obj/item/raw_anomaly_core,
@@ -159,10 +160,12 @@
 	anchored = TRUE
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
-	var/list/stats = list(FORTITUDE_ATTRIBUTE,
-			PRUDENCE_ATTRIBUTE,
-			TEMPERANCE_ATTRIBUTE,
-			JUSTICE_ATTRIBUTE)
+	var/list/stats = list(
+		FORTITUDE_ATTRIBUTE,
+		PRUDENCE_ATTRIBUTE,
+		TEMPERANCE_ATTRIBUTE,
+		JUSTICE_ATTRIBUTE,
+	)
 
 //Very dumb way to implement "empty hand AND full hand."
 //These two code blocks are the same except for their triggers - if you've got a better idea, please use it.
@@ -201,7 +204,7 @@
 
 /obj/structure/timelock/Initialize()
 	..()
-	addtimer(CALLBACK(src, .proc/die), 15 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(die)), 15 MINUTES)
 
 /obj/structure/timelock/proc/die()
 	qdel(src)

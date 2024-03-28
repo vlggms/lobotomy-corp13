@@ -88,6 +88,7 @@
 		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
 		"Melting Love gave a lump of slime to the first employee (D-03-109-1) who performed any work other \than Repression with it. The lump healed D-03-109-1’s SP and improved their Temperance. However, further observation is needed to determine how the lump’s effects change according to the state of Melting Love.",
 		"When D-03-109-1 completed Repression Work, the Qliphoth Counter lowered.",
+		"When D-03-109-1 completed work on Melting Love, and the work result was Good, the Qliphoth Counter increased by 1 with a low probability.",
 		"The Qliphoth Counter dropped to 0 when D-03-109-1 died.",
 		"NOTICE: D-03-109-1 <strong>does not</strong> appear to carry any infectious agents.")
 

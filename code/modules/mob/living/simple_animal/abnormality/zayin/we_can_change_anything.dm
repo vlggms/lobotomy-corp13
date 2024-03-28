@@ -14,8 +14,8 @@
 		ABNORMALITY_WORK_INSIGHT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_ATTACHMENT = list(80, 85, 90, 95, 100),
 		ABNORMALITY_WORK_REPRESSION = list(80, 85, 90, 95, 100),
-		"Enter machine" = 100 //"Go inside the torture machine, it'll be fun they said"
-		)
+		"Enter machine" = 100, //"Go inside the torture machine, it'll be fun they said"
+	)
 
 	charger = TRUE
 	charge_distance = 8
@@ -32,8 +32,8 @@
 	ego_list = list(
 		/datum/ego_datum/weapon/change,
 		/datum/ego_datum/armor/change,
-		/datum/ego_datum/weapon/iron_maiden
-		)
+		/datum/ego_datum/weapon/iron_maiden,
+	)
 
 	gift_type =  /datum/ego_gifts/change
 	gift_message = "Your heart beats with new vigor."
@@ -41,7 +41,7 @@
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/helper = 1.5,
-		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5
+		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
 	var/grinding = FALSE
@@ -215,7 +215,7 @@
 /datum/status_effect/we_can_change_anything
 	id = "change"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3000 //Lasts 5 mins
+	duration = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/we_can_change_anything
 
 /atom/movable/screen/alert/status_effect/we_can_change_anything
@@ -226,15 +226,17 @@
 
 /datum/status_effect/we_can_change_anything/on_apply()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 0.9
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod *= 0.9
 
 /datum/status_effect/we_can_change_anything/on_remove()
 	. = ..()
-	if(ishuman(owner))
-		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod /= 0.9
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.physiology.red_mod /= 0.9
 
 #undef STATUS_EFFECT_CHANGE
 
