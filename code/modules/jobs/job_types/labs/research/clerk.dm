@@ -31,5 +31,4 @@
 	ears = /obj/item/radio/headset
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
-	suit = /obj/item/clothing/suit/toggle/labcoat
 	l_pocket = /obj/item/radio

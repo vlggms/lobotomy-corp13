@@ -314,11 +314,6 @@
 /obj/item/reagent_containers/spray/cleaner,
 /turf/open/floor/plasteel,
 /area/centcom)
-"ef" = (
-/obj/structure/table,
-/obj/item/gun/ego_gun/city/ammogun/autopistol,
-/turf/open/floor/plasteel,
-/area/centcom)
 "eg" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel,
@@ -35462,13 +35457,13 @@ ZP
 Ps
 nS
 bv
-ef
+oR
 sG
 eg
 Ps
 nS
 bv
-ef
+oR
 sG
 eg
 Ps
