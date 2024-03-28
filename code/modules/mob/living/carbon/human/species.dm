@@ -1393,7 +1393,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 				return FALSE
 		user.do_attack_animation(target, atk_effect)
 
-		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh)
+		var/damage = rand(user.dna.species.punchdamagelow, user.dna.species.punchdamagehigh) * (1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE) + get_attribute_level(user, FORTITUDE_ATTRIBUTE)) / 100)
 
 		var/obj/item/bodypart/affecting = target.get_bodypart(ran_zone(user.zone_selected))
 
@@ -1402,7 +1402,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			if(atk_effect == ATTACK_EFFECT_KICK || HAS_TRAIT(user, TRAIT_PERFECT_ATTACKER)) //kicks never miss (provided your species deals more than 0 damage)
 				miss_chance = 0
 			else
-				miss_chance = min((user.dna.species.punchdamagehigh/user.dna.species.punchdamagelow) + user.getStaminaLoss() + (user.getBruteLoss()*0.5), 100) //old base chance for a miss + various damage. capped at 100 to prevent weirdness in prob()
+				miss_chance = min((user.dna.species.punchdamagehigh/user.dna.species.punchdamagelow) + user.getStaminaLoss() + (user.getBruteLoss() * 50 / user.maxHealth), 100) //old base chance for a miss + various damage. capped at 100 to prevent weirdness in prob()
 
 		if(!damage || !affecting || prob(miss_chance))//future-proofing for species that have 0 damage/weird cases where no zone is targeted
 			playsound(target.loc, user.dna.species.miss_sound, 25, TRUE, -1)
@@ -1412,7 +1412,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 			log_combat(user, target, "attempted to punch")
 			return FALSE
 
-		var/armor_block = target.run_armor_check(affecting, MELEE)
+		var/armor_block = target.run_armor_check(affecting, RED_DAMAGE)
 
 		playsound(target.loc, user.dna.species.attack_sound, 25, TRUE, -1)
 

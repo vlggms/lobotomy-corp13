@@ -199,6 +199,9 @@ Actual Adjacent procs :
 	for(var/obj/structure/window/W in src)
 		if(!W.CanAStarPass(ID, adir))
 			return TRUE
+	for(var/obj/structure/railing/R in src)
+		if(!R.CanAStarPass(ID, adir, caller))
+			return TRUE
 	for(var/obj/machinery/door/window/W in src)
 		if(!W.CanAStarPass(ID, adir))
 			return TRUE

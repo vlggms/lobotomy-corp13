@@ -252,7 +252,7 @@
 	if(do_after(user, 5, target))
 
 		target.visible_message(span_danger("[user] rears up and slams into [target]!"), \
-						span_userdanger("[user] punches you with everything you got!!"), COMBAT_MESSAGE_RANGE, user)
+						span_userdanger("[user] punches you with everything you got!!"), vision_distance = COMBAT_MESSAGE_RANGE, ignored_mobs = user)
 		to_chat(user, span_danger("You throw your entire body into this punch!"))
 		goldrush_damage = force
 		//I gotta regrab  justice here
