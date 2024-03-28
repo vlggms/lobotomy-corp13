@@ -30,6 +30,7 @@
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/autopistol,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "aW" = (
@@ -1620,6 +1621,12 @@
 /obj/machinery/vending/drugs,
 /turf/open/floor/plasteel,
 /area/centcom)
+"CO" = (
+/obj/structure/table,
+/obj/item/gun/ego_gun/city/ammogun/limbusmagnum,
+/obj/item/clothing/head/beret/sec,
+/turf/open/floor/plasteel,
+/area/centcom)
 "CQ" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -1689,6 +1696,7 @@
 /obj/machinery/light,
 /obj/item/gun/ego_gun/city/ammogun/shottie,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "EN" = (
@@ -1777,6 +1785,7 @@
 /obj/machinery/light,
 /obj/item/ego_weapon/city/lccb_bat,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "GR" = (
@@ -2010,6 +2019,12 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/centcom)
+"LY" = (
+/obj/structure/table,
+/obj/item/gun/ego_gun/city/ammogun/limbusmagnum,
+/obj/item/clothing/head/beret/tegu/lobotomy/welfare,
+/turf/open/floor/plasteel,
+/area/centcom)
 "Ma" = (
 /obj/structure/flora/tree/jungle,
 /turf/open/floor/grass,
@@ -2027,6 +2042,7 @@
 /obj/machinery/light,
 /obj/item/gun/ego_gun/city/ammogun/shottie,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Mi" = (
@@ -2237,6 +2253,7 @@
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Py" = (
@@ -2288,6 +2305,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Qh" = (
@@ -2419,6 +2437,7 @@
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Sx" = (
@@ -2624,6 +2643,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
 "VC" = (
@@ -21610,7 +21630,7 @@ ID
 Ps
 nS
 bv
-oR
+CO
 sG
 eg
 Ps
@@ -44230,7 +44250,7 @@ eg
 Ps
 nS
 bv
-oR
+LY
 sG
 eg
 Ps

@@ -39,10 +39,12 @@
 
 //Hats
 /obj/item/clothing/head/beret/sec/lccb_commander
+	name = "lccb officer cap"
 	desc = "A black cap used by limbus company commanders"
 	icon_state = "lccb_cap"
 
 /obj/item/clothing/head/beret/sec/lccb
+	name = "lccb riot helmet"
 	desc = "A helmet used by lccb."
 	icon_state = "lccb_helmet"
 	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
