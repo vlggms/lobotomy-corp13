@@ -188,11 +188,10 @@
 		return
 	forceMove(T)
 	playsound(src,"sound/abnormalities/thunderbird/tbird_peck.ogg", rand(50, 70), 1)
-	for(var/turf/TF in range(1, T))//Smash AOE visual
+	var/list/turfs_to_hit = range(1, T)
+	for(var/turf/TF in turfs_to_hit)//Smash AOE visual
 		new /obj/effect/temp_visual/smash_effect(TF)
-	for(var/mob/living/L in range(1, T))//damage applied to targets in range
-		if(L.z != z)
-			continue
+	for(var/mob/living/L in turfs_to_hit)//damage applied to targets in range
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
@@ -201,12 +200,20 @@
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(100,BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
 			if(!(L in been_hit))
 				been_hit += L
+	for(var/obj/vehicle/sealed/mecha/V in turfs_to_hit)
+		if(V in been_hit)
+			continue
+		visible_message(span_boldwarning("[src] runs through [V]!"))
+		to_chat(V.occupants, span_userdanger("[src] rushes past you, arcing electricity throughout the way!"))
+		playsound(V, attack_sound, 75, 1)
+		V.take_damage(100, BLACK_DAMAGE, attack_dir = get_dir(V, src))
+		been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(do_dash), move_dir, (times_ran + 1)), 1)
 
 /*---Qliphoth Counter---*/
@@ -254,13 +261,11 @@
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/proc/fireshell()
 	fire_cooldown = world.time + fire_cooldown_time
 	for(var/mob/living/carbon/human/L in livinginrange(fireball_range, src))
-		if(L.z != z)
-			continue
 		if(faction_check_mob(L, FALSE))
 			continue
 		if (targetAmount <= 2)
 			++targetAmount
-			var/obj/effect/thunderbolt/E = new(get_turf(L))//do this for the # of targets + 1
+			var/obj/effect/thunderbolt/E = new(get_turf(L.loc))//do this for the # of targets + 1
 			E.master = src
 	targetAmount = 0
 
@@ -306,11 +311,14 @@
 //Smaller Scorched Girl bomb
 /obj/effect/thunderbolt/proc/explode()
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
-	for(var/mob/living/carbon/human/H in view(1, src))
-		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	var/list/turfs_to_check = view(1, src)
+	for(var/mob/living/carbon/human/H in turfs_to_check)
+		H.apply_damage(boom_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 		H.electrocute_act(1, src, flags = SHOCK_NOSTUN)
 		if(H.health < 0)
 			Convert(H)
+	for(var/obj/vehicle/V in turfs_to_check)
+		V.take_damage(boom_damage, BLACK_DAMAGE)
 	new /obj/effect/temp_visual/tbirdlightning(get_turf(src))
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(0, get_turf(src))	//Smoke shouldn't really obstruct your vision
@@ -335,7 +343,7 @@
 	/*Zombie Stats */
 	health = 250//subject to change; they all die when thunderbird is suppressed
 	maxHealth = 250
-	obj_damage = 300
+	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.5)
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 20

@@ -173,10 +173,7 @@
 	Beam(T, "censored", time = 10)
 	playsound(src, 'sound/weapons/ego/censored3.ogg', 75, FALSE, 5)
 	for(var/turf/TT in turf_list)
-		for(var/mob/living/L in TT)
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(ability_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		for(var/mob/living/L in HurtInTurf(TT, list(), ability_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	can_act = TRUE
 

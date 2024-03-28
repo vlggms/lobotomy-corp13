@@ -15,7 +15,7 @@
 	threat_level = ALEPH_LEVEL
 	health = 4000
 	maxHealth = 4000
-	obj_damage = 600
+	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.8)
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 55
@@ -97,17 +97,15 @@
 		return .
 
 	// AOE attack
-	if(isliving(target))
+	if(isliving(target) || ismecha(target))
 		new /obj/effect/gibspawner/generic/silent/melty_slime(get_turf(target))
 		for(var/turf/open/T in view(1, target))
 			var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
 			S.color = "#FF0081"
-		for(var/mob/living/L in view(1, target))
-			if(faction_check_mob(L))
-				continue
-			L.apply_damage(radius_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			L.apply_status_effect(STATUS_EFFECT_SLIMED)
-
+			var/list/got_hit = list()
+			got_hit = HurtInTurf(T, got_hit, radius_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE)
+			for(var/mob/living/L in got_hit)
+				L.apply_status_effect(STATUS_EFFECT_SLIMED)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/Move()
@@ -257,7 +255,7 @@
 	/* Stats */
 	health = 400
 	maxHealth = 400
-	obj_damage = 200
+	obj_damage = 60
 	damage_coeff = list(RED_DAMAGE = -1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 20

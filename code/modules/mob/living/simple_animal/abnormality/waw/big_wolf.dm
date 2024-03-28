@@ -309,7 +309,7 @@
 	if(do_after(src, 1 SECONDS, target = src))
 		var/turf/wallcheck = get_turf(src)
 		var/enemy_direction = get_dir(src, target_turf)
-		for(var/i=0 to 7)
+		for(var/i = 0 to 7)
 			if(get_turf(src) != wallcheck || stat == DEAD || IsContained())
 				break
 			wallcheck = get_step(src, enemy_direction)
@@ -323,10 +323,7 @@
 				if(isclosedturf(T))
 					continue
 				new /obj/effect/temp_visual/slice(T)
-				for(var/mob/living/L in T)
-					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
-						L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-						LAZYADD(hit_mob, L)
+				hit_mob = HurtInTurf(T, hit_mob, 50, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 	can_act = TRUE
 
 //Used in Steel noons for if they are allowed to fly through something.
@@ -357,7 +354,8 @@
 	can_act = FALSE
 	if(do_after(src, 2 SECONDS, target = src))
 		new /obj/effect/temp_visual/fragment_song(get_turf(src))
-		for(var/mob/living/L in orange(20, src))
+		var/list/turfs_to_check = orange(20, src)
+		for(var/mob/living/L in turfs_to_check)
 			if(isabnormalitymob(L) && our_health < 50)
 				var/mob/living/simple_animal/hostile/abnormality/ABNO = L
 				if(ABNO.IsContained())
@@ -369,6 +367,8 @@
 			if(L.stat == DEAD)
 				continue
 			L.apply_damage(50, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		for(var/obj/vehicle/V in turfs_to_check)
+			V.take_damage(50, WHITE_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_Howl.ogg', 30, 0, 4)
 	cut_overlay(visual_overlay)
 	can_act = TRUE
