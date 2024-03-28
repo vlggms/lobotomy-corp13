@@ -689,6 +689,23 @@
 	},
 /turf/open/floor/plating/ashplanet/rocky,
 /area/centcom)
+"lQ" = (
+/obj/structure/table,
+/obj/item/folder{
+	pixel_y = 4
+	},
+/obj/item/folder{
+	pixel_y = 2
+	},
+/obj/item/folder,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/stack/spacecash/c1000,
+/obj/item/stack/spacecash/c1000,
+/obj/item/barrier_taperoll/police,
+/turf/open/floor/plasteel,
+/area/centcom)
 "ma" = (
 /obj/structure/table,
 /obj/item/binoculars,
@@ -938,6 +955,7 @@
 /obj/structure/rack,
 /obj/item/gun/ego_gun/city/ammogun/smg,
 /obj/item/gun/ego_gun/city/ammogun/autopistol,
+/obj/item/barrier_taperoll/police,
 /turf/open/floor/plasteel,
 /area/centcom)
 "rG" = (
@@ -970,6 +988,10 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel,
+/area/centcom)
+"rY" = (
+/obj/structure/chair/office,
+/turf/open/floor/plasteel/dark,
 /area/centcom)
 "sg" = (
 /obj/structure/table,
@@ -1142,6 +1164,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
 /obj/item/gun/ego_gun/city/ammogun/smg,
+/obj/item/barrier_taperoll/police,
 /turf/open/floor/plasteel,
 /area/centcom)
 "wG" = (
@@ -1676,12 +1699,6 @@
 /obj/structure/chair/comfy/black,
 /turf/open/floor/plasteel/white,
 /area/centcom)
-"Ed" = (
-/obj/machinery/door/airlock/public{
-	name = "courtyard"
-	},
-/turf/open/floor/plasteel,
-/area/centcom)
 "Eg" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -2166,6 +2183,12 @@
 /obj/item/paper_bin,
 /obj/item/pen,
 /obj/structure/table/glass,
+/turf/open/floor/plasteel,
+/area/centcom)
+"OM" = (
+/obj/machinery/door/airlock/public/glass{
+	name = "courtyard"
+	},
 /turf/open/floor/plasteel,
 /area/centcom)
 "OT" = (
@@ -25740,8 +25763,8 @@ pK
 TH
 fj
 Ps
-Ed
-BC
+OM
+OM
 Ps
 Ps
 Ps
@@ -28310,8 +28333,8 @@ sE
 fj
 fj
 Ps
-Ed
-BC
+OM
+OM
 Ps
 Ps
 Ps
@@ -37802,8 +37825,8 @@ ZP
 Ps
 ts
 hF
+hF
 ls
-QW
 hF
 Sf
 Ps
@@ -38059,8 +38082,8 @@ ZP
 Ps
 fE
 hF
+rY
 Pt
-fE
 hF
 fE
 Ps
@@ -38316,8 +38339,8 @@ ZP
 Ps
 fE
 hF
+QW
 Qh
-fE
 hF
 fE
 Ps
@@ -44505,7 +44528,7 @@ ID
 ID
 ID
 Ps
-yk
+lQ
 ID
 ID
 ID
