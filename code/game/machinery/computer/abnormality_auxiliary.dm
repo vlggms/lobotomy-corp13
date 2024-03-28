@@ -18,8 +18,6 @@
 
 	// toggles if the window being opened is TGUI or UI, players can toggle it in case TGUI fails to load
 	var/TGUI_mode = TRUE
-	// toggles special debugging options if the person is an admin
-	var/is_admin = FALSE
 
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
 	. = ..()
@@ -43,11 +41,6 @@
 	if(TGUI_mode)
 		ui = SStgui.try_update_ui(user, src, ui)
 		if(!ui)
-			if(user.client.holder) // we only ever need to set it once when opening the TGUI, no need to continue refreshing it
-				is_admin = TRUE
-			else
-				is_admin = FALSE
-
 			to_chat(user, span_notice("If TGUI is failing to load, you can alt+click the console to switch to UI mode"))
 			ui = new(user, src, "AuxiliaryManagerConsole")
 			ui.open()
@@ -313,6 +306,12 @@
 	data["all_core_suppressions"] = all_core_suppressions
 	// end core suppression info
 
+	var/is_admin
+	if(user.client.holder)
+		is_admin = TRUE
+	else
+		is_admin = FALSE
+
 	data["is_admin"] = is_admin // used to determine if we unlock special admin-only options
 
 	return data
@@ -327,7 +326,7 @@
 		if("Select Core Suppression") // selects a core suppression
 			var/core_suppression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
 			if(!ispath(core_suppression) || !(core_suppression in SSlobotomy_corp.available_core_suppressions))
-				return FALSE
+				return
 
 			selected_core_type = core_suppression
 			say("[initial(selected_core_type.name)] has been selected!")
@@ -336,7 +335,7 @@
 
 		if("Activate Core Suppression") // activates the currently selected core suppression
 			if(!ispath(selected_core_type) || !(selected_core_type in SSlobotomy_corp.available_core_suppressions))
-				return FALSE
+				return
 			if(istype(SSlobotomy_corp.core_suppression))
 				CRASH("[src] has attempted to activate a core suppression via TGUI whilst its not possible!")
 
@@ -356,7 +355,7 @@
 		if("Buy Upgrade") // Buys an upgrade, looking for a parameter that is given to the upgrade thats being bought on the TGUI side
 			var/datum/facility_upgrade/U = locate(params["selected_upgrade"]) in SSlobotomy_corp.upgrades
 			if(!istype(U) || !U.CanUpgrade())
-				return FALSE
+				return
 
 			log_action(usr,
 				message_override = "[usr] has purchased the [U.name] facility upgrade"
@@ -369,6 +368,7 @@
 			if(!log_action(usr, admin_action = TRUE,
 				message_override = "[usr] has used admin powers to manipulate the avaible cores in the auxiliary console"
 			))
+				update_static_data_for_all_viewers()
 				return
 
 			var/core_to_unlock = params["core_unlock"]
@@ -392,6 +392,7 @@
 			if(!log_action(usr, admin_action = TRUE,
 				message_override = "[usr] has used admin powers to disable all core suppressions!"
 			))
+				update_static_data_for_all_viewers()
 				return
 
 			SSlobotomy_corp.ResetPotentialSuppressions()
@@ -401,6 +402,7 @@
 			if(!log_action(usr, admin_action = TRUE,
 				message_override = "[usr] has used admin powers to end the current core suppression (persistence not saved)"
 			))
+				update_static_data_for_all_viewers()
 				return
 
 			SSlobotomy_corp.core_suppression.legitimate = FALSE // let admins mess around without worrying about persistence
@@ -412,6 +414,7 @@
 			if(!log_action(usr, admin_action = TRUE,
 				message_override = "[usr] has used admin powers to [amount > 0 ? "add" : "remove"] [amount] LOB point[(amount > 1 || amount < -1) ? "s" : ""] in the auxiliary console"
 			))
+				update_static_data_for_all_viewers()
 				return
 
 			SSlobotomy_corp.lob_points += amount
