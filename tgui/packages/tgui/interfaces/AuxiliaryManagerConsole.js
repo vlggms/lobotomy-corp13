@@ -236,6 +236,11 @@ const CoreSuppressionSelector = (props, context) => {
           ))}
         </LabeledList>
       )}
+      {available_suppressions.length === 0 && (
+        <NoticeBox info bold textAlign="center" fontSize="40px" fontFamily="Baskerville">
+          Core suppressions not avaible!
+        </NoticeBox>
+      )}
       {selected_core_name && (
         <LabeledList>
           <LabeledList.Item label="Selected core name: ">

@@ -385,6 +385,10 @@
 			update_static_data_for_all_viewers()
 
 		if("Disable Core Suppression")
+			if(istype(SSlobotomy_corp.core_suppression) || !LAZYLEN(SSlobotomy_corp.available_core_suppressions))
+				message_admins("[usr] has tried to disable all core suppressions but there were none, all admins laugh at them!")
+				return
+
 			if(!log_action(usr, admin_action = TRUE,
 				message_override = "[usr] has used admin powers to disable all core suppressions!"
 			))
