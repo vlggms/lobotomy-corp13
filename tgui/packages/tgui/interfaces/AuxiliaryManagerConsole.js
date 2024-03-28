@@ -211,8 +211,8 @@ const CoreSuppressionSelector = (props, context) => {
       )}
       {is_admin === 1 && (
         <Collapsible
-        title="ADMIN: Select a specific core suppression to unlock"
-        color='purple'>
+          title="ADMIN: Select a specific core suppression to unlock"
+          color="purple">
           <AllCores />
         </Collapsible>
       )}
