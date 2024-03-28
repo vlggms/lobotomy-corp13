@@ -26,3 +26,24 @@
 	name = "LCB prison outfit"
 	icon_state = "prison"
 	desc = "For prisoners, but fancy."
+
+//Limbus Labs stuff
+/obj/item/clothing/under/limbus/lowsec
+	name = "Low-security uniform"
+	icon_state = "lowsec"
+	desc = "Always worn by Low-sec officers. Smells of sweat and sugar."
+
+/obj/item/clothing/under/limbus/highsec
+	name = "High-security uniform"
+	icon_state = "highsec"
+	desc = "Always worn by High security officers."
+
+/obj/item/clothing/under/limbus/commandsec
+	name = "Command Security uniform"
+	icon_state = "commandsec"
+	desc = "Worn by damage mitigation and exasperation officers. Well-cleaned, and smells faintly of perfume."
+
+/obj/item/clothing/under/limbus/officer
+	name = "limbus officer uniform"
+	icon_state = "officer"
+	desc = "Worn by low security and high security commanders."
