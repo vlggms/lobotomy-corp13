@@ -184,6 +184,10 @@
 /obj/item/tank/internals/emergency_oxygen/double/empty/populate_gas()
 	return
 
+
+/obj/item/tank/internals/emergency_oxygen/infinite
+	name = "infinite emergency oxygen tank"
+	volume = 999
 // *
 // * GENERIC
 // *

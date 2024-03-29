@@ -18,6 +18,20 @@
 /obj/machinery/telecomms/server/presets/engineering,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"bP" = (
+/turf/open/floor/engine,
+/area/city/outskirts)
+"cE" = (
+/obj/structure/rack,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/turf/open/floor/plasteel,
+/area/city/outskirts)
 "cH" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/relay/preset/telecomms,
@@ -51,6 +65,10 @@
 /obj/effect/turf_decal/sand/plating,
 /obj/effect/landmark/latejoin,
 /turf/open/floor/pod/light,
+/area/city/outskirts)
+"eH" = (
+/obj/structure/closet/crate,
+/turf/open/floor/plasteel,
 /area/city/outskirts)
 "fv" = (
 /obj/effect/landmark/wallspawner,
@@ -232,6 +250,9 @@
 /obj/machinery/telecomms/server/presets/command,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"lW" = (
+/turf/open/floor/plasteel,
+/area/city/outskirts)
 "mE" = (
 /obj/machinery/computer/communications,
 /turf/open/floor/pod/dark,
@@ -297,6 +318,10 @@
 /obj/effect/turf_decal/sand,
 /turf/open/floor/pod,
 /area/city/outskirts)
+"qG" = (
+/obj/machinery/door/airlock,
+/turf/open/floor/plasteel,
+/area/city/outskirts)
 "qQ" = (
 /obj/structure/table,
 /obj/item/storage/firstaid/revival,
@@ -307,11 +332,30 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/city/outskirts)
+"rq" = (
+/turf/closed/indestructible/opsglass,
+/area/city/outskirts)
+"rz" = (
+/mob/living/simple_animal/pet/cat/jerry{
+	damage_coeff = list("brute" = -1, "red" = 0, "white" = 0, "black" = 0, "pale" = 0.1);
+	health = 1000;
+	melee_damage_lower = 15;
+	melee_damage_upper = 25
+	},
+/turf/open/floor/plasteel,
+/area/city/outskirts)
+"rX" = (
+/turf/open/floor/circuit,
+/area/city/outskirts)
 "su" = (
 /obj/structure/rack,
 /obj/effect/landmark/rcorpitemspawn,
 /obj/item/commandprojector,
 /turf/open/floor/pod/dark,
+/area/city/outskirts)
+"sH" = (
+/mob/living/simple_animal/hostile/abnormality/pygmalion,
+/turf/open/floor/plasteel,
 /area/city/outskirts)
 "sS" = (
 /obj/structure/window/shuttle/survival_pod,
@@ -327,6 +371,22 @@
 	},
 /turf/open/floor/pod,
 /area/city/outskirts)
+"te" = (
+/obj/structure/rack,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/obj/item/tank/internals/emergency_oxygen/infinite,
+/turf/open/floor/plasteel,
+/area/city/outskirts)
+"ts" = (
+/obj/structure/chair/office,
+/mob/living/simple_animal/hostile/abnormality/puss_in_boots,
+/obj/effect/light_emitter,
+/turf/open/floor/plasteel,
+/area/city/outskirts)
 "tZ" = (
 /obj/structure/table/wood,
 /obj/item/food/burger/cheese,
@@ -341,6 +401,10 @@
 /obj/item/food/burger/cheese,
 /obj/item/food/burger/cheese,
 /turf/open/floor/plating/asteroid,
+/area/city/outskirts)
+"uy" = (
+/obj/structure/fluff/broken_flooring,
+/turf/open/floor/plasteel,
 /area/city/outskirts)
 "uF" = (
 /obj/structure/rack,
@@ -369,6 +433,10 @@
 	req_access_txt = "19"
 	},
 /turf/open/floor/pod,
+/area/city/outskirts)
+"wg" = (
+/obj/effect/light_emitter,
+/turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "wA" = (
 /obj/effect/landmark/latejoin,
@@ -449,6 +517,10 @@
 	},
 /turf/open/floor/pod,
 /area/city/outskirts)
+"Ab" = (
+/obj/machinery/computer/gateway_control,
+/turf/open/floor/plasteel,
+/area/city/outskirts)
 "Aq" = (
 /obj/structure/table/abductor,
 /obj/item/storage/lockbox/medal/lcdr,
@@ -509,6 +581,9 @@
 "CQ" = (
 /obj/machinery/fat_sucker,
 /turf/open/floor/plating/asteroid,
+/area/city/outskirts)
+"Df" = (
+/turf/open/floor/plating/sandy_dirt,
 /area/city/outskirts)
 "Dp" = (
 /obj/effect/turf_decal/sand,
@@ -571,6 +646,11 @@
 "Fu" = (
 /obj/machinery/computer/crew,
 /turf/open/floor/pod/dark,
+/area/city/outskirts)
+"Fx" = (
+/obj/machinery/gateway/centerstation,
+/obj/effect/light_emitter,
+/turf/open/floor/circuit/telecomms,
 /area/city/outskirts)
 "FE" = (
 /obj/effect/landmark/observer_start,
@@ -682,6 +762,9 @@
 /obj/item/weldingtool/experimental,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
+"IZ" = (
+/turf/closed/indestructible/opshuttle,
+/area/city/outskirts)
 "Jc" = (
 /obj/machinery/door/airlock/survival_pod{
 	name = "reindeer captain bunk";
@@ -730,6 +813,10 @@
 	dir = 8
 	},
 /turf/open/floor/pod,
+/area/city/outskirts)
+"Ku" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/plasteel,
 /area/city/outskirts)
 "KB" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
@@ -784,6 +871,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/pod/dark,
 /area/city/outskirts)
+"Ot" = (
+/obj/effect/light_emitter,
+/turf/open/floor/plasteel,
+/area/city/outskirts)
 "OA" = (
 /obj/structure/rack,
 /obj/effect/landmark/rcorpitemspawn,
@@ -805,6 +896,10 @@
 	req_access = "19"
 	},
 /turf/open/floor/pod,
+/area/city/outskirts)
+"Pc" = (
+/obj/structure/chair/greyscale,
+/turf/open/floor/plasteel,
 /area/city/outskirts)
 "Pv" = (
 /obj/effect/turf_decal/bot,
@@ -940,6 +1035,10 @@
 	dir = 4
 	},
 /turf/open/floor/pod,
+/area/city/outskirts)
+"Sw" = (
+/obj/structure/filingcabinet/employment,
+/turf/open/floor/plasteel,
 /area/city/outskirts)
 "Ty" = (
 /obj/structure/closet/secure_closet{
@@ -4889,13 +4988,13 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+IZ
+IZ
+IZ
+IZ
+IZ
+IZ
 PG
 PG
 PG
@@ -5091,16 +5190,16 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+bP
+bP
+bP
+bP
+bP
+IZ
+IZ
+IZ
+IZ
 PG
 PG
 PG
@@ -5293,16 +5392,16 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+bP
+rX
+rX
+rX
+bP
+IZ
+uy
+Pc
+IZ
 PG
 PG
 PG
@@ -5495,17 +5594,17 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+bP
+rX
+Fx
+rX
+bP
+qG
+Ot
+Pc
+IZ
+Df
 PG
 PG
 FT
@@ -5693,22 +5792,22 @@ PG
 PG
 PG
 PG
+wg
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+bP
+rX
+rX
+rX
+bP
+IZ
+lW
+Pc
+IZ
+Df
+Df
 PG
 bn
 bn
@@ -5899,18 +5998,18 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+bP
+bP
+bP
+bP
+bP
+IZ
+lW
+lW
+qG
+Df
+Df
 PG
 gP
 gP
@@ -6101,19 +6200,19 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+IZ
+rq
+rq
+rq
+IZ
+IZ
+lW
+lW
+IZ
+Df
+Df
+wg
 gP
 gP
 gP
@@ -6304,16 +6403,16 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+Ab
+sH
+uy
+IZ
+cE
+lW
+eH
+IZ
+Df
 PG
 PG
 gP
@@ -6506,15 +6605,15 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+Ku
+ts
+lW
+qG
+lW
+Ot
+eH
+IZ
 PG
 PG
 PG
@@ -6708,15 +6807,15 @@ PG
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+Ku
+rz
+Sw
+IZ
+te
+cE
+te
+IZ
 PG
 PG
 PG
@@ -6910,15 +7009,15 @@ oi
 PG
 PG
 PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
-PG
+IZ
+IZ
+IZ
+IZ
+IZ
+IZ
+IZ
+IZ
+IZ
 PG
 PG
 FR
