@@ -301,7 +301,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		last_spike_line_time = world.time
 		say("Experience is what brought me here.")
 
-	playsound(src, 'sound/weapons/fixer/hana_pierce.ogg', 200, TRUE, 2) // pick sound
+	playsound(src, 'sound/weapons/fixer/hana_pierce.ogg', 50, TRUE, 2) // pick sound
 	for(var/d in GLOB.cardinals)
 		var/turf/E = get_step(src, d)
 		shoot_projectile(E)
@@ -321,7 +321,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		SLEEP_CHECK_DEATH(20)
 		var/hit_statue = FALSE
 		for(var/turf/T in view(2, src))
-			playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 200, TRUE, 2)
+			playsound(src, 'sound/weapons/fixer/generic/finisher2.ogg', 75, TRUE, 2)
 			new /obj/effect/temp_visual/slice(T)
 			for(var/mob/living/L in T)
 				if (istype(L, /mob/living/simple_animal/hostile/metal_fixer_statue))
@@ -388,7 +388,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	if (istype(P, /obj/projectile/metal_fixer))
 		adjustHealth(-P.damage)
-		playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 200, TRUE, 2)
+		playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE, 2)
 		visible_message("<span class='warning'>[P]  contacts with [src] and heals them!</span>")
 		DamageEffect(P.damage, P.damage_type)
 	else
@@ -472,7 +472,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if(metal)
 		metal.adjustHealth(-heal_per_tick)
 		visible_message("<span class='notice'>The statue heals the Metal Fixer!</span>")
-		playsound(src, 'sound/abnormalities/rosesign/rose_summon.ogg', 200, TRUE, 2)
+		playsound(src, 'sound/abnormalities/rosesign/rose_summon.ogg', 75, TRUE, 2)
 		icon_state = "memory_statute_heal" // Set the initial icon state to the rising animation
 		flick("memory_statute_heal", src) // Play the rising animation
 		spawn(10) // Wait for the animation to finish
@@ -645,7 +645,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if(jump_turf.is_blocked_turf(exclude_mobs = TRUE))
 		jump_turf = get_turf(attacker)
 	forceMove(jump_turf)
-	playsound(src, 'sound/weapons/ego/burn_guard.ogg', min(15 + damage, 100), TRUE, 4)
+	playsound(src, 'sound/weapons/ego/burn_guard.ogg', min(15 + damage, 75), TRUE, 4)
 	attacker.visible_message(span_danger("[src] hits [attacker] with a counterattack!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
 	attacker.apply_damage(damage * 2, attack_type, null, attacker.getarmor(null, attack_type))
