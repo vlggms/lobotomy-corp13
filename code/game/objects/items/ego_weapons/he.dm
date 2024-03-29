@@ -222,27 +222,17 @@
 /obj/item/ego_weapon/christmas
 	name = "christmas"
 	desc = "With my infinite hatred, I give you this gift."
-	special = "This weapon has knockback."
 	icon_state = "christmas"
 	force = 54	//Still lower DPS
 	attack_speed = 2
 	damtype = WHITE_DAMAGE
+	knockback = KNOCKBACK_LIGHT
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
 							)
-
-/obj/item/ego_weapon/christmas/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
-
 /obj/item/ego_weapon/logging
 	name = "logging"
 	desc = "A versatile equipment made to cut down trees and people alike."

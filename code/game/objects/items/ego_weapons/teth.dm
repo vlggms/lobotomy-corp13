@@ -58,23 +58,14 @@
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
-	special = "Knocks certain enemies backwards."
 	icon_state = "eyes"
-	force = 35					//Still less DPS, replaces baseball bat
+	force = 35 //Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_LIGHT
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-
-/obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 /obj/item/ego_weapon/mini/wrist
 	name = "wrist cutter"
@@ -531,23 +522,14 @@
 /obj/item/ego_weapon/sanitizer
 	name = "sanitizer"
 	desc = "It's very shocking."
-	special = "Knocks certain enemies backwards."
 	icon_state = "sanitizer"
-	force = 35					//Still less DPS, replaces baseball bat
+	force = 35 //Still less DPS, replaces baseball bat?
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
+	knockback = KNOCKBACK_LIGHT
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-
-/obj/item/ego_weapon/sanitizer/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 /obj/item/ego_weapon/lance/curfew
 	name = "curfew"
