@@ -16,13 +16,37 @@
 	/// Is CleanUp proc running?
 	var/cleaning = FALSE
 
+	/// How much knockback does this weapon deal, if at all?
+	var/knockback = FALSE
+
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
-	return TRUE // If we want to do "if(!.)" checks, this has to exist.
+
+	if(target.anchored || !knockback) // lets not throw machines around
+		return TRUE
+
+	var/atom/throw_target = get_edge_target_turf(target, user.dir)
+	switch(knockback)
+		if(KNOCKBACK_LIGHT)
+			var/whack_speed = (prob(60) ? 1 : 4)
+			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+
+		if(KNOCKBACK_MEDIUM)
+			var/whack_speed = (prob(60) ? 3 : 6)
+			target.throw_at(throw_target, rand(2, 3), whack_speed, user)
+
+		if(KNOCKBACK_HEAVY) // neck status: snapped
+			target.throw_at(throw_target, 7, 7, user)
+
+		else
+			knockback = FALSE // lets not repeat the error
+			CRASH("Invalid value ([knockback]) provided to the knockback variable on the ego weapon [src]")
+
+	return TRUE
 
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
@@ -41,23 +65,37 @@
 	if(throwforce>force)
 		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
 
-	if(!attack_speed)
-		return
+	switch(knockback)
+		if(KNOCKBACK_LIGHT)
+			. += span_notice("This weapon has slight enemy knockback")
 
-	//Can't switch for less than for some reason
-	if(attack_speed<0.4)
-		. += span_notice("This weapon has a very fast attack speed.")
-	else if(attack_speed<0.7)
-		. += span_notice("This weapon has a fast attack speed.")
-	else if(attack_speed<1)
-		. += span_notice("This weapon attacks slightly faster than normal.")
-	else if(attack_speed<1.5)
-		. += span_notice("This weapon attacks slightly slower than normal.")
-	else if(attack_speed<2)
-		. += span_notice("This weapon has a slow attack speed.")
-	else if(attack_speed>=2)
-		. += span_notice("This weapon attacks extremely slow.")
+		if(KNOCKBACK_MEDIUM)
+			. += span_notice("This weapon has decent enemy knockback.")
 
+		if(KNOCKBACK_HEAVY)
+			. += span_notice("This weapon has a neck-snapping enemy knockback.")
+
+	switch(attack_speed)
+		if(-INFINITY to 0.39)
+			. += span_notice("This weapon has a very fast attack speed.")
+
+		if(0.4 to 0.69) // nice
+			. += span_notice("This weapon has a fast attack speed.")
+
+		if(0.7 to 0.99)
+			. += span_notice("This weapon attacks slightly faster than normal.")
+
+		if(1) // why
+			CRASH("[src] has a unique attack speed variable that does nothing, please inform coders to delete the variable")
+
+		if(1.01 to 1.49)
+			. += span_notice("This weapon attacks slightly slower than normal.")
+
+		if(1.5 to 1.99)
+			. += span_notice("This weapon has a slow attack speed.")
+
+		if(2 to INFINITY)
+			. += span_notice("This weapon attacks extremely slow.")
 
 /obj/item/ego_weapon/Topic(href, href_list)
 	. = ..()
