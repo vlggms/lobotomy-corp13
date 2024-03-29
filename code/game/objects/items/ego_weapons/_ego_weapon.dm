@@ -64,19 +64,6 @@
 	if(throwforce>force)
 		. += span_notice("This weapon deals [throwforce] [damtype] damage when thrown.")
 
-	switch(knockback)
-		if(KNOCKBACK_LIGHT)
-			. += span_notice("This weapon has slight enemy knockback.")
-
-		if(KNOCKBACK_MEDIUM)
-			. += span_notice("This weapon has decent enemy knockback.")
-
-		if(KNOCKBACK_HEAVY)
-			. += span_notice("This weapon has neck-snapping enemy knockback.")
-
-		else
-			. += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
-
 	switch(attack_speed)
 		if(-INFINITY to 0.39)
 			. += span_notice("This weapon has a very fast attack speed.")
@@ -99,6 +86,22 @@
 
 		if(2 to INFINITY)
 			. += span_notice("This weapon attacks extremely slow.")
+
+	if(!knockback)
+		return
+
+	switch(knockback)
+		if(KNOCKBACK_LIGHT)
+			. += span_notice("This weapon has slight enemy knockback.")
+
+		if(KNOCKBACK_MEDIUM)
+			. += span_notice("This weapon has decent enemy knockback.")
+
+		if(KNOCKBACK_HEAVY)
+			. += span_notice("This weapon has neck-snapping enemy knockback.")
+
+		else
+			. += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
 
 /obj/item/ego_weapon/Topic(href, href_list)
 	. = ..()
