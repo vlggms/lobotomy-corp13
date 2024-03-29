@@ -702,6 +702,11 @@
 	icon_state = "slice"
 	duration = 4
 
+/obj/effect/temp_visual/mech_fire
+	name = "mech_fire"
+	icon_state = "mech_fire"
+	duration = 4
+
 /obj/effect/temp_visual/dir_setting/slash
 	name = "slash"
 	icon_state = "slash"
