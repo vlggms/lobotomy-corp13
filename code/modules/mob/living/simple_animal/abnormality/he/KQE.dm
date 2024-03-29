@@ -94,7 +94,7 @@
 		if(!LAZYLEN(GLOB.department_centers))
 			heart = TRUE
 		else
-			damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)//In regular gamemodes you are now esentially forced to suppress the heart
+			ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)) //In regular gamemodes you are now esentially forced to suppress the heart
 			var/X = pick(GLOB.department_centers)
 			var/mob/living/simple_animal/hostile/kqe_heart/H = new(get_turf(X))
 			heart = H
