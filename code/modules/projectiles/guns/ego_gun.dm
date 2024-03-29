@@ -12,7 +12,8 @@
 	var/obj/item/ammo_casing/ammo_type
 	var/list/attribute_requirements = list()
 	var/special
-	var/autofire	//In Rounds per second
+	///In deciseconds per round
+	var/autofire
 
 /obj/item/gun/ego_gun/Initialize()
 	. = ..()
@@ -42,7 +43,7 @@
 
 	else
 		//Give it to 'em in true rounds per minute, accurate to the 5s
-		var/rpm = (1/autofire*10)*60
+		var/rpm = 600 / autofire
 		rpm = round(rpm,5)
 		. += "<span class='notice'>This weapon is automatic.</span>"
 		. += "<span class='notice'>This weapon fires at [rpm] rounds per minute.</span>"
