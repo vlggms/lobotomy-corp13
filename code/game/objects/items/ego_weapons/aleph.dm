@@ -677,11 +677,13 @@
 	current_season = SSlobotomy_events.current_season
 	icon_state = current_season
 	if(current_season == "summer")
+		knockback = KNOCKBACK_LIGHT
 		lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 		righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 		inhand_x_dimension = 64
 		inhand_y_dimension = 64
 	else
+		knockback = FALSE
 		lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 		righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 		inhand_x_dimension = 32
@@ -701,16 +703,6 @@
 	damtype = season_list[current_season][8]
 	desc = season_list[current_season][10]
 
-/obj/item/ego_weapon/seasons/attack(mob/living/target, mob/living/user) //other forms could probably use something. Probably.
-	. = ..()
-	if(!.)
-		return FALSE
-	if(current_season == "summer")
-		var/atom/throw_target = get_edge_target_turf(target, user.dir)
-		if(!target.anchored)
-			var/whack_speed = (prob(60) ? 1 : 4)
-			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
-
 /obj/item/ego_weapon/seasons/get_clamped_volume()
 	return 40
 
@@ -722,6 +714,7 @@
 	force = 35 //Twilight but lower in terms of damage
 	attack_speed = 1.8
 	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_MEDIUM
 	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
 	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
 	hitsound = 'sound/abnormalities/distortedform/slam.ogg'
@@ -739,22 +732,17 @@
 
 	attacking = TRUE //ALWAYS blocking ranged attacks
 
-
 /obj/item/ego_weapon/shield/distortion/EgoAttackInfo(mob/user)
 	return span_notice("It deals [force * 4] red, white, black and pale damage combined.")
 
 /obj/item/ego_weapon/shield/distortion/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(!.)
-		return FALSE
+		return
 	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 		damtype = damage_type
 		target.attacked_by(src, user)
 	damtype = initial(damtype)
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 3 : 6)
-		target.throw_at(throw_target, rand(2, 3), whack_speed, user)
 
 /obj/item/ego_weapon/shield/distortion/CanUseEgo(mob/living/user)
 	. = ..()
@@ -824,7 +812,7 @@
 		return
 	if(ability_cooldown > world.time)
 		to_chat(user, span_warning("You have used this ability too recently!"))
-		return FALSE
+		return
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE)
 	to_chat(user, "You cultivate seeds of desires.")
 	ability_cooldown = world.time + ability_cooldown_time
@@ -868,7 +856,7 @@
 		return
 	if(ability_cooldown > world.time)
 		to_chat(user, span_warning("You have used this ability too recently!"))
-		return FALSE
+		return
 	if(do_after(user, 20, src))
 		playsound(src, 'sound/weapons/ego/spicebush_special.ogg', 50, FALSE)
 		to_chat(user, "You plant some flower buds.")
@@ -945,11 +933,11 @@
 /obj/item/ego_weapon/willing
 	name = "the flesh is willing"
 	desc = "And really nothing will stop it."
-	special = "This weapon has knockback."
 	icon_state = "willing"
 	force = 105	//Still lower DPS
 	attack_speed = 1.4
 	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_LIGHT
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/weapons/fixer/generic/club1.ogg'
@@ -959,16 +947,6 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-
-
-/obj/item/ego_weapon/willing/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 /obj/item/ego_weapon/shield/combust
 	name = "Combusting Courage"
@@ -1177,25 +1155,27 @@
 	current_holder = null
 
 /obj/item/ego_weapon/mockery/attack(mob/living/target, mob/living/carbon/human/user)
+	if(form == "bat")
+		knockback = KNOCKBACK_LIGHT
+	else
+		knockback = FALSE
+
 	. = ..()
 	if(!.)
-		return FALSE
-	switch(form)
-		if("bat")
-			var/atom/throw_target = get_edge_target_turf(target, user.dir)
-			if(!target.anchored)
-				var/whack_speed = (prob(60) ? 1 : 4)
-				target.throw_at(throw_target, rand(1, 2), whack_speed, user)
-		if("hammer")
-			for(var/mob/living/L in view(2, target))
-				var/aoe = force
-				var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-				var/justicemod = 1 + userjust/100
-				aoe*=justicemod
-				if(user.faction_check_mob(L))
-					continue
-				L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-				new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
+		return
+
+	if(form != "hammer")
+		return
+
+	for(var/mob/living/L in view(2, target))
+		var/aoe = force
+		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+		var/justicemod = 1 + userjust/100
+		aoe*=justicemod
+		if(user.faction_check_mob(L))
+			continue
+		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		new /obj/effect/temp_visual/small_smoke/halfsecond(get_turf(L))
 
 /obj/item/ego_weapon/mockery/get_clamped_volume()
 	return 40
@@ -1241,7 +1221,6 @@
 /obj/item/ego_weapon/ultimate_christmas
 	name = "ultimate christmas"
 	desc = "The Santa's bag is very heavy, capable of carrying a gift for everyone in the world. This one is no exception."
-	special = "This weapon has absurd knockback."
 	icon_state = "ultimate_christmas"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -1250,6 +1229,7 @@
 	force = 160
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_HEAVY
 	attack_verb_continuous = list("bashes", "clubs")
 	attack_verb_simple = list("bashes", "clubs")
 	hitsound = 'sound/abnormalities/rudolta_buff/onrush1.ogg'
@@ -1259,14 +1239,6 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
-
-/obj/item/ego_weapon/ultimate_christmas/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		target.throw_at(throw_target, 7, 7, user)
 
 /obj/item/ego_weapon/oberon
 	name = "oberon"
@@ -1340,6 +1312,7 @@
 	if(world.time > combo_time)
 		build_up = 0.8
 	combo_time = world.time + combo_wait
+	knockback = FALSE
 	switch(form)
 		if("scythe")
 			if(target.health <= (target.maxHealth * 0.5))
@@ -1348,16 +1321,23 @@
 				force = 150
 			else
 				force = 100
+
+		if("bat")
+			knockback = KNOCKBACK_MEDIUM
+
 	. = ..()
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
 	if(!.)
-		return FALSE
+		return
+
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust / 100
+
 	switch(form)
 		if("sword")
 			var/red = force
 			red*=justicemod
 			target.apply_damage(red * force_multiplier, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+
 		if("whip")
 			var/multihit = force
 			multihit*= justicemod
@@ -1368,11 +1348,7 @@
 					target.apply_damage(multihit * force_multiplier, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
 					user.do_attack_animation(target)
 					playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		if("bat")
-			var/atom/throw_target = get_edge_target_turf(target, user.dir)
-			if(!target.anchored)
-				var/whack_speed = (prob(60) ? 2 : 5)
-				target.throw_at(throw_target, rand(2, 4), whack_speed, user)
+
 		if("hammer")
 			for(var/mob/living/L in view(2, target))
 				var/aoe = force
