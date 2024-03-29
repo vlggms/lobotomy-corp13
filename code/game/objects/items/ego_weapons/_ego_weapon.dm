@@ -42,9 +42,8 @@
 		if(KNOCKBACK_HEAVY) // neck status: snapped
 			target.throw_at(throw_target, 7, 7, user)
 
-		else
-			knockback = FALSE // lets not repeat the error
-			CRASH("Invalid value ([knockback]) provided to the knockback variable on the ego weapon [src]")
+		else // should only be used by admins messing around in-game, please consider using above variables as a coder
+			target.throw_at(throw_target, (knockback * 0.5) , knockback, user)
 
 	return TRUE
 
@@ -67,13 +66,16 @@
 
 	switch(knockback)
 		if(KNOCKBACK_LIGHT)
-			. += span_notice("This weapon has slight enemy knockback")
+			. += span_notice("This weapon has slight enemy knockback.")
 
 		if(KNOCKBACK_MEDIUM)
 			. += span_notice("This weapon has decent enemy knockback.")
 
 		if(KNOCKBACK_HEAVY)
-			. += span_notice("This weapon has a neck-snapping enemy knockback.")
+			. += span_notice("This weapon has neck-snapping enemy knockback.")
+
+		else
+			. += span_notice("This weapon has [knockback >= 10 ? "neck-snapping": ""] enemy knockback.")
 
 	switch(attack_speed)
 		if(-INFINITY to 0.39)
@@ -86,6 +88,7 @@
 			. += span_notice("This weapon attacks slightly faster than normal.")
 
 		if(1) // why
+			attack_speed = FALSE
 			CRASH("[src] has a unique attack speed variable that does nothing, please inform coders to delete the variable")
 
 		if(1.01 to 1.49)
