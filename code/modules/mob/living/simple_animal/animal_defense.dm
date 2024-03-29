@@ -129,10 +129,16 @@
 	var/temp_damage = damage
 
 	if(islist(damage_coeff))
-		temp_damage *= damage_coeff[damagetype]
+		ChangeResistances(damage_coeff)
 		stack_trace("[src] has a damage_coeff list and was hurt!")
-	else
-		temp_damage *= damage_coeff.getCoeff(damagetype)
+	else if(!istype(damage_coeff))
+		stack_trace("[src] has an invalid damage coeff entirely!? Resetting to default.")
+		if(!istype(unmodified_damage_coeff_datum))
+			stack_trace("[src] has an invalid unmodified damage coeff!? Resetting to 1s")
+			unmodified_damage_coeff_datum = makeDamCoeff()
+		damage_coeff = unmodified_damage_coeff_datum
+		UpdateResistances()
+	temp_damage *= damage_coeff.getCoeff(damagetype)
 
 	if(temp_damage >= 0 && temp_damage <= force_threshold)
 		visible_message(span_warning("[src] looks unharmed!"))
