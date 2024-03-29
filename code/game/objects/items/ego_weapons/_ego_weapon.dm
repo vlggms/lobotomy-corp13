@@ -47,6 +47,14 @@
 
 	return TRUE
 
+/obj/item/ego_weapon/attack_obj(obj/target, mob/living/user)
+	if(!CanUseEgo(user))
+		return FALSE
+	. = ..()
+	if(attack_speed)
+		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
+	return TRUE
+
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
 	. += EgoAttackInfo(user)
