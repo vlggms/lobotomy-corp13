@@ -387,7 +387,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	if (istype(P, /obj/projectile/metal_fixer))
-		adjustHealth(-P.(damage/4))
+		adjustHealth(-(P.damage/4))
 		playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE, 2)
 		visible_message("<span class='warning'>[P]  contacts with [src] and heals them!</span>")
 		DamageEffect(P.damage, P.damage_type)
