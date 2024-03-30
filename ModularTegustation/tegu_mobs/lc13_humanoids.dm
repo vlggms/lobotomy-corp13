@@ -258,10 +258,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/icon_attacking = "metal_fixer_weapon"
 	maxHealth = 1500
 	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1.3)
 	move_to_delay = 5
-	melee_damage_lower = 10
-	melee_damage_upper = 14
+	melee_damage_lower = 12
+	melee_damage_upper = 16
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
 	attack_sound = 'sound/weapons/fixer/generic/blade3.ogg'
@@ -285,7 +285,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	var/last_creation_line_time = 0
 	var/statue_cooldown = 25
 	var/last_statue_cooldown_time = 0
-	var/self_damage_statue = 100
+	var/self_damage_statue = 250
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/Aggro()
 	icon_state = icon_attacking
@@ -358,7 +358,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		for(var/turf/T in view(4, loc))
 			if(isfloorturf(T) && !T.density && !locate(/mob/living) in T)
 				available_turfs += T
-		visible_message("<span class='danger'>[src] start spawning a statue! Turfs: [available_turfs.len]</span>")
+		visible_message("<span class='danger'>[src] starts spawning a statue!</span>")
 		if (world.time > last_creation_line_time + creation_line_cooldown)
 			last_creation_line_time = world.time
 			say("The days of the past.")
@@ -387,7 +387,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal/bullet_act(obj/projectile/P, def_zone, piercing_hit = FALSE)
 	if (istype(P, /obj/projectile/metal_fixer))
-		adjustHealth(-P.damage)
+		adjustHealth(-P.(damage/4))
 		playsound(src, 'sound/abnormalities/voiddream/skill.ogg', 50, TRUE, 2)
 		visible_message("<span class='warning'>[P]  contacts with [src] and heals them!</span>")
 		DamageEffect(P.damage, P.damage_type)
@@ -491,9 +491,9 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	icon_state = "flame_fixer"
 	icon_living = "flame_fixer"
 	icon_dead = "flame_fixer"
-	maxHealth = 1500
+	maxHealth = 2500
 	health = 1500
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.5)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.3)
 	move_to_delay = 4
 	melee_damage_lower = 20
 	melee_damage_upper = 24
@@ -504,7 +504,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "pierce"
 	del_on_death = TRUE
 	ranged = TRUE
-	ranged_cooldown_time = 75
+	ranged_cooldown_time = 45
 	melee_reach = 2
 	var/burn_stacks = 2
 	projectiletype = /obj/projectile/flame_fixer
@@ -526,7 +526,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	if (world.time > last_dash + dash_cooldown)
 		last_dash = world.time
 		can_act = FALSE
-		say("Dissatisfaction")
+		say("Dissatisfaction.")
 		icon_state = "flame_fixer_dashing"
 		SLEEP_CHECK_DEATH(20)
 		Dash(target)
@@ -607,7 +607,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		last_counter = world.time
 		can_act = FALSE
 		icon_state = "flame_fixer_counter_start"
-		say("Debilitation")
+		say("Debilitation.")
 		SLEEP_CHECK_DEATH(10)
 		damage_reflection = TRUE
 		icon_state = "flame_fixer_counter"
