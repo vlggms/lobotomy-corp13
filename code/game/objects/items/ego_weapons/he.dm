@@ -1796,6 +1796,24 @@
 	..()
 	force = initial(force)
 
+/*
+* Look i cant think of anything for this fucking camera
+* to do and its most likely going to do something completely
+* unreleated to the abnormality so whatever. -IP
+*/
+/obj/item/ego_weapon/morii
+	name = "morii"
+	desc = "This camera captures those dying moments one last time."
+	icon_state = "morii"
+	force = 50
+	attack_speed = 2.5
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("bonks", "bashes")
+	attack_verb_simple = list("bonk", "bash")
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
 /obj/item/ego_weapon/uturn
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
