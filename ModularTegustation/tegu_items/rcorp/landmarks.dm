@@ -14,6 +14,7 @@ GLOBAL_LIST_INIT(easysupport, list(
 	/mob/living/simple_animal/hostile/abnormality/ppodae,
 	/mob/living/simple_animal/hostile/abnormality/apex_predator,
 	/mob/living/simple_animal/hostile/abnormality/cleaner,
+	/mob/living/simple_animal/hostile/abnormality/der_freischutz,
 ))
 
 GLOBAL_LIST_INIT(easytank, list(
