@@ -136,7 +136,7 @@ have ways of interacting with a specific atom and control it. They posses a blac
 
 ///This is where you decide what actions are taken by the AI.
 /datum/ai_controller/proc/SelectBehaviors(delta_time)
-	SHOULD_NOT_SLEEP(TRUE) //Fuck you don't sleep in procs like this.
+//	SHOULD_NOT_SLEEP(TRUE) //Fuck you don't sleep in procs like this.
 	return
 
 ///This proc handles changing ai status, and starts/stops processing if required.
