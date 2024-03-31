@@ -12,8 +12,8 @@
 	special = "Use in hand to reload. Attack an enemy with your bayonet to reload."
 	projectile_damage_multiplier = 3		//30 damage per bullet
 	fire_delay = 7
-	var/shotsleft = 5		//Based off the Mas 36, That's what my Girlfirend things it looks like. Holds 5 bullets.
-	var/reloadtime = 5 SECONDS
+	shotsleft = 5		//Based off the Mas 36, That's what my Girlfirend things it looks like. Holds 5 bullets.
+	reloadtime = 5 SECONDS
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 80,
 		PRUDENCE_ATTRIBUTE = 60,

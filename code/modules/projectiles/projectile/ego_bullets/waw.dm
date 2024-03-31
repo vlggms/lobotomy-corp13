@@ -5,7 +5,7 @@
 
 /obj/projectile/ego_bullet/ego_hornet
 	name = "hornet"
-	damage = 29
+	damage = 55
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_hatred
@@ -57,14 +57,14 @@
 /obj/projectile/ego_bullet/ego_solemnlament
 	name = "solemn lament"
 	icon_state = "whitefly"
-	damage = 18
+	damage = 35
 	speed = 0.35
 	damage_type = WHITE_DAMAGE
 
 /obj/projectile/ego_bullet/ego_solemnvow
 	name = "solemn vow"
 	icon_state = "blackfly"
-	damage = 18
+	damage = 35
 	speed = 0.35
 	damage_type = BLACK_DAMAGE
 
@@ -93,7 +93,7 @@
 
 /obj/projectile/ego_bullet/ego_executive
 	name = "executive"
-	damage = 10
+	damage = 12
 	damage_type = PALE_DAMAGE	//hehe
 
 
@@ -338,6 +338,6 @@
 /obj/projectile/ego_bullet/ego_bride
 	name = "bride"
 	icon_state = "bride"
-	damage = 25
+	damage = 55
 	damage_type = WHITE_DAMAGE
 

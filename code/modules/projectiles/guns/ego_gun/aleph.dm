@@ -15,6 +15,8 @@
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25
 	autofire = 0.25 SECONDS
+	shotsleft = 333
+	reloadtime = 2.1 SECONDS
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
@@ -146,7 +148,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
-	fire_delay = 18
+	fire_delay = 9
+	shotsleft = 8
+	reloadtime = 2.1 SECONDS
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 13

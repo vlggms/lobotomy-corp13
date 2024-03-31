@@ -15,6 +15,11 @@
 	///In deciseconds per round
 	var/autofire
 
+	//Reload mechanics
+	var/shotsleft
+	var/reloadtime
+	var/is_reloading
+
 /obj/item/gun/ego_gun/Initialize()
 	. = ..()
 	chambered = new ammo_type(src)
@@ -28,6 +33,25 @@
 		. += "<span class='notice'>[special]</span>"
 	if(weapon_weight != WEAPON_HEAVY)
 		. += "<span class='notice'>This weapon can be fired with one hand.</span>"
+
+	if(reloadtime)
+		. += "Ammo Counter: [shotsleft]/[initial(shotsleft)]."
+	else
+		. += "This weapon has unlimited ammo."
+
+	if(reloadtime)
+		switch(reloadtime)
+			if(0 to 0.71 SECONDS)
+				. += "<span class='notice'>This weapon has a very fast reload.</span>"
+			if(0.71 SECONDS to 1.21 SECONDS)
+				. += "<span class='notice'>This weapon has a fast reload.</span>"
+			if(1.21 SECONDS to 1.71 SECONDS)
+				. += "<span class='notice'>This weapon has a normal reload speed.</span>"
+			if(1.71 SECONDS to 2.51 SECONDS)
+				. += "<span class='notice'>This weapon has a slow reload.</span>"
+			if(2.51 to INFINITY)
+				. += "<span class='notice'>This weapon has an extremely slow reload.</span>"
+
 	if(!autofire)
 		switch(fire_delay)
 			if(0 to 5)
@@ -40,7 +64,6 @@
 				. += "<span class='notice'>This weapon fires slowly.</span>"
 			else
 				. += "<span class='notice'>This weapon fires extremely slowly.</span>"
-
 	else
 		//Give it to 'em in true rounds per minute, accurate to the 5s
 		var/rpm = 600 / autofire
@@ -95,9 +118,21 @@
 	return
 
 /obj/item/gun/ego_gun/can_shoot()
+	if(reloadtime)
+		if(!shotsleft)
+			visible_message(span_notice("The gun is out of ammo."))
+			playsound(src, dry_fire_sound, 30, TRUE)
+			return FALSE
+	if(is_reloading)
+		return FALSE
+
 	return TRUE
 
 /obj/item/gun/ego_gun/process_chamber()
+
+	if(reloadtime && shotsleft)
+		shotsleft-=1
+
 	if(chambered && !chambered.BB)
 		recharge_newshot()
 
@@ -113,6 +148,17 @@
 /obj/item/gun/ego_gun/shoot_with_empty_chamber(mob/living/user)
 	before_firing(user = user)
 	return ..()
+
+/obj/item/gun/ego_gun/attack_self(mob/user)
+	if(reloadtime)
+		is_reloading = TRUE
+		to_chat(user,span_notice("You start loading a new magazine."))
+		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+		if(do_after(user, reloadtime, src)) //gotta reload
+			playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
+			shotsleft = initial(shotsleft)
+		is_reloading = FALSE
+	..()
 
 //Examine text for pistols.
 /obj/item/gun/ego_gun/pistol/examine(mob/user)

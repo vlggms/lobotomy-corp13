@@ -8,8 +8,8 @@
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	special = "Use in hand to reload"
-	var/shotsleft = 10
-	var/reloadtime = 3 SECONDS
+	shotsleft = 10
+	reloadtime = 3 SECONDS
 
 /obj/item/gun/ego_gun/city/fullstop/process_chamber()
 	if(shotsleft)
