@@ -3,7 +3,21 @@
 	desc = "A tall man adorned in grey, gold, and regal blue. His aim is impeccable."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "derfreischutz"
+	icon_living = "derfreischutz"
+	icon_dead = "derfreischutz"
 	portrait = "der_freischutz"
+	maxHealth = 1350
+	health = 1350
+	ranged = TRUE
+	ranged_cooldown_time = 60
+	minimum_distance = 2
+	retreat_distance = 1
+	move_to_delay = 5
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1.0, PALE_DAMAGE = 2)
+	stat_attack = HARD_CRIT
+	can_breach = TRUE
+	vision_range = 20 // Fit for a marksman.
+	aggro_vision_range = 26
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
@@ -22,6 +36,43 @@
 	)
 	gift_type =  /datum/ego_gifts/magicbullet
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	var/can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/AttackingTarget(atom/attacked_target)
+	return OpenFire()
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/OpenFire()
+	if(!can_act)
+		return
+	can_act = FALSE
+	var/turf/beam_start = get_turf(src)
+	var/turf/target_turf = get_ranged_target_turf_direct(src, target, 30, 0)
+	var/turf/beam_end = target_turf
+	var/list/turfs_to_check = getline(beam_start, target_turf)
+	face_atom(target)
+	for(var/turf/T in turfs_to_check)
+		if(T.density)
+			beam_end = T
+			break
+	new /datum/beam(beam_start.Beam(beam_end, "magic_bullet", time = 1 SECONDS))
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	var/obj/projectile/ego_bullet/ego_magicbullet/B = new(beam_start)
+	B.starting = beam_start
+	B.firer = src
+	B.fired_from = beam_start
+	B.yo = beam_end.y - beam_start.y
+	B.xo = beam_end.x - beam_start.x
+	B.original = beam_end
+	B.preparePixelProjectile(beam_end, beam_start)
+	B.fire()
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+//he walk
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)
