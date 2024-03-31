@@ -12,7 +12,7 @@
 	minimum_distance = 10
 	retreat_distance = 2
 	move_to_delay = 6
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 	stat_attack = HARD_CRIT
 	can_breach = TRUE
 	vision_range = 28 // Fit for a marksman.
@@ -112,7 +112,6 @@
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/PrepareFireBullet(atom/target)
 	bullet_cooldown = world.time + bullet_cooldown_time
 	can_act = FALSE
-	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	IconChange(firing = TRUE)
 	var/turf/beam_start = get_turf(src)
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, bullet_max_range, 0)
