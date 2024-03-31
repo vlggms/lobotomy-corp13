@@ -60,26 +60,30 @@
 	original_sight = owner.sight
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Activate()
-	SIGNAL_HANDLER
-
-	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Deactivate))
-	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(Rotate))
-
+	ActivateSignals()
 	owner.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
 	owner.regenerate_icons()
 	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
 	. = ..()
 
-/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Deactivate()
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/ActivateSignals()
 	SIGNAL_HANDLER
 
-	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
-	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Deactivate))
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(Rotate))
 
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Deactivate()
+	DeactivateSignals()
 	owner.sight = original_sight
 	owner.regenerate_icons()
 	owner.client.view_size.zoomIn()
 	. = ..()
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/DeactivateSignals()
+	SIGNAL_HANDLER
+
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/Rotate(old_dir, new_dir)
 	SIGNAL_HANDLER
