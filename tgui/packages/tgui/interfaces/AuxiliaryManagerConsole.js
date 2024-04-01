@@ -1,5 +1,6 @@
 // THIS IS A LOBOTOMYCORPORATION UI FILE
 
+import { resolveAsset } from '../assets';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, Section, Tabs, Collapsible } from '../components';
 import { Window } from '../layouts';
@@ -8,7 +9,7 @@ export const AuxiliaryManagerConsole = (props, context) => {
   const [tab, setTab] = useLocalState(context, 'tab', 1);
 
   return (
-    <Window title="Auxiliary Managerial Console" width="650" height="600">
+    <Window title="Auxiliary Managerial Console" width="850" height="600">
       <Window.Content>
         <Tabs>
           <Tabs.Tab
@@ -155,6 +156,7 @@ const CoreSuppressionSelector = (props, context) => {
     selected_core_goal,
     selected_core_reward,
     selected_core_color,
+    selected_core_icon,
   } = data;
 
   if (current_suppression) {
@@ -173,7 +175,9 @@ const CoreSuppressionSelector = (props, context) => {
           WARNING WARNING WARNING
         </Box>
         <NoticeBox color={selected_core_color} bold textAlign="center" fontSize="40px" fontFamily="Baskerville">
+          <img src={resolveAsset(selected_core_icon)}/>
           {current_suppression} in progress!
+          <img src={resolveAsset(selected_core_icon)}/>
         </NoticeBox>
         <Box textColor="red" textAlign="center" fontFamily="Baskerville">
           WARNING WARNING WARNING

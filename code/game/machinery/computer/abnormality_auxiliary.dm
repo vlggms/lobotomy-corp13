@@ -159,6 +159,40 @@
 
 // TGUI stuff onwards, all beware ye who enter
 
+// gather all the assets needed for optional decorative stuff
+/datum/asset/simple/sephirah
+	assets = list(
+		// upper layer
+
+		"SEPHIRAH.yellow.png" = icon('icons/obj/plushes.dmi', "malkuth"),
+		"SEPHIRAH.purple.png" = icon('icons/obj/plushes.dmi', "yesod"),
+		"SEPHIRAH.green.png" = icon('icons/obj/plushes.dmi', "netzach"),
+		"SEPHIRAH.orange.png" = icon('icons/obj/plushes.dmi', "hod"),
+
+		// middle layer
+
+		// command overriden
+		"SEPHIRAH.blue.png" = icon('icons/obj/plushes.dmi', "chesed"),
+		"SEPHIRAH.red.png" = icon('icons/obj/plushes.dmi', "gebura"),
+
+		// lower layer
+
+		// extraction overriden
+		"SEPHIRAH.white.png" = icon('icons/obj/plushes.dmi', "hokma"),
+
+		// icon overrides
+
+		"SEPHIRAH.AYIN.png" = icon('icons/obj/plushes.dmi', "ayin"), // fuck you *turns ayin into a sephirah*
+		"SEPHIRAH.TWINS.png" = icon('icons/obj/plushes.dmi', "lisa"),
+		"SEPHIRAH.BINAH.png" = icon('icons/obj/plushes.dmi', "binah"),
+
+	)
+
+/obj/machinery/computer/abnormality_auxiliary/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/simple/sephirah),
+	)
+
 /obj/machinery/computer/abnormality_auxiliary/ui_data(mob/user)
 	. = ..()
 	var/list/data = list()
@@ -236,6 +270,7 @@
 
 		data["current_suppression"] = core_suppression_name
 		data["selected_core_color"] = "red"
+		var/icon_override = FALSE // normally the assets are fetched via the color of the core being supressed, this overrides it
 		switch(core_suppression_name) // we choose the core's color once its locked in place here, the mother of all switches
 			// upper layer
 			if(CONTROL_CORE_SUPPRESSION)
@@ -254,6 +289,7 @@
 
 			if(COMMAND_CORE_SUPPRESSION)
 				data["selected_core_color"] = "yellow"
+				icon_override = "TWINS"
 
 			if(WELFARE_CORE_SUPPRESSION)
 				data["selected_core_color"] = "blue"
@@ -264,6 +300,7 @@
 			// bottom layer
 			if(EXTRACTION_CORE_SUPPRESSION)
 				data["selected_core_color"] = "yellow"
+				icon_override = "BINAH"
 
 			if(RECORDS_CORE_SUPPRESSION)
 				data["selected_core_color"] = "white"
@@ -273,10 +310,16 @@
 			// should divide them and give them colors later, but no clue what they could have for now
 			if(DAY46_CORE_SUPPRESSION, DAY47_CORE_SUPPRESSION, DAY48_CORE_SUPPRESSION, DAY49_CORE_SUPPRESSION, DAY50_CORE_SUPPRESSION)
 				data["selected_core_color"] = "white"
+				icon_override = "AYIN"
 
 			// you didnt set a proper core layer
 			else
 				data["selected_core_color"] = "red"
+
+		if(icon_override)
+			data["selected_core_icon"] = "SEPHIRAH.[icon_override].png"
+		else
+			data["selected_core_icon"] = "SEPHIRAH.[data["selected_core_color"]].png"
 
 	if(ispath(selected_core_type))
 		data["selected_core_name"] = initial(selected_core_type.name)
