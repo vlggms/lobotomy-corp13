@@ -175,9 +175,9 @@ const CoreSuppressionSelector = (props, context) => {
           WARNING WARNING WARNING
         </Box>
         <NoticeBox color={selected_core_color} bold textAlign="center" fontSize="40px" fontFamily="Baskerville">
-          <img src={resolveAsset(selected_core_icon)}/>
+          <img src={resolveAsset(selected_core_icon)} />
           {current_suppression} in progress!
-          <img src={resolveAsset(selected_core_icon)}/>
+          <img src={resolveAsset(selected_core_icon)} />
         </NoticeBox>
         <Box textColor="red" textAlign="center" fontFamily="Baskerville">
           WARNING WARNING WARNING
