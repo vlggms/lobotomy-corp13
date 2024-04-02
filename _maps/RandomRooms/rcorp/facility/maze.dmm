@@ -202,6 +202,12 @@
 "Fl" = (
 /turf/closed/indestructible/syndicate,
 /area/city/outskirts)
+"FE" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "inside"
+	},
+/turf/open/floor/plating/asteroid,
+/area/city/outskirts)
 "Gh" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
 	dir = 4
@@ -279,6 +285,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
+/area/city/outskirts)
+"Oo" = (
+/obj/machinery/button/door/indestructible{
+	id = "inside"
+	},
+/turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "Op" = (
 /obj/structure/riser/dark,
@@ -399,29 +411,17 @@ Fl
 Fl
 Fl
 Fl
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
-oS
 Fl
 Fl
 Fl
 Fl
 Fl
-Fl
-Fl
-Fl
+FE
+FE
+FE
+FE
+FE
+Oo
 Fl
 Fl
 Fl
@@ -453,13 +453,25 @@ WS
 WS
 WS
 WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
 Fl
 Fl
 Fl
-MD
-gS
-gS
-aN
+FE
+FE
+FE
+Oo
 Fl
 Fl
 Fl
@@ -468,9 +480,9 @@ Fl
 Fl
 Fl
 Fl
-oS
-oS
-oS
+Fl
+FE
+Oo
 Fl
 Fl
 Fl

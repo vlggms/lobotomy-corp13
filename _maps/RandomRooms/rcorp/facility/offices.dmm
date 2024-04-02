@@ -8,13 +8,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/city/outskirts)
-"aN" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "inside"
-	},
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
 "bn" = (
 /obj/item/toy/plush/bongbong,
 /turf/open/floor/plasteel/dark,
@@ -70,6 +63,12 @@
 "hG" = (
 /obj/effect/landmark/abnospawn/hardtank,
 /turf/open/floor/facility/dark,
+/area/city/outskirts)
+"iB" = (
+/obj/machinery/button/door/indestructible{
+	id = "inside"
+	},
+/turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "iH" = (
 /obj/effect/turf_decal/siding/purple{
@@ -163,6 +162,12 @@
 	dir = 1
 	},
 /turf/open/floor/plasteel,
+/area/city/outskirts)
+"oX" = (
+/obj/machinery/door/poddoor/shutters/indestructible{
+	id = "inside"
+	},
+/turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "pc" = (
 /obj/structure/chair,
@@ -489,6 +494,57 @@ WS
 WS
 WS
 WS
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+oX
+oX
+oX
+oX
+oX
+iB
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
+WS
 WS
 WS
 WS
@@ -499,62 +555,12 @@ WS
 WS
 WS
 Fl
-aN
-aN
-aN
-aN
-aN
 Fl
 Fl
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-Fl
-Fl
-Fl
-HD
-HD
-HD
+oX
+oX
+oX
+iB
 Fl
 Fl
 Fl
@@ -563,11 +569,10 @@ Fl
 Fl
 Fl
 Fl
-Fl
-Ub
-HD
-HD
-Fl
+oX
+oX
+oX
+iB
 Fl
 Fl
 Fl

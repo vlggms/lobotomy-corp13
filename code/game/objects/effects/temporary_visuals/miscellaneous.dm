@@ -702,6 +702,11 @@
 	icon_state = "slice"
 	duration = 4
 
+/obj/effect/temp_visual/mech_fire
+	name = "mech_fire"
+	icon_state = "mech_fire"
+	duration = 4
+
 /obj/effect/temp_visual/dir_setting/slash
 	name = "slash"
 	icon_state = "slash"
@@ -783,20 +788,6 @@
 	name = "apocaspiral"
 	icon_state = "apocalypse_enchant_effect"
 	layer = ABOVE_ALL_MOB_LAYER
-
-/obj/effect/temp_visual/ambermidnight_hole
-	name = "hole"
-	icon = 'ModularTegustation/Teguicons/224x128.dmi'
-	icon_state = "ambermidnight_hole"
-	duration = 10 SECONDS
-	pixel_x = -96
-	base_pixel_x = -96
-	pixel_y = -16
-	base_pixel_y = -16
-
-/obj/effect/temp_visual/ambermidnight_hole/Initialize()
-	. = ..()
-	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/cross
 	name = "holy cross"

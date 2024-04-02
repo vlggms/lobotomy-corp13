@@ -237,7 +237,10 @@
 	can_act = FALSE
 	if(do_after(src, 2 SECONDS, target = src))
 		new /obj/effect/temp_visual/fragment_song(get_turf(src))
-		for(var/mob/living/L in orange(9, src))
+		var/list/turfs_to_check = orange(9, src)
+		for(var/obj/vehicle/sealed/mecha/V in turfs_to_check)
+			V.take_damage(70, WHITE_DAMAGE)
+		for(var/mob/living/L in turfs_to_check)
 			if(isabnormalitymob(L))
 				var/mob/living/simple_animal/hostile/abnormality/maybe_brothers = L
 				if(maybe_brothers.IsContained())

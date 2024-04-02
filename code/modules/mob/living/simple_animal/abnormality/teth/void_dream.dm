@@ -73,6 +73,8 @@
 		return
 	if(punched)
 		return
+	if(IsCombatMap())
+		return
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	punched = TRUE
 	SpeedChange(-2)

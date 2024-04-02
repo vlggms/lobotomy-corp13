@@ -4,6 +4,7 @@
 	desc = "A small girl holding a teddy bear."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "willyouplay"
+	portrait = "will_you_play"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL

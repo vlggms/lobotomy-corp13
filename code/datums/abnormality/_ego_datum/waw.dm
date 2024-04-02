@@ -192,6 +192,12 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/exuviae
 	cost = 50
 
+/datum/ego_datum/exuviae
+	name = "Naked Nest Cure"
+	item_category = "Extract"
+	item_path = /obj/item/serpentspoison
+	cost = 20
+
 // Ebony Queen's Apple - Ebony Stem
 /datum/ego_datum/armor/ebony_stem
 	item_path = /obj/item/clothing/suit/armor/ego_gear/waw/ebony_stem

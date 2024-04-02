@@ -17,12 +17,22 @@
 	turns_per_move = 2
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	attack_sound = 'sound/weapons/bite.ogg'
+	attack_sound = 'sound/effects/ordeals/amber/dawn_attack.ogg'
+	attack_sound = 'sound/effects/ordeals/amber/dawn_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 2, WHITE_DAMAGE = 1, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/worm = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/amber_simple = 1)
+
+	/// This cooldown responds for both the burrowing and spawning in the dawns
+	var/burrow_cooldown
+	var/burrow_cooldown_time = 1 MINUTES
+
+	/// If TRUE - cannot move nor attack
+	var/burrowing = FALSE
+
+	var/can_burrow_solo = TRUE // False for amber dawns spawned by dusks that are still alive
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/Initialize()
 	. = ..()
@@ -30,6 +40,44 @@
 	pixel_x = base_pixel_x
 	base_pixel_y = rand(-6,6)
 	pixel_y = base_pixel_y
+	if(LAZYLEN(butcher_results)) //// It burrows in on spawn, spawned ones shouldn't
+		addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/death(gibbed)
+	alpha = 255
+	..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(can_burrow_solo && !burrowing && world.time > burrow_cooldown)
+		BurrowIn()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/CanAttack(atom/the_target)
+	if(burrowing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/Move()
+	if(burrowing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/Goto(target, delay, minimum_distance)
+	if(burrowing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/DestroySurroundings()
+	if(burrowing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/GiveTarget(new_target)
+	. = ..()
+	if(. && target) //reset burrow cooldown whenever in combat
+		burrow_cooldown = world.time + burrow_cooldown_time
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/AttackingTarget()
 	. = ..()
@@ -53,10 +101,46 @@
 	animate(src, pixel_y = base_pixel_y, time = 2)
 	return TRUE
 
+/mob/living/simple_animal/hostile/ordeal/amber_bug/proc/BurrowIn(turf/T)
+	if(!T)
+		T = pick(GLOB.xeno_spawn)
+	burrowing = TRUE
+	visible_message(span_danger("[src] burrows into the ground!"))
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_in.ogg', 25, 1)
+	animate(src, alpha = 0, time = 5)
+	SLEEP_CHECK_DEATH(5)
+	BurrowOut(T)
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/proc/BurrowOut(turf/T)
+	burrowing = TRUE
+	alpha = 0
+	var/list/valid_turfs = list(T)
+	for(var/turf/PT in RANGE_TURFS(2, T))
+		if(!PT.is_blocked_turf_ignore_climbable())
+			valid_turfs |= PT
+	var/turf/target_turf = pick(valid_turfs)
+	forceMove(target_turf)
+	new /obj/effect/temp_visual/small_smoke/halfsecond(target_turf)
+	animate(src, alpha = 255, time = 5)
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_out.ogg', 25, 1)
+	visible_message(span_bolddanger("[src] burrows out from the ground!"))
+	SLEEP_CHECK_DEATH(5)
+	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(target_turf, src)
+	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
+	for(var/mob/living/L in target_turf)
+		if(!faction_check_mob(L))
+			L.apply_damage(5, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+	burrow_cooldown = world.time + burrow_cooldown_time
+	burrowing = FALSE
+
 //Amber dawn spawned from dusk
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned
 	butcher_results = list()
 	guaranteed_butcher_results = list()
+
+/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/Initialize()
+	. = ..()
+	burrow_cooldown = world.time + burrow_cooldown_time
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/death(gibbed)
 	density = FALSE
@@ -67,7 +151,7 @@
 // Amber dusk
 /mob/living/simple_animal/hostile/ordeal/amber_dusk
 	name = "food chain"
-	desc = "A big worm-like creature with giant teeth at the front."
+	desc = "A big worm-like creature with jagged teeth at its front."
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "amber_dusk"
 	icon_living = "amber_dusk"
@@ -91,15 +175,12 @@
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
 
-	alpha = 0 // It burrows in on spawn
-	density = FALSE
-
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
-	var/burrow_cooldown_time = 18 SECONDS
+	var/burrow_cooldown_time = 20 SECONDS
 
 	/// If TRUE - cannot move nor attack
-	var/burrowing = TRUE
+	var/burrowing = FALSE
 	/// List of currently spawned dawns, so we don't create too many
 	var/list/spawned_mobs = list()
 
@@ -115,10 +196,21 @@
 		return FALSE
 	return ..()
 
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/Goto(target, delay, minimum_distance)
+	if(burrowing)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/DestroySurroundings()
+	if(burrowing)
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Initialize()
 	. = ..()
-	addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
 	soundloop = new(list(src), TRUE)
+	if(LAZYLEN(butcher_results))
+		addtimer(CALLBACK(src, PROC_REF(BurrowOut), get_turf(src)))
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Destroy()
 	QDEL_NULL(soundloop)
@@ -128,8 +220,7 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if(world.time > burrow_cooldown)
-		burrow_cooldown = world.time + burrow_cooldown_time
+	if(!burrowing && world.time > burrow_cooldown)
 		AttemptBirth()
 		BurrowIn()
 
@@ -137,6 +228,9 @@
 	if(LAZYLEN(butcher_results))
 		alpha = 255
 	soundloop.stop()
+	listclearnulls(spawned_mobs)
+	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/AB in spawned_mobs)
+		AB.can_burrow_solo = TRUE
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/AttemptBirth()
@@ -144,52 +238,70 @@
 	for(var/mob/living/L in spawned_mobs)
 		if(L.stat == DEAD)
 			spawned_mobs -= L
-	var/max_spawn = clamp(GLOB.clients.len * 5, 5, 25)
+	var/max_spawn = clamp(GLOB.clients.len * 2, 4, 8)
 	if(length(spawned_mobs) >= max_spawn)
-		return
-	visible_message(span_danger("Five smaller bugs appear out of [src]!"))
-	for(var/i = 1 to 5)
+		return FALSE
+	burrowing = TRUE
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_create.ogg', 50, FALSE)
+	SLEEP_CHECK_DEATH(5)
+	visible_message(span_danger("Four smaller bugs emerge from [src]!"))
+	for(var/i = 1 to 4)
 		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		if(T.density) // Retry
 			i -= 1
 			continue
 		var/mob/living/simple_animal/hostile/ordeal/amber_bug/spawned/nb = new(T)
+		nb.can_burrow_solo = FALSE
 		spawned_mobs += nb
 		if(ordeal_reference)
 			nb.ordeal_reference = ordeal_reference
 			ordeal_reference.ordeal_mobs += nb
+	SLEEP_CHECK_DEATH(5)
+	burrowing = FALSE
+	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/BurrowIn()
 	burrowing = TRUE
-	density = FALSE
+	var/turf/T = pick(GLOB.xeno_spawn)
+	if(!T)
+		T = get_turf(src)
 	visible_message(span_danger("[src] burrows into the ground!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_dig_in.ogg', 50, 1)
-	animate(src, alpha = 0, time = 5)
-	for(var/turf/open/OT in range(1, src))
-		new /obj/effect/temp_visual/small_smoke/halfsecond(OT)
+	animate(src, alpha = 0, time = 10)
 	SLEEP_CHECK_DEATH(5)
-	var/turf/T = pick(GLOB.xeno_spawn)
+	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/AB in spawned_mobs)
+		addtimer(CALLBACK(AB, PROC_REF(BurrowIn), T))
+	SLEEP_CHECK_DEATH(5)
+	density = FALSE
+	forceMove(T)
 	BurrowOut(T)
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/BurrowOut(turf/T)
-	forceMove(T)
+	burrowing = TRUE
+	alpha = 0
+	density = FALSE
 	for(var/turf/open/OT in range(1, T))
 		new /obj/effect/temp_visual/small_smoke/halfsecond(OT)
 	animate(src, alpha = 255, time = 5)
+	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_dig_out.ogg', 50, 1)
+	visible_message(span_bolddanger("[src] burrows out from the ground!"))
 	SLEEP_CHECK_DEATH(5)
 	density = TRUE
-	visible_message(span_danger("[src] burrows out from the ground!"))
-	playsound(get_turf(src), 'sound/effects/ordeals/amber/dusk_dig_out.ogg', 50, 1)
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(T, src)
 	animate(D, alpha = 0, transform = matrix()*1.5, time = 5)
 	for(var/mob/living/L in view(1, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(75, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+	burrow_cooldown = world.time + burrow_cooldown_time
 	burrowing = FALSE
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned
 	butcher_results = list()
 	guaranteed_butcher_results = list()
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/Initialize()
+	. = ..()
+	burrow_cooldown = world.time + burrow_cooldown_time
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/death(gibbed)
 	animate(src, alpha = 0, time = 5 SECONDS)
@@ -256,6 +368,7 @@
 	if(!.) // Dead
 		return FALSE
 	if(!burrowing && world.time > burrow_cooldown)
+		AttemptBirth()
 		BurrowIn()
 		return
 
@@ -267,27 +380,25 @@
 	var/max_spawn = clamp(GLOB.clients.len * 0.6, 2, 8)
 	if(length(spawned_mobs) >= max_spawn)
 		return FALSE
+	burrowing = TRUE
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_create.ogg', 50, FALSE)
-	visible_message(span_danger("Two large bugs appear out of [src]!"))
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	visible_message(span_danger("Two large bugs emerge from [src]!"))
 	for(var/i = 1 to 2)
-		var/turf/T = get_step(get_turf(src), pick(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		var/turf/T = get_step(get_turf(src), pick(GLOB.alldirs))
 		var/mob/living/simple_animal/hostile/ordeal/amber_dusk/spawned/nb = new(T)
 		spawned_mobs += nb
 		if(ordeal_reference)
 			nb.ordeal_reference = ordeal_reference
 			ordeal_reference.ordeal_mobs += nb
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	burrowing = FALSE
 	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/BurrowIn()
-	if(AttemptBirth())
-		SLEEP_CHECK_DEATH(2 SECONDS)
 	burrowing = TRUE
-	density = FALSE
 	visible_message(span_danger("[src] burrows into the ground!"))
 	playsound(src, 'sound/effects/ordeals/amber/midnight_in.ogg', 50, FALSE, 7)
-	animate(src, alpha = 0, time = 7)
-	for(var/turf/open/OT in range(2, src))
-		new /obj/effect/temp_visual/small_smoke/halfsecond(OT)
 	icon_state = "ambermidnight_leave"
 	new /obj/effect/temp_visual/ambermidnight_hole(get_turf(src))
 	var/list/centers = GLOB.department_centers.Copy()
@@ -295,41 +406,48 @@
 	for(var/turf/T in centers)
 		if(locate(type) in T) // Found another amber midnight there
 			centers -= T
-	SLEEP_CHECK_DEATH(7)
+	SLEEP_CHECK_DEATH(9)
+	animate(src, alpha = 0, time = 1)
+	density = FALSE
 	for(var/turf/T in centers) // We do it twice in case something changed in that time
 		if(locate(type) in T)
 			centers -= T
-	if(!LAZYLEN(centers))
-		return
-	var/turf/T = pick(centers)
+	var/turf/T = get_turf(src)
+	if(LAZYLEN(centers))
+		T = pick(centers)
+	SLEEP_CHECK_DEATH(1)
 	forceMove(T)
 	BurrowOut()
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/proc/BurrowOut()
+	burrowing = TRUE
 	alpha = 0
 	density = FALSE
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out_far.ogg', 50, TRUE, 4)
-	for(var/i = 1 to 2)
-		for(var/turf/open/T in view(3, get_turf(src)))
-			new /obj/effect/temp_visual/small_smoke/halfsecond(T)
-		SLEEP_CHECK_DEATH(2)
-	animate(src, pixel_z = 0, alpha = 255, time = 6)
-	icon_state = "ambermidnight_bite"
-	SLEEP_CHECK_DEATH(4)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out.ogg', 75, FALSE, 7)
+	new /obj/effect/temp_visual/ambersmoke(get_turf(src))
+	animate(src, pixel_z = 0, alpha = 255, time = 1)
+	icon_state = "ambermidnight_bite"
+	visible_message(span_danger("[src] burrows out from the ground!"))
+	SLEEP_CHECK_DEATH(8)
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/midnight_out_far.ogg', 25, FALSE, 24, 2, falloff_distance = 9)
 	SLEEP_CHECK_DEATH(2)
 	density = TRUE
-	visible_message(span_danger("[src] burrows out from the ground!"))
 	var/obj/effect/temp_visual/decoy/D = new /obj/effect/temp_visual/decoy(get_turf(src), src)
 	animate(D, alpha = 0, transform = matrix()*1.25, time = 3)
 	SLEEP_CHECK_DEATH(2)
+	var/alternate = TRUE // we dont need 50 smoke effects
 	for(var/turf/open/T in view(7, src))
-		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		if(alternate)
+			var/obj/effect/temp_visual/small_smoke/halfsecond/SS = new(T)
+			SS.color = LIGHT_COLOR_ORANGE
+			alternate = FALSE
+		else
+			alternate = TRUE
 	for(var/mob/living/L in view(7, src))
 		if(faction_check_mob(L))
 			continue
-		var/distance_decrease = get_dist(src, L) * 75
+		var/distance_decrease = get_dist(src, L) * 85
 		L.apply_damage((1000 - distance_decrease), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
 		if(L.health < 0)
 			L.gib()
@@ -337,3 +455,27 @@
 	burrow_cooldown = world.time + burrow_cooldown_time
 	burrowing = FALSE
 	icon_state = icon_living
+
+/obj/effect/temp_visual/ambersmoke
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke"
+	duration = 1.5 SECONDS
+	color = COLOR_ORANGE
+	pixel_x = -32
+	base_pixel_x = -32
+	pixel_y = -32
+	base_pixel_y = -32
+
+/obj/effect/temp_visual/ambermidnight_hole
+	name = "hole"
+	icon = 'ModularTegustation/Teguicons/224x128.dmi'
+	icon_state = "ambermidnight_hole"
+	duration = 10 SECONDS
+	pixel_x = -96
+	base_pixel_x = -96
+	pixel_y = -16
+	base_pixel_y = -16
+
+/obj/effect/temp_visual/ambermidnight_hole/Initialize()
+	. = ..()
+	animate(src, alpha = 0, time = duration)

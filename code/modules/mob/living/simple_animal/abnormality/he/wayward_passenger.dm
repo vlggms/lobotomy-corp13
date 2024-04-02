@@ -226,14 +226,13 @@
 		stop_charge = TRUE
 	for(var/obj/structure/window/W in T.contents)
 		stop_charge = TRUE
-	for(var/obj/machinery/door/poddoor/P in T.contents)
-		stop_charge = TRUE
-		continue
+		break
 	for(var/obj/machinery/door/D in T.contents)
-		if(istype(D, /obj/machinery/door/poddoor))
-			continue
+		if(!D.CanAStarPass(null))
+			stop_charge = TRUE
+			break
 		if(D.density)
-			D.open(2)
+			INVOKE_ASYNC(D, TYPE_PROC_REF(/obj/machinery/door, open), 2)
 	if(stop_charge)
 		playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 75, 1)
 		charging = FALSE
@@ -241,11 +240,10 @@
 		return
 	forceMove(T)
 	playsound(src,"sound/abnormalities/thunderbird/tbird_peck.ogg", rand(50, 70), 1)
-	for(var/turf/TF in range(1, T))//Smash AOE visual
+	var/list/turfs_to_hit = range(1, T)
+	for(var/turf/TF in turfs_to_hit)//Smash AOE visual
 		new /obj/effect/temp_visual/smash_effect(TF)
-	for(var/mob/living/L in range(1, T))//damage applied to targets in range
-		if(L.z != z)
-			continue
+	for(var/mob/living/L in turfs_to_hit)//damage applied to targets in range
 		if(!faction_check_mob(L))
 			if(L in been_hit)
 				continue
@@ -253,9 +251,17 @@
 			playsound(L, attack_sound, 75, 1)
 			var/turf/LT = get_turf(L)
 			new /obj/effect/temp_visual/kinetic_blast(LT)
-			L.apply_damage(60,RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			if(!(L in been_hit))
-				been_hit += L
+			L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			been_hit += L
+	for(var/obj/vehicle/sealed/mecha/V in turfs_to_hit)
+		if(V in been_hit)
+			continue
+		V.visible_message(span_boldwarning("[src] slices through [V]!"))
+		to_chat(V.occupants, span_userdanger("[src] rushes past you, searing your mech with its blades!"))
+		playsound(V, attack_sound, 75, 1)
+		new /obj/effect/temp_visual/kinetic_blast(get_turf(V))
+		V.take_damage(60, RED_DAMAGE, attack_dir = get_dir(V, src))
+		been_hit += V
 	addtimer(CALLBACK(src, PROC_REF(Do_Dash), move_dir, (times_ran + 1)), 1)
 
 /obj/effect/portal/abno_warp

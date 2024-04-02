@@ -619,6 +619,13 @@
 	insight_mod = 3
 	slot = EYE
 
+/datum/ego_gifts/morii
+	name = "Morii"
+	icon_state = "morii"
+	temperance_bonus = 2
+	repression_mod = 6
+	slot = EYE
+
 /datum/ego_gifts/harmony
 	name = "Harmony"
 	icon_state = "harmony"

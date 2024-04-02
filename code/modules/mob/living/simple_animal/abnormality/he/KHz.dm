@@ -4,6 +4,7 @@
 	desc = "A ham radio resting on a table."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "radio"
+	portrait = "khz"
 	maxHealth = 400
 	health = 400
 	threat_level = HE_LEVEL

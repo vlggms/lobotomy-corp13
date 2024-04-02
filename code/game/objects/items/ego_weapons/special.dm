@@ -103,14 +103,12 @@
 		return FALSE
 
 /obj/item/ego_weapon/lance/famiglia/attack(mob/living/target, mob/living/user)
-	if(!CanUseEgo(user))
-		return
-	. = ..()
 	if(raised)
-		var/atom/throw_target = get_edge_target_turf(target, user.dir)
-		if(!target.anchored)
-			var/whack_speed = (prob(60) ? 1 : 4)
-			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+		knockback = KNOCKBACK_LIGHT
+	else
+		knockback = FALSE
+
+	return ..()
 
 /obj/item/ego_weapon/lance/famiglia/LowerLance(mob/user)
 	hitsound = 'sound/weapons/ego/spear1.ogg'

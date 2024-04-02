@@ -419,6 +419,15 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							PRUDENCE_ATTRIBUTE = 40
 							)
 
+/obj/item/clothing/suit/armor/ego_gear/he/morii
+	name = "morii"
+	desc = "Those who wear this cloth are trapped wishing to return to a time that is lost to them."
+	icon_state = "morii"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 70
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
 /obj/item/clothing/suit/armor/ego_gear/he/voodoo
 	name = "voodoo doll"
 	desc = "You look like a little doll."
