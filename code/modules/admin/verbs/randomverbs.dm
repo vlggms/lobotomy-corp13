@@ -1090,7 +1090,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	smite.effect(src, target)
 
 /proc/breadify(atom/movable/target)
-	if(target/name == "Bong Bong")
+	if(target.name == "Bong Bong")
 		var/obj/item/food/bread/bongbread/bongbread = new(get_turf(target))
 		target.forceMove(bongbread)
 	else
