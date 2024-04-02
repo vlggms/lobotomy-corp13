@@ -1091,7 +1091,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 /proc/breadify(atom/movable/target)
 	if(target/name == "Bong Bong")
-		var/obj/item/food/bread/plain/bread/bongbread = new(get_turf(target))
+		var/obj/item/food/bread/bongbread/bongbread = new(get_turf(target))
 		target.forceMove(bongbread)
 	else
 		var/obj/item/food/bread/plain/bread = new(get_turf(target))
