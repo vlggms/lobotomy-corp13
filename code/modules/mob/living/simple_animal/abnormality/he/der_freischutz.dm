@@ -64,7 +64,7 @@
 	owner.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
 	owner.regenerate_icons()
 	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
-	. = ..()
+	return ..()
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/ActivateSignals()
 	SIGNAL_HANDLER
@@ -77,7 +77,7 @@
 	owner.sight = original_sight
 	owner.regenerate_icons()
 	owner.client.view_size.zoomIn()
-	. = ..()
+	return ..()
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/DeactivateSignals()
 	SIGNAL_HANDLER
@@ -110,7 +110,6 @@
 	pixel_x += 32
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	update_icon()
-	return
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/PrepareFireBullet(atom/target)
 	bullet_cooldown = world.time + bullet_cooldown_time
