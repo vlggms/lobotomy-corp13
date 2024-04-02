@@ -120,11 +120,18 @@
 	rareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade,
 		/obj/item/ego_weapon/city/reindeer,
+		/obj/item/gun/energy/e_gun/rabbitdash/sniper,
+		/obj/item/gun/energy/e_gun/rabbitdash/laser,
+		/obj/item/gun/energy/e_gun/rabbitdash/heavy,
+		/obj/item/gun/energy/e_gun/rabbitdash/small,
+		/obj/item/gun/energy/e_gun/rabbitdash/shotgun,
 	)
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade/command,
 		/obj/item/ego_weapon/city/reindeer/captain,
+		/obj/item/gun/energy/e_gun/rabbit/minigun,
+		/obj/item/gun/energy/e_gun/rabbit/nopin,
 	)
 
 	cosmeticloot = list(
