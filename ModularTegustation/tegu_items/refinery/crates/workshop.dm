@@ -38,7 +38,7 @@
 	name = "allas workshop crate"
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
 	icon_state = "crate_allas"
-	rarechance = 20
+	rarechance = 25
 	veryrarechance = 1
 	lootlist =	list(
 		/obj/item/ego_weapon/city/fixerblade,
@@ -69,7 +69,7 @@
 	desc = "A crate recieved from the city workshop. Open with a Crowbar."
 	icon_state = "crate_zelkova"
 	veryrarechance = 20	//20% chance for rare stuff
-	rarechance = 50	//40% chance for weapons, rest is on armor.
+	rarechance = 40	//40% chance for weapons, rest is on armor.
 	lootlist =	list(
 		/obj/item/ego_weapon/city/dawn/sword,
 		/obj/item/ego_weapon/city/dawn/cello,
