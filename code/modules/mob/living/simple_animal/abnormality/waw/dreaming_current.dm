@@ -55,17 +55,16 @@
 	/// Maximum AStar pathfinding distances from one point to another
 	var/dash_max_distance = 40
 	var/datum/looping_sound/dreamingcurrent/soundloop
-	var/alt_icon = FALSE
+
+	secret_chance = TRUE
+	secret_icon_state = "blahaj"
+	secret_icon_living = "blahaj"
+	secret_horizontal_offset = -16
+	secret_gift = /datum/ego_gifts/blahaj
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Initialize()
 	. = ..()
 	soundloop = new(list(src), TRUE)
-	if(prob(1))
-		icon_state = "blahaj"
-		icon_living = "blahaj"
-		alt_icon = TRUE
-		pixel_x = -16
-		gift_type =  /datum/ego_gifts/blahaj
 
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Destroy()
 	QDEL_NULL(soundloop)
@@ -84,7 +83,7 @@
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/Life()
 	. = ..()
 	if((status_flags & GODMODE) && prob(2)) // Contained
-		if(!alt_icon)
+		if(!secret_abnormality)
 			icon_state = "current_bubble"
 		playsound(src, "sound/effects/bubbles.ogg", 30, TRUE)
 		SLEEP_CHECK_DEATH(12)
@@ -146,14 +145,14 @@
 		potential_turfs -= T
 	if(!LAZYLEN(movement_path))
 		return FALSE
-	if(!alt_icon)
+	if(!secret_abnormality)
 		icon_state = "current_prepare"
 	playsound(src, "sound/effects/bubbles.ogg", 50, TRUE, 7)
 	for(var/turf/T in movement_path) // Warning before charging
 		new /obj/effect/temp_visual/sparks/quantum(T)
 	SLEEP_CHECK_DEATH(18)
 	been_hit = list()
-	if(!alt_icon)
+	if(!secret_abnormality)
 		icon_state = "current_attack"
 	for(var/turf/T in movement_path)
 		if(QDELETED(T))
@@ -212,6 +211,6 @@
 /mob/living/simple_animal/hostile/abnormality/dreaming_current/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
-	if(!alt_icon)
+	if(!secret_abnormality)
 		icon_living = "current_breach"
 		icon_state = icon_living

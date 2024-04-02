@@ -41,6 +41,11 @@
 	)
 	gift_type =  /datum/ego_gifts/smile
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	secret_chance = TRUE // Kirie, why
+	secret_icon_state = "amog"
+	secret_gift = /datum/ego_gifts/amogus
+
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE
 	var/death_counter = 0
@@ -62,9 +67,6 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
-	if(prob(1)) // Kirie, why
-		icon_state = "amog"
-		gift_type =  /datum/ego_gifts/amogus
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)

@@ -91,6 +91,31 @@
 	//Abnormaltiy portrait, updated on spawn if they have one.
 	var/portrait = "UNKNOWN"
 
+	// secret skin variables ahead
+
+	/// Toggles if the abnormality has a secret form, if not FALSE this variable will control the chance for it to appear
+	var/secret_chance = FALSE
+	/// tracks if the current abnormality is in its secret form
+	var/secret_abnormality = FALSE
+
+	/// if assigned, this gift will be given instead of a normal one on a successfull gift aquisition whilst a secret skin is in effect
+	var/secret_gift = FALSE
+
+	/// An icon state assigned to the abnormality in its secret form
+	var/secret_icon_state = FALSE
+	/// An icon state assigned when an abnormality is alive
+	var/secret_icon_living = FALSE
+	/// An icon file assigned to the abnormality in its secret form, usually should not be needed to change
+	var/secret_icon_file = FALSE
+
+
+	/// Offset for secret skins in the X axis
+	var/secret_horizontal_offset = 0
+	/// Offset for secret skins in the Y axis
+	var/secret_vertical_offset = 0
+	/// Offset for secret skins in both the X and Y axis
+	var/secret_total_offset = 0
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
@@ -125,9 +150,36 @@
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
 
+	if(secret_chance && (prob(secret_chance)))
+		Initialize_secret_icon()
+
+/mob/living/simple_animal/hostile/abnormality/proc/Initialize_secret_icon()
+	SHOULD_CALL_PARENT(TRUE) // if you ever need to override this proc, consider adding onto it instead or not using all the variables given
+	secret_abnormality = TRUE
+
+	if(secret_icon_file)
+		icon = secret_icon_file
+
+	if(secret_icon_state)
+		icon_state = secret_icon_state
+
+	if(secret_icon_living)
+		icon_living = secret_icon_living
+
+	if(secret_horizontal_offset)
+		pixel_x = secret_horizontal_offset
+
+	if(secret_vertical_offset)
+		pixel_y = secret_vertical_offset
+
+	if(secret_total_offset)
+		pixel_x = secret_horizontal_offset
+		pixel_y = secret_vertical_offset
+
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
+		secret_abnormality = FALSE
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
 	..()
@@ -268,6 +320,8 @@
 // Called by datum_reference when the abnormality has been fully spawned
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
 	SHOULD_CALL_PARENT(TRUE)
+	if(secret_chance && (prob(secret_chance)))
+		Initialize_secret_icon()
 	HandleStructures()
 	return
 
@@ -360,7 +414,11 @@
 		return FALSE
 	if(pe <= 0 || !prob(chance))
 		return FALSE
-	var/datum/ego_gifts/EG = new gift_type
+	var/datum/ego_gifts/EG
+	if(secret_abnormality && secret_gift)
+		EG = new secret_gift
+	else
+		EG = new gift_type
 	EG.datum_reference = src.datum_reference
 	user.Apply_Gift(EG)
 	to_chat(user, span_nicegreen("[gift_message]"))

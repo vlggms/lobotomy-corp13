@@ -35,6 +35,9 @@
 	gift_type =  /datum/ego_gifts/revelation
 	gift_message = "He will wipe away every tear from their eyes, and death shall be evermore."
 
+	secret_chance = TRUE // peter, the horse is here
+	secret_icon_state = "palehorse_hungry"
+
 	//teleport
 	var/can_act = TRUE
 	var/teleport_cooldown
@@ -60,8 +63,6 @@
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
-	if(prob(1))
-		icon_state = "palehorse_hungry"
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)

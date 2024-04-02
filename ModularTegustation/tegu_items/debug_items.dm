@@ -123,7 +123,12 @@
 		playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 		return
 
-	var/datum/ego_gifts/target_gift = new target.gift_type
+	var/datum/ego_gifts/target_gift
+	if(target.secret_abnormality && target.secret_gift)
+		target_gift = new target.secret_gift
+	else
+		target_gift = new target.gift_type
+
 	user.Apply_Gift(target_gift)
 	to_chat(user, span_nicegreen("[target.gift_message]"))
 	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
