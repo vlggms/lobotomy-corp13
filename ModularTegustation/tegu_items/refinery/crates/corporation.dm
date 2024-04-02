@@ -65,7 +65,7 @@
 
 	cosmeticloot = list(
 		/obj/item/toy/plush/bongy,
-		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci,
 	)
 //N Corporation
 /obj/structure/lootcrate/n_corp
@@ -122,7 +122,7 @@
 		/obj/item/ego_weapon/city/reindeer,
 	)
 
-	veryrareloot =	list(\
+	veryrareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade/command,
 		/obj/item/ego_weapon/city/reindeer/captain,
 	)
@@ -188,7 +188,7 @@
 		/obj/item/ego_weapon/city/charge/wcorp/shield/axe,
 	)
 
-cosmeticloot = list(
+	cosmeticloot = list(
 		/obj/item/clothing/head/ego_hat/wcorp,
 		/obj/item/clothing/under/suit/lobotomy/wcorp,
 	)
