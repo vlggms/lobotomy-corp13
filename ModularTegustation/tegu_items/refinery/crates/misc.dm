@@ -3,7 +3,8 @@
 	name = "Limbus Company Crate"
 	desc = "A crate recieved from limbus company. Open with a Crowbar."
 	icon_state = "crate_lcb"
-	rarechance = 10
+	rarechance = 15
+	cosmeticchance = 25
 	lootlist =	list(
 		/obj/item/ego_weapon/mini/hayong,
 		/obj/item/ego_weapon/shield/walpurgisnacht,
@@ -20,10 +21,6 @@
 		/obj/item/ego_weapon/ungezifer,
 		/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat,
 		/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat_short,
-		/obj/item/clothing/under/limbus/shirt,
-		/obj/item/clothing/accessory/limbusvest,
-		/obj/item/clothing/under/limbus/prison,
-		/obj/item/clothing/neck/limbus_tie,
 	)
 
 	rareloot =	list(
@@ -34,6 +31,12 @@
 		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/branch,
 	)
 
+	cosmeticloot = list(
+		/obj/item/clothing/under/limbus/shirt,
+		/obj/item/clothing/accessory/limbusvest,
+		/obj/item/clothing/under/limbus/prison,
+		/obj/item/clothing/neck/limbus_tie,
+	)
 /obj/structure/lootcrate/money
 	name = "Money Crate"
 	desc = "You think there's ahn in here. Open with a Crowbar."

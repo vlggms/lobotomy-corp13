@@ -190,6 +190,7 @@
 	name = "Liu Association Crate"
 	desc = "A crate recieved from the liu association. Open with a Crowbar."
 	icon_state = "crate_liu"
+	rarechance = 20
 	lootlist =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/liu,
 		/obj/item/clothing/suit/armor/ego_gear/city/liu/section5,
