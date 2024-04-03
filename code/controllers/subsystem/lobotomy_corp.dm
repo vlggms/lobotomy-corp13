@@ -236,6 +236,8 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			pod.explosionSize = list(0,0,0,0)
 			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
 			new /obj/effect/pod_landingzone(get_turf(person), pod)
+
+			GLOB.realization_charges +=1
 		for(var/mob/M in GLOB.player_list)
 			if(!M.ckey || !M.client)
 				continue

@@ -1,3 +1,5 @@
+GLOBAL_VAR_INIT(realization_charges, 0)
+
 /obj/structure/toolabnormality/realization
 	name = "realization engine"
 	desc = "An artifact used to find true potential within certains items."
@@ -113,6 +115,10 @@
 
 /obj/structure/toolabnormality/realization/attackby(obj/item/I, mob/living/carbon/human/user)
 	. = ..()
+	if(!GLOB.realization_charges)
+		to_chat(user, span_warning("The engine is out of charges."))
+		return
+
 	if(!ishuman(user))
 		return
 
@@ -147,3 +153,8 @@
 	user.put_in_hands(new_item)
 	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
 	playsound(get_turf(src), 'sound/magic/clockwork/ratvar_attack.ogg', 50, TRUE)
+
+
+/obj/structure/toolabnormality/realization/examine(mob/user)
+	. = ..()
+	. += "<span class='notice'>It has [GLOB.realization_charges] charges left.</span>"
