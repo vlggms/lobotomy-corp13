@@ -177,6 +177,7 @@
 /mob/living/simple_animal/hostile/abnormality/porccubus/proc/PorcDash(atom/target)//additionally, it can dash to its target every 15 seconds if it's out of range
 	var/dist = get_dist(target, src)
 	if(dist > 2 && ranged_cooldown < world.time)
+		ranged_cooldown = world.time + ranged_cooldown_time
 		var/list/dash_line = getline(src, target)
 		for(var/turf/line_turf in dash_line) //checks if there's a valid path between the turf and the friend
 			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
@@ -184,7 +185,6 @@
 			forceMove(line_turf)
 			SLEEP_CHECK_DEATH(0.8)
 		playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
-		ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget()
 	var/mob/living/carbon/human/H
