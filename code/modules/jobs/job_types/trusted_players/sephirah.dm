@@ -195,7 +195,6 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 	set name = "Check Game Info"
 	set category = "Gamemaster"
 	//So you can see what the others have done
-	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
 	to_chat(src, span_notice("Current Status:"))
 	to_chat(src, span_notice("Sephirah Meltdown Modifier: [GLOB.Sephirahmeltmodifier]."))
 	to_chat(src, span_notice("Sephirah Workmelt Modifier: [GLOB.Sephirahordealspeed]."))
