@@ -93,28 +93,25 @@
 
 	// secret skin variables ahead
 
-	/// Toggles if the abnormality has a secret form, if not FALSE this variable will control the chance for it to appear
+	/// Toggles if the abnormality has a secret form and can spawn naturally
 	var/secret_chance = FALSE
 	/// tracks if the current abnormality is in its secret form
 	var/secret_abnormality = FALSE
 
 	/// if assigned, this gift will be given instead of a normal one on a successfull gift aquisition whilst a secret skin is in effect
-	var/secret_gift = FALSE
+	var/secret_gift
 
 	/// An icon state assigned to the abnormality in its secret form
-	var/secret_icon_state = FALSE
+	var/secret_icon_state
 	/// An icon state assigned when an abnormality is alive
-	var/secret_icon_living = FALSE
+	var/secret_icon_living
 	/// An icon file assigned to the abnormality in its secret form, usually should not be needed to change
-	var/secret_icon_file = FALSE
-
+	var/secret_icon_file
 
 	/// Offset for secret skins in the X axis
 	var/secret_horizontal_offset = 0
 	/// Offset for secret skins in the Y axis
 	var/secret_vertical_offset = 0
-	/// Offset for secret skins in both the X and Y axis
-	var/secret_total_offset = 0
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -150,10 +147,10 @@
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
 
-	if(secret_chance && (prob(secret_chance)))
-		Initialize_secret_icon()
+	if(secret_chance && (prob(1)))
+		InitializeSecretIcon()
 
-/mob/living/simple_animal/hostile/abnormality/proc/Initialize_secret_icon()
+/mob/living/simple_animal/hostile/abnormality/proc/InitializeSecretIcon()
 	SHOULD_CALL_PARENT(TRUE) // if you ever need to override this proc, consider adding onto it instead or not using all the variables given
 	secret_abnormality = TRUE
 
@@ -167,19 +164,14 @@
 		icon_living = secret_icon_living
 
 	if(secret_horizontal_offset)
-		pixel_x = secret_horizontal_offset
+		base_pixel_x = secret_horizontal_offset
 
 	if(secret_vertical_offset)
-		pixel_y = secret_vertical_offset
-
-	if(secret_total_offset)
-		pixel_x = secret_horizontal_offset
-		pixel_y = secret_vertical_offset
+		base_pixel_y = secret_vertical_offset
 
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
-		secret_abnormality = FALSE
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
 	..()
@@ -320,8 +312,6 @@
 // Called by datum_reference when the abnormality has been fully spawned
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
 	SHOULD_CALL_PARENT(TRUE)
-	if(secret_chance && (prob(secret_chance)))
-		Initialize_secret_icon()
 	HandleStructures()
 	return
 

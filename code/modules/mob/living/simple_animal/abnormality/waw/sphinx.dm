@@ -91,7 +91,7 @@
 	transparent_when_unavailable = TRUE
 	cooldown_time = SPHINX_GAZE_COOLDOWN //12 seconds
 
-/mob/living/simple_animal/hostile/abnormality/sphinx/Initialize_secret_icon()
+/mob/living/simple_animal/hostile/abnormality/sphinx/InitializeSecretIcon()
 	. = ..()
 	icon_aggro = "sphonx_eye"
 
