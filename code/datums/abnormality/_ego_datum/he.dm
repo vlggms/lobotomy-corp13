@@ -402,13 +402,22 @@
 	item_path = /obj/item/ego_weapon/faelantern
 	cost = 35
 
+//Memories of a Better Time - Morii
+/datum/ego_datum/armor/morii
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/morii
+	cost = 35
+
+/datum/ego_datum/weapon/morii
+	item_path = /obj/item/ego_weapon/morii
+	cost = 35
+
 //Will You Play - Voodoo doll
 /datum/ego_datum/armor/voodoo
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/voodoo
 	cost = 35
 
 /datum/ego_datum/weapon/voodoo
-	item_path = /obj/item/ego_weapon/voodoo
+	item_path = /obj/item/ego_weapon/mini/voodoo
 	cost = 35
 
 //Eris - Coiling

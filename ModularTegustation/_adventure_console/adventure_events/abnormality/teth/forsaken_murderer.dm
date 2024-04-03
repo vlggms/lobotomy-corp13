@@ -41,8 +41,8 @@
 			. += CoinFlipping(M)
 			return
 		if(3)
-			AdjustCurrency(3)
-			AdjustStatNum(WRATH_STAT, 3)
+			AdjustCurrency(ADV_EVENT_COIN_EASY)
+			AdjustStatNum(WRATH_STAT, ADV_EVENT_STAT_EASY)
 		if(4)
 			AdjustHitPoint(-5)
-	. = ..()
+	return ..()

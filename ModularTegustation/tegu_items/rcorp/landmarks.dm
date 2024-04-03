@@ -1,38 +1,39 @@
 GLOBAL_LIST_INIT(easycombat, list(
-	/mob/living/simple_animal/hostile/abnormality/ppodae,
 	/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
-	/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
 	/mob/living/simple_animal/hostile/abnormality/helper,
-	/mob/living/simple_animal/hostile/abnormality/apex_predator,
-	/mob/living/simple_animal/hostile/abnormality/cleaner,
 	/mob/living/simple_animal/hostile/abnormality/smile,
 	/mob/living/simple_animal/hostile/abnormality/pinocchio,
+	/mob/living/simple_animal/hostile/abnormality/fragment,
 ))
 
-GLOBAL_LIST_INIT(easysupport, list(/mob/living/simple_animal/hostile/abnormality/fragment,
+GLOBAL_LIST_INIT(easysupport, list(
 	/mob/living/simple_animal/hostile/abnormality/funeral,
-	/mob/living/simple_animal/hostile/abnormality/voiddream,
 	/mob/living/simple_animal/hostile/abnormality/pisc_mermaid,
-	/mob/living/simple_animal/hostile/abnormality/rudolta,
 	/mob/living/simple_animal/hostile/abnormality/redblooded,
 	/mob/living/simple_animal/hostile/abnormality/wayward,
+	/mob/living/simple_animal/hostile/abnormality/ppodae,
+	/mob/living/simple_animal/hostile/abnormality/apex_predator,
+	/mob/living/simple_animal/hostile/abnormality/cleaner,
+	/mob/living/simple_animal/hostile/abnormality/der_freischutz,
 ))
 
-GLOBAL_LIST_INIT(easytank, list(/mob/living/simple_animal/hostile/abnormality/jangsan,
+GLOBAL_LIST_INIT(easytank, list(
+	/mob/living/simple_animal/hostile/abnormality/jangsan,
 	/mob/living/simple_animal/hostile/abnormality/scarecrow,
-	/mob/living/simple_animal/hostile/abnormality/black_swan,
 	/mob/living/simple_animal/hostile/abnormality/kqe,
+	/mob/living/simple_animal/hostile/abnormality/warden,
+	/mob/living/simple_animal/hostile/abnormality/golden_apple,
+	/mob/living/simple_animal/hostile/abnormality/porccubus,
 ))
 
 GLOBAL_LIST_INIT(hardcombat, list(
 	/mob/living/simple_animal/hostile/abnormality/clouded_monk,
 	/mob/living/simple_animal/hostile/abnormality/clown,
 	/mob/living/simple_animal/hostile/abnormality/nosferatu,
-	/mob/living/simple_animal/hostile/abnormality/big_bird,
 	/mob/living/simple_animal/hostile/abnormality/big_wolf,
-	/mob/living/simple_animal/hostile/abnormality/warden,
-	/mob/living/simple_animal/hostile/abnormality/fire_bird,
 	/mob/living/simple_animal/hostile/abnormality/luna,
+	/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
+	/mob/living/simple_animal/hostile/abnormality/black_swan,
 ))
 
 GLOBAL_LIST_INIT(hardsupport, list(/mob/living/simple_animal/hostile/abnormality/sphinx,
@@ -43,13 +44,15 @@ GLOBAL_LIST_INIT(hardsupport, list(/mob/living/simple_animal/hostile/abnormality
 	/mob/living/simple_animal/hostile/abnormality/yin,
 	/mob/living/simple_animal/hostile/abnormality/pygmalion,
 	/mob/living/simple_animal/hostile/abnormality/alriune,
+	/mob/living/simple_animal/hostile/abnormality/rudolta,
+	/mob/living/simple_animal/hostile/abnormality/big_bird,
+	/mob/living/simple_animal/hostile/abnormality/fire_bird,
 ))
 
 GLOBAL_LIST_INIT(hardtank, list(/mob/living/simple_animal/hostile/abnormality/melting_love,
 	/mob/living/simple_animal/hostile/abnormality/nothing_there,
 	/mob/living/simple_animal/hostile/abnormality/censored,
 	/mob/living/simple_animal/hostile/abnormality/titania,
-	/mob/living/simple_animal/hostile/abnormality/golden_apple,
 	/mob/living/simple_animal/hostile/abnormality/greed_king,
 	/mob/living/simple_animal/hostile/abnormality/eris,
 ))

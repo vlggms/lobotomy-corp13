@@ -1090,8 +1090,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	smite.effect(src, target)
 
 /proc/breadify(atom/movable/target)
-	var/obj/item/food/bread/plain/bread = new(get_turf(target))
-	target.forceMove(bread)
+	if(target.name == "Bong Bong")
+		var/obj/item/food/bread/bongbread/bongbread = new(get_turf(target))
+		target.forceMove(bongbread)
+	else
+		var/obj/item/food/bread/plain/bread = new(get_turf(target))
+		target.forceMove(bread)
 
 ///Give EVERY current abnormality a radio for the round even after respawn, this needs to be used again if an abnormality arrives after you used this
 /client/proc/AbnoRadio()

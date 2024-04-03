@@ -189,18 +189,21 @@
 
 /obj/item/ego_weapon/marionette/abnormality/dropped(mob/user)
 	. = ..()
-	delete_timer = addtimer(CALLBACK(src, PROC_REF(TryDelete), user), 3 SECONDS, TIMER_STOPPABLE)
+	if(!QDELING(src))
+		delete_timer = addtimer(CALLBACK(src, PROC_REF(TryDelete), user), 3 SECONDS, TIMER_STOPPABLE)
 
 /obj/item/ego_weapon/marionette/abnormality/proc/TryDelete(mob/user)
 	if(!delete_timer)
 		return
 	deltimer(delete_timer)
+	delete_timer = null
 	qdel(src)
 
 /obj/item/ego_weapon/marionette/abnormality/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(delete_timer)
 		deltimer(delete_timer)
+		delete_timer = null
 	if(user.dna.species.id != "puppet")
 		to_chat(user, span_warning("The [src] collapses into splinters in your hands!"))
 		qdel(src)

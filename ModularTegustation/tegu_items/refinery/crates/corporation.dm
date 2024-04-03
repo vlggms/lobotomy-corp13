@@ -39,7 +39,8 @@
 	desc = "A crate recieved from K-Corp. Open with a Crowbar."
 	icon_state = "crate_kcorp"
 	rarechance = 30
-	veryrarechance = 5
+	veryrarechance = 10
+	cosmeticchance = 5
 	lootlist =	list(
 		/obj/item/managerbullet,
 		/obj/item/ksyringe,
@@ -54,7 +55,6 @@
 	)
 
 	veryrareloot =	list(
-		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci,
 		/obj/item/ego_weapon/city/kcorp/spear,
 		/obj/item/ego_weapon/city/kcorp/dspear,
 		/obj/item/gun/ego_gun/pistol/kcorp/smg,
@@ -63,7 +63,10 @@
 		/obj/item/toy/plush/bongy,
 	)
 
-
+	cosmeticloot = list(
+		/obj/item/toy/plush/bongy,
+		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_sci,
+	)
 //N Corporation
 /obj/structure/lootcrate/n_corp
 	name = "N Corp Crate"
@@ -106,28 +109,39 @@
 	desc = "A crate recieved from R-Corp. Open with a Crowbar."
 	icon_state = "crate_rcorp"
 	veryrarechance = 5
+	cosmeticchance = 33
 	lootlist =	list(
-		/obj/item/clothing/under/suit/lobotomy/rabbit,
 		/obj/item/powered_gadget/detector_gadget/ordeal,
-		/obj/item/toy/plush/myo,
-		/obj/item/toy/plush/rabbit,
 		/obj/item/clothing/suit/space/hardsuit/rabbit,
 		/obj/item/clothing/suit/space/hardsuit/rabbit/leader,
 		/obj/item/gun/energy/e_gun/rabbitdash,
 		/obj/item/ego_weapon/city/rabbit_rush,
-		/obj/item/clothing/under/suit/lobotomy/rcorp_command,
 	)
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade,
 		/obj/item/ego_weapon/city/reindeer,
-		/obj/item/clothing/head/beret/tegu/rcorp,
-		/obj/item/clothing/neck/cloak/rcorp,
+		/obj/item/gun/energy/e_gun/rabbitdash/sniper,
+		/obj/item/gun/energy/e_gun/rabbitdash/laser,
+		/obj/item/gun/energy/e_gun/rabbitdash/heavy,
+		/obj/item/gun/energy/e_gun/rabbitdash/small,
+		/obj/item/gun/energy/e_gun/rabbitdash/shotgun,
 	)
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/rabbit_blade/command,
 		/obj/item/ego_weapon/city/reindeer/captain,
+		/obj/item/gun/energy/e_gun/rabbit/minigun,
+		/obj/item/gun/energy/e_gun/rabbit/nopin,
+	)
+
+	cosmeticloot = list(
+		/obj/item/clothing/under/suit/lobotomy/rabbit,
+		/obj/item/toy/plush/myo,
+		/obj/item/toy/plush/rabbit,
+		/obj/item/clothing/under/suit/lobotomy/rcorp_command,
+		/obj/item/clothing/head/beret/tegu/rcorp,
+		/obj/item/clothing/neck/cloak/rcorp,
 	)
 
 //S Corporation
@@ -157,10 +171,11 @@
 	name = "W Corp Crate"
 	desc = "A crate recieved from W-Corp. Open with a Crowbar."
 	icon_state = "crate_wcorp"
+	rarechance = 30
+	veryrarechance = 15
+	cosmeticchance = 25
 	lootlist =	list(
 		/obj/item/ego_weapon/city/charge/wcorp,
-		/obj/item/clothing/head/ego_hat/wcorp,
-		/obj/item/clothing/under/suit/lobotomy/wcorp,
 		/obj/item/clothing/suit/armor/ego_gear/wcorp,
 		/obj/item/powered_gadget/teleporter,
 	)
@@ -172,8 +187,16 @@
 		/obj/item/ego_weapon/city/charge/wcorp/dagger,
 		/obj/item/ego_weapon/city/charge/wcorp/hammer,
 		/obj/item/ego_weapon/city/charge/wcorp/hatchet,
+	)
+
+	veryrareloot = list(
 		/obj/item/ego_weapon/city/charge/wcorp/shield,
 		/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
 		/obj/item/ego_weapon/city/charge/wcorp/shield/club,
 		/obj/item/ego_weapon/city/charge/wcorp/shield/axe,
+	)
+
+	cosmeticloot = list(
+		/obj/item/clothing/head/ego_hat/wcorp,
+		/obj/item/clothing/under/suit/lobotomy/wcorp,
 	)

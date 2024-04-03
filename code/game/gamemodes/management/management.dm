@@ -29,7 +29,7 @@
 				stack_trace("WARNING! Duplicate [abno] found in Persistent Abno Rates!")
 				continue
 			gamemode_abnos[initial(abno.threat_level)] += abno
-			var/rate = (all_abnos[i] * -1) + highest
+			var/rate = (all_abnos[i] * -1) + highest * 2	//Weight counts for half of the abno chance, the other half is guaranteed.
 			gamemode_abnos[initial(abno.threat_level)][abno] = rate
 
 	SSabnormality_queue.possible_abnormalities = list()
