@@ -237,11 +237,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 			to_chat(person, "<span class='nicegreen'>It's pizza time!</span>")
 			new /obj/effect/pod_landingzone(get_turf(person), pod)
 
-			GLOB.realization_charges +=1
 		for(var/mob/M in GLOB.player_list)
 			if(!M.ckey || !M.client)
 				continue
 			SSpersistence.agent_rep_change[M.ckey] += 3
+		GLOB.realization_charges +=1
 	return
 
 /datum/controller/subsystem/lobotomy_corp/proc/QliphothUpdate(amount = 1)
