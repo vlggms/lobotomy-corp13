@@ -175,6 +175,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	melee_damage_lower = 253
 	melee_damage_upper = 253
+	rapid_melee = 1
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.4)
 
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
@@ -201,8 +202,8 @@
 	rapid = 5
 	rapid_fire_delay = 2
 	ranged_cooldown_time = 5
-	retreat_distance = 1
-	minimum_distance = 5
+	retreat_distance = 4
+	minimum_distance = 1
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
