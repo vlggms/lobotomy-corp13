@@ -53,8 +53,8 @@
 			.+= CoinFlipping(M)
 			return
 		if(6)
-			AdjustCurrency(3)
+			AdjustCurrency(ADV_EVENT_COIN_EASY)
 		if(7)
-			AdjustCurrency(1)
+			AdjustCurrency(ADV_EVENT_COIN_EASY)
 			AdjustHitPoint(-15)
-	. = ..()
+	return ..()

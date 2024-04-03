@@ -35,7 +35,7 @@
 			return
 		if(2)
 			AdjustHitPoint(-15)
-			AdjustStatNum(RAND_STAT,3)
+			AdjustStatNum(RAND_STAT, ADV_EVENT_STAT_EASY)
 		if(3)
 			CHANCE_BUTTON_FORMAT(ReturnStat(GLOOM_STAT), "GLOOM", M)
 			CHANCE_BUTTON_FORMAT(ReturnStat(GLUTT_STAT), "GLUTT", M)
@@ -43,4 +43,4 @@
 			return
 		if(5)
 			AdjustHitPoint(-5)
-	. = ..()
+	return ..()
