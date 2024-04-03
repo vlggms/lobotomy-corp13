@@ -10030,15 +10030,11 @@
 	color = "#422702";
 	dir = 1
 	},
-/obj/structure/table/wood,
-/obj/machinery/photocopier{
-	pixel_y = 5;
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/refinerspawn,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "WA" = (
