@@ -46,7 +46,6 @@
 		"Could you get me a glass of pinot noir, please?",
 		"Fetch me a bowl of shrimp fried rice? I'm looking to try this delicacy made by your finest shrimp chefs.",
 		"Ah, I forgot to take my daily medication, could you bring it to me?",
-		"Could you take this, and put it in my 401k?",
 	)
 
 	var/list/insight = list(
