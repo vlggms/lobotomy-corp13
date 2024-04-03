@@ -37,6 +37,10 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/ZeroQliphoth(mob/living/carbon/human/user)
+	if(prob(14.285))	//A 1 in 7 chance to be a funny little guy
+		BreachEffect()
+		return ..()
+
 	var/list/targets = list()
 	var/turf/targetturf
 	var/targetx
