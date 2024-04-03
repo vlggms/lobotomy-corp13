@@ -41,8 +41,7 @@
 		/mob/living/simple_animal/hostile/humanoid/fixer/flame,
 		)
 
-
-/datum/ordeal/boss/jasper_noon/Initialize()
-	..()
+/datum/ordeal/boss/jasper_noon/Run()
 	bosstype = pick(bosslist)
+	..()
 
