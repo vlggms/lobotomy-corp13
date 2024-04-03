@@ -3,6 +3,7 @@
 #define DEBUG_TEXT_DISPLAY 1
 #define NORMAL_TEXT_DISPLAY 2
 #define ADVENTURE_TEXT_DISPLAY 3
+#define EXCHANGE_TEXT_DISPLAY 4
 
 //Modes for what is displayed on the adventure panel.
 #define ADVENTURE_MODE_TRAVEL 1

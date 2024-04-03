@@ -3,7 +3,7 @@
 	desc = "This computer has a program on it that can decrypt abnormality data."
 	icon = 'icons/obj/machines/research.dmi'
 	icon_state = "nanite_program_hub"
-	//Feels weird to make it indestructable but it is a unique machine.
+	//Feels weird to make it indestructable but it is a unique machine. Also if the machine is destroyed the adventure datum would continue to exist. -IP
 	resistance_flags = INDESTRUCTIBLE
 	anchored = TRUE
 	density = TRUE
@@ -31,8 +31,10 @@
 	var/dat
 	if(adventure_data)
 		dat += adventure_data.Adventure(src, user)
-		dat += "<br><A href='byond://?src=[REF(src)];log_out_profile=[REF(src)]'>LOG OUT</A><br>\
-			<A href='byond://?src=[REF(src)];new_profile_password=[REF(src)]'>CREATE PASSWORD</A>"
+		dat += "<br><A href='byond://?src=[REF(src)];log_out_profile=[REF(src)]'>LOG OUT</A><br>"
+		//Unsure if this method is extremely bad. -IP
+		if(profile_list.Find(adventure_data) != 1)
+			dat += "<A href='byond://?src=[REF(src)];new_profile_password=[REF(src)]'>CREATE PASSWORD</A>"
 	else
 		dat += ProfileMenu()
 	var/datum/browser/popup = new(user, "Adventure", "AdventureTest", 500, 600)
@@ -72,6 +74,8 @@
 		return TRUE
 
 	if(href_list["new_profile"])
+		if(!profile_list.len)
+			to_chat(usr, "FIRST PROFILE IS ALWAYS A PUBLIC ACCOUNT")
 		NewProfile()
 		updateUsrDialog()
 		return TRUE
@@ -87,7 +91,7 @@
 	//Setting display menu for the text adventure.
 	if(href_list["set_display"])
 		var/set_display = text2num(href_list["set_display"])
-		if(!(set_display < 1 || set_display > 3) && set_display != adventure_data.display_mode)
+		if(isnum(set_display) && set_display != adventure_data.display_mode)
 			adventure_data.display_mode = set_display
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
@@ -97,7 +101,7 @@
 	if(href_list["travel"])
 		var/travel_num = text2num(href_list["travel"])
 		adventure_data.AdventureModeReact(travel_num)
-		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+		playsound(get_turf(src), 'sound/machines/pda_button2.ogg', 50, TRUE)
 		updateUsrDialog()
 		return TRUE
 
@@ -110,7 +114,7 @@
 		 */
 		var/created_event = text2path(href_list["adventure"])
 		adventure_data.GenerateEvent(created_event)
-		playsound(get_turf(src), 'sound/machines/uplinkpurchase.ogg', 50, TRUE)
+		playsound(get_turf(src), 'sound/machines/pda_button2.ogg', 50, TRUE)
 		updateUsrDialog()
 		return TRUE
 
@@ -148,6 +152,22 @@
 		updateUsrDialog()
 		return TRUE
 
+	//Exchange Shop for exchanging coins for rewards
+	if(href_list["purchase"])
+		var/datum/data/extraction_cargo/product_datum = locate(href_list["purchase"]) in adventure_data.exchange_shop_list //The href_list returns the individual number code and only works if we have it in the first column. -IP
+		if(!product_datum)
+			to_chat(usr, span_warning("ERROR."))
+			return FALSE
+		if(adventure_data.virtual_coins < product_datum.cost)
+			to_chat(usr, span_warning("ERROR: INSUFFICENT CURRENCY."))
+			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+			return FALSE
+		new product_datum.equipment_path(get_turf(src))
+		adventure_data.AdjustCoins(-1 * product_datum.cost)
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+		updateUsrDialog()
+		return TRUE
+
 /obj/machinery/text_adventure_console/proc/ProfileMenu(href, href_list)
 	. = "<tt>\
 		-------------------<br>\
@@ -155,10 +175,12 @@
 		-------------------<br></tt>"
 	var/profile_num = 1
 	for(var/i in profile_list)
-		if(i)
-			. += "|<A href='byond://?src=[REF(src)];profile=[profile_num]'>PROFILE [profile_num]</A><br>"
-			profile_num++
-
+			//Guest profile is the true first variable in the list. So for display the 2nd profile is the 1st one.
+		if(profile_num == 1)
+			. += "|<A href='byond://?src=[REF(src)];profile=1'>PUBLIC PROFILE</A><br>"
+		else
+			. += "|<A href='byond://?src=[REF(src)];profile=[profile_num]'>PROFILE [profile_num - 1]</A><br>"
+		profile_num++
 	. += "|<A href='byond://?src=[REF(src)];new_profile=[ref(src)]'>NEW PROFILE</A><br>\
 		<tt>-----------------</tt>"
 
