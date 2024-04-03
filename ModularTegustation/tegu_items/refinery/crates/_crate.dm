@@ -28,7 +28,7 @@
 	var/rarechance = 20
 	var/veryrarechance
 	var/cosmeticloot = list()
-	var/cosmeticchance = 33 //These do not count on the total odds of a crate
+	var/cosmeticchance = 0 //These do not count on the total odds of a crate
 
 /obj/structure/lootcrate/Initialize()
 	..()
