@@ -93,6 +93,20 @@
 	result = /obj/item/food/apoctrifle
 	subcategory = CAT_MISCFOOD
 
+/obj/item/food/mcrib
+	name = "mcrib"
+	desc = "Well, you see, the McRib is a barbecue-flavored pork sandwich periodically sold \
+	by the international fast food restaurant chain McDonald's. It was first introduced to \
+	the McDonald's menu in 1981, following test marketing the year before. After poor sales, \
+	it was removed from the menu in 1985. Since then, it appears annually or more at various \
+	times, though Germany and Luxembourg have them as permanent menu items."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "mcrib"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/carbon = 4)
+	tastes = list("authentic Kansas City barbecue sauce" = 5, "pork" = 3)
+	foodtypes = GRAIN
+	w_class = WEIGHT_CLASS_SMALL
+
 ////////////////////////////////////////////////////////////////ordeal food/////////////////////////////////////////////////////////////////////////////
 /datum/crafting_recipe/food/wormfood
 	name = "Wormfood"

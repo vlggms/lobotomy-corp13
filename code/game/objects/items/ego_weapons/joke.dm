@@ -1,3 +1,13 @@
+//All ZAYIN joke E.G.O
+
+// All TETH joke E.G.O
+
+// All HE joke E.G.O
+
+// All WAW joke E.G.O
+
+// All ALEPH joke E.G.O
+
 /obj/item/ego_weapon/chaosdunk
 	name = "chaos dunk"
 	desc = "One billion b-balls dribbling simultaneously throughout the galaxy. \
