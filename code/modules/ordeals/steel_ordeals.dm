@@ -18,7 +18,7 @@
 
 /datum/ordeal/simplecommander/steel_noon
 	name = "The Noon of Steel"
-	flavor_name = "The Dogs of War"
+	flavor_name = "War Machine"
 	announce_text = "I’ll fight my enemies without hesitation. I’d made up my mind the day I was honored with an opportunity to get the modification procedure."
 	announce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg'
 	end_sound = 'sound/effects/ordeals/steel/gcorp_hiss.ogg'
