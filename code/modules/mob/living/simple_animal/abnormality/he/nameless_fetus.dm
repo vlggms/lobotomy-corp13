@@ -48,10 +48,7 @@
 
 //Work-related
 /mob/living/simple_animal/hostile/abnormality/fetus/WorkChance(mob/living/carbon/human/user, chance, work_type) //Insight work has a qliphoth-based success rate
-	var/chance_modifier = 0
-	if(satisfied)
-		chance_modifier = 30//4 90% instict works might be too powerful
-	return chance + chance_modifier
+	return chance + (satisfied * 30)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(satisfied)
@@ -63,16 +60,17 @@
 
 /mob/living/simple_animal/hostile/abnormality/fetus/user_buckle_mob(mob/living/M, mob/user, check_loc)
 	if(crying || user == src || !ishuman(M) || (GODMODE in M.status_flags))
-		return FALSE
 		to_chat(user, span_warning("[src] rejects your offering!"))
+		return FALSE
 	. = ..()
 	to_chat(user, span_userdanger("The fetus opens its maw and...!"))
 	SLEEP_CHECK_DEATH(2 SECONDS)
-	M.gib()
-	to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
-	satisfied = TRUE
-	hunger += 4
-	playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
+	if (M in view(1,src))
+		M.gib()
+		to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
+		satisfied = TRUE
+		hunger += 4
+		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
 	if(satisfied)
