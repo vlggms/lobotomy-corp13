@@ -44,7 +44,6 @@
 	var/list/peccetulum = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
 		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
-		/mob/living/simple_animal/hostile/ordeal/sin_pride,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
 	)
 
@@ -52,7 +51,7 @@
 	var/turf/W = pick(GLOB.xeno_spawn)
 	for(var/turf/T in orange(1, W))
 		var/spawning = pick(peccetulum)
-		if(prob(50))
+		if(prob(40))
 			new spawning (T)
 	minor_announce("LCD and Asset acquisition has delivered new minor abnormalities to study. Caution, they may be extremely hostile.", "LCD Team update:", TRUE)
 
