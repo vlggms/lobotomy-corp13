@@ -562,9 +562,15 @@
 	},
 /turf/open/floor/plating/grass,
 /area/centcom)
+"jh" = (
+/obj/structure/table,
+/obj/item/folder/blue,
+/obj/item/clothing/glasses/blindfold,
+/turf/open/floor/plasteel,
+/area/centcom)
 "jl" = (
 /obj/machinery/button/door/indestructible{
-	id = bb_containment;
+	id = hsz2_containment;
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
@@ -689,6 +695,11 @@
 	pixel_y = 26
 	},
 /turf/open/indestructible/white,
+/area/centcom)
+"lk" = (
+/obj/structure/table,
+/obj/item/clothing/glasses/blindfold,
+/turf/open/floor/plasteel,
 /area/centcom)
 "ls" = (
 /obj/structure/table,
@@ -1595,6 +1606,10 @@
 /obj/machinery/door/airlock/glass_large,
 /turf/open/floor/plasteel,
 /area/centcom)
+"zJ" = (
+/obj/item/clothing/suit/straight_jacket,
+/turf/open/floor/plasteel/showroomfloor,
+/area/centcom)
 "zT" = (
 /obj/structure/table,
 /obj/item/clipboard,
@@ -1907,7 +1922,7 @@
 /area/centcom)
 "Gq" = (
 /obj/machinery/door/poddoor{
-	id = mosb_containment;
+	id = hsz2_containment;
 	name = "HSZ Containment Door #2"
 	},
 /turf/open/floor/plasteel,
@@ -2295,7 +2310,7 @@
 /area/centcom)
 "MP" = (
 /obj/structure/table,
-/obj/item/taperecorder,
+/obj/item/storage/box/monkeycubes,
 /turf/open/floor/plasteel,
 /area/centcom)
 "Nb" = (
@@ -18864,7 +18879,7 @@ Ps
 ID
 uw
 uw
-ht
+uw
 uw
 ID
 ID
@@ -19378,7 +19393,7 @@ Ps
 uw
 uw
 uw
-ht
+zn
 ID
 ID
 uw
@@ -19903,7 +19918,7 @@ ht
 qP
 ht
 Ps
-uG
+Gq
 Gq
 Gq
 Ps
@@ -21704,7 +21719,7 @@ ZP
 ZP
 Ps
 zX
-xt
+jh
 bg
 Ps
 ID
@@ -24533,7 +24548,7 @@ ZP
 ZP
 ZP
 Ps
-um
+nS
 ID
 ID
 ht
@@ -26333,7 +26348,7 @@ ZP
 ZP
 Ps
 wG
-nS
+ID
 ID
 zo
 ID
@@ -30694,7 +30709,7 @@ Ps
 Ps
 Ps
 qL
-jE
+zJ
 rG
 Ps
 Ps
@@ -44075,7 +44090,7 @@ ht
 ID
 ID
 ID
-Zi
+lk
 sG
 Ps
 ZP
@@ -45058,7 +45073,7 @@ Ps
 ID
 uw
 uw
-zn
+uw
 uw
 ID
 ID
