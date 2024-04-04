@@ -529,7 +529,8 @@
 		return
 	var/mob/living/carbon/human/H = target
 	if(H.health < 0)
-		H.gib()
+		if(SSmaptype.maptype != "limbus_labs")
+			H.gib()
 		playsound(src, 'sound/weapons/fixer/generic/blade4.ogg', 75, 1)
 	return
 
