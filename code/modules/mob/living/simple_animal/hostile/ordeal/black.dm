@@ -180,7 +180,7 @@
 
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
-	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
+	attack_sound = 'sound/weapons/ego/hammer.ogg'
 
 /mob/living/simple_animal/hostile/ordeal/echo/smile/AttackingTarget()
 	. = ..()
@@ -209,4 +209,206 @@
 	attack_verb_simple = "bash"
 	projectiletype = /obj/projectile/ego_bullet/ego_star
 	projectilesound = 'sound/weapons/ego/star.ogg'
-	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
+	attack_sound = 'sound/weapons/ego/hammer.ogg'
+
+
+//Pink
+/mob/living/simple_animal/hostile/ordeal/echo/pink
+	icon_state = "pink_echo"
+	icon_living = "pink_echo"
+	melee_damage_type = WHITE_DAMAGE
+	melee_damage_lower = 80
+	melee_damage_upper = 80
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5)
+
+	rapid = 1
+	rapid_fire_delay = 2
+	ranged_cooldown_time = 15
+	retreat_distance = 7
+	minimum_distance = 1
+	ranged = TRUE
+	attack_verb_continuous = "bashes"
+	attack_verb_simple = "bash"
+	projectiletype = /obj/item/ammo_casing/caseless/pink
+	projectilesound = 'sound/abnormalities/armyinblack/pink.ogg'
+	attack_sound = 'sound/weapons/ego/hammer.ogg'
+
+//Adoration
+/mob/living/simple_animal/hostile/ordeal/echo/adoration
+	icon_state = "adoration_echo"
+	icon_living = "adoration_echo"
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 80
+	melee_damage_upper = 80
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5)
+
+	rapid = 1
+	rapid_fire_delay = 2
+	ranged_cooldown_time = 10
+	retreat_distance = 6
+	minimum_distance = 1
+	ranged = TRUE
+	attack_verb_continuous = "bashes"
+	attack_verb_simple = "bash"
+	projectiletype = /obj/item/ammo_casing/caseless/ego_adoration/dot
+	projectilesound = 'sound/effects/attackblob.ogg'
+	attack_sound = 'sound/effects/attackblob.ogg'
+
+
+/*Gold Rush
+/mob/living/simple_animal/hostile/ordeal/echo/gold
+	icon_state = "goldrush_echo"
+	icon_living = "goldrush_echo"
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 322
+	melee_damage_upper = 322
+	rapid_melee = 1
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
+
+	attack_verb_continuous = "bashes"
+	attack_verb_simple = "bash"
+	attack_sound = 'sound/weapons/fixer/generic/gen2.ogg'
+
+/mob/living/simple_animal/hostile/ordeal/echo/gold/AttackingTarget()
+	Stun(5)
+	SLEEP_CHECK_DEATH(5)
+	if(!Adjacent(target))
+		return
+	. = ..()
+
+/mob/living/simple_animal/hostile/ordeal/echo/gold/ComponentInitialize()
+	..()
+	AddComponent(/datum/component/knockback, 3, FALSE, FALSE)\
+	*/
+
+
+//Soulmate
+/mob/living/simple_animal/hostile/ordeal/echo/soulmate
+	icon_state = "soulmate_echo"
+	icon_living = "soulmate_echo"
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 80
+	melee_damage_upper = 80
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5)
+
+	rapid = 1
+	rapid_fire_delay = 2
+	ranged_cooldown_time = 7
+	ranged = TRUE
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	projectiletype = /obj/projectile/ego_bullet/gunblade
+	projectilesound = 'sound/weapons/ionrifle.ogg'
+	attack_sound = 'sound/weapons/blade1.ogg'
+
+//spooner
+/mob/living/simple_animal/hostile/ordeal/echo/spooner
+	icon_state = "homing_echo"
+	icon_living = "homing_echo"
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 209
+	melee_damage_upper = 209
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.9)
+
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	attack_sound = 'sound/weapons/ego/hammer.ogg'
+
+
+/*************************************************************************************************
+**************************************************************************************************
+**************************************************************************************************
+						Superbosses
+**************************************************************************************************
+**************************************************************************************************
+*************************************************************************************************/
+
+//Distorted form
+/mob/living/simple_animal/hostile/ordeal/echo/distorted
+	icon_state = "distortion_echo"
+	icon_living = "distortion_echo"
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 80
+	melee_damage_upper = 80
+	rapid_melee = 1
+	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
+
+	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
+	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
+	attack_sound = 'sound/weapons/ego/hammer.ogg'
+
+
+/mob/living/simple_animal/hostile/ordeal/echo/distorted/AttackingTarget()
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(target))
+		return
+	var/mob/living/H = target
+	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		H.apply_damage(melee_damage_lower, damage_type, null, H.run_armor_check(null, damage_type))
+
+
+/mob/living/simple_animal/hostile/ordeal/echo/distorted/attacked_by(obj/item/I, mob/living/user)
+	//the block
+	if(prob(30))
+		damage_coeff = list(RED_DAMAGE = 0.08, WHITE_DAMAGE = 0.12, BLACK_DAMAGE = 0.08, PALE_DAMAGE = 0.2)
+		playsound(get_turf(src), 'sound/weapons/ego/shield1.ogg', 50, 0, 7)
+	else
+		damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
+	..()
+
+//Twilight
+/mob/living/simple_animal/hostile/ordeal/echo/twilight
+	icon_state = "twilight_echo"
+	icon_living = "twilight_echo"
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 80
+	melee_damage_upper = 80
+	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)
+
+	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
+	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	attack_sound = 'sound/weapons/ego/twilight.ogg'
+
+
+/mob/living/simple_animal/hostile/ordeal/echo/twilight/AttackingTarget()
+	. = ..()
+	if(!.)
+		return
+	if(!ishuman(target))
+		return
+	var/mob/living/H = target
+	for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
+		H.apply_damage(melee_damage_lower, damage_type, null, H.run_armor_check(null, damage_type))
+
+//Paradise
+/mob/living/simple_animal/hostile/ordeal/echo/paradise
+	icon_state = "paradise_echo"
+	icon_living = "paradise_echo"
+	melee_damage_type = PALE_DAMAGE
+	melee_damage_lower = 161
+	melee_damage_upper = 161
+	ranged = TRUE
+	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)
+
+	attack_verb_continuous = list("purges", "purifies")
+	attack_verb_simple = list("purge", "purify")
+	attack_sound = 'sound/weapons/ego/paradise.ogg'
+
+
+/mob/living/simple_animal/hostile/ordeal/echo/paradise/OpenFire()
+
+	var/mob/living/H = target
+	playsound(H, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
+	var/damage_dealt = 0
+	var/modified_damage = 70
+	for(var/turf/open/T in range(target, 1))
+		new /obj/effect/temp_visual/paradise_attack(T)
+		for(var/mob/living/L in range(1, T))
+			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
+				L.apply_damage(modified_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type))
+				damage_dealt += modified_damage
+	if(damage_dealt > 0)
+		H.adjustBruteLoss(-damage_dealt*0.1)
+
