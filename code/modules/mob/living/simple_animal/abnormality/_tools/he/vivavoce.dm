@@ -14,7 +14,7 @@
 	..()
 	if(!do_after(user, 6, user))
 		return
-	if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) >= 50)
+	if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) >= 100)
 		to_chat(user, span_notice("It's silent."))
 		return //You don't need any more.
 

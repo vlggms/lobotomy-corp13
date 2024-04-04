@@ -14,7 +14,7 @@
 	..()
 	if(!do_after(user, 6, user))
 		return
-	if(get_level_buff(user, JUSTICE_ATTRIBUTE) >= 50)
+	if(get_level_buff(user, JUSTICE_ATTRIBUTE) >= 100)
 		to_chat(user, span_notice("That's enough."))
 		return //You don't need any more.
 
