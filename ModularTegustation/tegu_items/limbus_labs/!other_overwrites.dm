@@ -10,7 +10,7 @@
 		max_damage = 50
 
 /obj/item/bodypart/l_arm/Initialize()
-	..()
+	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		max_damage = 50
 
