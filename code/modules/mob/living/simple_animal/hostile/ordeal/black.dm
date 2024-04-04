@@ -401,10 +401,9 @@
 
 	var/mob/living/H = target
 	playsound(H, 'sound/weapons/ego/paradise_ranged.ogg', 50, TRUE)
-	var/damage_dealt = 0
 	var/modified_damage = 70
 	for(var/turf/open/T in range(target, 1))
 		new /obj/effect/temp_visual/paradise_attack(T)
-	for(var/mob/living/L in range(1, T))
+	for(var/mob/living/L in range(target, 1))
 		L.apply_damage(modified_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type))
 
