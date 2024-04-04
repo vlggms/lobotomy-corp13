@@ -129,7 +129,7 @@
 	melee_damage_type = PALE_DAMAGE
 	melee_damage_lower = 57.7
 	melee_damage_upper = 57.7
-	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.0, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
+	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
 
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
