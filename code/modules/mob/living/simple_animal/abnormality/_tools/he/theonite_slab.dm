@@ -19,7 +19,7 @@
 		return //You don't need any more.
 
 	flick(icon_state, src)
-	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 5)
+	user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
 	var/datum/status_effect/stacking/slab/S = user.has_status_effect(/datum/status_effect/stacking/slab)
 	if(!(user in users))
 		users += user

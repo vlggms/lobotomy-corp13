@@ -18,7 +18,7 @@
 		to_chat(user, span_notice("It's silent."))
 		return //You don't need any more.
 
-	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 5)
+	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
 	var/datum/status_effect/stacking/rolecall/R = user.has_status_effect(/datum/status_effect/stacking/rolecall)
 	if(!(user in users))
 		users += user
