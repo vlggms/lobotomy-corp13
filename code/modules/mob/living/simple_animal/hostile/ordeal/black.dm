@@ -405,10 +405,6 @@
 	var/modified_damage = 70
 	for(var/turf/open/T in range(target, 1))
 		new /obj/effect/temp_visual/paradise_attack(T)
-		for(var/mob/living/L in range(1, T))
-			if((L.stat < DEAD) && !(L.status_flags & GODMODE))
-				L.apply_damage(modified_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type))
-				damage_dealt += modified_damage
-	if(damage_dealt > 0)
-		H.adjustBruteLoss(-damage_dealt*0.1)
+	for(var/mob/living/L in range(1, T))
+		L.apply_damage(modified_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type))
 
