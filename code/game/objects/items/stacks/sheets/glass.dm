@@ -44,7 +44,7 @@ GLOBAL_LIST_INIT(skeld_glass_recipes, list ( \
 /obj/item/stack/sheet/glass/get_main_recipes()
 	. = ..()
 	. += GLOB.glass_recipes
-	if(SSmaptype.maptype in SSmaptype.spacemaps)
+	if(SSmaptype.maptype in SSmaptype.craftingmaps)
 		. += GLOB.skeld_glass_recipes
 
 
@@ -179,7 +179,7 @@ GLOBAL_LIST_INIT(skeld_reinforced_glass_recipes, list ( \
 /obj/item/stack/sheet/rglass/get_main_recipes()
 	. = ..()
 	. += GLOB.reinforced_glass_recipes
-	if(SSmaptype.maptype in SSmaptype.spacemaps)
+	if(SSmaptype.maptype in SSmaptype.craftingmaps)
 		. += GLOB.skeld_reinforced_glass_recipes
 
 GLOBAL_LIST_INIT(prglass_recipes, list ( \
