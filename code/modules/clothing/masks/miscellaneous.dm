@@ -186,6 +186,17 @@
 			message = replacetextEx(message,regex(key,"g"), "[value]")
 	speech_args[SPEECH_MESSAGE] = trim(message)
 
+/obj/item/clothing/mask/carnival_mask
+	name = "carnival mask"
+	desc = "A woven face mask that thoroughly conceals its user identity and that enables the carnival to do their work."
+	icon_state = "carnival_mask"
+	flags_inv = HIDEFACE|HIDEEYES|HIDEFACIALHAIR|HIDESNOUT
+
+/**
+ * Mask of the black silence
+ * Hides all examine attempts, voice and HUD ID identification
+ * Also blocks the sound of footsteps
+ */
 /obj/item/clothing/mask/silence
 	name = "face mask"
 	desc = "A singularity-infused face mask that thoroughly conceals its user identity."
@@ -193,8 +204,12 @@
 	color = "#222222"
 	flags_inv = HIDEFACE|HIDEEYES|HIDEFACIALHAIR|HIDESNOUT
 
-/obj/item/clothing/mask/carnival_mask
-	name = "carnival mask"
-	desc = "A woven face mask that thoroughly conceals its user identity and that enables the carnival to do their work."
-	icon_state = "carnival_mask"
-	flags_inv = HIDEFACE|HIDEEYES|HIDEFACIALHAIR|HIDESNOUT
+/obj/item/clothing/mask/silence/equipped(mob/M, slot)
+	. = ..()
+	ADD_TRAIT(M, TRAIT_SILENT_FOOTSTEPS, MASK_TRAIT)
+	ADD_TRAIT(M, TRAIT_UNKNOWN, MASK_TRAIT)
+
+/obj/item/clothing/mask/silence/dropped(mob/M)
+	. = ..()
+	REMOVE_TRAIT(M, TRAIT_SILENT_FOOTSTEPS, MASK_TRAIT)
+	REMOVE_TRAIT(M, TRAIT_UNKNOWN, MASK_TRAIT)
