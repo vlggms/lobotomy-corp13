@@ -154,7 +154,7 @@ GLOBAL_LIST_INIT(skeld_metal_recipes, list ( \
 /obj/item/stack/sheet/metal/get_main_recipes()
 	. = ..()
 	. += GLOB.metal_recipes
-	if(SSmaptype.maptype in SSmaptype.craftingmaps)
+	if(SSmaptype.maptype in SSmaptype.spacemaps)
 		. += GLOB.skeld_reinforced_glass_recipes
 
 /obj/item/stack/sheet/metal/suicide_act(mob/living/carbon/user)
