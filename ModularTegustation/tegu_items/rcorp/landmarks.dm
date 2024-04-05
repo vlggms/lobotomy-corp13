@@ -14,6 +14,7 @@ GLOBAL_LIST_INIT(easysupport, list(
 	/mob/living/simple_animal/hostile/abnormality/ppodae,
 	/mob/living/simple_animal/hostile/abnormality/apex_predator,
 	/mob/living/simple_animal/hostile/abnormality/cleaner,
+	/mob/living/simple_animal/hostile/abnormality/der_freischutz,
 ))
 
 GLOBAL_LIST_INIT(easytank, list(
@@ -22,6 +23,7 @@ GLOBAL_LIST_INIT(easytank, list(
 	/mob/living/simple_animal/hostile/abnormality/kqe,
 	/mob/living/simple_animal/hostile/abnormality/warden,
 	/mob/living/simple_animal/hostile/abnormality/golden_apple,
+	/mob/living/simple_animal/hostile/abnormality/porccubus,
 ))
 
 GLOBAL_LIST_INIT(hardcombat, list(

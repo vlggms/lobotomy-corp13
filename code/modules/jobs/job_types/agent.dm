@@ -103,6 +103,13 @@
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
 
+	//Check the lcorp global upgrades
+	for(var/upgradecheck in GLOB.lcorp_upgrades)
+		if(upgradecheck == "Agent Workchance")
+			ADD_TRAIT(H, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
+		if(upgradecheck == "Health Hud")
+			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
+			medsensor.add_hud_to(H)
 	return ..()
 
 

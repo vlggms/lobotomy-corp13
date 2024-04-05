@@ -125,10 +125,11 @@
 	playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
 	icon_living = "porrcubus"
 	icon_state = icon_living
-	var/turf/T = pick(GLOB.xeno_spawn)
-	forceMove(T)
 	ranged_cooldown = world.time + ranged_cooldown_time
-	teleport_cooldown = world.time + teleport_cooldown_time
+	if(!IsCombatMap())
+		var/turf/T = pick(GLOB.xeno_spawn)
+		forceMove(T)
+		teleport_cooldown = world.time + teleport_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/Move()
 	return FALSE
@@ -136,6 +137,8 @@
 /mob/living/simple_animal/hostile/abnormality/porccubus/Life()
 	. = ..()
 	if(status_flags & GODMODE)
+		return
+	if(IsCombatMap())
 		return
 	if(teleport_cooldown < world.time) //if porccubus hasn't taken damage for 5 minutes we make him move so he doesn't stay stuck in whatever cell he got thrown in.
 		teleport_cooldown = world.time + teleport_cooldown_time
@@ -167,13 +170,14 @@
 
 	if(!target)
 		return
-	PorcDash(target)
-
-/mob/living/simple_animal/hostile/abnormality/porccubus/proc/PorcDash(mob/living/target)//additionally, it can dash to its target every 15 seconds if it's out of range
-	if(!istype(target))
+	if(!isliving(target))
 		return
+	PorcDash(A)
+
+/mob/living/simple_animal/hostile/abnormality/porccubus/proc/PorcDash(atom/target)//additionally, it can dash to its target every 15 seconds if it's out of range
 	var/dist = get_dist(target, src)
 	if(dist > 2 && ranged_cooldown < world.time)
+		ranged_cooldown = world.time + ranged_cooldown_time
 		var/list/dash_line = getline(src, target)
 		for(var/turf/line_turf in dash_line) //checks if there's a valid path between the turf and the friend
 			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
@@ -181,7 +185,6 @@
 			forceMove(line_turf)
 			SLEEP_CHECK_DEATH(0.8)
 		playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
-		ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget()
 	var/mob/living/carbon/human/H

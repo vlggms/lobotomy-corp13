@@ -62,8 +62,8 @@
 	icon_living = "gcorp5"
 	icon_dead = "gcorp_corpse2"
 	death_message = "salutes weakly before falling."
-	maxHealth = 750
-	health = 750
+	maxHealth = 1000	//Effectively have 750 HP
+	health = 1000		//Effectively have 750 HP
 	rapid_melee = 2
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
@@ -73,7 +73,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
 	health+=10
-	if(health <= maxHealth*0.15 && stat != DEAD && prob(75))
+	if(health <= maxHealth*0.25 && stat != DEAD && prob(75))
 		walk_to(src, 0)
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
@@ -86,8 +86,25 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
-	for(var/mob/living/L in view(2, src))
+	for(var/mob/living/L in view(3, src))
 		L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+
+	//Buff allies, all of these buffs only activate once.
+	//Buff the grunts around you when you die
+	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/Y in view(7, src))
+		Y.say("FOR G CORP!!!")
+
+		//increase damage
+		Y.melee_damage_lower = 18
+		Y.melee_damage_upper = 22
+		//And heal 50%
+		Y.adjustBruteLoss(-maxHealth*0.5)
+
+	//And any manager
+	for(var/mob/living/simple_animal/hostile/ordeal/steel_dusk/Z in view(7, src))
+		Z.say("There will be full-on roll call tonight.")
+		Z.screech_windup = 3 SECONDS
+
 	gib()
 
 //flying varient trades movement and attack speed for a sweeping attack.
@@ -220,6 +237,7 @@
 	var/last_command = 0
 	var/chargecommand_cooldown = 0
 	var/screech_cooldown = 0
+	var/screech_windup = 5 SECONDS
 	var/can_act = TRUE
 	var/list/troops = list()
 
@@ -336,7 +354,7 @@
 	var/visual_overlay = mutable_appearance('icons/effects/effects.dmi', "blip")
 	add_overlay(visual_overlay)
 	can_act = FALSE
-	if(!do_after(src, 5 SECONDS, target = src))
+	if(!do_after(src, screech_windup, target = src))
 		cut_overlay(visual_overlay)
 		can_act = TRUE
 		return
