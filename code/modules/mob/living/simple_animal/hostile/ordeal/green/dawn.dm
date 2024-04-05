@@ -123,6 +123,7 @@
 	icon_state = "green_bot_c"
 	icon_living = "green_bot_c"
 	rapid_melee = 3
+	move_to_delay = 4
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/fast/factory/death(gibbed)
 	density = FALSE
