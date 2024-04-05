@@ -3,6 +3,7 @@
 	name = "The Dawn of Indigo"
 	flavor_name = "The Scouts"
 	announce_text = "They come searching for what they so desperately need."
+	end_announce_text = "And they search in the dark."
 	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	reward_percent = 0.1
