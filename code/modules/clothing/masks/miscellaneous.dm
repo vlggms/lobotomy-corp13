@@ -198,7 +198,7 @@
  * Also blocks the sound of footsteps
  */
 /obj/item/clothing/mask/silence
-	name = "face mask"
+	name = "perception-blocking mask"
 	desc = "A singularity-infused face mask that thoroughly conceals its user identity."
 	icon_state = "silence"
 	color = "#222222"
