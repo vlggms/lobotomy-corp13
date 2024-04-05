@@ -193,6 +193,21 @@
 
 	to_chat(user, span_nicegreen("Console manipulated"))
 
+/**
+ * A simple item to grant the sephirah TGUI action panel
+ * relevant files:
+ * code/modules/jobs/job_types/trusted_player/sephirah.dm -- The panel's button and data
+ * tgui/packages/tgui/interfaces/SephirahPanel.js -- The panel's JS counterpart
+ */
+/obj/item/lc_debug/sephirah_action_granter
+	name = "debug sephirah action granter"
+	icon_state = "picket"
+
+/obj/item/lc_debug/sephirah_action_granter/attack_self(mob/living/user)
+	. = ..()
+	var/datum/action/sephirah_game_panel/new_action = new(user.mind || user)
+	new_action.Grant(user)
+
 //Test dummy and spawner
 /obj/item/lc_debug/debugdummyspawner
 	name = "dummy spawner"
