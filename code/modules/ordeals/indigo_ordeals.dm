@@ -9,7 +9,10 @@
 	level = 1
 	spawn_places = 5
 	spawn_amount = 2
-	spawn_type = /mob/living/simple_animal/hostile/ordeal/indigo_dawn
+	spawn_type = list(
+		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
+		/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis
+		)
 	place_player_multiplicator = 0.08
 	spawn_player_multiplicator = 0
 	color = "#3F00FF"

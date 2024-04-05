@@ -3049,6 +3049,7 @@
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\violet.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\white.dm"
 #include "code\modules\mob\living\simple_animal\hostile\ordeal\green\dawn.dm"
+#include "code\modules\mob\living\simple_animal\hostile\ordeal\indigo\dawn.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\bat.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\clown.dm"
 #include "code\modules\mob\living\simple_animal\hostile\retaliate\frog.dm"
