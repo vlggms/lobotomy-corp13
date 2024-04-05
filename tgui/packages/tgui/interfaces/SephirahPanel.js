@@ -116,8 +116,8 @@ const ButtonPanel = (props, context) => {
               label="All meltdowns will take one more work before accuring"
               buttons={
                 <Button
-                  content={meltdown_speed > 6 ? 'Increase Work per Meltdown ratio': 'Additional meltdown works at maximum!'}
-                  color={meltdown_speed > 6 ? 'green' : 'red'}
+                  content={meltdown_speed < 6 ? 'Increase Work per Meltdown ratio': 'Additional meltdown works at maximum!'}
+                  color={meltdown_speed < 6 ? 'green' : 'red'}
                   onClick={() => act('Increase Work per Meltdown ratio')}
                 />
               }
@@ -127,8 +127,8 @@ const ButtonPanel = (props, context) => {
               label="All meltdowns will take one less work before accuring"
               buttons={
                 <Button
-                  content={meltdown_speed < -4 ? 'Decrease Work per Meltdown ratio': 'Additional meltdown works at minimum!'}
-                  color={meltdown_speed < -4 ? 'green' : 'red'}
+                  content={meltdown_speed > -4 ? 'Decrease Work per Meltdown ratio': 'Additional meltdown works at minimum!'}
+                  color={meltdown_speed > -4 ? 'green' : 'red'}
                   onClick={() => act('Decrease Work per Meltdown ratio')}
                 />
               }
