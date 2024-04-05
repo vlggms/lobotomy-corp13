@@ -22,14 +22,14 @@
 	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT)
 
 	//Let'em Grief
-	add_verb(H, /mob/living/carbon/human/proc/randomabno)
-	add_verb(H, /mob/living/carbon/human/proc/nextabno)
-	add_verb(H, /mob/living/carbon/human/proc/slowgame)
-	add_verb(H, /mob/living/carbon/human/proc/quickengame)
-	add_verb(H, /mob/living/carbon/human/proc/workmeltincrease)
-	add_verb(H, /mob/living/carbon/human/proc/workmeltdecrease)
-	add_verb(H, /mob/living/carbon/human/proc/meltincrease)
-	add_verb(H, /mob/living/carbon/human/proc/meltdecrease)
+	add_verb(H, /mob/living/carbon/human/proc/RandomAbno)
+	add_verb(H, /mob/living/carbon/human/proc/NextAbno)
+	add_verb(H, /mob/living/carbon/human/proc/SlowGame)
+	add_verb(H, /mob/living/carbon/human/proc/QuickenGame)
+	add_verb(H, /mob/living/carbon/human/proc/WorkMeltIncrease)
+	add_verb(H, /mob/living/carbon/human/proc/WorkMeltDecrease)
+	add_verb(H, /mob/living/carbon/human/proc/MeltIncrease)
+	add_verb(H, /mob/living/carbon/human/proc/MeltDecrease)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -78,9 +78,9 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 /*************************************************/
 //Sephirah Gamemaster commands.
 
-/mob/living/carbon/human/proc/randomabno()
+/mob/living/carbon/human/proc/RandomAbno()
 	set name = "Randomize Current Abnormality"
-	set category = "Gamemaster"
+	set category = "Sephirah.Events"
 	for(var/obj/machinery/computer/abnormality_queue/Q in GLOB.lobotomy_devices)
 		var/mob/living/simple_animal/hostile/abnormality/target_type = SSabnormality_queue.GetRandomPossibleAbnormality()
 		if(Q.locked)
@@ -97,9 +97,9 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 		return
 
 //See next abnormality
-/mob/living/carbon/human/proc/nextabno()
+/mob/living/carbon/human/proc/NextAbno()
 	set name = "Next Abnormality Check"
-	set category = "Gamemaster"
+	set category = "Sephirah.Info"
 	//Abno stuff, so you can grief more effectively.
 	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
 	to_chat(src, span_notice("Current Status:"))
@@ -109,9 +109,9 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 //Speed stuff
 GLOBAL_VAR_INIT(Sephirahspeed, 0)
 
-/mob/living/carbon/human/proc/slowgame()
+/mob/living/carbon/human/proc/SlowGame()
 	set name = "Abnormality Time Slow"
-	set category = "Gamemaster"
+	set category = "Sephirah.Game Changes"
 	if(GLOB.Sephirahspeed > -3)
 		SSabnormality_queue.next_abno_spawn_time *= 1.2
 		GLOB.Sephirahspeed --
@@ -120,9 +120,9 @@ GLOBAL_VAR_INIT(Sephirahspeed, 0)
 	else
 		to_chat(src, span_notice("Abnormality extraction cannot be slower."))
 
-/mob/living/carbon/human/proc/quickengame()
+/mob/living/carbon/human/proc/QuickenGame()
 	set name = "Abnormality Time Quicken"
-	set category = "Gamemaster"
+	set category = "Sephirah.Game Changes"
 
 	if(GLOB.Sephirahspeed < 3)
 		SSabnormality_queue.next_abno_spawn_time /= 1.2
@@ -135,9 +135,9 @@ GLOBAL_VAR_INIT(Sephirahspeed, 0)
 //Ordeal Stuff
 GLOBAL_VAR_INIT(Sephirahordealspeed, 0)
 
-/mob/living/carbon/human/proc/workmeltincrease()
+/mob/living/carbon/human/proc/WorkMeltIncrease()
 	set name = "Works Per Melt Increase"
-	set category = "Gamemaster"
+	set category = "Sephirah.Game Changes"
 
 	if(GLOB.Sephirahordealspeed > 5)
 		to_chat(src, span_notice("Meltdowns are already taking too long!"))
@@ -148,9 +148,9 @@ GLOBAL_VAR_INIT(Sephirahordealspeed, 0)
 	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made works per melt longer.</span>")
 
 
-/mob/living/carbon/human/proc/workmeltdecrease()
+/mob/living/carbon/human/proc/WorkMeltDecrease()
 	set name = "Works Per Melt Decrease"
-	set category = "Gamemaster"
+	set category = "Sephirah.Game Changes"
 
 	if(GLOB.Sephirahordealspeed < -3 )
 		to_chat(src, span_notice("Meltdowns are already too fast!"))
@@ -163,9 +163,9 @@ GLOBAL_VAR_INIT(Sephirahordealspeed, 0)
 
 GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 
-/mob/living/carbon/human/proc/meltincrease()
+/mob/living/carbon/human/proc/MeltIncrease()
 	set name = "Abno Melts Per Event Increase"
-	set category = "Gamemaster"
+	set category = "Sephirah.Game Changes"
 
 	if(GLOB.Sephirahmeltmodifier > 5)
 		to_chat(src, span_notice("Too many abnormalities are melting!"))
@@ -176,9 +176,9 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 	message_admins("<span class='notice'>A sephirah ([src.ckey]) has made more abnormalities melt per event.</span>")
 
 
-/mob/living/carbon/human/proc/meltdecrease()
+/mob/living/carbon/human/proc/MeltDecrease()
 	set name = "Abno Melts Per Event Decrease"
-	set category = "Gamemaster"
+	set category = "Sephirah.Game Changes"
 
 	if(GLOB.Sephirahmeltmodifier < -1*SSlobotomy_corp.qliphoth_meltdown_amount+2)
 		to_chat(src, span_notice("Too little abnormalities are melting!"))
@@ -193,7 +193,7 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 //See next abnormality
 /mob/living/carbon/human/proc/gameinfo()
 	set name = "Check Game Info"
-	set category = "Gamemaster"
+	set category = "Sephirah.Info"
 	//So you can see what the others have done
 	to_chat(src, span_notice("Current Status:"))
 	to_chat(src, span_notice("Sephirah Meltdown Modifier: [GLOB.Sephirahmeltmodifier]."))
