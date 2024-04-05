@@ -12,7 +12,8 @@
 	spawn_amount = 2
 	spawn_type = list(
 		/mob/living/simple_animal/hostile/ordeal/indigo_dawn,
-		/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis
+		/mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis,
+		/mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher,
 		)
 	place_player_multiplicator = 0.08
 	spawn_player_multiplicator = 0
