@@ -65,7 +65,7 @@ const ButtonPanel = (props, context) => {
                 <Button
                   content={'Randomize abnormality'}
                   color={'green'}
-                  onClick={() => act('Randomize Abnormality')}
+                  onClick={() => act('Randomize abnormality')}
                 />
               }
             />
@@ -154,19 +154,6 @@ const ButtonPanel = (props, context) => {
                   content={'Decrease abnormality per meltdown'}
                   color={'green'}
                   onClick={() => act('Decrease abnormality per meltdown')}
-                />
-              }
-            />
-          </Collapsible>
-          <Collapsible title="Challenge a player">
-            <LabeledList.Item
-              labelWrap
-              label="Causes a specific player to take 40% more damage from abnormality work"
-              buttons={
-                <Button
-                  content={'Challenge a player'}
-                  color={'green'}
-                  onClick={() => act('Challenge a player')}
                 />
               }
             />
