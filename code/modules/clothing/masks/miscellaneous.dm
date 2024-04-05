@@ -206,6 +206,8 @@
 
 /obj/item/clothing/mask/silence/equipped(mob/M, slot)
 	. = ..()
+	if(slot != ITEM_SLOT_MASK)
+		return
 	ADD_TRAIT(M, TRAIT_SILENT_FOOTSTEPS, MASK_TRAIT)
 	ADD_TRAIT(M, TRAIT_UNKNOWN, MASK_TRAIT)
 
