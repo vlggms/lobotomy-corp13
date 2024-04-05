@@ -30,6 +30,7 @@
 	add_verb(H, /mob/living/carbon/human/proc/WorkMeltDecrease)
 	add_verb(H, /mob/living/carbon/human/proc/MeltIncrease)
 	add_verb(H, /mob/living/carbon/human/proc/MeltDecrease)
+	add_verb(H, /mob/living/carbon/human/proc/GameInfo)
 
 	H.apply_pref_name("sephirah", M.client)
 	H.name += " - [M.client.prefs.prefered_sephirah_department]"
@@ -99,7 +100,7 @@ GLOBAL_LIST_INIT(sephirah_names, list(
 //See next abnormality
 /mob/living/carbon/human/proc/NextAbno()
 	set name = "Next Abnormality Check"
-	set category = "Sephirah.Info"
+	set category = "Sephirah"
 	//Abno stuff, so you can grief more effectively.
 	var/mob/living/simple_animal/hostile/abnormality/queued_abno = SSabnormality_queue.queued_abnormality
 	to_chat(src, span_notice("Current Status:"))
@@ -191,9 +192,9 @@ GLOBAL_VAR_INIT(Sephirahmeltmodifier, 0)
 
 
 //See next abnormality
-/mob/living/carbon/human/proc/gameinfo()
+/mob/living/carbon/human/proc/GameInfo()
 	set name = "Check Game Info"
-	set category = "Sephirah.Info"
+	set category = "Sephirah"
 	//So you can see what the others have done
 	to_chat(src, span_notice("Current Status:"))
 	to_chat(src, span_notice("Sephirah Meltdown Modifier: [GLOB.Sephirahmeltmodifier]."))
