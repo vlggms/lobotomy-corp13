@@ -40,7 +40,12 @@ const AbnoInfo = (props, context) => {
         <LabeledList.Item label="Current abnormality arrival time">
           <ProgressBar
             value={progress_component}>
-            <AnimatedNumber value={current_arrival / 10 + ' seconds, (estimated next arrival: ' + next_arrival / 10 + ' seconds)'}/>
+            <AnimatedNumber
+              value={current_arrival / 10
+              + ' seconds, (estimated next arrival: '
+              + next_arrival / 10
+              + ' seconds)'}
+            />
           </ProgressBar>
         </LabeledList.Item>
         */}
@@ -73,10 +78,11 @@ const ButtonPanel = (props, context) => {
           <Collapsible title="Manipulate abnormality arrival time">
             <LabeledList.Item>
               <ProgressBar
-                minValue = {-3}
-                maxValue = {3}
+                minValue={-3}
+                maxValue={3}
                 value={abnormality_arrival}>
-                <AnimatedNumber value={abnormality_arrival}/>
+                <AnimatedNumber value={abnormality_arrival}
+              />
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
@@ -105,10 +111,11 @@ const ButtonPanel = (props, context) => {
           <Collapsible title="Manipulate Work per Meltdown ratio">
             <LabeledList.Item>
               <ProgressBar
-                minValue = {-4}
-                maxValue = {6}
+                minValue={-4}
+                maxValue={6}
                 value={meltdown_speed}>
-                <AnimatedNumber value={meltdown_speed}/>
+                <AnimatedNumber value={meltdown_speed}
+              />
               </ProgressBar>
             </LabeledList.Item>
             <LabeledList.Item
