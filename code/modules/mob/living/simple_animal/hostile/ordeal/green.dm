@@ -1,6 +1,6 @@
 // Green dawn
 /mob/living/simple_animal/hostile/ordeal/green_bot
-	name = "doubt"
+	name = "doubt A"
 	desc = "A slim robot with a spear in place of its hand."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "green_bot"
@@ -12,7 +12,7 @@
 	maxHealth = 400
 	health = 400
 	speed = 2
-	move_to_delay = 4
+	move_to_delay = 3.5
 	melee_damage_lower = 22
 	melee_damage_upper = 26
 	attack_verb_continuous = "stabs"
