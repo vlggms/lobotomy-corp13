@@ -201,7 +201,12 @@
  */
 /obj/item/lc_debug/sephirah_action_granter
 	name = "debug sephirah action granter"
+	desc = "A strange wooden sign with the words\"THE ROBITS GRIFF ME!!!\" inscribed upon it"
 	icon_state = "picket"
+
+/obj/item/lc_debug/sephirah_action_granter/examine(mob/user)
+	. = ..()
+	. += span_mind_control("When used in hand it gives you a special button on the top-left of your screen to open the sephirah game panel.")
 
 /obj/item/lc_debug/sephirah_action_granter/attack_self(mob/living/user)
 	. = ..()
