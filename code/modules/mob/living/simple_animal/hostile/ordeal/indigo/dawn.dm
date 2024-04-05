@@ -51,7 +51,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/invis
 	move_to_delay = 3	//These ones are slower because they're invisible
-	alpha = 10
+	alpha = 15
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dawn/skirmisher
 	move_to_delay = 2	//These ones are slower because they move a little eratically
