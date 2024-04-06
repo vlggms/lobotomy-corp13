@@ -218,7 +218,7 @@
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
-		if(L.stat != DEAD)
+		if(L.stat != DEAD && SSmaptype.maptype != "limbus_labs")
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
 		else
