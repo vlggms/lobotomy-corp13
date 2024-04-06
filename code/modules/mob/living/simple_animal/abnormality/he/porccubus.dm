@@ -184,7 +184,8 @@
 				break
 			forceMove(line_turf)
 			SLEEP_CHECK_DEATH(0.8)
-		playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 50, FALSE, 4)
+		playsound(src, 'sound/abnormalities/porccubus/head_explode_laugh.ogg', 10, FALSE, 4) // This thing is absurdly loud
+		ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/abnormality/porccubus/AttackingTarget()
 	var/mob/living/carbon/human/H

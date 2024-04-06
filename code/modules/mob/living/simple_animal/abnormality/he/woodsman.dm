@@ -49,8 +49,11 @@
 		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
 	)
 
+	// Flurry Vars
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS
+	var/flurry_delay = 1.5 SECONDS
+	var/flurry_pause = 0.25 SECONDS
 	var/flurry_count = 7
 	var/flurry_small = 12
 	var/flurry_big = 60 // It was requested that he beats their ass harder
@@ -58,11 +61,28 @@
 	var/flurry_width = 2
 	var/can_act = TRUE
 
+	// Combat map check
+	var/combat_map = FALSE
+
+	// Ramping Vars
+	var/ramping = 0
+	var/ramping_max = 10
+	var/ramping_decay
+	var/ramping_decay_time = 1 MINUTES
+	var/initial_melee_damage_lower
+	var/initial_melee_damage_upper
+	var/initial_move_to_delay
+	var/initial_flurry_delay
+	var/initial_flurry_pause
+	// Looping Sound for max ramping
+	var/datum/looping_sound/woodsman/soundloop
+
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle)
 
 /datum/action/innate/abnormality_attack/toggle/woodsman_flurry_toggle
 	name = "Toggle Deforestation"
+	desc = "Toggle your ability to perform a multi-hitting attack that hits a wide area in front of you."
 	button_icon_state = "woodsman_toggle0"
 	chosen_attack_num = 2
 	chosen_message = span_colossus("You won't fell hearts anymore.")
@@ -71,6 +91,28 @@
 	toggle_message = span_colossus("You will now attempt to fell all hearts in your path.")
 	button_icon_toggle_deactivated = "woodsman_toggle0"
 
+/mob/living/simple_animal/hostile/abnormality/woodsman/Initialize()
+	. = ..()
+	soundloop = new(list(src), FALSE)
+	if(IsCombatMap())
+		combat_map = TRUE
+		initial_melee_damage_lower = melee_damage_lower
+		initial_melee_damage_upper = melee_damage_upper
+		initial_flurry_delay = flurry_delay
+		initial_flurry_pause = flurry_pause
+		initial_move_to_delay = move_to_delay
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/Destroy()
+	QDEL_NULL(soundloop)
+	..()
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/Life()
+	. = ..()
+	if((combat_map) && !(ramping == 0) && ramping_decay <= world.time)
+		if(soundloop.timerid)
+			soundloop.stop()
+		ramping = 0
+		RampingUpdate()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Move()
 	if(!can_act)
@@ -85,6 +127,16 @@
 		if(H.stat == DEAD || (H.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(H, TRAIT_NODEATH)) || H.health <= -30)
 			Heal(H)
 			return ..()
+		else
+			if(combat_map)
+				GainRamping(1)
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				Woodsman_Flurry(target)
+			if(2)
+				return ..()
+		return ..()
 	if(isliving(target) && flurry_cooldown <= world.time && get_dist(src, target) <= 2 && prob(30))
 		Woodsman_Flurry(target)
 	return ..()
@@ -107,6 +159,25 @@
 		return pick(lower_priority)
 	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/woodsman/proc/GainRamping(amount)
+	ramping += amount
+	ramping_decay = world.time + ramping_decay_time
+	if(ramping >= ramping_max)
+		ramping = ramping_max
+		if(!soundloop.timerid)
+			to_chat(src, span_warning("You feel the hearts inside you beating faster than ever before..."))
+			soundloop.start()
+		return
+	RampingUpdate()
+
+/mob/living/simple_animal/hostile/abnormality/woodsman/proc/RampingUpdate()
+	melee_damage_lower = initial_melee_damage_lower + (ramping * 3)
+	melee_damage_upper = initial_melee_damage_upper + (ramping * 3)
+	flurry_delay = initial_flurry_delay - (ramping * 0.1) SECONDS
+	flurry_pause = initial_flurry_pause - (ramping * 0.01) SECONDS
+	move_to_delay = initial_move_to_delay - (ramping * 0.22)
+	UpdateSpeed()
+
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/Heal(mob/living/carbon/human/body)
 	src.visible_message(span_warning("[src] plunges their hand into [body]'s chest and rips out their heart!"), \
 		span_notice("You plung your hand into the body of [body] and take their heart, placing it into your cold chest. It's not enough."), \
@@ -118,6 +189,8 @@
 			QDEL_NULL(O)
 			break
 	body.gib()
+	if(combat_map)
+		GainRamping(10)
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/CanAttack(atom/the_target)
 	if(isliving(target) && !ishuman(target))
@@ -228,7 +301,7 @@
 	dir = dir_to_target
 	playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_prepare.ogg', 75, 0, 5)
 	icon_state = "woodsman_prepare"
-	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	SLEEP_CHECK_DEATH(flurry_delay)
 	for (var/i = 0; i < flurry_count; i++)
 		icon_state = icon_living
 		var/list/been_hit = list()
@@ -239,7 +312,7 @@
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_strong.ogg', 100, 0, 8) // BAM
 		else
 			playsound(get_turf(src), 'sound/abnormalities/woodsman/woodsman_attack.ogg', 75, 0, 5)
-		SLEEP_CHECK_DEATH(0.25 SECONDS)
+		SLEEP_CHECK_DEATH(flurry_pause)
 		icon_state = "woodsman_prepare"
 	icon_state = icon_living
 	can_act = TRUE
