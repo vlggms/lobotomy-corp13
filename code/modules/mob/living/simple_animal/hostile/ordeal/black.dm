@@ -6,8 +6,8 @@
 	icon_state = "blank_shade"
 	icon_living = "blank_shade"
 	faction = list("hostile")
-	maxHealth = 230		//They are a copy of you, pretty much exactly.
-	health = 230
+	maxHealth = 500		//They are a copy of you, pretty much exactly.
+	health = 500
 	melee_damage_type = BLACK_DAMAGE
 	rapid_melee = 2
 	melee_damage_lower = 30
