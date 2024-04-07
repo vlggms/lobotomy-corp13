@@ -65,16 +65,23 @@
 			M.Knockdown(60)
 		else
 			M.visible_message(span_warning("[M] struggles to untie the noose over their neck!"))
-			to_chat(M, span_notice("You struggle to untie the noose over your neck... (Stay still for 20 seconds.)"))
-			if(!do_after(M, 200, target = src)) // yeah if you dont try to untie yourself in like 6 seconds you're cooked
-				if(M && M.buckled)
-					to_chat(M, span_warning("You fail to untie yourself!"))
+			var/hanging_time = 50 SECONDS
 
-			if(user?.mind?.assigned_role != "Records Officer")
-				if(!do_after(M, 300, target = src))
-			if(user?.mind?.assigned_role != "Extraction Officer")
-				if(!do_after(M, 300, target = src))
-				return
+var = hanging_time = 50 SECONDS
+
+// This isn't their first rodeo
+if(user?.mind?.assigned_role == "Records Officer" || "Extraction Officer")
+	to_chat(hanging_mob, span_notice("Your previous expiriences immediatelly come to your mind... you are able to untie yourself faster!"))
+	hanging_time = 20 SECONDS
+
+to_chat(hanging_mob, span_notice("You struggle to untie the noose over your neck... (Stay still for [hanging_time / 10] seconds.)")) // yes... stay still
+hanging_mob.visible_message(span_warning("[hanging_mob] struggles to untie the noose over their neck!"))
+
+// yeah if you dont try to untie yourself in like 6 seconds you're cooked
+if(!do_after(hanging_mob, hanging_time, target = src))
+	if(hanging_mob && hanging_mob.buckled)
+		to_chat(hanging_mob, span_userdanger("You fail to untie yourself, your hands slipping!"))
+	return
 			if(!M.buckled)
 				return
 			M.visible_message(span_warning("[M] unties the noose over their neck!"))
