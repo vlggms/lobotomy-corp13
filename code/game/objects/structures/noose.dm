@@ -65,7 +65,6 @@
 			M.Knockdown(60)
 		else
 			M.visible_message(span_warning("[M] struggles to untie the noose over their neck!"))
-			var/hanging_time = 50 SECONDS
 
 var = hanging_time = 50 SECONDS
 
