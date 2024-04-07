@@ -69,13 +69,21 @@
 	to_chat(user, span_nicegreen("You suddenly feel different."))
 	//Guarantee one
 	user.adjust_all_attribute_levels(amount)
+	to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
 
 	//Adjust by an extra attribute under level 2
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=40)
 		user.adjust_all_attribute_levels(amount)
+		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
 
 	//And one more under level 3
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=60)
 		user.adjust_all_attribute_levels(amount)
+		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
+
+	//And one last one before L4
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=80)
+		user.adjust_all_attribute_levels(amount)
+		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
 
 	qdel(src)
