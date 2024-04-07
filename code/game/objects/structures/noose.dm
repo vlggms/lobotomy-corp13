@@ -71,9 +71,9 @@
 					to_chat(M, span_warning("You fail to untie yourself!"))
 
 			if(user?.mind?.assigned_role != "Records Officer")
-				!do_after(M, 300, target = src)
+				if(!do_after(M, 300, target = src))
 			if(user?.mind?.assigned_role != "Extraction Officer")
-				!do_after(M, 300, target = src)
+				if(!do_after(M, 300, target = src))
 				return
 			if(!M.buckled)
 				return
