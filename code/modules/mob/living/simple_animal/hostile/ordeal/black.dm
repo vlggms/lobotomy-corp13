@@ -67,7 +67,7 @@
 			melee_damage_lower = 115
 			melee_damage_upper = 115
 
-	. = ..()
+	return ..()
 
 //Da Capo
 /mob/living/simple_animal/hostile/ordeal/echo/capo
