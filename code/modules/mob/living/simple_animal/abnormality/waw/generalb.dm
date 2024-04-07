@@ -361,7 +361,7 @@
 
 	var/artillery_range = 30
 
-/obj/effect/proc_holder/ability/aimed/artillery_shell/Perform(target, var/mob/living/simple_animal/hostile/abnormality/general_b/user)
+/obj/effect/proc_holder/ability/aimed/artillery_shell/Perform(target, mob/living/simple_animal/hostile/abnormality/general_b/user)
 	if(get_dist(user, target) > artillery_range)
 		to_chat(user, span_notice("Too far from our cannon's range!"))
 		return
@@ -377,7 +377,7 @@
 	var/volley_count = 0
 	//TODO: make sprites
 
-/obj/effect/proc_holder/ability/aimed/artillery_shell/general/Perform(target, var/mob/living/simple_animal/hostile/abnormality/general_b/user)
+/obj/effect/proc_holder/ability/aimed/artillery_shell/general/Perform(target, mob/living/simple_animal/hostile/abnormality/general_b/user)
 	. = ..()
 	volley_count += 1
 	if(volley_count >= 4)
