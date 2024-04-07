@@ -165,7 +165,7 @@
 			new /obj/effect/temp_visual/justitia_effect(T)
 			HurtInTurf(T, list(), 50, PALE_DAMAGE)
 
-	. = ..()
+	return ..()
 
 
 //Smile
