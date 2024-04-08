@@ -4,6 +4,7 @@
 	resistance_flags = INDESTRUCTIBLE
 	/// Currently selected(shown) level of abnormalities whose EGO will be on the interface
 	var/selected_level = ZAYIN_LEVEL
+	var/delay = 5 SECONDS
 
 /obj/machinery/computer/ego_purchase/ui_interact(mob/user)
 	. = ..()
@@ -56,16 +57,39 @@
 				to_chat(usr, span_warning("Not enough PE boxes stored for this operation."))
 				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 				return FALSE
-			var/obj/item/I = new E.item_path(get_turf(src))
+			if(usr.mind.assigned_role == "Extraction Officer")
+				new E.item_path(get_turf(src))
+				to_chat(usr, span_notice("[E.item_path] has been dispensed!"))
+
+			else
+				addtimer(CALLBACK(src, PROC_REF(ShipOut), E.item_path),delay)
+				to_chat(usr, span_notice("[E.item_path] is on the way of being dispensed!"))
+
 			A.stored_boxes -= E.cost
-			A.current_ego += I
-			to_chat(usr, span_notice("[I] has been dispensed!"))
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 			updateUsrDialog()
 			return TRUE
+
 		if(href_list["info"])
 			var/dat = html_decode(href_list["info"])
 			var/datum/browser/popup = new(usr, "ego_info", "EGO Purchase Console", 340, 400)
 			popup.set_content(dat)
 			popup.open()
 			return
+
+/obj/machinery/computer/ego_purchase/proc/ShipOut(obj/item/shipped)
+	var/list/tablesinrange = list()
+	var/turf/T
+	for(var/obj/structure/table/V in range(3, src))
+		tablesinrange+=V
+	if(LAZYLEN(tablesinrange))
+		T = get_turf(pick(tablesinrange))
+	else
+		T = get_turf(src)
+
+
+	var/obj/structure/closet/supplypod/extractionpod/pod = new()
+	pod.explosionSize = list(0,0,0,0)
+	new shipped(pod)
+	new /obj/effect/pod_landingzone(T, pod)
+	stoplag(2)
