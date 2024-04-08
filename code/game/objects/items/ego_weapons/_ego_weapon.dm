@@ -146,7 +146,10 @@
 	return TRUE
 
 /obj/item/ego_weapon/proc/CheckRole(mob/living/target, mob/living/user)
-	if(user.sanity_lost)
+	if(!ishuman(user))
+		return TRUE
+	var/mob/living/carbon/human/H = user
+	if(H.sanity_lost)
 		return TRUE
 	var/list/immune = list("Sephirah", "Extraction Officer")		//These people should never be killed.
 	if(target.mind)
