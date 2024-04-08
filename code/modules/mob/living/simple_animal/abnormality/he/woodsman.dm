@@ -112,6 +112,7 @@
 		if(soundloop.timerid)
 			soundloop.stop()
 		ramping = 0
+		to_chat(src, span_notice("You feel a cold emptyness in your chest... it's still not enough."))
 		RampingUpdate()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Move()
@@ -165,7 +166,7 @@
 	if(ramping >= ramping_max)
 		ramping = ramping_max
 		if(!soundloop.timerid)
-			to_chat(src, span_warning("You feel the hearts inside you beating faster than ever before..."))
+			to_chat(src, span_warning("Your chest echoes loudly... is this how it feels to have a thumping heart?"))
 			soundloop.start()
 		return
 	RampingUpdate()

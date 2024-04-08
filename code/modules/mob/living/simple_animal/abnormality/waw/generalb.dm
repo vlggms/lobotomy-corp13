@@ -47,7 +47,6 @@
 
 	// Playables Vars
 	var/combat_map = FALSE
-//	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/artillery_sight)
 	var/datum/action/innate/toggle_artillery_sight/sight_ability
 
 /mob/living/simple_animal/hostile/abnormality/general_b/Login()
