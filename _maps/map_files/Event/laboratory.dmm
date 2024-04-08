@@ -106,7 +106,7 @@
 /area/centcom)
 "bT" = (
 /obj/machinery/button/door/indestructible{
-	id = highsec_outside
+	id = "highsec_outside"
 	},
 /obj/structure/table,
 /obj/machinery/light,
@@ -246,7 +246,7 @@
 /area/centcom)
 "cM" = (
 /obj/machinery/door/poddoor{
-	id = cleaner_containment;
+	id = "cleaner_containment";
 	name = "All-Around Cleaner Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -290,7 +290,7 @@
 /area/centcom)
 "dB" = (
 /obj/machinery/button/door/indestructible{
-	id = cleaner_containment;
+	id = "cleaner_containment";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
@@ -334,7 +334,7 @@
 /area/centcom)
 "eq" = (
 /obj/machinery/button/door/indestructible{
-	id = mosb_containment;
+	id = "mosb_containment";
 	name = "containment button"
 	},
 /obj/structure/table,
@@ -400,7 +400,7 @@
 /area/centcom)
 "ft" = (
 /obj/machinery/door/poddoor{
-	id = highsec_outside;
+	id = "highsec_outside";
 	name = "High Security Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -413,7 +413,7 @@
 /area/centcom)
 "fy" = (
 /obj/machinery/button/door/indestructible{
-	id = lowsec_outside;
+	id = "lowsec_outside";
 	name = "outside lock button"
 	},
 /obj/structure/table,
@@ -429,7 +429,7 @@
 /area/centcom)
 "fJ" = (
 /obj/machinery/button/door/indestructible{
-	id = toad_containment;
+	id = "toad_containment";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
@@ -569,7 +569,7 @@
 /area/centcom)
 "jl" = (
 /obj/machinery/button/door/indestructible{
-	id = hsz2_containment;
+	id = "hsz2_containment";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
@@ -794,7 +794,7 @@
 /area/centcom)
 "nD" = (
 /obj/machinery/button/door/indestructible{
-	id = highsec_inside;
+	id = "highsec_inside";
 	name = "inside lock button"
 	},
 /obj/structure/table,
@@ -1031,7 +1031,7 @@
 /area/centcom)
 "rO" = (
 /obj/machinery/button/door/indestructible{
-	id = containment5;
+	id = "containment5";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
@@ -1185,7 +1185,7 @@
 /area/facility_hallway/north)
 "uG" = (
 /obj/machinery/door/poddoor{
-	id = mosb_containment;
+	id = "mosb_containment";
 	name = "HSZ Containment Door #1"
 	},
 /turf/open/floor/plasteel,
@@ -1718,7 +1718,7 @@
 /area/centcom)
 "BN" = (
 /obj/machinery/door/poddoor{
-	id = containment6;
+	id = "containment6";
 	name = "Containment 6 Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -1814,7 +1814,7 @@
 /area/centcom)
 "Dj" = (
 /obj/machinery/door/poddoor{
-	id = lowsec_outside;
+	id = "lowsec_outside";
 	name = "Low Security Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -1894,7 +1894,7 @@
 /area/centcom)
 "FJ" = (
 /obj/machinery/door/poddoor{
-	id = fairy_containment;
+	id = "fairy_containment";
 	name = "Fairy Long-Legs Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -1914,14 +1914,14 @@
 /area/centcom)
 "Ga" = (
 /obj/machinery/button/door/indestructible{
-	id = containment6;
+	id = "containment6";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
 /area/centcom)
 "Gq" = (
 /obj/machinery/door/poddoor{
-	id = hsz2_containment;
+	id = "hsz2_containment";
 	name = "HSZ Containment Door #2"
 	},
 /turf/open/floor/plasteel,
@@ -1932,7 +1932,7 @@
 /area/centcom)
 "Gt" = (
 /obj/machinery/door/poddoor{
-	id = murderer_containment;
+	id = "murderer_containment";
 	name = "Blue Shepherd Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -2044,7 +2044,7 @@
 /area/centcom)
 "IR" = (
 /obj/machinery/button/door/indestructible{
-	id = lowsec_inside;
+	id = "lowsec_inside";
 	name = "inside lock button"
 	},
 /obj/structure/table,
@@ -2217,7 +2217,7 @@
 /area/centcom)
 "LW" = (
 /obj/machinery/button/door/indestructible{
-	id = fairy_containment;
+	id = "fairy_containment";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
@@ -2234,7 +2234,7 @@
 /area/centcom)
 "Mc" = (
 /obj/machinery/button/door/indestructible{
-	id = bb_containment;
+	id = "bb_containment";
 	name = "containment button"
 	},
 /obj/structure/table,
@@ -2453,7 +2453,7 @@
 /area/centcom)
 "Pb" = (
 /obj/machinery/door/poddoor{
-	id = toad_containment;
+	id = "toad_containment";
 	name = "Blubbering Toad Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -2515,7 +2515,7 @@
 /area/centcom)
 "Py" = (
 /obj/machinery/door/poddoor{
-	id = lowsec_inside;
+	id = "lowsec_inside";
 	name = "Low Security Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -2584,7 +2584,7 @@
 /area/centcom)
 "Qi" = (
 /obj/machinery/button/door/indestructible{
-	id = mosb_containment;
+	id = "mosb_containment";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
@@ -2693,7 +2693,7 @@
 /area/centcom)
 "Sm" = (
 /obj/machinery/door/poddoor{
-	id = highsec_inside;
+	id = "highsec_inside";
 	name = "High Security Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -2791,7 +2791,7 @@
 /area/centcom)
 "Up" = (
 /obj/machinery/door/poddoor{
-	id = containment5;
+	id = "containment5";
 	name = "Containment 5 Blast Door"
 	},
 /turf/open/floor/plasteel,
@@ -3089,7 +3089,7 @@
 /area/centcom)
 "ZS" = (
 /obj/machinery/button/door/indestructible{
-	id = murderer_containment;
+	id = "murderer_containment";
 	name = "containment button"
 	},
 /turf/closed/indestructible/reinforced,
