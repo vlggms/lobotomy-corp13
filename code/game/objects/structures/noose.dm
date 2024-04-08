@@ -66,21 +66,21 @@
 		else
 			M.visible_message(span_warning("[M] struggles to untie the noose over their neck!"))
 
-var = hanging_time = 50 SECONDS
+			var = hanging_time = 40
 
-// This isn't their first rodeo
-if(user?.mind?.assigned_role == "Records Officer" || "Extraction Officer")
-	to_chat(hanging_mob, span_notice("Your previous expiriences immediatelly come to your mind... you are able to untie yourself faster!"))
-	hanging_time = 20 SECONDS
+			// This is their first rodeo
+				if(user?.mind?.assigned_role == "Records Officer" || "Extraction Officer")
+				to_chat(hanging_mob, span_notice("You have no experience untying a knot... how the hell do you untie this thing?!"))
+				hanging_time = 50 SECONDS
 
-to_chat(hanging_mob, span_notice("You struggle to untie the noose over your neck... (Stay still for [hanging_time / 10] seconds.)")) // yes... stay still
-hanging_mob.visible_message(span_warning("[hanging_mob] struggles to untie the noose over their neck!"))
+			to_chat(hanging_mob, span_notice("You struggle to untie the noose over your neck... (Stay still for [hanging_time / 10] seconds.)")) // yes... stay still
+			hanging_mob.visible_message(span_warning("[hanging_mob] struggles to untie the noose over their neck!"))
 
-// yeah if you dont try to untie yourself in like 6 seconds you're cooked
-if(!do_after(hanging_mob, hanging_time, target = src))
-	if(hanging_mob && hanging_mob.buckled)
-		to_chat(hanging_mob, span_userdanger("You fail to untie yourself, your hands slipping!"))
-	return
+			// yeah if you dont try to untie yourself in like 6 seconds you're cooked
+			if(!do_after(hanging_mob, hanging_time, target = src))
+				if(hanging_mob && hanging_mob.buckled)
+					to_chat(hanging_mob, span_userdanger("You fail to untie yourself, your hands slipping!"))
+				return
 			if(!M.buckled)
 				return
 			M.visible_message(span_warning("[M] unties the noose over their neck!"))
