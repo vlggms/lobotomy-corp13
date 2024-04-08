@@ -52,6 +52,30 @@
 	var/teleport_cooldown_time = 20 SECONDS
 	var/swords = 0
 
+	attack_action_types = list(
+		/datum/action/innate/change_icon_kod
+	)
+
+
+/datum/action/innate/change_icon_kod
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_kod/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/48x48.dmi'
+		owner.icon_state = "despair"
+		active = 1
+
+/datum/action/innate/change_icon_kod/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		owner.icon_state = "despair_breach"
+		active = 0
+
+
 /mob/living/simple_animal/hostile/abnormality/despair_knight/ZeroQliphoth(mob/living/carbon/human/user)
 	switch(swords)
 		if(0)
