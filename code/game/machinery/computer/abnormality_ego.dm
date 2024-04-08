@@ -4,7 +4,7 @@
 	resistance_flags = INDESTRUCTIBLE
 	/// Currently selected(shown) level of abnormalities whose EGO will be on the interface
 	var/selected_level = ZAYIN_LEVEL
-	var/delay = 5 SECONDS
+	var/delay = 15 SECONDS
 
 /obj/machinery/computer/ego_purchase/ui_interact(mob/user)
 	. = ..()
