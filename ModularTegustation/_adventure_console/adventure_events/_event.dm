@@ -9,6 +9,8 @@
 	var/desc
 	//Where the user is.
 	var/cords = 1
+	//Where the user was. Prevents infinite stat gain.
+	var/old_cords = null
 	//Extra chance added onto event chances
 	var/extra_chance = 0
 	//Short lived text that says things that had happened.
@@ -35,6 +37,8 @@
  */
 /datum/adventure_event/proc/EventChoiceFormat(obj/machinery/M, mob/living/carbon/human/H)
 	. += "[temp_text]"
+	//If someone revisits this page they wont get the stats again.
+	old_cords = cords
 	if(cords)
 		BUTTON_FORMAT(0,"CONTINUE", M)
 
@@ -121,6 +125,8 @@
  */
 /datum/adventure_event/proc/ChanceCords(input_num)
 	var/remember_chance = input_num + (extra_chance * EXTRA_CHANCE_MULTIPLIER)
+	if(cords == old_cords)
+		return
 	temp_text += "CHANCE [remember_chance]:"
 	extra_chance = 0
 	if(prob(remember_chance))
@@ -134,6 +140,9 @@
 	|Profile Variable Edits|
 	\---------------------*/
 /datum/adventure_event/proc/AdjustHitPoint(add_num)
+	//Hotfix addition to prevent the UI giving stats every time its opened.
+	if(cords == old_cords)
+		return
 	gamer.AdjustHP(add_num)
 	if(add_num <= -1)
 		temp_text += "[add_num] HP LOST<br>"
@@ -141,6 +150,8 @@
 		temp_text += "[add_num] HP GAINED<br>"
 
 /datum/adventure_event/proc/AdjustCurrency(add_num)
+	if(cords == old_cords)
+		return
 	gamer.AdjustCoins(add_num)
 	if(add_num <= -1)
 		temp_text += "[abs(add_num)] COIN[add_num == -1 ? "S" : ""] LOST<br>"
@@ -148,6 +159,8 @@
 		temp_text += "[add_num] COIN[add_num == 1 ? "S" : ""] GAINED<br>"
 
 /datum/adventure_event/proc/AdjustStatNum(stat_to_add, add_num)
+	if(cords == old_cords)
+		return
 	gamer.AdjustStats(stat_to_add, add_num)
 	if(add_num <= -1)
 		temp_text += "[add_num] [gamer.nameStat(stat_to_add)] LOST<br>"
