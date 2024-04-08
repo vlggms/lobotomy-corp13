@@ -24,7 +24,6 @@
 	rapid_melee = 2
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = FALSE
-	is_flying_animal = FALSE
 	ranged = TRUE
 	ranged_cooldown_time = 5
 	death_message = "falls to the ground, decaying into glowing particles."
@@ -179,7 +178,6 @@
 	current_phase = form
 	can_move = FALSE
 	can_act = FALSE
-	is_flying_animal = FALSE
 	adjustHealth(-maxHealth)
 	alpha = 0
 	rapid_melee = 1
@@ -187,6 +185,8 @@
 	vis_contents.Cut()
 	current_effect = null
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	if(!HAS_TRAIT(src, TRAIT_NO_FLOATING_ANIM))
+		ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
 	new /obj/effect/temp_visual/distortedform_shift(get_turf(src))
 	sleep(3)
 	alpha = 255
@@ -216,9 +216,9 @@
 			DFApplyFilters()
 			addtimer(CALLBACK(src, PROC_REF(CauseMelts)), 10)
 		if("oberon")
-			is_flying_animal = TRUE
 			move_to_delay = 2.5
 			UpdateSpeed()
+			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/Move()
 	if(!can_move)
@@ -473,7 +473,6 @@
 	if(!can_act || distort_weapon_special > world.time || distort_second_phase)
 		return
 	current_weapon = pick(weapon_type)
-	current_weapon = "adoration"
 	can_move = FALSE
 	can_act = FALSE
 	alpha = 0
