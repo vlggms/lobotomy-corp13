@@ -63,7 +63,7 @@
 
 			else
 				addtimer(CALLBACK(src, PROC_REF(ShipOut), E.item_path),delay)
-				to_chat(usr, span_notice("[E.item_path] is on the way of being dispensed!"))
+				audible_message(span_notice("[usr.name] has purchased a [E.item_path]"))
 
 			A.stored_boxes -= E.cost
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
