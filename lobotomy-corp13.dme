@@ -4110,6 +4110,7 @@
 #include "ModularTegustation\tegu_mobs\alligator.dm"
 #include "ModularTegustation\tegu_mobs\apocalypse_bird.dm"
 #include "ModularTegustation\tegu_mobs\apostle_antag.dm"
+#include "ModularTegustation\tegu_mobs\black_midnight.dm"
 #include "ModularTegustation\tegu_mobs\butcher.dm"
 #include "ModularTegustation\tegu_mobs\chaos_marine.dm"
 #include "ModularTegustation\tegu_mobs\lc13_bongy.dm"

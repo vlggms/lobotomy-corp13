@@ -13,7 +13,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	desc = "\"My loved ones, do not worry; I have heard your prayers. \
 	Have you not yet realized that pain is but a speck to a determined mind?\""
 	icon_state = "paradise"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 70) // 280
+	armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
