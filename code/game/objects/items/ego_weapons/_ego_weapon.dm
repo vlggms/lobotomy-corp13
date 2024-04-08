@@ -22,6 +22,8 @@
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
+	if(!CheckRole(target,user))
+		return FALSE
 	. = ..()
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
@@ -141,6 +143,16 @@
 			return FALSE
 	if(!SpecialEgoCheck(H))
 		return FALSE
+	return TRUE
+
+/obj/item/ego_weapon/proc/CheckRole(mob/living/target, mob/living/user)
+	if(user.sanity_lost)
+		return TRUE
+	var/list/immune = list("Sephirah", "Extraction Officer")		//These people should never be killed
+	if(target.mind)
+		if(target.mind.assigned_role in immune)
+			to_chat(H, span_notice("You lock up and can't swing your weapon!"))
+			return FALSE
 	return TRUE
 
 /obj/item/ego_weapon/proc/SpecialEgoCheck(mob/living/carbon/human/H)
