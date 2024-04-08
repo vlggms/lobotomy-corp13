@@ -56,7 +56,7 @@
 	var/damage_taken
 
 	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/toggle/monk_charge
+		/datum/action/innate/abnormality_attack/toggle/monk_charge, /datum/action/innate/change_icon_monk
 	)
 
 /datum/action/innate/abnormality_attack/toggle/monk_charge
@@ -68,6 +68,25 @@
 	toggle_attack_num = 1 //Activate() and Deactivate() need to be flipped for this naming to make sense
 	toggle_message = span_colossus("You will now triple charge at the target you click on if damaged enough.")
 	button_icon_toggle_deactivated = "kog_charge"
+
+
+/datum/action/innate/change_icon_monk
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_monk/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
+		owner.icon_state = "cloudedmonk"
+		active = 1
+
+/datum/action/innate/change_icon_merm/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/34x48.dmi'
+		owner.icon_state = "pretamonk"
+		active = 0
 
 //init
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Initialize()
