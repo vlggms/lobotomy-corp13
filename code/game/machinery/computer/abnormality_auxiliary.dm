@@ -409,7 +409,7 @@
 		// admin-only actions, remember to put a if(!log_action) check with a proper return
 		if("Unlock Core Suppressions")
 			if(!log_action(usr, admin_action = TRUE,
-				message_override = "[usr] has used admin powers to manipulate the avaible cores in the auxiliary console"
+				message_override = "[usr] has used admin powers to manipulate the available cores in the auxiliary console"
 			))
 				update_static_data_for_all_viewers()
 				return

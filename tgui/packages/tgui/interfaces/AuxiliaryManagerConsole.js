@@ -242,7 +242,7 @@ const CoreSuppressionSelector = (props, context) => {
       )}
       {available_suppressions.length === 0 && (
         <NoticeBox info bold textAlign="center" fontSize="40px" fontFamily="Baskerville">
-          Core suppressions not avaible!
+          Core suppressions not available!
         </NoticeBox>
       )}
       {selected_core_name && (
@@ -496,7 +496,7 @@ const AllCores = (props, context) => {
           label={all_core_suppressions.name}
           buttons={
             <Button
-              content={'Add core suppression to the avaible cores pool'}
+              content={'Add core suppression to the available cores pool'}
               color={'purple'}
               onClick={() =>
                 act('Unlock Core Suppressions', {
