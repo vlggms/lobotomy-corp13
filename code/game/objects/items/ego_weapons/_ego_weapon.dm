@@ -148,7 +148,7 @@
 /obj/item/ego_weapon/proc/CheckRole(mob/living/target, mob/living/user)
 	if(user.sanity_lost)
 		return TRUE
-	var/list/immune = list("Sephirah", "Extraction Officer")		//These people should never be killed
+	var/list/immune = list("Sephirah", "Extraction Officer")		//These people should never be killed.
 	if(target.mind)
 		if(target.mind.assigned_role in immune)
 			to_chat(H, span_notice("You lock up and can't swing your weapon!"))
