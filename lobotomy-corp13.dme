@@ -3155,6 +3155,7 @@
 #include "code\modules\ordeals\_ordeal.dm"
 #include "code\modules\ordeals\_ordealtypes.dm"
 #include "code\modules\ordeals\amber_ordeals.dm"
+#include "code\modules\ordeals\black_ordeals.dm"
 #include "code\modules\ordeals\crimson_ordeals.dm"
 #include "code\modules\ordeals\gold_ordeals.dm"
 #include "code\modules\ordeals\green_ordeals.dm"

@@ -34,7 +34,7 @@
 	var/current_phase = "rose"
 	var/damage_taken = 0
 	var/list/been_hit = list()
-
+	var/datum/ordeal/ordeal_reference
 	//Var Lists
 	// 1=name 2=disc 3=melee damage type 4=lower damage 5= upper damage 6=icon 7=file location 8=x offset 9=y offset
 	var/list/phase_stats = list(
@@ -94,8 +94,8 @@
 /mob/living/simple_animal/hostile/megafauna/black_midnight/Initialize()
 	. = ..()
 	ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT) // Imagine floating.
-	rose_timer = world.time + 5 MINUTES
-	rose_timer_warning = world.time + 4 MINUTES
+	rose_timer = world.time + 4 MINUTES
+	rose_timer_warning = world.time + 3 MINUTES
 
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/Life()
@@ -143,9 +143,18 @@
 			if("distort")
 				Transform("oberon")
 		return
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
 	animate(src, alpha = 0, time = 20)
 	QDEL_IN(src, 20)
 	return ..()
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/Destroy()
+	if(ordeal_reference)
+		ordeal_reference.OnMobDeath(src)
+		ordeal_reference = null
+	..()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/gib()
 	if(current_phase != "paradise")
@@ -210,8 +219,8 @@
 	switch(current_phase)
 		if("rose")
 			can_move = FALSE
-			rose_timer = world.time + 5 MINUTES
-			rose_timer_warning = world.time + 4 MINUTES
+			rose_timer = world.time + 4 MINUTES
+			rose_timer_warning = world.time + 3 MINUTES
 		if("distort")
 			DFApplyFilters()
 			addtimer(CALLBACK(src, PROC_REF(CauseMelts)), 10)
@@ -922,8 +931,9 @@
 				new /mob/living/simple_animal/hostile/fairy_flower/pale(get_turf(L))//Spawns a flower
 			if(L.health >= 0)
 				if(!L.buckled)
-					var/obj/structure/fairy_vines/N = new(get_turf(L))
-					N.buckle_mob(L)
+					var/mob/living/simple_animal/hostile/fairy_vines/N = new(get_turf(L))
+					N.grab_victim = L
+					N.Strangle()
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(5)
 	icon_state = "fairy_king"
@@ -1000,55 +1010,58 @@
 	fspeed = 0.25
 	fdefense = 0.05
 
-/obj/structure/fairy_vines
-	name = "twisted tentacles"
+/mob/living/simple_animal/hostile/fairy_vines
+	name = "Twisted Tentacles"
 	desc = "Strange pink tentacles that are binding someone!"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "fairy_king_vines"
-	max_integrity = 400
-	buckle_lying = 0
+	maxHealth = 800
+	health = 800
+	faction = list("hostile")
+	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.8)
 	density = TRUE
-	anchored = TRUE
-	can_buckle = TRUE
+	del_on_death = TRUE
+	mob_size = MOB_SIZE_HUGE
+	gender = NEUTER
 	layer = ABOVE_MOB_LAYER
-	armor = list(
-		MELEE = 0,
-		BULLET = 0,
-		FIRE = -50,
-		RED_DAMAGE = -30,
-		WHITE_DAMAGE = 20,
-		BLACK_DAMAGE = 80,
-		PALE_DAMAGE = 0,
-	)
+	var/mob/living/carbon/human/grab_victim = null
 
-/obj/structure/fairy_vines/Initialize()
-	if(has_buckled_mobs())
-		for(var/mob/living/L in buckled_mobs)
-			L.Immobilize(20)
-			Choke(L)
-	QDEL_IN(src, 10 SECONDS)
+/mob/living/simple_animal/hostile/fairy_vines/Move()
+	return FALSE
 
-/obj/structure/fairy_vines/proc/Choke(mob/living/M)
-	M.apply_damage(10, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-	M.Immobilize(20)
+/mob/living/simple_animal/hostile/fairy_vines/CanAttack(atom/the_target)//should only attack when it has fists
+	return FALSE
+
+/mob/living/simple_animal/hostile/fairy_vines/Initialize()
+	. = ..()
+	QDEL_IN(src, 12 SECONDS)
+
+/mob/living/simple_animal/hostile/fairy_vines/proc/Strangle()
+	set waitfor = FALSE
+	grab_victim.Immobilize(10)
+	if(grab_victim.sanity_lost)
+		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
+	face_atom(grab_victim)
+	grab_victim.forceMove(get_turf(src))
+	SLEEP_CHECK_DEATH(5)
+	to_chat(grab_victim, span_userdanger("[src] has grabbed you! Damage the [src] to break free!"))
+	StrangleHit()
+
+/mob/living/simple_animal/hostile/fairy_vines/proc/StrangleHit(count)
+	if(!grab_victim)
+		qdel(src)
+		return
+	if(grab_victim.health < 0)
+		grab_victim.gib()
+		return
+	grab_victim.apply_damage(15, RED_DAMAGE, null, grab_victim.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nobodyis/strangle.ogg', 100, 0, 7)
-	addtimer(CALLBACK(src, PROC_REF(Choke),M), 2 SECONDS)
-
-/obj/structure/fairy_vines/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	return
-
-/obj/structure/fairy_vines/buckle_mob(mob/living/M, force, check_loc, buckle_mob_flags)
-	if(M.buckled)
-		return
-	return ..()
-
-/obj/structure/fairy_vines/user_unbuckle_mob(mob/living/buckled_mob, mob/living/carbon/human/user)
-	return
-
-/obj/structure/fairy_vines/proc/release_mob(mob/living/M)
-	unbuckle_mob(M,force=1)
-	src.visible_message(text("<span class='danger'>[M] falls free of [src]!</span>"))
-	M.update_icon()
+	playsound(get_turf(src), 'sound/effects/wounds/crack2.ogg', 200, 0, 7)
+	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
+		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
+	SLEEP_CHECK_DEATH(10)
+	StrangleHit()
 
 
