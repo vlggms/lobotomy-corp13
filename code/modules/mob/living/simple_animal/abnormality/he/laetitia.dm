@@ -26,6 +26,52 @@
 	gift_message = "I hope you're pleased with this!"
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	attack_action_types = list(/datum/action/cooldown/laetitia_gift)
+
+/datum/action/cooldown/laetitia_gift
+	name = "Gift"
+	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	button_icon_state = "prank_gift"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 1 SECONDS
+	var/view_distance = 3
+
+/datum/action/cooldown/laetitia_gift/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
+		return FALSE
+	//give gift
+	new /obj/item/laetitia_gift(owner.loc)
+	// var/targets = view(view_distance, owner)
+	// for(var/turf/T in targets)
+	// 	if(T.density)
+	// 		targets -= T
+	// var/spawn_place = pick(targets)
+	// new /obj/item/laetitia_gift(spawn_place)
+	StartCooldown()
+
+/obj/item/laetitia_gift
+	name = "Laetitia's Gift"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "giftdeliverypackage3"
+	var/opening = FALSE
+	var/oneuse = TRUE
+
+/obj/item/laetitia_gift/attack_self(mob/user)
+	if(opening)
+		to_chat(user, "<span class='warning'>You're already reading this!</span>")
+		return FALSE
+	opening = TRUE
+	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, TRUE)
+	to_chat(owner, "Doing thing!")
+	if(do_after(user, 5 SECONDS, src))
+		// do thing
+		to_chat(owner, "Thing done!")
+	qdel(src)
+
+
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)
