@@ -48,7 +48,7 @@
 	// Playables Vars
 	var/combat_map = FALSE
 //	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/artillery_sight)
-	var/datum/action/innate/abnormality_attack/toggle/artillery_sight/sight_ability
+	var/datum/action/innate/toggle_artillery_sight/sight_ability
 
 /mob/living/simple_animal/hostile/abnormality/general_b/Login()
 	. = ..()
@@ -62,8 +62,11 @@
 	src.AddSpell(shell_ability)
 	sight_ability = new
 	sight_ability.Grant(src)
-	if (IsCombatMap())
+	if(IsCombatMap())
 		combat_map = TRUE
+		sight_ability.new_sight = SEE_TURFS
+	else
+		sight_ability.new_sight = SEE_TURFS | SEE_THRU
 
 /mob/living/simple_animal/hostile/abnormality/general_b/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -176,7 +179,7 @@
 		if(L.stat == DEAD)
 			continue
 		targets += L
-	if(!targets)
+	if(!(targets.len > 0))
 		return
 	FireShell(pick(targets), FALSE)
 	volley_count+=1
@@ -252,13 +255,17 @@
 	var/fireball_range = 30
 
 	var/combat_map = FALSE
-	var/datum/action/innate/abnormality_attack/toggle/artillery_sight/sight_ability
+	var/datum/action/innate/toggle_artillery_sight/sight_ability
 
 /mob/living/simple_animal/hostile/artillery_bee/Login()
 	. = ..()
 	if(!. || !client)
 		return FALSE
 	sight_ability.original_sight = src.sight
+	if(IsCombatMap())
+		sight_ability.new_sight = SEE_TURFS
+	else
+		sight_ability.new_sight = SEE_TURFS | SEE_THRU
 
 /mob/living/simple_animal/hostile/artillery_bee/Initialize()
 	. = ..()
@@ -303,48 +310,68 @@
 	to_chat(src, span_notice("You fire at the target!"))
 	new /obj/effect/beeshell(target_turf, faction)
 
-/datum/action/innate/abnormality_attack/toggle/artillery_sight
+/datum/action/innate/toggle_artillery_sight
 	name = "Toggle Artillery Sight"
 	desc = "Toggle your ability to see extremely far away and through walls (but not see whats behind them)."
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	button_icon_state = "zoom_toggle0"
-	chosen_message = span_warning("You activate your artillery sight.")
-	button_icon_toggle_activated = "zoom_toggle1"
-	toggle_message = span_warning("You deactivate your artillery sight.")
-	button_icon_toggle_deactivated = "zoom_toggle0"
-	var/zoom_out_amt = 15
+	background_icon_state = "bg_abnormality"
+	var/toggle_on_message = span_warning("You increase your vision range!")
+	var/button_icon_toggle_activated = "zoom_toggle1"
+	var/toggle_off_message = span_warning("You deactivate your artillery sight.")
+	var/button_icon_toggle_deactivated = "zoom_toggle0"
+	var/zoom_level = 0
+	var/zoom_out_amt_level1 = 5
+	var/zoom_out_amt_level2 = 15
+	var/zoom_out_amt
 	var/zoom_amt = 10
 	var/original_sight
+	var/new_sight = SEE_TURFS
 
-/datum/action/innate/abnormality_attack/toggle/artillery_sight/Grant(mob/living/L)
-	return ..()
+/datum/action/innate/toggle_artillery_sight/Activate()
+	to_chat(owner, toggle_on_message)
+	zoom_level ++
+	switch(zoom_level)
+		if(1)
+			zoom_out_amt = zoom_out_amt_level1
+			ActivateSignals()
+		if(2)
+			zoom_out_amt = zoom_out_amt_level2
+			button_icon_state = button_icon_toggle_activated
+			UpdateButtonIcon()
+			active = TRUE
 
-/datum/action/innate/abnormality_attack/toggle/artillery_sight/Activate()
-	ActivateSignals()
-	owner.sight |= SEE_TURFS
+	owner.sight |= new_sight
 	owner.regenerate_icons()
 	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
 	return ..()
 
-/datum/action/innate/abnormality_attack/toggle/artillery_sight/proc/ActivateSignals()
+/datum/action/innate/toggle_artillery_sight/proc/ActivateSignals()
 	SIGNAL_HANDLER
 
 	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Deactivate))
 	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(Rotate))
 
-/datum/action/innate/abnormality_attack/toggle/artillery_sight/Deactivate()
+/datum/action/innate/toggle_artillery_sight/Deactivate()
+	to_chat(owner, toggle_off_message)
 	DeactivateSignals()
+	button_icon_state = button_icon_toggle_deactivated
+	UpdateButtonIcon()
+
 	owner.sight = original_sight
 	owner.regenerate_icons()
+	zoom_level = 0
+	active = FALSE
 	owner.client.view_size.zoomIn()
 	return ..()
 
-/datum/action/innate/abnormality_attack/toggle/artillery_sight/proc/DeactivateSignals()
+/datum/action/innate/toggle_artillery_sight/proc/DeactivateSignals()
 	SIGNAL_HANDLER
 
 	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
 	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
 
-/datum/action/innate/abnormality_attack/toggle/artillery_sight/proc/Rotate(old_dir, new_dir)
+/datum/action/innate/toggle_artillery_sight/proc/Rotate(old_dir, new_dir)
 	SIGNAL_HANDLER
 
 	owner.regenerate_icons()
@@ -352,10 +379,10 @@
 
 /obj/effect/proc_holder/ability/aimed/artillery_shell
 	name = "Fire Artillery Shell"
-	desc = "An ability that allows the user to fire a shell from their artillery cannon.\n"
+	desc = "An ability that allows the user to fire a shell from their artillery cannon."
 	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
 	action_background_icon_state = "bg_abnormality"
-	action_icon_state = "artillery"
+	action_icon_state = "artillery0"
 	base_icon_state = "artillery"
 	cooldown_time = 10 SECONDS
 
