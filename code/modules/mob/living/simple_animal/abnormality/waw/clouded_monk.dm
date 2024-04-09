@@ -79,13 +79,15 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
 		owner.icon_state = "cloudedmonk"
+		QDEL_NULL(soundloop)
 		active = 1
 
 /datum/action/innate/change_icon_merm/Deactivate()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		owner.icon = 'ModularTegustation/Teguicons/34x48.dmi'
+		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
 		owner.icon_state = "pretamonk"
+		soundloop = new(list(src), FALSE)
 		active = 0
 
 //init
