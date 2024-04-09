@@ -479,7 +479,7 @@
 				return
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/Weapon_Swap()
-	if(!can_act || distort_weapon_special > world.time || distort_second_phase)
+	if(!can_act || distort_weapon_swap > world.time || distort_second_phase)
 		return
 	current_weapon = pick(weapon_type)
 	can_move = FALSE
@@ -496,6 +496,7 @@
 	rapid_melee = weapon_stats[current_weapon][4]
 	icon_state = weapon_stats[current_weapon][5]
 	attack_sound  = weapon_stats[current_weapon][6]
+	distort_weapon_swap = world.time + distort_weapon_swap_cooldown
 	update_icon()
 	if(current_weapon == "distortion")
 		ChangeResistances(list(RED_DAMAGE = 0.15, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.15, PALE_DAMAGE = 0.25))
@@ -844,18 +845,13 @@
 			oberon_spawned_flowers -= L
 	if(length(oberon_spawned_flowers) >= oberon_flower_spawn_limit)
 		return
-	//Actually spawning one
-	var/list/spawn_turfs = GLOB.xeno_spawn.Copy()
-	if(!LAZYLEN(spawn_turfs)) //if list empty, recopy xeno spawns
-		spawn_turfs = GLOB.xeno_spawn.Copy()
-	var/X = pick_n_take(spawn_turfs)
-	var/turf/T = get_turf(X)
-	var/list/deployment_area = list()
-	var/turf/deploy_spot = T //spot you are being deployed
-	if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
-		deploy_spot = pick_n_take(deployment_area)
+	var/list/spawns = GLOB.xeno_spawn.Copy()
+	var/A = pick_n_take(spawns)
+	var/turf/T = get_turf(A)
+	if(locate(/mob/living/simple_animal/hostile/fairy_flower) in get_turf(T))//Needs to be tested in a multiplayer environment
+		T = get_ranged_target_turf(T, pick(GLOB.alldirs), 1)//This will move the target's turf to an adjacent one, preventing stacking and visual clutter to some degree.
 	var/flower=pick(/mob/living/simple_animal/hostile/fairy_flower/power,/mob/living/simple_animal/hostile/fairy_flower/speed,/mob/living/simple_animal/hostile/fairy_flower/defense)
-	var/mob/living/simple_animal/hostile/fairy_flower/F = new flower(get_turf(deploy_spot))//Spawns the flower
+	var/mob/living/simple_animal/hostile/fairy_flower/F = new flower(T)//Spawns the flower
 	F.master = src
 	F.Boost()
 	oberon_spawned_flowers+=F
@@ -909,6 +905,7 @@
 	if(isliving(attacked_target))
 		var/mob/living/L = attacked_target
 		L.apply_damage(melee_damage_lower, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/ChokeHold()
 	if(oberon_chokehold > world.time)
