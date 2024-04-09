@@ -28,7 +28,8 @@
 	ranged_cooldown_time = 5
 	death_message = "falls to the ground, decaying into glowing particles."
 	death_sound = 'ModularTegustation/Tegusounds/claw/death.ogg'
-	footstep_type = FOOTSTEP_MOB_HEAVY
+	patrol_cooldown_time = 5 SECONDS
+	can_patrol = TRUE
 	var/can_move = FALSE
 	var/can_act = TRUE
 	var/current_phase = "rose"
@@ -71,7 +72,7 @@
 	var/distort_weapon_special
 	var/distort_weapon_special_cooldown = 25 SECONDS
 	var/distort_weapon_swap
-	var/distort_weapon_swap_cooldown = 1 MINUTES
+	var/distort_weapon_swap_cooldown = 45 SECONDS
 	var/obj/viscon_filtereffect/distortedform/current_effect
 	var/distorted_meltdown_punish
 	var/distorted_meltdown_punish_cooldown = 90 SECONDS
@@ -118,7 +119,7 @@
 				if(faction_check_mob(H))
 					continue
 				H.apply_status_effect(STATUS_EFFECT_IRRATIONAL_FEAR)
-			if(health <= 1250 && !distort_second_phase)
+			if(health <= 1500 && !distort_second_phase)
 				Weapon_DF()
 			if(distort_weapon_swap <= world.time)
 				Weapon_Swap()
@@ -197,6 +198,7 @@
 	if(!HAS_TRAIT(src, TRAIT_NO_FLOATING_ANIM))
 		ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
 	new /obj/effect/temp_visual/distortedform_shift(get_turf(src))
+	distort_second_phase = FALSE
 	sleep(3)
 	alpha = 255
 	can_move = TRUE
@@ -508,7 +510,7 @@
 		UpdateSpeed()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/Weapon_DF()
-	if(!can_act || distort_weapon_special > world.time || distort_second_phase)
+	if(!can_act || distort_second_phase)
 		return
 	distorted_meltdown_punish = distorted_meltdown_punish_cooldown + world.time
 	distort_second_phase = TRUE
@@ -565,7 +567,7 @@
 	can_move = FALSE
 	face_atom(get_step(src,SOUTH))
 	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
-	icon_state = "distortion_decapo_attack"
+	icon_state = "distortion_dacapo_attack"
 	new /obj/effect/temp_visual/distortedvisage/distortedvisage/tso(get_turf(src))
 	var/turf/TT = get_turf(target)
 	face_atom(TT)
@@ -681,7 +683,7 @@
 	SLEEP_CHECK_DEATH(20)
 	SwiftDash(target, 25, 20,0)
 
-/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/SwiftDash(atom/target, distance, wait_time,dash_amount)
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/SwiftDash(mob/living/target, distance, wait_time,dash_amount)
 	been_hit = list()
 	var/turf/end_turf = get_ranged_target_turf_direct(src, target, distance, 0)
 	var/list/turf_list = getline(src, end_turf)
@@ -714,6 +716,12 @@
 			SLEEP_CHECK_DEATH(0.25)
 	if(dash_amount < 3)
 		SLEEP_CHECK_DEATH(10)
+		if(ishuman(target))
+			var/list/turf_list2 = getline(src, target)//meant to check if a player is behind a dense object
+			for(var/turf/T in turf_list2)
+				if(T.density)
+					DfGrab(target, dash_amount)//pull them back in if they're hiding
+					return
 		SwiftDash(target, 25, 20,dash_amount+1)
 		return
 	SLEEP_CHECK_DEATH(4 SECONDS)
@@ -731,6 +739,35 @@
 			if ishuman(L)
 				for(var/damage_type in list(WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 					L.apply_damage(25, damage_type, null, L.run_armor_check(null, damage_type))
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/DfGrab(mob/living/carbon/human/target,dash_amount)
+	face_atom(get_step(src,SOUTH))
+	playsound(target, 'sound/abnormalities/fairy_longlegs/attack.ogg', 50, FALSE)
+	target.Immobilize(15)
+	if(target.sanity_lost)
+		target.Stun(15) //Immobilize does not stop AI controllers from moving, for some reason.
+	target.add_overlay(icon('icons/effects/effects.dmi', "distortedgrab"))
+	addtimer(CALLBACK(target, TYPE_PROC_REF(/atom, cut_overlay), \
+							icon('icons/effects/effects.dmi', "distortedgrab")), 10)
+	var/list/all_turfs = RANGE_TURFS(1, src) //We need to grab the player, but also have them be visible.
+	for(var/turf/T in all_turfs)
+		if(T == get_turf(src))
+			continue
+		if(get_dir(src,T) == NORTH) //directly north is icky, blocks view.
+			continue
+		var/list/target_line = getline(T, src)
+		var/available_turf
+		for(var/turf/line_turf in target_line)
+			if(line_turf.is_blocked_turf(exclude_mobs = TRUE))
+				available_turf = FALSE
+				break
+			available_turf = TRUE
+		if(!available_turf)
+			continue
+		target.forceMove(T)
+		break
+	SLEEP_CHECK_DEATH(10)
+	SwiftDash(target, 25, 20,dash_amount+1)
 
 /obj/effect/temp_visual/distortedvisage
 	name = "Visual Distortion"
