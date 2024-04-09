@@ -47,8 +47,8 @@
 /obj/structure/altrefiner/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
 	if(!requires_item)
-		to_chat(user, span_warning("This machine does not accept objects!"))
-		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+		to_chat(user, span_notice("This machine does not accept objects, so instead you touched it"))
+		attack_hand(user)
 		return FALSE
 
 	if(officer_only && user?.mind?.assigned_role != "Extraction Officer")
