@@ -4,9 +4,8 @@
 	icon_state = "dominator-yellow"
 
 /obj/structure/altrefiner/quick/attackby(obj/item/I, mob/living/user, params)
-	if(user?.mind?.assigned_role != "Extraction Officer")
-		to_chat(user, span_warning("Only the Extraction Officer can use this machine."))
-		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+	. = ..()
+	if(!.)
 		return
 
 	if(I.type != /obj/item/rawpe)
