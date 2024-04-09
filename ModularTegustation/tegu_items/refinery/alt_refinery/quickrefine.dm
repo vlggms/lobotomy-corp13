@@ -2,6 +2,7 @@
 	name = "Quick Refinery"
 	desc = "A machine used by the Extraction Officer to ship PE to command to refine."
 	icon_state = "dominator-yellow"
+	requires_item = TRUE
 
 /obj/structure/altrefiner/quick/attackby(obj/item/I, mob/living/user, params)
 	. = ..()

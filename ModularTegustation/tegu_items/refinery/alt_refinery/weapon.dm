@@ -2,6 +2,7 @@
 	name = "EGO Refinery"
 	desc = "A machine used by the Extraction Officer to automatically melt EGO and potentially spit out a refined PE."
 	icon_state = "dominator-green"
+	requires_item = TRUE
 	var/list/meltable
 
 /obj/structure/altrefiner/weapon/Initialize(mapload)

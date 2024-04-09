@@ -10,14 +10,27 @@
 	var/officer_only = TRUE
 	/// the PE cost that the refinery consumes upon use
 	var/extraction_cost = 0
+	/// toggles if attack_hand should tell the person to use an item instead of just clicking the refinery
+	var/requires_item = FALSE
 
 /obj/structure/altrefiner/Initialize(mapload)
 	. = ..()
 	GLOB.lobotomy_devices += src
 
+/obj/structure/altrefiner/examine(mob/user)
+	. = ..()
+	if(requires_item)
+		. += span_notice("Use an object on this machine to start the extraction process[officer_only ? " if you are an extraction officer" : ""].")
+	else
+		. += span_notice("Click on this machine to start the extraction process[officer_only ? " if you are an extraction officer" : ""].")
+
 /obj/structure/altrefiner/attack_hand(mob/living/carbon/M)
 	. = ..()
-	SHOULD_CALL_PARENT(TRUE) // bit akward when you forget a parent call to an object that should most definetelly have it
+	if(requires_item)
+		to_chat(M, span_warning("This machine needs an object for proper operation."))
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+		return FALSE
+
 	if(officer_only && M?.mind?.assigned_role != "Extraction Officer")
 		to_chat(M, span_warning("Only the Extraction Officer can use this machine."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
@@ -33,7 +46,11 @@
 
 /obj/structure/altrefiner/attackby(obj/item/I, mob/living/user, params)
 	. = ..()
-	SHOULD_CALL_PARENT(TRUE) // yeah, it is
+	if(!requires_item)
+		to_chat(user, span_warning("This machine does not accept objects!"))
+		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+		return FALSE
+
 	if(officer_only && user?.mind?.assigned_role != "Extraction Officer")
 		to_chat(user, span_warning("Only the Extraction Officer can use this machine."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
