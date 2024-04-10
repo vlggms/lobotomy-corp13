@@ -722,11 +722,9 @@
 	if(dash_amount < 3)
 		SLEEP_CHECK_DEATH(10)
 		if(ishuman(target))
-			var/list/turf_list2 = getline(src, target)//meant to check if a player is behind a dense object
-			for(var/turf/T in turf_list2)
-				if(T.density)
-					DfGrab(target, dash_amount)//pull them back in if they're hiding
-					return
+			if(!locate(target) in view(vision_range,src))
+				DfGrab(target, dash_amount)//pull them back in if they're hiding
+				return
 		SwiftDash(target, 25, 20,dash_amount+1)
 		return
 	SLEEP_CHECK_DEATH(4 SECONDS)
