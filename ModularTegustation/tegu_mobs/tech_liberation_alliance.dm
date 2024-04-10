@@ -14,36 +14,23 @@ Human EGO enemies culminate into a boss enemy meant to be fought in end game cit
 Wrecking Bot - HE - Self Stun, AoE, faster.
 Sawing Bot - HE - Constant Threat, Stunned by taking too many hits.
 
+Sloshing - Miss attacks based on how tipsy they are.
+Heavy Sloshing - Gets tipsy on hit, gain shield every so often based on how tipsy they are, LOW DPS HIGH TANKYNESS.
+Churning Sloshing - Get tipsy on hit, every so often hit with a special knockback attack that knocks you back and deals mroe damage the more tipsy they are.
 Sloshing - TETH - Increasing self barrier and typsiness (drunkess)
 Red Sheet - TETH - Self accumulating stacks, Big damage attack on stacks, Takes damage by taking too many hits while stacked.
 Red Sheet Elite - HE - Self accumulating stacks, Big damage RANGED attack on stacks, Takes damage by taking too many hits while stacked.
-Sunshower - HE - Switches between agression and defense, High mobility dashes, Guard reflect stance.
-Sunshower Elite - WAW - Switches between agression and defense, High mobility dashes, Guard reflect stance + minion summoning, Punishment for not killing minions.
+Sunshower - HE - Switches between agression and defense, High mobility dashes, Guard reflect stance into Puddle Stomp.
+Sunshower Elite - WAW - Switches between agression and defense, High mobility dashes, Guard reflect stance + minion summoning, Punishment for not killing minions with multi dashes and Puddle Stomp.
 Spicebush - ALEPH - Switches between agression and defense, High mobility dashes, Ranged + AoE focused defensive stance, Minion summoning, Punishment for not killing minions,
 Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taking too many hits while stacked. (fuck you thats why)
 */
-
-/mob/living/simple_animal/hostile/tech_liberation
+/mob/living/simple_animal/hostile/humanoid/tech_liberation
 	name = "tech liberation member"
 	desc = "They forgot their EGO at home..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	faction = list("hostile")
-	gender = NEUTER
-	mob_biotypes = MOB_ORGANIC|MOB_HUMANOID
-	robust_searching = TRUE
-	see_in_dark = 7
-	vision_range = 12
-	aggro_vision_range = 20
-	stat_attack = HARD_CRIT
-	melee_damage_type = BLACK_DAMAGE
-	butcher_results = list(/obj/item/food/meat/slab = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab = 1)
-	blood_volume = BLOOD_VOLUME_NORMAL
-	mob_size = MOB_SIZE_HUGE
-	a_intent = INTENT_HARM
 
-//TETH goon
-/mob/living/simple_animal/hostile/tech_liberation/sloshing
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing
 	name = "liberation alliance Sloshing EGO user"
 	desc = ""
 	icon_state = "sloshing"
@@ -52,50 +39,105 @@ Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taki
 	health = 300
 	move_to_delay = 4
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 10
-	melee_damage_upper = 15
+	melee_damage_lower = 20
+	melee_damage_upper = 25
+	melee_damage_type = BLACK_DAMAGE
 	attack_sound = 'sound/weapons/fixer/generic/knife2.ogg'
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
 
-	var/tipsy = 0 //Maximum of 5, the higher the tipsiness the less likely it is to sucesfully attack and walk correctly, but generates a bigger shield periodically.
+	var/tipsy = 0 //the higher the tipsiness the less likely it is to sucesfully attack and walk correctly, but generates a bigger shield periodically.
+	var/tipsy_max = 5
+	var/tipsy_fail_chance = 15
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/AttackingTarget(atom/attacked_target)
+	if(prob (tipsy_fail_chance * tipsy)) //The drunker we are the higher probability to fail attacking
+		visible_message("[src] stumbles drunkly!")
+		do_shaky_animation(0.5) //TODO: Change to a better animation.
+		return
+	if(tipsy < tipsy_max) //Gets drunker on every hit
+		tipsy ++
+	return ..()
+
+//TETH goon
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/heavy
+	name = "liberation alliance heavy Sloshing EGO user"
+	desc = ""
+	icon_state = "sloshing"
+	icon_living = "sloshing"
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 
 	var/shield = 0
 	var/shield_cooldown
 	var/shield_cooldown_time = 30 SECONDS
-	var/shield_amount = 50 //Multiplied by tipsy stacks, goes up to 300
+	var/shield_amount = 50 // Multiplied by tipsy stacks.
 
-/mob/living/simple_animal/hostile/tech_liberation/sloshing/proc/ShieldSelf()
-	shield_cooldown = world.time + shield_cooldown_time
-
-	shield = shield_amount * (tipsy + 1)
-	tipsy = 0
-
-/mob/living/simple_animal/hostile/tech_liberation/sloshing/AttackingTarget(target)
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/heavy/AttackingTarget(atom/attacked_target)
 	if(shield_cooldown <= world.time)
 		ShieldSelf()
 		return
+	return ..()
 
-	if(prob (15 * tipsy)) //The drunker we are the higher probability to fail attacking
-		to_chat(user, span_notice("[src] stumbles drunkly!"))
-		return
-	if(tipsy < 5) //Gets drunker on every hit
-		tipsy ++
-	. = ..()
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/heavy/proc/ShieldSelf()
+	shield_cooldown = world.time + shield_cooldown_time
+	visible_message("[src] is covered by a slimy protective substance!")
+	shield = shield_amount * (tipsy + 1)
+	tipsy = 0
 
-/mob/living/simple_animal/hostile/tech_liberation/sloshing/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/heavy/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(shield)
 		shield -= amount
-		if(shield < 0) //If we dont have any more shield, deal the remaining damage to our health.
-			amount = (shield *-1)
+		if(shield < 0) // If we dont have any more shield, deal the remaining damage to our health.
+			amount = (shield * -1)
 			shield = 0
-		else //We still have shield, no damage is dealt.
+		else // We still have shield, no damage is dealt.
 			amount = 0
 	. = ..()
 
-//ADD AN OVERLAY/VISUAL INDICATOR OF THE SHIELD
 
-/mob/living/simple_animal/hostile/tech_liberation/red_sheet
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/churning
+	name = "liberation alliance churning Sloshing EGO user"
+	desc = ""
+	icon_state = "sloshing"
+	icon_living = "sloshing"
+	melee_damage_lower = 26
+	melee_damage_upper = 32
+
+	var/slime_cooldown
+	var/slime_cooldown_time = 20 SECONDS
+	var/slime_damage = 25
+	var/slime_damage_multiplier = 5
+	var/slime_knockback = 1
+
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/churning/AttackingTarget(atom/attacked_target)
+	if(slime_cooldown <= world.time)
+		if(isliving(target))
+			ChurningSlime(target)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing/churning/proc/ChurningSlime(mob/living/target)
+	if(!isliving(target))
+		return
+	playsound(get_turf(src), 'sound/abnormalities/apocalypse/swing.ogg', 75, 0, 3) //TODO: SWAP THIS SOUND
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	if(!target.Adjacent(targets_from))
+		return
+
+	slime_cooldown = world.time + slime_cooldown_time
+	visible_message(span_danger("[src] splashes into [target] with the corrosive slime!"))
+	var/total_damage = slime_damage + (slime_damage_multiplier * tipsy)
+	target.apply_damage(total_damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE))
+	
+	//Apply knockback to target.
+	var/atom/throw_target = get_edge_target_turf(target, get_dir(src,target))
+	if(!target.anchored)
+		target.safe_throw_at(throw_target, slime_knockback * tipsy, 20, src, gentle = TRUE)
+	tipsy = 0
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet
 	name = "liberation alliance Red Sheet EGO user"
 	desc = ""
 	icon_state = "red_sheet"
@@ -104,29 +146,78 @@ Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taki
 	health = 300
 	move_to_delay = 5
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
-	melee_damage_lower = 20
-	melee_damage_upper = 22
+	melee_damage_lower = 10
+	melee_damage_upper = 11
+	rapid_melee = 2
 	attack_sound = 'sound/weapons/fixer/generic/knife2.ogg'
-	attack_verb_continuous = "smashes"
-	attack_verb_simple = "smash"
+	attack_verb_continuous = "whacks"
+	attack_verb_simple = "whack"
 
+	var/can_act = TRUE
 	var/talisman = 0
-	var/talisman_damage = 40 //BLACK
+	var/talisman_max = 6
+	var/talisman_damage = 10 //BLACK
+	var/talisman_loss_on_taking_damage = 2
 	var/talisman_self_damage = 150 //BRUTE
+	var/dash_range = 5
 
-	var/hits_taken //Used when talismans are at maximum to explode whenever a certain amount is reached
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	if(can_act)
+		return ..()
+	if(talisman > 0)
+		talisman -= talisman_loss_on_taking_damage
+		return ..()
+	talisman = 0
+	can_act = TRUE
+	amount += talisman_self_damage
+	//TODO ADD SOUNDS AND VISUALS HERE
+	return ..()	
 
-/mob/living/simple_animal/hostile/tech_liberation/red_sheet/AttackingTarget(target)
-	if(talisman < 6)
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return
+	if(talisman < talisman_max)
 		talisman ++
-		if (talisman = 6)
-			//Animation stuff goes here
-	else
-		target.apply_damage(talisman_damage, BLACK_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-		.= ..()
+		return ..()
+	PrepareAttack(target);
 
-/mob/living/simple_animal/hostile/tech_liberation/sloshing/red_sheet/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
-	if(talisman = 6)
-		hits_taken += 1
-		amount += (maxHealth/2)
-	. = ..()
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/proc/PrepareAttack(target)	
+	can_act = FALSE
+	var/dash_dir = REVERSE_DIR(get_dir(src, target))
+	var/turf/dash_target = get_edge_target_turf(src, dash_dir)
+	Dash(dash_target)
+	addtimer(CALLBACK(src, PROC_REF(SpecialAttack), target), 2.5 SECONDS)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/proc/SpecialAttack(mob/living/target)
+	//TODO add visuals and feedback
+	Dash(get_turf(target))
+	can_act = TRUE
+	var/total_damage = talisman * talisman_damage
+	talisman = 0
+	if(!isliving(target))
+		return
+	if(!target.Adjacent(targets_from))
+		return
+	target.apply_damage(total_damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE))
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/proc/Dash(turf/dash_target)
+	//TODO ADD SOUNDS
+	var/turf/dash_start = get_turf(src)
+	var/dash_line = getline(dash_start, dash_target)
+	var/current_dash_tile = 0
+	for(var/turf/T in dash_line)
+		current_dash_tile ++
+		if(current_dash_tile >= dash_range)
+			return
+		if(T.density)
+			return
+		face_atom(target)
+		forceMove(T)
+		SLEEP_CHECK_DEATH(0.05 SECONDS)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/elite
