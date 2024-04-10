@@ -341,9 +341,14 @@
 				distorted_meltdown_punish = distorted_meltdown_punish_cooldown + world.time
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/bullet_act(obj/projectile/P)
-	if(current_phase == "distort" && current_weapon == "distortion")
-		visible_message(span_userdanger("[src] deflects \the [P]!"))
-		P.Destroy()//melee it bozo
+	switch(current_phase)
+		if("rose")
+			visible_message(span_userdanger("[src] is unfazed by \the [P]!"))
+			P.Destroy()
+		if("distortion")
+			visible_message(span_userdanger("[src] deflects \the [P]!"))
+			P.Destroy()//melee it bozo
+
 
 //rose procs
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/Rose_Warn()
