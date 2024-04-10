@@ -79,7 +79,6 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
 		owner.icon_state = "cloudedmonk"
-		QDEL_NULL(soundloop)
 		active = 1
 
 /datum/action/innate/change_icon_monk/Deactivate()
@@ -87,14 +86,14 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
 		owner.icon_state = "pretamonk"
-		soundloop = new(list(src), FALSE)
 		active = 0
 
 //init
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Initialize()
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath)) // Hell
-	soundloop = new(list(src), FALSE)
+	if(SSmaptype.maptype != "limbus_labs")
+		soundloop = new(list(src), FALSE)
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
