@@ -82,7 +82,7 @@
 		QDEL_NULL(soundloop)
 		active = 1
 
-/datum/action/innate/change_icon_merm/Deactivate()
+/datum/action/innate/change_icon_monk/Deactivate()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		owner.icon = 'ModularTegustation/Teguicons/32x48.dmi'
