@@ -1,10 +1,5 @@
 /*
  ~ Coded by Mel Taculo
-
- !!!!!!!!!
-Olha a sua agenda pra referencia de design de kd bixo
- !!!!!!!!!
-
 --- TECHNOLOGY LIBERATION ALLIANCE ---
 Enemies from Limbus company,
 Represents a full set of enemies specialized in RED and BLACK damage and a few different gimmicks.
@@ -14,16 +9,14 @@ Human EGO enemies culminate into a boss enemy meant to be fought in end game cit
 Wrecking Bot - HE - Self Stun, AoE, faster.
 Sawing Bot - HE - Constant Threat, Stunned by taking too many hits.
 
-Sloshing - Miss attacks based on how tipsy they are.
-Heavy Sloshing - Gets tipsy on hit, gain shield every so often based on how tipsy they are, LOW DPS HIGH TANKYNESS.
+Sloshing - Gets tipsy on hit, miss attacks based on how tipsy they are.
+Heavy Sloshing - Gain shield every so often based on how tipsy they are.
 Churning Sloshing - Get tipsy on hit, every so often hit with a special knockback attack that knocks you back and deals mroe damage the more tipsy they are.
 Sloshing - TETH - Increasing self barrier and typsiness (drunkess)
 Red Sheet - TETH - Self accumulating stacks, Big damage attack on stacks, Takes damage by taking too many hits while stacked.
 Red Sheet Elite - HE - Self accumulating stacks, Big damage RANGED attack on stacks, Takes damage by taking too many hits while stacked.
 Sunshower - HE - Switches between agression and defense, High mobility dashes, Guard reflect stance into Puddle Stomp.
 Sunshower Elite - WAW - Switches between agression and defense, High mobility dashes, Guard reflect stance + minion summoning, Punishment for not killing minions with multi dashes and Puddle Stomp.
-Spicebush - ALEPH - Switches between agression and defense, High mobility dashes, Ranged + AoE focused defensive stance, Minion summoning, Punishment for not killing minions,
-Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taking too many hits while stacked. (fuck you thats why)
 */
 /mob/living/simple_animal/hostile/humanoid/tech_liberation
 	name = "tech liberation member"
@@ -160,6 +153,7 @@ Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taki
 	var/talisman_loss_on_taking_damage = 2
 	var/talisman_self_damage = 150 //BRUTE
 	var/dash_range = 5
+	var/dash_initial_range = 3
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	if(can_act)
@@ -190,12 +184,12 @@ Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taki
 	can_act = FALSE
 	var/dash_dir = REVERSE_DIR(get_dir(src, target))
 	var/turf/dash_target = get_edge_target_turf(src, dash_dir)
-	Dash(dash_target)
+	Dash(dash_target, initial = TRUE)
 	addtimer(CALLBACK(src, PROC_REF(SpecialAttack), target), 2.5 SECONDS)
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/proc/SpecialAttack(mob/living/target)
 	//TODO add visuals and feedback
-	Dash(get_turf(target))
+	Dash(get_turf(target), initial = FALSE)
 	can_act = TRUE
 	var/total_damage = talisman * talisman_damage
 	talisman = 0
@@ -205,11 +199,14 @@ Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taki
 		return
 	target.apply_damage(total_damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE))
 
-/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/proc/Dash(turf/dash_target)
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/proc/Dash(turf/dash_target, initial = FALSE)
 	//TODO ADD SOUNDS
 	var/turf/dash_start = get_turf(src)
 	var/dash_line = getline(dash_start, dash_target)
 	var/current_dash_tile = 0
+	var/dash_max_range = dash_range
+	if(initial)
+		dash_max_range = dash_initial_range
 	for(var/turf/T in dash_line)
 		current_dash_tile ++
 		if(current_dash_tile >= dash_range)
@@ -220,4 +217,55 @@ Self accumulating stacks, Payoff attacks that spend stacks, Takes damage by taki
 		forceMove(T)
 		SLEEP_CHECK_DEATH(0.05 SECONDS)
 
-/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/elite
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/hooded
+	name = "liberation alliance hooded Red Sheet EGO user"
+	desc = ""
+	icon_state = "red_sheet_elite"
+	icon_living = "red_sheet_elite"
+	maxHealth = 900
+	health = 900
+	move_to_delay = 4
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 20
+	melee_damage_upper = 22
+	rapid_melee = 2
+	attack_sound = 'sound/weapons/fixer/generic/knife2.ogg'
+	attack_verb_continuous = "whacks"
+	attack_verb_simple = "whack"
+
+	talisman_damage = 20
+	talisman_loss_on_taking_damage = 1
+	talisman_self_damage = 300
+	dash_range = 7
+	dash_initial_range = 4
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/hooded/SpecialAttack(atom/target)
+	//TODO add visuals and feedback
+	var/total_damage = talisman * talisman_damage
+	talisman = 0
+	if(!(target in view(dash_range, src)))
+		var/turf/start_turf = get_turf(src)
+		var/obj/projectile/talisman/P = new(start_turf)
+		P.starting = start_turf
+		P.firer = src
+		P.fired_from = start_turf
+		P.yo = target.y - start_turf.y
+		P.xo = target.x - start_turf.x
+		P.original = target
+		P.preparePixelProjectile(target, start_turf)
+		P.damage = total_damage * 1.5
+		P.fire()
+		can_act = TRUE
+		return
+	Dash(get_turf(target), initial = FALSE)
+	can_act = TRUE
+	for(var/turf/T in view(1, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		HurtInTurf(T, list(), total_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+
+/obj/projectile/talisman //TODO Pretty this up
+	name = "talisman"
+	desc = ""
+	icon_state = "despair"
+	damage_type = BLACK_DAMAGE
+	damage = 40
