@@ -13,7 +13,7 @@
 	outfit = /datum/outfit/job/high_sec_officer
 	display_order = 9.5
 
-	job_important = "You are a High Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the High Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them."
+	job_important = "You are a High Security Officer, hired by LCB. Your job to ensure the safety of the researchers of the High Security Zone. Deal with any hazards that occur with the zone, and attempt to coerce abnormalities to stay. If you are unable to keep the abnormalities to stay through coersion, suppress them. During your free time, feel free to interact with the abnormalities in your zone."
 
 	alt_titles = list()
 	roundstart_attributes = list(
