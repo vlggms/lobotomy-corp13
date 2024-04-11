@@ -70,7 +70,7 @@
 			if(!ishuman(mob)) // cut all the non-humans from the list
 				nearby -= mob
 			if(mob.stat == DEAD)
-					nearby -= mob
+				nearby -= mob
 			if(mob in galaxy_friend) //cut who is already a friend
 				nearby -= mob
 		var/mob/living/carbon/human/new_friend = input(src, "Choose who you want to gift a pebble to", "Select your new friend") as null|anything in nearby // pick someone from the list
