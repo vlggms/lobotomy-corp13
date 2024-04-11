@@ -14,7 +14,7 @@ GLOBAL_LIST_INIT(low_security, list(
 	/mob/living/simple_animal/hostile/abnormality/scorched_girl
 	/mob/living/simple_animal/hostile/abnormality/eris
 	/mob/living/simple_animal/hostile/abnormality/schadenfreude
-
+	/mob/living/simple_animal/hostile/abnormality/galaxy_child
 ))
 
 GLOBAL_LIST_INIT(high_security, list(
