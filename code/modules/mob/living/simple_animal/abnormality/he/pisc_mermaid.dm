@@ -51,6 +51,7 @@
 	response_help_simple = "pet"
 	pet_bonus = TRUE
 	pet_bonus_emote = "smiles!"
+	var/suffocation_range = 10
 	var/workingflag = FALSE
 	var/pet_count = 0
 	var/mob/living/carbon/human/petter
@@ -140,7 +141,7 @@
 	if(!.)
 		return
 	if(!love_target)
-		for(var/mob/living/carbon/human/H in oview(src, vision_range))
+		for(var/mob/living/carbon/human/H in oview(src, suffocation_range))
 			if(IsCombatMap())
 				if(faction_check(src.faction, H.faction)) // I LOVE NESTING IF STATEMENTS
 					continue
