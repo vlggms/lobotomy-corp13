@@ -11,6 +11,9 @@ GLOBAL_LIST_INIT(low_security, list(
 	/mob/living/simple_animal/hostile/abnormality/fairy_longlegs,
 	/mob/living/simple_animal/hostile/abnormality/pisc_mermaid,
 	/mob/living/simple_animal/hostile/abnormality/der_freischutz,
+	/mob/living/simple_animal/hostile/abnormality/scorched_girl
+	/mob/living/simple_animal/hostile/abnormality/eris
+	/mob/living/simple_animal/hostile/abnormality/schadenfreude
 
 ))
 
