@@ -41,7 +41,7 @@
 	var/galaxy_cooldown
 	var/galaxy_cooldown_time = 5 SECONDS
 
-	attack_action_types = list(/datum/action/cooldown/friend_gift, /datum/action/cooldown/giftbreak)
+	attack_action_types = list(/datum/action/cooldown/friend_gift, /datum/action/cooldown/galaxygiftbreak)
 
 /datum/action/cooldown/friend_gift
 	name = "Gift Pebble"
@@ -82,13 +82,13 @@
 		icon_state = "galaxy"
 		depressed = FALSE
 
-datum/action/cooldown/giftbreak
+datum/action/cooldown/galaxygiftbreak
 	name = "Break Gifts"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
 	cooldown_time = GALAXY_COOLDOWN //5 seconds
 
-/datum/action/cooldown/giftbreak/Trigger()
+/datum/action/cooldown/galaxygiftbreak/Trigger()
 	if(!..())
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/galaxy_child))
