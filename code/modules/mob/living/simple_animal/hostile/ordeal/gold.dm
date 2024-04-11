@@ -218,7 +218,7 @@
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
-		if(L.stat != DEAD)
+		if(L.stat != DEAD && SSmaptype.maptype != "limbus_labs")
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
 		else
@@ -529,7 +529,8 @@
 		return
 	var/mob/living/carbon/human/H = target
 	if(H.health < 0)
-		H.gib()
+		if(SSmaptype.maptype != "limbus_labs")
+			H.gib()
 		playsound(src, 'sound/weapons/fixer/generic/blade4.ogg', 75, 1)
 	return
 
