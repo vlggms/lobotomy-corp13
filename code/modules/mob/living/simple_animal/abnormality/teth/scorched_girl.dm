@@ -40,6 +40,29 @@
 	var/boom_damage = 250
 	patrol_cooldown_time = 10 SECONDS //Scorched be zooming
 
+	attack_action_types = list(
+		/datum/action/innate/change_icon_scorch
+	)
+
+
+/datum/action/innate/change_icon_scorch
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_scorch/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "scorched"
+		active = 1
+
+/datum/action/innate/change_icon_scorch/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "scorched_breach"
+		active = 0
+
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/patrol_select()
 	var/turf/target_center
 	var/highestcount = 0
