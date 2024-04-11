@@ -109,7 +109,8 @@
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))
 	S.start()
-	qdel(src)
+	if(SSmaptype.maptype != "limbus_labs")
+		qdel(src)
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
