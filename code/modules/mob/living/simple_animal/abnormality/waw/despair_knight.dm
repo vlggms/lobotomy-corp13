@@ -101,8 +101,8 @@
 					nearby -= mob
 				if(!ishuman(mob)) // cut all the non-humans from the list
 					nearby -= mob
-				if(mob.stat == DEAD)
-					nearby -= mob
+				//if(mob.stat == DEAD)
+					//nearby -= mob
 			var/mob/living/carbon/human/blessed = input(src, "Choose who you want to bless", "Select who you want to protect") as null|anything in nearby // pick someone from the list
 			blessed_human = blessed
 			RegisterSignal(blessed, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
