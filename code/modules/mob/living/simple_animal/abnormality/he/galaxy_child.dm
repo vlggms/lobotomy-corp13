@@ -63,21 +63,22 @@
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/manualgift()
 	var/list/nearby = viewers(7, src) // first call viewers to get all mobs that see us
-	for(var/mob in nearby) // then sanitize the list
-		if(mob == src) // cut ourselfes from the list
-			nearby -= mob
-		if(!ishuman(mob)) // cut all the non-humans from the list
-			nearby -= mob
-		if(mob in galaxy_friend) //cut who is already a friend
-			nearby -= mob
-	var/mob/living/carbon/human/new_friend = input(src, "Choose who you want to gift a pebble to", "Select your new friend") as null|anything in nearby // pick someone from the list
-	new_friend.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
-	galaxy_friend |= new_friend
-	heal_amount += heal_mod
-	damage_amount += damage_mod
-	RegisterSignal(new_friend, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
-	icon_state = "galaxy"
-	depressed = FALSE
+	if((SSmaptype.maptype == "limbus_labs"))
+		for(var/mob in nearby) // then sanitize the list
+			if(mob == src) // cut ourselfes from the list
+				nearby -= mob
+			if(!ishuman(mob)) // cut all the non-humans from the list
+				nearby -= mob
+			if(mob in galaxy_friend) //cut who is already a friend
+				nearby -= mob
+		var/mob/living/carbon/human/new_friend = input(src, "Choose who you want to gift a pebble to", "Select your new friend") as null|anything in nearby // pick someone from the list
+		new_friend.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
+		galaxy_friend |= new_friend
+		heal_amount += heal_mod
+		damage_amount += damage_mod
+		RegisterSignal(new_friend, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
+		icon_state = "galaxy"
+		depressed = FALSE
 
 datum/action/cooldown/giftbreak
 	name = "Break Gifts"
@@ -96,22 +97,23 @@ datum/action/cooldown/giftbreak
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/break_gifts(mob/living/carbon/human/user)
-	if(LAZYLEN(galaxy_friend))
-		for(var/mob/living/carbon/human/L in galaxy_friend)
-			if(QDELETED(L))
-				continue
-			L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-			L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
-			UnregisterSignal(L, COMSIG_LIVING_DEATH)
-			new /obj/effect/temp_visual/pebblecrack(get_turf(L))
-			playsound(get_turf(L), "shatter", 50, TRUE)
-			to_chat(L, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
-	//reset everything
-	heal_amount = 0
-	damage_amount = 0
-	depressed = TRUE
-	LAZYCLEARLIST(galaxy_friend)
-	icon_state = "galaxy_weep"
+	if((SSmaptype.maptype == "limbus_labs"))
+		if(LAZYLEN(galaxy_friend))
+			for(var/mob/living/carbon/human/L in galaxy_friend)
+				if(QDELETED(L))
+					continue
+				L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
+				UnregisterSignal(L, COMSIG_LIVING_DEATH)
+				new /obj/effect/temp_visual/pebblecrack(get_turf(L))
+				playsound(get_turf(L), "shatter", 50, TRUE)
+				to_chat(L, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
+		//reset everything
+		heal_amount = 0
+		damage_amount = 0
+		depressed = TRUE
+		LAZYCLEARLIST(galaxy_friend)
+		icon_state = "galaxy_weep"
 
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/examine(mob/user)
