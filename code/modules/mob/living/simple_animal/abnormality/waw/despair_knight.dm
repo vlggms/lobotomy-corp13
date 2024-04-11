@@ -1,3 +1,4 @@
+#define BLESS_COOLDOWN (5 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/despair_knight
 	name = "Knight of Despair"
 	desc = "A tall humanoid abnormality in a blue dress. \
@@ -53,7 +54,7 @@
 	var/swords = 0
 
 	attack_action_types = list(
-		/datum/action/innate/change_icon_kod
+		/datum/action/innate/change_icon_kod, /datum/action/cooldown/knightblessing
 	)
 
 
@@ -75,6 +76,46 @@
 		owner.icon_state = "despair_breach"
 		active = 0
 
+/datum/action/cooldown/knightblessing
+	name = "Give Blessing"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = BLESS_COOLDOWN //5 seconds
+
+/datum/action/cooldown/knightblessing/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/despair_knight))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/despair_knight/despair_knight = owner
+	StartCooldown()
+	despair_knight.give_blessing()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/give_blessing()
+	var/list/nearby = viewers(7, src) // first call viewers to get all mobs that see us
+	if(SSmaptype.maptype == "limbus_labs")
+		if (!blessed_human)
+			for(var/mob in nearby) // then sanitize the list
+				if(mob == src) // cut ourselves from the list
+					nearby -= mob
+				if(!ishuman(mob)) // cut all the non-humans from the list
+					nearby -= mob
+				if(mob.stat == DEAD)
+					nearby -= mob
+			var/mob/living/carbon/human/blessed = input(src, "Choose who you want to bless", "Select who you want to protect") as null|anything in nearby // pick someone from the list
+			blessed_human = blessed
+			RegisterSignal(blessed, COMSIG_LIVING_DEATH, PROC_REF(BlessedDeath))
+			RegisterSignal(blessed, COMSIG_HUMAN_INSANE, PROC_REF(BlessedDeath))
+			to_chat(blessed, span_nicegreen("You feel protected."))
+			blessed.physiology.red_mod *= 0.5
+			blessed.physiology.white_mod *= 0.5
+			blessed.physiology.black_mod *= 0.5
+			blessed.physiology.pale_mod *= 2
+			blessed.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "despair", -MUTATIONS_LAYER))
+			playsound(get_turf(blessed), 'sound/abnormalities/despairknight/gift.ogg', 50, 0, 2)
+			blessed.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, -100)
+		return
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/ZeroQliphoth(mob/living/carbon/human/user)
 	switch(swords)
