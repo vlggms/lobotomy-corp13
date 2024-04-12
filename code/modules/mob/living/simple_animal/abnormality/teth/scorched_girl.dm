@@ -41,7 +41,7 @@
 	patrol_cooldown_time = 10 SECONDS //Scorched be zooming
 
 	attack_action_types = list(
-		/datum/action/innate/change_icon_scorch
+		/datum/action/innate/change_icon_scorch,
 	)
 
 
