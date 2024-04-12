@@ -82,7 +82,7 @@
 		icon_state = "galaxy"
 		depressed = FALSE
 
-datum/action/cooldown/galaxygiftbreak
+/datum/action/cooldown/galaxygiftbreak
 	name = "Break Gifts"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
