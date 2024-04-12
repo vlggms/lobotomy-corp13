@@ -3958,6 +3958,7 @@
 #include "ModularTegustation\fishing\code\rod_components\fishing_lines.dm"
 #include "ModularTegustation\living\living.dm"
 #include "ModularTegustation\living\carbon\life.dm"
+#include "ModularTegustation\ssd_indicator\code\mob.dm"
 #include "ModularTegustation\tegu_borg_code\cyborg_upgrades.dm"
 #include "ModularTegustation\tegu_borg_code\medborg_holobed.dm"
 #include "ModularTegustation\tegu_borg_code\tegu_airlock_electroadaptive.dm"
