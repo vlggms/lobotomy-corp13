@@ -18,6 +18,11 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/city/jeong,
 	/obj/item/ego_weapon/city/awl,
 	/obj/item/ego_weapon/city/charge/wcorp/hatchet,
-	/obj/item/gun/ego_gun/city/fullstop/deagle,
+	/obj/item/gun/ego_gun/city/ammogun/pistol,
+	/obj/item/gun/ego_gun/city/ammogun/deagle,
+	/obj/item/gun/ego_gun/city/ammogun/limbuspistol,
+	/obj/item/gun/ego_gun/city/ammogun/limbusautopistol,
+	/obj/item/gun/ego_gun/city/ammogun/limbusmagnum,
+
 ))
 

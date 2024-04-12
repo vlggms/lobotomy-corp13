@@ -3,9 +3,22 @@
 	name = "Limbus Company Crate"
 	desc = "A crate recieved from limbus company. Open with a Crowbar."
 	icon_state = "crate_lcb"
-	rarechance = 15
+	rarechance = 30
+	veryrarechance = 15
 	cosmeticchance = 25
 	lootlist =	list(
+		/obj/item/gun/ego_gun/city/ammogun/limbuspistol,
+		/obj/item/gun/ego_gun/city/ammogun/limbusautopistol,
+		/obj/item/gun/ego_gun/city/ammogun/limbusmagnum,
+		/obj/item/gun/ego_gun/city/ammogun/limbussmg,
+		/obj/item/gun/ego_gun/city/ammogun/limbusshottie,
+		/obj/item/ego_weapon/shield/lccb,
+		/obj/item/ego_weapon/city/lccb_bat,
+		/obj/item/clothing/suit/armor/ego_gear/limbus_labs/lccb,
+		/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
+	)
+
+	rareloot =	list(
 		/obj/item/ego_weapon/mini/hayong,
 		/obj/item/ego_weapon/shield/walpurgisnacht,
 		/obj/item/ego_weapon/lance/suenoimpossible,
@@ -23,7 +36,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/limbus/limbus_coat_short,
 	)
 
-	rareloot =	list(
+	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
 		/obj/item/ego_weapon/lance/sangre,
 		/obj/item/clothing/suit/armor/ego_gear/limbus/ego/minos,

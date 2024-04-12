@@ -74,8 +74,7 @@
 	desc = "A hammer from the rosespanner workshop. Fits in your EGO belt."
 	icon_state = "rosespanner_minihammer"
 	inhand_icon_state = "rosespanner_minihammer"
-	force = 44
-	attack_speed = 1
+	force = 52
 	charge_cost = 7	//Takes fucking forever, you can charge it a little faster
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -90,7 +89,7 @@
 	desc = "A hammer from the rosespanner workshop"
 	icon_state = "rosespanner_hammer"
 	inhand_icon_state = "rosespanner_hammer"
-	force = 88	//Slow but rosespanners a detriment, so
+	force = 100		//Slow but rosespanners a detriment, so
 	attack_speed = 2
 	charge_cost = 10	//Takes fucking forever, you can charge it a little faster
 	attribute_requirements = list(
@@ -106,7 +105,7 @@
 	desc = "A spear from the rosespanner workshop"
 	icon_state = "rosespanner_spear"
 	inhand_icon_state = "rosespanner_spear"
-	force = 44	//Slow but rosespanners a detriment, so
+	force = 62	//Slow but rosespanners a detriment, so
 	attack_speed = 1.2
 	charge_cost = 14	//slow weapon, you can charge it faster
 	attribute_requirements = list(

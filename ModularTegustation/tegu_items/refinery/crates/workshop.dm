@@ -74,9 +74,9 @@
 		/obj/item/ego_weapon/city/dawn/sword,
 		/obj/item/ego_weapon/city/dawn/cello,
 		/obj/item/ego_weapon/city/wedge,
-		/obj/item/gun/ego_gun/city/fullstop/assault,
-		/obj/item/gun/ego_gun/city/fullstop/sniper,
-		/obj/item/gun/ego_gun/city/fullstop/pistol,
+		/obj/item/gun/ego_gun/city/ammogun/assault,
+		/obj/item/gun/ego_gun/city/ammogun/sniper,
+		/obj/item/gun/ego_gun/city/ammogun/pistol,
 	)
 
 	rareloot =	list(
@@ -91,7 +91,7 @@
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/dawn/zwei,
-		/obj/item/gun/ego_gun/city/fullstop/deagle,
+		/obj/item/gun/ego_gun/city/ammogun/deagle,
 		/obj/item/clothing/suit/armor/ego_gear/city/dawnleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/wedgeleader,
 		/obj/item/clothing/suit/armor/ego_gear/city/fullstopleader,
@@ -102,7 +102,7 @@
 	name = "rosespanner workshop crate"
 	desc = "A crate recieved from the rosespanner workshop. Open with a Crowbar."
 	icon_state = "crate_rosespanner"
-	rarechance = 65	// 30% for gears, 70% everything else
+	rarechance = 50	// 50% for gears, 50% everything else
 	veryrarechance = 5
 	lootlist =	list(
 		/obj/item/storage/box/rosespanner,

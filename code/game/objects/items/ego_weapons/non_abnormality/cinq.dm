@@ -2,8 +2,9 @@
 /obj/item/ego_weapon/city/cinq
 	name = "cinq association rapier"
 	desc = "A long rapier."
-	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range, and you deal double damage for 3 seconds."
+	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range and double damage."
 	icon_state = "cinq"
+	inhand_icon_state = "cinq"
 	force = 28
 	damtype = RED_DAMAGE
 
@@ -76,4 +77,49 @@
 	reach = 1
 	ready = TRUE
 	to_chat(user, span_notice("Pret a nouveau."))
+
+
+//Section 5, Don's blade
+/obj/item/ego_weapon/city/cinq/section5
+	name = "cinq section 5 director rapier"
+	desc = "A long rapier used by the director of cinq association section 5"
+	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range and deals triple damage"
+	icon_state = "cinq_five"
+	force = 40
+	attack_speed = 0.72
+
+	attribute_requirements = list(
+		FORTITUDE_ATTRIBUTE = 100,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 100,
+	)
+	multiplier = 3
+
+
+//Section 4, Outis's blade
+/obj/item/ego_weapon/city/cinq/section4
+	name = "cinq section 4 rapier"
+	desc = "A long rapier used by the fixers of cinq association section 4"
+	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range and deals double damage"
+	icon_state = "cinq_five"
+	force = 48
+	attack_speed = 1.3
+
+
+//Section 4, Sinclair's blade
+/obj/item/ego_weapon/city/cinq/section4/director
+	name = "cinq section 4 director rapier"
+	desc = "A long rapier used by the director of cinq association section 4"
+	special = "Use this weapon in hand to hop backwards. Your next attack has 2 range and deals double damage"
+	icon_state = "cinq_five"
+	force = 75
+	attack_speed = 1.3
+
+	attribute_requirements = list(
+		FORTITUDE_ATTRIBUTE = 100,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 100,
+	)
 

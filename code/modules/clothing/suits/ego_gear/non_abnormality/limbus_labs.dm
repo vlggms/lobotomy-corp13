@@ -108,3 +108,8 @@
 	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	equip_slowdown = 0
+
+//For LC13
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/lccb
+	name = "lccb armor"
+	desc = "It says Limbus Company on the tag. Used by limbus company clearance before team officers."
