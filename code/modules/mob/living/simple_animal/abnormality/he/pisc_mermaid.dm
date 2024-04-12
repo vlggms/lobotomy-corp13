@@ -60,7 +60,7 @@
 	var/mob/living/carbon/human/love_target
 
 	attack_action_types = list(
-		/datum/action/innate/change_icon_merm
+		/datum/action/innate/change_icon_merm,
 	)
 
 
