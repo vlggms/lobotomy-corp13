@@ -54,7 +54,8 @@
 	var/swords = 0
 
 	attack_action_types = list(
-		/datum/action/innate/change_icon_kod, /datum/action/cooldown/knightblessing
+		/datum/action/innate/change_icon_kod,
+		/datum/action/cooldown/knightblessing,
 	)
 
 
