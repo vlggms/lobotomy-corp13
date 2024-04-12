@@ -56,7 +56,8 @@
 	var/damage_taken
 
 	attack_action_types = list(
-		/datum/action/innate/abnormality_attack/toggle/monk_charge, /datum/action/innate/change_icon_monk
+		/datum/action/innate/abnormality_attack/toggle/monk_charge,
+		/datum/action/innate/change_icon_monk,
 	)
 
 /datum/action/innate/abnormality_attack/toggle/monk_charge
