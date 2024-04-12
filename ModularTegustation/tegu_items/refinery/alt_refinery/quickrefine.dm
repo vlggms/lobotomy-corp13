@@ -2,11 +2,11 @@
 	name = "Quick Refinery"
 	desc = "A machine used by the Extraction Officer to ship PE to command to refine."
 	icon_state = "dominator-yellow"
+	requires_item = TRUE
 
 /obj/structure/altrefiner/quick/attackby(obj/item/I, mob/living/user, params)
-	if(user?.mind?.assigned_role != "Extraction Officer")
-		to_chat(user, span_warning("Only the Extraction Officer can use this machine."))
-		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
+	. = ..()
+	if(!.)
 		return
 
 	if(I.type != /obj/item/rawpe)
