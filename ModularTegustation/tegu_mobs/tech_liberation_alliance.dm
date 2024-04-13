@@ -22,6 +22,7 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	name = "tech liberation member"
 	desc = "They forgot their EGO at home..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	del_on_death = TRUE
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sloshing
 	name = "liberation alliance Sloshing EGO user"
@@ -410,10 +411,10 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	ReflectDamage(user)
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite
-	name = "liberation alliance Sunshower EGO user"
+	name = "liberation alliance elite Sunshower EGO user"
 	desc = ""
-	icon_state = "sunshower"
-	icon_living = "sunshower"
+	icon_state = "sunshower_elite"
+	icon_living = "sunshower_elite"
 	maxHealth = 1500
 	health = 1500
 	move_to_delay = 4
@@ -430,9 +431,10 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	guard_duration = 8 SECONDS
 
 	var/umbrella_spawn_amount = 3
-	var/list/spawned_umbrellas = list()
+	var/surviving_umbrellas = 0
 	var/strong_dash_damage = 60
 	var/strong_dash_range = 8
+	var/list/been_hit = list()// Don't get hit twice.
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/EnterGuardStance()
 	guard_stance = TRUE
@@ -442,27 +444,26 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	SpawnUmbrellas()
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE, 7)
 	visible_message(span_warning("[src] opens their umbrella!"))
-	addtimer(CALLBACK(src, PROC_REF(ExitGuardStance)), 4 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(ExitGuardStance)), guard_duration)
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/ExitGuardStance()
 	guard_stance = FALSE
-	listclearnulls(spawned_umbrellas)
-	for(var/umbrella in spawned_umbrellas)
-		QDEL_NULL(umbrella)
+	for(var/i in 1 to surviving_umbrellas)
 		StrongDash()
 	can_act = TRUE
+	surviving_umbrellas = 0
 	SLEEP_CHECK_DEATH(pick(2,3,4) SECONDS)
 	PuddleStomp()
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/proc/SpawnUmbrellas()
-	listclearnulls(spawned_umbrellas)
 	for(var/i = 1 to umbrella_spawn_amount)
 		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
 		if(T.density) // Retry
 			i -= 1
 			continue
 		var/obj/structure/sunshower_umbrella/umbrella = new(T)
-		spawned_umbrellas += umbrella
+		umbrella.spawner = src
+		umbrella.umbrella_duration = guard_duration
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/proc/StrongDash()
 	//TODO ADD SOUNDS
@@ -491,9 +492,29 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 			return
 		face_atom(target)
 		forceMove(T)
-		for(var/turf/TH in orange(1, src))
+		var/list/turfs_to_hit = range(1, T)
+		for(var/turf/TH in turfs_to_hit)//Smash AOE visual
 			new /obj/effect/temp_visual/blubbering_smash(TH)
-			HurtInTurf(TH, list(), strong_dash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		for(var/mob/living/L in turfs_to_hit)//damage applied to targets in range
+			if(!faction_check_mob(L))
+				if(L in been_hit)
+					continue
+				visible_message(span_boldwarning("[src] runs through [L]!"))
+				to_chat(L, span_userdanger("[src] rushes past you!"))
+				playsound(L, attack_sound, 75, 1)
+				var/turf/LT = get_turf(L)
+				new /obj/effect/temp_visual/kinetic_blast(LT)
+				L.apply_damage(strong_dash_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				if(!(L in been_hit))
+					been_hit += L
+		for(var/obj/vehicle/sealed/mecha/V in turfs_to_hit)
+			if(V in been_hit)
+				continue
+			visible_message(span_boldwarning("[src] runs through [V]!"))
+			to_chat(V.occupants, span_userdanger("[src] rushes past you!"))
+			playsound(V, attack_sound, 75, 1)
+			V.take_damage(strong_dash_damage, BLACK_DAMAGE, attack_dir = get_dir(V, src))
+			been_hit += V
 		SLEEP_CHECK_DEATH(0.05 SECONDS)
 
 /obj/structure/sunshower_umbrella
@@ -506,4 +527,14 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	max_integrity = 50
 	density = TRUE
 	anchored = TRUE
-	var/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite
+
+	var/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/spawner
+	var/umbrella_duration = 8 SECONDS
+
+/obj/structure/sunshower_umbrella/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(SelfDestruct)), umbrella_duration - 1 SECONDS)
+
+/obj/structure/sunshower_umbrella/proc/SelfDestruct()
+	spawner.surviving_umbrellas += 1
+	qdel(src)
