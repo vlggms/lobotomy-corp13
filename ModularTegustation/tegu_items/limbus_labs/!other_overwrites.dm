@@ -30,3 +30,9 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		name = "Limbus Company Specimen"
 
+//Torso Fabricator is free for this mode, but 100 ahn for an organic body.
+/obj/machinery/body_fabricator/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		var/prosthetic_cost = 0
+		var/organic_cost = 100
