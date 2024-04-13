@@ -17,7 +17,6 @@ GLOBAL_VAR_INIT(wcorp_boss_spawn, FALSE)
 
 //Wave increases.
 /obj/effect/landmark/wavespawn/proc/tryspawn()
-	GLOB.wcorp_structures += src
 	if(GLOB.combat_counter == 0)
 		return
 

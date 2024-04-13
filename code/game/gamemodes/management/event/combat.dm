@@ -99,7 +99,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				B.Activate()
 
 		for(var/obj/effect/landmark/wavespawn/W in GLOB.wcorp_structures)
-			if(W.startround == GLOB.combat_counter && W.single_use)
+			if(W.startround >= GLOB.combat_counter)
 				W.tryspawn()
 				testnumber+=1 	//Testing only
 
