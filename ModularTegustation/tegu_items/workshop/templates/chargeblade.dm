@@ -11,37 +11,12 @@
 	finishedicon = list("finishedcharge")
 	finishedname = list("sword", "blade", "edge")
 	finisheddesc = "A finished chargeblade, ready for use."
-	var/release_message = "You release your charge, damaging your opponent!"
-	var/charge_effect = "deal an extra attack in damage."
-	var/charge_cost = 4
-	var/charge
-	var/activated
 
-/obj/item/ego_weapon/template/chargeblade/attack_self(mob/user)
-	..()
-	if(charge>=charge_cost)
-		to_chat(user, span_notice("You prepare to release your charge."))
-		activated = TRUE
-	else
-		to_chat(user, span_notice("You don't have enough charge."))
+	charge = TRUE
+	charge_cost = 4
+	successfull_activation = "You release your charge, damaging your opponent!"
+	charge_effect = "deal an extra attack in damage."
 
-/obj/item/ego_weapon/template/chargeblade/examine(mob/user)
+/obj/item/ego_weapon/template/chargeblade/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
-	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
-
-/obj/item/ego_weapon/template/chargeblade/attack(mob/living/target, mob/living/user)
-	..()
-	if(charge<20 && target.stat != DEAD)
-		charge+=1
-	if(activated)
-		charge -= charge_cost
-		release_charge(target, user)
-		activated = FALSE
-
-/obj/item/ego_weapon/template/chargeblade/proc/release_charge(mob/living/target, mob/living/user)
-	to_chat(user, span_notice("[release_message]."))
-	sleep(2)
 	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
-	var/turf/T = get_turf(target)
-	new /obj/effect/temp_visual/justitia_effect(T)

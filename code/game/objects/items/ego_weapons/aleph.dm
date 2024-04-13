@@ -345,7 +345,7 @@
 			damtype = RED_DAMAGE
 			force = 80
 			icon_state = "rosered"
-	to_chat(user, span_notice("\[src] will now deal [force] [damtype] damage."))
+	to_chat(user, span_notice("[src] will now deal [force] [damtype] damage."))
 	playsound(src, 'sound/items/screwdriver2.ogg', 50, TRUE)
 
 /obj/item/ego_weapon/censored

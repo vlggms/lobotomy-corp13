@@ -99,8 +99,7 @@
 	We reached for a shred of comprehension that they could give. \
 	We stared into the dark unending abyss wishing for love and compassion. \
 	In the end we recived nothing but madness, there was no hope for understanding."
-	special = "This weapon can be used to perform an indiscriminate heavy red damage jump attack with enough charge. \
-	This weapon will also gib on kill."
+	special = "This weapon will gib on kill."
 	icon_state = "violet_curse"
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
@@ -118,8 +117,13 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
-	var/charge = 0
-	var/charge_cost = 20
+
+	charge = TRUE
+	charge_cost = 20
+	charge_cap = 40
+	successfull_activation = span_userdanger("You feel the power of the violet noon flow through you.")
+	charge_effect = "Can be used to perform an indiscriminate heavy red damage jump attack."
+
 	var/dash_range = 8
 	var/activated
 	var/aoe = 400
@@ -128,38 +132,24 @@
 	..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
-/obj/item/ego_weapon/violet_curse/examine(mob/user)
-	. = ..()
-	. += "Current Charge: [charge]/[charge_cost]."
-
-/obj/item/ego_weapon/violet_curse/attack_self(mob/user)
-	..()
-	if(!CanUseEgo(user))
-		return
-	if(charge>=charge_cost)
-		to_chat(user, span_notice("You prepare to jump."))
-		activated = TRUE
-	else
-		to_chat(user, span_notice("You don't have enough charge."))
-
 /obj/item/ego_weapon/violet_curse/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
-	charge+=1
-	if(charge>=20)
+
+	. = ..()
+
+	if(charge >= charge_cost)
 		icon_state = "violet_curse_c"
 		inhand_icon_state = "violet_curse_c"
 		update_icon_state()
-	if(charge >= charge_cost)
-		charge = charge_cost
-	..()
+
 	if(target.stat == DEAD && !(GODMODE in target.status_flags))
 		target.gib()
 
 /obj/item/ego_weapon/violet_curse/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(!CanUseEgo(user))
 		return
-	if(!activated)
+	if(!currently_charging)
 		return
 	if(!isliving(A))
 		return
@@ -168,8 +158,7 @@
 	..()
 	if(do_after(user, 5, src))
 		var/turf/target = get_turf(A)
-		charge -= charge_cost
-		activated = FALSE
+		currently_charging = FALSE
 		playsound(src, 'sound/effects/ordeals/violet/midnight_portal_off.ogg', 50, FALSE, -1)
 		animate(user, alpha = 1,pixel_x = 0, pixel_z = 16, time = 0.1 SECONDS)
 		user.pixel_z = 16
