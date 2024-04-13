@@ -34,5 +34,5 @@
 /obj/machinery/body_fabricator/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		var/prosthetic_cost = 0
-		var/organic_cost = 100
+		prosthetic_cost = 0
+		organic_cost = 100
