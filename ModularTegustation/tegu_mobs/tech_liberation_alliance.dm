@@ -118,12 +118,10 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	if(!target.Adjacent(targets_from))
 		return
-
 	slime_cooldown = world.time + slime_cooldown_time
 	visible_message(span_danger("[src] splashes into [target] with the corrosive slime!"))
 	var/total_damage = slime_damage + (slime_damage_multiplier * tipsy)
 	target.apply_damage(total_damage, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE))
-	
 	//Apply knockback to target.
 	var/atom/throw_target = get_edge_target_turf(target, get_dir(src,target))
 	if(!target.anchored)
@@ -189,6 +187,8 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/proc/SpecialAttack(mob/living/target)
 	//TODO add visuals and feedback
+	if(can_act)
+		return
 	Dash(get_turf(target), initial = FALSE)
 	can_act = TRUE
 	var/total_damage = talisman * talisman_damage
@@ -208,11 +208,11 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	if(initial)
 		dash_max_range = dash_initial_range
 	for(var/turf/T in dash_line)
-		current_dash_tile ++
-		if(current_dash_tile >= dash_range)
+		if(current_dash_tile >= dash_max_range)
 			return
 		if(T.density)
 			return
+		current_dash_tile ++
 		face_atom(target)
 		forceMove(T)
 		SLEEP_CHECK_DEATH(0.05 SECONDS)
@@ -241,6 +241,8 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/red_sheet/hooded/SpecialAttack(atom/target)
 	//TODO add visuals and feedback
+	if(can_act)
+		return
 	var/total_damage = talisman * talisman_damage
 	talisman = 0
 	if(!(target in view(dash_range, src)))
@@ -269,3 +271,239 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	icon_state = "despair"
 	damage_type = BLACK_DAMAGE
 	damage = 40
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower
+	name = "liberation alliance Sunshower EGO user"
+	desc = ""
+	icon_state = "sunshower"
+	icon_living = "sunshower"
+	maxHealth = 1200
+	health = 1200
+	move_to_delay = 4
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 25
+	melee_damage_upper = 28
+	rapid_melee = 2
+	ranged = TRUE
+	attack_sound = 'sound/weapons/fixer/generic/knife2.ogg'
+	attack_verb_continuous = "whacks"
+	attack_verb_simple = "whack"
+
+	var/can_act = TRUE
+	var/dash_range = 3
+	var/dash_damage = 40
+	var/dash_cooldown
+	var/dash_cooldown_time = 3 SECONDS
+
+	var/guard_stance = FALSE
+	var/guard_threshold = 500
+	var/guard_reflect_damage = 20
+	var/guard_duration = 6 SECONDS
+	var/damage_taken = 0
+
+	var/stomp_range = 3
+	var/stomp_damage = 80
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return
+	if(!(dash_cooldown <= world.time))
+		return ..()
+	SplashingDash(target)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/OpenFire(atom/A)
+	if(!can_act)
+		return
+	if(!(dash_cooldown <= world.time))
+		return	
+	SplashingDash(A)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/SplashingDash(target)
+	//TODO ADD SOUNDS
+	dash_cooldown = world.time + dash_cooldown_time
+	var/turf/dash_target = get_ranged_target_turf_direct(src, target, dash_range - 1 , 0)
+	var/list/dash_line = getline(src, dash_target)
+	for(var/turf/T in dash_line)
+		if(T.density)
+			return
+		face_atom(target)
+		forceMove(T)
+		new /obj/effect/temp_visual/blubbering_smash(T)
+		HurtInTurf(T, list(), dash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		SLEEP_CHECK_DEATH(0.05 SECONDS)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	if(guard_stance)
+		amount /= 2
+		return ..()
+	damage_taken += amount
+	if(damage_taken < guard_threshold)
+		return ..()
+	EnterGuardStance()
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/EnterGuardStance()
+	guard_stance = TRUE
+	can_act = FALSE
+	damage_taken = 0
+	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE, 7)
+	visible_message(span_warning("[src] opens their umbrella!"))
+	addtimer(CALLBACK(src, PROC_REF(ExitGuardStance)), guard_duration)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/ExitGuardStance()
+	guard_stance = FALSE
+	can_act = TRUE
+	SLEEP_CHECK_DEATH(pick(2,3,4) SECONDS)
+	PuddleStomp()
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/PuddleStomp()
+	//TODO: ADD Effects
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	for(var/turf/T in view(src, stomp_range))
+		new /obj/effect/temp_visual/blubbering_smash(T)
+		HurtInTurf(T, list(), stomp_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+	can_act = TRUE
+
+// All damage reflection stuff is down here
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/ReflectDamage(mob/living/attacker)
+	if(!guard_stance)
+		return
+	for(var/turf/T in orange(1, src))
+		new /obj/effect/temp_visual/sparkles(T)
+	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 15, TRUE, 4)
+	attacker.apply_damage(guard_reflect_damage, BLACK_DAMAGE, null, attacker.getarmor(null, BLACK_DAMAGE))
+	new /obj/effect/temp_visual/revenant(get_turf(attacker))
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/attack_hand(mob/living/carbon/human/M)
+	..()
+	if(!.)
+		return
+	if(guard_stance && M.a_intent == INTENT_HARM)
+		ReflectDamage(M)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/attack_paw(mob/living/carbon/human/M)
+	..()
+	if(guard_stance && M.a_intent != INTENT_HELP)
+		ReflectDamage(M)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/attack_animal(mob/living/simple_animal/M)
+	. = ..()
+	if(!guard_stance)
+		return
+	if(.)
+		ReflectDamage(M)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
+	..()
+	if(guard_stance && Proj.firer)
+		ReflectDamage(Proj.firer)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/attackby(obj/item/I, mob/living/user, params)
+	..()
+	if(!guard_stance)
+		return
+	ReflectDamage(user)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite
+	name = "liberation alliance Sunshower EGO user"
+	desc = ""
+	icon_state = "sunshower"
+	icon_living = "sunshower"
+	maxHealth = 1500
+	health = 1500
+	move_to_delay = 4
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5)
+	melee_damage_lower = 25
+	melee_damage_upper = 28
+	rapid_melee = 2
+	ranged = TRUE
+	attack_sound = 'sound/weapons/fixer/generic/knife2.ogg'
+	attack_verb_continuous = "whacks"
+	attack_verb_simple = "whack"
+	
+	dash_cooldown_time = 2 SECONDS
+	guard_duration = 8 SECONDS
+
+	var/umbrella_spawn_amount = 3
+	var/list/spawned_umbrellas = list()
+	var/strong_dash_damage = 60
+	var/strong_dash_range = 8
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/EnterGuardStance()
+	guard_stance = TRUE
+	can_act = FALSE
+	damage_taken = 0
+	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE, 7)
+	SpawnUmbrellas()
+	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', 50, TRUE, 7)
+	visible_message(span_warning("[src] opens their umbrella!"))
+	addtimer(CALLBACK(src, PROC_REF(ExitGuardStance)), 4 SECONDS)
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/ExitGuardStance()
+	guard_stance = FALSE
+	listclearnulls(spawned_umbrellas)
+	for(var/umbrella in spawned_umbrellas)
+		QDEL_NULL(umbrella)
+		StrongDash()
+	can_act = TRUE
+	SLEEP_CHECK_DEATH(pick(2,3,4) SECONDS)
+	PuddleStomp()
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/proc/SpawnUmbrellas()
+	listclearnulls(spawned_umbrellas)
+	for(var/i = 1 to umbrella_spawn_amount)
+		var/turf/T = get_step(get_turf(src), pick(0, NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST))
+		if(T.density) // Retry
+			i -= 1
+			continue
+		var/obj/structure/sunshower_umbrella/umbrella = new(T)
+		spawned_umbrellas += umbrella
+
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/proc/StrongDash()
+	//TODO ADD SOUNDS
+	var/target
+	for(var/mob/living/L in livinginrange(strong_dash_range, src))
+		if(L.z != z)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		target = L
+		break
+	if(!target)
+		return
+	var/turf/dash_target = get_ranged_target_turf_direct(src, target, strong_dash_range, 0)
+	var/list/dash_line = getline(src, dash_target)
+	for(var/turf/T in dash_line)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
+	for(var/turf/T in dash_line)
+		if(T.density)
+			return
+		face_atom(target)
+		forceMove(T)
+		for(var/turf/TH in orange(1, src))
+			new /obj/effect/temp_visual/blubbering_smash(TH)
+			HurtInTurf(TH, list(), strong_dash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+		SLEEP_CHECK_DEATH(0.05 SECONDS)
+
+/obj/structure/sunshower_umbrella
+	name = "Umbrella"
+	desc = "Battered and Broken, you feel like these are ."
+	icon = 'ModularTegustation/Teguicons/64x32.dmi'
+	pixel_x = -16
+	base_pixel_x = -16
+	icon_state = "flotsam"
+	max_integrity = 50
+	density = TRUE
+	anchored = TRUE
+	var/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite
