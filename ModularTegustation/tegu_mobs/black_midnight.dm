@@ -1,4 +1,5 @@
 #define STATUS_EFFECT_IRRATIONAL_FEAR /datum/status_effect/irrational_fear
+#define STATUS_EFFECT_HEAVY_GUILT /datum/status_effect/stacking/heavy_guilt
 //lore I guess. It's the personifcation of the greed agents have for better stuff. So if me and Baikal fucked this would be our child.
 /mob/living/simple_animal/hostile/megafauna/black_midnight
 	name = "Flowering Nights"
@@ -30,6 +31,9 @@
 	death_sound = 'ModularTegustation/Tegusounds/claw/death.ogg'
 	patrol_cooldown_time = 5 SECONDS
 	can_patrol = TRUE
+	light_color = COLOR_ORANGE
+	light_range = 0
+	light_power = 0
 	var/can_move = FALSE
 	var/can_act = TRUE
 	var/current_phase = "rose"
@@ -42,14 +46,14 @@
 		"rose" = list("Flowering Night","A strange humanoid creature with roses for a head..",PALE_DAMAGE,5,10, "black_midnight_rose", 'ModularTegustation/Teguicons/32x64.dmi',0,0,'sound/abnormalities/goldenapple/Gold_Attack.ogg'),
 		"distort" = list("Distortion", "An eldritch looking humanoid.",RED_DAMAGE,20,40,"John_Distortion", 'ModularTegustation/Teguicons/64x64.dmi',-16,-16,'sound/weapons/punch1.ogg'),
 		"oberon" = list("Fairy King", "A being resembling Titania.", BLACK_DAMAGE,75,75, "fairy_king",'ModularTegustation/Teguicons/64x64.dmi',-16,0,'sound/weapons/slash.ogg'),
-		"apoc" = list("Twilight", "The beast of the black forest.", WHITE_DAMAGE,60,100),
-		"paradise" = list("Paradise Lost", "", PALE_DAMAGE,60,100)
+		"twilight" = list("Twilight", "A beast that seems to be hunting something...", RED_DAMAGE,150,180, "Twilight",'ModularTegustation/Teguicons/160x128.dmi',-64,-16, 'sound/abnormalities/nosferatu/attack.ogg'),
+		"paradise" = list("Paradise Lost", "Manager you fucked up big time!", PALE_DAMAGE,60,100)
 	)
 	var/list/modular_damage_coeff = list(
 		"rose" = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0),
 		"distort" = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.5),
 		"oberon" = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.3),
-		"apoc" = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3),
+		"twilight" = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3),
 		"paradise" = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2),
 	)
 	//Rose form vars
@@ -91,6 +95,12 @@
 	var/oberon_flower_defense = 0
 	var/oberon_chokehold
 	var/oberon_chokehold_cooldown = 20 SECONDS
+	//twilight vars
+	var/twilight_ranged
+	var/twilight_ranged_cooldown = 45 SECONDS
+	var/twilight_melee
+	var/twilight_melee_cooldown = 20 SECONDS
+	var/list/twilight_enchanted_list = list()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/Initialize()
 	. = ..()
@@ -133,6 +143,12 @@
 			if(oberon_flower_spawn_time <= world.time)
 				oberon_flower_spawn_time = world.time + oberon_flower_spawn_cooldown
 				FlowerSpawn()
+		if("twilight")
+			if(twilight_ranged <= world.time)
+				if(prob(50))
+					SoulJudgement()
+				else
+					BrilliantEyes()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/death()
 	if(health > 0)
@@ -143,6 +159,8 @@
 				Transform("distort")
 			if("distort")
 				Transform("oberon")
+			if("oberon")
+				Transform("twilight")
 		return
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
@@ -165,7 +183,51 @@
 					return Transform("distort")
 				if("distort")
 					return Transform("oberon")
+				if("oberon")
+					return Transform("twilight")
 		return
+	return ..()
+
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/attackby(obj/item/W, mob/user, params)
+	. = ..()
+	if(isliving(user))
+		var/mob/living/L = user
+		var/datum/status_effect/stacking/heavy_guilt/HG = L.has_status_effect(STATUS_EFFECT_HEAVY_GUILT)
+		if(HG)
+			if(prob(50))
+				HG.add_stacks(-1)
+				to_chat(L, span_nicegreen("You feel your sins are fading!"))
+			if(prob(10 * HG.stacks))
+				Comeuppance(target)
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/bullet_act(obj/projectile/P)
+	. = ..()
+	if(isliving(P.firer))
+		var/mob/living/L = P.firer
+		var/datum/status_effect/stacking/heavy_guilt/HG = L.has_status_effect(STATUS_EFFECT_HEAVY_GUILT)
+		if(HG)
+			if(prob(50))
+				HG.add_stacks(-1)
+				to_chat(L, span_nicegreen("You feel your sins are fading!"))
+			if(prob(10 * HG.stacks))
+				Comeuppance(target)
+
+// Modified patrolling
+/mob/living/simple_animal/hostile/megafauna/black_midnight/patrol_select()
+	if(current_phase == "twilight")
+		var/list/target_turfs = list() // Stolen from Punishing Bird
+		for(var/mob/living/carbon/human/H in GLOB.human_list)
+			if(H.z != z) // Not on our level
+				continue
+			if(get_dist(src, H) < 4) // Unnecessary for this distance
+				continue
+			target_turfs += get_turf(H)
+
+		var/turf/target_turf = get_closest_atom(/turf/open, target_turfs, src)
+		if(istype(target_turf))
+			patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
+			return
 	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/TransformSR()
@@ -194,11 +256,26 @@
 	clear_filters()
 	vis_contents.Cut()
 	current_effect = null
+	for(var/mob/living/A in oberon_spawned_fairies)
+		A.death()
+	for(var/mob/living/A2 in oberon_spawned_flowers)
+		A2.death()
+	for(var/mob/living/carbon/human/H in twilight_enchanted_list)
+		EndEnchant(H)
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
 	if(!HAS_TRAIT(src, TRAIT_NO_FLOATING_ANIM))
 		ADD_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
 	new /obj/effect/temp_visual/distortedform_shift(get_turf(src))
 	distort_second_phase = FALSE
+	for(var/area/facility_hallway/F in GLOB.sortedAreas)
+		F.big_bird = FALSE
+		F.RefreshLights()
+	for(var/area/department_main/D in GLOB.sortedAreas)
+		D.big_bird = FALSE
+		D.RefreshLights()
+	light_range = 0
+	light_power = 0
+	update_light()
 	sleep(3)
 	alpha = 255
 	can_move = TRUE
@@ -229,6 +306,19 @@
 		if("oberon")
 			move_to_delay = 2.5
 			UpdateSpeed()
+			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
+		if("twilight")
+			for(var/area/facility_hallway/F2 in GLOB.sortedAreas)
+				F2.big_bird = TRUE
+				F2.RefreshLights()
+			for(var/area/department_main/D2 in GLOB.sortedAreas)
+				D2.big_bird = TRUE
+				D2.RefreshLights()
+			move_to_delay = 2
+			UpdateSpeed()
+			light_range = 3
+			light_power = 4
+			update_light()
 			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/Move()
@@ -310,8 +400,8 @@
 					if("distortion")
 						DistortedDash()
 		if("oberon")
-			if(isliving(attacked_target))
-				var/mob/living/L = attacked_target
+			if(isliving(target))
+				var/mob/living/L = target
 				L.apply_damage(melee_damage_lower, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 				if(L.health <= 0)
 					say("#$R&% H%&$#!")
@@ -319,6 +409,12 @@
 					new /mob/living/simple_animal/hostile/fairy_flower/pale(get_turf(L))//Spawns a flower
 			if(oberon_chokehold <= world.time && can_act)
 				ChokeHold()
+		if("twilight")
+			if(isliving(target))
+				var/mob/living/L = target
+				var/datum/status_effect/stacking/heavy_guilt/HG = L.has_status_effect(STATUS_EFFECT_HEAVY_GUILT)
+				if(HG && prob(50))
+					HG.add_stacks(1)
 	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/CanAttack(atom/the_target)
@@ -897,15 +993,18 @@
 	oberon_spawned_flowers+=F
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/FlowerPowerCalc()
-	melee_damage_lower = 75 + oberon_flower_power
-	melee_damage_upper = 75 + oberon_flower_power
+	if(current_phase == "oberon")
+		melee_damage_lower = 75 + oberon_flower_power
+		melee_damage_upper = 75 + oberon_flower_power
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/FlowerSpeedCalc()
-	move_to_delay = 2.5 - oberon_flower_speed
-	UpdateSpeed()
+	if(current_phase == "oberon")
+		move_to_delay = 2.5 - oberon_flower_speed
+		UpdateSpeed()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/FlowerDefenseCalc()
-	ChangeResistances(list(RED_DAMAGE = 0.5 - oberon_flower_defense, WHITE_DAMAGE = 0.3 - oberon_flower_defense, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.3 - oberon_flower_defense))
+	if(current_phase == "oberon")
+		ChangeResistances(list(RED_DAMAGE = 0.5 - oberon_flower_defense, WHITE_DAMAGE = 0.3 - oberon_flower_defense, BLACK_DAMAGE = 0 - oberon_flower_defense, PALE_DAMAGE = 0.3 - oberon_flower_defense))
 
 //The Mini fairies
 /mob/living/simple_animal/hostile/bairyswarm
@@ -1101,4 +1200,313 @@
 	SLEEP_CHECK_DEATH(10)
 	StrangleHit()
 
+//twilight stuff
 
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/SoulJudgement()
+	if(twilight_ranged > world.time || !can_act)
+		return
+	can_act = FALSE
+	can_move = FALSE
+	sound_to_playing_players_on_level('sound/abnormalities/apocalypse/judge.ogg', 75, zlevel = z)
+	twilight_ranged = world.time + twilight_ranged_cooldown
+	icon_state = "Twilight_arms"
+	SLEEP_CHECK_DEATH(5 SECONDS)
+	sound_to_playing_players_on_level('sound/abnormalities/judgementbird/ability.ogg', 75, zlevel = z)
+	for(var/mob/living/L in GLOB.mob_living_list)
+		var/check_z = L.z
+		if(isatom(L.loc))
+			check_z = L.loc.z
+		if(check_z != z)
+			continue
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		new /obj/effect/temp_visual/judgement(get_turf(L))
+		var/datum/status_effect/stacking/heavy_guilt/HG = L.has_status_effect(STATUS_EFFECT_HEAVY_GUILT)
+		if(HG)
+			L.apply_damage(50+ (HG.stacks * 10), PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		if(!HG)
+			L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			HG = L.apply_status_effect(STATUS_EFFECT_HEAVY_GUILT)
+		HG.add_stacks(2)
+		if(L.health <= 0 && L.stat != DEAD)
+			L.death()
+			var/turf/T = get_turf(L)
+			if(locate(/obj/structure/jbird_noose) in T)
+				T = pick_n_take(T.reachableAdjacentTurfs())//if a noose is on this tile, it'll still create another one. You probably shouldn't be letting this many people die to begin with
+				L.forceMove(T)
+			var/obj/structure/jbird_noose/N = new(get_turf(L))
+			N.buckle_mob(L)
+			playsound(get_turf(L), 'sound/abnormalities/judgementbird/kill.ogg', 75, 0, 7)
+			playsound(get_turf(L), 'sound/abnormalities/judgementbird/hang.ogg', 100, 0, 7)
+			new /mob/living/simple_animal/hostile/runawaybird(get_turf(L))
+			new /mob/living/simple_animal/hostile/runawaybird(get_turf(L))
+			new /mob/living/simple_animal/hostile/runawaybird(get_turf(L))
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	icon_state = "Twilight"
+	can_act = TRUE
+	can_move = TRUE
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/BrilliantEyes()
+	if(twilight_ranged > world.time || !can_act)
+		return
+	can_act = FALSE
+	can_move = FALSE
+	light_power = 7
+	light_range = 5
+	sound_to_playing_players_on_level('sound/abnormalities/apocalypse/enchant.ogg', 80, zlevel = z)
+	twilight_ranged = world.time + twilight_ranged_cooldown
+	icon_state = "Twilight_eyes"
+	var/list/candidates = list()
+	for(var/i = 1 to 24)
+		var/atom/PT = src // Shoot it somewhere, idk
+		if(LAZYLEN(candidates))
+			PT = pick(candidates)
+		var/turf/T = get_step(get_turf(src), pick(GLOB.alldirs))
+		var/obj/projectile/twilight/P = new(T)
+		P.starting = T
+		P.firer = src
+		P.fired_from = T
+		P.yo = PT.y - T.y
+		P.xo = PT.x - T.x
+		P.original = PT
+		P.preparePixelProjectile(PT, T)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 5 SECONDS)
+	SLEEP_CHECK_DEATH(5 SECONDS)
+	sound_to_playing_players_on_level('sound/abnormalities/apocalypse/fire.ogg', 75, zlevel = z)
+	for(var/mob/living/L in GLOB.mob_living_list)
+		var/check_z = L.z
+		if(isatom(L.loc))
+			check_z = L.loc.z
+		if(check_z != z)
+			continue
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.adjust_blindness(1)
+		var/datum/status_effect/stacking/heavy_guilt/HG = L.has_status_effect(STATUS_EFFECT_HEAVY_GUILT)
+		if(HG)
+			if(HG.stacks >= 5 && ishuman(L))
+				twilight_enchanted_list.Add(L)
+				to_chat(L, "<span class='boldwarning'>You see a light glowing in the distance!")
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	for(var/mob/living/carbon/human/H in twilight_enchanted_list)
+		H.ai_controller = /datum/ai_controller/insane/enchanted_black
+		H.InitializeAIController()
+		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
+		addtimer(CALLBACK(src, PROC_REF(EndEnchant), H), 30 SECONDS, TIMER_UNIQUE|TIMER_OVERRIDE)
+	icon_state = "Twilight"
+	light_range = 3
+	light_power = 4
+	can_act = TRUE
+	can_move = TRUE
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/EndEnchant(mob/living/carbon/human/victim)
+	if(victim in twilight_enchanted_list)
+		twilight_enchanted_list.Remove(victim)
+		victim.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/tegu_effects.dmi', "enchanted", -HALO_LAYER))
+		if(istype(victim.ai_controller,/datum/ai_controller/insane/enchanted_black))
+			to_chat(victim, "<span class='boldwarning'>You snap out of your trance!")
+			qdel(victim.ai_controller)
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/Comeuppance(mob/living/target)
+	if(!istype(target) || QDELETED(target))
+		return
+	if(twilight_melee > world.time)
+		return
+	twilight_melee = world.time + twilight_melee_cooldown
+	icon_state = "Twilight_beak"
+	playsound(src, 'sound/abnormalities/apocalypse/pre_attack.ogg', 125, FALSE, 4)
+	can_act = FALSE
+	can_move = FALSE
+	visible_message(span_danger("[src] opens its mouth and is about to dash towards someone!"))
+	var/turf/end_turf = get_ranged_target_turf_direct(src, target, get_dist(src, target) + 6, 0)
+	var/list/turf_list = getline(src, end_turf)
+	for(var/turf/T in turf_list)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	face_atom(target)
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	for(var/turf/T in turf_list)
+		if(!istype(T))
+			break
+		if(locate(target) in view(1,src))
+			BeakAttack()
+			break
+		if(T.density)//Unlike claw this dash wont get it stuck in a wall
+			break
+		forceMove(T)
+
+		if(T != turf_list[turf_list.len]) // Not the last turf
+			SLEEP_CHECK_DEATH(0.25)
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	icon_state = "Twilight"
+	can_act = TRUE
+	can_move = TRUE
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/BeakAttack()
+	playsound(src, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
+	for(var/turf/T in view(3,src))
+		new /obj/effect/temp_visual/beakbite(T)
+		for(var/mob/living/carbon/L in HurtInTurf(T, list(), 500, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
+			to_chat(L, "<span class='boldwarning'>[src] devours you!")
+			if(L.health < 0)
+				L.gib()
+
+/datum/status_effect/stacking/heavy_guilt
+	id = "TWILIGHT"
+	status_type = STATUS_EFFECT_UNIQUE
+	stacks = 0
+	stack_decay = 0 //Without this the stacks were decaying after 1 sec
+	duration = 45 SECONDS //Lasts for 4 minutes
+	alert_type = /atom/movable/screen/alert/status_effect/heavy_guilt
+	max_stacks = 10
+	var/stage = 0
+	consumed_on_threshold = FALSE
+
+/atom/movable/screen/alert/status_effect/heavy_guilt
+	name = "Heavy Guilt"
+	desc = "You feel your sins crawling on your back... Current Stacks: "
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "heavy_guilt"
+
+
+/datum/status_effect/stacking/heavy_guilt/add_stacks(stacks_added)
+	if(stacks <= 0 && stacks_added < 0)
+		qdel(src)
+	stacks += stacks_added
+	if(stacks > max_stacks)
+		stacks = 10
+	duration = world.time + 45 SECONDS
+	if(stacks > 6)
+		linked_alert.icon_state = "heavy_guilt3"
+		linked_alert.desc = "You feel your sins crawling on your back... Current Stacks: [stacks]"
+		linked_alert.update_icon()
+		stage = 3
+	if(stacks > 3 && stacks <= 6)
+		linked_alert.icon_state = "heavy_guilt2"
+		linked_alert.update_icon()
+		linked_alert.desc = "You feel something weighing you down.. Current Stacks: [stacks]"
+		stage = 2
+	if(stacks > 0 && stacks <= 3)
+		linked_alert.icon_state = "heavy_guilt"
+		linked_alert.update_icon()
+		linked_alert.desc = "You feel something watching you... Current Stacks: [stacks]"
+		stage = 1
+
+/datum/ai_controller/insane/enchanted_black
+	lines_type = /datum/ai_behavior/say_line/insanity_enchanted
+	var/last_message = 0
+
+/datum/ai_controller/insane/enchanted_black/SelectBehaviors(delta_time)
+	..()
+	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
+		return
+
+	var/mob/living/simple_animal/hostile/megafauna/black_midnight/bird
+	for(var/mob/living/simple_animal/hostile/megafauna/black_midnight/M in GLOB.mob_living_list)
+		if(!istype(M))
+			continue
+		bird = M
+	if(bird)
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/enchanted_move_black)
+		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = bird
+
+/datum/ai_controller/insane/enchanted_black/PerformIdleBehavior(delta_time)
+	var/mob/living/living_pawn = pawn
+	if(DT_PROB(30, delta_time) && (living_pawn.mobility_flags & MOBILITY_MOVE) && isturf(living_pawn.loc) && !living_pawn.pulledby)
+		var/move_dir = pick(GLOB.alldirs)
+		living_pawn.Move(get_step(living_pawn, move_dir), move_dir)
+	if(DT_PROB(25, delta_time))
+		current_behaviors += GET_AI_BEHAVIOR(lines_type)
+
+/datum/ai_behavior/enchanted_move_black
+
+/datum/ai_behavior/enchanted_move_black/perform(delta_time, datum/ai_controller/insane/enchanted_black/controller)
+	. = ..()
+
+	var/mob/living/carbon/human/living_pawn = controller.pawn
+
+	if(IS_DEAD_OR_INCAP(living_pawn))
+		return
+
+	var/mob/living/simple_animal/hostile/megafauna/black_midnight/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(!istype(target))
+		finish_action(controller, FALSE)
+		return
+
+	if(!LAZYLEN(controller.current_path))
+		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 80)
+		if(!controller.current_path.len) // Returned FALSE or null.
+			finish_action(controller, FALSE)
+			return
+		controller.current_path.Remove(controller.current_path[1])
+		Movement(controller)
+
+/datum/ai_behavior/enchanted_move_black/proc/Movement(datum/ai_controller/insane/enchanted_black/controller)
+	var/mob/living/carbon/human/living_pawn = controller.pawn
+	var/mob/living/simple_animal/hostile/megafauna/apocalypse_bird/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+
+	if(world.time > controller.last_message + 10 SECONDS)
+		controller.last_message = world.time
+		controller.current_behaviors += GET_AI_BEHAVIOR(controller.lines_type)
+		living_pawn.Immobilize(10 SECONDS)
+
+	if(LAZYLEN(controller.current_path) && !IS_DEAD_OR_INCAP(living_pawn))
+		var/target_turf = controller.current_path[1]
+		if(target_turf && get_dist(living_pawn, target_turf) < 3)
+			if(!step_towards(living_pawn, target_turf))
+				controller.pathing_attempts++
+			if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
+				finish_action(controller, FALSE)
+				return FALSE
+			else
+				if(get_turf(living_pawn) == target_turf)
+					controller.current_path.Remove(target_turf)
+					controller.pathing_attempts = 0
+					if(isturf(target.loc) && (target in view(3,living_pawn)))
+						finish_action(controller, TRUE)
+						return
+				else
+					controller.pathing_attempts++
+			var/move_delay = living_pawn.cached_multiplicative_slowdown + 0.1
+			addtimer(CALLBACK(src, PROC_REF(Movement), controller), move_delay)
+			return TRUE
+	finish_action(controller, FALSE)
+	return FALSE
+
+/datum/ai_behavior/enchanted_move_black/finish_action(datum/ai_controller/insane/enchanted_black/controller, succeeded)
+	. = ..()
+	var/mob/living/carbon/human/living_pawn = controller.pawn
+	var/mob/living/simple_animal/hostile/megafauna/black_midnight/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	controller.pathing_attempts = 0
+	controller.current_path = list()
+	if(succeeded)
+		target.EndEnchant(living_pawn)
+		living_pawn.Immobilize(50)
+	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+
+/obj/projectile/twilight
+	name = "light"
+	icon_state = "apocalypse"
+	damage_type = BLACK_DAMAGE
+	damage = 50
+	alpha = 0
+	spread = 45
+	projectile_phasing = (ALL & (~PASSMOB))
+	light_color = COLOR_ORANGE
+	light_range = 2
+	light_power = 5
+
+/obj/projectile/twilight/Initialize()
+	. = ..()
+	animate(src, alpha = 255, pixel_x = rand(-10,10), pixel_y = rand(-10,10), time = 5 SECONDS)
+
+/obj/projectile/twilight/on_hit(target)
+	. = ..()
+	if(isliving(target))
+		var/mob/living/simple_animal/M = target
+		M.adjust_blindness(4)
