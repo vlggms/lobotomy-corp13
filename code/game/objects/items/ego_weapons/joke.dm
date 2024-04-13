@@ -105,8 +105,8 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 180
-	attack_speed = 2.5
+	force = 140
+	attack_speed = 1.8
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/abnormalities/apocalypse/slam.ogg'
 	attack_verb_continuous = list("crushes", "devastates")
@@ -120,13 +120,11 @@
 
 	charge = TRUE
 	charge_cost = 20
-	charge_cap = 40
-	successfull_activation = span_userdanger("You feel the power of the violet noon flow through you.")
 	charge_effect = "Can be used to perform an indiscriminate heavy red damage jump attack."
+	successfull_activation = "You feel the power of the violet noon flow through you."
 
 	var/dash_range = 8
-	var/activated
-	var/aoe = 400
+	var/aoe_damage = 400
 
 /obj/item/ego_weapon/violet_curse/Initialize()
 	..()
@@ -187,11 +185,12 @@
 			continue
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
-		aoe*=justicemod
-		aoe*=force_multiplier
+		aoe_damage *= justicemod
+		aoe_damage *= force_multiplier
 		if(L == user) //This WILL friendly fire there is no escape
 			continue
-		L.apply_damage(aoe, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(aoe_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		to_chat(L, span_userdanger("You are crushed by a monolith!"))
 		if(L.health < 0)
 			L.gib()
+		aoe_damage = initial(aoe_damage)
