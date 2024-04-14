@@ -170,6 +170,8 @@
 				revive_humans()
 			if(cross_ability < world.time)
 				CrossSpawn()
+			if(paradise_lifetime < world.time)
+				adjustHealth(maxHealth)
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/death()
 	if(health > 0)
