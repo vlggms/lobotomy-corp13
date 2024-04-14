@@ -47,7 +47,7 @@
 		"distort" = list("Distortion", "An eldritch looking humanoid.",RED_DAMAGE,20,40,"John_Distortion", 'ModularTegustation/Teguicons/64x64.dmi',-16,-16,'sound/weapons/punch1.ogg'),
 		"oberon" = list("Fairy King", "A being resembling Titania.", BLACK_DAMAGE,75,75, "fairy_king",'ModularTegustation/Teguicons/64x64.dmi',-16,0,'sound/weapons/slash.ogg'),
 		"twilight" = list("Twilight", "A beast that seems to be hunting something...", RED_DAMAGE,150,180, "Twilight",'ModularTegustation/Teguicons/160x128.dmi',-64,-16, 'sound/abnormalities/nosferatu/attack.ogg'),
-		"paradise" = list("Paradise Lost", "Manager you fucked up big time!", PALE_DAMAGE,60,100)
+		"paradise" = list("Paradise Lost", "Manager you fucked up big time!", PALE_DAMAGE,120,140,"white_night",'ModularTegustation/Teguicons/64x64.dmi',-16,-16,'sound/weapons/ego/paradise.ogg')
 	)
 	var/list/modular_damage_coeff = list(
 		"rose" = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0),
@@ -101,6 +101,17 @@
 	var/twilight_melee
 	var/twilight_melee_cooldown = 20 SECONDS
 	var/list/twilight_enchanted_list = list()
+	//paradise vars
+	var/list/apostles = list()// Currently spawned apostles by this mob
+	var/paradise_aura
+	var/paradise_aura_cooldown = 1 MINUTES
+	var/paradise_aura_range = 64
+	var/paradise_aura_damage = 120
+	var/paradise_ability
+	var/paradise_ability_cooldown = 30 SECONDS
+	var/cross_ability
+	var/cross_ability_cooldown = 30 SECONDS
+	var/paradise_lifetime
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/Initialize()
 	. = ..()
@@ -149,6 +160,16 @@
 					SoulJudgement()
 				else
 					BrilliantEyes()
+		if("paradise")
+			if(paradise_aura < world.time)
+				for(var/mob/living/simple_animal/hostile/apostle/scythe/guardian_black/G in apostles)
+					if(G in view(10, src)) // Only teleport them if they are not in view.
+						continue
+					var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
+					G.forceMove(T)
+				revive_humans()
+			if(cross_ability < world.time)
+				CrossSpawn()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/death()
 	if(health > 0)
@@ -161,6 +182,8 @@
 				Transform("oberon")
 			if("oberon")
 				Transform("twilight")
+			if("twilight")
+				Transform("paradise")
 		return
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
@@ -185,6 +208,8 @@
 					return Transform("oberon")
 				if("oberon")
 					return Transform("twilight")
+				if("twilight")
+					return Transform("paradise")
 		return
 	return ..()
 
@@ -215,7 +240,7 @@
 
 // Modified patrolling
 /mob/living/simple_animal/hostile/megafauna/black_midnight/patrol_select()
-	if(current_phase == "twilight")
+	if(current_phase == "twilight" || current_phase == "paradise")
 		var/list/target_turfs = list() // Stolen from Punishing Bird
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			if(H.z != z) // Not on our level
@@ -320,6 +345,15 @@
 			light_power = 4
 			update_light()
 			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
+		if("paradise")
+			move_to_delay = 2.5
+			UpdateSpeed()
+			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
+			ApostleSpawn()
+			for(var/mob/M in GLOB.player_list)
+				flash_color(M, flash_color = COLOR_RED, flash_time = 25)
+			sound_to_playing_players('sound/abnormalities/whitenight/apostle_bell.ogg', 75)
+			paradise_lifetime = world.time + 5 MINUTES
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/Move()
 	if(!can_move)
@@ -358,6 +392,10 @@
 			if(oberon_chokehold <= world.time && can_act)
 				if(get_dist(src, target) < 4)
 					ChokeHold()
+		if("paradise")
+			if(paradise_ability <= world.time && can_act)
+				if(get_dist(src, target) > 2)
+					GangsAllHere()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/AttackingTarget(atom/attacked_target)
 	if(!can_act)
@@ -415,6 +453,10 @@
 				var/datum/status_effect/stacking/heavy_guilt/HG = L.has_status_effect(STATUS_EFFECT_HEAVY_GUILT)
 				if(HG && prob(50))
 					HG.add_stacks(1)
+		if("paradise")
+			if(paradise_ability <= world.time && can_act)
+				if(get_dist(src, target) > 2)
+					GangsAllHere()
 	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/CanAttack(atom/the_target)
@@ -1510,3 +1552,210 @@
 	if(isliving(target))
 		var/mob/living/simple_animal/M = target
 		M.adjust_blindness(4)
+
+//wn procs
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/ApostleSpawn()
+	for(var/i = 1 to 11)
+		var/apostle_type = /mob/living/simple_animal/hostile/apostle/scythe
+		if(i in list(1,11))
+			apostle_type = /mob/living/simple_animal/hostile/apostle/scythe/guardian_black
+		if(i in list(4,5,6))
+			apostle_type = /mob/living/simple_animal/hostile/apostle/staff
+		if(i in list(7,8,9,10))
+			apostle_type = /mob/living/simple_animal/hostile/apostle/spear
+		apostles += new apostle_type(get_turf(src))
+		var/list/possible_locs = GLOB.xeno_spawn.Copy()
+		for(var/mob/living/simple_animal/hostile/apostle/A in apostles)
+			if(istype(A, /mob/living/simple_animal/hostile/apostle/scythe/guardian_black))
+				continue
+			var/turf/T = pick(possible_locs)
+			A.forceMove(T)
+			if(length(possible_locs) > 1)
+				possible_locs -= T
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/revive_humans(range_override = null, faction_check = "apostle")
+	if(paradise_aura > world.time)
+		return
+	if(!can_act)
+		return
+	if(range_override == null)
+		range_override = paradise_aura_range
+	paradise_aura = (world.time + paradise_aura_cooldown)
+	been_hit = list()
+	playsound(src, 'sound/abnormalities/whitenight/apostle_spell.ogg', 75, 1, range_override)
+	var/turf/target_c = get_turf(src)
+	var/list/turf_list = list()
+	for(var/i = 1 to range_override)
+		turf_list = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
+		for(var/turf/open/T in turf_list)
+			var/obj/effect/temp_visual/cult/sparks/S = new(T)
+			if(faction_check != "apostle")
+				S.color = "#AAFFAA" // Indicating that it's a good thing
+			for(var/obj/structure/closet/C in T)
+				for(var/mob/living/L in C)
+					if(ishuman(L))
+						C.Destroy()
+						break
+			for(var/mob/living/L in T)
+				new /obj/effect/temp_visual/dir_setting/cult/phase(T, L.dir)
+				addtimer(CALLBACK(src, PROC_REF(revive_target), L, i, faction_check))
+		SLEEP_CHECK_DEATH(1.5)
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/revive_target(mob/living/L, attack_range = 1, faction_check = "apostle")
+	if(L in been_hit)
+		return
+	been_hit += L
+	if(!(faction_check in L.faction))
+		playsound(L.loc, 'sound/machines/clockcult/ark_damage.ogg', 50 - attack_range, TRUE, -1)
+		// The farther you are from white night - the less damage it deals
+		var/dealt_damage = max(5, paradise_aura_damage - attack_range)
+		L.apply_damage(dealt_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		if(ishuman(L) && dealt_damage > 25)
+			L.emote("scream")
+		to_chat(L, span_userdanger("The holy light... IT BURNS!!"))
+	else
+		if(istype(L, /mob/living/simple_animal/hostile/apostle) && L.stat == DEAD)
+			L.revive(full_heal = TRUE, admin_revive = FALSE)
+			L.grab_ghost(force = TRUE)
+			to_chat(L, span_notice("The holy light compels you to live!"))
+		else if(L.stat != DEAD)
+			L.adjustBruteLoss(-(paradise_aura_damage * 0.75) * (L.maxHealth/100))
+			if(ishuman(L))
+				var/mob/living/carbon/human/H = L
+				H.adjustSanityLoss(-(paradise_aura_damage * 0.75) * (H.maxSanity/100))
+			L.regenerate_limbs()
+			L.regenerate_organs()
+			to_chat(L, span_notice("The holy light heals you!"))
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/GangsAllHere()
+	if(paradise_ability > world.time)
+		return
+	if(!can_act)
+		return
+	paradise_ability = paradise_ability_cooldown + world.time
+	for(var/mob/living/simple_animal/hostile/apostle/G in apostles)
+		var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
+		G.forceMove(T)
+		if(G.stat == DEAD)
+			G.revive(full_heal = TRUE, admin_revive = FALSE)
+			G.grab_ghost(force = TRUE)
+			to_chat(G, span_notice("The holy light compels you to live!"))
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/CrossSpawn()
+	if(cross_ability > world.time)
+		return
+	if(!can_act)
+		return
+	cross_ability = world.time + cross_ability_cooldown
+	var/list/targets = list()
+	for(var/mob/living/L in livinginrange(40, src))
+		if(L.z != z)
+			continue
+		if(L.status_flags & GODMODE)
+			continue
+		if(faction_check_mob(L, FALSE))
+			continue
+		if(L.stat == DEAD)
+			continue
+		targets += L
+		for(var/i = 1 to 4)
+			if(targets.len > 0)
+				var/mob/living/L2 = pick(targets)
+				new /obj/effect/crossspawner(get_turf(L2), faction)
+				targets -= L2
+
+/obj/effect/crossspawner
+	name = "cross summon"
+	desc = "A target warning you of incoming pain"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "crosswarning"
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	var/list/faction = list("hostile")
+	var/damage_done = 100
+	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
+
+/obj/effect/crossspawner/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(crosspawn)), 3.5 SECONDS)
+
+/obj/effect/crossspawner/New(loc, ...)
+	. = ..()
+	if(args[2])
+		faction = args[2]
+
+/obj/effect/crossspawner/proc/crosspawn()
+	alpha = 0
+	new /obj/effect/temp_visual/unholycross/fall(get_turf(src))
+	sleep(5.5)
+	visible_message("<span class='warning'>A giant upside down cross falls down on the ground!</span>")
+	playsound(get_turf(src), 'sound/effects/impact_thunder.ogg', 50, FALSE)
+	playsound(get_turf(src), 'sound/effects/impact_thunder_far.ogg', 25, FALSE, 7)
+	var/obj/effect/temp_visual/unholycross/C = new(get_turf(src))
+	animate(C, alpha = 0, transform = matrix()*2, time = 10)
+	for(var/turf/open/TF in view(6, get_turf(src)))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(TF)
+	for(var/mob/living/L in view(6, get_turf(src)))
+		if(faction_check(faction, L.faction, FALSE))
+			continue
+		var/distance_decrease = get_dist(get_turf(src), L) * 10
+		L.apply_damage((damage_done - distance_decrease), PALE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+		new /obj/effect/temp_visual/revenant(get_turf(L))
+	qdel(src)
+
+/mob/living/simple_animal/hostile/apostle/scythe/guardian_black
+	name = "guardian apostle"
+	health = 3000
+	maxHealth = 3000
+	move_to_delay = 7
+	melee_damage_type = PALE_DAMAGE
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 1.5)
+	vision_range = 12
+	aggro_vision_range = 12
+	patrol_cooldown_time = 2.5 SECONDS
+	scythe_range = 3
+	scythe_cooldown_time = 8 SECONDS // More often, since the damage increase was disliked.
+	scythe_damage_type = PALE_DAMAGE
+	scythe_damage = 150 // It's a big AoE unlike base game where it's smaller and as it is you straight up die unless you have 7+ Pale resist. You also have TWO of these AND WN hitting you for ~80 Pale at this range.
+
+/mob/living/simple_animal/hostile/apostle/scythe/guardian_black/CanStartPatrol()
+	if(locate(/mob/living/simple_animal/hostile/megafauna/black_midnight) in view(9, src))
+		return FALSE
+	return ..()
+
+/mob/living/simple_animal/hostile/apostle/scythe/guardian_black/patrol_select()
+	var/mob/living/simple_animal/hostile/megafauna/black_midnight/PL = locate() in GLOB.mob_list
+	if(!istype(PL))
+		return
+	var/turf/target_turf = pick(RANGE_TURFS(2, PL))
+	patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
+	playsound(get_turf(src), 'sound/abnormalities/whitenight/apostle_growl.ogg', 75, FALSE)
+	TemporarySpeedChange(-4, 5 SECONDS) // OUT OF MY WAY
+
+/mob/living/simple_animal/hostile/apostle/scythe/guardian_black/ScytheAttack()
+	if(scythe_cooldown > world.time)
+		return
+	scythe_cooldown = world.time + scythe_cooldown_time
+	can_act = FALSE
+	for(var/turf/T in view(scythe_range, src))
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(10)
+	var/gibbed = FALSE
+	for(var/turf/T in view(scythe_range, src))
+		new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in T) // Not changing this one because it notable does not gib pre-dead bodies, only living ones.
+			if(L.stat == DEAD)
+				continue
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(scythe_damage, scythe_damage_type, null, L.run_armor_check(null, scythe_damage_type), spread_damage = TRUE)
+			if(L.stat == DEAD) // Total overkill
+				for(var/i = 1 to 5) // Alternative to gib()
+					new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
+				new /obj/effect/gibspawner/generic/silent(get_turf(L))
+				gibbed = TRUE
+	playsound(get_turf(src), (gibbed ? 'sound/abnormalities/whitenight/scythe_gib.ogg' : 'sound/abnormalities/whitenight/scythe_spell.ogg'), (gibbed ? 100 : 75), FALSE, (gibbed ? 12 : 5))
+	SLEEP_CHECK_DEATH(5)
+	can_act = TRUE

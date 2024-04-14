@@ -1107,3 +1107,20 @@
 	name = "pale blizzard"
 	icon_state = "pale_aura3"
 	duration = 16
+
+/obj/effect/temp_visual/unholycross
+	name = "unholy cross"
+	icon = 'icons/effects/32x64.dmi'
+	icon_state = "cross_unholy"
+	duration = 2 SECONDS
+
+/obj/effect/temp_visual/unholycross/fall
+	icon_state = "cross_unholy_fall"
+	duration = 8 SECONDS
+
+/obj/effect/temp_visual/unholycross/fall/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(FadeOut)), 6 SECONDS)
+
+/obj/effect/temp_visual/unholycross/fall/proc/FadeOut()
+	animate(src, alpha = 0, time = 2 SECONDS)

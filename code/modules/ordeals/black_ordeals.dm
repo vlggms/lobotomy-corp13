@@ -95,7 +95,7 @@
 	ordeal_mobs += C
 	C.ordeal_reference = src
 
-/datum/ordeal/boss/black_midnight/End()//Kirie forgot about this
+/datum/ordeal/black_midnight/End()//Kirie forgot about this
 	if(istype(SSlobotomy_corp.core_suppression)) // If it all was a part of core suppression
 		SSlobotomy_corp.core_suppression_state = 3
 		SSticker.news_report = max(SSticker.news_report, CORE_SUPPRESSED_CLAW_DEAD)
