@@ -4,6 +4,11 @@ GLOBAL_LIST_INIT(easycombat, list(
 	/mob/living/simple_animal/hostile/abnormality/smile,
 	/mob/living/simple_animal/hostile/abnormality/pinocchio,
 	/mob/living/simple_animal/hostile/abnormality/fragment,
+	/mob/living/simple_animal/hostile/abnormality/fairy_gentleman,
+	/mob/living/simple_animal/hostile/abnormality/drifting_fox,
+	/mob/living/simple_animal/hostile/abnormality/headless_ichthys,
+	/mob/living/simple_animal/hostile/abnormality/puss_in_boots,
+	/mob/living/simple_animal/hostile/abnormality/woodsman,
 ))
 
 GLOBAL_LIST_INIT(easysupport, list(
@@ -15,6 +20,7 @@ GLOBAL_LIST_INIT(easysupport, list(
 	/mob/living/simple_animal/hostile/abnormality/apex_predator,
 	/mob/living/simple_animal/hostile/abnormality/cleaner,
 	/mob/living/simple_animal/hostile/abnormality/der_freischutz,
+	/mob/living/simple_animal/hostile/abnormality/better_memories,
 ))
 
 GLOBAL_LIST_INIT(easytank, list(
@@ -24,6 +30,7 @@ GLOBAL_LIST_INIT(easytank, list(
 	/mob/living/simple_animal/hostile/abnormality/warden,
 	/mob/living/simple_animal/hostile/abnormality/golden_apple,
 	/mob/living/simple_animal/hostile/abnormality/porccubus,
+	/mob/living/simple_animal/hostile/abnormality/black_swan,
 ))
 
 GLOBAL_LIST_INIT(hardcombat, list(
@@ -33,7 +40,7 @@ GLOBAL_LIST_INIT(hardcombat, list(
 	/mob/living/simple_animal/hostile/abnormality/big_wolf,
 	/mob/living/simple_animal/hostile/abnormality/luna,
 	/mob/living/simple_animal/hostile/abnormality/dimensional_refraction,
-	/mob/living/simple_animal/hostile/abnormality/black_swan,
+	/mob/living/simple_animal/hostile/abnormality/red_hood,
 ))
 
 GLOBAL_LIST_INIT(hardsupport, list(/mob/living/simple_animal/hostile/abnormality/sphinx,
@@ -55,6 +62,7 @@ GLOBAL_LIST_INIT(hardtank, list(/mob/living/simple_animal/hostile/abnormality/me
 	/mob/living/simple_animal/hostile/abnormality/titania,
 	/mob/living/simple_animal/hostile/abnormality/greed_king,
 	/mob/living/simple_animal/hostile/abnormality/eris,
+	/mob/living/simple_animal/hostile/abnormality/general_b,
 ))
 
 //Used for the specific raidboss mode

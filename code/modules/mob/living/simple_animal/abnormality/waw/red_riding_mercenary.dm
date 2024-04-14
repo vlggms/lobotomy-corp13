@@ -344,6 +344,8 @@ It has now been over four months. Now we get her for real. -Coxswain
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/Initialize()
 	..()
+	if(IsCombatMap())
+		faction |= "hostile"
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/Destroy()
@@ -433,6 +435,9 @@ It has now been over four months. Now we get her for real. -Coxswain
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/proc/OnAbnoBreach(datum/source, mob/living/simple_animal/hostile/abnormality/abno)
 	SIGNAL_HANDLER
+
+	if(!IsContained())
+		return
 	if(istype(abno, /mob/living/simple_animal/hostile/abnormality/punishing_bird))
 		if(client)
 			to_chat(src, span_notice("You hear an annoying fluttering, and immediately disregard it."))

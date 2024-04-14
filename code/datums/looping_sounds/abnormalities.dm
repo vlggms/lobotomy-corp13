@@ -125,6 +125,11 @@
 	volume = 75
 	extra_range = -4
 
+/datum/looping_sound/woodsman
+	mid_sounds = 'sound/abnormalities/woodsman/woodsman_loop.ogg'
+	mid_length = 4 SECONDS
+	volume = 20
+
 // Ordeals
 /datum/looping_sound/amberdusk
 	mid_sounds = 'sound/effects/ordeals/amber/dusk_ambience.ogg'
