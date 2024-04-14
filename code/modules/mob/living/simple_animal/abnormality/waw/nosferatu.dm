@@ -62,7 +62,12 @@
 	var/bat_spawn_number = 3
 
 	//PLAYABLES ATTACKS
-	attack_action_types = list(/datum/action/cooldown/nosferatu_banquet)
+	attack_action_types = list(
+		/datum/action/cooldown/nosferatu_banquet,
+		/datum/action/innate/change_icon_nosf,
+	)
+
+
 
 //Playables buttons
 /datum/action/cooldown/nosferatu_banquet
@@ -84,6 +89,32 @@
 	StartCooldown()
 	nosferatu.Banquet()
 	return TRUE
+
+/datum/action/innate/change_icon_nosf
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_nosf/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		owner.icon_state = "nosferatu"
+		owner.pixel_x = -16
+		owner.base_pixel_x = -16
+		owner.pixel_y = 0
+		owner.base_pixel_y = 0
+		active = 1
+
+/datum/action/innate/change_icon_nosf/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		owner.icon_state = "nosferatu_breach"
+		owner.pixel_x = -16
+		owner.base_pixel_x = -16
+		owner.pixel_y = 0
+		owner.base_pixel_y = 0
+		active = 0
 
 //work code
 /mob/living/simple_animal/hostile/abnormality/nosferatu/FailureEffect(mob/living/carbon/human/user, work_type, pe)
@@ -198,6 +229,8 @@
 	for(var/mob/living/L in spawned_bats)
 		if(L.stat == DEAD)
 			spawned_bats -= L
+	if(SSmaptype.maptype == "limbus_labs")
+		return
 	if(length(spawned_bats) >= bat_spawn_limit)
 		return
 

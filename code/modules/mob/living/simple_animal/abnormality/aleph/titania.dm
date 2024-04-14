@@ -76,14 +76,24 @@
 		return FALSE
 	var/mob/living/carbon/human/H = target
 	//Kills the weak immediately.
-	if(get_user_level(H) < 4 && (ishuman(H)))
-		say("I rid you of your pain, mere human.")
-		H.gib()
-		for(var/i=fairy_spawn_number*2, i>=1, i--)	//This counts down.
-			var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(target))
-			V.faction = faction
-			spawned_mobs+=V
-		return
+	if(SSmaptype.maptype == "limbus_labs")
+		if(get_user_level(H) < 2 && (ishuman(H)))
+			say("I rid you of your pain, mere human.")
+			H.gib()
+			for(var/i=fairy_spawn_number*2, i>=1, i--)	//This counts down.
+				var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(target))
+				V.faction = faction
+				spawned_mobs+=V
+			return
+	else
+		if(get_user_level(H) < 4 && (ishuman(H)))
+			say("I rid you of your pain, mere human.")
+			H.gib()
+			for(var/i=fairy_spawn_number*2, i>=1, i--)	//This counts down.
+				var/mob/living/simple_animal/hostile/fairyswarm/V = new(get_turf(target))
+				V.faction = faction
+				spawned_mobs+=V
+			return
 
 	if(target == nemesis)	//Deals pale damage to Oberon, fuck you.
 		melee_damage_type = PALE_DAMAGE
@@ -109,7 +119,7 @@
 
 //Spawning Fairies
 /mob/living/simple_animal/hostile/abnormality/titania/proc/FairyLoop()
-	if(IsCombatMap())
+	if(SSmaptype.maptype == "rcorp")
 		return
 	//Blurb about how many we have spawned
 	listclearnulls(spawned_mobs)

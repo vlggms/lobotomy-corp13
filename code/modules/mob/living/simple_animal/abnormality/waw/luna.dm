@@ -1,4 +1,5 @@
 #define STATUS_EFFECT_LUNAR /datum/status_effect/lunar
+#define STATUS_EFFECT_LUNARLABS /datum/status_effect/lunar/labs
 //I will remind you all that this technically does NOT breach.	-Kirie
 /mob/living/simple_animal/hostile/abnormality/luna
 	name = "\proper Il Pianto della Luna"
@@ -147,6 +148,46 @@
 	var/aoerange = 5
 	var/aoedamage = 60
 
+
+//datum/action/innate/change_icon_luna
+//	name = "Toggle Icon"
+//	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+//datum/action/innate/change_icon_luna/Activate()
+//	. = ..()
+//	if(SSmaptype.maptype == "limbus_labs")
+//		owner.icon = 'ModularTegustation/Teguicons/96x48.dmi'
+//		owner.icon_state = "dellaluna"
+//		owner.pixel_x = -32
+//		owner.base_pixel_x = -32
+//		owner.pixel_y = 0
+//		owner.base_pixel_y = 0
+//		active = 1
+
+//datum/action/innate/change_icon_luna/Deactivate()
+//	. = ..()
+//	if(SSmaptype.maptype == "limbus_labs")
+//		owner.icon = 'ModularTegustation/Teguicons/48x64.dmi'
+//		owner.icon_state = "luna"
+//		owner.pixel_x = -8
+//		owner.base_pixel_x = -8
+//		owner.pixel_y = 0
+//		owner.base_pixel_y = 0
+//		active = 0
+
+/mob/living/simple_animal/hostile/luna/Life()
+	. = ..()
+	if(!.)
+		return
+	// Apply and refresh status effect to all humans nearby
+	if(SSmaptype.maptype == "limbus_labs")
+		for(var/mob/living/carbon/human/H in view(7, src))
+			if(H.stat == DEAD)
+				continue
+			if(faction_check_mob(H))
+				continue
+			H.apply_status_effect(STATUS_EFFECT_LUNARLABS)
+
 //mob/living/simple_animal/hostile/luna/Initialize()
 //Cannot figure out how to make this stop
 //	..()
@@ -206,4 +247,37 @@
 	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
 	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
 
+//Lunar Labs
+//Luna blessing made for labs gamemode
+/datum/status_effect/lunar/labs
+	id = "lunarlabs"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 60 SECONDS
+	alert_type = /atom/movable/screen/alert/status_effect/lunar/labs
+
+/atom/movable/screen/alert/status_effect/lunar/labs
+	name = "Lunar Blessing"
+	desc = "Your justice is buffed for a short period of time at a cost."
+	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	icon_state = "lunar"
+
+/datum/status_effect/lunar/labs/on_apply()
+	. = ..()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 10)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 10)
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -20)
+
+/datum/status_effect/lunar/labs/on_remove()
+	. = ..()
+	if(!ishuman(owner))
+		return
+	var/mob/living/carbon/human/status_holder = owner
+	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -10)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -10)
+	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 20)
+
 #undef STATUS_EFFECT_LUNAR
+#undef STATUS_EFFECT_LUNARLABS
