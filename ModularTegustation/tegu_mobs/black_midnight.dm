@@ -97,7 +97,7 @@
 	var/oberon_chokehold_cooldown = 20 SECONDS
 	//twilight vars
 	var/twilight_ranged
-	var/twilight_ranged_cooldown = 45 SECONDS
+	var/twilight_ranged_cooldown = 30 SECONDS
 	var/twilight_melee
 	var/twilight_melee_cooldown = 20 SECONDS
 	var/list/twilight_enchanted_list = list()
@@ -277,9 +277,10 @@
 	current_phase = form
 	can_move = FALSE
 	can_act = FALSE
+	maxHealth = 5000
 	adjustHealth(-maxHealth)
 	alpha = 0
-	rapid_melee = 1
+	rapid_melee = 2
 	clear_filters()
 	vis_contents.Cut()
 	current_effect = null
@@ -331,6 +332,7 @@
 			DFApplyFilters()
 			addtimer(CALLBACK(src, PROC_REF(CauseMelts)), 10)
 		if("oberon")
+			rapid_melee = 1
 			move_to_delay = 2.5
 			UpdateSpeed()
 			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
@@ -348,6 +350,8 @@
 			update_light()
 			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
 		if("paradise")
+			maxHealth = 66666
+			adjustHealth(-maxHealth)
 			move_to_delay = 2.5
 			UpdateSpeed()
 			REMOVE_TRAIT(src, TRAIT_NO_FLOATING_ANIM, ROUNDSTART_TRAIT)
@@ -511,6 +515,8 @@
 		area_of_effect += L
 	playsound(get_turf(src), 'sound/abnormalities/apocalypse/pre_attack.ogg', 50, 0, 5) // todo: find a better sfx set
 	SLEEP_CHECK_DEATH(10)
+	if(current_phase != "rose")
+		return
 	for(var/turf/T in area_of_effect)
 		pick(new /obj/effect/temp_visual/red_aura(T), new /obj/effect/temp_visual/red_aura2(T), new /obj/effect/temp_visual/red_aura3(T))
 		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 150, RED_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
@@ -529,6 +535,8 @@
 		area_of_effect += L
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 50, 0, 5)
 	SLEEP_CHECK_DEATH(10)
+	if(current_phase != "rose")
+		return
 	for(var/turf/T in area_of_effect)
 		pick(new /obj/effect/temp_visual/white_aura(T), new /obj/effect/temp_visual/white_aura2(T), new /obj/effect/temp_visual/white_aura3(T))
 		for(var/mob/living/carbon/human/H in HurtInTurf(T, list(), 150, WHITE_DAMAGE, null, null, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE))
@@ -546,6 +554,8 @@
 		new /obj/effect/temp_visual/cult/sparks(L)
 	playsound(get_turf(src), 'sound/abnormalities/ichthys/blast.ogg', 50, 0, 5) // todo: find a better sfx set
 	SLEEP_CHECK_DEATH(10)
+	if(current_phase != "rose")
+		return
 	playsound(get_turf(src), 'sound/weapons/fixer/generic/sword3.ogg', 50, 0, 5)
 	visible_message(span_danger("[src] starts realease pale petals everywhere!"))
 	for(var/i = 1 to 10)
@@ -691,6 +701,8 @@
 		new /obj/effect/temp_visual/cult/sparks(L)
 	new /obj/effect/temp_visual/distortedvisage/distortedvisage/nt(get_turf(src))
 	SLEEP_CHECK_DEATH(12)
+	if(current_phase != "distort")
+		return
 	for(var/turf/T in view(4, src))
 		new /obj/effect/temp_visual/nt_goodbye(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), 500, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
@@ -698,6 +710,8 @@
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 	SLEEP_CHECK_DEATH(3)
+	if(current_phase != "distort")
+		return
 	icon_state = "distortion_mimicry"
 	can_act = TRUE
 	can_move = TRUE
@@ -717,6 +731,9 @@
 	var/turf/TT = get_turf(target)
 	face_atom(TT)
 	SLEEP_CHECK_DEATH(12)
+	if(current_phase != "distort")
+		return
+	icon_state = "distortion_dacapo"
 	playsound(src, 'ModularTegustation/Tegusounds/claw/move.ogg', 100, 1)
 	var/turf/T = get_turf(src)
 	var/angle_to_target = Get_Angle(T, TT)
@@ -738,7 +755,6 @@
 		line = getline(T, T2)
 		DoLineAttack(line)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
-	icon_state = "distortion_dacapo"
 	can_act = TRUE
 	can_move = TRUE
 
@@ -793,11 +809,15 @@
 	for(var/mob/living/M in livinginrange(20, get_turf(src)))
 		shake_camera(M, 2, 3)
 	SLEEP_CHECK_DEATH(20)
+	if(current_phase != "distort")
+		return
 	icon_state = "distortion_adoration"
 	can_act = TRUE
 	can_move = TRUE
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/slime_aoe(size, sound)
+	if(current_phase != "distort")
+		return
 	playsound(src, sound, 100, 1)
 	for(var/turf/open/T in view(size, get_turf(src)))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/S = new(T)
@@ -826,6 +846,8 @@
 	for(var/i = 1 to 8)
 		new /obj/effect/temp_visual/fragment_song(get_turf(src))
 	SLEEP_CHECK_DEATH(20)
+	if(current_phase != "distort")
+		return
 	SwiftDash(target, 25, 20,0)
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/proc/SwiftDash(mob/living/target, distance, wait_time,dash_amount)
@@ -837,6 +859,8 @@
 	playsound(src, "sound/abnormalities/distortedform/screech2.ogg", 85, 1)
 	face_atom(target)
 	SLEEP_CHECK_DEATH(wait_time)
+	if(current_phase != "distort")
+		return
 	for(var/turf/T in turf_list)
 		if(!istype(T))
 			break
@@ -861,6 +885,8 @@
 			SLEEP_CHECK_DEATH(0.25)
 	if(dash_amount < 3)
 		SLEEP_CHECK_DEATH(10)
+		if(current_phase != "distort")
+			return
 		if(ishuman(target))
 			if(!locate(target) in view(vision_range,src))
 				DfGrab(target, dash_amount)//pull them back in if they're hiding
@@ -868,6 +894,8 @@
 		SwiftDash(target, 25, 20,dash_amount+1)
 		return
 	SLEEP_CHECK_DEATH(4 SECONDS)
+	if(current_phase != "distort")
+		return
 	icon_state = "distortion^2"
 	distort_weapon_special = world.time + distort_weapon_special_cooldown//I placed it here so that way it can't be nearly done after dashing
 	can_act = TRUE
@@ -1065,11 +1093,11 @@
 	retreat_distance = 6
 	minimum_distance = 1
 	a_intent = INTENT_HARM
-	health = 550
-	maxHealth = 550
+	health = 250
+	maxHealth = 250
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.6)
-	melee_damage_lower = 20
-	melee_damage_upper = 20
+	melee_damage_lower = 15
+	melee_damage_upper = 15
 	melee_damage_type = RED_DAMAGE
 	obj_damage = 0
 	environment_smash = ENVIRONMENT_SMASH_NONE
@@ -1103,6 +1131,8 @@
 		new /obj/effect/temp_visual/cult/sparks(L)
 		turf_list += L//add it to a list incase a flower spawns during the down time
 	SLEEP_CHECK_DEATH(16)
+	if(current_phase != "oberon")
+		return
 	for(var/turf/T in turf_list)
 		new /obj/effect/temp_visual/nobody_grab(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), 300, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
@@ -1116,6 +1146,8 @@
 					N.Strangle()
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(5)
+	if(current_phase != "oberon")
+		return
 	icon_state = "fairy_king"
 	can_act = TRUE
 	can_move = TRUE
@@ -1255,6 +1287,8 @@
 	twilight_ranged = world.time + twilight_ranged_cooldown
 	icon_state = "Twilight_arms"
 	SLEEP_CHECK_DEATH(5 SECONDS)
+	if(current_phase != "twilight")
+		return
 	sound_to_playing_players_on_level('sound/abnormalities/judgementbird/ability.ogg', 75, zlevel = z)
 	for(var/mob/living/L in GLOB.mob_living_list)
 		var/check_z = L.z
@@ -1288,6 +1322,8 @@
 			new /mob/living/simple_animal/hostile/runawaybird(get_turf(L))
 			new /mob/living/simple_animal/hostile/runawaybird(get_turf(L))
 	SLEEP_CHECK_DEATH(1 SECONDS)
+	if(current_phase != "twilight")
+		return
 	icon_state = "Twilight"
 	can_act = TRUE
 	can_move = TRUE
@@ -1318,6 +1354,8 @@
 		P.preparePixelProjectile(PT, T)
 		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 5 SECONDS)
 	SLEEP_CHECK_DEATH(5 SECONDS)
+	if(current_phase != "twilight")
+		return
 	sound_to_playing_players_on_level('sound/abnormalities/apocalypse/fire.ogg', 75, zlevel = z)
 	for(var/mob/living/L in GLOB.mob_living_list)
 		var/check_z = L.z
@@ -1331,13 +1369,15 @@
 			continue
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
-			H.adjust_blindness(1)
+			H.adjust_blindness(5)
 		var/datum/status_effect/stacking/heavy_guilt/HG = L.has_status_effect(STATUS_EFFECT_HEAVY_GUILT)
 		if(HG)
 			if(HG.stacks >= 5 && ishuman(L))
 				twilight_enchanted_list.Add(L)
 				to_chat(L, "<span class='boldwarning'>You see a light glowing in the distance!")
 	SLEEP_CHECK_DEATH(1 SECONDS)
+	if(current_phase != "twilight")
+		return
 	for(var/mob/living/carbon/human/H in twilight_enchanted_list)
 		H.ai_controller = /datum/ai_controller/insane/enchanted_black
 		H.InitializeAIController()
@@ -1374,6 +1414,8 @@
 		new /obj/effect/temp_visual/cult/sparks(T)
 	face_atom(target)
 	SLEEP_CHECK_DEATH(2 SECONDS)
+	if(current_phase != "twilight")
+		return
 	for(var/turf/T in turf_list)
 		if(!istype(T))
 			break
@@ -1387,6 +1429,8 @@
 		if(T != turf_list[turf_list.len]) // Not the last turf
 			SLEEP_CHECK_DEATH(0.25)
 	SLEEP_CHECK_DEATH(2 SECONDS)
+	if(current_phase != "twilight")
+		return
 	icon_state = "Twilight"
 	can_act = TRUE
 	can_move = TRUE
