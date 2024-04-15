@@ -63,5 +63,5 @@
 	potential_types = list(
 		/mob/living/simple_animal/hostile/ordeal/echo/paradise,
 		/mob/living/simple_animal/hostile/ordeal/echo/twilight,
-		/mob/living/simple_animal/hostile/ordeal/echo/distorted,
+		//mob/living/simple_animal/hostile/ordeal/echo/distorted,
 		)
