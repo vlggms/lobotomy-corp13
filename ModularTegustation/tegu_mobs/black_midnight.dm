@@ -47,7 +47,7 @@
 		"distort" = list("Distortion", "An eldritch looking humanoid.",RED_DAMAGE,20,40,"John_Distortion", 'ModularTegustation/Teguicons/64x64.dmi',-16,-16,'sound/weapons/punch1.ogg'),
 		"oberon" = list("Fairy King", "A being resembling Titania.", BLACK_DAMAGE,75,75, "fairy_king",'ModularTegustation/Teguicons/64x64.dmi',-16,0,'sound/weapons/slash.ogg'),
 		"twilight" = list("Twilight", "A beast that seems to be hunting something...", RED_DAMAGE,150,180, "Twilight",'ModularTegustation/Teguicons/160x128.dmi',-64,-16, 'sound/abnormalities/nosferatu/attack.ogg'),
-		"paradise" = list("Paradise Lost", "Manager you fucked up big time!", PALE_DAMAGE,120,140,"white_night",'ModularTegustation/Teguicons/64x64.dmi',-16,-16,'sound/weapons/ego/paradise.ogg')
+		"paradise" = list("Paradise Lost", "An unholy being. The end is nigh!", PALE_DAMAGE,120,140,"white_night",'ModularTegustation/Teguicons/64x64.dmi',-16,-16,'sound/weapons/ego/paradise.ogg')
 	)
 	var/list/modular_damage_coeff = list(
 		"rose" = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0),
