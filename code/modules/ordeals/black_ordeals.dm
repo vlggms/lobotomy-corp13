@@ -59,7 +59,7 @@
 	can_run = TRUE
 	level = 9
 	reward_percent = 0.25
-	mobs_amount = 3
+	mobs_amount = 2
 	potential_types = list(
 		/mob/living/simple_animal/hostile/ordeal/echo/paradise,
 		/mob/living/simple_animal/hostile/ordeal/echo/twilight,
