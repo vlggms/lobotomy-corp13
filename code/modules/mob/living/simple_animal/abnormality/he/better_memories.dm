@@ -66,12 +66,20 @@
 
 	//--Side Gamemodes stuff--
 	else
+		SpawnMinion(get_turf(src)) // Spawns 2 minions on Rcorp.
 		breaching_minion = SpawnMinion(get_turf(src))
 		QDEL_IN(src, 1 SECONDS) //Destroys the core, as it is unecessary in Rcorp.
 
 	if(client)
 		mind.transfer_to(breaching_minion) //For playable abnormalities, directly lets the playing currently controlling core get control of the spawned mob
 	return
+
+//Side Gamemodes stuff, should only ever be called outside of the main gamemode
+/mob/living/simple_animal/hostile/abnormality/better_memories/BreachEffect(mob/living/carbon/human/user, breach_type)
+	if(!IsCombatMap())
+		return FALSE
+	ZeroQliphoth()
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/better_memories/proc/SpawnMinion(turf/spawn_turf)
 	var/mob/living/simple_animal/hostile/better_memories_minion/spawningmonster = new(spawn_turf)
@@ -519,7 +527,7 @@
 	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -30)
 	L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -30)
 	L.physiology.work_success_mod -= 0.25
-	to_chat(owner, span_warning("Your distracted by memories of your past."))
+	to_chat(owner, span_warning("You're distracted by memories of your past."))
 
 /datum/status_effect/display/better_memories_curse/tick()
 	. = ..()
@@ -535,7 +543,7 @@
 		span_warning("You forget your happiest moments."),
 		span_warning("You wonder why your face is wet with tears."),
 		span_warning("You try your best to hold onto the memory of your loved ones."),
-		span_warning("Your forced to reminiscence on a happier time, then its gone."),
+		span_warning("You're forced to reminiscence on a happier time, then its gone."),
 		))
 
 /datum/status_effect/display/better_memories_curse/on_remove()
