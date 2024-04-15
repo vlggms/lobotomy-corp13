@@ -171,7 +171,7 @@
 			if(cross_ability < world.time)
 				CrossSpawn()
 			if(paradise_lifetime < world.time)
-				adjustHealth(maxHealth)
+				DeathAnimation()
 
 /mob/living/simple_animal/hostile/megafauna/black_midnight/death()
 	if(health > 0)
@@ -1198,26 +1198,26 @@
 	name = "Fairy Attack Flower"
 	desc = "A spikey looking flower that's causing that thing to become stronger!"
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "rose_red"
+	icon_state = "fairy_flower_power"
 	fpower = 15
 
 /mob/living/simple_animal/hostile/fairy_flower/speed
 	name = "Fairy Speed Flower"
 	desc = "A sleek looking flower that's causing that thing to become faster!"
-	icon_state = "rose_white"
+	icon_state = "fairy_flower_speed"
 	fspeed = 0.25
 
 /mob/living/simple_animal/hostile/fairy_flower/defense
 	name = "Fairy Defense Flower"
 	desc = "A tough looking flower that's causing that thing to become tankier!"
-	icon_state = "rose_black"
+	icon_state = "fairy_flower_defense"
 	fdefense = 0.05
 
 //this one only spawns when someone dies to fairy king
 /mob/living/simple_animal/hostile/fairy_flower/pale
 	name = "Fairy Flower"
 	desc = "A flower that's causing that thing to become more powerful!"
-	icon_state = "rose_pale"
+	icon_state = "fairy_flower_alll"
 	fpower = 15
 	fspeed = 0.25
 	fdefense = 0.05
@@ -1710,6 +1710,58 @@
 				new /obj/effect/crossspawner(get_turf(L2), faction)
 				targets -= L2
 
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/DeathAnimation()
+	var/list/people_alive = list()
+	// Looks at every human.
+	for(var/mob/living/carbon/human/people in GLOB.player_list)
+		if(people.z == z)
+		// Add them as a potential candidate to us
+			people_alive += people
+	if(!LAZYLEN(people_alive))//if no one's alive then game over!
+		GameOver()
+	else
+		OneSinSweep()
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/GameOver()
+	SSticker.force_ending = 1
+	for(var/mob/M in GLOB.player_list)
+		if(isnewplayer(M))
+			continue
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			H.gib()
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/OneSinSweep()
+	for(var/mob/living/simple_animal/hostile/apostle/A in apostles)
+		A.death()
+		QDEL_IN(A, 1.5 SECONDS)
+	for(var/mob/M in GLOB.player_list)
+		if(M.client)
+			M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_start.ogg', 25, 0)
+	apostles = null
+	can_move = FALSE
+	can_act = FALSE
+	var/turf_list = list()
+	for(var/turf/L in view(5, src))
+		if(get_dist(get_turf(src), L) > 2)
+			turf_list += L
+	var/mob/living/simple_animal/hostile/skullbro/SIN = new(pick(turf_list))
+	sleep(1 SECONDS)
+	SinKill(SIN)
+
+/mob/living/simple_animal/hostile/megafauna/black_midnight/proc/SinKill(mob/living/simple_animal/hostile/skullbro/SIN)
+	var/curr_health = health
+	for(var/i = 1 to 12)
+		sleep(1.5 SECONDS)
+		playsound(get_turf(src), 'sound/machines/clockcult/ark_damage.ogg', 75, TRUE, -1)
+		adjustBruteLoss(curr_health/12)
+		new /obj/effect/temp_visual/onesin_blessing(get_turf(src))
+	adjustBruteLoss(666666)
+	SIN.death()
+	for(var/mob/M in GLOB.player_list)
+		if(M.client)
+			M.playsound_local(get_turf(M), 'sound/abnormalities/onesin/confession_end.ogg', 50, 0)
+
 /obj/effect/crossspawner
 	name = "cross summon"
 	desc = "A target warning you of incoming pain"
@@ -1805,3 +1857,41 @@
 	playsound(get_turf(src), (gibbed ? 'sound/abnormalities/whitenight/scythe_gib.ogg' : 'sound/abnormalities/whitenight/scythe_spell.ogg'), (gibbed ? 100 : 75), FALSE, (gibbed ? 12 : 5))
 	SLEEP_CHECK_DEATH(5)
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/skullbro
+	name = "One Sin and Hundreds of Good Deeds"
+	desc = "A giant skull that is attached to a cross, it wears a crown of thorns."
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	icon_state = "onesin_halo_normal"
+	icon_living = "onesin_halo_normal"
+	maxHealth = 777
+	health = 777
+	damage_coeff = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	speed = 5
+	density = TRUE
+
+/mob/living/simple_animal/hostile/skullbro/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/skullbro/Initialize()
+	. = ..()
+	update_icon()
+	var/mob/living/simple_animal/hostile/abnormality/onesin/OS = locate() in GLOB.abnormality_mob_list
+	if(istype(OS))
+		OS.alpha = 0
+
+/mob/living/simple_animal/hostile/skullbro/update_overlays()
+	. = ..()
+	. += "onesin" //by the nine this is too cursed
+
+/mob/living/simple_animal/hostile/skullbro/CanAttack(atom/the_target)//should only attack when it has fists
+	return FALSE
+
+/mob/living/simple_animal/hostile/skullbro/death()
+	animate(src, alpha = 0, time = 10 SECONDS)
+	sleep(10 SECONDS)
+	var/mob/living/simple_animal/hostile/abnormality/onesin/OS = locate() in GLOB.abnormality_mob_list
+	if(istype(OS))
+		OS.alpha = 255
+	qdel(src)
+	..()
