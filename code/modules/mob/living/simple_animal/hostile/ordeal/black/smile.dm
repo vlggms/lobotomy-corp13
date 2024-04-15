@@ -35,7 +35,7 @@
 			return
 
 /mob/living/simple_animal/hostile/ordeal/echo/smile/proc/Spit()
-	SLEEP_CHECK_DEATH(1 SECOND)
+	SLEEP_CHECK_DEATH(1 SECONDS)
 	playsound(get_turf(src), 'sound/abnormalities/mountain/spit.ogg', 75, 1, 3)
 	for(var/k = 1 to 3)
 		var/turf/startloc = get_turf(targets_from)
@@ -58,8 +58,7 @@
 	var/list/been_hit = list()
 	for(var/turf/T in view(7, src))
 		HurtInTurf(T, been_hit, scream_damage, BLACK_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE)
-		for(var/living/mob/carbon/human/H in T)
-			if(!M.has_status_effect(/datum/status_effect/rend_black))
-				new /obj/effect/temp_visual/cult/sparks(get_turf(M))
-				M.apply_status_effect(/datum/status_effect/rend_black)
+		for(var/mob/living/carbon/human/H in T)
+			if(!H.has_status_effect(/datum/status_effect/rend_black))
+				H.apply_status_effect(/datum/status_effect/rend_black)
 
