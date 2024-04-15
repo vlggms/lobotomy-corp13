@@ -305,6 +305,7 @@
 	light_power = 0
 	update_light()
 	sleep(3)
+	playsound(src, 'sound/weapons/black_silence/snap.ogg', 50)
 	alpha = 255
 	can_move = TRUE
 	can_act = TRUE
