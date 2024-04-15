@@ -12,7 +12,7 @@
 	rapid_melee = 2
 	melee_damage_lower = 30
 	melee_damage_upper = 40
-	move_to_delay = 1.6
+	move_to_delay = 1.8
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
 	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.0, PALE_DAMAGE = 0.5)
@@ -21,24 +21,6 @@
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
 	del_on_death = TRUE
 	can_patrol = TRUE
-
-//Mimicry
-/mob/living/simple_animal/hostile/ordeal/echo/mimicry
-	icon_state = "mimicry_echo"
-	icon_living = "mimicry_echo"
-	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 161
-	melee_damage_upper = 161
-	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.4)
-
-	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
-	attack_verb_simple = list("slash", "slice", "rip", "cut")
-	attack_sound =  'sound/abnormalities/nothingthere/attack.ogg'
-
-/mob/living/simple_animal/hostile/ordeal/echo/mimicry/AttackingTarget()
-	. = ..()
-	if(isliving(target))
-		adjustBruteLoss(-(maxHealth/5))
 
 
 //Flowering night
@@ -167,28 +149,6 @@
 
 	return ..()
 
-
-//Smile
-/mob/living/simple_animal/hostile/ordeal/echo/smile
-	icon_state = "smile_echo"
-	icon_living = "smile_echo"
-	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 253
-	melee_damage_upper = 253
-	rapid_melee = 1
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.4)
-
-	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
-	attack_verb_simple = list("slash", "slice", "rip", "cut")
-	attack_sound = 'sound/weapons/ego/hammer.ogg'
-
-/mob/living/simple_animal/hostile/ordeal/echo/smile/AttackingTarget()
-	. = ..()
-	if(ishuman(target))
-		var/mob/living/B = target
-		if((B.health<=B.maxHealth *0.1 || B.stat == DEAD) && !(GODMODE in B.status_flags))	//Kills you under 10% HP
-			B.gib()
-			adjustBruteLoss(-(maxHealth/2))
 
 //Sound of a Star
 /mob/living/simple_animal/hostile/ordeal/echo/star
