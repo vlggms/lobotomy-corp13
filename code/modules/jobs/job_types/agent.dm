@@ -87,15 +87,17 @@
 	var/spawned_abnos = SSabnormality_queue.spawned_abnos
 	var/rooms_start = SSabnormality_queue.rooms_start
 
-	if(spawned_abnos > rooms_start * 0.95) // Full facility!
+	if(spawned_abnos > rooms_start * 0.8) // ALEPHs around here
 		set_attribute *= 4
-	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs around here
+	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs starting to spawn
+		set_attribute *= 3.5
+	else if(spawned_abnos > rooms_start * 0.6) // ALEPHs around here
 		set_attribute *= 3
-	else if(spawned_abnos > rooms_start * 0.5) // WAWs and others
+	else if(spawned_abnos > rooms_start * 0.45) // A bit before WAWs
 		set_attribute *= 2.5
-	else if(spawned_abnos > rooms_start * 0.35) // HEs
+	else if(spawned_abnos > rooms_start * 0.3) // HEs
 		set_attribute *= 2
-	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
+	else if(spawned_abnos > rooms_start * 0.15) // Shouldn't be anything more than TETHs
 		set_attribute *= 1.5
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
