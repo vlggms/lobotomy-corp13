@@ -75,6 +75,7 @@
 	src.pulled(pick(pullable))
 
 /mob/living/simple_animal/hostile/abnormality/smile/Initialize()
+  ..()
   if(IsCombatMap())
     density = FALSE
 
