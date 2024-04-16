@@ -118,17 +118,19 @@
 	. = ..()
 	cost = min(max_cost, cost + 1)
 
+//Healing bullets ended up being too much, and managers basically neglected shield bullets for them.
+//I'm hoping to keep them as a way to emergency mitigate HP and bring players out of crit and not instantly heal 60% HP. -Kitsunemitsu/Kirie
 /datum/facility_upgrade/bullet_heal_increase
 	name = UPGRADE_BULLET_HEAL
 	category = "Bullet Upgrades"
-	value = 0.15
-	max_value = 0.6
+	value = 0.1
+	max_value = 0.3
 	requires_one_of = list(HP_BULLET, SP_BULLET)
 
 /datum/facility_upgrade/bullet_heal_increase/Upgrade()
-	value = min(max_value, value + 0.15)
+	value = min(max_value, value + 0.1)
 	. = ..()
-	cost += 1
+	cost += 2
 
 /datum/facility_upgrade/bullet_heal_increase/DisplayValue()
 	return "[value * 100]%"
