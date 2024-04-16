@@ -22,7 +22,7 @@ GLOBAL_VAR_INIT(ssd_indicator_overlay, mutable_appearance('ModularTegustation/ss
 /mob/living/Logout()
 	lastclienttime = world.time
 	set_ssd_indicator(TRUE)
-	return ..()
+	. = ..()
 
 /mob/living/ghostize(can_reenter_corpse = TRUE)
 	. = ..()
