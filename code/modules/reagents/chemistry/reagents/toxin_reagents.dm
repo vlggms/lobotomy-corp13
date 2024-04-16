@@ -1031,3 +1031,24 @@
 		to_chat(M, "<span class='notice'>Ah, what was that? You thought you heard something...</span>")
 		M.add_confusion(5)
 	return ..()
+
+#define STATUS_EFFECT_PALLIDNOISE /datum/status_effect/stacking/pallid_noise//located in debuffs.dm
+
+/datum/reagent/toxin/pallidwaste
+	name = "Pallid Waste"
+	description = "A collection of pale connective tissue."
+	color = "#DDDDDD"
+	taste_description = "blood"
+	metabolization_rate = 3 * REAGENTS_METABOLISM
+
+/datum/reagent/toxin/pallidwaste/on_mob_life(mob/living/carbon/M)
+	..()
+	var/datum/status_effect/stacking/pallid_noise/P = M.has_status_effect(/datum/status_effect/stacking/pallid_noise)
+	if(!P)
+		M.apply_status_effect(STATUS_EFFECT_PALLIDNOISE)
+		M.vomit(10, TRUE, TRUE, 1, FALSE, FALSE, FALSE, TRUE, 100)
+		M.reagents.remove_reagent(src, 1)
+		return
+	P.add_stacks(1)
+
+#undef STATUS_EFFECT_PALLIDNOISE

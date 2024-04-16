@@ -2116,6 +2116,7 @@
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\seven.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\shi.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\thumb.dm"
+#include "code\modules\clothing\suits\ego_gear\non_abnormality\ucorp.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\wcorp.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\wedge.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\woven_armor.dm"

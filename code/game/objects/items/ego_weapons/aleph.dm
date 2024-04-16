@@ -1467,7 +1467,7 @@
 /obj/item/ego_weapon/shield/gasharpoon
 	name = "gasharpoon"
 	desc = "As long as I can kill the pallid whale with my own two hands... I care not about what happens next."
-	special = "Activate in your hand while wearing the corresponding suit to change forms. Each form has a unique ability; right-click and select 'revert' to change forms again."
+	special = "Activate in your hand while wearing the corresponding suit to change forms. Each form has a unique ability; alt-click or right-click and select 'revert' to change forms again."
 	icon_state = "gasharpoon"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -1582,7 +1582,6 @@
 	if(form == "queeqeg")
 		..()//NOW you can use the shield
 
-/*
 #define STATUS_EFFECT_PALLIDNOISE /datum/status_effect/stacking/pallid_noise//located in debuffs.dm
 
 /obj/item/ego_weapon/shield/gasharpoon/AnnounceBlock(mob/living/carbon/user)//block
@@ -1605,7 +1604,6 @@
 		P.add_stacks(1)
 
 #undef STATUS_EFFECT_PALLIDNOISE
-*/
 
 // Radial menu
 /obj/item/ego_weapon/shield/gasharpoon/proc/SwitchForm(mob/user)
