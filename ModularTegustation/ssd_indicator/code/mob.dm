@@ -4,14 +4,16 @@ GLOBAL_VAR_INIT(ssd_indicator_overlay, mutable_appearance('ModularTegustation/ss
 	var/ssd_indicator = FALSE
 	var/lastclienttime = 0
 
-/mob/living/proc/set_ssd_indicator(var/state)
+/mob/living/proc/set_ssd_indicator(state)
 	if(state == ssd_indicator)
 		return
 	ssd_indicator = state
 	if(ssd_indicator)
 		add_overlay(GLOB.ssd_indicator_overlay)
+		log_message("<font color='green'>has went SSD and got their indicator!</font>", INDIVIDUAL_ATTACK_LOG)
 	else
 		cut_overlay(GLOB.ssd_indicator_overlay)
+		log_message("<font color='green'>is no longer SSD and lost their indicator!</font>", INDIVIDUAL_ATTACK_LOG)
 
 /mob/living/Login()
 	. = ..()
@@ -21,3 +23,7 @@ GLOBAL_VAR_INIT(ssd_indicator_overlay, mutable_appearance('ModularTegustation/ss
 	lastclienttime = world.time
 	set_ssd_indicator(TRUE)
 	return ..()
+
+/mob/living/ghostize(can_reenter_corpse = TRUE)
+	. = ..()
+	set_ssd_indicator(FALSE)
