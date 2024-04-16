@@ -41,7 +41,7 @@
 			processing.total_positions = 4
 
 		if(istype(processing, /datum/job/ronin))
-			processing.total_positions = 2
+			processing.total_positions = 1
 	. = ..()
 
 
