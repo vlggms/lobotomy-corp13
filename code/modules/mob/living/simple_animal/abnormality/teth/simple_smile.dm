@@ -75,9 +75,9 @@
 	src.pulled(pick(pullable))
 
 /mob/living/simple_animal/hostile/abnormality/smile/Initialize()
-  ..()
-  if(IsCombatMap())
-    density = FALSE
+	..()
+	if(IsCombatMap())
+    	density = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/smile/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(lucky_counter > 3)
