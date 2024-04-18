@@ -23,8 +23,8 @@
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
 
-/datum/job/suppression/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+/datum/job/suppression/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
+	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
 
 	//Blatant Copypasta. pls fix
 	var/set_attribute = normal_attribute_level
@@ -97,7 +97,7 @@
 
 	job_abbreviation = "DO"
 
-/datum/job/suppression/captain/after_spawn(mob/living/carbon/human/H, mob/M)
+/datum/job/suppression/captain/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	. = ..()
 	for(var/datum/job/processing in SSjob.occupations)
 		if(istype(processing, /datum/job/suppression))
