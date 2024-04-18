@@ -42,34 +42,41 @@
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		return FALSE
-	//give gift
-	new /obj/item/laetitia_gift(owner.loc)
-	// var/targets = view(view_distance, owner)
-	// for(var/turf/T in targets)
-	// 	if(T.density)
-	// 		targets -= T
-	// var/spawn_place = pick(targets)
-	// new /obj/item/laetitia_gift(spawn_place)
+	var/strength = tgui_alert(owner, "What is the strength of the gift?", "Custom Speech", list("1", "2", "3"))
+	var/obj/item/laetitia_gift/g = new /obj/item/laetitia_gift(owner.loc)
+	g.strength = strength
+	if (strength == "1")
+		g.color = "#F48FB1"
+		g.name = "small laetitia's gift"
+	else if (strength == "3")
+		g.color = "#C2185B"
+		g.name = "big laetitia's gift"
 	StartCooldown()
 
 /obj/item/laetitia_gift
-	name = "Laetitia's Gift"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "giftdeliverypackage3"
+	name = "laetitia's gift"
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "prank_gift"
 	var/opening = FALSE
 	var/oneuse = TRUE
+	var/basepower = 25
+	var/strength = 1
 
 /obj/item/laetitia_gift/attack_self(mob/user)
 	if(opening)
-		to_chat(user, "<span class='warning'>You're already reading this!</span>")
+		to_chat(user, "<span class='warning'>You're already opening this gift!</span>")
 		return FALSE
 	opening = TRUE
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, TRUE)
-	to_chat(owner, "Doing thing!")
+	to_chat(user, "Opening the gift!")
 	if(do_after(user, 5 SECONDS, src))
-		// do thing
-		to_chat(owner, "Thing done!")
-	qdel(src)
+		for(var/turf/T in range(2, user))
+			new /obj/effect/temp_visual/smash_effect(T)
+			playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
+			user.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
+		to_chat(user, "You opened the gift!")
+		qdel(src)
+	opening = FALSE
 
 
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
