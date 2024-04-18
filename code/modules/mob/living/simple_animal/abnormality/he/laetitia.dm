@@ -17,6 +17,11 @@
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
 	max_boxes = 16 // Accurate to base game
+	melee_damage_type = WHITE_DAMAGE
+	melee_damage_lower = 1
+	melee_damage_upper = 5
+	attack_verb_continuous = "slaps"
+	attack_verb_simple = "slap"
 
 	ego_list = list(
 		/datum/ego_datum/weapon/prank,
@@ -29,7 +34,7 @@
 	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
 
 /datum/action/cooldown/laetitia_summon
-	name = "Call for friends"
+	name = "Call for Friends"
 	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	button_icon_state = "prank_gift"
 	check_flags = AB_CHECK_CONSCIOUS
@@ -97,10 +102,8 @@
 		to_chat(user, "<span class='warning'>You're already opening this gift!</span>")
 		return FALSE
 	opening = TRUE
-	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, TRUE)
 	to_chat(user, "Opening the gift!")
 	if(do_after(user, 5 SECONDS, src))
-		to_chat(user, "Doing damage")
 		playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
 		if (istype(user, /mob/living))
 			var/mob/living/L = user
