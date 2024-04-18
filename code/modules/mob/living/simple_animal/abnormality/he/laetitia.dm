@@ -5,8 +5,8 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "laetitia"
 	portrait = "laetitia"
-	maxHealth = 600
-	health = 600
+	maxHealth = 1500
+	health = 1500
 	threat_level = HE_LEVEL
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 45, 50, 50, 50),
@@ -34,9 +34,9 @@
 	button_icon_state = "prank_gift"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 1 SECONDS
+	cooldown_time = 40 SECONDS
 	var/delete_timer
-	var/delete_cooldown = 10 SECONDS
+	var/delete_cooldown = 30 SECONDS
 	var/mob/living/simple_animal/hostile/gift/G1
 	var/mob/living/simple_animal/hostile/gift/G2
 
