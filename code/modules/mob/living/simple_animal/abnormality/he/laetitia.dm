@@ -26,7 +26,32 @@
 	gift_message = "I hope you're pleased with this!"
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
-	attack_action_types = list(/datum/action/cooldown/laetitia_gift)
+	attack_action_types = list(/datum/action/cooldown/laetitia_gift, /datum/action/cooldown/laetitia_summon)
+
+/datum/action/cooldown/laetitia_summon
+	name = "Call for friends"
+	icon_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	button_icon_state = "prank_gift"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = 1 SECONDS
+	var/delete_timer
+	var/delete_cooldown = 10 SECONDS
+	var/mob/living/simple_animal/hostile/gift/G1
+	var/mob/living/simple_animal/hostile/gift/G2
+
+/datum/action/cooldown/laetitia_summon/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
+		return FALSE
+	G1 = new /mob/living/simple_animal/hostile/gift(owner.loc)
+	G2 = new /mob/living/simple_animal/hostile/gift(owner.loc)
+	delete_timer = addtimer(CALLBACK(src, .proc/delete), delete_cooldown, TIMER_STOPPABLE)
+
+/datum/action/cooldown/laetitia_summon/proc/delete()
+	qdel(G1)
+	qdel(G2)
 
 /datum/action/cooldown/laetitia_gift
 	name = "Gift"
@@ -34,7 +59,7 @@
 	button_icon_state = "prank_gift"
 	check_flags = AB_CHECK_CONSCIOUS
 	transparent_when_unavailable = TRUE
-	cooldown_time = 1 SECONDS
+	cooldown_time = 10 SECONDS
 	var/view_distance = 3
 
 /datum/action/cooldown/laetitia_gift/Trigger()
@@ -42,15 +67,20 @@
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		return FALSE
-	var/strength = tgui_alert(owner, "What is the strength of the gift?", "Custom Speech", list("1", "2", "3"))
+	var/kind = tgui_alert(owner, "What kind of gift?", "Custom Speech", list("Good", "Bad"))
+	var/strength = text2num(tgui_alert(owner, "What is the strength of the gift?", "Custom Speech", list("1", "2", "3")))
+	if (strength == null)
+		strength = 2
 	var/obj/item/laetitia_gift/g = new /obj/item/laetitia_gift(owner.loc)
 	g.strength = strength
-	if (strength == "1")
+	if (strength == 1)
 		g.color = "#F48FB1"
 		g.name = "small laetitia's gift"
-	else if (strength == "3")
+	else if (strength == 3)
 		g.color = "#C2185B"
 		g.name = "big laetitia's gift"
+	if (kind == "Good")
+		g.strength *= -1
 	StartCooldown()
 
 /obj/item/laetitia_gift
@@ -70,9 +100,13 @@
 	playsound(user, pick('sound/effects/pageturn1.ogg','sound/effects/pageturn2.ogg','sound/effects/pageturn3.ogg'), 30, TRUE)
 	to_chat(user, "Opening the gift!")
 	if(do_after(user, 5 SECONDS, src))
+		to_chat(user, "Doing damage")
+		playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
+		if (istype(user, /mob/living))
+			var/mob/living/L = user
+			L.apply_damage((basepower*strength), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), FALSE, TRUE)
 		for(var/turf/T in range(2, user))
 			new /obj/effect/temp_visual/smash_effect(T)
-			playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
 			user.HurtInTurf(T, list(), (basepower*strength), RED_DAMAGE, check_faction = FALSE, hurt_mechs = TRUE)
 		to_chat(user, "You opened the gift!")
 		qdel(src)
