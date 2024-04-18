@@ -63,7 +63,7 @@
 
 			else
 				addtimer(CALLBACK(src, PROC_REF(ShipOut), E.item_path),delay)
-				audible_message(span_notice("[usr.name] has purchased a [E.item_path]"))
+				audible_message(span_notice("[usr.name] has purchased a [E]"))
 
 			A.stored_boxes -= E.cost
 			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
