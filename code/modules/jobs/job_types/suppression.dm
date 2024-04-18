@@ -2,8 +2,7 @@
 	title = "Emergency Response Agent"
 	department_head = list("Manager", "Disciplinary Officer")
 	faction = "Station"
-	total_positions = 0
-	spawn_positions = 0
+	// note: job slots by default are 0
 	supervisors = "the Manager and the Disciplinary Officer"
 	selection_color = "#ccaaaa"
 	exp_requirements = 3000
@@ -18,16 +17,10 @@
 
 	allow_bureaucratic_error = FALSE
 
-	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 20,
-								PRUDENCE_ATTRIBUTE = 20,
-								TEMPERANCE_ATTRIBUTE = 20,
-								JUSTICE_ATTRIBUTE = 20
-								)
-
 	job_important = "You are an L-Corp Emergency Response Agent. Your job is to suppress Abnormalities. You cannot work. Use :h to talk on your departmental radio."
 	job_abbreviation = "ERA"
 
+	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
 
 /datum/job/suppression/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
@@ -35,21 +28,28 @@
 
 	//Blatant Copypasta. pls fix
 	var/set_attribute = normal_attribute_level
+	var/facility_full_percentage = 0
+	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
+		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
+	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	switch(facility_full_percentage)
+		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+			set_attribute *= 1.5
 
-	// Variables from abno queue subsystem
-	var/spawned_abnos = SSabnormality_queue.spawned_abnos
-	var/rooms_start = SSabnormality_queue.rooms_start
+		if(30 to 44) // HEs (8 Abnormalities)
+			set_attribute *= 2
 
-	if(spawned_abnos > rooms_start * 0.95) // Full facility!
-		set_attribute *= 4
-	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs around here
-		set_attribute *= 3
-	else if(spawned_abnos > rooms_start * 0.5) // WAWs and others
-		set_attribute *= 2.5
-	else if(spawned_abnos > rooms_start * 0.35) // HEs
-		set_attribute *= 2
-	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
-		set_attribute *= 1.5
+		if(45 to 59) // A bit before WAWs (11 Abnormalities)
+			set_attribute *= 2.5
+
+		if(60 to 69) // WAWs around here (15 Abnormalities)
+			set_attribute *= 3
+
+		if(70 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+			set_attribute *= 3.5
+
+		if(80 to 100) // ALEPHs around here (20 Abnormalities)
+			set_attribute *= 4
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
 
@@ -69,13 +69,14 @@
 	accessory = /obj/item/clothing/accessory/armband/lobotomy/discipline
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(
-		/obj/item/melee/classic_baton=1,
-		/obj/item/suppressionupdate = 1,
-	)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+
+	backpack_contents = list(
+		/obj/item/melee/classic_baton,
+		/obj/item/suppressionupdate,
+	)
 
 // Suppression Officer
 /datum/job/suppression/captain
@@ -111,12 +112,12 @@
 	ears = /obj/item/radio/headset/heads/headset_discipline
 	l_pocket = /obj/item/commandprojector
 	suit = /obj/item/clothing/suit/armor/vest/alt
-	backpack_contents = list(
-		/obj/item/melee/classic_baton=1,
-		/obj/item/announcementmaker/lcorp=1,
-		/obj/item/suppressionupdate = 1,
-		)
 
+	backpack_contents = list(
+		/obj/item/melee/classic_baton,
+		/obj/item/announcementmaker/lcorp,
+		/obj/item/suppressionupdate,
+	)
 
 	//Stat update
 /obj/item/suppressionupdate
@@ -137,21 +138,28 @@
 
 	//I got lazy and this needs to be shipped out today
 	var/set_attribute = 20
+	var/facility_full_percentage = 0
+	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
+		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
+	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	switch(facility_full_percentage)
+		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+			set_attribute *= 1.5
 
-	// Variables from abno queue subsystem
-	var/spawned_abnos = SSabnormality_queue.spawned_abnos
-	var/rooms_start = SSabnormality_queue.rooms_start
+		if(30 to 44) // HEs (8 Abnormalities)
+			set_attribute *= 2
 
-	if(spawned_abnos > rooms_start * 0.95) // Full facility!
-		set_attribute *= 4
-	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs around here
-		set_attribute *= 3
-	else if(spawned_abnos > rooms_start * 0.5) // WAWs and others
-		set_attribute *= 2.5
-	else if(spawned_abnos > rooms_start * 0.35) // HEs
-		set_attribute *= 2
-	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
-		set_attribute *= 1.5
+		if(45 to 59) // A bit before WAWs (11 Abnormalities)
+			set_attribute *= 2.5
+
+		if(60 to 69) // WAWs around here (15 Abnormalities)
+			set_attribute *= 3
+
+		if(70 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+			set_attribute *= 3.5
+
+		if(80 to 100) // ALEPHs around here (20 Abnormalities)
+			set_attribute *= 4
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
 

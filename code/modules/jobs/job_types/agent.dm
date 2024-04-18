@@ -165,9 +165,9 @@
 	l_pocket = /obj/item/commandprojector
 
 	backpack_contents = list(
-		/obj/item/melee/classic_baton=,
-		/obj/item/info_printer=,
-		/obj/item/announcementmaker/lcorp
+		/obj/item/melee/classic_baton,
+		/obj/item/info_printer,
+		/obj/item/announcementmaker/lcorp,
 	)
 
 // Trainee, for new players
