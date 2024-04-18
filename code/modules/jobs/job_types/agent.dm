@@ -112,6 +112,12 @@
 		if(upgradecheck == "Health Hud")
 			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
 			medsensor.add_hud_to(outfit_owner)
+
+	//Enable suppression agents.
+	for(var/datum/job/processing in SSjob.occupations)
+		if(istype(processing, /datum/job/suppression/captain))
+			processing.total_positions = 1
+
 	return ..()
 
 
@@ -119,7 +125,7 @@
 	name = "Agent"
 	jobtype = /datum/job/agent
 
-	head = /obj/item/clothing/head/beret/sec
+	head = /obj/item/clothing/head/beret/tegu/lobotomy/agent
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
@@ -137,8 +143,8 @@
 /datum/job/agent/captain
 	title = "Agent Captain"
 	selection_color = "#BB9999"
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 1
+	spawn_positions = 1
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
 
@@ -157,12 +163,11 @@
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
-	suit = /obj/item/clothing/suit/armor/vest/alt
 
 	backpack_contents = list(
-		/obj/item/melee/classic_baton,
-		/obj/item/info_printer,
-		/obj/item/announcementmaker/lcorp,
+		/obj/item/melee/classic_baton=,
+		/obj/item/info_printer=,
+		/obj/item/announcementmaker/lcorp
 	)
 
 // Trainee, for new players
