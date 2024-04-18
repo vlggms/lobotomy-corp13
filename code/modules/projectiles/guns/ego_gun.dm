@@ -12,7 +12,7 @@
 	var/obj/item/ammo_casing/ammo_type
 	var/list/attribute_requirements = list()
 	var/special
-	var/autofire	//In Rounds per second
+	var/autofire	//In Rounds per decisecond
 	var/equip_bonus
 
 /obj/item/gun/ego_gun/Initialize()
