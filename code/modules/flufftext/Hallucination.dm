@@ -1296,7 +1296,8 @@ GLOBAL_LIST_INIT(hallucination_list, list(
 			if("abnormality")
 				var/A_path = pick(subtypesof(/mob/living/simple_animal/hostile/abnormality))
 				var/mob/living/simple_animal/hostile/abnormality/A = new A_path(target)
-				new /obj/effect/hallucination/danger/abnormality(danger_point, target, A.icon, (A.icon_living == "" ? A.icon_state : A.icon_living), A.attack_sound, A.attack_verb_continuous, A.name, A.threat_level, A.pixel_x, A.pixel_y)
+				A.core_enabled = FALSE
+				new /obj/effect/hallucination/danger/abnormality(danger_point, target, A.icon, (A.icon_living == "" ? A.icon_state : A.icon_living), A.attack_sound, A.attack_verb_continuous, A.name, A.threat_level, A.pixel_x, A.pixel_y, A.core_enabled)
 				qdel(A)
 			if("misc")
 				new /obj/effect/hallucination/danger/misc(danger_point, target)

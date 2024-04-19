@@ -90,6 +90,8 @@
 	var/list/grouped_abnos = list()
 	//Abnormaltiy portrait, updated on spawn if they have one.
 	var/portrait = "UNKNOWN"
+	var/core_icon = ""
+	var/core_enabled = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -130,6 +132,8 @@
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
+	else if(core_enabled)//Abnormality Cores are spawned if there is no console tied to the abnormality
+		CreateAbnoCore(name, core_icon)//If cores are manually disabled for any reason, they won't generate.
 	..()
 	if(loc)
 		if(isarea(loc))
@@ -494,3 +498,22 @@
 	button_icon_state = button_icon_toggle_deactivated
 	UpdateButtonIcon()
 	active = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/proc/CreateAbnoCore()//this is called by abnormalities on Destroy()
+	var/obj/structure/abno_core/C = new(get_turf(src))
+	C.name = initial(name) + " Core"
+	C.desc = "The core of [initial(name)]"
+	C.icon_state = core_icon
+	C.contained_abno = src.type
+	C.threat_level = threat_level
+	switch(GetRiskLevel())
+		if(1)
+			return
+		if(2)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
+		if(3)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+		if(4)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
+		if(5)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'

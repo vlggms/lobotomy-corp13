@@ -7,6 +7,7 @@
 	icon_state = "gold_inert"
 	icon_living = "gold_inert"
 	icon_dead = "gold_cracked"
+	core_icon = "false_egg"
 	portrait = "golden_apple"
 	var/list/golden_apple_lines = list(
 		"I didn't want to die.",
@@ -263,7 +264,7 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "false_apple"
 	icon_living = "false_apple"
-	icon_dead = "false_egg"
+	icon_dead = "false_dead"
 	death_message = "is reduced to a primordial egg."
 	name = "False Apple"
 	desc = "The apple ruptured and a swarm of maggots crawled inside, metamorphosing into a hideous face."
