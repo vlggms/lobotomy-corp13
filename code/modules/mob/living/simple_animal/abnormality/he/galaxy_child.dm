@@ -1,5 +1,5 @@
 #define STATUS_EFFECT_FRIENDSHIP /datum/status_effect/display/friendship
-#define GALAXY_COOLDOWN (5 SECONDS)
+#define GALAXY_COOLDOWN (60 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	name = "Child of the Galaxy"
 	desc = "A young, lost child."
