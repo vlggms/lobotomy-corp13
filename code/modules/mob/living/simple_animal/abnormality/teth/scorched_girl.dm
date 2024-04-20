@@ -134,6 +134,9 @@
 	S.start()
 	if(SSmaptype.maptype != "limbus_labs")
 		qdel(src)
+	else
+		exploding = FALSE
+	return
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

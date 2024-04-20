@@ -90,6 +90,30 @@
 	//Unique variable im defining for this abnormality. This is the timer for their during work emotes.
 	var/work_emote_cooldown = 0
 
+	attack_action_types = list(
+		/datum/action/innate/change_icon_forsaken,
+	)
+
+
+/datum/action/innate/change_icon_forsaken
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_forsaken/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "forsakenmurdererinert"
+		active = 1
+
+/datum/action/innate/change_icon_forsaken/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "forsakenmurdererbreach"
+		active = 0
+
+
 //When work type is bad the qliphoth counter lowers with no chance.
 /mob/living/simple_animal/hostile/abnormality/forsaken_murderer/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	/**
