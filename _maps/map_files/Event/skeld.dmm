@@ -5276,6 +5276,7 @@
 /obj/machinery/computer/abnormality_logs{
 	dir = 8
 	},
+/obj/structure/sign/button_counter/directional/east,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "Ab" = (
@@ -5472,6 +5473,7 @@
 /obj/machinery/computer/message_monitor{
 	dir = 8
 	},
+/obj/structure/sign/button_counter/directional/east,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "AQ" = (

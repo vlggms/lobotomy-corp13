@@ -202,6 +202,7 @@
 /obj/effect/turf_decal/stripes/white/corner{
 	dir = 1
 	},
+/obj/structure/sign/button_counter/directional/east,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -1045,6 +1046,7 @@
 /area/department_main/training)
 "eN" = (
 /obj/effect/turf_decal/stripes/white/corner,
+/obj/structure/sign/button_counter/directional/north,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},

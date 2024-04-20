@@ -1073,6 +1073,7 @@
 "fi" = (
 /obj/machinery/vending/lobotomyuniform,
 /obj/effect/turf_decal/bot_white,
+/obj/structure/sign/button_counter/directional/east,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "fn" = (
@@ -5468,6 +5469,7 @@
 	dir = 9
 	},
 /obj/effect/turf_decal/bot_white,
+/obj/structure/sign/button_counter/directional/east,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "AC" = (

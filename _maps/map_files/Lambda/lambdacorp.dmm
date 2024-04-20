@@ -8800,6 +8800,12 @@
 	},
 /turf/open/floor/pod,
 /area/department_main/training)
+"QH" = (
+/obj/effect/landmark/toolspawn,
+/obj/effect/turf_decal/box/white,
+/obj/structure/sign/button_counter/directional/north,
+/turf/open/floor/pod/dark,
+/area/department_main/records)
 "QJ" = (
 /turf/open/floor/plating,
 /area/facility_hallway/information)
@@ -47974,7 +47980,7 @@ sR
 sR
 sR
 QV
-NH
+QH
 VH
 fz
 QV
@@ -48488,7 +48494,7 @@ sR
 sR
 sR
 QV
-NH
+QH
 Dr
 Db
 QV

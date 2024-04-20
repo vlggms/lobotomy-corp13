@@ -1316,6 +1316,7 @@
 "jI" = (
 /obj/machinery/vending/lobotomyuniform,
 /obj/effect/turf_decal/box/white,
+/obj/structure/sign/button_counter/directional/west,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "jL" = (
@@ -2469,6 +2470,7 @@
 "qT" = (
 /obj/machinery/vending/lobotomyarmband,
 /obj/effect/turf_decal/box/white,
+/obj/structure/sign/button_counter/directional/west,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "qU" = (
