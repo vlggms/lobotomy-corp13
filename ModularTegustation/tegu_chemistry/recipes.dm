@@ -16,12 +16,11 @@
 	results = list(/datum/reagent/abnormality/gaspilleur  = 1)
 	required_reagents = list(/datum/reagent/abnormality/focussyrup = 1, /datum/reagent/abnormality/nutrition = 1)
 	mix_message = "The mixture produces a rancid smell."
-/*
-/datum/chemical_reaction/sange_rau
-	results = list(/datum/reagent/abnormality/sange_rau  = 1)
+
+/datum/chemical_reaction/lesser_sange_rau
+	results = list(/datum/reagent/abnormality/lesser_sange_rau  = 1)
 	required_reagents = list(/datum/reagent/abnormality/tastesyrup = 1, /datum/reagent/abnormality/amusement = 1)
 	mix_message = "The mixture produces fumes that smell like suffocating under a lovers kiss."
-*/
 
 /datum/chemical_reaction/culpusumidus
 	results = list(/datum/reagent/abnormality/culpusumidus = 1)
