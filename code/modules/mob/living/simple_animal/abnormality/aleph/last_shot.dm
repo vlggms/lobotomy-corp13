@@ -83,6 +83,14 @@ GLOBAL_LIST_EMPTY(meat_list)
 		spawn_cooldown = world.time + spawn_cooldown_time
 		MeatSpawn()
 
+	for(var/mob/living/carbon/human/H in view(3, src))
+		if(locate(/obj/structure/meatfloor) in get_turf(H))
+			return
+		new /obj/structure/meatfloor(get_turf(H))
+		H.adjustStaminaLoss(20, 0)
+		to_chat(H, span_warning("Meat is wrapping further around your ankles, exhausting you."))
+
+
 /mob/living/simple_animal/hostile/abnormality/last_shot/proc/MeatSpawn()
 	for(var/i=spawn_number, i>=1, i--)	//This counts down.
 		var/mob/living/simple_animal/hostile/meatblob/V = new(get_turf(src))
