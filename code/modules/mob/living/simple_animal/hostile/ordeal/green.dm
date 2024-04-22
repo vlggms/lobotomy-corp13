@@ -52,7 +52,7 @@
 	if(.)
 		if(!istype(target, /mob/living/carbon/human))
 			return
-		if(SSmaptype.maptype == "city"|| SSmaptype.maptype == "fixers")
+		if(SSmaptype.maptype in SSmaptype.citymaps)
 			return
 		var/mob/living/carbon/human/TH = target
 		if(TH.health < 0)

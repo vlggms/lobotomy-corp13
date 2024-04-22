@@ -47,9 +47,9 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 			//Fixers
 			if("fixers")
-				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 50 MINUTES)
-				addtimer(CALLBACK(src, PROC_REF(endround)), 60 MINUTES)
-				to_chat(world, span_userdanger("This week will last 60 minutes."))
+				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 80 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(endround)), 90 MINUTES)
+				to_chat(world, span_userdanger("This week will last 90 minutes."))
 
 
 			//W-Corp stuff
