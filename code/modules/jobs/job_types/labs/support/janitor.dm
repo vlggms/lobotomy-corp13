@@ -19,7 +19,7 @@
 	job_important = "You are a limbus company janitor. Assist the facility in cleaning up as you can."
 	job_abbreviation = "JAN"
 
-/datum/job/lc_engineer/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+/datum/job/lc_janitor/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	..()
 	H.set_attribute_limit(0)
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
