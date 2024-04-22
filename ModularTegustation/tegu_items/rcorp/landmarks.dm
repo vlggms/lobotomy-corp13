@@ -63,6 +63,8 @@ GLOBAL_LIST_INIT(hardtank, list(/mob/living/simple_animal/hostile/abnormality/me
 	/mob/living/simple_animal/hostile/abnormality/greed_king,
 	/mob/living/simple_animal/hostile/abnormality/eris,
 	/mob/living/simple_animal/hostile/abnormality/general_b,
+	/mob/living/simple_animal/hostile/abnormality/nobody_is,
+	/mob/living/simple_animal/hostile/abnormality/space_lady,
 ))
 
 //Used for the specific raidboss mode
