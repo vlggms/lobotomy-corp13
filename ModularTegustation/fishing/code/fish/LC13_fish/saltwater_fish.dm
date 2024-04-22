@@ -58,5 +58,6 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 1,
 		/datum/reagent/consumable/nutriment/organ_tissue = 1,
-		/datum/reagent/consumable/salt = 8,
+		/datum/reagent/abnormality/bittersyrup = 4,
+		/datum/reagent/consumable/salt = 4,
 	)

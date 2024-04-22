@@ -13776,6 +13776,10 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/east)
+"Pc" = (
+/obj/effect/landmark/refinerspawn,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "Pd" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 8
@@ -43630,7 +43634,7 @@ XJ
 SO
 vC
 xL
-jZ
+Pc
 Tl
 kz
 yL

@@ -33,7 +33,7 @@
 
 /datum/status_effect/interventionshield
 	id = "physical intervention shield"
-	duration = 15 SECONDS
+	duration = 30 SECONDS
 	status_type = STATUS_EFFECT_REPLACE
 	alert_type = null
 	var/inherentarmorcheck

@@ -18,20 +18,15 @@
 
 	allow_bureaucratic_error = FALSE
 
-	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 20,
-								PRUDENCE_ATTRIBUTE = 20,
-								TEMPERANCE_ATTRIBUTE = 20,
-								JUSTICE_ATTRIBUTE = 20
-								)
-
 	job_important = "You are a L-Corp Agent. Your job is to work on and suppress Abnormalities. Use :h to talk on your departmental radio."
 
 	job_abbreviation = "AGT"
 
+	/// Values set in after_spawn() depending on var/normal_attribute_level and abnormality number per total abnormality cells
+	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
 
-/datum/job/agent/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+/datum/job/agent/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	// Assign department security
 	var/department
 	if(M && M.client && M.client.prefs)
@@ -69,47 +64,54 @@
 			accessory = /obj/item/clothing/accessory/armband/lobotomy/training
 
 	if(accessory)
-		var/obj/item/clothing/under/U = H.w_uniform
+		var/obj/item/clothing/under/U = outfit_owner.w_uniform
 		U.attach_accessory(new accessory)
-	if(H.mind.assigned_role == "Agent")
+	if(outfit_owner.mind.assigned_role == "Agent")
 		if(ears)
-			if(H.ears)
-				qdel(H.ears)
-			H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
+			if(outfit_owner.ears)
+				qdel(outfit_owner.ears)
+			outfit_owner.equip_to_slot_or_del(new ears(outfit_owner),ITEM_SLOT_EARS)
 	if(department != "None" && department)
 		to_chat(M, "<b>You have been assigned to [department]!</b>")
 	else
 		to_chat(M, "<b>You have not been assigned to any department.</b>")
 
 	var/set_attribute = normal_attribute_level
+	var/facility_full_percentage = 0
+	if(SSabnormality_queue.spawned_abnos) // dont divide by 0
+		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
+	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
+	switch(facility_full_percentage)
+		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
+			set_attribute *= 1.5
 
-	// Variables from abno queue subsystem
-	var/spawned_abnos = SSabnormality_queue.spawned_abnos
-	var/rooms_start = SSabnormality_queue.rooms_start
+		if(30 to 44) // HEs (8 Abnormalities)
+			set_attribute *= 2
 
-	if(spawned_abnos > rooms_start * 0.95) // Full facility!
-		set_attribute *= 4
-	else if(spawned_abnos > rooms_start * 0.7) // ALEPHs around here
-		set_attribute *= 3
-	else if(spawned_abnos > rooms_start * 0.5) // WAWs and others
-		set_attribute *= 2.5
-	else if(spawned_abnos > rooms_start * 0.35) // HEs
-		set_attribute *= 2
-	else if(spawned_abnos > rooms_start * 0.2) // Shouldn't be anything more than TETHs
-		set_attribute *= 1.5
+		if(45 to 59) // A bit before WAWs (11 Abnormalities)
+			set_attribute *= 2.5
+
+		if(60 to 69) // WAWs around here (15 Abnormalities)
+			set_attribute *= 3
+
+		if(70 to 79) // ALEPHs starting to spawn (17 Abnormalities)
+			set_attribute *= 3.5
+
+		if(80 to 100) // ALEPHs around here (20 Abnormalities)
+			set_attribute *= 4
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
 
-	for(var/A in roundstart_attributes)
-		roundstart_attributes[A] = round(set_attribute)
+	for(var/attribute in roundstart_attributes)
+		roundstart_attributes[attribute] = round(set_attribute)
 
 	//Check the lcorp global upgrades
 	for(var/upgradecheck in GLOB.lcorp_upgrades)
 		if(upgradecheck == "Agent Workchance")
-			ADD_TRAIT(H, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
+			ADD_TRAIT(outfit_owner, TRAIT_WORK_KNOWLEDGE, JOB_TRAIT)
 		if(upgradecheck == "Health Hud")
 			var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-			medsensor.add_hud_to(H)
+			medsensor.add_hud_to(outfit_owner)
 
 	//Enable suppression agents.
 	for(var/datum/job/processing in SSjob.occupations)
@@ -128,11 +130,14 @@
 	ears = /obj/item/radio/headset/alt
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy
-	backpack_contents = list(/obj/item/melee/classic_baton=1,
-		/obj/item/info_printer=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
+
+	backpack_contents = list(
+		/obj/item/melee/classic_baton,
+		/obj/item/info_printer,
+	)
 
 // Captain
 /datum/job/agent/captain
@@ -142,7 +147,6 @@
 	spawn_positions = 1
 	outfit = /datum/outfit/job/agent/captain
 	display_order = JOB_DISPLAY_ORDER_CAPTAIN
-	normal_attribute_level = 20 // Used to have 21, but it was just picked for the roundstart +1 stat to instantly mirror. - Kirie/Kitsunemitsu
 
 	access = list(ACCESS_COMMAND) // LC13:To-Do
 	exp_requirements = 6000
@@ -159,9 +163,12 @@
 	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/agent_captain/alt
 	l_pocket = /obj/item/commandprojector
-	backpack_contents = list(/obj/item/melee/classic_baton=1,
-		/obj/item/info_printer=1,
-		/obj/item/announcementmaker/lcorp)
+
+	backpack_contents = list(
+		/obj/item/melee/classic_baton,
+		/obj/item/info_printer,
+		/obj/item/announcementmaker/lcorp,
+	)
 
 // Trainee, for new players
 /datum/job/agent/intern
@@ -173,8 +180,12 @@
 	display_order = JOB_DISPLAY_ORDER_INTERN
 	normal_attribute_level = 20
 	exp_requirements = 0
-	job_important = "You are an Agent Intern. Your main goal is to learn how to work on Abnormalities and assist in suppressions. Other Agents will be more aware of your inexperience. \
-	If there is a Records Officer, seek them out for assistance."
+	job_important = "\
+		You are an Agent Intern. \
+		Your main goal is to learn how to work on Abnormalities and assist in suppressions. \
+		Other Agents will be more aware of your inexperience. \
+		If there is a Records Officer, seek them out for assistance.\
+	"
 
 	job_abbreviation = "INRN"
 
@@ -182,9 +193,12 @@
 	name = "Agent Intern"
 	jobtype = /datum/job/agent/intern
 	head = null
-	backpack_contents = list(/obj/item/melee/classic_baton=1,
-		/obj/item/paper/fluff/tutorial/levels=1 ,
-		/obj/item/paper/fluff/tutorial/risk=1,
-		/obj/item/paper/fluff/tutorial/damage=1,
-		/obj/item/paper/fluff/tutorial/tips=1,
-		/obj/item/info_printer=1)
+
+	backpack_contents = list(
+		/obj/item/melee/classic_baton,
+		/obj/item/paper/fluff/tutorial/levels,
+		/obj/item/paper/fluff/tutorial/risk,
+		/obj/item/paper/fluff/tutorial/damage,
+		/obj/item/paper/fluff/tutorial/tips,
+		/obj/item/info_printer,
+	)

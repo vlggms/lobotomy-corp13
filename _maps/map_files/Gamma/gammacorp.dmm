@@ -680,6 +680,11 @@
 	},
 /turf/open/floor/plating,
 /area/department_main/discipline)
+"fd" = (
+/obj/structure/rack,
+/obj/item/rawpe,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "ff" = (
 /obj/machinery/computer/ego_purchase{
 	dir = 4
@@ -4420,8 +4425,7 @@
 /turf/open/floor/facility/halls,
 /area/department_main/extraction)
 "Dn" = (
-/obj/structure/table/reinforced,
-/obj/item/rawpe,
+/obj/effect/landmark/refinerspawn,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
 "Do" = (
@@ -35570,7 +35574,7 @@ bX
 on
 CC
 OM
-OM
+fd
 OM
 OM
 Ib

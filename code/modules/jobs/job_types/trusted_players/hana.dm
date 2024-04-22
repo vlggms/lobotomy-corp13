@@ -24,24 +24,22 @@
 
 	//Mostly for armor.
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 80,
-								PRUDENCE_ATTRIBUTE = 80,
-								TEMPERANCE_ATTRIBUTE = 80,
-								JUSTICE_ATTRIBUTE = 80
-								)
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 80,
+	)
 
-/datum/job/hana/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+/datum/job/hana/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
+	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 	//Don't give this shit to the interns, my lord
 	if(paycheck==0)
-		add_verb(H, /client/proc/hanafetchquest)
-//		add_verb(H, /client/proc/hanaslayquest)
+		add_verb(outfit_owner, /client/proc/hanafetchquest)
+//		add_verb(outfit_owner, /client/proc/hanaslayquest)
 
-
-	. = ..()
-
+	return ..()
 
 /datum/outfit/job/hana
 	name = "Hana Representative"
@@ -52,10 +50,11 @@
 	ears = /obj/item/radio/headset/headset_cent
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	glasses = /obj/item/clothing/glasses/sunglasses
-	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
 	l_hand = /obj/item/clothing/suit/armor/ego_gear/city/hana
 	l_pocket = /obj/item/potential_tester
+
+	backpack_contents = list()
 
 //Hana
 /datum/job/hana/boss
@@ -69,11 +68,11 @@
 
 	//Mostly for armor.
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 100,
-								PRUDENCE_ATTRIBUTE = 100,
-								TEMPERANCE_ATTRIBUTE = 100,
-								JUSTICE_ATTRIBUTE = 100
-								)
+		FORTITUDE_ATTRIBUTE = 100,
+		PRUDENCE_ATTRIBUTE = 100,
+		TEMPERANCE_ATTRIBUTE = 100,
+		JUSTICE_ATTRIBUTE = 100,
+	)
 
 
 /datum/outfit/job/hana/admin
@@ -96,11 +95,11 @@
 
 	//Mostly for armor.
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 60,
-								PRUDENCE_ATTRIBUTE = 60,
-								TEMPERANCE_ATTRIBUTE = 60,
-								JUSTICE_ATTRIBUTE = 60
-								)
+		FORTITUDE_ATTRIBUTE = 60,
+		PRUDENCE_ATTRIBUTE = 60,
+		TEMPERANCE_ATTRIBUTE = 60,
+		JUSTICE_ATTRIBUTE = 60,
+	)
 
 	job_important = "You are a Intern for the Hana association, Your only job is to assist the higher ups with their duities. \
 		You MUST assist new fixer offices in getting set up, as well as issuing fixer licenses. \

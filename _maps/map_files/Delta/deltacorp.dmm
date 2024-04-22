@@ -6628,6 +6628,17 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
+"pr" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/obj/effect/landmark/refinerspawn,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/department_main/extraction)
 "ps" = (
 /obj/effect/turf_decal/tile/neutral{
 	color = "#000000";
@@ -54477,7 +54488,7 @@ Tp
 cP
 Bt
 zr
-cq
+pr
 in
 WT
 IF

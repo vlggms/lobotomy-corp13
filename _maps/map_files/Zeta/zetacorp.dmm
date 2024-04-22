@@ -6035,10 +6035,10 @@
 	},
 /area/facility_hallway/east)
 "qy" = (
-/obj/structure/rack,
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000"
 	},
+/obj/effect/landmark/refinerspawn,
 /turf/open/floor/mineral/titanium/purple{
 	color = "#8b0000";
 	name = "floor"
