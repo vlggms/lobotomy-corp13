@@ -1062,3 +1062,21 @@
 /obj/effect/temp_visual/holo_command/command_fight_b
 	icon_state = "Fight_this_wagie2"
 	light_color = COLOR_PALE_BLUE_GRAY
+
+/obj/effect/temp_visual/sunshower_dash
+	name = "sunshower dash"
+	icon_state = "sunshower_dash"
+	duration = 3
+
+/obj/effect/temp_visual/puddle_stomp_small
+	name = "puddle stomp"
+	icon_state = "puddle_stomp"
+	duration = 3.5
+
+/obj/effect/temp_visual/puddle_stomp_large
+	name = "puddle stomp"
+	icon = 'icons/effects/224x224.dmi'
+	icon_state = "puddle_stomp"
+	pixel_x = -96
+	pixel_y = -96
+	duration = 9

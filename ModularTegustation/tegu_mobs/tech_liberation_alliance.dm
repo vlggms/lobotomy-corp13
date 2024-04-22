@@ -310,6 +310,11 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 		return FALSE
 	return ..()
 
+/mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/DestroySurroundings()
+	if(!can_act)
+		return FALSE
+	return ..()
+
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
@@ -327,6 +332,8 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/SplashingDash(target)
 	//TODO ADD SOUNDS
 	dash_cooldown = world.time + dash_cooldown_time
+	playsound(src, 'sound/creatures/lc13/tech_liberation/sunshower_dash.ogg', 100, 1)
+	var/dash_dir = get_dir(src,target)
 	var/turf/dash_target = get_ranged_target_turf_direct(src, target, dash_range - 1 , 0)
 	var/list/dash_line = getline(src, dash_target)
 	for(var/turf/T in dash_line)
@@ -334,7 +341,8 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 			return
 		face_atom(target)
 		forceMove(T)
-		new /obj/effect/temp_visual/blubbering_smash(T)
+		var/obj/effect/temp_visual/sunshower_dash/dash_effect = new(T)
+		dash_effect.dir = dash_dir
 		HurtInTurf(T, list(), dash_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 		SLEEP_CHECK_DEATH(0.05 SECONDS)
 
@@ -348,6 +356,8 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	EnterGuardStance()
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/EnterGuardStance()
+	if(!can_act)
+		return
 	guard_stance = TRUE
 	can_act = FALSE
 	damage_taken = 0
@@ -363,10 +373,17 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/proc/PuddleStomp()
 	//TODO: ADD Effects
+	if(!can_act)
+		return
 	can_act = FALSE
-	SLEEP_CHECK_DEATH(1 SECONDS)
+	playsound(src, 'sound/creatures/lc13/tech_liberation/sunshower_stomp_start.ogg', 100, 1)
+	SLEEP_CHECK_DEATH(0.2 SECONDS)
+	playsound(src, 'sound/creatures/lc13/tech_liberation/sunshower_stomp.ogg', 100, 1)
+	SLEEP_CHECK_DEATH(0.3 SECONDS)
+	new /obj/effect/temp_visual/puddle_stomp_large(get_turf(src))
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	for(var/turf/T in view(src, stomp_range))
-		new /obj/effect/temp_visual/blubbering_smash(T)
+		new /obj/effect/temp_visual/puddle_stomp_small(T)
 		HurtInTurf(T, list(), stomp_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 	can_act = TRUE
 
@@ -437,6 +454,8 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	var/list/been_hit = list()// Don't get hit twice.
 
 /mob/living/simple_animal/hostile/humanoid/tech_liberation/sunshower/elite/EnterGuardStance()
+	if(!can_act)
+		return
 	guard_stance = TRUE
 	can_act = FALSE
 	damage_taken = 0
@@ -481,12 +500,14 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 		break
 	if(!target)
 		return
+	var/dash_dir = get_dir(src,target)
 	var/turf/dash_target = get_ranged_target_turf_direct(src, target, strong_dash_range, 0)
 	var/list/dash_line = getline(src, dash_target)
 	for(var/turf/T in dash_line)
 		new /obj/effect/temp_visual/cult/sparks(T)
+	playsound(src, 'sound/creatures/lc13/tech_liberation/sunshower_strong.ogg', 100, 1)
 	SLEEP_CHECK_DEATH(1 SECONDS)
-	playsound(src, 'ModularTegustation/Tegusounds/claw/prepare.ogg', 100, 1)
+	playsound(src, 'sound/creatures/lc13/tech_liberation/sunshower_dash2.ogg', 100, 1)
 	for(var/turf/T in dash_line)
 		if(T.density)
 			return
@@ -494,7 +515,8 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 		forceMove(T)
 		var/list/turfs_to_hit = range(1, T)
 		for(var/turf/TH in turfs_to_hit)//Smash AOE visual
-			new /obj/effect/temp_visual/blubbering_smash(TH)
+			var/obj/effect/temp_visual/sunshower_dash/dash_effect = new(TH)
+			dash_effect.dir = dash_dir
 		for(var/mob/living/L in turfs_to_hit)//damage applied to targets in range
 			if(!faction_check_mob(L))
 				if(L in been_hit)
@@ -535,6 +557,11 @@ Sunshower Elite - WAW - Switches between agression and defense, High mobility da
 	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(SelfDestruct)), umbrella_duration - 1 SECONDS)
 
+/obj/structure/sunshower_umbrella/Destroy()
+	playsound(src, 'sound/creatures/lc13/tech_liberation/sunshower_umbrella_dead.ogg', 50, TRUE, 7)
+	return ..()
+
 /obj/structure/sunshower_umbrella/proc/SelfDestruct()
 	spawner.surviving_umbrellas += 1
+	playsound(src, 'sound/creatures/lc13/tech_liberation/sunshower_umbrella_dead.ogg', 50, TRUE, 7)
 	qdel(src)
