@@ -38,9 +38,12 @@ GLOBAL_LIST_EMPTY(meat_list)
 	var/spawn_number = 2
 
 
-//Sits in containment until killed.
 /mob/living/simple_animal/hostile/abnormality/last_shot/Move()
 	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/last_shot/BreachEffect()
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/CanAttack(atom/the_target)
 	return FALSE
@@ -82,14 +85,6 @@ GLOBAL_LIST_EMPTY(meat_list)
 	if((spawn_cooldown < world.time) && !(status_flags & GODMODE))
 		spawn_cooldown = world.time + spawn_cooldown_time
 		MeatSpawn()
-
-	for(var/mob/living/carbon/human/H in view(3, src))
-		if(locate(/obj/structure/meatfloor) in get_turf(H))
-			return
-		new /obj/structure/meatfloor(get_turf(H))
-		H.adjustStaminaLoss(20, 0)
-		to_chat(H, span_warning("Meat is wrapping further around your ankles, exhausting you."))
-
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/proc/MeatSpawn()
 	for(var/i=spawn_number, i>=1, i--)	//This counts down.
