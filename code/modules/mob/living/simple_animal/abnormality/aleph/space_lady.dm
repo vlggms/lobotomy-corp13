@@ -32,13 +32,15 @@
 	gift_type =  /datum/ego_gifts/space
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 	ranged = TRUE
-	minimum_distance = 0
+	minimum_distance = 3
+	retreat_distance = 3
 	ranged_cooldown_time = 3 SECONDS
 
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3
 	var/explosion_damage = 100
 	var/can_act = TRUE
+	var/negative_range = 10
 
 //She can't move or attack.
 /mob/living/simple_animal/hostile/abnormality/space_lady/Move()
@@ -47,23 +49,35 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/AttackingTarget(atom/attacked_target)
-	return OpenFire()
-
+	OpenFire()
+	return
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/OpenFire()
 	if(!can_act)
 		return
 
-	if(prob(10))
-		addtimer(CALLBACK(src, PROC_REF(ExplodeTimer)), explosion_timer*2)
-		can_act = FALSE
+	switch(rand(1, 100))
+		if(1 to 10)
+			SpellBinder()
 
-	else if(prob(50))
-		projectiletype = /obj/projectile/white_hole
+		if(10 to 20)
+			addtimer(CALLBACK(src, PROC_REF(ExplodeTimer)), explosion_timer*2)
+			can_act = FALSE
 
-	else
-		projectiletype = /obj/projectile/black_hole
+		if(20 to 30)
+			NegativeField()
 
+		if(30 to 40)
+			Timestop()
+
+		if(40 to 50)
+			BulletTime()
+
+		else
+			if(prob(50))
+				projectiletype = /obj/projectile/white_hole
+			else
+				projectiletype = /obj/projectile/black_hole
 	..()
 
 //Teleporting and exploding
@@ -101,8 +115,97 @@
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
 
+//Inverts Sanity, kills the insane
+/mob/living/simple_animal/hostile/abnormality/space_lady/proc/NegativeField()
+	say("Ashes to ashes...")
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(10)
+	var/turf/orgin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(negative_range, orgin)
+	for(var/i = 0 to negative_range)
+		playsound(src, 'sound/weapons/guillotine.ogg', 75, FALSE, 4)
+		for(var/turf/T in all_turfs)
+			if(get_dist(orgin, T) > i)
+				continue
+			new /obj/effect/temp_visual/negativelook(T)
+			for(var/mob/living/carbon/human/L in T)
+				if(L.sanity_lost)					//DIE FOOL. LADY BLAST
+					L.death()
+				var/sanity_holder = L.sanityhealth	//Hold your current sanity
+				L.adjustSanityLoss(-20000) 			//bring you back to full sanity
+				L.adjustSanityLoss(sanity_holder)	//and then deal damage equal to your sanity before this attack
 
+			all_turfs -= T
+		SLEEP_CHECK_DEATH(3)
+	can_act = TRUE
 
+//Time stop
+/mob/living/simple_animal/hostile/abnormality/space_lady/proc/Timestop()
+	say("Stop...")
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(12)
+	new /obj/effect/timestop(get_turf(src), 3, 40, list(src))
+	can_act = TRUE
+
+//Time Stop Bullets
+/mob/living/simple_animal/hostile/abnormality/space_lady/proc/BulletTime()
+	say("Hold it...")
+	can_act = FALSE
+	SLEEP_CHECK_DEATH(6)
+
+	//Will look into giving it a unique attack
+	var/turf/startloc = get_turf(targets_from)
+	for(var/i = 1 to 15)
+		var/obj/projectile/loos_bullet/black/P = new(get_turf(src))
+		P.starting = startloc
+		P.firer = src
+		P.fired_from = src
+		P.yo = target.y - startloc.y
+		P.xo = target.x - startloc.x
+		P.original = target
+		P.preparePixelProjectile(target, src)
+		P.fire()
+
+	SLEEP_CHECK_DEATH(10)
+	can_act = TRUE
+
+//based off a touhou attack of the same name, I need to actually finish it.
+/mob/living/simple_animal/hostile/abnormality/space_lady/proc/SpellBinder()
+	say("Spellbinding circle...")
+	can_act = FALSE
+	var/turf/orgin = get_turf(src)
+	var/list/all_turfs = RANGE_TURFS(negative_range, orgin)
+	playsound(src, 'sound/weapons/guillotine.ogg', 75, FALSE, 4)
+	for(var/turf/T in all_turfs)
+		if(get_dist(orgin, T) != 6)
+			continue
+		new /obj/effect/temp_visual/negativelook/spellbinder(T)
+		all_turfs -= T
+	SLEEP_CHECK_DEATH(3)
+
+	//Will look into giving it a unique attack
+	var/turf/startloc = get_turf(targets_from)
+	for(var/i = 1 to 15)
+		var/obj/projectile/loos_bullet/P = new(get_turf(src))
+		P.starting = startloc
+		P.firer = src
+		P.fired_from = src
+		P.yo = target.y - startloc.y
+		P.xo = target.x - startloc.x
+		P.original = target
+		P.preparePixelProjectile(target, src)
+		P.fire()
+
+	SLEEP_CHECK_DEATH(10)
+
+	for(var/turf/T in all_turfs)
+		if(get_dist(orgin, T) != 3)
+			continue
+		new /obj/effect/temp_visual/negativelook/spellbinder(T)
+
+	SLEEP_CHECK_DEATH(20)
+
+	can_act = TRUE
 
 //work stuff
 /mob/living/simple_animal/hostile/abnormality/space_lady/WorktickFailure(mob/living/carbon/human/user)
@@ -129,12 +232,18 @@
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	datum_reference.qliphoth_change(-2)
+	//two chances to lower by 1
+	if(prob(50))
+		datum_reference.qliphoth_change(-1)
+	if(prob(50))
+		datum_reference.qliphoth_change(-1)
+
 	return
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	datum_reference.qliphoth_change(-1)
+	if(prob(30))
+		datum_reference.qliphoth_change(-1)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/space_lady/BreachEffect(mob/living/carbon/human/user, breach_type)
@@ -179,4 +288,45 @@
 		for(var/mob/living/carbon/human/L in T)
 			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 
+/obj/projectile/loos_bullet
+	name = "white beam"
+	icon_state = "whitelaser"
+	desc = "A beam of white light."
+	hitsound = "sound/effects/footstep/slime1.ogg"
+	speed = 5		//very slow bullets
+	damage = 40		//She fires a lot of them
+	damage_type = WHITE_DAMAGE
+	spread = 360	//Fires in a 360 Degree radius
+	white_healing = FALSE
 
+	//Grabbed from Harmony, I do want it to act the same
+	projectile_piercing  = ALL
+	ricochets_max = 3
+	ricochet_chance = 100 // JUST FUCKING DO IT
+	ricochet_decay_chance = 1
+	ricochet_decay_damage = 1.5 // Does MORE per bounce
+	ricochet_auto_aim_range = 3
+	ricochet_incidence_leeway = 0
+
+/obj/projectile/loos_bullet/check_ricochet_flag(atom/A)
+	if(istype(A, /obj/effect/temp_visual/negativelook/spellbinder))
+		return TRUE
+	return FALSE
+
+
+/obj/projectile/loos_bullet/black
+	name = "black beam"
+	icon_state = "purplelaser"
+	desc = "A beam of black light."
+	damage_type = BLACK_DAMAGE
+
+//Visual effects
+/obj/effect/temp_visual/negativelook
+	icon = 'icons/effects/atmospherics.dmi'
+	icon_state = "antinoblium"
+	duration = 6
+
+/obj/effect/temp_visual/negativelook/spellbinder
+	density = TRUE
+	icon_state = "halon"
+	duration = 20
