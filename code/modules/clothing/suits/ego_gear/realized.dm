@@ -257,7 +257,8 @@ No Ability	250
 
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
-	desc = "'Tis better to have loved and lost than never to have loved at all."
+	desc = "'Tis better to have loved and lost than never to have loved at all.\
+	Grants you the ability to use a Blind Rage in both hands and attack with both at the same time."
 	icon_state = "woundedcourage"
 	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Support
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
