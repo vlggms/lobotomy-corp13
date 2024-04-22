@@ -207,7 +207,7 @@
 		if(prob(20 + (0.5 * current_cycle)))
 			//Chance of stun increases by 0.5 per cycle
 			if(!H.IsStun())
-				to_chat(H, "Your limbs suddenly spasms and tightens like you have something stuck inside them.")
+				to_chat(H, "Your limbs suddenly spasm and tighten like you have pebbles stuck inside them.")
 				H.Stun(10*REM)
 		else
 			H.adjustBruteLoss(rand(-8,-4)*REM)
@@ -223,6 +223,21 @@
 	health_restore = 2
 	sanity_restore = 2
 	stat_changes = list(-40, -40, -40, -40)
+
+/datum/reagent/abnormality/lesser_sange_rau // Rapidly converts blood into health
+	name = "Lesser Sange Rau"
+	description = "Theorized to be an element of some abnormalities digestive systems. \
+		This fluid inefficently converts blood into regenerative tissue."
+	metabolization_rate = 1 * REAGENTS_METABOLISM
+	color = COLOR_MAROON
+
+/datum/reagent/abnormality/lesser_sange_rau/on_mob_life(mob/living/carbon/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.blood_volume > (10 * REAGENTS_METABOLISM))
+			H.blood_volume -= (10 * REAGENTS_METABOLISM)
+			H.adjustBruteLoss(rand(-4,-1)*REM)
+	return ..()
 
 		//Subtypes
 /datum/reagent/abnormality/heartysyrup
