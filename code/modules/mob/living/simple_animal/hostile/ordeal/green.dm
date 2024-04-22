@@ -133,6 +133,153 @@
 	/// When at 12 - it will start "reloading"
 	var/fire_count = 0
 
+	var/max_fire_count = 12
+	var/reload_cycles = 8
+	var/possible_melee_weapons = list(
+		"saw",
+		"pile"
+	)
+	var/possible_ranged_weapons = list(
+		"hmg",
+		"rail",
+		"laser",
+		"cannon"
+	)
+	var/possible_side_weapons = list(
+		"mg",
+		"saw",
+		"pile"
+	)
+	var/main_weapon = "saw"
+	var/side_weapon = "mg"
+
+	var/current_attacking_hand = "main"
+	var/tile_pierce = TRUE
+
+	var/main_melee_damage_lower = 22
+	var/main_melee_damage_upper = 26
+	var/main_attack_verb_continuous = "saws"
+	var/main_attack_verb_simple = "saw"
+	var/main_tile_pierce = TRUE
+
+	var/side_melee_damage_lower = 0
+	var/side_melee_damage_upper = 0
+	var/side_attack_verb_continuous = ""
+	var/side_attack_verb_simple = ""
+	var/side_tile_pierce = FALSE
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/Initialize()
+	. = ..()
+	SetWeapons("random","random")
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/SetWeapons(main_hand, side_hand)
+	ChooseMainWeapon(main_hand)
+	ChooseSideWeapon(side_hand)
+	if((main_weapon in possible_melee_weapons) && (side_weapon in possible_melee_weapons))
+		ranged = FALSE
+		main_melee_damage_lower *= 0.75
+		main_melee_damage_upper *= 0.75
+		side_melee_damage_lower *= 0.75
+		side_melee_damage_upper *= 0.75
+		rapid_melee = 2
+		move_to_delay = 4
+		max_fire_count = 25
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/ChooseMainWeapon(weapon)
+	if(weapon != "random")
+		main_weapon = weapon
+		UpdateMainWeapon()
+		return
+	if(prob(25))
+		main_weapon = pick(possible_melee_weapons)
+		UpdateMainWeapon()
+		return
+	main_weapon = pick(possible_ranged_weapons)
+	UpdateMainWeapon()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/ChooseSideWeapon(weapon)
+	if(weapon != "random")
+		side_weapon = weapon
+		UpdateSideWeapon()
+		return
+	side_weapon = pick(possible_side_weapons)
+	UpdateSideWeapon()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/UpdateMainWeapon()
+	switch(main_weapon)
+		if("saw")
+			main_melee_damage_lower = 22
+			main_melee_damage_upper = 26
+			main_attack_verb_continuous = "saws"
+			main_attack_verb_simple = "saw"
+			attack_sound = 'sound/effects/ordeals/green/saw.ogg'
+			main_tile_pierce = TRUE
+		if("pile")
+			main_melee_damage_lower = 33
+			main_melee_damage_upper = 39
+			main_attack_verb_continuous = "impales"
+			main_attack_verb_simple = "impale"
+			attack_sound = 'sound/effects/ordeals/green/saw.ogg'
+			main_tile_pierce = FALSE
+		if("hmg")
+			rapid = 7
+			rapid_fire_delay = 1.5
+			ranged_cooldown_time = 20
+			projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
+			projectilesound = 'sound/effects/ordeals/green/fire.ogg'
+			reload_cycles = 8
+		if("rail")
+			rapid = 1
+			rapid_fire_delay = 1
+			ranged_cooldown_time = 30
+			projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
+			projectilesound = 'sound/effects/ordeals/green/fire.ogg'
+			reload_cycles = 14
+			max_fire_count = 4
+		if("laser")
+			rapid = 20
+			rapid_fire_delay = 0.5
+			ranged_cooldown_time = 40
+			projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
+			projectilesound = 'sound/effects/ordeals/green/fire.ogg'
+			reload_cycles = 14
+			max_fire_count = 2
+		if("cannon")
+			rapid = 1
+			rapid_fire_delay = 1
+			ranged_cooldown_time = 40
+			projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
+			projectilesound = 'sound/effects/ordeals/green/fire.ogg'
+			reload_cycles = 14
+			max_fire_count = 3
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/UpdateSideWeapon()
+	switch(side_weapon)
+		if("mg")
+			if(main_weapon in possible_ranged_weapons)
+				// No dual gun bots, go back and repick another weapon that isn't ranged.
+				ChooseSideWeapon(pick(possible_melee_weapons))
+				return
+			rapid = 5
+			rapid_fire_delay = 2
+			ranged_cooldown_time = 15
+			projectiletype = /obj/projectile/bullet/c9x19mm/greenbot
+			projectilesound = 'sound/effects/ordeals/green/fire.ogg'
+			reload_cycles = 8
+		if("saw")
+			side_melee_damage_lower = 22
+			side_melee_damage_upper = 26
+			side_attack_verb_continuous = "saws"
+			side_attack_verb_simple = "saw"
+			side_tile_pierce = TRUE
+		if("pile")
+			side_melee_damage_lower = 33
+			side_melee_damage_upper = 39
+			side_attack_verb_continuous = "impales"
+			side_attack_verb_simple = "impale"
+			side_tile_pierce = FALSE
+	return
+
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/CanAttack(atom/the_target)
 	if(reloading)
 		return FALSE
@@ -157,15 +304,18 @@
 	if(reloading)
 		return FALSE
 	fire_count += 1
-	if(fire_count >= 12)
+	if(fire_count >= max_fire_count)
 		StartReloading()
 		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget()
+	HandleHands()
 	. = ..()
 	if(.)
 		if(!istype(target, /mob/living))
+			return
+		if(!tile_pierce)
 			return
 		var/turf/T = get_turf(target)
 		if(!T)
@@ -174,7 +324,7 @@
 			if(!T)
 				return
 			new /obj/effect/temp_visual/saw_effect(T)
-			HurtInTurf(T, list(), 8, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
+			HurtInTurf(T, list(), melee_damage_lower/2.25, RED_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 			SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_gibs()
@@ -183,11 +333,34 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_dust()
 	return
 
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/HandleHands()
+	if(ranged)
+		return
+	fire_count += 1
+	if(fire_count >= max_fire_count)
+		StartReloading()
+		return FALSE
+	switch(current_attacking_hand)
+		if("main")
+			melee_damage_lower = main_melee_damage_lower
+			melee_damage_upper = main_melee_damage_upper
+			attack_verb_continuous = main_attack_verb_continuous
+			attack_verb_simple = main_attack_verb_simple
+			tile_pierce = main_tile_pierce
+			current_attacking_hand = "side"
+		if("side")
+			melee_damage_lower = side_melee_damage_lower
+			melee_damage_upper = side_melee_damage_upper
+			attack_verb_continuous = side_attack_verb_continuous
+			attack_verb_simple = side_attack_verb_simple
+			tile_pierce = side_tile_pierce
+			current_attacking_hand = "side"
+
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/StartReloading()
 	reloading = TRUE
 	icon_state = "green_bot_reload"
 	playsound(get_turf(src), 'sound/effects/ordeals/green/cooldown.ogg', 50, FALSE)
-	for(var/i = 1 to 8)
+	for(var/i = 1 to reload_cycles)
 		new /obj/effect/temp_visual/green_noon_reload(get_turf(src))
 		SLEEP_CHECK_DEATH(8)
 	fire_count = 0
