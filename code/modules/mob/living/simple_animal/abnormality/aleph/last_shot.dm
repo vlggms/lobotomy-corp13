@@ -44,6 +44,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 /mob/living/simple_animal/hostile/abnormality/last_shot/BreachEffect()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/CanAttack(atom/the_target)
 	return FALSE
