@@ -26,6 +26,7 @@
 
 
 /mob/living/simple_animal/hostile/ordeal/echo/gold/OpenFire()
+	..()
 	can_act = FALSE
 	var/obj/effect/qoh_sygil/kog/B = new(get_turf(src))
 	QDEL_IN(B, 15)
