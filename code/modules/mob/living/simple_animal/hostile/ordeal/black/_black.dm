@@ -32,8 +32,8 @@
 	melee_damage_upper = 184
 	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.1)
 
-	attack_verb_continuous = list("cuts", "slices")
-	attack_verb_simple = list("cuts", "slices")
+	attack_verb_continuous = "cuts"
+	attack_verb_simple = "cut"
 	attack_sound = 'sound/weapons/ego/rapier2.ogg'
 
 /mob/living/simple_animal/hostile/ordeal/echo/flowering/AttackingTarget()
@@ -61,8 +61,8 @@
 	melee_damage_upper = 92
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.0, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
 
-	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
-	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	attack_verb_continuous = "slashes"
+	attack_verb_simple = "slash"
 	attack_sound = 'sound/weapons/ego/da_capo1.ogg'
 
 	var/combo
@@ -113,8 +113,8 @@
 	melee_damage_upper = 57.7
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.2)
 
-	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
-	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	attack_verb_continuous = "slices"
+	attack_verb_simple = "slice"
 	attack_sound = 'sound/weapons/ego/justitia3.ogg'
 
 	var/combo
@@ -148,29 +148,6 @@
 			HurtInTurf(T, list(), 50, PALE_DAMAGE)
 
 	return ..()
-
-
-//Sound of a Star
-/mob/living/simple_animal/hostile/ordeal/echo/star
-	icon_state = "star_echo"
-	icon_living = "star_echo"
-	melee_damage_type = WHITE_DAMAGE
-	melee_damage_lower = 80
-	melee_damage_upper = 80
-	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.6)
-
-	rapid = 5
-	rapid_fire_delay = 2
-	ranged_cooldown_time = 5
-	retreat_distance = 4
-	minimum_distance = 1
-	ranged = TRUE
-	attack_verb_continuous = "bashes"
-	attack_verb_simple = "bash"
-	projectiletype = /obj/projectile/ego_bullet/ego_star
-	projectilesound = 'sound/weapons/ego/star.ogg'
-	attack_sound = 'sound/weapons/ego/hammer.ogg'
-
 
 //Pink
 /mob/living/simple_animal/hostile/ordeal/echo/pink
@@ -214,34 +191,6 @@
 	projectilesound = 'sound/effects/attackblob.ogg'
 	attack_sound = 'sound/effects/attackblob.ogg'
 
-
-/*Gold Rush
-/mob/living/simple_animal/hostile/ordeal/echo/gold
-	icon_state = "goldrush_echo"
-	icon_living = "goldrush_echo"
-	melee_damage_type = RED_DAMAGE
-	melee_damage_lower = 322
-	melee_damage_upper = 322
-	rapid_melee = 1
-	damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1)
-
-	attack_verb_continuous = "bashes"
-	attack_verb_simple = "bash"
-	attack_sound = 'sound/weapons/fixer/generic/gen2.ogg'
-
-/mob/living/simple_animal/hostile/ordeal/echo/gold/AttackingTarget()
-	Stun(5)
-	SLEEP_CHECK_DEATH(5)
-	if(!Adjacent(target))
-		return
-	. = ..()
-
-/mob/living/simple_animal/hostile/ordeal/echo/gold/ComponentInitialize()
-	..()
-	AddComponent(/datum/component/knockback, 3, FALSE, FALSE)\
-	*/
-
-
 //Soulmate
 /mob/living/simple_animal/hostile/ordeal/echo/soulmate
 	icon_state = "soulmate_echo"
@@ -255,8 +204,8 @@
 	rapid_fire_delay = 2
 	ranged_cooldown_time = 7
 	ranged = TRUE
-	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
-	attack_verb_simple = list("slash", "slice", "rip", "cut")
+	attack_verb_continuous = "rips"
+	attack_verb_simple = "rip"
 	projectiletype = /obj/projectile/ego_bullet/gunblade
 	projectilesound = 'sound/weapons/ionrifle.ogg'
 	attack_sound = 'sound/weapons/blade1.ogg'
@@ -270,8 +219,8 @@
 	melee_damage_upper = 209
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.9)
 
-	attack_verb_continuous = list("cuts", "smacks", "bashes")
-	attack_verb_simple = list("cuts", "smacks", "bashes")
+	attack_verb_continuous =  "smacks"
+	attack_verb_simple = "smacks"
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
 
 
@@ -293,8 +242,8 @@
 	rapid_melee = 1
 	damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
 
-	attack_verb_continuous = list("pulverizes", "bashes", "slams", "blockades")
-	attack_verb_simple = list("pulverize", "bash", "slam", "blockade")
+	attack_verb_continuous = "pulverizes"
+	attack_verb_simple = "pulverize"
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
 
 
