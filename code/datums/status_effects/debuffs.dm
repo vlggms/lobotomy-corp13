@@ -984,7 +984,7 @@
 #define CARBON_HALFSPEED /datum/movespeed_modifier/qliphothoverload
 /datum/status_effect/qliphothoverload
 	id = "qliphoth intervention field"
-	duration = 10 SECONDS
+	duration = 15 SECONDS
 	alert_type = null
 	status_type = STATUS_EFFECT_REFRESH
 	var/statuseffectvisual
