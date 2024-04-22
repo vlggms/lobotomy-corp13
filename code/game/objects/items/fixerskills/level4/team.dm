@@ -11,6 +11,7 @@
 	button_icon_state = "warbanner"
 	name = "Warbanner"
 	cooldown_time = 1800
+	var/range = 2
 	var/list/affected = list()
 
 /datum/action/cooldown/warbanner/Trigger()
@@ -20,7 +21,7 @@
 	if (owner.stat == DEAD)
 		return FALSE
 
-	for(var/mob/living/carbon/human/human in view(2, get_turf(src)))
+	for(var/mob/living/carbon/human/human in view(range, get_turf(src)))
 		human.physiology.red_mod *= 0.6
 		human.physiology.white_mod *= 0.6
 		human.physiology.black_mod *= 0.6
@@ -53,6 +54,7 @@
 	button_icon_state = "warcry"
 	name = "Warcry"
 	cooldown_time = 1800
+	var/range = 2
 	var/list/affected = list()
 
 /datum/action/cooldown/warcry/Trigger()
@@ -62,7 +64,7 @@
 	if (owner.stat == DEAD)
 		return FALSE
 
-	for(var/mob/living/carbon/human/human in view(2, get_turf(src)))
+	for(var/mob/living/carbon/human/human in view(range, get_turf(src)))
 		human.add_movespeed_modifier(/datum/movespeed_modifier/retreat)
 		addtimer(CALLBACK(human, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/retreat), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
 	StartCooldown()

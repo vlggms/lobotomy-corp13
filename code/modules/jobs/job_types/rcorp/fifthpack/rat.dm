@@ -59,7 +59,7 @@
 								TEMPERANCE_ATTRIBUTE = 80,
 								JUSTICE_ATTRIBUTE = 80,
 								)
-	rank_title = "LT"
+	rank_title = "CPT"
 	job_important = "You are the squad leader of the diverse operations division."
 	//job_notice = "Visit your bunks in the command tent to gather your one-handed rabbit gun and multiphase blade."
 

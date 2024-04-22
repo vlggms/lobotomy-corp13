@@ -280,8 +280,8 @@
 /area/city/outskirts)
 "fd" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
-	pixel_y = 10;
-	dir = 4
+	dir = 4;
+	pixel_y = 10
 	},
 /obj/effect/turf_decal/trimline/yellow/filled/line{
 	dir = 2
@@ -929,12 +929,6 @@
 /obj/structure/lattice/catwalk,
 /obj/structure/closet/crate,
 /turf/open/floor/plating,
-/area/city/outskirts)
-"rQ" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
-/turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "rV" = (
 /obj/structure/flora/grass/both,
@@ -1927,8 +1921,8 @@
 /area/city/outskirts)
 "Lu" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
-	pixel_y = 10;
-	dir = 4
+	dir = 4;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/blood/gibs,
 /turf/open/floor/plating/ashplanet,
@@ -1946,8 +1940,8 @@
 /area/city/outskirts)
 "LH" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
-	pixel_y = 10;
-	dir = 4
+	dir = 4;
+	pixel_y = 10
 	},
 /obj/effect/decal/cleanable/blood/tracks,
 /turf/open/floor/plating/ashplanet,
@@ -2053,8 +2047,8 @@
 "Oe" = (
 /obj/structure/table/reinforced,
 /obj/item/reagent_containers/food/drinks/dry_ramen{
-	pixel_y = 4;
-	pixel_x = -7
+	pixel_x = -7;
+	pixel_y = 4
 	},
 /turf/open/floor/plasteel/airless/white,
 /area/city/outskirts)
@@ -2268,8 +2262,8 @@
 /area/city/outskirts)
 "RP" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
-	pixel_y = 10;
-	dir = 4
+	dir = 4;
+	pixel_y = 10
 	},
 /obj/structure/flora/rock,
 /turf/open/floor/plating/ashplanet,
@@ -2293,8 +2287,8 @@
 "Sc" = (
 /obj/effect/decal/cleanable/blood/gibs/torso,
 /obj/effect/turf_decal/trimline/white/filled/line{
-	pixel_y = 10;
-	dir = 4
+	dir = 4;
+	pixel_y = 10
 	},
 /turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
@@ -2420,8 +2414,8 @@
 /area/city/outskirts)
 "UP" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
-	pixel_y = 10;
-	dir = 4
+	dir = 4;
+	pixel_y = 10
 	},
 /obj/structure/flora/rock/pile,
 /turf/open/floor/plating/ashplanet,
@@ -2546,8 +2540,8 @@
 /turf/open/floor/material,
 /area/city/outskirts)
 "Xr" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "inside"
+/obj/effect/rcorp_blocker{
+	timelock = 2
 	},
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
@@ -2638,8 +2632,8 @@
 "Yz" = (
 /obj/structure/railing{
 	dir = 4;
-	pixel_y = -8;
-	pixel_x = 1
+	pixel_x = 1;
+	pixel_y = -8
 	},
 /turf/open/floor/plasteel,
 /area/city/outskirts)
@@ -2666,8 +2660,8 @@
 /area/city/outskirts)
 "YS" = (
 /obj/effect/turf_decal/trimline/white/filled/line{
-	pixel_y = 10;
-	dir = 4
+	dir = 4;
+	pixel_y = 10
 	},
 /turf/open/floor/plating/ashplanet,
 /area/city/outskirts)
@@ -2792,67 +2786,67 @@ Xr
 Xr
 Xr
 Xr
-rQ
-wQ
-wQ
-wQ
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-cg
-wQ
-Xr
-Xr
-Xr
-rQ
 wQ
 wQ
 wQ
 wQ
-wQ
-wQ
-wQ
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
+cg
 wQ
 Xr
-rQ
+Xr
+Xr
+wQ
+wQ
+wQ
+wQ
+wQ
+wQ
+wQ
+wQ
+wQ
+Xr
+wQ
 wQ
 wQ
 wQ

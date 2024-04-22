@@ -51,7 +51,7 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 					else
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
-				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 5 MINUTES)
 
 			//Limbus Labs
 			if("limbus_labs")
@@ -114,9 +114,9 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 //Gamemode stuff
 /datum/game_mode/combat/proc/counterincrease()
-	addtimer(CALLBACK(src, PROC_REF(counterincrease)), 1 MINUTES)
 	GLOB.combat_counter+=1
 	if(SSmaptype.maptype == "wcorp")
+		addtimer(CALLBACK(src, PROC_REF(counterincrease)), 1 MINUTES)
 		for(var/mob/living/carbon/human/H in GLOB.human_list)
 			if(H.stat == DEAD)
 				continue
@@ -124,6 +124,13 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				continue
 			H.adjustBruteLoss(-(H.maxHealth*0.10))
 			H.adjustSanityLoss(-(H.maxSanity*0.10))
+
+	if(SSmaptype.maptype == "rcorp")
+		addtimer(CALLBACK(src, PROC_REF(counterincrease)), 5 MINUTES)
+		for(var/obj/effect/rcorp_blocker/B in GLOB.rcorp_structures)
+			if(B.timelock == GLOB.combat_counter)
+				B.Activate()
+
 
 /datum/game_mode/combat/proc/rcorp_announce()
 	var/announcement_type = ""

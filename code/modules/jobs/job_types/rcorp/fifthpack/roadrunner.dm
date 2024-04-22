@@ -55,7 +55,7 @@
 								TEMPERANCE_ATTRIBUTE = 40,
 								JUSTICE_ATTRIBUTE = 130
 								)
-	rank_title = "LT"
+	rank_title = "CPT"
 	job_important = "You are the squad leader of the skirmishing division."
 	//job_notice = "Visit your bunks in the command tent to gather your one-handed rabbit gun and multiphase blade."
 

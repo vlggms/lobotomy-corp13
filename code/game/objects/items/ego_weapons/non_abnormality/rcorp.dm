@@ -162,7 +162,7 @@
 	name = "R-Corporation R-4000 'Mark 3'"
 	desc = "An energy gun produced especially for the rabbit captain. This weapon can be fired with one hand."
 	icon_state = "rabbitcaptain"
-	weapon_weight = WEAPON_LIGHT
+	weapon_weight = WEAPON_MEDIUM
 	pin = /obj/item/firing_pin
 
 //you really shouldn't be having this as a spawned in rabbit
@@ -175,35 +175,6 @@
 		/obj/item/ammo_casing/energy/laser/black
 		)
 	pin = /obj/item/firing_pin
-
-/obj/item/gun/energy/e_gun/rabbit/minigun
-	name = "R-Corporation X-15 Minigun"
-	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
-	icon_state = "rabbitmachinegun"
-	ammo_type = list(
-		/obj/item/ammo_casing/energy/laser/red,
-		)
-	pin = /obj/item/firing_pin
-	projectile_damage_multiplier = 0.4
-	item_flags = SLOWS_WHILE_IN_HAND
-	fire_delay = 0
-	drag_slowdown = 3
-	slowdown = 2
-
-/obj/item/gun/energy/e_gun/rabbit/minigun/Initialize()
-	. = ..()
-	AddComponent(/datum/component/automatic_fire, 0.05 SECONDS)
-
-/obj/item/gun/energy/e_gun/rabbit/minigun/tricolor
-	name = "R-Corporation R-3500 Minigun"
-	desc = "An energy machinegun that is extremely heavy, and fires bullets extremely quickly."
-	icon_state = "rabbitmachinegun"
-	projectile_damage_multiplier = 0.7
-	ammo_type = list(
-		/obj/item/ammo_casing/energy/laser/red,
-		/obj/item/ammo_casing/energy/laser/white,
-		/obj/item/ammo_casing/energy/laser/black
-		)
 
 /obj/item/ego_weapon/city/rabbit_rush
 	name = "rush dagger"

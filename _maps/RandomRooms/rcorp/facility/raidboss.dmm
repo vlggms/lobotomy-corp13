@@ -3,13 +3,6 @@
 /obj/effect/mob_spawn/human/corpse/pirate,
 /turf/open/floor/facility,
 /area/city/outskirts)
-"aN" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "inside"
-	},
-/obj/machinery/door/airlock/public/glass,
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
 "bn" = (
 /obj/item/toy/plush/yuri,
 /turf/open/floor/plasteel/dark,
@@ -18,8 +11,8 @@
 /turf/open/floor/plasteel/dark,
 /area/city/outskirts)
 "qF" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "inside"
+/obj/effect/rcorp_blocker{
+	timelock = 2
 	},
 /turf/open/floor/plating/asteroid,
 /area/city/outskirts)
@@ -44,12 +37,6 @@
 "Vg" = (
 /obj/effect/gibspawner/human,
 /turf/open/floor/facility,
-/area/city/outskirts)
-"VG" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
-	},
-/turf/closed/indestructible/syndicate,
 /area/city/outskirts)
 "WS" = (
 /turf/closed/indestructible/rock,
@@ -86,32 +73,32 @@ WS
 WS
 WS
 WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-Fl
-aN
-aN
-aN
-aN
-aN
 Fl
 Fl
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
-WS
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+qF
+qF
+qF
+qF
+qF
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
+Fl
 WS
 WS
 WS
@@ -152,7 +139,7 @@ Fl
 qF
 qF
 qF
-VG
+Fl
 Fl
 Fl
 Fl
@@ -164,7 +151,7 @@ Fl
 qF
 qF
 qF
-VG
+Fl
 Fl
 Fl
 Fl
