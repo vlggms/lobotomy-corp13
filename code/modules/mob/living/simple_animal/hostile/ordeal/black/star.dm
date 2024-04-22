@@ -15,24 +15,29 @@
 	ranged = TRUE
 	attack_verb_continuous = "bashes"
 	attack_verb_simple = "bash"
-	projectiletype = /obj/projectile/ego_bullet/ego_star
+	projectiletype = /obj/projectile/ego_bullet/ego_star/echo
 	projectilesound = 'sound/weapons/ego/star.ogg'
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
 
 /mob/living/simple_animal/hostile/ordeal/echo/star/OpenFire(target)
+	..()
 	if(prob(20))
 		Ding()
 		return
-	..()
 
 /mob/living/simple_animal/hostile/ordeal/echo/star/proc/Ding()
-	icon_state = "goldrush_echo_ding"
+	icon_state = "star_echo_ding"
+	can_act = FALSE
 	SLEEP_CHECK_DEATH(3 SECONDS)
 	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 100, FALSE, 40, falloff_distance = 10)
 	for(var/mob/living/carbon/human/H in range(10, src))
 		H.apply_damage(80, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-	icon_state = "goldrush_echo"
-
+		if(H.sanity_lost)
+			H.death()
+			animate(H, transform = H.transform*0.01, time = 5)
+			QDEL_IN(H, 5)
+	icon_state = "star_echo"
+	can_act = TRUE
 
 /obj/projectile/ego_bullet/ego_star/echo
 	damage = 40 // Big damage
@@ -42,7 +47,7 @@
 	if(!ishuman(target))
 		return
 	var/mob/living/carbon/human/H = target
-	if(H.sanity_lost) // TODO: TEMPORARY AS HELL
+	if(H.sanity_lost)
 		H.death()
 		animate(H, transform = H.transform*0.01, time = 5)
 		QDEL_IN(H, 5)

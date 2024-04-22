@@ -26,12 +26,16 @@
 
 
 /mob/living/simple_animal/hostile/ordeal/echo/gold/OpenFire()
+	can_act = FALSE
 	var/obj/effect/qoh_sygil/kog/B = new(get_turf(src))
+	QDEL_IN(B, 15)
+
 	SLEEP_CHECK_DEATH(10)
 	var/obj/effect/qoh_sygil/kog/C = new(get_turf(target))
+	QDEL_IN(C, 5)
 	forceMove(get_turf(C))
 	playsound(src, 'sound/abnormalities/hatredqueen/gun.ogg', 65, FALSE, 10)
-	SLEEP_CHECK_DEATH(5)
 
-	qdel(B)
-	qdel(C)
+	SLEEP_CHECK_DEATH(5)
+	can_act = TRUE
+

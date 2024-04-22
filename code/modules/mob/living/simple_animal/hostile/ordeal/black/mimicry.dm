@@ -28,6 +28,7 @@
 /mob/living/simple_animal/hostile/ordeal/echo/mimicry/proc/Goodbye()	//Just a simple goodbye.
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
 	icon_state = "mimicry_echo_goodbye"
+	can_act = FALSE
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	for(var/turf/T in view(2, src))
 		new /obj/effect/temp_visual/nt_goodbye(T)
@@ -41,6 +42,7 @@
 				L.gib()
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/goodbye_attack.ogg', 75, 0, 7)
 	SLEEP_CHECK_DEATH(2 SECONDS)
+	can_act = TRUE
 	icon_state = "mimicry_echo"
 
 /mob/living/simple_animal/hostile/ordeal/echo/mimicry/Life()

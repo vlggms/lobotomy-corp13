@@ -21,7 +21,19 @@
 	attack_sound = 'sound/weapons/ego/hammer.ogg'
 	del_on_death = TRUE
 	can_patrol = TRUE
+	var/can_act = TRUE
 
+/mob/living/simple_animal/hostile/ordeal/echo/Move()
+	if(!can_act)
+		return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/echo/CanAttack(atom/the_target)
+	if(!can_act)
+		return FALSE
+
+/mob/living/simple_animal/hostile/ordeal/echo/OpenFire()
+	if(!can_act)
+		return FALSE
 
 //Flowering night
 /mob/living/simple_animal/hostile/ordeal/echo/flowering
