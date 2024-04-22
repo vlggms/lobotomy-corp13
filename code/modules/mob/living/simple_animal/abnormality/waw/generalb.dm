@@ -45,6 +45,28 @@
 	//If the general has her post breach icon.
 	var/static/true_breached = FALSE
 
+	// Playables Vars
+	var/combat_map = FALSE
+	var/datum/action/innate/toggle_artillery_sight/sight_ability
+
+/mob/living/simple_animal/hostile/abnormality/general_b/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	sight_ability.original_sight = src.sight
+
+/mob/living/simple_animal/hostile/abnormality/general_b/Initialize()
+	. = ..()
+	var/obj/effect/proc_holder/ability/aimed/artillery_shell/general/shell_ability = new
+	src.AddSpell(shell_ability)
+	sight_ability = new
+	sight_ability.Grant(src)
+	if(IsCombatMap())
+		combat_map = TRUE
+		sight_ability.new_sight = SEE_TURFS
+	else
+		sight_ability.new_sight = SEE_TURFS | SEE_THRU
+
 /mob/living/simple_animal/hostile/abnormality/general_b/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	if(prob(40))
@@ -90,8 +112,9 @@
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if((fire_cooldown < world.time))
-		fireshell()
+	if ((!combat_map) && (!client))
+		if((fire_cooldown < world.time))
+			AimShell()
 
 //Prevents special armor drop if not breached.
 /mob/living/simple_animal/hostile/abnormality/general_b/drop_loot()
@@ -111,22 +134,25 @@
 */
 /mob/living/simple_animal/hostile/abnormality/general_b/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type != BREACH_PINK)
-		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "My queen? I hear your cries...", 25))
+		if(!combat_map)
+			addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, "My queen? I hear your cries...", 25))
 		icon = 'ModularTegustation/Teguicons/48x96.dmi'
 		flick("generalbee_", src)
 		SLEEP_CHECK_DEATH(80)
 	else
 		//This is placed here so that her soldiers know its a party.
 		faction += "pink_midnight"
-	var/turf/T = pick(GLOB.department_centers)
-	forceMove(T)
+	if(!combat_map)
+		var/turf/T = pick(GLOB.department_centers)
+		forceMove(T)
 	//Call root code but with normal breach
 	. = ..(null, BREACH_NORMAL)
 	true_breached = TRUE
-	var/turf/orgin = get_turf(src)
-	var/list/all_turfs = RANGE_TURFS(2, orgin)
-	SpawnMinions(all_turfs, TRUE)
-	datum_reference.qliphoth_change(-1)
+	if(!combat_map)
+		var/turf/orgin = get_turf(src)
+		var/list/all_turfs = RANGE_TURFS(2, orgin)
+		SpawnMinions(all_turfs, TRUE)
+		datum_reference.qliphoth_change(-1)
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/SpawnMinions(list/spawn_turfs, copy_faction = FALSE)
@@ -139,7 +165,7 @@
 		if(spawn_minion && copy_faction)
 			spawn_minion.faction = faction.Copy()
 
-/mob/living/simple_animal/hostile/abnormality/general_b/proc/fireshell()
+/mob/living/simple_animal/hostile/abnormality/general_b/proc/AimShell()
 	fire_cooldown = world.time + fire_cooldown_time
 	var/list/targets = list()
 	for(var/mob/living/L in livinginrange(fireball_range, src))
@@ -152,13 +178,23 @@
 		if(L.stat == DEAD)
 			continue
 		targets += L
-	if(!targets)
+	if(!(targets.len > 0))
 		return
-	new /obj/effect/beeshell(get_turf(pick(targets)), faction)
+	FireShell(pick(targets), FALSE)
 	volley_count+=1
 	if(volley_count>=4)
 		volley_count=0
 		fire_cooldown = world.time + fire_cooldown_time*3	//Triple cooldown every 4 shells
+
+/mob/living/simple_animal/hostile/abnormality/general_b/proc/FireShell(target, called_by_ability)
+	var/turf/target_turf = get_turf(target)
+	if(target_turf.density)
+		to_chat(src, span_notice("Can't fire at that location!"))
+		if(called_by_ability)// Used so that Perform() can return on the targeted ability.
+			return TRUE
+		return
+	to_chat(src, span_notice("You fire at the target!"))
+	new /obj/effect/beeshell(target_turf, faction)
 
 /mob/living/simple_animal/hostile/abnormality/general_b/proc/SpawnBees()
 	var/X = pick(GLOB.xeno_spawn)
@@ -217,18 +253,37 @@
 	var/fire_cooldown
 	var/fireball_range = 30
 
+	var/combat_map = FALSE
+	var/datum/action/innate/toggle_artillery_sight/sight_ability
+
+/mob/living/simple_animal/hostile/artillery_bee/Login()
+	. = ..()
+	if(!. || !client)
+		return FALSE
+	sight_ability.original_sight = src.sight
+	if(IsCombatMap())
+		sight_ability.new_sight = SEE_TURFS
+	else
+		sight_ability.new_sight = SEE_TURFS | SEE_THRU
+
 /mob/living/simple_animal/hostile/artillery_bee/Initialize()
-	fire_cooldown = world.time + fire_cooldown_time
-	..()
+	. = ..()
+	var/obj/effect/proc_holder/ability/aimed/artillery_shell/shell_ability = new
+	src.AddSpell(shell_ability)
+	sight_ability = new
+	sight_ability.Grant(src)
+	if (IsCombatMap())
+		combat_map = TRUE
 
 /mob/living/simple_animal/hostile/artillery_bee/Life()
 	. = ..()
 	if(!.) // Dead
 		return FALSE
-	if((fire_cooldown < world.time))
-		fireshell()
+	if ((!combat_map) && (!client))
+		if((fire_cooldown < world.time))
+			AimShell()
 
-/mob/living/simple_animal/hostile/artillery_bee/proc/fireshell()
+/mob/living/simple_animal/hostile/artillery_bee/proc/AimShell()
 	fire_cooldown = world.time + fire_cooldown_time
 	var/list/targets = list()
 	for(var/mob/living/L in livinginrange(fireball_range, src))
@@ -242,7 +297,119 @@
 			continue
 		targets += L
 	if(targets.len > 0)
-		new /obj/effect/beeshell(get_turf(pick(targets)), faction)
+		FireShell(pick(targets), FALSE)
+
+/mob/living/simple_animal/hostile/artillery_bee/proc/FireShell(target, called_by_ability)
+	var/turf/target_turf = get_turf(target)
+	if(target_turf.density)
+		to_chat(src, span_notice("Can't fire at that location!"))
+		if(called_by_ability) // Used so that Perform() can return on the targeted ability.
+			return TRUE
+		return
+	to_chat(src, span_notice("You fire at the target!"))
+	new /obj/effect/beeshell(target_turf, faction)
+
+/datum/action/innate/toggle_artillery_sight
+	name = "Toggle Artillery Sight"
+	desc = "Toggle your ability to see extremely far away and through walls (but not see whats behind them)."
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "zoom_toggle0"
+	background_icon_state = "bg_abnormality"
+	var/toggle_on_message = span_warning("You increase your vision range!")
+	var/button_icon_toggle_activated = "zoom_toggle1"
+	var/toggle_off_message = span_warning("You deactivate your artillery sight.")
+	var/button_icon_toggle_deactivated = "zoom_toggle0"
+	var/zoom_level = 0
+	var/zoom_out_amt_level1 = 5
+	var/zoom_out_amt_level2 = 15
+	var/zoom_out_amt
+	var/zoom_amt = 10
+	var/original_sight
+	var/new_sight = SEE_TURFS
+
+/datum/action/innate/toggle_artillery_sight/Activate()
+	to_chat(owner, toggle_on_message)
+	zoom_level ++
+	switch(zoom_level)
+		if(1)
+			zoom_out_amt = zoom_out_amt_level1
+			ActivateSignals()
+		if(2)
+			zoom_out_amt = zoom_out_amt_level2
+			button_icon_state = button_icon_toggle_activated
+			UpdateButtonIcon()
+			active = TRUE
+
+	owner.sight |= new_sight
+	owner.regenerate_icons()
+	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
+	return ..()
+
+/datum/action/innate/toggle_artillery_sight/proc/ActivateSignals()
+	SIGNAL_HANDLER
+
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Deactivate))
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(Rotate))
+
+/datum/action/innate/toggle_artillery_sight/Deactivate()
+	to_chat(owner, toggle_off_message)
+	DeactivateSignals()
+	button_icon_state = button_icon_toggle_deactivated
+	UpdateButtonIcon()
+
+	owner.sight = original_sight
+	owner.regenerate_icons()
+	zoom_level = 0
+	active = FALSE
+	owner.client.view_size.zoomIn()
+	return ..()
+
+/datum/action/innate/toggle_artillery_sight/proc/DeactivateSignals()
+	SIGNAL_HANDLER
+
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
+
+/datum/action/innate/toggle_artillery_sight/proc/Rotate(old_dir, new_dir)
+	SIGNAL_HANDLER
+
+	owner.regenerate_icons()
+	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
+
+/obj/effect/proc_holder/ability/aimed/artillery_shell
+	name = "Fire Artillery Shell"
+	desc = "An ability that allows the user to fire a shell from their artillery cannon."
+	action_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	action_background_icon_state = "bg_abnormality"
+	action_icon_state = "artillery0"
+	base_icon_state = "artillery"
+	cooldown_time = 10 SECONDS
+
+	var/artillery_range = 30
+
+/obj/effect/proc_holder/ability/aimed/artillery_shell/Perform(target, mob/living/simple_animal/hostile/abnormality/general_b/user)
+	if(get_dist(user, target) > artillery_range)
+		to_chat(user, span_notice("Too far from our cannon's range!"))
+		return
+	if(user.FireShell((target), TRUE))
+		return
+	return ..()
+
+/obj/effect/proc_holder/ability/aimed/artillery_shell/general
+	name = "Fire Artillery Shell Barrage"
+	desc = "An ability that allows the user to fire a shell from it's artillery cannons. Quick to fire, but will need a reload after 4 shots."
+	cooldown_time = 3 SECONDS
+
+	var/volley_count = 0
+	//TODO: make sprites
+
+/obj/effect/proc_holder/ability/aimed/artillery_shell/general/Perform(target, mob/living/simple_animal/hostile/abnormality/general_b/user)
+	. = ..()
+	volley_count += 1
+	if(volley_count >= 4)
+		volley_count = 0
+		cooldown += cooldown_time * 2 //Triple cooldown every 4 shots
+	return
 
 /obj/effect/beeshell
 	name = "bee shell"

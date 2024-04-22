@@ -984,7 +984,7 @@
 #define CARBON_HALFSPEED /datum/movespeed_modifier/qliphothoverload
 /datum/status_effect/qliphothoverload
 	id = "qliphoth intervention field"
-	duration = 10 SECONDS
+	duration = 15 SECONDS
 	alert_type = null
 	status_type = STATUS_EFFECT_REFRESH
 	var/statuseffectvisual
@@ -1168,3 +1168,26 @@
 		src.apply_status_effect(/datum/status_effect/stacking/lc_burn, stacks)
 	else
 		B.add_stacks(stacks)
+
+/datum/status_effect/display/dyscrasone_withdrawl
+	id = "dyscrasone_withdrawl"
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 15 SECONDS
+	alert_type = null
+	display_name = "sadface_all_stats"
+
+/datum/status_effect/display/dyscrasone_withdrawl/on_apply()
+	. = ..()
+	var/mob/living/carbon/human/L = owner
+	L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -25)
+	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -25)
+	L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -25)
+	L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -25)
+
+/datum/status_effect/display/dyscrasone_withdrawl/on_remove()
+	var/mob/living/carbon/human/L = owner
+	L.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 25)
+	L.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 25)
+	L.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 25)
+	L.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 25)
+	return ..()

@@ -192,3 +192,8 @@
 /datum/ego_datum/armor/buff_christmas
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/ultimate_christmas
 	cost = 100
+
+//Ahab Personal E.G.O - Gasharpoon
+/datum/ego_datum/weapon/gasharpoon
+	item_path = /obj/item/ego_weapon/shield/gasharpoon
+	cost = 100//appears in wishing well
