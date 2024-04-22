@@ -25,15 +25,13 @@
 		return
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/echo/star/Ding()
+/mob/living/simple_animal/hostile/ordeal/echo/star/proc/Ding()
+	icon_state = "goldrush_echo_ding"
 	SLEEP_CHECK_DEATH(3 SECONDS)
 	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 100, FALSE, 40, falloff_distance = 10)
-
-	//animation shameless stolen
-	var/matrix/init_transform = transform
-	animate(src, transform = transform*1.5, time = 3, easing = BACK_EASING|EASE_OUT)
 	for(var/mob/living/carbon/human/H in range(10, src))
 		H.apply_damage(80, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	icon_state = "goldrush_echo"
 
 
 /obj/projectile/ego_bullet/ego_star/echo
@@ -41,6 +39,9 @@
 
 /obj/projectile/ego_bullet/ego_star/echo/on_hit(target)
 	..()
+	if(!ishuman(target))
+		return
+	var/mob/living/carbon/human/H = target
 	if(H.sanity_lost) // TODO: TEMPORARY AS HELL
 		H.death()
 		animate(H, transform = H.transform*0.01, time = 5)
