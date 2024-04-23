@@ -82,22 +82,22 @@
 		facility_full_percentage = 100 * (SSabnormality_queue.spawned_abnos / SSabnormality_queue.rooms_start)
 	// how full the facility is, from 0 abnormalities out of 24 cells being 0% and 24/24 cells being 100%
 	switch(facility_full_percentage)
-		if(15 to 29.99) // Shouldn't be anything more than TETHs (4 Abnormalities)
+		if(15 to 29) // Shouldn't be anything more than TETHs (4 Abnormalities)
 			set_attribute *= 1.5
 
-		if(30 to 44.99) // HEs (8 Abnormalities)
+		if(29 to 44) // HEs (8 Abnormalities)
 			set_attribute *= 2
 
-		if(45 to 59.99) // A bit before WAWs (11 Abnormalities)
+		if(44 to 59) // A bit before WAWs (11 Abnormalities)
 			set_attribute *= 2.5
 
-		if(60 to 69.99) // WAWs around here (15 Abnormalities)
+		if(59 to 69) // WAWs around here (15 Abnormalities)
 			set_attribute *= 3
 
-		if(70 to 79.99) // ALEPHs starting to spawn (17 Abnormalities)
+		if(69 to 79) // ALEPHs starting to spawn (17 Abnormalities)
 			set_attribute *= 3.5
 
-		if(80 to 100) // ALEPHs around here (20 Abnormalities)
+		if(79 to 100) // ALEPHs around here (20 Abnormalities)
 			set_attribute *= 4
 
 	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)
