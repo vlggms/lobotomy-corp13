@@ -24,5 +24,6 @@
 			"Baseturf": "/turf/open/floor/plating/asteroid"
 		}
 	],
+	"maptype": "mini",
 	"minetype": "none"
 }
