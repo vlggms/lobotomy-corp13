@@ -3903,6 +3903,7 @@
 #include "interface\stylesheet.dm"
 #include "interface\skin.dmf"
 #include "ModularTegustation\engineering_bounties.dm"
+#include "ModularTegustation\harvestable_gardens.dm"
 #include "ModularTegustation\languagebooks.dm"
 #include "ModularTegustation\lc13_effects.dm"
 #include "ModularTegustation\lc13_machinery.dm"
