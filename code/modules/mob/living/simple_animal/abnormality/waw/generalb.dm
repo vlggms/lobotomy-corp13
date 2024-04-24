@@ -264,7 +264,7 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("neutral")
 
-mob/living/simple_animal/hostile/soldier_bee/Login()
+/mob/living/simple_animal/hostile/soldier_bee/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		faction = list("hostile")
