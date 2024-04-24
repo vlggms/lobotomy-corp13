@@ -10,6 +10,7 @@
 	desc = "One Pufferfish contains enough toxins in its liver to kill 30 people."
 	habitat = "Ocean"
 	icon_state = "pufferfish"
+	fillet_type = /obj/item/food/freshfish/fugu
 	required_fluid_type = AQUARIUM_FLUID_SALTWATER
 	sprite_width = 8
 	sprite_height = 8
@@ -22,6 +23,7 @@
 	desc = "Clownfish catch prey by swimming onto the reef, attracting larger fish, and luring them back to the anemone. The anemone will sting and eat the larger fish, leaving the remains for the clownfish."
 	icon_state = "clownfish"
 	dedicated_in_aquarium_icon_state = "clownfish_small"
+	fillet_type = /obj/item/food/freshfish/pink
 	sprite_width = 8
 	sprite_height = 5
 	average_size = 30
@@ -32,6 +34,7 @@
 	name = "cardinalfish"
 	desc = "Cardinalfish are often found near sea urchins, where the fish hide when threatened."
 	icon_state = "cardinalfish"
+	fillet_type = /obj/item/food/freshfish/white
 	average_size = 30
 	average_weight = 500
 	stable_population = 4
@@ -40,6 +43,7 @@
 	name = "green chromis"
 	desc = "The Chromis can vary in color from blue to green depending on the lighting and distance from the lights."
 	icon_state = "greenchromis"
+	fillet_type = /obj/item/food/freshfish/white
 	average_size = 30
 	average_weight = 500
 	stable_population = 5
@@ -48,6 +52,7 @@
 	name = "firefish goby"
 	desc = "To communicate in the wild, the firefish uses its dorsal fin to alert others of potential danger."
 	icon_state = "firefish"
+	fillet_type = /obj/item/food/freshfish/white
 	sprite_width = 6
 	sprite_height = 5
 	average_size = 30
@@ -58,6 +63,7 @@
 	desc = "Typically found in areas below 6600 feet below the surface of the ocean, they live in complete darkness."
 	icon_state = "lanternfish"
 	random_case_rarity = FISH_RARITY_VERY_RARE
+	fillet_type = /obj/item/food/freshfish/pink
 	source_width = 28
 	source_height = 21
 	sprite_width = 8

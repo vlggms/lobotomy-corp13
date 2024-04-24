@@ -36,15 +36,11 @@
 	var/isfishing = FALSE
 	//Fishing Visuals
 	var/list/current_fishing_visuals = list()
+	//what base mod do you have?
+	var/speed_modifier = 1
 
 	//do we override the default fishing speed? (should be used if you want to debug something or make a rod with unique speed)
 	var/speed_override = FALSE
-
-//Upgraded Varient
-/obj/item/fishing_rod/tier1
-	name = "fishing rod"
-	desc = "A tool used to dredge up aquatic entities. This rod is pretty reliable all things considered."
-	rod_level = 1
 
 /obj/item/fishing_rod/examine(mob/user)
 	. = ..()
@@ -119,7 +115,7 @@
 	else
 		fishing_time = speed_override
 
-	if(!do_after(user, fishing_time, target = fishing_spot))
+	if(!do_after(user, fishing_time/speed_modifier, target = fishing_spot))
 		isfishing = FALSE
 		return FALSE
 	//Redundant repeat of Fish skill check in order to apply EXP
@@ -331,6 +327,29 @@
 	if(line)
 		if(istype(line,/obj/item/fishing_component/line))
 			. += line.fishing_value
+
+
+//Upgraded Varient
+/obj/item/fishing_rod/fiberglass
+	name = "fibreglass fishing rod"
+	desc = "A tool used to dredge up aquatic entities. This rod is pretty reliable all things considered."
+	icon_state = "rod_fibreglass"
+	rod_level = 1		//Generally all round better.
+	speed_modifier = 1.2
+
+//Alternate Rods. These ones all cost fishing points.
+/obj/item/fishing_rod/gold
+	name = "golden fishing rod"
+	desc = "A tool used to dredge up aquatic entities. A beautiful, gold-encrusted rod. Expensive. Catches fish faster."
+	icon_state = "rod_gold"
+	speed_modifier = 1.5 //Just like minecraft.
+
+/obj/item/fishing_rod/titanium
+	name = "golden fishing rod"
+	desc = "A tool used to dredge up aquatic entities. An excellently built titanium rod. Catches better fish."
+	icon_state = "rod_titanium"
+	rod_level = 1.4
+
 
 #undef ROD_SLOT_LINE
 #undef ROD_SLOT_HOOK
