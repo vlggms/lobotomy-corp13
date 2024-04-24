@@ -90,7 +90,7 @@
 			if(user in just_havers)
 				return TRUE
 
-mob/living/simple_animal/hostile/abnormality/contract/proc/NewContract(mob/living/carbon/human/user, work_type)
+/mob/living/simple_animal/hostile/abnormality/contract/proc/NewContract(mob/living/carbon/human/user, work_type)
 	if((user in total_havers))
 		return
 	switch(work_type)
