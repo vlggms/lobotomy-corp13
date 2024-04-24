@@ -74,13 +74,15 @@
 			if(mob in galaxy_friend) //cut who is already a friend
 				nearby -= mob
 		var/mob/living/carbon/human/new_friend = input(src, "Choose who you want to gift a pebble to", "Select your new friend") as null|anything in nearby // pick someone from the list
-		new_friend.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
-		galaxy_friend |= new_friend
-		heal_amount += heal_mod
-		damage_amount += damage_mod
-		RegisterSignal(new_friend, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
-		icon_state = "galaxy"
-		depressed = FALSE
+		var/giftask = alert(new_friend, "Do you wish to receive the child's gift?", "Recieve Gift", "Yes", "No")
+		if(giftask == "Yes")
+			new_friend.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
+			galaxy_friend |= new_friend
+			heal_amount += heal_mod
+			damage_amount += damage_mod
+			RegisterSignal(new_friend, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
+			icon_state = "galaxy"
+			depressed = FALSE
 
 /datum/action/cooldown/galaxygiftbreak
 	name = "Break Gifts"
