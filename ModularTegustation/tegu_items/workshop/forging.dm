@@ -15,6 +15,25 @@
 	smoothing_groups = null
 	canSmoothWith = null
 
+/**
+ * This proc override is needed for two reasons
+ * 1. You could deconstruct this with a screwdriver or wrench :)
+ * 2. Items would be placed incorrectly, lemme explain
+ * We add the src.pixel_x and src.pixel_y into the item's would-be pixel_x and pixel_y
+ * This is so we can map it at different values, and the item will correctly position itself on top of the anvil
+ */
+/obj/structure/table/anvil/attackby(obj/item/I, mob/user, params)
+	var/list/modifiers = params2list(params)
+	if(istype(I, /obj/item/storage/bag/tray) || istype(I, /obj/item/riding_offhand))
+		return ..()
+
+	if(user.a_intent != INTENT_HARM && !(I.item_flags & ABSTRACT))
+		if(user.transferItemToLoc(I, drop_location(), silent = FALSE))
+			if(!LAZYACCESS(modifiers, ICON_X) || !LAZYACCESS(modifiers, ICON_Y))
+				return
+			I.pixel_x = clamp(text2num(LAZYACCESS(modifiers, ICON_X)) - 16, -(world.icon_size/2), world.icon_size/2) + src.pixel_x
+			I.pixel_y = clamp(text2num(LAZYACCESS(modifiers, ICON_Y)) - 16, -(world.icon_size/2), world.icon_size/2) + src.pixel_y
+			AfterPutItemOnTable(I, user)
 
 /obj/structure/forge
 	name = "workshop forge"
