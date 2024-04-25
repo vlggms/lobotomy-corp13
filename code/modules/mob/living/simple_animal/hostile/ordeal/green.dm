@@ -148,12 +148,12 @@
 	var/current_attacking_weapon = "main"
 	/* Defines all the possible melee weapons that the bot can have, melee weapons can be either main weapons or side weapons
 	Saw - Default weapon, hits the entire tile.
-	Pile Driver - Has 1.5x the damage of the saw, only hits one target.
+	Pile Driver - Has 2x the damage of the saw, only hits one target, has less damage versus groups and still targets.
 	*/
 	// melee_lower, melee_upper, attack_verb_continuous, attack_verb_simple, attack_sound, tile_pierce
 	var/list/possible_melee_weapons = list(
 		"saw" = list(22, 26, "saws", "saw", 'sound/effects/ordeals/green/saw.ogg', TRUE),
-		"pile" = list(33, 39, "impales", "impale", 'sound/effects/ordeals/green/saw.ogg', FALSE)
+		"pile" = list(44, 52, "impales", "impale", 'sound/effects/ordeals/green/saw.ogg', FALSE)
 	)
 	/* Defines all the possible ranged main weapons that the bot can have
 	Heavy Machine Gun - Fires fast and in a large burst. Can fire several times before reloading
@@ -172,9 +172,7 @@
 	Machine Gun - Default weapon, fires in small bursts, Can fire several times before reloading.
 	*/
 	//rapid, rapid_fire_delay, ranged_cooldown_time, max_fire_count, reload_cycles, fire_delay, projectile, projectile_sound
-	var/list/possible_side_weapons = list(
-		"mg" = list(5, 2, 15, 12, 8, 0 SECONDS, /obj/projectile/bullet/c9x19mm/greenbot, 'sound/effects/ordeals/green/fire.ogg')
-	)	
+	var/list/possible_side_weapons = list("mg" = list(5, 2, 15, 12, 8, 0 SECONDS, /obj/projectile/bullet/c9x19mm/greenbot, 'sound/effects/ordeals/green/fire.ogg'))	
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/Initialize()
 	. = ..()
@@ -203,23 +201,24 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/OpenFire(atom/A)
 	if(reloading)
 		return FALSE
-	fire_count += 1
 	if(fire_count >= max_fire_count)
 		StartReloading()
 		return FALSE
+	fire_count += 1
 	//TODO Play some kind of sound here
 	SLEEP_CHECK_DEATH(fire_delay)
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget(atom/attacked_target)
+	// If we aren't ranged we have two melee weapons, time to do double melee stuff.
 	if(!ranged)
 		HandleDoubleMelee()
 	. = ..()
 	if(!.)
 		return
-	if(!istype(target, /mob/living))
-		return
 	if(!tile_pierce)
+		return
+	if(!istype(target, /mob/living))
 		return
 	var/turf/T = get_turf(target)
 	if(!T)
@@ -237,22 +236,21 @@
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/spawn_dust()
 	return
 
-// Set's up the bot's weapons and checks if it's a heavy ranged bot or a 
+// Set's up the bot's weapons and checks if it's a heavy ranged bot or a double melee bot
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/SetWeapons(main_hand, side_hand)
 	ChooseMainWeapon(main_hand)
 	ChooseSideWeapon(side_hand)
-	// Double Melee? We get real.
 	// Heavy Weapons? We get slow.
 	if(main_weapon in possible_ranged_weapons)
 		move_to_delay = 8
 		return
+	// Double Melee? Real shit: we attack faster, get faster, but reload after a few melee attacks, though we reload quickly.
 	if((main_weapon in possible_melee_weapons) && (side_weapon in possible_melee_weapons))
 		ranged = FALSE
 		rapid_melee = 2
 		move_to_delay = 4
 		reload_cycles = 6
 		max_fire_count = 8
-		return
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/ChooseMainWeapon(weapon)
 	if(weapon != "random")
@@ -271,6 +269,7 @@
 		side_weapon = weapon
 		UpdateSideWeapon()
 		return
+	//Most will have only your good old melee + machine gun combo
 	if(prob(70))
 		side_weapon = pick(possible_side_weapons)
 		UpdateSideWeapon()
@@ -280,29 +279,29 @@
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/UpdateMainWeapon()
 	if(main_weapon in possible_melee_weapons)
-		UpdateWeapon(main_weapon, melee = TRUE)
+		UpdateWeapon(main_weapon, TRUE)
 		return
-	UpdateWeapon(main_weapon, melee = FALSE)
+	UpdateWeapon(main_weapon, FALSE)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/UpdateSideWeapon()
 	if(side_weapon in possible_melee_weapons)
-		UpdateWeapon(side_weapon, melee = TRUE)
+		UpdateWeapon(side_weapon, TRUE)
 		return
 	// No dual gun bots, go back and repick another weapon that isn't ranged.
 	if(main_weapon in possible_ranged_weapons)
 		ChooseSideWeapon(pick(possible_melee_weapons))
 		return
-	UpdateWeapon(side_weapon, melee = FALSE)
+	UpdateWeapon(side_weapon, FALSE)
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/proc/UpdateWeapon(weapon, melee)
-	if(melee) //
+	if(melee)
 		melee_damage_lower = possible_melee_weapons[weapon][1]
 		melee_damage_upper = possible_melee_weapons[weapon][2]
 		attack_verb_continuous = possible_melee_weapons[weapon][3]
 		attack_verb_simple = possible_melee_weapons[weapon][4]
 		attack_sound = possible_melee_weapons[weapon][5]
 		tile_pierce = possible_melee_weapons[weapon][6]
-		return //
+		return
 	rapid = possible_ranged_weapons[weapon][1]
 	rapid_fire_delay = possible_ranged_weapons[weapon][2]
 	ranged_cooldown_time = possible_ranged_weapons[weapon][3]
