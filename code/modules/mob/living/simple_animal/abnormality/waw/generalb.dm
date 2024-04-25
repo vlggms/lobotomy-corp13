@@ -473,7 +473,7 @@
 /obj/effect/beeshell/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		addtimer(CALLBACK(src, PROC_REF(explode)), 8 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(explode)), 5 SECONDS)
 	else
 		addtimer(CALLBACK(src, PROC_REF(explode)), 3.5 SECONDS)
 
