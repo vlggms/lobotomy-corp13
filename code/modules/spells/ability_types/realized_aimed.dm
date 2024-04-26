@@ -377,7 +377,7 @@
 		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(H.move_to_delay * damage_slowdown, 10 SECONDS) // Slow down
+			H.TemporarySpeedChange(1 + damage_slowdown, 10 SECONDS, TRUE) // Slow down
 
 /mob/living/simple_animal/cocoonability
 	name = "Cocoon"

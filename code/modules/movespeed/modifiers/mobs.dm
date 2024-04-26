@@ -123,5 +123,14 @@
 	variable = TRUE
 	multiplicative_slowdown = 0
 
+/datum/movespeed_modifier/hostile_stamina_loss
+	variable = TRUE
+	multiplicative_slowdown = 0
+
 /datum/movespeed_modifier/qliphothoverload
-	multiplicative_slowdown = 4
+	flags = IS_ACTUALLY_MULTIPLICATIVE
+	multiplicative_slowdown = 2
+
+/datum/movespeed_modifier/brown_bricks
+	flags = IS_ACTUALLY_MULTIPLICATIVE
+	multiplicative_slowdown = 1.25

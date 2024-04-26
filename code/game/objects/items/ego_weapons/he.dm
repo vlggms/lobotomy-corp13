@@ -1630,7 +1630,7 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/hostile/M = owner
-	M.TemporarySpeedChange(M.move_to_delay*0.25 , 3 SECONDS)
+	M.TemporarySpeedChange(1.25 , 3 SECONDS, TRUE)
 
 /atom/movable/screen/alert/status_effect/brown_bricks
 	name = "Yello Bricks"

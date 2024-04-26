@@ -78,7 +78,7 @@
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.apply_status_effect(/datum/status_effect/salvation)
-			H.TemporarySpeedChange(H.move_to_delay*debuff_slowdown , 15 SECONDS) // Slow down_status_effect(/datum/status_effect/salvation)
+			H.TemporarySpeedChange(1 + debuff_slowdown , 15 SECONDS, TRUE) // Slow down_status_effect(/datum/status_effect/salvation)
 	return ..()
 
 /datum/status_effect/salvation

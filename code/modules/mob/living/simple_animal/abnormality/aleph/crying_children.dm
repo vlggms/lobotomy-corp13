@@ -464,7 +464,7 @@
 	maxHealth = 4000
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
 	revive(full_heal = TRUE, admin_revive = FALSE)
-	move_to_delay = 4
+	ChangeMoveToDelay(4)
 	burn_mod = 2
 	can_act = TRUE
 	charge = 0

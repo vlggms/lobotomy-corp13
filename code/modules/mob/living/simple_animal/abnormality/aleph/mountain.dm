@@ -222,15 +222,13 @@
 			base_pixel_x = -32
 			if(phase == 3)
 				icon_living = "mosb_breach2"
-				SpeedChange(1)
+				ChangeMoveToDelay(5)
 				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
-				SpeedChange(2)
+				ChangeMoveToDelay(4)
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
-			update_simplemob_varspeed()
-		UpdateSpeed()
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
@@ -244,17 +242,15 @@
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		pixel_x = -16
 		base_pixel_x = -16
-		SpeedChange(-2)
+		ChangeMoveToDelay(2)
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
-		SpeedChange(-1)
+		ChangeMoveToDelay(4)
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
-	UpdateSpeed()
-	update_simplemob_varspeed()
 	return TRUE
 
 /* Special attacks */
