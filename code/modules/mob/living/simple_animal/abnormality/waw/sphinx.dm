@@ -279,12 +279,12 @@
 	if(LAZYLEN(priority))
 		return pick(priority)
 
-/mob/living/simple_animal/hostile/abnormality/sphinx/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/sphinx/AttackingTarget(atom/attacked_target)
 	..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(!H.sanity_lost)
 		return
 

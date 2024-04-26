@@ -203,12 +203,12 @@
 		if(target_memory[the_target] <= 100)
 			return FALSE
 
-/mob/living/simple_animal/hostile/better_memories_minion/AttackingTarget()
+/mob/living/simple_animal/hostile/better_memories_minion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
 	if(!client)
-		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+		if(ishuman(attacked_target))
+			var/mob/living/carbon/human/H = attacked_target
 			/* Dont jab those standing
 			still for their picture.
 			Death is not our goal */

@@ -107,10 +107,9 @@
 		if(.)
 			L.amount_grown = min(L.amount_grown + damage, L.max_grown)
 
-/mob/living/simple_animal/attack_animal(mob/living/simple_animal/M)
+/mob/living/simple_animal/attack_animal(mob/living/simple_animal/M, damage)
 	. = ..()
 	if(.)
-		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		return attack_threshold_check(damage, M.melee_damage_type)
 
 /mob/living/simple_animal/attack_slime(mob/living/simple_animal/slime/M)

@@ -229,14 +229,14 @@
 	update_icon_state() //prevents icons from getting stuck
 	..()
 
-/mob/living/simple_animal/hostile/abnormality/blubbering_toad/AttackingTarget()
-	if(!ishuman(target))
+/mob/living/simple_animal/hostile/abnormality/blubbering_toad/AttackingTarget(atom/attacked_target)
+	if(!ishuman(attacked_target))
 		return
-	if(target != idiot)
-		LoseTarget(target)
+	if(attacked_target != idiot)
+		LoseTarget(attacked_target)
 		return
 	..()
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.sanity_lost) //prevents hitting the same guy in an infinite loop
 		melee_damage_type = BLACK_DAMAGE
 	if(H.health < 0)

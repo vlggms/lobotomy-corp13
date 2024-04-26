@@ -127,10 +127,10 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/eris/AttackingTarget(atom/attacked_target)
-	if(ishuman(target))
-		var/mob/living/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/H = attacked_target
 		if(H.stat >= SOFT_CRIT)
-			Dine(target)
+			Dine(attacked_target)
 			return
 	..()
 

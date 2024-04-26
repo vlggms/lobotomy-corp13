@@ -164,15 +164,15 @@
 	AddComponent(/datum/component/swarming)
 	summon_backup()
 
-/mob/living/simple_animal/hostile/mini_fairy/AttackingTarget()
+/mob/living/simple_animal/hostile/mini_fairy/AttackingTarget(atom/attacked_target)
 	. = ..()
 	var/friends = 0
 	for(var/mob/living/simple_animal/hostile/mini_fairy/fren in view(6, src))
 		friends++
 	if(friends < 3)
 		summon_backup()
-	if(ishuman(target))
-		var/mob/living/L = target
+	if(ishuman(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.health < 0 || L.stat == DEAD)
 			var/mob/living/simple_animal/hostile/mini_fairy/MF = new(get_turf(L))
 			MF.faction = src.faction

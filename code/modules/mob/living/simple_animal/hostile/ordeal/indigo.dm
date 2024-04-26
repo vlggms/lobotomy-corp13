@@ -38,10 +38,10 @@
 	. = ..()
 	a_intent_change(INTENT_HELP)
 
-/mob/living/simple_animal/hostile/ordeal/indigo_noon/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_noon/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
@@ -196,10 +196,10 @@
 	. = ..()
 	a_intent_change(INTENT_HELP) //so that they dont get body blocked by their kin outside of combat
 
-/mob/living/simple_animal/hostile/ordeal/indigo_dusk/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
@@ -361,10 +361,10 @@
 	patrol_reset()
 	return FALSE
 
-/mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/indigo_midnight/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD)
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)

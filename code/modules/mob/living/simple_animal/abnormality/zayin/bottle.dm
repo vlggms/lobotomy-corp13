@@ -230,8 +230,8 @@
 /mob/living/simple_animal/hostile/abnormality/bottle/AttackingTarget(atom/attacked_target)
 	if(eating)
 		return
-	if(isliving(target))
-		var/mob/living/L = target
+	if(isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(faction_check_mob(L))
 			L.visible_message(span_danger("[src] feeds [L]... [L] seems heartier!"), span_nicegreen("[src] feeds you, you feel heartier!"))
 			L.adjustBruteLoss(-speak_damage/2)

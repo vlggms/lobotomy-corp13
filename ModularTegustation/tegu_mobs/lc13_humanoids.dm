@@ -120,12 +120,12 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/humanoid/rat/knife/AttackingTarget()
+/mob/living/simple_animal/hostile/humanoid/rat/knife/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return
 	..()
 	if(dash_cooldown < world.time)
-		BackstreetsDash(target)
+		BackstreetsDash(attacked_target)
 		return
 
 /mob/living/simple_animal/hostile/humanoid/rat/knife/OpenFire()
@@ -653,8 +653,8 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		return
 
 	. = ..()
-	if (istype(target, /mob/living))
-		var/mob/living/L = target
+	if (istype(attacked_target, /mob/living))
+		var/mob/living/L = attacked_target
 		L.apply_lc_burn(burn_stacks)
 	TripleDash()
 

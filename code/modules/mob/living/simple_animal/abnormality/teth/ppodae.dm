@@ -53,11 +53,11 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/ppodae/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	var/mob/living/carbon/L = target
-	if(iscarbon(target) && (L.health < 0 || L.stat == DEAD))
+	var/mob/living/carbon/L = attacked_target
+	if(iscarbon(attacked_target) && (L.health < 0 || L.stat == DEAD))
 		if(HAS_TRAIT(L, TRAIT_NODISMEMBER))
 			return
 		var/list/parts = list()
@@ -72,7 +72,7 @@
 			bp.forceMove(get_turf(datum_reference.landmark)) // Teleports limb to containment
 			QDEL_NULL(src)
 			// Taken from eldritch_demons.dm
-	return Smash(target)
+	return Smash(attacked_target)
 
 //AoE attack taken from woodsman
 /mob/living/simple_animal/hostile/abnormality/ppodae/proc/Smash(target)

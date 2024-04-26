@@ -1106,10 +1106,10 @@
 	AddComponent(/datum/component/knockback, 1, FALSE, TRUE)
 	QDEL_IN(src, (90 SECONDS))
 
-/mob/living/simple_animal/hostile/shrimp/friendly/AttackingTarget()
+/mob/living/simple_animal/hostile/shrimp/friendly/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
-		var/mob/living/L = target
+		var/mob/living/L = attacked_target
 		if(L.health < 0 || L.stat == DEAD)
 			L.gib() //Punch them so hard they explode
 /* Flesh Idol - Repentance */
@@ -1283,8 +1283,8 @@
 	AddComponent(/datum/component/swarming)
 	QDEL_IN(src, (20 SECONDS))
 
-/mob/living/simple_animal/hostile/naked_nest_serpent_friend/AttackingTarget()
-	var/mob/living/L = target
+/mob/living/simple_animal/hostile/naked_nest_serpent_friend/AttackingTarget(atom/attacked_target)
+	var/mob/living/L = attacked_target
 	var/datum/status_effect/stacking/infestation/INF = L.has_status_effect(/datum/status_effect/stacking/infestation)
 	if(!INF)
 		INF = L.apply_status_effect(/datum/status_effect/stacking/infestation)

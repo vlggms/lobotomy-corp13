@@ -78,14 +78,14 @@
 		|Soul Warden|: If you attack a corpse, you will dust it, heal and gain a stack of “Captured Soul”<br>\
 		For each stack of “Captured Soul”, you become faster, deal 10 less melee damage and take 50% more damage.</b>")
 
-/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
 		if(finishing)
 			return FALSE
-		if(!istype(target, /mob/living/carbon/human))
+		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 
 		if(H.health < 0)
 

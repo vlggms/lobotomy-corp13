@@ -109,12 +109,12 @@
 			return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/clown/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/clown/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
-		if(!ishuman(target))
+		if(!ishuman(attacked_target))
 			return
-		var/mob/living/carbon/human/TH = target
+		var/mob/living/carbon/human/TH = attacked_target
 		if(TH.health < 0)
 			finishing = TRUE
 			TH.Stun(4 SECONDS)

@@ -117,10 +117,10 @@
 		if(HAS_TRAIT(not_bald, TRAIT_BALD))
 			. -= not_bald
 
-/mob/living/simple_animal/hostile/abnormality/bald/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/bald/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		do_bald(H)
 
 /mob/living/simple_animal/hostile/abnormality/bald/Login()

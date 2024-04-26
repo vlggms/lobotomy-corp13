@@ -60,10 +60,10 @@
 		AreaAttack()
 		return
 
-/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	return Slash(target)
+	return Slash(attacked_target)
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/Slash(target)
 	if (get_dist(src, target) > 3)
@@ -293,14 +293,14 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/AttackingTarget()
-	if(!vengeful && (target != current_target))
+/mob/living/simple_animal/hostile/ordeal/silentgirl_corrosion/AttackingTarget(atom/attacked_target)
+	if(!vengeful && (attacked_target != current_target))
 		return FALSE
 	. = ..()
 	if(.)
-		if(!ishuman(target))
+		if(!ishuman(attacked_target))
 			return
-		var/mob/living/carbon/human/TH = target
+		var/mob/living/carbon/human/TH = attacked_target
 		if(TH.health < 0 || TH.sanity_lost)
 			finishing = TRUE
 			TH.Stun(4 SECONDS)
