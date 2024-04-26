@@ -236,14 +236,12 @@
 /mob/living/simple_animal/hostile/proc/TemporarySpeedChange(amount = 0, time = 0, is_multiplier = FALSE)
 	if(time <= 0)
 		return
-	if(amount == 0)
-		return
-	if(is_multiplier)
-		ChangeMoveToDelayBy(amount, TRUE)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile, ChangeMoveToDelayBy), 1/amount, TRUE), time) // Reset the speed to previous value
-	else
-		ChangeMoveToDelayBy(amount)
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob/living/simple_animal/hostile, ChangeMoveToDelayBy), -amount), time)
+	if(is_multiplier && amount > 0)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/variable_hostile_speed_multiplier, TRUE, amount, TRUE)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, add_or_update_variable_movespeed_modifier), /datum/movespeed_modifier/variable_hostile_speed_multiplier, TRUE, 1 / amount, TRUE), time) // Reset the speed to previous value
+	else if(amount != 0)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, amount, TRUE)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, add_or_update_variable_movespeed_modifier), /datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, -amount, TRUE), time)
 
 /mob/living/simple_animal/hostile/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client && user)

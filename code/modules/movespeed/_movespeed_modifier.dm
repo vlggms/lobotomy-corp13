@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 	4. If any of the rest of the args are not null (see: multiplicative slowdown), modify the datum
 	5. Update if necessary
 */
-/mob/proc/add_or_update_variable_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE, multiplicative_slowdown)
+/mob/proc/add_or_update_variable_movespeed_modifier(datum/movespeed_modifier/type_id_datum, update = TRUE, multiplicative_slowdown, apply_to_existing_modifier = FALSE)
 	var/modified = FALSE
 	var/inject = FALSE
 	var/datum/movespeed_modifier/final_value
@@ -134,7 +134,13 @@ GLOBAL_LIST_EMPTY(movespeed_modification_cache)
 			inject = TRUE
 			modified = TRUE
 	if(!isnull(multiplicative_slowdown))
-		final_value.multiplicative_slowdown = multiplicative_slowdown
+		if(apply_to_existing_modifier)
+			if(final_value.flags & IS_ACTUALLY_MULTIPLICATIVE)
+				final_value.multiplicative_slowdown *= multiplicative_slowdown
+			else
+				final_value.multiplicative_slowdown += multiplicative_slowdown
+		else
+			final_value.multiplicative_slowdown = multiplicative_slowdown
 		modified = TRUE
 	if(inject)
 		add_movespeed_modifier(final_value, FALSE)
