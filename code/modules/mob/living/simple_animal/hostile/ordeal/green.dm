@@ -91,6 +91,109 @@
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
+mob/living/simple_animal/hostile/ordeal/green_bot_sniper
+	name = "worry"
+	desc = "A slim robot with a long rifle in place of it's hand"
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "green_bot_sniper"
+	icon_living = "green_bot_sniper"
+	icon_dead = "green_bot_sniper_dead"
+	faction = list("green_ordeal")
+	gender = NEUTER
+	mob_biotypes = MOB_ROBOTIC
+	maxHealth = 300
+	health = 300
+	move_to_delay = 6
+	melee_damage_lower = 9
+	melee_damage_upper = 11
+	attack_verb_continuous = "stabs"
+	attack_verb_simple = "stab"
+	attack_sound = 'sound/effects/ordeals/green/stab.ogg'
+	ranged = TRUE
+	ranged_cooldown_time = 5 SECONDS
+	minimum_distance = 10
+	retreat_distance = 2
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.3, BLACK_DAMAGE = 2, PALE_DAMAGE = 1)
+	death_sound = 'sound/effects/ordeals/green/dawn_dead.ogg'
+	butcher_results = list(/obj/item/food/meat/slab/robot = 1)
+	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 1)
+	silk_results = list(/obj/item/stack/sheet/silk/green_simple = 1)
+	see_in_dark = 14
+	vision_range = 24
+	aggro_vision_range = 40
+
+	var/can_act = TRUE
+	var/bullet_max_range = 50
+	var/bullet_fire_delay = 1 SECONDS
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/OpenFire(atom/A)
+	if(!(simple_mob_flags & SILENCE_RANGED_MESSAGE))
+		visible_message(span_danger("<b>[src]</b> [ranged_message] at [A]!"))
+	if(!can_act)
+		return
+	ranged_cooldown = world.time + ranged_cooldown_time
+	PrepareToFire(A)
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/spawn_gibs()
+	new /obj/effect/gibspawner/scrap_metal(drop_location(), src)
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/spawn_dust()
+	return
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/proc/PrepareToFire(atom/target)
+	IconChange(firing = TRUE)
+	can_act = FALSE
+	var/turf/beam_start = get_turf(src)
+	var/turf/target_turf = get_ranged_target_turf_direct(src, target, bullet_max_range, 0)
+	var/turf/beam_end = target_turf
+	var/list/turfs_to_check = getline(beam_start, target_turf)
+	playsound(beam_start, 'sound/weapons/gun/general/bolt_rack.ogg', 35, 0, 20)
+	face_atom(target)
+	for(var/turf/T in turfs_to_check)
+		if(T.density)
+			beam_end = T
+			break
+	new /datum/beam(beam_start.Beam(beam_end, "sat_beam", time = bullet_fire_delay))
+	SLEEP_CHECK_DEATH(bullet_fire_delay)
+	FireBullet(target, beam_start, beam_end)
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/proc/FireBullet(atom/target, turf/start_turf, turf/end_turf)
+	playsound(start_turf, 'sound/weapons/gun/sniper/shot.ogg', 35, 0, 20)
+	var/obj/projectile/greenbot_sniper_bullet/B = new(start_turf)
+	B.starting = start_turf
+	B.firer = src
+	B.fired_from = start_turf
+	B.yo = end_turf.y - start_turf.y
+	B.xo = end_turf.x - start_turf.x
+	B.original = end_turf
+	B.preparePixelProjectile(end_turf, start_turf)
+	B.range = bullet_max_range
+	B.fire()
+	IconChange(firing = FALSE)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/proc/IconChange(firing)
+	if(firing)
+		pixel_x -= 32
+		icon = 'ModularTegustation/Teguicons/96x48.dmi'
+		update_icon()
+		return
+	pixel_x += 32
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	update_icon()
+
+/obj/projectile/greenbot_sniper_bullet
+	name = "sniper bullet"
+	desc = "Uh oh."
+	damage_type = RED_DAMAGE
+	damage = 60
+	hitscan = TRUE
+
 // Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"

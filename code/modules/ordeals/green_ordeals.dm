@@ -10,7 +10,10 @@
 	end_sound = 'sound/effects/ordeals/green_end.ogg'
 	spawn_places = 6
 	spawn_amount = 1
-	spawn_type = /mob/living/simple_animal/hostile/ordeal/green_bot
+	spawn_type = list(
+		/mob/living/simple_animal/hostile/ordeal/green_bot,
+		/mob/living/simple_animal/hostile/ordeal/green_bot_sniper
+		)
 	spawn_player_multiplicator = 0.05
 	level = 1
 	color = COLOR_DARK_LIME
