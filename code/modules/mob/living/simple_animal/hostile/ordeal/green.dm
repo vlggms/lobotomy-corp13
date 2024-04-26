@@ -194,6 +194,16 @@ mob/living/simple_animal/hostile/ordeal/green_bot_sniper
 	damage = 60
 	hitscan = TRUE
 
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/factory
+	butcher_results = list()
+	guaranteed_butcher_results = list()
+
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/factory/death(gibbed)
+	density = FALSE
+	animate(src, alpha = 0, time = 5 SECONDS)
+	QDEL_IN(src, 5 SECONDS)
+	..()
+
 // Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"
@@ -376,7 +386,12 @@ mob/living/simple_animal/hostile/ordeal/green_bot_sniper
 	visible_message(span_danger("\The [src] produces a new set of robots!"))
 	for(var/i = 1 to 3)
 		var/turf/T = get_step(get_turf(src), pick(0, EAST))
-		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot/factory, /mob/living/simple_animal/hostile/ordeal/green_bot_big/factory)
+		var/picked_mob = pick(/mob/living/simple_animal/hostile/ordeal/green_bot_big/factory)
+		// 50% for a little shitter
+		if(prob(50))
+			picked_mob = pick(
+				/mob/living/simple_animal/hostile/ordeal/green_bot/factory,
+				/mob/living/simple_animal/hostile/ordeal/green_bot_sniper/factory)
 		var/mob/living/simple_animal/hostile/ordeal/nb = new picked_mob(T)
 		spawned_mobs += nb
 		if(ordeal_reference)
