@@ -70,12 +70,12 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
-		if(!istype(target, /mob/living))
+		if(!istype(attacked_target, /mob/living))
 			return
-		var/turf/T = get_turf(target)
+		var/turf/T = get_turf(attacked_target)
 		if(!T)
 			return
 		for(var/i = 1 to 4)

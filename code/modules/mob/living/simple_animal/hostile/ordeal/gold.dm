@@ -214,10 +214,10 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/human/mutant/plant = 1)
 	stat_attack = DEAD
 
-/mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/sin_gluttony/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
+	if(. && isliving(attacked_target))
+		var/mob/living/L = attacked_target
 		if(L.stat != DEAD && SSmaptype.maptype != "limbus_labs")
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
@@ -293,10 +293,10 @@
 		AreaAttack()
 		return
 
-/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
-	return Slash(target)
+	return Slash(attacked_target)
 
 /mob/living/simple_animal/hostile/ordeal/white_lake_corrosion/proc/Slash(target)
 	if (get_dist(src, target) > 3)
@@ -522,16 +522,16 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/sin_pride/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/sin_pride/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && prob(10) && !client)
-		PrepCharge(target)
+		PrepCharge(attacked_target)
 		return
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.health < 0)
 		if(SSmaptype.maptype != "limbus_labs")
 			H.gib()
@@ -636,19 +636,19 @@
 	var/charged = FALSE
 	var/list/spawned_mobs = list()
 
-/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!isliving(target))
+	if(!isliving(attacked_target))
 		return
-	var/mob/living/L = target
+	var/mob/living/L = attacked_target
 	if(charged)
 		L.apply_damage(15, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
 		playsound(get_turf(src), 'sound/weapons/fixer/generic/energyfinisher1.ogg', 75, 1)
 		to_chat(L,span_danger("The [src] unleashes its charge!"))
 		charged = FALSE
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.stat >= SOFT_CRIT || H.health < 0)
 		Convert(H)
 
@@ -894,7 +894,7 @@
 	if(!can_act)
 		return FALSE
 	if((hello_cooldown <= world.time) && prob(35))
-		var/turf/target_turf = get_turf(target)
+		var/turf/target_turf = get_turf(attacked_target)
 		for(var/i = 1 to 3)
 			target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 		return Hello(target_turf)
@@ -980,12 +980,12 @@
 		return FALSE
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/snake_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/snake_corrosion/AttackingTarget(atom/attacked_target)
 	if(!can_act)
 		return FALSE
 	..()
-	if(isliving(target))
-		var/mob/living/H = target
+	if(isliving(attacked_target))
+		var/mob/living/H = attacked_target
 		H.apply_venom(applied_venom)
 
 /mob/living/simple_animal/hostile/ordeal/snake_corrosion/OpenFire()
@@ -1142,16 +1142,16 @@
 		return
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/dog_corrosion/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/dog_corrosion/AttackingTarget(atom/attacked_target)
 	if(charging)
 		return
 	if(dash_cooldown <= world.time && !client && charge_ready)
-		PrepCharge(target)
+		PrepCharge(attacked_target)
 		return
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	if(H.health < 0)
 		H.gib()
 		playsound(src, "sound/abnormalities/clouded_monk/eat.ogg", 75, 1)
@@ -1280,9 +1280,9 @@
 
 /mob/living/simple_animal/hostile/ordeal/sin_wrath/AttackingTarget(atom/attacked_target)
 	. = ..()
-	if(!ishuman(target))
+	if(!ishuman(attacked_target))
 		return
-	var/mob/living/carbon/human/H = target
+	var/mob/living/carbon/human/H = attacked_target
 	var/datum/status_effect/stacking/fuming/F = H.has_status_effect(/datum/status_effect/stacking/fuming)
 	if(!F)
 		to_chat(H, span_userdanger("You start to feel overcome with rage!"))
@@ -1390,11 +1390,11 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/sin_lust/AttackingTarget()// AOE attacks only
+/mob/living/simple_animal/hostile/ordeal/sin_lust/AttackingTarget(atom/attacked_target)// AOE attacks only
 	if(!can_act)
 		return FALSE
 	if(prob(50))
-		return Smash(target, wide = pick(TRUE, FALSE))
+		return Smash(attacked_target, wide = pick(TRUE, FALSE))
 	return ..()
 
 //AoE attack taken from golden apple

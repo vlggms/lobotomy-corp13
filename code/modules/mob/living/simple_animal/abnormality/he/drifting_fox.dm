@@ -85,8 +85,8 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/AttackingTarget(atom/attacked_target)
-	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+	if(ishuman(attacked_target))
+		var/mob/living/carbon/human/H = attacked_target
 		H.apply_status_effect(STATUS_EFFECT_FALSEKIND)
 	return ..()
 

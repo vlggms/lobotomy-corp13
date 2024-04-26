@@ -41,14 +41,14 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 	var/finishing = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget()
+/mob/living/simple_animal/hostile/abnormality/warden/AttackingTarget(atom/attacked_target)
 	. = ..()
 	if(.)
 		if(finishing)
 			return FALSE
-		if(!istype(target, /mob/living/carbon/human))
+		if(!istype(attacked_target, /mob/living/carbon/human))
 			return
-		var/mob/living/carbon/human/H = target
+		var/mob/living/carbon/human/H = attacked_target
 
 		if(H.health < 0)
 

@@ -27,6 +27,10 @@
 	var/rapid_melee = 1			 //Number of melee attacks between each npc pool tick. Spread evenly.
 	var/melee_queue_distance = 4 //If target is close enough start preparing to hit them if we have rapid_melee enabled
 	var/melee_reach = 1			 // The range at which a mob can make melee attacks
+	var/attack_cooldown = 0
+	var/attack_is_on_cooldown = FALSE
+	var/attack_timer_id = null
+	var/old_rapid_melee = 0
 
 	var/ranged_message = "fires" //Fluff text for ranged mobs
 	var/ranged_cooldown = 0 //What the current cooldown on ranged attacks is, generally world.time + ranged_cooldown_time
@@ -84,6 +88,9 @@
 	UpdateSpeed()
 	. = ..()
 
+	if(attack_cooldown == 0)
+		attack_cooldown = SSnpcpool.wait / rapid_melee
+	old_rapid_melee = rapid_melee
 	if(!targets_from)
 		targets_from = src
 
@@ -91,6 +98,9 @@
 
 /mob/living/simple_animal/hostile/Destroy()
 	targets_from = null
+	if(attack_timer_id)
+		deltimer(attack_timer_id)
+		attack_timer_id = null
 	return ..()
 
 /mob/living/simple_animal/hostile/Life()
@@ -123,8 +133,9 @@
 	var/list/possible_targets = ListTargets()
 	if(environment_smash)
 		EscapeConfinement()
-
 	if(AICanContinue(possible_targets))
+		if(!attack_is_on_cooldown)
+			TryAttack()
 		if(!QDELETED(target) && !targets_from.Adjacent(target))
 			DestroyPathToTarget()
 		if(!MoveToTarget(possible_targets))     //if we lose our target
@@ -321,17 +332,17 @@
 
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
 
-/mob/living/simple_animal/hostile/proc/ListTargets() //Step 1, find out what we can see
+/mob/living/simple_animal/hostile/proc/ListTargets(max_range = vision_range) //Step 1, find out what we can see
 	if(!search_objects)
-		. = hearers(vision_range, targets_from) - src //Remove self, so we don't suicide
+		. = hearers(max_range, targets_from) - src //Remove self, so we don't suicide
 
 		var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/vehicle/sealed/mecha))
 
-		for(var/HM in typecache_filter_list(range(vision_range, targets_from), hostile_machines))
-			if(can_see(targets_from, HM, vision_range))
+		for(var/HM in typecache_filter_list(range(max_range, targets_from), hostile_machines))
+			if(can_see(targets_from, HM, max_range))
 				. += HM
 	else
-		. = oview(vision_range, targets_from)
+		. = oview(max_range, targets_from)
 
 /mob/living/simple_animal/hostile/proc/ListTargetsLazy(_Z)
 	var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/vehicle/sealed/mecha))
@@ -368,9 +379,9 @@
 
 /* Essentially is the middle part of FindTarget
 	but returns only a list without giving a target.*/
-/mob/living/simple_animal/hostile/proc/PossibleThreats()
+/mob/living/simple_animal/hostile/proc/PossibleThreats(max_range = vision_range)
 	. = list()
-	for(var/pos_targ in ListTargets())
+	for(var/pos_targ in ListTargets(max_range))
 		var/atom/A = pos_targ
 		if(Found(A))
 			. = list(A)
@@ -567,11 +578,51 @@
 /mob/living/simple_animal/hostile/proc/CheckAndAttack()
 	if(!target)
 		return FALSE
-	var/in_range = melee_reach > 1 ? target.Adjacent(targets_from) || (get_dist(src, target) <= melee_reach && (target in view(src, melee_reach))) : target.Adjacent(targets_from)
+	var/in_range = melee_reach > 1 ? target.Adjacent(targets_from) || (get_dist(src, target) <= melee_reach && (target in view(melee_reach, src))) : target.Adjacent(targets_from)
 	if(targets_from && isturf(targets_from.loc) && in_range && !incapacitated())
 		AttackingTarget()
 		return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/Bumped(atom/movable/AM)
+	. = ..()
+	if(!client && AIStatus == AI_ON && !attack_is_on_cooldown && CanAttack(AM))
+		TryAttack()
+
+/mob/living/simple_animal/hostile/Moved()
+	. = ..()
+	if(!client && AIStatus == AI_ON && target && !attack_is_on_cooldown)
+		TryAttack()
+
+/mob/living/simple_animal/hostile/proc/TryAttack()
+	if(client || stat != CONSCIOUS || AIStatus != AI_ON || incapacitated() || !targets_from || !isturf(targets_from.loc))
+		attack_is_on_cooldown = FALSE
+		if(attack_timer_id)
+			deltimer(attack_timer_id)
+			attack_timer_id = null
+		return
+	if(target && (target.Adjacent(targets_from) || melee_reach > 1 && (target in view(melee_reach, targets_from))))
+		//attack target
+		attack_is_on_cooldown = TRUE
+		if(attack_timer_id)
+			deltimer(attack_timer_id)
+			attack_timer_id = null
+		AttackingTarget(target)
+		GainPatience()
+	else
+		in_melee = FALSE
+		var/list/targets_in_range = PossibleThreats(melee_reach)
+		if(targets_in_range.len > 0)
+			//attack random thing in the list
+			attack_is_on_cooldown = TRUE
+			if(attack_timer_id)
+				deltimer(attack_timer_id)
+				attack_timer_id = null
+			AttackingTarget(pick(targets_in_range))
+		else
+			attack_is_on_cooldown = FALSE
+	if(!attack_timer_id)
+		attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack)), attack_cooldown, TIMER_STOPPABLE)
 
 	// Called by automated_action and causes the AI to go idle if it returns false. This proc is pretty big.
 /mob/living/simple_animal/hostile/proc/MoveToTarget(list/possible_targets)
@@ -627,13 +678,6 @@
 
 		//This is for attacking.
 		if(target)
-			if(targets_from && isturf(targets_from.loc) && in_range)
-				//If they're next to us, attack
-				MeleeAction()
-			else
-				if(rapid_melee > 1 && target_distance <= melee_queue_distance)
-					MeleeAction(FALSE)
-				in_melee = FALSE //If we're just preparing to strike do not enter sidestep mode
 			return TRUE
 		return FALSE
 
@@ -661,13 +705,17 @@
 	walk_to(src, target, minimum_distance, delay)
 
 /mob/living/simple_animal/hostile/proc/AttackingTarget(atom/attacked_target)
-	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, target)
-	in_melee = TRUE
-	if(ismob(target))
-		changeNext_move(SSnpcpool.wait / rapid_melee)
-		// Wow! that's a really weird variable to base attack speed on! Yes.
-		// It's because mobs typically attack once per this duration, because the subsystem calls handle_automated_movement() which then calls the attacking procs.
-	return target.attack_animal(src)
+	if(!attacked_target)
+		attacked_target = target
+	if(old_rapid_melee != rapid_melee)
+		attack_cooldown = SSnpcpool.wait / rapid_melee
+		old_rapid_melee = rapid_melee
+	SEND_SIGNAL(src, COMSIG_HOSTILE_ATTACKINGTARGET, attacked_target)
+	if(attacked_target == target)
+		in_melee = TRUE
+	if(ismob(attacked_target) || isobj(attacked_target))
+		changeNext_move(attack_cooldown)
+	return attacked_target.attack_animal(src)
 
 //////////////END HOSTILE MOB TARGETTING AND AGGRESSION////////////
 

@@ -211,8 +211,8 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget()
-	return OpenFire(target)
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/AttackingTarget(atom/attacked_target)
+	return OpenFire(attacked_target)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/OpenFire()
 	if(!can_act || IsContained())
