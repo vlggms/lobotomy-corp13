@@ -91,7 +91,7 @@
 	QDEL_IN(src, 5 SECONDS)
 	..()
 
-mob/living/simple_animal/hostile/ordeal/green_bot_sniper
+/mob/living/simple_animal/hostile/ordeal/green_bot_sniper
 	name = "worry"
 	desc = "A slim robot with a long rifle in place of it's hand"
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
