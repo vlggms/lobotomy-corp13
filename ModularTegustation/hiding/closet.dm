@@ -40,7 +40,7 @@
 
 /obj/structure/closet/attack_animal(mob/living/simple_animal/user)
 	. = ..()
-	if(!isabnormalitymob(user))
+	if(!isabnormalitymob(user) || nonfunctional)
 		return
 
 	visible_message(span_warning("[user] starts tearing the [src]'s lid apart!"))
