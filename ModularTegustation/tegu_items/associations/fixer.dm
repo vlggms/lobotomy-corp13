@@ -54,9 +54,9 @@
 	desc = "A kit containing Full Stop offier gear."
 
 /obj/item/storage/box/fixer/fullstop/PopulateContents()
-	new /obj/item/gun/ego_gun/city/fullstop/assault(src)
-	new /obj/item/gun/ego_gun/city/fullstop/sniper(src)
-	new /obj/item/gun/ego_gun/city/fullstop/deagle(src)
+	new /obj/item/gun/ego_gun/city/ammogun/assault(src)
+	new /obj/item/gun/ego_gun/city/ammogun/sniper(src)
+	new /obj/item/gun/ego_gun/city/ammogun/deagle(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/fullstopleader(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/fullstop(src)
 	new /obj/item/clothing/suit/armor/ego_gear/city/fullstop/sniper(src)

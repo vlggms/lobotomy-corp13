@@ -1,4 +1,4 @@
-//Shi has 2 different modes. Dash Attacks and Boundary of Death.
+//Shi has 2 different weapon types. Dash Attacks and Boundary of Death.
 //Shi Assassin (Current one being used right now) uses Boundary of death.
 
 /obj/item/ego_weapon/city/shi_knife
