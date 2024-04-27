@@ -25,6 +25,96 @@
 /datum/ai_behavior/say_line/insanity_lines/insanity_release
 	line_type = "release"
 
+/datum/ai_behavior/insanity_mecha_attack
+	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
+
+/datum/ai_behavior/insanity_mecha_attack/perform(delta_time, datum/ai_controller/insane/murder/controller)
+	. = ..()
+	if(!controller.is_mech_attack_on_cooldown)
+		TryAttack(controller)
+	return
+
+/datum/ai_behavior/insanity_mecha_attack/proc/TryAttack(datum/ai_controller/insane/murder/controller)
+	var/mob/living/living_pawn = controller.pawn
+	if(!ismecha(living_pawn.loc))
+		finish_action(controller, TRUE)
+		return
+	var/atom/thing_to_target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(IS_DEAD_OR_INCAP(living_pawn) || !thing_to_target || living_pawn.see_invisible < thing_to_target.invisibility)
+		finish_action(controller, TRUE)
+		return
+	if(isliving(thing_to_target))
+		var/mob/living/living_target = thing_to_target
+		if(living_target.stat == DEAD || (living_target.status_flags & GODMODE))
+			finish_action(controller, TRUE)
+			return
+	else if(ismecha(thing_to_target))
+		var/obj/vehicle/sealed/mecha/mech_target = thing_to_target
+		if(!mech_target.occupants || mech_target.occupants.len < 1 || mech_target.resistance_flags & INDESTRUCTIBLE)
+			finish_action(controller, TRUE)
+			return
+	else
+		finish_action(controller, TRUE)
+		return
+
+	if(isobj(thing_to_target.loc))
+		thing_to_target = thing_to_target.loc
+	if(!isturf(thing_to_target.loc))
+		finish_action(controller, TRUE)
+		return
+	controller.current_movement_target = thing_to_target
+	var/obj/vehicle/sealed/mecha/M = controller.pawn.loc
+	var/list/possible_melee_weapons = list()
+	var/list/possible_ranged_weapons = list()
+	var/can_use_white = TRUE
+	if(ishuman(thing_to_target))
+		var/mob/living/carbon/human/H = thing_to_target
+		if(H.sanity_lost)
+			can_use_white = FALSE
+	for(var/equip in M.equipment)
+		var/obj/item/mecha_parts/mecha_equipment/ME = equip
+		if((ME.range & MECHA_MELEE) && !(!can_use_white && ME.damtype == WHITE_DAMAGE))
+			possible_melee_weapons += ME
+			continue
+		if(ME.range & MECHA_RANGED)
+			if(istype(ME, /obj/item/mecha_parts/mecha_equipment/weapon))
+				var/obj/item/mecha_parts/mecha_equipment/weapon/MEW = ME
+				var/obj/projectile/P = MEW.projectile
+				if(!(!can_use_white && P.damage_type == WHITE_DAMAGE))
+					possible_ranged_weapons += ME
+					continue
+	var/obj/item/mecha_parts/mecha_equipment/chosen_weapon
+	if(possible_melee_weapons.len > 0 && M.Adjacent(thing_to_target))
+		//use melee weapon
+		chosen_weapon = pick(possible_melee_weapons)
+	else if(possible_ranged_weapons.len > 0 && (thing_to_target in view(7, M)))
+		//use ranged weapon
+		chosen_weapon = pick(possible_ranged_weapons)
+	if(!chosen_weapon)
+		controller.is_mech_attack_on_cooldown = FALSE
+		if(controller.mech_attack_timer_id)
+			deltimer(controller.mech_attack_timer_id)
+			controller.mech_attack_timer_id = null
+		return
+	M.selected = chosen_weapon
+	var/direction = get_cardinal_dir(M, thing_to_target)
+	if(M.dir != direction)
+		if(!(M.mecha_flags & QUIET_TURNS) && !M.step_silent)
+			playsound(M, M.turnsound, 40, TRUE)
+		M.setDir(direction)
+	M.selected.action(controller.pawn, thing_to_target)
+	controller.is_mech_attack_on_cooldown = TRUE
+	controller.mech_attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack), controller, thing_to_target), chosen_weapon.equip_cooldown + 0.1, TIMER_STOPPABLE)
+
+/datum/ai_behavior/insanity_mecha_attack/finish_action(datum/ai_controller/insane/murder/controller, succeeded)
+	. = ..()
+	controller.is_mech_attack_on_cooldown = FALSE
+	if(controller.mech_attack_timer_id)
+		deltimer(controller.mech_attack_timer_id)
+		controller.mech_attack_timer_id = null
+	if(succeeded)
+		controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+
 /datum/ai_behavior/insanity_attack_mob
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
 
@@ -400,19 +490,22 @@
 		finish_action(controller, FALSE)
 		return
 	if(!LAZYLEN(controller.current_path))
-		controller.current_path = get_path_to(living_pawn, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 120)
+		var/atom/movable/thing_to_move = living_pawn
+		if(ismecha(living_pawn.loc))
+			thing_to_move = living_pawn.loc
+		controller.current_path = get_path_to(thing_to_move, target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 120)
 		if(!LAZYLEN(controller.current_path)) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
 		controller.current_path.Remove(controller.current_path[1])
 		MoveInPath(controller)
 		return
-	if(!controller.timerid)
+	if(!controller.timerid_wander)
 		MoveInPath(controller)
 		return
 
 /datum/ai_behavior/insanity_wander/proc/MoveInPath(datum/ai_controller/insane/controller)
-	controller.timerid = null
+	controller.timerid_wander = null
 	var/mob/living/living_pawn = controller.pawn
 	if(!living_pawn || IS_DEAD_OR_INCAP(living_pawn))
 		controller.pathing_attempts = 0
@@ -424,29 +517,33 @@
 			controller.pathing_attempts = 0
 			controller.current_path.Cut()
 			finish_action(controller, TRUE)
-			if(istype(controller, /datum/ai_controller/insane/murder))
-				var/datum/ai_controller/insane/murder/M = controller
-				M.FindEnemies()
 		return FALSE
 	// Movement
 	if(LAZYLEN(controller.current_path))
 		var/target_turf = controller.current_path[1]
-		if(target_turf && get_dist(living_pawn, target_turf) < 2)
-			if(!step_towards(living_pawn, target_turf)) //If it fails to move
+		var/obj/vehicle/sealed/mecha/the_mecha
+		var/atom/movable/thing_to_move = living_pawn
+		if(ismecha(living_pawn.loc))
+			the_mecha = living_pawn.loc
+			thing_to_move = the_mecha
+		if(target_turf && get_dist(thing_to_move, target_turf) < 2)
+			if(the_mecha)
+				the_mecha.relaymove(living_pawn, get_dir(the_mecha, target_turf))
+			else
+				thing_to_move.Move(target_turf, get_dir(thing_to_move, target_turf))
+			if(get_turf(thing_to_move) == target_turf)
+				controller.current_path.Remove(target_turf)
+				controller.pathing_attempts = 0
+			else
 				controller.pathing_attempts++
-				if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
-					controller.pathing_attempts = 0
-					controller.current_path = list()
-					finish_action(controller, TRUE)
-					return FALSE
-			else // Don't reset the attempts and remove the next if they didn't move there.
-				if(get_turf(living_pawn) == target_turf)
-					controller.current_path.Remove(target_turf)
-					controller.pathing_attempts = 0
-				else
-					controller.pathing_attempts++
+			if(controller.pathing_attempts >= MAX_PATHING_ATTEMPTS)
+				controller.pathing_attempts = 0
+				controller.current_path = list()
+				finish_action(controller, TRUE)
+				return FALSE
+
 			var/move_delay = max(0.8, 0.2 + living_pawn.cached_multiplicative_slowdown - (get_modified_attribute_level(living_pawn, JUSTICE_ATTRIBUTE) * movement_mod))
-			controller.timerid = addtimer(CALLBACK(src, PROC_REF(MoveInPath), controller), move_delay)
+			controller.timerid_wander = addtimer(CALLBACK(src, PROC_REF(MoveInPath), controller), move_delay, TIMER_STOPPABLE)
 			return TRUE
 	controller.pathing_attempts = 0
 	controller.current_path = list() // Reset the path and stop
@@ -490,17 +587,7 @@
 	// Same as the above insanity, but they look for a target between moves.
 
 /datum/ai_behavior/insanity_wander/murder_wander/PreMoveCheck(datum/ai_controller/insane/murder/controller, mob/living/living_pawn)
-	for(var/mob/living/L in livinginview(9, living_pawn))
-		if(L == living_pawn)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(!isturf(L.loc) && !ismecha(L.loc))
-			continue
-		if(living_pawn.see_invisible < L.invisibility)
-			continue
+	if(controller.FindEnemies())
 		return FALSE
 	return ..()
 
