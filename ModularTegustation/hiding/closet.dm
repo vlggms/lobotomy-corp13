@@ -20,21 +20,16 @@
 
 /obj/structure/closet/take_contents()
 	. = ..()
-	anchorable = FALSE // dont let them move it
-	set_anchored(TRUE)
-	for(var/mob/living/person in src)
-		for(var/turf/open/floor/funky_turf in range(2, drop_location()))
-			funky_turf.possible_hiding_players += person
-			for(funky_turf in range(1, drop_location())) // they can hear your breathing more clearly
-				funky_turf.noise = 20
+	if(locate(/mob/living) in src.contents)
+		anchorable = FALSE // dont let them move it
+		set_anchored(TRUE)
+		toggle_breathing(FALSE)
 
 /obj/structure/closet/dump_contents()
-	anchorable = TRUE
-	set_anchored(FALSE)
-	for(var/mob/living/person in src)
-		for(var/turf/open/floor/funky_turf in range(2, drop_location()))
-			funky_turf.noise = initial(funky_turf.noise)
-			funky_turf.possible_hiding_players -= person
+	if(locate(/mob/living) in src.contents)
+		anchorable = TRUE
+		set_anchored(FALSE)
+		toggle_breathing(TRUE)
 
 	return ..()
 
@@ -58,3 +53,30 @@
 	if(nonfunctional)
 		return FALSE
 	return ..()
+
+/**
+ * Toggles the turf's noise and possible_hiding_players list contents
+ */
+/obj/structure/closet/proc/toggle_breathing(opened = TRUE)
+	if(!opened)
+		for(var/turf/open/floor/funky_turf in range(2, drop_location()))
+			if(SSlobotomy_corp.show_breathing)
+				funky_turf.color = rgb(255, 255, 0)
+
+			for(var/mob/living/person in src)
+				funky_turf.possible_hiding_players += person
+
+			for(funky_turf in range(1, drop_location())) // they can hear your breathing more clearly from closer away
+				funky_turf.noise = 20
+				if(SSlobotomy_corp.show_breathing)
+					funky_turf.color = rgb(255, 0, 0)
+		return
+
+	// the closet is being opened, we need to remove the mobs and noise values from the lists
+	for(var/turf/open/floor/funky_turf in range(2, drop_location()))
+		if(SSlobotomy_corp.show_breathing)
+			funky_turf.color = initial(funky_turf.color)
+
+		funky_turf.noise = initial(funky_turf.noise)
+		for(var/mob/living/person in src)
+			funky_turf.possible_hiding_players -= person
