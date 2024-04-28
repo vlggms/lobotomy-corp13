@@ -108,3 +108,11 @@
 	flags_inv = NONE
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 	equip_slowdown = 0
+
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/viro
+	name = "limbus company virology labcoat"
+	desc = "It says Limbus Company on the tag. Used by Limbus Company Virologist."
+	icon_state = "virologist"
+	flags_inv = NONE
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+	equip_slowdown = 0

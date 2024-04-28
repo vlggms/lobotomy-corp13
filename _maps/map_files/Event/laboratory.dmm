@@ -76,6 +76,14 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel,
 /area/centcom)
+"bq" = (
+/obj/structure/table,
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/obj/item/vending_refill/drugs,
+/turf/open/floor/plasteel/showroomfloor,
+/area/centcom)
 "bv" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/plasteel,
@@ -301,6 +309,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
+"dJ" = (
+/obj/structure/table/glass,
+/obj/item/storage/box/medipens,
+/obj/item/storage/box/medipens,
+/turf/open/floor/plasteel/white,
+/area/centcom)
 "dN" = (
 /obj/structure/table,
 /obj/machinery/recharger,
@@ -441,6 +455,11 @@
 /obj/structure/curtain/bounty,
 /turf/open/floor/plasteel,
 /area/centcom)
+"fU" = (
+/obj/structure/table,
+/obj/item/storage/backpack/duffelbag/virology,
+/turf/open/floor/plasteel,
+/area/centcom)
 "gd" = (
 /obj/machinery/sleeper/syndie,
 /turf/open/floor/plasteel/white,
@@ -454,6 +473,18 @@
 /obj/structure/table,
 /obj/item/camera,
 /obj/item/taperecorder,
+/turf/open/floor/plasteel,
+/area/centcom)
+"gs" = (
+/obj/structure/table,
+/obj/machinery/reagentgrinder{
+	pixel_y = 6
+	},
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
+/obj/item/stack/sheet/mineral/plasma,
 /turf/open/floor/plasteel,
 /area/centcom)
 "gt" = (
@@ -654,6 +685,13 @@
 /obj/machinery/light,
 /turf/open/floor/carpet/black,
 /area/centcom)
+"kc" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/body_fabricator,
+/turf/open/floor/plasteel/white,
+/area/centcom)
 "ki" = (
 /obj/machinery/vending/hydroseeds,
 /turf/open/indestructible/white,
@@ -763,13 +801,6 @@
 	},
 /obj/item/stack/spacecash/c10000,
 /turf/open/floor/carpet/green,
-/area/centcom)
-"mY" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/body_fabricator,
-/turf/open/floor/plasteel/white,
 /area/centcom)
 "nl" = (
 /obj/structure/table,
@@ -904,9 +935,18 @@
 /obj/machinery/iv_drip/saline,
 /turf/open/floor/plasteel/white,
 /area/centcom)
+"qh" = (
+/obj/structure/closet/l3closet/virology,
+/obj/item/clothing/suit/armor/ego_gear/limbus_labs/research,
+/turf/open/floor/plasteel,
+/area/centcom)
 "qp" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/carpet/stellar,
+/area/centcom)
+"qt" = (
+/obj/machinery/smartfridge/chemistry/virology/preloaded,
+/turf/open/floor/plasteel,
 /area/centcom)
 "qw" = (
 /obj/structure/table,
@@ -995,6 +1035,13 @@
 "rm" = (
 /obj/machinery/door/airlock/research{
 	name = "private office";
+	req_access_txt = "7"
+	},
+/turf/open/floor/plasteel,
+/area/centcom)
+"rs" = (
+/obj/machinery/door/airlock/research{
+	name = "virology";
 	req_access_txt = "7"
 	},
 /turf/open/floor/plasteel,
@@ -1136,6 +1183,10 @@
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
 /turf/open/floor/plating,
+/area/centcom)
+"ti" = (
+/obj/machinery/computer/pandemic,
+/turf/open/floor/plasteel,
 /area/centcom)
 "ts" = (
 /obj/structure/filingcabinet/chestdrawer,
@@ -1584,15 +1635,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
-"zq" = (
-/obj/structure/table,
-/obj/item/vending_refill/drugs,
-/obj/item/vending_refill/drugs,
-/obj/item/vending_refill/drugs,
-/obj/item/vending_refill/drugs,
-/obj/machinery/light,
-/turf/open/floor/plasteel/showroomfloor,
-/area/centcom)
 "zu" = (
 /obj/structure/table/glass,
 /obj/item/storage/box/syringes{
@@ -1995,6 +2037,11 @@
 "HM" = (
 /obj/effect/landmark/latejoin,
 /turf/open/floor/wood,
+/area/centcom)
+"HQ" = (
+/obj/machinery/vending/prosthetic,
+/obj/machinery/light,
+/turf/open/floor/plasteel/showroomfloor,
 /area/centcom)
 "Ic" = (
 /obj/structure/table/wood/fancy/red,
@@ -2712,12 +2759,6 @@
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
-"Sx" = (
-/obj/structure/table/glass,
-/obj/item/storage/box/medipens,
-/obj/item/storage/box/medipens,
-/turf/open/floor/plasteel/white,
-/area/centcom)
 "Sz" = (
 /obj/structure/chair/comfy/black,
 /turf/open/floor/carpet/green,
@@ -3008,6 +3049,22 @@
 /obj/machinery/door/airlock/highsecurity{
 	name = "low-security checkpoint";
 	req_access_txt = "1"
+	},
+/turf/open/floor/plasteel,
+/area/centcom)
+"Ym" = (
+/obj/structure/table,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/syringe,
+/obj/item/clothing/glasses/sunglasses/chemical,
+/obj/item/reagent_containers/glass/bottle,
+/turf/open/floor/plasteel,
+/area/centcom)
+"Yy" = (
+/obj/structure/table,
+/obj/structure/reagent_dispensers/virusfood{
+	pixel_y = 25
 	},
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -31480,8 +31537,8 @@ Rq
 RF
 Ps
 jX
-jE
-zq
+bq
+HQ
 Ps
 od
 GG
@@ -32514,8 +32571,8 @@ Ps
 sP
 GG
 YP
-Sx
-mY
+dJ
+kc
 GG
 Gw
 Ps
@@ -37126,9 +37183,9 @@ Ps
 Ps
 Ps
 Ps
-ZP
-ZP
-ZP
+Ym
+fU
+qh
 Ps
 ID
 ID
@@ -37383,10 +37440,10 @@ Ps
 Eg
 sG
 Ps
-ZP
-ZP
-ZP
-Ps
+Yy
+sG
+ID
+rs
 ID
 ID
 Zy
@@ -37640,9 +37697,9 @@ Ps
 YJ
 ID
 Ps
-ZP
-ZP
-ZP
+qt
+ti
+gs
 Ps
 ID
 ID
@@ -37897,9 +37954,9 @@ Ps
 Ps
 rm
 Ps
-Ps
-Ps
-Ps
+ht
+ht
+ht
 Ps
 ID
 ID
@@ -38148,7 +38205,7 @@ ZP
 ZP
 ZP
 ZP
-Ps
+ID
 ID
 Rp
 ID
@@ -38405,7 +38462,7 @@ ZP
 ZP
 ZP
 ZP
-Ps
+ID
 ID
 Nb
 ID

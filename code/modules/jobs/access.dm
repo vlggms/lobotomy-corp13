@@ -381,8 +381,8 @@
 		"R-Corp Suppressive Rabbit","R-Corp Assault Rabbit", "R-Corp Medical Reindeer",	"R-Corp Berserker Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",
 
 		//LC Labs
-		"Chief Medical Officer", "Surgeon", "Nurse Practitioner", "Pharmacist", "Emergency Medical Technician", "Lead Researcher", "Senior Researcher", "Information Systems Tech",
-		"Researcher", "LC Staff", "District Manager", "LC Asset Protection", "High Security Commander", "Low Security Commander", "High Security Officer", "Low Security Officer",
+		"Chief Medical Officer", "Surgeon", "Nurse Practitioner", "Pharmacist", "Emergency Medical Technician", "Lead Researcher", "Senior Researcher", "Information Systems Tech", "Virologist",
+		"Researcher", "LC Staff", "District Manager", "LC Asset Protection", "High Security Commander", "Low Security Commander", "High Security Officer", "EGO Specialist", "Low Security Officer", "Low Security Medic",
 		"Damage Mitigation Officer", "Damage Exasperation Officer", "Containment Engineer", "LC Chef", "LC Janitor", "Research Archivist", "Internal Police",
 		)
 
