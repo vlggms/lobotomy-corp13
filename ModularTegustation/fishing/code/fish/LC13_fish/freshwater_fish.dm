@@ -18,6 +18,11 @@
 	stable_population = 2
 	microwaved_type = null
 	fillet_type = /obj/item/food/canned
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/organ_tissue = 3,
+		/datum/reagent/consumable/nutriment/vile_fluid = 1,
+		/datum/reagent/abnormality/bittersyrup = 1,
+	)
 
 /obj/item/food/fish/fresh_water/northernpike
 	name = "northern pike"
@@ -40,6 +45,12 @@
 	sprite_height = 8
 	average_size = 50
 	average_weight = 6803
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 2,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/consumable/nutriment/vile_fluid = 2,
+		/datum/reagent/abnormality/bittersyrup = 4,
+	)
 
 /obj/item/food/fish/fresh_water/yin
 	name = "yin carp"
@@ -50,6 +61,12 @@
 	sprite_height = 8
 	average_size = 50
 	average_weight = 6803
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 2,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/consumable/nutriment/vile_fluid = 2,
+		/datum/reagent/abnormality/tastesyrup = 4,
+	)
 
 /obj/item/food/fish/fresh_water/mosb
 	name = "mountain of smiling fish"
@@ -64,6 +81,7 @@
 	average_weight = 16000
 	food_reagents = list(
 		/datum/reagent/medicine/mental_stabilizator = 2,
+		/datum/reagent/abnormality/heartysyrup = 4,
 		/datum/reagent/consumable/nutriment/vile_fluid = 6,
 	)
 	fillet_type = /obj/item/food/meat/slab/human/mutant/zombie //zombi meat

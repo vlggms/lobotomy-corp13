@@ -63,6 +63,14 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
+
+	/*
+	* This is related to abnochem where a chemical can be harvested from abnormalities.
+	* This is more for general flavor and will be randomly filled if left empty.
+	* I placed this here because i felt like violence makes the most sense.
+	*/
+	chem_type = /datum/reagent/abnormality/violence
+
 	//shows in chat when the creature is defeated. Default is "stops moving".
 	death_message = "falls over."
 	//Phrases that the creature will emote randomly based on speak chance.
