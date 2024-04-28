@@ -55,7 +55,7 @@
 		/obj/item/food/chocolatebar = 2
 	)
 	result = /obj/item/food/cake/bbird
-	subcategory = CAT_CAKE
+	subcategory = CAT_PASTRY
 
 /obj/item/food/sundae/jbird
 	name = "Judgement sundae"
@@ -74,7 +74,7 @@
 		/obj/item/food/icecream = 1
 	)
 	result = /obj/item/food/sundae/jbird
-	subcategory = CAT_ICE
+	subcategory = CAT_MISCFOOD
 
 /obj/item/food/apoctrifle
 	name = "Apocalypse trifle"

@@ -91,7 +91,7 @@
 	result = /obj/item/pen/charcoal
 	reqs = list(/obj/item/stack/sheet/mineral/wood = 1, /datum/reagent/ash = 30)
 	time = 30
-	category = CAT_PRIMAL
+	category = CAT_TOOL
 
 /obj/item/pen/fountain/captain
 	name = "captain's fountain pen"
