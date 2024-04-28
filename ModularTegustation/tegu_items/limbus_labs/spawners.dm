@@ -26,8 +26,8 @@ GLOBAL_LIST_INIT(high_security, list(
 	/mob/living/simple_animal/hostile/abnormality/mountain,
 	/mob/living/simple_animal/hostile/abnormality/despair_knight,
 	/mob/living/simple_animal/hostile/abnormality/red_hood,
-	/mob/living/simple_animal/hostile/abnormality/general_b,
-	/mob/living/simple_animal/hostile/abnormality/hatred_queen
+	/mob/living/simple_animal/hostile/abnormality/general_b
+
 ))
 
 

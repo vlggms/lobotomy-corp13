@@ -1,4 +1,3 @@
-#define HATRED_COOLDOWN (15 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/hatred_queen
 	name = "Queen of Hatred"
 	desc = "An abnormality resembling pale-skinned girl in a rather bizzare outfit. \
@@ -86,58 +85,13 @@
 	var/explode_damage = 60 // Boosted from 35 due to Indication she's gonna be there. It's a legit skill issue now.
 	var/breach_max_death = 0
 
-	var/hysteric_ability = 0
-	var/hatred_cooldown
-	var/hatred_cooldown_time = 15 SECONDS
-
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/qoh_beam,
 		/datum/action/innate/abnormality_attack/qoh_beats,
 		/datum/action/innate/abnormality_attack/qoh_teleport,
 		/datum/action/innate/abnormality_attack/qoh_normal,
-		/datum/action/cooldown/toggle_hysteria
 	)
-
-/datum/action/cooldown/toggle_hysteria
-	name = "Toggle Hysteria"
-	desc = "Toggle your Hysteria with your other forms. (Works only for Limbus Company Labratories)"
-	check_flags = AB_CHECK_CONSCIOUS
-	transparent_when_unavailable = TRUE
-	cooldown_time = HATRED_COOLDOWN
-
-
-/datum/action/cooldown/toggle_hysteria/Trigger()
-	if(!..())
-		return FALSE
-	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/hatred_queen))
-		return FALSE
-	if(!SSmaptype.maptype == "limbus_labs")
-		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/hatred_queen/hatred_queen = owner
-	StartCooldown()
-	hatred_queen.hysteria_change()
-
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/hysteria_change()
-	if(hysteric_ability == 0)
-		icon = 'ModularTegustation/Teguicons/32x48.dmi'
-		icon_state = "hatred_psycho"
-		threat_level = TETH_LEVEL
-		faction = "netrual"
-		hysteric_ability = 1
-		return
-	if(hysteric_ability == 1)
-		var/hysteria_choice = alert(src, "Do you want to change into your friendly or hostile form?", "Choose Form", "Friendly", "Hostile")
-		if(hysteria_choice == "Friendly")
-			icon = 'ModularTegustation/Teguicons/32x48.dmi'
-			icon_state = "hatred"
-			friendly = TRUE
-			threat_level = TETH_LEVEL
-			faction = "neutral"
-		if(hysteria_choice == "Hostile")
-			addtimer(CALLBACK(src, PROC_REF(HostileTransform)), 10 SECONDS)
-		hysteric_ability = 0
-		return
 
 /datum/action/innate/abnormality_attack/qoh_beam
 	name = "Arcana Slave"
@@ -277,7 +231,7 @@
 		return FALSE
 	death_counter += 1
 	//if BREACHED, check if death_counter over the death limit
-	if(!IsContained() && breach_max_death && (death_counter >= breach_max_death) && !SSmaptype.maptype == "limbus_labs")
+	if(!IsContained() && breach_max_death && (death_counter >= breach_max_death))
 		GoHysteric()
 	//if CONTAINED and lots of death before qliphoth triggers (TEMP)
 	if(IsContained() && (death_counter > 3)) // Omagah a lot of dead people!
@@ -415,12 +369,6 @@
 	beamloop.start()
 	var/beam_stage = 1
 	var/beam_damage_final = beam_damage
-	if(SSmaptype.maptype == "limbus_labs")
-		for(var/turf/TF in hit_line) //checks if that line has anything in the way, resets TT as the new beam end location
-			if(TF.density)
-				TT = TF
-				break
-		hit_line = getline(my_turf, TT) //old hit_line is discarded with hit_line which respects walls
 	if(friendly)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "ARCANA SLAVE!"))
 	else
@@ -488,8 +436,6 @@
 		TryTeleport(TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/TryTeleport(forced = FALSE)
-	if(SSmaptype.maptype == "limbus_labs")
-		return FALSE
 	if(!forced)
 		if(teleport_cooldown > world.time)
 			return FALSE
@@ -626,8 +572,7 @@
 		return
 	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
-	if(!SSmaptype.maptype == "limbus_labs")
-		adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth)
 	friendly = FALSE
 	can_act = TRUE
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
@@ -662,8 +607,3 @@
 		return ..()
 	HostileTransform()
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/hatred_queen/Login()
-	. = ..()
-	if(SSmaptype.maptype == "limbus_labs" && friendly == FALSE)
-		faction = list("hatredqueen")
