@@ -594,7 +594,9 @@
 	if(!client && AIStatus == AI_ON && target && !attack_is_on_cooldown)
 		TryAttack()
 
-/mob/living/simple_animal/hostile/proc/TryAttack()
+/mob/living/simple_animal/hostile/proc/TryAttack(called_by_timer = FALSE)
+	if(called_by_timer)
+		attack_timer_id = null
 	if(client || stat != CONSCIOUS || AIStatus != AI_ON || incapacitated() || !targets_from || !isturf(targets_from.loc))
 		attack_is_on_cooldown = FALSE
 		if(attack_timer_id)
@@ -622,7 +624,7 @@
 		else
 			attack_is_on_cooldown = FALSE
 	if(!attack_timer_id)
-		attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack)), attack_cooldown, TIMER_STOPPABLE)
+		attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack), TRUE), attack_cooldown, TIMER_STOPPABLE)
 
 	// Called by automated_action and causes the AI to go idle if it returns false. This proc is pretty big.
 /mob/living/simple_animal/hostile/proc/MoveToTarget(list/possible_targets)
