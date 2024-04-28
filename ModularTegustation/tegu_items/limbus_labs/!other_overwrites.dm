@@ -36,7 +36,8 @@
 /mob/living/simple_animal/hostile/abnormality/Login()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		faction = list("hostile")
+		if(!src == /mob/living/simple_animal/hostile/abnormality/hatred_queen)
+			faction = list("hostile")
 
 /mob/living/simple_animal/hostile/abnormality/Logout()
 	. = ..()

@@ -24,3 +24,9 @@
 		ChangeResistances(0.7, 0.6, 0.8, 1)
 		melee_damage_lower = 35
 		melee_damage_upper = 47
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/Initialize()
+	..()
+	if(SSmaptype.maptype == "limbus_labs")
+		beats_damage = 80
+		beam_damage = 4
