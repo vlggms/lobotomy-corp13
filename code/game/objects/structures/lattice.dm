@@ -22,6 +22,9 @@
 	. = ..()
 	. += deconstruction_hints(user)
 
+/obj/structure/lattice/attack_animal(mob/living/simple_animal/M)
+	return FALSE
+
 /obj/structure/lattice/proc/deconstruction_hints(mob/user)
 	return span_notice("The rods look like they could be <b>cut</b>. There's space for more <i>rods</i> or a <i>tile</i>.")
 
