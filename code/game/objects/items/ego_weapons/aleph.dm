@@ -948,8 +948,8 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/ego_weapon/shield/combust
-	name = "Combusting Courage"
+/obj/item/ego_weapon/shield/waxen
+	name = "Waxen Pinion"
 	desc = "A searing blade, setting the world ablaze to eradicate evil. \
 			Using this E.G.O will eventually reduce you to ashes."
 	special = "Activate again during block to perform Blazing Strike. This weapon becomes stronger the more burn stacks you have."
@@ -983,12 +983,12 @@
 	var/burn_enemy = 2
 	var/burn_stack = 0
 
-/obj/item/ego_weapon/shield/combust/proc/Check_Ego(mob/living/user)
+/obj/item/ego_weapon/shield/waxen/proc/Check_Ego(mob/living/user)
 	var/mob/living/carbon/human/H = user
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/combust/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/waxen/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(C) || istype(D))
-		reductions = list(30, 50, 40, 30) // 150 with combust/desperation
+		reductions = list(30, 50, 40, 30) // 150 with waxen/desperation
 		projectile_block_message = "The heat from your wing melted the projectile!"
 		block_message = "You cover yourself with your wing!"
 		block_cooldown_message = "You streched your wing."
@@ -1006,7 +1006,7 @@
 		burn_self = 2
 		burn_enemy = 2
 
-/obj/item/ego_weapon/shield/combust/proc/Check_Burn(mob/living/user)
+/obj/item/ego_weapon/shield/waxen/proc/Check_Burn(mob/living/user)
 	var/datum/status_effect/stacking/lc_burn/B = user.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	if(B)
 		burn_stack = B.stacks
@@ -1015,13 +1015,13 @@
 	force = (80 + round(burn_stack/2))
 	burn_enemy = burn_enemy + round(burn_stack/10)
 
-/obj/item/ego_weapon/shield/combust/CanUseEgo(mob/living/user)
+/obj/item/ego_weapon/shield/waxen/CanUseEgo(mob/living/user)
 	. = ..()
 	if(user.get_inactive_held_item())
 		to_chat(user, span_notice("You cannot use [src] with only one hand!"))
 		return FALSE
 
-/obj/item/ego_weapon/shield/combust/attack_self(mob/user)
+/obj/item/ego_weapon/shield/waxen/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
 	Check_Ego(user)
@@ -1033,7 +1033,7 @@
 	..()
 
 // Counter
-/obj/item/ego_weapon/shield/combust/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/shield/waxen/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	source.apply_lc_burn(2)
 	for(var/turf/T in view(1, source))
 		new /obj/effect/temp_visual/fire/fast(T)
@@ -1046,7 +1046,7 @@
 			L.apply_lc_burn(2)
 	..()
 
-/obj/item/ego_weapon/shield/combust/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/shield/waxen/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	Check_Ego(user)
@@ -1057,7 +1057,7 @@
 		target.apply_lc_burn(burn_enemy)
 
 // Blazing Strike
-/obj/item/ego_weapon/shield/combust/afterattack(atom/A, mob/living/user, proximity_flag, params)
+/obj/item/ego_weapon/shield/waxen/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	..()
 	if(!CanUseEgo(user))
 		return

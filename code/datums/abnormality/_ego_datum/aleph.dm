@@ -162,12 +162,12 @@
 	cost = 100
 
 // The Crying Children - Combusting Courage
-/datum/ego_datum/weapon/shield/combust
-	item_path = /obj/item/ego_weapon/shield/combust
+/datum/ego_datum/weapon/shield/waxen
+	item_path = /obj/item/ego_weapon/shield/waxen
 	cost = 100
 
-/datum/ego_datum/armor/combust
-	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/combust
+/datum/ego_datum/armor/waxen
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/waxen
 	cost = 100
 
 //We Can Change Anything - Iron maiden
