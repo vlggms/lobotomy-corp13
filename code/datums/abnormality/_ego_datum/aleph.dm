@@ -161,7 +161,7 @@
 	item_path = /obj/item/gun/ego_gun/pink
 	cost = 100
 
-// The Crying Children - Combusting Courage
+// The Crying Children - Waxen Pinion
 /datum/ego_datum/weapon/shield/waxen
 	item_path = /obj/item/ego_weapon/shield/waxen
 	cost = 100
