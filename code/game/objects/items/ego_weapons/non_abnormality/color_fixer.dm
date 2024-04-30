@@ -43,25 +43,26 @@
 
 
 /obj/item/ego_weapon/city/vermillion/attack(mob/living/target, mob/living/carbon/human/user)
-	if(!using_ability)
+	if(target.stat == DEAD)
 		return ..()
 
 	for(var/mob/living/alive_mob in mob_blacklist)
 		if(target == alive_mob)
 			return ..()
 
-	if(target.stat == DEAD)
-		return ..()
-
 	. = ..()
+
 	if(target.stat != DEAD)
 		return
 
 	user.adjustSanityLoss(-30)
-	user.adjustBruteLoss(-user.maxHealth*0.1)
 
+	if(!using_ability)
+		return
+
+	user.adjustBruteLoss(-user.maxHealth*0.1)
 	to_chat(user, span_userdanger("ANOTHER."))
-	force*=1.5
+	force *= 1.5
 
 /obj/item/ego_weapon/city/vermillion/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
