@@ -1133,7 +1133,7 @@
 /datum/status_effect/stacking/lc_burn/proc/Check_Resist(mob/living/owner)
 	//I was hesistant to put a new var for this check in suit.dm, so I just check for each armor instead
 	var/mob/living/carbon/human/H = owner
-	var/obj/item/clothing/suit/armor/ego_gear/aleph/combust/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/aleph/waxen/C = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/desperation/D = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(C))
 		burn_res = 15
