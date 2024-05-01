@@ -57,6 +57,15 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/south)
+"an" = (
+/obj/machinery/grill,
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/training)
 "ap" = (
 /obj/effect/turf_decal/stripes/white/line,
 /obj/effect/turf_decal/caution/white{
@@ -71,53 +80,6 @@
 /turf/open/floor/facility/dark,
 /area/facility_hallway/east)
 "aq" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
 /obj/structure/closet{
 	anchored = 1;
 	name = "fisherman closet";
@@ -153,6 +115,15 @@
 "au" = (
 /obj/effect/turf_decal/siding/brown/corner,
 /turf/open/floor/plasteel/dark,
+/area/department_main/training)
+"av" = (
+/obj/effect/turf_decal/siding/wideplating/dark{
+	dir = 8
+	},
+/obj/structure/aquarium,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/training)
 "aw" = (
 /turf/open/floor/plasteel/dark{
@@ -854,6 +825,14 @@
 /obj/effect/landmark/latejoin,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/south)
+"cx" = (
+/obj/structure/fishcooker/fishoven,
+/obj/machinery/light{
+	dir = 1;
+	pixel_y = 19
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/training)
 "cy" = (
 /obj/structure/sign/ordealmonitor,
 /obj/effect/turf_decal/bot_red,
@@ -886,14 +865,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
-"cB" = (
-/obj/machinery/smartfridge,
-/turf/closed/indestructible/reinforced{
-	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
-	name = "facility wall";
-	opacity = 0
-	},
-/area/department_main/training)
 "cC" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_right,
@@ -1179,42 +1150,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
-"dC" = (
-/obj/structure/table/reinforced{
-	max_integrity = 25
-	},
-/obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_x = 4;
-	pixel_y = 1
-	},
-/obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_y = 12
-	},
-/obj/item/reagent_containers/glass/beaker/bluespace{
-	pixel_x = -6;
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/condiment/enzyme{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "dD" = (
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
@@ -1296,6 +1231,13 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
+"dW" = (
+/obj/machinery/vending/boozeomat/all_access,
+/turf/closed/indestructible/reinforced{
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
+	},
+/area/facility_hallway/training)
 "ec" = (
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/effect/turf_decal/siding/thinplating{
@@ -1363,10 +1305,7 @@
 /obj/structure/railing/corner{
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "en" = (
 /obj/effect/turf_decal/siding/wideplating/dark{
@@ -1392,62 +1331,6 @@
 /turf/open/floor/carpet/black,
 /area/department_main/records)
 "eq" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
-/obj/effect/turf_decal/siding/wood{
-	color = "#2e1f0e";
-	dir = 10
-	},
 /obj/structure/railing{
 	alpha = 0;
 	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
@@ -1456,7 +1339,13 @@
 	name = "invisble wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/floor/wood,
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/turf/open/floor/wood{
+	color = "#ccc8c0"
+	},
 /area/facility_hallway/north)
 "et" = (
 /obj/effect/turf_decal/stripes/white/line,
@@ -1552,79 +1441,12 @@
 	name = "floor"
 	},
 /area/facility_hallway/north)
-"eK" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
-/obj/effect/turf_decal/siding/wood{
-	color = "#2e1f0e";
-	dir = 4
-	},
-/obj/structure/railing{
-	alpha = 0;
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8;
-	mouse_opacity = 0;
-	name = "invisble wing-grade railing";
-	resistance_flags = 115
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/south)
 "eM" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/machinery/chem_master/condimaster,
+/obj/structure/aquarium,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "eN" = (
@@ -1679,6 +1501,15 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
+"eZ" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 10;
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/training)
 "fa" = (
 /obj/structure/lattice/lava{
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
@@ -2243,10 +2074,7 @@
 	dir = 1;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "gw" = (
 /obj/structure/lattice/lava{
@@ -2647,6 +2475,9 @@
 	name = "floor"
 	},
 /area/facility_hallway/west)
+"hp" = (
+/turf/open/water/deep/saltwater/extradeep,
+/area/facility_hallway/central)
 "hr" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/siding/thinplating/dark{
@@ -2810,14 +2641,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/information)
-"hN" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/gibber,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "hP" = (
 /obj/machinery/facility_holomap{
 	dir = 1
@@ -2921,46 +2744,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/control)
-"ii" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	storage_capacity = 1000
-	},
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "ij" = (
 /obj/effect/turf_decal/bot_red,
 /turf/open/floor/facility/dark,
@@ -3417,10 +3200,7 @@
 	dir = 8;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "jq" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
@@ -3595,6 +3375,9 @@
 	name = "facility wall"
 	},
 /area/department_main/command)
+"jX" = (
+/turf/closed/indestructible/rock,
+/area/facility_hallway/central)
 "jY" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 1
@@ -3704,17 +3487,6 @@
 	},
 /turf/open/floor/facility/white,
 /area/facility_hallway/manager)
-"km" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "kn" = (
 /obj/effect/turf_decal/siding/purple/corner{
 	color = "#8a3080";
@@ -4089,10 +3861,7 @@
 	dir = 4;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "ln" = (
 /obj/structure/rack,
@@ -4260,14 +4029,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
-"lR" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/griddle,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "lU" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -4297,58 +4058,6 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "lW" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
 	dir = 8
@@ -4570,15 +4279,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/control)
-"mJ" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/griddle,
-/obj/item/toy/plush/pierre,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "mM" = (
 /obj/effect/turf_decal/siding/yellow/corner,
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -4795,10 +4495,7 @@
 	set_cap = 3;
 	set_luminosity = 24
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "nx" = (
 /obj/machinery/smartfridge/extraction_storage/ego_weapon,
@@ -5104,21 +4801,18 @@
 	},
 /area/department_main/safety)
 "ol" = (
-/obj/structure/window/reinforced/fulltile{
-	armor = list("melee" = 30, "bullet" = 30, "laser" = 20, "energy" = 20, "bomb" = 10, "bio" = 100, "rad" = 100, "fire" = 80, "acid" = 70);
-	max_integrity = 500
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
 	},
-/turf/open/floor/facility/dark{
-	color = "#ccc8c0"
-	},
+/turf/open/floor/wood,
 /area/facility_hallway/training)
 "op" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/kitchenspike,
-/turf/open/floor/plasteel/white,
+/obj/structure/table/reinforced,
+/obj/item/kitchen/knife/hunting,
+/turf/open/floor/wood,
 /area/facility_hallway/training)
 "ou" = (
 /obj/effect/turf_decal/box/red/corners,
@@ -5647,165 +5341,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
-"qb" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	name = "Meat Storage Refrigerator";
-	storage_capacity = 1000
-	},
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "qd" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
@@ -5908,69 +5443,9 @@
 	},
 /area/department_main/command)
 "qr" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
 	dir = 1
-	},
-/obj/structure/railing{
-	alpha = 0;
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 10;
-	mouse_opacity = 0;
-	name = "invisble wing-grade railing";
-	resistance_flags = 115
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/information)
@@ -6211,37 +5686,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/east)
-"qS" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/machinery/vending/hydronutrients{
-	density = 0;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
-"qX" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/machinery/hydroponics/constructable,
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "qZ" = (
 /obj/structure/mirror{
 	pixel_y = 27
@@ -6591,41 +6035,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/training)
-"rN" = (
-/obj/structure/table/reinforced{
-	max_integrity = 25
-	},
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
-/obj/item/book/granter/crafting_recipe/cooking_sweets_101,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/storage/box/papersack,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/item/choice_beacon/ingredient,
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "rO" = (
 /obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding/wood{
@@ -6733,7 +6142,6 @@
 /obj/effect/turf_decal/siding/wideplating/dark/corner{
 	dir = 8
 	},
-/obj/structure/chair/stool/bar,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -6832,27 +6240,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
-"sp" = (
-/obj/structure/table/reinforced{
-	max_integrity = 25
-	},
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 2;
-	pixel_y = 11
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/glass/rag{
-	pixel_x = 5;
-	pixel_y = 2
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "ss" = (
 /obj/effect/turf_decal/box/white/corners{
 	dir = 1
@@ -7086,6 +6473,15 @@
 	slowdown = 0
 	},
 /area/facility_hallway/north)
+"tp" = (
+/obj/machinery/fish_market,
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/training)
 "tr" = (
 /obj/structure/railing/corner{
 	dir = 8;
@@ -7747,18 +7143,9 @@
 	},
 /area/facility_hallway/human)
 "vj" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/icecream_vat{
-	anchored = 1
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/white,
+/obj/structure/table/reinforced,
+/obj/item/stack/sheet/mineral/wood/fifty,
+/turf/open/floor/wood,
 /area/facility_hallway/training)
 "vk" = (
 /obj/effect/turf_decal/box/red/corners,
@@ -8034,21 +7421,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/training)
-"we" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/grill,
-/obj/item/stack/sheet/mineral/wood/fifty,
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "wf" = (
 /obj/effect/turf_decal/siding/red/corner{
 	color = "#440000"
@@ -8165,58 +7537,6 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "wx" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
 	dir = 4
@@ -8871,20 +8191,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
-"yz" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/machinery/smartfridge/drying_rack,
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "yA" = (
 /obj/machinery/stasis/survival_pod,
 /obj/machinery/light{
@@ -9105,6 +8411,9 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/department_main/command)
+"zf" = (
+/turf/open/water/deep/freshwater,
+/area/facility_hallway/central)
 "zh" = (
 /obj/machinery/telecomms/broadcaster/preset_right,
 /obj/effect/turf_decal/bot,
@@ -9165,58 +8474,6 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
 "zr" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
 	dir = 1
@@ -9991,15 +9248,11 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Br" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
+/obj/structure/table/reinforced,
+/obj/structure/fishcooker/fishfrier{
+	pixel_y = 5
 	},
-/obj/machinery/vending/dinnerware{
-	density = 0;
-	pixel_y = 19
-	},
-/turf/open/floor/plasteel/white,
+/turf/open/floor/wood,
 /area/facility_hallway/training)
 "Bs" = (
 /obj/structure/chair/plastic{
@@ -10286,23 +9539,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/east)
-"Cg" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	resistance_flags = 115
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	mouse_opacity = 0;
-	name = "hidden security camera";
-	short_range = 6;
-	view_range = 6
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "Ci" = (
 /obj/effect/turf_decal/arrows/red{
 	dir = 1
@@ -10948,22 +10184,6 @@
 /obj/item/dice/d20,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"DS" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "DT" = (
 /obj/effect/turf_decal/arrows/red{
 	dir = 8
@@ -11180,10 +10400,7 @@
 /area/facility_hallway/manager)
 "EC" = (
 /obj/structure/railing,
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "ED" = (
 /obj/effect/turf_decal/siding/thinplating{
@@ -11991,6 +11208,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/structure/aquarium,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -12011,6 +11229,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"He" = (
+/obj/structure/table/reinforced,
+/obj/structure/sushimat,
+/turf/open/floor/wood,
+/area/facility_hallway/training)
 "Hf" = (
 /obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/plasteel/dark{
@@ -12065,20 +11288,6 @@
 	name = "facility wall"
 	},
 /area/facility_hallway/south)
-"Ho" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/machinery/seed_extractor,
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "Hq" = (
 /obj/structure/rack,
 /obj/item/reagent_containers/hypospray/medipen/salacid,
@@ -12256,53 +11465,6 @@
 	},
 /area/facility_hallway/north)
 "Ib" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
 /obj/structure/closet{
 	anchored = 1;
 	name = "fisherman closet";
@@ -12320,6 +11482,9 @@
 	name = "invisble wing-grade railing";
 	resistance_flags = 115
 	},
+/obj/item/fishing_net,
+/obj/item/fishing_net,
+/obj/item/fishing_net,
 /turf/open/floor/wood,
 /area/facility_hallway/information)
 "Ic" = (
@@ -12594,32 +11759,6 @@
 	name = "facility wall"
 	},
 /area/facility_hallway/north)
-"Jj" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 24
-	},
-/obj/machinery/camera{
-	alpha = 0;
-	mouse_opacity = 0;
-	name = "hidden security camera";
-	short_range = 3;
-	view_range = 3
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "Jk" = (
 /obj/effect/turf_decal/siding/thinplating/corner,
 /obj/effect/turf_decal/siding/brown{
@@ -13087,6 +12226,29 @@
 /obj/item/toy/plush/hokma,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
+"KG" = (
+/obj/structure/closet{
+	anchored = 1;
+	name = "fisherman closet";
+	storage_capacity = 60
+	},
+/obj/effect/turf_decal/siding/wood{
+	color = "#2e1f0e";
+	dir = 8
+	},
+/obj/structure/railing{
+	alpha = 0;
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 5;
+	mouse_opacity = 0;
+	name = "invisble wing-grade railing";
+	resistance_flags = 115
+	},
+/obj/item/fishing_net,
+/obj/item/fishing_net,
+/obj/item/fishing_net,
+/turf/open/floor/wood,
+/area/facility_hallway/safety)
 "KH" = (
 /obj/effect/turf_decal/siding/purple{
 	color = "#8a3080";
@@ -13464,10 +12626,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "LO" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -13575,12 +12734,7 @@
 	},
 /area/department_main/information)
 "Mh" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/processor,
-/turf/open/floor/plasteel/white,
+/turf/open/floor/wood,
 /area/facility_hallway/training)
 "Ml" = (
 /obj/effect/turf_decal/siding/yellow/corner{
@@ -13717,17 +12871,6 @@
 	name = "facility wall"
 	},
 /area/department_main/command)
-"ME" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/microwave{
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "MF" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/extraction)
@@ -13801,10 +12944,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "MM" = (
 /obj/effect/spawner/abnormality_room,
@@ -14085,10 +13225,7 @@
 	dir = 1;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "Nx" = (
 /obj/structure/rack,
@@ -14292,25 +13429,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
-"Od" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/machinery/biogenerator,
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "Of" = (
 /obj/structure/sign/ordealmonitor,
 /obj/effect/turf_decal/box,
@@ -14530,10 +13648,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "OR" = (
 /obj/machinery/telecomms/server/presets/command{
@@ -14650,6 +13765,15 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/extraction)
+"Pe" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/freshwater,
+/area/facility_hallway/central)
 "Pf" = (
 /obj/structure/chair/plastic{
 	dir = 8
@@ -14884,53 +14008,6 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
 "PZ" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
 /obj/structure/closet{
 	anchored = 1;
 	name = "fisherman closet";
@@ -14948,32 +14025,11 @@
 	name = "invisble wing-grade railing";
 	resistance_flags = 115
 	},
+/obj/item/fishing_net,
+/obj/item/fishing_net,
+/obj/item/fishing_net,
 /turf/open/floor/wood,
 /area/facility_hallway/south)
-"Qb" = (
-/obj/structure/table/reinforced{
-	max_integrity = 25
-	},
-/obj/item/clothing/suit/apron/chef,
-/obj/item/clothing/suit/apron/chef,
-/obj/item/clothing/head/chefhat,
-/obj/item/clothing/head/chefhat,
-/obj/item/kitchen/rollingpin,
-/obj/item/kitchen/knife,
-/obj/item/reagent_containers/glass/bowl,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/bar,
-/obj/machinery/camera{
-	alpha = 0;
-	mouse_opacity = 0;
-	name = "hidden security camera";
-	short_range = 13;
-	view_range = 13
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "Qe" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -15102,32 +14158,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/north)
-"Qz" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/structure/sink/kitchen{
-	pixel_y = 14
-	},
-/obj/item/reagent_containers/glass/bucket,
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "QA" = (
 /obj/structure/railing{
 	alpha = 0;
@@ -15374,73 +14404,7 @@
 	},
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
-"Rv" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/structure/fermenting_barrel,
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "Rw" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
 	dir = 4
@@ -15644,19 +14608,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/command)
-"Se" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "Sg" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/segment{
@@ -15687,24 +14638,6 @@
 /obj/effect/turf_decal/stripes/red/full,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/safety)
-"So" = (
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/machinery/vending/hydroseeds{
-	density = 0;
-	pixel_y = 19;
-	resistance_flags = 115
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "Sr" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -16330,16 +15263,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
-"TZ" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/window/reinforced/spawner{
-	resistance_flags = 115
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "Ua" = (
 /obj/effect/turf_decal/box/corners{
 	dir = 4
@@ -16399,53 +15322,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/control)
-"Ul" = (
-/obj/structure/rack{
-	pixel_x = -1
-	},
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/cultivator,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/shovel/spade,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/hatchet,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/storage/bag/plants,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
-/obj/item/plant_analyzer,
-/obj/item/clothing/suit/apron,
-/obj/item/clothing/gloves/botanic_leather,
-/obj/effect/turf_decal/tile/green{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/green,
-/obj/effect/turf_decal/tile/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/brown{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 1;
-	pixel_y = 19
-	},
-/obj/machinery/light{
-	dir = 4;
-	pixel_x = 9;
-	pixel_y = 4
-	},
-/turf/open/floor/plasteel/sepia,
-/area/facility_hallway/training)
 "Um" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 1
@@ -16686,7 +15562,9 @@
 "UQ" = (
 /obj/structure/table/reinforced,
 /obj/item/stack/sheet/mineral/wood/fifty,
-/turf/open/space/basic,
+/turf/open/floor/plasteel/dark{
+	color = "#ccc8c0"
+	},
 /area/department_main/command)
 "UR" = (
 /obj/effect/turf_decal/box/corners{
@@ -16761,58 +15639,6 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "Vg" = (
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	name = "fisherman closet";
-	storage_capacity = 60
-	},
 /obj/effect/turf_decal/siding/wood{
 	color = "#2e1f0e";
 	dir = 1
@@ -16847,12 +15673,8 @@
 	},
 /area/facility_hallway/control)
 "Vk" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/structure/window/reinforced/spawner,
-/turf/open/floor/plasteel/white,
+/obj/structure/fishcooker/fishstove,
+/turf/open/floor/wood,
 /area/facility_hallway/training)
 "Vl" = (
 /obj/effect/turf_decal/bot_red,
@@ -16874,19 +15696,6 @@
 	name = "floor"
 	},
 /area/department_main/command)
-"Vo" = (
-/obj/effect/turf_decal/tile/bar,
-/obj/effect/turf_decal/tile/bar{
-	dir = 1
-	},
-/obj/machinery/chem_dispenser/fullupgrade{
-	desc = "Creates and dispenses a variety of kitchen ingredients.";
-	dispensable_reagents = list(/datum/reagent/consumable/enzyme,/datum/reagent/consumable/eggyolk,/datum/reagent/consumable/flour,/datum/reagent/consumable/rice,/datum/reagent/consumable/sugar,/datum/reagent/consumable/caramel,/datum/reagent/consumable/honey,/datum/reagent/consumable/salt,/datum/reagent/consumable/blackpepper,/datum/reagent/consumable/soysauce,/datum/reagent/consumable/bbqsauce,/datum/reagent/consumable/ketchup,/datum/reagent/consumable/capsaicin,/datum/reagent/consumable/frostoil,/datum/reagent/consumable/garlic,/datum/reagent/consumable/cherryjelly,/datum/reagent/consumable/bluecherryjelly,/datum/reagent/consumable/vanilla,/datum/reagent/consumable/coco,/datum/reagent/consumable/cornoil,/datum/reagent/consumable/corn_syrup,/datum/reagent/consumable/corn_starch,/datum/reagent/consumable/dry_ramen,/datum/reagent/consumable/clownstears,/datum/reagent/consumable/astrotame,/datum/reagent/consumable/secretsauce,/datum/reagent/consumable/laughsyrup,/datum/reagent/consumable/pancakebatter,/datum/reagent/water/holywater,/datum/reagent/fuel,/datum/reagent/consumable/soymilk,/datum/reagent/consumable/milk);
-	emagged_reagents = null;
-	name = "Industrial Foodstuff Dispenser"
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/training)
 "Vq" = (
 /obj/effect/turf_decal/arrows/red{
 	dir = 8
@@ -17095,10 +15904,6 @@
 /obj/structure/sink/kitchen{
 	pixel_y = 14
 	},
-/obj/machinery/vending/boozeomat/all_access{
-	density = 0;
-	pixel_x = 32
-	},
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
@@ -17224,10 +16029,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
-/turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
-	safe = 1
-	},
+/turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
 "WF" = (
 /obj/effect/turf_decal/box/corners{
@@ -17668,6 +16470,10 @@
 	color = "#dddddd"
 	},
 /area/facility_hallway/central)
+"Yh" = (
+/obj/structure/table/reinforced,
+/turf/open/floor/facility/dark,
+/area/department_main/command)
 "Yi" = (
 /obj/effect/turf_decal/siding/green{
 	color = "#006400";
@@ -38647,9 +37453,9 @@ JQ
 JQ
 JQ
 JQ
-JQ
-JQ
-JQ
+jX
+jX
+jX
 pm
 pm
 pm
@@ -38904,24 +37710,24 @@ JQ
 JQ
 JQ
 JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
+jX
+jX
+jX
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -39161,24 +37967,24 @@ JQ
 JQ
 JQ
 JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
-JQ
+jX
+jX
+jX
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -39418,24 +38224,24 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+jX
+jX
+jX
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -39674,25 +38480,25 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-Ye
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+jX
+jX
+jX
+jX
+zf
+zf
+Pe
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -39931,25 +38737,25 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+jX
+jX
+jX
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -40188,25 +38994,25 @@ rg
 rg
 rg
 rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
-rg
+jX
+jX
+jX
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -40434,7 +39240,7 @@ rg
 rg
 rg
 rg
-RY
+hp
 el
 LM
 LM
@@ -40442,28 +39248,28 @@ LM
 LM
 LM
 ll
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-rg
-rg
-rg
-rg
+hp
+hp
+hp
+jX
+jX
+jX
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -40687,11 +39493,11 @@ pm
 pm
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 ML
 Rw
 HL
@@ -40699,28 +39505,28 @@ fr
 sg
 ip
 OO
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-rg
-rg
-rg
-rg
+hp
+hp
+hp
+jX
+jX
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -40944,11 +39750,11 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 jl
 Qo
 Pr
@@ -40962,22 +39768,22 @@ qn
 Qo
 Qo
 Qo
-RY
-RY
-RY
-Qo
-Qo
-qn
-qn
-qn
-Qo
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -41201,8 +40007,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 Qo
 Qo
 Qo
@@ -41223,18 +40029,18 @@ Qo
 Qo
 Qo
 Qo
-Qz
-qX
-qX
-Se
-Od
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -41458,8 +40264,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 Qo
 qN
 qN
@@ -41480,20 +40286,20 @@ uH
 PR
 LQ
 Qo
-So
-qX
-qX
-Se
-Ho
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -41715,8 +40521,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 Qo
 qN
 qN
@@ -41737,20 +40543,20 @@ KV
 Pt
 LQ
 Qo
-qS
-Se
-Jj
-Se
-Se
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -41972,8 +40778,8 @@ Ye
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 Qo
 qN
 qN
@@ -41994,20 +40800,20 @@ za
 PR
 LQ
 Qo
-Ul
-Se
-Se
-Rv
-yz
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -42229,8 +41035,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 Qo
 qN
 qN
@@ -42253,18 +41059,18 @@ wM
 wM
 wM
 ol
-Xk
 ol
 ol
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+ol
+eZ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -42486,8 +41292,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 Qo
 qN
 qN
@@ -42505,23 +41311,23 @@ Ly
 nj
 nj
 si
-Ly
-Ly
+av
+av
 GU
 VK
 vj
-vZ
-hN
 Mh
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+Mh
+Mh
+an
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -42743,8 +41549,8 @@ LM
 LM
 LM
 ll
-RY
-RY
+hp
+hp
 Qo
 Qo
 Qo
@@ -42765,20 +41571,20 @@ jg
 kW
 vz
 iD
-Xk
-vZ
-vZ
-vZ
-vZ
-Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+VK
+cx
+Mh
+Mh
+Mh
+tp
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -42988,11 +41794,11 @@ pm
 pm
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 ML
 wx
 Bs
@@ -43000,8 +41806,8 @@ ht
 Su
 Wc
 OO
-RY
-RY
+hp
+hp
 Qo
 qN
 qN
@@ -43024,18 +41830,18 @@ RH
 Dx
 VK
 Br
-ME
-vZ
+Mh
+Mh
 op
 Qo
-RY
-RY
-Ye
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+Pe
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -43245,11 +42051,11 @@ pm
 pm
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 jl
 zS
 fv
@@ -43279,20 +42085,20 @@ pM
 Ak
 RH
 sf
-Az
+VK
 Vk
-mJ
-vZ
-op
+Mh
+Mh
+He
 Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -43502,8 +42308,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 zS
 zS
@@ -43537,19 +42343,19 @@ iM
 GW
 WM
 Az
-TZ
-ii
 vZ
-rN
-qn
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+vZ
+vZ
+vZ
+dW
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -43759,8 +42565,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -43794,19 +42600,19 @@ PT
 TX
 xL
 FD
-Cg
-we
 vZ
-Qb
+vZ
+vZ
+vZ
 qn
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -44016,8 +42822,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -44051,19 +42857,19 @@ dg
 Xp
 xL
 Az
-TZ
-qb
 vZ
-dC
+vZ
+vZ
+vZ
 qn
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -44273,8 +43079,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -44308,19 +43114,19 @@ Rs
 hb
 Vh
 Az
-TZ
-lR
+vZ
+vZ
 vZ
 eM
 Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -44530,8 +43336,8 @@ rg
 rg
 Ye
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -44564,20 +43370,20 @@ Jw
 yJ
 RH
 yh
-cB
-vZ
+VK
 UC
 vZ
-Vo
+vZ
+eM
 Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -44787,8 +43593,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -44825,16 +43631,16 @@ Xk
 vZ
 vZ
 vZ
-vZ
+eM
 Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+zf
+zf
+zf
+zf
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -45044,8 +43850,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 zS
 zS
@@ -45080,18 +43886,18 @@ wg
 Ij
 wM
 Wf
-sp
-DS
-km
+vZ
+vZ
+eM
 Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+jX
+jX
+jX
+jX
+zf
+zf
+zf
+zf
 pm
 pm
 pm
@@ -45297,7 +44103,7 @@ rg
 rg
 rg
 rg
-RY
+hp
 el
 LM
 LM
@@ -45341,14 +44147,14 @@ Qo
 Qo
 Qo
 Qo
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
+jX
+jX
+jX
+jX
+jX
+jX
+jX
+jX
 pm
 pm
 pm
@@ -45551,10 +44357,10 @@ pm
 rg
 rg
 Sb
-Sb
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 EC
 wx
 Pf
@@ -45589,25 +44395,25 @@ ED
 mV
 Ea
 tC
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-rg
-rg
-rg
-rg
-JQ
-JQ
-JQ
-JQ
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+jX
+jX
+jX
+jX
+jX
+jX
+jX
+jX
+jX
 JQ
 JQ
 JQ
@@ -45807,11 +44613,11 @@ pm
 pm
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 jl
 zS
 fv
@@ -45846,21 +44652,21 @@ Oz
 aP
 fy
 tC
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 el
 LM
 ll
-RY
+hp
 rg
-rg
-rg
-rg
+JQ
+JQ
+JQ
 JQ
 JQ
 JQ
@@ -46064,8 +44870,8 @@ pm
 pm
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 zS
 zS
@@ -46103,9 +44909,9 @@ xu
 uX
 TJ
 tC
-RY
-RY
-RY
+hp
+hp
+hp
 wK
 wK
 wK
@@ -46321,8 +45127,8 @@ pm
 pm
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -46578,8 +45384,8 @@ pm
 pm
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -46835,8 +45641,8 @@ pm
 pm
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -46914,21 +45720,21 @@ rg
 rg
 rg
 pm
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 pm
 pm
 pm
@@ -47092,8 +45898,8 @@ pm
 pm
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -47150,42 +45956,42 @@ rg
 rg
 Ye
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 rg
 rg
 rg
-RY
-RY
-RY
+hp
+hp
+hp
 nw
-RY
-RY
-RY
+hp
+hp
+hp
 rg
 pm
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 pm
 pm
 pm
@@ -47349,8 +46155,8 @@ pm
 pm
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -47407,29 +46213,29 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 rg
 pm
-RY
-RY
+hp
+hp
 yX
 yX
 yX
@@ -47441,8 +46247,8 @@ yX
 yX
 yX
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -47606,8 +46412,8 @@ pm
 pm
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 zS
 zS
@@ -47653,40 +46459,40 @@ UR
 ga
 TJ
 wK
-RY
-RY
+hp
+hp
 rg
-RY
-Sb
-Sb
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 ah
 ah
 sc
 sc
 ah
 ah
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 Ke
 Ke
 Ke
 Ke
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
 yX
 nq
 nq
@@ -47698,8 +46504,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -47863,13 +46669,13 @@ pm
 pm
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 zS
 bU
 bU
@@ -47910,40 +46716,40 @@ Oh
 Ac
 Ba
 tC
-RY
+hp
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 ah
 hM
 Bt
 cc
 Au
 ah
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 Ke
 ZS
 BI
 Ke
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
 yX
 nq
 nq
@@ -47955,8 +46761,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -48120,13 +46926,13 @@ pm
 pm
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 zS
 bU
 bU
@@ -48167,7 +46973,7 @@ eI
 Ej
 Rl
 tC
-RY
+hp
 rg
 rg
 RY
@@ -48177,9 +46983,9 @@ Hn
 Hn
 Hn
 Hn
-RY
-RY
-RY
+hp
+hp
+hp
 ah
 XH
 CX
@@ -48212,8 +47018,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -48382,8 +47188,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -48424,10 +47230,10 @@ uX
 Np
 UA
 tC
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 Hn
 Yu
 TP
@@ -48469,8 +47275,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -48639,8 +47445,8 @@ rg
 rg
 rg
 Sb
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -48681,10 +47487,10 @@ pC
 cg
 Oy
 wK
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 Hn
 nG
 YA
@@ -48693,7 +47499,7 @@ IH
 Hn
 vP
 jZ
-eK
+jZ
 ah
 wV
 CH
@@ -48726,8 +47532,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -48896,8 +47702,8 @@ rg
 rg
 rg
 Sb
-RY
-RY
+hp
+hp
 zS
 bU
 bU
@@ -48983,8 +47789,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -49152,8 +47958,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 nM
 nM
 nM
@@ -49240,8 +48046,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -49409,8 +48215,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 nM
 OY
 Xx
@@ -49497,8 +48303,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -49657,17 +48463,17 @@ pm
 pm
 pm
 pm
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 nM
 IG
 sP
@@ -49754,8 +48560,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -49914,17 +48720,17 @@ pm
 pm
 pm
 pm
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 nM
 aI
 eY
@@ -50011,8 +48817,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -50179,9 +48985,9 @@ vU
 vU
 vU
 vU
-RY
-RY
-RY
+hp
+hp
+hp
 nM
 aK
 wo
@@ -50268,8 +49074,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -50525,8 +49331,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -50782,8 +49588,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -51040,7 +49846,7 @@ nq
 nq
 yX
 nw
-RY
+hp
 pm
 pm
 pm
@@ -51296,8 +50102,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -51553,8 +50359,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -51721,9 +50527,9 @@ vU
 vU
 vU
 vU
-RY
-RY
-RY
+hp
+hp
+hp
 nM
 JA
 oQ
@@ -51763,7 +50569,7 @@ uY
 XU
 Ep
 PW
-ck
+Yh
 xE
 Tw
 MD
@@ -51810,8 +50616,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -51970,17 +50776,17 @@ pm
 pm
 pm
 pm
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 nM
 NG
 hs
@@ -52020,7 +50826,7 @@ KE
 KE
 KE
 Ml
-ck
+Yh
 Ah
 cd
 MD
@@ -52067,8 +50873,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -52227,17 +51033,17 @@ pm
 pm
 pm
 pm
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 nM
 Nq
 Nm
@@ -52275,9 +51081,9 @@ uY
 uY
 uY
 ck
-ck
-ck
-ck
+ka
+Yh
+Yh
 AW
 cd
 MD
@@ -52324,8 +51130,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -52493,8 +51299,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 nM
 Xl
 Nl
@@ -52581,8 +51387,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -52750,8 +51556,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 nM
 nM
 nM
@@ -52838,8 +51644,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -53007,11 +51813,11 @@ rg
 rg
 Ye
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 BU
 lN
 ac
@@ -53095,8 +51901,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -53264,11 +52070,11 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 BU
 ec
 cY
@@ -53352,8 +52158,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -53524,8 +52330,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 BU
 of
 Vb
@@ -53609,8 +52415,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -53781,8 +52587,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 BU
 Jh
 OJ
@@ -53796,9 +52602,9 @@ MF
 MF
 MF
 xD
-RY
-RY
-RY
+hp
+hp
+hp
 xm
 xm
 xm
@@ -53866,8 +52672,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -54038,8 +52844,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 OJ
 OJ
 xD
@@ -54049,18 +52855,18 @@ jC
 xD
 OJ
 OJ
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 Ew
 aD
 aD
@@ -54103,15 +52909,15 @@ dV
 ah
 LM
 ll
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 yX
 nq
 nq
@@ -54123,8 +52929,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -54295,29 +53101,29 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 MF
 cX
 ts
 GH
 MF
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 Ew
 aD
 aD
@@ -54360,15 +53166,15 @@ dV
 ah
 dD
 OO
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 yX
 nq
 nq
@@ -54380,8 +53186,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -54552,19 +53358,19 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 MF
 No
 Du
 uo
 MF
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 rg
 rg
 rg
@@ -54572,9 +53378,9 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
+hp
+hp
+hp
 Ew
 Ew
 Ew
@@ -54624,8 +53430,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 yX
 nq
 nq
@@ -54637,8 +53443,8 @@ nq
 nq
 nq
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -54811,15 +53617,15 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 MF
 MF
 MF
 MF
 MF
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -54829,9 +53635,9 @@ Ye
 rg
 rg
 rg
-RY
-RY
-RY
+hp
+hp
+hp
 pv
 Ph
 EA
@@ -54881,8 +53687,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 yX
 yX
 yX
@@ -54894,8 +53700,8 @@ yX
 yX
 yX
 yX
-RY
-RY
+hp
+hp
 pm
 pm
 pm
@@ -55068,27 +53874,27 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 rg
 rg
 rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
 pv
 ap
 HX
@@ -55138,21 +53944,21 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 pm
 pm
 pm
@@ -55325,27 +54131,27 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 rg
 rg
 rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
 pv
 BH
 UX
@@ -55395,21 +54201,21 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 pm
 pm
 pm
@@ -55597,8 +54403,8 @@ JQ
 JQ
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 Tz
 Tz
@@ -55640,8 +54446,8 @@ qw
 dx
 NI
 ah
-RY
-RY
+hp
+hp
 jl
 WE
 gv
@@ -55854,8 +54660,8 @@ JQ
 JQ
 rg
 rg
-RY
-RY
+hp
+hp
 Tz
 UN
 QD
@@ -55897,11 +54703,11 @@ Wn
 dx
 NI
 sc
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 rg
 rg
 rg
@@ -56111,8 +54917,8 @@ JQ
 JQ
 rg
 rg
-RY
-RY
+hp
+hp
 Tz
 XM
 Ci
@@ -56154,9 +54960,9 @@ Mo
 dx
 Ft
 sc
-RY
-RY
-RY
+hp
+hp
+hp
 rg
 rg
 rg
@@ -56368,8 +55174,8 @@ JQ
 JQ
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 HT
 iL
@@ -56411,9 +55217,9 @@ uI
 dj
 fc
 sc
-RY
-RY
-RY
+hp
+hp
+hp
 rg
 rg
 rg
@@ -56625,8 +55431,8 @@ JQ
 JQ
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 Zh
 lJ
@@ -56668,9 +55474,9 @@ bo
 bo
 AL
 ah
-RY
-RY
-RY
+hp
+hp
+hp
 rg
 rg
 rg
@@ -56882,8 +55688,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 KC
 Ta
@@ -56926,8 +55732,8 @@ ah
 ah
 ah
 ah
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -57139,8 +55945,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 tu
 hE
@@ -57183,8 +55989,8 @@ sb
 GA
 ev
 sc
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -57396,8 +56202,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 KC
 NT
@@ -57440,8 +56246,8 @@ rd
 mc
 dU
 sc
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -57653,8 +56459,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 Zh
 vx
@@ -57697,8 +56503,8 @@ Xt
 yM
 FV
 sc
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -57910,8 +56716,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 iL
 iL
@@ -57954,8 +56760,8 @@ ah
 ah
 ah
 ah
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -58164,11 +56970,11 @@ pm
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 Tz
 XM
 UJ
@@ -58207,12 +57013,12 @@ FW
 dx
 dV
 ah
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
 rg
 rg
 rg
@@ -58421,11 +57227,11 @@ pm
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 Tz
 UN
 Ql
@@ -58464,12 +57270,12 @@ nC
 dx
 dP
 sc
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
 rg
 rg
 rg
@@ -58678,8 +57484,8 @@ pm
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 iL
 iL
@@ -58708,10 +57514,10 @@ ZF
 ft
 xe
 iL
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 ah
 zv
 zv
@@ -58721,8 +57527,8 @@ fX
 rv
 At
 sc
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -58936,7 +57742,7 @@ rg
 rg
 rg
 nw
-RY
+hp
 iL
 mf
 Ms
@@ -58965,10 +57771,10 @@ Dr
 ft
 xe
 Tz
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
 ah
 ah
 ah
@@ -58978,8 +57784,8 @@ Px
 qK
 kw
 ah
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -59192,8 +57998,8 @@ pm
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 Yq
 DW
@@ -59222,13 +58028,13 @@ kt
 zW
 xe
 Tz
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 el
 ah
 ZL
@@ -59236,7 +58042,7 @@ TK
 ZL
 ah
 ll
-RY
+hp
 rg
 rg
 rg
@@ -59449,8 +58255,8 @@ pm
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 zJ
 Ms
@@ -59479,8 +58285,8 @@ Ov
 ft
 xe
 Tz
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -59493,7 +58299,7 @@ Df
 kE
 yN
 OO
-RY
+hp
 rg
 rg
 Ye
@@ -59706,8 +58512,8 @@ pm
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 iL
 iL
@@ -59736,8 +58542,8 @@ GR
 ft
 xe
 iL
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -59750,7 +58556,7 @@ WE
 WE
 WE
 gv
-RY
+hp
 rg
 rg
 rg
@@ -59963,12 +58769,12 @@ pm
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
 iL
 iL
 iL
@@ -59993,8 +58799,8 @@ NR
 ft
 xe
 iL
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -60220,19 +59026,19 @@ pm
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
+hp
 iL
 cZ
 cZ
@@ -60250,8 +59056,8 @@ Kf
 ft
 xe
 iL
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -60481,15 +59287,15 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 Sb
 Sb
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 iL
 cZ
 cZ
@@ -60507,8 +59313,8 @@ AD
 ft
 xe
 Tz
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -60745,8 +59551,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 cZ
 cZ
@@ -60764,8 +59570,8 @@ Zl
 ft
 dc
 Tz
-RY
-RY
+hp
+hp
 rg
 Ye
 rg
@@ -61002,8 +59808,8 @@ rg
 rg
 rg
 rg
-RY
-RY
+hp
+hp
 iL
 cZ
 cZ
@@ -61021,8 +59827,8 @@ wY
 dQ
 Eh
 Tz
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -61259,8 +60065,8 @@ rg
 rg
 rg
 Ye
-RY
-RY
+hp
+hp
 iL
 iL
 iL
@@ -61278,8 +60084,8 @@ Ex
 KK
 mo
 iL
-RY
-RY
+hp
+hp
 rg
 rg
 rg
@@ -61516,11 +60322,11 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 el
 iL
 pU
@@ -61528,7 +60334,7 @@ eG
 pU
 iL
 ll
-RY
+hp
 el
 iL
 pU
@@ -61536,7 +60342,7 @@ eG
 pU
 iL
 ll
-RY
+hp
 rg
 rg
 rg
@@ -61773,19 +60579,19 @@ rg
 rg
 rg
 rg
-RY
-RY
-RY
-RY
-RY
+hp
+hp
+hp
+hp
+hp
 ML
-aq
+KG
 fB
 XQ
 Xc
 nO
 OO
-RY
+hp
 ML
 aq
 fB
@@ -61793,7 +60599,7 @@ XQ
 Xc
 sF
 OO
-RY
+hp
 rg
 rg
 rg
@@ -62042,7 +60848,7 @@ WE
 WE
 Nw
 gv
-RY
+hp
 jl
 WE
 WE
@@ -62050,7 +60856,7 @@ WE
 WE
 WE
 gv
-RY
+hp
 rg
 rg
 rg
