@@ -82,7 +82,9 @@
 	if(istype(C, /obj/item/fishing_net) && params)
 		to_chat(user, span_notice("You start setting up the [C]."))
 		if(do_after(user, 2 SECONDS, target = user) && C && !locate(/obj/structure/destructible/fishing_net) in src)
-			new /obj/structure/destructible/fishing_net(get_turf(src))
+			var/obj/item/fishing_net/deploying_net = C
+
+			new deploying_net.deploy_type(get_turf(src))
 			playsound(get_turf(src), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 			qdel(C)
 			return
