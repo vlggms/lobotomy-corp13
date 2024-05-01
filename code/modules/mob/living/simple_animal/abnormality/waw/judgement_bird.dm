@@ -191,7 +191,8 @@
 		if(get_dist(src, J) < 6) // Unnecessary for this distance
 			continue
 		target_turfs += get_turf(J)
-
+	if(!LAZYLEN(target_turfs))
+		return ..()
 	var/turf/target_turf = pick(target_turfs)
 	if(istype(target_turf))
 		patrol_path = get_path_to(src, target_turf, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
