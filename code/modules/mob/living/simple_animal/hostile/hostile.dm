@@ -334,13 +334,14 @@
 
 /mob/living/simple_animal/hostile/proc/ListTargets(max_range = vision_range) //Step 1, find out what we can see
 	if(!search_objects)
-		. = hearers(max_range, targets_from) - src //Remove self, so we don't suicide
+		. = ohearers(max_range, targets_from) //Remove self, so we don't suicide
 
 		var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/vehicle/sealed/mecha))
 
-		for(var/HM in typecache_filter_list(range(max_range, targets_from), hostile_machines))
-			if(can_see(targets_from, HM, max_range))
-				. += HM
+		for(var/turf/open/T in RANGE_TURFS(max_range, targets_from))
+			for(var/obj/O in T)
+				if(is_type_in_typecache(O, hostile_machines) && can_see(targets_from, O, max_range))
+					. += O
 	else
 		. = oview(max_range, targets_from)
 
@@ -603,7 +604,7 @@
 			deltimer(attack_timer_id)
 			attack_timer_id = null
 		return
-	if(target && (target.Adjacent(targets_from) || melee_reach > 1 && (target in view(melee_reach, targets_from))))
+	if(target && (target.Adjacent(targets_from) || melee_reach > 1 && can_see(targets_from, target, melee_reach)))
 		//attack target
 		attack_is_on_cooldown = TRUE
 		if(attack_timer_id)
