@@ -147,7 +147,7 @@
 	new /obj/effect/timestop(get_turf(src), 3, 40, list(src))
 	can_act = TRUE
 
-//Time Stop Bullets
+//Bouncing bullets
 /mob/living/simple_animal/hostile/abnormality/space_lady/proc/BulletTime()
 	say("Hold it...")
 	can_act = FALSE
