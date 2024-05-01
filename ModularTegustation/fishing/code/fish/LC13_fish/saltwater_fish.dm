@@ -56,7 +56,7 @@
 
 /obj/item/food/fish/salt_water/lobster
 	name = "lobster"
-	desc = "Lobsters are crustations that live in salt water."
+	desc = "Lobsters are crustaceans that live in salt water."
 	icon_state = "lobster"
 	microwaved_type = /obj/item/food/meat/crab
 	fillet_type = /obj/item/food/meat/rawcrab
