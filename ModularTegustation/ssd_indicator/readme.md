@@ -9,6 +9,7 @@ Shows a green "ZZZ" on people that are SSD, records when they went SSD and shows
 ### TG Proc Changes:
 
  ./code/modules/mob/living/carbon/human/examine.dm > /mob/living/carbon/human/examine()
+ ./code/modules/mob/living/death.dm > /mob/living/proc/death(gibbed)
 
 ### Defines:
 
