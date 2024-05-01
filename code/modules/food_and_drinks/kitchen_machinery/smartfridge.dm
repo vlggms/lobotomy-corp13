@@ -581,3 +581,164 @@
 		return TRUE
 	else
 		return FALSE
+
+// -------------------------
+//  Rack - Unpowered Smartfridge
+// -------------------------
+/obj/machinery/smartfridge/bottlerack
+	name = "bottle rack"
+	desc = "The organised way of mass storing your brews."
+	icon = 'ModularTegustation/Teguicons/farming_structures.dmi'
+	icon_state = "rack"
+	layer = BELOW_OBJ_LAYER
+	density = TRUE
+	use_power = NO_POWER_USE
+	max_integrity = 35
+	max_n_of_items = 30
+	circuit = null
+	//remember, you have initial_contents, which gets loaded by citadel, and ALWAYS spawns those items
+	//the chance_initial_contents will take each item and give it a 50 percent chance of not spawning
+	var/list/chance_initial_contents
+
+/obj/machinery/smartfridge/bottlerack/Initialize()
+	. = ..()
+
+	if(islist(chance_initial_contents))
+		for(var/typekey in chance_initial_contents)
+			var/amount = chance_initial_contents[typekey]
+			if(isnull(amount))
+				amount = 1
+			for(var/i in 1 to amount)
+				if(prob(50))
+					load(new typekey(src))
+	//because after we load the objects, we need to update the icon
+	update_icon()
+
+/obj/machinery/smartfridge/bottlerack/on_deconstruction()
+	new /obj/item/stack/sheet/mineral/wood(drop_location(), 5)
+	..()
+
+//god, don't just put the procs, at least put a return there!
+/obj/machinery/smartfridge/bottlerack/RefreshParts()
+	return //because we don't want the parent refresh parts giving us a shit ton of space
+
+/obj/machinery/smartfridge/bottlerack/default_deconstruction_screwdriver()
+	return FALSE //because... we don't want it to default deconstruct?
+
+/obj/machinery/smartfridge/bottlerack/exchange_parts()
+	return FALSE //because it shouldn't exchange parts!
+
+/obj/machinery/smartfridge/bottlerack/spawn_frame()
+	return //because we won't spawn a frame because we shouldn't be deconstructable
+
+/obj/machinery/smartfridge/bottlerack/default_deconstruction_crowbar(obj/item/crowbar/C, ignore_panel = 1)
+	. = ..()
+
+/obj/machinery/smartfridge/bottlerack/accept_check(obj/item/O)
+	if(!istype(O, /obj/item/reagent_containers) || (O.item_flags & ABSTRACT) || !O.reagents || !O.reagents.reagent_list.len)
+		return FALSE
+	if(istype(O, /obj/item/reagent_containers/glass) || istype(O, /obj/item/reagent_containers/food/drinks) || istype(O, /obj/item/reagent_containers/food/condiment))
+		return TRUE
+// --------------------------------------
+// Update Icons for Racks with 30 storage
+// --------------------------------------
+/obj/machinery/smartfridge/bottlerack/update_icon_state()
+	. = ..()
+	SSvis_overlays.remove_vis_overlay(src, managed_vis_overlays)
+	if(machine_stat)
+		icon_state = "[initial(icon_state)]-off"
+		return
+
+	if(!visible_contents)
+		icon_state = "[initial(icon_state)]"
+		return
+
+	var/list/shown_contents = contents - component_parts
+	var/storage_percent = (shown_contents.len / max_n_of_items) * 100
+	switch(storage_percent)
+		if(0)
+			icon_state = "[initial(icon_state)]"
+		if(1 to 10)
+			icon_state = "[initial(icon_state)]-1"
+		if(11 to 20)
+			icon_state = "[initial(icon_state)]-2"
+		if(21 to 60)
+			icon_state = "[initial(icon_state)]-3"
+		if(61 to 80)
+			icon_state = "[initial(icon_state)]-4"
+		if(81 to INFINITY)
+			icon_state = "[initial(icon_state)]-5"
+
+// -------------------------
+//  Gardentool Rack FALLOUT CERTIFIED
+// -------------------------
+/obj/machinery/smartfridge/bottlerack/gardentool
+	name = "garden toolrack"
+	desc = "The farmers organisational tool storage."
+	icon = 'ModularTegustation/Teguicons/farming_structures.dmi'
+	icon_state = "gardentool"
+	resistance_flags = INDESTRUCTIBLE
+	max_n_of_items = 30
+
+/obj/machinery/smartfridge/bottlerack/gardentool/accept_check(obj/item/O)
+	if(istype(O, /obj/item/plant_analyzer) || istype(O, /obj/item/reagent_containers/spray) || istype(O, /obj/item/cultivator) || istype(O, /obj/item/hatchet) || istype(O, /obj/item/scythe) || istype(O, /obj/item/reagent_containers/glass/bottle/nutrient) || istype(O, /obj/item/reagent_containers/glass/bottle/killer) || istype(O, /obj/item/shovel) || istype(O, /obj/item/reagent_containers/glass/bucket) || istype(O, /obj/item/storage/bag/plants) || istype(O, /obj/item/storage/bag/plants/portaseeder))
+		return TRUE
+	return FALSE
+
+/obj/machinery/smartfridge/bottlerack/gardentool/preload
+	initial_contents = list(
+		/obj/item/shovel = 2,
+		/obj/item/cultivator/rake  = 2,
+		/obj/item/reagent_containers/glass/bucket/wooden = 3,
+		/obj/item/storage/bag/plants = 2)
+
+// -------------------------
+//  Seedbin FALLOUT CERTIFIED
+// -------------------------
+/obj/machinery/smartfridge/bottlerack/seedbin
+	name = "seed bin"
+	desc = "Organised dumping ground for the starters of life."
+	icon = 'ModularTegustation/Teguicons/farming_structures.dmi'
+	icon_state = "seedbin"
+	density = FALSE
+	max_n_of_items = 400
+
+/obj/machinery/smartfridge/bottlerack/seedbin/accept_check(obj/item/O)
+	if(istype(O, /obj/item/seeds))
+		return TRUE
+	return FALSE
+
+/obj/machinery/smartfridge/bottlerack/seedbin/preload
+	chance_initial_contents = list(
+		/obj/item/seeds/reishi = 1,
+		/obj/item/seeds/plump = 1,
+		/obj/item/seeds/chanter = 1,
+		/obj/item/seeds/harebell = 1,
+		/obj/item/seeds/pumpkin = 1,
+		/obj/item/seeds/rainbow_bunch = 1,
+		/obj/item/seeds/carrot = 1,
+		/obj/item/seeds/tomato = 1,
+		)
+	initial_contents = list(
+		/obj/item/seeds/wheat = 3,
+		/obj/item/seeds/watermelon = 2,
+		/obj/item/seeds/apple = 2,
+		/obj/item/seeds/aloe = 2,
+		/obj/item/seeds/potato = 2,
+		)
+
+//-------------------------
+// grownbin FALLOUT CERTIFIED
+//-------------------------
+/obj/machinery/smartfridge/bottlerack/grownbin
+	name = "Harvest bin"
+	desc = "A large box, to contain the harvest that the Earth has blessed upon you."
+	icon = 'ModularTegustation/Teguicons/farming_structures.dmi'
+	icon_state = "grownbin"
+	density = FALSE
+	max_n_of_items = 1000
+
+/obj/machinery/smartfridge/bottlerack/grownbin/accept_check(obj/item/O)
+	if(istype(O, /obj/item/grown) || istype(O, /obj/item/food/grown))
+		return TRUE
+	return FALSE

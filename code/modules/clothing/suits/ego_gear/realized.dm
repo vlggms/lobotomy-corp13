@@ -188,6 +188,12 @@ No Ability	250
 	desc = "I would move Heaven and Earth to be together forever with you."
 	icon_state = "forever"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//No ability
+	hat = /obj/item/clothing/head/ego_hat/forever_hat
+
+/obj/item/clothing/head/ego_hat/forever_hat
+	name = "together forever"
+	desc = "I've gotten used to bowing and scraping to you, so I cut off my own limbs."
+	icon_state = "forever"
 
 /obj/item/clothing/suit/armor/ego_gear/realization/wisdom
 	name = "endless wisdom"
@@ -483,3 +489,9 @@ No Ability	250
 	icon_state = "desperation"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
 	realized_ability = /obj/effect/proc_holder/ability/overheat
+
+/obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon
+	name = "gasharpoon"
+	desc = "We must find the Pallid Whale! Look alive, men! Spring! Roar!"
+	icon_state = "gasharpoon"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 20, PALE_DAMAGE = 80)//230, required for the corresponding weapon abilities

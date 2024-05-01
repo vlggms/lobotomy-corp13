@@ -376,15 +376,20 @@
 	var/area/newarea = get_area(newloc)
 	loc = newloc
 	. = TRUE
-	oldloc.Exited(src, newloc)
-	if(oldarea != newarea)
-		oldarea.Exited(src, newloc)
+	if(!oldloc)
+		stack_trace("[src] moved out of nullspace/null loc")
+	else
+		oldloc.Exited(src, newloc)
 
-	for(var/i in oldloc)
-		if(i == src) // Multi tile objects
-			continue
-		var/atom/movable/thing = i
-		thing.Uncrossed(src)
+		for(var/i in oldloc)
+			if(i == src) // Multi tile objects
+				continue
+			var/atom/movable/thing = i
+			thing.Uncrossed(src)
+
+	if(oldarea)
+		if(oldarea != newarea)
+			oldarea.Exited(src, newloc)
 
 	newloc.Entered(src, oldloc)
 	if(oldarea != newarea)
@@ -560,7 +565,7 @@
 	if(destination)
 		. = doMove(destination)
 	else
-		CRASH("No valid destination passed into forceMove")
+		CRASH("No valid destination passed into forceMove on [src]")
 
 /atom/movable/proc/moveToNullspace()
 	return doMove(null)

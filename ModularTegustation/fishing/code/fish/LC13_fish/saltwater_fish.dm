@@ -58,5 +58,23 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/protein = 1,
 		/datum/reagent/consumable/nutriment/organ_tissue = 1,
+		/datum/reagent/abnormality/bittersyrup = 4,
+		/datum/reagent/consumable/salt = 4,
+	)
+
+/obj/item/food/fish/salt_water/tuna_pallid//TODO: make it unsafe to eat somehow. Apply pallid noise to the consumer
+	name = "pallidified tuna"
+	desc = "A tuna that was swallowed and corrupted by a great whale. Yuck."
+	icon_state = "pallid_tuna"
+	random_case_rarity = FISH_RARITY_RARE
+	sprite_width = 8
+	sprite_height = 8
+	average_size = 149.86
+	food_reagents = list(
+		/datum/reagent/consumable/nutriment/protein = 1,
+		/datum/reagent/consumable/nutriment/organ_tissue = 1,
 		/datum/reagent/consumable/salt = 8,
+		/datum/reagent/toxin = 3,
+		/datum/reagent/toxin/mindbreaker = 5,
+		/datum/reagent/toxin/pallidwaste = 15,//this is defined in toxin_reagents.dm
 	)

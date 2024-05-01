@@ -2,7 +2,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 	/datum/job/associate,
 	/datum/job/veteran,
 	/datum/job/director,
-	))
+))
 
 
 //Director
@@ -22,26 +22,32 @@ GLOBAL_LIST_INIT(association_jobs, list(
 	paycheck = 700
 	maptype = list("wonderlabs", "city")
 
-
 	//They actually need this for their weapons
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 120,
-								PRUDENCE_ATTRIBUTE = 120,
-								TEMPERANCE_ATTRIBUTE = 120,
-								JUSTICE_ATTRIBUTE = 120
-								)
-	var/list/antagroles = list(/datum/job/messenger, /datum/job/cutthroat, /datum/job/sottocapo, /datum/job/grandinquis, /datum/job/kurocaptain)
+		FORTITUDE_ATTRIBUTE = 120,
+		PRUDENCE_ATTRIBUTE = 120,
+		TEMPERANCE_ATTRIBUTE = 120,
+		JUSTICE_ATTRIBUTE = 120,
+	)
 
-/datum/job/director/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
-	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
-	to_chat(M, "<span class='userdanger'>This is a roleplay role. You are not affiliated with L Corporation. \
+	var/list/antagroles = list(
+		/datum/job/messenger,
+		/datum/job/cutthroat,
+		/datum/job/sottocapo,
+		/datum/job/grandinquis,
+		/datum/job/kurocaptain,
+	)
+
+/datum/job/director/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
+	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)	//My guy you aren't even from this corporation
+	to_chat(M, span_userdanger("This is a roleplay role. You are not affiliated with L Corporation. \
 	Do not enter the lower levels of the facility without the manager's permission. Please use the beacon in your office to choose your association. \
 	Do not fight unless in self defense. You are not a combat role; you take an administrative role. \
-	Do not assist L Corporation without significant payment.</span>")
-	to_chat(M, "<span class='danger'>Avoid killing other players without a reason. </span>")
+	Do not assist L Corporation without significant payment."))
+	to_chat(M, span_danger("Avoid killing other players without a reason."))
 	var/antagspawn = pick(antagroles)
-	H.set_attribute_limit(120)
+	outfit_owner.set_attribute_limit(120)
 
 	//Don't spawn these goobers without a director.
 	for(var/datum/job/processing in SSjob.occupations)
@@ -54,8 +60,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 		if(istype(processing, antagspawn))
 			processing.total_positions = 1
 
-
-	. = ..()
+	return ..()
 
 /datum/outfit/job/director
 	name = "Associate Director"
@@ -65,7 +70,7 @@ GLOBAL_LIST_INIT(association_jobs, list(
 	ears = /obj/item/radio/headset/heads/headset_association
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	glasses = /obj/item/clothing/glasses/sunglasses
-	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
 	id = /obj/item/card/id/association
 
+	backpack_contents = list()

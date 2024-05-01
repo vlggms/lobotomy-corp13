@@ -146,10 +146,40 @@
 	return reagents.maximum_volume
 
 /obj/item/reagent_containers/glass/beaker/jar
-	name = "honey jar"
-	desc = "A jar for honey. It can hold up to 50 units of sweet delight."
+	name = "jar"
+	desc = "A jar for goops and powders. It can hold up to 40 units."
 	icon = 'icons/obj/chemical.dmi'
-	icon_state = "vapour"
+	icon_state = "jar"
+	volume = 50
+	spillable = FALSE
+	fill_icon_thresholds = list(0, 10, 25, 40)
+
+/obj/item/reagent_containers/glass/beaker/jar/pudding
+	name = "jar of pudding"
+	desc = "A jar of industrial strength pudding. \
+		There is several warnings about the \
+		long term effects of pudding on the top."
+
+/obj/item/reagent_containers/glass/beaker/jar/pudding/Initialize()
+	. = ..()
+	var/datum/reagent/pudding = pick(
+		/datum/reagent/consumable/chocolatepudding,
+		/datum/reagent/consumable/vanillapudding)
+	reagents.add_reagent(pudding, 25)
+
+	//LC13 Chems
+/obj/item/reagent_containers/glass/beaker/jar/syrup_random
+	name = "jar of syrup"
+	desc = "A jar for a strange syrup."
+
+/obj/item/reagent_containers/glass/beaker/jar/syrup_random/Initialize()
+	. = ..()
+	var/datum/reagent/syrups = pick(
+		/datum/reagent/abnormality/heartysyrup,
+		/datum/reagent/abnormality/bittersyrup,
+		/datum/reagent/abnormality/tastesyrup,
+		/datum/reagent/abnormality/focussyrup)
+	reagents.add_reagent(syrups, 25)
 
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
