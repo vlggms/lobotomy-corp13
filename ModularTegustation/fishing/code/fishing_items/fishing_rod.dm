@@ -345,7 +345,7 @@
 	speed_modifier = 1.5 //Just like minecraft.
 
 /obj/item/fishing_rod/titanium
-	name = "golden fishing rod"
+	name = "titanium fishing rod"
 	desc = "A tool used to dredge up aquatic entities. An excellently built titanium rod. Catches better fish."
 	icon_state = "rod_titanium"
 	rod_level = 1.4
