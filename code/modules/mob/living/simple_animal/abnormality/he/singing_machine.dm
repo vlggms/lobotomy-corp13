@@ -197,7 +197,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 	to_chat(target, span_nicegreen("There's something about that sound..."))
 	musicalAddicts |= target
 	SEND_SOUND(target, 'sound/abnormalities/singingmachine/addiction.ogg')
-	addtimer(CALLBACK(src, .proc/RemoveAddict, target), 5 MINUTES)
+	addtimer(CALLBACK(src, PROC_REF(RemoveAddict), target), 5 MINUTES)
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/RemoveAddict(mob/living/carbon/human/addict)
 	if(addict)
@@ -212,7 +212,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 	musicNoise = new(list(src), TRUE)
 	DriveInsane()
 	playStatus = PLAYING
-	addtimer(CALLBACK(src, .proc/StopPlaying), playLength) // This is the callback from earlier.
+	addtimer(CALLBACK(src, PROC_REF(StopPlaying)), playLength) // This is the callback from earlier.
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/StopPlaying()
 	playStatus = SILENT // This exists solely because I needed to call it via a callback.
@@ -237,7 +237,7 @@ Slightly reworked by Mel on Christmas 2023, Merry Christmas!
 	icon_state = "singingmachine_bloody"
 	icon_living = icon_state
 	machine_hinge.MoveHinge(0, 3 SECONDS, 0, 0)
-	addtimer(CALLBACK(src, .proc/StartPlaying), 3 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(StartPlaying)), 3 SECONDS)
 	datum_reference.qliphoth_change(2)
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/proc/ApplySpecialInsanity(mob/living/carbon/human/addict)
