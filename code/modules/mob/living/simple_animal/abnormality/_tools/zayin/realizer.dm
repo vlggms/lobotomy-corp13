@@ -42,7 +42,6 @@
 		/obj/item/clothing/suit/armor/ego_gear/waw/oppression 		= /obj/item/clothing/suit/armor/ego_gear/realization/cruelty,
 		/obj/item/clothing/suit/armor/ego_gear/waw/thirteen 		= /obj/item/clothing/suit/armor/ego_gear/realization/bell_tolls,
 		/obj/item/clothing/suit/armor/ego_gear/waw/executive 		= /obj/item/clothing/suit/armor/ego_gear/realization/capitalism,
-		/obj/item/clothing/suit/armor/ego_gear/waw/thirteen			= /obj/item/clothing/suit/armor/ego_gear/realization/bell_tolls,
 		/obj/item/clothing/suit/armor/ego_gear/waw/assonance		= /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang,
 		/obj/item/clothing/suit/armor/ego_gear/waw/discord			= /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin,
 		/obj/item/clothing/suit/armor/ego_gear/waw/heart			= /obj/item/clothing/suit/armor/ego_gear/realization/repentance,
@@ -53,7 +52,7 @@
 		/obj/item/clothing/suit/armor/ego_gear/aleph/smile 			= /obj/item/clothing/suit/armor/ego_gear/realization/laughter,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/mimicry 		= /obj/item/clothing/suit/armor/ego_gear/realization/shell,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/space 			= /obj/item/clothing/suit/armor/ego_gear/realization/fallencolors,
-		/obj/item/clothing/suit/armor/ego_gear/aleph/combust 		= /obj/item/clothing/suit/armor/ego_gear/realization/desperation,
+		/obj/item/clothing/suit/armor/ego_gear/aleph/waxen 		= /obj/item/clothing/suit/armor/ego_gear/realization/desperation,
 		// Personal
 		/obj/item/managerbullet = /obj/item/clothing/suit/armor/ego_gear/realization/farmwatch,
 		/obj/item/storage/box/fireworks/dangerous = /obj/item/clothing/suit/armor/ego_gear/realization/spicebush,//from smuggler's satchels
@@ -69,7 +68,7 @@
 	var/f2 //Filter 2, Rays filter
 
 /obj/structure/toolabnormality/realization/Initialize()
-	..()
+	. = ..()
 	bough = new/obj/effect/golden_bough(src)
 
 	//Filter 1 gets applied to the bough
@@ -85,7 +84,7 @@
 
 /obj/structure/toolabnormality/realization/Destroy()
 	qdel(bough)
-	..()
+	return ..()
 
 /obj/structure/toolabnormality/realization/proc/FilterLoop(loop_stage) //Takes a numeric argument for advancing the loop's stage in a cycle (1 > 2 > 3 > 1 > ...)
 	if(filters[filters.len]) // Stops the loop if we have no filters to animate

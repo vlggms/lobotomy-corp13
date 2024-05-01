@@ -343,7 +343,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 	return
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/Initialize()
-	..()
+	. = ..()
 	if(IsCombatMap())
 		faction |= "hostile"
 	RegisterSignal(SSdcs, COMSIG_GLOB_ABNORMALITY_BREACH, PROC_REF(OnAbnoBreach))
