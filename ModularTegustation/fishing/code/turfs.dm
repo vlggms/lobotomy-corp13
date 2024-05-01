@@ -42,6 +42,8 @@
 		/obj/item/jammer/self_activated,
 		/obj/structure/lattice,
 		/obj/projectile,
+		/obj/item/food/seaweed,
+		/obj/structure/flora/ash/garden/seaweed
 	))
 
 	var/safe = FALSE
