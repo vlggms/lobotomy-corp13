@@ -28,7 +28,7 @@
 
 /obj/item/food/fish/fresh_water/guppy
 	name = "guppy"
-	desc = "Guppy is also known as rainbow fish because of the brightly colored body and fins."
+	desc = "Guppy is also known as rainbow fish because of their brightly colored body and fins."
 	icon_state = "guppy"
 	fillet_type = /obj/item/food/freshfish/white
 	dedicated_in_aquarium_icon_state = "fish_greyscale"
