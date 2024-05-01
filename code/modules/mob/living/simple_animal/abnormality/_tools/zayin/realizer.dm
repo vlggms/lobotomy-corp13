@@ -56,6 +56,7 @@
 		// Personal
 		/obj/item/managerbullet = /obj/item/clothing/suit/armor/ego_gear/realization/farmwatch,
 		/obj/item/storage/box/fireworks/dangerous = /obj/item/clothing/suit/armor/ego_gear/realization/spicebush,//from smuggler's satchels
+		/obj/item/food/fish/salt_water/tuna_pallid = /obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon,
 		// Other
 		/obj/item/ego_weapon/paradise = /obj/item/toy/plush/ayin, // He-he
 		/obj/item/toy/plush/hokma = /obj/item/toy/plush/benjamin,
