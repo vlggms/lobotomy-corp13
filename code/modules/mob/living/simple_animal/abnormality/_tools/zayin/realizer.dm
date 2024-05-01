@@ -68,7 +68,7 @@
 	var/f2 //Filter 2, Rays filter
 
 /obj/structure/toolabnormality/realization/Initialize()
-	..()
+	. = ..()
 	bough = new/obj/effect/golden_bough(src)
 
 	//Filter 1 gets applied to the bough
@@ -84,7 +84,7 @@
 
 /obj/structure/toolabnormality/realization/Destroy()
 	qdel(bough)
-	..()
+	return ..()
 
 /obj/structure/toolabnormality/realization/proc/FilterLoop(loop_stage) //Takes a numeric argument for advancing the loop's stage in a cycle (1 > 2 > 3 > 1 > ...)
 	if(filters[filters.len]) // Stops the loop if we have no filters to animate
