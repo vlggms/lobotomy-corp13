@@ -2,7 +2,7 @@
 
 /obj/item/food/cooked_fish
 	name = "cooked fish"
-	desc = "A unbutchered fish thats been cooked."
+	desc = "A whole fish thats been cooked."
 	icon_state = "punishedfish"
 	food_reagents = list (/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cooking_oil = 2)
 	tastes = list("fish" = 1, "crunchy" = 1)
