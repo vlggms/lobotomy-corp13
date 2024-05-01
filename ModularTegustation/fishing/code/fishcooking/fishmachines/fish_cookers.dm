@@ -30,7 +30,7 @@
 //Lobster and salmon goes in the oven
 /obj/structure/fishcooker/fishoven
 	name = "fish oven"
-	desc = "A machine to bake fish. Can only be used on fish and lobsters."
+	desc = "A machine to bake fish. Is best used to prepare lobsters and salmon."
 	icon_state = "oven"
 	on_icon = "oven_on"
 	cook_time = 30 SECONDS
