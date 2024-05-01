@@ -164,6 +164,12 @@
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_sniper/proc/FireBullet(atom/target, turf/start_turf, turf/end_turf)
 	playsound(start_turf, 'sound/weapons/gun/sniper/shot.ogg', 35, 0, 20)
+	if(istype(target, /mob/living/carbon/human))
+		say("human detected")
+		var/mob/living/carbon/human/TH = target
+		if(TH.stat >= SOFT_CRIT)
+			say("human  killing")
+			end_turf = get_turf(TH)
 	var/obj/projectile/greenbot_sniper_bullet/B = new(start_turf)
 	B.starting = start_turf
 	B.firer = src
@@ -192,7 +198,7 @@
 	desc = "Uh oh."
 	damage_type = RED_DAMAGE
 	damage = 60
-	hitscan = TRUE
+	speed = 2
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_sniper/factory
 	butcher_results = list()
