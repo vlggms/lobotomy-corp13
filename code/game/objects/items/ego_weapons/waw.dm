@@ -1031,7 +1031,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-
 	attacks++
 	attacks %= 3
 	switch(attacks)
@@ -1054,6 +1053,34 @@
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
+	var/combo = FALSE
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/ego_weapon/blind_rage/Y = myman.get_inactive_held_item()
+	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if((istype(Y)) & (istype(Z))) //dual wielding and wearing Wounded Courage? if so...
+		combo = TRUE //hits twice
+	else
+		combo = FALSE
+	if(combo)
+		if(M in view(reach,user))
+			Y.attacks++
+			Y.attacks %=3
+			switch(attacks)
+				if(0)
+					hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+				if(1)
+					hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+				if(2)
+					hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
+			M.attacked_by(src, user)
+			M.send_item_attack_message(src, user,M)
+			user.do_attack_animation(M)
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			for(var/turf/open/T in range(aoe_range, M))
+				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+				smonk.color = COLOR_GREEN
+				user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+				user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 
 /obj/item/ego_weapon/blind_rage/attackby(obj/item/I, mob/living/user, params)
 	..()
