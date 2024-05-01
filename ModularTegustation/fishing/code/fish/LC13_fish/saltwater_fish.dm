@@ -69,7 +69,7 @@
 
 /obj/item/food/fish/salt_water/piscine_mermaid
 	name = "lovestruck fish"
-	desc = "A carp that seems to have survived exposure to Piscene Mermaids water. It seems to have consumed its own pectoral fins."
+	desc = "A carp that seems to have survived exposure to Piscene Mermaid's water. It seems to have consumed its own pectoral fins."
 	habitat = "Saltwater"
 	icon_state = "mermaid"
 	fillet_type = /obj/item/food/freshfish/white
