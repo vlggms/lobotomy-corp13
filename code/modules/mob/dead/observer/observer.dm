@@ -737,7 +737,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_userdanger("You dont exist, so you cant possess!"))
 		return ..()
 
-	if(!isabnormalitymob(over)) // we want them to ONLY be able to possess abnormalities
+	if(!isabnormalitymob(over) && !SSmaptype.maptype == "limbus_labs") // we want them to ONLY be able to possess abnormalities
 		to_chat(usr, span_userdanger("You can only possess abnormalities!"))
 		return ..()
 
