@@ -84,6 +84,8 @@
 	var/hp_teleport_counter = 3
 	var/explode_damage = 60 // Boosted from 35 due to Indication she's gonna be there. It's a legit skill issue now.
 	var/breach_max_death = 0
+	//Nihil Related
+	var/nihil_present = FALSE
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
@@ -126,6 +128,17 @@
 	icon_inverted = I
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/death(gibbed)
+	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
+		QS.fade_out()
+	spawned_effects.Cut()
+	QDEL_NULL(current_beam)
+	if(nihil_present)
+		adjustBruteLoss(-999999)
+		visible_message(span_boldwarning("Oh no, [src] has been defeated!"))
+		INVOKE_ASYNC(src, PROC_REF(petrify), 500000)
+		beamloop.stop()
+		return FALSE
+	QDEL_NULL(beamloop)
 	icon = initial(icon)
 	base_pixel_x = initial(base_pixel_x)
 	pixel_x = initial(pixel_x)
@@ -135,12 +148,7 @@
 	var/obj/effect/qoh_sygil/S = new(get_turf(src))
 	S.icon_state = "qoh2"
 	addtimer(CALLBACK(S, TYPE_PROC_REF(/obj/effect/qoh_sygil, fade_out)), 5 SECONDS)
-	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
-		QS.fade_out()
-	spawned_effects.Cut()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
-	QDEL_NULL(beamloop)
-	QDEL_NULL(current_beam)
 	if(friendly)
 		src.say("I swore I would protect everyone to the end…")
 	..()
@@ -538,7 +546,7 @@
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 
 /mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/GoHysteric(retries = 0)
-	if(!friendly || !breach_max_death)
+	if(!friendly || !breach_max_death || nihil_present)
 		return
 	if(!can_act)
 		if(retries < 50)
@@ -603,7 +611,90 @@
 			if((saving_humans.stat != DEAD) && saving_humans.z == z)
 				breach_max_death++
 		breach_max_death = max(breach_max_death/2, 1) //make it 1 if it's somehow zero
-		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "In the name of Love and Justice~ Here comes Magical Girl!"))
+		if(!nihil_present)
+			addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, say), "In the name of Love and Justice~ Here comes Magical Girl!"))
 		return ..()
 	HostileTransform()
+	return ..()
+
+//Nihil Event Code - Fights like the friendly version
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/EventStart()
+	set waitfor = FALSE
+	for(var/obj/effect/qoh_sygil/QS in spawned_effects)
+		QS.fade_out()
+	spawned_effects.Cut()
+	QDEL_NULL(current_beam)
+	beamloop.stop()
+	NihilModeEnable()
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("This... Oh, no! This is one of the major arcana!")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("Don't worry, I will protect everyone!")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("Here comes magical girl!")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("In the name of Love and Justice~!")
+	ChangeResistances(list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1.5))
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/NihilModeEnable()
+	NihilIconUpdate()
+	friendly = TRUE
+	nihil_present = TRUE
+	fear_level = ZAYIN_LEVEL
+	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/NihilIconUpdate()
+	name = "Magical Girl of Love"
+	desc = "A real magical girl!"
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "hatred"
+	pixel_x = 0
+	base_pixel_x = 0
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/Found(atom/A)
+	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nihil)) // 1st Priority
+		return TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/petrify(statue_timer)
+	if(!isturf(loc))
+		MoveStatue()
+	AIStatus = AI_OFF
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon_state = "hatred"
+	pixel_x = -16
+	base_pixel_x = -16
+	var/obj/structure/statue/petrified/magicalgirl/S = new(loc, src, statue_timer)
+	S.name = "Petrified Hate"
+	ADD_TRAIT(src, TRAIT_NOBLEED, MAGIC_TRAIT)
+	SLEEP_CHECK_DEATH(1)
+	S.icon = src.icon
+	S.icon_state = src.icon_state
+	S.pixel_x = -8
+	S.base_pixel_x = -8
+	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
+	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	stat = DEAD
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/proc/MoveStatue()
+	var/list/teleport_potential = list()
+	if(!LAZYLEN(GLOB.department_centers))
+		for(var/mob/living/L in GLOB.mob_living_list)
+			if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE)
+				continue
+			teleport_potential += get_turf(L)
+	if(!LAZYLEN(teleport_potential))
+		var/turf/P = pick(GLOB.department_centers)
+		teleport_potential += P
+	var/turf/teleport_target = pick(teleport_potential)
+	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
+	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
+	forceMove(teleport_target)
+
+/mob/living/simple_animal/hostile/abnormality/hatred_queen/gib()
+	if(nihil_present)
+		death()
+		return FALSE
 	return ..()

@@ -136,12 +136,13 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/nihil
 	abno_code = "O-01-150"
 	abno_info = list(
-		"When the work result was Neutral, the Qliphoth Counter decreased at a normal probability.",
+		"When the work result was Good, the Qliphoth counter increased.",
 		"When the work result was Bad, the Qliphoth Counter decreased by 2.",
-		"When work was performed, the employee took different types of damage depending on the type of work.",
+		"When an abnormality resembling a magical girl escaped containment, the Qliphoth Counter decreased by 2.",
+		"When repression work was performed, the employee took BLACK damage during work.",
 		"When the Qlipthoth counter reached 0, the faciltiy was cloaked in choking darkness.",
-		"The darkness seemed to rid employees of their attributes, and caused a massive qliphoth meltdown to occur.")
-	abno_work_damage_type = "All"
+		"The darkness seemed to rid employees of their attributes, and caused a massive qliphoth meltdown to occur.",
+		"When the Qlipthoth counter reached 0 while 2 or more abnormalities resembling magical girls were contained in the facility, O-01-150 escaped containment instead.")
 
 // God of the Seasons
 /obj/item/paper/fluff/info/aleph/seasons
