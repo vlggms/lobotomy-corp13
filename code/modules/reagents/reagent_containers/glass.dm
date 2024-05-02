@@ -150,9 +150,10 @@
 	desc = "A jar for goops and powders. It can hold up to 40 units."
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "jar"
+	fill_icon_state = "jar"
 	volume = 50
 	spillable = FALSE
-	fill_icon_thresholds = list(0, 10, 25, 40)
+	fill_icon_thresholds = list(0, 10, 30, 50)
 
 /obj/item/reagent_containers/glass/beaker/jar/pudding
 	name = "jar of pudding"
