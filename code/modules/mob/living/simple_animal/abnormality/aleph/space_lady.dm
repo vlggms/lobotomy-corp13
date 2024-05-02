@@ -119,7 +119,7 @@
 /mob/living/simple_animal/hostile/abnormality/space_lady/proc/NegativeField()
 	say("Ashes to ashes...")
 	can_act = FALSE
-	SLEEP_CHECK_DEATH(10)
+	SLEEP_CHECK_DEATH(25)
 	var/turf/orgin = get_turf(src)
 	var/list/all_turfs = RANGE_TURFS(negative_range, orgin)
 	for(var/i = 0 to negative_range)
