@@ -1,5 +1,4 @@
 #define STATUS_EFFECT_URGE /datum/status_effect/stacking/urge
-#define STATUS_EFFECT_DESIROUS /datum/status_effect/desirous
 GLOBAL_LIST_EMPTY(ribbon_list)
 /mob/living/simple_animal/hostile/abnormality/pink_shoes
 	name = "Pink Shoes"
@@ -8,8 +7,9 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	maxHealth = 1500
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "pinkshoes"
-	icon_living = "pinkshoes"
+	icon_living = "pinkshoes_breach"
 	icon_dead = "pinkegg"
+	portrait = "pink_shoes"
 	light_color = "#EA19AA"//bluish pink used for the E.G.O ribbons
 	light_range = 5
 	light_power = 10
@@ -18,7 +18,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	can_breach = TRUE
 	can_buckle = TRUE
 	threat_level = HE_LEVEL
-	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	start_qliphoth = 2
 	work_chances = list(
 						ABNORMALITY_WORK_INSTINCT = 0,
@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	work_damage_amount = 9
 	work_damage_type = WHITE_DAMAGE
 	del_on_death = FALSE
-	deathmessage = "falls, leaving tattered ribbons."
+	death_message = "falls, leaving tattered ribbons."
 	attack_sound = 'sound/abnormalities/pinkshoes/Pinkshoes_Attack.ogg'
 	melee_damage_lower = 10
 	melee_damage_upper = 15
@@ -40,15 +40,10 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		)
 	gift_type =  /datum/ego_gifts/roseate_desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
-	var/list/compatible_mobs = list(
-				/mob/living/simple_animal/hostile/abnormality/clown,
-				/mob/living/simple_animal/hostile/shrimp,
-				/mob/living/simple_animal/hostile/shrimp_soldier,
-				/mob/living/simple_animal/hostile/grown_strong,
-				/mob/living/simple_animal/hostile/abnormality/nothing_there
-				)
+	var/mob/living/simple_animal/hostile/grown_strong/special_possessee
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
+	var/list/dense_ribbon_list
 
 //*** Simple Mob Procs ***//
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/Life()
@@ -86,8 +81,6 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	if(locate(/obj/structure/pinkshoes_cushion) in get_turf(src))
 		return
 	new /obj/structure/pinkshoes_cushion(get_turf(src))
-	for(var/turf/T in view(1, src))//fills the containment cell with decorative ribbons
-		new /obj/structure/pinkshoes_cushion/ribbons(get_turf(T))
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/Move()
@@ -95,17 +88,16 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		return FALSE
 	if(!isturf(loc) || isspaceturf(loc))
 		return
-	if(locate(/obj/structure/spreading/pink_ribbon) in get_turf(src))
-		return
-	new /obj/structure/spreading/pink_ribbon(loc)
+	if(!locate(/obj/structure/spreading/pink_ribbon) in get_turf(src))
+		new /obj/structure/spreading/pink_ribbon(loc)
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/CanAttack(atom/the_target)//should only attack when it has fists
 	return FALSE
 
 //*** Work Mechanics ***//
-/mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/Apply_Desire(mob/living/carbon/human/user)
-	user.apply_status_effect(STATUS_EFFECT_DESIROUS)//instant panic
+/mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/Apply_Urge(mob/living/carbon/human/user)
+	user.apply_status_effect(STATUS_EFFECT_URGE)//instant panic
 	playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Attack.ogg', 100, 1)
 	return
 
@@ -118,8 +110,10 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		datum_reference.qliphoth_change(1)
 		return
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40 || (user.sanity_lost))
-		say("Applying desirous to [user]!")//REMOVE THIS
-		Apply_Desire(user)
+		say("Applying urge to [user]!")//REMOVE THIS
+		Apply_Urge(user)
+		user.adjustSanityLoss(500)
+		user.visible_message(span_userdanger("[user] blankly stumbles towards the Pink Shoes. Now [p_theyre()] reaching out their hand to take the shoes."), span_userdanger("What lovely shoes..."))
 
 //***Breach Mechanics***//
 	//normal BreachEffect stuff
@@ -128,33 +122,32 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		return
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
+	..()
 	if(!possessee)//normal breach
-		var/turf/T =pick(GLOB.xeno_spawn)
+		icon = 'ModularTegustation/Teguicons/32x96.dmi'
+		icon_state = "pinkshoes_breach"
+		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
-		for(var/turf/T2 in view(1, src))
+		for(var/turf/open/T2 in oview(1, T))
 			new /obj/structure/spreading/pink_ribbon/dense(get_turf(T2))
-		for (var/turf/T3 in view(2, src))
-			if(!isturf(loc) || isspaceturf(T3))
+		for(var/turf/open/T3 in view(2, T))
+			if(!isturf(T3) || isspaceturf(T3))
 				continue
-			if(locate(/obj/structure/spreading/pink_ribbon/dense) in get_turf(T3))
+			if(locate(/obj/structure/spreading/pink_ribbon/dense)/*|| locate(/turf/closed/indestructible/reinforced)*/ in T3)
 				continue
-			if(locate(/turf/closed/indestructible/reinforced) in get_turf(T3))//stop spawning in walls
-				continue
-			new /obj/structure/spreading/pink_ribbon(T3)
+			new /obj/structure/spreading/pink_ribbon(get_turf(T3))
 	light_range = 2
 	update_light()
-//	status_flags &= ~GODMODE
-//	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_ABNORMALITY_BREACH, src)
-//	FearEffect()
-	..()
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/attack_animal(mob/living/simple_animal/M)//current possession method, replace this
 	. = ..()
+	if(istype(M, src))
+		return
 	say("[M] has attacked me!")//REMOVE THIS
 	if(!(status_flags & GODMODE))//if the abno is breached
-		if(faction_check(M))//allied units only
-			AssimilateSimple(M)
-			say("[M] has procced AssimilateSimple through attack_animal!")//REMOVE THIS
+		if(faction_check_mob(M))//allied units only
+			AssimilateAnimal(M)
+			say("[M] has procced AssimilateAnimal through attack_animal!")//REMOVE THIS
 			return..()
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/Assimilate(mob/living/carbon/user)
@@ -162,9 +155,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		return
 	possessee = user
 	var/mob/living/carbon/human/H = user
-	say("Assimilate starting with arguments [user]!")//REMOVE THIS
-	say("Forcemoving [user] into [src]!")//REMOVE THIS
-	if(ishuman(H) && (H.sanity_lost))//also assimilates fortitude panics
+	QDEL_NULL(user.ai_controller)//stops it from running off
+	if(ishuman(H) && (H.sanity_lost))
 		user.forceMove(src)
 		playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Breach.ogg', 50, 1)
 		say("Breacheffect starting with arguments [user] ishuman passed!")//REMOVE THIS
@@ -177,42 +169,23 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		add_overlay(breach_icon)
 		cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "panicked", -ABOVE_MOB_LAYER))
 		BreachEffect(user)
-		toggle_ai(AI_ON) //snipped from BreachEffect. Shouldn't apply to AssimilateSimple
+		toggle_ai(AI_ON) //snipped from BreachEffect. Shouldn't apply to AssimilateAnimal
 		return TRUE
 
-/mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/AssimilateSimple(mob/living/simple_animal/hostile/user)
+/mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/AssimilateAnimal(mob/living/simple_animal/hostile/user)
 	var/special_appearance = FALSE
-	for(var/M in compatible_mobs)
-		say("For [M] in compatible_mobs!")
-		if(!(istype(user, M)))//is_type_in_typecache
-			say("[user] is not equal to [M]!")
-			continue
-		if(user.icon_state == "wellcheers" || user.icon_state == "wellcheers_bad" || user.icon_state == "wellcheers_soldier")
-			user.icon_state = "pinkshoes_shrimp"
-			user.update_icon()
-			special_appearance = TRUE
-		if(user.icon_state == "grown_strong")
-			user.icon_state = "pinkshoes_strong"
-			user.update_icon()
-			special_appearance = TRUE
-		if(user.name == "Clown Smiling at Me")//doesn't work
-			breach_icon = mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_clown", -ABOVE_BODY_FRONT_LAYER)
-			user.add_overlay(breach_icon)
-			special_appearance = TRUE
-		if(user.icon == 'ModularTegustation/Teguicons/64x96.dmi' && user.icon_state == "nothing")
-			user.icon_state = "pinkshoes_nothing"
-			user.icon_living = "pinkshoes_nothing"
-			user.update_icon()
-			user.name += "~"//Fuck you
-			special_appearance = TRUE
-	if(!special_appearance)//TODO: fix this shit
-		var/atom/movable/ribbon_mask = new /obj/effect/ribbon_mask
-		var/icon/mob_mask = icon(user.icon, user.icon_state)
-		//if(mob_mask.Height() > world.icon_size || mob_mask.Width() > world.icon_size)//This checks if its bigger than 32x32
-		//user.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_overlay", -MUTATIONS_LAYER))
-		ribbon_mask.layer = (user.layer + 0.1)
-		ribbon_mask.add_filter("mob_shape_mask", 1, alpha_mask_filter(icon = mob_mask))
-		user.vis_contents += ribbon_mask
+	special_possessee = user
+	if((istype(user, special_possessee)))//surgery almost makes this thing immortal. Make overrides so that it gibs on death() and make it place ribbons properly.
+		user.icon_state = "pinkshoes_strong"
+		user.update_icon()
+		special_appearance = TRUE
+	if(!special_appearance)
+		say("[user] type mismatch with [special_possessee]!")
+//		var/icon/flat_icon = user.icon
+//		flat_icon.Blend(rgb(255,255,255))
+//		flat_icon.BecomeAlphaMask()
+//		var/icon/static_icon = icon('icons/effects/effects.dmi', "pinkribbons3")
+//		static_icon.AddAlphaMask(flat_icon)
 	user.SpeedChange(-1)
 	user.UpdateSpeed()
 	user.maxHealth += 1500
@@ -221,7 +194,9 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	user.revive(full_heal = TRUE, admin_revive = FALSE)
 	user.desc += " Wait, are those high heels?"
 	src.forceMove(user)
+	playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Breach.ogg', 50, 1)
 	say("Breacheffect starting with arguments [user] compatible!")//REMOVE THIS
+	//remove dense ribbons here
 
 /obj/effect/ribbon_mask
 	name = "Pink Ribbons"
@@ -229,16 +204,11 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	icon_state = "pinkshoes_overlay"
 	vis_flags = VIS_INHERIT_DIR
 
-//REFER TO "/mob/living/update_health_hud()" for this filter shit
-
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/UnPossess(mob/living/carbon/human/user)//called on death() and BreachEffect()
 	var/datum/status_effect/panicked_type/desirous/S = user.has_status_effect(/datum/status_effect/panicked_type/desirous)
 	if(S)
 		user.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_desirous", -MUTATIONS_LAYER))
-		QDEL_NULL(user.ai_controller)
-		user.ai_controller = /datum/ai_controller/insane/release
-		user.InitializeAIController()
-		user.apply_status_effect(/datum/status_effect/panicked_type/release)
+		user.SanityLossEffect(JUSTICE_ATTRIBUTE)
 //		user.add_overlay(mutable_appearance('icons/effects/effects.dmi', "breach", -ABOVE_MOB_LAYER))
 
 //***Debuff Definition***/
@@ -254,12 +224,17 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	consumed_on_threshold = FALSE
 	var/prud_mod = 0
 	var/temp_mod = 0
+	var/mutable_appearance/desire_icon
 
 /atom/movable/screen/alert/status_effect/urge
 	name = "Urge"
 	desc = "The knot of desires must be undone."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "urge"
+
+/datum/status_effect/stacking/urge/on_creation(mob/living/new_owner, ...)
+	desire_icon = mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_desirous", -ABOVE_MOB_LAYER)
+	return..()
 
 /datum/status_effect/stacking/urge/refresh()//applies funny red text every time it gets reapplied
 	..()
@@ -278,8 +253,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 			ApplyBuff()
 		if(5)
 			duration += 30 SECONDS//die
-			if(!istype(owner, H))//for simple mobs. They cannot panic
-				owner.apply_status_effect(STATUS_EFFECT_DESIROUS)
+			if(!istype(owner, H))//for simple mobs. They cannot panic.
+				return
 			if(prud_mod > -25)
 				ApplyBuff()
 
@@ -293,25 +268,39 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	temp_mod -= 10
 
 /datum/status_effect/stacking/urge/on_apply()
+	var/mob/living/carbon/human/status_holder = owner
+	if(!ishuman(owner))
+		return
 	ApplyBuff()
 	to_chat(owner, "A voice travels between the fluttering ribbons. \
 	What is your desire?")
+	if(status_holder.sanity_lost)
+		owner.say("Desirous is calling on_remove!")
+		qdel(src)
+		return
 	return ..()
 
 /datum/status_effect/stacking/urge/on_remove()
+	if(!ishuman(owner))
+		return
 	var/mob/living/carbon/human/H = owner
 	if(ishuman(owner))
+		if(owner.stat == DEAD)//dead players turn into zombies
+			Convert(owner)
+			return
 		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -prud_mod)
 		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -temp_mod)
 		if(H.sanity_lost)//if you panic from urge. Caused runtimes without the istype check for some reason
 			H.apply_status_effect(/datum/status_effect/panicked_type/desirous)//this causes a runtime!!!
 			QDEL_NULL(owner.ai_controller)
-			H.ai_controller = /datum/ai_controller/insane/release/desirous
+			H.ai_controller = /datum/ai_controller/insane/pink_possess
 			H.InitializeAIController()
+			H.add_overlay(desire_icon)
 			H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_desirous", -ABOVE_MOB_LAYER))//TODO: remove the overlay on un-panic
 	return ..()
 
 /datum/status_effect/stacking/urge/tick()
+	..()
 	var/mob/living/carbon/human/H = owner
 	if(!ishuman(owner))
 		owner.adjustBruteLoss(stacks * -1)//heals abnormalities
@@ -320,54 +309,10 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	if(H.sanity_lost)//if you panic from urge. Runtimes on abnos!
 		qdel(src)
 
-//Desirous
-/datum/status_effect/desirous
-	id = "desirous"
-	status_type = STATUS_EFFECT_MULTIPLE
-	duration = -1//Lasts until panic or suppression
-	on_remove_on_mob_delete = FALSE
-	alert_type = /atom/movable/screen/alert/status_effect/desirous
-	var/mutable_appearance/desire_icon
-	var/list/compatible_mobs = list(
-			/mob/living/simple_animal/hostile/thunder_zombie,
-			/mob/living/simple_animal/hostile/abnormality/clown,
-			/mob/living/simple_animal/hostile/shrimp,
-			/mob/living/simple_animal/hostile/shrimp_soldier,
-			/mob/living/simple_animal/hostile/grown_strong,
-			/mob/living/simple_animal/hostile/abnormality/nothing_there
-			)
-
-/atom/movable/screen/alert/status_effect/desirous
-	name = "Desirous"
-	desc = "You've been possessed by pink shoes!"
-	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
-	icon_state = "urge"
-
-/datum/status_effect/desirous/on_creation(mob/living/new_owner, ...)
-	desire_icon = mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_desirous", -ABOVE_MOB_LAYER)
-	return..()
-
-/datum/status_effect/desirous/on_apply()//causes humans to special panic when applied
-	var/mob/living/simple_animal/hostile/abnormality/pink_shoes/shoes
-	var/mob/living/carbon/human/H = owner
-	if(!(shoes in GLOB.mob_living_list))//if pink shoes is suppressed
-		qdel(src)
-		return
-	if(!istype(H))
-		if(owner in compatible_mobs)//iterate through compatible mobs until the user is found. PLEASE TEST THIS SHITCODE
-			Convert(owner)//replace this with AI shit
-			owner.remove_status_effect(STATUS_EFFECT_URGE)
-		return
-	if(H.stat == DEAD)//dead players turn into zombies
-		Convert(H)
-		return
-	if(!H.sanity_lost)
-		H.adjustSanityLoss(500)
-		H.apply_status_effect(/datum/status_effect/panicked_type/desirous)//this causes a runtime!!!
-		QDEL_NULL(owner.ai_controller)
-		H.ai_controller = /datum/ai_controller/insane/release/desirous
-		H.InitializeAIController()
-		H.add_overlay(desire_icon)//on_apply for the panicked type doesn't add this overlay for some reason
+/datum/status_effect/stacking/urge/proc/Convert(mob/living/target)//Turns human corpses into pink shoes enchantees when desirous is applied
+	playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Binding.ogg', 100, 1)
+	var/mob/living/simple_animal/hostile/pink_zombie/Z = new(get_turf(target), target)
+	Z.name = target.name
 
 /datum/status_effect/panicked_type/desirous//doesn't do anything special
 
@@ -380,10 +325,10 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	return ..()
 
 //***Custom Panic Definiton***
-/datum/ai_controller/insane/release/desirous//define AI controller
-	lines_type = /datum/ai_behavior/say_line/release/insanity_desirous
+/datum/ai_controller/insane/pink_possess//define AI controller
+	lines_type = /datum/ai_behavior/say_line/insanity_desirous
 
-/datum/ai_behavior/say_line/release/insanity_desirous
+/datum/ai_behavior/say_line/insanity_desirous
 	lines = list(
 				"It feels so good...",
 				"They're in the way...",
@@ -391,7 +336,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 				"I can't stop..."
 				)
 
-/datum/ai_controller/insane/release/desirous/SelectBehaviors(delta_time)//Selects pink shoes as the target
+/datum/ai_controller/insane/pink_possess/SelectBehaviors(delta_time)//Selects pink shoes as the target
 	if(blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] != null)
 		return
 	var/mob/living/simple_animal/hostile/abnormality/pink_shoes/shoes
@@ -399,18 +344,19 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		if(!istype(M))
 			continue
 		shoes = M
-	if (!shoes)//No runtimes after suppression, woohoo!
+	if (!shoes)
 		return
-	if(shoes.status_flags & GODMODE)//don't get possessed if it's already breaching
-		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/desire_move)
+	if(shoes.status_flags & GODMODE)
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/roseate_move)
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = shoes
 
-/datum/ai_behavior/desire_move//define AI behavior
+/datum/ai_behavior/roseate_move//define AI behavior
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
 	var/list/current_path = list()
 
-/datum/ai_behavior/desire_move/perform(delta_time, datum/ai_controller/controller)//Paths the pancicked to pink shoes, causes runtimes if it's dead
+/datum/ai_behavior/roseate_move/perform(delta_time, datum/ai_controller/controller)//Paths the pancicked to pink shoes, causes runtimes if it's dead
 	. = ..()
+	var/walkspeed = 1
 	var/mob/living/carbon/human/living_pawn = controller.pawn//the panicked
 	if(IS_DEAD_OR_INCAP(living_pawn))//stop if the panicked is dead
 		return
@@ -423,17 +369,23 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		if(!current_path) // Returned FALSE or null.
 			finish_action(controller, FALSE)
 			return
+	if(!ishuman(living_pawn))
+		return
+	walkspeed -= (max(0.95,((get_attribute_level(living_pawn, JUSTICE_ATTRIBUTE)) * 0.01)))//same behavior as red shoes
 	addtimer(CALLBACK(src, .proc/Movement, controller), 1.25 SECONDS, TIMER_UNIQUE)
 	if(isturf(target.loc) && living_pawn.Adjacent(target))
 		finish_action(controller, TRUE)
 		return
 
-/datum/ai_behavior/desire_move/proc/Movement(datum/ai_controller/controller)//Ditto
+/datum/ai_behavior/roseate_move/proc/Movement(datum/ai_controller/controller)//Ditto
 	var/mob/living/carbon/human/living_pawn = controller.pawn
 	var/mob/living/simple_animal/hostile/abnormality/pink_shoes/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	if(!target)//might fix runtimes? 4/22
+	if(!target)
+		if(living_pawn)//there's a runtime if you panic right next to it
+			living_pawn.SanityLossEffect(JUSTICE_ATTRIBUTE)//switch to a murder panic
 		return
 	if(!LAZYLEN(current_path))
+		living_pawn.SanityLossEffect(JUSTICE_ATTRIBUTE)//ditto
 		return
 	var/target_turf = current_path[1]
 	step_towards(living_pawn, target_turf)
@@ -443,23 +395,15 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 			finish_action(controller, TRUE)
 			return
 
-/datum/ai_behavior/desire_move/finish_action(datum/ai_controller/controller, succeeded)//When the panicked reach Pink Shoes
+/datum/ai_behavior/roseate_move/finish_action(datum/ai_controller/controller, succeeded)//When the panicked reach Pink Shoes
 	. = ..()
 	var/mob/living/carbon/human/living_pawn = controller.pawn
+	var/obj/item/held = living_pawn.get_active_held_item()
 	var/mob/living/simple_animal/hostile/abnormality/pink_shoes/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 	if(succeeded)
-		living_pawn.cut_overlay(mutable_appearance('icons/effects/effects.dmi', "murder", -ABOVE_MOB_LAYER))//This is SHIT! do it better!
-		living_pawn.cut_overlay(mutable_appearance('icons/effects/effects.dmi', "suicide", -ABOVE_MOB_LAYER))
-		living_pawn.cut_overlay(mutable_appearance('icons/effects/effects.dmi', "wander", -ABOVE_MOB_LAYER))
-		living_pawn.cut_overlay(mutable_appearance('icons/effects/effects.dmi', "breach", -ABOVE_MOB_LAYER))
-		living_pawn.cut_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_desirous", -ABOVE_MOB_LAYER))
-		target.Assimilate(living_pawn)//breaches pink shoes with target as the argument for user
+		living_pawn.dropItemToGround(held)
+		target.Assimilate(living_pawn)//breaches red shoes with target as the argument for user
 	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
-
-/datum/status_effect/desirous/proc/Convert(mob/living/target)//Turns human corpses into pink shoes enchantees when desirous is applied
-	playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Binding.ogg', 100, 1)
-	var/mob/living/simple_animal/hostile/pink_zombie/Z = new(get_turf(target), target)
-	Z.name = target.name
 
 //***Simple Mob Definition***//
 /mob/living/simple_animal/hostile/pink_zombie
@@ -534,12 +478,11 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	max_integrity = 45//They're hard to break
 	color = COLOR_PINK
 	buckle_prevents_pull = TRUE
-	var/last_expand = 0 //last world.time this weed expanded
+	last_expand = 0 //last world.time this weed expanded
 	expand_cooldown = 1.5 SECONDS
 	can_expand = TRUE
 	var/list/static/ignore_typecache
 	var/list/static/atom_remove_condition
-	var/static/list/blacklisted_turfs
 
 /obj/structure/spreading/pink_ribbon/Initialize()//edit of snow white's vines
 	. = ..()
@@ -574,26 +517,21 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	. = ..()
 	VineEffect(M)
 
-/obj/structure/spreading/pink_ribbon/expand(bypasscooldown = FALSE)
-	for(var/mob/living/L in livinginview(1, src))
-		if(is_type_in_typecache(L, ignore_typecache))// Don't want the traps triggered by sparks, ghosts or projectiles.
-			return
-		entangle_mob(L)
-	..()
-
 /obj/structure/spreading/pink_ribbon/Crossed(atom/movable/AM)
 	. = ..()
 	if(is_type_in_typecache(AM, ignore_typecache))// Don't want the traps triggered by sparks, ghosts or projectiles.
 		return
 	if(!isliving(AM))
 		return
-	if(prob(0.05))
+	if(prob(5))
 		VineEffect(AM)
 
 /obj/structure/spreading/pink_ribbon/proc/VineEffect(mob/living/L)
+	if(is_type_in_typecache(L, ignore_typecache))
+		return
 	var/temperance_value
 	var/mob/living/carbon/human/H = L
-	if(L.has_status_effect(/datum/status_effect/desirous))
+	if(L.has_status_effect(/datum/status_effect/stacking/urge))
 		return
 	if(ishuman(H))//also assimilates fortitude panics
 		var/obj/item/clothing/suit/armor/ego_gear/EQ = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)//copies all resistances from worn E.G.O
@@ -637,7 +575,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	if(target.stat == DEAD)
 		if(!ishuman(target))//ignore dead simple mobs
 			return
-		target.apply_status_effect(STATUS_EFFECT_DESIROUS)
+		target.apply_status_effect(STATUS_EFFECT_URGE)
 		return
 	Apply_Urge(target)
 	to_chat(target, "<span class='danger'>The ribbons [pick("wind", "tangle", "tighten")] around you!</span>")
@@ -691,16 +629,4 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	plane = FLOOR_PLANE
 	resistance_flags = INDESTRUCTIBLE
 
-/obj/structure/pinkshoes_cushion/ribbons
-	name = "pink ribbons"
-	desc = "Glittering and cloudy ribbons that litter the walls and floor of the containment cell. They put you at ease."
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "pinkribbons"//"cellribbons"
-
-/obj/structure/pinkshoes_cushion/ribbons/Initialize()
-	add_overlay(mutable_appearance('icons/effects/effects.dmi', "smoke", -ABOVE_OBJ_LAYER))
-	add_overlay(mutable_appearance('icons/effects/effects.dmi', "sparkles", -ABOVE_OBJ_LAYER))
-	return ..()
-
 #undef STATUS_EFFECT_URGE
-#undef STATUS_EFFECT_DESIROUS

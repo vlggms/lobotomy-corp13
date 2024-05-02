@@ -514,3 +514,14 @@
 		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the Abnormality when completing Attachment work.",
 		"When the work result was Bad, the Qliphoth counter lowered.")
 
+//Pink Shoes
+/obj/item/paper/fluff/info/he/pink_shoes
+	abno_type = /mob/living/simple_animal/hostile/abnormality/pink_shoes
+	abno_code = "F-04-147"//F-04-10-13 in LCB
+	abno_info = list(
+		"Employees with temperance level 2 or lower immediately panicked after working on Pink Shoes.",
+		"Employees who panic while working on Pink Shoes will decide to wear them.",
+		"When the qliphoth counter became 0, Pink Shoes escaped and wove ribbons in the surrounding area.",
+		"Fallen employees can be manipulated by the ribbons, as well as other hostile threats.")
+	abno_breach_damage_type = "White"
+	abno_breach_damage_count = "Moderate"
