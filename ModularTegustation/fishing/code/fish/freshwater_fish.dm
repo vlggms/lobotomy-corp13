@@ -17,6 +17,34 @@
 	average_size = 30
 	average_weight = 500
 
+/obj/item/food/fish/fresh_water/bass
+	name = "largemouth bass"
+	desc = "A large, carnivorous freshwater fish known for thriving in most environments and being popular amongst sport fishers."
+	icon_state = "bass"
+	fillet_type = /obj/item/food/freshfish/white
+	average_size = 40
+	average_weight = 5000
+	stable_population = 3
+
+/obj/item/food/fish/trout
+	name = "steelhead trout"
+	desc = "A species of coastal trout closely related to salmon and with a deep history of being used as a source of food."
+	icon_state = "trout"
+	fillet_type = /obj/item/food/freshfish/white
+	required_fluid_type = AQUARIUM_FLUID_ANADROMOUS
+	average_size = 60
+	average_weight = 12000
+	stable_population = 3
+
+/obj/item/food/fish/fresh_water/perch
+	name = "perch"
+	desc = "A relatively small, yet common, species of predatory fish."
+	icon_state = "perch"
+	fillet_type = /obj/item/food/freshfish/white
+	average_size = 20
+	average_weight = 900
+	stable_population = 6
+
 /obj/item/food/fish/fresh_water/angelfish
 	name = "angelfish"
 	desc = "Young Angelfish often live in groups, while adults prefer solitary life. They become territorial and aggressive toward other fish when they reach adulthood."
