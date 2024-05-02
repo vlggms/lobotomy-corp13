@@ -109,6 +109,10 @@
 /mob/living/simple_animal/hostile/abnormality/eris/proc/Dine(mob/living/carbon/human/poorfuck)
 	manual_emote("unhinges her jaw, revealing many rows of teeth!")
 	playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
+	if(SSmaptype.maptype == "limbus_labs")
+		for(var/obj/item/organ/O in poorfuck.getorganszone(BODY_ZONE_HEAD, TRUE))
+			O.Remove(poorfuck)
+			O.forceMove(get_turf(poorfuck))
 	poorfuck.dust()
 	new /obj/effect/gibspawner/generic/silent(get_turf(poorfuck))
 
@@ -143,6 +147,10 @@
 
 	playsound(get_turf(src), 'sound/abnormalities/bigbird/bite.ogg', 50, 1, 2)
 	new /obj/effect/gibspawner/generic/silent(get_turf(current_petter))
+	if(SSmaptype.maptype == "limbus_labs")
+		for(var/obj/item/organ/O in current_petter.getorganszone(BODY_ZONE_HEAD, TRUE))
+			O.Remove(current_petter)
+			O.forceMove(get_turf(current_petter))
 	current_petter.dust()
 
 	SLEEP_CHECK_DEATH(20)

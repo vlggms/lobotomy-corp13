@@ -11,7 +11,11 @@ GLOBAL_LIST_INIT(low_security, list(
 	/mob/living/simple_animal/hostile/abnormality/fairy_longlegs,
 	/mob/living/simple_animal/hostile/abnormality/pisc_mermaid,
 	/mob/living/simple_animal/hostile/abnormality/der_freischutz,
-
+	/mob/living/simple_animal/hostile/abnormality/scorched_girl,
+	/mob/living/simple_animal/hostile/abnormality/eris,
+	/mob/living/simple_animal/hostile/abnormality/schadenfreude,
+	/mob/living/simple_animal/hostile/abnormality/galaxy_child,
+	/mob/living/simple_animal/hostile/abnormality/woodsman
 ))
 
 GLOBAL_LIST_INIT(high_security, list(
@@ -22,6 +26,7 @@ GLOBAL_LIST_INIT(high_security, list(
 	/mob/living/simple_animal/hostile/abnormality/mountain,
 	/mob/living/simple_animal/hostile/abnormality/despair_knight,
 	/mob/living/simple_animal/hostile/abnormality/red_hood,
+	/mob/living/simple_animal/hostile/abnormality/general_b
 
 ))
 
