@@ -334,14 +334,13 @@
 
 /mob/living/simple_animal/hostile/proc/ListTargets(max_range = vision_range) //Step 1, find out what we can see
 	if(!search_objects)
-		. = ohearers(max_range, targets_from) //Remove self, so we don't suicide
+		. = hearers(max_range, targets_from) - src //Remove self, so we don't suicide
 
 		var/static/hostile_machines = typecacheof(list(/obj/machinery/porta_turret, /obj/vehicle/sealed/mecha))
 
-		for(var/turf/open/T in RANGE_TURFS(max_range, targets_from))
-			for(var/obj/O in T)
-				if(is_type_in_typecache(O, hostile_machines) && can_see(targets_from, O, max_range))
-					. += O
+		for(var/obj/O in oview(max_range, targets_from))
+			if(is_type_in_typecache(O, hostile_machines))
+				. += O
 	else
 		. = oview(max_range, targets_from)
 
