@@ -52,6 +52,8 @@
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 20 SECONDS
 	var/swords = 0
+	var/nihil_present = FALSE
+	var/can_act = TRUE
 
 	attack_action_types = list(
 		/datum/action/innate/change_icon_kod,
@@ -141,6 +143,8 @@
 	return OpenFire()
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/OpenFire()
+	if(!can_act)
+		return FALSE
 	if(ranged_cooldown > world.time)
 		return FALSE
 	ranged_cooldown = world.time + ranged_cooldown_time
@@ -149,7 +153,11 @@
 		if(T.density)
 			i -= 1
 			continue
-		var/obj/projectile/despair_rapier/P = new(T)
+		var/obj/projectile/despair_rapier/P
+		if(nihil_present)
+			P = new /obj/projectile/despair_rapier/justice(T)
+		else
+			P = new(T)
 		P.starting = T
 		P.firer = src
 		P.fired_from = T
@@ -186,6 +194,9 @@
 	blessed_human.physiology.pale_mod /= 2
 	blessed_human.adjust_attribute_bonus(TEMPERANCE_ATTRIBUTE, 100)
 	blessed_human = null
+	if(nihil_present) //We die during a nihil suppression if our champion dies
+		death()
+		return TRUE
 	BreachEffect()
 	return TRUE
 
@@ -243,3 +254,90 @@
 	icon_state = icon_living
 	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 	return
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
+
+//Nihil Event code - TODO: Add friendly summons TODO: Add a way to teleport to nihil
+/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/EventStart()
+	set waitfor = FALSE
+	NihilModeEnable()
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("At last, a worthy foe.")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("All of my work won't be in vain.")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("You'll answer for your crimes!")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("To protect our people!")
+	ChangeResistances(list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 1.0, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.5))
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/NihilModeEnable()
+	NihilIconUpdate()
+	nihil_present = TRUE
+	fear_level = ZAYIN_LEVEL
+	faction = list("neutral")
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/NihilIconUpdate()
+	name = "Magical Girl of Justice"
+	desc = "A real magical girl!"
+	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	icon_state = "despair_friendly"
+	pixel_x = -8
+	base_pixel_x = -8
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/Found(atom/A)
+	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nihil)) // 1st Priority
+		return TRUE
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/petrify(statue_timer)
+	if(!isturf(loc))
+		MoveStatue()
+	AIStatus = AI_OFF
+	icon_state = "despair_breach"
+	var/obj/structure/statue/petrified/magicalgirl/S = new(loc, src, statue_timer)
+	S.name = "Ossified Despair"
+	ADD_TRAIT(src, TRAIT_NOBLEED, MAGIC_TRAIT)
+	SLEEP_CHECK_DEATH(1)
+	S.icon = src.icon
+	S.icon_state = src.icon_state
+	S.pixel_x = -4
+	S.base_pixel_x = -4
+	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
+	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	stat = DEAD
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/proc/MoveStatue()
+	var/list/teleport_potential = list()
+	if(!LAZYLEN(GLOB.department_centers))
+		for(var/mob/living/L in GLOB.mob_living_list)
+			if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE)
+				continue
+			teleport_potential += get_turf(L)
+	if(!LAZYLEN(teleport_potential))
+		var/turf/P = pick(GLOB.department_centers)
+		teleport_potential += P
+	var/turf/teleport_target = pick(teleport_potential)
+	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
+	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
+	forceMove(teleport_target)
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/death(gibbed)
+	if(!nihil_present)
+		return ..()
+	adjustBruteLoss(-999999)
+	visible_message(span_boldwarning("Oh no, [src] has been defeated!"))
+	INVOKE_ASYNC(src, PROC_REF(petrify), 500000)
+	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/despair_knight/gib()
+	if(nihil_present)
+		death()
+		return FALSE
+	return ..()
+

@@ -22,6 +22,7 @@
 	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/melting_love,
 				/mob/living/simple_animal/hostile/abnormality/distortedform,
 				/mob/living/simple_animal/hostile/abnormality/white_night,
+				/mob/living/simple_animal/hostile/abnormality/nihil,
 				/mob/living/simple_animal/hostile/abnormality/hatred_queen,
 				/mob/living/simple_animal/hostile/abnormality/wrath_servant)
 
