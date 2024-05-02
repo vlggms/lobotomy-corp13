@@ -245,9 +245,10 @@
 	icon_state = "water_turf1"
 	loot_level1 = list(
 		//75% chance bulk
-		/obj/item/food/fish/fresh_water/guppy = 35,
+		/obj/item/food/fish/fresh_water/guppy = 25,
 		/obj/item/food/fish/fresh_water/angelfish = 20,
-		/obj/item/food/fish/fresh_water/plasmatetra = 20,
+		/obj/item/food/fish/fresh_water/plasmatetra = 15,
+		/obj/item/food/fish/fresh_water/perch = 15,
 		//25% chance
 		/obj/item/stack/sheet/mineral/wood = 13,
 		/obj/item/fishing_component/hook/bone = 5,
@@ -256,8 +257,9 @@
 	)
 	loot_level2 = list(
 		/obj/item/food/fish/fresh_water/catfish = 50,
-		/obj/item/stack/sheet/sinew/wolf = 20,
-		/obj/item/stack/sheet/leather = 15,
+		/obj/item/food/fish/fresh_water/bass = 15,
+		/obj/item/stack/sheet/sinew/wolf = 10,
+		/obj/item/stack/sheet/leather = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
@@ -282,8 +284,9 @@
 		/obj/item/stack/sheet/mineral/wood = 10,
 	)
 	loot_level2 = list(
-		/obj/item/food/fish/salt_water/cardinal = 45,
-		/obj/item/food/fish/salt_water/sheephead = 40,
+		/obj/item/food/fish/trout = 35,
+		/obj/item/food/fish/salt_water/cardinal = 30,
+		/obj/item/food/fish/salt_water/sheephead = 20,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
