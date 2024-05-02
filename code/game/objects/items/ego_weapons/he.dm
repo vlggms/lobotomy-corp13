@@ -1914,3 +1914,26 @@
 		playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
 		user.adjustBruteLoss(-amount_filled*2)
 		amount_filled = 0
+
+/obj/item/ego_weapon/shield/isolation
+	name = "isolation"
+	desc = "The shelter still retains the memory of that day."
+	icon_state = "isolation"
+	force = 30
+	attack_speed = 1
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	hitsound = 'sound/weapons/ego/axe2.ogg'
+	reductions = list(10, 20, 40, 10) // 80
+	projectile_block_duration = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
+	projectile_block_message = "You swat the projectile out of the air!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your E.G.O."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

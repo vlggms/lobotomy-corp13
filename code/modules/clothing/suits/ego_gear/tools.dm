@@ -1,14 +1,35 @@
-
+//Armor from tool abnormalities
 /obj/item/clothing/suit/armor/ego_gear/tools
 	icon = 'icons/obj/clothing/ego_gear/abnormality/tools.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/tools.dmi'
 
+//ZAYIN
 /obj/item/clothing/suit/armor/ego_gear/tools/bucket
 	name = "bucket"
 	desc = "The man lost his balance after seeing what the well's bucket had drawn."
 	icon_state = "bucket"
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
+/obj/item/clothing/suit/armor/ego_gear/tools/prohibited
+	name = "PROHIBITED!!!"
+	desc = "Why would you even want to touch it?"
+	icon_state = "touch"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 10)
+
+/obj/item/clothing/suit/armor/ego_gear/tools/plastic
+	name = "plastic smile"
+	desc = "Do you love your city?"
+	icon_state = "plastic"
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
+
+//TETH
+/obj/item/clothing/suit/armor/ego_gear/tools/aspiration
+	name = "aspiration"
+	desc = "Excessive aspiration would bring about unwarranted frenzy."
+	icon_state = "aspiration"
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
+
+//HE
 /obj/item/clothing/suit/armor/ego_gear/tools/swindle
 	name = "swindle"
 	desc = "All-natural snake oil! Cleans the skin, removes pimples, impetigo, and other defects!"
@@ -54,12 +75,6 @@
 							FORTITUDE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/tools/aspiration
-	name = "aspiration"
-	desc = "Excessive aspiration would bring about unwarranted frenzy."
-	icon_state = "aspiration"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0) // 20
-
 /obj/item/clothing/suit/armor/ego_gear/tools/giant_tree_branch
 	name = "giant tree branch"
 	desc = "The tree simply reaped from what it sowed."
@@ -67,4 +82,24 @@
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 30, PALE_DAMAGE = 10) // 70
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/tools/isolation
+	name = "isolation"
+	desc = "Company P wished to construct the safest place on Earth. However, this shelter, while perfectly safe on the inside, \
+	alters the reality of the outside to be even more hopeless. It literally makes itself into \"the safest place on Earth.\""
+	icon_state = "shelter"
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 20, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) // 70
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
+//WAW
+/obj/item/clothing/suit/armor/ego_gear/tools/windup
+	name = "wind-up"
+	desc = "Humanity has conquered disease and nature. Now we have come far enough to harness time itself."
+	icon_state = "windup"
+	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 70) // 140
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
 							)
