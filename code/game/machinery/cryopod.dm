@@ -83,6 +83,8 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 	var/on_store_message = "has entered long-term storage."
 	var/on_store_name = "Cryogenic Oversight"
 
+	/// The minimum time someone needs to be SSD in order to be cryo'd by another person
+	var/minimum_ssd_time = 10 MINUTES
 	/// Time until despawn when a mob enters a cryopod. You cannot other people in pods unless they're catatonic.
 	var/time_till_despawn = 30 SECONDS
 	/// Cooldown for when it's now safe to try an despawn the player.
@@ -282,6 +284,10 @@ GLOBAL_LIST_EMPTY(cryopod_computers)
 		return
 
 	if(target == user && (tgalert(target, "Would you like to enter cryosleep?", "Enter Cryopod?", "Yes", "No") != "Yes"))
+		return
+
+	if(user != target && round(((world.time - target.lastclienttime) / (1 MINUTES)),1) <= minimum_ssd_time)
+		to_chat(user, span_danger("You can't put [target] into [src]. They might wake up soon."))
 		return
 
 	if(target == user)
