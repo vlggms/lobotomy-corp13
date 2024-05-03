@@ -5,7 +5,11 @@
  */
 
 /obj/structure/closet
-	var/nonfunctional = FALSE // is this closet broken? (unable to be closed)
+	// Toggles if the locker is unable to be closed
+	var/nonfunctional = FALSE
+
+	/// if TRUE, colors tiles that are affected by people breathing whilst hiding in containers
+	var/show_breathing = FALSE
 
 /obj/structure/closet/Destroy()
 	if(opened)
@@ -60,7 +64,7 @@
 /obj/structure/closet/proc/toggle_breathing(opened = TRUE)
 	if(!opened)
 		for(var/turf/open/floor/funky_turf in range(2, drop_location()))
-			if(SSlobotomy_corp.show_breathing)
+			if(show_breathing)
 				funky_turf.color = rgb(255, 255, 0)
 
 			for(var/mob/living/person in src)
@@ -68,13 +72,13 @@
 
 			for(funky_turf in range(1, drop_location())) // they can hear your breathing more clearly from closer away
 				funky_turf.noise = 20
-				if(SSlobotomy_corp.show_breathing)
+				if(show_breathing)
 					funky_turf.color = rgb(255, 0, 0)
 		return
 
 	// the closet is being opened, we need to remove the mobs and noise values from the lists
 	for(var/turf/open/floor/funky_turf in range(2, drop_location()))
-		if(SSlobotomy_corp.show_breathing)
+		if(show_breathing)
 			funky_turf.color = initial(funky_turf.color)
 
 		funky_turf.noise = initial(funky_turf.noise)

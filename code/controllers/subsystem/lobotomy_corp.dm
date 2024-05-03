@@ -98,9 +98,6 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	/// If TRUE - will not count deaths for auto restart
 	var/auto_restart_in_progress = FALSE
 
-	/// if TRUE, colors tiles that are affected by people breathing whilst hiding in containers. -- ModularTegustation/hiding
-	var/show_breathing = FALSE
-
 /datum/controller/subsystem/lobotomy_corp/Initialize(timeofday)
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(OnMobDeath))
