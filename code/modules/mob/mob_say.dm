@@ -86,10 +86,7 @@
 	deadchat_broadcast(rendered, source, follow_target = src, speaker_key = displayed_key)
 
 	// LOBOTOMYCORP ADDITION START
-	create_chat_message(src, /datum/language/common, message)
 	for(var/mob/M in GLOB.player_list)
-		if(M == src)
-			continue
 		if(!isdead(M))
 			continue
 		if(M.client?.prefs.chat_on_map)
