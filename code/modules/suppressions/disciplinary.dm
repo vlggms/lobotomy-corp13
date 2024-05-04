@@ -131,8 +131,7 @@
 
 /mob/living/simple_animal/hostile/megafauna/red_mist/Life()
 	. = ..()
-	var/health_per = health/maxHealth * 100
-	if(health_per <= 75 && health_per >= 15)//Is this moronic? Yes, but this is the only way I could figure out how to stop red mist from using her special as the phase changes.
+	if(maxHealth*0.75 < health && maxHealth*0.15 > health)//Is this moronic? Yes, but this is the only way I could figure out how to stop red mist from using her special as the phase changes.
 		if(can_counter && can_act)
 			switch(life_stage)
 				if(1)
