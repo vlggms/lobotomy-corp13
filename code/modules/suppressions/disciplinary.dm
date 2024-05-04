@@ -132,7 +132,7 @@
 /mob/living/simple_animal/hostile/megafauna/red_mist/Life()
 	. = ..()
 	var/health_per = health/maxHealth * 100
-	if(health_per <= 75 && health_per >= 15)
+	if(health_per <= 75 && health_per >= 15)//Is this moronic? Yes, but this is the only way I could figure out how to stop red mist from using her special as the phase changes.
 		if(can_counter && can_act)
 			switch(life_stage)
 				if(1)
@@ -255,7 +255,7 @@
 	if(. > 0)
 		damage_taken += .
 	if(damage_taken >= 2500)
-		can_counter = TRUE
+		can_counter = TRUE//This var exists so that red mist couldn't just counter while attacking.
 
 /* Death and "Death" */
 
@@ -517,7 +517,6 @@
 					H.gib()
 	can_act = TRUE
 
-
 /mob/living/simple_animal/hostile/megafauna/red_mist/proc/Heaven(target)
 	if(!can_act)
 		return
@@ -559,7 +558,6 @@
 			if(L.health <= 0)
 				L.gib()
 	can_act = TRUE
-
 
 /mob/living/simple_animal/hostile/megafauna/red_mist/proc/Da_Capo()
 	var/list/area = list()
@@ -701,16 +699,15 @@
 		forceMove(T)
 		playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
 		for(var/mob/living/L in view(1, src))
-			if(faction_check(faction, L.faction,TRUE))
+			if(faction_check(L.faction, src.faction))
 				continue
-			if(L in been_hit)
-				continue
-			L.apply_damage(slash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-			been_hit += L
-			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
-				if(H.sanity_lost)
-					H.gib()
+			if(!L in been_hit)
+				L.apply_damage(slash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				been_hit += L
+				if(ishuman(L))
+					var/mob/living/carbon/human/H = L
+					if(H.sanity_lost)
+						H.gib()
 			new /obj/effect/temp_visual/cleave(L.loc)
 		if(T != turf_list[turf_list.len]) // Not the last turf
 			sleep(0.5)
@@ -775,20 +772,52 @@
 			new /obj/effect/temp_visual/kinetic_blast(get_turf(LL))
 			if(LL.stat >= HARD_CRIT)
 				LL.gib()
-	for(var/turf/T3 in turf_line)
-		if(!istype(T3))
-			break
-		if(T3.density)
-			break
-		for(var/turf/T4 in view(1, T3))
-			var/obj/effect/temp_visual/smash_effect/S = new(T4)
-			S.color = COLOR_CYAN
-			var/list/new_hits = HurtInTurf(T4, been_hit, justitia_aoe_damage, PALE_DAMAGE, hurt_mechs = TRUE) - been_hit
-			been_hit += new_hits
-			for(var/mob/living/LL in new_hits)
-				new /obj/effect/temp_visual/kinetic_blast(get_turf(LL))
-				if(LL.stat >= HARD_CRIT)
-					LL.gib()
-		SLEEP_CHECK_DEATH(0.5)
-	SLEEP_CHECK_DEATH(2 SECONDS)
+	var/obj/effect/justitia_slash/JS = new(get_turf(src),faction)
+	JS.turf_list = turf_line
+	JS.been_hit = src.been_hit
+	JS.JustitiaMove()
+	SLEEP_CHECK_DEATH(2.5 SECONDS)
 	can_act = TRUE
+
+
+/obj/effect/justitia_slash
+	alpha = 255
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	var/list/faction = list("red mist")
+	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
+	var/list/turf_list = list()
+	var/slash_damage = 95
+	var/list/been_hit = list()
+
+/obj/effect/justitia_slash/New(loc, ...)
+	. = ..()
+	if(args[2])
+		faction = args[2]
+
+/obj/effect/justitia_slash/proc/JustitiaMove()
+	for(var/turf/T in turf_list)
+		if(!istype(T))
+			break
+		if(T.density)
+			break
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T)
+		forceMove(T)
+		playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
+		for(var/turf/T2 in view(1,src))
+			var/obj/effect/temp_visual/smash_effect/S = new(T2)
+			S.color = COLOR_CYAN
+			for(var/mob/living/L in T2)
+				if(faction_check(L.faction, src.faction))
+					continue
+				if(!L in been_hit)
+					L.apply_damage(slash_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+					been_hit += L
+					if(L.stat >= HARD_CRIT)
+						L.gib()
+				new /obj/effect/temp_visual/cleave(L.loc)
+		if(T != turf_list[turf_list.len]) // Not the last turf
+			sleep(0.25)
+	qdel(src)
