@@ -65,6 +65,7 @@
 	attack_verb_continuous = "beats"
 	attack_verb_simple = "beat"
 	rapid_melee = 2
+	ranged = TRUE
 	/// Red Mist is only defeated after dying with life_stage at 4
 	var/life_stage = 1
 	var/default_icon = "red_mist_phase_1"
@@ -169,22 +170,9 @@
 /mob/living/simple_animal/hostile/megafauna/red_mist/OpenFire()
 	if(!can_act)
 		return
-	var/turf/target_loc = get_turf(target)
-	var/turf/start_loc = get_turf(src)
 	if(life_stage == 2 || life_stage == 3)
 		if(heaven_cooldown < world.time)
-			heaven_cooldown = heaven_cooldown_time + world.time
-			var/obj/projectile/heaven/H = new(start_loc)
-			playsound(src, 'sound/abnormalities/pagoda/throw.ogg', 100, TRUE)
-			H.starting = start_loc
-			H.firer = src
-			H.fired_from = src
-			H.yo = target_loc.y - start_loc.y
-			H.xo = target_loc.x - start_loc.x
-			H.original = target
-			H.preparePixelProjectile(target_loc, src)
-			H.fire()
-			say("The Burrowing Heaven")
+			Heaven(target)
 	return ..()
 
 /mob/living/simple_animal/hostile/megafauna/red_mist/AttackingTarget()
@@ -529,6 +517,24 @@
 					H.gib()
 	can_act = TRUE
 
+
+/mob/living/simple_animal/hostile/megafauna/red_mist/proc/Heaven(target)
+	if(!can_act)
+		return
+	var/turf/target_loc = get_turf(target)
+	var/turf/start_loc = get_turf(src)
+	heaven_cooldown = heaven_cooldown_time + world.time
+	var/obj/projectile/heaven/H = new(start_loc)
+	playsound(src, 'sound/abnormalities/pagoda/throw.ogg', 100, TRUE)
+	H.starting = start_loc
+	H.firer = src
+	H.fired_from = src
+	H.yo = target_loc.y - start_loc.y
+	H.xo = target_loc.x - start_loc.x
+	H.original = target
+	H.preparePixelProjectile(target_loc, src)
+	H.fire()
+	say("The Burrowing Heaven")
 /mob/living/simple_animal/hostile/megafauna/red_mist/proc/Mimicry()
 	var/list/area = list()
 	can_act = FALSE
