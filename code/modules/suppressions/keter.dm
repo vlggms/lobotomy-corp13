@@ -114,10 +114,11 @@
 // Day 48 - Central Command, Welfare, Disciplinary
 /datum/suppression/combination/keter_day48
 	name = DAY48_CORE_SUPPRESSION
-	desc = "Effects of core suppressions of Central Command, Welfare and Disciplinary departments \
+	desc = "Effects of core suppressions of Central Command and Welfare departments \
 			will activate for the duration of this test. <br>\
+			The Red Mist will make their appearence after completing the Noon of White.<br>\
 			To complete the challenge - you must defeat the Midnight of White - The Claw."
-	run_text = "Effects of Control, Information, Safety and Training core suppressions are now in effect. Ordeals of White have been introduced in the subroutines."
+	run_text = "Effects of Center Commandand and Welfare core suppressions are now in effect. The Red Mist will return after completing the Noon of White. Ordeals of White have been introduced in the subroutines.."
 	required_cores = list(
 		CONTROL_CORE_SUPPRESSION,
 		INFORMATION_CORE_SUPPRESSION,
@@ -133,6 +134,7 @@
 /datum/suppression/combination/keter_day48/Run(run_white = TRUE, silent = FALSE)
 	. = ..()
 	// Ominous blurbs
+	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
 	var/list/blurb_list = list(
 		"Do you remember when we still knew the warmth of the sun?",
 		"We have become too cold for such a thing.",
@@ -143,23 +145,37 @@
 		var/blurb_text = blurb_list[i]
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
 	// Create our cores
-	// Less scuffed words in announcements
+	// Does this actually do anything? Like sure siren exists but Keter cores don't have meltdowns outside of Siren and the rare working Distorted From with justice 4.
 	var/datum/suppression/command/C = new
 	C.meltdown_count_increase = 4
 	C.meltdown_time_multiplier = 0.5
 	C.meltdown_time_reduction = 0.1
 	running_cores += C
-	// More stat reductions
+	// Some damage types hurt more
 	var/datum/suppression/welfare/W = new
 	running_cores += W
-	// TODO: Red mist spawn
-	// --------------------
-	// And then start them all
 	for(var/datum/suppression/S in running_cores)
 		S.Run(FALSE, TRUE)
 
 	// As running all previous ones would set them as main core, we need to reset it
 	SSlobotomy_corp.core_suppression = src
+
+/datum/suppression/combination/keter_day48/proc/OnOrdealEnd(datum/source, datum/ordeal/O)
+	SIGNAL_HANDLER
+	if(!istype(O, /datum/ordeal/fixers/white_noon))
+		return
+	// Spawn the red mist
+	addtimer(CALLBACK(src, PROC_REF(SpawnRedMist)), 10 SECONDS)
+
+/datum/suppression/combination/keter_day48/proc/SpawnRedMist()
+	// Make welfare less AIDS
+	var/datum/suppression/welfare/W = GetCoreSuppression(/datum/suppression/welfare)
+	W.mod_count = 2
+	var/turf/T = pick(GLOB.department_centers)
+	var/mob/living/simple_animal/hostile/megafauna/red_mist/RM = new(T)
+	// A bit nerfed, so you don't get mopped after white noon taking up bullets, okay?
+	RM.maxHealth = round(RM.maxHealth * 0.75)
+	RM.health = RM.maxHealth
 
 /datum/suppression/combination/keter_day48/End(silent = FALSE)
 	var/blurb_text = "You will reach tomorrow. You can overcome this regret and atonement."

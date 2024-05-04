@@ -1,3 +1,12 @@
+/obj/item/clothing/suit/armor/ego_gear/debug_armor
+	name = "paradise lost"
+	icon = 'icons/obj/clothing/ego_gear/abnormality/aleph.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/aleph.dmi'
+	desc = "\"My loved ones, do not worry; I have heard your prayers. \
+	Have you not yet realized that pain is but a speck to a determined mind?\""
+	icon_state = "paradise"
+	armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100) // 280
+
 // It is effectively an ordeal in how it works
 /datum/suppression/disciplinary
 	name = DISCIPLINARY_CORE_SUPPRESSION
@@ -65,9 +74,9 @@
 	var/combo_wait = 20
 	var/combo_target
 	var/can_act = TRUE
-	var/phase_change = FALSE
 	var/datum/reusable_visual_pool/RVP = null
 	var/list/been_hit = list()
+	var/can_do_counter = TRUE
 	//used for attacks
 	var/damage_taken = 0
 	var/can_counter = FALSE
@@ -90,6 +99,22 @@
 	var/mimicry_rush_damage = 200
 	var/mimicry_rush_damage_full = 500
 	var/obj/effect/da_capo/scythe
+	//for smile
+	var/smile_rapid_damage = 10
+	var/smile_rapid_range = 8
+	var/smile_damage = 250
+	//for justitia
+	var/justitia_range = 25
+	var/justitia_aoe_damage = 95
+	var/justitia_aoe_range = 6
+	//used for phase 4
+	var/twilight_damage = 90
+	var/phase_4_special
+	var/phase_4_action = FALSE
+	var/phase_4_special_cooldown = 20 SECONDS
+	var/phase_4_exhausted
+	var/phase_4_exhausted_duration = 10 SECONDS
+	var/mob/hunted = null
 
 /mob/living/simple_animal/hostile/megafauna/red_mist/Initialize()
 	. = ..()
@@ -105,12 +130,16 @@
 
 /mob/living/simple_animal/hostile/megafauna/red_mist/Life()
 	. = ..()
-	if(can_counter)
-		switch(life_stage)
-			if(1)
-				GoldRush()
-			if(2)
-				DaCapoThrow()
+	var/health_per = health/maxHealth * 100
+	if(health_per <= 75 && health_per >= 15)
+		if(can_counter && can_act)
+			switch(life_stage)
+				if(1)
+					GoldRush()
+				if(2)
+					DaCapoThrow()
+				if(3)
+					GoldRush()
 
 /mob/living/simple_animal/hostile/megafauna/red_mist/Move()
 	if(!can_act)
@@ -221,10 +250,16 @@
 					attack_mode = pick(1,2)
 				if(black_armor < pale_armor)//smile
 					attack_mode = 1
-				if(black_armor > pale_armor)//justitica
+				if(black_armor > pale_armor)//justitia
 					attack_mode = 2
 			else
 				attack_mode = pick(1,2)
+			if(attack_mode == 1)
+				say("Be eaten")
+				return Smile_Slam()
+			if(attack_mode == 2)
+				say("Justitia, Judgment")
+				return Justita_Slash()
 	. = ..()
 
 /mob/living/simple_animal/hostile/megafauna/red_mist/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
@@ -258,8 +293,9 @@
 	life_stage += 1
 	light_range += 2
 	light_power += 2
-	phase_change = TRUE
+	can_counter = FALSE
 	adjustHealth(-maxHealth)
+	damage_taken = 0
 	for(var/turf/T in orange(1, src))
 		new /obj/effect/temp_visual/cult/sparks(T)
 	switch(life_stage)
@@ -276,8 +312,8 @@
 			ChangeResistances(list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1))
 		if(3)
 			var/list/blurb_list = list(
-				"",
-				""
+				"Some things just wouldn’t cool down, no matter how long they were left in the cold.",
+				"Those monsters always kill people, there is no end to this sin; I have descended to bring about their reckoning."
 				)
 			for(var/i = 1 to length(blurb_list))
 				var/blurb_text = blurb_list[i]
@@ -339,6 +375,7 @@
 /mob/living/simple_animal/hostile/megafauna/red_mist/proc/GoldRush()
 	can_act = FALSE
 	can_counter = FALSE
+	damage_taken = 0
 	var/blurb_text = "The Road of Gold opens."
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 5 SECONDS, blurb_text, 1 SECONDS, "black", "red", "left", "CENTER-6,BOTTOM+2")
 	var/list/warp_points = GLOB.xeno_spawn + GLOB.department_centers
@@ -405,10 +442,6 @@
 	for(var/list/L in paths)
 		RVP.ReturnToPool(popleft(portals))
 		for(var/turf/T in L)
-			if(phase_change)
-				icon_state = default_icon
-				can_act = TRUE
-				return
 			face_atom(T)
 			for(var/turf/U in range(1, T))
 				if(!locate(/obj/effect/temp_visual/smash_effect) in U)
@@ -572,6 +605,7 @@
 	var/list/potential_centers = list()
 	var/list/turf_line = list()
 	can_act = FALSE
+	damage_taken = 0
 	can_counter = FALSE
 	for(var/pos_targ in GLOB.department_centers)
 		var/possible_center_distance = get_dist(src, pos_targ)
@@ -585,10 +619,10 @@
 			new /obj/effect/temp_visual/cult/sparks(T)
 		SLEEP_CHECK_DEATH(1 SECONDS)
 		INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 2 SECONDS, blurb_text, 1 SECONDS, "black", "red", "left", "CENTER-6,BOTTOM+2")
-		scythe = new/obj/effect/da_capo(get_turf(src))
-		scythe.faction = faction
+		scythe = new/obj/effect/da_capo(get_turf(src),faction)
 		scythe.turf_list = turf_line
 		scythe.ScytheMove()
+		scythe.been_hit += src
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	MoveToMimicry()
 
@@ -599,7 +633,7 @@
 	walk_to(src, 0)
 	mimicry_rush = TRUE
 	color = COLOR_RED
-	move_to_delay = 1
+	move_to_delay = 0.7
 	var/blurb_text = "Let’s do this, partner"
 	INVOKE_ASYNC(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 2 SECONDS, blurb_text, 1 SECONDS, "black", "red", "left", "CENTER-6,BOTTOM+2")
 	if(turf_target)
@@ -640,13 +674,16 @@
 	pull_force = INFINITY
 	generic_canpass = FALSE
 	movement_type = PHASING | FLYING
-	var/list/faction = list("hostile")
+	var/list/faction = list("red mist")
 	layer = POINT_LAYER	//We want this HIGH. SUPER HIGH. We want it so that you can absolutely, guaranteed, see exactly what is about to hit you.
 	var/list/turf_list = list()
 	var/slash_damage = 300
 	var/list/been_hit = list()
-/obj/effect/da_capo/Initialize()
+
+/obj/effect/da_capo/New(loc, ...)
 	. = ..()
+	if(args[2])
+		faction = args[2]
 
 /obj/effect/da_capo/proc/ScytheMove()
 	icon_state = "red_mist_da_capo_moving"
@@ -658,7 +695,9 @@
 		forceMove(T)
 		playsound(src,'ModularTegustation/Tegusounds/claw/move.ogg', 50, 1)
 		for(var/mob/living/L in view(1, src))
-			if(faction_check(faction, L.faction, FALSE) || L in been_hit)
+			if(faction_check(faction, L.faction,TRUE))
+				continue
+			if(L in been_hit)
 				continue
 			L.apply_damage(slash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 			been_hit += L
@@ -670,3 +709,80 @@
 		if(T != turf_list[turf_list.len]) // Not the last turf
 			sleep(0.5)
 	icon_state = initial(icon_state)
+
+/mob/living/simple_animal/hostile/megafauna/red_mist/proc/Smile_Slam()
+	can_act = FALSE
+	for(var/turf/T in view(smile_rapid_range, src))
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(1.5 SECONDS)
+	playsound(get_turf(src), 'sound/weapons/ego/hammer.ogg', 100, 20)
+	for(var/turf/T2 in view(smile_rapid_range, src))
+		new /obj/effect/temp_visual/small_smoke/halfsecond(T2)
+	for(var/mob/living/carbon/human/H in livinginview(smile_rapid_range, src))
+		H.add_movespeed_modifier(/datum/movespeed_modifier/red_misted)
+		addtimer(CALLBACK(H, TYPE_PROC_REF(/mob, remove_movespeed_modifier), /datum/movespeed_modifier/red_misted), 5 SECONDS, TIMER_UNIQUE | TIMER_OVERRIDE)
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	playsound(get_turf(src), 'sound/abnormalities/mountain/slam.ogg', 100, 20)
+	for(var/turf/T3 in view(smile_rapid_range, src))
+		var/obj/effect/temp_visual/smash_effect/S = new(T3)
+		S.color = COLOR_VIOLET
+	for(var/mob/living/L in livinginview(smile_rapid_range, src))
+		if(faction_check_mob(L))
+			continue
+		L.apply_damage(smile_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	for(var/i = 1 to 5)
+		for(var/mob/living/L in livinginview(smile_rapid_range, src))
+			if(faction_check_mob(L))
+				continue
+			new /obj/effect/temp_visual/revenant(get_turf(L))
+			L.apply_damage(smile_rapid_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		SLEEP_CHECK_DEATH(6.25)
+	SLEEP_CHECK_DEATH(4 SECONDS)
+	can_act = TRUE
+
+/datum/movespeed_modifier/red_misted
+	variable = TRUE
+	multiplicative_slowdown = 2
+
+/mob/living/simple_animal/hostile/megafauna/red_mist/proc/Justita_Slash()
+	can_act = FALSE
+	been_hit = list()
+	for(var/turf/T in view(justitia_aoe_range, src))
+		new /obj/effect/temp_visual/cult/sparks(T)
+	var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+	var/turf/turf_dir = get_step(get_turf(src), dir_to_target)
+	var/turf/end_turf = get_ranged_target_turf_direct(src, turf_dir, justitia_range, 0)
+	var/list/turf_line = getline(src,end_turf)
+	for(var/turf/T in turf_line)
+		new /obj/effect/temp_visual/cult/sparks(T)
+	SLEEP_CHECK_DEATH(1.2 SECONDS)
+	playsound(get_turf(src), 'sound/weapons/ego/justitia1.ogg', 100, 20)
+	playsound(get_turf(src), 'sound/weapons/ego/justitia4.ogg', 100, 20)
+	for(var/turf/T2 in view(justitia_aoe_range, src))
+		if(!locate(/obj/effect/temp_visual/smash_effect) in T2)
+			var/obj/effect/temp_visual/smash_effect/S = new(T2)
+			S.color = COLOR_CYAN
+		var/list/new_hits = HurtInTurf(T2, been_hit, justitia_aoe_damage, PALE_DAMAGE, hurt_mechs = TRUE) - been_hit
+		been_hit += new_hits
+		for(var/mob/living/LL in new_hits)
+			new /obj/effect/temp_visual/kinetic_blast(get_turf(LL))
+			if(LL.stat >= HARD_CRIT)
+				LL.gib()
+	for(var/turf/T3 in turf_line)
+		if(!istype(T3))
+			break
+		if(T3.density)
+			break
+		for(var/turf/T4 in view(1, T3))
+			var/obj/effect/temp_visual/smash_effect/S = new(T4)
+			S.color = COLOR_CYAN
+			var/list/new_hits = HurtInTurf(T4, been_hit, justitia_aoe_damage, PALE_DAMAGE, hurt_mechs = TRUE) - been_hit
+			been_hit += new_hits
+			for(var/mob/living/LL in new_hits)
+				new /obj/effect/temp_visual/kinetic_blast(get_turf(LL))
+				if(LL.stat >= HARD_CRIT)
+					LL.gib()
+		SLEEP_CHECK_DEATH(0.5)
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	can_act = TRUE
