@@ -807,7 +807,7 @@
 		for(var/mob/living/L in view(1, src))
 			if(faction_check(L.faction, src.faction))
 				continue
-			if(!L in been_hit)
+			if(!(L in been_hit))
 				L.apply_damage(slash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
 				been_hit += L
 				if(ishuman(L))
@@ -920,7 +920,7 @@
 			for(var/mob/living/L in T2)
 				if(faction_check(L.faction, src.faction))
 					continue
-				if(L in src.been_hit)
+				if(!(L in been_hit))
 					continue
 				L.apply_damage(slash_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 				src.been_hit += L
