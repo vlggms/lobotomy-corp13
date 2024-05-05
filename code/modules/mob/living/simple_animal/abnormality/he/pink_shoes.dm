@@ -43,7 +43,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	var/mob/living/simple_animal/hostile/grown_strong/special_possessee
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
-	var/list/dense_ribbon_list
+	var/list/dense_ribbon_list = list()
+	var/static/list/ribbon_list = list()
 
 //*** Simple Mob Procs ***//
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/Life()
@@ -66,6 +67,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		possessee = null
 	for(var/mob/living/carbon/human/H in GLOB.mob_living_list)//stops possessing people, prevents runtimes. Panicked players are ghosted so use mob_living_list
 		UnPossess(H)
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
@@ -115,6 +117,29 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		user.adjustSanityLoss(500)
 		user.visible_message(span_userdanger("[user] blankly stumbles towards the Pink Shoes. Now [p_theyre()] reaching out their hand to take the shoes."), span_userdanger("What lovely shoes..."))
 
+/mob/living/simple_animal/hostile/abnormality/pink_shoes/Destroy()
+	CutDenseRibbons()
+	CutRibbons()
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/CutDenseRibbons()
+	for(var/obj/structure/spreading/pink_ribbon/dense/R in dense_ribbon_list)
+		R.can_expand = FALSE
+		var/del_time = rand(4,10)
+		animate(R, alpha = 0, time = del_time SECONDS)
+		QDEL_IN(R, del_time SECONDS)
+	dense_ribbon_list.Cut()
+	return
+
+/mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/CutRibbons()
+	for(var/obj/structure/spreading/pink_ribbon/R in ribbon_list)
+		R.can_expand = FALSE
+		var/del_time = rand(4,10)
+		animate(R, alpha = 0, time = del_time SECONDS)
+		QDEL_IN(R, del_time SECONDS)
+	ribbon_list.Cut()
+	return
+
 //***Breach Mechanics***//
 	//normal BreachEffect stuff
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/BreachEffect(mob/living/carbon/human/user)
@@ -129,7 +154,8 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		var/turf/T = pick(GLOB.xeno_spawn)
 		forceMove(T)
 		for(var/turf/open/T2 in oview(1, T))
-			new /obj/structure/spreading/pink_ribbon/dense(get_turf(T2))
+			var/obj/structure/spreading/pink_ribbon/dense/R = new(get_turf(T2))
+			dense_ribbon_list += R
 		for(var/turf/open/T3 in view(2, T))
 			if(!isturf(T3) || isspaceturf(T3))
 				continue
@@ -170,6 +196,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		cut_overlay(mutable_appearance('icons/effects/32x64.dmi', "panicked", -ABOVE_MOB_LAYER))
 		BreachEffect(user)
 		toggle_ai(AI_ON) //snipped from BreachEffect. Shouldn't apply to AssimilateAnimal
+		CutDenseRibbons()
 		return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/pink_shoes/proc/AssimilateAnimal(mob/living/simple_animal/hostile/user)
@@ -196,7 +223,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	src.forceMove(user)
 	playsound(src, 'sound/abnormalities/pinkshoes/Pinkshoes_Breach.ogg', 50, 1)
 	say("Breacheffect starting with arguments [user] compatible!")//REMOVE THIS
-	//remove dense ribbons here
+	CutDenseRibbons()
 
 /obj/effect/ribbon_mask
 	name = "Pink Ribbons"
@@ -243,13 +270,13 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		if(1)
 			return
 		if(2)
-			to_chat(owner, "<span class='userdanger'>Put me on.</span>")
+			to_chat(owner, span_userdanger("Put me on."))
 			ApplyBuff()
 		if(3)
-			to_chat(owner, "<span class='userdanger'>I'll carry you wherever you wish to go..</span>")
+			to_chat(owner, span_userdanger("I'll carry you wherever you wish to go.."))
 			ApplyBuff()
 		if(4)
-			to_chat(owner, "<span class='userdanger'>For some reason, you're struggling to decide what to do....</span>")
+			to_chat(owner, span_userdanger("For some reason, you're struggling to decide what to do...."))
 			ApplyBuff()
 		if(5)
 			duration += 30 SECONDS//die
@@ -275,7 +302,6 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	to_chat(owner, "A voice travels between the fluttering ribbons. \
 	What is your desire?")
 	if(status_holder.sanity_lost)
-		owner.say("Desirous is calling on_remove!")
 		qdel(src)
 		return
 	return ..()
@@ -284,24 +310,23 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/H = owner
-	if(ishuman(owner))
-		if(owner.stat == DEAD)//dead players turn into zombies
-			Convert(owner)
-			return
-		H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -prud_mod)
-		H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -temp_mod)
-		if(H.sanity_lost)//if you panic from urge. Caused runtimes without the istype check for some reason
-			H.apply_status_effect(/datum/status_effect/panicked_type/desirous)//this causes a runtime!!!
-			QDEL_NULL(owner.ai_controller)
-			H.ai_controller = /datum/ai_controller/insane/pink_possess
-			H.InitializeAIController()
-			H.add_overlay(desire_icon)
-			H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_desirous", -ABOVE_MOB_LAYER))//TODO: remove the overlay on un-panic
+	if(owner.stat == DEAD)//dead players turn into zombies
+		Convert(owner)
+		return
+	H.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -prud_mod)
+	H.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -temp_mod)
+	if(H.sanity_lost)//if you panic from urge. Caused runtimes without the istype check for some reason
+		H.apply_status_effect(/datum/status_effect/panicked_type/desirous)//this causes a runtime!!!
+		QDEL_NULL(owner.ai_controller)
+		H.ai_controller = /datum/ai_controller/insane/pink_possess
+		H.InitializeAIController()
+		H.add_overlay(desire_icon)
+		H.add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "pinkshoes_desirous", -ABOVE_MOB_LAYER))//TODO: remove the overlay on un-panic
 	return ..()
 
 /datum/status_effect/stacking/urge/tick()
 	..()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/carbon/human/H = owner//owner is null somehow
 	if(!ishuman(owner))
 		owner.adjustBruteLoss(stacks * -1)//heals abnormalities
 		return
@@ -333,7 +358,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 				"It feels so good...",
 				"They're in the way...",
 				"I'm getting so close...",
-				"I can't stop..."
+				"I can't stop...",
 				)
 
 /datum/ai_controller/insane/pink_possess/SelectBehaviors(delta_time)//Selects pink shoes as the target
@@ -481,12 +506,16 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	last_expand = 0 //last world.time this weed expanded
 	expand_cooldown = 1.5 SECONDS
 	can_expand = TRUE
+	var/static/mob/living/simple_animal/hostile/abnormality/pink_shoes/connected_abno
 	var/list/static/ignore_typecache
 	var/list/static/atom_remove_condition
 
 /obj/structure/spreading/pink_ribbon/Initialize()//edit of snow white's vines
 	. = ..()
-	GLOB.ribbon_list += src
+	if(!connected_abno)
+		connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/pink_shoes) in GLOB.abnormality_mob_list
+	if(connected_abno)
+		connected_abno.ribbon_list += src
 	if(!atom_remove_condition)
 		atom_remove_condition = typecacheof(list(
 			/obj/projectile/ego_bullet/ego_match,
@@ -526,6 +555,11 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	if(prob(5))
 		VineEffect(AM)
 
+/obj/structure/spreading/pink_ribbon/Destroy()
+	if(connected_abno)
+		connected_abno.ribbon_list -= src
+	return ..()
+
 /obj/structure/spreading/pink_ribbon/proc/VineEffect(mob/living/L)
 	if(is_type_in_typecache(L, ignore_typecache))
 		return
@@ -548,18 +582,18 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	if(buckled_mob)
 		var/mob/living/M = buckled_mob
 		if(M != user)
-			M.visible_message("<span class='notice'>[user] tries to pull [M] free of the [src]!</span>",\
-				"<span class='notice'>[user] is trying to untie the [src] around you!</span>")
+			M.visible_message(span_notice("[user] tries to pull [M] free of the [src]!"),\
+				span_notice("[user] is trying to untie the [src] around you!"))
 			if(!do_after(user, 20, target = src))
 				if(M?.buckled)
-					M.visible_message("<span class='notice'>[user] fails to free [M] from the [src]!</span>",\
-					"<span class='notice'>[user] fails to pull you away from the [src].</span>")
+					M.visible_message(span_notice("[user] fails to free [M] from the [src]!"),\
+					span_notice("[user] fails to pull you away from the [src]."))
 				return
 		else
-			M.visible_message("<span class='warning'>[M] yanks and tears at the [src]!</span>",\
-			"<span class='notice'>You try to escape the [src]!</span>")
+			M.visible_message(span_notice("[M] yanks and tears at the [src]!"),\
+			span_notice("You try to escape the [src]!"))
 			if(!do_after(M, 10, target = src))
-				to_chat(M, "Put me on.</span>")
+				to_chat(M, "Put me on.")
 				return
 		if(!M.buckled)
 			return
@@ -578,7 +612,7 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		target.apply_status_effect(STATUS_EFFECT_URGE)
 		return
 	Apply_Urge(target)
-	to_chat(target, "<span class='danger'>The ribbons [pick("wind", "tangle", "tighten")] around you!</span>")
+	to_chat(target, span_danger("The ribbons [pick("wind", "tangle", "tighten")] around you!"))
 	if(Grab_Mob(target))
 		return
 	buckle_mob(target)
@@ -588,15 +622,15 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 		return
 	target.forceMove(get_turf(src))
 	buckle_mob(target)
-	src.visible_message("<span class='danger'>The [src] lash out and drag \the [target] in!</span>")
+	src.visible_message(span_danger("The [src] lash out and drag \the [target] in!"))
 
 /obj/structure/spreading/pink_ribbon/proc/Apply_Urge(mob/living/L)
 	var/datum/status_effect/stacking/urge/G = L.has_status_effect(/datum/status_effect/stacking/urge)
 	if(!G)//applying the buff for the first time (it lasts for one minute)
-		to_chat(L, "<span class='warning'>The [name] tighten around you.</span>")
+		to_chat(L, span_warning("The [name] tighten around you."))
 		L.apply_status_effect(STATUS_EFFECT_URGE)
 	else//if the employee already has the buff
-		to_chat(L, "<span class='warning'>The [name] around your body tighten.</span>")
+		to_chat(L, span_warning("The [name] around your body tighten."))
 		G.add_stacks(1)
 		G.refresh()
 
@@ -607,15 +641,6 @@ GLOBAL_LIST_EMPTY(ribbon_list)
 	icon_state = "pinkribbons3"
 	max_integrity = 1000//They're harder to break
 	can_expand = FALSE
-
-/obj/structure/spreading/pink_ribbon/dense/Initialize()
-	for (var/turf/T in view(2, src))
-		if(!isturf(loc) || isspaceturf(T))
-			return
-		if(locate(/obj/structure/spreading/pink_ribbon) in get_turf(T))
-			return
-		new /obj/structure/spreading/pink_ribbon(T)
-	..()
 
 //*** Cushion***//
 /obj/structure/pinkshoes_cushion
