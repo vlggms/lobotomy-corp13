@@ -1,12 +1,3 @@
-/obj/item/clothing/suit/armor/ego_gear/debug_armor
-	name = "paradise lost"
-	icon = 'icons/obj/clothing/ego_gear/abnormality/aleph.dmi'
-	worn_icon = 'icons/mob/clothing/ego_gear/abnormality/aleph.dmi'
-	desc = "\"My loved ones, do not worry; I have heard your prayers. \
-	Have you not yet realized that pain is but a speck to a determined mind?\""
-	icon_state = "paradise"
-	armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100) // 280
-
 // It is effectively an ordeal in how it works
 /datum/suppression/disciplinary
 	name = DISCIPLINARY_CORE_SUPPRESSION
