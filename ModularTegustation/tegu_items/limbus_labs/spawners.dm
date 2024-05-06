@@ -15,14 +15,15 @@ GLOBAL_LIST_INIT(low_security, list(
 	/mob/living/simple_animal/hostile/abnormality/eris,
 	/mob/living/simple_animal/hostile/abnormality/schadenfreude,
 	/mob/living/simple_animal/hostile/abnormality/galaxy_child,
-	/mob/living/simple_animal/hostile/abnormality/woodsman
+	/mob/living/simple_animal/hostile/abnormality/woodsman,
+	/mob/living/simple_animal/hostile/abnormality/steam
+
 ))
 
 GLOBAL_LIST_INIT(high_security, list(
 	/mob/living/simple_animal/hostile/abnormality/clouded_monk,
 	/mob/living/simple_animal/hostile/abnormality/clown,
 	/mob/living/simple_animal/hostile/abnormality/nothing_there,
-	/mob/living/simple_animal/hostile/abnormality/steam,
 	/mob/living/simple_animal/hostile/abnormality/mountain,
 	/mob/living/simple_animal/hostile/abnormality/despair_knight,
 	/mob/living/simple_animal/hostile/abnormality/red_hood,

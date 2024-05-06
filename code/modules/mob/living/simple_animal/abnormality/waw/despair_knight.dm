@@ -63,19 +63,17 @@
 
 /datum/action/innate/change_icon_kod
 	name = "Toggle Icon"
-	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+	desc = "Toggle your icon between breached and friendly. (Works only for Limbus Company Labratories)"
 
 /datum/action/innate/change_icon_kod/Activate()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		owner.icon = 'ModularTegustation/Teguicons/48x48.dmi'
-		owner.icon_state = "despair"
+		owner.icon_state = "despair_friendly"
 		active = 1
 
 /datum/action/innate/change_icon_kod/Deactivate()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
-		owner.icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		owner.icon_state = "despair_breach"
 		active = 0
 
