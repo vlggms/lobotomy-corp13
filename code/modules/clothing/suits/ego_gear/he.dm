@@ -12,7 +12,7 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	name = "grinder MK4"
 	desc = "A sleek coat covered with bloodstains of an unknown origin."
 	icon_state = "grinder"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = -20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 70
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -10, BLACK_DAMAGE = 20, PALE_DAMAGE = 20) // 70
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
