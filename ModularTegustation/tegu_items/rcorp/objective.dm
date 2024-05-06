@@ -11,6 +11,8 @@ Abnormality Supreme Victory - Win against reinforcements
 */
 
 GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
+GLOBAL_VAR_INIT(rcorp_objective_location, null)
+GLOBAL_VAR_INIT(rcorp_abno_objective_location, null)
 //0 is neutral, 1 favors Rcorp and 2 favors abnos
 
 /obj/effect/landmark/objectivespawn
@@ -20,6 +22,7 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	icon_state = "city_of_cogs"
 
 /obj/effect/landmark/objectivespawn/Initialize()
+	GLOB.rcorp_objective_location = src
 	switch(GLOB.rcorp_objective)
 		if("button")
 			new /obj/structure/bough(get_turf(src))
@@ -29,7 +32,11 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 		if("arbiter")
 			new /obj/structure/bough(get_turf(src))
 			addtimer(CALLBACK(src, PROC_REF(arbspawn)), 20 MINUTES)
-	..()
+		if("payload_abno")
+			new /mob/payload(get_turf(src), "abno")
+		if("payload_rcorp")
+			new /obj/effect/payload_destination(get_turf(src))
+	return ..()
 
 /obj/effect/landmark/objectivespawn/proc/reinforce()
 	minor_announce("R-Corp reinforcements are on the way. Hang on tight, commander." , "R-Corp Intelligence Office")
@@ -45,6 +52,30 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	new /obj/effect/mob_spawn/human/arbiter/rcorp(get_turf(src))
 	minor_announce("DANGER - HOSTILE ARBITER IN THE AREA. NEUTRALIZE IMMEDIATELY." , "R-Corp Intelligence Office")
 	GLOB.rcorp_wincondition = 2
+
+/obj/effect/landmark/abno_objectivespawn
+	name = "abno objective spawner"
+	desc = "It spawns the abnormality objective. Notify a coder. Thanks!"
+	icon = 'icons/effects/landmarks_static.dmi'
+	icon_state = "city_of_cogs"
+
+/obj/effect/landmark/abno_objectivespawn/Initialize()
+	GLOB.rcorp_abno_objective_location = src
+	switch(GLOB.rcorp_objective)
+		if("payload_rcorp")
+			new /mob/payload(get_turf(src), "rcorp")
+		if("payload_abno")
+			new /obj/effect/payload_destination(get_turf(src))
+	return ..()
+
+/obj/effect/payload_destination
+	name = "payload destination"
+	desc = "Payload really wants to be here"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "launchpad_pull"
+	anchored = TRUE
+	layer = ABOVE_MOB_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 //Golden Bough Objective
 /obj/structure/bough
@@ -194,8 +225,12 @@ GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/rcorpcomms/Initialize()
-	..()
-	addtimer(CALLBACK(src, PROC_REF(vulnerable)), 15 MINUTES)
+	. = ..()
+	switch(GLOB.rcorp_objective)
+		if("payload_rcorp", "payload_abno")
+			return
+		else
+			addtimer(CALLBACK(src, PROC_REF(vulnerable)), 15 MINUTES)
 
 /obj/structure/rcorpcomms/proc/vulnerable()
 	minor_announce("Warning: The communications shields are now disabled. Communications are now vulnerable" , "R-Corporation Command Update")
