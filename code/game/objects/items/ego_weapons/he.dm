@@ -4,7 +4,7 @@
 	Its operation is simple and straightforward, but that doesn't necessarily make it easy to wield."
 	special = "This weapon pierces to hit everything on the target's tile."
 	icon_state = "grinder"
-	force = 30
+	force = 26
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
 	attack_verb_simple = list("slice", "saw", "rip")
@@ -22,7 +22,7 @@
 	var/justicemod = 1 + userjust/100
 	force*=justicemod
 	user.HurtInTurf(T, list(target), (force*force_multiplier), RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
-	force = 30
+	force = 26
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
 	return 40
