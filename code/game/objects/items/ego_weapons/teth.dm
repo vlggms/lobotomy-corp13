@@ -366,7 +366,7 @@
 /obj/effect/temp_visual/lanterntrap/proc/burst()
 	var/turf/T = get_turf(src)
 	playsound(T, 'sound/effects/ordeals/amber/midnight_out.ogg', 40,TRUE)
-	for(var/turf/open/T2 in range(range, src))
+	for(var/turf/open/T2 in RANGE_TURFS(range, src))
 		new /obj/effect/temp_visual/yellowsmoke(T2)
 		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			to_chat(L, span_userdanger("[src] bites you!"))
@@ -374,8 +374,8 @@
 				creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
 	if(mine_mode == LANTERN_MODE_REMOTE)//So that you can't just place one automatic mine and 5 manual ones around it
 		rupturing = TRUE
-		for(var/obj/effect/temp_visual/lanterntrap/field in range((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
-			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident.
+		for(var/obj/effect/temp_visual/lanterntrap/field in orange((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
+			if(field.mine_mode == mine_mode && !field.rupturing)//So that it can't trigger automatic mines by accident.
 				field.burst()
 		qdel(src)
 	else
