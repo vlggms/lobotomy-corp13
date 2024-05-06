@@ -499,6 +499,7 @@ GLOBAL_LIST_INIT(blacklisted_builds, list(
 		UNSETEMPTY(movingmob.client_mobs_in_contents)
 		movingmob = null
 	active_mousedown_item = null
+	SSping.currentrun -= src
 	QDEL_NULL(view_size)
 	QDEL_NULL(void)
 	QDEL_NULL(tooltips)
