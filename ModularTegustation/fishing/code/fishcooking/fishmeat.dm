@@ -35,6 +35,7 @@
 	icon_state = "rotten_fish"
 
 /obj/item/food/freshfish/slime
+	name = "fishy slime"
 	icon_state = "slime"
 
 /obj/item/food/freshfish/fugu
