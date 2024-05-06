@@ -2,6 +2,12 @@
  * TEXT BASED ADVENTURES
  * Adventures that are mostly predefined paths.
  * This was difficult to finalize since i havent made a text based adventure before.
+ * Special defines such as button macros are in the code/_DEFINES/~lobotomy_defines.dm
+ *
+ * The way i made this system is unusual to say the least. Its a stand alone datum that
+ * is vaguely connected to the console that created it. While this does make the program
+ * portable it also makes it so that when the console is destroyed there is just a datum
+ * floating around in the code. Unsure how bad this is. -IP
  */
 
 /datum/adventure_layout
@@ -57,6 +63,21 @@
 		"<b>Recorded Rat</b>:A low life from the backstreets. Their face is disfigured beyond recognition, all you can make out are their eyes.<br>",
 		"<b>Digital Reflection</b>:Its you! Well it looks LIKE you.<br>",
 	)
+	/*
+	* Exchange shop for digital coins. The only other use for coins is during events
+	* where you want to increase your chance of success in a event or have a unique
+	* interaction. For defeating enemeies the calculation for coins rewarded is
+	* enemy_coin = round((sides of damage die * amount of damage die)/5)
+	* this means that enemies that deal 1d5 damage will grant 1 coin. theoretically
+	* beelining enemy encounters will result in about 5 coins before the user is
+	* defeated. -IP
+	*/
+	var/list/exchange_shop_list = list(
+		new /datum/data/extraction_cargo("SNAP POP	",	/obj/item/toy/snappop,			10) = 1,
+		new /datum/data/extraction_cargo("CAT TOY	",	/obj/item/toy/cattoy,			15) = 1,
+		new /datum/data/extraction_cargo("CHILDRENS TOY",/obj/item/toy/prize/ripley,	20) = 1,
+		new /datum/data/extraction_cargo("HOURGLASS",	/obj/item/hourglass,			25) = 1,
+	)
 
 /datum/adventure_layout/New(set_debug_menu = FALSE)
 	. = ..()
@@ -98,7 +119,7 @@
 			|ENVY:[virtual_stats[ENVY_STAT]]|<br>\
 			</tt>"
 		//From highest menu define to lowest. -IP
-		for(var/mode_option = NORMAL_TEXT_DISPLAY to ADVENTURE_TEXT_DISPLAY)
+		for(var/mode_option = NORMAL_TEXT_DISPLAY to EXCHANGE_TEXT_DISPLAY)
 			. += "<A href='byond://?src=[REF(caller)];set_display=[mode_option]'>[mode_option == display_mode ? "<b><u>[nameMenu(mode_option)]</u></b>" : "[nameMenu(mode_option)]"]</A>"
 		if(debug_menu)
 			. += "<A href='byond://?src=[REF(caller)];set_display=[DEBUG_TEXT_DISPLAY]'>[display_mode == DEBUG_TEXT_DISPLAY ? "<b><u>[nameMenu(DEBUG_TEXT_DISPLAY)]</u></b>" : "[nameMenu(DEBUG_TEXT_DISPLAY)]"]</A>"
@@ -158,9 +179,18 @@
 		if(ADVENTURE_TEXT_DISPLAY)
 			. += "[TravelUI(interfacer)]"
 
+		if(EXCHANGE_TEXT_DISPLAY)
+			. += "COIN EXCHANGE <br> \
+				<tt>--------------------| </tt><br>\
+				PHYSICAL_MERCHANDISE<br>"
+			//Code taken from fish_market.dm
+			for(var/datum/data/extraction_cargo/A in exchange_shop_list)
+				. += " <A href='byond://?src=[REF(interfacer)];purchase=[REF(A)]'>[A.equipment_name]([A.cost] Points)</A><br>"
+			. += "<tt>--------------------| </tt><br>"
+
 /datum/adventure_layout/proc/TravelUI(obj/machinery/call_machine)
 	switch(travel_mode)
-		if(ADVENTURE_MODE_BATTLE to ADVENTURE_MODE_EVENT_BATTLE)
+		if(ADVENTURE_MODE_BATTLE, ADVENTURE_MODE_EVENT_BATTLE)
 			if(!enemy_desc)
 				GenerateEnemy()
 			. += BattleModeDisplay(call_machine)
@@ -259,7 +289,7 @@
 
 		/*I put || in here and the code got upset so i have to do TO instead
 			Eugh maybe we will fix it later on if adventure mode event battle stops being 3. -IP*/
-		if(ADVENTURE_MODE_BATTLE to ADVENTURE_MODE_EVENT_BATTLE)
+		if(ADVENTURE_MODE_BATTLE, ADVENTURE_MODE_EVENT_BATTLE)
 			BattleModeReact(num)
 
 //Reactions for adventure based on mode.
@@ -291,6 +321,9 @@
 					temp_text += "<br>YOU RUN AWAY FROM YOUR OPPONENT<br>5 DAMAGE HEALED<br>EVENT PROGRESS -5<br>"
 					AdjustHP(5)
 					AdjustProgress(-5)
+					paths_to_tread.Cut()
+					enemy_desc = null
+					travel_mode = ADVENTURE_MODE_TRAVEL
 				else
 					DoBattle(0)
 					temp_text += "<br>YOU FAIL TO ESCAPE THE ENEMY<br>"
@@ -400,28 +433,30 @@
 //for each catagory please place the number its defined as -IP
 /datum/adventure_layout/proc/nameMenu(cat)
 	switch(cat)
-		if(1)
+		if(DEBUG_TEXT_DISPLAY)
 			return "CHOOSE EVENT"
-		if(2)
+		if(NORMAL_TEXT_DISPLAY)
 			return "MAIN MENU"
-		if(3)
+		if(ADVENTURE_TEXT_DISPLAY)
 			return "ADVENTURE"
+		if(EXCHANGE_TEXT_DISPLAY)
+			return "COIN SHOP"
 
 /datum/adventure_layout/proc/nameStat(stat_named)
 	switch(stat_named)
-		if(1)
+		if(WRATH_STAT)
 			return "WRATH"
-		if(2)
+		if(LUST_STAT)
 			return "LUST"
-		if(3)
+		if(SLOTH_STAT)
 			return "SLOTH"
-		if(4)
+		if(GLUTT_STAT)
 			return "GLUTT"
-		if(5)
+		if(GLOOM_STAT)
 			return "GLOOM"
-		if(6)
+		if(PRIDE_STAT)
 			return "PRIDE"
-		if(7)
+		if(ENVY_STAT)
 			return "ENVY"
 
 //Recover Health based on time. I may scrap this because the thought of mobile game stamina makes me feel sick -IP

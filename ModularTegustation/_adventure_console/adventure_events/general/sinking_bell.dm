@@ -79,4 +79,4 @@
 		if(8)
 			BUTTON_FORMAT(9, "REST", M)
 			return
-	. = ..()
+	return ..()

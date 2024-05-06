@@ -8,10 +8,43 @@ Kirie*/
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 
+
+//City weapons have extremely high requirements. These people will be able to use them a little earlier.
+/obj/item/ego_weapon/city/examine(mob/user)
+	. = ..()
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			. += span_notice("Due to your abilities, you get a +20 to your stats when equipping this weapon.")
+
+/obj/item/ego_weapon/city/CanUseEgo(mob/living/user)
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			equip_bonus = 20
+		else
+			equip_bonus = 0
+	. = ..()
+
+
+
 /obj/item/gun/ego_gun/city
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
+
+/obj/item/gun/ego_gun/city/examine(mob/user)
+	. = ..()
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			. += span_notice("Due to your abilities, you get a +20 to your stats when equipping this weapon.")
+
+/obj/item/gun/ego_gun/city/CanUseEgo(mob/living/user)
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			equip_bonus = 20
+		else
+			equip_bonus = 0
+	. = ..()
+
 
 /*This place has different balance, from grade 1 to 8
 Grade 8 - 18 DPS 			No requirements; all garbage

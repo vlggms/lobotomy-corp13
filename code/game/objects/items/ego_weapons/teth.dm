@@ -58,23 +58,14 @@
 /obj/item/ego_weapon/eyes
 	name = "red eyes"
 	desc = "It is likely able to hear, touch, smell, as well as see. And most importantly, taste."
-	special = "Knocks certain enemies backwards."
 	icon_state = "eyes"
-	force = 35					//Still less DPS, replaces baseball bat
+	force = 35 //Still less DPS, replaces baseball bat
 	attack_speed = 1.6
 	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_LIGHT
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-
-/obj/item/ego_weapon/eyes/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 /obj/item/ego_weapon/mini/wrist
 	name = "wrist cutter"
@@ -373,20 +364,22 @@
 			burst()
 
 /obj/effect/temp_visual/lanterntrap/proc/burst()
-	rupturing = TRUE
 	var/turf/T = get_turf(src)
 	playsound(T, 'sound/effects/ordeals/amber/midnight_out.ogg', 40,TRUE)
 	for(var/turf/open/T2 in range(range, src))
 		new /obj/effect/temp_visual/yellowsmoke(T2)
 		for(var/mob/living/L in creator.HurtInTurf(T2, list(), resonance_damage * damage_multiplier, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
-			to_chat(L, "<span class='userdanger'>[src] bites you!</span>")
+			to_chat(L, span_userdanger("[src] bites you!"))
 			if(creator)
-				creator.visible_message("<span class='danger'>[creator] activates [src] on [L]!</span>","<span class='danger'>You activate [src] on [L]!</span>", null, COMBAT_MESSAGE_RANGE, L)
+				creator.visible_message(span_danger("[creator] activates [src] on [L]!"),span_danger("You activate [src] on [L]!"), null, COMBAT_MESSAGE_RANGE, L)
 	if(mine_mode == LANTERN_MODE_REMOTE)//So that you can't just place one automatic mine and 5 manual ones around it
+		rupturing = TRUE
 		for(var/obj/effect/temp_visual/lanterntrap/field in range((range * 2) + 1, src))//Wierd formula that lets you spread out your mines for a big aoe.
-			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident
+			if(field.mine_mode == mine_mode)//So that it can't trigger automatic mines by accident.
 				field.burst()
-	qdel(src)
+		qdel(src)
+	else
+		qdel(src)
 
 #undef LANTERN_MODE_REMOTE
 #undef LANTERN_MODE_AUTO
@@ -529,23 +522,14 @@
 /obj/item/ego_weapon/sanitizer
 	name = "sanitizer"
 	desc = "It's very shocking."
-	special = "Knocks certain enemies backwards."
 	icon_state = "sanitizer"
-	force = 35					//Still less DPS, replaces baseball bat
+	force = 35 //Still less DPS, replaces baseball bat?
 	attack_speed = 1.6
 	damtype = BLACK_DAMAGE
+	knockback = KNOCKBACK_LIGHT
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 	hitsound = 'sound/weapons/fixer/generic/gen1.ogg'
-
-/obj/item/ego_weapon/sanitizer/attack(mob/living/target, mob/living/user)
-	. = ..()
-	if(!.)
-		return FALSE
-	var/atom/throw_target = get_edge_target_turf(target, user.dir)
-	if(!target.anchored)
-		var/whack_speed = (prob(60) ? 1 : 4)
-		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 /obj/item/ego_weapon/lance/curfew
 	name = "curfew"

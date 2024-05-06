@@ -363,8 +363,8 @@
 	abno_info = list(
 		"After 3 works, KQE-1J-23 solicited a response on its chest terminal.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"Answering 'HELLO' lowered the Qliphoth Counter by one and awarded the employee with a gift.",
-		"Qliphoth counter immediately lowered to 0 if a 'HELLO' response was given again.",
+		"Answering 'HELLO' lowered the Qliphoth Counter by one.",
+		"Qliphoth counter immediately lowered to 0 if the abnormality recognized a gift had already been given.",
 		"Answering 'GOODBYE' slightly lowered success rate of the next work.",
 		"Answering 'GOODBYE' with justice 3 or lower immediately lowered the Qliphoth Counter to 0.",
 		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
@@ -465,9 +465,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/willyouplay
 	abno_code = "T-01-187"
 	abno_info = list(
-		"T-01-187 refused standard work, insisting that the employee play a game of rock paper scissors.",
+		"T-01-187 refused standard work, insisting that the employee play a game of janken.",
+		"T-01-187 seems to prefer scissors work, however on occasion has been shown to use other work types.",
+		"If the employee was the last person to work on T-01-187, the stats gained from work was decreased.",
 		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm.",
-		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats.")
+		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4.")
 
 
 //Highway Devotee
@@ -477,6 +479,20 @@
 	abno_info = list(
 		"When the work result was neutral, the Qliphoth counter lowered.",
 		"When the work result was bad, the Qliphoth counter lowered by 2.")
+
+//Memories of a Better Time
+/obj/item/paper/fluff/info/he/better_memories
+	abno_type = /mob/living/simple_animal/hostile/abnormality/better_memories
+	abno_code = "T-05-195"
+	abno_info = list(
+		"Employees with a Temperance level of less than 3 found a sentimental item in the pile around T-05- before suffering \
+			from the same effect that is applied by T-05-195-1.",
+		"When T-05-195 breached it released T-05-195-1 into the facility.",
+		"T-05-195-1 avoided combat but constantly tried to take a photo of employees using its head",
+		"When a employee had their photo taken they suffered a 15 second reduction to their temperance, prudance, and work success rate due to mental anguish.",
+		"When fleeing from combat T-05-195-1 sought out employees who were in the middle of work.",
+		"Clerk Gamma9 reports that they cant recall what memory T-05-195-1 effect made them remember.",
+		"T-05-195-1 is to be considered a pest and suppressed whenever possible to prevent interference.")
 
 //Steam Transport Machine
 /obj/item/paper/fluff/info/he/steam

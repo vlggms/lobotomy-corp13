@@ -4,15 +4,16 @@
 	desc = "A small girl holding a teddy bear."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "willyouplay"
+	portrait = "will_you_play"
 	maxHealth = 600
 	health = 600
 	threat_level = HE_LEVEL
 	work_chances = list(
-		"Rock" = 80,
-		"Paper" = 80,
-		"Scissors" = 80,
+		"Rock" = 60,
+		"Paper" = 60,
+		"Scissors" = 60,
 	)
-	work_damage_amount = 8
+	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 	max_boxes = 15
 
@@ -24,14 +25,19 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LIMBUS
 	var/janken = 0			//0 for scissors, 1 for Rock, 2 for paper
 	var/player = 0			//0 for scissors, 1 for Rock, 2 for paper
+	var/last_worked	//You get less if you just worked her.
 
 //Randomizes work rate
 /mob/living/simple_animal/hostile/abnormality/willyouplay/AttemptWork(mob/living/carbon/human/user, work_type)
-	if(prob(50))
+	if(prob(70))
 		janken = 0
 	else
 		janken = pick(1,2)
-	say("I'll go fer scissors. How 'bout you?")
+	if(user == last_worked)
+		say("You again? Fine. We'll play again.")
+	else
+		say("I'll go fer scissors. How 'bout you?")
+	last_worked = user
 	return TRUE
 
 
@@ -93,30 +99,29 @@
 			return
 
 /mob/living/simple_animal/hostile/abnormality/willyouplay/proc/Lose(mob/living/carbon/human/user, work_type)
+	var/list/attribute_list = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
+	var/statgain
+	if(user == last_worked)
+		statgain = -2
+
 	if(janken == 0)
+		statgain += 4
 		SLEEP_CHECK_DEATH(20)
 		say("You win. Scissors are only useful when cloth's around")
-		if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
-			return
-		if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 80)
-			return
-		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
-			return
-		if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 80)
-			return
+		for(var/A in attribute_list)
+			var/processing = get_attribute_level(user, A)
+			if(processing > 80)
+				return
+			user.adjust_attribute_level(A, statgain)
 
-		user.adjust_all_attribute_levels(2)
 
-	else
+	else	//Big Air bonus for picking the funny rare one
+		statgain += 7
 		say("You win, now get outta here.")
-		if(get_attribute_level(user, FORTITUDE_ATTRIBUTE) < 80)
-			return
-		if(get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 80)
-			return
-		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 80)
-			return
-		if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 80)
-			return
+		for(var/A in attribute_list)
+			var/processing = get_attribute_level(user, A)
+			if(processing > 80)
+				return
+			user.adjust_attribute_level(A, statgain)
 
-		user.adjust_all_attribute_levels(3)
 

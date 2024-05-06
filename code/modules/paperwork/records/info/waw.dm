@@ -325,9 +325,10 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/contract
 	abno_code = "C-03-140"
 	abno_info = list(
-		"When the work result was Good, C-03-140 signed a contract with the employee, raising the respective stats slightly, but reducing their workchance on subsequent works.",
-		"When the work result was Normal, the Qliphoth Counter lowered with a normal probability.",
+		"When the work result was Good or Normal, C-03-140 signed a contract with the employee, raising the respective stats slightly, but reducing their workchance on subsequent works.",
+		"When the work result was Normal, the Qliphoth Counter lowered with a low probability.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
+		"While working, if the employee signed a contract, all damage was reduced.",
 		"When the Qliphoth counter reached 0, C-03-140 signed a contract with a shadowy figure, and then let them out in the facility.")
 
 //Nosferatu

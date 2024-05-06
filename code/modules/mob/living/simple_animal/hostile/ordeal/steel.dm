@@ -26,7 +26,6 @@
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 1)
-	var/leader
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
 	..()
@@ -51,8 +50,6 @@
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/LoseAggro()
 	. = ..()
 	a_intent_change(INTENT_HELP)
-	if(leader && stat != DEAD)
-		Goto(leader,move_to_delay,1)
 
 //More Mutated Subtype of Dawns, they are fast and hit faster.
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon
@@ -62,8 +59,8 @@
 	icon_living = "gcorp5"
 	icon_dead = "gcorp_corpse2"
 	death_message = "salutes weakly before falling."
-	maxHealth = 750
-	health = 750
+	maxHealth = 1000	//Effectively have 750 HP
+	health = 1000		//Effectively have 750 HP
 	rapid_melee = 2
 	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.8)
 	attack_verb_continuous = "slashes"
@@ -73,7 +70,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/MeleeAction()
 	health+=10
-	if(health <= maxHealth*0.15 && stat != DEAD && prob(75))
+	if(health <= maxHealth*0.25 && stat != DEAD && prob(75))
 		walk_to(src, 0)
 		say("FOR G CORP!!!")
 		animate(src, transform = matrix()*1.8, color = "#FF0000", time = 15)
@@ -86,8 +83,25 @@
 	visible_message(span_danger("[src] suddenly explodes!"))
 	new /obj/effect/temp_visual/explosion(get_turf(src))
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_boom.ogg', 60, TRUE)
-	for(var/mob/living/L in view(2, src))
+	for(var/mob/living/L in view(3, src))
 		L.apply_damage(60, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+
+	//Buff allies, all of these buffs only activate once.
+	//Buff the grunts around you when you die
+	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/Y in view(7, src))
+		Y.say("FOR G CORP!!!")
+
+		//increase damage
+		Y.melee_damage_lower = 18
+		Y.melee_damage_upper = 22
+		//And heal 50%
+		Y.adjustBruteLoss(-maxHealth*0.5)
+
+	//And any manager
+	for(var/mob/living/simple_animal/hostile/ordeal/steel_dusk/Z in view(7, src))
+		Z.say("There will be full-on roll call tonight.")
+		Z.screech_windup = 3 SECONDS
+
 	gib()
 
 //flying varient trades movement and attack speed for a sweeping attack.
@@ -206,9 +220,7 @@
 	vision_range = 12
 	move_to_delay = 3
 	ranged = TRUE
-	retreat_distance = 2
-	minimum_distance = 2
-	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
+	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1.4, PALE_DAMAGE = 1)
 	can_patrol = TRUE
 	wander = FALSE
 	patrol_cooldown_time = 1 MINUTES
@@ -216,17 +228,27 @@
 	possible_a_intents = list(INTENT_HELP, INTENT_DISARM, INTENT_HARM)
 	death_sound = 'sound/voice/hiss5.ogg'
 	butcher_results = list(/obj/item/food/meat/slab/human = 2, /obj/item/food/meat/slab/human/mutant/moth = 1)
-	var/turf/fob
+	//Last command issued
 	var/last_command = 0
+	//Delay on charge command
 	var/chargecommand_cooldown = 0
 	var/screech_cooldown = 0
+	var/screech_windup = 5 SECONDS
+	var/chargecommand_delay = 1 MINUTES
+	//Delay on general commands
+	var/command_cooldown = 0
+	var/command_delay = 18 SECONDS
+	//If this creature can act.
 	var/can_act = TRUE
-	var/list/troops = list()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/Initialize()
+/mob/living/simple_animal/hostile/ordeal/steel_dusk/Initialize(mapload)
 	..()
-	if(!fob)
-		fob = FindForwardBase()
+	var/list/units_to_add = list(
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 6,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 2,
+		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 2
+		)
+	AddComponent(/datum/component/ai_leadership, units_to_add, 8, TRUE, TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Life()
 	. = ..()
@@ -235,50 +257,26 @@
 		if(!target)
 			adjustBruteLoss(-6)
 
-	//Recruitment code
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/Found(atom/A)
-	if(istype(A, /mob/living/simple_animal/hostile/ordeal/steel_dawn) && troops.len < 8)
-		var/mob/living/simple_animal/hostile/ordeal/steel_dawn/S = A
-		if(S.stat != DEAD && !S.leader && !S.target && !S.client && faction_check_mob(S)) //are you dead? do you have a leader? are you currently fighting? Are you a player? Different faction?
-			S.Goto(src,move_to_delay - 0.2,1)
-			S.leader = src
-			troops += S
-			return
-
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/death()
-	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/M in troops)
-		M.leader = null
-	..()
+/mob/living/simple_animal/hostile/ordeal/steel_dusk/handle_automated_action()
+	. = ..()
+	if(command_cooldown < world.time && target && can_act && stat != DEAD)
+		switch(last_command)
+			if(1)
+				Command(2) //always buff defense at start of battle
+			else
+				Command(pick(2,3))
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/patrol_select()
-	if(troops.len)
-		if(prob(25))
-			say("Nothin here. Lets move on.")
-		HeadCount()
-		var/follower_speed = move_to_delay - 0.2
-		for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/soldier in troops)
-			if(soldier.stat != DEAD) //second check to make sure the soldier isnt dead. First one is in headcount.
-				Goto(src , follower_speed, 1) //had to change it to 2 because the 3 "move to delay" leader would keep outrunning the 4 "move to delay" followers
-	else if(!troops.len)
-		var/area/forward_base = get_area(fob)
-		if(!istype(get_area(src), forward_base) && z == fob.z)
-			patrol_path = get_path_to(src, fob, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
-			return
+	if(prob(25))
+		say("Nothin here. Lets move on.")
 	..()
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Aggro()
 	. = ..()
 	if(chargecommand_cooldown <= world.time)
 		Command(1)
-		ranged_cooldown = world.time + (6 SECONDS)
-		chargecommand_cooldown = world.time + (60 SECONDS)
-		screech_cooldown = world.time + (10 SECONDS) //prep for screech
-	if(!troops.len)
-		retreat_distance = null
-		minimum_distance = 1
-	else if(retreat_distance <= 0)
-		retreat_distance = initial(retreat_distance)
-		minimum_distance = initial(minimum_distance)
+		ranged_cooldown = world.time + (10 SECONDS)
+		chargecommand_cooldown = world.time + chargecommand_delay
 	a_intent_change(INTENT_HARM)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/LoseAggro()
@@ -286,21 +284,8 @@
 	a_intent_change(INTENT_HELP)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/OpenFire()
-	if(can_act)
-		if(!troops.len && ranged_cooldown <= world.time) //your on your own boss, give em hell.
-			ManagerScreech()
-			ranged_cooldown = world.time + (10 SECONDS)
-			return
-		else if(screech_cooldown <= world.time)
-			ManagerScreech()
-			screech_cooldown = world.time + (15 SECONDS)
-			ranged_cooldown = world.time + ranged_cooldown_time
-			return
-		switch(last_command)
-			if(1)
-				Command(2) //always buff defense at start of battle
-			else
-				Command(pick(2,3))
+	if(can_act && ranged_cooldown <= world.time)
+		ManagerScreech()
 		ranged_cooldown = world.time + ranged_cooldown_time
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Move()
@@ -308,7 +293,8 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/Command(manager_order) //used for attacks and commands. could possibly make this a modular spell or ability.
+//used for attacks and commands. could possibly make this a modular spell or ability.
+/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/Command(manager_order)
 	playsound(loc, 'sound/effects/ordeals/steel/gcorp_chitter.ogg', 60, TRUE)
 	switch(manager_order)
 		if(1)
@@ -331,12 +317,13 @@
 				if((istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon) || istype(G, /mob/living/simple_animal/hostile/ordeal/steel_dawn)) && G.stat != DEAD && !has_status_effect((/datum/status_effect/all_armor_buff || /datum/status_effect/minor_damage_buff)))
 					G.apply_status_effect(/datum/status_effect/minor_damage_buff)
 			last_command = 3
+	command_cooldown = world.time + command_delay
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/ManagerScreech()
 	var/visual_overlay = mutable_appearance('icons/effects/effects.dmi', "blip")
 	add_overlay(visual_overlay)
 	can_act = FALSE
-	if(!do_after(src, 5 SECONDS, target = src))
+	if(!do_after(src, screech_windup, target = src))
 		cut_overlay(visual_overlay)
 		can_act = TRUE
 		return
@@ -347,29 +334,3 @@
 	for(var/mob/living/L in oview(10, src))
 		if(!faction_check_mob(L))
 			L.apply_damage(120, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
-
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/HeadCount() //determines what soldiers are here and if we need to disband anyone who isnt here.
-	var/list/whosehere = list()
-	for(var/mob/living/simple_animal/hostile/ordeal/steel_dawn/soldier in oview(src, 10))
-		if(soldier.stat != DEAD || soldier.client)
-			whosehere += soldier
-	var/list/absent_troops = difflist(troops, whosehere ,1)
-	if(absent_troops.len)
-		for(var/mob/living/simple_animal/hostile/ordeal/s in absent_troops)
-			var/mob/living/simple_animal/hostile/ordeal/steel_dawn/friend = s
-			if(friend && friend.stat != DEAD && friend.z == fob.z)
-				walk(friend, 0)
-				friend.patrol_to(fob)
-			friend.leader = null
-			troops -= s
-
-//The purpose of this code is to make it so that if a soldier gets lost, in a containment cell or some other part of the facility, they will go to central command and wait for their leader to return.
-/mob/living/simple_animal/hostile/ordeal/steel_dusk/proc/FindForwardBase()
-	var/turf/second_choice
-	for(var/turf/T in GLOB.department_centers)
-		if(T.z != z)
-			continue
-		second_choice = T
-		if(istype(get_area(T), /area/department_main/command))
-			return T
-	return second_choice

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "executive"
 	icon_living = "executive"
+	portrait = "shrimp_executive"
 	faction = list("neutral")
 	speak_emote = list("burbles")
 	threat_level = WAW_LEVEL
@@ -43,18 +44,27 @@
 		"I am getting quite old, and my back is hurting me. Could you send a chiropractor to my office immediately?",
 		"I am quite peckish, could you send me a charcuterie board?",
 		"Could you get me a glass of pinot noir, please?",
+		"Fetch me a bowl of shrimp fried rice? I'm looking to try this delicacy made by your finest shrimp chefs.",
+		"Ah, I forgot to take my daily medication, could you bring it to me?",
 	)
 
 	var/list/insight = list(
 		"Get me my phonograph, I would like to listen to Moonlight Sonata, 1st Movement.",
 		"The plants in my office are dying, could you water them please?",
 		"It is rather dull, with all the negotiations that we have been doing. Could you get me the morning crossword?",
+		"I've noticed some dust collecting on the bookshelves, could you get someone to dust it?",
+		"Ah, I seem to have spilt my wine, could you get it cleaned up?",
+		"I think my suit needs to be dry-cleaned. Take it and go.",
+
 	)
 
 	var/list/attachment = list(
 		"You know, I had this brand new deal that I am setting up. Care to listen sometime?",
 		"I was wondering if YOU had any good business offers. It would be nice to hear from a fellow intellectual. Stop by and tell me sometime.",
 		"Come, pull up a glass, old friend. Let's drink to a good deal!",
+		"I'm thinking about buying stocks for my portfolio, what do you recommend I invest in?",
+		"Got a moment to chat about something important? Let's catch up over a cup of coffee and discuss some potential business moves. Your insights are always valuable to me.",
+		"I was wondering if you might be available to join me for a brief tête-à-tête over a cup of tea. Come on by when you are available.",
 	)
 
 	//A list of shit that it can create. Yes, it includes ego. How did a shrimp get ego? IDFK. I guess his company makes it.

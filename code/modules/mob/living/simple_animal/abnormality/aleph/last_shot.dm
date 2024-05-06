@@ -5,6 +5,7 @@ GLOBAL_LIST_EMPTY(meat_list)
 	desc = "A large ball of flesh, pulsating slowly."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "last_shot"
+	portrait = "last_shot"
 	pixel_x = -8
 	base_pixel_x = -8
 	maxHealth = 3100
@@ -37,9 +38,13 @@ GLOBAL_LIST_EMPTY(meat_list)
 	var/spawn_number = 2
 
 
-//Sits in containment until killed.
 /mob/living/simple_animal/hostile/abnormality/last_shot/Move()
 	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/last_shot/BreachEffect()
+	var/turf/T = pick(GLOB.department_centers)
+	forceMove(T)
+	..()
 
 /mob/living/simple_animal/hostile/abnormality/last_shot/CanAttack(atom/the_target)
 	return FALSE

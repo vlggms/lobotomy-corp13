@@ -68,6 +68,7 @@
 	var/list/hit_people = list()
 	var/list/spawned_effects = list()
 	var/list/prohibitted_flips = list(
+		/mob/living/simple_animal/hostile/abnormality/nihil,
 		/mob/living/simple_animal/hostile/abnormality/white_night,
 		/mob/living/simple_animal/hostile/megafauna/apocalypse_bird,
 		/mob/living/simple_animal/hostile/megafauna/arbiter,
@@ -110,8 +111,8 @@
 /mob/living/simple_animal/hostile/abnormality/yin/Moved(atom/OldLoc, Dir, override = TRUE)
 	if(!COOLDOWN_FINISHED(src, pulse) || SSlobotomy_events.yin_downed)
 		return ..()
-	var/found = FALSE
-	for(var/mob/living/L in view(2, src))
+	var/turfs_to_check = view(2, src)
+	for(var/mob/living/L in turfs_to_check)
 		if(L == src)
 			continue
 		if(L.status_flags & GODMODE)
@@ -120,11 +121,15 @@
 			continue
 		if(L.stat >= DEAD)
 			continue
-		found = TRUE
-		break
-	if(found)
 		COOLDOWN_START(src, pulse, pulse_cooldown)
 		INVOKE_ASYNC(src, PROC_REF(Pulse))
+		return ..()
+	for(var/obj/vehicle/sealed/mecha/M in turfs_to_check)
+		if(!M.occupants || length(M.occupants) == 0)
+			continue
+		COOLDOWN_START(src, pulse, pulse_cooldown)
+		INVOKE_ASYNC(src, PROC_REF(Pulse))
+		return ..()
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/yin/death(gibbed)
@@ -198,10 +203,9 @@
 	. = BULLET_ACT_HIT
 	if(!P.firer)
 		return .
-	var/mob/living/shooter = P.firer
-	if(!istype(shooter))
+	if(!isliving(P.firer) && !ismecha(P.firer))
 		return .
-	FireLaser(shooter)
+	FireLaser(P.firer)
 	return .
 
 /mob/living/simple_animal/hostile/abnormality/yin/AttackingTarget(atom/attacked_target)
@@ -214,13 +218,7 @@
 		var/list/to_hit = range(i, src) - hit_turfs
 		hit_turfs |= to_hit
 		for(var/turf/open/OT in to_hit)
-			for(var/mob/living/L in OT)
-				if(faction_check(L.faction, faction_override))
-					continue
-				if(L in hit)
-					continue
-				L.apply_damage(pulse_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
-				hit += L
+			hit = HurtInTurf(OT, hit, pulse_damage, BLACK_DAMAGE, null, TRUE, faction_override, TRUE)
 			new /obj/effect/temp_visual/small_smoke/yin_smoke/short(OT)
 		sleep(3)
 	return
@@ -380,11 +378,11 @@
 
 /obj/effect/temp_visual/revenant/cracks/yin/Destroy()
 	for(var/turf/T in range(1, src))
-		if(T.z != z)
-			continue
 		for(var/mob/living/L in T)
 			if(faction_check(L.faction, src.faction))
 				continue
 			L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		for(var/obj/vehicle/sealed/mecha/V in T)
+			V.take_damage(damage, BLACK_DAMAGE)
 		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)
 	return ..()

@@ -129,6 +129,10 @@ SUBSYSTEM_DEF(mapping)
 	if(errorList.len)	//tutorial failed to load
 		message_admins("The tutorial failed to load!")
 		log_game("The tutorial failed to load!")
+
+	SSmapping.LoadGroup(errorList, "Manager", "map_files/generic", "Manager.dmm", default_traits = ZTRAITS_CENTCOM)
+	SSmapping.LoadGroup(errorList, "Abnormality", "map_files/generic", "Abnormality_Z.dmm", default_traits = ZTRAITS_CENTCOM)
+
 #endif
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))

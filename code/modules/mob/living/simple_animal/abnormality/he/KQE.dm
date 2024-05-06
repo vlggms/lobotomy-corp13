@@ -31,6 +31,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(30, 35, 40, 45, 50),
 		"Write HELLO" = 0,
 		"Write GOODBYE" = 0,
+		"Write DUMBASS" = 0,
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
@@ -94,7 +95,7 @@
 		if(!LAZYLEN(GLOB.department_centers))
 			heart = TRUE
 		else
-			damage_coeff = list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)//In regular gamemodes you are now esentially forced to suppress the heart
+			ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.2)) //In regular gamemodes you are now esentially forced to suppress the heart
 			var/X = pick(GLOB.department_centers)
 			var/mob/living/simple_animal/hostile/kqe_heart/H = new(get_turf(X))
 			heart = H
@@ -126,12 +127,12 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/kqe/AttemptWork(mob/living/carbon/human/user, work_type)
-	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && !question)
+	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && (work_type != "Write DUMBASS") && !question)
 		return TRUE
-	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE")) && !question)
+	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE")) || (work_type == "Write DUMBASS") && !question)
 		to_chat(user, span_notice("The terminal is blank."))
 		return FALSE
-	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && question)
+	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && (work_type != "Write DUMBASS") && question)
 		to_chat(user, span_notice("Looks like you can write something."))
 		return FALSE
 	if(work_type == "Write HELLO")
@@ -154,8 +155,14 @@
 		say("Did you not take a tour of the town, Dear Guest?")
 		question = FALSE
 		work_count = 0
+	if(work_type == "Write DUMBASS")
+		var/datum/ego_gifts/ups/ego_reward = new
+		ego_reward.datum_reference = datum_reference
+		user.Apply_Gift(ego_reward)
+		datum_reference.qliphoth_change(-2)//instant breach
+		to_chat(user, span_warning("The robot begins wildly flailing its arms."))
+		say("Commencing eviction accordance to rule D63ICRQ1!")
 	return FALSE
-
 
 /mob/living/simple_animal/hostile/abnormality/kqe/WorkChance(mob/living/carbon/human/user, chance)
 	if(work_penalty)

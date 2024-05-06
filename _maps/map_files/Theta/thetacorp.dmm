@@ -1158,12 +1158,10 @@
 /turf/open/floor/plasteel/sepia,
 /area/department_main/control)
 "dV" = (
-/obj/machinery/text_adventure_console{
-	pixel_y = 4
-	},
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
+/obj/effect/landmark/refinerspawn,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},

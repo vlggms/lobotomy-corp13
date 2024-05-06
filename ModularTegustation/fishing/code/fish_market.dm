@@ -13,16 +13,29 @@
 		new /datum/data/extraction_cargo("Fishin Starting Pack ",		/obj/item/storage/box/fishing,						200) = 1,
 		new /datum/data/extraction_cargo("Aquarium Rocks ",				/obj/item/aquarium_prop/rocks,						250) = 1,
 		new /datum/data/extraction_cargo("Aquarium Seaweed ",			/obj/item/aquarium_prop/seaweed,					250) = 1,
-		new /datum/data/extraction_cargo("Sinew Fishing Line ",			/obj/item/fishing_component/line/sinew,				250) = 1,
-		new /datum/data/extraction_cargo("Bone Fishing Hook ",			/obj/item/fishing_component/hook/bone,				250) = 1,
 		new /datum/data/extraction_cargo("Water Sprayer Backpack ",		/obj/item/watertank,								400) = 1,
 		new /datum/data/extraction_cargo("Dock Worker Lantern ",		/obj/item/flashlight/lantern,						400) = 1,
-		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_component/hook/weighted,			500) = 1,
-		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		500) = 1,
 		new /datum/data/extraction_cargo("Fishing Hat ",		 		/obj/item/clothing/head/beret/fishing_hat,			500) = 1,
 		new /datum/data/extraction_cargo("Aquarium Branch Office ",		/obj/item/aquarium_prop/lcorp,						500) = 1,
-		new /datum/data/extraction_cargo("Tier 1 Fishing Rod ",			/obj/item/fishing_rod/tier1,						500) = 1,
-		//Yes we are scamming you.
+
+		//More nets
+		new /datum/data/extraction_cargo("Fishing Net ",					/obj/item/fishing_net,							300) = 1,
+		new /datum/data/extraction_cargo("Nylon Fishing Net ",				/obj/item/fishing_net/nylon,					700) = 1,
+		new /datum/data/extraction_cargo("Steel Fishing Net ",				/obj/item/fishing_net/steel,					700) = 1,
+
+		//Better rods
+		new /datum/data/extraction_cargo("Fibreglass Fishing Rod ",			/obj/item/fishing_rod/fiberglass,				700) = 1,
+		new /datum/data/extraction_cargo("Gold-plated Fishing Rod ",		/obj/item/fishing_rod/gold,						700) = 1,
+		new /datum/data/extraction_cargo("Titanium Fishing Rod ",			/obj/item/fishing_rod/titanium,					700) = 1,
+
+		//Lines
+		new /datum/data/extraction_cargo("Sinew Fishing Line ",			/obj/item/fishing_component/line/sinew,				250) = 1,
+		new /datum/data/extraction_cargo("Woven Fishing Line ",			/obj/item/fishing_component/line/woven,				500) = 1,
+		new /datum/data/extraction_cargo("Reinforced Fishing Line ", 	/obj/item/fishing_component/line/reinforced,		700) = 1,
+
+		//Hooks
+		new /datum/data/extraction_cargo("Bone Fishing Hook ",			/obj/item/fishing_component/hook/bone,				250) = 1,
+		new /datum/data/extraction_cargo("Weighted Fishing Hook ", 		/obj/item/fishing_component/hook/weighted,			500) = 1,
 		new /datum/data/extraction_cargo("Shiny Fishing Hook ", 		/obj/item/fishing_component/hook/shiny,				1000) = 1,
 	)
 

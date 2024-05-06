@@ -163,6 +163,6 @@
 /obj/item/clothing/head/beret/tegu/cmo
 	name = "chief medical officer beret"
 	desc = "A baby blue beret with the insignia of Medistan. It smells very sterile."
-	icon_state = "beret_cmo"
+	icon_state = "beret_mint"
 	armor = list(BIO = 30, ACID = 20)
 	strip_delay = 60

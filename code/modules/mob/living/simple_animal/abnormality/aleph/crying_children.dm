@@ -39,7 +39,7 @@
 	death_sound = 'sound/abnormalities/crying_children/death.ogg'
 	death_message = "crumbles into pieces."
 	del_on_death = FALSE
-	ego_list = list(/datum/ego_datum/weapon/shield/combust, /datum/ego_datum/armor/combust)
+	ego_list = list(/datum/ego_datum/weapon/shield/waxen, /datum/ego_datum/armor/waxen)
 	gift_type =  /datum/ego_gifts/inconsolable
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK // I HAVE NO IDEA LOR ORIGIN CODE
 	var/list/children_list = list()

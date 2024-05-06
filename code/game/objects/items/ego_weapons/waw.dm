@@ -1031,7 +1031,6 @@
 	. = ..()
 	if(!.)
 		return FALSE
-
 	attacks++
 	attacks %= 3
 	switch(attacks)
@@ -1054,6 +1053,34 @@
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
+	var/combo = FALSE
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/ego_weapon/blind_rage/Y = myman.get_inactive_held_item()
+	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if((istype(Y)) & (istype(Z))) //dual wielding and wearing Wounded Courage? if so...
+		combo = TRUE //hits twice
+	else
+		combo = FALSE
+	if(combo)
+		if(M in view(reach,user))
+			Y.attacks++
+			Y.attacks %=3
+			switch(attacks)
+				if(0)
+					hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
+				if(1)
+					hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
+				if(2)
+					hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
+			M.attacked_by(src, user)
+			M.send_item_attack_message(src, user,M)
+			user.do_attack_animation(M)
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			for(var/turf/open/T in range(aoe_range, M))
+				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+				smonk.color = COLOR_GREEN
+				user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+				user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 
 /obj/item/ego_weapon/blind_rage/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -1416,7 +1443,7 @@
 	desc = "The frothing madness of the revving engine brings a fleeting warmth to your hands and heart alike."
 	special = "This weapon hits 4 times for every hit"
 	icon_state = "animalism"
-	force = 20
+	force = 12
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
@@ -1429,13 +1456,18 @@
 /obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	sleep(2)
+	var/multihit = force
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	multihit*= justicemod * force_multiplier
 	for(var/i = 1 to 3)
 		sleep(2)
-		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-		user.do_attack_animation(target)
-		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+		if(target in view(reach,user))
+			target.send_item_attack_message(src, user,target)
+			target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+			user.do_attack_animation(target)
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/psychic
 	name = "psychic dagger"
@@ -1852,6 +1884,7 @@
 	var/speed_slowdown = 0
 	var/mob/current_holder
 	var/power_timer
+	var/thrown = FALSE
 
 
 //Equipped setup
@@ -1880,7 +1913,8 @@
 		return
 	speed_slowdown = 0
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
-	PowerReset(user)
+	if(!thrown)
+		PowerReset(user)
 	current_holder = null
 	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 
@@ -1906,7 +1940,7 @@
 		speed_slowdown = 1
 		throwforce = 100//TIME TO DIE!
 		to_chat(user,span_warning("You put your strength behind this attack."))
-		power_timer = addtimer(CALLBACK(src, PROC_REF(PowerReset)), 3 SECONDS,user, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
+		power_timer = addtimer(CALLBACK(src, PROC_REF(PowerReset)), 3 SECONDS, TIMER_STOPPABLE)//prevents storing 3 powered up anchors and unloading all of them at once
 
 /obj/item/ego_weapon/blind_obsession/proc/PowerReset(mob/user)
 	to_chat(user, span_warning("You lose your balance while holding [src]."))
@@ -1914,6 +1948,7 @@
 	speed_slowdown = 0
 	throwforce = 80
 	deltimer(power_timer)
+	thrown = FALSE
 
 /obj/item/ego_weapon/blind_obsession/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill others with this
 	if(!CanUseEgo(user))
@@ -1921,6 +1956,7 @@
 	if(user.get_inactive_held_item())
 		to_chat(user, span_notice("You cannot throw [src] with only one hand!"))
 		return
+	thrown = TRUE
 	user.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/anchor, multiplicative_slowdown = 0)
 	return ..()
 
@@ -1932,14 +1968,14 @@
 		var/damage = 75
 		if(ishuman(thrownby))
 			damage *= 1 + (get_modified_attribute_level(thrownby, JUSTICE_ATTRIBUTE))/100
-		damage *= force_multiplier
-		for(var/turf/open/T in range(1, src))
-			var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
-			smonk.color = COLOR_TEAL
-			if(!ismob(thrownby))
-				continue
-			thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
-		PowerReset(thrownby)
+			damage *= force_multiplier
+			for(var/turf/open/T in range(1, src))
+				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
+				smonk.color = COLOR_TEAL
+				if(!ismob(thrownby))
+					continue
+				thrownby.HurtInTurf(T, list(thrownby), damage, RED_DAMAGE)
+			PowerReset(thrownby)
 
 /datum/movespeed_modifier/anchor
 	multiplicative_slowdown = 0

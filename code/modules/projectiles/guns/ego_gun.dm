@@ -12,7 +12,8 @@
 	var/obj/item/ammo_casing/ammo_type
 	var/list/attribute_requirements = list()
 	var/special
-	var/autofire	//In Rounds per second
+	var/autofire	//In Rounds per decisecond
+	var/equip_bonus
 
 /obj/item/gun/ego_gun/Initialize()
 	. = ..()
@@ -42,7 +43,7 @@
 
 	else
 		//Give it to 'em in true rounds per minute, accurate to the 5s
-		var/rpm = (1/autofire*10)*60
+		var/rpm = 600 / autofire
 		rpm = round(rpm,5)
 		. += "<span class='notice'>This weapon is automatic.</span>"
 		. += "<span class='notice'>This weapon fires at [rpm] rounds per minute.</span>"
@@ -80,7 +81,7 @@
 
 	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
-		if(attribute_requirements[atr] > get_attribute_level(H, atr))
+		if(attribute_requirements[atr] > get_attribute_level(H, atr) + equip_bonus)
 			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
 			return FALSE
 	if(!SpecialEgoCheck(H))

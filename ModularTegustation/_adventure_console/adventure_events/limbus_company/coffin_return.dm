@@ -51,8 +51,8 @@
 			. += CoinFlipping(M)
 			return
 		if(3)
-			AdjustCurrency(1)
-			AdjustStatNum(RAND_STAT, 1)
+			AdjustCurrency(ADV_EVENT_COIN_EASY)
+			AdjustStatNum(RAND_STAT, ADV_EVENT_STAT_EASY)
 		if(4)
 			CauseBattle(
 				pick(
@@ -69,4 +69,4 @@
 			return
 		if(7)
 			AdjustHitPoint(-27)
-	. = ..()
+	return ..()

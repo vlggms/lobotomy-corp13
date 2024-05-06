@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "space"
 	icon_living = "space"
+	portrait = "space"
 	del_on_death = TRUE
 	maxHealth = 3200
 	health = 3200

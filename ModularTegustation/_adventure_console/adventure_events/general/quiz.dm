@@ -36,11 +36,11 @@
 			BUTTON_FORMAT(5, "NONE CAN PATENT GOO", M)
 			return
 		if(4)
-			AdjustStatNum(PRIDE_STAT, 1)
+			AdjustStatNum(PRIDE_STAT, ADV_EVENT_STAT_EASY)
 		if(5)
 			CauseBattle(
 				"Speculative Amalagam Error:Some imperfect mix of a fixer and a sweeper. The differing physiology of a sweeper and a human causes them to violently ooze red fluid from where the sweeper parts end and the human parts begin.",
 				"1d10",
 				MON_HP_RAND_EASY,
 			)
-	. = ..()
+	return ..()

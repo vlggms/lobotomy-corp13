@@ -1,13 +1,14 @@
 // defines used in ModularTegustation/_adventure_console
 
-#define DEBUG_TEXT_DISPLAY (1<<0)
-#define NORMAL_TEXT_DISPLAY (1<<1)
-#define ADVENTURE_TEXT_DISPLAY (1<<2)
+#define DEBUG_TEXT_DISPLAY 1
+#define NORMAL_TEXT_DISPLAY 2
+#define ADVENTURE_TEXT_DISPLAY 3
+#define EXCHANGE_TEXT_DISPLAY 4
 
 //Modes for what is displayed on the adventure panel.
-#define ADVENTURE_MODE_TRAVEL (1<<0)
-#define ADVENTURE_MODE_BATTLE (1<<1)
-#define ADVENTURE_MODE_EVENT_BATTLE (1<<2)
+#define ADVENTURE_MODE_TRAVEL 1
+#define ADVENTURE_MODE_BATTLE 2
+#define ADVENTURE_MODE_EVENT_BATTLE 3
 
 //Stats defined. I honestly didnt want to make it have limbus company sins but here we are.
 #define WRATH_STAT 1
@@ -28,6 +29,18 @@
 #define MON_DAMAGE_HARD "2d12"
 
 #define MON_DAMAGE_RAND "[rand(1,2)]d[rand(3,7)]"
+
+//Rewards for events to encourage balancing
+
+	//Stat Reward
+#define ADV_EVENT_STAT_EASY 1
+#define ADV_EVENT_STAT_NORMAL 3
+#define ADV_EVENT_STAT_HARD 5
+
+	//Coin Reward
+#define ADV_EVENT_COIN_EASY 1
+#define ADV_EVENT_COIN_NORMAL 2
+#define ADV_EVENT_COIN_HARD 3
 
 /**
  * Easy define for html button format.

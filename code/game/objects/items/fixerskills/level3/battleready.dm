@@ -10,7 +10,7 @@
 	icon_icon = 'icons/hud/screen_skills.dmi'
 
 /datum/action/innate/battleready/Activate()
-	to_chat(owner, "<span class='notice'>You can now take more hits and move faster.</span>")
+	to_chat(owner, span_notice("You can now take more hits and move faster."))
 	button_icon_state = "battleready_on"
 	active = TRUE
 	var/mob/living/carbon/human/human = owner
@@ -22,7 +22,7 @@
 	UpdateButtonIcon()
 
 /datum/action/innate/battleready/Deactivate()
-	to_chat(owner, "<span class='notice'>You now take more damage and move slower.</span>")
+	to_chat(owner, span_notice("You now take more damage and move slower."))
 	button_icon_state = "battleready_off"
 	active = FALSE
 	var/mob/living/carbon/human/human = owner

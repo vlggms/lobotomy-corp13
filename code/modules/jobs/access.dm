@@ -374,11 +374,17 @@
 
 /proc/get_all_jobs()
 	return list("Clerk","Agent Intern", "Agent", "Senior Agent", "Veteran Agent", "Agent Lieutenant", "Agent Captain", "Department Captain", "Department Head", "Sephirah", "Records Officer", "Extraction Officer", "Manager", "Main Office Representative",
-		"Rabbit Team", "Rabbit Team Leader",
+		"Rabbit Team", "Rabbit Team Leader", "Disciplinary Officer", "Emergency Response Agent",
 
 		//R Corp Assault
 		"Ground Commander",	"Lieutenant Commander",	"Operations Officer", "Rabbit Squad Captain", "Reindeer Squad Captain", "Rhino Squad Captain", "Raven Squad Captain",
-		"R-Corp Suppressive Rabbit","R-Corp Assault Rabbit", "R-Corp Medical Reindeer",	"R-Corp Berserker Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",)
+		"R-Corp Suppressive Rabbit","R-Corp Assault Rabbit", "R-Corp Medical Reindeer",	"R-Corp Berserker Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",
+
+		//LC Labs
+		"Chief Medical Officer", "Surgeon", "Nurse Practitioner", "Pharmacist", "Emergency Medical Technician", "Lead Researcher", "Senior Researcher", "Information Systems Tech",
+		"Researcher", "LC Staff", "District Manager", "LC Asset Protection", "High Security Commander", "Low Security Commander", "High Security Officer", "Low Security Officer",
+		"Damage Mitigation Officer", "Damage Exasperation Officer", "Containment Engineer", "LC Chef", "LC Janitor", "Research Archivist", "Internal Police",
+		)
 
 /proc/get_all_job_icons() //For all existing HUD icons
 	return get_all_jobs() + list("Emergency Response Team Commander", "Security Response Officer", "Engineering Response Officer", "Medical Response Officer", "Entertainment Response Officer", "Religious Response Officer", "Janitorial Response Officer", "Death Commando", "Syndicate Captain", "Syndicate Medical Doctor", "Syndicate Assault Operative", "Syndicate Engineer", "Syndicate Operative", "TerraGov Official", "TerraGov Marine", "Fishhook Office Fixer") //Tegu edit right there

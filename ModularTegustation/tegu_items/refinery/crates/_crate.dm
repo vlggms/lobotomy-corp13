@@ -24,18 +24,21 @@
 	)
 
 	var/rareloot =	list(/obj/item/toy/plush/dante)
-	var/veryrareloot =	list()	//Only Kcorp uses these atm, because It's important that they have 3 tiers of weapons
+	var/veryrareloot =	list()
 	var/rarechance = 20
 	var/veryrarechance
+	var/cosmeticloot = list()
+	var/cosmeticchance = 0 //These do not count on the total odds of a crate
 
 /obj/structure/lootcrate/Initialize()
-	..()
+	. = ..()
 	if(SSmaptype.maptype in SSmaptype.citymaps)	//Also can't drag it out to open it. Open it on spot, bitch
 		anchored = TRUE
 
 /obj/structure/lootcrate/attackby(obj/item/I, mob/living/user, params)
-	..()
+	. = ..()
 	var/loot
+	var/cloot
 	if(I.tool_behaviour != TOOL_CROWBAR)
 		return
 
@@ -51,6 +54,10 @@
 
 	else
 		loot = pick(lootlist)
+
+	if(cosmeticchance && prob(cosmeticchance))
+		cloot = pick(cosmeticloot)
+		new cloot(get_turf(src))
 
 	to_chat(user, span_notice("You open the crate!"))
 	new loot(get_turf(src))

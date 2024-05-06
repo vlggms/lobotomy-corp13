@@ -619,6 +619,13 @@
 	insight_mod = 3
 	slot = EYE
 
+/datum/ego_gifts/morii
+	name = "Morii"
+	icon_state = "morii"
+	temperance_bonus = 2
+	repression_mod = 6
+	slot = EYE
+
 /datum/ego_gifts/harmony
 	name = "Harmony"
 	icon_state = "harmony"
@@ -745,7 +752,7 @@
 	justice_bonus = -5
 	slot = BROOCH
 
-/datum/ego_gifts/replica
+/datum/ego_gifts/replica//KQE regular gift
 	name = "Pinpoint Logic Circuit"
 	icon_state = "replica"
 	fortitude_bonus = -3
@@ -753,6 +760,12 @@
 	temperance_bonus = 2
 	justice_bonus = 4
 	slot = BROOCH
+
+/datum/ego_gifts/ups//KQE event gift
+	name = "UPS System"
+	icon_state = "ups"
+	justice_bonus = 5
+	slot = FACE
 
 /datum/ego_gifts/roseate_desire
 	name = "Roseate Desire"

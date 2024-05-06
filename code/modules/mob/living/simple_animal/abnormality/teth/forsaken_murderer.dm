@@ -63,6 +63,14 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
+
+	/*
+	* This is related to abnochem where a chemical can be harvested from abnormalities.
+	* This is more for general flavor and will be randomly filled if left empty.
+	* I placed this here because i felt like violence makes the most sense.
+	*/
+	chem_type = /datum/reagent/abnormality/violence
+
 	//shows in chat when the creature is defeated. Default is "stops moving".
 	death_message = "falls over."
 	//Phrases that the creature will emote randomly based on speak chance.
@@ -89,6 +97,30 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	//Unique variable im defining for this abnormality. This is the timer for their during work emotes.
 	var/work_emote_cooldown = 0
+
+	attack_action_types = list(
+		/datum/action/innate/change_icon_forsaken,
+	)
+
+
+/datum/action/innate/change_icon_forsaken
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_forsaken/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "forsakenmurdererinert"
+		active = 1
+
+/datum/action/innate/change_icon_forsaken/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "forsakenmurdererbreach"
+		active = 0
+
 
 //When work type is bad the qliphoth counter lowers with no chance.
 /mob/living/simple_animal/hostile/abnormality/forsaken_murderer/FailureEffect(mob/living/carbon/human/user, work_type, pe)

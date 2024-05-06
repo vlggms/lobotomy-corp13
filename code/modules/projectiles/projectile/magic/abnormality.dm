@@ -22,6 +22,20 @@
 		if((old_stat < DEAD) && (H.stat >= DEAD))
 			H.add_overlay(icon('ModularTegustation/Teguicons/tegu_effects.dmi', "despair_kill"))
 
+/obj/projectile/despair_rapier/justice
+	desc = "A magic rapier, enchanted with the power of justice."
+	nodamage = TRUE	//Damage is calculated later
+	projectile_piercing = PASSMOB
+
+/obj/projectile/despair_rapier/justice/on_hit(atom/target, blocked = FALSE)
+	if(!ishuman(target))
+		nodamage = FALSE
+	else
+		return
+	..()
+	if(!ishuman(target))
+		qdel(src)
+
 /obj/projectile/apocalypse
 	name = "light"
 	icon_state = "apocalypse"
@@ -294,3 +308,26 @@
 	if(attacked_mob.stat == DEAD && living)
 		var/mob/living/simple_animal/hostile/abnormality/red_hood/red_owner
 		red_owner.ConfirmRangedKill(0.1)
+
+/obj/item/ammo_casing/caseless/nihil_abnormality
+	name = "dark energy casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/ego_bullet/nihil
+	pellets = 4
+	variance = 16
+
+/obj/projectile/ego_bullet/nihil
+	name = "dark energy"
+	icon_state = "nihil"
+	desc = "Just looking at it seems to suck the life out of you..."
+	damage = 25 //Fires 4
+	damage_type = WHITE_DAMAGE //deals both white and red
+	projectile_piercing = PASSMOB
+	hitsound = 'sound/abnormalities/nihil/filter.ogg'
+
+/obj/projectile/ego_bullet/nihil/on_hit(atom/target, blocked = FALSE, pierce_hit)
+	. = ..()
+	if(!isliving(target))
+		return
+	var/mob/living/L = target
+	L.apply_void(1)

@@ -58,9 +58,25 @@
 	var/can_act = TRUE
 	var/finishing = FALSE
 
+	//PLAYABLES ATTACKS
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/puss_finisher_toggle)
+
+/datum/action/innate/abnormality_attack/toggle/puss_finisher_toggle
+	name = "Toggle Finisher"
+	button_icon_state = "puss_toggle0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You will now perform a powerful finisher move.")
+	button_icon_toggle_activated = "puss_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will not perform a finisher anymore.")
+	button_icon_toggle_deactivated = "puss_toggle0"
+
 //Init stuff
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/Initialize()
 	. = ..()
+	if(IsCombatMap())
+		friendly = FALSE
+		return  // There are no friends in war.
 	for(var/mob/living/carbon/human/potential_user in GLOB.player_list)
 		if(!potential_user.has_status_effect(STATUS_EFFECT_CHOSEN))
 			continue
@@ -278,9 +294,13 @@
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/OpenFire()
 	if(!can_act)
 		return
-	if((finisher_cooldown < world.time) && prob(50))
-		Execute(target)
-	return
+	if(!client)
+		if((finisher_cooldown < world.time) && prob(50))
+			Execute(target)
+		return
+	if(chosen_attack == 1)
+		return
+	Execute(target)
 
 //Death/Defeat
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/death(gibbed)

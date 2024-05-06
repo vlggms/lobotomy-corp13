@@ -20,7 +20,11 @@
 		TEMPERANCE_ATTRIBUTE = 120,
 		JUSTICE_ATTRIBUTE = 120,
 	)
-	var/ready = TRUE
+	/// Are we currently using our ability?
+	var/using_ability = FALSE
+
+	/// The mobs we dont want to scale damage to
+	var/list/mob_blacklist = list(/mob/living/simple_animal/hostile/naked_nest_serpent_friend)
 
 
 /obj/item/ego_weapon/city/vermillion/attack_self(mob/living/carbon/human/user)
@@ -28,32 +32,41 @@
 	if(!CanUseEgo(user))
 		return
 
-	if(!ready)
+	if(using_ability)
 		return
-	ready = FALSE
+
+	using_ability = TRUE
 	to_chat(user, span_userdanger("READY."))
-	force*=1.5
+	force *= 1.5
 	user.adjustBruteLoss(user.maxHealth*0.5)
 	addtimer(CALLBACK(src, PROC_REF(Return), user), 15 SECONDS)
 
 
 /obj/item/ego_weapon/city/vermillion/attack(mob/living/target, mob/living/carbon/human/user)
-	var/living
-	if(target.stat != DEAD)
-		living = TRUE
-	..()
-	if(target.stat == DEAD && living)
-		user.adjustSanityLoss(-30)
-		living = FALSE
+	if(target.stat == DEAD)
+		return ..()
 
-	if(force != initial(force) && !living)
-		to_chat(user, span_userdanger("ANOTHER."))
-		force*=1.5
-		user.adjustBruteLoss(-user.maxHealth*0.1)
+	for(var/mob/living/alive_mob in mob_blacklist)
+		if(target == alive_mob)
+			return ..()
+
+	. = ..()
+
+	if(target.stat != DEAD)
+		return
+
+	user.adjustSanityLoss(-30)
+
+	if(!using_ability)
+		return
+
+	user.adjustBruteLoss(-user.maxHealth*0.1)
+	to_chat(user, span_userdanger("ANOTHER."))
+	force *= 1.5
 
 /obj/item/ego_weapon/city/vermillion/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
-	ready = TRUE
+	using_ability = FALSE
 	to_chat(user, span_notice("I AM NOT SATED."))
 
 /obj/item/ego_weapon/mimicry/kali

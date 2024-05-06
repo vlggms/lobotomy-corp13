@@ -3,7 +3,19 @@
 	desc = "A tall man adorned in grey, gold, and regal blue. His aim is impeccable."
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "derfreischutz"
+	icon_living = "derfreischutz"
+	icon_dead = "derfreischutz"
 	portrait = "der_freischutz"
+	maxHealth = 900
+	health = 900
+	ranged = TRUE
+	minimum_distance = 10
+	retreat_distance = 2
+	move_to_delay = 6
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
+	stat_attack = HARD_CRIT
+	vision_range = 28 // Fit for a marksman.
+	aggro_vision_range = 40
 	threat_level = HE_LEVEL
 	start_qliphoth = 3
 	work_chances = list(
@@ -22,6 +34,121 @@
 	)
 	gift_type =  /datum/ego_gifts/magicbullet
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	var/can_act = TRUE
+	var/bullet_cooldown
+	var/bullet_cooldown_time = 7 SECONDS
+	var/bullet_fire_delay = 1.5 SECONDS
+	var/bullet_max_range = 50
+
+	//PLAYABLES ATTACKS (action in this case)
+	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom)
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom
+	name = "Toggle Sniper Sight"
+	button_icon_state = "zoom_toggle0"
+	chosen_message = span_warning("You activate your sniper sight.")
+	button_icon_toggle_activated = "zoom_toggle1"
+	toggle_message = span_warning("You deactivate your sniper sight.")
+	button_icon_toggle_deactivated = "zoom_toggle0"
+	var/zoom_out_amt = 5.5
+	var/zoom_amt = 10
+	var/original_sight
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/New(Target)
+	..()
+	original_sight = owner.sight
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Activate()
+	ActivateSignals()
+	owner.sight |= SEE_TURFS | SEE_MOBS | SEE_THRU
+	owner.regenerate_icons()
+	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, owner.dir)
+	return ..()
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/ActivateSignals()
+	SIGNAL_HANDLER
+
+	RegisterSignal(owner, COMSIG_MOVABLE_MOVED, PROC_REF(Deactivate))
+	RegisterSignal(owner, COMSIG_ATOM_DIR_CHANGE, PROC_REF(Rotate))
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Deactivate()
+	DeactivateSignals()
+	owner.sight = original_sight
+	owner.regenerate_icons()
+	owner.client.view_size.zoomIn()
+	return ..()
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/DeactivateSignals()
+	SIGNAL_HANDLER
+
+	UnregisterSignal(owner, COMSIG_MOVABLE_MOVED)
+	UnregisterSignal(owner, COMSIG_ATOM_DIR_CHANGE)
+
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/proc/Rotate(old_dir, new_dir)
+	SIGNAL_HANDLER
+
+	owner.regenerate_icons()
+	owner.client.view_size.zoomOut(zoom_out_amt, zoom_amt, new_dir)
+
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/AttackingTarget(atom/attacked_target)
+	return OpenFire()
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/OpenFire()
+	if(!can_act)
+		return
+	if(bullet_cooldown <= world.time)
+		PrepareFireBullet(target)
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/IconChange(firing)
+	if(firing)
+		pixel_x -= 32
+		icon = 'ModularTegustation/Teguicons/96x64.dmi'
+		update_icon()
+		return
+	pixel_x += 32
+	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	update_icon()
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/PrepareFireBullet(atom/target)
+	bullet_cooldown = world.time + bullet_cooldown_time
+	can_act = FALSE
+	IconChange(firing = TRUE)
+	var/turf/beam_start = get_turf(src)
+	var/turf/target_turf = get_ranged_target_turf_direct(src, target, bullet_max_range, 0)
+	var/turf/beam_end = target_turf
+	var/list/turfs_to_check = getline(beam_start, target_turf)
+	playsound(beam_start, 'sound/abnormalities/freischutz/prepare.ogg', 35, 0, 20)
+	face_atom(target)
+	for(var/turf/T in turfs_to_check)
+		if(T.density)
+			beam_end = T
+			break
+	new /datum/beam(beam_start.Beam(beam_end, "magic_bullet", time = bullet_fire_delay))
+	SLEEP_CHECK_DEATH(bullet_fire_delay)
+	FireBullet(target, beam_start, beam_end)
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/FireBullet(atom/target, turf/start_turf, turf/end_turf)
+	playsound(start_turf, 'sound/abnormalities/freischutz/shoot.ogg', 35, 0, 20)
+	var/obj/projectile/ego_bullet/ego_magicbullet/B = new(start_turf) //80 BLACK damage.
+	B.starting = start_turf
+	B.firer = src
+	B.fired_from = start_turf
+	B.yo = end_turf.y - start_turf.y
+	B.xo = end_turf.x - start_turf.x
+	B.original = end_turf
+	B.preparePixelProjectile(end_turf, start_turf)
+	B.range = bullet_max_range
+	B.fire()
+	new /datum/beam(start_turf.Beam(end_turf, "magic_bullet_tracer", time = 3 SECONDS))
+	IconChange(firing = FALSE)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/der_freischutz/Move()
+	if(!can_act)
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)
@@ -82,8 +209,7 @@
 			fire_magic_bullet()
 
 /mob/living/simple_animal/hostile/abnormality/der_freischutz/proc/fire_magic_bullet(target = pick(GLOB.xeno_spawn), freidir = pick(EAST,WEST))
-	src.icon = 'ModularTegustation/Teguicons/64x64.dmi'
-	src.update_icon()
+	IconChange(firing = TRUE)
 	var/offset = -12
 	var/list/portals = list()
 	var/turf/T = src.loc
@@ -128,8 +254,7 @@
 			playsound(get_turf(src), 'sound/abnormalities/freischutz/shoot.ogg', 100, 0, 20)
 			B.dir = freidir
 			addtimer(CALLBACK(B, TYPE_PROC_REF(/obj/effect/magic_bullet, moveBullet)), 0.1)
-			src.icon = 'ModularTegustation/Teguicons/32x64.dmi'
-			src.update_icon()
+			IconChange(firing = FALSE)
 			for(var/obj/effect/frei_magic/Port in portals)
 				Port.fade_out()
 	return
