@@ -7151,6 +7151,16 @@
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/welfare)
+"vK" = (
+/obj/effect/turf_decal/box/white/corners,
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 1
+	},
+/obj/structure/sign/button_counter/directional/south,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/space)
 "vM" = (
 /obj/effect/turf_decal/stripes/white/line{
 	dir = 4
@@ -11707,6 +11717,18 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/records)
+"Lu" = (
+/obj/effect/turf_decal/box/white/corners{
+	dir = 8
+	},
+/obj/effect/turf_decal/stripes/white/corner{
+	dir = 4
+	},
+/obj/structure/sign/button_counter/directional/south,
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/space)
 "Lw" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -55747,7 +55769,7 @@ rK
 SV
 JT
 ON
-dx
+Lu
 mu
 uf
 Bn
@@ -56261,7 +56283,7 @@ rK
 SV
 mD
 sq
-BN
+vK
 mu
 uf
 Bn

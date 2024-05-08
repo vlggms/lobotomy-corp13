@@ -1294,6 +1294,15 @@
 /obj/structure/disposalpipe/segment,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/east)
+"dz" = (
+/obj/effect/turf_decal/tile/neutral{
+	dir = 4
+	},
+/obj/structure/sign/button_counter/directional/east,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/information)
 "dA" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -7609,6 +7618,13 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
+"wA" = (
+/obj/effect/turf_decal/tile/neutral,
+/obj/structure/sign/button_counter/directional/east,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/facility_hallway/information)
 "wC" = (
 /obj/structure/chair/office{
 	anchored = 1;
@@ -51623,9 +51639,9 @@ kp
 mt
 yl
 pH
-Zt
+dz
 SL
-Fd
+wA
 eb
 kD
 pI

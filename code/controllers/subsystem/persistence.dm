@@ -4,6 +4,7 @@
 #define FILE_PE_QUOTA "data/PEQuota.json"
 #define FILE_ABNO_PICKS "data/abno_rates/[mode].json"
 #define FILE_CORE_SUPPRESSIONS "data/ClearedCores.json"
+#define ROUNDCOUNT_BUTTON_PRESSED 0
 
 #define KEEP_ROUNDS_MAP 3
 
@@ -31,6 +32,8 @@ SUBSYSTEM_DEF(persistence)
 	var/list/abno_rates = list()
 	/// List of ckeys with list of core suppression names that they have cleared before
 	var/list/cleared_core_suppressions = list()
+	/// LOBOTOMYCORPORATION ADDITION: Button counter
+	var/rounds_since_button_pressed = 0
 
 /datum/controller/subsystem/persistence/Initialize()
 	LoadPoly()
@@ -45,6 +48,7 @@ SUBSYSTEM_DEF(persistence)
 	if(SSmaptype.maptype in list("standard", "skeld", "fishing", "wonderlabs"))
 		LoadPEStatus()
 	LoadClearedCores()
+	Load_button_counter() // LOBOTOMYCORPORATION ADDITION: Button counter
 	LoadRandomizedRecipes()
 	LoadPaintings()
 	load_custom_outfits()
@@ -238,6 +242,7 @@ SUBSYSTEM_DEF(persistence)
 		SavePEStatus()
 		SaveAbnoPicks()
 	CollectAgentReputation()
+	Save_button_counter() // LOBOTOMYCORPORATION ADDITION: Button counter
 	SaveRandomizedRecipes()
 	SavePaintings()
 	SaveScars()
@@ -561,3 +566,19 @@ SUBSYSTEM_DEF(persistence)
 	WRITE_FILE(file, json_encode(data))
 
 #undef FILE_ABNO_PICKS
+
+// LOBOTOMYCORPORATION ADDITION: Button procs
+/// Location where we save the information about how many rounds it has been since the engine blew up
+#define BUTTON_COUNT_FILEPATH "data/rounds_since_button.txt"
+
+/datum/controller/subsystem/persistence/proc/Load_button_counter()
+	if(!fexists(BUTTON_COUNT_FILEPATH))
+		return
+	rounds_since_button_pressed = text2num(file2text(BUTTON_COUNT_FILEPATH))
+	for(var/obj/structure/sign/button_counter/sign as anything in GLOB.map_button_counters)
+		sign.update_count(rounds_since_button_pressed)
+
+/datum/controller/subsystem/persistence/proc/Save_button_counter()
+	rustg_file_write("[rounds_since_button_pressed + 1]", BUTTON_COUNT_FILEPATH)
+
+#undef BUTTON_COUNT_FILEPATH
