@@ -148,9 +148,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'
-	fire_delay = 9
-	shotsleft = 8
-	reloadtime = 2.1 SECONDS
+	fire_delay = 18
 	zoomable = TRUE
 	zoom_amt = 10
 	zoom_out_amt = 13
