@@ -922,6 +922,14 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/training)
+"cn" = (
+/obj/effect/turf_decal/tile/neutral{
+	color = "#000000";
+	dir = 8
+	},
+/obj/structure/sign/button_counter/directional/south,
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/information)
 "co" = (
 /obj/effect/landmark/latejoin,
 /obj/effect/turf_decal/tile/yellow{
@@ -11708,6 +11716,7 @@
 	color = "#090807";
 	dir = 1
 	},
+/obj/structure/sign/button_counter/directional/south,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/information)
 "Bo" = (
@@ -53727,7 +53736,7 @@ TY
 mj
 Jg
 JE
-Td
+cn
 eF
 Nh
 lp

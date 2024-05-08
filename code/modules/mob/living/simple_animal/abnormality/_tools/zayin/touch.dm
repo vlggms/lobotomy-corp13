@@ -26,6 +26,9 @@
 		to_chat(M, span_userdanger("[uppertext(user.real_name)] WILL PUSH DON'T TOUCH ME[round_end ? "" : " TO BREACH ABNORMALITIES"]."))
 
 	if(round_end)
+		SSpersistence.rounds_since_button_pressed = ROUNDCOUNT_BUTTON_PRESSED
+		for(var/obj/structure/sign/button_counter/sign as anything in GLOB.map_button_counters)
+			sign.update_count(ROUNDCOUNT_BUTTON_PRESSED)
 		RoundEndEffect(user)
 	else
 		BreachEffect(user)
