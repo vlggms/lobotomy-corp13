@@ -14,15 +14,16 @@
 							)
 
 /obj/item/ego_weapon/grinder/attack(mob/living/target, mob/living/user)
-	if(!..())
-		return FALSE
 	var/turf/T = get_turf(target)
+	. = ..()
+	if(!.)
+		return FALSE
 	//damage calculations
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	force*=justicemod
-	user.HurtInTurf(T, list(target), (force*force_multiplier), RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
-	force = 26
+	var/justicemod = 1 + userjust / 100
+	var/damage_dealt = force * justicemod * force_multiplier
+	var/list/been_hit = QDELETED(target) ? list() : list(target)
+	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
 	return 40
