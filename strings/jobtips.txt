@@ -14,3 +14,12 @@ As a Clerk, you can cook at Training. Cooking is an art form.
 As a Clerk, you can clean using a Janitor's Chemsprayer. By setting it to spray 5 units instead of 10, it will clean anything it passes over.
 As a Clerk, you can butcher and destroy bodies with a Hunting or Kitchen Knife. You can do this to prevent enemies from benefitting from that corpse, as well as gathering tasty meats for cooking.
 Agents are constantly in an arms race against tougher abnormalities and ordeals. If you can't keep up, try to help those who can.
+Agents extract EGO slower than the Extraction Officer. Ask them for help with getting EGO.
+The Disciplinary Officer runs the Emergency Response Agents. Make sure that you properly order your squad to murderball with you; It's a tried and true strategy!
+The Disciplinary Officer has an extra cargo console in their office on the manager's floor. You can buy gear for your squad here.
+Both the Disciplinary Officer and Emergency Response Agents have access to the discplinary department channel with :s. Use it to strategize 
+Emergency Response Agents are a critical part of optimizing agents. Offload early ordeals to them as you work to prepare yourself for later ordeals.
+Emergency Response Agents tend to benefit more from tools than regular agents do in the lategame. Make sure that you use tools when you are too injured to fight!
+Emergency Response Agents get a +20 stat bonus when using non-EGO gear. Make sure to work with the Extraction Officer!
+Sephirah are extra eyes in the sky. Keep an ear out for their uniquely robotic voice.
+Various Representatives from other companies may also show up on this facility offering upgrades in return for refined PE. Make sure that you use them to their fullest potential!
