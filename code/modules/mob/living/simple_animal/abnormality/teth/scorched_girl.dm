@@ -70,7 +70,7 @@
 	var/highestcount = 0
 	for(var/turf/T in GLOB.department_centers)
 		var/targets_at_tile = 0
-		for(var/mob/living/L in view(10, T))
+		for(var/mob/living/L in ohearers(10, T))
 			if(!faction_check_mob(L) && L.stat != DEAD)
 				targets_at_tile++
 		if(targets_at_tile > highestcount)
@@ -90,7 +90,7 @@
 		return
 
 	var/amount_inview = 0
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
 		if(!faction_check_mob(H) && H.stat != DEAD)
 			amount_inview += 1
 	if(prob(amount_inview*20))
@@ -108,7 +108,15 @@
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/AttackingTarget(atom/attacked_target)
-	explode()
+	if(client)
+		explode()
+		return
+	var/amount_inview = 0
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
+		if(!faction_check_mob(H) && H.stat != DEAD)
+			amount_inview += 1
+	if(prob(amount_inview * 20))
+		explode()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/proc/explode()
