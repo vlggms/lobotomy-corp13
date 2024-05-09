@@ -150,15 +150,18 @@
 	return ..()
 
 /obj/item/gun/ego_gun/attack_self(mob/user)
-	if(reloadtime)
-		is_reloading = TRUE
-		to_chat(user,span_notice("You start loading a new magazine."))
-		playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
-		if(do_after(user, reloadtime, src)) //gotta reload
-			playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
-			shotsleft = initial(shotsleft)
-		is_reloading = FALSE
+	if(reloadtime && !is_reloading)
+		INVOKE_ASYNC(src, PROC_REF(reload_ego), user)
 	..()
+
+/obj/item/gun/ego_gun/proc/reload_ego(mob/user)
+	is_reloading = TRUE
+	to_chat(user,span_notice("You start loading a new magazine."))
+	playsound(src, 'sound/weapons/gun/general/slide_lock_1.ogg', 50, TRUE)
+	if(do_after(user, reloadtime, src)) //gotta reload
+		playsound(src, 'sound/weapons/gun/general/bolt_rack.ogg', 50, TRUE)
+		shotsleft = initial(shotsleft)
+	is_reloading = FALSE
 
 //Examine text for pistols.
 /obj/item/gun/ego_gun/pistol/examine(mob/user)
