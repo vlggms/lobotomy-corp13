@@ -469,159 +469,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/west)
 "bu" = (
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	density = 0;
-	pixel_y = 19;
-	storage_capacity = 1000
-	},
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 4
@@ -642,6 +489,7 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
+/obj/structure/fishcooker/fishoven,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -924,6 +772,25 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/control)
+"cr" = (
+/obj/effect/turf_decal/tile/blue{
+	color = "#5269e9";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/blue{
+	color = "#5269e9";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#090807"
+	},
+/obj/effect/turf_decal/tile/neutral{
+	color = "#000000";
+	dir = 8
+	},
+/obj/structure/fishcooker/fishstove,
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/welfare)
 "ct" = (
 /obj/effect/turf_decal/tile/yellow,
 /obj/effect/turf_decal/tile/yellow{
@@ -2234,11 +2101,6 @@
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 8
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/reagentgrinder{
-	desc = "Used to grind things up into raw materials and liquids.";
-	pixel_y = 10
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
@@ -6881,6 +6743,8 @@
 	color = "#000000";
 	dir = 8
 	},
+/obj/structure/table/reinforced,
+/obj/structure/fishcooker,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/welfare)
 "uw" = (
@@ -7240,153 +7104,6 @@
 	},
 /area/department_main/training)
 "vB" = (
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/bear,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/slab/chicken,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/rawcrab,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/meat/slab/spider,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/carpmeat,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spiderleg,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/spidereggs,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
-/obj/item/food/meat/slab/xeno,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -8997,35 +8714,6 @@
 	pixel_y = 19;
 	storage_capacity = 1000
 	},
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
@@ -10309,84 +9997,8 @@
 	},
 /area/facility_hallway/west)
 "Fk" = (
-/obj/effect/turf_decal/tile/blue{
-	color = "#5269e9";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/blue{
-	color = "#5269e9"
-	},
-/obj/effect/turf_decal/stripes/red/line{
-	dir = 8
-	},
-/obj/effect/turf_decal/caution/red{
-	dir = 4
-	},
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_rod,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/shiny,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/hook/weighted,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/reinforced,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/structure/closet{
-	anchored = 1;
-	density = 0;
-	name = "fisherman closet";
-	pixel_y = 19;
-	storage_capacity = 60
-	},
-/obj/structure/railing{
-	alpha = 0;
-	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
-	dir = 8;
-	mouse_opacity = 0;
-	name = "invisble wing-grade railing";
-	resistance_flags = 115
-	},
-/turf/open/floor/plasteel/sepia{
-	color = "#ccc8c0"
-	},
+/obj/machinery/fish_market,
+/turf/open/floor/carpet/blue,
 /area/department_main/welfare)
 "Fl" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -11868,14 +11480,15 @@
 	color = "#5269e9";
 	dir = 8
 	},
-/obj/structure/table/reinforced,
-/obj/machinery/chem_dispenser/drinks/beer/fullupgrade{
-	dir = 4
-	},
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 4
+	},
+/obj/structure/table/reinforced,
+/obj/machinery/reagentgrinder{
+	desc = "Used to grind things up into raw materials and liquids.";
+	pixel_y = 10
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
@@ -12863,41 +12476,6 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/east)
 "Mo" = (
-/obj/structure/closet/secure_closet/freezer/fridge/open{
-	anchored = 1;
-	density = 0;
-	pixel_y = 19;
-	storage_capacity = 1000
-	},
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/rice,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/reagent_containers/food/condiment/flour,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
 /obj/effect/turf_decal/tile/blue{
 	color = "#5269e9";
 	dir = 1
@@ -12918,6 +12496,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/structure/fishcooker/fishfrier,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -14228,6 +13807,7 @@
 	name = "wing-grade railing";
 	resistance_flags = 115
 	},
+/obj/item/kitchen/knife/hunting,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -14509,7 +14089,7 @@
 	color = "#5269e9";
 	dir = 4
 	},
-/obj/machinery/chem_master/condimaster,
+/obj/machinery/grill,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},
@@ -16724,13 +16304,9 @@
 	color = "#5269e9";
 	dir = 8
 	},
-/obj/structure/table/reinforced,
 /obj/machinery/vending/boozeomat/all_access{
 	density = 0;
 	pixel_x = -32
-	},
-/obj/machinery/chem_dispenser/drinks{
-	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
@@ -53914,7 +53490,7 @@ Sh
 lm
 Sh
 Km
-Fk
+eX
 eX
 eX
 Jk
@@ -54686,7 +54262,7 @@ ps
 TF
 DK
 TE
-cu
+Fk
 DK
 qb
 Km
@@ -55957,7 +55533,7 @@ nX
 nX
 uL
 gS
-uv
+cr
 VN
 Cn
 Qw
