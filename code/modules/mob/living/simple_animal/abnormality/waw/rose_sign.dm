@@ -293,7 +293,7 @@
 	pixel_y = 0
 
 /obj/effect/rose_target/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/rose_target/proc/GrabAttack()
@@ -412,7 +412,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/rose_sign/master
 
 /obj/structure/rose_work/Initialize()
-	..()
+	. = ..()
 	picked_color = pick(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	icon_state = "rose_" + picked_color
 	desc = "The heavier your sins, the deeper the color of petals will be."
@@ -455,7 +455,7 @@
 	if(killed)
 		master.datum_reference.qliphoth_change(-1)
 	master.work_roses -= src
-	..()
+	return ..()
 
 //debuff definition
 /datum/status_effect/stacking/crownthorns
@@ -526,7 +526,7 @@
 	layer = ABOVE_MOB_LAYER
 
 /obj/structure/rose_crucifix/Initialize()
-	..()
+	. = ..()
 	if(prob(25))//TODO: make this from a white rose
 		add_overlay(mutable_appearance('ModularTegustation/Teguicons/32x32.dmi', "crucify_white", -ABOVE_MOB_LAYER))
 	else

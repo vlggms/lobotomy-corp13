@@ -282,4 +282,4 @@
 
 /obj/effect/portal/abno_warp/Initialize()
 	QDEL_IN(src, 3 SECONDS)
-	..()
+	return ..()

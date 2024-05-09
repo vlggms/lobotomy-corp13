@@ -63,6 +63,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	/// List of Living People on Breach
 	var/list/heretics = list()
 
+	var/datum/reusable_visual_pool/RVP = new(487)
+
 /mob/living/simple_animal/hostile/abnormality/white_night/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, 1, 5))
 	var/list/result_text_list = list(
@@ -87,7 +89,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(!(status_flags & GODMODE))
 		if(holy_revival_cooldown < world.time)
 			for(var/mob/living/simple_animal/hostile/apostle/scythe/guardian/G in apostles)
-				if(G in view(10, src)) // Only teleport them if they are not in view.
+				if(G in ohearers(10, src)) // Only teleport them if they are not in view.
 					continue
 				var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
 				G.forceMove(T)
@@ -109,6 +111,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	apostles = null
 	QDEL_NULL(particles)
 	particles = null
+	QDEL_NULL(RVP)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_humans(range_override = null, faction_check = "apostle")
@@ -124,11 +127,11 @@ GLOBAL_LIST_EMPTY(apostles)
 	for(var/i = 1 to range_override)
 		turf_list = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		for(var/turf/open/T in turf_list)
-			var/obj/effect/temp_visual/cult/sparks/S = new(T)
+			var/obj/effect/reusable_visual/S = RVP.NewCultSparks(T, 10)
 			if(faction_check != "apostle")
 				S.color = "#AAFFAA" // Indicating that it's a good thing
 			for(var/mob/living/L in T)
-				new /obj/effect/temp_visual/dir_setting/cult/phase(T, L.dir)
+				RVP.NewCultIn(T, L.dir)
 				addtimer(CALLBACK(src, PROC_REF(revive_target), L, i, faction_check))
 		SLEEP_CHECK_DEATH(1.5)
 
@@ -349,7 +352,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	scythe_damage = 150 // It's a big AoE unlike base game where it's smaller and as it is you straight up die unless you have 7+ Pale resist. You also have TWO of these AND WN hitting you for ~80 Pale at this range.
 
 /mob/living/simple_animal/hostile/apostle/scythe/guardian/CanStartPatrol()
-	if(locate(/mob/living/simple_animal/hostile/abnormality/white_night) in view(9, src))
+	if(locate(/mob/living/simple_animal/hostile/abnormality/white_night) in ohearers(9, src))
 		return FALSE
 	return ..()
 
@@ -491,7 +494,7 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/apostle/staff/Destroy()
 	QDEL_NULL(beamloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/apostle/staff/death(gibbed)
 	beamloop.stop()

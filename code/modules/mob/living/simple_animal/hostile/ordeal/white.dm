@@ -118,7 +118,7 @@
 	for(var/turf/T in turfs_to_hit)
 		if(T.density)
 			break
-		for(var/turf/open/TT in range(1, T))
+		for(var/turf/open/TT in RANGE_TURFS(1, T))
 			new /obj/effect/temp_visual/small_smoke/halfsecond(TT)
 			been_hit = HurtInTurf(TT, been_hit, hammer_damage, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE, hurt_structure = TRUE)
 		sleep(1)
@@ -170,9 +170,16 @@
 	var/circle_radius = 24
 	var/circle_overtime_damage = 70
 
+	var/datum/reusable_visual_pool/RVP = new(1420)
+
 /mob/living/simple_animal/hostile/ordeal/white_fixer/Initialize()
 	. = ..()
 	circle_cooldown = world.time + 10 SECONDS
+
+/mob/living/simple_animal/hostile/ordeal/white_fixer/Destroy()
+	QDEL_NULL(RVP)
+	been_hit.Cut()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/Life()
 	. = ..()
@@ -222,7 +229,7 @@
 	var/turf/target_turf = get_ranged_target_turf_direct(src, target, 24, rand(-20,20))
 	var/list/turfs_to_hit = getline(src, target_turf)
 	for(var/turf/T in turfs_to_hit)
-		new /obj/effect/temp_visual/cult/sparks(T) // Prepare yourselves
+		RVP.NewCultSparks(T) // Prepare yourselves
 	SLEEP_CHECK_DEATH(13)
 	playsound(src, 'sound/effects/ordeals/white/white_beam.ogg', 75, FALSE, 32)
 	been_hit = list()
@@ -232,15 +239,22 @@
 		i++
 	SLEEP_CHECK_DEATH(5)
 	icon_state = icon_living
-	can_act = TRUE
+	if(!damage_reflection)
+		can_act = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/LongBeamTurf(turf/T)
 	var/list/affected_turfs = list()
-	for(var/turf/TT in range(2, T))
-		if(locate(/obj/effect/temp_visual/small_smoke/fixer_w) in TT) // Already affected by smoke
+	for(var/turf/TT in RANGE_TURFS(2, T))
+		var/skip = FALSE
+		for(var/obj/effect/reusable_visual/RV in TT)
+			if(RV.name == "mental smoke") // Already affected by smoke
+				skip = TRUE
+				break
+		if(skip)
 			continue
 		affected_turfs += TT
-		new /obj/effect/temp_visual/small_smoke/fixer_w(TT) // Lasts for 5 seconds
+		var/obj/effect/reusable_visual/RV = RVP.NewSmoke(TT, 5 SECONDS)
+		RV.name = "mental smoke"
 		been_hit = HurtInTurf(TT, been_hit, beam_direct_damage, WHITE_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE)
 
 	for(var/turf/TT in affected_turfs) // Remaining damage effect
@@ -270,13 +284,14 @@
 				continue
 		var/list/turf_list = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
 		for(var/turf/T in turf_list)
-			new /obj/effect/temp_visual/small_smoke(T)
+			RVP.NewSmoke(T, 5 SECONDS)
 			addtimer(CALLBACK(src, PROC_REF(BeamTurfEffect), T, circle_overtime_damage))
 		SLEEP_CHECK_DEATH(0.5)
 	SLEEP_CHECK_DEATH(5)
 	icon_state = icon_living
 	circle_cooldown = world.time + circle_cooldown_time
-	can_act = TRUE
+	if(!damage_reflection)
+		can_act = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/StartReflecting()
 	can_act = FALSE
@@ -294,25 +309,27 @@
 
 // All damage reflection stuff is down here
 /mob/living/simple_animal/hostile/ordeal/white_fixer/proc/ReflectDamage(mob/living/attacker, attack_type = RED_DAMAGE, damage)
+	if(QDELETED(src) || stat == DEAD)
+		return
 	if(damage < 1)
 		return
 	if(!damage_reflection)
 		return
-	for(var/turf/T in orange(1, src))
-		new /obj/effect/temp_visual/sparkles(T)
+	for(var/turf/T in RANGE_TURFS(1, src))
+		RVP.NewSparkles(T)
 	playsound(src, 'sound/effects/ordeals/white/white_reflect.ogg', min(15 + damage, 100), TRUE, 4)
 	attacker.apply_damage(damage, attack_type, null, attacker.getarmor(null, attack_type))
-	new /obj/effect/temp_visual/revenant(get_turf(attacker))
+	RVP.NewSparkles(get_turf(attacker), color = COLOR_VIOLET)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/attack_hand(mob/living/carbon/human/M)
-	..()
+	. = ..()
 	if(!.)
 		return
 	if(damage_reflection && M.a_intent == INTENT_HARM)
 		ReflectDamage(M, M?.dna?.species?.attack_type, M?.dna?.species?.punchdamagehigh)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/attack_paw(mob/living/carbon/human/M)
-	..()
+	. = ..()
 	if(damage_reflection && M.a_intent != INTENT_HELP)
 		ReflectDamage(M, M?.dna?.species?.attack_type, 5)
 
@@ -326,17 +343,17 @@
 			ReflectDamage(M, M.melee_damage_type, damage)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/bullet_act(obj/projectile/Proj, def_zone, piercing_hit = FALSE)
-	..()
+	. = ..()
 	if(damage_reflection && Proj.firer)
 		ReflectDamage(Proj.firer, Proj.damage_type, Proj.damage)
 
 /mob/living/simple_animal/hostile/ordeal/white_fixer/attackby(obj/item/I, mob/living/user, params)
-	..()
+	. = ..()
 	if(!damage_reflection)
 		return
 	var/damage = I.force
 	if(ishuman(user))
-		damage *= 1 + (get_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
+		damage *= 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE) / 100)
 	ReflectDamage(user, I.damtype, damage)
 
 // Black Fixer
@@ -526,9 +543,15 @@
 	var/teleport_cooldown
 	var/teleport_cooldown_time = 10 SECONDS
 
+	var/list/created_objects = list()
+
 /mob/living/simple_animal/hostile/ordeal/pale_fixer/Initialize()
 	. = ..()
 	teleport_cooldown = world.time + teleport_cooldown_time
+
+/mob/living/simple_animal/hostile/ordeal/pale_fixer/Destroy()
+	QDEL_LIST(created_objects)
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/pale_fixer/Life()
 	. = ..()
@@ -582,7 +605,7 @@
 	for(var/turf/T in getline(slash_start, slash_end))
 		if(T.density)
 			break
-		for(var/turf/open/TT in range(multislash_radius, T))
+		for(var/turf/open/TT in RANGE_TURFS(multislash_radius, T))
 			hitline |= TT
 	for(var/turf/open/T in hitline)
 		new /obj/effect/temp_visual/cult/sparks(T)
@@ -618,13 +641,14 @@
 			if(walls_in_way > 2)
 				break
 		beam_end = T
-		for(var/turf/open/TT in range(tentacle_radius, T))
+		for(var/turf/open/TT in RANGE_TURFS(tentacle_radius, T))
 			hitline |= TT
 	if(!beam_end)
 		tentacle_cooldown = world.time + 2 SECONDS
 		can_act = TRUE
 		return
 	var/obj/effect/pale_case/case = new(beam_start)
+	created_objects += case
 	playsound(beam_start, 'sound/items/handling/cardboardbox_drop.ogg', 50, FALSE)
 	SLEEP_CHECK_DEATH(5)
 	for(var/turf/T in hitline)
@@ -645,6 +669,7 @@
 			to_chat(L, span_userdanger("A pale beam passes right through you!"))
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	SLEEP_CHECK_DEATH(8)
+	created_objects -= case
 	case.FadeOut()
 	SLEEP_CHECK_DEATH(2)
 	can_act = TRUE
