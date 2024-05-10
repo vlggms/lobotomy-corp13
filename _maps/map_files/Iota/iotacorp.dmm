@@ -10758,20 +10758,6 @@
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "HF" = (
-/obj/structure/filingcabinet/zayininfo{
-	density = 0;
-	pixel_x = -10;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/tethinfo{
-	density = 0;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/heinfo{
-	density = 0;
-	pixel_x = 10;
-	pixel_y = 19
-	},
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
 	},
@@ -10783,6 +10769,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "HJ" = (
@@ -11664,21 +11651,6 @@
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/command)
 "Ln" = (
-/obj/structure/filingcabinet/wawinfo{
-	density = 0;
-	pixel_x = -11;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/alephinfo{
-	density = 0;
-	pixel_x = -1;
-	pixel_y = 19
-	},
-/obj/structure/filingcabinet/toolinfo{
-	density = 0;
-	pixel_x = 9;
-	pixel_y = 19
-	},
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
 	},
@@ -11690,6 +11662,7 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
+/obj/effect/mapping_helpers/records_spawner/second,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "Lq" = (

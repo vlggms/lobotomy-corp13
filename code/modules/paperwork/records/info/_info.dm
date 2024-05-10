@@ -132,7 +132,7 @@ For escape damage you will have to get creative and figure out how dangerous it 
 /obj/item/paper/fluff/info/aleph
 	icon_state = "aleph"
 
-/obj/item/paper/fluff/info/zayin/archive_guide
+/obj/item/paper/fluff/info/tool/archive_guide
 	name = "Archive Guide"
 	info = {"<h1><center>Archive Guide</center></h1>	<br>
 	Welcome to Lobotomy Corps Digital Archive! <br>

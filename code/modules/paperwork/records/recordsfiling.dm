@@ -1,6 +1,69 @@
-/*
+/**
  * Records Cabinet
  */
+
+GLOBAL_LIST_EMPTY(records_cabinets)
+
+/obj/effect/mapping_helpers/records_spawner
+	/// List of papers that we want to spawn, hard-coded to be 3 in lenght
+	var/list/desired_papers = list(
+		/obj/item/paper/fluff/info/zayin,
+		/obj/item/paper/fluff/info/teth,
+		/obj/item/paper/fluff/info/he,
+	)
+
+/obj/effect/mapping_helpers/records_spawner/Initialize()
+	. = ..()
+	var/desired_location = -10
+	for(var/i in 1 to desired_papers.len)
+		var/obj/structure/filingcabinet/smart/cabinet = new(get_turf(src))
+
+		// take the 1st item in the list then cut to remove it from the mapping helpers list, next continue the loop
+		var/picked_paper = desired_papers[1]
+		desired_papers -= picked_paper
+
+		// set cabinet variables so it looks nice
+		cabinet.desired_type = picked_paper
+		cabinet.pixel_x = desired_location
+
+		// add the cabinet to GLOB, so ticker can populate it at round-start
+		GLOB.records_cabinets += cabinet
+		desired_location += 10
+
+/obj/effect/mapping_helpers/records_spawner/second
+	desired_papers = list(
+		/obj/item/paper/fluff/info/waw,
+		/obj/item/paper/fluff/info/aleph,
+		/obj/item/paper/fluff/info/tool,
+	)
+
+/obj/structure/filingcabinet/smart
+	icon_state = "employmentcabinet"
+	var/obj/item/paper/fluff/info/desired_type
+
+/obj/structure/filingcabinet/smart/proc/spawn_records(mode)
+	var/datum/game_mode/management/gamemode = mode
+
+	var/list/queue = subtypesof(desired_type)
+	for(var/obj/item/paper/fluff/info/paper as anything in queue)
+		if(desired_type == /obj/item/paper/fluff/info/tool) // skip the queue
+			new paper(src)
+			continue
+
+		if(isnull(paper.abno_type)) // Most likelly a parent, that or someone fucked up
+			message_admins("A records paper attempted to spawn, but failed due to not having an abnormality assigned ([paper])")
+			continue
+
+		var/paper_origin = paper.abno_type.abnormality_origin
+		var/passed_check = FALSE
+		for(var/allowed_abnormalities in gamemode.abno_types)
+			if(allowed_abnormalities == paper_origin)
+				passed_check = TRUE
+
+		if(!passed_check)
+			continue
+
+		new paper(src)
 
 //Zayin
 /obj/structure/filingcabinet/zayininfo
