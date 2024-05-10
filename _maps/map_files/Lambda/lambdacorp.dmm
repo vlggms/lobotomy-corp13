@@ -8308,7 +8308,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/information)
 "Oi" = (
-/obj/effect/mapping_helpers/records_spawner,
+/obj/effect/mapping_helpers/records_spawner/walk_through,
 /turf/open/floor/pod/dark,
 /area/department_main/records)
 "Ok" = (
@@ -8390,7 +8390,7 @@
 /turf/open/floor/pod/dark,
 /area/department_main/command)
 "OH" = (
-/obj/effect/mapping_helpers/records_spawner/second,
+/obj/effect/mapping_helpers/records_spawner/second/walk_through,
 /turf/open/floor/pod/dark,
 /area/department_main/records)
 "OR" = (

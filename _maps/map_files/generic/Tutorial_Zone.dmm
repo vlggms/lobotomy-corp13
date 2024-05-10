@@ -187,13 +187,6 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "fd" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
 	},
@@ -680,6 +673,10 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"xA" = (
+/obj/effect/mapping_helpers/records_spawner/second,
+/turf/open/floor/carpet/black,
+/area/department_main/human)
 "xG" = (
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/zayin/guide/wellcheers,
@@ -883,13 +880,6 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "Ev" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "FC" = (
@@ -1434,13 +1424,7 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "VZ" = (
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
+/obj/effect/mapping_helpers/records_spawner,
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "Wf" = (
@@ -8895,7 +8879,7 @@ XL
 XL
 OU
 iU
-VZ
+Ev
 Yy
 xf
 jp
@@ -9303,7 +9287,7 @@ XL
 XL
 XL
 iU
-Ev
+xA
 Yy
 Ql
 xG
@@ -9507,7 +9491,7 @@ XL
 XL
 XL
 iU
-VZ
+Ev
 Yy
 Ql
 yu

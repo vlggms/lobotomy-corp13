@@ -10769,7 +10769,7 @@
 	pixel_x = -9;
 	pixel_y = 4
 	},
-/obj/effect/mapping_helpers/records_spawner,
+/obj/effect/mapping_helpers/records_spawner/walk_through,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "HJ" = (
@@ -11662,7 +11662,7 @@
 	pixel_x = 9;
 	pixel_y = 4
 	},
-/obj/effect/mapping_helpers/records_spawner/second,
+/obj/effect/mapping_helpers/records_spawner/second/walk_through,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "Lq" = (

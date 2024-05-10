@@ -5,6 +5,9 @@
 GLOBAL_LIST_EMPTY(records_cabinets)
 
 /obj/effect/mapping_helpers/records_spawner
+	name = "ZAYIN/TETH/HE records cabinet spawner"
+	/// Changes if the lockers will be able to be walked through, and their visual position adjusted up
+	var/walk_through = FALSE
 	/// List of papers that we want to spawn, hard-coded to be 3 in lenght
 	var/list/desired_papers = list(
 		/obj/item/paper/fluff/info/zayin,
@@ -25,17 +28,29 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 		// set cabinet variables so it looks nice
 		cabinet.desired_type = picked_paper
 		cabinet.pixel_x = desired_location
+		if(walk_through)
+			cabinet.density = 0
+			cabinet.pixel_y = 20
 
 		// add the cabinet to GLOB, so ticker can populate it at round-start
 		GLOB.records_cabinets += cabinet
 		desired_location += 10
 
 /obj/effect/mapping_helpers/records_spawner/second
+	name = "WAW/ALEPH/TOOL records cabinet spawner"
 	desired_papers = list(
 		/obj/item/paper/fluff/info/waw,
 		/obj/item/paper/fluff/info/aleph,
 		/obj/item/paper/fluff/info/tool,
 	)
+
+/obj/effect/mapping_helpers/records_spawner/walk_through
+	name = "ZAYIN/TETH/HE records cabinet spawner -- Walk-through"
+	walk_through = TRUE
+
+/obj/effect/mapping_helpers/records_spawner/second/walk_through
+	name = "WAW/ALEPH/TOOL records cabinet spawner -- Walk-through"
+	walk_through = TRUE
 
 /obj/structure/filingcabinet/smart
 	icon_state = "employmentcabinet"
