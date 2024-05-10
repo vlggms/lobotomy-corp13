@@ -21,13 +21,11 @@
 
 	stat_attack = HARD_CRIT
 
-	can_spawn = FALSE//it's a joke abnormality
-
 	ego_list = list(
 		/datum/ego_datum/weapon/mcrib,
 		/datum/ego_datum/armor/mcrib,
 	)
-	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
 /mob/living/simple_animal/hostile/abnormality/riblin/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

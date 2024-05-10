@@ -39,14 +39,12 @@
 		/datum/ego_datum/armor/buff_christmas,
 	)
 	gift_type = /datum/ego_gifts/christmas/buff
-	abnormality_origin = ABNORMALITY_ORIGIN_ALTERED
+	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
 	attack_action_types = list(
 		/datum/action/innate/abnormality_attack/rudolta_buff_onrush,
 		/datum/action/innate/abnormality_attack/rudolta_buff_slam,
 	)
-
-	can_spawn = FALSE
 
 	var/can_act = TRUE
 	// Onrush vars

@@ -1218,28 +1218,6 @@
 	attack_verb_simple = weapon_list[form][5]
 	hitsound = weapon_list[form][6]
 
-/obj/item/ego_weapon/ultimate_christmas
-	name = "ultimate christmas"
-	desc = "The Santa's bag is very heavy, capable of carrying a gift for everyone in the world. This one is no exception."
-	icon_state = "ultimate_christmas"
-	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
-	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
-	inhand_x_dimension = 64
-	inhand_y_dimension = 64
-	force = 160
-	attack_speed = 1.6
-	damtype = RED_DAMAGE
-	knockback = KNOCKBACK_HEAVY
-	attack_verb_continuous = list("bashes", "clubs")
-	attack_verb_simple = list("bashes", "clubs")
-	hitsound = 'sound/abnormalities/rudolta_buff/onrush1.ogg'
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 120,
-							PRUDENCE_ATTRIBUTE = 80,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
-							)
-
 /obj/item/ego_weapon/oberon
 	name = "oberon"
 	desc = "Then yes, I am the Oberon you seek."
