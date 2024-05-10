@@ -258,7 +258,7 @@ SUBSYSTEM_DEF(ticker)
 
 	else
 		if(!istype(mode, /datum/game_mode/management))
-			mode = new /datum/game_mode/management/pure
+			mode = new /datum/game_mode/management/classic
 
 		for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
 			cabinet.spawn_records(mode)
