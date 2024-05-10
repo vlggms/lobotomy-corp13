@@ -40,8 +40,15 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 /obj/structure/filingcabinet/smart
 	icon_state = "employmentcabinet"
 	var/obj/item/paper/fluff/info/desired_type
+	var/filled = FALSE // just in case we fail to get filled by the ticker at round-start, we should report that
+
+/obj/structure/filingcabinet/smart/interact(mob/user)
+	. = ..()
+	if(!filled)
+		message_admins("Records cabinet failed to fill at round-start, found by ([user])")
 
 /obj/structure/filingcabinet/smart/proc/spawn_records(mode)
+	filled = TRUE
 	var/datum/game_mode/management/gamemode = mode
 
 	var/list/queue = subtypesof(desired_type)
@@ -55,125 +62,38 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 			continue
 
 		var/paper_origin = paper.abno_type.abnormality_origin
-		var/passed_check = FALSE
 		for(var/allowed_abnormalities in gamemode.abno_types)
 			if(allowed_abnormalities == paper_origin)
-				passed_check = TRUE
+				new paper(src)
+				continue
 
-		if(!passed_check)
-			continue
+/**
+ * closets filled with their respective papers, consider using mapping helpers, please
+ */
 
-		new paper(src)
-
-//Zayin
-/obj/structure/filingcabinet/zayininfo
+/obj/structure/filingcabinet/smart/zayin
 	name = "zayin abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/zayin
 
-/obj/structure/filingcabinet/zayininfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/zayin)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/zayininfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//Teths
-/obj/structure/filingcabinet/tethinfo
+/obj/structure/filingcabinet/smart/teth
 	name = "teth abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/teth
 
-/obj/structure/filingcabinet/tethinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/teth)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/tethinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//HEs
-/obj/structure/filingcabinet/heinfo
+/obj/structure/filingcabinet/smart/he
 	name = "he abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/he
 
-/obj/structure/filingcabinet/heinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/he)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/heinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-
-//WAWs
-/obj/structure/filingcabinet/wawinfo
+/obj/structure/filingcabinet/smart/waw
 	name = "waw abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/waw
 
-/obj/structure/filingcabinet/wawinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/waw)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/wawinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//Aleph
-/obj/structure/filingcabinet/alephinfo
+/obj/structure/filingcabinet/smart/aleph
 	name = "aleph abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
+	desired_type = /obj/item/paper/fluff/info/aleph
 
-/obj/structure/filingcabinet/alephinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/aleph)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/alephinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
-//Tools
-/obj/structure/filingcabinet/toolinfo
+/obj/structure/filingcabinet/smart/tool
 	name = "tool abnormality information cabinet"
-	icon_state = "employmentcabinet"
-	var/virgin = TRUE
-
-/obj/structure/filingcabinet/toolinfo/proc/fillCurrent()
-	var/list/queue = subtypesof(/obj/item/paper/fluff/info/tool)
-	for(var/sheet in queue)
-		new sheet(src)
-
-
-/obj/structure/filingcabinet/toolinfo/interact(mob/user)
-	if(virgin)
-		fillCurrent()
-		virgin = FALSE
-	return ..()
-
+	desired_type = /obj/item/paper/fluff/info/tool
 
 /*
  * Lore Cabinet
