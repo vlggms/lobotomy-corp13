@@ -261,7 +261,7 @@ SUBSYSTEM_DEF(ticker)
 			mode = new /datum/game_mode/management/classic
 
 		for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
-			cabinet.spawn_records(mode)
+			cabinet.spawn_records()
 
 	CHECK_TICK
 

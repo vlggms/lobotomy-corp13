@@ -40,16 +40,21 @@ GLOBAL_LIST_EMPTY(records_cabinets)
 /obj/structure/filingcabinet/smart
 	icon_state = "employmentcabinet"
 	var/obj/item/paper/fluff/info/desired_type
-	var/filled = FALSE // just in case we fail to get filled by the ticker at round-start, we should report that
+	var/filled = FALSE // just in case we fail to get filled by the ticker at round-start, lets not screw over people
 
 /obj/structure/filingcabinet/smart/interact(mob/user)
-	. = ..()
 	if(!filled)
-		message_admins("Records cabinet failed to fill at round-start, found by ([user])")
+		message_admins("Records cabinet failed to fill at round-start, filling due to being touched by ([user])")
+		spawn_records()
 
-/obj/structure/filingcabinet/smart/proc/spawn_records(mode)
+	return ..()
+
+/obj/structure/filingcabinet/smart/proc/spawn_records()
+	if(isnull(SSticker.mode))
+		CRASH("(proc/spawn_records) called on ([src]) whilst gamemode is null!")
+
+	var/datum/game_mode/management/gamemode = SSticker.mode
 	filled = TRUE
-	var/datum/game_mode/management/gamemode = mode
 
 	var/list/queue = subtypesof(desired_type)
 	for(var/obj/item/paper/fluff/info/paper as anything in queue)
