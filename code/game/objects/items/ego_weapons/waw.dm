@@ -17,15 +17,16 @@
 	)
 
 /obj/item/ego_weapon/lamp/attack(mob/living/M, mob/living/user)
+	var/turf/target_turf = get_turf(M)
 	. = ..()
 	if(!.)
 		return FALSE
-	for(var/mob/living/L in view(1, M))
+	for(var/mob/living/L in hearers(1, target_turf))
 		var/aoe = 25
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		aoe*=justicemod
-		aoe*=force_multiplier
+		var/justicemod = 1 + userjust / 100
+		aoe *= justicemod
+		aoe *= force_multiplier
 		if(L == user || ishuman(L))
 			continue
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -1028,6 +1029,7 @@
 	return 30
 
 /obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/carbon/human/user)
+	var/turf/target_turf = get_turf(M)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1046,41 +1048,19 @@
 		damage *= 3
 	if(user.sanity_lost)
 		damage *= 1.2
-	for(var/turf/open/T in range(aoe_range, M))
+	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
-		user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+		var/list/been_hit = QDELETED(M) ? list() : list(M)
+		user.HurtInTurf(T, been_hit, damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
-	var/combo = FALSE
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/ego_weapon/blind_rage/Y = myman.get_inactive_held_item()
 	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if((istype(Y)) & (istype(Z))) //dual wielding and wearing Wounded Courage? if so...
-		combo = TRUE //hits twice
-	else
-		combo = FALSE
-	if(combo)
-		if(M in view(reach,user))
-			Y.attacks++
-			Y.attacks %=3
-			switch(attacks)
-				if(0)
-					hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
-				if(1)
-					hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
-				if(2)
-					hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
-			M.attacked_by(src, user)
-			M.send_item_attack_message(src, user,M)
-			user.do_attack_animation(M)
-			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-			for(var/turf/open/T in range(aoe_range, M))
-				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
-				smonk.color = COLOR_GREEN
-				user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
-				user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+	if(istype(Y) && Y != src && istype(Z) && !QDELETED(M)) //dual wielding and wearing Wounded Courage? if so...
+		Y.melee_attack_chain(user, M)
 
 /obj/item/ego_weapon/blind_rage/attackby(obj/item/I, mob/living/user, params)
 	..()
