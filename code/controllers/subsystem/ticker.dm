@@ -250,11 +250,11 @@ SUBSYSTEM_DEF(ticker)
 		if(!(istype(mode, /datum/game_mode/combat)))
 			mode = new /datum/game_mode/combat
 	else
-		var/choosingmap = pick(/datum/game_mode/management/classic, 
+		var/choosingmode = pick(/datum/game_mode/management/classic, 
 			//	/datum/game_mode/management/pure, 
 			//	/datum/game_mode/management/branch
 				)
-		mode = new choosingmap
+		mode = new choosingmode
 
 	CHECK_TICK
 
