@@ -122,8 +122,8 @@
 	abno_code = "O-01-131"
 	abno_info = list(
 		"Injuries sustained when working on Lady Out of Space consisted of an equal amount of BLACK and WHITE damage.",
-		"When the work result was Neutral, the Qliphoth Counter decreased.",
-		"When the work result was Bad, the Qliphoth Counter decreased by 2.",
+		"When the work result was Neutral, the Qliphoth Counter decreased at a low probability.",
+		"When the work result was Bad, the Qliphoth Counter had two chances to decrease at a normal probaility.",
 		"When employees of Level 4 and lower completed their work, the Qliphoth Counter decreased. The Counter decreased again if the employee was Level 3 and lower.",
 		"When employees of Level 2 and lower attempted work, they were consumed by Lady Out of Space and the Qliphoth Counter decreased.")
 	abno_work_damage_type = "White & Black"
@@ -136,12 +136,13 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/nihil
 	abno_code = "O-01-150"
 	abno_info = list(
-		"When the work result was Neutral, the Qliphoth Counter decreased at a normal probability.",
+		"When the work result was Good, the Qliphoth counter increased.",
 		"When the work result was Bad, the Qliphoth Counter decreased by 2.",
-		"When work was performed, the employee took different types of damage depending on the type of work.",
+		"When an abnormality resembling a magical girl escaped containment, the Qliphoth Counter decreased by 2.",
+		"When repression work was performed, the employee took BLACK damage during work.",
 		"When the Qlipthoth counter reached 0, the faciltiy was cloaked in choking darkness.",
-		"The darkness seemed to rid employees of their attributes, and caused a massive qliphoth meltdown to occur.")
-	abno_work_damage_type = "All"
+		"The darkness seemed to rid employees of their attributes, and caused a massive qliphoth meltdown to occur.",
+		"When the Qlipthoth counter reached 0 while 2 or more abnormalities resembling magical girls were contained in the facility, O-01-150 escaped containment instead.")
 
 // God of the Seasons
 /obj/item/paper/fluff/info/aleph/seasons

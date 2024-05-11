@@ -1,4 +1,5 @@
 #define STATUS_EFFECT_FRIENDSHIP /datum/status_effect/display/friendship
+#define GALAXY_COOLDOWN (60 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/galaxy_child
 	name = "Child of the Galaxy"
 	desc = "A young, lost child."
@@ -36,6 +37,88 @@
 	var/damage_amount
 	var/depressed = FALSE
 	var/chance_modifier = 1
+
+	var/galaxy_cooldown
+	var/galaxy_cooldown_time = 5 SECONDS
+
+	attack_action_types = list(/datum/action/cooldown/friend_gift, /datum/action/cooldown/galaxygiftbreak)
+
+/datum/action/cooldown/friend_gift
+	name = "Gift Pebble"
+	icon_icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
+	button_icon_state = "friendship"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = GALAXY_COOLDOWN //5 seconds
+
+/datum/action/cooldown/friend_gift/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/galaxy_child))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/galaxy_child/galaxy_child = owner
+	StartCooldown()
+	galaxy_child.manualgift()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/manualgift()
+	var/list/nearby = viewers(7, src) // first call viewers to get all mobs that see us
+	if((SSmaptype.maptype == "limbus_labs"))
+		for(var/mob in nearby) // then sanitize the list
+			if(mob == src) // cut ourselfes from the list
+				nearby -= mob
+			if(!ishuman(mob)) // cut all the non-humans from the list
+				nearby -= mob
+			//if(mob.stat == DEAD)
+				//nearby -= mob
+			if(mob in galaxy_friend) //cut who is already a friend
+				nearby -= mob
+		var/mob/living/carbon/human/new_friend = input(src, "Choose who you want to gift a pebble to", "Select your new friend") as null|anything in nearby // pick someone from the list
+		var/giftask = alert(new_friend, "Do you wish to receive the child's gift?", "Recieve Gift", "Yes", "No")
+		if(giftask == "Yes")
+			new_friend.apply_status_effect(STATUS_EFFECT_FRIENDSHIP)
+			galaxy_friend |= new_friend
+			heal_amount += heal_mod
+			damage_amount += damage_mod
+			RegisterSignal(new_friend, COMSIG_LIVING_DEATH, PROC_REF(FriendDeath))
+			icon_state = "galaxy"
+			depressed = FALSE
+
+/datum/action/cooldown/galaxygiftbreak
+	name = "Break Gifts"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = GALAXY_COOLDOWN //5 seconds
+
+/datum/action/cooldown/galaxygiftbreak/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/galaxy_child))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/galaxy_child/galaxy_child = owner
+	StartCooldown()
+	galaxy_child.break_gifts()
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/break_gifts(mob/living/carbon/human/user)
+	if((SSmaptype.maptype == "limbus_labs"))
+		if(LAZYLEN(galaxy_friend))
+			for(var/mob/living/carbon/human/L in galaxy_friend)
+				if(QDELETED(L))
+					continue
+				L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
+				UnregisterSignal(L, COMSIG_LIVING_DEATH)
+				new /obj/effect/temp_visual/pebblecrack(get_turf(L))
+				playsound(get_turf(L), "shatter", 50, TRUE)
+				to_chat(L, span_userdanger("Your pebble violently shatters as Child of the Galaxy begins to weep!"))
+		//reset everything
+		heal_amount = 0
+		damage_amount = 0
+		depressed = TRUE
+		LAZYCLEARLIST(galaxy_friend)
+		icon_state = "galaxy_weep"
+
 
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/examine(mob/user)
 	. = ..()
@@ -118,6 +201,7 @@
 /mob/living/simple_animal/hostile/abnormality/galaxy_child/proc/FriendDeath(datum/source, gibbed)
 	SIGNAL_HANDLER
 	UnregisterSignal(source, COMSIG_LIVING_DEATH)
+	to_chat(src, span_userdanger("You sense that one of your friends has perished...."))
 	datum_reference.qliphoth_change(-4)
 
 //FRIEND
@@ -146,3 +230,5 @@
 /obj/effect/temp_visual/pebblecrack/Initialize(mapload, atom/mimiced_atom)
 	. = ..()
 	animate(src, alpha = 0, time = duration)
+
+#undef GALAXY_COOLDOWN

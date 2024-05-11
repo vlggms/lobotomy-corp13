@@ -7514,6 +7514,13 @@
 	},
 /turf/open/floor/pod/dark,
 /area/department_main/information)
+"JO" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/structure/sign/button_counter/directional/east,
+/turf/open/floor/pod/light,
+/area/facility_hallway/information)
 "JP" = (
 /turf/closed/indestructible/reinforced{
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
@@ -7978,6 +7985,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/obj/structure/sign/button_counter/directional/east,
 /turf/open/floor/pod/light,
 /area/facility_hallway/information)
 "Ml" = (
@@ -10030,15 +10038,11 @@
 	color = "#422702";
 	dir = 1
 	},
-/obj/structure/table/wood,
-/obj/machinery/photocopier{
-	pixel_y = 5;
-	resistance_flags = 115
-	},
 /obj/effect/turf_decal/stripes/red/line{
 	dir = 1
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/landmark/refinerspawn,
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "WA" = (
@@ -51104,7 +51108,7 @@ em
 gQ
 Mj
 Tr
-RU
+JO
 nO
 SK
 SK

@@ -1272,6 +1272,15 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/east)
+"jN" = (
+/obj/machinery/camera/autoname{
+	dir = 9
+	},
+/obj/structure/sign/poster/official/twelve_gauge{
+	pixel_x = 32
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "jQ" = (
 /obj/effect/landmark/xeno_spawn,
 /turf/open/floor/plasteel,
@@ -1698,15 +1707,6 @@
 /obj/effect/turf_decal/siding/yellow,
 /turf/open/floor/facility,
 /area/facility_hallway/west)
-"mj" = (
-/obj/machinery/computer/extraction_cargo{
-	dir = 8
-	},
-/obj/structure/sign/poster/lobotomycorp/egoinfo{
-	pixel_x = 32
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
 "mn" = (
 /obj/effect/turf_decal/bot,
 /obj/machinery/telecomms/receiver/preset_right,
@@ -1925,6 +1925,10 @@
 /obj/machinery/hydroponics/constructable,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"on" = (
+/obj/effect/landmark/refinerspawn,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "op" = (
 /obj/structure/sign/departments/records{
 	pixel_y = 32
@@ -2872,6 +2876,7 @@
 /obj/effect/turf_decal/box/white,
 /obj/machinery/vending/lobotomyuniform,
 /obj/machinery/camera/autoname,
+/obj/structure/sign/button_counter/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "vr" = (
@@ -2963,6 +2968,13 @@
 /obj/item/hourglass,
 /turf/open/floor/plasteel/elevatorshaft,
 /area/department_main/training)
+"vY" = (
+/obj/structure/sign/poster/lobotomycorp/egoinfo{
+	pixel_x = 32
+	},
+/obj/structure/rack,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "wb" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 8
@@ -3108,6 +3120,7 @@
 "wZ" = (
 /obj/effect/turf_decal/box/white,
 /obj/machinery/vending/lobotomyarmband,
+/obj/structure/sign/button_counter/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "xa" = (
@@ -5312,16 +5325,6 @@
 /obj/structure/window,
 /turf/open/floor/carpet/black,
 /area/department_main/records)
-"PC" = (
-/obj/structure/rack,
-/obj/machinery/camera/autoname{
-	dir = 9
-	},
-/obj/structure/sign/poster/official/twelve_gauge{
-	pixel_x = 32
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/control)
 "PF" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -5671,6 +5674,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/control)
+"RZ" = (
+/obj/machinery/computer/extraction_cargo,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "Se" = (
 /obj/effect/landmark/start,
 /obj/structure/chair/office,
@@ -5697,6 +5704,10 @@
 /mob/living/simple_animal/bot/cleanbot,
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
+"Sp" = (
+/obj/machinery/text_adventure_console,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "Ss" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 6
@@ -41881,9 +41892,9 @@ ZL
 ZL
 ZL
 rg
-ci
+Sp
 AU
-ci
+Wl
 AU
 ci
 Xr
@@ -42138,10 +42149,10 @@ ZL
 ZL
 ZL
 rg
-Wl
-PC
-yr
-mj
+RZ
+AU
+ci
+AU
 ci
 rg
 Zj
@@ -42395,11 +42406,11 @@ ZL
 ZL
 ZL
 rg
-rg
-rg
-rg
-rg
-rg
+on
+jN
+yr
+vY
+ci
 rg
 BA
 Iq
@@ -42651,12 +42662,12 @@ ZL
 ZL
 ZL
 ZL
-ZL
-ZL
-ZL
-ZL
-ZL
-ZL
+rg
+rg
+rg
+rg
+rg
+rg
 ZL
 BA
 Iq

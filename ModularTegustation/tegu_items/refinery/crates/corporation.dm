@@ -109,6 +109,7 @@
 	desc = "A crate recieved from R-Corp. Open with a Crowbar."
 	icon_state = "crate_rcorp"
 	veryrarechance = 5
+	cosmeticchance = 33
 	lootlist =	list(
 		/obj/item/powered_gadget/detector_gadget/ordeal,
 		/obj/item/clothing/suit/space/hardsuit/rabbit,

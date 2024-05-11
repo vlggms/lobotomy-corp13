@@ -861,6 +861,20 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 /proc/cmp_timer_data(list/a, list/b)
 	return b["count"] - a["count"]
 
+/client/proc/spawn_abnormality_boss()
+	set category = "Admin.Fun"
+	set name = "Spawn Abnormality Event Boss"
+	//The order and contents of the bosslist should match the defines set in lobotomy_events
+	var/list/bosslist = list("Apocalypse Bird","Ying and Yang","The Jester of Nihil") //TBA : General bee, nobody is.
+	if(!SSticker.HasRoundStarted())
+		alert("Wait until the game starts")
+		return
+	var/M = input(usr,"Who would you like to spawn? (This will take a few seconds to load)","Select a boss") as null|anything in bosslist
+	if(!M)
+		return
+	SSlobotomy_events.SpawnEventAbnos(bosslist.Find(M))
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Spawned abnormality boss [M]")
+
 #ifdef TESTING
 /client/proc/check_missing_sprites()
 	set category = "Debug"

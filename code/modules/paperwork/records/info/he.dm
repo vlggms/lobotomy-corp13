@@ -363,8 +363,8 @@
 	abno_info = list(
 		"After 3 works, KQE-1J-23 solicited a response on its chest terminal.",
 		"When the work result was Bad, the Qliphoth Counter lowered.",
-		"Answering 'HELLO' lowered the Qliphoth Counter by one and awarded the employee with a gift.",
-		"Qliphoth counter immediately lowered to 0 if a 'HELLO' response was given again.",
+		"Answering 'HELLO' caused KQE-1J-23 to produce more energy.",
+		"Answering 'HELLO' lowered the Qliphoth Counter by one if the abnormality recognized a gift had already been given.",
 		"Answering 'GOODBYE' slightly lowered success rate of the next work.",
 		"Answering 'GOODBYE' with justice 3 or lower immediately lowered the Qliphoth Counter to 0.",
 		"During suppression work, KQE-1J-23 will lower a robotic amalgam dubbed O-06-154-1 into a random department.",
@@ -465,9 +465,11 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/willyouplay
 	abno_code = "T-01-187"
 	abno_info = list(
-		"T-01-187 refused standard work, insisting that the employee play a game of rock paper scissors.",
+		"T-01-187 refused standard work, insisting that the employee play a game of janken.",
+		"T-01-187 seems to prefer scissors work, however on occasion has been shown to use other work types.",
+		"If the employee was the last person to work on T-01-187, the stats gained from work was decreased.",
 		"If the employee won the game, they took severe RED damage, and if their fortitude was under level 3, T-01-187 cut off their arm.",
-		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats.")
+		"If the employee lost the game, T-01-187 presented them with a blessing, increasing all of their stats under level 4.")
 
 
 //Highway Devotee

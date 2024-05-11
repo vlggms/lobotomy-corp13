@@ -38,12 +38,13 @@
 /obj/item/food/cookie/sugar/pbird
 	desc = "A sweet cookie shaped like a cute little bird."
 	icon_state = "sugarcookie_pbird"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/abnormality/heartysyrup = 1)
 
 /obj/item/food/cake/bbird
 	name = "Big Bird cake"
 	desc = "A cake that seems like it's watching you."
 	icon_state = "bbcake"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/abnormality/tastesyrup = 3)
 	tastes = list("cake" = 1, "vigilance" = 1)
 	foodtypes = GRAIN | DAIRY
 
@@ -60,7 +61,7 @@
 	name = "Judgement sundae"
 	desc = "A sweet, sweet serving of justice."
 	icon_state = "sundae" //PLACEHOLDER
-	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/abnormality/focussyrup = 5)
 	tastes = list("judgement" = 1, "paranoia" = 1)
 	foodtypes = DAIRY | SUGAR
 
@@ -79,7 +80,7 @@
 	name = "Apocalypse trifle"
 	desc = "A huge serving of monstrously good cake, custard, and forest fruit."
 	icon_state = "apoctrifle"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 5)
+	food_reagents = list(/datum/reagent/abnormality/tastesyrup = 9, /datum/reagent/abnormality/focussyrup = 9, /datum/reagent/abnormality/heartysyrup = 9, /datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 5)
 	tastes = list("cake" = 3, "custard" = 3, "fresh fruit" = 3, "fear" = 1)
 	foodtypes = DAIRY | SUGAR | FRUIT
 
@@ -92,6 +93,20 @@
 	)
 	result = /obj/item/food/apoctrifle
 	subcategory = CAT_MISCFOOD
+
+/obj/item/food/mcrib
+	name = "mcrib"
+	desc = "Well, you see, the McRib is a barbecue-flavored pork sandwich periodically sold \
+	by the international fast food restaurant chain McDonald's. It was first introduced to \
+	the McDonald's menu in 1981, following test marketing the year before. After poor sales, \
+	it was removed from the menu in 1985. Since then, it appears annually or more at various \
+	times, though Germany and Luxembourg have them as permanent menu items."
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "mcrib"
+	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/carbon = 4)
+	tastes = list("authentic Kansas City barbecue sauce" = 5, "pork" = 3)
+	foodtypes = GRAIN
+	w_class = WEIGHT_CLASS_SMALL
 
 ////////////////////////////////////////////////////////////////ordeal food/////////////////////////////////////////////////////////////////////////////
 /datum/crafting_recipe/food/wormfood
@@ -129,7 +144,7 @@
 	name = "sweeper soup"
 	desc = "Liquid sweeper in a bowl made of its own shell."
 	icon_state = "redbeetsoup" //PLACEHOLDER
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/blood = 10)
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/blood = 10, /datum/reagent/abnormality/heartysyrup = 2)
 	tastes = list("something metallic" = 1)
 	foodtypes = MEAT
 

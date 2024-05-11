@@ -53,9 +53,15 @@
 	damage = 20
 	damage_type = RED_DAMAGE
 
-
 /obj/projectile/ego_bullet/ego_oceanic
 	name = "oceanic"
 	damage = 11		//Worse than tough lol
 	damage_type = WHITE_DAMAGE
+
+/obj/projectile/ego_bullet/ego_mcrib
+	name = "mcrib"
+	icon = 'icons/obj/food/food.dmi'
+	icon_state = "patty"
+	damage = 10
+	damage_type = RED_DAMAGE
 

@@ -49,7 +49,7 @@
 	var/dash_cooldown = 0
 	var/dash_cooldown_time = 8 SECONDS
 	var/list/been_hit = list() // Don't get hit twice.
-	var/stuntime = 5 SECONDS
+	var/stuntime = 3 SECONDS
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(/datum/action/innate/abnormality_attack/toggle/helper_dash_toggle)
@@ -118,7 +118,7 @@
 	if(dir_to_target in list(WEST, NORTHWEST, SOUTHWEST))
 		para = FALSE
 	been_hit = list()
-	SpinAnimation(1.8 SECONDS, 1, para)
+	SpinAnimation(1.3 SECONDS, 1, para)
 	addtimer(CALLBACK(src, PROC_REF(do_dash), dir_to_target, 0), 1.5 SECONDS)
 	playsound(src, 'sound/abnormalities/helper/rise.ogg', 100, 1)
 

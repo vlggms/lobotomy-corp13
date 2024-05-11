@@ -15,6 +15,24 @@
 	spawn_player_multiplicator = 0.05
 	color = "#71797E"
 
+
+/datum/ordeal/simplecommander/steel_noon
+	name = "The Noon of Steel"
+	flavor_name = "War Machine"
+	announce_text = "I’ll fight my enemies without hesitation. I’d made up my mind the day I was honored with an opportunity to get the modification procedure."
+	announce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg'
+	end_sound = 'sound/effects/ordeals/steel/gcorp_hiss.ogg'
+	level = 2
+	reward_percent = 0.2
+	color = "#71797E"
+	boss_type = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon)
+	grunt_type = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn)
+	boss_amount = 3
+	grunt_amount = 2
+	boss_player_multiplicator = 0.03
+	grunt_player_multiplicator = 0.05
+
+
 /datum/ordeal/simplecommander/steel_dusk
 	name = "The Dusk of Steel"
 	flavor_name = "The Dogs of War"

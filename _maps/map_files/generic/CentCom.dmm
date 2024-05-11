@@ -52,19 +52,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"al" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 1
-	},
-/obj/effect/landmark/snowqueen_spawn,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "am" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 4
@@ -112,16 +99,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"at" = (
-/obj/structure/flora/icechunk{
-	pixel_y = 27;
-	pixel_x = 12
-	},
-/obj/structure/flora/iceslab{
-	pixel_y = 24
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "au" = (
 /obj/machinery/vending/cola/black,
 /obj/effect/turf_decal/tile/blue{
@@ -130,62 +107,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"ax" = (
-/obj/machinery/door/window/brigdoor/southright,
-/obj/effect/turf_decal/siding/green{
-	dir = 6
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"ay" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -39;
-	pixel_x = 2
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"aA" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy/orange,
-/obj/item/clipboard,
-/obj/item/pen/fourcolor,
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
-"aB" = (
-/obj/structure/table/glass,
-/obj/item/razor{
-	pixel_x = 5;
-	pixel_y = 5
-	},
-/obj/item/lipstick/random{
-	pixel_x = -5
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
-"aC" = (
-/obj/structure/flora/icestalagmite{
-	pixel_y = -7;
-	pixel_x = 6
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"aF" = (
-/obj/machinery/door/airlock/wood{
-	name = "Officer Bunks"
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "aG" = (
 /obj/structure/table,
 /obj/item/gun/ballistic/automatic/pistol/m1911,
@@ -200,17 +121,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"aH" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/white{
-	dir = 5
-	},
-/obj/item/folder/yellow{
-	desc = "A yellow folder, for putting corporate stuff in specifically.";
-	name = "Corporate Folder"
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "aI" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -223,24 +133,6 @@
 	},
 /turf/open/space,
 /area/centcom/supply)
-"aK" = (
-/obj/structure/flora/iceshards,
-/obj/structure/flora/iceshards{
-	pixel_x = -16;
-	pixel_y = 7
-	},
-/obj/structure/flora/icechunk/alt{
-	pixel_y = 11;
-	pixel_x = 12
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "aL" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -256,23 +148,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
-"aP" = (
-/obj/structure/bed/pod,
-/obj/item/bedsheet/black,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"aQ" = (
-/obj/machinery/vending/clothing{
-	pixel_y = 10
-	},
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
 "aR" = (
 /turf/closed/indestructible/fakedoor{
 	name = "Spinward Hub Armory"
@@ -301,38 +176,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"aY" = (
-/obj/item/kirbyplants/random,
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/obj/effect/landmark/custom_office/poster{
-	pixel_y = 32
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"aZ" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/closet/crate/bin,
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"bc" = (
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "be" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -387,66 +230,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"bn" = (
-/obj/structure/chair/wood{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"bp" = (
-/obj/machinery/newscaster/security_unit{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/kirbyplants/random{
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
-"bu" = (
-/obj/item/toy/plush/gebura,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy/orange,
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "bE" = (
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/engine,
 /area/tdome/arena)
-"bF" = (
-/obj/effect/turf_decal/weather/snow/corner,
-/obj/structure/flora/iceslab/alt{
-	pixel_y = 10;
-	pixel_x = -9
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "bJ" = (
 /obj/machinery/conveyor_switch/oneway{
 	dir = 8;
@@ -461,11 +248,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"bK" = (
-/obj/structure/rack,
-/obj/item/toy/plush/qoh,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "bM" = (
 /obj/item/kirbyplants{
 	icon_state = "applebush"
@@ -473,15 +255,6 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"bP" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "bQ" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -491,21 +264,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"bR" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
-"bS" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 1
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "bT" = (
 /obj/machinery/door/airlock/centcom{
 	name = "R-Corp Training Facility";
@@ -513,203 +271,28 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"bU" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 9
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"bY" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "ca" = (
 /obj/structure/chair/office{
 	dir = 8
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"cb" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"cd" = (
-/obj/item/fish_feed,
-/turf/open/floor/wood,
-/area/fishboat)
 "cg" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/recharger,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"cl" = (
-/obj/structure/flora/icestalactite/small{
-	pixel_y = -38;
-	pixel_x = 1
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"cm" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 10
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
 "cn" = (
 /turf/open/floor/wood,
 /area/centcom/hub)
-"cp" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/light,
-/obj/structure/table/reinforced,
-/obj/item/food/bread/banana,
-/obj/item/food/bread/banana,
-/obj/item/food/bread/banana,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"cq" = (
-/obj/structure/chair/comfy/brown{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/yellow{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"cr" = (
-/obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
-	name = "Officer Cryosleep";
-	normal_integrity = 250000000
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"cs" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 4
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
-"cx" = (
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"cy" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 50
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"cB" = (
-/obj/effect/turf_decal/siding/yellow,
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
 "cC" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
-"cD" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "cF" = (
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"cH" = (
-/obj/item/toy/plush/lisa,
-/obj/structure/table/wood/fancy/orange,
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
-"cJ" = (
-/obj/structure/flora/iceshards{
-	pixel_x = 16;
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"cK" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 6
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
-"cL" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/structure/sign/ordealmonitor{
-	pixel_y = 32
-	},
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
-"cM" = (
-/obj/machinery/light/floor,
-/obj/item/kirbyplants{
-	icon_state = "plant-09"
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"cO" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"cP" = (
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "cS" = (
 /obj/item/kirbyplants{
 	icon_state = "applebush"
@@ -752,22 +335,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"dd" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "dj" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -778,19 +345,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"dk" = (
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"dl" = (
-/obj/structure/flora/icestalactite/small,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "dn" = (
 /obj/effect/turf_decal/tile/green,
 /obj/effect/turf_decal/tile/green{
@@ -812,75 +366,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"dp" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/reinforced,
-/obj/machinery/microwave{
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"dr" = (
-/obj/effect/turf_decal/weather/snow/corner,
-/obj/effect/radiojammer{
-	range = 14
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"dv" = (
-/obj/structure/flora/iceshards{
-	pixel_y = -12;
-	pixel_x = -11
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"dw" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"dy" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 10
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
-"dz" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "dB" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -896,15 +381,6 @@
 	name = "Spinward Hub Corridor"
 	},
 /area/centcom/hub)
-"dG" = (
-/obj/effect/landmark/custom_office/poster{
-	pixel_x = -32
-	},
-/obj/structure/chair/sofa/corp/right{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "dK" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdomegen";
@@ -912,16 +388,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena_source)
-"dL" = (
-/obj/structure/sink{
-	dir = 8;
-	pixel_x = 11
-	},
-/obj/structure/mirror{
-	pixel_x = 28
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
 "dM" = (
 /obj/effect/turf_decal/stripes/end{
 	dir = 1
@@ -932,9 +398,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"dN" = (
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/manager)
 "dQ" = (
 /obj/structure/chair/office/light{
 	dir = 1
@@ -945,37 +408,6 @@
 /obj/effect/turf_decal/siding/thinplating/dark/corner,
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
-"dT" = (
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"dU" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 10
-	},
-/obj/machinery/light/cold/no_nightlight,
-/obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
-"dW" = (
-/obj/structure/flora/icestalagmite/small{
-	pixel_y = 16;
-	pixel_x = -13
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"dY" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 4
-	},
-/obj/item/clipboard,
-/obj/item/pen/fourcolor,
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
 "ee" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/stripes/line,
@@ -985,25 +417,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"eg" = (
-/obj/machinery/light/floor,
-/obj/effect/turf_decal/siding/white{
-	dir = 5
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"eh" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "ei" = (
 /obj/structure/table,
 /obj/item/food/pie/cream,
@@ -1019,12 +432,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/hub)
-"er" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "es" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -1049,10 +456,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"ew" = (
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "ey" = (
 /obj/machinery/flasher{
 	id = "tdomeflash";
@@ -1063,10 +466,6 @@
 "ez" = (
 /turf/open/floor/circuit/green,
 /area/tdome/arena_source)
-"eB" = (
-/obj/item/kirbyplants/random,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "eC" = (
 /obj/structure/table,
 /obj/effect/spawner/lootdrop/refreshing_beverage,
@@ -1079,64 +478,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/hub)
-"eI" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"eK" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/door/airlock/public/glass{
-	name = "command canteen"
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"eM" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/obj/effect/shelter_forcefield,
-/turf/open/floor/shelter,
-/area/shelter)
-"eO" = (
-/obj/structure/chair/sofa/corp/right{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"eQ" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 10
-	},
-/obj/item/kirbyplants/fullysynthetic,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"eR" = (
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"eS" = (
-/obj/structure/chair/plastic,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "eW" = (
 /obj/machinery/vending/security,
 /obj/effect/turf_decal/stripes/line,
@@ -1157,35 +498,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"eY" = (
-/obj/structure/flora/icestalagmite/small{
-	pixel_x = -13;
-	pixel_y = 24
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"fa" = (
-/obj/structure/railing/corner{
-	dir = 8
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
-"fb" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 6
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
-"fc" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "managerlockdown";
-	name = "Manager's Office Lockdown Blast Door"
-	},
-/obj/machinery/door/airlock/wood{
-	name = "Manager's Office"
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "ff" = (
 /obj/structure/chair/office{
 	dir = 1
@@ -1196,39 +508,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"fg" = (
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -10;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -10;
-	pixel_y = 33
-	},
-/obj/machinery/computer/camera_advanced/manager,
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/machinery/camera/autoname{
-	dir = 6
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"fi" = (
-/obj/effect/landmark/custom_office/crate,
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
-"fj" = (
-/obj/structure/curtain,
-/obj/machinery/shower,
-/obj/item/soap/deluxe,
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/noslip,
-/area/facility_hallway/manager)
 "fo" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 4
@@ -1255,12 +534,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"ft" = (
-/obj/structure/sign/ordealmonitor{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "fu" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/food_packaging,
@@ -1284,31 +557,6 @@
 /obj/item/stack/medical/gauze/twelve,
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"fB" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 5
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"fD" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
-"fH" = (
-/obj/structure/flora/icestalagmite/small,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "fI" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/clothing/under/rank/security/officer/spacepol,
@@ -1321,22 +569,6 @@
 /obj/item/gun/energy/e_gun/mini,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"fM" = (
-/obj/machinery/computer/crew,
-/obj/structure/sign/ordealmonitor{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"fQ" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/fishboat)
 "fR" = (
 /obj/item/food/egg/rainbow{
 	desc = "I bet you think you're pretty clever... well you are.";
@@ -1344,11 +576,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"fT" = (
-/obj/structure/table,
-/obj/item/paper_bin,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "fX" = (
 /turf/closed/indestructible/riveted,
 /area/start)
@@ -2237,15 +1464,6 @@
 "io" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/control)
-"ip" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "iq" = (
 /obj/effect/landmark/prisonwarp,
 /obj/effect/turf_decal/tile/neutral{
@@ -2283,13 +1501,6 @@
 /obj/structure/closet/crate/bin,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"iw" = (
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 10
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
 "ix" = (
 /obj/structure/chair/sofa/corp/left,
 /turf/open/floor/plasteel/dark,
@@ -2342,24 +1553,6 @@
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/riveted,
 /area/centcom/prison)
-"iJ" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 6
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"iQ" = (
-/obj/structure/table/wood/fancy/black,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "iR" = (
 /obj/machinery/light{
 	dir = 4
@@ -2409,45 +1602,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/engine,
 /area/centcom/ferry)
-"iX" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/jukebox,
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"iZ" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"jc" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
-"jd" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_y = 17
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 7
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "je" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -2505,19 +1659,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"jr" = (
-/obj/structure/flora/iceshards{
-	pixel_x = -4;
-	pixel_y = 14
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "jt" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 1
@@ -2528,12 +1669,6 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"jw" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "jy" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 4
@@ -2556,22 +1691,6 @@
 	name = "WARP Station Exit"
 	},
 /area/centcom/control)
-"jF" = (
-/obj/effect/shelter_forcefield,
-/turf/open/floor/shelter,
-/area/shelter)
-"jG" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 6
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "jH" = (
 /obj/structure/chair/sofa/corp/left{
 	dir = 1
@@ -2598,38 +1717,11 @@
 	dir = 10
 	},
 /area/tdome/tdomeadmin)
-"jS" = (
-/obj/machinery/door/airlock/public/glass{
-	hackProof = 1;
-	max_integrity = 250000000;
-	name = "Representative Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "69";
-	whitelist_door = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"jT" = (
-/obj/structure/aquarium,
-/turf/open/floor/wood,
-/area/fishboat)
 "jV" = (
 /turf/closed/indestructible/fakedoor{
 	name = "CentCom Warehouse"
 	},
 /area/centcom/supply)
-"jX" = (
-/obj/structure/sign/ordealmonitor{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"ka" = (
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
-/obj/structure/table/glass,
-/turf/open/floor/wood,
-/area/department_main/manager)
 "ke" = (
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
@@ -2650,24 +1742,6 @@
 	dir = 6
 	},
 /area/tdome/tdomeadmin)
-"kg" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "ki" = (
 /obj/docking_port/stationary{
 	dwidth = 25;
@@ -2678,9 +1752,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"kj" = (
-/turf/open/floor/plasteel/elevatorshaft,
-/area/facility_hallway/manager)
 "kk" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -2694,20 +1765,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"km" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/computer/shuttle/mining{
-	dir = 1;
-	name = "elevator console";
-	possible_destinations = "elevator_home;elevator_away";
-	shuttleId = "manager"
-	},
-/obj/structure/railing,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "ko" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien20"
@@ -2768,54 +1825,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"kA" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/obj/item/kirbyplants{
-	icon_state = "plant-04"
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
-"kB" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/roulette,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"kC" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"kF" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/wood,
-/area/department_main/manager)
 "kG" = (
 /obj/effect/turf_decal/loading_area{
 	dir = 8
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"kI" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/obj/item/kirbyplants{
-	icon_state = "plant-04"
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "kK" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien16"
@@ -2870,32 +1885,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"kX" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 5
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"le" = (
-/obj/machinery/computer/crew{
-	dir = 1
-	},
-/obj/machinery/light,
-/obj/effect/turf_decal/siding/wood{
-	dir = 7
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"lf" = (
-/obj/structure/chair/stool,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "lg" = (
 /turf/closed/indestructible/abductor{
 	icon_state = "alien14"
@@ -2926,29 +1915,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/syndicate_mothership/control)
-"ln" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/machinery/vending/coffee,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"lo" = (
-/obj/structure/chair/office,
-/obj/effect/turf_decal/siding/white{
-	dir = 5
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "lr" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -2965,15 +1931,6 @@
 /obj/item/holosign_creator/security,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"ls" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/obj/structure/chair/comfy/lime{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "lt" = (
 /obj/machinery/door/airlock/centcom{
 	name = "R-Corp Training Facility";
@@ -2981,12 +1938,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
-"lu" = (
-/obj/structure/railing/corner{
-	dir = 1
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "lw" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 4
@@ -2999,15 +1950,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"lx" = (
-/obj/effect/landmark/custom_office/poster{
-	pixel_x = -32
-	},
-/obj/structure/chair/sofa/corp/left{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "lA" = (
 /obj/effect/landmark/thunderdome/admin,
 /obj/structure/chair/sofa/corp/left{
@@ -3055,21 +1997,6 @@
 "lI" = (
 /turf/open/space/transit,
 /area/space)
-"lR" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/item/clipboard,
-/obj/item/pen/fourcolor{
-	pixel_x = 7
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "lS" = (
 /obj/structure/fans/tiny/invisible,
 /turf/open/floor/holofloor/hyperspace,
@@ -3109,54 +2036,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"mc" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 1
-	},
-/obj/structure/flora/icestalagmite{
-	pixel_x = -20;
-	pixel_y = 25
-	},
-/obj/structure/flora/iceshards{
-	pixel_y = 8;
-	pixel_x = -11
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"mf" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
-"mg" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"mj" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "mm" = (
 /obj/machinery/light{
 	dir = 1
@@ -3169,12 +2048,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"mp" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "mq" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
@@ -3277,32 +2150,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"mV" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
-"mY" = (
-/obj/structure/chair/sofa/corp{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"mZ" = (
-/obj/structure/chair/comfy/beige,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"na" = (
-/obj/structure/railing,
-/obj/structure/table/wood/fancy/green,
-/obj/item/clipboard,
-/obj/item/pen/fourcolor{
-	pixel_x = -7
-	},
-/obj/effect/turf_decal/siding/green,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "nb" = (
 /turf/closed/indestructible/abductor,
 /area/abductor_ship)
@@ -3349,17 +2196,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"nk" = (
-/obj/structure/closet/crate/bin,
-/obj/effect/turf_decal/bot,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"no" = (
-/obj/machinery/vending/lobotomyarmband{
-	pixel_x = -10
-	},
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
 "np" = (
 /obj/machinery/light{
 	dir = 8
@@ -3390,12 +2226,6 @@
 "nz" = (
 /turf/closed/indestructible/opsglass,
 /area/syndicate_mothership/control)
-"nA" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "nD" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -3406,28 +2236,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"nF" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 9
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "nG" = (
 /obj/structure/chair/sofa/corp{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"nH" = (
-/obj/structure/bed/pod{
-	dir = 6
-	},
-/obj/item/bedsheet/ian,
-/obj/effect/turf_decal/siding/white{
-	dir = 6
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "nM" = (
 /obj/machinery/computer/mech_bay_power_console,
 /obj/effect/turf_decal/bot,
@@ -3451,32 +2265,11 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"nP" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/wood,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "nR" = (
 /obj/structure/table/reinforced,
 /obj/item/toy/plush/myo,
 /turf/open/floor/engine,
 /area/centcom/ferry)
-"nS" = (
-/obj/structure/railing{
-	dir = 4;
-	max_integrity = 1e+007;
-	name = "invincible railing"
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "nT" = (
 /obj/machinery/status_display/ai,
 /turf/closed/indestructible/riveted,
@@ -3485,18 +2278,6 @@
 /obj/machinery/status_display/evac,
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
-"nV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/obj/effect/landmark/custom_office/poster{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "nW" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile{
@@ -3512,16 +2293,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"nY" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/siding/wood{
-	dir = 7
-	},
-/obj/machinery/computer/camera_advanced/manager/representative{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "oe" = (
 /obj/machinery/door/poddoor/shutters{
 	id = "ccdroppod";
@@ -3529,24 +2300,6 @@
 	},
 /turf/open/floor/engine,
 /area/centcom/ferry)
-"og" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/structure/railing{
-	dir = 5
-	},
-/obj/item/storage/book/bible,
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 5
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"oh" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 10
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "oi" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -3574,81 +2327,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"ok" = (
-/obj/structure/chair/comfy/beige,
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"op" = (
-/obj/structure/closet/secure_closet/personal,
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
-"oq" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"or" = (
-/obj/machinery/modular_computer/console/preset{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
-"ov" = (
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 27
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 21
-	},
-/obj/machinery/computer/abnormality_queue,
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "oy" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -3678,13 +2356,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"oC" = (
-/obj/item/kirbyplants/random,
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "oG" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -3701,22 +2372,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/tdome/tdomeadmin)
-"oM" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"oN" = (
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "oQ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -3725,24 +2380,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"oT" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 1
-	},
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 50
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "oV" = (
 /obj/machinery/light{
 	dir = 8
@@ -3757,31 +2394,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"oY" = (
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"pa" = (
-/obj/machinery/computer/abnormality_logs{
-	dir = 8
-	},
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
-"pb" = (
-/obj/machinery/light/floor,
-/obj/effect/turf_decal/siding/white{
-	dir = 10
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "pc" = (
 /obj/effect/turf_decal/bot_red,
 /obj/effect/turf_decal/tile{
@@ -3794,23 +2406,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"pe" = (
-/obj/structure/flora/icestalagmite/small{
-	pixel_x = -13;
-	pixel_y = -3
-	},
-/obj/structure/flora/iceslab{
-	pixel_x = 6;
-	pixel_y = -8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "pg" = (
 /obj/effect/spawner/structure/window/reinforced,
 /turf/open/floor/plating,
@@ -3827,47 +2422,10 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"pl" = (
-/obj/structure/sign/poster/official/soft_cap_pop_art{
-	pixel_y = 32
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"po" = (
-/obj/structure/railing{
-	name = "invincible railing";
-	resistance_flags = 64
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
-"pp" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/railing,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "pq" = (
 /obj/machinery/vending/cola/shamblers,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"pu" = (
-/obj/structure/flora/icestalagmite/small{
-	pixel_y = 1;
-	pixel_x = -8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "px" = (
 /obj/structure/chair{
 	dir = 1
@@ -3878,13 +2436,6 @@
 /obj/machinery/smartfridge,
 /turf/closed/indestructible/wood,
 /area/centcom/holding)
-"pz" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/structure/representative_console,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "pA" = (
 /obj/docking_port/stationary{
 	dir = 8;
@@ -3897,25 +2448,6 @@
 	},
 /turf/open/space,
 /area/centcom/ferry)
-"pC" = (
-/obj/item/chair/icequeen{
-	plane = 0;
-	desc = "A giant throne of ice, who would be comfortable sitting in this? It's super cold!"
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"pE" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "pF" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Auxiliary Dock";
@@ -3931,26 +2463,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"pJ" = (
-/obj/structure/flora/iceshards{
-	pixel_y = 13;
-	pixel_x = -3
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"pL" = (
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 9
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
 "pM" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/brown,
@@ -3959,24 +2471,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"pN" = (
-/obj/structure/rack,
-/obj/item/toy/plush/big_bad_wolf,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"pP" = (
-/obj/structure/flora/icegrave/alt{
-	pixel_y = 22;
-	pixel_x = 11
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"pQ" = (
-/obj/structure/chair/sofa/corp{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "pR" = (
 /obj/machinery/mech_bay_recharge_port,
 /obj/effect/turf_decal/bot,
@@ -4060,51 +2554,6 @@
 /obj/item/flashlight/seclite,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"ql" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 4
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"qp" = (
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
-"qr" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/obj/structure/table/wood/fancy/orange,
-/obj/item/reagent_containers/food/drinks/mug{
-	pixel_x = 11;
-	pixel_y = 10
-	},
-/obj/item/storage/fancy/cigarettes/cigpack_robust,
-/obj/item/lighter{
-	pixel_x = 5
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 10
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
-"qt" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 8
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"qu" = (
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "qw" = (
 /obj/machinery/light{
 	dir = 4
@@ -4122,18 +2571,6 @@
 "qx" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/evac)
-"qy" = (
-/obj/structure/table/wood,
-/obj/item/fishing_net,
-/obj/item/storage/bag/fish,
-/obj/item/book/fish_catalog,
-/obj/item/storage/fish_case,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/obj/item/fishing_net,
-/turf/open/floor/wood,
-/area/fishboat)
 "qz" = (
 /obj/machinery/door/poddoor{
 	id = "XCCQMLoaddoor2";
@@ -4148,14 +2585,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"qB" = (
-/obj/item/kirbyplants{
-	icon_state = "plant-11";
-	pixel_y = 13
-	},
-/obj/structure/table/glass,
-/turf/open/floor/wood,
-/area/department_main/manager)
 "qC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -4167,15 +2596,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"qD" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/item/kirbyplants{
-	icon_state = "plant-04"
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "qE" = (
 /turf/closed/indestructible/riveted/uranium,
 /area/wizard_station)
@@ -4248,29 +2668,6 @@
 /obj/item/mop,
 /turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
-"qS" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 5
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"qT" = (
-/obj/machinery/light,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"qX" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "qZ" = (
 /turf/open/floor/engine/cult,
 /area/wizard_station)
@@ -4353,16 +2750,6 @@
 /obj/item/gun/energy/e_gun/rabbit,
 /turf/open/floor/plasteel,
 /area/tdome/arena)
-"rs" = (
-/obj/structure/flora/icestalagmite,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "ru" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile{
@@ -4379,156 +2766,30 @@
 /obj/item/weldingtool/experimental,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"rx" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "rz" = (
 /obj/structure/sign/warning/securearea,
 /turf/closed/indestructible/riveted,
 /area/centcom/ferry)
-"rA" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/wood,
-/obj/effect/spawner/lootdrop/three_course_meal,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"rB" = (
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"rE" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/fishboat)
 "rG" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
-"rH" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -2;
-	pixel_x = -3
-	},
-/obj/structure/flora/iceshards{
-	pixel_x = 1;
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"rI" = (
-/obj/machinery/light/floor,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/structure/displaycase/trophy{
-	alert = 0
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
-"rJ" = (
-/obj/structure/chair/plastic{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
 "rK" = (
 /obj/machinery/vending/snack/blue,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"rM" = (
-/obj/machinery/light/floor,
-/obj/effect/turf_decal/siding/white{
-	dir = 9
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"rN" = (
-/obj/machinery/computer/abnormality_archive{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "rO" = (
 /obj/machinery/computer/camera_advanced{
 	dir = 1
 	},
 /turf/open/floor/wood,
 /area/wizard_station)
-"rP" = (
-/obj/structure/railing{
-	dir = 6
-	},
-/obj/structure/table/wood/fancy/green,
-/obj/effect/turf_decal/siding/green{
-	dir = 6
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "rS" = (
 /obj/machinery/status_display/evac,
 /turf/closed/indestructible/riveted,
 /area/centcom/evac)
-"rU" = (
-/obj/structure/flora/iceslab{
-	layer = 2.8;
-	pixel_y = -4;
-	pixel_x = -8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"rV" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 10
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "rW" = (
 /obj/machinery/light{
 	dir = 8
@@ -4541,10 +2802,6 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"sa" = (
-/obj/structure/railing/corner,
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "sb" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
@@ -4556,12 +2813,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"sd" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 9
-	},
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
 "se" = (
 /obj/machinery/light{
 	dir = 8
@@ -4637,12 +2888,6 @@
 /obj/effect/turf_decal/stripes/corner,
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
-"sm" = (
-/obj/structure/railing{
-	dir = 5
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "sn" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/machinery/light{
@@ -4667,16 +2912,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"st" = (
-/obj/effect/landmark/snowqueen_teleport,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "su" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -4697,72 +2932,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"sz" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/light/floor,
-/obj/structure/displaycase/trophy{
-	alert = 0
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
-"sA" = (
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"sB" = (
-/obj/machinery/computer/crew{
-	dir = 1
-	},
-/obj/structure/sign/ordealmonitor{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"sH" = (
-/obj/machinery/light/floor,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/structure/displaycase/trophy{
-	alert = 0
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
-"sI" = (
-/obj/machinery/light/small,
-/obj/effect/shelter_forcefield,
-/turf/open/floor/shelter,
-/area/shelter)
 "sK" = (
 /obj/structure/chair/sofa/corp,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"sN" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "sO" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -4773,33 +2946,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"sP" = (
-/obj/structure/chair/wood{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9"
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
-"sQ" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 5
-	},
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 50
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "sS" = (
 /obj/effect/landmark/thunderdome/admin,
 /obj/structure/chair/sofa/corp{
@@ -4807,11 +2953,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"sV" = (
-/obj/structure/table/wood,
-/obj/item/storage/lockbox/medal,
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "sW" = (
 /obj/structure/showcase{
 	desc = "A strange machine supposedly from another world. The Wizard Federation has been meddling with it for years.";
@@ -4910,34 +3051,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
-"tk" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/spawner/randomsnackvend,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"tl" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "tm" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -4952,11 +3065,6 @@
 	},
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
-"to" = (
-/obj/machinery/vending/lobotomyuniform,
-/obj/machinery/light,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "tq" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/supplypod)
@@ -4973,23 +3081,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"tu" = (
-/obj/structure/flora/iceshards{
-	pixel_x = 26;
-	pixel_y = 12
-	},
-/obj/structure/flora/icestalactite{
-	pixel_y = -9;
-	pixel_x = -9
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "tv" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/shaker,
@@ -5014,10 +3105,6 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"tA" = (
-/obj/machinery/light/floor,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "tC" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -5031,37 +3118,6 @@
 	dir = 8
 	},
 /area/tdome/tdomeobserve)
-"tE" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 50
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"tF" = (
-/turf/closed/indestructible/rock,
-/area/fishboat)
-"tG" = (
-/obj/effect/turf_decal/siding/white/corner{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"tJ" = (
-/obj/machinery/facility_holomap{
-	dir = 4;
-	forced_zLevel = 2
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "tK" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Administrative Storage";
@@ -5076,20 +3132,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"tL" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"tM" = (
-/obj/item/toy/plush/malkuth,
-/obj/structure/table/wood/fancy/green,
-/obj/effect/turf_decal/siding/green/corner{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "tO" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel/dark,
@@ -5112,30 +3154,6 @@
 /obj/machinery/door/poddoor/shuttledock,
 /turf/open/floor/plating,
 /area/centcom/evac)
-"tT" = (
-/obj/item/toy/plush/yesod,
-/obj/structure/railing,
-/obj/structure/table/wood/fancy/green,
-/obj/effect/turf_decal/siding/green,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"tV" = (
-/obj/structure/flora/icegrave{
-	pixel_y = -1;
-	pixel_x = 22
-	},
-/obj/structure/flora/iceshards{
-	pixel_y = 8;
-	pixel_x = 36
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "tW" = (
 /obj/structure/rack,
 /obj/item/nullrod/claymore{
@@ -5193,38 +3211,12 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"uh" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "ui" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
 /turf/open/floor/plating/airless,
 /area/syndicate_mothership/control)
-"ul" = (
-/obj/machinery/computer/abnormality_logs{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"ur" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 5
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "us" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -5239,31 +3231,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"uv" = (
-/obj/item/paper_bin,
-/obj/item/pen/fourcolor,
-/obj/machinery/button/door/indestructible{
-	id = "facilitylockdown";
-	name = "Facility Lockdown button";
-	pixel_y = -25
-	},
-/obj/structure/table/wood,
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"ux" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -43;
-	pixel_x = -18
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"uC" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/obj/machinery/light/cold/no_nightlight,
-/turf/open/floor/wood,
-/area/department_main/manager)
 "uD" = (
 /obj/structure/table/wood/fancy,
 /obj/item/radio/headset,
@@ -5276,22 +3243,12 @@
 /obj/structure/chair/wood/wings,
 /turf/open/floor/carpet,
 /area/wizard_station)
-"uI" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 5
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
 "uJ" = (
 /obj/machinery/door/airlock/external{
 	req_access_txt = "150"
 	},
 /turf/open/floor/plating,
 /area/syndicate_mothership/control)
-"uK" = (
-/obj/effect/turf_decal/siding/wood,
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "uL" = (
 /obj/machinery/button/door/indestructible{
 	id = "nukeop_ready";
@@ -5311,10 +3268,6 @@
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/engine,
 /area/tdome/arena)
-"uN" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "uP" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -5329,13 +3282,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"uQ" = (
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 5
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
 "uR" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Administrative Storage";
@@ -5344,14 +3290,6 @@
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"uS" = (
-/obj/structure/railing{
-	dir = 6;
-	max_integrity = 1e+007;
-	name = "invincible railing"
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "uT" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -5410,54 +3348,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"vb" = (
-/obj/machinery/photocopier,
-/obj/effect/turf_decal/siding/white{
-	dir = 1
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"vc" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"vd" = (
-/obj/structure/chair/office,
-/obj/item/toy/plush/angela,
-/obj/effect/turf_decal/siding/blue{
-	dir = 1
-	},
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
-"ve" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/fishboat)
-"vf" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/item/storage/box/fishing,
-/obj/item/fishing_component/hook/bone,
-/obj/item/fishing_component/line/sinew,
-/obj/item/fishing_rod,
-/turf/open/floor/wood,
-/area/fishboat)
 "vh" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -5496,11 +3386,6 @@
 	},
 /turf/open/floor/carpet,
 /area/wizard_station)
-"vp" = (
-/obj/structure/rack,
-/obj/item/toy/plush/mosb,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "vs" = (
 /obj/machinery/vending/hydronutrients,
 /obj/effect/turf_decal/tile/green{
@@ -5545,16 +3430,6 @@
 /obj/item/toy/nuke,
 /turf/open/floor/wood,
 /area/syndicate_mothership/control)
-"vy" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 7
-	},
-/obj/item/reagent_containers/food/drinks/shaker{
-	pixel_x = 7
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "vz" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -5564,36 +3439,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"vA" = (
-/obj/structure/flora/icechunk{
-	pixel_x = -8
-	},
-/obj/structure/flora/iceslab{
-	pixel_y = -1;
-	pixel_x = 9
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"vB" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/reinforced,
-/obj/item/toy/plush/pierre,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "vC" = (
 /obj/effect/turf_decal/stripes/corner{
 	dir = 8
@@ -5689,13 +3534,6 @@
 	},
 /turf/open/space/basic,
 /area/space)
-"vW" = (
-/obj/structure/flora/icestalactite/small{
-	pixel_y = -8;
-	pixel_x = -18
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "vX" = (
 /obj/machinery/light,
 /obj/item/kirbyplants{
@@ -5705,25 +3543,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"vZ" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/closet/secure_closet/freezer/meat/open,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"wa" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 5
-	},
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
 "wb" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
@@ -5744,18 +3563,6 @@
 	},
 /turf/open/floor/carpet,
 /area/wizard_station)
-"we" = (
-/obj/structure/flora/rock/pile/icy{
-	pixel_x = -13
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "wf" = (
 /obj/structure/closet{
 	anchored = 1;
@@ -5773,14 +3580,6 @@
 /obj/item/clothing/head/helmet/space/plasmaman,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"wg" = (
-/obj/machinery/telecomms/relay/preset/station,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/manager)
-"wh" = (
-/obj/machinery/ntnet_relay,
-/turf/open/floor/circuit/telecomms/mainframe,
-/area/department_main/manager)
 "wi" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -5792,13 +3591,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"wj" = (
-/obj/structure/flora/iceshards{
-	pixel_x = -15;
-	pixel_y = -5
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "wl" = (
 /obj/machinery/light,
 /turf/open/floor/wood,
@@ -5843,21 +3635,6 @@
 	dir = 1
 	},
 /area/tdome/tdomeobserve)
-"wt" = (
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/item/reagent_containers/food/drinks/waterbottle/large,
-/obj/effect/shelter_forcefield,
-/obj/structure/closet/crate/pcorp/shelter,
-/turf/open/floor/shelter,
-/area/shelter)
 "wu" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 4
@@ -5920,22 +3697,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"wI" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 5
-	},
-/obj/structure/flora/icestalagmite{
-	pixel_y = -4;
-	pixel_x = 8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "wM" = (
 /obj/structure/chair/wood/wings{
 	dir = 8
@@ -5971,9 +3732,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/hub)
-"wU" = (
-/turf/closed/indestructible/reinforced,
-/area/shelter)
 "wV" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -6000,22 +3758,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/syndicate_mothership/control)
-"xa" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/spawner/randomcolavend,
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "xc" = (
 /obj/machinery/door/airlock/external{
 	name = "Ferry Airlock"
@@ -6154,13 +3896,6 @@
 /obj/machinery/light,
 /turf/open/floor/carpet,
 /area/wizard_station)
-"xA" = (
-/obj/structure/railing{
-	dir = 9;
-	max_integrity = 1e+007
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "xB" = (
 /mob/living/simple_animal/bot/medbot{
 	desc = "When engaged in combat, the vanquishing of thine enemy can be the warrior's only concern.";
@@ -6174,15 +3909,6 @@
 /obj/machinery/vending/boozeomat/all_access,
 /turf/closed/indestructible/riveted,
 /area/centcom/hub)
-"xD" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/yellow{
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
 "xF" = (
 /obj/machinery/light{
 	dir = 4;
@@ -6240,11 +3966,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"xR" = (
-/obj/structure/rack,
-/obj/item/toy/plush/scorched,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "xS" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -6258,12 +3979,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"xW" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/fishboat)
 "ya" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
@@ -6353,22 +4068,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"yq" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/reinforced,
-/obj/item/food/bread/plain,
-/obj/item/food/bread/plain,
-/obj/item/food/bread/plain,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "yr" = (
 /obj/effect/turf_decal/delivery,
 /obj/machinery/door/airlock/centcom{
@@ -6459,30 +4158,11 @@
 /obj/effect/decal/cleanable/blood/splatter,
 /turf/open/floor/grass,
 /area/wizard_station)
-"yL" = (
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 50
-	},
-/turf/open/floor/wood,
-/area/fishboat)
 "yM" = (
 /obj/structure/table/wood/bar,
 /obj/structure/safe/floor,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"yO" = (
-/obj/machinery/computer/abnormality_logs,
-/obj/machinery/status_display{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "yU" = (
 /obj/structure/chair/plastic{
 	dir = 4
@@ -6508,15 +4188,6 @@
 /obj/item/tank/internals/plasmaman/belt/full,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"yW" = (
-/obj/machinery/door/window/brigdoor/southright{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 9
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "yX" = (
 /obj/structure/chair/stool,
 /turf/open/floor/plasteel/dark,
@@ -6638,59 +4309,10 @@
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"zg" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 8
-	},
-/obj/machinery/status_display{
-	pixel_x = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
-"zh" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 10
-	},
-/obj/structure/flora/icestalagmite{
-	pixel_y = -6;
-	pixel_x = -9
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"zj" = (
-/obj/structure/chair/plastic{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
 "zk" = (
 /obj/structure/chair/plastic,
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"zm" = (
-/obj/structure/flora/rock/icy{
-	pixel_x = 18
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "zn" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -6736,31 +4358,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"zv" = (
-/obj/structure/flora/iceslab{
-	pixel_y = -4;
-	pixel_x = -12
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"zw" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "zx" = (
 /obj/structure/closet/syndicate/personal,
 /obj/effect/turf_decal/stripes/line{
@@ -6832,40 +4429,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/three)
-"zF" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/fishboat)
-"zG" = (
-/obj/structure/flora/iceshards{
-	pixel_y = 29;
-	pixel_x = -3
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"zH" = (
-/obj/machinery/vending/lobotomyuniform,
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"zK" = (
-/obj/item/toy/plush/enoch,
-/obj/structure/table/wood/fancy/orange,
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 1
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "zL" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -6938,14 +4501,6 @@
 /obj/item/soap/deluxe,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"zY" = (
-/obj/structure/railing{
-	dir = 8;
-	max_integrity = 1e+007;
-	name = "invincible railing"
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "zZ" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 8
@@ -6953,12 +4508,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/three)
-"Aa" = (
-/obj/structure/chair/sofa/corp/left{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Ac" = (
 /turf/open/floor/engine,
 /area/centcom/ferry)
@@ -6980,26 +4529,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"Ao" = (
-/obj/structure/rack,
-/obj/item/toy/plush/bigbird,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"Ap" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 6
-	},
-/obj/structure/flora/iceslab/alt{
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "Ar" = (
 /obj/structure/railing{
 	dir = 4
@@ -7009,15 +4538,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/evac)
-"As" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 8
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "Au" = (
 /obj/machinery/abductor/experiment{
 	team_number = 3
@@ -7064,28 +4584,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"AE" = (
-/obj/structure/sign/ordealmonitor{
-	pixel_y = 32
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/machinery/jukebox{
-	req_access = list()
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"AG" = (
-/obj/machinery/requests_console{
-	announcementConsole = 1;
-	department = "Representative";
-	payment_department = "SEC";
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "AH" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/one)
@@ -7094,10 +4592,6 @@
 /obj/item/bedsheet/random,
 /turf/open/floor/wood,
 /area/centcom/hub)
-"AK" = (
-/obj/item/kirbyplants/random,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "AL" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/engine,
@@ -7134,24 +4628,6 @@
 	dir = 6
 	},
 /area/tdome/tdomeobserve)
-"AR" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/wood,
-/obj/item/toy/cards/deck,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"AT" = (
-/obj/structure/curtain/bounty,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "AY" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile{
@@ -7164,25 +4640,6 @@
 /obj/item/stock_parts/cell/hyper,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"Ba" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Be" = (
 /obj/machinery/computer/camera_advanced/abductor{
 	team_number = 3
@@ -7211,12 +4668,6 @@
 /obj/item/food/meat/slab/xeno,
 /turf/open/floor/grass,
 /area/wizard_station)
-"Bj" = (
-/obj/machinery/door/window/brigdoor/southleft{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
 "Bk" = (
 /obj/structure/table,
 /obj/item/food/benedict{
@@ -7225,12 +4676,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
-"Bm" = (
-/obj/machinery/vending/lobotomyuniform{
-	pixel_x = -10
-	},
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
 "Bo" = (
 /obj/structure/table,
 /obj/machinery/reagentgrinder,
@@ -7252,17 +4697,6 @@
 /obj/machinery/computer/bookmanagement,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Bt" = (
-/obj/item/toy/plush/chesed,
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/table/wood/fancy/orange,
-/obj/effect/turf_decal/siding/brown{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "Bu" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
@@ -7273,11 +4707,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"Bw" = (
-/obj/item/modular_computer/laptop/preset/civilian,
-/obj/structure/table/glass,
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
 "Bx" = (
 /obj/structure/table/reinforced,
 /obj/item/clipboard,
@@ -7303,13 +4732,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"BF" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/structure/chair/sofa/corp,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "BG" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -7346,33 +4768,6 @@
 /obj/machinery/light,
 /turf/open/floor/plating,
 /area/centcom/evac)
-"BM" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/wood,
-/obj/item/storage/pill_bottle/dice,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"BN" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/fishboat)
-"BO" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -44;
-	pixel_x = 13
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "BQ" = (
 /obj/effect/landmark/abductor/scientist{
 	team_number = 3
@@ -7392,24 +4787,10 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"BU" = (
-/obj/effect/turf_decal/siding/white/corner,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "BV" = (
 /obj/machinery/chem_dispenser/drinks/beer,
 /turf/closed/indestructible/wood,
 /area/centcom/holding)
-"BW" = (
-/obj/structure/railing{
-	name = "invincible railing";
-	resistance_flags = 64
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "BY" = (
 /obj/item/toy/figure/syndie,
 /turf/open/floor/plating/asteroid/snow/airless,
@@ -7419,12 +4800,6 @@
 /obj/item/storage/firstaid/revival,
 /turf/open/floor/engine,
 /area/centcom/ferry)
-"Cb" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Cd" = (
 /obj/effect/turf_decal/stripes/end,
 /obj/machinery/conveyor/inverted{
@@ -7485,75 +4860,6 @@
 /obj/item/flashlight/seclite,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"Cr" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"Cs" = (
-/obj/machinery/cryopod,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"Ct" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 9
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
-"Cy" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/machinery/light/floor,
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -37;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 39
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -17;
-	pixel_y = 27
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 33
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = 3;
-	pixel_y = 21
-	},
-/obj/structure/displaycase/trophy{
-	alert = 0
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
 "CA" = (
 /obj/machinery/power/apc{
 	dir = 4;
@@ -7596,44 +4902,6 @@
 /obj/item/inducer,
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"CH" = (
-/obj/structure/railing{
-	dir = 1
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
-"CI" = (
-/obj/structure/chair/comfy/brown,
-/obj/effect/turf_decal/siding/yellow{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"CJ" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 6
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"CM" = (
-/obj/structure/chair/office,
-/obj/effect/turf_decal/siding/white{
-	dir = 9
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"CQ" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 10
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "CT" = (
 /turf/open/floor/wood,
 /area/centcom/holding)
@@ -7641,12 +4909,6 @@
 /obj/structure/chair/stool,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Dc" = (
-/obj/structure/table,
-/obj/machinery/light,
-/obj/item/toy/plush/bongbong,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Df" = (
 /obj/machinery/mech_bay_recharge_port,
 /obj/effect/turf_decal/bot,
@@ -7667,26 +4929,6 @@
 "Di" = (
 /turf/closed/indestructible/riveted,
 /area/ai_multicam_room)
-"Dk" = (
-/obj/structure/sign/poster/official/high_class_martini{
-	pixel_y = 32
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"Dm" = (
-/obj/structure/flora/icestalagmite{
-	layer = 3;
-	pixel_y = 6;
-	pixel_x = 9
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "Do" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 4
@@ -7694,59 +4936,10 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"Dp" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"Ds" = (
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood,
-/area/department_main/manager)
-"Dt" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Dw" = (
 /obj/structure/filingcabinet/chestdrawer,
 /turf/open/floor/wood,
 /area/centcom/hub)
-"Dx" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/toy/plush/binah,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"Dz" = (
-/obj/structure/flora/icestalagmite{
-	pixel_y = -4;
-	pixel_x = 8;
-	layer = 3
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "DB" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -7775,42 +4968,11 @@
 	},
 /turf/open/floor/engine/cult,
 /area/wizard_station)
-"DG" = (
-/obj/structure/flora/icegrave/alt,
-/obj/structure/flora/iceslab/alt{
-	pixel_y = -8;
-	pixel_x = 13
-	},
-/obj/structure/flora/iceshards{
-	pixel_y = -12;
-	pixel_x = -11
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"DH" = (
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
 "DI" = (
 /obj/structure/closet/wardrobe/cargotech,
 /obj/effect/turf_decal/bot,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"DK" = (
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "DL" = (
 /obj/item/clothing/suit/wizrobe/black,
 /obj/item/clothing/head/wizard/black,
@@ -7868,30 +5030,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"DV" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/griddle,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"DX" = (
-/obj/structure/table/glass,
-/obj/item/storage/pill_bottle/psicodine,
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
 "DZ" = (
 /obj/item/cautery/alien,
 /obj/effect/turf_decal/bot,
@@ -7992,34 +5130,10 @@
 	dir = 8
 	},
 /area/tdome/tdomeobserve)
-"Es" = (
-/obj/structure/sign/departments/restroom{
-	pixel_y = 32
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Ev" = (
 /obj/structure/table/reinforced,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
-"Ey" = (
-/obj/structure/curtain/bounty,
-/obj/effect/turf_decal/siding/wood/end,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"Ez" = (
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 6
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
-"EB" = (
-/obj/structure/mirror{
-	pixel_x = -28
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "EC" = (
 /obj/machinery/door/airlock{
 	icon = 'icons/obj/doors/airlocks/station/uranium.dmi';
@@ -8032,11 +5146,6 @@
 /obj/machinery/vending/boozeomat,
 /turf/closed/indestructible/wood,
 /area/centcom/holding)
-"EI" = (
-/obj/machinery/light,
-/obj/effect/turf_decal/siding/brown,
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "EK" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -8065,22 +5174,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"EP" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 6
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"ES" = (
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood,
-/area/fishboat)
-"EV" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "EW" = (
 /obj/structure/table/wood,
 /turf/open/floor/engine/cult,
@@ -8131,28 +5224,11 @@
 /obj/structure/chair/stool,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"Fd" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "Arcade"
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Fe" = (
 /obj/structure/table/wood,
 /obj/item/food/sashimi,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Ff" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"Fg" = (
-/obj/structure/chair/sofa/corp/right,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Fh" = (
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
@@ -8175,36 +5251,6 @@
 	},
 /turf/open/floor/plasteel/dark/corner,
 /area/tdome/tdomeobserve)
-"Fn" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/turf/open/floor/wood,
-/area/fishboat)
-"Fo" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/item/paper_bin/bundlenatural{
-	pixel_y = 5
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
-"Fq" = (
-/obj/item/clothing/suit/toggle/labcoat{
-	pixel_y = 4
-	},
-/obj/structure/closet/secure_closet/personal{
-	anchored = 1
-	},
-/obj/item/encryptionkey/heads/manager,
-/obj/item/radio/headset/heads/manager,
-/obj/machinery/light/cold/no_nightlight,
-/obj/item/food/grown/star_cactus,
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "Fr" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile{
@@ -8229,18 +5275,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
-"FC" = (
-/obj/machinery/vending/autodrobe{
-	pixel_y = -10
-	},
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
-"FD" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 10
-	},
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
 "FE" = (
 /obj/item/stack/package_wrap,
 /obj/item/hand_labeler,
@@ -8264,17 +5298,6 @@
 	dir = 1
 	},
 /area/tdome/tdomeobserve)
-"FI" = (
-/turf/closed/indestructible/rock,
-/area/shelter)
-"FJ" = (
-/obj/structure/table,
-/obj/item/pen/fourcolor,
-/obj/effect/turf_decal/siding/white{
-	dir = 8
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "FK" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -8287,30 +5310,6 @@
 	dir = 4
 	},
 /area/tdome/tdomeobserve)
-"FM" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/structure/chair/wood/wings{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/fishboat)
-"FS" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 5
-	},
-/obj/structure/flora/icegrave{
-	pixel_y = 8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "FT" = (
 /obj/structure/destructible/cult/forge{
 	desc = "An engine used in powering the wizard's ship";
@@ -8330,30 +5329,9 @@
 "FX" = (
 /turf/open/floor/plasteel/stairs,
 /area/centcom/holding)
-"Gd" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -45;
-	pixel_x = 9
-	},
-/obj/structure/flora/icestalactite/small{
-	pixel_y = -39;
-	pixel_x = -6
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"Gj" = (
-/obj/effect/turf_decal/siding/white/corner{
-	dir = 8
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "Gm" = (
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
-"Gp" = (
-/obj/effect/turf_decal/siding/wood/corner,
-/turf/open/floor/wood,
-/area/department_main/manager)
 "Gr" = (
 /obj/structure/window/reinforced{
 	color = "#008000";
@@ -8415,19 +5393,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"GD" = (
-/obj/machinery/vending/clothing{
-	pixel_y = -10
-	},
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
 "GE" = (
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"GG" = (
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "GH" = (
 /obj/effect/landmark/thunderdome/observe,
 /obj/structure/chair/sofa/corp/left,
@@ -8451,27 +5420,6 @@
 /obj/structure/chair/sofa/corp/right,
 /turf/open/floor/plasteel,
 /area/tdome/tdomeobserve)
-"GO" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"GP" = (
-/obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
-	name = "Restroom";
-	normal_integrity = 250000000
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"GW" = (
-/obj/machinery/fish_market,
-/turf/open/floor/wood,
-/area/fishboat)
 "GX" = (
 /obj/structure/shuttle/engine/propulsion,
 /turf/open/space,
@@ -8496,42 +5444,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"Ha" = (
-/obj/effect/landmark/snowqueen_teleport,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"Hc" = (
-/obj/structure/reagent_dispensers/water_cooler,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"Hd" = (
-/obj/machinery/door/window/brigdoor/southright{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 5
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"Hi" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 9
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "Hk" = (
 /obj/machinery/door/poddoor{
 	id = "thunderdome";
@@ -8539,13 +5451,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/tdome/arena_source)
-"Hl" = (
-/obj/structure/chair/comfy/black{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/white,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "Hm" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/ppflowers,
@@ -8556,19 +5461,6 @@
 	},
 /turf/open/floor/grass,
 /area/centcom/holding)
-"Ho" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 8
-	},
-/obj/effect/landmark/snowqueen_victimspawn,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "Hp" = (
 /obj/structure/fans/tiny/invisible,
 /obj/structure/signpost/salvation{
@@ -8576,17 +5468,6 @@
 	},
 /turf/open/floor/holofloor/hyperspace,
 /area/centcom/supplypod/supplypod_temp_holding)
-"Ht" = (
-/obj/docking_port/stationary{
-	dir = 2;
-	dwidth = 3;
-	height = 5;
-	id = "elevator_away";
-	name = "manager floor";
-	width = 6
-	},
-/turf/open/floor/plasteel/elevatorshaft,
-/area/facility_hallway/manager)
 "Hv" = (
 /obj/machinery/door/airlock/external{
 	name = "Backup Emergency Escape Shuttle"
@@ -8594,26 +5475,6 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/control)
-"Hz" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/newscaster/security_unit{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/obj/machinery/computer/camera_advanced/manager/sephirah{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
-"HA" = (
-/obj/effect/turf_decal/stripes/line,
-/obj/structure/railing,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "HB" = (
 /obj/machinery/status_display/supply,
 /turf/closed/indestructible/riveted,
@@ -8643,25 +5504,6 @@
 /obj/machinery/light,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"HK" = (
-/obj/structure/flora/iceshards{
-	pixel_y = 15
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"HL" = (
-/obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "HM" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
@@ -8689,48 +5531,9 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"HR" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/effect/turf_decal/siding/white{
-	dir = 9
-	},
-/obj/item/cane,
-/obj/item/clothing/glasses/monocle,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "HS" = (
 /turf/open/space/basic,
 /area/centcom/supply)
-"HT" = (
-/obj/effect/spawner/structure/window/reinforced,
-/turf/open/floor/plating,
-/area/facility_hallway/manager)
-"HU" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
-/turf/open/floor/wood,
-/area/fishboat)
-"HW" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "HX" = (
 /obj/machinery/door/poddoor{
 	id = "XCCQMLoaddoor2";
@@ -8757,24 +5560,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"Ia" = (
-/obj/machinery/photocopier,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Ie" = (
 /turf/closed/indestructible/riveted,
 /area/tdome/arena)
-"If" = (
-/obj/machinery/door/airlock/hatch{
-	hackProof = 1;
-	max_integrity = 25000000;
-	name = "Arcade Secure Storage";
-	normal_integrity = 25000000;
-	req_access_txt = "69";
-	whitelist_door = null
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Il" = (
 /turf/closed/indestructible/fakeglass,
 /area/tdome/tdomeobserve)
@@ -8798,13 +5586,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"Ir" = (
-/obj/machinery/photocopier,
-/obj/effect/turf_decal/siding/wood{
-	dir = 10
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Is" = (
 /obj/machinery/igniter/on,
 /obj/effect/turf_decal/delivery,
@@ -8828,20 +5609,6 @@
 "Iv" = (
 /turf/closed/indestructible/riveted,
 /area/tdome/tdomeadmin)
-"Iw" = (
-/obj/structure/railing{
-	name = "invincible railing";
-	resistance_flags = 64
-	},
-/obj/structure/riser/wood,
-/turf/open/floor/wood,
-/area/fishboat)
-"Ix" = (
-/obj/machinery/door/airlock/public/glass{
-	name = "officer lounge"
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Iz" = (
 /obj/effect/turf_decal/stripes/full,
 /obj/machinery/door/poddoor{
@@ -8979,15 +5746,6 @@
 /obj/effect/landmark/thunderdome/one,
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
-"IP" = (
-/obj/structure/toilet{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
 "IQ" = (
 /obj/effect/turf_decal/stripes/line,
 /obj/effect/decal/cleanable/dirt,
@@ -9096,17 +5854,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/dark,
 /area/tdome/arena)
-"Je" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 6
-	},
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
-"Jf" = (
-/mob/living/carbon/human/species/shrimp,
-/obj/effect/landmark/shrimpship,
-/turf/open/floor/wood,
-/area/fishboat)
 "Jg" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -9297,10 +6044,6 @@
 	},
 /turf/open/floor/plasteel/dark/side,
 /area/tdome/tdomeadmin)
-"JK" = (
-/obj/machinery/vending/boozeomat/all_access,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "JL" = (
 /obj/structure/table/reinforced,
 /obj/effect/turf_decal/tile{
@@ -9320,9 +6063,6 @@
 /obj/effect/landmark/abductor/agent,
 /turf/open/floor/plating/abductor,
 /area/abductor_ship)
-"JP" = (
-/turf/closed/indestructible/fakeglass,
-/area/facility_hallway/manager)
 "JR" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -9339,12 +6079,6 @@
 	dir = 6
 	},
 /area/tdome/tdomeadmin)
-"JS" = (
-/obj/effect/turf_decal/siding/white/corner{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "JT" = (
 /obj/machinery/button/flasher/indestructible{
 	id = "tdomeflash"
@@ -9377,16 +6111,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod)
-"Kd" = (
-/obj/structure/flora/icegrave,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "Kk" = (
 /obj/docking_port/stationary{
 	dir = 4;
@@ -9406,20 +6130,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
-"Ko" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/structure/railing{
-	dir = 9
-	},
-/obj/item/paper_bin{
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 9
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "Kq" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -9494,34 +6204,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"Kw" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/machinery/newscaster/security_unit{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 1
-	},
-/obj/machinery/computer/camera_advanced/manager/sephirah,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"Ky" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/turf/open/floor/wood,
-/area/fishboat)
-"Kz" = (
-/obj/structure/table/glass,
-/turf/open/floor/wood,
-/area/department_main/manager)
 "KC" = (
 /obj/machinery/status_display/evac,
 /turf/closed/indestructible/riveted,
@@ -9982,25 +6664,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/control)
-"Mg" = (
-/obj/structure/table/wood,
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"Mh" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/reagent_containers/food/drinks/mug/tea{
-	pixel_x = 5;
-	pixel_y = 13
-	},
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 1
-	},
-/obj/item/folder/syndicate/red{
-	desc = "A folder belonging to one of the City's corporations.";
-	name = "Corporation Folder"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "Mi" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500"
@@ -10099,21 +6762,6 @@
 /obj/item/folder/red,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"Mz" = (
-/obj/machinery/door/airlock/wood/glass{
-	name = "Manager's Office"
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"MB" = (
-/obj/structure/chair/sofa/corp/left,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
-"MC" = (
-/obj/structure/rack,
-/obj/item/toy/plush/kod,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "MD" = (
 /obj/effect/light_emitter{
 	set_cap = 1;
@@ -10126,20 +6774,6 @@
 	},
 /turf/open/floor/plating/asteroid/snow/airless,
 /area/syndicate_mothership)
-"ME" = (
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -24;
-	pixel_y = 45
-	},
-/obj/machinery/computer/security/telescreen{
-	network = list("ss13");
-	pixel_x = -24;
-	pixel_y = 33
-	},
-/obj/machinery/computer/crew,
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "MG" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -10166,19 +6800,6 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"MN" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 6
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "MO" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -10197,11 +6818,6 @@
 	},
 /turf/open/floor/engine,
 /area/tdome/tdomeadmin)
-"MQ" = (
-/obj/structure/table,
-/obj/machinery/cell_charger,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "MR" = (
 /obj/machinery/light{
 	dir = 4
@@ -10212,14 +6828,6 @@
 /obj/machinery/processor,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"MU" = (
-/obj/structure/rack,
-/obj/item/toy/plush/kog,
-/obj/item/toy/plush/nihil{
-	pixel_x = 15
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "MY" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -10232,33 +6840,9 @@
 "MZ" = (
 /turf/open/floor/plasteel/white,
 /area/centcom/hub)
-"Nc" = (
-/obj/machinery/computer/crew{
-	dir = 8
-	},
-/obj/structure/sign/ordealmonitor{
-	pixel_x = 32
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 4
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "Nd" = (
 /turf/closed/indestructible/wood,
 /area/centcom/holding)
-"Ni" = (
-/obj/item/toy/plush/hod,
-/obj/structure/table/wood/fancy/green,
-/obj/effect/turf_decal/siding/green/corner,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"Nk" = (
-/obj/effect/radiojammer{
-	range = 15
-	},
-/turf/closed/indestructible/wood,
-/area/fishboat)
 "Nm" = (
 /obj/structure/closet/crate,
 /obj/item/vending_refill/autodrobe,
@@ -10310,12 +6894,6 @@
 /obj/item/flashlight/lamp,
 /turf/open/floor/wood,
 /area/centcom/hub)
-"Nt" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 7
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Nu" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -10391,32 +6969,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"NL" = (
-/obj/machinery/light/floor,
-/obj/effect/turf_decal/siding/white{
-	dir = 6
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"NM" = (
-/obj/structure/chair/wood,
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
-"NP" = (
-/obj/structure/curtain/cloth,
-/obj/effect/turf_decal/siding/wood/end,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"NR" = (
-/obj/effect/turf_decal/siding/yellow{
-	dir = 8
-	},
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
 "NS" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -10457,22 +7009,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/hub)
-"Oe" = (
-/obj/structure/frozensword,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"Oj" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "Ok" = (
 /obj/machinery/light,
 /obj/effect/turf_decal/tile/blue{
@@ -10481,26 +7017,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"Ol" = (
-/obj/machinery/door/airlock/snowqueen{
-	plane = 0;
-	pixel_y = -7
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"On" = (
-/obj/structure/stairs{
-	dir = 1;
-	density = 1
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "Op" = (
 /obj/structure/sink{
 	dir = 4;
@@ -10531,48 +7047,12 @@
 /obj/effect/turf_decal/tile/red,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"Ow" = (
-/obj/effect/turf_decal/weather/snow/corner,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "Ox" = (
 /turf/open/floor/plasteel/yellowsiding,
 /area/centcom/supply)
-"Oz" = (
-/obj/machinery/door/window/brigdoor/southleft{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 9
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "OA" = (
 /turf/open/floor/plasteel/freezer,
 /area/syndicate_mothership/control)
-"OC" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 10
-	},
-/obj/structure/flora/icestalagmite{
-	pixel_y = -4;
-	pixel_x = 8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "OF" = (
 /obj/effect/turf_decal/tile/green{
 	dir = 8
@@ -10616,19 +7096,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"OR" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
-"OS" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/effect/turf_decal/siding/brown/corner{
-	dir = 4
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "OU" = (
 /obj/item/clothing/under/costume/jabroni,
 /obj/item/clothing/under/costume/geisha,
@@ -10637,9 +7104,6 @@
 /obj/item/clothing/under/costume/roman,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"OX" = (
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "OY" = (
 /obj/effect/turf_decal/tile/blue{
 	dir = 1
@@ -10649,76 +7113,20 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"OZ" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/fishboat)
 "Pa" = (
 /obj/machinery/washing_machine,
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"Pb" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/crate/bin,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Pd" = (
 /obj/machinery/computer/security{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"Pe" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/structure/chair/wood/wings{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/fishboat)
 "Ph" = (
 /obj/structure/closet/crate/bin,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Pi" = (
-/obj/structure/table,
-/obj/item/pen/fourcolor,
-/obj/effect/turf_decal/siding/white{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
-"Pk" = (
-/obj/structure/table/wood,
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = 4;
-	pixel_y = 4
-	},
-/obj/item/storage/box/drinkingglasses{
-	pixel_x = -5;
-	pixel_y = 5
-	},
-/obj/machinery/light,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "Pl" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -10769,26 +7177,12 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"PB" = (
-/turf/open/floor/wood,
-/area/department_main/manager)
 "PC" = (
 /obj/effect/turf_decal/stripes/line{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
-"PE" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/fishboat)
-"PG" = (
-/obj/effect/turf_decal/bot,
-/obj/structure/closet/crate/bin,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "PI" = (
 /obj/machinery/biogenerator,
 /obj/effect/turf_decal/tile/green{
@@ -10857,12 +7251,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"PS" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 5
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
 "PU" = (
 /obj/structure/plasticflaps,
 /obj/machinery/conveyor{
@@ -10917,12 +7305,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"Qc" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "Qd" = (
 /obj/structure/table/wood,
 /obj/item/storage/photo_album/syndicate{
@@ -10953,22 +7335,6 @@
 /obj/effect/spawner/lootdrop/gloves,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"Qi" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/reinforced,
-/obj/item/reagent_containers/glass/rag{
-	pixel_y = 7
-	},
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "Qj" = (
 /obj/structure/table/wood,
 /obj/item/reagent_containers/food/drinks/bottle/sake,
@@ -10981,27 +7347,6 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/grass,
 /area/centcom/holding)
-"Ql" = (
-/obj/machinery/vending/lobotomyarmband,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"Qm" = (
-/obj/structure/flora/icestalagmite{
-	pixel_y = -6;
-	pixel_x = -9
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"Qn" = (
-/obj/machinery/vending/coffee,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Qq" = (
 /obj/structure/cable,
 /turf/open/floor/plasteel/dark,
@@ -11019,18 +7364,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"Qs" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 5
-	},
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Qu" = (
 /obj/machinery/light{
 	dir = 4
@@ -11053,19 +7386,6 @@
 /obj/machinery/deepfryer,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"QG" = (
-/obj/effect/landmark/snowqueen_playerspawn,
-/obj/effect/radiojammer{
-	range = 6
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "QH" = (
 /obj/machinery/chem_master/condimaster{
 	desc = "Used to separate out liquids - useful for purifying botanical extracts. Also dispenses condiments.";
@@ -11113,15 +7433,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/three)
-"QN" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/machinery/status_display{
-	pixel_x = 32
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "QS" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Security Equipment";
@@ -11137,23 +7448,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"QV" = (
-/obj/structure/flora/icechunk/alt{
-	pixel_y = -3;
-	pixel_x = 5
-	},
-/obj/structure/flora/iceslab/alt{
-	pixel_y = -2;
-	pixel_x = -11
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "QW" = (
 /obj/structure/closet/secure_closet/freezer/kitchen{
 	locked = 0
@@ -11303,31 +7597,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"RE" = (
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"RJ" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/vending/dinnerware,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"RL" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "RM" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -11346,31 +7615,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"RO" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 10
-	},
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 50
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"RP" = (
-/obj/structure/closet/secure_closet/personal/cabinet,
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "RQ" = (
 /obj/structure/closet/abductor,
 /obj/item/storage/box/alienhandcuffs,
@@ -11387,39 +7631,10 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"RV" = (
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
-"RX" = (
-/obj/structure/rack,
-/obj/item/toy/plush/melt,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "RY" = (
 /obj/machinery/vending/coffee,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"RZ" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"Sa" = (
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Sd" = (
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
@@ -11427,74 +7642,9 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"Sf" = (
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/effect/shelter_forcefield,
-/obj/structure/closet/crate/pcorp/shelter,
-/turf/open/floor/shelter,
-/area/shelter)
-"Sg" = (
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
-"Sh" = (
-/obj/structure/flora/iceslab{
-	pixel_x = -19;
-	pixel_y = -12
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "Si" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"Sk" = (
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 4
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"Sl" = (
-/obj/machinery/computer/communications{
-	dir = 4
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"So" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"Sp" = (
-/obj/machinery/door/airlock/wood{
-	name = "Representative's Room"
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Sw" = (
 /obj/machinery/hydroponics/constructable,
 /obj/machinery/light{
@@ -11512,13 +7662,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"Sz" = (
-/obj/machinery/computer/abnormality_archive,
-/obj/effect/turf_decal/siding/green{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "SB" = (
 /obj/structure/curtain,
 /obj/structure/window/reinforced/tinted{
@@ -11529,13 +7672,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"SF" = (
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "SG" = (
 /obj/structure/table,
 /obj/machinery/microwave{
@@ -11544,10 +7680,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"SJ" = (
-/obj/effect/spawner/randomcolavend,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "SN" = (
 /obj/structure/mopbucket,
 /obj/item/mop,
@@ -11606,19 +7738,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/holding)
-"SZ" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/reinforced,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
 "Tb" = (
 /obj/structure/closet/crate/freezer/blood,
 /turf/open/floor/wood,
@@ -11630,20 +7749,6 @@
 /obj/effect/turf_decal/tile/brown,
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/two)
-"Td" = (
-/obj/machinery/door/window/brigdoor/southleft,
-/obj/effect/turf_decal/siding/green{
-	dir = 10
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"Te" = (
-/obj/structure/flora/icestalagmite/small{
-	pixel_y = 19;
-	pixel_x = -3
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "Tg" = (
 /obj/structure/table/reinforced,
 /obj/machinery/light,
@@ -11701,17 +7806,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Tp" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 6
-	},
-/obj/machinery/light/cold/no_nightlight,
-/obj/machinery/facility_holomap{
-	dir = 1;
-	forced_zLevel = 2
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
 "Tq" = (
 /obj/structure/table/wood/bar,
 /obj/item/stack/sheet/glass/fifty,
@@ -11732,12 +7826,6 @@
 /obj/structure/window/reinforced/fulltile,
 /turf/open/floor/grass,
 /area/centcom/holding)
-"Tv" = (
-/obj/machinery/computer/abnormality_archive{
-	dir = 8
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "Tz" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -11762,21 +7850,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"TF" = (
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"TG" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "TH" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 4
@@ -11787,47 +7860,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"TI" = (
-/obj/machinery/modular_computer/console/preset{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"TK" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 6
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "TO" = (
 /turf/open/floor/plasteel/yellowsiding{
 	dir = 1
 	},
 /area/centcom/supply)
-"TR" = (
-/obj/machinery/light,
-/obj/machinery/newscaster/security_unit{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521"
-	},
-/obj/machinery/computer/camera_advanced/manager/sephirah{
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"TU" = (
-/obj/machinery/door/airlock/public/glass{
-	max_integrity = 250000000;
-	name = "Restroom";
-	normal_integrity = 250000000
-	},
-/turf/open/floor/plasteel/showroomfloor,
-/area/facility_hallway/manager)
 "TV" = (
 /obj/machinery/shower{
 	dir = 8
@@ -11838,18 +7875,6 @@
 	},
 /turf/open/floor/plasteel/kitchen_coldroom/freezerfloor,
 /area/centcom/hub)
-"TX" = (
-/obj/structure/flora/icechunk{
-	pixel_y = -7
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "Ud" = (
 /obj/effect/landmark/holding_facility,
 /turf/open/floor/wood,
@@ -11866,23 +7891,6 @@
 	dir = 4
 	},
 /area/tdome/tdomeadmin)
-"Uf" = (
-/obj/effect/turf_decal/siding/white{
-	dir = 9
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/manager)
-"Ug" = (
-/obj/item/toy/plush/netzach,
-/obj/structure/railing,
-/obj/structure/table/wood/fancy/green,
-/obj/effect/turf_decal/siding/green,
-/obj/item/reagent_containers/food/drinks/beer{
-	pixel_x = 5;
-	pixel_y = -2
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "Uh" = (
 /obj/machinery/light{
 	dir = 4
@@ -11894,45 +7902,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Ui" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 10
-	},
-/obj/structure/flora/icegrave,
-/obj/effect/light_emitter{
-	light_power = 4;
-	light_range = 25;
-	set_cap = 3;
-	set_luminosity = 50
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"Uj" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/fishboat)
-"Uk" = (
-/obj/structure/flora/icechunk/alt,
-/obj/structure/flora/iceslab{
-	pixel_y = -8;
-	pixel_x = 17
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "Ul" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -11973,34 +7942,10 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"Up" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_purple,
-/turf/open/floor/wood,
-/area/fishboat)
 "Ur" = (
 /obj/structure/chair/office,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"Uy" = (
-/obj/structure/flora/icestalactite{
-	pixel_y = -34
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
-"UA" = (
-/obj/effect/turf_decal/siding/wood/corner,
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "UC" = (
 /obj/structure/table/wood,
 /obj/effect/spawner/lootdrop/donkpockets,
@@ -12010,12 +7955,6 @@
 /obj/structure/chair/stool/bar,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"UG" = (
-/obj/effect/spawner/randomarcade{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "UI" = (
 /obj/docking_port/stationary{
 	dwidth = 25;
@@ -12032,23 +7971,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"UL" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"UM" = (
-/obj/machinery/door/airlock/public/glass{
-	hackProof = 1;
-	max_integrity = 250000000;
-	name = "Sefirot Offices";
-	normal_integrity = 250000000;
-	req_access_txt = "67";
-	whitelist_door = 1
-	},
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "UP" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 1
@@ -12072,21 +7994,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"UU" = (
-/obj/effect/turf_decal/siding/wood/corner{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "UV" = (
 /obj/effect/spawner/randomarcade{
 	dir = 4
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"UX" = (
-/turf/open/floor/carpet/royalblack,
-/area/department_main/manager)
 "Va" = (
 /turf/open/floor/plasteel/dark/side{
 	dir = 1
@@ -12098,43 +8011,6 @@
 /obj/item/key/security,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"Vd" = (
-/obj/structure/filingcabinet/zayininfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/tethinfo,
-/obj/structure/filingcabinet/heinfo{
-	pixel_x = 10
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"Ve" = (
-/obj/structure/railing,
-/obj/effect/turf_decal/stripes/line,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"Vf" = (
-/obj/machinery/computer/abnormality_archive{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
-"Vh" = (
-/obj/structure/railing{
-	dir = 9
-	},
-/obj/structure/table/wood/fancy/orange,
-/obj/item/paper_bin{
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 9
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "Vk" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -12162,15 +8038,6 @@
 "Vp" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/supply)
-"Vr" = (
-/obj/structure/chair/comfy/brown{
-	dir = 8
-	},
-/obj/effect/turf_decal/siding/white{
-	dir = 4
-	},
-/turf/open/floor/carpet/black,
-/area/facility_hallway/manager)
 "Vs" = (
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
@@ -12214,19 +8081,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/centcom/hub)
-"VE" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 5
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "VF" = (
 /obj/structure/rack,
 /obj/item/nullrod/scythe/vibro{
@@ -12242,43 +8096,11 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"VK" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 7
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "VL" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"VM" = (
-/obj/machinery/newscaster/security_unit{
-	pixel_y = 32
-	},
-/obj/effect/turf_decal/tile/neutral{
-	dir = 4
-	},
-/obj/effect/turf_decal/tile/neutral,
-/obj/effect/turf_decal/tile/neutral{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/item/kirbyplants/random{
-	pixel_y = 10
-	},
-/turf/open/floor/plasteel/dark,
-/area/department_main/manager)
 "VP" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -12292,61 +8114,11 @@
 "VQ" = (
 /turf/closed/indestructible/riveted,
 /area/centcom/hub)
-"VR" = (
-/turf/closed/indestructible/reinforced,
-/area/department_main/manager)
-"VT" = (
-/obj/machinery/button/door/indestructible{
-	id = "managerlockdown";
-	name = "Adminstrative Offices Lockdown button";
-	pixel_y = -25
-	},
-/obj/item/clipboard,
-/obj/structure/table/wood,
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"VY" = (
-/obj/effect/spawner/randomarcade{
-	dir = 8
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"Wb" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 4
-	},
-/obj/structure/table/glass,
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
-"Wc" = (
-/obj/structure/railing{
-	dir = 10
-	},
-/obj/structure/table/wood/fancy/green,
-/obj/item/paper_bin{
-	pixel_y = 5
-	},
-/obj/effect/turf_decal/siding/green{
-	dir = 10
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
-"Wd" = (
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Wh" = (
 /obj/structure/fans/tiny,
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/plasteel,
 /area/centcom/supply)
-"Wi" = (
-/obj/machinery/door/window/brigdoor/southright,
-/obj/effect/turf_decal/caution/stand_clear,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Wj" = (
 /obj/machinery/light/small{
 	brightness = 3;
@@ -12360,40 +8132,6 @@
 	},
 /turf/open/floor/carpet/black,
 /area/centcom/holding)
-"Wo" = (
-/obj/structure/sign/ordealmonitor{
-	pixel_y = 32
-	},
-/obj/machinery/light/cold/no_nightlight{
-	dir = 1
-	},
-/obj/structure/table/wood,
-/obj/item/folder/syndicate/blue{
-	desc = "You have a feeling that these series of documents within this folder are not for the average person to gaze at.";
-	name = "Highly Confidential Folder"
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"Wr" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 9
-	},
-/obj/structure/flora/icechunk/alt{
-	pixel_x = -7;
-	pixel_y = -4
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
-"Ws" = (
-/obj/effect/spawner/randomsnackvend,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Wt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -12401,9 +8139,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
-"Ww" = (
-/turf/open/floor/wood,
-/area/fishboat)
 "Wy" = (
 /obj/structure/table,
 /obj/item/toy/figure/dsquad{
@@ -12414,20 +8149,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"WC" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/reagent_dispensers/water_cooler,
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "WD" = (
 /obj/structure/table,
 /obj/item/folder/red,
@@ -12441,28 +8162,6 @@
 /obj/effect/turf_decal/tile/green,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"WE" = (
-/obj/machinery/computer/abnormality_auxiliary{
-	dir = 8
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
-"WF" = (
-/obj/effect/turf_decal/siding/blue,
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
-"WH" = (
-/obj/effect/turf_decal/weather/snow/corner{
-	dir = 4
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow-ice";
-	name = "ice";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow-ice"
-	},
-/area/snowqueen)
 "WJ" = (
 /turf/open/floor/plasteel/dark,
 /area/tdome/tdomeadmin)
@@ -12475,29 +8174,6 @@
 /obj/machinery/light/floor,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"WM" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
-/turf/open/floor/wood,
-/area/fishboat)
-"WO" = (
-/obj/machinery/light/small{
-	dir = 8
-	},
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/effect/shelter_forcefield,
-/obj/structure/closet/crate/pcorp/shelter,
-/turf/open/floor/shelter,
-/area/shelter)
 "WQ" = (
 /obj/effect/mapping_helpers/airlock/cyclelink_helper{
 	dir = 8
@@ -12508,15 +8184,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/ferry)
-"WR" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 9
-	},
-/obj/item/kirbyplants{
-	icon_state = "plant-04"
-	},
-/turf/open/floor/wood,
-/area/department_main/manager)
 "WS" = (
 /obj/structure/table,
 /obj/item/reagent_containers/food/drinks/waterbottle/large{
@@ -12533,33 +8200,6 @@
 /obj/structure/flora/ausbushes/brflowers,
 /turf/open/floor/grass,
 /area/centcom/hub)
-"WV" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 1
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"WW" = (
-/obj/machinery/computer/abnormality_logs{
-	dir = 1
-	},
-/obj/machinery/status_display{
-	pixel_y = -32
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521"
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "WX" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 4
@@ -12572,19 +8212,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Xa" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"Xb" = (
-/obj/effect/spawner/randomcolavend,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"Xc" = (
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Xd" = (
 /obj/structure/flora/ausbushes/fernybush,
 /obj/structure/flora/ausbushes/fullgrass,
@@ -12628,21 +8255,6 @@
 "Xh" = (
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/four)
-"Xm" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "Xo" = (
 /obj/machinery/vending/dinnerware,
 /turf/open/floor/plasteel/cafeteria,
@@ -12664,12 +8276,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/one)
-"Xx" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Xy" = (
 /obj/machinery/door/airlock/external{
 	name = "Ferry Airlock"
@@ -12696,13 +8302,6 @@
 /obj/effect/turf_decal/box,
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"XB" = (
-/obj/structure/flora/icegrave/alt{
-	pixel_y = -43;
-	pixel_x = 12
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "XC" = (
 /obj/structure/chair/wood{
 	dir = 8
@@ -12716,13 +8315,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/supplypod/loading/one)
-"XE" = (
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "XF" = (
 /obj/effect/turf_decal/tile/red{
 	dir = 8
@@ -12742,27 +8334,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"XI" = (
-/obj/structure/flora/iceshards{
-	pixel_x = -15;
-	pixel_y = -5
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
-"XJ" = (
-/obj/structure/toolabnormality/shelter/exit,
-/obj/effect/shelter_forcefield,
-/obj/effect/radiojammer{
-	range = 8
-	},
-/turf/open/floor/shelter,
-/area/shelter)
 "XL" = (
 /obj/machinery/door/airlock/wood,
 /turf/open/floor/wood,
@@ -12780,47 +8351,12 @@
 	},
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"XT" = (
-/obj/structure/railing{
-	dir = 10;
-	max_integrity = 1e+007;
-	name = "invincible railing"
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
 "XU" = (
 /obj/structure/sign/poster/ripped{
 	pixel_x = 32
 	},
 /turf/open/floor/wood,
 /area/centcom/hub)
-"XV" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/chair{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4;
-	light_color = "#e8eaff"
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
-"XW" = (
-/obj/structure/chair/stool,
-/obj/effect/turf_decal/siding/wood,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "XY" = (
 /obj/item/kirbyplants{
 	icon_state = "applebush"
@@ -12848,16 +8384,6 @@
 /obj/structure/table/wood,
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Yb" = (
-/obj/effect/turf_decal/weather/snow/corner,
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "Yd" = (
 /obj/structure/table/reinforced/ctf,
 /turf/open/floor/plasteel/dark,
@@ -12884,10 +8410,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Yl" = (
-/obj/machinery/vending/cigarette/beach,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "Ym" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/open/floor/wood,
@@ -12897,18 +8419,6 @@
 /obj/effect/mapping_helpers/airlock/cyclelink_helper,
 /turf/open/floor/engine,
 /area/tdome/tdomeadmin)
-"Yo" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/turf/open/space/basic,
-/area/space)
 "Yp" = (
 /obj/effect/turf_decal/tile/neutral{
 	dir = 1
@@ -12931,13 +8441,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Yr" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/machinery/roulette,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "Yt" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -12949,18 +8452,6 @@
 /obj/structure/closet/secure_closet/freezer/fridge/open,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"Yw" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/item/storage/box/pcorp,
-/obj/effect/shelter_forcefield,
-/obj/structure/closet/crate/pcorp/shelter,
-/turf/open/floor/shelter,
-/area/shelter)
 "YA" = (
 /turf/closed/indestructible/fakeglass,
 /area/centcom/hub)
@@ -12968,14 +8459,6 @@
 /obj/structure/dresser,
 /turf/open/floor/wood,
 /area/centcom/hub)
-"YC" = (
-/obj/machinery/door/poddoor/preopen{
-	id = "managerlockdown";
-	name = "Adminstrative Offices Lockdown"
-	},
-/obj/machinery/door/airlock/wood,
-/turf/open/floor/facility/dark,
-/area/facility_hallway/manager)
 "YG" = (
 /obj/effect/turf_decal/tile{
 	color = "#CC5500";
@@ -13001,19 +8484,6 @@
 /obj/structure/closet/crate,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"YK" = (
-/obj/structure/bed/pod{
-	dir = 6
-	},
-/obj/item/bedsheet,
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 5
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "YL" = (
 /obj/machinery/vending/clothing{
 	pixel_y = -10
@@ -13027,37 +8497,11 @@
 /mob/living/simple_animal/chicken,
 /turf/open/floor/grass,
 /area/centcom/holding)
-"YO" = (
-/obj/structure/curtain/cloth,
-/turf/open/floor/plasteel/white,
-/area/facility_hallway/manager)
-"YP" = (
-/obj/structure/table,
-/obj/machinery/recharger,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "YQ" = (
 /obj/structure/table,
 /obj/item/reagent_containers/glass/beaker,
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/holding)
-"YS" = (
-/obj/machinery/door/window/brigdoor/southleft{
-	dir = 8;
-	name = "Shower"
-	},
-/obj/effect/turf_decal/siding/brown{
-	dir = 10
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
-"YT" = (
-/obj/machinery/modular_computer/console/preset,
-/obj/effect/turf_decal/siding/green{
-	dir = 1
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "YV" = (
 /obj/machinery/light{
 	dir = 8
@@ -13069,19 +8513,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"YW" = (
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	light_color = "#333333"
-	},
-/obj/effect/turf_decal/tile{
-	color = "#111111";
-	dir = 1;
-	light_color = "#333333"
-	},
-/obj/structure/table/wood/fancy/black,
-/turf/open/floor/carpet/green,
-/area/facility_hallway/manager)
 "YZ" = (
 /obj/structure/chair{
 	dir = 8
@@ -13094,13 +8525,6 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Zd" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 8
-	},
-/obj/structure/table/glass,
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
 "Zi" = (
 /obj/machinery/vending/snack/orange,
 /obj/effect/turf_decal/tile/blue{
@@ -13109,29 +8533,6 @@
 /obj/effect/turf_decal/tile/blue,
 /turf/open/floor/plasteel,
 /area/centcom/hub)
-"Zk" = (
-/obj/item/reagent_containers/glass/bucket/wooden,
-/turf/open/floor/wood,
-/area/fishboat)
-"Zo" = (
-/obj/machinery/vending/autodrobe{
-	pixel_y = 10
-	},
-/turf/closed/indestructible/reinforced,
-/area/facility_hallway/manager)
-"Zq" = (
-/obj/structure/flora/icestalagmite{
-	pixel_y = -17;
-	pixel_x = -12
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "Zr" = (
 /obj/structure/closet/secure_closet/security,
 /obj/item/clothing/under/rank/security/officer/spacepol,
@@ -13182,43 +8583,12 @@
 	},
 /turf/open/floor/wood,
 /area/centcom/holding)
-"Zy" = (
-/obj/structure/flora/icestalagmite{
-	pixel_y = -4;
-	pixel_x = 8
-	},
-/turf/open/floor/plasteel/dark{
-	icon = 'icons/turf/snow.dmi';
-	icon_state = "snow";
-	name = "snow";
-	initial_gas_mix = "o2=22;n2=82;TEMP=270.15";
-	base_icon_state = "snow"
-	},
-/area/snowqueen)
 "Zz" = (
 /obj/structure/chair/office{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"ZA" = (
-/obj/structure/railing/corner{
-	dir = 4
-	},
-/turf/open/water/deep/saltwater/extradeep,
-/area/fishboat)
-"ZB" = (
-/obj/structure/table/wood/fancy/royalblack,
-/obj/item/toy/plush/hokma,
-/obj/structure/railing{
-	dir = 1
-	},
-/obj/effect/turf_decal/siding{
-	color = "#7D6521";
-	dir = 1
-	},
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "ZD" = (
 /obj/structure/table/reinforced,
 /obj/effect/spawner/lootdrop/cigbutt,
@@ -13230,30 +8600,12 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"ZI" = (
-/obj/structure/chair/stool,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"ZM" = (
-/obj/structure/rack,
-/obj/item/toy/plush/sow,
-/turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
 "ZN" = (
 /obj/machinery/light/small{
 	dir = 1
 	},
 /turf/open/floor/plasteel/dark,
 /area/centcom/hub)
-"ZP" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 4
-	},
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "ZQ" = (
 /obj/effect/turf_decal/tile/brown,
 /obj/effect/turf_decal/tile/brown{
@@ -13270,17 +8622,6 @@
 	},
 /turf/open/floor/plasteel/cafeteria,
 /area/centcom/hub)
-"ZS" = (
-/obj/structure/flora/iceslab{
-	pixel_y = -6;
-	pixel_x = 49
-	},
-/obj/structure/flora/icechunk/alt{
-	pixel_y = -1;
-	pixel_x = 25
-	},
-/turf/closed/mineral/snowmountain/cavern,
-/area/snowqueen)
 "ZT" = (
 /mob/living/simple_animal/cow,
 /turf/open/floor/grass,
@@ -13578,7 +8919,7 @@ aa
 "}
 (2,1,1) = {"
 aa
-ad
+aa
 aa
 aa
 aa
@@ -14107,13 +9448,13 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -14364,13 +9705,13 @@ aa
 aa
 aa
 aa
-qp
-EB
-Ql
-qp
-Ql
-EB
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -14621,13 +9962,13 @@ aa
 aa
 aa
 aa
-qp
-dk
-to
-qp
-zH
-dk
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -14877,15 +10218,15 @@ aa
 aa
 aa
 aa
-qp
-qp
-AT
-qp
-qp
-qp
-YO
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -15134,15 +10475,15 @@ aa
 aa
 aa
 aa
-qp
-eR
-dk
-cx
-cx
-cx
-dk
-eR
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -15391,15 +10732,15 @@ aa
 aa
 aa
 aa
-qp
-er
-dk
-dk
-dk
-dk
-dk
-cP
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -15648,15 +10989,15 @@ aa
 aa
 aa
 aa
-qp
-dk
-dk
-dk
-dk
-dk
-dk
-dk
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -15905,15 +11246,15 @@ aa
 aa
 aa
 aa
-qp
-Cs
-Cs
-dk
-Ff
-dk
-Cs
-Cs
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16153,34 +11494,34 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-cr
-qp
-cr
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16410,34 +11751,34 @@ aa
 aa
 aa
 aa
-qp
-mg
-Qs
-NP
-sA
-sA
-Sa
-sA
-sA
-eB
-qp
-Xc
-Xc
-tJ
-Xc
-PG
-qp
-eB
-kB
-uN
-UG
-Sa
-sA
-If
-sA
-sA
-xR
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16667,34 +12008,34 @@ aa
 aa
 aa
 aa
-qp
-YK
-RP
-qp
-sA
-CM
-FJ
-rx
-oh
-Wd
-qp
-Xc
-bU
-rx
-oh
-Xc
-HT
-sA
-sA
-sA
-ZI
-sA
-MQ
-qp
-ZM
-sA
-RX
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -16924,34 +12265,34 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-Xx
-vb
-fT
-lf
-ew
-sA
-aF
-Xc
-pE
-OX
-ew
-Xc
-Fd
-sA
-sA
-sA
-sA
-sA
-Dc
-qp
-bK
-sA
-vp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -17181,34 +12522,34 @@ aa
 aa
 aa
 aa
-qp
-mg
-Qs
-Ey
-sA
-lo
-Pi
-cO
-EP
-ft
-qp
-Xc
-pE
-OX
-ew
-Xc
-HT
-sA
-sA
-sA
-ZI
-sA
-YP
-qp
-MC
-sA
-Ao
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -17438,34 +12779,34 @@ aa
 aa
 aa
 aa
-qp
-aP
-RP
-qp
-sA
-sA
-jw
-sA
-sA
-eB
-qp
-Fg
-pE
-OX
-ew
-Xc
-qp
-eB
-Yr
-Xb
-VY
-jw
-Ia
-qp
-MU
-sA
-pN
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -17695,34 +13036,34 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-BF
-pE
-OX
-ew
-qT
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -17962,24 +13303,24 @@ aa
 aa
 aa
 aa
-qp
-MB
-pE
-OX
-ew
-Xc
-qp
-aY
-bY
-Xa
-Xa
-Xa
-Ir
-qp
-HR
-rx
-eQ
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -18219,24 +13560,24 @@ aa
 aa
 aa
 aa
-qp
-Ws
-pE
-OX
-ew
-Xc
-JP
-Dt
-RE
-pL
-Fo
-iw
-le
-qp
-nV
-OX
-ew
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -18476,24 +13817,24 @@ aa
 aa
 aa
 aa
-qp
-SJ
-pE
-OX
-ew
-Xc
-jS
-dz
-RE
-NM
-jc
-sP
-RE
-Sp
-OX
-OX
-AG
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -18722,35 +14063,35 @@ aa
 aa
 aa
 aa
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
 aa
 aa
 aa
-qp
-Hc
-pE
-OX
-ew
-Xc
-JP
-Dt
-RE
-uQ
-dY
-Ez
-nY
-qp
-bn
-OX
-ew
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -18978,36 +14319,36 @@ aa
 aa
 aa
 aa
-VR
-VR
-bp
-zg
-rI
-VR
-WR
-mV
-VR
-VR
-VR
 aa
-qp
-Yl
-pE
-OX
-ew
-Xc
-fi
-oC
-RL
-tL
-tL
-tL
-pz
-qp
-aH
-cO
-nH
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -19235,36 +14576,36 @@ aa
 aa
 aa
 aa
-VR
-jd
-Uf
-bR
-dy
-fc
-bP
-nA
-fD
-kI
-VR
-VR
-qp
-Xc
-pE
-OX
-ew
-Xc
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -19491,43 +14832,43 @@ aa
 aa
 aa
 aa
-VR
-VR
-AE
-PS
-OR
-Tp
-VR
-ip
-PB
-PB
-nA
-kF
-VR
-AK
-Xc
-pE
-OX
-ew
-Xc
-Xc
-lx
-pQ
-pQ
-pQ
-dG
-Xc
-nk
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -19746,45 +15087,45 @@ aa
 "}
 (26,1,1) = {"
 aa
-VR
-VR
-VR
-sH
-Sl
-ul
-bc
-kC
-VR
-mf
-ka
-Kz
-PB
-Ds
-VR
-pl
-rM
-tG
-OX
-Gj
-pb
-sA
-sA
-sA
-sA
-sA
-sA
-sA
-Xc
-qp
-eS
-oY
-pp
-kj
-kj
-kj
-kj
-kj
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20003,45 +15344,45 @@ aa
 "}
 (27,1,1) = {"
 aa
-VR
-wg
-VR
-ov
-Ct
-NR
-cm
-uv
-VR
-mf
-sd
-Zd
-FD
-Ds
-VR
-Cb
-pE
-OX
-OX
-OX
-Gj
-rx
-rx
-rx
-rx
-rx
-rx
-oh
-qT
-qp
-eS
-sA
-HA
-kj
-kj
-kj
-kj
-kj
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20260,45 +15601,45 @@ aa
 "}
 (28,1,1) = {"
 aa
-VR
-dN
-VR
-fg
-xD
-UX
-cB
-Fq
-VR
-cL
-vd
-Bw
-WF
-UA
-Mz
-Xc
-pE
-OX
-tA
-OX
-OX
-OX
-OX
-OX
-OX
-OX
-OX
-ew
-Xc
-YC
-Xc
-Xc
-Wi
-Ht
-kj
-kj
-kj
-kj
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20517,45 +15858,45 @@ aa
 "}
 (29,1,1) = {"
 aa
-VR
-wh
-VR
-ME
-uI
-cs
-cK
-VT
-VR
-mf
-wa
-Wb
-Je
-Ds
-VR
-Cb
-pE
-OX
-OX
-OX
-BU
-cO
-cO
-cO
-cO
-cO
-cO
-EP
-qT
-qp
-eS
-sA
-Ve
-kj
-kj
-kj
-kj
-kj
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -20774,45 +16115,45 @@ aa
 "}
 (30,1,1) = {"
 aa
-VR
-VR
-VR
-Cy
-Tv
-WE
-bc
-qX
-VR
-mf
-Kz
-qB
-PB
-Ds
-VR
-Dk
-eg
-JS
-OX
-BU
-NL
-sA
-sA
-sA
-sA
-sA
-sA
-sA
-HL
-qp
-eS
-jX
-km
-kj
-kj
-kj
-kj
-kj
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21033,43 +16374,43 @@ aa
 aa
 aa
 aa
-VR
-VR
-Wo
-Uf
-bR
-dU
-VR
-ip
-PB
-PB
-Gp
-uC
-VR
-AK
-Xc
-pE
-OX
-ew
-Xc
-Xc
-Xc
-Xc
-Xc
-Xc
-Xc
-Xc
-Xc
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21291,36 +16632,36 @@ aa
 aa
 aa
 aa
-VR
-sV
-PS
-OR
-fb
-fc
-bP
-Gp
-QN
-qD
-VR
-VR
-qp
-Xc
-pE
-OX
-ew
-Xc
-qp
-qp
-qp
-Ix
-Ix
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21548,36 +16889,36 @@ aa
 aa
 aa
 aa
-VR
-VR
-VM
-DH
-sz
-VR
-kA
-Qc
-VR
-VR
-VR
 aa
-qp
-Yl
-pE
-OX
-ew
-eO
-qp
-xa
-So
-sN
-sN
-aZ
-qp
-RJ
-DV
-vZ
-dp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -21806,35 +17147,35 @@ aa
 aa
 aa
 aa
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
 aa
 aa
 aa
-qp
-Hc
-pE
-OX
-ew
-mY
-qp
-tk
-sN
-sN
-sN
-sN
-eK
-dw
-dw
-dw
-cp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22074,28 +17415,28 @@ aa
 aa
 aa
 aa
-qp
-SJ
-pE
-OX
-ew
-Aa
-qp
-ln
-sN
-sN
-sN
-Dp
-qp
-dw
-dw
-dw
-yq
-qp
 aa
 aa
 aa
-Yo
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22331,24 +17672,24 @@ aa
 aa
 aa
 aa
-qp
-Ws
-pE
-OX
-ew
-Xc
-qp
-tk
-sN
-sN
-sN
-WC
-qp
-Qi
-SZ
-SZ
-vB
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22588,24 +17929,24 @@ aa
 aa
 aa
 aa
-qp
-Qn
-pE
-OX
-ew
-Xc
-Ix
-sN
-sN
-sN
-sN
-sN
-eI
-dd
-dd
-dd
-mj
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -22837,32 +18178,32 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-Cb
-pE
-OX
-ew
-qT
-qp
-Pb
-sN
-sN
-sN
-sN
-sN
-vc
-vc
-vc
-iX
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23094,32 +18435,32 @@ aa
 aa
 aa
 aa
-qp
-op
-DX
-aB
-qp
-rJ
-zj
-rJ
-qp
-Es
-pE
-OX
-ew
-Xc
-Ix
-sN
-sN
-sN
-sN
-sN
-VK
-nF
-cq
-cq
-cq
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23351,32 +18692,32 @@ aa
 aa
 aa
 aa
-qp
-RV
-RV
-RV
-TU
-RV
-RV
-RV
-GP
-Xc
-pE
-OX
-ew
-Xc
-qp
-WV
-RZ
-RZ
-RZ
-sN
-VK
-CI
-iQ
-YW
-YW
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23608,32 +18949,32 @@ aa
 aa
 aa
 aa
-qp
-Bj
-qp
-Bj
-qp
-dL
-dL
-dL
-qp
-Xc
-pE
-OX
-ew
-HL
-qp
-cD
-BM
-rA
-nP
-HW
-VK
-CI
-iQ
-dT
-vy
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -23865,32 +19206,32 @@ aa
 aa
 aa
 aa
-qp
-fj
-qp
-IP
-qp
-qp
-qp
-qp
-qp
-Xc
-fB
-cO
-EP
-Xc
-qp
-cD
-nP
-rA
-AR
-HW
-VK
-CI
-iQ
-dT
-Pk
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -24122,32 +19463,32 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-AK
-Xc
-Xc
-Xc
-PG
-qp
-Xm
-XV
-oq
-kg
-Ba
-Cr
-iZ
-uh
-dT
-JK
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -24381,30 +19722,30 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-JP
-UM
-JP
-UM
-JP
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -24638,25 +19979,25 @@ aa
 aa
 aa
 aa
-qp
-Vd
-As
-Td
-ZP
-GO
-qS
-ZP
-oM
-ZP
-zw
-ZP
-GO
-qS
-ZP
-Oz
-qt
-rV
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -24895,25 +20236,25 @@ aa
 aa
 aa
 aa
-qp
-Sz
-dT
-tM
-Wc
-Dt
-oN
-rM
-rx
-ls
-rx
-pb
-Dt
-oN
-Ko
-Mh
-DK
-Vf
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25152,25 +20493,25 @@ aa
 aa
 aa
 aa
-qp
-yO
-dT
-dT
-Ug
-Dt
-oN
-pE
-Mg
-Mg
-Mg
-ew
-Dt
-oN
-Dx
-DK
-DK
-WW
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25409,25 +20750,25 @@ aa
 aa
 aa
 aa
-qp
-Kw
-dT
-mZ
-na
-SF
-oN
-ok
-Mg
-cM
-Mg
-Hl
-Dt
-XW
-lR
-mp
-DK
-TR
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25666,25 +21007,25 @@ aa
 aa
 aa
 aa
-qp
-fM
-dT
-dT
-tT
-Dt
-oN
-pE
-Mg
-Mg
-Mg
-ew
-Dt
-oN
-ZB
-DK
-DK
-sB
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -25923,25 +21264,25 @@ aa
 aa
 aa
 aa
-qp
-YT
-dT
-Ni
-rP
-Dt
-oN
-eg
-cO
-Vr
-cO
-NL
-Dt
-oN
-og
-OS
-DK
-TI
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26180,25 +21521,25 @@ aa
 aa
 aa
 aa
-qp
-ur
-Sk
-ax
-Xa
-UU
-TG
-Xa
-Xa
-Xa
-Xa
-Xa
-UU
-TG
-Xa
-Hd
-ql
-iJ
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26437,25 +21778,25 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-FC
-Dt
-RE
-EV
-tL
-tL
-XE
-tL
-tL
-UL
-RE
-oN
-Zo
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26697,19 +22038,19 @@ aa
 aa
 aa
 aa
-GD
-cb
-tL
-Nt
-Vh
-bu
-aA
-Bt
-qr
-Dt
-tL
-TK
-aQ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -26954,19 +22295,19 @@ aa
 aa
 aa
 aa
-qp
-Bm
-no
-yW
-zK
-GG
-Oj
-GG
-cH
-YS
-no
-Bm
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27213,15 +22554,15 @@ aa
 aa
 aa
 aa
-qp
-bS
-GG
-GG
-GG
-GG
-GG
-EI
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27470,15 +22811,15 @@ aa
 aa
 aa
 aa
-qp
-VE
-or
-Nc
-Hz
-pa
-rN
-MN
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -27727,15 +23068,15 @@ aa
 aa
 aa
 aa
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
-qp
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -63736,36 +59077,36 @@ aa
 aa
 aa
 aa
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -63993,36 +59334,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -64250,36 +59591,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -64507,36 +59848,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -64764,36 +60105,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65021,36 +60362,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65278,36 +60619,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65535,36 +60876,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -65792,36 +61133,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-sa
-nS
-nS
-nS
-nS
-nS
-nS
-nS
-nS
-nS
-nS
-ZA
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66049,36 +61390,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-sa
-uS
-Fn
-PE
-Pe
-Ky
-Pe
-PE
-Pe
-HU
-Pe
-ve
-sm
-nS
-ZA
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66306,36 +61647,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-po
-PE
-fQ
-Ww
-Ww
-Ww
-Ww
-Ww
-Ww
-Ww
-Ww
-BN
-PE
-ve
-CH
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66563,36 +61904,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-uK
-Iw
-Ww
-Ww
-yL
-GW
-vf
-Nk
-qy
-Jf
-yL
-cd
-jT
-Zk
-ES
-CH
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -66820,36 +62161,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-BW
-xW
-rE
-Ww
-Ww
-Ww
-Ww
-Ww
-Ww
-Ww
-Ww
-Uj
-xW
-OZ
-CH
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67077,36 +62418,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-fa
-XT
-zF
-xW
-FM
-WM
-FM
-xW
-FM
-Up
-FM
-OZ
-xA
-zY
-lu
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67334,36 +62675,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-fa
-zY
-zY
-zY
-zY
-zY
-zY
-zY
-zY
-zY
-zY
-lu
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67591,36 +62932,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -67848,36 +63189,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68105,36 +63446,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68362,36 +63703,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68619,36 +63960,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -68876,36 +64217,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -69133,36 +64474,36 @@ aa
 aa
 aa
 aa
-tF
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-Sg
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -69390,36 +64731,36 @@ aa
 aa
 aa
 aa
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
-tF
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -70662,15 +66003,15 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -70917,19 +66258,19 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71173,22 +66514,22 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-Uy
-rB
-TF
-aC
-pu
-rB
-Wr
-qu
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71428,25 +66769,25 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-XB
-qu
-Hi
-TF
-TF
-Ow
-rB
-Ha
-rB
-Sh
-TF
-Qm
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71684,27 +67025,27 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-kX
-TF
-TF
-TF
-TF
-rB
-rB
-rB
-rB
-rB
-rB
-rB
-rB
-pe
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -71941,28 +67282,28 @@ aa
 aa
 aa
 aa
-qu
-qu
-ux
-CQ
-rB
-rB
-kX
-TF
-TF
-rB
-rB
-tl
-rB
-Hi
-rB
-tl
-TF
-rB
-TF
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72197,30 +67538,30 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-dl
-TF
-rB
-rB
-rB
-rB
-Ap
-rB
-rB
-kX
-TF
-rB
-TF
-TF
-jG
-rB
-rB
-OC
-eY
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72454,30 +67795,30 @@ aa
 aa
 aa
 aa
-qu
-ux
-Hi
-TF
-TF
-TF
-WH
-TF
-Ui
-pJ
-rB
-eh
-rB
-eh
-rB
-tE
-TF
-rB
-rB
-TF
-TF
-TF
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72710,39 +68051,39 @@ aa
 aa
 aa
 aa
-qu
-qu
-cl
-TF
-TF
-rB
-kX
-rB
-rB
-zv
-zG
-eh
-TF
-rB
-rB
-rB
-Hi
-Ow
-rB
-rB
-rB
-TF
-rB
-qu
-qu
-qu
 aa
 aa
-qu
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -72967,54 +68308,54 @@ aa
 aa
 aa
 aa
-qu
-qu
-FS
-TF
-TF
-CQ
-rB
-rB
-rB
-rB
-rB
-eh
-TF
-rB
-TF
-rB
-rB
-DG
-TF
-TF
-CQ
-rB
-rB
-zh
-qu
-qu
-aa
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
 aa
 aa
 aa
 aa
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73223,55 +68564,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-On
-kX
-WH
-TF
-rB
-rB
-rB
-rB
-eh
-TF
-TF
-TF
-WH
-TF
-rB
-TF
-dv
-TF
-TF
-TF
-TF
-TF
-qu
-qu
-qu
-qu
-qu
-Zq
-fH
-jr
-qu
-qu
-qu
-qu
 aa
 aa
 aa
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73480,55 +68821,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-On
-mc
-eh
-rB
-rB
-TF
-rB
-rB
-eh
-TF
-WH
-rB
-TF
-rB
-Ow
-rB
-rB
-rB
-TF
-rB
-QV
-CJ
-qu
-qu
-tu
-rB
-rB
-rB
-rB
-rB
-rs
-ZS
-qu
-qu
 aa
 aa
-FI
-FI
-wU
-wU
-wU
-wU
-wU
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73737,55 +69078,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-rB
-rB
-pC
-eh
-TF
-jG
-rB
-kX
-rB
-rB
-TF
-rB
-rB
-TF
-rB
-kX
-TF
-rB
-Hi
-TF
-tl
-qu
-qu
-Ol
-TX
-rB
-Hi
-TF
-TF
-TF
-CQ
-rB
-rB
-qu
-qu
 aa
 aa
-FI
-FI
-wU
-Sf
-WO
-wt
-wU
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -73994,55 +69335,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-rB
-rB
-rB
-rB
-eh
-WH
-rB
-rB
-rB
-rB
-rB
-TF
-rB
-kX
-WH
-rB
-rB
-rB
-rB
-rB
-TF
-TF
-TF
-rB
-we
-rB
-eh
-TF
-TF
-TF
-TF
-TF
-TF
-rs
-qu
-qu
 aa
 aa
-FI
-FI
-wU
-jF
-jF
-jF
-wU
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -74251,55 +69592,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-rB
-rB
-rB
-rB
-al
-rB
-TF
-rB
-rB
-rB
-Ho
-TF
-dr
-rB
-rB
-tl
-rB
-rB
-rB
-TF
-st
-TF
-TF
-TF
-TF
-rB
-oT
-TF
-Oe
-QG
-TF
-cy
-TF
-rB
-dW
-qu
 aa
 aa
-FI
-FI
-wU
-eM
-XJ
-sI
-wU
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -74508,55 +69849,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-rB
-rB
-rB
-rB
-eh
-rB
-eh
-TF
-Ow
-rB
-rB
-TF
-Ow
-rB
-rB
-TF
-TF
-tl
-rB
-TF
-TF
-TF
-TF
-TF
-zm
-rB
-eh
-TF
-TF
-TF
-TF
-TF
-jG
-rB
-qu
-qu
 aa
 aa
-FI
-FI
-wU
-jF
-jF
-jF
-wU
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -74765,55 +70106,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-rB
-rB
-tV
-eh
-rB
-rB
-kX
-TF
-TF
-rB
-rB
-rB
-tl
-rB
-rB
-rB
-TF
-rB
-rB
-rB
-rB
-qu
-qu
-qu
-Uk
-rB
-kX
-TF
-WH
-WH
-TF
-rB
-XI
-at
-qu
 aa
 aa
-FI
-FI
-wU
-Sf
-Yw
-wt
-wU
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75022,55 +70363,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-On
-rB
-eh
-rB
-rB
-rB
-rB
-rB
-Hi
-rB
-rB
-TF
-rB
-rB
-rB
-eh
-TF
-rB
-rB
-rB
-vA
-wj
-qu
-qu
-rB
-rB
-rB
-rB
-rB
-rB
-rs
-qu
-qu
-qu
 aa
 aa
-FI
-FI
-wU
-wU
-wU
-wU
-wU
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75279,55 +70620,55 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-On
-Hi
-tl
-TF
-rB
-rB
-rB
-rB
-rB
-TF
-rB
-rB
-eh
-rB
-TF
-rB
-kX
-TF
-rB
-CQ
-rB
-jG
-qu
-qu
-qu
-vW
-qu
-Kd
-Dm
-HK
-qu
-qu
-qu
-qu
 aa
 aa
 aa
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75537,54 +70878,54 @@ aa
 aa
 aa
 aa
-qu
-qu
-Hi
-TF
-rB
-rB
-CQ
-rB
-rB
-RO
-rB
-rB
-Hi
-rB
-eh
-rB
-sQ
-aK
-rB
-eh
-rB
-TF
-rB
-Yb
-qu
-qu
-aa
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
 aa
 aa
 aa
 aa
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
-FI
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -75794,39 +71135,39 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-TF
-rB
-kX
-TF
-bF
-rB
-TF
-rB
-rB
-rB
-rB
-eh
-rB
-rB
-cJ
-WH
-rB
-rB
-TF
-rB
-qu
-qu
-qu
 aa
 aa
-qu
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76052,30 +71393,30 @@ aa
 aa
 aa
 aa
-qu
-qu
-rH
-Ow
-rB
-rB
-TF
-rB
-TF
-rB
-rB
-CQ
-rB
-TF
-rB
-rB
-rB
-rB
-rB
-rB
-TF
-Ow
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76309,30 +71650,30 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-jG
-rB
-rB
-eh
-TF
-WH
-TF
-TF
-TF
-rB
-rB
-rB
-eh
-CQ
-rB
-rB
-rB
-wI
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76567,28 +71908,28 @@ aa
 aa
 aa
 aa
-qu
-qu
-ay
-Hi
-TF
-TF
-TF
-rB
-TF
-TF
-TF
-TF
-WH
-WH
-TF
-rB
-rB
-rB
-rB
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -76825,26 +72166,26 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-dl
-TF
-TF
-rB
-eh
-Ow
-rB
-kX
-rB
-rB
-rB
-kX
-TF
-rU
-pP
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77083,24 +72424,24 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-BO
-TF
-TF
-TF
-TF
-TF
-Ha
-rB
-TF
-TF
-Zy
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77341,22 +72682,22 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-Gd
-TF
-TF
-TF
-TF
-TF
-Dz
-Te
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77599,19 +72940,19 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
@@ -77858,15 +73199,15 @@ aa
 aa
 aa
 aa
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
-qu
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
 aa
 aa
 aa
