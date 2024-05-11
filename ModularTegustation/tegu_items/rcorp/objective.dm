@@ -13,6 +13,7 @@ Abnormality Supreme Victory - Win against reinforcements
 GLOBAL_VAR_INIT(rcorp_wincondition, 0) //what state the game is in.
 GLOBAL_VAR_INIT(rcorp_objective_location, null)
 GLOBAL_VAR_INIT(rcorp_abno_objective_location, null)
+GLOBAL_VAR_INIT(rcorp_payload, null)
 //0 is neutral, 1 favors Rcorp and 2 favors abnos
 
 /obj/effect/landmark/objectivespawn

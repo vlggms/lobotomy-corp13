@@ -38,9 +38,11 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 					if("payload_abno")
 						addtimer(CALLBACK(src, PROC_REF(endroundRcorp), "Abnormalities have failed to escort the specimen to the destination."), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in an R-Corp victory after 40 minutes."))
+						addtimer(CALLBACK(src, PROC_REF(StartPayload)), 3 MINUTES)
 					if("payload_rcorp")
 						addtimer(CALLBACK(src, PROC_REF(endroundRcorp), "Rcorp has failed to destroy the mission objective."), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in an abnormality victory after 40 minutes."))
+						addtimer(CALLBACK(src, PROC_REF(StartPayload)), 3 MINUTES)
 					else
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
@@ -121,3 +123,9 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		if("payload_abno")
 			announcement_type = "Intelligence has located a dangerous specimen moving towards your location. Prevent it from escaping at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
+
+/datum/game_mode/combat/proc/StartPayload()
+	if(!GLOB.rcorp_payload)
+		CRASH("No payload somehow")
+	var/mob/payload/P = GLOB.rcorp_payload
+	P.ready_to_move = TRUE

@@ -21,17 +21,21 @@
 	var/delay_reduction = 2.5
 	var/last_friendly_interaction = 0
 
-	var/datum/reusable_visual_pool/RVP
+	var/datum/reusable_visual_pool/RVP = new(20)
 	var/telegraph_cooldown = 0
 	var/telegraph_cooldown_time = 6 SECONDS
 
 	var/pathing_attempts = 0
 	var/max_pathing_attempts = 5
 
+	var/ready_to_move = FALSE
+	var/prepare_message_time = 0
+	var/prepare_message_cooldown = 20 SECONDS
+
 /mob/payload/New(loc, team)
 	. = ..()
 	src.team = team
-	RVP = new(20)
+	GLOB.rcorp_payload = src
 	addtimer(CALLBACK(src, PROC_REF(MoveLoop)), base_delay_amount)
 
 /mob/payload/proc/MoveLoop()
@@ -60,29 +64,39 @@
 		telegraph_cooldown = world.time + telegraph_cooldown_time
 		INVOKE_ASYNC(src, PROC_REF(PathTelegraphLoop))
 	var/delay_amount = base_delay_amount
-	var/is_moving_forward = FALSE
-	var/is_blocked_by_enemy = FALSE
-	for(var/mob/living/L in ohearers(2, src))
-		if(L.stat == DEAD)
-			continue
-		if(faction_check(L.faction, pusher_factions))
-			delay_amount -= delay_reduction
-			is_moving_forward = TRUE
-		else
-			is_blocked_by_enemy = TRUE
-	if(is_moving_forward)
-		last_friendly_interaction = world.time
-	delay_amount = max(delay_amount, minimum_delay_amount)
-	if(is_moving_forward && !is_blocked_by_enemy && current_index < path.len)
-		var/obj/machinery/door/poddoor/P = path.len - current_index > 3 ? locate(/obj/machinery/door/poddoor) in path[current_index + 4] : null
-		if((!P || P && !P.density) && Move(path[current_index + 1], get_dir(src, path[current_index + 1]), delay_amount))
-			++current_index
-	else if(!is_moving_forward && world.time - last_friendly_interaction > 10 SECONDS && current_index > 1)
-		if(Move(path[current_index - 1], get_dir(path[current_index - 1], src), delay_amount))
-			--current_index
-	if(current_index == path.len)
-		DeliverPayload()
-		return
+	if(ready_to_move)
+		var/is_moving_forward = FALSE
+		var/is_blocked_by_enemy = FALSE
+		for(var/mob/living/L in ohearers(2, src))
+			if(L.stat == DEAD)
+				continue
+			if(faction_check(L.faction, pusher_factions))
+				delay_amount -= delay_reduction
+				is_moving_forward = TRUE
+			else
+				is_blocked_by_enemy = TRUE
+		if(is_moving_forward)
+			last_friendly_interaction = world.time
+		delay_amount = max(delay_amount, minimum_delay_amount)
+		if(is_moving_forward && !is_blocked_by_enemy && current_index < path.len)
+			//var/obj/machinery/door/poddoor/P = path.len - current_index > 3 ? locate(/obj/machinery/door/poddoor) in path[current_index + 4] : null
+			if(/*(!P || P && !P.density) && */Move(path[current_index + 1], get_dir(src, path[current_index + 1]), DELAY_TO_GLIDE_SIZE(delay_amount)))
+				++current_index
+				if(loc != path[current_index])
+					loc = path[current_index]
+					stack_trace("payload got moved incorrectly")
+		else if(!is_moving_forward && world.time - last_friendly_interaction > 10 SECONDS && current_index > 1)
+			if(Move(path[current_index - 1], get_dir(path[current_index - 1], src), DELAY_TO_GLIDE_SIZE(delay_amount)))
+				--current_index
+				if(loc != path[current_index])
+					loc = path[current_index]
+					stack_trace("payload got moved incorrectly")
+		if(current_index == path.len)
+			DeliverPayload()
+			return
+	else if(prepare_message_time < world.time)
+		prepare_message_time = world.time + prepare_message_cooldown
+		visible_message("preparing...", visible_message_flags = EMOTE_MESSAGE)
 	addtimer(CALLBACK(src, PROC_REF(MoveLoop)), delay_amount)
 
 /mob/payload/Move(atom/newloc, direct, glide_size_override)
@@ -152,6 +166,10 @@
 	for(var/turf/T in RANGE_TURFS(2, src))
 		if(T.density && !istype(T, /turf/open/chasm))
 			T.ChangeTurf(/turf/open/floor/plating/asteroid)
+			playsound(get_turf(src), 'sound/effects/break_stone.ogg', 100, TRUE, 3)
+		//will have to delete em if no automatic shutters
+		for(var/obj/machinery/door/poddoor/P in T)
+			qdel(P)
 			playsound(get_turf(src), 'sound/effects/break_stone.ogg', 100, TRUE, 3)
 
 /mob/payload/forceMove()
