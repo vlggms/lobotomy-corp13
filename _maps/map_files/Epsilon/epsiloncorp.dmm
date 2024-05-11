@@ -216,7 +216,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "darkbluewater1"
 	},
 /area/department_main/command)
@@ -1245,9 +1245,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/freshwater,
 /area/department_main/command)
 "dJ" = (
 /obj/effect/turf_decal/tile/purple{
@@ -2382,7 +2380,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "redwater2"
 	},
 /area/department_main/command)
@@ -2733,7 +2731,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "purplewater3"
 	},
 /area/department_main/command)
@@ -3282,9 +3280,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/freshwater,
 /area/department_main/command)
 "jN" = (
 /obj/effect/turf_decal/tile/yellow,
@@ -5029,7 +5025,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "darkbluewater1"
 	},
 /area/department_main/command)
@@ -10689,7 +10685,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "purplewater3"
 	},
 /area/department_main/command)
@@ -11188,7 +11184,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "redwater2"
 	},
 /area/department_main/command)
@@ -11599,9 +11595,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/freshwater,
 /area/department_main/command)
 "JO" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -12151,7 +12145,7 @@
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "purplewater3"
 	},
 /area/department_main/command)
@@ -14659,7 +14653,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "redwater2"
 	},
 /area/department_main/command)
@@ -16404,7 +16398,7 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/water/deep/saltwater{
+/turf/open/water/deep/freshwater{
 	icon_state = "darkbluewater1"
 	},
 /area/department_main/command)
