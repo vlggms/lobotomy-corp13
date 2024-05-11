@@ -38,11 +38,15 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 					if("payload_abno")
 						addtimer(CALLBACK(src, PROC_REF(endroundRcorp), "Abnormalities have failed to escort the specimen to the destination."), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in an R-Corp victory after 40 minutes."))
-						addtimer(CALLBACK(src, PROC_REF(StartPayload)), 3 MINUTES)
+						var/start_delay = 6 MINUTES
+						addtimer(CALLBACK(src, PROC_REF(StartPayload)), start_delay)
+						PayloadFindPath(start_delay)
 					if("payload_rcorp")
 						addtimer(CALLBACK(src, PROC_REF(endroundRcorp), "Rcorp has failed to destroy the mission objective."), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in an abnormality victory after 40 minutes."))
-						addtimer(CALLBACK(src, PROC_REF(StartPayload)), 3 MINUTES)
+						var/start_delay = 3 MINUTES
+						addtimer(CALLBACK(src, PROC_REF(StartPayload)), start_delay)
+						PayloadFindPath(start_delay)
 					else
 						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
 						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
@@ -129,3 +133,10 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 		CRASH("No payload somehow")
 	var/mob/payload/P = GLOB.rcorp_payload
 	P.ready_to_move = TRUE
+
+/datum/game_mode/combat/proc/PayloadFindPath(delay)
+	var/mob/payload/P = GLOB.rcorp_payload
+	if(!P)
+		CRASH("No payload somehow, possibly no landmark")
+	P.start_delay = delay
+	P.GetPath()

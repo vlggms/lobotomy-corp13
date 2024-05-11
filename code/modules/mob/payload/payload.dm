@@ -15,51 +15,61 @@
 	var/list/path
 	var/list/pusher_factions
 	var/team
+	var/turf/target
 	var/current_index = 1
-	var/base_delay_amount = 15
-	var/minimum_delay_amount = 7.5
-	var/delay_reduction = 2.5
+	var/base_delay_amount = 14
+	var/minimum_delay_amount = 6
+	var/delay_reduction = 3
 	var/last_friendly_interaction = 0
+	var/time_to_start_moving_back = 15 SECONDS
 
 	var/datum/reusable_visual_pool/RVP = new(20)
 	var/telegraph_cooldown = 0
-	var/telegraph_cooldown_time = 6 SECONDS
+	var/telegraph_cooldown_time = 7 SECONDS
 
 	var/pathing_attempts = 0
-	var/max_pathing_attempts = 5
+	var/max_pathing_attempts = 30
 
 	var/ready_to_move = FALSE
 	var/prepare_message_time = 0
-	var/prepare_message_cooldown = 20 SECONDS
+	var/prepare_message_cooldown = 25 SECONDS
+
+	var/start_delay = 0
 
 /mob/payload/New(loc, team)
 	. = ..()
 	src.team = team
 	GLOB.rcorp_payload = src
-	addtimer(CALLBACK(src, PROC_REF(MoveLoop)), base_delay_amount)
+	switch(team)
+		if("rcorp")
+			pusher_factions = list("neutral")
+		if("abno")
+			pusher_factions = list("hostile")
+			icon = 'ModularTegustation/Teguicons/64x64.dmi'
+			icon_state = "armyinblack"
+			pixel_x = -16
+			base_pixel_x = -16
 
-/mob/payload/proc/MoveLoop()
-	if(!path)
-		var/turf/target
+/mob/payload/proc/GetPath()
+	if(!target)
 		switch(team)
 			if("rcorp")
 				target = GLOB.rcorp_objective_location
-				pusher_factions = list("neutral")
 			if("abno")
 				target = GLOB.rcorp_abno_objective_location
-				pusher_factions = list("hostile")
-				icon = 'ModularTegustation/Teguicons/64x64.dmi'
-				icon_state = "armyinblack"
-				pixel_x = -16
-				base_pixel_x = -16
-		if(target)
-			path = get_path_to(loc, target, TYPE_PROC_REF(/turf, PayloadTurfMoveCost), 0, 0, adjacent = TYPE_PROC_REF(/turf, PayloadTurfTest))
-		if(!path)
-			++pathing_attempts
-			if(pathing_attempts > max_pathing_attempts)
-				CRASH("payload failed to find a path")
-			addtimer(CALLBACK(src, PROC_REF(MoveLoop)), base_delay_amount)
-			return
+	if(!target)
+		CRASH("There is no destination landmark on the map")
+	path = get_path_to(loc, target, TYPE_PROC_REF(/turf, PayloadTurfMoveCost), 0, 0, adjacent = TYPE_PROC_REF(/turf, PayloadTurfTest))
+	if(!path || !path.len)
+		++pathing_attempts
+		if(pathing_attempts > max_pathing_attempts)
+			CRASH("payload failed to find a path")
+		GetPath()
+		return
+	start_delay += world.time
+	MoveLoop()
+
+/mob/payload/proc/MoveLoop()
 	if(world.time > telegraph_cooldown)
 		telegraph_cooldown = world.time + telegraph_cooldown_time
 		INVOKE_ASYNC(src, PROC_REF(PathTelegraphLoop))
@@ -85,7 +95,7 @@
 				if(loc != path[current_index])
 					loc = path[current_index]
 					stack_trace("payload got moved incorrectly")
-		else if(!is_moving_forward && world.time - last_friendly_interaction > 10 SECONDS && current_index > 1)
+		else if(!is_moving_forward && world.time - last_friendly_interaction > time_to_start_moving_back && current_index > 1)
 			if(Move(path[current_index - 1], get_dir(path[current_index - 1], src), DELAY_TO_GLIDE_SIZE(delay_amount)))
 				--current_index
 				if(loc != path[current_index])
@@ -96,7 +106,8 @@
 			return
 	else if(prepare_message_time < world.time)
 		prepare_message_time = world.time + prepare_message_cooldown
-		visible_message("preparing...", visible_message_flags = EMOTE_MESSAGE)
+		var/time = round((start_delay - world.time) / 600, 0.5)
+		visible_message("preparing to move in [time] minutes...", visible_message_flags = EMOTE_MESSAGE)
 	addtimer(CALLBACK(src, PROC_REF(MoveLoop)), delay_amount)
 
 /mob/payload/Move(atom/newloc, direct, glide_size_override)
