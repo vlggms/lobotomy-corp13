@@ -30,6 +30,9 @@
 	if(SSmaptype.maptype == "limbus_labs")
 		name = "Limbus Company Specimen"
 		faction = list("neutral")
+		dextrous = TRUE
+		held_items = list(null, null)
+		possible_a_intents = list(INTENT_HELP, INTENT_GRAB, INTENT_DISARM, INTENT_HARM)
 
 //To avoid other issues when possessed
 
