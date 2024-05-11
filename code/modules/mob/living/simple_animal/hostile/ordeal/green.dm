@@ -71,6 +71,8 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/green_bot_big/AttackingTarget(atom/attacked_target)
+	if(reloading)
+		return FALSE
 	. = ..()
 	if(.)
 		if(!istype(attacked_target, /mob/living))
