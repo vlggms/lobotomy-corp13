@@ -342,7 +342,8 @@ Behavior that's still missing from this component that original food items had t
 ///Checks whether or not the eater can actually consume the food
 /datum/component/edible/proc/CanConsume(mob/living/eater, mob/living/feeder)
 	if(!iscarbon(eater))
-		return FALSE
+		if(!SSmaptype.maptype == "limbus_labs")
+			return FALSE
 	var/mob/living/carbon/C = eater
 	var/covered = ""
 	if(C.is_mouth_covered(head_only = 1))
