@@ -40,7 +40,7 @@
 		if(5)
 			CauseBattle(
 				"Speculative Amalagam Error:Some imperfect mix of a fixer and a sweeper. The differing physiology of a sweeper and a human causes them to violently ooze red fluid from where the sweeper parts end and the human parts begin.",
-				"1d10",
+				"1d8",
 				MON_HP_RAND_EASY,
 			)
 	return ..()
