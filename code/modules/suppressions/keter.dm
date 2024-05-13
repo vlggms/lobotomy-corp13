@@ -116,7 +116,7 @@
 	name = DAY48_CORE_SUPPRESSION
 	desc = "Effects of core suppressions of Central Command and Welfare departments \
 			will activate for the duration of this test. <br>\
-			The Red Mist will make their appearence after completing the Noon of White.<br>\
+			The Red Mist will make her appearence after completing the Noon of White.<br>\
 			To complete the challenge - you must defeat the Midnight of White - The Claw."
 	run_text = "Effects of Center Commandand and Welfare core suppressions are now in effect. The Red Mist will return after completing the Noon of White. Ordeals of White have been introduced in the subroutines.."
 	required_cores = list(
@@ -145,7 +145,7 @@
 		var/blurb_text = blurb_list[i]
 		addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 10 SECONDS, blurb_text, 1 SECONDS, "white", "black", "left", "CENTER-6,BOTTOM+2"), i * 11 SECONDS)
 	// Create our cores
-	// Does this actually do anything? Like sure siren exists but Keter cores don't have meltdowns outside of Siren and the rare working Distorted From with justice 4.
+	// Does this actually do anything? Like sure siren exists but Keter cores don't have meltdowns outside of Siren and the rare working Distorted Form with justice 4.
 	var/datum/suppression/command/C = new
 	C.meltdown_count_increase = 4
 	C.meltdown_time_multiplier = 0.5
