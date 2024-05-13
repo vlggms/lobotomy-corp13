@@ -1687,3 +1687,36 @@
 	damage = 25
 	damage_type = PALE_DAMAGE
 	hitsound = "sound/weapons/ego/gasharpoon_bullet_impact.ogg"
+
+
+/obj/item/ego_weapon/erlking
+	name = "fused blade of ruined mirror worlds"
+	desc = "A large and heavy blade wrapped in crimson thorns, made heavier with the weight of guilt."
+	special = "Activate in your hand while wearing the corresponding suit to summon the wild hunt. "
+	icon_state = "erlking"
+	lefthand_file = ''
+	righthand_file = ''
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 130
+	attack_speed = 1.5 //I hope thats slow enough, erlcliff swings it around without much issue though?
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("cuts", "slashes", "crushes", "skewers")
+	attack_verb_simple = list("cut", "slash", "crush", "skewer")
+	hitsound = 'sound/items/konigheath2_6_1.wav'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 120,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
+
+/obj/item/ego_weapon/erlking/attack(mob/living/target, mob/living/carbon/human/user)
+	var/living = FALSE
+	if(!CanUseEgo(user))
+		return
+	if(target.stat != DEAD)
+		living = TRUE
+	target.apply_damage(force*0.5, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	..()
+
