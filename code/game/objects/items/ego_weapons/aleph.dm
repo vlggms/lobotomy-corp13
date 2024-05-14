@@ -1698,7 +1698,7 @@
 	righthand_file = ''
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 130
+	force = 140
 	attack_speed = 1.5 //I hope thats slow enough, erlcliff swings it around without much issue though?
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "slashes", "crushes", "skewers")
