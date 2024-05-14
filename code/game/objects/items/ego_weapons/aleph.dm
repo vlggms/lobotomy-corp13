@@ -1704,7 +1704,7 @@
 	attack_verb_simple = list("cut", "slash", "crush", "skewer")
 	hitsound = 'sound/items/konigheath2_6_1.wav'
 	var/revive_type = SENTIENCE_ORGANIC //So you can't revive boss monsters or robots with it
-	var/list/exceptions = /mob/living/simple_animal/hostile/abnormality/A
+	var/list/exceptions = /mob/living/simple_animal/hostile/abnormality
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 120,
@@ -1730,11 +1730,6 @@
 		if(L.stat =! DEAD) //idk
 			continue
 
-
-
-
-
-		if(isliving(target) && proximity_flag)
 			if(isanimal(target))
 				var/mob/living/simple_animal/M = target
 				if(M.sentience_type == exceptions)
