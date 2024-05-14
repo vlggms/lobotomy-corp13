@@ -1740,7 +1740,7 @@
 					M.revive(full_heal = TRUE, admin_revive = TRUE)
 					if(ishostile(target))
 						var/mob/living/simple_animal/hostile/H = M
-							H.attack_same = 1
+						H.attack_same = 1
 					user.visible_message(span_notice("[user] brings [M] into the hunt."))
 					return
 				else
