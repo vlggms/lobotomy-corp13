@@ -1704,6 +1704,7 @@
 	attack_verb_simple = list("cut", "slash", "crush", "skewer")
 	hitsound = 'sound/items/konigheath2_6_1.wav'
 	var/revive_type = SENTIENCE_ORGANIC //So you can't revive boss monsters or robots with it
+	var/list/exceptions = /mob/living/simple_animal/hostile/abnormality/A
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 120,
@@ -1721,23 +1722,31 @@
 
 /obj/item/ego_weapon/erlking/afterattack(atom/target, mob/user, proximity_flag)
 	. = ..()
-	if(isliving(target) && proximity_flag)
-		if(isanimal(target))
-			var/mob/living/simple_animal/M = target
-			if(M.sentience_type != revive_type)
-				to_chat(user, span_info("[src] does not work on this sort of creature."))
-				return
-			if(M.stat == DEAD)
-				M.faction = list("Station")
-				M.revive(full_heal = TRUE, admin_revive = TRUE)
-				if(ishostile(target))
-					var/mob/living/simple_animal/hostile/H = M
-						H.attack_same = 1
-				user.visible_message(span_notice("[user] brings [M] into the hunt."))
-				return
+
+
+	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
+		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
+			if(O.level >= 1)
+				to_chat(user, span_notice("This weapon cannot be used during ordeals!"))
+				return //no ordeal prolonging 4 u
+	else
+		if(isliving(target) && proximity_flag)
+			if(isanimal(target))
+				var/mob/living/simple_animal/M = target
+				if(M.sentience_type == exceptions)
+					to_chat(user, span_info("the [src] does not work on this sort of creature."))
+					return
+				if(M.stat == DEAD)
+					M.faction = list("Station")
+					M.revive(full_heal = TRUE, admin_revive = TRUE)
+					if(ishostile(target))
+						var/mob/living/simple_animal/hostile/H = M
+							H.attack_same = 1
+					user.visible_message(span_notice("[user] brings [M] into the hunt."))
+					return
+				else
+					to_chat(user, span_info("[src] is only effective on the dead."))
+					return
 			else
-				to_chat(user, span_info("[src] is only effective on the dead."))
+				to_chat(user, span_info("[src] is only effective on lesser beings."))
 				return
-		else
-			to_chat(user, span_info("[src] is only effective on lesser beings."))
-			return
