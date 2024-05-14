@@ -1733,7 +1733,7 @@
 				if(ishostile(target))
 					var/mob/living/simple_animal/hostile/H = M
 						H.attack_same = 1
-				user.visible_message(span_notice("[user] revives [M] with [src]."))
+				user.visible_message(span_notice("[user] brings [M] into the hunt."))
 				return
 			else
 				to_chat(user, span_info("[src] is only effective on the dead."))
