@@ -1691,7 +1691,7 @@
 
 /obj/item/ego_weapon/support/erlking
 	name = "fused blade of ruined mirror worlds"
-	desc = "A large and heavy blade wrapped in crimson thorns, made heavier with the weight of guilt."
+	desc = "May you wake in torment, my dear Catherine."
 	icon_state = "erlking"
 	lefthand_file = ''
 	righthand_file = ''
