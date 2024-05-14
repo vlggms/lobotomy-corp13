@@ -1704,6 +1704,7 @@
 	attack_verb_continuous = list("cuts", "slashes", "crushes", "skewers")
 	attack_verb_simple = list("cut", "slash", "crush", "skewer")
 	hitsound = 'sound/items/konigheath2_6_1.wav'
+	var/revive_type = SENTIENCE_ORGANIC //So you can't revive boss monsters or robots with it
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 120,
@@ -1720,3 +1721,28 @@
 	target.apply_damage(force*0.5, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	..()
 
+
+/obj/item/ego_weapon/erlking/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(isliving(target) && proximity_flag)
+		if(isanimal(target))
+			var/mob/living/simple_animal/M = target
+			if(M.sentience_type != revive_type)
+				to_chat(user, span_info("[src] does not work on this sort of creature."))
+				return
+			if(M.stat == DEAD)
+				M.faction = list("Station")
+				M.revive(full_heal = TRUE, admin_revive = TRUE)
+				if(ishostile(target))
+					var/mob/living/simple_animal/hostile/H = M
+						H.attack_same = 1
+						H.friends += user
+				loaded = 0
+				user.visible_message(span_notice("[user] revives [M] with [src], making it a part of the Wild Hunt."))
+				return
+			else
+				to_chat(user, span_info("[src] is only effective on the dead."))
+				return
+		else
+			to_chat(user, span_info("[src] is only effective on lesser beings."))
+			return
