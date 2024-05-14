@@ -1712,7 +1712,7 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
-/obj/item/ego_weapon/erlking/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/erlking/attack(mob/living/target, mob/living/user)
 	var/living = FALSE
 	if(!CanUseEgo(user))
 		return
