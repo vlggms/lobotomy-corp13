@@ -1692,7 +1692,6 @@
 /obj/item/ego_weapon/erlking
 	name = "fused blade of ruined mirror worlds"
 	desc = "A large and heavy blade wrapped in crimson thorns, made heavier with the weight of guilt."
-	special = "Activate in your hand while wearing the corresponding suit to summon the wild hunt. "
 	icon_state = "erlking"
 	lefthand_file = ''
 	righthand_file = ''
@@ -1713,13 +1712,11 @@
 							)
 
 /obj/item/ego_weapon/erlking/attack(mob/living/target, mob/living/user)
-	var/living = FALSE
-	if(!CanUseEgo(user))
-		return
-	if(target.stat != DEAD)
-		living = TRUE
-	target.apply_damage(force*0.5, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 	..()
+	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
+	var/justicemod = 1 + userjust/100
+	var/damage = force * justicemod * force_multiplier
+	target.apply_damage(damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 
 
 /obj/item/ego_weapon/erlking/afterattack(atom/target, mob/user, proximity_flag)
