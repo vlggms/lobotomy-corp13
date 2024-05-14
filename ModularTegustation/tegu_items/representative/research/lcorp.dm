@@ -146,6 +146,19 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	GLOB.lcorp_upgrades += "Agent Workchance"
 	..()
 
+//EGO Gift Extractor
+/datum/data/lc13research/ego_gift_extractor
+	research_name = "Repeatable: EGO Gift Extractor"
+	research_desc = "An order of an EGO Gift Extractor. "
+	cost = AVERAGE_RESEARCH_PRICE+5
+	corp = L_CORP_REP
+
+/datum/data/lc13research/ego_gift_extractor/ResearchEffect(obj/structure/representative_console/caller)
+	if(repeat_cooldown > world.time)
+		return
+	new /obj/item/ego_gift_extractor(get_turf(caller))
+	repeat_cooldown = world.time + (10 SECONDS)
+
 //Refinery Upgrades
 /datum/data/lc13research/refineryspeed/lvl3
 	research_name = "Refinement Process Efficiency Upgrade III"
