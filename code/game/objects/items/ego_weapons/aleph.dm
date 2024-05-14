@@ -1689,7 +1689,7 @@
 	hitsound = "sound/weapons/ego/gasharpoon_bullet_impact.ogg"
 
 
-/obj/item/ego_weapon/erlking
+/obj/item/ego_weapon/support/erlking
 	name = "fused blade of ruined mirror worlds"
 	desc = "A large and heavy blade wrapped in crimson thorns, made heavier with the weight of guilt."
 	icon_state = "erlking"
@@ -1719,17 +1719,21 @@
 	var/damage = force * justicemod * force_multiplier
 	target.apply_damage(damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 
-
-/obj/item/ego_weapon/erlking/afterattack(atom/target, mob/user, proximity_flag)
-	. = ..()
-
-
+/obj/item/ego_weapon/support/erlking/Pulse(mob/living/carbon/human/user, count)
+	..()
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
 			if(O.level >= 1)
 				to_chat(user, span_notice("This weapon cannot be used during ordeals!"))
 				return //no ordeal prolonging 4 u
-	else
+	for(var/mob/living in livinginview(4, user))
+		if(L.stat =! DEAD) //idk
+			continue
+
+
+
+
+
 		if(isliving(target) && proximity_flag)
 			if(isanimal(target))
 				var/mob/living/simple_animal/M = target
@@ -1737,7 +1741,7 @@
 					to_chat(user, span_info("the [src] does not work on this sort of creature."))
 					return
 				if(M.stat == DEAD)
-					M.faction = list("Station")
+					M.faction |= list("erlking", "[REF(user)]")
 					M.revive(full_heal = TRUE, admin_revive = TRUE)
 					if(ishostile(target))
 						var/mob/living/simple_animal/hostile/H = M
