@@ -1726,8 +1726,8 @@
 			if(O.level >= 1)
 				to_chat(user, span_notice("This weapon cannot be used during ordeals!"))
 				return //no ordeal prolonging 4 u
-	for(var/mob/living in livinginview(4, user))
-		if(L.stat =! DEAD) //idk
+	for(var/mob/living in livinginview(10, user))
+		if(L.stat != DEAD) //idk
 			continue
 
 			if(isanimal(target))
@@ -1740,7 +1740,7 @@
 					M.revive(full_heal = TRUE, admin_revive = TRUE)
 					if(ishostile(target))
 						var/mob/living/simple_animal/hostile/H = M
-							H.attack_same = 1
+						H.attack_same = 1
 					user.visible_message(span_notice("[user] brings [M] into the hunt."))
 					return
 				else
