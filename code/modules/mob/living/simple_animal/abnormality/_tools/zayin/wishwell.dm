@@ -234,7 +234,7 @@
 	qdel(I)
 	var/gacha = rand(1,100)
 	for(var/upgradecheck in GLOB.jcorp_upgrades)
-		if("Well Gacha")
+		if(upgradecheck == "Well Gacha")
 			gacha = min(gacha+5,100)
 	switch(output)
 		if("MONEY")
