@@ -7,5 +7,5 @@
 
 /obj/item/clothing/head/ego_hat/cinq
 	name = "cinq association cavalier hat"
-	desc = "A cavalier hat worn by members of the qinq qssociation, it gives you the urge to d-d-d-duel"
+	desc = "A cavalier hat worn by members of the cinq qssociation, it gives you the urge to d-d-d-duel"
 	icon_state = "cinq"
