@@ -624,9 +624,12 @@
 		to_chat(user, span_notice("\"[target]\" has no gift extractable."))
 		return
 
+	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.security_positions))
+		to_chat(user, span_notice("The Extractor's light flashes red. You aren't an Agent."))
+		return
+
 	var/datum/ego_gifts/target_gift = new target.gift_type
 	user.Apply_Gift(target_gift)
 	to_chat(user, span_nicegreen("[target.gift_message]"))
-	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
 	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
 	qdel(src)
