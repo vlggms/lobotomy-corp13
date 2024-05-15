@@ -146,6 +146,6 @@
 	icon_state = "tcorp"
 
 /obj/item/clothing/under/suit/lobotomy/jcorp
-	name = "t-corp officer uniform"
+	name = "j-corp officer uniform"
 	desc = "A buisness suit. Used by J-corp staff."
 	icon_state = "agent" //Placeholder until a sprite is made
