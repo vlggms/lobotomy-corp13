@@ -66,6 +66,6 @@
 	name = "P Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/pcorp
 
-datum/outfit/job/representitive/jcorprepresentative
+/datum/outfit/job/representitive/jcorprepresentative
 	name = "J Corp Representative"
 	uniform = /obj/item/clothing/under/suit/lobotomy/jcorp
