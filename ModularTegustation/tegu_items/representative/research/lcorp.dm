@@ -157,6 +157,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	if(repeat_cooldown > world.time)
 		return
 	new /obj/item/ego_gift_extractor(get_turf(caller))
+	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Extractor."))
 	repeat_cooldown = world.time + (10 SECONDS)
 
 //Refinery Upgrades
