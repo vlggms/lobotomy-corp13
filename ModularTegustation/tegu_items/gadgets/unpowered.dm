@@ -613,9 +613,6 @@
 	icon = 'icons/obj/items_and_weapons.dmi'
 	icon_state = "nanoimplant"
 
-/obj/item/ego_gift_extractor/examine(mob/user)
-	. = ..()
-
 /obj/item/ego_gift_extractor/attack(mob/living/simple_animal/hostile/abnormality/target, mob/living/carbon/human/user)
 	if(!isabnormalitymob(target))
 		to_chat(user, span_warning("\"[target]\" isn't an Abnormality."))
