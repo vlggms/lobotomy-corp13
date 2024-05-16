@@ -1693,11 +1693,12 @@
 	name = "fused blade of ruined mirror worlds"
 	desc = "May you wake in torment, my dear Catherine."
 	icon_state = "erlking"
+	worn_icon_state = "erlking"
 	lefthand_file = ''
 	righthand_file = ''
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 140
+	force = 160
 	attack_speed = 1.5 //I hope thats slow enough, erlcliff swings it around without much issue though?
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("cuts", "slashes", "crushes", "skewers")
@@ -1708,9 +1709,9 @@
 	//var/matching_armor = /obj/item/clothing/suit/armor/ego_gear/realization/erlking
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 100
+							JUSTICE_ATTRIBUTE = 120
 							)
 
 /obj/item/ego_weapon/erlking/attack(mob/living/target, mob/living/user)
