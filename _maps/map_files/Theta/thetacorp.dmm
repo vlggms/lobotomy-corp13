@@ -10515,6 +10515,9 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/information)
+"JI" = (
+/turf/open/space/basic,
+/area/space)
 "JK" = (
 /obj/effect/turf_decal/tile/purple{
 	dir = 8
@@ -60257,9 +60260,9 @@ zs
 zs
 zs
 zs
-zs
-zs
-zs
+JI
+JI
+JI
 zs
 zs
 zs
@@ -60513,12 +60516,12 @@ zs
 zs
 zs
 zs
-zs
-zs
-zs
-zs
-zs
-zs
+JI
+JI
+JI
+JI
+JI
+JI
 zs
 zs
 zs
@@ -60769,13 +60772,13 @@ zs
 zs
 zs
 zs
+JI
+JI
 zs
 zs
-zs
-zs
-zs
-zs
-zs
+JI
+JI
+JI
 zs
 zs
 zs
@@ -61026,12 +61029,12 @@ zs
 zs
 zs
 zs
+JI
+JI
 zs
 zs
-zs
-zs
-zs
-zs
+JI
+JI
 zs
 zs
 zs
@@ -61283,13 +61286,13 @@ zs
 zs
 zs
 zs
+JI
+JI
 zs
 zs
-zs
-zs
-zs
-zs
-zs
+JI
+JI
+JI
 zs
 zs
 zs
@@ -61541,12 +61544,12 @@ zs
 zs
 zs
 zs
-zs
-zs
-zs
-zs
-zs
-zs
+JI
+JI
+JI
+JI
+JI
+JI
 zs
 zs
 zs

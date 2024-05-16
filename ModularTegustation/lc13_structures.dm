@@ -100,20 +100,19 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/sign/button_counter, 32)
 
 /obj/structure/sign/button_counter/proc/update_count(new_count)
 	since_last = min(new_count, 99)
-	update_overlays()
+	update_icon()
 
-/obj/structure/sign/button_counter/update_overlays()
-	. = ..()
-
+/obj/structure/sign/button_counter/update_icon()
+	cut_overlays()
 	var/ones = since_last % 10
 	var/mutable_appearance/ones_overlay = mutable_appearance('ModularTegustation/Teguicons/button_counter.dmi', "days_[ones]")
 	ones_overlay.pixel_x = 4
-	. += ones_overlay
 
 	var/tens = (since_last / 10) % 10
 	var/mutable_appearance/tens_overlay = mutable_appearance('ModularTegustation/Teguicons/button_counter.dmi', "days_[tens]")
 	tens_overlay.pixel_x = -5
-	. += tens_overlay
+
+	add_overlay(list(ones_overlay, tens_overlay))
 
 /obj/structure/sign/button_counter/examine(mob/user)
 	. = ..()

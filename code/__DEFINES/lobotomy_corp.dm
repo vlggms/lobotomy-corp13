@@ -15,3 +15,7 @@
 #define DAY48_CORE_SUPPRESSION "Regret and Atonement"
 #define DAY49_CORE_SUPPRESSION "Freedom and Redemption"
 #define DAY50_CORE_SUPPRESSION "Tree of Light"
+
+
+//Sweeper things
+#define SWEEPER_TYPES /mob/living/simple_animal/hostile/ordeal/indigo_dawn || /mob/living/simple_animal/hostile/ordeal/indigo_noon || /mob/living/simple_animal/hostile/ordeal/indigo_dusk || /mob/living/simple_animal/hostile/ordeal/indigo_midnight

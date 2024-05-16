@@ -9521,6 +9521,15 @@
 "TC" = (
 /turf/open/floor/facility/halls,
 /area/facility_hallway/training)
+"TD" = (
+/obj/structure/disposalpipe/segment{
+	dir = 10
+	},
+/turf/closed/indestructible/reinforced{
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
+	},
+/area/department_main/extraction)
 "TE" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -37717,7 +37726,7 @@ YK
 YK
 YK
 YK
-cc
+TD
 Hp
 ga
 tC
@@ -37974,7 +37983,7 @@ hE
 hE
 hE
 ip
-ip
+VL
 yy
 wQ
 Cc
@@ -38231,7 +38240,7 @@ OP
 pW
 hE
 ip
-ip
+VL
 VL
 LG
 cH
@@ -38488,7 +38497,7 @@ OP
 pW
 hE
 ip
-ip
+VL
 VL
 AK
 gV
@@ -38745,7 +38754,7 @@ GP
 Ac
 hE
 ip
-ip
+VL
 VL
 wr
 cH
@@ -39002,7 +39011,7 @@ uX
 HP
 hE
 ip
-ip
+VL
 yy
 wQ
 Cc
@@ -39259,7 +39268,7 @@ hE
 hE
 hE
 ip
-ip
+VL
 yy
 mL
 ha
