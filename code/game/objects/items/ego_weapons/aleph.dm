@@ -1705,6 +1705,7 @@
 	hitsound = 'sound/items/konigheath2_6_1.wav'
 	var/revive_type = SENTIENCE_ORGANIC //So you can't revive boss monsters or robots with it
 	var/list/exceptions = /mob/living/simple_animal/hostile/abnormality
+	//var/matching_armor = /obj/item/clothing/suit/armor/ego_gear/realization/erlking
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 120,
@@ -1746,3 +1747,12 @@
 		else
 			to_chat(user, span_info("[src] is only effective on lesser beings."))
 			return
+
+/* /obj/item/ego_weapon/support/erlking/proc/check_suit(mob/living/carbon/user)
+	var/mob/living/carbon/human/H = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/erlking/P = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(!istype(P, matching_armor))
+		Revert()
+		to_chat(current_holder,span_notice("[src] appears unable to release its full potential."))
+		return FALSE
+	return TRUE
