@@ -197,3 +197,7 @@
 /datum/ego_datum/weapon/gasharpoon
 	item_path = /obj/item/ego_weapon/shield/gasharpoon
 	cost = 100//appears in wishing well
+
+/datum/ego_datum/weapon/erlking
+	item_path = /obj/item/ego_weapon/support/erlking
+	cost = 100//into the well ye go

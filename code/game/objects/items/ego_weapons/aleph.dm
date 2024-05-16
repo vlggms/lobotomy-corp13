@@ -1719,7 +1719,7 @@
 	var/damage = force * justicemod * force_multiplier
 	target.apply_damage(damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 
-/obj/item/ego_weapon/support/erlking/Pulse(mob/living/carbon/human/user, count)
+/obj/item/ego_weapon/support/erlking/Pulse(atom/target, mob/living/carbon/human/user, count)
 	..()
 	if(LAZYLEN(SSlobotomy_corp.current_ordeals))
 		for(var/datum/ordeal/O in SSlobotomy_corp.current_ordeals)
@@ -1727,25 +1727,22 @@
 				to_chat(user, span_notice("This weapon cannot be used during ordeals!"))
 				return //no ordeal prolonging 4 u
 	for(var/mob/living in livinginview(10, user))
-		if(L.stat != DEAD) //idk
-			continue
-
-			if(isanimal(target))
-				var/mob/living/simple_animal/M = target
-				if(M.sentience_type == exceptions)
-					to_chat(user, span_info("the [src] does not work on this sort of creature."))
-					return
-				if(M.stat == DEAD)
-					M.faction |= list("erlking", "[REF(user)]")
-					M.revive(full_heal = TRUE, admin_revive = TRUE)
-					if(ishostile(target))
-						var/mob/living/simple_animal/hostile/H = M
-						H.attack_same = 1
-					user.visible_message(span_notice("[user] brings [M] into the hunt."))
-					return
-				else
-					to_chat(user, span_info("[src] is only effective on the dead."))
-					return
-			else
-				to_chat(user, span_info("[src] is only effective on lesser beings."))
+		if(isanimal(target))
+			var/mob/living/simple_animal/M = target
+			if(M.sentience_type == exceptions)
+				to_chat(user, span_info("the [src] does not work on this sort of creature."))
 				return
+			if(M.stat == DEAD)
+				M.faction |= list("erlking", "[REF(user)]")
+				M.revive(full_heal = TRUE, admin_revive = TRUE)
+				if(ishostile(target))
+					var/mob/living/simple_animal/hostile/H = M
+					H.attack_same = 1
+				user.visible_message(span_notice("[user] brings [M] into the hunt."))
+				return
+			else
+				to_chat(user, span_info("[src] is only effective on the dead."))
+				return
+		else
+			to_chat(user, span_info("[src] is only effective on lesser beings."))
+			return
