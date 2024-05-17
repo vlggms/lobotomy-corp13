@@ -175,7 +175,6 @@
 
 	cosmeticloot = list(
 		/mob/living/simple_animal/hostile/shrimp,
-		/mob/living/carbon/human/species/shrimp,
 	)
 
 //W Corporation
