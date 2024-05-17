@@ -163,7 +163,7 @@
 		/obj/item/gun/ego_gun/shrimp/minigun,
 		/mob/living/simple_animal/hostile/shrimp,
 		/obj/item/grenade/spawnergrenade/shrimp,
-		/obj/item/fishing_rod/wellcheers
+		/obj/item/fishing_rod/wellcheers,
 	)
 
 
