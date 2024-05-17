@@ -291,7 +291,8 @@
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
 	loot_level3 = list(
-		/obj/item/food/fish/salt_water/lanternfish = 85,
+		/obj/item/food/fish/salt_water/lanternfish = 75,
+		/obj/item/food/fish/salt_water/tuna_pallid = 10,
 		/mob/living/simple_animal/crab = 10,
 		/obj/item/food/fish/emulsijack = 5,
 	)
@@ -319,7 +320,8 @@
 		/mob/living/simple_animal/hostile/shrimp = 2,
 	)
 	loot_level3 = list(
-		/obj/item/food/fish/fresh_water/mosb = 50,
+		/obj/item/food/fish/fresh_water/mosb = 25,
+		/obj/item/food/fish/salt_water/tuna_pallid = 25,
 		/obj/item/food/fish/salt_water/piscine_mermaid = 45,
 		/obj/item/food/fish/emulsijack = 5,
 	)
