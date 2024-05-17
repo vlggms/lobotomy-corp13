@@ -1757,3 +1757,4 @@
 		to_chat(current_holder,span_notice("[src] appears unable to release its full potential."))
 		return FALSE
 	return TRUE
+*/
