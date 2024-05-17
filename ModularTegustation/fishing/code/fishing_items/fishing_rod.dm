@@ -350,7 +350,13 @@
 	icon_state = "rod_titanium"
 	rod_level = 1.4
 
-
+//Gacha Rods. Obtained through gacha crates.
+/obj/item/fishing_rod/wellcheers
+	name = "Wellcheers fishing rod"
+	desc = "One of S-Corp's famous fishing rods. They're known to be the best fishing rods in the city."
+	icon_state = "rod_wellcheer"
+	speed_modifier = 2
+	rod_level = 2
 #undef ROD_SLOT_LINE
 #undef ROD_SLOT_HOOK
 #undef FISHSKILLEXP
