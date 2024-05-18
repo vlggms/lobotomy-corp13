@@ -798,7 +798,7 @@ Mobs that mostly focus on dealing RED damage, they are all a bit more frail than
 		icon_state = icon_living
 	current_stage = 2
 	//Speed changed from 6 to 4
-	SpeedChange(-counter_speed)
+	ChangeMoveToDelayBy(-counter_speed)
 	attack_delay = 1 SECONDS
 	counter_threshold = 300
 	playsound(get_turf(src), 'sound/creatures/lc13/lovetown/abomination_stagetransition.ogg', 75, 0, 3)

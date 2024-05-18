@@ -260,8 +260,7 @@
 			icon_state = icon_living
 			ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.2))
 			can_act = TRUE
-			SpeedChange(1.5)
-	UpdateSpeed()
+			ChangeMoveToDelayBy(1.5)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)

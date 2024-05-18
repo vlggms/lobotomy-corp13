@@ -98,5 +98,5 @@
 	melee_damage_lower = 30
 	melee_damage_upper = 45
 	rapid_melee = 3
-	move_to_delay = 2
+	ChangeMoveToDelay(2)
 	icon_state = "bunnyman_enraged"

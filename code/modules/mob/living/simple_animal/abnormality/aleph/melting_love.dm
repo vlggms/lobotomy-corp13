@@ -208,7 +208,7 @@
 	return TRUE
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/Empower()
-	SpeedChange(-0.5)
+	ChangeMoveToDelayBy(-0.5)
 	melee_damage_lower = 80
 	melee_damage_upper = 85
 	projectiletype = /obj/projectile/melting_blob/enraged
