@@ -171,6 +171,7 @@
 		/obj/item/grenade/spawnergrenade/shrimp/super,
 		/obj/item/grenade/spawnergrenade/shrimp/hostile,
 		/obj/item/reagent_containers/pill/shrimptoxin,
+		/obj/item/fishing_rod/wellcheers,
 	)
 
 	cosmeticloot = list(
