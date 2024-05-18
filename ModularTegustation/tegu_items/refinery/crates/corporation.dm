@@ -44,6 +44,7 @@
 	lootlist =	list(
 		/obj/item/managerbullet,
 		/obj/item/ksyringe,
+		/obj/item/ksyringe_sp,
 	)
 
 	rareloot =	list(

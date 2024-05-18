@@ -3,12 +3,13 @@
 ///Healing Items Line
 /datum/data/lc13research/syringe
 	research_name = "Ampule Runoff Permit"
-	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing low level hp ampules at a 90% discount."
+	research_desc = "Due to your efforts, we are granting you the privilage of <br>purchasing low level ampules at a 90% discount."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = K_CORP_REP
 
 /datum/data/lc13research/syringe/ResearchEffect(obj/structure/representative_console/caller)
 	ItemUnlock(caller.order_list, "K Corp Ampule ",	/obj/item/ksyringe, 300)
+	ItemUnlock(caller.order_list, "K Corp Blue Ampule ",	/obj/item/ksyringe_sp, 300)
 	..()
 
 /datum/data/lc13research/krevival

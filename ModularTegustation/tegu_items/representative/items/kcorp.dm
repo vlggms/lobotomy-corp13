@@ -19,6 +19,26 @@
 	M.adjustBruteLoss(-40)
 	qdel(src)
 
+/obj/item/ksyringe_sp
+	name = "k-corp blue nanomachine ampule"
+	desc = "A syringe of kcorp mind soothing nanobots."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "kcorp_syringe_blue"
+	slot_flags = ITEM_SLOT_POCKETS
+	w_class = WEIGHT_CLASS_SMALL
+
+/obj/item/ksyringe_sp/attack_self(mob/living/carbon/human/user)
+	..()
+	to_chat(user, span_notice("You inject the syringe and instantly think clearer."))
+	user.adjustSanityLoss(-40)
+	qdel(src)
+
+/obj/item/ksyringe_sp/attack(mob/living/carbon/human/M, mob/user)
+	to_chat(user, span_nicegreen("You inject [M] with the [src]."))
+	M.visible_message(span_notice("[user] stabs [M] with the injector!"))
+	M.adjustSanityLoss(-40)
+	qdel(src)
+
 /obj/item/krevive
 	name = "k-corp nanomachine ampule"
 	desc = "A syringe of kcorp healing nanobots. This one revives any fallen bodies."
