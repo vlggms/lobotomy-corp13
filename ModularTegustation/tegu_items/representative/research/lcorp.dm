@@ -243,7 +243,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	minor_announce("HQ has improved your LOB points budget.", "HQ Alert:", TRUE)
 	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
 		SSlobotomy_corp.lob_points +=2
-		A.audible_message("<span class='notice'>5 LOB points deposited! Reason: Improved budget from HQ.</span>")
+		A.audible_message(span_notice("5 LOB points deposited! Reason: Improved budget from HQ."))
 		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
 		A.updateUsrDialog()
 	..()
