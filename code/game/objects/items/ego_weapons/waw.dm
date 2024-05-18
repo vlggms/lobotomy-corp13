@@ -2064,3 +2064,56 @@
 
 /obj/item/ego_weapon/abyssal_route/proc/DiveReset()
 	can_attack = TRUE
+
+/obj/item/ego_weapon/windup
+	name = "wind-up"
+	desc = "Yes, we can rewind your wasted time. \
+	Just wind it up, close your eyes, and count to ten. When you open them, you will be standing at the exact moment you wished to be in."
+	special = "Use in hand to charge this weapon, up to four times. Deals very little damage when uncharged."
+	icon_state = "windup"
+	force = 10
+	attack_speed = 0.5
+	damtype = PALE_DAMAGE
+	attack_verb_continuous = list("cleaves", "cuts")
+	attack_verb_simple = list("cleaves", "cuts")
+	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/charges = 0
+
+/obj/item/ego_weapon/windup/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(charges > 0)
+		if(charges == 4)
+			playsound(src, 'sound/abnormalities/clock/finish.ogg', 60)
+		else
+			playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
+	charges = max(0, charges - 1)
+	if(charges == 0)
+		force = 10
+
+/obj/item/ego_weapon/windup/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(charges >= 4)
+		to_chat(user,span_warning("You can't crank it any further!"))
+		return
+	if(do_after(user, (8 + (charges * 4)), src))
+		charges = min(charges + 1, 4)
+		force = (charges * 10 + 5)
+		to_chat(user,span_warning("You crank the [src]."))
+		playsound(src.loc, 'sound/abnormalities/clock/clank.ogg', 75, TRUE)
+		PlayChargeSound()
+
+/obj/item/ego_weapon/windup/proc/PlayChargeSound()
+	set waitfor = FALSE
+	sleep(10)
+	if(!charges) //We don't play the sound if the player has already emptied out by now
+		return
+	if(charges >= 4)
+		playsound(src.loc, 'sound/weapons/fixer/generic/energy3.ogg', 75, TRUE)
+		return
+	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)
