@@ -14,6 +14,7 @@
 	icon = 'icons/obj/barriertape.dmi'
 	anchored = TRUE
 	density = TRUE
+	max_integrity = 10
 	var/lifted = FALSE
 	var/crumpled = FALSE
 	var/icon_base

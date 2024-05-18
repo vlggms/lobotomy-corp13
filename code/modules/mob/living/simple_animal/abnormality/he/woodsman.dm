@@ -176,8 +176,7 @@
 	melee_damage_upper = initial_melee_damage_upper + (ramping * 3)
 	flurry_delay = initial_flurry_delay - (ramping * 0.1) SECONDS
 	flurry_pause = initial_flurry_pause - (ramping * 0.01) SECONDS
-	move_to_delay = initial_move_to_delay - (ramping * 0.22)
-	UpdateSpeed()
+	ChangeMoveToDelay(initial_move_to_delay - (ramping * 0.22))
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/proc/Heal(mob/living/carbon/human/body)
 	src.visible_message(span_warning("[src] plunges their hand into [body]'s chest and rips out their heart!"), \

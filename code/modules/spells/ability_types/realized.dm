@@ -78,7 +78,7 @@
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
 			H.apply_status_effect(/datum/status_effect/salvation)
-			H.TemporarySpeedChange(H.move_to_delay*debuff_slowdown , 15 SECONDS) // Slow down_status_effect(/datum/status_effect/salvation)
+			H.TemporarySpeedChange(1 + debuff_slowdown , 15 SECONDS, TRUE) // Slow down_status_effect(/datum/status_effect/salvation)
 	return ..()
 
 /datum/status_effect/salvation
@@ -996,7 +996,7 @@
 				ego_list += /obj/item/ego_weapon/da_capo
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
-			for(var/egoitem in linked_structure.alephitem)
+			for(var/egoitem in linked_structure.wawitem)
 				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
 					ego_list += egoitem
 					continue
@@ -1004,14 +1004,14 @@
 		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
 		if(ispath(ego, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
-			egoweapon.force_multiplier = 1.2
+			egoweapon.force_multiplier = 1.75
 			egoweapon.name = "shimmering [egoweapon.name]"
 			egoweapon.set_light(3, 6, "#D4FAF37")
 			egoweapon.color = "#FFD700"
 
 		else if(ispath(ego, /obj/item/gun/ego_gun))
 			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
-			egogun.projectile_damage_multiplier = 1.2
+			egogun.projectile_damage_multiplier = 1.75
 			egogun.name = "shimmering [egogun.name]"
 			egogun.set_light(3, 6, "#D4FAF37")
 			egogun.color = "#FFD700"

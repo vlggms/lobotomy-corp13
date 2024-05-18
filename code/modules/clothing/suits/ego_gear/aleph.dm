@@ -431,8 +431,8 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/aleph/combust
-	name = "Combusting Courage"
+/obj/item/clothing/suit/armor/ego_gear/aleph/waxen
+	name = "Waxen Pinion"
 	desc = "However, that alone won’t purge all evil from the world."
 	icon_state = "combust"
 	flags_inv = null

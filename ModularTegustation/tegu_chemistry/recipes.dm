@@ -26,11 +26,13 @@
 	results = list(/datum/reagent/abnormality/culpusumidus = 1)
 	required_reagents = list(/datum/reagent/abnormality/tastesyrup = 1, /datum/reagent/abnormality/woe = 1)
 	required_catalysts = list(/datum/reagent/water = 1)
+	mob_react = FALSE
 	mix_message = "The mixture gives off a odor of soggy bread."
 
 /datum/chemical_reaction/serelam
 	results = list(/datum/reagent/abnormality/serelam  = 1)
 	required_reagents = list(/datum/reagent/abnormality/bittersyrup = 1, /datum/reagent/abnormality/tastesyrup = 1)
+	mob_react = FALSE
 	mix_message = "The mixture starts to swirl around."
 
 /datum/chemical_reaction/nepenthe
@@ -46,6 +48,7 @@
 /datum/chemical_reaction/dyscrasone
 	results = list(/datum/reagent/abnormality/dyscrasone  = 2)
 	required_reagents = list(/datum/reagent/abnormality/heartysyrup = 1, /datum/reagent/abnormality/odisone = 1)
+	mob_react = FALSE
 	mix_message = "The mixture starts sizzling."
 
 /*

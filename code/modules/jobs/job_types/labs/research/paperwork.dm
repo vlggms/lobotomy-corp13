@@ -21,7 +21,7 @@
 	job_notice = "Make 3 copies of each report, one for the manager, one for Asset protection, and one for the LR which will then be put into the vault."
 	job_abbreviation = "ARCH"
 
-/datum/job/ist/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
+/datum/job/archivist/after_spawn(mob/living/carbon/human/H, mob/M, latejoin = FALSE)
 	..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)

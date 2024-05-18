@@ -1321,6 +1321,7 @@
 "jI" = (
 /obj/machinery/vending/lobotomyuniform,
 /obj/effect/turf_decal/box/white,
+/obj/structure/sign/button_counter/directional/west,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "jL" = (
@@ -2474,6 +2475,7 @@
 "qT" = (
 /obj/machinery/vending/lobotomyarmband,
 /obj/effect/turf_decal/box/white,
+/obj/structure/sign/button_counter/directional/west,
 /turf/open/floor/facility/dark,
 /area/department_main/records)
 "qU" = (
@@ -3103,6 +3105,12 @@
 	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
+"uq" = (
+/obj/machinery/computer/abnormality_logs{
 	dir = 1
 	},
 /turf/open/floor/carpet/royalblack,
@@ -5507,6 +5515,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/command)
+"Kp" = (
+/obj/machinery/text_adventure_console,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "Kq" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -7645,6 +7657,9 @@
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/facility,
 /area/department_main/training)
+"Yi" = (
+/turf/open/space/basic,
+/area/space)
 "Yj" = (
 /obj/structure/table/wood,
 /obj/item/toy/plush/hod,
@@ -36340,7 +36355,7 @@ PD
 cl
 bX
 bX
-bX
+uq
 jt
 jt
 jt
@@ -36597,7 +36612,7 @@ PD
 cl
 bX
 bX
-bX
+Kp
 jt
 PD
 PD
@@ -40775,9 +40790,9 @@ PD
 PD
 PD
 PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -41031,12 +41046,12 @@ PD
 PD
 PD
 PD
-PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -41287,13 +41302,13 @@ PD
 PD
 PD
 PD
+Yi
+Yi
 PD
 PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -41544,12 +41559,12 @@ PD
 PD
 PD
 PD
+Yi
+Yi
 PD
 PD
-PD
-PD
-PD
-PD
+Yi
+Yi
 PD
 PD
 PD
@@ -41801,13 +41816,13 @@ PD
 PD
 PD
 PD
+Yi
+Yi
 PD
 PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -42059,12 +42074,12 @@ PD
 PD
 PD
 PD
-PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
+Yi
+Yi
+Yi
 PD
 PD
 PD

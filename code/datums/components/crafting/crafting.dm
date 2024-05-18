@@ -17,32 +17,29 @@
 	var/viewing_category = 1 //typical powergamer starting on the Weapons tab
 	var/viewing_subcategory = 1
 	var/list/categories = list(
-				CAT_WEAPONRY = list(
-					CAT_WEAPON,
-					CAT_AMMO,
-				),
-				CAT_ROBOT = CAT_NONE,
-				CAT_MISC = CAT_NONE,
-				CAT_PRIMAL = CAT_NONE,
-				CAT_FOOD = list(
-					CAT_BREAD,
-					CAT_BURGER,
-					CAT_CAKE,
-					CAT_EGG,
-					CAT_ICE,
-					CAT_MEAT,
-					CAT_MISCFOOD,
-					CAT_PASTRY,
-					CAT_PIE,
-					CAT_PIZZA,
-					CAT_SALAD,
-					CAT_SANDWICH,
-					CAT_SOUP,
-					CAT_SPAGHETTI,
-				),
-				CAT_DRINK = CAT_NONE,
-				CAT_CLOTHING = CAT_NONE,
-			)
+		CAT_WEAPONRY = list(
+			CAT_WEAPON,
+			CAT_AMMO,
+		),
+		CAT_MISC = CAT_NONE,
+		CAT_CLOTHING = CAT_NONE,
+		CAT_STRUCT = CAT_NONE,
+		CAT_FOOD = list(
+			CAT_BREAD,
+			CAT_MEAT,
+			CAT_PASTRY,
+			CAT_PIZZA,
+			CAT_SALAD,
+			CAT_SANDWICH,
+			CAT_SOUP,
+			CAT_SPAGHETTI,
+			CAT_UNUSUAL,
+			CAT_MISCFOOD,
+		),
+		CAT_DRINK = CAT_NONE,
+		CAT_ROBOT = CAT_NONE,
+		CAT_SILK = CAT_NONE,
+	)
 
 	var/cur_category = CAT_NONE
 	var/cur_subcategory = CAT_NONE

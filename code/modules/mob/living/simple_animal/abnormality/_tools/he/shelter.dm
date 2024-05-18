@@ -5,6 +5,11 @@
 	max_buckled_mobs = 1
 	var/obj/structure/toolabnormality/shelter/linked_structure
 
+	ego_list = list(
+		/datum/ego_datum/weapon/isolation,
+		/datum/ego_datum/armor/isolation,
+	)
+
 /obj/structure/toolabnormality/shelter/proc/travel(mob/living/carbon/human/user)
 	if(!linked_structure)	//Here we do nothing, just set it up for the substypes
 		return

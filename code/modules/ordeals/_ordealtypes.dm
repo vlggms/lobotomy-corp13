@@ -20,7 +20,7 @@
 	var/spawn_places = 4
 	/// How many mobs to spawn per spot
 	var/spawn_amount = 3
-	/// What mob to spawn
+	/// What mob to spawn; if it's a list then randomize.
 	var/spawn_type = /mob/living/simple_animal/hostile/ordeal/amber_bug
 	/// Multiplier for player count, used to increase amount of spawn places. Set to 0 if you want it to not matter.
 	var/place_player_multiplicator = 0.1
@@ -47,7 +47,14 @@
 			var/turf/deploy_spot = T //spot you are being deployed
 			if(LAZYLEN(deployment_area)) //if deployment zone is empty just spawn at xeno spawn
 				deploy_spot = pick_n_take(deployment_area)
-			var/mob/living/simple_animal/hostile/ordeal/M = new spawn_type(deploy_spot)
+
+			var/spawning
+			//If it's a list then randomize it
+			if(islist(spawn_type))
+				spawning = pick(spawn_type)
+			else
+				spawning = spawn_type
+			var/mob/living/simple_animal/hostile/ordeal/M = new spawning(deploy_spot)
 			ordeal_mobs += M
 			M.ordeal_reference = src
 

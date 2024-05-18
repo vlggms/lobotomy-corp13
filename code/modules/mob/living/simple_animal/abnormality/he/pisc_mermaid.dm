@@ -59,6 +59,37 @@
 	var/obj/item/clothing/head/unrequited_crown/crown
 	var/mob/living/carbon/human/love_target
 
+	attack_action_types = list(
+		/datum/action/innate/change_icon_merm,
+	)
+
+
+/datum/action/innate/change_icon_merm
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_merm/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/48x32.dmi'
+		owner.icon_state = "pmermaid_standing"
+		owner.pixel_x = -12
+		owner.base_pixel_x = -12
+		owner.pixel_y = 0
+		owner.base_pixel_y = 0
+		active = 1
+
+/datum/action/innate/change_icon_merm/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		owner.icon_state = "pmermaid_breach"
+		owner.pixel_x = 0
+		owner.base_pixel_x = 0
+		owner.pixel_y = -16
+		owner.base_pixel_y = -16
+		active = 0
+
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	datum_reference.qliphoth_change(-1)

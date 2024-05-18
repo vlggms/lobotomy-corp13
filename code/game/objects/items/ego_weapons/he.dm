@@ -4,7 +4,7 @@
 	Its operation is simple and straightforward, but that doesn't necessarily make it easy to wield."
 	special = "This weapon pierces to hit everything on the target's tile."
 	icon_state = "grinder"
-	force = 30
+	force = 26
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
 	attack_verb_simple = list("slice", "saw", "rip")
@@ -14,15 +14,16 @@
 							)
 
 /obj/item/ego_weapon/grinder/attack(mob/living/target, mob/living/user)
-	if(!..())
-		return FALSE
 	var/turf/T = get_turf(target)
+	. = ..()
+	if(!.)
+		return FALSE
 	//damage calculations
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	force*=justicemod
-	user.HurtInTurf(T, list(target), (force*force_multiplier), RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
-	force = 30
+	var/justicemod = 1 + userjust / 100
+	var/damage_dealt = force * justicemod * force_multiplier
+	var/list/been_hit = QDELETED(target) ? list() : list(target)
+	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
 	return 40
@@ -1630,7 +1631,7 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/hostile/M = owner
-	M.TemporarySpeedChange(M.move_to_delay*0.25 , 3 SECONDS)
+	M.TemporarySpeedChange(1.25 , 3 SECONDS, TRUE)
 
 /atom/movable/screen/alert/status_effect/brown_bricks
 	name = "Yello Bricks"
@@ -1914,3 +1915,26 @@
 		playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
 		user.adjustBruteLoss(-amount_filled*2)
 		amount_filled = 0
+
+/obj/item/ego_weapon/shield/isolation
+	name = "isolation"
+	desc = "The shelter still retains the memory of that day."
+	icon_state = "isolation"
+	force = 30
+	attack_speed = 1
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	hitsound = 'sound/weapons/ego/axe2.ogg'
+	reductions = list(10, 20, 40, 10) // 80
+	projectile_block_duration = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
+	projectile_block_message = "You swat the projectile out of the air!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your E.G.O."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

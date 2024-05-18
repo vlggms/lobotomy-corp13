@@ -188,6 +188,12 @@ No Ability	250
 	desc = "I would move Heaven and Earth to be together forever with you."
 	icon_state = "forever"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//No ability
+	hat = /obj/item/clothing/head/ego_hat/forever_hat
+
+/obj/item/clothing/head/ego_hat/forever_hat
+	name = "together forever"
+	desc = "I've gotten used to bowing and scraping to you, so I cut off my own limbs."
+	icon_state = "forever"
 
 /obj/item/clothing/suit/armor/ego_gear/realization/wisdom
 	name = "endless wisdom"
@@ -257,9 +263,10 @@ No Ability	250
 
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
-	desc = "'Tis better to have loved and lost than never to have loved at all."
+	desc = "'Tis better to have loved and lost than never to have loved at all.\
+	Grants you the ability to use a Blind Rage in both hands and attack with both at the same time."
 	icon_state = "woundedcourage"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Support
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Melee
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
 	realized_ability = /obj/effect/proc_holder/ability/justice_and_balance
 	hat = /obj/item/clothing/head/ego_hat/woundedcourage_hat

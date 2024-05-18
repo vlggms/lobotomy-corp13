@@ -103,7 +103,11 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/proc/BurrowIn(turf/T)
 	if(!T)
-		T = pick(GLOB.xeno_spawn)
+		if(GLOB.xeno_spawn.len)
+			T = pick(GLOB.xeno_spawn)
+		else
+			can_burrow_solo = FALSE
+			return
 	burrowing = TRUE
 	visible_message(span_danger("[src] burrows into the ground!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/amber/dawn_dig_in.ogg', 25, 1)

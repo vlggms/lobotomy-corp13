@@ -14,6 +14,11 @@
 	var/bonus
 	var/switch_time = 3
 
+	ego_list = list(
+		/datum/ego_datum/weapon/plastic,
+		/datum/ego_datum/armor/plastic,
+	)
+
 /obj/structure/toolabnormality/you_happy/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
 	if (!istype(M, /mob/living/carbon/human))
 		to_chat(usr, span_warning("It doesn't look like I can't quite fit in."))

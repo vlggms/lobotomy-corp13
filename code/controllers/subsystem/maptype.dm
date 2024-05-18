@@ -66,12 +66,14 @@ SUBSYSTEM_DEF(maptype)
 			if(prob(30))
 				jobtype = "rcorp_fifth"
 
-			switch(rand(1,3))
+			switch(rand(1,5))
 				if(1)	 //Find this var in the objectives folder
 					GLOB.rcorp_objective = "button"
 				if(2)
 					GLOB.rcorp_objective = "vip"
 				if(3)
 					GLOB.rcorp_objective = "arbiter"
-
-
+				if(4)
+					GLOB.rcorp_objective = "payload_rcorp"
+				if(5)
+					GLOB.rcorp_objective = "payload_abno"

@@ -2876,6 +2876,7 @@
 /obj/effect/turf_decal/box/white,
 /obj/machinery/vending/lobotomyuniform,
 /obj/machinery/camera/autoname,
+/obj/structure/sign/button_counter/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "vr" = (
@@ -3119,6 +3120,7 @@
 "wZ" = (
 /obj/effect/turf_decal/box/white,
 /obj/machinery/vending/lobotomyarmband,
+/obj/structure/sign/button_counter/directional/north,
 /turf/open/floor/plasteel/dark,
 /area/department_main/records)
 "xa" = (
@@ -3820,7 +3822,7 @@
 	pixel_y = 32;
 	req_one_access_txt = "19"
 	},
-/obj/structure/rack,
+/obj/machinery/computer/abnormality_logs,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "CV" = (

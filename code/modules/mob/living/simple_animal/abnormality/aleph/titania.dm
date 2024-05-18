@@ -96,7 +96,7 @@
 	. = ..()
 
 	if(H.stat == DEAD && target == nemesis)		//Does she slay Oberon personally? If so, get buffed.
-		SpeedChange(-1)
+		ChangeMoveToDelayBy(-1)
 		melee_damage_lower = 110
 		melee_damage_upper = 140
 		adjustBruteLoss(-maxHealth) // Round 2, baby

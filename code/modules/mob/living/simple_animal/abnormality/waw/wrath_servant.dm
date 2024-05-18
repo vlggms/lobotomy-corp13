@@ -76,6 +76,7 @@
 	var/stunned = FALSE
 	var/ending = FALSE
 	var/hunted_target
+	var/nihil_present = FALSE
 
 	//PLAYABLES ACTIONS
 	attack_action_types = list(
@@ -225,9 +226,11 @@
 	..()
 
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/Found(atom/A)
-	if(istype(A, /mob/living/simple_animal/hostile/azure_stave)) // 1st Priority
+	if(istype(A, /mob/living/simple_animal/hostile/abnormality/nihil)) // 1st Priority
 		return TRUE
-	if(istype(A, /mob/living/simple_animal/hostile/azure_hermit)) // 2nd Priority
+	if(istype(A, /mob/living/simple_animal/hostile/azure_stave)) // 2nd Priority
+		return TRUE
+	if(istype(A, /mob/living/simple_animal/hostile/azure_hermit)) // 3rd Priority
 		return TRUE
 	return FALSE // Everything Else
 
@@ -328,6 +331,8 @@
 	. = TRUE
 	if(!datum_reference)
 		friendly = FALSE
+	if(nihil_present) //nihil is here and we must fight them!
+		return ..()
 	if(friendly)
 		instability += 10
 		icon_state = icon_living
@@ -492,7 +497,7 @@
 	toggle_ai(AI_OFF)
 	status_flags |= GODMODE
 	density = FALSE
-	say("Justice and balance finaly restored. We...")
+	say("Justice and balance finally restored. We...")
 	SLEEP_CHECK_DEATH(2 SECONDS)
 	animate(src, alpha = 0, time = 5)
 	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
@@ -549,6 +554,11 @@
 /mob/living/simple_animal/hostile/abnormality/wrath_servant/death(gibbed)
 	if(!datum_reference)
 		return ..()
+	if(nihil_present)
+		adjustBruteLoss(-999999)
+		visible_message(span_boldwarning("Oh no, [src] has been defeated!"))
+		INVOKE_ASYNC(src, PROC_REF(petrify), 500000)
+		return FALSE
 	if(ending)
 		return FALSE
 	INVOKE_ASYNC(src, PROC_REF(Downed))
@@ -560,6 +570,77 @@
 	death()
 	return FALSE
 
+//Nihil Event Code
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/EventStart()
+	set waitfor = FALSE
+	NihilModeEnable()
+	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("This is really bad...")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("With this, we can restore balance to the world...")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("We can't lose this time!")
+	SLEEP_CHECK_DEATH(6 SECONDS)
+	say("For the Justice and Balance of this Land!")
+	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 1.5))
+
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/NihilModeEnable()
+	NihilIconUpdate()
+	nihil_present = TRUE
+	friendly = TRUE
+	fear_level = ZAYIN_LEVEL
+	faction = list("neutral")
+	for(var/mob/living/simple_animal/hostile/azure_hermit/badguy in world)
+		badguy.gib(TRUE)
+
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/NihilIconUpdate()
+	name = "Magical Girl of Courage"
+	desc = "A real magical girl!"
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "wrath"
+	pixel_x = 0
+	base_pixel_x = 0
+	pixel_y = 0
+	base_pixel_y = 0
+
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/petrify(statue_timer)
+	if(!isturf(loc))
+		MoveStatue()
+	AIStatus = AI_OFF
+	src.icon = 'ModularTegustation/Teguicons/96x64.dmi'
+	icon_state = "wrath"
+	pixel_x = -32
+	base_pixel_x = -32
+	var/obj/structure/statue/petrified/magicalgirl/S = new(loc, src, statue_timer)
+	S.name = "Lapidified Wrath"
+	ADD_TRAIT(src, TRAIT_NOBLEED, MAGIC_TRAIT)
+	SLEEP_CHECK_DEATH(1)
+	S.icon = src.icon
+	S.icon_state = src.icon_state
+	S.pixel_x = -32
+	S.base_pixel_x = -32
+	var/newcolor = list(rgb(77,77,77), rgb(150,150,150), rgb(28,28,28), rgb(0,0,0))
+	S.add_atom_colour(newcolor, FIXED_COLOUR_PRIORITY)
+	stat = DEAD
+	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/wrath_servant/proc/MoveStatue()
+	var/list/teleport_potential = list()
+	if(!LAZYLEN(GLOB.department_centers))
+		for(var/mob/living/L in GLOB.mob_living_list)
+			if(L.stat == DEAD || L.z != z || L.status_flags & GODMODE)
+				continue
+			teleport_potential += get_turf(L)
+	if(!LAZYLEN(teleport_potential))
+		var/turf/P = pick(GLOB.department_centers)
+		teleport_potential += P
+	var/turf/teleport_target = pick(teleport_potential)
+	new /obj/effect/temp_visual/guardian/phase(get_turf(src))
+	new /obj/effect/temp_visual/guardian/phase/out(teleport_target)
+	forceMove(teleport_target)
+
+//Rival's code
 /mob/living/simple_animal/hostile/azure_hermit
 	name = "Hermit of the Azure Forest"
 	desc = "Please make way, I am here to meet a dear friend."

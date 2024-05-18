@@ -922,6 +922,14 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/training)
+"cn" = (
+/obj/effect/turf_decal/tile/neutral{
+	color = "#000000";
+	dir = 8
+	},
+/obj/structure/sign/button_counter/directional/south,
+/turf/open/floor/plasteel/sepia,
+/area/facility_hallway/information)
 "co" = (
 /obj/effect/landmark/latejoin,
 /obj/effect/turf_decal/tile/yellow{
@@ -3624,6 +3632,9 @@
 	},
 /turf/open/floor/plasteel/sepia,
 /area/department_main/records)
+"ik" = (
+/turf/open/space/basic,
+/area/space)
 "il" = (
 /turf/closed/indestructible/reinforced{
 	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
@@ -11708,6 +11719,7 @@
 	color = "#090807";
 	dir = 1
 	},
+/obj/structure/sign/button_counter/directional/south,
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/information)
 "Bo" = (
@@ -29279,9 +29291,9 @@ lF
 lF
 lF
 lF
-lF
-lF
-lF
+ik
+ik
+ik
 lF
 lF
 lF
@@ -29535,12 +29547,12 @@ lF
 lF
 lF
 lF
-lF
-lF
-lF
-lF
-lF
-lF
+ik
+ik
+ik
+ik
+ik
+ik
 lF
 lF
 lF
@@ -29791,13 +29803,13 @@ lF
 lF
 lF
 lF
+ik
+ik
 lF
 lF
-lF
-lF
-lF
-lF
-lF
+ik
+ik
+ik
 lF
 lF
 lF
@@ -30048,12 +30060,12 @@ lF
 lF
 lF
 lF
+ik
+ik
 lF
 lF
-lF
-lF
-lF
-lF
+ik
+ik
 lF
 lF
 lF
@@ -30305,13 +30317,13 @@ lF
 lF
 lF
 lF
+ik
+ik
 lF
 lF
-lF
-lF
-lF
-lF
-lF
+ik
+ik
+ik
 lF
 lF
 lF
@@ -30563,12 +30575,12 @@ lF
 lF
 lF
 lF
-lF
-lF
-lF
-lF
-lF
-lF
+ik
+ik
+ik
+ik
+ik
+ik
 lF
 lF
 lF
@@ -53727,7 +53739,7 @@ TY
 mj
 Jg
 JE
-Td
+cn
 eF
 Nh
 lp

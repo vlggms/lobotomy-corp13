@@ -9,6 +9,7 @@
 	name = "toxic emulsijack"
 	desc = "Ah, the terrifying emulsijack. Created in a laboratory, this slimey, scaleless fish emits an invisible toxin that emulsifies other fish for it to feed on. Its only real use is for completely ruining a tank."
 	habitat = "Invading Other Habitats"
+	fillet_type = /obj/item/food/freshfish/slime
 	icon_state = "emulsijack"
 	show_in_catalog = FALSE
 	random_case_rarity = FISH_RARITY_GOOD_LUCK_FINDING_THIS
@@ -33,6 +34,7 @@
 	desc = "A unique breed of fish that is themed around Dream-Devouring Siltcurrent. Flotsams not included."
 	icon_state = "siltcurrent"
 	random_case_rarity = FISH_RARITY_RARE
+	fillet_type = /obj/item/food/freshfish/rotten
 	sprite_width = 8
 	sprite_height = 8
 	average_size = 60
