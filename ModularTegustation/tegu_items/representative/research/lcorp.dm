@@ -231,3 +231,35 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 	required_research = /datum/data/lc13research/salesspeed/lvl7
+
+//LOB points
+/datum/data/lc13research/lob/lvl1
+	research_name = "LOB points grant"
+	research_desc = "HQ is allowing you more LOB points budget in exchange for PE."
+	cost = HIGH_RESEARCH_PRICE
+	corp = L_CORP_REP
+
+/datum/data/lc13research/lob/lvl1/ResearchEffect(obj/structure/representative_console/caller, amount = 5)
+	minor_announce("HQ has improved your LOB points budget.", "HQ Alert:", TRUE)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
+		SSlobotomy_corp.lob_points += amount
+		A.audible_message("<span class='notice'>5 LOB points deposited! Reason: Improved budget from HQ.</span>")
+		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
+		A.updateUsrDialog()
+	..()
+
+/datum/data/lc13research/lob/lvl2
+	research_name = "LOB points grant"
+	research_desc = "HQ is impressed by your production and is allowing you even more LOB points budget in exchange for PE."
+	cost = HIGH_RESEARCH_PRICE+25
+	corp = L_CORP_REP
+	required_research = /datum/data/lc13research/lob/lvl1
+
+/datum/data/lc13research/lob/lvl2/ResearchEffect(obj/structure/representative_console/caller, amount = 10)
+	minor_announce("HQ has further improved your LOB points budget.", "HQ Alert:", TRUE)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
+		SSlobotomy_corp.lob_points += amount
+		A.audible_message("<span class='notice'>10 LOB points deposited! Reason: Improved budget from HQ.</span>")
+		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
+		A.updateUsrDialog()
+	..()
