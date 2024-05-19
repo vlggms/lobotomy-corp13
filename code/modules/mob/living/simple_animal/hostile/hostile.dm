@@ -190,6 +190,7 @@
 			//If our damage value for that person exceeds this number then we consider targeting them.
 			if(target_memory[P.firer] > MAX_DAMAGE_SUFFERED)
 				FindTarget(list(P.firer), 1)
+	DamageEffect(P.damage, P.damage_type)
 	return ..()
 
 /mob/living/simple_animal/hostile/Move(atom/newloc, dir , step_x , step_y)
@@ -254,6 +255,7 @@
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, amount, TRUE)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, add_or_update_variable_movespeed_modifier), /datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, -amount, TRUE), time)
 
+<<<<<<< HEAD
 /mob/living/simple_animal/hostile/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client && user)
 		FindTarget(list(user), 1)
@@ -268,6 +270,8 @@
 	. = ..()
 	DamageEffect(P.damage_type)
 
+=======
+>>>>>>> c6b43a2ac88 (removed duplicate procs)
 /*-------------------\
 |Damage Visual Effect|
 \-------------------*/
