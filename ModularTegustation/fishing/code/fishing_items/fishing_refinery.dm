@@ -39,7 +39,6 @@
 		if(fish_amount ==20)
 			loaded = TRUE
 			fish_amount = 0
-			timeleft = refine_timer
 			INVOKE_ASYNC(src, PROC_REF(counter))
 		else
 			return
