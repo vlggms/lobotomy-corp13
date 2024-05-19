@@ -56,7 +56,7 @@
 	var/atom/targets_from = null //all range/attack/etc. calculations should be done from this atom, defaults to the mob itself, useful for Vehicles and such
 	var/attack_all_objects = FALSE //if true, equivalent to having a wanted_objects list containing ALL objects.
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
-	var/lose_patience_timeout = 300 //30 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
+	var/lose_patience_timeout = 50 //5 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 	// Experimental Target Memory. Short term HATE. Things added to this list will have their accossiated values considered.
 	var/list/target_memory = list()
 
@@ -141,6 +141,7 @@
 			DestroyPathToTarget()
 		if(!MoveToTarget(possible_targets))     //if we lose our target
 			if(AIShouldSleep(possible_targets))	// we try to acquire a new one
+				target_memory.Cut()
 				toggle_ai(AI_IDLE)			// otherwise we go idle
 	return TRUE
 
@@ -167,6 +168,13 @@
 			if(I)
 				add_aggro = I.force
 				add_damtype = I.damtype
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					var/justice_mod = 1 + get_modified_attribute_level(H, JUSTICE_ATTRIBUTE) / 100
+					add_aggro *= justice_mod
+				if(istype(I, /obj/item/ego_weapon/))
+					var/obj/item/ego_weapon/EW = I
+					add_aggro *= EW.force_multiplier
 			else
 				add_aggro = user.melee_damage_upper
 				if(isanimal(user))
@@ -195,6 +203,12 @@
 				FindTarget(list(P.firer), 1)
 	DamageEffect(P.damage, P.damage_type)
 	return ..()
+
+/mob/living/simple_animal/hostile/attack_animal(mob/living/simple_animal/M, damage)
+	damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+	. = ..()
+	if(.)
+		RegisterAggroValue(M, damage, M.melee_damage_type)
 
 /mob/living/simple_animal/hostile/Move(atom/newloc, dir , step_x , step_y)
 	if(dodging && approaching_target && prob(dodge_prob) && moving_diagonally == 0 && isturf(loc) && isturf(newloc))
@@ -230,10 +244,9 @@
 		if(AIStatus != AI_ON && AIStatus != AI_OFF)
 			toggle_ai(AI_ON)
 			FindTarget()
-		else if(target != null && prob(40))//No more pulling a mob forever and having a second player attack it, it can switch targets now if it finds a more suitable one
-			FindTarget()
 
 /mob/living/simple_animal/hostile/death(gibbed)
+	target_memory.Cut()
 	LoseTarget()
 	..(gibbed)
 
@@ -475,7 +488,7 @@
 		This may be changed in the future if we want to still
 		value them to see if we even care about attacking. */
 	if(Targets.len == 1)
-		return pick(Targets)
+		return Targets[1]
 
 	/* Form a list of our targets, value how much we hate
 		them, and then pick the target who has the MOST hate. */
@@ -486,7 +499,7 @@
 
 	/* If we have a target do we continue
 		fighting if asked to pick again? */
-	if(target)
+	if(target && target != .)
 		if(KeepTargetCondition(target, .))
 			return target
 
@@ -513,22 +526,18 @@
 |Standard Hate Levels|
 |--------------------/
 |Living Adjacent = 80
-|Living Far = 30
+|Living Far = 10
 |Other Adjacent = 0
-|Other Far = -50
+|Other Far = -70
+|Modifiers:
+|Previous target -60
+|Damage dealt +0 to +25
 \-------------------*/
 /mob/living/simple_animal/hostile/proc/ValueTarget(atom/target_thing)
 	if(!target_thing)
 		return
 	//This is a safety net just in the case that no value is returned.
 	. = 0
-
-	//If your farther than 5 tiles from us you suffer the max 50 of hate penalty.
-	. -= clamp(get_dist(targets_from, target_thing) * 10,0,50)
-
-	//This is in order to make mobs not instantly reaggro on mobs they lost patience on.
-	if(isnum(target_memory[target_thing]))
-		. -= (target_memory[target_thing] / 10)
 
 	/* This is in order to treat Mechas as living by
 		instead considering their pilot for the hate value. */
@@ -537,10 +546,22 @@
 		for(var/occupant in M.occupants)
 			if(isliving(occupant) && CanAttack(occupant))
 				. += 80
-
-	if(isliving(target_thing))
+	else if(isliving(target_thing))
 		//Minimum starting hate for anything living is 80.
 		. += 80
+
+	//If your farther than 7 tiles from us you suffer the max 70 of hate penalty.
+	var/distance = get_dist(targets_from, target_thing) - 1
+	. -= clamp(10 * distance , 0, 70)
+
+	//This is in order to make mobs not instantly reaggro on mobs they lost patience on.
+	if(target_thing == target)
+		. -= 60
+
+	//up to 25 points for damage taken from target_thing
+	if(target_memory[target_thing])
+		var/fraction_hp_lost_to_thing = min(target_memory[target_thing] / maxHealth, 1)
+		. += fraction_hp_lost_to_thing * 25
 
 /mob/living/simple_animal/hostile/proc/GiveTarget(new_target)
 	target = new_target
@@ -551,8 +572,6 @@
 		return 1
 
 /mob/living/simple_animal/hostile/proc/LoseTarget()
-	if(target_memory.len > 1)
-		target_memory.Cut()
 	target = null
 	approaching_target = FALSE
 	in_melee = FALSE
@@ -918,12 +937,17 @@
 /mob/living/simple_animal/hostile/proc/GainPatience()
 	if(lose_patience_timeout)
 		LosePatience()
-		lose_patience_timer_id = addtimer(CALLBACK(src, PROC_REF(LoseTarget)), lose_patience_timeout, TIMER_STOPPABLE)
+		lose_patience_timer_id = addtimer(CALLBACK(src, PROC_REF(TryChangeTarget)), lose_patience_timeout, TIMER_STOPPABLE)
 
+/mob/living/simple_animal/hostile/proc/TryChangeTarget()
+	lose_patience_timer_id = null
+	if(!FindTarget())
+		LoseTarget()
 
 /mob/living/simple_animal/hostile/proc/LosePatience()
-	deltimer(lose_patience_timer_id)
-	lose_patience_timer_id = null
+	if(lose_patience_timer_id)
+		deltimer(lose_patience_timer_id)
+		lose_patience_timer_id = null
 
 //These two procs handle losing and regaining search_objects when attacked by a mob
 /mob/living/simple_animal/hostile/proc/LoseSearchObjects()
