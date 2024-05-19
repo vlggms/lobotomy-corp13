@@ -80,6 +80,8 @@
 		burrow_cooldown = world.time + burrow_cooldown_time
 
 /mob/living/simple_animal/hostile/ordeal/amber_bug/AttackingTarget(atom/attacked_target)
+	if(burrowing)
+		return
 	. = ..()
 	if(.)
 		var/dir_to_target = get_dir(get_turf(src), get_turf(attacked_target))

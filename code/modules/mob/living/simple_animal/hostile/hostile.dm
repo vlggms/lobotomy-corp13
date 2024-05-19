@@ -101,6 +101,9 @@
 	if(attack_timer_id)
 		deltimer(attack_timer_id)
 		attack_timer_id = null
+	if(lose_patience_timer_id)
+		deltimer(lose_patience_timer_id)
+		lose_patience_timer_id = null
 	return ..()
 
 /mob/living/simple_animal/hostile/Life()
@@ -131,8 +134,6 @@
 		return FALSE
 	//we look around for potential targets and make it a list for later use.
 	var/list/possible_targets = ListTargets()
-	if(environment_smash)
-		EscapeConfinement()
 	if(AICanContinue(possible_targets))
 		if(!attack_is_on_cooldown)
 			TryAttack()
@@ -145,6 +146,8 @@
 
 /mob/living/simple_animal/hostile/handle_automated_movement()
 	. = ..()
+	if(environment_smash)
+		EscapeConfinement()
 	if(dodging && target && in_melee && isturf(loc) && isturf(target.loc))
 		var/datum/cb = CALLBACK(src, PROC_REF(sidestep))
 		if(sidestep_per_cycle > 1) //For more than one just spread them equally - this could changed to some sensible distribution later
@@ -601,32 +604,39 @@
 /mob/living/simple_animal/hostile/proc/TryAttack(called_by_timer = FALSE)
 	if(called_by_timer)
 		attack_timer_id = null
+	if(QDELETED(src))
+		return
 	if(client || stat != CONSCIOUS || AIStatus != AI_ON || incapacitated() || !targets_from || !isturf(targets_from.loc))
 		attack_is_on_cooldown = FALSE
 		if(attack_timer_id)
 			deltimer(attack_timer_id)
 			attack_timer_id = null
 		return
+	var/atom/attacked_target
+	var/should_gain_patience = FALSE
 	if(target && (target.Adjacent(targets_from) || melee_reach > 1 && can_see(targets_from, target, melee_reach)))
 		//attack target
-		attack_is_on_cooldown = TRUE
-		if(attack_timer_id)
-			deltimer(attack_timer_id)
-			attack_timer_id = null
-		AttackingTarget(target)
-		GainPatience()
+		attacked_target = target
+		should_gain_patience = TRUE
 	else
 		in_melee = FALSE
 		var/list/targets_in_range = PossibleThreats(melee_reach)
 		if(targets_in_range.len > 0)
 			//attack random thing in the list
-			attack_is_on_cooldown = TRUE
-			if(attack_timer_id)
-				deltimer(attack_timer_id)
-				attack_timer_id = null
-			AttackingTarget(pick(targets_in_range))
+			attacked_target = pick(targets_in_range)
 		else
 			attack_is_on_cooldown = FALSE
+
+	if(attacked_target)
+		attack_is_on_cooldown = TRUE
+		if(attack_timer_id)
+			deltimer(attack_timer_id)
+			attack_timer_id = null
+		AttackingTarget(attacked_target)
+		if(QDELETED(src) || stat != CONSCIOUS)
+			return
+		if(should_gain_patience)
+			GainPatience()
 	if(!attack_timer_id)
 		attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack), TRUE), attack_cooldown, TIMER_STOPPABLE)
 
@@ -913,7 +923,7 @@
 
 /mob/living/simple_animal/hostile/proc/LosePatience()
 	deltimer(lose_patience_timer_id)
-
+	lose_patience_timer_id = null
 
 //These two procs handle losing and regaining search_objects when attacked by a mob
 /mob/living/simple_animal/hostile/proc/LoseSearchObjects()
