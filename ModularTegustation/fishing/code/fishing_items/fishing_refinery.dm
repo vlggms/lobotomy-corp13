@@ -7,7 +7,6 @@
 	density = TRUE
 	resistance_flags = INDESTRUCTIBLE
 	var/refine_timer = 2 MINUTES
-	var/timeleft
 	var/loaded = FALSE
 	var/fish_amount = 0
 
