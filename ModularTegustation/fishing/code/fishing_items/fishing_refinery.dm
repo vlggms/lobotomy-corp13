@@ -50,4 +50,3 @@
 		loaded = FALSE
 		new /obj/item/rawpe(get_turf(src))
 		visible_message(span_notice("The refinery finishes refining a box."))
-		return
