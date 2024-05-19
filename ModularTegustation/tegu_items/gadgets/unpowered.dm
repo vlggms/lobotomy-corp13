@@ -606,3 +606,27 @@
 			return
 	return FALSE
 
+//EGO Gift Extractor
+/obj/item/ego_gift_extractor
+	name = "EGO gift extractor"
+	desc = "Unpopular due to its excessive energy use, this device extracts gifts from an Abnormality on demand. One-time use."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "nanoimplant"
+
+/obj/item/ego_gift_extractor/attack(mob/living/simple_animal/hostile/abnormality/target, mob/living/carbon/human/user)
+	if(!isabnormalitymob(target))
+		to_chat(user, span_warning("\"[target]\" isn't an Abnormality."))
+		return
+	if(!target.gift_type)
+		to_chat(user, span_notice("\"[target]\" has no gift extractable."))
+		return
+
+	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.security_positions))
+		to_chat(user, span_notice("The Extractor's light flashes red. You aren't an Agent."))
+		return
+
+	var/datum/ego_gifts/target_gift = new target.gift_type
+	user.Apply_Gift(target_gift)
+	to_chat(user, span_nicegreen("[target.gift_message]"))
+	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
+	qdel(src)
