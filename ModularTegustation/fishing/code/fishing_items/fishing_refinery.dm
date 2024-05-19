@@ -45,7 +45,7 @@
 
 
 /obj/structure/fish_refinery/proc/counter()
-	if(loaded==TRUE)
+	if(loaded)
 		sleep(refine_timer)
 		loaded = FALSE
 		new /obj/item/rawpe(get_turf(src))
