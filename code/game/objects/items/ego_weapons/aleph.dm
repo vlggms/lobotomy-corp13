@@ -453,7 +453,7 @@
 
 /obj/item/ego_weapon/soulmate/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/soulmate/attack(mob/living/target, mob/living/user)
@@ -550,7 +550,7 @@
 	var/canaoe
 
 /obj/item/ego_weapon/space/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)
