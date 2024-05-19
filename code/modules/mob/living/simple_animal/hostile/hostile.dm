@@ -161,26 +161,29 @@
 /mob/living/simple_animal/hostile/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && AIStatus != AI_OFF && !client && user)
 		if(!target)
+			if(AIStatus == AI_IDLE)
+				toggle_ai(AI_ON)
 			FindTarget(list(user), 1)
+		var/add_aggro = 0
+		var/add_damtype
+		if(I)
+			add_aggro = I.force
+			add_damtype = I.damtype
+			if(ishuman(user))
+				var/mob/living/carbon/human/H = user
+				var/justice_mod = 1 + get_modified_attribute_level(H, JUSTICE_ATTRIBUTE) / 100
+				add_aggro *= justice_mod
+			if(istype(I, /obj/item/ego_weapon/))
+				var/obj/item/ego_weapon/EW = I
+				add_aggro *= EW.force_multiplier
 		else
-			var/add_aggro = 0
-			var/add_damtype
-			if(I)
-				add_aggro = I.force
-				add_damtype = I.damtype
-				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
-					var/justice_mod = 1 + get_modified_attribute_level(H, JUSTICE_ATTRIBUTE) / 100
-					add_aggro *= justice_mod
-				if(istype(I, /obj/item/ego_weapon/))
-					var/obj/item/ego_weapon/EW = I
-					add_aggro *= EW.force_multiplier
-			else
-				add_aggro = user.melee_damage_upper
-				if(isanimal(user))
-					var/mob/living/simple_animal/A = user
-					add_damtype = A.melee_damage_type
-			RegisterAggroValue(user, add_aggro, add_damtype)
+			add_aggro = user.melee_damage_upper
+			if(isanimal(user))
+				var/mob/living/simple_animal/A = user
+				add_damtype = A.melee_damage_type
+		RegisterAggroValue(user, add_aggro, add_damtype)
+		if(target == user)
+			GainPatience()
 	return ..()
 
 /mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
@@ -207,8 +210,14 @@
 /mob/living/simple_animal/hostile/attack_animal(mob/living/simple_animal/M, damage)
 	damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 	. = ..()
-	if(.)
+	if(. && stat == CONSCIOUS && AIStatus != AI_OFF && !client)
+		if(!target)
+			if(AIStatus == AI_IDLE)
+				toggle_ai(AI_ON)
+			FindTarget(list(M), TRUE)
 		RegisterAggroValue(M, damage, M.melee_damage_type)
+		if(target == M)
+			GainPatience()
 
 /mob/living/simple_animal/hostile/Move(atom/newloc, dir , step_x , step_y)
 	if(dodging && approaching_target && prob(dodge_prob) && moving_diagonally == 0 && isturf(loc) && isturf(newloc))
