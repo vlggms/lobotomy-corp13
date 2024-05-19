@@ -22,7 +22,7 @@
 
 /obj/structure/fish_refinery/examine(mob/user)
 	. = ..()
-	if(loaded==FALSE)
+	if(!loaded)
 		. += span_notice("There are [fish_amount]/20 fishes in the refinery.")
 	else
 		. += span_notice("The refinery is currently busy refining.")
