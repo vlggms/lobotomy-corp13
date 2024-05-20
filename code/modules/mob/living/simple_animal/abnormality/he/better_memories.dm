@@ -63,6 +63,7 @@
 	if(!IsCombatMap())
 		var/turf/W = pick(GLOB.department_centers)
 		breaching_minion = SpawnMinion(get_turf(W))
+		datum_reference.qliphoth_change(2)
 
 	//--Side Gamemodes stuff--
 	else
