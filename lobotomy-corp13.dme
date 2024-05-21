@@ -3994,6 +3994,7 @@
 #include "ModularTegustation\fishing\code\fishing_items\fishing_cloak.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fishing_hat.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fishing_net.dm"
+#include "ModularTegustation\fishing\code\fishing_items\fishing_refinery.dm"
 #include "ModularTegustation\fishing\code\fishing_items\fishing_rod.dm"
 #include "ModularTegustation\fishing\code\rod_components\_fishing_component.dm"
 #include "ModularTegustation\fishing\code\rod_components\fishing_hooks.dm"
