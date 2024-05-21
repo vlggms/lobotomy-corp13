@@ -435,6 +435,7 @@
 	for (var/mob/living/L in viewers(flash_range,src)) //The actual flashing
 		if (!ishuman(L))
 			continue
+		L.flash_act()
 		L.Paralyze(5 SECONDS) //you better dodge it
 		var/obj/item/held = L.get_active_held_item()
 		L.dropItemToGround(held) //Drops everyone's weapons
