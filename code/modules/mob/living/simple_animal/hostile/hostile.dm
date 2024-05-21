@@ -96,7 +96,7 @@
 	old_rapid_melee = rapid_melee
 	if(!targets_from)
 		targets_from = src
-	target_switch_resistance = clamp(maxHealth * 0.1, 100, 600)
+	target_switch_resistance = clamp(maxHealth * 0.15, 100, 600)
 
 	wanted_objects = typecacheof(wanted_objects)
 
@@ -583,8 +583,8 @@
 
 /mob/living/simple_animal/hostile/proc/GiveTarget(new_target)
 	target = new_target
-	if(!isnum(target_memory[target]))
-		target_memory[target] = 0
+	target_memory.Cut()
+	target_memory[target] = 0
 	LosePatience()
 	if(target != null)
 		GainPatience()
