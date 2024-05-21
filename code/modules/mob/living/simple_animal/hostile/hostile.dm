@@ -81,6 +81,9 @@
 	var/patrol_tries = 0 //max of 5
 	var/patrol_move_timer = null
 
+	/// How willing a mob is to switch targets. More resistance means more aggro is required
+	var/target_switch_resistance
+
 /mob/living/simple_animal/hostile/Initialize()
 	/*Update Speed overrides set speed and sets it
 		to the equivilent of move_to_delay. Basically
@@ -93,6 +96,7 @@
 	old_rapid_melee = rapid_melee
 	if(!targets_from)
 		targets_from = src
+	target_switch_resistance = clamp(maxHealth * 0.1, 100, 600)
 
 	wanted_objects = typecacheof(wanted_objects)
 
@@ -177,6 +181,7 @@
 				var/obj/item/ego_weapon/EW = I
 				add_aggro *= EW.force_multiplier
 		else
+			//this code does not seem to ever get executed
 			add_aggro = user.melee_damage_upper
 			if(isanimal(user))
 				var/mob/living/simple_animal/A = user
@@ -193,17 +198,9 @@
 				FindTarget(list(P.firer), 1)
 			else
 				Goto(P.starting, move_to_delay, 3)
-		//If we have a target register the attacker in our memory.
-		else
-			if(P.firer)
-				RegisterAggroValue(P.firer, P.damage, P.damage_type)
-			//If the projectile had no firer then just list it as nobuddy
-			if(!P.firer)
-				if(target_memory["nobuddy"] > MAX_DAMAGE_SUFFERED)
-					FindTarget()
-			//If our damage value for that person exceeds this number then we consider targeting them.
-			if(target_memory[P.firer] > MAX_DAMAGE_SUFFERED)
-				FindTarget(list(P.firer), 1)
+		//register the attacker in our memory.
+		if(P.firer)
+			RegisterAggroValue(P.firer, P.damage, P.damage_type)
 	DamageEffect(P.damage, P.damage_type)
 	return ..()
 
@@ -523,13 +520,25 @@
 
 // Adds entity to THE LIST OF GRUDGES which is reset upon gaining a new target.
 /mob/living/simple_animal/hostile/proc/RegisterAggroValue(atom/remembered_target, value, damage_type)
-	if(!remembered_target)
-		remembered_target = "nobody"
-	if(!target_memory[remembered_target])
+	if(!remembered_target || !damage_type)
+		return FALSE
+	if(!isnum(target_memory[remembered_target]))
 		target_memory += remembered_target
-	if(damage_type)
+
+	//could potentially add aggro as a mob armor type to also apply aggro damage coeff
+	//also could potentially check for remembered_target's aggro modifiers here such as from armor or status effects
+	if(damage_type == AGGRO_DAMAGE)
+		if(istype(remembered_target, /mob/living/carbon/human))
+			var/mob/living/carbon/human/H = remembered_target
+			var/aggro_stat_modifier = 1 + (get_attribute_level(H, FORTITUDE_ATTRIBUTE) + get_attribute_level(H, PRUDENCE_ATTRIBUTE)) / 200
+			value *= aggro_stat_modifier
+	else
 		value *= damage_coeff.getCoeff(damage_type)
 	target_memory[remembered_target] += value
+
+	if(target && remembered_target != target && target_memory[remembered_target] > target_memory[target] + target_switch_resistance && CanAttack(remembered_target))
+		GiveTarget(remembered_target)
+	return TRUE
 
 /*-------------------\
 |Standard Hate Levels|
@@ -574,6 +583,8 @@
 
 /mob/living/simple_animal/hostile/proc/GiveTarget(new_target)
 	target = new_target
+	if(!isnum(target_memory[target]))
+		target_memory[target] = 0
 	LosePatience()
 	if(target != null)
 		GainPatience()
