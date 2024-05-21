@@ -538,6 +538,7 @@
 
 	if(target && remembered_target != target && target_memory[remembered_target] > target_memory[target] + target_switch_resistance && CanAttack(remembered_target))
 		GiveTarget(remembered_target)
+		target_memory[remembered_target] += value
 	return TRUE
 
 /*-------------------\
