@@ -630,3 +630,34 @@
 	to_chat(user, span_nicegreen("[target.gift_message]"))
 	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
 	qdel(src)
+
+/obj/item/device/Plushie_Extractor
+	name = "Plushie Extractor"
+	desc = "A device used for extracting plush versions of the abnormalities."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "plushie_extractor"
+
+	var/static/abno_plushies = list()
+
+	var/static/list/output = list(
+        // WAW
+        /mob/living/simple_animal/hostile/abnormality/big_bird = /obj/item/toy/plush/bigbird,
+    )
+
+/obj/item/device/Plushie_Extractor/attack(mob/living/simple_animal/hostile/abnormality/I, mob/living/carbon/human/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(istype(I))
+		return
+
+	var/atom/item_out = output[I.type]
+	to_chat(user, span_notice("The device is slowly processing [I] into [initial(item_out.name)]..."))
+	if(!do_after(user, 5 SECONDS))
+		return
+
+	abno_plushies |= user.ckey
+	var/atom/new_item = new item_out(get_turf(user))
+	user.put_in_hands(new_item)
+	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
+	playsound(get_turf(src), 'sound/items/timer.ogg', 50, TRUE)
