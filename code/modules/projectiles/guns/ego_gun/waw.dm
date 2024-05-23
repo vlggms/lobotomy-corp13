@@ -114,6 +114,7 @@
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
 	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
+	var/cached_multiplier
 
 /obj/item/gun/ego_gun/pistol/solemnlament/before_firing(atom/target, mob/user)
 	if(cached_multiplier)
@@ -145,7 +146,7 @@
 	fire_delay = 5
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
-
+	var/cached_multiplier
 	attribute_requirements = list(JUSTICE_ATTRIBUTE = 80)
 
 /obj/item/gun/ego_gun/pistol/solemnvow/before_firing(atom/target, mob/user)
