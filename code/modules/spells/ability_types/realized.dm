@@ -300,12 +300,13 @@
 /* King of Greed - Gold Experience */
 /obj/effect/proc_holder/ability/road_of_gold
 	name = "The Road of Gold"
-	desc = "An ability that teleports you to the nearest non-visible threat."
+	desc = "An ability that teleports you to the nearest non-visible threat.If you use a Gold Rush weapon, you can significantly weaken the enemy for a few seconds."
 	action_icon_state = "gold0"
 	base_icon_state = "gold"
 	cooldown_time = 30 SECONDS
 
 	var/list/spawned_effects = list()
+	var/using_goldrush
 
 /obj/effect/proc_holder/ability/road_of_gold/Perform(mob/living/simple_animal/hostile/target, mob/user)
 	if(!istype(user))
@@ -362,6 +363,10 @@
 		var/obj/item/held = user.get_active_held_item()
 		if(held)
 			held.attack(target, user)
+			if(held == /obj/item/ego_weapon/goldrush/nihil)
+				target.apply_status_effect(/datum/status_effect/GoldStaggered)
+			else if (held == /obj/item/ego_weapon/goldrush)
+				target.apply_status_effect(/datum/status_effect/GoldStaggered)
 	return ..()
 
 /obj/effect/proc_holder/ability/road_of_gold/proc/CleanUp()
@@ -406,6 +411,21 @@
 			KS.layer -= 0.1
 	KS.transform = M
 	return KS
+
+/datum/status_effect/GoldStaggered
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 5 SECONDS
+
+/datum/status_effect/GoldStaggered/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/gold_staggered)
+
+/datum/status_effect/GoldStaggered/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/gold_staggered)
+
 
 /* Servant of Wrath - Wounded Courage */
 /obj/effect/proc_holder/ability/justice_and_balance
@@ -762,7 +782,7 @@
 /datum/status_effect/overheat/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 30)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 40)
 	H.apply_lc_burn(50)
 	var/datum/status_effect/stacking/lc_burn/B = H.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	B.safety = FALSE
@@ -770,7 +790,7 @@
 /datum/status_effect/overheat/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -40)
 	H.remove_status_effect(STATUS_EFFECT_LCBURN)
 
 /* Yang - Duality */
@@ -1073,6 +1093,8 @@
 			continue
 		if(H.stat == DEAD)
 			continue
+		if(H.z != z)
+			continue
 		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
 		to_chat(H, "<span class='nicegreen'>[user]'s prayer was heard!</span>")
 		H.adjustBruteLoss(-100)
@@ -1086,33 +1108,30 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/flesh1
 	duration = 15 SECONDS
+	tick_interval = 3 SECONDS
 
 /atom/movable/screen/alert/status_effect/flesh1
 	name = "A prayer to god"
-	desc = "Decreases damage taken by 25%. \
-	Decreases justice by 80."
+	desc = "You take random damage while praying."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "flesh"
 
 /datum/status_effect/flesh1/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod *= 0.75
-	H.physiology.white_mod *= 0.75
-	H.physiology.black_mod *= 0.75
-	H.physiology.pale_mod *= 0.75
 	ADD_TRAIT(H, TRAIT_IMMOBILIZED, type)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -80)
+
+/datum/status_effect/flesh1/tick()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/damage = pick(damtypes)
+	H.apply_damage(7, damage, null, H.run_armor_check(null, damage), spread_damage = TRUE)
 
 /datum/status_effect/flesh1/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod /= 0.75
-	H.physiology.white_mod /= 0.75
-	H.physiology.black_mod /= 0.75
-	H.physiology.pale_mod /= 0.75
 	REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 80)
 
 /datum/status_effect/flesh2
 	id = "FLESH2"

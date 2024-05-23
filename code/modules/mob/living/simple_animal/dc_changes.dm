@@ -55,3 +55,8 @@
 /datum/dc_change/scanned
 	potency = 1.1
 	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// x1,5 universal modifier, inflicted by Road Of Gold
+/datum/dc_change/gold_staggered
+	potency = 1.5
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)

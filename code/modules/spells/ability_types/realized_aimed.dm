@@ -155,7 +155,7 @@
 		Alt-Click to toggle speech. Crtl-Click to set your own speech."
 	action_icon_state = "arcana0"
 	base_icon_state = "arcana"
-	cooldown_time = 5 MINUTES
+	cooldown_time = 3 MINUTES
 	base_action = /datum/action/spell_action/ability/item/ego_arcana_slave
 
 	var/list/spawned_effects = list()
@@ -215,7 +215,7 @@
 			else
 				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2 - 1]))
 				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2]), 10)
-		if(!Channel(H, 20))
+		if(!Channel(H, 10))
 			CleanUp(user)
 			return
 	var/turf/TT = get_ranged_target_turf_direct(my_turf, target, 60)
