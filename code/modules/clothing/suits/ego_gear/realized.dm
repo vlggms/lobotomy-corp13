@@ -174,7 +174,7 @@ No Ability	250
 	name = "solemn eulogy"
 	desc = "Death is not extinguishing the light, it is putting out the lamp as dawn has come."
 	icon_state = "eulogy"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//No ability
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 70, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)		//Ranged
 
 /obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy
 	name = "our galaxy"
