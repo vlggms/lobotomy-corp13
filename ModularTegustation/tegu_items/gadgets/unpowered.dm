@@ -640,8 +640,27 @@
 	var/static/abno_plushies = list()
 
 	var/static/list/output = list(
-        // WAW
-        /mob/living/simple_animal/hostile/abnormality/big_bird = /obj/item/toy/plush/bigbird,
+        // TETH
+	/mob/living/simple_animal/hostile/abnormality/scorched_girl = /obj/item/toy/plush/scorched,
+
+		//ZAYIN
+
+
+		//HE
+	/mob/living/simple_animal/hostile/abnormality/pinocchio = /obj/item/toy/plush/pinocchio,
+
+		//WAW
+	/mob/living/simple_animal/hostile/abnormality/big_bird = /obj/item/toy/plush/bigbird,
+	/mob/living/simple_animal/hostile/abnormality/wrath_servant = /obj/item/toy/plush/sow,
+	/mob/living/simple_animal/hostile/abnormality/greed_king = /obj/item/toy/plush/kog,
+	/mob/living/simple_animal/hostile/abnormality/despair_knight = /obj/item/toy/plush/kod,
+	/mob/living/simple_animal/hostile/abnormality/big_wolf = /obj/item/toy/plush/big_bad_wolf,
+	/mob/living/simple_animal/hostile/abnormality/hatred_queen = /obj/item/toy/plush/qoh,
+		//ALEPH
+	/mob/living/simple_animal/hostile/abnormality/melting_love = /obj/item/toy/plush/melt,
+	/mob/living/simple_animal/hostile/abnormality/mountain = /obj/item/toy/plush/mosb,
+	/mob/living/simple_animal/hostile/abnormality/nihil = /obj/item/toy/plush/nihil,
+
     )
 
 /obj/item/device/Plushie_Extractor/attack(mob/living/simple_animal/hostile/abnormality/I, mob/living/carbon/human/user)
