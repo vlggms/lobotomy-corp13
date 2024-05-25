@@ -125,14 +125,19 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/turf/target_c = get_turf(src)
 	var/list/turf_list = list()
 	for(var/i = 1 to range_override)
-		turf_list = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
+		turf_list = (target_c.y - i > 0 			? getline(locate(max(target_c.x - i, 1), target_c.y - i, target_c.z), locate(min(target_c.x + i - 1, world.maxx), target_c.y - i, target_c.z)) : list()) +\
+					(target_c.x + i <= world.maxx ? getline(locate(target_c.x + i, max(target_c.y - i, 1), target_c.z), locate(target_c.x + i, min(target_c.y + i - 1, world.maxy), target_c.z)) : list()) +\
+					(target_c.y + i <= world.maxy ? getline(locate(min(target_c.x + i, world.maxx), target_c.y + i, target_c.z), locate(max(target_c.x - i + 1, 1), target_c.y + i, target_c.z)) : list()) +\
+					(target_c.x - i > 0 			? getline(locate(target_c.x - i, min(target_c.y + i, world.maxy), target_c.z), locate(target_c.x - i, max(target_c.y - i + 1, 1), target_c.z)) : list())
 		for(var/turf/open/T in turf_list)
-			var/obj/effect/reusable_visual/S = RVP.NewCultSparks(T, 10)
 			if(faction_check != "apostle")
-				S.color = "#AAFFAA" // Indicating that it's a good thing
+				RVP.NewSparkles(T, 10, "#AAFFAA") // Indicating that it's a good thing
+			else
+				RVP.NewCultSparks(T, 10)
 			for(var/mob/living/L in T)
 				RVP.NewCultIn(T, L.dir)
 				addtimer(CALLBACK(src, PROC_REF(revive_target), L, i, faction_check))
+			CHECK_TICK
 		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_target(mob/living/L, attack_range = 1, faction_check = "apostle")
