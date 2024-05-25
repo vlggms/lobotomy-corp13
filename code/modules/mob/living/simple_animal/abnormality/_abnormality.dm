@@ -144,7 +144,7 @@
 	. = ..()
 	GLOB.abnormality_mob_list -= src
 
-/mob/living/simple_animal/hostile/abnormality/Move()
+/mob/living/simple_animal/hostile/abnormality/Move(turf/newloc, dir, step_x, step_y)
 	if(IsContained()) // STOP STEALING MY FREAKING ABNORMALITIES
 		return FALSE
 	return ..()
@@ -185,7 +185,6 @@
 	datum_reference.console.chem_charges -= 1
 	var/obj/item/reagent_containers/my_container = O
 	HarvestChem(my_container, user)
-	return
 
 /mob/living/simple_animal/hostile/abnormality/can_track(mob/living/user)
 	if((status_flags & GODMODE))

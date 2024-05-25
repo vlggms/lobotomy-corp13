@@ -134,7 +134,10 @@
 	temperature_archived = temperature
 
 /turf/open/archive()
-	air.archive()
+	if(!air)
+		stack_trace("[src] tried to archive null air at [x]x-[y]y-[z]z")
+	else
+		air.archive()
 	archived_cycle = SSair.times_fired
 	temperature_archived = temperature
 
@@ -257,8 +260,7 @@
 	max_share = 0 //Gotta reset our tracker
 	#endif
 
-	for(var/t in adjacent_turfs)
-		var/turf/open/enemy_tile = t
+	for(var/turf/open/enemy_tile in adjacent_turfs)
 
 		if(fire_count <= enemy_tile.current_cycle)
 			continue
@@ -472,8 +474,7 @@
 	var/energy = 0
 	var/heat_cap = 0
 
-	for(var/t in turf_list)
-		var/turf/open/T = t
+	for(var/turf/open/T in turf_list)
 		//Cache?
 		var/datum/gas_mixture/turf/mix = T.air
 		if (roundstart && istype(T.air, /datum/gas_mixture/immutable))
@@ -498,8 +499,7 @@
 			A_gases[id][MOLES] /= turflen
 		A.garbage_collect()
 
-	for(var/t in turf_list)
-		var/turf/open/T = t
+	for(var/turf/open/T in turf_list)
 		if(T.planetary_atmos) //We do this as a hack to try and minimize unneeded excited group spread over planetary turfs
 			T.air.copy_from(SSair.planetary[T.initial_gas_mix]) //Comes with a cost of "slower" drains, but it's worth it
 		else

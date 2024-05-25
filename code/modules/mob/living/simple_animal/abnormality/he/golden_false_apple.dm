@@ -281,7 +281,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
 	is_maggot = TRUE
-	SpeedChange(-1)
+	ChangeMoveToDelayBy(-1)
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/AttackingTarget()//regular attacks or AOE. Determines the outcome for both players and the AI behavior
 	if(!can_act)
@@ -330,7 +330,7 @@
 	victim_name = "Yuri"
 	maxHealth = 1500
 	BecomeRotten()
-	SpeedChange(-0.5)
+	ChangeMoveToDelayBy(-0.5)
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.3))
 	if(H)
 		victim_name = H.real_name

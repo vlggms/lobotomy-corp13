@@ -111,6 +111,7 @@
 	desc = "A machine used to send PE to S-Corp."
 	icon_state = "machineshrimp"
 	crate = /obj/structure/lootcrate/s_corp
+	crate_timer = 120
 
 /obj/structure/pe_sales/w_corp
 	name = "W-Corp Power Input"

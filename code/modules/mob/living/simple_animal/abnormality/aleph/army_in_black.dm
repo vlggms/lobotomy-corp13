@@ -270,7 +270,7 @@ GLOBAL_LIST_EMPTY(army)
 		SetSpeed()//wait for a patrol path. What could possibly go wrong?
 		return
 	var/dist_travelled = LAZYLEN(patrol_path)
-	move_to_delay -= clamp((dist_travelled / 4), 0, 15)//armies that spawn closest to dept centers can actually be suppressed this way, while further ones remain a threat. Math needs tweaking
+	ChangeMoveToDelayBy(-clamp((dist_travelled / 4), 0, 15)) //armies that spawn closest to dept centers can actually be suppressed this way, while further ones remain a threat. Math needs tweaking
 
 /mob/living/simple_animal/hostile/army_enemy/proc/FearEffect()
 	for(var/mob/living/carbon/human/H in view(7, src))

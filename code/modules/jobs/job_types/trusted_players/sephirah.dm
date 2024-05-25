@@ -10,56 +10,59 @@
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER)
 	mapexclude = list("wonderlabs", "mini")
 	job_important = "You are a roleplay role, and may not partake in combat. Assist the manager and roleplay with the agents and clerks"
-	job_notice = "In the gamemaster tab, you may adjust game perimeters. \
-		This is an OOC tool. Do not bring alert to the fact that you can do this IC. Alert any administrators if any IC action is taken against you. \
-		Abusing this will result in a loss of whitelist."
+	job_notice = "\
+		In the gamemaster tab, you may adjust game perimeters. \
+		This is an OOC tool. Do not bring alert to the fact that you can do this IC. \
+		Alert any administrators if any IC action is taken against you. \
+		Abusing this will result in a loss of whitelist.\
+	"
 
 	job_abbreviation = "SEPH"
 
-/datum/job/command/sephirah/after_spawn(mob/living/carbon/human/H, mob/M)
+/datum/job/command/sephirah/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	. = ..()
 	//You're a fucking robot.
-	ADD_TRAIT(H, TRAIT_SANITYIMMUNE, JOB_TRAIT)
+	ADD_TRAIT(outfit_owner, TRAIT_SANITYIMMUNE, JOB_TRAIT)
 
 	//Let'em Grief
-	add_verb(H, /mob/living/carbon/human/proc/RandomAbno)
-	add_verb(H, /mob/living/carbon/human/proc/NextAbno)
-	add_verb(H, /mob/living/carbon/human/proc/SlowGame)
-	add_verb(H, /mob/living/carbon/human/proc/QuickenGame)
-	add_verb(H, /mob/living/carbon/human/proc/WorkMeltIncrease)
-	add_verb(H, /mob/living/carbon/human/proc/WorkMeltDecrease)
-	add_verb(H, /mob/living/carbon/human/proc/MeltIncrease)
-	add_verb(H, /mob/living/carbon/human/proc/MeltDecrease)
-	add_verb(H, /mob/living/carbon/human/proc/GameInfo)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/RandomAbno)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/NextAbno)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/SlowGame)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/QuickenGame)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/WorkMeltIncrease)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/WorkMeltDecrease)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/MeltIncrease)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/MeltDecrease)
+	add_verb(outfit_owner, /mob/living/carbon/human/proc/GameInfo)
 	// a TGUI menu that SHOULD contain all the above actions
-	var/datum/action/sephirah_game_panel/new_action = new(H.mind || H)
-	new_action.Grant(H)
+	var/datum/action/sephirah_game_panel/new_action = new(outfit_owner.mind || outfit_owner)
+	new_action.Grant(outfit_owner)
 
-	H.apply_pref_name("sephirah", M.client)
-	H.name += " - [M.client.prefs.prefered_sephirah_department]"
-	H.real_name += " - [M.client.prefs.prefered_sephirah_department]"
-	for(var/obj/item/card/id/Y in H.contents)
-		Y.registered_name = H.name
+	outfit_owner.apply_pref_name("sephirah", M.client)
+	outfit_owner.name += " - [M.client.prefs.prefered_sephirah_department]"
+	outfit_owner.real_name += " - [M.client.prefs.prefered_sephirah_department]"
+	for(var/obj/item/card/id/Y in outfit_owner.contents)
+		Y.registered_name = outfit_owner.name
 		Y.update_label()
 
 	//You're a robot, man
 	if(M.client.prefs.prefered_sephirah_bodytype == "Box")
-		H.set_species(/datum/species/sephirah)
-		H.dna.features["mcolor"] = sanitize_hexcolor(M.client.prefs.prefered_sephirah_boxcolor)
-		H.update_body()
-		H.update_body_parts()
-		H.update_mutations_overlay() // no hulk lizard
+		outfit_owner.set_species(/datum/species/sephirah)
+		outfit_owner.dna.features["mcolor"] = sanitize_hexcolor(M.client.prefs.prefered_sephirah_boxcolor)
+		outfit_owner.update_body()
+		outfit_owner.update_body_parts()
+		outfit_owner.update_mutations_overlay() // no hulk lizard
 
 	else
-		H.set_species(/datum/species/synth)
+		outfit_owner.set_species(/datum/species/synth)
 
-	H.speech_span = SPAN_ROBOT
+	outfit_owner.speech_span = SPAN_ROBOT
 
 	//Adding huds, blame some guy from at least 3 years ago.
 	var/datum/atom_hud/secsensor = GLOB.huds[DATA_HUD_SECURITY_ADVANCED]
 	var/datum/atom_hud/medsensor = GLOB.huds[DATA_HUD_MEDICAL_ADVANCED]
-	secsensor.add_hud_to(H)
-	medsensor.add_hud_to(H)
+	secsensor.add_hud_to(outfit_owner)
+	medsensor.add_hud_to(outfit_owner)
 
 /datum/outfit/job/sephirah
 	name = "Sephirah"
@@ -68,13 +71,15 @@
 	belt = /obj/item/pda/security
 	ears = /obj/item/radio/headset/heads/manager/alt
 	uniform = /obj/item/clothing/under/rank/rnd/scientist
-	backpack_contents = list()
 	shoes = /obj/item/clothing/shoes/laceup
 	r_pocket = /obj/item/modular_computer/tablet/preset/advanced/command
 	l_pocket = /obj/item/commandprojector
 
+	backpack_contents = list()
+
 GLOBAL_LIST_INIT(sephirah_names, list(
-	"Job", "Lot", "Isaac", "Lazarus", "Gaius", "Abel", "Enoch", "Jescha",))
+	"Job", "Lot", "Isaac", "Lazarus", "Gaius", "Abel", "Enoch", "Jescha"
+))
 
 
 

@@ -1,4 +1,11 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"au" = (
+/obj/machinery/computer/camera_advanced{
+	dir = 4
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/department_main/human)
 "aC" = (
 /turf/closed/indestructible/fakeglass,
 /area/facility_hallway/human)
@@ -24,17 +31,6 @@
 /obj/machinery/scanner_gate/tutorialscanner,
 /turf/open/floor/wood,
 /area/department_main/human)
-"bh" = (
-/obj/structure/fluff/arc{
-	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.";
-	dir = 4;
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
-	icon_state = "sweeper_1";
-	name = "sweeper statue";
-	pixel_x = -3
-	},
-/turf/open/floor/carpet/stellar,
-/area/facility_hallway/human)
 "bj" = (
 /obj/effect/step_trigger/projectile{
 	projectile_dist_y = 1
@@ -52,6 +48,9 @@
 "bv" = (
 /obj/effect/landmark/portal_exit{
 	id = "tutorial3"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -77,8 +76,18 @@
 	name = "tool abnormality information cabinet";
 	pixel_x = 10
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"cf" = (
+/obj/structure/sign/departments/human{
+	pixel_x = -32
+	},
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "cl" = (
 /obj/structure/table/wood,
 /obj/item/paper/guides/jobs/teth{
@@ -89,12 +98,17 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
-"co" = (
-/obj/effect/mob_spawn/human/library{
-	dir = 8
+"cw" = (
+/obj/structure/fluff/arc{
+	desc = "An angelic creature wearing white and golden armor with a cannon-like weapon.";
+	dir = 8;
+	icon = 'ModularTegustation/Teguicons/32x48.dmi';
+	icon_state = "fixer_w";
+	name = "White Fixer statue"
 	},
-/turf/open/floor/wood,
-/area/department_main/human)
+/obj/machinery/light,
+/turf/open/floor/carpet/green,
+/area/facility_hallway/human)
 "dj" = (
 /obj/structure/table/reinforced,
 /obj/item/evidencebag,
@@ -129,7 +143,22 @@
 /turf/open/floor/carpet/black,
 /area/department_main/human)
 "dQ" = (
-/obj/machinery/computer/security,
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/tips{
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
+"eo" = (
+/obj/structure/sign/departments/human{
+	pixel_x = -32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
 "eq" = (
@@ -170,9 +199,16 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
+"fz" = (
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "fH" = (
 /obj/effect/landmark/portal_exit{
 	id = "tutorial1"
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -214,6 +250,9 @@
 /obj/item/megaphone,
 /obj/item/megaphone,
 /obj/item/megaphone,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "hG" = (
@@ -236,6 +275,17 @@
 "iU" = (
 /turf/closed/indestructible/reinforced,
 /area/department_main/human)
+"iY" = (
+/obj/structure/plaque/static_plaque{
+	desc = "Moises Lineman. Karl Sustan.";
+	name = "Employee of the Month Award";
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
 "jp" = (
 /obj/item/kirbyplants/random,
 /turf/open/floor/wood,
@@ -245,6 +295,18 @@
 /obj/item/disk/holodisk/tutorial/meltdown,
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"jz" = (
+/obj/structure/fluff/arc{
+	desc = "A humanoid creature wearing metallic armor. It has bloodied hooks in its hands.";
+	dir = 4;
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	icon_state = "sweeper_1";
+	name = "sweeper statue";
+	pixel_x = -3
+	},
+/obj/machinery/light,
+/turf/open/floor/carpet/stellar,
+/area/facility_hallway/human)
 "ka" = (
 /obj/structure/table/reinforced,
 /obj/item/binoculars,
@@ -252,16 +314,22 @@
 /obj/item/binoculars,
 /obj/item/binoculars,
 /obj/item/binoculars,
-/turf/open/floor/wood,
-/area/department_main/human)
-"kj" = (
-/obj/structure/plaque/static_plaque{
-	desc = "Moises Lineman. Karl Sustan.";
-	name = "Employee of the Month Award";
-	pixel_y = 32
+/obj/machinery/light{
+	dir = 4
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"kl" = (
+/obj/machinery/computer/security,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
+"kC" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "kD" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -281,13 +349,6 @@
 /obj/structure/railing,
 /turf/open/floor/wood,
 /area/facility_hallway/human)
-"lf" = (
-/obj/effect/turf_decal/siding/white,
-/obj/structure/sign/departments/records{
-	pixel_y = 32
-	},
-/turf/open/floor/carpet/black,
-/area/department_main/human)
 "lE" = (
 /obj/machinery/holopad/tutorial{
 	proximity_cooldown_time = 600
@@ -298,15 +359,6 @@
 "lW" = (
 /turf/open/floor/plasteel/dark,
 /area/department_main/human)
-"mt" = (
-/obj/structure/fluff/arc{
-	desc = "A slim robot with a spear in place of its hand.";
-	icon = 'ModularTegustation/Teguicons/32x48.dmi';
-	icon_state = "green_bot";
-	name = "doubt statue"
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/human)
 "mu" = (
 /obj/machinery/holopad/tutorial{
 	proximity_cooldown_time = 600
@@ -315,12 +367,6 @@
 /turf/open/floor/wood,
 /turf/open/floor/wood,
 /area/department_main/human)
-"mM" = (
-/obj/structure/sign/departments/human{
-	pixel_x = -32
-	},
-/turf/open/floor/wood,
-/area/facility_hallway/human)
 "mQ" = (
 /obj/structure/sign/warning/firingrange,
 /turf/closed/indestructible/reinforced,
@@ -350,21 +396,17 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
+"np" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/cyan,
+/area/department_main/human)
 "nz" = (
 /obj/machinery/holopad/tutorial,
 /obj/item/disk/holodisk/tutorial/stats,
 /turf/open/floor/wood,
 /area/department_main/human)
-"nG" = (
-/obj/structure/fluff/arc{
-	desc = "A tiny worm-like creature with tough chitin and a pair of sharp claws.";
-	dir = 4;
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
-	icon_state = "amber_bug";
-	name = "complete food statue"
-	},
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/human)
 "or" = (
 /obj/structure/plasticflaps/opaque,
 /obj/machinery/scanner_gate/tutorialscanner{
@@ -396,6 +438,10 @@
 /obj/item/disk/holodisk/tutorial/info1,
 /turf/open/floor/wood,
 /area/department_main/human)
+"pM" = (
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/department_main/human)
 "qd" = (
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -414,9 +460,8 @@
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
-"qF" = (
-/obj/machinery/vending/boozeomat/all_access,
-/turf/open/floor/wood,
+"rh" = (
+/turf/open/water/deep/freshwater,
 /area/department_main/human)
 "rl" = (
 /obj/machinery/disposal/bin,
@@ -436,6 +481,9 @@
 "rO" = (
 /obj/effect/spawner/randomsnackvend{
 	resistance_flags = 115
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
@@ -458,6 +506,7 @@
 /obj/structure/sign/departments/human{
 	pixel_x = 32
 	},
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/department_main/human)
 "sx" = (
@@ -523,6 +572,12 @@
 /obj/structure/tutorialbox,
 /turf/open/floor/wood,
 /area/department_main/human)
+"tS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/facility_hallway/human)
 "tV" = (
 /obj/effect/turf_decal/bot,
 /turf/open/floor/wood,
@@ -537,16 +592,6 @@
 /turf/open/floor/wood,
 /turf/open/floor/wood,
 /area/department_main/human)
-"ui" = (
-/obj/structure/fluff/arc{
-	desc = "An angelic creature wearing white and golden armor with a cannon-like weapon.";
-	dir = 8;
-	icon = 'ModularTegustation/Teguicons/32x48.dmi';
-	icon_state = "fixer_w";
-	name = "White Fixer statue"
-	},
-/turf/open/floor/carpet/green,
-/area/facility_hallway/human)
 "va" = (
 /obj/item/disk/holodisk/tutorial/department,
 /obj/machinery/holopad/tutorial{
@@ -590,15 +635,18 @@
 "wd" = (
 /turf/open/floor/wood,
 /area/facility_hallway/human)
+"wk" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/open/floor/carpet/cyan,
+/area/department_main/human)
 "wy" = (
 /obj/effect/portal/permanent/one_way{
 	id = "tutorial2"
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
-"wD" = (
-/turf/closed/indestructible/rock,
-/area/department_main/human)
 "wF" = (
 /obj/effect/decal/cleanable/food/plant_smudge,
 /turf/open/floor/plasteel/dark,
@@ -615,6 +663,21 @@
 /turf/open/floor/wood,
 /area/facility_hallway/human)
 "xf" = (
+/turf/open/floor/wood,
+/area/department_main/human)
+"xw" = (
+/obj/effect/mob_spawn/human/library{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"xy" = (
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "xG" = (
@@ -647,6 +710,12 @@
 "zy" = (
 /obj/machinery/door/airlock/highsecurity{
 	name = "Human Resources Department"
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"zE" = (
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -699,6 +768,7 @@
 /obj/item/paper_bin{
 	pixel_y = 5
 	},
+/obj/machinery/light,
 /turf/open/floor/wood,
 /area/department_main/human)
 "AY" = (
@@ -734,6 +804,9 @@
 /area/department_main/human)
 "Cy" = (
 /obj/structure/chair/bronze,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "CG" = (
@@ -770,6 +843,9 @@
 "Di" = (
 /obj/structure/sign/poster/lobotomycorp/egoinfo{
 	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -843,7 +919,20 @@
 	proximity_cooldown_time = 600
 	},
 /obj/item/disk/holodisk/tutorial/basicmechanic7,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
+/area/department_main/human)
+"Gj" = (
+/obj/effect/turf_decal/siding/white,
+/obj/structure/sign/departments/records{
+	pixel_y = 32
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/black,
 /area/department_main/human)
 "Gy" = (
 /obj/item/paper/fluff/info/tutorial/shadow{
@@ -863,11 +952,30 @@
 /obj/item/ego_weapon/tutorial/pale,
 /obj/item/ego_weapon/tutorial/pale,
 /obj/item/ego_weapon/tutorial/pale,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"GG" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/levels{
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "GO" = (
 /obj/structure/sign/poster/lobotomycorp/qliphoth,
 /turf/closed/indestructible/reinforced,
+/area/facility_hallway/human)
+"GY" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
 "Ha" = (
 /obj/structure/sign/poster/lobotomycorp/joinforces,
@@ -907,6 +1015,9 @@
 	name = "he abnormality information cabinet";
 	pixel_x = 10
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "IC" = (
@@ -929,6 +1040,19 @@
 /turf/open/floor/wood,
 /turf/open/floor/wood,
 /area/department_main/human)
+"Jx" = (
+/obj/structure/fluff/arc{
+	desc = "A tiny worm-like creature with tough chitin and a pair of sharp claws.";
+	dir = 4;
+	icon = 'ModularTegustation/Teguicons/tegumobs.dmi';
+	icon_state = "amber_bug";
+	name = "complete food statue"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/orange,
+/area/facility_hallway/human)
 "Jz" = (
 /obj/machinery/holopad/tutorial{
 	proximity_cooldown_time = 1200
@@ -946,6 +1070,9 @@
 /obj/structure/sign/poster/official/help_others{
 	pixel_y = 31
 	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "JT" = (
@@ -959,6 +1086,16 @@
 	proximity_cooldown_time = 600
 	},
 /obj/item/disk/holodisk/tutorial/basicmechanic1,
+/turf/open/floor/wood,
+/area/department_main/human)
+"JZ" = (
+/obj/structure/table/reinforced,
+/obj/item/paper/fluff/tutorial/damage{
+	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/wood,
 /area/department_main/human)
 "Kd" = (
@@ -1001,11 +1138,34 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
+"LX" = (
+/obj/effect/spawner/randomcolavend,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/wood,
+/area/department_main/human)
+"Mo" = (
+/obj/effect/light_emitter{
+	light_power = 4;
+	light_range = 25;
+	set_cap = 3;
+	set_luminosity = 24
+	},
+/turf/open/water/deep/freshwater,
+/area/department_main/human)
+"Mw" = (
+/obj/structure/sign/departments/human{
+	pixel_y = -32
+	},
+/obj/machinery/light,
+/turf/open/floor/plasteel/dark,
+/area/facility_hallway/human)
 "MA" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/step_trigger/projectile{
-	projectile_dist_y = -1;
-	projectile_dir = "NORTH"
+	projectile_dir = "NORTH";
+	projectile_dist_y = -1
 	},
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -1051,17 +1211,32 @@
 /obj/machinery/regenerator/tutorial,
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
+"OU" = (
+/turf/open/space/basic,
+/area/department_main/human)
 "Pc" = (
 /obj/machinery/bookbinder,
 /turf/open/floor/wood,
 /area/department_main/human)
 "Pk" = (
 /obj/item/food/spiderling{
-	pixel_y = 15;
-	pixel_x = -13
+	pixel_x = -13;
+	pixel_y = 15
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/human)
+"Pp" = (
+/obj/structure/fluff/arc{
+	desc = "A slim robot with a spear in place of its hand.";
+	icon = 'ModularTegustation/Teguicons/32x48.dmi';
+	icon_state = "green_bot";
+	name = "doubt statue"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/carpet/green,
+/area/facility_hallway/human)
 "Pt" = (
 /obj/effect/portal/permanent/one_way{
 	id = "tutorial1"
@@ -1077,9 +1252,20 @@
 /obj/item/disk/holodisk/tutorial/basicmechanic6,
 /turf/open/floor/wood,
 /area/department_main/human)
+"PX" = (
+/obj/machinery/vending/boozeomat/all_access,
+/obj/machinery/light,
+/turf/open/floor/wood,
+/area/department_main/human)
 "Qf" = (
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
+"Qh" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/open/floor/carpet/cyan,
+/area/department_main/human)
 "Ql" = (
 /turf/open/floor/carpet/cyan,
 /area/department_main/human)
@@ -1154,6 +1340,12 @@
 /obj/item/paper/guides/jobs/zayin,
 /turf/open/floor/wood,
 /area/department_main/human)
+"Tu" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/open/floor/plasteel/dark,
+/area/department_main/human)
 "Tz" = (
 /obj/machinery/cryopod,
 /turf/open/floor/wood,
@@ -1189,8 +1381,8 @@
 "UF" = (
 /obj/effect/turf_decal/arrows/red{
 	dir = 4;
-	pixel_y = -1;
-	pixel_x = -5
+	pixel_x = -5;
+	pixel_y = -1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -1218,6 +1410,9 @@
 /obj/structure/table/reinforced,
 /obj/item/paper/guides/jobs/teth/lore{
 	anchored = 1
+	},
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -1274,8 +1469,8 @@
 "Xt" = (
 /obj/structure/plasticflaps,
 /obj/effect/step_trigger/projectile{
-	projectile_dist_y = 1;
-	projectile_dist_x = 1
+	projectile_dist_x = 1;
+	projectile_dist_y = 1
 	},
 /turf/open/floor/wood,
 /area/department_main/human)
@@ -1367,12 +1562,19 @@
 /area/department_main/human)
 "Zw" = (
 /obj/machinery/computer/abnormality/tutorial,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
 "ZF" = (
 /obj/effect/landmark/abnormality_spawn/tutorial/cube,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/human)
+"ZG" = (
+/obj/machinery/light,
+/turf/open/floor/carpet/cyan,
+/area/department_main/human)
 "ZI" = (
 /obj/structure/railing/corner,
 /obj/structure/sign/ordealmonitor{
@@ -1381,9 +1583,9 @@
 /turf/open/floor/wood,
 /area/facility_hallway/human)
 "ZU" = (
-/obj/structure/table/reinforced,
-/obj/item/paper/fluff/tutorial/tips{
-	anchored = 1
+/obj/machinery/cryopod,
+/obj/machinery/light{
+	dir = 1
 	},
 /turf/open/floor/wood,
 /area/facility_hallway/human)
@@ -3498,7 +3700,7 @@ kD
 td
 WU
 PN
-xf
+pM
 iU
 XL
 XL
@@ -3687,7 +3889,7 @@ iU
 iU
 iU
 iU
-mU
+GG
 xf
 xf
 iU
@@ -3802,7 +4004,7 @@ zS
 Xt
 iU
 vw
-xf
+zE
 kD
 xf
 iU
@@ -3891,7 +4093,7 @@ iU
 xf
 xf
 Ha
-mU
+GG
 xf
 xf
 iU
@@ -4002,7 +4204,7 @@ XL
 XL
 XL
 iU
-lW
+Tu
 MA
 MS
 Pv
@@ -4091,7 +4293,7 @@ XL
 XL
 XL
 iU
-Xy
+JZ
 kD
 pp
 iU
@@ -4399,7 +4601,7 @@ XL
 iU
 Di
 xf
-xf
+pM
 ZZ
 Zi
 kD
@@ -4410,7 +4612,7 @@ XL
 XL
 XL
 iU
-VW
+LX
 Pc
 bp
 iU
@@ -4520,7 +4722,7 @@ iU
 iU
 iU
 iU
-xf
+zE
 xf
 dj
 iU
@@ -4720,7 +4922,7 @@ xf
 xf
 xf
 rY
-xf
+xy
 xf
 xf
 XM
@@ -5099,7 +5301,7 @@ XL
 XL
 XL
 sE
-Qf
+GY
 Qf
 Qf
 sE
@@ -5110,7 +5312,7 @@ iU
 rO
 xf
 xf
-Ql
+Qh
 CK
 xf
 Ql
@@ -5307,9 +5509,9 @@ Qf
 tc
 Qf
 sE
-Qf
+GY
 FC
-UD
+Mw
 iU
 xf
 Ql
@@ -5323,7 +5525,7 @@ iU
 iU
 iU
 iU
-xf
+zE
 kD
 xf
 iU
@@ -5419,7 +5621,7 @@ xf
 Jz
 xf
 Ql
-Ql
+ZG
 iU
 iU
 dA
@@ -5711,18 +5913,18 @@ XL
 XL
 XL
 sE
-sE
-sE
-sE
+GY
+Qf
+Qf
 sE
 Qf
 Qf
 Qf
 iU
-Ql
+np
 Gy
 Eu
-Ql
+wk
 JT
 mY
 Oz
@@ -5814,7 +6016,7 @@ XL
 XL
 sE
 Qf
-Qf
+Zg
 Qf
 sE
 Qf
@@ -5916,12 +6118,12 @@ XL
 XL
 sE
 Qf
-Zg
+tc
 Qf
 sE
+GY
 Qf
-Qf
-Qf
+fz
 sE
 XL
 XL
@@ -6017,9 +6219,9 @@ XL
 XL
 XL
 sE
-Qf
-tc
-Qf
+XP
+XP
+XP
 sE
 Qf
 Qf
@@ -6085,108 +6287,6 @@ XL
 XL
 "}
 (47,1,1) = {"
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-sE
-XP
-XP
-XP
-sE
-Qf
-Qf
-Qf
-sE
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-"}
-(48,1,1) = {"
 XL
 XL
 XL
@@ -6288,7 +6388,7 @@ XL
 XL
 XL
 "}
-(49,1,1) = {"
+(48,1,1) = {"
 XL
 XL
 XL
@@ -6390,6 +6490,108 @@ XL
 XL
 XL
 "}
+(49,1,1) = {"
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+sE
+GY
+Qf
+Qf
+sE
+Qf
+Qf
+Qf
+sE
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+"}
 (50,1,1) = {"
 XL
 XL
@@ -6425,9 +6627,9 @@ XL
 XL
 XL
 sE
-sE
-sE
-sE
+Qf
+zV
+Qf
 sE
 Qf
 Qf
@@ -6528,13 +6730,13 @@ XL
 XL
 sE
 Qf
-Qf
-Qf
-sE
-Qf
-Qf
+tc
 Qf
 sE
+GY
+Qf
+fz
+sE
 XL
 XL
 XL
@@ -6544,13 +6746,13 @@ XL
 XL
 XL
 XL
-wD
-wD
-wD
-wD
-wD
-wD
-wD
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -6629,9 +6831,9 @@ XL
 XL
 XL
 sE
-Qf
-zV
-Qf
+XP
+XP
+XP
 sE
 Qf
 Qf
@@ -6645,19 +6847,19 @@ XL
 XL
 XL
 XL
-iU
-iU
-SJ
-SJ
-SJ
-SJ
-SJ
-iU
-iU
-iU
-iU
-iU
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -6731,14 +6933,14 @@ XL
 XL
 XL
 sE
+Zw
+Ec
 Qf
-tc
+zL
+Qf
+Qf
 Qf
 sE
-Qf
-Qf
-Qf
-sE
 XL
 XL
 XL
@@ -6747,19 +6949,19 @@ XL
 XL
 XL
 XL
-iU
-VZ
-Yy
-xf
-jp
-xf
-iO
-iO
-SJ
-Sd
-Sd
-Sd
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -6833,9 +7035,9 @@ XL
 XL
 XL
 sE
-XP
-XP
-XP
+sE
+sE
+sE
 sE
 Qf
 Qf
@@ -6849,19 +7051,19 @@ XL
 XL
 XL
 XL
-iU
-Ev
-Yy
-xf
-xf
-xf
-rL
-AY
-SJ
-Yl
-Yl
-Yl
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -6935,10 +7137,10 @@ XL
 XL
 XL
 sE
-Zw
-Ec
+GY
 Qf
-zL
+Qf
+sE
 Qf
 tc
 Qf
@@ -6951,19 +7153,19 @@ XL
 XL
 XL
 XL
-iU
-iU
-lf
-Ql
-sJ
-Ql
-DF
-rL
-SJ
-xf
-xf
-xf
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7037,9 +7239,9 @@ XL
 XL
 XL
 sE
-sE
-sE
-sE
+Qf
+ZF
+Qf
 sE
 Qf
 Qf
@@ -7053,19 +7255,19 @@ XL
 XL
 XL
 XL
-iU
-VZ
-Yy
-Ql
-dm
-Ql
-Yl
-Yl
-SJ
-xf
-IC
-sS
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7139,14 +7341,14 @@ XL
 XL
 XL
 sE
-sE
-sE
-sE
-sE
 Qf
-Qf
+tc
 Qf
 sE
+GY
+Qf
+fz
+sE
 XL
 XL
 XL
@@ -7155,19 +7357,19 @@ XL
 XL
 XL
 XL
-iU
-Ev
-Yy
-Ql
-xG
-Ql
-xf
-xf
-Aq
-xf
-IC
-AP
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7241,9 +7443,9 @@ XL
 XL
 XL
 sE
-Qf
-Qf
-Qf
+XP
+XP
+XP
 sE
 Qf
 Qf
@@ -7257,19 +7459,19 @@ XL
 XL
 XL
 XL
-iU
-iU
-lf
-Ql
-Ql
-Ql
-iO
-iO
-SJ
-xf
-IC
-sS
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7343,14 +7545,14 @@ XL
 XL
 XL
 sE
+Zw
+nm
 Qf
-ZF
+zL
+Qf
+Qf
 Qf
 sE
-Qf
-Qf
-Qf
-sE
 XL
 XL
 XL
@@ -7359,19 +7561,19 @@ XL
 XL
 XL
 XL
-iU
-VZ
-Yy
-Ql
-yu
-Ql
-rL
-DF
-SJ
-sO
-xf
-qF
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7445,13 +7647,13 @@ XL
 XL
 XL
 sE
-Qf
-tc
-Qf
 sE
-Qf
-Qf
-Qf
+sE
+sE
+sE
+sE
+aF
+sE
 sE
 XL
 XL
@@ -7461,19 +7663,19 @@ XL
 XL
 XL
 XL
-iU
-fd
-qe
-Ql
-Ql
-Ql
-AY
-rL
-iU
-iU
-iU
-iU
-iU
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7546,14 +7748,14 @@ XL
 XL
 XL
 XL
+XL
+XL
+XL
+XL
 sE
-XP
-XP
-XP
-sE
-Qf
-Qf
-Qf
+eo
+wd
+cf
 sE
 XL
 XL
@@ -7563,21 +7765,21 @@ XL
 XL
 XL
 XL
-iU
-iU
-kj
-Ql
-Na
-Ql
-Yl
-Yl
-iU
-Nx
-iU
 XL
 XL
 XL
 XL
+XL
+XL
+XL
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 XL
 XL
 XL
@@ -7648,15 +7850,21 @@ XL
 XL
 XL
 XL
+XL
+XL
+XL
+XL
 sE
-Zw
-nm
-Qf
-zL
-Qf
-Qf
-Qf
+wd
+jv
+wd
 sE
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7666,21 +7874,15 @@ XL
 XL
 XL
 iU
-gq
-xf
-Ql
-cl
-Ql
-xf
-xf
-dL
-En
 iU
-XL
-XL
-XL
-XL
-XL
+rh
+rh
+rh
+rh
+rh
+rh
+iU
+iU
 XL
 XL
 XL
@@ -7750,15 +7952,21 @@ XL
 XL
 XL
 XL
+XL
+XL
+XL
+XL
 sE
+ZI
+wL
+Sk
 sE
-sE
-sE
-sE
-sE
-aF
-sE
-sE
+XL
+XL
+XL
+XL
+XL
+XL
 XL
 XL
 XL
@@ -7768,21 +7976,15 @@ XL
 XL
 XL
 iU
-gq
-xf
-Ql
-Ks
-Ql
-xf
-VW
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
 iU
-Yw
-iU
-XL
-XL
-XL
-XL
-XL
 XL
 XL
 XL
@@ -7857,9 +8059,9 @@ XL
 XL
 XL
 sE
-mM
-wd
-mM
+lc
+Ud
+IK
 sE
 XL
 XL
@@ -7869,24 +8071,24 @@ XL
 XL
 XL
 XL
-iU
-gq
-xf
-xf
-xf
-xf
-xf
-bl
+XL
+XL
+XL
+XL
+XL
 iU
 iU
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
 iU
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
 XL
 XL
 XL
@@ -7959,9 +8161,9 @@ XL
 XL
 XL
 sE
-wd
-jv
-wd
+zF
+nd
+YQ
 sE
 XL
 XL
@@ -7971,24 +8173,24 @@ XL
 XL
 XL
 XL
+XL
+XL
+XL
+XL
+XL
 iU
-co
-xf
-Lr
-CG
-Lr
-xf
-HS
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
 iU
-dt
-iU
-XL
-XL
-XL
-XL
-XL
-XL
-XL
 XL
 XL
 XL
@@ -8061,9 +8263,9 @@ XL
 XL
 XL
 sE
-ZI
-wL
-Sk
+wd
+wd
+wd
 sE
 XL
 XL
@@ -8073,24 +8275,24 @@ XL
 XL
 XL
 XL
-iU
-iU
-kI
-iU
-iU
-iU
-kI
-iU
-iU
-iU
-iU
 XL
 XL
 XL
 XL
 XL
-XL
-XL
+iU
+rh
+rh
+rh
+rh
+rh
+Mo
+rh
+rh
+rh
+rh
+rh
+iU
 XL
 XL
 XL
@@ -8163,9 +8365,9 @@ XL
 XL
 XL
 sE
-lc
-Ud
-IK
+tS
+wd
+kC
 sE
 XL
 XL
@@ -8175,24 +8377,24 @@ XL
 XL
 XL
 XL
+XL
+XL
+XL
+XL
+XL
 iU
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
 iU
-xf
-iO
-iU
-iO
-xf
-iU
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
 XL
 XL
 XL
@@ -8262,12 +8464,14 @@ XL
 XL
 XL
 XL
-XL
-XL
 sE
-zF
-nd
-YQ
+sE
+sE
+sE
+Xq
+sE
+sE
+sE
 sE
 XL
 XL
@@ -8277,25 +8481,23 @@ XL
 XL
 XL
 XL
+XL
+XL
 iU
 iU
-wb
-IM
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
 iU
-IM
-eq
 iU
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
 XL
 XL
 XL
@@ -8364,12 +8566,14 @@ XL
 XL
 XL
 XL
-XL
-XL
 sE
+Jx
+aC
+UO
 wd
-wd
-wd
+UO
+aC
+jz
 sE
 XL
 XL
@@ -8379,26 +8583,24 @@ XL
 XL
 XL
 XL
+XL
 iU
 iU
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
 iU
 iU
-iU
-iU
-iU
-iU
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
 XL
 XL
 XL
@@ -8466,12 +8668,14 @@ XL
 XL
 XL
 XL
-XL
-XL
 sE
+MH
+aC
 wd
+sW
 wd
-wd
+aC
+CI
 sE
 XL
 XL
@@ -8482,25 +8686,23 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+rh
+iU
 XL
 XL
 XL
@@ -8569,14 +8771,14 @@ XL
 XL
 XL
 sE
+Pp
+aC
+RK
+wd
+RK
+aC
+cw
 sE
-sE
-sE
-Xq
-sE
-sE
-sE
-sE
 XL
 XL
 XL
@@ -8586,23 +8788,23 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+iU
+iU
+iU
+iU
+SJ
+SJ
+SJ
+SJ
+SJ
+iU
+iU
+iU
+iU
+iU
+iU
 XL
 XL
 XL
@@ -8671,13 +8873,13 @@ XL
 XL
 XL
 sE
-nG
-aC
-UO
-wd
-UO
-aC
-bh
+sE
+sE
+sE
+Xq
+sE
+sE
+sE
 sE
 XL
 XL
@@ -8691,20 +8893,20 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+OU
+iU
+VZ
+Yy
+xf
+jp
+xf
+iO
+iO
+SJ
+Sd
+Sd
+au
+iU
 XL
 XL
 XL
@@ -8772,14 +8974,12 @@ XL
 XL
 XL
 XL
+XL
+XL
 sE
-MH
-aC
 wd
-sW
 wd
-aC
-CI
+wd
 sE
 XL
 XL
@@ -8796,17 +8996,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+Ev
+Yy
+xf
+xf
+xf
+rL
+AY
+SJ
+Yl
+Yl
+Yl
+iU
 XL
 XL
 XL
@@ -8874,14 +9076,12 @@ XL
 XL
 XL
 XL
+XL
+XL
 sE
-mt
-aC
-RK
+kl
+va
 wd
-RK
-aC
-ui
 sE
 XL
 XL
@@ -8898,17 +9098,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+Gj
+Ql
+sJ
+Ql
+DF
+rL
+SJ
+xf
+xf
+xf
+iU
 XL
 XL
 XL
@@ -8976,14 +9178,12 @@ XL
 XL
 XL
 XL
+XL
+XL
 sE
-sE
-sE
-sE
-Xq
-sE
-sE
-sE
+wd
+wd
+wd
 sE
 XL
 XL
@@ -9000,17 +9200,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+VZ
+Yy
+Ql
+dm
+Ql
+Yl
+Yl
+SJ
+xf
+IC
+sS
+iU
 XL
 XL
 XL
@@ -9081,9 +9283,9 @@ XL
 XL
 XL
 sE
-wd
-wd
-wd
+sE
+Xq
+sE
 sE
 XL
 XL
@@ -9100,19 +9302,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+Ev
+Yy
+Ql
+xG
+Ql
+xf
+xf
+Aq
+xf
+IC
+AP
+iU
 XL
 XL
 XL
@@ -9184,8 +9386,11 @@ XL
 XL
 sE
 dQ
-va
 wd
+wd
+sE
+sE
+sE
 sE
 XL
 XL
@@ -9199,22 +9404,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+Gj
+Ql
+Ql
+Ql
+iO
+iO
+SJ
+xf
+IC
+sS
+iU
 XL
 XL
 XL
@@ -9286,8 +9488,11 @@ XL
 XL
 sE
 wd
+Au
 wd
-wd
+or
+fJ
+wy
 sE
 XL
 XL
@@ -9301,22 +9506,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+VZ
+Yy
+Ql
+yu
+Ql
+rL
+DF
+SJ
+sO
+xf
+PX
+iU
 XL
 XL
 XL
@@ -9387,10 +9589,13 @@ XL
 XL
 XL
 sE
+wd
+wd
+wd
 sE
-Xq
 sE
 sE
+sE
 XL
 XL
 XL
@@ -9403,22 +9608,19 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+fd
+qe
+Ql
+Ql
+Ql
+AY
+rL
+iU
+iU
+iU
+iU
+iU
 XL
 XL
 XL
@@ -9490,11 +9692,8 @@ XL
 XL
 sE
 ZU
-wd
-wd
-sE
-sE
-sE
+Tz
+Tz
 sE
 XL
 XL
@@ -9511,14 +9710,17 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+iY
+Ql
+Na
+Ql
+Yl
+Yl
+iU
+Nx
+iU
 XL
 XL
 XL
@@ -9591,12 +9793,9 @@ XL
 XL
 XL
 sE
-wd
-Au
-wd
-or
-fJ
-wy
+sE
+sE
+sE
 sE
 XL
 XL
@@ -9613,14 +9812,17 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+gq
+xf
+Ql
+cl
+Ql
+xf
+xf
+dL
+En
+iU
 XL
 XL
 XL
@@ -9692,14 +9894,6 @@ XL
 XL
 XL
 XL
-sE
-wd
-wd
-wd
-sE
-sE
-sE
-sE
 XL
 XL
 XL
@@ -9720,9 +9914,17 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
+iU
+gq
+xf
+Ql
+Ks
+Ql
+xf
+VW
+iU
+Yw
+iU
 XL
 XL
 XL
@@ -9794,11 +9996,6 @@ XL
 XL
 XL
 XL
-sE
-Tz
-Tz
-Tz
-sE
 XL
 XL
 XL
@@ -9819,12 +10016,17 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+gq
+xf
+xf
+xf
+xf
+xf
+bl
+iU
+iU
+iU
 XL
 XL
 XL
@@ -9896,11 +10098,6 @@ XL
 XL
 XL
 XL
-sE
-sE
-sE
-sE
-sE
 XL
 XL
 XL
@@ -9921,12 +10118,17 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+xw
+xf
+Lr
+CG
+Lr
+xf
+HS
+iU
+dt
+iU
 XL
 XL
 XL
@@ -10018,17 +10220,17 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+kI
+iU
+iU
+iU
+kI
+iU
+iU
+iU
+iU
 XL
 XL
 XL
@@ -10120,14 +10322,14 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+xf
+iO
+iU
+iO
+xf
+iU
 XL
 XL
 XL
@@ -10222,14 +10424,14 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+wb
+IM
+iU
+IM
+eq
+iU
 XL
 XL
 XL
@@ -10324,14 +10526,14 @@ XL
 XL
 XL
 XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
-XL
+iU
+iU
+iU
+iU
+iU
+iU
+iU
+iU
 XL
 XL
 XL

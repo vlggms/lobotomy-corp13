@@ -43,16 +43,6 @@
 	. = ..()
 	AddComponent(/datum/component/grillable, /obj/item/food/carpmeat/icantbeliveitsnotcarp, rand(30 SECONDS, 40 SECONDS), TRUE)
 
-/obj/item/food/fishfingers
-	name = "fish fingers"
-	desc = "A finger of fish."
-	icon_state = "fishfingers"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
-	bite_consumption = 1
-	tastes = list("fish" = 1, "breadcrumbs" = 1)
-	foodtypes = MEAT
-	w_class = WEIGHT_CLASS_SMALL
-
 /obj/item/food/fishandchips
 	name = "fish and chips"
 	desc = "I do say so myself chap."
@@ -60,34 +50,6 @@
 	food_reagents = list(/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/protein = 5, /datum/reagent/consumable/nutriment/vitamin = 2)
 	tastes = list("fish" = 1, "chips" = 1)
 	foodtypes = MEAT | VEGETABLES | FRIED
-
-/obj/item/food/fishfry
-	name = "fish fry"
-	desc = "All that and no bag of chips..."
-	icon_state = "fishfry"
-	food_reagents = list (/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/nutriment/vitamin = 3)
-	tastes = list("fish" = 1, "pan seared vegtables" = 1)
-	foodtypes = MEAT | VEGETABLES | FRIED
-	w_class = WEIGHT_CLASS_SMALL
-
-/obj/item/food/cooked_fish
-	name = "cooked fish"
-	desc = "A unbutchered fish thats been cooked."
-	icon_state = "punishedfish"
-	food_reagents = list (/datum/reagent/consumable/nutriment = 3, /datum/reagent/consumable/nutriment/vitamin = 1, /datum/reagent/consumable/cooking_oil = 2)
-	tastes = list("fish" = 1, "crunchy" = 1)
-	foodtypes = MEAT
-	w_class = WEIGHT_CLASS_SMALL
-
-//For some reason Sashimi cant be consumed if created from processing. So there has to be a recipes. -IP
-/obj/item/food/sashimi
-	name = "sashimi"
-	desc = "Its just cut up fish right?"
-	icon_state = "sashimi"
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 1, /datum/reagent/consumable/capsaicin = 1, /datum/reagent/consumable/nutriment/vitamin = 3)
-	tastes = list("fish" = 1, "hot peppers" = 1)
-	foodtypes = MEAT
-	w_class = WEIGHT_CLASS_TINY
 
 ////////////////////////////////////////////MEATS AND ALIKE////////////////////////////////////////////
 

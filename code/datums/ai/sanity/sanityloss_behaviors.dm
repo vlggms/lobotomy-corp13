@@ -424,9 +424,6 @@
 			controller.pathing_attempts = 0
 			controller.current_path.Cut()
 			finish_action(controller, TRUE)
-			if(istype(controller, /datum/ai_controller/insane/murder))
-				var/datum/ai_controller/insane/murder/M = controller
-				M.FindEnemies()
 		return FALSE
 	// Movement
 	if(LAZYLEN(controller.current_path))
@@ -490,17 +487,7 @@
 	// Same as the above insanity, but they look for a target between moves.
 
 /datum/ai_behavior/insanity_wander/murder_wander/PreMoveCheck(datum/ai_controller/insane/murder/controller, mob/living/living_pawn)
-	for(var/mob/living/L in livinginview(9, living_pawn))
-		if(L == living_pawn)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(!isturf(L.loc) && !ismecha(L.loc))
-			continue
-		if(living_pawn.see_invisible < L.invisibility)
-			continue
+	if(controller.FindEnemies())
 		return FALSE
 	return ..()
 

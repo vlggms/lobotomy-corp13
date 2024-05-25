@@ -34,8 +34,22 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 
 			//R-Corp stuff.
 			if("rcorp")
-				addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
-				to_chat(world, span_userdanger("Round will end in a draw after 40 minutes.</span>"))
+				switch(GLOB.rcorp_objective)
+					if("payload_abno")
+						addtimer(CALLBACK(src, PROC_REF(endroundRcorp), "Abnormalities have failed to escort the specimen to the destination."), 40 MINUTES)
+						to_chat(world, span_userdanger("Round will end in an R-Corp victory after 40 minutes."))
+						var/start_delay = 6 MINUTES
+						addtimer(CALLBACK(src, PROC_REF(StartPayload)), start_delay)
+						PayloadFindPath(start_delay)
+					if("payload_rcorp")
+						addtimer(CALLBACK(src, PROC_REF(endroundRcorp), "Rcorp has failed to destroy the mission objective."), 40 MINUTES)
+						to_chat(world, span_userdanger("Round will end in an abnormality victory after 40 minutes."))
+						var/start_delay = 3 MINUTES
+						addtimer(CALLBACK(src, PROC_REF(StartPayload)), start_delay)
+						PayloadFindPath(start_delay)
+					else
+						addtimer(CALLBACK(src, PROC_REF(drawround)), 40 MINUTES)
+						to_chat(world, span_userdanger("Round will end in a draw after 40 minutes."))
 				addtimer(CALLBACK(src, PROC_REF(rcorp_announce)), 3 MINUTES)
 
 			//Limbus Labs
@@ -78,6 +92,10 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	SSticker.force_ending = 1
 	to_chat(world, span_userdanger("Shift has ended."))
 
+/datum/game_mode/combat/proc/endroundRcorp(text)
+	SSticker.force_ending = 1
+	to_chat(world, span_userdanger(text))
+
 /datum/game_mode/combat/proc/roundendwarning()
 	switch (SSmaptype.maptype)
 		if("limbus_labs")
@@ -104,6 +122,21 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 			announcement_type = "Intelligence has located a golden bough in the vicinity. You are to collect it and wipe all resistance."
 		if("vip")
 			announcement_type = "Intelligence has located a highly intelligent target in the vicinity. Destroy it at all costs."
+		if("payload_rcorp")
+			announcement_type = "Intelligence has located an entrance to a former L corp facility. Detonate the charge to bury it and prevent further specimens from escaping."
+		if("payload_abno")
+			announcement_type = "Intelligence has located a dangerous specimen moving towards your location. Prevent it from escaping at all costs."
 	minor_announce("[announcement_type]" , "R-Corp Intelligence Office")
 
+/datum/game_mode/combat/proc/StartPayload()
+	if(!GLOB.rcorp_payload)
+		CRASH("No payload somehow")
+	var/mob/payload/P = GLOB.rcorp_payload
+	P.ready_to_move = TRUE
 
+/datum/game_mode/combat/proc/PayloadFindPath(delay)
+	var/mob/payload/P = GLOB.rcorp_payload
+	if(!P)
+		CRASH("No payload somehow, possibly no landmark")
+	P.start_delay = delay
+	P.GetPath()
