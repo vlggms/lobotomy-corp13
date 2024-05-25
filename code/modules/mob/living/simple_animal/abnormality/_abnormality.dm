@@ -115,6 +115,13 @@
 	/// Offset for secret skins in the Y axis
 	var/secret_vertical_offset = 0
 
+	var/hostile_icon
+	var/hostile_icon_living
+	var/hostile_pixel_x
+	var/hostile_base_pixel_x
+	var/hostile_pixel_y
+	var/hostile_base_pixel_y
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
@@ -505,6 +512,23 @@
 
 /mob/living/simple_animal/hostile/abnormality/proc/GetPortrait()
 	return portrait
+
+/mob/living/simple_animal/hostile/abnormality/proc/ApplyHostileIcon()
+	if(hostile_icon)
+		icon = hostile_icon
+	if(hostile_icon_living)
+		icon_living = hostile_icon_living
+		icon_state = icon_living
+	if(hostile_pixel_x)
+		pixel_x = hostile_pixel_x
+	if(hostile_base_pixel_x)
+		base_pixel_x = hostile_base_pixel_x
+	if(hostile_pixel_y)
+		pixel_y = hostile_pixel_y
+	if(hostile_base_pixel_y)
+		base_pixel_y = hostile_base_pixel_y
+
+
 
 // Actions
 /datum/action/innate/abnormality_attack

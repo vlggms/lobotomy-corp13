@@ -4,6 +4,11 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "helper"
 	icon_living = "helper"
+	hostile_icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	hostile_pixel_x = -16
+	hostile_base_pixel_x = -16
+	hostile_pixel_y = -16
+	hostile_base_pixel_y = -16
 	portrait = "helper"
 	maxHealth = 1000
 	health = 1000
@@ -101,11 +106,7 @@
 		pixel_y = initial(pixel_y)
 		base_pixel_y = initial(base_pixel_y)
 	else
-		icon = 'ModularTegustation/Teguicons/64x64.dmi'
-		pixel_x = -16
-		base_pixel_x = -16
-		pixel_y = -16
-		base_pixel_y = -16
+		ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/helper/proc/helper_dash(target)
 	if(charging || dash_cooldown > world.time)

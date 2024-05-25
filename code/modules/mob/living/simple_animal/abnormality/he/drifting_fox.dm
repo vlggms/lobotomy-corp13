@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "drifting_fox"
 	icon_living = "drifting_fox"
+	hostile_icon_living = "fox_breach"
 	icon_dead = "fox_egg"
 	core_icon = "fox_egg"
 	portrait = "drifting_fox"
@@ -16,6 +17,7 @@
 	pixel_y = -26
 	base_pixel_x = -24
 	base_pixel_y = -26
+	hostile_pixel_y = -6
 	del_on_death = FALSE
 	maxHealth = 1000
 	health = 1000
@@ -74,9 +76,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_living = "fox_breach"
-	icon_state = icon_living
-	pixel_y = -6
+	ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/drifting_fox/death(gibbed)
 	density = FALSE

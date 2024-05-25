@@ -5,6 +5,7 @@
 	icon_state = "mosb"
 	icon_living = "mosb"
 	icon_dead = "mosb_dead"
+	hostile_icon_living = "mosb_breach"
 	portrait = "mountain"
 	maxHealth = 1500
 	health = 1500
@@ -239,20 +240,19 @@
 	adjustHealth(-5000)
 	maxHealth -= 1000
 	phase -= 1
-	icon_living = "mosb_breach"
 	if(phase == 1)
-		icon = 'ModularTegustation/Teguicons/64x64.dmi'
-		pixel_x = -16
-		base_pixel_x = -16
+		hostile_icon = 'ModularTegustation/Teguicons/64x64.dmi'
+		hostile_pixel_x = -16
+		hostile_base_pixel_x = -16
 		ChangeMoveToDelay(2)
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
-		icon = 'ModularTegustation/Teguicons/96x96.dmi'
-		pixel_x = -32
-		base_pixel_x = -32
+		hostile_icon = 'ModularTegustation/Teguicons/96x96.dmi'
+		hostile_pixel_x = -32
+		hostile_base_pixel_x = -32
 		ChangeMoveToDelay(4)
 		patrol_cooldown_time = 20 SECONDS
-	icon_state = icon_living
+	ApplyHostileIcon()
 	return TRUE
 
 /* Special attacks */
@@ -377,5 +377,4 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	GiveTarget(user)
-	icon_living = "mosb_breach"
-	icon_state = icon_living
+	ApplyHostileIcon()

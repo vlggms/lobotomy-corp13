@@ -9,7 +9,11 @@
 	portrait = "melting_love"
 	pixel_x = -16
 	base_pixel_x = -16
-	speak_emote = list("gurgle")
+	hostile_icon = 'ModularTegustation/Teguicons/96x96.dmi'
+	hostile_icon_living = "melting_breach"
+	hostile_pixel_x = -32
+	hostile_base_pixel_x = -32
+	speak_emote = list("gurgles")
 	attack_verb_continuous = "glomps"
 	attack_verb_simple = "glomp"
 	/* Stats */
@@ -145,12 +149,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_living = "melting_breach"
-	icon_state = icon_living
+	ApplyHostileIcon()
 	icon_dead = "melting_breach_dead"
-	pixel_x = -32
-	base_pixel_x = -32
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	if(istype(gifted_human))
 		DissolveGifted(gifted_human)

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "censored"
 	icon_living = "censored"
+	hostile_icon_living = "censored_breach"
 	portrait = "censored"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -222,7 +223,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/censored/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_living = "censored_breach"
+	icon_living = hostile_icon_living
 	icon_state = icon_living
 	return
 

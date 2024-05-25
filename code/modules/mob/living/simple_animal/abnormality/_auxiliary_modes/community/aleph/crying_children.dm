@@ -8,10 +8,15 @@
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_living = "crying_idle"
 	icon_state = "crying_idle"
+	hostile_icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	pixel_x = -32
 	base_pixel_x = -32
 	pixel_y = -15
 	base_pixel_y = -15
+	hostile_pixel_x = -32
+	hostile_base_pixel_x = -32
+	hostile_pixel_y = -15
+	hostile_base_pixel_y = -15
 	is_flying_animal = TRUE
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
@@ -57,6 +62,7 @@
 	var/death_counter = 0
 	var/burn_mod = 1
 	var/icon_phase = "crying"
+	hostile_icon_living = "crying_idle"
 
 	// Prevents spawning in normal game modes
 	can_spawn = FALSE
@@ -193,13 +199,7 @@
 	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "No one’s going to cry on my behalf even if I’m sad.", 25))
 	..()
 	desc = "A towering angel statue, setting everything on it's path ablaze"
-	icon = 'ModularTegustation/Teguicons/96x96.dmi'
-	icon_living = "[icon_phase]_idle"
-	icon_state = "[icon_phase]_idle"
-	pixel_x = -32
-	base_pixel_x = -32
-	pixel_y = -15
-	base_pixel_y = -15
+	ApplyHostileIcon()
 	can_charge = TRUE
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)

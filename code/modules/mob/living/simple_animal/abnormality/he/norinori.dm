@@ -5,7 +5,10 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "norinori"
 	icon_living = "norinori"
-	var/icon_aggro = "norinori_breach"
+	hostile_icon_living = "norinori_breach"
+	hostile_icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	hostile_pixel_x = -8
+	hostile_base_pixel_x = -8
 	portrait = "norinori"
 	speak_emote = list("meows")
 	ranged = TRUE
@@ -163,10 +166,7 @@
 //Breach
 /mob/living/simple_animal/hostile/abnormality/norinori/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_state = icon_aggro
-	icon = 'ModularTegustation/Teguicons/48x48.dmi'
-	pixel_x = -8
-	base_pixel_x = -8
+	ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/norinori/proc/Transform()
 	if(transformed)
