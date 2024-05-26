@@ -56,7 +56,7 @@
 	var/atom/targets_from = null //all range/attack/etc. calculations should be done from this atom, defaults to the mob itself, useful for Vehicles and such
 	var/attack_all_objects = FALSE //if true, equivalent to having a wanted_objects list containing ALL objects.
 	var/lose_patience_timer_id //id for a timer to call LoseTarget(), used to stop mobs fixating on a target they can't reach
-	var/lose_patience_timeout = 50 //5 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
+	var/lose_patience_timeout = 60 //6 seconds by default, so there's no major changes to AI behaviour, beyond actually bailing if stuck forever
 	// Experimental Target Memory. Short term HATE. Things added to this list will have their accossiated values considered.
 	var/list/target_memory = list()
 
@@ -638,6 +638,11 @@
 
 /mob/living/simple_animal/hostile/Moved()
 	. = ..()
+	if(!client && AIStatus == AI_ON && target)
+		INVOKE_ASYNC(src, PROC_REF(MovedTryAttack))
+
+/mob/living/simple_animal/hostile/proc/MovedTryAttack()
+	SLEEP_CHECK_DEATH(move_to_delay * 0.5) // half of move delay so that its in between moves
 	if(!client && AIStatus == AI_ON && target && !attack_is_on_cooldown)
 		TryAttack()
 
