@@ -659,17 +659,24 @@ GLOBAL_LIST_EMPTY(species_list)
  * * hurt_hidden (optional) If this damage hits people hiding in lockers or boxes.
  * * hurt_structure (optional) If this damage applies to structures as well.
  * * break_not_destroy (optional) If this is TRUE, then the damage will not DESTROY structures, only break them.
+ * * attack_direction (optional) Is the direction of the attack relative to the mecha that gets hit by this attack, for directional armor.
  *
  * returns:
  * * hit_list - A list containing all things hit by this proc.
  */
-/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE)
-	var/list/exclude = typecacheof(/obj/structure/disposalpipe) // Types that should never be hit by HurtInTurf
+/mob/proc/HurtInTurf(turf/target, list/hit_list = list(), damage = 0, damage_type = RED_DAMAGE, def_zone = null, check_faction = FALSE, exact_faction_match = FALSE, hurt_mechs = FALSE, mech_damage = 0, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE, attack_direction = null)
+	var/static/list/exclude
+	var/static/list/hiding_places
+	if(!exclude && !hiding_places)
+		exclude = typecacheof(list(/obj/structure/disposalpipe, /obj/structure/lattice, /obj/machinery/cryopod, /obj/structure/sign, /obj/machinery/button, /obj/machinery/light, /obj/structure/extinguisher_cabinet, /obj/machinery/containment_panel, /obj/machinery/computer/security/telescreen, /obj/machinery/facility_holomap)) // Types that should never be hit by HurtInTurf
+		hiding_places = typecacheof(list(/obj/structure/closet, /obj/structure/bodycontainer, /obj/machinery/disposal, /obj/machinery/cryopod, /obj/machinery/sleeper, /obj/machinery/fat_sucker))
 	. = list()
 	. += hit_list
 	target = isturf(target) ? target : get_turf(src)
-	for(var/mob/living/L in target) // Hit living targets
+	for(var/mob/living/L in target)
 		if(L == src)
+			continue
+		if(L.status_flags & GODMODE)
 			continue
 		if(L in .)
 			continue
@@ -681,41 +688,53 @@ GLOBAL_LIST_EMPTY(species_list)
 		if(damage)
 			L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
 		. += L
-	if(hurt_mechs) // Hit Mechs
-		var/mechDamage = mech_damage ? mech_damage : damage
-		for(var/obj/vehicle/V in target)
-			if(V in .)
-				continue
-			if(is_type_in_typecache(V, exclude))
-				continue
-			if(damage)
-				V.take_damage(mechDamage, damage_type)
-			. += V
-	if(hurt_hidden) // Hit living in closets (includes crates)
-		for(var/obj/structure/closet/C in target)
-			if(C in .)
-				continue
-			if(is_type_in_typecache(C, exclude))
-				continue
-			for(var/mob/living/H in C)
-				if(H in .)
+	if(hurt_mechs || hurt_hidden || hurt_structure)
+		for(var/obj/O in target)
+			if(hurt_mechs && ismecha(O))
+				var/obj/vehicle/sealed/mecha/M = O
+				if(M.resistance_flags & INDESTRUCTIBLE)
 					continue
-				if(check_faction)
-					if(faction_check_mob(H, exact_faction_match))
+				if(is_type_in_typecache(M, exclude))
+					continue
+				if(M in .)
+					continue
+				if(check_faction && M.occupants && M.occupants.len > 0)
+					if(faction_check_mob(M.occupants[1], exact_faction_match))
 						continue
+				var/mechDamage = mech_damage ? mech_damage : damage
+				if(mechDamage)
+					M.take_damage(mechDamage, damage_type, attack_dir = attack_direction)
+				. += M
+				continue
+			if(hurt_hidden && is_type_in_typecache(O, hiding_places))
+				for(var/mob/living/L in O)
+					if(L == src)
+						continue
+					if(L.status_flags & GODMODE)
+						continue
+					if(L in .)
+						continue
+					if(is_type_in_typecache(L, exclude))
+						continue
+					if(check_faction)
+						if(faction_check_mob(L, exact_faction_match))
+							continue
+					if(damage)
+						L.apply_damage(damage, damage_type, def_zone, L.run_armor_check(def_zone, damage_type), FALSE, TRUE)
+					. += L
+			if(hurt_structure && (isstructure(O) || ismachinery(O)))
+				if(O.resistance_flags & INDESTRUCTIBLE)
+					continue
+				if(is_type_in_typecache(O, exclude))
+					continue
+				if(O in .)
+					continue
 				if(damage)
-					H.apply_damage(damage, damage_type, def_zone, H.run_armor_check(def_zone, damage_type), FALSE, TRUE)
-				. += H
-			. += C
-	if(hurt_structure && damage_type != WHITE_DAMAGE) // Hits structures
-		for(var/obj/structure/S in target)
-			if(S in .)
-				continue
-			if(is_type_in_typecache(S, exclude))
-				continue
-			if(damage)
-				if(break_not_destroy && (S.obj_integrity - damage <= 0))
-					damage += (S.obj_integrity - damage) - 1
-				S.take_damage(damage, damage_type)
-			. += S
+					O.take_damage(damage, damage_type)
+				if(damage)
+					var/dealt_damage = damage
+					if(break_not_destroy && (O.obj_integrity - damage <= 0))
+						dealt_damage = O.obj_integrity - 1
+					O.take_damage(dealt_damage, damage_type)
+				. += O
 	return

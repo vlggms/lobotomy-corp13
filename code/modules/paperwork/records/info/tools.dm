@@ -82,7 +82,9 @@
 	Name : Heart of Aspiration<br>
 	Risk Class: TETH <br>
 	- Those who equip The Heart of Aspiration will benefit from increased HP and Justice. <br>
-	- Heart of aspiration slowly drained the health and sanity of the person using it. "}
+	- Heart of aspiration slowly drained the sanity of the person using it during work. <br>
+	- When the person that equipped The Heart of Aspiration has their SP 20% or lower of their max SP, they went mad, <br>
+	- Should the person that equipped The Heart of Aspiration become insane, the person would become violent quickly."}
 
 //Bracelet
 /obj/item/paper/fluff/info/tool/bracelet

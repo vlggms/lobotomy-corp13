@@ -12,8 +12,8 @@
 	var/obj/item/ammo_casing/ammo_type
 	var/list/attribute_requirements = list()
 	var/special
-	///In deciseconds per round
-	var/autofire
+	var/autofire	//In Rounds per decisecond
+	var/equip_bonus
 
 	//Reload mechanics
 	var/shotsleft
@@ -104,7 +104,7 @@
 
 	var/mob/living/carbon/human/H = user
 	for(var/atr in attribute_requirements)
-		if(attribute_requirements[atr] > get_attribute_level(H, atr))
+		if(attribute_requirements[atr] > get_attribute_level(H, atr) + equip_bonus)
 			to_chat(H, "<span class='notice'>You cannot use [src]!</span>")
 			return FALSE
 	if(!SpecialEgoCheck(H))

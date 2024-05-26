@@ -1,54 +1,3 @@
-#define SWEEPER_TYPES /mob/living/simple_animal/hostile/ordeal/indigo_dawn || /mob/living/simple_animal/hostile/ordeal/indigo_noon || /mob/living/simple_animal/hostile/ordeal/indigo_dusk || /mob/living/simple_animal/hostile/ordeal/indigo_midnight
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn
-	name = "unknown scout"
-	desc = "A tall humanoid with a walking cane. It's wearing indigo armor."
-	icon = 'ModularTegustation/Teguicons/32x48.dmi'
-	icon_state = "indigo_dawn"
-	icon_living = "indigo_dawn"
-	icon_dead = "indigo_dawn_dead"
-	faction = list("indigo_ordeal")
-	maxHealth = 110
-	health = 110
-	move_to_delay = 1.3	//Super fast, but squishy and weak.
-	stat_attack = DEAD
-	melee_damage_type = BLACK_DAMAGE
-	melee_damage_lower = 10
-	melee_damage_upper = 12
-	butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	guaranteed_butcher_results = list(/obj/item/food/meat/slab/sweeper = 1)
-	attack_verb_continuous = "stabs"
-	attack_verb_simple = "stab"
-	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
-	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8)
-	blood_volume = BLOOD_VOLUME_NORMAL
-	silk_results = list(/obj/item/stack/sheet/silk/indigo_simple = 1)
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/AttackingTarget()
-	. = ..()
-	if(. && isliving(target))
-		var/mob/living/L = target
-		if(L.stat != DEAD)
-			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
-				devour(L)
-		else
-			devour(L)
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dawn/proc/devour(mob/living/L)
-	if(!L)
-		return FALSE
-	if(SSmaptype.maptype == "city")
-		return FALSE
-	visible_message(
-		span_danger("[src] devours [L]!"),
-		span_userdanger("You feast on [L], restoring your health!"))
-	if(istype(L, SWEEPER_TYPES))
-		//Would have made it based on biotypes but that has its own issues.
-		adjustBruteLoss(-20)
-	else
-		adjustBruteLoss(-(maxHealth/2))
-	L.gib()
-	return TRUE
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon
 	name = "sweeper"
@@ -74,7 +23,6 @@
 	blood_volume = BLOOD_VOLUME_NORMAL
 	silk_results = list(/obj/item/stack/sheet/silk/indigo_advanced = 1,
 						/obj/item/stack/sheet/silk/indigo_simple = 2)
-	var/leader //used by indigo dusk to recruit sweepers
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/Initialize()
 	. = ..()
@@ -88,8 +36,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/LoseAggro()
 	. = ..()
-	if(leader)
-		a_intent_change(INTENT_HELP)
+	a_intent_change(INTENT_HELP)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/AttackingTarget()
 	. = ..()
@@ -161,8 +108,6 @@
 	attack_sound = 'sound/effects/ordeals/indigo/stab_1.ogg'
 	blood_volume = BLOOD_VOLUME_NORMAL
 	can_patrol = TRUE
-	var/order_cooldown = 0
-	var/list/troops = list()
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/white
 	name = "\proper Commander Adelheide"
@@ -211,28 +156,20 @@
 	melee_damage_type = PALE_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dusk/Found(atom/A) //every time she finds a sweeper that sweeper is compelled to follow her as family
-	if(istype(A, /mob/living/simple_animal/hostile/ordeal/indigo_noon) && troops.len < 6)
-		var/mob/living/simple_animal/hostile/ordeal/indigo_noon/S = A
-		if(S.stat != DEAD && !S.leader && !S.target && !S.client) //are you dead? do you have a leader? are you currently fighting? Are you a player?
-			S.Goto(src,S.move_to_delay,1)
-			S.leader = src
-			troops += S
+/mob/living/simple_animal/hostile/ordeal/indigo_dusk/Initialize(mapload)
+	..()
+	var/units_to_add = list(
+		/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1,
+		)
+	AddComponent(/datum/component/ai_leadership, units_to_add)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Aggro()
+	. = ..()
 	a_intent_change(INTENT_HARM)
-	..()
-	if(order_cooldown < world.time && troops.len)
-		order_cooldown = world.time + (10 SECONDS)
-		var/mob/living/simple_animal/hostile/ordeal/overachiver = locate(/mob/living/simple_animal/hostile/ordeal/indigo_noon) in troops
-		if(overachiver)
-			overachiver.TemporarySpeedChange(amount = -2, time = 5 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/LoseAggro()
 	. = ..()
-	if(troops.len)
-		a_intent_change(INTENT_HELP) //so that they dont get body blocked by their kin outside of combat
+	a_intent_change(INTENT_HELP) //so that they dont get body blocked by their kin outside of combat
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/AttackingTarget()
 	. = ..()
@@ -243,31 +180,6 @@
 				devour(L)
 		else
 			devour(L)
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dusk/patrol_select()
-	if(troops.len)
-		headcount()
-		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/family in troops)
-			if(family.stat == DEAD || family.client) //if you are dead or are a player your no longer active in the family.
-				troops -= family
-			Goto(src , 2, 1) //had to change it to 2 because the 3 "move to delay" leader would keep outrunning the 4 "move to delay" followers
-	..()
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dusk/death()
-	for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/S in troops) //The leader can no longer lead their troops into battle.
-		if(S)
-			S.leader = null
-	return ..()
-
-/mob/living/simple_animal/hostile/ordeal/indigo_dusk/proc/headcount()
-	var/list/whosehere = list()
-	for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/soldier in oview(src, 10))
-		whosehere += soldier
-	var/list/absent_troops = difflist(troops, whosehere ,1)
-	if(absent_troops.len)
-		for(var/mob/living/simple_animal/hostile/ordeal/indigo_noon/s in absent_troops)
-			s.leader = null
-			troops -= s
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/proc/devour(mob/living/L)
 	if(!L)
@@ -500,7 +412,7 @@
 
 	maxHealth = 4000
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -518,7 +430,7 @@
 
 	maxHealth = 3000
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15
@@ -555,7 +467,6 @@
 		sleep(delay)
 	slamming = FALSE
 
-#undef SWEEPER_TYPES
 
 /obj/effect/sweeperspawn
 	name = "bloodpool"

@@ -4,7 +4,7 @@
 	Its operation is simple and straightforward, but that doesn't necessarily make it easy to wield."
 	special = "This weapon pierces to hit everything on the target's tile."
 	icon_state = "grinder"
-	force = 30
+	force = 26
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "saws", "rips")
 	attack_verb_simple = list("slice", "saw", "rip")
@@ -14,15 +14,16 @@
 							)
 
 /obj/item/ego_weapon/grinder/attack(mob/living/target, mob/living/user)
-	if(!..())
-		return FALSE
 	var/turf/T = get_turf(target)
+	. = ..()
+	if(!.)
+		return FALSE
 	//damage calculations
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	force*=justicemod
-	user.HurtInTurf(T, list(target), (force*force_multiplier), RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
-	force = 30
+	var/justicemod = 1 + userjust / 100
+	var/damage_dealt = force * justicemod * force_multiplier
+	var/list/been_hit = QDELETED(target) ? list() : list(target)
+	user.HurtInTurf(T, been_hit, damage_dealt, RED_DAMAGE, hurt_mechs = TRUE, hurt_structure = TRUE)
 
 /obj/item/ego_weapon/grinder/get_clamped_volume()
 	return 40
@@ -956,47 +957,32 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
-	var/charge_effect = "pull a target from a distance."
-	var/charge_cost = 2
-	var/charge
-	var/activated
+
+	charge = TRUE
+	charge_effect = "Pull a target from a distance."
+	charge_cost = 2
+	charge_cap = 21 // you dont understand, they NEED that one extra point of cap
+
 	var/gun_cooldown
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/replica/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
-
-/obj/item/ego_weapon/replica/examine(mob/user)
-	. = ..()
-	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
-
-/obj/item/ego_weapon/replica/attack_self(mob/user)
-	..()
-	if(charge>=charge_cost)
-		to_chat(user, span_notice("You prepare to release your charge."))
-		activated = TRUE
-	else
-		to_chat(user, span_notice("You don't have enough charge."))
-
-/obj/item/ego_weapon/replica/attack(mob/living/target, mob/living/user)
-	..()
-	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))//if the target is dead, don't generate charge
-		return
-	if(charge<=20)
-		charge+=1
+	return ..()
 
 /obj/item/ego_weapon/replica/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
 		return
-	if(!activated)
+
+	if(!currently_charging)
 		return
+
 	if(!proximity_flag && gun_cooldown <= world.time)
-		charge -= charge_cost
-		activated = FALSE
+		currently_charging = FALSE
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
+
 		var/obj/projectile/ego_bullet/replica/G = new /obj/projectile/ego_bullet/replica(proj_turf)
 		G.fired_from = src //for signal check
 		playsound(user, 'sound/abnormalities/kqe/load3.ogg', 100, TRUE)
@@ -1004,7 +990,6 @@
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
 		gun_cooldown = world.time + gun_cooldown_time
-		return
 
 /obj/item/ego_weapon/replica/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
@@ -1023,6 +1008,7 @@
 /obj/item/ego_weapon/warp
 	name = "dimensional ripple"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
+	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp2"
 	force = 24
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
@@ -1039,16 +1025,13 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
-	var/release_message = "You release your charge, opening a rift!"
-	var/charge_effect = "teleport and create a temporary two-way portal."
-	var/current_holder
-	var/charge_cost = 10
-	var/charge
-	var/activated
 
-/obj/item/ego_weapon/warp/examine(mob/user)
-	. = ..()
-	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+	charge = TRUE
+	attack_charge_gain = FALSE // we have a unique way of getting charge
+	charge_cost = 10
+	charge_effect = "Teleport and create a temporary two-way portal."
+
+	var/current_holder
 
 /obj/item/ego_weapon/warp/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -1071,46 +1054,35 @@
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 	current_holder = null
 
-/obj/item/ego_weapon/warp/attack_self(mob/user)
-	..()
-	if(activated == TRUE)
-		to_chat(user, span_notice("You are no longer prepared to release your charge."))
-		activated = FALSE
-		return
-	if(charge>=charge_cost)
-		to_chat(user, span_notice("You prepare to release your charge."))
-		activated = TRUE
-	else
-		to_chat(user, span_notice("You don't have enough charge."))
-
 /obj/item/ego_weapon/warp/proc/UserMoved()
 	SIGNAL_HANDLER
-	if(charge<20)
-		charge+=0.1
+	HandleCharge(0.1)
 
 /obj/item/ego_weapon/warp/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
 		to_chat(user, span_notice("You cannot use this!"))
 		return
-	if(!activated)
+	if(!currently_charging)
 		return
+
 	if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 20)))
 		to_chat(user, span_notice("Invalid target."))
-		activated = FALSE
+		CancelCharge()
 		return
+
 	if(!proximity_flag)
-		charge -= charge_cost
-		activated = FALSE
+		currently_charging = FALSE
+		to_chat(user, span_notice("You release your charge, opening a rift!"))
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
+
 		var/obj/effect/portal/warp/P1 = new(proj_turf)
 		var/obj/effect/portal/warp/P2 = new(get_turf(target))
 		playsound(src, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 50, TRUE)
 		P1.link_portal(P2)
 		P2.link_portal(P1)
 		P1.teleport(user)
-		return
 
 /obj/effect/portal/warp
 	name = "dimensional rift"
@@ -1130,7 +1102,6 @@
 /obj/item/ego_weapon/warp/knife		//knife subtype of the above. knife has to be the subtype because it fits in a belt
 	name = "dimension shredder"
 	desc = "The path is intent on thwarting all attempts to memorize it."
-	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -1630,7 +1601,7 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/hostile/M = owner
-	M.TemporarySpeedChange(M.move_to_delay*0.25 , 3 SECONDS)
+	M.TemporarySpeedChange(1.25 , 3 SECONDS, TRUE)
 
 /atom/movable/screen/alert/status_effect/brown_bricks
 	name = "Yello Bricks"
@@ -1914,3 +1885,26 @@
 		playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
 		user.adjustBruteLoss(-amount_filled*2)
 		amount_filled = 0
+
+/obj/item/ego_weapon/shield/isolation
+	name = "isolation"
+	desc = "The shelter still retains the memory of that day."
+	icon_state = "isolation"
+	force = 30
+	attack_speed = 1
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	hitsound = 'sound/weapons/ego/axe2.ogg'
+	reductions = list(10, 20, 40, 10) // 80
+	projectile_block_duration = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
+	projectile_block_message = "You swat the projectile out of the air!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your E.G.O."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

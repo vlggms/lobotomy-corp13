@@ -1,5 +1,6 @@
 #define APOCALYPSE 1
 #define YINYANG 2
+#define NIHIL 3
 SUBSYSTEM_DEF(lobotomy_events)
 	name = "Lobotomy Corp Events"
 	flags = SS_KEEP_TIMING | SS_BACKGROUND
@@ -12,6 +13,14 @@ SUBSYSTEM_DEF(lobotomy_events)
 		/mob/living/simple_animal/hostile/abnormality/big_bird,
 		/mob/living/simple_animal/hostile/abnormality/judgement_bird)
 	var/list/AB_breached = list()
+
+	//Jester Of Nihil
+	var/list/JN_types = list(
+		/mob/living/simple_animal/hostile/abnormality/wrath_servant,
+		/mob/living/simple_animal/hostile/abnormality/hatred_queen,
+		/mob/living/simple_animal/hostile/abnormality/despair_knight,
+		/mob/living/simple_animal/hostile/abnormality/greed_king)
+	var/list/JN_breached = list()
 
 	// Yin and Yang
 	var/list/YY_types = list(
@@ -89,6 +98,14 @@ SUBSYSTEM_DEF(lobotomy_events)
 	return
 	//Further checks for event abnos can go here.
 
+//proc for handling nihil list, works differently as the magical girls and the jester of nihil can breach independantly
+/datum/controller/subsystem/lobotomy_events/proc/AddNihilMobs()
+	for(var/datum/abnormality/abno_ref in SSlobotomy_corp.all_abnormality_datums) //Check if they're dead and need to be respawned for the event
+		if(abno_ref.abno_path in JN_types)
+			if(!abno_ref.current)
+				abno_ref.RespawnAbno()
+			JN_breached += abno_ref.current
+
 /**
  * Cleans lists of dead/QDELETED abnormalities.
  */
@@ -108,6 +125,12 @@ SUBSYSTEM_DEF(lobotomy_events)
 				if(QDELETED(a) || !istype(a))
 					prune_list += a
 			YY_breached -= prune_list
+			return TRUE
+		if(NIHIL) //We prune regarldess - Nihil is dead or despawned
+			for(var/mob/living/simple_animal/hostile/abnormality/a in JN_breached)
+				if(QDELETED(a) || !istype(a))
+					prune_list += a
+			JN_breached -= prune_list
 			return TRUE
 	return FALSE
 
@@ -159,10 +182,28 @@ SUBSYSTEM_DEF(lobotomy_events)
 			type_list = AB_types.Copy()
 		if(YINYANG)
 			type_list = YY_types.Copy()
-	for(var/type in type_list)
+		if(NIHIL)
+			type_list = JN_types.Copy()
+			type_list += /mob/living/simple_animal/hostile/abnormality/nihil
+
+	for(var/datum/abnormality/abno_ref in SSlobotomy_corp.all_abnormality_datums) //Check if they're already in the facility
+		if(abno_ref.abno_path in type_list)
+			type_list -= abno_ref.abno_path
+			if(!abno_ref.current)
+				abno_ref.RespawnAbno()
+
+	for(var/type in type_list) //Spawn the abnormalities
 		SSabnormality_queue.queued_abnormality = type
 		SSabnormality_queue.SpawnAbno()
 		sleep(1 SECONDS)
+
+	if(event_type == NIHIL) //Only nihil needs to breach - this is for the next bit of code
+		type_list = list()
+		type_list += /mob/living/simple_animal/hostile/abnormality/nihil
+
+	for(var/datum/abnormality/abno_ref in SSlobotomy_corp.all_abnormality_datums) //Now that the abnormalities are spawned, breach them
+		if(abno_ref.abno_path in type_list)
+			abno_ref.qliphoth_change(-999)
 	return
 
 //proc for handling season subsystem

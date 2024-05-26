@@ -661,6 +661,13 @@
 	race = /datum/species/plasmaman
 	taste_description = "plasma"
 
+/datum/reagent/mutationtoxin/shrimp
+	name = "Shrimp Mutation Toxin"
+	description = "A salty toxin"
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/shrimp
+	taste_description = "shrimp"
+
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
 #undef MUT_MSG_ABOUT2TURN
@@ -1504,6 +1511,22 @@
 	can_colour_mobs = FALSE
 
 //////////////////////////////////Hydroponics stuff///////////////////////////////
+
+/datum/reagent/compost
+	name = "compost"
+	description = "A mixture of waste and rotten plant matter that nurtures plants and keeps them free of pests."
+	reagent_state = SOLID
+	color = "#44341F"
+	taste_description = "rot"
+
+//Compost when used on soil
+/datum/reagent/compost/on_hydroponics_apply(obj/item/seeds/myseed, datum/reagents/chems, obj/machinery/hydroponics/mytray)
+	. = ..()
+	if(chems.has_reagent(src.type, 1))
+		mytray.adjustPests(-1)
+		if(myseed && chems.has_reagent(src.type, 1))
+			myseed.adjust_yield(round(chems.get_reagent_amount(src.type) * 0.1))
+			myseed.adjust_potency(round(chems.get_reagent_amount(src.type) * 0.1))
 
 /datum/reagent/plantnutriment
 	name = "Generic nutriment"

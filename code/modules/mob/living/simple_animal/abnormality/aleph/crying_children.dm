@@ -39,7 +39,7 @@
 	death_sound = 'sound/abnormalities/crying_children/death.ogg'
 	death_message = "crumbles into pieces."
 	del_on_death = FALSE
-	ego_list = list(/datum/ego_datum/weapon/shield/combust, /datum/ego_datum/armor/combust)
+	ego_list = list(/datum/ego_datum/weapon/shield/waxen, /datum/ego_datum/armor/waxen)
 	gift_type =  /datum/ego_gifts/inconsolable
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK // I HAVE NO IDEA LOR ORIGIN CODE
 	var/list/children_list = list()
@@ -464,7 +464,7 @@
 	maxHealth = 4000
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 1)
 	revive(full_heal = TRUE, admin_revive = FALSE)
-	move_to_delay = 4
+	ChangeMoveToDelay(4)
 	burn_mod = 2
 	can_act = TRUE
 	charge = 0
