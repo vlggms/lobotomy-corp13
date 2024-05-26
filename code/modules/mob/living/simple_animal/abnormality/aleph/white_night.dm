@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
 	var/holy_revival_damage = 80 // Pale damage, scales with distance
-	var/holy_revival_range = 48
+	var/holy_revival_range = 80
 	/// List of mobs that have been hit by the revival field to avoid double effect
 	var/list/been_hit = list()
 	/// Currently spawned apostles by this mob
@@ -63,7 +63,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	/// List of Living People on Breach
 	var/list/heretics = list()
 
-	var/datum/reusable_visual_pool/RVP = new(487)
+	var/datum/reusable_visual_pool/RVP = new(500)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, 1, 5))
