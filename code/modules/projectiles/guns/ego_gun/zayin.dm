@@ -6,9 +6,7 @@
 	inhand_icon_state = "bald"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_tough
 	burst_size = 1
-	fire_delay = 5
-	shotsleft = 17
-	reloadtime = 1 SECONDS
+	fire_delay = 10
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -183,9 +181,7 @@
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
-	fire_delay = 10
-	shotsleft = 7
-	reloadtime = 2 SECONDS
+	fire_delay = 12
 
 	var/pulse_startup
 	var/pulse_startup_time = 10 SECONDS
