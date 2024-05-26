@@ -57,6 +57,8 @@
 	var/jump_cooldown_time = 5 SECONDS
 	var/jump_damage = 60
 
+	var/recloak_time = 0
+	var/recloak_time_cooldown = 30 SECONDS
 
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/Move()
@@ -66,6 +68,10 @@
 		return FALSE
 	..()
 
+/mob/living/simple_animal/hostile/abnormality/apex_predator/Life()
+	. = ..()
+	if(. && !(status_flags & GODMODE) && revealed && recloak_time < world.time)
+		Cloak()
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -152,6 +158,7 @@
 	density = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/apex_predator/proc/Decloak()
+	recloak_time = world.time + recloak_time_cooldown
 	alpha = 255
 	revealed = TRUE
 	density = TRUE
