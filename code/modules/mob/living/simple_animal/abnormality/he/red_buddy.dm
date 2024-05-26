@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "redbuddy"
 	icon_living = "redbuddy"
+	hostile_icon_living = "redbuddy_active"
 	icon_dead = "redbuddy_dead"
 	portrait = "red_buddy"
 	del_on_death = FALSE
@@ -192,7 +193,7 @@
 /mob/living/simple_animal/hostile/abnormality/red_buddy/BreachEffect()
 	. = ..()
 	deltimer(lying_timer)
-	icon_state = "redbuddy_active"
+	ApplyHostileIcon()
 
 ///basically a stronger fragment song that hurts red buddy, it's slower hitting than fragment however
 /mob/living/simple_animal/hostile/abnormality/red_buddy/proc/Awoo(abused = FALSE)

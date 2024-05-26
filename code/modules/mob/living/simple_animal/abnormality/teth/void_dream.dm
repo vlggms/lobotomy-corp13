@@ -2,6 +2,7 @@
 	name = "Void Dream"
 	desc = "A very fluffy floating sheep.."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+	hostile_icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	icon_state = "void_dream"
 	icon_living = "void_dream"
 	portrait = "void_dream"
@@ -75,7 +76,7 @@
 		return
 	if(IsCombatMap())
 		return
-	icon = 'ModularTegustation/Teguicons/32x64.dmi'
+	ApplyHostileIcon()
 	punched = TRUE
 	ChangeMoveToDelayBy(-2)
 	ability_cooldown_time = 8 SECONDS

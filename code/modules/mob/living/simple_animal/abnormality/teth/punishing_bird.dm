@@ -2,8 +2,17 @@
 	name = "Punishing Bird"
 	desc = "A white bird with tiny beak. Looks harmless."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "pbird_breach"
-	icon_living = "pbird_breach"
+	icon_state = "pbird"
+	icon_living = "pbird"
+	pixel_x = 15
+	pixel_y = 32
+	base_pixel_x = 15
+	base_pixel_y = 32
+	hostile_icon_living = "pbird_breach"
+	hostile_pixel_x = 0
+	hostile_pixel_y = 0
+	hostile_base_pixel_x = 0
+	hostile_base_pixel_y = 0
 	icon_dead = "pbird_dead"
 	portrait = "punishing_bird"
 	turns_per_move = 2
@@ -96,12 +105,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformBack()
 	visible_message(span_notice("\The [src] turns back into a fuzzy looking bird!"))
-	icon_state = initial(icon_state)
-	icon_living = initial(icon_living)
-	pixel_x = initial(pixel_x)
-	pixel_y = initial(pixel_y)
-	base_pixel_x = initial(base_pixel_x)
-	base_pixel_y = initial(base_pixel_y)
+	ApplyHositleIcon()
 	attack_verb_continuous = initial(attack_verb_continuous)
 	attack_verb_simple = initial(attack_verb_simple)
 	rapid_melee = initial(rapid_melee)
@@ -224,11 +228,6 @@
 		return
 	if(!locate(/obj/structure/pbird_perch) in datum_reference.connected_structures)
 		SpawnConnectedStructure(/obj/structure/pbird_perch)
-	icon_state = "pbird"
-	pixel_x = 15
-	pixel_y = 32
-	base_pixel_x = 15
-	base_pixel_y = 32
 	is_flying_animal = FALSE
 	update_icon()
 
@@ -275,12 +274,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_state = initial(icon_state)
-	icon_living = initial(icon_living)
-	pixel_x = initial(pixel_x)
-	pixel_y = initial(pixel_y)
-	base_pixel_x = initial(base_pixel_x)
-	base_pixel_y = initial(base_pixel_y)
+	ApplyHostileIcon()
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
 	update_icon()
 	death_timer = addtimer(CALLBACK(src, PROC_REF(kill_bird)), 180 SECONDS, TIMER_STOPPABLE)

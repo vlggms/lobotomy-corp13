@@ -126,25 +126,25 @@
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	if(QDELETED(user))
 		attack_sound = initial(attack_sound)
-		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		icon_state = IsContained() ? initial(icon_state) : hostile_icon_living
 		return
 	step_towards(user, src)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	if(QDELETED(user))
 		attack_sound = initial(attack_sound)
-		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		icon_state = IsContained() ? initial(icon_state) : hostile_icon_living
 		return
 	user.attack_animal(src)
 	SLEEP_CHECK_DEATH(0.2 SECONDS)
 	if(QDELETED(user))
 		attack_sound = initial(attack_sound)
-		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		icon_state = IsContained() ? initial(icon_state) : hostile_icon_living
 		return
 	user.attack_animal(src)
 	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	if(QDELETED(user))
 		attack_sound = initial(attack_sound)
-		icon_state = IsContained() ? initial(icon_state) : icon_aggro
+		icon_state = IsContained() ? initial(icon_state) : hostile_icon_living
 		return
 	user.visible_message(span_warning("[src] mutilates [user]!"), span_userdanger("[src] mutilates you!"))
 	user.apply_damage(3000, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
@@ -156,7 +156,7 @@
 	if(IsContained()) //fixes a bug with invisibility on breach
 		icon_state = initial(icon_state)
 	else
-		icon_state = icon_aggro
+		icon_state = hostile_icon_living
 
 /mob/living/simple_animal/hostile/abnormality/norinori/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -192,7 +192,7 @@
 		return
 	transformed = FALSE
 	playsound(src, 'sound/effects/blobattack.ogg', 150, FALSE, 4)
-	icon_state = icon_aggro
+	icon_state = hostile_icon_living
 	attack_sound = 'sound/weapons/slashmiss.ogg'
 	SLEEP_CHECK_DEATH(10)
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 1, PALE_DAMAGE = 2))

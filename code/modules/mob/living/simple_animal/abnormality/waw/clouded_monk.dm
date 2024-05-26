@@ -5,7 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "cloudedmonk"
 	icon_living = "cloudedmonk"
-	var/icon_aggro = "pretamonk"
+	hostile_icon_living = "pretamonk"
 	icon_dead = "pretamonk"
 	portrait = "clouded_monk"
 	maxHealth = 2500
@@ -141,7 +141,7 @@
 	soundloop.start()
 	playsound(src, 'sound/abnormalities/clouded_monk/howl.ogg', 50, 1)
 	playsound(src, 'sound/abnormalities/clouded_monk/transform.ogg', 50, 1)
-	icon_state = icon_aggro
+	ApplyHostileIcon()
 	desc = "A monk that has forgotten he has become a demon. It resembles a preta from legends."
 	GiveTarget(user)
 
@@ -240,7 +240,7 @@
 	charging = FALSE
 	revving_charge = FALSE
 	walk(src, 0) // cancel the movement
-	icon_state = icon_aggro
+	ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/clouded_monk/proc/ResetCharge()
 	monk_charge_cooldown = world.time + monk_charge_cooldown_time

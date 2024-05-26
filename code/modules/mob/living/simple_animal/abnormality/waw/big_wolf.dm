@@ -8,6 +8,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "big_wolf"
 	icon_living = "big_wolf"
+	hostile_icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_dead = "big_wolf_slain"
 	portrait = "big_wolf"
 	faction = list("hostile")
@@ -15,6 +16,8 @@
 
 	pixel_x = -16
 	base_pixel_x = -16
+	hostile_pixel_x = -32
+	hostile_base_pixel_x = -32
 
 	maxHealth = 2500
 	health = 2500
@@ -147,15 +150,13 @@
 		base_pixel_x = initial(base_pixel_x)
 		icon_state = initial(icon_state)
 	else
-		icon = 'ModularTegustation/Teguicons/96x64.dmi'
-		pixel_x = -32
-		base_pixel_x = -32
+		ApplyHostileIcon()
 		if(stat == DEAD)
 			icon_state = icon_dead
 		else if(fleeing_now)
 			icon_state = "big_wolf_flee"
 		else
-			icon_state = "big_wolf"
+			ApplyHositleIcon()
 	icon_living = icon_state
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/handle_automated_action()

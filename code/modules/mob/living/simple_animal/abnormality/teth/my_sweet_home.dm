@@ -5,6 +5,9 @@
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "sweet_home"
 	icon_living = "sweet_home"
+	hostile_pixel_x = -16
+	hostile_base_pixel_x = -16
+	hostile_icon_living = "sweet_home_breach"
 	icon_dead = "sweet_home_death"
 	portrait = "my_sweet_home"
 	var/can_act = TRUE
@@ -125,9 +128,7 @@
 	else if(health<1)
 		icon_state = icon_dead
 	else
-		pixel_x = -16
-		base_pixel_x = -16
-		icon_state = "sweet_home_breach"
+		ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/death(gibbed)
 	density = FALSE

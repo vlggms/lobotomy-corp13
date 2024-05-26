@@ -4,6 +4,11 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "cleaner"
 	icon_living = "cleaner"
+	hostile_icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	hostile_pixel_x = -8
+	hostile_base_pixel_x = -8
+	hostile_pixel_y = -8
+	hostile_base_pixel_y = -8
 	portrait = "cleaner"
 	maxHealth = 800
 	health = 800
@@ -77,11 +82,7 @@
 		pixel_y = initial(pixel_y)
 		base_pixel_y = initial(base_pixel_y)
 	else
-		icon = 'ModularTegustation/Teguicons/48x48.dmi'
-		pixel_x = -8
-		base_pixel_x = -8
-		pixel_y = -8
-		base_pixel_y = -8
+		ApplyHostileIcon()
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/cleaner/NeutralEffect(mob/living/carbon/human/user, work_type, pe)

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "faelantern"
 	icon_living = "faelantern_fairy"
+	hostile_icon_living = "faelantern_breaching"
 	icon_dead = "faelantern_egg"
 	core_icon = "faelantern_egg"
 	portrait = "faelantern"
@@ -125,7 +126,7 @@
 		BreachDig()
 		return
 	if(!broken)
-		icon_state = "faelantern_breaching"
+		ApplyHositleIcon()
 	else
 		icon_state = "faelantern_breaching2"
 	playsound(src, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 200, 1)//proper sfx goes here

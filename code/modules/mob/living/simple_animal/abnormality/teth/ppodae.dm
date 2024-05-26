@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "ppodae"
 	icon_living = "ppodae"
+	hostile_icon_living = "ppodae_active"
 	portrait = "ppodae"
 	pixel_x = -8
 	base_pixel_x = -8
@@ -176,5 +177,5 @@
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_state = "ppodae_active"
+	ApplyHostileIcon()
 	GiveTarget(user)

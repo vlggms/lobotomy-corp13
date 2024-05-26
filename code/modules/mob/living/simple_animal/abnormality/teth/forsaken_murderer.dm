@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "forsakenmurdererinert"
 	icon_living = "forsakenmurdererinert"
+	hostile_icon_living = "forsakenmurdererbreach"
 	icon_dead = "forsakenmurdererdead"
 	portrait = "forsaken_murderer"
 	del_on_death = FALSE
@@ -239,8 +240,6 @@
 	else if(stat == DEAD)
 		icon_state = icon_dead
 	else
-		icon_living = "forsakenmurdererbreach"
-		icon_state = icon_living
-
+		ApplyHostileIcon()
 //#undef undefines the definition at the end of this file so that it doesnt spread to the whole codebase.
 #undef FORSAKEN_MURDERER_EMOTE

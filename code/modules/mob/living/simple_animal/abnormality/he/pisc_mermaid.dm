@@ -9,6 +9,8 @@
 	icon_state = "pmermaid_standing"
 	icon_living = "pmermaid_standing"
 	icon_dead = "pmermaid_laying" //she shouldn't die while contained so this is more of a placeholder death icon
+	hostile_icon = 'ModularTegustation/Teguicons/64x64.dmi'
+	hostile_icon_living = "pmermaid_breach"
 	portrait = "piscine"
 	death_sound = 'sound/abnormalities/piscinemermaid/waterjump.ogg'
 	attack_sound = 'sound/abnormalities/piscinemermaid/splashattack.ogg'
@@ -17,6 +19,8 @@
 	health = 1500
 	pixel_x = -12
 	base_pixel_x = -12
+	hostile_pixel_y = -16
+	hostile_base_pixel_y = -16
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2) //not that bad without a lover
 	rapid_melee = 2
 	melee_damage_lower = 15
@@ -128,12 +132,8 @@
 //dying by oxydeath actually takes a while, but it puts them on a clear timer to actually get shit done instead of just hoping someone else takes care of it.
 /mob/living/simple_animal/hostile/abnormality/pisc_mermaid/BreachEffect()
 	. = ..()
-	icon = 'ModularTegustation/Teguicons/64x64.dmi'
-	icon_living = "pmermaid_breach"
+	ApplyHostileIcon()
 	icon_dead = "pmermaid_slain"
-	icon_state = icon_living
-	pixel_y = -16
-	base_pixel_y = -16
 	if(!isnull(crown?.loved))
 		ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 0.3)) //others can still help but it's going to take a lot of damage
 		love_target = crown.loved

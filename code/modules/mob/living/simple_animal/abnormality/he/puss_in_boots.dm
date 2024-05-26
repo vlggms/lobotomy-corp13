@@ -5,7 +5,7 @@
 	desc = "A scraggly looking black cat, it seems like the boots are missing."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "cat_contained"
-	var/icon_aggro = "cat_breached"
+	hostile_icon_living = "cat_breached"
 	var/icon_friendly = "cat_breached_friendly"
 	icon_dead = "cat_breached"  //defeated icon? Maybe someday.
 	portrait = "puss_in_boots"
@@ -194,7 +194,7 @@
 		fear_level = HE_LEVEL
 		FearEffect()
 		src.visible_message(span_warning("[src] is looking around, eyes wild with rage!"))
-	icon_state = icon_aggro
+	ApplyHostileIcon()
 	update_icon()
 	faction = list("hostile") //he's gone feral!
 	return
@@ -276,7 +276,7 @@
 	if(friendly)
 		icon_state = icon_friendly
 		return
-	icon_state = icon_aggro
+	ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Finisher(mob/living/target) //This is super easy to avoid
 	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE)) //50% of your health in red damage

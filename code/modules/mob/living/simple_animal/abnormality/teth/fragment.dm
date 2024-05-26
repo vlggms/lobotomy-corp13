@@ -6,6 +6,8 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "fragment"
 	icon_living = "fragment"
+	hostile_icon_living = "fragment_breach"
+	hostile_pixel_y = 0
 	portrait = "fragment"
 	maxHealth = 800
 	health = 800
@@ -130,8 +132,7 @@
 	QDEL_NULL(legs)
 	flick("fragment_song_transition" , src)
 	SLEEP_CHECK_DEATH(5)
-	icon_state = "fragment_breach"
-	pixel_y = 0
+	ApplyHostileIcon()
 	can_act = TRUE
 	song_cooldown = world.time + song_cooldown_time
 	if(!particle_note)
@@ -164,9 +165,9 @@
 /mob/living/simple_animal/hostile/abnormality/fragment/update_icon_state()
 	if(status_flags & GODMODE) // Not breaching
 		icon_state = initial(icon)
+		icon_living = icon_state
 	else // Breaching
-		icon_state = "fragment_breach"
-	icon_living = icon_state
+		ApplyHostileIcon()
 
 //Exists so the head can be animated separatedly from the legs when it sings
 /obj/effect/fragment_legs

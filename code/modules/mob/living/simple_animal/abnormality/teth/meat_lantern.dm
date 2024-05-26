@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x32.dmi'
 	icon_state = "lantern"
 	icon_living = "lantern"
+	hostile_icon_living = "lantern_breach"
 	portrait = "meat_lantern"
 	maxHealth = 900
 	health = 900
@@ -152,7 +153,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/meat_lantern/update_icon_state()
 	icon = initial(icon)
-	icon_living = IsContained() ? initial(icon_state) : "lantern_breach"
+	icon_living = IsContained() ? initial(icon_state) : hostile_icon_living
 	icon_state = icon_living
 
 /obj/effect/temp_visual/yellowsmoke

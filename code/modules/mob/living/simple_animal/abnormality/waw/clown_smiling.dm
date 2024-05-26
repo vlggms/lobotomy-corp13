@@ -5,11 +5,13 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "clown_smiling"
 	icon_living = "clown_smiling"
-	var/icon_aggro = "clown_breach"
+	hostile_icon_living = "clown_breach"
 	icon_dead = "clown_breach"
 	portrait = "clown_smiling"
 	pixel_y = 64
 	base_pixel_y = 64
+	hostile_pixel_y = 0
+	hostile_base_pixel_y = 0
 	speak_emote = list("honks")
 	maxHealth = 1800
 	health = 1800
@@ -65,8 +67,6 @@
 /mob/living/simple_animal/hostile/abnormality/clown/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	update_icon()
-	pixel_y = 0
-	base_pixel_y = 0
 	AddElement(/datum/element/waddling)
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announce.ogg', 75, 1)
 	GiveTarget(user)
@@ -84,7 +84,7 @@
 	if(status_flags & GODMODE)	// Not breaching
 		icon_state = initial(icon)
 	else
-		icon_state = icon_aggro
+		ApplyHostileIcon()
 
 //Execution code from green dawn with inflated damage numbers
 /mob/living/simple_animal/hostile/abnormality/clown/CanAttack(atom/the_target)

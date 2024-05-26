@@ -6,6 +6,7 @@
 	icon_state = "scorched"
 	icon_living = "scorched"
 	core_icon = "scorch_egg"
+	hostile_icon_living = "scorched_breach"
 	portrait = "scorched_girl"
 	maxHealth = 400
 	health = 400
@@ -161,8 +162,9 @@
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/update_icon_state()
 	if(status_flags & GODMODE) // Not breaching
 		icon_state = initial(icon)
+		icon_living = icon_state
 	else // Breaching
-		icon_state = "scorched_breach"
-	icon_living = icon_state
+		ApplyHostileIcon
+
 
 

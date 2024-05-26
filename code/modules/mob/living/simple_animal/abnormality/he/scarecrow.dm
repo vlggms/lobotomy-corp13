@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "scarecrow"
 	icon_living = "scarecrow"
+	hostile_icon_living = "scarecrow_breach"
 	icon_dead = "scarecrow_dead"
 	portrait = "scarecrow"
 	del_on_death = FALSE
@@ -111,6 +112,5 @@
 
 /mob/living/simple_animal/hostile/abnormality/scarecrow/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_living = "scarecrow_breach"
-	icon_state = icon_living
+	ApplyHostileIcon()
 	GiveTarget(user)

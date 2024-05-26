@@ -3,7 +3,8 @@
 	desc = "A mossy old robot that reeks of iron..."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "woodsman"
-	icon_living = "woodsman_breach"
+	icon_living = "woodsman"
+	hostile_icon_living = "woodsman_breach"
 	portrait = "woodsman"
 	layer = BELOW_OBJ_LAYER
 	maxHealth = 1433
@@ -367,7 +368,7 @@
 /mob/living/simple_animal/hostile/abnormality/woodsman/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
 	layer = LARGE_MOB_LAYER
-	icon_state = icon_living
+	ApplyHostileIcon()
 	if (!isnull(user))
 		GiveTarget(user)
 

@@ -4,6 +4,8 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "scaredy_cat"
 	icon_living = "scaredy_cat"
+	hostile_icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	hostile_icon_living = "cat_courage"
 	icon_dead = "scaredy_dead"
 	portrait = "scaredy_cat"
 	del_on_death = FALSE
@@ -180,8 +182,7 @@
 		melee_damage_lower = 15
 		melee_damage_upper = 20
 		ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 0.5))
-		icon = 'ModularTegustation/Teguicons/48x48.dmi'
-		icon_living = "cat_courage"
+		ApplyHostileIcon()
 		icon_dead = "dead_courage"
 	else
 		friend = null //just to make sure it's actually empty

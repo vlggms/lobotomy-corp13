@@ -6,11 +6,13 @@
 	icon_state = "babayaga"
 	icon_living = "babayaga"
 	portrait = "baba_yaga"
-	var/icon_aggro = "babayaga_breach"
+	hostile_icon_living = "babayaga_breach"
 	faction = list("hostile", "babayaga")
 	speak_emote = list("intones")
 	pixel_x = -30
 	base_pixel_x = -30
+	hostile_pixel_x = -16
+	hostile_base_pixel_x = -16
 	melee_damage_lower = 40
 	melee_damage_upper = 50
 	melee_damage_type = RED_DAMAGE
@@ -72,9 +74,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/babayaga/BreachEffect(mob/living/carbon/human/user, breach_type)//copied my code from crumbling armor
 	. = ..()
-	icon_state = icon_aggro
-	pixel_x = -16
-	base_pixel_x = -16
+	ApplyHostileIcon()
 	update_icon()
 	desc = "A giant house stomping around on an equally large chicken leg."
 	TryJump()
