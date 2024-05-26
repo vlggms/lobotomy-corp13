@@ -42,7 +42,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 /datum/controller/subsystem/abnormality_queue/Initialize(timeofday)
 	RegisterSignal(SSdcs, COMSIG_GLOB_ORDEAL_END, PROC_REF(OnOrdealEnd))
 	rooms_start = GLOB.abnormality_room_spawners.len
-	next_abno_spawn_time -= min(2, rooms_start * 0.05) MINUTES // 20 rooms will decrease wait time by 1 minute
+	next_abno_spawn_time -= min(2, rooms_start * 0.2) MINUTES // 20 rooms will decrease wait time by 1 minute
 	..()
 
 /datum/controller/subsystem/abnormality_queue/fire()
@@ -51,7 +51,7 @@ SUBSYSTEM_DEF(abnormality_queue)
 
 /datum/controller/subsystem/abnormality_queue/proc/SpawnAbno()
 	// Earlier in the game, abnormalities will spawn faster and then slow down a bit
-	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 6) SECONDS
+	next_abno_spawn = world.time + next_abno_spawn_time + ((min(16, spawned_abnos) - 6) * 9) SECONDS
 
 	if(!LAZYLEN(GLOB.abnormality_room_spawners))
 		return
