@@ -16,6 +16,14 @@
 	///Flip the sprite upside down on death. Mostly here for things lacking custom dead sprites.
 	var/flip_on_death = FALSE
 
+	//Hostile Icon Toggling For Abnormalities or other mobs with more than one state.
+	var/hostile_icon
+	var/hostile_icon_living
+	var/hostile_pixel_x
+	var/hostile_base_pixel_x
+	var/hostile_pixel_y
+	var/hostile_base_pixel_y
+
 	var/list/speak = list()
 	///Emotes while speaking IE: `Ian [emote], [text]` -- `Ian barks, "WOOF!".` Spoken text is generated from the speak variable.
 	var/list/speak_emote = list()
@@ -747,3 +755,18 @@
 	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/proc/ApplyHostileIcon()
+	if(hostile_icon)
+		icon = hostile_icon
+	if(hostile_icon_living)
+		icon_living = hostile_icon_living
+		icon_state = icon_living
+	if(hostile_pixel_x)
+		pixel_x = hostile_pixel_x
+	if(hostile_base_pixel_x)
+		base_pixel_x = hostile_base_pixel_x
+	if(hostile_pixel_y)
+		pixel_y = hostile_pixel_y
+	if(hostile_base_pixel_y)
+		base_pixel_y = hostile_base_pixel_y
