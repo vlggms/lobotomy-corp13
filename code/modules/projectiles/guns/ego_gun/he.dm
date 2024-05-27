@@ -179,7 +179,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
 	weapon_weight = WEAPON_HEAVY
-	shotsleft = 10
+	shotsleft = 32
 	reloadtime = 1.6 SECONDS
 	spread = 8
 	autofire = 0.15 SECONDS
