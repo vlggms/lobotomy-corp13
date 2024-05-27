@@ -19,6 +19,15 @@
 	result = /obj/item/food/cake/vanilla_cake
 	subcategory = CAT_PASTRY
 
+/datum/crafting_recipe/food/braincake
+	name = "Brain cake"
+	reqs = list(
+		/obj/item/organ/brain = 1,
+		/obj/item/food/cake/plain = 1
+	)
+	result = /obj/item/food/cake/brain
+	subcategory = CAT_PASTRY
+
 /datum/crafting_recipe/food/bscccake
 	name = "blackberry and strawberry chocolate cake"
 	reqs = list(
@@ -130,16 +139,6 @@
 		/datum/reagent/consumable/caramel = 2
 	)
 	result = /obj/item/food/cake/birthday
-	subcategory = CAT_PASTRY
-	always_available = FALSE
-
-/datum/crafting_recipe/food/braincake
-	name = "Brain cake"
-	reqs = list(
-		/obj/item/organ/brain = 1,
-		/obj/item/food/cake/plain = 1
-	)
-	result = /obj/item/food/cake/brain
 	subcategory = CAT_PASTRY
 	always_available = FALSE
 
