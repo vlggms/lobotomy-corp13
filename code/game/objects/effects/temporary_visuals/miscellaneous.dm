@@ -849,6 +849,11 @@
 	pixel_y = 0
 	pixel_x = -16
 
+/obj/effect/temp_visual/crit
+	icon_state = "critical"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 15
+
 /obj/effect/temp_visual/healing
 	icon_state = "healing"
 	layer = ABOVE_ALL_MOB_LAYER

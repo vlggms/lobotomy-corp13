@@ -135,11 +135,22 @@
 /mob/living/attacked_by(obj/item/I, mob/living/user)
 	send_item_attack_message(I, user)
 	if(I.force)
+		var/crit_bonus = 1
 		var/justice_mod = 1 + (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE)/100)
-		var/damage = I.force * justice_mod
+		var/crit_chance = get_modified_attribute_level(user, PRUDENCE_ATTRIBUTE)/50	//prudence is crit chance, It's a very small percentage that maxes out at 2.6%
+
+		if(prob(crit_chance * I.crit_multiplier))	//Crit multiplier is by default 1.
+			new /obj/effect/temp_visual/crit(get_turf(user))
+			crit_bonus += get_modified_attribute_level(user, FORTITUDE_ATTRIBUTE)/100	//fortitude is crit bonus damage, bonus scaling off fortitude
+			if(istype(I, /obj/item/ego_weapon))
+				var/obj/item/ego_weapon/critting = I
+				critting.CritEffect(src, user)
+
+		var/damage = I.force * justice_mod * crit_bonus
 		if(istype(I, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/theweapon = I
 			damage *= theweapon.force_multiplier
+
 		apply_damage(damage, I.damtype, white_healable = TRUE)
 		if(I.damtype in list(RED_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE))
 			if(prob(33))
