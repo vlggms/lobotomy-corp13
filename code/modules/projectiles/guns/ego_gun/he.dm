@@ -290,3 +290,18 @@
 							PRUDENCE_ATTRIBUTE = 40
 	)
 
+
+/obj/item/gun/ego_gun/ardor_star
+	name = "ardor blossom star"
+	desc = "Though I can't guide you... I can offer a warm embrace."
+	icon_state = "ardor_star"
+	inhand_icon_state = "ardor_star"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_ardor
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	fire_delay = 5
+	shotsleft = 1
+	reloadtime = 1.4 SECONDS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
