@@ -6,7 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "nosferatu"
 	icon_living = "nosferatu"
-	var/icon_aggro = "nosferatu_breach"
+	hostile_icon_living = "nosferatu_breach"
 	portrait = "nosferatu"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -128,9 +128,10 @@
 /mob/living/simple_animal/hostile/abnormality/nosferatu/update_icon_state()
 	if(status_flags & GODMODE) // Not breaching
 		icon_state = initial(icon_state)
+		icon_living = icon_state
 	else // Breaching
-		icon_state = icon_aggro
-	icon_living = icon_state
+		ApplyHostileIcon()
+
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Move()
 	if(!can_act)

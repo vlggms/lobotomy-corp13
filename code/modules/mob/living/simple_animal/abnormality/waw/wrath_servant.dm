@@ -8,6 +8,10 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "wrath"
 	icon_living = "wrath"
+	hostile_icon = 'ModularTegustation/Teguicons/96x64.dmi'
+	hostile_icon_living = "wrath"
+	hostile_pixel_x = -32
+	hostile_base_pixel_x = -32
 	portrait = "wrath_servant"
 	faction = list("wrath")
 	speak_emote = list()
@@ -378,10 +382,7 @@
 	instability = 0
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
 	src.faction = list("wrath")
-	src.icon = 'ModularTegustation/Teguicons/96x64.dmi'
-	icon_state = "wrath"
-	pixel_x = -32
-	base_pixel_x = -32
+	ApplyHostileIcon()
 	fear_level = WAW_LEVEL
 	speak_emote = list("growls")
 	friendly = FALSE

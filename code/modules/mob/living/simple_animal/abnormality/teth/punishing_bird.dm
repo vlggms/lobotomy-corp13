@@ -105,7 +105,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/punishing_bird/proc/TransformBack()
 	visible_message(span_notice("\The [src] turns back into a fuzzy looking bird!"))
-	ApplyHositleIcon()
+	ApplyHostileIcon()
 	attack_verb_continuous = initial(attack_verb_continuous)
 	attack_verb_simple = initial(attack_verb_simple)
 	rapid_melee = initial(rapid_melee)

@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = "current"
 	icon_living = "current"
+	hostile_icon_living = "current_breach"
 	portrait = "dreaming_current"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -212,5 +213,4 @@
 	. = ..()
 	ADD_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT) // Floating
 	if(!secret_abnormality)
-		icon_living = "current_breach"
-		icon_state = icon_living
+		ApplyHostileIcon()

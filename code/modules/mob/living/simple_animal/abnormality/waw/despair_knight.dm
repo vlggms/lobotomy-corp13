@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "despair"
 	icon_living = "despair"
+	hostile_icon_living = "despair_breach"
 	icon_dead = "despair_dead"
 	portrait = "despair_knight"
 	pixel_x = -8
@@ -248,8 +249,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/despair_knight/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_living = "despair_breach"
-	icon_state = icon_living
+
+	ApplyHostileIcon()
 	addtimer(CALLBACK(src, PROC_REF(TryTeleport)), 5)
 	return
 

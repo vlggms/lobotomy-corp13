@@ -126,7 +126,7 @@
 		BreachDig()
 		return
 	if(!broken)
-		ApplyHositleIcon()
+		ApplyHostileIcon()
 	else
 		icon_state = "faelantern_breaching2"
 	playsound(src, 'sound/abnormalities/faelantern/faelantern_breach.ogg', 200, 1)//proper sfx goes here

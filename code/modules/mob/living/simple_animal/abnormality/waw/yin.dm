@@ -4,7 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "yin"
 	icon_living = "yin"
-	var/icon_breach = "yin_breach"
+	hostile_icon_living = "yin_breach"
 	icon_dead = "yin_slain"
 	portrait = "yin"
 	is_flying_animal = TRUE
@@ -153,7 +153,7 @@
 	adjustBruteLoss(-maxHealth)
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, PALE_DAMAGE = 1))
 	SSlobotomy_events.yin_downed = FALSE
-	icon_state = icon_breach
+	ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/yin/Destroy()
 	for(var/atom/AT in spawned_effects)
@@ -174,7 +174,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/yin/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_state = icon_breach
+	ApplyHostileIcon()
 	SSlobotomy_events.yin_downed = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/yin/FailureEffect(mob/living/carbon/human/user, work_type, pe)

@@ -164,7 +164,7 @@
 		icon_state = initial(icon)
 		icon_living = icon_state
 	else // Breaching
-		ApplyHostileIcon
+		ApplyHostileIcon()
 
 
 

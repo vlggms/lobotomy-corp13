@@ -5,6 +5,8 @@
 	icon_state = "generalbee"
 	icon_living = "generalbee"
 	core_icon = "gbee_egg"
+	hostile_icon = 'ModularTegustation/Teguicons/48x96.dmi'
+	hostile_icon_living = "general_breach"
 	speak_emote = list("buzzes")
 	pixel_x = -8
 	base_pixel_x = -8
@@ -135,8 +137,7 @@
 		icon_state = icon_dead
 		return
 	else
-		icon = 'ModularTegustation/Teguicons/48x96.dmi'
-		icon_living = "general_breach"
+		ApplyHostileIcon()
 	icon_state = icon_living
 
 /mob/living/simple_animal/hostile/abnormality/general_b/Life()

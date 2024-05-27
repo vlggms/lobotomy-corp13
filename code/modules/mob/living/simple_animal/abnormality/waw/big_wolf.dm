@@ -156,7 +156,7 @@
 		else if(fleeing_now)
 			icon_state = "big_wolf_flee"
 		else
-			ApplyHositleIcon()
+			ApplyHostileIcon()
 	icon_living = icon_state
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/handle_automated_action()

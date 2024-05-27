@@ -6,6 +6,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "bottle1"
 	icon_living = "bottle1"
+	hostile_icon_living = "bottle_breach"
 	portrait = "bottle"
 	maxHealth = 800
 	health = 800
@@ -171,7 +172,7 @@
 	if(breach_type == BREACH_PINK)
 		ADD_TRAIT(src, TRAIT_MOVE_FLYING, INNATE_TRAIT)
 		COOLDOWN_START(src, speak_damage_aura, speak_cooldown_time)
-		icon_state = "bottle_breach"
+		ApplyHostileIcon()
 		desc = "A floating bottle, leaking tears.\nYou can use an empty hand to drink from it."
 		can_breach = TRUE
 	return ..()

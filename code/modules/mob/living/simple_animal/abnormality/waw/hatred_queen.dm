@@ -6,6 +6,9 @@
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "hatred"
 	icon_living = "hatred"
+	hostile_icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	hostile_base_pixel_x = -16
+	hostile_pixel_x = -16
 	var/icon_crazy = "hatred_psycho"
 	icon_dead = "hatred_dead"
 	var/icon_inverted
@@ -642,10 +645,8 @@
 	adjustBruteLoss(-maxHealth)
 	friendly = FALSE
 	can_act = TRUE
-	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	icon_state = icon_living
-	base_pixel_x = -16
-	pixel_x = -16
+	ApplyHostileIcon()
 	faction = list("hatredqueen") // Kill everyone
 	fear_level = WAW_LEVEL //fear her
 	beam_startup = 1.5 SECONDS //WAW level beam

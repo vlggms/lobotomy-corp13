@@ -5,6 +5,9 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "kog"
 	icon_living = "kog"
+	hostile_icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	hostile_pixel_y = -8
+	hostile_base_pixel_y = -8
 	portrait = "greed_king"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -101,10 +104,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	ApplyHostileIcon()
 	//Center it on a hallway
-	pixel_y = -8
-	base_pixel_y = -8
 
 	startTeleport()	//Let's Spaghettioodle out of here
 

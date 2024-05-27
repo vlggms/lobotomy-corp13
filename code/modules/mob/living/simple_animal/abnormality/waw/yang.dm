@@ -4,7 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "yang"
 	icon_living = "yang"
-	var/icon_breach = "yang_breach"
+	hostile_icon_living = "yang_breach"
 	icon_dead = "yang_slain"
 	portrait = "yang"
 	is_flying_animal = TRUE
@@ -157,7 +157,7 @@
 	adjustBruteLoss(-maxHealth)
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2))
 	SSlobotomy_events.yang_downed = FALSE
-	icon_state = icon_breach
+	ApplyHostileIcon()
 
 /mob/living/simple_animal/hostile/abnormality/yang/proc/explode()
 	exploding = TRUE
@@ -220,7 +220,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/yang/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()
-	icon_state = icon_breach
+	ApplyHostileIcon()
 	SSlobotomy_events.yang_downed = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/yang/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
