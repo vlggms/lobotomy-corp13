@@ -426,7 +426,6 @@
 		/datum/crafting_recipe/food/bscvcake,
 		/datum/crafting_recipe/food/berrytart,
 		/datum/crafting_recipe/food/clowncake,
-		/datum/crafting_recipe/food/braincake,
 		/datum/crafting_recipe/food/birthdaycake,
 		/datum/crafting_recipe/food/chocolatecake,
 		/datum/crafting_recipe/food/lemoncake,
