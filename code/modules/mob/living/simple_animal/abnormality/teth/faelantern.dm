@@ -236,7 +236,7 @@
 			if(WEST)
 				R.pixel_x -= 16
 		for(var/mob/living/L in T)
-			L.deal_damage(root_damage, BRUTE)
+			L.deal_damage(root_damage, RED_DAMAGE)
 	qdel(src)
 
 //AI controller, FIXME: reduce duplicate code
