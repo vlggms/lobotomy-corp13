@@ -13,7 +13,7 @@
 	access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
 	minimal_access = list(ACCESS_NETWORK, ACCESS_COMMAND, ACCESS_MANAGER, ACCESS_CHANGE_IDS)
 	paycheck = 0
-	maptype = "city"
+	maptype = list("city", "fixers")
 	job_important = "You are the city's administrator, and have a small sort of power over the local association. \
 		You MUST assist new fixer offices in getting set up, as well as issuing fixer licenses. \
 		All new fixer offices MUST be announced upon creation, including office name and director name."
@@ -38,6 +38,12 @@
 	if(paycheck==0)
 		add_verb(outfit_owner, /client/proc/hanafetchquest)
 //		add_verb(outfit_owner, /client/proc/hanaslayquest)
+	if(SSmaptype.maptype == "fixers")
+		for(var/datum/job/processing in SSjob.occupations)
+			if(istype(processing, /datum/job/associateroaming) && processing.total_positions<7)	//Can have a max of 7 of these
+				processing.total_positions +=2
+
+	. = ..()
 
 	return ..()
 

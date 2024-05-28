@@ -1,5 +1,4 @@
 
-
 // Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"
