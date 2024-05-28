@@ -5,8 +5,6 @@
  *
  * * Can deal with multiple damages, read damage_type point 1
  *
- * target = The mob want to apply the damage to.
- *
  * damage_amount = The amount of damage you want to apply.
  *
  * damage_type = The damage types you want to apply, can be a list.
