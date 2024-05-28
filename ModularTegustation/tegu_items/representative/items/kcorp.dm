@@ -47,8 +47,8 @@
 /obj/item/kcrit/attack_self(mob/living/user)
 	..()
 	to_chat(user, span_notice("You inject the syringe and instantly feel better."))
-	user.hardcrit_threshold+=30
-	user.crit_threshold+=30
+	user.hardcrit_threshold-=30
+	user.crit_threshold-=30
 	qdel(src)
 
 /obj/item/khpboost
