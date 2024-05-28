@@ -115,4 +115,19 @@
 	ItemUnlock(caller.order_list, "Focused Fading Justice Ampule",	/obj/item/attribute_temporary/justicebig, 1500)
 	..()
 
+//Level 2 Clerks
+/datum/data/lc13research/clerkbuff
+	research_name = "Clerk Advanced Training"
+	research_desc = "An authorization to train clerks better. <br>This should bring them up to around a level 2 agent."
+	cost = HIGH_RESEARCH_PRICE
+	corp = N_CORP_REP
+
+/datum/data/lc13research/clerkbuff/ResearchEffect(obj/structure/representative_console/caller)
+	for(var/mob/living/carbon/human/H in GLOB.player_list)
+		if(H?.mind?.assigned_role in GLOB.service_positions)
+			H.set_attribute_limit(40)
+			H.adjust_all_attribute_levels(40)
+
+	GLOB.lcorp_upgrades += "Clerk Buff"
+	..()
 
