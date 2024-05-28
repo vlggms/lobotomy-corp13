@@ -131,7 +131,7 @@
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/crispynugget()
 	pulse_cooldown = world.time + pulse_cooldown_time
 	for(var/mob/living/carbon/human/L in livinginview(48, src))
-		L.apply_damage(pulse_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(pulse_damage, RED_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/fire_bird/proc/retaliatedash()
 	if(dash_cooldown > world.time)
@@ -180,7 +180,7 @@
 			if(L in been_hit)
 				continue
 			visible_message(span_boldwarning("[src] blazes through [L]!"))
-			L.apply_damage(dash_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(dash_damage, WHITE_DAMAGE)
 			new /obj/effect/temp_visual/cleave(get_turf(L))
 			if(L.sanity_lost) // TODO: TEMPORARY AS HELL
 				L.adjustFireLoss(999)

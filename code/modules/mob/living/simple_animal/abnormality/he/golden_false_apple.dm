@@ -484,7 +484,7 @@
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE))
+	status_holder.deal_damage(stacks, BLACK_DAMAGE)
 	if(status_holder.stat < HARD_CRIT)
 		return
 	var/obj/structure/spider/cocoon/casing = new(status_holder.loc)

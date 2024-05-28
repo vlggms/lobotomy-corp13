@@ -77,9 +77,9 @@
 				continue
 			if(ishuman(affected_mob)) //deals less damage to humans
 				var/mob/living/carbon/human/human_mob = affected_mob
-				human_mob.apply_damage(human_damage, RED_DAMAGE, null, affected_mob.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				human_mob.deal_damage(human_damage, RED_DAMAGE)
 				continue
-			affected_mob.apply_damage(damage_dealt, RED_DAMAGE, null, affected_mob.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			affected_mob.deal_damage(damage_dealt, RED_DAMAGE)
 	var/datum/effect_system/smoke_spread/smoke_effect = new
 	smoke_effect.set_up(7, get_turf(owner))
 	smoke_effect.start()

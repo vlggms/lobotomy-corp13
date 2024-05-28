@@ -72,7 +72,7 @@
 			continue
 
 		new /obj/effect/temp_visual/thirteen(get_turf(H))	//A visual effect if it hits
-		H.apply_damage(worldwide_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(worldwide_damage, PALE_DAMAGE)
 	addtimer(CALLBACK(src, PROC_REF(Reset)), reset_time)
 	return
 

@@ -37,8 +37,8 @@
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 50, 55),
 	)
 	start_qliphoth = 3
-	work_damage_amount = 4		//Work damage is later
-	work_damage_type = RED_DAMAGE
+	work_damage_amount = 16
+	work_damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 
 	ego_list = list(
 		/datum/ego_datum/armor/distortion,
@@ -130,14 +130,6 @@
 	if(transformed) // distorted form jumpscare
 		UnTransform(TRUE)
 	return ..()
-
-/mob/living/simple_animal/hostile/abnormality/distortedform/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(RED_DAMAGE,WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
-	for(var/damagetype in damtypes) // take 4 of every damage type every failed tick
-		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
-	work_damage_type = pick(damtypes) //Displays a random work damage type every tick
-	WorkDamageEffect()
-	return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -527,7 +519,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(5, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(5, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/DFAttack()
 	if(!can_act)
@@ -672,7 +664,7 @@
 			continue
 		if(faction_check_mob(L, FALSE))
 			continue
-		L.apply_damage(20, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE))
+		L.deal_damage(20, BLACK_DAMAGE)
 		if(target == L)
 			continue
 		target_list += L
@@ -680,7 +672,7 @@
 	if(LAZYLEN(target_list))
 		target_list += target
 		for(var/mob/living/L in target_list)
-			L.apply_damage(300, BLACK_DAMAGE, null, target.run_armor_check(null, BLACK_DAMAGE)) //You - you are probably going to die!
+			L.deal_damage(300, BLACK_DAMAGE) //You - you are probably going to die!
 			if(L.health < 0)
 				L.gib() //maybe someday we'll have a cool acid melting animation for this
 
@@ -736,7 +728,7 @@
 		var/total_damage = 30 //There will very rarely be over 2 people in the stack
 		var/new_damage = total_damage / (target_list.len)
 		for(var/mob/living/L in target_list)
-			L.apply_damage(new_damage, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE))
+			L.deal_damage(new_damage, PALE_DAMAGE)
 			if(L.health < 0)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L
@@ -744,7 +736,7 @@
 				else
 					L.gib()
 	else
-		target.apply_damage(250, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //You - you are probably going to die!
+		target.deal_damage(250, PALE_DAMAGE) //You - you are probably going to die!
 		if(target.health < 0)
 			target.dust()
 	can_act = TRUE
@@ -908,9 +900,9 @@
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/Finisher(mob/living/target)
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
-		target.apply_damage(150, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //bit more than usual DPS in pale damage
+		target.deal_damage(150, PALE_DAMAGE) //bit more than usual DPS in pale damage
 		return
-	target.apply_damage(500, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE)) //You are probably going to die!
+	target.deal_damage(500, RED_DAMAGE) //You are probably going to die!
 	if(target.health > 0)
 		return
 	var/mob/living/carbon/human/H = target
@@ -940,7 +932,7 @@
 			continue
 		if(!ishuman(L))
 			playsound(get_turf(L), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-			L.apply_damage(50, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(50, PALE_DAMAGE)
 			new /obj/effect/temp_visual/slice(get_turf(L))
 		else
 			var/mob/living/carbon/human/H = L
@@ -979,7 +971,7 @@
 			++targetAmount
 			if(!ishuman(L))
 				new /obj/effect/temp_visual/beam_in(get_turf(L))
-				L.apply_damage(60, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(60, PALE_DAMAGE)
 				if(L.health < 0)
 					L.gib()
 			else
@@ -1009,7 +1001,7 @@
 /obj/effect/lightbolt/proc/explode()
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, FALSE, -3)
 	for(var/mob/living/carbon/human/H in view(1, src))
-		H.apply_damage(boom_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, PALE_DAMAGE)
 		if(H.health < 0)
 			H.dust()
 	new /obj/effect/temp_visual/beam_in(get_turf(src))
@@ -1059,7 +1051,7 @@
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(150, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(150, PALE_DAMAGE)
 			if(L.stat == DEAD)
 				for(var/i = 1 to 5) // Eventually turn this into a horizontal bisect. That would be cool.
 					new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
@@ -1223,7 +1215,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(50, BLACK_DAMAGE)
 			if(ishuman(L))
 				var/mob/living/carbon/human/H = L
 				if(H.sanity_lost)
@@ -1248,7 +1240,7 @@
 				continue
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(30, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(30, BLACK_DAMAGE)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 			if(!L.anchored)
 				var/whack_speed = (prob(60) ? 1 : 4)
@@ -1347,7 +1339,7 @@
 					continue
 				already_hit += L
 				var/truedamage = ishuman(L) ? 25 : 20 //less damage dealt to nonhumans
-				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(truedamage, BLACK_DAMAGE)
 		SLEEP_CHECK_DEATH(1.71)
 	QDEL_NULL(current_beam)
 	SLEEP_CHECK_DEATH(1 SECONDS) //Rest after laser beam
@@ -1471,7 +1463,7 @@
 	if(!(faction_check in L.faction))
 		playsound(L.loc, 'sound/abnormalities/doomsdaycalendar/Effect_Burn.ogg', 50 - attack_range, TRUE, -1)
 		var/dealt_damage = max(5, 75 - (attack_range))
-		L.apply_damage(dealt_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(dealt_damage, RED_DAMAGE)
 		if(ishuman(L) && dealt_damage > 25)
 			L.emote("scream")
 		to_chat(L, span_userdanger("IT BURNS!!"))
@@ -1501,7 +1493,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((75 - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage((75 - get_dist(src, L)), WHITE_DAMAGE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue
@@ -1654,7 +1646,7 @@
 	for(var/mob/living/L in livinginview(8, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((300 - (16 * get_dist(src, L))), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage((300 - (16 * get_dist(src, L))), BLACK_DAMAGE)
 	SLEEP_CHECK_DEATH(2 SECONDS)
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/proc/ApocJudge()
@@ -1674,7 +1666,7 @@
 		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.apply_damage(max(5, 60 - get_dist(src, L)), PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(max(5, 60 - get_dist(src, L)), PALE_DAMAGE)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	icon_state = "apocalypse"
 	SLEEP_CHECK_DEATH(1 SECONDS)
@@ -1789,9 +1781,9 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
-			L.apply_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //15-3840 damage scaling exponentially with distance
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
 		else
-			L.apply_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //0-600 damage scaling on distance, we don't want it oneshotting mobs
+			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
 		if(L.health < 0)
 			L.gib()
 

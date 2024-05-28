@@ -198,7 +198,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/titania/proc/Punishment(mob/living/sinner)
 	to_chat(sinner, span_userdanger("You are hurt due to breaking Fairy Law."))
-	sinner.apply_damage(law_damage, PALE_DAMAGE, null, sinner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	sinner.deal_damage(law_damage, PALE_DAMAGE)
 	new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(sinner), pick(GLOB.alldirs))
 
 //Ranged stuff

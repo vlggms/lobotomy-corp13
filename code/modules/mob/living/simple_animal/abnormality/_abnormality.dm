@@ -52,6 +52,7 @@
 	/// How much damage is dealt to user on each work failure
 	var/work_damage_amount = 2
 	/// What damage type is used for work failures
+	/// Can be a list, work_damage_amount in that case is divided by the objects in the list and visuals are chosen randomly
 	var/work_damage_type = RED_DAMAGE
 	/// Maximum amount of PE someone can obtain per work procedure, if not null or 0.
 	var/max_boxes = null
@@ -375,7 +376,7 @@
 
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/proc/WorktickFailure(mob/living/carbon/human/user)
-	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
+	user.deal_damage(work_damage_amount, work_damage_type)
 	WorkDamageEffect()
 	return
 
@@ -383,8 +384,11 @@
 /mob/living/simple_animal/hostile/abnormality/proc/WorkDamageEffect()
 	var/turf/target_turf = get_ranged_target_turf(src, SOUTHWEST, 1)
 	var/obj/effect/temp_visual/roomdamage/damage = new(target_turf)
-	damage.icon_state = "[work_damage_type]"
-	return
+	if(!islist(work_damage_type))
+		damage.icon_state = "[work_damage_type]"
+	else // its a list, we gotta pick one
+		var/list/damage_types = work_damage_type
+		damage.icon_state = pick(damage_types)
 
 // Dictates whereas this type of work can be performed at the moment or not
 /mob/living/simple_animal/hostile/abnormality/proc/AttemptWork(mob/living/carbon/human/user, work_type)

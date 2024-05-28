@@ -82,7 +82,7 @@
 				var/datum/status_effect/stacking/slab/S = H.has_status_effect(/datum/status_effect/stacking/slab)
 				if(!S)
 					continue
-			M.apply_damage(damage, PALE_DAMAGE, null, M.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			M.deal_damage(damage, PALE_DAMAGE)
 			if(M.health < 0)
 				PunishDeath(M)
 	playsound(R, 'sound/weapons/fixer/generic/blade3.ogg', 55, TRUE, 3)

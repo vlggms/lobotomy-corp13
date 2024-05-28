@@ -366,7 +366,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(50, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(50, WHITE_DAMAGE)
 		for(var/obj/vehicle/V in turfs_to_check)
 			V.take_damage(50, WHITE_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_Howl.ogg', 30, 0, 4)

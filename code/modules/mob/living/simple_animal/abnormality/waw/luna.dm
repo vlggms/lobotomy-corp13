@@ -80,7 +80,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/Worktick(mob/living/carbon/human/user, work_type)
 	if(performance)
-		user.apply_damage(work_damage_amount, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		user.deal_damage(work_damage_amount, BLACK_DAMAGE)
 
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)

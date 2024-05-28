@@ -174,7 +174,7 @@
 			continue
 		var/dist = get_dist(src, L)
 		var/damage_mod = (dist > 7 ? 5 : 20 )
-		L.apply_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
+		L.deal_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
 		flash_color(L, flash_color = COLOR_ALMOST_BLACK, flash_time = 70)
 		L.apply_void(damage_mod / 5) //inflict a void debuff
 		if(GirlCheck(L)) //This should kill them most of the time if they are too close

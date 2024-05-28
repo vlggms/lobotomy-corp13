@@ -182,7 +182,7 @@
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/DissolveGifted(mob/living/carbon/C)
 	to_chat(C, span_userdanger("You feel like you are about to burst!"))
 	C.emote("scream")
-	C.apply_damage(800, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	C.deal_damage(800, BLACK_DAMAGE)
 	C.remove_status_effect(STATUS_EFFECT_MELTYLOVE)
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/UnregisterGiftedSignals(mob/living/carbon/human/user)
@@ -471,7 +471,7 @@
 	if(!isliving(owner))
 		return
 	var/mob/living/L = owner
-	L.apply_damage(10, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	L.deal_damage(10, BLACK_DAMAGE)
 	owner.playsound_local(owner, 'sound/effects/wounds/sizzle2.ogg', 25, TRUE)
 	if(!ishuman(L))
 		return

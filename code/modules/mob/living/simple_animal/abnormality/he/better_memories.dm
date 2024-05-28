@@ -538,7 +538,7 @@
 	var/mob/living/carbon/human/L = owner
 	if(L.sanity_lost || L.stat == DEAD)
 		qdel(src)
-	L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	L.deal_damage(10, WHITE_DAMAGE)
 	//Unsure if these statements explain what is happening to your character but its enough. -IP
 	to_chat(owner, pick(
 		span_warning("You have trouble recalling your life before this job."),

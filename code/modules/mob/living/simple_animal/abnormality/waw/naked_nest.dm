@@ -413,7 +413,7 @@
 /obj/item/organ/naked_nest/proc/TransformOverride(mob/living/carbon/human/H)
 	if(H && H.has_status_effect(/datum/status_effect/display/melting_love_blessing))
 		to_chat(H, span_warning("Something in your head writhes as pink slime starts to pour out of your mouth."))
-		H.apply_damage(800, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(800, BLACK_DAMAGE)
 		H.remove_status_effect(/datum/status_effect/display/melting_love_blessing)
 		if(!H || H.stat == DEAD)
 			return TRUE

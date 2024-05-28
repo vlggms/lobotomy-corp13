@@ -92,11 +92,11 @@
 		if(A in exceptions)
 			continue
 		new /obj/effect/temp_visual/sparks/quantum(A)
-		A.apply_damage(damage_dealt, BRUTE, null, A.run_armor_check(null, BRUTE), spread_damage = TRUE)
+		A.deal_damage(damage_dealt, BRUTE)
 
 	for(var/mob/living/L in GLOB.ordeal_list)
 		new /obj/effect/temp_visual/sparks/quantum(L)
-		L.apply_damage(damage_dealt, BRUTE, null, L.run_armor_check(null, BRUTE), spread_damage = TRUE)
+		L.deal_damage(damage_dealt, BRUTE)
 
 
 /obj/structure/toolabnormality/clock/update_overlays()
