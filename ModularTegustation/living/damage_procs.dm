@@ -2,7 +2,6 @@
  * The deal damage proc is a replacement for apply_damage() aimed to reduce copy-paste.
  * In comparison to apply_damage() it:
  * * Automatically checks for armor, and applies its damage reduction effects
- *
  * * Can deal with multiple damages, read damage_type point 1
  *
  * damage_amount = The amount of damage you want to apply.
