@@ -363,9 +363,7 @@
 		var/obj/item/held = user.get_active_held_item()
 		if(held)
 			held.attack(target, user)
-			if(held == /obj/item/ego_weapon/goldrush/nihil)
-				target.apply_status_effect(/datum/status_effect/GoldStaggered)
-			else if (held == /obj/item/ego_weapon/goldrush)
+			if(held == /obj/item/ego_weapon/goldrush/nihil || held == /obj/item/ego_weapon/goldrush)
 				target.apply_status_effect(/datum/status_effect/GoldStaggered)
 	return ..()
 
