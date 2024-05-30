@@ -21,11 +21,7 @@
 	A.SetItem(src)
 
 /*Armor totals:
-Healing		190
-Support		210
-Ranged		210
-Defensive	230
-Melee		230
+Ability 	230
 No Ability	250
 */
 /* ZAYIN Realizations */
@@ -34,7 +30,7 @@ No Ability	250
 	name = "confessional"
 	desc = "Come my child. Tell me your sins."
 	icon_state = "confessional"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)	//Ranged, 210
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)	//Ranged
 	realized_ability = /obj/effect/proc_holder/ability/aimed/cross_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/prophet
