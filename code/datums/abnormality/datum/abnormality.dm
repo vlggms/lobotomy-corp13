@@ -215,6 +215,9 @@
 			current.gift_chance /= 1.5
 			SSlobotomy_corp.understood_abnos--
 
+	if(understanding >= (max_understanding / 2)) //Understanding is over 50% - EO lock tool breaks
+		console.ApplyEOTool(EXTRACTION_KEY, TRUE)
+
 /datum/abnormality/proc/qliphoth_change(amount, user)
 	var/pre_qlip = qliphoth_meter
 	qliphoth_meter = clamp(qliphoth_meter + amount, 0, qliphoth_meter_max)
@@ -262,6 +265,21 @@
 	var/player_temperance = get_modified_attribute_level(user, TEMPERANCE_ATTRIBUTE)
 	acquired_chance += TEMPERANCE_SUCCESS_MOD *((0.07*player_temperance-1.4)/(0.07*player_temperance+4))
 	acquired_chance += understanding // Adds up to 6-10% [Threat Based] work chance based off works done on it. This simulates Observation Rating which we lack ENTIRELY and as such has inflated the overall failure rate of abnormalities.
+	switch(console.work_bonus)
+		if(EXTRACTION_KEY)
+			switch(threat_level) //Matches understanding bonus at 50% understanding
+				if(ZAYIN_LEVEL)
+					acquired_chance += 5
+				if(TETH_LEVEL)
+					acquired_chance += 5
+				if(HE_LEVEL)
+					acquired_chance += 4
+				if(WAW_LEVEL)
+					acquired_chance += 3
+				if(ALEPH_LEVEL)
+					acquired_chance += 3
+		if(EXTRACTION_LOCK)
+			acquired_chance -= 15
 	if(overload_chance[user.ckey])
 		acquired_chance += overload_chance[user.ckey]
 	return clamp(acquired_chance, 0, 100)

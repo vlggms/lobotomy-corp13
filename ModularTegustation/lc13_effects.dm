@@ -10,6 +10,7 @@
 	icon = 'icons/effects/160x96.dmi'
 	icon_state = "red"
 	layer = ABOVE_OPEN_TURF_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/roomdamage/Initialize(mapload, set_dir)
 	. = ..()
@@ -28,6 +29,7 @@
 	icon_state = "normal"
 	layer = ABOVE_ALL_MOB_LAYER
 	alpha = 200
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 
 /obj/effect/temp_visual/workcomplete/Initialize(mapload, set_dir)
 	. = ..()
@@ -38,3 +40,24 @@
 	animate(src, alpha = 200, time = 5)
 	sleep(5)
 	animate(src, alpha = 0, time = 5)
+
+/obj/effect/extraction_effect
+	name = "extraction effect"
+	icon = 'icons/effects/160x96.dmi'
+	icon_state = "key" //Can be set to "lock" with the other tool
+	layer = FLY_LAYER
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/extraction_effect/Initialize(mapload, set_dir)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(StartAnimation)),5)
+
+/obj/effect/extraction_effect/proc/StartAnimation()
+	if(QDELETED(src))
+		return
+	animate(src, alpha = 255, time = 30)
+	sleep(30)
+	if(QDELETED(src))
+		return
+	animate(src, alpha = 100, time = 30)
+	addtimer(CALLBACK(src, PROC_REF(StartAnimation)),30)

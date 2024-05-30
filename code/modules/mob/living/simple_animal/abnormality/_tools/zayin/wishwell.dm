@@ -191,7 +191,7 @@
 //End of loot lists
 /obj/structure/toolabnormality/wishwell/attackby(obj/item/I, mob/living/carbon/human/user)
 	//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
-	if(istype(I, /obj/item/tool_extractor))
+	if(istype(I, /obj/item/extraction/tool_extractor))
 		return ..()
 	if(!do_after(user, 0.5 SECONDS))
 		return

@@ -56,7 +56,14 @@
 	jobtype = /datum/job/command
 	suit =  /obj/item/clothing/suit/armor/extraction
 
-	backpack_contents = list(/obj/item/price_tagger)
+	backpack_contents = list(
+		/obj/item/price_tagger,
+		/obj/item/extraction/delivery,
+		/obj/item/extraction/upgrade_tool,
+		/obj/item/extraction/key,
+		/obj/item/extraction/key/lock,
+		/obj/item/extraction/tool_extractor,
+	)
 
 //Records
 /datum/job/command/records
