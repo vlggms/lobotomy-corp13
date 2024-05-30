@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = GLOB.clients.len * 0.15
-	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
+	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
