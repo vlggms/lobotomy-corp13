@@ -6,8 +6,8 @@
 	base_icon_state = "universe_song"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 25 // Amount of white damage dealt to enemies per "pulse".
-	var/damage_slowdown = 0.6 // Slowdown per pulse
+	var/damage_amount = 50 // Amount of white damage dealt to enemies per "pulse".
+	var/damage_slowdown = 0.7 // Slowdown per pulse
 	var/damage_count = 5 // How many times the damage and slowdown is applied
 	var/damage_range = 6
 
@@ -40,7 +40,7 @@
 
 /obj/effect/proc_holder/ability/shrimp
 	name = "Backup Shrimp"
-	desc = "Spawns 4 wellcheers corp liquidation officers for a period of time."
+	desc = "Spawns 6 wellcheers corp liquidation officers for a period of time."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
 	cooldown_time = 90 SECONDS
@@ -48,7 +48,7 @@
 
 
 /obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
-	for(var/i = 1 to 4)
+	for(var/i = 1 to 6)
 		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
 	return ..()
 
@@ -145,7 +145,7 @@
 	base_icon_state = "screach"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 175 // Amount of black damage dealt to enemies. Humans receive half of it.
+	var/damage_amount = 200 // Amount of black damage dealt to enemies. Humans receive half of it.
 	var/damage_range = 7
 
 /obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
@@ -643,7 +643,7 @@
 
 /atom/movable/screen/alert/status_effect/bloomdebuff
 	name = "Blooming Sakura"
-	desc = "You Take Double Damage."
+	desc = "You Take 1.5x Damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "marked_for_death"
 
@@ -651,10 +651,10 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 2
-		L.physiology.white_mod *= 2
-		L.physiology.black_mod *= 2
-		L.physiology.pale_mod *= 2
+		L.physiology.red_mod *= 1.5
+		L.physiology.white_mod *= 1.5
+		L.physiology.black_mod *= 1.5
+		L.physiology.pale_mod *= 1.5
 
 /datum/status_effect/bloomdebuff/tick()
 	var/mob/living/carbon/human/Y = owner
@@ -671,10 +671,10 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
 		to_chat(L, "<span class='userdanger'>You feel normal!</span>")
-		L.physiology.red_mod /= 2
-		L.physiology.white_mod /= 2
-		L.physiology.black_mod /= 2
-		L.physiology.pale_mod /= 2
+		L.physiology.red_mod /= 1.5
+		L.physiology.white_mod /= 1.5
+		L.physiology.black_mod /= 1.5
+		L.physiology.pale_mod /= 1.5
 
 /mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
 	name = "Tree of Desires"
@@ -1038,13 +1038,13 @@
 /* Opened Can of Wellcheers - Wellcheers */
 /obj/effect/proc_holder/ability/wellcheers
 	name = "Wellcheers Crew"
-	desc = "Call up 2 of your finest crewmates for a period of time."
+	desc = "Call up 3 of your finest crewmates for a period of time."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
 	cooldown_time = 90 SECONDS
 
 /obj/effect/proc_holder/ability/wellcheers/Perform(target, mob/user)
-	for(var/i = 1 to 2)
+	for(var/i = 1 to 3)
 		new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
 	return ..()
 
@@ -1053,7 +1053,7 @@
 	health = 700
 	maxHealth = 700
 	desc = "Are those fists?"
-	melee_damage_lower = 35
+	melee_damage_lower = 40
 	melee_damage_upper = 45
 	icon_state = "wellcheers_ripped"
 	icon_living = "wellcheers_ripped"
@@ -1155,7 +1155,7 @@
 
 /obj/effect/proc_holder/ability/nest
 	name = "Worm spawn"
-	desc = "Spawns 9 worms that will seak out abormalities to infest in making them weaker to red damage."
+	desc = "Spawns 7 worms that will seak out abormalities to infest in making them weaker to red damage."
 	action_icon_state = "worm0"
 	base_icon_state = "worm"
 	cooldown_time = 30 SECONDS
@@ -1163,7 +1163,7 @@
 
 
 /obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
-	for(var/i = 1 to 9)
+	for(var/i = 1 to 7)
 		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
 		var/landing
 		landing = locate(user.x + pick(-2,-1,0,1,2), user.y + pick(-2,-1,0,1,2), user.z)
@@ -1335,7 +1335,7 @@
 	user.orbit(DE, 0, 0, 0, 0, 0)
 
 	sleep(1)
-	target.apply_damage(80, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
+	target.apply_damage(100, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
 	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
 	new /obj/effect/temp_visual/ripped_space(get_turf(target))
 	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_hit.ogg', 75, 0)
