@@ -21,11 +21,7 @@
 	A.SetItem(src)
 
 /*Armor totals:
-Healing		190
-Support		210
-Ranged		210
-Defensive	230
-Melee		230
+Ability 	230
 No Ability	250
 */
 /* ZAYIN Realizations */
@@ -34,7 +30,7 @@ No Ability	250
 	name = "confessional"
 	desc = "Come my child. Tell me your sins."
 	icon_state = "confessional"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)	//Ranged, 210
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)	//Ranged
 	realized_ability = /obj/effect/proc_holder/ability/aimed/cross_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/prophet
@@ -346,14 +342,14 @@ No Ability	250
 	name = "duality of harmony"
 	desc = "When good and evil meet discord and assonance will be quelled."
 	icon_state = "duality_yang"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//Healing
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/tranquility
 
 /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin
 	name = "harmony of duality"
 	desc = "All that isn't shall become all that is."
 	icon_state = "duality_yin"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/aimed/yin_laser
 
 /obj/item/clothing/suit/armor/ego_gear/realization/repentance
@@ -421,7 +417,7 @@ No Ability	250
 	desc = "I do not recognize them, I must not, lest I end up like them. \
 			Through the silence, I hear them, I see them. The faces of all my friends are with me laughing too."
 	icon_state = "laughter"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Support
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Support
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR
 	realized_ability = /obj/effect/proc_holder/ability/screach
 
