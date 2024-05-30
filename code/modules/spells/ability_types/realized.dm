@@ -892,6 +892,7 @@
 			if(H.is_working)
 				continue
 			var/datum/status_effect/galaxy_gift/new_gift = H.apply_status_effect(/datum/status_effect/galaxy_gift)
+			new_gift.caster = user
 			if(H == user)
 				new_gift.watch_death = TRUE
 			existing_gifted |= H
@@ -911,6 +912,7 @@
 	var/base_dmg_amt = 45
 	var/watch_death = FALSE
 	var/list/gifted
+	var/mob/living/carbon/human/caster
 
 /atom/movable/screen/alert/status_effect/galaxy_gift
 	name = "Parting Gift"
@@ -919,6 +921,7 @@
 	icon_state = "friendship"
 
 /datum/status_effect/galaxy_gift/tick()
+	. = ..()
 	if(!ishuman(owner))
 		qdel(src)
 		return
@@ -927,11 +930,13 @@
 	for(var/mob/living/carbon/human/H in gifted)
 		if(H == Y)
 			continue
+		if(H == caster)
+			continue
 		if(H.stat == DEAD || QDELETED(H))
 			gifted -= H
 			if(H) // If there's even anything left to remove
 				H.remove_status_effect(/datum/status_effect/galaxy_gift)
-	if(Y.stat == DEAD || QDELETED(Y))
+	if(caster.stat == DEAD || QDELETED(Y))
 		return watch_death ? Pop() : FALSE
 	var/heal_mult = LAZYLEN(gifted)
 	heal_mult = max(3, heal_mult)
@@ -946,6 +951,7 @@
 		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
 		playsound(get_turf(H), "shatter", 50, TRUE)
 		to_chat(H, "<span class='userdanger'>Your pebble violently shatters!</span>")
+		caster = null
 	return
 
 /* Sleeping Beauty - Comatose */
