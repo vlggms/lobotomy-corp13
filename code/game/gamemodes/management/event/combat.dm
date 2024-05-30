@@ -16,7 +16,8 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	..()
 	//No more OOC
 	GLOB.ooc_allowed = FALSE
-	CONFIG_SET(flag/norespawn, 1)
+	if(!(SSmaptype.maptype in SSmaptype.citymaps))
+		CONFIG_SET(flag/norespawn, 1)
 	to_chat(world, "<B>Due to gamemode, Respawn and the OOC channel has been globally disabled.</B>")
 
 	//Breach all
@@ -57,6 +58,12 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 60 MINUTES)
 				addtimer(CALLBACK(src, PROC_REF(endround)), 70 MINUTES)
 				to_chat(world, span_userdanger("Shift will last 70 minutes."))
+
+			//Fixers
+			if("fixers")
+				addtimer(CALLBACK(src, PROC_REF(roundendwarning)), 80 MINUTES)
+				addtimer(CALLBACK(src, PROC_REF(endround)), 90 MINUTES)
+				to_chat(world, span_userdanger("This week will last 90 minutes."))
 
 
 			//W-Corp stuff
@@ -100,6 +107,9 @@ GLOBAL_VAR_INIT(wcorp_enemy_faction, "") //decides which faction WCorp will be u
 	switch (SSmaptype.maptype)
 		if("limbus_labs")
 			minor_announce("Reminder that 10 minutes are left in the shift. Please wrap up all research and file all paperwork. Overtime has not been authorized for this shift." , "Automatic Limbus Company Punchclock ")
+
+		if("fixers")
+			to_chat(world, span_userdanger("There are 10 minutes left in the week."))
 
 
 //Gamemode stuff

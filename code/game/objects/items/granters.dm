@@ -419,17 +419,104 @@
 
 /obj/item/book/granter/crafting_recipe/cooking_sweets_101
 	name = "Cooking Desserts 101"
-	desc = "A cook book that teaches you some more of the newest desserts. AI approved, and a best seller on Honkplanet."
+	desc = "A cook book that teaches you how to cook basic desserts."
 	crafting_recipe_types = list(
-		/datum/crafting_recipe/food/mimetart,
+		/datum/crafting_recipe/food/pumpkinspicecake,
+		/datum/crafting_recipe/food/bscccake,
+		/datum/crafting_recipe/food/bscvcake,
 		/datum/crafting_recipe/food/berrytart,
-		/datum/crafting_recipe/food/cocolavatart,
 		/datum/crafting_recipe/food/clowncake,
-		/datum/crafting_recipe/food/vanillacake
+		/datum/crafting_recipe/food/birthdaycake,
+		/datum/crafting_recipe/food/chocolatecake,
+		/datum/crafting_recipe/food/lemoncake,
+		/datum/crafting_recipe/food/limecake,
+		/datum/crafting_recipe/food/orangecake,
+		/datum/crafting_recipe/food/applecake,
+		/datum/crafting_recipe/food/cheesecake,
+		/datum/crafting_recipe/food/carrotcake,
+		/datum/crafting_recipe/food/pumpkinpie,
+		/datum/crafting_recipe/food/bananacreampie,
+		/datum/crafting_recipe/food/berryclafoutis,
+		/datum/crafting_recipe/food/grapetart,
+		/datum/crafting_recipe/food/dulcedebatata,
+		/datum/crafting_recipe/food/baklava,
+		/datum/crafting_recipe/food/chocolateegg,
+		/datum/crafting_recipe/food/chocoorange,
+		/datum/crafting_recipe/food/fudgedice,
+		/datum/crafting_recipe/food/chococoin,
+		/datum/crafting_recipe/food/candiedapple,
 	)
 	icon_state = "cooking_learing_sweets"
 	oneuse = FALSE
-	remarks = list("So that is how icing is made!", "Placing fruit on top? How simple...", "Huh layering cake seems harder then this...", "This book smells like candy", "A clown must have made this page, or they forgot to spell check it before printing...", "Wait, a way to cook slime to be safe?")
+	remarks = list("So that is how icing is made!", "Placing fruit on top? How simple...", "Huh layering cake seems harder then this...", "This book smells like candy", "A clown must have made this page, or they forgot to spell check it before printing...", "Why do they call it oven?")
+
+/obj/item/book/granter/crafting_recipe/jelly_doughnuts_101
+	name = "Jelly Doughnuts 101"
+	desc = "A cook book that teaches you how to make jelly doughnuts."
+	crafting_recipe_types = list(
+	/datum/crafting_recipe/food/donut/jelly,
+	/datum/crafting_recipe/food/donut/jelly/berry,
+	/datum/crafting_recipe/food/donut/jelly/apple,
+	/datum/crafting_recipe/food/donut/jelly/caramel,
+	/datum/crafting_recipe/food/donut/jelly/choco,
+	/datum/crafting_recipe/food/donut/jelly/blumpkin,
+	/datum/crafting_recipe/food/donut/jelly/bungo,
+	/datum/crafting_recipe/food/donut/jelly/matcha,
+	/datum/crafting_recipe/food/donut/jelly/laugh,
+	)
+	icon_state = "cooking_learing_sweets"
+	oneuse = FALSE
+	remarks = list("But how do they make the hole...", "Dough-nut!", "Dough-nut?", "Dough-nut...", "The Os of the bakery.")
+
+/obj/item/book/granter/crafting_recipe/donk_yourself
+	name = "Donk Yourself Donkpocket DIY"
+	desc = "A cook book that teaches you how to make uniquely flavored homemade donkpockets."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/food/dankpocket,
+		/datum/crafting_recipe/food/donkpocket/spicy,
+		/datum/crafting_recipe/food/donkpocket/teriyaki,
+		/datum/crafting_recipe/food/donkpocket/pizza,
+		/datum/crafting_recipe/food/donkpocket/honk,
+		/datum/crafting_recipe/food/donkpocket/berry,
+	)
+	icon_state = "cooking_learing_sweets"
+	oneuse = FALSE
+	remarks = list("The secret ingredient is love?", "If you dont have the chemicals, regular preservatives can be used...", "Gotta... peel off these warning labels.", "Add more cooking oil.", "Is this stuff safe to consume?")
+
+/obj/item/book/granter/crafting_recipe/explosives_weekly
+	name = "Explosives Weekly"
+	desc = "A well used book on ways to manufacture explosives."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/improv_explosive,
+		/datum/crafting_recipe/chemical_payload,
+		/datum/crafting_recipe/chemical_payload2,
+	)
+	icon_state = "book1"
+	oneuse = FALSE
+	remarks = list("So thats why it kept exploding in my hands...", "Maybe it needed more oil...", "The author sounds a bit unwell...")
+
+
+/obj/item/book/granter/crafting_recipe/rifles_weekly
+	name = "Rifles Weekly"
+	desc = "A well used book on ways to manufacture weapons."
+	crafting_recipe_types = list(
+		/datum/crafting_recipe/advancedegun,
+		/datum/crafting_recipe/tempgun,
+		/datum/crafting_recipe/beam_rifle,
+		/datum/crafting_recipe/ebow,
+		/datum/crafting_recipe/xraylaser,
+		/datum/crafting_recipe/hellgun,
+		/datum/crafting_recipe/ioncarbine,
+		/datum/crafting_recipe/frag12,
+		/datum/crafting_recipe/ionslug,
+		/datum/crafting_recipe/dragonsbreath,
+		/datum/crafting_recipe/pulseslug,
+		/datum/crafting_recipe/meteorslug,
+		/datum/crafting_recipe/laserslug,
+	)
+	icon_state = "book1"
+	oneuse = FALSE
+	remarks = list("So thats why it kept exploding in my hands...", "Maybe it needed more oil...")
 
 /obj/item/book/granter/crafting_recipe/pipegun_prime
 	name = "diary of a dead assistant"

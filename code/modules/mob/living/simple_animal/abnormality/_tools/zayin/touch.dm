@@ -6,6 +6,11 @@
 	var/list/bastards = list()
 	var/list/breaching_bastards = list()
 
+	ego_list = list(
+		/datum/ego_datum/weapon/prohibited,
+		/datum/ego_datum/armor/prohibited,
+	)
+
 /obj/structure/toolabnormality/touch/examine(mob/user)
 	. = ..()
 	. += span_info("Pressing it while on help intent will breach all abnormalities instead of ending the shift.")

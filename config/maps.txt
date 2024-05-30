@@ -64,12 +64,13 @@ map psicorp
 	maxplayers 10
 endmap
 
+map cityfixers
+endmap
+
 #Need testing
 map iotacorp
 endmap
 
-map city
-endmap
 
 map kappacorp
 endmap

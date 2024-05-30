@@ -357,3 +357,14 @@
 		"When an Agent with Level 1 Temperance completed any other work type, the Qliphoth Counter lowered",
 		"When approached during suppression work, F-01-178 attempted to lure agents with Temperance I.",
 		"During work, the final result of any modified attributes were recognized by Faelantern.")
+
+//Cinderella's Pumpkin Carriage
+/obj/item/paper/fluff/info/teth/cinderella
+	abno_type = /mob/living/simple_animal/hostile/abnormality/cinderella
+	abno_code = "F-05-21"
+	abno_info = list(
+		"When a work process began, the work success rate increased based on how good the abnormality's physical condition was.",
+		"When Repression work was performed, the abnormality's condition worsened and it eventually began to rot.",
+		"When Insight Work was performed, the abnormality's physical condition improved. If the abnormality was in a \"Pristine\" state, the Qliphoth Counter lowered.",
+		"When the Qliphoth Counter reached zero, the physical condition of the abnormality improved significantly.",
+		"After its condition improves beyond a certain point, the abnormality will breach containment and travel through the facility on a horizontal path, dealing massive WHITE damage to everything it impacts.")

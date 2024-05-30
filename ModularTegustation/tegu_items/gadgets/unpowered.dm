@@ -606,3 +606,77 @@
 			return
 	return FALSE
 
+//EGO Gift Extractor
+/obj/item/ego_gift_extractor
+	name = "EGO gift extractor"
+	desc = "Unpopular due to its excessive energy use, this device extracts gifts from an Abnormality on demand. One-time use."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "nanoimplant"
+
+/obj/item/ego_gift_extractor/attack(mob/living/simple_animal/hostile/abnormality/target, mob/living/carbon/human/user)
+	if(!isabnormalitymob(target))
+		to_chat(user, span_warning("\"[target]\" isn't an Abnormality."))
+		return
+	if(!target.gift_type)
+		to_chat(user, span_notice("\"[target]\" has no gift extractable."))
+		return
+
+	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.security_positions))
+		to_chat(user, span_notice("The Extractor's light flashes red. You aren't an Agent."))
+		return
+
+	var/datum/ego_gifts/target_gift = new target.gift_type
+	user.Apply_Gift(target_gift)
+	to_chat(user, span_nicegreen("[target.gift_message]"))
+	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
+	qdel(src)
+
+/obj/item/device/Plushie_Extractor
+	name = "Plushie Extractor"
+	desc = "A device used for extracting plush versions of the abnormalities."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "plushie_extractor"
+
+	var/static/abno_plushies = list()
+
+	var/static/list/output = list(
+        // TETH
+	/mob/living/simple_animal/hostile/abnormality/scorched_girl = /obj/item/toy/plush/scorched,
+
+		//ZAYIN
+
+
+		//HE
+	/mob/living/simple_animal/hostile/abnormality/pinocchio = /obj/item/toy/plush/pinocchio,
+
+		//WAW
+	/mob/living/simple_animal/hostile/abnormality/big_bird = /obj/item/toy/plush/bigbird,
+	/mob/living/simple_animal/hostile/abnormality/wrath_servant = /obj/item/toy/plush/sow,
+	/mob/living/simple_animal/hostile/abnormality/greed_king = /obj/item/toy/plush/kog,
+	/mob/living/simple_animal/hostile/abnormality/despair_knight = /obj/item/toy/plush/kod,
+	/mob/living/simple_animal/hostile/abnormality/big_wolf = /obj/item/toy/plush/big_bad_wolf,
+	/mob/living/simple_animal/hostile/abnormality/hatred_queen = /obj/item/toy/plush/qoh,
+		//ALEPH
+	/mob/living/simple_animal/hostile/abnormality/melting_love = /obj/item/toy/plush/melt,
+	/mob/living/simple_animal/hostile/abnormality/mountain = /obj/item/toy/plush/mosb,
+	/mob/living/simple_animal/hostile/abnormality/nihil = /obj/item/toy/plush/nihil,
+
+    )
+
+/obj/item/device/Plushie_Extractor/attack(mob/living/simple_animal/hostile/abnormality/I, mob/living/carbon/human/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(istype(I))
+		return
+
+	var/atom/item_out = output[I.type]
+	to_chat(user, span_notice("The device is slowly processing [I] into [initial(item_out.name)]..."))
+	if(!do_after(user, 5 SECONDS))
+		return
+
+	abno_plushies |= user.ckey
+	var/atom/new_item = new item_out(get_turf(user))
+	user.put_in_hands(new_item)
+	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
+	playsound(get_turf(src), 'sound/items/timer.ogg', 50, TRUE)
