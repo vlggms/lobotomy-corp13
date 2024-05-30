@@ -124,6 +124,8 @@
 	icon_living = "green_bot_c"
 	rapid_melee = 3
 	move_to_delay = 4
+	melee_damage_lower = 9
+	melee_damage_upper = 13
 
 /mob/living/simple_animal/hostile/ordeal/green_bot/fast/factory/death(gibbed)
 	density = FALSE

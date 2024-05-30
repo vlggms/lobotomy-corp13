@@ -215,3 +215,6 @@
 
 /obj/item/grenade/spawnergrenade/shrimp/super
 	deliveryamt = 7	//Just randomly get double money.
+
+/obj/item/grenade/spawnergrenade/shrimp/hostile
+	spawner_type = list(/mob/living/simple_animal/hostile/shrimp, /mob/living/simple_animal/hostile/shrimp_soldier) //Gacha Only, just put it here with the other shrimp grenades.

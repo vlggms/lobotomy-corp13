@@ -114,6 +114,18 @@
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
 	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
+	var/cached_multiplier
+
+/obj/item/gun/ego_gun/pistol/solemnlament/before_firing(atom/target, mob/user)
+	if(cached_multiplier)
+		projectile_damage_multiplier = cached_multiplier
+	fire_delay = initial(fire_delay)
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Z))
+		cached_multiplier = projectile_damage_multiplier
+		projectile_damage_multiplier *= 2.5
+	..()
 
 /obj/item/gun/ego_gun/pistol/solemnlament/process_fire(atom/target, mob/living/user)
 	for(var/obj/item/gun/ego_gun/pistol/solemnvow/Vow in user.held_items)
@@ -134,8 +146,19 @@
 	fire_delay = 5
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
-
+	var/cached_multiplier
 	attribute_requirements = list(JUSTICE_ATTRIBUTE = 80)
+
+/obj/item/gun/ego_gun/pistol/solemnvow/before_firing(atom/target, mob/user)
+	if(cached_multiplier)
+		projectile_damage_multiplier = cached_multiplier
+	fire_delay = initial(fire_delay)
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Z))
+		cached_multiplier = projectile_damage_multiplier
+		projectile_damage_multiplier *= 2.5
+	..()
 
 /obj/item/gun/ego_gun/pistol/solemnvow/process_fire(atom/target, mob/living/user)
 	for(var/obj/item/gun/ego_gun/pistol/solemnlament/Lament in user.held_items)

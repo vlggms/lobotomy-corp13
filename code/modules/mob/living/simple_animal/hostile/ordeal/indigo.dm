@@ -51,7 +51,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		return FALSE
 	visible_message(
 		span_danger("[src] devours [L]!"),
@@ -412,7 +412,7 @@
 
 	maxHealth = 4000
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -430,7 +430,7 @@
 
 	maxHealth = 3000
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15

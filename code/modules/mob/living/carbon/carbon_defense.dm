@@ -308,7 +308,7 @@
 						break
 		if((!target_table && !target_collateral_carbon && !target_disposal_bin) || directional_blocked)
 			log_combat(src, target, "shoved", "knocking them down")
-			if(SSmaptype.maptype == "city")
+			if(SSmaptype.maptype in SSmaptype.citymaps)
 				return
 			target.Knockdown(SHOVE_KNOCKDOWN_SOLID)
 			target.visible_message(span_danger("[name] shoves [target.name], knocking [target.p_them()] down!"),

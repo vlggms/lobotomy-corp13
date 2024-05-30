@@ -63,6 +63,7 @@
 	if(!IsCombatMap())
 		var/turf/W = pick(GLOB.department_centers)
 		breaching_minion = SpawnMinion(get_turf(W))
+		datum_reference.qliphoth_change(2)
 
 	//--Side Gamemodes stuff--
 	else
@@ -468,6 +469,7 @@
 	///This proc deterimines how the spell will affect mobs.
 /mob/living/simple_animal/hostile/better_memories_minion/proc/DoConeMobEffect(mob/living/target_mob)
 	if(ishuman(target_mob))
+		target_mob.flash_act()
 		target_mob.apply_status_effect(MEMORY_DEBUFF)
 
 	///This proc adjusts the cones width depending on the level.
