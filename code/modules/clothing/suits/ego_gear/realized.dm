@@ -342,14 +342,14 @@ No Ability	250
 	name = "duality of harmony"
 	desc = "When good and evil meet discord and assonance will be quelled."
 	icon_state = "duality_yang"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 50)		//Healing
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/tranquility
 
 /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin
 	name = "harmony of duality"
 	desc = "All that isn't shall become all that is."
 	icon_state = "duality_yin"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Support
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/aimed/yin_laser
 
 /obj/item/clothing/suit/armor/ego_gear/realization/repentance
