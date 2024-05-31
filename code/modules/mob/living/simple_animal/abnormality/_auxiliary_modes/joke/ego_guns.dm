@@ -4,6 +4,7 @@
 	name = "mcrib"
 	desc = "Try a mcrib at your nearest McDonalds!"
 	special = "Use this weapon in your hand when wearing matching armor to create food for people nearby."
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
 	icon_state = "mcrib"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_mcrib
 	burst_size = 1

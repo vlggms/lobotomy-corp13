@@ -99,9 +99,11 @@
 	We reached for a shred of comprehension that they could give. \
 	We stared into the dark unending abyss wishing for love and compassion. \
 	In the end we recived nothing but madness, there was no hope for understanding."
-	special = "This weapon will gib on kill."
+	special = "This weapon can be used to perform an indiscriminate heavy red damage jump attack with enough charge. \
+	This weapon will also gib on kill."
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
 	icon_state = "violet_curse"
-	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons'
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
@@ -200,7 +202,7 @@
 	name = "ultimate christmas"
 	desc = "The Santa's bag is very heavy, capable of carrying a gift for everyone in the world. This one is no exception."
 	icon_state = "ultimate_christmas"
-	lefthand_file = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons'
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64

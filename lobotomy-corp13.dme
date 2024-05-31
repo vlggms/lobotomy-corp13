@@ -2776,6 +2776,7 @@
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\_info.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\_egodatum.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\ego_armor.dm"
+#include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\ego_weapons.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\community\aleph\crying_children.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\joke\_egodatum.dm"
 #include "code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\joke\ego_armor.dm"
