@@ -127,7 +127,7 @@
 	'icons/UI_Icons/abnormality_portraits/summer.png',
 	'icons/UI_Icons/abnormality_portraits/summer_deity.png',
 	'icons/UI_Icons/abnormality_portraits/staining_rose.png',
-	'icons/UI_Icons/abnormality_portraits/sukuna.png'
+	'icons/UI_Icons/abnormality_portraits/sukuna.png',
 	'icons/UI_Icons/abnormality_portraits/titania.png',
 	'icons/UI_Icons/abnormality_portraits/training_rabbit.png',
 	'icons/UI_Icons/abnormality_portraits/UNKNOWN.png',
