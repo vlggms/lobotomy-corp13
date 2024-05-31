@@ -1015,7 +1015,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-	attack_speed = 1
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
 	damtype = RED_DAMAGE

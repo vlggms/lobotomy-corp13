@@ -91,7 +91,7 @@
 		charge_amount = initial(charge_amount)
 		CRASH("[src] has somehow aquired a negative charge amount, automatically reset it to the initial charge amount")
 
-	if(attack_charge_gain && charge_amount < charge_cap)
+	if(charge_amount < charge_cap)
 		charge_amount += added_charge
 
 /// Lets people refund their charge if the allow_ability_cancel var is set to TRUE
