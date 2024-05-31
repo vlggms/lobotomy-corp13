@@ -276,7 +276,7 @@
 /mob/living/simple_animal/hostile/ordeal/echo/distorted/attacked_by(obj/item/I, mob/living/user)
 	//the block
 	if(prob(30))
-		damage_coeff = list(RED_DAMAGE = 0.08, WHITE_DAMAGE = 0.12, BLACK_DAMAGE = 0.08, PALE_DAMAGE = 0.2)
+		ChangeResistances(0.08, 0.12, 0.08, 0.2)
 		playsound(get_turf(src), 'sound/weapons/ego/shield1.ogg', 50, 0, 7)
 	else
 		damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
