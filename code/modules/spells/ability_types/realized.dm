@@ -676,7 +676,6 @@
 		L.physiology.black_mod /= 1.5
 		L.physiology.pale_mod /= 1.5
 
-
 /mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
 	name = "Tree of Desires"
 	desc = "The growing results of your research."
