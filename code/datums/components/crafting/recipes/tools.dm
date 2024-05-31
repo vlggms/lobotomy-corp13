@@ -55,6 +55,16 @@
 
 ////CONTAINERS/////
 
+/datum/crafting_recipe/jar
+	name = "Glass Jar"
+	time = 60
+	reqs = list(
+		/obj/item/stack/sheet/mineral/wood = 3,
+		/obj/item/stack/sheet/leather = 2,
+		/obj/item/stack/sheet/glass = 5)
+	result = /obj/item/reagent_containers/glass/beaker/jar
+	category = CAT_TOOL
+
 /datum/crafting_recipe/woodbucket
 	name = "Wooden Bucket"
 	time = 30
