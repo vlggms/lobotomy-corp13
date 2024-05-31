@@ -125,16 +125,20 @@
 	name = "stat equalizer"
 	desc = "A localized source of stats, only usable by Emergency Response Agents and the Disciplinary Officer"
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
-	icon_state = "canopic_jar"
+	icon_state = "disc_stats"
 	w_class = WEIGHT_CLASS_SMALL
 	slot_flags = ITEM_SLOT_BELT | ITEM_SLOT_POCKETS
-	var/list/suppressionroles = list("Emergency Response Agent", "Disciplinary Officer")
+	var/list/allowedroles = list("Emergency Response Agent", "Disciplinary Officer")
 
 /obj/item/suppressionupdate/attack_self(mob/living/carbon/human/user)
-	if(!istype(user) || !(user?.mind?.assigned_role in suppressionroles))
-		to_chat(user, span_notice("The Gadget's light flashes red. You aren't an ERA or Disciplinary Officer. Check the label before use."))
-		return
+	if(!LAZYLEN(allowedroles))
+		if(!istype(user) || !(user?.mind?.assigned_role in allowedroles))
+			to_chat(user, span_notice("The Gadget's light flashes red. You aren't an ERA or Disciplinary Officer. Check the label before use."))
+			return
+	update_stats(user)
 
+
+/obj/item/suppressionupdate/proc/update_stats(mob/living/carbon/human/user)
 	var/list/attribute_list = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
 
 	//I got lazy and this needs to be shipped out today
@@ -162,8 +166,8 @@
 		if(79 to 100) // ALEPHs around here (20 Abnormalities)
 			set_attribute *= 4
 
-
-	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
+	if(user?.mind?.assigned_role in allowedroles)		//only give these if you're the guy that's allowed to have this, it's here so the Rec Agent can use it on interns
+		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
 
 	//Set all stats to 0
 	for(var/A in attribute_list)
@@ -173,3 +177,4 @@
 	//Now we have to bring it back up
 	user.adjust_all_attribute_levels(set_attribute)
 	to_chat(user, span_notice("You feel reset, and more ready for combat."))
+
