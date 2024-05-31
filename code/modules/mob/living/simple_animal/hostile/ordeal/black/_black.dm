@@ -279,7 +279,7 @@
 		ChangeResistances(0.08, 0.12, 0.08, 0.2)
 		playsound(get_turf(src), 'sound/weapons/ego/shield1.ogg', 50, 0, 7)
 	else
-		damage_coeff = list(RED_DAMAGE = 0.2, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.5)
+		ChangeResistances(0.2, 0.3, 0.2, 0.5)
 	..()
 
 //Twilight
