@@ -5,7 +5,6 @@
 #define JOB_UNAVAILABLE_ACCOUNTAGE 4
 #define JOB_UNAVAILABLE_SLOTFULL 5
 #define JOB_NOT_TRUSTED 8
-#define JOB_NOT_MENTOR 9
 
 #define DEFAULT_RELIGION "Christianity"
 #define DEFAULT_DEITY "Space Jesus"

@@ -2,7 +2,6 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Manager",
 	"Extraction Officer",
 	"Records Officer",
-	"Training Officer",
 	"Disciplinary Officer",
 	"Sephirah",
 	"Department Head",
@@ -119,7 +118,6 @@ GLOBAL_LIST_INIT(service_positions, list(
 GLOBAL_LIST_INIT(security_positions, list(
 	"Department Head",
 	"Department Captain",
-	"Training Officer",
 
 	"Disciplinary Officer",
 	"Emergency Response Agent",

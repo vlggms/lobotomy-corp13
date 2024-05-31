@@ -5,7 +5,7 @@
 	department_head = list("your corporation")
 	faction = "Station"
 	supervisors = "the manager"
-	selection_color = "#777777"
+	selection_color = "#e09660"
 	total_positions = 1
 	spawn_positions = 1
 	display_order = JOB_DISPLAY_ORDER_REPRESENTATIVE

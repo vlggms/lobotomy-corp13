@@ -286,8 +286,6 @@
 			return "[jobtitle] [TeguTranslate("is already filled to capacity", src)]."
 		if(JOB_NOT_TRUSTED)
 			return "You need to be trusted to join as [jobtitle]."
-		if(JOB_NOT_MENTOR)
-			return "You need to be a mentor or staff member to join as [jobtitle]."
 	return "Error: Unknown job availability."
 
 /mob/dead/new_player/proc/IsJobUnavailable(rank, latejoin = FALSE)
@@ -315,8 +313,6 @@
 		return JOB_UNAVAILABLE_GENERIC
 	if(job.trusted_only && !is_trusted_player(client))
 		return JOB_NOT_TRUSTED
-	if(job.mentor_only && !is_mentor_player(client))
-		return JOB_NOT_MENTOR
 	return JOB_AVAILABLE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)

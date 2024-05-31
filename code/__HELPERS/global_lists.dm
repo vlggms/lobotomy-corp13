@@ -35,7 +35,6 @@
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/moth_markings, GLOB.moth_markings_list)
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/tails/monkey, GLOB.tails_list_monkey)
 	load_trusted_players()
-	load_mentor_players()
 
 	//Species
 	for(var/spath in subtypesof(/datum/species))
