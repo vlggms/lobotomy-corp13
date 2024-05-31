@@ -219,4 +219,51 @@
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
-							)
+	)
+//Sukuna
+/obj/item/ego_weapon/sukuna
+	name = "sukuna's cursed technique"
+	desc = "Ah yes, my asspull technique from the Heian Era."
+	icon_state = "1"
+	icon = 'icons/obj/magic.dmi'
+	force = 160
+	attack_speed = 0.8
+	damtype = PALE_DAMAGE
+	attack_verb_continuous = list("cleaves", "dismantles")
+	attack_verb_simple = list("cleave", "dismantle")
+	hitsound = 'sound/weapons/black_silence/longsword_fin.ogg'
+
+	var/gun_cooldown
+	var/gun_cooldown_time = 0.5 SECONDS
+
+/obj/item/ego_weapon/sukuna/Initialize()
+	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
+	..()
+
+/obj/item/ego_weapon/sukuna/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+	if(!CanUseEgo(user))
+		return
+	if(!proximity_flag && gun_cooldown <= world.time)
+		var/turf/proj_turf = user.loc
+		if(!isturf(proj_turf))
+			return
+		var/obj/projectile/ego_bullet/sukuna/G = new /obj/projectile/ego_bullet/sukuna(proj_turf)
+		G.fired_from = src //for signal check
+		G.firer = user
+		G.preparePixelProjectile(target, user, clickparams)
+		G.fire()
+		G.damage*=force_multiplier
+		gun_cooldown = world.time + gun_cooldown_time
+		return
+
+/obj/item/ego_weapon/sukuna/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+	SIGNAL_HANDLER
+	return TRUE
+
+/obj/projectile/ego_bullet/sukuna
+	name = "dismantle"
+	damage = 140
+	damage_type = PALE_DAMAGE
+
+
+
