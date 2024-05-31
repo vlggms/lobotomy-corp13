@@ -79,13 +79,13 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/evening
 	cost = 12
 
-// Blubbering Toad - Melty Eyeball
-/datum/ego_datum/weapon/melty_eyeball
-	item_path = /obj/item/ego_weapon/melty_eyeball
+// Blubbering Toad - Cavernous Wailing
+/datum/ego_datum/weapon/cavernous_wailing
+	item_path = /obj/item/ego_weapon/cavernous_wailing
 	cost = 12
 
-/datum/ego_datum/armor/melty_eyeball
-	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/melty_eyeball
+/datum/ego_datum/armor/cavernous_wailing
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/cavernous_wailing
 	cost = 12
 
 // Fallen Amurdad - Nightshade

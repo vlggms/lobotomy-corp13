@@ -28,13 +28,11 @@
 	can_patrol = FALSE
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
-/mob/living/simple_animal/hostile/abnormality/training_rabbit/Initialize()	//1 in 100 chance for bunny girl waifu
-	. = ..()
-	if(prob(1))
-		icon = 'ModularTegustation/Teguicons/64x64.dmi'
-		icon_state = "Bungal"
-		pixel_x = -16
-		gift_type =  /datum/ego_gifts/bunny
+	secret_chance = TRUE // people NEEDED a bunny girl waifu
+	secret_icon_file = 'ModularTegustation/Teguicons/64x64.dmi'
+	secret_icon_state = "Bungal"
+	secret_horizontal_offset = -16
+	secret_gift = /datum/ego_gifts/bunny
 
 /mob/living/simple_animal/hostile/abnormality/training_rabbit/BreachEffect(mob/living/carbon/human/user, breach_type)
 	. = ..()

@@ -7,7 +7,7 @@
 // All WAW joke E.G.O
 
 // All ALEPH joke E.G.O
-
+//The Chaos Dunk
 /obj/item/ego_weapon/chaosdunk
 	name = "chaos dunk"
 	desc = "One billion b-balls dribbling simultaneously throughout the galaxy. \
@@ -99,7 +99,9 @@
 	We reached for a shred of comprehension that they could give. \
 	We stared into the dark unending abyss wishing for love and compassion. \
 	In the end we recived nothing but madness, there was no hope for understanding."
-	special = "This weapon will gib on kill."
+	special = "This weapon can be used to perform an indiscriminate heavy red damage jump attack with enough charge. \
+	This weapon will also gib on kill."
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
 	icon_state = "violet_curse"
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
@@ -194,3 +196,27 @@
 		if(L.health < 0)
 			L.gib()
 		aoe_damage = initial(aoe_damage)
+
+//Buff Rudolta
+/obj/item/ego_weapon/ultimate_christmas
+	name = "ultimate christmas"
+	desc = "The Santa's bag is very heavy, capable of carrying a gift for everyone in the world. This one is no exception."
+	icon_state = "ultimate_christmas"
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi'
+	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
+	inhand_x_dimension = 64
+	inhand_y_dimension = 64
+	force = 160
+	attack_speed = 1.6
+	damtype = RED_DAMAGE
+	knockback = KNOCKBACK_HEAVY
+	attack_verb_continuous = list("bashes", "clubs")
+	attack_verb_simple = list("bashes", "clubs")
+	hitsound = 'sound/abnormalities/rudolta_buff/onrush1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 120,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 80
+							)

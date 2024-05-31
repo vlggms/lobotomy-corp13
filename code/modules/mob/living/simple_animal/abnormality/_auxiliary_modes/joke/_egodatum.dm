@@ -3,7 +3,7 @@ Do whatever you want here, but be mindful that anything with a cost at or below 
 Keep things balanced if they aren't going to be admin only.  - Coxswain
 */
 
-//All ZAYIN joke E.G.O
+//Zayin
 
 // Rise of The Riblin - Mcrib
 /datum/ego_datum/weapon/mcrib
@@ -14,13 +14,22 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/mcrib
 	cost = 12
 
-// All TETH joke E.G.O
 
-// All HE joke E.G.O
+//Teth
 
-// All WAW joke E.G.O
+//He
 
-// All ALEPH joke E.G.O
+//Waw
+
+//Aleph
+// Buff Rudolta - Ultimate Christmas
+/datum/ego_datum/weapon/buff_christmas
+	item_path = /obj/item/ego_weapon/ultimate_christmas
+	cost = 100
+
+/datum/ego_datum/armor/buff_christmas
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/ultimate_christmas
+	cost = 100
 
 // Shut Up and Jam Gaiden - Chaos Dunk
 /datum/ego_datum/weapon/chaosdunk

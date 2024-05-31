@@ -90,6 +90,30 @@
 	var/list/grouped_abnos = list()
 	//Abnormaltiy portrait, updated on spawn if they have one.
 	var/portrait = "UNKNOWN"
+	var/core_icon = ""
+	var/core_enabled = TRUE
+
+	// secret skin variables ahead
+
+	/// Toggles if the abnormality has a secret form and can spawn naturally
+	var/secret_chance = FALSE
+	/// tracks if the current abnormality is in its secret form
+	var/secret_abnormality = FALSE
+
+	/// if assigned, this gift will be given instead of a normal one on a successfull gift aquisition whilst a secret skin is in effect
+	var/secret_gift
+
+	/// An icon state assigned to the abnormality in its secret form
+	var/secret_icon_state
+	/// An icon state assigned when an abnormality is alive
+	var/secret_icon_living
+	/// An icon file assigned to the abnormality in its secret form, usually should not be needed to change
+	var/secret_icon_file
+
+	/// Offset for secret skins in the X axis
+	var/secret_horizontal_offset = 0
+	/// Offset for secret skins in the Y axis
+	var/secret_vertical_offset = 0
 
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
@@ -125,11 +149,35 @@
 	else
 		gift_message += "\nYou are granted a gift by [src]!"
 
+	if(secret_chance && (prob(1)))
+		InitializeSecretIcon()
+
+/mob/living/simple_animal/hostile/abnormality/proc/InitializeSecretIcon()
+	SHOULD_CALL_PARENT(TRUE) // if you ever need to override this proc, consider adding onto it instead or not using all the variables given
+	secret_abnormality = TRUE
+
+	if(secret_icon_file)
+		icon = secret_icon_file
+
+	if(secret_icon_state)
+		icon_state = secret_icon_state
+
+	if(secret_icon_living)
+		icon_living = secret_icon_living
+
+	if(secret_horizontal_offset)
+		base_pixel_x = secret_horizontal_offset
+
+	if(secret_vertical_offset)
+		base_pixel_y = secret_vertical_offset
+
 /mob/living/simple_animal/hostile/abnormality/Destroy()
 	SHOULD_CALL_PARENT(TRUE)
 	if(istype(datum_reference)) // Respawn the mob on death
 		datum_reference.current = null
 		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
+	else if(core_enabled)//Abnormality Cores are spawned if there is no console tied to the abnormality
+		CreateAbnoCore(name, core_icon)//If cores are manually disabled for any reason, they won't generate.
 	..()
 	if(loc)
 		if(isarea(loc))
@@ -359,7 +407,11 @@
 		return FALSE
 	if(pe <= 0 || !prob(chance))
 		return FALSE
-	var/datum/ego_gifts/EG = new gift_type
+	var/datum/ego_gifts/EG
+	if(secret_abnormality && secret_gift)
+		EG = new secret_gift
+	else
+		EG = new gift_type
 	EG.datum_reference = src.datum_reference
 	user.Apply_Gift(EG)
 	to_chat(user, span_nicegreen("[gift_message]"))
@@ -494,3 +546,22 @@
 	button_icon_state = button_icon_toggle_deactivated
 	UpdateButtonIcon()
 	active = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/proc/CreateAbnoCore()//this is called by abnormalities on Destroy()
+	var/obj/structure/abno_core/C = new(get_turf(src))
+	C.name = initial(name) + " Core"
+	C.desc = "The core of [initial(name)]"
+	C.icon_state = core_icon
+	C.contained_abno = src.type
+	C.threat_level = threat_level
+	switch(GetRiskLevel())
+		if(1)
+			return
+		if(2)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
+		if(3)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+		if(4)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
+		if(5)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'

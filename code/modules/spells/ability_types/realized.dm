@@ -66,7 +66,7 @@
 /obj/effect/proc_holder/ability/lamp/Perform(target, mob/user)
 	cooldown = world.time + (2 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to see!</span>")
+		to_chat(user, span_warning("You must stand still to see!"))
 		return
 	playsound(get_turf(user), 'sound/abnormalities/bigbird/hypnosis.ogg', 75, 0, 2)
 	for(var/mob/living/L in view(debuff_range, user))
@@ -122,7 +122,7 @@
 	cooldown = world.time + (1.5 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/nothingthere/goodbye_cast.ogg', 75, 0, 5)
 	if(!do_after(user, 1 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to do the nothing there classic!</span>")
+		to_chat(user, span_warning("You must stand still to do the nothing there classic!"))
 		return
 	for(var/turf/T in view(2, user))
 		new /obj/effect/temp_visual/nt_goodbye(T)
@@ -152,11 +152,11 @@
 	cooldown = world.time + (2 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/mountain/bite.ogg', 50, 0)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to screach!</span>")
+		to_chat(user, span_warning("You must stand still to screach!"))
 		return
 	var/mob/living/carbon/human/H = user
 	playsound(get_turf(user), 'sound/abnormalities/mountain/scream.ogg', 75, 0, 2)
-	visible_message("<span class='danger'>[H] screams wildly!</span>")
+	visible_message(span_danger("[H] screams wildly!"))
 	new /obj/effect/temp_visual/voidout(get_turf(H))
 	for(var/mob/living/L in view(damage_range, user))
 		if(user.faction_check_mob(L, FALSE))
@@ -214,7 +214,7 @@
 	var/obj/effect/temp_visual/judgement/still/J = new (get_turf(user))
 	animate(J, pixel_y = 24, time = 1.5 SECONDS)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to perform judgement!</span>")
+		to_chat(user, span_warning("You must stand still to perform judgement!"))
 		return
 	playsound(get_turf(user), 'sound/abnormalities/judgementbird/ability.ogg', 75, 0, 2)
 	for(var/mob/living/L in view(damage_range, user))
@@ -270,7 +270,7 @@
 	cooldown = world.time + (5 SECONDS)
 	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/pre_ability.ogg', 50, 0, 2)
 	if(!do_after(user, 1.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to ignite the explosion!</span>")
+		to_chat(user, span_warning("You must stand still to ignite the explosion!"))
 		return
 	playsound(get_turf(user), 'sound/abnormalities/scorchedgirl/ability.ogg', 60, 0, 4)
 	var/obj/effect/temp_visual/human_fire/F = new(get_turf(user))
@@ -278,7 +278,7 @@
 	F.dir = user.dir
 	animate(F, alpha = 255, time = (2 SECONDS))
 	if(!do_after(user, 2.5 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to finish the ability!</span>")
+		to_chat(user, span_warning("You must stand still to finish the ability!"))
 		animate(F, alpha = 0, time = 5)
 		return
 	animate(F, alpha = 0, time = 5)
@@ -331,13 +331,13 @@
 		dist = t_dist
 		target = H
 	if(!target)
-		to_chat(user, "<span class='notice'>You can't find anything else nearby!</span>")
+		to_chat(user, span_notice("You can't find anything else nearby!"))
 		return ..()
 	Circle(null, null, user)
 	var/pre_circle_dir = user.dir
-	to_chat(user, "<span class='warning'>You begin along the Road of Gold to your target!</span>")
+	to_chat(user, span_warning("You begin along the Road of Gold to your target!"))
 	if(!do_after(user, 15, src))
-		to_chat(user, "<span class='warning'>You abandon your path!</span>")
+		to_chat(user, span_warning("You abandon your path!"))
 		CleanUp()
 		return ..()
 	animate(user, alpha = 0, time = 5)
@@ -347,7 +347,7 @@
 	if(!istype(target_turf))
 		target_turf = pick(get_adjacent_open_turfs(target))
 	if(!target_turf)
-		to_chat(user, "<span class='warning'>No road leads to that target!?</span>")
+		to_chat(user, span_warning("No road leads to that target!?"))
 		CleanUp()
 		return ..()
 	var/obj/effect/qoh_sygil/kog/KS = Circle(target_turf, get_step(target_turf, pick(GLOB.cardinals)), null)
@@ -568,7 +568,7 @@
 	var/mob/living/carbon/human/H = owner
 	H.apply_status_effect(/datum/status_effect/pbird)
 	H.remove_status_effect(/datum/status_effect/punishment)
-	to_chat(H, "<span class='userdanger'>You strike back at the wrong doer!</span>")
+	to_chat(H, span_userdanger("You strike back at the wrong doer!"))
 	playsound(H, 'sound/abnormalities/apocalypse/beak.ogg', 100, FALSE, 12)
 	for(var/turf/T in view(2, H))
 		new /obj/effect/temp_visual/beakbite(T)
@@ -617,7 +617,7 @@
 
 /obj/effect/proc_holder/ability/petal_blizzard/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	to_chat(H, "<span class='userdanger'>You feel frailer!</span>")
+	to_chat(H, span_userdanger("You feel frailer!"))
 	H.apply_status_effect(/datum/status_effect/bloomdebuff)
 	playsound(get_turf(user), 'sound/weapons/fixer/generic/sword3.ogg', 75, 0, 7)
 	for(var/turf/T in view(healing_range, user))
@@ -670,11 +670,12 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		to_chat(L, "<span class='userdanger'>You feel normal!</span>")
+		to_chat(L, span_userdanger("You feel normal!"))
 		L.physiology.red_mod /= 1.5
 		L.physiology.white_mod /= 1.5
 		L.physiology.black_mod /= 1.5
 		L.physiology.pale_mod /= 1.5
+
 
 /mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
 	name = "Tree of Desires"
@@ -761,7 +762,7 @@
 
 /obj/effect/proc_holder/ability/overheat/Perform(target, mob/user)
 	var/mob/living/carbon/human/H = user
-	to_chat(H, "<span class='userdanger'>Ashes to ashes!</span>")
+	to_chat(H, span_userdanger("Ashes to ashes!"))
 	H.apply_status_effect(/datum/status_effect/overheat)
 	return ..()
 
@@ -806,7 +807,7 @@
 /obj/effect/proc_holder/ability/tranquility/Perform(target, mob/living/carbon/human/user)
 	cooldown = world.time + (1.5 SECONDS)
 	if(!do_after(user, 1 SECONDS))
-		to_chat(user, "<span class='warning'>You must stand still to explode!</span>")
+		to_chat(user, span_warning("You must stand still to explode!"))
 		return
 	new /obj/effect/temp_visual/explosion/fast(get_turf(user))
 	var/turf/orgin = get_turf(user)
@@ -950,7 +951,7 @@
 		H.remove_status_effect(/datum/status_effect/galaxy_gift)
 		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
 		playsound(get_turf(H), "shatter", 50, TRUE)
-		to_chat(H, "<span class='userdanger'>Your pebble violently shatters!</span>")
+		to_chat(H, span_userdanger("Your pebble violently shatters!"))
 		caster = null
 	return
 
@@ -1001,15 +1002,46 @@
 /* Wishing Well - Broken Crown */
 /obj/effect/proc_holder/ability/brokencrown
 	name = "Broken Crown"
-	desc = "Extract a random empowered E.G.O. weapon."
+	desc = "Extract a random empowered E.G.O. weapon once, return it to the armor to try for a different weapon."
 	action_icon_state = "brokencrown0"
 	base_icon_state = "brokencrown"
-	cooldown_time = 30 MINUTES
+	cooldown_time = 5 MINUTES
 	var/obj/structure/toolabnormality/wishwell/linked_structure
 	var/list/ego_list = list()
 	var/obj/item/ego_weapon/chosenEGO
+	var/ready = TRUE
 
-/obj/effect/proc_holder/ability/brokencrown/Perform(target, mob/living/carbon/human/user) //very bad code, does not work. Let me finish it!
+/obj/effect/proc_holder/ability/brokencrown/proc/Absorb(obj/item/I, mob/living/user)
+	if(!ego_list || ready)
+		to_chat(user, span_notice("You need to use this ability before you can recharge it!"))
+		return FALSE
+	if(!is_type_in_list(I, ego_list))
+		return FALSE
+	if(istype(I, /obj/item/ego_weapon))
+		var/obj/item/ego_weapon/egoweapon = I
+		if(egoweapon.force_multiplier < 1.2)
+			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
+			return FALSE
+		Reload(I, user)
+		return TRUE
+	if(istype(I, /obj/item/gun/ego_gun))
+		var/obj/item/gun/ego_gun/egogun = I
+		if(egogun.projectile_damage_multiplier < 1.2)
+			to_chat(user, span_notice("You must use a weapon with a damage multiplier of 20% or higher!"))
+			return FALSE
+		Reload(I, user)
+		return TRUE
+	return FALSE
+
+/obj/effect/proc_holder/ability/brokencrown/proc/Reload(obj/item/I, mob/living/user)
+	to_chat(user, span_nicegreen("The ability has been recharged."))
+	ready = TRUE
+	qdel(I)
+
+/obj/effect/proc_holder/ability/brokencrown/Perform(target, mob/living/carbon/human/user)
+	if(!ready)
+		to_chat(user, span_notice("This ability has been spent and needs to be recharged."))
+		return
 	if(istype(user.get_item_by_slot(ITEM_SLOT_OCLOTHING), /obj/item/clothing/suit/armor/ego_gear/realization/brokencrown))
 		user.playsound_local(get_turf(user), "sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg", 25, 0)
 		if(!linked_structure)
@@ -1020,7 +1052,7 @@
 				ego_list += /obj/item/ego_weapon/da_capo
 				linked_structure = TRUE
 		if(!LAZYLEN(ego_list))
-			for(var/egoitem in linked_structure.wawitem)
+			for(var/egoitem in linked_structure.alephitem)
 				if(ispath(egoitem, /obj/item/ego_weapon) || ispath(egoitem, /obj/item/gun/ego_gun))
 					ego_list += egoitem
 					continue
@@ -1028,17 +1060,18 @@
 		var/obj/item/ego = chosenEGO //Not sure if there is a better way to do this
 		if(ispath(ego, /obj/item/ego_weapon))
 			var/obj/item/ego_weapon/egoweapon = new ego(get_turf(user))
-			egoweapon.force_multiplier = 1.75
+			egoweapon.force_multiplier = 1.20
 			egoweapon.name = "shimmering [egoweapon.name]"
 			egoweapon.set_light(3, 6, "#D4FAF37")
 			egoweapon.color = "#FFD700"
 
 		else if(ispath(ego, /obj/item/gun/ego_gun))
 			var/obj/item/gun/ego_gun/egogun = new ego(get_turf(user))
-			egogun.projectile_damage_multiplier = 1.75
+			egogun.projectile_damage_multiplier = 1.20
 			egogun.name = "shimmering [egogun.name]"
 			egogun.set_light(3, 6, "#D4FAF37")
 			egogun.color = "#FFD700"
+		ready = FALSE
 		return ..()
 
 /* Opened Can of Wellcheers - Wellcheers */
@@ -1088,7 +1121,7 @@
 /obj/effect/proc_holder/ability/prayer/Perform(target, mob/living/carbon/human/user)
 	user.apply_status_effect(/datum/status_effect/flesh1)
 	cooldown = world.time + (15 SECONDS)
-	to_chat(user, "<span class='userdanger'>You start praying...</span>")
+	to_chat(user, span_userdanger("You start praying..."))
 	if(!do_after(user, 15 SECONDS))
 		user.remove_status_effect(/datum/status_effect/flesh1)
 		return
@@ -1100,7 +1133,7 @@
 		if(H.z != z)
 			continue
 		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
-		to_chat(H, "<span class='nicegreen'>[user]'s prayer was heard!</span>")
+		to_chat(H, span_nicegreen("[user]'s prayer was heard!"))
 		H.adjustBruteLoss(-100)
 		H.adjustSanityLoss(-100)
 		H.apply_status_effect(/datum/status_effect/flesh2)
@@ -1292,7 +1325,7 @@
 			continue
 		targets += L
 	if(!(LAZYLEN(targets)))
-		to_chat(user, "<span class='warning'>There are no enemies nearby!</span>")
+		to_chat(user, span_warning("There are no enemies nearby!"))
 		return
 
 	cooldown = world.time + (7 SECONDS)

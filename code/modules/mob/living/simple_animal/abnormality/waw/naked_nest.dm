@@ -292,6 +292,7 @@
 
 /mob/living/simple_animal/hostile/naked_nested/proc/Nest()
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/N = new(get_turf(src))
+	N.core_enabled = FALSE
 	for(var/atom/movable/AM in src) //morph code
 		AM.forceMove(N)
 	N.ChangeResistances(damage_coeff)

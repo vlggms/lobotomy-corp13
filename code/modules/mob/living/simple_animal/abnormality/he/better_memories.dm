@@ -69,6 +69,7 @@
 	else
 		SpawnMinion(get_turf(src)) // Spawns 2 minions on Rcorp.
 		breaching_minion = SpawnMinion(get_turf(src))
+		core_enabled = FALSE // Normally in RCA it would drop a core the moment it spawns. Since the minions are not the abnormality, this may require a proper implementation later. -Mr. H
 		QDEL_IN(src, 1 SECONDS) //Destroys the core, as it is unecessary in Rcorp.
 
 	if(client)
