@@ -56,16 +56,6 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/tools/hyde
-	name = "hyde"
-	desc = "Late one accursed night, I compounded the elements, watched them boil and smoke together in the glass, and when the ebullition had subsided, \
-	with a strong glow of courage, drank off the potion."
-	icon_state = "hyde"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = -30, BLACK_DAMAGE = 20, PALE_DAMAGE = 40) // 70
-	attribute_requirements = list(
-							PRUDENCE_ATTRIBUTE = 40
-							)
-
 /obj/item/clothing/suit/armor/ego_gear/tools/destiny
 	name = "destiny"
 	desc = "The role of the Moirai was to ensure that every being, mortal and divine, lived out their destiny as it was assigned to them by the laws of the universe."
@@ -102,4 +92,14 @@
 	armor = list(RED_DAMAGE = 10, WHITE_DAMAGE = 50, BLACK_DAMAGE = 10, PALE_DAMAGE = 70) // 140
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/suit/armor/ego_gear/tools/hyde
+	name = "hyde"
+	desc = "Late one accursed night, I compounded the elements, watched them boil and smoke together in the glass, and when the ebullition had subsided, \
+	with a strong glow of courage, drank off the potion."
+	icon_state = "hyde"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 30, BLACK_DAMAGE = 40, PALE_DAMAGE = 30) // 140
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 80
 							)

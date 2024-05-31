@@ -73,15 +73,6 @@
 	item_path = /obj/item/ego_weapon/divinity
 	cost = 35
 
-//Dr.Jekyll's Formula - Hyde
-/datum/ego_datum/armor/hyde
-	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/hyde
-	cost = 35
-
-/datum/ego_datum/weapon/hyde
-	item_path = /obj/item/ego_weapon/hyde
-	cost = 50
-
 //Third Fate's Loom - Destiny
 /datum/ego_datum/armor/destiny
 	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/destiny
@@ -112,6 +103,15 @@
 ///////////
 //  WAW  //
 ///////////
+
+//Dr.Jekyll's Formula - Hyde
+/datum/ego_datum/armor/hyde
+	item_path = /obj/item/clothing/suit/armor/ego_gear/tools/hyde
+	cost = 50
+
+/datum/ego_datum/weapon/hyde
+	item_path = /obj/item/ego_weapon/hyde
+	cost = 50
 
 //Backwards Clock - Wind-up
 /datum/ego_datum/weapon/windup
