@@ -20,8 +20,8 @@
 	name = "chaos dunk"
 	desc = "You either slam with the best or jam with the rest."
 	icon_state = "chaosdunk"
-	icon = 'icons/obj/clothing/under/costume.dmi'
-	worn_icon =  'icons/mob/clothing/under/costume.dmi'
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 260
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -62,3 +62,17 @@
 	name = "sukuna's sandals"
 	desc = "A pair of Ryomen Sukuna's sandals."
 	icon_state = "wizard"
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/wild_ride
+	name = "wild ride"
+	desc = "Looks like a T-shirt from a rock concert, with a flaming skeleton on it. In big, red text the shirt says \"I survived Mr. Bones' Wild ride\""
+	icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi'
+	worn_icon = 'code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi'
+	icon_state = "wild_ride"
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 80) // 240
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 120
+							)
