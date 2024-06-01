@@ -13,10 +13,13 @@
 	var/list/survivors = list()
 	var/cleave_cooldown
 	var/cleave_cooldown_time = 6 SECONDS
-	var/cleave_damage = 150
+	var/cleave_damage = 250
 	var/shrine_cooldown
 	var/shrine_cooldown_time = 60 SECONDS
 	var/shrine_damage = 900
+	var/worldslash_cooldown
+	var/worldslash_cooldown_time = 70 SECONDS
+	var/worldslash_damage = 6666
 	var/current_stage = 1
 	ranged = TRUE
 	rapid_melee = 2
@@ -87,9 +90,15 @@
 	toggle_message = span_colossus("You will now cleave someone.")
 	button_icon_toggle_deactivated = "nt_toggle0"
 
-/mob/living/simple_animal/hostile/abnormality/sukuna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(-1)
-	return
+/datum/action/innate/abnormality_attack/toggle/worldslash
+	name = "Toggle World Slash"
+	button_icon_state = "nt_toggle0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't obliterate someone anymore.")
+	button_icon_toggle_activated = "nt_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now eviscerate someone.")
+	button_icon_toggle_deactivated = "nt_toggle0"
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/BreachEffect(mob/living/carbon/human/user, breach_type)
 	sound_to_playing_players_on_level("sound/abnormalities/maloventkitchen.ogg", 85, zlevel = z)
@@ -104,14 +113,33 @@
 			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			survivors += M
+		can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/sukuna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return
+
+/mob/living/simple_animal/hostile/abnormality/sukuna/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
+	. = ..()
+	if(!ishuman(speaker))
+		return
+	var/mob/living/carbon/human/talker = speaker
+	if((findtext(message, "Nah, I'd win") || findtext(message, "Nah I'd win") || findtext(message, "Nah Id win") || findtext(message, "Nah, I'd win.")) && !isnull(talker) && talker.stat != DEAD)
+		if(status_flags & GODMODE) //if contained
+			BreachEffect()
+		forceMove(get_turf(talker))
+		can_act = TRUE
+		return
+
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/proc/Cleave(target)
 	if(cleave_cooldown > world.time)
 		return
 	cleave_cooldown = world.time + cleave_cooldown_time
 	can_act = FALSE
+	say("Cleave.")
+	playsound(get_turf(src), "sound/abnormalities/cleave.ogg", 75, 0, 3)
 	face_atom(target)
-	icon_state = "nothing_blade"
 	var/turf/target_turf = get_turf(target)
 	for(var/i = 1 to 3)
 		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
@@ -128,20 +156,20 @@
 		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
 			if(TF.density)
 				continue
-			new /obj/effect/temp_visual/smash_effect(TF)
+			new /obj/effect/temp_visual/nt_goodbye(TF)
 			been_hit = HurtInTurf(TF, been_hit, cleave_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
 			L.gib()
-	icon_state = icon_living
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/proc/Shrine()
 	if(shrine_cooldown > world.time)
 		return
 	shrine_cooldown = world.time + shrine_cooldown_time
+	say("Domain Expansion: Malevolent Kitchen.")
 	can_act = FALSE
-	playsound(get_turf(src), 'sound/abnormalities/maloventkitchen.ogg', 75, 0, 5)
+	playsound(get_turf(src), "sound/abnormalities/maloventkitchen.ogg", 75, 0, 5)
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(8, src))
 		new /obj/effect/temp_visual/nt_goodbye(T)
@@ -149,7 +177,37 @@
 			if(L.health < 0)
 				L.gib()
 	SLEEP_CHECK_DEATH(3)
-	icon_state = icon_living
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/sukuna/proc/WorldSlash(target)
+	if(worldslash_cooldown > world.time)
+		return
+	worldslash_cooldown = world.time + worldslash_cooldown_time
+	can_act = FALSE
+	say("World Slash.")
+	playsound(get_turf(src), "sound/abnormalities/fastcleave.ogg", 75, 0, 3)
+	face_atom(target)
+	var/turf/target_turf = get_turf(target)
+	for(var/i = 1 to 3)
+		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+	// Close range gives you more time to dodge
+	var/worldslash_delay = (get_dist(src, target) <= 2) ? (1 SECONDS) : (0.5 SECONDS)
+	SLEEP_CHECK_DEATH(worldslash_delay)
+	var/list/been_hit = list()
+	var/broken = FALSE
+	for(var/turf/T in getline(get_turf(src), target_turf))
+		if(T.density)
+			if(broken)
+				break
+			broken = TRUE
+		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
+			if(TF.density)
+				continue
+			new /obj/effect/temp_visual/nt_goodbye(TF)
+			been_hit = HurtInTurf(TF, been_hit, worldslash_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+	for(var/mob/living/L in been_hit)
+		if(L.health < 0)
+			L.gib()
 	can_act = TRUE
 
 
@@ -179,12 +237,13 @@
 	for(var/mob/living/carbon/human/survivor in survivors)
 		if(survivor.stat == DEAD || !survivor.ckey)
 			continue
-		survivor.Apply_Gift(new /datum/ego_gifts/fervor)
+		survivor.Apply_Gift(new /datum/ego_gifts/sukuna)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
 		to_chat(survivor, span_userdanger("I'm gonna go punt Yuji now, bye."))
 	animate(src, alpha = 10, time = 10 SECONDS)
 	QDEL_IN(src, 0 SECONDS)
 	new /obj/item/ego_weapon/sukuna(get_turf(src))
+	new /obj/item/clothing/shoes/sandal/sukuna(get_turf(src))
 	..()
 
 
@@ -215,20 +274,10 @@
 		Cleave(target)
 	if((shrine_cooldown <= world.time) && (get_dist(src, target) < 3))
 		Shrine()
+	if(worldslash_cooldown <= world.time)
+		WorldSlash(target)
 
 	return
-
-
-/mob/living/simple_animal/hostile/abnormality/sukuna/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
-	. = ..()
-	if(!ishuman(speaker))
-		return
-	var/mob/living/carbon/human/talker = speaker
-	if((findtext(message, "Nah, I'd win") || findtext(message, "Nah I'd win") || findtext(message, "Nah Id win") || findtext(message, "Nah, I'd win.")) && !isnull(talker) && talker.stat != DEAD)
-		if(status_flags & GODMODE) //if contained
-			BreachEffect()
-		forceMove(get_turf(talker))
-		return
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/examine(mob/user)
 	. = ..()

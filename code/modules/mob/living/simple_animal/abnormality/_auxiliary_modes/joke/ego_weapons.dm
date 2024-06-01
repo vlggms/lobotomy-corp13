@@ -226,8 +226,8 @@
 	desc = "Ah yes, my asspull technique from the Heian Era."
 	icon_state = "1"
 	icon = 'icons/obj/magic.dmi'
-	force = 160
-	attack_speed = 0.8
+	force = 230
+	attack_speed = 0.4
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("cleaves", "dismantles")
 	attack_verb_simple = list("cleave", "dismantle")
@@ -253,9 +253,9 @@
 		return
 	..()
 	ranged_cooldown = world.time + ranged_cooldown_time
-	playsound(target_turf, 'sound/weapons/purple_tear/slash2.ogg', 50, TRUE)
+	playsound(target_turf, 'sound/abnormalities/fastcleave.ogg', 50, TRUE)
 	for(var/turf/open/T in range(target_turf, 0))
-		new /obj/effect/temp_visual/smash1(T)
+		new /obj/effect/temp_visual/nt_goodbye(T)
 		user.HurtInTurf(T, list(), force, PALE_DAMAGE)
 
 
