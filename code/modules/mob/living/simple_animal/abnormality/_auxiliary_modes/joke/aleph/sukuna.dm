@@ -92,7 +92,53 @@
 	 */
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
+/mob/living/simple_animal/hostile/abnormality/sukuna/proc/Cleave(target)
+	if(cleave_cooldown > world.time)
+		return
+	cleave_cooldown = world.time + cleave_cooldown_time
+	can_act = FALSE
+	face_atom(target)
+	icon_state = "nothing_blade"
+	var/turf/target_turf = get_turf(target)
+	for(var/i = 1 to 3)
+		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+	// Close range gives you more time to dodge
+	var/cleave_delay = (get_dist(src, target) <= 2) ? (1 SECONDS) : (0.5 SECONDS)
+	SLEEP_CHECK_DEATH(cleave_delay)
+	var/list/been_hit = list()
+	var/broken = FALSE
+	for(var/turf/T in getline(get_turf(src), target_turf))
+		if(T.density)
+			if(broken)
+				break
+			broken = TRUE
+		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
+			if(TF.density)
+				continue
+			new /obj/effect/temp_visual/smash_effect(TF)
+			been_hit = HurtInTurf(TF, been_hit, cleave_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+	for(var/mob/living/L in been_hit)
+		if(L.health < 0)
+			L.gib()
+	icon_state = icon_living
+	can_act = TRUE
 
+/mob/living/simple_animal/hostile/abnormality/sukuna/proc/Shrine()
+	if(shrine_cooldown > world.time)
+		return
+	shrine_cooldown = world.time + shrine_cooldown_time
+	can_act = FALSE
+	playsound(get_turf(src), 'sound/abnormalities/maloventkitchen.ogg', 75, 0, 5)
+	icon_state = "nothing_blade"
+	SLEEP_CHECK_DEATH(8)
+	for(var/turf/T in view(8, src))
+		new /obj/effect/temp_visual/nt_goodbye(T)
+		for(var/mob/living/L in HurtInTurf(T, list(), shrine_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
+			if(L.health < 0)
+				L.gib()
+	SLEEP_CHECK_DEATH(3)
+	icon_state = icon_living
+	can_act = TRUE
 
 
 /datum/action/cooldown/shrine/Trigger()
@@ -135,12 +181,12 @@
 		return FALSE
 	if(!client)
 		if((shrine_cooldown <= world.time) && prob(35))
-			return shrine()
+			return Shrine()
 		if((cleave_cooldown <= world.time) && prob(35))
 			var/turf/target_turf = get_turf(target)
 			for(var/i = 1 to 3)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
-			return cleave(target_turf)
+			return Cleave(target_turf)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/OpenFire()
@@ -211,20 +257,4 @@
 		. += "Your sorry ass is not beating this guy."
 
 
-/mob/living/simple_animal/hostile/abnormality/sukuna/proc/shrine()
-	if(shrine_cooldown > world.time)
-		return
-	shrine_cooldown = world.time + shrine_cooldown_time
-	can_act = FALSE
-	playsound(get_turf(src), 'sound/abnormalities/maloventkitchen.ogg', 75, 0, 5)
-	icon_state = "nothing_blade"
-	SLEEP_CHECK_DEATH(8)
-	for(var/turf/T in view(8, src))
-		new /obj/effect/temp_visual/nt_goodbye(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), shrine_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
-			if(L.health < 0)
-				L.gib()
-	SLEEP_CHECK_DEATH(3)
-	icon_state = icon_living
-	can_act = TRUE
 
