@@ -6,16 +6,16 @@
 	icon_living = "sukunad"
 	portrait = "sukuna"
 	del_on_death = TRUE
-	maxHealth = 9000
-	health = 9000
+	maxHealth = 13000
+	health = 13000
 	var/can_act = TRUE
 	var/list/survivors = list()
 	var/cleave_cooldown
 	var/cleave_cooldown_time = 6 SECONDS
-	var/cleave_damage = 300
+	var/cleave_damage = 150
 	var/shrine_cooldown
 	var/shrine_cooldown_time = 60 SECONDS
-	var/shrine_damage = 1000
+	var/shrine_damage = 800
 	var/current_stage = 1
 	ranged = TRUE
 	//Attack speed modifier. 2 is twice the normal.
@@ -30,15 +30,15 @@
 	 * Black damage is applied to both health and sanity 10 black damage would do 10 health damage and 10 sanity damage.
 	 * Pale damage is a % of health. Weird i know.
 	 */
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.6)
+	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1)
 	//the lowest damage in regular attacks. Normal murderer is 2~4 so we double it.
-	melee_damage_lower = 95
+	melee_damage_lower = 75
 	/**
 	 * Fragments Lobotomy Corp damage was 3~4 so im giving murderer a larger gap between his lower and upper damage.
 	 * Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe.
 	 * Most HE level abnormalities do 20+ damange.
 	 */
-	melee_damage_upper = 150
+	melee_damage_upper = 100
 	melee_damage_type = PALE_DAMAGE
 	//Used chrome to listen to the sound effects. In the chrome link was the file name i could copy paste in.
 	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
@@ -69,6 +69,7 @@
 	wander = TRUE
 	ego_list = list(
 		/datum/ego_datum/armor/sukuna,
+		/obj/item/clothing/shoes/sandal/magic,
 		)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
@@ -111,7 +112,7 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			been_hit = HurtInTurf(TF, been_hit, cleave_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+			been_hit = HurtInTurf(TF, been_hit, cleave_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
 			L.gib()
