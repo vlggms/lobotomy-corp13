@@ -6,7 +6,7 @@
 	icon_state = "sukunad"
 	icon_living = "sukunad"
 	portrait = "sukuna"
-	del_on_death = TRUE
+	del_on_death = FALSE
 	maxHealth = 13000
 	health = 13000
 	var/can_act = TRUE
@@ -31,7 +31,7 @@
 	attack_verb_simple = "dismantle"
 	friendly_verb_continuous = "stares at"
 	friendly_verb_simple = "stare at"
-	faction = list()
+	faction = list("Sukuna")
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 1
@@ -143,7 +143,6 @@
 	shrine_cooldown = world.time + shrine_cooldown_time
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/maloventkitchen.ogg', 75, 0, 5)
-	icon_state = "nothing_blade"
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(8, src))
 		new /obj/effect/temp_visual/nt_goodbye(T)
