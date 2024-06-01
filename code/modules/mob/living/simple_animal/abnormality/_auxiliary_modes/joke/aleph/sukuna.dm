@@ -1,5 +1,3 @@
-#define MALEVOLENT_SHRINE (40 SECONDS)
-
 /mob/living/simple_animal/hostile/abnormality/sukuna
 	name = "Sukuna"
 	desc = "The Heian Era asspuller himself."
@@ -17,6 +15,9 @@
 	var/cleave_cooldown
 	var/cleave_cooldown_time = 6 SECONDS
 	var/cleave_damage = 300
+	var/shrine_cooldown
+	var/shrine_cooldown_time = 60 SECONDS
+	var/shrine_damage = 1000
 	//Attack speed modifier. 2 is twice the normal.
 	rapid_melee = 1
 	//If target is close enough start preparing to hit them if we have rapid_melee enabled. Originally was 4.
@@ -40,7 +41,7 @@
 	melee_damage_upper = 150
 	melee_damage_type = PALE_DAMAGE
 	//Used chrome to listen to the sound effects. In the chrome link was the file name i could copy paste in.
-	attack_sound = 'sound/weapons/slash.ogg'
+	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
 	attack_verb_continuous = "cleaves"
 	attack_verb_simple = "cleave"
 	friendly_verb_continuous = "stares at"
@@ -154,7 +155,7 @@
 
 	if(cleave_cooldown <= world.time)
 		cleave(target)
-	if((goodbye_cooldown <= world.time) && (get_dist(src, target) < 3))
+	if((shrine_cooldown <= world.time) && (get_dist(src, target) < 3))
 		Shrine()
 
 	return
@@ -211,9 +212,6 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/proc/shrine()
-	var/shrine_cooldown
-	var/shrine_cooldown_time = 60 SECONDS
-	var/shrine_damage = 1000
 	if(shrine_cooldown > world.time)
 		return
 	shrine_cooldown = world.time + shrine_cooldown_time
@@ -229,20 +227,4 @@
 	SLEEP_CHECK_DEATH(3)
 	icon_state = icon_living
 	can_act = TRUE
- /* This is #define, it functions like a macro, paraphrasing repeating code.
- * The main usage of define is to make the code easier to read.
- * There isnt much point placing it here instead of at the top of the file but i want to make a example of how to use it.
- * The phrase placed after define is the word that is always replaced with the code after it.
- * Im going to use this to shorten the cooldown change.
- * Please check the bottom of the file to see #undef where you undefine the word so that it isnt replaced every time its written in the codebase.
- */
 
-
-/**
- * This happens when the abnormality breaches.
- * If your abnormality doesnt Breach then the proc you want is ZeroQliphoth.
- * Other abnormality procs can be found in the _abnormality.dm file.
-
- */
-
-#undef MALEVOLENT_SHRINE
