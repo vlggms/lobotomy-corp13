@@ -8,12 +8,15 @@
 	icon_living = "sukunad"
 	portrait = "sukuna"
 	del_on_death = TRUE
-	maxHealth = 6000
-	health = 6000
+	maxHealth = 9000
+	health = 9000
 	var/last_heal_time = 0
 	var/heal_percent_per_second = 0.5
 	var/can_act = TRUE
 	var/list/survivors = list()
+	var/cleave_cooldown
+	var/cleave_cooldown_time = 6 SECONDS
+	var/cleave_damage = 300
 	//Attack speed modifier. 2 is twice the normal.
 	rapid_melee = 1
 	//If target is close enough start preparing to hit them if we have rapid_melee enabled. Originally was 4.
@@ -28,13 +31,13 @@
 	 */
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1.6)
 	//the lowest damage in regular attacks. Normal murderer is 2~4 so we double it.
-	melee_damage_lower = 65
+	melee_damage_lower = 95
 	/**
 	 * Fragments Lobotomy Corp damage was 3~4 so im giving murderer a larger gap between his lower and upper damage.
 	 * Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe.
 	 * Most HE level abnormalities do 20+ damange.
 	 */
-	melee_damage_upper = 100
+	melee_damage_upper = 150
 	melee_damage_type = PALE_DAMAGE
 	//Used chrome to listen to the sound effects. In the chrome link was the file name i could copy paste in.
 	attack_sound = 'sound/weapons/slash.ogg'
@@ -42,6 +45,7 @@
 	attack_verb_simple = "cleave"
 	friendly_verb_continuous = "stares at"
 	friendly_verb_simple = "stare at"
+
 	/**
 	 * Leaving the faction list blank only attributes them to one faction and thats its own unique mob number.
 	 * With this forsaken murderer will even attack duplicates of themselves.
@@ -87,6 +91,20 @@
 	 */
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
+
+
+
+/datum/action/cooldown/shrine/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sukuna))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/sukuna/sukuna = owner
+	StartCooldown()
+	sukuna.shrine()
+	return TRUE
+
+
 /mob/living/simple_animal/hostile/abnormality/sukuna/death(gibbed)
 	can_act = FALSE
 	icon_state = icon_dead
@@ -111,7 +129,35 @@
 	..()
 
 
+/mob/living/simple_animal/hostile/abnormality/sukuna/AttackingTarget(atom/attacked_target)
+	if(!can_act)
+		return FALSE
+	if(!client)
+		if((shrine_cooldown <= world.time) && prob(35))
+			return shrine()
+		if((cleave_cooldown <= world.time) && prob(35))
+			var/turf/target_turf = get_turf(target)
+			for(var/i = 1 to 3)
+				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+			return cleave(target_turf)
+	return ..()
 
+/mob/living/simple_animal/hostile/abnormality/sukuna/OpenFire()
+	if(!can_act)
+		return
+
+	if(client)
+		switch(chosen_attack)
+			if(1)
+				cleave(target)
+		return
+
+	if(cleave_cooldown <= world.time)
+		cleave(target)
+	if((goodbye_cooldown <= world.time) && (get_dist(src, target) < 3))
+		Shrine()
+
+	return
 
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/Hear(message, atom/movable/speaker, datum/language/message_language, raw_message, radio_freq, list/spans, list/message_mods)
@@ -119,14 +165,13 @@
 	if(!ishuman(speaker))
 		return
 	var/mob/living/carbon/human/talker = speaker
-	if((findtext(message, "Nah, I'd win") || findtext(message, "nah id win") || findtext(message, "nah I'd win") || findtext(message, "Nah, Id win") || findtext(message, "Nah, I'd win.")) && !isnull(talker) && talker.stat != DEAD)
+	if((findtext(message, "Nah, I'd win") || findtext(message, "Nah I'd win") || findtext(message, "Nah Id win") || findtext(message, "Nah, I'd win.")) && !isnull(talker) && talker.stat != DEAD)
 		if(status_flags & GODMODE) //if contained
 			BreachEffect()
 		forceMove(get_turf(talker))
 		return
 
 /mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user, breach_type)
-	. = ..()
 	sound_to_playing_players_on_level("sound/abnormalities/maloventkitchen.ogg", 85, zlevel = z)
 	for(var/mob/M in GLOB.player_list)
 		if(isnewplayer(M))
