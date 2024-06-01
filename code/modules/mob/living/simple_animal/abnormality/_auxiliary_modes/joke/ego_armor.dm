@@ -62,10 +62,3 @@
 	name = "sukuna's sandals"
 	desc = "A pair of Ryomen Sukuna's sandals."
 	icon_state = "wizard"
-	armor = list(RED_DAMAGE = 40,) // funny armored sandals
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 60,
-							PRUDENCE_ATTRIBUTE = 60,
-							TEMPERANCE_ATTRIBUTE = 60,
-							JUSTICE_ATTRIBUTE = 60
-							)

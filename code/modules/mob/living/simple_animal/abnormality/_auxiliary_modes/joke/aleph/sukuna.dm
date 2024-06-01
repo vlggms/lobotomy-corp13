@@ -104,7 +104,6 @@
 			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			survivors += M
-	can_act = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/proc/Cleave(target)
 	if(cleave_cooldown > world.time)
