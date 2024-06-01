@@ -139,7 +139,6 @@
 	shrine_cooldown = world.time + shrine_cooldown_time
 	can_act = FALSE
 	playsound(get_turf(src), 'sound/abnormalities/maloventkitchen.ogg', 75, 0, 5)
-	icon_state = "nothing_blade"
 	SLEEP_CHECK_DEATH(8)
 	for(var/turf/T in view(8, src))
 		new /obj/effect/temp_visual/nt_goodbye(T)
