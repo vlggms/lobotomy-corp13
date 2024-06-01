@@ -232,7 +232,12 @@
 	attack_verb_continuous = list("cleaves", "dismantles")
 	attack_verb_simple = list("cleave", "dismantle")
 	hitsound = 'sound/weapons/black_silence/longsword_fin.ogg'
-
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 120
+	)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.5 SECONDS
 

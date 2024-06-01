@@ -50,7 +50,7 @@
 	icon_state = "uniqueoffice4"
 	icon = 'icons/obj/clothing/ego_gear/custom_fixer.dmi'
 	worn_icon =  'icons/mob/clothing/ego_gear/custom_fixer.dmi'
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 260
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 80) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 120,

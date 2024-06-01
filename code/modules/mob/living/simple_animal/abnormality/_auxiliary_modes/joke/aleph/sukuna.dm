@@ -15,42 +15,21 @@
 	var/cleave_damage = 150
 	var/shrine_cooldown
 	var/shrine_cooldown_time = 60 SECONDS
-	var/shrine_damage = 800
+	var/shrine_damage = 900
 	var/current_stage = 1
 	ranged = TRUE
-	//Attack speed modifier. 2 is twice the normal.
 	rapid_melee = 2
-	//If target is close enough start preparing to hit them if we have rapid_melee enabled. Originally was 4.
 	melee_queue_distance = 2
-	//How fast a creature is, lower is faster. Client controlled monsters instead use speed and are MUCH faster.
-	move_to_delay = 2.4
-	/**
-	 * Red damage is applied to health.
-	 * White damage is applied to sanity with only a few abnormalities using that to instantly kill the victim.
-	 * Black damage is applied to both health and sanity 10 black damage would do 10 health damage and 10 sanity damage.
-	 * Pale damage is a % of health. Weird i know.
-	 */
-	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = 1)
-	//the lowest damage in regular attacks. Normal murderer is 2~4 so we double it.
+	move_to_delay = 2.2
+	damage_coeff = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 1.3, PALE_DAMAGE = -1) //funny
 	melee_damage_lower = 75
-	/**
-	 * Fragments Lobotomy Corp damage was 3~4 so im giving murderer a larger gap between his lower and upper damage.
-	 * Unsure if i should be comparing Forsaken Murderer to Fragment of the Universe.
-	 * Most HE level abnormalities do 20+ damange.
-	 */
 	melee_damage_upper = 100
 	melee_damage_type = PALE_DAMAGE
-	//Used chrome to listen to the sound effects. In the chrome link was the file name i could copy paste in.
-	attack_sound = 'sound/abnormalities/nothingthere/attack.ogg'
-	attack_verb_continuous = "cleaves"
-	attack_verb_simple = "cleave"
+	attack_sound = 'sound/weapons/ego/da_capo2.ogg'
+	attack_verb_continuous  = "dismantles"
+	attack_verb_simple = "dismantle"
 	friendly_verb_continuous = "stares at"
 	friendly_verb_simple = "stare at"
-
-	/**
-	 * Leaving the faction list blank only attributes them to one faction and thats its own unique mob number.
-	 * With this forsaken murderer will even attack duplicates of themselves.
-	 */
 	faction = list()
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
@@ -69,7 +48,7 @@
 	wander = TRUE
 	ego_list = list(
 		/datum/ego_datum/armor/sukuna,
-		/obj/item/clothing/shoes/sandal/magic,
+		/obj/item/clothing/shoes/sandal/magic, //it's funny
 		)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
