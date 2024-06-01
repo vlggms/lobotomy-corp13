@@ -208,6 +208,7 @@
 			been_hit = HurtInTurf(TF, been_hit, worldslash_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
+			new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(L))
 			L.gib()
 	can_act = TRUE
 
