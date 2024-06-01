@@ -6,7 +6,7 @@
 	icon_state = "sukunad"
 	icon_living = "sukunad"
 	portrait = "sukuna"
-	del_on_death = TRUE
+	del_on_death = FALSE
 	maxHealth = 13000
 	health = 13000
 	var/can_act = TRUE
