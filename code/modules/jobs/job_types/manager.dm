@@ -10,6 +10,7 @@
 
 	exp_requirements = 720
 	exp_type = EXP_TYPE_CREW
+	minimal_player_age = 7
 
 	outfit = /datum/outfit/job/manager
 
