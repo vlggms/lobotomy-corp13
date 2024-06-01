@@ -1295,6 +1295,19 @@
 	..()
 	force = initial(force)
 
+/obj/item/ego_weapon/frostsplinter
+	name = "frost splinter"
+	desc = "Anyone damaged by it will lose themselves for a moment. \
+	As the equipment was forged from snow, it shall disappear without a trace someday."
+	icon_state = "frostsplinter"
+	force = 32
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+
 /obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
 	name = "AEDD"
 	desc = "A nasty-looking bat covered with nails."
