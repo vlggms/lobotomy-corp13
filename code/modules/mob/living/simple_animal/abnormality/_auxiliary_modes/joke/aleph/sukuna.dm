@@ -31,7 +31,7 @@
 	attack_verb_simple = "dismantle"
 	friendly_verb_continuous = "stares at"
 	friendly_verb_simple = "stare at"
-	faction = list()
+	faction = list("Sukuna")
 	can_breach = TRUE
 	threat_level = ALEPH_LEVEL
 	start_qliphoth = 1
