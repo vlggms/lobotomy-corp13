@@ -380,6 +380,11 @@
 		"Ground Commander",	"Lieutenant Commander",	"Operations Officer", "Rabbit Squad Captain", "Reindeer Squad Captain", "Rhino Squad Captain", "Raven Squad Captain",
 		"R-Corp Suppressive Rabbit","R-Corp Assault Rabbit", "R-Corp Medical Reindeer",	"R-Corp Berserker Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",
 
+		//5th Pack
+		"Assault Commander",	"Base Commander",	"Support Officer", "Raccoon Squad Leader", "Rat Squad Leader", "Roadrunner Squad Leader", "Rooster Squad Leader",
+		"R-Corp Suppressive Rabbit","R-Corp Assault Rabbit", "R-Corp Medical Reindeer",	"R-Corp Berserker Reindeer","R-Corp Gunner Rhino","R-Corp Hammer Rhino","R-Corp Scout Raven","R-Corp Support Raven",
+
+
 		//LC Labs
 		"Chief Medical Officer", "Surgeon", "Nurse Practitioner", "Pharmacist", "Emergency Medical Technician", "Lead Researcher", "Senior Researcher", "Information Systems Tech",
 		"Researcher", "LC Staff", "District Manager", "LC Asset Protection", "High Security Commander", "Low Security Commander", "High Security Officer", "Low Security Officer",

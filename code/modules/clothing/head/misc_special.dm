@@ -417,6 +417,14 @@
 	name = "\improper raccoon team helmet"
 	icon_state = "raccoon_helmet"
 
+/obj/item/clothing/head/rabbit_helmet/raccoon/sniper
+	name = "\improper raccoon sniper helmet"
+	icon_state = "raccoon_sniper"
+
+/obj/item/clothing/head/rabbit_helmet/raccoon/captain
+	name = "\improper raccoon captain helmet"
+	icon_state = "raccoon_captain"
+
 /obj/item/clothing/head/rabbit_helmet/roadrunner
 	name = "\improper roadrunner team helmet"
 	icon_state = "roadrunner"

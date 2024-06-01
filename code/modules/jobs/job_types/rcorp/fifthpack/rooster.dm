@@ -55,7 +55,7 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 60
 								)
-	rank_title = "LT"
+	rank_title = "CPT"
 	job_important = "You are the squad leader of the heavy ranged infantry division."
 	//job_notice = "Visit your bunks in the command tent to gather your one-handed rabbit gun and multiphase blade."
 

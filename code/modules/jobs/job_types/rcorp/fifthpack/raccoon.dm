@@ -1,8 +1,8 @@
 /datum/job/raccoon
-	title = "R-Corp Raccoon"
+	title = "R-Corp Raccoon Spy"
 	faction = "Station"
 	department_head = list("Raccoon Squad Leader", "Commander")
-	total_positions = 4
+	total_positions = 3
 	spawn_positions = 3
 	exp_requirements = 120
 	supervisors = "the raccoon squad leader and the commander"
@@ -30,6 +30,39 @@
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 
 
+/datum/job/raccoonsniper
+	title = "R-Corp Raccoon Overwatch"
+	faction = "Station"
+	department_head = list("Raccoon Squad Leader", "Commander")
+	total_positions = 2
+	spawn_positions = 2
+	exp_requirements = 120
+	supervisors = "the raccoon squad leader and the commander"
+	selection_color = "#d13711"
+
+	outfit = /datum/outfit/job/raccoon/sniper
+	display_order = 11.1
+	maptype = "rcorp_fifth"
+
+	access = list()
+	minimal_access = list()
+
+	roundstart_attributes = list(
+								FORTITUDE_ATTRIBUTE = 40,
+								PRUDENCE_ATTRIBUTE = 40,
+								TEMPERANCE_ATTRIBUTE = 40,
+								JUSTICE_ATTRIBUTE = 60
+								)
+	rank_title = "SGT"
+	job_important = "You take the role of a marksman recon unit."
+	job_notice = "You are a Raccoon armed with a marksman rifle. You report on enemy positions and fire upon the enemy."
+
+/datum/job/raccoonsniper/after_spawn(mob/living/carbon/human/H, mob/M)
+	. = ..()
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+
+
+
 /datum/job/rcorp_captain/raccoon
 	title = "Raccoon Squad Leader"
 	faction = "Station"
@@ -55,14 +88,14 @@
 								TEMPERANCE_ATTRIBUTE = 60,
 								JUSTICE_ATTRIBUTE = 80,
 								)
-	rank_title = "LT"
-	job_important = "You are the squad leader of the stealth recon division."
+	rank_title = "CPT"
+	job_important = "You are the squad leader of the stealth recon and marksman division."
 	//job_notice = "Visit your bunks in the command tent to gather your one-handed rabbit gun and multiphase blade."
 
 
 // Mostly uneditted outfit datums for gear that doesn't exist yet.
 /datum/outfit/job/raccoon
-	name = "R-Corp Raccoon"
+	name = "R-Corp Raccoon Spy"
 	jobtype = /datum/job/raccoon
 
 	ears = /obj/item/radio/headset/headset_information
@@ -81,11 +114,20 @@
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
 
 
+/datum/outfit/job/raccoon/sniper
+	name = "R-Corp Raccoon Overwatch"
+	jobtype = /datum/job/raccoonsniper
+	head = /obj/item/clothing/head/rabbit_helmet/raccoon/sniper
+	backpack_contents = list()
+	l_hand = /obj/item/gun/energy/e_gun/rabbitdash/heavysniper
+
+
 /datum/outfit/job/raccoon/leader
 	name = "Raccoon Squad Leader"
 	jobtype = /datum/job/rcorp_captain/raccoon
 
+	head =/obj/item/clothing/head/rabbit_helmet/raccoon/captain
 	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raccooncap
 	belt = /obj/item/ego_weapon/city/rabbit_blade
-	suit_store = null
+	suit_store = /obj/item/gun/energy/e_gun/rabbitdash/heavysniper
 	ears = /obj/item/radio/headset/heads/headset_information

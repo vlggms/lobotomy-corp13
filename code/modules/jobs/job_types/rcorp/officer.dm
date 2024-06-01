@@ -30,6 +30,12 @@
 /datum/job/juniorofficer/after_spawn(mob/living/carbon/human/H, mob/M)
 	. = ..()
 	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	var/datum/action/G = new /datum/action/cooldown/warbanner/rcorp
+	G.Grant(H)
+
+	G = new /datum/action/cooldown/warcry/rcorp
+	G.Grant(H)
+
 
 /datum/outfit/job/officer
 	name = "Operations Officer"
@@ -75,7 +81,7 @@
 	desc = "Includes the Rcorp machine gun."
 
 /obj/item/storage/box/officer/gunner/PopulateContents()
-	new /obj/item/gun/energy/e_gun/rabbit/minigun(src)
+	new /obj/item/gun/energy/e_gun/rabbit/minigun/tricolor(src)
 
 /obj/item/storage/box/officer/medic
 	name = "Medic Officer"
@@ -112,3 +118,20 @@
 /obj/item/storage/box/officer/delivery/PopulateContents()
 	new /obj/item/clothing/shoes/wheelys(src)
 	new /obj/item/clothing/glasses/night(src)
+
+
+//Skills
+/datum/action/cooldown/warbanner/rcorp
+	range = 5
+
+/datum/action/cooldown/warbanner/rcorp/Trigger()
+	..()
+	owner.say("ALL TROOPS, HOLD THE LINE!")
+
+
+/datum/action/cooldown/warcry/rcorp
+	range = 5
+
+/datum/action/cooldown/warcry/rcorp/Trigger()
+	..()
+	owner.say("KILL THEM ALL!")

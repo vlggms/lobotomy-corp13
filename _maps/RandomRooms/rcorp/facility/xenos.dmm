@@ -1382,12 +1382,6 @@
 	},
 /turf/open/floor/plasteel/white,
 /area/city/outskirts)
-"GZ" = (
-/obj/machinery/door/poddoor/shutters/indestructible{
-	id = "inside"
-	},
-/turf/open/floor/plating/asteroid,
-/area/city/outskirts)
 "Hh" = (
 /obj/structure/table/glass,
 /obj/item/clothing/accessory/armband/lobotomy,
@@ -1644,10 +1638,10 @@
 /turf/open/floor/carpet/royalblack,
 /area/city/outskirts)
 "Ml" = (
-/obj/machinery/button/door/indestructible{
-	id = "inside"
+/obj/effect/rcorp_blocker{
+	timelock = 2
 	},
-/turf/closed/indestructible/syndicate,
+/turf/open/floor/plating/asteroid,
 /area/city/outskirts)
 "Mq" = (
 /turf/closed/indestructible/syndicate,
@@ -2176,11 +2170,10 @@ Mq
 Mq
 Mq
 Mq
-GZ
-GZ
-GZ
-GZ
-GZ
+Ml
+Ml
+Ml
+Ml
 Ml
 Mq
 Mq
@@ -2191,6 +2184,7 @@ Mq
 Mq
 Mq
 Mq
+Mq
 Tf
 Tf
 Tf
@@ -2228,9 +2222,8 @@ Tf
 Mq
 Mq
 Mq
-GZ
-GZ
-GZ
+Ml
+Ml
 Ml
 Mq
 Mq
@@ -2241,7 +2234,8 @@ Mq
 Mq
 Mq
 Mq
-GZ
+Ml
+Ml
 Ml
 Mq
 Mq
