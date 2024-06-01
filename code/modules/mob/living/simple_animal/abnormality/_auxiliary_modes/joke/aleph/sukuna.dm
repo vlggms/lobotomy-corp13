@@ -7,8 +7,8 @@
 	icon_living = "sukunad"
 	portrait = "sukuna"
 	del_on_death = FALSE
-	maxHealth = 13000
-	health = 13000
+	maxHealth = 12000
+	health = 12000
 	var/can_act = TRUE
 	var/list/survivors = list()
 	var/cleave_cooldown
@@ -18,7 +18,7 @@
 	var/shrine_cooldown_time = 60 SECONDS
 	var/shrine_damage = 900
 	var/worldslash_cooldown
-	var/worldslash_cooldown_time = 70 SECONDS
+	var/worldslash_cooldown_time = 120 SECONDS
 	var/worldslash_damage = 6666
 	var/current_stage = 1
 	ranged = TRUE
