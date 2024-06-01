@@ -93,6 +93,9 @@
 	///Is this job trusted only? If so, then this job requires the player to be in the trusted_players.txt
 	var/trusted_only = FALSE
 
+	//Mentors have one role
+	var/mentor_only = FALSE
+
 	//Does this job need any extra instructions?
 	var/job_important
 	var/job_notice

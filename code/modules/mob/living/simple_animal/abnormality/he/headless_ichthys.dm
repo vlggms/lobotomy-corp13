@@ -5,6 +5,7 @@
 	icon_state = "headless_ichthys"
 	icon_living = "headless_ichthys"
 	icon_dead = "headless_ichthys"
+	core_icon = "headless_ichthys"
 	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16

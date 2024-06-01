@@ -61,8 +61,8 @@
 	var/persistant = FALSE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/melty_eyeball,
-		/datum/ego_datum/armor/melty_eyeball,
+		/datum/ego_datum/weapon/cavernous_wailing,
+		/datum/ego_datum/armor/cavernous_wailing,
 	)
 	gift_type =  /datum/ego_gifts/melty_eyeball
 	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"

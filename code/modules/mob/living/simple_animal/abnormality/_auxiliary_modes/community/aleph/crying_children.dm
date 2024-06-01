@@ -41,7 +41,7 @@
 	del_on_death = FALSE
 	ego_list = list(/datum/ego_datum/weapon/shield/waxen, /datum/ego_datum/armor/waxen)
 	gift_type =  /datum/ego_gifts/inconsolable
-	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK // I HAVE NO IDEA LOR ORIGIN CODE
+	abnormality_origin = ABNORMALITY_ORIGIN_COMMUNITY
 	var/list/children_list = list()
 	var/charge = 0
 	var/can_charge = FALSE // Prevents charging the map wide attack
@@ -190,7 +190,7 @@
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/BreachEffect(mob/living/carbon/human/user, breach_type)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "No oneâ€™s going to cry on my behalf even if Iâ€™m sad.", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "No one’s going to cry on my behalf even if I’m sad.", 25))
 	..()
 	desc = "A towering angel statue, setting everything on it's path ablaze"
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
@@ -456,7 +456,7 @@
 		forceMove(T)
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/FinalPhase()
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "I donâ€™t want to hear anything. I donâ€™t want to see anything, or speak anythingâ€¦", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "I don’t want to hear anything. I don’t want to see anything, or speak anything…", 25))
 	icon_phase = "desperation"
 	icon_living = "[icon_phase]_idle"
 	icon_state = "[icon_phase]_idle"

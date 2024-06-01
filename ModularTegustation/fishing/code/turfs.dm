@@ -352,9 +352,10 @@
 		/obj/item/food/fish/siltcurrent = 10
 		)
 	loot_level2 = list(
-		/obj/item/food/fish/siltcurrent = 35,
+		/obj/item/food/fish/siltcurrent = 25,
 		/obj/item/ego_weapon/city/rats/brick = 25,
 		/obj/item/stack/sheet/plastic = 10,
+		/obj/item/food/fish/salt_water/tuna_pallid = 10,
 		/obj/item/stack/fish_points = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 10,
 		/obj/item/fishing_component/hook/bone = 9,

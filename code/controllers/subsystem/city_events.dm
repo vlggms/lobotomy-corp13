@@ -2,7 +2,7 @@
 
 SUBSYSTEM_DEF(cityevents)
 	name = "City Events"
-	flags = SS_NO_TICK_CHECK | SS_NO_FIRE
+	flags = SS_NO_FIRE
 	var/list/spawners = list()
 	var/list/itemdrops = list()
 	var/list/distortion = list()
@@ -53,8 +53,8 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(helpful_events)
 	total_events += pick(harmful_events)
 	total_events += pick(ordeal_events)
-	total_events += pick(ordeal_events)
-	total_events += pick(ordeal_events)
+//	total_events += pick(ordeal_events)
+//	total_events += pick(ordeal_events)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money

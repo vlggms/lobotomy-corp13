@@ -51,6 +51,7 @@ GLOBAL_LIST_EMPTY(army)
 		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
 	)
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	//Unique variables
 	var/death_counter = 0

@@ -26,17 +26,15 @@
 	gift_type = null
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	secret_chance = TRUE
+	secret_icon_state = "megalovania"
+
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	var/user_armored
 	var/numbermarked
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
-
-/mob/living/simple_animal/hostile/abnormality/crumbling_armor/Initialize(mapload)
-	. = ..()
-	// Megalovania?
-	if (prob(1))
-		icon_state = "megalovania"
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

@@ -1015,7 +1015,6 @@
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-	attack_speed = 1
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
 	damtype = RED_DAMAGE
@@ -1135,10 +1134,13 @@
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/fixer/generic/blade2.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
+	var/punishment_damage = 0
+	var/punishment_size = 0
+	var/wide_slash_angle = 290
 
 /obj/item/ego_weapon/divinity/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
@@ -1147,12 +1149,42 @@
 		return
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
-	var/punishment_damage = (force * justicemod)
-	var/punishment_size = round(S.stacks / 3)//this is the same size as the AOE from theonite slab. Good luck lol
-	for(var/turf/T in view(punishment_size, target))
+	punishment_damage = (force * justicemod)
+	punishment_size = max(2, (S.stacks / 3))//this is the same size as the AOE from theonite slab. Good luck lol
+	addtimer(CALLBACK(src, PROC_REF(WideSlash), target, user), 1)
+
+/obj/item/ego_weapon/divinity/proc/WideSlash(atom/target, mob/living/carbon/human/user)
+	if(!istype(target) || QDELETED(target))
+		return
+	var/turf/TT = get_turf(target)
+	var/turf/T = get_turf(src)
+	var/rotate_dir = pick(1, -1)
+	var/angle_to_target = Get_Angle(T, TT)
+	var/angle = angle_to_target + (wide_slash_angle * rotate_dir) * 0.5
+	if(angle > 360)
+		angle -= 360
+	else if(angle < 0)
+		angle += 360
+	var/turf/T2 = get_turf_in_angle(angle, T, punishment_size)
+	var/list/line = getline(T, T2)
+	for(var/i = 1 to 20)
+		angle += ((wide_slash_angle / 20) * rotate_dir)
+		if(angle > 360)
+			angle -= 360
+		else if(angle < 0)
+			angle += 360
+		T2 = get_turf_in_angle(angle, T, punishment_size)
+		line = getline(T, T2)
+		addtimer(CALLBACK(src, PROC_REF(DoLineAttack), line, target, user), i * 0.12)
+
+/obj/item/ego_weapon/divinity/proc/DoLineAttack(list/line, atom/target, mob/living/carbon/human/user)
+	var/list/been_hit = list()
+	for(var/turf/T in line)
+		if(locate(/obj/effect/temp_visual/smash_effect) in T)
+			continue
+		playsound(T, 'sound/weapons/fixer/generic/blade3.ogg', 30, TRUE, 3)
 		new /obj/effect/temp_visual/smash_effect(T)
-		user.HurtInTurf(T, list(), punishment_damage, PALE_DAMAGE, check_faction = TRUE)
-	playsound(user, 'sound/weapons/fixer/generic/blade3.ogg', 55, TRUE, 3)
+		been_hit = user.HurtInTurf(T, been_hit, punishment_damage, PALE_DAMAGE, check_faction = TRUE)
 
 /obj/item/ego_weapon/destiny
 	name = "destiny"

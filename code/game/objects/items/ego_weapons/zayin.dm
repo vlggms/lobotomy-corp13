@@ -222,22 +222,22 @@
 	return ..()
 
 
-/obj/item/ego_weapon/melty_eyeball
-	name = "melty eyeball"
-	desc = "I felt like I was being dragged deeper into the swamp of gloom as the fight went on."
+/obj/item/ego_weapon/cavernous_wailing
+	name = "cavernous wailing"
+	desc = "Cry with me..."
 	special = "Attack a friendly human while wearing matching armor to heal their HP and SP by a small amount."
-	icon_state = "melty_eyeball"
+	icon_state = "cavernous_wailing"
 	force = 14
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("slams", "strikes", "smashes")
 	attack_verb_simple = list("slam", "strike", "smash")
 	hitsound = 'sound/abnormalities/blubbering_toad/attack.ogg'
 
-/obj/item/ego_weapon/melty_eyeball/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/cavernous_wailing/attack(mob/living/M, mob/living/user)
 	if(!ishuman(M) || M == user || !user.faction_check_mob(M) || (user.a_intent != INTENT_HELP))
 		..()
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/zayin/melty_eyeball/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/zayin/cavernous_wailing/C = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(!istype(C))
 		..()
 		return

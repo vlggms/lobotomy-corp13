@@ -33,5 +33,5 @@
 //You should let these gib on Citymap
 /mob/living/simple_animal/hostile/ordeal/Initialize()
 	..()
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		stat_attack = HARD_CRIT	//Guarantee this

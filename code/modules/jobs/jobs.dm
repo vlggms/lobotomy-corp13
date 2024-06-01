@@ -2,6 +2,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Manager",
 	"Extraction Officer",
 	"Records Officer",
+	"Training Officer",
 	"Disciplinary Officer",
 	"Sephirah",
 	"Department Head",
@@ -72,6 +73,7 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"Association Section Director",
 	"Association Veteran",
 	"Association Fixer",
+	"Roaming Association Fixer",
 	"East Office Director",
 	"East Office Fixer",
 	"North Office Director",
@@ -96,6 +98,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 	"Doctor",
 	"Nurse",
 	"Paramedic",
+	"Medical Fixer Assistant",
 	"Clerk",
 	"HHPP Chef",
 	"Civilian",
@@ -116,6 +119,7 @@ GLOBAL_LIST_INIT(service_positions, list(
 GLOBAL_LIST_INIT(security_positions, list(
 	"Department Head",
 	"Department Captain",
+	"Training Officer",
 
 	"Disciplinary Officer",
 	"Emergency Response Agent",
@@ -172,7 +176,6 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Kurokumo Hosa",
 	"Kurokumo Wakashu",
 
-
 	//LCB Labs
 	"High Security Commander",
 	"Low Security Commander",
@@ -181,6 +184,9 @@ GLOBAL_LIST_INIT(security_positions, list(
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
 	"Internal Police",
+
+	//Fixers
+	"Fixer",
 	))
 
 

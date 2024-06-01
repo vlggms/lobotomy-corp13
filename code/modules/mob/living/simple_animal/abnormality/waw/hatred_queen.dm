@@ -9,6 +9,7 @@
 	var/icon_crazy = "hatred_psycho"
 	icon_dead = "hatred_dead"
 	var/icon_inverted
+	core_icon = "hatred_egg"
 	portrait = "hatred_queen"
 	faction = list("neutral")
 	is_flying_animal = TRUE

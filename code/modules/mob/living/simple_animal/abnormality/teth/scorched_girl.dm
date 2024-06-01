@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "scorched"
 	icon_living = "scorched"
+	core_icon = "scorch_egg"
 	portrait = "scorched_girl"
 	maxHealth = 400
 	health = 400

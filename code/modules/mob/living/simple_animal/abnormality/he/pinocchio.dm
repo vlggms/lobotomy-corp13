@@ -170,6 +170,10 @@
 		QDEL_IN(realboy, 15) //In theory we could do an egg transformation at this point but I have no sprite.
 	death()
 
+/mob/living/simple_animal/hostile/abnormality/pinocchio/CreateAbnoCore()//The simple mob created will leave a core behind when regular conditions are fulfilled ie. when this proc is called
+	realboy.core_enabled = TRUE
+	return
+
 //Special item
 /obj/item/ego_weapon/marionette/abnormality
 	name = "liar's lyre"
@@ -288,6 +292,7 @@
 /mob/living/carbon/human/species/pinocchio //a real boy. Compatiable with being spawned by admins to boot! Can't panic outside of fear, though.
 	race = /datum/species/puppet
 	faction = list("hostile")
+	var/core_enabled = FALSE
 
 /mob/living/carbon/human/species/pinocchio/Initialize(mapload, cubespawned=FALSE, mob/spawner) //There is basically no documentation for bodyparts and hair, so this was the next best thing.
 	..()
@@ -311,6 +316,20 @@
 		to_chat(src, span_userdanger("YOUR FOOLISHNESS IS IMPRESSIVE."))
 		return
 	. = ..()
+
+/mob/living/carbon/human/species/pinocchio/Destroy()
+	if(core_enabled)
+		CreateAbnoCore()
+	..()
+
+/mob/living/carbon/human/species/pinocchio/proc/CreateAbnoCore()//this is at the carbon level
+	var/obj/structure/abno_core/C = new(get_turf(src))
+	C.name = "Pinocchio Core"
+	C.desc = "The core of Pinocchio"
+	C.icon_state = ""//core icon goes here
+	C.contained_abno = /mob/living/simple_animal/hostile/abnormality/pinocchio//release()ing or extract()ing this core will spawn the abnormality, making it a valid core.
+	C.threat_level = 3
+	C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
 
 /datum/species/puppet
 	name = "Puppet"

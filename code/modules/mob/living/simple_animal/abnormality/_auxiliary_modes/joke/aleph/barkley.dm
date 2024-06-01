@@ -24,13 +24,11 @@
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
 
-	can_spawn = FALSE//It's a joke abnormality
-
 	ego_list = list(
 		/datum/ego_datum/weapon/chaosdunk,
 		/datum/ego_datum/armor/chaosdunk,
 	)
-	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 
 	var/explosion_amt = 3
 

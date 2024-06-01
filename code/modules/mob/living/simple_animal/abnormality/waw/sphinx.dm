@@ -44,6 +44,10 @@
 	gift_type =  /datum/ego_gifts/pharaoh
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+	secret_chance = TRUE // Why do we live, just to suffer?
+	secret_icon_file = 'ModularTegustation/Teguicons/64x64.dmi'
+	secret_icon_state = "sphonx"
+
 	//work-related
 	var/happy = FALSE
 	var/demand
@@ -87,6 +91,10 @@
 	transparent_when_unavailable = TRUE
 	cooldown_time = SPHINX_GAZE_COOLDOWN //12 seconds
 
+/mob/living/simple_animal/hostile/abnormality/sphinx/InitializeSecretIcon()
+	. = ..()
+	icon_aggro = "sphonx_eye"
+
 /datum/action/cooldown/sphinx_gaze/Trigger()
 	if(!..())
 		return FALSE
@@ -98,14 +106,6 @@
 	StartCooldown()
 	sphinx.StoneVision(FALSE)
 	return TRUE
-
-
-/mob/living/simple_animal/hostile/abnormality/sphinx/Initialize() //1 in 100 chance for cringe aah aah sphinx by popular demand
-	. = ..()
-	if(prob(1)) // Why do we live, just to suffer?
-		icon = 'ModularTegustation/Teguicons/64x64.dmi'
-		icon_state = "sphonx"
-		icon_aggro = "sphonx_eye"
 
 /mob/living/simple_animal/hostile/abnormality/sphinx/PostSpawn()
 	..()

@@ -14,6 +14,7 @@
 		/obj/item/stack/medical/aloe = 1,
 		/obj/item/stack/medical/suture/emergency = 1,
 		/obj/item/stack/medical/suture = 1,
+		/obj/item/reagent_containers/medigel/sterilizine = 1,
 			//Money
 		/obj/item/storage/wallet/random = 1,
 		/obj/item/stack/spacecash/c1 = 1,
@@ -39,14 +40,157 @@
 		/obj/item/storage/cans/sixsoda = 1,
 		/obj/item/storage/cans/sixbeer = 1,
 		/obj/item/food/candy = 1,
+		/obj/item/reagent_containers/glass/beaker/jar/pudding = 1,
+		/obj/item/reagent_containers/glass/beaker/jar/syrup_random = 1,
+		)
+
+/obj/effect/spawner/lootdrop/medical_random
+	name = "medical random"
+	lootcount = 3
+	lootdoubles = TRUE
+	loot = list(
+		/obj/item/stack/medical/aloe = 1,
+		/obj/item/stack/medical/suture/emergency = 1,
+		/obj/item/stack/medical/suture = 1,
+		/obj/item/reagent_containers/medigel/sterilizine = 1,
+		)
+
+/obj/effect/spawner/lootdrop/misc_random
+	name = "misc random"
+	lootcount = 1
+	lootdoubles = TRUE
+	loot = list(
+		/obj/item/organ/liver/fly = 1,
+		/obj/item/storage/book = 1,
+		/obj/item/lipstick/random = 1,
+		/obj/item/kitchen/knife/shiv = 1,
+		/obj/item/toy/plush/lizardplushie = 1,
+		/obj/item/toy/plush/blank = 1,
+		/obj/item/bedsheet/dorms = 1,
+		)
+
+/obj/effect/spawner/lootdrop/food_random
+	name = "food random"
+	lootcount = 3
+	lootdoubles = TRUE
+	loot = list(
+		/obj/item/food/deadmouse = 1,
+		/obj/item/food/egg = 1,
+		/obj/item/food/boiledegg = 1,
+		/obj/item/food/honeybar = 1,
+		/obj/item/food/soup/stew = 1,
+		/obj/item/food/chewable/gumball = 1,
+		/obj/item/food/branrequests = 1,
+		/obj/item/food/tinychocolate = 1,
+		/obj/item/food/canned/peaches = 1,
+		/obj/item/food/canned/beans = 1,
+		/obj/item/storage/cans/sixsoda = 1,
+		/obj/item/storage/cans/sixbeer = 1,
+		/obj/item/food/candy = 1,
+		/obj/item/reagent_containers/glass/beaker/jar/pudding = 1,
+		/obj/item/reagent_containers/glass/beaker/jar/syrup_random = 1,
+		)
+
+/obj/effect/spawner/lootdrop/workshop_random
+	name = "chaotic random"
+	lootcount = 3
+	lootdoubles = TRUE
+	loot = list(
+		// 1 out of 5 chance of weird ingots
+		/obj/item/tresmetal = 30,
+		/obj/item/tresmetal/human = 1,
+		/obj/item/tresmetal/amber = 1,
+		/obj/item/tresmetal/crimson = 1,
+		/obj/item/tresmetal/green = 1,
+		/obj/item/tresmetal/violet = 1,
+		/obj/item/tresmetal/indigo = 1
 		)
 
 //Pseudo Group Spawners
+	//Amber Worms
+/obj/effect/spawner/scatter/amber_dawn
+	name = "amber swarm spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/amber_bug = 1)
+
+	//Green Bots
+/obj/effect/spawner/scatter/green_dawn
+	name = "bot package spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/green_bot = 1)
+
+/obj/effect/spawner/scatter/green_noon
+	name = "big bot package spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/green_bot_big = 1)
+
+	//Indigo Sweepers
+/obj/effect/spawner/scatter/indigo_dawn
+	name = "sweeper scout pack spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/indigo_dawn = 1)
+
+/obj/effect/spawner/scatter/indigo_noon
+	name = "sweeper pack spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1)
+
+	//Steel Roaches
+/obj/effect/spawner/scatter/steel_dawn
+	name = "g corp squad spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn = 1)
+
+/obj/effect/spawner/scatter/steel_noon
+	name = "g corp assault squad spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 1)
+
+/obj/effect/spawner/scatter/steel_noon
+	name = "g corp air assault squad spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying = 1)
+
+	//Shrimp
 /obj/effect/spawner/scatter/shrimp
 	name = "shrimp squad spawn"
 	max_spawns = 5
-	loot_table = list(/mob/living/simple_animal/hostile/shrimp = 1,
+	loot_table = list(/mob/living/simple_animal/hostile/shrimp = 4,
 					/mob/living/simple_animal/hostile/shrimp_soldier = 1)
+
+/obj/effect/spawner/scatter/shrimp_melee
+	name = "fishin shrimp squad spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/shrimp = 1)
+
+/obj/effect/spawner/scatter/shrimp_ranged
+	name = "shrimp soldier squad spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/shrimp_soldier = 1)
+
+	//Backstreet Humanoids
+/obj/effect/spawner/scatter/rat
+	name = "rat syndicate spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/humanoid/rat = 1)
+
+/obj/effect/spawner/scatter/rat_elite
+	name = "rat elite spawn"
+	max_spawns = 1
+	loot_table = list(
+		/mob/living/simple_animal/hostile/humanoid/rat/knife = 3,
+		/mob/living/simple_animal/hostile/humanoid/rat/pipe = 3,
+		/mob/living/simple_animal/hostile/humanoid/rat/hammer = 3,
+		/mob/living/simple_animal/hostile/humanoid/rat/zippy = 1)
+
+/obj/effect/spawner/scatter/rat_random
+	name = "rat gang spawn"
+	max_spawns = 5
+	loot_table = list(/mob/living/simple_animal/hostile/humanoid/rat = 6,
+		/mob/living/simple_animal/hostile/humanoid/rat/knife = 1,
+		/mob/living/simple_animal/hostile/humanoid/rat/pipe = 2,
+		/mob/living/simple_animal/hostile/humanoid/rat/hammer = 2,
+		/mob/living/simple_animal/hostile/humanoid/rat/zippy = 1)
 
 // Dependant on step_triggers.dm
 /obj/effect/step_trigger/place_atom

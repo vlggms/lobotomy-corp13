@@ -161,15 +161,6 @@
 	item_path = /obj/item/gun/ego_gun/pink
 	cost = 100
 
-// The Crying Children - Waxen Pinion
-/datum/ego_datum/weapon/shield/waxen
-	item_path = /obj/item/ego_weapon/shield/waxen
-	cost = 100
-
-/datum/ego_datum/armor/waxen
-	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/waxen
-	cost = 100
-
 //We Can Change Anything - Iron maiden
 /datum/ego_datum/weapon/iron_maiden
 	item_path = /obj/item/ego_weapon/iron_maiden
@@ -182,15 +173,6 @@
 
 /datum/ego_datum/weapon/mockery
 	item_path = /obj/item/ego_weapon/mockery
-	cost = 100
-
-// Buff Rudolta - Ultimate Christmas
-/datum/ego_datum/weapon/buff_christmas
-	item_path = /obj/item/ego_weapon/ultimate_christmas
-	cost = 100
-
-/datum/ego_datum/armor/buff_christmas
-	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/ultimate_christmas
 	cost = 100
 
 //Ahab Personal E.G.O - Gasharpoon

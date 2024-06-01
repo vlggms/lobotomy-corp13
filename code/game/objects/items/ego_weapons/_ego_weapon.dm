@@ -29,7 +29,7 @@
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
-	if(charge)
+	if(charge && attack_charge_gain)
 		HandleCharge(1, target)
 
 	if(target.anchored || !knockback) // lets not throw machines around
