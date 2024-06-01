@@ -114,7 +114,7 @@
 			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			survivors += M
-		can_act = TRUE
+		return ..()
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
 	datum_reference.qliphoth_change(-1)
