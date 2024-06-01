@@ -8,8 +8,6 @@
 	del_on_death = TRUE
 	maxHealth = 9000
 	health = 9000
-	var/last_heal_time = 0
-	var/heal_percent_per_second = 0.5
 	var/can_act = TRUE
 	var/list/survivors = list()
 	var/cleave_cooldown
@@ -18,12 +16,14 @@
 	var/shrine_cooldown
 	var/shrine_cooldown_time = 60 SECONDS
 	var/shrine_damage = 1000
+	var/current_stage = 1
+	ranged = TRUE
 	//Attack speed modifier. 2 is twice the normal.
-	rapid_melee = 1
+	rapid_melee = 2
 	//If target is close enough start preparing to hit them if we have rapid_melee enabled. Originally was 4.
 	melee_queue_distance = 2
 	//How fast a creature is, lower is faster. Client controlled monsters instead use speed and are MUCH faster.
-	move_to_delay = 1
+	move_to_delay = 2.4
 	/**
 	 * Red damage is applied to health.
 	 * White damage is applied to sanity with only a few abnormalities using that to instantly kill the victim.
@@ -64,33 +64,28 @@
 	)
 	work_damage_amount = 25
 	work_damage_type = RED_DAMAGE
-
-	/*
-	* This is related to abnochem where a chemical can be harvested from abnormalities.
-	* This is more for general flavor and will be randomly filled if left empty.
-	* I placed this here because i felt like violence makes the most sense.
-	*/
 	chem_type = /datum/reagent/abnormality/violence
-
-	//shows in chat when the creature is defeated. Default is "stops moving".
 	death_message = "dies, probably."
-	//Makes the mob move in a random direction once in a while. I personally would rather them stay still.
 	wander = TRUE
-	/**
-	 * ego_list is the things you can buy with its unique type of PE.
-	 * Making these is a bit more complicated since the types listed
-	 * here are datums that contain the cost and typepath of the accosiated object.
-	 * You can find the files of these in: _ego_datum.dm
-	 * The weapons and armor themselves are in _ego_gear.dm , ego_gun file and _ego_weapon.dm
-	 */
 	ego_list = list(
 		/datum/ego_datum/armor/sukuna,
 		)
-	/**
-	 * Special employees get gifts from interacting with the abnormality.
-	 * You can see the different types of gifts in ego_gifts.dm
-	 */
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
+
+/mob/living/simple_animal/hostile/abnormality/sukuna/BreachEffect(mob/living/carbon/human/user, breach_type)
+	sound_to_playing_players_on_level("sound/abnormalities/maloventkitchen.ogg", 85, zlevel = z)
+	for(var/mob/M in GLOB.player_list)
+		if(isnewplayer(M))
+			continue
+		var/check_z = M.z
+		if(isatom(M.loc))
+			check_z = M.loc.z // So it plays even when you are in a locker/sleeper
+		if((check_z == z) && M.client)
+			to_chat(M, span_userdanger("Yo it's me Ryomen Sukuna from Jujutsu Kaisen here to obliterate you."))
+			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
+		if(M.stat != DEAD && ishuman(M) && M.ckey)
+			survivors += M
+	can_act = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/proc/Cleave(target)
 	if(cleave_cooldown > world.time)
@@ -146,11 +141,12 @@
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sukuna))
 		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/sukuna = owner
+	var/mob/living/simple_animal/hostile/abnormality/sukuna/sukuna = owner
+	if(sukuna.current_stage != 1)
+		return FALSE
 	StartCooldown()
 	sukuna.Shrine()
 	return TRUE
-
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/death(gibbed)
 	can_act = FALSE
@@ -218,37 +214,13 @@
 		forceMove(get_turf(talker))
 		return
 
-/mob/living/simple_animal/hostile/abnormality/distortedform/BreachEffect(mob/living/carbon/human/user, breach_type)
-	sound_to_playing_players_on_level("sound/abnormalities/maloventkitchen.ogg", 85, zlevel = z)
-	for(var/mob/M in GLOB.player_list)
-		if(isnewplayer(M))
-			continue
-		var/check_z = M.z
-		if(isatom(M.loc))
-			check_z = M.loc.z // So it plays even when you are in a locker/sleeper
-		if((check_z == z) && M.client)
-			to_chat(M, span_userdanger("Yo it's me Ryomen Sukuna from Jujutsu Kaisen here to obliterate you."))
-			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
-		if(M.stat != DEAD && ishuman(M) && M.ckey)
-			survivors += M
-	can_act = FALSE
-	addtimer(CALLBACK(src, PROC_REF(GoActive)), 50)
-	addtimer(CALLBACK(src, PROC_REF(BreachAudioFX)), 45)
 
 
-//When work type is bad the qliphoth counter lowers with no chance.
 /mob/living/simple_animal/hostile/abnormality/sukuna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	/**
-	 * Each abnormality has a variable called datum_refrence.
-	 * The Qliphoth Counter, the thing that keeps abnormalities contained
-	 * It's defined in this datum so we have to refrence it in order to manually change its counter.
-	 * Remember this because this opens the way for coders to call procs on things that are outside this entitiy.
-	 */
-	. = ..()
 	datum_reference.qliphoth_change(-1)
 	return
 
-//This is additional text that appears when examining. Not very important.
+
 /mob/living/simple_animal/hostile/abnormality/sukuna/examine(mob/user)
 	. = ..()
 	if(IsContained())

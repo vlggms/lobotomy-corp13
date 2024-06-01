@@ -233,37 +233,26 @@
 	attack_verb_simple = list("cleave", "dismantle")
 	hitsound = 'sound/weapons/black_silence/longsword_fin.ogg'
 
-	var/gun_cooldown
-	var/gun_cooldown_time = 0.5 SECONDS
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 0.5 SECONDS
 
-/obj/item/ego_weapon/sukuna/Initialize()
-	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
-
-/obj/item/ego_weapon/sukuna/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/ego_weapon/sukuna/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
 	if(!CanUseEgo(user))
 		return
-	if(!proximity_flag && gun_cooldown <= world.time)
-		var/turf/proj_turf = user.loc
-		if(!isturf(proj_turf))
-			return
-		var/obj/projectile/ego_bullet/sukuna/G = new /obj/projectile/ego_bullet/sukuna(proj_turf)
-		G.fired_from = src //for signal check
-		G.firer = user
-		G.preparePixelProjectile(target, user, clickparams)
-		G.fire()
-		G.damage*=force_multiplier
-		gun_cooldown = world.time + gun_cooldown_time
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
 		return
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 5))
+		return
+	..()
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
+	for(var/turf/open/T in range(target_turf, 0))
+		new /obj/effect/temp_visual/smash1(T)
+		user.HurtInTurf(T, list(), force, PALE_DAMAGE)
 
-/obj/item/ego_weapon/sukuna/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
-	SIGNAL_HANDLER
-	return TRUE
-
-/obj/projectile/ego_bullet/sukuna
-	name = "dismantle"
-	damage = 140
-	damage_type = PALE_DAMAGE
 
 
 
