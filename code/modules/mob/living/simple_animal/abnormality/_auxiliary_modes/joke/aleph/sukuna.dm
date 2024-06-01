@@ -49,7 +49,7 @@
 	wander = TRUE
 	ego_list = list(
 		/datum/ego_datum/armor/sukuna,
-		/obj/item/clothing/shoes/sandal/magic, //it's funny
+		/datum/ego_datum/armor/sandals, //it's funny
 		)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 	attack_action_types = list(
