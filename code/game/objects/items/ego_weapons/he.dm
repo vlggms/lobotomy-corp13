@@ -1695,7 +1695,7 @@
 	name = "voodoo"
 	desc = "What seems to be a giant half of a scissors pair."
 	icon_state = "voodoo"
-	special = "This weapon can be paired with itself to unlock the ability to parry."
+	special = "This weapon can be paired with a second copy to use both at the same time."
 	force = 20
 	attack_speed = 0.7
 	damtype = WHITE_DAMAGE
@@ -1831,7 +1831,7 @@
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
 	special = "Knocks certain enemies towards you in an area. \
-	This weapon does half damage when attacking 3 or tiles more away."
+	This weapon does half damage when attacking 3 or more tiles more away."
 	icon_state = "uturn"
 	force = 40
 	reach = 4
