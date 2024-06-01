@@ -146,9 +146,9 @@
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sukuna))
 		return FALSE
-	var/mob/living/simple_animal/hostile/abnormality/sukuna/sukuna = owner
+	var/mob/living/simple_animal/hostile/abnormality/sukuna = owner
 	StartCooldown()
-	sukuna.shrine()
+	sukuna.Shrine()
 	return TRUE
 
 
@@ -196,11 +196,11 @@
 	if(client)
 		switch(chosen_attack)
 			if(1)
-				cleave(target)
+				Cleave(target)
 		return
 
 	if(cleave_cooldown <= world.time)
-		cleave(target)
+		Cleave(target)
 	if((shrine_cooldown <= world.time) && (get_dist(src, target) < 3))
 		Shrine()
 
