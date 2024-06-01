@@ -1,3 +1,4 @@
+#define MALEVOLENT_SHRINE_COOLDOWN (60 SECONDS)
 /mob/living/simple_animal/hostile/abnormality/sukuna
 	name = "Sukuna"
 	desc = "The Heian Era asspuller himself."
@@ -51,6 +52,40 @@
 		/obj/item/clothing/shoes/sandal/magic, //it's funny
 		)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
+	attack_action_types = list(
+		/datum/action/cooldown/shrine,
+		/datum/action/innate/abnormality_attack/toggle/nt_hello_toggle,
+	)
+
+/datum/action/cooldown/shrine
+	name = "Malevolent Shrine"
+	icon_icon = 'icons/mob/actions/actions_abnormality.dmi'
+	button_icon_state = "nt_goodbye"
+	check_flags = AB_CHECK_CONSCIOUS
+	transparent_when_unavailable = TRUE
+	cooldown_time = MALEVOLENT_SHRINE_COOLDOWN //20 seconds
+
+/datum/action/cooldown/shrine/Trigger()
+	if(!..())
+		return FALSE
+	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/sukuna))
+		return FALSE
+	var/mob/living/simple_animal/hostile/abnormality/sukuna/sukuna = owner
+	if(sukuna.current_stage != 1)
+		return FALSE
+	StartCooldown()
+	sukuna.Shrine()
+	return TRUE
+
+/datum/action/innate/abnormality_attack/toggle/cleave
+	name = "Toggle Cleave"
+	button_icon_state = "nt_toggle0"
+	chosen_attack_num = 2
+	chosen_message = span_colossus("You won't cleave anymore.")
+	button_icon_toggle_activated = "nt_toggle1"
+	toggle_attack_num = 1
+	toggle_message = span_colossus("You will now cleave someone.")
+	button_icon_toggle_deactivated = "nt_toggle0"
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/BreachEffect(mob/living/carbon/human/user, breach_type)
 	sound_to_playing_players_on_level("sound/abnormalities/maloventkitchen.ogg", 85, zlevel = z)
@@ -208,5 +243,5 @@
 	else
 		. += "Your sorry ass is not beating this guy."
 
-
+#undef MALEVOLENT_SHRINE_COOLDOWN
 

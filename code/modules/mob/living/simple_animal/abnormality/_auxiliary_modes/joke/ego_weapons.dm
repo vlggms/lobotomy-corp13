@@ -253,7 +253,7 @@
 		return
 	..()
 	ranged_cooldown = world.time + ranged_cooldown_time
-	playsound(target_turf, 'sound/weapons/pulse.ogg', 50, TRUE)
+	playsound(target_turf, 'sound/weapons/purple_tear/slash2.ogg', 50, TRUE)
 	for(var/turf/open/T in range(target_turf, 0))
 		new /obj/effect/temp_visual/smash1(T)
 		user.HurtInTurf(T, list(), force, PALE_DAMAGE)
