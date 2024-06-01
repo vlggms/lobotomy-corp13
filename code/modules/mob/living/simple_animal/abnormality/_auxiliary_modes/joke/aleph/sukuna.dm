@@ -47,6 +47,7 @@
 	chem_type = /datum/reagent/abnormality/violence
 	death_message = "dies, probably."
 	wander = TRUE
+	can_spawn = FALSE
 	ego_list = list(
 		/datum/ego_datum/armor/sukuna,
 		/datum/ego_datum/armor/sandals, //it's funny
