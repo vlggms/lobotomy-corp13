@@ -55,5 +55,5 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 	cost = 200
 
 /datum/ego_datum/armor/sandals
-	item_path = /obj/item/clothing/shoes/sandal/magic
+	item_path = /obj/item/clothing/shoes/sandal/sukuna
 	cost = 20

@@ -37,7 +37,7 @@
 	start_qliphoth = 1
 	// Work chance fluctuates based on level. left to right as level increase.
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 0, 60),
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 0, 0, 45),
 		ABNORMALITY_WORK_INSIGHT = list(0, 0, 0, 0, 30),
 		ABNORMALITY_WORK_ATTACHMENT = -1000, //lol, lmao
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 0, 30, 55),
@@ -49,7 +49,7 @@
 	wander = TRUE
 	ego_list = list(
 		/datum/ego_datum/armor/sukuna,
-		/obj/item/clothing/shoes/sandal/magic, //it's funny
+		/datum/ego_datum/armor/sandals, //it's funny
 		)
 	abnormality_origin = ABNORMALITY_ORIGIN_JOKE
 	attack_action_types = list(
@@ -86,6 +86,10 @@
 	toggle_attack_num = 1
 	toggle_message = span_colossus("You will now cleave someone.")
 	button_icon_toggle_deactivated = "nt_toggle0"
+
+/mob/living/simple_animal/hostile/abnormality/sukuna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
+	datum_reference.qliphoth_change(-1)
+	return
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/BreachEffect(mob/living/carbon/human/user, breach_type)
 	sound_to_playing_players_on_level("sound/abnormalities/maloventkitchen.ogg", 85, zlevel = z)
@@ -165,7 +169,6 @@
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/death(gibbed)
 	can_act = FALSE
-	icon_state = icon_dead
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	desc = "A gross, pathetic looking thing that was once a terrible monster."
 	pixel_x = 0
@@ -181,7 +184,7 @@
 		survivor.Apply_Gift(new /datum/ego_gifts/fervor)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
 		to_chat(survivor, span_userdanger("I'm gonna go punt Yuji now, bye."))
-	animate(src, alpha = 0, time = 0 SECONDS)
+	animate(src, alpha = 10, time = 10 SECONDS)
 	QDEL_IN(src, 0 SECONDS)
 	new /obj/item/ego_weapon/sukuna(get_turf(src))
 	..()
@@ -228,13 +231,6 @@
 			BreachEffect()
 		forceMove(get_turf(talker))
 		return
-
-
-
-/mob/living/simple_animal/hostile/abnormality/sukuna/FailureEffect(mob/living/carbon/human/user, work_type, pe)
-	datum_reference.qliphoth_change(-1)
-	return
-
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/examine(mob/user)
 	. = ..()

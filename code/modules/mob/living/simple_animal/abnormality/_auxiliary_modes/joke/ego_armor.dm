@@ -50,10 +50,22 @@
 	icon_state = "uniqueoffice4"
 	icon = 'icons/obj/clothing/ego_gear/custom_fixer.dmi'
 	worn_icon =  'icons/mob/clothing/ego_gear/custom_fixer.dmi'
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 80) // 280
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 120,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
+							)
+
+/obj/item/clothing/shoes/sandal/sukuna
+	name = "sukuna's sandals"
+	desc = "A pair of Ryomen Sukuna's sandals."
+	icon_state = "wizard"
+	armor = list(RED_DAMAGE = 40,) // funny armored sandals
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 60,
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60,
+							JUSTICE_ATTRIBUTE = 60
 							)
