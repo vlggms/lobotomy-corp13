@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "steam"
 	icon_living = "steam"
+	core_icon = "steammachine_egg"
 	portrait = "steam_transport_machine"
 	maxHealth = 1600
 	health = 1600
