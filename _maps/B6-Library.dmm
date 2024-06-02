@@ -1,0 +1,44 @@
+"a" = (/turf/open/floor/wood,/area/library_floors)
+"d" = (/turf/open/floor/plasteel/elevatorshaft,/area/library_floors)
+"e" = (/obj/structure/table/wood/fancy/black,/obj/machinery/computer/bookmanagement,/turf/open/floor/wood,/area/library_floors)
+"g" = (/turf/closed/indestructible/rock,/area/space)
+"j" = (/obj/item/toy/plush/netzach,/obj/item/reagent_containers/food/drinks/beer{pixel_x = 11},/obj/item/wrench{pixel_x = -13},/turf/closed/indestructible/rock,/area/space)
+"o" = (/obj/machinery/vending/coffee,/turf/open/floor/wood,/area/library_floors)
+"p" = (/obj/machinery/door/poddoor/shutters/window/preopen,/turf/open/floor/wood,/area/library_floors)
+"q" = (/obj/structure/table/wood/fancy/black,/turf/open/floor/wood,/area/library_floors)
+"E" = (/obj/structure/table/wood/fancy/black,/obj/machinery/computer/libraryconsole{pixel_y = 10},/turf/open/floor/wood,/area/library_floors)
+"F" = (/obj/structure/chair/comfy/black{dir = 1},/turf/open/floor/wood,/area/library_floors)
+"H" = (/obj/machinery/regenerator,/turf/open/floor/wood,/area/library_floors)
+"I" = (/turf/closed/indestructible/wood,/area/library_floors)
+"M" = (/obj/machinery/bookbinder,/turf/open/floor/wood,/area/library_floors)
+"Q" = (/obj/structure/bookcase/random,/turf/open/floor/wood,/area/library_floors)
+"T" = (/obj/structure/table/wood/fancy/black,/obj/item/paper_bin,/obj/item/pen,/turf/open/floor/wood,/area/library_floors)
+"U" = (/obj/machinery/libraryscanner,/turf/open/floor/wood,/area/library_floors)
+
+(1,1,1) = {"
+gggggggggIIIIIIIggggggggg
+gggggggggIaMeTaIggggggggg
+gggjgggggIaqFqaIggggggggg
+gggggggggIaUaqaIggggggggg
+gggggggggIaaaaaIggggggggg
+ggggIIIIIIaaaaaIIIIIIgggg
+ggggIIQQQQaaaaaQQQQIIgggg
+ggggIQaaaaaaaaaaaaaQIgggg
+ggggIQaQQQaaaaaQQQaQIgggg
+ggggIQaaaaaaaaaaaaaQIgggg
+ggggIQaQQQaaaaaQQQaQIgggg
+ggggIQaaaaaaaaaaaaaQIgggg
+ggggIQaQQQaaEaaQQQaQIgggg
+ggggIQaaaaaaFaaaaaaQIgggg
+ggggIQaQQQaaaaaQQQaQIgggg
+ggggIQaaaaaaaaaaaaaQIgggg
+ggggIIQQQoaaaaaHQQQIIgggg
+ggggIIIIIIpppppIIIIIIgggg
+gggggggggIdddddIggggggggg
+gggggggggIdddddIggggggggg
+gggggggggIdddddIggggggggg
+gggggggggIdddddIggggggggg
+gggggggggIdddddIggggggggg
+gggggggggIIIIIIIggggggggg
+ggggggggggggggggggggggggg
+"}

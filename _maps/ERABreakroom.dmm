@@ -1,0 +1,81 @@
+"a" = (/turf/closed/indestructible/rock,/area/space)
+"b" = (/obj/structure/railing{dir = 1},/obj/machinery/computer/shuttle/mining{dir = 4; name = "elevator console"; possible_destinations = "elevator_home;elevator_away"; shuttleId = "manager"},/obj/machinery/door/poddoor/preopen{id = "managerlockdown"; name = "Manager's Office Lockdown Blast Door"},/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel/dark,/area/department_main/discipline)
+"c" = (/obj/machinery/door/poddoor/shutters/radiation,/turf/open/indestructible/light,/area/department_main/discipline)
+"d" = (/obj/machinery/light{dir = 1},/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"e" = (/turf/open/floor/circuit,/turf/open/indestructible/light,/area/department_main/discipline)
+"f" = (/obj/structure/bed,/obj/item/bedsheet/k_corporation,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"g" = (/turf/closed/indestructible/reinforced,/area/department_main/discipline)
+"h" = (/turf/open/space/basic,/turf/open/floor/plasteel/elevatorshaft,/area/department_main/discipline)
+"i" = (/obj/machinery/cryopod,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"j" = (/obj/structure/chair/comfy/black,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"k" = (/obj/structure/chair/stool/bar,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"l" = (/obj/machinery/chem_dispenser/drinks/fullupgrade,/obj/structure/table/wood,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"m" = (/obj/item/toy/plush/netzach,/obj/item/reagent_containers/food/drinks/beer{pixel_x = 11},/obj/item/wrench{pixel_x = -13},/turf/closed/indestructible/rock,/area/space)
+"n" = (/obj/structure/bed,/obj/item/bedsheet/captain,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"o" = (/obj/structure/chair/comfy/beige{dir = 4},/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"p" = (/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"q" = (/obj/machinery/chem_dispenser/drinks/beer/fullupgrade,/obj/structure/table/wood,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"r" = (/obj/effect/turf_decal/caution/stand_clear,/obj/machinery/door/window/brigdoor/southright{dir = 1},/obj/machinery/door/poddoor/preopen{id = "managerlockdown"; name = "Manager's Office Lockdown Blast Door"},/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel,/area/department_main/discipline)
+"s" = (/obj/structure/table/wood,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"t" = (/obj/structure/table/reinforced,/obj/structure/railing{dir = 1},/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"u" = (/obj/item/target/clown,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"v" = (/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"w" = (/obj/structure/table/wood/poker,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"x" = (/obj/structure/sign/ordealmonitor,/turf/closed/indestructible/reinforced,/turf/open/floor/plating/airless,/area/department_main/discipline)
+"y" = (/obj/structure/bed,/obj/item/bedsheet/ian,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"z" = (/obj/structure/sign/warning/testchamber,/turf/closed/indestructible/reinforced,/turf/open/floor/plating/airless,/area/department_main/discipline)
+"A" = (/turf/closed/indestructible/reinforced,/turf/closed/indestructible/reinforced,/area/department_main/discipline)
+"B" = (/obj/machinery/door/poddoor/shutters/radiation,/turf/open/indestructible/light,/turf/open/indestructible/light,/area/department_main/discipline)
+"C" = (/obj/structure/railing{dir = 1},/obj/machinery/door/poddoor/preopen{id = "managerlockdown"; name = "Manager's Office Lockdown Blast Door"},/obj/effect/turf_decal/stripes/line{dir = 1},/turf/open/floor/plasteel/dark,/area/department_main/discipline)
+"D" = (/obj/machinery/light{dir = 8},/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"E" = (/obj/machinery/computer/camera_advanced/manager/sephirah{dir = 1},/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"F" = (/obj/machinery/light,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"G" = (/obj/structure/sign/warning/securearea,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"H" = (/obj/structure/chair/comfy/beige,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"I" = (/obj/machinery/light,/obj/structure/cursed_slot_machine,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"J" = (/turf/open/floor/circuit/telecomms/mainframe,/turf/closed/wall/mineral/diamond,/area/department_main/discipline)
+"K" = (/obj/structure/table/wood/poker,/obj/item/toy/cards/deck/syndicate{pixel_y = 5},/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"L" = (/obj/structure/bed,/obj/item/bedsheet/cosmos,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"M" = (/obj/machinery/light{dir = 1},/obj/machinery/regenerator,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"N" = (/obj/machinery/computer/slot_machine,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"O" = (/obj/effect/spawner/structure/window/plasma/reinforced,/obj/structure/grille/indestructable,/turf/open/floor/plating/airless,/turf/open/floor/plating/airless,/area/department_main/discipline)
+"P" = (/obj/structure/chair/comfy/beige{dir = 1},/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"Q" = (/obj/machinery/vending/boozeomat/all_access,/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"R" = (/obj/structure/table/wood/poker,/obj/item/reagent_containers/food/drinks/beer{pixel_x = -8},/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"S" = (/turf/closed/indestructible/reinforced,/turf/open/floor/plating/airless,/area/department_main/discipline)
+"T" = (/turf/open/floor/engine,/turf/closed/indestructible/reinforced,/area/department_main/discipline)
+"U" = (/obj/machinery/door/airlock/wood/glass{name = "Manager's Office"},/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"V" = (/obj/structure/table/wood,/obj/item/reagent_containers/food/drinks/shaker{pixel_x = -9},/obj/item/reagent_containers/food/drinks/bottle/absinthe/premium{pixel_x = 5},/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"W" = (/obj/machinery/door/airlock/diamond/glass,/turf/open/space/basic,/turf/open/floor/plating/airless,/turf/open/floor/circuit/telecomms/mainframe,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+"X" = (/turf/open/floor/circuit/telecomms/mainframe,/turf/open/indestructible/light,/area/department_main/discipline)
+"Y" = (/turf/open/floor/holofloor/dark,/turf/closed/indestructible/reinforced,/area/department_main/discipline)
+"Z" = (/obj/structure/chair/comfy/beige{dir = 8},/turf/open/space/basic,/turf/open/floor/holofloor/dark,/area/department_main/discipline)
+
+(1,1,1) = {"
+aaaaaaaaaaSSSSSSSaaaaa
+aaaaaaaaaaShhhhhSaaaaa
+aaaaaaaaaaShhhhhSaaaaa
+aaaaaaaaaaShhhhhSaaaaa
+aaaaaaaaaaShhhhhSaaaaa
+aaaaaaaaaaShhhhhSaaaaa
+aaamaaaaaaSbCrCCSaaaaa
+aaaaaaaaaaSSOUOSSaaaaa
+aaaaaaaaaaaaSvSaaaaaaa
+aaaaaaaaaaaaSvSaaaaaaa
+aaaaaaSSSSSSxDxSSSSSSa
+aaaaaaSMHppppppppppdSa
+aaaaaaSoRZppppppkspQSa
+STSSSSSoKZppppppkspqSa
+SfSySnSowZppppppksplSa
+SvSvSvxpPpppppppkssVSa
+SvvvvvvppppppppppppNSa
+SvSvSvSppppppppppppNxa
+SiSvSLSFGppppFpppppISa
+SSxvSSAzWOOOOSSxvSSSSa
+gvvvvvgJcBBBBJgvvvgaaa
+gvgvgvgJeXXXXJgjjjgaaa
+gtAtYtgJXXXXXJgEEEgaaa
+gvgvgvgJXXXXXJgggggaaa
+gugugugJJJJJJJaaaaaaaa
+gggggggaaaaaaaaaaaaaaa
+"}
