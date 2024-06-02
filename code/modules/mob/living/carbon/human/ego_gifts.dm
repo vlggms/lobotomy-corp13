@@ -1475,4 +1475,4 @@
 		return
 	if(!damage)
 		return
-	owner.adjustBruteLoss(-damage*0.5)
+	owner.adjustBruteLoss(-damage*0.75)
