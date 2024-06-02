@@ -240,6 +240,18 @@
 	)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.5 SECONDS
+	var/shrine_cooldown = 30 SECONDS
+
+/obj/item/ego_weapon/sukuna/attack_self(mob/living/carbon/user)
+	to_chat(user,"<span class='notice'>Domain Expansion: Malevolent Shrine.</span>")
+	if(do_after(user, 3 SECONDS, src))
+		if(shrine_cooldown >= world.time)
+			to_chat(user,"<span class='notice'>They're cooked.</span>")
+			return
+		playsound(get_turf(user), "sound/abnormalities/maloventkitchen.ogg", 50, TRUE)
+		new /obj/effect/malevolent_shrine (get_turf(user))
+		shrine_cooldown = world.time + (10 SECONDS)
+
 
 /obj/item/ego_weapon/sukuna/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)

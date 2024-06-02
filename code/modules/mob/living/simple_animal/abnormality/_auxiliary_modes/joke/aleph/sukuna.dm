@@ -168,6 +168,7 @@
 		return
 	shrine_cooldown = world.time + shrine_cooldown_time
 	say("Domain Expansion: Malevolent Kitchen.")
+	playsound(get_turf(src), "sound/abnormalities/maloventkitchen.ogg", 75, 0, 3)
 	/mob/living/simple_animal/hostile/abnormality/sukuna
 	can_act = FALSE
 	new /obj/effect/malevolent_shrine(get_turf(src))
