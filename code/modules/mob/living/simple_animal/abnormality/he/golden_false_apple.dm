@@ -7,6 +7,7 @@
 	icon_state = "gold_inert"
 	icon_living = "gold_inert"
 	icon_dead = "gold_cracked"
+	core_icon = "false_egg"
 	portrait = "golden_apple"
 	var/list/golden_apple_lines = list(
 		"I didn't want to die.",
@@ -263,7 +264,7 @@
 	icon = 'ModularTegustation/Teguicons/96x48.dmi'
 	icon_state = "false_apple"
 	icon_living = "false_apple"
-	icon_dead = "false_egg"
+	icon_dead = "false_dead"
 	death_message = "is reduced to a primordial egg."
 	name = "False Apple"
 	desc = "The apple ruptured and a swarm of maggots crawled inside, metamorphosing into a hideous face."
@@ -281,7 +282,7 @@
 	melee_damage_type = BLACK_DAMAGE
 	fear_level = WAW_LEVEL
 	is_maggot = TRUE
-	SpeedChange(-1)
+	ChangeMoveToDelayBy(-1)
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/AttackingTarget()//regular attacks or AOE. Determines the outcome for both players and the AI behavior
 	if(!can_act)
@@ -330,7 +331,7 @@
 	victim_name = "Yuri"
 	maxHealth = 1500
 	BecomeRotten()
-	SpeedChange(-0.5)
+	ChangeMoveToDelayBy(-0.5)
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.3))
 	if(H)
 		victim_name = H.real_name

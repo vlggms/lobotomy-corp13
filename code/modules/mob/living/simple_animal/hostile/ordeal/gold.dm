@@ -218,7 +218,7 @@
 	. = ..()
 	if(. && isliving(target))
 		var/mob/living/L = target
-		if(L.stat != DEAD)
+		if(L.stat != DEAD && SSmaptype.maptype != "limbus_labs")
 			if(L.health <= HEALTH_THRESHOLD_DEAD && HAS_TRAIT(L, TRAIT_NODEATH))
 				devour(L)
 		else
@@ -442,6 +442,8 @@
 	name = "Peccatulum Morositatis"
 	desc = "An insect-like entity with a transparant body."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	pixel_x = -8
+	base_pixel_x = -8
 	icon_state = "sinflea"
 	icon_living = "sinflea"
 	icon_dead = "flea_dead"
@@ -489,6 +491,8 @@
 	name = "Peccatulum Superbiae"
 	desc = "Those spikes look sharp!"
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	pixel_x = -8
+	base_pixel_x = -8
 	icon_state = "sinwheel"
 	icon_living = "sinwheel"
 	icon_dead = "sin_dead"
@@ -529,7 +533,8 @@
 		return
 	var/mob/living/carbon/human/H = target
 	if(H.health < 0)
-		H.gib()
+		if(SSmaptype.maptype != "limbus_labs")
+			H.gib()
 		playsound(src, 'sound/weapons/fixer/generic/blade4.ogg', 75, 1)
 	return
 

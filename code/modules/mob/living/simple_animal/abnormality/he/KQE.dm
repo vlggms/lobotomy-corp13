@@ -10,6 +10,7 @@
 	icon_state = "kqe"
 	icon_living = "kqe"
 	icon_dead = "kqe_egg"
+	core_icon = "kqe_egg"
 	portrait = "KQE"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
@@ -31,6 +32,7 @@
 		ABNORMALITY_WORK_REPRESSION = list(30, 35, 40, 45, 50),
 		"Write HELLO" = 0,
 		"Write GOODBYE" = 0,
+		"Write DUMBASS" = 0,
 	)
 	work_damage_amount = 10
 	work_damage_type = BLACK_DAMAGE
@@ -126,23 +128,26 @@
 	return
 
 /mob/living/simple_animal/hostile/abnormality/kqe/AttemptWork(mob/living/carbon/human/user, work_type)
-	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && !question)
+	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && (work_type != "Write DUMBASS") && !question)
 		return TRUE
-	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE")) && !question)
+	if(((work_type == "Write HELLO") || (work_type == "Write GOODBYE") || (work_type == "Write DUMBASS")) && !question)
 		to_chat(user, span_notice("The terminal is blank."))
 		return FALSE
-	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && question)
+	if((work_type != "Write HELLO") && (work_type != "Write GOODBYE") && (work_type != "Write DUMBASS") && question)
 		to_chat(user, span_notice("Looks like you can write something."))
 		return FALSE
 	if(work_type == "Write HELLO")
 		if(!GiftUser(user, 18, 100))//always gives a gift
 			say("Then you may not have a souvenir! Please cooperate, or you may be punished according to Rule #A62GBFE1!")
-			datum_reference.qliphoth_change(-2)
+			work_penalty = TRUE
+			datum_reference.qliphoth_change(-1)
+			question = FALSE
+			work_count = 0
 			return FALSE
 		say("Have you enjoyed the town tour? We’d like you to have a souvenir. :-)")
 		to_chat(user, span_notice("A smile is displayed on the terminal, but the abnormality appears to be distressed."))
-		datum_reference.qliphoth_change(-1)
 		question = FALSE
+		datum_reference.max_boxes += 4
 		work_count = 0
 	if(work_type == "Write GOODBYE")
 		if(get_attribute_level(user, JUSTICE_ATTRIBUTE) < 60)//instant breach if below 3 justice
@@ -154,8 +159,14 @@
 		say("Did you not take a tour of the town, Dear Guest?")
 		question = FALSE
 		work_count = 0
+	if(work_type == "Write DUMBASS")
+		var/datum/ego_gifts/ups/ego_reward = new
+		ego_reward.datum_reference = datum_reference
+		user.Apply_Gift(ego_reward)
+		datum_reference.qliphoth_change(-2)//instant breach
+		to_chat(user, span_warning("The robot begins wildly flailing its arms."))
+		say("Commencing eviction accordance to rule D63ICRQ1!")
 	return FALSE
-
 
 /mob/living/simple_animal/hostile/abnormality/kqe/WorkChance(mob/living/carbon/human/user, chance)
 	if(work_penalty)

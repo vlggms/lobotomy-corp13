@@ -6,6 +6,7 @@
 	icon_state = "rose_sign"
 	icon_living = "rose_sign"
 	icon_dead = "rosesign_egg"
+	core_icon = "rosesign_egg"
 	portrait = "rose_sign"
 	del_on_death = FALSE
 	gender = NEUTER

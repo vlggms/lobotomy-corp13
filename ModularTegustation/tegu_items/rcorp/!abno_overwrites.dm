@@ -51,9 +51,20 @@
 	..()
 
 //Porccubus gets a much shorter dash cooldown to better maneuver itself with how big of a commitment dashing is.
-//May unironically be too much as the thing is slippery as a eel with how big the dash is but i'd rather it be mobile than feeling ass to play as.
 /mob/living/simple_animal/hostile/abnormality/porccubus/Initialize()
 	. = ..()
 	if(IsCombatMap())
-		ranged_cooldown_time = 6 SECONDS
+		ranged_cooldown_time = 3 SECONDS
 
+// Fairy gentleman gets a bump to his survival, damage, and a bigger ass.
+// This is to account for being a fully melee fighter with TETH resists.
+/mob/living/simple_animal/hostile/abnormality/fairy_gentleman/Initialize()
+	if(IsCombatMap())
+		maxHealth = 1400
+		health = 1400
+		move_to_delay = 2.3
+		melee_damage_lower = 20
+		melee_damage_upper = 25
+		jump_damage = 100
+		jump_aoe = 2
+	..()

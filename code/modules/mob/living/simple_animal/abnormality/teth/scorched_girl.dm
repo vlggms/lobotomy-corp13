@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "scorched"
 	icon_living = "scorched"
+	core_icon = "scorch_egg"
 	portrait = "scorched_girl"
 	maxHealth = 400
 	health = 400
@@ -21,6 +22,7 @@
 	)
 	work_damage_amount = 6
 	work_damage_type = RED_DAMAGE
+	chem_type = /datum/reagent/abnormality/woe
 	damage_coeff = list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 2)
 	faction = list("hostile")
 	can_breach = TRUE
@@ -39,6 +41,29 @@
 	/// Amount of RED damage done on explosion
 	var/boom_damage = 250
 	patrol_cooldown_time = 10 SECONDS //Scorched be zooming
+
+	attack_action_types = list(
+		/datum/action/innate/change_icon_scorch,
+	)
+
+
+/datum/action/innate/change_icon_scorch
+	name = "Toggle Icon"
+	desc = "Toggle your icon between breached and contained. (Works only for Limbus Company Labratories)"
+
+/datum/action/innate/change_icon_scorch/Activate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "scorched"
+		active = 1
+
+/datum/action/innate/change_icon_scorch/Deactivate()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		owner.icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
+		owner.icon_state = "scorched_breach"
+		active = 0
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/patrol_select()
 	var/turf/target_center
@@ -109,7 +134,11 @@
 	var/datum/effect_system/smoke_spread/S = new
 	S.set_up(7, get_turf(src))
 	S.start()
-	qdel(src)
+	if(SSmaptype.maptype != "limbus_labs")
+		qdel(src)
+	else
+		exploding = FALSE
+	return
 
 /mob/living/simple_animal/hostile/abnormality/scorched_girl/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

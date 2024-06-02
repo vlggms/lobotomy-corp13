@@ -20,21 +20,21 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	minimal_access = list()
 
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 80,
-								PRUDENCE_ATTRIBUTE = 80,
-								TEMPERANCE_ATTRIBUTE = 80,
-								JUSTICE_ATTRIBUTE = 80
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 80,
 	)
 	rank_title = "L2-LT"
 	job_important = "You take the role of inter-squad communication."
 	job_notice = "You are a agent tasked with assisting with communications and coordination between your squad and other squads. Support your squadron with your equipment."
 
-/datum/job/wcorpl2recon/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+/datum/job/wcorpl2recon/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
+	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/squad = pick_n_take(GLOB.l2asquads)
-	.=..()
+	. = ..()
 
-	to_chat(M, "<span class='userdanger'>You have been assigned to the [squad] squad. </span>")
+	to_chat(M, span_userdanger("You have been assigned to the [squad] squad."))
 
 /datum/outfit/job/wcorpl2recon
 	name = "W-Corp L2 Type A Lieutenant"
@@ -43,7 +43,7 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/suit/lobotomy/wsenior
-	belt = /obj/item/ego_weapon/city/charge/wcorp
+	belt = /obj/item/ego_weapon/city/wcorp
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
@@ -51,4 +51,9 @@ GLOBAL_LIST_INIT(l2asquads, list("Axe", "Buckler", "Cleaver"))
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	l_pocket = /obj/item/commandprojector
 	r_pocket = /obj/item/storage/packet
-	backpack_contents = list(/obj/item/storage/box/pcorp, /obj/item/binoculars, /obj/item/announcementmaker/wcorp)
+
+	backpack_contents = list(
+		/obj/item/storage/box/pcorp,
+		/obj/item/binoculars,
+		/obj/item/announcementmaker/wcorp,
+	)

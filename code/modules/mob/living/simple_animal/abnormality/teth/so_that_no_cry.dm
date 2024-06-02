@@ -204,11 +204,10 @@
 	talismans += 1
 	if(talismans > 10)
 		TalismanStun()
-		move_to_delay = initial(move_to_delay)
+		ChangeMoveToDelay(initial(move_to_delay))
 		return
 	new /obj/effect/temp_visual/talisman(get_turf(src))
-	move_to_delay = (3 + (talismans / 10))
-	UpdateSpeed()
+	ChangeMoveToDelay(3 + (talismans / 10))
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/TalismanStun()
 	if(!can_act)

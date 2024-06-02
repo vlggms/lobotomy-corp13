@@ -90,7 +90,7 @@
 		if(BRUTE)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(brute = value)
 		if(BURN)
-			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(burn = value)
+			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(fire = value)
 		if(TOX)
 			unmodified_damage_coeff_datum = unmodified_damage_coeff_datum.setCoeff(tox = value)
 		if(CLONE)

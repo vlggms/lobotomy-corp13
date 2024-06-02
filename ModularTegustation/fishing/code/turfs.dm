@@ -42,6 +42,8 @@
 		/obj/item/jammer/self_activated,
 		/obj/structure/lattice,
 		/obj/projectile,
+		/obj/item/food/seaweed,
+		/obj/structure/flora/ash/garden/seaweed
 	))
 
 	var/safe = FALSE
@@ -80,7 +82,9 @@
 	if(istype(C, /obj/item/fishing_net) && params)
 		to_chat(user, span_notice("You start setting up the [C]."))
 		if(do_after(user, 2 SECONDS, target = user) && C && !locate(/obj/structure/destructible/fishing_net) in src)
-			new /obj/structure/destructible/fishing_net(get_turf(src))
+			var/obj/item/fishing_net/deploying_net = C
+
+			new deploying_net.deploy_type(get_turf(src))
 			playsound(get_turf(src), 'sound/misc/box_deploy.ogg', 5, 0, 3)
 			qdel(C)
 			return
@@ -241,9 +245,10 @@
 	icon_state = "water_turf1"
 	loot_level1 = list(
 		//75% chance bulk
-		/obj/item/food/fish/fresh_water/guppy = 35,
+		/obj/item/food/fish/fresh_water/guppy = 25,
 		/obj/item/food/fish/fresh_water/angelfish = 20,
-		/obj/item/food/fish/fresh_water/plasmatetra = 20,
+		/obj/item/food/fish/fresh_water/plasmatetra = 15,
+		/obj/item/food/fish/fresh_water/perch = 15,
 		//25% chance
 		/obj/item/stack/sheet/mineral/wood = 13,
 		/obj/item/fishing_component/hook/bone = 5,
@@ -252,8 +257,9 @@
 	)
 	loot_level2 = list(
 		/obj/item/food/fish/fresh_water/catfish = 50,
-		/obj/item/stack/sheet/sinew/wolf = 20,
-		/obj/item/stack/sheet/leather = 15,
+		/obj/item/food/fish/fresh_water/bass = 15,
+		/obj/item/stack/sheet/sinew/wolf = 10,
+		/obj/item/stack/sheet/leather = 10,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
@@ -278,13 +284,15 @@
 		/obj/item/stack/sheet/mineral/wood = 10,
 	)
 	loot_level2 = list(
-		/obj/item/food/fish/salt_water/cardinal = 45,
-		/obj/item/food/fish/salt_water/sheephead = 40,
+		/obj/item/food/fish/trout = 35,
+		/obj/item/food/fish/salt_water/cardinal = 30,
+		/obj/item/food/fish/salt_water/sheephead = 20,
 		/obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 5,
 	)
 	loot_level3 = list(
-		/obj/item/food/fish/salt_water/lanternfish = 85,
+		/obj/item/food/fish/salt_water/lanternfish = 75,
+		/obj/item/food/fish/salt_water/tuna_pallid = 10,
 		/mob/living/simple_animal/crab = 10,
 		/obj/item/food/fish/emulsijack = 5,
 	)
@@ -312,7 +320,8 @@
 		/mob/living/simple_animal/hostile/shrimp = 2,
 	)
 	loot_level3 = list(
-		/obj/item/food/fish/fresh_water/mosb = 50,
+		/obj/item/food/fish/fresh_water/mosb = 25,
+		/obj/item/food/fish/salt_water/tuna_pallid = 25,
 		/obj/item/food/fish/salt_water/piscine_mermaid = 45,
 		/obj/item/food/fish/emulsijack = 5,
 	)
@@ -343,9 +352,10 @@
 		/obj/item/food/fish/siltcurrent = 10
 		)
 	loot_level2 = list(
-		/obj/item/food/fish/siltcurrent = 35,
+		/obj/item/food/fish/siltcurrent = 25,
 		/obj/item/ego_weapon/city/rats/brick = 25,
 		/obj/item/stack/sheet/plastic = 10,
+		/obj/item/food/fish/salt_water/tuna_pallid = 10,
 		/obj/item/stack/fish_points = 10,
 		/obj/item/clothing/head/beret/fishing_hat = 10,
 		/obj/item/fishing_component/hook/bone = 9,

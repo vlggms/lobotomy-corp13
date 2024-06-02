@@ -9,10 +9,10 @@
 	portrait = "contract"
 	threat_level = WAW_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = list(0, 0, 30, 40, 50),
-		ABNORMALITY_WORK_INSIGHT = list(0, 0, 30, 40, 50),
-		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 30, 40, 50),
-		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 40, 50),
+		ABNORMALITY_WORK_INSTINCT = list(0, 0, 35, 45, 55),
+		ABNORMALITY_WORK_INSIGHT = list(0, 0, 35, 45, 55),
+		ABNORMALITY_WORK_ATTACHMENT = list(0, 0, 35, 45, 55),
+		ABNORMALITY_WORK_REPRESSION = list(0, 0, 35, 45, 55),
 	)
 	pixel_x = -16
 	base_pixel_x = -16
@@ -33,7 +33,7 @@
 	var/list/temp_havers = list()
 	var/list/just_havers = list()
 	var/list/spawnables = list()
-	var/total_per_contract = 3
+	var/total_per_contract = 4
 
 /mob/living/simple_animal/hostile/abnormality/contract/Initialize()
 	. = ..()
@@ -59,10 +59,13 @@
 
 /mob/living/simple_animal/hostile/abnormality/contract/AttemptWork(mob/living/carbon/human/user, work_type)
 	work_damage_amount = initial(work_damage_amount)
-	. = ..()
 	if(ContractedUser(user, work_type) && .)
-		work_damage_amount /= 4
+		work_damage_amount /= 3
+	if(user in total_havers)
+		work_damage_amount /= 1.2
 		say("Yes, yes... I remember the contract.")
+
+	. = ..()
 	return
 
 /mob/living/simple_animal/hostile/abnormality/contract/proc/ContractedUser(mob/living/carbon/human/user, work_type)
@@ -87,6 +90,43 @@
 			if(user in just_havers)
 				return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/contract/proc/NewContract(mob/living/carbon/human/user, work_type)
+	if((user in total_havers))
+		return
+	switch(work_type)
+		if(ABNORMALITY_WORK_INSTINCT)
+			if(fort_havers.len < total_per_contract)
+				user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, (fort_havers.len - 4)*-1 )
+				fort_havers |= user
+			else
+				return
+
+		if(ABNORMALITY_WORK_INSIGHT)
+			if(prud_havers.len < total_per_contract)
+				user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, (prud_havers.len - 4)*-1 )
+				prud_havers |= user
+			else
+				return
+
+		if(ABNORMALITY_WORK_ATTACHMENT)
+			if(temp_havers.len < total_per_contract)
+				user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, (temp_havers.len - 4)*-1 )
+				temp_havers |= user
+			else
+				return
+
+		if(ABNORMALITY_WORK_REPRESSION)
+			if(just_havers.len < total_per_contract)
+				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, (just_havers.len - 4)*-1 )
+				just_havers |= user
+			else
+				return
+
+	total_havers |= user
+	say("Just sign here on the dotted line... and I'll take care of the rest.")
+	return
+
+
 //Meltdown
 /mob/living/simple_animal/hostile/abnormality/contract/ZeroQliphoth(mob/living/carbon/human/user)
 	// Don't need to lazylen this. If this is empty there is a SERIOUS PROBLEM.
@@ -97,45 +137,13 @@
 	spawned.name = "???"
 	spawned.desc = "What is that thing?"
 	spawned.faction = list("hostile")
+	spawned.core_enabled = FALSE
 	datum_reference.qliphoth_change(2)
 
 /* Work effects */
 /mob/living/simple_animal/hostile/abnormality/contract/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if((user in total_havers))
-		return
-	switch(work_type)
-		if(ABNORMALITY_WORK_INSTINCT)
-			if(fort_havers.len < total_per_contract)
-				user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, (fort_havers.len - 3)*-1 )
-				fort_havers |= user
-			else
-				return
-
-		if(ABNORMALITY_WORK_INSIGHT)
-			if(prud_havers.len < total_per_contract)
-				user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, (prud_havers.len - 3)*-1 )
-				prud_havers |= user
-			else
-				return
-
-		if(ABNORMALITY_WORK_ATTACHMENT)
-			if(temp_havers.len < total_per_contract)
-				user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, (temp_havers.len - 3)*-1 )
-				temp_havers |= user
-			else
-				return
-
-		if(ABNORMALITY_WORK_REPRESSION)
-			if(just_havers.len < total_per_contract)
-				user.adjust_attribute_buff(JUSTICE_ATTRIBUTE, (just_havers.len - 3)*-1 )
-				just_havers |= user
-			else
-				return
-
-	total_havers |= user
-	say("Just sign here on the dotted line... and I'll take care of the rest.")
-	return
+	NewContract(user, work_type)
 
 /mob/living/simple_animal/hostile/abnormality/contract/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	work_damage_amount = initial(work_damage_amount)
@@ -144,7 +152,8 @@
 
 /mob/living/simple_animal/hostile/abnormality/contract/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
-	if(prob(40))
+	NewContract(user, work_type)
+	if(prob(20))
 		datum_reference.qliphoth_change(-1)
 	return
 

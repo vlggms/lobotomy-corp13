@@ -120,12 +120,23 @@
 	/// How many mobs we spawn on death
 	var/mob_spawn_amount = 3
 
+	var/can_be_gibbed = TRUE
+
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/death(gibbed)
-	animate(src, transform = matrix()*1.25, color = "#FF0000", time = 5)
-	addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 5)
+	if(gibbed)
+		DeathExplosion(TRUE)
+	else
+		can_be_gibbed = FALSE
+		animate(src, transform = matrix()*1.25, color = "#FF0000", time = 5)
+		addtimer(CALLBACK(src, PROC_REF(DeathExplosion)), 5)
 	..()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion()
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/gib()
+	if(!can_be_gibbed)
+		return
+	return ..()
+
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/proc/DeathExplosion(gibbed = FALSE)
 	if(QDELETED(src))
 		return
 	visible_message(span_danger("[src] suddenly explodes!"))
@@ -146,7 +157,9 @@
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
-	gib()
+	if(!gibbed)
+		can_be_gibbed = TRUE
+		gib()
 
 // Crimson dusk
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk
@@ -187,7 +200,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/DeathExplosion()
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/DeathExplosion(gibbed = FALSE)
 	if(QDELETED(src))
 		return
 	visible_message(span_danger("[src] suddenly explodes!"))
@@ -208,7 +221,9 @@
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
-	gib()
+	if(!gibbed)
+		can_be_gibbed = TRUE
+		gib()
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/OpenFire()
 	if(client)
@@ -503,7 +518,7 @@
 	animate(src, transform = matrix()*1.3, time = 0 SECONDS)
 	AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/DeathExplosion()
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/DeathExplosion(gibbed = FALSE)
 	if(QDELETED(src))
 		return
 	visible_message(span_danger("[src] suddenly explodes!"))
@@ -524,7 +539,9 @@
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
-	gib()
+	if(!gibbed)
+		can_be_gibbed = TRUE
+		gib()
 
 // Tent spawned variants
 // Dawn
@@ -558,15 +575,16 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/Initialize()
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 45 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 45 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), FALSE, ordeal_reference), 45 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/death(gibbed)
 	. = ..()
 	if(!gibbed)
+		can_be_gibbed = TRUE
 		gib()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/DeathExplosion()
-	if(QDELETED(src))
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/spawned/DeathExplosion(gibbed = FALSE)
+	if(QDELETED(src) || gibbed)
 		return
 	visible_message(span_danger("[src] suddenly explodes!"))
 	var/valid_directions = list(0) // 0 is used by get_turf to find the turf a target, so it'll at the very least be able to spawn on itself.
@@ -597,15 +615,16 @@
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/Initialize()
 	. = ..()
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 60 SECONDS)
-	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), ordeal_reference), 60 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(DeathExplosion), FALSE, ordeal_reference), 60 SECONDS)
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/death(gibbed)
 	. = ..()
 	if(!gibbed)
+		can_be_gibbed = TRUE
 		gib()
 
-/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/DeathExplosion()
-	if(QDELETED(src))
+/mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_dusk/spawned/DeathExplosion(gibbed = FALSE)
+	if(QDELETED(src) || gibbed)
 		return
 	visible_message(span_danger("[src] suddenly explodes!"))
 	playsound(get_turf(src), 'sound/effects/ordeals/crimson/dusk_dead.ogg', 50, 1)

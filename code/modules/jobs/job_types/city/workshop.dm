@@ -4,12 +4,12 @@ Workshop employee
 /datum/job/workshop
 	title = "Workshop Attendant"
 	faction = "Station"
-	total_positions = 1
-	spawn_positions = 1
+	total_positions = 2
+	spawn_positions = 2
 	supervisors = "no one but god."
 	selection_color = "#dddddd"
-	access = list(ACCESS_ENGINE)		//10
-	minimal_access = list(ACCESS_ENGINE)
+	access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP)		//10
+	minimal_access = list(ACCESS_ENGINE, ACCESS_ENGINE_EQUIP)
 	outfit = /datum/outfit/job/workshop
 	antag_rep = 7
 	display_order = JOB_DISPLAY_ORDER_CIVILIAN
@@ -19,7 +19,7 @@ Workshop employee
 	job_attribute_limit = 0
 
 	allow_bureaucratic_error = FALSE
-	maptype = "wonderlabs"
+	maptype = list("wonderlabs", "fixers")
 
 
 //My guy you work in a workshop

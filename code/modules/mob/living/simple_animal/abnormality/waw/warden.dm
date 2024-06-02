@@ -62,12 +62,11 @@
 
 			// it gets faster.
 			if(move_to_delay>1)
-				SpeedChange(-move_to_delay*0.25)
+				ChangeMoveToDelayBy(0.75, TRUE)
 				if(melee_damage_lower > 30)
 					melee_damage_lower -=5
 
 			adjustBruteLoss(-(maxHealth*0.2)) // Heals 20% HP, fuck you that's why. Still not as bad as judgement or big bird
-			update_simplemob_varspeed()
 
 			finishing = FALSE
 			icon_state = "warden"

@@ -21,21 +21,21 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 	minimal_access = list()
 
 	roundstart_attributes = list(
-								FORTITUDE_ATTRIBUTE = 80,
-								PRUDENCE_ATTRIBUTE = 80,
-								TEMPERANCE_ATTRIBUTE = 80,
-								JUSTICE_ATTRIBUTE = 80
+		FORTITUDE_ATTRIBUTE = 80,
+		PRUDENCE_ATTRIBUTE = 80,
+		TEMPERANCE_ATTRIBUTE = 80,
+		JUSTICE_ATTRIBUTE = 80,
 	)
 	rank_title = "L2-C"
 	job_important = "You take the role of frontline infantry."
 	job_notice = "You are a agent armed with a specialized w-corp weapon, as well as heavier armor. Support your squadron with your equipment."
 
-/datum/job/wcorpl2/after_spawn(mob/living/carbon/human/H, mob/M)
-	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+/datum/job/wcorpl2/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
+	ADD_TRAIT(outfit_owner, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
 	var/squad = pick_n_take(GLOB.l2csquads)
 	.=..()
 	var/ears = null
-	to_chat(M, "<span class='userdanger'>You have been assigned to the [squad] squad. </span>")
+	to_chat(M, span_userdanger("You have been assigned to the [squad] squad."))
 	switch(squad)
 		if("Axe")
 			ears = /obj/item/radio/headset/wcorp/safety
@@ -44,9 +44,9 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 		if("Cleaver")
 			ears = /obj/item/radio/headset/wcorp/welfare
 	if(ears)
-		if(H.ears)
-			qdel(H.ears)
-		H.equip_to_slot_or_del(new ears(H),ITEM_SLOT_EARS)
+		if(outfit_owner.ears)
+			qdel(outfit_owner.ears)
+		outfit_owner.equip_to_slot_or_del(new ears(outfit_owner),ITEM_SLOT_EARS)
 
 
 //Outfits
@@ -64,13 +64,16 @@ GLOBAL_LIST_INIT(l2csquads, list("Axe", "Buckler", "Cleaver", "Axe", "Buckler", 
 	head = /obj/item/clothing/head/ego_hat/wcorp
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/noreq
 	l_pocket = /obj/item/flashlight/seclite
+
 	backpack_contents = list(/obj/item/storage/box/pcorp)
 
-/datum/outfit/job/wcorpl2/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
+/datum/outfit/job/wcorpl2/post_equip(mob/living/carbon/human/outfit_owner, visualsOnly = FALSE)
 	..()
-	var/belt = pick(/obj/item/ego_weapon/city/charge/wcorp/fist,
-		/obj/item/ego_weapon/city/charge/wcorp/axe,
-		/obj/item/ego_weapon/city/charge/wcorp/dagger,
-		/obj/item/ego_weapon/city/charge/wcorp/hatchet,
-		/obj/item/ego_weapon/city/charge/wcorp/hammer)
-	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
+	var/belt = pick(
+		/obj/item/ego_weapon/city/wcorp/fist,
+		/obj/item/ego_weapon/city/wcorp/axe,
+		/obj/item/ego_weapon/city/wcorp/dagger,
+		/obj/item/ego_weapon/city/wcorp/hatchet,
+		/obj/item/ego_weapon/city/wcorp/hammer,
+	)
+	outfit_owner.equip_to_slot_or_del(new belt(outfit_owner),ITEM_SLOT_BELT, TRUE)

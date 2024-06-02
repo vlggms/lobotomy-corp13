@@ -202,6 +202,7 @@
 /obj/effect/turf_decal/stripes/white/corner{
 	dir = 1
 	},
+/obj/structure/sign/button_counter/directional/east,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -1045,6 +1046,7 @@
 /area/department_main/training)
 "eN" = (
 /obj/effect/turf_decal/stripes/white/corner,
+/obj/structure/sign/button_counter/directional/north,
 /turf/open/floor/plasteel/dark{
 	color = "#ccc8c0"
 	},
@@ -5615,6 +5617,9 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"yw" = (
+/turf/open/space/basic,
+/area/space)
 "yx" = (
 /obj/effect/landmark/observer_start,
 /obj/effect/landmark/department_center,
@@ -7988,16 +7993,6 @@
 /area/facility_hallway/human)
 "II" = (
 /obj/effect/turf_decal/delivery,
-/obj/structure/closet/crate{
-	anchored = 1;
-	name = "pe box crate";
-	opened = 1
-	},
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/item/rawpe,
-/obj/item/rawpe,
 /obj/machinery/light{
 	dir = 1;
 	pixel_y = 19
@@ -8010,6 +8005,7 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 9
 	},
+/obj/effect/landmark/refinerspawn,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -37399,9 +37395,9 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
+yw
+yw
+yw
 Mh
 Mh
 Mh
@@ -37655,12 +37651,12 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
-Mh
-Mh
+yw
+yw
+yw
+yw
+yw
+yw
 Mh
 Mh
 Mh
@@ -37911,13 +37907,13 @@ Mh
 Mh
 Mh
 Mh
+yw
+yw
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
-Mh
+yw
+yw
+yw
 Mh
 Mh
 Mh
@@ -38168,12 +38164,12 @@ Mh
 Mh
 Mh
 Mh
+yw
+yw
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
+yw
+yw
 Mh
 Mh
 Mh
@@ -38425,13 +38421,13 @@ Mh
 Mh
 Mh
 Mh
+yw
+yw
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
-Mh
+yw
+yw
+yw
 Mh
 Mh
 Mh
@@ -38683,12 +38679,12 @@ Mh
 Mh
 Mh
 Mh
-Mh
-Mh
-Mh
-Mh
-Mh
-Mh
+yw
+yw
+yw
+yw
+yw
+yw
 Mh
 Mh
 Mh

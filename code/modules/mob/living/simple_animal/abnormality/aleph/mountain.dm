@@ -41,6 +41,11 @@
 	)
 	gift_type =  /datum/ego_gifts/smile
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	secret_chance = TRUE // Kirie, why
+	secret_icon_state = "amog"
+	secret_gift = /datum/ego_gifts/amogus
+
 	/// Is user performing work hurt at the beginning?
 	var/agent_hurt = FALSE
 	var/death_counter = 0
@@ -62,9 +67,6 @@
 /mob/living/simple_animal/hostile/abnormality/mountain/Initialize()		//1 in 100 chance for amogus MOSB
 	. = ..()
 	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
-	if(prob(1)) // Kirie, why
-		icon_state = "amog"
-		gift_type =  /datum/ego_gifts/amogus
 
 /mob/living/simple_animal/hostile/abnormality/mountain/Destroy()
 	UnregisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH)
@@ -211,7 +213,7 @@
 	// Increase stage
 	if(increase)
 		if(belly >= 2)
-			if(phase < 3)
+			if(phase < 3 && SSmaptype.maptype != "limbus_labs")
 				playsound(get_turf(src), 'sound/abnormalities/mountain/level_up.ogg', 75, 1)
 				adjustHealth(-5000)
 				maxHealth += 1000
@@ -222,15 +224,13 @@
 			base_pixel_x = -32
 			if(phase == 3)
 				icon_living = "mosb_breach2"
-				SpeedChange(1)
+				ChangeMoveToDelay(5)
 				patrol_cooldown_time = 30 SECONDS
 			if(phase == 2)
 				icon_living = "mosb_breach"
-				SpeedChange(2)
+				ChangeMoveToDelay(4)
 				patrol_cooldown_time = 20 SECONDS
 			icon_state = icon_living
-			update_simplemob_varspeed()
-		UpdateSpeed()
 		return
 	// Decrease stage
 	if(phase <= 1) // Death
@@ -244,17 +244,15 @@
 		icon = 'ModularTegustation/Teguicons/64x64.dmi'
 		pixel_x = -16
 		base_pixel_x = -16
-		SpeedChange(-2)
+		ChangeMoveToDelay(2)
 		patrol_cooldown_time = 10 SECONDS
 	if(phase == 2)
 		icon = 'ModularTegustation/Teguicons/96x96.dmi'
 		pixel_x = -32
 		base_pixel_x = -32
-		SpeedChange(-1)
+		ChangeMoveToDelay(4)
 		patrol_cooldown_time = 20 SECONDS
 	icon_state = icon_living
-	UpdateSpeed()
-	update_simplemob_varspeed()
 	return TRUE
 
 /* Special attacks */

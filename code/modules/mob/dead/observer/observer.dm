@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(ghost_images_simple) //this is a list of all ghost images as t
 GLOBAL_VAR_INIT(observer_default_invisibility, INVISIBILITY_OBSERVER)
 
 GLOBAL_LIST_INIT(unpossessable_mobs, list( // LOBOTOMYCORPORATION ADDITION -- abnormality blacklist
-	/mob/living/simple_animal/hostile/abnormality/woodsman,
+	/mob/living/simple_animal/hostile/abnormality/punishing_bird,
 ))
 
 /mob/dead/observer
@@ -737,7 +737,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, span_userdanger("You dont exist, so you cant possess!"))
 		return ..()
 
-	if(!isabnormalitymob(over)) // we want them to ONLY be able to possess abnormalities
+	if(!isabnormalitymob(over) && !SSmaptype.maptype == "limbus_labs") // we want them to ONLY be able to possess abnormalities
 		to_chat(usr, span_userdanger("You can only possess abnormalities!"))
 		return ..()
 

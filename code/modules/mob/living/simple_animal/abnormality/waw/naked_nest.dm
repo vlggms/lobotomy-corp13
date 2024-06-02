@@ -292,6 +292,7 @@
 
 /mob/living/simple_animal/hostile/naked_nested/proc/Nest()
 	var/mob/living/simple_animal/hostile/abnormality/naked_nest/N = new(get_turf(src))
+	N.core_enabled = FALSE
 	for(var/atom/movable/AM in src) //morph code
 		AM.forceMove(N)
 	N.ChangeResistances(damage_coeff)
@@ -397,6 +398,9 @@
 	return
 
 /obj/item/organ/naked_nest/proc/HatchNest(mob/living/carbon/human/host)
+	//If you have melting love and naked nest, melting loves blessing gets priority
+	if(TransformOverride(host))
+		return
 	var/mob/living/simple_animal/hostile/naked_nested/N = new(host.loc) //there was a issue with several converted naked nests getting the same damage coeffs so convert proc had to be moved here.
 	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_SUITSTORE))
 	NestedItems(N, host.get_item_by_slot(ITEM_SLOT_BELT))
@@ -406,6 +410,14 @@
 		N.UpdateArmor() //moved to creature proc since changing armor values in the status effect resulted in all naked nested having their armor values changed. Even admin spawned ones.
 	playsound(get_turf(host), 'sound/misc/soggy.ogg', 20, 1)
 	QDEL_IN(host, 2)
+
+/obj/item/organ/naked_nest/proc/TransformOverride(mob/living/carbon/human/H)
+	if(H && H.has_status_effect(/datum/status_effect/display/melting_love_blessing))
+		to_chat(H, span_warning("Something in your head writhes as pink slime starts to pour out of your mouth."))
+		H.apply_damage(800, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.remove_status_effect(/datum/status_effect/display/melting_love_blessing)
+		if(!H || H.stat == DEAD)
+			return TRUE
 
 /obj/item/organ/naked_nest/proc/NestedItems(mob/living/simple_animal/hostile/naked_nested/nest, obj/item/nested_item)
 	if(nested_item)

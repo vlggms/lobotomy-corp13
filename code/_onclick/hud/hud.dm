@@ -62,6 +62,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	var/atom/movable/screen/healthdoll
 	var/atom/movable/screen/sanityhealth
 	var/atom/movable/screen/internals
+	var/atom/movable/screen/stats
 	var/atom/movable/screen/wanted/wanted_lvl
 	var/atom/movable/screen/spacesuit
 	// subtypes can override this to force a specific UI style
@@ -118,6 +119,7 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	sanityhealth = null
 	wanted_lvl = null
 	internals = null
+	stats = null
 	spacesuit = null
 	lingchemdisplay = null
 	lingstingdisplay = null
@@ -238,6 +240,8 @@ GLOBAL_LIST_INIT(available_ui_styles, list(
 	return TRUE
 
 /datum/hud/proc/plane_masters_update()
+	if(!mymob.client)
+		return
 	// Plane masters are always shown to OUR mob, never to observers
 	for(var/thing in plane_masters)
 		var/atom/movable/screen/plane_master/PM = plane_masters[thing]

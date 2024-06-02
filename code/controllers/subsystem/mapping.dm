@@ -129,6 +129,10 @@ SUBSYSTEM_DEF(mapping)
 	if(errorList.len)	//tutorial failed to load
 		message_admins("The tutorial failed to load!")
 		log_game("The tutorial failed to load!")
+
+	SSmapping.LoadGroup(errorList, "Manager", "map_files/generic", "Manager.dmm", default_traits = ZTRAITS_CENTCOM)
+	SSmapping.LoadGroup(errorList, "Abnormality", "map_files/generic", "Abnormality_Z.dmm", default_traits = ZTRAITS_CENTCOM)
+
 #endif
 	// Add the transit level
 	transit = add_new_zlevel("Transit/Reserved", list(ZTRAIT_RESERVED = TRUE))
@@ -204,7 +208,9 @@ Used by the AI doomsday and the self-destruct nuke.
 	turf_reservations = SSmapping.turf_reservations
 	used_turfs = SSmapping.used_turfs
 	holodeck_templates = SSmapping.holodeck_templates
-	random_room_templates = SSmapping.random_room_templates
+	transit = SSmapping.transit
+	areas_in_z = SSmapping.areas_in_z
+	random_room_templates = SSmapping.random_room_templates // LOBOTOMYCORPORATION ADDITION -- RANDOM ROOMS
 
 	config = SSmapping.config
 	next_map_config = SSmapping.next_map_config

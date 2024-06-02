@@ -55,12 +55,18 @@
 //Fixer Leveller
 /obj/item/attribute_increase/fixer
 	name = "n corp training accelerator"
-	desc = "A fluid used to increase the stats of a fixer. Use in hand to activate. Increases stats more the lower your potential."
+	desc = "A fluid used to increase the stats of a non-assocaition fixer. Use in hand to activate. Increases stats more the lower your potential."
 	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
 	icon_state = "tcorp_syringe"
 	amount = 1
 
 /obj/item/attribute_increase/fixer/attack_self(mob/living/carbon/human/user)
+	//only civilians can use this.
+	if(user?.mind?.assigned_role != "Civilian")
+		to_chat(user, span_danger("You cannot use this item, as you must not belong to an association."))
+		return
+
+
 	//max stats can't gain stats
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)>=130)
 		to_chat(user, span_danger("You feel like you won't gain anything."))
@@ -69,13 +75,21 @@
 	to_chat(user, span_nicegreen("You suddenly feel different."))
 	//Guarantee one
 	user.adjust_all_attribute_levels(amount)
+	to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
 
 	//Adjust by an extra attribute under level 2
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=40)
 		user.adjust_all_attribute_levels(amount)
+		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
 
 	//And one more under level 3
 	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=60)
 		user.adjust_all_attribute_levels(amount)
+		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
+
+	//And one last one before L4
+	if(get_attribute_level(user, TEMPERANCE_ATTRIBUTE)<=80)
+		user.adjust_all_attribute_levels(amount)
+		to_chat(user, "<span class='nicegreen'>You gain 1 potential!</span>")
 
 	qdel(src)

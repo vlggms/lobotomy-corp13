@@ -85,6 +85,14 @@ No Ability	250
 	realized_ability = /obj/effect/proc_holder/ability/brokencrown
 	hat = /obj/item/clothing/head/ego_hat/brokencrown
 
+/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/attackby(obj/item/I, mob/living/user, params)
+	for(var/datum/action/spell_action/ability/item/theability in actions)
+		if(istype(theability.target, /obj/effect/proc_holder/ability/brokencrown))
+			var/obj/effect/proc_holder/ability/brokencrown/power = theability.target
+			if(power.Absorb(I,user))
+				return
+	return ..()
+
 /obj/item/clothing/head/ego_hat/brokencrown
 	name = "broken crown"
 	desc = "One fell down and the rest came tumbling after."
@@ -174,7 +182,7 @@ No Ability	250
 	name = "solemn eulogy"
 	desc = "Death is not extinguishing the light, it is putting out the lamp as dawn has come."
 	icon_state = "eulogy"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//No ability
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy
 	name = "our galaxy"
@@ -188,6 +196,12 @@ No Ability	250
 	desc = "I would move Heaven and Earth to be together forever with you."
 	icon_state = "forever"
 	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//No ability
+	hat = /obj/item/clothing/head/ego_hat/forever_hat
+
+/obj/item/clothing/head/ego_hat/forever_hat
+	name = "together forever"
+	desc = "I've gotten used to bowing and scraping to you, so I cut off my own limbs."
+	icon_state = "forever"
 
 /obj/item/clothing/suit/armor/ego_gear/realization/wisdom
 	name = "endless wisdom"
@@ -257,9 +271,10 @@ No Ability	250
 
 /obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage
 	name = "wounded courage"
-	desc = "'Tis better to have loved and lost than never to have loved at all."
+	desc = "'Tis better to have loved and lost than never to have loved at all.\
+	Grants you the ability to use a Blind Rage in both hands and attack with both at the same time."
 	icon_state = "woundedcourage"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 30, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Support
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Melee
 	flags_inv = HIDEJUMPSUIT | HIDEGLOVES | HIDESHOES
 	realized_ability = /obj/effect/proc_holder/ability/justice_and_balance
 	hat = /obj/item/clothing/head/ego_hat/woundedcourage_hat
@@ -483,3 +498,9 @@ No Ability	250
 	icon_state = "desperation"
 	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
 	realized_ability = /obj/effect/proc_holder/ability/overheat
+
+/obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon
+	name = "gasharpoon"
+	desc = "We must find the Pallid Whale! Look alive, men! Spring! Roar!"
+	icon_state = "gasharpoon"
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 70, BLACK_DAMAGE = 20, PALE_DAMAGE = 80)//230, required for the corresponding weapon abilities

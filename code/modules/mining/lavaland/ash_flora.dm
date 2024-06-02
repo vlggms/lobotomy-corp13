@@ -22,12 +22,16 @@
 	var/base_icon
 	var/regrowth_time_low = 8 MINUTES
 	var/regrowth_time_high = 16 MINUTES
-	var/number_of_variants = 4
+	var/num_sprites = 4 // WS edit - WS
 
 /obj/structure/flora/ash/Initialize()
 	. = ..()
-	base_icon = "[icon_state][rand(1, number_of_variants)]"
-	icon_state = base_icon
+	if(num_sprites == 1) //stops unnecessary randomization of harvestable flora icons with only one variation. Remember to set num_sprites on your flora!
+		base_icon = "[icon_state]"
+		icon_state = base_icon
+	else
+		base_icon = "[icon_state][rand(1, num_sprites)]" //randomizing icons like this prevents the icon of the structure from loading properly in mapping tools. Works fine ingame.
+		icon_state = base_icon
 
 /obj/structure/flora/ash/proc/harvest(user)
 	if(harvested)
@@ -162,7 +166,22 @@
 	harvest_message_high = "You pluck quite a lot of curved fruit."
 	regrowth_time_low = 2400
 	regrowth_time_high = 5500
-	number_of_variants = 2
+	num_sprites = 2
+
+/obj/structure/flora/ash/fern
+	name = "cave fern"
+	desc = "A species of fern with highly fibrous leaves."
+	icon_state = "cavefern" //needs new sprites.
+	harvested_name = "cave fern stems"
+	harvested_desc = "A few cave fern stems, missing their leaves."
+	harvest = /obj/item/food/grown/ash_flora/fern
+	harvest_amount_high = 4
+	harvest_message_low = "You clip a single, suitable leaf."
+	harvest_message_med = "You clip a number of leaves, leaving a few unsuitable ones."
+	harvest_message_high = "You clip quite a lot of suitable leaves."
+	regrowth_time_low = 3000
+	regrowth_time_high = 5400
+	num_sprites = 1
 
 //SNACKS
 
@@ -212,6 +231,12 @@
 	seed = /obj/item/seeds/lavaland/cactus
 	wine_power = 50
 
+/obj/item/food/grown/ash_flora/fern
+	name = "fern leaf"
+	desc = "A leaf from a cave fern."
+	icon_state = "fern"
+	wine_power = 10
+
 //SEEDS
 
 /obj/item/seeds/lavaland
@@ -238,7 +263,6 @@
 	species = "cactus"
 	plantname = "Fruiting Cactus"
 	product = /obj/item/food/grown/ash_flora/cactus_fruit
-	mutatelist = list(/obj/item/seeds/star_cactus)
 	genes = list(/datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_fruits.dmi'
 	growthstages = 2
@@ -283,7 +307,7 @@
 	product = /obj/item/food/grown/ash_flora/shavings
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/consumable/sugar = 0.06, /datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/toxin/minttoxin = 0.02)
+	reagents_add = list(/datum/reagent/consumable/ethanol = 0.04, /datum/reagent/stabilizing_agent = 0.06, /datum/reagent/toxin/minttoxin = 0.02)
 
 /obj/item/seeds/lavaland/porcini
 	name = "pack of porcini mycelium"
@@ -294,8 +318,7 @@
 	product = /obj/item/food/grown/ash_flora/mushroom_leaf
 	genes = list(/datum/plant_gene/trait/plant_type/fungal_metabolism, /datum/plant_gene/trait/fire_resistance)
 	growing_icon = 'icons/obj/hydroponics/growing_mushrooms.dmi'
-	reagents_add = list(/datum/reagent/consumable/nutriment = 0.06, /datum/reagent/consumable/vitfro = 0.04, /datum/reagent/drug/nicotine = 0.04)
-
+	reagents_add = list(/datum/reagent/consumable/nutriment = 0.06, /datum/reagent/consumable/vitfro = 0.04, /datum/reagent/drug/nicotine = 0.04, /datum/reagent/consumable/sugar = 0.04)
 
 /obj/item/seeds/lavaland/inocybe
 	name = "pack of inocybe mycelium"
@@ -326,7 +349,8 @@
 	result = /obj/item/reagent_containers/glass/bowl/mushroom_bowl
 	reqs = list(/obj/item/food/grown/ash_flora/shavings = 5)
 	time = 30
-	category = CAT_PRIMAL
+	category = CAT_TOOL
+
 /obj/item/reagent_containers/glass/bowl/mushroom_bowl
 	name = "mushroom bowl"
 	desc = "A bowl made out of mushrooms. Not food, though it might have contained some at some point."

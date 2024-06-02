@@ -2,7 +2,7 @@
 
 SUBSYSTEM_DEF(cityevents)
 	name = "City Events"
-	flags = SS_NO_TICK_CHECK | SS_NO_FIRE
+	flags = SS_NO_FIRE
 	var/list/spawners = list()
 	var/list/itemdrops = list()
 	var/list/distortion = list()
@@ -27,7 +27,6 @@ SUBSYSTEM_DEF(cityevents)
 	if(!can_fire)
 		return
 	addtimer(CALLBACK(src, PROC_REF(Event)), 15 MINUTES)	//Start doing events in 15 minutes
-	addtimer(CALLBACK(src, PROC_REF(Distort)), 20 MINUTES)		//Distortions start in 20
 	addtimer(CALLBACK(src, PROC_REF(Daynight)), 10 SECONDS)
 
 ///Ran on initialize, slap these puppies in a new list.
@@ -54,8 +53,8 @@ SUBSYSTEM_DEF(cityevents)
 	total_events += pick(helpful_events)
 	total_events += pick(harmful_events)
 	total_events += pick(ordeal_events)
-	total_events += pick(ordeal_events)
-	total_events += pick(ordeal_events)
+//	total_events += pick(ordeal_events)
+//	total_events += pick(ordeal_events)
 	total_events += pick(neutral_events)
 	total_events += pick(neutral_events)
 	total_events += pick("money")			//Always get money
@@ -159,16 +158,6 @@ SUBSYSTEM_DEF(cityevents)
 			new /mob/living/simple_animal/hostile/ordeal/steel_dusk (get_turf(T))
 			chosen_event = "gbugs"
 	return chosen_event
-
-//Distortions
-/datum/controller/subsystem/cityevents/proc/Distort()
-	minor_announce("DANGER: Distortion located in the backstreets. Hana has issued a suppression order.", "Local Activity Alert:", TRUE)
-	var/T = pick(distortion)
-	new /obj/effect/bloodpool(get_turf(T))
-	sleep(10)
-	var/spawning = pick(distortions_available)
-	new spawning (get_turf(T))
-	addtimer(CALLBACK(src, PROC_REF(Distort)), 20 MINUTES)
 
 //Daynight stuff
 /datum/controller/subsystem/cityevents/proc/Daynight()

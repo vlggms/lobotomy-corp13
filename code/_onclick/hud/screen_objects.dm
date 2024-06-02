@@ -301,6 +301,17 @@
 	icon = 'icons/hud/screen_cyborg.dmi'
 	screen_loc = ui_borg_intents
 
+/atom/movable/screen/stats
+	name = "view attributes"
+	icon_state = "attributes"
+	screen_loc = ui_internal
+
+/atom/movable/screen/stats/Click()
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/C = usr
+	C.show_attributes()
+
 /atom/movable/screen/internals
 	name = "toggle internals"
 	icon_state = "internal0"

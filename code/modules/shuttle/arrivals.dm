@@ -107,6 +107,9 @@
 /obj/docking_port/mobile/arrivals/proc/CheckTurfsPressure()
 	for(var/I in SSjob.latejoin_trackers)
 		var/turf/open/T = get_turf(I)
+		if(!istype(T))
+			stack_trace("Closed Turf in SSjob.latejoin_trackers was checked for air pressure.")
+			continue
 		var/pressure = T.air.return_pressure()
 		if(pressure < HAZARD_LOW_PRESSURE || pressure > HAZARD_HIGH_PRESSURE)	//simple safety check
 			return TRUE

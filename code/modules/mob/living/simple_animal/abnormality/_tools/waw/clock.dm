@@ -21,6 +21,11 @@
 	/mob/living/simple_animal/hostile/abnormality/nihil,
 	)
 
+	ego_list = list(
+		/datum/ego_datum/weapon/windup,
+		/datum/ego_datum/armor/windup,
+	)
+
 /obj/structure/toolabnormality/clock/attack_hand(mob/living/carbon/human/user)
 	..()
 	if(user.ckey in banned)
