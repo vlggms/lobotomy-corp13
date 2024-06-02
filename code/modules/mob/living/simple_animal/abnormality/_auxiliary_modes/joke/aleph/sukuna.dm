@@ -16,9 +16,8 @@
 	var/cleave_damage = 250
 	var/shrine_cooldown
 	var/shrine_cooldown_time = 60 SECONDS
-	var/shrine_damage = 900
 	var/worldslash_cooldown
-	var/worldslash_cooldown_time = 120 SECONDS
+	var/worldslash_cooldown_time = 90 SECONDS
 	var/worldslash_damage = 6666
 	var/current_stage = 1
 	ranged = TRUE
@@ -157,7 +156,7 @@
 		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
 			if(TF.density)
 				continue
-			new /obj/effect/temp_visual/nt_goodbye(TF)
+			new /obj/effect/temp_visual/cleavesprite(TF)
 			been_hit = HurtInTurf(TF, been_hit, cleave_damage, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
@@ -169,15 +168,9 @@
 		return
 	shrine_cooldown = world.time + shrine_cooldown_time
 	say("Domain Expansion: Malevolent Kitchen.")
+	/mob/living/simple_animal/hostile/abnormality/sukuna
 	can_act = FALSE
-	playsound(get_turf(src), "sound/abnormalities/maloventkitchen.ogg", 75, 0, 5)
-	SLEEP_CHECK_DEATH(8)
-	for(var/turf/T in view(8, src))
-		new /obj/effect/temp_visual/nt_goodbye(T)
-		for(var/mob/living/L in HurtInTurf(T, list(), shrine_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_hidden = TRUE, hurt_structure = TRUE))
-			if(L.health < 0)
-				L.gib()
-	SLEEP_CHECK_DEATH(3)
+	new /obj/effect/malevolent_shrine(get_turf(src))
 	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/proc/WorldSlash(target)
@@ -204,7 +197,7 @@
 		for(var/turf/TF in range(1, T)) // AAAAAAAAAAAAAAAAAAAAAAA
 			if(TF.density)
 				continue
-			new /obj/effect/temp_visual/nt_goodbye(TF)
+			new /obj/effect/temp_visual/goatjo(TF)
 			been_hit = HurtInTurf(TF, been_hit, worldslash_damage, PALE_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
 	for(var/mob/living/L in been_hit)
 		if(L.health < 0)
@@ -260,6 +253,11 @@
 			for(var/i = 1 to 3)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			return Cleave(target_turf)
+		if((worldslash_cooldown <= world.time) && prob(35))
+			var/turf/target_turf = get_turf(target)
+			for(var/i = 1 to 3)
+				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+			return WorldSlash(target_turf)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/sukuna/OpenFire()
@@ -288,5 +286,40 @@
 	else
 		. += "Your sorry ass is not beating this guy."
 
+/obj/effect/malevolent_shrine
+	name = "malevolent shrine"
+	desc = "If you see this, it's already over for you."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "malevolent"
+	anchored = TRUE
+	density = FALSE
+	layer = POINT_LAYER
+	resistance_flags = INDESTRUCTIBLE
+	var/explode_times = 20
+	var/range = -1
+
+/obj/effect/malevolent_shrine/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
+
+/obj/effect/malevolent_shrine/proc/explode() //repurposed code from artillary bees, a delayed attack
+	playsound(get_turf(src), 'sound/abnormalities/strongcleave.mp3', 50, 0, 8)
+	range = clamp(range + 1, 0, 10)
+	var/turf/target_turf = get_turf(src)
+	for(var/turf/T in view(range, target_turf))
+		var/obj/effect/temp_visual/cleavesprite =  new(T)
+		cleavesprite.color = "#df1919"
+		for(var/mob/living/L in T)
+			L.apply_damage(500, PALE_DAMAGE, null, spread_damage = TRUE)
+			if(ishuman(L) && L.health < 0)
+				var/mob/living/carbon/human/H = L
+				new /obj/effect/temp_visual/human_horizontal_bisect(get_turf(H))
+				H.gib()
+	explode_times -= 1
+	if(explode_times <= 0)
+		qdel(src)
+		return
+	sleep(0.4 SECONDS)
+	explode()
 #undef MALEVOLENT_SHRINE_COOLDOWN
 

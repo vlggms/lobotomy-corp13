@@ -222,7 +222,7 @@
 	)
 //Sukuna
 /obj/item/ego_weapon/sukuna
-	name = "sukuna's cursed technique"
+	name = "Sukuna's Cursed Technique"
 	desc = "Ah yes, my asspull technique from the Heian Era."
 	icon_state = "1"
 	icon = 'icons/obj/magic.dmi'

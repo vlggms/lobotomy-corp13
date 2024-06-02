@@ -1030,6 +1030,16 @@
 	icon_state = "nobody_slash"
 	duration = 5
 
+/obj/effect/temp_visual/goatjo
+	name = "worldslash"
+	icon_state = "goatjo"
+	duration = 5
+
+/obj/effect/temp_visual/cleavesprite
+	name = "cleave"
+	icon_state = "cleavesprite"
+	duration = 5
+
 /obj/effect/temp_visual/holo_command
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	light_range = 1.5
