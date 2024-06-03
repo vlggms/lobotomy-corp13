@@ -1,5 +1,5 @@
 /obj/vehicle/sealed/mecha/combat/rhino
-	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra ‘cleaning’."
+	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra cleaning."
 	name = "\improper Rhinoceros Heavy Unit"
 	icon_state = "durand"
 	base_icon_state = "durand"
@@ -12,6 +12,7 @@
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
+	deflect_chance = 0
 
 //WEAPONS
 /obj/vehicle/sealed/mecha/combat/rhino/Initialize()
@@ -38,7 +39,7 @@
 //Gatling Rhino
 /obj/vehicle/sealed/mecha/combat/rhinosupport
 	name = "\improper Rhinoceros Support Unit"
-	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra ‘cleaning’."
+	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra cleaning."
 	icon_state = "durand"
 	base_icon_state = "durand"
 	operation_req_access = list(ACCESS_CENT_GENERAL)
@@ -50,6 +51,7 @@
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
+	deflect_chance = 0
 
 //WEAPONS
 /obj/vehicle/sealed/mecha/combat/rhinosupport/Initialize()
@@ -75,7 +77,7 @@
 //Shotgun Rhino
 /obj/vehicle/sealed/mecha/combat/rhinoshotgun
 	name = "\improper Rhinoceros Pointman Unit"
-	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra ‘cleaning’."
+	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra cleaning."
 	icon_state = "durand"
 	base_icon_state = "durand"
 	operation_req_access = list(ACCESS_CENT_GENERAL)
@@ -87,6 +89,7 @@
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
+	deflect_chance = 0
 
 //WEAPONS
 /obj/vehicle/sealed/mecha/combat/rhinoshotgun/Initialize()
@@ -111,7 +114,7 @@
 //Rifle Rhino
 /obj/vehicle/sealed/mecha/combat/rhinorifle
 	name = "\improper Rhinoceros Light Unit"
-	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra ‘cleaning’."
+	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra cleaning."
 	icon_state = "durand"
 	base_icon_state = "durand"
 	operation_req_access = list(ACCESS_CENT_GENERAL)
@@ -123,6 +126,7 @@
 	max_temperature = 30000
 	force = 40
 	wreckage = /obj/structure/mecha_wreckage/durand
+	deflect_chance = 0
 
 //WEAPONS
 /obj/vehicle/sealed/mecha/combat/rhinorifle/Initialize()
@@ -147,7 +151,7 @@
 
 //The Melee rhino
 /obj/vehicle/sealed/mecha/combat/rhinomelee
-	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra ‘cleaning’."
+	desc = "A combat exosuit utilized by the R Corp. Originally developed for the Rhino team, it was loaned to the Rabbit team for extra cleaning."
 	name = "\improper Rhinoceros Hammer Unit"
 	icon_state = "rhino"
 	base_icon_state = "rhino"
@@ -160,6 +164,7 @@
 	max_temperature = 30000
 	force = 60
 	wreckage = /obj/structure/mecha_wreckage/durand
+	deflect_chance = 0
 
 //WEAPONS
 /obj/vehicle/sealed/mecha/combat/rhinomelee/Initialize()

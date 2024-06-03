@@ -229,7 +229,7 @@
 
 /datum/ego_datum/weapon/warring2
 	item_category = "Weapon (Axe)"
-	item_path = /obj/item/ego_weapon/charge/warring
+	item_path = /obj/item/ego_weapon/warring
 	cost = 50
 
 // Clown Smiling at Me - Dark Carnival

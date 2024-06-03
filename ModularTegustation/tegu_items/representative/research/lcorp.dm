@@ -135,7 +135,7 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 //Agent Workchange injector
 /datum/data/lc13research/agentworkchance
 	research_name = "Global Agent Workchance"
-	research_desc = "An authorization to allow all agents to see work chances. <br>We this feature off to save money."
+	research_desc = "An authorization to allow all agents to see work chances. <br>We have this feature off to save money."
 	cost = HIGH_RESEARCH_PRICE
 	corp = L_CORP_REP
 
@@ -145,6 +145,34 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 
 	GLOB.lcorp_upgrades += "Agent Workchance"
 	..()
+
+//Plushie Extractor
+/datum/data/lc13research/plushie_extractor
+	research_name = "Repeatable: Plushie Extractor"
+	research_desc = "An item used to extract plushies for abnormalities. <br>We have no clue how this works. "
+	cost = LOW_RESEARCH_PRICE
+
+	corp = L_CORP_REP
+/datum/data/lc13research/plushie_extractor/ResearchEffect(obj/structure/representative_console/caller)
+	if(repeat_cooldown > world.time)
+		return
+	new /obj/item/device/Plushie_Extractor(get_turf(caller))
+	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Extractor."))
+	repeat_cooldown = world.time + (10 SECONDS)
+
+//EGO Gift Extractor
+/datum/data/lc13research/ego_gift_extractor
+	research_name = "Repeatable: EGO Gift Extractor"
+	research_desc = "An order of an EGO Gift Extractor. "
+	cost = AVERAGE_RESEARCH_PRICE+5
+	corp = L_CORP_REP
+
+/datum/data/lc13research/ego_gift_extractor/ResearchEffect(obj/structure/representative_console/caller)
+	if(repeat_cooldown > world.time)
+		return
+	new /obj/item/ego_gift_extractor(get_turf(caller))
+	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Extractor."))
+	repeat_cooldown = world.time + (10 SECONDS)
 
 //Refinery Upgrades
 /datum/data/lc13research/refineryspeed/lvl3
@@ -231,3 +259,35 @@ GLOBAL_LIST_EMPTY(lcorp_upgrades)
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = L_CORP_REP
 	required_research = /datum/data/lc13research/salesspeed/lvl7
+
+//LOB points
+/datum/data/lc13research/lob/lvl1
+	research_name = "LOB points grant"
+	research_desc = "HQ is allowing you more LOB points budget in exchange for PE."
+	cost = HIGH_RESEARCH_PRICE
+	corp = L_CORP_REP
+
+/datum/data/lc13research/lob/lvl1/ResearchEffect(obj/structure/representative_console/caller)
+	minor_announce("HQ has improved your LOB points budget.", "HQ Alert:", TRUE)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
+		SSlobotomy_corp.lob_points +=2
+		A.audible_message(span_notice("2 LOB points deposited! Reason: Improved budget from HQ."))
+		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
+		A.updateUsrDialog()
+	..()
+
+/datum/data/lc13research/lob/lvl2
+	research_name = "LOB points grant"
+	research_desc = "HQ is impressed by your production and is allowing you even more LOB points budget in exchange for PE."
+	cost = HIGH_RESEARCH_PRICE+25
+	corp = L_CORP_REP
+	required_research = /datum/data/lc13research/lob/lvl1
+
+/datum/data/lc13research/lob/lvl2/ResearchEffect(obj/structure/representative_console/caller)
+	minor_announce("HQ has further improved your LOB points budget.", "HQ Alert:", TRUE)
+	for(var/obj/machinery/computer/abnormality_auxiliary/A in GLOB.lobotomy_devices)
+		SSlobotomy_corp.lob_points +=2
+		A.audible_message(span_notice("2 LOB points deposited! Reason: Improved budget from HQ."))
+		playsound(get_turf(A), 'sound/machines/twobeep_high.ogg', 20, TRUE)
+		A.updateUsrDialog()
+	..()

@@ -15,7 +15,7 @@ Civilian
 	display_order = JOB_DISPLAY_ORDER_CIVILIAN
 
 	allow_bureaucratic_error = FALSE
-	maptype = "city"
+	maptype = list("city", "fixers")
 	paycheck = 170
 
 

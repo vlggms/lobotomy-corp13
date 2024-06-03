@@ -85,6 +85,14 @@ No Ability	250
 	realized_ability = /obj/effect/proc_holder/ability/brokencrown
 	hat = /obj/item/clothing/head/ego_hat/brokencrown
 
+/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/attackby(obj/item/I, mob/living/user, params)
+	for(var/datum/action/spell_action/ability/item/theability in actions)
+		if(istype(theability.target, /obj/effect/proc_holder/ability/brokencrown))
+			var/obj/effect/proc_holder/ability/brokencrown/power = theability.target
+			if(power.Absorb(I,user))
+				return
+	return ..()
+
 /obj/item/clothing/head/ego_hat/brokencrown
 	name = "broken crown"
 	desc = "One fell down and the rest came tumbling after."
@@ -174,7 +182,7 @@ No Ability	250
 	name = "solemn eulogy"
 	desc = "Death is not extinguishing the light, it is putting out the lamp as dawn has come."
 	icon_state = "eulogy"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//No ability
+	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)
 
 /obj/item/clothing/suit/armor/ego_gear/realization/ourgalaxy
 	name = "our galaxy"

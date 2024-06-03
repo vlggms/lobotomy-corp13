@@ -3109,6 +3109,12 @@
 	},
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
+"uq" = (
+/obj/machinery/computer/abnormality_logs{
+	dir = 1
+	},
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "uv" = (
 /obj/effect/turf_decal/siding/yellow/corner{
 	dir = 1
@@ -5509,6 +5515,10 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/command)
+"Kp" = (
+/obj/machinery/text_adventure_console,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/extraction)
 "Kq" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 9
@@ -7647,6 +7657,9 @@
 /obj/effect/turf_decal/siding/brown,
 /turf/open/floor/facility,
 /area/department_main/training)
+"Yi" = (
+/turf/open/space/basic,
+/area/space)
 "Yj" = (
 /obj/structure/table/wood,
 /obj/item/toy/plush/hod,
@@ -36342,7 +36355,7 @@ PD
 cl
 bX
 bX
-bX
+uq
 jt
 jt
 jt
@@ -36599,7 +36612,7 @@ PD
 cl
 bX
 bX
-bX
+Kp
 jt
 PD
 PD
@@ -40777,9 +40790,9 @@ PD
 PD
 PD
 PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -41033,12 +41046,12 @@ PD
 PD
 PD
 PD
-PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -41289,13 +41302,13 @@ PD
 PD
 PD
 PD
+Yi
+Yi
 PD
 PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -41546,12 +41559,12 @@ PD
 PD
 PD
 PD
+Yi
+Yi
 PD
 PD
-PD
-PD
-PD
-PD
+Yi
+Yi
 PD
 PD
 PD
@@ -41803,13 +41816,13 @@ PD
 PD
 PD
 PD
+Yi
+Yi
 PD
 PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
 PD
 PD
 PD
@@ -42061,12 +42074,12 @@ PD
 PD
 PD
 PD
-PD
-PD
-PD
-PD
-PD
-PD
+Yi
+Yi
+Yi
+Yi
+Yi
+Yi
 PD
 PD
 PD

@@ -749,8 +749,8 @@
 			var/list/rgb = hex2rgb(paint_color)
 			var/list/hsl = rgb2hsl(rgb[1], rgb[2], rgb[3])
 			var/color_is_dark = hsl[3] < DARK_COLOR_LIGHTNESS_THRESHOLD
-			
-			if(SSmaptype.maptype == "city")
+
+			if(SSmaptype.maptype in SSmaptype.citymaps)
 				to_chat(user, "<span class='warning'>Vandalizing the head's property is punishable by death...</span>")
 				return FALSE
 

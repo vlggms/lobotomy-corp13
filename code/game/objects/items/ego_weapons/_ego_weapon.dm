@@ -29,6 +29,9 @@
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
+	if(charge && attack_charge_gain)
+		HandleCharge(1, target)
+
 	if(target.anchored || !knockback) // lets not throw machines around
 		return TRUE
 
@@ -154,12 +157,11 @@
 		return span_notice("It deals [round(force * force_multiplier, 0.1)] [damtype] damage. (+ [(force_multiplier - 1) * 100]%)")
 	return span_notice("It deals [force] [damtype] damage.")
 
-/*
-* Used to clean up any remaining variables or timers in an ego weapon.
-*/
+/**
+ * Used to clean up any remaining variables or timers in an ego weapon.
+ */
 /obj/item/ego_weapon/proc/CleanUp()
 	cleaning = TRUE
-	return
 
 /obj/item/ego_weapon/Destroy()
 	CleanUp()

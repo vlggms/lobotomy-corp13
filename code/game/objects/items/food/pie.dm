@@ -264,7 +264,7 @@
 	tastes = list("nuts" = 1, "pie" = 1)
 	foodtypes = GRAIN
 
-/obj/item/food/pie/Pierre
+/obj/item/food/pie/pierre
 	name = "Pierre's hand pie"
 	desc = "A famous pie from the streets of flavour."
 	icon_state = "meatpie"

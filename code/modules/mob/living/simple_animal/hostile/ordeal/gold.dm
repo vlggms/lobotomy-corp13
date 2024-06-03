@@ -442,6 +442,8 @@
 	name = "Peccatulum Morositatis"
 	desc = "An insect-like entity with a transparant body."
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	pixel_x = -8
+	base_pixel_x = -8
 	icon_state = "sinflea"
 	icon_living = "sinflea"
 	icon_dead = "flea_dead"
@@ -489,6 +491,8 @@
 	name = "Peccatulum Superbiae"
 	desc = "Those spikes look sharp!"
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
+	pixel_x = -8
+	base_pixel_x = -8
 	icon_state = "sinwheel"
 	icon_living = "sinwheel"
 	icon_dead = "sin_dead"

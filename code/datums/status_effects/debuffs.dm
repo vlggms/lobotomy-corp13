@@ -981,7 +981,7 @@
 
 
 //~~~LC13 General Debuffs~~~
-#define CARBON_HALFSPEED /datum/movespeed_modifier/qliphothoverload
+#define MOB_HALFSPEED /datum/movespeed_modifier/qliphothoverload
 /datum/status_effect/qliphothoverload
 	id = "qliphoth intervention field"
 	duration = 15 SECONDS
@@ -991,12 +991,7 @@
 
 /datum/status_effect/qliphothoverload/on_apply()
 	. = ..()
-	if(ishostile(owner))
-		var/mob/living/simple_animal/hostile/L = owner
-		L.TemporarySpeedChange(4, duration)
-	if(iscarbon(owner))
-		var/mob/living/carbon/M = owner
-		M.add_movespeed_modifier(CARBON_HALFSPEED)
+	owner.add_movespeed_modifier(MOB_HALFSPEED)
 
 	var/mutable_appearance/effectvisual = mutable_appearance('icons/obj/clockwork_objects.dmi', "vanguard")
 	effectvisual.pixel_x = -owner.pixel_x
@@ -1005,9 +1000,7 @@
 	owner.add_overlay(statuseffectvisual)
 
 /datum/status_effect/qliphothoverload/on_remove()
-	if(iscarbon(owner))
-		var/mob/living/carbon/M = owner
-		M.remove_movespeed_modifier(CARBON_HALFSPEED)
+	owner.remove_movespeed_modifier(MOB_HALFSPEED)
 
 	owner.cut_overlay(statuseffectvisual)
 	return ..()
@@ -1081,7 +1074,7 @@
 		var/mob/living/simple_animal/M = owner
 		M.RemoveModifier(/datum/dc_change/rend/black)
 
-#undef CARBON_HALFSPEED
+#undef MOB_HALFSPEED
 
 #define STATUS_EFFECT_LCBURN /datum/status_effect/stacking/lc_burn // Deals true damage every 5 sec, can't be applied to godmode (contained abos)
 /datum/status_effect/stacking/lc_burn

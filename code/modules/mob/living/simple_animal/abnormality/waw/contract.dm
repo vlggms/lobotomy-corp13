@@ -137,6 +137,7 @@
 	spawned.name = "???"
 	spawned.desc = "What is that thing?"
 	spawned.faction = list("hostile")
+	spawned.core_enabled = FALSE
 	datum_reference.qliphoth_change(2)
 
 /* Work effects */

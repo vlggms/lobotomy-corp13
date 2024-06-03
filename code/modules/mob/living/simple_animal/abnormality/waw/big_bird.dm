@@ -7,6 +7,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "big_bird"
 	icon_living = "big_bird"
+	core_icon = "bigbird_egg"
 	portrait = "big_bird"
 	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")

@@ -162,6 +162,34 @@
 			s.x += 2
 	return ..()
 
+/obj/effect/cinderella
+	name = "Cinderella's Pumpkin Carriage"
+	desc = "So pretty."
+	icon = 'ModularTegustation/Teguicons/128x128.dmi'
+	icon_state = "cinderella_1"
+	move_force = INFINITY
+	pull_force = INFINITY
+	generic_canpass = FALSE
+	movement_type = PHASING | FLYING
+	pixel_y = -32
+	pixel_x = -32
+	var/list/damaged = list()
+	animate_movement = SLIDE_STEPS
+	var/clickety = 0
+	var/noise = 0
+
+/obj/effect/cinderella/Moved()
+	if(clickety == 22)
+		playsound(get_turf(src), 'sound/abnormalities/cinderella/carriage_loop.ogg', 100, 0, 20)
+		clickety = 0
+	clickety += 1
+	if(clickety % 2)
+		var/obj/effect/particle_effect/smoke/s = new(locate(src.x, src.y - 2, src.z))
+		s.pixel_y -= 16
+		if(src.dir != EAST)
+			s.x += 2
+	return ..()
+
 /obj/effect/pale_case
 	name = "pale suitcase"
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'

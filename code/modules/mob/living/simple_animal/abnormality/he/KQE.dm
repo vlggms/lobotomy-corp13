@@ -10,6 +10,7 @@
 	icon_state = "kqe"
 	icon_living = "kqe"
 	icon_dead = "kqe_egg"
+	core_icon = "kqe_egg"
 	portrait = "KQE"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE

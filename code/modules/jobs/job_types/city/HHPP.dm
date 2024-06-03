@@ -18,7 +18,7 @@ HHPP Employee
 	job_attribute_limit = 0
 
 	allow_bureaucratic_error = FALSE
-	maptype = list("wonderlabs", "city")
+	maptype = list("wonderlabs", "city", "fixers")
 
 
 //Why would you work as a HHPP chef is beyond me.

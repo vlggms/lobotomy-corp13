@@ -17,6 +17,7 @@
 	icon_state = "distortedform"
 	icon_living = "distortedform"
 	icon_dead = "distortedform_dead"
+	core_icon = "distortedform_dead"
 	portrait = "distortedform"
 	melee_damage_type = RED_DAMAGE
 	damage_coeff = list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8)
@@ -499,6 +500,7 @@
 	attack_sound = 'sound/abnormalities/distortedform/slam.ogg'
 	melee_damage_type = RED_DAMAGE
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
+	ChangeMoveToDelay(3)
 	melee_damage_lower = 55
 	melee_damage_upper = 65
 	rapid_melee = 1
@@ -764,8 +766,7 @@
 	ChangeResistances(list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 	melee_damage_lower = 65
 	melee_damage_upper = 75
-	move_to_delay = 4.5
-	UpdateSpeed()
+	ChangeMoveToDelay(4.5)
 	can_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(Goodbye)), 30)
 	special_attack = PROC_REF(Hello)
@@ -838,8 +839,7 @@
 	attack_verb_continuous = "slashes"
 	attack_verb_simple = "slash"
 	rapid_melee = 4
-	move_to_delay = 2.5
-	UpdateSpeed()
+	ChangeMoveToDelay(2.5)
 	can_move = TRUE
 	can_attack = TRUE
 	special_attack = PROC_REF(Execute)
@@ -1040,7 +1040,7 @@
 	melee_damage_upper = 30
 	pixel_x = -8
 	base_pixel_x = -8
-	move_to_delay = 5
+	ChangeMoveToDelay(5)
 	can_move = TRUE
 	special_attack = PROC_REF(SpearAttack)
 	addtimer(CALLBACK(src, PROC_REF(ScytheAttack)), 30)
@@ -1192,7 +1192,7 @@
 	attack_sound = 'sound/abnormalities/blubbering_toad/attack.ogg'
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
-	UpdateSpeed()
+	ChangeMoveToDelay(3)
 	can_move = TRUE
 	special_attack = PROC_REF(ToadAttack)
 
@@ -1271,14 +1271,13 @@
 	ChangeResistances(list(RED_DAMAGE = 0.3, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8))
 	melee_damage_lower = 65
 	melee_damage_upper = 75
-	move_to_delay = 4.5
+	ChangeMoveToDelay(4.5)
 	melee_damage_type = WHITE_DAMAGE
 	pixel_x = -8
 	base_pixel_x = -8
 	attack_sound = 'sound/abnormalities/ichthys/slap.ogg'
 	attack_verb_continuous = "mauls"
 	attack_verb_simple = "maul"
-	UpdateSpeed()
 	can_move = TRUE
 	addtimer(CALLBACK(src, PROC_REF(BloodBathBeamPrep)), 30)
 	special_attack = PROC_REF(BloodBathSlam)

@@ -9,6 +9,7 @@
 	icon_state = "siltcurrent"
 	icon_living = "siltcurrent"
 	icon_dead = "siltcurrent_egg"
+	core_icon = "siltcurrent_egg"
 	portrait = "siltcurrent"
 	death_message = "coalesces into a primordial egg."
 	del_on_death = FALSE
