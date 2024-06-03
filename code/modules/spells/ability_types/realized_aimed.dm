@@ -135,6 +135,7 @@
 	name = "Sword that Pierces Despair"
 	desc = "A magic rapier, enchanted by a knight protecting the weak."
 	nodamage = TRUE
+	damage = 0
 	projectile_piercing = PASSMOB
 
 /obj/projectile/despair_rapier/ego/on_hit(atom/target, blocked = FALSE)
@@ -144,7 +145,7 @@
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
 		H.TemporarySpeedChange(1, 10 SECONDS)
-		damage = max(0.05*H.maxHealth, 120)
+		H.apply_damage(max(0.05 * H.maxHealth, 120), PALE_DAMAGE)
 	..()
 	qdel(src)
 
