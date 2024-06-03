@@ -43,3 +43,22 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+/obj/item/clothing/suit/armor/ego_gear/aleph/sukuna
+	name = "heian era robes"
+	desc = "Wearing these makes you want to dismember a white haired sorcerer."
+	icon_state = "uniqueoffice4"
+	icon = 'icons/obj/clothing/ego_gear/custom_fixer.dmi'
+	worn_icon =  'icons/mob/clothing/ego_gear/custom_fixer.dmi'
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 280, ALEPH+
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 120
+							)
+
+/obj/item/clothing/shoes/sandal/sukuna
+	name = "sukuna's sandals"
+	desc = "A pair of Ryomen Sukuna's sandals."
+	icon_state = "wizard"
