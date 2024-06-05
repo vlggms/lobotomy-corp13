@@ -104,7 +104,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/woodsman/Life()
 	. = ..()

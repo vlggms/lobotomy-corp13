@@ -514,7 +514,7 @@
 	mob_spawn_amount = 2
 
 /mob/living/simple_animal/hostile/ordeal/crimson_noon/crimson_midnight/Initialize()
-	..()
+	. = ..()
 	animate(src, transform = matrix()*1.3, time = 0 SECONDS)
 	AddComponent(/datum/component/knockback, 3, FALSE, TRUE) //1 is distance thrown, False is if it can throw anchored objects, True if doesnt apply damage or stun when hits a wall.
 

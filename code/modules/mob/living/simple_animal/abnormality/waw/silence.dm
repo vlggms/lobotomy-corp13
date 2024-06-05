@@ -37,7 +37,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/silence/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/silence/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

@@ -133,7 +133,7 @@
 		pulse_cooldown_time = 130 SECONDS//The duraction of the buff is 60 seconds; you can't build stacks at this rate.
 	maggot_attack = new /datum/action/innate/abnormality_attack/maggot_spread
 	maggot_attack2 = new /datum/action/innate/abnormality_attack/maggot_spread2
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/Life()
 	. = ..()

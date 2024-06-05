@@ -178,7 +178,7 @@
 		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
 	else if(core_enabled)//Abnormality Cores are spawned if there is no console tied to the abnormality
 		CreateAbnoCore(name, core_icon)//If cores are manually disabled for any reason, they won't generate.
-	..()
+	. = ..()
 	if(loc)
 		if(isarea(loc))
 			var/area/a = loc
@@ -258,7 +258,7 @@
 /mob/living/simple_animal/hostile/abnormality/proc/FearEffect()
 	if(fear_level <= 0)
 		return
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
 		if(H in breach_affected)
 			continue
 		if(H.stat == DEAD)
@@ -515,6 +515,10 @@
 	var/mob/living/simple_animal/hostile/abnormality/A
 	var/chosen_message
 	var/chosen_attack_num = 0
+
+/datum/action/innate/abnormality_attack/Destroy()
+	A = null
+	return ..()
 
 /datum/action/innate/abnormality_attack/Grant(mob/living/L)
 	if(istype(L, /mob/living/simple_animal/hostile/abnormality))

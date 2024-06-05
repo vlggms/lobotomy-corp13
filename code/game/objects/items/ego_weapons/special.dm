@@ -140,7 +140,7 @@
 	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
 
 /obj/item/ego_weapon/iron_maiden/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)

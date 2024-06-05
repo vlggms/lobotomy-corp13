@@ -201,7 +201,7 @@
 
 /obj/effect/temp_visual/doomsday/Initialize()
 	add_overlay(mutable_appearance('icons/effects/effects.dmi', "empdisable", -ABOVE_OBJ_LAYER))
-	return..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/doomsday_calendar/proc/CheckCountdown()//grabbed from TSO
 	if(world.time >= next_phase_time) // Next phase

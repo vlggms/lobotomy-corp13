@@ -205,7 +205,7 @@
 		visible_message(span_userdanger("[src] swiftly dodges [P]!"))
 		P.Destroy()
 		return
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/norinori/LoseTarget()
 	. = ..()

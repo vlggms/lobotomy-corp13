@@ -146,7 +146,7 @@
 
 //delete the zombies on death
 /mob/living/simple_animal/hostile/abnormality/thunder_bird/Destroy()
-	..()
+	. = ..()
 	for(var/mob/living/simple_animal/hostile/thunder_zombie/Z in spawned_mobs)
 		QDEL_IN(Z, rand(3) SECONDS)
 		spawned_mobs -= Z
