@@ -94,7 +94,7 @@
 	var/turf/user_turf = get_turf(attacker)
 	for(var/obj/effect/golden_road/GR in user_turf.contents)
 		retaliation = 3
-	attacker.apply_damage(retaliation, BLACK_DAMAGE, null, attacker.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	attacker.deal_damage(retaliation, BLACK_DAMAGE)
 	to_chat(attacker, span_userdanger("[src] counter attacks!"))
 	if(attacker.has_status_effect(/datum/status_effect/stay_home) || !ishuman(attacker) || stat == DEAD)
 		return
@@ -311,7 +311,7 @@
 
 	playsound(get_turf(src), 'sound/abnormalities/roadhome/House_HouseBoom.ogg', 100, FALSE, 8)
 	for(var/mob/living/L in orgin.contents)//Listen, if you're still standing in the one turf this thing is falling from, you deserve to die.
-		L.apply_damage((1000), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+		L.deal_damage(1000, RED_DAMAGE)
 		if(L.health < 0)
 			L.gib()
 
@@ -321,7 +321,7 @@
 	for(var/mob/living/L in view(6, src))
 		if(!road_home_mob.faction_check_mob(L))
 			var/distance_decrease = get_dist(src, L) * 75
-			L.apply_damage((600 - distance_decrease), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE)) //white damage so they can join the road home..
+			L.deal_damage((600 - distance_decrease), WHITE_DAMAGE) //white damage so they can join the road home..
 			if(!ishuman(L))
 				continue
 			var/mob/living/carbon/human/H = L

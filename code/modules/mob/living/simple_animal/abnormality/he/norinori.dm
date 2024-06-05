@@ -144,7 +144,7 @@
 		icon_state = IsContained() ? initial(icon_state) : icon_aggro
 		return
 	user.visible_message(span_warning("[src] mutilates [user]!"), span_userdanger("[src] mutilates you!"))
-	user.apply_damage(3000, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	user.deal_damage(3000, RED_DAMAGE)
 	playsound(user, 'sound/abnormalities/helper/attack.ogg', 100, FALSE, 4)
 	attack_sound = initial(attack_sound)
 	if(user.stat == DEAD)

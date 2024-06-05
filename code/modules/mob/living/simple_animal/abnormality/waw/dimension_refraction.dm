@@ -45,7 +45,7 @@
 	for(var/mob/living/L in livinginview(1, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(aoe_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(aoe_damage, RED_DAMAGE)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(L), pick(GLOB.alldirs))
 	addtimer(CALLBACK(src, PROC_REF(Melter)), cooldown_time)
 

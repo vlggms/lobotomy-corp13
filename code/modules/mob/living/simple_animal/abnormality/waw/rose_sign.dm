@@ -152,7 +152,7 @@
 /mob/living/simple_animal/hostile/abnormality/rose_sign/WorktickFailure(mob/living/carbon/human/user)
 	if(LAZYLEN(work_damages))//are there any children under work damages? Apply all of the damages!
 		for(var/damtype in work_damages)
-			user.apply_damage(work_damages[damtype], damtype, null, user.run_armor_check(null, damtype), spread_damage = TRUE)
+			user.deal_damage(work_damages[damtype], damtype)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/rose_sign/proc/WorkSpeech(list/lines, list/speech_styles)
@@ -302,7 +302,7 @@
 	alpha = 1
 	for(var/mob/living/carbon/human/H in view(3, src))//big, big AOE
 		grabbed = TRUE
-		H.apply_damage(boom_damage, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, BLACK_DAMAGE)
 		if(H.buckled)//Otherwise it would rip people off their crucifixes. Not too exploitable
 			continue
 		H.forceMove(get_turf(src))//pulls them all to the target
@@ -333,7 +333,7 @@
 	for(var/turf/T in view(0, target_turf))
 		new /obj/effect/temp_visual/thornspike(T)
 		for(var/mob/living/L in T)
-			L.apply_damage(root_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(root_damage, BLACK_DAMAGE)
 			if(L.stat == DEAD)
 				if(L.has_status_effect(/datum/status_effect/stacking/crownthorns))//Stops a second crucifix from appearing
 					L.remove_status_effect(STATUS_EFFECT_THORNS)

@@ -198,7 +198,7 @@
 						jump_damage = 0
 					else
 						jump_damage = initial(jump_damage)
-				L.apply_damage(jump_damage, BLACK_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(jump_damage, BLACK_DAMAGE)
 				if(L.health < 0)
 					L.gib()
 		var/wait_time = 0.5 SECONDS

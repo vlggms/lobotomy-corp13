@@ -64,7 +64,7 @@
 				continue
 			if(faction_check_mob(L, FALSE))
 				continue
-			L.apply_damage(speak_damage, BLACK_DAMAGE, null, run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(speak_damage, BLACK_DAMAGE)
 		adjustBruteLoss(-speak_damage) // It falls further into desperation
 		if(speak_damage < 40)
 			speak_damage += 4
@@ -191,7 +191,7 @@
 		M.apply_status_effect(STATUS_EFFECT_TEARS_LESS)
 	else
 		to_chat(M, span_notice("You decide against drinking from the bottle..."))
-		M.apply_damage(speak_damage, WHITE_DAMAGE, null, run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		M.deal_damage(speak_damage, WHITE_DAMAGE)
 	eating = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/bottle/ListTargets()

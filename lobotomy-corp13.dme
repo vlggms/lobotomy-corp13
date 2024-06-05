@@ -4018,6 +4018,7 @@
 #include "ModularTegustation\hiding\abnormality.dm"
 #include "ModularTegustation\hiding\closet.dm"
 #include "ModularTegustation\hiding\turf.dm"
+#include "ModularTegustation\living\damage_procs.dm"
 #include "ModularTegustation\living\living.dm"
 #include "ModularTegustation\living\carbon\life.dm"
 #include "ModularTegustation\primitive_farming\farming_structures.dm"
