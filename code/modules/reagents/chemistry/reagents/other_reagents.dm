@@ -661,6 +661,13 @@
 	race = /datum/species/plasmaman
 	taste_description = "plasma"
 
+/datum/reagent/mutationtoxin/shrimp
+	name = "Shrimp Mutation Toxin"
+	description = "A salty toxin"
+	color = "#5EFF3B" //RGB: 94, 255, 59
+	race = /datum/species/shrimp
+	taste_description = "shrimp"
+
 #undef MUT_MSG_IMMEDIATE
 #undef MUT_MSG_EXTENDED
 #undef MUT_MSG_ABOUT2TURN

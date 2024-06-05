@@ -163,7 +163,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/parasite_tree/connected_abno
 
 /mob/living/simple_animal/hostile/parasite_tree_sapling/Initialize()
-	..()
+	. = ..()
 	icon_living = "sapling[pick(1,2)]"
 	icon_state = icon_living
 	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/parasite_tree) in GLOB.abnormality_mob_list
@@ -323,17 +323,21 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	if(status_holder.sanity_lost || status_holder.stat == DEAD)
-		qdel(src)
 	var/tree_toxin = status_holder.maxSanity * 0.20
 	status_holder.apply_damage(tree_toxin, WHITE_DAMAGE, null, status_holder.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	if(status_holder.sanity_lost || status_holder.stat == DEAD)
+		qdel(src)
 
 /datum/status_effect/display/parasite_tree_curse/on_remove()
 	var/mob/living/carbon/human/status_holder = owner
 	if(connected_abno)
 		connected_abno.blessed -= src
-		if(!owner || status_holder.stat == DEAD)
+		if(!status_holder || status_holder.stat == DEAD)
 			connected_abno.endBreach()
+	//If you have melting love and parasite tree blessing, melting loves blessing gets priority
+	if(TransformOverride(status_holder))
+		connected_abno.endBreach()
+		return ..()
 	if(status_holder.sanity_lost && status_holder.stat != DEAD)
 		var/mob/living/simple_animal/hostile/parasite_tree_sapling/new_mob = new(owner.loc)
 		nested_items(new_mob, status_holder.get_item_by_slot(ITEM_SLOT_SUITSTORE))
@@ -346,6 +350,14 @@
 /datum/status_effect/display/parasite_tree_curse/TweakDisplayIcon()
 	..()
 	icon_overlay.color = "#4B0076" //indigo
+
+/datum/status_effect/display/parasite_tree_curse/proc/TransformOverride(mob/living/carbon/human/H)
+	if(H && H.has_status_effect(/datum/status_effect/display/melting_love_blessing))
+		to_chat(H, span_warning("You feel the pink slime dissolve your flesh before it becomes wood."))
+		H.apply_damage(800, BLACK_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.remove_status_effect(/datum/status_effect/display/melting_love_blessing)
+		if(!H || H.stat == DEAD)
+			return TRUE
 
 /datum/status_effect/display/parasite_tree_curse/proc/nested_items(mob/living/simple_animal/hostile/nest, obj/item/nested_item)
 	if(nested_item)

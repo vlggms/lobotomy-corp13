@@ -13,6 +13,12 @@
 	user.adjustBruteLoss(-40)
 	qdel(src)
 
+/obj/item/ksyringe/attack(mob/living/M, mob/user)
+	to_chat(user, span_nicegreen("You inject [M] with the [src]."))
+	M.visible_message(span_notice("[user] stabs [M] with the injector!"))
+	M.adjustBruteLoss(-40)
+	qdel(src)
+
 /obj/item/krevive
 	name = "k-corp nanomachine ampule"
 	desc = "A syringe of kcorp healing nanobots. This one revives any fallen bodies."

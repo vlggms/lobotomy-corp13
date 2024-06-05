@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "executive"
 	icon_living = "executive"
+	core_icon = "shrimpexec_egg"
 	portrait = "shrimp_executive"
 	faction = list("neutral")
 	speak_emote = list("burbles")
@@ -215,3 +216,6 @@
 
 /obj/item/grenade/spawnergrenade/shrimp/super
 	deliveryamt = 7	//Just randomly get double money.
+
+/obj/item/grenade/spawnergrenade/shrimp/hostile
+	spawner_type = list(/mob/living/simple_animal/hostile/shrimp, /mob/living/simple_animal/hostile/shrimp_soldier) //Gacha Only, just put it here with the other shrimp grenades.

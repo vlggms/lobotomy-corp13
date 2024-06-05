@@ -3709,7 +3709,6 @@
 /obj/machinery/camera/autoname{
 	dir = 6
 	},
-/obj/structure/chair/plastic,
 /obj/effect/turf_decal/siding{
 	color = "#7D6521";
 	dir = 1
@@ -5164,6 +5163,9 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
+"za" = (
+/turf/open/space/basic,
+/area/space)
 "zb" = (
 /obj/effect/turf_decal/tile/brown{
 	dir = 4
@@ -6810,6 +6812,29 @@
 /obj/machinery/navbeacon/wayfinding/trainingdepartment,
 /turf/open/floor/plasteel,
 /area/department_main/training)
+"HA" = (
+/obj/effect/turf_decal/bot,
+/obj/effect/turf_decal/tile{
+	color = "2B2B2B";
+	dir = 1
+	},
+/obj/effect/turf_decal/tile{
+	color = "2B2B2B";
+	dir = 4
+	},
+/obj/effect/turf_decal/tile{
+	color = "2B2B2B"
+	},
+/obj/effect/turf_decal/tile{
+	color = "2B2B2B";
+	dir = 8
+	},
+/obj/machinery/computer/abnormality_logs{
+	dir = 8
+	},
+/obj/machinery/computer/abnormality_logs,
+/turf/open/floor/plasteel/dark,
+/area/department_main/discipline)
 "HB" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -24644,9 +24669,9 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
+za
+za
+za
 JB
 JB
 JB
@@ -24900,12 +24925,12 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
-JB
+za
+za
+za
+za
+za
+za
 JB
 JB
 JB
@@ -25156,13 +25181,13 @@ JB
 JB
 JB
 JB
+za
+za
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+za
+za
+za
 JB
 JB
 JB
@@ -25413,12 +25438,12 @@ JB
 JB
 JB
 JB
+za
+za
 JB
 JB
-JB
-JB
-JB
-JB
+za
+za
 JB
 JB
 JB
@@ -25670,13 +25695,13 @@ JB
 JB
 JB
 JB
+za
+za
 JB
 JB
-JB
-JB
-JB
-JB
-JB
+za
+za
+za
 JB
 JB
 JB
@@ -25928,12 +25953,12 @@ JB
 JB
 JB
 JB
-JB
-JB
-JB
-JB
-JB
-JB
+za
+za
+za
+za
+za
+za
 JB
 JB
 JB
@@ -37663,7 +37688,7 @@ fL
 JB
 JB
 rS
-rS
+HA
 sh
 aE
 qu

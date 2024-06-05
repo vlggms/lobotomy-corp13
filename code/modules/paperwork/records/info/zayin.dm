@@ -80,7 +80,7 @@
 	abno_info = list("When an agent completed work with the abnormality with a neutral or good result, they were delivered a piece of mail.",
 	"Reading the mail produced differing effects depending on the type of mail received.",
 	"Upon successful repression work, the employee received a parcel.",
-	"Repression work resulted in the death of the working agent.")
+	"Multiple repression works within short succession resulted in the death of the working agent.")
 
 //Fallen Amurdad
 /obj/item/paper/fluff/info/zayin/fallen_amurdad

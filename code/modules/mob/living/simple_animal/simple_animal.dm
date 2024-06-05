@@ -223,7 +223,7 @@
 		var/obj/effect/proc_holder/spell/targeted/night_vision/bloodspell = new
 		AddSpell(bloodspell)
 	//LC13 Check. If it's the citymap, they all gain a faction
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		faction += "city"
 
 

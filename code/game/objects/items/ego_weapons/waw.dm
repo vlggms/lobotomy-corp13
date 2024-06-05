@@ -17,15 +17,16 @@
 	)
 
 /obj/item/ego_weapon/lamp/attack(mob/living/M, mob/living/user)
+	var/turf/target_turf = get_turf(M)
 	. = ..()
 	if(!.)
 		return FALSE
-	for(var/mob/living/L in view(1, M))
+	for(var/mob/living/L in hearers(1, target_turf))
 		var/aoe = 25
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		aoe*=justicemod
-		aoe*=force_multiplier
+		var/justicemod = 1 + userjust / 100
+		aoe *= justicemod
+		aoe *= force_multiplier
 		if(L == user || ishuman(L))
 			continue
 		L.apply_damage(aoe, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
@@ -375,7 +376,7 @@
 	var/vine_cooldown
 
 /obj/item/ego_weapon/stem/Initialize(mob/user)
-	.=..()
+	. = ..()
 	vine_cooldown = world.time
 
 /obj/item/ego_weapon/stem/attack_self(mob/living/user)
@@ -847,7 +848,7 @@
 
 /obj/item/ego_weapon/shield/swan/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/shield/swan/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
@@ -996,11 +997,11 @@
 							)
 
 /obj/item/ego_weapon/shield/pharaoh/pre_attack(atom/A, mob/living/user, params)
-	if(istype(A,/obj/structure/statue/petrified) && CanUseEgo(user))
-		playsound(A, 'sound/effects/break_stone.ogg', rand(10,50), TRUE)
+	if(istype(A, /obj/structure/statue/petrified) && CanUseEgo(user))
+		playsound(A, 'sound/effects/break_stone.ogg', rand(10, 50), TRUE)
 		A.visible_message(span_danger("[A] returns to normal!"), span_userdanger("You break free of the stone!"))
-		A.Destroy()
-		return
+		qdel(A)
+		return TRUE
 	..()
 
 /obj/item/ego_weapon/blind_rage
@@ -1028,6 +1029,7 @@
 	return 30
 
 /obj/item/ego_weapon/blind_rage/attack(mob/living/M, mob/living/carbon/human/user)
+	var/turf/target_turf = get_turf(M)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -1046,41 +1048,19 @@
 		damage *= 3
 	if(user.sanity_lost)
 		damage *= 1.2
-	for(var/turf/open/T in range(aoe_range, M))
+	for(var/turf/open/T in RANGE_TURFS(aoe_range, target_turf))
 		var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
 		smonk.color = COLOR_GREEN
-		user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+		var/list/been_hit = QDELETED(M) ? list() : list(M)
+		user.HurtInTurf(T, been_hit, damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
 		if(prob(5))
 			new /obj/effect/gibspawner/generic/silent/wrath_acid(T) // The non-damaging one
-	var/combo = FALSE
 	var/mob/living/carbon/human/myman = user
 	var/obj/item/ego_weapon/blind_rage/Y = myman.get_inactive_held_item()
 	var/obj/item/clothing/suit/armor/ego_gear/realization/woundedcourage/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
-	if((istype(Y)) & (istype(Z))) //dual wielding and wearing Wounded Courage? if so...
-		combo = TRUE //hits twice
-	else
-		combo = FALSE
-	if(combo)
-		if(M in view(reach,user))
-			Y.attacks++
-			Y.attacks %=3
-			switch(attacks)
-				if(0)
-					hitsound = 'sound/abnormalities/wrath_servant/big_smash1.ogg'
-				if(1)
-					hitsound = 'sound/abnormalities/wrath_servant/big_smash2.ogg'
-				if(2)
-					hitsound = 'sound/abnormalities/wrath_servant/big_smash3.ogg'
-			M.attacked_by(src, user)
-			M.send_item_attack_message(src, user,M)
-			user.do_attack_animation(M)
-			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-			for(var/turf/open/T in range(aoe_range, M))
-				var/obj/effect/temp_visual/small_smoke/halfsecond/smonk = new(T)
-				smonk.color = COLOR_GREEN
-				user.HurtInTurf(T, list(M), damage, damtype, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
-				user.HurtInTurf(T, list(), damage, aoe_damage_type, hurt_mechs = TRUE, hurt_structure = TRUE, break_not_destroy = TRUE)
+	if(istype(Y) && Y != src && istype(Z) && !QDELETED(M)) //dual wielding and wearing Wounded Courage? if so...
+		Y.melee_attack_chain(user, M)
 
 /obj/item/ego_weapon/blind_rage/attackby(obj/item/I, mob/living/user, params)
 	..()
@@ -1127,8 +1107,8 @@
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 
 /obj/item/ego_weapon/diffraction/attack(mob/living/target, mob/living/user)
-	if((target.health<=target.maxHealth *0.2) && !(GODMODE in target.status_flags))
-		force*=2
+	if((target.health <= target.maxHealth * 0.2) && !(target.status_flags & GODMODE))
+		force *= 2
 	..()
 	force = initial(force)
 
@@ -1676,7 +1656,7 @@
 	force_per_tile = 5 //if I can read, this means you need to cross 14 tiles for max damage
 	pierce_force_cost = 20
 
-/obj/item/ego_weapon/charge/warring
+/obj/item/ego_weapon/warring
 	name = "warring"
 	desc = "It was a good day to die, but everybody did."
 	special = "Upon throwing, this weapon returns to the user. Throwing will activate the charge effect."
@@ -1688,34 +1668,36 @@
 	throw_range = 7
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	release_message = "You release your charge!"
-	charge_effect = "expend all charge stacks in a powerful burst."
-	charge_cost = 5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 	)
 
-/obj/item/ego_weapon/charge/warring/Initialize()
-	..()
+	charge = TRUE
+	charge_cost = 5
+	charge_effect = "expend all charge stacks in a powerful burst."
+	successfull_activation = "You release your charge!"
+
+/obj/item/ego_weapon/warring/Initialize()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
-/obj/item/ego_weapon/charge/warring/attack(mob/living/target, mob/living/user)
-	if(charge == 19)//max power, get ready to throw!
+/obj/item/ego_weapon/warring/attack(mob/living/target, mob/living/user)
+	if(charge_amount == 19)//max power, get ready to throw!
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 	. = ..()
-	if(charge == 5)
+	if(charge_amount == 5)
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 		icon_state = "warring2_firey"
 		hitsound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 		if(user)
 			user.update_inv_hands()
 
-/obj/item/ego_weapon/charge/warring/release_charge(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/warring/ChargeAttack(mob/living/user)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in view(1, T))
-		var/aoe = charge * 5
+		var/aoe = charge_amount * 5
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -1725,25 +1707,25 @@
 		new /obj/effect/temp_visual/tbirdlightning(get_turf(L))
 	icon_state = initial(icon_state)
 	hitsound = initial(hitsound)
-	charge = 0
+	charge_amount = initial(charge_amount)
 
-/obj/item/ego_weapon/charge/warring/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
+/obj/item/ego_weapon/warring/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
 	if(!CanUseEgo(user))
 		return
 	return ..()
 
-/obj/item/ego_weapon/charge/warring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/ego_weapon/warring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
 		if(charge >= charge_cost && isliving(hit_atom))
-			release_charge(hit_atom)
+			ChargeAttack(hit_atom)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
 		return ..()
 
-/obj/item/ego_weapon/charge/warring/get_clamped_volume()
+/obj/item/ego_weapon/warring/get_clamped_volume()
 	return 40
 
 /obj/item/ego_weapon/hyde
@@ -1766,7 +1748,7 @@
 	var/transformed = FALSE
 
 /obj/item/ego_weapon/hyde/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/hyde/attack_self(mob/living/carbon/human/user)
@@ -2084,3 +2066,56 @@
 
 /obj/item/ego_weapon/abyssal_route/proc/DiveReset()
 	can_attack = TRUE
+
+/obj/item/ego_weapon/windup
+	name = "wind-up"
+	desc = "Yes, we can rewind your wasted time. \
+	Just wind it up, close your eyes, and count to ten. When you open them, you will be standing at the exact moment you wished to be in."
+	special = "Use in hand to charge this weapon, up to four times. Deals very little damage when uncharged."
+	icon_state = "windup"
+	force = 10
+	attack_speed = 0.5
+	damtype = PALE_DAMAGE
+	attack_verb_continuous = list("cleaves", "cuts")
+	attack_verb_simple = list("cleaves", "cuts")
+	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/charges = 0
+
+/obj/item/ego_weapon/windup/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(charges > 0)
+		if(charges == 4)
+			playsound(src, 'sound/abnormalities/clock/finish.ogg', 60)
+		else
+			playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
+	charges = max(0, charges - 1)
+	if(charges == 0)
+		force = 10
+
+/obj/item/ego_weapon/windup/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(charges >= 4)
+		to_chat(user,span_warning("You can't crank it any further!"))
+		return
+	if(do_after(user, (8 + (charges * 4)), src))
+		charges = min(charges + 1, 4)
+		force = (charges * 10 + 5)
+		to_chat(user,span_warning("You crank the [src]."))
+		playsound(src.loc, 'sound/abnormalities/clock/clank.ogg', 75, TRUE)
+		PlayChargeSound()
+
+/obj/item/ego_weapon/windup/proc/PlayChargeSound()
+	set waitfor = FALSE
+	sleep(10)
+	if(!charges) //We don't play the sound if the player has already emptied out by now
+		return
+	if(charges >= 4)
+		playsound(src.loc, 'sound/weapons/fixer/generic/energy3.ogg', 75, TRUE)
+		return
+	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)

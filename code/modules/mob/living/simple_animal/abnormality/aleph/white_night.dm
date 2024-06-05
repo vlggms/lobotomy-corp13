@@ -55,13 +55,15 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS
 	var/holy_revival_damage = 80 // Pale damage, scales with distance
-	var/holy_revival_range = 48
+	var/holy_revival_range = 80
 	/// List of mobs that have been hit by the revival field to avoid double effect
 	var/list/been_hit = list()
 	/// Currently spawned apostles by this mob
 	var/list/apostles = list()
 	/// List of Living People on Breach
 	var/list/heretics = list()
+
+	var/datum/reusable_visual_pool/RVP = new(500)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/FearEffectText(mob/affected_mob, level = 0)
 	level = num2text(clamp(level, 1, 5))
@@ -87,7 +89,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	if(!(status_flags & GODMODE))
 		if(holy_revival_cooldown < world.time)
 			for(var/mob/living/simple_animal/hostile/apostle/scythe/guardian/G in apostles)
-				if(G in view(10, src)) // Only teleport them if they are not in view.
+				if(G in ohearers(10, src)) // Only teleport them if they are not in view.
 					continue
 				var/turf/T = get_step(src, pick(NORTH,SOUTH,WEST,EAST))
 				G.forceMove(T)
@@ -109,6 +111,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	apostles = null
 	QDEL_NULL(particles)
 	particles = null
+	QDEL_NULL(RVP)
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_humans(range_override = null, faction_check = "apostle")
@@ -122,14 +125,19 @@ GLOBAL_LIST_EMPTY(apostles)
 	var/turf/target_c = get_turf(src)
 	var/list/turf_list = list()
 	for(var/i = 1 to range_override)
-		turf_list = spiral_range_turfs(i, target_c) - spiral_range_turfs(i-1, target_c)
+		turf_list = (target_c.y - i > 0 			? getline(locate(max(target_c.x - i, 1), target_c.y - i, target_c.z), locate(min(target_c.x + i - 1, world.maxx), target_c.y - i, target_c.z)) : list()) +\
+					(target_c.x + i <= world.maxx ? getline(locate(target_c.x + i, max(target_c.y - i, 1), target_c.z), locate(target_c.x + i, min(target_c.y + i - 1, world.maxy), target_c.z)) : list()) +\
+					(target_c.y + i <= world.maxy ? getline(locate(min(target_c.x + i, world.maxx), target_c.y + i, target_c.z), locate(max(target_c.x - i + 1, 1), target_c.y + i, target_c.z)) : list()) +\
+					(target_c.x - i > 0 			? getline(locate(target_c.x - i, min(target_c.y + i, world.maxy), target_c.z), locate(target_c.x - i, max(target_c.y - i + 1, 1), target_c.z)) : list())
 		for(var/turf/open/T in turf_list)
-			var/obj/effect/temp_visual/cult/sparks/S = new(T)
 			if(faction_check != "apostle")
-				S.color = "#AAFFAA" // Indicating that it's a good thing
+				RVP.NewSparkles(T, 10, "#AAFFAA") // Indicating that it's a good thing
+			else
+				RVP.NewCultSparks(T, 10)
 			for(var/mob/living/L in T)
-				new /obj/effect/temp_visual/dir_setting/cult/phase(T, L.dir)
+				RVP.NewCultIn(T, L.dir)
 				addtimer(CALLBACK(src, PROC_REF(revive_target), L, i, faction_check))
+			CHECK_TICK
 		SLEEP_CHECK_DEATH(1.5)
 
 /mob/living/simple_animal/hostile/abnormality/white_night/proc/revive_target(mob/living/L, attack_range = 1, faction_check = "apostle")
@@ -349,7 +357,7 @@ GLOBAL_LIST_EMPTY(apostles)
 	scythe_damage = 150 // It's a big AoE unlike base game where it's smaller and as it is you straight up die unless you have 7+ Pale resist. You also have TWO of these AND WN hitting you for ~80 Pale at this range.
 
 /mob/living/simple_animal/hostile/apostle/scythe/guardian/CanStartPatrol()
-	if(locate(/mob/living/simple_animal/hostile/abnormality/white_night) in view(9, src))
+	if(locate(/mob/living/simple_animal/hostile/abnormality/white_night) in ohearers(9, src))
 		return FALSE
 	return ..()
 
@@ -491,7 +499,7 @@ GLOBAL_LIST_EMPTY(apostles)
 
 /mob/living/simple_animal/hostile/apostle/staff/Destroy()
 	QDEL_NULL(beamloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/apostle/staff/death(gibbed)
 	beamloop.stop()

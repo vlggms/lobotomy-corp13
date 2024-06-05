@@ -3808,7 +3808,7 @@
 	pixel_y = 32;
 	req_one_access_txt = "19"
 	},
-/obj/structure/rack,
+/obj/machinery/computer/abnormality_logs,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "CV" = (

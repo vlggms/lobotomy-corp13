@@ -86,7 +86,12 @@
 	alpha = 255
 	QDEL_IN(src, 10 SECONDS)
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/Destroy()
+	if(soundloop)
+		QDEL_NULL(soundloop)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/Initialize()
 	. = ..()

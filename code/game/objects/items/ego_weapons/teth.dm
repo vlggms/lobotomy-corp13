@@ -351,7 +351,7 @@
 		res.traps -= src
 		res = null
 	creator = null
-	. = ..()
+	return ..()
 
 /obj/effect/temp_visual/lanterntrap/proc/burst_check()
 	for(var/mob/living/L in get_turf(src))
@@ -489,7 +489,7 @@
 
 /obj/item/ego_weapon/zauberhorn/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))

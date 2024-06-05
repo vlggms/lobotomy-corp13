@@ -161,6 +161,8 @@
 		return FALSE
 	if(!died.ckey)
 		return FALSE
+	if(died.z != z)
+		return FALSE
 	datum_reference.qliphoth_change(-1) // One death reduces it
 	return TRUE
 
@@ -323,7 +325,7 @@
 		visible_message(span_userdanger("[P] is caught in [src]'s thick fur!"))
 		P.Destroy()
 		return
-	..()
+	return ..()
 
 //on-kill effect
 /obj/effect/halo

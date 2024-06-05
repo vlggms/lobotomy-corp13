@@ -9604,6 +9604,12 @@
 	},
 /turf/open/floor/pod/light,
 /area/facility_hallway/west)
+"UD" = (
+/turf/closed/indestructible/reinforced{
+	desc = "A huge chunk of wing-grade metal used in various L corporation facilities. Effectively impervious to conventional methods of destruction.";
+	name = "facility wall"
+	},
+/area/department_main/extraction)
 "UE" = (
 /obj/effect/turf_decal/siding/brown{
 	color = "#422702";
@@ -42828,7 +42834,7 @@ Zo
 Zo
 Zo
 XV
-Ia
+UD
 gM
 sS
 fE
@@ -43085,7 +43091,7 @@ bO
 bO
 bO
 XV
-Ia
+UD
 gM
 MQ
 sm
@@ -44113,7 +44119,7 @@ bO
 bO
 bO
 Zo
-Ia
+UD
 gM
 MQ
 ye
@@ -44370,7 +44376,7 @@ Zo
 XV
 Zo
 XV
-Ia
+UD
 gM
 bJ
 fE
@@ -65143,9 +65149,9 @@ sR
 sR
 sR
 sR
-sR
-sR
-sR
+bO
+bO
+bO
 sR
 sR
 sR
@@ -65399,12 +65405,12 @@ sR
 sR
 sR
 sR
-sR
-sR
-sR
-sR
-sR
-sR
+bO
+bO
+bO
+bO
+bO
+bO
 sR
 sR
 sR
@@ -65655,13 +65661,13 @@ sR
 sR
 sR
 sR
+bO
+bO
 sR
 sR
-sR
-sR
-sR
-sR
-sR
+bO
+bO
+bO
 sR
 sR
 sR
@@ -65912,12 +65918,12 @@ sR
 sR
 sR
 sR
+bO
+bO
 sR
 sR
-sR
-sR
-sR
-sR
+bO
+bO
 sR
 sR
 sR
@@ -66169,13 +66175,13 @@ sR
 sR
 sR
 sR
+bO
+bO
 sR
 sR
-sR
-sR
-sR
-sR
-sR
+bO
+bO
+bO
 sR
 sR
 sR
@@ -66427,12 +66433,12 @@ sR
 sR
 sR
 sR
-sR
-sR
-sR
-sR
-sR
-sR
+bO
+bO
+bO
+bO
+bO
+bO
 sR
 sR
 sR

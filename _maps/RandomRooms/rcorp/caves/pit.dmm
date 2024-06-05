@@ -7,7 +7,7 @@
 /obj/structure/railing{
 	dir = 1
 	},
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "d" = (
 /obj/structure/railing{
@@ -42,7 +42,7 @@
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "m" = (
 /obj/effect/landmark/abnospawn/easycombat,
@@ -51,7 +51,7 @@
 "o" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing/corner,
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "p" = (
 /obj/structure/railing{
@@ -97,7 +97,7 @@
 /area/city/outskirts)
 "H" = (
 /obj/structure/lattice/catwalk,
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "K" = (
 /turf/open/chasm,
@@ -107,40 +107,40 @@
 /obj/structure/railing{
 	dir = 9
 	},
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "O" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing/corner{
 	dir = 1
 	},
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "Q" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "T" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing,
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "X" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing{
 	dir = 6
 	},
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 "Y" = (
 /obj/structure/lattice/catwalk,
 /obj/structure/railing/corner{
 	dir = 4
 	},
-/turf/open/chasm,
+/turf/open/floor/fakepit,
 /area/city/outskirts)
 
 (1,1,1) = {"

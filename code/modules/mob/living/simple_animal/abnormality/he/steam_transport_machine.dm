@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "steam"
 	icon_living = "steam"
+	core_icon = "steammachine_egg"
 	portrait = "steam_transport_machine"
 	maxHealth = 1600
 	health = 1600
@@ -84,18 +85,29 @@
 
 /mob/living/simple_animal/hostile/abnormality/steam/proc/UpdateStats()
 	src.set_light(3, (gear * 2), "D4FAF37")
-	ChangeResistances(list(
-		RED_DAMAGE = (0.5 - (gear * 0.1)),
-		WHITE_DAMAGE = (1 - (gear * 0.1)),
-		BLACK_DAMAGE = (2 - (gear * 0.1)),
-		PALE_DAMAGE = (1.5 - (gear * 0.1)),
-	))
+	if(SSmaptype.maptype == "limbus_labs")
+		ChangeResistances(list(
+			RED_DAMAGE = (1 - (gear * 0.1)),
+			WHITE_DAMAGE = (1 - (gear * 0.1)),
+			BLACK_DAMAGE = (2 - (gear * 0.1)),
+			PALE_DAMAGE = (1.5 - (gear * 0.1)),
+		))
+		melee_damage_lower = (20 + (4 * gear))
+		melee_damage_upper = (35 + (4 * gear))
+		steam_damage = (5 + (1.5 * gear))
+	else
+		ChangeResistances(list(
+			RED_DAMAGE = (0.5 - (gear * 0.1)),
+			WHITE_DAMAGE = (1 - (gear * 0.1)),
+			BLACK_DAMAGE = (2 - (gear * 0.1)),
+			PALE_DAMAGE = (1.5 - (gear * 0.1)),
+		))
+		melee_damage_lower = (20 + (10 * gear))
+		melee_damage_upper = (35 + (10 * gear))
+		steam_damage = (5 + (3 * gear))
 	var/oldhealth = maxHealth
 	maxHealth = (1600 + (400 * gear))
 	adjustBruteLoss(oldhealth - maxHealth) //Heals 400 health in a gear shift if it's already breached
-	melee_damage_lower = (20 + (10 * gear))
-	melee_damage_upper = (35 + (10 * gear))
-	steam_damage = (5 + (3 * gear))
 	work_damage_amount = (9 + (2 * gear))
 	ranged_cooldown_time = (40 - (5 * gear))
 	start_qliphoth = (max(1,(4 - gear)))

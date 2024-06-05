@@ -29,7 +29,7 @@
 	if(forced)
 		. = adjustHealth(amount * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 	else
-		. = adjustHealth(amount * damage_coeff.burn * CONFIG_GET(number/damage_multiplier), updating_health, forced)
+		. = adjustHealth(amount * damage_coeff.fire * CONFIG_GET(number/damage_multiplier), updating_health, forced)
 
 /mob/living/simple_animal/adjustOxyLoss(amount, updating_health = TRUE, forced = FALSE)
 	if(forced)

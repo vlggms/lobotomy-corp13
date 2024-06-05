@@ -36,10 +36,9 @@
 	var/spawned_effects = list()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Destroy()
-	..()
 	for(var/obj/effect/VFX in spawned_effects)
-		VFX.Destroy()
-	return
+		qdel(VFX)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Initialize(mapload)
 	. = ..()
@@ -56,7 +55,7 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/proc/DeliveryRepress(mob/living/carbon/human/user, work_type, pe, work_time)
-	if(cooldown < world.time)
+	if(cooldown > world.time)
 		to_chat(user, span_warning("You realized you have made a grave mistake as envelopes start flying out of the mailbox towards you."))
 		user.Stun(10 SECONDS)
 		var/letterssave = list()

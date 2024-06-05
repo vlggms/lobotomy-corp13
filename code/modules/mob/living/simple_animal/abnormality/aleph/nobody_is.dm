@@ -260,8 +260,7 @@
 			icon_state = icon_living
 			ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.2))
 			can_act = TRUE
-			SpeedChange(1.5)
-	UpdateSpeed()
+			ChangeMoveToDelayBy(1.5)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
@@ -786,6 +785,7 @@
 	oberon_mode = TRUE
 	name = "Oberon"
 	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
+	T.core_enabled = FALSE
 	T.BreachEffect()
 	T.fused = TRUE
 	T.ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))//fuck you no damaging while they erp

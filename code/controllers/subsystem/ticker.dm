@@ -249,16 +249,12 @@ SUBSYSTEM_DEF(ticker)
 	if(SSmaptype.maptype in SSmaptype.combatmaps)
 		if(!(istype(mode, /datum/game_mode/combat)))
 			mode = new /datum/game_mode/combat
-
-//	Among Us.
-	else if(SSmaptype.maptype == "skeld")
-	//	mode = new /datum/game_mode/traitor
-		toggle_ooc(FALSE) // Turn it off
-		CONFIG_SET(flag/norespawn, 1)
-
 	else
-		if(!istype(mode, /datum/game_mode/management))
-			mode = new /datum/game_mode/management/classic
+		var/choosingmode = pick(/datum/game_mode/management/classic, 
+			//	/datum/game_mode/management/pure, 
+			//	/datum/game_mode/management/branch
+				)
+		mode = new choosingmode
 
 		for(var/obj/structure/filingcabinet/smart/cabinet in GLOB.records_cabinets)
 			cabinet.spawn_records()
@@ -538,13 +534,14 @@ SUBSYSTEM_DEF(ticker)
 	queue_delay = SSticker.queue_delay
 	queued_players = SSticker.queued_players
 
-	switch (current_state)
-		if(GAME_STATE_SETTING_UP)
-			Master.SetRunLevel(RUNLEVEL_SETUP)
-		if(GAME_STATE_PLAYING)
-			Master.SetRunLevel(RUNLEVEL_GAME)
-		if(GAME_STATE_FINISHED)
-			Master.SetRunLevel(RUNLEVEL_POSTGAME)
+	if (Master) //Set Masters run level if it exists
+		switch (current_state)
+			if(GAME_STATE_SETTING_UP)
+				Master.SetRunLevel(RUNLEVEL_SETUP)
+			if(GAME_STATE_PLAYING)
+				Master.SetRunLevel(RUNLEVEL_GAME)
+			if(GAME_STATE_FINISHED)
+				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 /datum/controller/subsystem/ticker/proc/send_news_report()
 	var/news_message
@@ -705,12 +702,3 @@ SUBSYSTEM_DEF(ticker)
 			SEND_SOUND(M.client, end_of_round_sound_ref)
 
 	text2file(login_music, "data/last_round_lobby_music.txt")
-
-/datum/controller/subsystem/ticker/Topic(href, list/href_list)
-	. = ..()
-	if(href_list["cancel_heart"] && usr.client.holder)
-		var/mob/heart_sender = locate(href_list["heart_source"])
-		var/mob/intended_recepient = locate(href_list["heart_target"])
-		log_admin("[usr.ckey] blocked commendation from [heart_sender] ([heart_sender.ckey]) to [intended_recepient] ([intended_recepient.ckey])")
-		message_admins("[usr.ckey] blocked commendation from [heart_sender] ([heart_sender.ckey]) to [intended_recepient] ([intended_recepient.ckey])")
-		hearts[intended_recepient] = null

@@ -47,6 +47,7 @@ For escape damage you will have to get creative and figure out how dangerous it 
 	var/mob/living/simple_animal/hostile/abnormality/abno
 	if(!(abno_type in GLOB.cached_abno_work_rates) || !(abno_type in GLOB.cached_abno_resistances))
 		abno = new abno_type(src)
+		abno.core_enabled = FALSE
 		QDEL_NULL(abno)
 
 	if(isnull(abno_can_breach))

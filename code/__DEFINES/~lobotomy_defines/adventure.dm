@@ -24,6 +24,13 @@
 #define MON_HP_RAND_EASY rand(10,50)
 #define MON_HP_RAND_NORMAL rand(75,100)
 
+/*
+* DEFAULT COIN REWARDS
+* Easy grants 1
+* Normal grants 3
+* Hard grants 5
+* 5 Coins is the cost of 15% chance increase on ability challenges
+*/
 #define MON_DAMAGE_EASY "1d6"
 #define MON_DAMAGE_NORMAL "2d7"
 #define MON_DAMAGE_HARD "2d12"

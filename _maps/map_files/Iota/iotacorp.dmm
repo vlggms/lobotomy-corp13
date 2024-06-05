@@ -15549,6 +15549,9 @@
 	name = "floor"
 	},
 /area/facility_hallway/information)
+"Yc" = (
+/turf/open/space/basic,
+/area/space)
 "Ye" = (
 /obj/effect/turf_decal/siding/thinplating{
 	dir = 1
@@ -69044,9 +69047,9 @@ uf
 uf
 uf
 uf
-uf
-uf
-uf
+Yc
+Yc
+Yc
 uf
 uf
 uf
@@ -69300,12 +69303,12 @@ uf
 uf
 uf
 uf
-uf
-uf
-uf
-uf
-uf
-uf
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
 uf
 uf
 uf
@@ -69556,13 +69559,13 @@ uf
 uf
 uf
 uf
+Yc
+Yc
 uf
 uf
-uf
-uf
-uf
-uf
-uf
+Yc
+Yc
+Yc
 uf
 uf
 uf
@@ -69813,12 +69816,12 @@ uf
 uf
 uf
 uf
+Yc
+Yc
 uf
 uf
-uf
-uf
-uf
-uf
+Yc
+Yc
 uf
 uf
 uf
@@ -70070,13 +70073,13 @@ uf
 uf
 uf
 uf
+Yc
+Yc
 uf
 uf
-uf
-uf
-uf
-uf
-uf
+Yc
+Yc
+Yc
 uf
 uf
 uf
@@ -70328,12 +70331,12 @@ uf
 uf
 uf
 uf
-uf
-uf
-uf
-uf
-uf
-uf
+Yc
+Yc
+Yc
+Yc
+Yc
+Yc
 uf
 uf
 uf

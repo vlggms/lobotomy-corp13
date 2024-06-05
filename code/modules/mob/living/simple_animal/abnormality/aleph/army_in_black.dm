@@ -51,6 +51,7 @@ GLOBAL_LIST_EMPTY(army)
 		/mob/living/simple_animal/hostile/abnormality/khz = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
 	)
+	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	//Unique variables
 	var/death_counter = 0
@@ -232,7 +233,7 @@ GLOBAL_LIST_EMPTY(army)
 	return
 
 /mob/living/simple_animal/hostile/army_enemy/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(Explode)), 120 SECONDS)
 	var/list/depts = shuffle(GLOB.department_centers)
 	var/list/depts_far = list()
@@ -270,7 +271,7 @@ GLOBAL_LIST_EMPTY(army)
 		SetSpeed()//wait for a patrol path. What could possibly go wrong?
 		return
 	var/dist_travelled = LAZYLEN(patrol_path)
-	move_to_delay -= clamp((dist_travelled / 4), 0, 15)//armies that spawn closest to dept centers can actually be suppressed this way, while further ones remain a threat. Math needs tweaking
+	ChangeMoveToDelayBy(-clamp((dist_travelled / 4), 0, 15)) //armies that spawn closest to dept centers can actually be suppressed this way, while further ones remain a threat. Math needs tweaking
 
 /mob/living/simple_animal/hostile/army_enemy/proc/FearEffect()
 	for(var/mob/living/carbon/human/H in view(7, src))
@@ -403,11 +404,11 @@ GLOBAL_LIST_EMPTY(army)
 	var/targetted_army
 
 /obj/effect/pink_beacon/Initialize()
-	..()
+	. = ..()
 	QDEL_IN(src, 130 SECONDS)
 
 /obj/effect/pink_beacon/Crossed(atom/movable/AM)//this atom eventually qdeletes itself, no need to worry about cleanup
-	..()
+	. = ..()
 	var/mob/living/simple_animal/hostile/army_enemy/E = targetted_army
 	if(AM == E)
 		E.Explode()
@@ -423,7 +424,7 @@ GLOBAL_LIST_EMPTY(army)
 	pixel_y = 0
 
 /obj/effect/temp_visual/pink_explosion/Initialize()
-	..()
+	. = ..()
 	animate(src, transform = matrix()*1.8, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/black_explosion
@@ -435,7 +436,7 @@ GLOBAL_LIST_EMPTY(army)
 	pixel_y = 0
 
 /obj/effect/temp_visual/black_explosion/Initialize()
-	..()
+	. = ..()
 	animate(src, transform = matrix()*1.8, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/army_hearts
@@ -445,7 +446,7 @@ GLOBAL_LIST_EMPTY(army)
 	duration = 10
 
 /obj/effect/temp_visual/army_hearts/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/friend_hearts
@@ -455,7 +456,7 @@ GLOBAL_LIST_EMPTY(army)
 	duration = 10
 
 /obj/effect/temp_visual/friend_hearts/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/army_friend
