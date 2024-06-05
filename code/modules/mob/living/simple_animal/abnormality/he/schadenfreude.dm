@@ -40,12 +40,13 @@
 
 	var/seen	//Are you being looked at right now?
 	var/solo_punish	//Is an agent alone on the Z level, but not overall?
+	var/living_players
 
 //Sight Check
 /mob/living/simple_animal/hostile/abnormality/schadenfreude/Life()
 	. = ..()
 	//Make sure there actually are two players on the Z level
-	var/living_players
+	living_players = 0
 	solo_punish = FALSE
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
 		if(H.z == z && H.stat != DEAD)
