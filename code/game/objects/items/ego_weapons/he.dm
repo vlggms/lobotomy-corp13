@@ -1096,7 +1096,7 @@
 
 /obj/effect/portal/warp/Initialize()
 	QDEL_IN(src, 3 SECONDS)
-	..()
+	return ..()
 
 /obj/item/ego_weapon/warp/knife		//knife subtype of the above. knife has to be the subtype because it fits in a belt
 	name = "dimension shredder"
@@ -1436,7 +1436,7 @@
 
 /obj/item/ego_weapon/lifestew/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/lifestew/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
@@ -1516,7 +1516,7 @@
 
 /obj/item/ego_weapon/faelantern/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/faelantern/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))

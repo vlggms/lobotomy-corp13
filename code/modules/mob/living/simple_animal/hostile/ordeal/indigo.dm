@@ -157,7 +157,7 @@
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Initialize(mapload)
-	..()
+	. = ..()
 	var/units_to_add = list(
 		/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1,
 		)

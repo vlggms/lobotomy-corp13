@@ -500,6 +500,7 @@
 		return
 	if(stacks <= 0 && stacks_added < 0)
 		qdel(src)
+		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
 	stacks += stacks_added

@@ -43,7 +43,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/queen_bee/proc/emit_spores()
 	var/turf/target_c = get_turf(src)

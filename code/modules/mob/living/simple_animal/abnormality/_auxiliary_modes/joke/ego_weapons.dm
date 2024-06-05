@@ -46,7 +46,7 @@
 	)
 
 /obj/item/ego_weapon/chaosdunk/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 	addtimer(CALLBACK(src, PROC_REF(ChangeColors)), 5) //Call ourselves every 0.5 seconds to change color
 	set_light(4, 3, "#FFFF00") //Range of 4, brightness of 3 - Same range as a flashlight
@@ -129,7 +129,7 @@
 	var/aoe_damage = 400
 
 /obj/item/ego_weapon/violet_curse/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/violet_curse/attack(mob/living/target, mob/living/user)
@@ -143,7 +143,7 @@
 		inhand_icon_state = "violet_curse_c"
 		update_icon_state()
 
-	if(target.stat == DEAD && !(GODMODE in target.status_flags))
+	if(target.stat == DEAD && !(target.status_flags & GODMODE))
 		target.gib()
 
 /obj/item/ego_weapon/violet_curse/afterattack(atom/A, mob/living/user, proximity_flag, params)
@@ -219,4 +219,57 @@
 							PRUDENCE_ATTRIBUTE = 80,
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
-							)
+	)
+//Sukuna
+/obj/item/ego_weapon/sukuna
+	name = "Sukuna's Cursed Technique"
+	desc = "Ah yes, my asspull technique from the Heian Era."
+	icon_state = "1"
+	icon = 'icons/obj/magic.dmi'
+	force = 230
+	attack_speed = 0.4
+	damtype = PALE_DAMAGE
+	attack_verb_continuous = list("cleaves", "dismantles")
+	attack_verb_simple = list("cleave", "dismantle")
+	hitsound = 'sound/weapons/black_silence/longsword_fin.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 120
+	)
+	var/ranged_cooldown
+	var/ranged_cooldown_time = 0.5 SECONDS
+	var/shrine_cooldown = 30 SECONDS
+
+/obj/item/ego_weapon/sukuna/attack_self(mob/living/carbon/user)
+	to_chat(user,"<span class='notice'>Domain Expansion: Malevolent Shrine.</span>")
+	if(do_after(user, 3 SECONDS, src))
+		if(shrine_cooldown >= world.time)
+			to_chat(user,"<span class='notice'>They're cooked.</span>")
+			return
+		playsound(get_turf(user), "sound/abnormalities/maloventkitchen.ogg", 50, TRUE)
+		new /obj/effect/malevolent_shrine (get_turf(user))
+		shrine_cooldown = world.time + (10 SECONDS)
+
+
+/obj/item/ego_weapon/sukuna/afterattack(atom/A, mob/living/user, proximity_flag, params)
+	if(ranged_cooldown > world.time)
+		return
+	if(!CanUseEgo(user))
+		return
+	var/turf/target_turf = get_turf(A)
+	if(!istype(target_turf))
+		return
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 5))
+		return
+	..()
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(target_turf, 'sound/abnormalities/fastcleave.ogg', 50, TRUE)
+	for(var/turf/open/T in range(target_turf, 0))
+		new /obj/effect/temp_visual/nt_goodbye(T)
+		user.HurtInTurf(T, list(), force, PALE_DAMAGE)
+
+
+
+

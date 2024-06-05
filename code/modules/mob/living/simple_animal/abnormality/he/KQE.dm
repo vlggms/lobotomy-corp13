@@ -260,7 +260,7 @@
 	layer = POINT_LAYER//Sprite should always be visible
 
 /obj/effect/kqe_claw/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/kqe_claw/proc/GrabAttack()

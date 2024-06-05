@@ -9,6 +9,7 @@
 		distant pink light."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "better_memories"
+	core_icon = "memories_egg"
 	portrait = "better_memories"
 	pixel_x = -16
 	base_pixel_x = -16

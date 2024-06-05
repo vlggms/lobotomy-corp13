@@ -15,7 +15,7 @@
 		all_objects[i] = RV
 		++available_count
 		available_objects[available_count] = RV
-		stoplag()
+		CHECK_TICK
 
 /datum/reusable_visual_pool/Destroy()
 	available_objects.Cut()

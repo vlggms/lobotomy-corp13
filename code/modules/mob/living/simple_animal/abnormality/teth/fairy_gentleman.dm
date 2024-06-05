@@ -3,6 +3,7 @@
 	desc = "A very wide humanoid with long arms made of green, dripping slime."
 	icon = 'ModularTegustation/Teguicons/96x64.dmi'
 	icon_state = "fairy_gentleman"
+	core_icon = "fairygentleman_egg"
 	portrait = "fairy_gentleman"
 	maxHealth = 900
 	health = 900

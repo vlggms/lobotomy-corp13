@@ -36,10 +36,9 @@
 	var/spawned_effects = list()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Destroy()
-	..()
 	for(var/obj/effect/VFX in spawned_effects)
-		VFX.Destroy()
-	return
+		qdel(VFX)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Initialize(mapload)
 	. = ..()

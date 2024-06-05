@@ -1364,7 +1364,7 @@
 	var/smash_damage = 45
 
 /mob/living/simple_animal/hostile/ordeal/sin_lust/Initialize()
-	..()
+	. = ..()
 	AddComponent(/datum/component/knockback, 2, FALSE, TRUE)
 
 /mob/living/simple_animal/hostile/ordeal/sin_lust/bullet_act(obj/projectile/P)

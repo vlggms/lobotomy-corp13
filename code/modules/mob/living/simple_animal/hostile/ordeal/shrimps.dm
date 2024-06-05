@@ -49,5 +49,5 @@
 	speak_emote = list("burbles")
 
 /mob/living/simple_animal/hostile/senior_shrimp/ComponentInitialize()
-	..()
+	. = ..()
 	AddComponent(/datum/component/knockback, 3, FALSE, FALSE)

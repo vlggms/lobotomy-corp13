@@ -859,7 +859,7 @@
 	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	icon_state = "wrath_acid"
 	random_icon_states = list("wrath_acid")
-	mergeable_decal = TRUE
+	mergeable_decal = FALSE
 	var/duration = 2 MINUTES
 	var/delling = FALSE
 
@@ -868,11 +868,17 @@
 	START_PROCESSING(SSobj, src)
 	duration += world.time
 
+/obj/effect/decal/cleanable/wrath_acid/Destroy()
+	if(!delling)
+		STOP_PROCESSING(SSobj, src)
+	return ..()
+
 /obj/effect/decal/cleanable/wrath_acid/process(delta_time)
 	if(world.time > duration)
 		Remove()
 
 /obj/effect/decal/cleanable/wrath_acid/proc/Remove()
+	delling = TRUE
 	STOP_PROCESSING(SSobj, src)
 	animate(src, time = (5 SECONDS), alpha = 0)
 	QDEL_IN(src, 5 SECONDS)
@@ -885,6 +891,10 @@
 			sleep(2)
 		if(!step_to(src, get_step(src, direction), 0))
 			break
+	var/turf/T = get_turf(src)
+	for(var/obj/effect/decal/cleanable/wrath_acid/w in T)
+		if(w != src && !QDELETED(w))
+			qdel(w)
 
 /obj/effect/decal/cleanable/wrath_acid/Crossed(atom/movable/AM)
 	. = ..()
@@ -910,7 +920,7 @@
 
 /obj/effect/gibspawner/generic/silent/wrath_acid
 	gibtypes = list(/obj/effect/decal/cleanable/wrath_acid)
-	gibamounts = list(3)
+	gibamounts = list(1)
 
 /obj/effect/gibspawner/generic/silent/wrath_acid/bad
 	gibtypes = list(/obj/effect/decal/cleanable/wrath_acid/bad)

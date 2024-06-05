@@ -24,16 +24,30 @@
 
 /obj/structure/closet/take_contents()
 	. = ..()
-	if(locate(/mob/living) in src.contents)
+	for(var/object as anything in src.contents)
+		if(!istype(object, /mob/living))
+			continue
+		var/mob/living/beast = object
+		if(beast.stat == DEAD)
+			continue
+
 		anchorable = FALSE // dont let them move it
 		set_anchored(TRUE)
 		toggle_breathing(FALSE)
 
 /obj/structure/closet/dump_contents()
-	if(locate(/mob/living) in src.contents)
-		anchorable = TRUE
-		set_anchored(FALSE)
-		toggle_breathing(TRUE)
+	for(var/object as anything in src.contents)
+		if(!istype(object, /mob/living))
+			continue
+		var/mob/living/beast = object
+		var/turf/open/floor/corpse_dirt = get_turf(src)
+		for(var/person as anything in corpse_dirt.possible_hiding_players)
+			if(beast != person)
+				continue
+
+			anchorable = TRUE
+			set_anchored(FALSE)
+			toggle_breathing(TRUE)
 
 	return ..()
 

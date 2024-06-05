@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x48.dmi'
 	icon_state = "generalbee"
 	icon_living = "generalbee"
+	core_icon = "gbee_egg"
 	speak_emote = list("buzzes")
 	pixel_x = -8
 	base_pixel_x = -8

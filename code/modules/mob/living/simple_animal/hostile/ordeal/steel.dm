@@ -28,7 +28,7 @@
 	silk_results = list(/obj/item/stack/sheet/silk/steel_simple = 1)
 
 /mob/living/simple_animal/hostile/ordeal/steel_dawn/Initialize()
-	..()
+	. = ..()
 	attack_sound = "sound/effects/ordeals/steel/gcorp_attack[pick(1,2,3)].ogg"
 	if(!istype(src, /mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon)) //due to being a root of noon
 		icon_living = "gcorp[pick(1,2,3,4)]"
@@ -242,7 +242,7 @@
 	var/can_act = TRUE
 
 /mob/living/simple_animal/hostile/ordeal/steel_dusk/Initialize(mapload)
-	..()
+	. = ..()
 	var/list/units_to_add = list(
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn = 6,
 		/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon = 2,

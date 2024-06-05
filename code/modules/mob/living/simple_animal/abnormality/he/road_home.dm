@@ -145,7 +145,7 @@
 	for(var/mob/living/carbon/human/H in agent_friends)
 		H.remove_status_effect(/datum/status_effect/stay_home)
 	agent_friends = null
-	..()
+	return ..()
 
 ///Flips and gives everyone the stay home status effect.
 /mob/living/simple_animal/hostile/abnormality/road_home/proc/FlipAttack()

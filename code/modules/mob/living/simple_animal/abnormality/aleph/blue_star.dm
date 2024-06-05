@@ -54,7 +54,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/death(gibbed)
 	QDEL_NULL(soundloop)

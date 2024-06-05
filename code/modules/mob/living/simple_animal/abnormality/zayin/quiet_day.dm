@@ -282,4 +282,4 @@
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()

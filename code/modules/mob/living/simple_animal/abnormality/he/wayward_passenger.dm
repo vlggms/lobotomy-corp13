@@ -5,6 +5,7 @@
 	icon_state = "wayward"
 	icon_living = "wayward_breach"
 	icon_dead = "wayward_dead"
+	core_icon = "waywardpass_egg"
 	portrait = "wayward_passenger"
 	del_on_death = FALSE
 	maxHealth = 1200
@@ -281,4 +282,4 @@
 
 /obj/effect/portal/abno_warp/Initialize()
 	QDEL_IN(src, 3 SECONDS)
-	..()
+	return ..()

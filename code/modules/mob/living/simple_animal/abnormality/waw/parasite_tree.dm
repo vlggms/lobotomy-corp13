@@ -163,7 +163,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/parasite_tree/connected_abno
 
 /mob/living/simple_animal/hostile/parasite_tree_sapling/Initialize()
-	..()
+	. = ..()
 	icon_living = "sapling[pick(1,2)]"
 	icon_state = icon_living
 	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/parasite_tree) in GLOB.abnormality_mob_list
