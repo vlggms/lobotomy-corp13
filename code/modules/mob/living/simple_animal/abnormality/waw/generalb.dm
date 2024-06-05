@@ -85,6 +85,8 @@
 	. = ..()
 	var/obj/effect/proc_holder/ability/aimed/artillery_shell/general/shell_ability = new
 	src.AddSpell(shell_ability)
+	var/datum/action/spell_action/ability/item/A = shell_ability.action
+	A.set_item = src //it wants an /obj/item though so its kinda bad but i dont really feel like figuring it out
 	sight_ability = new
 	sight_ability.Grant(src)
 	if(IsCombatMap())

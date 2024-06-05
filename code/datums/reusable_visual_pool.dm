@@ -2,6 +2,7 @@
 	var/list/available_objects
 	var/list/all_objects
 	var/available_count = 0
+	var/being_deleted = FALSE
 
 /datum/reusable_visual_pool/New(size = 20)
 	available_objects = new(size)
@@ -11,6 +12,8 @@
 
 /datum/reusable_visual_pool/proc/InitializeObjects(amount)
 	for(var/i in 1 to amount)
+		if(being_deleted)
+			return
 		var/obj/effect/reusable_visual/RV = new /obj/effect/reusable_visual(src)
 		all_objects[i] = RV
 		++available_count
@@ -18,6 +21,7 @@
 		CHECK_TICK
 
 /datum/reusable_visual_pool/Destroy()
+	being_deleted = TRUE
 	available_objects.Cut()
 	QDEL_LIST(all_objects)
 	return ..()
