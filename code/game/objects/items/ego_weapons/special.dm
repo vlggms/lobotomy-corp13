@@ -170,13 +170,9 @@
 		if (ramping_speed < 20)
 			ramping_speed += 1
 		else
-			ramping_damage += 0.02
+			ramping_damage += 4
 			user.adjustBruteLoss(user.maxHealth*ramping_damage)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
-			user.apply_damage(ramping_damage, damtype, null, user.run_armor_check(null, damtype), spread_damage = TRUE)
-			if(user.stat >= SOFT_CRIT)
-				playsound(loc, 'sound/abnormalities/change/change_end.ogg', 25, 0, -9)
-				user.gib()
 
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
