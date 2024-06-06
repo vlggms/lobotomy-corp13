@@ -33,6 +33,10 @@
 	AddElement(/datum/element/ridable, /datum/component/riding/creature/human)
 	GLOB.human_list += src
 
+	//Crit stuff. Each Fort gets you 0.5 more soft crit health, and 0.5 more hard crit health
+	crit_threshold -= get_attribute_level(src, FORTITUDE_ATTRIBUTE)/2
+	hardcrit_threshold -= get_attribute_level(src, FORTITUDE_ATTRIBUTE)
+
 /mob/living/carbon/human/proc/init_attributes()
 	for(var/type in GLOB.attribute_types)
 		if(ispath(type, /datum/attribute))

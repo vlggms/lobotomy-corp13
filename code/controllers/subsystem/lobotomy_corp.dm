@@ -109,7 +109,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 
 /datum/controller/subsystem/lobotomy_corp/proc/SetGoal()
 	var/player_mod = GLOB.clients.len * 0.15
-	box_goal = clamp(round(5000 * player_mod), 3000, 36000)
+	box_goal = clamp(round(7500 * player_mod), 3000, 36000)
 	return TRUE
 
 /datum/controller/subsystem/lobotomy_corp/proc/InitializeOrdeals()
@@ -256,7 +256,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = AvailableAgentCount()
-	qliphoth_max = (player_count > 1 ? 4 : 3) + player_count + GLOB.Sephirahordealspeed // Some extra help on non solo rounds
+	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5 + GLOB.Sephirahordealspeed) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
