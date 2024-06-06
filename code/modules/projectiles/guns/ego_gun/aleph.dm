@@ -15,6 +15,8 @@
 	vary_fire_sound = TRUE
 	fire_sound_volume = 25
 	autofire = 0.25 SECONDS
+	shotsleft = 333
+	reloadtime = 2.1 SECONDS
 
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,

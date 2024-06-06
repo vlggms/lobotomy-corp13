@@ -97,6 +97,8 @@
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/ego_kcorp
 	fire_delay = 5
+	shotsleft = 12
+	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	fire_sound_volume = 70
 
@@ -110,6 +112,8 @@
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.08 SECONDS
 	fire_delay = 1
+	shotsleft = 40
+	reloadtime = 1.2 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 60,
@@ -124,7 +128,9 @@
 	icon_state = "kgrenade"
 	inhand_icon_state = "kgrenade"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_knade
-	fire_delay = 15
+	fire_delay = 7
+	shotsleft = 6
+	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/gun/general/grenade_launch.ogg'
 	fire_sound_volume = 70
 	attribute_requirements = list(
