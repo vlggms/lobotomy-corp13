@@ -186,7 +186,7 @@
 	for(var/i = 1 to 3)
 		target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 	// Close range gives you more time to dodge
-	var/worldslash_delay = (get_dist(src, target) <= 2) ? (2 SECONDS) : (1 SECOND)
+	var/worldslash_delay = (get_dist(src, target) <= 2) ? (2 SECONDS) : (1 SECONDS)
 	SLEEP_CHECK_DEATH(worldslash_delay)
 	var/list/been_hit = list()
 	var/broken = FALSE
