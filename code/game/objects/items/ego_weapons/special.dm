@@ -158,7 +158,7 @@
 				sleep(2)
 		var/multihit = force * justicemod * force_multiplier
 		if(target in view(reach,user))
-			target.apply_damage(multihit, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
+			target.deal_damage(multihit, damtype)
 			user.do_attack_animation(target)
 			playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 			playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
