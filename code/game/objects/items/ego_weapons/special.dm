@@ -170,7 +170,7 @@
 		if (ramping_speed < 20)
 			ramping_speed += 1
 		else
-			ramping_damage += 4
+			ramping_damage += 0.02
 			user.adjustBruteLoss(user.maxHealth*ramping_damage)
 			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 
