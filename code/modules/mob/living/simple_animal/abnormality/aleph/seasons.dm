@@ -109,7 +109,7 @@
 
 	var/list/modular_damage_coeff = list(
 		"spring" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5),
-		"summer" = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.6, PALE_DAMAGE = 1), //Summer is tanky
+		"summer" = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8), //Summer is tanky
 		"fall" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1.5),
 		"winter" = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
 		)
@@ -121,12 +121,15 @@
 	var/work_timer
 	//Breach Vars
 	var/can_act = TRUE
+	var/can_move = TRUE
 	var/slam_damage = 200
 	var/slam_cooldown
 	var/slam_cooldown_time = 20 SECONDS
 	var/cone_attack_damage = 90
 	var/cone_attack_cooldown
 	var/cone_attack_cooldown_time = 10 SECONDS
+	var/special_attack_cooldown
+	var/special_attack_cooldown_time = 15 SECONDS
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
 	var/pulse_damage = 15
@@ -346,6 +349,8 @@
 	if(!client)
 		if((cone_attack_cooldown <= world.time) && prob(35))
 			return ConeAttack(target)
+		if(special_attack_cooldown <= world.time  && prob(35))
+			return SpecialAttack(target)
 		if((slam_cooldown <= world.time) && prob(35))
 			return Slam()
 	if(ishuman(target))
@@ -367,6 +372,9 @@
 	if(cone_attack_cooldown <= world.time)
 		ConeAttack(target)
 		return
+	if(special_attack_cooldown <= world.time)
+		SpecialAttack(target)
+		return
 	if((slam_cooldown <= world.time))
 		Slam()
 		return
@@ -380,9 +388,19 @@
 		return
 	if((pulse_cooldown <= world.time) && prob(35))
 		return Pulse()
+	if(current_season == "summer")
+		can_move = FALSE
+		for(var/turf/open/O in range(2, src))
+			if(!isturf(O) || isspaceturf(O))
+				continue
+			if(locate(/obj/effect/season_turf/temporary) in O)
+				continue
+			new /obj/effect/season_turf/temporary(O)
+	else
+		can_move = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/seasons/Move()
-	if(!can_act)
+	if(!can_act || !can_move)
 		return FALSE
 	for(var/turf/open/O in range(1, src))
 		if(!isturf(O) || isspaceturf(O))
@@ -511,6 +529,51 @@
 				H.Drain()
 		return TRUE
 	return FALSE
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/SpecialAttack()//AOE attack
+	special_attack_cooldown = world.time + special_attack_cooldown_time
+	can_act = FALSE
+	switch (current_season)
+		if("winter")
+			Winter_Special()
+	SLEEP_CHECK_DEATH(10)
+	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/Winter_Special()
+	var/list/target_list = list()
+	for(var/mob/living/L in livinginrange(10, src))
+		if(L.z != z || (L.status_flags & GODMODE))
+			continue
+		if(faction_check_mob(L, FALSE))
+			continue
+		target_list += L
+	for(var/i = 1 to 10)
+		if(LAZYLEN(target_list))
+			target = pick(target_list)
+		if(!target)
+			return
+		var/turf/T = get_step(get_turf(src), pick(1,2,4,5,6,8,9,10))
+		if(T.density)
+			i -= 1
+			continue
+		var/obj/projectile/winter_spear/P
+		P = new(T)
+		P.starting = T
+		P.firer = src
+		P.fired_from = T
+		P.yo = target.y - T.y
+		P.xo = target.x - T.x
+		P.original = target
+		P.preparePixelProjectile(target, T)
+		addtimer(CALLBACK (P, TYPE_PROC_REF(/obj/projectile, fire)), 30)
+		var/list/hit_line = getline(T, get_turf(target)) //targetting line
+		for(var/turf/TF in hit_line)
+			if(TF.density)
+				break
+			new /obj/effect/temp_visual/cult/sparks(TF)
+	playsound(get_turf(src), 'sound/abnormalities/despairknight/dead.ogg', 50, 0, 2)
+	SLEEP_CHECK_DEATH(30)
+	playsound(get_turf(src), 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
 
 //Weather and such
 /datum/weather/thunderstorm //Spring weather, might want to add thunder strikes or make it a bit more dangerous overall.
