@@ -240,18 +240,7 @@
 	)
 	var/ranged_cooldown
 	var/ranged_cooldown_time = 0.5 SECONDS
-	var/shrine_cooldown = 30 SECONDS
-
-/obj/item/ego_weapon/sukuna/attack_self(mob/living/carbon/user)
-	to_chat(user,"<span class='notice'>Domain Expansion: Malevolent Shrine.</span>")
-	if(do_after(user, 3 SECONDS, src))
-		if(shrine_cooldown >= world.time)
-			to_chat(user,"<span class='notice'>They're cooked.</span>")
-			return
-		playsound(get_turf(user), "sound/abnormalities/maloventkitchen.ogg", 50, TRUE)
-		new /obj/effect/malevolent_shrine (get_turf(user))
-		shrine_cooldown = world.time + (10 SECONDS)
-
+	var/shrine_cooldown = 40 SECONDS
 
 /obj/item/ego_weapon/sukuna/afterattack(atom/A, mob/living/user, proximity_flag, params)
 	if(ranged_cooldown > world.time)
@@ -261,7 +250,7 @@
 	var/turf/target_turf = get_turf(A)
 	if(!istype(target_turf))
 		return
-	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 5))
+	if((get_dist(user, target_turf) < 2) || (get_dist(user, target_turf) > 15))
 		return
 	..()
 	ranged_cooldown = world.time + ranged_cooldown_time
@@ -269,6 +258,54 @@
 	for(var/turf/open/T in range(target_turf, 0))
 		new /obj/effect/temp_visual/nt_goodbye(T)
 		user.HurtInTurf(T, list(), force, PALE_DAMAGE)
+
+/obj/item/ego_weapon/sukuna/attack_self(mob/living/carbon/user)
+	to_chat(user,"<span class='notice'>Domain Expansion: Malevolent Shrine.</span>")
+	if(do_after(user, 4 SECONDS, src))
+		if(shrine_cooldown >= world.time)
+			to_chat(user,"<span class='notice'>You can't do a domain expansion yet.</span>")
+			return
+		var/obj/effect/malevolent_shrine_IFF/THESHRINE = new(get_turf(user))
+		THESHRINE.creator = user
+		shrine_cooldown = world.time + (10 SECONDS)
+
+/obj/effect/malevolent_shrine_IFF/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
+
+/obj/effect/malevolent_shrine_IFF
+	gender = PLURAL
+	name = "Malevolent Shrine"
+	desc = "Woe, death be upon ye."
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "malevolent"
+	anchored = TRUE
+	density = FALSE
+	var/mob/living/carbon/human/creator
+	var/explode_times = 35
+	var/range = -1
+
+/obj/effect/malevolent_shrine_IFF/Initialize()
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(explode)), 0.5 SECONDS)
+
+/obj/effect/malevolent_shrine_IFF/proc/explode() //repurposed code from artillary bees, a delayed attack
+	playsound(get_turf(src), 'sound/abnormalities/strongcleave.mp3', 50, 0, 8)
+	range = clamp(range + 1, 0, 10)
+	var/turf/target_turf = get_turf(src)
+	for(var/turf/T in view(range, target_turf))
+		var/obj/effect/temp_visual/cleavesprite =  new(T)
+		cleavesprite.color = "#df1919"
+		creator.HurtInTurf(T, list(), damage = 500, damage_type = PALE_DAMAGE, def_zone = null, check_faction = TRUE, exact_faction_match = FALSE, hurt_mechs = TRUE, mech_damage = 1000, hurt_hidden = FALSE, hurt_structure = FALSE, break_not_destroy = FALSE, attack_direction = null)
+	explode_times -= 1
+	if(explode_times <= 0)
+		qdel(src)
+		return
+	sleep(0.4 SECONDS)
+	explode()
+
+
+
 
 
 
