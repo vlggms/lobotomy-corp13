@@ -17,7 +17,7 @@
 	var/shrine_cooldown
 	var/shrine_cooldown_time = 60 SECONDS
 	var/worldslash_cooldown
-	var/worldslash_cooldown_time = 90 SECONDS
+	var/worldslash_cooldown_time = 120 SECONDS
 	var/worldslash_damage = 6666
 	var/current_stage = 1
 	ranged = TRUE
@@ -167,9 +167,9 @@
 	if(shrine_cooldown > world.time)
 		return
 	shrine_cooldown = world.time + shrine_cooldown_time
-	say("Domain Expansion: Malevolent Kitchen.")
+	say("Domain Expansion...")
+	say("Malevolent Kitchen.")
 	playsound(get_turf(src), "sound/abnormalities/maloventkitchen.ogg", 75, 0, 3)
-	/mob/living/simple_animal/hostile/abnormality/sukuna
 	can_act = FALSE
 	new /obj/effect/malevolent_shrine(get_turf(src))
 	can_act = TRUE
