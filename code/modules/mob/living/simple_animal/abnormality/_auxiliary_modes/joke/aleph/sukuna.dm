@@ -168,6 +168,7 @@
 		return
 	shrine_cooldown = world.time + shrine_cooldown_time
 	say("Domain Expansion...")
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
 	say("Malevolent Kitchen.")
 	playsound(get_turf(src), "sound/abnormalities/maloventkitchen.ogg", 75, 0, 3)
 	can_act = FALSE
