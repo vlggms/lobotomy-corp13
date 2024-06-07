@@ -253,3 +253,11 @@
 	food_reagents = list (/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/medicine/oculine = 2)
 	tastes = list("creamy peas"= 2, "parsnip" = 1)
 	foodtypes = VEGETABLES
+
+/obj/item/food/soup/crying_soup
+	name = "Crying Soup"
+	desc = "A dish made in honor of a fixer from the Dawn Office, eating it makes you feel empty and sad."
+	icon_state = "crying_soup"
+	food_reagents = list (/datum/reagent/consumable/nutriment = 8, /datum/reagent/consumable/nutriment/vitamin = 5)
+	tastes = list("meat"= 2, "onion" = 1)
+	foodtypes = VEGETABLES | MEAT

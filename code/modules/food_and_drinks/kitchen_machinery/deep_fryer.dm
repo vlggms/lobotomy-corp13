@@ -2,7 +2,9 @@
 #define DEEPFRYER_COOKTIME 60
 #define DEEPFRYER_BURNTIME 120
 
-GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
+GLOBAL_VAR_INIT(deep_fried_everything, FALSE)
+
+GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list( //Blacklisted for sanity purposes
 	/obj/item/reagent_containers/glass,
 	/obj/item/reagent_containers/syringe,
 	/obj/item/reagent_containers/food/condiment,
@@ -27,13 +29,25 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	var/frying_fried //If the object has been fried; used for messages
 	var/frying_burnt //If the object has been burnt
 	var/datum/looping_sound/deep_fryer/fry_loop
-	var/static/list/deepfry_blacklisted_items = typecacheof(list(
+
+	var/static/list/deepfry_blacklisted_items = typecacheof(list( //These must ALWAYS be blacklisted since they are tools
 	/obj/item/screwdriver,
 	/obj/item/crowbar,
 	/obj/item/wrench,
 	/obj/item/wirecutters,
 	/obj/item/multitool,
 	/obj/item/weldingtool))
+
+	var/list/valid_types = list(
+	/obj/item/food,
+	/obj/item/grown,
+	/obj/item/seeds,
+	/obj/item/organ, //It would be cool if huamn organs and bodyparts could eventually be locked behind a trait
+	/obj/item/bodypart,
+	/obj/item/toy/plush, //A valid execution method
+	/obj/item/clothing/mask/facehugger/bongy, //Deep fried bongy!
+	/mob/living, //If it'll cry, it'll fry
+	)
 
 /obj/machinery/deepfryer/Initialize()
 	. = ..()
@@ -80,6 +94,9 @@ GLOBAL_LIST_INIT(oilfry_blacklisted_items, typecacheof(list(
 	else
 		if(is_type_in_typecache(I, deepfry_blacklisted_items) || is_type_in_typecache(I, GLOB.oilfry_blacklisted_items) || HAS_TRAIT(I, TRAIT_NODROP) || (I.item_flags & (ABSTRACT | DROPDEL)))
 			return ..()
+		if(!is_type_in_list(I, valid_types) && !GLOB.deep_fried_everything)
+			to_chat(user, span_alert("This probably wouldn't taste very good."))
+			return
 		else if(!frying && user.transferItemToLoc(I, src))
 			to_chat(user, span_notice("You put [I] into [src]."))
 			frying = new/obj/item/food/deepfryholder(src, I)

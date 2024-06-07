@@ -164,10 +164,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/proc/FairyLure(target)//lure AOE
 	can_act = FALSE
-	lure_cooldown = world.time +lure_cooldown_time
+	lure_cooldown = world.time + lure_cooldown_time
 	playsound(src, 'sound/abnormalities/faelantern/faelantern_giggle.ogg', 100, 0)
 	for(var/mob/living/carbon/human/victim in view(8, src))
-		victim.apply_damage(lure_damage, WHITE_DAMAGE, null, spread_damage = TRUE)
+		victim.apply_damage(lure_damage, WHITE_DAMAGE)
 		if(victim in lured_list || victim.stat >= SOFT_CRIT)
 			continue
 		if(get_attribute_level(victim, TEMPERANCE_ATTRIBUTE) > 40)
@@ -237,7 +237,7 @@
 			if(WEST)
 				R.pixel_x -= 16
 		for(var/mob/living/L in T)
-			L.apply_damage(root_damage, RED_DAMAGE, null, spread_damage = TRUE)
+			L.deal_damage(root_damage, RED_DAMAGE)
 	qdel(src)
 
 //AI controller, FIXME: reduce duplicate code

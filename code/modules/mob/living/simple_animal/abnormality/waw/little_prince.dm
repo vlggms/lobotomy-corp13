@@ -61,7 +61,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Infect(mob/living/carbon/human/user)
 	for (var/i=0, i<5, i++)
-		user.apply_damage(rand(10, 20), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE))
+		user.deal_damage(rand(10, 20), WHITE_DAMAGE)
 		to_chat(user, span_warning("You feel something growing from under your skin..."))
 		if (user.sanity_lost)
 			Hypno(user)

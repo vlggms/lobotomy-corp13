@@ -279,10 +279,10 @@
 	icon_state = icon_aggro
 
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/proc/Finisher(mob/living/target) //This is super easy to avoid
-	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE)) //50% of your health in red damage
+	target.apply_damage(50, PALE_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE) //50% of your health in red damage
 	to_chat(target, span_danger("[src] is trying to cut you in half!"))
 	if(!ishuman(target))
-		target.apply_damage(100, PALE_DAMAGE, null, target.run_armor_check(null, PALE_DAMAGE)) //bit more than usual DPS in pale damage
+		target.deal_damage(100, PALE_DAMAGE) //bit more than usual DPS in pale damage
 		return
 	if(target.health > 0)
 		return

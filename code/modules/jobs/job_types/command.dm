@@ -26,6 +26,7 @@
 
 	exp_requirements = 360
 	exp_type = EXP_TYPE_CREW
+	minimal_player_age = 5
 
 	outfit = /datum/outfit/job/command/extraction
 

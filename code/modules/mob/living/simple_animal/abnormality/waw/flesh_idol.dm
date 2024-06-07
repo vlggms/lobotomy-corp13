@@ -66,7 +66,7 @@
 	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
 	var/damage = pick(damtypes)
 	work_damage_type = damage
-	user.apply_damage(damage_amount, damage, null, user.run_armor_check(null, damage)) // take 5 random damage each time
+	user.deal_damage(damage_amount, damage) // take 5 random damage each time
 	WorkDamageEffect()
 
 //Prevents red work damage effecs from appearing

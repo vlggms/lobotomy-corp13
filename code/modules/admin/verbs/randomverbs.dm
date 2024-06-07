@@ -1142,6 +1142,21 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	SSblackbox.record_feedback("nested tally", "admin_core_suppression", 1, list("Initiated Core Suppression", "[SSlobotomy_corp.core_suppression.name]")) //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+///Enables Fun Frying
+/client/proc/ConfigFood()
+	set category = "Admin.Fun"
+	set name = "Config Food"
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+	. = (alert(src, "Deep Fried Everything?","Config Food","Yes","No")=="Yes")
+	if(.)
+		GLOB.deep_fried_everything = TRUE
+	else
+		GLOB.deep_fried_everything = FALSE
+	log_admin("[key_name(usr)] set GLOB.deep_fried_everything to [GLOB.deep_fried_everything].")
+	message_admins("[key_name(usr)] set GLOB.deep_fried_everything to [GLOB.deep_fried_everything].")
+	return
+
 /**
  * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense
  *

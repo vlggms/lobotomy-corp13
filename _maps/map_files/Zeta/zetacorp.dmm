@@ -4938,6 +4938,14 @@
 /obj/effect/turf_decal/stripes/red/line,
 /turf/open/floor/facility/dark,
 /area/department_main/control)
+"oS" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/training)
 "oU" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger{
@@ -42588,7 +42596,7 @@ TX
 xL
 FD
 vZ
-vZ
+oS
 vZ
 vZ
 qn
@@ -42845,7 +42853,7 @@ Xp
 xL
 Az
 vZ
-vZ
+oS
 vZ
 vZ
 qn

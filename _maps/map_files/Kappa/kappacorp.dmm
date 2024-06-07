@@ -924,6 +924,14 @@
 	name = "secure flooring"
 	},
 /area/facility_hallway/training)
+"eY" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/central)
 "eZ" = (
 /obj/effect/turf_decal/sand/plating,
 /turf/open/floor/plasteel{
@@ -3571,6 +3579,13 @@
 /obj/machinery/telecomms/processor/preset_one,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
+"ra" = (
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/effect/turf_decal/tile/bar,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/central)
 "re" = (
 /obj/machinery/telecomms/server/presets/command{
 	name = "Command Server"
@@ -37986,7 +38001,7 @@ cI
 ck
 ck
 ck
-Fw
+eY
 nO
 SK
 SK
@@ -38242,8 +38257,8 @@ ck
 UB
 PU
 ck
-oz
-xf
+ck
+Fw
 nO
 SK
 SK
@@ -38499,8 +38514,8 @@ ck
 sp
 aR
 ck
-oz
-aL
+ck
+ra
 nO
 SK
 SK
@@ -38757,7 +38772,7 @@ mi
 Ik
 ck
 oz
-aL
+xf
 nO
 nO
 nO

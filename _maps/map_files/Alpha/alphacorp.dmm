@@ -2744,7 +2744,7 @@
 /obj/effect/turf_decal/tile/brown{
 	dir = 1
 	},
-/obj/structure/table/reinforced,
+/obj/machinery/deepfryer,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
 "uz" = (
