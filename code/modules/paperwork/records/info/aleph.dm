@@ -242,8 +242,9 @@
 	abno_code = "M-03-192"
 	abno_info = list(
 		"This abnormality will rise over the course of 12 minutes",
+		"The closer the sun is to the peak, the better the work rates",
 		"As time goes on, this abnormality boosts your stats significantly.",
 		"Working on the abnormality will cause it to set once more, and cause all of it's boosts to subside.",
-		"Working on this abnormality will increase the qliphoth meter by 3 instead of 1.",
+		"Working on this abnormality will count for 3 works towards a meltdown instead of 1.",
 		"After The Black Sun reaches the zenith, all abnormalities will breach."
 		)

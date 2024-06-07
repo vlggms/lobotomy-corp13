@@ -7,10 +7,10 @@
 	health = 1000
 	threat_level = ALEPH_LEVEL
 	work_chances = list(
-		ABNORMALITY_WORK_INSTINCT = 40,
-		ABNORMALITY_WORK_INSIGHT = 40,
-		ABNORMALITY_WORK_ATTACHMENT = 40,
-		ABNORMALITY_WORK_REPRESSION = 40
+		ABNORMALITY_WORK_INSTINCT = 20,
+		ABNORMALITY_WORK_INSIGHT = 20,
+		ABNORMALITY_WORK_ATTACHMENT = 20,
+		ABNORMALITY_WORK_REPRESSION = 20
 			)
 	work_damage_amount = 16
 	work_damage_type = RED_DAMAGE
@@ -94,6 +94,14 @@
 /mob/living/simple_animal/hostile/abnormality/black_sun/AttemptWork(mob/living/carbon/human/user, work_type, pe, work_time)
 	SSlobotomy_corp.qliphoth_meter +=2
 	return TRUE
+
+/mob/living/simple_animal/hostile/abnormality/black_sun/WorkChance(mob/living/carbon/human/user, chance)
+	var/chance_modifier = 1
+	chance_modifier = stage*10
+
+	return chance + chance_modifier
+
+
 
 /mob/living/simple_animal/hostile/abnormality/black_sun/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	to_chat(GLOB.clients, span_warning("The Black Sun fades from the sky. You are safe for now."))
