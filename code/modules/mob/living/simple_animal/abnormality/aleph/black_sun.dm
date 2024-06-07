@@ -17,7 +17,7 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/arcadia,
-//		/datum/ego_datum/weapon/judge,
+		/datum/ego_datum/weapon/judge,
 		/datum/ego_datum/armor/arcadia
 		)
 //	gift_type = /datum/ego_gifts/arcadia

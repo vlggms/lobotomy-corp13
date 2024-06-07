@@ -217,7 +217,7 @@
 	icon_state = "arcadia"
 	inhand_icon_state = "arcadia"
 	special = "Use in hand to load bullets."
-	ammo_type = /obj/item/ammo_casing/caseless/ego_arcadia
+	ammo_type = /obj/item/ammo_casing/caseless/arcadia
 	weapon_weight = WEAPON_HEAVY
 	spread = 5
 	recoil = 1.5
