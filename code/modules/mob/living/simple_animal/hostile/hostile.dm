@@ -277,23 +277,6 @@
 		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, amount, TRUE)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, add_or_update_variable_movespeed_modifier), /datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, -amount, TRUE), time)
 
-<<<<<<< HEAD
-/mob/living/simple_animal/hostile/attacked_by(obj/item/I, mob/living/user)
-	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client && user)
-		FindTarget(list(user), 1)
-	return ..()
-
-/mob/living/simple_animal/hostile/bullet_act(obj/projectile/P)
-	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client)
-		if(P.firer && get_dist(src, P.firer) <= aggro_vision_range)
-			FindTarget(list(P.firer), 1)
-		Goto(P.starting, move_to_delay, 3)
-
-	. = ..()
-	DamageEffect(P.damage_type)
-
-=======
->>>>>>> c6b43a2ac88 (removed duplicate procs)
 /*-------------------\
 |Damage Visual Effect|
 \-------------------*/
