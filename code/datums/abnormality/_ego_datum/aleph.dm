@@ -175,6 +175,19 @@
 	item_path = /obj/item/ego_weapon/mockery
 	cost = 100
 
+//Waxing of the Black Sun - Et in Arcadia ego and Judge
+/datum/ego_datum/armor/arcadia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/arcadia
+	cost = 100
+
+/datum/ego_datum/weapon/arcadia
+	item_path = /obj/item/gun/ego_gun/arcadia
+	cost = 100
+
+/datum/ego_datum/weapon/judge
+	item_path = /obj/item/gun/ego_gun/arcadia/judge
+	cost = 100
+
 //Ahab Personal E.G.O - Gasharpoon
 /datum/ego_datum/weapon/gasharpoon
 	item_path = /obj/item/ego_weapon/shield/gasharpoon
