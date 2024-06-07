@@ -21,11 +21,7 @@
 	A.SetItem(src)
 
 /*Armor totals:
-Healing		190
-Support		210
-Ranged		210
-Defensive	230
-Melee		230
+Ability 	230
 No Ability	250
 */
 /* ZAYIN Realizations */
@@ -34,14 +30,14 @@ No Ability	250
 	name = "confessional"
 	desc = "Come my child. Tell me your sins."
 	icon_state = "confessional"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)	//Ranged, 210
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)	//Ranged
 	realized_ability = /obj/effect/proc_holder/ability/aimed/cross_spawn
 
 /obj/item/clothing/suit/armor/ego_gear/realization/prophet
 	name = "prophet"
 	desc = "And they have conquered him by the blood of the Lamb and by the word of their testimony, for they loved not their lives even unto death."
 	icon_state = "prophet"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)	//Unused.
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)	//No ability.
 	flags_inv = HIDEJUMPSUIT|HIDEGLOVES|HIDESHOES
 	hat = /obj/item/clothing/head/ego_hat/prophet_hat
 
@@ -61,7 +57,7 @@ No Ability	250
 	desc = " I’ve found true happiness in cracking open a cold one after a hard day’s work, covered in sea water and sweat. \
 	I’m at the port now but we gotta take off soon to catch some more shrimp. Never know what your future holds, bros."
 	icon_state = "wellcheers"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)	//Support
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)	//Support
 	realized_ability = /obj/effect/proc_holder/ability/wellcheers
 	hat = /obj/item/clothing/head/ego_hat/wellcheers_hat
 
@@ -104,14 +100,14 @@ No Ability	250
 	name = "mouth of god"
 	desc = "And the mouth of god spoke: You will be punished."
 	icon_state = "mouth"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)		//Defensive
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 60)		//Defensive
 	realized_ability = /obj/effect/proc_holder/ability/punishment
 
 /obj/item/clothing/suit/armor/ego_gear/realization/universe
 	name = "one with the universe"
 	desc = "One with all, it all comes back to yourself."
 	icon_state = "universe"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 60)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/universe_song
 	hat = /obj/item/clothing/head/ego_hat/universe_hat
 
@@ -125,7 +121,7 @@ No Ability	250
 	name = "death stare"
 	desc = "Last words are for fools who haven’t said enough."
 	icon_state = "death"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)		//Melee with slow
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//Melee with slow
 	realized_ability = /obj/effect/proc_holder/ability/aimed/gleaming_eyes
 
 /obj/item/clothing/suit/armor/ego_gear/realization/fear
@@ -146,14 +142,14 @@ No Ability	250
 	name = "ember matchlight"
 	desc = "If I must perish, then I'll make you meet the same fate."
 	icon_state = "ember_matchlight"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)		//Melee
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 50, PALE_DAMAGE = 60)		//Melee
 	realized_ability = /obj/effect/proc_holder/ability/fire_explosion
 
 /obj/item/clothing/suit/armor/ego_gear/realization/sakura_bloom
 	name = "sakura bloom"
 	desc = "The forest will never return to its original state once it dies. Cherish the rain."
 	icon_state = "sakura_bloom"
-	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 40)		//Healing
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 50)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/petal_blizzard
 	hat = /obj/item/clothing/head/ego_hat/sakura_hat
 
@@ -169,14 +165,14 @@ No Ability	250
 	name = "grinder MK52"
 	desc = "The blades are not just decorative."
 	icon_state = "grinder"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)		//Melee
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)		//Melee
 	realized_ability = /obj/effect/proc_holder/ability/aimed/helper_dash
 
 /obj/item/clothing/suit/armor/ego_gear/realization/bigiron
 	name = "big iron"
 	desc = "A hefty silk coat with a blue smock."
 	icon_state = "big_iron"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//Ranged
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)		//Ranged
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eulogy
 	name = "solemn eulogy"
@@ -188,7 +184,7 @@ No Ability	250
 	name = "our galaxy"
 	desc = "Walk this night sky with me. The galaxy dotted with numerous hopes. We'll count the stars and never be alone."
 	icon_state = "ourgalaxy"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 30)		//Healing
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 70, PALE_DAMAGE = 60)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/galaxy_gift
 
 /obj/item/clothing/suit/armor/ego_gear/realization/forever
@@ -233,7 +229,7 @@ No Ability	250
 	name = "forever home"
 	desc = "Last of all, road that is lost. I will send you home."
 	icon_state = "home"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 50)		//Support
 	flags_inv = HIDEGLOVES|HIDESHOES
 	realized_ability = /obj/effect/proc_holder/ability/aimed/house_spawn
 
@@ -241,7 +237,7 @@ No Ability	250
 	name = "dimension ripper"
 	desc = "Lost and abandoned, tossed out like trash, having no place left in the City."
 	icon_state = "dimension_ripper"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//Melee
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 50, BLACK_DAMAGE = 60, PALE_DAMAGE = 50)		//Melee
 	realized_ability = /obj/effect/proc_holder/ability/rip_space
 
 /* WAW Realizations */
@@ -257,7 +253,7 @@ No Ability	250
 	name = "quenched with blood"
 	desc = "A suit of armor, forged with tears and quenched in blood. Justice will prevail."
 	icon_state = "quenchedblood"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 80)		//Ranged
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 80)		//Ranged
 	flags_inv = HIDEJUMPSUIT|HIDESHOES|HIDEGLOVES
 	realized_ability = /obj/effect/proc_holder/ability/aimed/despair_swords
 
@@ -265,7 +261,7 @@ No Ability	250
 	name = "love and justice"
 	desc = "If my duty is to defeat and reform evil, can I reform my evil self as well?"
 	icon_state = "lovejustice"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 40)		//Healing
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 50, BLACK_DAMAGE = 70, PALE_DAMAGE = 50)		//Healing
 	flags_inv = HIDEGLOVES
 	realized_ability = /obj/effect/proc_holder/ability/aimed/arcana_slave
 
@@ -295,7 +291,7 @@ No Ability	250
 	name = "eyes of god"
 	desc = "And the eyes of god spoke: You will be saved."
 	icon_state = "eyes"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 80, PALE_DAMAGE = 30)		//Support
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/lamp
 
 /obj/item/clothing/suit/armor/ego_gear/realization/eyes/examine(mob/user)
@@ -347,35 +343,35 @@ No Ability	250
 	name = "capitalism"
 	desc = "While the miser is merely a capitalist gone mad, the capitalist is a rational miser."
 	icon_state = "capitalism"
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)		//Support
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 60, PALE_DAMAGE = 30)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/shrimp
 
 /obj/item/clothing/suit/armor/ego_gear/realization/duality_yang
 	name = "duality of harmony"
 	desc = "When good and evil meet discord and assonance will be quelled."
 	icon_state = "duality_yang"
-	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 40, PALE_DAMAGE = 50)		//Healing
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/tranquility
 
 /obj/item/clothing/suit/armor/ego_gear/realization/duality_yin
 	name = "harmony of duality"
 	desc = "All that isn't shall become all that is."
 	icon_state = "duality_yin"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 80, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/aimed/yin_laser
 
 /obj/item/clothing/suit/armor/ego_gear/realization/repentance
 	name = "repentance"
 	desc = "If you pray hard enough, perhaps god will answer it?"
 	icon_state = "repentance"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 50)		//Healing
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 70)		//Healing
 	realized_ability = /obj/effect/proc_holder/ability/prayer
 
 /obj/item/clothing/suit/armor/ego_gear/realization/nest
 	name = "living nest"
 	desc = "Grow eternally, let our nest reach the horizon!"
 	icon_state = "nest"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 30)		//Support
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/nest
 	var/CanSpawn = FALSE
 
@@ -414,7 +410,7 @@ No Ability	250
 	name = "head of god"
 	desc = "And the head of god spoke: You will be judged."
 	icon_state = "head"
-	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 40, PALE_DAMAGE = 80)		//Support
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 80)		//Support
 	realized_ability = /obj/effect/proc_holder/ability/judgement
 
 /obj/item/clothing/suit/armor/ego_gear/realization/shell
@@ -496,7 +492,7 @@ No Ability	250
 	name = "Scorching Desperation"
 	desc = "Those feelings only become more dull over time."
 	icon_state = "desperation"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 80)
+	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 40, BLACK_DAMAGE = 60, PALE_DAMAGE = 60)
 	realized_ability = /obj/effect/proc_holder/ability/overheat
 
 /obj/item/clothing/suit/armor/ego_gear/realization/gasharpoon

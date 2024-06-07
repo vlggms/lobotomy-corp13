@@ -132,7 +132,7 @@
 					else
 						playsound(get_turf(seg), 'sound/abnormalities/cinderella/horse2.ogg', 100, 0, 40)
 					seg.noise = 1
-				M.apply_damage(80, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				M.deal_damage(80, WHITE_DAMAGE)
 				if(ishuman(M))
 					var/mob/living/carbon/human/C = M
 					if(C.sanity_lost)

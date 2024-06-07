@@ -55,6 +55,7 @@
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
+	SSlobotomy_corp.ordeal_stats += 5
 	SSlobotomy_corp.AddLobPoints(level * 0.5, "Ordeal Reward")
 	if(end_sound)
 		for(var/mob/player in GLOB.player_list)

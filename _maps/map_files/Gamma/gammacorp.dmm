@@ -155,6 +155,14 @@
 /obj/effect/turf_decal/siding/white/corner,
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/information)
+"bl" = (
+/obj/effect/turf_decal/tile/brown,
+/obj/effect/turf_decal/tile/brown{
+	dir = 1
+	},
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/white,
+/area/department_main/training)
 "bn" = (
 /obj/structure/disposalpipe/segment,
 /turf/closed/indestructible/reinforced,
@@ -35076,7 +35084,7 @@ ZQ
 Nv
 xR
 Oh
-uk
+bl
 uk
 uk
 Pm

@@ -198,7 +198,8 @@
 	. = ..()
 	if(isnull(damage_type))
 		return
-	owner.apply_damage(debuff_damage, damage_type, null, owner.run_armor_check(null, damage_type))
+
+	owner.deal_damage(debuff_damage, damage_type)
 
 /atom/movable/screen/alert/status_effect/wellcheers_bad
 	name = "Shrimp Soda"

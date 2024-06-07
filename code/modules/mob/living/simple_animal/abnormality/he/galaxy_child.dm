@@ -106,7 +106,7 @@
 			for(var/mob/living/carbon/human/L in galaxy_friend)
 				if(QDELETED(L))
 					continue
-				L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(damage_amount, BLACK_DAMAGE)
 				L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
 				UnregisterSignal(L, COMSIG_LIVING_DEATH)
 				new /obj/effect/temp_visual/pebblecrack(get_turf(L))
@@ -176,7 +176,7 @@
 		for(var/mob/living/carbon/human/L in galaxy_friend)
 			if(QDELETED(L))
 				continue
-			L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(damage_amount, BLACK_DAMAGE)
 			L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
 			UnregisterSignal(L, COMSIG_LIVING_DEATH)
 			new /obj/effect/temp_visual/pebblecrack(get_turf(L))

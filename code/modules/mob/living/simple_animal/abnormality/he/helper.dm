@@ -168,7 +168,7 @@
 			var/damage = 60
 			if(!ishuman(L))
 				damage = 120
-			L.apply_damage(damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+			L.deal_damage(damage, melee_damage_type)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue

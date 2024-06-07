@@ -306,10 +306,10 @@
 /obj/item/ego_weapon/smile/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
-	..()
-	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))	//Makes up for the lack of damage by automatically killing things under 10% HP
+	. = ..()
+	if((target.health <= target.maxHealth * 0.1 || target.stat == DEAD) && !(target.status_flags & GODMODE))	//Makes up for the lack of damage by automatically killing things under 10% HP
 		target.gib()
-		user.adjustBruteLoss(-user.maxHealth*0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
+		user.adjustBruteLoss(-user.maxHealth * 0.15)	//Heal 15% HP. Moved here from the armor, because that's a nightmare to code
 
 /obj/item/ego_weapon/smile/get_clamped_volume()
 	return 50
@@ -453,7 +453,7 @@
 
 /obj/item/ego_weapon/soulmate/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/soulmate/attack(mob/living/target, mob/living/user)
@@ -550,7 +550,7 @@
 	var/canaoe
 
 /obj/item/ego_weapon/space/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/space/attack_self(mob/living/carbon/user)

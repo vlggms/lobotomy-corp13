@@ -60,7 +60,7 @@
 		if(H.stat >= SOFT_CRIT)
 			continue
 		visible_message("[src] tosses [H] out of the way!")
-		H.apply_damage(bumpdamage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(bumpdamage, RED_DAMAGE)
 
 		var/rand_dir = pick(NORTH, SOUTH, EAST, WEST)
 		var/atom/throw_target = get_edge_target_turf(H, rand_dir)

@@ -65,7 +65,9 @@
 	inhand_icon_state = "soda"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	burst_size = 1
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 12
+	reloadtime = 0.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -121,6 +123,8 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_clerk
 	burst_size = 1
 	fire_delay = 3
+	shotsleft = 10
+	reloadtime = 0.5 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -174,10 +178,10 @@
 	icon_state = "nostalgia"
 	inhand_icon_state = "nostalgia"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_nostalgia
-	fire_delay = 20
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
+	fire_delay = 12
 
 	var/pulse_startup
 	var/pulse_startup_time = 10 SECONDS
@@ -316,7 +320,9 @@
 	inhand_icon_state = "oceanic"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_oceanic
 	burst_size = 1
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 7
+	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70

@@ -58,7 +58,7 @@
 	if(user.health < (user.maxHealth * 0.5))
 		return
 	else
-		user.apply_damage(4, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE))
+		user.deal_damage(4, PALE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Initialize()
 	. = ..()
@@ -113,7 +113,7 @@
 		for(var/mob/living/H in T)
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(fog_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(fog_damage, PALE_DAMAGE)
 
 
 /mob/living/simple_animal/hostile/abnormality/pale_horse/Moved() //more damaging fog when moving
@@ -158,7 +158,7 @@
 		for(var/mob/living/H in F)
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(ash_damage, PALE_DAMAGE, null, H.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(ash_damage, PALE_DAMAGE)
 			if(H.health < 0 && ishuman(H))
 				H.dust()
 	T.dust()
@@ -279,7 +279,7 @@
 	icon_state = "mortis"
 
 /datum/status_effect/mortis/tick()
-	owner.apply_damage(damage, PALE_DAMAGE, null, owner.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage(damage, PALE_DAMAGE)
 	if(owner.health < 0 && ishuman(owner))
 		owner.dust()
 

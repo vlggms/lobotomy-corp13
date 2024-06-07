@@ -84,7 +84,7 @@
 		if(L.stat == DEAD)
 			continue
 		to_chat(L, span_warning("The crying hurts your head..."))
-		L.apply_damage(20, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(20, WHITE_DAMAGE)
 		L.playsound_local(get_turf(L), 'sound/abnormalities/fetus/crying.ogg', 50, FALSE)
 
 	addtimer(CALLBACK(src, PROC_REF(check_players)), 30 SECONDS)

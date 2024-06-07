@@ -178,7 +178,7 @@
 					else
 						playsound(get_turf(seg), 'sound/abnormalities/expresstrain/express_whistle.ogg', 100, 0, 40)
 					seg.noise = 1
-				M.apply_damage(400, BLACK_DAMAGE, null, M.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				M.deal_damage(400, BLACK_DAMAGE)
 				var/atom/throw_target = locate(M)
 				throw_target = locate(M.x, M.y + pick(rand(-8, -5), rand(5, 8)), M.z)
 				if(!M.anchored)

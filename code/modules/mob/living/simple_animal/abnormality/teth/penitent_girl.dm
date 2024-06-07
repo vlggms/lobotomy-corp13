@@ -39,7 +39,7 @@
 	// you are going to cut your own leg off
 	work_damage_type = initial(work_damage_type)
 	if((get_attribute_level(user, TEMPERANCE_ATTRIBUTE) < 40) && (get_attribute_level(user, PRUDENCE_ATTRIBUTE) < 40))
-		user.apply_damage(250, WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)//DIE!
+		user.deal_damage(250, WHITE_DAMAGE) //DIE!
 
 	if(user.sanity_lost)
 		user.apply_status_effect(STATUS_EFFECT_PENITENCE)

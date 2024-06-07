@@ -59,3 +59,15 @@
 	)
 	result = /obj/item/food/salad/citrusdelight
 	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/parasite_salad
+	name = "Parasite Salad"
+	reqs = list(
+		/datum/reagent/consumable/salt = 1,
+		/datum/reagent/consumable/blackpepper = 1,
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/grown/cabbage = 2,
+		/obj/item/food/grown/peas = 2
+	)
+	result = /obj/item/food/salad/parasite_salad
+	subcategory = CAT_SALAD

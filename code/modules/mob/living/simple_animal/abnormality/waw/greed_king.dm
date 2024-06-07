@@ -199,8 +199,7 @@
 				playsound(L, attack_sound, 75, 1)
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 				if(ishuman(L))
-					var/mob/living/carbon/human/H = L
-					H.apply_damage(800, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+					L.deal_damage(800, RED_DAMAGE)
 				else
 					L.adjustRedLoss(80)
 				if(L.stat >= HARD_CRIT)

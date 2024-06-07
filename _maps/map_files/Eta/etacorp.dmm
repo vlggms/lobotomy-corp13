@@ -4820,7 +4820,7 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/structure/kitchenspike,
+/obj/machinery/deepfryer,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "vd" = (
@@ -9674,9 +9674,8 @@
 /obj/effect/turf_decal/tile/bar{
 	dir = 1
 	},
-/obj/structure/table/reinforced{
-	max_integrity = 25
-	},
+/obj/structure/kitchenspike,
+/obj/structure/kitchenspike,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "PO" = (

@@ -125,7 +125,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(song_damage, WHITE_DAMAGE)
 		SLEEP_CHECK_DEATH(3)
 
 	animate(src, pixel_y = 0, time = 0)

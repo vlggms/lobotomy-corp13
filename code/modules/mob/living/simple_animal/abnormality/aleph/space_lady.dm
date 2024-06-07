@@ -22,8 +22,8 @@
 		ABNORMALITY_WORK_ATTACHMENT = list(40, 40, 40, 45, 45),
 		ABNORMALITY_WORK_REPRESSION = list(0, 0, 30, 30, 30),
 	)
-	work_damage_amount = 8	//Half white, half black damage
-	work_damage_type = WHITE_DAMAGE
+	work_damage_amount = 16	//Half white, half black damage
+	work_damage_type = list(WHITE_DAMAGE, BLACK_DAMAGE)
 
 	ego_list = list(
 		/datum/ego_datum/weapon/space,
@@ -100,12 +100,12 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.apply_damage(explosion_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(explosion_damage, BLACK_DAMAGE)
 	SLEEP_CHECK_DEATH(10)	//I kinda want it to be a bit of a delay but not too much
 
 	//White Hole effect
 	for(var/mob/living/carbon/human/L in view(14, src))
-		L.apply_damage(explosion_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(explosion_damage, WHITE_DAMAGE)
 	goonchem_vortex(get_turf(src), 1, 13)
 	can_act = TRUE
 	Teleport()
@@ -207,15 +207,6 @@
 
 	can_act = TRUE
 
-//work stuff
-/mob/living/simple_animal/hostile/abnormality/space_lady/WorktickFailure(mob/living/carbon/human/user)
-	var/list/damtypes = list(WHITE_DAMAGE, BLACK_DAMAGE)
-	for(var/damagetype in damtypes) // take 8 of both damage types every failed tick
-		user.apply_damage(work_damage_amount, damagetype, null, user.run_armor_check(null, damagetype))
-	work_damage_type = pick(damtypes) //Displays either work damage type every tick
-	WorkDamageEffect()
-	return
-
 /mob/living/simple_animal/hostile/abnormality/space_lady/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(get_user_level(user) < 5)
 		datum_reference.qliphoth_change(-1)
@@ -267,7 +258,7 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.apply_damage(100, WHITE_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(100, WHITE_DAMAGE)
 
 
 /obj/projectile/black_hole
@@ -286,7 +277,7 @@
 			continue
 		new /obj/effect/temp_visual/revenant(T)
 		for(var/mob/living/carbon/human/L in T)
-			L.apply_damage(100, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(100, BLACK_DAMAGE)
 
 /obj/projectile/loos_bullet
 	name = "white beam"

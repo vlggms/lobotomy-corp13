@@ -260,7 +260,7 @@
 				shake_camera(src, 2, 3)
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = A
-					H.apply_damage(charge_damage,RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+					H.deal_damage(charge_damage, RED_DAMAGE)
 					if(H.health < 0)
 						H.gib()
 						adjustBruteLoss(-heal_amount)

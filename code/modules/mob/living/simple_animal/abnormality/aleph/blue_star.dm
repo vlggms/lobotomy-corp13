@@ -54,7 +54,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/death(gibbed)
 	QDEL_NULL(soundloop)
@@ -85,7 +85,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue

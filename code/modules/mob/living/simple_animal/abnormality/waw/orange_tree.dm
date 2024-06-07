@@ -45,7 +45,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/orange_tree/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/orange_tree/PostSpawn()
 	..()
@@ -193,7 +193,7 @@
 	duration = 50
 
 /obj/effect/temp_visual/dancing_lights/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = rand(125,200), time = 5)
 	addtimer(CALLBACK(src, PROC_REF(fade_out)), 5)
 

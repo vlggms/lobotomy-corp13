@@ -227,10 +227,10 @@
 
 /obj/item/lc_debug/debugdummyspawner/attack_self(mob/living/carbon/human/user)
 	playsound(get_turf(user), 'sound/items/toysqueak2.ogg', 10, 3, 3)
-	new /mob/living/simple_animal/debugdummy(get_turf(src))
+	new /mob/living/simple_animal/hostile/debugdummy(get_turf(src))
 	qdel(src)
 
-/mob/living/simple_animal/debugdummy
+/mob/living/simple_animal/hostile/debugdummy
 	name = "Test Dummy"
 	desc = "Records damage dealt."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
@@ -245,21 +245,77 @@
 	var/accumulated_damage = 0
 	pet_bonus = "beeps" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 
-/mob/living/simple_animal/debugdummy/Life()
+/mob/living/simple_animal/hostile/debugdummy/Initialize()
 	. = ..()
-	adjustBruteLoss(-(maxHealth))
+	toggle_ai(AI_OFF)
 
-/mob/living/simple_animal/debugdummy/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
-	. = ..()
-	if(!dps_mode)
-		say("Ow! That dealt [damage] [damagetype] damage!")
-		return
-	accumulated_damage += damage
-
-/mob/living/simple_animal/debugdummy/Move()
+/mob/living/simple_animal/hostile/debugdummy/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
 	return FALSE
 
-/mob/living/simple_animal/debugdummy/funpet(mob/petter)
+/mob/living/simple_animal/hostile/debugdummy/adjustBruteLoss(amount, updating_health = TRUE, forced = FALSE)
+	var/damage_dealt
+	if(forced)
+		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
+	else
+		damage_dealt = amount * damage_coeff.brute * CONFIG_GET(number/damage_multiplier)
+	if(!dps_mode)
+		say("Ow! That dealt [damage_dealt] brute damage!")
+	accumulated_damage += damage_dealt
+
+/mob/living/simple_animal/hostile/debugdummy/adjustFireLoss(amount, updating_health = TRUE, forced = FALSE)
+	var/damage_dealt
+	if(forced)
+		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
+	else
+		damage_dealt = amount * damage_coeff.fire * CONFIG_GET(number/damage_multiplier)
+	if(!dps_mode)
+		say("Ow! That dealt [damage_dealt] fire damage!")
+	accumulated_damage += damage_dealt
+
+/mob/living/simple_animal/hostile/debugdummy/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
+	var/damage_dealt
+	if(forced)
+		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
+	else
+		damage_dealt = amount * damage_coeff.red * CONFIG_GET(number/damage_multiplier)
+	if(!dps_mode)
+		say("Ow! That dealt [damage_dealt] red damage!")
+	accumulated_damage += damage_dealt
+
+/mob/living/simple_animal/hostile/debugdummy/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	var/damage_dealt
+	if(forced)
+		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
+	else
+		damage_dealt = amount * damage_coeff.white * CONFIG_GET(number/damage_multiplier)
+	if(!dps_mode)
+		say("Ow! That dealt [damage_dealt] white damage!")
+	accumulated_damage += damage_dealt
+
+/mob/living/simple_animal/hostile/debugdummy/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	var/damage_dealt
+	if(forced)
+		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
+	else
+		damage_dealt = amount * damage_coeff.black * CONFIG_GET(number/damage_multiplier)
+	if(!dps_mode)
+		say("Ow! That dealt [damage_dealt] black damage!")
+	accumulated_damage += damage_dealt
+
+/mob/living/simple_animal/hostile/debugdummy/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	var/damage_dealt
+	if(forced)
+		damage_dealt = amount * CONFIG_GET(number/damage_multiplier)
+	else
+		damage_dealt = amount * damage_coeff.pale * CONFIG_GET(number/damage_multiplier)
+	if(!dps_mode)
+		say("Ow! That dealt [damage_dealt] pale damage!")
+	accumulated_damage += damage_dealt
+
+/mob/living/simple_animal/hostile/debugdummy/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/debugdummy/funpet(mob/petter)
 	switch(tgui_alert(petter, "Would you like to test DPS?", "DPS TESTING MODE", list("Yes", "No thanks"), timeout = 0))
 		if("Yes")
 			var/userinput
@@ -283,7 +339,7 @@
 	dps_mode = TRUE
 	DeepsCheckStart()
 
-/mob/living/simple_animal/debugdummy/proc/DeepsCheckStart()
+/mob/living/simple_animal/hostile/debugdummy/proc/DeepsCheckStart()
 	if(!dps_mode)
 		return
 	if(dps_timer)
@@ -301,7 +357,7 @@
 	dps_timer = addtimer(CALLBACK(src, PROC_REF(DeepsCheck)), interval, TIMER_STOPPABLE)
 	say("Go!")
 
-/mob/living/simple_animal/debugdummy/proc/DeepsCheck()
+/mob/living/simple_animal/hostile/debugdummy/proc/DeepsCheck()
 	if(dps_timer)
 		deltimer(dps_timer)
 		dps_timer = null

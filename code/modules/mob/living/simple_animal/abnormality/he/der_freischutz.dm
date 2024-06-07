@@ -55,8 +55,8 @@
 	var/zoom_amt = 10
 	var/original_sight
 
-/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/New(Target)
-	..()
+/datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Grant(mob/living/L)
+	. = ..()
 	original_sight = owner.sight
 
 /datum/action/innate/abnormality_attack/toggle/der_freischutz_zoom/Activate()

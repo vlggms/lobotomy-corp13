@@ -376,7 +376,7 @@
 	var/vine_cooldown
 
 /obj/item/ego_weapon/stem/Initialize(mob/user)
-	.=..()
+	. = ..()
 	vine_cooldown = world.time
 
 /obj/item/ego_weapon/stem/attack_self(mob/living/user)
@@ -848,7 +848,7 @@
 
 /obj/item/ego_weapon/shield/swan/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/shield/swan/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
@@ -997,11 +997,11 @@
 							)
 
 /obj/item/ego_weapon/shield/pharaoh/pre_attack(atom/A, mob/living/user, params)
-	if(istype(A,/obj/structure/statue/petrified) && CanUseEgo(user))
-		playsound(A, 'sound/effects/break_stone.ogg', rand(10,50), TRUE)
+	if(istype(A, /obj/structure/statue/petrified) && CanUseEgo(user))
+		playsound(A, 'sound/effects/break_stone.ogg', rand(10, 50), TRUE)
 		A.visible_message(span_danger("[A] returns to normal!"), span_userdanger("You break free of the stone!"))
-		A.Destroy()
-		return
+		qdel(A)
+		return TRUE
 	..()
 
 /obj/item/ego_weapon/blind_rage
@@ -1107,8 +1107,8 @@
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 
 /obj/item/ego_weapon/diffraction/attack(mob/living/target, mob/living/user)
-	if((target.health<=target.maxHealth *0.2) && !(GODMODE in target.status_flags))
-		force*=2
+	if((target.health <= target.maxHealth * 0.2) && !(target.status_flags & GODMODE))
+		force *= 2
 	..()
 	force = initial(force)
 
@@ -1679,7 +1679,7 @@
 	successfull_activation = "You release your charge!"
 
 /obj/item/ego_weapon/warring/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/warring/attack(mob/living/target, mob/living/user)
@@ -1748,7 +1748,7 @@
 	var/transformed = FALSE
 
 /obj/item/ego_weapon/hyde/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/hyde/attack_self(mob/living/carbon/human/user)

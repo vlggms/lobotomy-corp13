@@ -78,6 +78,7 @@
 	'icons/UI_Icons/abnormality_portraits/nameless_fetus.png',
 	'icons/UI_Icons/abnormality_portraits/norinori.png',
 	'icons/UI_Icons/abnormality_portraits/nosferatu.png',
+	'icons/UI_Icons/abnormality_portraits/nothing_there.png',
 	'icons/UI_Icons/abnormality_portraits/nihil.png',
 	'icons/UI_Icons/abnormality_portraits/nobody_is.png',
 	'icons/UI_Icons/abnormality_portraits/old_lady.png',
