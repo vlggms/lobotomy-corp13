@@ -1457,9 +1457,9 @@
 	desc = "I have no idea what it is, but it heals you from pale."
 	icon_state = "sukunamask"
 	fortitude_bonus = 15
-	prudence_bonus = 5
+	prudence_bonus = -10
 	temperance_bonus = -20
-	justice_bonus = 10
+	justice_bonus = 100
 	slot = FACE
 
 /datum/ego_gifts/sukuna/Initialize(mob/living/carbon/human/user)

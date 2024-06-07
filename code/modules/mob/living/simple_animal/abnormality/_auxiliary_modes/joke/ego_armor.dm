@@ -62,3 +62,9 @@
 	name = "sukuna's sandals"
 	desc = "A pair of Ryomen Sukuna's sandals."
 	icon_state = "wizard"
+
+/obj/item/clothing/shoes/sandal/heian
+	name = "sukuna's COOLER sandals"
+	desc = "These are the sandals he wore in the Heian Era while stomping out some random kid."
+	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) //they should only spawn from killing suguma, dw
+	icon_state = "wizard"
