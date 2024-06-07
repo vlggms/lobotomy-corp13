@@ -220,6 +220,7 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 	)
+
 //Sukuna
 /obj/item/ego_weapon/sukuna
 	name = "Sukuna's Cursed Technique"
@@ -304,9 +305,48 @@
 	sleep(0.4 SECONDS)
 	explode()
 
+//The wild ride
+/obj/item/ego_weapon/lance/wild_ride
+	name = "wild ride"
+	desc = "I want off this wild ride!"
+	icon_state = "tattered_kingdom" //temporary until someone decides to sprite it
+	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
+	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
+	inhand_x_dimension = 96
+	inhand_y_dimension = 96
+	force = 70
+	reach = 2		//Has 2 Square Reach.
+	attack_speed = 2.0 // really slow
+	damtype = BLACK_DAMAGE
+	attack_verb_continuous = list("pierces", "skews")
+	attack_verb_simple = list("pierce", "skew")
+	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 80,
+							PRUDENCE_ATTRIBUTE = 80,
+							TEMPERANCE_ATTRIBUTE = 80,
+							JUSTICE_ATTRIBUTE = 120
+							)
+	charge_speed_cap = 8 //Charges significantly faster, but teleports back upon hitting something
+	force_per_tile = 4
+	pierce_force_cost = 15
+	var/turf/saved_location = null
 
+/obj/item/ego_weapon/lance/wild_ride/LowerLance(mob/user)
+	. = ..()
+	saved_location = get_turf(src)
 
+/obj/item/ego_weapon/lance/wild_ride/RaiseLance(mob/user)
+	. = ..()
+	saved_location = null
 
+/obj/item/ego_weapon/lance/wild_ride/UserBump(mob/living/carbon/human/user, atom/A)
+	. = ..()
+	LanceInteraction(user)
 
+/obj/item/ego_weapon/lance/wild_ride/proc/LanceInteraction(mob/living/carbon/human/user)
+	if(saved_location)
+		user.forceMove(saved_location)
 
-
+/obj/item/ego_weapon/lance/wild_ride/get_clamped_volume()
+	return 40

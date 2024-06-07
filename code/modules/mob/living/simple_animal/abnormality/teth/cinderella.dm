@@ -56,7 +56,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/cinderella/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
 	if(work_type == ABNORMALITY_WORK_INSIGHT)
-		freshness = freshness + 3
+		freshness = clamp(freshness + 3, 0, 10)
 		if(freshness >= 10)
 			datum_reference.qliphoth_change(-1)
 	if(work_type == ABNORMALITY_WORK_REPRESSION)
@@ -64,7 +64,10 @@
 	update_icon_state()
 
 /mob/living/simple_animal/hostile/abnormality/cinderella/update_icon_state()
-	icon_state = "cinderella_[max(1, ceil(freshness / 3))]"
+	if(!freshness)
+		icon_state = "cinderella_1"
+	else
+		icon_state = "cinderella_[clamp(max(1, ceil(freshness / 3)), 1,3)]" //gets a number from 1-3 from the freshness
 	icon_living = icon_state
 
 //Breach code. Warning: Compliated
