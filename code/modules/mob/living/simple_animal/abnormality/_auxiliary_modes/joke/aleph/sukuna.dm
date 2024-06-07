@@ -240,7 +240,7 @@
 	animate(src, alpha = 10, time = 10 SECONDS)
 	QDEL_IN(src, 0 SECONDS)
 	new /obj/item/ego_weapon/sukuna(get_turf(src))
-	new /obj/item/clothing/shoes/sandal/sukuna(get_turf(src))
+	new /obj/item/clothing/shoes/sandal/heian(get_turf(src))
 	..()
 
 
