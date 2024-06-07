@@ -103,6 +103,16 @@
 	result = /obj/item/food/enchiladas
 	subcategory = CAT_MEAT
 
+/datum/crafting_recipe/food/forsaken_burrito
+	name = "Forsaken Burrito"
+	reqs = list(
+		/obj/item/food/meat/cutlet = 1,
+		/obj/item/food/grown/soybeans = 2,
+		/obj/item/food/tortilla = 1
+	)
+	result = /obj/item/food/forsaken_burrito
+	subcategory = CAT_MEAT
+
 /datum/crafting_recipe/food/stewedsoymeat
 	name = "Stewed soymeat"
 	reqs = list(
