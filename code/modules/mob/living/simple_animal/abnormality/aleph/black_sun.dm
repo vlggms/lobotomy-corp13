@@ -27,14 +27,11 @@
 	var/stage
 	var/nextstage = 1 MINUTES
 	var/time_addition = 2 MINUTES //Goes down 5 seconds every time someone dies.
-	var/modifier = 1
 
 /mob/living/simple_animal/hostile/abnormality/black_sun/Initialize()
 	. = ..()
-	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, .proc/on_mob_death)
+	RegisterSignal(SSdcs, COMSIG_GLOB_MOB_DEATH, PROC_REF(on_mob_death))
 	nextstage = world.time + 1 MINUTES
-	if(length(GLOB.player_list)<=7)
-		modifier = 1.5
 
 /mob/living/simple_animal/hostile/abnormality/black_sun/Life()
 	. = ..()
@@ -52,19 +49,19 @@
 	switch(stage)
 		if(1)
 			to_chat(GLOB.clients,span_notice("You see The Black Sun rise in the east."))
-			nextstage = world.time + 2 MINUTES * modifier
+			nextstage = world.time + 2 MINUTES
 		if(2)
 			to_chat(GLOB.clients,span_danger("The Black Sun clears the horizon, filling you with it's warmth."))
-			nextstage = world.time + 4 MINUTES * modifier
+			nextstage = world.time + 4 MINUTES
 		if(3)
 			to_chat(GLOB.clients,span_userdanger("The Black sun is halfway to it's zenith. Dread fills you. You must hurry."))
-			nextstage = world.time + 4 MINUTES * modifier
+			nextstage = world.time + 4 MINUTES
 		if(4)
 			to_chat(GLOB.clients,span_danger("YOUR TIME IS LIMITED. THE SUN IS NEAR IT'S ZENITH."))
 			SSweather.run_weather(/datum/weather/bloody_water)
 			for(var/mob/living/carbon/human/L in GLOB.player_list)
 				flash_color(L, flash_color = COLOR_RED, flash_time = 150)
-			nextstage = world.time + 2 MINUTES * modifier
+			nextstage = world.time + 2 MINUTES
 		if(5)
 			BreachAll()
 
