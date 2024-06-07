@@ -1459,7 +1459,7 @@
 	fortitude_bonus = 15
 	prudence_bonus = -10
 	temperance_bonus = -20
-	justice_bonus = 100
+	justice_bonus = 15
 	slot = FACE
 
 /datum/ego_gifts/sukuna/Initialize(mob/living/carbon/human/user)
