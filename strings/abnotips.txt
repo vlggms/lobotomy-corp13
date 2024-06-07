@@ -9,7 +9,10 @@ The Silent Orchestra's resistances change every time a new performer shows up.
 Lady Out of Space is immune to both white and black, and deals both white and black damage.
 Any debuffs gained from Staining Rose are cleared after it breaches.
 Breaking Titania's laws will deal massive pale damage to you.
+Til the Last Shot gets very bad, very quickly. Don't let it fester, or you will be wiped out very quickly.
 White Night is not on a timer, nor does it evolve from Plague Doctor.
+God of the Seasons changes it works likes every season. It also changes it's resistances as well as the related EGO.
+Memories from a Better Time will seek out working agents and lower their working stats. Kill it before it can!
 Blue Shepherd will mostly tell you truths when it speaks.
 Do not let Blue Shepherd and Reddened Buddy meet, they get significantly stronger.
 Der Freischutz can only fire in cardinal directions.
