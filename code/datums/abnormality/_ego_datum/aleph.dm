@@ -192,3 +192,12 @@
 /datum/ego_datum/armor/buff_christmas
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/ultimate_christmas
 	cost = 100
+	
+// Waxing of The Black Sun - Et in Arcadia Ego & Judge
+/datum/ego_datum/weapon/arcadia
+	item_path = /obj/item/gun/ego_gun/arcadia
+	cost = 100
+
+/datum/ego_datum/armor/arcadia
+	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/arcadia
+	cost = 100
