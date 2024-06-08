@@ -4,7 +4,7 @@
 	name = "page of small observation"
 	desc = "A page that contains combat with some K-Corp drones"
 	reward_type = "Item"
-	reward_specification = 150
+	reward_specification = /obj/item/ksyringe
 	spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
 	spawn_type = "random"
 	spawn_number = 2
