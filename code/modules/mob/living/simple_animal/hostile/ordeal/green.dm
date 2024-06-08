@@ -333,8 +333,8 @@
 	icon_living = "greenmidnight"
 	icon_dead = "greenmidnight_dead"
 	layer = LYING_MOB_LAYER
-	pixel_x = -96
-	base_pixel_x = -96
+	pixel_x = -64
+	base_pixel_x = -64
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
@@ -344,6 +344,10 @@
 	butcher_results = list(/obj/item/food/meat/slab/robot = 22)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
 	death_sound = 'sound/effects/ordeals/green/midnight_dead.ogg'
+	//Causes entity center to be at the bottom of a 2by3 tile solid.
+	bound_width = 96
+	bound_height = 64
+	step_x = -32
 
 	var/laser_cooldown
 	var/laser_cooldown_time = 20 SECONDS
@@ -421,13 +425,13 @@
 		INVOKE_ASYNC(src, PROC_REF(SetupLaser))
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/OpenShell()
-	animate(left_shell, pixel_x = base_pixel_x - 24, time = 4 SECONDS, easing = QUAD_EASING)
-	animate(right_shell, pixel_x = base_pixel_x + 24, time = 4 SECONDS, easing = QUAD_EASING)
+	animate(left_shell, pixel_x = -96 - 24, time = 4 SECONDS, easing = QUAD_EASING)
+	animate(right_shell, pixel_x = -96 + 24, time = 4 SECONDS, easing = QUAD_EASING)
 	playsound(get_turf(src), 'sound/effects/ordeals/green/midnight_gears.ogg', 50, FALSE, 7)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/CloseShell()
-	animate(left_shell, pixel_x = base_pixel_x, time = 2 SECONDS, easing = QUAD_EASING)
-	animate(right_shell, pixel_x = base_pixel_x, time = 2 SECONDS, easing = QUAD_EASING)
+	animate(left_shell, pixel_x = -96, time = 2 SECONDS, easing = QUAD_EASING)
+	animate(right_shell, pixel_x = -96, time = 2 SECONDS, easing = QUAD_EASING)
 	playsound(get_turf(src), 'sound/effects/ordeals/green/midnight_gears_fast.ogg', 50, FALSE, 7)
 
 /mob/living/simple_animal/hostile/ordeal/green_midnight/proc/SetupLaser()

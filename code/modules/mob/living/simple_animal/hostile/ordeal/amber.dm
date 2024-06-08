@@ -215,13 +215,17 @@
 
 	density = FALSE
 	alpha = 0
-	pixel_x = -96
-	base_pixel_x = -96
+	pixel_x = -64
+	base_pixel_x = -64
 	pixel_y = -16
 	base_pixel_y = -16
 
 	blood_volume = BLOOD_VOLUME_NORMAL
 	death_sound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
+	//Causes entity center to be at the bottom of a 2by3 tile solid.
+	bound_width = 96
+	bound_height = 64
+	step_x = -32
 
 	var/burrowing = FALSE
 	var/burrow_cooldown
