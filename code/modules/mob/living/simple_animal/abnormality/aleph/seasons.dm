@@ -132,7 +132,10 @@
 	var/special_attack_cooldown_time = 15 SECONDS
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 4 SECONDS
+	var/pulse_range = 5
 	var/pulse_damage = 15
+	var/list/summons = list()
+	var/fire_wall_amount = 3
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
@@ -256,6 +259,12 @@
 		cone_attack_damage = initial(cone_attack_damage)
 		slam_damage = initial(slam_damage)
 		pulse_damage = initial(pulse_damage)
+	if(current_season == "summer")
+		can_move = FALSE
+		pulse_range = 10
+	else
+		can_move = TRUE
+		pulse_range = 5
 	update_icon()
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Downgrade()
@@ -349,8 +358,9 @@
 	if(!client)
 		if((cone_attack_cooldown <= world.time) && prob(35))
 			return ConeAttack(target)
-		if(special_attack_cooldown <= world.time  && prob(35))
-			return SpecialAttack(target)
+		if(current_season != "summer")
+			if(special_attack_cooldown <= world.time  && prob(35))
+				return SpecialAttack(target)
 		if((slam_cooldown <= world.time) && prob(35))
 			return Slam()
 	if(ishuman(target))
@@ -372,9 +382,10 @@
 	if(cone_attack_cooldown <= world.time)
 		ConeAttack(target)
 		return
-	if(special_attack_cooldown <= world.time)
-		SpecialAttack(target)
-		return
+	if(current_season != "summer")
+		if(special_attack_cooldown <= world.time)
+			SpecialAttack(target)
+			return
 	if((slam_cooldown <= world.time))
 		Slam()
 		return
@@ -389,15 +400,14 @@
 	if((pulse_cooldown <= world.time) && prob(35))
 		return Pulse()
 	if(current_season == "summer")
-		can_move = FALSE
-		for(var/turf/open/O in range(2, src))
+		for(var/turf/open/O in range(3, src))
 			if(!isturf(O) || isspaceturf(O))
 				continue
 			if(locate(/obj/effect/season_turf/temporary) in O)
 				continue
 			new /obj/effect/season_turf/temporary(O)
-	else
-		can_move = TRUE
+		if(special_attack_cooldown <= world.time)
+			SpecialAttack(target)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/Move()
 	if(!can_act || !can_move)
@@ -417,16 +427,21 @@
 	playsound(get_turf(src), 'sound/abnormalities/seasons/breath_attack.ogg', 40, FALSE, 5)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	var/list/turfs = list()
-	turfs = LineTarget(-40, 15, at)
-	FireLine(turfs)
-	turfs = LineTarget(-20, 15, at)
-	FireLine(turfs)
-	turfs = LineTarget(0, 15, at)
-	FireLine(turfs)
-	turfs = LineTarget(20, 15, at)
-	FireLine(turfs)
-	turfs = LineTarget(40, 15, at)
-	FireLine(turfs)
+	switch (current_season)
+		if("summer")
+			turfs = LineTarget(-40, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(-20, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(0, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(20, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(40, 15, at)
+			FireLine(turfs)
+		if("winter")
+			turfs = LineTarget(0, 20, at)
+			FireLine3x3(turfs)
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	can_act = TRUE
 
@@ -453,6 +468,29 @@
 			to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
 			if(ishuman(L))
 				Finisher(L)
+		SLEEP_CHECK_DEATH(1)
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/FireLine3x3(list/turfs)
+	set waitfor = FALSE
+	var/attacktype = breaching_stats[current_season][5]
+	var/list/hit_list = list()
+	for(var/turf/T in turfs)
+		if(istype(T, /turf/closed))
+			break
+		for(var/turf/T2 in view(1,T))
+			new attacktype(T2)
+			for(var/mob/living/L in T2.contents)
+				if(L in hit_list || istype(L, type))
+					continue
+				hit_list += L
+				L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+				to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
+				if(ishuman(L))
+					Finisher(L)
+		if(current_season == "winter")
+			for(var/turf/T3 in view(2,T))
+				if(!locate(/obj/effect/temp_visual/winter_god) in T3)
+					new/obj/effect/temp_visual/winter_god(T3,faction)
 		SLEEP_CHECK_DEATH(1)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Slam()//AOE attack
@@ -484,8 +522,8 @@
 	pulse_cooldown = world.time + pulse_cooldown_time
 	playsound(get_turf(src), 'sound/abnormalities/seasons/pulse.ogg', 30, FALSE, 3)
 	var/turf/orgin = get_turf(src)
-	var/list/all_turfs = RANGE_TURFS(5, orgin)
-	for(var/i = 0 to 5)
+	var/list/all_turfs = RANGE_TURFS(pulse_range, orgin)
+	for(var/i = 0 to pulse_range)
 		for(var/turf/T in all_turfs)
 			if(get_dist(orgin, T) != i)
 				continue
@@ -536,10 +574,24 @@
 	switch (current_season)
 		if("winter")
 			Winter_Special()
+		if("summer")
+			Summer_Special()
 	SLEEP_CHECK_DEATH(10)
 	can_act = TRUE
 
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/Summer_Special()
+	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
+	var/list/turfs = list()
+	for(var/turf/open/T in view(6, src))
+		if(!locate(/obj/structure/fire_wall in T))
+			turfs += T
+	for(var/i = 1 to fire_wall_amount)
+		var/turf/T2 = pick(turfs)
+		turfs -= T2
+		new/obj/structure/fire_wall(T2)
+
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Winter_Special()
+	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
 	var/list/target_list = list()
 	for(var/mob/living/L in livinginrange(10, src))
 		if(L.z != z || (L.status_flags & GODMODE))
@@ -571,9 +623,8 @@
 			if(TF.density)
 				break
 			new /obj/effect/temp_visual/cult/sparks(TF)
-	playsound(get_turf(src), 'sound/abnormalities/despairknight/dead.ogg', 50, 0, 2)
 	SLEEP_CHECK_DEATH(30)
-	playsound(get_turf(src), 'sound/abnormalities/despairknight/attack.ogg', 50, 0, 4)
+	playsound(get_turf(src), 'sound/abnormalities/seasons/winter_attack.ogg', 50, 0, 4)
 
 //Weather and such
 /datum/weather/thunderstorm //Spring weather, might want to add thunder strikes or make it a bit more dangerous overall.
@@ -956,5 +1007,80 @@
 
 /obj/effect/thunderbolt/seasons/Convert(mob/living/carbon/human/H) //haha, it doesn't actually convert.
 	return
+
+/obj/structure/fire_wall
+	gender = PLURAL
+	name = "fall wall"
+	desc = "A wall of fire."
+	icon = 'icons/effects/fire.dmi'
+	icon_state = "1"
+	anchored = TRUE
+	density = TRUE
+	max_integrity = 10000
+	armor = list(
+		MELEE = 0,
+		BULLET = 0,
+		FIRE = 100,
+		RED_DAMAGE = 100,
+		WHITE_DAMAGE = 190,
+		BLACK_DAMAGE = 100,
+		PALE_DAMAGE = 100,
+	)
+
+/obj/structure/fire_wall/Initialize()
+	. = ..()
+	QDEL_IN(src, (30 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(Fire_Spew)), 5 SECONDS)
+
+/obj/structure/fire_wall/proc/Fire_Spew()
+	set waitfor = FALSE
+	for(var/turf/open/T in view(1, src))
+		new /obj/effect/hotspot(T)
+		for(var/mob/living/M in T.contents)
+			M.adjust_fire_stacks(3)
+			M.IgniteMob()
+	addtimer(CALLBACK(src, PROC_REF(Fire_Spew)), 5 SECONDS)
+
+/obj/effect/temp_visual/winter_god
+	name = "pale mist"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "smoke2"
+	pixel_x = -32
+	base_pixel_x = -32
+	pixel_y = -32
+	base_pixel_y = -32
+	color = COLOR_CYAN
+	duration = 15 SECONDS
+	var/list/faction = list("hostile")
+
+/obj/effect/temp_visual/winter_god/New(loc, ...)
+	. = ..()
+	if(args[2])
+		faction = args[2]
+
+/obj/effect/temp_visual/winter_god/Initialize(mapload)
+	. = ..()
+	addtimer(CALLBACK(src, PROC_REF(Ice_Damage)), 1 SECONDS)
+
+/obj/effect/temp_visual/winter_god/proc/Ice_Damage()
+	addtimer(CALLBACK(src, PROC_REF(Ice_Damage)), 1 SECONDS)
+	for(var/mob/living/L in get_turf(src))
+		if(faction_check(faction, L.faction, FALSE))
+			continue
+		L.apply_damage(5, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			H.become_nearsighted(TRAUMA_TRAIT)
+			addtimer(CALLBACK(src, PROC_REF(Revert),H), 3 SECONDS)
+			if(H.stat >= HARD_CRIT || H.health < 0)
+				if(HAS_TRAIT(H, TRAIT_HUSK))
+					return FALSE
+				var/cube = icon('icons/effects/freeze.dmi', "ice_cube")
+				H.add_overlay(cube)
+				H.adjustBruteLoss(H.maxHealth)
+				H.Drain()
+
+/obj/effect/temp_visual/winter_god/proc/Revert(mob/living/carbon/human/H)
+	H.cure_nearsighted(TRAUMA_TRAIT)
 
 #undef SEASONS_SLAM_COOLDOWN
