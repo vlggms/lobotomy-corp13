@@ -63,14 +63,6 @@
 /obj/machinery/light,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
-"bO" = (
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 8
-	},
-/obj/machinery/text_adventure_console,
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
 "bS" = (
 /obj/machinery/vending/lobotomyuniform{
 	pixel_x = -10
@@ -557,10 +549,6 @@
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/manager)
-"ib" = (
-/obj/machinery/holopad/secure,
-/turf/open/floor/carpet/royalblack,
-/area/facility_hallway/manager)
 "ih" = (
 /obj/structure/rack,
 /obj/item/toy/plush/kod,
@@ -627,6 +615,10 @@
 "jn" = (
 /obj/structure/reagent_dispensers/water_cooler,
 /turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
+"jT" = (
+/obj/machinery/holopad/secure,
+/turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
 "jZ" = (
 /obj/effect/turf_decal/siding/white{
@@ -913,13 +905,6 @@
 	},
 /turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
-"mT" = (
-/obj/effect/turf_decal/siding/wood{
-	dir = 8
-	},
-/obj/machinery/holopad/secure,
-/turf/open/floor/wood,
-/area/facility_hallway/manager)
 "mU" = (
 /obj/structure/curtain/cloth,
 /turf/open/floor/plasteel/white,
@@ -1041,10 +1026,6 @@
 /obj/structure/railing,
 /obj/effect/turf_decal/stripes/line,
 /turf/open/floor/plasteel/dark,
-/area/facility_hallway/manager)
-"pj" = (
-/obj/machinery/holopad/secure,
-/turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
 "pm" = (
 /obj/machinery/door/window/brigdoor/southleft,
@@ -1566,6 +1547,10 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/manager)
+"xb" = (
+/obj/machinery/holopad/secure,
+/turf/open/floor/carpet/orange,
+/area/facility_hallway/manager)
 "xc" = (
 /obj/structure/table,
 /obj/item/paper_bin,
@@ -1722,6 +1707,11 @@
 /obj/structure/table/glass,
 /turf/open/floor/wood,
 /area/department_main/manager)
+"yY" = (
+/obj/structure/table/wood,
+/obj/item/paicard,
+/turf/open/floor/carpet/royalblue,
+/area/facility_hallway/manager)
 "zb" = (
 /turf/open/floor/carpet/orange,
 /area/facility_hallway/manager)
@@ -2058,6 +2048,24 @@
 /obj/item/storage/pill_bottle/dice,
 /turf/open/floor/wood,
 /area/facility_hallway/manager)
+"El" = (
+/obj/structure/table/wood,
+/obj/item/reagent_containers/food/drinks/bottle/champagne{
+	pixel_y = 17
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = -7
+	},
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 7
+	},
+/obj/structure/plaque/static_plaque{
+	desc = "Zerantio, XFirebirdX, Chris Pulsar, Fena";
+	name = "Investor's Plaque";
+	pixel_y = 32
+	},
+/turf/open/floor/facility/dark,
+/area/department_main/manager)
 "En" = (
 /obj/structure/curtain/cloth,
 /obj/effect/turf_decal/siding/wood/end,
@@ -2503,6 +2511,10 @@
 	},
 /turf/open/floor/carpet/red,
 /area/facility_hallway/manager)
+"LT" = (
+/obj/machinery/holopad/secure,
+/turf/open/floor/carpet/royalblack,
+/area/facility_hallway/manager)
 "Mw" = (
 /obj/machinery/door/airlock/public/glass{
 	max_integrity = 250000000;
@@ -2610,11 +2622,6 @@
 /obj/item/kirbyplants/random,
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
-"OQ" = (
-/obj/structure/table/wood,
-/obj/item/paicard,
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
 "OZ" = (
 /obj/machinery/door/airlock/public/glass{
 	name = "Arcade"
@@ -2635,23 +2642,6 @@
 	},
 /turf/open/floor/wood,
 /area/department_main/manager)
-"Pt" = (
-/obj/structure/table/wood,
-/obj/effect/turf_decal/siding/blue{
-	color = "#3234B9";
-	dir = 4
-	},
-/obj/item/clipboard{
-	pixel_x = -7
-	},
-/obj/item/paper_bin{
-	pixel_x = 7
-	},
-/obj/item/pen/fourcolor{
-	pixel_x = 7
-	},
-/turf/open/floor/carpet/royalblue,
-/area/facility_hallway/manager)
 "Pv" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 1
@@ -2823,10 +2813,6 @@
 	},
 /turf/open/floor/carpet/green,
 /area/facility_hallway/manager)
-"Sl" = (
-/obj/machinery/holopad/secure,
-/turf/open/floor/carpet/orange,
-/area/facility_hallway/manager)
 "Sx" = (
 /obj/effect/turf_decal/siding/white{
 	dir = 10
@@ -2886,6 +2872,13 @@
 	dir = 9
 	},
 /turf/open/floor/carpet/black,
+/area/facility_hallway/manager)
+"TA" = (
+/obj/effect/turf_decal/siding/wood{
+	dir = 8
+	},
+/obj/machinery/holopad/secure,
+/turf/open/floor/wood,
 /area/facility_hallway/manager)
 "TK" = (
 /obj/structure/table/wood,
@@ -2998,6 +2991,23 @@
 	},
 /turf/open/floor/facility/dark,
 /area/facility_hallway/manager)
+"Wq" = (
+/obj/structure/table/wood,
+/obj/effect/turf_decal/siding/blue{
+	color = "#3234B9";
+	dir = 4
+	},
+/obj/item/clipboard{
+	pixel_x = -7
+	},
+/obj/item/paper_bin{
+	pixel_x = 7
+	},
+/obj/item/pen/fourcolor{
+	pixel_x = 7
+	},
+/turf/open/floor/carpet/royalblue,
+/area/facility_hallway/manager)
 "Wz" = (
 /obj/machinery/vending/lobotomyarmband{
 	pixel_x = -10
@@ -3013,13 +3023,6 @@
 	},
 /turf/open/floor/plasteel/showroomfloor,
 /area/facility_hallway/manager)
-"WP" = (
-/obj/effect/turf_decal/siding/blue{
-	dir = 9
-	},
-/obj/machinery/holopad/secure,
-/turf/open/floor/carpet/cyan,
-/area/department_main/manager)
 "WS" = (
 /obj/effect/turf_decal/siding/blue{
 	dir = 8
@@ -3035,6 +3038,10 @@
 	},
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
+"WX" = (
+/obj/structure/closet/secure_closet/discipline,
+/turf/open/floor/carpet/red,
+/area/facility_hallway/manager)
 "Xl" = (
 /obj/effect/turf_decal/siding/wood{
 	dir = 7
@@ -3071,6 +3078,13 @@
 /obj/effect/turf_decal/siding/blue{
 	dir = 5
 	},
+/turf/open/floor/carpet/cyan,
+/area/department_main/manager)
+"Xs" = (
+/obj/effect/turf_decal/siding/blue{
+	dir = 9
+	},
+/obj/machinery/holopad/secure,
 /turf/open/floor/carpet/cyan,
 /area/department_main/manager)
 "Xt" = (
@@ -3113,24 +3127,6 @@
 /obj/item/toy/plush/pierre,
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/manager)
-"XP" = (
-/obj/structure/table/wood,
-/obj/item/reagent_containers/food/drinks/bottle/champagne{
-	pixel_y = 17
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = -7
-	},
-/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
-	pixel_x = 7
-	},
-/obj/structure/plaque/static_plaque{
-	desc = "Zerantio, XFirebirdX, Chris Pulsar, Fena";
-	name = "Investor's Plaque";
-	pixel_y = 32
-	},
-/turf/open/floor/facility/dark,
-/area/department_main/manager)
 "XQ" = (
 /obj/structure/chair/wood{
 	dir = 4
@@ -3159,6 +3155,14 @@
 	pixel_y = 32
 	},
 /turf/open/floor/facility/dark,
+/area/facility_hallway/manager)
+"XZ" = (
+/obj/effect/turf_decal/siding/blue{
+	color = "#3234B9";
+	dir = 8
+	},
+/obj/machinery/text_adventure_console,
+/turf/open/floor/carpet/royalblue,
 /area/facility_hallway/manager)
 "Yc" = (
 /obj/structure/chair/comfy/black{
@@ -3227,6 +3231,10 @@
 /area/facility_hallway/manager)
 "YQ" = (
 /turf/closed/indestructible/reinforced,
+/area/facility_hallway/manager)
+"YU" = (
+/obj/structure/filingcabinet/chestdrawer,
+/turf/open/floor/carpet/red,
 /area/facility_hallway/manager)
 "YW" = (
 /obj/effect/turf_decal/siding/wood{
@@ -6847,7 +6855,7 @@ XL
 XL
 XL
 XL
-XL
+YQ
 YQ
 Kl
 JY
@@ -6864,7 +6872,7 @@ jj
 YM
 iO
 iO
-mT
+TA
 gC
 YQ
 Ov
@@ -6949,8 +6957,8 @@ XL
 XL
 XL
 XL
-XL
 YQ
+WX
 iU
 Rn
 rO
@@ -6965,7 +6973,7 @@ HZ
 nz
 wb
 xK
-bO
+XZ
 LA
 Xm
 YQ
@@ -7051,8 +7059,8 @@ XL
 XL
 XL
 XL
-XL
 YQ
+YU
 rO
 rO
 rO
@@ -7067,7 +7075,7 @@ sK
 rH
 wb
 mS
-OQ
+yY
 vP
 wb
 NK
@@ -7169,7 +7177,7 @@ HZ
 nz
 wb
 yP
-Pt
+Wq
 to
 oZ
 YQ
@@ -7352,7 +7360,7 @@ XL
 XL
 XL
 Qf
-XP
+El
 mQ
 tV
 zS
@@ -7664,7 +7672,7 @@ vf
 zV
 Qf
 PN
-WP
+Xs
 WS
 Cg
 Gy
@@ -9706,7 +9714,7 @@ XL
 YQ
 pv
 EQ
-pj
+jT
 Bs
 nz
 IM
@@ -9922,7 +9930,7 @@ pE
 nz
 IM
 Lr
-ib
+LT
 Ks
 fW
 YQ
@@ -10425,7 +10433,7 @@ bS
 Wz
 rw
 Df
-Sl
+xb
 Vl
 zb
 Iw
