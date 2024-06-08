@@ -40,6 +40,8 @@
 /mob/living/simple_animal/hostile/abnormality/titania/Initialize()
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
+		melee_damage_lower = 72
+		melee_damage_upper = 79
 		fairy_spawn_number = 1
 		fairy_spawn_time = 60 SECONDS
 		fairy_spawn_limit = 2
