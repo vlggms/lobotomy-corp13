@@ -1241,6 +1241,14 @@
 	justice_bonus = 4
 	slot = HAT
 
+/datum/ego_gifts/animalism
+	name = "Animalism"
+	icon_state = "animalism"
+	fortitude_bonus = 4
+	temperance_bonus = -2
+	justice_bonus = 6
+	slot = EYE
+
 /**
  * ALEPH EGO Gifts
  */
@@ -1383,6 +1391,13 @@
 	name = "Ultimate Christmas"
 	fortitude_bonus = 25
 	prudence_bonus = -5
+
+/datum/ego_gifts/willing
+	name = "The Flesh Is Willing"
+	icon_state = "willing"
+	fortitude_bonus = 5
+	justice_bonus = 5
+	slot = NECKWEAR
 
 /**
  * Event EGO Gifts
