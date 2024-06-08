@@ -354,7 +354,7 @@ It has now been over four months. Now we get her for real. -Coxswain
 
 /mob/living/simple_animal/hostile/abnormality/red_hood/AttemptWork(mob/living/carbon/human/user, work_type)
 	if(work_type != "Request")
-		return TRUE
+		return ..()
 	if(SSlobotomy_corp.available_box < tiered_request_costs[ALEPH_LEVEL])
 		if(client)
 			to_chat(user, span_notice("Not enough personal PE to make a request."))
