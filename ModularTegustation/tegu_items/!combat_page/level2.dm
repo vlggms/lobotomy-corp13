@@ -25,8 +25,8 @@
 /obj/item/combat_page/ratswarm
 	name = "page of a rat swarm"
 	desc = "A page that contains combat with many rats."
-	reward_type = "PE"
-	reward_specification = 600
+	reward_type = "Item"
+	reward_specification = list(/obj/structure/lootcrate/backstreets, /obj/structure/lootcrate/backstreets, /obj/structure/lootcrate/backstreets)
 	spawn_enemies = list(
 			/mob/living/simple_animal/hostile/humanoid/rat/knife,
 			/mob/living/simple_animal/hostile/humanoid/rat,
@@ -47,3 +47,13 @@
 				/mob/living/simple_animal/hostile/humanoid/fixer/flame)
 	spawn_type = "random"
 	combat_level = 2
+
+//Kcorp drones
+/obj/item/combat_page/drones
+	name = "page of large observation"
+	desc = "A page that contains combat with many K-Corp drones"
+	reward_type = "Item"
+	reward_specification = /obj/item/krevive
+	spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
+	spawn_type = "random"
+	spawn_number = 2
