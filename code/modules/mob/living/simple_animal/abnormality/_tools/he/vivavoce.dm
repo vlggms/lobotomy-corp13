@@ -25,7 +25,7 @@
 		if(prob(50))
 			playsound(user, 'sound/abnormalities/vivavoce/doorknock.ogg', 100, FALSE, -5)
 	else
-		user.physiology.black_mod *= 1.15
+		user.physiology.black_mod *= 1.10
 		if(R)
 			R.add_stacks(1)
 

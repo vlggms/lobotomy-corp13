@@ -3,8 +3,6 @@
 	name = "third fate's loom"
 	desc = "It is surrounded by spools of red thread."
 	icon_state = "loom"
-	var/usage_cooldown
-	var/usage_cooldown_time = 5 SECONDS
 
 	ego_list = list(
 		/datum/ego_datum/weapon/destiny,
@@ -15,38 +13,37 @@
 	. = ..()
 	if(!do_after(user, 10))
 		return
-	if(usage_cooldown > world.time) //just to prevent sfx spam
-		to_chat(user, span_warning("The loom is already spinning!"))
-		return
-	usage_cooldown = world.time + usage_cooldown_time
 
 	var/datum/status_effect/stacking/red_string/S = user.has_status_effect(/datum/status_effect/stacking/red_string)
 	if(!S)
 		to_chat(user, span_userdanger("As you touch the loom, threads are sewn into your flesh."))
 		user.apply_status_effect(STATUS_EFFECT_REDSTRING)
-	else if (S.stacks == 4)
-		to_chat(user, span_warning("You don't need to use this."))
-		return
 	else
-		to_chat(user, span_userdanger("The threads which were once sparse are now reinforced."))
-		to_chat(user, span_userdanger("You feel weaker."))
-		S.add_stacks(4)
-		user.adjust_attribute_level(FORTITUDE_ATTRIBUTE, -15)
-	playsound(src, 'sound/abnormalities/fateloom/garrote_bloody.ogg', 80, TRUE, -3)
+		to_chat(user, span_notice("You touch the loom, and the threads return to it."))
+		user.remove_status_effect(STATUS_EFFECT_REDSTRING)
+		return
+	user.playsound_local(src, 'sound/abnormalities/fateloom/garrote_bloody.ogg', 60, TRUE)
 
 // Status Effect
 /datum/status_effect/stacking/red_string
 	id = "stacking_red_string"
 	status_type = STATUS_EFFECT_UNIQUE
 	duration = -1
+	tick_interval = 120 SECONDS //2 minutes
 	alert_type = null
-	stack_decay = 0
+	stack_decay = -1
 	stacks = 4 //was 3, until I figured out that 0 stacks causes stacking status effects to forcibly qdel
 	max_stacks = 4
 	consumed_on_threshold = FALSE
+	overlay_file = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	overlay_state = "fateloom"
 
 /datum/status_effect/stacking/red_string/on_apply()
 	RegisterSignal(owner, COMSIG_MOB_APPLY_DAMGE, PROC_REF(heal))
+	return ..()
+
+/datum/status_effect/stacking/red_string/on_remove()
+	UnregisterSignal(owner, COMSIG_MOB_APPLY_DAMGE)
 	return ..()
 
 /datum/status_effect/stacking/red_string/proc/heal()
@@ -75,5 +72,17 @@
 		new /obj/effect/gibspawner/generic/silent(get_turf(H))
 		H.regenerate_icons()
 	add_stacks(-1)
+
+/datum/status_effect/stacking/red_string/tick()
+	if(!can_have_status())
+		qdel(src)
+	else
+		stack_decay_effect()
+		add_stacks(-stack_decay)
+
+/datum/status_effect/stacking/red_string/stack_decay_effect()
+	if(stacks < max_stacks)
+		to_chat(owner, span_nicegreen("The threads have been reinforced."))
+		playsound(owner, 'sound/weapons/cablecuff.ogg', 15, TRUE, -2)
 
 #undef STATUS_EFFECT_REDSTRING
