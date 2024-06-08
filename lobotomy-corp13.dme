@@ -4064,6 +4064,7 @@
 #include "ModularTegustation\tegu_items\!combat_page\level1.dm"
 #include "ModularTegustation\tegu_items\!combat_page\level2.dm"
 #include "ModularTegustation\tegu_items\!combat_page\level3.dm"
+#include "ModularTegustation\tegu_items\!combat_page\level4.dm"
 #include "ModularTegustation\tegu_items\associations\!overwrites.dm"
 #include "ModularTegustation\tegu_items\associations\association_beacon.dm"
 #include "ModularTegustation\tegu_items\associations\cityspawners.dm"

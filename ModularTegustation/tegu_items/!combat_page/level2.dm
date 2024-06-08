@@ -3,7 +3,7 @@
 	name = "Page of fried chicken"
 	desc = "A page that contains combat of a fried chicken man."
 	reward_type = "PE"
-	reward_specification = 500
+	reward_specification = 600
 	spawn_enemies = list(/mob/living/simple_animal/hostile/distortion/papa_bongy)
 	spawn_type = "random"
 	combat_level = 2
@@ -13,7 +13,7 @@
 	name = "page of hewn flesh"
 	desc = "A page that contains combat with hewn flesh."
 	reward_type = "PE"
-	reward_specification = 100
+	reward_specification = 600
 	spawn_enemies = list(
 			/mob/living/simple_animal/hostile/lovetown/shambler,
 			/mob/living/simple_animal/hostile/lovetown/slumberer)
