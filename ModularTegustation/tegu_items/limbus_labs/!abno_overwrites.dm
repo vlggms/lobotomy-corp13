@@ -36,3 +36,15 @@
 	. = ..()
 	if(SSmaptype.maptype == "limbus_labs")
 		ChangeResistances(1, 1, 2, 1.5)
+
+/mob/living/simple_animal/hostile/abnormality/titania/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		fairy_spawn_number = 1
+		fairy_spawn_time = 60 SECONDS
+		fairy_spawn_limit = 2
+
+/mob/living/simple_animal/hostile/fairyswarm/Initialize()
+	. = ..()
+	if(SSmaptype.maptype == "limbus_labs")
+		density = TRUE
