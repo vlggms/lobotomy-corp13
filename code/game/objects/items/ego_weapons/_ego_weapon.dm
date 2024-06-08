@@ -67,7 +67,7 @@
 	return TRUE
 
 /obj/item/ego_weapon/attack(mob/living/M, mob/living/user)
-	..()
+	. = ..()
 	if(stuntime)
 		user.Immobilize(stuntime)
 		//Visual stuff to give you better feedback
