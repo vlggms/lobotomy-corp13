@@ -44,7 +44,7 @@
 		melee_damage_upper = 79
 		fairy_spawn_number = 1
 		fairy_spawn_time = 60 SECONDS
-		fairy_spawn_limit = 2
+		fairy_spawn_limit = 5
 
 /mob/living/simple_animal/hostile/fairyswarm/Initialize()
 	. = ..()
