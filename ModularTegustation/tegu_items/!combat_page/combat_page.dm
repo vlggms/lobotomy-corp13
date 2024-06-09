@@ -49,8 +49,9 @@
 
 	switch(spawn_type)
 		if("all")
-			for(var/mob/living/L in spawn_enemies)
+			for(var/mob/living/simple_animal/hostile/L in spawn_enemies)
 				new L(current_spawn)
+				L.can_patrol = TRUE
 		if("random")
 			var/mob/living/L = pick(spawn_enemies)
 			new L(current_spawn)

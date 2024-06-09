@@ -48,7 +48,7 @@
 	reward_specification = /obj/item/krevive
 	spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
 	spawn_type = "random"
-	spawn_number = 2
+	spawn_number = 5
 
 //Fixers
 /obj/item/combat_page/level2/metalfixer
