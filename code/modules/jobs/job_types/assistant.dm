@@ -30,6 +30,11 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	job_abbreviation = "CLK"
 
 	job_attribute_limit = 0
+	alt_titles = list("Control Department Clerk", "Information Department Clerk",
+			"Training Department Clerk", "Safety Department Clerk",
+			"Welfare Department Clerk", "Disciplinary Department Clerk",
+			"Command Department Clerk", "Extraction Department Clerk", "Record Department Clerk")
+	senior_title = "Architecture Department Clerk"
 
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
@@ -74,3 +79,66 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	)
 	GLOB.spawned_clerks += outfit_owner.ckey
 	outfit_owner.equip_to_slot_or_del(new item(outfit_owner),ITEM_SLOT_HANDS, TRUE)
+
+/*
+/datum/job/assistant/agent_support
+	title = "Agent Support Clerk"
+	faction = "Station"
+	total_positions = -1
+	spawn_positions = -1
+	supervisors = "absolutely everyone"
+	selection_color = "#dddddd"
+	access = list(ACCESS_ROBOTICS)			//See /datum/job/assistant/get_access()
+	minimal_access = list(ACCESS_ROBOTICS)	//See /datum/job/assistant/get_access()
+	// Let their be bot maintenance!
+	outfit = /datum/outfit/job/assistant/agent
+	antag_rep = 7 //persistant currency but currently unusable
+	display_order = JOB_DISPLAY_ORDER_CLERK
+
+	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
+
+	allow_bureaucratic_error = FALSE
+//	loadalways = TRUE
+	job_important = "\
+		You are an Agent Support Clerk. \n\
+		You are unable to do work, but are expected to assist agents in any way that you can with tools to heal them.
+	"
+
+	job_abbreviation = "ASC"
+
+	job_attribute_limit = 0
+	alt_titles = list("Safety Department Clerk",
+			"Welfare Department Clerk", "Disciplinary Department Clerk",
+			"Command Department Clerk", "Record Department Clerk")
+	senior_title = "Architecture Department Clerk"
+
+
+/datum/job/assistant/facility_support
+	title = "Facility Support Clerk"
+	faction = "Station"
+	total_positions = -1
+	spawn_positions = -1
+	supervisors = "absolutely everyone"
+	selection_color = "#dddddd"
+	access = list(ACCESS_ROBOTICS)			//See /datum/job/assistant/get_access()
+	minimal_access = list(ACCESS_ROBOTICS)	//See /datum/job/assistant/get_access()
+	// Let their be bot maintenance!
+	outfit = /datum/outfit/job/assistant/facility
+	antag_rep = 7 //persistant currency but currently unusable
+	display_order = JOB_DISPLAY_ORDER_CLERK
+
+	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
+
+	allow_bureaucratic_error = FALSE
+//	loadalways = TRUE
+	job_important = "\
+		You are a Facility Support Clerk. \n\
+		You are unable to do work, but are expected to assist agents in any way that you can with tools to heal them.
+	"
+
+	job_abbreviation = "FSC"
+
+	job_attribute_limit = 0
+	alt_titles = list("Control Department Clerk", "Information Department Clerk",
+			"Training Department Clerk", "Extraction Department Clerk")
+	senior_title = "Architecture Department Clerk"*/

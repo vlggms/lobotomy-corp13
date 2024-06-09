@@ -2,6 +2,7 @@ GLOBAL_LIST_INIT(command_positions, list(
 	"Manager",
 	"Extraction Officer",
 	"Records Officer",
+	"Control Officer",
 	"Training Officer",
 	"Disciplinary Officer",
 	"Sephirah",
