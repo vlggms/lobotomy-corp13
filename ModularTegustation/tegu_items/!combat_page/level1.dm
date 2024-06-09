@@ -1,6 +1,7 @@
+/obj/item/combat_page/level1
 
 //Kcorp drones
-/obj/item/combat_page/drones
+/obj/item/combat_page/level1/drones
 	name = "page of small observation"
 	desc = "A page that contains combat with some K-Corp drones"
 	reward_type = "Item"
@@ -10,7 +11,7 @@
 	spawn_number = 2
 
 //Easy Lovetown
-/obj/item/combat_page/lovetown1
+/obj/item/combat_page/level1/lovetown1
 	name = "page of new flesh"
 	desc = "A page that contains combat with new flesh."
 	reward_type = "PE"
@@ -21,7 +22,7 @@
 	spawn_number = 10
 
 //Rats
-/obj/item/combat_page/rat
+/obj/item/combat_page/level1/rat
 	name = "page of rats"
 	desc = "A page that contains combat with a small amount of rats."
 	reward_type = "Item"
