@@ -8834,15 +8834,12 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
 "Qe" = (
-/obj/structure/bookcase/random{
-	density = 0;
-	pixel_y = 15
-	},
 /obj/effect/turf_decal/siding/brown{
 	color = "#422702";
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/structure/extraction_belt,
 /turf/open/floor/pod,
 /area/department_main/training)
 "Qi" = (

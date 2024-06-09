@@ -16683,6 +16683,17 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/safety)
+"Mq" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/obj/structure/extraction_belt,
+/turf/open/floor/plasteel/sepia{
+	color = "#ccc8c0"
+	},
+/area/department_main/extraction)
 "Mt" = (
 /obj/machinery/regenerator/safety,
 /turf/open/floor/carpet/green,
@@ -55519,7 +55530,7 @@ Tp
 cP
 Df
 zr
-cq
+Mq
 vm
 zS
 xf

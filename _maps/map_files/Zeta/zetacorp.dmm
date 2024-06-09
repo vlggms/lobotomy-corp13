@@ -9141,6 +9141,25 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/control)
+"Be" = (
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
+	},
+/obj/structure/sign/departments/extraction{
+	pixel_x = 32
+	},
+/obj/structure/extraction_belt,
+/turf/open/lava{
+	color = "#006700";
+	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
+	light_power = 0;
+	light_range = 0;
+	name = "Unrefined Enkephalin";
+	slowdown = 0
+	},
+/area/department_main/control)
 "Bf" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -51315,7 +51334,7 @@ hp
 nM
 Xl
 Nl
-SK
+Be
 TS
 uE
 aK

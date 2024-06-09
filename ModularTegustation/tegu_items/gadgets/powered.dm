@@ -392,16 +392,13 @@
 	name = "Prototype Enkephalin Injector"
 	desc = "A tool designed to inject raw enkephalin from our batteries to pacify hostile lifeforms. \
 			However, the development was discontinued after the safety department abused it for... other purposes. \
-			This version only makes the entities even more hostile towards you. Only for clerks"
+			This version only makes the entities even more hostile towards you."
 	icon_state = "e_injector"
 	default_icon = "e_injector"
 	batterycost = 5000
 	var/hit_message= null
 
 /obj/item/powered_gadget/enkephalin_injector/attack(mob/living/T, mob/user)
-	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.service_positions))
-		to_chat(user, span_notice("The Gadget's light flashes red. You aren't a clerk. Check the label before use."))
-		return
 	if(T.status_flags & GODMODE)
 		to_chat(user, span_notice("[T] simply ignores you."))
 		return

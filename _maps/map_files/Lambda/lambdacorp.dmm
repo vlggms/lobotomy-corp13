@@ -10193,6 +10193,17 @@
 	name = "secure flooring"
 	},
 /area/facility_hallway/information)
+"Wd" = (
+/obj/effect/turf_decal/trimline/yellow/filled/line,
+/obj/effect/turf_decal/trimline/yellow/filled/line{
+	dir = 1
+	},
+/obj/structure/sign/departments/extraction{
+	pixel_y = 32
+	},
+/obj/structure/extraction_belt,
+/turf/open/floor/pod/light,
+/area/department_main/command)
 "We" = (
 /obj/machinery/regenerator/safety,
 /turf/open/floor/pod/light,
@@ -44666,7 +44677,7 @@ uO
 MC
 uO
 gx
-Rl
+Wd
 KH
 gr
 sk
