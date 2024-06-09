@@ -1,5 +1,7 @@
+/obj/item/combat_page/level4
+
 //Shrimp Rambo
-/obj/item/combat_page/shrimp_rambo
+/obj/item/combat_page/level4/shrimp_rambo
 	name = "Page of the strongest shrimp"
 	desc = "A page that contains combat with the strongest shrimp."
 	reward_type = "PE"
@@ -9,7 +11,7 @@
 	combat_level = 4
 
 //Bongystrong
-/obj/item/combat_page/hardbongy
+/obj/item/combat_page/level4/hardbongy
 	name = "Page of heavily fried chicken"
 	desc = "A page that contains combat with a very strong fried chicken owner."
 	reward_type = "PE"
