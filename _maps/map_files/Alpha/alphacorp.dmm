@@ -1866,6 +1866,10 @@
 /obj/item/toy/plush/malkuth,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
+"nL" = (
+/obj/machinery/computer/extraction_cargo,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "nP" = (
 /obj/structure/table/wood,
 /obj/effect/decal/cleanable/dirt,
@@ -1887,16 +1891,10 @@
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/east)
 "oc" = (
-/obj/structure/filingcabinet{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
 /obj/structure/sign/departments/extraction{
 	pixel_x = 32
 	},
+/obj/structure/extraction_belt,
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "oi" = (
@@ -5673,10 +5671,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/control)
-"RZ" = (
-/obj/machinery/computer/extraction_cargo,
-/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "Se" = (
 /obj/effect/landmark/start,
@@ -39324,7 +39318,7 @@ Sk
 FV
 GT
 Mi
-Yb
+nL
 PV
 FV
 TE
@@ -42149,7 +42143,7 @@ ZL
 ZL
 ZL
 rg
-RZ
+AU
 AU
 ci
 AU

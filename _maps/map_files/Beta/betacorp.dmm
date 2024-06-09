@@ -3303,6 +3303,10 @@
 /obj/structure/reagent_dispensers/plumbed/fuel,
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
+"qq" = (
+/obj/machinery/computer/extraction_cargo,
+/turf/open/floor/plasteel/dark,
+/area/department_main/control)
 "qu" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/navbeacon/wayfinding/extractiondepartment,
@@ -3365,7 +3369,7 @@
 /turf/open/floor/carpet/stellar,
 /area/department_main/command)
 "qJ" = (
-/obj/machinery/computer/extraction_cargo{
+/obj/machinery/computer/abnormality_logs{
 	dir = 8
 	},
 /turf/open/floor/carpet/royalblack,
@@ -5943,9 +5947,6 @@
 	},
 /turf/open/floor/plasteel,
 /area/facility_hallway/north)
-"Dd" = (
-/turf/closed/indestructible/rock,
-/area/department_main/command)
 "De" = (
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
@@ -6052,6 +6053,7 @@
 	color = "#440000";
 	dir = 1
 	},
+/obj/structure/lootcrate/l_corp,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "DF" = (
@@ -6812,29 +6814,6 @@
 /obj/machinery/navbeacon/wayfinding/trainingdepartment,
 /turf/open/floor/plasteel,
 /area/department_main/training)
-"HA" = (
-/obj/effect/turf_decal/bot,
-/obj/effect/turf_decal/tile{
-	color = "2B2B2B";
-	dir = 1
-	},
-/obj/effect/turf_decal/tile{
-	color = "2B2B2B";
-	dir = 4
-	},
-/obj/effect/turf_decal/tile{
-	color = "2B2B2B"
-	},
-/obj/effect/turf_decal/tile{
-	color = "2B2B2B";
-	dir = 8
-	},
-/obj/machinery/computer/abnormality_logs{
-	dir = 8
-	},
-/obj/machinery/computer/abnormality_logs,
-/turf/open/floor/plasteel/dark,
-/area/department_main/discipline)
 "HB" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -8254,8 +8233,7 @@
 	color = "#440000";
 	dir = 4
 	},
-/obj/structure/table/reinforced,
-/obj/structure/lootcrate/l_corp,
+/obj/structure/extraction_belt,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
 "OD" = (
@@ -34325,7 +34303,7 @@ Dh
 RZ
 mg
 kT
-Vj
+qq
 Sd
 Iu
 cI
@@ -37702,7 +37680,7 @@ fL
 JB
 JB
 rS
-HA
+rS
 sh
 aE
 qu
@@ -38471,7 +38449,7 @@ AI
 JB
 fL
 JB
-JB
+rS
 rS
 rS
 if
@@ -38725,7 +38703,7 @@ EH
 EH
 WT
 AI
-Dd
+AI
 Ox
 pd
 pd

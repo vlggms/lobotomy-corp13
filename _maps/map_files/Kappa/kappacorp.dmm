@@ -889,9 +889,8 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
 "eP" = (
-/obj/machinery/computer/camera_advanced{
-	dir = 8;
-	resistance_flags = 115
+/obj/machinery/computer/extraction_cargo{
+	dir = 8
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
@@ -4157,7 +4156,6 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "tC" = (
-/obj/machinery/text_adventure_console,
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
@@ -7862,12 +7860,10 @@
 	},
 /area/department_main/command)
 "LG" = (
-/obj/machinery/computer/extraction_cargo{
-	pixel_x = 5
-	},
 /obj/effect/turf_decal/siding{
 	color = "#7D6521"
 	},
+/obj/machinery/text_adventure_console,
 /turf/open/floor/facility/dark{
 	color = "#ccc8c0"
 	},
@@ -8834,15 +8830,12 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
 "Qe" = (
-/obj/structure/bookcase/random{
-	density = 0;
-	pixel_y = 15
-	},
 /obj/effect/turf_decal/siding/brown{
 	color = "#422702";
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/structure/extraction_belt,
 /turf/open/floor/pod,
 /area/department_main/training)
 "Qi" = (
