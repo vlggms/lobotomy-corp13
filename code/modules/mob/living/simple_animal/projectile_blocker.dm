@@ -6,7 +6,7 @@
 	status_flags = GODMODE
 	invisibility = INVISIBILITY_ABSTRACT
 	a_intent = INTENT_HARM
-	anchored = TRUE
+	move_resist = 10000
 	stop_automated_movement = TRUE
 	wander = FALSE
 	AIStatus = AI_OFF
