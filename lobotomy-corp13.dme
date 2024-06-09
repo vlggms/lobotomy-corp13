@@ -3997,6 +3997,8 @@
 #include "ModularTegustation\fishing\code\rod_components\fishing_lines.dm"
 #include "ModularTegustation\living\living.dm"
 #include "ModularTegustation\living\carbon\life.dm"
+#include "ModularTegustation\mapping_hell\funky_item.dm"
+#include "ModularTegustation\mapping_hell\SSpersistence_overrides.dm"
 #include "ModularTegustation\primitive_farming\farming_structures.dm"
 #include "ModularTegustation\ssd_indicator\code\mob.dm"
 #include "ModularTegustation\tegu_borg_code\cyborg_upgrades.dm"
