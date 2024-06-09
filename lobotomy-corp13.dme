@@ -1509,6 +1509,7 @@
 #include "code\game\objects\structures\crates_lockers\closets\secure\engineering.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\freezer.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\hydroponics.dm"
+#include "code\game\objects\structures\crates_lockers\closets\secure\lc13.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\medical.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\misc.dm"
 #include "code\game\objects\structures\crates_lockers\closets\secure\personal.dm"

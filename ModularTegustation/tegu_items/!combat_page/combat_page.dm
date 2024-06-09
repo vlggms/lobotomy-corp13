@@ -14,8 +14,15 @@
 	var/spawn_number = 1
 	var/special						//Any special info to add as info
 
+	//DO, RO and EO can all use these. and Training officer I guess
+	var/list/allowedroles = list("Disciplinary Officer", "Extraction Officer", "Records Officer", "Training Officer", "Sephirah")
+
 /obj/item/combat_page/attack_self(mob/living/user)
 	..()
+	if(!LAZYLEN(allowedroles))
+		if(!istype(user) || !(user?.mind?.assigned_role in allowedroles))
+			to_chat(user, span_notice("The page glows red. It is unable to be used by you. Only Departmental officers can use this page."))
+			return
 	Spawn_Reward(user)
 	Spawn_Combat(user)
 	minor_announce("A combat page has been started by [user.name]. Reward type: [reward_type]" , "[name]")
