@@ -49,7 +49,7 @@
 	combat_level = 2
 
 //Kcorp drones
-/obj/item/combat_page/drones
+/obj/item/combat_page/drones2
 	name = "page of large observation"
 	desc = "A page that contains combat with many K-Corp drones"
 	reward_type = "Item"

@@ -16,8 +16,8 @@
 
 /obj/item/combat_page/attack_self(mob/living/user)
 	..()
-	Spawn_Reward()
-	Spawn_Combat()
+	Spawn_Reward(user)
+	Spawn_Combat(user)
 	minor_announce("A combat page has been started by [user.name]. Reward type: [reward_type]" , "[name]")
 	qdel(src)
 
