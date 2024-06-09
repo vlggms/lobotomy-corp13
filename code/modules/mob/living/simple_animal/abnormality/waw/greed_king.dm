@@ -103,9 +103,10 @@
 	. = ..()
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	//Center it on a hallway
-	pixel_y = -8
-	base_pixel_y = -8
-
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	offsets_pixel_y = list("south" = -8, "north" = -8, "west" = -8, "east" = -8)
+	transform = matrix(1.5, MATRIX_SCALE)
+	SetOccupiedTiles(1, 1, 1, 1)
 	startTeleport()	//Let's Spaghettioodle out of here
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport()

@@ -2766,6 +2766,7 @@
 #include "code\modules\mob\living\simple_animal\dc_changes.dm"
 #include "code\modules\mob\living\simple_animal\eldritch_demons.dm"
 #include "code\modules\mob\living\simple_animal\parrot.dm"
+#include "code\modules\mob\living\simple_animal\projectile_blocker.dm"
 #include "code\modules\mob\living\simple_animal\shade.dm"
 #include "code\modules\mob\living\simple_animal\simple_animal.dm"
 #include "code\modules\mob\living\simple_animal\status_procs.dm"

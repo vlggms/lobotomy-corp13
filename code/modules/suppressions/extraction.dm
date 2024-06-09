@@ -50,6 +50,8 @@
 	move_to_delay = 4.5
 	pixel_x = -16
 	base_pixel_x = -16
+	occupied_tiles_up = 1
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
 	blood_volume = BLOOD_VOLUME_NORMAL
 	del_on_death = FALSE
 	footstep_type = FOOTSTEP_MOB_HEAVY

@@ -253,6 +253,8 @@
 			can_act = FALSE
 			pixel_x = -16
 			base_pixel_x = -16
+			offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+			SetOccupiedTiles(up = 1)
 			next_transform = world.time + rand(30 SECONDS, 45 SECONDS)
 		if(2)
 			breach_affected = list() // Too spooky
@@ -644,6 +646,9 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/disguise_as(mob/living/carbon/human/M)
 	if(!istype(M))
 		return
+	SetOccupiedTiles()
+	offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	//UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
 	for(var/turf/open/T in view(2, src))
 		var/obj/effect/temp_visual/flesh/pinkflesh =  new(T)
 		pinkflesh.color = COLOR_PINK
