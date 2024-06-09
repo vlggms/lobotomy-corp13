@@ -167,7 +167,7 @@
 			set_attribute *= 4
 
 	if(user?.mind?.assigned_role in allowedroles)		//only give these if you're the guy that's allowed to have this, it's here so the Rec Agent can use it on interns
-		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
+		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats
 
 	//Set all stats to 0
 	for(var/A in attribute_list)
