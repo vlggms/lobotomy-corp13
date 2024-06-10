@@ -1,10 +1,49 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"cK" = (
+/obj/effect/spawner/lootdrop/food_random,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"cL" = (
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"cT" = (
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"eb" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
 "ej" = (
 /obj/structure/lootcrate/money,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"gY" = (
+/obj/effect/decal/cleanable/plastic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"hi" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/decal/cleanable/glass,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
 "hy" = (
 /obj/machinery/light/floor,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"iV" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 6
+	},
+/obj/effect/decal/cleanable/plastic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"jG" = (
+/obj/machinery/light/broken{
+	dir = 1;
+	pixel_y = 14
+	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "kx" = (
@@ -15,8 +54,34 @@
 /obj/item/workshop_mod/curing/pale,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"pO" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"qZ" = (
+/obj/effect/wall_vent{
+	pixel_y = 26
+	},
+/obj/effect/decal/cleanable/insectguts,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"sm" = (
+/obj/item/clothing/head/beret/black,
+/obj/effect/turf_decal/stripes/line{
+	dir = 9
+	},
+/obj/effect/decal/cleanable/plastic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
 "vv" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon,
+/obj/effect/spawner/mobspawner/steel_noon{
+	max_spawns = 1;
+	radius = 2
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"yh" = (
+/obj/effect/decal/cleanable/wrapping,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "An" = (
@@ -25,6 +90,10 @@
 "BL" = (
 /obj/structure/rack,
 /obj/structure/lootcrate/money,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Dh" = (
+/obj/item/broken_bottle,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Dt" = (
@@ -36,19 +105,49 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "EQ" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying,
+/obj/effect/spawner/mobspawner/steel_noon_fly,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Gl" = (
 /obj/effect/gibspawner/generic,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"GZ" = (
+/obj/effect/spawner/lootdrop/medical_random,
+/obj/effect/decal/cleanable/cobweb,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Ho" = (
+/obj/effect/turf_decal/loading_area{
+	dir = 4
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"HE" = (
+/obj/effect/wall_vent{
+	pixel_y = -6;
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
 "HN" = (
 /obj/item/workshop_mod/sharp/pale,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
+"JZ" = (
+/obj/effect/decal/cleanable/generic,
+/turf/open/floor/plasteel/airless/dark,
+/area/city/backstreets_room)
 "LC" = (
 /obj/item/workshop_mod/healing/pale,
+/obj/effect/decal/cleanable/plastic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"LK" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 5
+	},
+/obj/effect/decal/cleanable/plastic,
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "NK" = (
@@ -59,12 +158,34 @@
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "SY" = (
-/mob/living/simple_animal/hostile/ordeal/steel_dawn,
+/obj/effect/spawner/mobspawner/steel_dawn{
+	radius = 2
+	},
 /turf/open/floor/plasteel/dark,
 /area/city/backstreets_room)
 "Td" = (
 /obj/effect/landmark/cratespawn,
 /turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"UR" = (
+/obj/structure/lootcrate/money,
+/obj/effect/decal/cleanable/wrapping,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"Xw" = (
+/obj/effect/turf_decal/stripes/line{
+	dir = 10
+	},
+/obj/effect/decal/cleanable/plastic,
+/turf/open/floor/plasteel/dark,
+/area/city/backstreets_room)
+"XG" = (
+/obj/effect/decal/cleanable/blood/splatter/over_window,
+/turf/closed/indestructible/reinforced,
+/area/city/backstreets_room)
+"XN" = (
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/floor/plasteel/airless/dark,
 /area/city/backstreets_room)
 "ZT" = (
 /turf/open/floor/plasteel/dark,
@@ -102,16 +223,16 @@ An
 An
 An
 ZT
-ZT
+gY
 Gl
 ZT
-An
+XG
 ZT
 ZT
 ZT
 ZT
 Gl
-ZT
+yh
 An
 "}
 (3,1,1) = {"
@@ -120,17 +241,17 @@ An
 An
 An
 An
+XG
+cL
+ZT
+ZT
 An
 ZT
 ZT
 ZT
-An
+cT
 ZT
-ZT
-ZT
-ZT
-ZT
-ZT
+pO
 ZT
 ZT
 An
@@ -145,17 +266,17 @@ ZT
 ZT
 ZT
 ZT
-ZT
+eb
 An
 ZT
+pO
 ZT
 ZT
 ZT
 ZT
 ZT
 ZT
-ZT
-An
+XG
 An
 "}
 (5,1,1) = {"
@@ -173,8 +294,8 @@ ZT
 ZT
 ZT
 ZT
-ZT
-ZT
+sm
+Xw
 ZT
 ZT
 ZT
@@ -195,32 +316,32 @@ ZT
 ZT
 ZT
 ZT
+LK
+iV
 ZT
-ZT
-ZT
-ZT
+Dh
 ZT
 An
 "}
 (7,1,1) = {"
 An
 ZT
-SY
 ZT
+vv
 ZT
 ZT
 ZT
 ZT
 ZT
 An
-An
+XG
 ZT
 ZT
 Gl
+Ho
+Ho
 ZT
-ZT
-ZT
-ZT
+pO
 ZT
 An
 "}
@@ -229,14 +350,14 @@ An
 ZT
 ZT
 ZT
-vv
+ZT
 Eb
 ZT
 ZT
 ZT
 An
 An
-ZT
+qZ
 ZT
 ZT
 ZT
@@ -253,14 +374,14 @@ hy
 ZT
 ZT
 ZT
-EQ
+ZT
 ZT
 hy
 An
 An
 An
-An
-ZT
+XG
+jG
 ZT
 ZT
 ZT
@@ -273,19 +394,19 @@ An
 ZT
 ZT
 ZT
-SY
 ZT
 ZT
+EQ
 ZT
 ZT
 An
-ej
+UR
 oq
 An
-NK
+XN
 NK
 ZT
-ZT
+pO
 ZT
 ZT
 An
@@ -315,19 +436,19 @@ An
 (12,1,1) = {"
 An
 ZT
-SY
+ZT
 ZT
 ZT
 hy
 ZT
-SY
+ZT
 ZT
 An
 ZT
 An
 Td
 An
-NK
+JZ
 An
 ZT
 ZT
@@ -344,7 +465,7 @@ SY
 ZT
 ZT
 An
-ZT
+GZ
 ZT
 ZT
 HN
@@ -366,7 +487,7 @@ ZT
 ZT
 ZT
 An
-ZT
+cK
 ZT
 ZT
 ZT
@@ -388,11 +509,11 @@ ZT
 ZT
 ZT
 ZT
+hi
 ZT
 ZT
 ZT
-ZT
-ZT
+HE
 Gl
 An
 An
@@ -410,13 +531,13 @@ ZT
 ZT
 ZT
 ZT
+hi
 ZT
 ZT
 ZT
 ZT
 ZT
-ZT
-ZT
+gY
 ZT
 ZT
 ZT

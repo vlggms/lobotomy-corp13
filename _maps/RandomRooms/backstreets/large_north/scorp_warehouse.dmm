@@ -10,7 +10,6 @@
 	max_integrity = 10000;
 	name = "shrimp display window"
 	},
-/mob/living/simple_animal/hostile/shrimp_soldier,
 /turf/open/floor/plasteel/rockvault/alien{
 	name = "floor"
 	},
@@ -43,9 +42,18 @@
 /obj/structure/window/reinforced,
 /turf/open/floor/mineral/gold,
 /area/city/backstreets_room)
+"p" = (
+/obj/effect/spawner/mobspawner/shrimp_ranged,
+/turf/open/floor/plasteel/rockvault/alien{
+	name = "floor"
+	},
+/area/city/backstreets_room)
 "r" = (
 /obj/structure/chair/office,
-/mob/living/simple_animal/hostile/shrimp,
+/obj/effect/spawner/mobspawner/shrimp_melee{
+	radius = 0;
+	max_spawns = 1
+	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "t" = (
@@ -115,7 +123,6 @@
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "N" = (
-/mob/living/simple_animal/hostile/shrimp_soldier,
 /turf/open/floor/plasteel/vaporwave,
 /area/city/backstreets_room)
 "O" = (
@@ -154,7 +161,6 @@
 /turf/open/floor/mineral/gold,
 /area/city/backstreets_room)
 "Z" = (
-/mob/living/simple_animal/hostile/shrimp_soldier,
 /turf/open/floor/plasteel/rockvault/alien{
 	name = "floor"
 	},
@@ -225,7 +231,7 @@ L
 J
 Z
 Z
-Z
+p
 Z
 J
 L
@@ -233,7 +239,7 @@ L
 (8,1,1) = {"
 L
 J
-Z
+p
 Z
 Z
 Z
@@ -256,7 +262,7 @@ J
 Z
 W
 W
-Z
+p
 J
 L
 "}
@@ -273,7 +279,7 @@ L
 (12,1,1) = {"
 L
 J
-Z
+p
 W
 W
 Z
@@ -286,7 +292,7 @@ J
 Z
 Z
 Z
-Z
+p
 J
 L
 "}
