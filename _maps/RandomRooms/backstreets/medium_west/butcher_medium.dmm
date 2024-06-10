@@ -63,7 +63,9 @@
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "E" = (
-/mob/living/simple_animal/hostile/butcher,
+/mob/living/simple_animal/hostile/butcher{
+	wander = 0
+	},
 /turf/open/floor/plasteel/sepia,
 /area/city/backstreets_room)
 "H" = (
