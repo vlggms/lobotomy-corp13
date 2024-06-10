@@ -31,6 +31,9 @@
 /mob/living/simple_animal/pet/dog/corgi/exoticcorgi,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/critter{
+	name = "corgi crate"
+	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "u" = (
@@ -63,6 +66,9 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /mob/living/simple_animal/pet/dog/corgi/puppy/void,
+/obj/structure/closet/crate/critter{
+	name = "corgi crate"
+	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "D" = (
@@ -70,6 +76,9 @@
 /mob/living/simple_animal/hostile/retaliate/tegu,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/critter{
+	name = "tegu crate"
+	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "M" = (
@@ -83,6 +92,9 @@
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/dirt/dust,
+/obj/structure/closet/crate/critter{
+	name = "corgi crate"
+	},
 /turf/open/floor/wood,
 /area/city/backstreets_room)
 "P" = (

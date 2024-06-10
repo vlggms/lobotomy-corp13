@@ -5,7 +5,6 @@
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "g" = (
-/obj/structure/trap/stun,
 /obj/effect/decal/cleanable/dirt/dust,
 /turf/open/floor/plasteel/stairs{
 	dir = 8
@@ -17,13 +16,25 @@
 /area/city/backstreets_room)
 "u" = (
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye,
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
+	wander = 0
+	},
+/turf/open/indestructible/cult,
+/area/city/backstreets_room)
+"y" = (
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
+	wander = 0
+	},
+/obj/structure/trap/stun,
+/obj/effect/decal/cleanable/crayon,
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "z" = (
 /obj/effect/decal/cleanable/blood,
 /obj/effect/decal/cleanable/dirt/dust,
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye,
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
+	wander = 0
+	},
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "A" = (
@@ -49,7 +60,9 @@
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "L" = (
-/mob/living/simple_animal/hostile/ordeal/bigBirdEye,
+/mob/living/simple_animal/hostile/ordeal/bigBirdEye{
+	wander = 0
+	},
 /turf/open/indestructible/cult,
 /area/city/backstreets_room)
 "M" = (
@@ -109,8 +122,8 @@ Y
 "}
 (5,1,1) = {"
 Y
-L
 E
+y
 E
 X
 Y
