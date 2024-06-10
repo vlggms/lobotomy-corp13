@@ -255,7 +255,7 @@
 		Goto(P.starting, move_to_delay, 3)
 
 	. = ..()
-	DamageEffect(P.damage, P.damage_type)
+	DamageEffect(P.damage_type)
 
 /*-------------------\
 |Damage Visual Effect|
@@ -264,24 +264,24 @@
 /mob/living/simple_animal/hostile/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE, actuallydamage = TRUE)
 	//This used to also check actually damage but turns out melee weapons in item_attack.dm dont call actually damage.
 	if(stat != DEAD && (damagetype in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
-		//To simplify things, if you bash a abnormality with a wrench it wont show any effect.
-		DamageEffect(damage, damagetype)
+		//To simplify things, if you bash a abnormality with a wrench it wont show any effect. --uhh it will though
+		DamageEffect(damagetype)
 	return ..()
 
-/mob/living/simple_animal/hostile/proc/DamageEffect(amount, damtype)
+/mob/living/simple_animal/hostile/proc/DamageEffect(damtype)
 	//Code stolen from attack_threshold_check() in animal_defense.dm
-	var/temp_damage = amount
+	var/damage_modifier
 	if(islist(damage_coeff))
-		temp_damage *= damage_coeff[damtype]
+		damage_modifier = damage_coeff[damtype]
 	else
-		temp_damage *= damage_coeff.getCoeff(damtype)
+		damage_modifier = damage_coeff.getCoeff(damtype)
 
-	if(temp_damage > 0)
+	if(damage_modifier > 0)
 		return FALSE
-	if(temp_damage == 0)
+	if(damage_modifier == 0)
 		//Visual Effect for immunity.
 		return new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
-	if(temp_damage < 0)
+	if(damage_modifier < 0)
 		//Visual Effect for healing.
 		return new /obj/effect/temp_visual/healing(get_turf(src))
 

@@ -21,9 +21,9 @@
 	if(!CanUseEgo(user))
 		return
 	..()
-	if((target.stat == DEAD) && !(GODMODE in target.status_flags))
+	if((target.stat == DEAD) && !(target.status_flags & GODMODE))
 		target.gib()
-		user.adjustBruteLoss(-user.maxHealth*0.10)	//Heal 10% HP
+		user.adjustBruteLoss(-user.maxHealth * 0.1)	//Heal 10% HP
 
 /obj/item/ego_weapon/city/sweeper/sickle
 	name = "sweeper_sickle"

@@ -381,7 +381,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check(L.faction, src.faction))
 				continue
-			L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(damage, BLACK_DAMAGE)
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(damage, BLACK_DAMAGE)
 		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)

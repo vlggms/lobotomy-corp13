@@ -81,7 +81,7 @@
 					continue
 				if(L.stat == DEAD)
 					continue
-				L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+				L.deal_damage(pulse_damage, WHITE_DAMAGE)
 				new /obj/effect/temp_visual/alriune_attack(get_turf(L))
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L

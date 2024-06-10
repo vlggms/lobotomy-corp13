@@ -218,7 +218,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Life()
 	. = ..()
@@ -354,7 +354,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/death(gibbed)
 	alpha = 255

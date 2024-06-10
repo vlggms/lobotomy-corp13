@@ -52,6 +52,7 @@
 	/// How much damage is dealt to user on each work failure
 	var/work_damage_amount = 2
 	/// What damage type is used for work failures
+	/// Can be a list, work_damage_amount in that case is divided by the objects in the list and visuals are chosen randomly
 	var/work_damage_type = RED_DAMAGE
 	/// Maximum amount of PE someone can obtain per work procedure, if not null or 0.
 	var/max_boxes = null
@@ -178,7 +179,7 @@
 		addtimer(CALLBACK (datum_reference, TYPE_PROC_REF(/datum/abnormality, RespawnAbno)), 30 SECONDS)
 	else if(core_enabled)//Abnormality Cores are spawned if there is no console tied to the abnormality
 		CreateAbnoCore(name, core_icon)//If cores are manually disabled for any reason, they won't generate.
-	..()
+	. = ..()
 	if(loc)
 		if(isarea(loc))
 			var/area/a = loc
@@ -258,7 +259,7 @@
 /mob/living/simple_animal/hostile/abnormality/proc/FearEffect()
 	if(fear_level <= 0)
 		return
-	for(var/mob/living/carbon/human/H in view(7, src))
+	for(var/mob/living/carbon/human/H in ohearers(7, src))
 		if(H in breach_affected)
 			continue
 		if(H.stat == DEAD)
@@ -427,7 +428,7 @@
 
 // Additional effect on each individual work tick failure
 /mob/living/simple_animal/hostile/abnormality/proc/WorktickFailure(mob/living/carbon/human/user)
-	user.apply_damage(work_damage_amount, work_damage_type, null, user.run_armor_check(null, work_damage_type), spread_damage = TRUE)
+	user.deal_damage(work_damage_amount, work_damage_type)
 	WorkDamageEffect()
 	return
 
@@ -435,8 +436,11 @@
 /mob/living/simple_animal/hostile/abnormality/proc/WorkDamageEffect()
 	var/turf/target_turf = get_ranged_target_turf(src, SOUTHWEST, 1)
 	var/obj/effect/temp_visual/roomdamage/damage = new(target_turf)
-	damage.icon_state = "[work_damage_type]"
-	return
+	if(!islist(work_damage_type))
+		damage.icon_state = "[work_damage_type]"
+	else // its a list, we gotta pick one
+		var/list/damage_types = work_damage_type
+		damage.icon_state = pick(damage_types)
 
 // Dictates whereas this type of work can be performed at the moment or not
 /mob/living/simple_animal/hostile/abnormality/proc/AttemptWork(mob/living/carbon/human/user, work_type)
@@ -515,6 +519,10 @@
 	var/mob/living/simple_animal/hostile/abnormality/A
 	var/chosen_message
 	var/chosen_attack_num = 0
+
+/datum/action/innate/abnormality_attack/Destroy()
+	A = null
+	return ..()
 
 /datum/action/innate/abnormality_attack/Grant(mob/living/L)
 	if(istype(L, /mob/living/simple_animal/hostile/abnormality))

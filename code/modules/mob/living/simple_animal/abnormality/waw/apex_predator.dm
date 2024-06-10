@@ -117,7 +117,7 @@
 				var/mob/living/V = target
 				visible_message(span_danger("The [src] rips out [target]'s guts!"))
 				new /obj/effect/gibspawner/generic(get_turf(V))
-				V.apply_damage(backstab_damage, RED_DAMAGE, null, V.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				V.deal_damage(backstab_damage, RED_DAMAGE)
 			//Backstab succeeds from any one of 3 tiles behind a mecha, backstab from directly behind gets boosted by mecha directional armor weakness
 			else if(ismecha(target))
 				var/relative_angle = abs(dir2angle(target.dir) - dir2angle(get_dir(target, src)))

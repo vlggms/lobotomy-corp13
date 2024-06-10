@@ -67,7 +67,7 @@
 	new /obj/effect/temp_visual/whitelake(get_turf(H))
 	var/userfort = (get_attribute_level(H, FORTITUDE_ATTRIBUTE))
 	var/damage_dealt = clamp((0 + (userfort / 2)), 30, 65)//deals between 30 and 60 white damage depending on your fortitude attribute when applied.
-	H.apply_damage(damage_dealt, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+	H.deal_damage(damage_dealt, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/whitelake/proc/TurnChampion(mob/living/carbon/human/H)
 	H.apply_status_effect(STATUS_EFFECT_CHAMPION)

@@ -110,7 +110,7 @@
 					return
 				TH.attack_animal(src)
 				for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-					H.apply_damage(5, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+					H.deal_damage(5, WHITE_DAMAGE)
 				SLEEP_CHECK_DEATH(2)
 			if(!targets_from.Adjacent(TH) || QDELETED(TH))
 				finishing = FALSE
@@ -118,7 +118,7 @@
 			playsound(get_turf(src), 'sound/abnormalities/clownsmiling/final_stab.ogg', 50, 1)
 			TH.gib()
 			for(var/mob/living/carbon/human/H in view(7, get_turf(src)))
-				H.apply_damage(30, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				H.deal_damage(30, WHITE_DAMAGE)
 
 /mob/living/simple_animal/hostile/abnormality/clown/MoveToTarget(list/possible_targets)
 	if(ranged_cooldown <= world.time)
@@ -172,7 +172,7 @@
 	playsound(get_turf(src), 'sound/abnormalities/clownsmiling/announcedead.ogg', 75, 1)
 	for(var/mob/living/L in view(5, src))
 		if(!faction_check_mob(L))
-			L.apply_damage(50, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE))
+			L.deal_damage(50, RED_DAMAGE)
 	gib()
 
 //Clown picture-related code

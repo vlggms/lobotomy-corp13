@@ -196,7 +196,7 @@
 	prosthetic.replace_limb(M)
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
-	M.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE) // Bro your [X] just got chopped off, no armor's gonna resist that.
+	M.deal_damage(50, BRUTE) // Bro your [X] just got chopped off, no armor's gonna resist that.
 	to_chat(M, span_notice("Your [old_part.name] has been replaced!"))
 	qdel(old_part)
 	M.regenerate_icons()

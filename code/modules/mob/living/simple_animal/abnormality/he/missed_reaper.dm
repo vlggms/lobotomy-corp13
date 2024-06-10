@@ -84,7 +84,7 @@
 	if(QDELETED(user))
 		return
 	to_chat(user, span_userdanger("[src] stabs you!"))
-	user.apply_damage(3000, PALE_DAMAGE, null, user.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	user.deal_damage(3000, PALE_DAMAGE)
 	playsound(user, 'sound/weapons/fixer/generic/nail1.ogg', 100, FALSE, 4)
 	return
 
@@ -186,7 +186,7 @@
 			B.on = 1
 			B.break_light_tube()
 		for(var/mob/living/L in T)
-			L.apply_damage(10, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(10, PALE_DAMAGE)
 			if(ishuman(L) && L.health < 0)
 				var/mob/living/carbon/human/H = L
 				H.Drain()

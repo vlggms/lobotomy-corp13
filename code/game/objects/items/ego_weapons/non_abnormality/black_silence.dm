@@ -493,7 +493,7 @@
 
 /obj/item/ego_weapon/black_silence_gloves/logic/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/black_silence_gloves/logic/Special(mob/living/user, atom/target)
 	special_cooldown = world.time + special_cooldown_time

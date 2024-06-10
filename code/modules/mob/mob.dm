@@ -37,6 +37,8 @@
 	qdel(hud_used)
 	QDEL_LIST(client_colours)
 	ghostize()
+	for(var/action in actions)
+		QDEL_NULL(action)
 	return ..()
 
 

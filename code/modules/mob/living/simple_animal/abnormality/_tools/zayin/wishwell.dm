@@ -307,6 +307,8 @@
 /obj/structure/toolabnormality/wishwell/proc/Dispense(atom/dispenseobject)
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, FALSE, -3)
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
+	if(!isopenturf(dispense_turf))
+		dispense_turf = get_turf(src)
 	new dispenseobject(dispense_turf)
 	var/list/water_area = range(1, dispense_turf)
 	for(var/turf/open/O in water_area)

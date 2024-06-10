@@ -6,8 +6,8 @@
 	base_icon_state = "universe_song"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 25 // Amount of white damage dealt to enemies per "pulse".
-	var/damage_slowdown = 0.6 // Slowdown per pulse
+	var/damage_amount = 50 // Amount of white damage dealt to enemies per "pulse".
+	var/damage_slowdown = 0.7 // Slowdown per pulse
 	var/damage_count = 5 // How many times the damage and slowdown is applied
 	var/damage_range = 6
 
@@ -40,7 +40,7 @@
 
 /obj/effect/proc_holder/ability/shrimp
 	name = "Backup Shrimp"
-	desc = "Spawns 4 wellcheers corp liquidation officers for a period of time."
+	desc = "Spawns 6 wellcheers corp liquidation officers for a period of time."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
 	cooldown_time = 90 SECONDS
@@ -48,7 +48,7 @@
 
 
 /obj/effect/proc_holder/ability/shrimp/Perform(target, mob/user)
-	for(var/i = 1 to 4)
+	for(var/i = 1 to 6)
 		new /mob/living/simple_animal/hostile/shrimp_soldier/friendly/capitalism_shrimp(get_turf(user))
 	return ..()
 
@@ -145,7 +145,7 @@
 	base_icon_state = "screach"
 	cooldown_time = 20 SECONDS
 
-	var/damage_amount = 175 // Amount of black damage dealt to enemies. Humans receive half of it.
+	var/damage_amount = 200 // Amount of black damage dealt to enemies. Humans receive half of it.
 	var/damage_range = 7
 
 /obj/effect/proc_holder/ability/screach/Perform(target, mob/user)
@@ -300,12 +300,13 @@
 /* King of Greed - Gold Experience */
 /obj/effect/proc_holder/ability/road_of_gold
 	name = "The Road of Gold"
-	desc = "An ability that teleports you to the nearest non-visible threat."
+	desc = "An ability that teleports you to the nearest non-visible threat.If you use a Gold Rush weapon, you can significantly weaken the enemy for a few seconds."
 	action_icon_state = "gold0"
 	base_icon_state = "gold"
 	cooldown_time = 30 SECONDS
 
 	var/list/spawned_effects = list()
+	var/using_goldrush
 
 /obj/effect/proc_holder/ability/road_of_gold/Perform(mob/living/simple_animal/hostile/target, mob/user)
 	if(!istype(user))
@@ -362,6 +363,8 @@
 		var/obj/item/held = user.get_active_held_item()
 		if(held)
 			held.attack(target, user)
+			if(held == /obj/item/ego_weapon/goldrush/nihil || held == /obj/item/ego_weapon/goldrush)
+				target.apply_status_effect(/datum/status_effect/GoldStaggered)
 	return ..()
 
 /obj/effect/proc_holder/ability/road_of_gold/proc/CleanUp()
@@ -406,6 +409,21 @@
 			KS.layer -= 0.1
 	KS.transform = M
 	return KS
+
+/datum/status_effect/GoldStaggered
+	status_type = STATUS_EFFECT_UNIQUE
+	duration = 5 SECONDS
+
+/datum/status_effect/GoldStaggered/on_apply()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.AddModifier(/datum/dc_change/gold_staggered)
+
+/datum/status_effect/GoldStaggered/on_remove()
+	. = ..()
+	var/mob/living/simple_animal/M = owner
+	M.RemoveModifier(/datum/dc_change/gold_staggered)
+
 
 /* Servant of Wrath - Wounded Courage */
 /obj/effect/proc_holder/ability/justice_and_balance
@@ -500,6 +518,7 @@
 		return
 	if(stacks <= 0 && stacks_added < 0)
 		qdel(src)
+		return
 	var/mob/living/carbon/human/H = owner
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, stacks_added)
 	stacks += stacks_added
@@ -625,7 +644,7 @@
 
 /atom/movable/screen/alert/status_effect/bloomdebuff
 	name = "Blooming Sakura"
-	desc = "You Take Double Damage."
+	desc = "You Take 1.5x Damage."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "marked_for_death"
 
@@ -633,10 +652,10 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
-		L.physiology.red_mod *= 2
-		L.physiology.white_mod *= 2
-		L.physiology.black_mod *= 2
-		L.physiology.pale_mod *= 2
+		L.physiology.red_mod *= 1.5
+		L.physiology.white_mod *= 1.5
+		L.physiology.black_mod *= 1.5
+		L.physiology.pale_mod *= 1.5
 
 /datum/status_effect/bloomdebuff/tick()
 	var/mob/living/carbon/human/Y = owner
@@ -653,10 +672,10 @@
 	if(ishuman(owner))
 		var/mob/living/carbon/human/L = owner
 		to_chat(L, span_userdanger("You feel normal!"))
-		L.physiology.red_mod /= 2
-		L.physiology.white_mod /= 2
-		L.physiology.black_mod /= 2
-		L.physiology.pale_mod /= 2
+		L.physiology.red_mod /= 1.5
+		L.physiology.white_mod /= 1.5
+		L.physiology.black_mod /= 1.5
+		L.physiology.pale_mod /= 1.5
 
 /mob/living/simple_animal/hostile/farmwatch_plant//TODO: give it an effect with the corresponding suit.
 	name = "Tree of Desires"
@@ -762,7 +781,7 @@
 /datum/status_effect/overheat/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 30)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 40)
 	H.apply_lc_burn(50)
 	var/datum/status_effect/stacking/lc_burn/B = H.has_status_effect(/datum/status_effect/stacking/lc_burn)
 	B.safety = FALSE
@@ -770,7 +789,7 @@
 /datum/status_effect/overheat/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -30)
+	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -40)
 	H.remove_status_effect(STATUS_EFFECT_LCBURN)
 
 /* Yang - Duality */
@@ -874,6 +893,7 @@
 			if(H.is_working)
 				continue
 			var/datum/status_effect/galaxy_gift/new_gift = H.apply_status_effect(/datum/status_effect/galaxy_gift)
+			new_gift.caster = user
 			if(H == user)
 				new_gift.watch_death = TRUE
 			existing_gifted |= H
@@ -893,6 +913,7 @@
 	var/base_dmg_amt = 45
 	var/watch_death = FALSE
 	var/list/gifted
+	var/mob/living/carbon/human/caster
 
 /atom/movable/screen/alert/status_effect/galaxy_gift
 	name = "Parting Gift"
@@ -901,6 +922,7 @@
 	icon_state = "friendship"
 
 /datum/status_effect/galaxy_gift/tick()
+	. = ..()
 	if(!ishuman(owner))
 		qdel(src)
 		return
@@ -909,11 +931,13 @@
 	for(var/mob/living/carbon/human/H in gifted)
 		if(H == Y)
 			continue
+		if(H == caster)
+			continue
 		if(H.stat == DEAD || QDELETED(H))
 			gifted -= H
 			if(H) // If there's even anything left to remove
 				H.remove_status_effect(/datum/status_effect/galaxy_gift)
-	if(Y.stat == DEAD || QDELETED(Y))
+	if(caster.stat == DEAD || QDELETED(Y))
 		return watch_death ? Pop() : FALSE
 	var/heal_mult = LAZYLEN(gifted)
 	heal_mult = max(3, heal_mult)
@@ -928,6 +952,7 @@
 		new /obj/effect/temp_visual/pebblecrack(get_turf(H))
 		playsound(get_turf(H), "shatter", 50, TRUE)
 		to_chat(H, span_userdanger("Your pebble violently shatters!"))
+		caster = null
 	return
 
 /* Sleeping Beauty - Comatose */
@@ -1052,13 +1077,13 @@
 /* Opened Can of Wellcheers - Wellcheers */
 /obj/effect/proc_holder/ability/wellcheers
 	name = "Wellcheers Crew"
-	desc = "Call up 2 of your finest crewmates for a period of time."
+	desc = "Call up 3 of your finest crewmates for a period of time."
 	action_icon_state = "shrimp0"
 	base_icon_state = "shrimp"
 	cooldown_time = 90 SECONDS
 
 /obj/effect/proc_holder/ability/wellcheers/Perform(target, mob/user)
-	for(var/i = 1 to 2)
+	for(var/i = 1 to 3)
 		new /mob/living/simple_animal/hostile/shrimp/friendly(get_turf(user))
 	return ..()
 
@@ -1067,7 +1092,7 @@
 	health = 700
 	maxHealth = 700
 	desc = "Are those fists?"
-	melee_damage_lower = 35
+	melee_damage_lower = 40
 	melee_damage_upper = 45
 	icon_state = "wellcheers_ripped"
 	icon_living = "wellcheers_ripped"
@@ -1105,6 +1130,8 @@
 			continue
 		if(H.stat == DEAD)
 			continue
+		if(H.z != user.z)
+			continue
 		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
 		to_chat(H, span_nicegreen("[user]'s prayer was heard!"))
 		H.adjustBruteLoss(-100)
@@ -1118,33 +1145,30 @@
 	status_type = STATUS_EFFECT_UNIQUE
 	alert_type = /atom/movable/screen/alert/status_effect/flesh1
 	duration = 15 SECONDS
+	tick_interval = 3 SECONDS
 
 /atom/movable/screen/alert/status_effect/flesh1
 	name = "A prayer to god"
-	desc = "Decreases damage taken by 25%. \
-	Decreases justice by 80."
+	desc = "You take random damage while praying."
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "flesh"
 
 /datum/status_effect/flesh1/on_apply()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod *= 0.75
-	H.physiology.white_mod *= 0.75
-	H.physiology.black_mod *= 0.75
-	H.physiology.pale_mod *= 0.75
 	ADD_TRAIT(H, TRAIT_IMMOBILIZED, type)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -80)
+
+/datum/status_effect/flesh1/tick()
+	. = ..()
+	var/mob/living/carbon/human/H = owner
+	var/list/damtypes = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+	var/damage = pick(damtypes)
+	H.apply_damage(7, damage, null, H.run_armor_check(null, damage), spread_damage = TRUE)
 
 /datum/status_effect/flesh1/on_remove()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.physiology.red_mod /= 0.75
-	H.physiology.white_mod /= 0.75
-	H.physiology.black_mod /= 0.75
-	H.physiology.pale_mod /= 0.75
 	REMOVE_TRAIT(H, TRAIT_IMMOBILIZED, type)
-	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 80)
 
 /datum/status_effect/flesh2
 	id = "FLESH2"
@@ -1170,7 +1194,7 @@
 
 /obj/effect/proc_holder/ability/nest
 	name = "Worm spawn"
-	desc = "Spawns 9 worms that will seak out abormalities to infest in making them weaker to red damage."
+	desc = "Spawns 7 worms that will seak out abormalities to infest in making them weaker to red damage."
 	action_icon_state = "worm0"
 	base_icon_state = "worm"
 	cooldown_time = 30 SECONDS
@@ -1178,7 +1202,7 @@
 
 
 /obj/effect/proc_holder/ability/nest/Perform(target, mob/user)
-	for(var/i = 1 to 9)
+	for(var/i = 1 to 7)
 		playsound(get_turf(user), 'sound/misc/moist_impact.ogg', 30, 1)
 		var/landing
 		landing = locate(user.x + pick(-2,-1,0,1,2), user.y + pick(-2,-1,0,1,2), user.z)
@@ -1350,7 +1374,7 @@
 	user.orbit(DE, 0, 0, 0, 0, 0)
 
 	sleep(1)
-	target.apply_damage(80, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
+	target.apply_damage(100, RED_DAMAGE, null, target.run_armor_check(null, RED_DAMAGE))
 	new /obj/effect/temp_visual/rip_space_slash(get_turf(target))
 	new /obj/effect/temp_visual/ripped_space(get_turf(target))
 	playsound(user, 'sound/abnormalities/wayward_passenger/ripspace_hit.ogg', 75, 0)

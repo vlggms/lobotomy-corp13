@@ -133,7 +133,7 @@
 		pulse_cooldown_time = 130 SECONDS//The duraction of the buff is 60 seconds; you can't build stacks at this rate.
 	maggot_attack = new /datum/action/innate/abnormality_attack/maggot_spread
 	maggot_attack2 = new /datum/action/innate/abnormality_attack/maggot_spread2
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/golden_apple/Life()
 	. = ..()
@@ -485,7 +485,7 @@
 
 /datum/status_effect/stacking/maggots/tick()//change this to golden apple's life tick for less lag
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.apply_damage(stacks * 1, BLACK_DAMAGE, null, status_holder.run_armor_check(null, BLACK_DAMAGE))
+	status_holder.deal_damage(stacks, BLACK_DAMAGE)
 	if(status_holder.stat < HARD_CRIT)
 		return
 	var/obj/structure/spider/cocoon/casing = new(status_holder.loc)

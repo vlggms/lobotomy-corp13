@@ -4,6 +4,8 @@
 	name = "giant tree sap"
 	desc = "A small bottle of red liquid."
 	icon_state = "treesap"
+	anchored = FALSE
+	drag_slowdown = 1.5
 	var/list/used = list()
 
 	ego_list = list(
@@ -67,7 +69,7 @@
 	. = ..()
 	owner.gib()
 	for(var/mob/living/carbon/human/L in livinginrange(10, src))
-		L.apply_damage((60), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(60, WHITE_DAMAGE)
 		to_chat(L, span_danger("Oh god, what the fuck was that!?"))
 
 #undef STATUS_EFFECT_TREESAP

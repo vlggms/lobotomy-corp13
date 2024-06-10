@@ -132,7 +132,7 @@
 		new /obj/effect/temp_visual/eldritch_smoke(T)
 		for(var/mob/living/L in HurtInTurf(T, list(), damage_dealt, BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.apply_damage((2 * damage_dealt), BRUTE)
+				L.deal_damage((2 * damage_dealt), BRUTE)
 	SLEEP_CHECK_DEATH(8)
 	playsound(src, 'sound/abnormalities/wrath_servant/hermit_attack_hard.ogg', 25, FALSE, 15, falloff_distance = 5)
 	new /obj/effect/temp_visual/voidout(myturf)
@@ -140,7 +140,7 @@
 		for(var/mob/living/L in HurtInTurf(T, list(), (3 * damage_dealt), BLACK_DAMAGE, check_faction = TRUE, hurt_mechs = TRUE))
 			L.apply_void(3)
 			if(GirlCheck(L)) //EXTRA magical girl damage to kill them faster
-				L.apply_damage((3 * damage_dealt), BRUTE)
+				L.deal_damage((3 * damage_dealt), BRUTE)
 
 /mob/living/simple_animal/hostile/abnormality/nihil/proc/NukeAttack(forced) //Phase-change attack with a long cooldown
 	if(nuke_cooldown > world.time && !forced)
@@ -174,11 +174,11 @@
 			continue
 		var/dist = get_dist(src, L)
 		var/damage_mod = (dist > 7 ? 5 : 20 )
-		L.apply_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE)) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
+		L.deal_damage(clamp((damage_mod * (25 - dist)), 15, nuke_damage), BLACK_DAMAGE) //Between 500 and 15 damage, scaling down heavily past a distance of 7 tiles
 		flash_color(L, flash_color = COLOR_ALMOST_BLACK, flash_time = 70)
 		L.apply_void(damage_mod / 5) //inflict a void debuff
 		if(GirlCheck(L)) //This should kill them most of the time if they are too close
-			L.apply_damage((100 * damage_mod), BRUTE)
+			L.deal_damage((100 * damage_mod), BRUTE)
 	SLEEP_CHECK_DEATH(3)
 	animate(src, transform = init_transform, time = 5)
 	addtimer(CALLBACK(src, PROC_REF(NukeAttack)), 5 MINUTES)

@@ -48,7 +48,7 @@
 		playsound(get_turf(src), 'sound/machines/clockcult/ark_scream.ogg', 50, 0, 24)
 		new /obj/effect/temp_visual/fragment_song(get_turf(src))
 		for(var/mob/living/carbon/human/H in livinginrange(32, get_turf(src)))
-			H.apply_damage(pulse_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+			H.deal_damage(pulse_damage, WHITE_DAMAGE)
 		return
 
 	// Healing effect

@@ -1979,12 +1979,17 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 /datum/species/proc/handle_fire(mob/living/carbon/human/H, no_protection = FALSE)
 	if(!CanIgniteMob(H))
 		return TRUE
+
+	////////////////////////////////////////
+	//Burning worn items has been disabled//
+	////////////////////////////////////////
+
 	if(H.on_fire)
 		//the fire tries to damage the exposed clothes and items
+/*
 		var/list/burning_items = list()
 		var/obscured = H.check_obscured_slots(TRUE)
 		//HEAD//
-
 		if(H.glasses && !(obscured & ITEM_SLOT_EYES))
 			burning_items += H.glasses
 		if(H.wear_mask && !(obscured & ITEM_SLOT_MASK))
@@ -2027,7 +2032,7 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		for(var/X in burning_items)
 			var/obj/item/I = X
 			I.fire_act((H.fire_stacks * 50)) //damage taken is reduced to 2% of this value by fire_act()
-
+*/
 		var/thermal_protection = H.get_thermal_protection()
 
 		if(thermal_protection >= FIRE_IMMUNITY_MAX_TEMP_PROTECT && !no_protection)

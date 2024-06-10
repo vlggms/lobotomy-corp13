@@ -85,6 +85,8 @@
 	. = ..()
 	var/obj/effect/proc_holder/ability/aimed/artillery_shell/general/shell_ability = new
 	src.AddSpell(shell_ability)
+	var/datum/action/spell_action/ability/item/A = shell_ability.action
+	A.set_item = src //it wants an /obj/item though so its kinda bad but i dont really feel like figuring it out
 	sight_ability = new
 	sight_ability.Grant(src)
 	if(IsCombatMap())
@@ -490,11 +492,9 @@
 		if(faction_check(faction, L.faction, FALSE))
 			continue
 		if(SSmaptype.maptype == "limbus_labs")
-			L.apply_damage(boom_damage*0.25, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(boom_damage*0.25, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(boom_damage*0.5, list(RED_DAMAGE, BLACK_DAMAGE))
 		else
-			L.apply_damage(boom_damage*0.5, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
-			L.apply_damage(boom_damage*0.5, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(boom_damage, list(RED_DAMAGE, BLACK_DAMAGE))
 		if(L.health < 0)
 			L.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))

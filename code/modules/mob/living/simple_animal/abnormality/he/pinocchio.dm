@@ -295,7 +295,7 @@
 	var/core_enabled = FALSE
 
 /mob/living/carbon/human/species/pinocchio/Initialize(mapload, cubespawned=FALSE, mob/spawner) //There is basically no documentation for bodyparts and hair, so this was the next best thing.
-	..()
+	. = ..()
 	var/strings = icon('icons/mob/mutant_bodyparts.dmi', "strings_pinnochio_ADJ")
 	src.add_overlay(strings)
 

@@ -73,4 +73,4 @@ GLOBAL_LIST_EMPTY(abnormality_room_spawners)
 
 /obj/effect/spawner/abnormality_room/Destroy()
 	GLOB.abnormality_room_spawners -= src
-	..()
+	return ..()

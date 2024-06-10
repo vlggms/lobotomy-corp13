@@ -233,7 +233,7 @@ GLOBAL_LIST_EMPTY(army)
 	return
 
 /mob/living/simple_animal/hostile/army_enemy/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(Explode)), 120 SECONDS)
 	var/list/depts = shuffle(GLOB.department_centers)
 	var/list/depts_far = list()
@@ -297,7 +297,7 @@ GLOBAL_LIST_EMPTY(army)
 			continue
 		P.datum_reference.qliphoth_change(-1)
 	for(var/mob/living/carbon/human/H in view(20, src))
-		H.apply_damage(boom_damage, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, WHITE_DAMAGE)
 	new /obj/effect/temp_visual/black_explosion(get_turf(src))
 	qdel(src)
 
@@ -336,7 +336,7 @@ GLOBAL_LIST_EMPTY(army)
 	for(var/mob/living/L in view(4, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(50, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(50, BLACK_DAMAGE)
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 100, 0, 8)
 	shot_cooldown = world.time + shot_cooldown_time
 
@@ -404,11 +404,11 @@ GLOBAL_LIST_EMPTY(army)
 	var/targetted_army
 
 /obj/effect/pink_beacon/Initialize()
-	..()
+	. = ..()
 	QDEL_IN(src, 130 SECONDS)
 
 /obj/effect/pink_beacon/Crossed(atom/movable/AM)//this atom eventually qdeletes itself, no need to worry about cleanup
-	..()
+	. = ..()
 	var/mob/living/simple_animal/hostile/army_enemy/E = targetted_army
 	if(AM == E)
 		E.Explode()
@@ -424,7 +424,7 @@ GLOBAL_LIST_EMPTY(army)
 	pixel_y = 0
 
 /obj/effect/temp_visual/pink_explosion/Initialize()
-	..()
+	. = ..()
 	animate(src, transform = matrix()*1.8, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/black_explosion
@@ -436,7 +436,7 @@ GLOBAL_LIST_EMPTY(army)
 	pixel_y = 0
 
 /obj/effect/temp_visual/black_explosion/Initialize()
-	..()
+	. = ..()
 	animate(src, transform = matrix()*1.8, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/army_hearts
@@ -446,7 +446,7 @@ GLOBAL_LIST_EMPTY(army)
 	duration = 10
 
 /obj/effect/temp_visual/army_hearts/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/temp_visual/friend_hearts
@@ -456,7 +456,7 @@ GLOBAL_LIST_EMPTY(army)
 	duration = 10
 
 /obj/effect/temp_visual/friend_hearts/Initialize()
-	..()
+	. = ..()
 	animate(src, alpha = 0, time = duration)
 
 /obj/effect/army_friend

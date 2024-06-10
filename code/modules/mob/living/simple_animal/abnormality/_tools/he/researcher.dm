@@ -24,19 +24,21 @@
 /datum/status_effect/display/researcher
 	id = "notes"
 	status_type = STATUS_EFFECT_UNIQUE
-	duration = 3 MINUTES
+	duration = -1
 	alert_type = null
 	display_name = "notes"
 	var/damage_counter
 	var/damage_max
 	var/worked = FALSE
+	var/stat_bonus = 0
 
 /datum/status_effect/display/researcher/on_apply()
 	. = ..()
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 20)
+	stat_bonus = (0.1 * get_attribute_level(owner, TEMPERANCE_ATTRIBUTE)) //20 + 10% of the user's temperance is added as a bonus
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 20 + stat_bonus)
 	RegisterSignal(status_holder, COMSIG_MOB_APPLY_DAMGE, PROC_REF(TakeDamage))
 	RegisterSignal(status_holder, COMSIG_WORK_COMPLETED, PROC_REF(OnWorkComplete))
 	damage_max = (status_holder.maxHealth + status_holder.maxSanity)
@@ -46,14 +48,14 @@
 	if(!ishuman(owner))
 		return
 	var/mob/living/carbon/human/status_holder = owner
-	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -20)
+	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, (-20 - stat_bonus))
 	UnregisterSignal(status_holder, COMSIG_MOB_APPLY_DAMGE)
 	UnregisterSignal(status_holder, COMSIG_WORK_COMPLETED)
 	to_chat(status_holder, span_nicegreen("The research notes vanish."))
 
 /datum/status_effect/display/researcher/proc/OnWorkComplete(mob/living/carbon/human/user)
 	SIGNAL_HANDLER
-	to_chat(user, span_nicegreen("The research notes have been filled out, the yearn for knowledge has been satisfied."))
+	to_chat(user, span_nicegreen("The research notes have been filled out, it should be safe to return them now."))
 	worked = TRUE
 
 /datum/status_effect/display/researcher/proc/TakeDamage(mob/living/carbon/human/user, damage, damagetype, def_zone)
@@ -61,10 +63,14 @@
 	if(damage < 0)
 		return
 	damage_counter += damage //we store the raw damage taken by the player
-	if(damage_counter >= (damage_max * 0.6))
-		to_chat(owner, span_userdanger("You feel like you should avoid taking any more damage!"))
 	if(damage_counter >= damage_max) //if the stored damage exceeds the players maxhealth + maxsanity they explode
 		addtimer(CALLBACK(src, PROC_REF(Explode), owner), 1) //Gives damage procs time to process
+		return
+	if(damage_counter >= (damage_max * 0.8))
+		to_chat(owner, span_userdanger("You need to return the research notes immediately!"))
+		return
+	if(damage_counter >= (damage_max * 0.6))
+		to_chat(owner, span_userdanger("You feel like you should avoid taking any more damage!"))
 
 /datum/status_effect/display/researcher/proc/Explode(mob/living/carbon/human/owner)
 	playsound(get_turf(owner), 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)
@@ -77,9 +83,9 @@
 				continue
 			if(ishuman(affected_mob)) //deals less damage to humans
 				var/mob/living/carbon/human/human_mob = affected_mob
-				human_mob.apply_damage(human_damage, RED_DAMAGE, null, affected_mob.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+				human_mob.deal_damage(human_damage, RED_DAMAGE)
 				continue
-			affected_mob.apply_damage(damage_dealt, RED_DAMAGE, null, affected_mob.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			affected_mob.deal_damage(damage_dealt, RED_DAMAGE)
 	var/datum/effect_system/smoke_spread/smoke_effect = new
 	smoke_effect.set_up(7, get_turf(owner))
 	smoke_effect.start()

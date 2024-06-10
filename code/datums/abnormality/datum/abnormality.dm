@@ -91,7 +91,7 @@
 	landmark = null
 	current = null
 	connected_structures = null
-	..()
+	return ..()
 
 /datum/abnormality/proc/RespawnAbno()
 	if(!ispath(abno_path))

@@ -163,7 +163,7 @@
 	var/mob/living/simple_animal/hostile/abnormality/parasite_tree/connected_abno
 
 /mob/living/simple_animal/hostile/parasite_tree_sapling/Initialize()
-	..()
+	. = ..()
 	icon_living = "sapling[pick(1,2)]"
 	icon_state = icon_living
 	connected_abno = locate(/mob/living/simple_animal/hostile/abnormality/parasite_tree) in GLOB.abnormality_mob_list
@@ -239,7 +239,7 @@
 
 
 /obj/effect/particle_effect/smoke/parasite_tree/proc/smoke_mob_effect(mob/living/carbon/human/M)
-	M.apply_damage(30, WHITE_DAMAGE, null, M.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	M.deal_damage(30, WHITE_DAMAGE)
 	if(prob(15))
 		M.emote("cough")
 	if(M.sanity_lost)
@@ -324,7 +324,7 @@
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	var/tree_toxin = status_holder.maxSanity * 0.20
-	status_holder.apply_damage(tree_toxin, WHITE_DAMAGE, null, status_holder.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	status_holder.deal_damage(tree_toxin, WHITE_DAMAGE)
 	if(status_holder.sanity_lost || status_holder.stat == DEAD)
 		qdel(src)
 
@@ -354,7 +354,7 @@
 /datum/status_effect/display/parasite_tree_curse/proc/TransformOverride(mob/living/carbon/human/H)
 	if(H && H.has_status_effect(/datum/status_effect/display/melting_love_blessing))
 		to_chat(H, span_warning("You feel the pink slime dissolve your flesh before it becomes wood."))
-		H.apply_damage(800, BLACK_DAMAGE, null, owner.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(800, BLACK_DAMAGE)
 		H.remove_status_effect(/datum/status_effect/display/melting_love_blessing)
 		if(!H || H.stat == DEAD)
 			return TRUE

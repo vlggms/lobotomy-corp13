@@ -21,7 +21,7 @@
 	job_abbreviation = "ERA"
 
 	roundstart_attributes = list(FORTITUDE_ATTRIBUTE, PRUDENCE_ATTRIBUTE, TEMPERANCE_ATTRIBUTE, JUSTICE_ATTRIBUTE)
-	var/normal_attribute_level = 20 // Scales with round time & facility upgrades
+	var/normal_attribute_level = 20 // Scales with round time, facility upgrades, and ordeals done
 
 /datum/job/suppression/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
 	ADD_TRAIT(outfit_owner, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
@@ -52,7 +52,7 @@
 			set_attribute *= 4
 
 
-	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
+	set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats //Used to have doubled respawn stats, but that might be a bit too broken with stats from ordeals.
 
 	for(var/A in roundstart_attributes)
 		roundstart_attributes[A] = round(set_attribute)
@@ -167,7 +167,7 @@
 			set_attribute *= 4
 
 	if(user?.mind?.assigned_role in allowedroles)		//only give these if you're the guy that's allowed to have this, it's here so the Rec Agent can use it on interns
-		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
+		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS) + SSlobotomy_corp.ordeal_stats
 
 	//Set all stats to 0
 	for(var/A in attribute_list)
