@@ -3,18 +3,10 @@
 /obj/effect/wall_vent,
 /turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
-"b" = (
-/obj/structure/cavein_door,
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "d" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/molten_object,
 /turf/open/floor/facility,
-/area/city/backstreets_room)
-"f" = (
-/obj/structure/sign/poster/lobotomycorp/suckmyenegy,
-/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "i" = (
 /obj/machinery/door/airlock/wood,
@@ -46,7 +38,8 @@
 /obj/item/keycard{
 	pixel_x = -2;
 	pixel_y = -6;
-	puzzle_id = 00012
+	puzzle_id = 00012;
+	desc = "A keycard for clerk level access to a L corp facility."
 	},
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
@@ -54,21 +47,15 @@
 /obj/structure/showcase/machinery/tv,
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
-"q" = (
-/obj/structure/sign/poster/contraband/city_cola,
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "r" = (
 /obj/effect/spawner/randomcolavend,
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
-"s" = (
-/obj/structure/sign/departments/l_corp,
-/turf/closed/indestructible/reinforced,
-/area/city/backstreets_room)
 "t" = (
-/obj/structure/sign/poster/contraband/eat,
-/turf/closed/indestructible/reinforced,
+/obj/structure/sign/poster/contraband/eat{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
 /area/city/backstreets_room)
 "x" = (
 /turf/closed/indestructible/reinforced,
@@ -76,6 +63,9 @@
 "y" = (
 /obj/structure/chair/sofa/right{
 	dir = 1
+	},
+/obj/structure/sign/poster/contraband/city_cola{
+	pixel_y = -32
 	},
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
@@ -85,7 +75,8 @@
 /area/city/backstreets_room)
 "C" = (
 /obj/machinery/door/keycard{
-	puzzle_id = 00012
+	puzzle_id = 00012;
+	desc = "A standard high security door. This door only opens when a keycard is swiped. It looks virtually indestructable."
 	},
 /obj/effect/step_trigger/sound_effect{
 	extra_range = 4;
@@ -131,6 +122,12 @@
 /obj/structure/chair/sofa/left{
 	dir = 1
 	},
+/obj/structure/sign/poster/contraband/kudzu{
+	pixel_y = -32
+	},
+/obj/structure/sign/poster/lobotomycorp/suckmyenegy{
+	pixel_x = -32
+	},
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
 "L" = (
@@ -153,22 +150,26 @@
 /turf/open/floor/facility,
 /area/city/backstreets_room)
 "T" = (
-/obj/structure/sign/poster/contraband/bountyhunters,
-/turf/closed/indestructible/reinforced,
+/obj/structure/sign/poster/official/moth8{
+	pixel_y = 32
+	},
+/turf/open/floor/plasteel,
 /area/city/backstreets_room)
 "U" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/spawner/lootdrop/chaotic_random,
+/obj/structure/sign/departments/l_corp{
+	pixel_y = 32
+	},
 /turf/open/floor/facility,
 /area/city/backstreets_room)
 "V" = (
 /obj/effect/decal/cleanable/dirt/dust,
 /obj/effect/decal/cleanable/molten_object/large,
+/obj/structure/cavein_door{
+	pixel_y = 24
+	},
 /turf/open/floor/facility,
-/area/city/backstreets_room)
-"W" = (
-/obj/structure/sign/poster/official/moth8,
-/turf/closed/indestructible/reinforced,
 /area/city/backstreets_room)
 "X" = (
 /obj/effect/decal/cleanable/dirt/dust,
@@ -180,8 +181,10 @@
 /turf/open/floor/plasteel,
 /area/city/backstreets_room)
 "Z" = (
-/obj/structure/sign/poster/contraband/kudzu,
-/turf/closed/indestructible/reinforced,
+/obj/structure/sign/poster/contraband/bountyhunters{
+	pixel_x = -32
+	},
+/turf/open/floor/plasteel,
 /area/city/backstreets_room)
 
 (1,1,1) = {"
@@ -189,27 +192,27 @@ x
 x
 x
 x
-t
 x
 x
-T
-f
+x
+x
+x
 x
 "}
 (2,1,1) = {"
-b
+x
 V
 X
 a
-Y
+t
 n
 p
-Y
-K
 Z
+K
+x
 "}
 (3,1,1) = {"
-s
+x
 U
 d
 A
@@ -218,7 +221,7 @@ O
 E
 E
 y
-q
+x
 "}
 (4,1,1) = {"
 x
@@ -236,8 +239,8 @@ x
 x
 k
 P
-W
-Y
+x
+T
 J
 Y
 D
