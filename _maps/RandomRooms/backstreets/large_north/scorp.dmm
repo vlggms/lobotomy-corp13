@@ -117,15 +117,29 @@
 /obj/effect/turf_decal/siding/purple{
 	dir = 4
 	},
-/mob/living/simple_animal/hostile/shrimp,
 /obj/structure/chair/comfy/lime{
 	dir = 8
+	},
+/obj/effect/spawner/mobspawner/shrimp_melee{
+	max_spawns = 2
 	},
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "u" = (
-/mob/living/simple_animal/hostile/shrimp_soldier,
+/obj/effect/spawner/mobspawner/shrimp_ranged{
+	max_spawns = 1;
+	radius = 0
+	},
 /turf/open/floor/wood,
+/area/city/backstreets_room)
+"v" = (
+/obj/effect/turf_decal/siding/purple{
+	dir = 4
+	},
+/obj/structure/chair/comfy/lime{
+	dir = 8
+	},
+/turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "w" = (
 /obj/effect/turf_decal/siding/purple{
@@ -147,8 +161,12 @@
 /turf/open/floor/carpet/purple,
 /area/city/backstreets_room)
 "y" = (
-/mob/living/simple_animal/hostile/shrimp_soldier,
-/turf/open/floor/plasteel/vaporwave,
+/obj/effect/spawner/mobspawner/shrimp_melee{
+	max_spawns = 2
+	},
+/turf/open/floor/plasteel/rockvault/alien{
+	name = "floor"
+	},
 /area/city/backstreets_room)
 "z" = (
 /obj/effect/turf_decal/siding/purple{
@@ -387,7 +405,7 @@ L
 L
 T
 d
-t
+v
 t
 w
 T
@@ -416,10 +434,10 @@ L
 (12,1,1) = {"
 L
 G
-y
 U
 U
-y
+U
+U
 G
 L
 "}
@@ -427,7 +445,7 @@ L
 L
 R
 o
-o
+y
 o
 o
 A
