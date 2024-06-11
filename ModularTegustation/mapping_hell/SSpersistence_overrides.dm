@@ -11,11 +11,12 @@
 /**
  * Saves a given area to a DMM file
  */
-/datum/controller/subsystem/persistence/proc/Save_Map(
+/datum/controller/subsystem/mapping/proc/Save_Map(
 	area/our_area, // the area we are trying to save, can save everything if it has "EVERYTHING" in it
 	DMM_file = "tmp/facility.dmm", // the DMM file we are saving to, if overridden PLAYER is unnecessary
 	rotation = NORTH, // the rotation of the area, for example SOUTH rotates the entire thing by 180 degrees
 	delete_after_saving = FALSE, // If TRUE it will delete items as it saves them, this is to prepare the map for pasting at the same area
+	list/override_turfs = FALSE, // if overridden, will check
 )
 	var/file = "" // stores all information about the office
 	var/code_file = ""
@@ -33,11 +34,18 @@
 	// Comment that prevents re-conversion into a basic dmm file because funky dmm2tgm.py things or something
 	file += "//MAP CREATED BY PERSISTENT FIXERS OFFICES (ModularTegustation/persistent_fixers), DO NOT REMOVE THIS COMMENT\n"
 
-	code_file += "\"aa\" = (\n" // null template, this is universal to all files created and serves to prepare the map for generation
-	code_file += "/turf/template_noop,\n"
-	code_file += "/area/template_noop)\n"
+	var/list/area_turfs = our_area.contents
+	if(!override_turfs)
+		code_file += "\"aa\" = (\n" // null template, this is universal to all files created and serves to prepare the map for generation
+		code_file += "/turf/template_noop,\n"
+		code_file += "/area/template_noop)\n"
+	else
+		area_turfs = override_turfs
+		code_file += "\"aaa\" = (\n" // null template, this is universal to all files created and serves to prepare the map for generation
+		code_file += "/turf/template_noop,\n"
+		code_file += "/area/template_noop)\n"
 
-	for(var/turf/Turf in our_area.contents) // first off, we look at every turf to determine whats the dimensions of our map
+	for(var/turf/Turf in area_turfs) // first off, we look at every turf to determine whats the dimensions of our map
 		if(!istype(Turf))
 			continue
 
@@ -98,7 +106,7 @@
 
 			ticker_y += 1
 
-			if(get_area(processing_turf) == our_area)
+			if(get_area(processing_turf) == our_area || (override_turfs && get_area(processing_turf) != /area/space))
 				var/list/items_to_save = list()
 				var/content_string = "[processing_turf.type], [get_area(processing_turf)]"
 
@@ -115,7 +123,7 @@
 				items_to_save += get_area(processing_turf)
 
 				if(!unique_entries[content_string])
-					code_file += "\"[Convert_Number_To_Symbol(iteration)]\" = (\n"
+					code_file += "\"[Convert_Number_To_Symbol(iteration, override_turfs ? 703 : 27)]\" = (\n"
 					for(var/variable_item in 1 to items_to_save.len)
 						var/atom/desired_item = items_to_save[1]
 						code_file += "[desired_item.type]"
@@ -123,8 +131,8 @@
 						code_file += "[items_to_save.len > 1 ? ",\n": ")\n"]"
 						items_to_save -= desired_item
 
-					unique_entries[content_string] = Convert_Number_To_Symbol(iteration)
-					map_file += "[Convert_Number_To_Symbol(iteration)]\n"
+					unique_entries[content_string] = Convert_Number_To_Symbol(iteration, override_turfs ? 703 : 27)
+					map_file += "[Convert_Number_To_Symbol(iteration, override_turfs ? 703 : 27)]\n"
 					iteration += 1
 				else
 					var/existing_iteration = unique_entries[content_string]
@@ -145,7 +153,7 @@
 
 #undef FILE_PLAYER_MAP_DATA
 
-/datum/controller/subsystem/persistence/proc/Wrap_Object_Json(atom/object, rotation = NORTH)
+/datum/controller/subsystem/mapping/proc/Wrap_Object_Json(atom/object, rotation = NORTH)
 	var/JSON = ""
 	var/list/variables_to_add = list()
 	if(object.name != initial(object.name))
@@ -213,9 +221,12 @@
 
 	return JSON
 
-/datum/controller/subsystem/persistence/proc/Convert_Number_To_Symbol(number) // turns understandable numbers into necronomicon pages
+/datum/controller/subsystem/mapping/proc/Convert_Number_To_Symbol(number, magic_number = 27) // turns understandable numbers into necronomicon pages
 	var/symbol = ""
-	number += 27 // the magical number, 26 results in null template being over-ridden and below that, the whole DMM corrupts
+	// how to set the magical number:
+	// for 2 digits of memory, 27 (26 results in null being overridden, below that is corruption land and above is wastefull)
+	// for 3 digits of memory, 703
+	number += magic_number
 	while(number >= 0)
 		symbol = "[ascii2text(97 + (number % 26))]" + symbol
 		number = (number / 26) - 1
