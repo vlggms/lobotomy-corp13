@@ -99,7 +99,10 @@
 		return parent.apply_status_effect(arglist(args.Copy()))
 	return parent.apply_status_effect(effect)
 
-/mob/living/simple_animal/projectile_blocker_dummy/prepare_data_huds()
+/mob/living/simple_animal/projectile_blocker_dummy/med_hud_set_health()
+	return
+
+/mob/living/simple_animal/projectile_blocker_dummy/med_hud_set_status()
 	return
 
 /mob/living/simple_animal/projectile_blocker_dummy/death(gibbed)
