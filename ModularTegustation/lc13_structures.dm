@@ -37,11 +37,15 @@
 		qdel(src)
 		return FALSE
 
-	var/list/spread_turfs = U.GetAtmosAdjacentTurfs()
+	var/list/spread_turfs = U.reachableAdjacentTurfs()
 	shuffle_inplace(spread_turfs)
 	for(var/turf/T in spread_turfs)
-		if(locate(/obj/structure/spreading) in T)
-			var/obj/structure/spreading/S = locate(/obj/structure/spreading) in T
+		var/obj/machinery/M = locate(/obj/machinery) in T
+		if(M)
+			if(M.density)
+				continue
+		var/obj/structure/spreading/S = locate(/obj/structure/spreading) in T
+		if(S)
 			if(S.type != type) //if it is not another of the same spreading structure.
 				S.take_damage(conflict_damage, BRUTE, "melee", 1)
 				break
