@@ -62,7 +62,7 @@
 /obj/item/combat_page/proc/Spawn_Reward(mob/living/user)
 	switch(reward_type)
 		if("Item")
-			if(islist(reward_specification))				//Support for lists too!
+			if(!islist(reward_specification))				//Support for lists too!
 				new reward_specification(get_turf(user))	//Item uses the reward specification as an itempath
 				return
 			for(var/obj/I in reward_specification)
