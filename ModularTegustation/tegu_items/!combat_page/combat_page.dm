@@ -66,7 +66,7 @@
 				new reward_specification(get_turf(user))	//Item uses the reward specification as an itempath
 				return
 			for(var/obj/I in reward_specification)
-				new reward_specification(get_turf(user))
+				new I(get_turf(user))
 
 		if("PE")
 			SSlobotomy_corp.AdjustAvailableBoxes(-1 * reward_specification)	//PE uses the reward specification as a number
