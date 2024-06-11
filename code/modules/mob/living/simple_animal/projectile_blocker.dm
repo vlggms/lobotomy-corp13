@@ -5,6 +5,9 @@
 	icon_state = "training_rabbit"
 	status_flags = GODMODE
 	invisibility = INVISIBILITY_ABSTRACT
+	alpha = 0
+	hud_possible = null
+	hud_list = null
 	a_intent = INTENT_HARM
 	move_resist = 10000
 	stop_automated_movement = TRUE
@@ -90,6 +93,14 @@
 
 /mob/living/simple_animal/projectile_blocker_dummy/hitby(atom/movable/AM, skipcatch, hitpush, blocked, datum/thrownthing/throwingdatum)
 	return parent.hitby(AM, skipcatch, hitpush, blocked, throwingdatum)
+
+/mob/living/simple_animal/projectile_blocker_dummy/apply_status_effect(effect, ...)
+	if(length(args) > 1)
+		return parent.apply_status_effect(arglist(args.Copy()))
+	return parent.apply_status_effect(effect)
+
+/mob/living/simple_animal/projectile_blocker_dummy/prepare_data_huds()
+	return
 
 /mob/living/simple_animal/projectile_blocker_dummy/death(gibbed)
 	return FALSE
