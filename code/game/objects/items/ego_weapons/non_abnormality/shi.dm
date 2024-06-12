@@ -29,7 +29,7 @@
 			return
 		user.death()
 		for(var/mob/M in GLOB.player_list)
-			to_chat(M, span_userdanger("[uppertext(user.real_name)] has gone out with honor. 灰から灰へ"))
+			to_chat(M, span_userdanger("[uppertext(user.real_name)] has gone out with honor. 灰は灰に "))
 		new /obj/effect/temp_visual/BoD(get_turf(target))
 		suicide_used |= user.ckey
 	if(!CanUseEgo(user))
