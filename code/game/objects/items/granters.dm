@@ -672,16 +672,3 @@
 	)
 	icon_state = "advanced_silkweaving_book"
 	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
-
-//unobtainable depending on if Kirie thinks this is a bad idea or not(probably due to high total plus crimson's sp heal is but they're very expensive). Crimson uses humans due to the lack of clowns(or the playerbase being the true clowns maybe?), Violet isnt obtainable due to it not having its enemies in lor13 and it's ability to switch damage modes would probably be kind of stupid in lor13, fuck Pink.
-/obj/item/book/granter/crafting_recipe/weaving_ordeal
-	name = "Weaving Armor: Midnight Ordeal Edition"
-	desc = "A weaving book that teaches you how to weave midnight ordeal armor. Carnival approved!"
-	crafting_recipe_types = list(
-		/datum/crafting_recipe/eternal_feast,
-		/datum/crafting_recipe/painful_purpose,
-		/datum/crafting_recipe/familial_strength,
-		/datum/crafting_recipe/meaningless_march
-	)
-	icon_state = "ordeal_silkweaving_book"
-	remarks = list("Make sure that you always have your weaving knife on you? I already knew that.", "Using sweepers as silk? That is brand new...", "Huh, it says here that 'Be careful around the fixer association...' ", "This book smells quite well, Like it was just made just for me!", "A rookie must have made this page, or they forgot to spell check it before printing...", "Wait, how will this turn a profit? I spent like 1000 ahn for this book!")
