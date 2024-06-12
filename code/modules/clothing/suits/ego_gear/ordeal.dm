@@ -43,14 +43,13 @@
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
-
 	var/CanHeal = FALSE
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/equipped(mob/user, slot, initial = FALSE)
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
 		CanHeal = TRUE
-		addtimer(CALLBACK(src, .proc/Heal,user), 15 SECONDS)
+		addtimer(CALLBACK(src, .PROC_REF(Heal),user), 15 SECONDS)
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/dropped(mob/user)
 	CanHeal = FALSE
