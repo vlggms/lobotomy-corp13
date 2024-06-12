@@ -160,7 +160,7 @@
 		"pale"  = image(icon = selection_icons, icon_state = "delusion_pale")
 	)
 	armament_icons = sortList(armament_icons)
-	var/choice = show_radial_menu(user, user , armament_icons, custom_check = CALLBACK(src, .proc/CheckMenu, user), radius = 42, require_near = TRUE)
+	var/choice = show_radial_menu(user, user , armament_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
 	if(!choice || !CheckMenu(user))
 		return
 	var/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
