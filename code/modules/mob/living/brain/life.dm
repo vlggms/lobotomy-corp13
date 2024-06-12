@@ -10,7 +10,7 @@
 /mob/living/brain/update_stat()
 	if(status_flags & GODMODE)
 		return
-	if(health <= HEALTH_THRESHOLD_DEAD)
+	if(health <= death_threshold)
 		if(stat != DEAD)
 			death()
 		var/obj/item/organ/brain/BR
