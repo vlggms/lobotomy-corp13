@@ -226,10 +226,6 @@
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
 
-	ego_list = list(
-		/datum/ego_datum/armor/familial_strength
-		)
-
 	//How many people has she eaten
 	var/belly = 0
 	//How mad is she?

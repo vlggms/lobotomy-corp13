@@ -261,10 +261,6 @@
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
 	death_sound = 'sound/effects/ordeals/green/midnight_dead.ogg'
 
-	ego_list = list(
-		/datum/ego_datum/armor/painful_purpose
-		)
-
 	var/laser_cooldown
 	var/laser_cooldown_time = 20 SECONDS
 	var/obj/effect/greenmidnight_shell/left_shell
