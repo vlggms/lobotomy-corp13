@@ -5,8 +5,7 @@
 /obj/item/combat_page/level2/bongy
 	name = "Page of fried chicken"
 	desc = "A page that contains combat of a fried chicken man."
-	reward_type = "PE"
-	reward_specification = 600
+	reward_pe = 600
 	spawn_enemies = list(/mob/living/simple_animal/hostile/distortion/papa_bongy)
 	spawn_type = "random"
 	combat_level = 2
@@ -15,8 +14,7 @@
 /obj/item/combat_page/level2/lovetown2
 	name = "page of hewn flesh"
 	desc = "A page that contains combat with hewn flesh."
-	reward_type = "PE"
-	reward_specification = 600
+	reward_pe = 600
 	spawn_enemies = list(
 			/mob/living/simple_animal/hostile/lovetown/shambler,
 			/mob/living/simple_animal/hostile/lovetown/slumberer)
@@ -28,8 +26,7 @@
 /obj/item/combat_page/level2/ratswarm
 	name = "page of a rat swarm"
 	desc = "A page that contains combat with many rats."
-	reward_type = "Item"
-	reward_specification = list(/obj/structure/lootcrate/backstreets, /obj/structure/lootcrate/backstreets, /obj/structure/lootcrate/backstreets)
+	reward_items = list(/obj/structure/lootcrate/backstreets, /obj/structure/lootcrate/backstreets, /obj/structure/lootcrate/backstreets)
 	spawn_enemies = list(
 			/mob/living/simple_animal/hostile/humanoid/rat/knife,
 			/mob/living/simple_animal/hostile/humanoid/rat,
@@ -44,8 +41,7 @@
 /obj/item/combat_page/level2/drones2
 	name = "page of large observation"
 	desc = "A page that contains combat with many K-Corp drones"
-	reward_type = "Item"
-	reward_specification = /obj/item/krevive
+	reward_items = list(/obj/item/krevive)
 	spawn_enemies = list(/mob/living/simple_animal/hostile/kcorp/drone)
 	spawn_type = "random"
 	spawn_number = 5
@@ -54,8 +50,7 @@
 /obj/item/combat_page/level2/metalfixer
 	name = "page of a hardy fixer"
 	desc = "A page that contains combat with a strange fixer."
-	reward_type = "Item"
-	reward_specification = list(/obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana)
+	reward_items = list(/obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana)
 	spawn_enemies = list(/mob/living/simple_animal/hostile/humanoid/fixer/metal)
 	spawn_type = "random"
 	combat_level = 2
@@ -63,8 +58,7 @@
 /obj/item/combat_page/level2/emberlightfixer
 	name = "page of an emberlight fixer"
 	desc = "A page that contains combat with a strange fixer."
-	reward_type = "Item"
-	reward_specification = list(/obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana)
+	reward_items = list(/obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana, /obj/structure/lootcrate/hana)
 	spawn_enemies = list(/mob/living/simple_animal/hostile/humanoid/fixer/flame)
 	spawn_type = "random"
 	combat_level = 2
