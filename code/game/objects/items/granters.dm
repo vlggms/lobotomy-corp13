@@ -663,7 +663,6 @@
 		/datum/crafting_recipe/converted_indigo_silk_advanced,
 		/datum/crafting_recipe/converted_indigo_silk_elegant,
 		/datum/crafting_recipe/converted_amber_silk_advanced,
-		/datum/crafting_recipe/converted_amber_silk_elegant,
 		/datum/crafting_recipe/converted_steel_silk_advanced,
 		/datum/crafting_recipe/green_silk_to_steel_silk,
 		/datum/crafting_recipe/indigo_silk_to_amber_silk,

@@ -1,5 +1,23 @@
 // Ordeal armor for midnight. There's not really a stat total besides 240 unless you're doing some silly stuff then it probably should be lower unless you want pre 19Kirie4 repentance situation. Just follow what Kirie did with realized armor.
 
+/obj/item/clothing/suit/armor/ego_gear/adjustable/claw
+	name = "claw armor"
+	desc = "A simple suit and tie with several injectors attached. The fabric is near indestructable."
+	icon_state = "claw"
+	icon = 'icons/obj/clothing/ego_gear/lc13_armor.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/lc13_armor.dmi'
+	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90) // The arbiter's henchman
+	equip_slowdown = 0 // In accordance of arbiter armor
+	hat = /obj/item/clothing/head/ego_hat/claw_head
+	alternative_styles = list("claw", "claw_baral")
+
+/obj/item/clothing/head/ego_hat/claw_head
+	name = "mask of the claw"
+	desc = "A faceless mask with an injector stuck on top of it."
+	icon_state = "claw"
+	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH | PEPPERPROOF
+	flags_inv = HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+
 /obj/item/clothing/suit/armor/ego_gear/ordeal
 	icon = 'icons/obj/clothing/ego_gear/ordeal.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/ordeal.dmi'
@@ -22,7 +40,6 @@
 		Provides excellent protection at the cost of speed."
 	slowdown = 0.5
 	icon_state = "painful_purpose"
-	hat = /obj/item/clothing/head/ego_hat/painful_purpose
 	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 280
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
@@ -36,7 +53,7 @@
 	desc = "Want to know how I got these scares? \n\
 		Causes the wearer to make themself and others around them laugh healing their sp."
 	icon_state = "meaningless_march"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 230
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 230
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -49,7 +66,7 @@
 	. = ..()
 	if(slot == ITEM_SLOT_OCLOTHING)
 		CanHeal = TRUE
-		addtimer(CALLBACK(src, .PROC_REF(Heal),user), 15 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(Heal),user), 15 SECONDS)
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/dropped(mob/user)
 	CanHeal = FALSE
@@ -61,7 +78,7 @@
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/proc/Heal(mob/user)
 	if(!CanHeal)
 		return
-	addtimer(CALLBACK(src, .proc/Reset,user), 15 SECONDS)
+	addtimer(CALLBACK(src, PROC_REF(Reset),user), 15 SECONDS)
 	for(var/mob/living/carbon/human/L in view(3, user))
 		if(L.stat != DEAD)
 			L.emote("laugh")
