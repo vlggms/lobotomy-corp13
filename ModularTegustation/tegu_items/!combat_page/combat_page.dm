@@ -7,7 +7,7 @@
 	slot_flags = ITEM_SLOT_POCKETS
 	w_class = WEIGHT_CLASS_SMALL
 	var/combat_level = 1
-	var/reward_pe = 0
+	var/reward_pe
 	var/reward_items = list()		//Any additional information.
 	var/spawn_enemies = list(/mob/living/simple_animal/hostile/ordeal/amber_bug)
 	var/spawn_type = "all"			//All spawns all enemies, random spawns a random one.
