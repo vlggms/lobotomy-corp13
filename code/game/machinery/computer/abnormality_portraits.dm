@@ -139,6 +139,7 @@
 	'icons/UI_Icons/abnormality_portraits/wellcheers.png',
 	'icons/UI_Icons/abnormality_portraits/white_night.png',
 	'icons/UI_Icons/abnormality_portraits/white_lake.png',
+	'icons/UI_Icons/abnormality_portraits/wild_ride.png',
 	'icons/UI_Icons/abnormality_portraits/will_you_play.png',
 	'icons/UI_Icons/abnormality_portraits/winter.png',
 	'icons/UI_Icons/abnormality_portraits/winter_deity.png',

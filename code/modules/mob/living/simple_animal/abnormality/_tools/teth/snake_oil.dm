@@ -22,7 +22,7 @@
 	if(!(user in users))
 		users += user
 	else
-		user.physiology.red_mod *= 1.15
+		user.physiology.red_mod *= 1.10
 
 	user.apply_status_effect(STATUS_EFFECT_SNAKE_OIL)
 	to_chat(user, span_userdanger("You take a sip, ugh, it tastes nasty!"))

@@ -4,6 +4,8 @@
 	name = "giant tree sap"
 	desc = "A small bottle of red liquid."
 	icon_state = "treesap"
+	anchored = FALSE
+	drag_slowdown = 1.5
 	var/list/used = list()
 
 	ego_list = list(
