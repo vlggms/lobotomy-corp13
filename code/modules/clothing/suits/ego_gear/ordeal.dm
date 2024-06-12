@@ -31,19 +31,12 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
-/obj/item/clothing/head/ego_hat/painful_purpose
-	name = "Final helix"
-	desc = "Todo: put something funny here."
-	icon_state = "painful_purpose"
-	flags_inv = HIDEHAIR|HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|HIDEHAIR|HIDEFACIALHAIR|HIDESNOUT
-	flags_cover = HEADCOVERSEYES|HEADCOVERSMOUTH
-
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march //provides a sanity healing aura simular to chuckles. Also stat wise being great red and white and poor black and pale means that this is a realized version of Dark carnival technically.
 	name = "Meaningless march"
 	desc = "Want to know how I got these scares? \n\
 		Causes the wearer to make themself and others around them laugh healing their sp."
 	icon_state = "meaningless_march"
-	armor = list(RED_DAMAGE = 70, WHITE_DAMAGE = 70, BLACK_DAMAGE = 30, PALE_DAMAGE = 30) // 200
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 230
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
