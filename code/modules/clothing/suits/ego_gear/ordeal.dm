@@ -88,7 +88,7 @@
 	name = "Delusionist's end"
 	desc = "This is a placeholder."
 	icon_state = "delusion_red"
-	armor = list(RED_DAMAGE = 45, WHITE_DAMAGE = 45, BLACK_DAMAGE = 45, PALE_DAMAGE = 45) // 180
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 200
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -131,16 +131,16 @@
 	desc = damage_list[current_damage][1]
 	switch(current_damage)
 		if("red")
-			src.armor = new(red = 80, white = 60, black = -10, pale = 50)
+			src.armor = new(red = 80, white = 60, black = 0, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_red_attack.ogg', 50, FALSE, 32)
 		if("white")
-			src.armor = new(red = 50, white = 80, black = 60, pale = -10)
+			src.armor = new(red = 60, white = 80, black = 60, pale = 0)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_white_attack.ogg', 50, FALSE, 32)
 		if("black")
-			src.armor = new(red = -10, white = 50, black = 80, pale = 60)
+			src.armor = new(red = 0, white = 60, black = 80, pale = 60)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_black_attack1.ogg', 50, FALSE, 32)
 		if("pale")
-			src.armor = new(red = 60, white = -10, black = 50, pale = 80)
+			src.armor = new(red = 60, white = 0, black = 60, pale = 80)
 			playsound(get_turf(src), 'sound/effects/ordeals/violet/midnight_pale_attack.ogg', 50, FALSE, 32)
 
 // Radial menu
