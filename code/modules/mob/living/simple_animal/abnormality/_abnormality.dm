@@ -153,8 +153,6 @@
 	if(secret_chance && (prob(1)))
 		InitializeSecretIcon()
 
-	return INITIALIZE_HINT_NORMAL
-
 /mob/living/simple_animal/hostile/abnormality/proc/InitializeSecretIcon()
 	SHOULD_CALL_PARENT(TRUE) // if you ever need to override this proc, consider adding onto it instead or not using all the variables given
 	secret_abnormality = TRUE
