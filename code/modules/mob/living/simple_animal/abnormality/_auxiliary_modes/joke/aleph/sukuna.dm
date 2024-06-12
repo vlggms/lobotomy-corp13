@@ -80,23 +80,13 @@
 	sukuna.Shrine()
 	return TRUE
 
-/datum/action/innate/abnormality_attack/toggle/cleave
-	name = "Toggle Cleave"
-	button_icon_state = "cleaveman"
-	chosen_attack_num = 2
-	chosen_message = span_colossus("You won't cleave anymore.")
-	button_icon_toggle_activated = "nt_toggle1"
-	toggle_attack_num = 1
-	toggle_message = span_colossus("You will now cleave someone.")
-	button_icon_toggle_deactivated = "cleaveman"
-
 /datum/action/innate/abnormality_attack/toggle/worldslash
 	name = "Toggle World Slash"
 	button_icon_state = "worldslash"
-	chosen_attack_num = 2
+	chosen_attack_num = 1
 	chosen_message = span_colossus("You won't obliterate someone anymore.")
 	button_icon_toggle_activated = "nt_goodbye"
-	toggle_attack_num = 1
+	toggle_attack_num = 2
 	toggle_message = span_colossus("You will now eviscerate someone.")
 	button_icon_toggle_deactivated = "worldslash"
 
@@ -110,7 +100,7 @@
 			check_z = M.loc.z // So it plays even when you are in a locker/sleeper
 		if((check_z == z) && M.client)
 			to_chat(M, span_userdanger("Yo it's me Ryomen Sukuna from Jujutsu Kaisen here to obliterate you."))
-			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 80)
+			flash_color(M, flash_color = COLOR_ALMOST_BLACK, flash_time = 60)
 		if(M.stat != DEAD && ishuman(M) && M.ckey)
 			survivors += M
 	return ..()
