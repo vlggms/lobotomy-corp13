@@ -162,7 +162,7 @@
 
 	// because of rotations, if the rotation is not NORTH we gotta accept all directions to then filter them after the fact
 	// also dont accept anything other than some structures
-	if((istype(object, /obj/structure) || istype(object, /obj/machinery/light)) && !istype(object, /obj/structure/table))
+	if((istype(object, /obj/structure) || istype(object, /obj/machinery/light) || istype(object, /obj/machinery/computer)) && !istype(object, /obj/structure/table))
 		if(object.dir != initial(object.dir) || rotation != NORTH)
 			var/pre_variable
 			switch(rotation)
