@@ -10,6 +10,6 @@
 /datum/attribute/fortitude/on_update(mob/living/carbon/user)
 	if(!istype(user))
 		return FALSE
-	user.death_threshold = HEALTH_THRESHOLD_DEAD - (level + level_buff) * 0.5
-	user.hardcrit_threshold = HEALTH_THRESHOLD_FULLCRIT - (level + level_buff) * 0.25
+	user.death_threshold = HEALTH_THRESHOLD_DEAD - round((level + level_buff) * 0.5)
+	user.hardcrit_threshold = HEALTH_THRESHOLD_FULLCRIT - round((level + level_buff) * 0.25)
 	return TRUE
