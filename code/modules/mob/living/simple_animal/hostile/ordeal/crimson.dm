@@ -321,10 +321,6 @@
 	butcher_results = list(/obj/item/food/meat/slab/crimson = 3)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/crimson = 2)
 
-	ego_list = list(
-		/datum/ego_datum/armor/meaningless_march
-		)
-
 	var/spawn_time
 	var/spawn_time_cooldown = 20 SECONDS
 	var/list/spawned_mobs = list()
