@@ -63,7 +63,7 @@
 
 /obj/item/combat_page/proc/Spawn_Reward(mob/living/user)
 	if(LAZYLEN(reward_items))
-		for(var/obj/I in (reward_items))
+		for(var/I in (reward_items))
 			new I(get_turf(user))
 
 	if("reward_pe")
