@@ -187,15 +187,17 @@
 	sweeptarget.apply_damage(30, RED_DAMAGE, null, run_armor_check(null, RED_DAMAGE))
 	playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 50, TRUE)
 	if(sweeptarget.mob_size <= MOB_SIZE_HUMAN)
-		do_knockback(sweeptarget, src, get_dir(src, sweeptarget))
+		DoKnockback(sweeptarget, src, get_dir(src, sweeptarget))
 		shake_camera(sweeptarget, 4, 3)
 		shake_camera(src, 2, 3)
 
-/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/do_knockback(atom/target, mob/thrower, throw_dir) //stolen from the knockback component since this happens only once
+/mob/living/simple_animal/hostile/ordeal/steel_dawn/steel_noon/flying/proc/DoKnockback(atom/target, mob/thrower, throw_dir) //stolen from the knockback component since this happens only once
 	if(!ismovable(target) || throw_dir == null)
 		return
 	var/atom/movable/throwee = target
 	if(throwee.anchored)
+		return
+	if(QDELETED(throwee))
 		return
 	var/atom/throw_target = get_edge_target_turf(throwee, throw_dir)
 	throwee.safe_throw_at(throw_target, 1, 1, thrower, gentle = TRUE)

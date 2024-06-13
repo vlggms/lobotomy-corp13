@@ -1117,6 +1117,10 @@
 	update_icon()
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/obj/item/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(suit)
+			H.dropItemToGround(suit, TRUE)
+			to_chat(H, span_interface("You remove your armor to put on the exosuit"))
 		H.physiology.red_mod *= 1 - clamp(armor[RED_DAMAGE], 0, 99) / 100
 		H.physiology.white_mod *= 1 - clamp(armor[WHITE_DAMAGE], 0, 99) / 100
 		H.physiology.black_mod *= 1 - clamp(armor[BLACK_DAMAGE], 0, 99) / 100

@@ -1130,7 +1130,7 @@
 			continue
 		if(H.stat == DEAD)
 			continue
-		if(H.z != z)
+		if(H.z != user.z)
 			continue
 		playsound(H, 'sound/abnormalities/onesin/bless.ogg', 100, FALSE, 12)
 		to_chat(H, span_nicegreen("[user]'s prayer was heard!"))

@@ -504,6 +504,17 @@
 	result = /obj/item/food/snowcones/mime
 	subcategory = CAT_MISCFOOD
 
+/datum/crafting_recipe/food/despaired_delight
+	name = "Despaired Delight"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/drinkingglass = 1,
+		/obj/item/food/grown/berries = 2,
+		/datum/reagent/consumable/milk = 5,
+		/datum/reagent/consumable/ice = 5
+	)
+	result = /obj/item/food/frozen_treats/despaired_delight
+	subcategory = CAT_MISCFOOD
+
 /datum/crafting_recipe/food/clown_sc
 	name = "Clown snowcone"
 	reqs = list(

@@ -29,7 +29,7 @@
 		return FALSE
 
 	to_chat(user, span_warning("You start climbing onto [src]."))
-	if(!do_after(user, 7 SECONDS))
+	if(!do_after(user, 3 SECONDS))
 		to_chat(user, span_notice("You decide that might be a bad idea."))
 		return FALSE
 

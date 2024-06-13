@@ -321,3 +321,16 @@
 	)
 	result = /obj/item/food/salad/citrusdelight
 	subcategory = CAT_SALAD
+
+/datum/crafting_recipe/food/crying_soup
+	name = "Crying Soup"
+	reqs = list(
+		/datum/reagent/water = 10,
+		/datum/reagent/consumable/salt = 1,
+		/obj/item/reagent_containers/glass/bowl = 1,
+		/obj/item/food/meat/cutlet = 2,
+		/obj/item/food/grown/onion = 1,
+		/obj/item/food/tortilla = 1
+	)
+	result = /obj/item/food/soup/crying_soup
+	subcategory = CAT_SOUP
