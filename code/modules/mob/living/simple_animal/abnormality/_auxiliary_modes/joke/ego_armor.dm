@@ -68,7 +68,7 @@
 	desc = "These are the sandals he wore in the Heian Era while stomping out some random kid."
 	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 20) //they should only spawn from killing suguma, dw
 	icon_state = "wizard"
-  
+
 /obj/item/clothing/suit/armor/ego_gear/aleph/wild_ride
 	name = "wild ride"
 	desc = "Looks like a T-shirt from a rock concert, with a flaming skeleton on it. In big, red text the shirt says \"I survived Mr. Bones' Wild ride\""
