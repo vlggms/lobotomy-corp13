@@ -88,6 +88,7 @@
 	inhand_y_dimension = 96
 	force = 33
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
 
