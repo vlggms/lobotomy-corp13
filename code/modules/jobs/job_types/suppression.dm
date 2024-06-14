@@ -101,14 +101,8 @@
 /datum/job/suppression/captain/after_spawn(mob/living/carbon/human/outfit_owner, mob/M)
 	. = ..()
 	for(var/datum/job/processing in SSjob.occupations)
-
-		if(SSmaptype.maptype == "highpop")
-			if(istype(processing, /datum/job/suppression))
-				processing.total_positions = 3
-		else
-			if(istype(processing, /datum/job/suppression))
-				processing.total_positions = 1		//Get one Extra ERA on lowpop maps. A maint keeps bitching at for this.
-
+		if(istype(processing, /datum/job/suppression))
+			processing.total_positions = 3
 
 /datum/outfit/job/suppression/captain
 	name = "Disciplinary Officer"
