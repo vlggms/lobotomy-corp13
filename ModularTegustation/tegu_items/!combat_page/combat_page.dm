@@ -67,4 +67,4 @@
 			new I(get_turf(user))
 
 	if(reward_pe)
-		SSlobotomy_corp.AdjustAvailableBoxes(-1 * reward_pe)
+		SSlobotomy_corp.AdjustAvailableBoxes(reward_pe)
