@@ -108,9 +108,9 @@
 		)
 
 	var/list/modular_damage_coeff = list(
-		"spring" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1.5),
-		"summer" = list(RED_DAMAGE = 0, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8), //Summer is tanky
-		"fall" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1.5),
+		"spring" = list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1),
+		"summer" = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 0.8), //Summer is tanky
+		"fall" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 1),
 		"winter" = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 1, BLACK_DAMAGE = 0.8, PALE_DAMAGE = 0.2)
 		)
 
