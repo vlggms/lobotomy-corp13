@@ -107,10 +107,9 @@
 /datum/outfit/job/suppression/captain
 	name = "Disciplinary Officer"
 	jobtype = /datum/job/suppression/captain
-	head = /obj/item/clothing/head/hos/beret
 	ears = /obj/item/radio/headset/heads/headset_discipline
 	l_pocket = /obj/item/commandprojector
-	suit = /obj/item/clothing/suit/armor/vest/alt
+	suit = /obj/item/clothing/suit/armor/ego_gear/disc_off
 
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
