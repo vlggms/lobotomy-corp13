@@ -90,10 +90,11 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 
 	job_abbreviation = "A-CLK"
 
-	alt_titles = list("Control Department Clerk",
+	alt_titles = list("Control Department Clerk", "Command Department Clerk",
 			"Welfare Department Clerk", "Disciplinary Department Clerk",
-			"Command Department Clerk", "Record Department Clerk")
-	senior_title = "Architecture Department Clerk"
+			)
+	senior_title = "Record Department Clerk"
+	ultra_senior_title = "Architecture Department Clerk"
 	clerk_belts = /obj/item/storage/belt/clerk/agent
 
 
@@ -121,6 +122,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	job_abbreviation = "F-CLK"
 
 	alt_titles = list("Safety Department Clerk", "Information Department Clerk",
-			"Training Department Clerk", "Extraction Department Clerk")
-	senior_title = "Architecture Department Clerk"
+			"Training Department Clerk",)
+	senior_title = "Extraction Department Clerk"
+	ultra_senior_title = "Architecture Department Clerk"
 	clerk_belts = /obj/item/storage/belt/clerk/facility

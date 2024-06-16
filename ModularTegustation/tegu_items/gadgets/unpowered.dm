@@ -350,7 +350,7 @@
 			. += span_warning("This will disable regenerators for a short period afterwards.")
 
 /obj/item/safety_kit/proc/clerk_check(mob/living/carbon/human/H)
-	if(istype(H) && (H?.mind?.assigned_role == "Clerk"))
+	if(istype(H) && (H?.mind?.assigned_role in list("Clerk", "Agent Support Clerk", "Facility Support Clerk")))
 		return TRUE
 	return FALSE
 
