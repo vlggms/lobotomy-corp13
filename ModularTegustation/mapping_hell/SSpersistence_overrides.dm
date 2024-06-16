@@ -124,11 +124,11 @@
 
 				if(!unique_entries[content_string])
 					code_file += "\"[Convert_Number_To_Symbol(iteration, override_turfs ? 703 : 27)]\" = (\n"
-					for(var/variable_item in 1 to items_to_save.len)
+					for(var/variable_item in 1 to length(items_to_save))
 						var/atom/desired_item = items_to_save[1]
 						code_file += "[desired_item.type]"
 						code_file += Wrap_Object_Json(desired_item, rotation)
-						code_file += "[items_to_save.len > 1 ? ",\n": ")\n"]"
+						code_file += "[length(items_to_save) > 1 ? ",\n": ")\n"]"
 						items_to_save -= desired_item
 
 					unique_entries[content_string] = Convert_Number_To_Symbol(iteration, override_turfs ? 703 : 27)
@@ -209,14 +209,14 @@
 			if(WEST)
 				variables_to_add += "pixel_x = [object.pixel_y]"
 
-	if(variables_to_add.len == 0) // nothing to add, return an empty string
+	if(length(variables_to_add) == 0) // nothing to add, return an empty string
 		return JSON
 
 	JSON += "{\n"
-	for(var/variable in 1 to variables_to_add.len)
+	for(var/variable in 1 to length(variables_to_add))
 		var/added_variable = variables_to_add[1]
 		JSON += "	[added_variable]"
-		JSON += "[variables_to_add.len > 1 ? ";\n": "\n	}"]"
+		JSON += "[length(variables_to_add) > 1 ? ";\n": "\n	}"]"
 		variables_to_add -= added_variable
 
 	return JSON

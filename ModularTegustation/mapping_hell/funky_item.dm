@@ -45,7 +45,7 @@
 			to_chat(user, span_notice("When you are done, click on this tool again to start saving the map"))
 		if(SAVE_MAP)
 			mode = SAVE_AREA
-			if(!saved_turfs.len)
+			if(!length(saved_turfs))
 				to_chat(user, span_notice("Now saving a pre-defined area"))
 				return
 			to_chat(user, span_notice("Saving custom map..."))
@@ -78,7 +78,7 @@
 		get_area(target),
 		rotation = direction,
 		delete_after_saving = deletion,
-		override_turfs = (saved_turfs.len ? saved_turfs : FALSE),
+		override_turfs = (length(saved_turfs) ? saved_turfs : FALSE),
 	)
 	saved_turfs = list()
 	var/map = "tmp/facility.dmm"
