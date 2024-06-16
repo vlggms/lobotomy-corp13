@@ -96,11 +96,15 @@ GLOBAL_LIST_INIT(supply_positions, list(
 
 
 GLOBAL_LIST_INIT(service_positions, list(
+	"Clerk",
+	"Agent Support Clerk",
+	"Facility Support Clerk",
+
+
 	"Doctor",
 	"Nurse",
 	"Paramedic",
 	"Medical Fixer Assistant",
-	"Clerk",
 	"HHPP Chef",
 	"Civilian",
 	"Backstreets Butcher",
