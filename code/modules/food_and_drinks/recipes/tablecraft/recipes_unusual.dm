@@ -254,7 +254,7 @@
 	)
 	result = /obj/item/food/donut/trumpet
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donut/jelly/trumpet
 	name = "Spaceman's Jelly Donut"
@@ -264,7 +264,7 @@
 	)
 	result = /obj/item/food/donut/jelly/trumpet
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/coldchili
 	name = "Cold chili"
@@ -276,7 +276,7 @@
 	)
 	result = /obj/item/food/soup/coldchili
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/mimanabread
 	name = "Mimana bread"
@@ -288,7 +288,7 @@
 	)
 	result = /obj/item/food/bread/mimana
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/blumpkinpie
 	name = "Blumpkin pie"
@@ -300,7 +300,7 @@
 	)
 	result = /obj/item/food/pie/blumpkinpie
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/frostypie
 	name = "Frosty pie"
@@ -310,7 +310,7 @@
 	)
 	result = /obj/item/food/pie/frostypie
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 	/////////////////////////
 	//Impossible ingredients/
@@ -327,7 +327,7 @@
 	)
 	result = /mob/living/simple_animal/hostile/bear/butter
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/cak
 	name = "Living cat/cake hybrid"
@@ -342,7 +342,7 @@
 	)
 	result = /mob/living/simple_animal/pet/cat/cak
 	subcategory = CAT_UNUSUAL //Cat! Haha, get it? CAT? GET IT? We get it - Love Felines
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/breadcat
 	name = "Bread cat/bread hybrid"
@@ -356,7 +356,7 @@
 	)
 	result = /mob/living/simple_animal/pet/cat/breadcat
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/royalcheese
 	name = "Royal Cheese"
@@ -368,7 +368,7 @@
 	)
 	result = /obj/item/food/royalcheese
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/slimecake
 	name = "Slime cake"
@@ -378,7 +378,7 @@
 	)
 	result = /obj/item/food/cake/slimecake
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/holycake
 	name = "Angel food cake"
@@ -388,7 +388,7 @@
 	)
 	result = /obj/item/food/cake/holy_cake
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/mimetart
 	name = "Mime tart"
@@ -400,11 +400,11 @@
 	)
 	result = /obj/item/food/pie/mimetart
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/cocolavatart
 	name = "Chocolate Lava tart"
-	always_available = FALSE
+
 	reqs = list(
 		/datum/reagent/consumable/milk = 5,
 		/datum/reagent/consumable/sugar = 5,
@@ -414,7 +414,7 @@
 	)
 	result = /obj/item/food/pie/cocolavatart
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donut/chaos
 	name = "Chaos donut"
@@ -425,7 +425,7 @@
 	)
 	result = /obj/item/food/donut/chaos
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donkpocket/gondola
 	time = 15
@@ -437,7 +437,7 @@
 	)
 	result = /obj/item/food/donkpocket/gondola
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/booberrymuffin
 	name = "Booberry muffin"
@@ -449,7 +449,7 @@
 	)
 	result = /obj/item/food/muffin/booberry
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/fivealarmburger
 	name = "Five alarm burger"
@@ -460,7 +460,7 @@
 	)
 	result = /obj/item/food/burger/fivealarm
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/ghostburger
 	name = "Ghost burger"
@@ -471,7 +471,7 @@
 	)
 	result = /obj/item/food/burger/ghost
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/fuegoburrito
 	name ="Fuego plasma burrito"
@@ -482,7 +482,7 @@
 	)
 	result = /obj/item/food/fuegoburrito
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/stuffedlegion
 	name = "Stuffed legion"
@@ -495,7 +495,7 @@
 	)
 	result = /obj/item/food/stuffedlegion
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/powercrepe
 	name = "Powercrepe"
@@ -509,7 +509,7 @@
 	)
 	result = /obj/item/food/powercrepe
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/arnold
 	name = "Arnold pizza"
@@ -522,7 +522,7 @@
 	)
 	result = /obj/item/food/pizza/arnold
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/hardwarecake
 	name = "Hardware cake"
@@ -533,7 +533,7 @@
 	)
 	result = /obj/item/food/cake/hardware_cake
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 	//Slimejelly
 /datum/crafting_recipe/food/slimeburger
@@ -544,7 +544,7 @@
 	)
 	result = /obj/item/food/burger/jelly/slime
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/slimetoast
 	name = "Slime toast"
@@ -554,7 +554,7 @@
 	)
 	result = /obj/item/food/jelliedtoast/slime
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/slimesandwich
 	name = "Jelly sandwich"
@@ -564,7 +564,7 @@
 	)
 	result = /obj/item/food/jellysandwich/slime
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donut/slimejelly
 	name = "Slime jelly donut"
@@ -574,7 +574,7 @@
 	)
 	result = /obj/item/food/donut/jelly/slimejelly/plain
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donut/slimejelly/berry
 	name = "Berry Slime Donut"
@@ -657,7 +657,7 @@
 	blacklist = list(/obj/item/food/cake/birthday/energy)
 	result = /obj/item/food/cake/birthday/energy
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/monkeysdelight
 	name = "Monkeys delight"
@@ -671,7 +671,7 @@
 	)
 	result = /obj/item/food/soup/monkeysdelight
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 	//Xenomeat
 /datum/crafting_recipe/food/wingfangchu
@@ -683,7 +683,7 @@
 	)
 	result = /obj/item/food/soup/wingfangchu
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/xenomeatbread
 	name = "Xenomeat bread"
@@ -694,7 +694,7 @@
 	)
 	result = /obj/item/food/bread/xenomeat
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/xenopie
 	name = "Xeno pie"
@@ -704,7 +704,7 @@
 	)
 	result = /obj/item/food/pie/xemeatpie
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/xenoburger
 	name = "Xeno burger"
@@ -714,7 +714,7 @@
 	)
 	result = /obj/item/food/burger/xeno
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 	//Unavaliable meats
 /datum/crafting_recipe/food/tailkebab
@@ -725,7 +725,7 @@
 	)
 	result = /obj/item/food/kebab/tail
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/spidermeatbread
 	name = "Spidermeat bread"
@@ -736,7 +736,7 @@
 	)
 	result = /obj/item/food/bread/spidermeat
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/spidereggsham
 	name = "Spider eggs ham"
@@ -747,7 +747,7 @@
 	)
 	result = /obj/item/food/spidereggsham
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/bearypie
 	name = "Beary Pie"
@@ -758,7 +758,7 @@
 	)
 	result = /obj/item/food/pie/bearypie
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/bearger
 	name = "Bearger"
@@ -768,7 +768,7 @@
 	)
 	result = /obj/item/food/burger/bearger
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/bearsteak
 	name = "Filet migrawr"
@@ -779,4 +779,4 @@
 	tools = list(/obj/item/lighter)
 	result = /obj/item/food/bearsteak
 	subcategory = CAT_UNUSUAL
-	always_available = FALSE
+

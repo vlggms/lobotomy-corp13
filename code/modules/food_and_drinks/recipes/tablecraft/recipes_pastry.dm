@@ -37,7 +37,7 @@
 	)
 	result = /obj/item/food/cake/bscc
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/bscvcake
 	name = "blackberry and strawberry vanilla cake"
@@ -47,7 +47,7 @@
 	)
 	result = /obj/item/food/cake/bsvc
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/clowncake
 	name = "clown cake"
@@ -58,7 +58,7 @@
 	)
 	result = /obj/item/food/cake/clown_cake
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/carrotcake
 	name = "Carrot cake"
@@ -68,7 +68,7 @@
 	)
 	result = /obj/item/food/cake/carrot
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/cheesecake
 	name = "Cheese cake"
@@ -78,7 +78,7 @@
 	)
 	result = /obj/item/food/cake/cheese
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/applecake
 	name = "Apple cake"
@@ -88,7 +88,7 @@
 	)
 	result = /obj/item/food/cake/apple
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/orangecake
 	name = "Orange cake"
@@ -98,7 +98,7 @@
 	)
 	result = /obj/item/food/cake/orange
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/limecake
 	name = "Lime cake"
@@ -108,7 +108,7 @@
 	)
 	result = /obj/item/food/cake/lime
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/lemoncake
 	name = "Lemon cake"
@@ -118,7 +118,7 @@
 	)
 	result = /obj/item/food/cake/lemon
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/chocolatecake
 	name = "Chocolate cake"
@@ -128,7 +128,7 @@
 	)
 	result = /obj/item/food/cake/chocolate
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/birthdaycake
 	name = "Birthday cake"
@@ -140,7 +140,7 @@
 	)
 	result = /obj/item/food/cake/birthday
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/pumpkinspicecake
 	name = "Pumpkin spice cake"
@@ -150,7 +150,7 @@
 	)
 	result = /obj/item/food/cake/pumpkinspice
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 ////////////////////////////////////////////////PIES////////////////////////////////////////////////
 
@@ -220,7 +220,7 @@
 	)
 	result = /obj/item/food/pie/pumpkinpie
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/bananacreampie
 	name = "Banana cream pie"
@@ -231,7 +231,7 @@
 	)
 	result = /obj/item/food/pie/cream
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/berryclafoutis
 	name = "Berry clafoutis"
@@ -241,7 +241,7 @@
 	)
 	result = /obj/item/food/pie/berryclafoutis
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/grapetart
 	name = "Grape tart"
@@ -253,7 +253,7 @@
 	)
 	result = /obj/item/food/pie/grapetart
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/berrytart
 	name = "Berry tart"
@@ -265,7 +265,7 @@
 	)
 	result = /obj/item/food/pie/berrytart
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/dulcedebatata
 	name = "Dulce de batata"
@@ -276,7 +276,7 @@
 	)
 	result = /obj/item/food/pie/dulcedebatata
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/baklava
 	name = "Baklava pie"
@@ -287,7 +287,7 @@
 	)
 	result = /obj/item/food/pie/baklava
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 ////////////////////////////////////////////////DONUTS////////////////////////////////////////////////
 
@@ -383,7 +383,7 @@
 		/obj/item/food/pastrybase = 1
 	)
 	result = /obj/item/food/donut/jelly/plain
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donut/jelly/berry
 	name = "Berry Jelly Donut"
@@ -489,7 +489,7 @@
 	)
 	result = /obj/item/food/donkpocket
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/dankpocket
 	time = 15
@@ -500,7 +500,7 @@
 	)
 	result = /obj/item/food/dankpocket
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donkpocket/spicy
 	time = 15
@@ -512,7 +512,7 @@
 	)
 	result = /obj/item/food/donkpocket/spicy
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donkpocket/teriyaki
 	time = 15
@@ -524,7 +524,7 @@
 	)
 	result = /obj/item/food/donkpocket/teriyaki
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donkpocket/pizza
 	time = 15
@@ -536,7 +536,7 @@
 	)
 	result = /obj/item/food/donkpocket/pizza
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donkpocket/honk
 	time = 15
@@ -548,7 +548,7 @@
 	)
 	result = /obj/item/food/donkpocket/honk
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/donkpocket/berry
 	time = 15
@@ -559,7 +559,7 @@
 	)
 	result = /obj/item/food/donkpocket/berry
 	subcategory = CAT_PASTRY
-	always_available = FALSE
+
 
 ////////////////////////////////////////////////MUFFINS////////////////////////////////////////////////
 
