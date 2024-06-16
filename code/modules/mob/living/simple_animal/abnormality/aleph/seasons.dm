@@ -32,6 +32,9 @@
 	is_flying_animal = FALSE
 	start_qliphoth = 1
 	can_breach = TRUE
+	light_color = COLOR_TEAL
+	light_range = 0
+	light_power = 0
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(5, 10, 15, 50, 55),
 		ABNORMALITY_WORK_INSIGHT = list(5, 10, 15, 50, 55),
@@ -246,11 +249,19 @@
 	projectilesound = breaching_stats[current_season][1]
 	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
 	projectiletype = breaching_stats[current_season][3]
+	light_range = 0
+	light_power = 0
+	update_light()
 	if(downgraded)
 		icon_state = "[current_season]_mini"
 		portrait = "[current_season]"
 		name = season_stats[current_season][3]
 		desc = season_stats[current_season][5]
+	else
+		if(current_season == "fall")
+			light_range = 5
+			light_power = 7
+			update_light()
 	if(current_season == "winter")
 		cone_attack_damage = 75
 		slam_damage = 125
@@ -860,16 +871,17 @@
 /obj/effect/season_turf/proc/BumpEffect(mob/living/carbon/human/H)
 	switch(current_season)
 		if("spring")
-			if(prob(5))
+			if(prob(10))
 				to_chat(H, span_warning("Your legs are cut by brambles in the grass!"))
-				H.apply_damage(5, BLACK_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+				H.apply_damage(10, BLACK_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
 		if("summer")
 			if(icon_state == "lava")
 				to_chat(H, span_warning("You stumbled into a pool of lava!"))
 				H.adjust_fire_stacks(rand(0.1, 1))
 				H.IgniteMob()
 		if("fall")
-			if(prob(5))
+			H.apply_damage(2, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+			if(prob(10))
 				to_chat(H, span_warning("You sink into the marsh!"))
 				animate(H, alpha = 255,pixel_x = 0, pixel_z = -3, time = 0.5 SECONDS)
 				H.pixel_z = -3
