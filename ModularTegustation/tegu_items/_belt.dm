@@ -11,8 +11,9 @@
 /obj/item/storage/belt/clerk/ComponentInitialize()
 	. = ..()
 	var/datum/component/storage/STR = GetComponent(/datum/component/storage)
-	STR.max_w_class = WEIGHT_CLASS_NORMAL
-	STR.max_combined_w_class = 21
+	STR.max_w_class = WEIGHT_CLASS_BULKY
+	STR.max_combined_w_class = 600
+	STR.max_items = 5
 	STR.set_holdable(list(
 		/obj/item/powered_gadget,
 		/obj/item/pet_whistle,
