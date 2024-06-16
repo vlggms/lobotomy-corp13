@@ -77,6 +77,7 @@
 	backpack_contents = list(
 		/obj/item/melee/classic_baton,
 		/obj/item/suppressionupdate,
+		/obj/item/powered_gadget/enkephalin_injector,
 	)
 
 // Suppression Officer
@@ -89,7 +90,7 @@
 	display_order = JOB_DISPLAY_ORDER_COMMAND
 	normal_attribute_level = 20
 
-	access = list(ACCESS_COMMAND) // LC13:To-Do
+	access = list(ACCESS_COMMAND)
 	exp_requirements = 6000
 	exp_type = EXP_TYPE_CREW
 	exp_type_department = EXP_TYPE_SECURITY
@@ -118,6 +119,7 @@
 		/obj/item/melee/classic_baton,
 		/obj/item/announcementmaker/lcorp,
 		/obj/item/suppressionupdate,
+		/obj/item/powered_gadget/enkephalin_injector,
 	)
 
 	//Stat update
