@@ -46,7 +46,6 @@
 	)
 	work_damage_amount = 25
 	work_damage_type = RED_DAMAGE
-	chem_type = /datum/reagent/abnormality/violence
 	death_message = "dies, probably."
 	wander = TRUE
 	can_spawn = FALSE

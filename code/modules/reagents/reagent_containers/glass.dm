@@ -253,20 +253,6 @@
 		/datum/reagent/consumable/vanillapudding)
 	reagents.add_reagent(pudding, 25)
 
-	//LC13 Chems
-/obj/item/reagent_containers/glass/beaker/jar/syrup_random
-	name = "jar of syrup"
-	desc = "A jar for a strange syrup."
-
-/obj/item/reagent_containers/glass/beaker/jar/syrup_random/Initialize()
-	. = ..()
-	var/datum/reagent/syrups = pick(
-		/datum/reagent/abnormality/heartysyrup,
-		/datum/reagent/abnormality/bittersyrup,
-		/datum/reagent/abnormality/tastesyrup,
-		/datum/reagent/abnormality/focussyrup)
-	reagents.add_reagent(syrups, 25)
-
 /obj/item/reagent_containers/glass/beaker/large
 	name = "large beaker"
 	desc = "A large beaker. Can hold up to 100 units."

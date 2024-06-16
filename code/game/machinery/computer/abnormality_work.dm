@@ -272,11 +272,6 @@
 		datum_reference.work_complete(user, work_type, pe, work_speed*datum_reference.max_boxes, was_melting, canceled)
 		if(recorded) //neither rabbit nor tutorial calls this
 			SSlobotomy_corp.WorkComplete(pe, (meltdown_time <= 0))
-	var/obj/item/chemical_extraction_attachment/attachment = locate() in src.contents
-	if(attachment)
-		chem_charges += 1
-	else
-		chem_charges = min(chem_charges + 0.2, 10)
 	meltdown_time = 0
 	datum_reference.working = FALSE
 	return TRUE

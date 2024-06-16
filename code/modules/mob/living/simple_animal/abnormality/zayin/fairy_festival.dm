@@ -39,9 +39,6 @@
 		// Fae Lantern = 1.5
 	)
 
-	chem_type = /datum/reagent/abnormality/fairy_festival
-	harvest_phrase = span_notice("A fairy presents you a small flower, then pours its contents into %VESSEL.")
-	harvest_phrase_third = "A fairy presents %PERSON with a small flower, then pours it into %VESSEL."
 
 /mob/living/simple_animal/hostile/abnormality/fairy_festival/proc/FairyHeal()
 	for(var/mob/living/carbon/human/P in protected_people)
@@ -119,13 +116,6 @@
 		var/mob/living/simple_animal/hostile/mini_fairy/new_fairy = new(target_turf)
 		if(pink)
 			new_fairy.faction += "pink_midnight"
-
-/datum/reagent/abnormality/fairy_festival
-	name = "Nectar of an Unknown Flower"
-	description = "The fairies got this for you..."
-	color = "#e4d0b2"
-	health_restore = 2
-	armor_mods = list(-2, 0, 0, 0)
 
 /mob/living/simple_animal/hostile/mini_fairy
 	name = "\improper Lost Fairy"

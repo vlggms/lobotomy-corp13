@@ -38,13 +38,13 @@
 /obj/item/food/cookie/sugar/pbird
 	desc = "A sweet cookie shaped like a cute little bird."
 	icon_state = "sugarcookie_pbird"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 2, /datum/reagent/abnormality/heartysyrup = 1)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 2,)
 
 /obj/item/food/cake/bbird
 	name = "Big Bird cake"
 	desc = "A cake that seems like it's watching you."
 	icon_state = "bbcake"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5, /datum/reagent/abnormality/tastesyrup = 3)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 20, /datum/reagent/consumable/nutriment/vitamin = 5,)
 	tastes = list("cake" = 1, "vigilance" = 1)
 	foodtypes = GRAIN | DAIRY
 
@@ -61,7 +61,7 @@
 	name = "Judgement sundae"
 	desc = "A sweet, sweet serving of justice."
 	icon_state = "sundae" //PLACEHOLDER
-	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2, /datum/reagent/abnormality/focussyrup = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 6, /datum/reagent/consumable/banana = 5, /datum/reagent/consumable/nutriment/vitamin = 2,)
 	tastes = list("judgement" = 1, "paranoia" = 1)
 	foodtypes = DAIRY | SUGAR
 
@@ -80,7 +80,7 @@
 	name = "Apocalypse trifle"
 	desc = "A huge serving of monstrously good cake, custard, and forest fruit."
 	icon_state = "apoctrifle"
-	food_reagents = list(/datum/reagent/abnormality/tastesyrup = 9, /datum/reagent/abnormality/focussyrup = 9, /datum/reagent/abnormality/heartysyrup = 9, /datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 5)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 15, /datum/reagent/consumable/sugar = 5)
 	tastes = list("cake" = 3, "custard" = 3, "fresh fruit" = 3, "fear" = 1)
 	foodtypes = DAIRY | SUGAR | FRUIT
 
@@ -144,7 +144,7 @@
 	name = "sweeper soup"
 	desc = "Liquid sweeper in a bowl made of its own shell."
 	icon_state = "redbeetsoup" //PLACEHOLDER
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/blood = 10, /datum/reagent/abnormality/heartysyrup = 2)
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein = 6, /datum/reagent/blood = 10,)
 	tastes = list("something metallic" = 1)
 	foodtypes = MEAT
 
@@ -163,7 +163,7 @@
 	name = "unending tea party"
 	desc = "A delusionally good selection of treats, crustless sandwiches, and hot tea. Enough to share." //ego ability gives snacks, therefore snack plate to share
 	icon_state = "teaparty"
-	food_reagents = list(/datum/reagent/consumable/nutriment = 12, /datum/reagent/abnormality/bottle = 6)
+	food_reagents = list(/datum/reagent/consumable/nutriment = 12)
 	tastes = list("tiny sandwiches" = 2, "cookies" = 2, "tea" = 2, "delusion" = 1)
 	foodtypes = GRAIN | SUGAR
 
@@ -171,7 +171,7 @@
 	name = "Unending Tea Party"
 	reqs = list(
 		/obj/item/food/cookie/sugar = 2,
-		/datum/reagent/abnormality/bottle = 10
+		/datum/reagent/consumable/nutriment = 10
 	)
 	result = /obj/item/food/teaparty
 	subcategory = CAT_PASTRY
@@ -179,7 +179,7 @@
 /datum/crafting_recipe/food/wccajam
 	name = "Meat Jam"
 	reqs = list(
-		/datum/reagent/abnormality/we_can_change_anything = 10
+		/datum/reagent/consumable/nutriment = 10
 	)
 	result = /obj/item/food/meatjam
 	subcategory = CAT_MEAT

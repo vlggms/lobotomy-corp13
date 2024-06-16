@@ -47,9 +47,6 @@
 	var/eating = FALSE
 	COOLDOWN_DECLARE(speak_damage_aura)
 
-	chem_type = /datum/reagent/abnormality/bottle
-	harvest_phrase = span_notice("You sweep up some crumbs from around %ABNO into %VESSEL.")
-	harvest_phrase_third = "%PERSON sweeps up crumbs from around %ABNO into %VESSEL."
 
 /mob/living/simple_animal/hostile/abnormality/bottle/Life()
 	. = ..()
@@ -246,11 +243,3 @@
 
 #undef STATUS_EFFECT_TEARS
 #undef STATUS_EFFECT_TEARS_LESS
-
-/datum/reagent/abnormality/bottle
-	name = "Crumbs"
-	description = "A small pile of slightly soggy crumbs."
-	reagent_state = SOLID
-	color = "#ad8978"
-	health_restore = 2
-	stat_changes = list(-4, -4, -4, -4)

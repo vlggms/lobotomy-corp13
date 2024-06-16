@@ -38,11 +38,8 @@
 	gift_chance = 10
 	gift_message = "Now we're feeling awesome!"
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
-	harvest_phrase = span_notice("You squeeze %ABNO. Some juice drips into %VESSEL.")
-	harvest_phrase_third = "%PERSON squeezes %ABNO. Some juice drips into %VESSEL."
 
 	var/bald_users = list()
-	chem_type = /datum/reagent/abnormality/bald
 
 /mob/living/simple_animal/hostile/abnormality/bald/WorkChance(mob/living/carbon/human/user, chance)
 	if(HAS_TRAIT(user, TRAIT_BALD))
@@ -113,21 +110,6 @@
 	if(!.)
 		return
 	to_chat(src, span_userdanger("You do not do damage, your sole mission is to spread the glory of baldness to all."))
-
-/datum/reagent/abnormality/bald
-	name = "Essence of Baldness"
-	description = "Some weird-looking juice..."
-	color = "#ffffff"
-	special_properties = list("substance may alter subject physiology")
-	sanity_restore = 1
-
-/datum/reagent/abnormality/bald/on_mob_metabolize(mob/living/L)
-	if(ishuman(L))
-		var/mob/living/carbon/human/balder = L
-		if(balder.hairstyle != "Bald")
-			balder.hairstyle = "Bald"
-			balder.update_hair()
-	return ..()
 
 /obj/projectile/beam/yang/bald
 	name = "bald beam"

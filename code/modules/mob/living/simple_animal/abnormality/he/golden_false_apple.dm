@@ -71,9 +71,6 @@
 	var/datum/action/innate/abnormality_attack/maggot_spread2/maggot_attack2
 
 	guaranteed_butcher_results = list(/obj/item/food/grown/apple/gold/abnormality = 1)
-	chem_type = /datum/reagent/abnormality/ambrosia
-	harvest_phrase = span_notice("You score %ABNO and it bleeds a golden syrup into %VESSEL.")
-	harvest_phrase_third = "%PERSON scores %ABNO, dripping a golden syrup into %VESSEL."
 	var/is_maggot = FALSE
 	var/can_act = TRUE
 	var/victim_name

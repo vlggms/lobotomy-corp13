@@ -234,7 +234,6 @@
 	reagents_add = list (
 		/datum/reagent/consumable/sugar = 0.05,
 		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/abnormality/wellcheers_zero = 0.07,
 	)
 	rarity = 30
 
@@ -270,7 +269,6 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	reagents_add = list(
 		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/abnormality/quiet_day = 0.07,
 	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
@@ -304,7 +302,6 @@
 	reagents_add = list(
 		/datum/reagent/consumable/nutriment = 0.07,
 		/datum/reagent/consumable/sugar = 0.07,
-		/datum/reagent/abnormality/we_can_change_anything = 0.07,
 	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism

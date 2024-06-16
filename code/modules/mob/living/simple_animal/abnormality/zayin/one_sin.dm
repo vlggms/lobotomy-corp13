@@ -32,9 +32,6 @@
 		/mob/living/simple_animal/hostile/abnormality/white_night = 5,
 	)
 
-	chem_type = /datum/reagent/abnormality/onesin
-	harvest_phrase = span_notice("As you hold it up before %ABNO, holy light fills %VESSEL.")
-	harvest_phrase_third = "%PERSON holds up %VESSEL, letting it be filled with holy light."
 
 	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
 
@@ -123,15 +120,3 @@
 
 /mob/living/simple_animal/hostile/abnormality/onesin/BreachEffect(mob/living/carbon/human/user, breach_type)
 	return FALSE // If someone wants him to breach for SOME REASON in the future, then exclude breach_type == BREACH_PINK
-
-/datum/reagent/abnormality/onesin
-	name = "Holy Light"
-	description = "It's calming, even if you can't quite look at it straight."
-	color = "#eff16d"
-	sanity_restore = -2
-	special_properties = list("may alter sanity of those near the subject")
-
-/datum/reagent/abnormality/onesin/on_mob_life(mob/living/L)
-	for(var/mob/living/carbon/human/nearby in livinginview(9, get_turf(L)))
-		nearby.adjustSanityLoss(-1)
-	return ..()

@@ -15,7 +15,6 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = WHITE_DAMAGE
-	chem_type = /datum/reagent/abnormality/woe
 	max_boxes = 14
 
 	ego_list = list(

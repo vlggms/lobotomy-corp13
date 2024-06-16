@@ -67,8 +67,6 @@
 		new /datum/data/extraction_cargo("Red Filter ",					/obj/item/refiner_filter/red,										10, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Yellow Filter ",				/obj/item/refiner_filter/yellow,									10, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Raw PE Box ",					/obj/item/rawpe,													50, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Abnormality Chemistry Pack ",	/obj/structure/closet/crate/science/abnochem_startercrate,			100, CAT_RESOURCE) = 1,
-		new /datum/data/extraction_cargo("Chemical Extraction Upgrade ",/obj/item/chemical_extraction_attachment,							150, CAT_RESOURCE) = 1,
 		new /datum/data/extraction_cargo("Mysterious Invitation ",		/obj/item/invitation,												1500, CAT_RESOURCE) = 1,
 
 		//Random stuff

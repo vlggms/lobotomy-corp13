@@ -22,7 +22,6 @@
 	food_reagents = list(
 		/datum/reagent/consumable/nutriment/organ_tissue = 3,
 		/datum/reagent/consumable/nutriment/vile_fluid = 1,
-		/datum/reagent/abnormality/bittersyrup = 1,
 	)
 
 /obj/item/food/fish/fresh_water/northernpike
@@ -63,7 +62,6 @@
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/nutriment/organ_tissue = 1,
 		/datum/reagent/consumable/nutriment/vile_fluid = 2,
-		/datum/reagent/abnormality/bittersyrup = 4,
 	)
 
 /obj/item/food/fish/fresh_water/yin
@@ -80,7 +78,6 @@
 		/datum/reagent/consumable/nutriment/protein = 2,
 		/datum/reagent/consumable/nutriment/organ_tissue = 1,
 		/datum/reagent/consumable/nutriment/vile_fluid = 2,
-		/datum/reagent/abnormality/tastesyrup = 4,
 	)
 
 /obj/item/food/fish/fresh_water/mosb
@@ -97,6 +94,5 @@
 	average_weight = 16000
 	food_reagents = list(
 		/datum/reagent/medicine/mental_stabilizator = 2,
-		/datum/reagent/abnormality/heartysyrup = 4,
 		/datum/reagent/consumable/nutriment/vile_fluid = 6,
 	)

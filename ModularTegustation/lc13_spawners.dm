@@ -41,7 +41,6 @@
 		/obj/item/storage/cans/sixbeer = 1,
 		/obj/item/food/candy = 1,
 		/obj/item/reagent_containers/glass/beaker/jar/pudding = 1,
-		/obj/item/reagent_containers/glass/beaker/jar/syrup_random = 1,
 		)
 
 /obj/effect/spawner/lootdrop/medical_random
@@ -88,7 +87,6 @@
 		/obj/item/storage/cans/sixbeer = 1,
 		/obj/item/food/candy = 1,
 		/obj/item/reagent_containers/glass/beaker/jar/pudding = 1,
-		/obj/item/reagent_containers/glass/beaker/jar/syrup_random = 1,
 		)
 
 /obj/effect/spawner/lootdrop/workshop_random

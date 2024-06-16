@@ -48,9 +48,6 @@
 	var/grind_duration = 5 SECONDS
 	var/grind_damage = 2 // Dealt 100 times
 
-	chem_type = /datum/reagent/abnormality/we_can_change_anything
-	harvest_phrase = span_notice("You scoop up some goo from the inner lip of %ABNO using %VESSEL.")
-	harvest_phrase_third = "%PERSON scoops up some goo from the inner lip of %ABNO with %VESSEL."
 	var/sacrifice = FALSE //are we doing "Enter machine" work?
 	var/ramping_speed = 20 //work speed for sacrifice work, gets subtracted from so we can have faster work ticks.
 	var/total_damage = 0 //stored so we can later convert it into PE
@@ -239,10 +236,3 @@
 	status_holder.physiology.red_mod /= 0.9
 
 #undef STATUS_EFFECT_CHANGE
-
-/datum/reagent/abnormality/we_can_change_anything
-	name = "Dubious Red Goo"
-	description = "You have a strong suspicion about where this came from, but..."
-	color = "#8f1108"
-	health_restore = -1
-	damage_mods = list(0.9, 1, 1, 1)

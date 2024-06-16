@@ -475,7 +475,7 @@
 	name = "meat jam"
 	desc = "A jar of delicious meat jam."
 	icon_state = "meatproduct" //this is a placeholder
-	food_reagents = list(/datum/reagent/consumable/nutriment/protein =  5, /datum/reagent/abnormality/we_can_change_anything = 3)
+	food_reagents = list(/datum/reagent/consumable/nutriment/protein =  5,)
 	tastes = list("strange meat" = 3, "suffering" = 1)
 	foodtypes = MEAT
 
