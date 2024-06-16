@@ -845,7 +845,7 @@
 /obj/item/ego_weapon/fluid_sac
 	name = "fluid sac"
 	desc = "Crush them, even if you must disgorge everything."
-	special = "This weapon can be used to perform a jump attack after a short wind-up."
+	special = "This weapon can be used to perform a jump attack after a short wind-up (Middle mouse button click an enemy)."
 	icon_state = "fluid_sac"
 	force = 55
 	attack_speed = 2
@@ -872,17 +872,20 @@
 /obj/item/ego_weapon/fluid_sac/proc/JumpReset()
 	can_attack = TRUE
 
-/obj/item/ego_weapon/fluid_sac/afterattack(atom/A, mob/living/user, proximity_flag, params)
-	if(!CanUseEgo(user) || !can_attack)
+/obj/item/ego_weapon/fluid_sac/MiddleClickAction(atom/target, mob/living/user)
+	. = ..()
+	if(.)
 		return
-	if(!isliving(A))
+	if(!can_attack)
 		return
+	if(!isliving(target))
+		return
+	var/mob/living/A = target
 	if(dash_cooldown > world.time)
 		to_chat(user, span_warning("Your dash is still recharging!"))
 		return
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
-	..()
 	if(do_after(user, 5, src))
 		dash_cooldown = world.time + dash_cooldown_time
 		playsound(src, 'sound/abnormalities/ichthys/jump.ogg', 50, FALSE, -1)
