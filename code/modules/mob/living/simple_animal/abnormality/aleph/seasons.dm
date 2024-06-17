@@ -139,6 +139,9 @@
 	var/pulse_damage = 15
 	var/list/summons = list()
 	var/fire_wall_amount = 3
+	var/fire_width = 3
+	var/fire_length = 5
+	var/fire_damage = 150
 	var/wisp_amount = 6
 
 	//PLAYABLES ATTACKS
@@ -375,10 +378,125 @@
 				return SpecialAttack(target)
 		if((slam_cooldown <= world.time) && prob(35))
 			return Slam()
+	if(current_season == "summer")
+		return SummerMelee(target)
 	if(ishuman(target))
 		if(Finisher(target))
 			return
 	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/SummerMelee(target)
+	if (get_dist(src, target) > 3)
+		return
+	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
+	var/turf/source_turf = get_turf(src)
+	var/turf/area_of_effect = list()
+	var/turf/middle_line = list()
+	var/warningtype = breaching_stats[current_season][7]
+	var/attacktype = breaching_stats[current_season][5]
+	switch(dir_to_target)
+		if(EAST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, EAST, fire_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, fire_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, fire_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(WEST)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, WEST, fire_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, NORTH, fire_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, SOUTH, fire_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(SOUTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, SOUTH, fire_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, fire_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, fire_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		if(NORTH)
+			middle_line = getline(get_step_towards(source_turf, target), get_ranged_target_turf(source_turf, NORTH, fire_length))
+			for(var/turf/T in middle_line)
+				if(T.density)
+					break
+				for(var/turf/Y in getline(T, get_ranged_target_turf(T, EAST, fire_width)))
+					if (Y.density)
+						break
+					if (Y in area_of_effect)
+						continue
+					area_of_effect += Y
+				for(var/turf/U in getline(T, get_ranged_target_turf(T, WEST, fire_width)))
+					if (U.density)
+						break
+					if (U in area_of_effect)
+						continue
+					area_of_effect += U
+		else
+			for(var/turf/T in view(1, src))
+				if (T.density)
+					break
+				if (T in area_of_effect)
+					continue
+				area_of_effect |= T
+	if (!LAZYLEN(area_of_effect))
+		return
+	can_act = FALSE
+	dir = dir_to_target
+	playsound(get_turf(src), 'sound/abnormalities/seasons/breath_attack.ogg', 40, 0, 5)
+	for(var/turf/T in area_of_effect)
+		new warningtype(T)
+	SLEEP_CHECK_DEATH(1.4 SECONDS)
+	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
+	playsound(src, 'sound/abnormalities/apocalypse/slam.ogg', 100, FALSE, 12)
+	visible_message(span_danger("[src] slams at the floor with its hands!"))
+	for(var/mob/living/M in livinginrange(10, get_turf(src)))
+		shake_camera(M, 1.4, 3)
+	for(var/turf/T in area_of_effect)
+		new attacktype(T)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			if (L == src)
+				continue
+			L.apply_damage(fire_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_away(L, T)))
+			L.throw_at(throw_target, 2, 3)
+			L.adjust_fire_stacks(3)
+			L.IgniteMob()
+	SLEEP_CHECK_DEATH(0.5 SECONDS)
+	can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/seasons/OpenFire()
 	if(!can_act)
@@ -441,6 +559,24 @@
 	var/list/turfs = list()
 	switch (current_season)
 		if("summer")
+			turfs = LineTarget(90, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(0, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(180, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(270, 15, at)
+			FireLine(turfs)
+			SLEEP_CHECK_DEATH(0.75 SECONDS)
+			turfs = LineTarget(135, 10, at)
+			FireLine3x3(turfs)
+			turfs = LineTarget(45, 10, at)
+			FireLine3x3(turfs)
+			turfs = LineTarget(225, 10, at)
+			FireLine3x3(turfs)
+			turfs = LineTarget(315, 10, at)
+			FireLine3x3(turfs)
+		if("fall")
 			turfs = LineTarget(-40, 15, at)
 			FireLine(turfs)
 			turfs = LineTarget(-20, 15, at)
@@ -450,17 +586,6 @@
 			turfs = LineTarget(20, 15, at)
 			FireLine(turfs)
 			turfs = LineTarget(40, 15, at)
-			FireLine(turfs)
-		if("fall")
-			turfs = LineTarget(0, 15, at)
-			FireLine(turfs)
-			SLEEP_CHECK_DEATH(1 SECONDS)
-			turfs = LineTarget(30, 15, at)
-			FireLine(turfs)
-			turfs = LineTarget(-30, 15, at)
-			FireLine(turfs)
-			SLEEP_CHECK_DEATH(1 SECONDS)
-			turfs = LineTarget(0, 15, at)
 			FireLine(turfs)
 		if("winter")
 			turfs = LineTarget(0, 20, at)
@@ -986,8 +1111,8 @@
 	QDEL_IN(src, 0.5 SECONDS)
 
 /obj/effect/season_effect/summer
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "summer_attack"
+	icon = 'icons/effects/fire.dmi'
+	icon_state = "1"
 
 /obj/effect/season_effect/fall
 	icon = 'icons/effects/effects.dmi'
@@ -1046,10 +1171,10 @@
 
 /obj/structure/fire_wall
 	gender = PLURAL
-	name = "fall wall"
-	desc = "A wall of fire."
-	icon = 'icons/effects/fire.dmi'
-	icon_state = "1"
+	name = "Mini Vulcano"
+	desc = "It's spewing fire!"
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "summer_attack"
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 10000
@@ -1065,7 +1190,7 @@
 
 /obj/structure/fire_wall/Initialize()
 	. = ..()
-	QDEL_IN(src, (30 SECONDS))
+	QDEL_IN(src, (20 SECONDS))
 	addtimer(CALLBACK(src, PROC_REF(Fire_Spew)), 5 SECONDS)
 
 /obj/structure/fire_wall/proc/Fire_Spew()
@@ -1075,6 +1200,7 @@
 		for(var/mob/living/M in T.contents)
 			M.adjust_fire_stacks(3)
 			M.IgniteMob()
+			M.apply_damage(20, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Fire_Spew)), 5 SECONDS)
 
 /obj/effect/temp_visual/winter_god
