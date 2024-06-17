@@ -139,6 +139,7 @@
 	var/pulse_damage = 15
 	var/list/summons = list()
 	var/fire_wall_amount = 3
+	var/wisp_amount = 6
 
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
@@ -450,6 +451,17 @@
 			FireLine(turfs)
 			turfs = LineTarget(40, 15, at)
 			FireLine(turfs)
+		if("fall")
+			turfs = LineTarget(0, 15, at)
+			FireLine(turfs)
+			SLEEP_CHECK_DEATH(1 SECONDS)
+			turfs = LineTarget(30, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(-30, 15, at)
+			FireLine(turfs)
+			SLEEP_CHECK_DEATH(1 SECONDS)
+			turfs = LineTarget(0, 15, at)
+			FireLine(turfs)
 		if("winter")
 			turfs = LineTarget(0, 20, at)
 			FireLine3x3(turfs)
@@ -583,10 +595,12 @@
 	special_attack_cooldown = world.time + special_attack_cooldown_time
 	can_act = FALSE
 	switch (current_season)
-		if("winter")
-			Winter_Special()
 		if("summer")
 			Summer_Special()
+		if("fall")
+			Fall_Special()
+		if("winter")
+			Winter_Special()
 	SLEEP_CHECK_DEATH(10)
 	can_act = TRUE
 
@@ -600,6 +614,16 @@
 		var/turf/T2 = pick(turfs)
 		turfs -= T2
 		new/obj/structure/fire_wall(T2)
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/Fall_Special()
+	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
+	var/list/turfs = list()
+	for(var/turf/open/T in view(6, src))
+		turfs += T
+	for(var/i = 1 to wisp_amount)
+		var/turf/T2 = pick(turfs)
+		turfs -= T2
+		new/mob/living/simple_animal/hostile/willo_wisp(T2)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Winter_Special()
 	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
@@ -1094,5 +1118,58 @@
 
 /obj/effect/temp_visual/winter_god/proc/Revert(mob/living/carbon/human/H)
 	H.cure_nearsighted(TRAUMA_TRAIT)
+
+/mob/living/simple_animal/hostile/willo_wisp
+	name = "Willo-O-Wisp"
+	desc = "A blue fire."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "willo_wisp"
+	icon_living = "willo_wisp"
+	icon_dead = "willo_wisp"
+	faction = list("hostile")
+	light_color = COLOR_TEAL
+	light_range = 3
+	light_power = 2
+	is_flying_animal = TRUE
+	density = FALSE
+	speak_emote = list("wispers")
+	attack_verb_continuous = "explodes"
+	attack_verb_simple = "explodes"
+	attack_sound = 'sound/abnormalities/seasons/aoe_attack.ogg'
+	del_on_death = TRUE
+	health = 10
+	maxHealth = 10
+	damage_coeff = list(RED_DAMAGE = 1, WHITE_DAMAGE = 2, BLACK_DAMAGE = 1, PALE_DAMAGE = 1)
+	melee_damage_type = BLACK_DAMAGE
+	melee_damage_lower = 20
+	melee_damage_upper = 20
+	move_to_delay = 1.3 //very fast, very weak.
+	stat_attack = HARD_CRIT
+	ranged = 1
+	retreat_distance = 3
+	minimum_distance = 1
+
+/mob/living/simple_animal/hostile/willo_wisp/Initialize()
+	. = ..()
+	QDEL_IN(src, (30 SECONDS))
+
+/mob/living/simple_animal/hostile/willo_wisp/AttackingTarget() //they explode
+	for(var/turf/T in view(2, src))
+		new/obj/effect/season_effect/breath/fall(T)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(50, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+	qdel(src)
+	return ..()
+
+/mob/living/simple_animal/hostile/willo_wisp/death(gibbed)
+	for(var/turf/T in view(1, src))
+		new/obj/effect/season_effect/breath/fall(T)
+		for(var/mob/living/L in T)
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(30, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+	..()
 
 #undef SEASONS_SLAM_COOLDOWN
