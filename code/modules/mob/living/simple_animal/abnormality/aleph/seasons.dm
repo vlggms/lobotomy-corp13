@@ -602,8 +602,14 @@
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/FireLine(list/turfs)
 	set waitfor = FALSE
+	var/warningtype = breaching_stats[current_season][7]
 	var/attacktype = breaching_stats[current_season][5]
 	var/list/hit_list = list()
+	for(var/turf/T in turfs)
+		if(istype(T, /turf/closed))
+			break
+		new warningtype(T)
+	SLEEP_CHECK_DEATH(1 SECONDS)
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
 			break
@@ -620,21 +626,30 @@
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/FireLine3x3(list/turfs)
 	set waitfor = FALSE
+	var/warningtype = breaching_stats[current_season][7]
 	var/attacktype = breaching_stats[current_season][5]
 	var/list/hit_list = list()
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
 			break
 		for(var/turf/T2 in view(1,T))
-			new attacktype(T2)
-			for(var/mob/living/L in T2.contents)
-				if(L in hit_list || istype(L, type))
-					continue
-				hit_list += L
-				L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
-				to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
-				if(ishuman(L))
-					Finisher(L)
+			if(!locate(warningtype) in T2)
+				new warningtype(T)
+	SLEEP_CHECK_DEATH(1 SECONDS)
+	for(var/turf/T in turfs)
+		if(istype(T, /turf/closed))
+			break
+		for(var/turf/T2 in view(1,T))
+			if(!locate(attacktype) in T2)
+				new attacktype(T2)
+				for(var/mob/living/L in T2.contents)
+					if(L in hit_list || istype(L, type))
+						continue
+					hit_list += L
+					L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+					to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
+					if(ishuman(L))
+						Finisher(L)
 		if(current_season == "winter")
 			for(var/turf/T3 in view(2,T))
 				if(!locate(/obj/effect/temp_visual/winter_god) in T3)
