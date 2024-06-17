@@ -144,7 +144,7 @@
 			Can guns really bring peace and love?"
 	icon_state = "pink"
 	inhand_icon_state = "pink"
-	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click to zoom in that direction."
+	special = "This weapon has a scope, and fires projectiles with zero travel time. Damage dealt is increased when hitting targets further away. Middle mouse button click/alt click to zoom in that direction."
 	ammo_type = /obj/item/ammo_casing/caseless/pink
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/abnormalities/armyinblack/pink.ogg'

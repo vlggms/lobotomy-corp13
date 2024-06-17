@@ -845,7 +845,7 @@
 /obj/item/ego_weapon/fluid_sac
 	name = "fluid sac"
 	desc = "Crush them, even if you must disgorge everything."
-	special = "This weapon can be used to perform a jump attack after a short wind-up (Middle mouse button click an enemy)."
+	special = "This weapon can be used to perform a jump attack after a short wind-up (Middle mouse button click/alt click an enemy)."
 	icon_state = "fluid_sac"
 	force = 55
 	attack_speed = 2
