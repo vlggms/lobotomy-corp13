@@ -560,22 +560,22 @@
 	switch (current_season)
 		if("summer")
 			turfs = LineTarget(90, 15, at)
-			FireLine(turfs)
+			FireLine(turfs, TRUE)
 			turfs = LineTarget(0, 15, at)
-			FireLine(turfs)
+			FireLine(turfs, TRUE)
 			turfs = LineTarget(180, 15, at)
-			FireLine(turfs)
+			FireLine(turfs, TRUE)
 			turfs = LineTarget(270, 15, at)
-			FireLine(turfs)
+			FireLine(turfs, TRUE)
 			SLEEP_CHECK_DEATH(0.75 SECONDS)
 			turfs = LineTarget(135, 10, at)
-			FireLine3x3(turfs)
+			FireLine3x3(turfs, TRUE)
 			turfs = LineTarget(45, 10, at)
-			FireLine3x3(turfs)
+			FireLine3x3(turfs, TRUE)
 			turfs = LineTarget(225, 10, at)
-			FireLine3x3(turfs)
+			FireLine3x3(turfs, TRUE)
 			turfs = LineTarget(315, 10, at)
-			FireLine3x3(turfs)
+			FireLine3x3(turfs, TRUE)
 		if("fall")
 			turfs = LineTarget(-40, 15, at)
 			FireLine(turfs)
@@ -600,16 +600,18 @@
 	var/turf/T = get_ranged_target_turf_direct(src, at, range, offset)
 	return (getline(src, T) - get_turf(src))
 
-/mob/living/simple_animal/hostile/abnormality/seasons/proc/FireLine(list/turfs)
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/FireLine(list/turfs, warn = FALSE)
 	set waitfor = FALSE
 	var/warningtype = breaching_stats[current_season][7]
 	var/attacktype = breaching_stats[current_season][5]
 	var/list/hit_list = list()
-	for(var/turf/T in turfs)
-		if(istype(T, /turf/closed))
-			break
-		new warningtype(T)
-	SLEEP_CHECK_DEATH(1 SECONDS)
+	if (warn)
+		for(var/turf/T in turfs)
+			if(istype(T, /turf/closed))
+				break
+			for(var/turf/T2 in view(1,T))
+				new warningtype(T)
+		SLEEP_CHECK_DEATH(1 SECONDS)
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
 			break
@@ -624,32 +626,31 @@
 				Finisher(L)
 		SLEEP_CHECK_DEATH(1)
 
-/mob/living/simple_animal/hostile/abnormality/seasons/proc/FireLine3x3(list/turfs)
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/FireLine3x3(list/turfs, warn = FALSE)
 	set waitfor = FALSE
 	var/warningtype = breaching_stats[current_season][7]
 	var/attacktype = breaching_stats[current_season][5]
 	var/list/hit_list = list()
-	for(var/turf/T in turfs)
-		if(istype(T, /turf/closed))
-			break
-		for(var/turf/T2 in view(1,T))
-			if(!locate(warningtype) in T2)
+	if (warn)
+		for(var/turf/T in turfs)
+			if(istype(T, /turf/closed))
+				break
+			for(var/turf/T2 in view(1,T))
 				new warningtype(T)
-	SLEEP_CHECK_DEATH(1 SECONDS)
+		SLEEP_CHECK_DEATH(1 SECONDS)
 	for(var/turf/T in turfs)
 		if(istype(T, /turf/closed))
 			break
 		for(var/turf/T2 in view(1,T))
-			if(!locate(attacktype) in T2)
-				new attacktype(T2)
-				for(var/mob/living/L in T2.contents)
-					if(L in hit_list || istype(L, type))
-						continue
-					hit_list += L
-					L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
-					to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
-					if(ishuman(L))
-						Finisher(L)
+			new attacktype(T2)
+			for(var/mob/living/L in T2.contents)
+				if(L in hit_list || istype(L, type))
+					continue
+				hit_list += L
+				L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+				to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
+				if(ishuman(L))
+					Finisher(L)
 		if(current_season == "winter")
 			for(var/turf/T3 in view(2,T))
 				if(!locate(/obj/effect/temp_visual/winter_god) in T3)
