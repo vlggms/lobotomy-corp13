@@ -60,6 +60,7 @@
 	name = "The Midnight of Crimson"
 	flavor_name = "A Chorus of Saliva"
 	announce_text = "Let us make a performance about what has already come true, and march further on from whence we came."
+	end_announce_text = "Abandon all expectation and march on. Laugh no matter what you see!"
 	level = 4
 	reward_percent = 0.25
 	announce_sound = 'sound/effects/ordeals/crimson_start.ogg'

@@ -59,7 +59,8 @@
 /datum/ordeal/boss/indigo_midnight
 	name = "The Midnight of Indigo"
 	flavor_name = "Mother"
-	announce_text = "For the sake of our families in our village, we cannot stop."
+	announce_text = "Mother will give you all the assistance you need. We all could safely become a family thanks to her."
+	end_announce_text = "For the sake of our families in our village, we cannot stop."
 	announce_sound = 'sound/effects/ordeals/indigo_start.ogg'
 	end_sound = 'sound/effects/ordeals/indigo_end.ogg'
 	level = 4
