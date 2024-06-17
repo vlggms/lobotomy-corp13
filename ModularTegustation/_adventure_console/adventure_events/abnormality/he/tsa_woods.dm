@@ -16,10 +16,14 @@
 		an hour to reach the end of the line. <br> \
 		At the end, you see people tearing their own skins and placing them into bins.",
 
-		"You conform to the rules, as everyone else has.<br> \
-		No matter how painful or unusual it may be.<br> \
-		After the traumatic ordeal, you are instructed to wear your skin as if it were any article of clothing.<br> \
-		However, the mental scars remain.",
+		"The now-skinless people pack their organs as if they were luggage.<br> \
+		You must conform to the rules, as everyone else has.<br> \
+		No matter how painful or uncomfortable it may be.<br> \
+		Following the excruciating ordeal, you wear your eyes as if they were glasses.<br> \
+		Your lungs, as if they were a bra.<br> \
+		Your intestines, a tie below the waist.<br> \
+		The final accoutrement, your button heart.<br> \
+		At last, you are ushered out, horrified and indignant.",
 
 		"The building is so crowded, you can't escape by conventional means. \
 		You need to think of a way to get out of here.",
@@ -46,7 +50,7 @@
 			BUTTON_FORMAT(7, "WALK AWAY", M)
 			return
 		if(2)
-			BUTTON_FORMAT(3, "TEAR OFF YOUR SKIN", M)
+			BUTTON_FORMAT(3, "CONTINUE", M)
 			BUTTON_FORMAT(4, "ATTEMPT ESCAPE", M)
 			return
 		if(3)
