@@ -96,6 +96,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 	var/prefered_sephirah_bodytype = "Humanoid"
 	var/prefered_sephirah_boxcolor = "555"
 
+	//Backstory - Basically a quirk package
+	var/backstory = null
+
 	//Quirk list
 	var/list/all_quirks = list()
 
@@ -231,9 +234,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<center><h2>Occupation Choices</h2>"
 			dat += "<a href='?_src_=prefs;preference=job;task=menu'>Set Occupation Preferences</a><br></center>"
 			if(CONFIG_GET(flag/roundstart_traits))
-				dat += "<center><h2>Quirk Setup</h2>"
-				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Configure Quirks</a><br></center>"
-				dat += "<center><b>Current Quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
+				dat += "<center><h2>Character Backstory</h2>"
+				dat += "<a href='?_src_=prefs;preference=trait;task=menu'>Change Backstory</a><br></center>"
+				dat += "<center><b>Current Background:</b> [backstory ? backstory : "Nobody"]</center>"
 			dat += "<h2>Identity</h2>"
 			dat += "<table width='100%'><tr><td width='75%' valign='top'>"
 			if(is_banned_from(user.ckey, "Appearance"))
@@ -1087,14 +1090,12 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 		dat += "The quirk subsystem hasn't finished initializing, please hold..."
 		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center><br>"
 	else
-		dat += "<center><b>Choose quirk setup</b></center><br>"
-		dat += "<div align='center'>Left-click to add or remove quirks. You need negative quirks to have positive ones.<br>\
-		Quirks are applied at roundstart and cannot normally be removed.</div>"
+		dat += "<center><b>Choose backstory</b></center><br>"
+		dat += "<div align='center'>Left-click to select a backstory. Each backstory contains a set of positive and negative quirks.<br>\
+		Backstories are applied at roundstart and cannot normally be removed.</div>"
 		dat += "<center><a href='?_src_=prefs;preference=trait;task=close'>Done</a></center>"
 		dat += "<hr>"
-		dat += "<center><b>Current quirks:</b> [all_quirks.len ? all_quirks.Join(", ") : "None"]</center>"
-		dat += "<center>[GetPositiveQuirkCount()] / [MAX_QUIRKS] max positive quirks<br>\
-		<b>Quirk balance remaining:</b> [GetQuirkBalance()]</center><br>"
+		dat += "<center><b>Current backstory:</b> [backstory ? backstory : "Nobody"]</center>"
 		for(var/V in SSquirks.quirks)
 			var/datum/quirk/T = SSquirks.quirks[V]
 			var/quirk_name = initial(T.name)
