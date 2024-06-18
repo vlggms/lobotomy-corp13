@@ -1432,6 +1432,7 @@
 		return
 	OpenFire()
 	var/mob/living/carbon/human/H = target
+	H.apply_venom(3)
 	if(H.stat >= SOFT_CRIT || H.health < 0 || H.sanity_lost)
 		Convert(H)
 
