@@ -369,7 +369,7 @@
 	forceMove(T)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/bullet_act(obj/projectile/P)
-	if(current_season = "summer")
+	if(current_season == "summer")
 		visible_message(span_userdanger("The [P] got incinerated by [src]'s flames!"))
 		P.Destroy()
 
