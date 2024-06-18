@@ -111,9 +111,9 @@
 		)
 
 	var/list/modular_damage_coeff = list(
-		"spring" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1),
+		"spring" = list(RED_DAMAGE = 0.8, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.2, PALE_DAMAGE = 1),
 		"summer" = list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.5, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8), //Summer is tanky
-		"fall" = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.5, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.8),
+		"fall" = list(RED_DAMAGE = 1, WHITE_DAMAGE = 1.2, BLACK_DAMAGE = 0.2, PALE_DAMAGE = 0.8),
 		"winter" = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 1, PALE_DAMAGE = 0.2)
 		)
 
@@ -138,13 +138,15 @@
 	var/pulse_range = 5
 	var/pulse_damage = 15
 	var/list/summons = list()
+	var/list/structures = list()
 	var/list/zombies = list()
 	var/fire_wall_amount = 3
 	var/fire_width = 3
 	var/fire_length = 5
 	var/fire_damage = 150
 	var/wisp_amount = 6
-	var/spring_amount = 4
+	var/bomb_amount = 4
+	var/trap_amount = 6
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
@@ -353,6 +355,9 @@
 	for(var/mob/living/L in summons)
 		QDEL_IN(L, rand(3) SECONDS)
 		summons -= L
+	for(var/obj/structure/S in structures)
+		QDEL_IN(S, rand(3) SECONDS)
+		structures -= S
 
 /mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(downgraded)
@@ -362,6 +367,11 @@
 	. = ..()
 	var/turf/T = pick(GLOB.department_centers)
 	forceMove(T)
+
+/mob/living/simple_animal/hostile/abnormality/seasons/bullet_act(obj/projectile/P)
+	if(current_season = "summer")
+		visible_message(span_userdanger("The [P] got incinerated by [src]'s flames!"))
+		P.Destroy()
 
 //Weather controlling
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/CheckWeather()
@@ -741,7 +751,7 @@
 			C.name = "[H.real_name]"//applies the target's name and adds the name to its description
 			C.icon_state = "flora_zombie"
 			C.icon_living = "flora_zombie"
-			C.desc = "What appears to be [H.real_name], only overgrown and decayed..."
+			C.desc = "What appears to be [H.real_name], only mangled by vines and decayed..."
 			C.gender = H.gender
 			C.faction = src.faction
 		H.gib()
@@ -787,16 +797,21 @@
 	for(var/mob/living/L in summons)
 		qdel(L)
 		summons -= L
+	for(var/obj/structure/S in structures)
+		if(S.broken)
+			qdel(S)
+			structures -= S
 	for(var/turf/open/T in view(6, src))
 		turfs += T
-	for(var/i = 1 to spring_amount)
+	for(var/i = 1 to bomb_amount)
 		var/turf/T2 = pick(turfs)
 		turfs -= T2
-		var/obj/structure/amurdad_bomb/B = new(T2)
-		B.density = FALSE
-		var/turf/T3 = pick(turfs)
-		turfs -= T3
-		var/mob/living/simple_animal/hostile/flytrap/F = new(T3)
+		var/obj/structure/thorn_bomb/B = new(T2)
+		structures += B
+	for(var/i = 1 to trap_amount)
+		var/turf/T2 = pick(turfs)
+		turfs -= T2
+		var/mob/living/simple_animal/hostile/flytrap/F = new(T2)
 		summons += F
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Summer_Special()
@@ -1249,15 +1264,7 @@
 	anchored = TRUE
 	density = TRUE
 	max_integrity = 10000
-	armor = list(
-		MELEE = 0,
-		BULLET = 0,
-		FIRE = 100,
-		RED_DAMAGE = 100,
-		WHITE_DAMAGE = 190,
-		BLACK_DAMAGE = 100,
-		PALE_DAMAGE = 100,
-	)
+	resistance_flags = INDESTRUCTIBLE
 
 /obj/structure/fire_wall/Initialize()
 	. = ..()
@@ -1283,7 +1290,7 @@
 	pixel_y = -32
 	base_pixel_y = -32
 	color = COLOR_CYAN
-	duration = 15 SECONDS
+	duration = 8 SECONDS
 	var/list/faction = list("hostile")
 
 /obj/effect/temp_visual/winter_god/New(loc, ...)
@@ -1300,7 +1307,7 @@
 	for(var/mob/living/L in get_turf(src))
 		if(faction_check(faction, L.faction, FALSE))
 			continue
-		L.apply_damage(5, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.apply_damage(8, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
 			H.become_nearsighted(TRAUMA_TRAIT)
@@ -1377,7 +1384,7 @@
 
 /mob/living/simple_animal/hostile/flora_zombie
 	name = "Flora Zombie"
-	desc = "What appears to be human, only overgrown and decayed..."
+	desc = "What appears to be human, only mangled by vines and decayed..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
 	icon_state = "flora_zombie"
 	icon_living = "flora_zombie"
@@ -1483,7 +1490,7 @@
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
 		C.icon_state = "flora_zombie"
 		C.icon_living = "flora_zombie"
-		C.desc = "What appears to be [H.real_name], only overgrown and decayed..."
+		C.desc = "What appears to be [H.real_name], only mangled by vines and decayed..."
 		C.gender = H.gender
 		C.faction = src.faction
 		H.gib()
@@ -1543,7 +1550,8 @@
 	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.2)//no mind to break
 	speed = 5
 	attack_sound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
-	density = TRUE
+	density = FALSE
+	anchored = TRUE
 	var/attack_time
 	var/attack_time_cooldown = 5 SECONDS
 
@@ -1558,5 +1566,98 @@
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		H.Immobilize(3 SECONDS)
+
+/obj/structure/thorn_bomb
+	name = "Thorn Plant"
+	desc = "A mound of soil growing something..."
+	icon = 'icons/obj/hydroponics/equipment.dmi'
+	icon_state = "soil"
+	density = FALSE
+	anchored = TRUE
+	max_integrity = 300
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 100, BLACK_DAMAGE = -50, PALE_DAMAGE = 50)
+	var/stage = 0
+	var/grow_interval = 5 SECONDS
+
+/obj/structure/thorn_bomb/Initialize()
+	. = ..()
+	QDEL_IN(src, 45 SECONDS)
+	Grow()
+	proximity_monitor = new(src, 1)
+
+/obj/structure/thorn_bomb/proc/Grow()
+	stage = stage + 1 > 5 ? 5 : stage + 1
+	UpdateStage()
+	if(stage >= 5)
+		return
+	addtimer(CALLBACK(src, PROC_REF(Grow)), grow_interval)
+
+/obj/structure/thorn_bomb/proc/UpdateStage()
+	cut_overlays()
+	if(stage == 0)
+		return
+	var/mutable_appearance/plant_overlay = mutable_appearance('icons/obj/hydroponics/growing.dmi', "deathnettle-grow[stage]", layer = OBJ_LAYER + 0.01)
+	add_overlay(plant_overlay)
+
+/obj/structure/thorn_bomb/HasProximity(atom/movable/AM)
+	if(stage <= 4)
+		return
+	if(!isliving(AM))
+		return
+	if(isbot(AM))
+		return
+	var/mob/living/L = AM
+	if(("hostile" in L.faction))
+		return
+	Explode()
+
+/obj/structure/thorn_bomb/bullet_act(obj/projectile/P)
+	. = ..()
+	if(stage <= 3)
+		return
+	Explode()
+
+/obj/structure/thorn_bomb/proc/Explode()
+	var/list/all_the_turfs_were_gonna_lacerate = RANGE_TURFS(stage, src) - RANGE_TURFS(stage-1, src)
+	stage = 0
+	UpdateStage()
+	for(var/turf/shootat_turf in all_the_turfs_were_gonna_lacerate)
+		INVOKE_ASYNC(src, PROC_REF(FireProjectile), shootat_turf)
+	addtimer(CALLBACK(src, PROC_REF(Grow)), grow_interval)
+
+/obj/structure/thorn_bomb/proc/FireProjectile(atom/target)
+	var/obj/projectile/P = new /obj/projectile/needle_spring(get_turf(src))
+
+	P.spread = 0
+	if(prob(25))
+		P.original = target // Allows roughly 25% of them to hit the activator who's prone
+	P.fired_from = src
+	P.firer = src
+	P.impacted = list(src = TRUE)
+	P.suppressed = SUPPRESSED_QUIET
+	P.preparePixelProjectile(target, src)
+	P.fire()
+
+/obj/projectile/needle_spring
+	name = "needle"
+	desc = "a thorn from a plant"
+	icon_state = "needle"
+	ricochet_chance = 60
+	ricochets_max = 2
+	damage = 5
+	damage_type = BLACK_DAMAGE
+	eyeblur = 2
+	ricochet_ignore_flag = TRUE
+
+/obj/projectile/needle_spring/can_hit_target(atom/target, direct_target, ignore_loc, cross_failed)
+	if(!fired)
+		return FALSE
+	return ..()
+
+/obj/projectile/needle_spring/on_hit(atom/target, blocked, pierce_hit)
+	. = ..()
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.adjustStaminaLoss(10, TRUE, TRUE)
 
 #undef SEASONS_SLAM_COOLDOWN

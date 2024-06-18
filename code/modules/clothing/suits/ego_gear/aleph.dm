@@ -333,12 +333,24 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	switch(stored_season) //Hopefully someday someone finds a more efficient way to change armor values
 		if("spring")
 			src.armor = new(red = 60, white = 80, black = 40, pale = 60)	//240
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 50, white = 80, black = 40, pale = 50)	//220
+				weakened = TRUE
 		if("summer")
 			src.armor = new(red = 80, white = 60, black = 60, pale = 40)
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 80, white = 50, black = 50, pale = 40)
+				weakened = TRUE
 		if("fall")
 			src.armor = new(red = 60, white = 40, black = 80, pale = 60)
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 50, white = 40, black = 80, pale = 50)
+				weakened = TRUE
 		if("winter")
 			src.armor = new(red = 40, white = 60, black = 60, pale = 80)
+			if(stored_season != current_season) //Our drip is out of season
+				src.armor = new(red = 40, white = 50, black = 50, pale = 80)
+				weakened = TRUE
 
 	if(current_holder && (weakened == TRUE))
 		playsound(current_holder, "sound/abnormalities/seasons/[current_season]_change.ogg", 50, FALSE)
