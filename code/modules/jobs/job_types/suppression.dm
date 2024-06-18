@@ -171,6 +171,9 @@
 	if(user?.mind?.assigned_role in allowedroles)		//only give these if you're the guy that's allowed to have this, it's here so the Rec Agent can use it on interns
 		set_attribute += GetFacilityUpgradeValue(UPGRADE_AGENT_STATS)*2 	//Get double stats because this is all they get.
 
+	else
+		return
+
 	//Set all stats to 0
 	for(var/A in attribute_list)
 		var/processing = get_attribute_level(user, A)
