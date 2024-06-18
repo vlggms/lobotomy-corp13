@@ -331,33 +331,3 @@
 		return
 	var/mob/living/L = target
 	L.apply_void(1)
-
-
-/obj/projectile/winter_spear
-	name = "icicle spear"
-	desc = "A fridged icicle formed in a shape of a spear."
-	icon_state = "winter_spear"
-	damage_type = PALE_DAMAGE
-	damage = 40
-	alpha = 0
-	spread = 20
-
-/obj/projectile/winter_spear/Initialize()
-	. = ..()
-	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
-	animate(src, alpha = 255, time = 3)
-
-/obj/projectile/winter_spear/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
-	if(!ishuman(target))
-		return ..()
-	var/mob/living/carbon/human/H = target
-	. = ..()
-	if(.) // Hit passed and damage applied
-		if(H.stat >= HARD_CRIT || H.health < 0)
-			if(HAS_TRAIT(H, TRAIT_HUSK))
-				return FALSE
-			var/cube = icon('icons/effects/freeze.dmi', "ice_cube")
-			H.add_overlay(cube)
-			H.adjustBruteLoss(H.maxHealth)
-			H.Drain()
-
