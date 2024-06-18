@@ -1551,7 +1551,6 @@
 	speed = 5
 	attack_sound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
 	density = FALSE
-	anchored = TRUE
 	var/attack_time
 	var/attack_time_cooldown = 5 SECONDS
 
