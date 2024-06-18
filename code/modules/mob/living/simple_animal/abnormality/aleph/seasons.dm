@@ -803,7 +803,7 @@
 	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
 	var/list/turfs = list()
 	for(var/turf/open/T in view(6, src))
-		if(!locate(/obj/structure/fire_wall in T))
+		if(!locate(/obj/structure/fire_wall) in T)
 			turfs += T
 	for(var/i = 1 to fire_wall_amount)
 		var/turf/T2 = pick(turfs)
