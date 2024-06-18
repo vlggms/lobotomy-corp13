@@ -514,3 +514,15 @@
 		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the Abnormality when completing Attachment work.",
 		"When the work result was Bad, the Qliphoth counter lowered.")
 
+//basilisoup
+	abno_type = /mob/living/simple_animal/hostile/abnormality/basilisoup
+	abno_code = "F-02-153"
+	abno_info = list(
+		"There exists a pot within the abnormality's containment unit that must be filled with food.",
+		"Any food item, so long as it is nutritious and not poisonous can be added to the pot until it is full.",
+		"If poisonous food was put into the pot, the abnormality immediately attacked when work began.",
+		"When a work process began, the work success rate increased based on how full the pot was.",
+		"When the work process began while the pot was empty, the Qliphoth counter lowered.",
+		"When the work result was Bad, the Qliphoth counter lowered.",
+		"When work was successfully performed, a certain amount of the raw material was converted into nutritous and healing Lifetime Stew, and ejected from the abnormality.",
+		"Employees who consume too much of the Lifetime Stew, or food in general become easy meals for this abnormality.")
