@@ -1281,6 +1281,34 @@
 			M.apply_damage(20, RED_DAMAGE, null, M.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 	addtimer(CALLBACK(src, PROC_REF(Fire_Spew)), 5 SECONDS)
 
+/obj/projectile/winter_spear
+	name = "icicle spear"
+	desc = "A fridged icicle formed in a shape of a spear."
+	icon_state = "winter_spear"
+	damage_type = PALE_DAMAGE
+	damage = 40
+	alpha = 0
+	spread = 20
+
+/obj/projectile/winter_spear/Initialize()
+	. = ..()
+	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
+	animate(src, alpha = 255, time = 3)
+
+/obj/projectile/winter_spear/process_hit(turf/T, atom/target, atom/bumped, hit_something = FALSE)
+	if(!ishuman(target))
+		return ..()
+	var/mob/living/carbon/human/H = target
+	. = ..()
+	if(.) // Hit passed and damage applied
+		if(H.stat >= HARD_CRIT || H.health < 0)
+			if(HAS_TRAIT(H, TRAIT_HUSK))
+				return FALSE
+			var/cube = icon('icons/effects/freeze.dmi', "ice_cube")
+			H.add_overlay(cube)
+			H.adjustBruteLoss(H.maxHealth)
+			H.Drain()
+
 /obj/effect/temp_visual/winter_god
 	name = "pale mist"
 	icon = 'icons/effects/96x96.dmi'
