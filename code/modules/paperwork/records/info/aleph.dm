@@ -163,10 +163,10 @@
 	abno_work_damage_type = "White/Red/Black/Pale"
 	abno_breach_damage_type = "White/Red/Black/Pale"
 	abno_resistances = list(
-		RED_DAMAGE = "Endured/Resistant/Endured/Weak",
-		WHITE_DAMAGE = "Resistant/Normal/Normal/Normal",
-		BLACK_DAMAGE = "Normal/Endured/Resistant/Endured",
-		PALE_DAMAGE = "Weak/Weak/Weak/Resistant")
+		RED_DAMAGE = "Endured/Resistant/Weak/Normal",
+		WHITE_DAMAGE = "Resistant/Endured/Resistant/Endured",
+		BLACK_DAMAGE = "Normal/Weak/Resistant/Endured",
+		PALE_DAMAGE = "Weak/Endured/Normal/Resistant")
 
 //Last Shot
 /obj/item/paper/fluff/info/aleph/last_shot

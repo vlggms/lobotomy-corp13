@@ -138,12 +138,13 @@
 	var/pulse_range = 5
 	var/pulse_damage = 15
 	var/list/summons = list()
+	var/list/zombies = list()
 	var/fire_wall_amount = 3
 	var/fire_width = 3
 	var/fire_length = 5
 	var/fire_damage = 150
 	var/wisp_amount = 6
-
+	var/spring_amount = 4
 	//PLAYABLES ATTACKS
 	attack_action_types = list(
 		/datum/action/cooldown/seasons_slam,
@@ -342,6 +343,16 @@
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 	..()
+
+//delete the zombies n stuff on death
+/mob/living/simple_animal/hostile/abnormality/seasons/Destroy()
+	. = ..()
+	for(var/mob/living/simple_animal/hostile/flora_zombie/Z in zombies)
+		QDEL_IN(Z, rand(3) SECONDS)
+		zombies -= Z
+	for(var/mob/living/L in summons)
+		QDEL_IN(L, rand(3) SECONDS)
+		summons -= L
 
 /mob/living/simple_animal/hostile/abnormality/seasons/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(downgraded)
@@ -558,6 +569,16 @@
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	var/list/turfs = list()
 	switch (current_season)
+		if("spring")
+			turfs = LineTarget(-20, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(-10, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(0, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(10, 15, at)
+			FireLine(turfs)
+			turfs = LineTarget(20, 15, at)
 		if("summer")
 			turfs = LineTarget(90, 15, at)
 			FireLine(turfs, TRUE)
@@ -709,8 +730,21 @@
 		L.deal_damage(pulse_damage, melee_damage_type)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Finisher(mob/living/carbon/human/H) //return TRUE to prevent attacking, as attacking causes runtimes if the target is gibbed.
-	if(current_season == "spring" && H.sanity_lost)
-		H.gib() //eventually we'll add some sort of effect
+	if(current_season == "spring" && (H.sanity_lost || H.stat >= HARD_CRIT || H.health < 0))
+		playsound(src, 'sound/abnormalities/seasons/spring_change.ogg', 45, FALSE, 5)
+		if(!QDELETED(H))
+			if(!H.real_name)
+				return FALSE
+			var/mob/living/simple_animal/hostile/flora_zombie/C = new(get_turf(src))
+			zombies += C
+			C.master = src
+			C.name = "[H.real_name]"//applies the target's name and adds the name to its description
+			C.icon_state = "flora_zombie"
+			C.icon_living = "flora_zombie"
+			C.desc = "What appears to be [H.real_name], only overgrown and decayed..."
+			C.gender = H.gender
+			C.faction = src.faction
+		H.gib()
 		return TRUE
 	if(H.stat >= HARD_CRIT || H.health < 0)
 		switch(current_season)
@@ -736,6 +770,8 @@
 	special_attack_cooldown = world.time + special_attack_cooldown_time
 	can_act = FALSE
 	switch (current_season)
+		if("spring")
+			Spring_Special()
 		if("summer")
 			Summer_Special()
 		if("fall")
@@ -744,6 +780,24 @@
 			Winter_Special()
 	SLEEP_CHECK_DEATH(10)
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/seasons/proc/Spring_Special()
+	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
+	var/list/turfs = list()
+	for(var/mob/living/L in summons)
+		qdel(L)
+		summons -= L
+	for(var/turf/open/T in view(6, src))
+		turfs += T
+	for(var/i = 1 to spring_amount)
+		var/turf/T2 = pick(turfs)
+		turfs -= T2
+		var/obj/structure/amurdad_bomb/B = new(T2)
+		B.density = FALSE
+		var/turf/T3 = pick(turfs)
+		turfs -= T3
+		var/mob/living/simple_animal/hostile/flytrap/F = new(T3)
+		summons += F
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Summer_Special()
 	playsound(get_turf(src), "[breaching_stats[current_season][2]]", 30, 0, 8)
@@ -1038,7 +1092,8 @@
 		if("spring")
 			if(prob(10))
 				to_chat(H, span_warning("Your legs are cut by brambles in the grass!"))
-				H.apply_damage(10, BLACK_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+				H.apply_damage(5, BLACK_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+				H.adjustStaminaLoss(10, TRUE, TRUE)
 		if("summer")
 			if(icon_state == "lava")
 				to_chat(H, span_warning("You stumbled into a pool of lava!"))
@@ -1293,7 +1348,7 @@
 
 /mob/living/simple_animal/hostile/willo_wisp/Initialize()
 	. = ..()
-	QDEL_IN(src, (30 SECONDS))
+	addtimer(CALLBACK(src, PROC_REF(Boom)), 30 SECONDS)
 
 /mob/living/simple_animal/hostile/willo_wisp/AttackingTarget() //they explode
 	for(var/turf/T in view(2, src))
@@ -1306,12 +1361,201 @@
 	return ..()
 
 /mob/living/simple_animal/hostile/willo_wisp/death(gibbed)
+	Boom()
+	..()
+
+/mob/living/simple_animal/hostile/willo_wisp/proc/Boom(gibbed)
 	for(var/turf/T in view(1, src))
 		new/obj/effect/season_effect/breath/fall(T)
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
 			L.apply_damage(30, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
-	..()
+	qdel(src)
+
+//spring mobs
+
+/mob/living/simple_animal/hostile/flora_zombie
+	name = "Flora Zombie"
+	desc = "What appears to be human, only overgrown and decayed..."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "flora_zombie"
+	icon_living = "flora_zombie"
+	icon_dead = "flora_zombie_dead"
+	speak_emote = list("groans", "moans", "howls", "screeches", "grunts")
+	gender = NEUTER
+	attack_verb_continuous = "attacks"
+	attack_verb_simple = "attack"
+	attack_sound = 'sound/effects/hit_kick.ogg'
+	projectilesound = 'sound/machines/clockcult/steam_whoosh.ogg'
+	death_sound = 'sound/creatures/venus_trap_death.ogg'
+	health = 500
+	maxHealth = 500
+	obj_damage = 120
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.2)//no mind to break
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 60
+	melee_damage_upper = 80
+	rapid_melee = 1
+	speed = 5
+	move_to_delay = 4
+	ranged = TRUE
+	ranged_cooldown_time = 1 SECONDS
+	robust_searching = TRUE
+	stat_attack = HARD_CRIT
+	del_on_death = FALSE
+	density = TRUE
+	guaranteed_butcher_results = list(/obj/item/food/badrecipe = 1)
+	var/list/breach_affected = list()
+	var/can_act = TRUE
+	var/mob/living/simple_animal/hostile/abnormality/seasons/master
+
+/mob/living/simple_animal/hostile/flora_zombie/OpenFire()
+	if(ranged_cooldown > world.time)
+		return FALSE
+	ranged_cooldown = world.time + ranged_cooldown_time
+	playsound(get_turf(src), projectilesound, 10, 1)
+	var/smoke_test = locate(/obj/effect/particle_effect/smoke) in view(1, src)
+	if(!smoke_test)
+		var/datum/effect_system/smoke_spread/spring/S = new(get_turf(src))
+		S.set_up(5, get_turf(src))
+		S.start()
+		return TRUE
+	ranged_cooldown += 1 SECONDS
+
+//Zombie conversion from zombie kills
+/mob/living/simple_animal/hostile/flora_zombie/AttackingTarget()
+	. = ..()
+	if(!can_act)
+		return
+	if(!ishuman(target))
+		return
+	OpenFire()
+	var/mob/living/carbon/human/H = target
+	if(H.stat >= SOFT_CRIT || H.health < 0 || H.sanity_lost)
+		Convert(H)
+
+/mob/living/simple_animal/hostile/flora_zombie/Initialize()
+	. = ..()
+	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 1, 4)
+	base_pixel_x = rand(-6,6)
+	pixel_x = base_pixel_x
+	base_pixel_y = rand(-6,6)
+	pixel_y = base_pixel_y
+
+/mob/living/simple_animal/hostile/flora_zombie/Life()
+	. = ..()
+	if(!.) // Dead
+		return FALSE
+	if(status_flags & GODMODE)
+		return FALSE
+
+//reanimated if god isn't suppressed within 30 seconds
+/mob/living/simple_animal/hostile/flora_zombie/death(gibbed)
+	addtimer(CALLBACK(src, PROC_REF(resurrect)), 30 SECONDS)
+	return ..()
+
+/mob/living/simple_animal/hostile/flora_zombie/proc/resurrect()
+	if(QDELETED(src))
+		return
+	revive(full_heal = TRUE, admin_revive = FALSE)
+	visible_message(span_boldwarning("[src] staggers back on their feet!"))
+	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, 0, 8)
+
+//Zombie conversion from other zombies
+/mob/living/simple_animal/hostile/flora_zombie/proc/Convert(mob/living/carbon/human/H)
+	if(!istype(H))
+		return
+	if(!can_act)
+		return
+	can_act = FALSE
+	forceMove(get_turf(H))
+	playsound(src, 'sound/abnormalities/seasons/spring_change.ogg', 45, FALSE, 5)
+	SLEEP_CHECK_DEATH(3)
+	if(!QDELETED(H))
+		if(!H.real_name)
+			return FALSE
+		var/mob/living/simple_animal/hostile/flora_zombie/C = new(get_turf(src))
+		if(master)
+			master.zombies += C
+			C.master = master
+		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
+		C.icon_state = "flora_zombie"
+		C.icon_living = "flora_zombie"
+		C.desc = "What appears to be [H.real_name], only overgrown and decayed..."
+		C.gender = H.gender
+		C.faction = src.faction
+		H.gib()
+	can_act = TRUE
+
+/obj/effect/particle_effect/smoke/spring
+	name = "thick noxious fumes"
+	color = "#AAFF00"
+	lifetime = 5
+	opaque = TRUE
+
+/obj/effect/particle_effect/smoke/spring/smoke_mob(mob/living/carbon/C)
+	if(!istype(C))
+		return FALSE
+	if(lifetime<1)
+		return FALSE
+	if(C.internal != null || C.has_smoke_protection())
+		return FALSE
+	if(C.smoke_delay)
+		return FALSE
+	if(!ishuman(C))
+		return FALSE
+	C.smoke_delay++
+	addtimer(CALLBACK(src, PROC_REF(remove_smoke_delay), C), 10)
+	return smoke_mob_effect(C)
+
+
+/obj/effect/particle_effect/smoke/spring/proc/smoke_mob_effect(mob/living/carbon/human/M)
+	if(!M.sanity_lost)
+		M.deal_damage(30, WHITE_DAMAGE)
+	else
+		M.adjustStaminaLoss(15, TRUE, TRUE)
+	if(prob(15))
+		M.emote("cough")
+	return TRUE
+
+/datum/effect_system/smoke_spread/spring
+	effect_type = /obj/effect/particle_effect/smoke/spring
+
+/mob/living/simple_animal/hostile/flytrap
+	name = "Flytrap"
+	desc = "A massive fly trap..."
+	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon_state = "flytrap"
+	icon_living = "flytrap"
+	del_on_death = TRUE
+	health = 500
+	maxHealth = 500
+	obj_damage = 120
+	melee_damage_type = RED_DAMAGE
+	melee_damage_lower = 60
+	melee_damage_upper = 80
+	faction = list("hostile")
+	speak_emote = list("screeches")
+	attack_verb_continuous = "bites"
+	attack_verb_simple = "bite"
+	damage_coeff = list(RED_DAMAGE = 0.7, WHITE_DAMAGE = 0, BLACK_DAMAGE = 1.5, PALE_DAMAGE = 1.2)//no mind to break
+	speed = 5
+	attack_sound = 'sound/abnormalities/nosferatu/bat_attack.ogg'
+	density = TRUE
+	var/attack_time
+	var/attack_time_cooldown = 5 SECONDS
+
+/mob/living/simple_animal/hostile/flytrap/Move()
+	return FALSE
+
+/mob/living/simple_animal/hostile/flytrap/AttackingTarget(atom/attacked_target)
+	if(attack_time > world.time)
+		return FALSE
+	. = ..()
+	attack_time = world.time + attack_time_cooldown
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		H.Immobilize(3 SECONDS)
 
 #undef SEASONS_SLAM_COOLDOWN
