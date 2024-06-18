@@ -1072,3 +1072,8 @@
 /obj/effect/temp_visual/holo_command/command_fight_b
 	icon_state = "Fight_this_wagie2"
 	light_color = COLOR_PALE_BLUE_GRAY
+
+/obj/effect/temp_visual/execute_bullet
+	icon = 'icons/obj/manager_bullets.dmi'
+	icon_state = "execution"
+	duration = 10

@@ -1,3 +1,4 @@
+
 /client/proc/cmd_admin_drop_everything(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Drop Everything"
@@ -1156,6 +1157,27 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(usr)] set GLOB.deep_fried_everything to [GLOB.deep_fried_everything].")
 	message_admins("[key_name(usr)] set GLOB.deep_fried_everything to [GLOB.deep_fried_everything].")
 	return
+
+///Enables execution bullets for the manager
+/client/proc/ExecutionBulletToggle()
+	set category = "Admin.Fun"
+	set name = "Toggle Execution Bullets"
+	var/soundtoplay
+	if(!check_rights(R_ADMIN) || !check_rights(R_FUN))
+		return
+	. = (alert(src, "Enable Execution Bullets for the manager?","Execution Toggle","Yes","No")=="Yes")
+	if(.)
+		if(!GLOB.execution_enabled) //there was a change
+			soundtoplay = 'sound/misc/airraid.ogg'
+		GLOB.execution_enabled = TRUE
+	else
+		if(GLOB.execution_enabled) //there was a change
+			soundtoplay = 'sound/misc/announce.ogg'
+		GLOB.execution_enabled = FALSE
+	if(soundtoplay) //There was a change, so we announce it. This is when clerks shit their pants.
+		priority_announce("Lobotomy Corporation has [(GLOB.execution_enabled?"authorized":"revoked authorization")] the use of execution bullets for the manager.", "Message from Lobotomy Corporation Headquarters", sound = soundtoplay)
+	log_admin("[key_name(usr)] has [(GLOB.execution_enabled?"enabled":"disabled")] execution bullets for the manager.")
+	message_admins("[key_name_admin(usr)] has [(GLOB.execution_enabled?"enabled":"disabled")] execution bullets for the manager.")
 
 /**
  * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense

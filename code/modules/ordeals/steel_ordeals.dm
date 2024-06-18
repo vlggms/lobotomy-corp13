@@ -2,8 +2,9 @@
 	name = "The Dawn of Steel"
 	flavor_name = "Metamorphosis"
 	announce_text = "The augmentation... I don’t regret it. One downside, though, is that I won’t ever be able to return to civilian life."
-	announce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg' //placeholder
-	end_sound = 'sound/effects/ordeals/steel/gcorp_hiss.ogg'
+	end_announce_text = "This... This is what a war is. I was wholly unqualified."
+	announce_sound = 'sound/effects/ordeals/steel_start.ogg'
+	end_sound = 'sound/effects/ordeals/steel_end.ogg'
 	level = 1
 	reward_percent = 0.1
 	spawn_places = 4
@@ -20,8 +21,9 @@
 	name = "The Noon of Steel"
 	flavor_name = "War Machine"
 	announce_text = "I’ll fight my enemies without hesitation. I’d made up my mind the day I was honored with an opportunity to get the modification procedure."
-	announce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg'
-	end_sound = 'sound/effects/ordeals/steel/gcorp_hiss.ogg'
+	end_announce_text = "Why are you running? You should raise G Corp’s banner and take the lead on the frontlines!"
+	announce_sound = 'sound/effects/ordeals/steel_start.ogg'
+	end_sound = 'sound/effects/ordeals/steel_end.ogg'
 	level = 2
 	reward_percent = 0.2
 	color = "#71797E"
@@ -37,8 +39,9 @@
 	name = "The Dusk of Steel"
 	flavor_name = "The Dogs of War"
 	announce_text = "If we lose this war we would would be cast to the streets, seen as less than human by even the rats."
-	announce_sound = 'sound/effects/ordeals/steel/gcorp_chitter.ogg'
-	end_sound = 'sound/effects/ordeals/steel/gcorp_hiss.ogg'
+	end_announce_text = "In the end... We've become nothing but disgusting pests."
+	announce_sound = 'sound/effects/ordeals/steel_start.ogg'
+	end_sound = 'sound/effects/ordeals/steel_end.ogg'
 	level = 3
 	reward_percent = 0.2
 	color = "#71797E"

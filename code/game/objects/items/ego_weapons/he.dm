@@ -719,7 +719,8 @@
 	name = "Get Strong"
 	desc = "It whirls and twirls and yet feels limp... Do you love the City you live in?"
 	special = "This weapon has multiple modes.\nA low power spear. A medium power sword, and a high-power gauntlet.\n\
-	Hitting with the spear and sword improve the damage of the next gauntlet."
+	Hitting with the spear and sword improve the damage of the next gauntlet. \n\
+	This weapon stuns you for a short period of time on spear mode."
 	icon_state = "become_strong_sp"
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "become_strong"
@@ -732,7 +733,7 @@
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	var/mode = "Spear"
 	var/list/mode_stats = list(
-		"Spear" = list("_sp", 15, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),
+		"Spear" = list("_sp", 42, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),	//Now immobilizes you.
 		"Sword" = list("_sw", 25, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
 		"Gauntlet" = list("_f", 50, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/strong_gauntlet.ogg')
 		)
@@ -783,6 +784,8 @@
 			force += windup
 			windup = 0
 	..()
+	if(mode == "Spear")	//Due to the nature of the weapon, it must.
+		user.Immobilize(5)
 	force = mode_stats[mode][2]
 	switch(windup)
 		if(50 to INFINITY)
@@ -1011,13 +1014,14 @@
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
 	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp2"
-	force = 24
+	force = 34 		//Spears get reduced damage
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
@@ -1110,6 +1114,7 @@
 	force = 24
 	attack_speed = 0.8
 	reach = 1
+	stuntime = 0
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"
@@ -1340,8 +1345,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 33
+	force = 45
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "impales")
@@ -1370,8 +1376,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 35
+	force = 39
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 2.0 // really slow
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("burns", "boils")
@@ -1398,6 +1405,7 @@
 		FX.color = "#622F22"
 		user.HurtInTurf(T, list(), 40, BLACK_DAMAGE, check_faction = TRUE)
 	return
+
 
 /obj/item/ego_weapon/lance/lifestew_lance/get_clamped_volume()
 	return 40
@@ -1600,7 +1608,7 @@
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	damtype = WHITE_DAMAGE
-	force = 50
+	force = 60
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
 	attack_speed = 4//Really really slow.
@@ -1611,6 +1619,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	reach = 2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	force_cap = 100 //Old max damage when it was damage = amount you walked.
 	force_per_tile = 5 //if I can read, this means you need to cross 20 tiles for max damage
 	pierce_force_cost = 20
@@ -1673,7 +1682,7 @@
 	icon_state = "coiling"
 	force = 30
 	reach = 4		//Has 4 Square Reach.
-	attack_speed = 1.8
+	attack_speed = 2.1
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("whips", "lashes", "tears")
 	attack_verb_simple = list("whip", "lash", "tear")
@@ -1826,6 +1835,7 @@
 	icon_state = "uturn"
 	force = 40
 	reach = 4
+	stuntime = 8	// This scythe will still stun you, not as long as the attack speed however
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")

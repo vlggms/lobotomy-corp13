@@ -16,7 +16,8 @@
 		/obj/effect/proc_holder/spell/aimed/fairy,
 		/obj/effect/proc_holder/spell/aimed/pillar,
 		/obj/effect/proc_holder/spell/aoe_turf/repulse/arbiter,
-		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter
+		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter,
+		/obj/effect/proc_holder/spell/targeted/touch/arbiterpunch,
 		)
 
 /datum/antagonist/wizard/arbiter/greet()
@@ -108,6 +109,7 @@
 		/obj/effect/proc_holder/spell/aimed/pillar,
 		/obj/effect/proc_holder/spell/aoe_turf/repulse/arbiter,
 		/obj/effect/proc_holder/spell/aoe_turf/knock/arbiter,
+		/obj/effect/proc_holder/spell/targeted/touch/arbiterpunch,
 		/obj/effect/proc_holder/spell/aoe_turf/singularity,
 	)
 
@@ -154,3 +156,10 @@
 			animate(f1,color = rgb(48, 25, 52),time=5)
 		if(PALE_DAMAGE)
 			animate(f1,color = rgb(128, 128, 128),time=5)
+
+/obj/effect/temp_visual/target_field/yellow
+	name = "arbiter target field"
+	desc = "Well shit."
+	icon_state = "target_field_blue"
+	color = COLOR_YELLOW
+	duration = 4 SECONDS

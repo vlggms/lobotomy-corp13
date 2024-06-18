@@ -323,7 +323,7 @@
 
 	if(M != user)
 		to_chat(user, span_warning("You start pulling [M] into the well."))
-		if(do_after(user, 7 SECONDS)) //If you're going to throw someone else, they have to be dead first.
+		if(do_after(user, 7 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
 			if(M.stat == DEAD)
 				to_chat(user, span_notice("You throw [M] in the well!"))
 				buckle_mob(M, check_loc = check_loc)
@@ -332,7 +332,7 @@
 		return
 
 	to_chat(user, span_warning("You start climbing into the well."))
-	if(!do_after(user, 7 SECONDS))
+	if(!do_after(user, 7 SECONDS, target = M))
 		to_chat(user, span_notice("You decide that might be a bad idea."))
 		return FALSE
 
