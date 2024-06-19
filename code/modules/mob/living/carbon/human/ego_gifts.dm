@@ -278,6 +278,12 @@
 	temperance_bonus = 2
 	slot = HAND_2
 
+/datum/ego_gifts/cord
+	name = "cord"
+	icon_state = "cord"
+	temperance_bonus = 2
+	slot = NECKWEAR
+
 /**
  * TETH EGO Gifts
  */
