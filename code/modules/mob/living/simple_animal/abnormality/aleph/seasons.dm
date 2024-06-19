@@ -235,8 +235,10 @@
 
 /mob/living/simple_animal/hostile/abnormality/seasons/WorkChance(mob/living/carbon/human/user, chance) //suspect this does not work
 	if(downgraded)
-		if((chance < 50) && (chance > 0)) //WAW form is a bit more lenient on work
-			return chance + 35
+		if(chance > 0) //WAW form is a bit more lenient on work
+			return chance + 10
+		if(chance == 0)
+			return chance + 20
 	return chance
 
 //Transformations
@@ -266,6 +268,12 @@
 		desc = season_stats[current_season][5]
 	else
 		if(current_season == "fall")
+			light_color = COLOR_TEAL
+			light_range = 5
+			light_power = 7
+			update_light()
+		if(current_season == "summer")
+			light_color = LIGHT_COLOR_FIRE
 			light_range = 5
 			light_power = 7
 			update_light()
@@ -1199,6 +1207,9 @@
 /obj/effect/season_effect/summer
 	icon = 'icons/effects/fire.dmi'
 	icon_state = "1"
+	light_range = LIGHT_RANGE_FIRE
+	light_power = 1
+	light_color = LIGHT_COLOR_FIRE
 
 /obj/effect/season_effect/fall
 	icon = 'icons/effects/effects.dmi'
@@ -1265,6 +1276,9 @@
 	density = TRUE
 	max_integrity = 10000
 	resistance_flags = INDESTRUCTIBLE
+	light_range = 6
+	light_power = 3
+	light_color = LIGHT_COLOR_FIRE
 
 /obj/structure/fire_wall/Initialize()
 	. = ..()
@@ -1274,7 +1288,7 @@
 /obj/structure/fire_wall/proc/Fire_Spew()
 	set waitfor = FALSE
 	for(var/turf/open/T in view(1, src))
-		new /obj/effect/hotspot(T)
+		new /obj/effect/season_effect/summer(T)
 		for(var/mob/living/M in T.contents)
 			M.adjust_fire_stacks(3)
 			M.IgniteMob()
