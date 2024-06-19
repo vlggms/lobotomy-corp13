@@ -606,7 +606,7 @@
 			FireLine(turfs, TRUE)
 			turfs = LineTarget(270, 15, at)
 			FireLine(turfs, TRUE)
-			SLEEP_CHECK_DEATH(0.75 SECONDS)
+			SLEEP_CHECK_DEATH(1.5 SECONDS)
 			turfs = LineTarget(135, 10, at)
 			FireLine3x3(turfs, TRUE)
 			turfs = LineTarget(45, 10, at)
