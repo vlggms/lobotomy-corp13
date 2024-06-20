@@ -41,7 +41,7 @@
 /mob/living/simple_animal/hostile/abnormality/wild_ride/AttemptWork(mob/living/carbon/human/user, work_type, forced)
 	if(user.sanity_lost || user.stat != CONSCIOUS)
 		return FALSE
-	user.SetImmobilized(21, ignore_canstun = TRUE)
+	user.SetImmobilized(30, ignore_canstun = TRUE)
 	if(!forced)
 		works_in_a_row = 0
 		saved_work_type = work_type
@@ -57,7 +57,7 @@
 	return 20 + (3 * works_in_a_row)//I. WANT. OFF. THIS. WILD. RIDE!!!!!
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/Worktick(mob/living/carbon/human/user) //THE RIDE NEVER ENDS
-	user.SetImmobilized(21, ignore_canstun = TRUE)  //I want off this wild ride! (You can't get off!)
+	user.SetImmobilized(21 + (3 * works_in_a_row), ignore_canstun = TRUE)  //I want off this wild ride! (You can't get off!)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/NeutralEffect(mob/living/carbon/human/user, work_type, pe) //THE RIDE NEVER ENDS
@@ -66,17 +66,16 @@
 		return
 	works_in_a_row += 1
 	work_damage_amount = 1
-	if(AttemptWork(user, saved_work_type, TRUE)) //THE RIDE NEVER ENDS
-		datum_reference.console.start_work(user, saved_work_type)
-		to_chat(user, span_userdanger("THE RIDE NEVER ENDS!"))
+	user.SetImmobilized(10, ignore_canstun = TRUE)
+	if(prob(80))
+		addtimer(CALLBACK(src, PROC_REF(ForceToWork),user,work_type,TRUE), 5)
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/FailureEffect(mob/living/carbon/human/user, work_type, pe) //THE RIDE NEVER ENDS
 	. = ..()
 	works_in_a_row += 2
 	work_damage_amount = 2
-	if(AttemptWork(user, saved_work_type, TRUE)) //THE RIDE NEVER ENDS
-		datum_reference.console.start_work(user, saved_work_type)
-		to_chat(user, span_userdanger("THE RIDE NEVER ENDS!"))
+	user.SetImmobilized(10, ignore_canstun = TRUE)
+	addtimer(CALLBACK(src, PROC_REF(ForceToWork),user,work_type,TRUE), 5)
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/ZeroQliphoth(mob/living/carbon/human/user)
 	datum_reference.qliphoth_change(3)
@@ -109,6 +108,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/wild_ride/proc/ForceToWork(mob/living/carbon/human/user, work_type, forced)
 	DropPlayerByConsole(user)
+	SLEEP_CHECK_DEATH(5)
 	if(AttemptWork(user, saved_work_type, TRUE)) //THE RIDE NEVER ENDS
 		datum_reference.console.start_work(user, saved_work_type)
 		to_chat(user, span_userdanger("THE RIDE NEVER ENDS!"))
@@ -118,3 +118,4 @@
 	if(!isopenturf(dispense_turf))
 		dispense_turf = get_turf(datum_reference.console)
 	user.forceMove(dispense_turf)
+	user.SetImmobilized(30, ignore_canstun = TRUE)
