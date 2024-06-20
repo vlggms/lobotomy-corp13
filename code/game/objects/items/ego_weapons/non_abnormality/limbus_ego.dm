@@ -50,7 +50,7 @@
 	special = "This weapon attacks very fast. Use this weapon in hand to rush towards where you click."
 	icon_state = "crow"
 	icon = 'icons/obj/limbus_weapons.dmi'
-	inhand_icon_state = 'shiv'
+	inhand_icon_state = "shiv"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
 	force = 30
@@ -74,7 +74,7 @@
 	if(!isliving(A))
 		return
 	if(dash_cooldown > world.time)
-		to_chat(user, "<span class='warning'>Your dash is still recharging!")
+		to_chat(user, span_warning("Your dash is still recharging!"))
 		return
 	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
 		return
@@ -85,4 +85,4 @@
 	if((get_dist(user, A) < 2))
 		A.attackby(src,user)
 	playsound(get_turf(src), 'sound/weapons/fwoosh.ogg', 300, FALSE, 9)
-	to_chat(user, "<span class='warning'>You dash to [A]!")
+	to_chat(user, span_warning("You dash to [A]!"))
