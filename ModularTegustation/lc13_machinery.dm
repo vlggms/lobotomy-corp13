@@ -269,11 +269,15 @@
 	H.revive(full_heal = FALSE, admin_revive = FALSE)
 	H.emote("gasp")
 	H.Jitter(100)
+	ADD_TRAIT(H, TRAIT_COMBATFEAR_IMMUNE, JOB_TRAIT)
+	ADD_TRAIT(H, TRAIT_WORK_FORBIDDEN, JOB_TRAIT)
+	H.adjust_all_attribute_levels(45)
+	//45 stats with organic, 25 stats with robotic.
 
 	//YOU DIDNT PAY FOR PREMIUM SO WE ARE MAKING YOUR BODY WORSE
 	if(biotype == 2)
 		RoboticizeBody(H)
-		H.adjust_all_attribute_levels(-5)
+		H.adjust_all_attribute_levels(-20)
 	H.updateappearance()
 	DumpBody(H)
 
