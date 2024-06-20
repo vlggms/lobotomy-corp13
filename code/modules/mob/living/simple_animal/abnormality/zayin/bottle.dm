@@ -214,7 +214,7 @@
 	status_type = STATUS_EFFECT_REFRESH
 	consumed_on_threshold = FALSE
 
-	tick_interval = 30 SECONDS
+	tick_interval = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/tears
 	var/scaling = 20
 
