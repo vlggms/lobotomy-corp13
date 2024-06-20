@@ -612,7 +612,7 @@
 /mob/living/simple_animal/hostile/ordeal/thunderbird_corrosion
 	name = "Thunder Warrior"
 	desc = "Improper use of E.G.O. can have serious consequences."
-	icon = 'ModularTegustation/Teguicons/32x32.dmi'
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "thunder_warrior"
 	icon_living = "thunder_warrior"
 	icon_dead = "thunder_warrior_dead"
@@ -659,8 +659,6 @@
 	var/mob/living/simple_animal/hostile/thunder_zombie/C = new(get_turf(src))
 	if(!QDELETED(H))
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
-		C.icon_state = "human_thunderbolt"
-		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
 		C.faction = src.faction

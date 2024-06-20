@@ -302,8 +302,6 @@
 	C.master = master
 	if(!QDELETED(H))
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
-		C.icon_state = "human_thunderbolt"
-		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
 		H.gib()
@@ -329,12 +327,12 @@
 /*--Zombies!--*/
 //zombie mob
 /mob/living/simple_animal/hostile/thunder_zombie
-	name = "Human Thunderbolt"
+	name = "Thunderbird Worshipper"
 	desc = "What appears to be human, only charred and screaming incoherently..."
 	icon = 'ModularTegustation/Teguicons/32x32.dmi'
-	icon_state = "human_thunderbolt"
-	icon_living = "human_thunderbolt"
-	icon_dead = "human_thunderbolt_dead"
+	icon_state = "thunder_zombie"
+	icon_living = "thunder_zombie"
+	icon_dead = "thunder_zombie_dead"
 	speak_emote = list("groans", "moans", "howls", "screeches", "grunts")
 	gender = NEUTER
 	attack_verb_continuous = "attacks"
@@ -373,11 +371,11 @@
 
 /mob/living/simple_animal/hostile/thunder_zombie/Initialize()
 	. = ..()
+	if(IsCombatMap())
+		icon_state = "thunder_zombie2"
+		icon_living = "thunder_zombie2"
+		icon_dead = "thunder_zombie_dead2"
 	playsound(get_turf(src), 'sound/abnormalities/thunderbird/tbird_charge.ogg', 50, 1, 4)
-	base_pixel_x = rand(-6,6)
-	pixel_x = base_pixel_x
-	base_pixel_y = rand(-6,6)
-	pixel_y = base_pixel_y
 
 /mob/living/simple_animal/hostile/thunder_zombie/Life()
 	. = ..()
@@ -419,8 +417,6 @@
 			master.spawned_mobs += C
 			C.master = master
 		C.name = "[H.real_name]"//applies the target's name and adds the name to its description
-		C.icon_state = "human_thunderbolt"
-		C.icon_living = "human_thunderbolt"
 		C.desc = "What appears to be [H.real_name], only charred and screaming incoherently..."
 		C.gender = H.gender
 		C.faction = src.faction
