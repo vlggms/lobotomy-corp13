@@ -36,6 +36,39 @@
 			else
 				walk_to(SA, 0)
 
+	//Dosage Estimator
+/obj/item/dosage_est
+	name = "Dosage Estimator"
+	desc = "A modified reagent scanner that estimates how long a reagent will last in a regular human body. \
+		Its uncommon to see one of these outside of well funded laboratory. Use this on a container."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "gadget3"
+
+/obj/item/dosage_est/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(istype(target, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/C = target
+		var/datum/reagents/reagent_container = C.reagents
+		var/list/chemical_list = reagent_container.reagent_list
+		var/datum/reagent/gloop
+		if(chemical_list.len)
+			var/render_list = "Chemicals Detected:"
+			for(var/r in chemical_list)
+				gloop = r
+				/*
+				* These calculations are sort of correct. In testing
+				* the time tended to be 1-2 seconds less than predicted.
+				* Inverting this equation would be
+				* volume = (seconds/2) * metabolization_rate
+				* -IP
+				*/
+				var/reagent_vol = round(gloop.volume, 0.001)
+				var/reagent_cycle = reagent_vol / gloop.metabolization_rate
+				render_list += "<br>[reagent_vol] units of [gloop.name] will metabolize [reagent_cycle] cycles for a total of [reagent_cycle*2] seconds."
+			to_chat(user, render_list)
+		else
+			to_chat(user, span_notice("No reagents detected."))
+
 	//abnos spawn slower, for maps that suck lol
 /obj/item/lc13_abnospawn
 	name = "Lobotomy Corporation Radio"
