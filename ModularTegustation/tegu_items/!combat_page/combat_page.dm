@@ -27,6 +27,7 @@
 
 	if(being_used)
 		to_chat(user, span_notice("You are already using this page."))
+		return
 	being_used = TRUE
 	var/start_page = alert("Start this combat page?", "Combat Page", "Yes", "No")
 	if(start_page == "No")
