@@ -167,11 +167,13 @@
 		return
 	var/attribute_type = "N/A"
 	var/attribute_given = 0
+	var/agent_stat_total = 0
+	var/work_agent_stat_total = 0
+	var/agent_count = 0
 	if(pe > 0) // Work did not fail
 		attribute_type = current.work_attribute_types[work_type]
 		var/datum/attribute/user_attribute = user.attributes[attribute_type]
 		if(user_attribute) //To avoid runtime if it's a custom work type like "Release".
-			var/user_attribute_level = max(1, user_attribute.level)
 			attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 			if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
@@ -180,6 +182,38 @@
 					attribute_given = threat_level * SSlobotomy_corp.melt_work_multiplier
 				else
 					to_chat(user, span_warning("You don't feel like you've learned anything from this!"))
+			for(var/mob/living/carbon/human/H in AllLivingAgents())
+				if(!H.client)
+					continue
+				if(!H.mind)
+					continue
+				if(!H.z = z) //To prevent things like thunderdome from interfering from stat gain.
+					continue
+				agent_count += 1
+				for(var/a in H.attributes)
+					var/datum/attribute/atr = attributes[a]
+					var/atrnumber = atr.get_raw_level()
+					agent_stat_total += atrnumber
+			for(var/a in user.attributes)
+				var/datum/attribute/atr = attributes[a]
+				var/atrnumber = atr.get_raw_level()
+					work_agent_stat_total += atrnumber
+			var/progressionmod = work_agent_stat_total - (agent_stat_total/agent_count)
+			switch(round(progressionmod))
+				if(-INFINITY to -160)
+					attribute_given *= 2
+				if(-119 to -80)
+					attribute_given *= 1.5
+				if(-79 to -40)
+					attribute_given *= 1.25
+				if(-39 to 40)
+					attribute_given *= 1.1
+				if(41 to 80)
+					attribute_given *= 1
+				if(81 to 120)
+					attribute_given *= .9
+				if(121 to INFINITY)
+					attribute_given *= .75
 			user.adjust_attribute_level(attribute_type, attribute_given)
 	if(console?.tutorial) //don't run logging-related code if tutorial console
 		return
