@@ -222,7 +222,7 @@
 			continue
 		if(!H.mind)
 			continue
-		if(!H.z = z) //To prevent things like thunderdome from interfering from stat gain.
+		if(!H.z == z) //To prevent things like thunderdome from interfering from stat gain.
 			continue
 		var/user_name = "[H.real_name] ([H.ckey])"
 		var/last_work = SSlobotomy_corp.work_stats[user_name]["activity_check"]
