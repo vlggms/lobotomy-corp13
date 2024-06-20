@@ -61,8 +61,8 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 // The Ride Never Ends - Wild Ride
 /datum/ego_datum/weapon/wild_ride
 	item_path = /obj/item/ego_weapon/lance/wild_ride
-	cost = 500
+	cost = 250
 
 /datum/ego_datum/armor/wild_ride
 	item_path = /obj/item/clothing/suit/armor/ego_gear/aleph/wild_ride
-	cost = 500
+	cost = 250
