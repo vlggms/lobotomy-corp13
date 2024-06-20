@@ -2,6 +2,7 @@
 if(name != initial(name)){ \
 	variables_to_add += "name = \"[name]\"" \
 }
+
 #define SAVE_DIR_AS_VARIABLE \
 if(dir != initial(dir) || rotation != NORTH){ \
 	var/pre_variable; \
@@ -157,6 +158,11 @@ if(pixel_y != initial(pixel_y)){ \
 	SAVE_DIR_AS_VARIABLE
 	SAVE_PIXEL_X_AS_VARIABLE
 	SAVE_PIXEL_Y_AS_VARIABLE
+
+	return ..()
+
+/obj/machinery/facility_holomap/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_DIR_AS_VARIABLE
 
 	return ..()
 
