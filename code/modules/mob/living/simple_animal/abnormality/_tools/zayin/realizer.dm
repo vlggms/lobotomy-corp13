@@ -132,7 +132,7 @@
 	for(var/attribute in user.attributes)
 		stat_total += get_raw_level(user, attribute)
 
-	if(stat_total <= 500) // ~125 in all stats required
+	if(stat_total < 500) // ~125 in all stats required
 		to_chat(user, span_warning("You are too weak to use this machine."))
 		return
 
