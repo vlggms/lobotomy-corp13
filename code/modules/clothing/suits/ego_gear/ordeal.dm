@@ -84,7 +84,7 @@
 			L.emote("laugh")
 			L.adjustSanityLoss(-5)//0.33 sp per second. probably could be buffed but knowing Kirie she's probaby going to want me to change this to 190 total even if the healing isn't that good even.
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//180 total can shift between 4 armor modes with a 120 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//200 total can shift between 4 armor modes with a 120 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
 	name = "Delusionist's end"
 	desc = "This is a placeholder."
 	icon_state = "delusion_red"
