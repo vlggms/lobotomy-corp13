@@ -13,6 +13,7 @@
 	var/spawn_type = "all"			//All spawns all enemies, random spawns a random one.
 	var/spawn_number = 1
 	var/special						//Any special info to add as info
+	var/being_used = TRUE
 
 	//DO, RO and EO can all use these. and Training officer I guess
 	var/list/allowedroles = list("Disciplinary Officer", "Extraction Officer", "Records Officer", "Training Officer", "Sephirah")
@@ -24,12 +25,17 @@
 			to_chat(user, span_notice("The page glows red. It is unable to be used by you. Only Departmental officers can use this page."))
 			return
 
+	if(being_used)
+			to_chat(user, span_notice("You are already using this page."))
+	being_used = TRUE
 	var/start_page = alert("Start this combat page?", "Combat Page", "Yes", "No")
 	if(start_page == "No")
+		being_used = FALSE
 		return
 	Spawn_Reward(user)
 	Spawn_Combat(user)
 	minor_announce("A combat page has been started by [user.name]." , "[name]")
+	being_used = FALSE
 	qdel(src)
 
 /obj/item/combat_page/examine(mob/user)
