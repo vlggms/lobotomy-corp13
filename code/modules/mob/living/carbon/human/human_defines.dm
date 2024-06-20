@@ -95,3 +95,6 @@
 
 	/// Boolean for working status
 	var/is_working = FALSE
+
+	/// Last time the Person has worked
+	var/last_work_time = 0 MINUTES

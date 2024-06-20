@@ -224,9 +224,7 @@
 			continue
 		if(!H.z == z) //To prevent things like thunderdome from interfering from stat gain.
 			continue
-		var/user_name = "[H.real_name] ([H.ckey])"
-		var/last_work = SSlobotomy_corp.work_stats[user_name]["activity_check"]
-		if(last_work + 10 MINUTES < world.time)
+		if(H.last_work_time + 10 MINUTES < world.time)
 			continue
 		agent_count += 1
 		for(var/a in H.attributes)
@@ -330,6 +328,7 @@
 		chem_charges += 1
 	else
 		chem_charges = min(chem_charges + 0.2, 10)
+	user.last_work_time = world.time
 	meltdown_time = 0
 	datum_reference.working = FALSE
 	return TRUE
