@@ -1488,10 +1488,6 @@
 /mob/living/simple_animal/hostile/flora_zombie/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/ebonyqueen/attack.ogg', 50, 1, 4)
-	base_pixel_x = rand(-6,6)
-	pixel_x = base_pixel_x
-	base_pixel_y = rand(-6,6)
-	pixel_y = base_pixel_y
 
 /mob/living/simple_animal/hostile/flora_zombie/Life()
 	. = ..()
