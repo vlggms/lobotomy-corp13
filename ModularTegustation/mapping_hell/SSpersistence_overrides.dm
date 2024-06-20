@@ -93,10 +93,10 @@
 
 	var/line = 1
 	var/iteration = 0
-	for(var/i in 1 to map_x)
+	for(var/horizontal_axis in 1 to map_x)
 		map_file += "([line],1,1) = {\"\n"
 		var/ticker_y = 0
-		for(var/I in 1 to map_y)
+		for(var/vertical_axis in 1 to map_y)
 			var/turf/processing_turf = reader_turf
 			for(var/x in 1 to line - 1)
 				processing_turf = get_step(processing_turf, turn(rotation, 270))
@@ -108,6 +108,7 @@
 
 			if(get_area(processing_turf) == our_area || (override_turfs && get_area(processing_turf) != /area/space))
 				var/list/items_to_save = list()
+				var/list/items_to_delete = list()
 				var/content_string = "[processing_turf.type], [get_area(processing_turf)]"
 
 				for(var/atom/thing in processing_turf.contents)
@@ -115,11 +116,11 @@
 						continue
 					items_to_save += thing
 					content_string += ", [thing.type]"
-					content_string += Wrap_Object_Json(thing, rotation)
+					content_string += thing.save_variables(rotation)
 					if(delete_after_saving)
-						qdel(thing)
+						items_to_delete += thing
 
-				items_to_save += processing_turf.type
+				items_to_save += processing_turf
 				items_to_save += get_area(processing_turf)
 
 				if(!unique_entries[content_string])
@@ -127,7 +128,7 @@
 					for(var/variable_item in 1 to length(items_to_save))
 						var/atom/desired_item = items_to_save[1]
 						code_file += "[desired_item.type]"
-						code_file += Wrap_Object_Json(desired_item, rotation)
+						code_file += desired_item.save_variables(rotation)
 						code_file += "[length(items_to_save) > 1 ? ",\n": ")\n"]"
 						items_to_save -= desired_item
 
@@ -137,6 +138,8 @@
 				else
 					var/existing_iteration = unique_entries[content_string]
 					map_file += "[existing_iteration]\n"
+
+				QDEL_LIST(items_to_delete)
 			else
 				map_file += "aa\n" // its not a part of our area, so we place pass-through tiles onto it
 
@@ -152,74 +155,6 @@
 	return list(right_y, right_x, left_y, left_x, left_x_ref) // used for potential loading
 
 #undef FILE_PLAYER_MAP_DATA
-
-/datum/controller/subsystem/mapping/proc/Wrap_Object_Json(atom/object, rotation = NORTH)
-	var/JSON = ""
-	var/list/variables_to_add = list()
-	if(object.name != initial(object.name))
-		if(!istype(object, /obj/structure/sign/poster/lobotomycorp/random)) // useless data needs to be trimmed
-			variables_to_add += "name = \"[object.name]\""
-
-	// because of rotations, if the rotation is not NORTH we gotta accept all directions to then filter them after the fact
-	// also dont accept anything other than some structures
-	if((istype(object, /obj/structure) || istype(object, /obj/machinery/light) || istype(object, /obj/machinery/computer)) && !istype(object, /obj/structure/table))
-		if(object.dir != initial(object.dir) || rotation != NORTH)
-			var/pre_variable
-			switch(rotation)
-				if(NORTH)
-					pre_variable += object.dir
-
-				if(EAST)
-					pre_variable += turn(object.dir, 90)
-
-				if(SOUTH)
-					pre_variable += turn(object.dir, 180)
-
-				if(WEST)
-					pre_variable += turn(object.dir, 270)
-
-			if(pre_variable != initial(object.dir))
-				variables_to_add += "dir = [pre_variable]"
-
-	if(object.pixel_x != initial(object.pixel_x))
-		switch(rotation)
-			if(NORTH)
-				variables_to_add += "pixel_x = [object.pixel_x]"
-
-			if(EAST)
-				variables_to_add += "pixel_y = [object.pixel_x]"
-
-			if(SOUTH)
-				variables_to_add += "pixel_x = [object.pixel_x * -1]"
-
-			if(WEST)
-				variables_to_add += "pixel_y = [object.pixel_x * -1]"
-
-	if(object.pixel_y != initial(object.pixel_y))
-		switch(rotation)
-			if(NORTH)
-				variables_to_add += "pixel_y = [object.pixel_y]"
-
-			if(EAST)
-				variables_to_add += "pixel_x = [object.pixel_y * -1]"
-
-			if(SOUTH)
-				variables_to_add += "pixel_y = [object.pixel_y * -1]"
-
-			if(WEST)
-				variables_to_add += "pixel_x = [object.pixel_y]"
-
-	if(length(variables_to_add) == 0) // nothing to add, return an empty string
-		return JSON
-
-	JSON += "{\n"
-	for(var/variable in 1 to length(variables_to_add))
-		var/added_variable = variables_to_add[1]
-		JSON += "	[added_variable]"
-		JSON += "[length(variables_to_add) > 1 ? ";\n": "\n	}"]"
-		variables_to_add -= added_variable
-
-	return JSON
 
 /datum/controller/subsystem/mapping/proc/Convert_Number_To_Symbol(number, magic_number = 27) // turns understandable numbers into necronomicon pages
 	var/symbol = ""
