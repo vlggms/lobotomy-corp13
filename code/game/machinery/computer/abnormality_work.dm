@@ -214,6 +214,43 @@
 	// Initial chance and speed values before work started, in case they get overriden by abnormality
 	var/init_work_chance = work_chance
 	var/init_work_speed = work_speed
+	var/agent_stat_total = 0
+	var/work_agent_stat_total = 0
+	var/agent_count = 0
+	for(var/mob/living/carbon/human/H in AllLivingAgents())
+		if(!H.client)
+			continue
+		if(!H.mind)
+			continue
+		if(!H.z = z) //To prevent things like thunderdome from interfering from stat gain.
+			continue
+		var/user_name = "[H.real_name] ([H.ckey])"
+		var/last_work = SSlobotomy_corp.work_stats[user_name]["activity_check"]
+		if(last_work + 10 MINUTES < world.time)
+			continue
+		agent_count += 1
+		for(var/a in H.attributes)
+			var/datum/attribute/atr = H.attributes[a]
+			var/atrnumber = atr.get_raw_level()
+			agent_stat_total += atrnumber
+	for(var/a in user.attributes)
+		var/datum/attribute/atr = user.attributes[a]
+		var/atrnumber = atr.get_raw_level()
+		work_agent_stat_total += atrnumber
+	var/progressionmod = work_agent_stat_total - (agent_stat_total/agent_count)
+	switch(round(progressionmod))
+		if(-INFINITY to -160)
+			work_speed *= 0.75
+		if(-119 to -80)
+			work_speed *= 0.8
+		if(-79 to -40)
+			work_speed *= 0.9
+		if(-39 to 80)
+			work_speed *= 1
+		if(81 to 120)
+			work_speed *= 1.2
+		if(121 to INFINITY)
+			work_speed *= 1.5
 	while(total_boxes < work_time)
 		if(!CheckStatus(user))
 			break
