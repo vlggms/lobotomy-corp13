@@ -3,8 +3,8 @@
 	title = "Low Security Officer"
 	faction = "Station"
 	supervisors = "Low Security Commander"
-	total_positions = 5
-	spawn_positions = 5
+	total_positions = 4
+	spawn_positions = 4
 	exp_requirements = 0
 	selection_color = "#6571a6"
 	access = list(ACCESS_SECURITY)			//See /datum/job/assistant/get_access()

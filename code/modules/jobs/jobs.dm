@@ -85,6 +85,7 @@ GLOBAL_LIST_INIT(science_positions, list(
 	"Information Systems Tech",
 	"Research Archivist",
 	"Researcher",
+	"Virologist",
 	"LC Staff",
 
 	))
@@ -179,7 +180,9 @@ GLOBAL_LIST_INIT(security_positions, list(
 	//LCB Labs
 	"High Security Commander",
 	"Low Security Commander",
+	"EGO Specialist",
 	"High Security Officer",
+	"Low Security Medic",
 	"Low Security Officer",
 	"Damage Mitigation Officer",
 	"Damage Exasperation Officer",
