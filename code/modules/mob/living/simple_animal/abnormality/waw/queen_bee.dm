@@ -34,6 +34,15 @@
 		/mob/living/simple_animal/hostile/abnormality/general_b = 5,
 	)
 
+	observation_prompt = "There was one summer so hot and unpleasant. Bees were busily flying around the beehive. \
+They live for the only one queen. \'Are they happy? Living only to work\' I asked myself. Then someone answered."
+	observation_choices = list("They work to survive", "They work out of loyalty")
+	correct_choices = list("They work to survive", "They work out of loyalty")
+	observation_success_message = "Loyalty that bees possess is a natural instinct. \
+If we find a way to control that instinct, Things will change. \
+It is years later that I found out that their unshakable loyalty is because of special pheromone which only queen can produce. \
+Everything started when I began to study that pheromone." //TODO : multiple answers
+
 	var/datum/looping_sound/queenbee/soundloop
 	var/breached_others = FALSE
 

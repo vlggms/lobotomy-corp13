@@ -83,6 +83,8 @@
 			dat += "<span style='color: [COLOR_MOSTLY_PURE_RED]'>Work on other abnormalities, I beg you...</span><br>"
 	if(datum_reference.understanding != 0)
 		dat += "<span style='color: [COLOR_BLUE_LIGHT]'>Current Understanding is: [round((datum_reference.understanding/datum_reference.max_understanding)*100, 0.01)]%, granting a [datum_reference.understanding]% Work Success and Speed bonus.</span><br>"
+		if(datum_reference.observation_ready)
+			dat += "<A href='byond://?src=[REF(src)];final_observation=1'>Final Observation ready</A> <br>"
 	switch(work_bonus)
 		if(EXTRACTION_KEY)
 			dat += "<span style='color: [COLOR_VERY_SOFT_YELLOW]'>Work Speed and Success Rates are being positively impacted by low Qliphoth deterrance levels.</span><br>"
@@ -144,6 +146,20 @@
 					to_chat(usr, span_warning("This operation is currently unavailable."))
 				return
 			start_work(usr, href_list["do_work"])
+		if(href_list["final_observation"])
+			if(HAS_TRAIT(usr, TRAIT_WORK_FORBIDDEN)) //gifts are only for agents
+				to_chat(usr, span_warning("You cannot perform this operation!"))
+				return
+			if(datum_reference.working)
+				to_chat(usr, span_warning("The console is currently being operated!"))
+				return
+			if(!istype(datum_reference.current) || (datum_reference.current.stat == DEAD))
+				to_chat(usr, span_warning("The Abnormality is currently in the process of revival!"))
+				return
+			if(!(datum_reference.current.status_flags & GODMODE))
+				to_chat(usr, span_warning("The Abnormality has breached containment!"))
+				return
+			datum_reference.current.FinalObservation(usr)
 
 	add_fingerprint(usr)
 	updateUsrDialog()

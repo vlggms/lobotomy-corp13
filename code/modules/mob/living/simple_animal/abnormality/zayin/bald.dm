@@ -41,6 +41,13 @@
 	harvest_phrase = span_notice("You squeeze %ABNO. Some juice drips into %VESSEL.")
 	harvest_phrase_third = "%PERSON squeezes %ABNO. Some juice drips into %VESSEL."
 
+	//TODO: More options
+	observation_prompt = "This abnormality is filled with dreams of bald people. Are you balding, or already bald?"
+	observation_choices = list("Yes", "No")
+	correct_choices = list("Yes")
+	observation_success_message = "Lobotomy Corporation welcomes you."
+	observation_fail_message = "Come back after watching the fast and the furious 7 five more times."
+
 	var/bald_users = list()
 	chem_type = /datum/reagent/abnormality/bald
 

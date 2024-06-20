@@ -1,6 +1,12 @@
 //Just some map-related things and comments for the develeoper
 
-//portrait = "snow_queen"
+/*portrait = "snow_queen"
+	observation_prompt = ""
+	observation_choices = list("Yes", "No")
+	correct_choices = list("Yes")
+	observation_success_message = ""
+	observation_fail_message = ""
+*/
 
 /obj/effect/landmark/snowqueen_teleport
 	name = "snow queen teleport"

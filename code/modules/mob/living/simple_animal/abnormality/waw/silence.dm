@@ -23,6 +23,14 @@
 	gift_type = /datum/ego_gifts/thirteen
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+	observation_prompt = "Time's wasting. time's running out... They are nothing but meaningless tantrums. \
+The watch will not only take your lost time back, but also give you even more time."
+	observation_choices = list("Do not use the watch", "Use the watch")
+	correct_choices = list("Use the watch")
+	observation_success_message = "The price will follow to your decision. It is designed this way."
+	observation_fail_message = "Actually, you have no right to refuse this gift. \
+Whether you want it or not, we all know that you have to take it."
+
 	var/meltdown_cooldown_time = 13 MINUTES
 	var/meltdown_cooldown
 	var/worldwide_damage = 70	//If you're unarmored, it obliterates you
