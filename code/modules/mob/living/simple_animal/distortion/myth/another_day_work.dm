@@ -37,8 +37,16 @@
 	gender = MALE
 	//The Egoist's outfit, which should usually be civilian unless you want them to be a fixer or something.
 	egoist_outfit = /datum/outfit/job/civilian
+	//The Egoist's starting stats, all across the board. MUST BE AT LEAST THE MINIMUM TO EQUIP THE EGO_GEAR IF ANY
+	egoist_attributes = 40
 	//Loot on death; distortions should be valuable targets in general.
 	loot = list(/obj/item/documents/ncorporation)
+
+//Set random stats for the egoist
+/mob/living/simple_animal/hostile/distortion/another_day_work/Initialize()
+    . = ..()
+    egoist_attributes = min(rand(egoist_attributes, 130), rand(egoist_attributes, 130))
+    return
 
 	var/can_act = TRUE
 
