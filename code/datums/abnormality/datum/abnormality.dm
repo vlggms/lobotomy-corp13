@@ -174,6 +174,7 @@
 		attribute_type = current.work_attribute_types[work_type]
 		var/datum/attribute/user_attribute = user.attributes[attribute_type]
 		if(user_attribute) //To avoid runtime if it's a custom work type like "Release".
+			var/user_attribute_level = max(1, user_attribute.level)
 			attribute_given = clamp(((maximum_attribute_level / (user_attribute_level * 0.25)) * (0.25 + (pe / max_boxes))), 0, 16)
 			if((user_attribute_level + attribute_given + 1) >= maximum_attribute_level) // Already/Will/Should be at maximum.
 				attribute_given = max(0, maximum_attribute_level - user_attribute_level)
