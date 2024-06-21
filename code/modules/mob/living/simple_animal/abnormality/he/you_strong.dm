@@ -279,15 +279,25 @@
 	var/gear_cooldown = 1 MINUTES
 	//tracks speed change even if altered by other speed modifiers.
 	var/gear_speed = 0
+	var/gear_health = 200//The maximum HP you can trigger surgery with, pink shoes modifies this.
+	var/can_act = TRUE//necessary sanity for spin attacks
 
 /mob/living/simple_animal/hostile/grown_strong/Move(atom/newloc, dir, step_x, step_y)
 	if(status_flags & GODMODE)
+		return FALSE
+	if(can_act == FALSE)
 		return FALSE
 	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/AttackingTarget(atom/attacked_target)
 	if(status_flags & GODMODE)
 		return FALSE
+	if(can_act == FALSE)
+		return FALSE
+	if(gear == 10)
+		if(prob(15))
+			SpinAttack()
+			return
 	return ..()
 
 /mob/living/simple_animal/hostile/grown_strong/proc/UpdateGear()
@@ -312,7 +322,7 @@
 	COOLDOWN_START(src, gear_shift, gear_cooldown)
 
 /mob/living/simple_animal/hostile/grown_strong/death(gibbed)
-	if(maxHealth > 200)
+	if(maxHealth > gear_health)
 		INVOKE_ASYNC(src, PROC_REF(Undie))
 		return FALSE
 	visible_message(span_notice("[src] explodes into a mess of plastic and gore!"))
@@ -330,7 +340,34 @@
 	src.adjustBruteLoss(-9999)
 	gear = clamp(gear + 2, 1, 10)
 	manual_emote("shudders back to life!")
+	switch(gear)
+		if(0 to 6)//gear is set to 2 at initialize, would need to be varedited to go under that
+			playsound(src, 'sound/weapons/ego/strong_uncharged.ogg', 60)
+		if(6 to 8)
+			playsound(src, 'sound/weapons/ego/strong_charged1.ogg', 60)
+		else
+			playsound(src, 'sound/weapons/ego/strong_charged2.ogg', 60)
 	UpdateGear()
+
+/mob/living/simple_animal/hostile/grown_strong/proc/SpinAttack()
+	can_act = FALSE
+	manual_emote("outstretches its arms, upper torso starting to rotate!")
+	playsound(src, 'sound/weapons/ego/strong_uncharged.ogg', 60)
+	SLEEP_CHECK_DEATH(20)
+	for(var/i = 0, i <=4, ++i)
+		for(var/turf/T in oview(2, src))
+			new /obj/effect/temp_visual/smash_effect(T)
+		for(var/mob/living/L in oview(2, src))
+			if(faction_check_mob(L))
+				continue
+			L.apply_damage(melee_damage_lower, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		playsound(src, 'sound/weapons/ego/strong_charged2.ogg', 60)
+		emote("spin")
+		SLEEP_CHECK_DEATH(5)
+	playsound(src, 'sound/weapons/ego/strong_gauntlet.ogg', 60)
+	can_act = TRUE
+	UpdateGear()
+
 
 ////// Parts! //////
 
