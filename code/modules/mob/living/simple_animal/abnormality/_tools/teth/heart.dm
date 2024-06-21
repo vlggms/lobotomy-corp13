@@ -67,14 +67,17 @@
 	if(H.health < H.maxHealth * 0.25)
 		if(!raging)
 			SuperRageEnable()
-	if(H.stat == DEAD)
-		var/obj/item/organ/heart/heart = H.getorganslot(ORGAN_SLOT_HEART)
-		if(istype(heart))
-			QDEL_NULL(heart)
-			return
-		H.visible_message(span_danger("[H]'s heart explodes!"))
-		new /obj/effect/gibspawner/generic(get_turf(H))
-		H.remove_status_effect(src)
+	if(H.stat != DEAD)
+		return
+
+	var/obj/item/organ/heart/heart = H.getorganslot(ORGAN_SLOT_HEART)
+	if(istype(heart))
+		QDEL_NULL(heart)
+		return
+
+	H.visible_message(span_danger("[H]'s heart explodes!"))
+	new /obj/effect/gibspawner/generic(get_turf(H))
+	H.remove_status_effect(src)
 
 /datum/status_effect/display/aspiration/proc/RageEnable()
 	var/mob/living/carbon/human/H = owner

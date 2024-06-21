@@ -49,7 +49,7 @@
 	//Count down to 5 minutes of wearing
 	if(healthtracker>=300)
 		if(warningtracker == 0)
-			to_chat(H, span_danger("You have been wearing the luminous bracelet for a long time. Any longer could be dangerous!"))
+			to_chat(H, span_hypnophrase("You have been wearing the luminous bracelet for a long time. Any longer could be dangerous!"))
 		warningtracker+=1
 	if(warningtracker >= 150)
 		H.gib()

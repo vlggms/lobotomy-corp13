@@ -16,10 +16,10 @@
 	var/clock_cooldown //prevents an exploit
 
 	var/list/exceptions = list( //It only affects abnormalities and ordeals, so claw and arbiter are not even included.
-	/mob/living/simple_animal/hostile/abnormality/white_night,
-	/mob/living/simple_animal/hostile/abnormality/distortedform,
-	/mob/living/simple_animal/hostile/abnormality/nihil,
-	/mob/living/simple_animal/hostile/abnormality/sukuna,
+		/mob/living/simple_animal/hostile/abnormality/white_night,
+		/mob/living/simple_animal/hostile/abnormality/distortedform,
+		/mob/living/simple_animal/hostile/abnormality/nihil,
+		/mob/living/simple_animal/hostile/abnormality/sukuna,
 	)
 
 	ego_list = list(
