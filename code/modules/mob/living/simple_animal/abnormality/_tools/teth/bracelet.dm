@@ -50,6 +50,7 @@
 	if(healthtracker>=300)
 		if(warningtracker == 0)
 			to_chat(H, span_hypnophrase("You have been wearing the luminous bracelet for a long time. Any longer could be dangerous!"))
+			H.playsound_local(get_turf(H), 'sound/abnormalities/nothingthere/heartbeat.ogg', 50, 0, 3)
 		warningtracker+=1
 	if(warningtracker >= 150)
 		H.gib()
