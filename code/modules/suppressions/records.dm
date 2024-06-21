@@ -129,6 +129,14 @@
 /datum/suppression/records/proc/TryToTeleportMob(mob/living/L)
 	if(QDELETED(L))
 		return
+
+	// We have it randomize the teleports by 6 ticks, in that 6 ticks if someone starts a work we cancel it without this check
+	// how cancel you might ask? just like they would move of course, dealing full damage, probably killing them and also breaching the abno
+	if(istype(L, /mob/living/carbon/human))
+		var/mob/living/carbon/human/our_hooman = L
+		if(our_hooman.is_working)
+			return
+
 	var/turf/open/T = null
 	var/list/turf_list = list()
 	var/mob/living/simple_animal/hostile/HA = L
