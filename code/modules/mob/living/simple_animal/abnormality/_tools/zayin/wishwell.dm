@@ -181,9 +181,9 @@
 
 //This proc removes the need to copypaste every single armor and weapon into a list.
 /obj/structure/toolabnormality/wishwell/Initialize()
-	return ..()
+	. = ..()
 
-//Sorts them into their lists
+	//Sorts them into their lists
 	for(var/path in subtypesof(/datum/ego_datum))
 		var/datum/ego_datum/ego = path
 		switch(initial(ego.cost))
