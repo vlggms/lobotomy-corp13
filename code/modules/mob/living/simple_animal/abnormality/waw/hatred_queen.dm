@@ -639,7 +639,7 @@
 		return
 	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	friendly = FALSE
 	can_act = TRUE
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'

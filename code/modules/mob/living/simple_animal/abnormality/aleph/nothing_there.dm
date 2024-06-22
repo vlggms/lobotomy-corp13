@@ -301,7 +301,7 @@
 			ChangeMoveToDelayBy(1.5)
 			heartbeat.stop()
 			breachloop.start()
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/Hello(target)

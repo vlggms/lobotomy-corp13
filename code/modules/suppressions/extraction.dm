@@ -158,7 +158,7 @@
 	if(life_stage >= 3)
 		return FALSE // Death
 	life_stage += 1
-	adjustHealth(-maxHealth)
+	adjustHealth(-maxHealth, forced = TRUE)
 	ChangeResistances(list(RED_DAMAGE = 0.1, WHITE_DAMAGE = 0.1, BLACK_DAMAGE = 0.1, PALE_DAMAGE = 0.1))
 	fairy_cooldown_time = max(4 SECONDS, fairy_cooldown_time - 2 SECONDS)
 	key_cooldown_time = max(10 SECONDS, fairy_cooldown_time - 4 SECONDS)

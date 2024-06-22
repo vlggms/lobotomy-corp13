@@ -154,7 +154,7 @@
 		if(SSlobotomy_events.yin_downed)
 			death()
 			return
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2))
 	SSlobotomy_events.yang_downed = FALSE
 	icon_state = icon_breach

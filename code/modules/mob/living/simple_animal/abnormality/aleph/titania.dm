@@ -105,7 +105,7 @@
 		ChangeMoveToDelayBy(-1)
 		melee_damage_lower = 110
 		melee_damage_upper = 140
-		adjustBruteLoss(-maxHealth) // Round 2, baby
+		adjustBruteLoss(-maxHealth, forced = TRUE) // Round 2, baby
 
 		to_chat(src, span_userdanger("[nemesis], my beloved devil, I finally get my revenge."))
 		nemesis = null
