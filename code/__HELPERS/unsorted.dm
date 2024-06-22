@@ -1148,6 +1148,25 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	C.color = flash_color
 	animate(C, color = animate_color, time = flash_time)
 
+/proc/extended_flash_color(mob_or_client, flash_color="#960000", flash_time=20, maintain_time=0)//this calls sleep()
+	var/client/C
+	if(ismob(mob_or_client))
+		var/mob/M = mob_or_client
+		if(M.client)
+			C = M.client
+		else
+			return
+	else if(istype(mob_or_client, /client))
+		C = mob_or_client
+
+	if(!istype(C))
+		return
+
+	var/animate_color = C.color
+	C.color = flash_color
+	sleep(maintain_time)//thank redacted for this addition
+	animate(C, color = animate_color, time = flash_time)
+
 #define RANDOM_COLOUR (rgb(rand(0,255),rand(0,255),rand(0,255)))
 
 /proc/random_nukecode()

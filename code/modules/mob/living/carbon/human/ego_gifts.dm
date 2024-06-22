@@ -1248,6 +1248,15 @@
 	justice_bonus = 6
 	slot = EYE
 
+/datum/ego_gifts/sunyata
+	name = "Bloody Gadget"
+	icon_state = "sunyata"
+	fortitude_bonus = 1
+	prudence_bonus = 2
+	temperance_bonus = 1
+	justice_bonus = 2
+	slot = HAND_1
+
 /**
  * ALEPH EGO Gifts
  */
