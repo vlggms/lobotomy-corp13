@@ -190,7 +190,10 @@
 	if(!client)
 		CheckCharge()
 		if(tail_attack_cooldown < world.time)
-			TailAttack()
+			var/turf/target_turf = get_turf(target)
+			for(var/i = 1 to TAILATTACK_RANGE - 2)
+				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
+			TailAttack(target_turf)
 			return FALSE
 	. = ..()
 	if (!immortal)
@@ -200,6 +203,13 @@
 		self_charge_counter = MAX_CHARGE
 		say("Reached Max Charge")
 	CheckCharge()
+
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/OpenFire()
+	if(stunned || shield > 0)
+		return
+
+	if(tail_attack_cooldown < world.time)
+		TailAttack(target)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CheckCharge()
 	if (self_charge_counter >= COIL_START_CHARGE && world.time > coil_cooldown && !immortal)
@@ -282,19 +292,18 @@
 	else
 		adjustHealth(health)
 
-/mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack()
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack(target)
 	say("Perfroming Tail Attack")
 	tail_attack_cooldown = world.time + TAILATTACK_COOLDOWN_DECISEC
 	stunned = TRUE
 	face_atom(target)
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
 	//icon_state windup
-
+	var/turf/target_turf = get_turf(target)
 	SLEEP_CHECK_DEATH(TAILATTACK_WINDUP_DECISEC)
 	var/been_hit = list()
 	var/broken = FALSE
 	var/distance = TAILATTACK_RANGE
-	var/turf/target_turf = get_turf(target)
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if (distance < 0)
 			break
@@ -308,7 +317,8 @@
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
 			been_hit = HurtInTurf(TF, been_hit, TAILATTACK_DAMAGE, TAILATTACK_DAMAGETYPE, null, null, TRUE, FALSE, TRUE, TRUE)
-	self_charge_counter += length(been_hit)
+	self_charge_counter += length(been_hit) * TAILATTACK_CHARGE_PER_TARGET
+	say("Hit targets #: " + num2text(length(been_hit)))
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
 	icon_state = icon_living
 	stunned = FALSE
