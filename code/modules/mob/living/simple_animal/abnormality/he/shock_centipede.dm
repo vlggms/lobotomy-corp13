@@ -52,7 +52,7 @@
 
 
 	var/EXTRA_PE_BOXES = 6
-	var/SELF_CHARGE_THRESHOLD = 50
+	var/SELF_CHARGE_THRESHOLD = 100
 	var/COIL_TIMER_DECISEC = 100
 	var/COIL_MAX_SHIELD = 400
 	var/MAX_CHARGE = 20
@@ -135,45 +135,54 @@
 		return
 	datum_reference.qliphoth_change(-1)
 
-/* Breach effects */
-/mob/living/simple_animal/hostile/abnormality/shock_centipede/attackby(obj/item/W, mob/user, params)
-	say("Damage taken. Current health: " + health)
-	var/old_health = health
-	. = ..()
-	var/health_loss = old_health - health
-	say("Damage taken " + health_loss + ", current shield " + shield)
-	if (shield > 0)
-		if (shield <= health_loss)
-			adjustHealth(shield * -1)
-			shield = 0
-			if (currentShieldTimerID  != 0) //stop coil timer
-				deltimer(currentShieldTimerID)
-				currentShieldTimerID = 0
-			say("Shield Broken")
-			// stun
-			// icon_state
-			stunned = TRUE
-			say("Stunned")
-			addtimer(CALLBACK(src, .proc/StunEnd), COIL_SHIELD_BROKEN_SELFSTUN_DURATION_DECISEC)
-			self_charge_counter -= COIL_SHIELD_BROKEN_CHARGE_LOSS
-		else
-			adjustHealth(health_loss * -1)
-			shield -= health_loss
-			say("Shield reduced by " + health_loss)
-	else
-		say("Damage taken " + health_loss)
-		self_charge_health += health_loss
-		self_charge_counter -= self_charge_health / SELF_CHARGE_THRESHOLD
-		if(self_charge_health / SELF_CHARGE_THRESHOLD > 0)
-			say("Charge reduced by " + (self_charge_health / SELF_CHARGE_THRESHOLD))
-		if (self_charge_counter < 0)
-			self_charge_counter = 0
-		self_charge_health %= SELF_CHARGE_THRESHOLD
-	if (immortal)
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/adjustHealth(amount, updating_health = TRUE, forced = FALSE)
+	say("Damage taken - "  + num2text(amount) + ". Current health: " + num2text(health))
+	if (amount >= 0 && shield > 0) // actual damage
+		amount = UpdateShield(amount)
+	if (amount >= 0)
+		UpdateCharge(amount)
+
+	if (immortal && amount >= 0)
 		if (self_charge_counter == 0)
-			adjustHealth(health)
+			say("Immortal. No charge. Dying.")
+			amount = health
 		else
-			adjustHealth(health_loss * -1)
+			say("Immortal. Not taking damage")
+			return FALSE
+	. = ..()
+
+
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/UpdateCharge(amount)
+	say("Damage taken, current charge health, current charge" + num2text(amount) + ",  " + num2text(self_charge_health) + ",  " + num2text(self_charge_counter))
+	self_charge_health += amount
+	self_charge_counter -= self_charge_health / SELF_CHARGE_THRESHOLD
+	if(self_charge_health / SELF_CHARGE_THRESHOLD > 0)
+		say("Charge reduced by " + num2text((self_charge_health / SELF_CHARGE_THRESHOLD)))
+	if (self_charge_counter < 0)
+		self_charge_counter = 0
+	self_charge_health %= SELF_CHARGE_THRESHOLD
+
+
+
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/UpdateShield(amount)
+	var/remainder = amount - shield
+	say("Appling shield, amount, shield remainer " + num2text(shield) + ", " +  num2text(amount) + ", " + num2text(remainder))
+	shield -= amount
+	if (remainder >= 0)
+		shield = 0
+		if (currentShieldTimerID  != 0) //stop coil timer
+			// stop coiling animation
+			deltimer(currentShieldTimerID)
+			currentShieldTimerID = 0
+		say("Shield Broken")
+		// stun
+		// icon_state
+		stunned = TRUE
+		addtimer(CALLBACK(src, .proc/StunEnd), COIL_SHIELD_BROKEN_SELFSTUN_DURATION_DECISEC)
+		self_charge_counter -= COIL_SHIELD_BROKEN_CHARGE_LOSS
+		return 0
+	else
+		return remainder
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/AttackingTarget()
 	if (shield > 0 || stunned)  // dont attack if coiled or stunned
