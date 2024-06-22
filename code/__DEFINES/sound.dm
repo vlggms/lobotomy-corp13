@@ -8,6 +8,7 @@
 #define CHANNEL_BUZZ 1018
 #define CHANNEL_BICYCLE 1017
 #define CHANNEL_SIREN 1016 //used to stop siren from blaring music while turned off
+#define CHANNEL_MFE 1015 //used for My Form Empties
 
 ///Default range of a sound.
 #define SOUND_RANGE 17
