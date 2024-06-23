@@ -31,8 +31,6 @@
 		for(var/mob/M in GLOB.player_list)
 			to_chat(M, span_userdanger("[uppertext(user.real_name)] has gone out with honor. 灰から灰へ"))
 		new /obj/effect/temp_visual/BoD(get_turf(target))
-		if(!force_update >= 400)
-			force_update *= 1.2
 		suicide_used |= user.ckey
 	if(!CanUseEgo(user))
 		return
