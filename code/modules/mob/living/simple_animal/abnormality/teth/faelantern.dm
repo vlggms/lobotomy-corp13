@@ -66,7 +66,7 @@
 	for(var/mob/living/carbon/human/H in lured_list)
 		EndEnchant(H)
 	icon_state = icon_dead
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 100, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
 	animate(src, alpha = 0, time = 10 SECONDS)
 	QDEL_IN(src, 10 SECONDS)
 
@@ -118,7 +118,7 @@
 			return
 	if(health < (maxHealth / 2) && !broken) //50% health or lower
 		broken = TRUE
-		playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
+		playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, 1)
 		BreachDig(TRUE)
 
 /mob/living/simple_animal/hostile/abnormality/faelantern/proc/BreachDig(broken = FALSE)
