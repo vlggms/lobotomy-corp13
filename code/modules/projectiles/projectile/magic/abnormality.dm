@@ -202,27 +202,13 @@
 	desc = "A sharp-looking icicle"
 	icon_state = "ice_2"
 	damage_type = PALE_DAMAGE
-
 	damage = 35
-
-//slow, dodgable, and make it hard to see and talk
-/obj/projectile/fleshblob
-	name = "blood blob"
-	icon_state = "mini_leaper"
-	damage_type = RED_DAMAGE
-
-	damage = 30
-	spread = 15
-	eyeblur = 10
-	slur = 5
-	speed = 2.4
 
 /obj/projectile/actor
 	name = "bullet"
 	icon_state = "bullet"
 	desc = "causes a lot of pain"
 	damage_type = WHITE_DAMAGE
-
 	damage = 10
 
 /obj/projectile/actor/on_hit(target)
@@ -376,3 +362,36 @@
 		if(L.stat != DEAD && L != firer && !L.faction_check_mob(firer, FALSE))
 			return Bump(L)
 	..()
+
+//Last shot projectiles
+/obj/projectile/bonebullet
+	name = "bone round"
+	icon_state = "bonebullet"
+	damage_type = RED_DAMAGE
+	damage = 10 //rapid fire/shotgun fire
+	spread = 30
+	projectile_piercing = PASSMOB
+	nodamage = TRUE	//Damage is calculated later
+	var/list/safe_mobs = list(
+	/mob/living/simple_animal/hostile/abnormality/last_shot,
+	/mob/living/simple_animal/hostile/meatblob,
+	/mob/living/simple_animal/hostile/meatblob/gunner,
+	/mob/living/simple_animal/hostile/meatblob/gunner/shotgun,
+	/mob/living/simple_animal/hostile/meatblob/gunner/sniper,
+	)
+
+/obj/projectile/bonebullet/on_hit(atom/target, blocked = FALSE)
+	if(!is_type_in_list(target, safe_mobs))
+		nodamage = FALSE
+	else
+		return
+	. = ..()
+	if(nodamage)
+		return
+	qdel(src)
+
+/obj/projectile/bonebullet/bonebullet_piercing
+	name = "bone sniper round"
+	icon_state = "bonebullet_long"
+	damage = 100
+	speed = 0.4

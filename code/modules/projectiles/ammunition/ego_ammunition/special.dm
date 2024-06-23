@@ -44,3 +44,10 @@
 	projectile_type = /obj/projectile/ego_bullet/tendamage
 	pellets = 8
 	variance = 16
+
+/obj/item/ammo_casing/caseless/last_shot
+	name = "bonebullet casing"
+	desc = "A casing."
+	projectile_type = /obj/projectile/bonebullet
+	pellets = 4
+	variance = 16

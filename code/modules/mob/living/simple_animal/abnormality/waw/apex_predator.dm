@@ -43,7 +43,7 @@
 		/datum/ego_datum/weapon/animalism,
 		/datum/ego_datum/armor/animalism,
 	)
-//	gift_type =  /datum/ego_gifts/animalism
+	gift_type =  /datum/ego_gifts/animalism
 
 	var/revealed = TRUE
 	var/can_act = TRUE
