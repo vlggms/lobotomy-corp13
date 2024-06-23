@@ -16,7 +16,7 @@ GLOBAL_LIST_INIT(unspawned_tools, list(
 	/obj/structure/toolabnormality/theonite_slab,
 	/obj/structure/toolabnormality/treesap,
 	/obj/structure/toolabnormality/vivavoce,
-	/obj/structure/toolabnormality/behaviour,
+	/obj/structure/toolabnormality/behavior,
 	/obj/structure/toolabnormality/bracelet,
 	/obj/structure/toolabnormality/aspiration,
 	/obj/structure/toolabnormality/skin,

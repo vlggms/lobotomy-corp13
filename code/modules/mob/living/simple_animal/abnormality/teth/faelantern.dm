@@ -25,6 +25,7 @@
 	del_on_death = FALSE
 	death_message = "creaks and crumbles into its core."
 	ranged = TRUE
+	ranged_cooldown_time = 1.5 SECONDS
 
 	work_damage_amount = 5
 	work_damage_type = WHITE_DAMAGE
@@ -91,6 +92,7 @@
 /mob/living/simple_animal/hostile/abnormality/faelantern/OpenFire()
 	if(!can_act)
 		return
+	..()
 	if(lure_cooldown <= world.time)
 		if(fairy_enabled)
 			FairyLure()

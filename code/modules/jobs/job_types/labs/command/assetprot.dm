@@ -42,7 +42,6 @@
 	set category = "Gamemaster"
 
 	var/list/peccetulum = list(
-		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
 		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
 		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
 	)

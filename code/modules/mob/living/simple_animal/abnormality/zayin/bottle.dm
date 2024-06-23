@@ -1,5 +1,5 @@
-#define STATUS_EFFECT_TEARS /datum/status_effect/tears
-#define STATUS_EFFECT_TEARS_LESS /datum/status_effect/tears/less
+#define STATUS_EFFECT_TEARS /datum/status_effect/stacking/tears
+#define STATUS_EFFECT_TEARS_LESS /datum/status_effect/stacking/tears/less
 /mob/living/simple_animal/hostile/abnormality/bottle
 	name = "Bottle of Tears"
 	desc = "A bottle filled with water with a cake on top"
@@ -205,10 +205,16 @@
 			. -= H
 			continue
 
-/datum/status_effect/tears
+/datum/status_effect/stacking/tears
 	id = "tears"
-	status_type = STATUS_EFFECT_MULTIPLE	//You should be able to stack this, I hope
-	duration = 5 MINUTES
+	stacks = 1
+	max_stacks = INFINITY
+
+	// we use refresh as a signal that another stack should be added
+	status_type = STATUS_EFFECT_REFRESH
+	consumed_on_threshold = FALSE
+
+	tick_interval = 5 MINUTES
 	alert_type = /atom/movable/screen/alert/status_effect/tears
 	var/scaling = 20
 
@@ -218,30 +224,39 @@
 	icon = 'ModularTegustation/Teguicons/status_sprites.dmi'
 	icon_state = "tearful"
 
-/datum/status_effect/tears/on_apply()
+/datum/status_effect/stacking/tears/refresh()
+	add_stacks(stack_decay)
+
+/datum/status_effect/stacking/tears/fadeout_effect()
+	stack_decay_effect()
+
+/datum/status_effect/stacking/tears/add_stacks(stacks_added)
 	. = ..()
-	if(!ishuman(owner))
+	if(!ishuman(owner) || stacks_added < 0)
 		return
+
 	var/mob/living/carbon/human/status_holder = owner
+
 	to_chat(owner, span_danger("Something once important to you is gone now. You feel like crying."))
 	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -scaling)
 	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, -scaling)
 	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, -scaling)
 	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, -scaling)
 
-/datum/status_effect/tears/on_remove()
-	. = ..()
+/datum/status_effect/stacking/tears/stack_decay_effect()
 	if(!ishuman(owner))
 		return
+
 	var/mob/living/carbon/human/status_holder = owner
+
 	to_chat(owner, span_nicegreen("You feel your strength return to you."))
 	status_holder.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, scaling)
 	status_holder.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, scaling)
 	status_holder.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, scaling)
 	status_holder.adjust_attribute_buff(JUSTICE_ATTRIBUTE, scaling)
 
-/datum/status_effect/tears/less
-	duration = 2 MINUTES
+/datum/status_effect/stacking/tears/less
+	tick_interval = 2 MINUTES
 	scaling = 10
 
 #undef STATUS_EFFECT_TEARS

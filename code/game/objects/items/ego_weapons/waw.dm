@@ -361,9 +361,9 @@
 				will hit all hostiles in a 3 tile range around the user. If vine burst is used at 30% sanity the damage is \
 				increased by 50% but will hit allies due to the intense hatred of F-04-42 influencing the user."
 	icon_state = "green_stem"
-	force = 32 //original 8-16
+	force = 52 //original 8-16
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -374,6 +374,7 @@
 							TEMPERANCE_ATTRIBUTE = 80
 							)
 	var/vine_cooldown
+
 
 /obj/item/ego_weapon/stem/Initialize(mob/user)
 	. = ..()
@@ -899,12 +900,12 @@
 	name = "heaven"
 	desc = "As it spreads its wings for an old god, a heaven just for you burrows its way."
 	icon_state = "heaven"
-	force = 40
+	force = 60
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	throwforce = 80		//It costs like 50 PE I guess you can go nuts
 	throw_speed = 5
 	throw_range = 7
-	attack_speed = 1.2
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -922,9 +923,9 @@
 	It lights the employee's heart, shines like a star, and steadily tames them."
 	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
 	icon_state = "spore"
-	force = 30		//Quite low as WAW coz the armor rend effect
+	force = 42		//Quite low as WAW coz the armor rend effect		//Kirie Edit, Now it has immobilize, so it does more damage.
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -942,6 +943,8 @@
 		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
 			M.apply_status_effect(/datum/status_effect/rend_white)
+	user.Immobilize(5)
+
 
 
 /obj/item/ego_weapon/dipsia
@@ -1183,11 +1186,11 @@
 	desc = "The rings attached to the cane represent the middle way and the Six Paramitas."
 	special = "Use this weapon in your hand to damage every non-human within reach."
 	icon_state = "amrita"
-	force = 40
+	force = 60
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	throw_speed = 5
 	throw_range = 7
-	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
@@ -1641,9 +1644,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 35
+	force = 42
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.2 //same speed as Spore
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pierces", "jabs")
 	default_attack_verbs = list("pierce", "jab")

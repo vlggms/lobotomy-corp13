@@ -278,6 +278,12 @@
 	temperance_bonus = 2
 	slot = HAND_2
 
+/datum/ego_gifts/cord
+	name = "cord"
+	icon_state = "cord"
+	temperance_bonus = 2
+	slot = NECKWEAR
+
 /**
  * TETH EGO Gifts
  */
@@ -1457,14 +1463,20 @@
 	desc = "I have no idea what it is, but it heals you from pale."
 	icon_state = "sukunamask"
 	fortitude_bonus = 15
-	prudence_bonus = 5
+	prudence_bonus = -10
 	temperance_bonus = -20
-	justice_bonus = 10
+	justice_bonus = 30
 	slot = FACE
+
 
 /datum/ego_gifts/sukuna/Initialize(mob/living/carbon/human/user)
 	. = ..()
 	RegisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))
+	user.physiology.pale_mod *= 0.9
+
+/datum/ego_gifts/blessing/Remove(mob/living/carbon/human/user)
+	user.physiology.pale_mod /= 0.9
+	return ..()
 
 /datum/ego_gifts/sukuna/Remove(mob/living/carbon/human/user)
 	UnregisterSignal(user, COMSIG_MOB_APPLY_DAMGE, PROC_REF(AttemptHeal))

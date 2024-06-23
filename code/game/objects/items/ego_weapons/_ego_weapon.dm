@@ -22,6 +22,9 @@
 	//Is there a bonus to equipping this?
 	var/equip_bonus = 0
 
+	//How long do you stun on hit?
+	var/stuntime = 0
+
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
@@ -53,6 +56,8 @@
 
 	return TRUE
 
+
+//Speed and stun stuff
 /obj/item/ego_weapon/attack_obj(obj/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return FALSE
@@ -60,6 +65,18 @@
 	if(attack_speed)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 	return TRUE
+
+/obj/item/ego_weapon/attack(mob/living/M, mob/living/user)
+	. = ..()
+	if(stuntime)
+		user.Immobilize(stuntime)
+		//Visual stuff to give you better feedback
+		new /obj/effect/temp_visual/weapon_stun(get_turf(user))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(M), pick(GLOB.alldirs))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(M), pick(GLOB.alldirs))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(M), pick(GLOB.alldirs))
+
+//Examine shit
 
 /obj/item/ego_weapon/examine(mob/user)
 	. = ..()
@@ -100,6 +117,19 @@
 
 		if(2 to INFINITY)
 			. += span_notice("This weapon attacks extremely slow.")
+
+	switch(stuntime)
+		if(1 to 2)
+			. += span_notice("This weapon stuns you for a very short duration on hit.")
+		if(2 to 4)
+			. += span_notice("This weapon stuns you for a short duration on hit.")
+		if(5 to 6)
+			. += span_notice("This weapon stuns you for a moderate duration on hit.")
+		if(6 to 8)
+			. += span_warning("CAUTION: This weapon stuns you for a long duration on hit.")
+		if(9 to INFINITY)
+			. += span_warning("WARNING: This weapon stuns you for a very long duration on hit.")
+
 
 	switch(knockback)
 		if(KNOCKBACK_LIGHT)
@@ -166,3 +196,9 @@
 /obj/item/ego_weapon/Destroy()
 	CleanUp()
 	return ..()
+
+//Stuntime visual for when you're stunned by your weapon, so you know what happened.
+/obj/effect/temp_visual/weapon_stun
+	icon_state = "stun"
+	layer = ABOVE_ALL_MOB_LAYER
+	duration = 9

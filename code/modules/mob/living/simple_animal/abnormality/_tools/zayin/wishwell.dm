@@ -191,7 +191,7 @@
 //End of loot lists
 /obj/structure/toolabnormality/wishwell/attackby(obj/item/I, mob/living/carbon/human/user)
 	//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
-	if(istype(I, /obj/item/tool_extractor))
+	if(istype(I, /obj/item/extraction/tool_extractor))
 		return ..()
 	if(!do_after(user, 0.5 SECONDS))
 		return
@@ -300,6 +300,8 @@
 /obj/structure/toolabnormality/wishwell/proc/Dispense(atom/dispenseobject)
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, FALSE, -3)
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
+	if(!isopenturf(dispense_turf))
+		dispense_turf = get_turf(src)
 	new dispenseobject(dispense_turf)
 	var/list/water_area = range(1, dispense_turf)
 	for(var/turf/open/O in water_area)
@@ -314,7 +316,7 @@
 
 	if(M != user)
 		to_chat(user, span_warning("You start pulling [M] into the well."))
-		if(do_after(user, 7 SECONDS)) //If you're going to throw someone else, they have to be dead first.
+		if(do_after(user, 7 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
 			if(M.stat == DEAD)
 				to_chat(user, span_notice("You throw [M] in the well!"))
 				buckle_mob(M, check_loc = check_loc)
@@ -323,7 +325,7 @@
 		return
 
 	to_chat(user, span_warning("You start climbing into the well."))
-	if(!do_after(user, 7 SECONDS))
+	if(!do_after(user, 7 SECONDS, target = M))
 		to_chat(user, span_notice("You decide that might be a bad idea."))
 		return FALSE
 

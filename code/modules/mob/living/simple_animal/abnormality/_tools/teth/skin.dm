@@ -17,7 +17,7 @@
 	if(!(user in readers))
 		readers += user
 	else
-		user.physiology.white_mod *= 1.15
+		user.physiology.white_mod *= 1.10
 
 	user.apply_status_effect(STATUS_EFFECT_SKIN)
 	to_chat(user, span_userdanger("You read the book, and take the time to burn these passages into your brain."))

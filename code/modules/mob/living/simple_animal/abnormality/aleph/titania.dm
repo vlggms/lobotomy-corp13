@@ -104,7 +104,7 @@
 					V.faction = faction
 					spawned_mobs+=V
 				return
-
+        
 	if(target == nemesis)	//Deals pale damage to Oberon, fuck you.
 		melee_damage_type = PALE_DAMAGE
 		melee_damage_lower = 61

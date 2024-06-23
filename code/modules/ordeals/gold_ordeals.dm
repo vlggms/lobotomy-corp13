@@ -3,6 +3,7 @@
 	name = "The Dawn of Gold"
 	flavor_name = "As Little Flowers"
 	announce_text = "Our choice could be hope or despair as the sun comes."
+	end_announce_text = "Only now can you understand the radiance of Dawn."
 	level = 1
 	reward_percent = 0.1
 	announce_sound = 'sound/effects/ordeals/gold_start.ogg'
@@ -53,6 +54,7 @@
 	name = "The Noon of Gold"
 	flavor_name = "No Greater Sorrow"
 	announce_text = "Our light blazed brightly in the sky, the stars that marked our starting fell away."
+	end_announce_text = "Noon has come to pass. The dream has been shattered; the tower has collapsed."
 	level = 2
 	reward_percent = 0.15
 	announce_sound = 'sound/effects/ordeals/gold_start.ogg'
@@ -84,6 +86,7 @@
 	name = "The Dusk of Gold"
 	flavor_name = "Pandaemonium"
 	announce_text = "Stay vigilant, stay resolved. Let our minds be strong when dusk falls."
+	end_announce_text = "It is not the strong who survive, it is the survivors who are strong."
 	level = 3
 	reward_percent = 0.2
 	boss_type = list(/mob/living/simple_animal/hostile/ordeal/KHz_corrosion)
@@ -96,8 +99,9 @@
 //Midnight
 /datum/ordeal/gold_dawn/gold_midnight
 	name = "The Midnight of Gold"
-	flavor_name = "The Human Protoplast"
-	announce_text = "The night has come. Our ignorance as its origin. No one shall be redeemed at its end."
+	flavor_name = "The Human Protoplast" //TODO: Change with gold ordeal rework
+	announce_text = "The night has come, with our ignorance as its origin. No one shall be redeemed at its end."
+	end_announce_text = "I try calling each star something beautiful."
 	level = 4
 	reward_percent = 0.25
 	//3 different simplespawns in one ordeal. Similar to simplecommanders but each commander has its own set of grunts

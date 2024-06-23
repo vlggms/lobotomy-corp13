@@ -352,7 +352,6 @@ Remember to update _globalvars/traits.dm if you're adding/removing/renaming trai
 //positive quirks
 #define TRAIT_RESISTANT      	"resistant"
 #define TRAIT_SKILLED    	    "skilled"
-#define TRAIT_FLUFFY_TONGUE     "fluffy_tongue" // technically not positive, but it costs points
 //neutral quirks
 #define TRAIT_NERD          	"nerd"
 #define TRAIT_BRAWLER    	    "brawler"

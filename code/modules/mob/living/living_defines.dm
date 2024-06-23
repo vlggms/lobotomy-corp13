@@ -30,6 +30,7 @@
 	var/maxSanity = 100
 	///When the mob enters hard critical state and is fully incapacitated.
 	var/hardcrit_threshold = HEALTH_THRESHOLD_FULLCRIT
+	var/death_threshold = HEALTH_THRESHOLD_DEAD
 
 	//Damage dealing vars! These are meaningless outside of specific instances where it's checked and defined.
 	// Lower bound of damage done by unarmed melee attacks. Mob code is a mess, only works where this is checked for.

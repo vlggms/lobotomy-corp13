@@ -101,6 +101,10 @@
 			return "Midnight"
 	return "Unknown"
 
+/// Can be overridden for event ordeals
+/datum/ordeal/proc/AbleToRun()
+	return can_run
+
 //Global special blurb
 /datum/ordeal/proc/ShowOrdealBlurb(client/C, duration, fade_time = 5, text_color = color, text_align = "center", screen_location = "Center-6,Center+3", ending = FALSE)
 	if(!C)
