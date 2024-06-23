@@ -53,14 +53,34 @@
 	ItemUnlock(caller.order_list, "R Corp Rush Blade",	/obj/item/ego_weapon/city/rabbit_rush, 900)
 	ItemUnlock(caller.order_list, "R Corp Reindeer Staff",	/obj/item/ego_weapon/city/reindeer, 900)
 	..()
+//4th and 5th pack locks
+/datum/data/lc13research/4thpack
+	research_desc = "We'll allow you the supply of some of our 4th pack rabbits, they're a little pricey though."
+	cost = AVERAGE_RESEARCH_PRICE - 3
+	corp = R_CORP_REP
+
+/datum/data/lc13research/5thpack
+	research_desc = "We'll give you some of our shoddy 5th pack, they're not as good as the 4th pack but they're cheap."
+	cost = LOW_RESEARCH_PRICE
+	corp = R_CORP_REP
 
 // ERTs
+
+/datum/data/lc13research/mobspawner/scoutraven
+	research_name = "4th Pack Scout Raven Team"
+	research_desc = "We need data on how our ravens perform while scouting around in L-Corp."
+	cost = AVERAGE_RESEARCH_PRICE
+	corp = R_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/raven_call
+	required_research = /datum/data/lc13research/4thpack
+
 /datum/data/lc13research/mobspawner/rabbit
 	research_name = "4th Pack Rabbit Team"
 	research_desc = "Our contract with L corp garentees at least one rabbit call <br>per day in exchange for energy. We can abuse a loophole in the contract <br>and list you as the client if you remain descreet."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call
+	required_research = /datum/data/lc13research/4thpack
 
 /datum/data/lc13research/mobspawner/raven
 	research_name = "4th Pack Raven Team"
@@ -77,6 +97,23 @@
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
 	required_research = /datum/data/lc13research/mobspawner/raven
+
+/datum/data/lc13research/mobspawner/rooster
+	research_name = "5th Pack Roosters"
+	research_desc = "We got a few roosters here eager to light something up, we can send them over you if you need them."
+	cost = LOW_RESEARCH_PRICE + 3
+	corp = R_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rooster_call
+	required_research = /datum/data/lc13research/5thpack
+
+/datum/data/lc13research/mobspawner/roadrunner
+	research_name = "5th Pack Roadrunners"
+	research_desc = "We got a buncha roadrunners back here running around with baseball bats chugging 'Bonk' whatever that is. We're just sending you these idiots to get them out of here."
+	cost = AVERAGE_RESEARCH_PRICE + 5
+	corp = R_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call
+	required_research = /datum/data/lc13research/mobspawner/rooster
+
 
 //This one is free as a kill team
 /datum/data/lc13research/mobspawner/rabbit/kill
