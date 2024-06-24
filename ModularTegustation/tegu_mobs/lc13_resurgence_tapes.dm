@@ -18,7 +18,7 @@
 		span_game_say(span_name("Human Voice") + span_message(" coughs loudly yet weakly")),
 		span_game_say(span_name("Human Voice ") + span_message(" weakly says,") + " &quot;Pass by thi-is town... Please, My family is waiting for me...&quot;"),
 		span_game_say(span_name("Unknown Robotic Voice") + span_message(" says,") + " &quot;Oh, There are more of you meatbags nearby? Pleasurable to know... &quot;"),
-		span_game_say(span_name("Unknown Robotic Voice") + span_message(" yells,") + " &quot;HEY YOU, YES YOU. THE SCOUT IN THE BACK, PASS OVER TO ME THE DRILL.&quot;"),
+		span_game_say(span_name("Unknown Robotic Voice") + span_message(" yells,") + " &quot;HEY YOU, YES YOU. THE SCOUT IN THE BACK, PASS OVER THE DRILL.&quot;"),
 		span_game_say(span_name("Scout") + span_message(" says,") + " &quot;Ye-es Tinke-er.&quot;"),
 		span_game_say(span_name("Human Voice ") + span_message(" weakly says,") + " &quot;Wha-at are you doing... Wait! I can still provide something for you! Do you need gears or me-&quot;"),
 		span_game_say(span_name("Human Voice") + span_message("  screams")),

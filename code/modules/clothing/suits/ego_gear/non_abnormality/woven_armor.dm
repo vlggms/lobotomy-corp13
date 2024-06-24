@@ -24,7 +24,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/city/azure_armor
 	name = "Reforged Suit"
-	desc = "A suit created by the carnival out of the Resurgence Clan Machines, You can almost feel a soul which years for their humanity. \n\
+	desc = "A suit created by the carnival out of the Resurgence Clan Machines, You can almost feel a soul which yearns for their humanity. \n\
 		It increases your movement speed by 20%."
 	icon_state = "azure_armor"
 	slowdown = -0.2
