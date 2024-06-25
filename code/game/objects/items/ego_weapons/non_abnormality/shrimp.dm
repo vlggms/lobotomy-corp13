@@ -9,6 +9,12 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_soda
 	weapon_weight = WEAPON_HEAVY
 	drag_slowdown = 3
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40,
+							PRUDENCE_ATTRIBUTE = 40,
+							TEMPERANCE_ATTRIBUTE = 40,
+							JUSTICE_ATTRIBUTE = 40
+							)
 	slowdown = 2
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40,
