@@ -114,7 +114,7 @@
 	cost = AVERAGE_RESEARCH_PRICE + 5
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/berserker_call
-	required_research = /datum/data/lc13research/rabbit
+	required_research = /datum/data/lc13research/mobspawner/rabbit
 
 //This one is free as a kill team
 /datum/data/lc13research/mobspawner/rabbit/kill

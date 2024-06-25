@@ -93,7 +93,7 @@
 	outfit = /datum/outfit/job/raven/ert
 	assignedrole = "SPC"
 	spawn_level = 40
-	uses = 2
+	uses = 3
 
 /obj/effect/mob_spawn/human/supplypod/r_corp/scoutraven_call/special(mob/living/carbon/human/new_spawn)
 	..()
