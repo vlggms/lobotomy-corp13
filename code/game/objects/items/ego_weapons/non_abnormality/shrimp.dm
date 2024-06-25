@@ -18,6 +18,7 @@
 	slowdown = 2
 	spread = 40
 	item_flags = SLOWS_WHILE_IN_HAND
+	projectile_damage_multiplier = 0.75
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
 	autofire = 0.04 SECONDS
 
