@@ -16,12 +16,6 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	slowdown = 2
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 40,
-							PRUDENCE_ATTRIBUTE = 40,
-							TEMPERANCE_ATTRIBUTE = 40,
-							JUSTICE_ATTRIBUTE = 40
-							)
 	spread = 40
 	item_flags = SLOWS_WHILE_IN_HAND
 	fire_sound = 'sound/weapons/gun/smg/shot.ogg'
