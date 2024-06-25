@@ -70,10 +70,10 @@
 
 /datum/data/lc13research/mobspawner/scoutraven
 	research_name = "4th Pack Scout Raven Team"
-	research_desc = "We need data on how our ravens perform while scouting around in L-Corp."
+	research_desc = "We can send in a couple of ravens to be 'spies' for you."
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = R_CORP_REP
-	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/raven_call
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/scoutraven_call
 	required_research = /datum/data/lc13research/fourthpack
 
 /datum/data/lc13research/mobspawner/rabbit
@@ -84,21 +84,13 @@
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call
 	required_research = /datum/data/lc13research/fourthpack
 
-/datum/data/lc13research/mobspawner/raven
-	research_name = "4th Pack Raven Team"
-	research_desc = "We need data on how our ravens preform in confined hallways. <br>Same conditions of the last deal apply."
-	cost = AVERAGE_RESEARCH_PRICE + 5
-	corp = R_CORP_REP
-	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/raven_call
-	required_research = /datum/data/lc13research/mobspawner/rabbit
-
 /datum/data/lc13research/mobspawner/rhino
 	research_name = "4th Pack Triple Rhinos"
 	research_desc = "Three rhinos in the barracks are getting restless. We can <br>send them to you if you take responsibility for any damages they cause."
 	cost = HIGH_RESEARCH_PRICE
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
-	required_research = /datum/data/lc13research/mobspawner/raven
+	required_research = /datum/data/lc13research/mobspawner/berserk
 
 /datum/data/lc13research/mobspawner/rooster
 	research_name = "5th Pack Roosters"
@@ -116,6 +108,13 @@
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call
 	required_research = /datum/data/lc13research/mobspawner/rooster
 
+/datum/data/lc13research/mobspawner/berserk
+	research_name = "4th Pack Berserkers"
+	research_desc = "We have a few berserker reindeers ready to go."
+	cost = AVERAGE_RESEARCH_PRICE + 5
+	corp = R_CORP_REP
+	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/berserker_call
+	required_research = /datum/data/lc13research/rabbit
 
 //This one is free as a kill team
 /datum/data/lc13research/mobspawner/rabbit/kill

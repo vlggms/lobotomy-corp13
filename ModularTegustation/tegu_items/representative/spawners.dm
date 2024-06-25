@@ -78,6 +78,27 @@
 	new_spawn.adjust_attribute_level(FORTITUDE_ATTRIBUTE, 100)
 	new_spawn.adjust_attribute_level(PRUDENCE_ATTRIBUTE, 100)
 
+/obj/effect/mob_spawn/human/supplypod/r_corp/berserker_call
+	name = "berserker reindeer teleport zone"
+	desc = "A authorized zone for teleporting in reindeers."
+	mob_name = "Berserker Reindeer"
+	outfit = /datum/outfit/job/reindeer/berserker
+	assignedrole = "SGT"
+	spawn_level = 60
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/scoutraven_call
+	name = "raven teleport zone"
+	desc = "A authorized zone for teleporting in ravens."
+	mob_name = "Scout Raven"
+	outfit = /datum/outfit/job/raven/ert
+	assignedrole = "SPC"
+	spawn_level = 40
+	uses = 2
+
+/obj/effect/mob_spawn/human/supplypod/r_corp/scoutraven_call/special(mob/living/carbon/human/new_spawn)
+	..()
+	new_spawn.adjust_attribute_level(JUSTICE_ATTRIBUTE, 60)
+
 //Rhino Mobspawner
 /obj/effect/mob_spawn/human/supplypod/r_corp/rhino_call
 	name = "rhino teleport zone"
