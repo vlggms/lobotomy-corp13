@@ -61,7 +61,7 @@
 	spawn_level = 70
 	uses = 4 //Just 130 so I think they need less uses
 
- /obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call/special(mob/living/carbon/human/new_spawn)
+/obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call/special(mob/living/carbon/human/new_spawn)
 	..()
 	new_spawn.adjust_attribute_level(JUSTICE_ATTRIBUTE, 130)
 
@@ -73,12 +73,9 @@
 	assignedrole = "SGT"
 	spawn_level = 60
 
- /obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call/special(mob/living/carbon/human/new_spawn)
+/obj/effect/mob_spawn/human/supplypod/r_corp/rooster_call/special(mob/living/carbon/human/new_spawn)
 	..()
 	new_spawn.adjust_attribute_level(FORTITUDE_ATTRIBUTE, 100)
-
- /obj/effect/mob_spawn/human/supplypod/r_corp/roadrunner_call/special(mob/living/carbon/human/new_spawn)
-	..()
 	new_spawn.adjust_attribute_level(PRUDENCE_ATTRIBUTE, 100)
 
 //Rhino Mobspawner

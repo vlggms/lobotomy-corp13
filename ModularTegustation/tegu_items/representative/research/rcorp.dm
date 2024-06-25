@@ -54,12 +54,14 @@
 	ItemUnlock(caller.order_list, "R Corp Reindeer Staff",	/obj/item/ego_weapon/city/reindeer, 900)
 	..()
 //4th and 5th pack locks
-/datum/data/lc13research/4thpack
+/datum/data/lc13research/fourthpack
+	research_name = "4th Pack"
 	research_desc = "We'll allow you the supply of some of our 4th pack rabbits, they're a little pricey though."
-	cost = AVERAGE_RESEARCH_PRICE - 3
+	cost = AVERAGE_RESEARCH_PRICE
 	corp = R_CORP_REP
 
-/datum/data/lc13research/5thpack
+/datum/data/lc13research/fifthpack
+	research_name = "5th Pack"
 	research_desc = "We'll give you some of our shoddy 5th pack, they're not as good as the 4th pack but they're cheap."
 	cost = LOW_RESEARCH_PRICE
 	corp = R_CORP_REP
@@ -72,7 +74,7 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/raven_call
-	required_research = /datum/data/lc13research/4thpack
+	required_research = /datum/data/lc13research/fourthpack
 
 /datum/data/lc13research/mobspawner/rabbit
 	research_name = "4th Pack Rabbit Team"
@@ -80,7 +82,7 @@
 	cost = AVERAGE_RESEARCH_PRICE
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rabbit_call
-	required_research = /datum/data/lc13research/4thpack
+	required_research = /datum/data/lc13research/fourthpack
 
 /datum/data/lc13research/mobspawner/raven
 	research_name = "4th Pack Raven Team"
@@ -104,7 +106,7 @@
 	cost = LOW_RESEARCH_PRICE + 3
 	corp = R_CORP_REP
 	mobspawner_type = /obj/effect/mob_spawn/human/supplypod/r_corp/rooster_call
-	required_research = /datum/data/lc13research/5thpack
+	required_research = /datum/data/lc13research/fifthpack
 
 /datum/data/lc13research/mobspawner/roadrunner
 	research_name = "5th Pack Roadrunners"
