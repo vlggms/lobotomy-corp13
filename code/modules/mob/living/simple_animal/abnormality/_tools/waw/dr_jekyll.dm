@@ -88,14 +88,14 @@
 	var/message_cooldown
 	var/message_cooldown_time = 30 SECONDS
 	var/list/message_list = list(
-	"Are you ready?",
-	"Mankind is not truly one, but truly two.",
-	"The blood quickens, the soul sickens.",
-	"I am a part of you now. Just as you are a part of me.",
-	"Drink.",
-	"Don't concern yourself with good and evil.",
-	"You could be so much more than those panting hypocrites.",
-	"Take back what they took from you. Trample on their dead bodies.",
+		"Are you ready?",
+		"Mankind is not truly one, but truly two.",
+		"The blood quickens, the soul sickens.",
+		"I am a part of you now. Just as you are a part of me.",
+		"Drink.",
+		"Don't concern yourself with good and evil.",
+		"You could be so much more than those panting hypocrites.",
+		"Take back what they took from you. Trample on their dead bodies.",
 	)
 
 /atom/movable/screen/alert/status_effect/hyde
