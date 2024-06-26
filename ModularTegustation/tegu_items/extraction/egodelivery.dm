@@ -92,6 +92,8 @@
 			return FALSE
 		PrepareItem(E.item_path)
 		to_chat(usr, span_notice("[E.name] has been dispensed!"))
+		log_game("[key_name(usr)] purchased [E.item_path].")
+		message_admins("[key_name(usr)] purchased [E.item_path].")
 		A.stored_boxes -= E.cost
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
 		updateUsrDialog()
