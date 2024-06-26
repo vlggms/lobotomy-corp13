@@ -12,7 +12,7 @@
 	if(user in active_users)
 		active_users -= user
 		user.remove_status_effect(STATUS_EFFECT_BRACELET)
-		if(user.health != user.maxHealth)
+		if((user.health != user.maxHealth) && !user.oxyloss) // check for oxyloss, because of anemics
 			to_chat(user, span_userdanger("You put the bracelet back, and feel your heart explode!"))
 			user.gib()
 		else
@@ -49,8 +49,7 @@
 	//Count down to 5 minutes of wearing
 	if(healthtracker>=300)
 		if(warningtracker == 0)
-			to_chat(H, span_hypnophrase("You have been wearing the luminous bracelet for a long time. Any longer could be dangerous!"))
-			H.playsound_local(get_turf(H), 'sound/abnormalities/nothingthere/heartbeat.ogg', 50, 0, 3)
+			to_chat(H, span_danger("You have been wearing the luminous bracelet for a long time. Any longer could be dangerous!"))
 		warningtracker+=1
 	if(warningtracker >= 150)
 		H.gib()

@@ -1,26 +1,21 @@
 #define STATUS_EFFECT_SKIN /datum/status_effect/skin
-/obj/structure/toolabnormality/skin
+/obj/structure/toolabnormality/attribute_giver/skin
 	name = "skin prophecy"
 	desc = "A book that seems to be made out of skin. Something is written on it."
 	icon_state = "skin_prophecy"
-	var/list/readers = list()
 
-/obj/structure/toolabnormality/skin/attack_hand(mob/living/carbon/human/user)
-	..()
-	if(!do_after(user, 6, user))
+	given_attribute = PRUDENCE_ATTRIBUTE
+	given_status_effect = STATUS_EFFECT_SKIN
+	feedback_message = "You read the book, and take the time to burn these passages into your brain."
+	full_boost_message = "You've learned all that you could."
+
+/obj/structure/toolabnormality/attribute_giver/skin/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
 		return
-	if(get_level_buff(user, PRUDENCE_ATTRIBUTE) >= 100)
-		to_chat(user, span_notice("You've learned all that you could."))
-		return //You don't need any more.
 
-	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, 10)
-	if(!(user in readers))
-		readers += user
-	else
+	if(captured_users[user] != 10) // Not their first use
 		user.physiology.white_mod *= 1.10
-
-	user.apply_status_effect(STATUS_EFFECT_SKIN)
-	to_chat(user, span_userdanger("You read the book, and take the time to burn these passages into your brain."))
 
 // Status Effect
 /datum/status_effect/skin
