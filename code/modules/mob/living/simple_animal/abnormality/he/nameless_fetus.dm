@@ -27,11 +27,50 @@
 	)
 	gift_type =  /datum/ego_gifts/syrinx
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+	can_buckle = TRUE
 	var/mob/living/carbon/human/calling = null
+	var/satisfied = FALSE
+	var/hunger = 0
+	var/crying = FALSE
+	var/cry_amount = 0
+
+//Work-related
+/mob/living/simple_animal/hostile/abnormality/fetus/WorkChance(mob/living/carbon/human/user, chance, work_type) //Insight work has a qliphoth-based success rate
+	return chance + (satisfied * 30)
+
+/mob/living/simple_animal/hostile/abnormality/fetus/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
+	if(satisfied)
+		hunger--
+		if(hunger <= 0)
+			satisfied = FALSE
+			for(var/mob/living/carbon/human/H in GLOB.player_list)
+				to_chat(H, span_userdanger("The creature grew hungry!"))
+
+/mob/living/simple_animal/hostile/abnormality/fetus/user_buckle_mob(mob/living/M, mob/user, check_loc)
+	if(crying || user == src || !ishuman(M) || (GODMODE in M.status_flags))
+		to_chat(user, span_warning("[src] rejects your offering!"))
+		return FALSE
+	. = ..()
+	to_chat(user, span_userdanger("The fetus opens its maw and...!"))
+	SLEEP_CHECK_DEATH(2 SECONDS)
+	if (M in view(1,src))
+		M.gib()
+		to_chat(user, span_nicegreen("[src] is satisfied by your offering!"))
+		satisfied = TRUE
+		hunger += 4
+		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
 
 /mob/living/simple_animal/hostile/abnormality/fetus/ZeroQliphoth(mob/living/carbon/human/user)
-	check_players()
-	check_range()
+	if(satisfied)
+		satisfied = FALSE
+		hunger = 0
+		datum_reference.qliphoth_change(1)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_userdanger("The fetus grew hungry!"))
+	else
+		crying = TRUE
+		check_players()
+		check_range()
 
 	//Are they nearby?
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_range()
@@ -44,6 +83,10 @@
 
 		notify_ghosts("The nameless fetus is satisfied.", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 		datum_reference.qliphoth_change(1)
+		satisfied = TRUE
+		hunger += 12 //Ehh might as well triple the effects of it being fed if you have to die.
+		crying = FALSE
+		cry_amount = 0
 		return
 
 	addtimer(CALLBACK(src, PROC_REF(check_range)), 2 SECONDS)
@@ -52,7 +95,14 @@
 /mob/living/simple_animal/hostile/abnormality/fetus/proc/check_players()
 	if(datum_reference.qliphoth_meter == 1)
 		return
-
+	if(cry_amount >= 20)//Fetus really should stop crying after a while and Kirie said she wanted it to cry 20 times before stoping.
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
+			to_chat(H, span_userdanger("The creature stoped crying."))
+		notify_ghosts("The nameless fetus stop crying.", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
+		datum_reference.qliphoth_change(1)
+		cry_amount = 0
+		crying = FALSE
+		return
 	//Find a living player, they're the new target.
 	var/list/checking = list()
 	for(var/mob/living/carbon/human/H in GLOB.player_list)
@@ -64,7 +114,8 @@
 		//and make a global announce
 		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			to_chat(H, span_userdanger("The fetus calls out for [calling.real_name]."))
-
+		//also adds 1 to the cry amount
+		cry_amount += 1
 		notify_ghosts("The fetus calls out for [calling.real_name].", source = src, action = NOTIFY_ORBIT, header="Something Interesting!") // bless this mess
 
 	var/list/qliphoth_abnos = list()
