@@ -145,8 +145,6 @@
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
 	sleep(1)
 	for(var/i = 1 to attack_amount)
 		switch(attack_amount)
@@ -156,27 +154,26 @@
 				sleep(3)
 			if(3)
 				sleep(2)
-		var/multihit = force * justicemod * force_multiplier
 		if(target in view(reach,user))
-			target.deal_damage(multihit, damtype)
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 			user.do_attack_animation(target)
-			playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-			playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+			target.attacked_by(src, user)
+			log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 /obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
-	if (isliving(target))
-		if (ramping_speed < 20)
-			ramping_speed += 1
-		else
-			ramping_damage += 0.02
-			user.adjustBruteLoss(user.maxHealth*ramping_damage)
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
+	if(isliving(target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
+	if (ramping_speed < 20)
+		ramping_speed += 1
+	else
+		ramping_damage += 0.02
+		user.adjustBruteLoss(user.maxHealth*ramping_damage)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	switch(ramping_speed)
 		if(5 to 10)

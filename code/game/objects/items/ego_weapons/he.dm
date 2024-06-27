@@ -1718,10 +1718,10 @@
 	if(combo)
 		sleep(attack_speed/2 SECONDS)
 		if(target in view(reach,user))
-			target.attacked_by(src, user)
-			target.send_item_attack_message(src, user,target)
-			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			user.do_attack_animation(target)
+			target.attacked_by(Y, user)
+			log_combat(user, target, pick(attack_verb_continuous), Y.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(Y.damtype)])")
 
 /obj/item/ego_weapon/nixie
 	name = "nixie divergence"

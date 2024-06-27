@@ -1164,10 +1164,10 @@
 			for(var/i = 1 to 2)
 				sleep(2)
 				if(target in view(reach,user))
-					target.send_item_attack_message(src, user,target)
-					target.apply_damage(multihit * force_multiplier, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-					user.do_attack_animation(target)
 					playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+					user.do_attack_animation(target)
+					target.attacked_by(src, user)
+					log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 		if("hammer")
 			for(var/mob/living/L in view(2, target))
@@ -1187,7 +1187,7 @@
 	..()
 	switch(form)
 		if("whip")
-			if (isliving(target))
+			if(isliving(target))
 				user.changeNext_move(CLICK_CD_MELEE * build_up) // Starts a little fast, but....
 				if (build_up <= 0.1)
 					build_up = 0.8
@@ -1196,7 +1196,7 @@
 						to_chat(user,span_warning("The whip starts to thrash around uncontrollably!"))
 						Smash(user, target)
 				else
-					build_up -= 0.1
+					build_up -= (0.1/3)//sortof silly but its a way to fix each whip hit from increasing build up 3 times as it should.
 			else
 				user.changeNext_move(CLICK_CD_MELEE * 0.8)
 
