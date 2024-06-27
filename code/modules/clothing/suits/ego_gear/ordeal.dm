@@ -196,15 +196,3 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 100
 							)
-
-/obj/item/clothing/suit/armor/ego_gear/ordeal/sin
-	name = "S I N"
-	desc = "Idk limbus lore"
-	icon_state = "wonderland"//todo add an actual sprite
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 60) // 240
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 80
-							)
