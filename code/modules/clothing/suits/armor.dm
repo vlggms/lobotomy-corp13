@@ -34,11 +34,6 @@
 	allowed = list(/obj/item/ego_weapon, /obj/item/melee, /obj/item/gun)
 	dog_fashion = /datum/dog_fashion/back
 
-/obj/item/clothing/suit/armor/vest/alt
-	desc = "A cheap plastic vest that provides practically no protection against abnormalities."
-	icon_state = "armor"
-	inhand_icon_state = "armor"
-
 /obj/item/clothing/suit/armor/vest/old
 	name = "degrading armor vest"
 	desc = "Older generation Type 1 armored vest. Due to degradation over time the vest is far less maneuverable to move in."
@@ -322,51 +317,3 @@
 	icon_state = "centcom_formal"
 	inhand_icon_state = "centcom"
 	body_parts_covered = CHEST|GROIN|ARMS
-
-
-/*Extraction officer coat.
-I don't want them gaming ego right off the bat beacuse this one actually looks pretty okay.
-It's not great though.
-*/
-/obj/item/clothing/suit/armor/extraction
-	name = "patchwork coat"
-	icon = 'icons/obj/clothing/suits.dmi'
-	worn_icon = 'icons/mob/clothing/suit.dmi'
-	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed black. Worn by the extraction officer"
-	icon_state = "extraction"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
-
-/obj/item/clothing/suit/armor/extraction/arbiter
-	name = "arbiter's armored coat"
-	desc = "A coat made out of quality cloth, providing immense protection against most damage sources. It is quite heavy."
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 100, BLACK_DAMAGE = 90, PALE_DAMAGE = 90)
-	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-	cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-	heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD
-	w_class = WEIGHT_CLASS_BULKY
-	slowdown = 1.5
-	allowed = list(/obj/item/gun, /obj/item/ego_weapon, /obj/item/melee)
-
-/obj/item/clothing/suit/armor/records
-	name = "old coat"
-	icon = 'icons/obj/clothing/suits.dmi'
-	worn_icon = 'icons/mob/clothing/suit.dmi'
-	desc = "A poorly made patchwork coat made from a bunch of spare cloth, dyed grey. Worn by the records officer"
-	icon_state = "records"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
-
-/obj/item/clothing/suit/armor/training
-	name = "worn coat"
-	icon = 'icons/obj/clothing/suits.dmi'
-	worn_icon = 'icons/mob/clothing/suit.dmi'
-	desc = "A coat that has been use for a very long time, by a very experienced officer. This one is orange with an intricate copper pattern on it. Worn by the Training Officer"
-	icon_state = "training"
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
-
-/obj/item/clothing/suit/armor/control
-	name = "ragged coat"
-	icon = 'icons/obj/clothing/suits.dmi'
-	worn_icon = 'icons/mob/clothing/suit.dmi'
-	desc = "A coat that has been use for a very long time, by an officer that is very observant. This one is brown, from both dye and dirt. Worn by the control officer"
-	icon_state = "coatcargo_t"		//Temporary sprite
-	armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 20, BLACK_DAMAGE = 20, PALE_DAMAGE = 20)
