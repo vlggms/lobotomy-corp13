@@ -34,13 +34,11 @@
 							JUSTICE_ATTRIBUTE = 100
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose //very high stats at the cost of slowing you down. Not as extreme as grosshammmer though but has less black.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/painful_purpose
 	name = "Painful purpose"
-	desc = "A heavy armor made as solace of the end of all.\n\
-		Provides excellent protection at the cost of speed."
-	slowdown = 0.5
+	desc = "A heavy armor made as solace of the end of all."
 	icon_state = "painful_purpose"
-	armor = list(RED_DAMAGE = 90, WHITE_DAMAGE = 60, BLACK_DAMAGE = 50, PALE_DAMAGE = 80) // 280
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 50) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -50,51 +48,33 @@
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march //provides a sanity healing aura simular to chuckles. Also stat wise being great red and white and poor black and pale means that this is a realized version of Dark carnival technically.
 	name = "Meaningless march"
-	desc = "Want to know how I got these scars? \n\
-		Causes the wearer to make themself and others around them laugh, healing their sp."
+	desc = "Want to know how I got these scars?"
 	icon_state = "meaningless_march"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 230
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 50, PALE_DAMAGE = 40) // 230
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 100,
 							TEMPERANCE_ATTRIBUTE = 100,
 							JUSTICE_ATTRIBUTE = 100
 							)
-	var/CanHeal = FALSE
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/equipped(mob/user, slot, initial = FALSE)
-	. = ..()
-	if(slot == ITEM_SLOT_OCLOTHING)
-		CanHeal = TRUE
-		addtimer(CALLBACK(src, PROC_REF(Heal),user), 15 SECONDS)
-
-/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/dropped(mob/user)
-	CanHeal = FALSE
-	return ..()
-
-/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/proc/Reset(mob/user)
-	Heal(user)
-
-/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march/proc/Heal(mob/user)
-	if(!CanHeal)
-		return
-	addtimer(CALLBACK(src, PROC_REF(Reset),user), 15 SECONDS)
-	for(var/mob/living/carbon/human/L in view(3, user))
-		if(L.stat != DEAD)
-			L.emote("laugh")
-			L.adjustSanityLoss(-5)//0.33 sp per second. probably could be buffed but knowing Kirie she's probaby going to want me to change this to 190 total even if the healing isn't that good even.
-
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion//200 total can shift between 4 armor modes with a 120 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion
 	name = "Delusionist's end"
+	desc = "An eerie glow emanates from it."
+	icon_state = "delusion_red"
+	armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 60, BLACK_DAMAGE = 80, PALE_DAMAGE = 60) // 200
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 100,
+							PRUDENCE_ATTRIBUTE = 100,
+							TEMPERANCE_ATTRIBUTE = 100,
+							JUSTICE_ATTRIBUTE = 100
+							)
+//unused version of it
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god//200 total can shift between 4 armor modes with a 120 second cooldown. A sidegrade to season greeting with both having 4 forms and an 8 in one damage type per form but delusionist's end has much worse total armor but has the ability to freely switch with its ability.
+	name = "True Delusionist's end"
 	desc = "This is a placeholder."
 	icon_state = "delusion_red"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50) // 200
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 100,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 100,
-							JUSTICE_ATTRIBUTE = 100
-							)
 	var/mob/current_holder
 	var/current_damage = "red"
 	var/list/damage_list = list(
@@ -104,7 +84,7 @@
 		"pale" = list("A runic armor with a pale glow.")
 		)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/Initialize()
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/Initialize()
 	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 	Transform()
@@ -112,17 +92,17 @@
 	var/datum/action/spell_action/ability/item/A = AS.action
 	A.SetItem(src)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/equipped(mob/living/carbon/human/user, slot)
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(!user)
 		return
 	current_holder = user
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/dropped(mob/user)
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/dropped(mob/user)
 	. = ..()
 	current_holder = null
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/proc/Transform()
+/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/proc/Transform()
 	icon_state = "delusion_[current_damage]"
 	update_icon_state()
 	if(current_holder)
@@ -163,7 +143,7 @@
 	var/choice = show_radial_menu(user, user , armament_icons, custom_check = CALLBACK(src, PROC_REF(CheckMenu), user), radius = 42, require_near = TRUE)
 	if(!choice || !CheckMenu(user))
 		return
-	var/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	var/obj/item/clothing/suit/armor/ego_gear/ordeal/god_delusion/true_god/T = user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(T))
 		T.current_damage = choice
 		T.Transform()
