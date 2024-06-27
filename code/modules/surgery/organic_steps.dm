@@ -47,7 +47,7 @@
 
 /datum/surgery_step/clamp_bleeders/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
 	if(locate(/datum/surgery_step/saw) in surgery.steps)
-		target.heal_bodypart_damage(20,0)
+		target.heal_bodypart_damage(2,0)
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 		var/obj/item/bodypart/BP = H.get_bodypart(target_zone)
@@ -116,7 +116,7 @@
 	return TRUE
 
 /datum/surgery_step/saw/success(mob/user, mob/living/carbon/target, target_zone, obj/item/tool, datum/surgery/surgery, default_display_results)
-	target.apply_damage(50, BRUTE, "[target_zone]", wound_bonus=CANT_WOUND)
+	target.apply_damage(10, BRUTE, "[target_zone]", wound_bonus=CANT_WOUND)
 	display_results(user, target, "<span class='notice'>You saw [target]'s [parse_zone(target_zone)] open.</span>",
 		"<span class='notice'>[user] saws [target]'s [parse_zone(target_zone)] open!</span>",
 		"<span class='notice'>[user] saws [target]'s [parse_zone(target_zone)] open!</span>")
