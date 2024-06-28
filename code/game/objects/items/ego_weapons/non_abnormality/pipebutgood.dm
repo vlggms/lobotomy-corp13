@@ -14,7 +14,7 @@
 		var/mob/living/carbon/human/H = target
 		H.unequip_everything()
 		H.Stun(10)
-	sleep(19)
+	sleep(10)
 	playsound(get_turf(target), 'sound/weapons/ego/pipesuffering.ogg', 10, 0, 3)
 	new /obj/effect/temp_visual/execute_bullet(get_turf(target))
 	QDEL_IN(target, 1)
