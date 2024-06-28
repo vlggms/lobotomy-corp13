@@ -3,7 +3,7 @@
 	desc = "A purported panacea that will supposedly treat anything from minor scratches to Alzheimer's."
 	icon_state = "snake_oil"
 	/// Users that used this tool
-	var/list/mob/captured_users = list()
+	var/list/mob/used_by = list()
 	/// The maximum boost that users can get from using this tool
 	var/max_boost = 100
 	/// The attribute thats given to the user
@@ -17,8 +17,8 @@
 
 /obj/structure/toolabnormality/attribute_giver/attack_hand(mob/living/carbon/human/user)
 	. = ..()
-	if(user in captured_users)
-		if(captured_users[user] == max_boost) // You don't need any more.
+	if(user in used_by)
+		if(used_by[user] == 10) // You don't need any more.
 			to_chat(user, span_notice(full_boost_message))
 			return FALSE
 
@@ -26,11 +26,11 @@
 		return FALSE
 
 	. = TRUE
-	if(!(user in captured_users))
+	if(!(user in used_by))
 		user.apply_status_effect(given_status_effect)
-		captured_users += user
+		used_by += user
 
 	user.adjust_attribute_buff(given_attribute, max_boost / 10) // always 10 uses
-	captured_users[user] += max_boost / 10
+	used_by[user] += 1
 
 	to_chat(user, span_userdanger(feedback_message))

@@ -23,7 +23,7 @@
 
 	flick(icon_state, src)
 
-	if(captured_users[user] == 5) // Lets start effects AFTER their first use
+	if(used_by[user] == 1) // Lets start effects AFTER their first use
 		return
 
 	user.physiology.pale_mod *= 1.06

@@ -20,7 +20,7 @@
 	if(!.)
 		return
 
-	if(captured_users[user] == 5) // First use
+	if(used_by[user] == 1) // First use
 		if(prob(50))
 			playsound(user, 'sound/abnormalities/vivavoce/doorknock.ogg', 100, FALSE, -5)
 		return
