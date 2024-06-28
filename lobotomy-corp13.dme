@@ -1249,6 +1249,7 @@
 #include "code\game\objects\items\ego_weapons\non_abnormality\color_fixer.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\dawn.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\fullstop.dm"
+#include "code\game\objects\items\ego_weapons\non_abnormality\godpipe.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\gradeone.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\hana.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\index.dm"
