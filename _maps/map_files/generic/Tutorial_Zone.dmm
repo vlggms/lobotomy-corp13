@@ -187,15 +187,15 @@
 /turf/open/floor/wood,
 /area/department_main/human)
 "fd" = (
-/obj/structure/filingcabinet/wawinfo{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet/alephinfo,
-/obj/structure/filingcabinet/toolinfo{
-	pixel_x = 10
-	},
 /obj/effect/turf_decal/siding/white{
 	dir = 4
+	},
+/obj/structure/filingcabinet/lore/waw{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/lore/aleph,
+/obj/structure/filingcabinet/toolinfo{
+	pixel_x = 10
 	},
 /turf/open/floor/carpet/black,
 /area/department_main/human)
@@ -1428,6 +1428,16 @@
 "VJ" = (
 /obj/structure/table/optable,
 /turf/open/floor/wood,
+/area/department_main/human)
+"VT" = (
+/obj/structure/filingcabinet/lore/zayin{
+	pixel_x = -10
+	},
+/obj/structure/filingcabinet/lore/teth,
+/obj/structure/filingcabinet/lore/he{
+	pixel_x = 10
+	},
+/turf/open/floor/carpet/black,
 /area/department_main/human)
 "VW" = (
 /obj/effect/spawner/randomcolavend,
@@ -9507,7 +9517,7 @@ XL
 XL
 XL
 iU
-VZ
+VT
 Yy
 Ql
 yu

@@ -365,3 +365,9 @@
 	sound_environment = SOUND_ENVIRONMENT_CAVE
 	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
 
+/area/test_range
+	name = "Test Range"
+	requires_power = FALSE
+	has_gravity = STANDARD_GRAVITY
+	sound_environment = SOUND_ENVIRONMENT_CAVE
+	dynamic_lighting = DYNAMIC_LIGHTING_FORCED
