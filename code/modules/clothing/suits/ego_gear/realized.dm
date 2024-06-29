@@ -81,7 +81,14 @@ No Ability	250
 	realized_ability = /obj/effect/proc_holder/ability/brokencrown
 	hat = /obj/item/clothing/head/ego_hat/brokencrown
 
-/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/attackby(obj/item/I, mob/living/user, params)
+/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/dropped(mob/user) //Reload the item automatically if dropped
+	for(var/datum/action/spell_action/ability/item/theability in actions)
+		if(istype(theability.target, /obj/effect/proc_holder/ability/brokencrown))
+			var/obj/effect/proc_holder/ability/brokencrown/power = theability.target
+			power.Reabsorb()
+	. = ..()
+
+/obj/item/clothing/suit/armor/ego_gear/realization/brokencrown/attackby(obj/item/I, mob/living/user, params) //Reload the item
 	for(var/datum/action/spell_action/ability/item/theability in actions)
 		if(istype(theability.target, /obj/effect/proc_holder/ability/brokencrown))
 			var/obj/effect/proc_holder/ability/brokencrown/power = theability.target
