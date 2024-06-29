@@ -38,7 +38,7 @@
 				/mob/living/simple_animal/hostile/abnormality/space_lady,
 				/mob/living/simple_animal/hostile/abnormality/hatred_queen,
 				/mob/living/simple_animal/hostile/abnormality/despair_knight,
-				/mob/living/simple_animal/hostile/abnormality/porccubus
+				/mob/living/simple_animal/hostile/abnormality/porccubus,
 				/mob/living/simple_animal/hostile/abnormality/rose_sign, //Just placing this here just in case it manages to cause the Agents be in danger.
 				/mob/living/simple_animal/hostile/abnormality/nihil, //Might Cause issues
 				/mob/living/simple_animal/hostile/abnormality/wrath_servant, //Will likely cause problems with Hermit.
