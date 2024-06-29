@@ -116,6 +116,14 @@
 	/// Offset for secret skins in the Y axis
 	var/secret_vertical_offset = 0
 
+	/// Final Observation details
+	var/observation_in_progress = FALSE
+	var/observation_prompt = "The abnormality is watching you. What will you do?"
+	var/list/observation_choices = list("Approach", "Leave")
+	var/list/correct_choices = list("Approach", "Leave")
+	var/observation_success_message = "Final Observation Success!"
+	var/observation_fail_message = "Final Observation Failed!"
+
 /mob/living/simple_animal/hostile/abnormality/Initialize(mapload)
 	SHOULD_CALL_PARENT(TRUE)
 	. = ..()
@@ -510,6 +518,55 @@
 /mob/living/simple_animal/hostile/abnormality/proc/GetPortrait()
 	return portrait
 
+/mob/living/simple_animal/hostile/abnormality/proc/FinalObservation(mob/living/carbon/human/user)
+	if(gift_type && !istype(user.ego_gift_list[gift_type.slot], /datum/ego_gifts/empty))
+		if(istype(user.ego_gift_list[gift_type.slot], gift_type))
+			to_chat(user, span_warning("You have already recieved a gift from this abnormality. Do not be greedy!"))
+			return
+		to_chat(user, span_warning("You already have a gift in the [gift_type.slot] slot, dissolve it first!"))
+		return
+	var/condition = FALSE
+	if(observation_in_progress)
+		to_chat(user, span_notice("Someone is already observing [src]!"))
+		return
+	observation_in_progress = TRUE
+	var/answer = tgui_alert(user, "[observation_prompt]", "Final Observation of [src]", observation_choices, timeout = 60 SECONDS)
+	if(answer in correct_choices)
+		condition = TRUE
+	ObservationResult(user, condition)
+	observation_in_progress = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/proc/ObservationResult(mob/living/carbon/human/user, condition)
+	if(condition) //Successful, could override for longer observations as well.
+		tgui_alert(user,"[observation_success_message]", "OBSERVATION SUCCESS",list("Ok"), timeout=20 SECONDS) //Some of these take a long time to read
+		if(gift_type)
+			user.Apply_Gift(new gift_type)
+			playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 30 , FALSE)
+	else
+		tgui_alert(user,"[observation_fail_message]", "OBSERVATION FAIL",list("Ok"), timeout=20 SECONDS)
+		playsound(get_turf(user), 'sound/machines/synth_no.ogg', 30 , FALSE)
+	datum_reference.observation_ready = FALSE
+
+
+/mob/living/simple_animal/hostile/abnormality/proc/CreateAbnoCore()//this is called by abnormalities on Destroy()
+	var/obj/structure/abno_core/C = new(get_turf(src))
+	C.name = initial(name) + " Core"
+	C.desc = "The core of [initial(name)]"
+	C.icon_state = core_icon
+	C.contained_abno = src.type
+	C.threat_level = threat_level
+	switch(GetRiskLevel())
+		if(1)
+			return
+		if(2)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
+		if(3)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
+		if(4)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
+		if(5)
+			C.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'
+
 // Actions
 /datum/action/innate/abnormality_attack
 	name = "Abnormality Attack"
@@ -554,22 +611,3 @@
 	button_icon_state = button_icon_toggle_deactivated
 	UpdateButtonIcon()
 	active = FALSE
-
-/mob/living/simple_animal/hostile/abnormality/proc/CreateAbnoCore()//this is called by abnormalities on Destroy()
-	var/obj/structure/abno_core/C = new(get_turf(src))
-	C.name = initial(name) + " Core"
-	C.desc = "The core of [initial(name)]"
-	C.icon_state = core_icon
-	C.contained_abno = src.type
-	C.threat_level = threat_level
-	switch(GetRiskLevel())
-		if(1)
-			return
-		if(2)
-			C.icon = 'ModularTegustation/Teguicons/abno_cores/teth.dmi'
-		if(3)
-			C.icon = 'ModularTegustation/Teguicons/abno_cores/he.dmi'
-		if(4)
-			C.icon = 'ModularTegustation/Teguicons/abno_cores/waw.dmi'
-		if(5)
-			C.icon = 'ModularTegustation/Teguicons/abno_cores/aleph.dmi'

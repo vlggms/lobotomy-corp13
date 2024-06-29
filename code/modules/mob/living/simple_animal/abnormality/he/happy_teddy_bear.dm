@@ -25,15 +25,25 @@
 	response_help_simple = "hug"
 	buckled_mobs = list()
 	buckle_lying = FALSE
-	/// if the same person works on Happy Teddy Bear twice in a row, the person will die.
-	var/last_worker = null
-	var/hugging = FALSE
+
 	ego_list = list(
 		/datum/ego_datum/weapon/paw,
 		/datum/ego_datum/armor/paw,
 	)
 	gift_type =  /datum/ego_gifts/bearpaw
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "Here lies a piece of rubbish, a teddy bear. Its wool sticks out here and there. \
+The amount of dust piled up on it tells how long this teddy has been abandoned. One of the buttons, which are eyes, is hanging loose."
+	observation_choices = list("Leave it alone", "Take the button off")
+	correct_choices = list("Take the button off")
+	observation_success_message = "You took the button off. It was disturbing for some reason. The button is old and rotten and makes you uncomfortable. \
+	You replace the button with one off your suit with great care. While the teddy looks awkward because of the mismatching buttons, it adds to its charm."
+	observation_fail_message = "You don't know what to do with it so you just left it alone. The teddy sits there without any movement."
+
+	/// if the same person works on Happy Teddy Bear twice in a row, the person will die.
+	var/last_worker = null
+	var/hugging = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/happyteddybear/proc/Strangle(mob/living/carbon/human/user)
 	src.hugging = TRUE

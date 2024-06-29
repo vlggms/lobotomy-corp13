@@ -31,6 +31,15 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK //Technically it was in the beta but I dont want it showing it up in LC-only modes
 	//add an abnochem at some point. Looking at you, nutter
 
+	observation_prompt = "I was the unluckiest man in the world. \
+Everything around me did nothing but ruining my life.But I had no power to change this fate. \
+Someday, someone made an offer to me.\"If you accept it, your whole world will change.\" \
+Such a tempting offer. I would become something that I could only hope to be."
+	observation_choices = list("Accept the offer")
+	correct_choices = list("Accept the offer")
+	observation_success_message = "I accepted the offer and paid the price. \
+The $0 Hammer of Light shined."
+
 	pet_bonus = "hums" //saves a few lines of code by allowing funpet() to be called by attack_hand()
 	var/sealed = TRUE
 	var/hammer_present = TRUE
