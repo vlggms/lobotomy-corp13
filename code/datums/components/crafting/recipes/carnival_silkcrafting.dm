@@ -36,6 +36,15 @@
 	always_available = FALSE
 	category = CAT_SILK
 
+/datum/crafting_recipe/azure_armor
+	name = "Reforged Suit"
+	result = /obj/item/clothing/suit/armor/ego_gear/city/azure_armor
+	reqs = list(/obj/item/stack/sheet/silk/azure_simple = 2)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
 /datum/crafting_recipe/carnival_robes
 	name = "Carnival's Robes"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/carnival_robes
@@ -83,6 +92,16 @@
 	time = 5
 	always_available = FALSE
 	category = CAT_SILK
+
+/datum/crafting_recipe/azure_silk_simple
+	name = "Simple Azure Silk"
+	result = /obj/item/stack/sheet/silk/azure_simple
+	reqs = list(/obj/item/food/meat/slab/robot = 2,
+				/obj/item/food/meat/slab/sweeper = 2)
+	tools = list(/obj/item/silkknife = 1)
+	time = 5
+	always_available = FALSE
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/indigo_silk_advanced
 	name = "Advanced Indigo Silk"
@@ -159,11 +178,20 @@
 /datum/crafting_recipe/converted_human_silk_advanced
 	name = "Converted Advanced Human Silk"
 	result = /obj/item/stack/sheet/silk/human_advanced
-	reqs = list(/obj/item/stack/sheet/silk/steel_simple = 4)
+	reqs = list(/obj/item/stack/sheet/silk/human_simple = 4)
 	tools = list(/obj/item/silkknife = 1)
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+
+/datum/crafting_recipe/converted_azure_silk_advanced
+	name = "Converted Advanced Azure Silk"
+	result = /obj/item/stack/sheet/silk/azure_advanced
+	reqs = list(/obj/item/stack/sheet/silk/azure_simple = 4)
+	tools = list(/obj/item/silkknife = 1)
+	time = 10
+	always_available = FALSE
+	category = CAT_CLOTHING
 
 /datum/crafting_recipe/converted_human_silk_elegant
 	name = "Converted Elegant Human Silk"
@@ -173,6 +201,24 @@
 	time = 10
 	always_available = FALSE
 	category = CAT_SILK
+
+/datum/crafting_recipe/converted_azure_silk_elegant
+	name = "Converted Elegant Azure Silk"
+	result = /obj/item/stack/sheet/silk/azure_elegant
+	reqs = list(/obj/item/stack/sheet/silk/azure_advanced = 4)
+	tools = list(/obj/item/silkknife = 1)
+	time = 15
+	always_available = FALSE
+	category = CAT_CLOTHING
+
+/datum/crafting_recipe/converted_azure_silk_masterpiece
+	name = "Converted Masterpiece Azure Silk"
+	result = /obj/item/stack/sheet/silk/azure_masterpiece
+	reqs = list(/obj/item/stack/sheet/silk/azure_elegant = 4)
+	tools = list(/obj/item/silkknife = 1)
+	time = 20
+	always_available = FALSE
+	category = CAT_CLOTHING
 
 //Silk into different Silk
 /datum/crafting_recipe/green_silk_to_steel_silk
@@ -411,7 +457,7 @@
 	category = CAT_SILK
 
 /datum/crafting_recipe/ncorpcommander
-	name = "Rüstung der auserwählten Frau Gottes"
+	name = "Rï¿½stung der auserwï¿½hlten Frau Gottes"
 	result = /obj/item/clothing/suit/armor/ego_gear/city/ncorpcommander
 	reqs = list(/obj/item/stack/sheet/silk/green_simple = 5,
 				/obj/item/stack/sheet/silk/green_advanced = 5,
