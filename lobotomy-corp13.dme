@@ -430,6 +430,7 @@
 #include "code\datums\abnormality\_ego_datum\_ego_datum.dm"
 #include "code\datums\abnormality\_ego_datum\aleph.dm"
 #include "code\datums\abnormality\_ego_datum\he.dm"
+#include "code\datums\abnormality\_ego_datum\ordeal.dm"
 #include "code\datums\abnormality\_ego_datum\teth.dm"
 #include "code\datums\abnormality\_ego_datum\tools.dm"
 #include "code\datums\abnormality\_ego_datum\waw.dm"
