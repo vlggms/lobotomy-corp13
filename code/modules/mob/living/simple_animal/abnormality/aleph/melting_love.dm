@@ -151,6 +151,8 @@
 	icon_dead = "melting_breach_dead"
 	pixel_x = -32
 	base_pixel_x = -32
+	offsets_pixel_x = list("south" = -32, "north" = -32, "west" = -32, "east" = -32)
+	SetOccupiedTiles(up = 1)
 	desc = "A pink hunched creature with long arms, there are also visible bones coming from insides of the slime."
 	if(istype(gifted_human))
 		DissolveGifted(gifted_human)
