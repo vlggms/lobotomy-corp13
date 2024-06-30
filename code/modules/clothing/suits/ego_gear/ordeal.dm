@@ -1,5 +1,3 @@
-// Ordeal armor for midnight. There's not really a stat total besides 240 unless you're doing some silly stuff then it probably should be lower unless you want pre 19Kirie4 repentance situation. Just follow what Kirie did with realized armor.
-
 /obj/item/clothing/suit/armor/ego_gear/adjustable/claw
 	name = "claw armor"
 	desc = "A simple suit and tie with several injectors attached. The fabric is near indestructable."
@@ -17,6 +15,8 @@
 	icon_state = "claw"
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH | PEPPERPROOF
 	flags_inv = HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
+
+// Ordeal armor for non post midnight midnights. There's not really a stat total besides 240 unless you're doing some silly stuff then it probably should be lower unless you want pre 19Kirie4 repentance situation. Just follow what Kirie did with realized armor.
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal
 	icon = 'icons/obj/clothing/ego_gear/ordeal.dmi'
@@ -185,14 +185,3 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/corrosion
-	name = "Corrosion"
-	desc = "Who am I... and who have I become?"
-	icon_state = "wonderland"//todo add an actual sprite
-	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 80, BLACK_DAMAGE = 40, PALE_DAMAGE = 80) // 260
-	attribute_requirements = list(
-							FORTITUDE_ATTRIBUTE = 80,
-							PRUDENCE_ATTRIBUTE = 100,
-							TEMPERANCE_ATTRIBUTE = 80,
-							JUSTICE_ATTRIBUTE = 100
-							)
