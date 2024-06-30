@@ -16,17 +16,17 @@
 	flags_cover = MASKCOVERSEYES | MASKCOVERSMOUTH | PEPPERPROOF
 	flags_inv = HIDEEYES|HIDEFACE|HIDEFACIALHAIR|HIDESNOUT
 
-// Ordeal armor for non post midnight midnights. There's not really a stat total besides 240 unless you're doing some silly stuff then it probably should be lower unless you want pre 19Kirie4 repentance situation. Just follow what Kirie did with realized armor.
+// Ordeal armor for non post midnight midnights. There's not really a stat total besides 240
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal
 	icon = 'icons/obj/clothing/ego_gear/ordeal.dmi'
 	worn_icon = 'icons/mob/clothing/ego_gear/ordeal.dmi'
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/eternal_feast //well rounded and provides good resistances to all but pale. No ability or passive since amber midnight was the first midnight to be added so it not having one feels fair(Also I had no ideas for it).
+/obj/item/clothing/suit/armor/ego_gear/ordeal/eternal_feast
 	name = "Endless feast"
 	desc = "Made out of tough scales and flesh of a powerful ordeal. Wearing it makes you feel hungry as well."
 	icon_state = "eternal_feast"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 60, BLACK_DAMAGE = 60, PALE_DAMAGE = 40) // 240
+	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 70, BLACK_DAMAGE = 80, PALE_DAMAGE = 40) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 100,
 							PRUDENCE_ATTRIBUTE = 80,
@@ -38,7 +38,7 @@
 	name = "Painful purpose"
 	desc = "A heavy armor made as solace of the end of all."
 	icon_state = "painful_purpose"
-	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 70, BLACK_DAMAGE = 40, PALE_DAMAGE = 50) // 240
+	armor = list(RED_DAMAGE = 80, WHITE_DAMAGE = 50, BLACK_DAMAGE = 40, PALE_DAMAGE = 70) // 240
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80,
 							PRUDENCE_ATTRIBUTE = 100,
@@ -46,7 +46,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march //provides a sanity healing aura simular to chuckles. Also stat wise being great red and white and poor black and pale means that this is a realized version of Dark carnival technically.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/meaningless_march
 	name = "Meaningless march"
 	desc = "Want to know how I got these scars?"
 	icon_state = "meaningless_march"
@@ -161,7 +161,7 @@
 		return FALSE
 	return TRUE
 
-/obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength //Basic armor with a major weakness to white. Don't give this haulers or else Kirie will tell you that you burned down the kitchen.
+/obj/item/clothing/suit/armor/ego_gear/ordeal/familial_strength
 	name = "Familial Strength"
 	desc = "A heavy armor from the mother of all sweepers."
 	icon_state = "familial_strength"
@@ -175,7 +175,7 @@
 
 /obj/item/clothing/suit/armor/ego_gear/ordeal/wonderland
 	name = "Wonderland"
-	desc = "Catt Wonderlab"
+	desc = "It's hard to look at it right."
 	icon_state = "wonderland"
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 40, BLACK_DAMAGE = 70, PALE_DAMAGE = 80) // 240
 	attribute_requirements = list(
