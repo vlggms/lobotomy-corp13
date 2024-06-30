@@ -1287,7 +1287,7 @@
 #include "code\game\objects\items\ego_weapons\subtype\charge.dm"
 #include "code\game\objects\items\ego_weapons\subtype\lance.dm"
 #include "code\game\objects\items\ego_weapons\subtype\shield.dm"
-#include "code\game\objects\items\ego_weapons\subtype\spear.dm"
+#include "code\game\objects\items\ego_weapons\subtype\wielded.dm"
 #include "code\game\objects\items\fixer_weaponry\swords.dm"
 #include "code\game\objects\items\fixerskills\level3.dm"
 #include "code\game\objects\items\fixerskills\skills.dm"

@@ -89,7 +89,8 @@
 	attack_speed = wielded_attack_speed
 	reach = wielded_reach
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	current_slow_down = wielded_slow_down + (wielded_anti_justice_multiplier * userjust/JUSTICE_MOVESPEED_DIVISER)//cuts justice speed scaling also
+	if(should_slow)
+		current_slow_down = wielded_slow_down + (wielded_anti_justice_multiplier * userjust/JUSTICE_MOVESPEED_DIVISER)//cuts justice speed scaling also
 	if(should_unwield_cooldown)
 		unwield_cooldown = unwield_time + world.time
 
