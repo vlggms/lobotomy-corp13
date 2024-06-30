@@ -50,13 +50,26 @@
 		return FALSE
 	if(!istype(owner, /mob/living/simple_animal/hostile/abnormality/laetitia))
 		return FALSE
+
 	G1 = new /mob/living/simple_animal/hostile/gift(owner.loc)
 	G2 = new /mob/living/simple_animal/hostile/gift(owner.loc)
 	delete_timer = addtimer(CALLBACK(src, .proc/delete), delete_cooldown, TIMER_STOPPABLE)
+	// send poll to all ghosts and wait
+	var/list/candidates = pollGhostCandidates("Laetitia is calling for help! Are you willing to protect her?", poll_time=100)
+	if (LAZYLEN(candidates) > 0)
+		var/mob/dead/observer/C = pick(candidates)
+		G1.key = C.key
+		candidates -= C
+	if (LAZYLEN(candidates) > 0)
+		var/mob/dead/observer/C = pick(candidates)
+		G2.key = C.key
+		candidates -= C
 
 /datum/action/cooldown/laetitia_summon/proc/delete()
-	qdel(G1)
-	qdel(G2)
+	if (!G1.ckey)
+		qdel(G1)
+	if (!G2.ckey)
+		qdel(G2)
 
 /datum/action/cooldown/laetitia_gift
 	name = "Gift"
@@ -168,6 +181,12 @@
 /mob/living/simple_animal/hostile/gift/Initialize()
 	. = ..()
 	playsound(get_turf(src), 'sound/abnormalities/laetitia/spider_born.ogg', 50, 1)
+
+/mob/living/simple_animal/hostile/gift/AttackingTarget(atom/attacked_target)
+	if (istype(target, /mob/living/simple_animal/hostile/abnormality/laetitia))
+		manual_emote("pats Laetitia")
+		return FALSE
+	return ..()
 
 /mob/living/simple_animal/hostile/gift/death(gibbed)
 	density = FALSE
