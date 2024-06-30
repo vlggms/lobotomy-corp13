@@ -1835,7 +1835,6 @@
 	icon_state = "uturn"
 	force = 40
 	reach = 4
-	stuntime = 8	// This scythe will still stun you, not as long as the attack speed however
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
