@@ -99,7 +99,7 @@
 
 /obj/item/laetitia_gift/attack_self(mob/user)
 	if(opening)
-		to_chat(user, "<span class='warning'>You're already opening this gift!</span>")
+		to_chat(user, span_warning("You're already opening this gift!"))
 		return FALSE
 	opening = TRUE
 	to_chat(user, "Opening the gift!")
