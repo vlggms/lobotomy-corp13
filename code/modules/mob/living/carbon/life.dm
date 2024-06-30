@@ -160,7 +160,7 @@
 	var/safe_tox_max = 0.05
 	var/SA_para_min = 1
 	var/SA_sleep_min = 5
-	var/oxygen_used = 0
+	//var/oxygen_used = 0
 	var/breath_pressure = (breath.total_moles()*R_IDEAL_GAS_EQUATION*breath.temperature)/BREATH_VOLUME
 
 	var/list/breath_gases = breath.gases
@@ -178,7 +178,7 @@
 			var/ratio = 1 - O2_partialpressure/safe_oxy_min
 			adjustOxyLoss(min(5*ratio, 3))
 			failed_last_breath = TRUE
-			oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]*ratio
+			//oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]*ratio
 		else
 			adjustOxyLoss(3)
 			failed_last_breath = TRUE
@@ -188,12 +188,13 @@
 		failed_last_breath = FALSE
 		if(health >= crit_threshold)
 			adjustOxyLoss(-5)
-		oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]
+		//oxygen_used = breath_gases[/datum/gas/oxygen][MOLES]
 		clear_alert("not_enough_oxy")
-
+/*
+		This is the function that converts O2 into CO2.
 	breath_gases[/datum/gas/oxygen][MOLES] -= oxygen_used
 	breath_gases[/datum/gas/carbon_dioxide][MOLES] += oxygen_used
-
+*/
 	//CARBON DIOXIDE
 	if(CO2_partialpressure > safe_co2_max)
 		if(!co2overloadtime)
