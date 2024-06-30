@@ -53,7 +53,7 @@
 
 	G1 = new /mob/living/simple_animal/hostile/gift(owner.loc)
 	G2 = new /mob/living/simple_animal/hostile/gift(owner.loc)
-	delete_timer = addtimer(CALLBACK(src, .proc/delete), delete_cooldown, TIMER_STOPPABLE)
+	delete_timer = addtimer(CALLBACK(src, PROC_REF(delete)), delete_cooldown, TIMER_STOPPABLE)
 	// send poll to all ghosts and wait
 	var/list/candidates = pollGhostCandidates("Laetitia is calling for help! Are you willing to protect her?", poll_time=100)
 	if (LAZYLEN(candidates) > 0)
