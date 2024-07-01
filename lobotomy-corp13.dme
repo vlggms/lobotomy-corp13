@@ -765,6 +765,7 @@
 #include "code\datums\mutations\holy_mutation\burdened.dm"
 #include "code\datums\mutations\holy_mutation\honorbound.dm"
 #include "code\datums\quirks\_quirk.dm"
+#include "code\datums\quirks\backstories.dm"
 #include "code\datums\quirks\good.dm"
 #include "code\datums\quirks\negative.dm"
 #include "code\datums\quirks\neutral.dm"
