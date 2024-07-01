@@ -206,7 +206,16 @@
 	if(dextrous && !ismob(A))
 		..()
 	else
-		AttackingTarget(A)
+		if(isturf(A) || iseffect(A))
+			var/turf/T = get_turf(A)
+			for(var/mob/living/L in T)
+				if(L.invisibility > see_invisible)
+					continue
+				if(L.stat != DEAD)
+					target = L
+					break
+				target = L
+		AttackingTarget(target)
 
 
 
