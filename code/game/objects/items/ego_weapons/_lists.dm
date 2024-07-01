@@ -7,6 +7,9 @@ GLOBAL_LIST_INIT(small_ego, list (
 	/obj/item/ego_weapon/support/letter_opener,
 	/obj/item/ego_weapon/warring,
 	/obj/item/gun/ego_gun/feather,
+	/obj/item/gun/ego_gun/intentions,
+	/obj/item/gun/ego_gun/beak,
+	/obj/item/ego_weapon/lance/visions,
 
 	//Non-EGO weapons
 	/obj/item/ego_weapon/city/ncorp_mark,

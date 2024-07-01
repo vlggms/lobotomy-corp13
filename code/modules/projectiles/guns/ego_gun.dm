@@ -31,9 +31,6 @@
 	. += EgoAttackInfo(user)
 	if(special)
 		. += "<span class='notice'>[special]</span>"
-	if(weapon_weight != WEAPON_HEAVY)
-		. += "<span class='notice'>This weapon can be fired with one hand.</span>"
-
 	if(reloadtime)
 		. += "Ammo Counter: [shotsleft]/[initial(shotsleft)]."
 	else
@@ -51,6 +48,14 @@
 				. += "<span class='notice'>This weapon has a slow reload.</span>"
 			if(2.51 to INFINITY)
 				. += "<span class='notice'>This weapon has an extremely slow reload.</span>"
+
+	switch(weapon_weight)
+		if(WEAPON_HEAVY)
+			. += "<span class='notice'>This weapon requires both hands to fire.</span>"
+		if(WEAPON_MEDIUM)
+			. += "<span class='notice'>This weapon can be fired with one hand.</span>"
+		if(WEAPON_LIGHT)
+			. += "<span class='notice'>This weapon can be dual wielded.</span>"
 
 	if(!autofire)
 		switch(fire_delay)
