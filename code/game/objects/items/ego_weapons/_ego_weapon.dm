@@ -9,7 +9,7 @@
 	slot_flags = ITEM_SLOT_BELT
 	drag_slowdown = 1
 	var/list/attribute_requirements = list()
-	var/attack_speed
+	var/attack_speed = 1
 	var/special
 	var/force_multiplier = 1
 
@@ -29,7 +29,7 @@
 	if(!CanUseEgo(user))
 		return FALSE
 	. = ..()
-	if(attack_speed)
+	if(attack_speed && attack_speed != 1)
 		user.changeNext_move(CLICK_CD_MELEE * attack_speed)
 
 	if(charge && attack_charge_gain)
@@ -104,10 +104,6 @@
 
 		if(0.7 to 0.99)
 			. += span_notice("This weapon attacks slightly faster than normal.")
-
-		if(1) // why
-			attack_speed = FALSE
-			CRASH("[src] has a unique attack speed variable that does nothing, please inform coders to delete the variable")
 
 		if(1.01 to 1.49)
 			. += span_notice("This weapon attacks slightly slower than normal.")
