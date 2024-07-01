@@ -1266,6 +1266,7 @@
 #include "code\game\objects\items\ego_weapons\non_abnormality\molar.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\ncorp.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\pierre.dm"
+#include "code\game\objects\items\ego_weapons\non_abnormality\pipebutgood.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\purple_tear.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\rats.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\rcorp.dm"
