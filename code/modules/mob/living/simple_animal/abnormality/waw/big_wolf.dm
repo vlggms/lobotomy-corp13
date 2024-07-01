@@ -125,17 +125,13 @@ You didn't immediately kick me out, so I will tell you my name. My name is..."
 	. = ..()
 	update_icon()
 
-/* NOTICE TO ANY LITTLE RED CODER
-	Put little red here when possible. This proc will make it so that if the target
-	is little red they will not check faction they WILL fight. -IP
-
+//If the target is little red they will not check faction they WILL fight. -IP
 /mob/living/simple_animal/hostile/abnormality/big_wolf/CanAttack(atom/the_target)
-	if(istype(the_target, LITTLE_RED)
+	if(istype(the_target, /mob/living/simple_animal/hostile/abnormality/red_hood))
 		var/mob/living/L = the_target
 		if(L.stat != DEAD)
 			return TRUE
 	..()
-*/
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/death(gibbed)
 	update_icon()
