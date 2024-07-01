@@ -1043,6 +1043,10 @@
 #define COMSIG_ITEM_AFTERATTACK "item_afterattack"
 ///from base of obj/item/attack_qdeleted(): (atom/target, mob/user, params)
 #define COMSIG_ITEM_ATTACK_QDELETED "item_attack_qdeleted"
+///from base of obj/item/MiddleClickAction(): (atom/target, mob/living/user, params)
+#define COMSIG_ITEM_MIDDLE_CLICK_ACTION "item_middle_click_action"
+	///cancels middle click action
+	#define COMPONENT_CANCEL_MIDDLE_CLICK_ACTION (1<<0)
 ///from base of atom/attack_hand(): (mob/user)
 #define COMSIG_MOB_ATTACK_HAND "mob_attack_hand"
 ///from base of /obj/item/attack(): (mob/M, mob/user)
