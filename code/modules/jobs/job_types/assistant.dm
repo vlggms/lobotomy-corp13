@@ -6,8 +6,8 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 /datum/job/assistant
 	title = "Clerk"
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 0
+	spawn_positions = 0
 	supervisors = "absolutely everyone"
 	selection_color = "#dddddd"
 	access = list(ACCESS_ROBOTICS)			//See /datum/job/assistant/get_access()
@@ -20,7 +20,6 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
 
 	allow_bureaucratic_error = FALSE
-//	loadalways = TRUE
 	job_important = "\
 		You are a Clerk. \
 		Since you are unable to work with Abnormalities, you are expected to do cleanup, cooking, medical and other miscellaneous tasks. \
@@ -30,6 +29,13 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 	job_abbreviation = "CLK"
 
 	job_attribute_limit = 0
+	alt_titles = list("Control Department Clerk", "Information Department Clerk",
+			"Training Department Clerk", "Safety Department Clerk",
+			"Welfare Department Clerk", "Disciplinary Department Clerk",
+			"Command Department Clerk", "Extraction Department Clerk", "Record Department Clerk")
+	senior_title = "Architecture Department Clerk"
+	var/list/clerk_belts = list(/obj/item/storage/belt/clerk/facility, /obj/item/storage/belt/clerk/agent)
+
 
 //Cannot Gain stats.
 /datum/job/assistant/after_spawn(mob/living/carbon/human/outfit_owner, mob/M, latejoin = FALSE)
@@ -43,6 +49,12 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 			outfit_owner.set_attribute_limit(40)
 			outfit_owner.adjust_all_attribute_levels(40)
 
+	if(outfit_owner.ckey in GLOB.spawned_clerks)
+		return
+	var/item = pick(clerk_belts)
+	GLOB.spawned_clerks += outfit_owner.ckey
+	outfit_owner.equip_to_slot_or_del(new item(outfit_owner),ITEM_SLOT_HANDS, TRUE)
+
 /datum/outfit/job/assistant
 	name = "Clerk"
 	jobtype = /datum/job/assistant
@@ -55,22 +67,62 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 		/obj/item/gun/ego_gun/clerk,
 	)
 
-/datum/outfit/job/assistant/post_equip(mob/living/carbon/human/outfit_owner, visualsOnly = FALSE)
-	..()
-	if(outfit_owner.ckey in GLOB.spawned_clerks)
-		return
-	var/item = pick(
-		/obj/item/forcefield_projector,
-		/obj/item/deepscanner,
-		/obj/item/powered_gadget/slowingtrapmk1,
-		/obj/item/safety_kit,
-		/obj/item/powered_gadget/detector_gadget/abnormality,
-		/obj/item/powered_gadget/detector_gadget/ordeal,
-		/obj/item/powered_gadget/enkephalin_injector,
-		/obj/item/clerkbot_gadget,
-		/obj/item/powered_gadget/handheld_taser,
-		/obj/item/powered_gadget/vitals_projector,
-		/obj/item/reagent_containers/hypospray/emais,
-	)
-	GLOB.spawned_clerks += outfit_owner.ckey
-	outfit_owner.equip_to_slot_or_del(new item(outfit_owner),ITEM_SLOT_HANDS, TRUE)
+
+/datum/job/assistant/agent_support
+	title = "Agent Support Clerk"
+	faction = "Station"
+	total_positions = -1
+	spawn_positions = -1
+	supervisors = "absolutely everyone"
+	selection_color = "#dddddd"
+	access = list(ACCESS_ROBOTICS)
+	minimal_access = list(ACCESS_ROBOTICS)
+	outfit = /datum/outfit/job/assistant
+	antag_rep = 7
+	display_order = JOB_DISPLAY_ORDER_CLERK
+
+	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
+
+	allow_bureaucratic_error = FALSE
+	job_important = "\
+		You are an Agent Support Clerk. \n\
+		You are unable to do work, but are expected to assist agents in any way that you can. In your belt are various tools to assist them."
+
+	job_abbreviation = "A-CLK"
+
+	alt_titles = list("Control Department Clerk", "Command Department Clerk",
+			"Welfare Department Clerk", "Disciplinary Department Clerk",
+			)
+	senior_title = "Record Department Clerk"
+	ultra_senior_title = "Architecture Department Clerk"
+	clerk_belts = /obj/item/storage/belt/clerk/agent
+
+
+/datum/job/assistant/facility_support
+	title = "Facility Support Clerk"
+	faction = "Station"
+	total_positions = -1
+	spawn_positions = -1
+	supervisors = "absolutely everyone"
+	selection_color = "#dddddd"
+	access = list(ACCESS_ROBOTICS)
+	minimal_access = list(ACCESS_ROBOTICS)
+	outfit = /datum/outfit/job/assistant
+	antag_rep = 7
+	display_order = JOB_DISPLAY_ORDER_CLERK
+
+	liver_traits = list(TRAIT_GREYTIDE_METABOLISM)
+
+	allow_bureaucratic_error = FALSE
+//	loadalways = TRUE
+	job_important = "\
+		You are a Facility Support Clerk. \n\
+		You are unable to do work, but are expected to assist the facility in any way that you can. In your belt are various tools to assist them."
+
+	job_abbreviation = "F-CLK"
+
+	alt_titles = list("Safety Department Clerk", "Information Department Clerk",
+			"Training Department Clerk",)
+	senior_title = "Extraction Department Clerk"
+	ultra_senior_title = "Architecture Department Clerk"
+	clerk_belts = /obj/item/storage/belt/clerk/facility

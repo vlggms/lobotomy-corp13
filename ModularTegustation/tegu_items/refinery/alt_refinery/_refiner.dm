@@ -12,6 +12,8 @@
 	var/extraction_cost = 0
 	/// toggles if attack_hand should tell the person to use an item instead of just clicking the refinery
 	var/requires_item = FALSE
+	/// List of the whitelisted officers that can use this.
+	var/list/whitelisted_officers = list("Extraction Officer", "Control Officer")
 
 /obj/structure/altrefiner/Initialize(mapload)
 	. = ..()
@@ -31,8 +33,8 @@
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return FALSE
 
-	if(officer_only && M?.mind?.assigned_role != "Extraction Officer")
-		to_chat(M, span_warning("Only the Extraction Officer can use this machine."))
+	if(officer_only && !(M?.mind?.assigned_role in whitelisted_officers))
+		to_chat(M, span_warning("Only the Extraction Officer and Control Officer can use this machine."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return FALSE
 
@@ -51,8 +53,8 @@
 		attack_hand(user)
 		return FALSE
 
-	if(officer_only && user?.mind?.assigned_role != "Extraction Officer")
-		to_chat(user, span_warning("Only the Extraction Officer can use this machine."))
+	if(officer_only && !(user?.mind?.assigned_role in whitelisted_officers))
+		to_chat(user, span_warning("Only the Extraction Officer and Control Officer can use this machine."))
 		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
 		return FALSE
 
