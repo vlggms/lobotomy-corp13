@@ -27,8 +27,8 @@
 		return
 
 	user.physiology.pale_mod *= 1.06
-	var/datum/status_effect/stacking/rolecall/R = user.has_status_effect(/datum/status_effect/stacking/rolecall)
-	R.add_stacks(1)
+	var/datum/status_effect/stacking/slab/status_effect = user.has_status_effect(/datum/status_effect/stacking/slab)
+	status_effect.add_stacks(1)
 
 // Status Effect
 /datum/status_effect/stacking/slab
