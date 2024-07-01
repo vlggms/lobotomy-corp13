@@ -27,15 +27,15 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "I am a spider. I eat anything my web catches. I am starving. \
-I haven't eaten anything for days. There is a big prey hanging on my web. \
-My starvation could kill me if I don't eat something."
+	I haven't eaten anything for days. There is a big prey hanging on my web. \
+	My starvation could kill me if I don't eat something."
 	observation_choices = list("Eat the prey.", "Do not eat the prey.")
 	correct_choices = list("Do not eat the prey.")
 	observation_success_message = "I could not eat the prey in front of me. \
-This starvation is slowly tiring me. The prey struggles to get out, to survive. \
-The struggle did nothing but shaking my web a little bit. And I watch the prey."
+	This starvation is slowly tiring me. The prey struggles to get out, to survive. \
+	The struggle did nothing but shaking my web a little bit. And I watch the prey."
 	observation_fail_message = "I devoured the prey. \
-My body reacted faster than my thoughts. ... I am a spider. I eat anything my web catches."
+	My body reacted faster than my thoughts. ... I am a spider. I eat anything my web catches."
 
 
 /mob/living/simple_animal/hostile/abnormality/spider/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)

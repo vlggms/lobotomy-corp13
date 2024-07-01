@@ -28,10 +28,10 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
 	observation_prompt = "The Enkephalin cure affected not only mind, but also body. \
-The problem is, the supply of cure became tremendously huge to control when we realized the problem. \
-One of problems, one of them was numbing. People believed they could live happy life. \
-People believed they could buy sadness and sell happiness with money. When the first suicide happened, we should have known that these beliefs had been shattered. \
-Many hands float in the bath. Hands that wanted to grab something but could not. You......"
+	The problem is, the supply of cure became tremendously huge to control when we realized the problem. \
+	One of problems, one of them was numbing. People believed they could live happy life. \
+	People believed they could buy sadness and sell happiness with money. When the first suicide happened, we should have known that these beliefs had been shattered. \
+	Many hands float in the bath. Hands that wanted to grab something but could not. You......"
 	observation_choices = list("Grabbed a hand", "Did not grab a hand")
 	correct_choices = list("Grabbed a hand")
 	observation_success_message = "I feel coldness and stiffness. I know these hands. These are the hands of people I once loved."

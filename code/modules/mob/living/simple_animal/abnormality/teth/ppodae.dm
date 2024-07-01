@@ -28,11 +28,6 @@
 	vision_range = 14
 	aggro_vision_range = 20
 	stat_attack = HARD_CRIT
-	var/smash_damage_low = 16
-	var/smash_damage_high = 28
-	var/smash_length = 2
-	var/smash_width = 1
-	var/can_act = TRUE
 
 	ego_list = list(
 		/datum/ego_datum/weapon/cute,
@@ -40,6 +35,18 @@
 	)
 	gift_type =  /datum/ego_gifts/cute
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "Before me stands a creature, eagerly awaiting its next meal. The creature is..."
+	observation_choices = list("A puppy", "A monster")
+	correct_choices = list("A monster")
+	observation_success_message = "I don't know how I didn't see it before, I rushed out to warn the others. I was fired the next day."
+	observation_fail_message = "It's the cutest puppy I've ever seen."
+
+	var/smash_damage_low = 16
+	var/smash_damage_high = 28
+	var/smash_length = 2
+	var/smash_width = 1
+	var/can_act = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/ppodae/Move()
 	if(!can_act)
