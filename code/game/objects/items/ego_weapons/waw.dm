@@ -1663,7 +1663,7 @@
 	icon_state = "warring2"
 	force = 30
 	attack_speed = 0.8
-	throwforce = 65
+	throwforce = 55
 	throw_speed = 1
 	throw_range = 7
 	damtype = BLACK_DAMAGE
@@ -1674,8 +1674,10 @@
 	)
 
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
 	charge_cost = 5
-	charge_effect = "expend all charge stacks in a powerful burst."
+	allow_ability_cancel = FALSE
+	charge_effect = "Expend all charge stacks in a powerful burst."
 	successfull_activation = "You release your charge!"
 
 /obj/item/ego_weapon/warring/Initialize()
@@ -1683,21 +1685,26 @@
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/warring/attack(mob/living/target, mob/living/user)
-	if(charge_amount == 19)//max power, get ready to throw!
+	if(charge_amount == 4 || charge_amount == 19)//audio tells for min and maximum charge bursts
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 	. = ..()
-	if(charge_amount == 5)
+
+/obj/item/ego_weapon/warring/attack_self(mob/living/user)
+	if(!currently_charging && charge_amount >= 5)
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 		icon_state = "warring2_firey"
 		hitsound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 		if(user)
 			user.update_inv_hands()
+	else
+		return
+	. = ..()
 
 /obj/item/ego_weapon/warring/ChargeAttack(mob/living/user)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in view(1, T))
-		var/aoe = charge_amount * 5
+		var/aoe = (charge_amount + 5) * 5
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -1708,6 +1715,7 @@
 	icon_state = initial(icon_state)
 	hitsound = initial(hitsound)
 	charge_amount = initial(charge_amount)
+	currently_charging = FALSE
 
 /obj/item/ego_weapon/warring/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
 	if(!CanUseEgo(user))
@@ -1717,7 +1725,7 @@
 /obj/item/ego_weapon/warring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		if(charge >= charge_cost && isliving(hit_atom))
+		if(currently_charging && isliving(hit_atom))
 			ChargeAttack(hit_atom)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
