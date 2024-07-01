@@ -3202,6 +3202,15 @@
 	},
 /turf/open/water/deep/saltwater/extradeep,
 /area/facility_hallway/central)
+"jp" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 8;
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "jq" = (
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 8
@@ -3222,6 +3231,12 @@
 /obj/item/toy/plush/netzach,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
+"js" = (
+/obj/structure/railing/corner{
+	name = "wing-grade railing"
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "jt" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 4
@@ -4590,7 +4605,6 @@
 	name = "wing-grade railing"
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -4872,7 +4886,6 @@
 "oC" = (
 /obj/structure/railing/corner,
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -6288,7 +6301,6 @@
 /area/facility_hallway/safety)
 "sx" = (
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -6420,6 +6432,15 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/facility_hallway/information)
+"tf" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 4;
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "tg" = (
 /obj/effect/turf_decal/siding/yellow{
 	dir = 8
@@ -6496,7 +6517,6 @@
 	name = "wing-grade railing"
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -8043,7 +8063,6 @@
 	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -8427,6 +8446,14 @@
 /obj/effect/turf_decal/bot,
 /turf/open/floor/circuit/telecomms/mainframe,
 /area/facility_hallway/training)
+"zj" = (
+/obj/structure/table/reinforced,
+/obj/item/storage/backpack/duffelbag/med/upgradedsurgery{
+	pixel_y = 4
+	},
+/obj/effect/turf_decal/stripes/red/full,
+/turf/open/floor/facility/white,
+/area/facility_hallway/safety)
 "zk" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 1
@@ -8817,7 +8844,6 @@
 	name = "wing-grade railing"
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -10249,6 +10275,13 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/west)
+"Eb" = (
+/obj/structure/railing/corner{
+	dir = 8;
+	name = "wing-grade railing"
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "Ed" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
 	dir = 8
@@ -10336,7 +10369,6 @@
 	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -11437,6 +11469,14 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/south)
+"HP" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "HS" = (
 /obj/effect/turf_decal/bot,
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -11774,6 +11814,13 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/training)
+"Jl" = (
+/obj/structure/railing/corner{
+	dir = 4;
+	name = "wing-grade railing"
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "Jn" = (
 /obj/effect/spawner/abnormality_room,
 /turf/closed/indestructible/reinforced{
@@ -12409,7 +12456,6 @@
 	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -12440,6 +12486,13 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/human)
+"Ll" = (
+/obj/structure/railing/corner{
+	dir = 1;
+	name = "wing-grade railing"
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "Lm" = (
 /obj/effect/turf_decal/box/red,
 /obj/effect/turf_decal/siding/thinplating/dark,
@@ -12978,6 +13031,15 @@
 	slowdown = 0
 	},
 /area/department_main/command)
+"MO" = (
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	dir = 1;
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/water/deep/saltwater/safe,
+/area/facility_hallway/central)
 "MS" = (
 /obj/machinery/door/airlock/glass,
 /turf/open/floor/facility/halls,
@@ -13233,7 +13295,7 @@
 	dir = 1;
 	name = "wing-grade railing"
 	},
-/turf/open/water/deep/saltwater/extradeep,
+/turf/open/water/deep/saltwater/safe,
 /area/facility_hallway/central)
 "Nx" = (
 /obj/structure/rack,
@@ -13516,7 +13578,6 @@
 "Or" = (
 /obj/structure/railing,
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -14587,7 +14648,6 @@
 /area/department_main/information)
 "RY" = (
 /turf/open/water/deep/freshwater{
-	environment = list(/obj/item/food/fish/fresh_water = 1000, /obj/item/food/fish/fresh_water/angelfish = 1000, /obj/item/food/fish/fresh_water/guppy = 1000, /obj/item/food/fish/fresh_water/plasmatetra = 1000, /obj/item/food/fish/fresh_water/catfish = 400, /obj/item/food/fish/fresh_water/ratfish = 200, /obj/item/food/fish/fresh_water/waterflea = 200, /obj/item/food/fish/fresh_water/yin = 200, /obj/item/food/fish/fresh_water/yang = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/stack/fish_points = 600, /obj/item/food/dough = 500, /obj/item/food/canned/peaches = 300, /obj/item/food/breadslice/moldy = 300, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/food/grown/harebell = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 200, /obj/item/fishing_component/hook/bone = 100);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -14607,9 +14667,7 @@
 	},
 /area/department_main/safety)
 "Sb" = (
-/turf/open/water/deep/saltwater/safe{
-	environment = list(/obj/item/food/fish/salt_water/marine_shrimp = 1000, /obj/item/food/fish/salt_water/clownfish = 1000, /obj/item/food/fish/salt_water/greenchromis = 1000, /obj/item/food/fish/salt_water/firefish = 1000, /obj/item/food/fish/salt_water/cardinal = 400, /obj/item/food/fish/salt_water = 400, /obj/item/food/fish/salt_water/sheephead = 400, /obj/item/food/fish/salt_water/lanternfish = 200, /obj/item/stack/spacecash/c1 = 700, /obj/item/fishing_component/hook/bone = 700, /obj/item/stack/fish_points = 600, /obj/item/food/canned/beans = 600, /obj/item/food/canned/peaches = 600, /obj/item/clothing/head/beret/fishing_hat = 200, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 100)
-	},
+/turf/open/water/deep/saltwater/safe,
 /area/facility_hallway/central)
 "Sc" = (
 /obj/effect/turf_decal/siding/thinplating/dark/corner{
@@ -14867,7 +14925,6 @@
 	resistance_flags = 115
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -16852,7 +16909,6 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -16921,7 +16977,6 @@
 	set_luminosity = 24
 	},
 /turf/open/water/deep/polluted{
-	environment = list(/obj/item/food/fish/salt_water/piscine_mermaid = 200, /obj/item/food/fish/fresh_water/mosb = 200, /obj/item/food/fish/fresh_water/ratfish = 50, /obj/item/food/tofu/prison = 1000, /obj/item/food/meat/slab/human/mutant/zombie = 1000, /obj/item/food/dough = 800, /obj/item/stack/spacecash/c1 = 700, /obj/item/food/breadslice/moldy = 300, /obj/item/food/canned/beans = 300, /obj/item/food/canned/peaches = 300, /obj/item/reagent_containers/food/drinks/bottle/small = 300, /obj/item/reagent_containers/food/drinks/bottle/wine/unlabeled = 300, /obj/item/stack/fish_points = 250, /obj/item/food/spiderling = 200, /obj/item/food/grown/harebell = 200, /obj/item/stack/sheet/mineral/wood = 200);
 	safe = 1
 	},
 /area/facility_hallway/central)
@@ -41559,7 +41614,7 @@ LM
 LM
 LM
 LM
-ll
+Jl
 hp
 hp
 Qo
@@ -46473,16 +46528,16 @@ wK
 hp
 hp
 rg
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
 ah
 ah
 sc
@@ -46730,16 +46785,16 @@ tC
 hp
 rg
 rg
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
 ah
 hM
 Bt
@@ -46994,9 +47049,9 @@ Hn
 Hn
 Hn
 Hn
-hp
-hp
-hp
+Sb
+Sb
+Sb
 ah
 XH
 CX
@@ -47251,9 +47306,9 @@ TP
 TO
 IH
 Hn
-LM
-LM
-LM
+tf
+tf
+tf
 ah
 oJ
 dv
@@ -54676,7 +54731,7 @@ hp
 Tz
 UN
 QD
-yR
+zj
 fk
 Yy
 wE
@@ -59041,15 +59096,15 @@ hp
 hp
 hp
 hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
-hp
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
 iL
 cZ
 cZ
@@ -59298,15 +59353,15 @@ rg
 rg
 rg
 rg
-hp
-hp
 Sb
 Sb
-hp
-hp
-hp
-hp
-hp
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
+Sb
 iL
 cZ
 cZ
@@ -59562,8 +59617,8 @@ rg
 rg
 rg
 rg
-hp
-hp
+Sb
+Sb
 iL
 cZ
 cZ
@@ -59819,8 +59874,8 @@ rg
 rg
 rg
 rg
-hp
-hp
+Sb
+Sb
 iL
 cZ
 cZ
@@ -60076,8 +60131,8 @@ rg
 rg
 rg
 Ye
-hp
-hp
+Sb
+Sb
 iL
 iL
 iL
@@ -60333,20 +60388,20 @@ rg
 rg
 rg
 rg
-hp
-hp
-hp
-hp
-hp
-el
+Sb
+Sb
+Sb
+Sb
+Sb
+js
 iL
 pU
 eG
 pU
 iL
-ll
-hp
-el
+Jl
+Sb
+js
 iL
 pU
 eG
@@ -60590,20 +60645,20 @@ rg
 rg
 rg
 rg
-hp
-hp
-hp
-hp
-hp
-ML
+Sb
+Sb
+Sb
+Sb
+Sb
+HP
 KG
 fB
 XQ
 Xc
 nO
-OO
-hp
-ML
+MO
+Sb
+HP
 aq
 fB
 XQ
@@ -60852,15 +60907,15 @@ rg
 rg
 rg
 rg
-jl
-WE
-WE
-WE
-WE
+Eb
+jp
+jp
+jp
+jp
 Nw
-gv
-hp
-jl
+Ll
+Sb
+Eb
 WE
 WE
 WE
