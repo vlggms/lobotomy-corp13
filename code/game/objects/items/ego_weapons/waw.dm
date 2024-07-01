@@ -2127,3 +2127,17 @@
 		playsound(src.loc, 'sound/weapons/fixer/generic/energy3.ogg', 75, TRUE)
 		return
 	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)
+
+/obj/item/ego_weapon/sunyata//TODO: give it something special. inhands
+	name = "ya sunyata tad rupam"
+	desc = "One. Two. The weight of your Karma returns with each rumbling of the earth."
+	icon_state = "sunyata"
+	force = 40
+	attack_speed = 0.8
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("smacks", "slaps", "attacks", "pokes")
+	attack_verb_simple = list("smack", "slap", "attack", "poke")
+	hitsound = 'sound/abnormalities/myformempties/attack.ogg'
+	attribute_requirements = list(
+							PRUDENCE_ATTRIBUTE = 60,
+							TEMPERANCE_ATTRIBUTE = 60)

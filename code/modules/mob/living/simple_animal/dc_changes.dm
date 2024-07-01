@@ -61,3 +61,8 @@
 /datum/dc_change/gold_staggered
 	potency = 1.5
 	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
+
+/// up to 2.16x damage, My Form Empties
+/datum/dc_change/karma
+	potency = 1.1
+	damage_type = list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)
