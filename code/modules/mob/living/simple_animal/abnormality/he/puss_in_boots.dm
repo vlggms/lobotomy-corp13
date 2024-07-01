@@ -305,7 +305,7 @@
 //Death/Defeat
 /mob/living/simple_animal/hostile/abnormality/puss_in_boots/death(gibbed)
 	if(health <= 0)
-		playsound(get_turf(src), 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 0, 2)
+		playsound(get_turf(src), 'sound/effects/limbus_death.ogg', 50, 0, 2)
 	density = FALSE
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)

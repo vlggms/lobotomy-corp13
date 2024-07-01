@@ -219,7 +219,7 @@
 	pixel_y = 0
 	base_pixel_y = 0
 	density = FALSE
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 60, 1)
+	playsound(src, 'sound/effects/limbus_death.ogg', 100, 1)
 	animate(src, transform = matrix()*0.6,time = 0)
 	for(var/mob/living/carbon/human/survivor in survivors)
 		if(survivor.stat == DEAD || !survivor.ckey)
