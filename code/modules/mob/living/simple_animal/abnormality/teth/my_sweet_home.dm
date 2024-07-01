@@ -27,8 +27,6 @@
 	death_message = "crumbles."
 	faction = list("hostile")
 	start_qliphoth = 1
-	var/ranged_damage = 15
-	var/damage_dealt = 0
 
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = list(40, 40, 50, 50, 50),
@@ -39,20 +37,32 @@
 	work_damage_amount = 5
 	work_damage_type = BLACK_DAMAGE
 
-	var/list/counter1 = list() //from FAN, although changed
-	var/list/counter2 = list()
-
-	var/slam_cooldown = 10 SECONDS
-	var/slam_cooldown_time
-
 	ego_list = list(
 		/datum/ego_datum/weapon/hearth,
 		/datum/ego_datum/armor/hearth,
 	)
-
 	gift_type =  /datum/ego_gifts/hearth
-
 	abnormality_origin = ABNORMALITY_ORIGIN_WONDERLAB
+
+	observation_prompt = "\"I am a home.\" <br>\
+		A happy little home, just for you. <br>\
+		A perfect, safe place away from this scary room. <br>\
+		Everything for you. <br>\
+		Won't you come inside?"
+	observation_choices = list("Go inside", "Don't go inside")
+	correct_choices = list("Don't go inside")
+	observation_success_message = "Some things are too good to be true. <br>\
+		You take the key from under the doormat, and leave."
+	observation_fail_message = "A key appears in your hand. <br>\
+		You move to open the door. <br>\
+		But at the last minute, you are pulled away by another agent to safety."
+
+	var/ranged_damage = 15
+	var/damage_dealt = 0
+	var/list/counter1 = list() //from FAN, although changed
+	var/list/counter2 = list()
+	var/slam_cooldown = 10 SECONDS
+	var/slam_cooldown_time
 
 
 /mob/living/simple_animal/hostile/abnormality/my_sweet_home/Moved()

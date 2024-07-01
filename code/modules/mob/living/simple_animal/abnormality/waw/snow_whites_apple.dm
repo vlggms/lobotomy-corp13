@@ -51,24 +51,23 @@
 		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5,
 	)
 
-	observation_prompt = "(You see and feel something.) \
-The soil is solid. A little bird is sitting beside me. \
-No, it is not a bird. It is a rotting, decaying carcass of a bird. \
-Nothing is around me. The prince came to wake sleeping Snow White up with a kiss. \
-The deadly poison that can melt a bone with a drop proved to be useless. \
-Why does no one visit me? Why does no one share my pain? \
-Why does no one like me? I hope I had legs, no, it doesn't have to be legs. \
-All I want is to be able to move. Oh, redemption......"
-
+	observation_prompt = "(You see and feel something.) <br>\
+		The soil is solid. <br>A little bird is sitting beside me. <br>\
+		No, it is not a bird. <br>It is a rotting, decaying carcass of a bird. <br>\
+		Nothing is around me. <br>The prince came to wake sleeping Snow White up with a kiss. <br>\
+		The deadly poison that can melt a bone with a drop proved to be useless. <br>\
+		Why does no one visit me? <br>Why does no one share my pain? <br>\
+		Why does no one like me? <br>I hope I had legs, no, it doesn't have to be legs. <br>\
+		All I want is to be able to move. <br>Oh, redemption......"
 	observation_choices = list("I shall go find it.", "It does not exist.")
 	correct_choices = list("It does not exist.")
-	observation_success_message = "This is unfair. I want to be happy. It's too painful to wait. \
-It is my bane that no one is around me. I want this misery to crush me to nonexistence. \
-Some kind of legs sprouted out of me but I have no place to go. However, I do not rot. I cannot stop existing. \
-I have to go, although I have no place to go. I have to go. I go."
+	observation_success_message = "This is unfair. <br>I want to be happy. <br>It's too painful to wait. <br>\
+		It is my bane that no one is around me. <br>I want this misery to crush me to nonexistence. <br>\
+		Some kind of legs sprouted out of me but I have no place to go. <br>However, I do not rot. <br>I cannot stop existing. <br>\
+		I have to go, although I have no place to go. <br>I have to go. <br>I go."
 
-	observation_fail_message = "From some moment, I realized I can walk. \
-I see light. I hear people. I will be free from this torment. For I will meet my redemption"
+	observation_fail_message = "From some moment, I realized I can walk. <br>\
+		I see light. <br>I hear people. <br>I will be free from this torment. <br>For I will meet my redemption"
 
 	initial_language_holder = /datum/language_holder/plant //essentially flavor
 	var/togglemovement = FALSE

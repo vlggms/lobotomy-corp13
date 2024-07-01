@@ -44,7 +44,6 @@
 	work_damage_amount = 10
 	work_damage_type = WHITE_DAMAGE
 
-	//change the E.G.O to "warring"
 	ego_list = list(
 		/datum/ego_datum/weapon/warring,
 		/datum/ego_datum/weapon/warring2,
@@ -53,6 +52,16 @@
 	gift_type =  /datum/ego_gifts/warring
 	gift_message = "The totem somehow dons a seemingly ridiculous hat on your head."
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
+
+	observation_prompt = "The totem sits atop a pile of gore and viscera. <br>\
+		Human scalps dangle motionlessly, strung to its wings. <br>\
+		Though the totem lies still, you feel compelled to answer it."
+	observation_choices = list("Speak", "Remain silent")
+	correct_choices = list("Remain silent")
+	observation_success_message = "The disgusting totem answered with silence. <br>\
+		The Thunderbird had been defeated long ago, its existence being its only privilege."
+	observation_fail_message = "Before you can utter a word, thunder booms within the cell. <br>\
+		The Thunderbird can be spoken to, but never reasoned with."
 
 /*---Combat---*/
 	//Melee stats

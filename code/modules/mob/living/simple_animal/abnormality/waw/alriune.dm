@@ -31,12 +31,12 @@
 	light_range = 9
 	light_power = 1
 
-	observation_prompt = "You told me, shedding petals instead of tears. \
-\"We were all nothing but soil once, so do not speak of an end here.\" \
-You told me, blossoming flowers from body as if they are your last words. \"Soon...\""
+	observation_prompt = "You told me, shedding petals instead of tears. <br>\
+		\"We were all nothing but soil once, so do not speak of an end here.\" <br>\
+		You told me, blossoming flowers from body as if they are your last words. <br>\"Soon...\""
 	observation_choices = list("Spring will come.", "Winter will come.")
 	correct_choices = list("Spring will come.", "Winter will come.")
-	observation_success_message = "Change is coming. Slowly, rapturously, my end began." //TODO : multiple answers
+	observation_success_message = "Change is coming. <br>Slowly, rapturously, my end began." //TODO : multiple answers
 
 	/// Currently displayed petals. When value is at 3 - reset to 0 and perform attack
 	var/petals_current = 0

@@ -52,6 +52,16 @@ It has now been over four months. Now we get her for real. -Coxswain
 	gift_type = /datum/ego_gifts/crimson
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "(The chamber is empty, except the Little Red Riding Hooded Mercenary, and her axe and gun. She seems exhausted) <br>\
+		Am I really alive? <br>What if I'm a ghost that doesn't even know it's dead? <br>\
+		The only thing I love in my life is the death of the wolf."
+	observation_choices = list("Exit the room", "Mourn for her memories")
+	correct_choices = list("Mourn for her memories")
+	observation_success_message = "I will swing my axe again tomorrow, still driven by hatred like I have been forever. <br>\
+		But tonight, I think I can sleep peacefully."
+	observation_fail_message = "Knock on my door whenever you need my service. <br>\
+		This is my struggle."
+
 	/*
 	Red's targeting logic
 

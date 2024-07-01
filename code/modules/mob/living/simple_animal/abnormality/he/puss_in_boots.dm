@@ -40,6 +40,14 @@
 	gift_type =  /datum/ego_gifts/inheritance
 	abnormality_origin = "Artbook"
 
+	observation_prompt = "The miller, my old master, when he passed he left his mill, his donkey and myself to his three sons. <br>\
+		I was left to the youngest and the elders denied him any right to the mill. <br>I felt for the poor lad and so, I turned the young master into a Prince, <br>\
+		and one day a King. <br>I can do the same for you - Are you ready to claim your inheritance?"
+	observation_choices = list("Yes", "No")
+	correct_choices = list("Yes")
+	observation_success_message = "Excellent, by my paw you shall make a fine master, envy of all your peers!"
+	observation_fail_message = "Bah! When will someone worthy arrive?"
+
 	//Work/misc Vars
 	var/list/stats = list(
 		FORTITUDE_ATTRIBUTE,

@@ -30,10 +30,10 @@
 	secret_chance = TRUE
 	secret_icon_state = "megalovania"
 
-	observation_prompt = "The armor that took away many people's lives is sitting in front of you. You can put it on, if you wish."
+	observation_prompt = "The armor that took away many people's lives is sitting in front of you. <br>You can put it on, if you wish."
 	observation_choices = list("Put it on", "Dont't put it on")
 	correct_choices = list("Put it on")
-	observation_success_message = "It seems like you were not pacifist. You feel the armor's warm welcome."
+	observation_success_message = "It seems like you were not pacifist. <br>You feel the armor's warm welcome."
 	observation_fail_message = "The armor waits for another reckless one."
 
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'

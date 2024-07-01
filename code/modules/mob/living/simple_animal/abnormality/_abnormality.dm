@@ -325,6 +325,12 @@
 /mob/living/simple_animal/hostile/abnormality/proc/PostSpawn()
 	SHOULD_CALL_PARENT(TRUE)
 	HandleStructures()
+	var/condition = FALSE //Final observation debug
+	for(var/answer in observation_choices)
+		if(answer in correct_choices)
+			condition = TRUE
+	if(!condition)
+		CRASH("Abnormality has no correct choice for final observation!")
 	return
 
 // Moves structures already in its datum; Overrides can spawn structures here.
@@ -521,6 +527,9 @@
 	return portrait
 
 /mob/living/simple_animal/hostile/abnormality/proc/FinalObservation(mob/living/carbon/human/user)
+	if(!datum_reference.observation_ready) //They didn't refresh the panel
+		to_chat(user, span_notice("This final observation has already been completed."))
+		return
 	if(gift_type && !istype(user.ego_gift_list[gift_type.slot], /datum/ego_gifts/empty))
 		if(istype(user.ego_gift_list[gift_type.slot], gift_type))
 			to_chat(user, span_warning("You have already recieved a gift from this abnormality. Do not be greedy!"))
@@ -532,7 +541,7 @@
 		to_chat(user, span_notice("Someone is already observing [src]!"))
 		return
 	observation_in_progress = TRUE
-	var/answer = tgui_alert(user, "[observation_prompt]", "Final Observation of [src]", observation_choices, timeout = 60 SECONDS)
+	var/answer = final_observation_alert(user, "[observation_prompt]", "Final Observation of [src]", observation_choices, timeout = 60 SECONDS)
 	if(answer in correct_choices)
 		condition = TRUE
 	ObservationResult(user, condition)
@@ -540,12 +549,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/proc/ObservationResult(mob/living/carbon/human/user, condition)
 	if(condition) //Successful, could override for longer observations as well.
-		tgui_alert(user,"[observation_success_message]", "OBSERVATION SUCCESS",list("Ok"), timeout=20 SECONDS) //Some of these take a long time to read
+		final_observation_alert(user,"[observation_success_message]", "OBSERVATION SUCCESS",list("Ok"), timeout=20 SECONDS) //Some of these take a long time to read
 		if(gift_type)
 			user.Apply_Gift(new gift_type)
 			playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 30 , FALSE)
 	else
-		tgui_alert(user,"[observation_fail_message]", "OBSERVATION FAIL",list("Ok"), timeout=20 SECONDS)
+		final_observation_alert(user,"[observation_fail_message]", "OBSERVATION FAIL",list("Ok"), timeout=20 SECONDS)
 		playsound(get_turf(user), 'sound/machines/synth_no.ogg', 30 , FALSE)
 	datum_reference.observation_ready = FALSE
 

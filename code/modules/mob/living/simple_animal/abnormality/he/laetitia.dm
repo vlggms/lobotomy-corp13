@@ -26,6 +26,17 @@
 	gift_message = "I hope you're pleased with this!"
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "This place is so gloomy, everyone always seems so sad and they don't smile. <br>\
+		It's lonely to be sad, so, this little lady has been secretly giving them all presents filled with friends! <br>\
+		Did they like the surprise?"
+	observation_choices = list("Tell the truth", "Lie and say they did")
+	correct_choices = list("Tell the truth")
+	observation_success_message = "Oh, that's sad... <br>Even if they're my friends, that doesn't mean they're your friends as well. <br>\
+		I won't give you a present, but, could you stay and play with me some more today?"
+	observation_fail_message = "I'm glad! <br>I wish I could have seen their faces, I bet they were so surprised! <br>\
+		You look lonely too, I hope my present will make you laugh as well!"
+
+
 /mob/living/simple_animal/hostile/abnormality/laetitia/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
 	var/datum/status_effect/pranked/P = user.has_status_effect(STATUS_EFFECT_PRANKED)

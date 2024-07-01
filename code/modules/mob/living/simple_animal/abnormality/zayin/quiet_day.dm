@@ -37,20 +37,20 @@
 	harvest_phrase = span_notice("%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.")
 	harvest_phrase_third = "%ABNO glances at %PERSON. Suddenly, %VESSEL seems to be more full."
 
-	observation_prompt = "The shadow of an old man seems to be contemplating about something. \
-\"Don\'t you ever wish you could go back to those better times? To be able to enjoy life to the fullest? \
-To relive the best moments of your life again? \
-To remember her face? To remember that young man's name? \
-Perhaps it's foolish of me to ask for this. I want to hear your opinion, young\'in. \
-Would it be worth chasing after those old, familiar memories?\""
+	observation_prompt = "The shadow of an old man seems to be contemplating about something. <br>\
+		\"Don\'t you ever wish you could go back to those better times? To be able to enjoy life to the fullest? <br>\
+		To relive the best moments of your life again? <br>\
+		To remember her face? To remember that young man's name? <br>\
+		Perhaps it's foolish of me to ask for this. I want to hear your opinion, young\'in. <br>\
+		Would it be worth chasing after those old, familiar memories?\""
 	observation_choices = list("It's not wrong.", "Perhaps it's better to move on.")
 	correct_choices = list("Perhaps it's better to move on.")
-	observation_success_message = "\"I suppose you're right after all.\" \
-\"If I can't even remember their names and faces, what worth even are those memories?\" \
-\"Go on. Leave before you forget too.\""
-	observation_fail_message = "\"Indeed. There's no harm, right?\" \
-\"...Yet why can't I remember her face?\" \
-As you're about to leave, you hear the old man croak out something. \"Who are you again?\""
+	observation_success_message = "\"I suppose you're right after all.\" <br>\
+		\"If I can't even remember their names and faces, what worth even are those memories?\" <br>\
+		\"Go on. Leave before you forget too.\""
+	observation_fail_message = "\"Indeed. There's no harm, right?\" <br>\
+		\"...Yet why can't I remember her face?\" <br>\
+		As you're about to leave, you hear the old man croak out something. \"Who are you again?\""
 
 	var/buff_given
 	var/datum/looping_sound/quietday_ambience/soundloop

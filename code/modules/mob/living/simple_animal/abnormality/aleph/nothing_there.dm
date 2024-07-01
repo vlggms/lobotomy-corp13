@@ -46,19 +46,19 @@
 		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5,
 	)
 
-	observation_prompt = "*Teeth grinding* Incomprehensible sounds can be heard. \
-Its body was already broken long time ago. \
-The twisted mouth opens, the crushed down tongue undulates. \"M-ma......man-ag......r.......\" It's calling for the manager."
+	observation_prompt = "*Teeth grinding* <br>Incomprehensible sounds can be heard. <br>\
+		Its body was already broken long time ago. <br>\
+		The twisted mouth opens, the crushed down tongue undulates. <br>\"M-ma......man-ag......r.......\" <br>It's calling for the manager."
 	observation_choices = list("Approach it", "Ignore it")
 	correct_choices = list("Ignore it")
-	observation_success_message = "A chunk of flesh dropped from the mouth to the ground, depriving the abnormality an ability to talk. \
-It's talking inside the body of an employee. But it is not the employee who speaks. \
-The sound of calling me. Is nothing but an empty shell mimicking a dead person. \
-How many employees would have suffered to this sound? It keeps getting closer to human. \
-It keeps trying. However, as always, at the end, Nothing there."
-	observation_fail_message = "I think of people who were friends with this employee. \
-Those eyes, shoulders, and every bit of muscle belong to someone else. \
-It smiles. No, it pretends to smile. Who could be it?"
+	observation_success_message = "A chunk of flesh dropped from the mouth to the ground, depriving the abnormality an ability to talk. <br>\
+		It's talking inside the body of an employee. <br>But it is not the employee who speaks. <br>\
+		The sound of calling me. <br>Is nothing but an empty shell mimicking a dead person. <br>\
+		How many employees would have suffered to this sound? <br>It keeps getting closer to human. <br>\
+		It keeps trying. <br>However, as always, at the end, Nothing there."
+	observation_fail_message = "I think of people who were friends with this employee. <br>\
+		Those eyes, shoulders, and every bit of muscle belong to someone else. <br>\
+		It smiles. <br>No, it pretends to smile. <br>Who could be it?"
 
 	var/mob/living/disguise = null
 	var/saved_appearance

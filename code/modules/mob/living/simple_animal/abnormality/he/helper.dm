@@ -47,9 +47,9 @@
 	observation_prompt = "Is fun to clean. I was..."
 	observation_choices = list("You are special")
 	correct_choices = list("You are special")
-	observation_success_message = "There were many friends who looked like me. I was special. \
-My creator always said to me. \"You have to be sent to her. You are special. You can give them a very special present.\" \
-Numbers of tools, which were devoid of for my friends, were put into me. When I was sent to a new home, I gave them a present."
+	observation_success_message = "There were many friends who looked like me. <br>I was special. <br>\
+		My creator always said to me. <br>\"You have to be sent to her. You are special. <br>You can give them a very special present.\" <br>\
+		Numbers of tools, which were devoid of for my friends, were put into me. <br>When I was sent to a new home, I gave them a present."
 
 	var/charging = FALSE
 	var/dash_num = 50

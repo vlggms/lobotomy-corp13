@@ -33,20 +33,20 @@
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
 
-	observation_prompt = "Come on, don't be like that. I might look hideous but that's not important to you, right? \
-I am happy that you can hear me. I once fought for happiness of the world. But soon after, I noticed. \
-Happiness of the world means happiness for me. I'm trying to stay happy. \
-I don't care even if it got me to the point where I look like this. Have you met my sisters? We were always one. \
-We fought together, and shared a common goal. By the way, Are you happy now?"
+	observation_prompt = "Come on, don't be like that. <br>I might look hideous but that's not important to you, right? <br>\
+		I am happy that you can hear me. <br>I once fought for happiness of the world. <br>But soon after, I noticed. <br>\
+		Happiness of the world means happiness for me. <br>I'm trying to stay happy. <br>\
+		I don't care even if it got me to the point where I look like this. <br>Have you met my sisters? <br>We were always one. <br>\
+		We fought together, and shared a common goal. <br>By the way, are you happy now?"
 	observation_choices = list("Yes, I'm happy", "No, I'm not happy")
 	correct_choices = list("Yes, I'm happy")
-	observation_success_message = "(The egg shook violently) \
-Don't lie. Why have we been ruined like this if that's true? \
-And why have you ended up like that? My greed will not be sated with such flimsy conviction. \
-But if your answer is a resolve for the future, and not just a statement of fact... Things might change, slowly."
-	observation_fail_message = "I knew you were not happy. \
-You are like me. You trapped yourself inside of an egg, just like me. \
-The amber-colored sky is beautiful. Oh, I'm getting hungry again."
+	observation_success_message = "(The egg shook violently) <br>\
+		Don't lie. <br>Why have we been ruined like this if that's true? <br>\
+		And why have you ended up like that? <br>My greed will not be sated with such flimsy conviction. <br>\
+		But if your answer is a resolve for the future, and not just a statement of fact... <br>Things might change, slowly."
+	observation_fail_message = "I knew you were not happy. <br>\
+		You are like me. <br>You trapped yourself inside of an egg, just like me. <br>\
+		The amber-colored sky is beautiful. <br>Oh, I'm getting hungry again."
 
 	//Some Variables cannibalized from helper
 	var/charge_check_time = 1 SECONDS
