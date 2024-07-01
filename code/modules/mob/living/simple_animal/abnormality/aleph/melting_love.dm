@@ -214,7 +214,7 @@
 	melee_damage_lower = 80
 	melee_damage_upper = 85
 	projectiletype = /obj/projectile/melting_blob/enraged
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	desc += " It looks angry."
 
 /mob/living/simple_animal/hostile/abnormality/melting_love/proc/SpawnBigSlime(mob/living/simple_animal/hostile/slime/big/S)

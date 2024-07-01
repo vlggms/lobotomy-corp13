@@ -1208,3 +1208,22 @@
 		return
 	var/mob/living/carbon/human/status_holder = owner
 	status_holder.adjustSanityLoss(stacks * stacks)//sanity damage is the # of stacks squared
+
+/datum/status_effect/healing_block
+	id = "healing_block_base"
+	status_type = STATUS_EFFECT_REFRESH
+	alert_type = null
+
+/datum/status_effect/healing_block/on_apply()
+	if(!HAS_TRAIT(owner, TRAIT_PHYSICAL_HEALING_BLOCKED))
+		ADD_TRAIT(owner, TRAIT_PHYSICAL_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+	if(ishuman(owner) && !HAS_TRAIT(owner, TRAIT_SANITY_HEALING_BLOCKED))
+		ADD_TRAIT(owner, TRAIT_SANITY_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+	return TRUE
+
+/datum/status_effect/healing_block/on_remove()
+	if(locate(/datum/status_effect/healing_block) in owner.status_effects)
+		return
+	REMOVE_TRAIT(owner, TRAIT_PHYSICAL_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
+	if(ishuman(owner))
+		REMOVE_TRAIT(owner, TRAIT_SANITY_HEALING_BLOCKED, STATUS_EFFECT_TRAIT)
