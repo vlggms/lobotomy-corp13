@@ -11,21 +11,24 @@
 	var/list/ego_list = list()
 
 GLOBAL_LIST_INIT(unspawned_tools, list(
+	/obj/structure/toolabnormality/attribute_giver/snake_oil,
+	/obj/structure/toolabnormality/attribute_giver/skin,
+	/obj/structure/toolabnormality/attribute_giver/vivavoce,
+	/obj/structure/toolabnormality/attribute_giver/theonite_slab,
 	/obj/structure/toolabnormality/dr_jekyll,
 	/obj/structure/toolabnormality/fateloom,
-	/obj/structure/toolabnormality/theonite_slab,
 	/obj/structure/toolabnormality/treesap,
-	/obj/structure/toolabnormality/vivavoce,
 	/obj/structure/toolabnormality/behavior,
 	/obj/structure/toolabnormality/bracelet,
 	/obj/structure/toolabnormality/aspiration,
-	/obj/structure/toolabnormality/skin,
-	/obj/structure/toolabnormality/snake_oil,
 	/obj/structure/toolabnormality/theresia,
 	/obj/structure/toolabnormality/mirror,
 	/obj/structure/toolabnormality/researcher,
 	/obj/structure/toolabnormality/promise,
 	/obj/structure/toolabnormality/you_happy,
+//	/obj/structure/toolabnormality/touch,
+//	/obj/structure/toolabnormality/wishwell,
+//	/obj/structure/toolabnormality/realization,
 ))
 
 /obj/effect/landmark/toolspawn

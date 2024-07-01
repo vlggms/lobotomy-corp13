@@ -1,36 +1,33 @@
 #define STATUS_EFFECT_ROLECALL /datum/status_effect/stacking/rolecall
-/obj/structure/toolabnormality/vivavoce
+/obj/structure/toolabnormality/attribute_giver/vivavoce
 	name = "viva voce"
 	desc = "A very old-fashioned communication device."
 	icon_state = "vivavoce"
-	var/list/users = list()
+
+	max_boost = 50
+	given_attribute = TEMPERANCE_ATTRIBUTE
+	given_status_effect = STATUS_EFFECT_ROLECALL
+	feedback_message = "You pick up the phone and hear nothing, but you feel as if someone is behind you."
+	full_boost_message = "It's silent."
 
 	ego_list = list(
 		/datum/ego_datum/weapon/ringing,
 		/datum/ego_datum/armor/ringing,
 	)
 
-/obj/structure/toolabnormality/vivavoce/attack_hand(mob/living/carbon/human/user)
-	..()
-	if(!do_after(user, 6, user))
+/obj/structure/toolabnormality/attribute_giver/vivavoce/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
 		return
-	if(get_level_buff(user, TEMPERANCE_ATTRIBUTE) >= 50)
-		to_chat(user, span_notice("It's silent."))
-		return //You don't need any more.
 
-	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, 5)
-	var/datum/status_effect/stacking/rolecall/R = user.has_status_effect(/datum/status_effect/stacking/rolecall)
-	if(!(user in users))
-		users += user
+	if(used_by[user] == 1) // First use
 		if(prob(50))
 			playsound(user, 'sound/abnormalities/vivavoce/doorknock.ogg', 100, FALSE, -5)
-	else
-		user.physiology.black_mod *= 1.10
-		if(R)
-			R.add_stacks(1)
+		return
 
-	user.apply_status_effect(STATUS_EFFECT_ROLECALL)
-	to_chat(user, span_userdanger("You pick up the phone and hear nothing, but you feel as if someone is behind you."))
+	user.physiology.black_mod *= 1.10
+	var/datum/status_effect/stacking/rolecall/R = user.has_status_effect(/datum/status_effect/stacking/rolecall)
+	R.add_stacks(1)
 
 // Status Effect
 /datum/status_effect/stacking/rolecall

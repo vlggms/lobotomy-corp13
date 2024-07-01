@@ -1,32 +1,22 @@
 #define STATUS_EFFECT_SNAKE_OIL /datum/status_effect/snake_oil
-/obj/structure/toolabnormality/snake_oil
-	name = "all-natural snake oil"
-	desc = "A purported panacea that will supposedly treat anything from minor scratches to Alzheimer's."
-	icon_state = "snake_oil"
-	var/list/users = list()
+
+/obj/structure/toolabnormality/attribute_giver/snake_oil
+	given_status_effect = STATUS_EFFECT_SNAKE_OIL
 
 	ego_list = list(
 		/datum/ego_datum/weapon/swindle,
 		/datum/ego_datum/armor/swindle,
 	)
 
-/obj/structure/toolabnormality/snake_oil/attack_hand(mob/living/carbon/human/user)
-	..()
-	if(!do_after(user, 6, user))
+/obj/structure/toolabnormality/attribute_giver/snake_oil/attack_hand(mob/living/carbon/human/user)
+	. = ..()
+	if(!.)
 		return
-	if(get_level_buff(user, FORTITUDE_ATTRIBUTE) >= 100)
-		to_chat(user, span_notice("You've had enough."))
-		return //You don't need any more.
 
-	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 10)
-	if(!(user in users))
-		users += user
-	else
-		user.physiology.red_mod *= 1.10
-
-	user.apply_status_effect(STATUS_EFFECT_SNAKE_OIL)
-	to_chat(user, span_userdanger("You take a sip, ugh, it tastes nasty!"))
 	playsound(user.loc, 'sound/items/drink.ogg', rand(10,50), TRUE)
+
+	if(used_by[user] != 1) // Not their first use
+		user.physiology.red_mod *= 1.10
 
 // Status Effect
 /datum/status_effect/snake_oil
