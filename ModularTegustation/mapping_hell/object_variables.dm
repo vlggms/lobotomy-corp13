@@ -3,6 +3,11 @@ if(name != initial(name)){ \
 	variables_to_add += "name = \"[name]\"" \
 }
 
+#define SAVE_DESC_AS_VARIABLE \
+if(desc != initial(desc)){\
+	variables_to_add += "desc = \"[desc]\"" \
+}
+
 #define SAVE_DIR_AS_VARIABLE \
 if(dir != initial(dir) || rotation != NORTH){ \
 	var/pre_variable; \
@@ -66,6 +71,7 @@ if(pixel_y != initial(pixel_y)){ \
 
 	if(child == FALSE)
 		SAVE_NAME_AS_VARIABLE
+		SAVE_DESC_AS_VARIABLE
 		SAVE_PIXEL_X_AS_VARIABLE
 		SAVE_PIXEL_Y_AS_VARIABLE
 
@@ -133,8 +139,8 @@ if(pixel_y != initial(pixel_y)){ \
 
 /obj/machinery/camera/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_DIR_AS_VARIABLE
-	SAVE_PIXEL_X_AS_VARIABLE
-	SAVE_PIXEL_Y_AS_VARIABLE
+	if(c_tag != initial(c_tag))
+		variables_to_add += "c_tag = [c_tag]"
 
 	return ..()
 

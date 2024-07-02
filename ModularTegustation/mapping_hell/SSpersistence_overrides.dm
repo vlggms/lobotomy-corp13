@@ -112,7 +112,7 @@
 				var/content_string = "[processing_turf.type], [get_area(processing_turf)]"
 
 				for(var/atom/thing in processing_turf.contents)
-					if(!istype(thing) || !thing.name || istype(thing.type, /obj/effect/landmark) || istype(thing, /mob))
+					if(!istype(thing) || !thing.name || istype(thing.type, /obj/effect/landmark) || istype(thing, /mob/living/carbon/human))
 						continue
 					items_to_save += thing
 					content_string += ", [thing.type]"
@@ -127,8 +127,14 @@
 					code_file += "\"[Convert_Number_To_Symbol(iteration, override_turfs ? 703 : 27)]\" = (\n"
 					for(var/variable_item in 1 to length(items_to_save))
 						var/atom/desired_item = items_to_save[1]
-						code_file += "[desired_item.type]"
-						code_file += desired_item.save_variables(rotation)
+						if(istype(desired_item, /mob/living/simple_animal/hostile/abnormality))
+							var/mob/living/simple_animal/hostile/abnormality/abno = desired_item
+							abno.datum_reference = null
+							code_file += "/obj/effect/abnormality_helper{\n	dir = [rotation];\n	stored_abnormality = [desired_item.type]\n	}"
+						else
+							code_file += "[desired_item.type]"
+							code_file += desired_item.save_variables(rotation)
+
 						code_file += "[length(items_to_save) > 1 ? ",\n": ")\n"]"
 						items_to_save -= desired_item
 

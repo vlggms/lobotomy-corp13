@@ -85,11 +85,10 @@
 		qdel(ED)
 	for(var/atom/A in connected_structures)
 		qdel(A)
-	QDEL_NULL(landmark)
+	if(!QDELETED(landmark)) // if landmarks get deleted, they delete us, lets make sure we are first in the chain here
+		QDEL_NULL(landmark)
 	QDEL_NULL(current)
 	ego_datums = null
-	landmark = null
-	current = null
 	connected_structures = null
 	..()
 

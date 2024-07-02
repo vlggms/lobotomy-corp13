@@ -3997,6 +3997,7 @@
 #include "ModularTegustation\fishing\code\rod_components\fishing_lines.dm"
 #include "ModularTegustation\living\living.dm"
 #include "ModularTegustation\living\carbon\life.dm"
+#include "ModularTegustation\mapping_hell\abnormality_cell_helpers.dm"
 #include "ModularTegustation\mapping_hell\funky_item.dm"
 #include "ModularTegustation\mapping_hell\object_variables.dm"
 #include "ModularTegustation\mapping_hell\SSpersistence_overrides.dm"
