@@ -79,10 +79,12 @@
 	if(. && target) //reset burrow cooldown whenever in combat
 		burrow_cooldown = world.time + burrow_cooldown_time
 
-/mob/living/simple_animal/hostile/ordeal/amber_bug/AttackingTarget()
+/mob/living/simple_animal/hostile/ordeal/amber_bug/AttackingTarget(atom/attacked_target)
+	if(burrowing)
+		return
 	. = ..()
 	if(.)
-		var/dir_to_target = get_dir(get_turf(src), get_turf(target))
+		var/dir_to_target = get_dir(get_turf(src), get_turf(attacked_target))
 		animate(src, pixel_y = (base_pixel_y + 18), time = 2)
 		addtimer(CALLBACK(src, PROC_REF(AnimateBack)), 2)
 		for(var/i = 1 to 2)
