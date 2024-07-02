@@ -88,6 +88,18 @@ if(pixel_y != initial(pixel_y)){ \
 	return JSON
 
 /**
+ * Turf children
+ */
+
+/turf/open/lava/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_NAME_AS_VARIABLE
+	SAVE_DESC_AS_VARIABLE
+	if(color != initial(color))
+		variables_to_add += "color = \"[color]\""
+
+	return ..()
+
+/**
  * Structure children
  */
 
@@ -123,6 +135,14 @@ if(pixel_y != initial(pixel_y)){ \
 	SAVE_DIR_AS_VARIABLE
 	SAVE_PIXEL_X_AS_VARIABLE
 	SAVE_PIXEL_Y_AS_VARIABLE
+
+	return ..()
+
+/obj/structure/filingcabinet/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_PIXEL_X_AS_VARIABLE
+	SAVE_PIXEL_Y_AS_VARIABLE
+	if(density != initial(density))
+		variables_to_add += "density = [density]"
 
 	return ..()
 
@@ -176,6 +196,12 @@ if(pixel_y != initial(pixel_y)){ \
 	SAVE_DIR_AS_VARIABLE
 	SAVE_PIXEL_X_AS_VARIABLE
 	SAVE_PIXEL_Y_AS_VARIABLE
+
+	return ..()
+
+/obj/machinery/modular_computer/console/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_NAME_AS_VARIABLE
+	SAVE_DIR_AS_VARIABLE
 
 	return ..()
 
