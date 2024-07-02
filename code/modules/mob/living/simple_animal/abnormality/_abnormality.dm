@@ -530,7 +530,7 @@
 		to_chat(user, span_notice("Someone is already observing [src]!"))
 		return
 	observation_in_progress = TRUE
-	var/answer = tgui_alert(user, "[observation_prompt]", "Final Observation of [src]", observation_choices, timeout = 60 SECONDS)
+	var/answer = final_observation_alert(user, "[observation_prompt]", "Final Observation of [src]", observation_choices, timeout = 60 SECONDS)
 	if(answer in correct_choices)
 		condition = TRUE
 	ObservationResult(user, condition)
@@ -538,12 +538,12 @@
 
 /mob/living/simple_animal/hostile/abnormality/proc/ObservationResult(mob/living/carbon/human/user, condition)
 	if(condition) //Successful, could override for longer observations as well.
-		tgui_alert(user,"[observation_success_message]", "OBSERVATION SUCCESS",list("Ok"), timeout=20 SECONDS) //Some of these take a long time to read
+		final_observation_alert(user,"[observation_success_message]", "OBSERVATION SUCCESS",list("Ok"), timeout=20 SECONDS) //Some of these take a long time to read
 		if(gift_type)
 			user.Apply_Gift(new gift_type)
 			playsound(get_turf(user), 'sound/machines/synth_yes.ogg', 30 , FALSE)
 	else
-		tgui_alert(user,"[observation_fail_message]", "OBSERVATION FAIL",list("Ok"), timeout=20 SECONDS)
+		final_observation_alert(user,"[observation_fail_message]", "OBSERVATION FAIL",list("Ok"), timeout=20 SECONDS)
 		playsound(get_turf(user), 'sound/machines/synth_no.ogg', 30 , FALSE)
 	datum_reference.observation_ready = FALSE
 

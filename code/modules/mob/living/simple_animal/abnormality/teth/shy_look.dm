@@ -29,6 +29,12 @@
 	gift_type =  /datum/ego_gifts/shy
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "It's a good day! Are you still shy today?"
+	observation_choices = list("Yes", "No")
+	correct_choices = list("Yes")
+	observation_success_message = "\"That's no good, it's very important to have a smile on one's face! We need to be happy for our City!\""
+	observation_fail_message = "\"That's great to hear! Let's see the biggest smile you can put on to make those in the Outskirts jealous!\""
+
 	var/chance_modifier = 1
 	var/previous_mood
 	var/next_mood
