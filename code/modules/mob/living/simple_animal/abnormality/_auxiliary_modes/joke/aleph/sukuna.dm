@@ -224,6 +224,8 @@
 	for(var/mob/living/carbon/human/survivor in survivors)
 		if(survivor.stat == DEAD || !survivor.ckey)
 			continue
+		if(src.z == 6) //Test Range Z Level
+			return ..()
 		survivor.Apply_Gift(new /datum/ego_gifts/sukuna)
 		survivor.playsound_local(get_turf(survivor), 'sound/weapons/black_silence/snap.ogg', 50)
 		to_chat(survivor, span_userdanger("I'm gonna go punt Yuji now, bye."))
