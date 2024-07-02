@@ -8,16 +8,17 @@
 
 	ego_list = list(
 		/datum/ego_datum/weapon/bucket,
-		/datum/ego_datum/armor/bucket
-		)
+		/datum/ego_datum/armor/bucket,
+	)
 
 //loot lists
 	var/list/superEGO = list( //do NOT put this in the loot lists ever. SuperEGO is for inputs only so people can throw away twilight for no good reason.
 		/obj/item/ego_weapon/paradise,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/twilight,
 		/obj/item/ego_weapon/twilight,
-		/obj/item/ego_weapon/shield/distortion
-		)
+		/obj/item/ego_weapon/shield/distortion,
+	)
+
 	var/list/strongaleph = list( //items that can be bought with PE with costs over 100 and other goodies
 		/obj/item/nihil/heart,
 		/obj/item/nihil/spade,
@@ -27,13 +28,15 @@
 		/obj/item/clothing/suit/armor/ego_gear/aleph/distortion,
 		/obj/item/ego_weapon/iron_maiden,
 		/obj/item/clothing/suit/armor/ego_gear/aleph/flowering,
-		/obj/item/toy/plush/bongbong
-		)
+		/obj/item/toy/plush/bongbong,
+	)
+
 	var/list/alephitem = list(//less junk items at higher risk levels
 		/obj/item/clothing/suit/armor/ego_gear/aleph/praetorian,
 		/obj/item/toy/plush/mosb,
-		/obj/item/toy/plush/melt
-		)
+		/obj/item/toy/plush/melt,
+	)
+
 	var/list/wawitem = list(
 		/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
 		/obj/item/ego_weapon/lance/sangre,
@@ -45,8 +48,9 @@
 		/obj/item/toy/plush/bigbird,
 		/obj/item/toy/plush/rabbit,
 		/obj/item/grenade/spawnergrenade/shrimp/super,
-		/obj/item/ego_weapon/flower_waltz
-		)
+		/obj/item/ego_weapon/flower_waltz,
+	)
+
 	var/list/heitem = list(
 		/obj/item/gun/ego_gun/sodashotty,
 		/obj/item/gun/ego_gun/sodarifle,
@@ -57,7 +61,8 @@
 		/obj/item/clothing/glasses/sunglasses/reagent,
 		/obj/item/clothing/suit/hawaiian,
 		/obj/item/clothing/neck/necklace/dope,
-		)
+	)
+
 	var/list/tethitem = list(
 		/obj/item/clothing/suit/armor/ego_gear/teth/training,
 		/obj/item/ego_weapon/training,
@@ -69,16 +74,18 @@
 		/obj/item/clothing/under/suit/lobotomy/architecture,
 		/obj/item/clothing/under/suit/lobotomy/rabbit,
 		/obj/item/clothing/under/color/rainbow,
-		/obj/item/toy/plush/yuri
-		)
+		/obj/item/toy/plush/yuri,
+	)
+
 	var/list/zayinitem = list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
 		/obj/item/food/bread/bongbread,
 		/obj/item/clothing/neck/tie/horrible,
 		/obj/item/clothing/mask/cigarette/cigar/havana,
-		/mob/living/carbon/human/species/shrimp
-		)
+		/mob/living/carbon/human/species/shrimp,
+	)
+
 	var/list/normalitem = list(
 		/obj/item/reagent_containers/hypospray/medipen/salacid,
 		/obj/item/reagent_containers/hypospray/medipen/mental,
@@ -99,7 +106,8 @@
 		/obj/item/clothing/under/suit/lobotomy/welfare,
 		/obj/item/clothing/under/suit/lobotomy/extraction,
 		/obj/item/clothing/under/suit/lobotomy/records,
-		)
+	)
+
 	var/list/baditem = list(
 		/obj/item/toy/plush/yisang,
 		/obj/item/toy/plush/faust,
@@ -122,8 +130,9 @@
 		/obj/item/toy/eightball,
 		/obj/item/rack_parts,
 		/obj/item/clothing/under/color/rainbow,
-		/obj/item/coin/silver
-		)
+		/obj/item/coin/silver,
+	)
+
 	var/list/trash = list(
 		/obj/item/toy/plush/fumo, //Needs no explanation
 		/obj/item/toy/plush/blank,
@@ -139,8 +148,8 @@
 		/obj/effect/decal/cleanable/ash,
 		/obj/item/cigbutt,
 		/obj/item/food/urinalcake,
-		/obj/item/shard
-		)
+		/obj/item/shard,
+	)
 
 //Potential threats
 	var/list/dawn = list(
@@ -149,29 +158,32 @@
 		/obj/item/clothing/mask/facehugger/bongy,
 		/mob/living/simple_animal/hostile/ordeal/violet_fruit,
 		/mob/living/simple_animal/hostile/ordeal/sin_sloth,
-		/mob/living/simple_animal/hostile/ordeal/sin_gluttony
-		)
+		/mob/living/simple_animal/hostile/ordeal/sin_gluttony,
+	)
+
 	var/list/noon = list(
 		/mob/living/simple_animal/hostile/ordeal/green_bot_big,
 		/mob/living/simple_animal/hostile/ordeal/indigo_noon,
-		/mob/living/simple_animal/hostile/ordeal/sin_gloom
-		)
+		/mob/living/simple_animal/hostile/ordeal/sin_gloom,
+	)
+
 	var/list/dusk = list(
 		/mob/living/simple_animal/hostile/ordeal/sin_pride,
 		/mob/living/simple_animal/hostile/ordeal/KHz_corrosion,
 		/mob/living/simple_animal/hostile/mini_censored,
-		/mob/living/simple_animal/hostile/slime
-		)
+		/mob/living/simple_animal/hostile/slime,
+	)
+
 	var/list/midnight = list(//TODO: Add more somewhat reasonable threats
 		/mob/living/simple_animal/hostile/slime/big,
 		/mob/living/simple_animal/hostile/ordeal/sin_wrath,
-		)
+	)
 
 //This proc removes the need to copypaste every single armor and weapon into a list.
 /obj/structure/toolabnormality/wishwell/Initialize()
 	. = ..()
 
-//Sorts them into their lists
+	//Sorts them into their lists
 	for(var/path in subtypesof(/datum/ego_datum))
 		var/datum/ego_datum/ego = path
 		switch(initial(ego.cost))
@@ -191,7 +203,7 @@
 //End of loot lists
 /obj/structure/toolabnormality/wishwell/attackby(obj/item/I, mob/living/carbon/human/user)
 	//Accepts money, any EGO item except realized armor & clerk pistols and compares them to the lists
-	if(istype(I, /obj/item/tool_extractor))
+	if(istype(I, /obj/item/extraction/tool_extractor))
 		return ..()
 	if(!do_after(user, 0.5 SECONDS))
 		return
@@ -304,41 +316,44 @@
 	if(gift)
 		Dispense(gift)
 
-/obj/structure/toolabnormality/wishwell/proc/Dispense(atom/dispenseobject)
+/obj/structure/toolabnormality/wishwell/proc/Dispense(atom/output_object)
 	playsound(src, 'sound/abnormalities/bloodbath/Bloodbath_EyeOn.ogg', 80, FALSE, -3)
 	var/turf/dispense_turf = get_step(src, pick(1,2,4,5,6,8,9,10))
 	if(!isopenturf(dispense_turf))
 		dispense_turf = get_turf(src)
-	new dispenseobject(dispense_turf)
+
+	new output_object(dispense_turf)
 	var/list/water_area = range(1, dispense_turf)
 	for(var/turf/open/O in water_area)
 		new /obj/effect/particle_effect/water(O)
+
 	visible_message(span_notice("Something comes out of the well!"))
 
 //Throw yourself into the well : The Code
 /obj/structure/toolabnormality/wishwell/user_buckle_mob(mob/living/M, mob/user, check_loc = TRUE)
-	if (!istype(M, /mob/living/carbon/human))
+	if(!istype(M, /mob/living/carbon/human))
 		to_chat(usr, span_warning("It doesn't look like I can't quite fit in."))
 		return FALSE // Can only extract from humans.
 
-	if(M != user)
-		to_chat(user, span_warning("You start pulling [M] into the well."))
-		if(do_after(user, 7 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
-			if(M.stat == DEAD)
-				to_chat(user, span_notice("You throw [M] in the well!"))
-				buckle_mob(M, check_loc = check_loc)
-			else
-				to_chat(user, span_warning("How could you be so cruel? [M] is still alive!"))
+	if(M == user)
+		to_chat(user, span_warning("You start climbing into the well."))
+		if(!do_after(user, 7 SECONDS, target = M))
+			to_chat(user, span_notice("You decide that might be a bad idea."))
+			return FALSE
+
+		to_chat(user, span_userdanger("You fall into the well!"))
+
+		return ..(M, user, check_loc = FALSE) //it just works
+
+	if(M.stat != DEAD)
+		to_chat(user, span_warning("How could you be so cruel? [M] is still alive!"))
 		return
 
-	to_chat(user, span_warning("You start climbing into the well."))
-	if(!do_after(user, 7 SECONDS, target = M))
-		to_chat(user, span_notice("You decide that might be a bad idea."))
-		return FALSE
+	to_chat(user, span_warning("You start pulling [M] into the well."))
 
-	to_chat(user, span_userdanger("You fall into the well!"))
-	return ..(M, user, check_loc = FALSE) //it just works
-
+	if(do_after(user, 7 SECONDS, target = M)) //If you're going to throw someone else, they have to be dead first.
+		to_chat(user, span_notice("You throw [M] in the well!"))
+		buckle_mob(M, check_loc = check_loc)
 
 /obj/structure/toolabnormality/wishwell/post_buckle_mob(mob/living/carbon/human/M)
 	if(!ishuman(M))
@@ -368,6 +383,6 @@
 		deathgift = pick(trash)
 
 	bastards += M.ckey
-	sleep(10)
+	sleep(1 SECONDS)
 	Dispense(deathgift)
 	..()

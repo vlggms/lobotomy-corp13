@@ -214,7 +214,7 @@
 	if(!stunned)
 		return
 	status_flags &= ~GODMODE
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	stunned = FALSE
 	icon_state = icon_living
 	desc = "A large red monster with white bandages hanging from it. Its flesh oozes a bubble acid."
@@ -481,7 +481,7 @@
 	can_act = FALSE
 	SLEEP_CHECK_DEATH(1 SECONDS)
 	breach_affected = list()
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	toggle_ai(AI_OFF)
 	status_flags |= GODMODE
 	dir = EAST
@@ -493,7 +493,7 @@
 	ending = TRUE
 	can_act = FALSE
 	target.gib(TRUE)
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	toggle_ai(AI_OFF)
 	status_flags |= GODMODE
 	density = FALSE
@@ -538,7 +538,7 @@
 		Teleport(src.datum_reference.landmark)
 		breach_affected = list()
 		toggle_ai(AI_OFF)
-		adjustBruteLoss(-maxHealth)
+		adjustBruteLoss(-maxHealth, forced = TRUE)
 		can_act = TRUE
 		return FALSE
 	say("GR-RRAHHH!!!")
@@ -547,7 +547,7 @@
 	SLEEP_CHECK_DEATH(15 SECONDS)
 	status_flags &= ~GODMODE
 	icon_state = icon_living
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	visible_message(span_warning("[src] gets back up!"))
 	can_act = TRUE
 
@@ -804,7 +804,7 @@
 	SLEEP_CHECK_DEATH(20 SECONDS)
 	status_flags &= ~GODMODE
 	icon_state = icon_living
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	density = TRUE
 
 /mob/living/simple_animal/hostile/azure_hermit/death()

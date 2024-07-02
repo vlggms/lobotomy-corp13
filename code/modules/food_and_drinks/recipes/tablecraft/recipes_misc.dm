@@ -13,7 +13,7 @@
 	)
 	result = /obj/item/food/chocolateegg
 	subcategory = CAT_MISCFOOD
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/candiedapple
 	name = "Candied apple"
@@ -23,7 +23,7 @@
 	)
 	result = /obj/item/food/candiedapple
 	subcategory = CAT_MISCFOOD
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/chococoin
 	name = "Choco coin"
@@ -33,7 +33,7 @@
 	)
 	result = /obj/item/food/chococoin
 	subcategory = CAT_MISCFOOD
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/fudgedice
 	name = "Fudge dice"
@@ -43,7 +43,7 @@
 	)
 	result = /obj/item/food/fudgedice
 	subcategory = CAT_MISCFOOD
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/chocoorange
 	name = "Choco orange"
@@ -53,7 +53,7 @@
 	)
 	result = /obj/item/food/chocoorange
 	subcategory = CAT_MISCFOOD
-	always_available = FALSE
+
 
 /datum/crafting_recipe/food/friedegg
 	name = "Fried egg"

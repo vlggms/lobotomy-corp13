@@ -37,18 +37,6 @@
 	)
 	work_damage_amount = 8
 	work_damage_type = BLACK_DAMAGE
-	initial_language_holder = /datum/language_holder/plant //essentially flavor
-	var/togglemovement = FALSE
-	var/toggleplants = TRUE
-	var/plant_cooldown = 30
-	var/hedge_cooldown = 0
-	var/hedge_cooldown_delay = FLORAL_BARRIER_COOLDOWN
-	var/teleport_cooldown = 0
-	var/teleport_cooldown_delay = 60 SECONDS
-	//Spell automatically given to the abnormality.
-	var/obj/effect/proc_holder/spell/pointed/apple_barrier/barrier_spell
-	//All iterations share this list between eachother.
-	var/static/list/vine_list = list()
 
 	ego_list = list(
 		/datum/ego_datum/weapon/stem,
@@ -62,6 +50,38 @@
 		/mob/living/simple_animal/hostile/abnormality/golden_apple = 1.5,
 		/mob/living/simple_animal/hostile/abnormality/ebony_queen = 1.5,
 	)
+
+	observation_prompt = "(You see and feel something.) \
+The soil is solid. A little bird is sitting beside me. \
+No, it is not a bird. It is a rotting, decaying carcass of a bird. \
+Nothing is around me. The prince came to wake sleeping Snow White up with a kiss. \
+The deadly poison that can melt a bone with a drop proved to be useless. \
+Why does no one visit me? Why does no one share my pain? \
+Why does no one like me? I hope I had legs, no, it doesn't have to be legs. \
+All I want is to be able to move. Oh, redemption......"
+
+	observation_choices = list("I shall go find it.", "It does not exist.")
+	correct_choices = list("It does not exist.")
+	observation_success_message = "This is unfair. I want to be happy. It's too painful to wait. \
+It is my bane that no one is around me. I want this misery to crush me to nonexistence. \
+Some kind of legs sprouted out of me but I have no place to go. However, I do not rot. I cannot stop existing. \
+I have to go, although I have no place to go. I have to go. I go."
+
+	observation_fail_message = "From some moment, I realized I can walk. \
+I see light. I hear people. I will be free from this torment. For I will meet my redemption"
+
+	initial_language_holder = /datum/language_holder/plant //essentially flavor
+	var/togglemovement = FALSE
+	var/toggleplants = TRUE
+	var/plant_cooldown = 30
+	var/hedge_cooldown = 0
+	var/hedge_cooldown_delay = FLORAL_BARRIER_COOLDOWN
+	var/teleport_cooldown = 0
+	var/teleport_cooldown_delay = 60 SECONDS
+	//Spell automatically given to the abnormality.
+	var/obj/effect/proc_holder/spell/pointed/apple_barrier/barrier_spell
+	//All iterations share this list between eachother.
+	var/static/list/vine_list = list()
 
 /mob/living/simple_animal/hostile/abnormality/snow_whites_apple/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

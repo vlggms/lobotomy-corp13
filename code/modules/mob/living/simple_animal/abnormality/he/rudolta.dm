@@ -36,6 +36,21 @@
 	)
 	gift_type =  /datum/ego_gifts/christmas
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "I heard about a man who could give you anything you want once a year. Good kids have a better chance of seeing him. \
+A man who carries giant sack on his back. A man who can go anywhere in the world with his reindeer-pulled sled. \
+Alex got a present. Even though he was a naughty kid. It was unfair. I could not accept it. The next Christmas, I went to Alex's. \
+If that man comes only for Alex this time again, I will ask him why had he not come to me. \
+That night, when everyone was sleeping. I waited for the man, sitting next to sleeping Alex. \
+Sometimes, for someone, an absurd fairy tale is a silver lining of hope. When I met Santa, I imagined dismembering him. ... \
+In front of me is Santa. My ideal. People don't call it Santa. Something is twitching inside of that sack. I......"
+	observation_choices = list("Opened the sack.", "Did not open the sack.")
+	correct_choices = list("Did not open the sack.")
+	observation_success_message = "Inside of the sack is a desire. \
+A hope that I've been waiting for since when I was very young. I never opened the sack. Did you wish come true?"
+	observation_fail_message = "There was something that I have been longing for my entire life. \
+Like Pandora's Box, it will never go back into the sack."
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1.8 SECONDS
 	var/pulse_damage = 20

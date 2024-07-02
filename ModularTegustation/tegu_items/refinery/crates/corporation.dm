@@ -23,7 +23,6 @@
 		/obj/item/powered_gadget/detector_gadget/ordeal,
 		/obj/item/managerbullet,
 		/obj/item/powered_gadget/teleporter,
-		/obj/item/tool_extractor,
 	)
 
 	//Injectors and rare extractors, quite desireable as they are quite expensive.

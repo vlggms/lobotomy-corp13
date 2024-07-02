@@ -16,6 +16,16 @@
 	var/next_smash = 0
 
 	var/timerid = null
+	var/timerid_wander = null
+
+/datum/ai_controller/insane/Destroy(force, ...)
+	if(timerid)
+		deltimer(timerid)
+		timerid = null
+	if(timerid_wander)
+		deltimer(timerid_wander)
+		timerid_wander = null
+	return ..()
 
 /datum/ai_controller/insane/TryPossessPawn(atom/new_pawn)
 	if(!ishuman(new_pawn))
@@ -103,7 +113,14 @@
 	resist_chance = 80 // Anger powered break out attempts
 	var/list/currently_scared = list()
 	var/interest = 3
-	var/asshole = FALSE
+	var/is_mech_attack_on_cooldown = FALSE
+	var/mech_attack_timer_id = null
+
+/datum/ai_controller/insane/murder/Destroy()
+	if(mech_attack_timer_id)
+		deltimer(mech_attack_timer_id)
+		mech_attack_timer_id = null
+	return ..()
 
 /datum/ai_controller/insane/murder/PossessPawn(atom/new_pawn)
 	. = ..()
@@ -123,22 +140,30 @@
 /datum/ai_controller/insane/murder/MoveTo(delta_time)
 	var/mob/living/living_pawn = pawn
 	if(IS_DEAD_OR_INCAP(living_pawn))
-		deltimer(timerid)
-		timerid = null
-		return
-	var/atom/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	if(!current_movement_target || QDELETED(current_movement_target) || current_movement_target.z != living_pawn.z || get_dist(living_pawn, current_movement_target) > max_target_distance)
-		if(selected_enemy && selected_enemy.z == living_pawn.z && get_dist(living_pawn, selected_enemy) <= max_target_distance)
-			current_movement_target = selected_enemy
-		else
+		if(timerid)
 			deltimer(timerid)
 			timerid = null
+		return
+	var/atom/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(!current_movement_target || QDELETED(current_movement_target) || current_movement_target.z == living_pawn.z && get_dist(living_pawn, current_movement_target) > max_target_distance)
+		if(selected_enemy && !QDELETED(selected_enemy) && (selected_enemy.z == living_pawn.z && get_dist(living_pawn, selected_enemy) <= max_target_distance || living_pawn.z == 0))
+			current_movement_target = selected_enemy
+		else
+			if(timerid)
+				deltimer(timerid)
+				timerid = null
 			return FALSE
+
+	var/obj/vehicle/sealed/mecha/the_mecha = null
+	if(ismecha(living_pawn.loc))
+		the_mecha = living_pawn.loc
 
 	var/move_mod = living_pawn.cached_multiplicative_slowdown
 	var/isGunHealingTargetSanity = FALSE
 	var/obj/item/gun/ego_gun/banger
-	if(living_pawn.held_items && living_pawn.held_items.len == 2 && istype(living_pawn.held_items[1], /obj/item/gun/ego_gun))
+	if(the_mecha)
+		move_mod = the_mecha.movedelay + 0.1
+	else if(living_pawn.held_items && living_pawn.held_items.len == 2 && istype(living_pawn.held_items[1], /obj/item/gun/ego_gun))
 		banger = living_pawn.held_items[1]
 		var/obj/item/ammo_casing/casing = initial(banger.ammo_type)
 		var/obj/projectile/boolet = initial(casing.projectile_type)
@@ -146,27 +171,45 @@
 			var/mob/living/carbon/human/H = selected_enemy
 			if(H.sanity_lost)
 				isGunHealingTargetSanity = TRUE
-		move_mod *= 1.4
-	else
 		move_mod *= 1.2
+	var/is_mech_ranged = FALSE
+	if(the_mecha)
+		for(var/equip in the_mecha.equipment)
+			var/obj/item/mecha_parts/mecha_equipment/ME = equip
+			if(ME.range & MECHA_RANGED)
+				is_mech_ranged = TRUE
+				break
 
-	timerid = addtimer(CALLBACK(src, PROC_REF(MoveTo), delta_time), delta_time * move_mod, TIMER_STOPPABLE) // SLIGHTLY slower than what they should be *BUT* takes corners better.
+	timerid = addtimer(CALLBACK(src, PROC_REF(MoveTo), delta_time), move_mod, TIMER_STOPPABLE)
 
-	var/turf/our_turf = get_turf(living_pawn)
+	var/atom/movable/thing_to_move = the_mecha ? the_mecha : living_pawn
+	var/turf/our_turf = get_turf(thing_to_move)
 	var/turf/target_turf
-	var/current_dist = get_dist(living_pawn, current_movement_target)
-	if((current_dist < 2) && banger && !isGunHealingTargetSanity)
-		target_turf = get_step_away(living_pawn, current_movement_target)
-	else if ((!banger || isGunHealingTargetSanity) && current_dist >= 2 || current_dist >= 5)
-		var/list/path = get_path_to(living_pawn, current_movement_target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 30, 1, TYPE_PROC_REF(/turf, reachableTurftestWithMobs))
+	var/current_dist = get_dist(thing_to_move, current_movement_target)
+	if((current_dist < 2) && banger && !isGunHealingTargetSanity || is_mech_ranged && (current_dist < 4))
+		if(the_mecha)
+			the_mecha.strafe = TRUE
+		target_turf = get_step_away(thing_to_move, current_movement_target)
+	else if ((!banger || isGunHealingTargetSanity) && current_dist >= 2 && !is_mech_ranged || current_dist >= 5)
+		var/list/path = get_path_to(thing_to_move, current_movement_target, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 30, 1, TYPE_PROC_REF(/turf, reachableTurftestWithMobs))
 		if(path.len > 1)
 			target_turf = path[2]
 		else
-			target_turf = get_step_towards(living_pawn, current_movement_target)
+			target_turf = get_step_towards(thing_to_move, current_movement_target)
 	if(target_turf)
-		living_pawn.Move(target_turf, get_dir(our_turf, target_turf))
-
-	if(!(current_movement_target in oview(7, living_pawn))) // If you can't see the target enough
+		if(the_mecha)
+			the_mecha.relaymove(living_pawn, get_dir(our_turf, target_turf))
+		else
+			thing_to_move.Move(target_turf, get_dir(our_turf, target_turf))
+	else if(the_mecha)
+		var/direction = get_cardinal_dir(the_mecha, current_movement_target)
+		if(the_mecha.dir != direction)
+			if(!(the_mecha.mecha_flags & QUIET_TURNS) && !the_mecha.step_silent)
+				playsound(the_mecha, the_mecha.turnsound, 40, TRUE)
+			the_mecha.setDir(direction)
+	if(the_mecha)
+		the_mecha.strafe = FALSE
+	if(!(current_movement_target in oview(7, thing_to_move))) // If you can't see the target enough
 		interest--
 		if(interest <= 0) // Give up
 			interest = 3
@@ -175,11 +218,11 @@
 			return
 	else
 		interest = 3
-	if(get_dist(living_pawn, current_movement_target) > max_target_distance)
+	if(get_dist(thing_to_move, current_movement_target) > max_target_distance)
 		CancelActions()
 		pathing_attempts = 0
 		return
-	if(our_turf == get_turf(living_pawn) && !isliving(current_movement_target) && !ismecha(current_movement_target))
+	if(our_turf == get_turf(thing_to_move) && !isliving(current_movement_target) && !ismecha(current_movement_target))
 		if(++pathing_attempts >= MAX_PATHING_ATTEMPTS)
 			CancelActions()
 			pathing_attempts = 0
@@ -203,40 +246,44 @@
 	..()
 	var/atom/selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 
+	var/is_mecha = FALSE
+	if(ismecha(living_pawn.loc))
+		is_mecha = TRUE
 	var/has_weapon = FALSE
 	var/has_non_white_weapon = FALSE
-	for(var/obj/item/I in living_pawn.held_items)
-		if(istype(I, /obj/item/offhand))
-			continue
-		if(GetEffectiveItemForce(I) <= INSANE_MINIMUM_WEAPON_FORCE)
-			living_pawn.dropItemToGround(I, force = TRUE)
-			continue
-		has_weapon = TRUE
-		if(istype(I, /obj/item/gun/ego_gun))
-			var/obj/item/gun/ego_gun/G = I
-			var/obj/item/ammo_casing/casing = initial(G.ammo_type)
-			var/obj/projectile/boolet = initial(casing.projectile_type)
-			if(initial(boolet.damage_type) != WHITE_DAMAGE)
+	if(!is_mecha)
+		for(var/obj/item/I in living_pawn.held_items)
+			if(istype(I, /obj/item/offhand))
+				continue
+			if(GetEffectiveItemForce(I) <= INSANE_MINIMUM_WEAPON_FORCE)
+				living_pawn.dropItemToGround(I, force = TRUE)
+				continue
+			has_weapon = TRUE
+			if(istype(I, /obj/item/gun/ego_gun))
+				var/obj/item/gun/ego_gun/G = I
+				var/obj/item/ammo_casing/casing = initial(G.ammo_type)
+				var/obj/projectile/boolet = initial(casing.projectile_type)
+				if(initial(boolet.damage_type) != WHITE_DAMAGE)
+					has_non_white_weapon = TRUE
+			else if(I.damtype != WHITE_DAMAGE)
 				has_non_white_weapon = TRUE
-		else if(I.damtype != WHITE_DAMAGE)
-			has_non_white_weapon = TRUE
 
-	//if no item try to find something before fighting if already have item then it will do until the fight ends
-	var/mob/living/carbon/human/human_target = selected_enemy
-	var/list/weapon_list
-	if(istype(human_target) && human_target.sanity_lost && !has_non_white_weapon)
-		weapon_list = TryFindWeapon(FALSE)
-	else if(!has_weapon)
-		weapon_list = TryFindWeapon()
-	if(weapon_list && weapon_list.len > 0)
-		var/obj/item/weapon = weapon_list[1]
-		blackboard[BB_INSANE_PICKUPTARGET] = weapon
-		if(isturf(weapon.loc))
-			current_movement_target = weapon
-			current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
-		else
-			current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
-		return
+		//if no item try to find something before fighting if already have item then it will do until the fight ends
+		var/mob/living/carbon/human/human_target = selected_enemy
+		var/list/weapon_list
+		if(istype(human_target) && human_target.sanity_lost && !has_non_white_weapon)
+			weapon_list = TryFindWeapon(FALSE)
+		else if(!has_weapon)
+			weapon_list = TryFindWeapon()
+		if(weapon_list && weapon_list.len > 0)
+			var/obj/item/weapon = weapon_list[1]
+			blackboard[BB_INSANE_PICKUPTARGET] = weapon
+			if(isturf(weapon.loc))
+				current_movement_target = weapon
+				current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
+			else
+				current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
+			return
 
 	if(!selected_enemy)
 		if(!FindEnemies())
@@ -244,7 +291,13 @@
 		selected_enemy = blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
 
 	// Ah ha! We'll fight our current enemy.
-	if(selected_enemy && isliving(selected_enemy))
+	if(selected_enemy && is_mecha)
+		current_movement_target = selected_enemy
+		if(DT_PROB(50, delta_time))
+			current_behaviors += GET_AI_BEHAVIOR(lines_type)
+		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_mecha_attack)
+		return
+	else if(selected_enemy && isliving(selected_enemy))
 		var/mob/living/living_enemy = selected_enemy
 		if(living_enemy.status_flags & GODMODE)
 			blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
@@ -275,16 +328,17 @@
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_attack_mob)
 		return
 
-	weapon_list = TryFindWeapon()
-	if(weapon_list && weapon_list.len > 0)
-		var/obj/item/weapon = weapon_list[1]
-		blackboard[BB_INSANE_PICKUPTARGET] = weapon
-		if(isturf(weapon.loc))
-			current_movement_target = weapon
-			current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
-		else
-			current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
-		return
+	if(!is_mecha)
+		var/list/weapon_list = TryFindWeapon()
+		if(weapon_list && weapon_list.len > 0)
+			var/obj/item/weapon = weapon_list[1]
+			blackboard[BB_INSANE_PICKUPTARGET] = weapon
+			if(isturf(weapon.loc))
+				current_movement_target = weapon
+				current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
+			else
+				current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
+			return
 
 	if(FindEnemies())
 		return
@@ -294,19 +348,20 @@
 	if(IS_DEAD_OR_INCAP(living_pawn))
 		return
 	// No current enemy? We'll arm ourselves!
-	var/list/weapon_list = TryFindWeapon()
-	if(weapon_list)
-		for(var/obj/item/weapon in weapon_list)
-			var/list/path = get_path_to(living_pawn, weapon, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 30, 1, TYPE_PROC_REF(/turf, reachableTurftestWithMobs))
-			if(path.len == 0 && weapon.loc != living_pawn.loc && weapon.loc != living_pawn)
-				continue
-			blackboard[BB_INSANE_PICKUPTARGET] = weapon
-			if(isturf(weapon.loc))
-				current_movement_target = weapon
-				current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
-			else
-				current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
-			return
+	if(!ismecha(living_pawn.loc))
+		var/list/weapon_list = TryFindWeapon()
+		if(weapon_list)
+			for(var/obj/item/weapon in weapon_list)
+				var/list/path = get_path_to(living_pawn, weapon, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 30, 1, TYPE_PROC_REF(/turf, reachableTurftestWithMobs))
+				if(path.len == 0 && weapon.loc != living_pawn.loc && weapon.loc != living_pawn)
+					continue
+				blackboard[BB_INSANE_PICKUPTARGET] = weapon
+				if(isturf(weapon.loc))
+					current_movement_target = weapon
+					current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
+				else
+					current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
+				return
 	// Armed enough..? Well we'll find a new person to fight!
 	if(FindEnemies())
 		return
@@ -322,6 +377,9 @@
 		possible_locs += T
 	var/turf/open/T = pick(possible_locs)
 	if(T)
+		if(timerid)
+			deltimer(timerid)
+			timerid = null
 		current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insanity_wander/murder_wander)
 		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = T
 		locations_visited |= T
@@ -466,7 +524,10 @@
 /datum/ai_controller/insane/murder/proc/FindEnemies()
 	. = FALSE
 	var/mob/living/living_pawn = pawn
-	var/list/potential_enemies = livinginview(9, living_pawn)
+	var/atom/movable/sees_from = pawn
+	if(!isturf(living_pawn.loc))
+		sees_from = pawn.loc
+	var/list/potential_enemies = livinginview(9, sees_from)
 
 	if(!LAZYLEN(potential_enemies)) // We aint see shit!
 		return

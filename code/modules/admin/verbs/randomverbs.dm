@@ -1179,6 +1179,36 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(usr)] has [(GLOB.execution_enabled?"enabled":"disabled")] execution bullets for the manager.")
 	message_admins("[key_name_admin(usr)] has [(GLOB.execution_enabled?"enabled":"disabled")] execution bullets for the manager.")
 
+/client/proc/distort_all()
+	set category = "Admin.Fun"
+	set name = "Distort All"
+	set desc = "Applies the effects of the distortion proc to every single mob."
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/confirm = alert(src, "Please confirm you want distort all mobs? This will happen instantly.", "Confirm Distortion", "Yes", "No")
+	if(confirm != "Yes")
+		return
+
+	var/list/mobs = shuffle(GLOB.alive_mob_list.Copy()) // might change while iterating
+	var/who_did_it = key_name_admin(usr)
+
+	message_admins("[key_name_admin(usr)] started distorting all living mobs.")
+	log_admin("[key_name(usr)] distorted all living mobs.")
+	SSblackbox.record_feedback("tally", "admin_verb", 1, "Distort All")
+
+	for(var/mob/living/M in mobs)
+		CHECK_TICK
+		if(!M)
+			continue
+		M.BecomeDistortion(null, TRUE, TRUE)
+	for(var/mob/M in GLOB.player_list)
+		if(!isnewplayer(M))
+			if(M.client.prefs.toggles & SOUND_ANNOUNCEMENTS)
+				SEND_SOUND(M, sound('sound/distortions/distortion_bell.ogg'))
+	message_admins("Mass distortion started by [who_did_it] is complete.")
+
 /**
  * firing_squad is a proc for the :B:erforate smite to shoot each individual bullet at them, so that we can add actual delays without sleep() nonsense
  *

@@ -61,6 +61,10 @@
 
 	return FALSE
 
+#define Y_MAX(THE_MOB) (THE_MOB.y + THE_MOB.occupied_tiles_up_current)
+#define Y_MIN(THE_MOB) (THE_MOB.y - THE_MOB.occupied_tiles_down_current)
+#define X_MAX(THE_MOB) (THE_MOB.x + THE_MOB.occupied_tiles_right_current)
+#define X_MIN(THE_MOB) (THE_MOB.x - THE_MOB.occupied_tiles_left_current)
 /*
 	Adjacency (to anything else):
 	* Must be on a turf
@@ -71,9 +75,52 @@
 	var/turf/T = loc
 	if(!istype(T))
 		return FALSE
-	if(T.Adjacent(neighbor,target = neighbor, mover = src))
+	if(isanimal(neighbor))
+		var/mob/living/simple_animal/SA = neighbor
+		var/turf/T_neighbor = locate(clamp(x, X_MIN(SA), X_MAX(SA)), clamp(y, Y_MIN(SA), Y_MAX(SA)), z)
+		if(T.Adjacent(T_neighbor, target = T_neighbor, mover = src))
+			return TRUE
+		return FALSE
+	if(T.Adjacent(neighbor, target = neighbor, mover = src))
 		return TRUE
 	return FALSE
+
+/mob/living/simple_animal/Adjacent(atom/neighbor)
+	if(neighbor == loc)
+		return TRUE
+	var/turf/T = loc
+	if(!istype(T))
+		return FALSE
+	if(isanimal(neighbor))
+		var/mob/living/simple_animal/SA = neighbor
+		var/found_x
+		var/found_y
+		if(Y_MAX(SA) > Y_MAX(src))
+			found_y = Y_MAX(src)
+		else if(Y_MIN(SA) < Y_MIN(src))
+			found_y = Y_MIN(src)
+		else
+			found_y = SA.y
+		if(X_MAX(SA) > X_MAX(src))
+			found_x = X_MAX(src)
+		else if(X_MIN(SA) < X_MIN(src))
+			found_x = X_MIN(src)
+		else
+			found_x = SA.x
+		var/turf/T_my = locate(found_x, found_y, z)
+		var/turf/T_neighbor = locate(clamp(T_my.x, X_MIN(SA), X_MAX(SA)), clamp(T_my.y, Y_MIN(SA), Y_MAX(SA)), SA.z)
+		if(T_my.Adjacent(T_neighbor, target = T_neighbor, mover = src))
+			return TRUE
+		return FALSE
+	T = locate(clamp(neighbor.x, X_MIN(src), X_MAX(src)), clamp(neighbor.y, Y_MIN(src), Y_MAX(src)), z)
+	if(T.Adjacent(neighbor, target = neighbor, mover = src))
+		return TRUE
+	return FALSE
+
+#undef Y_MAX
+#undef Y_MIN
+#undef X_MAX
+#undef X_MIN
 
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(atom/neighbor, recurse = 1)

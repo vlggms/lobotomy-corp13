@@ -36,6 +36,18 @@
 	)
 	gift_type =  /datum/ego_gifts/desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "There is a pair of red shoes. \
+It could be sitting in front of me, or in my feet. I am......"
+	observation_choices = list("Wearing them.", "Not wearing them.")
+	correct_choices = list("Wearing them.") //TODO: Second line of dialogue, must be coded
+	observation_success_message = "I am wearing the shoes. \
+They are perfect fit, it feels good. I have a weird feeling as if I am in another world. \
+There is a sharp axe in front of me. Maybe it was there all along, or maybe I just haven't realized it until now. \
+A weapon will change a lot of things."
+	observation_fail_message = "I was not wearing the shoes. \
+The shoes' crimson color is getting deeper."
+
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(

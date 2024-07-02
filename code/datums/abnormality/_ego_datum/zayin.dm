@@ -123,3 +123,13 @@
 /datum/ego_datum/armor/oceanic
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/oceanic
 	cost = 12
+
+// Rope and Cord - Cord
+/*
+/datum/ego_datum/weapon/cord
+	item_path = /obj/item/ego_weapon/support/cord
+	cost = 12
+*/
+/datum/ego_datum/armor/cord
+	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/cord
+	cost = 12
