@@ -59,9 +59,24 @@
 		fightlist += abnocheck
 		namelist += abnocheck.name
 	var/mob/living/simple_animal/hostile/abnormality/chosen_abno = input(user,"Choose which Abnormality to fight.","Select Abnormality") as null|anything in namelist
-	var/turf/location = locate(35,35,6) //Might not be the best way to set it up right now but it works.
+	var/turf/location = locate(13,14,6) //Might not be the best way to set it up right now but it works.
 	for(var/A in fightlist)
 		var/mob/abno = A
 		if(abno.name == chosen_abno)
 			var/mob/living/simple_animal/hostile/abnormality/abnospawned = new abno(location)
 			abnospawned.core_enabled = FALSE
+
+/obj/structure/barricade/abno_barrier
+	name = "Abnormality Barrier"
+	desc = "This device is to try to prevent an abnormality from following you."
+	icon = 'icons/obj/machines/scangate.dmi'
+	icon_state = "scangate"
+	resistance_flags = INDESTRUCTIBLE
+	density = FALSE
+
+/obj/structure/barricade/meatbags/CanAllowThrough(atom/movable/mover, turf/target)
+	. = ..()
+	if(ishuman(mover))
+		return TRUE
+	else
+		return FALSE
