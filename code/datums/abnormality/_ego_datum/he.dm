@@ -72,6 +72,15 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/logging
 	cost = 35
 
+// Snow Queen - Frost Splinter
+/datum/ego_datum/weapon/frostsplinter
+	item_path = /obj/item/ego_weapon/frostsplinter
+	cost = 35
+
+/datum/ego_datum/armor/frostsplinter
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/frostsplinter
+	cost = 35
+
 // Laetitia - Funny Prank
 /datum/ego_datum/weapon/prank
 	item_path = /obj/item/gun/ego_gun/prank

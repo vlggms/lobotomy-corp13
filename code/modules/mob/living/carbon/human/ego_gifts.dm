@@ -639,6 +639,13 @@
 	prudence_bonus = -4
 	slot = CHEEK
 
+/datum/ego_gifts/frost_splinter
+	name = "Cruelty of Winter and Aroma of Roses"
+	icon_state = "frost_splinter"
+	fortitude_bonus = 6
+	prudence_bonus = 6
+	slot = CHEEK
+
 /datum/ego_gifts/harvest
 	name = "Harvest"
 	icon_state = "harvest"

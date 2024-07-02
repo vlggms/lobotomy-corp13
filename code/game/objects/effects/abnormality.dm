@@ -270,3 +270,43 @@
 	layer = BELOW_MOB_LAYER
 	alpha = 255
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/temp_visual/floor_cracks
+	icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
+	icon_state = "cracks_dark"
+	duration = 30
+	layer = ABOVE_MOB_LAYER
+
+/obj/effect/temp_visual/ice_spike
+	icon = 'ModularTegustation/Teguicons/32x48.dmi'
+	icon_state = "ice_spike1"
+	duration = 5
+	layer = ABOVE_MOB_LAYER
+
+/obj/effect/temp_visual/ice_spike/Initialize()
+	. = ..()
+	icon_state = pick("ice_spike1", "ice_spike2", "ice_spike3")
+
+/obj/effect/areaflavor_snow
+	icon = 'icons/effects/weather_effects.dmi'
+	icon_state = "snowfall_calm"
+	name = "light snow"
+	desc = "Looks like the terrain is being shifted by an abnormality."
+	layer = POINT_LAYER
+	alpha = 150
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+
+/obj/effect/area_heal
+	name = "large healing aura"
+	desc = "A large area of restorative energy."
+	icon = 'ModularTegustation/Teguicons/lc13_effects64x64.dmi'
+	icon_state = "healarea_fade"
+	pixel_x = -16
+	base_pixel_x = -16
+	pixel_y = -16
+	base_pixel_y = -16
+	density = FALSE
+	anchored = TRUE
+	layer = BELOW_MOB_LAYER
+	alpha = 200
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
