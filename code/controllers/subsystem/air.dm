@@ -2,8 +2,8 @@ SUBSYSTEM_DEF(air)
 	name = "Atmospherics"
 	init_order = INIT_ORDER_AIR
 	priority = FIRE_PRIORITY_AIR
-	wait = 0.5 SECONDS
-	flags = SS_BACKGROUND
+	wait = 2.5 SECONDS
+	flags = SS_NO_FIRE
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	var/cached_cost = 0

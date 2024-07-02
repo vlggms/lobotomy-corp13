@@ -92,5 +92,3 @@
 		ADD_GAS(id, gases)
 		gases[id][MOLES] = mix[id][MOLES]
 		gases[id][ARCHIVE] = mix[id][MOLES]
-
-
