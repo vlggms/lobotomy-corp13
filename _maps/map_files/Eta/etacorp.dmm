@@ -379,15 +379,15 @@
 	},
 /area/department_main/extraction)
 "bB" = (
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
 /obj/machinery/light{
 	dir = 4;
 	pixel_x = 9;
 	pixel_y = 4
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
@@ -428,12 +428,12 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/human)
 "bH" = (
+/obj/structure/window/reinforced/spawner{
+	resistance_flags = 115
+	},
 /obj/structure/lattice/lava{
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -579,16 +579,15 @@
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "cH" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/machinery/light{
 	dir = 8;
 	pixel_x = -9;
 	pixel_y = 4
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
+	resistance_flags = 115
 	},
 /turf/open/lava{
 	color = "#006700";
@@ -916,26 +915,6 @@
 	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
-"eg" = (
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/turf/open/lava{
-	color = "#006700";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	name = "Unrefined Enkephalin";
-	slowdown = 0
-	},
-/area/department_main/command)
 "eh" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -967,16 +946,16 @@
 /turf/open/floor/plasteel/white,
 /area/facility_hallway/training)
 "eo" = (
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner{
 	pixel_x = 32;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -2046,6 +2025,8 @@
 /area/department_main/information)
 "ju" = (
 /obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -3310,24 +3291,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/safety)
-"or" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/turf/open/lava{
-	color = "#006700";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	name = "Unrefined Enkephalin";
-	slowdown = 0
-	},
-/area/facility_hallway/east)
 "os" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 4
@@ -3376,22 +3339,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/extraction)
-"oQ" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/turf/open/lava{
-	color = "#006700";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	name = "Unrefined Enkephalin";
-	slowdown = 0
-	},
-/area/facility_hallway/east)
 "oT" = (
 /obj/effect/spawner/abnormality_room,
 /obj/structure/sign/directions/evac,
@@ -3586,13 +3533,13 @@
 	},
 /area/department_main/extraction)
 "pE" = (
+/obj/machinery/facility_holomap{
+	dir = 4
+	},
 /obj/structure/lattice/lava{
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
-	},
-/obj/machinery/facility_holomap{
-	dir = 4
 	},
 /turf/open/lava{
 	color = "#006700";
@@ -4471,6 +4418,8 @@
 /area/facility_hallway/safety)
 "tA" = (
 /obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -5427,10 +5376,12 @@
 /turf/open/floor/plasteel/sepia,
 /area/facility_hallway/training)
 "xI" = (
-/obj/structure/lattice/lava{
+/obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
-/obj/structure/window/reinforced/spawner{
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -5778,9 +5729,6 @@
 /turf/open/floor/plating,
 /area/facility_hallway/west)
 "za" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner/east{
 	density = 0;
 	resistance_flags = 115
@@ -5788,6 +5736,11 @@
 /obj/structure/window/reinforced/spawner/east{
 	density = 0;
 	pixel_y = -32;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -6098,11 +6051,13 @@
 	},
 /area/department_main/training)
 "Az" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner/east{
 	density = 0;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -6122,32 +6077,6 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/south)
-"AC" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/machinery/light{
-	dir = 8;
-	pixel_x = -9;
-	pixel_y = 4
-	},
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/turf/open/lava{
-	color = "#006700";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	name = "Unrefined Enkephalin";
-	slowdown = 0
-	},
-/area/facility_hallway/east)
 "AF" = (
 /obj/effect/turf_decal/bot,
 /obj/structure/disposalpipe/junction{
@@ -6259,9 +6188,6 @@
 /turf/open/floor/carpet/green,
 /area/department_main/safety)
 "AX" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
 	resistance_flags = 115
@@ -6269,6 +6195,11 @@
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
 	pixel_y = -32;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -6719,27 +6650,6 @@
 	},
 /turf/open/floor/facility/dark,
 /area/department_main/training)
-"CK" = (
-/obj/structure/window/reinforced/spawner/west{
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/turf/open/lava{
-	color = "#006700";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	name = "Unrefined Enkephalin";
-	slowdown = 0
-	},
-/area/department_main/command)
 "CM" = (
 /obj/effect/turf_decal/bot/left,
 /obj/structure/disposalpipe/segment{
@@ -6815,11 +6725,13 @@
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "Dc" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner{
 	density = 0;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -6924,11 +6836,13 @@
 	},
 /area/department_main/safety)
 "Dx" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -7001,9 +6915,6 @@
 /turf/open/floor/facility/dark,
 /area/department_main/command)
 "DJ" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner{
 	density = 0;
 	resistance_flags = 115
@@ -7011,6 +6922,11 @@
 /obj/structure/window/reinforced/spawner{
 	density = 0;
 	pixel_x = -32;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -7397,12 +7313,12 @@
 	},
 /area/department_main/extraction)
 "FD" = (
+/obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115
+	},
 /obj/structure/lattice/lava{
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner/east{
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -7585,28 +7501,6 @@
 	color = "#ccc8c0"
 	},
 /area/department_main/control)
-"GP" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/turf/open/lava{
-	color = "#006700";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	name = "Unrefined Enkephalin";
-	slowdown = 0
-	},
-/area/department_main/command)
 "GQ" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -8055,19 +7949,6 @@
 	},
 /turf/open/floor/plasteel/dark,
 /area/department_main/command)
-"IY" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/turf/open/lava{
-	color = "#006700";
-	desc = "A fortune's worth of L Corporation's known product. Do Not Drink";
-	light_power = 0;
-	light_range = 0;
-	name = "Unrefined Enkephalin";
-	slowdown = 0
-	},
-/area/facility_hallway/west)
 "IZ" = (
 /obj/effect/turf_decal/tile/bar,
 /obj/effect/turf_decal/tile/bar{
@@ -8649,9 +8530,6 @@
 	},
 /area/department_main/training)
 "Lw" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/machinery/camera{
 	alpha = 0;
 	mouse_opacity = 0;
@@ -8659,16 +8537,16 @@
 	short_range = 5;
 	view_range = 5
 	},
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner{
 	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner{
 	pixel_x = -32;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -9209,16 +9087,13 @@
 /turf/open/floor/carpet/orange,
 /area/department_main/training)
 "NU" = (
-/obj/structure/lattice/lava{
+/obj/structure/window/reinforced/spawner/north{
+	max_integrity = 25;
 	resistance_flags = 115
 	},
 /obj/structure/lattice/lava{
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner/north{
-	max_integrity = 25;
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -9807,11 +9682,6 @@
 	},
 /area/facility_hallway/control)
 "Qo" = (
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
 	resistance_flags = 115
@@ -9819,6 +9689,11 @@
 /obj/structure/window/reinforced/spawner/west{
 	max_integrity = 25;
 	pixel_y = 32;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -10306,16 +10181,13 @@
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
 	},
-/obj/structure/lattice/lava{
+/obj/structure/window/reinforced/spawner{
+	dir = 8;
 	resistance_flags = 115
 	},
 /obj/structure/lattice/lava{
 	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
 	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
-/obj/structure/window/reinforced/spawner{
-	dir = 8;
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -10328,12 +10200,6 @@
 	},
 /area/facility_hallway/east)
 "SI" = (
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
-/obj/structure/lattice/lava{
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner{
 	density = 0;
 	resistance_flags = 115
@@ -10346,6 +10212,11 @@
 /obj/structure/window/reinforced/spawner{
 	density = 0;
 	pixel_x = 32;
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -11210,16 +11081,16 @@
 /turf/open/floor/plasteel/dark,
 /area/department_main/information)
 "Xr" = (
-/obj/structure/lattice/lava{
-	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
-	name = "heatproof reinforced glass floor";
-	resistance_flags = 115
-	},
 /obj/structure/window/reinforced/spawner/east{
 	pixel_y = 32;
 	resistance_flags = 115
 	},
 /obj/structure/window/reinforced/spawner/east{
+	resistance_flags = 115
+	},
+/obj/structure/lattice/lava{
+	desc = "Made from specialized glass and metals, allowing for easy traversal above and transparency below. Watch your step.";
+	name = "heatproof reinforced glass floor";
 	resistance_flags = 115
 	},
 /turf/open/lava{
@@ -41723,7 +41594,7 @@ Mh
 Yg
 dE
 dE
-IY
+iP
 hG
 bH
 Lg
@@ -41980,7 +41851,7 @@ Mh
 Yg
 dE
 dE
-IY
+iP
 Jr
 iP
 dE
@@ -42746,7 +42617,7 @@ KF
 uf
 UB
 UB
-GP
+kz
 FK
 FK
 FK
@@ -43002,7 +42873,7 @@ Vu
 wM
 uf
 nd
-CK
+uL
 FK
 FK
 FK
@@ -43261,7 +43132,7 @@ uf
 zr
 FK
 FK
-eg
+FK
 Fv
 Fv
 kp
@@ -46346,8 +46217,8 @@ UB
 UB
 kz
 FK
-eg
-eg
+FK
+FK
 kp
 gN
 YT
@@ -47120,9 +46991,9 @@ zA
 kL
 QY
 QY
-or
+ju
 dy
-or
+ju
 QY
 de
 QY
@@ -47893,14 +47764,14 @@ ME
 kL
 pw
 OF
-or
+ju
 SH
 SH
 SH
-AC
-oQ
-oQ
-oQ
+cH
+ju
+ju
+ju
 cH
 QY
 QY
