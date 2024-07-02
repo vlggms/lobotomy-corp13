@@ -13,7 +13,7 @@
 	teleport_cooldown = 40;
 	map_pad_id = "test_range_arena";
 	map_pad_link_id = "test_range_lobby";
-	resistance_flags = INDESTRUCTIBLE
+	teleport_speed = 20
 	},
 /turf/open/floor/facility,
 /area/test_range)
@@ -31,7 +31,7 @@
 /turf/open/floor/facility,
 /area/test_range)
 "z" = (
-/obj/structure/barricade/abno_barrier,
+/obj/machinery/door/airlock,
 /turf/open/floor/facility,
 /area/test_range)
 "J" = (

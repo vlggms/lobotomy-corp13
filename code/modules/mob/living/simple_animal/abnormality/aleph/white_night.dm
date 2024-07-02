@@ -99,6 +99,8 @@ GLOBAL_LIST_EMPTY(apostles)
 	for(var/mob/living/carbon/human/heretic in heretics)
 		if(heretic.stat == DEAD || !heretic.ckey)
 			continue
+		if(src.z == 6) //Test Range Z Level
+			return ..()
 		heretic.Apply_Gift(new /datum/ego_gifts/blessing)
 		heretic.playsound_local(get_turf(heretic), 'sound/abnormalities/whitenight/apostle_bell.ogg', 50)
 		to_chat(heretic, span_userdanger("[heretic], your Heresy will not be forgotten!"))

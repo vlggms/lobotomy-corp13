@@ -701,7 +701,7 @@
 	teleport_cooldown = 40;
 	map_pad_id = "test_range_lobby";
 	map_pad_link_id = "test_range_arena";
-	resistance_flags = INDESTRUCTIBLE
+	teleport_speed = 20
 	},
 /turf/open/floor/facility,
 /area/test_range)
