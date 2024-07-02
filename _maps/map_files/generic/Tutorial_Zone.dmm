@@ -701,7 +701,8 @@
 	teleport_cooldown = 40;
 	map_pad_id = "test_range_lobby";
 	map_pad_link_id = "test_range_arena";
-	teleport_speed = 20
+	teleport_speed = 20;
+	resistance_flags = 64
 	},
 /turf/open/floor/facility,
 /area/test_range)

@@ -29,37 +29,39 @@
 	name = "Abnormality Spawner"
 	desc = "This device is used to spawn an abnormality to fight"
 	resistance_flags = INDESTRUCTIBLE
-	//Blacklist for abnormalities that will teleport to the facility, or might cause problems
-	var/list/blacklist = list(/mob/living/simple_animal/hostile/abnormality/greed_king,
-				/mob/living/simple_animal/hostile/abnormality/alriune,
-				/mob/living/simple_animal/hostile/abnormality/crying_children,
-				/mob/living/simple_animal/hostile/abnormality/pale_horse,
-				/mob/living/simple_animal/hostile/abnormality/faelantern,
-				/mob/living/simple_animal/hostile/abnormality/road_home,
-				/mob/living/simple_animal/hostile/abnormality/snow_whites_apple,
-				/mob/living/simple_animal/hostile/abnormality/space_lady,
-				/mob/living/simple_animal/hostile/abnormality/hatred_queen,
-				/mob/living/simple_animal/hostile/abnormality/despair_knight,
-				/mob/living/simple_animal/hostile/abnormality/porccubus,
-				/mob/living/simple_animal/hostile/abnormality/rose_sign, //Just placing this here just in case it manages to cause the Agents be in danger.
-				/mob/living/simple_animal/hostile/abnormality/nihil, //Might Cause issues
-				/mob/living/simple_animal/hostile/abnormality/wrath_servant, //Will likely cause problems with Hermit.
-				/mob/living/simple_animal/hostile/abnormality/highway_devotee //You literally can't fight it.
+	var/list/whitelist = list(
+				/mob/living/simple_animal/hostile/abnormality/forsaken_murderer,
+				/mob/living/simple_animal/hostile/abnormality/redblooded,
+				/mob/living/simple_animal/hostile/abnormality/pinocchio,
+				/mob/living/simple_animal/hostile/abnormality/funeral,
+				/mob/living/simple_animal/hostile/abnormality/scarecrow,
+				/mob/living/simple_animal/hostile/abnormality/blue_shepherd,
+				/mob/living/simple_animal/hostile/abnormality/ebony_queen,
+				/mob/living/simple_animal/hostile/abnormality/judgement_bird,
+				/mob/living/simple_animal/hostile/abnormality/warden,
+				/mob/living/simple_animal/hostile/abnormality/nothing_there,
+				/mob/living/simple_animal/hostile/abnormality/silentorchestra,
+				/mob/living/simple_animal/hostile/abnormality/last_shot,
+				/mob/living/simple_animal/hostile/abnormality/distortedform,
+				/mob/living/simple_animal/hostile/abnormality/sukuna //For the masochists
 				)
+
 
 /obj/machinery/computer/testrangespawner/attack_hand(mob/living/user)
 	. = ..()
-	var/list/fightlist = list()
-	var/list/starting_list = subtypesof(/mob/living/simple_animal/hostile/abnormality)
-	for(var/A in starting_list)
-		var/mob/living/simple_animal/hostile/abnormality/abnocheck = A
-		if(!abnocheck.can_breach)
-			continue
-		if(abnocheck in blacklist)
-			continue
-		fightlist += abnocheck
-	var/mob/living/simple_animal/hostile/abnormality/chosen_abno = tgui_input_list(user,"Choose which Abnormality to fight.","Select Abnormality", fightlist)
+	var/mob/living/simple_animal/hostile/abnormality/chosen_abno = tgui_input_list(user,"Choose which Abnormality to fight.","Select Abnormality", whitelist)
 	var/turf/location = locate(13,14,6) //Might not be the best way to set it up right now but it works.
 	if(chosen_abno)
 		var/mob/living/simple_animal/hostile/abnormality/abnospawned = new chosen_abno(location)
 		abnospawned.core_enabled = FALSE
+		if(istype(abnospawned, /mob/living/simple_animal/hostile/abnormality/pinocchio)) //To check if BreachEffect() is needed for the abno to work properly
+			abnospawned.BreachEffect()
+
+/obj/machinery/computer/testrangespawner/process()
+	var/area/A = get_area(src)
+	for(var/mob/living/carbon/human/H in A)
+		if(H.stat != DEAD)
+			return
+	for(var/mob/M in A)
+		if(M.stat != DEAD)
+			qdel(M)
