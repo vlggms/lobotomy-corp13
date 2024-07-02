@@ -112,7 +112,7 @@
 				var/content_string = "[processing_turf.type], [get_area(processing_turf)]"
 
 				for(var/atom/thing in processing_turf.contents)
-					if(!istype(thing) || !thing.name || istype(thing.type, /obj/effect/landmark) || istype(thing, /mob/living/carbon/human))
+					if(!istype(thing) || !thing.name || istype(thing, /mob/living/carbon/human) || istype(thing, /mob/dead/observer))
 						continue
 					items_to_save += thing
 					content_string += ", [thing.type]"
