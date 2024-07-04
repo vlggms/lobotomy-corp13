@@ -1300,8 +1300,9 @@
 	desc = "Anyone damaged by it will lose themselves for a moment. \
 	As the equipment was forged from snow, it shall disappear without a trace someday."
 	icon_state = "frostsplinter"
-	force = 32
+	force = 44
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
