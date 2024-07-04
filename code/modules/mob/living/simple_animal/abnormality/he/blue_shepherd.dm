@@ -320,8 +320,6 @@
 		return FALSE
 	if(!died.ckey)
 		return FALSE
-	if(died.z != z)
-		return FALSE
 	death_counter += 1
 	if(death_counter >= 2)
 		death_counter = 0
