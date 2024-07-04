@@ -71,3 +71,14 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 	new /obj/item/a_gift/jcorp(get_turf(caller))
 	caller.visible_message(span_notice("The [caller] lights up as it teleports in the Lootboxes."))
 	repeat_cooldown = world.time + (10 SECONDS)
+
+// Critical Hits (Untested! Don't add till Critical Hits PR is merged)
+///datum/data/lc13research/crit_sticker
+//	research_name = "Critical Hit Sticker"
+//	research_desc = "These stickers contain locks which should be able to lock away the doubt or second thoughts out of a person's mind midcombat, to make them take the best opprotunites and locations to hit."
+//	cost = AVERAGE_RESEARCH_PRICE
+//	corp = J_CORP_REP
+
+// /datum/data/lc13research/crit_sticker/ResearchEffect(obj/structure/representative_console/caller)
+//	new /obj/item/clothing/mask/crit_sticker(get_turf(caller))
+//	..()

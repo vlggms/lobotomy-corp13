@@ -31,3 +31,11 @@
 		GLOB.possible_gifts = gift_types_list
 	var/gift_type = pick(GLOB.possible_gifts)
 	return gift_type
+
+// Crit Sticker (Will Test and add once Critical Hits are in)
+///obj/item/clothing/mask/crit_sticker
+//	name = "J Corp Critical Hit Sticker"
+//	desc = "A sticker with a J on it. It seems to make you feel more focused when it is on you."
+//	slot_flags = ITEM_SLOT_POCKETS
+//	w_class = WEIGHT_CLASS_SMALL
+//	var/crit_modifier = 2.5
