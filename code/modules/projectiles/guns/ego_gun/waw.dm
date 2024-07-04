@@ -221,6 +221,7 @@
 	icon_state = "crimsonscar"
 	inhand_icon_state = "crimsonscar"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
+	weapon_weight = WEAPON_MEDIUM
 	special = "This weapon fires 3 pellets."
 	fire_delay = 7
 	shotsleft = 9
@@ -238,7 +239,7 @@
 	inhand_icon_state = "ecstasy"
 	special = "This weapon fires slow bullets with limited range."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ecstasy
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
@@ -318,7 +319,7 @@
 	icon_state = "intentions"
 	inhand_icon_state = "intentions"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_intentions
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.07 SECONDS
