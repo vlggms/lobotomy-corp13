@@ -94,8 +94,6 @@
 		return FALSE
 	if(!died.ckey)
 		return FALSE
-	if(died.z != z)
-		return FALSE
 	datum_reference.qliphoth_change(-1) // One death reduces it
 	return TRUE
 

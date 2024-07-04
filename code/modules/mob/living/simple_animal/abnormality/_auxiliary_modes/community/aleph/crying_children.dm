@@ -149,8 +149,6 @@
 		return FALSE
 	if(!died.ckey)
 		return FALSE
-	if(died.z != z)
-		return FALSE
 	death_counter += 1
 	if(death_counter >= 2)
 		death_counter = 0
@@ -192,7 +190,7 @@
 		new /obj/effect/temp_visual/fire/fast(get_turf(L))
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/BreachEffect(mob/living/carbon/human/user, breach_type)
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "No oneï¿½s going to cry on my behalf even if Iï¿½m sad.", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "No one’s going to cry on my behalf even if I’m sad.", 25))
 	..()
 	desc = "A towering angel statue, setting everything on it's path ablaze"
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
@@ -458,7 +456,7 @@
 		forceMove(T)
 
 /mob/living/simple_animal/hostile/abnormality/crying_children/proc/FinalPhase()
-	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "I donï¿½t want to hear anything. I donï¿½t want to see anything, or speak anythingï¿½", 25))
+	addtimer(CALLBACK(GLOBAL_PROC, GLOBAL_PROC_REF(show_global_blurb), 20, "I don’t want to hear anything. I don’t want to see anything, or speak anything…", 25))
 	icon_phase = "desperation"
 	icon_living = "[icon_phase]_idle"
 	icon_state = "[icon_phase]_idle"
