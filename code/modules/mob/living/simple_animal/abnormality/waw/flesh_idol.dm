@@ -87,3 +87,4 @@
 
 	var/mob/living/simple_animal/hostile/abnormality/processing = pick(total_abnormalities)
 	processing.datum_reference.qliphoth_change(-200)
+	datum_reference.qliphoth_change(1)
