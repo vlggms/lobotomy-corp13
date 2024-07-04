@@ -74,6 +74,8 @@ The $0 Hammer of Light shined."
 	for(var/mob/living/simple_animal/hostile/abnormality/A in GLOB.abnormality_mob_list) //How many breaching abnormalities? How dangerous are they?
 		if(A.IsContained())
 			continue
+		if(died.z != z)
+			return FALSE
 		switch(A.threat_level)
 			if(ZAYIN_LEVEL)
 				points += 5 //practically nothing
