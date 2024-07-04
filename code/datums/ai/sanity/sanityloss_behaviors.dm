@@ -35,34 +35,43 @@
 	return
 
 /datum/ai_behavior/insanity_mecha_attack/proc/TryAttack(datum/ai_controller/insane/murder/controller)
+	if(QDELETED(controller))
+		return
 	var/mob/living/living_pawn = controller.pawn
-	if(!ismecha(living_pawn.loc))
+	if(QDELETED(living_pawn) || IS_DEAD_OR_INCAP(living_pawn) || !ismecha(living_pawn.loc))
 		finish_action(controller, TRUE)
 		return
-	var/atom/thing_to_target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	if(IS_DEAD_OR_INCAP(living_pawn) || !thing_to_target || living_pawn.see_invisible < thing_to_target.invisibility)
+	var/mob/living/living_target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(QDELETED(living_target) || !istype(living_target) || living_pawn.see_invisible < living_target.invisibility)
 		finish_action(controller, TRUE)
 		return
+	if(!controller.CanTarget(living_target))
+		finish_action(controller, TRUE)
+		return
+	if(controller.target_lost)
+		if(controller.FindEnemies())
+			living_target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+		else
+			finish_action(controller, TRUE)
+			return
+	var/atom/thing_to_target = isturf(living_target.loc) ? living_target : living_target.loc
+	if(!isturf(thing_to_target.loc))
+		finish_action(controller, TRUE)
+		return
+
 	if(isliving(thing_to_target))
-		var/mob/living/living_target = thing_to_target
 		if(living_target.stat == DEAD || (living_target.status_flags & GODMODE))
 			finish_action(controller, TRUE)
 			return
-	else if(ismecha(thing_to_target))
-		var/obj/vehicle/sealed/mecha/mech_target = thing_to_target
-		if(!mech_target.occupants || mech_target.occupants.len < 1 || mech_target.resistance_flags & INDESTRUCTIBLE)
+	else if(isobj(thing_to_target))
+		var/obj/obj_target = thing_to_target
+		if(living_pawn.see_invisible < obj_target.invisibility || obj_target.resistance_flags & INDESTRUCTIBLE)
 			finish_action(controller, TRUE)
 			return
 	else
 		finish_action(controller, TRUE)
 		return
 
-	if(isobj(thing_to_target.loc))
-		thing_to_target = thing_to_target.loc
-	if(!isturf(thing_to_target.loc))
-		finish_action(controller, TRUE)
-		return
-	controller.current_movement_target = thing_to_target
 	var/obj/vehicle/sealed/mecha/M = controller.pawn.loc
 	var/list/possible_melee_weapons = list()
 	var/list/possible_ranged_weapons = list()
@@ -87,7 +96,7 @@
 	if(possible_melee_weapons.len > 0 && M.Adjacent(thing_to_target))
 		//use melee weapon
 		chosen_weapon = pick(possible_melee_weapons)
-	else if(possible_ranged_weapons.len > 0 && (thing_to_target in view(7, M)))
+	else if(possible_ranged_weapons.len > 0 && (thing_to_target in view(8, M)))
 		//use ranged weapon
 		chosen_weapon = pick(possible_ranged_weapons)
 	if(!chosen_weapon)
@@ -97,14 +106,20 @@
 			controller.mech_attack_timer_id = null
 		return
 	M.selected = chosen_weapon
-	var/direction = get_cardinal_dir(M, thing_to_target)
+	var/direction = get_cardinal_dir_no_random(M, thing_to_target)
 	if(M.dir != direction)
 		if(!(M.mecha_flags & QUIET_TURNS) && !M.step_silent)
 			playsound(M, M.turnsound, 40, TRUE)
 		M.setDir(direction)
 	M.selected.action(controller.pawn, thing_to_target)
+	controller.GainPatience()
 	controller.is_mech_attack_on_cooldown = TRUE
-	controller.mech_attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack), controller, thing_to_target), chosen_weapon.equip_cooldown + 0.1, TIMER_STOPPABLE)
+	controller.mech_attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack), controller), chosen_weapon.equip_cooldown + 0.1, TIMER_STOPPABLE)
+
+/proc/get_cardinal_dir_no_random(atom/A, atom/B)
+	var/dx = abs(B.x - A.x)
+	var/dy = abs(B.y - A.y)
+	return get_dir(A, B) & (dx < dy ? 3 : 12)
 
 /datum/ai_behavior/insanity_mecha_attack/finish_action(datum/ai_controller/insane/murder/controller, succeeded)
 	. = ..()
@@ -112,8 +127,7 @@
 	if(controller.mech_attack_timer_id)
 		deltimer(controller.mech_attack_timer_id)
 		controller.mech_attack_timer_id = null
-	if(succeeded)
-		controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
 
 /datum/ai_behavior/insanity_attack_mob
 	behavior_flags = AI_BEHAVIOR_REQUIRE_MOVEMENT | AI_BEHAVIOR_MOVE_AND_PERFORM
@@ -123,7 +137,10 @@
 	var/mob/living/living_pawn = controller.pawn
 
 	var/atom/target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
-	if(IS_DEAD_OR_INCAP(living_pawn) || !target || living_pawn.see_invisible < target.invisibility)
+	if(IS_DEAD_OR_INCAP(living_pawn) || QDELETED(target) || living_pawn.see_invisible < target.invisibility)
+		finish_action(controller, TRUE)
+		return
+	if(!controller.CanTarget(target))
 		finish_action(controller, TRUE)
 		return
 	if(isliving(target))
@@ -143,13 +160,8 @@
 	var/mob/living/carbon/C = living_pawn
 	if(istype(C) && C.handcuffed)
 		C.resist_restraints()
-		controller.current_movement_target = null
 		return
 	if(living_pawn.pulledby)
-		if(living_pawn.pulledby != target)
-			controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = living_pawn.pulledby
-			target = living_pawn.pulledby
-			controller.current_movement_target = living_pawn.pulledby
 		living_pawn.resist_grab()
 	if(living_pawn.buckled)
 		living_pawn.resist_buckle()
@@ -193,25 +205,16 @@
 		if(I.damtype != WHITE_DAMAGE)
 			has_non_white_weapon = TRUE
 
-	var/found_new_weapon = FALSE
 	var/mob/living/carbon/human/human_target = target
 	var/need_non_white_weapon = FALSE
 	if(istype(human_target) && human_target.sanity_lost && !has_non_white_weapon)
 		need_non_white_weapon = TRUE
 	if(!has_weapon || need_non_white_weapon)
-		var/list/temp_blacklist = controller.blackboard[BB_INSANE_TEMPORARY_BLACKLISTITEMS]
-		temp_blacklist.Cut()
 		var/list/weapon_list = controller.TryFindWeapon(!need_non_white_weapon)
 		if(weapon_list)
-			for(var/obj/item/weapon in weapon_list)
-				var/list/path = get_path_to(living_pawn, weapon, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 30, 1, TYPE_PROC_REF(/turf, reachableTurftestWithMobs))
-				if(path.len == 0 && weapon.loc != living_pawn.loc && weapon.loc != living_pawn)
-					temp_blacklist[weapon] = TRUE
-					continue
-				found_new_weapon = TRUE
-	if(found_new_weapon)
-		finish_action(controller, FALSE)
-		return
+			finish_action(controller, TRUE)
+			controller.TryEquipWeapon(weapon_list)
+			return
 
 	var/atom/thing_to_target
 	if(isturf(target.loc))
@@ -219,65 +222,112 @@
 	else if(isobj(target.loc))
 		thing_to_target = target.loc
 	if(thing_to_target)
-		controller.current_movement_target = thing_to_target
-		if(!living_pawn.Adjacent(target))
-			var/obj/item/gun/ego_gun/banger = locate() in living_pawn.held_items
+		var/obj/item/gun/ego_gun/banger = locate() in living_pawn.held_items
+		if(!controller.target_lost)
 			if(banger)
+				if(controller.melee_attack_timer_id)
+					deltimer(controller.melee_attack_timer_id)
+					controller.melee_attack_timer_id = null
 				ranged_attack(controller, thing_to_target, delta_time)
-			else
-				DestroyPathToTarget(controller, thing_to_target, delta_time)
-			return
-		attack(controller, thing_to_target, delta_time)
+				return
+			DestroyPathToTarget(controller, thing_to_target, delta_time)
+		if(!controller.is_melee_attack_on_cooldown)
+			TryAttack(controller, delta_time, FALSE)
 	else
 		finish_action(controller, TRUE)
 		return
 
-/datum/ai_behavior/insanity_attack_mob/finish_action(datum/ai_controller/controller, succeeded)
-	. = ..()
-	var/mob/living/living_pawn = controller.pawn
-	walk(living_pawn, 0)
-	if(succeeded)
-		controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
-
-/// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
-/datum/ai_behavior/insanity_attack_mob/proc/attack(datum/ai_controller/insane/murder/controller, atom/target, delta_time)
-	var/mob/living/living_pawn = controller.pawn
-	if(!living_pawn)
+/datum/ai_behavior/insanity_attack_mob/proc/TryAttack(datum/ai_controller/insane/murder/controller, delta_time, called_by_timer)
+	if(QDELETED(controller))
 		return
-
-	if(!living_pawn.Adjacent(target))
-		return
-
-	if(living_pawn.next_move > world.time)
+	if(called_by_timer)
+		controller.melee_attack_timer_id = null
+	var/mob/living/living_pawn = controller.pawn
+	var/atom/main_target = controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET]
+	if(QDELETED(main_target) || isturf(main_target) || QDELETED(living_pawn) || !istype(living_pawn) || living_pawn.stat != CONSCIOUS || IS_DEAD_OR_INCAP(living_pawn) || !isturf(living_pawn.loc))
+		controller.is_melee_attack_on_cooldown = FALSE
+		if(controller.melee_attack_timer_id)
+			deltimer(controller.melee_attack_timer_id)
+			controller.melee_attack_timer_id = null
 		return
 
 	var/obj/item/weapon = null
+	var/attack_reach = 1
+	var/attack_cooldown = CLICK_CD_MELEE
 	var/highest_force = INSANE_MINIMUM_WEAPON_FORCE
 	for(var/obj/item/I in living_pawn.held_items)
-		if(I.damtype == WHITE_DAMAGE && ishuman(target))
-			var/mob/living/carbon/human/H = target
+		if(I.damtype == WHITE_DAMAGE && ishuman(main_target))
+			var/mob/living/carbon/human/H = main_target
 			if(H.sanity_lost) // So we don't restore sanity of insane
 				continue
 		var/weapon_power = GetEffectiveItemForce(I, FALSE)
 		if(weapon_power > highest_force)
 			weapon = I
+			attack_reach = weapon.reach
 			highest_force = weapon_power
+	if(weapon && istype(weapon, /obj/item/ego_weapon))
+		var/obj/item/ego_weapon/EW = weapon
+		if(EW.attack_speed)
+			attack_cooldown *= EW.attack_speed
+
+	var/atom/attacked_target = null
+	var/atom/thing_to_target = isturf(main_target.loc) ? main_target : main_target.loc
+	var/should_gain_patience = FALSE
+	if(!QDELETED(thing_to_target) && (thing_to_target.Adjacent(living_pawn) || attack_reach > 1 && get_dist(thing_to_target, living_pawn) <= attack_reach && can_see(living_pawn, thing_to_target, attack_reach)))
+		//attack target
+		attacked_target = thing_to_target
+		should_gain_patience = TRUE
+	else
+		var/list/targets_in_range = controller.PossibleEnemies(attack_reach)
+		if(targets_in_range.len > 0)
+			//attack random thing in the list
+			attacked_target = pick(targets_in_range)
+
+	if(attacked_target)
+		attacked_target = isturf(attacked_target.loc) ? attacked_target : attacked_target.loc
+		controller.is_melee_attack_on_cooldown = TRUE
+		if(controller.melee_attack_timer_id)
+			deltimer(controller.melee_attack_timer_id)
+			controller.melee_attack_timer_id = null
+		attack(controller, attacked_target, delta_time, weapon)
+		if(QDELETED(controller) || QDELETED(living_pawn) || living_pawn.stat != CONSCIOUS)
+			return
+		if(should_gain_patience)
+			controller.GainPatience()
+	else
+		controller.is_melee_attack_on_cooldown = FALSE
+	if(!controller.melee_attack_timer_id)
+		controller.melee_attack_timer_id = addtimer(CALLBACK(src, PROC_REF(TryAttack), controller, delta_time, TRUE), attack_cooldown, TIMER_STOPPABLE)
+
+/datum/ai_behavior/insanity_attack_mob/finish_action(datum/ai_controller/controller, succeeded)
+	. = ..()
+	controller.current_movement_target = null
+	controller.blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = null
+
+/// attack using a held weapon otherwise bite the enemy, then if we are angry there is a chance we might calm down a little
+/datum/ai_behavior/insanity_attack_mob/proc/attack(datum/ai_controller/insane/murder/controller, atom/target, delta_time, obj/item/weapon)
+	var/mob/living/living_pawn = controller.pawn
 
 	living_pawn.face_atom(target)
 
+	//If no weapon passed try to find one in hands
+	if(!weapon)
+		var/highest_force = INSANE_MINIMUM_WEAPON_FORCE
+		for(var/obj/item/I in living_pawn.held_items)
+			if(I.damtype == WHITE_DAMAGE && ishuman(target))
+				var/mob/living/carbon/human/H = target
+				if(H.sanity_lost) // So we don't restore sanity of insane
+					continue
+			var/weapon_power = GetEffectiveItemForce(I, FALSE)
+			if(weapon_power > highest_force)
+				weapon = I
+				highest_force = weapon_power
 	// attack with weapon if we have one
 	if(weapon)
 		if(living_pawn.held_items.len == 2 && living_pawn.held_items[1] != weapon)
 			living_pawn.held_items[2] = living_pawn.held_items[1]
 			living_pawn.held_items[1] = weapon
 		weapon.melee_attack_chain(living_pawn, target)
-		if(istype(weapon, /obj/item/ego_weapon))
-			var/obj/item/ego_weapon/EW = weapon
-			var/cooldown = EW.attack_speed ? CLICK_CD_MELEE * EW.attack_speed : CLICK_CD_MELEE
-			var/hit_count = max(floor(10 * delta_time / cooldown), 1)
-			if(hit_count >= 2)
-				for(var/i in 2 to hit_count)
-					addtimer(CALLBACK(src, PROC_REF(DelayedMeleeAttack), living_pawn, weapon, target), cooldown * (i - 1))
 	else if(isliving(target))
 		var/mob/living/L = target
 		// check if target has a weapon
@@ -292,10 +342,6 @@
 		living_pawn.UnarmedAttack(target)
 		living_pawn.changeNext_move(CLICK_CD_MELEE)
 		living_pawn.a_intent = INTENT_HARM
-
-/datum/ai_behavior/insanity_attack_mob/proc/DelayedMeleeAttack(mob/living/user, obj/item/weapon, atom/target)
-	if(weapon && !IS_DEAD_OR_INCAP(user) && user.Adjacent(target) && (weapon in user.held_items))
-		weapon.melee_attack_chain(user, target)
 
 /// attack using this GUN we found.
 /datum/ai_behavior/insanity_attack_mob/proc/ranged_attack(datum/ai_controller/insane/murder/controller, atom/target, delta_time)
@@ -332,6 +378,11 @@
 
 	if(!banger)
 		return
+	if(banger.is_reloading)
+		return
+	if(banger.reloadtime && banger.shotsleft < 1)
+		banger.attack_self(living_pawn)
+		return
 
 	living_pawn.face_atom(target)
 
@@ -343,12 +394,19 @@
 	living_pawn.changeNext_move(CLICK_CD_RANGE)
 	var/shots = max(floor(10 * delta_time / delay), 1)
 	delay = 10 * delta_time / shots
+	banger.spread += 20
 	banger.afterattack(target, living_pawn, FALSE)
+	banger.spread -= 20
+	controller.GainPatience()
 	for(var/i in 2 to shots)
-		addtimer(CALLBACK(src, PROC_REF(DelayedGunAttack), living_pawn, banger, target, living_pawn.next_move), delay * (i - 1))
+		addtimer(CALLBACK(src, PROC_REF(DelayedGunAttack), controller, living_pawn, banger, target, living_pawn.next_move), delay * (i - 1))
 
-/datum/ai_behavior/insanity_attack_mob/proc/DelayedGunAttack(mob/living/user, obj/item/gun/weapon, atom/target, next_move)
-	if(weapon && !IS_DEAD_OR_INCAP(user) && (weapon in user.held_items))
+/datum/ai_behavior/insanity_attack_mob/proc/DelayedGunAttack(datum/ai_controller/insane/murder/controller, mob/living/user, obj/item/gun/weapon, atom/target, next_move)
+	if(QDELETED(controller) || QDELETED(user) || QDELETED(target) || IS_DEAD_OR_INCAP(user))
+		return
+	if(!(locate(/datum/ai_behavior/insanity_attack_mob) in controller.current_behaviors))
+		return
+	if(!QDELETED(weapon) && (weapon in user.held_items))
 		weapon.spread += 20
 		weapon.afterattack(target, user, FALSE)
 		weapon.spread -= 20
@@ -401,6 +459,7 @@
 
 		item_blacklist[target] = TRUE
 
+	controller.current_movement_target = null
 	controller.blackboard[BB_INSANE_PICKUPTARGET] = null
 
 /datum/ai_behavior/insane_equip/proc/equip_item(datum/ai_controller/controller)
@@ -426,20 +485,11 @@
 		return
 
 	if(isturf(target.loc) || (target in living_pawn.contents) || (target.loc in living_pawn.contents))
-		var/obj/item/left_item = living_pawn.get_item_for_held_index(LEFT_HANDS)
-		var/obj/item/right_item = living_pawn.get_item_for_held_index(RIGHT_HANDS)
-		if(target.datum_components && (locate(/datum/component/two_handed) in target.datum_components))
-			for(var/obj/item/I in living_pawn.held_items)
-				if(!I.equip_to_best_slot(living_pawn, FALSE))
-					living_pawn.dropItemToGround(I, force = TRUE)
-		else if((left_item != null) && (right_item != null))
-			var/obj/item/I = right_item
-			if(GetEffectiveItemForce(left_item) < GetEffectiveItemForce(right_item)) // Drop the old one, man...
-				I = left_item
-			if(!I.equip_to_best_slot(living_pawn, FALSE))
+		for(var/obj/item/I in living_pawn.held_items)
+			if(!living_pawn.equip_to_appropriate_slot(I))
 				living_pawn.dropItemToGround(I, force = TRUE)
 
-		living_pawn.put_in_hands(target)
+		living_pawn.put_in_hand(target, 1)
 		controller.blackboard[BB_INSANE_BEST_FORCE_FOUND] = GetEffectiveItemForce(target)
 		finish_action(controller, TRUE)
 		return

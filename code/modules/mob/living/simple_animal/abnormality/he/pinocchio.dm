@@ -236,46 +236,11 @@
 	lines_type = /datum/ai_behavior/say_line/insanity_murder/puppet
 	continue_processing_when_client = FALSE //Prevents playable pinocchio from going around murdering everyone.
 
-/datum/ai_controller/insane/murder/puppet/FindEnemies()
-	. = FALSE
+/datum/ai_controller/insane/murder/puppet/CanTarget(atom/movable/thing)
+	. = ..()
 	var/mob/living/living_pawn = pawn
-	var/list/potential_enemies = livinginview(9, living_pawn)
-
-	if(!LAZYLEN(potential_enemies))
-		return
-
-	var/list/weighted_list = list()
-	for(var/mob/living/L in potential_enemies)
-		if(L == living_pawn)
-			continue
-		if(L.status_flags & GODMODE)
-			continue
-		if(L.stat == DEAD)
-			continue
-		if(living_pawn.see_invisible < L.invisibility)
-			continue
-		if(!isturf(L.loc) && !ismecha(L.loc))
-			continue
-		if(living_pawn.faction_check_mob(L))
-			continue
-		weighted_list += L
-	for(var/i in weighted_list)
-		if(istype(i, /mob/living/simple_animal/hostile))
-			weighted_list[i] = 3
-		else if(ishuman(i))
-			var/mob/living/carbon/human/H = i
-			if(H.sanity_lost)
-				weighted_list[i] = 2
-			else if(ismecha(H.loc))
-				weighted_list[i] = 3
-			else
-				weighted_list[i] = 5
-		else
-			weighted_list[i] = 1
-	if(weighted_list.len > 0)
-		blackboard[BB_INSANE_CURRENT_ATTACK_TARGET] = pickweight(weighted_list)
-		return TRUE
-	return FALSE
+	if(. && isliving(thing) && living_pawn.faction_check_mob(thing))
+		return FALSE
 
 /datum/status_effect/panicked_type/puppet
 	icon = null
