@@ -550,3 +550,4 @@
 
 /obj/structure/flora/icegrave/alt
 	icon_state = "ice_grave2"
+	max_integrity = 600

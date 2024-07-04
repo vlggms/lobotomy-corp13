@@ -395,3 +395,18 @@
 	icon_state = "bonebullet_long"
 	damage = 100
 	speed = 0.4
+
+/obj/projectile/frost_splinter
+	name = "frost splinter"
+	desc = "A large shard of ice."
+	icon_state = "ice_2"
+	damage_type = RED_DAMAGE
+	damage = 40
+	speed = 3
+	alpha = 0
+	spread = 20
+
+/obj/projectile/frost_splinter/Initialize()
+	. = ..()
+	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
+	animate(src, alpha = 255, time = 3)
