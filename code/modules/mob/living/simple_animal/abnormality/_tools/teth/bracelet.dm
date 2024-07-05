@@ -40,7 +40,7 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 40)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -40)
 
 /datum/status_effect/display/bracelet/tick()
 	. = ..()
@@ -63,6 +63,6 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -40)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 40)
 
 #undef STATUS_EFFECT_BRACELET
