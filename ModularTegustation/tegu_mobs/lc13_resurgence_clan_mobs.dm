@@ -99,6 +99,8 @@
 	icon_state = "defender"
 	icon_living = "defender"
 	icon_dead = "defender_dead"
+	pixel_x = -8
+	base_pixel_x = -8
 	attack_verb_continuous = "punches"
 	attack_verb_simple = "punch"
 	health = 1200
