@@ -99,7 +99,7 @@
 
 /obj/projectile/ego_bullet/ego_crimson
 	name = "crimson"
-	damage = 18
+	damage = 14
 	damage_type = RED_DAMAGE
 
 /obj/projectile/ego_bullet/ego_ecstasy
