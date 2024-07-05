@@ -29,7 +29,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 /datum/data/lc13research/gacha_chance3
 	research_name = "Outlet Rarity Upgrade III"
 	research_desc = "With some more power, we can provide the facility with an even better chances to get rarer products from places they sell to."
-	cost = HIGH_RESEARCH_PRICE-5
+	cost = HIGH_RESEARCH_PRICE-10
 	corp = J_CORP_REP
 	required_research = /datum/data/lc13research/gacha_chance2
 
@@ -40,7 +40,7 @@ GLOBAL_LIST_EMPTY(jcorp_upgrades)
 /datum/data/lc13research/gacha_chance4
 	research_name = "Outlet Rarity Upgrade IV"
 	research_desc = "With some power, we can provide the facility with a final upgrade for better chances to get rarer products from places they sell to. The Suppression Agents and Extraction Officer will likely love you with this research."
-	cost = HIGH_RESEARCH_PRICE+5
+	cost = HIGH_RESEARCH_PRICE
 	corp = J_CORP_REP
 	required_research = /datum/data/lc13research/gacha_chance3
 
