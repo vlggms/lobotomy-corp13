@@ -2,14 +2,44 @@
 /mob/living/carbon/human/apply_damage(damage = 0,damagetype = BRUTE, def_zone = null, blocked = FALSE, forced = FALSE, spread_damage = FALSE, wound_bonus = 0, bare_wound_bonus = 0, sharpness = SHARP_NONE, white_healable = FALSE)
 	return dna.species.apply_damage(damage, damagetype, def_zone, blocked, src, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
 
+
+
+//// Damage Effects
+/mob/living/carbon/human/adjustRedLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	//Failsafe
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/red(get_turf(src))
+
 /mob/living/carbon/human/adjustWhiteLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
 	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
+	if(damage_amt > 0 && !forced)
+		new /obj/effect/temp_visual/damage_effect/white(get_turf(src))
 	adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
 		updatehealth()
 	return damage_amt
+
+/mob/living/carbon/human/adjustBlackLoss(amount, updating_health = TRUE, forced = FALSE, white_healable = FALSE)
+	var/damage_amt = amount
+	if(sanity_lost && white_healable) // Heal sanity instead.
+		damage_amt *= -1
+	if(amount > 0 && !forced)
+		new /obj/effect/temp_visual/damage_effect/black(get_turf(src))
+	adjustBruteLoss(amount, forced = forced)
+	adjustSanityLoss(damage_amt, forced = forced)
+	return damage_amt
+
+/mob/living/carbon/human/adjustPaleLoss(amount, updating_health = TRUE, forced = FALSE)
+	. = ..()
+	if(. && !forced)
+		if(. > 0)
+			new /obj/effect/temp_visual/damage_effect/pale(get_turf(src))
+
+//
 
 /mob/living/carbon/human/proc/adjustSanityLoss(amount, forced = FALSE)
 	if((status_flags & GODMODE) || !attributes || stat == DEAD)
