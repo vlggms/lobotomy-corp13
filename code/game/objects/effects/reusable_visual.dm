@@ -11,21 +11,18 @@
 	invisibility = 101
 	///Reference to the pool that created this object. Do not edit this.
 	var/datum/reusable_visual_pool/pool
-	///How long the effect will be in use. 0 means until manually returned to pool. Only the pool datum should edit this.
+	///How long the effect will be in use. Only the pool datum should edit this.
 	var/duration = 0
 	///Only the pool datum should edit this.
-	var/timer_id = null
-	///Only the pool datum should edit this.
 	var/is_being_used = FALSE
+	///How many DelayedReturn procs are currently existing for this object, it will only be returned by the last remaining DelayedReturn proc.
+	var/delayed_return_count = 0
 
 /obj/effect/reusable_visual/New(datum/reusable_visual_pool/creator_pool)
 	pool = creator_pool
 	return ..()
 
 /obj/effect/reusable_visual/Destroy()
-	if(timer_id)
-		deltimer(timer_id)
-		timer_id = null
 	pool = null
 	return ..()
 
