@@ -150,6 +150,24 @@ if(pixel_y != initial(pixel_y)){ \
  * Machinery children
  */
 
+/obj/machinery/save_variables(rotation = NORTH, child = FALSE, variables_to_add = list())
+	var/JSON = ""
+
+	if(child == FALSE)
+		SAVE_DIR_AS_VARIABLE
+
+	if(length(variables_to_add) == 0) // nothing to add, return an empty string
+		return JSON
+
+	JSON += "{\n"
+	for(var/variable in 1 to length(variables_to_add))
+		var/added_variable = variables_to_add[1]
+		JSON += "	[added_variable]"
+		JSON += "[length(variables_to_add) > 1 ? ";\n": "\n	}"]"
+		variables_to_add -= added_variable
+
+	return JSON
+
 /obj/machinery/light/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_DIR_AS_VARIABLE
 	SAVE_PIXEL_X_AS_VARIABLE
@@ -166,24 +184,52 @@ if(pixel_y != initial(pixel_y)){ \
 
 /obj/machinery/conveyor/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_DIR_AS_VARIABLE
-	SAVE_PIXEL_X_AS_VARIABLE
-	SAVE_PIXEL_Y_AS_VARIABLE
 
 	return ..()
 
-/obj/machinery/computer/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+/// Computer sub-group start
+/obj/machinery/computer/save_variables(rotation = NORTH, child = FALSE, variables_to_add = list())
+	var/JSON = ""
+
+	if(child == FALSE)
+		SAVE_NAME_AS_VARIABLE
+		SAVE_DIR_AS_VARIABLE
+		SAVE_PIXEL_X_AS_VARIABLE
+		SAVE_PIXEL_Y_AS_VARIABLE
+
+	if(length(variables_to_add) == 0) // nothing to add, return an empty string
+		return JSON
+
+	JSON += "{\n"
+	for(var/variable in 1 to length(variables_to_add))
+		var/added_variable = variables_to_add[1]
+		JSON += "	[added_variable]"
+		JSON += "[length(variables_to_add) > 1 ? ";\n": "\n	}"]"
+		variables_to_add -= added_variable
+
+	return JSON
+
+/obj/machinery/computer/shuttle/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_NAME_AS_VARIABLE
 	SAVE_DIR_AS_VARIABLE
-	SAVE_PIXEL_X_AS_VARIABLE
-	SAVE_PIXEL_Y_AS_VARIABLE
+	if(possible_destinations != initial(possible_destinations))
+		variables_to_add += "possible_destinations = [possible_destinations]"
+	if(shuttleId != initial(shuttleId))
+		variables_to_add += "shuttleId = [shuttleId]"
 
 	return ..()
+
+/obj/machinery/computer/med_data/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_DIR_AS_VARIABLE
+	if(req_one_access != initial(req_one_access))
+		variables_to_add += "req_one_access = [req_one_access]"
+
+	return ..()
+/// Computer sub-group end
 
 /obj/machinery/door/window/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_NAME_AS_VARIABLE
 	SAVE_DIR_AS_VARIABLE
-	SAVE_PIXEL_X_AS_VARIABLE
-	SAVE_PIXEL_Y_AS_VARIABLE
 
 	return ..()
 
@@ -194,7 +240,6 @@ if(pixel_y != initial(pixel_y)){ \
 
 /obj/machinery/chem_dispenser/drinks/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_DIR_AS_VARIABLE
-	SAVE_PIXEL_X_AS_VARIABLE
 	SAVE_PIXEL_Y_AS_VARIABLE
 
 	return ..()
@@ -202,6 +247,8 @@ if(pixel_y != initial(pixel_y)){ \
 /obj/machinery/modular_computer/console/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_NAME_AS_VARIABLE
 	SAVE_DIR_AS_VARIABLE
+	SAVE_PIXEL_X_AS_VARIABLE
+	SAVE_PIXEL_Y_AS_VARIABLE
 
 	return ..()
 
