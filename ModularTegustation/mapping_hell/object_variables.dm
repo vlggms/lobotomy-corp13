@@ -253,6 +253,7 @@ if(pixel_y != initial(pixel_y)){ \
 	return ..()
 
 #undef SAVE_NAME_AS_VARIABLE
+#undef SAVE_DESC_AS_VARIABLE
 #undef SAVE_DIR_AS_VARIABLE
 #undef SAVE_PIXEL_X_AS_VARIABLE
 #undef SAVE_PIXEL_Y_AS_VARIABLE
