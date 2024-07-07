@@ -258,7 +258,7 @@
 			target_turf = null
 		else if((current_dist < 2) && banger && !isGunHealingTargetSanity && !target_lost)
 			target_turf = get_step_away(thing_to_move, moves_to)
-		else if ((!banger || isGunHealingTargetSanity || target_lost) && current_dist >= 2 || current_dist >= 5)
+		else if ((!banger || isGunHealingTargetSanity || target_lost) && current_dist >= 2 || current_dist >= 5 || banger && !isGunHealingTargetSanity && !target_lost && !CanShoot(thing_to_move, moves_to, 6))
 			var/list/path = get_path_to(thing_to_move, moves_to, TYPE_PROC_REF(/turf, Distance_cardinal), 0, 30, 1, TYPE_PROC_REF(/turf, reachableTurftestWithMobs))
 			if(path.len > 1)
 				target_turf = path[2]
@@ -268,6 +268,44 @@
 		if(target_turf && (living_pawn.mobility_flags & MOBILITY_MOVE))
 			thing_to_move.Move(target_turf, get_dir(our_turf, target_turf))
 	return TRUE
+
+/proc/CanShoot(atom/A, atom/B, max_distance)
+	var/turf/start = get_turf(A)
+	var/turf/end = get_turf(B)
+	if(start.z != end.z)
+		return FALSE
+	if(start.density)
+		return FALSE
+	for(var/obj/O in start)
+		if(O.density)
+			return FALSE
+	var/distance = abs(start.x - end.x) + abs(start.y - end.y)
+	if(!max_distance)
+		max_distance = distance
+	var/step_x = (end.x - start.x) / distance
+	var/step_y = (end.y - start.y) / distance
+	for(var/i in 1 to max_distance)
+		var/current_x = start.x + step_x * i
+		var/current_y = start.y + step_y * i
+		var/list/turfs_to_check = list()
+		if(abs((current_x - floor(current_x)) - 0.5) < 0.05)
+			turfs_to_check |= locate(round(current_x - 0.5, 1), round(current_y, 1), start.z)
+			turfs_to_check |= locate(round(current_x + 0.5, 1), round(current_y, 1), start.z)
+		if(abs((current_y - floor(current_y)) - 0.5) < 0.05)
+			turfs_to_check |= locate(round(current_x, 1), round(current_y - 0.5, 1), start.z)
+			turfs_to_check |= locate(round(current_x, 1), round(current_y + 0.5, 1), start.z)
+		turfs_to_check |= locate(round(current_x, 1), round(current_y, 1), start.z)
+		for(var/turf/T in turfs_to_check)
+			if(T.density)
+				return FALSE
+			for(var/obj/O in T)
+				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/railing))
+					continue
+				if(O.density)
+					return FALSE
+		if(end in turfs_to_check)
+			return TRUE
+	return FALSE
 
 /turf/proc/reachableTurftestWithMobs(caller, turf/T, ID, simulated_only)
 	if(T && !T.density && !(simulated_only && SSpathfinder.space_type_cache[T.type]) && !LinkBlockedWithAccess(T,caller, ID))
@@ -374,7 +412,6 @@
 				current_movement_target = weapon
 				current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/ground)
 				return
-			current_behaviors += GET_AI_BEHAVIOR(/datum/ai_behavior/insane_equip/inventory)
 			return
 	return
 
@@ -431,11 +468,14 @@
 
 	blackboard[BB_INSANE_BEST_FORCE_FOUND] = INSANE_MINIMUM_WEAPON_FORCE
 
+	//clear hands of trash and unusable items
 	var/list/item_blacklist = blackboard[BB_INSANE_BLACKLISTITEMS]
 	for(var/obj/item/I in living_pawn.held_items)
 		if(blackboard[BB_INSANE_BLACKLISTITEMS][I])
+			living_pawn.dropItemToGround(I, force = TRUE)
 			continue
 		if(blackboard[BB_INSANE_TEMPORARY_BLACKLISTITEMS][I])
+			living_pawn.dropItemToGround(I, force = TRUE)
 			continue
 		if(istype(I, /obj/item/offhand))
 			continue
@@ -465,6 +505,7 @@
 		if(item_force > blackboard[BB_INSANE_BEST_FORCE_FOUND])
 			blackboard[BB_INSANE_BEST_FORCE_FOUND] = item_force
 
+	//check inventory for weapons
 	var/list/items_to_check = living_pawn.get_equipped_items(include_pockets = TRUE)
 	for(var/obj/item/storage/B in items_to_check)
 		items_to_check += B.contents
@@ -491,9 +532,11 @@
 					continue
 		if(!is_white_allowed && i.damtype == WHITE_DAMAGE)
 			continue
-		if(!IsBetterWeapon(living_pawn, i, blackboard[BB_INSANE_BEST_FORCE_FOUND]))
+		var/force = GetEffectiveItemForce(i)
+		if(force < blackboard[BB_INSANE_BEST_FORCE_FOUND])
 			continue
-		sorted_insert(weapons, i, GLOBAL_PROC_REF(ComparatorItemForceGreater))
+		blackboard[BB_INSANE_BEST_FORCE_FOUND] = force
+	//check in view for weapons
 	for(var/obj/item/i in oview(7, living_pawn))
 		if(blackboard[BB_INSANE_BLACKLISTITEMS][i])
 			continue
@@ -530,6 +573,13 @@
 		var/obj/item/ego_weapon/EW = I
 		power *= EW.force_multiplier
 		power /= EW.attack_speed ? CLICK_CD_MELEE * EW.attack_speed / 10 : CLICK_CD_MELEE / 10 //damage per second
+		switch(I.type)
+			if(/obj/item/ego_weapon/twilight, /obj/item/ego_weapon/shield/distortion)
+				power *= 4
+			if(/obj/item/ego_weapon/space)
+				power *= 2
+			if(/obj/item/ego_weapon/blind_rage)
+				power *= 3 //not sure how accurate but will make them love using it
 	else if(considerRangedAttack && istype(I, /obj/item/gun/ego_gun))
 		var/obj/item/gun/ego_gun/gun_i = I
 		var/obj/item/ammo_casing/casing = initial(gun_i.ammo_type)
