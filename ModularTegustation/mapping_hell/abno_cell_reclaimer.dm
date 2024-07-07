@@ -3,6 +3,9 @@
 /obj/effect/abnormality_helper
 	name = "Abnormality link helper"
 	var/mob/living/simple_animal/hostile/abnormality/stored_abnormality = null
+	var/stored_boxes = 0
+	var/understanding = 0
+	var/observation_ready = FALSE
 
 /obj/effect/abnormality_helper/Initialize()
 	. = ..()
@@ -34,6 +37,7 @@
 			message_admins("[src] MAJOR FAILURE: has failed to find an abnormality computer despite resetting its direction!")
 			return
 
+
 	if(!link_panel(computer))
 		message_admins("[src] MINOR FAILURE: has failed to find an abnormality panel for linking!")
 		return
@@ -62,6 +66,10 @@
 
 	var/datum/abnormality/datum_reference = new /datum/abnormality(landmark, desired_abnormality.type)
 	landmark.datum_reference = datum_reference
+
+	datum_reference.stored_boxes = stored_boxes
+	datum_reference.understanding = understanding
+
 	return datum_reference
 
 /obj/effect/abnormality_helper/proc/link_computer(datum/abnormality/datum_reference, mob/desired_abnormality)

@@ -88,6 +88,24 @@ if(pixel_y != initial(pixel_y)){ \
 	return JSON
 
 /**
+ * Misc
+ */
+
+/obj/docking_port/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_NAME_AS_VARIABLE
+	SAVE_DIR_AS_VARIABLE
+	if(dwidth != initial(dwidth))
+		variables_to_add += "dwidth = [dwidth]"
+	if(height != initial(height))
+		variables_to_add += "height = [height]"
+	if(width != initial(width))
+		variables_to_add += "width = [width]"
+	if(id != initial(id))
+		variables_to_add += "id = \"[id]\""
+
+	return ..()
+
+/**
  * Turf children
  */
 
@@ -213,9 +231,9 @@ if(pixel_y != initial(pixel_y)){ \
 	SAVE_NAME_AS_VARIABLE
 	SAVE_DIR_AS_VARIABLE
 	if(possible_destinations != initial(possible_destinations))
-		variables_to_add += "possible_destinations = [possible_destinations]"
+		variables_to_add += "possible_destinations = \"[possible_destinations]\""
 	if(shuttleId != initial(shuttleId))
-		variables_to_add += "shuttleId = [shuttleId]"
+		variables_to_add += "shuttleId = \"[shuttleId]\""
 
 	return ..()
 

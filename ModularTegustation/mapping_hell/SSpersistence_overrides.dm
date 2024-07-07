@@ -129,8 +129,14 @@
 						var/atom/desired_item = items_to_save[1]
 						if(istype(desired_item, /mob/living/simple_animal/hostile/abnormality))
 							var/mob/living/simple_animal/hostile/abnormality/abno = desired_item
+							code_file += "\
+								/obj/effect/abnormality_helper{\n\
+									dir = [rotation];\n	\
+									stored_boxes = [abno.datum_reference.stored_boxes];\n	\
+									understanding = [abno.datum_reference.understanding];\n	\
+									stored_abnormality = [desired_item.type]\n	}\
+							"
 							abno.datum_reference = null
-							code_file += "/obj/effect/abnormality_helper{\n	dir = [rotation];\n	stored_abnormality = [desired_item.type]\n	}"
 						else
 							code_file += "[desired_item.type]"
 							code_file += desired_item.save_variables(rotation)
