@@ -28,6 +28,16 @@
 	gift_message = "A teardrop fell from the child’s dewy eyes, as stars showered from the sky."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "You entered the containment chamber. \
+A child is standing there. \"I know who you are.\" \
+\"Of course. We were born from each other.\" You decided to......."
+	observation_choices = list("Stay", "Exit the chamber")
+	correct_choices = list("Exit the chamber")
+	observation_success_message = "You turned your back to the child and walked out. \
+The pebble in your hands sparkles sways, and tickles. It becomes the universe. \
+\"Goodbye. I hope you never come back.\" As the child bid the cold farewell, he was smiling."
+	observation_fail_message = "\"Will you stay here with me?\" \"If you won't, I don't need you.\""
+
 	var/heal_cooldown_time = 2 SECONDS
 	var/heal_cooldown
 	var/list/galaxy_friend = list()
@@ -106,7 +116,7 @@
 			for(var/mob/living/carbon/human/L in galaxy_friend)
 				if(QDELETED(L))
 					continue
-				L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(damage_amount, BLACK_DAMAGE)
 				L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
 				UnregisterSignal(L, COMSIG_LIVING_DEATH)
 				new /obj/effect/temp_visual/pebblecrack(get_turf(L))
@@ -176,7 +186,7 @@
 		for(var/mob/living/carbon/human/L in galaxy_friend)
 			if(QDELETED(L))
 				continue
-			L.apply_damage(damage_amount, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(damage_amount, BLACK_DAMAGE)
 			L.remove_status_effect(STATUS_EFFECT_FRIENDSHIP)
 			UnregisterSignal(L, COMSIG_LIVING_DEATH)
 			new /obj/effect/temp_visual/pebblecrack(get_turf(L))

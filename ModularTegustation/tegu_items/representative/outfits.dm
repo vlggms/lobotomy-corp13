@@ -16,7 +16,7 @@
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/ego_hat/wcorp
 	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/ert
-	belt = /obj/item/ego_weapon/city/charge/wcorp
+	belt = /obj/item/ego_weapon/city/wcorp
 
 /datum/outfit/wcorp/level2
 	name = "W Corp L2"
@@ -24,10 +24,10 @@
 
 /datum/outfit/wcorp/level2/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
 	var/belt = pick(
-		/obj/item/ego_weapon/city/charge/wcorp/fist,
-		/obj/item/ego_weapon/city/charge/wcorp/axe,
-		/obj/item/ego_weapon/city/charge/wcorp/spear,
-		/obj/item/ego_weapon/city/charge/wcorp/dagger,
+		/obj/item/ego_weapon/city/wcorp/fist,
+		/obj/item/ego_weapon/city/wcorp/axe,
+		/obj/item/ego_weapon/city/wcorp/spear,
+		/obj/item/ego_weapon/city/wcorp/dagger,
 	)
 
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
@@ -42,16 +42,16 @@
 	r_pocket = /obj/item/reagent_containers/hypospray/medipen/mental
 
 /datum/outfit/wcorp/level3/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
-	var/belt = pick(/obj/item/ego_weapon/city/charge/wcorp/fist,
-		/obj/item/ego_weapon/city/charge/wcorp/axe,
-		/obj/item/ego_weapon/city/charge/wcorp/spear,
-		/obj/item/ego_weapon/city/charge/wcorp/dagger,
-		/obj/item/ego_weapon/city/charge/wcorp/hatchet,
-		/obj/item/ego_weapon/city/charge/wcorp/hammer,
-		/obj/item/ego_weapon/city/charge/wcorp/shield,
-		/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
-		/obj/item/ego_weapon/city/charge/wcorp/shield/club,
-		/obj/item/ego_weapon/city/charge/wcorp/shield/axe)
+	var/belt = pick(/obj/item/ego_weapon/city/wcorp/fist,
+		/obj/item/ego_weapon/city/wcorp/axe,
+		/obj/item/ego_weapon/city/wcorp/spear,
+		/obj/item/ego_weapon/city/wcorp/dagger,
+		/obj/item/ego_weapon/city/wcorp/hatchet,
+		/obj/item/ego_weapon/city/wcorp/hammer,
+		/obj/item/ego_weapon/city/wcorp/shield,
+		/obj/item/ego_weapon/city/wcorp/shield/spear,
+		/obj/item/ego_weapon/city/wcorp/shield/club,
+		/obj/item/ego_weapon/city/wcorp/shield/axe)
 
 	H.equip_to_slot_or_del(new belt(H),ITEM_SLOT_BELT, TRUE)
 

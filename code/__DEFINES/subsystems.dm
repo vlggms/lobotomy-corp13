@@ -101,53 +101,54 @@
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
 
-#define INIT_ORDER_PROFILER			101
-#define INIT_ORDER_TITLE			100
-#define INIT_ORDER_GARBAGE			99
-#define INIT_ORDER_DBCORE			95
-#define INIT_ORDER_BLACKBOX			94
-#define INIT_ORDER_SERVER_MAINT		93
-#define INIT_ORDER_INPUT			85
-#define INIT_ORDER_SOUNDS			83
-#define INIT_ORDER_INSTRUMENTS		82
-#define INIT_ORDER_VIS				80
-#define INIT_ORDER_ACHIEVEMENTS		77
-#define INIT_ORDER_MAPTYPE			76	//Affects jobcode and can touch events
-#define INIT_ORDER_RESEARCH			75
-#define INIT_ORDER_STATION			74 //This is high priority because it manipulates a lot of the subsystems that will initialize after it.
-#define INIT_ORDER_EVENTS			70
-#define INIT_ORDER_JOBS				65
-#define INIT_ORDER_QUIRKS			60
-#define INIT_ORDER_TICKER			55
-#define INIT_ORDER_TCG				55
-#define INIT_ORDER_MAPPING			50
-#define INIT_ORDER_TIMETRACK		47
-#define INIT_ORDER_NETWORKS			45
-#define INIT_ORDER_ECONOMY			40
-#define INIT_ORDER_OUTPUTS			35
-#define INIT_ORDER_ATOMS			30
-#define INIT_ORDER_LANGUAGE			25
-#define INIT_ORDER_MACHINES			20
-#define INIT_ORDER_SKILLS			15
-#define INIT_ORDER_TIMER			1
-#define INIT_ORDER_DEFAULT			0
-#define INIT_ORDER_AIR				-1
-#define INIT_ORDER_PERSISTENCE		-2 //before assets because some assets take data from SSPersistence
-#define INIT_ORDER_HOLOMAP			-3
-#define INIT_ORDER_ASSETS			-4
-#define INIT_ORDER_ICON_SMOOTHING	-5
-#define INIT_ORDER_OVERLAY			-6
-#define INIT_ORDER_XKEYSCORE		-10
-#define INIT_ORDER_STICKY_BAN		-10
-#define INIT_ORDER_LIGHTING			-20
-#define INIT_ORDER_SHUTTLE			-21
-#define INIT_ORDER_MINOR_MAPPING	-40
-#define INIT_ORDER_PATH				-50
-#define INIT_ORDER_DISCORD			-60
-#define INIT_ORDER_EXPLOSIONS		-69
-#define INIT_ORDER_STATPANELS		-98
-#define INIT_ORDER_DEMO				-99  // o avoid a bunch of changes related to initialization being written, do this last
-#define INIT_ORDER_CHAT				-100 //Should be last to ensure chat remains smooth during init.
+#define INIT_ORDER_PROFILER 101
+#define INIT_ORDER_TITLE 100
+#define INIT_ORDER_GARBAGE 99
+#define INIT_ORDER_DBCORE 95
+#define INIT_ORDER_BLACKBOX	94
+#define INIT_ORDER_SERVER_MAINT	93
+#define INIT_ORDER_SPEECH_CONTROLLER 92
+#define INIT_ORDER_INPUT 85
+#define INIT_ORDER_SOUNDS 83
+#define INIT_ORDER_INSTRUMENTS 82
+#define INIT_ORDER_VIS 80
+#define INIT_ORDER_ACHIEVEMENTS 77
+#define INIT_ORDER_MAPTYPE 76 //Affects jobcode and can touch events
+#define INIT_ORDER_RESEARCH 75
+#define INIT_ORDER_STATION 74 //This is high priority because it manipulates a lot of the subsystems that will initialize after it.
+#define INIT_ORDER_EVENTS 70
+#define INIT_ORDER_JOBS 65
+#define INIT_ORDER_QUIRKS 60
+#define INIT_ORDER_TICKER 55
+#define INIT_ORDER_TCG 55
+#define INIT_ORDER_MAPPING 50
+#define INIT_ORDER_TIMETRACK 47
+#define INIT_ORDER_NETWORKS 45
+#define INIT_ORDER_ECONOMY 40
+#define INIT_ORDER_OUTPUTS 35
+#define INIT_ORDER_ATOMS 30
+#define INIT_ORDER_LANGUAGE 25
+#define INIT_ORDER_MACHINES 20
+#define INIT_ORDER_SKILLS 15
+#define INIT_ORDER_TIMER 1
+#define INIT_ORDER_DEFAULT 0
+#define INIT_ORDER_AIR -1
+#define INIT_ORDER_PERSISTENCE -2 //before assets because some assets take data from SSPersistence
+#define INIT_ORDER_HOLOMAP -3
+#define INIT_ORDER_ASSETS -4
+#define INIT_ORDER_ICON_SMOOTHING -5
+#define INIT_ORDER_OVERLAY -6
+#define INIT_ORDER_XKEYSCORE -10
+#define INIT_ORDER_STICKY_BAN -10
+#define INIT_ORDER_LIGHTING -20
+#define INIT_ORDER_SHUTTLE -21
+#define INIT_ORDER_MINOR_MAPPING -40
+#define INIT_ORDER_PATH -50
+#define INIT_ORDER_DISCORD -60
+#define INIT_ORDER_EXPLOSIONS -69
+#define INIT_ORDER_STATPANELS -98
+#define INIT_ORDER_DEMO -99  // o avoid a bunch of changes related to initialization being written, do this last
+#define INIT_ORDER_CHAT -100 //Should be last to ensure chat remains smooth during init.
 
 // Subsystem fire priority, from lowest to highest priority
 // If the subsystem isn't listed here it's either DEFAULT or PROCESS (if it's a processing subsystem child)
@@ -183,6 +184,7 @@
 #define FIRE_PRIORITY_OVERLAYS 500
 #define FIRE_PRIORITY_EXPLOSIONS 666
 #define FIRE_PRIORITY_TIMER	700
+#define FIRE_PRIORITY_SPEECH_CONTROLLER 900
 #define FIRE_PRIORITY_INPUT	1000 // This must always always be the max highest priority. Player input must never be lost.
 
 
@@ -237,11 +239,14 @@
 #define SSAIR_ATMOSMACHINERY 2
 #define SSAIR_ACTIVETURFS 3
 #define SSAIR_HOTSPOTS 4
-#define SSAIR_EXCITEDCLEANUP 5
-#define SSAIR_EXCITEDGROUPS 6
-#define SSAIR_HIGHPRESSURE 7
-#define SSAIR_SUPERCONDUCTIVITY 8
-#define SSAIR_PROCESS_ATOMS 9
+#define SSAIR_EXCITEDGROUPS 5
+#define SSAIR_HIGHPRESSURE 6
+#define SSAIR_SUPERCONDUCTIVITY 7
+#define SSAIR_PROCESS_ATOMS 8
+
+//Pipeline rebuild helper defines, these suck but it'll do for now
+#define SSAIR_REBUILD_PIPELINE 1
+#define SSAIR_REBUILD_QUEUE 2
 
 // Explosion Subsystem subtasks
 #define SSEXPLOSIONS_MOVABLES 1

@@ -26,17 +26,26 @@
 	gift_type = null
 	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	secret_chance = TRUE
+	secret_icon_state = "megalovania"
+
+	observation_prompt = "The armor that took away many people's lives is sitting in front of you. You can put it on, if you wish."
+	observation_choices = list("Put it on", "Dont't put it on")
+	correct_choices = list("Put it on")
+	observation_success_message = "It seems like you were not pacifist. You feel the armor's warm welcome."
+	observation_fail_message = "The armor waits for another reckless one."
+
 	var/buff_icon = 'ModularTegustation/Teguicons/tegu_effects.dmi'
 	var/user_armored
 	var/numbermarked
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 30 SECONDS
 
-/mob/living/simple_animal/hostile/abnormality/crumbling_armor/Initialize(mapload)
+/mob/living/simple_animal/hostile/abnormality/crumbling_armor/ObservationResult(mob/living/carbon/human/user, condition)
 	. = ..()
-	// Megalovania?
-	if (prob(1))
-		icon_state = "megalovania"
+	if(condition)
+		new /obj/item/ego_weapon/shield/daredevil(get_turf(user)) //TODO : Replace this with a special wearable "crumbling armor"
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -204,7 +213,7 @@
 	if(!istype(holders_head))
 		return FALSE
 	playsound(get_turf(status_holder), 'sound/abnormalities/crumbling/attack.ogg', 50, FALSE)
-	status_holder.apply_damage(punishment_damage, PALE_DAMAGE, null, status_holder.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+	status_holder.deal_damage(punishment_damage, PALE_DAMAGE)
 	if(status_holder.health < 0)
 		holders_head.dismember()
 	new /obj/effect/temp_visual/slice(get_turf(status_holder))

@@ -166,6 +166,7 @@
 	speed = 4
 	move_to_delay = 7
 	density = FALSE
+	status_flags = CANPUSH | MUST_HIT_PROJECTILE
 	melee_damage_lower = 100
 	melee_damage_upper = 115 // If you get hit by them it's a major skill issue
 	pixel_x = -16
@@ -178,6 +179,9 @@
 	death_sound = 'sound/effects/ordeals/amber/dusk_dead.ogg'
 	damage_coeff = list(RED_DAMAGE = 1.2, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.5, PALE_DAMAGE = 2)
 	blood_volume = BLOOD_VOLUME_NORMAL
+	should_projectile_blockers_change_orientation = TRUE
+	occupied_tiles_up = 1
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = 0, "east" = -32)
 
 	/// This cooldown responds for both the burrowing and spawning in the dawns
 	var/burrow_cooldown
@@ -218,7 +222,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/Life()
 	. = ..()
@@ -231,11 +235,16 @@
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/death(gibbed)
 	if(LAZYLEN(butcher_results))
 		alpha = 255
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
 	soundloop.stop()
 	listclearnulls(spawned_mobs)
 	for(var/mob/living/simple_animal/hostile/ordeal/amber_bug/AB in spawned_mobs)
 		AB.can_burrow_solo = TRUE
 	..()
+
+/mob/living/simple_animal/hostile/ordeal/amber_dusk/revive(full_heal, admin_revive)
+	. = ..()
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = 0, "east" = -32)
 
 /mob/living/simple_animal/hostile/ordeal/amber_dusk/proc/AttemptBirth()
 	listclearnulls(spawned_mobs)
@@ -335,6 +344,11 @@
 	base_pixel_x = -96
 	pixel_y = -16
 	base_pixel_y = -16
+	occupied_tiles_left = 1
+	occupied_tiles_right = 1
+	occupied_tiles_up = 2
+	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
+	offsets_pixel_y = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
 
 	blood_volume = BLOOD_VOLUME_NORMAL
 	death_sound = 'sound/effects/ordeals/amber/midnight_dead.ogg'
@@ -354,7 +368,7 @@
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/amber_midnight/death(gibbed)
 	alpha = 255

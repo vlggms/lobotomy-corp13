@@ -36,38 +36,29 @@
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, 15)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, 40)
 
 /datum/status_effect/display/bracelet/tick()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	H.adjustBruteLoss(-5) // Your health heals quite fast
+	if(H.is_working) //We don't reward people for using it to spam works
+		return
+	H.adjustBruteLoss(-2) // Your health heals decently fast
+	healthtracker+=1
 
-	//Count to 10 if you are at full HP
-	if(H.getBruteLoss() == 0)
-		if(healthtracker == 0)
-			to_chat(H, span_danger("Your HP is too high! Decrease it or perish!."))
-
-		healthtracker+=1
-	else if (healthtracker!=0)
-		healthtracker = 0
-
-	//If you are at half HP you get a different warning.
-	if(H.health <= H.maxHealth/2)
+	//Count down to 5 minutes of wearing
+	if(healthtracker>=300)
 		if(warningtracker == 0)
-			to_chat(H, span_danger("Your HP is too low! Increase it or perish."))
-
+			to_chat(H, span_hypnophrase("You have been wearing the luminous bracelet for a long time. Any longer could be dangerous!"))
+			H.playsound_local(get_turf(H), 'sound/abnormalities/nothingthere/heartbeat.ogg', 50, 0, 3)
 		warningtracker+=1
-	else if (warningtracker!=0)
-		warningtracker = 0
-
-	if(healthtracker == 15 || warningtracker == 10)
+	if(warningtracker >= 150)
 		H.gib()
 
 /datum/status_effect/display/bracelet/on_remove()
 	. = ..()
 	if(ishuman(owner))
 		var/mob/living/carbon/human/H = owner
-		H.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, -15)
+		H.adjust_attribute_bonus(FORTITUDE_ATTRIBUTE, -40)
 
 #undef STATUS_EFFECT_BRACELET

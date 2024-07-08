@@ -161,7 +161,7 @@
 		return
 	if(stacks <= 10)
 		return
-	owner.apply_damage((stacks / 5), RED_DAMAGE, null, owner.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	owner.deal_damage((stacks / 5), RED_DAMAGE)
 	owner.playsound_local(owner, 'sound/effects/book_burn.ogg', 25, TRUE)
 
 /datum/status_effect/stacking/fanhot/on_remove()

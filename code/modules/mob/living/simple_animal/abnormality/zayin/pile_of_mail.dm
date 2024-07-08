@@ -36,10 +36,9 @@
 	var/spawned_effects = list()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Destroy()
-	..()
 	for(var/obj/effect/VFX in spawned_effects)
-		VFX.Destroy()
-	return
+		qdel(VFX)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/mailpile/Initialize(mapload)
 	. = ..()
@@ -419,7 +418,7 @@
 /obj/item/mailpaper/trapped/urgent/Trap()
 	audible_message(span_warning("We are going to kill you."))
 	for(var/mob/living/carbon/human/H in hearers(7, src))
-		H.apply_damage(50, WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE))
+		H.deal_damage(50, WHITE_DAMAGE)
 	return ..()
 
 /obj/item/mailpaper/trapped/flashbang

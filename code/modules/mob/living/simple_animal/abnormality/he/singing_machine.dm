@@ -36,6 +36,14 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 	buckled_mobs = list()
 	buckle_lying = TRUE
 	max_boxes = 16
+
+	observation_prompt = "You know that people die every time this machine sings. \
+Or perhaps this machine sings when people die. Though it has spilled blood of countless people, the song put you in a rapturous mood."
+	observation_choices = list("Listen to the music", "Turn off the machine")
+	correct_choices = list("Turn off the machine")
+	observation_success_message = "You turned the machine off. Silence fills the air."
+	observation_fail_message = "Aah. The music gives you sense of warm coziness and relaxation."
+
 	var/cleanliness = "clean"
 	var/statChecked = 0
 	var/bonusRed = 0
@@ -55,9 +63,9 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 		for(var/mob/living/carbon/human/H in livinginrange(playRange, src))
 			if(faction_check_mob(H))
 				continue
-			H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE)
 			if(H in musicalAddicts)
-				H.apply_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE, null, H.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+				H.deal_damage(rand(playStatus * noiseFactor, playStatus * noiseFactor * 2), WHITE_DAMAGE)
 				to_chat(H, span_warning("You can hear it again... it needs more..."))
 			else
 				to_chat(H, span_warning("That terrible grinding noise..."))
@@ -83,7 +91,7 @@ Finally, an abnormality that DOESN'T have to do any fancy movement shit. It's a 
 
 /mob/living/simple_animal/hostile/abnormality/singing_machine/Worktick(mob/living/carbon/human/user)
 	if(bonusRed) // If you have bonus red damage to apply...
-		user.apply_damage(bonusRed, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		user.deal_damage(bonusRed, RED_DAMAGE)
 		if(bonusRed < 6 && playStatus == 0)	// Should only happen when the machine isn't dealing damage.
 			for(var/mob/living/carbon/human/H in livinginrange(30, src))
 				if(faction_check_mob(H))

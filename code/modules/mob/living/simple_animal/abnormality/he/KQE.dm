@@ -10,6 +10,7 @@
 	icon_state = "kqe"
 	icon_living = "kqe"
 	icon_dead = "kqe_egg"
+	core_icon = "kqe_egg"
 	portrait = "KQE"
 	del_on_death = FALSE
 	melee_damage_type = BLACK_DAMAGE
@@ -259,7 +260,7 @@
 	layer = POINT_LAYER//Sprite should always be visible
 
 /obj/effect/kqe_claw/Initialize()
-	..()
+	. = ..()
 	addtimer(CALLBACK(src, PROC_REF(GrabAttack)), 3 SECONDS)
 
 /obj/effect/kqe_claw/proc/GrabAttack()
@@ -270,7 +271,7 @@
 		M.ejectall()
 	for(var/mob/living/carbon/human/H in view(1, src))
 		grabbed = TRUE
-		H.apply_damage(boom_damage*1, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, BLACK_DAMAGE)
 		H.forceMove(get_turf(src))//pulls them all to the target
 		GrabStun(H)
 	if(grabbed)

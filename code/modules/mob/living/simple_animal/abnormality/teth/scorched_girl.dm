@@ -5,6 +5,7 @@
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "scorched"
 	icon_living = "scorched"
+	core_icon = "scorch_egg"
 	portrait = "scorched_girl"
 	maxHealth = 400
 	health = 400
@@ -33,6 +34,20 @@
 	)
 	gift_type =  /datum/ego_gifts/match
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "I thought it was cold. \
+It got warm before I even realize it. The match nailed to my heart doesn't stop burning. \
+The match that never caught a fire before now burns to ash. Maybe is a price for taking my body, to burn so bright and fiery. \
+Let's run when I can burn. I have been suffering and will suffer. But why you are still happy? \
+I know the menace I have become. If nothing will change, I at least want to see you suffering."
+	observation_choices = list("Go to her", "Do not go to her")
+	correct_choices = list("Do not go to her")
+	observation_success_message = "I stopped. I can see her in the distance. \
+\"Maybe you are thinking I am some kind of lighthouse.\" \
+\"At least, I hope you realize my ash is all that remains after this flame consumes the all of me.\""
+	observation_fail_message = "Come to me. \
+You who will soon become ashes just like me."
+
 	/// Restrict movement when this is set to TRUE
 	var/exploding = FALSE
 	/// Current cooldown for the players
@@ -126,7 +141,7 @@
 	// Ka-boom
 	playsound(get_turf(src), 'sound/abnormalities/scorchedgirl/explosion.ogg', 125, 0, 8)
 	for(var/mob/living/carbon/human/H in view(7, src))
-		H.apply_damage(boom_damage, RED_DAMAGE, null, H.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		H.deal_damage(boom_damage, RED_DAMAGE)
 		if(H.health < 0)
 			H.gib()
 	new /obj/effect/temp_visual/explosion(get_turf(src))

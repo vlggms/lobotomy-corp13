@@ -5,6 +5,7 @@
 	icon_state = "fairy_longlegs"
 	icon_living = "fairy_longlegs"
 	icon_dead = "fairy_longlegs_dead"
+	core_icon = "fairy_longlegs_dead"
 	portrait = "fairy_long_legs"
 	del_on_death = FALSE
 	pixel_x = -16
@@ -131,7 +132,7 @@
 		return
 	user.visible_message(span_warning("You feel a stinging pain in your chest, is that...blood?!"))
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 50, 1)
-	user.apply_damage(100, RED_DAMAGE, null, user.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+	user.deal_damage(100, RED_DAMAGE)
 	for(var/obj/effect/rainy_effect/rain in range(3, src))
 		rain.End(FALSE)
 

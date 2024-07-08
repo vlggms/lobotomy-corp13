@@ -1,5 +1,4 @@
 
-
 // Green noon
 /mob/living/simple_animal/hostile/ordeal/green_bot_big
 	name = "process of understanding"
@@ -123,7 +122,7 @@
 	icon_living = "green_dusk_1"
 	icon_dead = "green_dusk_dead"
 	layer = LYING_MOB_LAYER
-	bound_width = 64 // 2x1
+	occupied_tiles_right = 1
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
@@ -252,6 +251,9 @@
 	layer = LYING_MOB_LAYER
 	pixel_x = -96
 	base_pixel_x = -96
+	occupied_tiles_left = 2
+	occupied_tiles_right = 2
+	occupied_tiles_up = 2
 	faction = list("green_ordeal")
 	gender = NEUTER
 	mob_biotypes = MOB_ROBOTIC
@@ -261,6 +263,7 @@
 	butcher_results = list(/obj/item/food/meat/slab/robot = 22)
 	guaranteed_butcher_results = list(/obj/item/food/meat/slab/robot = 16)
 	death_sound = 'sound/effects/ordeals/green/midnight_dead.ogg'
+	offsets_pixel_x = list("south" = -96, "north" = -96, "west" = -96, "east" = -96)
 
 	var/laser_cooldown
 	var/laser_cooldown_time = 20 SECONDS

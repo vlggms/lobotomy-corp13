@@ -6,9 +6,10 @@
 	spawn_positions = -1
 	supervisors = "the Manager"
 	selection_color = "#ccaaaa"
-	exp_requirements = 60
-	exp_type = EXP_TYPE_CREW
+	exp_requirements = 240
+	exp_type = EXP_TYPE_SECURITY
 	exp_type_department = EXP_TYPE_SECURITY
+	minimal_player_age = 1
 
 	outfit = /datum/outfit/job/agent
 	display_order = JOB_DISPLAY_ORDER_AGENT
@@ -179,6 +180,7 @@
 	outfit = /datum/outfit/job/agent/intern
 	display_order = JOB_DISPLAY_ORDER_INTERN
 	normal_attribute_level = 20
+	minimal_player_age = 0
 	exp_requirements = 0
 	job_important = "\
 		You are an Agent Intern. \

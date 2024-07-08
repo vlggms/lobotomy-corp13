@@ -12,13 +12,15 @@
 	desc = "The spear often tries to lead the wielder into a long and endless realm of mind, \
 	but they must try to not be swayed by it."
 	icon_state = "fragment"
-	force = 22
+	force = 33
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.2
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+
 
 /obj/item/ego_weapon/horn
 	name = "horn"
@@ -351,7 +353,7 @@
 		res.traps -= src
 		res = null
 	creator = null
-	. = ..()
+	return ..()
 
 /obj/effect/temp_visual/lanterntrap/proc/burst_check()
 	for(var/mob/living/L in get_turf(src))
@@ -489,7 +491,7 @@
 
 /obj/item/ego_weapon/zauberhorn/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/zauberhorn/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
@@ -541,6 +543,7 @@
 	inhand_y_dimension = 96
 	force = 22
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 6	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("bludgeons", "whacks")

@@ -164,12 +164,15 @@
 		force = 12
 		attack_speed = 0.33
 		projectile_block_duration = 0.33 SECONDS
+		block_duration = 1 SECONDS
 	else
 		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		if (istype(Z))
-			force = 32
+			force = 40
+			block_duration = 1.5 SECONDS
 		else
 			force = 12
+			block_duration = 1 SECONDS
 		attack_speed = 0.5
 		projectile_block_duration = 0.5 SECONDS
 	..()
@@ -180,9 +183,7 @@
 		naked_parry = isnull(cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING))
 		var/obj/item/clothing/suit/armor/ego_gear/realization/fear/Z = cooler_user.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 		realized_parry = istype(Z)
-		if (realized_parry)
-			reductions = list(40, 30, 20, 60) // 150
-		if(naked_parry)
+		if (realized_parry || naked_parry)
 			reductions = list(95, 95, 95, 100) // Must be wearing 0 armor
 		else
 			reductions = list(40, 20, 20, 0)
@@ -197,7 +198,7 @@
 
 /obj/item/ego_weapon/shield/daredevil/BlockCooldown(mob/living/carbon/human/user)
 	if (realized_parry)
-		force = 32
+		force = 40
 	else
 		force = 12
 	..()
@@ -214,7 +215,7 @@
 		hit_message = "is untouchable!"
 		force = 18 // bonus damage for like, 2 seconds.
 	else if(realized_parry)
-		force = 48 // bonus damage for like, 2 seconds.
+		force = 50 // bonus damage for like, 2 seconds.
 		hit_message = "A GOD DOES NOT FEAR DEATH!"
 	else if(damagetype == PALE_DAMAGE)
 		to_chat(source,span_warning("To attempt parry the aspect of death is to hide from inevitability. To hide is to fear. Show me that you do not fear death."))
@@ -718,7 +719,8 @@
 	name = "Get Strong"
 	desc = "It whirls and twirls and yet feels limp... Do you love the City you live in?"
 	special = "This weapon has multiple modes.\nA low power spear. A medium power sword, and a high-power gauntlet.\n\
-	Hitting with the spear and sword improve the damage of the next gauntlet."
+	Hitting with the spear and sword improve the damage of the next gauntlet. \n\
+	This weapon stuns you for a short period of time on spear mode."
 	icon_state = "become_strong_sp"
 	worn_icon = 'icons/obj/clothing/belt_overlays.dmi'
 	worn_icon_state = "become_strong"
@@ -731,7 +733,7 @@
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	var/mode = "Spear"
 	var/list/mode_stats = list(
-		"Spear" = list("_sp", 15, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),
+		"Spear" = list("_sp", 42, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),	//Now immobilizes you.
 		"Sword" = list("_sw", 25, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
 		"Gauntlet" = list("_f", 50, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/strong_gauntlet.ogg')
 		)
@@ -782,6 +784,8 @@
 			force += windup
 			windup = 0
 	..()
+	if(mode == "Spear")	//Due to the nature of the weapon, it must.
+		user.Immobilize(5)
 	force = mode_stats[mode][2]
 	switch(windup)
 		if(50 to INFINITY)
@@ -957,47 +961,32 @@
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 							)
-	var/charge_effect = "pull a target from a distance."
-	var/charge_cost = 2
-	var/charge
-	var/activated
+
+	charge = TRUE
+	charge_effect = "Pull a target from a distance."
+	charge_cost = 2
+	charge_cap = 21 // you dont understand, they NEED that one extra point of cap
+
 	var/gun_cooldown
 	var/gun_cooldown_time = 1.2 SECONDS
 
 /obj/item/ego_weapon/replica/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
-
-/obj/item/ego_weapon/replica/examine(mob/user)
-	. = ..()
-	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
-
-/obj/item/ego_weapon/replica/attack_self(mob/user)
-	..()
-	if(charge>=charge_cost)
-		to_chat(user, span_notice("You prepare to release your charge."))
-		activated = TRUE
-	else
-		to_chat(user, span_notice("You don't have enough charge."))
-
-/obj/item/ego_weapon/replica/attack(mob/living/target, mob/living/user)
-	..()
-	if((target.health<=target.maxHealth *0.1	|| target.stat == DEAD) && !(GODMODE in target.status_flags))//if the target is dead, don't generate charge
-		return
-	if(charge<=20)
-		charge+=1
+	return ..()
 
 /obj/item/ego_weapon/replica/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
 		return
-	if(!activated)
+
+	if(!currently_charging)
 		return
+
 	if(!proximity_flag && gun_cooldown <= world.time)
-		charge -= charge_cost
-		activated = FALSE
+		currently_charging = FALSE
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
+
 		var/obj/projectile/ego_bullet/replica/G = new /obj/projectile/ego_bullet/replica(proj_turf)
 		G.fired_from = src //for signal check
 		playsound(user, 'sound/abnormalities/kqe/load3.ogg', 100, TRUE)
@@ -1005,7 +994,6 @@
 		G.preparePixelProjectile(target, user, clickparams)
 		G.fire()
 		gun_cooldown = world.time + gun_cooldown_time
-		return
 
 /obj/item/ego_weapon/replica/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
@@ -1024,15 +1012,16 @@
 /obj/item/ego_weapon/warp
 	name = "dimensional ripple"
 	desc = "They should've died after bleeding so much. You usually don't quarantine a corpse...."
+	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp2"
-	force = 24
+	force = 34 		//Spears get reduced damage
 	lefthand_file = 'icons/mob/inhands/weapons/ego_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/ego_righthand.dmi'
 	inhand_x_dimension = 32
 	inhand_y_dimension = 32
-	attack_speed = 1
 	hitsound = 'sound/abnormalities/wayward_passenger/attack1.ogg'
 	reach = 2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
@@ -1040,16 +1029,13 @@
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
-	var/release_message = "You release your charge, opening a rift!"
-	var/charge_effect = "teleport and create a temporary two-way portal."
-	var/current_holder
-	var/charge_cost = 10
-	var/charge
-	var/activated
 
-/obj/item/ego_weapon/warp/examine(mob/user)
-	. = ..()
-	. += "Spend [charge]/[charge_cost] charge to [charge_effect]"
+	charge = TRUE
+	attack_charge_gain = FALSE // we have a unique way of getting charge
+	charge_cost = 10
+	charge_effect = "Teleport and create a temporary two-way portal."
+
+	var/current_holder
 
 /obj/item/ego_weapon/warp/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
@@ -1072,46 +1058,35 @@
 	UnregisterSignal(current_holder, COMSIG_MOVABLE_MOVED)
 	current_holder = null
 
-/obj/item/ego_weapon/warp/attack_self(mob/user)
-	..()
-	if(activated == TRUE)
-		to_chat(user, span_notice("You are no longer prepared to release your charge."))
-		activated = FALSE
-		return
-	if(charge>=charge_cost)
-		to_chat(user, span_notice("You prepare to release your charge."))
-		activated = TRUE
-	else
-		to_chat(user, span_notice("You don't have enough charge."))
-
 /obj/item/ego_weapon/warp/proc/UserMoved()
 	SIGNAL_HANDLER
-	if(charge<20)
-		charge+=0.1
+	HandleCharge(0.1)
 
 /obj/item/ego_weapon/warp/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
 		to_chat(user, span_notice("You cannot use this!"))
 		return
-	if(!activated)
+	if(!currently_charging)
 		return
+
 	if(!LAZYLEN(get_path_to(src,target, TYPE_PROC_REF(/turf, Distance), 0, 20)))
 		to_chat(user, span_notice("Invalid target."))
-		activated = FALSE
+		CancelCharge()
 		return
+
 	if(!proximity_flag)
-		charge -= charge_cost
-		activated = FALSE
+		currently_charging = FALSE
+		to_chat(user, span_notice("You release your charge, opening a rift!"))
 		var/turf/proj_turf = user.loc
 		if(!isturf(proj_turf))
 			return
+
 		var/obj/effect/portal/warp/P1 = new(proj_turf)
 		var/obj/effect/portal/warp/P2 = new(get_turf(target))
 		playsound(src, 'sound/abnormalities/wayward_passenger/teleport2.ogg', 50, TRUE)
 		P1.link_portal(P2)
 		P2.link_portal(P1)
 		P1.teleport(user)
-		return
 
 /obj/effect/portal/warp
 	name = "dimensional rift"
@@ -1126,12 +1101,11 @@
 
 /obj/effect/portal/warp/Initialize()
 	QDEL_IN(src, 3 SECONDS)
-	..()
+	return ..()
 
 /obj/item/ego_weapon/warp/knife		//knife subtype of the above. knife has to be the subtype because it fits in a belt
 	name = "dimension shredder"
 	desc = "The path is intent on thwarting all attempts to memorize it."
-	special = "This weapon builds charge every 10 steps you've taken."
 	icon_state = "warp"
 	lefthand_file = 'icons/mob/inhands/64x64_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
@@ -1140,6 +1114,7 @@
 	force = 24
 	attack_speed = 0.8
 	reach = 1
+	stuntime = 0
 
 /obj/item/ego_weapon/marionette
 	name = "marionette"
@@ -1165,10 +1140,13 @@
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
 	attack_verb_simple = list("stab", "slash", "attack")
-	hitsound = 'sound/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/fixer/generic/blade2.ogg'
 	attribute_requirements = list(
 							JUSTICE_ATTRIBUTE = 40
 							)
+	var/punishment_damage = 0
+	var/punishment_size = 0
+	var/wide_slash_angle = 290
 
 /obj/item/ego_weapon/divinity/attack(mob/living/target, mob/living/carbon/human/user)
 	. = ..()
@@ -1177,12 +1155,42 @@
 		return
 	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
-	var/punishment_damage = (force * justicemod)
-	var/punishment_size = round(S.stacks / 3)//this is the same size as the AOE from theonite slab. Good luck lol
-	for(var/turf/T in view(punishment_size, target))
+	punishment_damage = (force * justicemod)
+	punishment_size = max(2, (S.stacks / 3))//this is the same size as the AOE from theonite slab. Good luck lol
+	addtimer(CALLBACK(src, PROC_REF(WideSlash), target, user), 1)
+
+/obj/item/ego_weapon/divinity/proc/WideSlash(atom/target, mob/living/carbon/human/user)
+	if(!istype(target) || QDELETED(target))
+		return
+	var/turf/TT = get_turf(target)
+	var/turf/T = get_turf(src)
+	var/rotate_dir = pick(1, -1)
+	var/angle_to_target = Get_Angle(T, TT)
+	var/angle = angle_to_target + (wide_slash_angle * rotate_dir) * 0.5
+	if(angle > 360)
+		angle -= 360
+	else if(angle < 0)
+		angle += 360
+	var/turf/T2 = get_turf_in_angle(angle, T, punishment_size)
+	var/list/line = getline(T, T2)
+	for(var/i = 1 to 20)
+		angle += ((wide_slash_angle / 20) * rotate_dir)
+		if(angle > 360)
+			angle -= 360
+		else if(angle < 0)
+			angle += 360
+		T2 = get_turf_in_angle(angle, T, punishment_size)
+		line = getline(T, T2)
+		addtimer(CALLBACK(src, PROC_REF(DoLineAttack), line, target, user), i * 0.12)
+
+/obj/item/ego_weapon/divinity/proc/DoLineAttack(list/line, atom/target, mob/living/carbon/human/user)
+	var/list/been_hit = list()
+	for(var/turf/T in line)
+		if(locate(/obj/effect/temp_visual/smash_effect) in T)
+			continue
+		playsound(T, 'sound/weapons/fixer/generic/blade3.ogg', 30, TRUE, 3)
 		new /obj/effect/temp_visual/smash_effect(T)
-		user.HurtInTurf(T, list(), punishment_damage, PALE_DAMAGE, check_faction = TRUE)
-	playsound(user, 'sound/weapons/fixer/generic/blade3.ogg', 55, TRUE, 3)
+		been_hit = user.HurtInTurf(T, been_hit, punishment_damage, PALE_DAMAGE, check_faction = TRUE)
 
 /obj/item/ego_weapon/destiny
 	name = "destiny"
@@ -1287,6 +1295,23 @@
 	..()
 	force = initial(force)
 
+/obj/item/ego_weapon/frostsplinter
+	name = "frost splinter"
+	desc = "Anyone damaged by it will lose themselves for a moment. \
+	As the equipment was forged from snow, it shall disappear without a trace someday."
+	icon_state = "frostsplinter"
+	force = 44
+	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
 /obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
 	name = "AEDD"
 	desc = "A nasty-looking bat covered with nails."
@@ -1337,8 +1362,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 33
+	force = 45
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "impales")
@@ -1367,8 +1393,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 35
+	force = 39
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 2.0 // really slow
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("burns", "boils")
@@ -1395,6 +1422,7 @@
 		FX.color = "#622F22"
 		user.HurtInTurf(T, list(), 40, BLACK_DAMAGE, check_faction = TRUE)
 	return
+
 
 /obj/item/ego_weapon/lance/lifestew_lance/get_clamped_volume()
 	return 40
@@ -1434,7 +1462,7 @@
 
 /obj/item/ego_weapon/lifestew/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/lifestew/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
@@ -1514,7 +1542,7 @@
 
 /obj/item/ego_weapon/faelantern/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/faelantern/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
@@ -1597,7 +1625,7 @@
 	lefthand_file = 'icons/mob/inhands/96x96_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	damtype = WHITE_DAMAGE
-	force = 50
+	force = 60
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
 	attack_speed = 4//Really really slow.
@@ -1608,6 +1636,7 @@
 							JUSTICE_ATTRIBUTE = 40
 							)
 	reach = 2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	force_cap = 100 //Old max damage when it was damage = amount you walked.
 	force_per_tile = 5 //if I can read, this means you need to cross 20 tiles for max damage
 	pierce_force_cost = 20
@@ -1631,7 +1660,7 @@
 	if(!isanimal(owner))
 		return
 	var/mob/living/simple_animal/hostile/M = owner
-	M.TemporarySpeedChange(M.move_to_delay*0.25 , 3 SECONDS)
+	M.TemporarySpeedChange(1.25 , 3 SECONDS, TRUE)
 
 /atom/movable/screen/alert/status_effect/brown_bricks
 	name = "Yello Bricks"
@@ -1670,7 +1699,7 @@
 	icon_state = "coiling"
 	force = 30
 	reach = 4		//Has 4 Square Reach.
-	attack_speed = 1.8
+	attack_speed = 2.1
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("whips", "lashes", "tears")
 	attack_verb_simple = list("whip", "lash", "tear")
@@ -1683,7 +1712,7 @@
 	name = "voodoo"
 	desc = "What seems to be a giant half of a scissors pair."
 	icon_state = "voodoo"
-	special = "This weapon can be paired with itself to unlock the ability to parry."
+	special = "This weapon can be paired with a second copy to use both at the same time."
 	force = 20
 	attack_speed = 0.7
 	damtype = WHITE_DAMAGE
@@ -1706,10 +1735,10 @@
 	if(combo)
 		sleep(attack_speed/2 SECONDS)
 		if(target in view(reach,user))
-			target.attacked_by(src, user)
-			target.send_item_attack_message(src, user,target)
-			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			user.do_attack_animation(target)
+			target.attacked_by(Y, user)
+			log_combat(user, target, pick(attack_verb_continuous), Y.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(Y.damtype)])")
 
 /obj/item/ego_weapon/nixie
 	name = "nixie divergence"
@@ -1819,7 +1848,7 @@
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
 	special = "Knocks certain enemies towards you in an area. \
-	This weapon does half damage when attacking 3 or tiles more away."
+	This weapon does half damage when attacking 3 or more tiles more away."
 	icon_state = "uturn"
 	force = 40
 	reach = 4
@@ -1915,3 +1944,26 @@
 		playsound(get_turf(src), 'sound/items/drink.ogg', 50, TRUE) //slurp
 		user.adjustBruteLoss(-amount_filled*2)
 		amount_filled = 0
+
+/obj/item/ego_weapon/shield/isolation
+	name = "isolation"
+	desc = "The shelter still retains the memory of that day."
+	icon_state = "isolation"
+	force = 30
+	attack_speed = 1
+	damtype = RED_DAMAGE
+	attack_verb_continuous = list("cuts", "smacks", "bashes")
+	attack_verb_simple = list("cuts", "smacks", "bashes")
+	hitsound = 'sound/weapons/ego/axe2.ogg'
+	reductions = list(10, 20, 40, 10) // 80
+	projectile_block_duration = 1 SECONDS
+	block_duration = 1 SECONDS
+	block_cooldown = 3 SECONDS
+	block_sound = 'sound/weapons/ego/clash1.ogg'
+	projectile_block_message = "You swat the projectile out of the air!"
+	block_message = "You attempt to parry the attack!"
+	hit_message = "parries the attack!"
+	block_cooldown_message = "You rearm your E.G.O."
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

@@ -418,7 +418,7 @@
 			if(L in hit_list || istype(L, type))
 				continue
 			hit_list += L
-			L.apply_damage(cone_attack_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+			L.deal_damage(cone_attack_damage, melee_damage_type)
 			to_chat(L, span_userdanger("You have been hit by [src]'s breath attack!"))
 			if(ishuman(L))
 				Finisher(L)
@@ -443,7 +443,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check_mob(L))
 				continue
-			L.apply_damage(slam_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+			L.deal_damage(slam_damage, melee_damage_type)
 			if(ishuman(L))
 				Finisher(L)
 	SLEEP_CHECK_DEATH(3)
@@ -473,7 +473,7 @@
 	for(var/mob/living/L in T)
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(pulse_damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+		L.deal_damage(pulse_damage, melee_damage_type)
 
 /mob/living/simple_animal/hostile/abnormality/seasons/proc/Finisher(mob/living/carbon/human/H) //return TRUE to prevent attacking, as attacking causes runtimes if the target is gibbed.
 	if(current_season == "spring" && H.sanity_lost)

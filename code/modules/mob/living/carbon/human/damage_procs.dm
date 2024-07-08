@@ -6,13 +6,15 @@
 	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
-	adjustSanityLoss(damage_amt)
+	adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
 		updatehealth()
 	return damage_amt
 
-/mob/living/carbon/human/proc/adjustSanityLoss(amount)
+/mob/living/carbon/human/proc/adjustSanityLoss(amount, forced = FALSE)
 	if((status_flags & GODMODE) || !attributes || stat == DEAD)
+		return FALSE
+	if(!forced && amount < 0 && HAS_TRAIT(src, TRAIT_SANITY_HEALING_BLOCKED))
 		return FALSE
 	sanityloss = clamp(sanityloss + amount, 0, maxSanity)
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))
@@ -57,7 +59,7 @@
 	playsound(loc, 'sound/effects/sanity_lost.ogg', 75, TRUE, -1)
 	var/warning_text = "[src] shakes for a moment..."
 	var/datum/status_effect/panicked_type/status_effect_type
-	if(SSmaptype.maptype == "city" && attribute == JUSTICE_ATTRIBUTE)
+	if(SSmaptype.maptype in SSmaptype.citymaps && attribute == JUSTICE_ATTRIBUTE)
 		attribute = TEMPERANCE_ATTRIBUTE // Justice panics default to temerance panics on city, no containment cells.
 	switch(attribute)
 		if(FORTITUDE_ATTRIBUTE)
@@ -70,7 +72,7 @@
 			status_effect_type = /datum/status_effect/panicked_type/suicide
 		if(TEMPERANCE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/wander
-			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for [SSmaptype.maptype == "city" ? "a way out" : "an exit"]."
+			warning_text = "[src] twitches for a moment, [p_their()] eyes looking for [SSmaptype.maptype in SSmaptype.citymaps ? "a way out" : "an exit"]."
 			status_effect_type = /datum/status_effect/panicked_type/wander
 		if(JUSTICE_ATTRIBUTE)
 			ai_controller = /datum/ai_controller/insane/release

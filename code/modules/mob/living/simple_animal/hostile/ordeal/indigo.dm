@@ -51,7 +51,7 @@
 /mob/living/simple_animal/hostile/ordeal/indigo_noon/proc/devour(mob/living/L)
 	if(!L)
 		return FALSE
-	if(SSmaptype.maptype == "city")
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		return FALSE
 	visible_message(
 		span_danger("[src] devours [L]!"),
@@ -157,7 +157,7 @@
 	damage_coeff = list(RED_DAMAGE = 1.5, WHITE_DAMAGE = 0.7, BLACK_DAMAGE = 0.7, PALE_DAMAGE = 0.5)
 
 /mob/living/simple_animal/hostile/ordeal/indigo_dusk/Initialize(mapload)
-	..()
+	. = ..()
 	var/units_to_add = list(
 		/mob/living/simple_animal/hostile/ordeal/indigo_noon = 1,
 		)
@@ -225,6 +225,8 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+	occupied_tiles_up = 1
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
 
 	//How many people has she eaten
 	var/belly = 0
@@ -412,7 +414,7 @@
 
 	maxHealth = 4000
 	ChangeResistances(list(RED_DAMAGE = 0.4, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0.25, PALE_DAMAGE = 0.8))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee +=1
 	melee_damage_lower -= 10
 	melee_damage_upper -= 10
@@ -430,7 +432,7 @@
 
 	maxHealth = 3000
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 0.8, BLACK_DAMAGE = 0.3, PALE_DAMAGE = 1))
-	SpeedChange(phasespeedchange)
+	ChangeMoveToDelayBy(phasespeedchange)
 	rapid_melee += 2
 	melee_damage_lower -= 15
 	melee_damage_upper -= 15

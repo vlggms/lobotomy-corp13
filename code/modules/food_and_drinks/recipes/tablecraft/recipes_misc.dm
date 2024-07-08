@@ -3,6 +3,18 @@
 
 // MISC
 
+////////////////////////////////////////////////EGG RECIPE's////////////////////////////////////////////////
+
+/datum/crafting_recipe/food/chocolateegg
+	name = "Chocolate egg"
+	reqs = list(
+		/obj/item/food/boiledegg = 1,
+		/obj/item/food/chocolatebar = 1
+	)
+	result = /obj/item/food/chocolateegg
+	subcategory = CAT_MISCFOOD
+
+
 /datum/crafting_recipe/food/candiedapple
 	name = "Candied apple"
 	reqs = list(
@@ -12,15 +24,6 @@
 	result = /obj/item/food/candiedapple
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/spiderlollipop
-	name = "Spider Lollipop"
-	reqs = list(/obj/item/stack/rods = 1,
-		/datum/reagent/consumable/sugar = 5,
-		/datum/reagent/water = 5,
-		/obj/item/food/spiderling = 1
-	)
-	result = /obj/item/food/chewable/spiderlollipop
-	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/chococoin
 	name = "Choco coin"
@@ -31,6 +34,7 @@
 	result = /obj/item/food/chococoin
 	subcategory = CAT_MISCFOOD
 
+
 /datum/crafting_recipe/food/fudgedice
 	name = "Fudge dice"
 	reqs = list(
@@ -40,6 +44,7 @@
 	result = /obj/item/food/fudgedice
 	subcategory = CAT_MISCFOOD
 
+
 /datum/crafting_recipe/food/chocoorange
 	name = "Choco orange"
 	reqs = list(
@@ -47,6 +52,47 @@
 		/obj/item/food/chocolatebar = 1,
 	)
 	result = /obj/item/food/chocoorange
+	subcategory = CAT_MISCFOOD
+
+
+/datum/crafting_recipe/food/friedegg
+	name = "Fried egg"
+	reqs = list(
+		/datum/reagent/consumable/salt = 1,
+		/datum/reagent/consumable/blackpepper = 1,
+		/obj/item/food/egg = 1
+	)
+	result = /obj/item/food/friedegg
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/omelette
+	name = "Omelette"
+	reqs = list(
+		/obj/item/food/egg = 2,
+		/obj/item/food/cheesewedge = 2
+	)
+	result = /obj/item/food/omelette
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/eggsbenedict
+	name = "Eggs benedict"
+	reqs = list(
+		/obj/item/food/friedegg = 1,
+		/obj/item/food/meat/steak = 1,
+		/obj/item/food/breadslice/plain = 1,
+	)
+	result = /obj/item/food/benedict
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/eggbowl
+	name = "Egg bowl"
+	reqs = list(
+		/obj/item/food/salad/boiledrice = 1,
+		/obj/item/food/boiledegg = 1,
+		/obj/item/food/grown/carrot = 1,
+		/obj/item/food/grown/corn = 1
+	)
+	result = /obj/item/food/salad/eggbowl
 	subcategory = CAT_MISCFOOD
 
 /datum/crafting_recipe/food/loadedbakedpotato
@@ -107,15 +153,6 @@
 
 ////////////////////////////////////////////////TOAST////////////////////////////////////////////////
 
-/datum/crafting_recipe/food/slimetoast
-	name = "Slime toast"
-	reqs = list(
-		/datum/reagent/toxin/slimejelly = 5,
-		/obj/item/food/breadslice/plain = 1
-	)
-	result = /obj/item/food/jelliedtoast/slime
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/jelliedyoast
 	name = "Jellied toast"
 	reqs = list(
@@ -172,16 +209,6 @@
 	result = /obj/item/food/carneburrito
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/fuegoburrito
-	name ="Fuego plasma burrito"
-	reqs = list(
-		/obj/item/food/tortilla = 1,
-		/obj/item/food/grown/ghost_chili = 2,
-		/obj/item/food/grown/soybeans = 1
-	)
-	result = /obj/item/food/fuegoburrito
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/melonfruitbowl
 	name ="Melon fruit bowl"
 	reqs = list(
@@ -232,32 +259,6 @@
 	result = /obj/item/food/honeybar
 	subcategory = CAT_MISCFOOD
 
-
-/datum/crafting_recipe/food/stuffedlegion
-	name = "Stuffed legion"
-	time = 40
-	reqs = list(
-		/obj/item/food/meat/steak/goliath = 1,
-		/obj/item/organ/regenerative_core/legion = 1,
-		/datum/reagent/consumable/ketchup = 2,
-		/datum/reagent/consumable/capsaicin = 2
-	)
-	result = /obj/item/food/stuffedlegion
-	subcategory = CAT_MISCFOOD
-
-/datum/crafting_recipe/food/powercrepe
-	name = "Powercrepe"
-	time = 40
-	reqs = list(
-		/obj/item/food/flatdough = 1,
-		/datum/reagent/consumable/milk = 1,
-		/datum/reagent/consumable/cherryjelly = 5,
-		/obj/item/stock_parts/cell/super =1,
-		/obj/item/melee/sabre = 1
-	)
-	result = /obj/item/food/powercrepe
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/taco
 	name ="Classic Taco"
 	reqs = list(
@@ -298,19 +299,6 @@
 	result = /obj/item/food/salad/ricepudding
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/butterbear //ITS ALIVEEEEEE!
-	name = "Living bear/butter hybrid"
-	reqs = list(
-		/obj/item/organ/brain = 1,
-		/obj/item/organ/heart = 1,
-		/obj/item/food/butter = 10,
-		/obj/item/food/meat/slab = 5,
-		/datum/reagent/blood = 50,
-		/datum/reagent/teslium = 1 //To shock the whole thing into life
-	)
-	result = /mob/living/simple_animal/hostile/bear/butter
-	subcategory = CAT_MISCFOOD
-
 /datum/crafting_recipe/food/crab_rangoon
 	name = "Crab Rangoon"
 	reqs = list(
@@ -322,13 +310,311 @@
 	result = /obj/item/food/crab_rangoon
 	subcategory = CAT_MISCFOOD
 
-/datum/crafting_recipe/food/royalcheese
-	name = "Royal Cheese"
+/////////////////
+//Misc. Frozen.//
+/////////////////
+
+/datum/crafting_recipe/food/icecreamsandwich
+	name = "Icecream sandwich"
 	reqs = list(
-		/obj/item/food/cheesewheel = 1,
-		/obj/item/clothing/head/crown = 1,
-		/datum/reagent/medicine/strange_reagent = 5,
-		/datum/reagent/toxin/mutagen = 5
+		/datum/reagent/consumable/cream = 5,
+		/datum/reagent/consumable/ice = 5,
+		/obj/item/food/icecream = 1
 	)
-	result = /obj/item/food/royalcheese
+	result = /obj/item/food/icecreamsandwich
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/strawberryicecreamsandwich
+	name = "Strawberry ice cream sandwich"
+	reqs = list(
+		/datum/reagent/consumable/cream = 5,
+		/datum/reagent/consumable/ice = 5,
+		/obj/item/food/grown/berries = 2,
+		/obj/item/food/icecream = 1
+	)
+	result = /obj/item/food/strawberryicecreamsandwich
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/spacefreezy
+	name ="Space freezy"
+	reqs = list(
+		/datum/reagent/consumable/bluecherryjelly = 5,
+		/datum/reagent/consumable/spacemountainwind = 15,
+		/obj/item/food/icecream = 1
+	)
+	result = /obj/item/food/spacefreezy
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/sundae
+	name ="Sundae"
+	reqs = list(
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/food/grown/cherries = 1,
+		/obj/item/food/grown/banana = 1,
+		/obj/item/food/icecream = 1
+	)
+	result = /obj/item/food/sundae
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/honkdae
+	name ="Honkdae"
+	reqs = list(
+		/datum/reagent/consumable/cream = 5,
+		/obj/item/clothing/mask/gas/clown_hat = 1,
+		/obj/item/food/grown/cherries = 1,
+		/obj/item/food/grown/banana = 2,
+		/obj/item/food/icecream = 1
+	)
+	result = /obj/item/food/honkdae
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/cornuto
+	name = "Cornuto"
+	reqs = list(
+		/obj/item/food/chocolatebar = 1,
+		/datum/reagent/consumable/cream = 4,
+		/datum/reagent/consumable/ice = 2,
+		/datum/reagent/consumable/sugar = 4,
+		/obj/item/food/icecream = 1
+	)
+	result = /obj/item/food/cornuto
+	subcategory = CAT_MISCFOOD
+
+//////////////////////////SNOW CONES///////////////////////
+
+/datum/crafting_recipe/food/flavorless_sc
+	name = "Flavorless snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15
+	)
+	result = /obj/item/food/snowcones
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/pineapple_sc
+	name = "Pineapple snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/pineapplejuice = 5
+	)
+	result = /obj/item/food/snowcones/pineapple
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/lime_sc
+	name = "Lime snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/limejuice = 5
+	)
+	result = /obj/item/food/snowcones/lime
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/lemon_sc
+	name = "Lemon snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/lemonjuice = 5
+	)
+	result = /obj/item/food/snowcones/lemon
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/apple_sc
+	name = "Apple snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/applejuice = 5
+	)
+	result = /obj/item/food/snowcones/apple
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/grape_sc
+	name = "Grape snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/grapejuice = 5
+	)
+	result = /obj/item/food/snowcones/grape
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/orange_sc
+	name = "Orange snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/orangejuice = 5
+	)
+	result = /obj/item/food/snowcones/orange
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/blue_sc
+	name = "Bluecherry snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/bluecherryjelly= 5
+	)
+	result = /obj/item/food/snowcones/blue
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/red_sc
+	name = "Cherry snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/cherryjelly= 5
+	)
+	result = /obj/item/food/snowcones/red
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/berry_sc
+	name = "Berry snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/berryjuice = 5
+	)
+	result = /obj/item/food/snowcones/berry
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/fruitsalad_sc
+	name = "Fruit Salad snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/water  = 5,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/orangejuice = 5,
+		/datum/reagent/consumable/limejuice = 5,
+		/datum/reagent/consumable/lemonjuice = 5
+	)
+	result = /obj/item/food/snowcones/fruitsalad
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/mime_sc
+	name = "Mime snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/nothing = 5
+	)
+	result = /obj/item/food/snowcones/mime
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/despaired_delight
+	name = "Despaired Delight"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/drinkingglass = 1,
+		/obj/item/food/grown/berries = 2,
+		/datum/reagent/consumable/milk = 5,
+		/datum/reagent/consumable/ice = 5
+	)
+	result = /obj/item/food/frozen_treats/despaired_delight
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/clown_sc
+	name = "Clown snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/laughter = 5
+	)
+	result = /obj/item/food/snowcones/clown
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/soda_sc
+	name = "City Cola snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/space_cola = 5
+	)
+	result = /obj/item/food/snowcones/soda
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/spacemountainwind_sc
+	name = "Space Mountain Wind snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/spacemountainwind = 5
+	)
+	result = /obj/item/food/snowcones/spacemountainwind
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/pwrgame_sc
+	name = "Pwrgame snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/pwr_game = 15
+	)
+	result = /obj/item/food/snowcones/pwrgame
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/honey_sc
+	name = "Honey snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/consumable/honey = 5
+	)
+	result = /obj/item/food/snowcones/honey
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/rainbow_sc
+	name = "Rainbow snowcone"
+	reqs = list(
+		/obj/item/reagent_containers/food/drinks/sillycup = 1,
+		/datum/reagent/consumable/ice = 15,
+		/datum/reagent/colorful_reagent = 1 //Harder to make
+	)
+	result = /obj/item/food/snowcones/rainbow
+	subcategory = CAT_MISCFOOD
+
+//////////////////////////POPSICLES///////////////////////
+
+// This section includes any frozen treat served on a stick.
+////////////////////////////////////////////////////////////
+
+/datum/crafting_recipe/food/orange_popsicle
+	name = "Orange popsicle"
+	reqs = list(
+		/obj/item/popsicle_stick = 1,
+		/datum/reagent/consumable/orangejuice = 4,
+		/datum/reagent/consumable/ice = 2,
+		/datum/reagent/consumable/cream = 2,
+		/datum/reagent/consumable/vanilla = 2,
+		/datum/reagent/consumable/sugar = 2
+	)
+	result = /obj/item/food/popsicle/creamsicle_orange
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/berry_popsicle
+	name = "Berry popsicle"
+	reqs = list(
+		/obj/item/popsicle_stick = 1,
+		/datum/reagent/consumable/berryjuice = 4,
+		/datum/reagent/consumable/ice = 2,
+		/datum/reagent/consumable/cream = 2,
+		/datum/reagent/consumable/vanilla = 2,
+		/datum/reagent/consumable/sugar = 2
+	)
+	result = /obj/item/food/popsicle/creamsicle_berry
+	subcategory = CAT_MISCFOOD
+
+/datum/crafting_recipe/food/jumbo
+	name = "Jumbo icecream"
+	reqs = list(
+		/obj/item/popsicle_stick = 1,
+		/obj/item/food/chocolatebar = 1,
+		/datum/reagent/consumable/ice = 2,
+		/datum/reagent/consumable/cream = 2,
+		/datum/reagent/consumable/vanilla = 3,
+		/datum/reagent/consumable/sugar = 2
+	)
+	result = /obj/item/food/popsicle/jumbo
 	subcategory = CAT_MISCFOOD

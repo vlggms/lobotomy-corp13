@@ -492,10 +492,12 @@
 	origin_type = /obj/structure/chair/plastic
 
 /obj/item/chair/icequeen
-	name = "Ice Queen's Throne"
+	name = "Snow Queen's Throne"
 	desc = "An icey throne."
 	icon = 'ModularTegustation/Teguicons/160x160.dmi'
 	icon_state = "snowqueen_throne"
+	dir = 2
+	layer = HIGH_OBJ_LAYER
 	density = 1
 	anchored = 1
 	bound_height = 160

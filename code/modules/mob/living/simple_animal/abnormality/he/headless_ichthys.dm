@@ -5,6 +5,7 @@
 	icon_state = "headless_ichthys"
 	icon_living = "headless_ichthys"
 	icon_dead = "headless_ichthys"
+	core_icon = "headless_ichthys"
 	portrait = "headless_icthys"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -103,7 +104,7 @@
 			for(var/mob/living/L in T)
 				if(faction_check_mob(L))
 					continue
-				L.apply_damage(jump_damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(jump_damage, BLACK_DAMAGE)
 				if(L.health < 0)
 					L.gib()
 			for(var/obj/vehicle/sealed/mecha/V in T)
@@ -163,7 +164,7 @@
 					continue
 				already_hit += L
 				var/truedamage = ishuman(L) ? beam_damage : beam_damage/2 //half damage dealt to nonhumans
-				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(truedamage, BLACK_DAMAGE)
 			for(var/obj/vehicle/sealed/mecha/V in turfs_to_check)
 				if(V in already_hit)
 					continue

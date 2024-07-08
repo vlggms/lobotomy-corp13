@@ -32,6 +32,22 @@
 	)
 	work_damage_amount = 10
 	work_damage_type = RED_DAMAGE
+
+	observation_prompt = "Come on, don't be like that. I might look hideous but that's not important to you, right? \
+I am happy that you can hear me. I once fought for happiness of the world. But soon after, I noticed. \
+Happiness of the world means happiness for me. I'm trying to stay happy. \
+I don't care even if it got me to the point where I look like this. Have you met my sisters? We were always one. \
+We fought together, and shared a common goal. By the way, Are you happy now?"
+	observation_choices = list("Yes, I'm happy", "No, I'm not happy")
+	correct_choices = list("Yes, I'm happy")
+	observation_success_message = "(The egg shook violently) \
+Don't lie. Why have we been ruined like this if that's true? \
+And why have you ended up like that? My greed will not be sated with such flimsy conviction. \
+But if your answer is a resolve for the future, and not just a statement of fact... Things might change, slowly."
+	observation_fail_message = "I knew you were not happy. \
+You are like me. You trapped yourself inside of an egg, just like me. \
+The amber-colored sky is beautiful. Oh, I'm getting hungry again."
+
 	//Some Variables cannibalized from helper
 	var/charge_check_time = 1 SECONDS
 	var/teleport_cooldown
@@ -103,9 +119,10 @@
 	. = ..()
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'
 	//Center it on a hallway
-	pixel_y = -8
-	base_pixel_y = -8
-
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	offsets_pixel_y = list("south" = -8, "north" = -8, "west" = -8, "east" = -8)
+	transform = matrix(1.5, MATRIX_SCALE)
+	SetOccupiedTiles(1, 1, 1, 1)
 	startTeleport()	//Let's Spaghettioodle out of here
 
 /mob/living/simple_animal/hostile/abnormality/greed_king/proc/startTeleport()
@@ -198,8 +215,7 @@
 				playsound(L, attack_sound, 75, 1)
 				new /obj/effect/temp_visual/kinetic_blast(get_turf(L))
 				if(ishuman(L))
-					var/mob/living/carbon/human/H = L
-					H.apply_damage(800, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+					L.deal_damage(800, RED_DAMAGE)
 				else
 					L.adjustRedLoss(80)
 				if(L.stat >= HARD_CRIT)

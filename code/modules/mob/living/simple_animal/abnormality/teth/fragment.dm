@@ -37,6 +37,14 @@
 	)
 	gift_type =  /datum/ego_gifts/fragments
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "It started singing. You..."
+	observation_choices = list("Listen to it", "Plug your ears")
+	correct_choices = list("Listen to it")
+	observation_success_message = "You silently listen to it. \
+The universe lingers in your ears. You see the song. Glamorously, it approaches you."
+	observation_fail_message = "You are not prepared yet. The song stopped when you plugged the ears."
+
 	var/song_cooldown
 	var/song_cooldown_time = 10 SECONDS
 	var/song_damage = 5 // Dealt 8 times
@@ -123,7 +131,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(song_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(song_damage, WHITE_DAMAGE)
 		SLEEP_CHECK_DEATH(3)
 
 	animate(src, pixel_y = 0, time = 0)

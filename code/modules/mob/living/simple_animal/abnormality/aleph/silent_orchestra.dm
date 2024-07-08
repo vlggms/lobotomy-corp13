@@ -33,6 +33,15 @@
 	)
 	gift_type =  /datum/ego_gifts/dacapo
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "I was the conductor of Lobotomy Corporation, I put my everything into it. \
+Now, I conduct the song of apocalypse to make everything right. As if he is about to start the performance, he stretches his arm. \
+The conductor, who thought he is the freest soul, was not free at all. The performance ended. I......."
+	observation_choices = list("Gave an applause.", "Did not give applause.")
+	correct_choices = list("Did not give applause.")
+	observation_success_message = "I am not worthy to give an applause yet. The music replays. Angelos, my movement."
+	observation_fail_message = "The performance never ends. And Da Capo."
+
 	/// Range of the damage
 	var/symphony_range = 20
 	/// Amount of white damage every tick
@@ -71,7 +80,7 @@
 			if(faction_check_mob(L))
 				continue
 			var/dealt_damage = max(6, symphony_damage - round(get_dist(src, L) * 0.1))
-			L.apply_damage(dealt_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(dealt_damage, WHITE_DAMAGE)
 
 	if(world.time >= next_movement_time) // Next movement
 		var/movement_volume = 50

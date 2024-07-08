@@ -24,6 +24,17 @@
 	gift_type = /datum/ego_gifts/spore
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "We can see things that others cannot. \
+I have come across 15 billion light years to meet you. \
+However, a butterfly can only fly as high in the sky as the sun warms. \
+It does not know that it will crumble before it can reach the stars. It fell from the sky and crushed into the ground."
+	observation_choices = list("Do nothing", "Become its friend")
+	correct_choices = list("Become its friend")
+	observation_success_message = "My voice can reach you unlike others. \
+Come to me, step by step. You will reach the stars if those steps continue."
+	observation_fail_message = "Many who tried to reach me got lost.\
+Perhaps, we are standing on parallel lines. Perhaps, we were looking at something that can never be reached."
+
 	var/insight_count = 0
 	var/non_insight_count = 0
 	var/list/once = list()
@@ -61,7 +72,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/little_prince/proc/Infect(mob/living/carbon/human/user)
 	for (var/i=0, i<5, i++)
-		user.apply_damage(rand(10, 20), WHITE_DAMAGE, null, user.run_armor_check(null, WHITE_DAMAGE))
+		user.deal_damage(rand(10, 20), WHITE_DAMAGE)
 		to_chat(user, span_warning("You feel something growing from under your skin..."))
 		if (user.sanity_lost)
 			Hypno(user)

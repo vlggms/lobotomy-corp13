@@ -36,6 +36,18 @@
 	)
 	gift_type =  /datum/ego_gifts/desire
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
+
+	observation_prompt = "There is a pair of red shoes. \
+It could be sitting in front of me, or in my feet. I am......"
+	observation_choices = list("Wearing them.", "Not wearing them.")
+	correct_choices = list("Wearing them.") //TODO: Second line of dialogue, must be coded
+	observation_success_message = "I am wearing the shoes. \
+They are perfect fit, it feels good. I have a weird feeling as if I am in another world. \
+There is a sharp axe in front of me. Maybe it was there all along, or maybe I just haven't realized it until now. \
+A weapon will change a lot of things."
+	observation_fail_message = "I was not wearing the shoes. \
+The shoes' crimson color is getting deeper."
+
 	var/mutable_appearance/breach_icon
 	var/mob/living/possessee
 	var/list/death_lines = list(
@@ -86,7 +98,12 @@
 	alpha = 255
 	QDEL_IN(src, 10 SECONDS)
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
+
+/mob/living/simple_animal/hostile/abnormality/red_shoes/Destroy()
+	if(soundloop)
+		QDEL_NULL(soundloop)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/red_shoes/Initialize()
 	. = ..()
@@ -246,7 +263,7 @@
 	var/mob/living/carbon/human/status_holder = owner
 	var/usertemp = (get_attribute_level(status_holder, TEMPERANCE_ATTRIBUTE))
 	var/desire_damage = clamp((80 - (usertemp / 2)),80, 10)//deals between 80 and 10 white damage depending on your temperance attribute when applied.
-	status_holder.apply_damage(desire_damage, WHITE_DAMAGE, null, status_holder.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)//DIE!
+	status_holder.deal_damage(desire_damage, WHITE_DAMAGE) //DIE!
 	status_holder.adjust_attribute_bonus(PRUDENCE_ATTRIBUTE, -50)//By using bonuses, this lowers your maximum prudence
 	if(status_holder.sanity_lost)
 		qdel(src)

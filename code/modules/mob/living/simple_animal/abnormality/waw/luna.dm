@@ -61,6 +61,7 @@
 	else
 		var/mob/living/simple_animal/hostile/luna/spawningmonster = new(get_turf(src))
 		breached_monster = spawningmonster
+		core_enabled = FALSE//Subject to be changed later on, as the core may need to be dropped by the monster even if not lore accurate. -Mr. H
 		QDEL_IN(src, 1 SECONDS) //Destroys the piano, as it is unecessary in Rcorp.
 
 	breached = TRUE
@@ -80,7 +81,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/luna/Worktick(mob/living/carbon/human/user, work_type)
 	if(performance)
-		user.apply_damage(work_damage_amount, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+		user.deal_damage(work_damage_amount, BLACK_DAMAGE)
 
 
 /mob/living/simple_animal/hostile/abnormality/luna/AttemptWork(mob/living/carbon/human/user, work_type)

@@ -196,7 +196,7 @@
 	prosthetic.replace_limb(M)
 	manual_emote("makes a grinding noise.")
 	M.emote("scream")
-	M.apply_damage(50, BRUTE, null, 0, spread_damage = TRUE) // Bro your [X] just got chopped off, no armor's gonna resist that.
+	M.deal_damage(50, BRUTE) // Bro your [X] just got chopped off, no armor's gonna resist that.
 	to_chat(M, span_notice("Your [old_part.name] has been replaced!"))
 	qdel(old_part)
 	M.regenerate_icons()
@@ -253,11 +253,11 @@
 	melee_damage_lower = 3*gear
 	melee_damage_upper = 5*gear
 	//Reset the speed. First proc changes this only with 0.
-	SpeedChange(gear_speed)
+	ChangeMoveToDelayBy(gear_speed)
 	//Calculate speed change.
 	gear_speed = FLOOR(gear / 3, 1)
 	//CRANK UP THE SPEED.
-	SpeedChange(-gear_speed)
+	ChangeMoveToDelayBy(-gear_speed)
 	rapid_melee = gear > 7 ? 2 : 1
 
 /mob/living/simple_animal/hostile/grown_strong/Life()

@@ -3,6 +3,7 @@
 	desc = "A little fleshy being reading a tiny book."
 	icon = 'ModularTegustation/Teguicons/32x48.dmi'
 	icon_state = "skin_prophet"
+	core_icon = "prophet_egg"
 	portrait = "skin_prophet"
 	maxHealth = 600
 	health = 600

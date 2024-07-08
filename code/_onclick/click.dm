@@ -144,7 +144,17 @@
 	//Standard reach turf to turf or reaching inside storage
 	if(CanReach(A,W))
 		if(W)
-			W.melee_attack_chain(src, A, params)
+			var/atom/target_thing = A
+			if((isturf(A) || iseffect(A)) && W.force > 10)
+				var/turf/T = get_turf(A)
+				for(var/mob/living/L in T)
+					if(L.invisibility > see_invisible)
+						continue
+					if(L.stat != DEAD)
+						target_thing = L
+						break
+					target_thing = L
+			W.melee_attack_chain(src, target_thing, params)
 		else
 			if(ismob(A))
 				changeNext_move(CLICK_CD_MELEE)

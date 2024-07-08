@@ -100,7 +100,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/Worktick(mob/living/carbon/human/user) //take damage every work on instinct
 	if(feeding)
-		user.apply_damage(3, BLACK_DAMAGE, null, user.run_armor_check(null, BLACK_DAMAGE))
+		user.deal_damage(3, BLACK_DAMAGE)
 		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user)) //Indicates damage being dealt to the player
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
@@ -160,7 +160,7 @@
 	animate(src, transform = matrix()*1.2, color = "#FF0000", time = 10)
 	playsound(get_turf(src), 'sound/abnormalities/nosferatu/transform.ogg', 35, 8)
 	bloodlust_cooldown = clamp(bloodlust_cooldown - 2, 0, 4)
-	SpeedChange(-1)
+	ChangeMoveToDelayBy(-1)
 	berzerk = TRUE
 
 /mob/living/simple_animal/hostile/abnormality/nosferatu/add_splatter_floor(turf/T, small_drip) //no spilling blood, it just works.
@@ -184,7 +184,7 @@
 	var/mob/living/carbon/human/H = target
 	if(bloodlust <= 0)
 		bloodlust = bloodlust_cooldown
-		H.apply_damage(45, BLACK_DAMAGE, null, H.run_armor_check(null, BLACK_DAMAGE))
+		H.deal_damage(45, BLACK_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/nosferatu/bat_attack.ogg', 50, 1)
 		to_chat(target, span_danger("The [src] attacks you savagely!"))
 		AdjustThirst(40)

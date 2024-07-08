@@ -361,9 +361,9 @@
 				will hit all hostiles in a 3 tile range around the user. If vine burst is used at 30% sanity the damage is \
 				increased by 50% but will hit allies due to the intense hatred of F-04-42 influencing the user."
 	icon_state = "green_stem"
-	force = 32 //original 8-16
+	force = 52 //original 8-16
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -375,8 +375,9 @@
 							)
 	var/vine_cooldown
 
+
 /obj/item/ego_weapon/stem/Initialize(mob/user)
-	.=..()
+	. = ..()
 	vine_cooldown = world.time
 
 /obj/item/ego_weapon/stem/attack_self(mob/living/user)
@@ -848,7 +849,7 @@
 
 /obj/item/ego_weapon/shield/swan/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
-	..()
+	return ..()
 
 /obj/item/ego_weapon/shield/swan/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
@@ -899,12 +900,12 @@
 	name = "heaven"
 	desc = "As it spreads its wings for an old god, a heaven just for you burrows its way."
 	icon_state = "heaven"
-	force = 40
+	force = 60
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	throwforce = 80		//It costs like 50 PE I guess you can go nuts
 	throw_speed = 5
 	throw_range = 7
-	attack_speed = 1.2
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -922,9 +923,9 @@
 	It lights the employee's heart, shines like a star, and steadily tames them."
 	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
 	icon_state = "spore"
-	force = 30		//Quite low as WAW coz the armor rend effect
+	force = 42		//Quite low as WAW coz the armor rend effect		//Kirie Edit, Now it has immobilize, so it does more damage.
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.2
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -942,6 +943,8 @@
 		if(!ishuman(M) && !M.has_status_effect(/datum/status_effect/rend_white))
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
 			M.apply_status_effect(/datum/status_effect/rend_white)
+	user.Immobilize(5)
+
 
 
 /obj/item/ego_weapon/dipsia
@@ -997,11 +1000,11 @@
 							)
 
 /obj/item/ego_weapon/shield/pharaoh/pre_attack(atom/A, mob/living/user, params)
-	if(istype(A,/obj/structure/statue/petrified) && CanUseEgo(user))
-		playsound(A, 'sound/effects/break_stone.ogg', rand(10,50), TRUE)
+	if(istype(A, /obj/structure/statue/petrified) && CanUseEgo(user))
+		playsound(A, 'sound/effects/break_stone.ogg', rand(10, 50), TRUE)
 		A.visible_message(span_danger("[A] returns to normal!"), span_userdanger("You break free of the stone!"))
-		A.Destroy()
-		return
+		qdel(A)
+		return TRUE
 	..()
 
 /obj/item/ego_weapon/blind_rage
@@ -1107,8 +1110,8 @@
 	attribute_requirements = list(FORTITUDE_ATTRIBUTE = 80)
 
 /obj/item/ego_weapon/diffraction/attack(mob/living/target, mob/living/user)
-	if((target.health<=target.maxHealth *0.2) && !(GODMODE in target.status_flags))
-		force*=2
+	if((target.health <= target.maxHealth * 0.2) && !(target.status_flags & GODMODE))
+		force *= 2
 	..()
 	force = initial(force)
 
@@ -1183,11 +1186,11 @@
 	desc = "The rings attached to the cane represent the middle way and the Six Paramitas."
 	special = "Use this weapon in your hand to damage every non-human within reach."
 	icon_state = "amrita"
-	force = 40
+	force = 60
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	throw_speed = 5
 	throw_range = 7
-	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slams", "attacks")
 	attack_verb_simple = list("slam", "attack")
@@ -1300,7 +1303,7 @@
 	user.do_attack_animation(target)
 	target.attacked_by(src, user)
 
-	log_combat(user, target, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 /obj/item/ego_weapon/discord/proc/Harmony(mob/living/carbon/human/user)
 	var/heal_amount = 5
@@ -1436,18 +1439,18 @@
 /obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	var/multihit = force
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	multihit*= justicemod * force_multiplier
 	for(var/i = 1 to 3)
 		sleep(2)
 		if(target in view(reach,user))
-			target.send_item_attack_message(src, user,target)
-			target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+			user.do_attack_animation(target)
+			target.attacked_by(src, user)
+			log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+
+/obj/item/ego_weapon/animalism/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if(isliving(target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/psychic
 	name = "psychic dagger"
@@ -1528,7 +1531,7 @@
 /obj/item/ego_weapon/cobalt
 	name = "cobalt scar"
 	desc = "Once upon a time, these claws would cut open the bellies of numerous creatures and tear apart their guts."
-	special = "Preform an additional attack of 50% damage when at half health."
+	special = "Preform an additional attack of 75% damage when at half health."
 	icon_state = "cobalt"
 	force = 24
 	attack_speed = 0.5
@@ -1542,9 +1545,11 @@
 							)
 
 /obj/item/ego_weapon/cobalt/attack(mob/living/target, mob/living/user)
+	force = initial(force)
 	if(!..())
 		return
 	var/our_health = 100 * (user.health / user.maxHealth)
+	sleep(2)
 	if(our_health <= 50 && isliving(target) && target.stat != DEAD)
 		FrenzySwipe(user)
 
@@ -1565,18 +1570,13 @@
 		return FALSE
 	if(prob(25))
 		wolf.visible_message(span_warning("[wolf] claws [those_we_rend] in a blind frenzy!"), span_warning("You swipe your claws at [those_we_rend]!"))
-	wolf.do_attack_animation(those_we_rend)
 	if(ishuman(wolf))
-		var/rend_damage = 16
-		var/userjust = (get_modified_attribute_level(wolf, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		rend_damage*=justicemod
-		rend_damage*=force_multiplier
-		those_we_rend.apply_damage(rend_damage, damtype, null, those_we_rend.run_armor_check(null, damtype), spread_damage = TRUE)
-		those_we_rend.lastattacker = wolf.real_name
-		those_we_rend.lastattackerckey = wolf.ckey
+		force = 16
 		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
+		wolf.do_attack_animation(those_we_rend)
+		those_we_rend.attacked_by(src, wolf)
+		log_combat(wolf, those_we_rend, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(wolf.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+		wolf.log_message("[wolf] attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
 	return TRUE
 
 /obj/item/ego_weapon/scene
@@ -1641,9 +1641,9 @@
 	righthand_file = 'icons/mob/inhands/96x96_righthand.dmi'
 	inhand_x_dimension = 96
 	inhand_y_dimension = 96
-	force = 35
+	force = 42
 	reach = 2		//Has 2 Square Reach.
-	attack_speed = 1.2 //same speed as Spore
+	stuntime = 5	//Longer reach, gives you a short stun.
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("pierces", "jabs")
 	default_attack_verbs = list("pierce", "jab")
@@ -1656,46 +1656,55 @@
 	force_per_tile = 5 //if I can read, this means you need to cross 14 tiles for max damage
 	pierce_force_cost = 20
 
-/obj/item/ego_weapon/charge/warring
+/obj/item/ego_weapon/warring
 	name = "warring"
 	desc = "It was a good day to die, but everybody did."
 	special = "Upon throwing, this weapon returns to the user. Throwing will activate the charge effect."
 	icon_state = "warring2"
 	force = 30
 	attack_speed = 0.8
-	throwforce = 65
+	throwforce = 55
 	throw_speed = 1
 	throw_range = 7
 	damtype = BLACK_DAMAGE
 	hitsound = 'sound/weapons/bladeslice.ogg'
-	release_message = "You release your charge!"
-	charge_effect = "expend all charge stacks in a powerful burst."
-	charge_cost = 5
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 	)
 
-/obj/item/ego_weapon/charge/warring/Initialize()
-	..()
+	charge = TRUE
+	ability_type = ABILITY_UNIQUE
+	charge_cost = 5
+	allow_ability_cancel = FALSE
+	charge_effect = "Expend all charge stacks in a powerful burst."
+	successfull_activation = "You release your charge!"
+
+/obj/item/ego_weapon/warring/Initialize()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
-/obj/item/ego_weapon/charge/warring/attack(mob/living/target, mob/living/user)
-	if(charge == 19)//max power, get ready to throw!
+/obj/item/ego_weapon/warring/attack(mob/living/target, mob/living/user)
+	if(charge_amount == 4 || charge_amount == 19)//audio tells for min and maximum charge bursts
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 	. = ..()
-	if(charge == 5)
+
+/obj/item/ego_weapon/warring/attack_self(mob/living/user)
+	if(!currently_charging && charge_amount >= 5)
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 		icon_state = "warring2_firey"
 		hitsound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 		if(user)
 			user.update_inv_hands()
+	else
+		return
+	. = ..()
 
-/obj/item/ego_weapon/charge/warring/release_charge(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/warring/ChargeAttack(mob/living/user)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in view(1, T))
-		var/aoe = charge * 5
+		var/aoe = (charge_amount + 5) * 5
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -1705,25 +1714,26 @@
 		new /obj/effect/temp_visual/tbirdlightning(get_turf(L))
 	icon_state = initial(icon_state)
 	hitsound = initial(hitsound)
-	charge = 0
+	charge_amount = initial(charge_amount)
+	currently_charging = FALSE
 
-/obj/item/ego_weapon/charge/warring/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
+/obj/item/ego_weapon/warring/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
 	if(!CanUseEgo(user))
 		return
 	return ..()
 
-/obj/item/ego_weapon/charge/warring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/ego_weapon/warring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		if(charge >= charge_cost && isliving(hit_atom))
-			release_charge(hit_atom)
+		if(currently_charging && isliving(hit_atom))
+			ChargeAttack(hit_atom)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
 		return
 	else
 		return ..()
 
-/obj/item/ego_weapon/charge/warring/get_clamped_volume()
+/obj/item/ego_weapon/warring/get_clamped_volume()
 	return 40
 
 /obj/item/ego_weapon/hyde
@@ -1746,7 +1756,7 @@
 	var/transformed = FALSE
 
 /obj/item/ego_weapon/hyde/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/hyde/attack_self(mob/living/carbon/human/user)
@@ -2064,3 +2074,56 @@
 
 /obj/item/ego_weapon/abyssal_route/proc/DiveReset()
 	can_attack = TRUE
+
+/obj/item/ego_weapon/windup
+	name = "wind-up"
+	desc = "Yes, we can rewind your wasted time. \
+	Just wind it up, close your eyes, and count to ten. When you open them, you will be standing at the exact moment you wished to be in."
+	special = "Use in hand to charge this weapon, up to four times. Deals very little damage when uncharged."
+	icon_state = "windup"
+	force = 10
+	attack_speed = 0.5
+	damtype = PALE_DAMAGE
+	attack_verb_continuous = list("cleaves", "cuts")
+	attack_verb_simple = list("cleaves", "cuts")
+	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 80
+							)
+	var/charges = 0
+
+/obj/item/ego_weapon/windup/attack(mob/living/M, mob/living/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	if(charges > 0)
+		if(charges == 4)
+			playsound(src, 'sound/abnormalities/clock/finish.ogg', 60)
+		else
+			playsound(src, 'sound/machines/clockcult/steam_whoosh.ogg', 100)
+	charges = max(0, charges - 1)
+	if(charges == 0)
+		force = 10
+
+/obj/item/ego_weapon/windup/attack_self(mob/user)
+	if(!CanUseEgo(user))
+		return
+	if(charges >= 4)
+		to_chat(user,span_warning("You can't crank it any further!"))
+		return
+	if(do_after(user, (8 + (charges * 4)), src))
+		charges = min(charges + 1, 4)
+		force = (charges * 10 + 5)
+		to_chat(user,span_warning("You crank the [src]."))
+		playsound(src.loc, 'sound/abnormalities/clock/clank.ogg', 75, TRUE)
+		PlayChargeSound()
+
+/obj/item/ego_weapon/windup/proc/PlayChargeSound()
+	set waitfor = FALSE
+	sleep(10)
+	if(!charges) //We don't play the sound if the player has already emptied out by now
+		return
+	if(charges >= 4)
+		playsound(src.loc, 'sound/weapons/fixer/generic/energy3.ogg', 75, TRUE)
+		return
+	playsound(src.loc, 'sound/abnormalities/clock/turn_on.ogg', 75, TRUE)

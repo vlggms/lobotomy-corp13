@@ -1242,3 +1242,13 @@
 	. = ..()
 	if(prob(50))
 		icon_state = "fried_chicken2"
+
+/obj/item/food/forsaken_burrito
+	name = "Forsaken Burrito"
+	desc = "It appears to be just a regular burrito with half the wrapper still on."
+	icon_state = "forsaken_burrito"
+	bite_consumption = 4
+	food_reagents = list(/datum/reagent/consumable/nutriment = 4, /datum/reagent/consumable/nutriment/protein = 7, /datum/reagent/consumable/capsaicin = 6, /datum/reagent/consumable/nutriment/vitamin = 2)
+	tastes = list("soybeans" = 2, "meat" = 1, "tortilla" = 2)
+	foodtypes = MEAT
+	w_class = WEIGHT_CLASS_SMALL

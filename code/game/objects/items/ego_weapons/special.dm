@@ -88,6 +88,7 @@
 	inhand_y_dimension = 96
 	force = 33
 	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
 	attack_speed = 1.8// really slow
 	damtype = RED_DAMAGE
 
@@ -140,7 +141,7 @@
 	var/ramping_damage = 0 //no maximum, will stack as long as people are attacking with it.
 
 /obj/item/ego_weapon/iron_maiden/Initialize()
-	..()
+	. = ..()
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/iron_maiden/proc/Multihit(mob/living/target, mob/living/user, attack_amount)
@@ -153,24 +154,26 @@
 				sleep(3)
 			if(3)
 				sleep(2)
-		target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-		user.do_attack_animation(target)
-		playsound(loc, hitsound, 30, TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+		if(target in view(reach,user))
+			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			user.do_attack_animation(target)
+			target.attacked_by(src, user)
+			log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 /obj/item/ego_weapon/iron_maiden/melee_attack_chain(mob/living/user, atom/target, params)
 	..()
-	if (isliving(target))
-		if (ramping_speed < 20)
-			ramping_speed += 1
-		else
-			ramping_damage += 0.02
-			user.adjustBruteLoss(user.maxHealth*ramping_damage)
+	if(isliving(target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/iron_maiden/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
+	if (ramping_speed < 20)
+		ramping_speed += 1
+	else
+		ramping_damage += 0.02
+		user.adjustBruteLoss(user.maxHealth*ramping_damage)
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(user), pick(GLOB.alldirs))
 	playsound(loc, 'sound/abnormalities/we_can_change_anything/change_generate.ogg', get_clamped_volume(), FALSE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
 	switch(ramping_speed)
 		if(5 to 10)

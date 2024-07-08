@@ -7,6 +7,9 @@
 	base_pixel_x = -32
 	pixel_y = -16
 	base_pixel_y = -16
+	offsets_pixel_x = list("south" = -32, "north" = -32, "west" = -32, "east" = -32)
+	offsets_pixel_y = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+	occupied_tiles_up = 1
 	icon = 'ModularTegustation/Teguicons/96x96.dmi'
 	icon_state = "blue_star"
 	icon_living = "blue_star"
@@ -54,7 +57,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/Destroy()
 	QDEL_NULL(soundloop)
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/bluestar/death(gibbed)
 	QDEL_NULL(soundloop)
@@ -85,7 +88,7 @@
 			continue
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage((pulse_damage - get_dist(src, L)), WHITE_DAMAGE)
 		flash_color(L, flash_color = COLOR_BLUE_LIGHT, flash_time = 70)
 		if(!ishuman(L))
 			continue

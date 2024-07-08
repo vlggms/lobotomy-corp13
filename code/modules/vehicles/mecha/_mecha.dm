@@ -45,7 +45,7 @@
 	///chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	var/deflect_chance = 10
 	///Modifiers for directional armor
-	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 1.5, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_ARMOUR = 0.5)
+	var/list/facing_modifiers = list(MECHA_FRONT_ARMOUR = 0.66, MECHA_FRONT_DIAGONAL_ARMOUR = 0.8, MECHA_SIDE_ARMOUR = 1, MECHA_BACK_DIAGONAL_ARMOUR = 1.5, MECHA_BACK_ARMOUR = 2)
 	///if we cant use our equipment(such as due to EMP)
 	var/equipment_disabled = FALSE
 	/// Keeps track of the mech's cell
@@ -1115,8 +1115,21 @@
 	RegisterSignal(M, COMSIG_MOB_SAY, PROC_REF(display_speech_bubble))
 	. = ..()
 	update_icon()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/suit = H.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+		if(suit)
+			H.dropItemToGround(suit, TRUE)
+			to_chat(H, span_interface("You remove your armor to put on the exosuit"))
+		H.physiology.red_mod *= 1 - clamp(armor[RED_DAMAGE], 0, 99) / 100
+		H.physiology.white_mod *= 1 - clamp(armor[WHITE_DAMAGE], 0, 99) / 100
+		H.physiology.black_mod *= 1 - clamp(armor[BLACK_DAMAGE], 0, 99) / 100
+		H.physiology.pale_mod *= 1 - clamp(armor[PALE_DAMAGE], 0, 99) / 100
+		H.physiology.burn_mod *= 1 - clamp(armor[BURN], 0, 99) / 100
 
 /obj/vehicle/sealed/mecha/remove_occupant(mob/M)
+	if(!(M in occupants))
+		return FALSE
 	UnregisterSignal(M, COMSIG_LIVING_DEATH)
 	UnregisterSignal(M, COMSIG_MOB_CLICKON)
 	UnregisterSignal(M, COMSIG_MOB_MIDDLECLICKON)
@@ -1129,6 +1142,13 @@
 		zoom_mode = 0
 	. = ..()
 	update_icon()
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.physiology.red_mod /= 1 - clamp(armor[RED_DAMAGE], 0, 99) / 100
+		H.physiology.white_mod /= 1 - clamp(armor[WHITE_DAMAGE], 0, 99) / 100
+		H.physiology.black_mod /= 1 - clamp(armor[BLACK_DAMAGE], 0, 99) / 100
+		H.physiology.pale_mod /= 1 - clamp(armor[PALE_DAMAGE], 0, 99) / 100
+		H.physiology.burn_mod /= 1 - clamp(armor[BURN], 0, 99) / 100
 
 /////////////////////////
 ////// Access stuff /////

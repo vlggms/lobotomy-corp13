@@ -150,7 +150,7 @@
 		if(SSlobotomy_events.yang_downed)
 			death()
 			return
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	ChangeResistances(list(RED_DAMAGE = 0.5, WHITE_DAMAGE = 1.5, PALE_DAMAGE = 1))
 	SSlobotomy_events.yin_downed = FALSE
 	icon_state = icon_breach
@@ -381,7 +381,7 @@
 		for(var/mob/living/L in T)
 			if(faction_check(L.faction, src.faction))
 				continue
-			L.apply_damage(damage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(damage, BLACK_DAMAGE)
 		for(var/obj/vehicle/sealed/mecha/V in T)
 			V.take_damage(damage, BLACK_DAMAGE)
 		new /obj/effect/temp_visual/small_smoke/yin_smoke/long(T)

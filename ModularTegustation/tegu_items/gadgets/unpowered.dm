@@ -36,6 +36,39 @@
 			else
 				walk_to(SA, 0)
 
+	//Dosage Estimator
+/obj/item/dosage_est
+	name = "Dosage Estimator"
+	desc = "A modified reagent scanner that estimates how long a reagent will last in a regular human body. \
+		Its uncommon to see one of these outside of well funded laboratory. Use this on a container."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "gadget3"
+
+/obj/item/dosage_est/afterattack(atom/target, mob/user, proximity_flag)
+	. = ..()
+	if(istype(target, /obj/item/reagent_containers))
+		var/obj/item/reagent_containers/C = target
+		var/datum/reagents/reagent_container = C.reagents
+		var/list/chemical_list = reagent_container.reagent_list
+		var/datum/reagent/gloop
+		if(chemical_list.len)
+			var/render_list = "Chemicals Detected:"
+			for(var/r in chemical_list)
+				gloop = r
+				/*
+				* These calculations are sort of correct. In testing
+				* the time tended to be 1-2 seconds less than predicted.
+				* Inverting this equation would be
+				* volume = (seconds/2) * metabolization_rate
+				* -IP
+				*/
+				var/reagent_vol = round(gloop.volume, 0.001)
+				var/reagent_cycle = reagent_vol / gloop.metabolization_rate
+				render_list += "<br>[reagent_vol] units of [gloop.name] will metabolize [reagent_cycle] cycles for a total of [reagent_cycle*2] seconds."
+			to_chat(user, render_list)
+		else
+			to_chat(user, span_notice("No reagents detected."))
+
 	//abnos spawn slower, for maps that suck lol
 /obj/item/lc13_abnospawn
 	name = "Lobotomy Corporation Radio"
@@ -360,81 +393,6 @@
 #undef RAK_CRIT_MODE
 #undef RAK_BURST_MODE
 
-//Tool E.G.O extractor
-/obj/item/tool_extractor
-	name = "Enkephalin Resonance Unit"
-	desc = "A specialized tool that allows E.G.O extraction from tool Abnormalities."
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "RPED"
-	w_class = WEIGHT_CLASS_BULKY
-	slot_flags = ITEM_SLOT_BELT
-	var/stored_enkephalin = 0
-	var/maximum_enkephalin = 250
-	var/drawn_amount = 50
-	var/list/possible_drawn_amounts = list(5, 10, 15, 20, 25, 50)
-	var/ego_selection
-	var/ego_array
-
-/obj/item/tool_extractor/examine(mob/user)
-	. = ..()
-	. += "Currently storing [stored_enkephalin]/[maximum_enkephalin] enkephalin."
-
-/obj/item/tool_extractor/attack_self(mob/user)
-	var/drawn_selected = input(user, "How quick should the transfer rate be?") as null|anything in possible_drawn_amounts
-	if(!drawn_selected)
-		return
-	drawn_amount = drawn_selected
-	to_chat(user, span_notice("[src]'s transfer rate is now [drawn_amount] enkephalin."))
-	return
-
-
-/obj/item/tool_extractor/attack_obj(obj/O, mob/living/carbon/user)
-	if(user.a_intent == INTENT_HARM)
-		return ..()
-	if(istype(O ,/obj/machinery/computer/extraction_cargo))//console stuff here
-		if(stored_enkephalin + drawn_amount > maximum_enkephalin)
-			var/drawn_total = (maximum_enkephalin - stored_enkephalin)//top off without going over the max
-			if(drawn_total == 0)//if the stored enkephalin is already at max
-				to_chat(usr, span_warning("[src] is at full capacity."))
-				playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
-				return
-			stored_enkephalin += drawn_total
-			SSlobotomy_corp.AdjustAvailableBoxes(-1 * drawn_total)
-			playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)//bit of duplicate code but it doesn't change the drawn_amount selection
-			to_chat(usr, "Transferred [drawn_total] enkephalin into [src].")
-			return
-		if(SSlobotomy_corp.available_box < drawn_amount)
-			to_chat(usr, span_warning("There is not enough enkephalin stored for this operation."))
-			playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
-			return
-		stored_enkephalin += drawn_amount
-		SSlobotomy_corp.AdjustAvailableBoxes(-1 * drawn_amount)
-		playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
-		to_chat(usr, "Transferred [drawn_amount] enkephalin into [src].")
-		return
-	if(!istype(O, /obj/structure/toolabnormality))//E.G.O stuff below here
-		return
-	var/obj/structure/toolabnormality/P = O
-	ego_selection = input(user, "Which E.G.O will you extract?") as null|anything in P.ego_list
-	if(!ego_selection)
-		return
-	var/datum/ego_datum/D = ego_selection
-	var/enkephalin_cost = initial(D.cost)
-	var/loot = initial(D.item_path)
-	switch(enkephalin_cost)//might see some scrutiny in testmerges. Original cost formula is multiplied by risk level
-		if(45 to 99)
-			enkephalin_cost *= 1.5
-		if(100 to INFINITY)//unobtainable
-			enkephalin_cost *= 2
-	if(enkephalin_cost > stored_enkephalin)
-		playsound(get_turf(src), 'sound/machines/terminal_prompt_deny.ogg', 50, TRUE)
-		to_chat(usr, span_warning("There is not enough enkephalin in the device for this operation."))
-		return
-	new loot(get_turf(src))
-	stored_enkephalin -= enkephalin_cost
-	to_chat(usr, span_notice("E.G.O extracted successfully!"))
-	return
-
 //Lobotomizer
 /obj/item/lobotomizer
 	name = "Lobotomizer"
@@ -606,3 +564,77 @@
 			return
 	return FALSE
 
+//EGO Gift Extractor
+/obj/item/ego_gift_extractor
+	name = "EGO gift extractor"
+	desc = "Unpopular due to its excessive energy use, this device extracts gifts from an Abnormality on demand. One-time use."
+	icon = 'icons/obj/items_and_weapons.dmi'
+	icon_state = "nanoimplant"
+
+/obj/item/ego_gift_extractor/attack(mob/living/simple_animal/hostile/abnormality/target, mob/living/carbon/human/user)
+	if(!isabnormalitymob(target))
+		to_chat(user, span_warning("\"[target]\" isn't an Abnormality."))
+		return
+	if(!target.gift_type)
+		to_chat(user, span_notice("\"[target]\" has no gift extractable."))
+		return
+
+	if(!istype(user) || !(user?.mind?.assigned_role in GLOB.security_positions))
+		to_chat(user, span_notice("The Extractor's light flashes red. You aren't an Agent."))
+		return
+
+	var/datum/ego_gifts/target_gift = new target.gift_type
+	user.Apply_Gift(target_gift)
+	to_chat(user, span_nicegreen("[target.gift_message]"))
+	to_chat(user, span_nicegreen("You extract [target]'s gift!"))
+	qdel(src)
+
+/obj/item/device/Plushie_Extractor
+	name = "Plushie Extractor"
+	desc = "A device used for extracting plush versions of the abnormalities."
+	icon = 'icons/obj/device.dmi'
+	icon_state = "plushie_extractor"
+
+	var/static/abno_plushies = list()
+
+	var/static/list/output = list(
+        // TETH
+	/mob/living/simple_animal/hostile/abnormality/scorched_girl = /obj/item/toy/plush/scorched,
+
+		//ZAYIN
+
+
+		//HE
+	/mob/living/simple_animal/hostile/abnormality/pinocchio = /obj/item/toy/plush/pinocchio,
+
+		//WAW
+	/mob/living/simple_animal/hostile/abnormality/big_bird = /obj/item/toy/plush/bigbird,
+	/mob/living/simple_animal/hostile/abnormality/wrath_servant = /obj/item/toy/plush/sow,
+	/mob/living/simple_animal/hostile/abnormality/greed_king = /obj/item/toy/plush/kog,
+	/mob/living/simple_animal/hostile/abnormality/despair_knight = /obj/item/toy/plush/kod,
+	/mob/living/simple_animal/hostile/abnormality/big_wolf = /obj/item/toy/plush/big_bad_wolf,
+	/mob/living/simple_animal/hostile/abnormality/hatred_queen = /obj/item/toy/plush/qoh,
+		//ALEPH
+	/mob/living/simple_animal/hostile/abnormality/melting_love = /obj/item/toy/plush/melt,
+	/mob/living/simple_animal/hostile/abnormality/mountain = /obj/item/toy/plush/mosb,
+	/mob/living/simple_animal/hostile/abnormality/nihil = /obj/item/toy/plush/nihil,
+
+    )
+
+/obj/item/device/Plushie_Extractor/attack(mob/living/simple_animal/hostile/abnormality/I, mob/living/carbon/human/user)
+	. = ..()
+	if(!ishuman(user))
+		return
+	if(istype(I))
+		return
+
+	var/atom/item_out = output[I.type]
+	to_chat(user, span_notice("The device is slowly processing [I] into [initial(item_out.name)]..."))
+	if(!do_after(user, 5 SECONDS))
+		return
+
+	abno_plushies |= user.ckey
+	var/atom/new_item = new item_out(get_turf(user))
+	user.put_in_hands(new_item)
+	to_chat(user, span_nicegreen("You retrieve [new_item] from the [src]!"))
+	playsound(get_turf(src), 'sound/items/timer.ogg', 50, TRUE)

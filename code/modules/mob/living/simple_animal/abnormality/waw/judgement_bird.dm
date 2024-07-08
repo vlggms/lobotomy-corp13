@@ -4,6 +4,7 @@
 	icon = 'ModularTegustation/Teguicons/48x64.dmi'
 	icon_state = "judgement_bird"
 	icon_living = "judgement_bird"
+	core_icon = "jbird_egg"
 	portrait = "judgement_bird"
 	faction = list("hostile", "Apocalypse")
 	speak_emote = list("chirps")
@@ -46,6 +47,14 @@
 		/mob/living/simple_animal/hostile/abnormality/big_bird = 3,
 		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3,
 	)
+
+	observation_prompt = "\"Long Bird\" who lived in the forest didn't want to let creatures to be eaten by monsters. \
+His initial goal was pure, at least. The forest began to be saturated by darkness. His long vigil is saturated with memories and regrets."
+	observation_choices = list("Leave him be", "Console the bird")
+	correct_choices = list("Console the bird")
+	observation_success_message = "Long Bird put down his scales, that had been with him for a long time. \
+The long-lasting judgement finally ends. Long Bird slowly realizes the secrets behind the monster, and he waits. For the forest that he will never take back."
+	observation_fail_message = "Long Bird sees through you, even though he is blind. He is weighing your sins."
 
 	var/judgement_cooldown = 10 SECONDS
 	var/judgement_cooldown_base = 10 SECONDS
@@ -94,7 +103,7 @@
 		if(L.stat == DEAD)
 			continue
 		new /obj/effect/temp_visual/judgement(get_turf(L))
-		L.apply_damage(judgement_damage, PALE_DAMAGE, null, L.run_armor_check(null, PALE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(judgement_damage, PALE_DAMAGE)
 
 		if(L.stat == DEAD)	//Gotta fucking check again in case it kills you. Real moment
 			if(!IsCombatMap())

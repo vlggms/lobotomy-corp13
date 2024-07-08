@@ -1316,6 +1316,14 @@
 /obj/effect/turf_decal/siding/wideplating/dark/corner,
 /turf/open/floor/plasteel/dark,
 /area/department_main/discipline)
+"el" = (
+/obj/effect/turf_decal/tile/bar,
+/obj/effect/turf_decal/tile/bar{
+	dir = 1
+	},
+/obj/machinery/deepfryer,
+/turf/open/floor/plasteel/white,
+/area/facility_hallway/training)
 "en" = (
 /obj/effect/turf_decal/arrows/white{
 	dir = 4
@@ -42922,7 +42930,7 @@ rK
 SV
 XF
 GR
-GR
+el
 GR
 GR
 SH

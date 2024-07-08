@@ -6,7 +6,9 @@
 	special = "This weapon fires 6 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_correctional
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 15
+	fire_delay = 7
+	shotsleft = 12
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 	attribute_requirements = list(
@@ -23,7 +25,9 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_hornet
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
-	fire_delay = 5
+	fire_delay = 2
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	damtype = RED_DAMAGE
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
@@ -76,6 +80,8 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicbullet
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 30	//Put on the armor, jackass.
+	shotsleft = 7
+	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 
 	attribute_requirements = list(
@@ -91,7 +97,7 @@
 	var/obj/item/clothing/suit/armor/ego_gear/he/magicbullet/Y = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	var/obj/item/clothing/suit/armor/ego_gear/realization/bigiron/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
 	if(istype(Y))
-		fire_delay = 15
+		fire_delay = 8
 	if(istype(Z))
 		cached_multiplier = projectile_damage_multiplier
 		projectile_damage_multiplier *= 2.5
@@ -111,9 +117,23 @@
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnlament
 	fire_delay = 5
+	shotsleft = 18
+	reloadtime = 0.7 SECONDS
 	fire_sound = 'sound/abnormalities/funeral/spiritgunwhite.ogg'
 	fire_sound_volume = 30
 	attribute_requirements = list(PRUDENCE_ATTRIBUTE = 80)
+	var/cached_multiplier
+
+/obj/item/gun/ego_gun/pistol/solemnlament/before_firing(atom/target, mob/user)
+	if(cached_multiplier)
+		projectile_damage_multiplier = cached_multiplier
+	fire_delay = initial(fire_delay)
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Z))
+		cached_multiplier = projectile_damage_multiplier
+		projectile_damage_multiplier *= 2.5
+	..()
 
 /obj/item/gun/ego_gun/pistol/solemnlament/process_fire(atom/target, mob/living/user)
 	for(var/obj/item/gun/ego_gun/pistol/solemnvow/Vow in user.held_items)
@@ -132,10 +152,23 @@
 	special = "Firing both solemn lament and solemn vow at the same time will increase damage by 1.5x"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solemnvow
 	fire_delay = 5
+	shotsleft = 18
+	reloadtime = 0.7 SECONDS
 	fire_sound = 'sound/abnormalities/funeral/spiritgunblack.ogg'
 	fire_sound_volume = 30
-
+	var/cached_multiplier
 	attribute_requirements = list(JUSTICE_ATTRIBUTE = 80)
+
+/obj/item/gun/ego_gun/pistol/solemnvow/before_firing(atom/target, mob/user)
+	if(cached_multiplier)
+		projectile_damage_multiplier = cached_multiplier
+	fire_delay = initial(fire_delay)
+	var/mob/living/carbon/human/myman = user
+	var/obj/item/clothing/suit/armor/ego_gear/realization/eulogy/Z = myman.get_item_by_slot(ITEM_SLOT_OCLOTHING)
+	if(istype(Z))
+		cached_multiplier = projectile_damage_multiplier
+		projectile_damage_multiplier *= 2.5
+	..()
 
 /obj/item/gun/ego_gun/pistol/solemnvow/process_fire(atom/target, mob/living/user)
 	for(var/obj/item/gun/ego_gun/pistol/solemnlament/Lament in user.held_items)
@@ -152,25 +185,15 @@
 	inhand_icon_state = "loyalty"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
 	weapon_weight = WEAPON_HEAVY
-	spread = 20
-	special = "This weapon has IFF capabilities. \
-		Use in hand to turn off IFF."
+	spread = 26
+	shotsleft = 95
+	reloadtime = 3.2 SECONDS
+	special = "This weapon has IFF capabilities."
 	fire_sound = 'sound/weapons/gun/smg/vp70.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
 	)
-
-/obj/item/gun/ego_gun/loyalty/attack_self(mob/user)
-	..()
-	if(ammo_type == /obj/item/ammo_casing/caseless/ego_loyaltynoiff)
-		to_chat(user,"<span class='warning'>You hit the switch, enabling IFF and decreasing damage.</span>")
-		ammo_type = /obj/item/ammo_casing/caseless/ego_loyalty
-		return
-	if(ammo_type == /obj/item/ammo_casing/caseless/ego_loyalty)
-		to_chat(user,"<span class='warning'>You hit the fire selector, disabling IFF and increasing damage.</span>")
-		ammo_type = /obj/item/ammo_casing/caseless/ego_loyaltynoiff
-		return
 
 //Just a funny gold soda pistol. It was originally meant to just be a golden meme weapon, now it is the only pale gun, lol
 /obj/item/gun/ego_gun/pistol/executive
@@ -180,7 +203,9 @@
 	inhand_icon_state = "executive"
 	special = "This gun scales with justice."
 	burst_size = 1
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 0.7 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -196,8 +221,11 @@
 	icon_state = "crimsonscar"
 	inhand_icon_state = "crimsonscar"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_crimson
+	weapon_weight = WEAPON_MEDIUM
 	special = "This weapon fires 3 pellets."
-	fire_delay = 15
+	fire_delay = 7
+	shotsleft = 9
+	reloadtime = 1 SECONDS
 	fire_sound = 'sound/abnormalities/redhood/fire.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -211,10 +239,12 @@
 	inhand_icon_state = "ecstasy"
 	special = "This weapon fires slow bullets with limited range."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_ecstasy
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
+	shotsleft = 40
+	reloadtime = 1.8 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 60,
 							TEMPERANCE_ATTRIBUTE = 60
@@ -229,6 +259,8 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_praetorian
 	fire_sound = 'sound/weapons/gun/pistol/tp17.ogg'
 	autofire = 0.12 SECONDS
+	shotsleft = 12
+	reloadtime = 0.5 SECONDS
 	fire_sound_volume = 30
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -242,7 +274,9 @@
 	inhand_icon_state = "magic_pistol"
 	special = "This weapon pierces all targets. This weapon fires faster with the matching armor"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_magicpistol
-	fire_delay = 12
+	fire_delay = 6
+	shotsleft = 7
+	reloadtime = 1.2 SECONDS
 	fire_sound = 'sound/abnormalities/freischutz/shoot.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
@@ -271,7 +305,9 @@
 	inhand_icon_state = "laststop"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_laststop
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10 SECONDS 	// I mean it's a derringer
+	fire_delay = 5
+	shotsleft = 2
+	reloadtime = 10 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
@@ -283,10 +319,12 @@
 	icon_state = "intentions"
 	inhand_icon_state = "intentions"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_intentions
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 40
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.07 SECONDS
+	shotsleft = 50
+	reloadtime = 2.1 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
 	)
@@ -314,7 +352,9 @@
 	special = "This weapon fires a hitscan beam. \nUpon hitting an enemy, this weapon heals a nearby Discord weapon user."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_assonance
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 17
+	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80
@@ -436,7 +476,9 @@
 	inhand_icon_state = "banquet"
 	special = "This weapon uses HP to fire."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_banquet
-	fire_delay = 26
+	fire_delay = 13
+	shotsleft = 7
+	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 60,
@@ -458,6 +500,8 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_blind_rage
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 8
+	shotsleft = 8
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 60,
@@ -473,6 +517,8 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_bride
 	weapon_weight = WEAPON_HEAVY
 	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/leveraction.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 80
@@ -505,6 +551,8 @@
 	fire_sound = 'sound/abnormalities/orangetree/ding.ogg'
 	vary_fire_sound = TRUE
 	autofire = 0.2 SECONDS
+	shotsleft = 32
+	reloadtime = 2.1 SECONDS
 	fire_sound_volume = 20
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 80

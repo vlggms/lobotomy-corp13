@@ -101,7 +101,7 @@
 	playsound(src, 'sound/abnormalities/so_that_no_cry/counter.ogg', min(15 + damage, 100), TRUE, 4)
 	attacker.visible_message(span_danger("[src] hits [attacker] with a barrage of punches!"), span_userdanger("[src] counters your attack!"))
 	do_attack_animation(attacker)
-	attacker.apply_damage(damage, attack_type, null, attacker.getarmor(null, attack_type))
+	attacker.deal_damage(damage, attack_type)
 	new /obj/effect/temp_visual/revenant(get_turf(attacker))
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/Move()
@@ -204,11 +204,10 @@
 	talismans += 1
 	if(talismans > 10)
 		TalismanStun()
-		move_to_delay = initial(move_to_delay)
+		ChangeMoveToDelay(initial(move_to_delay))
 		return
 	new /obj/effect/temp_visual/talisman(get_turf(src))
-	move_to_delay = (3 + (talismans / 10))
-	UpdateSpeed()
+	ChangeMoveToDelay(3 + (talismans / 10))
 
 /mob/living/simple_animal/hostile/abnormality/so_that_no_cry/proc/TalismanStun()
 	if(!can_act)

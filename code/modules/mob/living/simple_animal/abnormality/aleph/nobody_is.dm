@@ -253,6 +253,8 @@
 			can_act = FALSE
 			pixel_x = -16
 			base_pixel_x = -16
+			offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+			SetOccupiedTiles(up = 1)
 			next_transform = world.time + rand(30 SECONDS, 45 SECONDS)
 		if(2)
 			breach_affected = list() // Too spooky
@@ -260,8 +262,7 @@
 			icon_state = icon_living
 			ChangeResistances(list(RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.6, BLACK_DAMAGE = 0, PALE_DAMAGE = 1.2))
 			can_act = TRUE
-			SpeedChange(1.5)
-	UpdateSpeed()
+			ChangeMoveToDelayBy(1.5)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/apply_damage(damage, damagetype, def_zone, blocked, forced, spread_damage, wound_bonus, bare_wound_bonus, sharpness, white_healable)
@@ -364,7 +365,7 @@
 		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.5))
 		heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
 		maxHealth = 10000
-		adjustBruteLoss(-maxHealth) // It's not over yet!.
+		adjustBruteLoss(-maxHealth, forced = TRUE) // It's not over yet!.
 		melee_damage_lower = 45
 		melee_damage_upper = 65
 		grab_damage = 140
@@ -496,7 +497,7 @@
 					grab_victim = H
 					Strangle()
 			else //deal the damage twice if we already have someone grabbed
-				L.apply_damage(grab_damage, BLACK_DAMAGE, null, grab_victim.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				L.deal_damage(grab_damage, BLACK_DAMAGE)
 
 	playsound(get_turf(src), 'sound/abnormalities/fairy_longlegs/attack.ogg', 75, 0, 3)
 	SLEEP_CHECK_DEATH(3)
@@ -533,9 +534,9 @@
 			grab_victim.gib()
 		ReleaseGrab()
 		return
-	grab_victim.apply_damage(strangle_damage, BLACK_DAMAGE, null, grab_victim.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+	grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
 	if(oberon_mode)
-		grab_victim.apply_damage(strangle_damage_oberon, RED_DAMAGE, null, grab_victim.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+		grab_victim.deal_damage(strangle_damage_oberon, RED_DAMAGE)
 	grab_victim.Immobilize(10)
 	playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 50, 0, 7)
 	playsound(get_turf(src), 'sound/abnormalities/nobodyis/strangle.ogg', 100, 0, 7)
@@ -549,10 +550,10 @@
 		if(4)	//Apply double damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
 			to_chat(grab_victim, span_userdanger("It hurts so much!"))
-			grab_victim.apply_damage(strangle_damage, BLACK_DAMAGE, null, grab_victim.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			grab_victim.deal_damage(strangle_damage, BLACK_DAMAGE)
 		else	//Apply ramping damage
 			playsound(get_turf(src), 'sound/effects/wounds/crackandbleed.ogg', 200, 0, 7)
-			grab_victim.apply_damage((strangle_damage * count), BLACK_DAMAGE, null, grab_victim.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			grab_victim.deal_damage((strangle_damage * count), BLACK_DAMAGE)
 	count += 1
 	if(grab_victim.sanity_lost) //This should prevent weird things like panics running away halfway through
 		grab_victim.Stun(10) //Immobilize does not stop AI controllers from moving, for some reason.
@@ -595,7 +596,7 @@
 	if(oberon_mode)
 		if(isliving(attacked_target))
 			var/mob/living/L = attacked_target
-			L.apply_damage(melee_damage_oberon, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(melee_damage_oberon, RED_DAMAGE)
 	if(!client)
 		if((current_stage == 3) && (grab_cooldown <= world.time) && prob(35))
 			return GrabAttack()
@@ -645,6 +646,9 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/disguise_as(mob/living/carbon/human/M)
 	if(!istype(M))
 		return
+	SetOccupiedTiles()
+	offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	//UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
 	for(var/turf/open/T in view(2, src))
 		var/obj/effect/temp_visual/flesh/pinkflesh =  new(T)
 		pinkflesh.color = COLOR_PINK
@@ -670,7 +674,7 @@
 	M.set_lying_angle(0)
 	M.set_body_position(STANDING_UP)
 	M.forceMove(src) // Hide them for examine message to work
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	Transform(M)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform(mob/living/carbon/human/M)
@@ -786,6 +790,7 @@
 	oberon_mode = TRUE
 	name = "Oberon"
 	var/mob/living/simple_animal/hostile/abnormality/titania/T = new(get_turf(src))
+	T.core_enabled = FALSE
 	T.BreachEffect()
 	T.fused = TRUE
 	T.ChangeResistances(list(BRUIT = 0, RED_DAMAGE = 0, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 0))//fuck you no damaging while they erp

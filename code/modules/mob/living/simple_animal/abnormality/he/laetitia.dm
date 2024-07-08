@@ -142,7 +142,7 @@
 	var/atom/throw_target = get_edge_target_turf(status_holder, rand_dir)
 	if(!status_holder.anchored)
 		status_holder.throw_at(throw_target, rand(1, 3), 7, status_holder)
-	status_holder.apply_damage(200, RED_DAMAGE, null, status_holder.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)//Usually a kill, you can block it if you're good
+	status_holder.deal_damage(200, RED_DAMAGE)//Usually a kill, you can block it if you're good
 
 /datum/status_effect/pranked/proc/TriggerPrank()
 	//immediately set to 10 seconds, don't shorten if less than 10 seconds remaining

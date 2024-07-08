@@ -77,7 +77,7 @@
 		return
 	icon = 'ModularTegustation/Teguicons/32x64.dmi'
 	punched = TRUE
-	SpeedChange(-2)
+	ChangeMoveToDelayBy(-2)
 	ability_cooldown_time = 8 SECONDS
 	ability_cooldown = 0
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
@@ -126,7 +126,7 @@
 			L.SetSleeping(0)
 			L.adjustSanityLoss(1000) //Die.
 			continue
-		L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+		L.deal_damage(pulse_damage, WHITE_DAMAGE)
 	for(var/i = 1 to 5)
 		var/obj/effect/temp_visual/screech/S = new(get_turf(src))
 		S.pixel_y = 16

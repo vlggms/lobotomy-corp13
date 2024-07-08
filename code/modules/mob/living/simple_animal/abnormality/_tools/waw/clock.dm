@@ -16,9 +16,15 @@
 	var/clock_cooldown //prevents an exploit
 
 	var/list/exceptions = list( //It only affects abnormalities and ordeals, so claw and arbiter are not even included.
-	/mob/living/simple_animal/hostile/abnormality/white_night,
-	/mob/living/simple_animal/hostile/abnormality/distortedform,
-	/mob/living/simple_animal/hostile/abnormality/nihil,
+		/mob/living/simple_animal/hostile/abnormality/white_night,
+		/mob/living/simple_animal/hostile/abnormality/distortedform,
+		/mob/living/simple_animal/hostile/abnormality/nihil,
+		/mob/living/simple_animal/hostile/abnormality/sukuna,
+	)
+
+	ego_list = list(
+		/datum/ego_datum/weapon/windup,
+		/datum/ego_datum/armor/windup,
 	)
 
 /obj/structure/toolabnormality/clock/attack_hand(mob/living/carbon/human/user)
@@ -87,11 +93,11 @@
 		if(A in exceptions)
 			continue
 		new /obj/effect/temp_visual/sparks/quantum(A)
-		A.apply_damage(damage_dealt, BRUTE, null, A.run_armor_check(null, BRUTE), spread_damage = TRUE)
+		A.deal_damage(damage_dealt, BRUTE)
 
 	for(var/mob/living/L in GLOB.ordeal_list)
 		new /obj/effect/temp_visual/sparks/quantum(L)
-		L.apply_damage(damage_dealt, BRUTE, null, L.run_armor_check(null, BRUTE), spread_damage = TRUE)
+		L.deal_damage(damage_dealt, BRUTE)
 
 
 /obj/structure/toolabnormality/clock/update_overlays()

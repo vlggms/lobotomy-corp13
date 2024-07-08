@@ -6,7 +6,7 @@
 	base_icon_state = "helper_dash"
 	cooldown_time = 10 SECONDS
 
-	var/dash_damage = 200
+	var/dash_damage = 300
 	var/dash_range = 6
 	var/dash_ignore_walls = FALSE
 
@@ -135,6 +135,7 @@
 	name = "Sword that Pierces Despair"
 	desc = "A magic rapier, enchanted by a knight protecting the weak."
 	nodamage = TRUE
+	damage = 0
 	projectile_piercing = PASSMOB
 
 /obj/projectile/despair_rapier/ego/on_hit(atom/target, blocked = FALSE)
@@ -144,7 +145,7 @@
 	if(ishostile(target))
 		var/mob/living/simple_animal/hostile/H = target
 		H.TemporarySpeedChange(1, 10 SECONDS)
-		damage = max(0.05*H.maxHealth, 120)
+		H.apply_damage(max(0.05 * H.maxHealth, 120), PALE_DAMAGE)
 	..()
 	qdel(src)
 
@@ -155,7 +156,7 @@
 		Alt-Click to toggle speech. Crtl-Click to set your own speech."
 	action_icon_state = "arcana0"
 	base_icon_state = "arcana"
-	cooldown_time = 5 MINUTES
+	cooldown_time = 3 MINUTES
 	base_action = /datum/action/spell_action/ability/item/ego_arcana_slave
 
 	var/list/spawned_effects = list()
@@ -215,7 +216,7 @@
 			else
 				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2 - 1]))
 				addtimer(CALLBACK(H, TYPE_PROC_REF(/atom/movable, say), custom_speech[i*2]), 10)
-		if(!Channel(H, 20))
+		if(!Channel(H, 10))
 			CleanUp(user)
 			return
 	var/turf/TT = get_ranged_target_turf_direct(my_turf, target, 60)
@@ -336,7 +337,7 @@
 	action_icon_state = "cocoon0"
 	base_icon_state = "cocoon"
 	cooldown_time = 20 SECONDS
-	var/damage_amount = 80 // Amount of red damage dealt to enemies in the epicenter.
+	var/damage_amount = 120 // Amount of red damage dealt to enemies in the epicenter.
 	var/damage_range = 2
 	var/damage_slowdown = 0.5
 
@@ -377,7 +378,7 @@
 		L.apply_damage(ishuman(L) ? damage_amount*0.5 : damage_amount, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 		if(ishostile(L))
 			var/mob/living/simple_animal/hostile/H = L
-			H.TemporarySpeedChange(H.move_to_delay * damage_slowdown, 10 SECONDS) // Slow down
+			H.TemporarySpeedChange(1 + damage_slowdown, 10 SECONDS, TRUE) // Slow down
 
 /mob/living/simple_animal/cocoonability
 	name = "Cocoon"
@@ -418,7 +419,7 @@
 /* Lady out of Space - Fallen Colors */
 /obj/effect/proc_holder/ability/aimed/blackhole
 	name = "blackhole"
-	desc = "An ability that allows its user to summon a black hole to drag everone near it."
+	desc = "An ability that allows its user to summon a black hole to drag everyone who is hostile near it."
 	action_icon_state = "blackhole0"
 	base_icon_state = "blackhole"
 	cooldown_time = 30 SECONDS
@@ -427,7 +428,7 @@
 	if(get_dist(user, target) > 10 || !(target in view(9, user)))
 		return
 	var/turf/target_turf = get_turf(target)
-	new /obj/projectile/black_hole_realized(target_turf)
+	new /obj/projectile/black_hole_realized(target_turf, user)
 	return ..()
 
 /obj/projectile/black_hole_realized
@@ -452,15 +453,17 @@
 	for(var/i = 1 to 10)
 		addtimer(CALLBACK(src, PROC_REF(SplashEffect)), i * 2 SECONDS)
 
-/obj/projectile/black_hole_realized/proc/SplashEffect()
+/obj/projectile/black_hole_realized/proc/SplashEffect(mob/user)
 	playsound(src, 'sound/effects/footstep/slime1.ogg', 100, FALSE, 12)
+
 	for(var/turf/T in view(damage_range, src))
 		new /obj/effect/temp_visual/revenant(T)
 	for(var/mob/living/L in view(damage_range, src))
-		var/distance_decrease = get_dist(src, L) * 40
-		L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
-		var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
-		L.throw_at(throw_target, 1, 2)
+		if(!user.faction_check_mob(L))
+			var/distance_decrease = get_dist(src, L) * 40
+			L.apply_damage(ishuman(L) ? (damage_amount - distance_decrease)*0.5 : (damage_amount - distance_decrease), BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+			var/atom/throw_target = get_edge_target_turf(L, get_dir(L, get_step_towards(L, get_turf(src))))
+			L.throw_at(throw_target, 1, 2)
 
 /* Harmony of Duality - Anarchy */
 /obj/effect/proc_holder/ability/aimed/yin_laser

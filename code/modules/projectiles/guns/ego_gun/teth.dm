@@ -11,7 +11,9 @@
 	special = "This weapon does AOE damage."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_match
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 30
+	fire_delay = 15
+	shotsleft = 8
+	reloadtime = 2.2 SECONDS
 	fire_sound = 'sound/weapons/ego/cannon.ogg'
 
 /obj/item/gun/ego_gun/beak
@@ -21,8 +23,10 @@
 	icon_state = "beak"
 	inhand_icon_state = "beak"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beak
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 10
+	shotsleft = 30
+	reloadtime = 1.3 SECONDS
 	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
 	autofire = 0.14 SECONDS
 
@@ -33,7 +37,9 @@
 	inhand_icon_state = "beakmagnum"
 	special = "This weapon has pinpoint accuracy when dual wielded."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beakmagnum
-	fire_delay = 20
+	fire_delay = 10
+	shotsleft = 7
+	reloadtime = 2.1 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_alt.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -47,7 +53,9 @@
 	special = "This weapon fires 5 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_noise
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 20
+	fire_delay = 10
+	shotsleft = 8
+	reloadtime = 1.6 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot_auto.ogg'
 
 /obj/item/gun/ego_gun/pistol/solitude
@@ -56,7 +64,9 @@
 	icon_state = "solitude"
 	inhand_icon_state = "solitude"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_solitude
-	fire_delay = 25
+	fire_delay = 10
+	shotsleft = 5
+	reloadtime = 2 SECONDS
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
@@ -70,6 +80,8 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_shy
 	fire_sound = 'sound/effects/meatslap.ogg'
 	vary_fire_sound = FALSE
+	shotsleft = 20
+	reloadtime = 1.2 SECONDS
 	autofire = 0.2 SECONDS
 
 /obj/item/gun/ego_gun/dream
@@ -80,7 +92,7 @@
 	ammo_type = /obj/item/ammo_casing/caseless/ego_dream
 	weapon_weight = WEAPON_HEAVY
 	fire_sound = "dreamy_gun"
-	autofire = 0.2 SECONDS
+	autofire = 0.25 SECONDS
 
 /obj/item/gun/ego_gun/page
 	name = "page"
@@ -89,7 +101,9 @@
 	inhand_icon_state = "page"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_page
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	damtype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 
@@ -158,5 +172,7 @@
 	special = "This weapon fires 4 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_patriot
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 25
+	fire_delay = 12
+	shotsleft = 8
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/shotgun/shot.ogg'

@@ -57,6 +57,16 @@
 	gift_type =  /datum/ego_gifts/cobalt
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "(You see a wolf with patchy fur) \
+I like it here. At least it's better than where I used to live. There are no pigs or chickens, but I don't have to be Big Bad Wolf, at least. \
+You didn't immediately kick me out, so I will tell you my name. My name is..."
+	observation_choices = list("Forget the name", "Remember the name")
+	correct_choices = list("Remember the name")
+	observation_success_message = "It's no use to remember it. Nobody cares about my name. \
+(Even though the wolf said such a thing, it seems happy.)"
+	observation_fail_message = "You better watch out. I can eat you with one bite if I want to. \
+(The wolf seems unhappy)"
+
 	var/can_act = TRUE
 	//For when the wolf becomes incorporal and flees.
 	var/last_reached_health = 75
@@ -366,7 +376,7 @@
 				continue
 			if(L.stat == DEAD)
 				continue
-			L.apply_damage(50, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = TRUE)
+			L.deal_damage(50, WHITE_DAMAGE)
 		for(var/obj/vehicle/V in turfs_to_check)
 			V.take_damage(50, WHITE_DAMAGE)
 		playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_Howl.ogg', 30, 0, 4)

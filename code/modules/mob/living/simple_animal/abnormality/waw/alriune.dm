@@ -31,6 +31,13 @@
 	light_range = 9
 	light_power = 1
 
+	observation_prompt = "You told me, shedding petals instead of tears. \
+\"We were all nothing but soil once, so do not speak of an end here.\" \
+You told me, blossoming flowers from body as if they are your last words. \"Soon...\""
+	observation_choices = list("Spring will come.", "Winter will come.")
+	correct_choices = list("Spring will come.", "Winter will come.")
+	observation_success_message = "Change is coming. Slowly, rapturously, my end began." //TODO : multiple answers
+
 	/// Currently displayed petals. When value is at 3 - reset to 0 and perform attack
 	var/petals_current = 0
 	/// World time when petals_current will increase by 1
@@ -81,7 +88,7 @@
 					continue
 				if(L.stat == DEAD)
 					continue
-				L.apply_damage(pulse_damage, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE))
+				L.deal_damage(pulse_damage, WHITE_DAMAGE)
 				new /obj/effect/temp_visual/alriune_attack(get_turf(L))
 				if(ishuman(L))
 					var/mob/living/carbon/human/H = L

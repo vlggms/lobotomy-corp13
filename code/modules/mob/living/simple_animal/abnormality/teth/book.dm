@@ -108,6 +108,7 @@
 	var/mob/living/simple_animal/spawnedmob = new newspawn(get_turf(src))
 	if(isabnormalitymob(spawnedmob))
 		var/mob/living/simple_animal/hostile/abnormality/abno = spawnedmob
+		abno.core_enabled = FALSE
 		abno.BreachEffect()
 	if(spawnedmob.butcher_results)
 		spawnedmob.butcher_results = list(/obj/item/paper = 1)

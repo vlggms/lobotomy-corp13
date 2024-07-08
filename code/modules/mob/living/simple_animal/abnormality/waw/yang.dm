@@ -124,7 +124,7 @@
 		var/mob/living/carbon/human/H = attacker
 		var/justice_mod = 1 + (get_attribute_level(H, JUSTICE_ATTRIBUTE)/100)
 		damage *= justice_mod
-	attacker.apply_damage(damage, WHITE_DAMAGE, null, attacker.run_armor_check(null, WHITE_DAMAGE))
+	attacker.deal_damage(damage, WHITE_DAMAGE)
 	return
 
 /mob/living/simple_animal/hostile/abnormality/yang/death()
@@ -154,7 +154,7 @@
 		if(SSlobotomy_events.yin_downed)
 			death()
 			return
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	ChangeResistances(list(RED_DAMAGE = 1, WHITE_DAMAGE = 0.2, BLACK_DAMAGE = 1.7, PALE_DAMAGE = 2))
 	SSlobotomy_events.yang_downed = FALSE
 	icon_state = icon_breach

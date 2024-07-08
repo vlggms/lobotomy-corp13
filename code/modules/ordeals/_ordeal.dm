@@ -55,6 +55,7 @@
 	priority_announce("The Ordeal has ended. Facility has been rewarded with [reward_percent*100]% PE.", name, sound=null)
 	SSlobotomy_corp.AdjustAvailableBoxes(total_reward)
 	SSlobotomy_corp.current_ordeals -= src
+	SSlobotomy_corp.ordeal_stats += 5
 	SSlobotomy_corp.AddLobPoints(level * 0.5, "Ordeal Reward")
 	if(end_sound)
 		for(var/mob/player in GLOB.player_list)
@@ -99,6 +100,10 @@
 		if(4, 9)
 			return "Midnight"
 	return "Unknown"
+
+/// Can be overridden for event ordeals
+/datum/ordeal/proc/AbleToRun()
+	return can_run
 
 //Global special blurb
 /datum/ordeal/proc/ShowOrdealBlurb(client/C, duration, fade_time = 5, text_color = color, text_align = "center", screen_location = "Center-6,Center+3", ending = FALSE)

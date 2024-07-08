@@ -149,9 +149,9 @@
 			continue
 		var/dist = get_dist(src, L)
 		if(ishuman(L)) //Different damage formulae for humans vs mobs
-			L.apply_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //15-3840 damage scaling exponentially with distance
+			L.deal_damage(clamp((15 * (2 ** (8 - dist))), 15, 4000), RED_DAMAGE) //15-3840 damage scaling exponentially with distance
 		else
-			L.apply_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE)) //0-600 damage scaling on distance, we don't want it oneshotting mobs
+			L.deal_damage(600 - ((dist > 2 ? dist : 0 )* 75), RED_DAMAGE) //0-600 damage scaling on distance, we don't want it oneshotting mobs
 		if(L.health < 0)
 			L.gib()
 	SLEEP_CHECK_DEATH(5)

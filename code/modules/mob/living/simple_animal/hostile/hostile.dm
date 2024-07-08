@@ -78,14 +78,15 @@
 	var/patrol_move_timer = null
 
 /mob/living/simple_animal/hostile/Initialize()
-	. = ..()
-
-	if(!targets_from)
-		targets_from = src
 	/*Update Speed overrides set speed and sets it
 		to the equivilent of move_to_delay. Basically
 		move_to_delay - 2 = speed. */
 	UpdateSpeed()
+	. = ..()
+
+	if(!targets_from)
+		targets_from = src
+
 	wanted_objects = typecacheof(wanted_objects)
 
 /mob/living/simple_animal/hostile/Destroy()
@@ -222,21 +223,25 @@
 	..(gibbed)
 
 /mob/living/simple_animal/hostile/update_stamina()
-	. = ..()
-	move_to_delay = (initial(move_to_delay) + (staminaloss * 0.06))
-	UpdateSpeed()
+	if(staminaloss == 0)
+		remove_movespeed_modifier(/datum/movespeed_modifier/hostile_stamina_loss, TRUE)
+	else
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/hostile_stamina_loss, TRUE, staminaloss * 0.06)
 
+///Use ChangeMoveToDelayBy instead for proper permanent speed changes
 /mob/living/simple_animal/hostile/proc/SpeedChange(amount = 0)
 	move_to_delay += amount
 	UpdateSpeed()
 
-/mob/living/simple_animal/hostile/proc/TemporarySpeedChange(amount = 0, time = 0)
+/mob/living/simple_animal/hostile/proc/TemporarySpeedChange(amount = 0, time = 0, is_multiplier = FALSE)
 	if(time <= 0)
 		return
-	if(amount == 0)
-		return
-	SpeedChange(amount)
-	addtimer(CALLBACK(src, PROC_REF(SpeedChange), -amount), time) // Reset the speed to previous value
+	if(is_multiplier && amount > 0)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/variable_hostile_speed_multiplier, TRUE, amount, TRUE)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, add_or_update_variable_movespeed_modifier), /datum/movespeed_modifier/variable_hostile_speed_multiplier, TRUE, 1 / amount, TRUE), time) // Reset the speed to previous value
+	else if(amount != 0)
+		add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, amount, TRUE)
+		addtimer(CALLBACK(src, TYPE_PROC_REF(/mob, add_or_update_variable_movespeed_modifier), /datum/movespeed_modifier/variable_hostile_speed_bonus, TRUE, -amount, TRUE), time)
 
 /mob/living/simple_animal/hostile/attacked_by(obj/item/I, mob/living/user)
 	if(stat == CONSCIOUS && !target && AIStatus != AI_OFF && !client && user)
@@ -250,7 +255,7 @@
 		Goto(P.starting, move_to_delay, 3)
 
 	. = ..()
-	DamageEffect(P.damage, P.damage_type)
+	DamageEffect(P.damage_type)
 
 /*-------------------\
 |Damage Visual Effect|
@@ -259,24 +264,24 @@
 /mob/living/simple_animal/hostile/attack_threshold_check(damage, damagetype = BRUTE, armorcheck = MELEE, actuallydamage = TRUE)
 	//This used to also check actually damage but turns out melee weapons in item_attack.dm dont call actually damage.
 	if(stat != DEAD && (damagetype in list(RED_DAMAGE, WHITE_DAMAGE, BLACK_DAMAGE, PALE_DAMAGE)))
-		//To simplify things, if you bash a abnormality with a wrench it wont show any effect.
-		DamageEffect(damage, damagetype)
+		//To simplify things, if you bash a abnormality with a wrench it wont show any effect. --uhh it will though
+		DamageEffect(damagetype)
 	return ..()
 
-/mob/living/simple_animal/hostile/proc/DamageEffect(amount, damtype)
+/mob/living/simple_animal/hostile/proc/DamageEffect(damtype)
 	//Code stolen from attack_threshold_check() in animal_defense.dm
-	var/temp_damage = amount
+	var/damage_modifier
 	if(islist(damage_coeff))
-		temp_damage *= damage_coeff[damtype]
+		damage_modifier = damage_coeff[damtype]
 	else
-		temp_damage *= damage_coeff.getCoeff(damtype)
+		damage_modifier = damage_coeff.getCoeff(damtype)
 
-	if(temp_damage > 0)
+	if(damage_modifier > 0)
 		return FALSE
-	if(temp_damage == 0)
+	if(damage_modifier == 0)
 		//Visual Effect for immunity.
 		return new /obj/effect/temp_visual/healing/no_dam(get_turf(src))
-	if(temp_damage < 0)
+	if(damage_modifier < 0)
 		//Visual Effect for healing.
 		return new /obj/effect/temp_visual/healing(get_turf(src))
 
@@ -292,8 +297,27 @@
 	Also this doesnt fix Stamina Update since it uses
 	initial - IP*/
 //Also is it frowned upon to make a proc just a single proc but with a unique var?
+///Only use this one for initializations because it uses the final modified move_to_delay
 /mob/living/simple_animal/hostile/proc/UpdateSpeed()
 	set_varspeed(move_to_delay - 2)
+
+///Sets the base move_to_delay to value (before movespeed modifiers)
+/mob/living/simple_animal/hostile/proc/ChangeMoveToDelay(new_move_to_delay)
+	set_varspeed(new_move_to_delay - 2)
+
+///adds to or multiplies base move_to_delay by value (before movespeed modifiers)
+/mob/living/simple_animal/hostile/proc/ChangeMoveToDelayBy(value, is_multiplier = FALSE)
+	if(is_multiplier && value > 0)
+		set_varspeed((speed + 2) * value - 2)
+		return
+	if(!is_multiplier && value != 0)
+		set_varspeed(speed + value)
+		return
+
+
+///Returns the original move_to_delay ignoring current speed modifiers
+/mob/living/simple_animal/hostile/proc/GetBaseMoveToDelay()
+	return speed + 2
 
 //////////////HOSTILE MOB TARGETTING AND AGGRESSION////////////
 

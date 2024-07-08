@@ -1030,6 +1030,16 @@
 	icon_state = "nobody_slash"
 	duration = 5
 
+/obj/effect/temp_visual/goatjo
+	name = "worldslash"
+	icon_state = "goatjo"
+	duration = 5
+
+/obj/effect/temp_visual/cleavesprite
+	name = "cleave"
+	icon_state = "cleavesprite"
+	duration = 5
+
 /obj/effect/temp_visual/holo_command
 	icon = 'ModularTegustation/Teguicons/lc13icons.dmi'
 	light_range = 1.5
@@ -1062,3 +1072,8 @@
 /obj/effect/temp_visual/holo_command/command_fight_b
 	icon_state = "Fight_this_wagie2"
 	light_color = COLOR_PALE_BLUE_GRAY
+
+/obj/effect/temp_visual/execute_bullet
+	icon = 'icons/obj/manager_bullets.dmi'
+	icon_state = "execution"
+	duration = 10

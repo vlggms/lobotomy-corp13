@@ -57,6 +57,8 @@
 #define ABNORMALITY_ORIGIN_WONDERLAB "Wonderlab"
 #define ABNORMALITY_ORIGIN_RUINA "Library of Ruina"
 #define ABNORMALITY_ORIGIN_LIMBUS "Limbus Company"
+#define ABNORMALITY_ORIGIN_JOKE "Joke"
+#define ABNORMALITY_ORIGIN_COMMUNITY "Community"
 
 // Persistent PE things
 #define PE_GOAL_REACHED	"goal_reached"

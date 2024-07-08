@@ -44,6 +44,13 @@
 		/mob/living/simple_animal/hostile/abnormality/cleaner = 1.5,
 	)
 
+	observation_prompt = "Is fun to clean. I was..."
+	observation_choices = list("You are special")
+	correct_choices = list("You are special")
+	observation_success_message = "There were many friends who looked like me. I was special. \
+My creator always said to me. \"You have to be sent to her. You are special. You can give them a very special present.\" \
+Numbers of tools, which were devoid of for my friends, were put into me. When I was sent to a new home, I gave them a present."
+
 	var/charging = FALSE
 	var/dash_num = 50
 	var/dash_cooldown = 0
@@ -167,7 +174,7 @@
 			var/damage = 60
 			if(!ishuman(L))
 				damage = 120
-			L.apply_damage(damage, melee_damage_type, null, L.run_armor_check(null, melee_damage_type), spread_damage = TRUE)
+			L.deal_damage(damage, melee_damage_type)
 			if(L.stat >= HARD_CRIT)
 				L.gib()
 				continue

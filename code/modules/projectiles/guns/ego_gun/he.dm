@@ -6,7 +6,9 @@
 	inhand_icon_state = "prank"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_prank
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	damtype = BLACK_DAMAGE
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
@@ -19,7 +21,9 @@
 	icon_state = "gaze"
 	inhand_icon_state = "gaze"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_gaze
-	fire_delay = 20
+	fire_delay = 10
+	shotsleft = 8
+	reloadtime = 1.8 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/deagle.ogg'
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
@@ -38,7 +42,7 @@
 	ammo_type =	/obj/item/ammo_casing/caseless/ego_galaxy
 	fire_delay = 15
 	fire_sound = 'sound/magic/wand_teleport.ogg'
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	fire_sound_volume = 70
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 40
@@ -144,6 +148,9 @@
 	vary_fire_sound = FALSE
 	weapon_weight = WEAPON_HEAVY
 	fire_sound_volume = 70
+	shotsleft = 18
+	reloadtime = 1.6 SECONDS
+
 	autofire = 0.35 SECONDS
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -156,7 +163,9 @@
 	inhand_icon_state = "transmission"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_transmission
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 10
+	reloadtime = 1.4 SECONDS
 	fire_sound = 'sound/weapons/gun/rifle/shot_alt.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -169,7 +178,9 @@
 	inhand_icon_state = "song"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_song
 	fire_sound = 'sound/weapons/gun/pistol/shot_alt.ogg'
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
+	shotsleft = 32
+	reloadtime = 1.6 SECONDS
 	spread = 8
 	autofire = 0.15 SECONDS
 	attribute_requirements = list(
@@ -184,6 +195,8 @@
 	special = "This weapon fires 3 pellets."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_songmini
 	fire_sound = 'sound/weapons/gun/revolver/shot_light.ogg'
+	shotsleft = 16
+	reloadtime = 2.1 SECONDS
 	spread = 8
 	autofire = 0.3 SECONDS
 	attribute_requirements = list(
@@ -215,7 +228,9 @@
 	special = "This weapon fires dice that deal varying amounts of damage."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_swindle
 	weapon_weight = WEAPON_HEAVY
-	fire_delay = 10
+	fire_delay = 5
+	shotsleft = 12
+	reloadtime = 1.5 SECONDS
 	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	attribute_requirements = list(
 							FORTITUDE_ATTRIBUTE = 40
@@ -265,11 +280,28 @@
 	inhand_icon_state = "syrinx"
 	special = "This weapon fires slow bullets with limited range."
 	ammo_type = /obj/item/ammo_casing/caseless/ego_syrinx
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 40
+	shotsleft = 40
+	reloadtime = 2 SECONDS
 	fire_sound = 'sound/weapons/ego/ecstasy.ogg'
 	autofire = 0.08 SECONDS
 	attribute_requirements = list(
 							PRUDENCE_ATTRIBUTE = 40
 	)
 
+
+/obj/item/gun/ego_gun/ardor_star
+	name = "ardor blossom star"
+	desc = "Though I can't guide you... I can offer a warm embrace."
+	icon_state = "ardor_star"
+	inhand_icon_state = "ardor_star"
+	ammo_type = /obj/item/ammo_casing/caseless/ego_ardor
+	weapon_weight = WEAPON_HEAVY
+	fire_sound = 'sound/weapons/gun/sniper/shot.ogg'
+	fire_delay = 5
+	shotsleft = 1
+	reloadtime = 1.4 SECONDS
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)

@@ -9,6 +9,7 @@
 	var/icon_crazy = "hatred_psycho"
 	icon_dead = "hatred_dead"
 	var/icon_inverted
+	core_icon = "hatred_egg"
 	portrait = "hatred_queen"
 	faction = list("neutral")
 	is_flying_animal = TRUE
@@ -481,7 +482,7 @@
 					continue
 				var/damage_before = L.get_damage_amount(BRUTE)
 				var/truedamage = ishuman(L) ? beam_damage_final : beam_damage_final/2 //half damage dealt to nonhumans
-				L.apply_damage(truedamage, BLACK_DAMAGE, null, L.run_armor_check(null, BLACK_DAMAGE))
+				L.deal_damage(truedamage, BLACK_DAMAGE)
 				var/damage_dealt = abs(L.get_damage_amount(BRUTE)-damage_before)
 				if(!friendly)
 					if(ishuman(L))
@@ -638,7 +639,7 @@
 		return
 	visible_message(span_bolddanger("[src] transforms!")) //Begin Hostile breach
 	REMOVE_TRAIT(src, TRAIT_MOVE_FLYING, ROUNDSTART_TRAIT)
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	friendly = FALSE
 	can_act = TRUE
 	icon = 'ModularTegustation/Teguicons/64x48.dmi'

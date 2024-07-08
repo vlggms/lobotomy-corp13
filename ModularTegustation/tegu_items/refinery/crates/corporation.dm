@@ -23,14 +23,15 @@
 		/obj/item/powered_gadget/detector_gadget/ordeal,
 		/obj/item/managerbullet,
 		/obj/item/powered_gadget/teleporter,
-		/obj/item/tool_extractor,
 	)
 
-	//Injectors, quite desireable as they are quite expensive.
+	//Injectors and rare extractors, quite desireable as they are quite expensive.
 	veryrareloot =	list(
 		/obj/item/trait_injector/agent_workchance_trait_injector,
 		/obj/item/trait_injector/clerk_fear_immunity_injector,
 		/obj/item/trait_injector/officer_upgrade_injector,
+		/obj/item/ego_gift_extractor,
+		/obj/item/device/Plushie_Extractor,
 	)
 
 //K Corporation
@@ -149,6 +150,8 @@
 	name = "S Corp Crate"
 	desc = "A crate recieved from the mysterious S-Corp. Open with a Crowbar."
 	icon_state = "crate_shrimp"
+	veryrarechance = 5
+	cosmeticchance = 5
 	lootlist =	list(
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_red,
 		/obj/item/reagent_containers/food/drinks/soda_cans/wellcheers_white,
@@ -161,10 +164,20 @@
 
 	rareloot =	list(
 		/obj/item/gun/ego_gun/shrimp/minigun,
-		/mob/living/simple_animal/hostile/shrimp,
 		/obj/item/grenade/spawnergrenade/shrimp,
+		/obj/item/trait_injector/shrimp_injector,
 	)
 
+	veryrareloot = list(
+		/obj/item/grenade/spawnergrenade/shrimp/super,
+		/obj/item/grenade/spawnergrenade/shrimp/hostile,
+		/obj/item/reagent_containers/pill/shrimptoxin,
+		/obj/item/fishing_rod/wellcheers,
+	)
+
+	cosmeticloot = list(
+		/mob/living/simple_animal/hostile/shrimp,
+	)
 
 //W Corporation
 /obj/structure/lootcrate/w_corp
@@ -175,25 +188,25 @@
 	veryrarechance = 15
 	cosmeticchance = 25
 	lootlist =	list(
-		/obj/item/ego_weapon/city/charge/wcorp,
+		/obj/item/ego_weapon/city/wcorp,
 		/obj/item/clothing/suit/armor/ego_gear/wcorp,
 		/obj/item/powered_gadget/teleporter,
 	)
 
 	rareloot =	list(
-		/obj/item/ego_weapon/city/charge/wcorp/fist,
-		/obj/item/ego_weapon/city/charge/wcorp/axe,
-		/obj/item/ego_weapon/city/charge/wcorp/spear,
-		/obj/item/ego_weapon/city/charge/wcorp/dagger,
-		/obj/item/ego_weapon/city/charge/wcorp/hammer,
-		/obj/item/ego_weapon/city/charge/wcorp/hatchet,
+		/obj/item/ego_weapon/city/wcorp/fist,
+		/obj/item/ego_weapon/city/wcorp/axe,
+		/obj/item/ego_weapon/city/wcorp/spear,
+		/obj/item/ego_weapon/city/wcorp/dagger,
+		/obj/item/ego_weapon/city/wcorp/hammer,
+		/obj/item/ego_weapon/city/wcorp/hatchet,
 	)
 
 	veryrareloot = list(
-		/obj/item/ego_weapon/city/charge/wcorp/shield,
-		/obj/item/ego_weapon/city/charge/wcorp/shield/spear,
-		/obj/item/ego_weapon/city/charge/wcorp/shield/club,
-		/obj/item/ego_weapon/city/charge/wcorp/shield/axe,
+		/obj/item/ego_weapon/city/wcorp/shield,
+		/obj/item/ego_weapon/city/wcorp/shield/spear,
+		/obj/item/ego_weapon/city/wcorp/shield/club,
+		/obj/item/ego_weapon/city/wcorp/shield/axe,
 	)
 
 	cosmeticloot = list(

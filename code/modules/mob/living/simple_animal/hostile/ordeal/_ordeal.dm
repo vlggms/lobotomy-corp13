@@ -22,16 +22,16 @@
 	if(ordeal_reference && ordeal_remove_ondeath)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
-	..()
+	return ..()
 
 /mob/living/simple_animal/hostile/ordeal/Destroy()
 	if(ordeal_reference)
 		ordeal_reference.OnMobDeath(src)
 		ordeal_reference = null
-	..()
+	return ..()
 
 //You should let these gib on Citymap
 /mob/living/simple_animal/hostile/ordeal/Initialize()
-	..()
-	if(SSmaptype.maptype == "city")
+	. = ..()
+	if(SSmaptype.maptype in SSmaptype.citymaps)
 		stat_attack = HARD_CRIT	//Guarantee this

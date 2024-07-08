@@ -61,8 +61,8 @@
 	var/persistant = FALSE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/melty_eyeball,
-		/datum/ego_datum/armor/melty_eyeball,
+		/datum/ego_datum/weapon/cavernous_wailing,
+		/datum/ego_datum/armor/cavernous_wailing,
 	)
 	gift_type =  /datum/ego_gifts/melty_eyeball
 	gift_message = "The toad gave you an eyeball, maybe it was for lending an ear?"
@@ -171,7 +171,7 @@
 			if(T.density)
 				break
 			if(idiot in T)
-				idiot.apply_damage(tongue_damage, BLACK_DAMAGE, null, idiot.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
+				idiot.deal_damage(tongue_damage, BLACK_DAMAGE)
 				new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(idiot), pick(GLOB.alldirs))
 				if(!idiot.anchored)
 					var/whack_speed = (prob(60) ? 1 : 4)

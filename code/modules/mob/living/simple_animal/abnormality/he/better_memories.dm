@@ -9,6 +9,7 @@
 		distant pink light."
 	icon = 'ModularTegustation/Teguicons/64x64.dmi'
 	icon_state = "better_memories"
+	core_icon = "memories_egg"
 	portrait = "better_memories"
 	pixel_x = -16
 	base_pixel_x = -16
@@ -63,11 +64,13 @@
 	if(!IsCombatMap())
 		var/turf/W = pick(GLOB.department_centers)
 		breaching_minion = SpawnMinion(get_turf(W))
+		datum_reference.qliphoth_change(2)
 
 	//--Side Gamemodes stuff--
 	else
 		SpawnMinion(get_turf(src)) // Spawns 2 minions on Rcorp.
 		breaching_minion = SpawnMinion(get_turf(src))
+		core_enabled = FALSE // Normally in RCA it would drop a core the moment it spawns. Since the minions are not the abnormality, this may require a proper implementation later. -Mr. H
 		QDEL_IN(src, 1 SECONDS) //Destroys the core, as it is unecessary in Rcorp.
 
 	if(client)
@@ -468,6 +471,7 @@
 	///This proc deterimines how the spell will affect mobs.
 /mob/living/simple_animal/hostile/better_memories_minion/proc/DoConeMobEffect(mob/living/target_mob)
 	if(ishuman(target_mob))
+		target_mob.flash_act()
 		target_mob.apply_status_effect(MEMORY_DEBUFF)
 
 	///This proc adjusts the cones width depending on the level.
@@ -536,7 +540,7 @@
 	var/mob/living/carbon/human/L = owner
 	if(L.sanity_lost || L.stat == DEAD)
 		qdel(src)
-	L.apply_damage(10, WHITE_DAMAGE, null, L.run_armor_check(null, WHITE_DAMAGE), spread_damage = FALSE)
+	L.deal_damage(10, WHITE_DAMAGE)
 	//Unsure if these statements explain what is happening to your character but its enough. -IP
 	to_chat(owner, pick(
 		span_warning("You have trouble recalling your life before this job."),
