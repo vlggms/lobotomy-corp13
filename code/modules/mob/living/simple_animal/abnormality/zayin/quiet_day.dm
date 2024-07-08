@@ -213,7 +213,7 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 	currently_talking = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerInView(mob/living/carbon/human/user)
-	if(user in view(5, src) && currently_talking)
+	if(currently_talking && (user in view(5, src)))
 		return TRUE
 
 	else
