@@ -253,6 +253,8 @@
 			can_act = FALSE
 			pixel_x = -16
 			base_pixel_x = -16
+			offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+			SetOccupiedTiles(up = 1)
 			next_transform = world.time + rand(30 SECONDS, 45 SECONDS)
 		if(2)
 			breach_affected = list() // Too spooky
@@ -363,7 +365,7 @@
 		ChangeResistances(list(BRUIT = 1, RED_DAMAGE = 0.6, WHITE_DAMAGE = 0.3, BLACK_DAMAGE = 0, PALE_DAMAGE = 0.5))
 		heal_percent_per_second = 0.00425//half of what it was when it had just 5k hp
 		maxHealth = 10000
-		adjustBruteLoss(-maxHealth) // It's not over yet!.
+		adjustBruteLoss(-maxHealth, forced = TRUE) // It's not over yet!.
 		melee_damage_lower = 45
 		melee_damage_upper = 65
 		grab_damage = 140
@@ -644,6 +646,9 @@
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/disguise_as(mob/living/carbon/human/M)
 	if(!istype(M))
 		return
+	SetOccupiedTiles()
+	offsets_pixel_x = list("south" = 0, "north" = 0, "west" = 0, "east" = 0)
+	//UnregisterSignal(src, COMSIG_ATOM_DIR_CHANGE)
 	for(var/turf/open/T in view(2, src))
 		var/obj/effect/temp_visual/flesh/pinkflesh =  new(T)
 		pinkflesh.color = COLOR_PINK
@@ -669,7 +674,7 @@
 	M.set_lying_angle(0)
 	M.set_body_position(STANDING_UP)
 	M.forceMove(src) // Hide them for examine message to work
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	Transform(M)
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/proc/Transform(mob/living/carbon/human/M)

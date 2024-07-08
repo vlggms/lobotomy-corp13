@@ -67,7 +67,7 @@
 		addtimer(CALLBACK(src, PROC_REF(Explode), owner), 1) //Gives damage procs time to process
 		return
 	if(damage_counter >= (damage_max * 0.8))
-		to_chat(owner, span_userdanger("You need to return the research notes immediately!"))
+		to_chat(owner, span_hypnophrase("You need to return the research notes immediately!"))
 		return
 	if(damage_counter >= (damage_max * 0.6))
 		to_chat(owner, span_userdanger("You feel like you should avoid taking any more damage!"))

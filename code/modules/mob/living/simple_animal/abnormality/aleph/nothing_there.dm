@@ -46,6 +46,20 @@
 		/mob/living/simple_animal/hostile/abnormality/nobody_is = 1.5,
 	)
 
+	observation_prompt = "*Teeth grinding* Incomprehensible sounds can be heard. \
+Its body was already broken long time ago. \
+The twisted mouth opens, the crushed down tongue undulates. \"M-ma......man-ag......r.......\" It's calling for the manager."
+	observation_choices = list("Approach it", "Ignore it")
+	correct_choices = list("Ignore it")
+	observation_success_message = "A chunk of flesh dropped from the mouth to the ground, depriving the abnormality an ability to talk. \
+It's talking inside the body of an employee. But it is not the employee who speaks. \
+The sound of calling me. Is nothing but an empty shell mimicking a dead person. \
+How many employees would have suffered to this sound? It keeps getting closer to human. \
+It keeps trying. However, as always, at the end, Nothing there."
+	observation_fail_message = "I think of people who were friends with this employee. \
+Those eyes, shoulders, and every bit of muscle belong to someone else. \
+It smiles. No, it pretends to smile. Who could be it?"
+
 	var/mob/living/disguise = null
 	var/saved_appearance
 	var/can_act = TRUE
@@ -294,6 +308,8 @@
 			icon_state = icon_living
 			pixel_x = -16
 			base_pixel_x = -16
+			offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
+			SetOccupiedTiles(up = 1)
 			ChangeResistances(list(WHITE_DAMAGE = 0.4, BLACK_DAMAGE = 0.4, PALE_DAMAGE = 0.8))
 			can_act = TRUE
 			melee_damage_lower = 65
@@ -301,7 +317,7 @@
 			ChangeMoveToDelayBy(1.5)
 			heartbeat.stop()
 			breachloop.start()
-	adjustBruteLoss(-maxHealth)
+	adjustBruteLoss(-maxHealth, forced = TRUE)
 	current_stage = clamp(current_stage + 1, 1, 3)
 
 /mob/living/simple_animal/hostile/abnormality/nothing_there/proc/Hello(target)

@@ -36,6 +36,15 @@
 	harvest_phrase = span_notice("As you hold it up before %ABNO, holy light fills %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL, letting it be filled with holy light."
 
+	observation_prompt = "It has great power. It is savior that will judge you, and executioner that will put you in your demise. \
+In its eyes, you find... (Technically, it has no eyes, so in its pitch-black holes you find...)"
+	observation_choices = list("You find yourself.", "Nothing.")
+	correct_choices = list("Nothing.")
+	observation_success_message = "Darkness. \
+	Nothing is there. Have you found the answers you were looking for?"
+	observation_fail_message = "You are found. \
+	You have great power. You willingly lift the axe for the greater good."
+
 	var/halo_status = "onesin_halo_normal" //used for changing the halo overlays
 
 //Overlay stuff

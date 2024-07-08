@@ -66,6 +66,9 @@
 	// Abnormality Portrait, updated when abnormality spawns if they have one.
 	var/portrait = "UNKNOWN"
 
+	// final obervation details
+	var/observation_ready = FALSE
+
 /datum/abnormality/New(obj/effect/landmark/abnormality_spawn/new_landmark, mob/living/simple_animal/hostile/abnormality/new_type = null)
 	if(!istype(new_landmark))
 		CRASH("Abnormality datum was created without reference to landmark.")
@@ -191,13 +194,13 @@
 	AddWorkStats(user, pe, attribute_type, attribute_given)
 	SSlobotomy_corp.work_logs += "\[[worldtime2text()]\] [name]: [user_job_title] [user.real_name] (LV [user.get_text_level()]): Performed [work_type], [pe]/[max_boxes] PE."
 	if (pe >= success_boxes) // If they got a good result, adds 10% understanding, up to 100%
-		UpdateUnderstanding(10)
+		UpdateUnderstanding(10, pe)
 	else if (pe >= neutral_boxes) // Otherwise if they got a Neutral result, adds 5% understanding up to 100%
-		UpdateUnderstanding(5)
+		UpdateUnderstanding(5, pe)
 	stored_boxes += round(pe * SSlobotomy_corp.box_work_multiplier)
 	overload_chance[user.ckey] = max(overload_chance[user.ckey] + overload_chance_amount, overload_chance_limit)
 
-/datum/abnormality/proc/UpdateUnderstanding(percent)
+/datum/abnormality/proc/UpdateUnderstanding(percent, pe)
 	// Lower agent pop gets a bonus
 	var/agent_count = max(AvailableAgentCount(), 1)
 	if(agent_count <= 5 && percent)
@@ -209,11 +212,14 @@
 			current.gift_chance *= 1.5
 			SSlobotomy_corp.understood_abnos++
 			SSlobotomy_corp.AddLobPoints(MAX_ABNO_LOB_POINTS / SSabnormality_queue.rooms_start, "Abnormality Understanding")
+			observation_ready = TRUE
 	else if(understanding == max_understanding && percent < 0) // If we're max and we reduce, undo the count.
 		understanding = clamp((understanding + (max_understanding*percent/100)), 0, max_understanding)
 		if (understanding != max_understanding) // Checks for max understanding after the fact
 			current.gift_chance /= 1.5
 			SSlobotomy_corp.understood_abnos--
+	if(understanding == max_understanding && prob((pe / max_boxes) + current.gift_chance))
+		observation_ready = TRUE
 
 	if(understanding >= (max_understanding / 2)) //Understanding is over 50% - EO lock tool breaks
 		console.ApplyEOTool(EXTRACTION_KEY, TRUE)

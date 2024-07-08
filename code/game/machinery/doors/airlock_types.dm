@@ -585,12 +585,14 @@
 	bound_width = 128
 	bound_height = 128
 	hackProof = TRUE
+	autoclose = TRUE
+	resistance_flags = INDESTRUCTIBLE
 	doorOpen = 'sound/effects/stonedoor_openclose.ogg'
 	doorClose = 'sound/effects/stonedoor_openclose.ogg'
 
-/obj/machinery/door/airlock/snowqueen/bumpopen(mob/living/user)
-	if(!ishuman(user))
-		return ..()
-	for(var/obj/item/ego_weapon/THESWORD in user.GetAllContents())
-		return ..() //Only open once they pick up the sword
-	return
+/obj/machinery/door/airlock/snowqueen/bumpopen(mob/living/L)
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(get_dir(src, L) == dir)
+			if(locate(/obj/item/ego_weapon/shield/ice_sword) in H.GetAllContents())
+				return ..() //Only open once they pick up the swor

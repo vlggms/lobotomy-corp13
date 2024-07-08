@@ -225,6 +225,8 @@
 	move_resist = MOVE_FORCE_OVERPOWERING
 	simple_mob_flags = SILENCE_RANGED_MESSAGE
 	can_patrol = TRUE
+	occupied_tiles_up = 1
+	offsets_pixel_x = list("south" = -16, "north" = -16, "west" = -16, "east" = -16)
 
 	//How many people has she eaten
 	var/belly = 0

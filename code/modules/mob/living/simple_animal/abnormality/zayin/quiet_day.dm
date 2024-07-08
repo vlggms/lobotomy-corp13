@@ -11,8 +11,7 @@
 	maxHealth = 451
 	health = 451
 	threat_level = ZAYIN_LEVEL
-	can_buckle = TRUE
-
+	faction = list("hostile", "neutral")
 	//Bad for stat gain, but the damage is negligable and there's a nice bonus at the end
 	work_chances = list(
 		ABNORMALITY_WORK_INSTINCT = 60,
@@ -27,8 +26,7 @@
 		/datum/ego_datum/weapon/nostalgia,
 		/datum/ego_datum/armor/nostalgia,
 	)
-
-	faction = list("hostile", "neutral")
+	gift_type =  /datum/ego_gifts/nostalgia
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
@@ -40,7 +38,21 @@
 	harvest_phrase = span_notice("%ABNO looks curiously at %VESSEL for a moment. You blink, and suddenly, it seems to contain a shadowy substance.")
 	harvest_phrase_third = "%ABNO glances at %PERSON. Suddenly, %VESSEL seems to be more full."
 
-	gift_type =  /datum/ego_gifts/nostalgia
+	observation_prompt = "The shadow of an old man seems to be contemplating about something. \
+\"Don\'t you ever wish you could go back to those better times? To be able to enjoy life to the fullest? \
+To relive the best moments of your life again? \
+To remember her face? To remember that young man's name? \
+Perhaps it's foolish of me to ask for this. I want to hear your opinion, young\'in. \
+Would it be worth chasing after those old, familiar memories?\""
+	observation_choices = list("It's not wrong.", "Perhaps it's better to move on.")
+	correct_choices = list("Perhaps it's better to move on.")
+	observation_success_message = "\"I suppose you're right after all.\" \
+\"If I can't even remember their names and faces, what worth even are those memories?\" \
+\"Go on. Leave before you forget too.\""
+	observation_fail_message = "\"Indeed. There's no harm, right?\" \
+\"...Yet why can't I remember her face?\" \
+As you're about to leave, you hear the old man croak out something. \"Who are you again?\""
+
 	var/buff_given
 	var/datum/looping_sound/quietday_ambience/soundloop
 
@@ -108,6 +120,7 @@
 
 	var/pink_speaktimer = null
 
+	can_buckle = TRUE
 	var/currently_talking = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/examine()

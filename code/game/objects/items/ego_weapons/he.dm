@@ -1295,6 +1295,23 @@
 	..()
 	force = initial(force)
 
+/obj/item/ego_weapon/frostsplinter
+	name = "frost splinter"
+	desc = "Anyone damaged by it will lose themselves for a moment. \
+	As the equipment was forged from snow, it shall disappear without a trace someday."
+	icon_state = "frostsplinter"
+	force = 44
+	reach = 2		//Has 2 Square Reach.
+	stuntime = 5	//Longer reach, gives you a short stun.
+	attack_speed = 1.2
+	damtype = WHITE_DAMAGE
+	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
+	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
+	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
+
 /obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
 	name = "AEDD"
 	desc = "A nasty-looking bat covered with nails."
@@ -1695,7 +1712,7 @@
 	name = "voodoo"
 	desc = "What seems to be a giant half of a scissors pair."
 	icon_state = "voodoo"
-	special = "This weapon can be paired with itself to unlock the ability to parry."
+	special = "This weapon can be paired with a second copy to use both at the same time."
 	force = 20
 	attack_speed = 0.7
 	damtype = WHITE_DAMAGE
@@ -1718,10 +1735,10 @@
 	if(combo)
 		sleep(attack_speed/2 SECONDS)
 		if(target in view(reach,user))
-			target.attacked_by(src, user)
-			target.send_item_attack_message(src, user,target)
-			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
+			user.do_attack_animation(target)
+			target.attacked_by(Y, user)
+			log_combat(user, target, pick(attack_verb_continuous), Y.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(Y.damtype)])")
 
 /obj/item/ego_weapon/nixie
 	name = "nixie divergence"
@@ -1831,11 +1848,10 @@
 	name = "u-turn"
 	desc = "It's a large scythe, that probably hurts a lot."
 	special = "Knocks certain enemies towards you in an area. \
-	This weapon does half damage when attacking 3 or tiles more away."
+	This weapon does half damage when attacking 3 or more tiles more away."
 	icon_state = "uturn"
 	force = 40
 	reach = 4
-	stuntime = 8	// This scythe will still stun you, not as long as the attack speed however
 	attack_speed = 1.3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")

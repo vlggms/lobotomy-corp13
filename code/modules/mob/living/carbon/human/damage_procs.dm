@@ -6,13 +6,15 @@
 	var/damage_amt = amount
 	if(sanity_lost && white_healable) // Heal sanity instead.
 		damage_amt *= -1
-	adjustSanityLoss(damage_amt)
+	adjustSanityLoss(damage_amt, forced)
 	if(updating_health)
 		updatehealth()
 	return damage_amt
 
-/mob/living/carbon/human/proc/adjustSanityLoss(amount)
+/mob/living/carbon/human/proc/adjustSanityLoss(amount, forced = FALSE)
 	if((status_flags & GODMODE) || !attributes || stat == DEAD)
+		return FALSE
+	if(!forced && amount < 0 && HAS_TRAIT(src, TRAIT_SANITY_HEALING_BLOCKED))
 		return FALSE
 	sanityloss = clamp(sanityloss + amount, 0, maxSanity)
 	if(HAS_TRAIT(src, TRAIT_SANITYIMMUNE))

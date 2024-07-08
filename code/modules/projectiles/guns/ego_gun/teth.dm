@@ -23,7 +23,7 @@
 	icon_state = "beak"
 	inhand_icon_state = "beak"
 	ammo_type = /obj/item/ammo_casing/caseless/ego_beak
-	weapon_weight = WEAPON_HEAVY
+	weapon_weight = WEAPON_MEDIUM
 	spread = 10
 	shotsleft = 30
 	reloadtime = 1.3 SECONDS

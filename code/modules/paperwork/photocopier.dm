@@ -228,10 +228,7 @@
 		return
 	var/obj/item/paper/copied_paper = new(loc)
 	give_pixel_offset(copied_paper)
-	if(toner_cartridge.charges > 10) // Lots of toner, make it dark.
-		copied_paper.info = "<font color = #101010>"
-	else // No toner? shitty copies for you!
-		copied_paper.info = "<font color = #808080>"
+	copied_paper.info = "<font color = #000000>"
 
 	var/copied_info = paper_copy.info
 	copied_info = replacetext(copied_info, "<font face=\"[PEN_FONT]\" color=", "<font face=\"[PEN_FONT]\" nocolor=")	//state of the art techniques in action

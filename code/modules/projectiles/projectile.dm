@@ -516,6 +516,8 @@
 		// If target not able to use items, move and stand - or if they're just dead, pass over.
 		if(L.stat == DEAD)
 			return FALSE
+		if(L.status_flags & MUST_HIT_PROJECTILE)
+			return TRUE
 		if(!L.density)
 			return hit_nondense_targets
 		if(L.body_position != LYING_DOWN)

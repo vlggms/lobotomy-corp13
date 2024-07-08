@@ -58,6 +58,11 @@
 		/mob/living/simple_animal/hostile/abnormality/judgement_bird = 3,
 	)
 
+	observation_prompt = "A bird stares at you. What is the name of this bird?"
+	observation_choices = list("Little bird", "Punishing bird")
+	correct_choices = list("Little bird", "Punishing bird")
+	observation_success_message = "The small bird accepts whatever name you decide to give it. Its nature can never change now."
+
 	var/list/enemies = list()
 	var/list/pecking_targets = list()
 	var/list/already_punished = list()

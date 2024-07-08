@@ -38,10 +38,12 @@
 	var/visible = TRUE
 	var/mob/living/carbon/human/owner
 	var/datum/abnormality/datum_reference = null
+	var/mutable_appearance/gift_overlay
 
 /datum/ego_gifts/proc/Initialize(mob/living/carbon/human/user)
+	gift_overlay = FormatOverlay(user)
 	user.ego_gift_list[src.slot] = src
-	user.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+	user.add_overlay(gift_overlay)
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, src.fortitude_bonus)
 	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, src.prudence_bonus)
 	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, src.temperance_bonus)
@@ -53,7 +55,7 @@
 	owner = user
 
 /datum/ego_gifts/proc/Remove(mob/living/carbon/human/user)
-	user.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+	user.cut_overlay(gift_overlay)
 	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, (src.fortitude_bonus * -1))
 	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, (src.prudence_bonus * -1))
 	user.adjust_attribute_buff(TEMPERANCE_ATTRIBUTE, (src.temperance_bonus * -1))
@@ -176,11 +178,17 @@
 /datum/ego_gifts/proc/Refresh_Gift_Sprite(option)
 	switch(option)
 		if(FALSE)
-			owner.add_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+			gift_overlay = FormatOverlay(owner)
+			owner.add_overlay(gift_overlay)
 			visible = TRUE
 		if(TRUE)
-			owner.cut_overlay(mutable_appearance(src.icon, src.icon_state, src.layer))
+			owner.cut_overlay(gift_overlay)
+			qdel(gift_overlay)
 			visible = FALSE
+
+//Overridable overlay proc for coloring gifts based on attribute, skin tone, or other aspects.
+/datum/ego_gifts/proc/FormatOverlay(mob/living/carbon/human/user)
+	return mutable_appearance(src.icon, src.icon_state, src.layer)
 
 /// Empty EGO GIFT Slot
 /datum/ego_gifts/empty
@@ -639,6 +647,13 @@
 	prudence_bonus = -4
 	slot = CHEEK
 
+/datum/ego_gifts/frost_splinter
+	name = "Cruelty of Winter and Aroma of Roses"
+	icon_state = "frost_splinter"
+	fortitude_bonus = 6
+	prudence_bonus = 6
+	slot = CHEEK
+
 /datum/ego_gifts/harvest
 	name = "Harvest"
 	icon_state = "harvest"
@@ -1073,38 +1088,21 @@
 	prudence_bonus = 3
 	fortitude_bonus = 3
 	slot = HELMET
-	var/ear_overlay
 
-/datum/ego_gifts/hypocrisy/Initialize(mob/living/carbon/human/user) //have to make a new initialize since the previous one both adds stats and the normal overlay.
-	user.ego_gift_list[src.slot] = src
-	var/mutable_appearance/colored_overlay = mutable_appearance(src.icon, src.icon_state, src.layer)
+// This code is so that the elf ears are colored the same as the users skin tone
+/datum/ego_gifts/hypocrisy/FormatOverlay(mob/living/carbon/human/user)
+	. = ..()
+	/*
+	* . is the the return of the root proc.
+	* This proc edits the color and returns
+	* the altered overlay based on the users
+	* skin color.
+	*/
+	var/mutable_appearance/ear_overlay = .
 	if(user.skin_tone)
 		var/user_skin_color = skintone2hex(user.skin_tone)
-		colored_overlay.color = "#[user_skin_color]"
-	ear_overlay = colored_overlay
-	user.add_overlay(ear_overlay)
-	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, src.fortitude_bonus)
-	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, src.prudence_bonus)
-
-/datum/ego_gifts/hypocrisy/Remove(mob/living/carbon/human/user)
-	user.cut_overlay(ear_overlay)
-	user.adjust_attribute_buff(FORTITUDE_ATTRIBUTE, (src.fortitude_bonus * -1))
-	user.adjust_attribute_buff(PRUDENCE_ATTRIBUTE, (src.prudence_bonus * -1))
-	QDEL_NULL(src)
-
-/datum/ego_gifts/hypocrisy/Refresh_Gift_Sprite(option) //hide and unhide to update skin color.
-	switch(option)
-		if(FALSE)
-			var/mutable_appearance/colored_overlay = mutable_appearance(src.icon, src.icon_state, src.layer)
-			if(owner.skin_tone)
-				var/user_skin_color = skintone2hex(owner.skin_tone)
-				colored_overlay.color = "#[user_skin_color]"
-			ear_overlay = colored_overlay
-			owner.add_overlay(ear_overlay)
-			visible = TRUE
-		if(TRUE)
-			owner.cut_overlay(ear_overlay)
-			visible = FALSE
+		ear_overlay.color = "#[user_skin_color]"
+	return ear_overlay
 
 /datum/ego_gifts/infinity
 	name = "Infinity"
@@ -1240,6 +1238,14 @@
 	fortitude_bonus = 2
 	justice_bonus = 4
 	slot = HAT
+
+/datum/ego_gifts/animalism
+	name = "Animalism"
+	icon_state = "animalism"
+	fortitude_bonus = 4
+	temperance_bonus = -2
+	justice_bonus = 6
+	slot = EYE
 
 /**
  * ALEPH EGO Gifts
@@ -1383,6 +1389,13 @@
 	name = "Ultimate Christmas"
 	fortitude_bonus = 25
 	prudence_bonus = -5
+
+/datum/ego_gifts/willing
+	name = "The Flesh Is Willing"
+	icon_state = "willing"
+	fortitude_bonus = 5
+	justice_bonus = 5
+	slot = NECKWEAR
 
 /**
  * Event EGO Gifts

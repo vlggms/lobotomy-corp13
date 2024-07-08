@@ -35,6 +35,7 @@
 	var/stat_bonus2
 	var/ferventbeats = FALSE
 	var/raging = FALSE
+	var/rage_safe_time = 30 SECONDS
 
 /datum/status_effect/display/aspiration/on_apply()
 	. = ..()
@@ -48,11 +49,17 @@
 /datum/status_effect/display/aspiration/tick()
 	. = ..()
 	var/mob/living/carbon/human/H = owner
-	if(ferventbeats)
-		H.adjustBruteLoss(H.maxHealth * (1/100)) //Roughly standard regenerator healing
-	if(raging)
-		H.adjustBruteLoss(H.maxHealth * (2/100)) //You are most likely going to die, and very soon.
 	HealthCheck()
+	if(ferventbeats && rage_safe_time < world.time)
+		H.deal_damage(H.maxHealth * (1/100), BRUTE) // Roughly standard regenerator healing
+	if(!raging)
+		return
+
+	if(rage_safe_time > world.time && H.health <= HEALTH_THRESHOLD_FULLCRIT)
+		to_chat(H, span_userdanger("You feel as if your heart barelly holds onto life!"))
+		return
+
+	H.deal_damage(H.maxHealth * (2/100), BRUTE) // You are most likely going to die, and very soon.
 
 /datum/status_effect/display/aspiration/proc/HealthCheck()
 	var/mob/living/carbon/human/H = owner
@@ -67,14 +74,17 @@
 	if(H.health < H.maxHealth * 0.25)
 		if(!raging)
 			SuperRageEnable()
-	if(H.stat == DEAD)
-		var/obj/item/organ/heart/heart = H.getorganslot(ORGAN_SLOT_HEART)
-		if(istype(heart))
-			QDEL_NULL(heart)
-			return
-		H.visible_message(span_danger("[H]'s heart explodes!"))
-		new /obj/effect/gibspawner/generic(get_turf(H))
-		H.remove_status_effect(src)
+	if(H.stat != DEAD)
+		return
+
+	var/obj/item/organ/heart/heart = H.getorganslot(ORGAN_SLOT_HEART)
+	if(istype(heart))
+		QDEL_NULL(heart)
+		return
+
+	H.visible_message(span_danger("[H]'s heart explodes!"))
+	new /obj/effect/gibspawner/generic(get_turf(H))
+	H.remove_status_effect(src)
 
 /datum/status_effect/display/aspiration/proc/RageEnable()
 	var/mob/living/carbon/human/H = owner
@@ -92,8 +102,10 @@
 	var/mob/living/carbon/human/H = owner
 	to_chat(H, span_userdanger("Your heart... It's too much!"))
 	H.playsound_local(get_turf(H), 'sound/abnormalities/nothingthere/heartbeat2.ogg', 50, 0, 3)
-	raging = TRUE
 	H.adjust_attribute_buff(JUSTICE_ATTRIBUTE, 20 + (2 * stat_bonus)) //total of 5 times the original bonus
+
+	raging = TRUE
+	rage_safe_time = world.time + initial(rage_safe_time)
 
 /datum/status_effect/display/aspiration/proc/RageDisable()
 	var/mob/living/carbon/human/H = owner

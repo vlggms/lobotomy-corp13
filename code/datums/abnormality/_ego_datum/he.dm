@@ -72,6 +72,15 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/logging
 	cost = 35
 
+// Snow Queen - Frost Splinter
+/datum/ego_datum/weapon/frostsplinter
+	item_path = /obj/item/ego_weapon/frostsplinter
+	cost = 35
+
+/datum/ego_datum/armor/frostsplinter
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/frostsplinter
+	cost = 35
+
 // Laetitia - Funny Prank
 /datum/ego_datum/weapon/prank
 	item_path = /obj/item/gun/ego_gun/prank
@@ -447,10 +456,20 @@
 	item_path = /obj/item/ego_weapon/nixie
 	cost = 35
 
+//Drifting Fox - Sunshower
 /datum/ego_datum/armor/sunshower
 	item_path = /obj/item/clothing/suit/armor/ego_gear/he/sunshower
 	cost = 35
 
 /datum/ego_datum/weapon/sunshower
 	item_path = /obj/item/ego_weapon/sunshower
+	cost = 35
+
+//Ardor Blossom Moth - Ardor Blossom Star
+/datum/ego_datum/armor/ardor_star
+	item_path = /obj/item/clothing/suit/armor/ego_gear/he/ardor_star
+	cost = 35
+
+/datum/ego_datum/weapon/ardor_star
+	item_path = /obj/item/gun/ego_gun/ardor_star
 	cost = 35

@@ -1303,7 +1303,7 @@
 	user.do_attack_animation(target)
 	target.attacked_by(src, user)
 
-	log_combat(user, target, "attacked", src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+	log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
 
 /obj/item/ego_weapon/discord/proc/Harmony(mob/living/carbon/human/user)
 	var/heal_amount = 5
@@ -1439,18 +1439,18 @@
 /obj/item/ego_weapon/animalism/attack(mob/living/target, mob/living/user)
 	if(!..())
 		return
-	var/multihit = force
-	var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
-	var/justicemod = 1 + userjust/100
-	multihit*= justicemod * force_multiplier
 	for(var/i = 1 to 3)
 		sleep(2)
 		if(target in view(reach,user))
-			target.send_item_attack_message(src, user,target)
-			target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)
-			user.do_attack_animation(target)
 			playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-			new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
+			user.do_attack_animation(target)
+			target.attacked_by(src, user)
+			log_combat(user, target, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(user.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+
+/obj/item/ego_weapon/animalism/melee_attack_chain(mob/living/user, atom/target, params)
+	..()
+	if(isliving(target))
+		new /obj/effect/temp_visual/dir_setting/bloodsplatter(get_turf(target), pick(GLOB.alldirs))
 
 /obj/item/ego_weapon/psychic
 	name = "psychic dagger"
@@ -1531,7 +1531,7 @@
 /obj/item/ego_weapon/cobalt
 	name = "cobalt scar"
 	desc = "Once upon a time, these claws would cut open the bellies of numerous creatures and tear apart their guts."
-	special = "Preform an additional attack of 50% damage when at half health."
+	special = "Preform an additional attack of 75% damage when at half health."
 	icon_state = "cobalt"
 	force = 24
 	attack_speed = 0.5
@@ -1545,9 +1545,11 @@
 							)
 
 /obj/item/ego_weapon/cobalt/attack(mob/living/target, mob/living/user)
+	force = initial(force)
 	if(!..())
 		return
 	var/our_health = 100 * (user.health / user.maxHealth)
+	sleep(2)
 	if(our_health <= 50 && isliving(target) && target.stat != DEAD)
 		FrenzySwipe(user)
 
@@ -1568,18 +1570,13 @@
 		return FALSE
 	if(prob(25))
 		wolf.visible_message(span_warning("[wolf] claws [those_we_rend] in a blind frenzy!"), span_warning("You swipe your claws at [those_we_rend]!"))
-	wolf.do_attack_animation(those_we_rend)
 	if(ishuman(wolf))
-		var/rend_damage = 16
-		var/userjust = (get_modified_attribute_level(wolf, JUSTICE_ATTRIBUTE))
-		var/justicemod = 1 + userjust/100
-		rend_damage*=justicemod
-		rend_damage*=force_multiplier
-		those_we_rend.apply_damage(rend_damage, damtype, null, those_we_rend.run_armor_check(null, damtype), spread_damage = TRUE)
-		those_we_rend.lastattacker = wolf.real_name
-		those_we_rend.lastattackerckey = wolf.ckey
+		force = 16
 		playsound(loc, hitsound, get_clamped_volume(), TRUE, extrarange = stealthy_audio ? SILENCED_SOUND_EXTRARANGE : -1, falloff_distance = 0)
-		wolf.log_message(" attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
+		wolf.do_attack_animation(those_we_rend)
+		those_we_rend.attacked_by(src, wolf)
+		log_combat(wolf, those_we_rend, pick(attack_verb_continuous), src.name, "(INTENT: [uppertext(wolf.a_intent)]) (DAMTYPE: [uppertext(damtype)])")
+		wolf.log_message("[wolf] attacked [those_we_rend] due to the cobalt scar weapon ability.", LOG_ATTACK) //the following attack will log itself
 	return TRUE
 
 /obj/item/ego_weapon/scene
@@ -1666,7 +1663,7 @@
 	icon_state = "warring2"
 	force = 30
 	attack_speed = 0.8
-	throwforce = 65
+	throwforce = 55
 	throw_speed = 1
 	throw_range = 7
 	damtype = BLACK_DAMAGE
@@ -1677,8 +1674,10 @@
 	)
 
 	charge = TRUE
+	ability_type = ABILITY_UNIQUE
 	charge_cost = 5
-	charge_effect = "expend all charge stacks in a powerful burst."
+	allow_ability_cancel = FALSE
+	charge_effect = "Expend all charge stacks in a powerful burst."
 	successfull_activation = "You release your charge!"
 
 /obj/item/ego_weapon/warring/Initialize()
@@ -1686,21 +1685,26 @@
 	AddElement(/datum/element/update_icon_updates_onmob)
 
 /obj/item/ego_weapon/warring/attack(mob/living/target, mob/living/user)
-	if(charge_amount == 19)//max power, get ready to throw!
+	if(charge_amount == 4 || charge_amount == 19)//audio tells for min and maximum charge bursts
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 	. = ..()
-	if(charge_amount == 5)
+
+/obj/item/ego_weapon/warring/attack_self(mob/living/user)
+	if(!currently_charging && charge_amount >= 5)
 		playsound(src, 'sound/magic/lightningshock.ogg', 50, TRUE)
 		icon_state = "warring2_firey"
 		hitsound = 'sound/abnormalities/thunderbird/tbird_peck.ogg'
 		if(user)
 			user.update_inv_hands()
+	else
+		return
+	. = ..()
 
 /obj/item/ego_weapon/warring/ChargeAttack(mob/living/user)
 	playsound(src, 'sound/abnormalities/thunderbird/tbird_bolt.ogg', 50, TRUE)
 	var/turf/T = get_turf(src)
 	for(var/mob/living/L in view(1, T))
-		var/aoe = charge_amount * 5
+		var/aoe = (charge_amount + 5) * 5
 		var/userjust = (get_modified_attribute_level(user, JUSTICE_ATTRIBUTE))
 		var/justicemod = 1 + userjust/100
 		aoe*=justicemod
@@ -1711,6 +1715,7 @@
 	icon_state = initial(icon_state)
 	hitsound = initial(hitsound)
 	charge_amount = initial(charge_amount)
+	currently_charging = FALSE
 
 /obj/item/ego_weapon/warring/on_thrown(mob/living/carbon/user, atom/target)//No, clerks cannot hilariously kill themselves with this
 	if(!CanUseEgo(user))
@@ -1720,7 +1725,7 @@
 /obj/item/ego_weapon/warring/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
-		if(charge >= charge_cost && isliving(hit_atom))
+		if(currently_charging && isliving(hit_atom))
 			ChargeAttack(hit_atom)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
 	if(caught)
