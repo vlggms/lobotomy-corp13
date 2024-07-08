@@ -256,6 +256,13 @@ if(pixel_y != initial(pixel_y)){ \
 
 	return ..()
 
+/obj/machinery/requests_console/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_DIR_AS_VARIABLE
+	SAVE_PIXEL_X_AS_VARIABLE
+	SAVE_PIXEL_Y_AS_VARIABLE
+
+	return ..()
+
 /obj/machinery/chem_dispenser/drinks/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
 	SAVE_DIR_AS_VARIABLE
 	SAVE_PIXEL_Y_AS_VARIABLE
