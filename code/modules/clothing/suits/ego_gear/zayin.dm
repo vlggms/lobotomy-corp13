@@ -115,3 +115,42 @@ Any attempt to code risk class armor will result in a 10 day Github ban.*/
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 0, PALE_DAMAGE = 0)
 
 
+//Netz Joke Abno
+
+////////////////////////////////////////
+////REMEMBER TO ADD THE MONEY CHECK!////
+////////////////////////////////////////
+
+/obj/item/clothing/suit/armor/ego_gear/zayin/pocketdosh
+	name = "pocket full of dosh"
+	desc = "Sing a song of six pense, a pocket full of dosh."
+	special = "This armor grows stronger depending on how filthy rich you are."
+	icon_state = "penitence" //needs to be done eventually - translation for self: the sprite of the armor
+	//penitence is a placeholder
+	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
+	attribute_requirements = list(
+		FORTITUDE_ATTRIBUTE = 40
+		PRUDENCE_ATTRIBUTE = 60
+		TEMPERANCE_ATTRIBUTE = 80
+		JUSTICE_ATTRIBUTE = 60
+		)
+
+	if (account.has_money >= 100 && < 500)
+	{
+		armor = list(RED_DAMAGE = 20, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
+	}
+
+	if else (account.has_money >= 500 && < 1000)
+	{
+		armor = list(RED_DAMAGE = 40, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 40)
+	}
+
+	if else (account.has_money >= 1000 && < 1000000)
+	{
+		armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 90, BLACK_DAMAGE = 90, PALE _DAMAGE = 60)
+	}
+
+	if else (account.has_money >= 1000000) //if someone spends the time to become a millionaire I say they deserve it
+	{
+		armor = list(RED_DAMAGE = 100, WHITE_DAMAGE = 100, BLACK_DAMAGE = 100, PALE_DAMAGE = 100)
+	}
