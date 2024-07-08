@@ -2,6 +2,7 @@
 #define STATUS_EFFECT_PARABLE /datum/status_effect/quiet/parable
 #define STATUS_EFFECT_WIFE_STORY /datum/status_effect/quiet/wife
 #define STATUS_EFFECT_DEMENTIA_RAMBLINGS /datum/status_effect/quiet/dementia
+
 /mob/living/simple_animal/hostile/abnormality/quiet_day
 	name = "A Quiet Day"
 	desc = "An old weather damaged bench, it feels oddly nostalgic to you. Like a spring day at the side of a lake."
@@ -10,6 +11,7 @@
 	maxHealth = 451
 	health = 451
 	threat_level = ZAYIN_LEVEL
+	can_buckle = TRUE
 
 	//Bad for stat gain, but the damage is negligable and there's a nice bonus at the end
 	work_chances = list(
@@ -27,7 +29,6 @@
 	)
 
 	faction = list("hostile", "neutral")
-
 
 	grouped_abnos = list(
 		/mob/living/simple_animal/hostile/abnormality/mhz = 1.5,
@@ -107,6 +108,28 @@
 
 	var/pink_speaktimer = null
 
+	var/currently_talking = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/examine()
+	. = ..()
+	if(currently_talking)
+		. += span_notice("You could shove [src] to stop his talking... but that would be rude.")
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/post_buckle_mob(mob/living/M)
+	M.layer = layer + 0.1
+	M.pixel_x += 14
+	M.setDir(SOUTH)
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/post_unbuckle_mob(mob/living/M)
+	M.layer = initial(M.layer)
+	M.pixel_x -= 14
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/attack_hand(mob/living/carbon/human/M)
+	if(M.a_intent == "help")
+		return ..()
+	else
+		currently_talking = FALSE
+
 /mob/living/simple_animal/hostile/abnormality/quiet_day/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
 		return
@@ -116,12 +139,13 @@
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkStart(mob/living/carbon/human/user)
 	flick("quiet_fadein", src)
 	icon_state = "quiet_ghost"
+	currently_talking = TRUE
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
 			for(var/line in war_story)
 				say(line)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
@@ -129,7 +153,7 @@
 			for(var/line in parable)
 				say(line)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
@@ -137,7 +161,7 @@
 			for(var/line in wife)
 				say(line)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
@@ -147,7 +171,7 @@
 				dementia -= current
 				say(current)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					dementia = initial(dementia)
 					ResetIcon()
 					return
@@ -173,12 +197,14 @@
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
 	flick("quiet_fadeout", src)
 	icon_state = "quiet_day"
+	currently_talking = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerCheck(mob/living/carbon/human/user)
-	if(!(user in view(5, src)))
-		say("Ah, I supposed we can continue this another time.")
+/mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerInView(mob/living/carbon/human/user)
+	if(user in view(5, src) && currently_talking)
 		return TRUE
+
 	else
+		say("Ah, I supposed we can continue this another time.")
 		return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/BreachEffect(mob/living/carbon/human/user, breach_type)
