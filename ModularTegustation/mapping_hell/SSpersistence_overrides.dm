@@ -132,8 +132,8 @@
 							code_file += "\
 								/obj/effect/abnormality_helper{\n\
 									dir = [rotation];\n	\
-									stored_boxes = [abno.datum_reference.stored_boxes];\n	\
-									understanding = [abno.datum_reference.understanding];\n	\
+									[abno?.datum_reference ? "stored_boxes = [abno.datum_reference.stored_boxes];\n	" : ""] \
+									[abno?.datum_reference ? "understanding = [abno.datum_reference.understanding];\n	" : ""]	\
 									stored_abnormality = [desired_item.type]\n	}\
 							"
 							abno.datum_reference = null
