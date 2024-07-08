@@ -138,14 +138,14 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 	M.pixel_x -= 14
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/attack_hand(mob/living/carbon/human/M)
-	if(M.a_intent == "help")
+	if(M.a_intent == "help" || !currently_talking)
 		return ..()
-	else
-		visible_message(span_notice("[M] asks [src] to stop telling the story."), \
-						span_notice("[M] asks you to stop telling the story."), null, null, M)
-		to_chat(M, span_notice("You ask [src] to stop telling the story."))
-		playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
-		currently_talking = FALSE
+
+	visible_message(span_notice("[M] asks [src] to stop telling the story."), \
+					span_notice("[M] asks you to stop telling the story."), null, null, M)
+	to_chat(M, span_notice("You ask [src] to stop telling the story."))
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	currently_talking = FALSE
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
