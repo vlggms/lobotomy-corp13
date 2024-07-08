@@ -129,6 +129,7 @@
 						var/atom/desired_item = items_to_save[1]
 						if(istype(desired_item, /mob/living/simple_animal/hostile/abnormality))
 							var/mob/living/simple_animal/hostile/abnormality/abno = desired_item
+							abno.core_enabled = FALSE
 							code_file += "\
 								/obj/effect/abnormality_helper{\n\
 									dir = [rotation];\n	\
