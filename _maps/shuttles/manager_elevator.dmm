@@ -16,10 +16,10 @@
 /area/shuttle/mining)
 "m" = (
 /obj/machinery/computer/shuttle/mining{
+	dir = 4;
 	name = "elevator console";
-	shuttleId = "manager";
 	possible_destinations = "elevator_home;elevator_away";
-	dir = 4
+	shuttleId = "manager"
 	},
 /obj/machinery/light{
 	dir = 8
@@ -31,11 +31,12 @@
 /area/shuttle/mining)
 "I" = (
 /obj/docking_port/mobile{
-	name = "manager elevator";
-	id = "manager";
-	port_direction = 2;
+	callTime = 530;
 	dwidth = 2;
 	height = 4;
+	id = "manager";
+	name = "manager elevator";
+	port_direction = 2;
 	width = 4
 	},
 /obj/machinery/door/airlock/public/glass{
