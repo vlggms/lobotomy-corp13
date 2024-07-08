@@ -257,7 +257,7 @@ SUBSYSTEM_DEF(lobotomy_corp)
 		qliphoth_meltdown_affected -= TETH_LEVEL
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
-	var/player_count = AvailableAgentCount()
+	var/player_count = AvailableAgentCount(suppressioncount = TRUE)
 	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5 + GLOB.Sephirahordealspeed) // Some extra help on non solo rounds
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
