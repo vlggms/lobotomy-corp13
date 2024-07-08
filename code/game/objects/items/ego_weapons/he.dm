@@ -1308,6 +1308,9 @@
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
+	attribute_requirements = list(
+							FORTITUDE_ATTRIBUTE = 40
+							)
 
 /obj/item/ego_weapon/aedd//it's just a HE W.corp baton that deals red
 	name = "AEDD"
