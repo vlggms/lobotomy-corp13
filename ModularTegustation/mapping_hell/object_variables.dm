@@ -105,6 +105,14 @@ if(pixel_y != initial(pixel_y)){ \
 
 	return ..()
 
+/obj/effect/decal/cleanable/crayon/save_variables(rotation = NORTH, child = TRUE, variables_to_add = list())
+	SAVE_PIXEL_X_AS_VARIABLE
+	SAVE_PIXEL_Y_AS_VARIABLE
+	if(icon_state != initial(icon_state))
+		variables_to_add += "icon_state = \"[icon_state]\""
+
+	return ..()
+
 /**
  * Turf children
  */
