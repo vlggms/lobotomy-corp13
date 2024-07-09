@@ -55,7 +55,7 @@
 
 	rarechance += repmodifier
 	if(veryrarechance)
-		if(src == /obj/structure/lootcrate/workshopallas)
+		if(istype(src, /obj/structure/lootcrate/workshopallas))
 			veryrarechance += (repmodifier/4)
 		else
 			veryrarechance += (repmodifier/2)
