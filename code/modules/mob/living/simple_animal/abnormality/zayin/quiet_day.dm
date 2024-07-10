@@ -220,7 +220,7 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 	if(currently_talking && (user in view(5, src)))
 		return TRUE
 
-	say("Ah, I supposed we can continue this another time.")
+	say("Ah, I suppose we can continue this another time.")
 	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/BreachEffect(mob/living/carbon/human/user, breach_type)
