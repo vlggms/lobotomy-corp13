@@ -16,9 +16,6 @@
 	)
 	var/datum/suppression/selected_core_type = null
 
-	// toggles if the window being opened is TGUI or UI, players can toggle it in case TGUI fails to load
-	var/TGUI_mode = TRUE
-
 /obj/machinery/computer/abnormality_auxiliary/Initialize()
 	. = ..()
 	GLOB.lobotomy_devices += src
@@ -26,22 +23,13 @@
 
 /obj/machinery/computer/abnormality_auxiliary/Destroy()
 	GLOB.lobotomy_devices -= src
-	..()
-
-/obj/machinery/computer/abnormality_auxiliary/AltClick(mob/user) // toggles if the UI is using TGUI or not
-	. = ..()
-	// If we dont close them, some things can be weird
-	SStgui.close_uis(src)
-	TGUI_mode = !TGUI_mode
-	say("[TGUI_mode ? "Turned on" : "Turned off"] TGUI mode")
-	playsound(get_turf(src), 'sound/machines/terminal_prompt_confirm.ogg', 50, TRUE)
+	return ..()
 
 /obj/machinery/computer/abnormality_auxiliary/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	if(TGUI_mode)
+	if(user?.client?.prefs.auxiliary_console == PREF_TGUI)
 		ui = SStgui.try_update_ui(user, src, ui)
 		if(!ui)
-			to_chat(user, span_notice("If TGUI is failing to load, you can alt+click the console to switch to UI mode"))
 			ui = new(user, src, "AuxiliaryManagerConsole")
 			ui.open()
 			ui.set_autoupdate(TRUE)
@@ -50,6 +38,7 @@
 	var/dat
 	for(var/p in all_pages)
 		dat += "<A href='byond://?src=[REF(src)];set_page=[p]'>[p == page ? "<b><u>[p]</u></b>" : "[p]"]</A>"
+	dat += "<A href='byond://?src=[REF(src)];switch_style=1'>Switch UI style to TGUI</A>"
 	dat += "<hr>"
 	switch(page)
 		if(CORE_SUPPRESSIONS)
@@ -114,6 +103,15 @@
 				updateUsrDialog()
 				return TRUE
 			return FALSE
+
+		if(href_list["switch_style"])
+			if(!usr.client.prefs)
+				return FALSE
+
+			usr.client.prefs.auxiliary_console = PREF_TGUI
+			usr.client.prefs.save_preferences()
+			ui_interact(usr)
+			return TRUE
 
 		// Core Suppression topics
 		if(href_list["choose_suppression"])
@@ -366,6 +364,14 @@
 		return
 
 	switch(action)
+		if("Switch Style")
+			if(!usr.client.prefs)
+				return
+
+			usr.client.prefs.auxiliary_console = PREF_NO_TGUI
+			usr.client.prefs.save_preferences()
+			ui_interact(usr)
+
 		if("Select Core Suppression") // selects a core suppression
 			var/core_suppression = locate(params["selected_core"]) in SSlobotomy_corp.available_core_suppressions
 			if(!ispath(core_suppression) || !(core_suppression in SSlobotomy_corp.available_core_suppressions))

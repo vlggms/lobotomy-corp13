@@ -108,10 +108,20 @@ const FacilityUpgrades = (props, context) => {
         </Box>
       )}
       <LabeledList>
-        <LabeledList.Item label="available LOB points">
+        <LabeledList.Item
+          label="available LOB points"
+          buttons={
+            <Button
+              content={'Switch style to UI'}
+              color={'blue'}
+              onClick={() => act('Switch Style')}
+            />
+          }
+        >
           {Upgrade_points}
         </LabeledList.Item>
       </LabeledList>
+
       {/*
       All of the upgrade parts are basically the same,
       except they have different mapping variables so we can sort out categories
