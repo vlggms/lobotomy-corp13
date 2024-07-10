@@ -63,7 +63,7 @@
 	Name : Behavior Adjustment <br>
 	Risk Class: TETH <br>
 	- Stats regarding Justice will increase greatly when Behavior Adjustment is used. However, all stats regarding Prudence will drop at the same time. <br>
-	- If the employee’s SP hits 0 while Behavior Adjustment is used, they will instantly die."}
+	- If the employee’s SP hits 0 while Behavior Adjustment is active, they will tear their eyes out, whilst this is extremelly disturbing it is often not deadly."}
 
 //Tree Sap
 /obj/item/paper/fluff/info/tool/treesap
