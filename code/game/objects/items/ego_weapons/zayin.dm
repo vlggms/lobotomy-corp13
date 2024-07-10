@@ -407,9 +407,9 @@
 
 //Netz Joke Abno
 
-////////////////////////////////////////
-////REMEMBER TO ADD THE MONEY CHECK!////
-////////////////////////////////////////
+//////////////////////////////////////////////////////
+////POSSIBLE ERRORS HERE - PLEASE CHECK AND NOTIFY////
+//////////////////////////////////////////////////////
 
 /obj/item/ego_weapon/dosh
 	name = "Dosh"
@@ -435,19 +435,19 @@
 		)
 	var/pulse_slow = -0.5 //dunno if this is right, also gotta make sure this is right and isnt speeding abnos up
 
-	if (account.has_money >= 100 && < 500)
+	if (account.has_money >= 100)
 	{
 		force = 15
 		var/pulse_stun = 5 //this is in seconds, right?
 	}
 
-	if else (account.has_money >= 500 && < 1000)
+	if else (account.has_money >= 500)
 	{
 		force = 30
 		var/pulse_burn = 5 //I don't know if a single thing here it right tbh
 	}
 
-	if else (account.has_money >= 1000 && < 1000000)
+	if else (account.has_money >= 1000)
 	{
 		force = 50
 		var/pulse_aoe = 100 //Im just flatout guessing at this point please point it out if im flat out wrong with these
