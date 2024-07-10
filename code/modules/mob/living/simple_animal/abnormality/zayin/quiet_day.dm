@@ -2,6 +2,7 @@
 #define STATUS_EFFECT_PARABLE /datum/status_effect/quiet/parable
 #define STATUS_EFFECT_WIFE_STORY /datum/status_effect/quiet/wife
 #define STATUS_EFFECT_DEMENTIA_RAMBLINGS /datum/status_effect/quiet/dementia
+
 /mob/living/simple_animal/hostile/abnormality/quiet_day
 	name = "A Quiet Day"
 	desc = "An old weather damaged bench, it feels oddly nostalgic to you. Like a spring day at the side of a lake."
@@ -119,6 +120,33 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 
 	var/pink_speaktimer = null
 
+	can_buckle = TRUE
+	var/currently_talking = FALSE
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/examine()
+	. = ..()
+	if(currently_talking)
+		. += span_notice("You could shove [src] to stop his talking... but that would be rude.")
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/post_buckle_mob(mob/living/M)
+	M.layer = layer + 0.1
+	M.pixel_x += 14
+	M.setDir(SOUTH)
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/post_unbuckle_mob(mob/living/M)
+	M.layer = initial(M.layer)
+	M.pixel_x -= 14
+
+/mob/living/simple_animal/hostile/abnormality/quiet_day/attack_hand(mob/living/carbon/human/M)
+	if(M.a_intent == "help" || !currently_talking)
+		return ..()
+
+	visible_message(span_notice("[M] asks [src] to stop telling the story."), \
+					span_notice("[M] asks you to stop telling the story."), null, null, M)
+	to_chat(M, span_notice("You ask [src] to stop telling the story."))
+	playsound(loc, 'sound/weapons/thudswoosh.ogg', 50, TRUE, -1)
+	currently_talking = FALSE
+
 /mob/living/simple_animal/hostile/abnormality/quiet_day/PostWorkEffect(mob/living/carbon/human/user, work_type, pe, work_time)
 	if(pe == 0)
 		return
@@ -128,12 +156,13 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/TalkStart(mob/living/carbon/human/user)
 	flick("quiet_fadein", src)
 	icon_state = "quiet_ghost"
+	currently_talking = TRUE
 	switch(buff_given)
 		if(ABNORMALITY_WORK_INSTINCT)
 			for(var/line in war_story)
 				say(line)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
@@ -141,7 +170,7 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 			for(var/line in parable)
 				say(line)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
@@ -149,7 +178,7 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 			for(var/line in wife)
 				say(line)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					ResetIcon()
 					return
 
@@ -159,7 +188,7 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 				dementia -= current
 				say(current)
 				SLEEP_CHECK_DEATH(50)
-				if(PlayerCheck(user))
+				if(!PlayerInView(user))
 					dementia = initial(dementia)
 					ResetIcon()
 					return
@@ -185,13 +214,14 @@ As you're about to leave, you hear the old man croak out something. \"Who are yo
 /mob/living/simple_animal/hostile/abnormality/quiet_day/proc/ResetIcon()
 	flick("quiet_fadeout", src)
 	icon_state = "quiet_day"
+	currently_talking = FALSE
 
-/mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerCheck(mob/living/carbon/human/user)
-	if(!(user in view(5, src)))
-		say("Ah, I supposed we can continue this another time.")
+/mob/living/simple_animal/hostile/abnormality/quiet_day/proc/PlayerInView(mob/living/carbon/human/user)
+	if(currently_talking && (user in view(5, src)))
 		return TRUE
-	else
-		return FALSE
+
+	say("Ah, I suppose we can continue this another time.")
+	return FALSE
 
 /mob/living/simple_animal/hostile/abnormality/quiet_day/BreachEffect(mob/living/carbon/human/user, breach_type)
 	if(breach_type == BREACH_PINK)
