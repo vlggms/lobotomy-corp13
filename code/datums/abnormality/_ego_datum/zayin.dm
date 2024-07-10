@@ -134,11 +134,3 @@
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/cord
 	cost = 12
 
-//Netz Joke Abno
-/datum/ego_datum/weapon/dosh
-	item_path = /obj/item/ego_weapon/dosh
-	cost = 100 //Its (at base value) a ZAYIN, but its technically a HE/WAW, eventually an ALEPH+ if someone with no life decides to farm it.
-
-/datum/ego_datum/armor/pocketdosh
-	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/pocketdosh
-	cost = 100 //base value ZAYIN, technically an HE/WAW, eventually ALEPH+
