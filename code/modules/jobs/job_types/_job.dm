@@ -204,7 +204,6 @@
 			H.apply_pref_name("human", preference_source)
 	if(!visualsOnly)
 		var/datum/bank_account/bank_account = new(H.real_name, src, H.dna.species.payday_modifier)
-		bank_account.payday(STARTING_PAYCHECKS, TRUE)
 		H.account_id = bank_account.account_id
 
 	//Equip the rest of the gear
