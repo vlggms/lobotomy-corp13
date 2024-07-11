@@ -1,6 +1,7 @@
 {
 	"version": 1,
-	"map_name": "City Of Light",
+	"config_min_users": 10,
+	"map_name": "City Of Light Req:10",
 	"map_path": "map_files/Event",
 	"map_file": [
 		"city.dmm"

@@ -48,8 +48,13 @@ SUBSYSTEM_DEF(vote)
 	for(var/option in choices)
 		var/votes = choices[option]
 		total_votes += votes
+		// Sloppy Negative Votes Required for This Map.
+		if(mode == "map")
+			var/list/map_min_req = ReturnMinPlayers()
+			choices[option] -= map_min_req[option]
 		if(votes > greatest_votes)
 			greatest_votes = votes
+
 	//default-vote for everyone who didn't vote
 	if(!CONFIG_GET(flag/default_no_vote) && choices.len)
 		var/list/non_voters = GLOB.directory.Copy()
@@ -59,33 +64,34 @@ SUBSYSTEM_DEF(vote)
 			if (!C || C.is_afk())
 				non_voters -= non_voter_ckey
 		if(non_voters.len > 0)
-			if(mode == "restart")
-				choices["Continue Playing"] += non_voters.len
-				if(choices["Continue Playing"] >= greatest_votes)
-					greatest_votes = choices["Continue Playing"]
-			else if(mode == "gamemode")
-				/*
-				var/random_gamemode = pick(choices)
-				choices[random_gamemode] += non_voters.len
-				if(choices[random_gamemode] >= greatest_votes)
-					greatest_votes = choices[random_gamemode]
-				*/
-				// Nothing happens! Absolutely nothing.
-				non_voters = list() // Clear out that list.
-			else if(mode == "map")
-				for (var/non_voter_ckey in non_voters)
-					var/client/C = non_voters[non_voter_ckey]
-					var/preferred_map = C.prefs.preferred_map
-					if(isnull(global.config.defaultmap))
-						continue
-					if(!preferred_map)
-						preferred_map = global.config.defaultmap.map_name
-					choices[preferred_map] += 1
-					greatest_votes = max(greatest_votes, choices[preferred_map])
-			else if(mode == "transfer")
-				choices["Continue Playing"] += non_voters.len
-				if(choices["Continue Playing"] >= greatest_votes)
-					greatest_votes = choices["Continue Playing"]
+			switch(mode)
+				if("restart")
+					choices["Continue Playing"] += non_voters.len
+					if(choices["Continue Playing"] >= greatest_votes && greatest_votes < 5)
+						greatest_votes = choices["Continue Playing"]
+				if("gamemode")
+					/*
+					var/random_gamemode = pick(choices)
+					choices[random_gamemode] += non_voters.len
+					if(choices[random_gamemode] >= greatest_votes)
+						greatest_votes = choices[random_gamemode]
+					*/
+					// Nothing happens! Absolutely nothing.
+					non_voters = list() // Clear out that list.
+				if("map")
+					for (var/non_voter_ckey in non_voters)
+						var/client/C = non_voters[non_voter_ckey]
+						var/preferred_map = C.prefs.preferred_map
+						if(isnull(global.config.defaultmap))
+							continue
+						if(!preferred_map)
+							preferred_map = global.config.defaultmap.map_name
+						choices[preferred_map] += 1
+						greatest_votes = max(greatest_votes, choices[preferred_map])
+				if("transfer")
+					choices["Continue Playing"] += non_voters.len
+					if(choices["Continue Playing"] >= greatest_votes && greatest_votes < 5)
+						greatest_votes = choices["Continue Playing"]
 
 	. = list()
 	if(greatest_votes)
@@ -183,6 +189,15 @@ SUBSYSTEM_DEF(vote)
 	choices[choices[vote]]++
 	return vote
 
+/datum/controller/subsystem/vote/proc/ReturnMinPlayers()
+	var/list/mapnames = list()
+	for(var/map in global.config.maplist)
+		var/datum/map_config/VM = config.maplist[map]
+		if(VM.map_name && VM.config_min_users)
+			mapnames += VM.map_name
+			mapnames[VM.map_name] = VM.config_min_users
+	return mapnames
+
 /datum/controller/subsystem/vote/proc/initiate_vote(vote_type, initiator_key)
 	//Server is still intializing.
 	if(!Master.current_runlevel)
@@ -220,11 +235,16 @@ SUBSYSTEM_DEF(vote)
 					var/datum/map_config/VM = config.maplist[map]
 					if(!VM.votable)
 						continue
+					//Includes Ghosts
 					var/player_count = GLOB.clients.len
 					if(VM.config_max_users > 0 && player_count >= VM.config_max_users)
 						continue
+					/*
+					* Removed for tests if this is still
+					* here then i made a mistake -IP
 					if(VM.config_min_users > 0 && player_count <= VM.config_min_users)
 						continue
+					*/
 					maps += VM.map_name
 					shuffle_inplace(maps)
 				for(var/valid_map in maps)

@@ -1,6 +1,7 @@
 {
 	"version": 1,
-	"map_name": "W-Corp Cleanup",
+	"config_min_users": 10,
+	"map_name": "W-Corp Cleanup Req:10",
 	"map_path": "map_files/Event",
 	"map_file": [
 		"wcorp.dmm"
