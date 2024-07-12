@@ -534,10 +534,12 @@
 	abno_code = "T-02-173"
 	abno_info = list(
 		"It was noted that working on T-02-11-03 with a Temperance level of less than 2 lowered the Qliphoth counter.",
-		"Employees who pet T-02-11-03 before a work were noted to have remarkably increased success rates with the Abnormality when completing Attachment work.",
+		"Employees who pet T-02-11-03 before attempting work were noted to have remarkably increased success rates with the Abnormality when attempting Attachment work.",
+		"However, the employee who pet T-02-11-03 noted that success rates with the other work types diminished until work was completed.",
 		"When the work result was Bad, the Qliphoth counter lowered.")
 
-//basilisoup
+//Basilisoup
+/obj/item/paper/fluff/info/he/basilisoup
 	abno_type = /mob/living/simple_animal/hostile/abnormality/basilisoup
 	abno_code = "F-02-153"
 	abno_info = list(
