@@ -94,8 +94,9 @@
 	name = "pocket full of dosh"
 	desc = "Sing a song of six pense, a pocket full of dosh."
 	special = "This armor grows stronger depending on how filthy rich you are."
-	icon_state = "penitence" //needs to be done eventually - translation for self: the sprite of the armor
-	//penitence is a placeholder
+	icon_state = "pocket_dosh"
+	worn_icon - "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi"
+	icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_armor.dmi"
 	armor = list(RED_DAMAGE = 0, WHITE_DAMAGE = 10, BLACK_DAMAGE = 10, PALE_DAMAGE = 0)
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 40

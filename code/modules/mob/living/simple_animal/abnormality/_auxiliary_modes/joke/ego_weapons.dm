@@ -361,8 +361,9 @@
 	name = "Dosh"
 	desc = "Oi you! Shut your mouth and look at my wad!"
 	special = "Use this weapon in your hand with the corresponding armor for various effects depending on how filthy rich you are."
-	icon_state = "penitence" //needs to be done eventually - translation for self: the sprite of the weapon
-	//penitence is a placeholder
+	icon_state = "dosh_weapon"
+	worn_icon - "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_worn.dmi"
+	icon = "code/modules/mob/living/simple_animal/abnormality/_auxiliary_modes/joke/!icons/ego_weapons.dmi"
 	force = 10
 	damtype = BLACK_DAMAGE
 	attack_verb_continuous = list("throws", "showers", "bribes")
