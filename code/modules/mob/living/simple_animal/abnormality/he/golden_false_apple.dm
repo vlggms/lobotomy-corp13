@@ -293,6 +293,17 @@
 				var/mob/living/hit = target
 				if((hit.stat == DEAD) ||!ishuman(hit))//if the target is dead or not human
 					return ..()
+				if(istype(target, /mob/living/carbon/human/species/pinocchio))
+					return ..()
+				pulse_count += 1
+			if(ismecha(target))
+				var/inhabited = FALSE
+				for(var/mob/living/L in target.contents)
+					if(L.stat == DEAD)
+						continue
+					inhabited = TRUE
+				if(!inhabited)
+					return ..()
 				pulse_count += 1
 		return ..()
 	if(client && smash_cooldown < world.time)//playable behavior is nested under here
