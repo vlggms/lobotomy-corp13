@@ -99,6 +99,8 @@
 		if(!map_pad_link_id || !initMappedLink())
 			to_chat(user, span_warning("Target pad not found!"))
 			return
+		else
+			target_pad = mapped_quantum_pads[map_pad_link_id]
 
 	if(world.time < last_teleport + teleport_cooldown)
 		to_chat(user, span_warning("[src] is recharging power. Please wait [DisplayTimeText(last_teleport + teleport_cooldown - world.time)]."))
