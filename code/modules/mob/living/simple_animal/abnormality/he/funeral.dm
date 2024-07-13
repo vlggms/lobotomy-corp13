@@ -45,6 +45,12 @@
 	gift_message = "The butterflies are waiting for the end of the world."
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 
+	observation_prompt = "A tall butterfly-faced man stands before, clad in an undertakers's garment. <br>\
+		Between the two of you is a coffin and he gestures you towards it with all 3 of his hands."
+	observation_choices = list("Enter the coffin", "Don't enter the coffin")
+	correct_choices = list("Enter the coffin", "Don't enter the coffin") //waiting for multiple correct answers functionality
+	observation_success_message = "The coffin is waiting for its rightful owner but you feel mourned all the same. <br>Butterflies surround you as you make to leave." //temporary
+
 	var/gun_cooldown
 	var/gun_cooldown_time = 4 SECONDS
 	var/gun_damage = 60

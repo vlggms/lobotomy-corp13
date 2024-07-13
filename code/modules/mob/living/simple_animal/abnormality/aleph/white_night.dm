@@ -52,12 +52,12 @@ GLOBAL_LIST_EMPTY(apostles)
 		/mob/living/simple_animal/hostile/abnormality/onesin = 5,
 	)
 
-	observation_prompt = "Thou knocked the door, now it hath opened. \
-Thou who carries burden, came to seek the answer."
+	observation_prompt = "Thou knocked the door, now it hath opened. <br>\
+		Thou who carries burden, came to seek the answer."
 	observation_choices = list("Who are you?", "Where did you come from?", "Why have you come?")
-	correct_choices = list("Why have you come?")
-	observation_success_message = "This question is worth no answer, for it's answer is clear" //TODO: multiple messages, the answer should be irrelevant, code should check for wing gift.
-	observation_fail_message = "This question is empty, I cannot answer"
+	correct_choices = list("Where did you come from?")
+	observation_success_message = "I am from the end." //TODO: multiple messages, the answer should be irrelevant, code should check for wing gift.
+	observation_fail_message = "Thy question is empty, I cannot answer"
 
 	var/holy_revival_cooldown
 	var/holy_revival_cooldown_base = 75 SECONDS

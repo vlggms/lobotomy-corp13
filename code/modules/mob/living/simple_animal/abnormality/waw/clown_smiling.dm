@@ -57,6 +57,19 @@
 	gift_message = "Life isn't scary when you don't fear death."
 	abnormality_origin = ABNORMALITY_ORIGIN_ARTBOOK
 
+//TODO : resprite
+	observation_prompt = "One of the containment cells at Lobotomy Corporation houses a clown. <br>\
+		Some people are afraid of clowns, but I don't mind them at all. <br>\
+		Even then, nobody could be fooled into believing this \"clown\" was just a person in makeup. <br>\
+		When I first met this thing, I started to understand how those people feel. <br>\
+		Right now, during my attachment work, it started its usual clown performance. <br>\
+		Things are looking good so far. <br>Out of its pocket, the clown pulls out..."
+	observation_choices = list("It's just a tool" ,"Run")
+	correct_choices = list("Run")
+	observation_success_message = "I bolted out of containment unit as fast as I could. <br>\
+		I could hear giggling as I left. <br>But that was more than just a cruel prank."
+	observation_fail_message = "I thought it was a tool. <br>Just for that moment."
+
 	del_on_death = FALSE //for explosions
 	var/finishing = FALSE
 	var/step = FALSE

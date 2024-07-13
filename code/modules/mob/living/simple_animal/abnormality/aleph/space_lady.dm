@@ -36,6 +36,12 @@
 	retreat_distance = 3
 	ranged_cooldown_time = 3 SECONDS
 
+	observation_prompt = "What touched this place cannot be quantified or understood by human science. <br>It was just a color out of space. <br>\
+		It exists on the border of our waking minds, where darkness and light are one, and time and space do not intersect. <br>She has a message, from another place, another time."
+	observation_choices = list("Hear the past", "Hear the present", "Hear the future")
+	correct_choices = list("Hear the past", "Hear the present", "Hear the future") //waiting for multiple answer functionality
+	observation_success_message = "What I learned and saw during those two hideous days and nights, it is better not to tell." //temporary
+
 	var/explosion_timer = 2 SECONDS
 	var/explosion_state = 3
 	var/explosion_damage = 100

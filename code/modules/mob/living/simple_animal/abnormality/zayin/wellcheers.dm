@@ -56,12 +56,12 @@
 	harvest_phrase = span_notice("The machine dispenses some clear-ish soda into %VESSEL.")
 	harvest_phrase_third = "%PERSON holds up %VESSEL and lets %ABNO dispense some clear-ish soda into it."
 
-	observation_prompt = "A vending machine stands before you. \
-Two delicious looking shrimp are standing at both sides of the machine. Will you buy soda?"
+	observation_prompt = "A vending machine stands before you. <br>\
+		Two delicious looking shrimp are standing at both sides of the machine. Will you buy soda?"
 	observation_choices = list("Yes", "No")
 	correct_choices = list("Yes", "No")
-	observation_success_message = "Before you can make a choice, one of the shrimp buys you soda. \
-You drink the soda, and fall asleep... ... Somewhere in the distance, you hear seagulls."
+	observation_success_message = "Before you can make a choice, one of the shrimp buys you soda. <br>\
+		You drink the soda, and fall asleep... <br>... <br>Somewhere in the distance, you hear seagulls."
 
 
 /mob/living/simple_animal/hostile/abnormality/wellcheers/HandleStructures()

@@ -44,16 +44,30 @@
 		/mob/living/simple_animal/hostile/abnormality/faelantern = 1.5,
 	)
 
-	var/finishing = FALSE //cant move/attack when it's TRUE
-	var/work_count = 0
-	var/raining = FALSE
-	var/ignored = 0 //stores the agent's choice: 0 - disabled/1- refused cover
-
 	ego_list = list(
 		/datum/ego_datum/weapon/fourleaf_clover,
 		/datum/ego_datum/armor/fourleaf_clover,
 	)
 	gift_type =  /datum/ego_gifts/fourleaf_clover
+
+	observation_prompt = "Come on, why don'cha stay under the umbrella with me? <br>\
+		Just for old times sake?"
+	observation_choices = list("Yes", "No")
+	correct_choices = list("No")
+	observation_success_message = "You'd think that you'd have learned your lesson by now. <br>\
+		You leave the cell, having narrowly dodged the imminent attack. <br>\
+		This guy will always be a crook."
+	observation_fail_message = "Ouch! <br>\
+		The moment you get in striking range of fairy long legs, you are attacked. <br>\
+		\"Heh. You really think you could be one of us, pal?\" <br>\
+		\"You aint part of the family, chump.\" <br>\
+		You walk away, and bandage the bleeding wound."
+
+	var/finishing = FALSE //cant move/attack when it's TRUE
+	var/work_count = 0
+	var/raining = FALSE
+	var/ignored = 0 //stores the agent's choice: 0 - disabled/1- refused cover
+
 
 /mob/living/simple_animal/hostile/abnormality/fairy_longlegs/death(gibbed)
 	density = FALSE

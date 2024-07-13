@@ -49,6 +49,27 @@
 	gift_type = /datum/ego_gifts/sunshower
 	gift_message = "The fox plucks an umbrella from its back and gives it to you, perhaphs as thanks?"
 
+	observation_prompt = "An alleyway garbage dump. <br.\
+		Its atmosphere is stuffy and unpleasant thanks to the humidity from the rain. <br.\
+		A pile of old and torn umbrellas sits in a corner. <br.\
+		The umbrellas jiggled. <br.\
+		Looking closer, there’s a large fox underneath. <br.\
+		The umbrellas’ rusted iron blades have firmly rooted themselves in its back."
+	observation_choices = list("Pet the fox", "Pull out the umbrellas")
+	correct_choices = list("Pet the fox")
+	observation_success_message = "Its growl recedes. <br.\
+		You stroke it once more, <br.\
+		and it closes its eyes, pleased. <br.\
+		You stroke it once more, <br.\
+		and it settles on the ground, comforted. <br.\
+		You stroke it once more, <br.\
+		and it shrinks to become a statue."
+	observation_fail_message = "Those umbrellas seem to be causing it pain. <br.\
+		When you pull them out with force, bits of its flesh come off with them. <br.\
+		The fox yelped sharply and gave us a glare. <br.\
+		Then, it smacked you with the umbrella in its mouth. <br.\
+		It seemed to reprimand your attitude of pursuing resolution without forethought."
+
 	var/list/pet = list()
 	pet_bonus = "yips"
 

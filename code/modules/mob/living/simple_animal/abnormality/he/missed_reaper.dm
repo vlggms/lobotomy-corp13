@@ -34,6 +34,15 @@
 	light_color = "FFFFFFF"
 	light_power = 5
 	light_range = 2
+
+	observation_prompt = "She was so pale at the end, she looked more like a porcealin doll than the little girl I knew, \
+		laughing and smiling that bright colourful smile I loved so much. <br>I sat next to her bed, powerless to do anything."
+	observation_choices = list("Hold her hand")
+	correct_choices = list("Hold her hand")
+	observation_success_message = "Her skin was clammy and cool to the touch and not a trace of a pulse to be found, she passed the night before. <br>\
+		It didn't mean anything. <br>In the corner of the room, I saw the reaper bow his head in apology."
+
+
 	var/meltdown_cooldown //no spamming the meltdown effect
 	var/meltdown_cooldown_time = 15 SECONDS
 

@@ -37,6 +37,17 @@
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	friendly_verb_continuous = "grazes"
 	friendly_verb_simple = "grazes"
+
+	observation_prompt = "You can only hunt it wearing a thick blindfold, but even through the fabric you can track it by the light that manages to seep through and by the heat it radiates. <br>\
+		In your hands you carry a bow nocked with an arrow, it's your last one. <br>\
+		You've been pursuing your prey for days, you..."
+	observation_choices = list("Fire an arrow", "Do nothing") //awaiting extra answers functionality //"Take off your blindfold" should be a third option
+	correct_choices = list("Do nothing")
+	observation_success_message = "You watch and wait as the light and heat pass until only cold and darkness reign in the forest. <br>\
+		Feeling safe, you remove your blindfold and find on the ground one of its radiant feathers. <br>\
+		Bravo brave hunter, have you found what you were seeking?"
+	observation_fail_message = "You fire an arrow at what you percieve to be the source of the light and miss entirely. <br>You return empty-handed like so many hunters before you."
+
 	var/pulse_cooldown
 	var/pulse_cooldown_time = 1 SECONDS
 	var/pulse_damage = 10

@@ -56,18 +56,18 @@
 		/mob/living/simple_animal/hostile/abnormality/punishing_bird = 3,
 	)
 
-	observation_prompt = "Dozens of blazing eyes are looking at one place. \
-The bird that lived in the forest didn't like creatures being eaten by monsters. \
-\"If I kill creatures first, no creatures will be killed by the monster.\" \
-Every time the bird saved a life, it got an eye. The big bird could not close those eyes no matter how tired it got. \
-For monsters could come, hurting creatures at any time. By the time eyes covered the whole body of the big bird, no one was around for it to protect. \
-To shine the light in this dark forest, the big bird burned every single feather it had to make an everlasting lamp. \
-The big bird now could hardly be called a bird now, it has no feathers at all."
+	observation_prompt = "Dozens of blazing eyes are looking at one place. <br>\
+		The bird that lived in the forest didn't like creatures being eaten by monsters. <br>\
+		\"If I kill creatures first, no creatures will be killed by the monster.\" <br>\
+		Every time the bird saved a life, it got an eye. <br>The big bird could not close those eyes no matter how tired it got. <br>\
+		For monsters could come, hurting creatures at any time. <br>By the time eyes covered the whole body of the big bird, no one was around for it to protect. <br>\
+		To shine the light in this dark forest, the big bird burned every single feather it had to make an everlasting lamp. <br>\
+		The big bird now could hardly be called a bird now, it has no feathers at all."
 	observation_choices = list("Don't pet it", "Pet it")
 	correct_choices = list("Pet it")
-	observation_success_message = "It was not soft actually, it gave you chills. You felt eyes looking at you with curiosity. \
-Eyes started closing as you pet the bird. The big bird, for the first time in a very long time, peacefully fell asleep."
-	observation_fail_message = "The bird could get angry and bite you. You ran out of the room in fear."
+	observation_success_message = "It was not soft actually, it gave you chills. <br>You felt eyes looking at you with curiosity. <br>\
+		Eyes started closing as you pet the bird. <br>The big bird, for the first time in a very long time, peacefully fell asleep."
+	observation_fail_message = "The bird could get angry and bite you. <br>You ran out of the room in fear."
 
 	var/bite_cooldown
 	var/bite_cooldown_time = 8 SECONDS

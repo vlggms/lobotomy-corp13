@@ -49,6 +49,12 @@
 		/mob/living/simple_animal/hostile/abnormality/pinocchio = 1.5,
 	)
 
+	observation_prompt = "Tin-cold woodsman. <br>I’ll give you the heart to forgive and love anyone. <br>The wizard grants you..."
+	observation_choices = list("A heart of lead", "A warm heart")
+	correct_choices = list("A heart of lead")
+	observation_success_message = "Who do you possibly expect to understand with that ice-cold heart of yours?"
+	observation_fail_message = "You’re a machine, aren’t you? A heart is unnecessary for a machine."
+
 	// Flurry Vars
 	var/flurry_cooldown = 0
 	var/flurry_cooldown_time = 15 SECONDS

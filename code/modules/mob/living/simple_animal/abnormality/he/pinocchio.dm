@@ -32,6 +32,13 @@
 	gift_type = /datum/ego_gifts/marionette
 	abnormality_origin = ABNORMALITY_ORIGIN_RUINA
 
+	observation_prompt = "I've been watching people for as long as I've known them, it's not hard to imitate others. <br>\
+		Can I be a human if I mimic humans?"
+	observation_choices = list("You're human", "You will never be a human")
+	correct_choices = list("You will never be a human")
+	observation_success_message = "Can I... not become a human..? <br>You could've let me fool you, you're too cruel."
+	observation_fail_message = "Did I look just like a human? <br>I hope I fooled you, it's other people's fault for falling for my lies."
+
 	var/lying = FALSE
 	var/caught_lie = FALSE
 	var/mob/living/carbon/human/species/pinocchio/realboy = null
