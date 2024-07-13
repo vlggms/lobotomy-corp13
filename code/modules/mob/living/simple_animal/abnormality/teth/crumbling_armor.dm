@@ -45,7 +45,7 @@
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/ObservationResult(mob/living/carbon/human/user, condition)
 	. = ..()
 	if(condition)
-		new /obj/item/ego_weapon/shield/daredevil(get_turf(user)) //TODO : Replace this with a special wearable "crumbling armor"
+		new /obj/item/clothing/suit/armor/ego_gear/he/crumbling_armor(get_turf(user))
 
 /mob/living/simple_animal/hostile/abnormality/crumbling_armor/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()

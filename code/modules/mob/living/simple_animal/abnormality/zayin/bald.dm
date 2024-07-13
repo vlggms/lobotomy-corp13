@@ -41,7 +41,6 @@
 	harvest_phrase = span_notice("You squeeze %ABNO. Some juice drips into %VESSEL.")
 	harvest_phrase_third = "%PERSON squeezes %ABNO. Some juice drips into %VESSEL."
 
-	//TODO: More options
 	observation_prompt = "This abnormality is filled with dreams of bald people. Are you balding, or already bald?"
 	observation_choices = list("Yes", "No")
 	correct_choices = list("Yes")

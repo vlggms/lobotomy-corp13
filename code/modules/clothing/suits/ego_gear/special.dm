@@ -25,6 +25,17 @@
 	icon_state = "freshman"
 	armor = list(RED_DAMAGE = -40, WHITE_DAMAGE = 0, BLACK_DAMAGE = 0, PALE_DAMAGE = 40)
 
+//Crumbling armor gift
+/obj/item/clothing/suit/armor/ego_gear/he/crumbling_armor
+	name = "crumbling armor"
+	desc = "Looks like a replica of the crumbling armor abnormality. Boasts high defenses to those who are reckless."
+	icon_state = "crumbling_armor"
+	flags_inv = HIDESHOES|HIDEJUMPSUIT
+	armor = list(RED_DAMAGE = 60, WHITE_DAMAGE = 30, BLACK_DAMAGE = 30, PALE_DAMAGE = -100) // -10
+	attribute_requirements = list(
+							JUSTICE_ATTRIBUTE = 40
+							)
+
 //Nihil Event rewards
 /obj/item/clothing/suit/armor/ego_gear/despair_nihil
 	name = "meaningless despair"

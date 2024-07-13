@@ -39,7 +39,7 @@
 	observation_success_message = "You open the letter, but the inside is blank. <br>\
 		Looking at the envelope, you notice that it is labelled \"RETURN TO SENDER\" <br>\
 		You put the envelope back in the mailbox, and find a gift inside."
-	observation_fail_message = "You know better than to fall for the tricks of an abnormality. <br>You walk out of the cell, never knowing what was in that latter."
+	observation_fail_message = "You know better than to fall for the tricks of an abnormality. <br>You walk out of the cell, never knowing what was in that letter."
 
 	var/cooldown
 	var/cooldown_time = 10 SECONDS

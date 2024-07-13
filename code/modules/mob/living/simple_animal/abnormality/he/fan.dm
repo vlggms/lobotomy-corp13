@@ -32,7 +32,10 @@
 	observation_choices = list("Leave it off", "Set it to 1", "Set it to 2", "Set it to 3") //Waiting for multiple answers
 	correct_choices = list("Set it to 3")
 	observation_success_message = "You set it to its highest setting. <br>The breeze feels pleasant, a nap would be nice..."
-	observation_fail_message = "It's not enough, you're still too hot."
+	observation_fail_message = "It's just an old urban legend, but, they say fans like this one can kill people if you slept with them on..."
+	//extra wrong answers
+	var/observation_fail_message_2 = "It's not enough, you're still too hot!"
+	var/observation_fail_message_3 = "You can barely feel a breeze, you just need a little more..."
 
 	var/list/safe = list()
 	var/list/warning = list()
@@ -42,6 +45,15 @@
 	var/successcount
 	var/turned_off = FALSE
 
+/mob/living/simple_animal/hostile/abnormality/fan/ObservationResult(mob/living/carbon/human/user, condition, answer) //special answers
+	switch(answer)
+		if("Set it to 1")
+			observation_fail_message = observation_fail_message_2
+		if("Set it to 2")
+			observation_fail_message = observation_fail_message_3
+		else
+			observation_fail_message = initial(observation_fail_message)
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/fan/examine(mob/user)
 	. = ..()
