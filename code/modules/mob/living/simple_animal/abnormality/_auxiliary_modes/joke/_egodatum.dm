@@ -71,8 +71,8 @@ Keep things balanced if they aren't going to be admin only.  - Coxswain
 /datum/ego_datum/weapon/dosh
 	item_path = /obj/item/ego_weapon/dosh
 	cost = 100 //Its (at base value) a ZAYIN, but its technically a HE/WAW, eventually an ALEPH+ if someone with no life decides to farm it.
-				//Also theres just no HE folder and I don't know how to add more
 
 /datum/ego_datum/armor/pocketdosh
 	item_path = /obj/item/clothing/suit/armor/ego_gear/zayin/pocketdosh
 	cost = 100 //base value ZAYIN, technically an HE/WAW, eventually ALEPH+
+

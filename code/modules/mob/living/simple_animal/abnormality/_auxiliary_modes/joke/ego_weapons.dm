@@ -371,8 +371,8 @@
 	matching_armor = /obj/item/clothing/suit/armor/ego_gear/zayin/penitence //CHANGE TO DOSH ARMOR
 	pulse_enable_toggle = TRUE
 	use_message = "Money makes the world go round!"
-	use_sound = "sound/abnormalities/onesin/bless.ogg" //gotta make the sound effect - has a planned sound effect
-	//penitence is a placeholder
+	use_sound = "\code\modules\mob\living\simple_animal\abnormality\_auxiliary_modes\joke\!soundeffects\dosh_sfx.ogg" //gotta make the sound effect - has a planned sound effect
+	//sfx should work hopefully
 	attribute_requirements = list(
 		FORTITUDE_ATTRIBUTE = 40
 		PRUDENCE_ATTRIBUTE = 60
@@ -411,3 +411,4 @@
 		var/nuke //should nuke the station
 		span_userdanger("You hear a Geiger counter's clicks from the bills, that can't be good.")
 	}
+
