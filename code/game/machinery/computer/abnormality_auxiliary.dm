@@ -27,7 +27,7 @@
 
 /obj/machinery/computer/abnormality_auxiliary/ui_interact(mob/user, datum/tgui/ui)
 	. = ..()
-	if(user?.client?.prefs.auxiliary_console == PREF_TGUI)
+	if(user?.client?.prefs.auxiliary_console_tgui == TRUE)
 		ui = SStgui.try_update_ui(user, src, ui)
 		if(!ui)
 			ui = new(user, src, "AuxiliaryManagerConsole")
@@ -108,7 +108,7 @@
 			if(!usr.client.prefs)
 				return FALSE
 
-			usr.client.prefs.auxiliary_console = PREF_TGUI
+			usr.client.prefs.auxiliary_console_tgui = TRUE
 			usr.client.prefs.save_preferences()
 			ui_interact(usr)
 			return TRUE
@@ -368,7 +368,7 @@
 			if(!usr.client.prefs)
 				return
 
-			usr.client.prefs.auxiliary_console = PREF_NO_TGUI
+			usr.client.prefs.auxiliary_console_tgui = FALSE
 			usr.client.prefs.save_preferences()
 			ui_interact(usr)
 
