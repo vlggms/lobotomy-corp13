@@ -288,20 +288,6 @@
 			REMOVE_TRAIT(L, TRAIT_HANDS_BLOCKED, type)
 		i.forceMove(spew_turf)
 
-//Remind me to go and improve Naked Nest with this. -IP
-/mob/living/simple_animal/hostile/abnormality/big_wolf/proc/dropHardClothing(mob/living/carbon/C, turf/our_stuff)
-	if(!iscarbon(C))
-		return FALSE
-	var/list/things_to_drop = list()
-	//Things we drop.
-	LAZYADD(things_to_drop, C.get_item_by_slot(ITEM_SLOT_SUITSTORE))
-	LAZYADD(things_to_drop, C.get_item_by_slot(ITEM_SLOT_BELT))
-	LAZYADD(things_to_drop, C.get_item_by_slot(ITEM_SLOT_BACK))
-	LAZYADD(things_to_drop, C.get_item_by_slot(ITEM_SLOT_OCLOTHING))
-	for(var/obj/i in things_to_drop)
-		i.forceMove(our_stuff)
-	return TRUE
-
 //Combat Skills
 // Simple dash attack that deals 50 damage to all those nearby. This is optimized for AI rather than players.
 /mob/living/simple_animal/hostile/abnormality/big_wolf/proc/ScratchDash(dash_target)
@@ -335,19 +321,13 @@
 	can_act = TRUE
 
 //Used in Steel noons for if they are allowed to fly through something.
-/mob/living/simple_animal/hostile/abnormality/big_wolf/proc/ClearSky(turf/T)
-	if(!T || isclosedturf(T) || T == loc)
-		return FALSE
-	if(locate(/obj/structure/window) in T.contents)
-		return FALSE
-	if(locate(/obj/structure/table) in T.contents)
-		return FALSE
-	if(locate(/obj/structure/railing) in T.contents)
-		return FALSE
-	for(var/obj/machinery/door/D in T.contents)
-		if(D.density)
+/mob/living/simple_animal/hostile/abnormality/big_wolf/ClearSky(turf/T)
+	. = ..()
+	if(.)
+		if(locate(/obj/structure/table) in T.contents)
 			return FALSE
-	return TRUE
+		if(locate(/obj/structure/railing) in T.contents)
+			return FALSE
 
 // Very simple ranged howl that applies white damage.
 /mob/living/simple_animal/hostile/abnormality/big_wolf/proc/Howl()
