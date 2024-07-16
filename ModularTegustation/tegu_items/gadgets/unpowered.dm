@@ -456,7 +456,7 @@
 	var/obj/item/organ/brain/brain = user.getorganslot(ORGAN_SLOT_BRAIN)
 	qdel(brain)
 	playsound(user, 'sound/weapons/circsawhit.ogg', 20, TRUE, -1)
-	return MANUAL_SUICIDE
+	return BRUTELOSS
 
 //Clerkbot Spawner
 /obj/item/clerkbot_gadget
