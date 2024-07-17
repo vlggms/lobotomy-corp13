@@ -88,6 +88,15 @@
 
 /obj/machinery/computer/abnormality_auxiliary/Topic(href, href_list)
 	. = ..()
+	if(href_list["switch_style"])
+		if(!usr.client.prefs)
+			return FALSE
+
+		usr.client.prefs.auxiliary_console_tgui = TRUE
+		usr.client.prefs.save_preferences()
+		ui_interact(usr)
+		return TRUE
+
 	if(.)
 		return .
 
@@ -103,15 +112,6 @@
 				updateUsrDialog()
 				return TRUE
 			return FALSE
-
-		if(href_list["switch_style"])
-			if(!usr.client.prefs)
-				return FALSE
-
-			usr.client.prefs.auxiliary_console_tgui = TRUE
-			usr.client.prefs.save_preferences()
-			ui_interact(usr)
-			return TRUE
 
 		// Core Suppression topics
 		if(href_list["choose_suppression"])
