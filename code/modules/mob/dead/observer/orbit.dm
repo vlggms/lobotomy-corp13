@@ -56,6 +56,7 @@
 	var/list/ghosts = list()
 	var/list/misc = list()
 	var/list/npcs = list()
+	var/list/abnormalities = list()
 
 	var/list/pois = getpois(skip_mindless = TRUE, specify_dead_role = FALSE)
 	for (var/name in pois)
@@ -73,6 +74,10 @@
 				if (number_of_orbiters)
 					serialized["orbiters"] = number_of_orbiters
 				ghosts += list(serialized)
+
+			else if (isabnormalitymob(M))
+				abnormalities += list(serialized)
+
 			else if (M.stat == DEAD)
 				dead += list(serialized)
 			else if (M.mind == null)
@@ -98,6 +103,7 @@
 		else
 			misc += list(serialized)
 
+	data["abnormalities"] = abnormalities
 	data["alive"] = alive
 	data["antagonists"] = antagonists
 	data["dead"] = dead

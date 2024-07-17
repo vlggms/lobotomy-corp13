@@ -80,6 +80,7 @@ const OrbitedButton = (props, context) => {
 export const Orbit = (props, context) => {
   const { act, data } = useBackend(context);
   const {
+    abnormalities,
     alive,
     antagonists,
     auto_observe,
@@ -194,6 +195,12 @@ export const Orbit = (props, context) => {
                 thing={thing} />
             ))}
         </Section>
+
+        <BasicSection
+          title="Abnormalities"
+          source={abnormalities}
+          searchText={searchText}
+        />
 
         <Section title={`Ghosts - (${ghosts.length})`}>
           {ghosts
