@@ -196,11 +196,17 @@ export const Orbit = (props, context) => {
             ))}
         </Section>
 
-        <BasicSection // LOBOTOMYCORPORATION ADDITION -- Abnormalities
-          title="Abnormalities"
-          source={abnormalities}
-          searchText={searchText}
-        />
+        <Section title={`Abnormalities - (${abnormalities.length})`}>
+          {abnormalities // LOBOTOMYCORPORATION ADDITION -- Abnormalities
+            .filter(searchFor(searchText))
+            .sort(compareNumberedText)
+            .map(thing => (
+              <OrbitedButton
+                key={thing.name}
+                color={thing.is_contained ? "green" : "red"}
+                thing={thing} />
+            ))}
+        </Section>
 
         <Section title={`Ghosts - (${ghosts.length})`}>
           {ghosts

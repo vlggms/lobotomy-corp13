@@ -76,6 +76,12 @@
 				ghosts += list(serialized)
 
 			else if (isabnormalitymob(M)) // LOBOTOMYCORPORATION ADDITION -- Abnormalities
+				var/mob/living/simple_animal/hostile/abnormality/abno = M
+				if(!abno.can_spawn)
+					npcs += list(serialized)
+					continue
+
+				serialized["is_contained"] = abno.IsContained()
 				abnormalities += list(serialized)
 
 			else if (M.stat == DEAD)
