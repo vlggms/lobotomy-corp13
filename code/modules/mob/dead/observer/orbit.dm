@@ -56,7 +56,7 @@
 	var/list/ghosts = list()
 	var/list/misc = list()
 	var/list/npcs = list()
-	var/list/abnormalities = list()
+	var/list/abnormalities = list() // LOBOTOMYCORPORATION ADDITION -- Abnormalities
 
 	var/list/pois = getpois(skip_mindless = TRUE, specify_dead_role = FALSE)
 	for (var/name in pois)
@@ -75,7 +75,7 @@
 					serialized["orbiters"] = number_of_orbiters
 				ghosts += list(serialized)
 
-			else if (isabnormalitymob(M))
+			else if (isabnormalitymob(M)) // LOBOTOMYCORPORATION ADDITION -- Abnormalities
 				abnormalities += list(serialized)
 
 			else if (M.stat == DEAD)
@@ -103,7 +103,7 @@
 		else
 			misc += list(serialized)
 
-	data["abnormalities"] = abnormalities
+	data["abnormalities"] = abnormalities // LOBOTOMYCORPORATION ADDITION -- Abnormalities
 	data["alive"] = alive
 	data["antagonists"] = antagonists
 	data["dead"] = dead

@@ -80,7 +80,7 @@ const OrbitedButton = (props, context) => {
 export const Orbit = (props, context) => {
   const { act, data } = useBackend(context);
   const {
-    abnormalities,
+    abnormalities, // LOBOTOMYCORPORATION ADDITION -- Abnormalities
     alive,
     antagonists,
     auto_observe,
@@ -196,7 +196,7 @@ export const Orbit = (props, context) => {
             ))}
         </Section>
 
-        <BasicSection
+        <BasicSection // LOBOTOMYCORPORATION ADDITION -- Abnormalities
           title="Abnormalities"
           source={abnormalities}
           searchText={searchText}
