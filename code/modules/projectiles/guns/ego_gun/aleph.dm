@@ -25,6 +25,14 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
+/obj/item/gun/ego_gun/star/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user]'s legs distort and face opposite directions, as [user.p_their()] torso seems to pulsate! It looks like [user.p_theyre()] trying to commit suicide!"))
+	playsound(src, 'sound/abnormalities/bluestar/pulse.ogg', 50, FALSE, 40, falloff_distance = 10)
+	user.unequip_everything()
+	QDEL_IN(user, 1)
+	return MANUAL_SUICIDE
+
 /obj/item/gun/ego_gun/adoration
 	name = "adoration"
 	desc = "A big mug filled with mysterious slime that never runs out. \

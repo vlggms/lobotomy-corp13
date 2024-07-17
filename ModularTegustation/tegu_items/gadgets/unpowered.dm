@@ -450,6 +450,14 @@
 	mid_length = 2 SECONDS
 	volume = 20
 
+/obj/item/lobotomizer/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user] changes \the [src]'s setting from 'Lobotomize' to 'Decimate'! It looks like [user.p_theyre()] trying to commit suicide!"))
+	var/obj/item/organ/brain/brain = user.getorganslot(ORGAN_SLOT_BRAIN)
+	qdel(brain)
+	playsound(user, 'sound/weapons/circsawhit.ogg', 20, TRUE, -1)
+	return BRUTELOSS
+
 //Clerkbot Spawner
 /obj/item/clerkbot_gadget
 	name = "Instant Clerkbot Constructor"

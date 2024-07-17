@@ -314,6 +314,13 @@
 /obj/item/ego_weapon/smile/get_clamped_volume()
 	return 50
 
+/obj/item/ego_weapon/smile/suicide_act(mob/living/carbon/user)
+	. = ..()
+	user.visible_message(span_suicide("[user] holds \the [src] in front of [user.p_them()], and begins to swing [user.p_them()]self with it! It looks like [user.p_theyre()] trying to commit suicide!"))
+	playsound(user, 'sound/weapons/ego/hammer.ogg', 50, TRUE, -1)
+	user.gib()
+	return MANUAL_SUICIDE
+
 /obj/item/ego_weapon/blooming
 	name = "blooming"
 	desc = "A rose is a rose, by any other name."
