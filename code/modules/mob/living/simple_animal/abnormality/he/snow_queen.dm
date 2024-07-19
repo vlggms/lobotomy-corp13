@@ -59,9 +59,9 @@
 		/datum/ego_datum/armor/frostsplinter,
 		/datum/ego_datum/weapon/frostsplinter
 	)
-	gift_type = /datum/ego_gifts/frost_splinter
+	gift_type = null
 	//Gift is rewarded at the end of a duel with Snow Queen.
-	gift_chance = 0
+	gift_chance = 100
 	abnormality_origin = ABNORMALITY_ORIGIN_LOBOTOMY
 	var/can_act = TRUE
 	//The purpose of this variable is to prevent people from ghosting in the arena and making snow queen unworkable.
@@ -107,6 +107,11 @@
 				teleport_turf = get_turf(T)
 				teleport_locations += teleport_turf
 		RegisterCleaveZones()
+
+/mob/living/simple_animal/hostile/abnormality/snow_queen/ObservationResult(mob/living/carbon/human/user, condition)
+	. = ..()
+	if(condition)
+		user.Apply_Gift(new /datum/ego_gifts/frostcrown)
 
 /mob/living/simple_animal/hostile/abnormality/snow_queen/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	. = ..()
@@ -498,12 +503,15 @@
 	storybook_hero = null
 	frozen_employee = null
 
-/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/RewardPrisoner(mob/living/carbon/rewardee)
+/mob/living/simple_animal/hostile/abnormality/snow_queen/proc/RewardPrisoner(mob/living/carbon/human/rewardee)
 	if(!rewardee)
 		return
 	rewardee.forceMove(release_location)
 	to_chat(rewardee, "The roses blossom and the Snow Palace falls. Not a single soul remembered the woman sleeping there.")
-	GiftUser(rewardee, 1, 100)
+	if(ishuman(rewardee))
+		var/datum/ego_gifts/frostsplinter/S = new
+		S.datum_reference = datum_reference
+		rewardee.Apply_Gift(S)
 
 //Procs when the hero is dusted by Snow Queen or the arena timer runs out.
 /mob/living/simple_animal/hostile/abnormality/snow_queen/proc/WinterContinues()

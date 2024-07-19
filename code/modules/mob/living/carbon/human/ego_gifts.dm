@@ -586,12 +586,19 @@
 	temperance_bonus = 2
 	slot = MOUTH_2
 
-/datum/ego_gifts/frost
+/datum/ego_gifts/frostsplinter
 	name = "Those who know the Cruelty of Winter and the Aroma of Roses"
-	icon_state = "frost"
+	icon_state = "frostsplinter"
 	fortitude_bonus = 6
 	prudence_bonus = 6
 	slot = CHEEK
+
+/datum/ego_gifts/frostcrown
+	name = "The Winters Kiss"
+	icon_state = "frostcrown"
+	fortitude_bonus = 6
+	prudence_bonus = 6
+	slot = HAT
 
 /datum/ego_gifts/fury
 	name = "Blind Fury"
@@ -651,13 +658,6 @@
 	icon_state = "harmony"
 	fortitude_bonus = 8
 	prudence_bonus = -4
-	slot = CHEEK
-
-/datum/ego_gifts/frost_splinter
-	name = "Cruelty of Winter and Aroma of Roses"
-	icon_state = "frost_splinter"
-	fortitude_bonus = 6
-	prudence_bonus = 6
 	slot = CHEEK
 
 /datum/ego_gifts/harvest
