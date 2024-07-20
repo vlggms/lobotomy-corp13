@@ -5,7 +5,9 @@
 	icon_state = "lccb_pistol"
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	weapon_weight = WEAPON_LIGHT
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	shotsleft = 13
 	reloadtime = 1 SECONDS
 	fire_delay = 5
@@ -17,7 +19,9 @@
 	icon_state = "lccb_burstpistol"
 	inhand_icon_state = "lccb_pistol"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	weapon_weight = WEAPON_LIGHT
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	spread = 30
 	shotsleft = 13
 	reloadtime = 1.5 SECONDS
@@ -30,7 +34,9 @@
 	icon_state = "lccb_magnum"
 	inhand_icon_state = "lccb_magnum"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	fire_sound = 'sound/weapons/gun/pistol/shot.ogg'
 	weapon_weight = WEAPON_HEAVY
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	projectile_damage_multiplier = 6 //60 damage per bullet
 	shotsleft = 6
 	reloadtime = 3 SECONDS
@@ -43,6 +49,8 @@
 	icon_state = "lccb_smg"
 	inhand_icon_state = "lccb_smg"
 	icon = 'icons/obj/limbus_weapons.dmi'
+	fire_sound = 'sound/weapons/gun/smg/mp7.ogg'
+	ammo_type = /obj/item/ammo_casing/caseless/fullstop
 	spread = 30
 	shotsleft = 30
 	reloadtime = 2.7 SECONDS
