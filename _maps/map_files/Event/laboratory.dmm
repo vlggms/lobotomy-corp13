@@ -4021,7 +4021,7 @@
 	anchored = 1
 	},
 /obj/structure/table/wood{
-	alpha = o;
+	alpha = 0;
 	resistance_flags = 115;
 	mouse_opacity = 0
 	},
@@ -8773,7 +8773,6 @@
 	},
 /obj/item/clothing/suit/armor/ego_gear/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
-/obj/item/ego_weapon/city/lccb_bat,
 /turf/open/floor/mineral/titanium/blue,
 /area/centcom)
 "NF" = (
