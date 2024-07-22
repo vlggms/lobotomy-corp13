@@ -13,8 +13,8 @@
 	maxHealth = 500
 	health = 500
 	death_message = "falls to their knees as their lights slowly go out..."
-	melee_damage_lower = 11
-	melee_damage_upper = 15
+	melee_damage_lower = 8
+	melee_damage_upper = 10
 	mob_size = MOB_SIZE_HUGE
 	robust_searching = TRUE
 	stat_attack = HARD_CRIT
