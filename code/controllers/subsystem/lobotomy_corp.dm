@@ -258,10 +258,11 @@ SUBSYSTEM_DEF(lobotomy_corp)
 	qliphoth_meter = 0
 	var/abno_amount = all_abnormality_datums.len
 	var/player_count = AvailableAgentCount()
+	var/total_count = AvailableAgentCount(suppressioncount = TRUE)
 	var/suppression_modifier = 1
-	if(player_count != AvailableAgentCount(suppressioncount = TRUE))
 		suppression_modifier = 1.3
 	qliphoth_max = round((player_count > 1 ? 4 : 3) + player_count*1.5*suppression_modifier + GLOB.Sephirahordealspeed) // Some extra help on non solo rounds
+	if(player_count != total_count)
 	qliphoth_state += 1
 	for(var/datum/abnormality/A in all_abnormality_datums)
 		if(istype(A.current))
