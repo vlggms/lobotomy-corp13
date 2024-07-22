@@ -25,7 +25,7 @@
 		return
 
 	if(W.tool_behaviour == TOOL_SCREWDRIVER)
-		if(density)
+		if(closed_door)
 			to_chat(user, "<span class='warning'>You need to open [src] before opening its maintenance panel.</span>")
 			return
 		else if(default_deconstruction_screwdriver(user, icon_state, icon_state, W))
@@ -37,7 +37,7 @@
 			var/change_id = input("Set the shutters/blast door/blast door controllers ID. It must be a number between 1 and 100.", "ID", id) as num|null
 			if(change_id)
 				id = clamp(round(change_id, 1), 1, 100)
-				to_chat(user, "<span class='notice'>You change the ID to [id].</span>")	
+				to_chat(user, "<span class='notice'>You change the ID to [id].</span>")
 
 		if(W.tool_behaviour == TOOL_CROWBAR && deconstruction == INTACT)
 			to_chat(user, "<span class='notice'>You start to remove the airlock electronics.</span>")
@@ -68,7 +68,7 @@
 
 /obj/machinery/door/poddoor/preopen
 	icon_state = "open"
-	density = FALSE
+	closed_door = FALSE
 	opacity = FALSE
 
 /obj/machinery/door/poddoor/ert
@@ -131,7 +131,7 @@
 	id = MASSDRIVER_DISPOSALS
 
 /obj/machinery/door/poddoor/Bumped(atom/movable/AM)
-	if(density)
+	if(closed_door)
 		return 0
 	else
 		return ..()
@@ -155,7 +155,7 @@
 			playsound(src, 'sound/machines/blastdoor.ogg', 30, TRUE)
 
 /obj/machinery/door/poddoor/update_icon_state()
-	if(density)
+	if(closed_door)
 		icon_state = "closed"
 	else
 		icon_state = "open"
@@ -168,7 +168,7 @@
 		open(TRUE)
 
 /obj/machinery/door/poddoor/attack_alien(mob/living/carbon/alien/humanoid/user)
-	if(density & !(resistance_flags & INDESTRUCTIBLE))
+	if(closed_door & !(resistance_flags & INDESTRUCTIBLE))
 		add_fingerprint(user)
 		user.visible_message("<span class='warning'>[user] begins prying open [src].</span>",\
 					"<span class='noticealien'>You begin digging your claws into [src] with all your might!</span>",\
@@ -180,7 +180,7 @@
 			time_to_open = 15 SECONDS
 
 		if(do_after(user, time_to_open, src))
-			if(density && !open(TRUE)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
+			if(closed_door && !open(TRUE)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
 				to_chat(user, "<span class='warning'>Despite your efforts, [src] managed to resist your attempts to open it!</span>")
 
 	else

@@ -5,7 +5,6 @@
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
 	opacity = TRUE
-	density = TRUE
 	move_resist = MOVE_FORCE_VERY_STRONG
 	layer = OPEN_DOOR_LAYER
 	power_channel = AREA_USAGE_ENVIRON
@@ -37,9 +36,14 @@
 	var/real_explosion_block	//ignore this, just use explosion_block
 	var/red_alert_access = FALSE //if TRUE, this door will always open on red alert
 	var/poddoor = FALSE
-	var/unres_sides = 0 //Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
-	var/safety_mode = FALSE ///Whether or not the airlock can be opened with bare hands while unpowered
-	var/can_crush = TRUE /// Whether or not the door can crush mobs.
+	//Unrestricted sides. A bitflag for which direction (if any) can open the door with no access
+	var/unres_sides = 0
+	///Whether or not the airlock can be opened with bare hands while unpowered
+	var/safety_mode = FALSE
+	/// Whether or not the door can crush mobs.
+	var/can_crush = TRUE
+	// Replaces the density variable in order to assist mob pathfinding.
+	var/closed_door = TRUE
 
 
 /obj/machinery/door/examine(mob/user)
@@ -67,7 +71,7 @@
 	GLOB.airlocks += src
 	spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(2, 1, src)
-	if(density)
+	if(closed_door)
 		flags_1 |= PREVENT_CLICK_UNDER_1
 	else
 		flags_1 &= ~PREVENT_CLICK_UNDER_1
@@ -76,8 +80,13 @@
 	real_explosion_block = explosion_block
 	explosion_block = EXPLOSION_BLOCK_PROC
 
+/obj/machinery/door/CanPass()
+	if(closed_door)
+		return FALSE
+	return ..()
+
 /obj/machinery/door/proc/set_init_door_layer()
-	if(density)
+	if(closed_door)
 		layer = closingLayer
 	else
 		layer = initial(layer)
@@ -92,7 +101,7 @@
 	return ..()
 
 /obj/machinery/door/proc/try_safety_unlock(mob/user)
-	if(safety_mode && !hasPower() && density)
+	if(safety_mode && !hasPower() && closed_door)
 		to_chat(user, "<span class='notice'>You begin unlocking the airlock safety mechanism...</span>")
 		if(do_after(user, 15 SECONDS, target = src))
 			try_to_crowbar(null, user)
@@ -133,7 +142,7 @@
 
 	if(isitem(AM))
 		var/obj/item/I = AM
-		if(!density || (I.w_class < WEIGHT_CLASS_NORMAL && !LAZYLEN(I.GetAccess())))
+		if(!closed_door || (I.w_class < WEIGHT_CLASS_NORMAL && !LAZYLEN(I.GetAccess())))
 			return
 		if(check_access(I))
 			open()
@@ -144,7 +153,7 @@
 /obj/machinery/door/Move()
 	var/turf/T = loc
 	. = ..()
-	if(density) //Gotta be closed my friend
+	if(closed_door) //Gotta be closed my friend
 		move_update_air(T)
 
 /obj/machinery/door/CanAllowThrough(atom/movable/mover, turf/target)
@@ -162,7 +171,7 @@
 	if(!requiresID())
 		user = null
 
-	if(density && !(obj_flags & EMAGGED))
+	if(closed_door && !(obj_flags & EMAGGED))
 		if(allowed(user))
 			open()
 		else
@@ -192,12 +201,12 @@
 	if(!requiresID())
 		user = null //so allowed(user) always succeeds
 	if(allowed(user))
-		if(density)
+		if(closed_door)
 			open()
 		else
 			close()
 		return TRUE
-	if(density)
+	if(closed_door)
 		do_animate("deny")
 
 /obj/machinery/door/allowed(mob/M)
@@ -268,7 +277,7 @@
 	secondsElectrified = MACHINE_NOT_ELECTRIFIED
 
 /obj/machinery/door/update_icon_state()
-	if(density)
+	if(closed_door)
 		icon_state = "door1"
 	else
 		icon_state = "door0"
@@ -291,7 +300,7 @@
 
 
 /obj/machinery/door/proc/open()
-	if(!density)
+	if(!closed_door)
 		return 1
 	if(operating)
 		return
@@ -299,7 +308,7 @@
 	do_animate("opening")
 	set_opacity(0)
 	sleep(5)
-	density = FALSE
+	closed_door = FALSE
 	flags_1 &= ~PREVENT_CLICK_UNDER_1
 	sleep(5)
 	layer = initial(layer)
@@ -313,7 +322,7 @@
 	return 1
 
 /obj/machinery/door/proc/close()
-	if(density)
+	if(closed_door)
 		return TRUE
 	if(operating || welded)
 		return
@@ -329,7 +338,7 @@
 	do_animate("closing")
 	layer = closingLayer
 	sleep(5)
-	density = TRUE
+	closed_door = TRUE
 	flags_1 |= PREVENT_CLICK_UNDER_1
 	sleep(5)
 	update_icon()
@@ -375,7 +384,7 @@
 		log_combat(src, M, "crushed")
 
 /obj/machinery/door/proc/autoclose()
-	if(!QDELETED(src) && !density && !operating && !locked && !welded && autoclose)
+	if(!QDELETED(src) && !closed_door && !operating && !locked && !welded && autoclose)
 		close()
 
 /obj/machinery/door/proc/autoclose_in(wait)
@@ -421,7 +430,7 @@
 	..(severity ? max(1, severity - 1) : 0, target)
 
 /obj/machinery/door/GetExplosionBlock()
-	return density ? real_explosion_block : 0
+	return closed_door ? real_explosion_block : 0
 
 /obj/machinery/door/power_change()
 	. = ..()

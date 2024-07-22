@@ -24,26 +24,26 @@
 
 /obj/machinery/door/password/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, list/message_mods = list())
 	. = ..()
-	if(!density || !voice_activated || radio_freq)
+	if(!closed_door || !voice_activated || radio_freq)
 		return
 	if(findtext(raw_message,password))
 		open()
 
 /obj/machinery/door/password/Bumped(atom/movable/AM)
-	return !density && ..()
+	return !closed_door && ..()
 
 /obj/machinery/door/password/try_to_activate_door(mob/user)
 	add_fingerprint(user)
 	if(operating)
 		return
-	if(density)
+	if(closed_door)
 		if(ask_for_pass(user))
 			open()
 		else
 			do_animate("deny")
 
 /obj/machinery/door/password/update_icon_state()
-	if(density)
+	if(closed_door)
 		icon_state = "closed"
 	else
 		icon_state = "open"

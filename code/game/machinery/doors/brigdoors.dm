@@ -77,7 +77,7 @@
 		update_icon()
 
 // open/closedoor checks if door_timer has power, if so it checks if the
-// linked door is open/closed (by density) then opens it/closes it.
+// linked door is open/closed (by closed_door) then opens it/closes it.
 /obj/machinery/door_timer/proc/timer_start()
 	if(machine_stat & (NOPOWER|BROKEN))
 		return 0
@@ -86,7 +86,7 @@
 	timing = TRUE
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
-		if(door.density)
+		if(door.closed_door)
 			continue
 		INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/window/brigdoor, close))
 
@@ -115,7 +115,7 @@
 	update_icon()
 
 	for(var/obj/machinery/door/window/brigdoor/door in targets)
-		if(!door.density)
+		if(!door.closed_door)
 			continue
 		INVOKE_ASYNC(door, TYPE_PROC_REF(/obj/machinery/door/window/brigdoor, open))
 

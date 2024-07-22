@@ -48,7 +48,7 @@
 	AddComponent(/datum/component/ntnet_interface)
 
 /obj/machinery/door/window/Destroy()
-	density = FALSE
+	closed_door = FALSE
 	QDEL_LIST(debris)
 	if(obj_integrity == 0)
 		playsound(src, "shatter", 70, TRUE)
@@ -58,7 +58,7 @@
 	return ..()
 
 /obj/machinery/door/window/update_icon_state()
-	if(density)
+	if(closed_door)
 		icon_state = base_state
 	else
 		icon_state = "[base_state]open"
@@ -71,11 +71,11 @@
 		sleep(50)
 	else //secure doors close faster
 		sleep(20)
-	if(!density && autoclose) //did someone change state while we slept?
+	if(!closed_door && autoclose) //did someone change state while we slept?
 		close()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM)
-	if(operating || !density)
+	if(operating || !closed_door)
 		return
 	if(!ismob(AM))
 		if(ismecha(AM))
@@ -95,7 +95,7 @@
 	bumpopen(M)
 
 /obj/machinery/door/window/bumpopen(mob/user)
-	if(operating || !density)
+	if(operating || !closed_door)
 		return
 	add_fingerprint(user)
 	if(!requiresID())
@@ -126,19 +126,19 @@
 
 /obj/machinery/door/window/CanAtmosPass(turf/T)
 	if(get_dir(loc, T) == dir)
-		return !density
+		return !closed_door
 	else
 		return TRUE
 
 //used in the AStar algorithm to determinate if the turf the door is on is passable
 /obj/machinery/door/window/CanAStarPass(obj/item/card/id/ID, to_dir)
-	return !density || (dir != to_dir) || (check_access(ID) && hasPower())
+	return !closed_door || (dir != to_dir) || (check_access(ID) && hasPower())
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
 	if((pass_flags_self & mover.pass_flags) || ((pass_flags_self & LETPASSTHROW) && mover.throwing))
 		return TRUE
 	if(get_dir(loc, target) == dir)
-		return !density
+		return !closed_door
 	return TRUE
 
 /obj/machinery/door/window/open(forced=FALSE)
@@ -156,7 +156,7 @@
 	playsound(src, 'sound/machines/windowdoor.ogg', 100, TRUE)
 	icon_state ="[base_state]open"
 	sleep(10)
-	density = FALSE
+	closed_door = FALSE
 	air_update_turf(TRUE, FALSE)
 	update_freelook_sight()
 
@@ -178,7 +178,7 @@
 	playsound(src, 'sound/machines/windowdoor.ogg', 100, TRUE)
 	icon_state = base_state
 
-	density = TRUE
+	closed_door = TRUE
 	air_update_turf(TRUE, TRUE)
 	update_freelook_sight()
 	sleep(10)
@@ -213,7 +213,7 @@
 
 
 /obj/machinery/door/window/emag_act(mob/user)
-	if(!operating && density && !(obj_flags & EMAGGED))
+	if(!operating && closed_door && !(obj_flags & EMAGGED))
 		obj_flags |= EMAGGED
 		operating = TRUE
 		flick("[base_state]spark", src)
@@ -231,7 +231,7 @@
 	add_fingerprint(user)
 	if(!(flags_1&NODECONSTRUCT_1))
 		if(I.tool_behaviour == TOOL_SCREWDRIVER)
-			if(density || operating)
+			if(closed_door || operating)
 				to_chat(user, span_warning("You need to open the door to access the maintenance panel!"))
 				return
 			I.play_tool_sound(src)
@@ -240,11 +240,11 @@
 			return
 
 		if(I.tool_behaviour == TOOL_CROWBAR)
-			if(panel_open && !density && !operating)
+			if(panel_open && !closed_door && !operating)
 				user.visible_message(span_notice("[user] removes the electronics from the [name]."), \
 					span_notice("You start to remove electronics from the [name]..."))
 				if(I.use_tool(src, user, 40, volume=50))
-					if(panel_open && !density && !operating && loc)
+					if(panel_open && !closed_door && !operating && loc)
 						var/obj/structure/windoor_assembly/WA = new /obj/structure/windoor_assembly(loc)
 						switch(base_state)
 							if("left")
@@ -296,7 +296,7 @@
 
 /obj/machinery/door/window/try_to_crowbar(obj/item/I, mob/user)
 	if(!hasPower())
-		if(density)
+		if(closed_door)
 			open(2)
 		else
 			close(2)
@@ -325,13 +325,13 @@
 	var/command_value = data.data["data_secondary"]
 	switch(command)
 		if("open")
-			if(command_value == "on" && !density)
+			if(command_value == "on" && !closed_door)
 				return
 
-			if(command_value == "off" && density)
+			if(command_value == "off" && closed_door)
 				return
 
-			if(density)
+			if(closed_door)
 				INVOKE_ASYNC(src, PROC_REF(open))
 			else
 				INVOKE_ASYNC(src, PROC_REF(close))

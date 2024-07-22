@@ -8,7 +8,7 @@
 	icon = 'icons/obj/doors/Doorfireglass.dmi'
 	icon_state = "door_open"
 	opacity = FALSE
-	density = FALSE
+	closed_door = FALSE
 	max_integrity = 300
 	resistance_flags = FIRE_PROOF
 	heat_proof = TRUE
@@ -31,7 +31,7 @@
 
 /obj/machinery/door/firedoor/examine(mob/user)
 	. = ..()
-	if(!density)
+	if(!closed_door)
 		. += "<span class='notice'>It is open, but could be <b>pried</b> closed.</span>"
 	else if(!welded)
 		. += "<span class='notice'>It is closed, but could be <i>pried</i> open. Deconstruction would require it to be <b>welded</b> shut.</span>"
@@ -49,7 +49,7 @@
 
 /obj/machinery/door/firedoor/closed
 	icon_state = "door_closed"
-	density = TRUE
+	closed_door = TRUE
 
 //see also turf/AfterChange for adjacency shennanigans
 
@@ -67,7 +67,7 @@
 /obj/machinery/door/firedoor/Bumped(atom/movable/AM)
 	if(panel_open || operating)
 		return
-	if(!density)
+	if(!closed_door)
 		return ..()
 	return FALSE
 
@@ -82,7 +82,7 @@
 	. = ..()
 	if(.)
 		return
-	if(operating || !density)
+	if(operating || !closed_door)
 		return
 	user.changeNext_move(CLICK_CD_MELEE)
 
@@ -134,7 +134,7 @@
 	if(welded || operating)
 		return
 
-	if(density)
+	if(closed_door)
 		open()
 	else
 		close()
@@ -143,7 +143,7 @@
 	add_fingerprint(user)
 	if(welded || operating || machine_stat & NOPOWER)
 		return TRUE
-	if(density)
+	if(closed_door)
 		open()
 	else
 		close()
@@ -167,7 +167,7 @@
 			flick("door_closing", src)
 
 /obj/machinery/door/firedoor/update_icon_state()
-	if(density)
+	if(closed_door)
 		icon_state = "door_closed"
 	else
 		icon_state = "door_open"
@@ -176,7 +176,7 @@
 	. = ..()
 	if(!welded)
 		return
-	if(density)
+	if(closed_door)
 		. += "welded"
 	else
 		. += "welded_open"
@@ -226,7 +226,7 @@
 /obj/machinery/door/firedoor/border_only/closed
 	icon_state = "door_closed"
 	opacity = TRUE
-	density = TRUE
+	closed_door = TRUE
 
 /obj/machinery/door/firedoor/border_only/CanAllowThrough(atom/movable/mover, turf/target)
 	. = ..()
@@ -235,12 +235,12 @@
 
 /obj/machinery/door/firedoor/border_only/CheckExit(atom/movable/mover as mob|obj, turf/target)
 	if(get_dir(loc, target) == dir)
-		return !density
+		return !closed_door
 	return TRUE
 
 /obj/machinery/door/firedoor/border_only/CanAtmosPass(turf/T)
 	if(get_dir(loc, T) == dir)
-		return !density
+		return !closed_door
 	else
 		return TRUE
 

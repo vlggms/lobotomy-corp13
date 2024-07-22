@@ -11,7 +11,7 @@
 
 /obj/machinery/door/poddoor/shutters/preopen
 	icon_state = "open"
-	density = FALSE
+	closed_door = FALSE
 	opacity = FALSE
 
 /obj/machinery/door/poddoor/shutters/indestructible
@@ -28,7 +28,7 @@
 
 /obj/machinery/door/poddoor/shutters/radiation/preopen
 	icon_state = "open"
-	density = FALSE
+	closed_door = FALSE
 	opacity = FALSE
 	rad_insulation = RAD_NO_INSULATION
 
@@ -50,4 +50,4 @@
 
 /obj/machinery/door/poddoor/shutters/window/preopen
 	icon_state = "open"
-	density = FALSE
+	closed_door = FALSE

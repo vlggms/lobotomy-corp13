@@ -479,7 +479,7 @@
 	return TRUE
 
 /obj/machinery/door/airlock/cult/allowed(mob/living/L)
-	if(!density)
+	if(!closed_door)
 		return TRUE
 	if(friendly || iscultist(L) || istype(L, /mob/living/simple_animal/shade) || isconstruct(L))
 		if(!stealthy)

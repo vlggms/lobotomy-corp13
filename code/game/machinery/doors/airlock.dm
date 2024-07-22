@@ -109,7 +109,7 @@
 	var/obj/machinery/door/airlock/cyclelinkedairlock
 	var/shuttledocked = 0
 	var/delayed_close_requested = FALSE // TRUE means the door will automatically close the next time it's opened.
-	var/air_tight = FALSE	//TRUE means density will be set as soon as the door begins to close
+	var/air_tight = FALSE	//TRUE means closed_door will be set as soon as the door begins to close
 	var/prying_so_hard = FALSE
 	var/whitelist_door	//Whistlist stuff
 
@@ -227,13 +227,13 @@
 	var/command_value = data.data["data_secondary"]
 	switch(command)
 		if("open")
-			if(command_value == "on" && !density)
+			if(command_value == "on" && !closed_door)
 				return
 
-			if(command_value == "off" && density)
+			if(command_value == "off" && closed_door)
 				return
 
-			if(density)
+			if(closed_door)
 				INVOKE_ASYNC(src, PROC_REF(open))
 			else
 				INVOKE_ASYNC(src, PROC_REF(close))
@@ -430,7 +430,7 @@
 		return
 	switch(state)
 		if(0)
-			if(density)
+			if(closed_door)
 				state = AIRLOCK_CLOSED
 			else
 				state = AIRLOCK_OPEN
@@ -661,7 +661,7 @@
 			. += "It looks very robust."
 
 	if(issilicon(user) && !(machine_stat & BROKEN))
-		. += "<span class='notice'>Shift-click [src] to [ density ? "open" : "close"] it.</span>"
+		. += "<span class='notice'>Shift-click [src] to [ closed_door ? "open" : "close"] it.</span>"
 		. += "<span class='notice'>Ctrl-click [src] to [ locked ? "raise" : "drop"] its bolts.</span>"
 		. += "<span class='notice'>Alt-click [src] to [ secondsElectrified ? "un-electrify" : "permanently electrify"] it.</span>"
 		. += "<span class='notice'>Ctrl-Shift-click [src] to [ emergency ? "disable" : "enable"] emergency access.</span>"
@@ -745,7 +745,7 @@
 		if(isElectrified() && shock(user, 100))
 			return
 
-	if(ishuman(user) && prob(40) && density)
+	if(ishuman(user) && prob(40) && closed_door)
 		var/mob/living/carbon/human/H = user
 		if((HAS_TRAIT(H, TRAIT_DUMB)) && Adjacent(user))
 			playsound(src, 'sound/effects/bang.ogg', 25, TRUE)
@@ -947,7 +947,7 @@
 		change_paintjob(C, user)
 	else if(istype(C, /obj/item/door_seal)) //adding the seal
 		var/obj/item/door_seal/airlockseal = C
-		if(!density)
+		if(!closed_door)
 			to_chat(user, "<span class='warning'>[src] must be closed before you can seal it!</span>")
 			return
 		if(seal)
@@ -957,7 +957,7 @@
 		playsound(src, 'sound/items/jaws_pry.ogg', 30, TRUE)
 		if(!do_after(user, airlockseal.seal_time, target = src))
 			return
-		if(!density)
+		if(!closed_door)
 			to_chat(user, "<span class='warning'>[src] must be closed before you can seal it!</span>")
 			return
 		if(seal)
@@ -987,7 +987,7 @@
 
 
 /obj/machinery/door/airlock/try_to_weld(obj/item/weldingtool/W, mob/user)
-	if(!operating && density)
+	if(!operating && closed_door)
 		if(seal)
 			to_chat(user, "<span class='warning'>[src] is blocked by a seal!</span>")
 			return
@@ -1020,7 +1020,7 @@
 				to_chat(user, "<span class='notice'>The airlock doesn't need repairing.</span>")
 
 /obj/machinery/door/airlock/proc/weld_checks(obj/item/weldingtool/W, mob/user)
-	return !operating && density
+	return !operating && closed_door
 
 /**
  * Used when attempting to remove a seal from an airlock
@@ -1055,7 +1055,7 @@
 /obj/machinery/door/airlock/try_to_crowbar(obj/item/I, mob/living/user, forced = FALSE)
 	if(I)
 		var/beingcrowbarred = (I.tool_behaviour == TOOL_CROWBAR)
-		if(!security_level && (beingcrowbarred && panel_open && ((obj_flags & EMAGGED) || (density && welded && !operating && !hasPower() && !locked))))
+		if(!security_level && (beingcrowbarred && panel_open && ((obj_flags & EMAGGED) || (closed_door && welded && !operating && !hasPower() && !locked))))
 			user.visible_message("<span class='notice'>[user] removes the electronics from the airlock assembly.</span>", \
 				"<span class='notice'>You start to remove electronics from the airlock assembly...</span>")
 			if(I.use_tool(src, user, 40, volume=100))
@@ -1076,7 +1076,7 @@
 			if(check_electrified && shock(user,100))
 				return //it's like sticking a fork in a power socket
 
-			if(!density)//already open
+			if(!closed_door)//already open
 				return
 
 			if(!prying_so_hard)
@@ -1089,7 +1089,7 @@
 						return
 					open(2)
 					take_damage(25, BRUTE, 0) // Enough to sometimes spark
-					if(density && !open(2))
+					if(closed_door && !open(2))
 						to_chat(user, "<span class='warning'>Despite your attempts, [src] refuses to open.</span>")
 				prying_so_hard = FALSE
 				return
@@ -1102,7 +1102,7 @@
 			if(axe && !axe.wielded)
 				to_chat(user, "<span class='warning'>You need to be wielding \the [axe] to do that!</span>")
 				return
-		INVOKE_ASYNC(src, (density ? PROC_REF(open) : PROC_REF(close)), 2)
+		INVOKE_ASYNC(src, (closed_door ? PROC_REF(open) : PROC_REF(close)), 2)
 
 
 /obj/machinery/door/airlock/open(forced=0)
@@ -1117,7 +1117,7 @@
 		use_power(50)
 		playsound(src, doorOpen, 30, TRUE)
 
-		if(closeOther != null && istype(closeOther, /obj/machinery/door/airlock/) && !closeOther.density)
+		if(closeOther != null && istype(closeOther, /obj/machinery/door/airlock/) && !closeOther.closed_door)
 			closeOther.close()
 	else
 		playsound(src, 'sound/machines/airlockforced.ogg', 30, TRUE)
@@ -1125,7 +1125,7 @@
 	if(autoclose)
 		autoclose_in(normalspeed ? 150 : 15)
 
-	if(!density)
+	if(!closed_door)
 		return TRUE
 	SEND_SIGNAL(src, COMSIG_AIRLOCK_OPEN, forced)
 	operating = TRUE
@@ -1134,7 +1134,7 @@
 	set_opacity(0)
 	update_freelook_sight()
 	sleep(4)
-	density = FALSE
+	closed_door = FALSE
 	flags_1 &= ~PREVENT_CLICK_UNDER_1
 	air_update_turf(TRUE, FALSE)
 	sleep(1)
@@ -1150,7 +1150,7 @@
 /obj/machinery/door/airlock/close(forced = FALSE, force_crush = FALSE)
 	if(operating || welded || locked || seal)
 		return
-	if(density)
+	if(closed_door)
 		return TRUE
 	if(!forced)
 		if(!hasPower() || wires.is_cut(WIRE_BOLTS))
@@ -1179,12 +1179,12 @@
 	update_icon(AIRLOCK_CLOSING, 1)
 	layer = CLOSED_DOOR_LAYER
 	if(air_tight)
-		density = TRUE
+		closed_door = TRUE
 		flags_1 |= PREVENT_CLICK_UNDER_1
 		air_update_turf(TRUE, TRUE)
 	sleep(1)
 	if(!air_tight)
-		density = TRUE
+		closed_door = TRUE
 		flags_1 |= PREVENT_CLICK_UNDER_1
 		air_update_turf(TRUE, TRUE)
 	sleep(4)
@@ -1235,11 +1235,11 @@
 	update_icon()
 
 /obj/machinery/door/airlock/CanAStarPass(obj/item/card/id/ID)
-//Airlock is passable if it is open (!density), bot has access, and is not bolted shut or powered off)
-	return !density || (check_access(ID) && !locked && hasPower())
+//Airlock is passable if it is open (!closed_door), bot has access, and is not bolted shut or powered off)
+	return !closed_door || (check_access(ID) && !locked && hasPower())
 
 /obj/machinery/door/airlock/emag_act(mob/user, obj/item/card/emag/doorjack/D)
-	if(!operating && density && hasPower() && !(obj_flags & EMAGGED))
+	if(!operating && closed_door && hasPower() && !(obj_flags & EMAGGED))
 		if(istype(D, /obj/item/card/emag/doorjack))
 			D.use_charge(user)
 		operating = TRUE
@@ -1260,7 +1260,7 @@
 	if(isElectrified() && shock(user, 100)) //Mmm, fried xeno!
 		add_fingerprint(user)
 		return
-	if(!density) //Already open
+	if(!closed_door) //Already open
 		return ..()
 	if(locked || welded || seal) //Extremely generic, as aliens only understand the basics of how airlocks work.
 		if(user.a_intent == INTENT_HARM)
@@ -1278,7 +1278,7 @@
 
 
 	if(do_after(user, time_to_open, src))
-		if(density && !open(2)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
+		if(closed_door && !open(2)) //The airlock is still closed, but something prevented it opening. (Another player noticed and bolted/welded the airlock in time!)
 			to_chat(user, "<span class='warning'>Despite your efforts, [src] managed to resist your attempts to open it!</span>")
 
 /obj/machinery/door/airlock/hostile_lockdown(mob/origin)
@@ -1432,7 +1432,7 @@
 	data["safe"] = safe // safeties
 	data["speed"] = normalspeed // safe speed
 	data["welded"] = welded // welded
-	data["opened"] = !density // opened
+	data["opened"] = !closed_door // opened
 
 	var/list/wire = list()
 	wire["main_1"] = !wires.is_cut(WIRE_POWER1)
@@ -1559,7 +1559,7 @@
 		to_chat(user, text("<span class='warning'>The airlock has been welded shut!</span>"))
 	else if(locked)
 		to_chat(user, text("<span class='warning'>The door bolts are down!</span>"))
-	else if(!density)
+	else if(!closed_door)
 		close()
 	else
 		open()

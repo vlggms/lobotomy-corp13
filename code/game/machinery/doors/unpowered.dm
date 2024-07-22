@@ -21,5 +21,5 @@
 	name = "door"
 	icon_state = "door1"
 	opacity = TRUE
-	density = TRUE
+	closed_door = TRUE
 	explosion_block = 1
