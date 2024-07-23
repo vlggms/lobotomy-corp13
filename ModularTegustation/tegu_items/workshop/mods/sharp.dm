@@ -4,7 +4,7 @@
 	overlay = "sharp"
 
 //Sharp, works like kuro katana
-/obj/item/workshop_mod/sharp/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+/obj/item/workshop_mod/sharp/ActivateEffect(obj/item/ego_weapon/city/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
 	if(target.status_flags & GODMODE || target.stat == DEAD)
 		return
 

@@ -25,7 +25,7 @@
 /obj/structure/closet/crate,
 /obj/item/gun/energy/e_gun/rabbitdash/small,
 /obj/item/ego_weapon/city/rabbit_blade/raven,
-/obj/item/clothing/suit/armor/ego_gear/rabbit/officer,
+/obj/item/clothing/suit/armor/ego_gear/city/rabbit/officer,
 /obj/item/gps,
 /turf/open/floor/pod,
 /area/city/outskirts)

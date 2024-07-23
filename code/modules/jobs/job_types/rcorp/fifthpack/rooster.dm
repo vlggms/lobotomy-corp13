@@ -74,14 +74,14 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = null //I have nothing lol
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeerberserk
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/reindeerberserk
 	l_pocket = /obj/item/flashlight/rooster
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
 
 /datum/outfit/job/rooster/leader
 	name = "Rooster Squad Leader"
 	jobtype = /datum/job/rcorp_captain/rooster
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeerberserk
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/reindeerberserk
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	head = /obj/item/clothing/head/beret/tegu/rcorpofficer
 	ears = /obj/item/radio/headset/heads/headset_discipline
