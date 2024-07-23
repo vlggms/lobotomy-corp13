@@ -5857,7 +5857,7 @@
 	desc = "A board for mounting important items upon.";
 	name = "display board"
 	},
-/obj/item/gun/ego_gun/clerk{
+/obj/item/gun/ego_gun/city/clerk{
 	anchored = 1;
 	pixel_y = 2
 	},
@@ -8712,7 +8712,7 @@
 	desc = "A board for mounting important items upon.";
 	name = "display board"
 	},
-/obj/item/gun/ego_gun/clerk{
+/obj/item/gun/ego_gun/city/clerk{
 	anchored = 1;
 	pixel_y = 2
 	},

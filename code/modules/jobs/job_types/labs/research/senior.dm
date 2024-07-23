@@ -35,6 +35,6 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/science
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/sresearch
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/sresearch
 	l_pocket = /obj/item/radio
 

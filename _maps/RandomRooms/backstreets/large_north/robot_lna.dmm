@@ -120,8 +120,8 @@
 	dir = 3
 	},
 /obj/structure/closet/crate/large,
-/obj/item/gun/ego_gun/pistol/kcorp/nade,
-/obj/item/ego_weapon/shield/kcorp,
+/obj/item/gun/ego_gun/pistol/city/kcorp/nade,
+/obj/item/ego_weapon/shield/city/kcorp,
 /turf/open/floor/engine,
 /area/city/backstreets_room)
 "x" = (
@@ -136,7 +136,7 @@
 	dir = 1
 	},
 /obj/structure/closet/crate/large,
-/obj/item/clothing/suit/armor/ego_gear/limbus/durante,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus/durante,
 /obj/item/clothing/neck/limbus_tie,
 /obj/item/clothing/accessory/limbusvest,
 /turf/open/floor/engine,

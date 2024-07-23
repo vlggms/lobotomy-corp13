@@ -1,5 +1,5 @@
 //Has a dodge ability
-/obj/item/ego_weapon/template/knife
+/obj/item/ego_weapon/city/template/knife
 	name = "knife template"
 	desc = "A blank knife workshop template."
 	special = "Use this weapon in hand to perform a dodgeroll."
@@ -15,7 +15,7 @@
 	finisheddesc = "A finished knife, ready for use."
 	var/dodgelanding
 
-/obj/item/ego_weapon/template/knife/attack_self(mob/living/carbon/user)
+/obj/item/ego_weapon/city/template/knife/attack_self(mob/living/carbon/user)
 	if(!active)
 		to_chat(user, span_notice("This weapon is unfinished!"))
 		return

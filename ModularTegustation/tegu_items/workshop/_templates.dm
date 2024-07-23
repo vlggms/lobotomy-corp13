@@ -1,4 +1,4 @@
-/obj/item/ego_weapon/template
+/obj/item/ego_weapon/city/template
 	name = "blank template"
 	desc = "A blank template. You should never see this!"
 	icon = 'ModularTegustation/Teguicons/workshop.dmi'
@@ -19,7 +19,7 @@
 	var/list/finishedname = list()
 	var/list/finishedicon = list()
 
-/obj/item/ego_weapon/template/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/template/attack(mob/living/target, mob/living/carbon/human/user)
 	forceholder = force
 	if(!active)
 		to_chat(user, span_notice("This weapon is unfinished!"))
@@ -30,14 +30,14 @@
 	if(forceholder != force)
 		force = forceholder
 
-/obj/item/ego_weapon/template/attackby(obj/item/I, mob/living/user, params)
+/obj/item/ego_weapon/city/template/attackby(obj/item/I, mob/living/user, params)
 	..()
 	if(istype(I, /obj/item/workshop_mod) && !active)
 		InstallMod(I)
 		return
 
 //Mod Installation Proc: Seperated from attackby so its easier to read and override.
-/obj/item/ego_weapon/template/proc/InstallMod(obj/item/workshop_mod/mod)
+/obj/item/ego_weapon/city/template/proc/InstallMod(obj/item/workshop_mod/mod)
 	active = TRUE
 
 	//Modify these
@@ -71,7 +71,7 @@
 	mod.forceMove(src)
 	return
 
-/obj/item/ego_weapon/template/proc/AlterSpecial(subject, add_to = FALSE)
+/obj/item/ego_weapon/city/template/proc/AlterSpecial(subject, add_to = FALSE)
 	if(add_to)
 		special_count += subject
 	else

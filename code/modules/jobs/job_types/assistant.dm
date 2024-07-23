@@ -52,7 +52,7 @@ GLOBAL_LIST_EMPTY(spawned_clerks)
 
 	backpack_contents = list(
 		/obj/item/healthanalyzer,
-		/obj/item/gun/ego_gun/clerk,
+		/obj/item/gun/ego_gun/city/clerk,
 	)
 
 /datum/outfit/job/assistant/post_equip(mob/living/carbon/human/outfit_owner, visualsOnly = FALSE)

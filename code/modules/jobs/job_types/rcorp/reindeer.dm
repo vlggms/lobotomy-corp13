@@ -89,7 +89,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer/grunt
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeermed
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/reindeermed
 	l_pocket = /obj/item/flashlight/seclite
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
 	l_hand = /obj/item/gun/medbeam
@@ -102,14 +102,14 @@
 
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	l_hand = /obj/item/gun/mindwhip
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeerberserk
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/reindeerberserk
 
 
 /datum/outfit/job/reindeer/captain
 	name = "Reindeer Squad Captain"
 	jobtype = /datum/job/rcorp_captain/reindeer
 	glasses = /obj/item/clothing/glasses/hud/health/night/rabbit
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/reindeercap
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/reindeercap
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	head = /obj/item/clothing/head/rabbit_helmet/reindeer
 	ears = /obj/item/radio/headset/heads/headset_welfare

@@ -22,7 +22,7 @@
 
 	belt = /obj/item/ego_weapon/city/rabbit_blade/command
 	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit/lcdr
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/assaultofficer
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/assaultofficer
 	glasses = /obj/item/clothing/glasses/sunglasses
 	shoes = /obj/item/clothing/shoes/combat
 	gloves = /obj/item/clothing/gloves/color/black
@@ -61,5 +61,5 @@
 	jobtype = /datum/job/rcorp_captain/commander/lieutenant
 	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit/lcdr
 	belt = /obj/item/ego_weapon/city/rabbit_blade
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/officer
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/officer
 	head = /obj/item/clothing/head/beret/tegu/captain

@@ -441,7 +441,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/raven/grunt
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/raven
 	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
 	backpack_contents = list(
@@ -461,7 +461,7 @@
 
 	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
 	head = /obj/item/clothing/head/rabbit_helmet
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	belt = /obj/item/ego_weapon/city/rabbit_blade
@@ -482,7 +482,7 @@
 
 	uniform = /obj/item/clothing/under/suit/lobotomy/rabbit
 	head = /obj/item/clothing/head/rabbit_helmet/grunt
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/grunts
 	suit_store = /obj/item/gun/energy/e_gun/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	belt = /obj/item/ego_weapon/city/rabbit_blade

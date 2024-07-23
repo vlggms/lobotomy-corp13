@@ -55,7 +55,7 @@
 
 	veryrareloot =	list(
 		/obj/item/clothing/suit/armor/ego_gear/city/blue_reverb,
-		/obj/item/ego_weapon/black_silence_gloves,
+		/obj/item/ego_weapon/city/black_silence_gloves,
 		/obj/item/ego_weapon/city/vermillion,
 		/obj/item/ego_weapon/mimicry/kali,
 		/obj/item/ego_weapon/city/reverberation,

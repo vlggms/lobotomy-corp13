@@ -49,17 +49,17 @@
 
 	rareloot =	list(
 		/obj/item/ego_weapon/city/kcorp,
-		/obj/item/ego_weapon/shield/kcorp,
+		/obj/item/ego_weapon/shield/city/kcorp,
 		/obj/item/ego_weapon/city/kcorp/axe,
-		/obj/item/gun/ego_gun/pistol/kcorp,
+		/obj/item/gun/ego_gun/pistol/city/kcorp,
 		/obj/item/storage/box/kcorp_armor,
 	)
 
 	veryrareloot =	list(
 		/obj/item/ego_weapon/city/kcorp/spear,
 		/obj/item/ego_weapon/city/kcorp/dspear,
-		/obj/item/gun/ego_gun/pistol/kcorp/smg,
-		/obj/item/gun/ego_gun/pistol/kcorp/nade,
+		/obj/item/gun/ego_gun/pistol/city/kcorp/smg,
+		/obj/item/gun/ego_gun/pistol/city/kcorp/nade,
 		/obj/item/clothing/suit/armor/ego_gear/city/kcorp_l3,
 		/obj/item/toy/plush/bongy,
 	)
@@ -189,7 +189,7 @@
 	cosmeticchance = 25
 	lootlist =	list(
 		/obj/item/ego_weapon/city/wcorp,
-		/obj/item/clothing/suit/armor/ego_gear/wcorp,
+		/obj/item/clothing/suit/armor/ego_gear/city/wcorp,
 		/obj/item/powered_gadget/teleporter,
 	)
 

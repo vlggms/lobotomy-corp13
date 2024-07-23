@@ -111,7 +111,7 @@
 	icon_living = "wellcheers_funeral"
 	faction = list("neutral", "shrimp")
 
-/obj/item/gun/ego_gun/clerk
+/obj/item/gun/ego_gun/city/clerk
 	name = "clerk pistol"
 	desc = "A shitty pistol, labeled 'Point open end towards enemy'."
 	icon_state = "clerk"
@@ -129,7 +129,7 @@
 	vary_fire_sound = FALSE
 	fire_sound_volume = 70
 
-/obj/item/gun/ego_gun/clerk/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
+/obj/item/gun/ego_gun/city/clerk/handle_suicide(mob/living/carbon/human/user, mob/living/carbon/human/target, params, bypass_timer)
 	if(!ishuman(user) || !ishuman(target))
 		return
 

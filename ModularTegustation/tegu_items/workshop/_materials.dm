@@ -118,7 +118,7 @@
 	var/static/list/template_types
 	if(!template_types)
 		template_types = list()
-		var/list/templist = subtypesof(/obj/item/ego_weapon/template) //we have to convert type = name to name = type, how lovely!
+		var/list/templist = subtypesof(/obj/item/ego_weapon/city/template) //we have to convert type = name to name = type, how lovely!
 		for(var/V in templist)
 			var/atom/A = V
 			template_types[initial(A.name)] = A
@@ -131,7 +131,7 @@
 	deltimer(cool_timer)
 	qdel(src)
 
-/obj/item/hot_tresmetal/proc/OnCreation(obj/item/ego_weapon/template/creation)
+/obj/item/hot_tresmetal/proc/OnCreation(obj/item/ego_weapon/city/template/creation)
 	if(!istype(creation))
 		return FALSE
 	creation.force *= force_mod
@@ -253,7 +253,7 @@
 	type_override = RED_DAMAGE
 	original_mat = /obj/item/tresmetal/amber
 
-/obj/item/hot_tresmetal/amber/OnCreation(obj/item/ego_weapon/template/creation)
+/obj/item/hot_tresmetal/amber/OnCreation(obj/item/ego_weapon/city/template/creation)
 	if(!..())
 		return
 	creation.AddComponent(/datum/component/edible,\

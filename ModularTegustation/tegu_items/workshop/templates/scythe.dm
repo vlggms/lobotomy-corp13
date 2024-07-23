@@ -1,4 +1,4 @@
-/obj/item/ego_weapon/template/scythe
+/obj/item/ego_weapon/city/template/scythe
 	name = "scythe template"
 	desc = "An unfinished scythe template"
 	special = "This weapon has a short combo."
@@ -18,7 +18,7 @@
 	var/combo_wait = 14
 	//I need to use Capo instead of something else for one reason: These change their speed.
 
-/obj/item/ego_weapon/template/scythe/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/template/scythe/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time)

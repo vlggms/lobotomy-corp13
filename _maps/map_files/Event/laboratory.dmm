@@ -49,7 +49,7 @@
 /obj/machinery/light,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/limbusautopistol,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/highsec,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -1860,7 +1860,7 @@
 /obj/structure/rack,
 /obj/machinery/light,
 /obj/item/gun/ego_gun/city/ammogun/limbusshottie,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/highsec,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -1949,7 +1949,7 @@
 /obj/structure/rack,
 /obj/machinery/light,
 /obj/item/ego_weapon/city/lccb_bat,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -2244,7 +2244,7 @@
 /obj/structure/rack,
 /obj/machinery/light,
 /obj/item/gun/ego_gun/city/ammogun/limbusshottie,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -2509,7 +2509,7 @@
 /obj/machinery/light,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -2568,7 +2568,7 @@
 "PY" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs/highsec,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/highsec,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -2708,7 +2708,7 @@
 /obj/structure/rack,
 /obj/item/ego_weapon/shield/lccb,
 /obj/item/gun/ego_gun/city/ammogun/limbuspistol,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)
@@ -2910,7 +2910,7 @@
 "Vo" = (
 /obj/structure/rack,
 /obj/item/ego_weapon/city/lccb_bat,
-/obj/item/clothing/suit/armor/ego_gear/limbus_labs,
+/obj/item/clothing/suit/armor/ego_gear/city/limbus_labs,
 /obj/item/clothing/head/beret/sec/lccb,
 /turf/open/floor/plasteel,
 /area/centcom)

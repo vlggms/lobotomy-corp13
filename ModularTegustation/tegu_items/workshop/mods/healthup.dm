@@ -4,7 +4,7 @@
 	overlay = "healing"
 
 //Heals physical damage.
-/obj/item/workshop_mod/healing/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+/obj/item/workshop_mod/healing/ActivateEffect(obj/item/ego_weapon/city/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		var/heal_amt = T.force*0.10
 		if(isanimal(target))

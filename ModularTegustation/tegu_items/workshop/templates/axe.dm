@@ -1,5 +1,5 @@
 //has a cleave attack.
-/obj/item/ego_weapon/template/axe
+/obj/item/ego_weapon/city/template/axe
 	name = "axe template"
 	desc = "A blank axe workshop template."
 	special = "Use this weapon in hand to charge a cleave attack."
@@ -16,7 +16,7 @@
 	var/finishedforce
 	var/charged
 
-/obj/item/ego_weapon/template/axe/attack_self(mob/user)
+/obj/item/ego_weapon/city/template/axe/attack_self(mob/user)
 	if(!active || charged)
 		return
 	if(!finishedforce)
@@ -27,7 +27,7 @@
 		force*=1.2
 		to_chat(user, span_info("You charge a cleave, and your next attack will deal bonus damage."))
 
-/obj/item/ego_weapon/template/axe/attack(mob/user)
+/obj/item/ego_weapon/city/template/axe/attack(mob/user)
 	..()
 	if(finishedforce && finishedforce!=force)
 		force = finishedforce
