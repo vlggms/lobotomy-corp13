@@ -1079,7 +1079,7 @@
 	name = "bleeding heart"
 	desc = "The supplicant will suffer various ordeals in a manner like being put through a trial."
 	icon_state = "heart"
-	special = "Hit yourself to heal others."
+	special = "Hit yourself to heal HP to others within 10 metres."
 	inhand_icon_state = "bloodbath"
 	force = 30
 	damtype = RED_DAMAGE
