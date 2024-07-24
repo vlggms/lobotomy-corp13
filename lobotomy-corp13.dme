@@ -1265,6 +1265,7 @@
 #include "code\game\objects\items\ego_weapons\non_abnormality\limbus_sinner.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\liu.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\mirae.dm"
+#include "code\game\objects\items\ego_weapons\non_abnormality\mirage_office.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\miscbackstreet.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\miscfixer.dm"
 #include "code\game\objects\items\ego_weapons\non_abnormality\molar.dm"

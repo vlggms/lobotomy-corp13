@@ -20,6 +20,7 @@
 	desc = "Soon, All of the wicked shall be punished..."
 	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
 	hitsound = 'sound/weapons/fixer/generic/knife3.ogg'
+	icon_state = "sodom"
 	force = 20
 	attack_speed = 0.5
 	damtype = WHITE_DAMAGE
@@ -49,7 +50,7 @@
 	name = "eria"
 	desc = "It has been quiet a while since I last used you two. I missed the feeling."
 	special = "This weapon restores health on a successful block."
-	icon_state = "pharaoh"
+	icon_state = "eria"
 	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
 	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
@@ -100,7 +101,7 @@
 /obj/item/ego_weapon/city/mirage/iria
 	name = "iria"
 	desc = "Experiences have shaped me this way."
-	icon_state = "pharaoh"
+	icon_state = "iria"
 	force = 50
 	attack_speed = 1.5
 	damtype = BLACK_DAMAGE
@@ -119,12 +120,13 @@
 	name = "sunstrike"
 	desc = "A heavy spear decorated with vibrant patterns on the head. Etched with the name 'Helios' on the grip."
 	special = "This weapon inflicts burn on hit."
-	icon_state = "pharaoh"
+	icon_state = "sunstrike"
 	force = 42
 	attack_speed = 1.5
 	reach = 2
 	stuntime = 5
 	damtype = RED_DAMAGE
+	var/inflict_burn = 2
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/spear1.ogg'
@@ -134,3 +136,9 @@
 		TEMPERANCE_ATTRIBUTE = 80,
 		JUSTICE_ATTRIBUTE = 60,
 	)
+
+/obj/item/ego_weapon/city/mirage/sunstrike/attack(mob/living/target, mob/living/carbon/human/user)
+	if(!CanUseEgo(user))
+		return
+	..()
+	target.apply_lc_burn(inflict_burn)
