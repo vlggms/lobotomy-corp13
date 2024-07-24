@@ -552,6 +552,12 @@
 	prudence_bonus = 8
 	slot = HAT
 
+/datum/ego_gifts/coiling
+	name = "Coiling"
+	icon_state = "coiling"
+	fortitude_bonus = 5
+	slot = MOUTH_2
+
 /datum/ego_gifts/courage_cat //crumbling armor also has an ego gift called courage so the name has to be slightly different
 	name = "Courage"
 	icon_state = "courage_cat"
@@ -977,11 +983,6 @@
 	justice_bonus = 2
 	slot = FACE
 
-/datum/ego_gifts/coiling
-	name = "Coiling"
-	icon_state = "coiling"
-	fortitude_bonus = 5
-	slot = MOUTH_2
 
 /datum/ego_gifts/correctional
 	name = "Correctional"
@@ -1400,6 +1401,13 @@
 /**
  * Event EGO Gifts
  */
+
+/datum/ego_gifts/sheep
+	name = "Sheeps Clothing"
+	icon_state = "sheep"
+	fortitude_bonus = 9
+	justice_bonus = -3
+	slot = HAT
 
 /datum/ego_gifts/blessing
 	name = "Blessing"
