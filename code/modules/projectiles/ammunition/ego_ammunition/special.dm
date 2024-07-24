@@ -51,3 +51,10 @@
 	projectile_type = /obj/projectile/bonebullet
 	pellets = 4
 	variance = 16
+
+/obj/item/ammo_casing/caseless/giant
+	name = "giant casing"
+	desc = "a casing"
+	projectile_type = /obj/projectile/giant_rocks
+	pellets = 8
+	variance = 16

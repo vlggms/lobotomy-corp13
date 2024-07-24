@@ -69,7 +69,44 @@
 
 /obj/machinery/abno_core_extractor
 	name = "abnormality core containment unit"
-	desc = "A device used to transfer abnormalities into containment cells."
+	desc = "A device used to transfer abnormality cores into containment cells."
 	icon = 'icons/obj/machines/sleeper.dmi'
 	icon_state = "sleeper"
 	density = FALSE
+
+/obj/item/abno_core_key
+	name = "enkephalin agitation matrix"
+	desc = "A single-use gadget used to transfer abnormality cores into containment cells."
+	icon = 'ModularTegustation/Teguicons/teguitems.dmi'
+	icon_state = "key_active"
+
+/obj/item/abno_core_key/pre_attack(atom/A, mob/living/user, params)
+	. = ..()
+	if(istype(A, /obj/structure/abno_core))
+		var/obj/structure/abno_core/target = A
+		user.playsound_local(user, 'sound/machines/terminal_prompt.ogg', 50, FALSE)
+		var/response = alert(user,"Will you really extract [A]?","This cannot be reversed.","Yes","No")
+		if(response == "Yes" && do_after(user, 10, A))
+			qdel(src)
+			target.Extract()
+			to_chat(user, span_nicegreen("[src] succesfully applied!"))
+			return
+		to_chat(user, "You decide not to extract [A].")
+		user.playsound_local(user, 'sound/machines/terminal_error.ogg', 50, FALSE)
+
+/obj/effect/temp_visual/abnocore_spiral
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "clockwork_gateway_active"
+	layer = ABOVE_NORMAL_TURF_LAYER
+	pixel_x = -32
+	base_pixel_x = -32
+	pixel_y = -32
+	base_pixel_y = -32
+	color = "#8F00FF"
+	duration = 2 SECONDS
+
+/obj/effect/temp_visual/abnocore_spiral/Initialize()
+	. = ..()
+	var/matrix/M = matrix()
+	M *= 0.1
+	animate(src, alpha = 0, transform  = M, time = (duration - 5))

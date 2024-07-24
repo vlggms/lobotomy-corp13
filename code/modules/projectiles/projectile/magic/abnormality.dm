@@ -386,3 +386,28 @@
 	. = ..()
 	hitsound = "sound/weapons/ego/rapier[pick(1,2)].ogg"
 	animate(src, alpha = 255, time = 3)
+
+/obj/projectile/giant_rocks
+	name = "facility rubble"
+	desc = "Rubble and scrap thrown at a high velocity. Look out!"
+	icon_state = "wishing_rock"
+	hitsound = 'sound/weapons/genhit2.ogg'
+	damage_type = RED_DAMAGE
+	damage = 15
+	spread = 60
+	slur = 3
+	eyeblur = 3
+
+/obj/projectile/giant_rocks/Initialize()
+	. = ..()
+	var/rock_icon = pick("rock", "tile", "rod", "glass")
+	switch(rock_icon)
+		if("tile")
+			icon = 'icons/obj/tiles.dmi'
+			icon_state = "tile"
+		if("rod")
+			icon = 'icons/obj/stack_objects.dmi'
+			icon_state = "rods-1"
+		if("glass")
+			icon = 'icons/obj/shards.dmi'
+			icon_state = "small"
