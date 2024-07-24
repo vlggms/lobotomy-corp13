@@ -2142,6 +2142,7 @@
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\limbus_labs.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\limbus_sinner.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\liu.dm"
+#include "code\modules\clothing\suits\ego_gear\non_abnormality\mirage_office.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\misc.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\molar.dm"
 #include "code\modules\clothing\suits\ego_gear\non_abnormality\ncorp.dm"
