@@ -712,7 +712,6 @@
 /obj/effect/turf_decal/tile/red,
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = -5;
 	pixel_y = 4
@@ -1094,7 +1093,6 @@
 "du" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -1533,7 +1531,6 @@
 	dir = 1
 	},
 /obj/structure/chair/sofa/right{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
@@ -1576,7 +1573,6 @@
 /area/facility_hallway/west)
 "eA" = (
 /obj/structure/chair/comfy/black{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 7
 	},
@@ -1673,7 +1669,6 @@
 /area/facility_hallway/human)
 "eW" = (
 /obj/structure/chair/comfy/black{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -1703,7 +1698,6 @@
 	dir = 8
 	},
 /obj/structure/chair/plastic{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = 12
 	},
@@ -2142,7 +2136,6 @@
 /obj/effect/turf_decal/tile/red,
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia,
@@ -2317,7 +2310,6 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -3085,7 +3077,6 @@
 	dir = 1
 	},
 /obj/structure/chair/sofa/left{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/plasteel/sepia{
@@ -3369,9 +3360,7 @@
 	color = "#bf48b1";
 	dir = 8
 	},
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/information)
 "jZ" = (
@@ -3572,7 +3561,6 @@
 "kz" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1
 	},
 /obj/effect/turf_decal/tile/red{
@@ -5297,7 +5285,6 @@
 "qn" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -5809,7 +5796,6 @@
 /area/facility_hallway/west)
 "rv" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 8
 	},
@@ -7341,7 +7327,6 @@
 "wC" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -7831,9 +7816,7 @@
 	},
 /area/facility_hallway/welfare)
 "yo" = (
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/effect/turf_decal/tile/purple{
 	color = "#bf48b1";
 	dir = 8
@@ -8029,7 +8012,6 @@
 "yO" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -9363,7 +9345,6 @@
 	icon_state = "LC29"
 	},
 /obj/structure/chair/comfy/black{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -9421,7 +9402,6 @@
 "DG" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -9761,9 +9741,7 @@
 	},
 /area/facility_hallway/central)
 "EA" = (
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/item/toy/plush/binah,
 /obj/effect/light_emitter{
 	light_power = 4;
@@ -10732,7 +10710,6 @@
 "Hk" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -11444,7 +11421,6 @@
 	dir = 4
 	},
 /obj/structure/chair/plastic{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = 12
 	},
@@ -11911,7 +11887,6 @@
 	color = "#5269e9"
 	},
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /turf/open/floor/plasteel/sepia,
@@ -12585,7 +12560,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 9
 	},
@@ -12827,7 +12801,6 @@
 "Nr" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -14318,7 +14291,6 @@
 	},
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = 5;
 	pixel_y = 4
@@ -14698,7 +14670,6 @@
 	color = "#5269e9"
 	},
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /obj/item/toy/plush/chesed,
@@ -16723,7 +16694,6 @@
 "ZD" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4

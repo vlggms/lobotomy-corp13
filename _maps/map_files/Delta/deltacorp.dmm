@@ -1348,7 +1348,6 @@
 /area/facility_hallway/welfare)
 "dp" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -1849,7 +1848,6 @@
 /area/facility_hallway/command)
 "eu" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -2671,7 +2669,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -3113,7 +3110,6 @@
 	},
 /obj/effect/turf_decal/tile/red,
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	pixel_y = 3
 	},
 /obj/item/toy/plush/malkuth,
@@ -3325,7 +3321,6 @@
 	color = "#006400"
 	},
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -3788,7 +3783,6 @@
 	dir = 8
 	},
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -4480,7 +4474,6 @@
 /area/department_main/records)
 "ki" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -4566,7 +4559,6 @@
 /area/facility_hallway/information)
 "ky" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	pixel_y = 3
 	},
 /obj/effect/turf_decal/tile/red{
@@ -5034,7 +5026,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -6614,9 +6605,7 @@
 /obj/effect/turf_decal/tile/green{
 	color = "#006400"
 	},
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /obj/item/toy/plush/netzach,
 /turf/open/floor/plasteel/sepia,
 /area/department_main/safety)
@@ -7489,7 +7478,6 @@
 /area/department_main/safety)
 "rm" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -7709,7 +7697,6 @@
 /area/department_main/control)
 "rJ" = (
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -8657,7 +8644,6 @@
 /area/department_main/training)
 "tF" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -10020,7 +10006,6 @@
 /area/facility_hallway/discipline)
 "xj" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -10610,7 +10595,6 @@
 /area/facility_hallway/command)
 "yF" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 9
 	},
@@ -13022,9 +13006,7 @@
 /turf/open/floor/plating,
 /area/department_main/records)
 "DR" = (
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/effect/light_emitter{
 	light_power = 4;
 	light_range = 10;
@@ -13285,7 +13267,6 @@
 "Eu" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 5
 	},
@@ -13726,9 +13707,7 @@
 	color = "#f8f8f8";
 	dir = 8
 	},
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /obj/effect/turf_decal/tile/green{
 	color = "#539b11"
 	},
@@ -15033,7 +15012,6 @@
 /area/department_main/information)
 "IG" = (
 /obj/structure/chair/comfy/teal{
-	can_buckle = 0;
 	pixel_y = 1
 	},
 /obj/effect/turf_decal/tile/blue{
@@ -15743,7 +15721,6 @@
 	dir = 8
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	pixel_y = 3
 	},
 /turf/open/floor/plasteel/sepia,
@@ -16564,7 +16541,6 @@
 /area/department_main/safety)
 "Me" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 9
 	},
@@ -17271,7 +17247,6 @@
 /area/facility_hallway/safety)
 "NQ" = (
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
@@ -17763,9 +17738,7 @@
 	set_cap = 3;
 	set_luminosity = 10
 	},
-/obj/structure/chair/comfy/black{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/black,
 /obj/item/toy/plush/binah,
 /turf/open/floor/carpet/royalblack,
 /area/department_main/extraction)
@@ -18157,7 +18130,6 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -18570,7 +18542,6 @@
 /area/facility_hallway/information)
 "Ra" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 5;
 	pixel_y = 4
@@ -18631,7 +18602,6 @@
 /area/department_main/welfare)
 "Rl" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 4
@@ -22217,7 +22187,6 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
