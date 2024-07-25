@@ -33,14 +33,14 @@
 	observation_fail_message = "The man clearly needs help, you rush to find a medic."
 
 	var/seed_list = list(
-		/obj/item/seeds/grass/fairy/amurdad,
-		/obj/item/seeds/apple/gold/amurdad,
-		/obj/item/seeds/ambrosia/gaia/amurdad,
+		/obj/item/seeds/grass/fairy,
+		/obj/item/seeds/apple/gold,
+		/obj/item/seeds/ambrosia/gaia,
 		/obj/item/seeds/wheat/meat,
-		/obj/item/seeds/cherry/bulb/amurdad,
+		/obj/item/seeds/cherry/bulb,
 		/obj/item/seeds/corn/snapcorn,
-		/obj/item/seeds/cocoapod/bungotree/amurdad,
-		/obj/item/seeds/cocoapod/vanillapod/amurdad,
+		/obj/item/seeds/cocoapod/bungotree,
+		/obj/item/seeds/cocoapod/vanillapod,
 		/obj/item/seeds/tobacco/space,
 		/obj/item/seeds/berry/glow/amurdad,
 		/obj/item/seeds/cannabis/white/amurdad,
@@ -149,7 +149,7 @@
 		return
 	..()
 
-/obj/effect/amurdad_grass
+/obj/effect/amurdad_grass //Doesn't allow repeatable harvest plants to be repeatable.
 	name = "grass"
 	desc = "A thick layer of foilage that never seems to die down."
 	icon = 'icons/turf/floors.dmi'
@@ -160,25 +160,6 @@
 /obj/effect/amurdad_grass/Initialize()
 	. = ..()
 	icon_state = "grass[rand(0,3)]"
-
-//Special seeds, no repeat harvest
-/obj/item/seeds/grass/fairy/amurdad
-	genes = list(/datum/plant_gene/trait/glow/blue)
-
-/obj/item/seeds/apple/gold/amurdad
-	genes = list(/datum/plant_gene/trait/glow/yellow)
-
-/obj/item/seeds/ambrosia/gaia/amurdad
-	genes = list()
-
-/obj/item/seeds/cherry/bulb/amurdad
-	genes = list()
-
-/obj/item/seeds/cocoapod/bungotree/amurdad
-	genes = list()
-
-/obj/item/seeds/cocoapod/vanillapod/amurdad
-	genes = list()
 
 // Non-toxic varieties of normal plants
 /obj/item/seeds/berry/glow/amurdad
@@ -193,20 +174,25 @@
 	genes = list()
 	reagents_add = list(
 		/datum/reagent/drug/space_drugs = 0.15,
-		/datum/reagent/consumable/nutriment/vitamin = 0.04,
-		/datum/reagent/consumable/nutriment = 0.1,
+		/datum/reagent/medicine/omnizine = 0.35,
 	)
 
 /obj/item/seeds/amanita/amurdad
 	reagents_add = list(
 		/datum/reagent/drug/space_drugs = 0.15,
 		/datum/reagent/consumable/nutriment = 0.04,
+		/datum/reagent/growthserum = 0.1,
 	)
 
 // Modified Weeds
 /obj/item/seeds/starthistle/amurdad
 	genes = list(/datum/plant_gene/trait/plant_type/weed_hardy)
 	product = /obj/item/food/grown/starthistle
+	reagents_add = list(
+		/datum/reagent/consumable/nutriment = 0.05,
+		/datum/reagent/medicine/silibinin = 0.1,
+		)
+
 
 /obj/item/food/grown/starthistle
 	seed = /obj/item/seeds/starthistle/amurdad
@@ -277,7 +263,7 @@
 	growing_icon = 'icons/obj/hydroponics/growing_flowers.dmi'
 	reagents_add = list(
 		/datum/reagent/consumable/nutriment = 0.07,
-		/datum/reagent/abnormality/quiet_day = 0.07,
+		/datum/reagent/drug/amurdad = 0.07,
 	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/weed_hardy
@@ -311,7 +297,7 @@
 	reagents_add = list(
 		/datum/reagent/consumable/nutriment = 0.07,
 		/datum/reagent/consumable/sugar = 0.07,
-		/datum/reagent/abnormality/we_can_change_anything = 0.07,
+		/datum/reagent/consumable/wellcheers_red = 0.07,
 	)
 	rarity = 30
 	graft_gene = /datum/plant_gene/trait/plant_type/fungal_metabolism

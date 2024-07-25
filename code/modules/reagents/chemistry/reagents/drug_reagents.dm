@@ -416,3 +416,18 @@
 
 	M.adjustToxLoss(5)
 	M.adjustOrganLoss(ORGAN_SLOT_LIVER,3)
+
+/datum/reagent/drug/amurdad
+	name = "Amurdad-Tainted Protein"
+	description = "Protein from a corpse tainted by Fallen Amurdad. Seems to make you desnsitized to your surroundings but messes with your mind in other ways."
+	reagent_state = LIQUID
+	color = "#410f0f"
+	trippy = FALSE
+	taste_description = list("flesh", "rotten meat")
+
+/datum/reagent/drug/amurdad/on_mob_life(mob/living/M)
+	. = ..()
+	M.hallucination += 20
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.adjustSanityLoss(-2)
