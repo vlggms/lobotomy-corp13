@@ -94,7 +94,7 @@
 		to_chat(source,span_nicegreen("Your [src] withers at the touch of death!"))
 		return ..()
 	to_chat(source,span_nicegreen("You are healed by [src]."))
-	source.adjustBruteLoss(-10)
+	source.adjustBruteLoss(-15)
 	source.adjustSanityLoss(-10)
 	..()
 
