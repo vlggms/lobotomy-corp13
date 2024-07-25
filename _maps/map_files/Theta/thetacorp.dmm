@@ -189,7 +189,11 @@
 	name = "wing-grade railing"
 	},
 /obj/machinery/light/small,
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "aQ" = (
 /obj/effect/turf_decal/tile/brown,
@@ -687,7 +691,11 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "cr" = (
 /obj/machinery/door/airlock{
@@ -1670,7 +1678,11 @@
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "fC" = (
 /obj/effect/turf_decal/tile/purple{
@@ -2285,7 +2297,11 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "hj" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -2592,7 +2608,11 @@
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "ir" = (
 /obj/effect/turf_decal/tile/yellow{
@@ -3732,7 +3752,11 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "mf" = (
 /obj/effect/turf_decal/tile/neutral,
@@ -6085,7 +6109,11 @@
 	alpha = 0;
 	mouse_opacity = 0
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "uO" = (
 /obj/machinery/telecomms/server/presets/command{
@@ -6835,7 +6863,11 @@
 	name = "wing-grade railing"
 	},
 /obj/machinery/light/small,
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "xB" = (
 /obj/effect/turf_decal/plaque{
@@ -7034,7 +7066,11 @@
 	pixel_x = -8;
 	pixel_y = 8
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "yf" = (
 /obj/structure/showcase/machinery{
@@ -7308,7 +7344,11 @@
 /obj/structure/railing/corner{
 	name = "wing-grade railing"
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "zg" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -11723,7 +11763,11 @@
 /turf/open/floor/carpet/purple,
 /area/department_main/information)
 "NI" = (
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "NJ" = (
 /obj/effect/turf_decal/tile/neutral{
@@ -13291,7 +13335,11 @@
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "Tx" = (
 /obj/effect/turf_decal/tile/brown{
@@ -15104,7 +15152,11 @@
 	dir = 1;
 	pixel_y = 19
 	},
-/turf/open/floor/fakepit,
+/turf/open/floor/fakepit{
+	density = 1;
+	desc = "An anomalous field of inky blackness caused by a wing's singularity, not even the bravest dares to delve into.";
+	name = "Void"
+	},
 /area/space)
 "ZA" = (
 /obj/machinery/modular_computer/console{
