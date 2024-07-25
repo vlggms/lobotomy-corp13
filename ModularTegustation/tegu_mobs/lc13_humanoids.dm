@@ -525,10 +525,10 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	ranged_cooldown_time = 45
 	melee_reach = 2
 	loot_weapon = list (
-	/obj/item/ego_weapon/city/mirage/sunstrike,
+	/obj/item/ego_weapon/city/echo/sunstrike,
 	)
 	loot_armor = list (
-	/obj/item/clothing/suit/armor/ego_gear/city/mirage/faux,
+	/obj/item/clothing/suit/armor/ego_gear/city/echo/faux,
 	)
 	var/burn_stacks = 2
 	projectiletype = /obj/projectile/flame_fixer
