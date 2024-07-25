@@ -233,9 +233,7 @@
 	color = "#006400";
 	dir = 8
 	},
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "aT" = (
@@ -1873,7 +1871,6 @@
 	},
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 7;
 	pixel_y = 4
@@ -2428,7 +2425,6 @@
 	dir = 4
 	},
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
@@ -3327,9 +3323,7 @@
 /turf/open/floor/facility/dark,
 /area/department_main/information)
 "jr" = (
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/item/toy/plush/netzach,
 /turf/open/floor/plasteel/dark,
@@ -3939,7 +3933,6 @@
 	dir = 8
 	},
 /obj/structure/chair/sofa/left{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5
 	},
@@ -3959,7 +3952,6 @@
 	},
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 4
 	},
@@ -4420,7 +4412,6 @@
 	},
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 6
@@ -5412,7 +5403,6 @@
 	dir = 8
 	},
 /obj/structure/chair/sofa/left{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5
 	},
@@ -5659,9 +5649,7 @@
 /turf/open/floor/plasteel/freezer,
 /area/facility_hallway/north)
 "qh" = (
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /obj/effect/turf_decal/siding/thinplating/dark,
 /obj/effect/turf_decal/siding/green/corner{
 	color = "#006400";
@@ -6179,7 +6167,6 @@
 /area/facility_hallway/information)
 "ru" = (
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
@@ -6727,9 +6714,7 @@
 /obj/effect/turf_decal/siding/thinplating/corner{
 	dir = 1
 	},
-/obj/structure/chair/comfy/lime{
-	can_buckle = 0
-	},
+/obj/structure/chair/comfy/lime,
 /turf/open/floor/plasteel/dark,
 /area/department_main/safety)
 "tb" = (
@@ -7818,7 +7803,6 @@
 	},
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_x = -13;
 	pixel_y = 10
@@ -7835,7 +7819,6 @@
 	},
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	pixel_x = -2
 	},
 /obj/item/toy/plush/malkuth,
@@ -8471,7 +8454,6 @@
 	},
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5;
 	pixel_y = 22
@@ -8573,7 +8555,6 @@
 	},
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 6
@@ -8757,7 +8738,6 @@
 /area/facility_hallway/south)
 "zc" = (
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
@@ -9217,7 +9197,6 @@
 /area/department_main/training)
 "Ak" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 9
 	},
@@ -9978,7 +9957,6 @@
 	},
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -7;
 	pixel_y = 4
@@ -13460,7 +13438,6 @@
 	dir = 8
 	},
 /obj/structure/chair/sofa/right{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5
 	},
@@ -14579,7 +14556,6 @@
 "PO" = (
 /obj/effect/turf_decal/siding/thinplating/corner,
 /obj/structure/chair/comfy/lime{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 11
 	},
@@ -14897,7 +14873,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -15525,7 +15500,6 @@
 "SM" = (
 /obj/structure/chair/office/light{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 4
 	},
@@ -16130,7 +16104,6 @@
 	dir = 1
 	},
 /obj/structure/chair/sofa/right{
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -5
 	},
@@ -17123,7 +17096,6 @@
 	},
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 6
@@ -17198,7 +17170,6 @@
 	},
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 6
