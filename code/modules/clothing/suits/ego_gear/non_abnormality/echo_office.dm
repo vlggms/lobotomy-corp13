@@ -1,5 +1,5 @@
-/obj/item/clothing/suit/armor/ego_gear/city/mirage
-	name = "Mirage outfit"
+/obj/item/clothing/suit/armor/ego_gear/city/echo
+	name = "Echo outfit"
 	desc = "You should not be able to see this."
 	icon_state = "maid_dress"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 50, BLACK_DAMAGE = 30, PALE_DAMAGE = 20)
@@ -10,7 +10,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/city/mirage/maid_dress
+/obj/item/clothing/suit/armor/ego_gear/city/echo/maid_dress
 	name = "Neon Maid Dress"
 	desc = "I have no reason to deny the greatness and beauty of such an amazing outfit!"
 	icon_state = "maid_dress"
@@ -22,7 +22,7 @@
 							JUSTICE_ATTRIBUTE = 60
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/city/mirage/stars
+/obj/item/clothing/suit/armor/ego_gear/city/echo/stars
 	name = "Reverie Under the Stars"
 	desc = "A change has happened."
 	icon_state = "stars"
@@ -35,7 +35,7 @@
 							JUSTICE_ATTRIBUTE = 80
 							)
 
-/obj/item/clothing/suit/armor/ego_gear/city/mirage/plated
+/obj/item/clothing/suit/armor/ego_gear/city/echo/plated
 	name = "Plated Outer Cover"
 	desc = "An echo of a past Memory... A painful one at that."
 	icon_state = "plated"
@@ -54,7 +54,7 @@
 	flags_inv = HIDEFACIALHAIR | HIDEFACE | HIDEHAIR
 	icon_state = "plated"
 
-/obj/item/clothing/suit/armor/ego_gear/city/mirage/faux
+/obj/item/clothing/suit/armor/ego_gear/city/echo/faux
 	name = "Frilled Maid Outfit/Faux Fur Coat"
 	desc = "Seems that layering the two outfits stops the coat from taking any effect, but it at least still protects whatever semi-professional image he's got left."
 	icon_state = "faux"

@@ -236,7 +236,22 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	var/can_act = TRUE
+	var/list/loot_weapon = list(
+	)
+	var/list/loot_armor = list(
+	)
 
+/mob/living/simple_animal/hostile/humanoid/fixer/drop_loot()
+	var/list/loot
+
+	if (prob(50))
+		loot = loot_armor
+	else
+		loot = loot_weapon
+
+	if(loot?.len)
+		for(var/i in loot)
+			new i(loc)
 
 /mob/living/simple_animal/hostile/humanoid/fixer/Move()
 	if(!can_act)
@@ -249,7 +264,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	return ..()
 
 /mob/living/simple_animal/hostile/humanoid/fixer/metal
-	name = "Metal Fixer"
+	name = "Memory Forger"
 	desc = "A dude covered in a full white cloak and always wear a white mask. He seems to be wearing a tactical vest."
 	icon_state = "metal_fixer"
 	icon_living = "metal_fixer"
@@ -268,6 +283,13 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	attack_verb_simple = "slice"
 	del_on_death = TRUE
 	ranged = TRUE
+	loot_weapon = list (
+		/obj/item/ego_weapon/shield/eria,
+		/obj/item/ego_weapon/city/echo/iria,
+	)
+	loot_armor = list (
+	/obj/item/clothing/suit/armor/ego_gear/city/echo/plated,
+	)
 	var/statue_type = /mob/living/simple_animal/hostile/metal_fixer_statue
 	var/shots_cooldown = 50
 	var/max_statues = 12
@@ -482,7 +504,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	return FALSE
 
 /mob/living/simple_animal/hostile/humanoid/fixer/flame
-	name = "Flame Fixer"
+	name = "Sanguine Flame"
 	desc = "A lanky young man with fair skin, dark eyes, and an often overoptimistic expression. A heavy spear decorated with vibrant patterns on the head."
 	icon_state = "flame_fixer"
 	icon_living = "flame_fixer"
@@ -502,6 +524,12 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 	ranged = TRUE
 	ranged_cooldown_time = 45
 	melee_reach = 2
+	loot_weapon = list (
+	/obj/item/ego_weapon/city/mirage/sunstrike,
+	)
+	loot_armor = list (
+	/obj/item/clothing/suit/armor/ego_gear/city/mirage/faux,
+	)
 	var/burn_stacks = 2
 	projectiletype = /obj/projectile/flame_fixer
 	var/damage_reflection = FALSE

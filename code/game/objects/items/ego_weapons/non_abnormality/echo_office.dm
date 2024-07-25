@@ -1,5 +1,5 @@
-/obj/item/ego_weapon/city/mirage
-	name = "mirage weapon"
+/obj/item/ego_weapon/city/echo
+	name = "echo weapon"
 	desc = "You should not see this."
 	icon_state = "miraecane"
 	force = 50
@@ -15,7 +15,7 @@
 	)
 
 //Electric Fixer Weapons
-/obj/item/ego_weapon/city/mirage/sodom
+/obj/item/ego_weapon/city/echo/sodom
 	name = "sodom"
 	desc = "Soon, All of the wicked shall be punished..."
 	special = "Upon hit the targets WHITE vulnerability is increased by 0.2."
@@ -32,7 +32,7 @@
 		JUSTICE_ATTRIBUTE = 60,
 	)
 
-/obj/item/ego_weapon/city/mirage/sodom/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/echo/sodom/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -42,7 +42,7 @@
 			new /obj/effect/temp_visual/cult/sparks(get_turf(M))
 			M.apply_status_effect(/datum/status_effect/rend_white)
 
-/obj/item/ego_weapon/city/mirage/sodom/gomorrah
+/obj/item/ego_weapon/city/echo/sodom/gomorrah
 	name = "gomorrah"
 
 //Metal Fixer Weapons
@@ -98,7 +98,7 @@
 	source.adjustSanityLoss(-10)
 	..()
 
-/obj/item/ego_weapon/city/mirage/iria
+/obj/item/ego_weapon/city/echo/iria
 	name = "iria"
 	desc = "Experiences have shaped me this way."
 	icon_state = "iria"
@@ -116,7 +116,7 @@
 	)
 
 //Flame Fixer Weapon
-/obj/item/ego_weapon/city/mirage/sunstrike
+/obj/item/ego_weapon/city/echo/sunstrike
 	name = "sunstrike"
 	desc = "A heavy spear decorated with vibrant patterns on the head. Etched with the name 'Helios' on the grip."
 	special = "This weapon inflicts burn on hit."
@@ -137,7 +137,7 @@
 		JUSTICE_ATTRIBUTE = 60,
 	)
 
-/obj/item/ego_weapon/city/mirage/sunstrike/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/echo/sunstrike/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
 		return
 	..()
