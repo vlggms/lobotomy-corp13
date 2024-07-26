@@ -437,11 +437,21 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 		//var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = target
 		qdel(src)
 		return BULLET_ACT_BLOCK
-	return ..()
+	var/mob/living/simple_animal/hostile/humanoid/fixer/metal/M = firer
+
+	if (istype(target, /mob))
+
+		var/mob/MOB = target
+		say("Target faction: " + jointext(MOB.faction, ", "))
+		if (MOB.faction_check_mob(M, FALSE))
+			say("Faction match")
+			return BULLET_ACT_BLOCK
+	. = ..()
+
 
 /mob/living/simple_animal/hostile/metal_fixer_statue
 	name = "Memory Statue"
-	desc = "A statue created by the Metal Fixer."
+	desc = "A statue created by the Memory Forger."
 	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
 	icon_state = "memory_statute"
 	damage_coeff = list(BRUTE = 1, RED_DAMAGE = 0.5, WHITE_DAMAGE = 0, BLACK_DAMAGE = 2, PALE_DAMAGE = 2)
@@ -489,7 +499,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 /mob/living/simple_animal/hostile/metal_fixer_statue/proc/heal_metal_fixer()
 	if(metal)
 		metal.adjustHealth(-heal_per_tick)
-		visible_message("<span class='notice'>The statue heals the Metal Fixer!</span>")
+		visible_message("<span class='notice'>The statue heals the Memory Forger!</span>")
 		playsound(src, 'sound/abnormalities/rosesign/rose_summon.ogg', 75, TRUE, 2)
 		icon_state = "memory_statute_heal" // Set the initial icon state to the rising animation
 		flick("memory_statute_heal", src) // Play the rising animation
@@ -584,7 +594,7 @@ Skittish, they prefer to move in groups and will run away if the enemies are in 
 					continue
 				new /obj/effect/temp_visual/mech_fire(T)
 				for(var/mob/living/L in T)
-					if(!faction_check_mob(L, FALSE) || locate(L) in hit_mob)
+					if(!faction_check_mob(L, FALSE) && !(locate(L) in hit_mob))
 						L.apply_damage(dash_damage, RED_DAMAGE, null, L.run_armor_check(null, RED_DAMAGE), spread_damage = TRUE)
 						LAZYADD(hit_mob, L)
 
