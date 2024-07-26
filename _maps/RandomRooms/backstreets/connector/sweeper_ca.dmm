@@ -36,7 +36,7 @@
 /obj/effect/decal/cleanable/blood/tracks{
 	dir = 8
 	},
-/obj/item/gun/ego_gun/clerk,
+/obj/item/gun/ego_gun/city/clerk,
 /turf/open/floor/plating/dirt/jungle/dark,
 /area/city/backstreets_room)
 "n" = (

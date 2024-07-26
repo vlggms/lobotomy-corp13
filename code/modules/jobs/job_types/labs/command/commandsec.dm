@@ -43,7 +43,7 @@
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/limbus/commandsec
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/jacket
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/jacket
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
@@ -96,7 +96,7 @@
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/limbus/commandsec
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/jacket
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/jacket
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black
@@ -149,7 +149,7 @@
 	ears = /obj/item/radio/headset/agent_lieutenant
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/limbus/commandsec
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/jacket
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/jacket
 	backpack_contents = list(/obj/item/melee/classic_baton=1)
 	shoes = /obj/item/clothing/shoes/laceup
 	gloves = /obj/item/clothing/gloves/color/black

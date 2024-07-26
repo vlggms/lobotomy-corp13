@@ -15,9 +15,9 @@
 
 /* Effects that proc on the installation of the mod.
 	Remember to override this for subtypes.*/
-/obj/item/workshop_mod/proc/InstallationEffect(obj/item/ego_weapon/template/T)
+/obj/item/workshop_mod/proc/InstallationEffect(obj/item/ego_weapon/city/template/T)
 	return
 
 //Effects that proc on the activation of the mod.
-/obj/item/workshop_mod/proc/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+/obj/item/workshop_mod/proc/ActivateEffect(obj/item/ego_weapon/city/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
 	return

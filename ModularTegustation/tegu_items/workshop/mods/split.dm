@@ -4,7 +4,7 @@
 	overlay = "split"
 
 //Split damage, currently only red and white
-/obj/item/workshop_mod/split/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+/obj/item/workshop_mod/split/ActivateEffect(obj/item/ego_weapon/city/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
 	var/userjust = (get_attribute_level(user, JUSTICE_ATTRIBUTE))
 	var/justicemod = 1 + userjust/100
 	var/splitdamage = justicemod*force

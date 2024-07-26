@@ -81,7 +81,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/rat
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/rat
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/rat
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	suit_store = /obj/item/gun/energy/e_gun/rabbitdash/small
 	l_pocket = /obj/item/flashlight/seclite

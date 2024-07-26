@@ -837,8 +837,8 @@
 	anchored = 1;
 	opened = 1
 	},
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
+/obj/item/clothing/suit/armor/ego_gear/adjustable/city/index_proxy,
+/obj/item/clothing/suit/armor/ego_gear/adjustable/city/index_proxy,
 /obj/effect/spawner/lootdrop/proxy,
 /obj/effect/spawner/lootdrop/proxy,
 /turf/open/floor/mineral/titanium/blue,
@@ -957,8 +957,8 @@
 	anchored = 1;
 	opened = 1
 	},
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
-/obj/item/clothing/suit/armor/ego_gear/adjustable/index_proxy,
+/obj/item/clothing/suit/armor/ego_gear/adjustable/city/index_proxy,
+/obj/item/clothing/suit/armor/ego_gear/adjustable/city/index_proxy,
 /obj/effect/spawner/lootdrop/proxy,
 /obj/effect/spawner/lootdrop/proxy,
 /obj/machinery/light{

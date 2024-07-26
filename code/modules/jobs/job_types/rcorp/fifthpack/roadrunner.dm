@@ -71,7 +71,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/roadrunner
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/roadrunner
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/roadrunner
 	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
 	l_pocket = /obj/item/flashlight/seclite
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
@@ -82,5 +82,5 @@
 
 	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
 	suit_store = null
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/roadrunnercap
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/roadrunnercap
 	ears = /obj/item/radio/headset/heads/headset_control

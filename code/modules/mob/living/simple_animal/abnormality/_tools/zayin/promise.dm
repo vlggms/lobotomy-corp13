@@ -23,7 +23,7 @@
 			to_chat(user, span_notice("You can no longer improve [I]!"))
 			return
 
-	if(istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/clerk))
+	if(istype(I, /obj/item/gun/ego_gun/pistol) || istype(I, /obj/item/gun/ego_gun) && !istype(I, /obj/item/gun/ego_gun/city/clerk))
 		var/obj/item/gun/thegun = I
 		if(thegun.projectile_damage_multiplier == 1)
 			DoTheOtherThing(I, 50)

@@ -38,7 +38,7 @@
 	uniform = /obj/item/clothing/under/suit/lobotomy/plain
 	shoes = /obj/item/clothing/shoes/sneakers/white
 	head = /obj/item/clothing/head/beret/tegu/cmo
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/cmo
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/cmo
 	l_hand = /obj/item/storage/firstaid/medical
 
 	backpack = /obj/item/storage/backpack/medic

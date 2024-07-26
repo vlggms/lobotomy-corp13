@@ -90,7 +90,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/raven/grunt
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raven
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/raven
 	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
 	backpack_contents = list(
@@ -99,7 +99,7 @@
 /datum/outfit/job/raven/support
 	name = "R-Corp Support Raven"
 	jobtype = /datum/job/raven/support
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravensup
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/ravensup
 	backpack_contents = list(
 		/obj/item/powered_gadget/slowingtrapmk1 = 1,
 		/obj/item/powered_gadget/detector_gadget/abnormality = 1,
@@ -112,6 +112,6 @@
 	jobtype = /datum/job/rcorp_captain/raven
 	glasses = /obj/item/clothing/glasses/hud/health/night/rabbit
 	head = /obj/item/clothing/head/rabbit_helmet/raven
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/ravencap
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/ravencap
 	suit_store = null
 	ears = /obj/item/radio/headset/heads/headset_information

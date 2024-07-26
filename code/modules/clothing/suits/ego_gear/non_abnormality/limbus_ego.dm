@@ -1,4 +1,6 @@
 /obj/item/clothing/suit/armor/ego_gear/limbus/ego
+	icon = 'icons/obj/clothing/ego_gear/limbus_suits.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/limbus_suit.dmi'
 	blood_overlay_type = null
 	flags_inv = HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS|HANDS|HEAD

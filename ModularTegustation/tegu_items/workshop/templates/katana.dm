@@ -1,4 +1,4 @@
-/obj/item/ego_weapon/template/katana
+/obj/item/ego_weapon/city/template/katana
 	name = "katana template"
 	desc = "A blank katana workshop template."
 	special = "Use this weapon in hand to stun yourself to deal 2x damage for the next attack."
@@ -14,7 +14,7 @@
 	finisheddesc = "A finished katana, ready for use."
 	var/ready = TRUE
 
-/obj/item/ego_weapon/template/katana/attack_self(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/template/katana/attack_self(mob/living/carbon/human/user)
 	..()
 	if(!CanUseEgo(user))
 		return
@@ -27,13 +27,13 @@
 	force*=2
 	addtimer(CALLBACK(src, PROC_REF(Return), user), attack_speed*attack_speed*30)
 
-/obj/item/ego_weapon/template/katana/attack(mob/living/target, mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/template/katana/attack(mob/living/target, mob/living/carbon/human/user)
 	..()
 	if(force != initial(force))
 		to_chat(user, span_userdanger("Over the sea."))
 		force = initial(force)
 
-/obj/item/ego_weapon/template/katana/proc/Return(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/template/katana/proc/Return(mob/living/carbon/human/user)
 	force = initial(force)
 	ready = TRUE
 	to_chat(user, span_notice("Your blade is ready."))

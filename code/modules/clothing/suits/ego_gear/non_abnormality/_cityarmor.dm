@@ -17,3 +17,22 @@
 		else
 			equip_bonus = 0
 	. = ..()
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/city
+	icon = 'icons/obj/clothing/ego_gear/lc13_armor.dmi'
+	worn_icon = 'icons/mob/clothing/ego_gear/lc13_armor.dmi'
+
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/city/examine(mob/user)
+	. = ..()
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			. += span_notice("Due to your abilities, you get a -20 reduction to stat requirements when equipping this armor.")
+
+/obj/item/clothing/suit/armor/ego_gear/adjustable/city/CanUseEgo(mob/living/user)
+	if(user.mind)
+		if(user.mind.assigned_role in list("Disciplinary Officer", "Emergency Response Agent")) //These guys get a bonus to equipping gacha.
+			equip_bonus = 20
+		else
+			equip_bonus = 0
+	. = ..()

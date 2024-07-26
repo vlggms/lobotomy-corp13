@@ -72,7 +72,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/raccoon
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raccoon
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/raccoon
 	belt = /obj/item/ego_weapon/city/rabbit_blade/raven
 	backpack_contents = list(
 		/obj/item/grenade/smokebomb = 1,
@@ -85,7 +85,7 @@
 	name = "Raccoon Squad Leader"
 	jobtype = /datum/job/rcorp_captain/raccoon
 
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/raccooncap
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/raccooncap
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	suit_store = null
 	ears = /obj/item/radio/headset/heads/headset_information

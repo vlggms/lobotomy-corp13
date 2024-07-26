@@ -1,5 +1,5 @@
 //Sinner weapons - TETH
-/obj/item/ego_weapon/mini/hayong
+/obj/item/ego_weapon/mini/city/hayong
 	name = "ha yong"
 	desc = "Have you heard of the taxidermied genius?"
 	special = "This weapon attacks very fast. Use this weapon in hand to dodgeroll."
@@ -13,7 +13,7 @@
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	var/dodgelanding
 
-/obj/item/ego_weapon/mini/hayong/attack_self(mob/living/carbon/user)
+/obj/item/ego_weapon/mini/city/hayong/attack_self(mob/living/carbon/user)
 	if(user.dir == 1)
 		dodgelanding = locate(user.x, user.y + 5, user.z)
 	if(user.dir == 2)
@@ -25,7 +25,7 @@
 	user.adjustStaminaLoss(20, TRUE, TRUE)
 	user.throw_at(dodgelanding, 3, 2, spin = TRUE)
 
-/obj/item/ego_weapon/shield/walpurgisnacht
+/obj/item/ego_weapon/shield/city/walpurgisnacht
 	name = "walpurgisnacht"
 	desc = "Man errs so long as he strives."
 	icon_state = "walpurgisnacht"
@@ -49,7 +49,7 @@
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
 
-/obj/item/ego_weapon/lance/suenoimpossible
+/obj/item/ego_weapon/lance/city/suenoimpossible
 	name = "sueno impossible"
 	desc = "To reach the unreachable star!"
 	icon_state = "sueno_impossible"
@@ -67,7 +67,7 @@
 	attack_verb_simple = list("bludgeon", "whack")
 	hitsound = 'sound/weapons/fixer/generic/spear2.ogg'
 
-/obj/item/ego_weapon/shield/sangria
+/obj/item/ego_weapon/shield/city/sangria
 	name = "S.A.N.G.R.I.A"
 	desc = "Succinct abbreviation naturally germinates rather immaculate art."
 	icon_state = "sangria"
@@ -90,10 +90,10 @@
 	hit_message = "parries the attack!"
 	block_cooldown_message = "You rearm your blade."
 
-/obj/item/ego_weapon/shield/sangria/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
+/obj/item/ego_weapon/shield/city/sangria/hit_reaction(mob/living/carbon/human/owner, atom/movable/hitby, attack_text = "the attack", final_block_chance = 0, damage = 0, attack_type = MELEE_ATTACK)
 	return 0 //Prevents ranged  parry
 
-/obj/item/ego_weapon/mini/soleil
+/obj/item/ego_weapon/mini/city/soleil
 	name = "soleil"
 	desc = "Today I killed my mother, or maybe it was yesterday?"
 	icon_state = "soleil"
@@ -105,7 +105,7 @@
 	damtype = RED_DAMAGE
 
 
-/obj/item/ego_weapon/taixuhuanjing
+/obj/item/ego_weapon/city/taixuhuanjing
 	name = "tai xuhuan jing"
 	desc = "Jade has its flaws, and life its vicissitudes."
 	icon_state = "tai_xuhuan_jing"
@@ -121,7 +121,7 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/sword1.ogg'
 
-/obj/item/ego_weapon/revenge
+/obj/item/ego_weapon/city/revenge
 	name = "revenge"
 	desc = "I have not broken your heart - YOU have; and in breaking it, you have broken mine."
 	icon_state = "revenge"
@@ -135,7 +135,7 @@
 	attack_verb_continuous = list("beats", "smacks")
 	attack_verb_simple = list("beat", "smack")
 
-/obj/item/ego_weapon/revenge/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/revenge/attack(mob/living/target, mob/living/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -144,7 +144,7 @@
 		var/whack_speed = (prob(60) ? 1 : 4)
 		target.throw_at(throw_target, rand(1, 2), whack_speed, user)
 
-/obj/item/ego_weapon/mini/hearse
+/obj/item/ego_weapon/mini/city/hearse
 	name = "hearse"
 	desc = "That bastard's still alive out there..."
 	icon_state = "hearse"
@@ -158,7 +158,7 @@
 	attack_verb_continuous = list("smashes", "bludgeons", "crushes")
 	attack_verb_simple = list("smash", "bludgeon", "crush")
 
-/obj/item/ego_weapon/shield/hearse
+/obj/item/ego_weapon/shield/city/hearse
 	name = "hearse"
 	desc = "Call me Ishmael."
 	special = "This weapon has a slow attack speed and deals atrocious damage."
@@ -178,7 +178,7 @@
 	block_cooldown = 3 SECONDS
 	block_sound_volume = 30
 
-/obj/item/ego_weapon/raskolot //horn but a boomerang
+/obj/item/ego_weapon/city/raskolot //horn but a boomerang
 	name = "raskolot"
 	desc = "If only she could forget everything and begin afresh."
 	icon_state = "raskolot"
@@ -193,7 +193,7 @@
 
 	hitsound = 'sound/weapons/ego/axe2.ogg'
 
-/obj/item/ego_weapon/raskolot/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/ego_weapon/city/raskolot/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
@@ -202,7 +202,7 @@
 	else
 		return ..()
 
-/obj/item/ego_weapon/vogel
+/obj/item/ego_weapon/city/vogel
 	name = "vogel"
 	desc = "The world of evil had begun there, right in the middle of our house."
 	icon_state = "vogel"
@@ -218,7 +218,7 @@
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
 	hitsound = 'sound/weapons/ego/axe2.ogg'
 
-/obj/item/ego_weapon/nobody
+/obj/item/ego_weapon/city/nobody
 	name = "nobody"
 	desc = "I am nothing at all."
 	special = "This E.G.O. functions as both a gun and a melee weapon."
@@ -239,11 +239,11 @@
 	var/gunmark_cooldown
 	var/gun_cooldown_time = 1.2 SECONDS
 
-/obj/item/ego_weapon/nobody/Initialize()
+/obj/item/ego_weapon/city/nobody/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	return ..()
 
-/obj/item/ego_weapon/nobody/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/ego_weapon/city/nobody/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
 		return
 	if(!proximity_flag && gun_cooldown <= world.time)
@@ -259,7 +259,7 @@
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 
-/obj/item/ego_weapon/nobody/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+/obj/item/ego_weapon/city/nobody/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
 	return TRUE
 
@@ -269,7 +269,7 @@
 	damage_type = RED_DAMAGE
 
 
-/obj/item/ego_weapon/ungezifer
+/obj/item/ego_weapon/city/ungezifer
 	name = "ungezifer"
 	desc = "As I awoke one morning from uneasy dreams I found myself transformed in my bed into a gigantic insect."
 	icon_state = "ungezifer"

@@ -40,4 +40,4 @@
 	l_hand = /obj/item/choice_beacon/officer
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	l_pocket = /obj/item/flashlight/seclite
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/officer
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/officer

@@ -66,14 +66,11 @@
 							)
 
 //Slows you to half but has really good defenses. This is Kcorp Bread and butter, because it's really good
-/obj/item/ego_weapon/shield/kcorp
+/obj/item/ego_weapon/shield/city/kcorp
 	name = "K corp riot shield"
 	desc = "A riot shield used by K corp employees."
 	special = "Slows down the user significantly."
-	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	icon_state = "kshield"
-	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	force = 15
 	slowdown = 0.7
 	damtype = RED_DAMAGE
@@ -87,14 +84,11 @@
 	item_flags = SLOWS_WHILE_IN_HAND
 
 // Guns below
-/obj/item/gun/ego_gun/pistol/kcorp
+/obj/item/gun/ego_gun/pistol/city/kcorp
 	name = "Kcorp pistol"
 	desc = "A lime green pistol used by Kcorp."
 	icon_state = "kpistol"
-	icon = 'ModularTegustation/Teguicons/lc13_weapons.dmi'
 	inhand_icon_state = "kpistol"
-	lefthand_file = 'ModularTegustation/Teguicons/lc13_left.dmi'
-	righthand_file = 'ModularTegustation/Teguicons/lc13_right.dmi'
 	ammo_type = /obj/item/ammo_casing/caseless/ego_kcorp
 	fire_delay = 5
 	shotsleft = 12
@@ -104,7 +98,7 @@
 
 
 // Guns below
-/obj/item/gun/ego_gun/pistol/kcorp/smg
+/obj/item/gun/ego_gun/pistol/city/kcorp/smg
 	name = "Kcorp Machinepistole"
 	desc = "A lime green machinepistol used by Kcorp."
 	icon_state = "ksmg"
@@ -122,7 +116,7 @@
 							)
 
 
-/obj/item/gun/ego_gun/pistol/kcorp/nade
+/obj/item/gun/ego_gun/pistol/city/kcorp/nade
 	name = "Kcorp grenade launcher"
 	desc = "A short grenade launcher used by Kcorp."
 	icon_state = "kgrenade"

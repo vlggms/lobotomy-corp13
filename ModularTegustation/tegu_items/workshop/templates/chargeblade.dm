@@ -1,5 +1,5 @@
 //Copypasta of the Wcorp batong
-/obj/item/ego_weapon/template/chargeblade
+/obj/item/ego_weapon/city/template/chargeblade
 	name = "chargeblade template"
 	desc = "A glowing weapon made using Wcorp charge technology."
 	icon_state = "chargetemplate"
@@ -17,6 +17,6 @@
 	successfull_activation = "You release your charge, damaging your opponent!"
 	charge_effect = "deal an extra attack in damage."
 
-/obj/item/ego_weapon/template/chargeblade/ChargeAttack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/template/chargeblade/ChargeAttack(mob/living/target, mob/living/user)
 	. = ..()
 	target.apply_damage(force, damtype, null, target.run_armor_check(null, damtype), spread_damage = TRUE)

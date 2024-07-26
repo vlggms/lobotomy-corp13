@@ -132,8 +132,8 @@
 	required_research = /datum/data/lc13research/kweapons
 
 /datum/data/lc13research/kguns/ResearchEffect(obj/structure/representative_console/caller)
-	ItemUnlock(caller.order_list, "K Corp Machinepistole",	/obj/item/gun/ego_gun/pistol/kcorp/smg, 600)
-	ItemUnlock(caller.order_list, "K Corp Light Grenade Launcher",	/obj/item/gun/ego_gun/pistol/kcorp/nade, 600)
+	ItemUnlock(caller.order_list, "K Corp Machinepistole",	/obj/item/gun/ego_gun/pistol/city/kcorp/smg, 600)
+	ItemUnlock(caller.order_list, "K Corp Light Grenade Launcher",	/obj/item/gun/ego_gun/pistol/city/kcorp/nade, 600)
 	..()
 
 /datum/data/lc13research/karmor1

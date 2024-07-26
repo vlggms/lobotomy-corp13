@@ -1,6 +1,6 @@
 // The main gimmick is changing weapons while unlocking furioso. Changing weapons has 1 minute cooldown that reduces each time you attack
 // Ping Chiemi for questions, but she's also confused
-/obj/item/ego_weapon/black_silence_gloves
+/obj/item/ego_weapon/city/black_silence_gloves
 	name = "Gloves of the Black Silence"
 	desc = "Worn out gloves that were originally used by the Black Silence."
 	special = "SHIFT+CLICK to perform Furioso after using all of Black Silences weapons."
@@ -33,17 +33,17 @@
 	var/list/unlocked_list = list()
 	var/iff = TRUE
 
-/obj/item/ego_weapon/black_silence_gloves/equipped(mob/user, slot)
+/obj/item/ego_weapon/city/black_silence_gloves/equipped(mob/user, slot)
 	. = ..()
 	if(!user)
 		return
 	RegisterSignal(user, COMSIG_MOB_SHIFTCLICKON, PROC_REF(DoChecks))
 
-/obj/item/ego_weapon/black_silence_gloves/Destroy(mob/user)
+/obj/item/ego_weapon/city/black_silence_gloves/Destroy(mob/user)
 	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
 	return ..()
 
-/obj/item/ego_weapon/black_silence_gloves/dropped(mob/user)
+/obj/item/ego_weapon/city/black_silence_gloves/dropped(mob/user)
 	. = ..()
 	UnregisterSignal(user, COMSIG_MOB_SHIFTCLICKON)
 
@@ -54,11 +54,11 @@
 	button_icon_state = "gloves"
 
 /datum/action/item_action/toggle_iff/Trigger()
-	var/obj/item/ego_weapon/black_silence_gloves/H = target
+	var/obj/item/ego_weapon/city/black_silence_gloves/H = target
 	if(istype(H))
 		H.toggle_iff(owner)
 
-/obj/item/ego_weapon/black_silence_gloves/proc/toggle_iff(mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/toggle_iff(mob/living/user)
 	if(iff)
 		iff = FALSE
 		to_chat(user,span_warning("You will now attack everything indiscriminately!"))
@@ -66,7 +66,7 @@
 		iff = TRUE
 		to_chat(user,span_warning("You will now only attack enemies!"))
 
-/obj/item/ego_weapon/black_silence_gloves/proc/dash(mob/living/user, turf/target_turf)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/dash(mob/living/user, turf/target_turf)
 	var/list/line_turfs = list(get_turf(user))
 	for(var/turf/T in getline(user, target_turf))
 		line_turfs += T
@@ -80,7 +80,7 @@
 		D.alpha = min(150 + i*15, 255)
 		animate(D, alpha = 0, time = 2 + i*2)
 
-/obj/item/ego_weapon/black_silence_gloves/proc/DoChecks(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/DoChecks(mob/living/user, atom/target)
 	var/mob/living/L = target
 	if(!CanUseEgo(user))
 		return
@@ -96,21 +96,21 @@
 			return
 	Special(user, target)
 
-/obj/item/ego_weapon/black_silence_gloves/attack_self(mob/user)
+/obj/item/ego_weapon/city/black_silence_gloves/attack_self(mob/user)
 	if(!CanUseEgo(user))
 		return
 	exchange_armaments(user)
 
 // Radial menu
-/obj/item/ego_weapon/black_silence_gloves/proc/exchange_armaments(mob/user)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/exchange_armaments(mob/user)
 	if(exchange_cooldown > world.time)
 		to_chat(user, span_notice("Your gloves are still recharging, keep hitting enemies to charge it faster."))
 		return
 
 	var/list/display_names = list()
 	var/list/armament_icons = list()
-	for(var/arms in typesof(/obj/item/ego_weapon/black_silence_gloves))
-		var/obj/item/ego_weapon/black_silence_gloves/armstype = arms
+	for(var/arms in typesof(/obj/item/ego_weapon/city/black_silence_gloves))
+		var/obj/item/ego_weapon/city/black_silence_gloves/armstype = arms
 		if(initial(armstype)) // Changes icon based on furioso unlocks
 			display_names[initial(armstype.name)] = armstype
 			if(initial(armstype.name) in unlocked_list)
@@ -126,10 +126,10 @@
 		return
 
 	var/picked = display_names[choice] // This needs to be on a separate var as list member access is not allowed for new
-	var/obj/item/ego_weapon/black_silence_gloves/selected_armament = new picked(user.drop_location())
+	var/obj/item/ego_weapon/city/black_silence_gloves/selected_armament = new picked(user.drop_location())
 
 	if(selected_armament) // I'm sorry if this is confusing, it checks if you've already used this weapon and transfers variables
-		var/obj/item/ego_weapon/black_silence_gloves/Y = selected_armament
+		var/obj/item/ego_weapon/city/black_silence_gloves/Y = selected_armament
 		Y.unlocked_list = unlocked_list
 		if(!(Y.name in unlocked_list) && Y.name != origin_name)
 			Y.unlocked_list += Y.name
@@ -153,12 +153,12 @@
 			playsound(user, 'sound/weapons/black_silence/snap.ogg', 50, 1)
 		Y.exchange_cooldown = world.time + exchange_cooldown_time
 
-/obj/item/ego_weapon/black_silence_gloves/proc/furioso_reset()
+/obj/item/ego_weapon/city/black_silence_gloves/proc/furioso_reset()
 	unlocked = FALSE
 	unlocked_list = list()
 
 // check_menu: Checks if we are allowed to interact with a radial menu
-/obj/item/ego_weapon/black_silence_gloves/proc/check_menu(mob/user)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/check_menu(mob/user)
 	if(!istype(user))
 		return FALSE
 	if(QDELETED(src))
@@ -168,12 +168,12 @@
 	return TRUE
 
 // Refrain from putting things here since it will fuck up every other black silence weapon
-/obj/item/ego_weapon/black_silence_gloves/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	..()
 
-/obj/item/ego_weapon/black_silence_gloves/proc/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/Special(mob/living/user, atom/target)
 	exchange_cooldown = 0 //Just to make sure they're not stuck in glove form if they accidentally press it
 	if(isliving(target))
 		if(unlocked_list.len > 8)
@@ -182,7 +182,7 @@
 			to_chat(user,span_userdanger("You haven't used all of Black Silence's Weapons!"))
 
 // switching weapon increases damage dealt. Annoying but high damage, you're supposed to keep changing weapons anyway
-/obj/item/ego_weapon/black_silence_gloves/zelkova
+/obj/item/ego_weapon/city/black_silence_gloves/zelkova
 	name = "Zelkova Workshop"
 	desc = "Mace and Axe once belonged to the Black Silence."
 	special = "SHIFT+CLICK to attack with mace. Simultaneously switching your attacks will increase attack speed. Resets if you fail to do so"
@@ -195,7 +195,7 @@
 	var/special_check = FALSE
 	locked_state = "zelkova_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/zelkova/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/zelkova/Special(mob/living/user, atom/target)
 	if(get_dist(src, target) <= 1)
 		attack_verb_continuous = list("smashes", "smacks", "bashes")
 		attack_verb_simple = list("smash", "smacks", "bashes")
@@ -210,7 +210,7 @@
 			attack_speed = 1.2
 		attack(target, user)
 
-/obj/item/ego_weapon/black_silence_gloves/zelkova/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/zelkova/attack(mob/living/M, mob/living/user)
 	if(!(special_check))
 		attack_verb_continuous = list("slashes", "cuts", "slices")
 		attack_verb_simple = list("slash", "cut", "slice")
@@ -235,7 +235,7 @@
 		weapon = 1
 
 // literally unga bunga, loland's 3 dice. Adding dot (bleed) seems meh anyways
-/obj/item/ego_weapon/black_silence_gloves/ranga
+/obj/item/ego_weapon/city/black_silence_gloves/ranga
 	name = "Ranga Workshop"
 	desc = "Shortsword and Gauntlets once belonged to the Black Silence."
 	special = "SHIFT+CLICK to perform 3 consecutive dash attacks on the enemy. Successful attacks reduces the dash cooldown"
@@ -248,13 +248,13 @@
 	var/dash_count = 0
 	locked_state = "ranga_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/ranga/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/ranga/Special(mob/living/user, atom/target)
 	if(!(isliving(target)))
 		return
 	special_cooldown = world.time + special_cooldown_time
 	dash_attack(user, target)
 
-/obj/item/ego_weapon/black_silence_gloves/ranga/proc/dash_attack(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/ranga/proc/dash_attack(mob/living/user, atom/target)
 	user.dir = get_dir(user, target)
 	var/turf/target_turf = get_step(get_turf(target), get_dir(src, target))
 	dash(user, target_turf)
@@ -276,7 +276,7 @@
 			playsound(user, 'sound/weapons/black_silence/shortsword.ogg', 90, 1)
 			dash_count = 0
 
-/obj/item/ego_weapon/black_silence_gloves/ranga/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/ranga/attack(mob/living/M, mob/living/user)
 	var/sfx = pick(1, 2, 3)
 	switch(sfx)
 		if(1)
@@ -290,7 +290,7 @@
 	exchange_cooldown -= 10
 
 // parry increases attack (block dice)
-/obj/item/ego_weapon/black_silence_gloves/old_boys
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys
 	name = "Old Boys Workshop"
 	desc = "Hammer once belonged to the Black Silence."
 	special = "SHIFT+CLICK to parry attacks and reduce damage. Successful parries increases next damage dealt"
@@ -307,7 +307,7 @@
 	var/list/reductions = list(90, 90, 100, 90)
 	locked_state = "old_boys_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/old_boys/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys/Special(mob/living/user, atom/target)
 	if (block == 0)
 		var/mob/living/carbon/human/shield_user = user
 		if(shield_user.physiology.armor.bomb) //"We have NOTHING that should be modifying this, so I'm using it as an existant parry checker." - Ancientcoders
@@ -329,7 +329,7 @@
 		to_chat(user, span_userdanger("You attempt to parry the attack!"))
 		return TRUE
 
-/obj/item/ego_weapon/black_silence_gloves/old_boys/proc/DisableBlock(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys/proc/DisableBlock(mob/living/carbon/human/user)
 	user.physiology.armor = user.physiology.armor.modifyRating(bomb = -1)
 	user.physiology.red_mod /= max(0.001, (1 - ((reductions[1]) / 100)))
 	user.physiology.white_mod /= max(0.001, (1 - ((reductions[2]) / 100)))
@@ -341,20 +341,20 @@
 	if (!block_success)
 		BlockFail(user)
 
-/obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockCooldown(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys/proc/BlockCooldown(mob/living/carbon/human/user)
 	block = FALSE
 	to_chat(user,span_nicegreen("You rearm your hammer"))
 
-/obj/item/ego_weapon/black_silence_gloves/old_boys/proc/BlockFail(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys/proc/BlockFail(mob/living/carbon/human/user)
 	to_chat(user,span_warning("Your stance is widened."))
 	force = 50
 	addtimer(CALLBACK(src, PROC_REF(RemoveDebuff), user), 2 SECONDS)
 
-/obj/item/ego_weapon/black_silence_gloves/old_boys/proc/RemoveDebuff(mob/living/carbon/human/user)
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys/proc/RemoveDebuff(mob/living/carbon/human/user)
 	to_chat(user,span_nicegreen("You recollect your stance."))
 	force = 80
 
-/obj/item/ego_weapon/black_silence_gloves/old_boys/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys/proc/AnnounceBlock(mob/living/carbon/human/source, damage, damagetype, def_zone)
 	SIGNAL_HANDLER
 	block_success = TRUE
 
@@ -364,7 +364,7 @@
 	if(!(buff_check))
 		parry_buff = TRUE
 
-/obj/item/ego_weapon/black_silence_gloves/old_boys/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/old_boys/attack(mob/living/M, mob/living/user)
 	if(parry_buff)
 		force = 130
 		hitsound = 'sound/weapons/black_silence/greatsword.ogg'
@@ -382,7 +382,7 @@
 		exchange_cooldown -= 20
 
 // mid ranged support (damage buffer)
-/obj/item/ego_weapon/black_silence_gloves/allas
+/obj/item/ego_weapon/city/black_silence_gloves/allas
 	name = "Allas Workshop"
 	desc = "Spear once belonged to the Black Silence."
 	special = "SHIFT+CLICK to dash to the enemy. The further you are, the higher the dash damage. On hit, increases targets vulnerability to BLACK DAMAGE"
@@ -396,7 +396,7 @@
 	hitsound = 'sound/weapons/ego/spear1.ogg'
 	locked_state = "allas_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/allas/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/allas/Special(mob/living/user, atom/target)
 	var/list/line_turfs = list(get_turf(user))
 	if(!(isliving(target)))
 		return
@@ -411,7 +411,7 @@
 	exchange_cooldown -= 80
 	attack(target, user)
 
-/obj/item/ego_weapon/black_silence_gloves/allas/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/allas/attack(mob/living/M, mob/living/user)
 	. = ..()
 	if(!.)
 		return FALSE
@@ -425,7 +425,7 @@
 			target.apply_status_effect(/datum/status_effect/rend_black)
 
 // litrally just vergil, I don't even care
-/obj/item/ego_weapon/black_silence_gloves/mook
+/obj/item/ego_weapon/city/black_silence_gloves/mook
 	name = "Mook Workshop"
 	desc = "LongSword once belonged to the Black Silence."
 	special = "SHIFT+CLICK to perform judgm- air slash (has 3 stacks, resets to 3 each cooldown). Performing an attack between 1.8-2.2 seconds greatly increases damage."
@@ -441,7 +441,7 @@
 	var/stacks_reset_wait = 100
 	locked_state = "mook_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/mook/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/mook/Special(mob/living/user, atom/target)
 	if(stacks_reset_time <= world.time)
 		stacks = 3
 	if(stacks == 3)
@@ -458,7 +458,7 @@
 				exchange_cooldown -= 10
 			sleep(0.25 SECONDS)
 
-/obj/item/ego_weapon/black_silence_gloves/mook/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/mook/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	concentration_time = concentration_time - world.time
@@ -475,7 +475,7 @@
 
 
 // iff guns with shotgun as knockback
-/obj/item/ego_weapon/black_silence_gloves/logic
+/obj/item/ego_weapon/city/black_silence_gloves/logic
 	name = "Atelier Logic"
 	desc = "Shotgun and dual revolvers once belonged to the Black Silence."
 	special = "SHIFT+CLICK to shoot your shotgun, knocking back nearby enemies. On 2 successful bullet hits, the shotgun is instantly reloaded"
@@ -491,11 +491,11 @@
 	var/aoe_width = 1
 	locked_state = "logic_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/logic/Initialize()
+/obj/item/ego_weapon/city/black_silence_gloves/logic/Initialize()
 	RegisterSignal(src, COMSIG_PROJECTILE_ON_HIT, PROC_REF(projectile_hit))
 	return ..()
 
-/obj/item/ego_weapon/black_silence_gloves/logic/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/logic/Special(mob/living/user, atom/target)
 	special_cooldown = world.time + special_cooldown_time
 	var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
 	var/turf/source_turf = get_turf(src)
@@ -583,7 +583,7 @@
 				L.throw_at(throw_target, 1, whack_speed, user)
 			exchange_cooldown -= 30
 
-/obj/item/ego_weapon/black_silence_gloves/logic/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
+/obj/item/ego_weapon/city/black_silence_gloves/logic/afterattack(atom/target, mob/living/user, proximity_flag, clickparams)
 	if(!CanUseEgo(user))
 		return
 	if(!proximity_flag && gun_cooldown <= world.time)
@@ -602,7 +602,7 @@
 		gun_cooldown = world.time + gun_cooldown_time
 		return
 
-/obj/item/ego_weapon/black_silence_gloves/logic/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
+/obj/item/ego_weapon/city/black_silence_gloves/logic/proc/projectile_hit(atom/fired_from, atom/movable/firer, atom/target, Angle)
 	SIGNAL_HANDLER
 
 	if(isliving(target))
@@ -613,11 +613,11 @@
 		special_cooldown = 0
 		combo_count = 0
 
-/obj/item/ego_weapon/black_silence_gloves/logic/exchange_armaments(mob/user)
+/obj/item/ego_weapon/city/black_silence_gloves/logic/exchange_armaments(mob/user)
 	UnregisterSignal(src, COMSIG_PROJECTILE_ON_HIT)
 	..()
 
-/obj/item/ego_weapon/black_silence_gloves/logic/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/logic/attack(mob/living/M, mob/living/user)
 	..()
 	exchange_cooldown -= 20 //freebie in case you hit with melee
 
@@ -643,7 +643,7 @@
 		qdel(src)
 
 // builds up power each hit
-/obj/item/ego_weapon/black_silence_gloves/durandal
+/obj/item/ego_weapon/city/black_silence_gloves/durandal
 	name = "Durandal"
 	desc = "It has been, it still is, faithful to me..."
 	special = "SHIFT+CLICK to perform a finisher attack. Successful attacks increase this weapon's power up to 10 times."
@@ -660,13 +660,13 @@
 	var/combo_wait = 50
 	locked_state = "durandal_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/durandal/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/durandal/Special(mob/living/user, atom/target)
 	if(isliving(target) && get_dist(src, target) <= 1)
 		special_cooldown = world.time + special_cooldown_time
 		finisher = TRUE
 		attack(target, user)
 
-/obj/item/ego_weapon/black_silence_gloves/durandal/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/durandal/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	if(combo_time <= world.time)
@@ -689,7 +689,7 @@
 	finisher = FALSE
 
 // basically burst hit and run (evade dice lmao)
-/obj/item/ego_weapon/black_silence_gloves/crystal
+/obj/item/ego_weapon/city/black_silence_gloves/crystal
 	name = "Crystal Atelier"
 	desc = "Dual Swords once belonged to the Black Silence."
 	special = "SHIFT+CLICK to perform 2 consecutive dash attacks on the enemy. Finishing a combo allows you to perform a dodge"
@@ -709,7 +709,7 @@
 	var/evade_range = 5
 	locked_state = "crystal_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/crystal/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/crystal/Special(mob/living/user, atom/target)
 	if(isliving(target) && dash_cooldown <= world.time)
 		dash_cooldown = world.time + dash_cooldown_time
 		dash_attack(user, target)
@@ -735,7 +735,7 @@
 			animate(D, alpha = 0, time = 2 + i*2)
 			playsound(user, 'sound/weapons/black_silence/evasion.ogg', 50, 1)
 
-/obj/item/ego_weapon/black_silence_gloves/crystal/proc/dash_attack(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/crystal/proc/dash_attack(mob/living/user, atom/target)
 	user.dir = get_dir(user, target)
 	var/turf/target_turf = get_step(get_turf(target), get_dir(src, target))
 	var/mob/living/L = target
@@ -753,7 +753,7 @@
 		exchange_cooldown -= 30
 		dash_count = 0
 
-/obj/item/ego_weapon/black_silence_gloves/crystal/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/crystal/attack(mob/living/M, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	if(world.time > combo_time)
@@ -781,7 +781,7 @@
 	force = initial(force)
 
 // basic weapon with big damage and aoe
-/obj/item/ego_weapon/black_silence_gloves/wheels
+/obj/item/ego_weapon/city/black_silence_gloves/wheels
 	name = "Wheels Industry"
 	desc = "Greatsword once belonged to the Black Silence."
 	special = "SHIFT+CLICK to perform a giant AoE attack."
@@ -796,7 +796,7 @@
 	var/aoe_width = 2
 	locked_state = "wheels_locked"
 
-/obj/item/ego_weapon/black_silence_gloves/wheels/Special(mob/living/user, atom/target)
+/obj/item/ego_weapon/city/black_silence_gloves/wheels/Special(mob/living/user, atom/target)
 	special_cooldown = world.time + special_cooldown_time
 	if(do_after(user, 10, target))
 		var/dir_to_target = get_cardinal_dir(get_turf(src), get_turf(target))
@@ -897,7 +897,7 @@
 		special_cooldown = 0
 		return
 
-/obj/item/ego_weapon/black_silence_gloves/wheels/attack(mob/living/M, mob/living/user)
+/obj/item/ego_weapon/city/black_silence_gloves/wheels/attack(mob/living/M, mob/living/user)
 	..()
 	var/atom/throw_target = get_edge_target_turf(M, user.dir)
 	if(!M.anchored)
@@ -905,7 +905,7 @@
 		M.throw_at(throw_target, rand(1, 2), whack_speed, user)
 	exchange_cooldown -= 50
 
-/obj/item/ego_weapon/black_silence_gloves/proc/furioso(mob/living/user, mob/living/target)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/furioso(mob/living/user, mob/living/target)
 	special_cooldown = world.time + 500 SECONDS //This just prevents spam click, you will change weapon anyways
 	furioso_start(user, target)
 	var/mob/living/L = target
@@ -1032,7 +1032,7 @@
 
 	furioso_end(user, target)
 
-/obj/item/ego_weapon/black_silence_gloves/proc/furioso_start(mob/living/user, mob/living/target)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/furioso_start(mob/living/user, mob/living/target)
 	ADD_TRAIT(src, TRAIT_NODROP, STICKY_NODROP)
 	user.status_flags |= GODMODE
 	user.Stun(60 SECONDS, ignore_canstun = TRUE)
@@ -1047,7 +1047,7 @@
 		H.LoseTarget()
 	user.anchored = TRUE
 
-/obj/item/ego_weapon/black_silence_gloves/proc/furioso_end(mob/living/user, mob/living/target)
+/obj/item/ego_weapon/city/black_silence_gloves/proc/furioso_end(mob/living/user, mob/living/target)
 	user.status_flags &= ~GODMODE
 	user.AdjustStun(-60 SECONDS, ignore_canstun = TRUE)
 	target.AdjustStun(-60 SECONDS, ignore_canstun = TRUE)

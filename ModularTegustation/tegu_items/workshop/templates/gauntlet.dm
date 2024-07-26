@@ -1,4 +1,4 @@
-/obj/item/ego_weapon/template/gauntlet
+/obj/item/ego_weapon/city/template/gauntlet
 	name = "gauntlet template"
 	desc = "The weapon of someone who can swing their weight around like a truck"
 	special = "This weapon deals it's damage after a short windup."
@@ -9,7 +9,7 @@
 	finisheddesc = "A finished gauntlet, ready for use."
 
 //Similar to Gold Rush
-/obj/item/ego_weapon/template/gauntlet/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/template/gauntlet/attack(mob/living/target, mob/living/user)
 	if(!active)
 		to_chat(user, span_notice("This weapon is unfinished!"))
 		return

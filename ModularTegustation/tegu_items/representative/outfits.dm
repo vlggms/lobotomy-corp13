@@ -1,9 +1,9 @@
 // THE WCORP STUFF
-/obj/item/clothing/suit/armor/ego_gear/wcorp/ert
+/obj/item/clothing/suit/armor/ego_gear/city/wcorp/ert
 	equip_slowdown = 0
 	attribute_requirements = list()
 
-/obj/item/clothing/suit/armor/ego_gear/wcorp/ert/kill
+/obj/item/clothing/suit/armor/ego_gear/city/wcorp/ert/kill
 	desc = "A light armor vest worn by W corp L3 Cleanup Staff. It's light as a feather."
 	armor = list(RED_DAMAGE = 50, WHITE_DAMAGE = 50, BLACK_DAMAGE = 50, PALE_DAMAGE = 50)
 
@@ -15,7 +15,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/ego_hat/wcorp
-	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/ert
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/wcorp/ert
 	belt = /obj/item/ego_weapon/city/wcorp
 
 /datum/outfit/wcorp/level2
@@ -35,7 +35,7 @@
 /datum/outfit/wcorp/level3
 	name = "W Corp L3"
 	belt = null
-	suit = /obj/item/clothing/suit/armor/ego_gear/wcorp/ert/kill
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/wcorp/ert/kill
 	gloves = /obj/item/clothing/gloves/combat
 	glasses = /obj/item/clothing/glasses/hud/health/night
 	l_pocket = /obj/item/reagent_containers/hypospray/medipen/salacid
@@ -73,7 +73,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	suit = /obj/item/clothing/suit/armor/ego_gear/city/kcorp_l1/ert
-	suit_store = /obj/item/ego_weapon/shield/kcorp
+	suit_store = /obj/item/ego_weapon/shield/city/kcorp
 	id = /obj/item/card/id
 
 /datum/outfit/kcorp/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

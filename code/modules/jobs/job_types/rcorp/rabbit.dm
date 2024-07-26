@@ -84,7 +84,7 @@
 	gloves = /obj/item/clothing/gloves/color/black
 	implants = list(/obj/item/organ/cyberimp/eyes/hud/security)
 	head = /obj/item/clothing/head/rabbit_helmet/grunt
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/grunts
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/grunts
 	l_pocket = /obj/item/flashlight/seclite
 	r_pocket = /obj/item/pinpointer/nuke/rcorp
 
@@ -93,7 +93,7 @@
 	jobtype = /datum/job/rabbit/assault
 
 	suit_store = /obj/item/ego_weapon/city/rabbit_rush
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit/assault
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit/assault
 	belt = null
 
 /datum/outfit/job/rabbit/assault/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)
@@ -114,7 +114,7 @@
 	name = "Rabbit Squad Captain"
 	jobtype = /datum/job/rcorp_captain/rabbit
 	glasses = /obj/item/clothing/glasses/hud/health/night/rabbit
-	suit = /obj/item/clothing/suit/armor/ego_gear/rabbit
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/rabbit
 	belt = /obj/item/ego_weapon/city/rabbit_blade
 	head = null
 	suit_store = null

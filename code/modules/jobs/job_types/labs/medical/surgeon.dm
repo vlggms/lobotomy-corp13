@@ -40,7 +40,7 @@
 	head = /obj/item/clothing/head/beret/tegu/med
 	l_hand = /obj/item/storage/firstaid/medical
 	l_pocket = /obj/item/radio
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/doctor
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/doctor
 
 	backpack = /obj/item/storage/backpack/medic
 	satchel = /obj/item/storage/backpack/satchel/med

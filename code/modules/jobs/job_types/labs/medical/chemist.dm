@@ -36,4 +36,4 @@
 	head = /obj/item/clothing/head/beret/tegu/chem
 	l_pocket = /obj/item/radio
 	glasses = /obj/item/clothing/glasses/sunglasses/chemical
-	suit = /obj/item/clothing/suit/armor/ego_gear/limbus_labs/chem
+	suit = /obj/item/clothing/suit/armor/ego_gear/city/limbus_labs/chem

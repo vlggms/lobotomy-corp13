@@ -31,7 +31,7 @@
 	autofire = 0.15 SECONDS
 
 //My sweet orange tree - The cure
-/obj/item/gun/ego_gun/flammenwerfer
+/obj/item/gun/ego_gun/city/flammenwerfer
 	name = "flamethrower"
 	desc = "A shitty flamethrower, great for clearing out infested areas and people."
 	special = "Use this in-hand to cover yourself in flames. To prevent infection, of course."
@@ -47,7 +47,7 @@
 	autofire = 0.08 SECONDS
 	fire_sound_volume = 5
 
-/obj/item/gun/ego_gun/flammenwerfer/attack_self(mob/user)
+/obj/item/gun/ego_gun/city/flammenwerfer/attack_self(mob/user)
 	if(!ishuman(user))
 		return
 	var/mob/living/carbon/human/H = user

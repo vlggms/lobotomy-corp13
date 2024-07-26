@@ -1,4 +1,4 @@
-/obj/item/ego_weapon/template/spear
+/obj/item/ego_weapon/city/template/spear
 	name = "spear template"
 	desc = "A blank spear workshop template."
 	icon_state = "speartemplate"
@@ -14,7 +14,7 @@
 	finisheddesc = "A finished spear, ready for use."
 
 
-/obj/item/ego_weapon/template/sword
+/obj/item/ego_weapon/city/template/sword
 	name = "sword template"
 	desc = "A blank sword workshop template."
 	icon_state = "swordtemplate"
@@ -28,7 +28,7 @@
 	finisheddesc = "A finished sword, ready for use."
 
 
-/obj/item/ego_weapon/template/hammer
+/obj/item/ego_weapon/city/template/hammer
 	name = "hammer template"
 	desc = "A blank hammer workshop template."
 	icon_state = "hammertemplate"
@@ -44,7 +44,7 @@
 	finisheddesc = "A finished hammer, ready for use."
 
 
-/obj/item/ego_weapon/template/javelin
+/obj/item/ego_weapon/city/template/javelin
 	name = "javelin template"
 	desc = "A blank javelin workshop template."
 	icon_state = "javelintemplate"
@@ -61,7 +61,7 @@
 	finisheddesc = "A finished javelin, ready for use."
 
 
-/obj/item/ego_weapon/template/boomerang
+/obj/item/ego_weapon/city/template/boomerang
 	name = "boomerang template"
 	desc = "A blank boomerang workshop template."
 	icon_state = "boomerangtemplate"
@@ -75,7 +75,7 @@
 	finishedname = list("boomerang")
 	finisheddesc = "A finished boomerang, ready for use."
 
-/obj/item/ego_weapon/template/boomerang/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+/obj/item/ego_weapon/city/template/boomerang/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
 	var/caught = hit_atom.hitby(src, FALSE, FALSE, throwingdatum=throwingdatum)
 	if(thrownby && !caught)
 		addtimer(CALLBACK(src, TYPE_PROC_REF(/atom/movable, throw_at), thrownby, throw_range+2, throw_speed, null, TRUE), 1)
@@ -84,7 +84,7 @@
 	else
 		return ..()
 
-/obj/item/ego_weapon/template/greatsword
+/obj/item/ego_weapon/city/template/greatsword
 	name = "greatsword template"
 	desc = "A blank greatsword workshop template."
 	icon_state = "greatswordtemplate"
@@ -98,7 +98,7 @@
 	finishedname = list("greatsword", "buster")
 	finisheddesc = "A finished greatsword, ready for use."
 
-/obj/item/ego_weapon/template/claw
+/obj/item/ego_weapon/city/template/claw
 	name = "claw template"
 	desc = "A blank claw workshop template."
 	icon_state = "clawtemplate"
@@ -111,7 +111,7 @@
 	finishedname = list("claw")
 	finisheddesc = "A finished claw, ready for use."
 
-/obj/item/ego_weapon/template/club
+/obj/item/ego_weapon/city/template/club
 	name = "club template"
 	desc = "A blank club workshop template."
 	special = "This weapon has knockback."
@@ -125,7 +125,7 @@
 	finishedname = list("club")
 	finisheddesc = "A finished club, ready for use."
 
-/obj/item/ego_weapon/template/club/attack(mob/living/target, mob/living/user)
+/obj/item/ego_weapon/city/template/club/attack(mob/living/target, mob/living/user)
 	if(!CanUseEgo(user))
 		return
 	. = ..()

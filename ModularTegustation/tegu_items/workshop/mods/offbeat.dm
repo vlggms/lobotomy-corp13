@@ -21,13 +21,13 @@
 	//Who is using us.
 	var/mob/living/current_user
 	//What we are installed into.
-	var/obj/item/ego_weapon/template/modded_temp
+	var/obj/item/ego_weapon/city/template/modded_temp
 
-/obj/item/workshop_mod/vile/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+/obj/item/workshop_mod/vile/ActivateEffect(obj/item/ego_weapon/city/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
 	AdjustBalance(T.force * 0.2, user, target)
 	..()
 
-/obj/item/workshop_mod/vile/InstallationEffect(obj/item/ego_weapon/template/T)
+/obj/item/workshop_mod/vile/InstallationEffect(obj/item/ego_weapon/city/template/T)
 	modded_temp = T
 	if(screen_obj_type)
 		RegisterSignal(modded_temp, COMSIG_ITEM_EQUIPPED, PROC_REF(itemGrabbed))

@@ -4,7 +4,7 @@
 	overlay = "sapping"
 
 //Heals mental damage.
-/obj/item/workshop_mod/sapping/ActivateEffect(obj/item/ego_weapon/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
+/obj/item/workshop_mod/sapping/ActivateEffect(obj/item/ego_weapon/city/template/T, special_count = 0, mob/living/target, mob/living/carbon/human/user)
 	if(!(target.status_flags & GODMODE) && target.stat != DEAD)
 		var/heal_amt = T.force*0.10
 		if(isanimal(target))
