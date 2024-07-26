@@ -64,8 +64,6 @@
 							TEMPERANCE_ATTRIBUTE = 60,
 							JUSTICE_ATTRIBUTE = 60
 							)
-	var/dash_cooldown
-	var/dash_cooldown_time = 3 //3 second cooldown.
 	var/dash_range = 7 //7 tile dash range.
 
 /obj/item/ego_weapon/mini/crow/afterattack(atom/A, mob/living/user, proximity_flag, params)
@@ -73,13 +71,12 @@
 		return
 	if(!isliving(A))
 		return
-	if(dash_cooldown > world.time)
-		to_chat(user, span_warning("Your dash is still recharging!"))
+	if((!(can_see(user, A, dash_range))))
+		to_chat(user, span_warning("You cannot see your target."))
 		return
-	if((get_dist(user, A) < 2) || (!(can_see(user, A, dash_range))))
+	if(get_dist(user, A) < 2)
 		return
 	..()
-	dash_cooldown = world.time + dash_cooldown_time
 	for(var/i in 2 to get_dist(user, A))
 		step_towards(user,A)
 	if((get_dist(user, A) < 2))
