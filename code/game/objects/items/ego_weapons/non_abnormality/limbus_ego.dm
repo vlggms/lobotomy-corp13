@@ -47,13 +47,13 @@
 /obj/item/ego_weapon/mini/crow
 	name = "Crow's Eye View"
 	desc = "Now, break this birdcage... and fly free."
-	special = "This weapon attacks very fast. Use this weapon in hand to rush towards where you click."
+	special = "This weapon attacks very fast. Attacking with this weapon from a distance will make you rush towards your target."
 	icon_state = "crow"
 	icon = 'icons/obj/limbus_weapons.dmi'
 	inhand_icon_state = "shiv"
 	lefthand_file = 'icons/mob/inhands/weapons/swords_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/weapons/swords_righthand.dmi'
-	force = 30
+	force = 25
 	attack_speed = 0.5 //this shit goes FAST
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "slices", "rips", "shanks")
