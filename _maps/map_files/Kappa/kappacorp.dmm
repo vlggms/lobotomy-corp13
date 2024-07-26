@@ -258,7 +258,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat"
 	},
@@ -375,7 +374,6 @@
 /area/facility_hallway/control)
 "bY" = (
 /obj/structure/chair/sofa/corp/left{
-	can_buckle = 0;
 	dir = 8
 	},
 /turf/open/floor/facility/dark{
@@ -1900,7 +1898,6 @@
 "kD" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 10
 	},
@@ -2875,7 +2872,6 @@
 /area/facility_hallway/information)
 "nQ" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	dir = 8;
 	name = "metalic seat";
@@ -2979,7 +2975,6 @@
 /area/facility_hallway/safety)
 "oo" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	dir = 8;
 	name = "metalic seat";
@@ -3332,8 +3327,7 @@
 /area/department_main/safety)
 "pJ" = (
 /obj/structure/chair/office{
-	anchored = 1;
-	can_buckle = 0
+	anchored = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/line,
 /turf/open/floor/pod/dark,
@@ -3599,7 +3593,6 @@
 "rk" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 10
 	},
@@ -4081,8 +4074,7 @@
 /area/facility_hallway/information)
 "tq" = (
 /obj/structure/chair/office{
-	anchored = 1;
-	can_buckle = 0
+	anchored = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/item/toy/plush/malkuth,
@@ -4861,7 +4853,6 @@
 "wY" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 8;
 	pixel_x = -6;
 	pixel_y = 4
@@ -5413,7 +5404,6 @@
 "zj" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 4;
 	pixel_x = 6;
 	pixel_y = 4
@@ -6159,7 +6149,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	name = "metalic seat"
 	},
@@ -7434,7 +7423,6 @@
 	dir = 1
 	},
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	dir = 1;
 	name = "metalic seat";
@@ -8070,7 +8058,6 @@
 /area/department_main/safety)
 "MI" = (
 /obj/structure/chair/sofa/corp/right{
-	can_buckle = 0;
 	dir = 4
 	},
 /turf/open/floor/facility/dark{
@@ -8636,8 +8623,7 @@
 /area/facility_hallway/control)
 "Pp" = (
 /obj/structure/chair/office{
-	anchored = 1;
-	can_buckle = 0
+	anchored = 1
 	},
 /obj/effect/turf_decal/trimline/red/filled/line,
 /obj/effect/turf_decal/siding/red{
@@ -8803,20 +8789,16 @@
 /turf/open/floor/pod/dark,
 /area/facility_hallway/information)
 "Qe" = (
-/obj/structure/bookcase/random{
-	density = 0;
-	pixel_y = 15
-	},
 /obj/effect/turf_decal/siding/brown{
 	color = "#422702";
 	dir = 4
 	},
 /obj/effect/turf_decal/trimline/brown/filled/line,
+/obj/structure/extraction_belt,
 /turf/open/floor/pod,
 /area/department_main/training)
 "Qi" = (
 /obj/structure/chair/comfy/brown{
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 12
 	},
@@ -8883,7 +8865,6 @@
 "Qv" = (
 /obj/structure/chair/office{
 	anchored = 1;
-	can_buckle = 0;
 	dir = 1;
 	pixel_y = 10
 	},
@@ -9677,7 +9658,6 @@
 /area/department_main/control)
 "Uw" = (
 /obj/structure/chair/comfy/shuttle{
-	can_buckle = 0;
 	desc = "A comfortable, secure seat.";
 	dir = 4;
 	name = "metalic seat";
@@ -10359,7 +10339,6 @@
 /area/facility_hallway/training)
 "XM" = (
 /obj/structure/chair/sofa/corp/right{
-	can_buckle = 0;
 	dir = 8
 	},
 /obj/item/toy/plush/yuri,

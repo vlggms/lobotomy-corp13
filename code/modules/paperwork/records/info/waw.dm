@@ -532,9 +532,10 @@
 	abno_code = "F-01-57"
 	abno_info = list(
 		"Requesting F-01-57 to suppress escaping Abnormalities or manifested Ordeals is a very useful resource. However, making such a request is not free.",
-		"When F-01-57 was denied the killing blow to a requested suppression, it did not show an extreme emotional response, but begin attacking indiscriminately.",
+		"Requesting to suppress an abnormality will cost more PE depending on the abnormality's risk level. For other targets, F-01-57 will charge more as the day progresses.",
+		"F-01-57 did not attack employees during a quest, and returned to containment after the suppression was completed.",
 		"The Qliphoth Counter decreased every time an Abnormality escaped. However, it did not respond similarly to the escape of O-02-56.",
 		"The abnormality had particularly strong reactions when encountering F-01-117 (Blue-Smocked Shepherd), F-02-127 (Reddened Buddy), and especially F-02-58 (Big and will be Bad Wolf).",
-		"When the above occurred, F-01-57 entered a state of apparent heightened emotion, attacking more rapidly, dealing and taking more damage, and ignoring other targets.",
+		"When the above occurred, F-01-57 entered a state of apparent heightened emotion, attacking more rapidly, dealing and taking more damage, and tracking the encountered abnormality.",
 		"When F-01-57 was denied a killing blow to F-02-58, the abnormality went on a rampage."
 	)

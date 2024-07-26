@@ -1886,19 +1886,6 @@
 	},
 /turf/closed/indestructible/reinforced,
 /area/facility_hallway/east)
-"oc" = (
-/obj/structure/filingcabinet{
-	pixel_x = -10
-	},
-/obj/structure/filingcabinet,
-/obj/structure/filingcabinet{
-	pixel_x = 10
-	},
-/obj/structure/sign/departments/extraction{
-	pixel_x = 32
-	},
-/turf/open/floor/carpet/red,
-/area/department_main/control)
 "oi" = (
 /obj/structure/bodycontainer/extraction{
 	dir = 1
@@ -4806,6 +4793,9 @@
 /area/facility_hallway/north)
 "Lq" = (
 /obj/machinery/regenerator,
+/obj/structure/sign/departments/extraction{
+	pixel_x = 32
+	},
 /turf/open/floor/carpet/red,
 /area/department_main/control)
 "Lr" = (
@@ -5336,6 +5326,10 @@
 /obj/item/kitchen/knife,
 /turf/open/floor/plasteel/white,
 /area/department_main/training)
+"PH" = (
+/obj/machinery/computer/extraction_cargo,
+/turf/open/floor/carpet/royalblack,
+/area/department_main/control)
 "PI" = (
 /obj/machinery/computer/operating,
 /turf/open/floor/facility/white,
@@ -5673,10 +5667,6 @@
 	dir = 4
 	},
 /turf/open/floor/plasteel/dark,
-/area/department_main/control)
-"RZ" = (
-/obj/machinery/computer/extraction_cargo,
-/turf/open/floor/carpet/royalblack,
 /area/department_main/control)
 "Se" = (
 /obj/effect/landmark/start,
@@ -6366,6 +6356,10 @@
 /obj/item/reagent_containers/hypospray/medipen/salacid,
 /turf/open/floor/wood,
 /area/facility_hallway/north)
+"Xb" = (
+/obj/structure/extraction_belt,
+/turf/open/floor/carpet/red,
+/area/department_main/control)
 "Xd" = (
 /obj/machinery/camera/autoname,
 /turf/open/floor/plasteel/dark,
@@ -40863,8 +40857,8 @@ ZL
 ZL
 ZL
 rg
-oc
-FV
+rg
+Xb
 FV
 FV
 FV
@@ -41119,7 +41113,7 @@ ZL
 ZL
 ZL
 ZL
-rg
+ZL
 rg
 gt
 tT
@@ -42149,7 +42143,7 @@ ZL
 ZL
 ZL
 rg
-RZ
+PH
 AU
 ci
 AU

@@ -21,3 +21,11 @@
 	desc = "A uniform created by the carnival out of the G-Corp remnants, It is like you can feel their pain of being thrown away."
 	icon_state = "steel_armor"
 	armor = list(RED_DAMAGE = 30, WHITE_DAMAGE = 0, BLACK_DAMAGE = 30, PALE_DAMAGE = 0)
+
+/obj/item/clothing/suit/armor/ego_gear/city/azure_armor
+	name = "Reforged Suit"
+	desc = "A suit created by the carnival out of the Resurgence Clan Machines, You can almost feel a soul which yearns for their humanity. \n\
+		It increases your movement speed by 20%."
+	icon_state = "azure_armor"
+	slowdown = -0.2
+	armor = list(RED_DAMAGE = -10, WHITE_DAMAGE = 20, BLACK_DAMAGE = -10, PALE_DAMAGE = 0)

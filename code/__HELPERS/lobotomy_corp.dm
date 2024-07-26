@@ -1,4 +1,4 @@
-/// Returns list of all living agents that can work
+/// Returns list of all living agents that can work (Also Suppression Agents if suppressioncount = TRUE)
 /proc/AllLivingAgents(suppressioncount = FALSE)
 	. = list()
 	var/suppression_roles = list("Emergency Response Agent", "Disciplinary Officer")
@@ -12,7 +12,7 @@
 				continue
 		. += H
 
-/// Returns amount of available agents that can work
+/// Returns amount of available agents that can work (Also Suppression Agents if suppressioncount = TRUE)
 /proc/AvailableAgentCount(suppressioncount = FALSE)
 	. = 0
 	for(var/mob/living/carbon/human/H in AllLivingAgents(suppressioncount))

@@ -262,18 +262,6 @@
 	pixel_y = 16
 	hitsound = 'sound/abnormalities/redhood/attack_2.ogg'
 
-/obj/projectile/hunter_blade/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	var/living = FALSE
-	if(!isliving(target))
-		return ..()
-	var/mob/living/attacked_mob = target
-	if(attacked_mob.stat != DEAD)
-		living = TRUE
-	..()
-	if(attacked_mob.stat == DEAD && living)
-		var/mob/living/simple_animal/hostile/abnormality/red_hood/red_owner
-		red_owner.ConfirmRangedKill(0.1)
-
 /obj/projectile/red_hollowpoint
 	name = "hollowpoint shell"
 	desc = "A bullet fired from a red-cloaked mercenary's ruthless weapon."
@@ -282,18 +270,6 @@
 	speed = 0.6
 	spread = 10
 	pixel_y = 30
-
-/obj/projectile/red_hollowpoint/on_hit(atom/target, blocked = FALSE, pierce_hit)
-	var/living = FALSE
-	if(!isliving(target))
-		return ..()
-	var/mob/living/attacked_mob = target
-	if(attacked_mob.stat != DEAD)
-		living = TRUE
-	..()
-	if(attacked_mob.stat == DEAD && living)
-		var/mob/living/simple_animal/hostile/abnormality/red_hood/red_owner
-		red_owner.ConfirmRangedKill(0.1)
 
 /obj/item/ammo_casing/caseless/nihil_abnormality
 	name = "dark energy casing"

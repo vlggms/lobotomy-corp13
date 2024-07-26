@@ -630,7 +630,9 @@
 
 /mob/living/simple_animal/hostile/abnormality/nobody_is/patrol_select() //Hunt down the chosen one
 	if(chosen) //YOU'RE MINE
-		patrol_to(get_turf(chosen))
+		SEND_SIGNAL(src, COMSIG_PATROL_START, src, get_turf(chosen)) //Overrides the usual proc to target a specific tile
+		SEND_GLOBAL_SIGNAL(src, COMSIG_GLOB_PATROL_START, src, get_turf(chosen))
+		patrol_path = get_path_to(src, get_turf(chosen), TYPE_PROC_REF(/turf, Distance_cardinal), 0, 200)
 		return
 	else
 		ChangeReflection()

@@ -125,17 +125,13 @@
 	. = ..()
 	update_icon()
 
-/* NOTICE TO ANY LITTLE RED CODER
-	Put little red here when possible. This proc will make it so that if the target
-	is little red they will not check faction they WILL fight. -IP
-
+//If the target is little red they will not check faction they WILL fight. -IP
 /mob/living/simple_animal/hostile/abnormality/big_wolf/CanAttack(atom/the_target)
-	if(istype(the_target, LITTLE_RED)
+	if(istype(the_target, /mob/living/simple_animal/hostile/abnormality/red_hood))
 		var/mob/living/L = the_target
 		if(L.stat != DEAD)
 			return TRUE
-	..()
-*/
+	return ..()
 
 /mob/living/simple_animal/hostile/abnormality/big_wolf/death(gibbed)
 	update_icon()
@@ -334,6 +330,8 @@
 					continue
 				new /obj/effect/temp_visual/slice(T)
 				hit_mob = HurtInTurf(T, hit_mob, 50, RED_DAMAGE, null, TRUE, FALSE, TRUE, hurt_structure = TRUE)
+				for(var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary in hit_mob)
+					mercenary.deal_damage(100, RED_DAMAGE) //triple damge to red
 	can_act = TRUE
 
 //Used in Steel noons for if they are allowed to fly through something.
@@ -371,7 +369,15 @@
 				if(ABNO.IsContained())
 					//Spot for when little red is added so we can breach her when she hears us.
 					ABNO.datum_reference.qliphoth_change(-1)
-					continue
+					if(!istype(ABNO, /mob/living/simple_animal/hostile/abnormality/red_hood))
+						continue
+			if(istype(L, /mob/living/simple_animal/hostile/abnormality/red_hood))
+				var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary = L
+				if(mercenary.IsContained())
+					mercenary.BreachEffect()
+				mercenary.priority_target = src
+				mercenary.deal_damage(150, WHITE_DAMAGE) //She takes triple damage from the wolf, becauser her resistances are high
+				mercenary.RageUpdate(2)
 			if(faction_check_mob(L, FALSE))
 				continue
 			if(L.stat == DEAD)
@@ -382,6 +388,13 @@
 		playsound(get_turf(src), 'sound/abnormalities/big_wolf/Wolf_Howl.ogg', 30, 0, 4)
 	cut_overlay(visual_overlay)
 	can_act = TRUE
+
+/mob/living/simple_animal/hostile/abnormality/big_wolf/AttackingTarget()
+	if(istype(target, /mob/living/simple_animal/hostile/abnormality/red_hood)) //Red takes triple damage from the wolf, becauser her resistances are high
+		var/mob/living/simple_animal/hostile/abnormality/red_hood/mercenary = target
+		var/bonus_damage_dealt = 2 * (rand(melee_damage_lower,melee_damage_upper))
+		mercenary.deal_damage(bonus_damage_dealt, RED_DAMAGE)
+	return ..()
 
 #undef BIGWOLF_COOLDOWN_HOWL
 #undef BIGWOLF_COOLDOWN_DASH
