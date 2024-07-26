@@ -357,7 +357,7 @@
 	name = "green stem"
 	desc = "All personnel involved in the equipment's production wore heavy protection to prevent them from being influenced by the entity."
 	special = "Wielding this weapon grants an immunity to the slowing effects of the princess's vines. \
-				When used in hand 30 sanity will be consumed before channeling a 7 second vine burst that \
+				When used in hand the user will begin channeling a 7 second vine burst that \
 				will hit all hostiles in a 3 tile range around the user. If vine burst is used at 30% sanity the damage is \
 				increased by 50% but will hit allies due to the intense hatred of F-04-42 influencing the user."
 	icon_state = "green_stem"
@@ -373,12 +373,18 @@
 	attribute_requirements = list(
 							TEMPERANCE_ATTRIBUTE = 80
 							)
-	var/vine_cooldown
-
-
-/obj/item/ego_weapon/stem/Initialize(mob/user)
-	. = ..()
-	vine_cooldown = world.time
+	var/vine_cooldown = 0
+	/*
+	* Added for debugging. channeling_duration_start
+	* is divided by each cycle. So if we go through 2
+	* channeling cycles the duration of the channel would
+	* be (channelling_duration_start / 2). After 6 cycles
+	* the channeling ends. At the end of each cycle
+	* vine_damage is applied to enemies in a 5 tile AOE.
+	*/
+	var/channeling_duration_start = 1 SECONDS
+	var/channeling_cycle_max = 6
+	var/vine_damage = 40
 
 /obj/item/ego_weapon/stem/attack_self(mob/living/user)
 	. = ..()
@@ -386,28 +392,46 @@
 		return
 	if(vine_cooldown <= world.time)
 		user.visible_message(span_notice("[user] stabs [src] into the ground."), span_nicegreen("You stab your [src] into the ground."))
+		vine_cooldown = world.time + (channeling_duration_start * channeling_cycle_max)
+		vine_damage *=force_multiplier
 		var/mob/living/carbon/human/L = user
-		L.adjustSanityLoss(30)
-
+		var/vine_damage_bonus = 0
 		var/affected_mobs = 0
-		for(var/i = 1 to 6)
-			var/channel_level = (3 SECONDS) / i //Burst is 3 + 1.5 + 1 + 0.75 + 0.6 + 0.2 seconds for a total of 60-90 damage over a period of 7.05 seconds if you allow it to finish.
-			vine_cooldown = world.time + channel_level + (1 SECONDS)
+		AlterMoveResist(user, 2.5)
+		//Bonus Damage is applied if sanity is below 30%
+		if(L.sanityhealth <= (L.maxSanity * 0.3))
+			to_chat(user, span_warning("You feel her influence as the [src] digs into your arm."))
+			vine_damage_bonus = vine_damage * 0.5
+
+		for(var/i = 1 to channeling_cycle_max)
+			//Burst is (channeling_duration_start / channeling_cycle_max) seconds
+			var/channel_level = channeling_duration_start / i
 			if(!do_after(user, channel_level, target = user))
 				to_chat(user, span_warning("Your vineburst is interrupted."))
+				AlterMoveResist(user, 0.4)
 				break
-			for(var/mob/living/C in oview(3, get_turf(src)))
-				var/vine_damage = 10
-				vine_damage *=force_multiplier
-				if(user.sanityhealth <= (user.maxSanity * 0.3))
-					vine_damage *= 1.5
-				else if(user.faction_check_mob(C))
+			for(var/mob/living/C in oview(5, get_turf(src)))
+				//If you have a vine damage bonus, destroy them ALL.
+				if(user.faction_check_mob(C) && !vine_damage_bonus)
 					continue
 				new /obj/effect/temp_visual/vinespike(get_turf(C))
-				C.apply_damage(vine_damage, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = FALSE)
+				C.apply_damage(vine_damage + vine_damage_bonus, BLACK_DAMAGE, null, C.run_armor_check(null, BLACK_DAMAGE), spread_damage = TRUE)
 				affected_mobs += 1
 			playsound(loc, 'sound/creatures/venus_trap_hurt.ogg', min(75, affected_mobs * 15), TRUE, round( affected_mobs * 0.5))
-		vine_cooldown = world.time + (3 SECONDS)
+		AlterMoveResist(user, 0.4)
+
+/*
+* Alters Move resist to prevent knockback
+* throw_safe knockback checks for anchored
+* or a lower move_resist to its force.
+* The default force is MOVE_FORCE_STRONG
+* which is 2x the force of default.
+* To be honest this should be a mob proc.
+*/
+/obj/item/ego_weapon/stem/proc/AlterMoveResist(mob/living/M, num)
+	if(!M || !num)
+		return
+	M.move_resist *= num
 
 /obj/item/ego_weapon/ebony_stem
 	name = "ebony stem"

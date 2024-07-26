@@ -42,17 +42,17 @@
 	switch(knockback)
 		if(KNOCKBACK_LIGHT)
 			var/whack_speed = (prob(60) ? 1 : 4)
-			target.throw_at(throw_target, rand(1, 2), whack_speed, user)
+			target.safe_throw_at(throw_target, rand(1, 2), whack_speed, user)
 
 		if(KNOCKBACK_MEDIUM)
 			var/whack_speed = (prob(60) ? 3 : 6)
-			target.throw_at(throw_target, rand(2, 3), whack_speed, user)
+			target.safe_throw_at(throw_target, rand(2, 3), whack_speed, user)
 
 		if(KNOCKBACK_HEAVY) // neck status: snapped
-			target.throw_at(throw_target, 7, 7, user)
+			target.safe_throw_at(throw_target, 7, 7, user)
 
 		else // should only be used by admins messing around in-game, please consider using above variables as a coder
-			target.throw_at(throw_target, (knockback * 0.5) , knockback, user)
+			target.safe_throw_at(throw_target, (knockback * 0.5) , knockback, user)
 
 	return TRUE
 
