@@ -81,17 +81,46 @@
 
 /obj/machinery/computer/ego_purchase/proc/ShipOut(obj/item/shipped)
 	var/list/tablesinrange = list()
+	var/list/extractioninrange = list()
 	var/turf/T
 	for(var/obj/structure/table/V in range(3, src))
 		tablesinrange+=V
+	for(var/obj/structure/extraction_belt/Y in range(8, src))
+		extractioninrange+=Y
+
+	if(LAZYLEN(extractioninrange))
+		T = get_turf(pick(extractioninrange))
+		var/obj/item/egopackage/E = new (T)
+		E.contained_ego = shipped
+		return
+
 	if(LAZYLEN(tablesinrange))
 		T = get_turf(pick(tablesinrange))
 	else
 		T = get_turf(src)
-
 
 	var/obj/structure/closet/supplypod/extractionpod/pod = new()
 	pod.explosionSize = list(0,0,0,0)
 	new shipped(pod)
 	new /obj/effect/pod_landingzone(T, pod)
 	stoplag(2)
+
+//This exists for flavor. It was asked of me.
+/obj/structure/extraction_belt
+	name = "Agent EGO extraction arrival"
+	desc = "If an agent or non-extraction officer orders EGO, it will arrive via this output."
+	resistance_flags = INDESTRUCTIBLE
+	icon = 'ModularTegustation/Teguicons/refiner.dmi'
+	icon_state = "extraction_belt"
+
+/obj/item/egopackage
+	name = "EGO package"
+	desc = "a package containing EGO of some kind."
+	icon = 'ModularTegustation/Teguicons/refiner.dmi'
+	icon_state = "extract_pack"
+	var/contained_ego = /obj/item/ego_weapon/training
+
+/obj/item/egopackage/attack_self(mob/user)
+	..()
+	new contained_ego(get_turf(user))
+	qdel(src)
