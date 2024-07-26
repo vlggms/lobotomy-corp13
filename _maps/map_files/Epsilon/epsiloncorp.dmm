@@ -15850,6 +15850,7 @@
 /obj/structure/sign/departments/extraction{
 	pixel_y = 32
 	},
+/obj/structure/extraction_belt,
 /turf/open/floor/plasteel/sepia{
 	color = "#ccc8c0"
 	},

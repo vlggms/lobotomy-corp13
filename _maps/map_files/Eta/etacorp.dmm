@@ -3114,6 +3114,17 @@
 	color = "#ccc8c0"
 	},
 /area/facility_hallway/north)
+"nO" = (
+/obj/structure/extraction_belt,
+/obj/structure/railing{
+	desc = "Indestructible railing created in a vain attempt of fool-proofing the wing's workplace.";
+	name = "wing-grade railing";
+	resistance_flags = 115
+	},
+/turf/open/floor/facility/dark{
+	color = "#ccc8c0"
+	},
+/area/department_main/extraction)
 "nP" = (
 /obj/effect/turf_decal/siding/thinplating/dark{
 	dir = 8
@@ -34493,7 +34504,7 @@ qI
 Wz
 eG
 iw
-xY
+nO
 qz
 jW
 JP
