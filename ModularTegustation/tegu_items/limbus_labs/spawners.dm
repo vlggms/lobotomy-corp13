@@ -16,7 +16,8 @@ GLOBAL_LIST_INIT(low_security, list(
 	/mob/living/simple_animal/hostile/abnormality/schadenfreude,
 	/mob/living/simple_animal/hostile/abnormality/galaxy_child,
 	/mob/living/simple_animal/hostile/abnormality/woodsman,
-	/mob/living/simple_animal/hostile/abnormality/steam
+	/mob/living/simple_animal/hostile/abnormality/steam,
+	/mob/living/simple_animal/hostile/abnormality/laetitia
 
 ))
 
