@@ -122,6 +122,7 @@
 	var/list/target_memory = list()
 	var/last_known_location = null
 	var/target_lost = FALSE
+	var/stat_attack = HARD_CRIT
 
 /datum/ai_controller/insane/murder/Destroy()
 	if(mech_attack_timer_id)
@@ -628,7 +629,7 @@
 			return FALSE
 		if(living_thing.status_flags & GODMODE)
 			return FALSE
-		if(living_thing.stat == DEAD)
+		if(living_thing.stat > stat_attack)
 			return FALSE
 		if(!isturf(living_thing.loc) && !ismecha(living_thing.loc))
 			return FALSE
@@ -688,6 +689,7 @@
 	if(!isnum(target_memory[source]))
 		target_memory += source
 
+//aggro damage and the way its supposed to be applied are not implemented yet
 /* 	if(damage_type == AGGRO_DAMAGE)
 		if(istype(source, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = source
