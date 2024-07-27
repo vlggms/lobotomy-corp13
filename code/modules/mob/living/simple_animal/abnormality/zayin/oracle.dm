@@ -68,7 +68,7 @@
 				currently_talking = FALSE
 				return
 		currently_talking = FALSE
-		if(prob(50) && SSlobotomy_corp.next_ordeal)
+		if(prob(50) || !SSlobotomy_corp.next_ordeal)
 			var/chosenfake = pick(fakeordeals)
 			to_chat(user, span_notice("[chosenfake]"))
 			return
