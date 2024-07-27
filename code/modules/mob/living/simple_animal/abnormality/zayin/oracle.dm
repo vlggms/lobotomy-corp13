@@ -38,6 +38,22 @@
 		"Ah, I have information on the next ordeal.... as you call it...",
 		"The next ordeal is...",
 	)
+	var/list/fakeordeals = list(
+		//Some Based off the 7 trumpets
+		"Hail of fire and blood..... Thrown to the earth.... burning up nature...",
+		"A great mountain..... plunging into the sea..... oceans of blood..... killing sea life....",
+		"A star.... falling to earth.... poisoning the fresh water....",
+		"The sky goes dark..... all the stars, the moon and even the sun.....",
+		"Woe...... Woe to those who dwell on earth....",
+		"A star falls to earth.... opening the abyss...",
+		"Locusts.... with scorpion tails.... man's face... and lion's teeth.....",
+		"Two hundred million troops.... fire and smoke.... and their plague will kill man...",
+		"The kingdom of the world has become the kingdom of His Messiah.... reigning forever and ever...",
+		//And some I made
+		"Cold.... Endless Cold.....",
+		"A man with many arms......",
+		"A woman without a face.... and many children screaming....",
+		)
 
 
 /mob/living/simple_animal/hostile/abnormality/oracle/PostWorkEffect(mob/living/carbon/human/user, work_type, pe)
@@ -52,8 +68,9 @@
 				currently_talking = FALSE
 				return
 		currently_talking = FALSE
-		if(!(SSlobotomy_corp.next_ordeal))
-			to_chat(user, span_notice("Oh....? I have no information for you.... I apologize..."))
+		if(prob(50) && SSlobotomy_corp.next_ordeal)
+			var/chosenfake = pick(fakeordeals)
+			to_chat(user, span_notice("[chosenfake]"))
 			return
 		to_chat(user, span_notice("[SSlobotomy_corp.next_ordeal.name]"))
 
