@@ -94,8 +94,8 @@
 	run_item_attack_animation = FALSE
 
 	if(!to_smack)
-		user.visible_message("<span class='danger'>[user] [reach > 1 ? "thrusts" : "swings"] at [target]!</span>",\
-			"<span class='danger'>You [reach > 1 ? "thrust" : "swing"] at [target]!</span>", null, COMBAT_MESSAGE_RANGE, user)
+		user.visible_message("<span class='danger'>[user] [swingstyle > WEAPONSWING_LARGESWEEP ? "thrusts" : "swings"] at [target]!</span>",\
+			"<span class='danger'>You [swingstyle > WEAPONSWING_LARGESWEEP ? "thrust" : "swing"] at [target]!</span>", null, COMBAT_MESSAGE_RANGE, user)
 		playsound(src, 'sound/weapons/thudswoosh.ogg', 60, TRUE)
 		user.do_attack_animation(target, used_item = src, no_effect = !run_item_attack_animation)
 		run_item_attack_animation = old_animation

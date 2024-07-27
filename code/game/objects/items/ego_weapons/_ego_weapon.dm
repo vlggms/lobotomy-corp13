@@ -63,6 +63,11 @@
 
 	return TRUE
 
+/obj/item/ego_weapon/Sweep(atom/target, mob/living/carbon/human/user, params)
+	if(isturf(target) && user.a_intent == INTENT_HARM)
+		if(!CanUseEgo(user))
+			return TRUE
+	return ..(target, user, params)
 
 //Speed and stun stuff
 /obj/item/ego_weapon/attack_obj(obj/target, mob/living/user)

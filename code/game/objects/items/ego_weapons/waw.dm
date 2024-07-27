@@ -1031,7 +1031,7 @@
 		A.visible_message(span_danger("[A] returns to normal!"), span_userdanger("You break free of the stone!"))
 		qdel(A)
 		return TRUE
-	..()
+	. = ..()
 
 /obj/item/ego_weapon/blind_rage
 	name = "Blind Rage"
