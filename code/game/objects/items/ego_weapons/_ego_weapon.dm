@@ -29,7 +29,7 @@
 /obj/item/ego_weapon/Initialize()
 	. = ..()
 	if(swingstyle == WEAPONSWING_SMALLSWEEP && reach > 1)
-		swingstyle = WEAPONSWING_LARGETHRUST
+		swingstyle = WEAPONSWING_THRUST
 	RegisterSignal(src, COMSIG_OBJ_PAINTED, PROC_REF(GetSwingColor))
 
 /obj/item/ego_weapon/attack(mob/living/target, mob/living/user)
@@ -125,13 +125,13 @@
 		if(WEAPONSWING_SMALLSWEEP)
 			. += span_notice("This weapon can be swung at a single tile instead of a specific target.")
 
-		if(WEAPONSWING_SMALLTHRUST)
+		if(WEAPONSWING_THRUST && reach <= 1)
 			. += span_notice("This weapon can be thrust at a single tile instead of a specific target.")
 
 		if(WEAPONSWING_LARGESWEEP)
 			. += span_notice("This weapon can be swung in an arc instead of at a specific target.")
 
-		if(WEAPONSWING_LARGETHRUST)
+		if(WEAPONSWING_THRUST)
 			. += span_notice("This weapon can be thrust at tiles up to [reach] tiles away instead of a specific target.")
 
 	switch(stuntime)

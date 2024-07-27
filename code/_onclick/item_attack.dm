@@ -75,7 +75,7 @@
 
 	var/list/hit_turfs = list()
 
-	if(swingstyle >= WEAPONSWING_SMALLTHRUST)
+	if(swingstyle >= WEAPONSWING_THRUST)
 		hit_turfs = get_thrust_turfs(target, user)
 	else
 		hit_turfs = get_sweep_turfs(target, user)

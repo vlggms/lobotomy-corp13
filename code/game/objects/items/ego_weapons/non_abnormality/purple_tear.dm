@@ -181,6 +181,7 @@
 	force = 90
 	attack_speed = 1
 	damtype = WHITE_DAMAGE //tbh white does not fit but also i don't think Iori should use pale, thats Blue Sicko's job
+	swingstyle = WEAPONSWING_THRUST
 
 	attack_verb_continuous = list("pierces", "stabs")
 	attack_verb_simple = list("pierce", "stab")
