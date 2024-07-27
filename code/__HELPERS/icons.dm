@@ -1291,7 +1291,6 @@ GLOBAL_LIST_EMPTY(transformation_animation_objects)
 /*
  * Given an atom, it returns the average color of the atom's current icon
  */
-
 /proc/GetAverageColor(atom/target)
 	var/icon/temp_icon = icon(target.icon, target.icon_state)
 	if(target.color)
