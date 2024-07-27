@@ -21,13 +21,12 @@
 	work_damage_type = WHITE_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/tough,
-		/datum/ego_datum/armor/tough,
+		/datum/ego_datum/weapon/penitence,		//Placeholder
+		/datum/ego_datum/armor/penitence
 	)
 //	gift_type =  /datum/ego_gifts/oracle
 	abnormality_origin = ABNORMALITY_ORIGIN_ORIGINAL
 
-	chem_type = /datum/reagent/abnormality/bald
 	var/currently_talking = FALSE
 
 	var/list/sleeplines = list(
