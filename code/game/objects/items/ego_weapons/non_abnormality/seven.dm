@@ -134,6 +134,7 @@
 	hitsound = 'sound/weapons/rapierhit.ogg'
 	force = 38
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 
 	var/fencing_target
 	attribute_requirements = list(

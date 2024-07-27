@@ -42,6 +42,7 @@
 	icon_state = "despair"
 	force = 20
 	damtype = WHITE_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("stabs", "attacks", "slashes")
 	attack_verb_simple = list("stab", "attack", "slash")
 	hitsound = 'sound/weapons/ego/rapier1.ogg'
@@ -441,6 +442,7 @@
 	icon_state = "ebony_stem"
 	force = 35
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("admonishes", "rectifies", "conquers")
 	attack_verb_simple = list("admonish", "rectify", "conquer")
 	hitsound = 'sound/weapons/ego/rapier2.ogg'
@@ -1029,7 +1031,7 @@
 		A.visible_message(span_danger("[A] returns to normal!"), span_userdanger("You break free of the stone!"))
 		qdel(A)
 		return TRUE
-	..()
+	. = ..()
 
 /obj/item/ego_weapon/blind_rage
 	name = "Blind Rage"

@@ -6,6 +6,7 @@
 	icon_state = "cinq"
 	force = 28
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
