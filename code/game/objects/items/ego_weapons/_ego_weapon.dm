@@ -125,9 +125,6 @@
 		if(WEAPONSWING_SMALLSWEEP)
 			. += span_notice("This weapon can be swung at a single tile instead of a specific target.")
 
-		if(WEAPONSWING_THRUST && reach <= 1)
-			. += span_notice("This weapon can be thrust at a single tile instead of a specific target.")
-
 		if(WEAPONSWING_LARGESWEEP)
 			. += span_notice("This weapon can be swung in an arc instead of at a specific target.")
 
