@@ -112,6 +112,7 @@
 	icon_state = "da_capo"
 	force = 40 // It attacks very fast
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -154,7 +155,7 @@
 /obj/item/ego_weapon/da_capo/get_clamped_volume()
 	return 40
 
-/obj/item/ego_weapon/mimicry
+/obj/item/ego_weapon/wield/mimicry
 	name = "mimicry"
 	desc = "The yearning to imitate the human form is sloppily reflected on the E.G.O, \
 	as if it were a reminder that it should remain a mere desire."
@@ -164,8 +165,9 @@
 	righthand_file = 'icons/mob/inhands/64x64_righthand.dmi'
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
-	force = 70
+	force = 55
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
 	hitsound = 'sound/abnormalities/nothingthere/attack.ogg'
@@ -175,6 +177,10 @@
 							TEMPERANCE_ATTRIBUTE = 80,
 							JUSTICE_ATTRIBUTE = 80
 							)
+
+	wielded_force = 70
+	should_slow = TRUE
+	wielded_slow_down = 1.5
 
 /obj/item/ego_weapon/mimicry/attack(mob/living/target, mob/living/carbon/human/user)
 	if(!CanUseEgo(user))
@@ -201,6 +207,7 @@
 	icon_state = "twilight"
 	worn_icon_state = "twilight"
 	force = 35
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE // It's all damage types, actually
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -328,6 +335,7 @@
 	icon_state = "rosered"
 	force = 80 //Less damage, can swap damage type
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "slices")
 	attack_verb_simple = list("cuts", "slices")
 	hitsound = 'sound/weapons/ego/rapier2.ogg'
@@ -364,6 +372,7 @@
 	worn_icon_state = "censored"
 	force = 70	//there's a focus on the ranged attack here.
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_THRUST
 	attack_verb_continuous = list("attacks")
 	attack_verb_simple = list("attack")
 	hitsound = 'sound/weapons/ego/censored1.ogg'
@@ -436,6 +445,7 @@
 	special = "Hitting enemies will mark them. Hitting marked enemies will give different buffs depending on attack type."
 	icon_state = "soulmate"
 	force = 40
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_speed = 0.8
 	attack_verb_continuous = list("cuts", "slices")
@@ -545,6 +555,7 @@
 	icon_state = "space"
 	force = 50	//Half white, half black.
 	damtype = WHITE_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("cuts", "attacks", "slashes")
 	attack_verb_simple = list("cut", "attack", "slash")
 	hitsound = 'sound/weapons/rapierhit.ogg'

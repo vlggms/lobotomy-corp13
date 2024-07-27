@@ -33,8 +33,9 @@
 	desc = "The last legacy of the man who sought wisdom. The rake tilled the human brain instead of farmland."
 	special = "Use this weapon in your hand to damage every non-human within reach."
 	icon_state = "harvest"
-	force = 30
+	force = 25
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("attacks", "bashes", "tills")
 	attack_verb_simple = list("attack", "bash", "till")
 	hitsound = 'sound/weapons/ego/harvest.ogg'
@@ -135,8 +136,9 @@
 	name = "life for a daredevil"
 	desc = "An ancient sword surrounded in death, yet it's having it in your grasp that makes you feel the most alive."
 	icon_state = "daredevil"
-	force = 12
+	force = 11
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("decimates", "bisects")
 	attack_verb_simple = list("decimate", "bisect")
@@ -365,6 +367,7 @@
 	special = "This weapon deals more damage the more allies you can see."
 	icon_state = "courage"
 	force = 10 //if 4 people are around, the weapon can deal up to 70 damage per strike, but alone it's a glorified baton.
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slashes")
 	attack_verb_simple = list("slash")
@@ -484,6 +487,7 @@
 	desc = "Looks to be a fan blade with a handle welded to it."
 	icon_state = "metal"
 	force = 40
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 1.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("slices", "cleaves", "chops")
@@ -599,8 +603,9 @@
 	desc = "Death, where is thy sting?"
 	special = "This weapon attacks faster when hitting targets below 50% health"
 	icon_state = "revelation"
-	force = 25
+	force = 22
 	attack_speed = 1.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = PALE_DAMAGE
 	attack_verb_continuous = list("slashes", "slices", "rips", "cuts")
 	attack_verb_simple = list("slash", "slice", "rip", "cut")
@@ -734,7 +739,7 @@
 	var/mode = "Spear"
 	var/list/mode_stats = list(
 		"Spear" = list("_sp", 42, 1, 2, list("pokes", "jabs"), list("poke", "jab"), 'sound/weapons/ego/spear1.ogg'),	//Now immobilizes you.
-		"Sword" = list("_sw", 25, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
+		"Sword" = list("_sw", 22, 1, 1, list("slashes", "slices"), list("slash", "slice"), 'sound/weapons/bladeslice.ogg'),
 		"Gauntlet" = list("_f", 50, 3, 1, list("crushes", "smashes"), list("crush", "smash"), 'sound/weapons/ego/strong_gauntlet.ogg')
 		)
 	var/windup = 0
@@ -751,10 +756,13 @@
 	switch(mode)
 		if("Spear")
 			mode = "Sword"
+			swingstyle = WEAPONSWING_LARGESWEEP
 		if("Sword")
 			mode = "Gauntlet"
+			swingstyle = WEAPONSWING_SMALLSWEEP
 		if("Gauntlet")
 			mode = "Spear"
+			swingstyle = WEAPONSWING_THRUST
 	to_chat(user, span_notice("[src] makes a whirling sound as it changes shape!"))
 	if(prob(5))
 		to_chat(user, span_notice("Do you love your city?"))
@@ -1200,7 +1208,8 @@
 	desc = "The elderly man showed a red thread connecting the young boy with his future lover. Disgusted at the sight, he ordered her to be executed."
 	special = "This weapon deals significantly more damage when attacking the same target repeatedly."
 	icon_state = "destiny"
-	force = 12
+	force = 11
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.5
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1719,7 +1728,8 @@
 	desc = "What seems to be a giant half of a scissors pair."
 	icon_state = "voodoo"
 	special = "This weapon can be paired with a second copy to use both at the same time."
-	force = 20
+	force = 18
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 0.7
 	damtype = WHITE_DAMAGE
 	attack_verb_continuous = list("stabs", "slashes", "attacks")
@@ -1756,6 +1766,7 @@
 	inhand_x_dimension = 64
 	inhand_y_dimension = 64
 	force = 60
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_speed = 3
 	damtype = RED_DAMAGE
 	attack_verb_continuous = list("bashes", "clubs")
