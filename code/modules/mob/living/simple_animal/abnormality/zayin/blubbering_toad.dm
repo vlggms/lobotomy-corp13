@@ -161,7 +161,7 @@
 
 /mob/living/simple_animal/hostile/abnormality/blubbering_toad/death() //EGG! just kidding no egg....
 	density = FALSE
-	playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, FALSE)
+	playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, FALSE)
 	animate(src, alpha = 0, time = 5 SECONDS)
 	QDEL_IN(src, 5 SECONDS)
 	..()
@@ -280,7 +280,7 @@
 			icon_state = icon_living
 			melee_damage_type = WHITE_DAMAGE
 			broken = TRUE
-			playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
+			playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, 1)
 		return
 	if(health < (maxHealth / 2)) //50% health or lower
 		var/state = pick("red", "white")
@@ -293,7 +293,7 @@
 		icon_living = "blubbering_[state]"
 		icon_tongue = "blubbering_tongue_[state]"
 		icon_state = icon_living
-		playsound(src, 'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 40, 0, 1)
+		playsound(src, 'sound/effects/limbus_death.ogg', 40, 0, 1)
 
 /datum/status_effect/blue_resin
 	id = "blue resin"

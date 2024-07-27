@@ -1793,7 +1793,7 @@
 		return
 	if(do_after(user, 10, src, IGNORE_USER_LOC_CHANGE))
 		user.emote("scream")
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)//YEOWCH!
+		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 75, 1)//YEOWCH!
 		icon_state = ("hyde_" + chosen_style)
 		force = 42
 		switch(chosen_style)

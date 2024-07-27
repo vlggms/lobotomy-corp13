@@ -315,7 +315,7 @@
 		is_fed = TRUE
 		adjustBruteLoss(100)
 		pulse_damage -= 1
-		playsound(get_turf(src),'sound/abnormalities/doomsdaycalendar/Limbus_Dead_Generic.ogg', 50, 1)
+		playsound(get_turf(src),'sound/effects/limbus_death.ogg', 50, 1)
 		AddModifier(/datum/dc_change/sacrificed)
 
 //***Simple Mobs***//
