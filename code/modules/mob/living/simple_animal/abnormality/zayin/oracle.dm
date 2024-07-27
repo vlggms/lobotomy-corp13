@@ -71,6 +71,6 @@
 
 
 /mob/living/simple_animal/hostile/abnormality/oracle/proc/PlayerAsleep(mob/living/carbon/human/user)
-	if(currently_talking && user.IsSleeping())
+	if(user.IsSleeping())
 		return TRUE
 	return FALSE
