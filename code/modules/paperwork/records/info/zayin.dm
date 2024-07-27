@@ -133,5 +133,5 @@
 	abno_type = /mob/living/simple_animal/hostile/abnormality/oracle
 	abno_code = "O-06-200"
 	abno_info = list(
-		"After working on O-06-200, EMPLOYEE fell asleep.",
+		"After working on O-06-200 with insight work, EMPLOYEE fell asleep.",
 		"While asleep, EMPLOYEE heard many strange things, seeming to divine the future.")
