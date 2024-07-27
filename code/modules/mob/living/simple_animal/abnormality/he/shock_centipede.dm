@@ -1,9 +1,9 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede
 	name = "Shock Centipede"
 	desc = "A enormous blue Centipede with electricity sparking around it."
-	icon = 'ModularTegustation/Teguicons/tegumobs.dmi'
-	icon_state = "helper"
-	icon_living = "helper"
+	icon = 'ModularTegustation/Teguicons/64x48.dmi'
+	icon_state = "beta_shock_centipede"
+	icon_living = "beta_shock_centipede"
 	maxHealth = 1700
 	health = 1700
 	rapid_melee = 3
@@ -32,8 +32,8 @@
 	work_damage_type = RED_DAMAGE
 
 	ego_list = list(
-		/datum/ego_datum/weapon/grinder,
-		/datum/ego_datum/armor/grinder
+		/datum/ego_datum/weapon/aedd,
+		/datum/ego_datum/armor/aedd
 		)
 	gift_type =  /datum/ego_gifts/grinder
 	gift_message = "Electricity crackles around you as you feel charged with power."
@@ -51,33 +51,35 @@
 
 
 
-	var/EXTRA_PE_BOXES = 6
-	var/SELF_CHARGE_THRESHOLD = 100
-	var/COIL_TIMER_DECISEC = 100
-	var/COIL_MAX_SHIELD = 400
-	var/MAX_CHARGE = 20
-	var/COIL_START_CHARGE = 12
-	var/COIL_COOLDOWN_DECISEC = 100
-	var/COIL_DISCHARGE_AOE_DAMAGE = 35
-	var/COIL_DISCHARGE_AOE_DAMAGETYPE = BLACK_DAMAGE
-	var/COIL_DISCHARGE_AOE_STUN_DURATION_DECISEC = 50
-	var/COIL_DISCHARGE_AOE_MISSED_CHARGE_LOSS = 3
-	var/COIL_SHIELD_BROKEN_CHARGE_LOSS = 6
-	var/COIL_SHIELD_BROKEN_SELFSTUN_DURATION_DECISEC = 40
+	var/bonus_pe = 6
+	var/self_charge_threshold = 100
+	var/coil_timer_decisec = 100
+	var/coil_max_shield = 400
+	var/max_charge = 20
+	var/coil_start_charge = 12
+	var/coil_cooldown_decisec = 100
+	var/coil_discharge_aoe_damage = 35
+	var/coil_discharge_aoe_damagetype = BLACK_DAMAGE
+	var/coil_discharge_aoe_stun_duration_decisec = 50
+	var/coil_discharge_aoe_missed_charge_loss = 3
+	var/coil_shield_broken_charge_loss = 6
+	var/coil_shield_broken_selfstun_duration_decisec = 40
 
-	var/IMMORTAL_DAMAGETYPE = BLACK_DAMAGE
-	var/IMMORTAL_MELEE_DAMAGE_UPPER = 6
-	var/IMMORTAL_MELEE_DAMAGE_LOWER = 5
+	var/immortal_damagetype = BLACK_DAMAGE
+	var/immortal_melee_damage_upper = 6
+	var/immortal_melee_damage_lower = 5
 
-	var/IMMORTAL_COUNTDOWN_DURATION_DECISEC = 20
+	var/immortal_countdown_duration_decisec = 20
 
-	var/TAILATTACK_COOLDOWN_DECISEC = 80
-	var/TAILATTACK_DAMAGE = 20
-	var/TAILATTACK_DAMAGETYPE = BLACK_DAMAGE
-	var/TAILATTACK_WINDUP_DECISEC = 15
-	var/TAILATTACK_CHARGE_PER_TARGET = 3
+	var/tailattack_cooldown_decisec = 80
+	var/tailattack_damage = 20
+	var/tailattack_damagetype = BLACK_DAMAGE
+	var/tailattack_windup_decisec = 15
+	var/tailattack_charge_per_target = 3
 
-	var/TAILATTACK_RANGE = 5
+	var/tailattack_range = 5
+
+	var/repression_change_qlip_1 = 40
 
 
 /* Work effects */
@@ -105,6 +107,12 @@
 			return FALSE
 	return TRUE
 
+/mob/living/simple_animal/hostile/abnormality/shock_centipede/ChanceWorktickOverride(mob/living/carbon/human/user, work_chance, init_work_chance, work_type)
+	if(datum_reference?.qliphoth_meter == 1 && work_type != ABNORMALITY_WORK_REPRESSION)
+		return repression_change_qlip_1
+	else
+		return work_chance
+
 /* Success Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/SuccessEffect(mob/living/carbon/human/user, work_type, pe)
 	if (!CheckQliphoth(user, work_type, pe))
@@ -113,8 +121,8 @@
 		datum_reference.qliphoth_change(1)
 	if(datum_reference?.qliphoth_meter == 1 && work_type == ABNORMALITY_WORK_REPRESSION)
 		datum_reference.qliphoth_change(2)
-		datum_reference.stored_boxes += EXTRA_PE_BOXES
-		to_chat(user, "<span class='nicegreen'>[EXTRA_PE_BOXES] extra PE Boxes have been generated!</span>")
+		datum_reference.stored_boxes += bonus_pe
+		to_chat(user, "<span class='nicegreen'>[bonus_pe] extra PE Boxes have been generated!</span>")
 
 /* Neutral Effect */
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/NeutralEffect(mob/living/carbon/human/user, work_type, pe)
@@ -155,12 +163,12 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/UpdateCharge(amount)
 	say("Damage taken, current charge health, current charge" + num2text(amount) + ",  " + num2text(self_charge_health) + ",  " + num2text(self_charge_counter))
 	self_charge_health += amount
-	self_charge_counter -= self_charge_health / SELF_CHARGE_THRESHOLD
-	if(self_charge_health / SELF_CHARGE_THRESHOLD > 0)
-		say("Charge reduced by " + num2text((self_charge_health / SELF_CHARGE_THRESHOLD)))
+	self_charge_counter -= self_charge_health / self_charge_threshold
+	if(self_charge_health / self_charge_threshold > 0)
+		say("Charge reduced by " + num2text((self_charge_health / self_charge_threshold)))
 	if (self_charge_counter < 0)
 		self_charge_counter = 0
-	self_charge_health %= SELF_CHARGE_THRESHOLD
+	self_charge_health %= self_charge_threshold
 
 
 
@@ -178,8 +186,8 @@
 		// stun
 		// icon_state
 		stunned = TRUE
-		addtimer(CALLBACK(src, .proc/StunEnd), COIL_SHIELD_BROKEN_SELFSTUN_DURATION_DECISEC)
-		self_charge_counter -= COIL_SHIELD_BROKEN_CHARGE_LOSS
+		addtimer(CALLBACK(src, .proc/StunEnd), coil_shield_broken_selfstun_duration_decisec)
+		self_charge_counter -= coil_shield_broken_charge_loss
 		return 0
 	else
 		return remainder
@@ -191,7 +199,7 @@
 		CheckCharge()
 		if(tail_attack_cooldown < world.time)
 			var/turf/target_turf = get_turf(target)
-			for(var/i = 1 to TAILATTACK_RANGE - 2)
+			for(var/i = 1 to tailattack_range - 2)
 				target_turf = get_step(target_turf, get_dir(get_turf(src), target_turf))
 			TailAttack(target_turf)
 			return FALSE
@@ -199,8 +207,8 @@
 	if (!immortal)
 		self_charge_counter += 1
 		say("Gained 1 Charge")
-	if (self_charge_counter > MAX_CHARGE)
-		self_charge_counter = MAX_CHARGE
+	if (self_charge_counter > max_charge)
+		self_charge_counter = max_charge
 		say("Reached Max Charge")
 	CheckCharge()
 
@@ -212,11 +220,11 @@
 		TailAttack(target)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CheckCharge()
-	if (self_charge_counter >= COIL_START_CHARGE && world.time > coil_cooldown && !immortal)
-		coil_cooldown = world.time + COIL_COOLDOWN_DECISEC + COIL_TIMER_DECISEC
-		shield = COIL_MAX_SHIELD
+	if (self_charge_counter >= coil_start_charge && world.time > coil_cooldown && !immortal)
+		coil_cooldown = world.time + coil_cooldown_decisec + coil_timer_decisec
+		shield = coil_max_shield
 		// icon_state end chage
-		currentShieldTimerID = addtimer(CALLBACK(src, .proc/CoilEnd), COIL_COOLDOWN_DECISEC)
+		currentShieldTimerID = addtimer(CALLBACK(src, .proc/CoilEnd), coil_cooldown_decisec)
 		say("Started Coiling.")
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/CoilEnd()
@@ -225,13 +233,13 @@
 		say("Charging done...")
 		//start AoE
 		CoilDischargeAoe()
-		coil_cooldown = world.time + COIL_COOLDOWN_DECISEC
+		coil_cooldown = world.time + coil_cooldown_decisec
 
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/StunEnd()
 	// icon_state
 	stunned = FALSE
-	coil_cooldown = world.time + COIL_COOLDOWN_DECISEC
+	coil_cooldown = world.time + coil_cooldown_decisec
 
 // dont move when coiled or stunned
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/Move()
@@ -249,13 +257,13 @@
 	for(var/mob/living/L in view(2, src))
 		if(faction_check_mob(L))
 			continue
-		L.apply_damage(COIL_DISCHARGE_AOE_DAMAGE, COIL_DISCHARGE_AOE_DAMAGETYPE, null, L.run_armor_check(null, COIL_DISCHARGE_AOE_DAMAGETYPE), spread_damage = TRUE)
-		L.Stun(COIL_DISCHARGE_AOE_STUN_DURATION_DECISEC)
+		L.apply_damage(coil_discharge_aoe_damage, coil_discharge_aoe_damagetype, null, L.run_armor_check(null, coil_discharge_aoe_damagetype), spread_damage = TRUE)
+		L.Stun(coil_discharge_aoe_stun_duration_decisec)
 		count ++
 	playsound(get_turf(src), 'sound/abnormalities/armyinblack/black_attack.ogg', 100, 0, 8)
 	shield = 0
 	if (count == 0)
-		self_charge_counter -= COIL_DISCHARGE_AOE_MISSED_CHARGE_LOSS
+		self_charge_counter -= coil_discharge_aoe_missed_charge_loss
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/Life()
 	CheckCharge()
@@ -267,16 +275,16 @@
 	if (!immortal)
 		say("Starting Immortality")
 		immortal = TRUE
-		melee_damage_type = IMMORTAL_DAMAGETYPE
-		melee_damage_upper = IMMORTAL_MELEE_DAMAGE_UPPER
-		melee_damage_lower = IMMORTAL_MELEE_DAMAGE_LOWER
+		melee_damage_type = immortal_damagetype
+		melee_damage_upper = immortal_melee_damage_upper
+		melee_damage_lower = immortal_melee_damage_lower
 		adjustHealth(maxHealth * -1)
 		SpeedChange(-1)
 		// i don't know what this does. copied from mountain
 		UpdateSpeed()
 		update_simplemob_varspeed()
 		// icon_state for immortality
-		addtimer(CALLBACK(src, .proc/ChargeCountDown), IMMORTAL_COUNTDOWN_DURATION_DECISEC)
+		addtimer(CALLBACK(src, .proc/ChargeCountDown), immortal_countdown_duration_decisec)
 		return FALSE
 	else
 		say("Reached Death")
@@ -287,23 +295,23 @@
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/ChargeCountDown()
 	if (self_charge_counter > 1)
 		self_charge_counter--
-		addtimer(CALLBACK(src, .proc/ChargeCountDown), IMMORTAL_COUNTDOWN_DURATION_DECISEC)
+		addtimer(CALLBACK(src, .proc/ChargeCountDown), immortal_countdown_duration_decisec)
 		say("Lost 1 Charge")
 	else
 		adjustHealth(health)
 
 /mob/living/simple_animal/hostile/abnormality/shock_centipede/proc/TailAttack(target)
 	say("Perfroming Tail Attack")
-	tail_attack_cooldown = world.time + TAILATTACK_COOLDOWN_DECISEC
+	tail_attack_cooldown = world.time + tailattack_cooldown_decisec
 	stunned = TRUE
 	face_atom(target)
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_cast.ogg', 75, 0, 3)
 	//icon_state windup
 	var/turf/target_turf = get_turf(target)
-	SLEEP_CHECK_DEATH(TAILATTACK_WINDUP_DECISEC)
+	SLEEP_CHECK_DEATH(tailattack_windup_decisec)
 	var/been_hit = list()
 	var/broken = FALSE
-	var/distance = TAILATTACK_RANGE
+	var/distance = tailattack_range
 	for(var/turf/T in getline(get_turf(src), target_turf))
 		if (distance < 0)
 			break
@@ -316,8 +324,8 @@
 			if(TF.density)
 				continue
 			new /obj/effect/temp_visual/smash_effect(TF)
-			been_hit = HurtInTurf(TF, been_hit, TAILATTACK_DAMAGE, TAILATTACK_DAMAGETYPE, null, null, TRUE, FALSE, TRUE, TRUE)
-	self_charge_counter += length(been_hit) * TAILATTACK_CHARGE_PER_TARGET
+			been_hit = HurtInTurf(TF, been_hit, tailattack_damage, tailattack_damagetype, null, null, TRUE, FALSE, TRUE, TRUE)
+	self_charge_counter += length(been_hit) * tailattack_charge_per_target
 	say("Hit targets #: " + num2text(length(been_hit)))
 	//playsound(get_turf(src), 'sound/abnormalities/nothingthere/hello_bam.ogg', 100, 0, 7)
 	icon_state = icon_living
