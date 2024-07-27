@@ -76,9 +76,12 @@
 
 	ui_interact(viewer)
 
-/mob/living/carbon/human/ui_data(mob/user)
-	. = list()
+/mob/living/carbon/human/ui_static_data(mob/user)
+	. = ..()
 	.["name"] = real_name
+
+/mob/living/carbon/human/ui_data(mob/user)
+	. = ..()
 	.["level"] = get_text_level()
 	.["attributes"] = list()
 	.["stats"] = list()
