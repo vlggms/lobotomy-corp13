@@ -4,8 +4,9 @@
 	name = "streetlight greatsword"
 	desc = "A greatsword used by a fixer with big shoes to fill.'Maybe... I should have told her how I felt.'"
 	icon_state = "streetlight_greatsword"
-	force = 38
+	force = 36
 	attack_speed = 2
+	swingstyle = WEAPONSWING_LARGESWEEP
 	damtype = RED_DAMAGE
 
 	inhand_icon_state = "claymore"
@@ -42,6 +43,7 @@
 	inhand_icon_state = "streetlight_founder"
 	force = 32
 	damtype = BLACK_DAMAGE
+	swingstyle = WEAPONSWING_SMALLSWEEP
 
 	attack_verb_continuous = list("bashes", "crushes")
 	attack_verb_simple = list("bash", "crush")

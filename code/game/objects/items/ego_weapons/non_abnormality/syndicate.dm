@@ -38,6 +38,7 @@
 	force = 52
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")
@@ -84,6 +85,7 @@
 	force = 46
 	attack_speed = 1.2
 	damtype = RED_DAMAGE
+	swingstyle = WEAPONSWING_LARGESWEEP
 
 	attack_verb_continuous = list("pokes", "jabs", "tears", "lacerates", "gores")
 	attack_verb_simple = list("poke", "jab", "tear", "lacerate", "gore")

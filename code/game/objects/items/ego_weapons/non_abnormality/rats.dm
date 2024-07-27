@@ -13,8 +13,9 @@
 	name = "rat combat knife"
 	desc = "A combat knife sometimes found in the hands of rats. This one belonged to a rat who once had a dream of something bigger."
 	icon_state = "ratknife"
-	force = 10
+	force = 9
 	attack_speed = 0.5
+	swingstyle = WEAPONSWING_LARGESWEEP
 	attack_verb_continuous = list("slices", "slashes", "stabs")
 	attack_verb_simple = list("slice", "slash", "stab")
 	hitsound = 'sound/weapons/bladeslice.ogg'
