@@ -39,12 +39,10 @@
 	RV.invisibility = 0
 	return RV
 
-/datum/reusable_visual_pool/proc/ReturnToPool(obj/effect/reusable_visual/RV, called_from_timer = FALSE)
+/datum/reusable_visual_pool/proc/ReturnToPool(obj/effect/reusable_visual/RV)
 	if(!istype(RV) || RV.pool != src || !RV.is_being_used)
 		return FALSE
-	if(!called_from_timer && RV.timer_id)
-		deltimer(RV.timer_id)
-	RV.timer_id = null
+	RV.delayed_return_count = 0
 	RV.is_being_used = FALSE
 	RV.invisibility = 101
 	RV.can_be_z_moved = FALSE
@@ -66,51 +64,61 @@
 	available_objects[available_count] = RV
 	return TRUE
 
-#define SET_RV_RETURN_TIMER(RV, DURATION) ##RV.duration = DURATION; ##RV.timer_id = addtimer(CALLBACK(##RV.pool, TYPE_PROC_REF(/datum/reusable_visual_pool, ReturnToPool), ##RV, TRUE), ##RV.duration, TIMER_STOPPABLE);
+/datum/reusable_visual_pool/proc/DelayedReturn(obj/effect/reusable_visual/RV, duration)
+	set waitfor = 0
+	RV.duration = duration
+	RV.delayed_return_count += 1
+	sleep(duration)
+	if(QDELETED(RV))
+		return
+	if(RV.delayed_return_count < 2)
+		ReturnToPool(RV)
+	else
+		RV.delayed_return_count -= 1
+
 //Create procs like these for whatever effects
 /datum/reusable_visual_pool/proc/NewSmashEffect(turf/location, duration = 3, color = null)
 	var/obj/effect/reusable_visual/RV = TakePoolElement()
-	SET_RV_RETURN_TIMER(RV, duration)
 	RV.name = "smash"
 	RV.icon_state = "smash"
 	RV.color = color
 	RV.loc = location
+	DelayedReturn(RV, duration)
 	return RV
 
 /datum/reusable_visual_pool/proc/NewSparkles(turf/location, duration = 10, color = null)
 	var/obj/effect/reusable_visual/RV = TakePoolElement()
-	SET_RV_RETURN_TIMER(RV, duration)
 	RV.name = "sparkles"
 	RV.icon = 'icons/effects/effects.dmi'
 	RV.icon_state = "sparkles"
 	RV.color = color
 	RV.dir = pick(GLOB.cardinals)
 	RV.loc = location
+	DelayedReturn(RV, duration)
 	return RV
 
 /datum/reusable_visual_pool/proc/NewCultSparks(turf/location, duration = 10)
 	var/obj/effect/reusable_visual/RV = TakePoolElement()
-	SET_RV_RETURN_TIMER(RV, duration)
 	RV.name = "cult sparks"
 	RV.icon = 'icons/effects/cult_effects.dmi'
 	RV.icon_state = "bloodsparkles"
 	RV.dir = pick(GLOB.cardinals)
 	RV.loc = location
+	DelayedReturn(RV, duration)
 	return RV
 
 /datum/reusable_visual_pool/proc/NewCultIn(turf/location, direction = SOUTH)
 	var/obj/effect/reusable_visual/RV = TakePoolElement()
-	SET_RV_RETURN_TIMER(RV, 7)
 	RV.name = "cult in"
 	RV.icon = 'icons/effects/cult_effects.dmi'
 	RV.icon_state = "cultin"
 	RV.dir = direction
 	RV.loc = location
+	DelayedReturn(RV, 7)
 	return RV
 
 /datum/reusable_visual_pool/proc/NewSmoke(turf/location, duration = 10, color = null)
 	var/obj/effect/reusable_visual/RV = TakePoolElement()
-	SET_RV_RETURN_TIMER(RV, duration)
 	RV.name = "smoke"
 	RV.icon = 'icons/effects/effects.dmi'
 	RV.icon_state = "smoke"
@@ -118,4 +126,5 @@
 	RV.dir = pick(GLOB.cardinals)
 	RV.loc = location
 	animate(RV, alpha = 0, time = duration)
+	DelayedReturn(RV, duration)
 	return RV
